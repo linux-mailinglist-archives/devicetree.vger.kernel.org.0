@@ -2,130 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FE552A3B9A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 06:01:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2362A3C11
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 06:42:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727104AbgKCFBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 00:01:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43496 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725958AbgKCFBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 00:01:45 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0624AC0617A6
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 21:01:45 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id 10so13156632pfp.5
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 21:01:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=a2hK/Zt+tHOLeBOM1RV+x0rUNVHJCjIJ0ta9fQYuGlw=;
-        b=fsv92qZjIGtLDoGNPyoGBIcC/V49FfS/d+bdm9adJmzK8kv168J7MScR1jhbY5MTmG
-         /IfO72YdcZ1OXkcrjnZVc+ooPS3W31SytXqQv2JW5tzZUYbdAMPGrToY1pQK9ND0+koI
-         AzwUHkBYvxyyLTJcok7fjLeheOx4bGea0EVrgqaEQlBaCCe2xv6v6rYYI78NzTl11epP
-         lJXxdxUcjGEwx7IlnknNA+MGNAJF06hEEPim2LWV8+rA/W5z5VDBZMOREZRPoEgXtPr8
-         QdMS1iKlI7mk3vDNbDxZR9BFj7nheRL2gwt6w0jnbs8CKaJudOMhxW9fqWyURqFv2ZQO
-         pKMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=a2hK/Zt+tHOLeBOM1RV+x0rUNVHJCjIJ0ta9fQYuGlw=;
-        b=i69yX5BxMnUUrhj5Z4kc7KERJ+4QHZ2/SCw/RfdBZa8uLgyNQ2qTv1esEHjTxT5d9+
-         uOhm/kvp4ZyWQoMiJSwpHqS2uYjAHphPnEheOt2RpyQbDQopLQv5tza+iKv7KD2hxa6q
-         lBaP4zaYM79FdWgtswFGRZPf9Xf0G+PYUD9/sVE9j1KG9H3huQHMpKunCHbIfMkEbSrJ
-         nf5Ba+Da8PG17Ezs+PXv+IoBg+s0Q/11YiLqewl8kVp/tnRlEzzOs88Lvybx3F3nUhsj
-         NOCE99qgoLGZf83nJTCwKIVn3mxcqzUPEkmqdF7QiPsGJBOhBoJN5u6zNDzEMDvtLsr0
-         8xag==
-X-Gm-Message-State: AOAM5332aCfETUKyGZQ6Bkdq4/hvOKA4Vw343sxPO/er/2fT30lhmKFq
-        D5qRe6Dke0zB/BBLl3n4CjrUiw==
-X-Google-Smtp-Source: ABdhPJyWUS8zm8Na48K1tneF9X8r+aOUU0UCCgw5x7qYT0DpLvr/MkjfXCOFyt3HEqm4NScoGP/0vg==
-X-Received: by 2002:a17:90a:aa91:: with SMTP id l17mr1849037pjq.198.1604379704421;
-        Mon, 02 Nov 2020 21:01:44 -0800 (PST)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id h10sm14154774pgj.69.2020.11.02.21.01.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 Nov 2020 21:01:43 -0800 (PST)
-Date:   Tue, 3 Nov 2020 10:31:41 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-Subject: Re: [PATCH v3 2/3] opp/of: Allow empty opp-table with opp-shared
-Message-ID: <20201103050141.kiuyotzt4brisch7@vireshk-i7>
-References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
- <20201102120115.29993-3-nicola.mazzucato@arm.com>
+        id S1725958AbgKCFmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 00:42:24 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:36758 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725953AbgKCFmX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 00:42:23 -0500
+X-UUID: 6b5ec04e2eab43fbbcdebd85e2586f00-20201103
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=WW0Lmah8IaQQ9ZgPn79i+P0KVknepuLmC9kWTei51Yc=;
+        b=unRobiCxA4U4giVNtijjXCMLrUTDa3+b0GCFyEwfpDFKq2y6nQHdqbIsvB4jvilQXHdBbVAt9Jb/6/3Mqlmman5GIkh47fdm/bsOkHOs514Ddhtw1j12NfZ/eOS+GaihhfQ/BVYshDEV0z98xhI+bO6+uxG23GDNGDL+Re7dEUA=;
+X-UUID: 6b5ec04e2eab43fbbcdebd85e2586f00-20201103
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1631611038; Tue, 03 Nov 2020 13:42:20 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 3 Nov 2020 13:42:17 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 3 Nov 2020 13:42:16 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>, Tomasz Figa <tfiga@google.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
+        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, <ming-fan.chen@mediatek.com>
+Subject: [PATCH v5 0/3] MT8192 SMI support
+Date:   Tue, 3 Nov 2020 13:41:57 +0800
+Message-ID: <20201103054200.21386-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201102120115.29993-3-nicola.mazzucato@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain
+X-TM-SNTS-SMTP: EF9423204EAF833543A28E9D29A571C12114AD1C3BD3F5EA68511EA5BB10A7BA2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-11-20, 12:01, Nicola Mazzucato wrote:
-> The opp binding now allows to have an empty opp table and shared-opp to
-> merely describe a hw connection among devices (f/v lines).
-> 
-> When initialising an opp table, allow such case by:
-> - treating some errors as warnings
-> - do not mark empty tables as shared
-> - don't fail on empty table
-> 
-> Signed-off-by: Nicola Mazzucato <nicola.mazzucato@arm.com>
-> ---
->  drivers/opp/of.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-> index 874b58756220..b0230490bb31 100644
-> --- a/drivers/opp/of.c
-> +++ b/drivers/opp/of.c
-> @@ -157,6 +157,11 @@ static void _opp_table_free_required_tables(struct opp_table *opp_table)
->  /*
->   * Populate all devices and opp tables which are part of "required-opps" list.
->   * Checking only the first OPP node should be enough.
-> + *
-> + * Corner case: empty opp table and opp-shared found. In this case we set
-> + * unconditionally the opp table access to exclusive, as the opp-shared property
-> + * is used purely to describe hw connections. Such information will be retrieved
-> + * via dev_pm_opp_of_get_sharing_cpus().
->   */
->  static void _opp_table_alloc_required_tables(struct opp_table *opp_table,
->  					     struct device *dev,
-> @@ -169,7 +174,9 @@ static void _opp_table_alloc_required_tables(struct opp_table *opp_table,
->  	/* Traversing the first OPP node is all we need */
->  	np = of_get_next_available_child(opp_np, NULL);
->  	if (!np) {
-> -		dev_err(dev, "Empty OPP table\n");
-> +		dev_warn(dev, "Empty OPP table\n");
-> +
-> +		opp_table->shared_opp = OPP_TABLE_ACCESS_EXCLUSIVE;
+VGhpcyBwYXRjaHNldCBtYWlubHkgYWRkcyBTTUkgc3VwcG9ydCBmb3IgbXQ4MTkyLg0KDQpJdCBj
+b21lcyBmcm9tIHRoZSBwYXRjaHNldFsxXS4gSSBzZXBlcmF0ZSB0aGUgc21pIHBhcnQgaW50byB0
+aGlzIHBhdGNoc2V0Lg0KQW5kIHRoZSB0d28gcGFydChJT01NVS9TTUkpIHBhdGNoc2V0IGRvbid0
+IGRlcGVuZCBvbiBlYWNoIG90aGVyLg0KDQpSZWJhc2Ugb24gdjUuMTAtcmMxLg0KDQpjaGFuZ2Vu
+b3RlOg0KIHY1OiBGaXggY29tcGxhaW4gZnJvbSB5YW1sbGludC4NCg0KIHY0OiBodHRwczovL2xv
+cmUua2VybmVsLm9yZy9saW51eC1tZWRpYXRlay8yMDIwMTAzMDA5MTI1NC4yNjM4Mi0xLXlvbmcu
+d3VAbWVkaWF0ZWsuY29tL1QvI21lYjAzYjNmNDAxODg5NGJmNDBjNDdmZWNlNTJmZTliMzg2NDA5
+OTM0IA0KICAgIGFkZCBpZi10aGVuIHNlZ21lbnQgaW4gdGhlIGJpbmRpbmcuDQoNCiB2MzogWzFd
+DQoNClsxXSBodHRwczovL2xvcmUua2VybmVsLm9yZy9saW51eC1pb21tdS8yMDIwMDkzMDA3MDY0
+Ny4xMDE4OC0xLXlvbmcud3VAbWVkaWF0ZWsuY29tLw0KDQoNCllvbmcgV3UgKDMpOg0KICBkdC1i
+aW5kaW5nczogbWVtb3J5OiBtZWRpYXRlazogQ29udmVydCBTTUkgdG8gRFQgc2NoZW1hDQogIGR0
+LWJpbmRpbmdzOiBtZW1vcnk6IG1lZGlhdGVrOiBBZGQgbXQ4MTkyIHN1cHBvcnQNCiAgbWVtb3J5
+OiBtdGstc21pOiBBZGQgbXQ4MTkyIHN1cHBvcnQNCg0KIC4uLi9tZWRpYXRlayxzbWktY29tbW9u
+LnR4dCAgICAgICAgICAgICAgICAgICB8ICA1MCAtLS0tLS0NCiAuLi4vbWVkaWF0ZWssc21pLWNv
+bW1vbi55YW1sICAgICAgICAgICAgICAgICAgfCAxNDIgKysrKysrKysrKysrKysrKysrDQogLi4u
+L21lbW9yeS1jb250cm9sbGVycy9tZWRpYXRlayxzbWktbGFyYi50eHQgIHwgIDUwIC0tLS0tLQ0K
+IC4uLi9tZW1vcnktY29udHJvbGxlcnMvbWVkaWF0ZWssc21pLWxhcmIueWFtbCB8IDEzMiArKysr
+KysrKysrKysrKysrDQogZHJpdmVycy9tZW1vcnkvbXRrLXNtaS5jICAgICAgICAgICAgICAgICAg
+ICAgIHwgIDE5ICsrKw0KIDUgZmlsZXMgY2hhbmdlZCwgMjkzIGluc2VydGlvbnMoKyksIDEwMCBk
+ZWxldGlvbnMoLSkNCiBkZWxldGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL21lbW9yeS1jb250cm9sbGVycy9tZWRpYXRlayxzbWktY29tbW9uLnR4dA0KIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVtb3J5
+LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNtaS1jb21tb24ueWFtbA0KIGRlbGV0ZSBtb2RlIDEwMDY0
+NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL21l
+ZGlhdGVrLHNtaS1sYXJiLnR4dA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvbWVtb3J5LWNvbnRyb2xsZXJzL21lZGlhdGVrLHNtaS1sYXJiLnlh
+bWwNCg0KLS0gDQoyLjE4LjANCg0K
 
-I am not sure I understand the reasoning behind this.
-
->  		return;
->  	}
->  
-> @@ -377,7 +384,9 @@ int dev_pm_opp_of_find_icc_paths(struct device *dev,
->  	struct icc_path **paths;
->  
->  	ret = _bandwidth_supported(dev, opp_table);
-> -	if (ret <= 0)
-> +	if (ret == -EINVAL)
-> +		return 0; /* Empty OPP table is a valid corner-case, let's not fail */
-> +	else if (ret <= 0)
->  		return ret;
->  
->  	ret = 0;
-> -- 
-> 2.27.0
-
--- 
-viresh
