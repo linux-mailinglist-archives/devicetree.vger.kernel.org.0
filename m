@@ -2,176 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 314B32A4F0E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 19:38:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D5382A4F10
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 19:39:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727852AbgKCSis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 13:38:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58418 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729320AbgKCSip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 13:38:45 -0500
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF6A1C061A04
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 10:38:43 -0800 (PST)
-Received: by mail-pl1-x644.google.com with SMTP id z1so8955387plo.12
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 10:38:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/y2i5E0lLOisb13IRdBzP56Bd8XoXxDrEf0WMq0vvrM=;
-        b=Z5C3WaI6MFFHbzFSQfNv4RpPgpT4fxVtmM1vLkg3tT63xjg/2Z3SxO7aHJBGbfGjuO
-         OAcDNt9Su0qU/kmEARDZIX74Bep4NpHiMz5App4uIOj82Ju2Fb+zgNZQr7jI2HRvxj3K
-         xRkYUoX53mRTNDt6+nNdWLxfKyXHXc3103BZ0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/y2i5E0lLOisb13IRdBzP56Bd8XoXxDrEf0WMq0vvrM=;
-        b=GOA3dv4MSajG3OhEB6hyWaA9ZfYN6YiSlzfqponv39M+CZ9aS1phC1I0wr5raVvC8/
-         1nB8NujXG0gWHrYIEyQjXKLHb8I4GFP7MbEJb5YOloLie1/KcHOpVViUfE+5bEhxPgIR
-         gYKIkB4ki2sZvy+tnAtML5raAPQzXITTrpPzxS11QFWSHKOg1kX16vLtSyt4IOFd6uum
-         SUQT0UwXMaoHnXaNJP1cHq/d4hZ9W8bX51mRHlIPOZLDKNPO6gehITNU1G9DclEYIogy
-         528Ei2GXvA4NWAettuU4PbMJ1E4ADgadigwQOBdcHMir/mLRThN3k9UdaRQdrouxqIkh
-         JGhQ==
-X-Gm-Message-State: AOAM531uJ9RLSN4zjlvs5gp6gWPa6xQSgghAh11MqXOUejLdhGz3hfdR
-        Z2JiKMoyAR/FpjjwtFSuUANtfA==
-X-Google-Smtp-Source: ABdhPJwCj82luwLwEimPMxozKH8htGeXlq/o5RCPdsw22t1ZiOvgfbjAmqlypZ8iTdEH/E4YYvgaHQ==
-X-Received: by 2002:a17:902:c3c9:b029:d6:7e88:cfa9 with SMTP id j9-20020a170902c3c9b02900d67e88cfa9mr25410888plj.64.1604428723296;
-        Tue, 03 Nov 2020 10:38:43 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id 16sm4399353pjf.36.2020.11.03.10.38.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Nov 2020 10:38:42 -0800 (PST)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH] arm64: dts: qcom: sc7180-trogdor: Make pp3300_a the default supply for pp3300_hub
-Date:   Tue,  3 Nov 2020 10:38:33 -0800
-Message-Id: <20201103103749.1.I0ed4abdd2b2916fbedf76be254bc3457fb8b9655@changeid>
-X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
+        id S1727883AbgKCSjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 13:39:22 -0500
+Received: from imap2.colo.codethink.co.uk ([78.40.148.184]:49586 "EHLO
+        imap2.colo.codethink.co.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728621AbgKCSjW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 13:39:22 -0500
+Received: from cpc79921-stkp12-2-0-cust288.10-2.cable.virginm.net ([86.16.139.33] helo=[192.168.0.10])
+        by imap2.colo.codethink.co.uk with esmtpsa  (Exim 4.92 #3 (Debian))
+        id 1ka1D4-0001Og-J3; Tue, 03 Nov 2020 18:39:10 +0000
+Subject: Re: [RFC PATCH 2/3] RISC-V: Initial DTS for Microchip ICICLE board
+To:     Atish Patra <atishp@atishpatra.org>
+Cc:     Cyril.Jean@microchip.com, devicetree@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daire McNamara <Daire.McNamara@microchip.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Padmarao Begari <Padmarao.Begari@microchip.com>
+References: <20201028232759.1928479-1-atish.patra@wdc.com>
+ <20201028232759.1928479-3-atish.patra@wdc.com>
+ <41f1248b-78c6-bac1-410b-9e222368c5f6@codethink.co.uk>
+ <CAOnJCUJhQ=Zv0S4iCK4CDzQr_dfkw3J6ycdM=p6=5B2_sL1Ekg@mail.gmail.com>
+ <2d7cc829-5df6-6b94-4c8f-9bae6080444e@codethink.co.uk>
+ <CAOnJCULejyF9xyLk5M0TXqW_=nn0KM5aE8nhK+1h0Xayd2pKUg@mail.gmail.com>
+ <fbe404b5-3bb1-dd00-e558-e4a55960b767@microchip.com>
+ <fe079b4a-5410-5cc8-3f5e-8a95b573078a@codethink.co.uk>
+ <CAOnJCUKH77XDymG+jAUYHP+5TC2aabTR4f8jF6s6FqqQNR=_CQ@mail.gmail.com>
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+Message-ID: <22800ecc-a91b-ee3c-4717-4ee8802f31a2@codethink.co.uk>
+Date:   Tue, 3 Nov 2020 18:39:09 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAOnJCUKH77XDymG+jAUYHP+5TC2aabTR4f8jF6s6FqqQNR=_CQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The trogdor design has two options for supplying the pp3300_hub power rail,
-it can be supplied by pp3300_l7c or pp3300_a. Initially pp3300_l7c was
-used, newer revisions (will) use pp3300_a as supply.
+On 03/11/2020 18:36, Atish Patra wrote:
+> On Tue, Nov 3, 2020 at 10:28 AM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
+>>
+>> On 03/11/2020 18:10, Cyril.Jean@microchip.com wrote:
+>>> On 11/3/20 3:07 PM, Atish Patra wrote:
+>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>>>>
+>>>> On Fri, Oct 30, 2020 at 2:20 PM Ben Dooks <ben.dooks@codethink.co.uk> wrote:
+>>
+>> ,snip[
+>>
+>>>>>> @Cyril : Can we enable both eMMC & sdcard at the same time ?
+>>>>> I would put /both/ in but only enable the one in use for the moment.
+>>>>> Our boards are booting of eMMC as supplied, so this isn't going to work
+>>>>> as well. The eMMC is 8bit wide, and thus is only delivering 11MB/sec
+>>>>> instead of 22MB/sec. This performance is still not great, but losing
+>>>>> half the data-rate is just not good.
+>>>>>
+>>>> I am not sure what should be enabled by default. Updating sdcard is much
+>>>> easier than eMMC card and we use that approach.
+>>>>
+>>>> @Cyril: Is there a way that we can enable both ?
+>>>>
+>>> Yes, we can enable both but this requires a modification to the FPGA
+>>> design. One of the guys prototyped this while I was away. We will move
+>>> this along. This will require reprogramming the FPGA with a new design
+>>> and HSS version.
+>>>
+>>> Regards,
+>>>
+>>> Cyril.
+>>
+>> I either missed or couldn't find a way of forcing the boot mode to be
+>> from the SD slot. Have I missed something? At the moment we'd like to
+>> have more storage available as the ~7G free on the eMMC is not enough.
+>>
+> 
+> I use tftpboot to load the kernel & DT from the network. SD card is
+> enabled in this DT and Linux
+> kernel uses SD slot instead of eMMC.
+> 
+> To summarize, eMMC is used for HSS & U-Boot while SD card is used for
+> Linux which makes
+> more storage available to Linux.
+> 
+> IMO, we should enable the sdcard for Linux DT until updated FPGA
+> design & HSS is available.
 
-Add a DT node for the pp3300_a path which includes a power switch that is
-controlled by a GPIO. Make this path the default and keep trogdor rev1,
-lazor rev0 and rev1 on pp3300_l7c.
+Interesting as for me the default is for Linux to use the eMMC as
+well. I can't see any way for forcing the selection lines in the
+DT to say eMMC vs SD.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
+If there is a way of controlling the selection lines then it might
+be possible to have both cards enabled with a bus selection MUX in
+software.
 
- .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts |  4 +++
- .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts |  4 +++
- .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts |  4 +++
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 30 ++++++++++++++++++-
- 4 files changed, 41 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-index ae4c23a4fe65..08bf30b761fc 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
-@@ -22,3 +22,7 @@ &sn65dsi86_out {
- 	 */
- 	lane-polarities = <1 0>;
- };
-+
-+&usb_hub {
-+	vdd-supply = <&pp3300_hub_7c>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-index 3151ae31c1cc..9f7a44d78a1a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
-@@ -13,3 +13,7 @@ / {
- 	model = "Google Lazor (rev1+)";
- 	compatible = "google,lazor", "qcom,sc7180";
- };
-+
-+&usb_hub {
-+	 vdd-supply = <&pp3300_hub_7c>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-index 0a281c24841c..e1840fe07cd0 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
-@@ -62,6 +62,10 @@ &sdhc_2 {
- 	status = "okay";
- };
- 
-+&usb_hub {
-+	 vdd-supply = <&pp3300_hub_7c>;
-+};
-+
- /* PINCTRL - board-specific pinctrl */
- 
- &tlmm {
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index bf875589d364..2d64e75a2d6d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -174,6 +174,21 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
- 		vin-supply = <&pp3300_a>;
- 	};
- 
-+	pp3300_hub: pp3300-hub {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pp3300_hub";
-+
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 84 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&en_pp3300_hub>;
-+
-+		vin-supply = <&pp3300_a>;
-+	};
-+
- 	/* BOARD-SPECIFIC TOP LEVEL NODES */
- 
- 	backlight: backlight {
-@@ -469,7 +484,7 @@ ppvar_l6c: ldo6 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 
--		pp3300_hub:
-+		pp3300_hub_7c:
- 		pp3300_l7c: ldo7 {
- 			regulator-min-microvolt = <3304000>;
- 			regulator-max-microvolt = <3304000>;
-@@ -1151,6 +1166,19 @@ pinconf {
- 		};
- 	};
- 
-+	en_pp3300_hub: en-pp3300-hub {
-+		pinmux {
-+			pins = "gpio84";
-+			function = "gpio";
-+		};
-+
-+		pinconf {
-+			pins = "gpio84";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
- 	en_pp3300_dx_edp: en-pp3300-dx-edp {
- 		pinmux {
- 			pins = "gpio30";
 -- 
-2.29.1.341.ge80a0c044ae-goog
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
 
+https://www.codethink.co.uk/privacy.html
