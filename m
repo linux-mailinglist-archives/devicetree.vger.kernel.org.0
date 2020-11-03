@@ -2,142 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64FE72A4F69
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 19:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 424952A4F9A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 20:03:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729459AbgKCSvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 13:51:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52368 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726660AbgKCSvx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 13:51:53 -0500
-Received: from C02TF0J2HF1T.local (unknown [2.26.170.190])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 781942074B;
-        Tue,  3 Nov 2020 18:51:47 +0000 (UTC)
-Date:   Tue, 3 Nov 2020 18:51:43 +0000
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
-        linux-kernel@vger.kernel.org, robin.murphy@arm.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        linux-acpi@vger.kernel.org, linux-mm@kvack.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 0/7] arm64: Default to 32-bit wide ZONE_DMA
-Message-ID: <20201103185143.GC81026@C02TF0J2HF1T.local>
-References: <20201029172550.3523-1-nsaenzjulienne@suse.de>
- <20201030181134.GE23196@gaia>
- <0fc240575aad6a538fdc282e419411a615ba93f3.camel@suse.de>
+        id S1729549AbgKCTDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 14:03:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33958 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727688AbgKCTC7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 14:02:59 -0500
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66E4BC0613D1
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 11:02:59 -0800 (PST)
+Received: by mail-io1-xd42.google.com with SMTP id n12so7912972ioc.2
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 11:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jtAMmYu/vtZ7Po/bgeGbuB1WjXTOAIZ7G9Kh+0nnjEg=;
+        b=cnjLzlof3WkkkRXlleGAb0gmtfoEWI9a+NHHysOgZPQGr3gcMPkYjbBFIRcc2X/5rx
+         GTVKYiTG62LMp2mGXlrv+rOvjs8+UkiU/2exa+3Wmq548VVVtYyJyx7KVPtCtJkgF/PJ
+         MKETOILQOekdJOwbHuv9R0oyaKIbbSGm2nu/Y=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jtAMmYu/vtZ7Po/bgeGbuB1WjXTOAIZ7G9Kh+0nnjEg=;
+        b=PfU8XbYejwpcGj3S2LzbIHOGVXNIzv6Q8XROx7bwqQ/TH2DXNbOalfKvWLU2aTtmzp
+         +Egjt/nqrjTEk14mM86HJXPYfW226aNBG3B3UQOUC7bwJ7KtWAxD4ToiDlXh5M6FXLPE
+         ARTs6w4/afDUR/1vkijWlQvVWuZclL5fNcU+ykbvFRb/v2OoN3zOm7R5v+wG5P6bH4gv
+         ym4yTmRDfPrGAAt0+8B+D6ZIuQukdtvGk9Tl5aYPEorn7nkZvp/gOucsWhwu05VVklCV
+         8MWc7b31YReTuzNhBJhtrGVYDoWnP1ArwWy+Qaci0FgwzWAxZNTEgE4NneV1dSYtednO
+         fZsQ==
+X-Gm-Message-State: AOAM532GP92AeHBB614TcfMi96+jImd7LEI1ooJ+Iczq8XRnhvuYUw3A
+        WwtFj8vVEAwUTY94QgTB1lgdzf0aBh8aWO0nMAxUZm27jRxn
+X-Google-Smtp-Source: ABdhPJyOIhTQQ4hlWFIb+00TD5h4rC1h2+ADQIBifhBDDykkmQERUZqR99jOE98JolQXNQZ1o/EBkJzgYxDpg/3nPa4=
+X-Received: by 2002:a02:6a5b:: with SMTP id m27mr15343703jaf.58.1604430178788;
+ Tue, 03 Nov 2020 11:02:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0fc240575aad6a538fdc282e419411a615ba93f3.camel@suse.de>
+References: <20201028232759.1928479-1-atish.patra@wdc.com> <20201028232759.1928479-3-atish.patra@wdc.com>
+ <CAAhSdy0pW8AFCDtFkEO_4zjg8Exp+XTb09AjhErdX9u-Jw3OuQ@mail.gmail.com>
+ <CAEUhbmUm6EyP33FU1n4LhEk-xcBtR13-xS+Tpt76ug1HQv8CEg@mail.gmail.com>
+ <e9bad05c-db34-ba2c-df5c-ff2f7f53e15b@microchip.com> <CAOnJCULkC65FgOakjPgoACdpiQFWTiEPCox3ayMWWZwVa91fVA@mail.gmail.com>
+ <c137885d-374b-64ed-42a5-7e8efe004660@microchip.com>
+In-Reply-To: <c137885d-374b-64ed-42a5-7e8efe004660@microchip.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Tue, 3 Nov 2020 11:02:47 -0800
+Message-ID: <CAOnJCULbax3VnqjmWq8j4vxf=UrpOK9TMjwzXdZVP1iDnZ+GcA@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/3] RISC-V: Initial DTS for Microchip ICICLE board
+To:     Cyril.Jean@microchip.com
+Cc:     Bin Meng <bmeng.cn@gmail.com>, Anup Patel <anup@brainfault.org>,
+        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Daire McNamara <Daire.McNamara@microchip.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Atish Patra <atish.patra@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Padmarao Begari <Padmarao.Begari@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 03, 2020 at 06:00:33PM +0100, Nicolas Saenz Julienne wrote:
-> On Fri, 2020-10-30 at 18:11 +0000, Catalin Marinas wrote:
-> > On Thu, Oct 29, 2020 at 06:25:43PM +0100, Nicolas Saenz Julienne wrote:
-> > > Ard Biesheuvel (1):
-> > >   arm64: mm: Set ZONE_DMA size based on early IORT scan
-> > > 
-> > > Nicolas Saenz Julienne (6):
-> > >   arm64: mm: Move reserve_crashkernel() into mem_init()
-> > >   arm64: mm: Move zone_dma_bits initialization into zone_sizes_init()
-> > >   of/address: Introduce of_dma_get_max_cpu_address()
-> > >   of: unittest: Add test for of_dma_get_max_cpu_address()
-> > >   arm64: mm: Set ZONE_DMA size based on devicetree's dma-ranges
-> > >   mm: Remove examples from enum zone_type comment
-> > 
-> > Thanks for putting this together. I had a minor comment but the patches
-> > look fine to me. We still need an ack from Rob on the DT patch and I can
-> > queue the series for 5.11.
-> 
-> I'm preparing a v6 unifying both functions as you suggested.
-> 
-> > Could you please also test the patch below on top of this series? It's
-> > the removal of the implied DMA offset in the max_zone_phys()
-> > calculation.
-> 
-> Yes, happily. Comments below.
-> 
-> > --------------------------8<-----------------------------
-> > From 3ae252d888be4984a612236124f5b099e804c745 Mon Sep 17 00:00:00 2001
-> > From: Catalin Marinas <catalin.marinas@arm.com>
-> > Date: Fri, 30 Oct 2020 18:07:34 +0000
-> > Subject: [PATCH] arm64: Ignore any DMA offsets in the max_zone_phys()
-> >  calculation
-> > 
-> > Currently, the kernel assumes that if RAM starts above 32-bit (or
-> > zone_bits), there is still a ZONE_DMA/DMA32 at the bottom of the RAM and
-> > such constrained devices have a hardwired DMA offset. In practice, we
-> > haven't noticed any such hardware so let's assume that we can expand
-> > ZONE_DMA32 to the available memory if no RAM below 4GB. Similarly,
-> > ZONE_DMA is expanded to the 4GB limit if no RAM addressable by
-> > zone_bits.
-> > 
-> > Signed-off-by: Catalin Marinas <catalin.marinas@arm.com>
-> > ---
-> >  arch/arm64/mm/init.c | 17 ++++++++++++-----
-> >  1 file changed, 12 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> > index 095540667f0f..362160e16fb2 100644
-> > --- a/arch/arm64/mm/init.c
-> > +++ b/arch/arm64/mm/init.c
-> > @@ -175,14 +175,21 @@ static void __init reserve_elfcorehdr(void)
-> >  #endif /* CONFIG_CRASH_DUMP */
-> >  
-> >  /*
-> > - * Return the maximum physical address for a zone with a given address size
-> > - * limit. It currently assumes that for memory starting above 4G, 32-bit
-> > - * devices will use a DMA offset.
-> > + * Return the maximum physical address for a zone accessible by the given bits
-> > + * limit. If the DRAM starts above 32-bit, expand the zone to the maximum
-> > + * available memory, otherwise cap it at 32-bit.
-> >   */
-> >  static phys_addr_t __init max_zone_phys(unsigned int zone_bits)
-> >  {
-> > -	phys_addr_t offset = memblock_start_of_DRAM() & GENMASK_ULL(63, zone_bits);
-> > -	return min(offset + (1ULL << zone_bits), memblock_end_of_DRAM());
-> > +	phys_addr_t zone_mask = (1ULL << zone_bits) - 1;
-> 
-> Maybe use DMA_BIT_MASK(), instead of the manual calculation?
+On Tue, Nov 3, 2020 at 10:50 AM <Cyril.Jean@microchip.com> wrote:
+>
+> On 11/3/20 6:38 PM, Atish Patra wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >
+> > On Tue, Nov 3, 2020 at 10:19 AM <Cyril.Jean@microchip.com> wrote:
+> >> On 11/3/20 10:00 AM, Bin Meng wrote:
+> >>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> >>>
+> >>> On Fri, Oct 30, 2020 at 5:08 PM Anup Patel <anup@brainfault.org> wrote:
+> >>>> On Thu, Oct 29, 2020 at 4:58 AM Atish Patra <atish.patra@wdc.com> wrote:
+> >>>>> Add initial DTS for Microchip ICICLE board having only
+> >>>>> essential devcies (clocks, sdhci, ethernet, serial, etc).
+> >>>>>
+> >>>>> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> >>>>> ---
+> >>>>>    arch/riscv/boot/dts/Makefile                  |   1 +
+> >>>>>    arch/riscv/boot/dts/microchip/Makefile        |   2 +
+> >>>>>    .../microchip/microchip-icicle-kit-a000.dts   | 313 ++++++++++++++++++
+> >>>> I suggest we split this DTS into two parts:
+> >>>> 1. SOC (microchip-polarfire.dtsi)
+> >>>> 2. Board (microchip-icicle-kit-a000.dts)
+> >>> I also doubt what is the correct board name. I suspect the -a000 comes
+> >>> from the SiFive board name convention, but does not apply to the
+> >>> Icicle Kit board.
+> >>>
+> >>> @Cyril, please confirm.
+> >>>
+> >> Correct. Sorry Padmarao, I missed that one.
+> >>
+> > Ok. I picked that one from U-Boot. What should be the correct board
+> > name in that case ?
+> >
+> > microchip-pfsoc-icicle-kit ?
+>
+> My preference would go for microchip-mpfs-icicle-kit. I prefer "mpfs"
+> over "pfsoc" as "mpfs" is the part number prefix for the PolarFire SoC
+> device family.
+>
 
-Yes.
+Sure. I will update accordingly. Thanks for the quick feedback.
 
-> 
-> > +	phys_addr_t phys_start = memblock_start_of_DRAM();
-> > +
-> > +	if (!(phys_start & U32_MAX))
-> 
-> I'd suggest using 'bigger than' instead of masks. Just to cover ourselves
-> against memory starting at odd locations. Also it'll behaves properly when
-> phys_start is zero (this breaks things on RPi4).
+>
+> Regards,
+>
+> Cyril.
+>
+>
 
-Good point.
-
-> > +		zone_mask = PHYS_ADDR_MAX;
-> > +	else if (!(phys_start & zone_mask))
-> > +		zone_mask = U32_MAX;
-> > +
-> > +	return min(zone_mask + 1, memblock_end_of_DRAM());
-> 
-> This + 1 isn't going to play well when zone_mask is PHYS_ADDR_MAX.
-
-You are right on PHYS_ADDR_MAX overflowing but I'd keep the +1 since
-memblock_end_of_DRAM() returns the first byte past the accessible range
-(so exclusive end).
-
-I'll tweak this function a bit to avoid the overflow or use the
-arm64-specific PHYS_MASK (that's never going to be the full 64 bits).
-
-Thanks.
 
 -- 
-Catalin
+Regards,
+Atish
