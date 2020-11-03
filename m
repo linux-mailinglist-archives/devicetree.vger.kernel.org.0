@@ -2,90 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C002A4AC5
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:08:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDBF62A4ACE
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:09:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727754AbgKCQIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:08:02 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41129 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbgKCQIC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:08:02 -0500
-Received: by mail-oi1-f195.google.com with SMTP id m13so9798157oih.8;
-        Tue, 03 Nov 2020 08:08:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LppOrRjoS2ltemazd7R9I3bmJ/2o8r3uS4AEkLPs4Jw=;
-        b=TnUu0OnEtR/V7F5rGA8p5rVeq808fox3vqcUgu1e6+E5FdfZlDdRPosUokuoRNKrY8
-         U2PWk3+iTjhuOJ8GsVMY4eNnemVdVKowMua/bMhC2lsjmGpm26UWMBZaT3GRWjt756ei
-         1epXhq2yxX1OPiOUB1F8a46tQ6uU7PND/64JlQl1ilowxUjorosLs4vh1ueU0R4YrAkL
-         cckiAnQRqAj49VNwlf4QNkVSzovI7s21Dova8qKFBpEoSWP7Gi7Rj5tFL6QE+kUYpf63
-         yq6XPzY5zilF/R9kYxY+QhSJKlMe+pIYahvr+T8ufHdnsHRUiPVp6EPaw1nnRJYJR7OT
-         Owig==
-X-Gm-Message-State: AOAM5324Wb4segHD5dOoULBQDksJzbV3GKPiShvS+X5NuMezQXXX7N0H
-        ruIXmeO1Frn/lOtTRUvLRg==
-X-Google-Smtp-Source: ABdhPJxJEBnN98SZvRMckcmmoNzrl9tAOxO+q7ulEbu52U5AXSAtCqqgXDvRNFUqVvLAnn1fHYkLCw==
-X-Received: by 2002:aca:aac8:: with SMTP id t191mr234134oie.119.1604419680082;
-        Tue, 03 Nov 2020 08:08:00 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n18sm4495788otk.33.2020.11.03.08.07.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 08:07:58 -0800 (PST)
-Received: (nullmailer pid 1754319 invoked by uid 1000);
-        Tue, 03 Nov 2020 16:07:56 -0000
-Date:   Tue, 3 Nov 2020 10:07:56 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 00/10] dt-bindings: iio: conversion of consumer drivers
-Message-ID: <20201103160756.GB1732900@bogus>
-References: <20201031181242.742301-1-jic23@kernel.org>
+        id S1727743AbgKCQJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 11:09:57 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:57712 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726212AbgKCQJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:09:57 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A3G9i12043428;
+        Tue, 3 Nov 2020 10:09:44 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604419784;
+        bh=ASRLdMFpDPF7L3jGqEBGSpdlOd3m9t3o2Wgd10aMWTM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=nO4fqgvvEGIUGo30PQRjIP/l1NjcMLhpChcn0uR7mPJxZ2J9DvZ/sliyNG33Fx3PG
+         T7kyUTiE1zh1OcZpiPjajXdpwUAEpjm6dbIPtdJodBS+HHjmknYvrajIBg0ii+uNxH
+         +ISWD4Sk24j7oawLkaQwcdSaCQejS+W87/9WbPWQ=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A3G9i1R115061
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 3 Nov 2020 10:09:44 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 3 Nov
+ 2020 10:09:43 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 3 Nov 2020 10:09:44 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A3G9hxR016819;
+        Tue, 3 Nov 2020 10:09:43 -0600
+Date:   Tue, 3 Nov 2020 21:39:42 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+CC:     <broonie@kernel.org>, <vigneshr@ti.com>,
+        <tudor.ambarus@microchip.com>, <linux-kernel@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <miquel.raynal@bootlin.com>,
+        <simon.k.r.goldschmidt@gmail.com>, <dinguyen@kernel.org>,
+        <richard@nod.at>, <cheol.yong.kim@intel.com>,
+        <qi-ming.wu@intel.com>
+Subject: Re: [PATCH v6 2/6] spi: cadence-quadspi: Disable the DAC for Intel
+ LGM SoC
+Message-ID: <20201103160834.mfbasmmlgsptnl5l@ti.com>
+References: <20201030053153.5319-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201030053153.5319-3-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20201031181242.742301-1-jic23@kernel.org>
+In-Reply-To: <20201030053153.5319-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 06:12:32PM +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On 30/10/20 01:31PM, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > 
-> Firstly drop the old text file as the consumer binding (and the other
-> parts of that file) are under review for inclusion in the dt-schema external
-> repo.
+> On Intel Lightning Mountain(LGM) SoCs QSPI controller do not use
+> Direct Access Controller(DAC).
 > 
-> This only converts consumers that happen to also be IIO drivers.
-> Others may get done as part of SoC binding conversions or I may do a lot
-> of them at somepoint.
+> This patch adds a quirk to disable the Direct Access Controller
+> for data transfer instead it uses indirect data transfer.
 > 
-> A few of the examples in existing text files used providers that were
-> documented in trivial-bindings.yaml which does not allow for
-> #io-channel-cells. I have pulled those out to their own files as part
-> of this patch set.
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> ---
+>  drivers/spi/spi-cadence-quadspi.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> The iio-mux binding is not done as that has some dependencies and will
-> form part of some future patch set.
-> 
-> There is no explicit dependency in here on any other sets, but some
-> noise will occur in trivial-bindings.yaml if applied in a different
-> order to I happen to have them sets locally.
-> 
-> Jonathan Cameron (10):
->   dt-bindings:iio:iio-binding.txt Drop file as content now in dt-schema
->   dt-bindings:iio:dac:dpot-dac: yaml conversion.
->   dt-bindings:iio:potentiometer: give microchip,mcp4531 its own binding
->   dt-bindings:iio:adc:envelope-detector: txt to yaml conversion.
->   dt-bindings:iio:afe:current-sense-amplifier: txt to yaml conversion.
->   dt-bindings:iio:afe:current-sense-shunt: txt to yaml conversion. 
->   dt-bindings:iio:adc:maxim,max1027: Pull out to separate binding doc.
->   dt-bindings:iio:afe:voltage-divider: txt to yaml conversion
->   dt-bindings:iio:light:capella,cm3605: txt to yaml conversion.
->   dt-bindings:iio:potentiostat:ti,lmp91000: txt to yaml conversion.
+> diff --git a/drivers/spi/spi-cadence-quadspi.c b/drivers/spi/spi-cadence-quadspi.c
+> index d7b10c46fa70..6d6f7c440ece 100644
+> --- a/drivers/spi/spi-cadence-quadspi.c
+> +++ b/drivers/spi/spi-cadence-quadspi.c
+> @@ -1107,6 +1107,13 @@ static void cqspi_controller_init(struct cqspi_st *cqspi)
+>  	writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
+>  
+>  	cqspi_controller_enable(cqspi, 1);
+> +
+> +	/* Disable direct access controller */
+> +	if (!cqspi->use_direct_mode) {
+> +		reg = readl(cqspi->iobase + CQSPI_REG_CONFIG);
+> +		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
+> +		writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
+> +	}
 
-With the type references for properties with standard units dropped,
+You did not address my comment here from last time around [0]. Please 
+replace this hunk with the one below and test it. Also mention in the 
+commit message that the DAC bit resets to 1 so there is no need to 
+explicitly set it.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--- 8< ---
+diff --git a/drivers/spi/spi-cadence-quadspi.c 
+b/drivers/spi/spi-cadence-quadspi.c
+index d7ad8b198a11..d2c5d448a944 100644
+--- a/drivers/spi/spi-cadence-quadspi.c
++++ b/drivers/spi/spi-cadence-quadspi.c
+@@ -2156,10 +2156,12 @@ static void cqspi_controller_init(struct cqspi_st *cqspi)
+ 	writel(cqspi->fifo_depth * cqspi->fifo_width / 8,
+ 	       cqspi->iobase + CQSPI_REG_INDIRECTWRWATERMARK);
+ 
+-	/* Enable Direct Access Controller */
+-	reg = readl(cqspi->iobase + CQSPI_REG_CONFIG);
+-	reg |= CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
+-	writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
++	/* Disable Direct Access Controller */
++	if (!cqspi->use_dac_mode) {
++		reg = readl(cqspi->iobase + CQSPI_REG_CONFIG);
++		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
++		writel(reg, cqspi->iobase + CQSPI_REG_CONFIG);
++	}
+ 
+ 	cqspi_controller_enable(cqspi, 1);
+ }
+--- >8 ---
+
+Same disclaimer as last time: not tested at all.
+
+[0] https://lore.kernel.org/linux-spi/20201022090146.2uj5gfx73dsfumjl@ti.com/
+
+PS: Please Cc me in the next revision. I missed 3 revisions in between 
+because I'm not subscribed to this list. Otherwise I would have sent 
+this much sooner :-)
+
+>  }
+>  
+>  static int cqspi_request_mmap_dma(struct cqspi_st *cqspi)
+> @@ -1388,6 +1395,10 @@ static const struct cqspi_driver_platdata am654_ospi = {
+>  	.quirks = CQSPI_NEEDS_WR_DELAY,
+>  };
+>  
+> +static const struct cqspi_driver_platdata intel_lgm_qspi = {
+> +	.quirks = CQSPI_DISABLE_DAC_MODE,
+> +};
+> +
+>  static const struct of_device_id cqspi_dt_ids[] = {
+>  	{
+>  		.compatible = "cdns,qspi-nor",
+> @@ -1403,6 +1414,7 @@ static const struct of_device_id cqspi_dt_ids[] = {
+>  	},
+>  	{
+>  		.compatible = "intel,lgm-qspi",
+> +		.data = &intel_lgm_qspi,
+>  	},
+>  	{ /* end of table */ }
+>  };
+> -- 
+> 2.11.0
+> 
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments India
