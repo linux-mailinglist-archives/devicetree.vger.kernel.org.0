@@ -2,37 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 184832A391F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 02:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC482A38BC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 02:21:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727520AbgKCBX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 20:23:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35770 "EHLO mail.kernel.org"
+        id S1728214AbgKCBUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 20:20:47 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35848 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728202AbgKCBUn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Nov 2020 20:20:43 -0500
+        id S1728209AbgKCBUp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Nov 2020 20:20:45 -0500
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 30E9A22450;
-        Tue,  3 Nov 2020 01:20:42 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 795E524102;
+        Tue,  3 Nov 2020 01:20:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604366443;
-        bh=E3R4tI/CtnFlwK3YLD6WPm4m2NqFBxzT4gtiBJhbzME=;
+        s=default; t=1604366445;
+        bh=8KhMVkXuO9IWRIf9J//Ux4aNr+Cp/aodlSkrxiF5tx0=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HwB1xVgpMXuWZGAMBekEiY2Nf7eIMPPXimMnijRnZMVxfQolgQC1qNbzNtt5ZDws3
-         k2iLu/KNsvEiMUSLkiSLT9nrtMmHWfgAP+jPlrsTdmwzD8aHVOOjOE2gFYIMc7Amcq
-         g2JZ5y91ohVfkAGU8aG4t/3muVi8XX8BF7/L6bjo=
+        b=o4y/P6pisjw5Lpxr+z2/O/RBwh9DEEsoaxWGucBiI6zsI7Pgki0Q5o7+V9kYEw18d
+         gp6UNyl/jDLxbZT980GnETJb+piYUnVBoIkknmwXrY+tA4lg2NfK9PpAsuRturHaPq
+         OV2mW8akSDkPn3ooLn2XStzwgKW1J2kjbVI8ck7E=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 02/11] arm64: dts: meson-axg-s400: enable USB OTG
-Date:   Mon,  2 Nov 2020 20:20:30 -0500
-Message-Id: <20201103012039.183672-2-sashal@kernel.org>
+Cc:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        Rob Herring <robh@kernel.org>, Sasha Levin <sashal@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 04/11] of: Fix reserved-memory overlap detection
+Date:   Mon,  2 Nov 2020 20:20:32 -0500
+Message-Id: <20201103012039.183672-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.27.0
 In-Reply-To: <20201103012039.183672-1-sashal@kernel.org>
 References: <20201103012039.183672-1-sashal@kernel.org>
@@ -44,34 +42,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Neil Armstrong <narmstrong@baylibre.com>
+From: Vincent Whitchurch <vincent.whitchurch@axis.com>
 
-[ Upstream commit f450d2c219f6a6b79880c97bf910c3c72725eb70 ]
+[ Upstream commit ca05f33316559a04867295dd49f85aeedbfd6bfd ]
 
-This enables USB OTG on the S400 board.
+The reserved-memory overlap detection code fails to detect overlaps if
+either of the regions starts at address 0x0.  The code explicitly checks
+for and ignores such regions, apparently in order to ignore dynamically
+allocated regions which have an address of 0x0 at this point.  These
+dynamically allocated regions also have a size of 0x0 at this point, so
+fix this by removing the check and sorting the dynamically allocated
+regions ahead of any static regions at address 0x0.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+For example, there are two overlaps in this case but they are not
+currently reported:
+
+	foo@0 {
+	        reg = <0x0 0x2000>;
+	};
+
+	bar@0 {
+	        reg = <0x0 0x1000>;
+	};
+
+	baz@1000 {
+	        reg = <0x1000 0x1000>;
+	};
+
+	quux {
+	        size = <0x1000>;
+	};
+
+but they are after this patch:
+
+ OF: reserved mem: OVERLAP DETECTED!
+ bar@0 (0x00000000--0x00001000) overlaps with foo@0 (0x00000000--0x00002000)
+ OF: reserved mem: OVERLAP DETECTED!
+ foo@0 (0x00000000--0x00002000) overlaps with baz@1000 (0x00001000--0x00002000)
+
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+Link: https://lore.kernel.org/r/ded6fd6b47b58741aabdcc6967f73eca6a3f311e.1603273666.git-series.vincent.whitchurch@axis.com
+Signed-off-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-axg-s400.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/of/of_reserved_mem.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-index d5c01427a5ca0..acd4dbc1222ae 100644
---- a/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-axg-s400.dts
-@@ -334,3 +334,9 @@ &saradc {
- 	status = "okay";
- 	vref-supply = <&vddio_ao18>;
- };
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 895c83e0c7b6c..19f95552da4d8 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -218,6 +218,16 @@ static int __init __rmem_cmp(const void *a, const void *b)
+ 	if (ra->base > rb->base)
+ 		return 1;
+ 
++	/*
++	 * Put the dynamic allocations (address == 0, size == 0) before static
++	 * allocations at address 0x0 so that overlap detection works
++	 * correctly.
++	 */
++	if (ra->size < rb->size)
++		return -1;
++	if (ra->size > rb->size)
++		return 1;
 +
-+&usb {
-+	status = "okay";
-+	dr_mode = "otg";
-+	vbus-supply = <&usb_pwr>;
-+};
+ 	return 0;
+ }
+ 
+@@ -235,8 +245,7 @@ static void __init __rmem_check_for_overlap(void)
+ 
+ 		this = &reserved_mem[i];
+ 		next = &reserved_mem[i + 1];
+-		if (!(this->base && next->base))
+-			continue;
++
+ 		if (this->base + this->size > next->base) {
+ 			phys_addr_t this_end, next_end;
+ 
 -- 
 2.27.0
 
