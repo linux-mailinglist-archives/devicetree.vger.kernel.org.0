@@ -2,214 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65D3E2A4AD9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:10:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 600722A4AD4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:10:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728184AbgKCQK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:10:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35010 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727923AbgKCQK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:10:56 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91EF8C0613D1
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 08:10:56 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1kZytP-0006KD-Ap; Tue, 03 Nov 2020 17:10:43 +0100
-Received: from [IPv6:2a03:f580:87bc:d400:fc98:3f6c:e55:4519] (unknown [IPv6:2a03:f580:87bc:d400:fc98:3f6c:e55:4519])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits))
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id A24F05896D5;
-        Tue,  3 Nov 2020 16:10:35 +0000 (UTC)
-Subject: Re: [PATCH v7 0/6] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
-To:     Ondrej Ille <ondrej.ille@gmail.com>
-Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-References: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
- <2ccec201-1a84-1837-15a8-d2ad05f5753c@pengutronix.de>
- <202011031100.35922.pisa@cmp.felk.cvut.cz>
- <07227792-f75f-6998-bd09-ce6e612de79f@pengutronix.de>
- <CAA7ZjpaYA0jLaybxq_2amtWOcs3sPE5w_fQK7jMdgaKpA-YoUg@mail.gmail.com>
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <6dabf1e0-683f-d3be-469f-bf4becb11271@pengutronix.de>
-Date:   Tue, 3 Nov 2020 17:10:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1727883AbgKCQKm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 11:10:42 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33164 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726018AbgKCQKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:10:41 -0500
+Received: by mail-ot1-f67.google.com with SMTP id i18so11718679ots.0;
+        Tue, 03 Nov 2020 08:10:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yRn78cnLsToSH1wV9/DYOCyeH7pBej1x5JZS5/pv6vA=;
+        b=I/eKBKe395FQw9TactnXdOls2J6NnZ2zZgEPT39/C4slV48RvM348lGI7Bf5dTOlLB
+         qbfPFXdhT976NBhQpxuqKhq2jwQlE0nOr8npZ5ggY+ujt4BvbcJstKOAhC7gNCALk3w4
+         JtLbD8cMdgk1HrnjfWsG/atiIvQuaScy4a00OzQfcyvBCw+h+9qI03llzgubfu+B/4jH
+         5BRDFuVvTu/tK3uINtth4QFXnBOmC9CqwgOGz5SfO85AExFDCfeBUdcNdobGbcGwsBfL
+         kLWf/Nwoa10u1OwMUD3tfqSCdfbxSKUjmDMnBXMJHyb/ULgBfAP5/nYZbplHGRz7Dei5
+         wnew==
+X-Gm-Message-State: AOAM532a1MEGqqNwef8i68gkCg/uk0ZqbnjshoZ4gJmYTn48USs5UVCs
+        i3YgOse859XvRCdzKS2NCA==
+X-Google-Smtp-Source: ABdhPJxI8HSaxtuIFrN1LTaDt5SxzSywmyOvYmKQrmnV1yhgm9RBLm/S+wxTvgpORP+10oeyxbk5bg==
+X-Received: by 2002:a05:6830:113:: with SMTP id i19mr1286216otp.372.1604419840708;
+        Tue, 03 Nov 2020 08:10:40 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w23sm1658044otp.38.2020.11.03.08.10.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Nov 2020 08:10:39 -0800 (PST)
+Received: (nullmailer pid 1757934 invoked by uid 1000);
+        Tue, 03 Nov 2020 16:10:39 -0000
+Date:   Tue, 3 Nov 2020 10:10:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Phil Reid <preid@electromag.com.au>
+Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
+ conversion
+Message-ID: <20201103161039.GA1754553@bogus>
+References: <20201031184854.745828-1-jic23@kernel.org>
+ <20201031184854.745828-3-jic23@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAA7ZjpaYA0jLaybxq_2amtWOcs3sPE5w_fQK7jMdgaKpA-YoUg@mail.gmail.com>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="DEQeGb5aMYFzl9eN4yfnPHOvTp8529vAS"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201031184854.745828-3-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---DEQeGb5aMYFzl9eN4yfnPHOvTp8529vAS
-Content-Type: multipart/mixed; boundary="ylA4F9LYT9n880wEfqxNkN9q8FPdAGpny";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ondrej Ille <ondrej.ille@gmail.com>
-Cc: Pavel Pisa <pisa@cmp.felk.cvut.cz>, linux-can@vger.kernel.org,
- devicetree@vger.kernel.org, Oliver Hartkopp <socketcan@hartkopp.net>,
- Wolfgang Grandegger <wg@grandegger.com>, David Miller <davem@davemloft.net>,
- Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
- Carsten Emde <c.emde@osadl.org>, armbru@redhat.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, Marin Jerabek <martin.jerabek01@gmail.com>,
- Jiri Novak <jnovak@fel.cvut.cz>, Jaroslav Beran <jara.beran@gmail.com>,
- Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
- Drew Fustini <pdp7pdp7@gmail.com>
-Message-ID: <6dabf1e0-683f-d3be-469f-bf4becb11271@pengutronix.de>
-Subject: Re: [PATCH v7 0/6] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
-References: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
- <2ccec201-1a84-1837-15a8-d2ad05f5753c@pengutronix.de>
- <202011031100.35922.pisa@cmp.felk.cvut.cz>
- <07227792-f75f-6998-bd09-ce6e612de79f@pengutronix.de>
- <CAA7ZjpaYA0jLaybxq_2amtWOcs3sPE5w_fQK7jMdgaKpA-YoUg@mail.gmail.com>
-In-Reply-To: <CAA7ZjpaYA0jLaybxq_2amtWOcs3sPE5w_fQK7jMdgaKpA-YoUg@mail.gmail.com>
+On Sat, Oct 31, 2020 at 06:48:10PM +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> Simple direct conversion from txt to yaml as part of a general aim of
+> converting all IIO bindings to this machine readable format.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Phil Reid <preid@electromag.com.au>
+> ---
+>  .../bindings/iio/potentiometer/ad5272.txt     | 27 ----------
+>  .../iio/potentiometer/adi,ad5272.yaml         | 50 +++++++++++++++++++
+>  2 files changed, 50 insertions(+), 27 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt b/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
+> deleted file mode 100644
+> index f9b2eef946aa..000000000000
+> --- a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -* Analog Devices AD5272 digital potentiometer
+> -
+> -The node for this device must be a child node of a I2C controller, hence
+> -all mandatory properties for your controller must be specified. See directory:
+> -
+> -        Documentation/devicetree/bindings/i2c
+> -
+> -for more details.
+> -
+> -Required properties:
+> -	- compatible:  	Must be one of the following, depending on the model:
+> -			adi,ad5272-020
+> -			adi,ad5272-050
+> -			adi,ad5272-100
+> -			adi,ad5274-020
+> -			adi,ad5274-100
+> -
+> -Optional properties:
+> - - reset-gpios: GPIO specification for the RESET input. This is an
+> -		active low signal to the AD5272.
+> -
+> -Example:
+> -ad5272: potentiometer@2f {
+> -	reg = <0x2F>;
+> -	compatible = "adi,ad5272-020";
+> -	reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
+> new file mode 100644
+> index 000000000000..b9b7d383bff1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/potentiometer/adi,ad5272.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD5272 digital potentiometer
+> +
+> +maintainers:
+> +  - Phil Reid <preid@electromag.com.au>
+> +
+> +description: |
+> +  Datasheet: https://www.analog.com/en/products/ad5272.html
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad5272-020
+> +      - adi,ad5272-050
+> +      - adi,ad5272-100
+> +      - adi,ad5274-020
+> +      - adi,ad5274-100
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description:
+> +      Active low signal to the AD5272 RESET input.
 
---ylA4F9LYT9n880wEfqxNkN9q8FPdAGpny
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
+Not a new problem, but active low or...
 
-On 11/3/20 2:36 PM, Ondrej Ille wrote:
-> Hello Marc,
->=20
-> thank you for review, I appreciate it. We will process all your notes, =
-and get
-> rid of uin32_t and bitfields then.
->=20
-> As Pavel pointed out, there are user space tests using this stuff, so i=
-t is
-> not just search and replace work. We will extend our IP-XACT generation=
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        potentiometer@2f {
+> +            compatible = "adi,ad5272-020";
+> +            reg = <0x2F>;
+> +            reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
 
-> toolchain (what a strong word for bunch of python scripts...), to gener=
-ate=20
-> Linux specific headers with GEN_MASK and BIT then.
+active high?
 
-Fine!
-> It will take some time, since we have to modify quite a lot of stuff an=
-d
-> re-test it then, but we will try to do it fast. Btw, do you agree with
-> separation of HW specific part of driver into "_hw" file, or would you
-> preffer to get rid of this abstraction layer? If we should get rid of i=
-t, we
-> will, but it would take even more time to do it.
-
-I haven't looked at the HW abstraction yet, but will do next. Usually Lin=
-ux is
-considered the HW abstraction layer :)
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
-
---ylA4F9LYT9n880wEfqxNkN9q8FPdAGpny--
-
---DEQeGb5aMYFzl9eN4yfnPHOvTp8529vAS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl+hgPYACgkQqclaivrt
-76lSrggAjr8U94Up39MhE0fLBeiufpYpaPFvhb9Pt87u4LHmSLVtR/5sMYlcsZuq
-YWzlO9sVSoR3ME4jZy0FN7ZtncBAbbEKXw92Je4tii+oBePQOHzCpnhFMZOZHaqv
-cbC7k0WvqE2kvUZHQsjOzsHwND8AZYzxS1JkTcZpsQ0r0aORyerZFxiMjAR9VXIt
-HeCNP/HCZnsAVhc/91JvXcmGMevKJraX4SurfHCu2v3UDWt8bCjuv1zxPwmj/9/w
-EMzRhT+FXQDwrCvNjnPkUqtiDHbsbJqJKL3fDnyy5EqXqbgDD8Q7Gtn4aw36OsiP
-OxA5jSWcThzYKJ4VY0bCMrmKTHBSTw==
-=q2fO
------END PGP SIGNATURE-----
-
---DEQeGb5aMYFzl9eN4yfnPHOvTp8529vAS--
+> +        };
+> +    };
+> +...
+> -- 
+> 2.28.0
+> 
