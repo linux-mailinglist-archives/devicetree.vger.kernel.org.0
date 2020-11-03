@@ -2,146 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35F782A40AD
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 10:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5750B2A40D1
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 10:56:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727518AbgKCJv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 04:51:28 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:56684 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726013AbgKCJv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 04:51:28 -0500
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201103095115euoutp01ed3f1dd4a1588f36e8e458708b2b3c3f~D9qOqLnKT1986219862euoutp01e
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 09:51:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201103095115euoutp01ed3f1dd4a1588f36e8e458708b2b3c3f~D9qOqLnKT1986219862euoutp01e
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1604397075;
-        bh=MnhYUgRiyVn2RU1Qy2Y4w9InTkQhtgs6BrcRHBGSfoM=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=P3mG97mXQdN5hJ/jgvIht7ryV7s+5qFQafWhNin9cZNMu4OOXRnPSpwKus9bbAG0d
-         I7K5eZJFvOzGisxXS3WhwQMNpUGFdQ7RGiDK9DZka/S8W4M8/V63MxGmF1AzliLbta
-         AUmnliD/5N+EDCCF1X3jQSp1V5fXbvijaMV7RcmA=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201103095109eucas1p2afb98fb92380eda0c5ebd4dfbb1b097d~D9qJ5E-1b2911529115eucas1p2a;
-        Tue,  3 Nov 2020 09:51:09 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id EE.6A.06318.D0821AF5; Tue,  3
-        Nov 2020 09:51:09 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201103095109eucas1p10f5c14bde52af8ecea147d4dac80f906~D9qJh0xKB3011530115eucas1p17;
-        Tue,  3 Nov 2020 09:51:09 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201103095109eusmtrp1f768dc1ec1bcb83dd3c7f2214129cb4b~D9qJdR4YP1634016340eusmtrp1S;
-        Tue,  3 Nov 2020 09:51:09 +0000 (GMT)
-X-AuditID: cbfec7f5-38bff700000018ae-89-5fa1280d6e98
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id E2.60.06017.D0821AF5; Tue,  3
-        Nov 2020 09:51:09 +0000 (GMT)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201103095109eusmtip2062283a33ff507be950ec43d9dc2e29d~D9qJI7H4m3072330723eusmtip2T;
-        Tue,  3 Nov 2020 09:51:09 +0000 (GMT)
-Subject: Re: [PATCH 2/5] ARM: dts: add Samsung's exynos4412-based p4note
- boards
-To:     Martin Juecker <martin.juecker@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
-        devicetree@vger.kernel.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <0af4946e-a573-ad5a-5558-de439d49434f@samsung.com>
-Date:   Tue, 3 Nov 2020 10:51:08 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.4.0
+        id S1727443AbgKCJzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 04:55:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727246AbgKCJzX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 04:55:23 -0500
+Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA98DC0613D1;
+        Tue,  3 Nov 2020 01:55:22 -0800 (PST)
+Received: by mail-yb1-xb41.google.com with SMTP id b138so14303849yba.5;
+        Tue, 03 Nov 2020 01:55:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/aPHJUg5B3RUfQUFOOBY1vaKVKuqoNKBnfLkp7Eh0jM=;
+        b=XVOnFxkHJAJZNHnA/v6Gq5JtUIinsSxGpS1KEgaNga35aGZxYKXo9IhsmUMpabmFr+
+         B/c++uqqz8D6VcZr3NW/+TB93t/w+uW75HKVQK5IXbE2s0dIbnTQAVZVeaDveBy74hD7
+         1KxggN5i1R8j93SWOxqSKj8bnhuP+6lekISChsMZUelgOTTSPeoXTnkwkL3vRgfYyECB
+         hzxJZCGOqjnkmT1xOgFFwKHLdeH6eZ16WCDY1xGZvs4HGVXHbvCs3G/FDbhJT1yS9Knj
+         hVLFLdtNzbE+LDNBaEeNKq4lX77kWoA/Vbwjy2QLKRaANDjVlnnRQQ/wV1d05n9ZJU/w
+         h8HQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/aPHJUg5B3RUfQUFOOBY1vaKVKuqoNKBnfLkp7Eh0jM=;
+        b=Nr+bKZXNS2e1kCwANdVFru7gNiOQJy2WLRr4aZvx3Xy4U74xb466FTF/n+MnBWurL+
+         yGh6AhWia/SLrDsKJUCqlo6GBSk09pWYBjegJipBq20MtR3LLg04oDTrxc3cmVVr6CDV
+         nsr7iKYdLzAkjSRt9cH6sqRgYv2hQdVCumJkMwxLBJ0zsBUh6Fnlae+QlKKY4eYt1xZA
+         viyukh66s3MRnbZdkEvleu6byf3SqjhD2533PcBzItPdldzQsxxoAFdsiLtGB5LslUQ8
+         EB0CisdL+JywAel34y3kYVMQ4/YfcaZ4hP7ky2gRZ3dYkEINuniFpResZPNv5osvmwh+
+         yThg==
+X-Gm-Message-State: AOAM53121Tqubx7YOlIM0OAP8NhrsZzHvwueErwaM729M4XKQV7ojbjY
+        316MDXjUQaMXI3V7Rkg2T4Y3Z6jFAPE04YwkW6M=
+X-Google-Smtp-Source: ABdhPJw+K7g1mkaqrzx+t32l56UmOR6oKyXcs5lnQ5hnNBVOjKohJrQmXNa3LmrQ7CBbbSxAwn/P2bm1FOIk29WCzzs=
+X-Received: by 2002:a25:bacd:: with SMTP id a13mr29382343ybk.387.1604397322266;
+ Tue, 03 Nov 2020 01:55:22 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201102212118.GA2366@adroid>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKKsWRmVeSWpSXmKPExsWy7djPc7q8GgvjDdY/MrWYf+Qcq0X/49fM
-        FufPb2C3mHF+H5PFmX9TWRxYPXbOusvusWlVJ5vH501yAcxRXDYpqTmZZalF+nYJXBnbN7Uy
-        FXzjrOhaf5ypgfEwexcjJ4eEgInEtbv3mLoYuTiEBFYwSqyesJINJCEk8IVR4vhraYjEZ0aJ
-        Z9faWboYOcA6FlyFalgOFH/9jRHCec8oce7nDFaQbmGBQInnuz4ygdgiAmESKya9ZgJpZhYI
-        ldj92wEkzCZgKNH1tgtsGa+AncSTL6vBWlkEVCR23FgKFhcVSJL4+/kPM0SNoMTJmU9YQGxO
-        AW2JF69PM4LYzALyEtvfzmGGsMUlbj2ZD3achMBkdomzq5uZId50kVi36DorhC0s8er4Fqj3
-        ZSROT+5hgWhoZpR4eG4tO4TTwyhxuWkGI0SVtcSdc7/YID7QlFi/Sx8i7Chx/edjdkio8Enc
-        eCsIcQSfxKRt05khwrwSHW1CENVqErOOr4Nbe/DCJeYJjEqzkLw2C8k7s5C8Mwth7wJGllWM
-        4qmlxbnpqcXGeanlesWJucWleel6yfm5mxiBieX0v+NfdzDu+5N0iFGAg1GJh9chdUG8EGti
-        WXFl7iFGCQ5mJRFep7On44R4UxIrq1KL8uOLSnNSiw8xSnOwKInzGi96GSskkJ5YkpqdmlqQ
-        WgSTZeLglGpgLPbf+vHNj+AJxRrTQpW/hbCx3PyhIF8SqFgZ3a9qvfppcvqRW0Z6YXvm3Xc4
-        3LNrV/yNfyG9MTIBPwTVe/oYjATXyte+28WsxCV36AvTpgMcu1L8b19sUvjBExPhcM1s7t6e
-        0l25jIKiy+6cVqtLK4m3lGe/wpne1qZluDWsWi9e0ShgxmMlluKMREMt5qLiRACXeL/AKAMA
-        AA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBIsWRmVeSWpSXmKPExsVy+t/xe7q8GgvjDZ41yFjMP3KO1aL/8Wtm
-        i/PnN7BbzDi/j8nizL+pLA6sHjtn3WX32LSqk83j8ya5AOYoPZui/NKSVIWM/OISW6VoQwsj
-        PUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsEvYztm1qZCr5xVnStP87UwHiYvYuRg0NC
-        wERiwVWmLkYuDiGBpYwSc+51MHYxcgLFZSROTmtghbCFJf5c62KDKHrLKPFqwTt2kISwQKDE
-        810fmUBsEYEwif1tnWDNzAKhEkumX2ABsYUEupkkZuzgA7HZBAwlut6CDOLk4BWwk3jyZTXY
-        AhYBFYkdN5aCxUUFkiReXpjKBFEjKHFy5hOwOZwC2hIvXp+Gmm8mMW/zQ2YIW15i+9s5ULa4
-        xK0n85kmMArNQtI+C0nLLCQts5C0LGBkWcUoklpanJueW2ykV5yYW1yal66XnJ+7iREYS9uO
-        /dyyg7HrXfAhRgEORiUeXofUBfFCrIllxZW5hxglOJiVRHidzp6OE+JNSaysSi3Kjy8qzUkt
-        PsRoCvTcRGYp0eR8YJznlcQbmhqaW1gamhubG5tZKInzdggcjBESSE8sSc1OTS1ILYLpY+Lg
-        lGpgnHyBJSypfmm13ufGCQET+mXdDl5/8cJrv/ZKXfPXbOc3lFXfz3dbGuSufCVsW3d+VvV2
-        41+XyvXZp91qEX4pYzY7K8SHe6H5nt7NL6aueTE/yN5708Xu20rmv71jH6+8rC9xff/ryH81
-        b5WfPVdtLln0NO31yW3T+y/9PGQvriHzLdbwj5Z/vhJLcUaioRZzUXEiABTvj+a7AgAA
-X-CMS-MailID: 20201103095109eucas1p10f5c14bde52af8ecea147d4dac80f906
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201102212129eucas1p1957c9dd5d6c1ebf7c340271a5e501c5b
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201102212129eucas1p1957c9dd5d6c1ebf7c340271a5e501c5b
-References: <20201031175836.47745-1-martin.juecker@gmail.com>
-        <20201031175836.47745-3-martin.juecker@gmail.com>
-        <20201102191845.GA64695@kozik-lap>
-        <CGME20201102212129eucas1p1957c9dd5d6c1ebf7c340271a5e501c5b@eucas1p1.samsung.com>
-        <20201102212118.GA2366@adroid>
+References: <20201028232759.1928479-1-atish.patra@wdc.com> <20201028232759.1928479-2-atish.patra@wdc.com>
+In-Reply-To: <20201028232759.1928479-2-atish.patra@wdc.com>
+From:   Bin Meng <bmeng.cn@gmail.com>
+Date:   Tue, 3 Nov 2020 17:55:10 +0800
+Message-ID: <CAEUhbmXknfx58q0Ae0MAZLT3zQuqGyAXXn1wDxHP36LQzew2Jw@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/3] RISC-V: Add Microchip PolarFire SoC kconfig option
+To:     Atish Patra <atish.patra@wdc.com>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <anup.patel@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Padmarao Begari <padmarao.begari@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Cyril.Jean@microchip.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On Thu, Oct 29, 2020 at 6:00 PM Atish Patra <atish.patra@wdc.com> wrote:
+>
+> Add Microchip PolarFire kconfig option which selects SoC specific
+> and common drivers that is required for this SoC.
+>
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> ---
+>  arch/riscv/Kconfig.socs | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index 8a55f6156661..74d07250ecc5 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -22,6 +22,13 @@ config SOC_VIRT
+>         help
+>           This enables support for QEMU Virt Machine.
+>
+> +config SOC_MICROCHIP_POLARFIRE
 
-On 02.11.2020 22:21, Martin Juecker wrote:
-> > ...
->>> +
->>> +&fimd {
->>> +	pinctrl-0 = <&lcd_clk &lcd_data24 &pwm1_out>;
->>> +	pinctrl-names = "default";
->>> +	status = "okay";
->>> +
->>> +	display-timings {
->>> +		timing0 {
->>> +			clock-frequency = <66666666>;
->>> +			hactive = <1280>;
->>> +			vactive = <800>;
->>> +			hfront-porch = <18>;
->>> +			hback-porch = <36>;
->>> +			hsync-len = <16>;
->>> +			vback-porch = <16>;
->>> +			vfront-porch = <4>;
->>> +			vsync-len = <3>;
->>> +			hsync-active = <1>;
->>> +		};
->>> +	};
->> What happened with Marek's comment about this?
->>
-> Should have mentioned it in the introduction mail. I had a look at the
-> simple panel driver and it's not enough for the display in the p4note. I
-> asked Marek in IRC whether it's ok to have this in a separate patch set
-> to have a fully working display and he agreed.
+Please put this in the alphabetical order
 
-Yes, I agreed that the display can be added later in a separate patch. 
-However in such case I would simply remove the whole fimd node now. 
-Without a panel it is a bit useless imho. With a proper panel driver you 
-will also get rid of the timings subnode, so there is no point adding it 
-now.
+> +       bool "Microchip PolarFire SoCs"
+> +       select MCHP_CLK_PFSOC
+> +       select SIFIVE_PLIC
+> +       help
+> +         This enables support for Microchip PolarFire SoC platforms.
+> +
+>  config SOC_KENDRYTE
+>         bool "Kendryte K210 SoC"
+>         depends on !MMU
+> --
 
-Best regards
-
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
-
+Otherwise LGTM
+Reviewed-by: Bin Meng <bin.meng@windriver.com>
