@@ -2,89 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42F282A3AC8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 04:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 174C12A3B0F
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 04:31:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725952AbgKCDB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Nov 2020 22:01:26 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:55180 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725913AbgKCDBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 22:01:25 -0500
-X-UUID: 581aa52763b349b5bf4d0609cc4cda79-20201103
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=kA10xqguhONUPZrUmipFwStozwcyihpqFitOURXTXYs=;
-        b=ZjjHKAJmsjSRD31djYgnwRx8Z2/8qJ2wJk5n4HnOk/ViUD4bw4ZzyObjQ5pnpUuOWdAatvfCN8gSJdi2MM9cBKyVSChqUjYH+u/66/vAcYjYP56BCSOwxThKV6L+2HrNXNKNxiXTM/bypTR1zQpDfC4BH0X7dNplX+XJ/A2MNv8=;
-X-UUID: 581aa52763b349b5bf4d0609cc4cda79-20201103
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 745087011; Tue, 03 Nov 2020 11:01:20 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs08n1.mediatek.inc
- (172.21.101.55) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 3 Nov
- 2020 11:01:14 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 3 Nov 2020 11:01:11 +0800
-Message-ID: <1604372472.31607.18.camel@mhfsdcap03>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: mediatek,mtk-xhci: add
- keep-clock-on
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Macpaul Lin <macpaul.lin@mediatek.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Mathias Nyman" <mathias.nyman@intel.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Ainge Hsu" <ainge.hsu@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        "Mediatek WSD Upstream" <wsd_upstream@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-Date:   Tue, 3 Nov 2020 11:01:12 +0800
-In-Reply-To: <1604301530-31546-1-git-send-email-macpaul.lin@mediatek.com>
-References: <1604301530-31546-1-git-send-email-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1725980AbgKCDbf convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Nov 2020 22:31:35 -0500
+Received: from youngberry.canonical.com ([91.189.89.112]:42207 "EHLO
+        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726074AbgKCDbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 22:31:34 -0500
+Received: from mail-wr1-f72.google.com ([209.85.221.72])
+        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.86_2)
+        (envelope-from <chia-lin.kao@canonical.com>)
+        id 1kZn2i-0000lg-1Y
+        for devicetree@vger.kernel.org; Tue, 03 Nov 2020 03:31:32 +0000
+Received: by mail-wr1-f72.google.com with SMTP id i1so7252092wrb.18
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 19:31:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2rp7oMbIU1QVb+UrLA07q3LzyCG33ZauCVTuUDlnceA=;
+        b=oSN4nDqgxo2FytPcVao57tYeZ+uobp/QDUjuvjcrvu4sMV+bPS2GkRzOtfqGmdMm/5
+         p6VN3Wrv1CiEppnhEDun+4la03kdtNLbRPT/Fw7ST5svE08saeoUgneQoXWHszfjDByn
+         YyYC7neMrB+zzj0ljIU798dopYU93Od36/yW/n6DVJzmUP+pta7X8wiVTR9wiqewdusI
+         HlcxrVe3mcIq4fxvIHT76bMN6r74vmKjpBkEUUZJ0O8KjygnrF9nXxrOJ3RjOuP8fscp
+         p3kaa4UinTccJnVMR5l29/JEDesa9eF4pUiLmdSaX964QpQHuBJi+5rYhqHuf34ps1WQ
+         ppUQ==
+X-Gm-Message-State: AOAM531zJgqpekrV384FyNviMf0J44x8EPIq++X1LhsJ0Bwnx3R3xvD6
+        kvm+msALC1x5Zr2QY2u1/UTD8WeVveMILzzcFwuum1tuMWLlAJA7RADuGdFll1xgP50khQKGW+v
+        sY24wmahYXrObhKI0qYrJw5ZXD/H1zMswHQNAqghUv3wDBcecDmhlJJI=
+X-Received: by 2002:adf:ce12:: with SMTP id p18mr23477037wrn.52.1604374291669;
+        Mon, 02 Nov 2020 19:31:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzIbzt/4neJn7QeRrdYenW8Dms4heXQRX7V8hpk6OPhdPtRu2UB72q1WZ1XgWeKMukJ5CsUp616CnSix8X92jM=
+X-Received: by 2002:adf:ce12:: with SMTP id p18mr23477018wrn.52.1604374291444;
+ Mon, 02 Nov 2020 19:31:31 -0800 (PST)
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20201029100613.25789-1-shihlun.lin@advantech.com.tw>
+ <20201029100613.25789-5-shihlun.lin@advantech.com.tw> <20201029131419.GA4127@dell>
+In-Reply-To: <20201029131419.GA4127@dell>
+From:   AceLan Kao <chia-lin.kao@canonical.com>
+Date:   Tue, 3 Nov 2020 11:31:20 +0800
+Message-ID: <CAFv23Q=EwE=S7U9-NzRfy8CxM+bFX32HHMfZXS1UsPd8dMqzYQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] mfd: ahc1ec0-hwmon: Add sub-device hwmon for
+ Advantech embedded controller
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Shihlun Lin <shihlun.lin@advantech.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>,
+        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Campion Kang <campion.kang@advantech.com.tw>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTWFjcGF1bCwNCg0KT24gTW9uLCAyMDIwLTExLTAyIGF0IDE1OjE4ICswODAwLCBNYWNwYXVs
-IExpbiB3cm90ZToNCj4gT3B0aW9uICJtZWRpYXRlayxrZWVwLWNsb2NrLW9uIiBtZWFucyB0byBr
-ZWVwIGNsb2NrIG9uIGR1cmluZyBzeXN0ZW0NCj4gc3VzcGVuZCBhbmQgcmVzdW1lLiBTb21lIHBs
-YXRmb3JtIHdpbGwgZmx1c2ggcmVnaXN0ZXIgc2V0dGluZ3MgaWYgY2xvY2sgaGFzDQo+IGJlZW4g
-ZGlzYWJsZWQgd2hlbiBzeXN0ZW0gaXMgc3VzcGVuZGVkLiBTZXQgdGhpcyBvcHRpb24gdG8gYXZv
-aWQgY2xvY2sgb2ZmLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogTWFjcGF1bCBMaW4gPG1hY3BhdWwu
-bGluQG1lZGlhdGVrLmNvbT4NCj4gLS0tDQo+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy91c2Iv
-bWVkaWF0ZWssbXRrLXhoY2kueWFtbCB8ICAgIDcgKysrKysrKw0KDQpUaGlzIGRlcGVuZHMgb24g
-cmV2aWV3aW5nIHBhdGNoOg0KaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xp
-bnV4LW1lZGlhdGVrL3BhdGNoLzIwMjAxMDE0MDE0NDM0LjYyMjM5LTYtY2h1bmZlbmcueXVuQG1l
-ZGlhdGVrLmNvbS8NClt2Miw2LzhdIGR0LWJpbmRpbmdzOiB1c2I6IGNvbnZlcnQgbWVkaWF0ZWss
-IG10ay14aGNpLnR4dCB0byBZQU1MIHNjaGVtYQ0KDQpQbGVhc2UgYWRkIGl0IGFmdGVyICItLS0i
-LCB0aGFua3MNCg0KDQo+ICAxIGZpbGUgY2hhbmdlZCwgNyBpbnNlcnRpb25zKCspDQo+IA0KPiBk
-aWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9tZWRpYXRl
-ayxtdGsteGhjaS55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9t
-ZWRpYXRlayxtdGsteGhjaS55YW1sDQo+IGluZGV4IGVhNjk2YzguLmE5NTZkZGUgMTAwNjQ0DQo+
-IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvbWVkaWF0ZWssbXRr
-LXhoY2kueWFtbA0KPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNi
-L21lZGlhdGVrLG10ay14aGNpLnlhbWwNCj4gQEAgLTEwNCw2ICsxMDQsMTIgQEAgcHJvcGVydGll
-czoNCj4gICAgICBkZXNjcmlwdGlvbjogZW5hYmxlIFVTQiByZW1vdGUgd2FrZXVwLCBzZWUgcG93
-ZXIvd2FrZXVwLXNvdXJjZS50eHQNCj4gICAgICB0eXBlOiBib29sZWFuDQo+ICANCj4gKyAgbWVk
-aWF0ZWssa2VlcC1jbG9jay1vbjoNCj4gKyAgICBkZXNjcmlwdGlvbjogfA0KPiArICAgICAgS2Vl
-cCBjbG9jayBvbiBkdXJpbmcgc3lzdGVtIHN1c3BlbmQgYW5kIHJlc3VtZS4gU29tZSBwbGF0Zm9y
-bSB3aWxsIGZsdXNoDQo+ICsgICAgICByZWdpc3RlciBzZXR0aW5ncyBpZiBjbG9jayBoYXMgYmVl
-biBkaXNhYmxlZCB3aGVuIHN5c3RlbSBpcyBzdXNwZW5kZWQuDQo+ICsgICAgdHlwZTogYm9vbGVh
-bg0KPiArDQo+ICAgIG1lZGlhdGVrLHN5c2Nvbi13YWtldXA6DQo+ICAgICAgJHJlZjogL3NjaGVt
-YXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvcGhhbmRsZS1hcnJheQ0KPiAgICAgIG1heEl0ZW1z
-OiAxDQo+IEBAIC0xNzUsNiArMTgxLDcgQEAgZXhhbXBsZXM6DQo+ICAgICAgICAgIGltb2QtaW50
-ZXJ2YWwtbnMgPSA8MTAwMDA+Ow0KPiAgICAgICAgICBtZWRpYXRlayxzeXNjb24td2FrZXVwID0g
-PCZwZXJpY2ZnIDB4NDAwIDE+Ow0KPiAgICAgICAgICB3YWtldXAtc291cmNlOw0KPiArICAgICAg
-ICBtZWRpYXRlayxrZWVwLWNsb2NrLW9uOw0KPiAgICAgICAgICB1c2IzLWxwbS1jYXBhYmxlOw0K
-PiAgICAgIH07DQo+ICAuLi4NCg0K
+Hi Lee,
 
+One question for you.
+
+Lee Jones <lee.jones@linaro.org> 於 2020年10月29日 週四 下午9:14寫道：
+>
+> On Thu, 29 Oct 2020, Shihlun Lin wrote:
+>
+> > This is one of sub-device driver for Advantech embedded controller
+> > AHC1EC0. This driver provides sysfs ABI for Advantech related
+> > applications to monitor the system status.
+> >
+> > Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
+> > Reported-by: kernel test robot <lkp@intel.com>
+>
+> LKP reported that your driver needed upstreaming?
+>
+> I'm confused!
+>
+> > ---
+> >  drivers/mfd/Kconfig         |    8 +
+> >  drivers/mfd/Makefile        |    1 +
+> >  drivers/mfd/ahc1ec0-hwmon.c | 1514 +++++++++++++++++++++++++++++++++++
+>
+> This obviously belongs in drivers/hwmon.
+>
+> >  3 files changed, 1523 insertions(+)
+> >  create mode 100644 drivers/mfd/ahc1ec0-hwmon.c
+> >
+> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> > index 965bcafbe5b2..52ca49b211fc 100644
+> > --- a/drivers/mfd/Kconfig
+> > +++ b/drivers/mfd/Kconfig
+> > @@ -2175,5 +2175,13 @@ config MFD_AHC1EC0
+> >         provides expose functions for sub-devices to read/write the value
+> >         to embedded controller.
+> >
+> > +config MFD_AHC1EC0_HWMON
+> > +     tristate "Advantech EC Hareware Monitor Function"
+> > +     depends on MFD_AHC1EC0
+> > +     help
+> > +       This is sub-device for Advantech embedded controller AHC1EC0. This
+> > +       driver provides the sysfs attribues for applications to monitor
+> > +       the system status.
+> > +
+> >  endmenu
+> >  endif
+> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > index 80a9a2bdc3ba..eb645db817b5 100644
+> > --- a/drivers/mfd/Makefile
+> > +++ b/drivers/mfd/Makefile
+> > @@ -269,3 +269,4 @@ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)  += simple-mfd-i2c.o
+> >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
+> >
+> >  obj-$(CONFIG_MFD_AHC1EC0)    += ahc1ec0.o
+> > +obj-$(CONFIG_MFD_AHC1EC0_HWMON)      += ahc1ec0-hwmon.o
+> > diff --git a/drivers/mfd/ahc1ec0-hwmon.c b/drivers/mfd/ahc1ec0-hwmon.c
+> > new file mode 100644
+> > index 000000000000..3e493b040b4a
+> > --- /dev/null
+> > +++ b/drivers/mfd/ahc1ec0-hwmon.c
+> > @@ -0,0 +1,1514 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/*****************************************************************************
+> > + * Copyright (c) 2018, Advantech Automation Corp.
+>
+> You can't just lift a whole driver from downstream code and send it to
+> the mailing list as-is.
+Could you elaborate more about which part should be fixed, and how it
+should look like?
+
+> > + * THIS IS AN UNPUBLISHED WORK CONTAINING CONFIDENTIAL AND PROPRIETARY
+> > + * INFORMATION WHICH IS THE PROPERTY OF ADVANTECH AUTOMATION CORP.
+> > + *
+> > + * ANY DISCLOSURE, USE, OR REPRODUCTION, WITHOUT WRITTEN AUTHORIZATION FROM
+> > + * ADVANTECH AUTOMATION CORP., IS STRICTLY PROHIBITED.
+> > + *****************************************************************************
+>
+> This warning is in contradiction to the licence you are proposing.
+>
+> --
+> Lee Jones [李琼斯]
+> Senior Technical Lead - Developer Services
+> Linaro.org │ Open source software for Arm SoCs
+> Follow Linaro: Facebook | Twitter | Blog
