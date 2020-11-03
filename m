@@ -2,228 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41D162A45F0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 14:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 563A42A45FF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 14:12:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726388AbgKCNIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 08:08:30 -0500
-Received: from m42-4.mailgun.net ([69.72.42.4]:22436 "EHLO m42-4.mailgun.net"
+        id S1728435AbgKCNMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 08:12:01 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53724 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728245AbgKCNIa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 08:08:30 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1604408908; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=xoOA0jIP+iC6+Zj10xYW4ClaYHPbXfMhMcG5e+fIP8E=; b=GzstuNYidtofQf0sTVV8TUfHvEt40nMXIDwdBjm3wDPpPqjnmzBeFLKHWwf9NdUWoVVz6Ltt
- OMrAoTyyCOmgNVRt0xKNQR1doC5d2US60VfIPacJMfiWf2nt0Ayqdy5CqypMLsVwjQQjoag3
- dKoLAUI6fJyjd+nhY9Nmk48YNyU=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5fa15643875877e3eda021e8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 03 Nov 2020 13:08:19
- GMT
-Sender: rnayak=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 248E9C3857D; Tue,  3 Nov 2020 10:39:41 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.0.118] (unknown [49.207.200.92])
+        id S1728027AbgKCNMB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 08:12:01 -0500
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C1F94C38538;
-        Tue,  3 Nov 2020 10:39:37 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C1F94C38538
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Add sc7280 pinctrl driver
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1602831532-24818-1-git-send-email-rnayak@codeaurora.org>
- <1602831532-24818-2-git-send-email-rnayak@codeaurora.org>
- <20201029142008.GE3151@builder.lan>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <c80a0861-da20-6ef9-2d8f-c01f89044ac8@codeaurora.org>
-Date:   Tue, 3 Nov 2020 16:09:34 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+        by mail.kernel.org (Postfix) with ESMTPSA id E1C2521534;
+        Tue,  3 Nov 2020 13:11:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604409120;
+        bh=+7JbMhytyRsTirCANMnMd4YOm4X/s5w+5rkhangGOng=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=corduBPVOuWsxLDXFIz7KhE212/D2r07oOD7+xj0uXZdL5BcpE4S8S7rmW1B/Y0fk
+         FEWN+XtfAmcC1ddNMyCHJlnzlQmw6vKPqYs7FkkCAOhrCKGLYL0N2tgw/L6t5rhIiU
+         eg+yrQq9bJIQ7KX5qIR3/Z4zx6Yln1cJG19yjGN4=
+Received: by mail-ed1-f54.google.com with SMTP id v4so18217810edi.0;
+        Tue, 03 Nov 2020 05:11:59 -0800 (PST)
+X-Gm-Message-State: AOAM532oG7e/ZxgRGsaMRiO0SheysOJELHHh7e8zD+P18oglo3/ws6RV
+        yLCzoTHR9e3lCgUIXKbQgqcfD/KCq2oF942E0EE=
+X-Google-Smtp-Source: ABdhPJwHKZSSgISev/UaBV8IU3ye6DvSnFWF3BfI0HEvigilb+i1KjnoOgFL5dDVnk7YhJPrLr+ubAF76ckyGXykGTM=
+X-Received: by 2002:a05:6402:290:: with SMTP id l16mr20293009edv.104.1604409118468;
+ Tue, 03 Nov 2020 05:11:58 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201029142008.GE3151@builder.lan>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201030125149.8227-1-s.nawrocki@samsung.com> <CGME20201030125303eucas1p14a9de4111ffafc1870527abdea0994c9@eucas1p1.samsung.com>
+ <20201030125149.8227-4-s.nawrocki@samsung.com> <522dd3d8-7c76-92c6-ab1e-7e04797b3e9f@samsung.com>
+ <20bc744b-bbb1-8803-3844-97d59f708f43@samsung.com>
+In-Reply-To: <20bc744b-bbb1-8803-3844-97d59f708f43@samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 3 Nov 2020 14:11:45 +0100
+X-Gmail-Original-Message-ID: <CAJKOXPf_WP0+S70kT+38asBsQFTPKqw=hpvkoWx1Ec2qADz4-A@mail.gmail.com>
+Message-ID: <CAJKOXPf_WP0+S70kT+38asBsQFTPKqw=hpvkoWx1Ec2qADz4-A@mail.gmail.com>
+Subject: Re: [PATCH v7 3/6] PM / devfreq: exynos-bus: Add registration of
+ interconnect child device
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>, georgi.djakov@linaro.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        a.swigon@samsung.com, myungjoo.ham@samsung.com,
+        Inki Dae <inki.dae@samsung.com>,
+        Seung Woo Kim <sw0312.kim@samsung.com>,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 3 Nov 2020 at 13:32, Sylwester Nawrocki <s.nawrocki@samsung.com> wrote:
+>
+> Hi Chanwoo,
+>
+> On 03.11.2020 11:45, Chanwoo Choi wrote:
+> > On 10/30/20 9:51 PM, Sylwester Nawrocki wrote:
+> >> This patch adds registration of a child platform device for the exynos
+> >> interconnect driver. It is assumed that the interconnect provider will
+> >> only be needed when #interconnect-cells property is present in the bus
+> >> DT node, hence the child device will be created only when such a property
+> >> is present.
+> >>
+> >> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+>
+> >>  drivers/devfreq/exynos-bus.c | 17 +++++++++++++++++
+>
+> > We don't need to  add 'select INTERCONNECT_EXYNOS' in Kconfig?
+>
+> I think by doing so we could run into some dependency issues.
+>
+> > Do you want to remain it as optional according to user?
+> Yes, I would prefer to keep it selectable through defconfig.
+> Currently it's only needed by one 32-bit ARM board.
 
-On 10/29/2020 7:50 PM, Bjorn Andersson wrote:
-> On Fri 16 Oct 01:58 CDT 2020, Rajendra Nayak wrote:
->> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280.c b/drivers/pinctrl/qcom/pinctrl-sc7280.c
-> [..]
->> +static const struct msm_function sc7280_functions[] = {
-> [..]
->> +	FUNCTION(phase_flag0),
->> +	FUNCTION(phase_flag1),
->> +	FUNCTION(phase_flag10),
->> +	FUNCTION(phase_flag11),
->> +	FUNCTION(phase_flag12),
->> +	FUNCTION(phase_flag13),
->> +	FUNCTION(phase_flag14),
->> +	FUNCTION(phase_flag15),
->> +	FUNCTION(phase_flag16),
->> +	FUNCTION(phase_flag17),
->> +	FUNCTION(phase_flag18),
->> +	FUNCTION(phase_flag19),
->> +	FUNCTION(phase_flag2),
->> +	FUNCTION(phase_flag20),
->> +	FUNCTION(phase_flag21),
->> +	FUNCTION(phase_flag22),
->> +	FUNCTION(phase_flag23),
->> +	FUNCTION(phase_flag24),
->> +	FUNCTION(phase_flag25),
->> +	FUNCTION(phase_flag26),
->> +	FUNCTION(phase_flag27),
->> +	FUNCTION(phase_flag28),
->> +	FUNCTION(phase_flag29),
->> +	FUNCTION(phase_flag3),
->> +	FUNCTION(phase_flag30),
->> +	FUNCTION(phase_flag31),
->> +	FUNCTION(phase_flag4),
->> +	FUNCTION(phase_flag5),
->> +	FUNCTION(phase_flag6),
->> +	FUNCTION(phase_flag7),
->> +	FUNCTION(phase_flag8),
->> +	FUNCTION(phase_flag9),
-> 
-> I prefer when we squash these into a single function.
-> 
->> +	FUNCTION(pll_bist),
->> +	FUNCTION(pll_bypassnl),
->> +	FUNCTION(pll_clk),
->> +	FUNCTION(pll_reset),
->> +	FUNCTION(pri_mi2s),
->> +	FUNCTION(prng_rosc),
->> +	FUNCTION(qdss_cti),
->> +	FUNCTION(qdss_gpio),
->> +	FUNCTION(qdss_gpio0),
->> +	FUNCTION(qdss_gpio1),
->> +	FUNCTION(qdss_gpio10),
->> +	FUNCTION(qdss_gpio11),
->> +	FUNCTION(qdss_gpio12),
->> +	FUNCTION(qdss_gpio13),
->> +	FUNCTION(qdss_gpio14),
->> +	FUNCTION(qdss_gpio15),
->> +	FUNCTION(qdss_gpio2),
->> +	FUNCTION(qdss_gpio3),
->> +	FUNCTION(qdss_gpio4),
->> +	FUNCTION(qdss_gpio5),
->> +	FUNCTION(qdss_gpio6),
->> +	FUNCTION(qdss_gpio7),
->> +	FUNCTION(qdss_gpio8),
->> +	FUNCTION(qdss_gpio9),
-> 
-> Ditto.
-> 
->> +	FUNCTION(qlink0_enable),
->> +	FUNCTION(qlink0_request),
->> +	FUNCTION(qlink0_wmss),
->> +	FUNCTION(qlink1_enable),
->> +	FUNCTION(qlink1_request),
->> +	FUNCTION(qlink1_wmss),
->> +	FUNCTION(qspi_clk),
->> +	FUNCTION(qspi_cs),
->> +	FUNCTION(qspi_data),
->> +	FUNCTION(qup00),
->> +	FUNCTION(qup01),
->> +	FUNCTION(qup02),
->> +	FUNCTION(qup03),
->> +	FUNCTION(qup04),
->> +	FUNCTION(qup05),
->> +	FUNCTION(qup06),
->> +	FUNCTION(qup07),
->> +	FUNCTION(qup10),
->> +	FUNCTION(qup11),
->> +	FUNCTION(qup12),
->> +	FUNCTION(qup13),
->> +	FUNCTION(qup14),
->> +	FUNCTION(qup15),
->> +	FUNCTION(qup16),
->> +	FUNCTION(qup17),
->> +	FUNCTION(sdc40),
->> +	FUNCTION(sdc41),
->> +	FUNCTION(sdc42),
->> +	FUNCTION(sdc43),
->> +	FUNCTION(sdc4_clk),
->> +	FUNCTION(sdc4_cmd),
->> +	FUNCTION(sd_write),
->> +	FUNCTION(sec_mi2s),
->> +	FUNCTION(tb_trig),
->> +	FUNCTION(tgu_ch0),
->> +	FUNCTION(tgu_ch1),
->> +	FUNCTION(tsense_pwm1),
->> +	FUNCTION(tsense_pwm2),
->> +	FUNCTION(uim0_clk),
->> +	FUNCTION(uim0_data),
->> +	FUNCTION(uim0_present),
->> +	FUNCTION(uim0_reset),
->> +	FUNCTION(uim1_clk),
->> +	FUNCTION(uim1_data),
->> +	FUNCTION(uim1_present),
->> +	FUNCTION(uim1_reset),
->> +	FUNCTION(usb2phy_ac),
->> +	FUNCTION(usb_phy),
->> +	FUNCTION(vfr_0),
->> +	FUNCTION(vfr_1),
->> +	FUNCTION(vsense_trigger),
->> +};
->> +
->> +/* Every pin is maintained as a single group, and missing or non-existing pin
->> + * would be maintained as dummy group to synchronize pin group index with
->> + * pin descriptor registered with pinctrl core.
->> + * Clients would not be able to request these dummy pin groups.
->> + */
->> +static const struct msm_pingroup sc7280_groups[] = {
-> [..]
->> +	[174] = PINGROUP(174, qdss_gpio15, _, _, _, _, _, _, _, _),
->> +	[175] = SDC_QDSD_PINGROUP(sdc1_rclk, 0x1b3000, 15, 0),
->> +	[176] = SDC_QDSD_PINGROUP(sdc1_clk, 0x1b3000, 13, 6),
->> +	[177] = SDC_QDSD_PINGROUP(sdc1_cmd, 0x1b3000, 11, 3),
->> +	[178] = SDC_QDSD_PINGROUP(sdc1_data, 0x1b3000, 9, 0),
->> +	[179] = SDC_QDSD_PINGROUP(sdc2_clk, 0x1b4000, 14, 6),
->> +	[180] = SDC_QDSD_PINGROUP(sdc2_cmd, 0x1b4000, 11, 3),
->> +	[181] = SDC_QDSD_PINGROUP(sdc2_data, 0x1b4000, 9, 0),
->> +	[182] = UFS_RESET(ufs_reset, 0x1be000),
-> 
-> Rather than fiddling ufs reset using pinconf we expose it as a gp(i)o
-> pin upstream. So please move this to be the 175th item in the list and
-> bump ngpios to 176 below.
-> 
->> +};
->> +
->> +static const struct msm_pinctrl_soc_data sc7280_pinctrl = {
->> +	.pins = sc7280_pins,
->> +	.npins = ARRAY_SIZE(sc7280_pins),
->> +	.functions = sc7280_functions,
->> +	.nfunctions = ARRAY_SIZE(sc7280_functions),
->> +	.groups = sc7280_groups,
->> +	.ngroups = ARRAY_SIZE(sc7280_groups),
->> +	.ngpios = 175,
->> +};
->> +
-> 
-> Apart from that it looks good.
+I am fine with it as it is really optional.
 
-thanks Bjorn, I'll fix-up and re-post.
+You could consider then "imply" but then you would need to check for
+dependencies (the same as with select).
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Best regards,
+Krzysztof
