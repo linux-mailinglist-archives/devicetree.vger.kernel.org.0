@@ -2,249 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA122A579F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 22:44:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9244D2A5A09
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 23:22:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732432AbgKCUxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 15:53:47 -0500
-Received: from leonov.paulk.fr ([185.233.101.22]:57398 "EHLO leonov.paulk.fr"
+        id S1730264AbgKCWWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 17:22:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55986 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730316AbgKCUxq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 15:53:46 -0500
-Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
-        by leonov.paulk.fr (Postfix) with ESMTPS id 8AEBDBFBC2;
-        Tue,  3 Nov 2020 21:53:43 +0100 (CET)
-Received: by gagarine.paulk.fr (Postfix, from userid 114)
-        id 03550C1D43; Tue,  3 Nov 2020 21:53:42 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-        autolearn_force=no version=3.4.2
-Received: from localhost.localdomain (collins [192.168.1.129])
-        by gagarine.paulk.fr (Postfix) with ESMTP id EC3D2C1D4F;
-        Tue,  3 Nov 2020 21:51:01 +0100 (CET)
-From:   Paul Kocialkowski <contact@paulk.fr>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Paul Kocialkowski <contact@paulk.fr>,
-        Matteo Scordino <matteo.scordino@gmail.com>
-Subject: [PATCH v2 6/6] ARM: dts: sun8i-v3: Add support for the SL631 Action Camera with IMX179
-Date:   Tue,  3 Nov 2020 21:50:58 +0100
-Message-Id: <20201103205058.435207-7-contact@paulk.fr>
-X-Mailer: git-send-email 2.29.1
-In-Reply-To: <20201103205058.435207-1-contact@paulk.fr>
-References: <20201103205058.435207-1-contact@paulk.fr>
+        id S1729342AbgKCWWY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 17:22:24 -0500
+Received: from localhost (230.sub-72-107-127.myvzw.com [72.107.127.230])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 46F22204FD;
+        Tue,  3 Nov 2020 22:22:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604442144;
+        bh=Nn4ugSdXKX2rotSL4FqxCE0SSE5hPVNQ2iOVaGulO0o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=AUXFXqOvx0HuLclhpfcfttWemE4rj1QtbBl5a5jPiiksBBf9HOWh6tQGr6cUJ/KhF
+         RMzpX/Mq1vInvDv9yq8re191PTJQLVXnAfAEBuqSaio6/U2SQsqDNIdrqYtza4K6jV
+         TIEPdc3boJhicadaoB+mA1Ow33OejY/1fOLPMwrQ=
+Date:   Tue, 3 Nov 2020 16:22:23 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH 2/2] PCI: keembay: Add support for Intel Keem Bay
+Message-ID: <20201103222223.GA269610@bjorn-Precision-5520>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201027060011.25893-3-wan.ahmad.zainie.wan.mohamad@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SL631 is a family of Allwinner V3 action cameras sold under
-various names, such as SJCAM SJ4000 Air or F60 Action Camera.
+On Tue, Oct 27, 2020 at 02:00:11PM +0800, Wan Ahmad Zainie wrote:
 
-Devices in this family share a common board design but can be found
-with different image sensors, including the IMX179 and the OV4689.
+> +static int keembay_pcie_link_up(struct dw_pcie *pci)
+> +{
+> +	struct keembay_pcie *pcie = dev_get_drvdata(pci->dev);
+> +	u32 val, mask;
+> +
+> +	val = keembay_pcie_readl(pcie, PCIE_REGS_PCIE_SII_PM_STATE);
+> +	mask = SMLH_LINK_UP | RDLH_LINK_UP;
+> +
+> +	return !!((val & mask) == mask);
 
-This adds support for a common dtsi for the SL631 family as well as
-a specific dts for the IMX179 fashion, which will later be populated
-with an IMX179 node when a driver is available.
+I think the "!!" is redundant since you're applying it to a value
+that's a boolean already.  So you should be able to do:
 
-Features that were tested on the device include:
-- UART debug
-- MMC
-- USB peripheral (e.g. g_ether)
-- Buttons
-- SPI NOR flash
+  return (val & mask) == mask;
 
-Note that the exact designer/vendor of these boards is unknown.
+But it seems like "mask" just obfuscates a little bit, too.
+Personally I think it'd be easier to add something like:
 
-Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
----
- arch/arm/boot/dts/Makefile                  |   1 +
- arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts |  12 ++
- arch/arm/boot/dts/sun8i-v3-sl631.dtsi       | 138 ++++++++++++++++++++
- 3 files changed, 151 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
- create mode 100644 arch/arm/boot/dts/sun8i-v3-sl631.dtsi
+  #define PCIE_REGS_PCIE_SII_LINK_UP  (SMLH_LINK_UP | RDLH_LINK_UP)
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4363ba564bb4..b76bcda9a9df 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1196,6 +1196,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-s3-lichee-zero-plus.dtb \
- 	sun8i-s3-pinecube.dtb \
- 	sun8i-t3-cqa3t-bv3.dtb \
-+	sun8i-v3-sl631-imx179.dtb \
- 	sun8i-v3s-licheepi-zero.dtb \
- 	sun8i-v3s-licheepi-zero-dock.dtb \
- 	sun8i-v40-bananapi-m2-berry.dtb
-diff --git a/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts b/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
-new file mode 100644
-index 000000000000..117aeece4e55
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-v3-sl631-imx179.dts
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR X11)
-+/*
-+ * Copyright 2020 Paul Kocialkowski <contact@paulk.fr>
-+ */
-+
-+#include "sun8i-v3-sl631.dtsi"
-+
-+/ {
-+	model = "SL631 Action Camera with IMX179";
-+	compatible = "allwinner,sl631-imx179", "allwinner,sl631",
-+		     "allwinner,sun8i-v3";
-+};
-diff --git a/arch/arm/boot/dts/sun8i-v3-sl631.dtsi b/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-new file mode 100644
-index 000000000000..26648ab909bf
---- /dev/null
-+++ b/arch/arm/boot/dts/sun8i-v3-sl631.dtsi
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR X11)
-+/*
-+ * Copyright 2020 Paul Kocialkowski <contact@paulk.fr>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun8i-v3.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "SL631 Action Camera";
-+	compatible = "allwinner,sl631", "allwinner,sun8i-v3";
-+
-+	aliases {
-+		serial0 = &uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	axp209: pmic@34 {
-+		reg = <0x34>;
-+		interrupt-parent = <&nmi_intc>;
-+		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c1_pb_pins>;
-+	status = "okay";
-+};
-+
-+&lradc {
-+	vref-supply = <&reg_ldo2>;
-+	status = "okay";
-+
-+	button-174 {
-+		label = "Volume Down";
-+		linux,code = <KEY_VOLUMEDOWN>;
-+		channel = <0>;
-+		voltage = <174603>;
-+	};
-+
-+	button-384 {
-+		label = "Volume Up";
-+		linux,code = <KEY_VOLUMEUP>;
-+		channel = <0>;
-+		voltage = <384126>;
-+	};
-+
-+	button-593 {
-+		label = "Home";
-+		linux,code = <KEY_HOME>;
-+		channel = <0>;
-+		voltage = <593650>;
-+	};
-+};
-+
-+&mmc0 {
-+	cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-+	bus-width = <4>;
-+	vmmc-supply = <&reg_dcdc3>;
-+	status = "okay";
-+};
-+
-+&pio {
-+	vcc-pd-supply = <&reg_dcdc3>;
-+	vcc-pe-supply = <&reg_dcdc3>;
-+};
-+
-+#include "axp209.dtsi"
-+
-+&ac_power_supply {
-+	status = "okay";
-+};
-+
-+&battery_power_supply {
-+	status = "okay";
-+};
-+
-+&reg_dcdc2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <1250000>;
-+	regulator-max-microvolt = <1250000>;
-+	regulator-name = "vdd-sys-cpu";
-+};
-+
-+&reg_dcdc3 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3300000>;
-+	regulator-max-microvolt = <3300000>;
-+	regulator-name = "vdd-3v3";
-+};
-+
-+&reg_ldo1 {
-+	regulator-name = "vdd-rtc";
-+};
-+
-+&reg_ldo2 {
-+	regulator-always-on;
-+	regulator-min-microvolt = <3000000>;
-+	regulator-max-microvolt = <3000000>;
-+	regulator-name = "avcc";
-+};
-+
-+&spi0 {
-+	status = "okay";
-+
-+	spi-flash@0 {
-+		reg = <0>;
-+		compatible = "macronix,mx25l6436f", "jedec,spi-nor";
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&uart1 {
-+	pinctrl-0 = <&uart1_pg_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	status = "okay";
-+};
--- 
-2.29.1
+and then:
 
+  if ((val & PCIE_REGS_PCIE_SII_LINK_UP) == PCIE_REGS_PCIE_SII_LINK_UP)
+    return 1;
+  return 0;
+
+or even:
+
+  return (val & PCIE_REGS_PCIE_SII_LINK_UP) == PCIE_REGS_PCIE_SII_LINK_UP;
+
+> +static int keembay_pcie_establish_link(struct dw_pcie *pci)
+> +{
+> +	return 0;
+> +}
+
+Are you sure you need this?  I see other cases where the .start_link
+pointer is left NULL, e.g., pci-exynos.c, pci-imx6.c,
+dw_ls1021_pcie_ops, etc.
+
+> +static int keembay_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> +				     enum pci_epc_irq_type type,
+> +				     u16 interrupt_num)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> +
+> +	switch (type) {
+> +	case PCI_EPC_IRQ_LEGACY:
+> +		/* Legacy interrupts are not supported in Keem Bay */
+> +		dev_err(pci->dev, "Unsupported IRQ type\n");
+
+Might be nice to mention "legacy" here.
+
+> +		return -EINVAL;
+> +	case PCI_EPC_IRQ_MSI:
+> +		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
+> +	case PCI_EPC_IRQ_MSIX:
+> +		return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
+> +	default:
+> +		dev_err(pci->dev, "Unknown IRQ type\n");
+
+And maybe include the %d of "type"?
