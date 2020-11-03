@@ -2,316 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FCA42A4763
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 15:10:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 778832A47C6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 15:15:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729348AbgKCOKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 09:10:40 -0500
-Received: from nat-hk.nvidia.com ([203.18.50.4]:61341 "EHLO nat-hk.nvidia.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729405AbgKCOIt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 09:08:49 -0500
-Received: from HKMAIL103.nvidia.com (Not Verified[10.18.92.9]) by nat-hk.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fa1646f0000>; Tue, 03 Nov 2020 22:08:47 +0800
-Received: from HKMAIL101.nvidia.com (10.18.16.10) by HKMAIL103.nvidia.com
- (10.18.16.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 3 Nov
- 2020 14:08:46 +0000
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
- by HKMAIL101.nvidia.com (10.18.16.10) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3 via Frontend Transport; Tue, 3 Nov 2020 14:08:46 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IiEBE77wmEKx8n/O+WHE7n/n5Mz+iipbbXMEdwjYhnT37oBc+NtUuwJBq7uLFGZffPyz00kDUW4ifLZoxpmwpLItHpfyOLk35vYmOU8AMiHJgrjO/uxheyd5oBx1IZlXHJYUlTgzhqBcE85RcBndqfnTa25yKZjMSXiIrnXR909w52gOXCcrkEIapGsbyvmSTxfxMa3P93lehbSax4BdFOZA23jRNc3iN+GbxgjxOsGWcosKe3N9Zq4OwOWAXA6xi6ukkcsXp5162DMvejl9Qx5CiQQ9l1u9+RmnItp/33B3rsYHWZuxqPsarye0m7g4ZPFjmh98qLSaBz37sqCAyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xYzKVum3UnN3NLTqF5+x6XfXOvUJWq/LtJgV6N/HtJA=;
- b=BNMiIeyA4WFc2idwfhXK226YC0ZaHJKWSJ+M1mODLaUTzNL9EjYL2Y/q2C7J53+5L+4raMmmD8BIxpOLW4Y6xemPOtV64Bo2Cjn/zuOnYEk6s/YzVsCwRpx081iNF7w+2bDtqgDYKx0HOSjT/akGZqEKNsSAsF7vjABoeumBYkA21STKFxGramit7BbqH9GWSbmwDSfKqLLkeB6XsajwNQXozbmPvqxvxhb7a3ZFn9cnoqEe5TKU6ToYzRuHfcqUIX/oavuIXlaz0GZwNjHYNNt9FgB2U7ZO+5v7WXPuGlHxjucOGEUfjM4aQP7hYTcSlcQCszTfAwGy+b6jGawqWw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-Received: from MN2PR12MB3616.namprd12.prod.outlook.com (2603:10b6:208:cc::25)
- by MN2PR12MB3360.namprd12.prod.outlook.com (2603:10b6:208:c7::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.27; Tue, 3 Nov
- 2020 14:08:43 +0000
-Received: from MN2PR12MB3616.namprd12.prod.outlook.com
- ([fe80::89a:e4ad:708f:363f]) by MN2PR12MB3616.namprd12.prod.outlook.com
- ([fe80::89a:e4ad:708f:363f%5]) with mapi id 15.20.3499.030; Tue, 3 Nov 2020
- 14:08:43 +0000
-From:   Khalil Blaiech <kblaiech@nvidia.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "wsa+renesas@sang-engineering.com" <wsa+renesas@sang-engineering.com>,
-        "Leon Romanovsky" <leonro@nvidia.com>
-Subject: RE: [PATCH i2c-next v1 6/6] dt-bindings: i2c: Convert DT file to YAML
- schema
-Thread-Topic: [PATCH i2c-next v1 6/6] dt-bindings: i2c: Convert DT file to
- YAML schema
-Thread-Index: AQHWrX2HV/F60Fhs10S889Dvf01JXamutp0AgAfDkkA=
-Date:   Tue, 3 Nov 2020 14:08:43 +0000
-Message-ID: <MN2PR12MB36169B5BCCD62DA558EE2EC1AB110@MN2PR12MB3616.namprd12.prod.outlook.com>
-References: <cover.1603925077.git.kblaiech@nvidia.com>
- <77461da87050051e0d2e7decdc9b088ff8738e19.1603925078.git.kblaiech@nvidia.com>
- <20201029153306.GA1905314@bogus>
-In-Reply-To: <20201029153306.GA1905314@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nvidia.com;
-x-originating-ip: [173.48.75.27]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1fe4f987-a350-4ff9-7808-08d88001f925
-x-ms-traffictypediagnostic: MN2PR12MB3360:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MN2PR12MB3360325202AEE0D91492E8C5AB110@MN2PR12MB3360.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MwGwvyMq3uP8c7yY7PbfZLjhMoZN1yh9yS9wmED/jKo37rgPQv/mk5HRJmPn9ghsO7DZqGT9Bojdera3J4T8OFibfDWQYwzxjQpR7m3pg/VcEen3nNzqp5cnWSv/PsPTuOW+iq3IdZ0CqmDxeF6qz0XPMSfJjCra5eIDHxCZhYCdZ1sollgun+DFYtaAMtQ7CIUnZysJeNuPia/G0dBbLG78gqk2h4w2cKnIOcl7rKtc2GMZzDEmVhzt05fKaRUkV9gEANJECN3P7+syeC1RKloQUUNLnstUzErGiWy7/ljT+cRK7F5ScgNuAv6oJy0cTwjKdVfrrV1WbY5gdUAujM8PuU4zNe2asMPLoQuoVj/SVzWur1HOft8xciRV7FRQ7wNKV+xNOV77quEAcZBBZw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3616.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(39860400002)(366004)(346002)(376002)(52536014)(86362001)(6506007)(966005)(66556008)(66476007)(8936002)(64756008)(6916009)(66946007)(33656002)(478600001)(66446008)(76116006)(5660300002)(71200400001)(186003)(8676002)(2906002)(55016002)(107886003)(83380400001)(7696005)(26005)(316002)(4326008)(54906003)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: ELGScExyNutJHfySDzqkVDTGARaXVe3YWR7Qx5m6s5Mu6ohHGdPS11uRchtiSFMz3ijddI4CX9XDZ4KF0yHfkbYFCfXeaRwYZvaIviywejIxaspqwSzv12AoV5hJAKn7uqjF5LjQ2h9FBIAIjskbDyqJ/Fr8w6UhFGlCpNiF9p4MxxaZhDp//A7bZ7/Ff5HQGxC9lyyMC18gGXz6aMba4h6TThD27aO01ttIYG9jyY0QGDLOLLY8zMISRq46WQvP/ogW3n1mWZ+5GbtLqJzw+RZIyV7V97SLxdi3w8Wlb74aFggrMTbmSSILv6/s2CGz6wNxNVnaIfC61H7x3k1A59LJ/t9wPdGRz5Eym5pNQN9qZatd51dlkCPgIf1844VOy3byj2hXQsr98Ry5DrfnbALCKaD+yfhYRUFT1K0+NShVrNTkJSvrhdxv9ugadL3lmzvlyJ+cXOtfbxeoQ7nk9/eRvN90hM+YFRM6LHqROAjD2W1kdqT0rysnwgW7XiVwMhXSrQxz2Z5jkBu3NZkRs30/0b1lrujY06dHXYQeEFLZOMAVy8qYW55BXtRbLQU4UbzJBx3ATE267k1BOd2neBkyDW2Flymff/QyOnqImkudBG/g/gj1xTQGDJ0x9ihAxtx4ZM5Quqe/esyrp9Slew==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1729557AbgKCOPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 09:15:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44754 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729343AbgKCONT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 09:13:19 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920E3C0613D1;
+        Tue,  3 Nov 2020 06:13:18 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id m8so13147932ljj.0;
+        Tue, 03 Nov 2020 06:13:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=f971NpGAxJTOMIWGzmZfoD6Qg23wMvOQqSw5+pPEYq8=;
+        b=mC3EAqx4mz0BZUOT7ZHITszgY9OOxUk1yX30bvTDpDqmUOqTcDCSgoZGNSJk8iMQPi
+         0hoDwvIoci519dc0p5yJNwKM0TdKAPCcHNd2hts+kQrjaVJGWNQm8rZqX5t/C96nwazS
+         hIJuNeBXKkUcV/MbKLQ5lkgJi94lAeiWsW54dLtzu1OSa9LBoAER06zGIOMi32ENUOSK
+         jKNl6nrZjjJIqfqEFLnCH5pMMnRUaTtRBlhrMZe+DlcwVz19KL+breYHFGkFmBmb175p
+         Qr2TG3XrNhtrmi+QkxvKIx51XIPjns3cj5ql4+02LYt6LngUBQ+JicuBg2Var8efxmaD
+         gpZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=f971NpGAxJTOMIWGzmZfoD6Qg23wMvOQqSw5+pPEYq8=;
+        b=dnrejXiIowx/imGkB9Fl8ij4/v0n85bSq45LithjlETihAPyNvtiwdc2hXNc8Kpzi2
+         iDTSZ09qf09S1ImabIlvUiuQL/OnO9YMQJ0I3y43GX1xA8qYCO8uVtg/i8m/SG4OHvGk
+         wlLWlGX8w1tAQtDXRFeOVlemAnsxSPjWbUkIN/VnNw9Nz4+IuSF7Wqsr/aaf+IF814e1
+         ACBnjXJcLFc6iBrAiszoTkJdm5DXkluutL85YOD66reQ/cDkYNa1wj3V6LMFJCMhAnU2
+         zB0RaOHu+PjRZrE3RVZNck4eIeht/ZpXz8w9yMQ4jKmVDXYpc6eNuPQP+5KFX6h5HVLO
+         NnFw==
+X-Gm-Message-State: AOAM5321WOF0jx4i+QwcjR9qjmnNbUJO2QtGKj75kPcYN5dyc3NZWgUa
+        VoZFVISgH36LYW6fB5D/LCZYjhUyvbiDUtYphg8/T8dm/1+F/w==
+X-Google-Smtp-Source: ABdhPJwsmSD/NJffq1/IuqpIedYKyTEdlHZMDluPm5T1JTIGXkjlVn9YQrQFFCMIVwFmhu/2kvElcVTFCpPbf0Fid+I=
+X-Received: by 2002:a2e:8041:: with SMTP id p1mr4345835ljg.460.1604412796961;
+ Tue, 03 Nov 2020 06:13:16 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3616.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1fe4f987-a350-4ff9-7808-08d88001f925
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2020 14:08:43.4451
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: W92fMcTzbYgAssJg5WlcL1ktbG9nCiugzbkz63qtIegnfpkjPOqoslDa8/sEgOdTPSNG1XCT7MsmAic/HxT2EA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3360
-X-OriginatorOrg: Nvidia.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1604412527; bh=xYzKVum3UnN3NLTqF5+x6XfXOvUJWq/LtJgV6N/HtJA=;
-        h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:From:To:
-         CC:Subject:Thread-Topic:Thread-Index:Date:Message-ID:References:
-         In-Reply-To:Accept-Language:Content-Language:X-MS-Has-Attach:
-         X-MS-TNEF-Correlator:authentication-results:x-originating-ip:
-         x-ms-publictraffictype:x-ms-office365-filtering-correlation-id:
-         x-ms-traffictypediagnostic:x-ms-exchange-transport-forked:
-         x-microsoft-antispam-prvs:x-ms-oob-tlc-oobclassifiers:
-         x-ms-exchange-senderadcheck:x-microsoft-antispam:
-         x-microsoft-antispam-message-info:x-forefront-antispam-report:
-         x-ms-exchange-antispam-messagedata:Content-Type:
-         Content-Transfer-Encoding:MIME-Version:
-         X-MS-Exchange-CrossTenant-AuthAs:
-         X-MS-Exchange-CrossTenant-AuthSource:
-         X-MS-Exchange-CrossTenant-Network-Message-Id:
-         X-MS-Exchange-CrossTenant-originalarrivaltime:
-         X-MS-Exchange-CrossTenant-fromentityheader:
-         X-MS-Exchange-CrossTenant-id:X-MS-Exchange-CrossTenant-mailboxtype:
-         X-MS-Exchange-CrossTenant-userprincipalname:
-         X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
-        b=KxOBR1hmWaYnJ2CSQesshQrD5vhL1SXt/4codomXJuT4tCqbJV60wewG/lTZy5axv
-         lfEMAjhv6xyxqYbLqAGitGhMoLmbO0C6bZ/8DINkGcYY0kxi8e1T+JUCbV/5+zH6WS
-         8Kh/M/oE1ljrd9A8A2IQ2tIFPDRMoEX3MNbv6hPpgOfS6VeWffP9XubPv7hFqLfIpE
-         RIFZbVtFHVFhYlQw8G2WoLhxYIJltI/KRFwbUWtjj7pkzB9jTVlCExRw+DbbitYhuX
-         wp/OfHKukxtACPA9dSWeVzWiYSwsmTP8nCUgj7CoUr6W4Cz/RpKHXJxmA3JrIWEoDf
-         sS2Dd/vWiE+zg==
+References: <20201030125149.8227-1-s.nawrocki@samsung.com> <CGME20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9@eucas1p2.samsung.com>
+ <20201030125149.8227-3-s.nawrocki@samsung.com> <88af4e53-6c7a-c2e6-ad28-a9d6bb5bf623@samsung.com>
+ <6cc9a2f8-9d9a-68b7-9f47-e16fefb18d88@samsung.com>
+In-Reply-To: <6cc9a2f8-9d9a-68b7-9f47-e16fefb18d88@samsung.com>
+Reply-To: cwchoi00@gmail.com
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Date:   Tue, 3 Nov 2020 23:12:40 +0900
+Message-ID: <CAGTfZH3seoTUd68pq+RCSs9BfnmkUaeoipML=85aUPyvcWZ6fw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/6] interconnect: Add generic interconnect driver for
+ Exynos SoCs
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sylwester,
 
-
-> On Wed, Oct 28, 2020 at 06:55:54PM -0400, Khalil Blaiech wrote:
-> > Write the devicetree binding text file in schema file, JSON
-> > compatible subset of YAML.
-> > Besides, add an entry within MAINTAINERS file.
->=20
-> The subject should contain something about Mellanox BlueField.
-
-Got it.
-
+On Tue, Nov 3, 2020 at 8:32 PM Sylwester Nawrocki
+<s.nawrocki@samsung.com> wrote:
+>
+> On 03.11.2020 10:37, Chanwoo Choi wrote:
+> > On 10/30/20 9:51 PM, Sylwester Nawrocki wrote:
+> >> This patch adds a generic interconnect driver for Exynos SoCs in order
+> >> to provide interconnect functionality for each "samsung,exynos-bus"
+> >> compatible device.
+> >>
+> >> The SoC topology is a graph (or more specifically, a tree) and its
+> >> edges are specified using the 'samsung,interconnect-parent' in the
 > >
-> > Fixes: d9becc53b3ade81e ("dt-bindings: i2c: I2C binding for Mellanox
-> BlueField SoC")
->=20
-> Fixes is not appropriate for this.
-
-Should I remove?
-
->=20
-> > Reviewed-by: Leon Romanovsky <leonro@nvidia.com>
-> > Signed-off-by: Khalil Blaiech <kblaiech@nvidia.com>
-> > ---
-> >  .../bindings/i2c/mellanox,i2c-mlxbf.txt       | 42 ----------
-> >  .../bindings/i2c/mellanox,i2c-mlxbf.yaml      | 78 +++++++++++++++++++
-> >  MAINTAINERS                                   |  1 +
-> >  3 files changed, 79 insertions(+), 42 deletions(-)
-> >  delete mode 100644
-> Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
-> >  create mode 100644
-> Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
+> > samsung,interconnect-parent -> interconnects?
+>
+> Yes, I will rephrase the whole commit message as it's a bit outdated now.
+>
+> I've changed the sentence to:
+> "The SoC topology is a graph (or more specifically, a tree) and its
+> edges are described by specifying in the 'interconnects' property
+> the interconnect consumer path for each interconnect provider DT node."
+>
+> >> DT. Due to unspecified relative probing order, -EPROBE_DEFER may be
+> >> propagated to ensure that the parent is probed before its children.
+> >>
+> >> Each bus is now an interconnect provider and an interconnect node as
+> >> well (cf. Documentation/interconnect/interconnect.rst), i.e. every bus
+> >> registers itself as a node. Node IDs are not hardcoded but rather
+> >> assigned dynamically at runtime. This approach allows for using this
+> >> driver with various Exynos SoCs.
+> >>
+> >> Frequencies requested via the interconnect API for a given node are
+> >> propagated to devfreq using dev_pm_qos_update_request(). Please note
+> >> that it is not an error when CONFIG_INTERCONNECT is 'n', in which
+> >> case all interconnect API functions are no-op.
+> >>
+> >> The bus-width DT property is to determine the interconnect data
+> >> width and traslate requested bandwidth to clock frequency for each
+> >> bus.
+> >>
+> >> Signed-off-by: Artur =C5=9Awigo=C5=84 <a.swigon@samsung.com>
+> >> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+>
+> >> +++ b/drivers/interconnect/exynos/exynos.c
+>
+> >> +struct exynos_icc_priv {
+> >> +    struct device *dev;
+> >> +
+> >> +    /* One interconnect node per provider */
+> >> +    struct icc_provider provider;
+> >> +    struct icc_node *node;
+> >> +
+> >> +    struct dev_pm_qos_request qos_req;
+> >> +    u32 bus_clk_ratio;
+> >> +};
+> >> +
+> >> +static struct icc_node *exynos_icc_get_parent(struct device_node *np)
+> >> +{
+> >> +    struct of_phandle_args args;
+> >> +    struct icc_node_data *icc_node_data;
+> >> +    struct icc_node *icc_node;
+> >> +    int num, ret;
+> >> +
+> >> +    num =3D of_count_phandle_with_args(np, "interconnects",
+> >> +                                     "#interconnect-cells");
+> >> +    if (num < 1)
+> >> +            return NULL; /* parent nodes are optional */
+> >> +
+> >> +    /* Get the interconnect target node */
+> >> +    ret =3D of_parse_phandle_with_args(np, "interconnects",
+> >> +                                    "#interconnect-cells", 0, &args);
+> >> +    if (ret < 0)
+> >> +            return ERR_PTR(ret);
+> >> +
+> >> +    icc_node_data =3D of_icc_get_from_provider(&args);
+> >> +    of_node_put(args.np);
+> >> +
+> >> +    if (IS_ERR(icc_node_data))
+> >> +            return ERR_CAST(icc_node_data);
+> >> +
+> >> +    icc_node =3D icc_node_data->node;
+> >> +    kfree(icc_node_data);
+> >> +
+> >> +    return icc_node;
+> >> +}
 > >
-> > diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.t=
-xt
-> b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
-> > deleted file mode 100644
-> > index 566ea861aa00..000000000000
-> > --- a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
-> > +++ /dev/null
-> > @@ -1,42 +0,0 @@
-> > -Device tree configuration for the Mellanox I2C SMBus on BlueField SoCs
-> > -
-> > -Required Properties:
-> > -
-> > -- compatible : should be "mellanox,i2c-mlxbf1" or "mellanox,i2c-mlxbf2=
-".
-> > -
-> > -- reg : address offset and length of the device registers. The
-> > -	registers consist of the following set of resources:
-> > -		1) Smbus block registers.
-> > -		2) Cause master registers.
-> > -		3) Cause slave registers.
-> > -		4) Cause coalesce registers (if compatible isn't set
-> > -		   to "mellanox,i2c-mlxbf1").
-> > -
-> > -- interrupts : interrupt number.
-> > -
-> > -Optional Properties:
-> > -
-> > -- clock-frequency : bus frequency used to configure timing registers;
-> > -			allowed values are 100000, 400000 and 1000000;
-> > -			those are expressed in Hz. Default is 100000.
-> > -
-> > -Example:
-> > -
-> > -i2c@2804000 {
-> > -	compatible =3D "mellanox,i2c-mlxbf1";
-> > -	reg =3D	<0x02804000 0x800>,
-> > -		<0x02801200 0x020>,
-> > -		<0x02801260 0x020>;
-> > -	interrupts =3D <57>;
-> > -	clock-frequency =3D <100000>;
-> > -};
-> > -
-> > -i2c@2808800 {
-> > -	compatible =3D "mellanox,i2c-mlxbf2";
-> > -	reg =3D	<0x02808800 0x600>,
-> > -	        <0x02808e00 0x020>,
-> > -		<0x02808e20 0x020>,
-> > -		<0x02808e40 0x010>;
-> > -	interrupts =3D <57>;
-> > -	clock-frequency =3D <400000>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-
-> mlxbf.yaml b/Documentation/devicetree/bindings/i2c/mellanox,i2c-
-> mlxbf.yaml
-> > new file mode 100644
-> > index 000000000000..b9f6b07c503f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
-> > @@ -0,0 +1,78 @@
-> > +# SPDX-License-Identifier: GPL-2.0
->=20
-> If you have rights, please dual license adding BSD-2-Clause.
-
-Sure.
-
->=20
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/i2c/mellanox,i2c-mlxbf.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Mellanox I2C SMBus on BlueField SoCs
-> > +
-> > +maintainers:
-> > +  - Khalil Blaiech <kblaiech@nvidia.com>
->=20
-> allOf:
->   - $ref: i2c-controller.yaml#
->=20
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - mellanox,i2c-mlxbf1
-> > +      - mellanox,i2c-mlxbf2
-> > +
-> > +  reg:
-> > +    minItems: 3
-> > +    maxItems: 4
-> > +    items:
-> > +      - description: Smbus block registers
-> > +      - description: Cause master registers
-> > +      - description: Cause slave registers
-> > +      - description: Cause coalesce registers
-> > +
-> > +  interrupts:
-> > +      maxItems: 1
-> > +
-> > +  clock-frequency:
-> > +      enum: [ 100000, 400000, 1000000 ]
-> > +
->=20
-> Drop the blank line.
->=20
-> > +      description:
-> > +        bus frequency used to configure timing registers;
-> > +        The frequency is expressed in Hz. Default is 100000.
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +if:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - mellanox,i2c-mlxbf1
-> > +
-> > +then:
-> > +  properties:
-> > +    reg:
-> > +      maxItems: 3
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c@2804000 {
-> > +        compatible =3D "mellanox,i2c-mlxbf1";
-> > +        reg =3D <0x02804000 0x800>,
-> > +              <0x02801200 0x020>,
-> > +              <0x02801260 0x020>;
-> > +        interrupts =3D <57>;
-> > +        clock-frequency =3D <100000>;
-> > +    };
-> > +
-> > +  - |
-> > +    i2c@2808800 {
-> > +        compatible =3D "mellanox,i2c-mlxbf2";
-> > +        reg =3D <0x02808800 0x600>,
-> > +              <0x02808e00 0x020>,
-> > +              <0x02808e20 0x020>,
-> > +              <0x02808e40 0x010>;
-> > +        interrupts =3D <57>;
-> > +        clock-frequency =3D <400000>;
-> > +    };
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 9128200af1d0..8dba7ace4a40 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -11075,6 +11075,7 @@ MELLANOX BLUEFIELD I2C DRIVER
-> >  M:	Khalil Blaiech <kblaiech@nvidia.com>
-> >  L:	linux-i2c@vger.kernel.org
-> >  S:	Supported
-> > +F:	Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
-> >  F:	drivers/i2c/busses/i2c-mlxbf.c
+> > I have a question about exynos_icc_get_parent().
+> > As I checked, this function returns the only one icc_node
+> > as parent node. But, bus_display dt node in the exynos4412.dtsi
+> > specifies the two interconnect node as following with bus_leftbus, bus_=
+dmc,
 > >
-> >  MELLANOX ETHERNET DRIVER (mlx4_en)
-> > --
-> > 2.24.1
-> >
+> > When I checked the return value of exynos_icc_get_parent()
+> > during probing for bus_display device, exynos_icc_get_parent() function
+> > only returns 'bus_leftbus' icc_node. Do you need to add two phandle
+> > of icc node?
+>
+> Yes, as we use the interconnect consumer bindings we need to specify a pa=
+th,
+> i.e. a <initiator, target> pair. When the provider node initializes it wi=
+ll
+> link itself to that path. Currently the provider driver uses just the fir=
+st
+> phandle.
+
+As I knew, the interconnect consumer bindings use the two phandles
+in the interconnect core as you commented. But, in case of this,
+even if add two phandles with interconnect consumding binding style,
+the exynos interconnect driver only uses the first phandle.
+
+Instead, I think we better explain this case into a dt-binding
+document for users.
+
+> > +++ b/arch/arm/boot/dts/exynos4412.dtsi
+> > @@ -472,7 +472,7 @@
+> >                         clocks =3D <&clock CLK_ACLK160>;
+> >                         clock-names =3D "bus";
+> >                         operating-points-v2 =3D <&bus_display_opp_table=
+>;
+> >                         interconnects =3D <&bus_leftbus &bus_dmc>;
+> >                         #interconnect-cells =3D <0>;
+> >                         status =3D "disabled";
+> >                 };
+>
+> --
+> Regards,
+> Sylwester
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+
+
+
+--=20
+Best Regards,
+Chanwoo Choi
