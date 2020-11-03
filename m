@@ -2,215 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05EC62A4B00
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:18:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D08FC2A4B36
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:24:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727323AbgKCQSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:18:52 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:35243 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726212AbgKCQSw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:18:52 -0500
-Received: by mail-ot1-f68.google.com with SMTP id n11so16485295ota.2;
-        Tue, 03 Nov 2020 08:18:51 -0800 (PST)
+        id S1728046AbgKCQY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 11:24:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37118 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727869AbgKCQY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:24:28 -0500
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82262C0613D1
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 08:24:28 -0800 (PST)
+Received: by mail-wr1-x442.google.com with SMTP id x7so19204882wrl.3
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 08:24:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=TWMGG87FE9uxAtDy09w/VsVP9sl7tO1y2QmrppQSsaE=;
+        b=IpbtN+UAsR8RU2BqqBRla23ltFM1COkP4gRGqcT5GOM8fNoEJ/7+Fex9YAGctIm1+c
+         cu6th1RS9ruyiCKj+n96Bju2w8T3vmX33aQLPVJQH8oKa0PtHJb3YxnZk49NYIzTFO5l
+         rRFTUgzc1a6dRkxSfVc5H4qXjOwDsBYyNG/3ge/bFHdJLMLgiZBisemjVAm+RMTX8ak2
+         3yLLrMKMYjOiPa+bzCFeeTrVf1o2hlB/H2qPzr88Dk4q9VO4JT7HDrHI+MeA6+d+tkWo
+         XtOc6ICOOjharPDlq1moJUkhnzGkw+d3YjNdtDqsdtTLfwimf/b9kS7ryBlZhvyUtFwH
+         dloA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Kzc7NTNk+jn1PwxEbOe5B1xQVAt7z6VoLw/UBo2I7K0=;
-        b=l+/tPksusZgd9xC9dJq5P/HtrRLbWglhHG+ifSWuAo+JnBFfJNTmQgaa8kowQ69XcE
-         Wq7XNVGoHn9t8kYRKTTU++sW1NiVbdBTtDOn+21pRrv3YGTPq2oiHo7KtMqXQaiwyljN
-         GCv440VM19/ujHMc5OZUcadMq4MEJooVvSOQzn3UjfQk6G48yd3psu9VQMBPiwCPQTZ6
-         bL6ey3ktlgC87N74vz8EV071dc5BwUMODjiiqWaECresDs8qKzfaL0ftY+GFMHpkkt+m
-         9u7uxXUrJEmKgnUDrBYm5GPhMkY121xolzjEjlbLSY9b6HsXY/DeV2phUf3pWqhtWFBn
-         VMNw==
-X-Gm-Message-State: AOAM530w4gyxmZ6y9wsN3a3zd8+S4wyTjobnul75FQ81ozi8XBLCVQih
-        7MPh1g5A3KIy5B0F0Qv72BiasgdG9g==
-X-Google-Smtp-Source: ABdhPJye1bAA5Qspa9WPtdKYXd/3TdvEzUz6MP/YSKPWbRK9cLmsq4HzXutOKPE2CXMG1kBoJBs3CQ==
-X-Received: by 2002:a9d:6647:: with SMTP id q7mr12845019otm.196.1604420331030;
-        Tue, 03 Nov 2020 08:18:51 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n23sm4317513oon.14.2020.11.03.08.18.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 08:18:50 -0800 (PST)
-Received: (nullmailer pid 1768641 invoked by uid 1000);
-        Tue, 03 Nov 2020 16:18:49 -0000
-Date:   Tue, 3 Nov 2020 10:18:49 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 19/46] dt-bindings:iio:light:upisemi,us51882: txt to yaml
- conversion.
-Message-ID: <20201103161849.GC1754553@bogus>
-References: <20201031184854.745828-1-jic23@kernel.org>
- <20201031184854.745828-20-jic23@kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=TWMGG87FE9uxAtDy09w/VsVP9sl7tO1y2QmrppQSsaE=;
+        b=Pkzq7pNhGvmDhgNMXBH2e16p6uyCYxcZF3ms1FbhrZbvdFf781KYMsBa+T8++q99HJ
+         ZXj/MmbZ337ncvkOn+dtv8lU+rF0LltS1dzUQM2Jtn4yQ5xt1mKIW4yscdVnhyN0KpAf
+         j/M0iWSdKj+ZWfJI/xdlxcrRC9MQrzSOgpjSQWGP4YyKtbWtLphABpK7yAptGMpT2ps+
+         Z939jErG/cV06sa8GEFWDKhr+fil/YjmNGW5GRpqs6a3ztwkJ3rr5jWi+HqmyBpGGQBM
+         k0h78K6nFlejaCD9GvuiL5jmL4jT9ije1NzMX9/MFp6IxmQ9mCzIlB+dZ4rHC3IJs8uT
+         uocw==
+X-Gm-Message-State: AOAM533+SBCcxk4kD+syVKvqj0skX6rkJDFK1x+Y89pzSLUJOCWo9ek6
+        iBwnni2kc7SA52yw25BK87ZxcA==
+X-Google-Smtp-Source: ABdhPJy0oLpmlcWd27VCnlo6WCwvu/BBtbCPPJyhvx1h7cnN5MGLYbhvprlPg1+nexxBU9uS13F88A==
+X-Received: by 2002:adf:e2c9:: with SMTP id d9mr26915653wrj.11.1604420667261;
+        Tue, 03 Nov 2020 08:24:27 -0800 (PST)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id b136sm3286005wmb.21.2020.11.03.08.24.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Nov 2020 08:24:26 -0800 (PST)
+Subject: Re: [PATCH v4 2/2] interconnect: qcom: Add SDM660 interconnect
+ provider driver
+To:     kholk11@gmail.com
+Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org, agross@kernel.org,
+        marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20201017133718.31327-1-kholk11@gmail.com>
+ <20201017133718.31327-3-kholk11@gmail.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <24ad51dd-ff54-35af-a7bc-92d8cfa30c48@linaro.org>
+Date:   Tue, 3 Nov 2020 18:24:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201031184854.745828-20-jic23@kernel.org>
+In-Reply-To: <20201017133718.31327-3-kholk11@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 06:48:27PM +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On 10/17/20 16:37, kholk11@gmail.com wrote:
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > 
-> I don't have an up to date address for Adriana Reus so I've put myself
-> as the binding maintainer for this one.  I'm happy to hand over to Adriana
-> or anyone else who wants take it on!
+> Introduce a driver for the Qualcomm interconnect busses found in
+> the SDM630/SDM636/SDM660 SoCs.
+> The topology consists of several NoCs that are controlled by a
+> remote processor that collects the aggregated bandwidth for each
+> master-slave pairs.
 > 
-> This has a lot of optional tuning parameters. The docs are modified to try
-> and put the default values in the description of each one rather than a
-> forwards reference to the example.
+> On a note, these chips are managing the "bus QoS" in a "hybrid"
+> fashion: some of the paths in the topology are managed through
+> (and by, of course) the RPM uC, while some others are "AP Owned",
+> meaning that the AP shall do direct writes to the appropriate
+> QoS registers for the specific paths and ports, instead of sending
+> an indication to the RPM and leaving the job to that one.
 > 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > ---
->  .../bindings/iio/light/upisemi,us5182.yaml    | 75 +++++++++++++++++++
->  .../devicetree/bindings/iio/light/us5182d.txt | 45 -----------
->  2 files changed, 75 insertions(+), 45 deletions(-)
+>  drivers/interconnect/qcom/Kconfig  |   9 +
+>  drivers/interconnect/qcom/Makefile |   2 +
+>  drivers/interconnect/qcom/sdm660.c | 922 +++++++++++++++++++++++++++++
+>  3 files changed, 933 insertions(+)
+>  create mode 100644 drivers/interconnect/qcom/sdm660.c
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/light/upisemi,us5182.yaml b/Documentation/devicetree/bindings/iio/light/upisemi,us5182.yaml
-> new file mode 100644
-> index 000000000000..b9dc8ae25bf0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/light/upisemi,us5182.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/light/upisemi,us5182.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+[..]> +static const struct of_device_id sdm660_noc_of_match[] = {
+> +	{ .compatible = "qcom,sdm660-a2noc", .data = &sdm660_a2noc },
+> +	{ .compatible = "qcom,sdm660-bimc", .data = &sdm660_bimc },
+> +	{ .compatible = "qcom,sdm660-cnoc", .data = &sdm660_cnoc },
+> +	{ .compatible = "qcom,sdm660-gnoc", .data = &sdm660_gnoc },
+> +	{ .compatible = "qcom,sdm660-mnoc", .data = &sdm660_mnoc },
+> +	{ .compatible = "qcom,sdm660-snoc", .data = &sdm660_snoc },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, sdm660_noc_of_match);
 > +
-> +title: UPISEMI us5182d I2C ALS and Proximity sensor
-> +
-> +maintainers:
-> +  - Jonathan Cameron <jic23@kernel.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: upisemi,asd5182
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  upsemi,glass-coef:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      glass attenuation factor - compensation factor of resolution 1000
-> +      for material transmittance.  Default: 1000
+> +static struct platform_driver sdm660_noc_driver = {
+> +	.probe = qnoc_probe,
+> +	.remove = qnoc_remove,
+> +	.driver = {
+> +		.name = "qnoc-sdm660",
+> +		.of_match_table = sdm660_noc_of_match,
 
-       default: 1000
+Just noticed that here we should set the sync_state callback:
+		.sync_state = icc_sync_state,
 
-> +
-> +  upisemi,dark-ths:
-> +    $ref: /schemas/types.yaml#/definitions/uint16-array
-> +    minItems: 8
-> +    maxItems: 8
-> +    description:
-> +      16-bit thresholds (adc counts) corresponding to every scale.
-> +
-> +  upisemi,upper-dark-gain:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: |
-> +      8-bit dark gain compensation factor(4 int and 4 fractional bits - Q4.4)
-> +      applied when light > threshold. Default: 0.
+I will fix it up before applying. Are you planning to send a patch
+that adds the DT nodes?
 
-       default: 0
+Thanks,
+Georgi
 
-> +
-> +  upisemi,lower-dark-gain:
-> +    $ref: /schemas/types.yaml#/definitions/uint8
-> +    description: |
-> +      8-bit dark gain compensation factor(4 int and 4 fractional bits - Q4.4)
-> +      applied when light < threshold. Default: 0x16
-
-     default: 0x16
-
-> +
-> +  upisemi,continuous:
-> +    $ref: /schemas/types.yaml#definitions/flag
-> +    description: |
-> +      This chip has two power modes: one-shot (chip takes one measurement and
-> +      then shuts itself down) and continuous (chip takes continuous
-> +      measurements). The one-shot mode is more power-friendly but the
-> +      continuous mode may be more reliable. If this property is specified
-> +      the continuous mode will be used instead of the default one-shot one for
-> +      raw reads.
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        light-sensor@39 {
-> +            compatible = "upisemi,usd5182";
-> +            reg = <0x39>;
-> +            upisemi,glass-coef = < 1000 >;
-> +            upisemi,dark-ths = /bits/ 16 <170 200 512 512 800 2000 4000 8000>;
-> +            upisemi,upper-dark-gain = /bits/ 8 <0x00>;
-> +            upisemi,lower-dark-gain = /bits/ 8 <0x16>;
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/iio/light/us5182d.txt b/Documentation/devicetree/bindings/iio/light/us5182d.txt
-> deleted file mode 100644
-> index a61979997f37..000000000000
-> --- a/Documentation/devicetree/bindings/iio/light/us5182d.txt
-> +++ /dev/null
-> @@ -1,45 +0,0 @@
-> -* UPISEMI us5182d I2C ALS and Proximity sensor
-> -
-> -Required properties:
-> -- compatible: must be "upisemi,usd5182"
-> -- reg: the I2C address of the device
-> -
-> -Optional properties:
-> -- upisemi,glass-coef: glass attenuation factor - compensation factor of
-> -                      resolution 1000 for material transmittance.
-> -
-> -- upisemi,dark-ths: array of 8 elements containing 16-bit thresholds (adc
-> -                    counts) corresponding to every scale.
-> -
-> -- upisemi,upper-dark-gain: 8-bit dark gain compensation factor(4 int and 4
-> -                           fractional bits - Q4.4) applied when light > threshold
-> -
-> -- upisemi,lower-dark-gain: 8-bit dark gain compensation factor(4 int and 4
-> -                           fractional bits - Q4.4) applied when light < threshold
-> -
-> -- upisemi,continuous: This chip has two power modes: one-shot (chip takes one
-> -                      measurement and then shuts itself down) and continuous (
-> -                      chip takes continuous measurements). The one-shot mode is
-> -                      more power-friendly but the continuous mode may be more
-> -                      reliable. If this property is specified the continuous
-> -                      mode will be used instead of the default one-shot one for
-> -                      raw reads.
-> -
-> -If the optional properties are not specified these factors will default to the
-> -values in the below example.
-> -The glass-coef defaults to no compensation for the covering material.
-> -The threshold array defaults to experimental values that work with US5182D
-> -sensor on evaluation board - roughly between 12-32 lux.
-> -There will be no dark-gain compensation by default when ALS > thresh
-> -(0 * dark-gain), and a 1.35 compensation factor when ALS < thresh.
-> -
-> -Example:
-> -
-> -    usd5182@39 {
-> -                compatible = "upisemi,usd5182";
-> -                reg = <0x39>;
-> -                upisemi,glass-coef = < 1000 >;
-> -                upisemi,dark-ths = /bits/ 16 <170 200 512 512 800 2000 4000 8000>;
-> -                upisemi,upper-dark-gain = /bits/ 8 <0x00>;
-> -                upisemi,lower-dark-gain = /bits/ 8 <0x16>;
-> -    };
-> -- 
-> 2.28.0
-> 
+> +	},
+> +};
+> +module_platform_driver(sdm660_noc_driver);
+> +MODULE_DESCRIPTION("Qualcomm sdm660 NoC driver");
+> +MODULE_LICENSE("GPL v2");
