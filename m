@@ -2,104 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5750B2A40D1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 10:56:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37AFF2A40D5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 10:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727443AbgKCJzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 04:55:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
+        id S1728055AbgKCJz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 04:55:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727246AbgKCJzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 04:55:23 -0500
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA98DC0613D1;
-        Tue,  3 Nov 2020 01:55:22 -0800 (PST)
-Received: by mail-yb1-xb41.google.com with SMTP id b138so14303849yba.5;
-        Tue, 03 Nov 2020 01:55:22 -0800 (PST)
+        with ESMTP id S1728040AbgKCJz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 04:55:27 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B56B2C0613D1
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 01:55:26 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id o13so10028290ljj.11
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 01:55:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=/aPHJUg5B3RUfQUFOOBY1vaKVKuqoNKBnfLkp7Eh0jM=;
-        b=XVOnFxkHJAJZNHnA/v6Gq5JtUIinsSxGpS1KEgaNga35aGZxYKXo9IhsmUMpabmFr+
-         B/c++uqqz8D6VcZr3NW/+TB93t/w+uW75HKVQK5IXbE2s0dIbnTQAVZVeaDveBy74hD7
-         1KxggN5i1R8j93SWOxqSKj8bnhuP+6lekISChsMZUelgOTTSPeoXTnkwkL3vRgfYyECB
-         hzxJZCGOqjnkmT1xOgFFwKHLdeH6eZ16WCDY1xGZvs4HGVXHbvCs3G/FDbhJT1yS9Knj
-         hVLFLdtNzbE+LDNBaEeNKq4lX77kWoA/Vbwjy2QLKRaANDjVlnnRQQ/wV1d05n9ZJU/w
-         h8HQ==
+        bh=fq4LHl5XG3kdk6dhCjgR8hNmKo1bg3Z0xwsvFLhHhcQ=;
+        b=yt8AMikKSv7izXfLEON0zW5bDlX90AU3hCz+osA7iv5STprotNoYQImrr34uaO4jA5
+         Yz5RCuzWH5sEIjY2rWxkaAVYRXQzEugJBhzoIYotW8evGile5TJ8vREnCCpPygnFH8yX
+         D9AQdr+XTjo/8jwmvjLRO3byl21ONDHBelaSewmVKvOaQ+UnyYEyrgT4Ob0r0MfZDll7
+         NrirokyNLiXt4b5ANn7sQaX8v6BkYjDFgsL/G41FFYqgB8THD5Ty02c0NjkiLaGDLD6d
+         RF3jWvRKc3bDO5e1gEp4Rl4BkA6UZuvlf+NZILc4TPcuTq9h2am7qlS7HXPED43e/x3R
+         uCew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=/aPHJUg5B3RUfQUFOOBY1vaKVKuqoNKBnfLkp7Eh0jM=;
-        b=Nr+bKZXNS2e1kCwANdVFru7gNiOQJy2WLRr4aZvx3Xy4U74xb466FTF/n+MnBWurL+
-         yGh6AhWia/SLrDsKJUCqlo6GBSk09pWYBjegJipBq20MtR3LLg04oDTrxc3cmVVr6CDV
-         nsr7iKYdLzAkjSRt9cH6sqRgYv2hQdVCumJkMwxLBJ0zsBUh6Fnlae+QlKKY4eYt1xZA
-         viyukh66s3MRnbZdkEvleu6byf3SqjhD2533PcBzItPdldzQsxxoAFdsiLtGB5LslUQ8
-         EB0CisdL+JywAel34y3kYVMQ4/YfcaZ4hP7ky2gRZ3dYkEINuniFpResZPNv5osvmwh+
-         yThg==
-X-Gm-Message-State: AOAM53121Tqubx7YOlIM0OAP8NhrsZzHvwueErwaM729M4XKQV7ojbjY
-        316MDXjUQaMXI3V7Rkg2T4Y3Z6jFAPE04YwkW6M=
-X-Google-Smtp-Source: ABdhPJw+K7g1mkaqrzx+t32l56UmOR6oKyXcs5lnQ5hnNBVOjKohJrQmXNa3LmrQ7CBbbSxAwn/P2bm1FOIk29WCzzs=
-X-Received: by 2002:a25:bacd:: with SMTP id a13mr29382343ybk.387.1604397322266;
- Tue, 03 Nov 2020 01:55:22 -0800 (PST)
+        bh=fq4LHl5XG3kdk6dhCjgR8hNmKo1bg3Z0xwsvFLhHhcQ=;
+        b=ChLarhSzrhFHrQBVie4obW5Yjn7sXjAZ13cRob+nCSE4Ao2LRztPbBJ3gx+Uw4gD0/
+         G8duaIglFTvDXc7ZEQ0Vr3PxfjnEO/tJ2vExsf536DnZC+3bZP9TriGXutiBJ1uOdFdg
+         7SOXm/pHT3hQY4RcqSEUnKc4O7qj4TDflgZabL1QO3144ekOqX7JKUqrITOC3W+Mo9Ot
+         EGXYg5q/XcrRd1PK21QUIP2JTas0lErRltdecAquS656j3ypPzoA/28nTA8s9G3nGh3u
+         7mFV5N7615+bJsiHh8g4nY/QFNCuJW/f7vfAKX+NwodKdWY/5tH7+kh1+dT4oTU0a9Xq
+         jY8g==
+X-Gm-Message-State: AOAM533muo3UAw0SoJ2xYQDY8zNtpryZ81hI8fr10VGCWpX7LB5BuaNN
+        KR3kNXx+gKlwq2uMb2uEb3hX9LPQRZ/AQcGN4erUDQ==
+X-Google-Smtp-Source: ABdhPJyD7BuxsFo88BjUVf4mMu3Zx2TAGm/nXsbevnm+YG/eagy5MPRrS/P+PI+uclv/SBErdlJoTld2ixsXUu88Lck=
+X-Received: by 2002:a2e:86d4:: with SMTP id n20mr8764121ljj.293.1604397325248;
+ Tue, 03 Nov 2020 01:55:25 -0800 (PST)
 MIME-Version: 1.0
-References: <20201028232759.1928479-1-atish.patra@wdc.com> <20201028232759.1928479-2-atish.patra@wdc.com>
-In-Reply-To: <20201028232759.1928479-2-atish.patra@wdc.com>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Tue, 3 Nov 2020 17:55:10 +0800
-Message-ID: <CAEUhbmXknfx58q0Ae0MAZLT3zQuqGyAXXn1wDxHP36LQzew2Jw@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/3] RISC-V: Add Microchip PolarFire SoC kconfig option
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+References: <20201031181801.742585-1-jic23@kernel.org> <20201031181801.742585-4-jic23@kernel.org>
+In-Reply-To: <20201031181801.742585-4-jic23@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 3 Nov 2020 10:55:14 +0100
+Message-ID: <CACRpkdZaoeKR6bzQd2jWFiXdpqJRH-Rb-_miWb8Gz5Hqj=B3HA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings:iio:gyro:invensense,mpu3050: txt to yaml
+ format conversion.
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio <linux-iio@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Padmarao Begari <padmarao.begari@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Cyril.Jean@microchip.com
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 6:00 PM Atish Patra <atish.patra@wdc.com> wrote:
->
-> Add Microchip PolarFire kconfig option which selects SoC specific
-> and common drivers that is required for this SoC.
->
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  arch/riscv/Kconfig.socs | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index 8a55f6156661..74d07250ecc5 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -22,6 +22,13 @@ config SOC_VIRT
->         help
->           This enables support for QEMU Virt Machine.
->
-> +config SOC_MICROCHIP_POLARFIRE
+On Sat, Oct 31, 2020 at 7:20 PM Jonathan Cameron <jic23@kernel.org> wrote:
 
-Please put this in the alphabetical order
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>
+> Very similar to the mpu6050 binding.
+> Only unusual element is the i2c-gate section.
+> Example tweaked a little to include a real device behind the gate.
+>
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
 
-> +       bool "Microchip PolarFire SoCs"
-> +       select MCHP_CLK_PFSOC
-> +       select SIFIVE_PLIC
-> +       help
-> +         This enables support for Microchip PolarFire SoC platforms.
-> +
->  config SOC_KENDRYTE
->         bool "Kendryte K210 SoC"
->         depends on !MMU
-> --
+Sweet! Thanks for the help.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Otherwise LGTM
-Reviewed-by: Bin Meng <bin.meng@windriver.com>
+Yours,
+Linus Walleij
