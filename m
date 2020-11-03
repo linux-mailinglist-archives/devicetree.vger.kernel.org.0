@@ -2,138 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B48F42A4BB8
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:38:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D8D52A4BC3
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:40:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728103AbgKCQiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:38:02 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:33493 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728578AbgKCQiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:38:02 -0500
-Received: by mail-ot1-f68.google.com with SMTP id i18so11809964ots.0;
-        Tue, 03 Nov 2020 08:38:01 -0800 (PST)
+        id S1728217AbgKCQkR convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 3 Nov 2020 11:40:17 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:52402 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbgKCQkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:40:17 -0500
+Received: by mail-wm1-f65.google.com with SMTP id c18so13387822wme.2;
+        Tue, 03 Nov 2020 08:40:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=59IJmq7Vl2AfPKDgcRU0N9k37tngMdjRk3zQgRaKoWY=;
-        b=jqUw5NT6PB6HRqJMtPv6mRf0kdt3C+wYem1/vXvQnzMrKgiKY1TgFaXpkp6w7F4rB6
-         ku55BxVTL5qcn/IfOkHOmxJhu92+ZEGJqmrV/XDBJrmRBDKDqhdUqZV677PlB0gwVFmb
-         AylTZCnQFLIz9vAn3KDDuhzeJGG9OePPgc5HJHPUR1gd3MuyOJGQJiaPJDbLb1g9dJc9
-         0OZKSjFjvPqi2b99XxV4ku5JcdALkkmQrTo9LEAjaVmgBLeH7SL6exgECYBLIhb6Pn08
-         k4E7G0EHaK8ueWzuV076vZlTeJf/6jKN3IIIP5oCyiVsAHaQjRxVICp/68I21lOG6vgt
-         KVdA==
-X-Gm-Message-State: AOAM533qCus3sEWoH2RFBQTTR+UWzhR5bfv4df6FnMQQzE93D4OgmTFu
-        LGLg7cfNdZJ6wh104mnneg==
-X-Google-Smtp-Source: ABdhPJyVLAKe9DgtCT7gHfyxtMmdzeKN/UVv9QJ4OLfOVPu4yakjMH+LpSjWJmHTu0YYAHG3jtgoUQ==
-X-Received: by 2002:a9d:6c11:: with SMTP id f17mr16059023otq.208.1604421481294;
-        Tue, 03 Nov 2020 08:38:01 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l89sm4406296otc.6.2020.11.03.08.38.00
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=5VqbnNEsISzTx1+2zCjn0IZi1oNIpk688VcKl8HpDLI=;
+        b=hTLh+TaGcZ/cL5FpLGpfQYkIYFmluvt11cuki2h5VO28K+N56Na0EF27MmEFlg7iDD
+         shckgZAfiHc8bAiJAeOVu4kujoOeaxHD9f/SPbCYUuG3p1B043+Rwr2o2xi54t7tD3BH
+         YTVbuku03fCRG4TivDt8ukZmkX/vtPER4BIK+mIyLUiSc4DhrQzQEjXWrD9XIiFs9WsK
+         Ji9inBnxCriWvcty6JabHUw6XhXLKZpWt9YG2J4Oq5yYx6hG7+L05eUWaNUiqAJNpBJ5
+         kXtXo0dXnBtQIWH9QtrKAd/gS/kHD/vtImGZhqItM3q7IdNp/jF8X2IXi/B6h6nGLTtX
+         l60w==
+X-Gm-Message-State: AOAM530VO4NnJ/WBcM+AK2Ic655G3ViL4UFVrAVmUYa/HMzmDdvwHltv
+        QdCVW+2U9PVxIR6MmL5xBC8=
+X-Google-Smtp-Source: ABdhPJxHA9TXX2ewYjGAO6mdcEx5JBCuiEyhaA6ckxhF7acHpUaj+iPlTPCc70w028VEW+8eqfRE+A==
+X-Received: by 2002:a1c:7301:: with SMTP id d1mr615443wmb.141.1604421615281;
+        Tue, 03 Nov 2020 08:40:15 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id b136sm3328206wmb.21.2020.11.03.08.40.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 08:38:00 -0800 (PST)
-Received: (nullmailer pid 1793668 invoked by uid 1000);
-        Tue, 03 Nov 2020 16:38:00 -0000
-Date:   Tue, 3 Nov 2020 10:38:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 00/46] dt-bindings:iio: yet more txt to yam conversions
-Message-ID: <20201103163800.GA1791071@bogus>
-References: <20201031184854.745828-1-jic23@kernel.org>
+        Tue, 03 Nov 2020 08:40:14 -0800 (PST)
+Date:   Tue, 3 Nov 2020 17:40:12 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH 3/5] ARM: dts: exynos: Add Ethernet interface description
+ for Odroid XU
+Message-ID: <20201103164012.GD14739@kozik-lap>
+References: <20201103124618.21358-1-l.stelmach@samsung.com>
+ <CGME20201103124621eucas1p23bae6351a79c0e271b68223a35dbd7f7@eucas1p2.samsung.com>
+ <20201103124618.21358-4-l.stelmach@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201031184854.745828-1-jic23@kernel.org>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201103124618.21358-4-l.stelmach@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 06:48:08PM +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Tue, Nov 03, 2020 at 01:46:16PM +0100, Łukasz Stelmach wrote:
+> Add Ethernet interface description for Odroid XU.
 > 
-> This set is basically all the stuff bindings where I couldn't come up
-> with a unifying theme to split them out into smaller more palatble sets.
+> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+> ---
+>  arch/arm/boot/dts/exynos5410-odroidxu.dts | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> So there is all sorts in here :)  Enjoy.
+> diff --git a/arch/arm/boot/dts/exynos5410-odroidxu.dts b/arch/arm/boot/dts/exynos5410-odroidxu.dts
+> index 75b4150c26d7..882d9296fa5d 100644
+> --- a/arch/arm/boot/dts/exynos5410-odroidxu.dts
+> +++ b/arch/arm/boot/dts/exynos5410-odroidxu.dts
+> @@ -19,6 +19,10 @@ / {
+>  	model = "Hardkernel Odroid XU";
+>  	compatible = "hardkernel,odroid-xu", "samsung,exynos5410", "samsung,exynos5";
+>  
+> +	aliases {
+> +		ethernet = &ethernet;
 
-Thanks for filling my inbox... :)
+Just like with patch 1/5 - please explain in commit msg why do you need
+this.
 
-> There are a few more binding files left after these are done.
-> * io-channel-mux:  Needs conversion of the mux subsystem bindings
-> * xilinx-xadc: I think Lars is working on this one already.
-> * lis302: This one got moved to IIO directory, but reflects a bunch of stuff
->   that would not have made it into an IIO binding.  The driver is still in
->   misc and in theory has been replaced by the st-sensors driver.
->   Need to think what to do about this one.
-> * mount-matrix.txt:  The binding part is under review for inclusion in
->   dt-schema rather than kernel tree, but this document has a wealth of
->   information we don't want hidden away there.  As such I'm probably
->   going to convert it to general kernel documentation.
-> 
-> Final patch in here drops the generic temperatures sensor binding.
-> Whilst I'm keen on that we only currently have one user.  So I'd
-> rather we had a second before we went to the effort of defining a
-> proper yaml binding for that.
-> 
-> Jonathan Cameron (46):
->   dt-bindings:iio:resolver:adi,ad2s90: Conversion of binding to yaml.
->   dt-bindings:iio:potentiometer:adi,ad5272 yaml conversion
->   dt-bindings:iio:potentiometer:microchip,mcp4131 txt to yaml conversion
->   dt-bindings:iio:potentiometer:microchip,mcp41010 txt to yaml
->     conversion
->   dt-bindings:iio:impedance-analyzer:adi,ad5933 yaml conversion.
->   dt-bindings:iio:samsung,sensorhub-rinato: yaml conversion
->   dt-bindings:iio:health:ti,afe4403: txt to yaml binding
->   dt-bindings:iio:health:ti,afe4404: txt to yaml conversion
->   dt-bindings:iio:health:maxim,max30100: txt to yaml conversion
->   dt-bindings:iio:health:maxim,max30102: txt to yaml conversion
->   dt-bindings:iio:imu:adi,adis16480: txt to yaml conversion
->   dt-bindings:iio:imu:st,lsm6dsx: txt to yaml conversion
->   dt-bindings:iio:light:avago,apds9300: txt to yaml conversion.
->   dt-bindings:iio:light:avago,apds9960: txt to yaml conversion
->   dt-bindings:iio:light:capella,cm36651: txt to yaml conversion.
->   dt-bindings:iio:light:sharp,gp2ap020a00f: txt to yaml conversion.
->   dt-bindings:iio:light:maxim,max44009: txt to yaml conversion.
->   dt-bindings:iio:light:ti,opt3001: txt to yaml conversion
->   dt-bindings:iio:light:upisemi,us51882: txt to yaml conversion.
->   dt-bindings:iio:light:st,uvis25: txt to yaml conversion for this UV
->     sensor
->   dt-bindings:iio:light:vishay,vcnl4035: txt to yaml conversion
->   dt-bindings:iio:light:st,vl6180: txt to yaml format conversion.
->   dt-bindings:iio:magnetometer:fsl,mag3110: txt to yaml conversion
->   dt-bindings:iio:magnetometer:asahi-kasei,ak8974: txt to yaml format
->     conversion
->   dt-bindings:iio:magnetometer:bosch,bmc150_magn: txt to yaml
->     conversion.
->   dt-bindings:iio:magnetometer:honeywell,hmc5843: txt to yaml format
->     conversion
->   dt-bindings:iio:magnetometer:pni,rm3100: txt to yaml conversion.
->   dt-bindings:iio:adc:atmel,sama5d2-adc: txt to yaml conversion
->   dt-bindings:iio:adc:atmel,sama9260-adc: conversion to yaml from
->     at91_adc.txt
->   dt-bindings:iio:adc:renesas,rcar-gyroadc: txt to yaml conversion.
->   dt-bindings:iio:adc:x-powers,axp209-adc: txt to yaml conversion
->   dt-bindings:iio:adc:brcm,iproc-static-adc: txt to yaml conversion
->   dt-bindings:iio:adc:mediatek,mt2701-auxadc: rename and yaml
->     conversion.
->   dt-bindings:iio:adc:ti,palmas-gpadc: txt to yaml format conversion.
->   dt-bindings:iio:adc:qcom,pm8018-adc: yaml conversion and rename.
->   dt-bindings:iio:adc:qcom,spmi-iadc: txt to yaml format conversion.
->   dt-binding:iio:adc:ti,ads124s08: txt to yaml format conversion.
->   dt-bindings:iio:dac:ad5592r: txt to yaml format conversion.
->   dt-bindings:iio:dac:ad5755: txt to yaml format conversion.
->   dt-bindings:iio:accel:bosch,bma180: txt to yaml format conversion.
->   dt-bindings:iio:accel:kionix,kxcjk1013: txt to yaml format conversion.
->   dt-bindings:iio:accel:fsl,mma8452: txt to yaml conversion.
->   dt-bindings:iio:gyro:bosch,bmg180: txt to yaml format conversion.
->   dt-bindings:iio:st,st-sensors: txt to yaml conversion.
->   dt-bindings:iio:frequency:adi,adf4350: txt to yaml format conversion.
->   dt-bindings:iio:temperature: Drop generic binding file.
-
-There's more standard unit properties you can drop the type $ref on and 
-a the couple of nits I raised. With those fixed,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+Best regards,
+Krzysztof
