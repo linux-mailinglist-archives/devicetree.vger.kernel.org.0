@@ -2,101 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB9B2A3C38
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 06:53:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45BAD2A3C48
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 06:58:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725997AbgKCFxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 00:53:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725953AbgKCFx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 00:53:29 -0500
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 747DBC0617A6;
-        Mon,  2 Nov 2020 21:53:29 -0800 (PST)
-Received: by mail-ed1-x541.google.com with SMTP id a71so11633709edf.9;
-        Mon, 02 Nov 2020 21:53:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mbxSfoSmP856zGHTji+nbwksNv1J/cgE4QrDKUz3wMU=;
-        b=pEKAMK9h4oND5JtBLHzwr/fUGb2DM09YmSHv3ArjvKMG9vaS0nm2LuK1Zob+ogPTyM
-         C3V+TPBbmwtFHLfHM6/qTxkkMN4bXr210KplfSXPAIDr1MtJPlvj0FHAPPmTl4M/ml6n
-         fTlLOYI9Kbx3H0V9JnADqFQcVo556nLvo517cWhoBWc88B/cLRTPPkQeBdiaX0vgBPse
-         pz5uA1zkrGuYtVyZn0kMhScGoRYI4GYLo03trae98B+R2p25XqtfwXGywMGGhjnGqbHq
-         YwuuL2ihpcy8FXxQjOe8md3UZqBVc4dVV8E8FTtbPXcCeglAIvY2zq0S/pAlJJoQ7mZc
-         fh7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mbxSfoSmP856zGHTji+nbwksNv1J/cgE4QrDKUz3wMU=;
-        b=fFKvnruVSrbIqguCUk33DcW1YM3C7B9mVLj+JvR8kFFzaChG0UBabCoDIXZhRgehPi
-         nfQQ2bPoUau9KGdxjiCbXTDyZvDGz2Mil8jEEL/LKIPoql7ituKbUAHJP9+Z7ffUMVVS
-         MUBLXjh13Yt9bb7oOQTdIXnj/J8j00PSWV5TO0KZ9GwMBB1dLxSNTrbMHoMAFaqQfUn2
-         aZzK2kbXpZY3SO59rhuTP2BIEWp8m7qMVTGoBoJVatGBW3+3lmNKWdr7MazTaW7CZyTX
-         6iG5A3DXi5UbYHnAzv+0lJp7+4yLQqPS/rnm7lrVDmIHWWIFVdKiXsA9GzP/Gul5N9Co
-         UoBQ==
-X-Gm-Message-State: AOAM5315Ukqs3EeYlprbh93QtBJ+D9n/h1Gs0X0jp5GxYzrIerUM314n
-        GccZf3wVz8QRxd7ywLFcSwrCSezGbplb267W3/o=
-X-Google-Smtp-Source: ABdhPJy5sXxaVPqPLCAlm8CNwM3kf6fo5mZgVh3EF7GepdVE9byq/HTWl0sU+0PF/k7PfOQLgL/x4TJgK1+G2QcJEkA=
-X-Received: by 2002:aa7:cb0f:: with SMTP id s15mr16272969edt.338.1604382808165;
- Mon, 02 Nov 2020 21:53:28 -0800 (PST)
+        id S1726690AbgKCF6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 00:58:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58514 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725968AbgKCF6R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 00:58:17 -0500
+Received: from localhost.localdomain (unknown [122.179.37.237])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E240522277;
+        Tue,  3 Nov 2020 05:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604383096;
+        bh=FnJzlohU6My1wcDfOjlv/Vj7zb0Rs9u0Esg/qE0SnXc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eQvHXTj1/k4xHJ1z1BwKhBB2XuISryLt/exy2awSDIxgqgXWOXXAt8bpT1RS88UHd
+         iD1tfXQ96l9RoOGdIBoj011vHbcXnq+ndhCEdzZ2tzC4vzWqW6Mu/k3IwOv22PW3yH
+         cqao23/EhG4uOEh2GFiyeVZsk7Q0LJDGBV2dqHyE=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add SDX55 pinctrl bindings
+Date:   Tue,  3 Nov 2020 11:28:00 +0530
+Message-Id: <20201103055801.472736-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20201103012007.183429-1-sashal@kernel.org> <20201103012007.183429-5-sashal@kernel.org>
-In-Reply-To: <20201103012007.183429-5-sashal@kernel.org>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 3 Nov 2020 06:53:17 +0100
-Message-ID: <CAFBinCCZiO9Xe1WKT8MZ-90c7m1u_m1Mt-OXf=Pyuo0vukQQ5g@mail.gmail.com>
-Subject: Re: [PATCH AUTOSEL 5.4 05/24] arm64: dts: amlogic: meson-g12: use the
- G12A specific dwmac compatible
-To:     Sasha Levin <sashal@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sasha,
+Add device tree binding Documentation details for Qualcomm SDX55
+pinctrl driver.
 
-On Tue, Nov 3, 2020 at 2:20 AM Sasha Levin <sashal@kernel.org> wrote:
->
-> From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> [ Upstream commit 1fdc97ae450ede2b4911d6737a57e6fca63b5f4a ]
->
-> We have a dedicated "amlogic,meson-g12a-dwmac" compatible string for the
-> Ethernet controller since commit 3efdb92426bf4 ("dt-bindings: net:
-> dwmac-meson: Add a compatible string for G12A onwards").
-> Using the AXG compatible string worked fine so far because the
-> dwmac-meson8b driver doesn't handle the newly introduced register bits
-> for G12A. However, once that changes the driver must be probed with the
-> correct compatible string to manage these new register bits.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
-> Link: https://lore.kernel.org/r/20200925211743.537496-1-martin.blumenstingl@googlemail.com
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
-if this patch will be included in 5.4-stable then please also backport
-the following two commits:
-- 3efdb92426bf4 ("dt-bindings: net: dwmac-meson: Add a compatible
-string for G12A onwards")
-- a4f63342d03d2d ("net: stmmac: dwmac-meson8b: add a compatible string
-for G12A SoCs")
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ .../bindings/pinctrl/qcom,sdx55-pinctrl.yaml  | 145 ++++++++++++++++++
+ 1 file changed, 145 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml
 
-Without these above two commits we'll lose Ethernet connectivity
-because there's no G12A compatible string in 5.4 yet
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml
+new file mode 100644
+index 000000000000..95b77d9a608c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sdx55-pinctrl.yaml
+@@ -0,0 +1,145 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,sdx55-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. SDX55 TLMM block
++
++maintainers:
++  - Vinod Koul <vkoul@kernel.org>
++
++description: |
++  This binding describes the Top Level Mode Multiplexer block found in the
++  SDX55 platform.
++
++properties:
++  compatible:
++    const: qcom,sdx55-pinctrl
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: Specifies the TLMM summary IRQ
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    description:
++      Specifies the PIN numbers and Flags, as defined in defined in
++      include/dt-bindings/interrupt-controller/irq.h
++    const: 2
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    description: Specifying the pin number and flags, as defined in
++      include/dt-bindings/gpio/gpio.h
++    const: 2
++
++  gpio-ranges:
++    maxItems: 1
++
++  wakeup-parent:
++    maxItems: 1
++
++#PIN CONFIGURATION NODES
++patternProperties:
++  '-pins$':
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: "/schemas/pinctrl/pincfg-node.yaml"
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-1][0-6])$"
++            - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk, sdc2_cmd, sdc2_data ]
++        minItems: 1
++        maxItems: 36
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins. Functions are only valid for gpio pins.
++        enum: [ adsp_ext, atest, audio_ref, bimc_dte0, bimc_dte1, blsp_i2c1,
++                blsp_i2c2, blsp_i2c3, blsp_i2c4, blsp_spi1, blsp_spi2,
++                blsp_spi3, blsp_spi4, blsp_uart1, blsp_uart2, blsp_uart3,
++                blsp_uart4, char_exec, coex_uart, coex_uart2, cri_trng,
++                cri_trng0, cri_trng1, dbg_out, ddr_bist, ddr_pxi0,
++                ebi0_wrcdc, ebi2_a, ebi2_lcd, emac_gcc0, emac_gcc1,
++                emac_pps0, emac_pps1, ext_dbg, gcc_gp1, gcc_gp2, gcc_gp3,
++                gcc_plltest, gpio, i2s_mclk, jitter_bist, ldo_en, ldo_update,
++                mgpi_clk, m_voc, native_char, native_char0, native_char1,
++                native_char2, native_char3, native_tsens, native_tsense,
++                nav_gpio, pa_indicator, pcie_clkreq, pci_e, pll_bist, pll_ref,
++                pll_test, pri_mi2s, prng_rosc, qdss_cti, qdss_gpio,
++                qdss_gpio0, qdss_gpio1, qdss_gpio2, qdss_gpio3, qdss_gpio4,
++                qdss_gpio5, qdss_gpio6, qdss_gpio7, qdss_gpio8, qdss_gpio9,
++                qdss_gpio10, qdss_gpio11, qdss_gpio12, qdss_gpio13,
++                qdss_gpio14, qdss_gpio15, qdss_stm0, qdss_stm1, qdss_stm2,
++                qdss_stm3, qdss_stm4, qdss_stm5, qdss_stm6, qdss_stm7,
++                qdss_stm8, qdss_stm9, qdss_stm10, qdss_stm11, qdss_stm12,
++                qdss_stm13, qdss_stm14, qdss_stm15, qdss_stm16, qdss_stm17,
++                qdss_stm18, qdss_stm19, qdss_stm20, qdss_stm21, qdss_stm22,
++                qdss_stm23, qdss_stm24, qdss_stm25, qdss_stm26, qdss_stm27,
++                qdss_stm28, qdss_stm29, qdss_stm30, qdss_stm31, qlink0_en,
++                qlink0_req, qlink0_wmss, qlink1_en, qlink1_req, qlink1_wmss,
++                spmi_coex, sec_mi2s, spmi_vgi, tgu_ch0, uim1_clk, uim1_data,
++                uim1_present, uim1_reset, uim2_clk, uim2_data, uim2_present,
++                uim2_reset, usb2phy_ac, vsense_trigger ]
++
++        drive-strength:
++          enum: [2, 4, 6, 8, 10, 12, 14, 16]
++          default: 2
++          description:
++            Selects the drive strength for the specified pins, in mA.
++
++        bias-pull-down: true
++
++        bias-pull-up: true
++
++        bias-disable: true
++
++        output-high: true
++
++        output-low: true
++
++      required:
++        - pins
++        - function
++
++      additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - '#interrupt-cells'
++  - gpio-controller
++  - '#gpio-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        pinctrl@1f00000 {
++                compatible = "qcom,sdx55-pinctrl";
++                reg = <0x0f100000 0x300000>;
++                interrupts = <GIC_SPI 212 IRQ_TYPE_LEVEL_HIGH>;
++                #interrupt-cells = <2>;
++                interrupt-controller;
++                gpio-controller;
++                #gpio-cells = <2>;
++        };
++
++...
+-- 
+2.26.2
 
-The quick solution would be to not backport this patch because the
-driver in question doesn't do anything with the new compatible string
-yet.
-
-
-Best regards,
-Martin
