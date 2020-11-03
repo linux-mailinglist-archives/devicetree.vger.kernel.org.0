@@ -2,165 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F1AB2A4CD2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 18:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A11152A4CDF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 18:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728550AbgKCR2h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 12:28:37 -0500
-Received: from lhrrgout.huawei.com ([185.176.76.210]:3036 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728206AbgKCR2h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 12:28:37 -0500
-Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
-        by Forcepoint Email with ESMTP id D855261926E448CC03FC;
-        Tue,  3 Nov 2020 17:28:35 +0000 (GMT)
-Received: from localhost (10.52.125.233) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Tue, 3 Nov 2020
- 17:28:35 +0000
-Date:   Tue, 3 Nov 2020 17:28:34 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Phil Reid <preid@electromag.com.au>
-Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
- conversion
-Message-ID: <20201103172834.00007040@Huawei.com>
-In-Reply-To: <20201103161039.GA1754553@bogus>
-References: <20201031184854.745828-1-jic23@kernel.org>
-        <20201031184854.745828-3-jic23@kernel.org>
-        <20201103161039.GA1754553@bogus>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1727901AbgKCRa4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 12:30:56 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:33363 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726581AbgKCRaz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 12:30:55 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201103173043euoutp025f40478d23dc6fbdde099512e41e5d8f~ED7Z1KjgN2010020100euoutp02Y
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 17:30:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201103173043euoutp025f40478d23dc6fbdde099512e41e5d8f~ED7Z1KjgN2010020100euoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604424643;
+        bh=FvqSgYlnEFpwlpU+wYR8aeZGcpfordNaAzo8m3V9k1Y=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=B16P3B4yZ4PwZe4DAHbIVBzZH6QC3vbsujjmIwz+7cVFYP3i7bdhAo14VhyPJK29N
+         orJaX4IRyd0v9xk4A9PS2KKswdJ8bDAJcDQqy7ROUzi7e9O/iXYtG2t0vz8ta44RkQ
+         ATUUmzc3zqqPn3yUrW1wkW1Fb69FVDVdnQqaJavk=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20201103173042eucas1p11d5610d3ebc068bbe49607afd374e33e~ED7ZSVmqO0494704947eucas1p18;
+        Tue,  3 Nov 2020 17:30:42 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id D0.CD.05997.2C391AF5; Tue,  3
+        Nov 2020 17:30:42 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201103173042eucas1p2035478a24d6104b5782214d89e1fffd2~ED7Y5y9Zt0590405904eucas1p2J;
+        Tue,  3 Nov 2020 17:30:42 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201103173042eusmtrp2412383902ac65b5e457be582d2c19af7~ED7Y5FUaq2312523125eusmtrp2j;
+        Tue,  3 Nov 2020 17:30:42 +0000 (GMT)
+X-AuditID: cbfec7f4-677ff7000000176d-c9-5fa193c2218e
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id E8.C7.06314.2C391AF5; Tue,  3
+        Nov 2020 17:30:42 +0000 (GMT)
+Received: from [106.210.123.115] (unknown [106.210.123.115]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201103173041eusmtip1884fcdf07c829fed3a1c237954131935~ED7XtsfOD1391313913eusmtip1F;
+        Tue,  3 Nov 2020 17:30:41 +0000 (GMT)
+Subject: Re: [PATCH v7 2/6] interconnect: Add generic interconnect driver
+ for Exynos SoCs
+To:     cwchoi00@gmail.com
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <9081148f-5ed4-97a3-84a9-4ea3eb157b73@samsung.com>
+Date:   Tue, 3 Nov 2020 18:30:40 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+In-Reply-To: <CAGTfZH3seoTUd68pq+RCSs9BfnmkUaeoipML=85aUPyvcWZ6fw@mail.gmail.com>
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.125.233]
-X-ClientProxiedBy: lhreml716-chm.china.huawei.com (10.201.108.67) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+X-Brightmail-Tracker: H4sIAAAAAAAAA03SfUhTURQA8O7e29tmzZ7T2kFDcRiUomaGPErMInBQ0Af9EUbazIdabsqe
+        mhaRMee3JgrOhukKIhuKKaI5P8Axm2VqWpikMsVRKonKlvhRmttT8r/fveece86By8dEo1xP
+        fpIijVYqZMkSwgVvfb82FGiseBF74vNIGGWpUSOqqaqRS32z/+RSP3oDqFrTIJf6+nuRoDRd
+        zQQ1NPSWR30xVBOUrcSEqKqhbg7VYJrkUeNP6ghK3WXiUVUVc0TkQWm7dpInbdYXENKJ0U5C
+        aikyc6SlLXoktTV7XyGiXcLj6eSkDFoZHHHbJbFrqQBL7dqfuaxZ4GSjekEhEvCBPAXDlk7k
+        sIisQzDWLmdtR9C+hRUil23bEPwa03F3CzT5+Tw28BpB0V/9TtYyAvvwDObIcidvwnSFwWkP
+        8jC0VVqRIwkjN3FYNeQ5+xFkCJT0ljotJCOgbmOa4zBO+kH5RDfu8CEyBsqacnA2xw0+PLM6
+        LSCvwpv5PKcxUgzfrbUc1j7QtlDtnAjINR6MVU7i7NwXoEKlQqzdYd7cwmN9BLbaHcWOAhWC
+        4o5xHnsoQ2Ax63YqzsDE4DpRiPjbLY5DoyHYQSDPwYjpGEtXGFtwY2dwhfJWDcZeCyE/V8S+
+        4Qcbeg2HtScUWbfwMiTR7tlMu2cb7Z5ttP/b6hCuR2I6nZEn0MxJBX0/iJHJmXRFQtCdFHkz
+        2v5t/Ztm+ztk+BNnRCQfSQ4II2ldrIgry2Cy5EYEfEziITw/0B8jEsbLsh7QypRYZXoyzRiR
+        Fx+XiIWhL+duicgEWRp9j6ZTaeVulMMXeGajhIc5i30+hhbPlKnis7ZQIxb4uMbDPqPySlcq
+        1JcyVa711/vXOzL1I3FRPasd488brklCWtOii3r2zQas9PkuLJE6dV0YFTZrm7KPJnoP2AM8
+        knz1wxdFi1nGT0+jHl2+y0nRCl9FhByN+5gbu+nvusL4hQdor6j9025YTou9JTiTKAvxx5SM
+        7B+rFaUcaQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrJIsWRmVeSWpSXmKPExsVy+t/xu7qHJi+MN1i8UM7i/rxWRouNM9az
+        Wlz/8pzV4tlRbYv5R86xWlz5+p7NYvreTWwW589vYLe4vGsOm8Xn3iOMFjPO72OyWHvkLrvF
+        7cYVbBate4+wW8yY/JLNgd9j56y77B6bVnWyedy5tofN4373cSaPvi2rGD0+b5ILYIvSsynK
+        Ly1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy9j7oZO5YC93
+        xcfpb5kaGNdwdjFyckgImEhM7+hg72Lk4hASWMoosaf1G0sXIwdQQkpifosSRI2wxJ9rXWwQ
+        Ne8ZJZ58uw5WIywQLTH1gyNIjYiAmMT2aU8YQWqYBVpYJW6feMEE0fCBSWLtjX5WkCo2AUOJ
+        3qN9jCA2r4CdxIrfD5lAbBYBFYlJd/axgNiiAnESPyb2skHUCEqcnPkELM4pECix8lU7mM0s
+        oC7xZ94lZghbXOLWk/lMELa8xPa3c5gnMArNQtI+C0nLLCQts5C0LGBkWcUoklpanJueW2yo
+        V5yYW1yal66XnJ+7iREYzduO/dy8g/HSxuBDjAIcjEo8vA6pC+KFWBPLiitzDzFKcDArifA6
+        nT0dJ8SbklhZlVqUH19UmpNafIjRFOi5icxSosn5wESTVxJvaGpobmFpaG5sbmxmoSTO2yFw
+        MEZIID2xJDU7NbUgtQimj4mDU6qBcZbX0orpmRZaKTuYy/U3fVNjf/aUS1Hz7+PpvxMyYrpm
+        XL146Laon9UkHhvjpcy7OzkfNFy+eWtSbYHFwSjRwmzVhdzsjFcazYMiBNil7nm8y0tOMEy3
+        1skyYf5icCLxTbzH1eNLvu9ru7/saV7jnUaWfyeFTZZ13p4lEr+O6+wKX/3f3/snKbEUZyQa
+        ajEXFScCAHCh7nv8AgAA
+X-CMS-MailID: 20201103173042eucas1p2035478a24d6104b5782214d89e1fffd2
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9
+References: <20201030125149.8227-1-s.nawrocki@samsung.com>
+        <CGME20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9@eucas1p2.samsung.com>
+        <20201030125149.8227-3-s.nawrocki@samsung.com>
+        <88af4e53-6c7a-c2e6-ad28-a9d6bb5bf623@samsung.com>
+        <6cc9a2f8-9d9a-68b7-9f47-e16fefb18d88@samsung.com>
+        <CAGTfZH3seoTUd68pq+RCSs9BfnmkUaeoipML=85aUPyvcWZ6fw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 3 Nov 2020 10:10:39 -0600
-Rob Herring <robh@kernel.org> wrote:
+On 03.11.2020 15:12, Chanwoo Choi wrote:
+>>> I have a question about exynos_icc_get_parent().
+>>> As I checked, this function returns the only one icc_node
+>>> as parent node. But, bus_display dt node in the exynos4412.dtsi
+>>> specifies the two interconnect node as following with bus_leftbus, bus_dmc,
+>>>
+>>> When I checked the return value of exynos_icc_get_parent()
+>>> during probing for bus_display device, exynos_icc_get_parent() function
+>>> only returns 'bus_leftbus' icc_node. Do you need to add two phandle
+>>> of icc node?
+>> Yes, as we use the interconnect consumer bindings we need to specify a path,
+>> i.e. a <initiator, target> pair. When the provider node initializes it will
+>> link itself to that path. Currently the provider driver uses just the first
+>> phandle.
 
-> On Sat, Oct 31, 2020 at 06:48:10PM +0000, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > Simple direct conversion from txt to yaml as part of a general aim of
-> > converting all IIO bindings to this machine readable format.
-> > 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Cc: Phil Reid <preid@electromag.com.au>
-> > ---
-> >  .../bindings/iio/potentiometer/ad5272.txt     | 27 ----------
-> >  .../iio/potentiometer/adi,ad5272.yaml         | 50 +++++++++++++++++++
-> >  2 files changed, 50 insertions(+), 27 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt b/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
-> > deleted file mode 100644
-> > index f9b2eef946aa..000000000000
-> > --- a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
-> > +++ /dev/null
-> > @@ -1,27 +0,0 @@
-> > -* Analog Devices AD5272 digital potentiometer
-> > -
-> > -The node for this device must be a child node of a I2C controller, hence
-> > -all mandatory properties for your controller must be specified. See directory:
-> > -
-> > -        Documentation/devicetree/bindings/i2c
-> > -
-> > -for more details.
-> > -
-> > -Required properties:
-> > -	- compatible:  	Must be one of the following, depending on the model:
-> > -			adi,ad5272-020
-> > -			adi,ad5272-050
-> > -			adi,ad5272-100
-> > -			adi,ad5274-020
-> > -			adi,ad5274-100
-> > -
-> > -Optional properties:
-> > - - reset-gpios: GPIO specification for the RESET input. This is an
-> > -		active low signal to the AD5272.
-> > -
-> > -Example:
-> > -ad5272: potentiometer@2f {
-> > -	reg = <0x2F>;
-> > -	compatible = "adi,ad5272-020";
-> > -	reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
-> > new file mode 100644
-> > index 000000000000..b9b7d383bff1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
-> > @@ -0,0 +1,50 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/iio/potentiometer/adi,ad5272.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Analog Devices AD5272 digital potentiometer
-> > +
-> > +maintainers:
-> > +  - Phil Reid <preid@electromag.com.au>
-> > +
-> > +description: |
-> > +  Datasheet: https://www.analog.com/en/products/ad5272.html
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - adi,ad5272-020
-> > +      - adi,ad5272-050
-> > +      - adi,ad5272-100
-> > +      - adi,ad5274-020
-> > +      - adi,ad5274-100
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    description:
-> > +      Active low signal to the AD5272 RESET input.  
+> As I knew, the interconnect consumer bindings use the two phandles
+> in the interconnect core as you commented. But, in case of this,
+> even if add two phandles with interconnect consuming binding style,
+> the exynos interconnect driver only uses the first phandle.
 > 
-> Not a new problem, but active low or...
-> 
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        potentiometer@2f {
-> > +            compatible = "adi,ad5272-020";
-> > +            reg = <0x2F>;
-> > +            reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;  
-> 
-> active high?
+> Instead, I think we better explain this case into a dt-binding
+> document for users.
 
-Good spot!  @Phil.  Looks like the driver is setting the reset line to
-0 and then to 1 to come out of reset.   So effectively inverting the logic.
-I'm tempted to be cynical and suggest we just drop the comment above and leave
-it vague but is there a better way we can clarify this?
+Fair enough, I'll try to improve the description, do you perhaps have 
+any suggestions?
 
-> 
-> > +        };
-> > +    };
-> > +...
-> > -- 
-> > 2.28.0
-> >   
+The DT binding reflects how the hardware structure looks like and the
+fact that the driver currently uses only one of the phandles could be
+considered an implementation detail.
 
+-- 
+Regards,
+Sylwester
