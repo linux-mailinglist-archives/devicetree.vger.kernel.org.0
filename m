@@ -2,106 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E952A4F44
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 19:46:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43BC22A4F57
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 19:49:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729191AbgKCSqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 13:46:19 -0500
-Received: from imap2.colo.codethink.co.uk ([78.40.148.184]:49774 "EHLO
-        imap2.colo.codethink.co.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725892AbgKCSqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 13:46:19 -0500
-Received: from cpc79921-stkp12-2-0-cust288.10-2.cable.virginm.net ([86.16.139.33] helo=[192.168.0.10])
-        by imap2.colo.codethink.co.uk with esmtpsa  (Exim 4.92 #3 (Debian))
-        id 1ka1Jn-0001Zx-HT; Tue, 03 Nov 2020 18:46:07 +0000
-Subject: Re: [RFC PATCH 2/3] RISC-V: Initial DTS for Microchip ICICLE board
-To:     Cyril.Jean@microchip.com, atishp@atishpatra.org
-Cc:     devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
-        Daire.McNamara@microchip.com, anup.patel@wdc.com,
-        linux-kernel@vger.kernel.org, atish.patra@wdc.com,
-        robh+dt@kernel.org, alistair.francis@wdc.com,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        linux-riscv@lists.infradead.org, Padmarao.Begari@microchip.com
-References: <20201028232759.1928479-1-atish.patra@wdc.com>
- <20201028232759.1928479-3-atish.patra@wdc.com>
- <41f1248b-78c6-bac1-410b-9e222368c5f6@codethink.co.uk>
- <CAOnJCUJhQ=Zv0S4iCK4CDzQr_dfkw3J6ycdM=p6=5B2_sL1Ekg@mail.gmail.com>
- <2d7cc829-5df6-6b94-4c8f-9bae6080444e@codethink.co.uk>
- <CAOnJCULejyF9xyLk5M0TXqW_=nn0KM5aE8nhK+1h0Xayd2pKUg@mail.gmail.com>
- <fbe404b5-3bb1-dd00-e558-e4a55960b767@microchip.com>
- <fe079b4a-5410-5cc8-3f5e-8a95b573078a@codethink.co.uk>
- <21ded848-5dcb-ccbb-acd5-391bff667a53@microchip.com>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-Message-ID: <0eb43b3e-e5dc-4d97-895e-b872ac1fcf05@codethink.co.uk>
-Date:   Tue, 3 Nov 2020 18:46:06 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1729191AbgKCStn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 13:49:43 -0500
+Received: from mga05.intel.com ([192.55.52.43]:53371 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725892AbgKCStn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 13:49:43 -0500
+IronPort-SDR: Npe6XtkSen4crdYkaEa9XXvCDhePwPJgPoEnIgkNsIcbNzC7jSmhzHP/aUG/ne9hTRoRbEVO4U
+ MYDqOkDrAPQQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="253818877"
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; 
+   d="scan'208";a="253818877"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2020 10:49:42 -0800
+IronPort-SDR: A19//EAffO2TD+y/taTVuDCtC0XbrbsEjlu4Jxv+Tzb5+TDPPGYIw1mDxjHd/y2OOKSdfInkH3
+ kGVNymhlAWQA==
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; 
+   d="scan'208";a="528595200"
+Received: from riglesi-mobl.ger.corp.intel.com (HELO dalessan-mobl1.ir.intel.com) ([10.252.9.152])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2020 10:49:40 -0800
+From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+To:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Gross <mgross@linux.intel.com>,
+        Declan Murphy <declan.murphy@intel.com>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+Subject: [PATCH v2 0/3] crypto: Add Keem Bay OCS HCU driver
+Date:   Tue,  3 Nov 2020 18:49:22 +0000
+Message-Id: <20201103184925.294456-1-daniele.alessandrelli@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <21ded848-5dcb-ccbb-acd5-391bff667a53@microchip.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/11/2020 18:40, Cyril.Jean@microchip.com wrote:
-> On 11/3/20 6:28 PM, Ben Dooks wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know
->> the content is safe
->>
->> On 03/11/2020 18:10, Cyril.Jean@microchip.com wrote:
->>> On 11/3/20 3:07 PM, Atish Patra wrote:
->>>> EXTERNAL EMAIL: Do not click links or open attachments unless you
->>>> know the content is safe
->>>>
->>>> On Fri, Oct 30, 2020 at 2:20 PM Ben Dooks
->>>> <ben.dooks@codethink.co.uk> wrote:
->>
->> ,snip[
->>
->>>>>> @Cyril : Can we enable both eMMC & sdcard at the same time ?
->>>>> I would put /both/ in but only enable the one in use for the moment.
->>>>> Our boards are booting of eMMC as supplied, so this isn't going to
->>>>> work
->>>>> as well. The eMMC is 8bit wide, and thus is only delivering 11MB/sec
->>>>> instead of 22MB/sec. This performance is still not great, but losing
->>>>> half the data-rate is just not good.
->>>>>
->>>> I am not sure what should be enabled by default. Updating sdcard is
->>>> much
->>>> easier than eMMC card and we use that approach.
->>>>
->>>> @Cyril: Is there a way that we can enable both ?
->>>>
->>> Yes, we can enable both but this requires a modification to the FPGA
->>> design. One of the guys prototyped this while I was away. We will move
->>> this along. This will require reprogramming the FPGA with a new design
->>> and HSS version.
->>>
->>> Regards,
->>>
->>> Cyril.
->>
->> I either missed or couldn't find a way of forcing the boot mode to be
->> from the SD slot. Have I missed something? At the moment we'd like to
->> have more storage available as the ~7G free on the eMMC is not enough.
->>
-> Currently, you need to program a different FPGA bitstream on  the board
-> to boot from SD-card. The different bitstream configures muxes on the
-> board to connect the SD slot to the FPGA and the HSS included in the bit
-> stream configures the FPGA IOs correctly.
-> 
-> Links to the programming files are found in this document:
-> https://github.com/polarfire-soc/polarfire-soc-documentation/blob/master/boards/mpfs-icicle-kit-es/updating-icicle-kit/updating-icicle-kit-design-and-linux.md
+The Intel Keem Bay SoC has an Offload Crypto Subsystem (OCS) featuring a
+Hashing Control Unit (HCU) for accelerating hashing operations.
 
-Thanks, but i've no way of remotely re-writing the bitstream
-of the FPGA since the tools are x86 only and we're using a Pi3
-to connect the boards we have to the network.
+This driver adds support for such hardware thus enabling hardware-accelerated
+hashing on the Keem Bay SoC for the following algorithms:
+- sha224 and hmac(sha224)
+- sha256 and hmac(sha256)
+- sha384 and hmac(sha384)
+- sha512 and hmac(sha512)
+- sm3    and hmac(sm3)
 
+The driver is passing crypto manager self-tests, including the extra tests
+(CRYPTO_MANAGER_EXTRA_TESTS=y).
+
+v1 -> v2:
+- Fixed issues with dt-bindings
+
+Daniele Alessandrelli (1):
+  MAINTAINERS: Add maintainers for Keem Bay OCS HCU driver
+
+Declan Murphy (2):
+  dt-bindings: crypto: Add Keem Bay OCS HCU bindings
+  crypto: keembay: Add Keem Bay OCS HCU driver
+
+ .../crypto/intel,keembay-ocs-hcu.yaml         |   51 +
+ MAINTAINERS                                   |   11 +
+ drivers/crypto/Kconfig                        |    2 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/keembay/Kconfig                |   20 +
+ drivers/crypto/keembay/Makefile               |    5 +
+ drivers/crypto/keembay/keembay-ocs-hcu-core.c | 1484 +++++++++++++++++
+ drivers/crypto/keembay/ocs-hcu.c              |  593 +++++++
+ drivers/crypto/keembay/ocs-hcu.h              |  115 ++
+ 9 files changed, 2282 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+ create mode 100644 drivers/crypto/keembay/Kconfig
+ create mode 100644 drivers/crypto/keembay/Makefile
+ create mode 100644 drivers/crypto/keembay/keembay-ocs-hcu-core.c
+ create mode 100644 drivers/crypto/keembay/ocs-hcu.c
+ create mode 100644 drivers/crypto/keembay/ocs-hcu.h
+
+
+base-commit: c3a98c3ad5c0dc60a1ac66bf91147a3f39cac96b
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+2.26.2
 
-https://www.codethink.co.uk/privacy.html
