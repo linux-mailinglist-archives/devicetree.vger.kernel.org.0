@@ -2,214 +2,342 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 019452A4B59
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:26:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59F422A4B5E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:26:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728281AbgKCQ0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:26:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727923AbgKCQ0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:26:22 -0500
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C16C061A47
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 08:26:20 -0800 (PST)
-Received: by mail-ot1-x344.google.com with SMTP id n11so16510348ota.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 08:26:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=AUwE9Rysw1nQCYcg+XE2XA62F+xkLhn1VmBT0V3THV0=;
-        b=Q9bY4D8l+m7nmefBKpOmlCB8Nu6/VT3gTZ0CN+qvHXPYZtOjEifl3iNd+MhJ27Y+Xx
-         9him88J4ok1SYgqz/DKI6Kro8JmvGA5Dc6lVmKRAIz3w7CcxGFH7AjFVv8aKWhCnZOwZ
-         uUrQ4mMfM/qGGTTwxufNgetRnvER8/AxCTuc5lh9g7+TtEoJlLpzl+HkM8qGFl3wphWU
-         W8k6jJx4JrIUZb/M+QT7NuT3JdGwKBHsB4NPmt1tqfJPe5uiVPMndV7nSwHyKetwGfkk
-         lXdCGAGiMT7vs26Y0g9pBCraWWiXGLAcUjS6kejb2X3E2+NxwT+HOtUQvRmogdY1VSBW
-         GnSg==
+        id S1728445AbgKCQ0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 11:26:37 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:46297 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728292AbgKCQ0h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:26:37 -0500
+Received: by mail-ot1-f65.google.com with SMTP id g19so7058429otp.13;
+        Tue, 03 Nov 2020 08:26:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AUwE9Rysw1nQCYcg+XE2XA62F+xkLhn1VmBT0V3THV0=;
-        b=HyO9ANmMMFJt7k/DmN36tewXYzniA8FcsIBiuym4+7cboZYiS94T8N/P26sa1mtr6I
-         YDrjDOZo1LVWuzsActwmUKK26Sg/F4E0qn9VmuGabyRVcPl0v3soBynpTjCOCeG83+vz
-         sGuLpwYi2SAhDE58BTQzFffb09sfbwp97X/O7+TqKPEQN8iiT3M++3EbNvnjmAlFI4v9
-         f8BQIPqOMyhreve0mNx2d3KoG1OBhX6BLAelaqHzkbjoMJ6aM3/qvYHZpFupZjxjtLDq
-         5+qQgOBEQjJ1KENF6BqIRF1eCrWgouK8FR1Fg2aJRfGxGUU2k4W5EInYsjgf7qKbGT6v
-         TUYA==
-X-Gm-Message-State: AOAM531l1JdG5S3xNTzwVgXeGCTG90y/YhCY+gdyie5A3mEObJjda9cq
-        NfQKDGA7TzeiHkOMoo4AqTZoXw==
-X-Google-Smtp-Source: ABdhPJxZL9kMeoA6m7/GwIoujaBpWXDJ5FAQNwuWiO+6snPsyt5gkY8V2BzjUIOXlM5MugE3FLt4uw==
-X-Received: by 2002:a05:6830:2401:: with SMTP id j1mr9244756ots.235.1604420779988;
-        Tue, 03 Nov 2020 08:26:19 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 72sm2532704otd.11.2020.11.03.08.26.17
+        bh=+4WGaIpAzfri/qVkaCDdgEpI1cFAv5PQ+5IaIoJnysY=;
+        b=Ga/c441VuDgKfcaDrcZ32ulZe7MUdDJGXnf7PttU72PqHX7BtuDmrJBE+Bhg8J+13Y
+         bDeZPB1E+UXfZ4ecyGPd+zOqc9pXw5VtGmtpSo0t1usTEUc6eS9n7LKXVO/Oa0TbMYbs
+         eQENYOp7t6nrl6kcTUpI7tvo/imblaIgr0+tnBxz9DXFx3IFmgLUrF9hnM3PB5+aCEjk
+         0DJTOvFXjPiJv2iEtcbAdOzE8ssUSMFYHOegs3JuFpd76bBAIgy4ySP5Bd3y9Nuihk3w
+         /lOA0iCdNfm7/QBaAFox1feLrgvgkzT1lG4mY1+upErYLR/G+zcsQ07Qzneb+Kt51iVA
+         OsEg==
+X-Gm-Message-State: AOAM531E2k8Wj7idSxuhSlxNfX988OsRtbi8BA6Cxi+b6Hac72+eKac5
+        QU+x0Qai2j8Az6ixkAWvJg==
+X-Google-Smtp-Source: ABdhPJyh0yppYvanBulEKI4QXA7NsB3C52SrNPo2whuCix5ajSnsPeivY2bhjw5t+pWMBjvd+255mg==
+X-Received: by 2002:a9d:550a:: with SMTP id l10mr7339077oth.357.1604420795107;
+        Tue, 03 Nov 2020 08:26:35 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id k85sm4328187oih.48.2020.11.03.08.26.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 08:26:18 -0800 (PST)
-Date:   Tue, 3 Nov 2020 10:26:16 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        Jeevan Shriram <jshriram@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: Add SDX55 pincontrol driver
-Message-ID: <20201103162616.GN3151@builder.lan>
-References: <20201103055801.472736-1-vkoul@kernel.org>
- <20201103055801.472736-2-vkoul@kernel.org>
+        Tue, 03 Nov 2020 08:26:34 -0800 (PST)
+Received: (nullmailer pid 1778709 invoked by uid 1000);
+        Tue, 03 Nov 2020 16:26:33 -0000
+Date:   Tue, 3 Nov 2020 10:26:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>
+Subject: Re: [PATCH 30/46] dt-bindings:iio:adc:renesas,rcar-gyroadc: txt to
+ yaml conversion.
+Message-ID: <20201103162633.GD1754553@bogus>
+References: <20201031184854.745828-1-jic23@kernel.org>
+ <20201031184854.745828-31-jic23@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201103055801.472736-2-vkoul@kernel.org>
+In-Reply-To: <20201031184854.745828-31-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 02 Nov 23:58 CST 2020, Vinod Koul wrote:
-
-> From: Jeevan Shriram <jshriram@codeaurora.org>
+On Sat, Oct 31, 2020 at 06:48:38PM +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> Add initial Qualcomm SDX55 pinctrl driver to support pin configuration
-> with pinctrl framewor for SDX55 SoC.
+> This is a somewhat unusual device, in that it effectively does
+> spi offload.   That means that it doesn't act as a full SPI
+> master, but supports some functionality.  As such it supports
+> a subset of specific SPI ADCs.  There is potential for a future
+> clash in bindings, but as these are simple devices hopefully that
+> will not occur.
 > 
-> Signed-off-by: Jeevan Shriram <jshriram@codeaurora.org>
-> [ported from downstream and tidy up]
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> One addition to this from testing it against existing dts files
+> was to add a resets property.
+> This is specified in arch/arm/boot/dts/r8a7791.dtsi
+> If it's the dtsi that is wrong and not the binding doc, then
+> we can fix that instead.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Marek Vasut <marek.vasut+renesas@gmail.com>
 > ---
+>  .../bindings/iio/adc/renesas,gyroadc.txt      |  98 ------------
+>  .../iio/adc/renesas,rcar-gyroadc.yaml         | 141 ++++++++++++++++++
+>  2 files changed, 141 insertions(+), 98 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,gyroadc.txt b/Documentation/devicetree/bindings/iio/adc/renesas,gyroadc.txt
+> deleted file mode 100644
+> index df5b9f2ad8d8..000000000000
+> --- a/Documentation/devicetree/bindings/iio/adc/renesas,gyroadc.txt
+> +++ /dev/null
+> @@ -1,98 +0,0 @@
+> -* Renesas R-Car GyroADC device driver
+> -
+> -The GyroADC block is a reduced SPI block with up to 8 chipselect lines,
+> -which supports the SPI protocol of a selected few SPI ADCs. The SPI ADCs
+> -are sampled by the GyroADC block in a round-robin fashion and the result
+> -presented in the GyroADC registers.
+> -
+> -Required properties:
+> -- compatible:	Should be "<soc-specific>", "renesas,rcar-gyroadc".
+> -                The <soc-specific> should be one of:
+> -		renesas,r8a7791-gyroadc - for the GyroADC block present
+> -					  in r8a7791 SoC
+> -		renesas,r8a7792-gyroadc - for the GyroADC with interrupt
+> -					  block present in r8a7792 SoC
+> -- reg:		Address and length of the register set for the device
+> -- clocks:	References to all the clocks specified in the clock-names
+> -		property as specified in
+> -		Documentation/devicetree/bindings/clock/clock-bindings.txt.
+> -- clock-names:	Shall contain "fck". The "fck" is the GyroADC block clock.
+> -- power-domains: Must contain a reference to the PM domain, if available.
+> -- #address-cells: Should be <1> (setting for the subnodes) for all ADCs
+> -		except for "fujitsu,mb88101a". Should be <0> (setting for
+> -		only subnode) for "fujitsu,mb88101a".
+> -- #size-cells:	Should be <0> (setting for the subnodes)
+> -
+> -Sub-nodes:
+> -You must define subnode(s) which select the connected ADC type and reference
+> -voltage for the GyroADC channels.
+> -
+> -Required properties for subnodes:
+> -- compatible:	Should be either of:
+> -		"fujitsu,mb88101a"
+> -			- Fujitsu MB88101A compatible mode,
+> -			  12bit sampling, up to 4 channels can be sampled in
+> -			  round-robin fashion. One Fujitsu chip supplies four
+> -			  GyroADC channels with data as it contains four ADCs
+> -			  on the chip and thus for 4-channel operation, single
+> -			  MB88101A is required. The Cx chipselect lines of the
+> -			  MB88101A connect directly to two CHS lines of the
+> -			  GyroADC, no demuxer is required. The data out line
+> -			  of each MB88101A connects to a shared input pin of
+> -			  the GyroADC.
+> -		"ti,adcs7476" or "ti,adc121" or "adi,ad7476"
+> -			- TI ADCS7476 / TI ADC121 / ADI AD7476 compatible mode,
+> -			  15bit sampling, up to 8 channels can be sampled in
+> -			  round-robin fashion. One TI/ADI chip supplies single
+> -			  ADC channel with data, thus for 8-channel operation,
+> -			  8 chips are required. A 3:8 chipselect demuxer is
+> -			  required to connect the nCS line of the TI/ADI chips
+> -			  to the GyroADC, while MISO line of each TI/ADI ADC
+> -			  connects to a shared input pin of the GyroADC.
+> -		"maxim,max1162" or "maxim,max11100"
+> -			- Maxim MAX1162 / Maxim MAX11100 compatible mode,
+> -			  16bit sampling, up to 8 channels can be sampled in
+> -			  round-robin fashion. One Maxim chip supplies single
+> -			  ADC channel with data, thus for 8-channel operation,
+> -			  8 chips are required. A 3:8 chipselect demuxer is
+> -			  required to connect the nCS line of the MAX chips
+> -			  to the GyroADC, while MISO line of each Maxim ADC
+> -			  connects to a shared input pin of the GyroADC.
+> -- reg:		Should be the number of the analog input. Should be present
+> -		for all ADCs except "fujitsu,mb88101a".
+> -- vref-supply:	Reference to the channel reference voltage regulator.
+> -
+> -Example:
+> -	vref_max1162: regulator-vref-max1162 {
+> -		compatible = "regulator-fixed";
+> -
+> -		regulator-name = "MAX1162 Vref";
+> -		regulator-min-microvolt = <4096000>;
+> -		regulator-max-microvolt = <4096000>;
+> -	};
+> -
+> -	adc@e6e54000 {
+> -		compatible = "renesas,r8a7791-gyroadc", "renesas,rcar-gyroadc";
+> -		reg = <0 0xe6e54000 0 64>;
+> -		clocks = <&mstp9_clks R8A7791_CLK_GYROADC>;
+> -		clock-names = "fck";
+> -		power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
+> -
+> -		pinctrl-0 = <&adc_pins>;
+> -		pinctrl-names = "default";
+> -
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		adc@0 {
+> -			reg = <0>;
+> -			compatible = "maxim,max1162";
+> -			vref-supply = <&vref_max1162>;
+> -		};
+> -
+> -		adc@1 {
+> -			reg = <1>;
+> -			compatible = "maxim,max1162";
+> -			vref-supply = <&vref_max1162>;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml
+> new file mode 100644
+> index 000000000000..aeaa9d372450
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/renesas,rcar-gyroadc.yaml
+> @@ -0,0 +1,141 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/renesas,rcar-gyroadc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas R-Car GyroADC
+> +
+> +maintainers:
+> +  - Marek Vasut <marek.vasut+renesas@gmail.com>
+> +
+> +description: |
+> +  The GyroADC block is a reduced SPI block with up to 8 chipselect lines,
+> +  which supports the SPI protocol of a selected few SPI ADCs. The SPI ADCs
+> +  are sampled by the GyroADC block in a round-robin fashion and the result
+> +  presented in the GyroADC registers.
+> +  The ADC bindings should match with that of the devices connected to a
+> +  full featured SPI bus.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - renesas,r8a7791-gyroadc
+> +          - renesas,r8a7792-gyroadc
+> +      - const: renesas,rcar-gyroadc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: fck
+> +
+> +  power-domains: true
+> +
+> +  resets: true
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +
+> +patternProperties:
+> +  "^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+$":
 
-No changes since v1? ;)
+No reason to repeat this regex as all node names get checked. Just need 
+to restrict the unit-address:
 
->  drivers/pinctrl/qcom/Kconfig         |    9 +
->  drivers/pinctrl/qcom/Makefile        |    1 +
->  drivers/pinctrl/qcom/pinctrl-sdx55.c | 1018 ++++++++++++++++++++++++++
->  3 files changed, 1028 insertions(+)
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-sdx55.c
-[..]
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sdx55.c b/drivers/pinctrl/qcom/pinctrl-sdx55.c
-[..]
-> +static const struct msm_pingroup sdx55_groups[] = {
-> +	[0] = PINGROUP(0, uim2_data, blsp_uart1, qdss_stm, ebi0_wrcdc, _, _, _, _, _),
-> +	[1] = PINGROUP(1, uim2_present, blsp_uart1, qdss_stm, _, _, _, _, _, _),
-> +	[2] = PINGROUP(2, uim2_reset, blsp_uart1, blsp_i2c1, qdss_stm, ebi0_wrcdc, _, _, _, _),
-> +	[3] = PINGROUP(3, uim2_clk, blsp_uart1, blsp_i2c1, qdss_stm, _, _, _, _, _),
-> +	[4] = PINGROUP(4, blsp_spi2, blsp_uart2, _, qdss_stm, qdss_gpio, _, _, _, _),
-> +	[5] = PINGROUP(5, blsp_spi2, blsp_uart2, _, qdss_stm, qdss_gpio, _, _, _, _),
-> +	[6] = PINGROUP(6, blsp_spi2, blsp_uart2, blsp_i2c2, char_exec, _, qdss_stm, qdss_gpio, _, _),
-> +	[7] = PINGROUP(7, blsp_spi2, blsp_uart2, blsp_i2c2, char_exec, _, qdss_stm, qdss_gpio, _, _),
-> +	[8] = PINGROUP(8, pri_mi2s, blsp_spi3, blsp_uart3, ext_dbg, ldo_en, _, _, _, _),
-> +	[9] = PINGROUP(9, pri_mi2s, blsp_spi3, blsp_uart3, ext_dbg, _, _, _, _, _),
-> +	[10] = PINGROUP(10, pri_mi2s, blsp_spi3, blsp_uart3, blsp_i2c3, ext_dbg, _, _, _, _),
-> +	[11] = PINGROUP(11, pri_mi2s, blsp_spi3, blsp_uart3, blsp_i2c3, ext_dbg, gcc_gp3, _, _, _),
-> +	[12] = PINGROUP(12, pri_mi2s, _, qdss_stm, qdss_gpio, _, _, _, _, _),
-> +	[13] = PINGROUP(13, pri_mi2s, _, qdss_stm, qdss_gpio, _, _, _, _, _),
-> +	[14] = PINGROUP(14, pri_mi2s, emac_gcc1, _, _, qdss_stm, qdss_gpio, bimc_dte0, native_tsens, vsense_trigger),
-> +	[15] = PINGROUP(15, pri_mi2s, emac_gcc0, _, _, qdss_stm, qdss_gpio, bimc_dte1, _, _),
-> +	[16] = PINGROUP(16, sec_mi2s, blsp_spi4, blsp_uart4, qdss_cti, qdss_cti, _, _, qdss_stm, qdss_gpio),
-> +	[17] = PINGROUP(17, sec_mi2s, blsp_spi4, blsp_uart4, qdss_cti, qdss_cti, _, qdss_stm, qdss_gpio, _),
-> +	[18] = PINGROUP(18, sec_mi2s, blsp_spi4, blsp_uart4, blsp_i2c4, gcc_gp1, qdss_stm, qdss_gpio, _, _),
-> +	[19] = PINGROUP(19, sec_mi2s, blsp_spi4, blsp_uart4, blsp_i2c4, jitter_bist, gcc_gp2, _, qdss_stm, qdss_gpio),
-> +	[20] = PINGROUP(20, sec_mi2s, ebi2_a, blsp_uart1, blsp_uart4, qdss_stm, _, _, _, _),
-> +	[21] = PINGROUP(21, sec_mi2s, ebi2_lcd, blsp_uart1, blsp_uart4, _, qdss_stm, _, _, _),
-> +	[22] = PINGROUP(22, sec_mi2s, ebi2_lcd, blsp_uart1, qdss_cti, qdss_cti, blsp_uart4, pll_bist, _, qdss_stm),
-> +	[23] = PINGROUP(23, sec_mi2s, ebi2_lcd, qdss_cti, qdss_cti, blsp_uart1, blsp_uart4, qdss_stm, _, _),
-> +	[24] = PINGROUP(24, adsp_ext, _, _, _, _, _, _, _, _),
-> +	[25] = PINGROUP(25, adsp_ext, _, _, _, _, _, _, _, _),
-> +	[26] = PINGROUP(26, _, _, _, native_char, _, _, _, _, _),
-> +	[27] = PINGROUP(27, _, _, _, _, _, _, _, _, _),
-> +	[28] = PINGROUP(28, qlink0_wmss, _, native_char3, _, _, _, _, _, _),
-> +	[29] = PINGROUP(29, _, _, _, native_char2, native_tsense, _, _, _, _),
-> +	[30] = PINGROUP(30, _, _, _, _, _, _, _, _, _),
-> +	[31] = PINGROUP(31, nav_gpio, _, _, _, _, _, _, _, _),
-> +	[32] = PINGROUP(32, nav_gpio, pll_ref, _, _, _, _, _, _, _),
-> +	[33] = PINGROUP(33, _, pa_indicator, native_char0, _, _, _, _, _, _),
-> +	[34] = PINGROUP(34, qlink0_en, _, _, _, _, _, _, _, _),
-> +	[35] = PINGROUP(35, qlink0_req, pll_test, _, _, _, _, _, _, _),
-> +	[36] = PINGROUP(36, _, _, cri_trng, dbg_out, _, _, _, _, _),
-> +	[37] = PINGROUP(37, _, _, _, _, _, _, _, _, _),
-> +	[38] = PINGROUP(38, _, _, prng_rosc, _, _, _, _, _, _),
-> +	[39] = PINGROUP(39, _, _, _, _, _, _, _, _, _),
-> +	[40] = PINGROUP(40, _, _, cri_trng0, _, _, _, _, _, _),
-> +	[41] = PINGROUP(41, _, _, cri_trng1, _, _, _, _, _, _),
-> +	[42] = PINGROUP(42, _, qdss_gpio, native_char1, _, _, _, _, _, _),
-> +	[43] = PINGROUP(43, _, _, _, _, _, _, _, _, _),
-> +	[44] = PINGROUP(44, coex_uart, spmi_coex, _, qdss_stm, _, _, _, _, _),
-> +	[45] = PINGROUP(45, coex_uart, spmi_coex, qdss_stm, ddr_pxi0, _, _, _, _, _),
-> +	[46] = PINGROUP(46, m_voc, ddr_bist, ddr_pxi0, _, _, _, _, _, _),
-> +	[47] = PINGROUP(47, ddr_bist, _, _, _, _, _, _, _, _),
-> +	[48] = PINGROUP(48, m_voc, ddr_bist, _, _, _, _, _, _, _),
-> +	[49] = PINGROUP(49, m_voc, ddr_bist, _, _, _, _, _, _, _),
-> +	[50] = PINGROUP(50, _, _, _, _, _, _, _, _, _),
-> +	[51] = PINGROUP(51, _, _, _, _, _, _, _, _, _),
-> +	[52] = PINGROUP(52, blsp_spi2, blsp_spi1, blsp_spi3, blsp_spi4, _, _, qdss_stm, _, _),
-> +	[53] = PINGROUP(53, pci_e, _, _, qdss_stm, _, _, _, _, _),
-> +	[54] = PINGROUP(54, qdss_cti, qdss_cti, _, _, _, _, _, _, _),
-> +	[55] = PINGROUP(55, qdss_cti, qdss_cti, tgu_ch0, _, _, _, _, _, _),
-> +	[56] = PINGROUP(56, pcie_clkreq, _, qdss_stm, _, _, _, _, _, _),
-> +	[57] = PINGROUP(57, _, qdss_stm, _, _, _, _, _, _, _),
-> +	[58] = PINGROUP(58, _, _, _, _, _, _, _, _, _),
-> +	[59] = PINGROUP(59, qdss_cti, m_voc, bimc_dte0, _, _, _, _, _, _),
-> +	[60] = PINGROUP(60, qdss_cti, _, m_voc, _, _, _, _, _, _),
-> +	[61] = PINGROUP(61, mgpi_clk, qdss_stm, qdss_gpio, bimc_dte1, _, _, _, _, _),
-> +	[62] = PINGROUP(62, i2s_mclk, audio_ref, blsp_spi1, blsp_spi2, blsp_spi3, blsp_spi4, ldo_update, qdss_stm, _),
-> +	[63] = PINGROUP(63, blsp_uart2, _, qdss_stm, qdss_gpio, atest, _, _, _, _),
-> +	[64] = PINGROUP(64, blsp_uart2, qdss_stm, qdss_gpio, atest, _, _, _, _, _),
-> +	[65] = PINGROUP(65, blsp_uart2, blsp_i2c2, _, qdss_stm, qdss_gpio, atest, _, _, _),
-> +	[66] = PINGROUP(66, blsp_uart2, blsp_i2c2, qdss_stm, qdss_gpio, atest, _, _, _, _),
-> +	[67] = PINGROUP(67, uim1_data, atest, _, _, _, _, _, _, _),
-> +	[68] = PINGROUP(68, uim1_present, _, _, _, _, _, _, _, _),
-> +	[69] = PINGROUP(69, uim1_reset, _, _, _, _, _, _, _, _),
-> +	[70] = PINGROUP(70, uim1_clk, _, _, _, _, _, _, _, _),
-> +	[71] = PINGROUP(71, mgpi_clk, blsp_spi1, blsp_spi2, blsp_spi3, blsp_spi4, _, _, _, _),
-> +	[72] = PINGROUP(72, qlink1_en, _, _, _, _, _, _, _, _),
-> +	[73] = PINGROUP(73, qlink1_req, _, _, _, _, _, _, _, _),
-> +	[74] = PINGROUP(74, qlink1_wmss, _, _, _, _, _, _, _, _),
-> +	[75] = PINGROUP(75, coex_uart2, _, _, _, _, _, _, _, _),
-> +	[76] = PINGROUP(76, coex_uart2, nav_gpio, _, _, _, _, _, _, _),
-> +	[77] = PINGROUP(77, _, _, _, _, _, _, _, _, _),
-> +	[78] = PINGROUP(78, spmi_vgi, blsp_i2c4, _, _, _, _, _, _, _),
-> +	[79] = PINGROUP(79, spmi_vgi, blsp_i2c4, _, _, _, _, _, _, _),
-> +	[80] = PINGROUP(80, _, blsp_spi1, _, _, _, _, _, _, _),
-> +	[81] = PINGROUP(81, _, blsp_spi1, _, gcc_plltest, _, _, _, _, _),
-> +	[82] = PINGROUP(82, _, blsp_spi1, _, blsp_i2c1, gcc_plltest, _, _, _, _),
-> +	[83] = PINGROUP(83, _, blsp_spi1, _, blsp_i2c1, _, _, _, _, _),
-> +	[84] = PINGROUP(84, _, _, _, _, _, _, _, _, _),
-> +	[85] = PINGROUP(85, _, _, _, _, _, _, _, _, _),
-> +	[86] = PINGROUP(86, _, _, _, _, _, _, _, _, _),
-> +	[87] = PINGROUP(87, _, _, _, _, _, _, _, _, _),
-> +	[88] = PINGROUP(88, _, _, _, _, _, _, _, _, _),
-> +	[89] = PINGROUP(89, _, _, _, _, _, _, _, _, _),
-> +	[90] = PINGROUP(90, _, _, _, _, _, _, _, _, _),
-> +	[91] = PINGROUP(91, _, _, _, _, _, _, _, _, _),
-> +	[92] = PINGROUP(92, _, _, _, _, _, _, _, _, _),
-> +	[93] = PINGROUP(93, _, _, usb2phy_ac, _, _, _, _, _, _),
-> +	[94] = PINGROUP(94, qdss_cti, qdss_cti, _, _, _, _, _, _, _),
-> +	[95] = PINGROUP(95, qdss_cti, qdss_cti, emac_pps1, _, _, _, _, _, _),
-> +	[96] = PINGROUP(96, _, _, _, _, _, _, _, _, _),
-> +	[97] = PINGROUP(97, _, _, _, _, _, _, _, _, _),
-> +	[98] = PINGROUP(98, _, _, _, _, _, _, _, _, _),
-> +	[99] = PINGROUP(99, _, _, _, _, _, _, _, _, _),
-> +	[100] = PINGROUP(100, _, _, _, _, _, _, _, _, _),
-> +	[101] = PINGROUP(101, _, _, _, _, _, _, _, _, _),
-> +	[102] = PINGROUP(102, _, _, _, _, _, _, _, _, _),
-> +	[103] = PINGROUP(103, _, _, _, _, _, _, _, _, _),
-> +	[104] = PINGROUP(104, _, _, _, _, _, _, _, _, _),
-> +	[105] = PINGROUP(105, _, _, _, _, _, _, _, _, _),
-> +	[106] = PINGROUP(106, emac_pps0, _, _, _, _, _, _, _, _),
-> +	[107] = PINGROUP(107, _, _, _, _, _, _, _, _, _),
-> +	[109] = SDC_PINGROUP(sdc1_rclk, 0x9a000, 15, 0),
-> +	[110] = SDC_PINGROUP(sdc1_clk, 0x9a000, 13, 6),
-> +	[111] = SDC_PINGROUP(sdc1_cmd, 0x9a000, 11, 3),
-> +	[112] = SDC_PINGROUP(sdc1_data, 0x9a000, 9, 0),
-> +};
+"@[0-7]$"
 
-Looks better, and ngpios is good.
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        description: |
+> +          fujitsu,mb88101a
+> +          - Fujitsu MB88101A compatible mode,
+> +            12bit sampling, up to 4 channels can be sampled in round-robin
+> +            fashion. One Fujitsu chip supplies four GyroADC channels with
+> +            data as it contains four ADCs on the chip and thus for 4-channel
+> +            operation, single MB88101A is required. The Cx chipselect lines
+> +            of the MB88101A connect directly to two CHS lines of the GyroADC,
+> +            no demuxer is required. The data out line of each MB88101A
+> +            connects to a shared input pin of the GyroADC.
+> +          ti,adcs7476 or ti,adc121 or adi,ad7476
+> +          - TI ADCS7476 / TI ADC121 / ADI AD7476 compatible mode, 15bit
+> +            sampling, up to 8 channels can be sampled in round-robin
+> +            fashion. One TI/ADI chip supplies single ADC channel with data,
+> +            thus for 8-channel operation, 8 chips are required.
+> +            A 3:8 chipselect demuxer is  required to connect the nCS line
+> +            of the TI/ADI chips to the GyroADC, while MISO line of each
+> +            TI/ADI ADC connects to a shared input pin of the GyroADC.
+> +          maxim,max1162 or maxim,max11100
+> +          - Maxim MAX1162 / Maxim MAX11100 compatible mode,  16bit sampling,
+> +            up to 8 channels can be sampled in round-robin fashion. One
+> +            Maxim chip supplies single ADC channel with data, thus for
+> +            8-channel operation, 8 chips are required.
+> +            A 3:8 chipselect demuxer is required to connect the nCS line
+> +            of the MAX chips to the GyroADC, while MISO line of each Maxim
+> +            ADC connects to a shared input pin of the GyroADC.
+> +        enum:
+> +          - adi,7476
+> +          - fujitsu,mb88101a
+> +          - maxim,max1162
+> +          - maxim,max11100
+> +          - ti,adcs7476
+> +          - ti,adc121
+> +
+> +      reg: true
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+minimum: 0
+maximum: 7
 
-Thanks,
-Bjorn
+> +
+> +      vref-supply: true
+> +
+> +    additionalProperties: false
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - vref-supply
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a7791-clock.h>
+> +    #include <dt-bindings/power/r8a7791-sysc.h>
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        adc@e6e54000 {
+> +            compatible = "renesas,r8a7791-gyroadc", "renesas,rcar-gyroadc";
+> +            reg = <0 0xe6e54000 0 64>;
+> +            clocks = <&mstp9_clks R8A7791_CLK_GYROADC>;
+> +            clock-names = "fck";
+> +            power-domains = <&sysc R8A7791_PD_ALWAYS_ON>;
+> +
+> +            pinctrl-0 = <&adc_pins>;
+> +            pinctrl-names = "default";
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            adc@0 {
+> +                reg = <0>;
+> +                compatible = "maxim,max1162";
+> +                vref-supply = <&vref_max1162>;
+> +            };
+> +
+> +            adc@1 {
+> +                reg = <1>;
+> +                compatible = "maxim,max1162";
+> +                vref-supply = <&vref_max1162>;
+> +            };
+> +        };
+> +    };
+> +...
+> -- 
+> 2.28.0
+> 
