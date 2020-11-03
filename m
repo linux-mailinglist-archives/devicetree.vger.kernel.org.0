@@ -2,86 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39F462A4CF3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 18:32:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 588542A4D0D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 18:34:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728911AbgKCRcN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 12:32:13 -0500
-Received: from mx2.suse.de ([195.135.220.15]:34096 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728889AbgKCRcN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 12:32:13 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 58B18AD85;
-        Tue,  3 Nov 2020 17:32:12 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
-        ardb@kernel.org, linux-kernel@vger.kernel.org,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-mm@kvack.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v6 7/7] mm: Remove examples from enum zone_type comment
-Date:   Tue,  3 Nov 2020 18:31:58 +0100
-Message-Id: <20201103173159.27570-8-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.29.1
-In-Reply-To: <20201103173159.27570-1-nsaenzjulienne@suse.de>
-References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
+        id S1728524AbgKCReY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 12:34:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48144 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728527AbgKCReX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 12:34:23 -0500
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74E88C061A04
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 09:34:22 -0800 (PST)
+Received: by mail-oi1-x244.google.com with SMTP id u127so19153917oib.6
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 09:34:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1JaZqXqFdIPWnt0E572LVN0+nDbV1o5m6gHDSDoIC4I=;
+        b=Q2n8tpHV5nvmR2OSazRvxRWjiFH+PKL/RCPajflFlEudEY3RSDuRnYEQVw4yaus37x
+         8YPDStWRw8UUe7KUhTt/YXdJ6a4/b5XzFw7pgoJEeO4PnTLiFCiUR90suFcU6V3mm9Ag
+         v9kRYp1akaOMtiswKY5Ia6V3Wg5CAta7OWvv7YZ8vTpPXsWYlI8xONYzj4DrjflJU7nb
+         TfgTPj4oqYkDJNOZHZPciKnMyuo/pUcLdTxK00YuA/+1wpQGHhiuYp/lyRvW7tLb7GO8
+         qNPmiO4bXYC/5h5/j/Qqyl/0y+MmidTJDA4tmN2ow2p9SbLLsDtXgvDnfDBpAeVR5sLQ
+         wVjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1JaZqXqFdIPWnt0E572LVN0+nDbV1o5m6gHDSDoIC4I=;
+        b=Rmu0GXWDHTbHAPoyot0Kyj+tmRDEK2p+PQOzr9NqZQwnTAEqM8MlRNTsZFjgmpgUeA
+         pFigtx2HtoHTUSDcpmNQsrq6pcxHuI8FVGE75WfH3B6OgLqMj7T8+07szTz1IuD1+dt9
+         RnajwMwh8BbmDbINwtl5KVNNlnJIyU9MGdPBCkTS8pptRqbooRyAHdiwOW94ll7Hnm+l
+         ObLR2b5mUzxAUTy1Bf6KZyrNtkNETzdbXQH6Eq+yrCk7rBqr3SQRb4xCR+ayYFaMl9RE
+         ExQ9d12fe4w2M6BAh6a+Gaoe7xS6bSMADYMi5sb1Eb1/JtxkUs9YymSUAYvGno2Q91xM
+         bupA==
+X-Gm-Message-State: AOAM532uh/+ZZNzGlVOJ9GRbdfAVLY0FWgR5jWiEI0cSY6XWf0KogILa
+        EOJSiigQOnqK0/ljfOTbt5cyCA==
+X-Google-Smtp-Source: ABdhPJxHzlfUfcI++bJ+iZGECeMfHDlxPyTogVh3GwkhPPMW09JbfIDc7FH7/XeiZPCfD6Y4u1WguA==
+X-Received: by 2002:aca:5d07:: with SMTP id r7mr135553oib.87.1604424861654;
+        Tue, 03 Nov 2020 09:34:21 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id t65sm4261575oib.50.2020.11.03.09.34.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Nov 2020 09:34:20 -0800 (PST)
+Date:   Tue, 3 Nov 2020 11:34:19 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
+        vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/4] Add GCC and RPMh clock support for SDX55
+Message-ID: <20201103173419.GP3151@builder.lan>
+References: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
+ <20201028170853.GA3191@Mani-XPS-13-9360>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201028170853.GA3191@Mani-XPS-13-9360>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can't really list every setup in common code. On top of that they are
-unlikely to stay true for long as things change in the arch trees
-independently of this comment.
+On Wed 28 Oct 12:08 CDT 2020, Manivannan Sadhasivam wrote:
 
-Suggested-by: Christoph Hellwig <hch@lst.de>
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Reviewed-by: Christoph Hellwig <hch@lst.de>
----
- include/linux/mmzone.h | 20 --------------------
- 1 file changed, 20 deletions(-)
+> On Wed, Oct 28, 2020 at 01:12:28PM +0530, Manivannan Sadhasivam wrote:
+> > Hello,
+> > 
+> > This series adds Global Clock Controller (GCC) and RPMh clock support
+> > for SDX55 SoC from Qualcomm with relevant DT bindings.
+> > 
+> > This series has been tested on SDX55 MTP board. The dts patches for this
+> > SoC/board will be posted later.
+> > 
+> > Thanks,
+> > Mani
+> > 
+> > Manivannan Sadhasivam (1):
+> >   clk: qcom: Add support for SDX55 RPMh clocks
+> > 
+> > Naveen Yadav (1):
+> >   clk: qcom: Add SDX55 GCC support
+> 
+> Bjorn, I've inherited the gcc driver from downstream and did some modification.
+> But I'm not sure if I can take the authorship of this patch hence kept it to the
+> downstream author.
+> 
+> In my point of view, the downstream author wrote the driver so I should keep
+> the copyright and even list them as MODULE_AUTHOR. But I don't think I should
+> give the patch authorship to them because I haven't received the patch anyhow.
+> I usually keep the authorship if I take the patch from a source like LKML and
+> repost it. But in this case, I authored the patch using someone's code!
+> 
+> What is your view on this?
+> 
 
-diff --git a/include/linux/mmzone.h b/include/linux/mmzone.h
-index fb3bf696c05e..9d0c454d23cd 100644
---- a/include/linux/mmzone.h
-+++ b/include/linux/mmzone.h
-@@ -354,26 +354,6 @@ enum zone_type {
- 	 * DMA mask is assumed when ZONE_DMA32 is defined. Some 64-bit
- 	 * platforms may need both zones as they support peripherals with
- 	 * different DMA addressing limitations.
--	 *
--	 * Some examples:
--	 *
--	 *  - i386 and x86_64 have a fixed 16M ZONE_DMA and ZONE_DMA32 for the
--	 *    rest of the lower 4G.
--	 *
--	 *  - arm only uses ZONE_DMA, the size, up to 4G, may vary depending on
--	 *    the specific device.
--	 *
--	 *  - arm64 has a fixed 1G ZONE_DMA and ZONE_DMA32 for the rest of the
--	 *    lower 4G.
--	 *
--	 *  - powerpc only uses ZONE_DMA, the size, up to 2G, may vary
--	 *    depending on the specific device.
--	 *
--	 *  - s390 uses ZONE_DMA fixed to the lower 2G.
--	 *
--	 *  - ia64 and riscv only use ZONE_DMA32.
--	 *
--	 *  - parisc uses neither.
- 	 */
- #ifdef CONFIG_ZONE_DMA
- 	ZONE_DMA,
--- 
-2.29.1
+I think the author should be the person whom prepared the patch.
 
+Given that the downstream driver is a series of patches from a single
+author it's not unreasonable to squash those and retain the author. But
+if your effort to prepare the patch for upstream was non-trivial I would
+consider it reasonable for you to claim authorship of the patch.
+
+If this is the case it's definitely preferable to give credit to the
+original author(s) by mentioning them in the commit message (e.g. "Based
+on downstream implementation by Jane Doe").
+
+And the copyright for the work definitely needs to come along, possibly
+with the addition of yours, depending on your modifications.
+
+Thanks,
+Bjorn
+
+> Thanks,
+> Mani
+> 
+> > 
+> > Vinod Koul (2):
+> >   dt-bindings: clock: Add SDX55 GCC clock bindings
+> >   dt-bindings: clock: Introduce RPMHCC bindings for SDX55
+> > 
+> >  .../bindings/clock/qcom,gcc-sdx55.yaml        |   71 +
+> >  .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+> >  drivers/clk/qcom/Kconfig                      |    8 +
+> >  drivers/clk/qcom/Makefile                     |    1 +
+> >  drivers/clk/qcom/clk-rpmh.c                   |   20 +
+> >  drivers/clk/qcom/gcc-sdx55.c                  | 1667 +++++++++++++++++
+> >  include/dt-bindings/clock/qcom,gcc-sdx55.h    |  112 ++
+> >  include/dt-bindings/clock/qcom,rpmh.h         |    1 +
+> >  8 files changed, 1881 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+> >  create mode 100644 drivers/clk/qcom/gcc-sdx55.c
+> >  create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx55.h
+> > 
+> > -- 
+> > 2.17.1
+> > 
