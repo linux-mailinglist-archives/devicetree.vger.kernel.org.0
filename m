@@ -2,83 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 777D42A4AEF
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:15:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C002A4AC5
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:08:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726212AbgKCQO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:14:59 -0500
-Received: from mga06.intel.com ([134.134.136.31]:3252 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725993AbgKCQO7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 11:14:59 -0500
-IronPort-SDR: tcd1DVBA6GpzwLkeCqBcXYbf++tR9LPnxZfGAHlAkvaN5ecPEOG1GS+xLjtva1XGs2gllDCKPi
- /coqEmOuVQRA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="230709170"
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; 
-   d="scan'208";a="230709170"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2020 08:14:58 -0800
-IronPort-SDR: O2DhVTMd6e778exoN8PgT9cKVFe6JJwL6CN3YdTAaIhxsJYlVAmSvFH6r9usWVHX086eEYTB2a
- iKok52xZcMAA==
-X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; 
-   d="scan'208";a="528532324"
-Received: from ctanriov-mobl1.amr.corp.intel.com (HELO [10.212.114.78]) ([10.212.114.78])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2020 08:14:58 -0800
-Subject: Re: [PATCH v2 3/6] ASoC: codecs: lpass-wsa-macro: add dapm widgets
- and route
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org
-References: <20201029110829.16425-1-srinivas.kandagatla@linaro.org>
- <20201029110829.16425-4-srinivas.kandagatla@linaro.org>
- <3300f31e-28d1-becf-41e7-814b38082dcb@linux.intel.com>
- <b21abfab-108e-50f4-f905-5d9d0fc5168b@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <798ac8de-2d04-9966-6104-9a676730f44c@linux.intel.com>
-Date:   Tue, 3 Nov 2020 09:51:51 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727754AbgKCQIC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 11:08:02 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:41129 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbgKCQIC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:08:02 -0500
+Received: by mail-oi1-f195.google.com with SMTP id m13so9798157oih.8;
+        Tue, 03 Nov 2020 08:08:00 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LppOrRjoS2ltemazd7R9I3bmJ/2o8r3uS4AEkLPs4Jw=;
+        b=TnUu0OnEtR/V7F5rGA8p5rVeq808fox3vqcUgu1e6+E5FdfZlDdRPosUokuoRNKrY8
+         U2PWk3+iTjhuOJ8GsVMY4eNnemVdVKowMua/bMhC2lsjmGpm26UWMBZaT3GRWjt756ei
+         1epXhq2yxX1OPiOUB1F8a46tQ6uU7PND/64JlQl1ilowxUjorosLs4vh1ueU0R4YrAkL
+         cckiAnQRqAj49VNwlf4QNkVSzovI7s21Dova8qKFBpEoSWP7Gi7Rj5tFL6QE+kUYpf63
+         yq6XPzY5zilF/R9kYxY+QhSJKlMe+pIYahvr+T8ufHdnsHRUiPVp6EPaw1nnRJYJR7OT
+         Owig==
+X-Gm-Message-State: AOAM5324Wb4segHD5dOoULBQDksJzbV3GKPiShvS+X5NuMezQXXX7N0H
+        ruIXmeO1Frn/lOtTRUvLRg==
+X-Google-Smtp-Source: ABdhPJxJEBnN98SZvRMckcmmoNzrl9tAOxO+q7ulEbu52U5AXSAtCqqgXDvRNFUqVvLAnn1fHYkLCw==
+X-Received: by 2002:aca:aac8:: with SMTP id t191mr234134oie.119.1604419680082;
+        Tue, 03 Nov 2020 08:08:00 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n18sm4495788otk.33.2020.11.03.08.07.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Nov 2020 08:07:58 -0800 (PST)
+Received: (nullmailer pid 1754319 invoked by uid 1000);
+        Tue, 03 Nov 2020 16:07:56 -0000
+Date:   Tue, 3 Nov 2020 10:07:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 00/10] dt-bindings: iio: conversion of consumer drivers
+Message-ID: <20201103160756.GB1732900@bogus>
+References: <20201031181242.742301-1-jic23@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <b21abfab-108e-50f4-f905-5d9d0fc5168b@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201031181242.742301-1-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
->>> +static bool wsa_macro_adie_lb(struct snd_soc_component *component,
->>> +                  int interp_idx)
->>> +{
->>> +    u16 int_mux_cfg0 = 0, int_mux_cfg1 = 0;
->>
->> these inits are ignored
->>
->>> +    u8 int_mux_cfg0_val = 0, int_mux_cfg1_val = 0;
->>
->> these as well
->>
->>> +    u8 int_n_inp0 = 0, int_n_inp1 = 0, int_n_inp2 = 0;
->>
->> and these are also ignored.
->>
-> Yes, these are ignored, I should have removed the unnecessary 
-> initialization!
-> It would have been nice if sparse could catch such errors!
+On Sat, Oct 31, 2020 at 06:12:32PM +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> are you using tool to catch these?
+> Firstly drop the old text file as the consumer binding (and the other
+> parts of that file) are under review for inclusion in the dt-schema external
+> repo.
+> 
+> This only converts consumers that happen to also be IIO drivers.
+> Others may get done as part of SoC binding conversions or I may do a lot
+> of them at somepoint.
+> 
+> A few of the examples in existing text files used providers that were
+> documented in trivial-bindings.yaml which does not allow for
+> #io-channel-cells. I have pulled those out to their own files as part
+> of this patch set.
+> 
+> The iio-mux binding is not done as that has some dependencies and will
+> form part of some future patch set.
+> 
+> There is no explicit dependency in here on any other sets, but some
+> noise will occur in trivial-bindings.yaml if applied in a different
+> order to I happen to have them sets locally.
+> 
+> Jonathan Cameron (10):
+>   dt-bindings:iio:iio-binding.txt Drop file as content now in dt-schema
+>   dt-bindings:iio:dac:dpot-dac: yaml conversion.
+>   dt-bindings:iio:potentiometer: give microchip,mcp4531 its own binding
+>   dt-bindings:iio:adc:envelope-detector: txt to yaml conversion.
+>   dt-bindings:iio:afe:current-sense-amplifier: txt to yaml conversion.
+>   dt-bindings:iio:afe:current-sense-shunt: txt to yaml conversion. 
+>   dt-bindings:iio:adc:maxim,max1027: Pull out to separate binding doc.
+>   dt-bindings:iio:afe:voltage-divider: txt to yaml conversion
+>   dt-bindings:iio:light:capella,cm3605: txt to yaml conversion.
+>   dt-bindings:iio:potentiostat:ti,lmp91000: txt to yaml conversion.
 
-make W=1 and cppcheck.
+With the type references for properties with standard units dropped,
 
-"
-Run cppcheck on this sort of code:
-
-cppcheck --platform=unix32 --force --max-configs=1024 --inconclusive
---enable=all --suppress=variableScope sound/soc/codecs/lpass-wsa-macro.c
-"
+Reviewed-by: Rob Herring <robh@kernel.org>
