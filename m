@@ -2,96 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D49C62A3FB4
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 10:07:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A598A2A3FF7
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 10:27:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727906AbgKCJGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 04:06:44 -0500
-Received: from foss.arm.com ([217.140.110.172]:44776 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727787AbgKCJGg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 04:06:36 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CAFCB139F;
-        Tue,  3 Nov 2020 01:06:35 -0800 (PST)
-Received: from e123648.arm.com (unknown [10.57.19.30])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 409B03F719;
-        Tue,  3 Nov 2020 01:06:31 -0800 (PST)
-From:   Lukasz Luba <lukasz.luba@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     robh+dt@kernel.org, amitk@kernel.org, corbet@lwn.net,
-        daniel.lezcano@linaro.org, lukasz.luba@arm.com,
-        Dietmar.Eggemann@arm.com, morten.rasmussen@arm.com,
-        qperret@google.com, dianders@chromium.org, mka@chromium.org,
-        rnayak@codeaurora.org, rafael@kernel.org, sudeep.holla@arm.com,
-        viresh.kumar@linaro.org, sboyd@kernel.org, nm@ti.com
-Subject: [PATCH v4 4/4] docs: power: Update Energy Model with new flag indicating power scale
-Date:   Tue,  3 Nov 2020 09:06:00 +0000
-Message-Id: <20201103090600.29053-5-lukasz.luba@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201103090600.29053-1-lukasz.luba@arm.com>
-References: <20201103090600.29053-1-lukasz.luba@arm.com>
+        id S1726109AbgKCJ1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 04:27:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56326 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726013AbgKCJ1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 04:27:36 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB7D9C0613D1;
+        Tue,  3 Nov 2020 01:27:35 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id b3so13699758pfo.2;
+        Tue, 03 Nov 2020 01:27:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+oevH5NOXWY8mC/dfPuihrEtVh3WiYap02zfyjnacds=;
+        b=cZEWxAHfEiuSTnTcJQ15sdqWmH2t5Z5yIoDZvD1nnKmv6iWFq9gVbTdAmM+CGFwNCj
+         AmkoT6d5o8Gk+CRN5DsRS9egoLOWg6k6vW3oVCTgC1TnHFN+qSbLiUrjLcadgs4conZ1
+         elvawYaQXYi+C5/5fv5ezoD/jKAC32fb+pH4iTP51fg6cVls1KqEXDk8da9vSJ8dU6/z
+         qIr4RvW9RQvhcMHbwpULFhUXQY6niynhQQs2ixvIBulRsjV+X+mSWwxpcdK9R/nSyWpw
+         BN4qIslUqG9paEzL8dbG5ClXa69lkQlMWbJPPtRJ6/eG6LccffJW5AoB1rLtHEqzO74p
+         AobA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+oevH5NOXWY8mC/dfPuihrEtVh3WiYap02zfyjnacds=;
+        b=AwZdWHwxpMrqguD4vZJ8qhfAGqPrZMBxZy5tdsGomT2N6IPmP+AQfN6FkOa4p7Luln
+         ThKzUHNYApDb0BOSM3rWSedG+Y7Bmo2+47kXvVXzHtMhiGuhwuL5mNN6KGpicq6QFGpa
+         gCc4lqZadG6vIIfK5Q6olYn5PhzYmGy7zQ8TxV7ItyYr6Cqsh9B6FASI94Nb8Z1cVJSV
+         VkD0BmQHHs4GSoafuCZSu8fBsRmInwZPD4hltGjPT2vY5+R8IU+UW3+XTTALK/avgH18
+         /xSIvgxApx844HT4oDr5FB24DOVIyjebDDTDmbze5TwNvRpTt5/MWo8DSboaRsIPieAW
+         MbLQ==
+X-Gm-Message-State: AOAM533ghdk5jca/LBLbwdnvmW31lO8xo5bXVml25rQdfIXOBVIeU33f
+        /ppk0+bwh9KnVA+clnRgAKo96aqbRLzJaOIQ8d4=
+X-Google-Smtp-Source: ABdhPJwO3dn0tLoNPhZ4KT89FW3uSmGbx6Nx0h1SKcagkBJoNF4BJOhGU4ulCbvx/vsiAPgChLADh19c9ZU5aiyJxeg=
+X-Received: by 2002:a17:90a:430b:: with SMTP id q11mr2874342pjg.129.1604395655266;
+ Tue, 03 Nov 2020 01:27:35 -0800 (PST)
+MIME-Version: 1.0
+References: <20201025005916.64747-1-luka.kovacic@sartura.hr>
+ <20201025005916.64747-3-luka.kovacic@sartura.hr> <CAHp75Vd81cK+nhJ1fxgRC6cEKnBELVA9UtT8VPvq7nbHEdhecQ@mail.gmail.com>
+ <CADZsf3ZtQyEK6diz6W=6tZz+=Toyj_XYU33At0JiLutsuRrizA@mail.gmail.com>
+ <CAHp75VdiLg6br=nztormkiXcS5CZVDxcG8i0mUv2X799zpYq5A@mail.gmail.com> <CADZsf3YmNiF+wJNUiAUzLJhQe3FBHeS-FxYywQfFWu5r2_4T7g@mail.gmail.com>
+In-Reply-To: <CADZsf3YmNiF+wJNUiAUzLJhQe3FBHeS-FxYywQfFWu5r2_4T7g@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 3 Nov 2020 11:27:19 +0200
+Message-ID: <CAHp75Vd33q+chaFS1h971dB7QphmhORSYwwA0b+tgkVTmsbtWw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/6] drivers: mfd: Add a driver for IEI WT61P803 PUZZLE MCU
+To:     Luka Kovacic <luka.kovacic@sartura.hr>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Robert Marko <robert.marko@sartura.hr>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update description and meaning of a new flag, which indicates the type of
-power scale used for a registered Energy Model (EM) device.
+On Tue, Nov 3, 2020 at 1:15 AM Luka Kovacic <luka.kovacic@sartura.hr> wrote:
+> On Mon, Nov 2, 2020 at 12:18 PM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Sun, Nov 1, 2020 at 3:22 PM Luka Kovacic <luka.kovacic@sartura.hr> wrote:
+> > > On Mon, Oct 26, 2020 at 11:54 PM Andy Shevchenko
+> > > <andy.shevchenko@gmail.com> wrote:
+> > > > On Sun, Oct 25, 2020 at 3:59 AM Luka Kovacic <luka.kovacic@sartura.hr> wrote:
 
-Reviewed-by: Quentin Perret <qperret@google.com>
-Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
----
- Documentation/power/energy-model.rst | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+...
 
-diff --git a/Documentation/power/energy-model.rst b/Documentation/power/energy-model.rst
-index ba7aa581b307..60ac091d3b0d 100644
---- a/Documentation/power/energy-model.rst
-+++ b/Documentation/power/energy-model.rst
-@@ -30,6 +30,8 @@ These subsystems are more interested in estimation of power used in the past,
- thus the real milli-Watts might be needed. An example of these requirements can
- be found in the Intelligent Power Allocation in
- Documentation/driver-api/thermal/power_allocator.rst.
-+Kernel subsystems might implement automatic detection to check whether EM
-+registered devices have inconsistent scale (based on EM internal flag).
- Important thing to keep in mind is that when the power values are expressed in
- an 'abstract scale' deriving real energy in milli-Joules would not be possible.
- 
-@@ -86,7 +88,7 @@ Drivers are expected to register performance domains into the EM framework by
- calling the following API::
- 
-   int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
--		struct em_data_callback *cb, cpumask_t *cpus);
-+		struct em_data_callback *cb, cpumask_t *cpus, bool milliwatts);
- 
- Drivers must provide a callback function returning <frequency, power> tuples
- for each performance state. The callback function provided by the driver is free
-@@ -94,6 +96,10 @@ to fetch data from any relevant location (DT, firmware, ...), and by any mean
- deemed necessary. Only for CPU devices, drivers must specify the CPUs of the
- performance domains using cpumask. For other devices than CPUs the last
- argument must be set to NULL.
-+The last argument 'milliwatts' is important to set with correct value. Kernel
-+subsystems which use EM might rely on this flag to check if all EM devices use
-+the same scale. If there are different scales, these subsystems might decide
-+to: return warning/error, stop working or panic.
- See Section 3. for an example of driver implementing this
- callback, and kernel/power/energy_model.c for further documentation on this
- API.
-@@ -169,7 +175,8 @@ EM framework::
-   37     	nr_opp = foo_get_nr_opp(policy);
-   38
-   39     	/* And register the new performance domain */
--  40     	em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus);
--  41
--  42	        return 0;
--  43	}
-+  40     	em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus,
-+  41					    true);
-+  42
-+  43	        return 0;
-+  44	}
+> > > > > +       /* Response format:
+> > > > > +        * (IDX RESPONSE)
+> > > > > +        * 0    @
+> > > > > +        * 1    O
+> > > > > +        * 2    S
+> > > > > +        * 3    S
+> > > > > +        * ...
+> > > > > +        * 5    AC Recovery Status Flag
+> > > > > +        * ...
+> > > > > +        * 10   Power Loss Recovery
+> > > > > +        * ...
+> > > > > +        * 19   Power Status (system power on method)
+> > > > > +        * 20   XOR checksum
+> > > > > +        */
+> > > >
+> > > > Shouldn't be rather defined data structure for response?
+> > >
+> > > Every response, apart from the standard headers and a checksum
+> > > at the end is completely different and I don't see a good way to
+> > > standardize that in some other way.
+> >
+> > And that's my point. Provide data structures for all responses you are
+> > taking care of.
+> > It will be way better documentation and understanding of this IPC.
+>
+> Okay, I'll improve handling of these in the next patchset.
+> Should I make a generic header structure for the common parts and
+> define the common responses somewhere centrally?
+
+Yes, something like TCP/IP headers have.
+This will immediately show how good/bad was design of this IPC
+protocol (as a side effect, but gives a good hint on how layers of
+messages are looking )
+
+> Then I can check those just as you suggested.
+>
+> For the variable ones I can reuse the generic header structure and just
+> use the specific values as I would do normally.
+
+...
+
+> > > > > +               if (!(resp_buf[0] == IEI_WT61P803_PUZZLE_CMD_HEADER_START &&
+> > > > > +                     resp_buf[1] == IEI_WT61P803_PUZZLE_CMD_RESPONSE_OK &&
+> > > > > +                     resp_buf[2] == IEI_WT61P803_PUZZLE_CHECKSUM_RESPONSE_OK)) {
+> > > > > +                       ret = -EPROTO;
+> > > > > +                       goto err;
+> > > > > +               }
+> > > >
+> > > > I think it would be better to define data structure for replies and
+> > > > then check would be as simple as memcmp().
+> > >
+> > > I'd keep this as is, because the replies are different a lot of the times.
+> > > Especially when the reply isn't just an ACK.
+> >
+> > How do you know the type of the reply? Can't you provide a data
+> > structure which will have necessary fields to recognize this?
+> >
+>
+> It can be recognized by the specific header of the reply.
+> I will separate the header and the checksum into some kind of a generic
+> structure, but as the content itself is just an arbitrary array of characters
+> I cannot generalize that sensibly for every type of a reply there is.
+>
+> Anyway, I agree it would be good to define the common responses...
+
+Yep, something to look like a structure with a payload.
+
+...
+
+> Can I output the versions, the firmware build info and only print the baud
+> rate when an error occurs?
+
+What you think is crucial. I'm not against it, I'm just pointing to
+the way of shrinking as much as possible. Otherwise, move messages to
+debug level (but that shouldn't be many in the production driver).
+
 -- 
-2.17.1
-
+With Best Regards,
+Andy Shevchenko
