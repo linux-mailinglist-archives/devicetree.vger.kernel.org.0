@@ -2,206 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC54F2A4A85
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:00:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 777D42A4AEF
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:15:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728107AbgKCQAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:00:00 -0500
-Received: from foss.arm.com ([217.140.110.172]:51206 "EHLO foss.arm.com"
+        id S1726212AbgKCQO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 11:14:59 -0500
+Received: from mga06.intel.com ([134.134.136.31]:3252 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726312AbgKCP77 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 10:59:59 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8087E13A1;
-        Tue,  3 Nov 2020 07:59:58 -0800 (PST)
-Received: from bogus (unknown [10.57.13.236])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8AD2C3F85F;
-        Tue,  3 Nov 2020 07:59:56 -0800 (PST)
-Date:   Tue, 3 Nov 2020 15:59:53 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel-team@android.com, Will Deacon <will@kernel.org>,
-        tsoni@quicinc.com, pratikp@quicinc.com
-Subject: Re: [PATCH 1/9] dt-bindings: Arm: Add Firmware Framework for Armv8-A
- (FF-A) binding
-Message-ID: <20201103155953.ap3rz5ii5gpzeskj@bogus>
-References: <20200829170923.29949-1-sudeep.holla@arm.com>
- <20200829170923.29949-2-sudeep.holla@arm.com>
- <20200902221413.GB1410716@bogus>
+        id S1725993AbgKCQO7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 11:14:59 -0500
+IronPort-SDR: tcd1DVBA6GpzwLkeCqBcXYbf++tR9LPnxZfGAHlAkvaN5ecPEOG1GS+xLjtva1XGs2gllDCKPi
+ /coqEmOuVQRA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="230709170"
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; 
+   d="scan'208";a="230709170"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2020 08:14:58 -0800
+IronPort-SDR: O2DhVTMd6e778exoN8PgT9cKVFe6JJwL6CN3YdTAaIhxsJYlVAmSvFH6r9usWVHX086eEYTB2a
+ iKok52xZcMAA==
+X-IronPort-AV: E=Sophos;i="5.77,448,1596524400"; 
+   d="scan'208";a="528532324"
+Received: from ctanriov-mobl1.amr.corp.intel.com (HELO [10.212.114.78]) ([10.212.114.78])
+  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Nov 2020 08:14:58 -0800
+Subject: Re: [PATCH v2 3/6] ASoC: codecs: lpass-wsa-macro: add dapm widgets
+ and route
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        broonie@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+References: <20201029110829.16425-1-srinivas.kandagatla@linaro.org>
+ <20201029110829.16425-4-srinivas.kandagatla@linaro.org>
+ <3300f31e-28d1-becf-41e7-814b38082dcb@linux.intel.com>
+ <b21abfab-108e-50f4-f905-5d9d0fc5168b@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <798ac8de-2d04-9966-6104-9a676730f44c@linux.intel.com>
+Date:   Tue, 3 Nov 2020 09:51:51 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <b21abfab-108e-50f4-f905-5d9d0fc5168b@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200902221413.GB1410716@bogus>
-User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 02, 2020 at 04:14:13PM -0600, Rob Herring wrote:
-> On Sat, Aug 29, 2020 at 06:09:15PM +0100, Sudeep Holla wrote:
-> > From: Will Deacon <will@kernel.org>
-> >
-> > Add devicetree bindings for a FF-A-compliant hypervisor, its partitions
-> > and their memory regions. The naming is ludicrous but also not by fault.
-> >
-> > Signed-off-by: Will Deacon <will@kernel.org>
-> > (sudeep.holla: Dropped PSA from name and elsewhere as it seem to have
-> >  disappeared mysteriously just before the final release)
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > ---
-> >  .../devicetree/bindings/arm/arm,ffa.yaml      | 102 ++++++++++++++++++
-> >  .../reserved-memory/arm,ffa-memory.yaml       |  71 ++++++++++++
-> >  2 files changed, 173 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/reserved-memory/arm,ffa-memory.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/arm,ffa.yaml b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> > new file mode 100644
-> > index 000000000000..668a5995fcab
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/arm,ffa.yaml
-> > @@ -0,0 +1,102 @@
-> > +# SPDX-License-Identifier: GPL-2.0
->
-> Dual license new bindings:
->
-> (GPL-2.0-only OR BSD-2-Clause)
->
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/arm,ffa.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Arm Firmware Framework for Arm v8-A
-> > +
-> > +maintainers:
-> > +  - Will Deacon <will@kernel.org>
-> > +
-> > +description: |
-> > +  Firmware frameworks implementing partition setup according to the FF-A
-> > +  specification defined by ARM document number ARM DEN 0077A ("Arm Firmware
-> > +  Framework for Arm v8-A") [0] must provide a "manifest and image" for each
-> > +  partition to the "partition manager" so that the partition execution contexts
-> > +  can be initialised.
-> > +
-> > +  In the case of a virtual FFA instance, the manifest and image details can be
-> > +  passed to the hypervisor (e.g. Linux KVM) using this binding.
-> > +
-> > +  [0] https://developer.arm.com/docs/den0077/latest
->
-> There's efforts to define 'system DT' describing all the CPUs in a
-> system (such as both A and R cores) as well as physical partitioning.
-> I'm not sure that virtual partitioning would need a different binding.
-> Or at least there's probably some overlap.
->
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: ffa_hyp
-> > +
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: arm,ffa-1.0-hypervisor
-> > +
-> > +  memory-region:
-> > +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> > +    description: |
-> > +      A phandle to the reserved memory region [1] to be used by the hypervisor.
-> > +      The reserved memory region must be compatible with
-> > +      "arm,ffa-1.0-hypervisor-memory-region".
-> > +
-> > +      [1] Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> > +
-> > +patternProperties:
-> > +  "^ffa_partition[0-9]+$":
->
-> s/_/-/
->
-> Probably should use 'reg' to number partitions. Is the numbering
-> significant?
->
 
-Not really, the partitions will get IDs assigned by Hypervisor or Secure
-Partition Manager.
 
-> > +    type: object
-> > +    description: One or more child nodes, each describing an FFA partition.
-> > +    properties:
-> > +      $nodename:
-> > +        const: ffa_partition
-> > +
-> > +      compatible:
-> > +        oneOf:
-> > +          - const: arm,ffa-1.0-partition
-> > +
-> > +      uuid:
-> > +        $ref: '/schemas/types.yaml#definitions/string'
->
-> json-schema can do better here:
->
-> format: uuid
->
-> Though 'format' will need to be allowed in our meta-schema.
->
+>>> +static bool wsa_macro_adie_lb(struct snd_soc_component *component,
+>>> +                  int interp_idx)
+>>> +{
+>>> +    u16 int_mux_cfg0 = 0, int_mux_cfg1 = 0;
+>>
+>> these inits are ignored
+>>
+>>> +    u8 int_mux_cfg0_val = 0, int_mux_cfg1_val = 0;
+>>
+>> these as well
+>>
+>>> +    u8 int_n_inp0 = 0, int_n_inp1 = 0, int_n_inp2 = 0;
+>>
+>> and these are also ignored.
+>>
+> Yes, these are ignored, I should have removed the unnecessary 
+> initialization!
+> It would have been nice if sparse could catch such errors!
+> 
+> are you using tool to catch these?
 
-OK I need to explore this.
+make W=1 and cppcheck.
 
-> > +        description: |
-> > +          The 128-bit UUID [2] of the service implemented by this partition.
-> > +
-> > +          [2] https://tools.ietf.org/html/rfc4122
-> > +
-> > +      nr-exec-ctxs:
-> > +        $ref: '/schemas/types.yaml#/definitions/uint32'
-> > +        description: |
-> > +          The number of virtual CPUs to instantiate for this partition.
->
-> Just 'nr-cpus' would be clearer in my opinion.
->
+"
+Run cppcheck on this sort of code:
 
-The idea must be to use the names as is from the spec.
-
-> What happens on big.LITTLE?
->
-
-AFAIU, we don't have notion of bL in KVM.
-
-> > +
-> > +      exec-state:
-> > +        description: The execution state in which to execute the partition.
-> > +        oneOf:
-> > +          - const: "AArch64"
-> > +          - const: "AArch32"
->
-> Why is this needed? We don't need anything like this for KVM today.
->
-
-Again this is from the spec listed under manifests for the partitions.
-This will let the KVM know to start the partition in Aarch32/64.
-
-> > +
-> > +      entry-point:
-> > +        $ref: '/schemas/types.yaml#/definitions/uint32-matrix'
-> > +        description: |
-> > +          The entry address of the partition specified as an Intermediate
-> > +          Physical Address (IPA) encoded according to the '#address-cells'
-> > +          property.
->
-> Is the address unique or you could have the same image for multiple
-> partitions? If unique, then you could use 'reg' here.
->
-
-I don't have full knowledge on the details, will let Will comment on this.
-
-> You didn't document using '#address-cells'. Really, I'd just make this a
-> fixed uint64 (if not 'reg').
->
-
-I was wondering the same as the format from spec must be fixed, checked and
-unfortunately it is not 🙁.
-
---
-Regards,
-Sudeep
+cppcheck --platform=unix32 --force --max-configs=1024 --inconclusive
+--enable=all --suppress=variableScope sound/soc/codecs/lpass-wsa-macro.c
+"
