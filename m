@@ -2,147 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 174C12A3B0F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 04:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 937142A3B21
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 04:48:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725980AbgKCDbf convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Nov 2020 22:31:35 -0500
-Received: from youngberry.canonical.com ([91.189.89.112]:42207 "EHLO
-        youngberry.canonical.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726074AbgKCDbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 22:31:34 -0500
-Received: from mail-wr1-f72.google.com ([209.85.221.72])
-        by youngberry.canonical.com with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.86_2)
-        (envelope-from <chia-lin.kao@canonical.com>)
-        id 1kZn2i-0000lg-1Y
-        for devicetree@vger.kernel.org; Tue, 03 Nov 2020 03:31:32 +0000
-Received: by mail-wr1-f72.google.com with SMTP id i1so7252092wrb.18
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 19:31:32 -0800 (PST)
+        id S1727138AbgKCDsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Nov 2020 22:48:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60618 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725953AbgKCDsx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Nov 2020 22:48:53 -0500
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49EA8C0617A6
+        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 19:48:53 -0800 (PST)
+Received: by mail-io1-xd44.google.com with SMTP id u19so17142353ion.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 19:48:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=356DvTETJyiGqigir3KqVa/M8PT+DOU3v5yq9tbXO5Y=;
+        b=h6ajoktJyyYPVqAu19y/Soi4oOwDxm8ve3d47LilDvB5z3QXDfpeUIGcSr4jQLFKNf
+         pkgCpHeR6E6hyZ1ap5nMc2ZQTNTgKH2jcboQLM66k1PkDorjJN6MKK2LeNt4kiW/DJy5
+         1t7F6h6Wkeq/Ma4XS72ppen4Lfm0tLgkI1/yUyLwbXg/lIMycywAwP9BKIqqpZNWTbVU
+         AEaqtK9ExezIUYYpdTTRrE9+IUg8y4q7I5GjmLwlD/qTrpI0xu1Q5hSVn7GYH2w5pT64
+         PImq4JwM4zpxHTCqIGp8v8G+0dGsG/DLtAwgn4qNQ0SVfqHTv0phVtYfBL4C8C2qLwgA
+         SVNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=2rp7oMbIU1QVb+UrLA07q3LzyCG33ZauCVTuUDlnceA=;
-        b=oSN4nDqgxo2FytPcVao57tYeZ+uobp/QDUjuvjcrvu4sMV+bPS2GkRzOtfqGmdMm/5
-         p6VN3Wrv1CiEppnhEDun+4la03kdtNLbRPT/Fw7ST5svE08saeoUgneQoXWHszfjDByn
-         YyYC7neMrB+zzj0ljIU798dopYU93Od36/yW/n6DVJzmUP+pta7X8wiVTR9wiqewdusI
-         HlcxrVe3mcIq4fxvIHT76bMN6r74vmKjpBkEUUZJ0O8KjygnrF9nXxrOJ3RjOuP8fscp
-         p3kaa4UinTccJnVMR5l29/JEDesa9eF4pUiLmdSaX964QpQHuBJi+5rYhqHuf34ps1WQ
-         ppUQ==
-X-Gm-Message-State: AOAM531zJgqpekrV384FyNviMf0J44x8EPIq++X1LhsJ0Bwnx3R3xvD6
-        kvm+msALC1x5Zr2QY2u1/UTD8WeVveMILzzcFwuum1tuMWLlAJA7RADuGdFll1xgP50khQKGW+v
-        sY24wmahYXrObhKI0qYrJw5ZXD/H1zMswHQNAqghUv3wDBcecDmhlJJI=
-X-Received: by 2002:adf:ce12:: with SMTP id p18mr23477037wrn.52.1604374291669;
-        Mon, 02 Nov 2020 19:31:31 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzIbzt/4neJn7QeRrdYenW8Dms4heXQRX7V8hpk6OPhdPtRu2UB72q1WZ1XgWeKMukJ5CsUp616CnSix8X92jM=
-X-Received: by 2002:adf:ce12:: with SMTP id p18mr23477018wrn.52.1604374291444;
- Mon, 02 Nov 2020 19:31:31 -0800 (PST)
+         :message-id:subject:to:cc;
+        bh=356DvTETJyiGqigir3KqVa/M8PT+DOU3v5yq9tbXO5Y=;
+        b=YNMeferRNFu8/wiu39CTjn5CeAr5Tx6iaAaDpKRRH+OGaA1gu8Jjs9pvOs+YqIdoi6
+         HozKeA4CuR4uSc5e6op2ODBxYZJPEbl7hvE3uXejnIx+3DKjCJgxoz+eYejBKDgsyR76
+         n3i5KqYCHHTV0SO4T2pAxH67DL0dhxMYgaUYmFYDZpEWqEj+N1EZvHm53aTqlhl52uaV
+         Xsg3/QRKWSCfHhMys1jC5Bfl5I8w7cX4+NQ50e9MM2rtOZCpedKSNp+Dku3L9ZyCTCkm
+         d62ZOQUDGQ7WqPngcg+qUG7QZh8diShUEg+CmeooPtnOTyE+Z2m5fpEhC62BrjSqSzdr
+         A2TQ==
+X-Gm-Message-State: AOAM533PR8VCoq0khTHu95RB5XtRNdGl3ubbp75UI31hiHIxICjnA4/C
+        0woS+m46ufMjOqqcwaG6WtLlvHnrrvvCuRD1vBZVVg==
+X-Google-Smtp-Source: ABdhPJw+sKAlWbLH9dvti6+ofKTt1hG/S9sKvy/nAe/EwnWKMwnJ85MPubKgZF3tzrQnZSWrtQvv2H3QP9t21aUfICw=
+X-Received: by 2002:a02:1c8a:: with SMTP id c132mr14676862jac.126.1604375332462;
+ Mon, 02 Nov 2020 19:48:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20201029100613.25789-1-shihlun.lin@advantech.com.tw>
- <20201029100613.25789-5-shihlun.lin@advantech.com.tw> <20201029131419.GA4127@dell>
-In-Reply-To: <20201029131419.GA4127@dell>
-From:   AceLan Kao <chia-lin.kao@canonical.com>
-Date:   Tue, 3 Nov 2020 11:31:20 +0800
-Message-ID: <CAFv23Q=EwE=S7U9-NzRfy8CxM+bFX32HHMfZXS1UsPd8dMqzYQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] mfd: ahc1ec0-hwmon: Add sub-device hwmon for
- Advantech embedded controller
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Shihlun Lin <shihlun.lin@advantech.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh@kernel.org>,
-        "Linux-Kernel@Vger. Kernel. Org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Campion Kang <campion.kang@advantech.com.tw>
+References: <20201103025347.510940-1-ajye_huang@compal.corp-partner.google.com>
+ <20201103025347.510940-3-ajye_huang@compal.corp-partner.google.com>
+In-Reply-To: <20201103025347.510940-3-ajye_huang@compal.corp-partner.google.com>
+From:   Tzung-Bi Shih <tzungbi@google.com>
+Date:   Tue, 3 Nov 2020 11:48:41 +0800
+Message-ID: <CA+Px+wV8z_S09RiespXQiuYm=JRA1JMAPS7MK5ZAFTdaR_DdCA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
+To:     Ajye Huang <ajye.huang@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+On Tue, Nov 3, 2020 at 10:54 AM Ajye Huang <ajye.huang@gmail.com> wrote:
+>
+> In addition, having mixer control to switch between DMICs by
+> using "dmic-gpios" property.
+>
+> Refer to this one as an example,
+> commit b7a742cff3f6 ("ASoC: AMD: Use mixer control to switch between DMICs")
+>
+> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
 
-One question for you.
+LGTM.
 
-Lee Jones <lee.jones@linaro.org> 於 2020年10月29日 週四 下午9:14寫道：
->
-> On Thu, 29 Oct 2020, Shihlun Lin wrote:
->
-> > This is one of sub-device driver for Advantech embedded controller
-> > AHC1EC0. This driver provides sysfs ABI for Advantech related
-> > applications to monitor the system status.
-> >
-> > Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
-> > Reported-by: kernel test robot <lkp@intel.com>
->
-> LKP reported that your driver needed upstreaming?
->
-> I'm confused!
->
-> > ---
-> >  drivers/mfd/Kconfig         |    8 +
-> >  drivers/mfd/Makefile        |    1 +
-> >  drivers/mfd/ahc1ec0-hwmon.c | 1514 +++++++++++++++++++++++++++++++++++
->
-> This obviously belongs in drivers/hwmon.
->
-> >  3 files changed, 1523 insertions(+)
-> >  create mode 100644 drivers/mfd/ahc1ec0-hwmon.c
-> >
-> > diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> > index 965bcafbe5b2..52ca49b211fc 100644
-> > --- a/drivers/mfd/Kconfig
-> > +++ b/drivers/mfd/Kconfig
-> > @@ -2175,5 +2175,13 @@ config MFD_AHC1EC0
-> >         provides expose functions for sub-devices to read/write the value
-> >         to embedded controller.
-> >
-> > +config MFD_AHC1EC0_HWMON
-> > +     tristate "Advantech EC Hareware Monitor Function"
-> > +     depends on MFD_AHC1EC0
-> > +     help
-> > +       This is sub-device for Advantech embedded controller AHC1EC0. This
-> > +       driver provides the sysfs attribues for applications to monitor
-> > +       the system status.
-> > +
-> >  endmenu
-> >  endif
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index 80a9a2bdc3ba..eb645db817b5 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -269,3 +269,4 @@ obj-$(CONFIG_MFD_SIMPLE_MFD_I2C)  += simple-mfd-i2c.o
-> >  obj-$(CONFIG_MFD_INTEL_M10_BMC)   += intel-m10-bmc.o
-> >
-> >  obj-$(CONFIG_MFD_AHC1EC0)    += ahc1ec0.o
-> > +obj-$(CONFIG_MFD_AHC1EC0_HWMON)      += ahc1ec0-hwmon.o
-> > diff --git a/drivers/mfd/ahc1ec0-hwmon.c b/drivers/mfd/ahc1ec0-hwmon.c
-> > new file mode 100644
-> > index 000000000000..3e493b040b4a
-> > --- /dev/null
-> > +++ b/drivers/mfd/ahc1ec0-hwmon.c
-> > @@ -0,0 +1,1514 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*****************************************************************************
-> > + * Copyright (c) 2018, Advantech Automation Corp.
->
-> You can't just lift a whole driver from downstream code and send it to
-> the mailing list as-is.
-Could you elaborate more about which part should be fixed, and how it
-should look like?
-
-> > + * THIS IS AN UNPUBLISHED WORK CONTAINING CONFIDENTIAL AND PROPRIETARY
-> > + * INFORMATION WHICH IS THE PROPERTY OF ADVANTECH AUTOMATION CORP.
-> > + *
-> > + * ANY DISCLOSURE, USE, OR REPRODUCTION, WITHOUT WRITTEN AUTHORIZATION FROM
-> > + * ADVANTECH AUTOMATION CORP., IS STRICTLY PROHIBITED.
-> > + *****************************************************************************
->
-> This warning is in contradiction to the licence you are proposing.
->
-> --
-> Lee Jones [李琼斯]
-> Senior Technical Lead - Developer Services
-> Linaro.org │ Open source software for Arm SoCs
-> Follow Linaro: Facebook | Twitter | Blog
+Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
