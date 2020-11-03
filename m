@@ -2,262 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F99C2A4480
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 12:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BA6F2A44CC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 13:09:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728687AbgKCLqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 06:46:52 -0500
-Received: from mail-eopbgr40066.outbound.protection.outlook.com ([40.107.4.66]:28642
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727665AbgKCLqw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 06:46:52 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KItynheo1nhAOLjcEsswDYJOHIBizKRKfSehN6ItmIeLrdmDQ5DZULHKgzZrb8zVS2LZSar8oUFu9psvGFfUcMvquutPtINCtoWn7//npeiqclXi3Z+9et2izQQXn1EMijo70fnTILO/OIGVeV6n9CMGMgDW0iwA9spIaMi5seOHxR0jkJLj3WbYNdT85L9oowM203NX3kHOAvPOu/EHUwZaN5ruV9KiWE3Y5zi8MKba1T/DJuFTDq0P7vwVcO4gwbbsH2bu1FAODL4Vh10EuKBDZSCCm1be35Gj4QuNKUqOd21tagHl4uzgHov4Ga4DZAsPK+wu+2juRXIR23Hk1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U0nmpuMjyAzlYs7St5YcdiLOyI/IWKYRQ2TLTkVahaE=;
- b=Td74agiEX8Z7Xix4KBBf/cK89ImV/6YFhji0vabK5mzKgDZFSH2vvU2H8mlaCQedXqW7NRaqQxfa7QAX2z1PJjUl1HcLpNspdfCOdguSP1xJEggmGjh4gu+iwMNk+5kh7KWV8WFEv9o809XB0h/MQLuW9u+jZM9wlxQlZr2mEURZvAJFwMsfBt+7o1PP2eaLVsX+cDHlOvLpgZdcoq9cn4qysXIpk0wBC5VHSUw7Gz/Kx7wRSpUN0jXkJs4qXEenzJl5Cciv/NASMSArd5xV3XGlNDJ3YGkV78atgrz+Dyl80OyxaHLM88B0uKTqgsE3BZNCJRbFzwANHr/bh5Ufuw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U0nmpuMjyAzlYs7St5YcdiLOyI/IWKYRQ2TLTkVahaE=;
- b=Dlaw5BL1Ivq82PsewyQtHcCES/L1h4lhxpkc8RRgYVBDug4rGKq5XUVEgqiw2Ik6Wjzu5f0JFkoXeC1UTEn5P4F4DHdbjIc3mDmv3jV1G7KZU9eWsl0qGG9EgP+cdo2Z+mOCgwdHpL8pSB40vvs86PjomR/Zbzy5ewi/1MS6NrE=
-Authentication-Results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=nxp.com;
-Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
- by VE1PR04MB7278.eurprd04.prod.outlook.com (2603:10a6:800:1b1::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Tue, 3 Nov
- 2020 11:46:36 +0000
-Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
- ([fe80::852e:24d5:4c9f:5bdf]) by VE1PR04MB6528.eurprd04.prod.outlook.com
- ([fe80::852e:24d5:4c9f:5bdf%6]) with mapi id 15.20.3499.032; Tue, 3 Nov 2020
- 11:46:36 +0000
-From:   Li Jun <jun.li@nxp.com>
-To:     heikki.krogerus@linux.intel.com, robh+dt@kernel.org,
-        rafael@kernel.org
-Cc:     gregkh@linuxfoundation.org, andriy.shevchenko@linux.intel.com,
-        hdegoede@redhat.com, lee.jones@linaro.org,
-        mika.westerberg@linux.intel.com, dmitry.torokhov@gmail.com,
-        prabhakar.mahadev-lad.rj@bp.renesas.com,
-        laurent.pinchart+renesas@ideasonboard.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-imx@nxp.com, peter.chen@nxp.com
-Subject: [PATCH v5 4/4] usb: typec: mux: add typec switch simple driver
-Date:   Tue,  3 Nov 2020 19:40:10 +0800
-Message-Id: <1604403610-16577-4-git-send-email-jun.li@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604403610-16577-1-git-send-email-jun.li@nxp.com>
-References: <1604403610-16577-1-git-send-email-jun.li@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR01CA0131.apcprd01.prod.exchangelabs.com
- (2603:1096:4:40::35) To VE1PR04MB6528.eurprd04.prod.outlook.com
- (2603:10a6:803:127::18)
+        id S1728757AbgKCMJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 07:09:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728644AbgKCMJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 07:09:47 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68523C0617A6
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 04:09:47 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id 23so18733697ljv.7
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 04:09:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wV6Ly4OTVMIHuO3QgeFv/pV+xSUgjDASQ2+fZhKE0+w=;
+        b=lDUD5G3BKbsO7njFX973jlMkuFWjh80WIMfdBSol37Y6t1X0Bb+jVGR1APjJpfXtZD
+         1GWznh0ZEeQkSOPtWBHJM3b3zwqO+n6tUQaYWSWNUwLWm0+PAaI1ooow9FWkENUow2At
+         HbBICEJVdFfszyoMKS6GHpkglzIfW8knjXi7c6L7pLuLwLsiOs+AdUkdu/Sugyb3DrnK
+         33EYZaq7FlquURV5ZKFYnZWmdN9Bcqf1qJ4oKLHxYhE2ecCFvGFzK5eRhylmnOLLXoNF
+         5lzvkU1T+qVcel5YtGr5A0td/tTFYgRoLuItbfGvjICxj0PBG0zmWOQyyfLaHtN13ghy
+         PKvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=wV6Ly4OTVMIHuO3QgeFv/pV+xSUgjDASQ2+fZhKE0+w=;
+        b=M/HpwaJtckxAFqeD3a34Wa+ktNNmRmFSghpTLReYAaQiRW86K5e0fXXl0/vHmwCXca
+         K1l649xcWXoGJQEkAReoz1fKDsxJ/UrC4MN2e4WsYE7y4e+CJ94LeR/dAXV9NYQzQ4G0
+         flfWaLArF8IX7WL56tmmKXMf6tNuTp3MjDwHjMDfByBVnBqGDqYWZ9wXG+TS6GKRDQaV
+         Yk09zjh2OCs3xc3PiSCzYdtyGookXZ7avNdWT69OjBn2GU7amMFHQHCL0SEwEojflTvN
+         6YqP0nazg4Hg35eX+d9py1enPowQWr5LcVYv8G9QmMokwg3ZgwMMvsybzXYwgcgkkAT1
+         38HQ==
+X-Gm-Message-State: AOAM532JyJ42Ao8QAijGfmFTtMXfKm4iwz3eyIAeV2vYVSJPnwT+si4G
+        ynZ9kwQHc56+AVwNMBp4/oRnXg==
+X-Google-Smtp-Source: ABdhPJzP8QkebpLumvWNek0wptLkNxKJKP5M8iwRa97pDBpiEMCZ6DJAVA0MWItt8ZuCfpPOuMyvcQ==
+X-Received: by 2002:a2e:8350:: with SMTP id l16mr698947ljh.128.1604405385766;
+        Tue, 03 Nov 2020 04:09:45 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id p18sm4155723ljn.127.2020.11.03.04.09.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Nov 2020 04:09:45 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>
+Cc:     linux-bluetooth@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] Bluetooth: btbcm: Rewrite bindings i YAML and add reset
+Date:   Tue,  3 Nov 2020 13:09:42 +0100
+Message-Id: <20201103120943.1289277-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.66) by SG2PR01CA0131.apcprd01.prod.exchangelabs.com (2603:1096:4:40::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3499.19 via Frontend Transport; Tue, 3 Nov 2020 11:46:32 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 331594b9-e0bc-4c7d-e1b4-08d87fee1e91
-X-MS-TrafficTypeDiagnostic: VE1PR04MB7278:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VE1PR04MB72786C7A421BEB365282F47489110@VE1PR04MB7278.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1775;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9JI25Quze5J12+NygoKt6BUlzA2F+bo3O/vNburxgfERgXXjLQWS0XlF4e2WCfB454mmar0UW6vn5ZOBbUbDa/Mxv2GiBDbarPWTPg+rkAduJyrZVeCQrpbOc+DGfJ8/QSWJsMHPEq1FdDVoxGANL0nBYRFL8uLdiopWApCRe6OEjxB0+myDJBCcdVU8tatkebwrhc1K0wC1CgtX76m5FmnAGRprO2w6JZxIxZJFWq9Ohkn0CyscNMEfgV2AZUTvbhti6k07MoN3HIhbl43a20qT99Z5hgQFQ/8lF/LX1UYyl3oxJenbyExLqJ3nfD/UNwsIE42TBtc16xxgNMNOiG/P+nCCqU7cHAwKDXoFLkxqaunJjZYxEiNTcLyKBvzy
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(136003)(346002)(376002)(39860400002)(69590400008)(26005)(316002)(16526019)(186003)(8936002)(6486002)(6506007)(7416002)(83380400001)(4326008)(6666004)(478600001)(36756003)(956004)(5660300002)(2906002)(66476007)(2616005)(86362001)(66556008)(52116002)(66946007)(6512007)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: gmDJ+DP1OgLN5lHBDKGDIWTuEkZvNmTfw4SeKNavHWxxI5dzhrOIHr/8ZNWdHJgO4PHPAOye6pVY6HTScuq09Yk7GATca/eMX5zwrS8S4vhIzEBo2pSLY+J11A7hUpVWQyOzC2uX1DG9A/eMo3tqBk4lHEWxRB/qpZ8IDncEdFeHiqUiWJ8FrVhnlMOMKZRKF6wskKLZt0w4GvCgJgd/+W4lHT7mqvhE0az5jDpcm/KC+GsFDvpEJvnd1CZ/omLPV83IsKSPlRKJ0VJPah74RaO0j7UApEMhy/rn+5EIbDP+HFifO4RdPbgwe2+OyvGmo6GsgZFtcYhv9F+24/xb3M9Lm0V8+32FoknkxgaDrCSY6dvRpMIe1RixYFQbO992FwoMeJZLgqk7313Nfs373Hib2VoUUhK8hDVg70muBLxLniZrifRC1fgcIvl4N+dbgGKdn9e7RVQSnRF+vkGbYcWxdNx+7aGDZM7P96B4cLLME4h1zHCJEzxlzl/Tfh0juIy1G9XTVOahZzeuj8b6EYbu3WfojdSZFoHIjMR8cjE0PfN4J9WXXFJbGtQhgc3QivWZ+SJFd37ef6zwY4YLEykHI9klubUFpWklV6ZkrqzZGkfNFDA7vMW+qXy/B8nRi3LKZEnYY2EYBr1Dxd9faw==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 331594b9-e0bc-4c7d-e1b4-08d87fee1e91
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2020 11:46:36.7954
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pFYoPh54+QXW3HdMPTo4w9Hr7l+D2kHdb1n8gTTJBSOr/zRkSQaWiv1i4hYPHruk
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7278
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a simple typec switch driver for cases which only
-needs some simple operations but a dedicated driver is required,
-current driver only supports GPIO toggle to switch the super speed
-active channel according to typec orientation.
+This rewrites the Broadcom bluetooth bindings in YAML and
+adds a GPIO handle for the BT_RST_N line as used on some
+platforms.
 
-Signed-off-by: Li Jun <jun.li@nxp.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Changes for v5:
-- A few changes address Andy's comment, remove gpio check as it's
-  optional, add module name for Kconfig, use correct header files,
-  and other minor changes.
-- Remove the mutex lock as it's not required currently.
+ .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
+ .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
+ 2 files changed, 117 insertions(+), 56 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+ create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
 
-Changes for v4:
-- Change driver name to be switch simple from switch GPIO, to make it
-  generic for possible extention.
-- Use compatiable "typec-orientation-switch" instead of bool property
-  for switch matching.
-- Make acitve channel selection GPIO to be optional.
-- Remove Andy's R-b tag since the driver changes a lot.
-
-Change for v3:
-- Remove file name in driver description.
-- Add Andy Shevchenko's Reviewed-by tag.
-
-Changes for v2:
-- Use the correct head files for gpio api and of_device_id:
-  #include <linux/gpio/consumer.h>
-  #include <linux/mod_devicetable.h>
-- Add driver dependency on GPIOLIB
-
- drivers/usb/typec/mux/Kconfig         |  10 ++++
- drivers/usb/typec/mux/Makefile        |   1 +
- drivers/usb/typec/mux/switch-simple.c | 100 ++++++++++++++++++++++++++++++++++
- 3 files changed, 111 insertions(+)
-
-diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-index a4dbd11..11320d7 100644
---- a/drivers/usb/typec/mux/Kconfig
-+++ b/drivers/usb/typec/mux/Kconfig
-@@ -18,4 +18,14 @@ config TYPEC_MUX_INTEL_PMC
- 	  control the USB role switch and also the multiplexer/demultiplexer
- 	  switches used with USB Type-C Alternate Modes.
- 
-+config TYPEC_SWITCH_SIMPLE
-+	tristate "Type-C orientation switch simple driver"
-+	depends on GPIOLIB
-+	help
-+	  Say Y or M if your system need a simple driver for typec switch
-+	  control, like use GPIO to select active channel.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called switch-simple.
-+
- endmenu
-diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-index 280a6f5..712d0ad 100644
---- a/drivers/usb/typec/mux/Makefile
-+++ b/drivers/usb/typec/mux/Makefile
-@@ -2,3 +2,4 @@
- 
- obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
- obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-+obj-$(CONFIG_TYPEC_SWITCH_SIMPLE)	+= switch-simple.o
-diff --git a/drivers/usb/typec/mux/switch-simple.c b/drivers/usb/typec/mux/switch-simple.c
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+deleted file mode 100644
+index a7d57ba5f2ac..000000000000
+--- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
++++ /dev/null
+@@ -1,56 +0,0 @@
+-Broadcom Bluetooth Chips
+----------------------
+-
+-This documents the binding structure and common properties for serial
+-attached Broadcom devices.
+-
+-Serial attached Broadcom devices shall be a child node of the host UART
+-device the slave device is attached to.
+-
+-Required properties:
+-
+- - compatible: should contain one of the following:
+-   * "brcm,bcm20702a1"
+-   * "brcm,bcm4329-bt"
+-   * "brcm,bcm4330-bt"
+-   * "brcm,bcm43438-bt"
+-   * "brcm,bcm4345c5"
+-   * "brcm,bcm43540-bt"
+-   * "brcm,bcm4335a0"
+-
+-Optional properties:
+-
+- - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
+- - shutdown-gpios: GPIO specifier, used to enable the BT module
+- - device-wakeup-gpios: GPIO specifier, used to wakeup the controller
+- - host-wakeup-gpios: GPIO specifier, used to wakeup the host processor.
+-                      deprecated, replaced by interrupts and
+-                      "host-wakeup" interrupt-names
+- - clocks: 1 or 2 clocks as defined in clock-names below, in that order
+- - clock-names: names for clock inputs, matching the clocks given
+-   - "extclk": deprecated, replaced by "txco"
+-   - "txco": external reference clock (not a standalone crystal)
+-   - "lpo": external low power 32.768 kHz clock
+- - vbat-supply: phandle to regulator supply for VBAT
+- - vddio-supply: phandle to regulator supply for VDDIO
+- - brcm,bt-pcm-int-params: configure PCM parameters via a 5-byte array
+-    - sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
+-    - pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
+-    - pcm-frame-type: short, long
+-    - pcm-sync-mode: slave, master
+-    - pcm-clock-mode: slave, master
+- - interrupts: must be one, used to wakeup the host processor
+- - interrupt-names: must be "host-wakeup"
+-
+-Example:
+-
+-&uart2 {
+-       pinctrl-names = "default";
+-       pinctrl-0 = <&uart2_pins>;
+-
+-       bluetooth {
+-               compatible = "brcm,bcm43438-bt";
+-               max-speed = <921600>;
+-               brcm,bt-pcm-int-params = [01 02 00 01 01];
+-       };
+-};
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
 new file mode 100644
-index 0000000..8707703
+index 000000000000..bdd6ca617e23
 --- /dev/null
-+++ b/drivers/usb/typec/mux/switch-simple.c
-@@ -0,0 +1,100 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Type-C switch simple control driver
-+ *
-+ * Copyright 2020 NXP
-+ * Author: Jun Li <jun.li@nxp.com>
-+ */
++++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+@@ -0,0 +1,117 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/broadcom-bluetooth.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/mutex.h>
-+#include <linux/platform_device.h>
-+#include <linux/usb/typec_mux.h>
++title: Broadcom Bluetooth Chips
 +
-+struct typec_switch_simple {
-+	struct typec_switch *sw;
-+	struct gpio_desc *sel_gpio;
-+};
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
 +
-+static int typec_switch_simple_set(struct typec_switch *sw,
-+				   enum typec_orientation orientation)
-+{
-+	struct typec_switch_simple *typec_sw = typec_switch_get_drvdata(sw);
++description:
++  This binding describes Broadcom UART-attached bluetooth chips.
 +
-+	switch (orientation) {
-+	case TYPEC_ORIENTATION_NORMAL:
-+		gpiod_set_value_cansleep(typec_sw->sel_gpio, 1);
-+		break;
-+	case TYPEC_ORIENTATION_REVERSE:
-+		gpiod_set_value_cansleep(typec_sw->sel_gpio, 0);
-+		break;
-+	case TYPEC_ORIENTATION_NONE:
-+		break;
-+	}
++properties:
++  compatible:
++    enum:
++      - brcm,bcm20702a1
++      - brcm,bcm4329-bt
++      - brcm,bcm4330-bt
++      - brcm,bcm43438-bt
++      - brcm,bcm4345c5
++      - brcm,bcm43540-bt
++      - brcm,bcm4335a0
 +
-+	return 0;
-+}
++  shutdown-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_REG_ON used to
++      power on the BT module
 +
-+static int typec_switch_simple_probe(struct platform_device *pdev)
-+{
-+	struct device			*dev = &pdev->dev;
-+	struct typec_switch_desc	sw_desc;
-+	struct typec_switch_simple	*typec_sw;
++  reset-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_RST_N used to
++      reset the BT module. This should be marked as
++      GPIO_ACTIVE_LOW.
 +
-+	typec_sw = devm_kzalloc(dev, sizeof(*typec_sw), GFP_KERNEL);
-+	if (!typec_sw)
-+		return -ENOMEM;
++  device-wakeup-gpios:
++    maxItems: 1
++    description: GPIO specifier for the line BT_WAKE used to
++      wakeup the controller. This is using the BT_GPIO_0
++      pin on the chip when in use.
 +
-+	platform_set_drvdata(pdev, typec_sw);
++  host-wakeup-gpios:
++    maxItems: 1
++    deprecated: true
++    description: GPIO specifier for the line HOST_WAKE used
++      to wakeup the host processor. This is using he BT_GPIO_1
++      pin on the chip when in use. This is deprecated and replaced
++      by interrupts and "host-wakeup" interrupt-names
 +
-+	sw_desc.drvdata = typec_sw;
-+	sw_desc.fwnode = dev->fwnode;
-+	sw_desc.set = typec_switch_simple_set;
++  clocks:
++    maxItems: 2
++    description: 1 or 2 clocks as defined in clock-names below,
++      in that order
 +
-+	/* Get the super speed active channel selection GPIO */
-+	typec_sw->sel_gpio = devm_gpiod_get_optional(dev, "switch", GPIOD_OUT_LOW);
-+	if (IS_ERR(typec_sw->sel_gpio))
-+		return PTR_ERR(typec_sw->sel_gpio);
++  clock-names:
++    description: Names of the 1 to 2 supplied clocks
++    items:
++      - const: txco
++      - const: lpo
++      - const: extclk
 +
-+	typec_sw->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(typec_sw->sw)) {
-+		dev_err(dev, "Error registering typec switch: %ld\n",
-+			PTR_ERR(typec_sw->sw));
-+		return PTR_ERR(typec_sw->sw);
-+	}
++  vbat-supply:
++    description: phandle to regulator supply for VBAT
 +
-+	return 0;
-+}
++  vddio-supply:
++    description: phandle to regulator supply for VDDIO
 +
-+static int typec_switch_simple_remove(struct platform_device *pdev)
-+{
-+	struct typec_switch_simple *typec_sw = platform_get_drvdata(pdev);
++  brcm,bt-pcm-int-params:
++    $ref: /schemas/types.yaml#/definitions/uint8-array
++    minItems: 5
++    maxItems: 5
++    description: |-
++      configure PCM parameters via a 5-byte array:
++       sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
++       pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
++       pcm-frame-type: short, long
++       pcm-sync-mode: slave, master
++       pcm-clock-mode: slave, master
 +
-+	typec_switch_unregister(typec_sw->sw);
++  interrupts:
++    items:
++      - description: Handle to the line HOST_WAKE used to wake
++          up the host processor. This uses the BT_GPIO_1 pin on
++          the chip when in use.
 +
-+	return 0;
-+}
++  interrupt-names:
++    items:
++      - const: host-wakeup
 +
-+static const struct of_device_id of_typec_switch_simple_match[] = {
-+	{ .compatible = "typec-orientation-switch" },
-+	{ /* Sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, of_typec_switch_simple_match);
++  max-speed: true
++  current-speed: true
 +
-+static struct platform_driver typec_switch_simple_driver = {
-+	.probe		= typec_switch_simple_probe,
-+	.remove		= typec_switch_simple_remove,
-+	.driver		= {
-+		.name	= "typec-switch-simple",
-+		.of_match_table = of_typec_switch_simple_match,
-+	},
-+};
++required:
++  - compatible
 +
-+module_platform_driver(typec_switch_simple_driver);
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("TypeC Orientation Switch Simple driver");
-+MODULE_AUTHOR("Jun Li <jun.li@nxp.com>");
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    uart {
++        uart-has-rtscts;
++
++        bluetooth {
++            compatible = "brcm,bcm4330-bt";
++            max-speed = <921600>;
++            brcm,bt-pcm-int-params = [01 02 00 01 01];
++            shutdown-gpios = <&gpio 30 GPIO_ACTIVE_HIGH>;
++            device-wakeup-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
++            reset-gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
++            interrupt-parent = <&gpio>;
++            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
 -- 
-2.7.4
+2.26.2
 
