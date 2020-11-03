@@ -2,303 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CCB02A4441
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 12:28:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 230242A4456
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 12:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728350AbgKCL2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 06:28:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47516 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728343AbgKCL2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 06:28:55 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D1ADC0613D1
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 03:28:54 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1kZuUN-0006Zl-Ef; Tue, 03 Nov 2020 12:28:35 +0100
-Received: from [IPv6:2a03:f580:87bc:d400:fc98:3f6c:e55:4519] (unknown [IPv6:2a03:f580:87bc:d400:fc98:3f6c:e55:4519])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits))
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 093BA58914E;
-        Tue,  3 Nov 2020 11:28:07 +0000 (UTC)
-To:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        David Miller <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Carsten Emde <c.emde@osadl.org>, armbru@redhat.com,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Marin Jerabek <martin.jerabek01@gmail.com>,
-        Ondrej Ille <ondrej.ille@gmail.com>,
-        Jiri Novak <jnovak@fel.cvut.cz>,
-        Jaroslav Beran <jara.beran@gmail.com>,
-        Petr Porazil <porazil@pikron.com>, Pavel Machek <pavel@ucw.cz>,
-        Drew Fustini <pdp7pdp7@gmail.com>
-References: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
- <2ccec201-1a84-1837-15a8-d2ad05f5753c@pengutronix.de>
- <202011031100.35922.pisa@cmp.felk.cvut.cz>
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Subject: Re: [PATCH v7 0/6] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
-Message-ID: <07227792-f75f-6998-bd09-ce6e612de79f@pengutronix.de>
-Date:   Tue, 3 Nov 2020 12:27:51 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1728198AbgKCLdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 06:33:04 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:35035 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728493AbgKCLdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 06:33:00 -0500
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201103113248euoutp02cef8f5135c6866a171b6ff0c7fbcce8f~D-C5vQshc0278002780euoutp02C
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 11:32:48 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201103113248euoutp02cef8f5135c6866a171b6ff0c7fbcce8f~D-C5vQshc0278002780euoutp02C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604403168;
+        bh=fReq/5gleB0cci52KJ0pEExEhZgxvPuj7W3jQgkJdxw=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=XKHNMKJsML6y/xa7G5YIwWFJ6uPInaY5KS89Ddo3fjAoxIaiYm5cCuGTqF7bya62x
+         d67gxCMBaPPdHRNJcG1Px1le2MglDrHowQGlFNCWt9ILPtzmCmq/la8F397xlmcav+
+         GztvmxJ/eVSmaaFMMs6QBV5Qo2648nWrBNe4bzz0=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201103113236eucas1p25c4317debfce3dd093e24503f4a02295~D-CuDkbNN0380303803eucas1p25;
+        Tue,  3 Nov 2020 11:32:36 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id AB.82.06456.4DF31AF5; Tue,  3
+        Nov 2020 11:32:36 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201103113235eucas1p282f0b782b066ea7aea385c0d85b53951~D-CtrFiAq0380303803eucas1p24;
+        Tue,  3 Nov 2020 11:32:35 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201103113235eusmtrp2154c224a1b462956fbf31e688ec94053~D-CtqTkmS3132631326eusmtrp2K;
+        Tue,  3 Nov 2020 11:32:35 +0000 (GMT)
+X-AuditID: cbfec7f2-809ff70000001938-7c-5fa13fd4f2d7
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 26.14.06017.3DF31AF5; Tue,  3
+        Nov 2020 11:32:35 +0000 (GMT)
+Received: from [106.210.123.115] (unknown [106.210.123.115]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201103113234eusmtip1455972894957538c7a51aa7381fdf5ff~D-CsrFtLb2256922569eusmtip1i;
+        Tue,  3 Nov 2020 11:32:34 +0000 (GMT)
+Subject: Re: [PATCH v7 2/6] interconnect: Add generic interconnect driver
+ for Exynos SoCs
+To:     Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     georgi.djakov@linaro.org, krzk@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        a.swigon@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <6cc9a2f8-9d9a-68b7-9f47-e16fefb18d88@samsung.com>
+Date:   Tue, 3 Nov 2020 12:32:33 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.1
 MIME-Version: 1.0
-In-Reply-To: <202011031100.35922.pisa@cmp.felk.cvut.cz>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="HSmpXvlax4XdoV1rAGbIPsQEBpVpcENi6"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <88af4e53-6c7a-c2e6-ad28-a9d6bb5bf623@samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUwTURSGc2fa6VApXgqkh4qCDYnFKEjEOIkr6kPji5j4YCQsFUdQaSUd
+        QNAHF8CFijag7NLKTiOiiERBBEkBEVkiiAuQxogoGiFYwH2hHY28fef+57/n/MmhSWm/UE4f
+        0MazOq06VkGJBfXtX3tWDmy6GrGqroRkrEVpiLmZWyNknk2/FTJGS4+QGZiZpJicplqKybQa
+        BExv7w0R099QSDG2DAticnvvE0y1ZUTEDJ2spJi0JouIyc0apzYvVNWaz1Gq4cF7lMqq7yBU
+        F+rMSGWrXRIi3CNev4+NPZDI6gI2Ropj2nrKUNygT9KHG53oBHrhmY6caMBBkJ3xk0hHYlqK
+        KxG0XG8n7IIUTyOoNnvygg3BrE1P/nNUlhdTvFCBoG+6QsgXUwjyClJF9i43HAqvshocDnes
+        hLyfA8jeROIZAs71mpBdoHAgZLRdcLAEb4SipwaHQYB9oe3NFcceHjgcDDdTBXyPK3TmjTrY
+        CW+CiR+FDiaxDF6OGgmevSHldgFpHwZ4RgRlD8YQv/c2aDGf/pvBDd531Il49oLfd40Eb0hB
+        cL5xSMQXBgTWDtNf9zoY7vk2l5qeG+EHNQ0BdgQcDE8sSh5d4PlHV34HF8iszyH5ZwmcPS3l
+        //CF7+Ycgmc56Ed/CwxIkT8vWf68NPnz0uT/H2tCAjOSsQmcJprlArXsEX9OreEStNH+UYc1
+        tWju1Lp+dXy6g2ae7G1FmEYKZ8lm1hQhFaoTuWRNKwKaVLhLtnR3hUsl+9TJR1nd4QhdQizL
+        taJFtEAhk6wuHg+T4mh1PHuIZeNY3T+VoJ3kJ5BHbHBpNldapN+fZ6uWT+0yPgoJqpI1R0VG
+        JqWPfCNWXi6R5nQLv5TLtT7iYpOLUTbW/Liy+bUrFR/Vdejaw3bnY96iGr/ZrXc2rAlfrjy4
+        ULn9YOaOuDC9327/UC9j1YK1k+6XPh9bEdNcZT3l0nAmzPtWfcI7vLRv8cTFnY3By44rBFyM
+        OnA5qePUfwDMfoauZgMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrKIsWRmVeSWpSXmKPExsVy+t/xu7qX7RfGG5xYpmpxf14ro8XGGetZ
+        La5/ec5qMf/IOVaLK1/fs1lM37uJzWLS/QksFufPb2C3uLxrDpvF594jjBYzzu9jslh75C67
+        xe3GFWwWrXuPsFvMmPySzYHfY9OqTjaPO9f2sHnc7z7O5NG3ZRWjx+dNcgGsUXo2RfmlJakK
+        GfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2CXoZR88tZSy4plDxesNJ
+        xgbGm5JdjJwcEgImEiuWLWLrYuTiEBJYyijxvuswaxcjB1BCSmJ+ixJEjbDEn2tdUDXvGSWO
+        nt7OBlIjLBAtMfWDI0iNiICGxMy/VxhBapgFvjJJXN5/BarhC6PE7+uTGUGq2AQMJXqP9oHZ
+        vAJ2EvOuTmAGsVkEVCSOPp3LBGKLCsRJ/JjYywZRIyhxcuYTFhCbU8Be4t2fOWA2s4C6xJ95
+        l5ghbHGJW0/mM0HY8hLNW2czT2AUmoWkfRaSlllIWmYhaVnAyLKKUSS1tDg3PbfYSK84Mbe4
+        NC9dLzk/dxMjMIq3Hfu5ZQdj17vgQ4wCHIxKPLwOqQvihVgTy4orcw8xSnAwK4nwOp09HSfE
+        m5JYWZValB9fVJqTWnyI0RTouYnMUqLJ+cAEk1cSb2hqaG5haWhubG5sZqEkztshcDBGSCA9
+        sSQ1OzW1ILUIpo+Jg1OqgfEQX843rliR7mvVoS3Vsnf1D189Z2/KJBy6oz/IksdysWEMs0FP
+        cmaZ+KQvs1z2eN3NvXzveMDPhdGfF+/9lGDe5LjL2k3o+vxTVVdXHr31LnimoX/Fnrvz7pzU
+        WSNwvmydxZ3om+fEjFY6F7sdM3M4daVNtWTjwcXqLo3H8o1OXdiRy8KXslOJpTgj0VCLuag4
+        EQC6appF+AIAAA==
+X-CMS-MailID: 20201103113235eucas1p282f0b782b066ea7aea385c0d85b53951
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9
+References: <20201030125149.8227-1-s.nawrocki@samsung.com>
+        <CGME20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9@eucas1p2.samsung.com>
+        <20201030125149.8227-3-s.nawrocki@samsung.com>
+        <88af4e53-6c7a-c2e6-ad28-a9d6bb5bf623@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---HSmpXvlax4XdoV1rAGbIPsQEBpVpcENi6
-Content-Type: multipart/mixed; boundary="kaWYKkidhmf7IL6XEa3xQkbQAEUuWLNMs";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Pavel Pisa <pisa@cmp.felk.cvut.cz>
-Cc: linux-can@vger.kernel.org, devicetree@vger.kernel.org,
- Oliver Hartkopp <socketcan@hartkopp.net>,
- Wolfgang Grandegger <wg@grandegger.com>, David Miller <davem@davemloft.net>,
- Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
- Carsten Emde <c.emde@osadl.org>, armbru@redhat.com, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, Marin Jerabek <martin.jerabek01@gmail.com>,
- Ondrej Ille <ondrej.ille@gmail.com>, Jiri Novak <jnovak@fel.cvut.cz>,
- Jaroslav Beran <jara.beran@gmail.com>, Petr Porazil <porazil@pikron.com>,
- Pavel Machek <pavel@ucw.cz>, Drew Fustini <pdp7pdp7@gmail.com>
-Message-ID: <07227792-f75f-6998-bd09-ce6e612de79f@pengutronix.de>
-Subject: Re: [PATCH v7 0/6] CTU CAN FD open-source IP core SocketCAN driver,
- PCI, platform integration and documentation
-References: <cover.1604095004.git.pisa@cmp.felk.cvut.cz>
- <2ccec201-1a84-1837-15a8-d2ad05f5753c@pengutronix.de>
- <202011031100.35922.pisa@cmp.felk.cvut.cz>
-In-Reply-To: <202011031100.35922.pisa@cmp.felk.cvut.cz>
-
---kaWYKkidhmf7IL6XEa3xQkbQAEUuWLNMs
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-
-On 11/3/20 11:00 AM, Pavel Pisa wrote:
-> On Saturday 31 of October 2020 12:35:11 Marc Kleine-Budde wrote:
->> On 10/30/20 11:19 PM, Pavel Pisa wrote:
->>> This driver adds support for the CTU CAN FD open-source IP core.
+On 03.11.2020 10:37, Chanwoo Choi wrote:
+> On 10/30/20 9:51 PM, Sylwester Nawrocki wrote:
+>> This patch adds a generic interconnect driver for Exynos SoCs in order
+>> to provide interconnect functionality for each "samsung,exynos-bus"
+>> compatible device.
 >>
->> Please fix the following checkpatch warnings/errors:
->=20
-> Yes I recheck with actual checkpatch, I have used 5.4 one
-> and may it be overlooked something during last upadates.
+>> The SoC topology is a graph (or more specifically, a tree) and its
+>> edges are specified using the 'samsung,interconnect-parent' in the
+> 
+> samsung,interconnect-parent -> interconnects?
 
-I used the lastest one from linus/master :)
+Yes, I will rephrase the whole commit message as it's a bit outdated now.
 
->> -----------------------------------------
->> drivers/net/can/ctucanfd/ctucanfd_frame.h
->> -----------------------------------------
->> CHECK: Please don't use multiple blank lines
->> #46: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:46:
->=20
-> OK, we find a reason for this blank line in header generator.
->=20
->> CHECK: Prefer kernel type 'u32' over 'uint32_t'
->> #49: FILE: drivers/net/can/ctucanfd/ctucanfd_frame.h:49:
->> +	uint32_t u32;
->=20
-> In this case, please confirm that even your personal opinion
-> is against uint32_t in headers, you request the change.
+I've changed the sentence to:
+"The SoC topology is a graph (or more specifically, a tree) and its
+edges are described by specifying in the 'interconnects' property
+the interconnect consumer path for each interconnect provider DT node."
 
-confirmed :)
+>> DT. Due to unspecified relative probing order, -EPROBE_DEFER may be
+>> propagated to ensure that the parent is probed before its children.
+>>
+>> Each bus is now an interconnect provider and an interconnect node as
+>> well (cf. Documentation/interconnect/interconnect.rst), i.e. every bus
+>> registers itself as a node. Node IDs are not hardcoded but rather
+>> assigned dynamically at runtime. This approach allows for using this
+>> driver with various Exynos SoCs.
+>>
+>> Frequencies requested via the interconnect API for a given node are
+>> propagated to devfreq using dev_pm_qos_update_request(). Please note
+>> that it is not an error when CONFIG_INTERCONNECT is 'n', in which
+>> case all interconnect API functions are no-op.
+>>
+>> The bus-width DT property is to determine the interconnect data
+>> width and traslate requested bandwidth to clock frequency for each
+>> bus.
+>>
+>> Signed-off-by: Artur Świgoń <a.swigon@samsung.com>
+>> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
 
-> uint32_t is used in many kernel headers and in this case
-> allows our tooling to use headers for mutual test of HDL
-> design match with HW access in the C.
+>> +++ b/drivers/interconnect/exynos/exynos.c
 
-It's probably historically related :)
+>> +struct exynos_icc_priv {
+>> +	struct device *dev;
+>> +
+>> +	/* One interconnect node per provider */
+>> +	struct icc_provider provider;
+>> +	struct icc_node *node;
+>> +
+>> +	struct dev_pm_qos_request qos_req;
+>> +	u32 bus_clk_ratio;
+>> +};
+>> +
+>> +static struct icc_node *exynos_icc_get_parent(struct device_node *np)
+>> +{
+>> +	struct of_phandle_args args;
+>> +	struct icc_node_data *icc_node_data;
+>> +	struct icc_node *icc_node;
+>> +	int num, ret;
+>> +
+>> +	num = of_count_phandle_with_args(np, "interconnects",
+>> +					 "#interconnect-cells");
+>> +	if (num < 1)
+>> +		return NULL; /* parent nodes are optional */
+>> +
+>> +	/* Get the interconnect target node */
+>> +	ret = of_parse_phandle_with_args(np, "interconnects",
+>> +					"#interconnect-cells", 0, &args);
+>> +	if (ret < 0)
+>> +		return ERR_PTR(ret);
+>> +
+>> +	icc_node_data = of_icc_get_from_provider(&args);
+>> +	of_node_put(args.np);
+>> +
+>> +	if (IS_ERR(icc_node_data))
+>> +		return ERR_CAST(icc_node_data);
+>> +
+>> +	icc_node = icc_node_data->node;
+>> +	kfree(icc_node_data);
+>> +
+>> +	return icc_node;
+>> +}
+> 
+> I have a question about exynos_icc_get_parent().
+> As I checked, this function returns the only one icc_node
+> as parent node. But, bus_display dt node in the exynos4412.dtsi
+> specifies the two interconnect node as following with bus_leftbus, bus_dmc,
+> 
+> When I checked the return value of exynos_icc_get_parent()
+> during probing for bus_display device, exynos_icc_get_parent() function
+> only returns 'bus_leftbus' icc_node. Do you need to add two phandle
+> of icc node?
 
-> If the reasons to remove uint32_t prevails, we need to
-> separate Linux generator from the one used for other
-> purposes. When we add Linux mode then we can revamp
-> headers even more and in such case we can even invest
-> time to switch from structure bitfields to plain bitmask
-> defines.
+Yes, as we use the interconnect consumer bindings we need to specify a path,
+i.e. a <initiator, target> pair. When the provider node initializes it will
+link itself to that path. Currently the provider driver uses just the first 
+phandle.
 
-This is another point I wanted to address. Obviously checkpatch doesn't c=
-omplain
-about bitfields, but it's frowned upon.
+> +++ b/arch/arm/boot/dts/exynos4412.dtsi
+> @@ -472,7 +472,7 @@
+>                         clocks = <&clock CLK_ACLK160>;
+>                         clock-names = "bus";
+>                         operating-points-v2 = <&bus_display_opp_table>;
+>                         interconnects = <&bus_leftbus &bus_dmc>;
+>                         #interconnect-cells = <0>;
+>                         status = "disabled";
+>                 };
 
-> It is quite lot of work and takes some time,
-> but if there is consensus I do it during next weeks,
-> I would like to see what is preferred way to define
-> registers bitfields. I personally like RTEMS approach
-> for which we have prepared generator from parsed PDFs
-> when we added BSP for TMS570=20
->=20
->   https://git.rtems.org/rtems/tree/bsps/arm/tms570/include/bsp/ti_herc/=
-reg_dcan.h#n152
-
-The current Linux way is to define bitmask with GENMASK() and single bit =
-mask
-with BIT().
-
-For example the mcp251xfd driver:
-
-First the register offset:
-> #define MCP251XFD_REG_CON 0x00
-
-Then a bitmask:
-> #define MCP251XFD_REG_CON_TXBWS_MASK GENMASK(31, 28)
-
-And a single bit:
-> #define MCP251XFD_REG_CON_ABAT BIT(27)
-
-see:
-https://elixir.bootlin.com/linux/v5.10-rc2/source/drivers/net/can/spi/mcp=
-251xfd/mcp251xfd.h#L24
-
-The masks are used with FIELD_GET, FIELD_PREP.
-
-For example:
-https://elixir.bootlin.com/linux/v5.10-rc2/source/drivers/net/can/spi/mcp=
-251xfd/mcp251xfd-core.c#L1386
-
-> Other solution I like (biased, because I have even designed it)
-> is
->=20
->   #define __val2mfld(mask,val) (((mask)&~((mask)<<1))*(val)&(mask))
->   #define __mfld2val(mask,val) (((val)&(mask))/((mask)&~((mask)<<1)))
->   https://gitlab.com/pikron/sw-base/sysless/-/blob/master/arch/arm/gene=
-ric/defines/cpu_def.h#L314
->=20
-> Which allows to use simple masks, i.e.
->   #define SSP_CR0_DSS_m  0x000f  /* Data Size Select (num bits - 1) */
->   #define SSP_CR0_FRF_m  0x0030  /* Frame Format: 0 SPI, 1 TI, 2 Microw=
-ire */
->   #define SSP_CR0_CPOL_m 0x0040  /* SPI Clock Polarity. 0 low between f=
-rames, 1 high */ #
->=20
->   https://gitlab.com/pikron/sw-base/sysless/-/blob/master/libs4c/spi/sp=
-i_lpcssp.c#L46
->=20
-> in the sources
->=20
->   lpcssp_drv->ssp_regs->CR0 =3D
->                     __val2mfld(SSP_CR0_DSS_m, lpcssp_drv->data16_fl? 16=
- - 1 : 8 - 1) |
->                     __val2mfld(SSP_CR0_FRF_m, 0) |
->                     (msg->size_mode & SPI_MODE_CPOL? SSP_CR0_CPOL_m: 0)=
- |
->                     (msg->size_mode & SPI_MODE_CPHA? SSP_CR0_CPHA_m: 0)=
- |
->                     __val2mfld(SSP_CR0_SCR_m, rate);
->=20
->   https://gitlab.com/pikron/sw-base/sysless/-/blob/master/libs4c/spi/sp=
-i_lpcssp.c#L217
->=20
-> If you have some preferred Linux style then please send us pointers.
-> In the fact, Ondrej Ille has based his structure bitfileds style
-> on the other driver included in the Linux kernel and it seems
-> to be a problem now. So when I invest my time, I want to use style
-> which pleases me and others.
-
-Hope that helps,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
-
---kaWYKkidhmf7IL6XEa3xQkbQAEUuWLNMs--
-
---HSmpXvlax4XdoV1rAGbIPsQEBpVpcENi6
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl+hPrkACgkQqclaivrt
-76laUwgAnCuA9/dLKRa8sooZOzxfGH0+bGhYRqMRaFJKq3GRN3Rz2Y22fjnu0iaC
-hCF9ma7CCqJoMuNHW8+PIhQSbb0w1flYB8RkLtpLEwXBoCbm1c4HQzwtgsvb+cEs
-jpho/JZGSHX6wS2CHVPIEiZy+9W4qCVU8+dx+XKz+rMjEGoVJ9DQCvpSseZxQJAT
-qnbQA+ucVbiYKc8aqrnZC8g4zmx4a8uPvUAgaOb5IV0bg2uDnbfCI8neW3A1ulMA
-R8RxIkFc1fK7zDV5hpoATzR9cFGY3821EjhVb/Cgbf2LHBoTobEUxwDOiLcPogSX
-cElMpl1ryAyanb++vK+LNqSfCk9shA==
-=i2tw
------END PGP SIGNATURE-----
-
---HSmpXvlax4XdoV1rAGbIPsQEBpVpcENi6--
+-- 
+Regards,
+Sylwester
