@@ -2,219 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 230242A4456
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 12:33:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FC1E2A4460
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 12:37:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728198AbgKCLdE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 06:33:04 -0500
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:35035 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728493AbgKCLdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 06:33:00 -0500
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201103113248euoutp02cef8f5135c6866a171b6ff0c7fbcce8f~D-C5vQshc0278002780euoutp02C
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 11:32:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201103113248euoutp02cef8f5135c6866a171b6ff0c7fbcce8f~D-C5vQshc0278002780euoutp02C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1604403168;
-        bh=fReq/5gleB0cci52KJ0pEExEhZgxvPuj7W3jQgkJdxw=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=XKHNMKJsML6y/xa7G5YIwWFJ6uPInaY5KS89Ddo3fjAoxIaiYm5cCuGTqF7bya62x
-         d67gxCMBaPPdHRNJcG1Px1le2MglDrHowQGlFNCWt9ILPtzmCmq/la8F397xlmcav+
-         GztvmxJ/eVSmaaFMMs6QBV5Qo2648nWrBNe4bzz0=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201103113236eucas1p25c4317debfce3dd093e24503f4a02295~D-CuDkbNN0380303803eucas1p25;
-        Tue,  3 Nov 2020 11:32:36 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id AB.82.06456.4DF31AF5; Tue,  3
-        Nov 2020 11:32:36 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201103113235eucas1p282f0b782b066ea7aea385c0d85b53951~D-CtrFiAq0380303803eucas1p24;
-        Tue,  3 Nov 2020 11:32:35 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201103113235eusmtrp2154c224a1b462956fbf31e688ec94053~D-CtqTkmS3132631326eusmtrp2K;
-        Tue,  3 Nov 2020 11:32:35 +0000 (GMT)
-X-AuditID: cbfec7f2-809ff70000001938-7c-5fa13fd4f2d7
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 26.14.06017.3DF31AF5; Tue,  3
-        Nov 2020 11:32:35 +0000 (GMT)
-Received: from [106.210.123.115] (unknown [106.210.123.115]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20201103113234eusmtip1455972894957538c7a51aa7381fdf5ff~D-CsrFtLb2256922569eusmtip1i;
-        Tue,  3 Nov 2020 11:32:34 +0000 (GMT)
-Subject: Re: [PATCH v7 2/6] interconnect: Add generic interconnect driver
- for Exynos SoCs
-To:     Chanwoo Choi <cw00.choi@samsung.com>
-Cc:     georgi.djakov@linaro.org, krzk@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        a.swigon@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-Message-ID: <6cc9a2f8-9d9a-68b7-9f47-e16fefb18d88@samsung.com>
-Date:   Tue, 3 Nov 2020 12:32:33 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.12.1
+        id S1727323AbgKCLhs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 06:37:48 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:33539 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726058AbgKCLhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 06:37:47 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 6B4E1252;
+        Tue,  3 Nov 2020 06:37:46 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 03 Nov 2020 06:37:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=/FmQxCk+NycNX4SUaT0+hCAEV3H
+        Cx4PFmy3e006gaPM=; b=lBGt6NNQw6Wk8zzsp1aUYPpOXGi7uC8MZWEOSFbmFoX
+        wf9xFPvA4n+MoRmo5tU2y0YOm61ZXrqULqZIkHq0HKEuXB4fCirvIT6bnjtLJL2P
+        l84c47uWZqz2ORsygLjBctrYZIOYCAW/Xrg1Y4sqQ+rzE+apcGLjoSKc/idV7gGQ
+        gAjTp7LpzbkMoG3HX7aTDeHtfmQ9UfF5ZaoMM7smdiESRhsPnPjUIDkxAXt85kaF
+        HhLs2WYH6KOpG5ei2WyKXvU2so76/gCvhFKhhClPJdajkppzyF/X9T1AHSOzHvn2
+        MlzoThd7mhtUlTAP0eIkdIgzMVl1FFQOCd0yydeAVTQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=/FmQxC
+        k+NycNX4SUaT0+hCAEV3HCx4PFmy3e006gaPM=; b=Mb6vjPBm0nyGn99FmSrJGp
+        OwKUhrdpDM7bZE5TmyqNmr63VNFCkX2H9NTTo1nIUqQAaNLt6aSYR6BGVB5tpEKw
+        Kpf/aIsdEPIEVqnCTqKoEO5B7CXtaermIKR9tR8uPMTzohXhspW46QV19kthz7RS
+        hYDbITY5dCi2eQ47FEupIPItfJ+KK8sKbWtrCiP0kI/XQwUISKM3ipN4AEwz0xUO
+        77EqbKU8QP9F1mFnQc440+/6OS2je9RaHA/y14afs1s696pDVEKxTXARQ3DJjNNA
+        qM5nqs2U1R/whQRASfBgh9RpDWbm0cvw6ptpUwUB1nIBG5RO+7JoT3A1SCAi0peA
+        ==
+X-ME-Sender: <xms:CUGhX4m6FNiJa9sJPi1PgnYiC1esD81LKOCDzxWGIiJGouJ86mPsGQ>
+    <xme:CUGhX32erKxhmq4wh-0WH4D7pXX2LQm_K7DAhaRdYXbM4oiYvX8dKZr8UkbhxZ8id
+    xrrxu9AQt3Gfvx2fnY>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtfedgfedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujgesghdtre
+    ertddtvdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigihhmvgestggv
+    rhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeelkeeghefhuddtleejgfeljeffhe
+    ffgfeijefhgfeufefhtdevteegheeiheegudenucfkphepledtrdekledrieekrdejieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigih
+    hmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:CUGhX2ohgBQ-obLTZvtc8N82QVmiA-27picL_1cTe-3roZ0iN4BM_A>
+    <xmx:CUGhX0niLte880ukD1t1HiLdawsbApduJbeFS3nEraJOK7eYFu9Q4A>
+    <xmx:CUGhX22z0-PIeV_Sirgpa5H_zXzww90eN5-qee905APOC8zmSfGYOA>
+    <xmx:CkGhX7xxjEcbFtcyy5Y5FVRCzVfhYB0XNu2YKQ894_IuidNDQpAuig>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 22CB7328005A;
+        Tue,  3 Nov 2020 06:37:45 -0500 (EST)
+Date:   Tue, 3 Nov 2020 12:37:43 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Yu-Tung Chang <mtwget@gmail.com>
+Cc:     robh+dt@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
+Message-ID: <20201103113743.5764tj2ryrht4dfs@gilmour.lan>
+References: <20201102100157.85801-1-mtwget@gmail.com>
+ <20201102100157.85801-2-mtwget@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <88af4e53-6c7a-c2e6-ad28-a9d6bb5bf623@samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SWUwTURSGc2fa6VApXgqkh4qCDYnFKEjEOIkr6kPji5j4YCQsFUdQaSUd
-        QNAHF8CFijag7NLKTiOiiERBBEkBEVkiiAuQxogoGiFYwH2hHY28fef+57/n/MmhSWm/UE4f
-        0MazOq06VkGJBfXtX3tWDmy6GrGqroRkrEVpiLmZWyNknk2/FTJGS4+QGZiZpJicplqKybQa
-        BExv7w0R099QSDG2DAticnvvE0y1ZUTEDJ2spJi0JouIyc0apzYvVNWaz1Gq4cF7lMqq7yBU
-        F+rMSGWrXRIi3CNev4+NPZDI6gI2Ropj2nrKUNygT9KHG53oBHrhmY6caMBBkJ3xk0hHYlqK
-        KxG0XG8n7IIUTyOoNnvygg3BrE1P/nNUlhdTvFCBoG+6QsgXUwjyClJF9i43HAqvshocDnes
-        hLyfA8jeROIZAs71mpBdoHAgZLRdcLAEb4SipwaHQYB9oe3NFcceHjgcDDdTBXyPK3TmjTrY
-        CW+CiR+FDiaxDF6OGgmevSHldgFpHwZ4RgRlD8YQv/c2aDGf/pvBDd531Il49oLfd40Eb0hB
-        cL5xSMQXBgTWDtNf9zoY7vk2l5qeG+EHNQ0BdgQcDE8sSh5d4PlHV34HF8iszyH5ZwmcPS3l
-        //CF7+Ycgmc56Ed/CwxIkT8vWf68NPnz0uT/H2tCAjOSsQmcJprlArXsEX9OreEStNH+UYc1
-        tWju1Lp+dXy6g2ae7G1FmEYKZ8lm1hQhFaoTuWRNKwKaVLhLtnR3hUsl+9TJR1nd4QhdQizL
-        taJFtEAhk6wuHg+T4mh1PHuIZeNY3T+VoJ3kJ5BHbHBpNldapN+fZ6uWT+0yPgoJqpI1R0VG
-        JqWPfCNWXi6R5nQLv5TLtT7iYpOLUTbW/Liy+bUrFR/Vdejaw3bnY96iGr/ZrXc2rAlfrjy4
-        ULn9YOaOuDC9327/UC9j1YK1k+6XPh9bEdNcZT3l0nAmzPtWfcI7vLRv8cTFnY3By44rBFyM
-        OnA5qePUfwDMfoauZgMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrKIsWRmVeSWpSXmKPExsVy+t/xu7qX7RfGG5xYpmpxf14ro8XGGetZ
-        La5/ec5qMf/IOVaLK1/fs1lM37uJzWLS/QksFufPb2C3uLxrDpvF594jjBYzzu9jslh75C67
-        xe3GFWwWrXuPsFvMmPySzYHfY9OqTjaPO9f2sHnc7z7O5NG3ZRWjx+dNcgGsUXo2RfmlJakK
-        GfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2CXoZR88tZSy4plDxesNJ
-        xgbGm5JdjJwcEgImEiuWLWLrYuTiEBJYyijxvuswaxcjB1BCSmJ+ixJEjbDEn2tdUDXvGSWO
-        nt7OBlIjLBAtMfWDI0iNiICGxMy/VxhBapgFvjJJXN5/BarhC6PE7+uTGUGq2AQMJXqP9oHZ
-        vAJ2EvOuTmAGsVkEVCSOPp3LBGKLCsRJ/JjYywZRIyhxcuYTFhCbU8Be4t2fOWA2s4C6xJ95
-        l5ghbHGJW0/mM0HY8hLNW2czT2AUmoWkfRaSlllIWmYhaVnAyLKKUSS1tDg3PbfYSK84Mbe4
-        NC9dLzk/dxMjMIq3Hfu5ZQdj17vgQ4wCHIxKPLwOqQvihVgTy4orcw8xSnAwK4nwOp09HSfE
-        m5JYWZValB9fVJqTWnyI0RTouYnMUqLJ+cAEk1cSb2hqaG5haWhubG5sZqEkztshcDBGSCA9
-        sSQ1OzW1ILUIpo+Jg1OqgfEQX843rliR7mvVoS3Vsnf1D189Z2/KJBy6oz/IksdysWEMs0FP
-        cmaZ+KQvs1z2eN3NvXzveMDPhdGfF+/9lGDe5LjL2k3o+vxTVVdXHr31LnimoX/Fnrvz7pzU
-        WSNwvmydxZ3om+fEjFY6F7sdM3M4daVNtWTjwcXqLo3H8o1OXdiRy8KXslOJpTgj0VCLuag4
-        EQC6appF+AIAAA==
-X-CMS-MailID: 20201103113235eucas1p282f0b782b066ea7aea385c0d85b53951
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9
-References: <20201030125149.8227-1-s.nawrocki@samsung.com>
-        <CGME20201030125301eucas1p218b0e654cb4c826b05280f28836da8d9@eucas1p2.samsung.com>
-        <20201030125149.8227-3-s.nawrocki@samsung.com>
-        <88af4e53-6c7a-c2e6-ad28-a9d6bb5bf623@samsung.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="kjczsezvhyt7c3cf"
+Content-Disposition: inline
+In-Reply-To: <20201102100157.85801-2-mtwget@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03.11.2020 10:37, Chanwoo Choi wrote:
-> On 10/30/20 9:51 PM, Sylwester Nawrocki wrote:
->> This patch adds a generic interconnect driver for Exynos SoCs in order
->> to provide interconnect functionality for each "samsung,exynos-bus"
->> compatible device.
->>
->> The SoC topology is a graph (or more specifically, a tree) and its
->> edges are specified using the 'samsung,interconnect-parent' in the
-> 
-> samsung,interconnect-parent -> interconnects?
 
-Yes, I will rephrase the whole commit message as it's a bit outdated now.
+--kjczsezvhyt7c3cf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I've changed the sentence to:
-"The SoC topology is a graph (or more specifically, a tree) and its
-edges are described by specifying in the 'interconnects' property
-the interconnect consumer path for each interconnect provider DT node."
+Hi!
 
->> DT. Due to unspecified relative probing order, -EPROBE_DEFER may be
->> propagated to ensure that the parent is probed before its children.
->>
->> Each bus is now an interconnect provider and an interconnect node as
->> well (cf. Documentation/interconnect/interconnect.rst), i.e. every bus
->> registers itself as a node. Node IDs are not hardcoded but rather
->> assigned dynamically at runtime. This approach allows for using this
->> driver with various Exynos SoCs.
->>
->> Frequencies requested via the interconnect API for a given node are
->> propagated to devfreq using dev_pm_qos_update_request(). Please note
->> that it is not an error when CONFIG_INTERCONNECT is 'n', in which
->> case all interconnect API functions are no-op.
->>
->> The bus-width DT property is to determine the interconnect data
->> width and traslate requested bandwidth to clock frequency for each
->> bus.
->>
->> Signed-off-by: Artur Świgoń <a.swigon@samsung.com>
->> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+On Mon, Nov 02, 2020 at 06:01:57PM +0800, Yu-Tung Chang wrote:
+> The NanoPi R1 is a complete open source board developed
+> by FriendlyElec for makers, hobbyists, fans and etc.
+>=20
+> NanoPi R1 key features
+> - Allwinner H3, Quad-core Cortex-A7@1.2GHz
+> - 512MB/1GB DDR3 RAM
+> - 8GB eMMC
+> - microSD slot
+> - 10/100/1000M Ethernet x 1
+> - 10/100 Ethernet x 1
+> - Wifi 802.11b/g/n
+> - Bluetooth 4.0
+> - Serial Debug Port
+> - 5V 2A DC power-supply
+>=20
+> Signed-off-by: Yu-Tung Chang <mtwget@gmail.com>
+> ---
+>  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts      | 169 ++++++++++++++++++
+>  3 files changed, 175 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documenta=
+tion/devicetree/bindings/arm/sunxi.yaml
+> index 0f23133672a3..54a1aaee7e22 100644
+> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> @@ -251,6 +251,11 @@ properties:
+>            - const: friendlyarm,nanopi-neo-plus2
+>            - const: allwinner,sun50i-h5
+> =20
+> +      - description: FriendlyARM NanoPi R1
+> +        items:
+> +          - const: friendlyarm,nanopi-r1
+> +          - const: allwinner,sun8i-h3
+> +
+>        - description: FriendlyARM ZeroPi
+>          items:
+>            - const: friendlyarm,zeropi
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 4f0adfead547..aabaf67f86ed 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1192,6 +1192,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
+>  	sun8i-h3-nanopi-m1-plus.dtb \
+>  	sun8i-h3-nanopi-neo.dtb \
+>  	sun8i-h3-nanopi-neo-air.dtb \
+> +	sun8i-h3-nanopi-r1.dtb \
+>  	sun8i-h3-orangepi-2.dtb \
+>  	sun8i-h3-orangepi-lite.dtb \
+>  	sun8i-h3-orangepi-one.dtb \
+> diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts b/arch/arm/boot/dts=
+/sun8i-h3-nanopi-r1.dts
+> new file mode 100644
+> index 000000000000..204a39f93f4e
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+> @@ -0,0 +1,169 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (C) 2019 Igor Pecovnik <igor@armbian.com>
+> + * Copyright (C) 2020 Jayantajit Gogoi <jayanta.gogoi525@gmail.com>
+> + * Copyright (C) 2020 Yu-Tung Chang <mtwget@gmail.com>
+> +*/
+> +
+> +#include "sun8i-h3-nanopi.dtsi"
+> +#include <dt-bindings/leds/common.h>
+> +
+> +/ {
+> +	model =3D "FriendlyARM NanoPi R1";
+> +	compatible =3D "friendlyarm,nanopi-r1", "allwinner,sun8i-h3";
+> +
+> +	aliases {
+> +		serial1 =3D &uart1;
+> +		ethernet0 =3D &emac;
+> +		ethernet1 =3D &wifi;
+> +	};
+> +
+> +	reg_gmac_3v3: gmac-3v3 {
+> +		compatible =3D "regulator-fixed";
+> +		regulator-name =3D "gmac-3v3";
+> +		regulator-min-microvolt =3D <3300000>;
+> +		regulator-max-microvolt =3D <3300000>;
+> +		startup-delay-us =3D <100000>;
+> +		enable-active-high;
+> +		gpio =3D <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
+> +	};
+> +
+> +	reg_vdd_cpux: gpio-regulator {
+> +		compatible =3D "regulator-gpio";
+> +		regulator-name =3D "vdd-cpux";
+> +		regulator-type =3D "voltage";
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +		regulator-min-microvolt =3D <1100000>;
+> +		regulator-max-microvolt =3D <1300000>;
+> +		regulator-ramp-delay =3D <50>;
+> +		gpios =3D <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+> +		gpios-states =3D <0x1>;
+> +		states =3D <1100000 0x0
+> +			  1300000 0x1>;
+> +	};
+> +
+> +	wifi_pwrseq: wifi_pwrseq {
+> +		compatible =3D "mmc-pwrseq-simple";
+> +		reset-gpios =3D <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
+> +		clocks =3D <&rtc 1>;
+> +		clock-names =3D "ext_clock";
+> +	};
+> +
+> +	leds {
+> +		led-2 {
+> +			function =3D LED_FUNCTION_WAN;
+> +			color =3D <LED_COLOR_ID_GREEN>;
+> +			gpios =3D <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
+> +		};
+> +
+> +		led-3 {
+> +			function =3D LED_FUNCTION_LAN;
+> +			color =3D <LED_COLOR_ID_GREEN>;
+> +			gpios =3D <&pio 0 9 GPIO_ACTIVE_HIGH>; /* PA9 */
+> +		};
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	cpu-supply =3D <&reg_vdd_cpux>;
+> +};
+> +
+> +&ehci1 {
+> +	status =3D "okay";
+> +};
+> +
+> +&ehci2 {
+> +	status =3D "okay";
+> +};
+> +
+> +&emac {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&emac_rgmii_pins>;
+> +	phy-supply =3D <&reg_gmac_3v3>;
+> +	phy-handle =3D <&ext_rgmii_phy>;
+> +	phy-mode =3D "rgmii-id";
+> +	status =3D "okay";
+> +};
+> +
+> +&external_mdio {
+> +	ext_rgmii_phy: ethernet-phy@7 {
+> +		compatible =3D "ethernet-phy-ieee802.3-c22";
+> +		reg =3D <7>;
+> +	};
+> +};
+> +
+> +&mmc1 {
+> +	vmmc-supply =3D <&reg_vcc3v3>;
+> +	vqmmc-supply =3D <&reg_vcc3v3>;
+> +	mmc-pwrseq =3D <&wifi_pwrseq>;
+> +	bus-width =3D <4>;
+> +	non-removable;
+> +	status =3D "okay";
+> +
+> +	wifi: wifi@1 {
+> +		reg =3D <1>;
+> +		compatible =3D "brcm,bcm4329-fmac";
+> +		interrupt-parent =3D <&pio>;
+> +		interrupts =3D <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 / EINT10 */
+> +		interrupt-names =3D "host-wake";
+> +	};
+> +};
+> +
+> +&mmc2 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&mmc2_8bit_pins>;
+> +	vmmc-supply =3D <&reg_vcc3v3>;
+> +	vqmmc-supply =3D <&reg_vcc3v3>;
+> +	bus-width =3D <8>;
+> +	non-removable;
+> +	status =3D "okay";
+> +};
+> +
+> +&ohci1 {
+> +	status =3D "okay";
+> +};
+> +
+> +&ohci2 {
+> +	status =3D "okay";
+> +};
+> +
+> +&reg_usb0_vbus {
+> +	gpio =3D <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* PL2 */
+> +	status =3D "okay";
+> +};
+> +
+> +&uart1 {
+> +	pinctrl-names =3D "default";
+> +	pinctrl-0 =3D <&uart1_pins>;
 
->> +++ b/drivers/interconnect/exynos/exynos.c
+This should be already set in the DTSI
 
->> +struct exynos_icc_priv {
->> +	struct device *dev;
->> +
->> +	/* One interconnect node per provider */
->> +	struct icc_provider provider;
->> +	struct icc_node *node;
->> +
->> +	struct dev_pm_qos_request qos_req;
->> +	u32 bus_clk_ratio;
->> +};
->> +
->> +static struct icc_node *exynos_icc_get_parent(struct device_node *np)
->> +{
->> +	struct of_phandle_args args;
->> +	struct icc_node_data *icc_node_data;
->> +	struct icc_node *icc_node;
->> +	int num, ret;
->> +
->> +	num = of_count_phandle_with_args(np, "interconnects",
->> +					 "#interconnect-cells");
->> +	if (num < 1)
->> +		return NULL; /* parent nodes are optional */
->> +
->> +	/* Get the interconnect target node */
->> +	ret = of_parse_phandle_with_args(np, "interconnects",
->> +					"#interconnect-cells", 0, &args);
->> +	if (ret < 0)
->> +		return ERR_PTR(ret);
->> +
->> +	icc_node_data = of_icc_get_from_provider(&args);
->> +	of_node_put(args.np);
->> +
->> +	if (IS_ERR(icc_node_data))
->> +		return ERR_CAST(icc_node_data);
->> +
->> +	icc_node = icc_node_data->node;
->> +	kfree(icc_node_data);
->> +
->> +	return icc_node;
->> +}
-> 
-> I have a question about exynos_icc_get_parent().
-> As I checked, this function returns the only one icc_node
-> as parent node. But, bus_display dt node in the exynos4412.dtsi
-> specifies the two interconnect node as following with bus_leftbus, bus_dmc,
-> 
-> When I checked the return value of exynos_icc_get_parent()
-> during probing for bus_display device, exynos_icc_get_parent() function
-> only returns 'bus_leftbus' icc_node. Do you need to add two phandle
-> of icc node?
+> +	status =3D "okay";
+> +};
 
-Yes, as we use the interconnect consumer bindings we need to specify a path,
-i.e. a <initiator, target> pair. When the provider node initializes it will
-link itself to that path. Currently the provider driver uses just the first 
-phandle.
+What is this UART used for?
 
-> +++ b/arch/arm/boot/dts/exynos4412.dtsi
-> @@ -472,7 +472,7 @@
->                         clocks = <&clock CLK_ACLK160>;
->                         clock-names = "bus";
->                         operating-points-v2 = <&bus_display_opp_table>;
->                         interconnects = <&bus_leftbus &bus_dmc>;
->                         #interconnect-cells = <0>;
->                         status = "disabled";
->                 };
+Thanks!
+Maxime
 
--- 
-Regards,
-Sylwester
+--kjczsezvhyt7c3cf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6FBBwAKCRDj7w1vZxhR
+xdgTAQDffIckKDSRQ6dRElFETo94xdrKSm1YmADewRVaGI2v0QEAiqL/NllUMMgT
+Syqn9guKqtjwCBDQoz9HftQ3JLJeMwY=
+=TXSB
+-----END PGP SIGNATURE-----
+
+--kjczsezvhyt7c3cf--
