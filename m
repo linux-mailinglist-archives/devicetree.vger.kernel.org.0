@@ -2,335 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A560C2A3F10
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 09:39:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 082442A3F61
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 09:57:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726727AbgKCIjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 03:39:21 -0500
-Received: from mailout1.samsung.com ([203.254.224.24]:64720 "EHLO
-        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbgKCIjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 03:39:21 -0500
-Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
-        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20201103083917epoutp0187bef55e5361335e81a0a3397e11a8e2~D8rZdLqaV1602916029epoutp01d
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 08:39:17 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20201103083917epoutp0187bef55e5361335e81a0a3397e11a8e2~D8rZdLqaV1602916029epoutp01d
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1604392757;
-        bh=TCglbtrz9ylc1A1k4fQu6XkccEIYziLd2hbXm0siW8M=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=aVJxIqZGfyPEkrIZi7wclFbCk+pOpskDODt3YD/Brejnd/58ZjKsM97QJglG0G6Gr
-         d2/z7LxtVmw3Zli+nXuctYC1fstI+631wgjz1UVDnwQAfzi7UJDPC2nnYVAfiMEFeb
-         zEejPBnpCIvQJ6VxYsBHkepkm5jev6Ly57vQlacA=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20201103083917epcas1p3b7dab39a99f37907acf8dc0f9c844cbc~D8rZK-bM12788827888epcas1p3T;
-        Tue,  3 Nov 2020 08:39:17 +0000 (GMT)
-Received: from epsmges1p5.samsung.com (unknown [182.195.40.157]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4CQNVn2VjszMqYkl; Tue,  3 Nov
-        2020 08:39:13 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
-        1D.A6.09577.13711AF5; Tue,  3 Nov 2020 17:39:13 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-        20201103083912epcas1p45295a663daa3b70c7d3b3bad96fe1765~D8rVFgLxf2279722797epcas1p4H;
-        Tue,  3 Nov 2020 08:39:12 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201103083912epsmtrp1ba81ef1ab61f4c480e51b755f00af3d8~D8rVEk8ti1706017060epsmtrp1F;
-        Tue,  3 Nov 2020 08:39:12 +0000 (GMT)
-X-AuditID: b6c32a39-c13ff70000002569-1e-5fa11731c11a
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        E8.AD.13470.03711AF5; Tue,  3 Nov 2020 17:39:12 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20201103083912epsmtip11397afa1b3b125b491cf6e88a0d09db2~D8rUtGTFL0602506025epsmtip1G;
-        Tue,  3 Nov 2020 08:39:12 +0000 (GMT)
-Subject: Re: [PATCH v7 0/6] Exynos: Simple QoS for exynos-bus using
- interconnect
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     krzk@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
-        a.swigon@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <3e3038da-d5de-7ea9-9cb9-082ce63af91d@samsung.com>
-Date:   Tue, 3 Nov 2020 17:53:10 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:59.0) Gecko/20100101
-        Thunderbird/59.0
+        id S1727165AbgKCIzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 03:55:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51322 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727068AbgKCIzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 03:55:36 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC57C061A47
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 00:55:35 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id e2so11952938wme.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 00:55:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kuYtgCpIKch8L3KdMYqCnVDWB/+/69UJrXOkwHI9/a8=;
+        b=PO9nvJP5d9o/g7+8Usmpy1ldpGR3/BVgq+/D9Vg7awdpKYmbFt2QSD3HS0oeA8Vdmt
+         PGBC0ZdHfdkWTiNzR/jQWgm5Ciq7zZNx2E3GCJFDyj9QBwm6Qsl+XnNr/0y3mepHanTX
+         rX40wYLNWSFc04CrCDdhfbCH5mSjG1Hyr7hcTknWr+WWFW/sVB3mTPgkSJwathU+vG7m
+         194oKsC6yyF5jKguAG1kisFnlmm2uxbsDIEo/A0gDfhGIa9tjI90gckwfObwowVe9n4P
+         sth+3t8++cjus7RLysEOXAJv+eTVkCyO9bnYc+Vla1Un3954Duy3LR8Tax8ikkrnTUoA
+         Xprg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=kuYtgCpIKch8L3KdMYqCnVDWB/+/69UJrXOkwHI9/a8=;
+        b=ODAmFEGtQ7XLBI4t9hzIDqqHPRPaV6er5mKojREJGYdVOQCNpDfPNgaJgGAbTjD9Zj
+         LgGMw4y71Cr2BTRNNYEw5+v4fdeklYkv0sEkdpxrbwdGgMgbVhvme+6iB16z4p719rp+
+         hv9yz6rZ416+VInd+g0ullcjueOis0gFoKmMLamL0/k/i5Axj+Pbz5opnUaztM3hxNyp
+         8G4Y+lX4hmxykWn6s0UasJ7Hns7zQabZR4seKVgXog3s5ucko05YSnzEOr0RfWBB2Gql
+         Pe2pHu0hKLSvgj7//opx3U7pBESiei0ss3IlKJYvTLjpT/cY3cZ5d/TPuJpBsimtzhVE
+         weMQ==
+X-Gm-Message-State: AOAM532Eze/34vkqF4sWlrhFwbPhfeREyLYutMKyF8U1BeB6QZE3jAbW
+        R364jwAsIzbnZwwUvFk9psNTHg==
+X-Google-Smtp-Source: ABdhPJyRi4bNNlz1RWZnfyvpWtdQzso7c9176gkHynUg3N3j3iHMDYxx3ufibQCDbV214nsMsgI67w==
+X-Received: by 2002:a1c:c906:: with SMTP id f6mr2514741wmb.9.1604393733604;
+        Tue, 03 Nov 2020 00:55:33 -0800 (PST)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3? ([2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3])
+        by smtp.gmail.com with ESMTPSA id t19sm2332982wmi.26.2020.11.03.00.55.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Nov 2020 00:55:32 -0800 (PST)
+Subject: Re: [PATCH AUTOSEL 5.4 02/24] arm64: dts: meson-axg: add USB nodes
+To:     Sasha Levin <sashal@kernel.org>, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+References: <20201103012007.183429-1-sashal@kernel.org>
+ <20201103012007.183429-2-sashal@kernel.org>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <454088be-6ff1-4fae-e0e3-a26211001d20@baylibre.com>
+Date:   Tue, 3 Nov 2020 09:55:31 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <9285e2d4-f2fa-92f2-ba25-832f32f77d78@linaro.org>
+In-Reply-To: <20201103012007.183429-2-sashal@kernel.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHJsWRmVeSWpSXmKPExsWy7bCmrq6h+MJ4g5dtAhb357UyWmycsZ7V
-        Yv6Rc6wWV76+Z7OYvncTm8Wk+xNYLM6f38BucXnXHDaLz71HGC1mnN/HZLH2yF12i9uNK9gs
-        WvceYbc4/Kad1WLG5JdsDvwem1Z1snncubaHzeN+93Emj74tqxg9Pm+SC2CNyrbJSE1MSS1S
-        SM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy8QnQdcvMATpXSaEsMacUKBSQWFys
-        pG9nU5RfWpKqkJFfXGKrlFqQklNgWaBXnJhbXJqXrpecn2tlaGBgZApUmJCd8e3rY5aC39EV
-        1/+vZ21gXGXSxcjJISFgInF+Ww9rFyMXh5DADkaJ9zvvsoEkhAQ+MUrM70+BSHxjlFh3aT0r
-        TMf+h6eZIBJ7GSX2vt0B1f6eUeLThplgVcICQRJrJ7YzdjFycIgIREucO6MDUsMscJNJ4tGq
-        e2Ar2AS0JPa/uAFm8wsoSlz98ZgRxOYVsJO4c3cRmM0ioCLx4v5RsBpRgTCJk9taoGoEJU7O
-        fMICMp8TqP7gyWKQMLOAuMStJ/OZIGx5ie1v5zBDHH2BQ+LtBFUI20Vi95//UM8IS7w6voUd
-        wpaSeNnfBmVXS6w8eYQN5GYJgQ5GiS37L0A1GEvsXzqZCWQvs4CmxPpd+hBhRYmdv+cyQuzl
-        k3j3FRSkHEBxXomONiGIEmWJyw/uMkHYkhKL2zvZJjAqzULyzCwkH8xC8sEshGULGFlWMYql
-        FhTnpqcWGxaYIsf1JkZwQtay3ME4/e0HvUOMTByMhxglOJiVRHhrIufFC/GmJFZWpRblxxeV
-        5qQWH2I0BQbvRGYp0eR8YE7IK4k3NDUyNja2MDE0MzU0VBLn/aPdES8kkJ5YkpqdmlqQWgTT
-        x8TBKdXAZC768/mOPxqr61sCD/xf43SmmDdN/v30uS848/8tFZGSf/rwRMDLXZvUlIq8xf+t
-        OfioWMaEIWCTnjq3sw3ng1fzDq1VOa6SbFKXr2LDYN52WWRhYobS2+1f0ubI528uKDeUWZ37
-        fVegenVHgmrkytXn9szJMN698155Tb2jnPut3hvB2Z67mK9u8l06vY5p17IXV87sn2BSLdei
-        Pu+Uxf/4if9WRN8/HX9IaJNxf7FNgbCefmNA1Jz37su9xbf5abWIscW2dqcw/xA4lS2RU6nc
-        m9vTvvMi8/ugW/vce7adS95uW54pa7bm0Wd/VvutjGmilZ4zI0SjD+dPmB8p1Ou4/FXuNZW1
-        /PftbyxQYinOSDTUYi4qTgQAOrGY41EEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFIsWRmVeSWpSXmKPExsWy7bCSnK6B+MJ4g+Zrchb357UyWmycsZ7V
-        Yv6Rc6wWV76+Z7OYvncTm8Wk+xNYLM6f38BucXnXHDaLz71HGC1mnN/HZLH2yF12i9uNK9gs
-        WvceYbc4/Kad1WLG5JdsDvwem1Z1snncubaHzeN+93Emj74tqxg9Pm+SC2CN4rJJSc3JLEst
-        0rdL4Mr49vUxS8Hv6Irr/9ezNjCuMuli5OSQEDCR2P/wNFMXIxeHkMBuRolr96cxQSQkJaZd
-        PMrcxcgBZAtLHD5cDFHzllGiYeJNsBphgSCJtRPbGUFsEYFoiX/PzoLZzAI3mSQubvGAaPjO
-        KDH173VWkASbgJbE/hc32EBsfgFFias/HoM18ArYSdy5uwjMZhFQkXhx/yhYjahAmMTOJY+Z
-        IGoEJU7OfMICchAnUP3Bk8UQu9Ql/sy7xAxhi0vcejKfCcKWl9j+dg7zBEbhWUi6ZyFpmYWk
-        ZRaSlgWMLKsYJVMLinPTc4sNCwzzUsv1ihNzi0vz0vWS83M3MYKjU0tzB+P2VR/0DjEycTAe
-        YpTgYFYS4a2JnBcvxJuSWFmVWpQfX1Sak1p8iFGag0VJnPdG4cI4IYH0xJLU7NTUgtQimCwT
-        B6dUA9PpbNtDHp/8tRlF6uVmfsm7YSZYsC1MP7zvhPzslp4FNaYrpmf9PHXKXilazZt9Sf3e
-        swvzX9VsO6/Y1bJB22/hIlkf+w1+0pmVDG4+WdMjb7fYr/eOM3ScHnW4dcqy2Jz6PzP9XR/F
-        vSy6Jx65bwnP8V1/z9nNn6dnGGhg4rBQ56TUERnX2Ci7cOf51++v6Aw9taLs/bdi7p1S3ZGd
-        09kkhG0VG/WvpCg+XXHrk17dMofkYKVXf4PXfmK7e+IVu+qbjZ7sq78+fcv/4clWlniJ7JjQ
-        xtDyXwyc+m2GVxifuDIsEfjMlBz4WtK9Z/6/042HA0xnnPnnPfHu5c2bdp3ss0vWiRY9ntDy
-        9w+vqxJLcUaioRZzUXEiAJnPXcA9AwAA
-X-CMS-MailID: 20201103083912epcas1p45295a663daa3b70c7d3b3bad96fe1765
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20201030125221eucas1p14e525f75c4b8dadae04144ce7684d776
-References: <CGME20201030125221eucas1p14e525f75c4b8dadae04144ce7684d776@eucas1p1.samsung.com>
-        <20201030125149.8227-1-s.nawrocki@samsung.com>
-        <b586c2b7-9ca1-e641-b70c-27493ffd05e0@samsung.com>
-        <9285e2d4-f2fa-92f2-ba25-832f32f77d78@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Georgi,
-
-On 11/3/20 5:29 PM, Georgi Djakov wrote:
-> Hi Chanwoo and Sylwester,
+On 03/11/2020 02:19, Sasha Levin wrote:
+> From: Neil Armstrong <narmstrong@baylibre.com>
 > 
-> On 11/3/20 09:54, Chanwoo Choi wrote:
->> Hi Sylwester,
->>
->> When I tested this patchset on Odroid-U3,
->> After setting 0 bps by interconnect[1][2],
->> the frequency of devfreq devs sustain the high frequency
->> according to the pm qos request.
->>
->> So, I try to find the cause of this situation.
->> In result, it seems that interconnect exynos driver
->> updates the pm qos request to devfreq device
->> during the kernel booting. Do you know why the exynos
->> interconnect driver request the pm qos during probe
->> without the mixer request?
+> [ Upstream commit 1b208bab34dc3f4ef8f408105017d4a7b72b2a2f ]
 > 
-> That's probably because of the sync_state support, that was introduced
-> recently. The icc_sync_state callback needs to be added to the driver
-> (i just left a comment on that patch), and then check again if it works.
+> This adds the USB Glue node, with the USB2 & USB3 controllers along the single
+> USB2 PHY node.
 > 
-> The idea of the sync_state is that there could be multiple users of a
-> path and we must wait for all consumers to tell their bandwidth needs.
-> Otherwise the first consumer may lower the bandwidth or disable a path
-> needed for another consumer (driver), which has not probed yet. So we
-> maintain a floor bandwidth until everyone has probed. By default the floor
-> bandwidth is INT_MAX, but can be overridden by implementing the get_bw()
-> callback.
-
-Thanks for guide. I tested it with your comment of patch2.
-It is well working without problem as I mentioned previously.
-
-I caught the reset operation of PM QoS requested from interconnect
-on kernel log. In result, after completed the kernel booting,
-there is no pm qos request if hdmi cable is not connected.
-
-[Test Result]
-1. Set 622080 Bps with HDMI cable
-
-root@localhost:~# cat /sys/kernel/debug/devfreq/devfreq_summary;
-dev                            parent_dev                     governor        timer      polling_ms  cur_freq_Hz  min_freq_Hz  max_freq_Hz
------------------------------- ------------------------------ --------------- ---------- ---------- ------------ ------------ ------------
-soc:bus_dmc                    null                           simple_ondemand deferrable         50    400000000    155520000    400000000
-soc:bus_acp                    soc:bus_dmc                    passive         null                0    267000000    100000000    267000000
-soc:bus_c2c                    soc:bus_dmc                    passive         null                0    400000000    100000000    400000000
-soc:bus_leftbus                null                           simple_ondemand deferrable         50    200000000    100000000    200000000
-soc:bus_rightbus               soc:bus_leftbus                passive         null                0    200000000    100000000    200000000
-soc:bus_display                soc:bus_leftbus                passive         null                0    200000000    160000000    200000000
-soc:bus_fsys                   soc:bus_leftbus                passive         null                0    134000000    100000000    134000000
-soc:bus_peri                   soc:bus_leftbus                passive         null                0    100000000     50000000    100000000
-soc:bus_mfc                    soc:bus_leftbus                passive         null                0    200000000    100000000    200000000
-root@localhost:~# cat /sys/kernel/debug/interconnect/interconnect_graph;
-digraph {
-        rankdir = LR
-        node [shape = record]
-        subgraph cluster_1 {
-                label = "soc:bus_dmc"
-                "2:bus_dmc" [label="2:bus_dmc
-                        |avg_bw=622080kBps
-                        |peak_bw=622080kBps"]
-        }
-        subgraph cluster_2 {
-                label = "soc:bus_leftbus"
-                "3:bus_leftbus" [label="3:bus_leftbus
-                        |avg_bw=622080kBps
-                        |peak_bw=622080kBps"]
-        }
-        subgraph cluster_3 {
-                label = "soc:bus_display"
-                "4:bus_display" [label="4:bus_display
-                        |avg_bw=622080kBps
-                        |peak_bw=622080kBps"]
-        }
-        "3:bus_leftbus" -> "2:bus_dmc"
-        "4:bus_display" -> "3:bus_leftbus"
-}root@localhost:~# cat /sys/kernel/debug/interconnect/interconnect_summary;
- node                                  tag          avg         peak
---------------------------------------------------------------------
-bus_dmc                                          622080       622080
-  12c10000.mixer                         0       622080       622080
-bus_leftbus                                      622080       622080
-  12c10000.mixer                         0       622080       622080
-bus_display                                      622080       622080
-  12c10000.mixer                         0       622080       622080
-
-
-
-2. Set 0Bps without HDMI cable
-root@localhost:~# cat /sys/kernel/debug/devfreq/devfreq_summary;
-dev                            parent_dev                     governor        timer      polling_ms  cur_freq_Hz  min_freq_Hz  max_freq_Hz
------------------------------- ------------------------------ --------------- ---------- ---------- ------------ ------------ ------------
-soc:bus_dmc                    null                           simple_ondemand deferrable         50    100000000    100000000    400000000
-soc:bus_acp                    soc:bus_dmc                    passive         null                0    100000000    100000000    267000000
-soc:bus_c2c                    soc:bus_dmc                    passive         null                0    100000000    100000000    400000000
-soc:bus_leftbus                null                           simple_ondemand deferrable         50    100000000    100000000    200000000
-soc:bus_rightbus               soc:bus_leftbus                passive         null                0    100000000    100000000    200000000
-soc:bus_display                soc:bus_leftbus                passive         null                0    160000000    160000000    200000000
-soc:bus_fsys                   soc:bus_leftbus                passive         null                0    100000000    100000000    134000000
-soc:bus_peri                   soc:bus_leftbus                passive         null                0     50000000     50000000    100000000
-soc:bus_mfc                    soc:bus_leftbus                passive         null                0    100000000    100000000    200000000
-root@localhost:~# cat /sys/kernel/debug/interconnect/interconnect_graph;
-digraph {
-        rankdir = LR
-        node [shape = record]
-        subgraph cluster_1 {
-                label = "soc:bus_dmc"
-                "2:bus_dmc" [label="2:bus_dmc
-                        |avg_bw=0kBps
-                        |peak_bw=0kBps"]
-        }
-        subgraph cluster_2 {
-                label = "soc:bus_leftbus"
-                "3:bus_leftbus" [label="3:bus_leftbus
-                        |avg_bw=0kBps
-                        |peak_bw=0kBps"]
-        }
-        subgraph cluster_3 {
-                label = "soc:bus_display"
-                "4:bus_display" [label="4:bus_display
-                        |avg_bw=0kBps
-                        |peak_bw=0kBps"]
-        }
-        "3:bus_leftbus" -> "2:bus_dmc"
-        "4:bus_display" -> "3:bus_leftbus"
-}root@localhost:~# cat /sys/kernel/debug/interconnect/interconnect_summary;
- node                                  tag          avg         peak
---------------------------------------------------------------------
-bus_dmc                                               0            0
-  12c10000.mixer                         0            0            0
-bus_leftbus                                           0            0
-  12c10000.mixer                         0            0            0
-bus_display                                           0            0
-  12c10000.mixer                         0            0            0
-
-
-Thanks,
-Chanwoo Choi
-
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
 > 
-> Thanks,
-> Georgi
-> 
->>
->> PS. The passive governor has a bug related to PM_QOS interface.
->> So, I posted the patch[4].
->>
->>
->> [1] interconnect_graph
->> root@localhost:~# cat /sys/kernel/debug/interconnect/interconnect_graph 
->> digraph {
->>         rankdir = LR
->>         node [shape = record]
->>         subgraph cluster_1 {
->>                 label = "soc:bus_dmc"
->>                 "2:bus_dmc" [label="2:bus_dmc
->>                         |avg_bw=0kBps
->>                         |peak_bw=0kBps"]
->>         }
->>         subgraph cluster_2 {
->>                 label = "soc:bus_leftbus"
->>                 "3:bus_leftbus" [label="3:bus_leftbus
->>                         |avg_bw=0kBps
->>                         |peak_bw=0kBps"]
->>         }
->>         subgraph cluster_3 {
->>                 label = "soc:bus_display"
->>                 "4:bus_display" [label="4:bus_display
->>                         |avg_bw=0kBps
->>                         |peak_bw=0kBps"]
->>         }
->>         "3:bus_leftbus" -> "2:bus_dmc"
->>         "4:bus_display" -> "3:bus_leftbus"
->>
->>
->> [2] interconnect_summary
->> root@localhost:~# cat /sys/kernel/debug/interconnect/interconnect_summary 
->>  node                                  tag          avg         peak
->> --------------------------------------------------------------------
->> bus_dmc                                               0            0
->>   12c10000.mixer                         0            0            0
->> bus_leftbus                                           0            0
->>   12c10000.mixer                         0            0            0
->> bus_display                                           0            0
->>   12c10000.mixer                         0            0            0
->>
->>
->> [3] devfreq_summary
->> root@localhost:~# cat /sys/kernel/debug/devfreq/devfreq_summary 
->> dev                            parent_dev                     governor        timer      polling_ms  cur_freq_Hz  min_freq_Hz  max_freq_Hz
->> ------------------------------ ------------------------------ --------------- ---------- ---------- ------------ ------------ ------------
->> soc:bus_dmc                    null                           simple_ondemand deferrable         50    400000000    400000000    400000000
->> soc:bus_acp                    soc:bus_dmc                    passive         null                0    267000000    100000000    267000000
->> soc:bus_c2c                    soc:bus_dmc                    passive         null                0    400000000    100000000    400000000
->> soc:bus_leftbus                null                           simple_ondemand deferrable         50    200000000    200000000    200000000
->> soc:bus_rightbus               soc:bus_leftbus                passive         null                0    200000000    100000000    200000000
->> soc:bus_display                soc:bus_leftbus                passive         null                0    200000000    200000000    200000000
->> soc:bus_fsys                   soc:bus_leftbus                passive         null                0    134000000    100000000    134000000
->> soc:bus_peri                   soc:bus_leftbus                passive         null                0    100000000     50000000    100000000
->> soc:bus_mfc                    soc:bus_leftbus                passive         null                0    200000000    100000000    200000000
->>
->>
->> [4] PM / devfreq: passive: Update frequency when start governor
->> https://patchwork.kernel.org/project/linux-pm/patch/20201103070646.18687-1-cw00.choi@samsung.com/
->>
->>
-> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 502c4ac45c29e..af1c50428eb7e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -170,6 +170,46 @@ soc {
+>  		#size-cells = <2>;
+>  		ranges;
+>  
+> +		usb: usb@ffe09080 {
+> +			compatible = "amlogic,meson-axg-usb-ctrl";
+> +			reg = <0x0 0xffe09080 0x0 0x20>;
+> +			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1_DDR_BRIDGE>;
+> +			clock-names = "usb_ctrl", "ddr";
+> +			resets = <&reset RESET_USB_OTG>;
+> +
+> +			dr_mode = "otg";
+> +
+> +			phys = <&usb2_phy1>;
+> +			phy-names = "usb2-phy1";
+> +
+> +			dwc2: usb@ff400000 {
+> +				compatible = "amlogic,meson-g12a-usb", "snps,dwc2";
+> +				reg = <0x0 0xff400000 0x0 0x40000>;
+> +				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clkc CLKID_USB1>;
+> +				clock-names = "otg";
+> +				phys = <&usb2_phy1>;
+> +				dr_mode = "peripheral";
+> +				g-rx-fifo-size = <192>;
+> +				g-np-tx-fifo-size = <128>;
+> +				g-tx-fifo-size = <128 128 16 16 16>;
+> +			};
+> +
+> +			dwc3: usb@ff500000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x0 0xff500000 0x0 0x100000>;
+> +				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+> +				dr_mode = "host";
+> +				maximum-speed = "high-speed";
+> +				snps,dis_u2_susphy_quirk;
+> +			};
+> +		};
+> +
+>  		ethmac: ethernet@ff3f0000 {
+>  			compatible = "amlogic,meson-axg-dwmac",
+>  				     "snps,dwmac-3.70a",
+> @@ -1725,6 +1765,16 @@ sd_emmc_c: mmc@7000 {
+>  				clock-names = "core", "clkin0", "clkin1";
+>  				resets = <&reset RESET_SD_EMMC_C>;
+>  			};
+> +
+> +			usb2_phy1: phy@9020 {
+> +				compatible = "amlogic,meson-gxl-usb2-phy";
+> +				#phy-cells = <0>;
+> +				reg = <0x0 0x9020 0x0 0x20>;
+> +				clocks = <&clkc CLKID_USB>;
+> +				clock-names = "phy";
+> +				resets = <&reset RESET_USB_OTG>;
+> +				reset-names = "phy";
+> +			};
+>  		};
+>  
+>  		sram: sram@fffc0000 {
 > 
 
 
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+Hi Sasha,
+
+This needs also support in the dwc3-meson-g12a driver, you can drop it from backport.
+
+Neil
