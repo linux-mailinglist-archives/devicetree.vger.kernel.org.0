@@ -2,81 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 167D32A411C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 11:04:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2460B2A4161
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 11:12:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727385AbgKCKDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 05:03:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33646 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727323AbgKCKDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 05:03:14 -0500
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0A99C0613D1;
-        Tue,  3 Nov 2020 02:03:13 -0800 (PST)
-Received: by mail-yb1-xb44.google.com with SMTP id c18so1484329ybj.10;
-        Tue, 03 Nov 2020 02:03:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3U1CRIpx/MWyOqmEpa48IE1TM02vyyoxh0TJr6+0Jaw=;
-        b=I2X1Xc7pOp9h2tU05SKde5aUeDYU9J+WbrRjOT8AmlQaQ+m+xqXnXP5sdZstRAOjSJ
-         /6A3Kgr3+MkpVDqFv3hzwkwlRFzuMhIxU2OZe9TXEYdWuTyvKxEtZadoRo4adY9wN6bQ
-         TJQ8eZBWZVoBd3MCktZT3K03SS5OYhoivEQLPJPd4DgPSiaUlE9ufgf4+yl0glz3tVdS
-         N/iRrJZ0h2IJP7bUWmVZV4+oeY6mFLGTAEYfJGEscYabLCoO0Bx24VeMb4TBEcc2UnEs
-         ubOJWUvBb9vpMjxMvRtJxEIAOkmoFp+24Z8fLCq3lptgBTNYP2h2K/YSWFcHASz2pYsn
-         8l6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3U1CRIpx/MWyOqmEpa48IE1TM02vyyoxh0TJr6+0Jaw=;
-        b=KKjaRPQuOfz1n+TZAlaPRKTdvxi4gotgooAmgxXPLrMFylGDsZcJsa2QpnTN8oNxJO
-         1tZbX7dkaDQMh73KvQuPXqHsZhHSEla+rNpIvH8IlRj21xYAEasIjF9FD3ZvzdtwWV76
-         FXGaNpMe5VKIHIlL8bKJaf3j2bO09OGDrgqsClNMbK6TggUuwZkRUwSdt+f/cLvHzjRd
-         xwL3nuKgKfOSdx/tzaNKyYWKVJ8HyNgcrOIqJ5IAb7x8w/FaiYCXrZ/IMo9XvOK7O/+i
-         ai1hP7VcRb49NiYwXxCJnUsWPqtrwtewivIL8fg6CcVlnKaTIxtgD+C74GkDgDlXVbnq
-         cIOQ==
-X-Gm-Message-State: AOAM533LA9iQ13+KsQ82ukaO8kB37LGlyAzywBGjGWP6z63Ox8WGO4AE
-        YV5g9EyGDPTdXGKmQt7brnHoiLg3xjTFSB7hk80=
-X-Google-Smtp-Source: ABdhPJwFrA6yKwXiiNx0k7zymp/0xjInrlZ+6g5/M7+azUxS6iLhWvyJjYQGOed+fAcrzx4j3S4RAg1ZvSsBwsYR158=
-X-Received: by 2002:a25:f81e:: with SMTP id u30mr27624153ybd.332.1604397793010;
- Tue, 03 Nov 2020 02:03:13 -0800 (PST)
+        id S1728072AbgKCKM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 05:12:28 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:35025 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728113AbgKCKM0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 05:12:26 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201103101215euoutp0239ef47495225d285c5d857c90356be51~D98kS-BS71642516425euoutp02Y
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 10:12:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201103101215euoutp0239ef47495225d285c5d857c90356be51~D98kS-BS71642516425euoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604398335;
+        bh=5Cdq8D2ei6pRrjUOz42dMBnPyD6ZsklGTpQ1TtT+q1o=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=SkHZQCzzNUQNkiZrSagzqgUxt4McYA1qYLqUMoePJBIYp9Y74Lmz8lWi2YeuUrm1W
+         auea03BI04ahYE24S9jgEHH7KchE3p6KcqPP2ZK048zDfh0ae3u8OinyWGxBxeIBUY
+         IAJ7Msr+eXAyi/4E9n6qtdWIbWlWue3uGEqy0VBE=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20201103101209eucas1p15ff1f5cf6e9c9270b98490150386ef29~D98fU4_q51674616746eucas1p10;
+        Tue,  3 Nov 2020 10:12:09 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 26.8E.06318.9FC21AF5; Tue,  3
+        Nov 2020 10:12:09 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201103101209eucas1p21ea6a9fb64035a234fbc1ab20d158965~D98e735R60829208292eucas1p2I;
+        Tue,  3 Nov 2020 10:12:09 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201103101209eusmtrp20905f1a34835ff86c743a9694198ff74~D98e65u2c1429214292eusmtrp2O;
+        Tue,  3 Nov 2020 10:12:09 +0000 (GMT)
+X-AuditID: cbfec7f5-371ff700000018ae-81-5fa12cf9c424
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id D3.B4.06017.9FC21AF5; Tue,  3
+        Nov 2020 10:12:09 +0000 (GMT)
+Received: from [106.210.123.115] (unknown [106.210.123.115]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20201103101208eusmtip27a23e0e196183e82444d49262ca4d057~D98d7GS0c0801308013eusmtip2X;
+        Tue,  3 Nov 2020 10:12:08 +0000 (GMT)
+Subject: Re: [PATCH v7 0/6] Exynos: Simple QoS for exynos-bus using
+ interconnect
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     krzk@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        a.swigon@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <fae047dd-2564-61be-a185-ceb6f89d3e07@samsung.com>
+Date:   Tue, 3 Nov 2020 11:12:07 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.1
 MIME-Version: 1.0
-References: <20201028232759.1928479-1-atish.patra@wdc.com> <20201028232759.1928479-4-atish.patra@wdc.com>
-In-Reply-To: <20201028232759.1928479-4-atish.patra@wdc.com>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Tue, 3 Nov 2020 18:03:01 +0800
-Message-ID: <CAEUhbmU5jUpSAzJS3oN2i6igHXOXMAq2KR5yWhbx1q2_qF-FHg@mail.gmail.com>
-Subject: Re: [RFC PATCH 3/3] RISC-V: Enable Microchip PolarFire ICICLE SoC
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Padmarao Begari <padmarao.begari@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Cyril.Jean@microchip.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <3e3038da-d5de-7ea9-9cb9-082ce63af91d@samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf0zMYRzH99z3Z+l4HNZnCdstjJW0Yl9jJMxtZszKH22Vi68y3WV3XcQ/
+        d/mRfroy7tyaYqN2W0u3nF91yHFiOnMmKiUdykrSSVHSt29N/73en8/7eT6f97OHJWQeKog9
+        pM7gNWplmpz2J+1PRtxhI6FXklYPPV3DdVw+jbgaczXFNfu+UFyZs4niXv/spzlTvY3mSjqM
+        JOd232A4z91SmhssdCLO7HZIuCrne4ZrNVTS3Ol6J8OZz/fQ0XMUNmsurWh7U0crOvJdEkVR
+        rRUpBm2Ld1Px/hsO8GmHMnlN+MZ9/qk/uh7QR3IWHGvPvsjo0QjOQ34s4Cjo/N4qyUP+rAxX
+        IujKvs+Iwofg2rMxUhSDCN705kmmj3gffJs6UoHAkltAiWIAgf5mNyO45uE9UFWcgwSej2Ph
+        1XDT5FUEfieBj9Z2WmjQOAIKHxdNmqR4IzSbWkiBSRwChjEzJfACnAjGmlOk6JkLjZe8E8yy
+        fngTZFcuE8oEDoQWb5lE5CVwq6+UEDcdYMBhWC7yVui1vGREngdfXbVTHAzjd8om0wA+iaDg
+        XisjCiOCDlc5El3roa3pNy0MJvAKqL4bLpY3Q0+JgRLKgGfD27654g6zocRuIsSyFM6ekYnu
+        EPhjNU09YhDke8dJI5JbZgSzzEhjmZHG8n9uOSKtKJDXaVUpvDZSzR9dpVWqtDp1yqr96Sob
+        mvhqz/+6ft5GjtHkBoRZJA+QRvPlSTJKmanNUjUgYAn5fGnMi+eJMukBZdZxXpOepNGl8doG
+        tJAl5YHSyKs9CTKcoszgD/P8EV4z3ZWwfkF6VPGr+OqcTl98+Go9s05Tum1s7efoE2xIVPnR
+        JR7Xduf1Ie/eRb7ROL/OmOBdxb+diXFhUelfYz7VBCTvjD3XuGP38KOcbrs63xP6oXuL62HY
+        0pX3e3wFdQm/1n9WJQW0BEfM6kr11Pdx49uGdukumHVG3hQaHpq/eGtjv+OgXe8YlpPaVGXE
+        SkKjVf4Db3rfPmYDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMIsWRmVeSWpSXmKPExsVy+t/xe7o/dRbGG7yZI21xf14ro8XGGetZ
+        La5/ec5qMf/IOVaLK1/fs1lM37uJzWLS/QksFufPb2C3uLxrDpvF594jjBYzzu9jslh75C67
+        xe3GFWwWrXuPsFvMmPySzYHfY9OqTjaPO9f2sHnc7z7O5NG3ZRWjx+dNcgGsUXo2RfmlJakK
+        GfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2CXoZnx4fYCtoF6241zSN
+        vYHxp0AXIyeHhICJxJMD75i6GLk4hASWMkr8arnD1sXIAZSQkpjfogRRIyzx51oXG4gtJPCe
+        UWL/iwwQW1ggSGLtxHZGEFtEIETi6L/LrCA2s8BNJomLWzwgZq5hkpi36jNYgk3AUKL3aB9Y
+        A6+AncT16bdYQGwWARWJxr8zwGpEBeIkfkzsZYOoEZQ4OfMJC8g9nAL2Ek0r1CDmq0v8mXeJ
+        GcIWl7j1ZD4ThC0vsf3tHOYJjEKzkHTPQtIyC0nLLCQtCxhZVjGKpJYW56bnFhvpFSfmFpfm
+        pesl5+duYgRG8LZjP7fsYOx6F3yIUYCDUYmH1yF1QbwQa2JZcWXuIUYJDmYlEV6ns6fjhHhT
+        EiurUovy44tKc1KLDzGaAv02kVlKNDkfmFzySuINTQ3NLSwNzY3Njc0slMR5OwQOxggJpCeW
+        pGanphakFsH0MXFwSjUwyq491PV7/vnuowekD8xidrCLvjzn7cwXnsq/nxQF3dCRL/NzWewe
+        nMZ6rNn4xzLh3KDI8o+84ZuOnKpnyp7xS9SCQVVi2+lDs5YIOjx46cxnxTXXQ81Pk/9M1d7D
+        5r6cDRq/azsq3dQTj99659C8bd6S3tQK9Xr9zXsOGkdU7Hom9OIw65V6JZbijERDLeai4kQA
+        JM4m4/YCAAA=
+X-CMS-MailID: 20201103101209eucas1p21ea6a9fb64035a234fbc1ab20d158965
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201030125221eucas1p14e525f75c4b8dadae04144ce7684d776
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201030125221eucas1p14e525f75c4b8dadae04144ce7684d776
+References: <CGME20201030125221eucas1p14e525f75c4b8dadae04144ce7684d776@eucas1p1.samsung.com>
+        <20201030125149.8227-1-s.nawrocki@samsung.com>
+        <b586c2b7-9ca1-e641-b70c-27493ffd05e0@samsung.com>
+        <9285e2d4-f2fa-92f2-ba25-832f32f77d78@linaro.org>
+        <3e3038da-d5de-7ea9-9cb9-082ce63af91d@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 6:00 PM Atish Patra <atish.patra@wdc.com> wrote:
->
-> Enable Microchip PolarFire ICICLE soc config in defconfig.
-> It allows the default upstream kernel to boot on PolarFire ICICLE board.
->
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  arch/riscv/configs/defconfig | 4 ++++
->  1 file changed, 4 insertions(+)
->
+Hi Chanwoo, Georgi
 
-Reviewed-by: Bin Meng <bin.meng@windriver.com>
+On 03.11.2020 09:53, Chanwoo Choi wrote:
+> On 11/3/20 5:29 PM, Georgi Djakov wrote:
+>> On 11/3/20 09:54, Chanwoo Choi wrote:
+
+>>> When I tested this patchset on Odroid-U3,
+>>> After setting 0 bps by interconnect[1][2],
+>>> the frequency of devfreq devs sustain the high frequency
+>>> according to the pm qos request.
+>>>
+>>> So, I try to find the cause of this situation.
+>>> In result, it seems that interconnect exynos driver
+>>> updates the pm qos request to devfreq device
+>>> during the kernel booting. Do you know why the exynos
+>>> interconnect driver request the pm qos during probe
+>>> without the mixer request?
+>>
+>> That's probably because of the sync_state support, that was introduced
+>> recently. The icc_sync_state callback needs to be added to the driver
+>> (i just left a comment on that patch), and then check again if it works.
+>>
+>> The idea of the sync_state is that there could be multiple users of a
+>> path and we must wait for all consumers to tell their bandwidth needs.
+>> Otherwise the first consumer may lower the bandwidth or disable a path
+>> needed for another consumer (driver), which has not probed yet. So we
+>> maintain a floor bandwidth until everyone has probed. By default the floor
+>> bandwidth is INT_MAX, but can be overridden by implementing the get_bw()
+>> callback.
+
+Thanks for detailed explanation Georgi.
+
+> Thanks for guide. I tested it with your comment of patch2.
+> It is well working without problem as I mentioned previously.
+> 
+> I caught the reset operation of PM QoS requested from interconnect
+> on kernel log. In result, after completed the kernel booting,
+> there is no pm qos request if hdmi cable is not connected.
+
+Thanks for the bug report Chanwoo, it's related to the sync_state
+feature as you guys already figured out.  I had to reorder some code 
+in the interconnect driver probe() to avoid some issues, 
+i.e. to register PM QoS request before icc_node_add() call but 
+I forgot to check initial state of the bus frequencies.
+
+I thought the get_bw implementation might be needed but the default
+behaviour seems fine, the PM QoS derived bus frequencies will be 
+clamped in the devfreq to valid OPP values.
+
+Chanwoo, in order to set the bandwidth to 0 we could also just blank 
+the display. Below are some of the commands I use for testing.
+
+# blank display (disable the mixer entirely)
+echo 4 > /sys/devices/platform/exynos-drm/graphics/fb0/blank
+
+# unblank display
+echo 0 > /sys/devices/platform/exynos-drm/graphics/fb0/blank
+
+# modetest with 2 planes (higher bandwidth test)
+./modetest -s 47:1920x1080 -P 45:1920x1080 -v
+
+-- 
+Regards,
+Sylwester
