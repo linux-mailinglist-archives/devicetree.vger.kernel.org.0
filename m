@@ -2,192 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB6A12A3D19
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 08:00:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC6682A3D38
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 08:11:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726659AbgKCHA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 02:00:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33554 "EHLO
+        id S1727451AbgKCHLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 02:11:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725988AbgKCHAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 02:00:25 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81600C061A47
-        for <devicetree@vger.kernel.org>; Mon,  2 Nov 2020 23:00:25 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id v6so20699134lfa.13
-        for <devicetree@vger.kernel.org>; Mon, 02 Nov 2020 23:00:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Xd9jmL8NLRJagrGwF9PSXuFGxAsb2QDRMyRb3WHvNB8=;
-        b=nPPPBxXfD3t0mgR3L4eyvK3/ip01O16uclOf5uHPMNlPNhNVlAmqasJhy/a+r4og75
-         VW9Ub+qibTJzFwSdatbGsTSVcWLdZ5vbShHtw0xfiQO99DR2mPq/8XmHeP/Qm68xKuAQ
-         wwzecgg1L6Bv7EnTCa3Mad0MpPdOosUjlcauyy+nwM415UHSyR2fio4Zz3qJO+UyyZXF
-         cu9R4m9TE+Oy7OOiEHRm7uB1NTt4czRAQdjxrYBxdQqcOWXQh7I8dnfczwb8cKc2gwv4
-         e56usYVODCCZFNyfMYh4MGEeNfdW3bvgu48JhPWqdAeVATErc5slE6HbbmHhyKAe+72u
-         XKNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xd9jmL8NLRJagrGwF9PSXuFGxAsb2QDRMyRb3WHvNB8=;
-        b=Rdy9Sz7EAXpvEpNB2a7Nc7mTKeWHsAUo/kDtmoVTZVX5UXXF/8jqCULN5LVff9pKR3
-         xkTVjCvqUcuh52VzbVmPjZt65DfjuD9essuhZZrUq5cEO3STv37G2fhe5KSHxF8DHqlG
-         cTLKan14aVkjj0Q2ffh0Zd71JJzceCX2aVbxgcgsJKRZqK5xeKm+8AKRT/xrx+ItfPvj
-         ZV1XV6JGvtYlprO/fpkPgX/KDI5hRMem7F0HS6yww/KS0pdtUrhOgCR81ceZ2s8VOhf4
-         UEDG1CdVU2yPEvgB500AqnJTztAS51N5NMgtID3/jEUhPWa+We2Uo8wF2txbvxHdeVC6
-         Rusg==
-X-Gm-Message-State: AOAM532LhewLg0v9W9Vp1JxfsaBU8iTQqJzspbyfKSkp2/M4+vB8lmKR
-        LZj/dpn1/MYSMBTda2dsLsPz5XNeMLMSxwkNZKvXbQ==
-X-Google-Smtp-Source: ABdhPJzi0uI6+FMH6ZkQJyTAi3yavIsi+kzHjb9xYY0N60Cx/lyDiUSdCeqHLAosIiGo/QeKWaOn0+S9nHNTkTOnzlE=
-X-Received: by 2002:a19:c345:: with SMTP id t66mr4461115lff.536.1604386823858;
- Mon, 02 Nov 2020 23:00:23 -0800 (PST)
+        with ESMTP id S1725982AbgKCHLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 02:11:34 -0500
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5F0C0617A6;
+        Mon,  2 Nov 2020 23:11:33 -0800 (PST)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1604387492;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=0WvRjZxoo+9YpglRSESGC1vfSq5rEcg2GmTXUWl/1WQ=;
+        b=G8CNIqLZ2iso1f9p14OLOg4My7ArsrtEGsLQrIOZ6UxjQ7MVQ+HnaSolgFpT6otCyFaLbI
+        4gx++ke+l8OXBF3Y6wyyjy/NbHmaSSMlX/Kq4b7z2O+OxpM/y4Kgv2MNjC37Qxw26xqlvX
+        i3J11hkZO5RwF2iFi4S1kdB0vrO4C63aUE+2iNJm2M31HV+z6Ov9zG148jMdsY8S1fJCFl
+        83QG+DIjU/XoWJLzImrPkROR/J3u/pAMTSCtygOppBRM6mxcVVqATJ2ALj2BhUTXTKvtww
+        c1lIkKLBCyuH3ZRCU8PkOMOTUZhBsqdB58aqLuB/7Pfjo6lxPKRckdBbkDHifA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1604387492;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=0WvRjZxoo+9YpglRSESGC1vfSq5rEcg2GmTXUWl/1WQ=;
+        b=JlWWglN+Yi/++jXgkoEokSkN+gSitzLmiiXBjEbr4Hu/anTog1zkE+dcI19R0PPwW8pMx3
+        liJNDpOS7HEC5jBw==
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Kamil Alkhouri <kamil.alkhouri@hs-offenburg.de>,
+        ilias.apalodimas@linaro.org, Kurt Kanzenbach <kurt@linutronix.de>
+Subject: [PATCH net-next v8 0/8] Hirschmann Hellcreek DSA driver
+Date:   Tue,  3 Nov 2020 08:10:53 +0100
+Message-Id: <20201103071101.3222-1-kurt@linutronix.de>
 MIME-Version: 1.0
-References: <20201103025347.510940-1-ajye_huang@compal.corp-partner.google.com>
- <20201103025347.510940-2-ajye_huang@compal.corp-partner.google.com>
-In-Reply-To: <20201103025347.510940-2-ajye_huang@compal.corp-partner.google.com>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Tue, 3 Nov 2020 15:00:13 +0800
-Message-ID: <CALprXBbPQBsRFWgGBhHo5=5GkcUEODe5pcqz7seeaOkxTb3c8w@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] ASoC: google: dt-bindings: modify machine bindings
- for two MICs case
-To:     Ajye Huang <ajye.huang@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Cheng-yi Chiang <cychiang@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-Could you please kindly review this patch ?
+Hi,
 
- I had got your "reviewed-by" on v1 patch, the v1 depends on this patch series
-(https://patchwork.kernel.org/patch/11773221) at that time.
+this series adds a DSA driver for the Hirschmann Hellcreek TSN switch
+IP. Characteristics of that IP:
 
-Now, that patch what I depended (11773221) had made modification and
-it was Applied to
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-commit e158d2d83cab ("ASoC: google: dt-bindings: Add sc7180-trogdor
-machine bindings")
+ * Full duplex Ethernet interface at 100/1000 Mbps on three ports
+ * IEEE 802.1Q-compliant Ethernet Switch
+ * IEEE 802.1Qbv Time-Aware scheduling support
+ * IEEE 1588 and IEEE 802.1AS support
 
-I noted what I did on cover letter
-Changes from v1 to v2:
-- Documentation: Modify the dimc-gpios property description and examples.
+That IP is used e.g. in
 
-That is why I bother you again to review it. Please let me know if
-this looks good to you.
-Thanks!
+ https://www.arrow.com/en/campaigns/arrow-kairos
 
-On Tue, Nov 3, 2020 at 10:54 AM Ajye Huang <ajye.huang@gmail.com> wrote:
->
-> Add a property "dmic-gpios" for switching between two MICs.
->
-> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-> ---
->  .../bindings/sound/google,sc7180-trogdor.yaml | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> index efc34689d6b5..9e0505467e57 100644
-> --- a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> +++ b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> @@ -34,6 +34,9 @@ properties:
->    "#size-cells":
->      const: 0
->
-> +  dmic-gpios:
-> +    description: GPIO for switching between DMICs
-> +
->  patternProperties:
->    "^dai-link(@[0-9])?$":
->      description:
-> @@ -81,6 +84,7 @@ additionalProperties: false
->  examples:
->
->    - |
-> +    //Example 1
->      sound {
->          compatible = "google,sc7180-trogdor";
->          model = "sc7180-rt5682-max98357a-1mic";
-> @@ -128,3 +132,57 @@ examples:
->              };
->          };
->      };
-> +
-> +  - |
-> +    //Example 2 (2mic case)
-> +    sound {
-> +        compatible = "google,sc7180-trogdor";
-> +        model = "sc7180-rt5682-max98357a-2mic";
-> +
-> +        audio-routing =
-> +                    "Headphone Jack", "HPOL",
-> +                    "Headphone Jack", "HPOR";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dmic-gpios = <&tlmm 86 0>;
-> +
-> +        dai-link@0 {
-> +            link-name = "MultiMedia0";
-> +            reg = <0>;
-> +            cpu {
-> +                sound-dai = <&lpass_cpu 0>;
-> +            };
-> +
-> +            codec {
-> +                sound-dai = <&alc5682 0>;
-> +            };
-> +        };
-> +
-> +        dai-link@1 {
-> +            link-name = "MultiMedia1";
-> +            reg = <1>;
-> +            cpu {
-> +                sound-dai = <&lpass_cpu 1>;
-> +            };
-> +
-> +            codec {
-> +                sound-dai = <&max98357a>;
-> +            };
-> +        };
-> +
-> +        dai-link@2 {
-> +            link-name = "MultiMedia2";
-> +            reg = <2>;
-> +            cpu {
-> +                sound-dai = <&lpass_hdmi 0>;
-> +            };
-> +
-> +            codec {
-> +                sound-dai = <&msm_dp>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> --
-> 2.25.1
->
+Due to the hardware setup the switch driver is implemented using DSA. A special
+tagging protocol is leveraged. Furthermore, this driver supports PTP and
+hardware timestamping.
+
+This work is part of the AccessTSN project: https://www.accesstsn.com/
+
+The previous versions can be found here:
+
+ * https://lkml.kernel.org/netdev/20200618064029.32168-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200710113611.3398-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200723081714.16005-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200820081118.10105-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200901125014.17801-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20200904062739.3540-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20201004112911.25085-1-kurt@linutronix.de/
+ * https://lkml.kernel.org/netdev/20201028074221.29326-1-kurt@linutronix.de/
+
+Changes since v7:
+
+ * Simplify tagging code (rebase to net-next)
+ * Pass info instead of ptr (Florian Fainelli)
+ * Fix yamllint warnings (Rob Herring)
+
+Changes since v6:
+
+ * Add .tail_tag = true (Vladimir Oltean)
+ * Fix vlan_filtering=0 bridges (Vladimir Oltean)
+ * Enforce restrictions (Vladimir Oltean)
+ * Sort stuff alphabetically (Vladimir Oltean)
+ * Rename hellcreek.yaml to hirschmann,hellcreek.yaml
+ * Typo fixes
+
+Changes since v5:
+
+ * Implement configure_vlan_while_not_filtering behavior (Vladimir Oltean)
+ * Minor cleanups
+
+Changes since v4:
+
+ * Fix W=1 compiler warnings (kernel test robot)
+ * Add tags
+
+Changes since v3:
+
+ * Drop TAPRIO support (David Miller)
+   => Switch to mutexes due to the lack of hrtimers
+ * Use more specific compatible strings and add platform data (Andrew Lunn)
+ * Fix Kconfig ordering (Andrew Lunn)
+
+Changes since v2:
+
+ * Make it compile by getting all requirements merged first (Jakub Kicinski, David Miller)
+ * Use "tsn" for TSN register set (Rob Herring)
+ * Fix DT binding issues (Rob Herring)
+
+Changes since v1:
+
+ * Code simplifications (Florian Fainelli, Vladimir Oltean)
+ * Fix issues with hellcreek.yaml bindings (Florian Fainelli)
+ * Clear reserved field in ptp v2 event messages (Richard Cochran)
+ * Make use of generic ptp parsing function (Richard Cochran, Vladimir Oltean)
+ * Fix Kconfig (Florian Fainelli)
+ * Add tags (Florian Fainelli, Rob Herring, Richard Cochran) 
+
+Changes since RFC ordered by reviewers:
+
+ * Andrew Lunn
+   * Use dev_dbg for debug messages
+   * Get rid of __ function names where possible
+   * Use reverse xmas tree variable ordering
+   * Remove redundant/useless checks
+   * Improve comments e.g. for PTP
+   * Fix Kconfig ordering
+   * Make LED handling more generic and provide info via DT
+   * Setup advertisement of PHYs according to hardware
+   * Drop debugfs patch
+ * Jakub Kicinski
+   * Fix compiler warnings
+ * Florian Fainelli
+   * Switch to YAML DT bindings
+ * Richard Cochran
+   * Fix typo
+   * Add missing NULL checks
+
+Kamil Alkhouri (2):
+  net: dsa: hellcreek: Add PTP clock support
+  net: dsa: hellcreek: Add support for hardware timestamping
+
+Kurt Kanzenbach (5):
+  net: dsa: Add tag handling for Hirschmann Hellcreek switches
+  net: dsa: Add DSA driver for Hirschmann Hellcreek switches
+  net: dsa: hellcreek: Add PTP status LEDs
+  dt-bindings: Add vendor prefix for Hirschmann
+  dt-bindings: net: dsa: Add documentation for Hellcreek switches
+
+Vladimir Oltean (1):
+  net: dsa: Give drivers the chance to veto certain upper devices
+
+ .../net/dsa/hirschmann,hellcreek.yaml         |  127 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ drivers/net/dsa/Kconfig                       |    2 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/hirschmann/Kconfig            |    9 +
+ drivers/net/dsa/hirschmann/Makefile           |    5 +
+ drivers/net/dsa/hirschmann/hellcreek.c        | 1339 +++++++++++++++++
+ drivers/net/dsa/hirschmann/hellcreek.h        |  286 ++++
+ .../net/dsa/hirschmann/hellcreek_hwtstamp.c   |  479 ++++++
+ .../net/dsa/hirschmann/hellcreek_hwtstamp.h   |   58 +
+ drivers/net/dsa/hirschmann/hellcreek_ptp.c    |  452 ++++++
+ drivers/net/dsa/hirschmann/hellcreek_ptp.h    |   76 +
+ .../platform_data/hirschmann-hellcreek.h      |   23 +
+ include/net/dsa.h                             |    8 +
+ net/dsa/Kconfig                               |    6 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/slave.c                               |   12 +
+ net/dsa/tag_hellcreek.c                       |   66 +
+ 18 files changed, 2952 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/hirschmann,hellcreek.yaml
+ create mode 100644 drivers/net/dsa/hirschmann/Kconfig
+ create mode 100644 drivers/net/dsa/hirschmann/Makefile
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek.c
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek.h
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_hwtstamp.c
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_hwtstamp.h
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_ptp.c
+ create mode 100644 drivers/net/dsa/hirschmann/hellcreek_ptp.h
+ create mode 100644 include/linux/platform_data/hirschmann-hellcreek.h
+ create mode 100644 net/dsa/tag_hellcreek.c
+
+-- 
+2.20.1
+
