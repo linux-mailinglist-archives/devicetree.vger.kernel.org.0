@@ -2,265 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BA6F2A44CC
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 13:09:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0C322A4530
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 13:31:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728757AbgKCMJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 07:09:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53790 "EHLO
+        id S1726211AbgKCMbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 07:31:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728644AbgKCMJr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 07:09:47 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68523C0617A6
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 04:09:47 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id 23so18733697ljv.7
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 04:09:47 -0800 (PST)
+        with ESMTP id S1726109AbgKCMbd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 07:31:33 -0500
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F507C0613D1
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 04:31:33 -0800 (PST)
+Received: by mail-wr1-x441.google.com with SMTP id w1so18399009wrm.4
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 04:31:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=wV6Ly4OTVMIHuO3QgeFv/pV+xSUgjDASQ2+fZhKE0+w=;
-        b=lDUD5G3BKbsO7njFX973jlMkuFWjh80WIMfdBSol37Y6t1X0Bb+jVGR1APjJpfXtZD
-         1GWznh0ZEeQkSOPtWBHJM3b3zwqO+n6tUQaYWSWNUwLWm0+PAaI1ooow9FWkENUow2At
-         HbBICEJVdFfszyoMKS6GHpkglzIfW8knjXi7c6L7pLuLwLsiOs+AdUkdu/Sugyb3DrnK
-         33EYZaq7FlquURV5ZKFYnZWmdN9Bcqf1qJ4oKLHxYhE2ecCFvGFzK5eRhylmnOLLXoNF
-         5lzvkU1T+qVcel5YtGr5A0td/tTFYgRoLuItbfGvjICxj0PBG0zmWOQyyfLaHtN13ghy
-         PKvw==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=E4q0UVRWHDw6iml+4AQxHUz2AjltU3NCXpBdYF0ga1k=;
+        b=iXLvMN+XhQHAMsuAXuGCRdjjvoIuaaf1quA0mO+SCktQa3VzZIwYhBGiEhUfIbP1Q3
+         mmTixznUa42MmG+ZO/uU5/onQ3JZNEW/zS0hoyMY/YGm7rPRLvxNwjB5yFChPpPut2Os
+         9MKiYQ0N/ABae2iLkt01R6FnSqz7GBKF4HpaF6Kg/lX2ZUnLCbi0UosL/E8x1NnJ+0jt
+         p4lRKsZitZXJTGUfMkTcExJyTGKdCNL0SWqeuqHKxovSvFyp2bf3topBR9ep1SPtajEW
+         z29dYz1i+YeY/TpWuDSmrehaUkhQPFGAsitqiT6TxBa76I0QeFTY8aVUP5VioCyhNldM
+         pQ2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=wV6Ly4OTVMIHuO3QgeFv/pV+xSUgjDASQ2+fZhKE0+w=;
-        b=M/HpwaJtckxAFqeD3a34Wa+ktNNmRmFSghpTLReYAaQiRW86K5e0fXXl0/vHmwCXca
-         K1l649xcWXoGJQEkAReoz1fKDsxJ/UrC4MN2e4WsYE7y4e+CJ94LeR/dAXV9NYQzQ4G0
-         flfWaLArF8IX7WL56tmmKXMf6tNuTp3MjDwHjMDfByBVnBqGDqYWZ9wXG+TS6GKRDQaV
-         Yk09zjh2OCs3xc3PiSCzYdtyGookXZ7avNdWT69OjBn2GU7amMFHQHCL0SEwEojflTvN
-         6YqP0nazg4Hg35eX+d9py1enPowQWr5LcVYv8G9QmMokwg3ZgwMMvsybzXYwgcgkkAT1
-         38HQ==
-X-Gm-Message-State: AOAM532JyJ42Ao8QAijGfmFTtMXfKm4iwz3eyIAeV2vYVSJPnwT+si4G
-        ynZ9kwQHc56+AVwNMBp4/oRnXg==
-X-Google-Smtp-Source: ABdhPJzP8QkebpLumvWNek0wptLkNxKJKP5M8iwRa97pDBpiEMCZ6DJAVA0MWItt8ZuCfpPOuMyvcQ==
-X-Received: by 2002:a2e:8350:: with SMTP id l16mr698947ljh.128.1604405385766;
-        Tue, 03 Nov 2020 04:09:45 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id p18sm4155723ljn.127.2020.11.03.04.09.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 04:09:45 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>
-Cc:     linux-bluetooth@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2] Bluetooth: btbcm: Rewrite bindings i YAML and add reset
-Date:   Tue,  3 Nov 2020 13:09:42 +0100
-Message-Id: <20201103120943.1289277-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        bh=E4q0UVRWHDw6iml+4AQxHUz2AjltU3NCXpBdYF0ga1k=;
+        b=nfN9ZW0qHt1+K9a9RBY3K+Zc1wkEho3fCTgG+InwxF/4Hrn8kNQcvj1xlU5zTgOY3i
+         i48yl10+0aKLXNWMVIQZv39JikK9s+yJ+NWvH5MvDS2OE6WdoeOAClqLFGmI1C4bAco7
+         n1MmfdC5re3ow+QqlVHYfWfaDCk4Pqhu6WEjqhREytpVjprfNC7Of5zmu86/aUtrJopL
+         d94AqFawVNlc2cJSRadkV0sBR2Wp3UcofOLq6AfM8SyJyUDMp1+JLSMNLTuKesqwikbv
+         W2mypobyBVG2iYR59hmu8nBGJgrkuAcf9I1wwxhw+z+IEyCsJRt1LSD87TPiP/41k4re
+         uvBg==
+X-Gm-Message-State: AOAM530+b6QRZ74FD1wbkE70n7Q7jqKAD7Nm/mq9B9Qh0AteiWyENM9H
+        lDCK9sTeEfYKIKwNRNpTL03i1gBaWeF3Aufk
+X-Google-Smtp-Source: ABdhPJzSPSDGa9kUi5UYxDLAC5pDt5KhWo2oU1jT26ssFfWZvBuXgFCXhFfMDz2Aox0CzBUWSkVFSw==
+X-Received: by 2002:a5d:5548:: with SMTP id g8mr25866831wrw.364.1604406691783;
+        Tue, 03 Nov 2020 04:31:31 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id z5sm26202673wrw.87.2020.11.03.04.31.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 03 Nov 2020 04:31:31 -0800 (PST)
+Subject: Re: [PATCH v2 5/6] ASoC: codecs: lpass-va-macro: Add support to VA
+ Macro
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        broonie@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+References: <20201029110829.16425-1-srinivas.kandagatla@linaro.org>
+ <20201029110829.16425-6-srinivas.kandagatla@linaro.org>
+ <8f33aac3-7a41-1482-ae8b-e24d13ba8f13@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <da9658c1-8ebb-9501-0226-613d18a3efa6@linaro.org>
+Date:   Tue, 3 Nov 2020 12:31:30 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <8f33aac3-7a41-1482-ae8b-e24d13ba8f13@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This rewrites the Broadcom bluetooth bindings in YAML and
-adds a GPIO handle for the BT_RST_N line as used on some
-platforms.
+Thanks Pierre for review,
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
- .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
- 2 files changed, 117 insertions(+), 56 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
- create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+On 29/10/2020 15:56, Pierre-Louis Bossart wrote:
+> 
+>> diff --git a/sound/soc/codecs/lpass-va-macro.c 
+>> b/sound/soc/codecs/lpass-va-macro.c
+>> new file mode 100644
+>> index 000000000000..8cb23c32631d
+>> --- /dev/null
+>> +++ b/sound/soc/codecs/lpass-va-macro.c
+>> @@ -0,0 +1,882 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +
+> 
+> Missing copyright information?
+> 
 
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt b/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-deleted file mode 100644
-index a7d57ba5f2ac..000000000000
---- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
-+++ /dev/null
-@@ -1,56 +0,0 @@
--Broadcom Bluetooth Chips
-----------------------
--
--This documents the binding structure and common properties for serial
--attached Broadcom devices.
--
--Serial attached Broadcom devices shall be a child node of the host UART
--device the slave device is attached to.
--
--Required properties:
--
-- - compatible: should contain one of the following:
--   * "brcm,bcm20702a1"
--   * "brcm,bcm4329-bt"
--   * "brcm,bcm4330-bt"
--   * "brcm,bcm43438-bt"
--   * "brcm,bcm4345c5"
--   * "brcm,bcm43540-bt"
--   * "brcm,bcm4335a0"
--
--Optional properties:
--
-- - max-speed: see Documentation/devicetree/bindings/serial/serial.yaml
-- - shutdown-gpios: GPIO specifier, used to enable the BT module
-- - device-wakeup-gpios: GPIO specifier, used to wakeup the controller
-- - host-wakeup-gpios: GPIO specifier, used to wakeup the host processor.
--                      deprecated, replaced by interrupts and
--                      "host-wakeup" interrupt-names
-- - clocks: 1 or 2 clocks as defined in clock-names below, in that order
-- - clock-names: names for clock inputs, matching the clocks given
--   - "extclk": deprecated, replaced by "txco"
--   - "txco": external reference clock (not a standalone crystal)
--   - "lpo": external low power 32.768 kHz clock
-- - vbat-supply: phandle to regulator supply for VBAT
-- - vddio-supply: phandle to regulator supply for VDDIO
-- - brcm,bt-pcm-int-params: configure PCM parameters via a 5-byte array
--    - sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
--    - pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
--    - pcm-frame-type: short, long
--    - pcm-sync-mode: slave, master
--    - pcm-clock-mode: slave, master
-- - interrupts: must be one, used to wakeup the host processor
-- - interrupt-names: must be "host-wakeup"
--
--Example:
--
--&uart2 {
--       pinctrl-names = "default";
--       pinctrl-0 = <&uart2_pins>;
--
--       bluetooth {
--               compatible = "brcm,bcm43438-bt";
--               max-speed = <921600>;
--               brcm,bt-pcm-int-params = [01 02 00 01 01];
--       };
--};
-diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-new file mode 100644
-index 000000000000..bdd6ca617e23
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-@@ -0,0 +1,117 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/broadcom-bluetooth.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Bluetooth Chips
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  This binding describes Broadcom UART-attached bluetooth chips.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm20702a1
-+      - brcm,bcm4329-bt
-+      - brcm,bcm4330-bt
-+      - brcm,bcm43438-bt
-+      - brcm,bcm4345c5
-+      - brcm,bcm43540-bt
-+      - brcm,bcm4335a0
-+
-+  shutdown-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_REG_ON used to
-+      power on the BT module
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_RST_N used to
-+      reset the BT module. This should be marked as
-+      GPIO_ACTIVE_LOW.
-+
-+  device-wakeup-gpios:
-+    maxItems: 1
-+    description: GPIO specifier for the line BT_WAKE used to
-+      wakeup the controller. This is using the BT_GPIO_0
-+      pin on the chip when in use.
-+
-+  host-wakeup-gpios:
-+    maxItems: 1
-+    deprecated: true
-+    description: GPIO specifier for the line HOST_WAKE used
-+      to wakeup the host processor. This is using he BT_GPIO_1
-+      pin on the chip when in use. This is deprecated and replaced
-+      by interrupts and "host-wakeup" interrupt-names
-+
-+  clocks:
-+    maxItems: 2
-+    description: 1 or 2 clocks as defined in clock-names below,
-+      in that order
-+
-+  clock-names:
-+    description: Names of the 1 to 2 supplied clocks
-+    items:
-+      - const: txco
-+      - const: lpo
-+      - const: extclk
-+
-+  vbat-supply:
-+    description: phandle to regulator supply for VBAT
-+
-+  vddio-supply:
-+    description: phandle to regulator supply for VDDIO
-+
-+  brcm,bt-pcm-int-params:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    minItems: 5
-+    maxItems: 5
-+    description: |-
-+      configure PCM parameters via a 5-byte array:
-+       sco-routing: 0 = PCM, 1 = Transport, 2 = Codec, 3 = I2S
-+       pcm-interface-rate: 128KBps, 256KBps, 512KBps, 1024KBps, 2048KBps
-+       pcm-frame-type: short, long
-+       pcm-sync-mode: slave, master
-+       pcm-clock-mode: slave, master
-+
-+  interrupts:
-+    items:
-+      - description: Handle to the line HOST_WAKE used to wake
-+          up the host processor. This uses the BT_GPIO_1 pin on
-+          the chip when in use.
-+
-+  interrupt-names:
-+    items:
-+      - const: host-wakeup
-+
-+  max-speed: true
-+  current-speed: true
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    uart {
-+        uart-has-rtscts;
-+
-+        bluetooth {
-+            compatible = "brcm,bcm4330-bt";
-+            max-speed = <921600>;
-+            brcm,bt-pcm-int-params = [01 02 00 01 01];
-+            shutdown-gpios = <&gpio 30 GPIO_ACTIVE_HIGH>;
-+            device-wakeup-gpios = <&gpio 7 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&gpio 9 GPIO_ACTIVE_LOW>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
--- 
-2.26.2
+I will recheck this on all files and fix it before sending next version!
 
+--srini
+> [...]
+> 
+>> +module_platform_driver(va_macro_driver);
+>> +MODULE_DESCRIPTION("VA macro driver");
+>> +MODULE_LICENSE("GPL v2");
+> 
+> "GPL" ? The v2 adds no information.
+> 
+> https://www.kernel.org/doc/html/latest/process/license-rules.html
+> 
+> “GPL”    Module is licensed under GPL version 2. This does not express 
+> any distinction between GPL-2.0-only or GPL-2.0-or-later. The exact 
+> license information can only be determined via the license information 
+> in the corresponding source files.
+> 
+> “GPL v2”    Same as “GPL”. It exists for historic reasons.
