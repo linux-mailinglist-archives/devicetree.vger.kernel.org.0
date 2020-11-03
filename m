@@ -2,141 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 588542A4D0D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 18:34:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 395FC2A4D1E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 18:35:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728524AbgKCReY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 12:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728527AbgKCReX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 12:34:23 -0500
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74E88C061A04
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 09:34:22 -0800 (PST)
-Received: by mail-oi1-x244.google.com with SMTP id u127so19153917oib.6
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 09:34:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1JaZqXqFdIPWnt0E572LVN0+nDbV1o5m6gHDSDoIC4I=;
-        b=Q2n8tpHV5nvmR2OSazRvxRWjiFH+PKL/RCPajflFlEudEY3RSDuRnYEQVw4yaus37x
-         8YPDStWRw8UUe7KUhTt/YXdJ6a4/b5XzFw7pgoJEeO4PnTLiFCiUR90suFcU6V3mm9Ag
-         v9kRYp1akaOMtiswKY5Ia6V3Wg5CAta7OWvv7YZ8vTpPXsWYlI8xONYzj4DrjflJU7nb
-         TfgTPj4oqYkDJNOZHZPciKnMyuo/pUcLdTxK00YuA/+1wpQGHhiuYp/lyRvW7tLb7GO8
-         qNPmiO4bXYC/5h5/j/Qqyl/0y+MmidTJDA4tmN2ow2p9SbLLsDtXgvDnfDBpAeVR5sLQ
-         wVjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1JaZqXqFdIPWnt0E572LVN0+nDbV1o5m6gHDSDoIC4I=;
-        b=Rmu0GXWDHTbHAPoyot0Kyj+tmRDEK2p+PQOzr9NqZQwnTAEqM8MlRNTsZFjgmpgUeA
-         pFigtx2HtoHTUSDcpmNQsrq6pcxHuI8FVGE75WfH3B6OgLqMj7T8+07szTz1IuD1+dt9
-         RnajwMwh8BbmDbINwtl5KVNNlnJIyU9MGdPBCkTS8pptRqbooRyAHdiwOW94ll7Hnm+l
-         ObLR2b5mUzxAUTy1Bf6KZyrNtkNETzdbXQH6Eq+yrCk7rBqr3SQRb4xCR+ayYFaMl9RE
-         ExQ9d12fe4w2M6BAh6a+Gaoe7xS6bSMADYMi5sb1Eb1/JtxkUs9YymSUAYvGno2Q91xM
-         bupA==
-X-Gm-Message-State: AOAM532uh/+ZZNzGlVOJ9GRbdfAVLY0FWgR5jWiEI0cSY6XWf0KogILa
-        EOJSiigQOnqK0/ljfOTbt5cyCA==
-X-Google-Smtp-Source: ABdhPJxHzlfUfcI++bJ+iZGECeMfHDlxPyTogVh3GwkhPPMW09JbfIDc7FH7/XeiZPCfD6Y4u1WguA==
-X-Received: by 2002:aca:5d07:: with SMTP id r7mr135553oib.87.1604424861654;
-        Tue, 03 Nov 2020 09:34:21 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t65sm4261575oib.50.2020.11.03.09.34.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 09:34:20 -0800 (PST)
-Date:   Tue, 3 Nov 2020 11:34:19 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
-        vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/4] Add GCC and RPMh clock support for SDX55
-Message-ID: <20201103173419.GP3151@builder.lan>
-References: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
- <20201028170853.GA3191@Mani-XPS-13-9360>
+        id S1727688AbgKCRfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 12:35:33 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47608 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727530AbgKCRfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 12:35:32 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A3HZRPk066684;
+        Tue, 3 Nov 2020 11:35:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604424927;
+        bh=W7y49awQhyYVVMmsSYn2fTrpiqhwtNzdGyjtxk/kf/E=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=qwvSd6VoWk9icL4AMTQXD1AkIWRG+ct7pHhXCj/JFRh74guIK15HyXAE+JKibQLg4
+         Wadfw+NfPWWPvYDIqWc7pquI93jA5+dVpJdENZQrSsCDhmkWvBRpQXtQYafD5a7OTT
+         TlBJ/cS+O/QAe/eYMXHpNmusqM7LBGDmsR9F/d0E=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A3HZQ2t079464
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 3 Nov 2020 11:35:26 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 3 Nov
+ 2020 11:35:26 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 3 Nov 2020 11:35:26 -0600
+Received: from [10.250.36.55] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A3HZQQ7045673;
+        Tue, 3 Nov 2020 11:35:26 -0600
+Subject: Re: [PATCH net-next v3 4/4] net: phy: dp83td510: Add support for the
+ DP83TD510 Ethernet PHY
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     <davem@davemloft.net>, <f.fainelli@gmail.com>,
+        <hkallweit1@gmail.com>, <robh@kernel.org>,
+        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20201030172950.12767-1-dmurphy@ti.com>
+ <20201030172950.12767-5-dmurphy@ti.com> <20201030201515.GE1042051@lunn.ch>
+ <202b6626-b7bf-3159-f474-56f6fa0c8247@ti.com>
+ <20201103171838.GN1042051@lunn.ch>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <f44af428-acd9-daef-3609-4d6ea24cd436@ti.com>
+Date:   Tue, 3 Nov 2020 11:35:26 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201028170853.GA3191@Mani-XPS-13-9360>
+In-Reply-To: <20201103171838.GN1042051@lunn.ch>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 28 Oct 12:08 CDT 2020, Manivannan Sadhasivam wrote:
+Andrew
 
-> On Wed, Oct 28, 2020 at 01:12:28PM +0530, Manivannan Sadhasivam wrote:
-> > Hello,
-> > 
-> > This series adds Global Clock Controller (GCC) and RPMh clock support
-> > for SDX55 SoC from Qualcomm with relevant DT bindings.
-> > 
-> > This series has been tested on SDX55 MTP board. The dts patches for this
-> > SoC/board will be posted later.
-> > 
-> > Thanks,
-> > Mani
-> > 
-> > Manivannan Sadhasivam (1):
-> >   clk: qcom: Add support for SDX55 RPMh clocks
-> > 
-> > Naveen Yadav (1):
-> >   clk: qcom: Add SDX55 GCC support
-> 
-> Bjorn, I've inherited the gcc driver from downstream and did some modification.
-> But I'm not sure if I can take the authorship of this patch hence kept it to the
-> downstream author.
-> 
-> In my point of view, the downstream author wrote the driver so I should keep
-> the copyright and even list them as MODULE_AUTHOR. But I don't think I should
-> give the patch authorship to them because I haven't received the patch anyhow.
-> I usually keep the authorship if I take the patch from a source like LKML and
-> repost it. But in this case, I authored the patch using someone's code!
-> 
-> What is your view on this?
-> 
+On 11/3/20 11:18 AM, Andrew Lunn wrote:
+> On Tue, Nov 03, 2020 at 11:07:00AM -0600, Dan Murphy wrote:
+>> Andrew
+>>
+>> On 10/30/20 3:15 PM, Andrew Lunn wrote:
+>>>> +static int dp83td510_config_init(struct phy_device *phydev)
+>>>> +{
+>>>> +	struct dp83td510_private *dp83td510 = phydev->priv;
+>>>> +	int mst_slave_cfg;
+>>>> +	int ret = 0;
+>>>> +
+>>>> +	if (phy_interface_is_rgmii(phydev)) {
+>>>> +		if (dp83td510->rgmii_delay) {
+>>>> +			ret = phy_set_bits_mmd(phydev, DP83TD510_DEVADDR,
+>>>> +					       DP83TD510_MAC_CFG_1, dp83td510->rgmii_delay);
+>>>> +			if (ret)
+>>>> +				return ret;
+>>>> +		}
+>>>> +	}
+>>> Hi Dan
+>>>
+>>> I'm getting a bit paranoid about RGMII delays...
+>> Not sure what this means.
+> See the discussion and breakage around the realtek PHY. It wrongly
+> implemented RGMII delays. When it was fixed, lots of board broke
+> because the bug in the PHY driver hid bugs in the DT.
+>
+I will have to go find that thread. Do you have a link?
+>>> Please don't use device_property_read_foo API, we don't want to give
+>>> the impression it is O.K. to stuff DT properties in ACPI
+>>> tables. Please use of_ API calls.
+>> Hmm. Is this a new stance in DT handling for the networking tree?
+>>
+>> If it is should I go back and rework some of my other drivers that use
+>> device_property APIs
+> There is a slowly growing understanding what ACPI support in this area
+> means. It seems to mean that the firmware should actually do all the
+> setup, and the kernel should not touch the hardware configuration. But
+> some developers are ignoring this, and just stuffing DT properties
+> into ACPI tables and letting the kernel configure the hardware, if it
+> happens to use the device_property_read API. So i want to make it
+> clear that these properties are for device tree, and if you want to
+> use ACPI, you should do things the ACPI way.
+>
+> For new code, i will be pushing for OF only calls. Older code is a bit
+> more tricky. There might be boards out there using ACPI, but doing it
+> wrongly, and stuffing OF properties into ACPI tables. We should try to
+> avoid breaking them.
 
-I think the author should be the person whom prepared the patch.
+Got it.  I will move back to of_* calls
 
-Given that the downstream driver is a series of patches from a single
-author it's not unreasonable to squash those and retain the author. But
-if your effort to prepare the patch for upstream was non-trivial I would
-consider it reasonable for you to claim authorship of the patch.
+Dan
 
-If this is the case it's definitely preferable to give credit to the
-original author(s) by mentioning them in the commit message (e.g. "Based
-on downstream implementation by Jane Doe").
 
-And the copyright for the work definitely needs to come along, possibly
-with the addition of yours, depending on your modifications.
-
-Thanks,
-Bjorn
-
-> Thanks,
-> Mani
-> 
-> > 
-> > Vinod Koul (2):
-> >   dt-bindings: clock: Add SDX55 GCC clock bindings
-> >   dt-bindings: clock: Introduce RPMHCC bindings for SDX55
-> > 
-> >  .../bindings/clock/qcom,gcc-sdx55.yaml        |   71 +
-> >  .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
-> >  drivers/clk/qcom/Kconfig                      |    8 +
-> >  drivers/clk/qcom/Makefile                     |    1 +
-> >  drivers/clk/qcom/clk-rpmh.c                   |   20 +
-> >  drivers/clk/qcom/gcc-sdx55.c                  | 1667 +++++++++++++++++
-> >  include/dt-bindings/clock/qcom,gcc-sdx55.h    |  112 ++
-> >  include/dt-bindings/clock/qcom,rpmh.h         |    1 +
-> >  8 files changed, 1881 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
-> >  create mode 100644 drivers/clk/qcom/gcc-sdx55.c
-> >  create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx55.h
-> > 
-> > -- 
-> > 2.17.1
-> > 
+>        Andrew
