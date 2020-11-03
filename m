@@ -2,80 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66AA62A43F0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 12:19:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CCE82A4429
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 12:26:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728286AbgKCLTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 06:19:24 -0500
-Received: from inva021.nxp.com ([92.121.34.21]:41062 "EHLO inva021.nxp.com"
+        id S1728357AbgKCLZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 06:25:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45932 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728530AbgKCLTX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 06:19:23 -0500
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 196C420068E;
-        Tue,  3 Nov 2020 12:19:22 +0100 (CET)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0CEA52002EB;
-        Tue,  3 Nov 2020 12:19:22 +0100 (CET)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 49E6D2033F;
-        Tue,  3 Nov 2020 12:19:21 +0100 (CET)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Abel Vesa <abel.vesa@nxp.com>
-Subject: [PATCH v5 14/14] arm64: dts: imx8mp: Add hdmi_blk_ctl node
-Date:   Tue,  3 Nov 2020 13:18:26 +0200
-Message-Id: <1604402306-5348-15-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com>
-References: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726058AbgKCLZ6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 06:25:58 -0500
+Received: from localhost.localdomain (unknown [122.179.37.237])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6BF6520731;
+        Tue,  3 Nov 2020 11:25:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604402757;
+        bh=bI/cN2eK3dgD8W09CCdUq1uvP05TdDTIOdYfKBD5af8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eHjQokZKwmzyPkSoDOz8FI5mSFZAhigtrhEJdazY1sKr3FbFdgWkK15DM2DliluF1
+         xUCyWiDDOA7fEPuW1Bfe9M7debFa3wXznQ3pgfXUg3Z0m8ZxherQSTB7MOfcXnaCNm
+         WRyjOu/cM5PmDNjn9EZg4Q89gtRbtNOh8SgGXARQ=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     dmaengine@vger.kernel.org
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>
+Subject: [PATCH v5 0/3] dmaengine: Add support for QCOM GSI dma controller
+Date:   Tue,  3 Nov 2020 16:55:41 +0530
+Message-Id: <20201103112544.674566-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the features of the hdmi_ctl will be used by some
-different drivers in a way those drivers will know best, so adding the
-syscon compatible we allow those to do just that. Only the resets
-and the clocks are registered bit the clk-blk-ctl driver.
+This series adds support for Qcom GSI dma controller found on Qualcomm SoCs.
+This controller can program the peripheral configuration so we add
+additional parameters in dma_slave_config for configuring the peripherals
+like spi and i2c.
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes in v5:
+ - Add acked by Rob
+ - Move qcom-gpi-dma.h header to include/linux/dma/
+ - rebase and test on v5.10-rc2
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 8e1a01f..f1c5a07d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -756,6 +756,13 @@
- 				#clock-cells = <1>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hdmi_blk_ctl: clock-controller@32fc0000 {
-+				compatible = "fsl,imx8mp-hdmi-blk-ctl", "syscon";
-+				reg = <0x32fc0000 0x1000>;
-+				#clock-cells = <1>;
-+				#reset-cells = <1>;
-+			};
- 		};
- 
- 		aips5: bus@30c00000 {
+Changes in v3:
+ - Update the i2c tre creation based on testing feedback
+
+Changes in v2:
+ - Update the binding and drop qcom specific properties
+ - Move peripheral configuration as a pointer
+ - Move submit queue for transactions to issue_pending
+
+Vinod Koul (3):
+  dt-bindings: dmaengine: Document qcom,gpi dma binding
+  dmaengine: add peripheral configuration
+  dmaengine: qcom: Add GPI dma driver
+
+ .../devicetree/bindings/dma/qcom,gpi.yaml     |   90 +
+ drivers/dma/qcom/Kconfig                      |   12 +
+ drivers/dma/qcom/Makefile                     |    1 +
+ drivers/dma/qcom/gpi.c                        | 2303 +++++++++++++++++
+ include/dt-bindings/dma/qcom-gpi.h            |   11 +
+ include/linux/dma/qcom-gpi-dma.h              |   83 +
+ include/linux/dmaengine.h                     |    5 +
+ 7 files changed, 2505 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+ create mode 100644 drivers/dma/qcom/gpi.c
+ create mode 100644 include/dt-bindings/dma/qcom-gpi.h
+ create mode 100644 include/linux/dma/qcom-gpi-dma.h
+
 -- 
-2.7.4
+2.26.2
 
