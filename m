@@ -2,185 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B9F62A4BA0
-	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:34:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58FA82A4BAC
+	for <lists+devicetree@lfdr.de>; Tue,  3 Nov 2020 17:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728492AbgKCQeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 11:34:10 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:45935 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728082AbgKCQeK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:34:10 -0500
-Received: by mail-oo1-f66.google.com with SMTP id j41so4342560oof.12;
-        Tue, 03 Nov 2020 08:34:08 -0800 (PST)
+        id S1726581AbgKCQgP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 3 Nov 2020 11:36:15 -0500
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:33101 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726212AbgKCQgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 11:36:15 -0500
+Received: by mail-wm1-f65.google.com with SMTP id p19so263894wmg.0;
+        Tue, 03 Nov 2020 08:36:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MKqONroTNYXML+RtHTbg+GBecYRT+0c6qZrSPFfEkFs=;
-        b=jQw4AF+SmHqC5eO/NaZtAWkHqE+DNjq/G6SYolKUHFmdo2ioHSUL8fBjkPLbiKYvCo
-         ffKW/QUOnyK2DxTbZQO8flcLjI+UNDWpt1pYipttESGLSsLXRRsmMNk1YyI5W2sZrdIC
-         vuVG24kzkKLbtmclx1TfCuvtUmWN/o3B0dqCy5Tc82P5LYr5C+7+0WVGtkKyiIvEzkZf
-         0qcAuXQF9j0opO5bp5kwpDMIMKXH49ow4fIEjiiZ8StTO7TM66DCh3rM/YzvEX+RgWoT
-         1rr3sfxeE37mWCcYYt4R+rfTa1QvRmHxLJfenza8SaBg/VnWiQ53YsiaQKGmBHuPz/ib
-         jUDQ==
-X-Gm-Message-State: AOAM532EVTvI3g+muFA+VT66z3WUX5YVfqSHXHdOX8xmMPr9rtASQyPc
-        E7/InxLtF++ov4T7ou4DvBMapIeV5w==
-X-Google-Smtp-Source: ABdhPJzxtuDaLDOVaKpgjPJIz4ZpByu3MGeiU+GhwDmrKkpWNjCZNAHuCuSYgqvfJm8uqG9LoAAjZg==
-X-Received: by 2002:a4a:e95d:: with SMTP id v29mr15810516ood.91.1604421248319;
-        Tue, 03 Nov 2020 08:34:08 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r67sm4047251oif.43.2020.11.03.08.34.07
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=cTjlYON13Zu56G6DRMOT0+CuDlotYCOu5ATCgZ1qAYA=;
+        b=pTkrNbGL0ECF5PDUdMo+uYvp9WqonpZVkhnrK6nqBIhD/lJO8I56pmropuDU5lSBvs
+         YkIrRnRrSe8aYm1tDQdjzcIiFSV4aYJgvX0fYA8741StmpqcmbMd+zfJlcl4AHP9M7uk
+         ts2Zj8Ug9+RgzTxSlTOJEcC5ulfJP3ohnb6XgChFZP6gVA9tqSX7+qm+e91+4zZDN2kg
+         4WHSXHUUuvfasPIAqTZEqV4P2mHooTEqZ9X2EuFdAj8Nqv3iMxEvZADuKI2hWhVg6Qnr
+         qb1M6rO9bYj3zJbfWIAGn/vFhWOpRreFbXRBLwngNzh4/lv8B6vdm2AUcBWhjclGpPOk
+         P1Xw==
+X-Gm-Message-State: AOAM531LK2e61s4sfIe9oC8Run8QZV8J1xAW6Jxfx5Qfh0RUAqB9mNE+
+        dPii6U5p8UlBnpFrCFdWboI=
+X-Google-Smtp-Source: ABdhPJxHzxo5YQixVSJNJEaG6+VK30+X9uB9IVlFZG8qSVKAUVEINpbu5yYjVrgUDBesX+tzGFzP3A==
+X-Received: by 2002:a7b:c24b:: with SMTP id b11mr593534wmj.109.1604421373200;
+        Tue, 03 Nov 2020 08:36:13 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id t199sm3530470wmt.46.2020.11.03.08.36.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 08:34:07 -0800 (PST)
-Received: (nullmailer pid 1788543 invoked by uid 1000);
-        Tue, 03 Nov 2020 16:34:07 -0000
-Date:   Tue, 3 Nov 2020 10:34:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Martin Kepplinger <martin.kepplinger@theobroma-systems.com>
-Subject: Re: [PATCH 42/46] dt-bindings:iio:accel:fsl,mma8452: txt to yaml
- conversion.
-Message-ID: <20201103163407.GG1754553@bogus>
-References: <20201031184854.745828-1-jic23@kernel.org>
- <20201031184854.745828-43-jic23@kernel.org>
+        Tue, 03 Nov 2020 08:36:12 -0800 (PST)
+Date:   Tue, 3 Nov 2020 17:36:10 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Anand Moon <linux.amoon@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH 1/5] ARM: dts: exynos: Fix ethernet description for
+ Odroid XU3
+Message-ID: <20201103163610.GA14739@kozik-lap>
+References: <20201103124618.21358-1-l.stelmach@samsung.com>
+ <CGME20201103124620eucas1p14e76afe9fd53184f1a689b5a654e7e1e@eucas1p1.samsung.com>
+ <20201103124618.21358-2-l.stelmach@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201031184854.745828-43-jic23@kernel.org>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201103124618.21358-2-l.stelmach@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 31, 2020 at 06:48:50PM +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Tue, Nov 03, 2020 at 01:46:14PM +0100, Łukasz Stelmach wrote:
+> Create ethernet alias 
+
+Your commit msg should explain why.
+
+
+> and assign appropriate compatible properties.
+
+Then what was before? Indeed they do not look like anything
+reasonable... old VID do not appear on any of Odroid boards.
+
 > 
-> Simple binding so mostly straight forward to convert.
-> Original binding was unclear on how many interrupts there are.
-> The device has two such lines, whilst I believe the driver currently
-> only uses one at a time.  The binding should allow both to be specified.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Martin Kepplinger <martin.kepplinger@theobroma-systems.com>
+> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
 > ---
->  .../bindings/iio/accel/fsl,mma8452.yaml       | 62 +++++++++++++++++++
->  .../devicetree/bindings/iio/accel/mma8452.txt | 35 -----------
->  2 files changed, 62 insertions(+), 35 deletions(-)
+
+Best regards,
+Krzysztof
+
+>  arch/arm/boot/dts/exynos5422-odroidxu3.dts | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml b/Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml
-> new file mode 100644
-> index 000000000000..3b8e5ebdf90c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/accel/fsl,mma8452.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/accel/fsl,mma8452.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+> index d0f6ac5fa79d..2a4153484664 100644
+> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+> @@ -15,6 +15,10 @@
+>  / {
+>  	model = "Hardkernel Odroid XU3";
+>  	compatible = "hardkernel,odroid-xu3", "samsung,exynos5800", "samsung,exynos5";
 > +
-> +title:
-> +  Freescale MMA8451Q, MMA8452Q, MMA8453Q, MMA8652FC, MMA8653FC or FXLS8471Q
-> +  triaxial accelerometer
-> +
-> +maintainers:
-> +  - Martin Kepplinger <martin.kepplinger@theobroma-systems.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,mma8451
-> +      - fsl,mma8452
-> +      - fsl,mma8453
-> +      - fsl,mma8652
-> +      - fsl,mma8653
-> +      - fsl,fxls8471
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description:
-> +      2 highly configurable interrupt lines exist.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    description: Specify which interrupt line is in use.
-> +    enum:
-> +      - INT1
-> +      - INT2
-
-This will default to only 1 item allowed. You need minItems/maxItems.
-
-> +
-> +  vdd-supply: true
-> +  vddio-supply: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        accel@1d {
-> +            compatible = "fsl,mma8453";
-> +            reg = <0x1d>;
-> +            interrupt-parent = <&gpio1>;
-> +            interrupts = <5 0>;
-> +            interrupt-names = "INT2";
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/iio/accel/mma8452.txt b/Documentation/devicetree/bindings/iio/accel/mma8452.txt
-> deleted file mode 100644
-> index e132394375a1..000000000000
-> --- a/Documentation/devicetree/bindings/iio/accel/mma8452.txt
-> +++ /dev/null
-> @@ -1,35 +0,0 @@
-> -Freescale MMA8451Q, MMA8452Q, MMA8453Q, MMA8652FC, MMA8653FC or FXLS8471Q
-> -triaxial accelerometer
-> -
-> -Required properties:
-> -
-> -  - compatible: should contain one of
-> -    * "fsl,mma8451"
-> -    * "fsl,mma8452"
-> -    * "fsl,mma8453"
-> -    * "fsl,mma8652"
-> -    * "fsl,mma8653"
-> -    * "fsl,fxls8471"
-> -
-> -  - reg: the I2C address of the chip
-> -
-> -Optional properties:
-> -
-> -  - interrupts: interrupt mapping for GPIO IRQ
-> -
-> -  - interrupt-names: should contain "INT1" and/or "INT2", the accelerometer's
-> -		     interrupt line in use.
-> -
-> -  - vdd-supply: phandle to the regulator that provides vdd power to the accelerometer.
-> -
-> -  - vddio-supply: phandle to the regulator that provides vddio power to the accelerometer.
-> -
-> -Example:
-> -
-> -	mma8453fc@1d {
-> -		compatible = "fsl,mma8453";
-> -		reg = <0x1d>;
-> -		interrupt-parent = <&gpio1>;
-> -		interrupts = <5 0>;
-> -		interrupt-names = "INT2";
-> -	};
+> +	aliases {
+> +		ethernet = &ethernet;
+> +	};
+>  };
+>  
+>  &i2c_0 {
+> @@ -76,13 +80,13 @@ &usbhost2 {
+>  	#size-cells = <0>;
+>  
+>  	hub@1 {
+> -		compatible = "usb8087,0024";
+> +		compatible = "usb0424,9514";
+>  		reg = <1>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
+>  
+>  		ethernet: usbether@1 {
+> -			compatible = "usb0c45,6310";
+> +			compatible = "usb0424,ec00";
+>  			reg = <1>;
+>  			local-mac-address = [00 00 00 00 00 00]; /* Filled in by a bootloader */
+>  		};
 > -- 
-> 2.28.0
+> 2.26.2
 > 
