@@ -2,79 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96FB92A6CB7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:32:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF9EE2A6CB9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:33:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732390AbgKDScd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 13:32:33 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:43778 "EHLO
+        id S1727923AbgKDSdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 13:33:49 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:33050 "EHLO
         mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726225AbgKDScd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:32:33 -0500
-Received: by mail-oi1-f193.google.com with SMTP id t143so11603017oif.10;
-        Wed, 04 Nov 2020 10:32:32 -0800 (PST)
+        with ESMTP id S1726225AbgKDSdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:33:49 -0500
+Received: by mail-oi1-f193.google.com with SMTP id s21so23227675oij.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 10:33:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=300YdLoIyeU5aKbjDs5NItaT9gZ3hFeS1uekqV/d+mE=;
-        b=lJz+ApwpFPB/ZFGP4Ow623yQs0rTz5MTV0XtOWYhY52Jhh9fK/FkjCrvf8UIkwZj0m
-         ZSpfETPabnE4XhYegurQZqo1d40hD8PlDzdZO/ZKYhZ6370Fk4lKnGOn0zW4c604sCG3
-         QvtZvT+gif01NA6kRUVZbQsjNZ1kwI/TiQDeJBIqECy7axwmeyqpexkm7ndG33wuXfc3
-         f1CGN1zzqmKOQ7CvP5Lan2IdsI+gN+LMsdgtbjUHBZey/l2Oeo5w8VApRCswT/+rL84N
-         RPiyK7aqC3ccHK96thMZtaPlZKRYpeWIL3xZfn7RZ/nr5MjXa1VqUtlerXAx900SbkGD
-         FJKA==
-X-Gm-Message-State: AOAM5329EzHAmzIcxZEjQsbUXN6m7lIUHMqJzqrVP3U9rgDVM+0TdQw4
-        y6iFsnGCduVIQVFl0ruohw==
-X-Google-Smtp-Source: ABdhPJz00/M3IYCTJO7Dw9Ou6hkev6/Azqgqrw4W1uP4oowWgcUZhKw5HlKN1f6jORePrZDPRCm0jw==
-X-Received: by 2002:aca:d445:: with SMTP id l66mr3175334oig.37.1604514752242;
-        Wed, 04 Nov 2020 10:32:32 -0800 (PST)
+        bh=5B8qrVPM5BWPGWKAKqWXi/BbhRSACICMp91l8/+DStc=;
+        b=d/RYQXHROVndgbqNJtb2cln0h+kS1f87p0DEcnUK9BfBzhSIfXgiqMhUWlXJoy3X2R
+         1whjkKocuz9p40yszWmcqf3eCIZO5h9/gROtSw7+lZ3v02C85rfJ2Z8G7HdAbaEMNLiJ
+         3GE8rR7sws02FEb5aZgCjEhtgjPxDFg+POxxwwVpiPZ/3Z3z6QZ0YHTELVqhHlzpg7Hs
+         KdjBI+FgsR8AN8fNL+catOq6iQ3GmKN4UXyHBqm8JJ7oKqxG3j26RZU4MgGJe8nRRffz
+         HzibzJvS+Krw2fYLxvep1XNnBE/cRsvllQm2Aclmf3bxXQJwwMjmT1CjE5R9ISNe0pgS
+         YiVw==
+X-Gm-Message-State: AOAM5331HZUV0VKYg9YZNxn9CBnpWnwSMvQB6JP6cQbTEfrms97qyVKO
+        L/0ZzqDHCCp+4sYFCOFUgA==
+X-Google-Smtp-Source: ABdhPJwxDIzi261bUymLavG5I63jG80tnCA1Ywh1cibbotgdK7Gt+qG0C0w+PT7DdFE/kr4NwVbz1Q==
+X-Received: by 2002:aca:75c4:: with SMTP id q187mr3178584oic.132.1604514828061;
+        Wed, 04 Nov 2020 10:33:48 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h7sm722359ool.34.2020.11.04.10.32.31
+        by smtp.gmail.com with ESMTPSA id h6sm628296oia.51.2020.11.04.10.33.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 10:32:31 -0800 (PST)
-Received: (nullmailer pid 3915209 invoked by uid 1000);
-        Wed, 04 Nov 2020 18:32:30 -0000
-Date:   Wed, 4 Nov 2020 12:32:30 -0600
+        Wed, 04 Nov 2020 10:33:47 -0800 (PST)
+Received: (nullmailer pid 3916880 invoked by uid 1000);
+        Wed, 04 Nov 2020 18:33:46 -0000
+Date:   Wed, 4 Nov 2020 12:33:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Jishnu Prakash <jprakash@qti.qualcomm.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+To:     Nicolas Pitre <nico@fluxnic.net>
+Cc:     linux-i3c@lists.infradead.org, Sakari Ailus <sakari.ailus@iki.fi>,
+        devicetree@vger.kernel.org,
+        Laura Nixon <laura.nixon@team.mipi.org>,
+        Matthew Schnoor <matthew.schnoor@intel.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Robert Gough <robert.gough@intel.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Andy Gross <agross@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH v9 01/15] dt-bindings: thermal: qcom: add adc-thermal
- monitor bindings
-Message-ID: <20201104183230.GB3913864@bogus>
-References: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
- <20201102174950.1148498-2-dmitry.baryshkov@linaro.org>
+        Nicolas Pitre <npitre@baylibre.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: MIPI I3C Host Controller
+ Interface
+Message-ID: <20201104183346.GC3913864@bogus>
+References: <20201102222220.1785859-1-nico@fluxnic.net>
+ <20201102222220.1785859-2-nico@fluxnic.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201102174950.1148498-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20201102222220.1785859-2-nico@fluxnic.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Nov 2020 20:49:36 +0300, Dmitry Baryshkov wrote:
-> Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
-> close counterpart of VADC part of those PMICs.
+On Mon, 02 Nov 2020 17:22:19 -0500, Nicolas Pitre wrote:
+> From: Nicolas Pitre <npitre@baylibre.com>
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> The MIPI I3C HCI (Host Controller Interface) specification defines
+> a common software driver interface to support compliant MIPI I3C
+> host controller hardware implementations from multiple vendors.
+> 
+> All that is needed is an I/O area and an interrupt signal;. The hardware
+> is self-advertising wrt its implementor and implemented capabilities so
+> there is currently no details that the driver can't figure out on its own.
+> 
+> Signed-off-by: Nicolas Pitre <npitre@baylibre.com>
 > ---
->  .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 154 ++++++++++++++++++
->  1 file changed, 154 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+>  .../devicetree/bindings/i3c/mipi-i3c-hci.yaml | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml
 > 
 
 
@@ -83,11 +84,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.example.dt.yaml: adc@3100: 'io-channels' is a dependency of 'io-channel-ranges'
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/iio/iio-consumer.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1392425
+See https://patchwork.ozlabs.org/patch/1392544
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
