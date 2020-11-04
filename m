@@ -2,112 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58DF02A6FF6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 22:55:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 432EB2A6FF8
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 22:55:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729600AbgKDVzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 16:55:05 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:46423 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731900AbgKDVzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 16:55:04 -0500
-Received: by mail-oi1-f195.google.com with SMTP id x1so23791397oic.13;
-        Wed, 04 Nov 2020 13:55:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Eu79pluxi2jBLnyziJETRnUZpe98wIFWTcEeZIpZb4g=;
-        b=MWTXrRUt9UlBulVWP/g4bPGSAgt9k2ZT5egFPCOEwLU3KF70yFfqx56DioJTgSTn9s
-         vQ2+WmgADonEGJL5rmQ/SRdwDccqRxV55U5USI1IS1h+1rWPdJWAmB7XkMkJ6VXnniLp
-         5DXVqb8ecGzGJclCRTwq30y52otoaSMdPbgbeXmDqtxyJnN2hrefhxgvwcg1G0uJnyba
-         dDaIUPdJmfxFxUIIuC4p1zJup8+wJdXYxo/PPC/CW7c+vhbDbKn9mJX4ZQlhxFgLcT37
-         q/X2FiMsj47vR0clmI4PYPitOq7oMeIIkqY8qI7xJcm3woqGqhLqlbh/xOuGoBMuiUpy
-         dOmg==
-X-Gm-Message-State: AOAM530rDKWgkbR3U40zrEMymJgHOyuyoyG6zMWWnTBgpBz782M195yw
-        1rAeMpBijmUnnsnWww4lcdkJx0yFFg==
-X-Google-Smtp-Source: ABdhPJydwd6XJRKFbXQ99S19JU4iNPUNrUzq7EMiZKJyCt1HTIUxZu6GETfLbFMaKGvqfOqUOJlReQ==
-X-Received: by 2002:aca:3d57:: with SMTP id k84mr4016136oia.38.1604526903726;
-        Wed, 04 Nov 2020 13:55:03 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v185sm837744ooa.31.2020.11.04.13.55.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 13:55:03 -0800 (PST)
-Received: (nullmailer pid 4189357 invoked by uid 1000);
-        Wed, 04 Nov 2020 21:55:02 -0000
-Date:   Wed, 4 Nov 2020 15:55:02 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
-        linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH leds 4/5] dt-bindings: leds: leds-class-multicolor: use
- LED_COLOR_ID_RGB for now
-Message-ID: <20201104215502.GA4184250@bogus>
-References: <20201030023906.24259-1-kabel@kernel.org>
- <20201030023906.24259-4-kabel@kernel.org>
- <b22f8d21-7625-dcff-616c-0c68008b5ab2@ti.com>
+        id S1727711AbgKDVzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 16:55:23 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:45790 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727098AbgKDVzX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 16:55:23 -0500
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1kaQkK-0004Zn-T8; Wed, 04 Nov 2020 22:55:12 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH v4 0/7] arm64: dts: rockchip: Add Engicam PX30.Core
+Date:   Wed, 04 Nov 2020 22:55:10 +0100
+Message-ID: <3599415.KCJOEREoO8@diego>
+In-Reply-To: <CAMty3ZCib5TiQdzU95WS1Xiq1tAQ7FHEQcbf5JhUZYYvofb_MQ@mail.gmail.com>
+References: <20200929083217.25406-1-jagan@amarulasolutions.com> <CAMty3ZDHDC5TMF=8HJRmZd7HijOM6RP-k4y9JkdWVQGgPKyGvg@mail.gmail.com> <CAMty3ZCib5TiQdzU95WS1Xiq1tAQ7FHEQcbf5JhUZYYvofb_MQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b22f8d21-7625-dcff-616c-0c68008b5ab2@ti.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 30, 2020 at 08:08:01AM -0500, Dan Murphy wrote:
-> Marek
+Am Mittwoch, 4. November 2020, 20:54:40 CET schrieb Jagan Teki:
+> On Thu, Oct 22, 2020 at 12:27 AM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > Hi Heiko,
+> >
+> > On Tue, Sep 29, 2020 at 2:02 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> > >
+> > > PX30.Core is an EDIMM SOM based on Rockchip PX30 from Engicam.
+> > >
+> > > PX30.Core needs to mount on top of Engicam baseboards for creating
+> > > complete platform boards.
+> > >
+> > > Possible baseboards are,
+> > > - EDIMM2.2 Starter Kit
+> > > - C.TOUCH 2.0 Carrier Board
+> > >
+> > > Changes for v4:
+> > > - collect Rob A-b
+> > > Changes for v3:
+> > > - resolved Johan comments about sorting node properties
+> > > - add copyright to Amarula Solutions
+> > > - update px30 dtsi author
+> > > Changes for v2:
+> > > - include C.TOUCH 2.0 carrier board
+> > > - skip 10" OF LCD as it requires separate dts with panel support.
+> > >
+> > > Note: These baseboards can be used for i.MX8 SOM's as well. So having
+> > > baseboard on respective SoC seems to be easy rather than making it
+> > > common across all.
+> > >
+> > > Any inputs?
+> > > Jagan.
+> > >
+> > > Jagan Teki (6):
+> > >   dt-bindings: arm: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+> > >   arm64: dts: rockchip: px30: Add Engicam EDIMM2.2 Starter Kit
+> > >   arm64: dts: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+> > >   dt-bindings: arm: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
+> > >   arm64: dts: rockchip: px30: Add Engicam C.TOUCH 2.0
+> > >   arm64: dts: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
+> > >
+> > > Michael Trimarchi (1):
+> > >   arm64: dts: rockchip: Add Engicam PX30.Core SOM
+> > >
+> > >  .../devicetree/bindings/arm/rockchip.yaml     |  12 +
+> > >  arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+> > >  .../dts/rockchip/px30-engicam-common.dtsi     |  39 +++
+> > >  .../dts/rockchip/px30-engicam-ctouch2.dtsi    |   8 +
+> > >  .../dts/rockchip/px30-engicam-edimm2.2.dtsi   |   7 +
+> > >  .../dts/rockchip/px30-px30-core-ctouch2.dts   |  22 ++
+> > >  .../dts/rockchip/px30-px30-core-edimm2.2.dts  |  21 ++
+> > >  .../boot/dts/rockchip/px30-px30-core.dtsi     | 232 ++++++++++++++++++
+> > >  8 files changed, 343 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2.dts
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-edimm2.2.dts
+> > >  create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core.dtsi
+> >
+> > Any further comments?
 > 
-> On 10/29/20 9:39 PM, Marek Behún wrote:
-> > Commit 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
-> > disallows LED_COLOR_ID_MULTI for now, and instead LED_COLOR_ID_RGB
-> > should be used. Fix this is leds-class-multicolor binding.
-> > 
-> > After we have some usecases for non-RGB multicolor LEDs, this can be
-> > changed.
-> > 
-> > Signed-off-by: Marek Behún <kabel@kernel.org>
-> > Fixes: 77dce3a22e89 ("leds: disallow /sys/class/leds/*:multi:* for now")
-> > Cc: devicetree@vger.kernel.org
-> > Cc: robh+dt@kernel.org
-> > ---
-> >   .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml     | 4 ++--
-> >   .../devicetree/bindings/leds/leds-class-multicolor.yaml       | 4 ++--
-> >   2 files changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> > index fe7fa25877fd..2015db9b7618 100644
-> > --- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-> > @@ -73,14 +73,14 @@ examples:
-> >                    * LEDs.
-> >                    */
-> >                   reg = <0>;
-> > -                color = <LED_COLOR_ID_MULTI>;
-> > +                color = <LED_COLOR_ID_RGB>;
-> >                   function = LED_FUNCTION_POWER;
-> >                   linux,default-trigger = "heartbeat";
-> >               };
-> >               multi-led@a {
-> >                   reg = <0xa>;
-> > -                color = <LED_COLOR_ID_MULTI>;
-> > +                color = <LED_COLOR_ID_RGB>;
-> >                   function = LED_FUNCTION_INDICATOR;
-> >                   function-enumerator = <1>;
-> >               };
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-> > index b1a53f054b89..9faa3609a6bb 100644
-> > --- a/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/leds-class-multicolor.yaml
-> 
-> Why are you resubmitting the multicolor.yaml?
-> 
-> https://lore.kernel.org/patchwork/patch/1320863/
-> 
-> This is waiting on DT review.
+> Gentle ping.
 
-I'm expecting another version as you commented on it.
+on my list to untangle :-)
 
-Rob
+
+Heiko
+
+
+
