@@ -2,102 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 552962A70AF
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 23:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6DE02A70B9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 23:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731964AbgKDWj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 17:39:29 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:45754 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730774AbgKDWj3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 17:39:29 -0500
-Received: by mail-oi1-f196.google.com with SMTP id j7so23909126oie.12;
-        Wed, 04 Nov 2020 14:39:28 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bsqnljYYWE1/ltBUbXEHDTzwBF2aGmIwEaiz3OENEGY=;
-        b=hL+k6POJHX8vwXDYvAaLJivxScvAN6VMCTB0pVwVsCBX/B0E5bGud6//rUN6iBZ9mm
-         f2TNf9/kSqCNj1ajA92dsbF8C2MqaMrVrlm68tge5gyg6vjzQ9pETVzKOb5Us7bHfHvq
-         TvX+fW0DvXfgHNEW53B5FCBO81rV+9ELd4d4KoPyJ680yCGl4WA2AUlpTVnFGogy1wAR
-         GNaZWrjjKNgkzlg5dqGVgsQCf9qaQUlpAnXfmTDZtVU98zGHjrz9JQJzJAarxfslKBdF
-         qdVudXD/szLkW4ZbchhnJ04Gg2lSUQyutCe6ItXsrMe+zvBzW4q8AtqeWx6Eb78naizo
-         qJRw==
-X-Gm-Message-State: AOAM530N+A8Paas/5QknsKG0gFyiqdblR/RcjFRgl8INmmAQuNwDHws3
-        SltqRpJpHgN/Cx0QmbJ2eA==
-X-Google-Smtp-Source: ABdhPJypEFa58WXrfW91mJuemRTt3L2mShRt4pLpp+QEwsSfI2kknkg7HTzTjj9ChwihNYFdu8X4jg==
-X-Received: by 2002:aca:fc02:: with SMTP id a2mr27503oii.90.1604529568215;
-        Wed, 04 Nov 2020 14:39:28 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z19sm261558otm.58.2020.11.04.14.39.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 14:39:27 -0800 (PST)
-Received: (nullmailer pid 55216 invoked by uid 1000);
-        Wed, 04 Nov 2020 22:39:26 -0000
-Date:   Wed, 4 Nov 2020 16:39:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Macpaul Lin <macpaul.lin@mediatek.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Ainge Hsu <ainge.hsu@mediatek.com>,
-        Eddie Hung <eddie.hung@mediatek.com>,
-        Mediatek WSD Upstream <wsd_upstream@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: mediatek,mtk-xhci: add
- keep-clock-on
-Message-ID: <20201104223926.GA54259@bogus>
-References: <1604301530-31546-1-git-send-email-macpaul.lin@mediatek.com>
+        id S1727107AbgKDWoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 17:44:24 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35478 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728065AbgKDWoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 17:44:24 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A4Mi1VU123264;
+        Wed, 4 Nov 2020 16:44:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604529841;
+        bh=ZmoEyVktKbh5GUrM+dQB0O/xJyQiUCY1m2L+8gQI39M=;
+        h=From:To:CC:Subject:Date;
+        b=PWWM8Rt5ywhmSgKIy8+07dL3d1elcVC0PUuEybqtskWSLwfOHAEhB3QJvqnr+ioWf
+         cv7AMYLNRAX1WKOQvRFwFZjUe9RhTIRBNeQY//nqHy/44sA611hQRCCwBkaCvzF4bY
+         iDtRMeLPZErFL/rhDAUsAt3ayYje7sjICyyS5h6o=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A4Mi1wp056057
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 4 Nov 2020 16:44:01 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 4 Nov
+ 2020 16:44:01 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 4 Nov 2020 16:44:00 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A4Mi0K3124654;
+        Wed, 4 Nov 2020 16:44:00 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Roger Quadros <rogerq@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Nishanth Menon <nm@ti.com>
+Subject: [PATCH 0/4] arm64: dts: ti: Cleanup mix of "okay" and "disabled" usage
+Date:   Wed, 4 Nov 2020 16:43:52 -0600
+Message-ID: <20201104224356.18040-1-nm@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1604301530-31546-1-git-send-email-macpaul.lin@mediatek.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 02, 2020 at 03:18:48PM +0800, Macpaul Lin wrote:
-> Option "mediatek,keep-clock-on" means to keep clock on during system
-> suspend and resume. Some platform will flush register settings if clock has
-> been disabled when system is suspended. Set this option to avoid clock off.
-> 
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->  .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml |    7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> index ea696c8..a956dde 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
-> @@ -104,6 +104,12 @@ properties:
->      description: enable USB remote wakeup, see power/wakeup-source.txt
->      type: boolean
->  
-> +  mediatek,keep-clock-on:
-> +    description: |
-> +      Keep clock on during system suspend and resume. Some platform will flush
-> +      register settings if clock has been disabled when system is suspended.
-> +    type: boolean
-> +
+Hi,
 
-This should be implied by the compatible string.
+This is hopefully a conclusion of the thread we had (online[1] and
+offline). There are few options one could take when dealing with SoC
+dtsi and board dts:
 
->    mediatek,syscon-wakeup:
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->      maxItems: 1
-> @@ -175,6 +181,7 @@ examples:
->          imod-interval-ns = <10000>;
->          mediatek,syscon-wakeup = <&pericfg 0x400 1>;
->          wakeup-source;
-> +        mediatek,keep-clock-on;
->          usb3-lpm-capable;
->      };
->  ...
-> -- 
-> 1.7.9.5
+a. SoC dtsi provide nodes as a super-set default (aka enabled) state and
+   to prevent messy board files, when more boards are added per SoC, we
+   optimize and disable commonly un-used nodes in board-common.dtsi
+b. SoC dtsi disables all hardware dependent nodes by default and board
+   dts files enable nodes based on a need basis.
+c. Subjectively pick and choose which nodes we will disable by default
+   in SoC dtsi and over the years we can optimize things and change
+   default state depending on the need.
+
+What we have today is a bit of a mix of seemingly random set of
+choices, however, predominantly following (a) and a few intermittent
+cases of (b) and (c). While there are pros and cons on each of these
+approaches, the right thing to do will be to stick with device tree
+default (aka device tree standards) and work within those established
+rules. So, lets cleanup and follow what the vast majority of SoC
+platforms are doing and which also happens to be the path of least churn
+for TI dts nodes as well.
+
+Functionally the dtb output is same ->
+a) As of v5.10-rc1:
+   am654: https://pastebin.ubuntu.com/p/G4P5vghpV3/
+   j7200: https://pastebin.ubuntu.com/p/SsG6JtPzR9/
+   j721e: https://pastebin.ubuntu.com/p/HWXmTwD6m8/
+
+b) with this series applied:
+   am654: https://pastebin.ubuntu.com/p/h7MmHPQpRx/
+   j7200: https://pastebin.ubuntu.com/p/VXjQHhQNgn/
+   j721e: https://pastebin.ubuntu.com/p/2JMgftd4Xx/
+
+The actual diff between the two versions being: https://pastebin.ubuntu.com/p/4rwy5qRY84/
+Which is equivalent as per device tree standards, but uses lesser
+redundant strings.
+
+Thanks Tony, for sticking to the guns and providing us clear guidance
+on this topic.
+
+[1] https://lore.kernel.org/linux-arm-kernel/20201027130701.GE5639@atomide.com/
+
+Nishanth Menon (4):
+  arm64: dts: ti: k3-am65*: Cleanup disabled nodes at SoC dtsi level
+  arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at SoC dtsi level
+  arm64: dts: ti: am65/j721e: Fix up un-necessary status set to "okay"
+    for crypto
+  arm64: dts: ti: k3-am654-base-board: Fix up un-necessary status set to
+    "okay" for USB
+
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  9 ----
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts | 24 ++++++----
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 48 ++++++++++++++++++-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 28 -----------
+ 4 files changed, 63 insertions(+), 46 deletions(-)
+
+-- 
+2.29.2
+
