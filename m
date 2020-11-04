@@ -2,99 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2941D2A672A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D3C2A674E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:19:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730061AbgKDPJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 10:09:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51744 "EHLO
+        id S1729457AbgKDPTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 10:19:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726801AbgKDPJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:09:11 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6AD8C0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:09:10 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id v12so1471033pfm.13
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:09:10 -0800 (PST)
+        with ESMTP id S1728522AbgKDPTU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:19:20 -0500
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD79C0613D3
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:19:20 -0800 (PST)
+Received: by mail-wm1-x342.google.com with SMTP id c18so2721436wme.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:19:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1yMEhHD+6yc21kJRr7rjUclw5tA46sINB3uruxgVrL8=;
-        b=Jc1fXcN3Eb27JCFN5BHMJDuuTqVyiPRiXRSuNiQtBJpiKb+UFN74tguOtoLgFqzQhs
-         hGCVL6C3D74rZnTIjiEbvSVLfeFHyNk/rfkHLBQIJ79CBeVcdNwS4cFlsRvv5W7W/QXm
-         fcK/dxJueY78O/95YHZU57ffagTN7slHZb+h9TC9jdVuPPxxFMam4Wuve3+mohVdciqU
-         EZ0rtWpO7PoGqc5H7fTJEET9HykA1Q1rVAIV2RiMgxv87OSz1RHg5RbwgnWvJWVOHkWY
-         uNigKUnrMvHdmqsCZ6Fi2YB4iFERQOcbyW64kwKdI7+iR4Yp2uO6gp0lrxFIflGWZvn6
-         435w==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=D9YsrGN9wWLv3mX7dkJBqjaJH+HqiYhxAqtKcEQZoEQ=;
+        b=ESOcqmcmdlSBpst0NLiwQTyp6ATQj/xVBJ8v/wHN0bGElMDhQzgtCbKjzMxYDimtOM
+         QyBNdwZVHihtaYz9l9uXrPp5n8/UvcnVUMbVR1HBqL2iXmZFIDbNHdmwG8j4vvoCs1vq
+         Q+0Embfu1d/pSYvA8ayGkQZsCW3dBfwAlpCTj6Z4sykz4keNk22VH+wgAMOuCuiHmQ0l
+         Ib+NRQBONXAI+teuxoTRmG8CEjgy8p0VEWvPaSpCAkSMDVFQgWcWS+BD4vzNAi/2F5Vg
+         gL1e+/LmL+JNuWxR+7yOpRWHPwGPoxebE4aZO2NDOTSobd1QUU9XN0++hxyXyZApuiTK
+         lGcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1yMEhHD+6yc21kJRr7rjUclw5tA46sINB3uruxgVrL8=;
-        b=PXT2fMmQ0VcQYWNtV8gF7y2xmBsW1HJvFi4JPAXrSLZHTabqxOOMSuxsFmbefdU8y9
-         +oPApcP2YB4gQbk3X5/Sf6+UYxu1/3iHltJ3OKMBeHRhhm8hMpuoFd5fkLp1tWp/aWv6
-         IuyoNNEwceAdDyccdb+O90uHmaY5bdJAbeW72CqFkza8tewsUP9+p8EN86xqBfzeMOjP
-         KlvugnyuyqJVQycVnDUTk97NKifi+mROmMIdGTCCMAkWCaiT96ijuB8JOzLiS27un3w3
-         s6N/z6zpCz19lWDRBWVGHDHThkF7Ze9WYcd7CFm9bYWJOIGQ6JkIECFIBIRYD9A8vUoH
-         QGgQ==
-X-Gm-Message-State: AOAM530AsGRrZtMc/OzZNl0RIITteKpmUxkowKvS9anUgWvj0iBfYXWQ
-        ctut6w9kU07ywzPqSAOtFeE=
-X-Google-Smtp-Source: ABdhPJx1w74Ye0gNd2UOjwC9NbJyoaB9rB9P4GKztOhIdJa370d7OSXBs68h4WucipP1rBsZTJVbPQ==
-X-Received: by 2002:a63:7d07:: with SMTP id y7mr22359947pgc.437.1604502550160;
-        Wed, 04 Nov 2020 07:09:10 -0800 (PST)
-Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
-        by smtp.gmail.com with ESMTPSA id b2sm2560567pgg.2.2020.11.04.07.09.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Nov 2020 07:09:09 -0800 (PST)
-Subject: Re: [PATCH 2/2] arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300
- early DTS files
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20201028101123.6293-1-zajec5@gmail.com>
- <20201028101123.6293-2-zajec5@gmail.com>
- <e0cf2414-453e-4f15-5e4a-1c34aa965cf8@arm.com>
- <10118193-225a-05a8-e73d-7370e1866ea2@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <12213635-05d2-ec04-7ba1-ea00e0f8a981@gmail.com>
-Date:   Wed, 4 Nov 2020 07:09:08 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.4.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=D9YsrGN9wWLv3mX7dkJBqjaJH+HqiYhxAqtKcEQZoEQ=;
+        b=m7t6tS3EFaI4x1QsjQZlpXP2svdx26Cb3q432PvpzYmM9S8kYBqUr4cNU96wZMS5lJ
+         E1DuVcwqJZjttmbEtkMW8X6ZMTU/H+QI9/e+q/TrPCjAv/Ydwdcau6wKMl3E5ZnaXP4O
+         pQmig/bLrdcxbfkR/DyB0JcgTj5T132ugv9HM3VFBkvBaLVJRb7iYZKZKG538oFEr61E
+         /sL0FtPqo1IGx8fcadFVIxCcP9qadhrml/Yf19yuwi9jpsi+xfh+ThsmAWuiiZb0fZh7
+         NUdZ98DWaDyD864McxkGdbGDitgaoEvhfrpkyKJczWCpuoovrYysCaaUfemN3exbS6B8
+         9RkQ==
+X-Gm-Message-State: AOAM530M27ofl6+0EODRc2Kdtox7KGkzTKKrSZTt4NW5yaBezyHij05f
+        AQNpiN7Xp/eGltbOXL/BuQ1a0A==
+X-Google-Smtp-Source: ABdhPJwjO9gdBQ3A1EtXca/y3WeuvIcYU20JPYHU2jSpFYSGJCsfNFJNSgvD9gAQ0LrvY1egrHrDjw==
+X-Received: by 2002:a1c:6405:: with SMTP id y5mr5165258wmb.150.1604503158966;
+        Wed, 04 Nov 2020 07:19:18 -0800 (PST)
+Received: from dell ([91.110.221.242])
+        by smtp.gmail.com with ESMTPSA id d20sm3205552wra.38.2020.11.04.07.19.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Nov 2020 07:19:18 -0800 (PST)
+Date:   Wed, 4 Nov 2020 15:19:16 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
+ properties
+Message-ID: <20201104151916.GL4488@dell>
+References: <20200917193754.542-1-krzk@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <10118193-225a-05a8-e73d-7370e1866ea2@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200917193754.542-1-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 17 Sep 2020, Krzysztof Kozlowski wrote:
 
-
-On 11/4/2020 4:07 AM, Rafał Miłecki wrote:
-> On 04.11.2020 11:35, Robin Murphy wrote:
->> On 2020-10-28 10:11, Rafał Miłecki wrote:
->> [...]
->>> +        cpu0: cpu@0 {
->>> +            device_type = "cpu";
->>> +            compatible = "brcm,cortex-b53", "arm,cortex-a53";
->>
->> Erm, there's no binding for that - did you mean "brcm,brahma-b53"?
+> Add common properties appearing in DTSes (clock-names,
+> clock-output-names) with the common values (actually used in DTSes) to
+> fix dtbs_check warnings like:
 > 
-> I'm not sure if that's the same thing. Unfortunately I don't have access to
-> any Broadcom documentation.
+>   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
+>     pmic@4b: 'clock-names', 'clock-output-names', do not match any of the regexes: 'pinctrl-[0-9]+'
 > 
-> Florian: could you try to verify that, please?
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. Define the names, as used in existing DTS files.
+> ---
+>  .../devicetree/bindings/mfd/rohm,bd71837-pmic.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
 
-It should be "brcm,brahma-b53", that is the CPU design that this SoC uses.
+Applied, thanks.
+
 -- 
-Florian
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
