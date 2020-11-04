@@ -2,303 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E9D82A6AE3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 17:53:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7F22A6BB7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 18:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731935AbgKDQxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 11:53:15 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:54827 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731697AbgKDQxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 11:53:14 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id F2B1458017C;
-        Wed,  4 Nov 2020 11:53:11 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Wed, 04 Nov 2020 11:53:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=WGtBZotx2zMMoQxK+qbO6rThrSe
-        UPqBq/GTH8RWASsU=; b=OIApHCdFlhK39henbLMfOB/6tYQOiuWZFMBfXo31QwY
-        82mGkt1bjfe3POJNEepzIvMNk7Tn+ECBHFjuk9zLe5RmPCFjswQPKwKgrFQr2vTM
-        56gnxq3+ZV+virOTZWqy5n8xiNG4VXoHgWLk+dmdtoMgW+enlwo47N8R06SOHm5O
-        X1Z8mFNFomUMpfEZ51/zrh2OO6Luq6WS4OPMxo1oNm/UjAnYRpBK1xEhuAnmvL7h
-        0vb4HvAZ7ObyU73KedRAHnz/FDD43DCydTp1YfPRvx5UM5N+LYKdE8OmKfbOxiwf
-        J5YfSVhtL8hI1Ep1TnegyPRI0HpFI3AqsYPHvHB4/FA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=WGtBZo
-        tx2zMMoQxK+qbO6rThrSeUPqBq/GTH8RWASsU=; b=fT4yyXdrCzcaXQptYyvthQ
-        PGGhbZyv9wAob5GpmvCFlmp7/CUpxx0G1JpCRO2QcQIvCBNaulZjsDLN6KQyAqk1
-        1Uf/uoIFSafRBBk24ja5XFD07m26ESvpwYcY4SCk4uOMJ+fuOI7ddPOG7Q+bYfvL
-        VDWoBMkyR5xRVu3ahM4FgHpaJ6S44tog3PrDRE1YsNWOsywe0f5i5d6OVU9TqVfU
-        lNgOJgsfhPfiN5ZctYnu4eRgmac0V1gdtxEVdtVYBKqPIr6iPuP+VBuqkHgB5+RJ
-        ap2YmvKFx1U7iXWEiWMMFxLtRhHy71nWCccSjvfrkvhoB3QwHSvRqdkszgC5/QoQ
-        ==
-X-ME-Sender: <xms:ddyiX_kVZzypW8ie_ay14__Tf_Lu9sv8YLSSfcH2GImvWdNYUJ0ouw>
-    <xme:ddyiXy0tJM1Ox96p3rY1Eh_qtbE7qIFUYYqvgZWP_EKy0Ui43cBRRan_GCfhGb3wE
-    lXU6BoGZmMQh_Z2wEc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddthedgleehucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepffetteevieejteeuhfffgeektefghfeileehhedtuddutefhhfejtddvtddu
-    ledvnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfkphepledtrdekle
-    drieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhr
-    ohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:ddyiX1oC2nva4xv5RDiRXZ-OpHwTCB4ALz83mBzk3YHNvEeDQqbDKA>
-    <xmx:ddyiX3lIyxVSk7CtaIb1MkDgCaW-FcswGzPte2jIWxe85BeAxgvFvQ>
-    <xmx:ddyiX91VeuTQTaW7kK32181gtWdpJkw-6U_b8L6eQ_rsrhsvEDFnyg>
-    <xmx:d9yiX0utDmXtYOUDUh5Z6R1BCBAMVxKvghUZBEpOer5KJ5sOn6__Uw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A5338306467D;
-        Wed,  4 Nov 2020 11:53:09 -0500 (EST)
-Date:   Wed, 4 Nov 2020 17:53:08 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
+        id S1731536AbgKDRcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 12:32:45 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:44664 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727006AbgKDRcn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 12:32:43 -0500
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A4HWDPo031393;
+        Wed, 4 Nov 2020 18:32:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=0dGU7EjDFLfbmr+icg3Fbkz2c9T0BmmFtSmomDOPn/8=;
+ b=r32wWw0ILSyyemrPcRcdQkBs2p/wHEoF0ErSHQ1Tu3f2H0m8Y0OWsMatCqJET75jaB0y
+ 7tDQmlKwlW5GpTYWyByfPTz+N7GG7sWq9Wq2D0jCfSMmynFnLU0XyJ6Qoc/73y/BAqOg
+ 5NjyASLRVEzmaJhRL02F4lJDApMwIqPY3Bv3HdiCgPn8+4VjLd/sbxFYcFevpL288NMf
+ 1yxcXATEdf98acbeZuiKm+P8zAVNPoYR/dV5DSpo54tzgxQqlvQrQWV+yLVcLOa/Soei
+ qqRLqOymu9oKKTiNYNN+Rt5OZ0K+JHT2bhjXQ8hvIUqEgnvx5D1+d2cRt/NA1OzHbcVE nQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34h00egtyd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 04 Nov 2020 18:32:26 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7038410002A;
+        Wed,  4 Nov 2020 18:32:25 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag1node1.st.com [10.75.127.1])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id F24F5225C2A;
+        Wed,  4 Nov 2020 18:32:24 +0100 (CET)
+Received: from localhost (10.75.127.47) by SFHDAG1NODE1.st.com (10.75.127.1)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 4 Nov 2020 18:32:24
+ +0100
+From:   Hugues Fruchet <hugues.fruchet@st.com>
+To:     Alexandre Torgue <alexandre.torgue@st.com>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
         Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
-Subject: Re: [PATCH 07/14] dt-bindings: media: i2c: Add A31 MIPI CSI-2
- bindings documentation
-Message-ID: <20201104165308.rcdxvzyj3kbiyfan@gilmour.lan>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-8-paul.kocialkowski@bootlin.com>
- <20201026161450.gr3dqpltxw2ccc3s@gilmour.lan>
- <20201027095221.GE168350@aptenodytes>
- <20201027184459.eberpkr52kay3du6@gilmour.lan>
- <20201104104827.GD285779@aptenodytes>
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Hugues Fruchet <hugues.fruchet@st.com>,
+        Alain Volmat <alain.volmat@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe CORNU <philippe.cornu@st.com>
+Subject: [PATCH v5 0/4] DCMI BT656 parallel bus mode support
+Date:   Wed, 4 Nov 2020 18:32:08 +0100
+Message-ID: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xacrwb5dafcleu43"
-Content-Disposition: inline
-In-Reply-To: <20201104104827.GD285779@aptenodytes>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG7NODE1.st.com (10.75.127.19) To SFHDAG1NODE1.st.com
+ (10.75.127.1)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-04_12:2020-11-04,2020-11-04 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support of BT656 embedded synchronization bus.
+This mode allows to save hardware synchro lines hsync & vsync
+by replacing them with synchro codes embedded in data stream.
+Add "bus-type" property and make it required so that there is no
+ambiguity between parallel mode (bus-type=5) and BT656 mode (bus-type=6).
 
---xacrwb5dafcleu43
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+===========
+= history =
+===========
+version 5:
+  - Add revisited bindings and devicetree with explicit use of "bus-type"
 
-On Wed, Nov 04, 2020 at 11:48:27AM +0100, Paul Kocialkowski wrote:
-> Hi,
->=20
-> On Tue 27 Oct 20, 19:44, Maxime Ripard wrote:
-> > On Tue, Oct 27, 2020 at 10:52:21AM +0100, Paul Kocialkowski wrote:
-> > > Hi,
-> > >=20
-> > > On Mon 26 Oct 20, 17:14, Maxime Ripard wrote:
-> > > > i2c? :)
-> > >=20
-> > > Oops, good catch!
-> > > =20
-> > > > On Fri, Oct 23, 2020 at 07:45:39PM +0200, Paul Kocialkowski wrote:
-> > > > > This introduces YAML bindings documentation for the A31 MIPI CSI-2
-> > > > > controller.
-> > > > >=20
-> > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > > ---
-> > > > >  .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 168 ++++++++++++=
-++++++
-> > > > >  1 file changed, 168 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/media/allwi=
-nner,sun6i-a31-mipi-csi2.yaml
-> > > > >=20
-> > > > > diff --git a/Documentation/devicetree/bindings/media/allwinner,su=
-n6i-a31-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,=
-sun6i-a31-mipi-csi2.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..9adc0bc27033
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31=
--mipi-csi2.yaml
-> > > > > @@ -0,0 +1,168 @@
-> > > > > +# SPDX-License-Identifier: GPL-2.0
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-mip=
-i-csi2.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: Allwinner A31 MIPI CSI-2 Device Tree Bindings
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    oneOf:
-> > > > > +      - const: allwinner,sun6i-a31-mipi-csi2
-> > > > > +      - items:
-> > > > > +          - const: allwinner,sun8i-v3s-mipi-csi2
-> > > > > +          - const: allwinner,sun6i-a31-mipi-csi2
-> > > > > +
-> > > > > +  reg:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  interrupts:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  clocks:
-> > > > > +    items:
-> > > > > +      - description: Bus Clock
-> > > > > +      - description: Module Clock
-> > > > > +
-> > > > > +  clock-names:
-> > > > > +    items:
-> > > > > +      - const: bus
-> > > > > +      - const: mod
-> > > > > +
-> > > > > +  phys:
-> > > > > +    items:
-> > > > > +      - description: MIPI D-PHY
-> > > > > +
-> > > > > +  phy-names:
-> > > > > +    items:
-> > > > > +      - const: dphy
-> > > > > +
-> > > > > +  resets:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  # See ./video-interfaces.txt for details
-> > > > > +  ports:
-> > > > > +    type: object
-> > > > > +
-> > > > > +    properties:
-> > > > > +      port@0:
-> > > > > +        type: object
-> > > > > +        description: Input port, connect to a MIPI CSI-2 sensor
-> > > > > +
-> > > > > +        properties:
-> > > > > +          reg:
-> > > > > +            const: 0
-> > > > > +
-> > > > > +          endpoint:
-> > > > > +            type: object
-> > > > > +
-> > > > > +            properties:
-> > > > > +              remote-endpoint: true
-> > > > > +
-> > > > > +              bus-type:
-> > > > > +                const: 4
-> > > > > +
-> > > > > +              clock-lanes:
-> > > > > +                maxItems: 1
-> > > > > +
-> > > > > +              data-lanes:
-> > > > > +                minItems: 1
-> > > > > +                maxItems: 4
-> > > > > +
-> > > > > +            required:
-> > > > > +              - bus-type
-> > > > > +              - data-lanes
-> > > > > +              - remote-endpoint
-> > > > > +
-> > > > > +            additionalProperties: false
-> > > > > +
-> > > > > +        required:
-> > > > > +          - endpoint
-> > > > > +
-> > > > > +        additionalProperties: false
-> > > > > +
-> > > > > +      port@1:
-> > > > > +        type: object
-> > > > > +        description: Output port, connect to a CSI controller
-> > > > > +
-> > > > > +        properties:
-> > > > > +          reg:
-> > > > > +            const: 1
-> > > > > +
-> > > > > +          endpoint:
-> > > > > +            type: object
-> > > > > +
-> > > > > +            properties:
-> > > > > +              remote-endpoint: true
-> > > > > +
-> > > > > +              bus-type:
-> > > > > +                const: 4
-> > > >=20
-> > > > That one seems a bit weird. If the input and output ports are using=
- the
-> > > > same format, what is that "bridge" supposed to be doing?
-> > >=20
-> > > Fair enough. What this represents is the internal link (likely a FIFO=
-) between
-> > > the two controllers. It is definitely not a MIPI CSI-2 bus but there'=
-s no
-> > > mbus type for an internal link (probably because it's not a bus after=
- all).
-> > >=20
-> > > Note that on the CSI controller side, we need the bus-type to be set =
-to 4 for it
-> > > to properly select the MIPI CSI-2 input. So it just felt more logical=
- to have
-> > > the same on the other side of the endpoint. On the other hand, we can=
- just
-> > > remove it on the MIPI CSI-2 controller side since it won't check it a=
-nd have it
-> > > fallback to the unknown mbus type.
-> > >=20
-> > > But that would make the types inconsistent on the two sides of the li=
-nk.
-> > > I don't think V4L2 will complain about it at the moment, but it would=
- also make
-> > > sense that it does eventually.
-> > >=20
-> > > What do you think?
-> >=20
-> > There's still the same issue though, it doesn't make any sense that a
-> > bridge doesn't change the bus type. If it really did, we wouldn't need
-> > that in the first place.
->=20
-> Yes I agreee.
->=20
-> > What you want to check in your driver is whether the subdev you're
-> > connected to has a sink pad that uses MIPI-CSI
->=20
-> I'm not really sure that's possible, but if it is it would indeed be the =
-most
-> appropriate solution. If it's not, we still need to know that we need to =
-feed
-> from MIPI CSI-2 so I don't see any other option than report MIPI CSI-2 on=
- both
-> ends of MIPI CSI-2 controller.
->=20
-> But there's still the question of what media bus type should be reported =
-for
-> the CSI <-> MIPI CSI-2 link. I'm fine with unknown but we could also add a
-> generic internal bus type for this case.
+version 4:
+  - Fix typo in commit message
 
-I guess both questions would need to be discussed more on the v4l2 side.
+version 3:
+  - Fix bus_width print to %u as per Sakari comment
 
-Maxime
+version 2:
+  - As per Sakari remark, revisit commit message and document
+    BT656 parallel bus mode in bindings
 
---xacrwb5dafcleu43
-Content-Type: application/pgp-signature; name="signature.asc"
+version 1:
+  - Initial submission
 
------BEGIN PGP SIGNATURE-----
+Hugues Fruchet (4):
+  media: stm32-dcmi: add support of BT656 bus
+  media: dt-bindings: media: st,stm32-dcmi: add support of BT656 bus
+  ARM: dts: stm32: set bus-type in DCMI endpoint for stm32mp157c-ev1
+    board
+  ARM: dts: stm32: set bus-type in DCMI endpoint for stm32429i-eval
+    board
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6LcdAAKCRDj7w1vZxhR
-xc3DAPsEOVFi4YsULyJxUGOG/CUJe58SiZEoSLOt7kVYjgc4hAD/TFRmJ5F8zSIM
-RMVcnb7MsVl3UWOZyZMRL0DxZRfk7wo=
-=IT0H
------END PGP SIGNATURE-----
+ .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 38 ++++++++++++++++++++++
+ arch/arm/boot/dts/stm32429i-eval.dts               |  1 +
+ arch/arm/boot/dts/stm32mp157c-ev1.dts              |  1 +
+ drivers/media/platform/stm32/stm32-dcmi.c          | 37 +++++++++++++++++++--
+ 4 files changed, 75 insertions(+), 2 deletions(-)
 
---xacrwb5dafcleu43--
+-- 
+2.7.4
+
