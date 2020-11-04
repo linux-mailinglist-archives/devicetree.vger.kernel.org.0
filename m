@@ -2,128 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75ECB2A6203
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 11:38:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EE3CE2A625E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 11:41:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729370AbgKDKhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 05:37:40 -0500
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:36253 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729473AbgKDKhi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 05:37:38 -0500
-X-Originating-IP: 93.29.109.196
-Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 42D764000A;
-        Wed,  4 Nov 2020 10:37:32 +0000 (UTC)
-Date:   Wed, 4 Nov 2020 11:37:31 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
-Subject: Re: [PATCH 12/14] media: sunxi: Add support for the A83T MIPI CSI-2
- controller
-Message-ID: <20201104103731.GC285779@aptenodytes>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-13-paul.kocialkowski@bootlin.com>
- <20201026170041.qsjzxlurufuuhcsq@gilmour.lan>
+        id S1728969AbgKDKju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 05:39:50 -0500
+Received: from mx2.suse.de ([195.135.220.15]:58456 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726344AbgKDKju (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 05:39:50 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id D8C74AD77;
+        Wed,  4 Nov 2020 10:39:47 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org
+Cc:     f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        dmitry.torokhov@gmail.com, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, p.zabel@pengutronix.de,
+        linux-gpio@vger.kernel.org, linus.walleij@linaro.org,
+        linux-clk@vger.kernel.org, sboyd@kernel.org,
+        linux-rpi-kernel@lists.infradead.org, bgolaszewski@baylibre.com,
+        andy.shevchenko@gmail.com,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Eric Anholt <eric@anholt.net>
+Subject: [PATCH v3 00/11] Raspberry Pi PoE HAT fan support
+Date:   Wed,  4 Nov 2020 11:39:26 +0100
+Message-Id: <20201104103938.1286-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.29.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="KN5l+BnMqAQyZLvT"
-Content-Disposition: inline
-In-Reply-To: <20201026170041.qsjzxlurufuuhcsq@gilmour.lan>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The aim of this series is to add support to the fan found on RPi's PoE
+HAT. Some commentary on the design can be found below. But the imporant
+part to the people CC'd here not involved with PWM is that, in order to
+achieve this properly, we also have to fix the firmware interface the
+driver uses to communicate with the PWM bus (and many other low level
+functions). Specifically, we have to make sure the firmware interface
+isn't unbound while consumers are still up. So, patch #1 introduces
+reference counting in the firwmware interface driver and patches #2 to
+#7 update all firmware users. Patches #8 to #10 introduce the new PWM
+driver.
 
---KN5l+BnMqAQyZLvT
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I sent everything as a single series as the final version of the PWM
+drivers depends on the firwmare fixes, but I'll be happy to split this
+into two separate series if you think it's better.
 
-Hi,
+--- Original cover letter below ---
 
-On Mon 26 Oct 20, 18:00, Maxime Ripard wrote:
-> On Fri, Oct 23, 2020 at 07:45:44PM +0200, Paul Kocialkowski wrote:
-> > The A83T supports MIPI CSI-2 with a composite controller, covering both=
- the
-> > protocol logic and the D-PHY implementation. This controller seems to b=
-e found
-> > on the A83T only and probably was abandonned since.
-> >=20
-> > This implementation splits the protocol and D-PHY registers and uses th=
-e PHY
-> > framework internally. The D-PHY is not registered as a standalone PHY d=
-river
-> > since it cannot be used with any other controller.
-> >=20
-> > There are a few notable points about the controller:
-> > - The initialisation sequence involes writing specific magic init value=
-s that
-> >   do not seem to make any particular sense given the concerned register=
- fields.
-> > - Interrupts appear to be hitting regardless of the interrupt mask regi=
-sters,
-> >   which can cause a serious flood when transmission errors occur.
->=20
-> Ah, so it's a separate driver too.
->=20
-> > This work is based on the first version of the driver submitted by
-> > K=C3=A9vin L'h=C3=B4pital, which was adapted to mainline from the Allwi=
-nner BSP.
-> > This version integrates MIPI CSI-2 support as a standalone V4L2 subdev
-> > instead of merging it in the sun6i-csi driver.
-> >=20
-> > It was tested on a Banana Pi M3 board with an OV8865 sensor in a 4-lane
-> > configuration.
->=20
-> Co-developped-by and SoB from Kevin?
+This series aims at adding support to RPi's official PoE HAT fan[1].
 
-Not really. I wrote this driver from scratch and even significantly reworked
-the register descriptions to the point that I don't think it makes sense to
-consider that he's an author. For parts that can be considered a derivative
-work, copyright attribution was given in the header.
+The HW setup is the following:
 
-Cheers,
+| Raspberry Pi                               | PoE HAT                    |
+ arm core -> Mailbox -> RPi co-processor -> I2C -> Atmel MCU -> PWM -> FAN
 
-Paul
+The arm cores have only access to the mailbox interface, as i2c0, even if
+physically accessible, is to be used solely by the co-processor
+(VideoCore 4/6).
 
-> Looking at the driver, the same comments from the v3s apply there
->=20
-> Maxime
+This series implements a PWM bus, and has pwm-fan sitting on top of it as per
+this discussion: https://lkml.org/lkml/2018/9/2/486. Although this design has a
+series of shortcomings:
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+- It depends on a DT binding: it's not flexible if a new hat shows up with new
+  functionality, we're not 100% sure we'll be able to expand it without
+  breaking backwards compatibility. But without it we can't make use of DT
+  thermal-zones, which IMO is overkill.
 
---KN5l+BnMqAQyZLvT
-Content-Type: application/pgp-signature; name="signature.asc"
+- We're using pwm-fan, writing a hwmon driver would, again, give us more
+  flexibility, but it's not really needed at the moment.
 
------BEGIN PGP SIGNATURE-----
+I personally think that it's not worth the effort, it's unlikely we'll get
+things right in advance. And ultimately, if the RPi people come up with
+something new, we can always write a new driver/bindings from scratch (as in
+not reusing previous code).
 
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl+ihGcACgkQ3cLmz3+f
-v9HKqAf+OuoO0165XskKVuTp2nDVtSSL8D+0v2Fji8v+foCHk2qq8v2otrqY5Ey+
-ptEefRqzPa/VFRm5ZShzliEzeFK1vE+0/NE/n9QU4KdkhNUNnMGUIYGtEIvQr+Qo
-QOqecdSX0SR0qy/CMHbuNQJRRSzZ1AkYjq6g/023m3VMUOvGajq+2cwWYpYE0SC/
-Ngjd/deVC3yvosBdjwUfzyB2zj6pNOM8PQrUnIpiO2pBsZcXqqQ4QgLmi1UgtSrz
-RsTW9bMwsz7IRyogs4dCrb6s3ooCuK+Ox3v7bqng99Eqe/n6oIveLzRNS5QnlKMa
-rDjvmpkshuvTgPMU/kQlaGL1k20Lxw==
-=i052
------END PGP SIGNATURE-----
+That said, I'm more than happy to change things if there is a consensus that
+another design will do the trick.
 
---KN5l+BnMqAQyZLvT--
+[1] https://www.raspberrypi.org/blog/introducing-power-over-ethernet-poe-hat/
+
+---
+
+Changes since v2:
+ - Introduce devm_rpi_firmware_get()
+ - Small cleanups in PWM driver
+
+Changes since v1:
+ - Address PWM driver changes
+ - Fix binding, now with 2 cells
+ - Add reference count to rpi_firmware_get()
+
+Nicolas Saenz Julienne (11):
+  firmware: raspberrypi: Introduce devm_rpi_firmware_get()
+  clk: bcm: rpi: Release firmware handle on unbind
+  gpio: raspberrypi-exp: Release firmware handle on unbind
+  reset: raspberrypi: Release firmware handle on unbind
+  soc: bcm: raspberrypi-power: Release firmware handle on unbind
+  staging: vchiq: Release firmware handle on unbind
+  input: raspberrypi-ts: Release firmware handle when not needed
+  firmware: raspberrypi: Get rid of rpi_firmware_get()
+  dt-bindings: pwm: Add binding for RPi firmware PWM bus
+  DO NOT MERGE: ARM: dts: Add RPi's official PoE hat support
+  pwm: Add Raspberry Pi Firmware based PWM bus
+
+ .../arm/bcm/raspberrypi,bcm2835-firmware.yaml |  20 ++
+ arch/arm/boot/dts/bcm2711-rpi-4-b.dts         |  54 +++++
+ drivers/clk/bcm/clk-raspberrypi.c             |   2 +-
+ drivers/firmware/raspberrypi.c                |  37 ++-
+ drivers/gpio/gpio-raspberrypi-exp.c           |   2 +-
+ drivers/input/touchscreen/raspberrypi-ts.c    |   2 +-
+ drivers/pwm/Kconfig                           |   9 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-raspberrypi-poe.c             | 216 ++++++++++++++++++
+ drivers/reset/reset-raspberrypi.c             |   2 +-
+ drivers/soc/bcm/raspberrypi-power.c           |   2 +-
+ .../interface/vchiq_arm/vchiq_arm.c           |   2 +-
+ .../pwm/raspberrypi,firmware-pwm.h            |  13 ++
+ include/soc/bcm2835/raspberrypi-firmware.h    |   6 +-
+ 14 files changed, 356 insertions(+), 12 deletions(-)
+ create mode 100644 drivers/pwm/pwm-raspberrypi-poe.c
+ create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-pwm.h
+
+-- 
+2.29.1
+
