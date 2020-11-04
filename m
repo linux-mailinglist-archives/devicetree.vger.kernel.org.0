@@ -2,75 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 763352A6FC4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 22:39:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47BEE2A6FC7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 22:40:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730019AbgKDVjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 16:39:54 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:36370 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730831AbgKDVjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 16:39:53 -0500
-Received: by mail-oi1-f195.google.com with SMTP id d9so17807395oib.3;
-        Wed, 04 Nov 2020 13:39:53 -0800 (PST)
+        id S1727098AbgKDVkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 16:40:45 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:37049 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726777AbgKDVkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 16:40:45 -0500
+Received: by mail-ot1-f67.google.com with SMTP id l36so172352ota.4
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 13:40:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=0GjcO0LXhbWpQpB54W5WhX2joq9YbQFz1TRI+rNI3DE=;
-        b=oT3SJqbU+aaoyiv/GzZcc4tQHEm87Bl5lDmPR3rd/PI6RcdW4Mz7xx+Z+Ffrn0aWIB
-         kftPKi2/syV0UroRYiAvjog6tDBN9wIOhWZ8RVgI4Tcvm02L0Hcjdd4dw7EsfRGcD+Qo
-         Mmg7nIoFiJcEXufmXhFeIFYXD8sxLaGLaz5xFMkUmsu+Gemw6JljKW2yRsCVw1WuIsDt
-         BEVyUNgqVaX375LxPpAj2FFGEDoULcbXCJ6hIhgkhmjKH9916P7pW0nrd+m4oC6Y4gUi
-         tTLfxXBaHvXO5FaL1ZPWbh5HUGtHsxnsu0Evg6z5xZYxt3BjFlpetuQc8KmOVHNOufyD
-         hZOw==
-X-Gm-Message-State: AOAM533WFokA1T/+SqqwXkHD3wNJ8xWS8h7xDnuisL7MjpR4t5vSI6+8
-        n1UjqXxn7Ncw4mEE1xj81+plKpPVYg==
-X-Google-Smtp-Source: ABdhPJwHYbu/9XtGIbsBCS4HflbdiacDO6YTBqPMDVPRfdaL650TepVQ9UJ22/TceHS3Dr7TP9DQCw==
-X-Received: by 2002:aca:3a43:: with SMTP id h64mr3590880oia.73.1604525992877;
-        Wed, 04 Nov 2020 13:39:52 -0800 (PST)
+        bh=vxoN1R9RfGCh3RGhg2wYE9qV8ZcxH+XD7kYhc9N9ioE=;
+        b=GuiEgZzj0p0PXmEwsAzwQJ87pRvobxWt4TQbq+8uj2/DU6HutVm7Sjb9xAgjK5igas
+         qXwRUJS7G5VitEWfXLzwkUIf9F0aIpaF4pCXT9EBuCjHkqzxtzQYT4CBHfDZhEAoeSmT
+         bPgK1e4FbsebAk5ksZtwtsFB0l+CCvGGQ18BRic0NqsfP8hyDjP7XWL/WStgEM0Kh9Yo
+         Ls8DGeqhGmruHDxa+ULTMOqzGzDN7Zve0R6WxGg5ZkbjOuTvN9vtMqukGCCg+3ZcsQGT
+         SzNlCq/zXUMx73JJlS6av5MBm/g0714wTc3fRwc0k8kg0e6X94pErGQPLwQ8QH7sQMvD
+         M87Q==
+X-Gm-Message-State: AOAM532Eb0zkD2FsjN0orbLW5bGGvQAQ/6D+Tm7JPnGs5vhy7c+wHkdw
+        6Y7HyVMroGLdetB2r7GaWw==
+X-Google-Smtp-Source: ABdhPJyjkquJkQavca5dYB1F3bBim/u9ogfjjxUUyl649Lki08IW51tJRaxE54QlhHT8DgcgURU9YQ==
+X-Received: by 2002:a9d:69c6:: with SMTP id v6mr8549539oto.138.1604526044195;
+        Wed, 04 Nov 2020 13:40:44 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n18sm740113otk.33.2020.11.04.13.39.51
+        by smtp.gmail.com with ESMTPSA id f124sm767912oia.27.2020.11.04.13.40.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 13:39:52 -0800 (PST)
-Received: (nullmailer pid 4169070 invoked by uid 1000);
-        Wed, 04 Nov 2020 21:39:51 -0000
-Date:   Wed, 4 Nov 2020 15:39:51 -0600
+        Wed, 04 Nov 2020 13:40:43 -0800 (PST)
+Received: (nullmailer pid 4170255 invoked by uid 1000);
+        Wed, 04 Nov 2020 21:40:42 -0000
+Date:   Wed, 4 Nov 2020 15:40:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     devicetree@vger.kernel.org, Jingoo Han <jingoohan1@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        linux-pci@vger.kernel.org
-Subject: Re: [PATCH v3 3/6] dt-bindings: phy: add the samsung,exynos-pcie-phy
- binding
-Message-ID: <20201104213951.GA4169027@bogus>
-References: <20201029134017.27400-1-m.szyprowski@samsung.com>
- <CGME20201029134038eucas1p2d550a45ff3222ccb72d15d5c89d4f938@eucas1p2.samsung.com>
- <20201029134017.27400-4-m.szyprowski@samsung.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Tim Gover <tim.gover@raspberrypi.com>, devicetree@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        Eric Anholt <eric@anholt.net>,
+        bcm-kernel-feedback-list@broadcom.com,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        dri-devel@lists.freedesktop.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: display: Add a property to deal with
+ WiFi coexistence
+Message-ID: <20201104214042.GA4170221@bogus>
+References: <20201029134018.1948636-1-maxime@cerno.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201029134017.27400-4-m.szyprowski@samsung.com>
+In-Reply-To: <20201029134018.1948636-1-maxime@cerno.tech>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Oct 2020 14:40:14 +0100, Marek Szyprowski wrote:
-> Add dt-bindings for the Samsung Exynos PCIe PHY controller (Exynos5433
-> variant). Based on the text dt-binding posted by Jaehoon Chung.
+On Thu, 29 Oct 2020 14:40:16 +0100, Maxime Ripard wrote:
+> The RaspberryPi4 has both a WiFi chip and HDMI outputs capable of doing
+> 4k. Unfortunately, the 1440p resolution at 60Hz has a TMDS rate on the
+> HDMI cable right in the middle of the first Wifi channel.
 > 
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Add a property to our HDMI controller, that could be reused by other
+> similar HDMI controllers, to allow the OS to take whatever measure is
+> necessary to avoid that crosstalk.
+> 
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> 
 > ---
->  .../bindings/phy/samsung,exynos-pcie-phy.yaml | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/samsung,exynos-pcie-phy.yaml
+> 
+> Changes from v1:
+>   - Renamed the property
+>   - Split it into a separate patch
+> ---
+>  .../devicetree/bindings/display/brcm,bcm2711-hdmi.yaml      | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
