@@ -2,96 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 302CC2A6429
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 13:21:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E63E2A6430
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 13:24:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729250AbgKDMVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 07:21:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53020 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729179AbgKDMVm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 07:21:42 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCE1C0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 04:21:41 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id 11so3187703ljf.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 04:21:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jWpUOTFiS8vamzWvnGQ5aOvOUIOaTF43HJKhMTXxLrA=;
-        b=RHoVhfFO+kVITT8og7bzNtjmhBmbTVZokb4HnicD+c1Huwp4s3LsOGpKku0jbxplnL
-         gChDOaNpX0LCp2FVMN3349A1jyyk+gA23+ev0jzQArVo3cQd5LIBfswDfBTp+9FatMsE
-         g7VavNIvLmoWnkB/DxUZklK4PJY2guFZR002PIRZEoGrlvNapaoqAHU2Z2hzvlX5/cPr
-         lWiHSqSGErS/r5ng1GiPEwspxqxIwnhc1b3F9a3BYc359RuGFERJtHDaCYIuhnkEXmzY
-         gvK0oLZ2l4XwhdEwHvHW3xPGbf32k6ezm1UdjN//vh40822xznh1NtWU+Fo5RR36fwxw
-         Zqlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jWpUOTFiS8vamzWvnGQ5aOvOUIOaTF43HJKhMTXxLrA=;
-        b=KJqnpPhYAIhZ2XM2Oj3Ul6nJhtNb6oWIQGO4bT60QyIpOd+ADMXtlVxYasO/acpkjY
-         ct0x8B/CDdpffqMKPL4Ho9fEo3JdAMhFE6Ha3yPf9YcvdW2U7dPMITQ6I3miF1YVE2E+
-         Zz3J+QWjjH3cEDMI+m3sCqgNC+SyKHhbacIgrp5z//5GS33UL2s/XzR6G/7Kbi2mWhRF
-         42tUYZHbBFouhu8YflN4HaUGD4YrP2cu8iQIZiPA7yq3adhHxysO6Rvd2WotH58Pu8WG
-         MZHvN4GSqRVdiLDC+eDerkoJ2oPQAYm/LVSqraTmlROzzarhTF2lv+qTOhrQLET3ZSMk
-         63yQ==
-X-Gm-Message-State: AOAM532FExD5rx3oK2qWeivHko1JBrw5GH8K8klF/CyzlL1nxj85K15n
-        LSfQCDJQo431AWJy7Wz6fEs=
-X-Google-Smtp-Source: ABdhPJxn8wVpenINR40AJtp3n+Z9ZPb+Wq/mJCLjaFL18LVYFcYyi7BKLG7osFQqeT44thnktZiiiQ==
-X-Received: by 2002:a2e:88c2:: with SMTP id a2mr10935997ljk.438.1604492500222;
-        Wed, 04 Nov 2020 04:21:40 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id 70sm385436lfe.123.2020.11.04.04.21.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Nov 2020 04:21:39 -0800 (PST)
-Subject: Re: [PATCH 2/2] arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300
- early DTS files
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
+        id S1729341AbgKDMYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 07:24:16 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:53292 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726344AbgKDMYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 07:24:16 -0500
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201104122404euoutp02704c6cb22076e8d703cb07fbcdda4a67~ETY8oOrGL2803528035euoutp02h
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 12:24:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201104122404euoutp02704c6cb22076e8d703cb07fbcdda4a67~ETY8oOrGL2803528035euoutp02h
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604492644;
+        bh=gNAVfzFmOeobVChNyMtYG+v5xd03G54CGeOD9WGCmLI=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=Ts1jCrcoBawR9K/Mfhx1IUGXfIT4InPuQbFUYWKFZld5Vdo7sq5Ebn146LQud8MBN
+         KP+2R0rhVCXNTg4dBRwURPgVFFSWocVqibUaxPQDLKjevqEtyNyQ0Wzw531k821WJn
+         6wxwj8Sy7AmIQHbv5s9so7ix1jTWeldwpS9snYlg=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201104122403eucas1p2ce65adcd61df8984a196e8af8b093254~ETY75KKpQ2571425714eucas1p24;
+        Wed,  4 Nov 2020 12:24:03 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 59.3C.06318.36D92AF5; Wed,  4
+        Nov 2020 12:24:03 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201104122403eucas1p1d3c5bb3e42ef306c6b9b46a5d30cb475~ETY7h43nR0150101501eucas1p1s;
+        Wed,  4 Nov 2020 12:24:03 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201104122403eusmtrp10eebf657a62c6fac526661b357c353ca~ETY7hSN5u0837908379eusmtrp1B;
+        Wed,  4 Nov 2020 12:24:03 +0000 (GMT)
+X-AuditID: cbfec7f5-371ff700000018ae-86-5fa29d63c7eb
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 3F.56.06017.36D92AF5; Wed,  4
+        Nov 2020 12:24:03 +0000 (GMT)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201104122402eusmtip17ed41908c69de8265f61076ec6ec0aff~ETY7FehHM3263732637eusmtip1X;
+        Wed,  4 Nov 2020 12:24:02 +0000 (GMT)
+Subject: Re: [PATCH] ARM: dts: exynos: Assign a fixed index to mmc devices
+ on ODROID XU3/4 boards
+To:     Markus Reichl <m.reichl@fivetechno.de>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201028101123.6293-1-zajec5@gmail.com>
- <20201028101123.6293-2-zajec5@gmail.com>
- <65671fc4-96c8-aa88-543e-23f1fae6262d@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <9d6dd3e8-b746-48ec-5f35-5916558e35af@gmail.com>
-Date:   Wed, 4 Nov 2020 13:21:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <4ac01b71-e806-18c8-13ce-6acdcc1a3b41@samsung.com>
+Date:   Wed, 4 Nov 2020 13:24:02 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <65671fc4-96c8-aa88-543e-23f1fae6262d@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+In-Reply-To: <20201104100855.2337-1-m.reichl@fivetechno.de>
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrKKsWRmVeSWpSXmKPExsWy7djPc7rJcxfFG6y9r2Ex/8g5Vovz5zew
+        W2x6fI3V4vKuOWwWM87vY7J4eeQHo0Xr3iPsDuwet+7Ue2xa1cnmsXlJvcfnTXIBLFFcNimp
+        OZllqUX6dglcGQ3b5zMV/OeueLbgD1MD41XOLkZODgkBE4k1N3YzdzFycQgJrGCUWH3xIyOE
+        84VRYkrfFBYI5zOjxLZdtxlhWp68PwiVWM4o8fj2TyYI5z2jxNS5DewgVcICyRI72iczgdgi
+        AqUS7bO+gC1hFmhnlDg15wZYEZuAoUTX2y42EJtXwE7i2sEnYCtYBFQkjn84B2aLCiRJ/P38
+        hxmiRlDi5MwnLCA2p4C1xOq3m8DizALyEtvfzoGyxSVuPZkPdpGEwDJ2ibezTgM1cAA5LhJ3
+        N2pDvCAs8er4FnYIW0bi9OQeFoj6ZkaJh+fWskM4PYwSl5tmQD1tLXHn3C82kEHMApoS63fp
+        Q4QdJdafewc1n0/ixltBiBv4JCZtm84MEeaV6GgTgqhWk5h1fB3c2oMXLjFPYFSaheSzWUi+
+        mYXkm1kIexcwsqxiFE8tLc5NTy02zkst1ytOzC0uzUvXS87P3cQITDyn/x3/uoNx35+kQ4wC
+        HIxKPLwHti2MF2JNLCuuzD3EKMHBrCTC63T2dJwQb0piZVVqUX58UWlOavEhRmkOFiVxXuNF
+        L2OFBNITS1KzU1MLUotgskwcnFINjKuMpTP8OvkL50VmGqZ32kpPXekxtzPkmJ5u6bNPFSsu
+        i0+fsWL9l7BvMmJ6LDMba9m93mzdcYNXOGv1CZZ9m5ub3i3vLT1Znmczh/+Nn87qYuODBttS
+        l4mnN921a1N4urD7XmBXzOq3QZW/N7ozcIo7NX7gPJXb8O6F3uwJysHOay40hEVPV2Ipzkg0
+        1GIuKk4EAOFm7r44AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsVy+t/xu7rJcxfFGxzdwmcx/8g5Vovz5zew
+        W2x6fI3V4vKuOWwWM87vY7J4eeQHo0Xr3iPsDuwet+7Ue2xa1cnmsXlJvcfnTXIBLFF6NkX5
+        pSWpChn5xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2NimpOZllqUX6dgl6GQ3b5zMV/Oeu
+        eLbgD1MD41XOLkZODgkBE4kn7w+ydDFycQgJLGWUOLVwDwtEQkbi5LQGVghbWOLPtS42iKK3
+        jBKHrsxgBkkICyRLTN90CaxIRKBUYteeNWCTmAXaGSXuvJ0N1dHHKPFn0TmwsWwChhJdb0FG
+        cXLwCthJXDv4hBHEZhFQkTj+4RyYLSqQJPHywlQmiBpBiZMzn4D1cgpYS6x+uwlsM7OAmcS8
+        zQ+hbHmJ7W/nQNniEreezGeawCg0C0n7LCQts5C0zELSsoCRZRWjSGppcW56brGRXnFibnFp
+        Xrpecn7uJkZgrG079nPLDsaud8GHGAU4GJV4eA9sWxgvxJpYVlyZe4hRgoNZSYTX6ezpOCHe
+        lMTKqtSi/Pii0pzU4kOMpkDPTWSWEk3OB6aBvJJ4Q1NDcwtLQ3Njc2MzCyVx3g6BgzFCAumJ
+        JanZqakFqUUwfUwcnFINjB1bTjoy22lssPxXlSGX8W8R89Z7zRJqUxXXbDN+ukvs2ecjdSwe
+        Af2bAled+MZ859RyHx7DlLOKZundrxsLUkryBMzXd3mp+Ni73mRV/qf/80fTEonI10mhM6/c
+        cTi265ZFmzjr+SONigHNCz4pedz+wh2TklN+hOFfTV5148bFIeLh2QxBSizFGYmGWsxFxYkA
+        8WalVcsCAAA=
+X-CMS-MailID: 20201104122403eucas1p1d3c5bb3e42ef306c6b9b46a5d30cb475
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201104105152eucas1p28eb6ca629a685f24a2463c72898fdbc5
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201104105152eucas1p28eb6ca629a685f24a2463c72898fdbc5
+References: <CGME20201104105152eucas1p28eb6ca629a685f24a2463c72898fdbc5@eucas1p2.samsung.com>
+        <20201104100855.2337-1-m.reichl@fivetechno.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.11.2020 04:33, Florian Fainelli wrote:
->> +	gic: interrupt-controller@81000000 {
->> +		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
->> +		#interrupt-cells = <3>;
->> +		#address-cells = <0>;
-> 
-> You would want to create a node that encapsulates the ARM peripheral
-> addresses within the SoC's physical address range, see
-> arch/arm/boot/dts/bcm63138.dtsi for an example with the axi bus node.
-> 
-> [snip]
+Hi Markus,
 
-As a general note: putting interrupt-controller directly in the root node
-seems to be (incorrectly I assume) done in about 1/3 of arm64 DTS files.
+On 04.11.2020 11:08, Markus Reichl wrote:
+> Recently introduced async probe on mmc devices can shuffle block IDs.
+> Pin them to fixed values to ease booting in evironments where UUIDs
+> are not practical. Use newly introduced aliases for mmcblk devices from [1].
+>
+> [1]
+> https://patchwork.kernel.org/patch/11747669/
 
-Guessing by indention level:
+Wow, this is a long standing issue, called by others 'a feature'. Good 
+that this has been finally solved.
 
- > egrep $'^\t[a-z].*interrupt-controller' arch/arm64/boot/dts/*/*.dts* | wc -l
-66
+> Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+> ---
+>   arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi | 5 +++++
+>   1 file changed, 5 insertions(+)
+>
+> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> index e35af40a55cb..91d2840ac8ca 100644
+> --- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
+> @@ -13,6 +13,11 @@
+>   #include "exynos5422-odroid-core.dtsi"
+>   
+>   / {
+> +	aliases {
+> +		mmc0 = &mmc_2;
+> +		mmc1 = &mmc_0;
 
-Just in case someone is looking for a minor cleanup task.
+Frankly, I would keep the MMC numbers the same as in u-boot and 
+datasheets. 0 for the build-in eMMC and 2 for the SD-card. This would be 
+much more natural. On the other hand, I would agree to do it differently 
+only on Odroid HC1/HD2/MC1, which don't have build-in eMMC - just use 0 
+there for the SD-card.
+
+> +	};
+> +
+>   	gpio-keys {
+>   		compatible = "gpio-keys";
+>   		pinctrl-names = "default";
+
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
