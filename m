@@ -2,256 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A391F2A5F0A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 09:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3E722A5F21
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 09:09:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726539AbgKDICW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 03:02:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41260 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbgKDICV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 03:02:21 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C9D4C061A4D
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 00:02:21 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id b1so25851574lfp.11
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 00:02:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=gy5YNWG+xVfZNS0Dl4gFwHj8tU19PhMiQs0JO2GSAOA=;
-        b=VQ3QOwjCir0psEUlVq7+VwN6xwJ2f1o1CLORUjFRtYv5Y1hjiPY2+APc8xuUVPYeHT
-         CFHo8RXEjczdjS7LLzjPPZD6bRiMkHGOl+z2zaQEnhH29dKWbhiRlCukko5Q8KdCupc/
-         HuCIrcRxOZ+feAgREQIOl1ke1UPu+5ioNpqIMIAeGll88h5B2S92oVYLvfy+11MDTCD4
-         fUmawrMtR5NZzV8GP9DnuGE64RkNJ+RLPW+jMR6DVBTMFHGuNQILhr9XGx5qJfZzu7P/
-         H/b7QaF8iy3VXPASftOYFlRvYDryaUorxYHZVQhGNSB88MdulWx48/elHDb8LdO1GmJX
-         FNfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=gy5YNWG+xVfZNS0Dl4gFwHj8tU19PhMiQs0JO2GSAOA=;
-        b=bf+HTewLavRxemIRseuLvGvRvlne/f4qXhOZIbsDwfpIx6svplrG6fb8BSnT9ywlVC
-         Pv2lckLir+8qytj3st9/veXd4BjWFqGZ7+GOcDD6nw+22JgD2coHndq/5gdUYo1hNjbL
-         YSWq2bcdGSNASrPWV+jCGNU+cMXXzUQIzrEMBQvNnp6aw19XG+Tw4VrPR/X/LwYvxfYV
-         KWpazArbzl71hZtNjB30TuxOm8AOzp85QxnGfhTMhHz3DY+MnS9YL5z5Jpei7xCrySOt
-         3ADhMeWg5a59s0obzr8BeXZR6c2Uk6DAAELqyw/1gN8ZLksIO6my1370JVPbrXFGvZZg
-         aN1w==
-X-Gm-Message-State: AOAM531Rc0RwqQ9/OSL2ZpxxaJPYe1DQxOxczX0WsOCo3B58c5Xtbh4J
-        BEOiX84rrTpP0A1kwCnHQA4=
-X-Google-Smtp-Source: ABdhPJx1WTt9wOOzjp3kUfrR+Fipfmf28HK6r0l/TTZ89h2XX8NXvCSj04K3QtuYyO3rU69ozFj+tQ==
-X-Received: by 2002:a19:6753:: with SMTP id e19mr377650lfj.425.1604476939510;
-        Wed, 04 Nov 2020 00:02:19 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id o23sm334005lfl.285.2020.11.04.00.02.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Nov 2020 00:02:18 -0800 (PST)
-Subject: Re: [PATCH 2/2] arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300
- early DTS files
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201028101123.6293-1-zajec5@gmail.com>
- <20201028101123.6293-2-zajec5@gmail.com>
- <65671fc4-96c8-aa88-543e-23f1fae6262d@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <e99acf64-4f9d-ce8d-6b3d-b9a436a211e8@gmail.com>
-Date:   Wed, 4 Nov 2020 09:02:16 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726232AbgKDIJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 03:09:58 -0500
+Received: from mail-eopbgr130084.outbound.protection.outlook.com ([40.107.13.84]:33801
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726152AbgKDIJ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 03:09:57 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BodiwkWvA47CRmDvJJlyJnOO8oc412N+rz7zzDs1GJzQ0aR013OLx/8bZ96vv9T4kc/JVfla/SElpmIh5ot5dxB+hZF120oC8llwRjuHL27RKmn55MnwHw2CtoCFN2o+vRSEu8h18/t42klu3S2iitBLX8Ys4DQVxFn7Ng+V6ChGR69CpR9bmPBWT5PW/m8C1ko38tUo+aXgL69Idikyxy6/bAKB74ZJmUUInKsQ+qy0pv2dPmhKIxPrwgD2LIn0QPOAKNzLUo3ko7jlsAux7g5+QrL1s+BrBUt4QPKIviRTnRbvgLTruUdAuUHtqCSjsYQjIO3QmKzxBVimysIdng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dD7HLGOEVvHtEzS/Umpfulkyd5BGLMBy5MS5Ys7WrqU=;
+ b=FWo/8+SDKf1gK8K/3WRD5H04DGlfcoJ7Ym3cVFYpJZ9IOK+KBgdBRJYbegl9BOtz9P/URFcUSvPGJK88WgYDXl5aldnZvyu8EwFZqDuEEu2DWGq3MnYLncWpeazNylq9285/P6944m+jl3IKKrsbIk1osY2vccKRONSLPWAC3X5aeJQEhaBY6UBJmYZHab51+rn9NokLLMioU49qqBwYCMQRGZ6uqsP3WUZ1/NS1+wrozFpLMRO8dfC8SXWZ8fyH5ol4k/20PY8oyd0CGuTwLu3En1lbsikWqCnckp/SIE/033g5sR+mM8gXDO1fmtg/764iUzTnZ56+F9eQPr3klA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dD7HLGOEVvHtEzS/Umpfulkyd5BGLMBy5MS5Ys7WrqU=;
+ b=A+bpkmTsOYaOrtSivLMpXhj8v7QIAG4q4+nFF4m9OPbqf+A7hX1jVtYAarFiqq4bovwUAIAU86t2gWedxC/eMyWebhY9EIP7Nz1tPBShCFqcpUPwj4G6D9dU/kOZaNrYmPwpFlu60jjUdeV5k4tjh/C3miHgcc+zSrrhoL5YPw0=
+Authentication-Results: lists.freedesktop.org; dkim=none (message not signed)
+ header.d=none;lists.freedesktop.org; dmarc=none action=none
+ header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR04MB2975.eurprd04.prod.outlook.com (2603:10a6:802:9::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.29; Wed, 4 Nov
+ 2020 08:09:52 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::e171:19c1:b07f:53db]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::e171:19c1:b07f:53db%7]) with mapi id 15.20.3499.032; Wed, 4 Nov 2020
+ 08:09:52 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH] dt-bindings: display: panel-simple: Allow optional 'ports' property
+Date:   Wed,  4 Nov 2020 16:03:37 +0800
+Message-Id: <1604477017-17642-1-git-send-email-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR01CA0143.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:8f::23) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-In-Reply-To: <65671fc4-96c8-aa88-543e-23f1fae6262d@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR01CA0143.apcprd01.prod.exchangelabs.com (2603:1096:4:8f::23) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3499.18 via Frontend Transport; Wed, 4 Nov 2020 08:09:49 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 95670477-12a2-436f-a509-08d88099019d
+X-MS-TrafficTypeDiagnostic: VI1PR04MB2975:
+X-Microsoft-Antispam-PRVS: <VI1PR04MB2975488652CAE3D93E2D046E98EF0@VI1PR04MB2975.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:236;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bzzvWuXLmY4uzP3GM3YVX8gZGH4s7dOJeGvID3PWHTEDHuYeaNy/Hp1elHeLYxp96VIyeWjFWaogX2htC97++t2quNPXSaZyxXRZkN5I6ahNYM3C98bBInr6qhXDsYQyE9m5um4KVIgqTrhwr8WrqGYWffdVnWR0qYsC2ZjOcgRwvo56kobjUiSJ0S7UZofGDPyNhaljZ/S2I4K/y2NkGUGDDNYy9UlyfxSSaMie628eApmA/HF/cCi7paEm3kLOPu89sJw+S/mmo56SC5VM9ZzDRLG2nu79MkyvkUlTzMrC3wsNlXGdiZBRm+2ncO9i7knGiwJt+G+qowUTgGVP/78IWeI/9pytp4iWeszvQOGIcuysQeg4nF1yJLsUDfUW
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(366004)(376002)(346002)(39860400002)(5660300002)(86362001)(69590400008)(26005)(66946007)(186003)(66476007)(6506007)(66556008)(16526019)(4326008)(478600001)(54906003)(36756003)(8936002)(52116002)(2906002)(6512007)(6666004)(956004)(6486002)(8676002)(83380400001)(2616005)(316002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: /X0nQ6HmA0iEGl6OWWeT+hDyAOQjx6yzh57sSeygbzZe+Wv8ZIGi74dPHYGMGfFo7ncFRH9+v7ERyroagfOG6TssL5EXdL1iJNq9QCmi7O5TVODb0ZURtd0TaJeaooh3OlzTN+T03Y5aRe1267KjJxD+yJsciQuI1szjx/LwUcuBDwi8sHyqrRT7wGJb2IuGKJ92F25GVZITeYhz1CpPJdReRw5Yi1ux/Oo0kk8MCQZZTntWr86ucC9EUJK+5rkPiAz8BRLQK0q3x3iSwyYK0sXoxU/2OJiI89TQdwgNVrjLvaHs0Cfv8d1wtprc5Z2e6XwdZuQabv3xoJ91X0hMMn/783jA1nROSJeksKxO+IEFIgQzxtxDOMee2j7Ye0/cfN1Uq9hus7R2YvNKGvcrDvBqyjSTI9QYAyfkal8x5iTJXl3MYmrGhbO0Esc9jvwz06qEEfW4RneV3b/T6cFkwA+5XHwuCBiLCOrHOp36LtAViyzBJKuuis3jsFSvzwJsjo0nnOb+mgXPvaLn1wHLcL+Xq6B11rlvw+gRTXiZXJfS60M/q0WqusxDW2CypDtA1xxZrSLVfQ+hKlNoZSwEVB25S2Y66orhPgmmUKVigPNxyJ0LMoeDt7pYWR0KLBmX/XA0bMAxJV/5d5Xym6SSWw==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95670477-12a2-436f-a509-08d88099019d
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2020 08:09:52.2153
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kv248lZOWdTC3HQJzXaOugxgDtX/BR/6W5LMjdIfrb1IxDamVpgWSosy3cS4nngkIp8QjD1g9e6v6q/EFezI0w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB2975
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.11.2020 04:33, Florian Fainelli wrote:
-> On 10/28/2020 3:11 AM, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> They don't descibe hardware fully yet but it's enough to boot a system.
->>
->> Some missing blocks:
->> 1. PMC (Power Management Controller?)
->> 2. Crypto
->> 3. Thermal
->>
->> Asus misses defining full NAND partitions layout and buttons.
->>
->> Further changes will fill those gaps as soon as required bindings will
->> be found / tested / added.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
-> 
-> [snip]
-> 
->> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
->> @@ -0,0 +1,182 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +/dts-v1/;
->> +
->> +/ {
->> +	interrupt-parent = <&gic>;
->> +
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	aliases {
->> +		serial0 = &uart0;
->> +	};
->> +
->> +	chosen {
->> +		bootargs = "earlycon=bcm63xx_uart,0xff800640";
-> 
-> These bootargs should be dropped from the
+Some simple panels have dual LVDS interfaces which receive even and odd
+pixels respectively, like 'nlt,nl192108ac18-02d' and 'koe,tx26d202vm0bwa'.
+So, let's allow optional 'ports' property so that pixel order can be got
+via drm_of_lvds_get_dual_link_pixel_order() if it's child nodes 'port@0'
+and 'port@1' contain 'dual-lvds-even-pixels' and 'dual-lvds-odd-pixels'
+properties respectively.
 
-Can you explain why, is that some kernel rule I missed? That's extremely helpful for debugging.
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: David Airlie <airlied@linux.ie>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Liu Ying <victor.liu@nxp.com>
+---
+ Documentation/devicetree/bindings/display/panel/panel-simple.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index f9750b0..5ccb22b 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -288,6 +288,7 @@ properties:
+   backlight: true
+   enable-gpios: true
+   port: true
++  ports: true
+   power-supply: true
+ 
+ additionalProperties: false
+-- 
+2.7.4
 
->> +		stdout-path = "serial0:115200n8";
->> +	};
->> +
->> +	cpus {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		cpu0: cpu@0 {
->> +			device_type = "cpu";
->> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
-> 
-> Please drop "arm,cortex-a53"
-> 
->> +			reg = <0x0>;
->> +			next-level-cache = <&l2>;
->> +		};
->> +
->> +		cpu1: cpu@1 {
->> +			device_type = "cpu";
->> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
->> +			reg = <0x1>;
->> +			enable-method = "spin-table";
->> +			cpu-release-addr = <0x0 0xfff8>;
->> +			next-level-cache = <&l2>;
-> 
-> The device that you have access to did not even ship with a version of PSCI?
-
-Whenever trying to use psci defined as:
-
-psci {
-	compatible = "arm,psci-0.2";
-	method = "smc";
-};
-
-(with updated enable-method) I get:
-
-psci: probing for conduit method from DT.
-------------[ cut here ]------------
-kernel BUG at arch/arm64/kernel/traps.c:406!
-Internal error: Oops - BUG: 0 [#1] PREEMPT SMP
-CPU: 0 PID: 0 Comm: swapper Not tainted 5.10.0-rc2 #3
-Hardware name: Asus GT-AC5300 (DT)
-pstate: 00000085 (nzcv daIf -PAN -UAO -TCO BTYPE=--)
-pc : do_undefinstr+0x2d8/0x300
-lr : do_undefinstr+0x2e4/0x300
-sp : ffffffc010933c60
-x29: ffffffc010933c60 x28: ffffffc01093b680
-x27: ffffffc0107a4c40 x26: ffffffc0107bcca0
-x25: ffffffc010953c28 x24: 0000000000000080
-x23: 0000000080000085 x22: ffffffc01099e100
-x21: 00000000d4000003 x20: ffffffc01093b680
-x19: ffffffc010933cd0 x18: ffffffc010942fd0
-x17: 0000000000001400 x16: 0000000000001c00
-x15: fffffffeffe00000 x14: ffffffffffffffff
-x13: 0000000000000038 x12: 0101010101010101
-x11: 0000000000000004 x10: 0101010101010101
-x9 : 0000000000000004 x8 : 0000000000000004
-x7 : 0000000000000000 x6 : ffffffc010933cb8
-x5 : ffffffc010933cb8 x4 : ffffffc01093cf58
-x3 : 0000000000000001 x2 : 0000000000000000
-x1 : ffffffc01093b680 x0 : 0000000080000085
-Call trace:
-  do_undefinstr+0x2d8/0x300
-  el1_sync_handler+0xbc/0x140
-  el1_sync+0x80/0x100
-  __arm_smccc_smc+0x0/0x2c
-  psci_probe+0x34/0x2c4
-  psci_0_2_init+0x18/0x24
-  psci_dt_init+0x64/0x8c
-  setup_arch+0x428/0x5c4
-  start_kernel+0x78/0x52c
-Code: 17ffffa7 f9401bf7 17ffff80 f9001bf7 (d4210000)
-random: get_random_bytes called from print_oops_end_marker+0x2c/0x70 with crng_init=0
----[ end trace 0000000000000000 ]---
-Kernel panic - not syncing: Attempted to kill the idle task!
-
-
->> +		};
->> +
->> +		cpu2: cpu@2 {
->> +			device_type = "cpu";
->> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
->> +			reg = <0x2>;
->> +			enable-method = "spin-table";
->> +			cpu-release-addr = <0x0 0xfff8>;
->> +			next-level-cache = <&l2>;
->> +		};
->> +
->> +		cpu3: cpu@3 {
->> +			device_type = "cpu";
->> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
->> +			reg = <0x3>;
->> +			enable-method = "spin-table";
->> +			cpu-release-addr = <0x0 0xfff8>;
->> +			next-level-cache = <&l2>;
->> +		};
->> +
->> +		l2: l2-cache0 {
->> +			compatible = "cache";
->> +		};
->> +	};
->> +
->> +	gic: interrupt-controller@81000000 {
->> +		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
->> +		#interrupt-cells = <3>;
->> +		#address-cells = <0>;
-> 
-> You would want to create a node that encapsulates the ARM peripheral
-> addresses within the SoC's physical address range, see
-> arch/arm/boot/dts/bcm63138.dtsi for an example with the axi bus node.
-> 
-> [snip]
-> 
->> +
->> +			nandcs: nandcs@0 {
->> +				compatible = "brcm,nandcs";
->> +				reg = <0>;
->> +				nand-on-flash-bbt;
->> +				brcm,nand-has-wp;
-> 
-> Those last two properties should be moved to the board level DTS file.
-> 
->> +			};
->> +		};
->> +
->> +		reboot {
->> +			compatible = "syscon-reboot";
->> +			regmap = <&timer>;
->> +			offset = <0x34>;
->> +			mask = <1>;
->> +		};
->> +	};
->> +};
