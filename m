@@ -2,105 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F6E2A6E5D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22B992A6E79
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 21:03:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730340AbgKDTzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 14:55:24 -0500
-Received: from mx2.suse.de ([195.135.220.15]:33184 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727013AbgKDTzY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 14:55:24 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 15DE6AC53;
-        Wed,  4 Nov 2020 19:55:22 +0000 (UTC)
-Message-ID: <4debc77f5c72e1f4eff36a700231493bf9fbf404.camel@suse.de>
-Subject: Re: [PATCH v3 09/11] dt-bindings: pwm: Add binding for RPi firmware
- PWM bus
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        linux-kernel@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>,
-        Ray Jui <rjui@broadcom.com>, u.kleine-koenig@pengutronix.de,
-        devicetree@vger.kernel.org, Eric Anholt <eric@anholt.net>,
-        dmitry.torokhov@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com, p.zabel@pengutronix.de,
-        linux-rpi-kernel@lists.infradead.org, gregkh@linuxfoundation.org,
-        linux-input@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        bgolaszewski@baylibre.com, sboyd@kernel.org,
-        linux-gpio@vger.kernel.org, Scott Branden <sbranden@broadcom.com>,
-        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
-        andy.shevchenko@gmail.com
-Date:   Wed, 04 Nov 2020 20:55:19 +0100
-In-Reply-To: <20201104190612.GA3959462@bogus>
-References: <20201104103938.1286-1-nsaenzjulienne@suse.de>
-         <20201104103938.1286-10-nsaenzjulienne@suse.de>
-         <20201104190612.GA3959462@bogus>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-cU9/G+WYZ+w+iySzg6LF"
-User-Agent: Evolution 3.36.5 
+        id S1731591AbgKDUDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 15:03:04 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33858 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731394AbgKDUDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 15:03:04 -0500
+Received: by mail-oi1-f194.google.com with SMTP id c21so8485281oic.1;
+        Wed, 04 Nov 2020 12:03:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=oBqDX2AjknVBn06K8/u+vt1ooNK8RMqy/l2tyn5+RE8=;
+        b=Os/yX1tMpL2Ku6JL91ePkLtpaxzbfARvH2GtxbTQxbJe3R8lNO8IpsfvGOugj0o3Nu
+         nteNHNAr+xaEehMEz0v0a/ehYI2SeSzWsNkFhk/jV7llOtm8UAGW3WectvcW1Ck3HmIv
+         u9VUS6qspri3PBN3eQmB4gaQ38m+IbM2wxndEI7jxNJh236iHsa3JOXSmNOKg5nWQl8J
+         ZTB1etulVsc+8nXYXJu5WadzeZBQJctIDY1fdHzZE97iQgJI+SgIAQ7fO4X9PU+n7pjU
+         22nhypsgEo6hK4V0holckrnnMycQ3PcupSchElr/zHCe7KmHk0rvqAZtl4kvwkTyFg3q
+         zniQ==
+X-Gm-Message-State: AOAM533e4GmOMWc2MIgQxyxybCobiUzaSr+DbVH3hcHp+JF80qaAhxxa
+        9sxakDmFR6R3SMgBFXLaTg==
+X-Google-Smtp-Source: ABdhPJwScFjt5SJiTj7x04SzO5UJDiz4X8g4A1clj71IAewexTQOZdLGaJUnD77962i4rsrTIwSVtQ==
+X-Received: by 2002:aca:eb06:: with SMTP id j6mr3334409oih.144.1604520181850;
+        Wed, 04 Nov 2020 12:03:01 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id h8sm660259otm.72.2020.11.04.12.03.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Nov 2020 12:03:01 -0800 (PST)
+Received: (nullmailer pid 4037168 invoked by uid 1000);
+        Wed, 04 Nov 2020 20:03:00 -0000
+Date:   Wed, 4 Nov 2020 14:03:00 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Akhil P Oommen <akhilpo@codeaurora.org>
+Cc:     devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
+        dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dianders@chromium.org,
+        mka@chromium.org
+Subject: Re: [PATCH v5 3/3] dt-bindings: drm/msm/gpu: Add cooling device
+ support
+Message-ID: <20201104200300.GA4036650@bogus>
+References: <1604054832-3114-1-git-send-email-akhilpo@codeaurora.org>
+ <1604054832-3114-3-git-send-email-akhilpo@codeaurora.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1604054832-3114-3-git-send-email-akhilpo@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---=-cU9/G+WYZ+w+iySzg6LF
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, 2020-11-04 at 13:06 -0600, Rob Herring wrote:
-> On Wed, 04 Nov 2020 11:39:35 +0100, Nicolas Saenz Julienne wrote:
-> > The PWM bus controlling the fan in RPi's official PoE hat can only be
-> > controlled by the board's co-processor.
-> >=20
-> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> >=20
-> > ---
-> >=20
-> > Changes since v1:
-> >  - Update bindings to use 2 #pwm-cells
-> >=20
-> >  .../arm/bcm/raspberrypi,bcm2835-firmware.yaml | 20 +++++++++++++++++++
-> >  .../pwm/raspberrypi,firmware-pwm.h            | 13 ++++++++++++
-> >  2 files changed, 33 insertions(+)
-> >  create mode 100644 include/dt-bindings/pwm/raspberrypi,firmware-pwm.h
-> >=20
->=20
-> My bot found errors running 'make dt_binding_check' on your patch:
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/arm/=
-bcm/raspberrypi,bcm2835-firmware.example.dt.yaml: firmware: pwm:#pwm-cells:=
-0:0: 2 was expected
-
-Yes I forgot to update the example...
-
-Regards,
-Nicolas
+On Fri, 30 Oct 2020 16:17:12 +0530, Akhil P Oommen wrote:
+> Add cooling device support to gpu. A cooling device is bound to a
+> thermal zone to allow thermal mitigation.
+> 
+> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
+> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/gpu.txt | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
 
 
---=-cU9/G+WYZ+w+iySzg6LF
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+jBycACgkQlfZmHno8
-x/4lqwf+LNqmKYmR+D64RymsZ5v7t1WD9DkM2AcOluMdjU13iiD8I+U2KdCc2R8Y
-KhH9mNARA0Kd5JtfEzifsT4G3OqWIac7V/abpwHwrS7ilQjx2gLCACaBO87JwzK0
-R5uOO0FWqaEoLK5GknPO2HGn8ez34EPHU3cu4SXBBFqEnaEbEMr9cEl0ou+vdrYS
-3JnsvkWGZO7LY9vh05c9I/L2pyFg1JieOLU46BYJxAPvlqeILLwWvJ0oq4iiFM7I
-ZFjf/7VhrNk92HLeRMTgPt6/LuVsvnDBJXzAEknYiZt4Taa99Y11MxauWIIqAsk+
-LBfmYrGtxl88K4eRkxCDzH4wnYm/qQ==
-=Ei+W
------END PGP SIGNATURE-----
-
---=-cU9/G+WYZ+w+iySzg6LF--
+If a tag was not added on purpose, please state why and what changed.
 
