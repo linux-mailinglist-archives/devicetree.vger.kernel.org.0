@@ -2,157 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A28E2A657E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 14:47:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C36372A6588
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 14:50:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730169AbgKDNrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 08:47:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38168 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730158AbgKDNrj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 08:47:39 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81CADC0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 05:47:37 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id b8so22131117wrn.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 05:47:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
-        b=jSLbyaxPZKd2BfEHQR+i4qkHFQUDYYmpFXx9Tdpbb6vvPC8oadefWz+kr1x3IG/Sol
-         buywHZChF4DsZQBoxnVS/DQevkehD78cB4ATtgFrnTxucRvG6Blre6vq3Qm59B3+TR13
-         kAm37d9G9T2frIkEP0MnEo7NnyDMDBIz+N1KeaZon53e/bcE1yL/ZQPBuDlpA9W7uxxB
-         u6XNTSAr/zs1Hj84MneZSTDYs18M5AQZD7yKIl1s1WBeWymzqxV9PZgY01Q0IPdldRKf
-         8/UIeV+H9Qb1XCs7yln5l1elr9mWLJdG8sGKenoA5MD5hSarooBJqbpZOQctZoNpkyfh
-         yiWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
-        b=dnlRJGTTy65n6wELdhSUhmskN4qC95x6ppuT7HtGiGyNwxYTPBDfQ5mDc3PklTLOwW
-         zNLzpYSfBMF+nyqx/xuiRK9JHp87CPv1jHh7tpSurohClRnTkqm4fR6WTTMllI0zs2Le
-         4+OYphQQsmaUCOKGwqWkW5FwRfbR/kNJ9dhkY7A0dI4AaHNqUvhgkG9VuHVUdjJ8D+Rm
-         DPqTBIFAFzo6Zy+PH7Sxap0rGUbmp8+hX0/BQE8zG4wuTO1dm8akoaI78TindnUzS/Cm
-         H1IlpPZdWP0WMaa5PqDBSPXUk76XjSLxW0iVit4hoPJOE2SkclCisgRgueF/W0Z7cxyh
-         PvhA==
-X-Gm-Message-State: AOAM532bPCkGn6UULQ2jtSw88Ku2w5Wa1TATWy/ntmLCFmvEQHBstbWO
-        iHHMGsAq2a0fI42B7bDc7EYOMQBawqL8uW/z
-X-Google-Smtp-Source: ABdhPJyBiSSrZ7n/5ZV3G5rqUJ4D+BkannbQm+zSCpWf0KcWLXfH8q7e/EMH258OINRXL5jKjXL9dw==
-X-Received: by 2002:adf:8562:: with SMTP id 89mr31867445wrh.214.1604497655706;
-        Wed, 04 Nov 2020 05:47:35 -0800 (PST)
-Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3])
-        by smtp.gmail.com with ESMTPSA id 30sm2759586wrs.84.2020.11.04.05.47.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 05:47:34 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     devicetree@vger.kernel.org, kishon@ti.com
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
-Date:   Wed,  4 Nov 2020 14:47:29 +0100
-Message-Id: <20201104134730.1545875-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201104134730.1545875-1-narmstrong@baylibre.com>
-References: <20201104134730.1545875-1-narmstrong@baylibre.com>
+        id S1729584AbgKDNuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 08:50:52 -0500
+Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:40526 "EHLO
+        wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726608AbgKDNuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 08:50:52 -0500
+Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
+        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1kaJBY-0000QJ-Qg; Wed, 04 Nov 2020 14:50:48 +0100
+X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
+        linuxbbg.five-lan.de
+Received: from [192.168.34.101] (p5098d998.dip0.t-ipconnect.de [80.152.217.152])
+        (authenticated bits=0)
+        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id 0A4DolqS015853
+        (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NO);
+        Wed, 4 Nov 2020 14:50:47 +0100
+Subject: Re: [PATCH] ARM: dts: exynos: Assign a fixed index to mmc devices on
+ exynos4412 based ODROID boards
+To:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <CGME20201104102634eucas1p2ec7b705dd5092afa25d9877d1014f46a@eucas1p2.samsung.com>
+ <20201104102558.11070-1-m.reichl@fivetechno.de>
+ <efe8a911-6072-59fb-8a8e-d5cdb4352cab@samsung.com>
+ <5800260a-5332-f627-eb36-32df4fbf05e3@fivetechno.de>
+ <c1040872-0ae1-3988-29d0-60c8a711cdb1@samsung.com>
+ <71e4ecca-b980-e224-0fbe-b30330e490fb@samsung.com>
+From:   Markus Reichl <m.reichl@fivetechno.de>
+Organization: five technologies GmbH
+Message-ID: <14ebf07b-54cb-64a5-fa34-9ad82da72bd2@fivetechno.de>
+Date:   Wed, 4 Nov 2020 14:50:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
+In-Reply-To: <71e4ecca-b980-e224-0fbe-b30330e490fb@samsung.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: de-DE
 Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1604497852;bff4b310;
+X-HE-SMSGID: 1kaJBY-0000QJ-Qg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Amlogic AXg SoCs embeds a MIPI D-PHY to communicate with DSI
-panels, this adds the bindings.
+Hi Marek,
 
-This D-PHY depends on a separate analog PHY.
+Am 04.11.20 um 14:44 schrieb Marek Szyprowski:
+> On 04.11.2020 14:13, Marek Szyprowski wrote:
+>> On 04.11.2020 14:06, Markus Reichl wrote:
+>>> Am 04.11.20 um 13:25 schrieb Marek Szyprowski:
+>>>> On 04.11.2020 11:25, Markus Reichl wrote:
+>>>>> Recently introduced async probe on mmc devices can shuffle block IDs.
+>>>>> Pin them to fixed values to ease booting in evironments where UUIDs
+>>>>> ar not practical.
+>>>>> Use newly introduced aliases for mmcblk devices from [1].
+>>>>>
+>>>>> [1]
+>>>>> https://patchwork.kernel.org/patch/11747669/
+>>>>>
+>>>>> Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+>>>>> ---
+>>>>>    arch/arm/boot/dts/exynos4412-odroid-common.dtsi | 5 +++++
+>>>>>    1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>>>>> b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>>>>> index a5c1ce1e396c..aa10d5bc7e1c 100644
+>>>>> --- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>>>>> +++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>>>>> @@ -13,6 +13,11 @@
+>>>>>    #include "exynos-mfc-reserved-memory.dtsi"
+>>>>>      / {
+>>>>> +    aliases {
+>>>>> +        mmc0 = &sdhci_2;
+>>>>> +        mmc1 = &mshc_0;
+>>>> Like in the OdroidXU3-family patch, I would use 0 for the eMMC (mshc_0)
+>>>> and 2 for the SD-card (sdhci_2).
+>>> How to deal then with sdhci_0 (from exynos4.dtsi) vc. mshc_0 (from
+>>> exynos4412.dts)?
+>> sdhci_0 and mshc_0 both operate on the same physical MMC0 bus, so this
+>> is not an issue. They cannot be used simultaneously. The latter is just
+>> faster, the first one has been left there mainly for the software
+>> compatibility.
+> 
+> I've thought a bit more on this and I would simply prefer to add generic
+> MMC aliases to the top-level Exynos dtsi files (3250, 4210, 4412, 5250,
+> 5410, 5420) to keep Linux logical MMC bus numbers in sync with the HW
+> bus numbers on all boards.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/phy/amlogic,axg-mipi-dphy.yaml   | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+Ok, fine with me.
+As this is beyond my knowledge I would like leave this task with you.
 
-diff --git a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
-new file mode 100644
-index 000000000000..be485f500887
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/phy/amlogic,axg-mipi-dphy.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic AXG MIPI D-PHY
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,axg-mipi-dphy
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: pclk
-+
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: phy
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    items:
-+      - const: analog
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - phys
-+  - phy-names
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    phy@ff640000 {
-+            compatible = "amlogic,axg-mipi-dphy";
-+            reg = <0xff640000 0x100>;
-+            clocks = <&clk_mipi_dsi_phy>;
-+            clock-names = "pclk";
-+            resets = <&reset_phy>;
-+            reset-names = "phy";
-+            phys = <&mipi_pcie_analog_dphy>;
-+            phy-names = "analog";
-+            #phy-cells = <0>;
-+    };
+> 
+> Best regards
+> 
+
+Gruß,
 -- 
-2.25.1
-
+Markus Reichl
