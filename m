@@ -2,90 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D432A6096
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 10:35:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DE1C2A60A9
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 10:40:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727070AbgKDJfa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 04:35:30 -0500
-Received: from mga12.intel.com ([192.55.52.136]:35686 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726691AbgKDJfa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 04:35:30 -0500
-IronPort-SDR: 4hCOhcUKMcKrrx7tsk4W0PUrh/YEGHFoyn4u8ZUagCWZCvc4bF7WpZKq/DIIrnEVrizddrHCCV
- l0vfzYSHIhJg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="148467152"
+        id S1728029AbgKDJkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 04:40:15 -0500
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:50096 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726029AbgKDJkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 04:40:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1604482813; x=1636018813;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=0DHraKbRH3590M9sevmtaecbtEISot1V5c4yDS9ajbc=;
+  b=DVhYCJ/kKKJzCeG8uYR5m71DWAg7JggJCG6YIYN0ke2eliYqhIkCDDSr
+   gN4LipezbzQQo8OBKRrDd+kcRuE5A7TP61iXbCh76N8B8qVkxF0BdM+nQ
+   MCNyYowWDFYxMh0pemk4sSUavYisSFXExSHR3Od7/oOAaetGRnRelTPww
+   MoFgSa4wv9Z7pk8Ph/TjHhX0jPtHk46OvxWDJNuhLdkcMHY/u5BdwjDsa
+   bJ8QR8s9LI7aEeb/1zb1hcVlC8E5BpKueMOXc8zxpVLI/G6wUUH5nL895
+   dCFXzxqigTdwWBszrWDkGeAUckHO025laiaAW9IYQTk0qXW0eryfqJTFv
+   A==;
+IronPort-SDR: eYEtuCBPhdWoPt4qxB5MtpKkKNRsISIky3i8nKXY7MNHLRQ6jLaILeTTiiPJihRsvbRycaui+W
+ D+10vosEmQjuD3szIPlEH39PUmlMPa2O1VTgUiUl5l3cBISn8QIQyCLNU/PGwmUqYurH4UZKjN
+ r56oYiI0a7dJLNJv3EjZa9wVdo/9lnbZj2Uy38Sy9p+AfhhEv4Olmf54A0YXgxV4IORTcU7mcB
+ IAx2AusWY2tb/aSSfXtpRRlYUZXXnphgVsaInKt20srrVykZEsLdZX0P6kGvEM1FcBDrTSItRd
+ Nc8=
 X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; 
-   d="scan'208";a="148467152"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2020 01:35:28 -0800
-IronPort-SDR: IjWFqoVdUGufA/DjE5SJb9He/WnuwWBM3R84P8Nme2KpB49hJrTC1KGN1CfRwYRUK0yDbMNeOV
- 4jra97FGtm1A==
-X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; 
-   d="scan'208";a="353754899"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2020 01:35:26 -0800
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kaFDQ-003mpN-Pm; Wed, 04 Nov 2020 11:36:28 +0200
-Date:   Wed, 4 Nov 2020 11:36:28 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        bhelgaas@google.com, robh+dt@kernel.org, lorenzo.pieralisi@arm.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH 2/2] PCI: keembay: Add support for Intel Keem Bay
-Message-ID: <20201104093628.GJ4077@smile.fi.intel.com>
-References: <20201027060011.25893-3-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201103222223.GA269610@bjorn-Precision-5520>
+   d="scan'208";a="32375204"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2020 02:40:11 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 4 Nov 2020 02:40:10 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Wed, 4 Nov 2020 02:40:05 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
+CC:     <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH 0/8]clk: at91: adapt for dvfs
+Date:   Wed, 4 Nov 2020 11:39:54 +0200
+Message-ID: <1604482802-1647-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201103222223.GA269610@bjorn-Precision-5520>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 03, 2020 at 04:22:23PM -0600, Bjorn Helgaas wrote:
-> On Tue, Oct 27, 2020 at 02:00:11PM +0800, Wan Ahmad Zainie wrote:
-> > +static int keembay_pcie_link_up(struct dw_pcie *pci)
-> > +{
-> > +	struct keembay_pcie *pcie = dev_get_drvdata(pci->dev);
-> > +	u32 val, mask;
-> > +
-> > +	val = keembay_pcie_readl(pcie, PCIE_REGS_PCIE_SII_PM_STATE);
-> > +	mask = SMLH_LINK_UP | RDLH_LINK_UP;
-> > +
-> > +	return !!((val & mask) == mask);
-> 
-> I think the "!!" is redundant since you're applying it to a value
-> that's a boolean already.  So you should be able to do:
-> 
->   return (val & mask) == mask;
-> 
-> But it seems like "mask" just obfuscates a little bit, too.
-> Personally I think it'd be easier to add something like:
-> 
->   #define PCIE_REGS_PCIE_SII_LINK_UP  (SMLH_LINK_UP | RDLH_LINK_UP)
-> 
-> and then:
+Hi,
 
->   if ((val & PCIE_REGS_PCIE_SII_LINK_UP) == PCIE_REGS_PCIE_SII_LINK_UP)
->     return 1;
->   return 0;
+SAMA7G5 is capable of DVFS. The supported CPU clock frequencies could be
+obtained from CPU PLL. The hardware block diagram for clock feeding the
+CPU is as follows:
 
-The !! is usual way to guarantee that *int* type out of boolean will be only
-0 or 1. That said, the above proposal suits better.
+                               +--------+
+                           +-->|divider1|--> CPU clock
+                           |   +--------+
++--------+   +----------+  |   +--------+
+|CPU PLL |-->|prescaller|--+-->|divider0|--> MCK0 clock
++--------+   +----------+      +--------+
 
-> or even:
-> 
->   return (val & PCIE_REGS_PCIE_SII_LINK_UP) == PCIE_REGS_PCIE_SII_LINK_UP;
+When switching CPU clock frequencies the MCK0 is also changed by DVFS
+driver to avoid its over/under clocking (depending on CPU clock frequency
+requested by DVFS algorithms). Some of IPs feed by MCK0 are MCK0 glich
+aware, some are not. For this MCK0 was removed from the parents list of
+the IPs which are not MCK0 glitch aware (patch 5/8).
+
+This series adapt AT91 clocks (mostly sam9x60-pll and master clock drivers)
+so that runtime changes of these clocks to be allowed.
+
+The CPU clock was registered from prescaller clock (see above diagram)
+and no software control has been added for divider1 because the frequencies
+supported by SAMA7G5's CPU could be directly obtained from CPU PLL +
+prescaller.
+
+On top of this series I also added a fix for sama7g5.c code (patch 1/8).
+Please let me know if you would like me to send this one separtely (it
+would be nice if this fix could be integrated in 5.10).
+
+Thank you,
+Claudiu Beznea
+
+Claudiu Beznea (6):
+  clk: at91: sama7g5: fix compilation error
+  clk: at91: clk-sam9x60-pll: allow runtime changes for pll
+  clk: at91: sama7g5: remove mck0 from parent list of other clocks
+  clk: at91: sama7g5: decrease lower limit for MCK0 rate
+  clk: at91: clk-master: re-factor master clock
+  clk: at91: sama7g5: register cpu clock
+
+Eugen Hristev (2):
+  dt-bindings: clock: at91: add sama7g5 pll defines
+  clk: at91: sama7g5: allow SYS and CPU PLLs to be exported and
+    referenced in DT
+
+ drivers/clk/at91/at91rm9200.c      |  20 ++-
+ drivers/clk/at91/at91sam9260.c     |  24 ++-
+ drivers/clk/at91/at91sam9g45.c     |  30 ++--
+ drivers/clk/at91/at91sam9n12.c     |  34 ++--
+ drivers/clk/at91/at91sam9rl.c      |  22 ++-
+ drivers/clk/at91/at91sam9x5.c      |  27 +++-
+ drivers/clk/at91/clk-master.c      | 323 +++++++++++++++++++++++++++++++------
+ drivers/clk/at91/clk-sam9x60-pll.c | 102 ++++++++++--
+ drivers/clk/at91/dt-compat.c       |  15 +-
+ drivers/clk/at91/pmc.h             |  20 ++-
+ drivers/clk/at91/sam9x60.c         |  35 ++--
+ drivers/clk/at91/sama5d2.c         |  41 +++--
+ drivers/clk/at91/sama5d3.c         |  37 +++--
+ drivers/clk/at91/sama5d4.c         |  39 +++--
+ drivers/clk/at91/sama7g5.c         | 139 +++++++++-------
+ include/dt-bindings/clock/at91.h   |  11 ++
+ 16 files changed, 692 insertions(+), 227 deletions(-)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.7.4
 
