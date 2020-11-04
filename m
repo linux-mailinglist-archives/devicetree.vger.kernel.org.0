@@ -2,143 +2,387 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9CD2A65D5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 15:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43BF42A65DB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 15:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726665AbgKDOGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 09:06:22 -0500
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:40414 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726078AbgKDOGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 09:06:22 -0500
-Received: by mail-wm1-f66.google.com with SMTP id k18so2423915wmj.5;
-        Wed, 04 Nov 2020 06:06:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=S41teLRLSZ7isGd7nFyvP35fxvOeeax7aZ66a+ME5Ss=;
-        b=cK1aHpaSQh6BAEvBb0+cEMuC6ob/HqGktSYGqM0a6ChzjoBj17USMkgNj/YXmM0zwf
-         bMWC4hoFiMyzIKIUN8guRldlieXgRnapU2nK9nal7ShhSc6pIaOhOUD49XTLPdEZf9ke
-         3UAWlFzdI5n9pPW7O7T9VYdeG/Np95gjDBXTsJnbIgcTmx0Xp11vcSiEkspMpWVcrsuI
-         7H6F5vVNg03OHB12cvP+pca3gEB9ev84bFsx7UKxN3STCvGlTTk1mqjVPECvYQ1PTMxP
-         0fZOo4Bg4xuGE5T706pO3ceTLS7vhSAVj8E831F52DnfFgYzf5MwMFUk9S3aKGrxJ5kR
-         7sUg==
-X-Gm-Message-State: AOAM530JNMiL6Qnpf8mOvDqWfsxwX9uayvl8PNypn6VUry8J3G6EoRNp
-        a0NkpewYotWOtHHg7qJ/O+W0SAl07QQ=
-X-Google-Smtp-Source: ABdhPJzub2Qdl39XwePCwW5f4Na1s1gFDl9l1dWju07Y2lOINxiR82U83DMQ2PjXZBKrxm2EzbTIJg==
-X-Received: by 2002:a05:600c:2282:: with SMTP id 2mr5089187wmf.154.1604498779470;
-        Wed, 04 Nov 2020 06:06:19 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id g186sm6885889wma.1.2020.11.04.06.06.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 06:06:17 -0800 (PST)
-Date:   Wed, 4 Nov 2020 15:06:16 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     georgi.djakov@linaro.org, cw00.choi@samsung.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        a.swigon@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v8 2/7] interconnect: Add generic interconnect driver for
- Exynos SoCs
-Message-ID: <20201104140616.GA3024@kozik-lap>
-References: <20201104103657.18007-1-s.nawrocki@samsung.com>
- <CGME20201104103720eucas1p1014217e751a681796ed508af22c6bb12@eucas1p1.samsung.com>
- <20201104103657.18007-3-s.nawrocki@samsung.com>
- <20201104123729.GA13371@kozik-lap>
- <346da718-2340-c862-9a1a-c5f64aae19c2@samsung.com>
+        id S1728523AbgKDOI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 09:08:26 -0500
+Received: from lb1-smtp-cloud7.xs4all.net ([194.109.24.24]:34055 "EHLO
+        lb1-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726527AbgKDOIZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 09:08:25 -0500
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id aJSTk5elMRiwVaJSWkK3ov; Wed, 04 Nov 2020 15:08:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
+        t=1604498901; bh=fFfai3jhrJ9hQu2iSRUC4fYmmSAV17nRqiJ8NDkOXTg=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=GOZPQWrQqTHriBUuMKadBHaVS/XixOfIZ3pRvIe4qgFwUym/SbpCOMnigyyh4yJ5C
+         tXACXWvgFF4McRi2VESK3PbkZyF3v9SdOb3JDvOrvt0OyqsDXACnm9ARUbbSbxRb1G
+         7i6oFtiSJ+/17HoD1KA5NZfSM2eEbQXrR2KWANDa1ZEj/I15gY8RMYXA3iJCcE7Wv8
+         UsuWUuFvlUxoNzmc8d2u6XzMNm9oQ5DHj0177R/Arw8a/HYGE8Odw4D8fN0hLDHQi+
+         VNohI16fTE1PXYSN1VEWRnRIQDs0O57OhvxclSGGaqk7m8q8cY8hC3PO0N1QDmwFUI
+         0Fl4c1rw4CZZA==
+Subject: Re: [EXT] Re: [PATCH v4 00/11] Add V4L2 driver for i.MX8 JPEG
+ Encoder/Decoder
+To:     Mirela Rabulea <mirela.rabulea@nxp.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "niklas.soderlund+renesas@ragnatech.se" 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
+        "ezequiel@collabora.com" <ezequiel@collabora.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+References: <20201102030821.3049-1-mirela.rabulea@oss.nxp.com>
+ <9c6cf9bf-f6d8-78f5-5f31-d7ea9e25da0d@xs4all.nl>
+ <ca7a395a-68ea-33a3-1216-0adf225fce7b@xs4all.nl>
+ <982d940c4809b843fdc177daf4db349a0e667924.camel@nxp.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <eec89e90-f414-121d-fbe4-ced23b44f6cc@xs4all.nl>
+Date:   Wed, 4 Nov 2020 15:08:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <982d940c4809b843fdc177daf4db349a0e667924.camel@nxp.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <346da718-2340-c862-9a1a-c5f64aae19c2@samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfIloQHoHZ3pQY5UkBxdGl/IpiPXrao5v+FWQ1K7tvqViOuxwaQzYhDzHScUnWV832oahmYmPX/pVi+UAhVvmdzoH2nuKZ/e/SQTm0CG0l370+j3tSDvK
+ XKuQCGqiEyRqLNfs3ltx4V4KkKpjlr6iVOz2QSRXN6uknK9nzCy8YqXRmzoIKTtk0hQ80YCA3haKKtOegstjT5thdo4xEwHUmUQ9i129VXr9doRUVo1QGyy/
+ xDD2wsR2hWuQYZQKhod1Fu9wn2JvvSmVvxcZl933i0TG8TCvh/2+UF3gMN3g0jPohXA6apX/Y8q4Vep1x7QqcynsjoDa/oOe3rDFMK+hZuxpKqgX6u5wtkUD
+ Gs9om8j5TgkCmUsk5XMfWIHRCvabBf5UteOXp8wQjxuAaYGO35Y2Cebvjvjo7XTyc27fY0ViicRFYCULMOFSp0FhHbkdCpQzF5oe740OdKFDlV7IPgksd3ci
+ TT0cjB2RPyPfY+WYCBINQ4kp+pEEEP1zq1P3EgbFGqNA4hNjLP4I3giDzdbRLkbu9vdV4lTVobH1lCV3LTymUTsMlpOcMB58ZbOj3BPinDw9ddbxeB5yusYo
+ /7XUSxpY07rX/iG9uA8TA1sYA29tYssEm16JZCPrJ1CbkLxaIqBfmxTCJ1x7SdLqLmvNLNXMJP5NNo7uwBHaU8qEhqxyp8QV+6pXjMdAKmRKIuIUFFZlL2eg
+ WrgeeRymVDQuDyD0pMO/uDXWEOSYZg78/D/rgmT/Pryya1ttLHdNVEY/FJK5HUyapQgRg6RPQ6jg4xwgO6kMXt0uvbSaL0TQc4vfsG9BhRqr4ojiftpz0UT3
+ U3XTLTFfFPInouoS75jcIPHbgxCH08uPqmwx1yQJ5WAGxojjOhVSDWdV+6cb3d3rAgqLB6apUkrALlu//UCyAqWbqta7x1q5ZAmpY6ErpY1TymCUTdTi+pEi
+ kulJwQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 04, 2020 at 02:22:37PM +0100, Sylwester Nawrocki wrote:
-> On 04.11.2020 13:37, Krzysztof Kozlowski wrote:
-> > On Wed, Nov 04, 2020 at 11:36:52AM +0100, Sylwester Nawrocki wrote:
+On 04/11/2020 14:27, Mirela Rabulea wrote:
+> Hi Hans,
 > 
-> >> diff --git a/drivers/interconnect/Makefile b/drivers/interconnect/Makefile
-> >> index d203520..c2f9e9d 100644
-> >> --- a/drivers/interconnect/Makefile
-> >> +++ b/drivers/interconnect/Makefile
-> >> @@ -6,3 +6,4 @@ icc-core-objs				:= core.o bulk.o
-> >>  obj-$(CONFIG_INTERCONNECT)		+= icc-core.o
-> >>  obj-$(CONFIG_INTERCONNECT_IMX)		+= imx/
-> >>  obj-$(CONFIG_INTERCONNECT_QCOM)		+= qcom/
-> >> +obj-$(CONFIG_INTERCONNECT_SAMSUNG)	+= samsung/
-> >> \ No newline at end of file
-> > 
-> > This needs a fix.
+> On Wed, 2020-11-04 at 12:55 +0100, Hans Verkuil wrote:
+>>
+>> So please recompile v4l2-compliance from the git repo and retest. If
+>> you find new failures, then you probably need to post a v5, otherwise
+>> it is enough to reply to this with the output of the updated v4l2-
+>> compliance.
+>>
+>>
 > 
-> Corrected, thanks for pointing out.
->  
-> >> diff --git a/drivers/interconnect/samsung/Kconfig b/drivers/interconnect/samsung/Kconfig
-> >> new file mode 100644
-> >> index 0000000..508ed64
-> >> --- /dev/null
-> >> +++ b/drivers/interconnect/samsung/Kconfig
-> >> @@ -0,0 +1,13 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only
-> >> +config INTERCONNECT_SAMSUNG
-> >> +	bool "Samsung interconnect drivers"
-> > 
-> > "Samsung SoC interconnect drivers"
-> 
-> Changed.
-> 
-> >> +	depends on ARCH_EXYNOS || COMPILE_TEST
-> > 
-> > Don't the depend on INTERCONNECT?
-> 
-> This file gets included only if INTERCONNECT is enabled, see
-> higher level Kconfig file.
+> I was unsure if the latest of v4l2-compliance is stable.
 
-I missed the include part, looks good.
+It's always kept in sync with the media_tree master branch.
 
->  
-> >> +	help
-> >> +	  Interconnect drivers for Samsung SoCs.
-> >> +
-> >> +
-> > 
-> > One line break
-> 
-> Fixed.
-> 
-> >> +config INTERCONNECT_EXYNOS
-> >> +	tristate "Exynos generic interconnect driver"
-> >> +	depends on INTERCONNECT_SAMSUNG
-> > 
-> > How about:
-> > default y if ARCH_EXYNOS
-> 
-> OK, added.
-> 
-> >> +	help
-> >> +	  Generic interconnect driver for Exynos SoCs.
-> >> diff --git a/drivers/interconnect/samsung/Makefile b/drivers/interconnect/samsung/Makefile
-> >> new file mode 100644
-> >> index 0000000..e19d1df
-> >> --- /dev/null
-> >> +++ b/drivers/interconnect/samsung/Makefile
-> >> @@ -0,0 +1,4 @@
-> >> +# SPDX-License-Identifier: GPL-2.0
-> >> +exynos-interconnect-objs		:= exynos.o
-> > 
-> > What is this line for?
->  
-> That allows to change the module name, so it's exynos-interconnect.ko
-> rather than just exynos.c. It's done similarly for other SoCs in 
-> the subsystem.
+The version that distros have is always much too old and should never
+be used when testing drivers.
 
-Thanks, makes sense.
+> This commit (which is not part of stable 1.20), got me a little
+> confused:
+> 
+> commit e50041186be9f69dd94b64fb924115201726e72a
+> Author: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> Date:   Thu Jul 16 13:41:37 2020 +0200
+> 
+>     v4l2-compliance: fix colorspace checks for JPEG codecs
+>     
+>     The colorspace handling for JPEG encoders/decoders is quite
+>     different from other m2m devices since the colorspace of a
+>     compressed JPEG file is effectively fixed to sRGB. So the
+>     typical passthrough of colorspace information from output
+>     to capture is not valid, instead the colorspace information is
+>     (mostly) fixed.
+> 
+> And it somehow contradicts(?) with Philipp's latest commits on coda
+> jpeg driver:
+> 
+> commit 1e3e2a9ac40ad4d11699a49a1bbbf40cd8d4c8bd
+> Author: Philipp Zabel <p.zabel@pengutronix.de>
+> Date:   Fri Jun 29 08:46:46 2018 -0400
+> 
+>     media: coda: jpeg: allow non-JPEG colorspace
+>     
+>     The hardware codec is not colorspace aware. We should trust
+> userspace to
+>     set the correct colorimetry information on the OUTPUT queue and
+> mirror
+>     the exact same setting on the CAPTURE queue.
+>     
+>     There is no reason to restrict colorspace to JPEG for JPEG images,
+> if
+>     userspace injects the correct colorspace information into the JPEG
+>     headers after encoding.
+>     
+>     Fixes: b14ac545688d ("[media] coda: improve colorimetry handling")
+> 
+> I agree on the statement "The hardware codec is not colorspace aware",
+> by that I mean this colorspace will not translate into any setting sent
+> to the hardware. The question is, how the driver is expected to bahave?
 
-Best regards,
-Krzysztof
+This was never really well defined. Basically the JPEG standard doesn't
+store colorimetry as metadata, instead it is understood to be sRGB colorimetry.
+
+So if you take what a HW JPEG encoder creates and want to show it on another
+device, then it will be interpreted as sRGB. Now if userspace adds some JPEG
+extension where it declares the colorimetry to be something else, then that
+is fine, but that's out of scope of a HW JPEG encoder driver, IMHO.
+
+I suspect that the coda patch was actually trying to make coda behave with
+an older version of v4l2-compliance where a JPEG codec was tested in the
+same way as a H264 codec. Later we realized that that didn't make sense for
+JPEG codecs and the test was changed. But now coda fails on that test.
+
+> Once I clarify on this, I'll include a fix in v5.
+
+I hope this helps.
+
+	Hans
+
+> 
+> I'll post below, for reference, the full log on latest from master.
+> 
+> Thanks,
+> Mirela
+> 
+> root@imx8qxpmek:/unit_tests/JPEG# ./v4l2-compliance-master -d
+> /dev/video0 -s
+> v4l2-compliance 1.21.0-4675, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: b84569db756a 2020-10-23 12:30:38
+> 
+> Compliance test for mxc-jpeg decode device /dev/video0:
+> 
+> Driver Info:
+> 	Driver name      : mxc-jpeg decode
+> 	Card type        : mxc-jpeg decoder
+> 	Bus info         : platform:58400000.jpegdec
+> 	Driver version   : 5.10.0
+> 	Capabilities     : 0x84204000
+> 		Video Memory-to-Memory Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04204000
+> 		Video Memory-to-Memory Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 	Detected JPEG Decoder
+> 
+> Required ioctls:
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video0 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> 	test invalid ioctls: OK
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 		fail: v4l2-test-formats.cpp(810):
+> fmt_raw.g_colorspace() != V4L2_COLORSPACE_SRGB
+> 	test VIDIOC_S_FMT: FAIL
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 
+> Test input 0:
+> 
+> Streaming ioctls:
+> 	test read/write: OK (Not Supported)
+> 	test blocking wait: OK
+> 	Video Capture Multiplanar: Captured 58 buffers    
+> 	test MMAP (no poll): OK
+> 	Video Capture Multiplanar: Captured 58 buffers    
+> 	test MMAP (select): OK
+> 	Video Capture Multiplanar: Captured 58 buffers    
+> 	test MMAP (epoll): OK
+> 	test USERPTR (no poll): OK (Not Supported)
+> 	test USERPTR (select): OK (Not Supported)
+> 	test DMABUF: Cannot test, specify --expbuf-device
+> 
+> Total for mxc-jpeg decode device /dev/video0: 52, Succeeded: 51,
+> Failed: 1, Warnings: 0
+> 
+> 
+> root@imx8qxpmek:/unit_tests/JPEG# ./v4l2-compliance-master -d
+> /dev/video1 -s
+> v4l2-compliance 1.21.0-4675, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: b84569db756a 2020-10-23 12:30:38
+> 
+> Compliance test for mxc-jpeg decode device /dev/video1:
+> 
+> Driver Info:
+> 	Driver name      : mxc-jpeg decode
+> 	Card type        : mxc-jpeg decoder
+> 	Bus info         : platform:58450000.jpegenc
+> 	Driver version   : 5.10.0
+> 	Capabilities     : 0x84204000
+> 		Video Memory-to-Memory Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04204000
+> 		Video Memory-to-Memory Multiplanar
+> 		Streaming
+> 		Extended Pix Format
+> 	Detected JPEG Encoder
+> 
+> Required ioctls:
+> 	test VIDIOC_QUERYCAP: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video1 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> 	test invalid ioctls: OK
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 		fail: v4l2-test-formats.cpp(810):
+> fmt_raw.g_colorspace() != V4L2_COLORSPACE_SRGB
+> 	test VIDIOC_S_FMT: FAIL
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 
+> Test input 0:
+> 
+> Streaming ioctls:
+> 	test read/write: OK (Not Supported)
+> 	test blocking wait: OK
+> 	Video Capture Multiplanar: Captured 58 buffers    
+> 	test MMAP (no poll): OK
+> 	Video Capture Multiplanar: Captured 58 buffers    
+> 	test MMAP (select): OK
+> 	Video Capture Multiplanar: Captured 58 buffers    
+> 	test MMAP (epoll): OK
+> 	test USERPTR (no poll): OK (Not Supported)
+> 	test USERPTR (select): OK (Not Supported)
+> 	test DMABUF: Cannot test, specify --expbuf-device
+> 
+> Total for mxc-jpeg decode device /dev/video1: 52, Succeeded: 51,
+> Failed: 1, Warnings: 0
+> 
+
