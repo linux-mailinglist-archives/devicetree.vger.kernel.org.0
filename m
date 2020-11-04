@@ -2,160 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2BF62A5BF1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 02:30:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 602D72A5C77
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 02:58:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728534AbgKDBaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 20:30:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37602 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730234AbgKDB37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 20:29:59 -0500
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87EEAC0401C1
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 17:29:59 -0800 (PST)
-Received: by mail-pg1-x543.google.com with SMTP id i7so13218085pgh.6
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 17:29:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9RtCLgP117LqdDLRX3UH1IzVtOTV8WLG1PPvChWmE/o=;
-        b=NFHyO+eAi1A7Bx6bMiuUJTG1ic8g1wN7sAGWFyzSzJk+qvFdhvSaIV7Ibre/afNyiv
-         6LpsEJzUjFIXiMVwT9LKaZdvLd8KxNLOvW+GLqcvHRZtqF65vEjayKBIJUcLmWW16ynF
-         FyJVqRXvmnFYYTC59t1HkfuWf+r45mIrPBZ0E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9RtCLgP117LqdDLRX3UH1IzVtOTV8WLG1PPvChWmE/o=;
-        b=jWP5g9h+K5ca75XVwuUQKXKfnDHq2g2bnyYEeTGigClE2w7k5uq0J8MWuwx65wJVtC
-         OfyeRGZ/IayjSXp/1Imlk+BtOCkdVlqnhb+665jOXqAXr9YKbxnNC4vLwv0Z1NAicqkc
-         l/udqzK+v7AkQGF5UUuHOhR9dnx73p7SgGc1ZoMWaxAt89wB63vJ9WqgsRDwCGTr91A7
-         hj4pCBc5cTk1MVAnclVesRg4Wn8u0DzEOVEkhj2nkWg5v7hfThdrbiDtZqlZswWfRrY7
-         xSTBU42CYoePBakVG1ntRlrAX3yolOCPDGe0SqTDZz6SXaeFf8J9d/xm2N3nzxKhkhL/
-         t5wA==
-X-Gm-Message-State: AOAM530gFmHsT3Oa43n2pIM0ckW6pOmkarCD+MypW0YCZU9eS/wKlJZv
-        ECXLcl6tT5c+6/j+MDsaKYXQCw==
-X-Google-Smtp-Source: ABdhPJyiEOe8O7LHoSxYLr4fPY+iyZzJmSz8Iayqlv5QrC3kxsgyMWPy4OS8tPCJBNCtPYz1YAxRHg==
-X-Received: by 2002:a17:90a:d796:: with SMTP id z22mr2140569pju.2.1604453399053;
-        Tue, 03 Nov 2020 17:29:59 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id m3sm347424pjv.52.2020.11.03.17.29.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 17:29:58 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
-        gregkh@linuxfoundation.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     linux-input@vger.kernel.org, swboyd@chromium.org,
-        andrea@borgia.bo.it, kai.heng.feng@canonical.com,
-        hdegoede@redhat.com, robh+dt@kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 3/4] dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P
-Date:   Tue,  3 Nov 2020 17:29:28 -0800
-Message-Id: <20201103172824.v4.3.Ibb28033c81d87fcc13a6ba28c6ea7ac154d65f93@changeid>
-X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
-In-Reply-To: <20201104012929.3850691-1-dianders@chromium.org>
-References: <20201104012929.3850691-1-dianders@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1730431AbgKDB6a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 20:58:30 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:24332 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728301AbgKDB6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 20:58:30 -0500
+X-IronPort-AV: E=Sophos;i="5.77,449,1596466800"; 
+   d="scan'208";a="61594042"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 04 Nov 2020 10:58:28 +0900
+Received: from localhost.localdomain (unknown [10.166.252.89])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 9B90A4151D43;
+        Wed,  4 Nov 2020 10:58:28 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     bhelgaas@google.com, marek.vasut+renesas@gmail.com,
+        robh+dt@kernel.org
+Cc:     prabhakar.mahadev-lad.rj@bp.renesas.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v3 0/3] dt-bindings: PCI: rcar-pci-host: Convert bindings to json-schema
+Date:   Wed,  4 Nov 2020 10:58:13 +0900
+Message-Id: <1604455096-13923-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds new bindings for the Goodix GT7375P touchscreen.  While this
-touchscreen's communications are based on the generic "i2c-over-hid"
-protocol, it needs special power sequencing and thus gets its own
-compatible and bindings.
+Convert bindings of rcar-pci.txt to json-schema. Also, document
+r8a77965 and r8a774e1 to the yaml file.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+Changes from v2:
+ - Fix the subjects of all patches which Bjorn pointed it out:
+ https://patchwork.kernel.org/project/linux-renesas-soc/cover/1604035745-22095-1-git-send-email-yoshihiro.shimoda.uh@renesas.com/#23734117
+ - Minor fix the description in the patch 3/3.
+ https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=373695
 
-(no changes since v3)
+Changes from v1:
+ - In patch 1/3
+ -- Fix indentation which yamllint detects.
+ -- Fix typo which checkpatch.pl detects.
+ -- Add ref: pci-bus.yaml
+ -- Remove some properties which the pci-bus.yaml defines.
+ -- Use unevaluatedProperties instead of additionalProperties.
+ - In patch 2/3
+ -- Add Reviewed-by from Geert-san.
+ https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=371929
 
-Changes in v3:
-- Removed Benjamin as a maintainer.
-- Fixed compatible in example.
-- Updated description.
 
-Changes in v2:
-- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+Lad Prabhakar (1):
+  dt-bindings: PCI: rcar-pci-host: Document r8a774e1 bindings
 
- .../bindings/input/goodix,gt7375p.yaml        | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+Yoshihiro Shimoda (2):
+  dt-bindings: PCI: rcar-pci-host: Convert bindings to json-schema
+  dt-bindings: PCI: rcar-pci-host: Document r8a77965 bindings
 
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-new file mode 100644
-index 000000000000..15a38516e594
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Goodix GT7375P touchscreen
-+
-+maintainers:
-+  - Douglas Anderson <dianders@chromium.org>
-+
-+description:
-+  Supports the Goodix GT7375P touchscreen.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: goodix,gt7375p
-+
-+  reg:
-+    enum:
-+      - 0x5d
-+      - 0x14
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    true
-+
-+  vdd-supply:
-+    description: The 3.3V supply to the touchscreen.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      ap_ts: touchscreen@5d {
-+        compatible = "goodix,gt7375p";
-+        reg = <0x5d>;
-+
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+        reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+        vdd-supply = <&pp3300_ts>;
-+      };
-+    };
+ .../devicetree/bindings/pci/rcar-pci-host.yaml     | 115 +++++++++++++++++++++
+ Documentation/devicetree/bindings/pci/rcar-pci.txt |  72 -------------
+ 2 files changed, 115 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/rcar-pci-host.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/rcar-pci.txt
+
 -- 
-2.29.1.341.ge80a0c044ae-goog
+2.7.4
 
