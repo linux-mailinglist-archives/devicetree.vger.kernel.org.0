@@ -2,270 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE812A6D43
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:56:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B59B92A6D42
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:56:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728675AbgKDS45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 13:56:57 -0500
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:52823 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731897AbgKDS45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:56:57 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 3E3C2580791;
-        Wed,  4 Nov 2020 13:56:55 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Wed, 04 Nov 2020 13:56:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=OVc/96aODvJeJoiBmnUW9Y0oJ7/
-        fFA1GzRqunAxPing=; b=tr1DljGPY9MWd7f90ap+INggtuV4FGeMUU+fcZ0zoIN
-        vF8JS4egEUyq61VRW2eRlAhIaa3F2Y8OITQlcc3ddrK2Q5ANgoKh+GuQiUxLSlJj
-        OJj/8aL8x1z1qUpppGGLMzL6Dqa5QllobEh+OtCW4cu0kwQW4L5WTEEtOj3pjkmF
-        bWAdBYQiBx3coHKEmdhQvQlfLE4WGkI0/6+Sivx73NRY4sG0BhN5gFnHqp+ylBWX
-        2QWMbY2TkA/dEVo3Nhia8dGAxo1hxCmGzVOnpvD9W+yB4XFu3TKHA2L68TJM6Q8v
-        jrAxjivO+hQ0ne/T3cHCYYs+Wd80b/8guk6u52gNexQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=OVc/96
-        aODvJeJoiBmnUW9Y0oJ7/fFA1GzRqunAxPing=; b=anMjAzC9sweKpPacv/4IgD
-        WKVDXQJpL4KrjsMH3GnGsJsQr897zB5gs6ioYdraAtq77CqRPHj25uha13q1kp85
-        OB64S87MejQlWhbiL+DoZcSfMmG9aMpk39fewdmcRzlOuI3seGEa6UrlIuu4/4ts
-        WKYOiiXGSgk0eshuamrIKtNOE9YcoR5IQqEWY1fc3pkAiOusIRau0/AdQpqmwOWU
-        vbChV6ooLdEmTkh2NzeQGhpZ6X6968VsFgeS6q33bMr1H+S7yP4KGTKOgM1038d0
-        SOIuVeeGGgbIGOf4yKDGGLg/31NXudsXiTMzf7xBkvBEOjjfv9kK1CNuQ1/NzIZA
-        ==
-X-ME-Sender: <xms:c_miX3rtHcLumC4p-mi0fiMAgww2OegeZq4rdUEYv5PBmj5igP3ckA>
-    <xme:c_miXxrVh4qiQ8EkwuoWJabkpNDGMxDneEE-Aj0zPFSCf312ngsgne6GWc68VEp_K
-    8mrCVQ6abtrHJehNpg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddthedguddvtdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
-    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
-    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:c_miX0Nwo_wpV9cEK464ZgMgFr1GB44ezhZVpbYEZadFEhYfBJzaNQ>
-    <xmx:c_miX65qGkVL_cMX37jJ2twHMrEnhTTgvSTwKzRmww6irSAsU2XT7g>
-    <xmx:c_miX26Ew6AVZJxi2ZRZDctIRVEQRd6lanB4f72B8tO0gmV3mm2YIw>
-    <xmx:d_miXzwLttgMJJHUTB-GWAFeI3FwUd5oJ4EdKCw7gh9JTbMEnktz8A>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 24349328038E;
-        Wed,  4 Nov 2020 13:56:51 -0500 (EST)
-Date:   Wed, 4 Nov 2020 19:56:50 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Yong Deng <yong.deng@magewell.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
-Subject: Re: [PATCH 08/14] media: sunxi: Add support for the A31 MIPI CSI-2
- controller
-Message-ID: <20201104185650.ii7dlekjtfar2xpp@gilmour.lan>
-References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
- <20201023174546.504028-9-paul.kocialkowski@bootlin.com>
- <20201026165407.rrq6ccsexcsub5bm@gilmour.lan>
- <20201104113458.GC287014@aptenodytes>
+        id S1731902AbgKDS4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 13:56:55 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38465 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728675AbgKDS4z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:56:55 -0500
+Received: by mail-ot1-f67.google.com with SMTP id b2so20287233ots.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 10:56:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VFWuzwJSbzZgP3QJ9+E0rWgVzccQnC1YvFD5b/UokjA=;
+        b=J0XFuYr1GKVOd6VW/ukMJfC/oXr48hqigHE06W08cOi6riu7CFGPxGXrhyuUtvP3x4
+         aOzeODYvGZN7U4/p52f/x+eUNHXtH0kvk35RE4nGa4BP4zOQjLJ6w2zh5vPHaWnC8OAG
+         5WUF2hubffdK5sU/kpL9xxqqslCpBwBORIfRCBv4kcYTJWyEKj0+P0Vnor3vCPTyxfcV
+         CSHC+avU5UYwpHyO42A/QoeDXRgMwA9m7b0jxd+PZiSOaWp7tMGMmUpT5GAIEv9C4N+O
+         TSnX9M/ArNvSH732IQQdpNZUehmMRERIormmlc6aX/AjZ36oz8QivUdarYHWtn8HgPpD
+         Rwng==
+X-Gm-Message-State: AOAM531Xqx0bPYD4fOnD2Hy6pAW+koyQFvFrVLqmeAAVQ3GqiABKwe8y
+        Zl4stFaGjxo5d/Q4KOe6IQ==
+X-Google-Smtp-Source: ABdhPJws0729OuS+J73/HqFJI9wECuK1AqYDP1g32egUbxndlt30IEgUrdNjDMDR5RzcZc2UJAjHSQ==
+X-Received: by 2002:a05:6830:2ef:: with SMTP id r15mr5683837ote.261.1604516212970;
+        Wed, 04 Nov 2020 10:56:52 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y22sm735450ooa.2.2020.11.04.10.56.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Nov 2020 10:56:52 -0800 (PST)
+Received: (nullmailer pid 3947080 invoked by uid 1000);
+        Wed, 04 Nov 2020 18:56:51 -0000
+Date:   Wed, 4 Nov 2020 12:56:51 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     p.zabel@pengutronix.de, linux-mediatek@lists.infradead.org,
+        shane.chien@mediatek.com, kuninori.morimoto.gx@renesas.com,
+        broonie@kernel.org, Trevor.Wu@mediatek.com,
+        Bicycle.Tsai@mediatek.com, tiwai@suse.com, tzungbi@google.com,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v4 7/9] dt-bindings: mediatek: mt8192: add audio afe
+ document
+Message-ID: <20201104185651.GB3946406@bogus>
+References: <1604390378-23993-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1604390378-23993-8-git-send-email-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ivpywtswxref2r4j"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201104113458.GC287014@aptenodytes>
+In-Reply-To: <1604390378-23993-8-git-send-email-jiaxin.yu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 03 Nov 2020 15:59:36 +0800, Jiaxin Yu wrote:
+> This patch adds mt8192 audio afe document.
+> 
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> ---
+> This patch depends on following series that has not been accepted:
+> https://patchwork.kernel.org/cover/11752231
+> (dt-bindings/clock/mt8192-clk.h is included in it.)
+> https://patchwork.kernel.org/patch/11755895
+> (dt-bindings/power/mt8192-power.h is included in it.)
+> https://lore.kernel.org/patchwork/patch/1321118
+> (dt-bindings/reset-controller/mt8192-resets.h is included in it.)
+> 
+>  .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> 
 
---ivpywtswxref2r4j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 04, 2020 at 12:34:58PM +0100, Paul Kocialkowski wrote:
-> > > +	regmap_write(regmap, SUN6I_MIPI_CSI2_CFG_REG,
-> > > +		     SUN6I_MIPI_CSI2_CFG_CHANNEL_MODE(1) |
-> > > +		     SUN6I_MIPI_CSI2_CFG_LANE_COUNT(lanes_count));
-> >=20
-> > It's not really clear what the channel is here? The number of virtual
-> > channels? Something else?
->=20
-> That's somewhat described in the controller documentation. Channels refer=
-s to
-> physical channels of the controller, which can be used to redirect data
-> matching either a specific data type, a specific virtual channel, or both.
-> There's a somewhat similar concept of channels in the CSI controller too.
->=20
-> We're currently only using one...
->=20
-> > > +	regmap_write(regmap, SUN6I_MIPI_CSI2_VCDT_RX_REG,
-> > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(3, 3) |
-> > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(2, 2) |
-> > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(1, 1) |
-> > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(0, 0) |
-> > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_DT(0, data_type));
->=20
-> ... but it's safer to configure them all to virtual channel numbers so we=
- don't
-> end up with multiple channels matching virtual channel 0.
->=20
-> I'll add a comment about that.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Maybe we should have pads for all of them then, even if we don't support
-changing anything?
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
+./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:15:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
 
-> > > +static const struct v4l2_subdev_pad_ops sun6i_mipi_csi2_subdev_pad_o=
-ps =3D {
-> > > +	.enum_mbus_code		=3D sun6i_mipi_csi2_enum_mbus_code,
-> > > +	.get_fmt		=3D sun6i_mipi_csi2_get_fmt,
-> > > +	.set_fmt		=3D sun6i_mipi_csi2_set_fmt,
-> > > +	.enum_frame_size	=3D sun6i_mipi_csi2_enum_frame_size,
-> > > +	.enum_frame_interval	=3D sun6i_mipi_csi2_enum_frame_interval,
-> > > +};
-> > > +
-> > > +/* Subdev */
-> > > +
-> > > +static const struct v4l2_subdev_ops sun6i_mipi_csi2_subdev_ops =3D {
-> > > +	.core		=3D &sun6i_mipi_csi2_subdev_core_ops,
-> > > +	.video		=3D &sun6i_mipi_csi2_subdev_video_ops,
-> > > +	.pad		=3D &sun6i_mipi_csi2_subdev_pad_ops,
-> > > +};
-> > > +
-> > > +/* Notifier */
-> > > +
-> > > +static int sun6i_mipi_csi2_notifier_bound(struct v4l2_async_notifier=
- *notifier,
-> > > +					  struct v4l2_subdev *remote_subdev,
-> > > +					  struct v4l2_async_subdev *remote_subdev_async)
-> > > +{
-> > > +	struct v4l2_subdev *subdev =3D notifier->sd;
-> > > +	struct sun6i_mipi_csi2_video *video =3D
-> > > +		sun6i_mipi_csi2_subdev_video(subdev);
-> > > +	struct sun6i_mipi_csi2_dev *cdev =3D sun6i_mipi_csi2_video_dev(vide=
-o);
-> > > +	int source_pad;
-> > > +	int ret;
-> > > +
-> > > +	source_pad =3D media_entity_get_fwnode_pad(&remote_subdev->entity,
-> > > +						 remote_subdev->fwnode,
-> > > +						 MEDIA_PAD_FL_SOURCE);
-> > > +	if (source_pad < 0)
-> > > +		return source_pad;
-> > > +
-> > > +	ret =3D media_create_pad_link(&remote_subdev->entity, source_pad,
-> > > +				    &subdev->entity, 0,
-> > > +				    MEDIA_LNK_FL_ENABLED |
-> > > +				    MEDIA_LNK_FL_IMMUTABLE);
-> > > +	if (ret) {
-> > > +		dev_err(cdev->dev, "failed to create %s:%u -> %s:%u link\n",
-> > > +			remote_subdev->entity.name, source_pad,
-> > > +			subdev->entity.name, 0);
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	video->remote_subdev =3D remote_subdev;
-> > > +	video->remote_pad_index =3D source_pad;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct v4l2_async_notifier_operations sun6i_mipi_csi2_n=
-otifier_ops =3D {
-> > > +	.bound		=3D sun6i_mipi_csi2_notifier_bound,
-> > > +};
-> > > +
-> > > +/* Media Entity */
-> > > +
-> > > +static int sun6i_mipi_csi2_link_validate(struct media_link *link)
-> > > +{
-> > > +	struct v4l2_subdev *subdev =3D
-> > > +		container_of(link->sink->entity, struct v4l2_subdev, entity);
-> > > +	struct sun6i_mipi_csi2_video *video =3D
-> > > +		sun6i_mipi_csi2_subdev_video(subdev);
-> > > +	struct v4l2_subdev *remote_subdev;
-> > > +	struct v4l2_subdev_format format =3D { 0 };
-> > > +	int ret;
-> > > +
-> > > +	if (!is_media_entity_v4l2_subdev(link->source->entity))
-> > > +		return -EINVAL;
-> > > +
-> > > +	remote_subdev =3D media_entity_to_v4l2_subdev(link->source->entity);
-> > > +
-> > > +	format.which =3D V4L2_SUBDEV_FORMAT_ACTIVE;
-> > > +	format.pad =3D link->source->index;
-> > > +
-> > > +	ret =3D v4l2_subdev_call(remote_subdev, pad, get_fmt, NULL, &format=
-);
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> > > +	video->mbus_code =3D format.format.code;
-> > > +
-> > > +	return 0;
-> > > +}
-> >=20
-> > I'm not really sure what you're trying to validate here?
->=20
-> The whole purpose is to retreive video->mbus_code from the subdev, like i=
-t's
-> done in the sun6i-csi driver. Maybe there is a more appropriate op to do =
-it?
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dts:19:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+   19 |         #include <dt-bindings/clock/mt8192-clk.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1364: dt_binding_check] Error 2
 
-I'm not sure why you need to do that in the link_validate though?
 
-You just need to init the pad format, and then you'll have a
-get_fmt/set_fmt for your pads.
+See https://patchwork.ozlabs.org/patch/1392703
 
-> > > +	cdev->regmap =3D devm_regmap_init_mmio_clk(&pdev->dev, "bus", io_ba=
-se,
-> > > +						 &sun6i_mipi_csi2_regmap_config);
-> > > +	if (IS_ERR(cdev->regmap)) {
-> > > +		dev_err(&pdev->dev, "failed to init register map\n");
-> > > +		return PTR_ERR(cdev->regmap);
-> > > +	}
-> >=20
-> > Yeah, so that won't work. regmap expects to have access to those
-> > registers when you enable that clock, but that won't happen since the
-> > reset line can be disabled. You would be better off using runtime_pm
-> > here.
->=20
-> I don't understand what you mean here or what the problem could be.
-> Here we're just initializing regmap and while this is done before the
-> registers are available for I/O, I don't see why it would cause any
-> issue at this point.
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
 
-The regmap here is supposed to take care of the resources, except it
-only does it for some of the resources here, which kind of breaks the
-expectations. And it doesn't allow you to have the reset / clock
-sequence properly done.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> The exact same thing is done in the CSI driver.
+pip3 install dtschema --upgrade
 
-That's not an argument though, is it? :)
+Please check and re-submit.
 
-Maxime
-
---ivpywtswxref2r4j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6L5cQAKCRDj7w1vZxhR
-xapUAPkBCQbEYpxpQRc2dQrlYckdrRucLdZjrw4DyHXeRpWXKwD8D9vPu/MJrl2p
-3cE184xWD5PpdHRseodrz4F6IAC7tA4=
-=egrI
------END PGP SIGNATURE-----
-
---ivpywtswxref2r4j--
