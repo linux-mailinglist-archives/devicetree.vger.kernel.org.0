@@ -2,309 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8184A2A5D0F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 04:18:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F002A5D1F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 04:33:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729905AbgKDDSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 22:18:14 -0500
-Received: from mailout4.samsung.com ([203.254.224.34]:26775 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728675AbgKDDSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 22:18:14 -0500
-Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20201104031810epoutp04429276f724ffcc73712c4033a71f0f7e~EL8UFxBER1673616736epoutp041
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 03:18:10 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20201104031810epoutp04429276f724ffcc73712c4033a71f0f7e~EL8UFxBER1673616736epoutp041
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1604459890;
-        bh=Af+rbsqoj+e9oIk+M0kz4lR7pGGKPqMvdzMC1y6q+Y0=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=g0i5RzZoycjIQ4TG+A4rrmnyW4neH8KU1NSlfj9Y1ByI1EDAy8EbrozoNvTMF1m2l
-         /jTGchf0bLP6iiim38af8auXb87DqCJup6lLgpdeseuOk36RWWub02JVPmF6rOzg0f
-         09L5nbfG6QZwe/0MKPI5JiygilVU1XSTM1QtWVek=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201104031809epcas1p169e1f59606c4615728a117f8f5b0fd97~EL8TXYTpi2054520545epcas1p1m;
-        Wed,  4 Nov 2020 03:18:09 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.40.153]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4CQsKq4BxYzMqYkf; Wed,  4 Nov
-        2020 03:18:07 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F5.A7.02418.F6D12AF5; Wed,  4 Nov 2020 12:18:07 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201104031806epcas1p2cc512545d5dac02382bf999ae6731718~EL8Qum_U22872328723epcas1p2q;
-        Wed,  4 Nov 2020 03:18:06 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201104031806epsmtrp171f74d270d2ad3172e934e227f35c802~EL8QtlWMY1039110391epsmtrp1b;
-        Wed,  4 Nov 2020 03:18:06 +0000 (GMT)
-X-AuditID: b6c32a35-c0dff70000010972-98-5fa21d6fd2b6
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        96.91.13470.E6D12AF5; Wed,  4 Nov 2020 12:18:06 +0900 (KST)
-Received: from [10.113.111.64] (unknown [10.113.111.64]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20201104031806epsmtip1dcf07a6a3f0d156db0931ffac3f6422f~EL8QZO_QG0625306253epsmtip16;
-        Wed,  4 Nov 2020 03:18:06 +0000 (GMT)
-Subject: Re: [PATCH v2 7/7] drm/vc4: kms: Don't disable the muxing of an
- active CRTC
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1728619AbgKDDdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 22:33:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56562 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728272AbgKDDdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 22:33:49 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 859D5C061A4D
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 19:33:47 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id c20so16152461pfr.8
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 19:33:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2jUnciHPWTJLufC07o47cAeByHy7mrLPpgf5OkBSgio=;
+        b=spU6uIBIHF8vhuhXsVnMF510AdouStN6Ax7aaWQtRrM2tgoBJ1AaPAYjsEDGul4S00
+         sbFUJrxrRALPwySc4en+hXAewd6A1MO3JG/46cxE44EH1Krq90QTgRrDJsYJaykE8qRD
+         azrA8RUwG6VvXk/Tk3JkROi2YkKGV/Fvuy1m35md2JiG5d1+DZisQpja2sLtUCMb4d+m
+         pilImcMzkuEbeM/0Ud4nbCZA91+p5HZyTnAJqBMoozP1qASNSGliVeXPJKZvuCQqnlFm
+         Xc/ItwDF23PK7pG3G+KP7/uO0vCOpuvWCCOnNKMyC/MBLTpF0vFPtoMQRuZBKDayybyX
+         Ky2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2jUnciHPWTJLufC07o47cAeByHy7mrLPpgf5OkBSgio=;
+        b=Yf7Z+ZwWDYyWoXiC3kCLfh0BIj5K7n7efvnNOZdl2cKCqLMGP1FCzbeMXQQy820Yvd
+         3Y9rV4NmyHQmKpxiPNN2XeTcE51PXtply5VZAaTeHHU5cETgk+Q4GEygAKvWlQ6jfpht
+         KEwIyS0yyt77al7kDnE5BbIYXj5eKfEzdL/DjOWXlJj9Y9Edrws25GAICUg/NKbKtTnF
+         +zzMPRoTOEkrXpEwO2JBiSNyw9NflkdcgswOXgZLGGzTcn5E1rsqp/WGwJU2ycwdsmom
+         QjMSpHvCB8/5x4Rzhrxci12S5t1wKhLVRfi7zmadQ4+nfQ0lGtdXQPVN26Arx/SisWGl
+         kpqg==
+X-Gm-Message-State: AOAM531kvIltg25jVvxrLPcFaoz9AQMhZm7vZ0a8OGnwQ0OlSo7ApVuT
+        gByJBor3khBPBQbIwpI8iU0=
+X-Google-Smtp-Source: ABdhPJzJE9XSYv2dyII+0CMuEWEba7oEDHwXt9LdkLzJETlmC8DvIxnhuez238lYwkB+ggaKTjQKSg==
+X-Received: by 2002:a17:90b:310e:: with SMTP id gc14mr2444968pjb.147.1604460827097;
+        Tue, 03 Nov 2020 19:33:47 -0800 (PST)
+Received: from [10.230.28.234] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id s145sm553094pfs.187.2020.11.03.19.33.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Nov 2020 19:33:46 -0800 (PST)
+Subject: Re: [PATCH 2/2] arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300
+ early DTS files
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Eric Anholt <eric@anholt.net>
-Cc:     devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Hoegeun Kwon <hoegeun.kwon@samsung.com>
-From:   Hoegeun Kwon <hoegeun.kwon@samsung.com>
-Message-ID: <e44c8830-1e63-03ec-b3f1-abab2259c995@samsung.com>
-Date:   Wed, 4 Nov 2020 12:17:27 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-        Thunderbird/68.10.0
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201028101123.6293-1-zajec5@gmail.com>
+ <20201028101123.6293-2-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <65671fc4-96c8-aa88-543e-23f1fae6262d@gmail.com>
+Date:   Tue, 3 Nov 2020 19:33:44 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <469ead5de989938fcf079505cbc232a620e713bc.1603888799.git-series.maxime@cerno.tech>
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20201028101123.6293-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01TfVRTZRz2vbu7GxZ5G6jvQdOx0A7EYBccXDyAihy7FhmdOp5EO3PAFTiM
-        be0O8oOTk0K+lfkRbQYIiDuHY0Ab3+WJQBQqRhbBCcOl4AfEQlE+Ioq2XTzx3/N7f8/zPu/z
-        e8+PzxHoeF78FKWW1ijlChG2Em3q9BWLVS9VyiQPy9eRRdYehPyiqAslTT/Uckh7aRVKll+z
-        csn+6UmMbD/xMyANE4sYOWnKx0jzyACX1N+q55EVjxtRsnrwJkJ+NvcvIGuH/sDI7KvXeOTd
-        8zZANkzoudsFVNbkdYy6UnYFUEZbL0b9Zu3DqFbjMI+q+noMocw1eRjVPPM7lyrreZuyFdxA
-        KMul41R21zxKnWqoAZTl+2PUE/OG2FVxqeHJtDyR1ghpZYIqMUWZFCF64x3ZTpk0REKIiTAy
-        VCRUytPoCFF0TKx4V4rCEVYkzJAr0h1HsXKGEQVGhmtU6VpamKxitBEiWp2oUIepAxh5GpOu
-        TApIUKVtJSSSIKmDeDA1+XL+I666jzg83NvJ0YHyV/KBGx/iW+BPCzUgH6zkC/AWAHVdFoQt
-        pgA8rS/hssUMgJfni8Azid5WjzqxAL8KYMvCLpZkBzDXUIk4Gx74Xlg90o05G574KAIvjTxx
-        mXBwGwLbegY5ThaGi+F04aBL4Y5HQmvdY8yJUdwHFj/tddmtxvfB1ntjPJbzIuwxjLqs3XAZ
-        nLvX7dJy8I2w2f45h8Vr4dBouSsExE1u0J63uPTuaDh9u4nHYg84fqNhCXvBsdMnlzAD+w3j
-        KCvWOSdwYakRDL+pPuu4le9w8IV1bYHssTds/bsUsMYvwD+nC7lOCsTdYe5JAUvZDO/r2rks
-        Xg+/KzIhLKbgL1lZaDHwNi6LZlwWx7gsjvF/44sArQFraDWTlkQzhJpY/t9m4FoFP2kL0Nsf
-        BXQAhA86AORzRJ7umfvKZAL3RPmRo7RGJdOkK2imA0gdw9ZzvFYnqBy7pNTKCGlQcHAwuYUI
-        kRKEaK37wqu5MgGeJNfSqTStpjXPdAjfzUuH7NDi7fj9sZw8XcyXJW89tVQ0HjBpVnhn75/N
-        zDxapdAUDUR6xZjW1zGyksh3w/0+9PHbM/d86QQFP+nv/GuD/2zY1rvlpRVB1+vObIKTbXuK
-        a3cftGbQd5o1U/bt8JjnhYeENWrM80xgy0zoe5WHd0StiouJ76ooiEuzde89f67v7Oyhm7t7
-        ZyXJMdtydMH++Zslhcb4YVkI+XLUa6P/PPAwmy7eZlYYan2YecvHTbJxy6YdH8RbPhK27Sx8
-        veCBOsV/G2qcE3v6qtZ0CO/c2m9tPQdDj/sORBmeIw4xR3K+zS0dMK9THZBHjzdW1r8/HXJi
-        yrRx6Mekr978NKDQP2Nx7lcRyiTLCT+OhpH/B/S5QlqTBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrHIsWRmVeSWpSXmKPExsWy7bCSnG6e7KJ4g/5r+ha9504yWaztPcpi
-        sfzMOmaLt3MXs1jMP3KO1eLK1/dsFgcaLzNazHzzn83i/fIuNotNj6+xWky8vYHdYuHHrSwW
-        S69fZLKY8eMfo8W6W6/ZLFr3HmG3eDT1PqPFljcTWR2EPJreH2PzWDNvDaPHrPtn2TzunDvP
-        5rFz1l12j8V7XjJ5bFrVyeax/dsDVo95JwM97ncfZ/LYvKTeo/XoLxaPvi2rGD02n672+LxJ
-        LoA/issmJTUnsyy1SN8ugStjWdcH1oLzhhV3zx5mbmCcr97FyMkhIWAiMfH+BpYuRi4OIYHd
-        jBLT921ng0jISKzq38LaxcgBZAtLHD5cDFHzmlHi9Y6/TCA1wgJhEksfn2ADSYgIPGGSmHXu
-        CZjDLHCfSeLOy9VsEC29TBJ7dkxlB2lhE9CV+NpzHaydV8BO4tz6j2DrWARUJCZ8OcsIsk5U
-        IFJi5w5LiBJBiZMzn7CA2JwC8RI/np4Aa2UWMJOYt/khM4QtL7H97RwoW1zi1pP5TBMYhWYh
-        aZ+FpGUWkpZZSFoWMLKsYpRMLSjOTc8tNiwwzEst1ytOzC0uzUvXS87P3cQITgJamjsYt6/6
-        oHeIkYmD8RCjBAezkghvTeS8eCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8NwoXxgkJpCeWpGan
-        phakFsFkmTg4pRqYJL9JGS+ZoyuWE77oS4OKiktkUfDRkMnZ9g/srro4fIlNZTM717utM/po
-        sWNDrqKS7vZLFff23zn3c9Hlxm9HTvJIBB7aeZBt3rxs8daw/lzLqLsKyo17fs47dWDB9JU7
-        fX5m+57p8eHfrSER+ks+k3lKxPWfu8NPtucbHwo8HPqE81Nb8VI7vluBFcdMFovprfh+fP90
-        jiybFUr3714tO6Z+OVFef4FyeeEEBrN/OUapFms/nf31snp3VkaF2O4dazw2l3KG7Nlsszjq
-        xO+fp+a92nEtMLOka9rVi2q89wJM/e7uXZ/zfWXPi3lbnROun/Y/v2pH3+HZd+SulgrrhPbk
-        XHmudkI1+yj7v5q2ViWW4oxEQy3mouJEAF1597JxAwAA
-X-CMS-MailID: 20201104031806epcas1p2cc512545d5dac02382bf999ae6731718
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20201029081313epcas1p165edbd0c8e54d978a8130f5fb9d2a422
-References: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
-        <CGME20201029081313epcas1p165edbd0c8e54d978a8130f5fb9d2a422@epcas1p1.samsung.com>
-        <469ead5de989938fcf079505cbc232a620e713bc.1603888799.git-series.maxime@cerno.tech>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
-
-On 10/28/20 9:41 PM, Maxime Ripard wrote:
-> The current HVS muxing code will consider the CRTCs in a given state to
-> setup their muxing in the HVS, and disable the other CRTCs muxes.
->
-> However, it's valid to only update a single CRTC with a state, and in this
-> situation we would mux out a CRTC that was enabled but left untouched by
-> the new state.
->
-> Fix this by setting a flag on the CRTC state when the muxing has been
-> changed, and only change the muxing configuration when that flag is there.
->
-> Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automatically")
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-
-I checked all patches well works.
 
 
-All patches:
-
-Reviewed-by: Hoegeun Kwon<hoegeun.kwon@samsung.com>
-Tested-by: Hoegeun Kwon<hoegeun.kwon@samsung.com>
-
-Best regards,
-Hoegeun
-
+On 10/28/2020 3:11 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> They don't descibe hardware fully yet but it's enough to boot a system.
+> 
+> Some missing blocks:
+> 1. PMC (Power Management Controller?)
+> 2. Crypto
+> 3. Thermal
+> 
+> Asus misses defining full NAND partitions layout and buttons.
+> 
+> Further changes will fill those gaps as soon as required bindings will
+> be found / tested / added.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->   drivers/gpu/drm/vc4/vc4_drv.h |  1 +-
->   drivers/gpu/drm/vc4/vc4_kms.c | 84 +++++++++++++++++++++---------------
->   2 files changed, 50 insertions(+), 35 deletions(-)
->
-> diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_drv.h
-> index c6208b040f77..c074c0538e57 100644
-> --- a/drivers/gpu/drm/vc4/vc4_drv.h
-> +++ b/drivers/gpu/drm/vc4/vc4_drv.h
-> @@ -523,6 +523,7 @@ struct vc4_crtc_state {
->   	struct drm_mm_node mm;
->   	bool feed_txp;
->   	bool txp_armed;
-> +	bool needs_muxing;
->   	unsigned int assigned_channel;
->   
->   	struct {
-> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-> index 2aa726b7422c..409aeb19d210 100644
-> --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> @@ -224,10 +224,7 @@ static void vc5_hvs_pv_muxing_commit(struct vc4_dev *vc4,
->   {
->   	struct drm_crtc_state *crtc_state;
->   	struct drm_crtc *crtc;
-> -	unsigned char dsp2_mux = 0;
-> -	unsigned char dsp3_mux = 3;
-> -	unsigned char dsp4_mux = 3;
-> -	unsigned char dsp5_mux = 3;
-> +	unsigned char mux;
->   	unsigned int i;
->   	u32 reg;
->   
-> @@ -235,50 +232,59 @@ static void vc5_hvs_pv_muxing_commit(struct vc4_dev *vc4,
->   		struct vc4_crtc_state *vc4_state = to_vc4_crtc_state(crtc_state);
->   		struct vc4_crtc *vc4_crtc = to_vc4_crtc(crtc);
->   
-> -		if (!crtc_state->active)
-> +		if (!vc4_state->needs_muxing)
->   			continue;
->   
->   		switch (vc4_crtc->data->hvs_output) {
->   		case 2:
-> -			dsp2_mux = (vc4_state->assigned_channel == 2) ? 0 : 1;
-> +			mux = (vc4_state->assigned_channel == 2) ? 0 : 1;
-> +			reg = HVS_READ(SCALER_DISPECTRL);
-> +			HVS_WRITE(SCALER_DISPECTRL,
-> +				  (reg & ~SCALER_DISPECTRL_DSP2_MUX_MASK) |
-> +				  VC4_SET_FIELD(mux, SCALER_DISPECTRL_DSP2_MUX));
->   			break;
->   
->   		case 3:
-> -			dsp3_mux = vc4_state->assigned_channel;
-> +			if (vc4_state->assigned_channel == VC4_HVS_CHANNEL_DISABLED)
-> +				mux = 3;
-> +			else
-> +				mux = vc4_state->assigned_channel;
+
+[snip]
+
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> @@ -0,0 +1,182 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
 > +
-> +			reg = HVS_READ(SCALER_DISPCTRL);
-> +			HVS_WRITE(SCALER_DISPCTRL,
-> +				  (reg & ~SCALER_DISPCTRL_DSP3_MUX_MASK) |
-> +				  VC4_SET_FIELD(mux, SCALER_DISPCTRL_DSP3_MUX));
->   			break;
->   
->   		case 4:
-> -			dsp4_mux = vc4_state->assigned_channel;
-> +			if (vc4_state->assigned_channel == VC4_HVS_CHANNEL_DISABLED)
-> +				mux = 3;
-> +			else
-> +				mux = vc4_state->assigned_channel;
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
 > +
-> +			reg = HVS_READ(SCALER_DISPEOLN);
-> +			HVS_WRITE(SCALER_DISPEOLN,
-> +				  (reg & ~SCALER_DISPEOLN_DSP4_MUX_MASK) |
-> +				  VC4_SET_FIELD(mux, SCALER_DISPEOLN_DSP4_MUX));
+> +/dts-v1/;
 > +
->   			break;
->   
->   		case 5:
-> -			dsp5_mux = vc4_state->assigned_channel;
-> +			if (vc4_state->assigned_channel == VC4_HVS_CHANNEL_DISABLED)
-> +				mux = 3;
-> +			else
-> +				mux = vc4_state->assigned_channel;
+> +/ {
+> +	interrupt-parent = <&gic>;
 > +
-> +			reg = HVS_READ(SCALER_DISPDITHER);
-> +			HVS_WRITE(SCALER_DISPDITHER,
-> +				  (reg & ~SCALER_DISPDITHER_DSP5_MUX_MASK) |
-> +				  VC4_SET_FIELD(mux, SCALER_DISPDITHER_DSP5_MUX));
->   			break;
->   
->   		default:
->   			break;
->   		}
->   	}
-> -
-> -	reg = HVS_READ(SCALER_DISPECTRL);
-> -	HVS_WRITE(SCALER_DISPECTRL,
-> -		  (reg & ~SCALER_DISPECTRL_DSP2_MUX_MASK) |
-> -		  VC4_SET_FIELD(dsp2_mux, SCALER_DISPECTRL_DSP2_MUX));
-> -
-> -	reg = HVS_READ(SCALER_DISPCTRL);
-> -	HVS_WRITE(SCALER_DISPCTRL,
-> -		  (reg & ~SCALER_DISPCTRL_DSP3_MUX_MASK) |
-> -		  VC4_SET_FIELD(dsp3_mux, SCALER_DISPCTRL_DSP3_MUX));
-> -
-> -	reg = HVS_READ(SCALER_DISPEOLN);
-> -	HVS_WRITE(SCALER_DISPEOLN,
-> -		  (reg & ~SCALER_DISPEOLN_DSP4_MUX_MASK) |
-> -		  VC4_SET_FIELD(dsp4_mux, SCALER_DISPEOLN_DSP4_MUX));
-> -
-> -	reg = HVS_READ(SCALER_DISPDITHER);
-> -	HVS_WRITE(SCALER_DISPDITHER,
-> -		  (reg & ~SCALER_DISPDITHER_DSP5_MUX_MASK) |
-> -		  VC4_SET_FIELD(dsp5_mux, SCALER_DISPDITHER_DSP5_MUX));
->   }
->   
->   static void
-> @@ -769,21 +775,29 @@ static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
->   		return -EINVAL;
->   
->   	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
-> +		struct vc4_crtc_state *old_vc4_crtc_state =
-> +			to_vc4_crtc_state(old_crtc_state);
->   		struct vc4_crtc_state *new_vc4_crtc_state =
->   			to_vc4_crtc_state(new_crtc_state);
->   		struct vc4_crtc *vc4_crtc = to_vc4_crtc(crtc);
->   		unsigned int matching_channels;
->   
-> -		if (old_crtc_state->enable && !new_crtc_state->enable) {
-> -			hvs_state->unassigned_channels |= BIT(old_vc4_crtc_state->assigned_channel);
-> -			new_vc4_crtc_state->assigned_channel = VC4_HVS_CHANNEL_DISABLED;
-> +		/* Nothing to do here, let's skip it */
-> +		if ((old_crtc_state->enable && new_crtc_state->enable) ||
-> +		    (!old_crtc_state->enable && !new_crtc_state->enable)) {
-> +			new_vc4_crtc_state->needs_muxing = false;
-> +			continue;
->   		}
->   
-> -		if (!new_crtc_state->enable)
-> -			continue;
-> +		/* Muxing will need to be modified, mark it as such */
-> +		new_vc4_crtc_state->needs_muxing = true;
->   
-> -		if (new_vc4_crtc_state->assigned_channel != VC4_HVS_CHANNEL_DISABLED)
-> +		/* If we're disabling our CRTC, we put back our channel */
-> +		if (old_crtc_state->enable && !new_crtc_state->enable) {
-> +			hvs_state->unassigned_channels |= BIT(old_vc4_crtc_state->assigned_channel);
-> +			new_vc4_crtc_state->assigned_channel = VC4_HVS_CHANNEL_DISABLED;
->   			continue;
-> +		}
->   
->   		/*
->   		 * The problem we have to solve here is that we have
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		bootargs = "earlycon=bcm63xx_uart,0xff800640";
+
+These bootargs should be dropped from the
+
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
+
+Please drop "arm,cortex-a53"
+
+> +			reg = <0x0>;
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
+> +			reg = <0x1>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0x0 0xfff8>;
+> +			next-level-cache = <&l2>;
+
+The device that you have access to did not even ship with a version of PSCI?
+
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
+> +			reg = <0x2>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0x0 0xfff8>;
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "brcm,cortex-b53", "arm,cortex-a53";
+> +			reg = <0x3>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0x0 0xfff8>;
+> +			next-level-cache = <&l2>;
+> +		};
+> +
+> +		l2: l2-cache0 {
+> +			compatible = "cache";
+> +		};
+> +	};
+> +
+> +	gic: interrupt-controller@81000000 {
+> +		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+> +		#interrupt-cells = <3>;
+> +		#address-cells = <0>;
+
+You would want to create a node that encapsulates the ARM peripheral
+addresses within the SoC's physical address range, see
+arch/arm/boot/dts/bcm63138.dtsi for an example with the axi bus node.
+
+[snip]
+
+> +
+> +			nandcs: nandcs@0 {
+> +				compatible = "brcm,nandcs";
+> +				reg = <0>;
+> +				nand-on-flash-bbt;
+> +				brcm,nand-has-wp;
+
+Those last two properties should be moved to the board level DTS file.
+
+> +			};
+> +		};
+> +
+> +		reboot {
+> +			compatible = "syscon-reboot";
+> +			regmap = <&timer>;
+> +			offset = <0x34>;
+> +			mask = <1>;
+> +		};
+> +	};
+> +};
+> 
+
+-- 
+Florian
