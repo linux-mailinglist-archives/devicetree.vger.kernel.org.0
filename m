@@ -2,91 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D3C2A674E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FCCE2A6784
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:22:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729457AbgKDPTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 10:19:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53354 "EHLO
+        id S1730779AbgKDPWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 10:22:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728522AbgKDPTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:19:20 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD79C0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:19:20 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id c18so2721436wme.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:19:20 -0800 (PST)
+        with ESMTP id S1730748AbgKDPWb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:22:31 -0500
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441BDC061A4A
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:22:31 -0800 (PST)
+Received: by mail-wr1-x442.google.com with SMTP id n18so22452760wrs.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:22:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=D9YsrGN9wWLv3mX7dkJBqjaJH+HqiYhxAqtKcEQZoEQ=;
-        b=ESOcqmcmdlSBpst0NLiwQTyp6ATQj/xVBJ8v/wHN0bGElMDhQzgtCbKjzMxYDimtOM
-         QyBNdwZVHihtaYz9l9uXrPp5n8/UvcnVUMbVR1HBqL2iXmZFIDbNHdmwG8j4vvoCs1vq
-         Q+0Embfu1d/pSYvA8ayGkQZsCW3dBfwAlpCTj6Z4sykz4keNk22VH+wgAMOuCuiHmQ0l
-         Ib+NRQBONXAI+teuxoTRmG8CEjgy8p0VEWvPaSpCAkSMDVFQgWcWS+BD4vzNAi/2F5Vg
-         gL1e+/LmL+JNuWxR+7yOpRWHPwGPoxebE4aZO2NDOTSobd1QUU9XN0++hxyXyZApuiTK
-         lGcw==
+        bh=q6hdviCMUNDpB25Riq30Bi5OEfr4eLtHUB6k7K/aZvY=;
+        b=N+ZQkza/J4iL2cPwAzJDzR2TDBxa/ygHQqtkEBsQnPxwe0lwLCJ8zkeWrONmUupLVt
+         I36bZ9MmN+isW9a3PipNRr7HFmQLJXRYh3h2jTx5SvCwWBbqSoCWaKhrJDzeS1c8lxbj
+         OKmo7GVKj1pCYRoW+pfE9quncDqfpUNXwxo8Q2FtwwzdSmRMBc3NCc75nuZwKSQzHyyQ
+         4WDnGDutraDZSK8aS66n6whaSUdnPCLbFK33gX8TbyWB6CALiLEyO2iruwRyI8YW2SCH
+         So/W0SKiq7vaa1AB+AVJUXO2DrMpjHR1Sly/IPzksIBFuIEzyH7jloN6kk2A5it9d8Ag
+         hsuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=D9YsrGN9wWLv3mX7dkJBqjaJH+HqiYhxAqtKcEQZoEQ=;
-        b=m7t6tS3EFaI4x1QsjQZlpXP2svdx26Cb3q432PvpzYmM9S8kYBqUr4cNU96wZMS5lJ
-         E1DuVcwqJZjttmbEtkMW8X6ZMTU/H+QI9/e+q/TrPCjAv/Ydwdcau6wKMl3E5ZnaXP4O
-         pQmig/bLrdcxbfkR/DyB0JcgTj5T132ugv9HM3VFBkvBaLVJRb7iYZKZKG538oFEr61E
-         /sL0FtPqo1IGx8fcadFVIxCcP9qadhrml/Yf19yuwi9jpsi+xfh+ThsmAWuiiZb0fZh7
-         NUdZ98DWaDyD864McxkGdbGDitgaoEvhfrpkyKJczWCpuoovrYysCaaUfemN3exbS6B8
-         9RkQ==
-X-Gm-Message-State: AOAM530M27ofl6+0EODRc2Kdtox7KGkzTKKrSZTt4NW5yaBezyHij05f
-        AQNpiN7Xp/eGltbOXL/BuQ1a0A==
-X-Google-Smtp-Source: ABdhPJwjO9gdBQ3A1EtXca/y3WeuvIcYU20JPYHU2jSpFYSGJCsfNFJNSgvD9gAQ0LrvY1egrHrDjw==
-X-Received: by 2002:a1c:6405:: with SMTP id y5mr5165258wmb.150.1604503158966;
-        Wed, 04 Nov 2020 07:19:18 -0800 (PST)
+        bh=q6hdviCMUNDpB25Riq30Bi5OEfr4eLtHUB6k7K/aZvY=;
+        b=Bg6x9gtjHZj5i1f0jLOxezJJ+tLkt9TrRtJYdrvRGWacFYsVR1lLz7Df9c8vg2wpm0
+         WDPe4bsWGq2glVG56TyJMQlJsa3R5OsoNTd7TzI4/Pk0Qo1E0r9HkzwQgtMYmi7rIyck
+         fFU4t3Ig5sO0ZWEzOkJDr6d1VIpgsbIxCYPxWyaTsyE1dc4v1V7tpc0a5hjC01+Cw8Rq
+         1sRfhkVHpAjkNClE3QH/trK5zZFBRoffdGg0VxmAv6RRptqmvBKCQKJJ+rVlcZ4D9ewn
+         p3E8+dt3ScElhH7N58ptMyyT4f2ira5JQeRJi6PsH4hzepYkAEUYq0xbQ9M2NPvuhMKe
+         e5Vg==
+X-Gm-Message-State: AOAM533lSg244nS1SF2BerGQCevjrRV+RQcoZOY3aZ9zkMw3zvj5RHbr
+        OV0LPwLlr49+qJO/BQFLfP+18w==
+X-Google-Smtp-Source: ABdhPJxQzdXyGNDCkYY6//Qtcy3N7vuWJ5LfVvcTG8og0tM/Z01cSnk7BnqMscR9XtB5I8c4B16htw==
+X-Received: by 2002:a5d:63cb:: with SMTP id c11mr30926563wrw.243.1604503349944;
+        Wed, 04 Nov 2020 07:22:29 -0800 (PST)
 Received: from dell ([91.110.221.242])
-        by smtp.gmail.com with ESMTPSA id d20sm3205552wra.38.2020.11.04.07.19.17
+        by smtp.gmail.com with ESMTPSA id y201sm2893312wmd.27.2020.11.04.07.22.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 07:19:18 -0800 (PST)
-Date:   Wed, 4 Nov 2020 15:19:16 +0000
+        Wed, 04 Nov 2020 07:22:29 -0800 (PST)
+Date:   Wed, 4 Nov 2020 15:22:27 +0000
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
- properties
-Message-ID: <20201104151916.GL4488@dell>
-References: <20200917193754.542-1-krzk@kernel.org>
+To:     kernel test robot <lkp@intel.com>
+Cc:     Luka Kovacic <luka.kovacic@sartura.hr>,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        kbuild-all@lists.01.org, pavel@ucw.cz, dmurphy@ti.com,
+        robh+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net
+Subject: Re: [PATCH v6 2/6] drivers: mfd: Add a driver for iEi WT61P803
+ PUZZLE MCU
+Message-ID: <20201104152227.GM4488@dell>
+References: <20201019221859.56680-3-luka.kovacic@sartura.hr>
+ <202010201049.3V7m9mtx-lkp@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200917193754.542-1-krzk@kernel.org>
+In-Reply-To: <202010201049.3V7m9mtx-lkp@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Sep 2020, Krzysztof Kozlowski wrote:
+On Tue, 20 Oct 2020, kernel test robot wrote:
 
-> Add common properties appearing in DTSes (clock-names,
-> clock-output-names) with the common values (actually used in DTSes) to
-> fix dtbs_check warnings like:
+> Hi Luka,
 > 
->   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
->     pmic@4b: 'clock-names', 'clock-output-names', do not match any of the regexes: 'pinctrl-[0-9]+'
+> Thank you for the patch! Perhaps something to improve:
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> [auto build test WARNING on hwmon/hwmon-next]
+> [also build test WARNING on v5.9]
+> [cannot apply to pavel-linux-leds/for-next lee-mfd/for-mfd-next next-20201016]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
 > 
-> ---
+> url:    https://github.com/0day-ci/linux/commits/Luka-Kovacic/Add-support-for-the-iEi-WT61P803-PUZZLE-MCU/20201020-062048
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+> config: ia64-randconfig-r002-20201020 (attached as .config)
+> compiler: ia64-linux-gcc (GCC) 9.3.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # https://github.com/0day-ci/linux/commit/855e7cca9db335136d09555f9983d7245fca1f4b
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Luka-Kovacic/Add-support-for-the-iEi-WT61P803-PUZZLE-MCU/20201020-062048
+>         git checkout 855e7cca9db335136d09555f9983d7245fca1f4b
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=ia64 
 > 
-> Changes since v1:
-> 1. Define the names, as used in existing DTS files.
-> ---
->  .../devicetree/bindings/mfd/rohm,bd71837-pmic.yaml          | 6 ++++++
->  1 file changed, 6 insertions(+)
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All warnings (new ones prefixed by >>):
+> 
+> >> drivers/mfd/iei-wt61p803-puzzle.c:311:5: warning: no previous prototype for 'iei_wt61p803_puzzle_buzzer' [-Wmissing-prototypes]
+>      311 | int iei_wt61p803_puzzle_buzzer(struct iei_wt61p803_puzzle *mcu, bool long_beep)
+>          |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Applied, thanks.
+This bot has been complaining about this patch since at least v3.
+
+Are you going to fix the issue?  Or is it moot?
 
 -- 
 Lee Jones [李琼斯]
