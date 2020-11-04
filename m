@@ -2,92 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09FDD2A6D64
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:03:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1D202A6D5D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:03:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730979AbgKDTCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 14:02:34 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:41650 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729599AbgKDTBP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:01:15 -0500
-Received: by mail-ot1-f68.google.com with SMTP id n15so20288908otl.8;
-        Wed, 04 Nov 2020 11:01:15 -0800 (PST)
+        id S1730386AbgKDTC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 14:02:26 -0500
+Received: from mail-oo1-f65.google.com ([209.85.161.65]:44723 "EHLO
+        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729996AbgKDTB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:01:28 -0500
+Received: by mail-oo1-f65.google.com with SMTP id o129so5317208ooo.11;
+        Wed, 04 Nov 2020 11:01:28 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fCdADtGJbCE4LsoGfkd3VKJpJmoa6WJULS6JxI7ElEc=;
-        b=mVoIDb/0ANev04ACzpu8Fev0NWMYjiE8NBEcjVzrnLvqR21pAntcI1zYcHyKnAG8jZ
-         mGPg/D491ayByM3A2zXa52Fiq0KNhHtBoXllwBx6WXllVt2F6aVijoV+I7drXKMG3DWa
-         deoGn8OWuaZ0ohAQ41XpX2TL8WcGZNSAegYpyLwsL9Nb5iSmcp6T3mrVH34U3D3qs46Q
-         kXcVD5aqqdnnXF4IehFZNDPAJG3+q6qqemt4VyabvEKqn0Q1z7WCOJiz3f7L3wwMhmfF
-         yzr/soDaRUgMw83ZrN4TcuDnWOGNqyO3Pw6govFUcqGAojOe9Ar+2Dr4UWzVbslVTScw
-         lQpw==
-X-Gm-Message-State: AOAM532Khb9JrINH/Mfm4GF3XtvnxNz063AE7TZdtq/JIT5Ut3SexjSF
-        SEiHMDs+ycZKrGZ8JHY1cw==
-X-Google-Smtp-Source: ABdhPJwafnq62npe4dpj+8WaXkzleVIJJ9Y5Xz5INV3jgI1bfcGgLWp/B3v+FGdbPXjjFmcURQaK2g==
-X-Received: by 2002:a9d:896:: with SMTP id 22mr19680580otf.55.1604516474734;
-        Wed, 04 Nov 2020 11:01:14 -0800 (PST)
+        bh=yjKsw7ni1G1n3PIaby732+mhl3O2uXnnb+gEy+qFVq0=;
+        b=KMaTZ99MsdWchwXQw79RTzwbk1xGzzhC8H89kIolozu15GtoVFAHEkX6s+56TmYR9m
+         LUpAflr8sdOdnyALwwbV1yCQFKge2lGFIBqqRbJWe433xvmmXWIILK6fOVDhRflWKh89
+         2F666B/TD7d4VNWWuSWHvKvkqS3BhIbKwLiK1n7JW3ry+8567wxvGVmYiJ/gl1Evbg4U
+         h42z4ZL0ju7499DtEo1wIEZiB4PZQ8SzuD5hl2ukwTKLR7pS3nXrc3vD5S4OH31z+gC/
+         P8j1BBBLixeWV8zGKAa3W+fpBiLVldrNQJDJVLK/2ELDfA14Bvz6MjynprUGVkt5v1e+
+         hyfg==
+X-Gm-Message-State: AOAM531SubMguyyYuPdaipfVBsD4p9yoafDkCto2srgCxO6/36gkVuaZ
+        dXoxj2cgKLZMpsbOOhqvZojFEA8wMw==
+X-Google-Smtp-Source: ABdhPJzndO9iebji1bM/Lm/Zh51jFv150lO13UnOB06YPRWX2A2W/11ZZHbgu7UxpZXSIDQK4se0nw==
+X-Received: by 2002:a4a:d848:: with SMTP id g8mr20041632oov.35.1604516486291;
+        Wed, 04 Nov 2020 11:01:26 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b185sm647365oif.5.2020.11.04.11.01.13
+        by smtp.gmail.com with ESMTPSA id b1sm695706oof.43.2020.11.04.11.01.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 11:01:14 -0800 (PST)
-Received: (nullmailer pid 3953219 invoked by uid 1000);
-        Wed, 04 Nov 2020 19:01:13 -0000
-Date:   Wed, 4 Nov 2020 13:01:13 -0600
+        Wed, 04 Nov 2020 11:01:25 -0800 (PST)
+Received: (nullmailer pid 3953486 invoked by uid 1000);
+        Wed, 04 Nov 2020 19:01:24 -0000
+Date:   Wed, 4 Nov 2020 13:01:24 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     devicetree@vger.kernel.org, Jacky Bai <ping.bai@nxp.com>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Anson Huang <anson.huang@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        linux-clk@vger.kernel.org, Adam Ford <aford173@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>
-Subject: Re: [PATCH v5 09/14] Documentation: bindings: clk: Add bindings for
- i.MX BLK_CTL
-Message-ID: <20201104190113.GB3950437@bogus>
-References: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com>
- <1604402306-5348-10-git-send-email-abel.vesa@nxp.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, Marcel Holtmann <marcel@holtmann.org>,
+        linux-bluetooth@vger.kernel.org,
+        Johan Hedberg <johan.hedberg@gmail.com>
+Subject: Re: [PATCH 1/2] Bluetooth: btbcm: Rewrite bindings i YAML and add
+ reset
+Message-ID: <20201104190124.GC3950437@bogus>
+References: <20201103120943.1289277-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1604402306-5348-10-git-send-email-abel.vesa@nxp.com>
+In-Reply-To: <20201103120943.1289277-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Nov 2020 13:18:21 +0200, Abel Vesa wrote:
-> Document the i.MX BLK_CTL with its devicetree properties.
+On Tue, 03 Nov 2020 13:09:42 +0100, Linus Walleij wrote:
+> This rewrites the Broadcom bluetooth bindings in YAML and
+> adds a GPIO handle for the BT_RST_N line as used on some
+> platforms.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../devicetree/bindings/clock/fsl,imx-blk-ctl.yaml | 60 ++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml
+>  .../bindings/net/broadcom-bluetooth.txt       |  56 ---------
+>  .../bindings/net/broadcom-bluetooth.yaml      | 117 ++++++++++++++++++
+>  2 files changed, 117 insertions(+), 56 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/clock/fsl,imx-blk-ctl.yaml:23:10: [warning] wrong indentation: expected 10 but found 9 (indentation)
 
 dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/ingenic,uart.example.dt.yaml: bluetooth: 'vcc-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1392927
+See https://patchwork.ozlabs.org/patch/1392981
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
