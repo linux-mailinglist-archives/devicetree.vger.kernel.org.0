@@ -2,114 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC562A5B87
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 02:09:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 706BA2A5BE4
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 02:29:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729864AbgKDBJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 20:09:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34360 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729188AbgKDBJN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 20:09:13 -0500
-Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com [IPv6:2607:f8b0:4864:20::c41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF29C0401C1
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 17:09:13 -0800 (PST)
-Received: by mail-oo1-xc41.google.com with SMTP id v123so4685284ooa.5
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 17:09:13 -0800 (PST)
+        id S1729694AbgKDB3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 20:29:01 -0500
+Received: from mail-eopbgr1310112.outbound.protection.outlook.com ([40.107.131.112]:49408
+        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725769AbgKDB3A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 20:29:00 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LOOQ6PUo3LLmzFFfEHQ2mJfH+UDudprdMgJxvcN8EtR2j/zPcz6UzkrQ52lxZHSKwQA6x1uAb/f+MBq9jcj1kDjvh3TC2NT3BP2u4lIZQSVDKKHVTfk71j9/Q8lJDDuL2vxJpWA9nArrotwESmo8FEaWytnhN1tgp+EC0Fc7rOEF9Oy5WFq8Qq2fDm5kZAg/oBx0Ek6xbNKtghE46tRyfYxFcC06cvKNZ+Ji8GECJCwQpSLpMlxK4Xwp3KxWnypqyvI1vuB1nwHHzsK3sOnOZpAsG7kZe/3xGwhh7dNSkrwDigDPFgZsFCId50gWEoYkpv1D2hwhLWyC/0DbgCj9vg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2HwTiNADNDEmsJDSmXFMXW8BMhtyUy8XB3DH5v236Vs=;
+ b=ZKWMcMeD6suK5ZV+S9ACszmIdyhgFgjysEzQ3eDNS09YiQMOjbYXYsinPk3Ar0vTGRr2tCq5Q7g0d3pVcpxuzkJGMFBQdmZSzXrE+CE1ecshJ69bdYkKxvtsKdgmXrYnXSS6q0Nou/xleCJB5OR42xp+HQxMaAFSj2QHY7BV+1y9nKGMro/p+KbyFWIeEeQ7xLZQb+XgYQqG8ASk6RPN2BtaQeDbtrV+vvWgra4MtLdc6sXXCSJrQZf7wfC9we56x1HkisCVjl4AQuitHYuN0zLEN/tKXbVYsyy8H3eSXon3SxWuf83iDe6U5PhYssMlOXtDrK0+iY2V2xcB9bS03A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6jy8fFic57RdIFileviJwjXLwFRqdZNs7kug+Ku5PIw=;
-        b=fmDKK47bFXb8wwkPB2TkYljcDREd9h7uMWuB1B/fQYo2NHTWWXcjEDTm8xXnjAb4Qv
-         CO1oQvpDjYOKpmvD0HLroAPTS5EBYt892qBobL+tWyneCf+M/gL+/4lkylzIUc1d1nnn
-         7aNxUwr7sxV/9E1QxpUZVQqoI5uZw7YwVec6L/zxstdiQsHaHvsRp+vS9DfkdDhl3feh
-         mqMb1mHh92SXK3E5qALxAPn92tz8LN5Hio9ROLrE9asilMONPJ1yeBaVoqkiS8V6M9bs
-         ls3kdKY2Q6CA0hMXZxzFUYXVVjzp6VUfvrLPIx4D6LuAxMIyKGoWXkkWtB4AyAK6QXfo
-         BGSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6jy8fFic57RdIFileviJwjXLwFRqdZNs7kug+Ku5PIw=;
-        b=bb+kgeIjRncI7dKGAuNavRwdo2m//N3ffwzZ2ihSDJOGKFl/h6voKySiBbvN8j4b8f
-         9QcYGb692u4ufEC5ihw67kVGZwUuliqzvZkR43PuD7AmUMrFoawpL2Q5llHzKj3koYRP
-         7ETu4neDxUkhkVjHMj1VAMKyUoVPxNEzWAo4Pz7LSyeUdP9n1y5fftB72KRC0/In4a5H
-         Y7yz843IQ9o5IIkOR+i5kelfSC9kFlu0zOh6lpbrgHUOtWhtfetV0/1m6wTkV1Digu52
-         s5H+RYTETZlgoUMP3sAX3gmMhoyxSfwsGEVR9hGN7RMN9UUvdajgzltl0i24NDVymmu4
-         6CYw==
-X-Gm-Message-State: AOAM532bhZIjIiK/OMwkpZkOnowXObEASMMRpIGIpB7i+60pXc++Yl34
-        eA6pbDOi9m6boCLTn8T7Adrlkg==
-X-Google-Smtp-Source: ABdhPJxRQhWjCdKoJxCdOUtNsw4L4FhcElHRFbmVfB/0uPdB3G1hF/7P1F+ScvNoiedAfV98wS8YaQ==
-X-Received: by 2002:a4a:9607:: with SMTP id q7mr11757384ooi.79.1604452152450;
-        Tue, 03 Nov 2020 17:09:12 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id b185sm107229oif.5.2020.11.03.17.09.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Nov 2020 17:09:11 -0800 (PST)
-Date:   Tue, 3 Nov 2020 19:09:09 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linus.walleij@linaro.org
-Cc:     Andy Gross <agross@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8250: remove wakeup-parent for TLMM
- node
-Message-ID: <20201104010909.GE65067@builder.lan>
-References: <20201027015420.908945-1-dmitry.baryshkov@linaro.org>
- <20201028044056.GA3151@builder.lan>
- <947976df-05c5-bc6d-455f-e71aa061055f@linaro.org>
- <20201103174041.GB65067@builder.lan>
- <CAA8EJpoNnsBNXhHy1nO_5eYbBDndtuhi71nuiwZ4M22eU2QTrg@mail.gmail.com>
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2HwTiNADNDEmsJDSmXFMXW8BMhtyUy8XB3DH5v236Vs=;
+ b=nLuDFEybflRfwdnR5WMUNsZS6a6BKv/4B3HeJS8hHXiVltGWS2uiMFQa2nb5VfKFWvGpGho0qoD1QWbgW4K260rAF0CiaumA7QKb9gmpdQYf6bIUQKWSeigVbUIhff0zWQZkZe3Y7e+dB9vuflKz8e06TC+SfbwI1g0ZL+Qajfw=
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
+ by TY2PR01MB4297.jpnprd01.prod.outlook.com (2603:1096:404:111::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.29; Wed, 4 Nov
+ 2020 01:28:53 +0000
+Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::bcba:dccf:7d4c:c883]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
+ ([fe80::bcba:dccf:7d4c:c883%4]) with mapi id 15.20.3499.032; Wed, 4 Nov 2020
+ 01:28:53 +0000
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
+        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>
+Subject: RE: [PATCH v2 0/3] dt-bindings: pci: rcar-pci-host: convert bindings
+ to json-schema
+Thread-Topic: [PATCH v2 0/3] dt-bindings: pci: rcar-pci-host: convert bindings
+ to json-schema
+Thread-Index: AQHWrn2ZTuZqlcxICUCkXeL/kgB1lam3Bt8AgAAvj8A=
+Date:   Wed, 4 Nov 2020 01:28:52 +0000
+Message-ID: <TY2PR01MB3692B8B4DE36B15EC56A6C41D8EF0@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+References: <1604035745-22095-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <20201103223736.GA271290@bjorn-Precision-5520>
+In-Reply-To: <20201103223736.GA271290@bjorn-Precision-5520>
+Accept-Language: ja-JP, en-US
+Content-Language: ja-JP
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [240f:60:5f3e:1:184:fa7:6262:a02c]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 1cebf41f-41c8-42ab-ded6-08d88060fd82
+x-ms-traffictypediagnostic: TY2PR01MB4297:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <TY2PR01MB429737C6D756FDFAA1F02BFDD8EF0@TY2PR01MB4297.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1824;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: PtCkEBgFkC/oeKGXSdAsiCPKUSVLiisDx3HXNkI4TM42NF00zR5YzFOzkyijCXJfDRWmvvhuGbkSqLID2O6l7UhGHv5l4Q9Tw3owl7YzqI2Gs0hLA15zr0p8HBFcPxXSTy20/LSONE+vnZyKNEvkKjImYMqhbNxFHTn5+sTucp9HSctHrAXVES4Z+cwFFaBHvEFfzK2oDNQt/tXd1u3c3Z8NfXIAc/srZlaI4d7lEHthe2lr23IerYylub85z12j9zJ0Sok5v0skqbgb4dNGD2GvzmKvmzdVn8nonQpZWtEXbt/Zq0RiM54LnnVyBczJChxuhDyurAcaHawsGmd/FQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(366004)(39860400002)(136003)(396003)(2906002)(558084003)(55016002)(9686003)(8936002)(7696005)(54906003)(316002)(71200400001)(33656002)(8676002)(86362001)(5660300002)(52536014)(4326008)(66556008)(478600001)(76116006)(64756008)(66446008)(6916009)(66946007)(186003)(66476007)(6506007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: i2cg+d0b67wPMhhVrwh/RAjU4C3u0QIyfVll3TUmir8qOtgGifaqSZrPcxiG1UU/sb2o5WiQ+O44U7la0Ryfq4b2AL8sFtcEzGYYR98AB1fJ5HocSl1cZ/lCe3CYF/ftl7ez8ElZJRFDIpKLaYOzOHRxh76mg4rvOc+ebs3vhch6/iLv/pkQwlJctP2KvRkfIEhVvhRlM1mDMIEQ/ri2d5fMNvfCuM95bW5/GG1wrmmcXvYPvd9Xz1xkx8uMCB0ZabOnBmm5i19L3SQ7kPtliFOAGjuFdlhno0+P7xkMoUpUFOLPTdw6f7c1PjEp4X9/Hz60PXer8q/Q6oqVGkUdqA8wh91GEU3vkJmB1IWRdOTD9U0psu8TIv43pWajq8dzCDCCqANabJbArjoITLiNBPYc/wtuqrTCzlT2+qCgJ0cVIuPMxQ9rh/untoUzmBwd1ddLarNe+iA5bZvKWTbXYJNy7azaVy6R5ZUgKusKGIiBJCUul4b9kTv1fOBjC3HluMgrcNhiUAwVN4R3a1Z5ASPSieaAtk4XHHOTL1hDzMm5NOnlfOVX9ETpQjuCvsp+Cs5+wjZ9ZNIn8ahPFDaVDm3i2oHibQMru4cF1N348aWjl9+KytkuEbL32HnHnk3/MMRAa3exe2hnhQG7B4AhFbl/JtfCkWh7+nipUZED+hiEOl/T68y/7FcmpXMgWAN6
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJpoNnsBNXhHy1nO_5eYbBDndtuhi71nuiwZ4M22eU2QTrg@mail.gmail.com>
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1cebf41f-41c8-42ab-ded6-08d88060fd82
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2020 01:28:52.9754
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gr4auOxRy6mbldilImjoSHyOfs0cofCxJIaLnnJm+ag//9kf7aYmvGD+FwCSxwDuAXc8MGPokOwX+DIe7hPjWFm6ncdmJ0+HQByDZouqH25hwwSFGCfSQ54FOrmdiTOU
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB4297
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 03 Nov 17:53 CST 2020, Dmitry Baryshkov wrote:
+Hi Bjorn,
 
-> Hello,
-> 
-> On Tue, 3 Nov 2020 at 20:40, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
-> >
-> > On Wed 28 Oct 06:52 CDT 2020, Dmitry Baryshkov wrote:
-> >
-> > > On 28/10/2020 07:40, Bjorn Andersson wrote:
-> > > > On Mon 26 Oct 20:54 CDT 2020, Dmitry Baryshkov wrote:
-> > > >
-> > > > > On SM8250 TLMM doesn't use PDC interrupt controller for wakeup events.
-> > > > > Instead it handles them on their own (not implemented yet). In addition
-> > > > > setting wakeup-parent property to &pdc will result in parent hwirq being
-> > > > > set to ~0UL, which interact badly with the irqdomains trimming code. So
-> > > > > remove the wakeup-parent property.
-> > > > >
-> > > >
-> > > > Would you accept this patch instead?
-> > > >
-> > > > https://lore.kernel.org/r/20201028043642.1141723-1-bjorn.andersson@linaro.org
-> > >
-> > > not found
-> > >
-> >
-> > Seems like the tubes where slow last week, but the link works now.
-> > Please take a look and let me know if this works better for you.
-> 
-> I will check this patch. However note, that we need to get 5.10 fixed
-> wrt TLMM irqs. And the mentioned patch probably doesn't stand a chance
-> of being merged into 5.10-rc, does it?
-> 
+> From: Bjorn Helgaas, Sent: Wednesday, November 4, 2020 7:38 AM
+>=20
+> Please follow the subject line convention, e.g.,
+>=20
+>   dt-bindings: PCI: rcar-pci-host: Convert ...
+>   dt-bindings: PCI: rcar-pci-host: Document ...
 
-If the driver is broken in v5.10-rc and my patch fixes the problem we
-should make a case for that and I'm sure Linus Walleij will consider
-picking it up as a -rc fix.
+I got it. I'll fix these subjects.
 
-Regards,
-Bjorn
+Best regards,
+Yoshihiro Shimoda
+
