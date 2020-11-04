@@ -2,129 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B5BA82A5D51
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 05:22:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB9E02A5D45
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 05:07:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727754AbgKDEWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 23:22:10 -0500
-Received: from mail-db8eur05on2088.outbound.protection.outlook.com ([40.107.20.88]:41537
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        id S1728026AbgKDEHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 23:07:38 -0500
+Received: from mail-bn8nam11on2052.outbound.protection.outlook.com ([40.107.236.52]:27424
+        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726008AbgKDEWK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 23:22:10 -0500
+        id S1727688AbgKDEHh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Nov 2020 23:07:37 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UaHy60htxHtKQy2VxuSO6qwggS1Ko9jAJorsMvt6fELpTa0UuwfKqpdj32TabeOUvcPC19eKXbyykmfnkrGJ0xzMcBRbc8KhPSwy3IxlD43xEKLiAczwzCWNfPhi4okL8KJbm5stJ+US1r0CMho8R/h/92h/wurLBy0mksoCO99YBLqR8cI2aOQeirbhBN2ZT78NCw6RSr4BtLpDhLAowR1zaez2SOkWzvmZgudixUuzEosCaN47FiK0RuSAPD3RUDLzROA2skkM8VTURas7AqE7+aotU/UC5wfFJj/dTTYxoRh77paQQKEkOGUWCgZNuNvmc6MIJr4KZsqe/i0cYg==
+ b=E3cPEfBqiM+Ngxw5iwM7vj4inU9KuQepW/wMlftx6avha2C31WwB24EkZAzkceS7J8QH8gP6vHUZ3y7ccZYqrZrwl05OdiItOy6H34n5Pa9hOQGhX/kcvP71Pdu3n50kIcINHydQyjhOi6OF3QhLlQnzL+dLzCcRxCYdTufi4A6wJqdD6IZB91KtN1xB5Yw5WwqWgRT5ozd4CWmruGC0xXmV4rB3RQX4ZBxM619fhIqRPhHmLhMnSoZ50JCN1TRacvwxbktorKQGjZAx/UX/J6p+NgRrDEYFGbX2ubheRvZx+L+3ogf8Fta8CwqUiovTyGnyL2nbC5Ler72pWS1pEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MbuI1pIpv1IPnn3r4S61Nz6DzPBJy7HlhWi58ccW2jc=;
- b=OmEMybsebxFTrkqu5XX+zZ64jHFzPTk8hA0Z3ZuQcpKIHDTBK0U+fvF4xc1YnlRfSBnjLb2VnTXFcyHLxOW1RoFbcz5Yxge+71GmN5Iw3dKdXTxW/+xN8WgehkjlBzJrlQAWMJMzw6EyoH3c0ITRzYcFfedHik3JYKjvSru1aCzGsMzO8L5CRCuHXTAOy1KXlsFk8D3bTzFlaozyi7t7hYi8MfQ79wdQT7GofT8+CVbi8PCOnWDQRazxTTO0A/oRZL8jJ62vDCd8LWVnnUETWrDCgz6momqmyn68DNdMCmg5dO0HkQsjYZ+4zruw7/hdBsn/T+GoLHR8VRN7lGotZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 193.240.239.45) smtp.rcpttodomain=linuxfoundation.org
- smtp.mailfrom=diasemi.com; dmarc=fail (p=none sp=none pct=100) action=none
- header.from=diasemi.com; dkim=none (message not signed); arc=none
+ bh=rkwa7RWO7PI5UKeJvkHpPcHHBEofRvq7NbAw2gWgLPU=;
+ b=gOwOVU+W5se6KISRD9Ge4vbM5aRCnfZ9D+XJm0K5Pn9zjdGv/HHqTR/HW1uqBr9f+u6izFm5vtJ0xvJtRql7vU3LFP8OAQOefVq4X0/zygn/L4N80zyTPAzciB1jnq5I4so2XvjUiUFmrSsggP6UU1uiTt77cMvPlOrGXHB6P+42tHJ2eXJo6FhO18eh+q/fIrCjfG+j8+Ljc6p4A6apkGTubirU7r/aorabLVUO/qNQIf4/ZnaXgFZrVYkS8JZU8geJAiCuQuWh0uMI2vM+gXBPnETl3Y7ABSQSZnuM5moAmY8HiFm3jhzdGpTZQbH+gxjyg0vqlCVfnFu2A8E1Ng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=dialogsemiconductor.onmicrosoft.com;
- s=selector1-dialogsemiconductor-onmicrosoft-com;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MbuI1pIpv1IPnn3r4S61Nz6DzPBJy7HlhWi58ccW2jc=;
- b=VlzCDisIQfc20jIIUpHaTgGqUIiFD9a1qV4TdR5o1TdwtshLnQ26OeS7rVlCc6JQmpVAQ70E0jNYSCQfvnjGDECbzrnZuS6PsuM+UpEF16YFpfjN5PfD59lymZJqnEueyjZ0ueSgq6X70QSh7LMiJxjHo8hDtGH2vtbRD/B4pfE=
-Received: from AM5PR04CA0023.eurprd04.prod.outlook.com (2603:10a6:206:1::36)
- by DB7PR10MB2203.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:41::27) with
+ bh=rkwa7RWO7PI5UKeJvkHpPcHHBEofRvq7NbAw2gWgLPU=;
+ b=bHwbiwIU8RQK6i/ADiAVvnp86cIA+u2SCTGA9SXI8SuL18P24J5PfHRgoR7AMIX+wRn+dabo6k+w+hqVpt5mnKJQ3V/FBXcWM6Ag4XhoRkgj1uUs09ry4ufCrisSJVgUT/+sGthDs74ZaQAk0m31jgsKu2OVXjQfQ1eRP5BNppM=
+Received: from SN6PR02MB4381.namprd02.prod.outlook.com (2603:10b6:805:b3::32)
+ by SN4PR0201MB3502.namprd02.prod.outlook.com (2603:10b6:803:4c::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.22; Wed, 4 Nov
- 2020 04:22:06 +0000
-Received: from HE1EUR02FT057.eop-EUR02.prod.protection.outlook.com
- (2603:10a6:206:1:cafe::11) by AM5PR04CA0023.outlook.office365.com
- (2603:10a6:206:1::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend
- Transport; Wed, 4 Nov 2020 04:22:06 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is
- 193.240.239.45) smtp.mailfrom=diasemi.com; linuxfoundation.org; dkim=none
- (message not signed) header.d=none;linuxfoundation.org; dmarc=fail
- action=none header.from=diasemi.com;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- diasemi.com discourages use of 193.240.239.45 as permitted sender)
-Received: from mailrelay1.diasemi.com (193.240.239.45) by
- HE1EUR02FT057.mail.protection.outlook.com (10.152.11.220) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.3520.15 via Frontend Transport; Wed, 4 Nov 2020 04:22:04 +0000
-Received: from krsrvapps-03.diasemi.com (10.93.17.2) by
- NB-EX-CASHUB01.diasemi.com (10.1.16.140) with Microsoft SMTP Server id
- 14.3.468.0; Wed, 4 Nov 2020 05:22:02 +0100
-Received: by krsrvapps-03.diasemi.com (Postfix, from userid 22266)      id
- 5EDAE13F671; Wed,  4 Nov 2020 13:22:01 +0900 (KST)
-Message-ID: <cover.1604451966.git.Roy.Im@diasemi.com>
-From:   Roy Im <roy.im.opensource@diasemi.com>
-Date:   Wed, 4 Nov 2020 10:06:06 +0900
-Subject: [RESEND PATCH v20 0/3]  da7280: haptic driver submission
-To:     "David S. Miller" <davem@davemloft.net>,
-        Uwe Kleine-Koenig <u.kleine-koenig@pengutronix.de>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Mauro Carvalho Chehab" <mchehab+samsung@kernel.org>,
-        Maximilian Luz <luzmaximilian@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     Support Opensource <support.opensource@diasemi.com>,
-        <devicetree@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Wed, 4 Nov
+ 2020 04:07:33 +0000
+Received: from SN6PR02MB4381.namprd02.prod.outlook.com
+ ([fe80::3db0:8c28:e501:be1d]) by SN6PR02MB4381.namprd02.prod.outlook.com
+ ([fe80::3db0:8c28:e501:be1d%5]) with mapi id 15.20.3499.030; Wed, 4 Nov 2020
+ 04:07:33 +0000
+From:   Shubhrajyoti Datta <shubhraj@xilinx.com>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devel@driverdev.osuosl.org" <devel@driverdev.osuosl.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>
+Subject: RE: [PATCH v6 2/8] clk: clock-wizard: Add the clockwizard to clk
+ directory
+Thread-Topic: [PATCH v6 2/8] clk: clock-wizard: Add the clockwizard to clk
+ directory
+Thread-Index: AQHWfUDIdC9/DTAeFki/8dKbUVv6v6lzv2qAgAAAfICARARV0A==
+Date:   Wed, 4 Nov 2020 04:07:33 +0000
+Message-ID: <SN6PR02MB438146090F4AD67F0BD7580CAAEF0@SN6PR02MB4381.namprd02.prod.outlook.com>
+References: <1598621996-31040-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+ <1598621996-31040-3-git-send-email-shubhrajyoti.datta@xilinx.com>
+ <160072319955.310579.4256832010356165092@swboyd.mtv.corp.google.com>
+ <160072330324.310579.14466423524100614935@swboyd.mtv.corp.google.com>
+In-Reply-To: <160072330324.310579.14466423524100614935@swboyd.mtv.corp.google.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [157.45.18.94]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 6ffd6393-2f67-43cc-eb45-08d8807727ef
+x-ms-traffictypediagnostic: SN4PR0201MB3502:
+x-microsoft-antispam-prvs: <SN4PR0201MB350226C8959A95D271AB48DEAAEF0@SN4PR0201MB3502.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3631;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OXF2EVKl45x5MwIqusVO+dZ5QY9OcQO9VK3x9634kC5WJj8QHteRtS20a37Y480PQNts6OWkirrSK40jXJQloGTLDuopNnS4dPtRKKyJlx9uJMP6jmwXWyAN2/MfUlx4N1n8A+Pr/LK+5j8uk+k5LVxs/bAmlSOX9Y+TG84BiSk/bL7uxYWIxq845LylPWNceQXQfHgtk598UM2O3NnHfadto/l4mmkAwWJCgEJ/jy8fSCIEvi6cf7FJuSPhjb3qRi7USM4VI2zZQxiBZw3ykF/rPlU4f/qPN0RqcLXugDPBYQsbzDeER0h6EB3nVQz7h7zcjPvcUFBA8Wzd2+KVxA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR02MB4381.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(366004)(136003)(39850400004)(376002)(76116006)(53546011)(66946007)(66446008)(478600001)(8676002)(4744005)(86362001)(64756008)(66476007)(66556008)(316002)(6506007)(26005)(8936002)(2906002)(110136005)(71200400001)(33656002)(54906003)(52536014)(9686003)(83380400001)(4326008)(7696005)(186003)(55016002)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: kf0MjQiUYnHLR8HAFfnmhp5fPcTViZdWYAs+s0PTF0brMJK7514lHmsev72FBi+8YK/8K9/h1vFzGEYuz07Bhw5/AthWvs9NKaVipS4RdmHlbvjpuipNlp+cofhE62Y/4dbSOiQKgXsgj231e6YXSV39z514qR/HxKoUV6Iec12P3GeAc6IFzCaQGuWpGbW9AQbvsWoVMYQWZwdYx56r2Ef9dBMKQOpkYAJU+KZpWV9zBa7cINSpDp4mK09AQt58J1xJahmEeXRq/7qtHwxZVqKH9SznVXufhQMZs3eml/Drw/izJUGajSYMqK6+/QSj8SypX84ssaXXhMdmIN9DQomy09mgpYpcIDQQs39hdkTTGJQD5ueY+QnGG+S5+OemZT4KgDncw5qATp8T/VzcqwpSVXgLeEnGX4qe1Tw5kO+NrRMRmkvfa4YQnsQfXfhmz3bve5YDm0bfy5KhKSs1lOm8LrQyjMQl1frxEvDNNKUXndsyB19FRSyqHqoeJi5lebEp5vM02g2FMMWCFJRQ/LrW/SOii5XX7kF2q17lCkL/2UqoZrlYSqNoy8+aw8sFojykhfUBQiB2CLTXy4Z1jCvPnBm0yZQDP+5nIjnypdh6THrqHnOZsYst9C7bMsvIPxDBL/oKj/AuzLw+Y7tItA==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 682de7d0-023f-4662-1f2f-08d880792f7b
-X-MS-TrafficTypeDiagnostic: DB7PR10MB2203:
-X-Microsoft-Antispam-PRVS: <DB7PR10MB22036197A4045E84CF503D78A2EF0@DB7PR10MB2203.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NW8rooPo43AhcV5AyaoeJ3tCBpj8xllr7N1PeeEjp1ZkNT7OIXmf1c7YTKG84JNHHB/SmnPz7NOhs1BwIjZTM71zzolhbrcFdyoApqUB+4tWfdlq/WcSQ/SEl1lg2O2xWlFVvFv97aMvmUp8WL/3Bo5DZrp9R57zr4/pkcmBPS1GctlPplEh+UxAj9Tf4xNh/lxYsNEjuXBEk5nTniYfG6umqqOTLauf8+fHGSfUjuiy6HCg61E7O902DvbTaU/o95rx//K38y0oH3GJJdL2zHB4DGLCB9kbhWBT8mjFDfmD3APzmBdwdUmV1sUMPYra5+f3UJJWlq799/aR870uun4NqvxBt4TgLOxBrVLqC96A3eAZR5UhOn+Ag9iI7ppYPetn7zv3BtlqVs8W+i8pE7zNVdB0daniHdAw9KNae39L1j7Vq8/XbKQ3XExuQ1HW
-X-Forefront-Antispam-Report: CIP:193.240.239.45;CTRY:GB;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mailrelay1.diasemi.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(4636009)(136003)(376002)(346002)(396003)(39850400004)(46966005)(8676002)(4326008)(70586007)(70206006)(54906003)(42186006)(83380400001)(36906005)(478600001)(110136005)(82310400003)(316002)(4744005)(26005)(186003)(82740400003)(5660300002)(2616005)(336012)(426003)(86362001)(36756003)(33310700002)(7416002)(356005)(81166007)(6266002)(2906002)(8936002)(47076004)(921003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: diasemi.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2020 04:22:04.6052
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR02MB4381.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ffd6393-2f67-43cc-eb45-08d8807727ef
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2020 04:07:33.1214
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 682de7d0-023f-4662-1f2f-08d880792f7b
-X-MS-Exchange-CrossTenant-Id: 511e3c0e-ee96-486e-a2ec-e272ffa37b7c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=511e3c0e-ee96-486e-a2ec-e272ffa37b7c;Ip=[193.240.239.45];Helo=[mailrelay1.diasemi.com]
-X-MS-Exchange-CrossTenant-AuthSource: HE1EUR02FT057.eop-EUR02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR10MB2203
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xCZLJfmh+fFV15n1ZYddmnw9xrwrKMKDbGjXJzn3CEEZfepWvXietuZUqDcyEgdwcqLiOHEGx4393ko8L1tt4w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN4PR0201MB3502
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the Dialog DA7280 Haptic driver IC.
-
-In this patch set the following is provided:
-
-[PATCH v20 1/3] MAINTAINERS file update for DA7280
-[PATCH v20 2/3] DA7280 DT Binding
-[PATCH v20 3/3] DA7280 Driver
-
-This patch applies against linux-mainline and v5.10-rc2
-
-Thank you,
-Roy Im, Dialog Semiconductor Ltd.
-
-Roy Im (3):
-  MAINTAINERS: da7280 updates to the Dialog Semiconductor search terms
-  dt-bindings: input: Add document bindings for DA7280
-  Input: new da7280 haptic driver
-
- .../devicetree/bindings/input/dlg,da7280.txt       |  109 ++
- MAINTAINERS                                        |    2 +
- drivers/input/misc/Kconfig                         |   12 +
- drivers/input/misc/Makefile                        |    1 +
- drivers/input/misc/da7280.c                        | 1375 ++++++++++++++++++++
- 5 files changed, 1499 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/dlg,da7280.txt
- create mode 100644 drivers/input/misc/da7280.c
-
--- 
-end-of-patch for RESEND PATCH v20
-
+SGkgU3RlcGhlbiwNCg0KVGhhbmtzIGZvciB0aGUgcmV2aWV3Lg0KDQo+IC0tLS0tT3JpZ2luYWwg
+TWVzc2FnZS0tLS0tDQo+IEZyb206IFN0ZXBoZW4gQm95ZCA8c2JveWRAa2VybmVsLm9yZz4NCj4g
+U2VudDogVHVlc2RheSwgU2VwdGVtYmVyIDIyLCAyMDIwIDI6NTIgQU0NCj4gVG86IFNodWJocmFq
+eW90aSBEYXR0YSA8c2h1YmhyYWpAeGlsaW54LmNvbT47IGxpbnV4LWNsa0B2Z2VyLmtlcm5lbC5v
+cmcNCj4gQ2M6IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5r
+ZXJuZWwub3JnOw0KPiBkZXZlbEBkcml2ZXJkZXYub3N1b3NsLm9yZzsgcm9iaCtkdEBrZXJuZWwu
+b3JnOw0KPiBncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZzsgbXR1cnF1ZXR0ZUBiYXlsaWJyZS5j
+b207IFNodWJocmFqeW90aQ0KPiBEYXR0YSA8c2h1YmhyYWpAeGlsaW54LmNvbT4NCj4gU3ViamVj
+dDogUmU6IFtQQVRDSCB2NiAyLzhdIGNsazogY2xvY2std2l6YXJkOiBBZGQgdGhlIGNsb2Nrd2l6
+YXJkIHRvIGNsaw0KPiBkaXJlY3RvcnkNCj4gDQo+IFF1b3RpbmcgU3RlcGhlbiBCb3lkICgyMDIw
+LTA5LTIxIDE0OjE5OjU5KQ0KPiA+IFF1b3RpbmcgU2h1YmhyYWp5b3RpIERhdHRhICgyMDIwLTA4
+LTI4IDA2OjM5OjUwKQ0KPiA+ID4gQWRkIGNsb2NraW5nIHdpemFyZCBkcml2ZXIgdG8gY2xrLg0K
+PiA+ID4NCj4gPiA+IFNpZ25lZC1vZmYtYnk6IFNodWJocmFqeW90aSBEYXR0YSA8c2h1YmhyYWp5
+b3RpLmRhdHRhQHhpbGlueC5jb20+DQo+ID4gPiAtLS0NCj4gPg0KPiA+IENhbiB0aGlzIGJlIGNv
+bWJpbmVkIHdpdGggcGF0Y2ggIzY/DQo+IA0KPiBTb3JyeSwgSSBtZWFudCBwYXRjaCAjOC4NCkRp
+ZCBub3QgZ2V0IHRoZSBjb21tZW50Lg0KRG8geW91IHdhbnQgdG8gc3BsaXQgdGhlIG1ha2VmaWxl
+IGFuZCB0aGUgZHJpdmVyIHBhcnRzIG9mIHRoZSBwYXRjaC4NCk9yIHRoZSB3aG9sZSBvZiB0aGUg
+cGF0Y2ggdG8gYmUgbWVyZ2VkLg0KDQpPciBkbyB5b3Ugd2FudCB0aGUgc3RhZ2luZyBwYXRjaCBt
+ZXJnZWQgd2l0aCAgaGVyZT8NCg0KW1BBVENIIHY2IDgvOF0gc3RhZ2luZzogY2xvY2tpbmctd2l6
+YXJkOiBEZWxldGUgdGhlIGRyaXZlciBmcm9tIHRoZSBzdGFnaW5nDQoNCg0K
