@@ -2,177 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9A12A6577
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 14:45:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A28E2A657E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 14:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730018AbgKDNpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 08:45:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37766 "EHLO
+        id S1730169AbgKDNrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 08:47:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726608AbgKDNpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 08:45:09 -0500
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D5EC0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 05:45:08 -0800 (PST)
-Received: by mail-oi1-x243.google.com with SMTP id j7so22144757oie.12
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 05:45:08 -0800 (PST)
+        with ESMTP id S1730158AbgKDNrj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 08:47:39 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81CADC0613D3
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 05:47:37 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id b8so22131117wrn.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 05:47:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tjiKTafBvqhyHu+XrblZM0qTc82uTpcV2NnP3xiexks=;
-        b=ZhgOwDzOMctQUKpELCF6xCfAiCAnFc6zk2q+FcTcjlWq5EpTui0t6wNd3SDZHPo4JJ
-         0iwSfk3vA/4xK0orZjkWmbAMwsGd1nUmruRW6SkQy76kp2ucIb2ryFgooJoJTfnNUe34
-         xZmTwa+9BGhk9B3aPPRVEIgf/CWx1PvcC7w/iDMLY7S/cKdLZ6oU+0ZvdlEV4ZbrEZPP
-         H/TGzVLNfonL5tVkiBxsOUAe+5MjFgE+D+98gKxWPdCFifWjiqlzxj60SusVxKrBCLz0
-         17fl02kiPFxXngNJ/mJr2pPrznCUcWuBgb1OBglhLjyWEfM8HlERCbKsbN7V8OA0WJjM
-         u5TQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
+        b=jSLbyaxPZKd2BfEHQR+i4qkHFQUDYYmpFXx9Tdpbb6vvPC8oadefWz+kr1x3IG/Sol
+         buywHZChF4DsZQBoxnVS/DQevkehD78cB4ATtgFrnTxucRvG6Blre6vq3Qm59B3+TR13
+         kAm37d9G9T2frIkEP0MnEo7NnyDMDBIz+N1KeaZon53e/bcE1yL/ZQPBuDlpA9W7uxxB
+         u6XNTSAr/zs1Hj84MneZSTDYs18M5AQZD7yKIl1s1WBeWymzqxV9PZgY01Q0IPdldRKf
+         8/UIeV+H9Qb1XCs7yln5l1elr9mWLJdG8sGKenoA5MD5hSarooBJqbpZOQctZoNpkyfh
+         yiWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tjiKTafBvqhyHu+XrblZM0qTc82uTpcV2NnP3xiexks=;
-        b=QOcJtvfoZodHMEUbKnLGq58qy54r5XylL6xeMEwWwCEeeAvKCU/85QqY5T21U2esxL
-         ZLZ3nl+b2UyaGnocZp0Ohk9DF+uGTiT8A7hPkbuyQ5qYRHctt/rLhtF2nPbJm1o1809y
-         caqX1SCmqS2VTJAmHxveiB45I0GMKbsTFfIf18KPgTpqTW5OmaoI4AjQXgL/zMiDgOeT
-         E8EGOziI0br5KoDsLX6L4iLaEexM/VcPtMsHiYVs/wLNxPZtlALS9pon5nDxc2NY6M9G
-         ckOoSJ+2/XFuaAR9aktNv3rMIMZiYvbjYaoher/6lG7XhHFArEUNgjO+yuv7dV6Vpl5e
-         Kwrw==
-X-Gm-Message-State: AOAM530vF8zUGx3PoU9oKzc7xAeAlFJcBdncFkpV1k/vMC+tvjFq4F11
-        tBHCsDyPJNiPDeGKUFIgUCYDZypDP48a1fWHnstV0g==
-X-Google-Smtp-Source: ABdhPJw/I69T9sXsTerkq96XXMF5qviBr0D4q8GyIjoyXXpCO8JCusvbseV9st/kEeUgyejwLokLFcam2B8RifsTGBQ=
-X-Received: by 2002:aca:570d:: with SMTP id l13mr2651297oib.96.1604497508034;
- Wed, 04 Nov 2020 05:45:08 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
+        b=dnlRJGTTy65n6wELdhSUhmskN4qC95x6ppuT7HtGiGyNwxYTPBDfQ5mDc3PklTLOwW
+         zNLzpYSfBMF+nyqx/xuiRK9JHp87CPv1jHh7tpSurohClRnTkqm4fR6WTTMllI0zs2Le
+         4+OYphQQsmaUCOKGwqWkW5FwRfbR/kNJ9dhkY7A0dI4AaHNqUvhgkG9VuHVUdjJ8D+Rm
+         DPqTBIFAFzo6Zy+PH7Sxap0rGUbmp8+hX0/BQE8zG4wuTO1dm8akoaI78TindnUzS/Cm
+         H1IlpPZdWP0WMaa5PqDBSPXUk76XjSLxW0iVit4hoPJOE2SkclCisgRgueF/W0Z7cxyh
+         PvhA==
+X-Gm-Message-State: AOAM532bPCkGn6UULQ2jtSw88Ku2w5Wa1TATWy/ntmLCFmvEQHBstbWO
+        iHHMGsAq2a0fI42B7bDc7EYOMQBawqL8uW/z
+X-Google-Smtp-Source: ABdhPJyBiSSrZ7n/5ZV3G5rqUJ4D+BkannbQm+zSCpWf0KcWLXfH8q7e/EMH258OINRXL5jKjXL9dw==
+X-Received: by 2002:adf:8562:: with SMTP id 89mr31867445wrh.214.1604497655706;
+        Wed, 04 Nov 2020 05:47:35 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:3d8d:fb08:21c9:faa3])
+        by smtp.gmail.com with ESMTPSA id 30sm2759586wrs.84.2020.11.04.05.47.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Nov 2020 05:47:34 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     devicetree@vger.kernel.org, kishon@ti.com
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
+Date:   Wed,  4 Nov 2020 14:47:29 +0100
+Message-Id: <20201104134730.1545875-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201104134730.1545875-1-narmstrong@baylibre.com>
+References: <20201104134730.1545875-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20200909163831.1894142-1-robert.marko@sartura.hr>
-In-Reply-To: <20200909163831.1894142-1-robert.marko@sartura.hr>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Wed, 4 Nov 2020 14:44:57 +0100
-Message-ID: <CA+HBbNFiF9KvQAbkjqy1Le8eGRLd7md8PKwOvRao1ah4dO1TJA@mail.gmail.com>
-Subject: Re: [PATCH v8] ARM: dts: qcom: ipq4019: add USB devicetree nodes
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        robh+dt@kernel.org, linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     John Crispin <john@phrozen.org>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 9, 2020 at 6:38 PM Robert Marko <robert.marko@sartura.hr> wrote:
->
-> From: John Crispin <john@phrozen.org>
->
-> Since we now have driver for the USB PHY, and USB controller is already supported by the DWC3 driver lets add the necessary nodes to DTSI.
->
-> Signed-off-by: John Crispin <john@phrozen.org>
-> Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> Cc: Luka Perkov <luka.perkov@sartura.hr>
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> ---
-> Changes from v7 to v8:
-> * Add labels for usb2 and usb3 nodes
-> Changes from v6 to v7:
-> * Remove changes to qcom-ipq4019-ap.dk01.1.dtsi
-> It has slipped in unwanted, we only want to add
-> nodes to the DTSI.
->
->  arch/arm/boot/dts/qcom-ipq4019.dtsi | 74 +++++++++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> index 74d8e2c8e4b3..4a973253024a 100644
-> --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> @@ -605,5 +605,79 @@ ethphy4: ethernet-phy@4 {
->                                 reg = <4>;
->                         };
->                 };
-> +
-> +               usb3_ss_phy: ssphy@9a000 {
-> +                       compatible = "qcom,usb-ss-ipq4019-phy";
-> +                       #phy-cells = <0>;
-> +                       reg = <0x9a000 0x800>;
-> +                       reg-names = "phy_base";
-> +                       resets = <&gcc USB3_UNIPHY_PHY_ARES>;
-> +                       reset-names = "por_rst";
-> +                       status = "disabled";
-> +               };
-> +
-> +               usb3_hs_phy: hsphy@a6000 {
-> +                       compatible = "qcom,usb-hs-ipq4019-phy";
-> +                       #phy-cells = <0>;
-> +                       reg = <0xa6000 0x40>;
-> +                       reg-names = "phy_base";
-> +                       resets = <&gcc USB3_HSPHY_POR_ARES>, <&gcc USB3_HSPHY_S_ARES>;
-> +                       reset-names = "por_rst", "srif_rst";
-> +                       status = "disabled";
-> +               };
-> +
-> +               usb3: usb3@8af8800 {
-> +                       compatible = "qcom,dwc3";
-> +                       reg = <0x8af8800 0x100>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       clocks = <&gcc GCC_USB3_MASTER_CLK>,
-> +                                <&gcc GCC_USB3_SLEEP_CLK>,
-> +                                <&gcc GCC_USB3_MOCK_UTMI_CLK>;
-> +                       clock-names = "master", "sleep", "mock_utmi";
-> +                       ranges;
-> +                       status = "disabled";
-> +
-> +                       dwc3@8a00000 {
-> +                               compatible = "snps,dwc3";
-> +                               reg = <0x8a00000 0xf8000>;
-> +                               interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-> +                               phys = <&usb3_hs_phy>, <&usb3_ss_phy>;
-> +                               phy-names = "usb2-phy", "usb3-phy";
-> +                               dr_mode = "host";
-> +                       };
-> +               };
-> +
-> +               usb2_hs_phy: hsphy@a8000 {
-> +                       compatible = "qcom,usb-hs-ipq4019-phy";
-> +                       #phy-cells = <0>;
-> +                       reg = <0xa8000 0x40>;
-> +                       reg-names = "phy_base";
-> +                       resets = <&gcc USB2_HSPHY_POR_ARES>, <&gcc USB2_HSPHY_S_ARES>;
-> +                       reset-names = "por_rst", "srif_rst";
-> +                       status = "disabled";
-> +               };
-> +
-> +               usb2: usb2@60f8800 {
-> +                       compatible = "qcom,dwc3";
-> +                       reg = <0x60f8800 0x100>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       clocks = <&gcc GCC_USB2_MASTER_CLK>,
-> +                                <&gcc GCC_USB2_SLEEP_CLK>,
-> +                                <&gcc GCC_USB2_MOCK_UTMI_CLK>;
-> +                       clock-names = "master", "sleep", "mock_utmi";
-> +                       ranges;
-> +                       status = "disabled";
-> +
-> +                       dwc3@6000000 {
-> +                               compatible = "snps,dwc3";
-> +                               reg = <0x6000000 0xf8000>;
-> +                               interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
-> +                               phys = <&usb2_hs_phy>;
-> +                               phy-names = "usb2-phy";
-> +                               dr_mode = "host";
-> +                       };
-> +               };
->         };
->  };
-> --
-> 2.26.2
+The Amlogic AXg SoCs embeds a MIPI D-PHY to communicate with DSI
+panels, this adds the bindings.
 
-Hi,
-Any chance of reviewing this?
+This D-PHY depends on a separate analog PHY.
 
-Regards,
-Robert
->
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/phy/amlogic,axg-mipi-dphy.yaml   | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+new file mode 100644
+index 000000000000..be485f500887
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/amlogic,axg-mipi-dphy.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic AXG MIPI D-PHY
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-mipi-dphy
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: pclk
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: phy
++
++  "#phy-cells":
++    const: 0
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    items:
++      - const: analog
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - phys
++  - phy-names
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@ff640000 {
++            compatible = "amlogic,axg-mipi-dphy";
++            reg = <0xff640000 0x100>;
++            clocks = <&clk_mipi_dsi_phy>;
++            clock-names = "pclk";
++            resets = <&reset_phy>;
++            reset-names = "phy";
++            phys = <&mipi_pcie_analog_dphy>;
++            phy-names = "analog";
++            #phy-cells = <0>;
++    };
+-- 
+2.25.1
+
