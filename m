@@ -2,263 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D2412A6EC3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 21:33:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DD892A6ECB
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 21:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728679AbgKDUdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 15:33:20 -0500
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:43830 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728607AbgKDUdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 15:33:20 -0500
-Received: by mail-oo1-f68.google.com with SMTP id z14so5391841oom.10
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 12:33:19 -0800 (PST)
+        id S1732119AbgKDUeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 15:34:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46548 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728607AbgKDUeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 15:34:19 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF53C0613D3;
+        Wed,  4 Nov 2020 12:34:18 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id 184so28913162lfd.6;
+        Wed, 04 Nov 2020 12:34:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/0mitIGetUGfuuO4VScfLcyzD4ue3QtNkT908OKoYnY=;
+        b=fd5ouJ4+u2b/v1cNp08C5IZeNh8UNObZ9G5gda+RSLQVT2Z8nIfmTrnx5jKEG9q++C
+         Vr+jNeV5T4twoBYbHlcFVMgxoRi+kGMHeH1Ha9IfbPzeNyUu4Dskwb5PPV3bJ+oNWxY+
+         LJKrvs3FpF9c5sCch2v7KogZbQHxyXb81kSDuWHVSY6A8AyEaTw/vsC2Z+OxKf41QK7B
+         GVdl74YnhBefgGTaMq81TU+qgXuoVoFPHg50Phycws4p9+nhga2fF7Ju6yi8bMP5UeGj
+         dadQtaND9A/Diz8p47qYIeKtB4KwHLUK0dLY8foCOLbwB2lHbdnk3lI/eEmyf1DDcKYe
+         YDrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xx2kC9bmAU+Gqr1PijuX6iSqkOZbjEC6ChR/BZ+mPRo=;
-        b=ips5gnFTZ1MAheuTLLNYAXWOyVVEuIeWhYXUAPaZgpF5dRMPfP3YhZYiaYDliezItR
-         CvAgpIEOlpJfCXJo1Lbu30HiCeXjp648VdtS4PBr9f9iWd9pX6XZJIRHfHXHlp+A9oFr
-         HRy5dA/gEnNYCPItGqZqbNh3LYsZSJ16AGpo/Zd3oWyuSEfbpUel2Wq2a3cHjpFOHxxB
-         dibeX685OEiDqb/LPfXY7Bt/AZfhRFvyRTtPxNA8Uqp50LVEC/Crm8PZ4jLt/7US4N46
-         SyJvMK0A68Bmjs1f9+aPzDZDcrW1VfHGVAcyUnoW6XaJ3XNXZyjttkmlx26m7dXQpljM
-         MMEA==
-X-Gm-Message-State: AOAM531mG90juwPybXO6OxkP3i8N9gkIRF/NZEnMdQfgBm4+fB3vzAnU
-        8CPebpXZSze3dGDWxdRgwA==
-X-Google-Smtp-Source: ABdhPJxdhDU4RU61/GDBlWhPWbMjO7Q5OJmR4vpXCPNMUjEjICp59XnGYEWISmY0Wz1Ht8fQhQRDEA==
-X-Received: by 2002:a4a:be92:: with SMTP id o18mr20114625oop.22.1604521999162;
-        Wed, 04 Nov 2020 12:33:19 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w79sm710732oia.28.2020.11.04.12.33.18
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/0mitIGetUGfuuO4VScfLcyzD4ue3QtNkT908OKoYnY=;
+        b=gla9HHxiytntyYyBgduYqqOncHx/aOrfVUfVd/eOiS9AcXxDoHsM4IqRPVccB8M2O7
+         YMMR7K4uTEtHsUwsZiAovMqJKqzgq83XTsKqJJD24GBqjOQkHy6wCyPRnZv8iMMVBx5m
+         JOJVNLkAxNRYln1dD/stwKFinsEG4ObJ6ew81/HpzYz9YElQiMfHp0AA4EOL+xRB0WcB
+         5Ma5h81AhARGNa0Ld18oxkXQGj9WqUvkdAc9aKh5PeEoVp2UWvWNgxeCGyFZbOsFrHDM
+         0yEYQYuTRfwPXLsfKSE1IkbDugqNwbHZ1Ep3ZWBa38LTvLnidks7Zcx6SJjMu0+afPm3
+         /e7w==
+X-Gm-Message-State: AOAM5337C3sxFzRjedc7Deowv4dqoHPuiHGth3y+XaerAdz+nNjkWgii
+        YPndLxbrSPnfqj0Y27XCOKo=
+X-Google-Smtp-Source: ABdhPJzKX/6wU0RqPpkY/32d3YiyYJIXCCOvwfbfeiW8IJ0CDJZ+fdPpDkOiaUjKGSP14GU5aU9MKA==
+X-Received: by 2002:a19:8741:: with SMTP id j62mr337990lfd.449.1604522057422;
+        Wed, 04 Nov 2020 12:34:17 -0800 (PST)
+Received: from localhost.localdomain (109-252-192-83.dynamic.spd-mgts.ru. [109.252.192.83])
+        by smtp.gmail.com with ESMTPSA id u22sm615084ljk.45.2020.11.04.12.34.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 12:33:18 -0800 (PST)
-Received: (nullmailer pid 4081232 invoked by uid 1000);
-        Wed, 04 Nov 2020 20:33:17 -0000
-Date:   Wed, 4 Nov 2020 14:33:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, Sameer Pujar <spujar@nvidia.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: ASoC: audio-graph-card: switch to
- yaml base Documentation
-Message-ID: <20201104203317.GA4068421@bogus>
-References: <87zh45d0zp.wl-kuninori.morimoto.gx@renesas.com>
- <87y2jpd0yt.wl-kuninori.morimoto.gx@renesas.com>
+        Wed, 04 Nov 2020 12:34:16 -0800 (PST)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Dan Murphy <dmurphy@ti.com>, Sebastian Reichel <sre@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] Introduce Embedded Controller driver for Acer A500
+Date:   Wed,  4 Nov 2020 23:33:59 +0300
+Message-Id: <20201104203403.24937-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87y2jpd0yt.wl-kuninori.morimoto.gx@renesas.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 03:06:13PM +0900, Kuninori Morimoto wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> 
-> This patch switches from .txt base to .yaml base Document.
-> 
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> ---
->  .../bindings/sound/audio-graph-card.txt       | 337 ------------------
->  .../bindings/sound/audio-graph-card.yaml      | 162 +++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +-
->  3 files changed, 163 insertions(+), 338 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/audio-graph-card.yaml
+Hello!
 
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
-> new file mode 100644
-> index 000000000000..a251d7af6f96
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
-> @@ -0,0 +1,162 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/audio-graph-card.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Audio Graph Card Driver Device Tree Bindings
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - audio-graph-card
-> +      - audio-graph-scu-card
-> +
-> +  dais:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +  label:
-> +    maxItems: 1
-> +  prefix:
-> +    description: "device name prefix"
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  "audio-graph-card,prefix":
+This series adds support for the Embedded Controller which is found on
+Acer Iconia Tab A500 (Android tablet device).
 
-How'd that sneak in? Can we drop or at least mark deprecated? There's 
-not any users in upstream dts files.
+The Embedded Controller is ENE KB930 and it's running firmware customized
+for the A500. The firmware interface may be reused by some other sibling
+Acer tablets, although none of those tablets are supported in upstream yet.
 
-> +    description: "device name prefix"
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  routing:
-> +    description: |
-> +      A list of the connections between audio components.
-> +      Each entry is a pair of strings, the first being the
-> +      connection's sink, the second being the connection's source.
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +  widgets:
-> +    description: User specified audio sound widgets.
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +  convert-rate:
-> +    description: CPU to Codec rate convert.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +  "audio-graph-card,convert-rate":
+Changelog:
 
-Same here.
+v5: - No changes. Re-sending again in order to check whether dtschema-bot
+      warning is resolved now, which didn't happen in v4 because bot used
+      older 5.9 kernel code base instead of 5.10.
 
-With that,
+v4: - No code changes. Added r-b from Rob Herring and Sebastian Reichel.
+      Re-sending for 5.11.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+    - The v3 of LED driver was applied by Pavel Machek and already presents
+      in v5.10 kernel.
 
-> +    description: CPU to Codec rate convert.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +  convert-channels:
-> +    description: CPU to Codec rate channels.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +  "audio-graph-card,convert-channels":
-> +    description: CPU to Codec rate channels.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +  pa-gpios:
-> +    maxItems: 1
-> +  hp-det-gpio:
-> +    maxItems: 1
-> +  mic-det-gpio:
-> +    maxItems: 1
-> +
-> +  port:
-> +    description: single OF-Graph subnode
-> +    type: object
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +      prefix:
-> +        description: "device name prefix"
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +      convert-rate:
-> +        description: CPU to Codec rate convert.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +      convert-channels:
-> +        description: CPU to Codec rate channels.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +    patternProperties:
-> +      "^endpoint(@[0-9a-f]+)?":
-> +        type: object
-> +        properties:
-> +          remote-endpoint:
-> +            maxItems: 1
-> +          mclk-fs:
-> +            description: |
-> +              Multiplication factor between stream rate and codec mclk.
-> +              When defined, mclk-fs property defined in dai-link sub nodes are ignored.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +          frame-inversion:
-> +            description: dai-link uses frame clock inversion
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +          bitclock-inversion:
-> +            description: dai-link uses bit clock inversion
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +          frame-master:
-> +            description: Indicates dai-link frame master.
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +            maxItems: 1
-> +          bitclock-master:
-> +            description: Indicates dai-link bit clock master
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +            maxItems: 1
-> +          dai-format:
-> +            description: audio format.
-> +            items:
-> +              enum:
-> +                - i2s
-> +                - right_j
-> +                - left_j
-> +                - dsp_a
-> +                - dsp_b
-> +                - ac97
-> +                - pdm
-> +                - msb
-> +                - lsb
-> +          convert-rate:
-> +            description: CPU to Codec rate convert.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +          convert-channels:
-> +            description: CPU to Codec rate channels.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +        required:
-> +          - remote-endpoint
-> +
-> +  ports:
-> +    description: multi OF-Graph subnode
-> +    type: object
-> +    patternProperties:
-> +      "^port(@[0-9a-f]+)?":
-> +        $ref: "#/properties/port"
-> +
-> +required:
-> +  - compatible
-> +  - dais
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    sound {
-> +        compatible = "audio-graph-card";
-> +
-> +        dais = <&cpu_port_a>;
-> +    };
-> +
-> +    cpu {
-> +        /*
-> +         * dai-controller own settings
-> +         */
-> +
-> +        port {
-> +            cpu_endpoint: endpoint {
-> +                remote-endpoint = <&codec_endpoint>;
-> +                dai-format = "left_j";
-> +            };
-> +        };
-> +    };
-> +
-> +    codec {
-> +        /*
-> +         * codec own settings
-> +         */
-> +
-> +        port {
-> +            codec_endpoint: endpoint {
-> +                remote-endpoint = <&cpu_endpoint>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 2735be1a8470..a4fe8f6cec6c 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -20,7 +20,7 @@ patternProperties:
->    "^(keypad|m25p|max8952|max8997|max8998|mpmc),.*": true
->    "^(pinctrl-single|#pinctrl-single|PowerPC),.*": true
->    "^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*": true
-> -  "^(simple-audio-card|st-plgpio|st-spics|ts),.*": true
-> +  "^(simple-audio-card|audio-graph-card|st-plgpio|st-spics|ts),.*": true
->  
->    # Keep list in alphabetical order.
->    "^70mai,.*":
-> -- 
-> 2.25.1
-> 
+v3: - Rebased on a recent linux-next. Fixed new merge conflict and dropped
+      "regmap: Use flexible sleep" patch because it's already applied.
+
+v2: - Factored out KB930 device-tree binding into a separate file, like it
+      was suggested by Lubomir Rintel.
+
+    - Switched to use regmap API like it was suggested by Lubomir Rintel.
+
+    - Added patch "regmap: Use flexible sleep" which allows not to hog
+      CPU while LED is switching state.
+
+    - Corrected MODULE_LICENSE to use "GPL" in all patches.
+
+    - Corrected MFD driver Kconfig entry like it was suggested by
+      Lubomir Rintel, it now depends on I2C.
+
+    - Switched to use I2C probe_new() in the MFD driver.
+
+    - Renamed the global pm_off variable, like it was suggested by
+      Lubomir Rintel and Lee Jones.
+
+    - Dropped serial number from the battery driver because I realized
+      that it's not a battery serial, but a device serial.
+
+    - Battery driver now uses dev_err_probe(), like it was suggested by
+      Sebastian Reichel.
+
+    - Dropped legacy LED_ON usage from the LED driver and renamed the
+      LEDs, like it was suggested by Pavel Machek. I also checked whether
+      LED-name customization via device-tree could be needed by other
+      potentially compatible devices and it shouldn't be needed, anyways it
+      won't be difficult to extend the code even if I'm wrong.
+
+
+Dmitry Osipenko (4):
+  dt-bindings: mfd: Add ENE KB930 Embedded Controller binding
+  mfd: Add driver for Embedded Controller found on Acer Iconia Tab A500
+  power: supply: Add battery gauge driver for Acer Iconia Tab A500
+  ARM: tegra: acer-a500: Add Embedded Controller
+
+ .../devicetree/bindings/mfd/ene-kb930.yaml    |  66 ++++
+ .../boot/dts/tegra20-acer-a500-picasso.dts    |  17 +
+ drivers/mfd/Kconfig                           |  12 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/acer-ec-a500.c                    | 203 ++++++++++++
+ drivers/power/supply/Kconfig                  |   6 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/acer_a500_battery.c      | 297 ++++++++++++++++++
+ 8 files changed, 603 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ene-kb930.yaml
+ create mode 100644 drivers/mfd/acer-ec-a500.c
+ create mode 100644 drivers/power/supply/acer_a500_battery.c
+
+-- 
+2.27.0
+
