@@ -2,164 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B09782A6722
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:07:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2941D2A672A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:09:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730391AbgKDPH7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 10:07:59 -0500
-Received: from mail-bn8nam11on2063.outbound.protection.outlook.com ([40.107.236.63]:21409
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730257AbgKDPH6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 10:07:58 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OdyoBKJVKYGyTjKF6iuEM4iWMebR5PbuExGdo15jzFVKqsP8zick4aWKh8JnodngHGpicl5M5UN6gc6PKRck2il+YIplglGIMoBzVL6cQPVuAazQ3Snsf2SC/t51kFOeBqpRVUCtZehNyc/a2TgpLSloWDioe/qEzL/aR0P3z8m8VeiTpZ0S7OymQ+2zaJ6rs2HkQRbuz4pkhQeEA95eE9IMPwqjFVaDkXBz+WN28yYIj2xMivbKGw5/tXsWCOaIAgpxqYFY06C/eNJ00lLWJfI6i12xFrdbWDI/I703mHPLgs3tQiOBHQTooVeG5z4luVh1tp4aQGeQVh+TUIgvKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=roEj9Agv1RYOmPCtk4VocZviSZy/fkIAobJzO2mZ+s4=;
- b=MImsGVUusiz5YARKPshtPNa0DzfmsHYbEhCUrl9DJ7nUoUVfUSN7QxVhKXnDf0jTBLslbvEraNrTTFodE+mfi2l1ngI+nuwyHEBOIGehmggHws1+aI++wAZxUg/rviPmnnyQY5vUsmhtPw0u7KpReLNdBfF1f1bWPF/DxnefHPvTk0mAjKEQ41GASo/ANw46BbaAZYS4FIXLbV86fSdctCjXkcGhVXcWCPZmXwJUf9r5e/lDonePJOH/BD15bcyKa48XsoXfOTCxRBkL/0gj2e3d0waRmw5uJc7Dymlu/v6fVwSM1z+SGBqDOcvWk3MQ5xh9opEaGTH9CKvqidE/fg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
+        id S1730061AbgKDPJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 10:09:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51744 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726801AbgKDPJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:09:11 -0500
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6AD8C0613D3
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:09:10 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id v12so1471033pfm.13
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:09:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=roEj9Agv1RYOmPCtk4VocZviSZy/fkIAobJzO2mZ+s4=;
- b=l0vm4LWngLXDAmr7ftrR934u+fnBzVr0rGdYBVJzFx2o6/2BnT5v/mDaduKrY1BbVVsP/jy9NnhPs0Tgw9OtqkwNCprNaPZ6ZX5uBJ3r2Tl8aPgq4nX2NjptVNSrzeDuJn/TrlnFJEWaN7AiIcTalfGkPG1dT99B47nCgLc7DGg=
-Received: from BL1PR13CA0131.namprd13.prod.outlook.com (2603:10b6:208:2bb::16)
- by MWHPR02MB2685.namprd02.prod.outlook.com (2603:10b6:300:108::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Wed, 4 Nov
- 2020 15:07:54 +0000
-Received: from BL2NAM02FT007.eop-nam02.prod.protection.outlook.com
- (2603:10b6:208:2bb:cafe::d) by BL1PR13CA0131.outlook.office365.com
- (2603:10b6:208:2bb::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.10 via Frontend
- Transport; Wed, 4 Nov 2020 15:07:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
-Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
- BL2NAM02FT007.mail.protection.outlook.com (10.152.77.46) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3520.15 via Frontend Transport; Wed, 4 Nov 2020 15:07:54 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Wed, 4 Nov 2020 07:07:16 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Wed, 4 Nov 2020 07:07:16 -0800
-Envelope-to: git@xilinx.com,
- linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org,
- mturquette@baylibre.com,
- sboyd@kernel.org,
- gregkh@linuxfoundation.org,
- devel@driverdev.osuosl.org
-Received: from [10.140.6.59] (port=49678 helo=xhdshubhraj40.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <shubhrajyoti.datta@xilinx.com>)
-        id 1kaKNX-0007UB-0n; Wed, 04 Nov 2020 07:07:15 -0800
-From:   Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-To:     <linux-clk@vger.kernel.org>
-CC:     <git@xilinx.com>, <devicetree@vger.kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <gregkh@linuxfoundation.org>, <devel@driverdev.osuosl.org>,
-        Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Subject: [PATCH v7 7/7] clk: clock-wizard: Update the fixed factor divisors
-Date:   Wed, 4 Nov 2020 20:36:47 +0530
-Message-ID: <1604502407-14352-8-git-send-email-shubhrajyoti.datta@xilinx.com>
-X-Mailer: git-send-email 2.1.1
-In-Reply-To: <1604502407-14352-1-git-send-email-shubhrajyoti.datta@xilinx.com>
-References: <1604502407-14352-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1yMEhHD+6yc21kJRr7rjUclw5tA46sINB3uruxgVrL8=;
+        b=Jc1fXcN3Eb27JCFN5BHMJDuuTqVyiPRiXRSuNiQtBJpiKb+UFN74tguOtoLgFqzQhs
+         hGCVL6C3D74rZnTIjiEbvSVLfeFHyNk/rfkHLBQIJ79CBeVcdNwS4cFlsRvv5W7W/QXm
+         fcK/dxJueY78O/95YHZU57ffagTN7slHZb+h9TC9jdVuPPxxFMam4Wuve3+mohVdciqU
+         EZ0rtWpO7PoGqc5H7fTJEET9HykA1Q1rVAIV2RiMgxv87OSz1RHg5RbwgnWvJWVOHkWY
+         uNigKUnrMvHdmqsCZ6Fi2YB4iFERQOcbyW64kwKdI7+iR4Yp2uO6gp0lrxFIflGWZvn6
+         435w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1yMEhHD+6yc21kJRr7rjUclw5tA46sINB3uruxgVrL8=;
+        b=PXT2fMmQ0VcQYWNtV8gF7y2xmBsW1HJvFi4JPAXrSLZHTabqxOOMSuxsFmbefdU8y9
+         +oPApcP2YB4gQbk3X5/Sf6+UYxu1/3iHltJ3OKMBeHRhhm8hMpuoFd5fkLp1tWp/aWv6
+         IuyoNNEwceAdDyccdb+O90uHmaY5bdJAbeW72CqFkza8tewsUP9+p8EN86xqBfzeMOjP
+         KlvugnyuyqJVQycVnDUTk97NKifi+mROmMIdGTCCMAkWCaiT96ijuB8JOzLiS27un3w3
+         s6N/z6zpCz19lWDRBWVGHDHThkF7Ze9WYcd7CFm9bYWJOIGQ6JkIECFIBIRYD9A8vUoH
+         QGgQ==
+X-Gm-Message-State: AOAM530AsGRrZtMc/OzZNl0RIITteKpmUxkowKvS9anUgWvj0iBfYXWQ
+        ctut6w9kU07ywzPqSAOtFeE=
+X-Google-Smtp-Source: ABdhPJx1w74Ye0gNd2UOjwC9NbJyoaB9rB9P4GKztOhIdJa370d7OSXBs68h4WucipP1rBsZTJVbPQ==
+X-Received: by 2002:a63:7d07:: with SMTP id y7mr22359947pgc.437.1604502550160;
+        Wed, 04 Nov 2020 07:09:10 -0800 (PST)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id b2sm2560567pgg.2.2020.11.04.07.09.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Nov 2020 07:09:09 -0800 (PST)
+Subject: Re: [PATCH 2/2] arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300
+ early DTS files
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201028101123.6293-1-zajec5@gmail.com>
+ <20201028101123.6293-2-zajec5@gmail.com>
+ <e0cf2414-453e-4f15-5e4a-1c34aa965cf8@arm.com>
+ <10118193-225a-05a8-e73d-7370e1866ea2@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <12213635-05d2-ec04-7ba1-ea00e0f8a981@gmail.com>
+Date:   Wed, 4 Nov 2020 07:09:08 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 56504c0f-de9b-4e8a-7856-08d880d36800
-X-MS-TrafficTypeDiagnostic: MWHPR02MB2685:
-X-Microsoft-Antispam-PRVS: <MWHPR02MB2685C320F5BECF1949046B58AAEF0@MWHPR02MB2685.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:989;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 27cMBIelgmUqf1ws5cpLY3DMd6bNJR+ppVH2gs+EKi5au1ici2NNBUXsh+pG1aZ0iztzg5u8XoYEuCEzm32Qjf9b1o3C3a/PQlPEwbkSwr038ZBLpKnv0duvg+MnyCUCsE4EvR1+3PCUT4sMFiGHDLu/7u+zmbG4JgVxx8RZhqj1t8cnsyKgLcGy5gQmaCvhC9dHAXDAzOgpWFrCkwdGgjyY1Lzo/lQ1r07DZJw3S2ciBBmqLBhC5Ny1WH83xr+y0clRoZ2QqaLfvHZhX1VWZVGCRKeZze7UPW8he4Bz6n3z3nDuyHB17uRwAqKvGyro4khRA0hla2v4bRMDu9qxoFJLhlN3EJfW3b7TDt52tZG/lrqzco04f0UPFH8eUK+eZoxklN4ZcFodFzK0Y48UvhOf99PBpITHSkXC6rAHk2I=
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(376002)(396003)(39860400002)(346002)(46966005)(356005)(8936002)(82740400003)(478600001)(7636003)(47076004)(107886003)(36906005)(26005)(316002)(44832011)(15650500001)(82310400003)(7696005)(8676002)(6666004)(4326008)(2616005)(336012)(9786002)(70586007)(186003)(83380400001)(426003)(6916009)(36756003)(2906002)(5660300002)(70206006)(54906003)(102446001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2020 15:07:54.2811
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 56504c0f-de9b-4e8a-7856-08d880d36800
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT007.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2685
+In-Reply-To: <10118193-225a-05a8-e73d-7370e1866ea2@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the fixed factor clock registration to register the divisors.
 
-Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
----
- drivers/clk/clk-xlnx-clock-wizard.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/clk/clk-xlnx-clock-wizard.c b/drivers/clk/clk-xlnx-clock-wizard.c
-index d403a74..7f09522 100644
---- a/drivers/clk/clk-xlnx-clock-wizard.c
-+++ b/drivers/clk/clk-xlnx-clock-wizard.c
-@@ -472,8 +472,10 @@ static int clk_wzrd_probe(struct platform_device *pdev)
- 	u32 reg, reg_f, mult;
- 	unsigned long rate;
- 	const char *clk_name;
-+	void __iomem *ctrl_reg;
- 	struct clk_wzrd *clk_wzrd;
- 	int outputs;
-+	unsigned long flags = 0;
- 	struct device_node *np = pdev->dev.of_node;
- 
- 	clk_wzrd = devm_kzalloc(&pdev->dev, sizeof(*clk_wzrd), GFP_KERNEL);
-@@ -543,16 +545,17 @@ static int clk_wzrd_probe(struct platform_device *pdev)
- 	}
- 
- 	outputs = of_property_count_strings(np, "clock-output-names");
--	/* register div */
--	reg = (readl(clk_wzrd->base + WZRD_CLK_CFG_REG(0)) &
--			WZRD_DIVCLK_DIVIDE_MASK) >> WZRD_DIVCLK_DIVIDE_SHIFT;
-+	if (outputs == 1)
-+		flags = CLK_SET_RATE_PARENT;
- 	clk_name = kasprintf(GFP_KERNEL, "%s_mul_div", dev_name(&pdev->dev));
- 	if (!clk_name) {
- 		ret = -ENOMEM;
- 		goto err_rm_int_clk;
- 	}
- 
--	clk_wzrd->clks_internal[wzrd_clk_mul_div] = clk_register_fixed_factor
-+	ctrl_reg = clk_wzrd->base + WZRD_CLK_CFG_REG(0);
-+	/* register div */
-+	clk_wzrd->clks_internal[wzrd_clk_mul_div] = clk_register_divider
- 			(&pdev->dev, clk_name,
- 			 __clk_get_name(clk_wzrd->clks_internal[wzrd_clk_mul]),
- 			flags, ctrl_reg, 0, 8, CLK_DIVIDER_ONE_BASED |
-@@ -577,7 +580,7 @@ static int clk_wzrd_probe(struct platform_device *pdev)
- 		if (!i)
- 			clk_wzrd->clkout[i] = clk_wzrd_register_divf
- 				(&pdev->dev, clkout_name,
--				clk_name, 0,
-+				clk_name, flags,
- 				clk_wzrd->base, (WZRD_CLK_CFG_REG(2) + i * 12),
- 				WZRD_CLKOUT_DIVIDE_SHIFT,
- 				WZRD_CLKOUT_DIVIDE_WIDTH,
+On 11/4/2020 4:07 AM, Rafał Miłecki wrote:
+> On 04.11.2020 11:35, Robin Murphy wrote:
+>> On 2020-10-28 10:11, Rafał Miłecki wrote:
+>> [...]
+>>> +        cpu0: cpu@0 {
+>>> +            device_type = "cpu";
+>>> +            compatible = "brcm,cortex-b53", "arm,cortex-a53";
+>>
+>> Erm, there's no binding for that - did you mean "brcm,brahma-b53"?
+> 
+> I'm not sure if that's the same thing. Unfortunately I don't have access to
+> any Broadcom documentation.
+> 
+> Florian: could you try to verify that, please?
+
+It should be "brcm,brahma-b53", that is the CPU design that this SoC uses.
 -- 
-2.1.1
-
+Florian
