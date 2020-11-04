@@ -2,147 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4058D2A6DAB
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:15:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 718AB2A6DB3
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730064AbgKDTP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 14:15:26 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45348 "EHLO
+        id S1731503AbgKDTP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 14:15:57 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:45408 "EHLO
         mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726564AbgKDTPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:15:24 -0500
-Received: by mail-ot1-f67.google.com with SMTP id k3so8486638otp.12;
-        Wed, 04 Nov 2020 11:15:22 -0800 (PST)
+        with ESMTP id S1726564AbgKDTP5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:15:57 -0500
+Received: by mail-ot1-f67.google.com with SMTP id k3so8488354otp.12;
+        Wed, 04 Nov 2020 11:15:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3ktR9xXAhm5rkXgxzXt3WdwZLIj5Pq6xAAQ/UnvJYVQ=;
-        b=oMxmi1u/CnqFlcdVx/dAjctazz62N+Mjo6lfMtJA29MwjbsQIn217sAiM4qAyyceGP
-         OSl3xAVEeXNu/Et4WT7pOVJuowdLrZxvniRijLjJ0lGuAeoKN8HuKBvAYhSfBhbpfbqy
-         xSFaYEjS8ouxve0Hig34eQ5xGPf11CQQZWoHgkiYNNTfOt9gnHVmZ2dtpNzfQzxYFE/1
-         kvZcqtdwSSbqvCC82+cJQRML/NP6UezeUFMl+sEideJ7pd8FadzKF4oWogLQXk6JoPfb
-         d7RiGg8/7Cbuc0+eSAIfInLGg6X3v8db+j0h1nkPuxQQByGP+Z2iESh58C5C87ug7XOK
-         o8RQ==
-X-Gm-Message-State: AOAM531/ZppZAZ2x6rzxhzwsSmI44W6f00hIe6+RRzqqUHn/+PsRzSqn
-        bgNbxMJ6phlsI7w/FyH3vg==
-X-Google-Smtp-Source: ABdhPJxynEbTDEPWyxdkPjdoSSl8j0qBRbQwd+b7vgHuU/oNQqSspABE21ehLcNPH7MIDU3+IrBepQ==
-X-Received: by 2002:a9d:a87:: with SMTP id 7mr14380326otq.29.1604517321660;
-        Wed, 04 Nov 2020 11:15:21 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=xUeu7OjzCkWfl0q9Q0C25b2gAmYnfpfRf6sdmrxWckA=;
+        b=rRM4TTTc4LvENo1QxdeVaqhJBEYUiMMzLaGf/8Ex7eFnhAr1o8Vndeqetms8/n8UQn
+         8NO806T8W0IvwzeEQTMO1uO3z1E71vDcFtxZGJFrAiyLz3WxD+3KCwZiToQwLDLc/V4q
+         0/rVXl02ls7xivvjx9102Bhl2G3XW98WpxUnDLYJWvQeAD66AAqZyq5u0z6L6Ruhi39i
+         UhPGR6vVpkdG79F5C4oZiuSKXYJxwZnLosVUzwF4LGGLZSKS9zAnNjX+OsTAAe+AFiRE
+         8qSHAtakSgfzmYoZrphQ0SvvkcJWaczwEjtaXqjBQugFeEfoT0ZdYxvfRn8maAibphWe
+         znUQ==
+X-Gm-Message-State: AOAM532ovnEl3SOShAV1uAZImHcpsoDCC93Ruw36Vdi0NEB/7vwOR5MB
+        JvrMXBqx9sbAeaqQJZz9Fw==
+X-Google-Smtp-Source: ABdhPJwyVB6Vxpun9Hwox5/cSocl9xkTao6ENUk5Rm2F/NY+qCi/4EYMETnsGog5AJNAArHDE5FN3w==
+X-Received: by 2002:a9d:2283:: with SMTP id y3mr18865146ota.164.1604517355878;
+        Wed, 04 Nov 2020 11:15:55 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d22sm641493oij.53.2020.11.04.11.15.20
+        by smtp.gmail.com with ESMTPSA id x21sm660177otk.39.2020.11.04.11.15.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 11:15:20 -0800 (PST)
-Received: (nullmailer pid 3972094 invoked by uid 1000);
-        Wed, 04 Nov 2020 19:15:20 -0000
-Date:   Wed, 4 Nov 2020 13:15:20 -0600
+        Wed, 04 Nov 2020 11:15:55 -0800 (PST)
+Received: (nullmailer pid 3972960 invoked by uid 1000);
+        Wed, 04 Nov 2020 19:15:54 -0000
+Date:   Wed, 4 Nov 2020 13:15:54 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     linux-clk@vger.kernel.org, git@xilinx.com,
-        devicetree@vger.kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, gregkh@linuxfoundation.org,
-        devel@driverdev.osuosl.org
-Subject: Re: [PATCH v7 1/7] dt-bindings: add documentation of xilinx clocking
- wizard
-Message-ID: <20201104191520.GB3967018@bogus>
-References: <1604502407-14352-1-git-send-email-shubhrajyoti.datta@xilinx.com>
- <1604502407-14352-2-git-send-email-shubhrajyoti.datta@xilinx.com>
+To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
+Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
+        linux-mmc@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>
+Subject: Re: [PATCH v3 02/24] dt-bindings: introduce silabs,wfx.yaml
+Message-ID: <20201104191554.GA3972736@bogus>
+References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com>
+ <20201104155207.128076-3-Jerome.Pouiller@silabs.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1604502407-14352-2-git-send-email-shubhrajyoti.datta@xilinx.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201104155207.128076-3-Jerome.Pouiller@silabs.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 04, 2020 at 08:36:41PM +0530, Shubhrajyoti Datta wrote:
-> Add the devicetree binding for the xilinx clocking wizard.
+On Wed, 04 Nov 2020 16:51:45 +0100, Jerome Pouiller wrote:
+> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
 > ---
-> v6:
-> Fix a yaml warning
-> v7:
-> Add vendor prefix speed-grade
+>  .../bindings/net/wireless/silabs,wfx.yaml     | 131 ++++++++++++++++++
+>  1 file changed, 131 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
 > 
->  .../bindings/clock/xlnx,clocking-wizard.yaml       | 65 ++++++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> new file mode 100644
-> index 0000000..a19b9bb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/xlnx,clocking-wizard.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xilinx clocking wizard
-> +
-> +maintainers:
-> +  - Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-> +
-> +description: |
-> +  The clocking wizard is a soft ip clocking block of Xilinx versal. It
-> +  reads required input clock frequencies from the devicetree and acts as clock
-> +  clock output.
-> +
-> +select: false
 
-Why? That's one way to make the example pass with your schema...
 
-> +
-> +properties:
-> +  compatible:
-> +      - enum:
-> +          - xlnx,clocking-wizard
-> +
-> +  "#clock-cells":
-> +    const: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: clock input
-> +      - description: axi clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: clk_in1
-> +      - const: s_axi_aclk
-> +
-> +  xlnx,speed-grade:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - enum: [1, 2, 3]
-> +    description:
-> +      Speed grade of the device.
-> +
-> +required:
-> +  - compatible
-> +  - "#clock-cells"
-> +  - clocks
-> +  - clock-names
-> +  - speed-grade
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    clock-generator@40040000 {
-> +        #clock-cells = <1>;
-> +        reg = <0x40040000 0x1000>;
-> +        compatible = "xlnx,clocking-wizard";
-> +        xlnx,speed-grade = <1>;
-> +        clock-names = "clk_in1", "s_axi_aclk";
-> +        clocks = <&clkc 15>, <&clkc 15>;
-> +        clock-output-names = "clk_out1", "clk_out2",
-> +        "clk_out3", "clk_out4", "clk_out5",
-> +        "clk_out6", "clk_out7";
-> +    };
-> +...
-> -- 
-> 2.1.1
-> 
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1394182
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
