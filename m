@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D25E2A6318
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 12:16:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F5372A6323
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 12:18:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728523AbgKDLQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 06:16:08 -0500
-Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:35882 "EHLO
-        wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728287AbgKDLQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 06:16:08 -0500
-Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
-        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1kaGlj-0007fJ-NY; Wed, 04 Nov 2020 12:15:59 +0100
-X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
-        linuxbbg.five-lan.de
-Received: from [192.168.34.101] (p5098d998.dip0.t-ipconnect.de [80.152.217.152])
-        (authenticated bits=0)
-        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id 0A4BFwZR010767
-        (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NO);
-        Wed, 4 Nov 2020 12:15:58 +0100
-Subject: Re: [PATCH] arm64: dts: rockchip: Assign a fixed index to mmc devices
- on rk3399-roc-pc boards.
-To:     =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        dianders@chromium.org
-References: <20201104094950.2096-1-m.reichl@fivetechno.de>
- <4984701.vSXMUKeAfh@diego>
-From:   Markus Reichl <m.reichl@fivetechno.de>
-Organization: five technologies GmbH
-Message-ID: <4f4a83f2-3c9b-9549-0acf-057257b4255d@fivetechno.de>
-Date:   Wed, 4 Nov 2020 12:15:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1729430AbgKDLRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 06:17:21 -0500
+Received: from relay10.mail.gandi.net ([217.70.178.230]:57685 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728287AbgKDLRR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 06:17:17 -0500
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 4CBB8240011;
+        Wed,  4 Nov 2020 11:17:11 +0000 (UTC)
+Date:   Wed, 4 Nov 2020 12:17:10 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Helen Koike <helen.koike@collabora.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
+Subject: Re: [PATCH 08/14] media: sunxi: Add support for the A31 MIPI CSI-2
+ controller
+Message-ID: <20201104111710.GB287014@aptenodytes>
+References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
+ <20201023174546.504028-9-paul.kocialkowski@bootlin.com>
+ <1a3a615c-a058-e282-2dbb-c99dfa98be68@collabora.com>
+ <20201102092110.ro6a456lvbrktwoz@gilmour.lan>
 MIME-Version: 1.0
-In-Reply-To: <4984701.vSXMUKeAfh@diego>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1604488568;20de08b6;
-X-HE-SMSGID: 1kaGlj-0007fJ-NY
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="WYTEVAkct0FjGQmd"
+Content-Disposition: inline
+In-Reply-To: <20201102092110.ro6a456lvbrktwoz@gilmour.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
 
-Am 04.11.20 um 11:51 schrieb Heiko Stübner:
-> Hi Markus,
-> 
-> Am Mittwoch, 4. November 2020, 10:49:45 CET schrieb Markus Reichl:
->> Recently introduced async probe on mmc devices can shuffle block IDs.
->> Pin them to fixed values to ease booting in evironments where UUIDs
->> are not practical. Use newly introduced aliases for mmcblk devices from [1].
->> 
->> [1]
->> https://patchwork.kernel.org/patch/11747669/
->> 
->> Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 5 +++++
->>  1 file changed, 5 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
->> index e7a459fa4322..bc9482b59428 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
->> @@ -13,6 +13,11 @@ / {
->>  	model = "Firefly ROC-RK3399-PC Board";
->>  	compatible = "firefly,roc-rk3399-pc", "rockchip,rk3399";
->>  
->> +	aliases {
->> +		mmc0 = &sdmmc;
->> +		mmc1 = &sdhci;
->> +	};
->> +
-> 
-> Any reason for this odering?
+--WYTEVAkct0FjGQmd
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Without pinning roc-pc mostly booted as
-mmcblk0 = sdmmc = µSD
-mmcblk1 = sdhci = eMMC
-so I kept this behaviour in aliases
+Hi,
 
-roc-pc-mezzanine with populated SDIO-M2-slot booted
-mmc0 = sdio = (no mmcblk)
-mmcblk1 = sdmmc = µSD
-mmcblk2 = sdhci = eMMC
+On Mon 02 Nov 20, 10:21, Maxime Ripard wrote:
+> On Fri, Oct 30, 2020 at 07:45:18PM -0300, Helen Koike wrote:
+> > On 10/23/20 2:45 PM, Paul Kocialkowski wrote:
+> > > The A31 MIPI CSI-2 controller is a dedicated MIPI CSI-2 controller
+> > > found on Allwinner SoCs such as the A31 and V3/V3s.
+> > >=20
+> > > It is a standalone block, connected to the CSI controller on one side
+> > > and to the MIPI D-PHY block on the other. It has a dedicated address
+> > > space, interrupt line and clock.
+> > >=20
+> > > Currently, the MIPI CSI-2 controller is hard-tied to a specific CSI
+> > > controller (CSI0) but newer SoCs (such as the V5) may allow switching
+> > > MIPI CSI-2 controllers between CSI controllers.
+> > >=20
+> > > It is represented as a V4L2 subdev to the CSI controller and takes a
+> > > MIPI CSI-2 sensor as its own subdev, all using the fwnode graph and
+> > > media controller API.
+> >=20
+> > Maybe this is a bad idea, but I was thinking:
+> > This driver basically just turn on/off and catch some interrupts for er=
+rors,
+> > and all the rest of v4l2 config you just forward to the next subdevice
+> > on the pipeline.
+> >=20
+> > So instead of exposing it as a subdevice, I was wondering if modeling
+> > this driver also through the phy subsystem wouldn't be cleaner, so
+> > you won't need all the v4l2 subdevice/topology boilerplate code that
+> > it seems you are not using (unless you have plans to add controls or
+> > some specific configuration on this node later).
+> >=20
+> > But this would require changes on the sun6i-csi driver.
+> >=20
+> > What do you think?
+>=20
+> Eventually we'll need to filter the virtual channels / datatypes I
+> guess, so it's definitely valuable to have it in v4l2
 
-With my aliases both boards behave the same now and the optional SDIO slot
-goes out of the way to mmc2.
+Agreed and like I mentionned in the discussion on 00/14 I don't think it
+would be a cleaner way to expose things.
 
-> 
-> I.e. some previous incarnations had it ordered as (emmc, mmc, sdio).
-> This is also true for the ChromeOS out-of-tree usage of those, the
-> rk3399 dts in the chromeos-4.4 tree also orders this as sdhci, sdmmc, sdio.
+There's also the fact that newer SoCs like the V5 seem to allow connecting
+any MIPI CSI-2 controller to any CSI controller, so the graph representation
+is definitely welcome here.
 
-The boards from my zoo (exynos, rk3399) mostly come up with SD-card as mmc0
-and eMMC as mmc1 in mainline as opposed in some vendor kernels.
-but I have no objection to set it the other way round if this is more common
-with rk3399 boards.
+Paul
 
-> 
-> And I guess a further question would be when we're doing arbitary orderings
-> anyway, why is this not in rk3399.dtsi ;-) ?
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
-I restricted the ordering to the boards I have, not to confuse other established
-use cases, but if a standard ordering is desired this can go to rk3399.dtsi.
+--WYTEVAkct0FjGQmd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> 
-> 
-> Heiko
-> 
-> 
+-----BEGIN PGP SIGNATURE-----
 
-Gruß,
--- 
-Markus Reichl
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl+ijbYACgkQ3cLmz3+f
+v9Fb1wgAh9Q8P4R5upBbkO+og7cJgFf/zB+D0ht5gGmg/DnFyx7Qbu0URcwTm99o
+SS9l3PciZ2grf+J12pMOxobiIh2GuNQOXEOCdJkIDz7w6hw1IF9WQqBrY4anGsof
+EYDHm4dRNr7dZHQl2vQwvSYZRsk4Kotd43w5JzSW/cU3+aAkMU/4O5DyO39JS92B
+UOsBaw8r09Vp50SAEBRvmluXDo90m8Wi+LNT2qmXTo+aShRNYeS2vmBqiFg4YpgO
+6kcdCDup8CHGi18b3ak4o8AGq8BJjAkjKpBVeJxWbF96eaxaQgKZ7JbgRxFCcmmL
+tI6VBvxl6ULRZ3ws5QeQ9kq9EZjbBg==
+=aT0d
+-----END PGP SIGNATURE-----
+
+--WYTEVAkct0FjGQmd--
