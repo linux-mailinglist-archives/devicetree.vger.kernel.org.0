@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 159412A7082
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 23:30:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42CE92A7084
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 23:31:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730691AbgKDWao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 17:30:44 -0500
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:43072 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727711AbgKDWao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 17:30:44 -0500
-Received: by mail-oo1-f68.google.com with SMTP id z14so26142oom.10
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 14:30:43 -0800 (PST)
+        id S1730111AbgKDWb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 17:31:58 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:45284 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727711AbgKDWb6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 17:31:58 -0500
+Received: by mail-ot1-f65.google.com with SMTP id k3so247879otp.12;
+        Wed, 04 Nov 2020 14:31:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wQjWhDvaMTJfou20Vf7AfWs7QnF8sAKxHEJNNsSNo9w=;
-        b=P9yigxVVT6k56obN6XXRRVLTvLm8E9u5zxYky/gpMfdV9i117l3TyzCx3UV7jYbtFu
-         BNesRJRerDdT6v8+7958xzybmHTkvHQxE2Jc0HH03kt4F4ksHbN8zUqSSFfdbw1Sznvv
-         JLMmJCpR9b7zwpRIgrmB48lhPhF18lxu45eraWag033OHuPc0Su2lOeaci42yEJSOOSb
-         b2BeADl5lReoQJz9HgF+il++CF7C9lKqveM+OK9S+Yd0HYFlIkc8d5+MYqdW/1IqHTcn
-         2AG0VjHcT2HEZPwyD8Q9gmIfFBahHmmlosP1fWD4IZeYJTnL/Fl7FpE0ddbNtYmcc2QN
-         6OlQ==
-X-Gm-Message-State: AOAM533OBfPfuQM3wTV7T2vOZ+zOcB6W4RU8m1Lbj12/foSt+9vTGgSy
-        UpcJkPM3szd5LQP3YI2oFQ==
-X-Google-Smtp-Source: ABdhPJxoSaiTqY8ZwkOoi85uoZLZdAqS35LRLrzQWuMe7HsRiXIEV9lxY53ATct93LI4USmqtoMBsw==
-X-Received: by 2002:a4a:bb94:: with SMTP id h20mr229963oop.73.1604529043410;
-        Wed, 04 Nov 2020 14:30:43 -0800 (PST)
+        bh=wmC/MczJhz01hxbRPciJvRVJKYl2F1OprS8aSpaaQqA=;
+        b=kca+j3YLrnSItPr+k5pU8eh1d7fo71rDRPO6WtPP3EXWib8IF0wFokFJUz9oiIACl2
+         wkzyiCWx67AusX1YANZOD3OpHJrJY3GJcpK/G8m3s90oi88jxx01OVUgTqIIQxtoXOna
+         FgbOcoXZtJU+Mh3SiZS8yCHiAD58wvToxg37uHQaasv8fR9uXa5021TdlRBwkoL7RerS
+         q9If43/B3kh9IirOW8ZE4USmYjsAt/wtwozK3zV+QCDW/IirZQ1sF+RFNaKPnF8q6J3P
+         hFrzr+rzuAWJ15xP8LcYZaEjGsk5V9x9Hjx23uyZoJxY43wJX1chUY8MN/a9jaIuWgAI
+         gVGw==
+X-Gm-Message-State: AOAM532KNoVcQaTihtw2uhLe0q4S3jPReW+47QCB6N8tgV/uYQa5MMo2
+        5kbFfEWQ0ff1Xoonaf7DfQ==
+X-Google-Smtp-Source: ABdhPJzxOhc4fAKgzmwcDfkvqHimxkghYOsAR6veO9EiBHWi0NJ+BYNTWEPI+RoJC4mDfhZhzqlauQ==
+X-Received: by 2002:a05:6830:22d2:: with SMTP id q18mr6975110otc.305.1604529117531;
+        Wed, 04 Nov 2020 14:31:57 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a23sm839597oot.33.2020.11.04.14.30.42
+        by smtp.gmail.com with ESMTPSA id q18sm772243otf.46.2020.11.04.14.31.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 14:30:42 -0800 (PST)
-Received: (nullmailer pid 43077 invoked by uid 1000);
-        Wed, 04 Nov 2020 22:30:42 -0000
-Date:   Wed, 4 Nov 2020 16:30:42 -0600
+        Wed, 04 Nov 2020 14:31:57 -0800 (PST)
+Received: (nullmailer pid 44867 invoked by uid 1000);
+        Wed, 04 Nov 2020 22:31:56 -0000
+Date:   Wed, 4 Nov 2020 16:31:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     vkoul@kernel.org, devel@driverdev.osuosl.org, neil@brown.name,
-        kishon@ti.com, devicetree@vger.kernel.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: phy: Add binding for Mediatek MT7621
- PCIe PHY
-Message-ID: <20201104223042.GA43042@bogus>
-References: <20201031122246.16497-1-sergio.paracuellos@gmail.com>
- <20201031122246.16497-2-sergio.paracuellos@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>
+Subject: Re: [PATCH 1/2] extcon: fsa9480: Rewrite bindings in YAML and extend
+Message-ID: <20201104223156.GA44788@bogus>
+References: <20201101004357.1076876-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201031122246.16497-2-sergio.paracuellos@gmail.com>
+In-Reply-To: <20201101004357.1076876-1-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 31 Oct 2020 13:22:43 +0100, Sergio Paracuellos wrote:
-> Add bindings to describe Mediatek MT7621 PCIe PHY.
+On Sun, 01 Nov 2020 01:43:56 +0100, Linus Walleij wrote:
+> This rewrites the FSA9480 DT bindings using YAML and
+> extends them with the compatible TI TSU6111.
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> I chose to name the file fcs,fsa880 since this is the
+> first switch, later versions are improvements.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
->  .../bindings/phy/mediatek,mt7621-pci-phy.yaml | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
+>  .../bindings/extcon/extcon-fsa9480.txt        | 21 --------
+>  .../bindings/extcon/fcs,fsa880.yaml           | 52 +++++++++++++++++++
+>  2 files changed, 52 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/extcon/extcon-fsa9480.txt
+>  create mode 100644 Documentation/devicetree/bindings/extcon/fcs,fsa880.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
