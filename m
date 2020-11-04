@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C82F52A6F82
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 22:20:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E6242A6F85
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 22:21:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731553AbgKDVUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 16:20:48 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:40305 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731533AbgKDVUs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 16:20:48 -0500
-Received: by mail-oi1-f196.google.com with SMTP id m143so14401860oig.7;
-        Wed, 04 Nov 2020 13:20:47 -0800 (PST)
+        id S1730913AbgKDVVT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 16:21:19 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:41705 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731845AbgKDVVT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 16:21:19 -0500
+Received: by mail-oi1-f195.google.com with SMTP id m13so14659920oih.8;
+        Wed, 04 Nov 2020 13:21:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=TmGKQaM8NbX4Apyre6CwXX87WW/CQm3JJBjPFFR/Jdw=;
-        b=R7EcMe/cCcvQU5RvzNxR6RsR2qPbH+ubFS9W/6ArG3YdPxW1hAI6RJPGPPK1l4DLtn
-         XHwJzYdD9BfZ56wXEDTC+cSCH2B3QITQJSnp8PIWII5qsdHFgMoeG0YRSOk5Rh6SCfoG
-         /+D94TBnqLMDkLLJ3l9ULICA5Sb3nfuFAUx7+cmrOH7Cxinhq6OWQqZuCKouFS2WvSsF
-         VfjZs0uGP+UwlzP2qdJXtQ2TyBJZd+VqJECMRA3xiXJV73yNadEgWMrPkb0j3jHzDb0n
-         JxDfArTePEWPX9Q+RfjbP5jkoXFrGWRXErn0shwGvKs9kS3+afuskgHq31go6GwfCFq2
-         5cfA==
-X-Gm-Message-State: AOAM530VojzeEI7xQtJe64dDWHfiWTgV08YDOmTylH9Wj3w44l+zuyGU
-        OoH8s5/HVPws9OXFbsCOFA==
-X-Google-Smtp-Source: ABdhPJzAiDR3F9PdJQBRdF9PaBCZnqE8Qk/J6u5jSUzcXJOA7Y+oQ+kHikaUZqCFJpe8DWCtufvn9g==
-X-Received: by 2002:aca:2810:: with SMTP id 16mr3980189oix.166.1604524847617;
-        Wed, 04 Nov 2020 13:20:47 -0800 (PST)
+        bh=aZtQfM5KBrbiy+gWC27nrljgHccPhY/KcNRzzbJU6nw=;
+        b=S4Dg+vp5nYrtEaEDs5MLSMlJgggDo8jkSxq4Vh9vNYXJJvFI6X2ATDzOANFsNAUwhA
+         eFuQajzSe/8KlzqWxbZChdFUU/9a3yvBC8uWI6xow+5Im0vnq6Hy0GoZUEopkehWR7OY
+         jv041ATrSLJ4uavLXVKWPKQq/iHi3Y9bcKDf8Xu6sQ7OU9VEry6OaSCe8T92HeWEM9sO
+         zx1CtVXvWRgOi4zNq1xqFweEANTjOSRtGnlCXVnAmsMyV07g5YtSAorCBFE5M3+uukUU
+         tuyD5oP/H/e8JFVmR5uaKw9VhOro/JAbAjIHvYli1PqVHi9jdr7iAz5lYcJq7602wKCu
+         9b0Q==
+X-Gm-Message-State: AOAM531NES9L0j4SuqGPoyn0aoPP+cEkMdifrg61ivetqvuZ13f3QxUt
+        qUi4OL03sQS21U+3J5m3Hg==
+X-Google-Smtp-Source: ABdhPJyDaOJViGJX07fUT0WbV67TuFIoZZydDHDeyusO5qHV7wFq9sr1wM5JU41KZujIeBmaTt6tCA==
+X-Received: by 2002:a05:6808:91a:: with SMTP id w26mr3878979oih.159.1604524877040;
+        Wed, 04 Nov 2020 13:21:17 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l19sm728056otp.65.2020.11.04.13.20.46
+        by smtp.gmail.com with ESMTPSA id m65sm760695otc.36.2020.11.04.13.21.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 13:20:47 -0800 (PST)
-Received: (nullmailer pid 4143657 invoked by uid 1000);
-        Wed, 04 Nov 2020 21:20:46 -0000
-Date:   Wed, 4 Nov 2020 15:20:46 -0600
+        Wed, 04 Nov 2020 13:21:16 -0800 (PST)
+Received: (nullmailer pid 4144464 invoked by uid 1000);
+        Wed, 04 Nov 2020 21:21:15 -0000
+Date:   Wed, 4 Nov 2020 15:21:15 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, broonie@kernel.org, robh+dt@kernel.org,
-        lgirdwood@gmail.com
-Subject: Re: [PATCH v2 1/6] ASoC: qcom: dt-bindings: add bindings for lpass
- wsa macro codec
-Message-ID: <20201104212046.GA4143597@bogus>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        broonie@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] ASoC: qcom: dt-bindings: add bindings for lpass
+ va macro codec
+Message-ID: <20201104212115.GA4144415@bogus>
 References: <20201029110829.16425-1-srinivas.kandagatla@linaro.org>
- <20201029110829.16425-2-srinivas.kandagatla@linaro.org>
+ <20201029110829.16425-5-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201029110829.16425-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20201029110829.16425-5-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Oct 2020 11:08:24 +0000, Srinivas Kandagatla wrote:
-> This binding is for LPASS has internal codec WSA macro which is
-> for connecting with WSA Smart speakers.
+On Thu, 29 Oct 2020 11:08:27 +0000, Srinivas Kandagatla wrote:
+> This binding is for LPASS has internal codec VA macro which is
+> for connecting with DMICs.
 > 
 > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  .../bindings/sound/qcom,lpass-wsa-macro.yaml  | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
+>  .../bindings/sound/qcom,lpass-va-macro.yaml   | 67 +++++++++++++++++++
+>  1 file changed, 67 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
