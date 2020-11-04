@@ -2,126 +2,496 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B08912A5F1C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 09:06:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF7CF2A5F1E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 09:08:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728517AbgKDIGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 03:06:09 -0500
-Received: from mail-eopbgr80051.outbound.protection.outlook.com ([40.107.8.51]:50309
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727672AbgKDIGJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 03:06:09 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jJjS99vSYUTr36AtuXSFQeO57Y/S6sfLEhpWUCAvD8A6U22MwnHlT23IWlEpLC0FexBRh5wNyy884qX6Uk8X0Ci13AziYKI9DPc7xreRCqwfdz1xXmlm8RFW2EnoKesDUJWGj2QjirVVqkFkBxZhcfCkf3A0o02SL4Q6L5EW04Hwpyc18HmSb1w75CfLE945iSXR75EeJLmkHswYqbqt5CDTZIZAI2j720CHtiI02BL73cVkPrI2Ub9tprhceDm6LYiJckrUk35XShMNhgozBwwjLBgSnQhjAbNdLfQWme/NpfQ4FzW3NEXM0QrXKlFf7RyBoXWrSyZMyYkUSiVzHg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7/cNN6W2ylhoAoCAPeltPZhzswmvNrofA604oRP/bYM=;
- b=CGNhBlVdyabFfZiNX9QwiFL3F83XCyK6GLHbKoxxVt8HfjcxYJNQoqpMLQd8OzwXcWr3Idb/AP+vcrADyD8Qe4yImlbyGu5tq0Xq/O13+QMEbyiI8FAR4VW1nC8WZkpCVLDjeUkXkg7nkK4Wp8G8xRVII7Nj8Tbcit4lqrHZgwdPBPHKlNF1UtBOQ+0onaSLF1GiNHLd1Fly6tTCwVlEsu8pp1xqEtvHA0blgQDMkhxb8qVwABg4RWjl1a9uzW+tj7PinXwUT4RQQ5eSPR5MwOz/J0zcf7Wpfcst/jTSRTAuRg3DbsqwH4KusdabP/m5YGaTD7YUBIUhZlFb1nupbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7/cNN6W2ylhoAoCAPeltPZhzswmvNrofA604oRP/bYM=;
- b=NqAr40wlTYE534v3A7qjN21fFzZbnYDkCcihotFg1y7MLcNZ/z2u8O7gcwmGNiU4hnvFkMT9q/9ph84Zkd2L/GkA5we6uOiEqPZUw1i76p/qxgFF86yBPgJwvH4r4vDolvMjRRD/AO7O80F+y1IQqERFUwB/00K4M2yHaU7phgU=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from AM8PR04MB7300.eurprd04.prod.outlook.com (2603:10a6:20b:1c7::12)
- by AM9PR04MB7603.eurprd04.prod.outlook.com (2603:10a6:20b:2d6::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19; Wed, 4 Nov
- 2020 08:06:06 +0000
-Received: from AM8PR04MB7300.eurprd04.prod.outlook.com
- ([fe80::b902:6be0:622b:26c2]) by AM8PR04MB7300.eurprd04.prod.outlook.com
- ([fe80::b902:6be0:622b:26c2%4]) with mapi id 15.20.3499.032; Wed, 4 Nov 2020
- 08:06:06 +0000
-From:   Peter Chen <peter.chen@nxp.com>
-To:     robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com,
-        linux-usb@vger.kernel.org, pawell@cadence.com, rogerq@ti.com,
-        jun.li@nxp.com, Peter Chen <peter.chen@nxp.com>
-Subject: [PATCH v3 1/1] doc: dt-binding: cdns,usb3: add wakeup-irq
-Date:   Wed,  4 Nov 2020 16:05:24 +0800
-Message-Id: <20201104080524.1821-1-peter.chen@nxp.com>
-X-Mailer: git-send-email 2.17.1
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR06CA0144.apcprd06.prod.outlook.com
- (2603:1096:1:1f::22) To AM8PR04MB7300.eurprd04.prod.outlook.com
- (2603:10a6:20b:1c7::12)
+        id S1726434AbgKDIIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 03:08:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726152AbgKDIIF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 03:08:05 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E061C0613D3;
+        Wed,  4 Nov 2020 00:08:05 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id m8so15930860ljj.0;
+        Wed, 04 Nov 2020 00:08:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=i9dtZ7vpXKJRhNNQ4olSprTzNKlL8nUFBc7kyxexUyM=;
+        b=vQ9r1kTblkZJFYgAi3+Ise3xdBOd/ux7JOFBy+8I6mUS3i9AXP9/fwUQZfDjC/PkE5
+         eLgNPz2VWbT73qMizDZ5QJefhvBhXNNmSwrOexb2EEjCl7DneE9FpZojlTmAYcP3sDgL
+         R06kZ0Wa3PvF/i8YBgDQAdtWFjgqqXlac8nJulBhK7VI3Aud9aUE0pNiHgbzY1bAA0te
+         iJVB92nstBvStArhlMiBsgK3qj9qE2MlcnF0Q/7VWnTyXinASB0ddLmndnqEFU+LQZEw
+         FGdQAVFLYMhYFoJpiK+7eVs3JmUhBFHXyv0u3U35mYWf1VBUSbxSQa1XuvgYARoUGj4B
+         pU1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=i9dtZ7vpXKJRhNNQ4olSprTzNKlL8nUFBc7kyxexUyM=;
+        b=Rtr8V06gnMLcfrd7cVVvzJuu+0jLYtqSHRcZ8dctMjaLMOjlMxeiP08+gjwF8FmlUu
+         p63ZBtTX+8Lr7QT4fGyWHUvsT/kOQin18qQlT7eVa7X7BQHWI6VANm2SgBR2jGBeqvHa
+         +Tk9fTcOjjBOezk3ktOkN6Oxsnvk60my6ioLl43CHQfs66ywyqKZOSCKBYD3OEpO6F6P
+         FfrPbh2D5k4qaFQeL0KgqYXep+Ym/OzdwemGmlvA2CUUIzyeuirvhtJSwi6UwI3CeVKn
+         G/fFQqvmhioAjet4EzzkVHzeC/Hl7ThOLJstYpyKgwPyX7FDuAzPEVfTgVHZF4P6hWhQ
+         +JSA==
+X-Gm-Message-State: AOAM53329b3VR7tO1c1enFv/zTo8LF53lrzRKODajfwHHv3cMQKrIKqN
+        im9+DGeL5UJtBqtGczfpE8fHwqvzc1rdF3d0h9c=
+X-Google-Smtp-Source: ABdhPJxSK2XPvdBBTkKvqSPGFDCGnZ9OgWEFo7T00PubULqVH8Ih1HQNZt/qyYl8Iz8vwCdCWemWhPE2Xals+VQjxUs=
+X-Received: by 2002:a2e:984e:: with SMTP id e14mr1775933ljj.110.1604477283596;
+ Wed, 04 Nov 2020 00:08:03 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from b29397-desktop.ap.freescale.net (119.31.174.66) by SG2PR06CA0144.apcprd06.prod.outlook.com (2603:1096:1:1f::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18 via Frontend Transport; Wed, 4 Nov 2020 08:06:03 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c546588d-a567-4441-d6cb-08d880987b27
-X-MS-TrafficTypeDiagnostic: AM9PR04MB7603:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AM9PR04MB7603C340552C8D4198D421178BEF0@AM9PR04MB7603.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:4714;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xH4UUXQQy7eXkoXr08L3NrNrGudSGbip6BXwTCT3N5grHPB/dQVI/Qp7ta5s6L688elrQLSO+vExBqf7HkyvAJsmHgWOVc+IS0cAaWPJKgNNY1m9IVZ9rEvxdIhlUKyDuukDqEWdBDwqozLdNwknuk2azSf1lxRH7+/41iJ3uLk4lbW5xURPInCafsJJGYjRo0J6Or77LDd29TeIKeLWWisleI4ZtmtwrZb1I28yGZ5LX8WqIbU1AOq0RpGfZ8538QumOUvpF2JLLuD2F1ufm3caIcfSzWF0HCyOjaUXP13N5XFpDoGlAbSDI/esv5BxDi33YklaJ9NoS2QfCCvwqw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7300.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(366004)(346002)(396003)(376002)(86362001)(1076003)(8936002)(4326008)(36756003)(186003)(26005)(16526019)(6486002)(2906002)(2616005)(316002)(956004)(44832011)(66476007)(66556008)(66946007)(52116002)(8676002)(6666004)(478600001)(6512007)(5660300002)(6506007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: Ow6IiyfePkIPLoCmrChvyGGPIpCRUhNyPaVRH06cRCIqUwS9U0UWIPzo9N4ZJPPseQ35Ubgst0+TXN4Z85aZ0pdhr49wiapXniJcsGnvFF5dTuHGI104XpgDSyDW6DPkwcHGkCqwsduV+Ywsujy/q9qrPJ8UPJDpS2V60cIZwnWx/X/dG4e9LgRhkpPS7qYREvsBGwj7ETpNUA/s2NvOi5zgG2+iv+i2FT0vjvoY1FVbUib+Jb5B0GhWm00cS4099I2gq1eXe7r5W9oScdij+uDEF1/yrjbSO2upt53t4OiYvK9RSiu7qdbn2ZGiiqk8CobPTsRjCUlgA175wFyctQcGGD+n1UWSG0IbDFEu/Gwmut+AD5bdt1J8DT/uYqPx/F/e46j1gjIZrvfPIvDbUVJ62joHNmEZvBwHR3wmuUvuWiWMBjQwebE94QK9+b1UMBs4UTM/wzp1WSMuXX9JG/y3D8ZZ0gMQfpE7mQuPtz9G0BpqUrV0ndqlpC9cRmM4TFUNlM06cSLIrhfHNDW0lQ//2EGQYQ4g4UugiY1P0gidum5HFOZv8rZV4rxIuYNf/ASJGVn2OV660N8NcJqEgwOJxBnHzv/x5ei6G1FOLpAbIbi5bzM7L2vg8/6Jcx/GKwusGuEdqc98+hfuB02DLw==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c546588d-a567-4441-d6cb-08d880987b27
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7300.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2020 08:06:06.6321
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d0/xMICIsClp8/EvEuRtOvkN/z04WEQAPWxy9EliExsVe78EFSJE91p4FQXLb7cDvatEnN5Vd6SSLwyrUSs3gA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7603
+References: <20201102100157.85801-1-mtwget@gmail.com> <20201102100157.85801-2-mtwget@gmail.com>
+ <20201103113743.5764tj2ryrht4dfs@gilmour.lan>
+In-Reply-To: <20201103113743.5764tj2ryrht4dfs@gilmour.lan>
+From:   Yu-Tung Chang <mtwget@gmail.com>
+Date:   Wed, 4 Nov 2020 16:07:48 +0800
+Message-ID: <CAHRgzyOao=w6Yyqqvi1Z26=rfJgumkzDbWLxD+_5uaLmyAWiQA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     robh+dt@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To support low power mode for controller, the driver needs wakeup-irq
-to reflect the signal changing after controller is stopped, and waking
-the controller up accordingly.
+Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2020=E5=B9=B411=E6=9C=883=E6=97=
+=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=887:37=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Hi!
+>
+> On Mon, Nov 02, 2020 at 06:01:57PM +0800, Yu-Tung Chang wrote:
+> > The NanoPi R1 is a complete open source board developed
+> > by FriendlyElec for makers, hobbyists, fans and etc.
+> >
+> > NanoPi R1 key features
+> > - Allwinner H3, Quad-core Cortex-A7@1.2GHz
+> > - 512MB/1GB DDR3 RAM
+> > - 8GB eMMC
+> > - microSD slot
+> > - 10/100/1000M Ethernet x 1
+> > - 10/100 Ethernet x 1
+> > - Wifi 802.11b/g/n
+> > - Bluetooth 4.0
+> > - Serial Debug Port
+> > - 5V 2A DC power-supply
+> >
+> > Signed-off-by: Yu-Tung Chang <mtwget@gmail.com>
+> > ---
+> >  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+> >  arch/arm/boot/dts/Makefile                    |   1 +
+> >  arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts      | 169 ++++++++++++++++++
+> >  3 files changed, 175 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documen=
+tation/devicetree/bindings/arm/sunxi.yaml
+> > index 0f23133672a3..54a1aaee7e22 100644
+> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > @@ -251,6 +251,11 @@ properties:
+> >            - const: friendlyarm,nanopi-neo-plus2
+> >            - const: allwinner,sun50i-h5
+> >
+> > +      - description: FriendlyARM NanoPi R1
+> > +        items:
+> > +          - const: friendlyarm,nanopi-r1
+> > +          - const: allwinner,sun8i-h3
+> > +
+> >        - description: FriendlyARM ZeroPi
+> >          items:
+> >            - const: friendlyarm,zeropi
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 4f0adfead547..aabaf67f86ed 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -1192,6 +1192,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
+> >       sun8i-h3-nanopi-m1-plus.dtb \
+> >       sun8i-h3-nanopi-neo.dtb \
+> >       sun8i-h3-nanopi-neo-air.dtb \
+> > +     sun8i-h3-nanopi-r1.dtb \
+> >       sun8i-h3-orangepi-2.dtb \
+> >       sun8i-h3-orangepi-lite.dtb \
+> >       sun8i-h3-orangepi-one.dtb \
+> > diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts b/arch/arm/boot/d=
+ts/sun8i-h3-nanopi-r1.dts
+> > new file mode 100644
+> > index 000000000000..204a39f93f4e
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+> > @@ -0,0 +1,169 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (C) 2019 Igor Pecovnik <igor@armbian.com>
+> > + * Copyright (C) 2020 Jayantajit Gogoi <jayanta.gogoi525@gmail.com>
+> > + * Copyright (C) 2020 Yu-Tung Chang <mtwget@gmail.com>
+> > +*/
+> > +
+> > +#include "sun8i-h3-nanopi.dtsi"
+> > +#include <dt-bindings/leds/common.h>
+> > +
+> > +/ {
+> > +     model =3D "FriendlyARM NanoPi R1";
+> > +     compatible =3D "friendlyarm,nanopi-r1", "allwinner,sun8i-h3";
+> > +
+> > +     aliases {
+> > +             serial1 =3D &uart1;
+> > +             ethernet0 =3D &emac;
+> > +             ethernet1 =3D &wifi;
+> > +     };
+> > +
+> > +     reg_gmac_3v3: gmac-3v3 {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "gmac-3v3";
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             startup-delay-us =3D <100000>;
+> > +             enable-active-high;
+> > +             gpio =3D <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
+> > +     };
+> > +
+> > +     reg_vdd_cpux: gpio-regulator {
+> > +             compatible =3D "regulator-gpio";
+> > +             regulator-name =3D "vdd-cpux";
+> > +             regulator-type =3D "voltage";
+> > +             regulator-boot-on;
+> > +             regulator-always-on;
+> > +             regulator-min-microvolt =3D <1100000>;
+> > +             regulator-max-microvolt =3D <1300000>;
+> > +             regulator-ramp-delay =3D <50>;
+> > +             gpios =3D <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+> > +             gpios-states =3D <0x1>;
+> > +             states =3D <1100000 0x0
+> > +                       1300000 0x1>;
+> > +     };
+> > +
+> > +     wifi_pwrseq: wifi_pwrseq {
+> > +             compatible =3D "mmc-pwrseq-simple";
+> > +             reset-gpios =3D <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
+> > +             clocks =3D <&rtc 1>;
+> > +             clock-names =3D "ext_clock";
+> > +     };
+> > +
+> > +     leds {
+> > +             led-2 {
+> > +                     function =3D LED_FUNCTION_WAN;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 *=
+/
+> > +             };
+> > +
+> > +             led-3 {
+> > +                     function =3D LED_FUNCTION_LAN;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&pio 0 9 GPIO_ACTIVE_HIGH>; /* PA9 */
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&cpu0 {
+> > +     cpu-supply =3D <&reg_vdd_cpux>;
+> > +};
+> > +
+> > +&ehci1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&ehci2 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&emac {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&emac_rgmii_pins>;
+> > +     phy-supply =3D <&reg_gmac_3v3>;
+> > +     phy-handle =3D <&ext_rgmii_phy>;
+> > +     phy-mode =3D "rgmii-id";
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&external_mdio {
+> > +     ext_rgmii_phy: ethernet-phy@7 {
+> > +             compatible =3D "ethernet-phy-ieee802.3-c22";
+> > +             reg =3D <7>;
+> > +     };
+> > +};
+> > +
+> > +&mmc1 {
+> > +     vmmc-supply =3D <&reg_vcc3v3>;
+> > +     vqmmc-supply =3D <&reg_vcc3v3>;
+> > +     mmc-pwrseq =3D <&wifi_pwrseq>;
+> > +     bus-width =3D <4>;
+> > +     non-removable;
+> > +     status =3D "okay";
+> > +
+> > +     wifi: wifi@1 {
+> > +             reg =3D <1>;
+> > +             compatible =3D "brcm,bcm4329-fmac";
+> > +             interrupt-parent =3D <&pio>;
+> > +             interrupts =3D <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 / EINT1=
+0 */
+> > +             interrupt-names =3D "host-wake";
+> > +     };
+> > +};
+> > +
+> > +&mmc2 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&mmc2_8bit_pins>;
+> > +     vmmc-supply =3D <&reg_vcc3v3>;
+> > +     vqmmc-supply =3D <&reg_vcc3v3>;
+> > +     bus-width =3D <8>;
+> > +     non-removable;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&ohci1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&ohci2 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&reg_usb0_vbus {
+> > +     gpio =3D <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* PL2 */
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&uart1_pins>;
+>
+> This should be already set in the DTSI
+>
+uart0 as the debugging interface, uart1 as the external uart port,
+uart3 as the bluetooth.
+> > +     status =3D "okay";
+> > +};
+>
+> What is this UART used for?
+>
+uart1 as the external uart port, use a separate physical interface.
+> Thanks!
+> Maxime
 
-Signed-off-by: Peter Chen <peter.chen@nxp.com>
----
-Changes for v3:
-- Fix the dt_binding_check error
-
-Changes for v2:
-- Add "minItems: 3" to make wakeup irq optional
-
- Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-index ac20b98e9910..b32c877dc2a8 100644
---- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-+++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
-@@ -26,16 +26,21 @@ properties:
-       - const: dev
- 
-   interrupts:
-+    minItems: 3
-     items:
-       - description: OTG/DRD controller interrupt
-       - description: XHCI host controller interrupt
-       - description: Device controller interrupt
-+      - description: interrupt used to wake up core, e.g when usbcmd.rs is
-+                     cleared by xhci core, this interrupt is optional
- 
-   interrupt-names:
-+    minItems: 3
-     items:
-       - const: host
-       - const: peripheral
-       - const: otg
-+      - const: wakeup
- 
-   dr_mode:
-     enum: [host, otg, peripheral]
--- 
-2.17.1
-
+Maxime Ripard <maxime@cerno.tech> =E4=BA=8E2020=E5=B9=B411=E6=9C=883=E6=97=
+=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=887:37=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Hi!
+>
+> On Mon, Nov 02, 2020 at 06:01:57PM +0800, Yu-Tung Chang wrote:
+> > The NanoPi R1 is a complete open source board developed
+> > by FriendlyElec for makers, hobbyists, fans and etc.
+> >
+> > NanoPi R1 key features
+> > - Allwinner H3, Quad-core Cortex-A7@1.2GHz
+> > - 512MB/1GB DDR3 RAM
+> > - 8GB eMMC
+> > - microSD slot
+> > - 10/100/1000M Ethernet x 1
+> > - 10/100 Ethernet x 1
+> > - Wifi 802.11b/g/n
+> > - Bluetooth 4.0
+> > - Serial Debug Port
+> > - 5V 2A DC power-supply
+> >
+> > Signed-off-by: Yu-Tung Chang <mtwget@gmail.com>
+> > ---
+> >  .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+> >  arch/arm/boot/dts/Makefile                    |   1 +
+> >  arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts      | 169 ++++++++++++++++++
+> >  3 files changed, 175 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documen=
+tation/devicetree/bindings/arm/sunxi.yaml
+> > index 0f23133672a3..54a1aaee7e22 100644
+> > --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
+> > @@ -251,6 +251,11 @@ properties:
+> >            - const: friendlyarm,nanopi-neo-plus2
+> >            - const: allwinner,sun50i-h5
+> >
+> > +      - description: FriendlyARM NanoPi R1
+> > +        items:
+> > +          - const: friendlyarm,nanopi-r1
+> > +          - const: allwinner,sun8i-h3
+> > +
+> >        - description: FriendlyARM ZeroPi
+> >          items:
+> >            - const: friendlyarm,zeropi
+> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > index 4f0adfead547..aabaf67f86ed 100644
+> > --- a/arch/arm/boot/dts/Makefile
+> > +++ b/arch/arm/boot/dts/Makefile
+> > @@ -1192,6 +1192,7 @@ dtb-$(CONFIG_MACH_SUN8I) +=3D \
+> >       sun8i-h3-nanopi-m1-plus.dtb \
+> >       sun8i-h3-nanopi-neo.dtb \
+> >       sun8i-h3-nanopi-neo-air.dtb \
+> > +     sun8i-h3-nanopi-r1.dtb \
+> >       sun8i-h3-orangepi-2.dtb \
+> >       sun8i-h3-orangepi-lite.dtb \
+> >       sun8i-h3-orangepi-one.dtb \
+> > diff --git a/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts b/arch/arm/boot/d=
+ts/sun8i-h3-nanopi-r1.dts
+> > new file mode 100644
+> > index 000000000000..204a39f93f4e
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/sun8i-h3-nanopi-r1.dts
+> > @@ -0,0 +1,169 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +/*
+> > + * Copyright (C) 2019 Igor Pecovnik <igor@armbian.com>
+> > + * Copyright (C) 2020 Jayantajit Gogoi <jayanta.gogoi525@gmail.com>
+> > + * Copyright (C) 2020 Yu-Tung Chang <mtwget@gmail.com>
+> > +*/
+> > +
+> > +#include "sun8i-h3-nanopi.dtsi"
+> > +#include <dt-bindings/leds/common.h>
+> > +
+> > +/ {
+> > +     model =3D "FriendlyARM NanoPi R1";
+> > +     compatible =3D "friendlyarm,nanopi-r1", "allwinner,sun8i-h3";
+> > +
+> > +     aliases {
+> > +             serial1 =3D &uart1;
+> > +             ethernet0 =3D &emac;
+> > +             ethernet1 =3D &wifi;
+> > +     };
+> > +
+> > +     reg_gmac_3v3: gmac-3v3 {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "gmac-3v3";
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +             startup-delay-us =3D <100000>;
+> > +             enable-active-high;
+> > +             gpio =3D <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
+> > +     };
+> > +
+> > +     reg_vdd_cpux: gpio-regulator {
+> > +             compatible =3D "regulator-gpio";
+> > +             regulator-name =3D "vdd-cpux";
+> > +             regulator-type =3D "voltage";
+> > +             regulator-boot-on;
+> > +             regulator-always-on;
+> > +             regulator-min-microvolt =3D <1100000>;
+> > +             regulator-max-microvolt =3D <1300000>;
+> > +             regulator-ramp-delay =3D <50>;
+> > +             gpios =3D <&r_pio 0 6 GPIO_ACTIVE_HIGH>; /* PL6 */
+> > +             gpios-states =3D <0x1>;
+> > +             states =3D <1100000 0x0
+> > +                       1300000 0x1>;
+> > +     };
+> > +
+> > +     wifi_pwrseq: wifi_pwrseq {
+> > +             compatible =3D "mmc-pwrseq-simple";
+> > +             reset-gpios =3D <&r_pio 0 7 GPIO_ACTIVE_LOW>; /* PL7 */
+> > +             clocks =3D <&rtc 1>;
+> > +             clock-names =3D "ext_clock";
+> > +     };
+> > +
+> > +     leds {
+> > +             led-2 {
+> > +                     function =3D LED_FUNCTION_WAN;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 *=
+/
+> > +             };
+> > +
+> > +             led-3 {
+> > +                     function =3D LED_FUNCTION_LAN;
+> > +                     color =3D <LED_COLOR_ID_GREEN>;
+> > +                     gpios =3D <&pio 0 9 GPIO_ACTIVE_HIGH>; /* PA9 */
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&cpu0 {
+> > +     cpu-supply =3D <&reg_vdd_cpux>;
+> > +};
+> > +
+> > +&ehci1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&ehci2 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&emac {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&emac_rgmii_pins>;
+> > +     phy-supply =3D <&reg_gmac_3v3>;
+> > +     phy-handle =3D <&ext_rgmii_phy>;
+> > +     phy-mode =3D "rgmii-id";
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&external_mdio {
+> > +     ext_rgmii_phy: ethernet-phy@7 {
+> > +             compatible =3D "ethernet-phy-ieee802.3-c22";
+> > +             reg =3D <7>;
+> > +     };
+> > +};
+> > +
+> > +&mmc1 {
+> > +     vmmc-supply =3D <&reg_vcc3v3>;
+> > +     vqmmc-supply =3D <&reg_vcc3v3>;
+> > +     mmc-pwrseq =3D <&wifi_pwrseq>;
+> > +     bus-width =3D <4>;
+> > +     non-removable;
+> > +     status =3D "okay";
+> > +
+> > +     wifi: wifi@1 {
+> > +             reg =3D <1>;
+> > +             compatible =3D "brcm,bcm4329-fmac";
+> > +             interrupt-parent =3D <&pio>;
+> > +             interrupts =3D <6 10 IRQ_TYPE_LEVEL_LOW>; /* PG10 / EINT1=
+0 */
+> > +             interrupt-names =3D "host-wake";
+> > +     };
+> > +};
+> > +
+> > +&mmc2 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&mmc2_8bit_pins>;
+> > +     vmmc-supply =3D <&reg_vcc3v3>;
+> > +     vqmmc-supply =3D <&reg_vcc3v3>;
+> > +     bus-width =3D <8>;
+> > +     non-removable;
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&ohci1 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&ohci2 {
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&reg_usb0_vbus {
+> > +     gpio =3D <&r_pio 0 2 GPIO_ACTIVE_HIGH>; /* PL2 */
+> > +     status =3D "okay";
+> > +};
+> > +
+> > +&uart1 {
+> > +     pinctrl-names =3D "default";
+> > +     pinctrl-0 =3D <&uart1_pins>;
+>
+> This should be already set in the DTSI
+>
+> > +     status =3D "okay";
+> > +};
+>
+> What is this UART used for?
+>
+> Thanks!
+> Maxime
