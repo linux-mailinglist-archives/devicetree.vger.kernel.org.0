@@ -2,57 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E146C2A60FA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 10:55:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 202BC2A6168
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 11:21:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728889AbgKDJzx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 04:55:53 -0500
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:58065 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728607AbgKDJzx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 04:55:53 -0500
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 759701BF203;
-        Wed,  4 Nov 2020 09:55:49 +0000 (UTC)
-Date:   Wed, 4 Nov 2020 10:55:48 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
-        nicolas.ferre@microchip.com, ludovic.desroches@microchip.com,
-        robh+dt@kernel.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 7/8] clk: at91: clk-master: re-factor master clock
-Message-ID: <20201104095548.GU7761@piout.net>
-References: <1604482802-1647-1-git-send-email-claudiu.beznea@microchip.com>
- <1604482802-1647-8-git-send-email-claudiu.beznea@microchip.com>
+        id S1728902AbgKDKVd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 05:21:33 -0500
+Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:34522 "EHLO
+        wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726323AbgKDKVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 05:21:31 -0500
+X-Greylist: delayed 1861 seconds by postgrey-1.27 at vger.kernel.org; Wed, 04 Nov 2020 05:21:30 EST
+Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
+        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        id 1kaFQw-0000rn-Se; Wed, 04 Nov 2020 10:50:26 +0100
+X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
+        linuxbbg.five-lan.de
+Received: from roc (p5098d998.dip0.t-ipconnect.de [80.152.217.152])
+        (authenticated bits=0)
+        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id 0A49oPc5008113
+        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
+        Wed, 4 Nov 2020 10:50:25 +0100
+From:   Markus Reichl <m.reichl@fivetechno.de>
+To:     linux-rockchip@lists.infradead.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Markus Reichl <m.reichl@fivetechno.de>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: dts: rockchip: Assign a fixed index to mmc devices on rk3399-roc-pc boards.
+Date:   Wed,  4 Nov 2020 10:49:45 +0100
+Message-Id: <20201104094950.2096-1-m.reichl@fivetechno.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1604482802-1647-8-git-send-email-claudiu.beznea@microchip.com>
+Content-Transfer-Encoding: 8bit
+X-bounce-key: webpack.hosteurope.de;m.reichll@fivetechno.de;1604485291;64016ac6;
+X-HE-SMSGID: 1kaFQw-0000rn-Se
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Recently introduced async probe on mmc devices can shuffle block IDs.
+Pin them to fixed values to ease booting in evironments where UUIDs
+are not practical. Use newly introduced aliases for mmcblk devices from [1].
 
-On 04/11/2020 11:40:01+0200, Claudiu Beznea wrote:
-> diff --git a/drivers/clk/at91/at91sam9260.c b/drivers/clk/at91/at91sam9260.c
-> index bb81ff731ad8..38d0141bcd2d 100644
-> --- a/drivers/clk/at91/at91sam9260.c
-> +++ b/drivers/clk/at91/at91sam9260.c
-> @@ -32,6 +32,8 @@ struct at91sam926x_data {
->  	bool has_slck;
->  };
->  
-> +static DEFINE_SPINLOCK(at91rm9200_mck_lock);
+[1]
+https://patchwork.kernel.org/patch/11747669/
 
-I guess this one should have a different name.
+Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+---
+ arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+index e7a459fa4322..bc9482b59428 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+@@ -13,6 +13,11 @@ / {
+ 	model = "Firefly ROC-RK3399-PC Board";
+ 	compatible = "firefly,roc-rk3399-pc", "rockchip,rk3399";
+ 
++	aliases {
++		mmc0 = &sdmmc;
++		mmc1 = &sdhci;
++	};
++
+ 	chosen {
+ 		stdout-path = "serial2:1500000n8";
+ 	};
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.28.0
+
