@@ -2,98 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B59B92A6D42
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:56:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D892A6D4E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:59:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731902AbgKDS4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 13:56:55 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:38465 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728675AbgKDS4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:56:55 -0500
-Received: by mail-ot1-f67.google.com with SMTP id b2so20287233ots.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 10:56:53 -0800 (PST)
+        id S1730044AbgKDS6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 13:58:49 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:41098 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726626AbgKDS56 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:57:58 -0500
+Received: by mail-oi1-f196.google.com with SMTP id m13so14191581oih.8;
+        Wed, 04 Nov 2020 10:57:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=VFWuzwJSbzZgP3QJ9+E0rWgVzccQnC1YvFD5b/UokjA=;
-        b=J0XFuYr1GKVOd6VW/ukMJfC/oXr48hqigHE06W08cOi6riu7CFGPxGXrhyuUtvP3x4
-         aOzeODYvGZN7U4/p52f/x+eUNHXtH0kvk35RE4nGa4BP4zOQjLJ6w2zh5vPHaWnC8OAG
-         5WUF2hubffdK5sU/kpL9xxqqslCpBwBORIfRCBv4kcYTJWyEKj0+P0Vnor3vCPTyxfcV
-         CSHC+avU5UYwpHyO42A/QoeDXRgMwA9m7b0jxd+PZiSOaWp7tMGMmUpT5GAIEv9C4N+O
-         TSnX9M/ArNvSH732IQQdpNZUehmMRERIormmlc6aX/AjZ36oz8QivUdarYHWtn8HgPpD
-         Rwng==
-X-Gm-Message-State: AOAM531Xqx0bPYD4fOnD2Hy6pAW+koyQFvFrVLqmeAAVQ3GqiABKwe8y
-        Zl4stFaGjxo5d/Q4KOe6IQ==
-X-Google-Smtp-Source: ABdhPJws0729OuS+J73/HqFJI9wECuK1AqYDP1g32egUbxndlt30IEgUrdNjDMDR5RzcZc2UJAjHSQ==
-X-Received: by 2002:a05:6830:2ef:: with SMTP id r15mr5683837ote.261.1604516212970;
-        Wed, 04 Nov 2020 10:56:52 -0800 (PST)
+        bh=D5nJCWrjLgvJLOiVLXj8dcQZ+LEC4p94v1WKcqs0NR0=;
+        b=Hny0QiT8QBLN5t76pCJKjPKupGM/UB4dEUAiPeCOq1QsUMXq3c0Z7qmvXKM5Z8ogkt
+         OKgSWQbjqYkOmd3bKFVrPSpbp7/y5t6abKe9gARblxQ38ivGbaJAEZlZzJJQQiHmZXYL
+         72RnNS3dfbeuXOwqpdYI3b+2pAXE6PsRAF7Q6Fsdq/cHxoQUrj+ESF/pHjYJY1bs5djm
+         9qWm4E/M7D9ziwvo1bYytz9cZ9BS4hPCO/tS4UKAeNQqPty+ytSwCjiy64k7EQ2RiTb8
+         SCN1EjkjFgs76Cq4t8BZW8pqkRdUhQRsa+No8JB463qlhLDLwePksLTw78TT2GEvWJ/8
+         pKiQ==
+X-Gm-Message-State: AOAM53329037lbMVn8IDhbycwtR21S628WMRWpWzastP8b9u7MnHOTJX
+        8aAgfN07FI2yhEejUGSl/g==
+X-Google-Smtp-Source: ABdhPJyhqCu+Trf+max1jMJtRFh0rWYsf0hk0dBZaQe1VhWS5v4jYK/wm7wrL8WPai77xPv0eAqHVg==
+X-Received: by 2002:aca:c4c3:: with SMTP id u186mr3574115oif.4.1604516277206;
+        Wed, 04 Nov 2020 10:57:57 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y22sm735450ooa.2.2020.11.04.10.56.51
+        by smtp.gmail.com with ESMTPSA id 64sm660896otq.26.2020.11.04.10.57.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 10:56:52 -0800 (PST)
-Received: (nullmailer pid 3947080 invoked by uid 1000);
-        Wed, 04 Nov 2020 18:56:51 -0000
-Date:   Wed, 4 Nov 2020 12:56:51 -0600
+        Wed, 04 Nov 2020 10:57:56 -0800 (PST)
+Received: (nullmailer pid 3948698 invoked by uid 1000);
+        Wed, 04 Nov 2020 18:57:55 -0000
+Date:   Wed, 4 Nov 2020 12:57:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     p.zabel@pengutronix.de, linux-mediatek@lists.infradead.org,
-        shane.chien@mediatek.com, kuninori.morimoto.gx@renesas.com,
-        broonie@kernel.org, Trevor.Wu@mediatek.com,
-        Bicycle.Tsai@mediatek.com, tiwai@suse.com, tzungbi@google.com,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v4 7/9] dt-bindings: mediatek: mt8192: add audio afe
- document
-Message-ID: <20201104185651.GB3946406@bogus>
-References: <1604390378-23993-1-git-send-email-jiaxin.yu@mediatek.com>
- <1604390378-23993-8-git-send-email-jiaxin.yu@mediatek.com>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     lgirdwood@gmail.com, broonie@kernel.org, kernel@axis.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, support.opensource@diasemi.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add DA9121
+Message-ID: <20201104185755.GA3948381@bogus>
+References: <20201103100021.19603-1-vincent.whitchurch@axis.com>
+ <20201103100021.19603-2-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1604390378-23993-8-git-send-email-jiaxin.yu@mediatek.com>
+In-Reply-To: <20201103100021.19603-2-vincent.whitchurch@axis.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Nov 2020 15:59:36 +0800, Jiaxin Yu wrote:
-> This patch adds mt8192 audio afe document.
+On Tue, 03 Nov 2020 11:00:20 +0100, Vincent Whitchurch wrote:
+> Add bindings for the Dialog Semiconductor DA9121 voltage regulator.
 > 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
 > ---
-> This patch depends on following series that has not been accepted:
-> https://patchwork.kernel.org/cover/11752231
-> (dt-bindings/clock/mt8192-clk.h is included in it.)
-> https://patchwork.kernel.org/patch/11755895
-> (dt-bindings/power/mt8192-power.h is included in it.)
-> https://lore.kernel.org/patchwork/patch/1321118
-> (dt-bindings/reset-controller/mt8192-resets.h is included in it.)
-> 
->  .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ++++++++++++++++++
->  1 file changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+>  .../bindings/regulator/dlg,da9121.yaml        | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
-./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:15:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
 
 dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dts:19:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
-   19 |         #include <dt-bindings/clock/mt8192-clk.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1364: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1392703
+See https://patchwork.ozlabs.org/patch/1392753
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
