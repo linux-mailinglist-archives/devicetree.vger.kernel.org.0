@@ -2,104 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 325202A637B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 12:40:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DF22A637D
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 12:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729250AbgKDLj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 06:39:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726344AbgKDLjy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 06:39:54 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B015DC0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 03:39:53 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1kaH8m-0000Lv-6f; Wed, 04 Nov 2020 12:39:48 +0100
-Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1kaH8j-0003vV-LI; Wed, 04 Nov 2020 12:39:45 +0100
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kernel@pengutronix.de, Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: arm: stm32: lxa,stm32mp157c-mc1: add extra SiP compatible
-Date:   Wed,  4 Nov 2020 12:39:31 +0100
-Message-Id: <20201104113932.30702-1-a.fatoum@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
+        id S1729429AbgKDLk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 06:40:26 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59720 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728508AbgKDLkR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 06:40:17 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A4Be8gU113375;
+        Wed, 4 Nov 2020 05:40:08 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604490008;
+        bh=u+EmaCcZGZfOS7Kpjqe/4peuPvaBmXgfP0TZ1evlUoE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Req7LZhdNEp43QOcjZYef0Yu+acx212Z+Kn45iVwidd+0MzCYWYLM6+dM+Ui92/hk
+         24RJTiIs55B7EsvgzfNFvaOozfFteTXraupY4mQD4o/X/6PtP5ZMq7K4ahaIzd33oL
+         p9GQQL0flYKhR9ZjCMF1vW8LCoY5XSxqI51ey+iI=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A4Be8JW085269
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 4 Nov 2020 05:40:08 -0600
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 4 Nov
+ 2020 05:40:08 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 4 Nov 2020 05:40:08 -0600
+Received: from [10.24.69.20] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A4Be5sV097994;
+        Wed, 4 Nov 2020 05:40:06 -0600
+Subject: Re: [PATCH 0/3] Add gpio support for TI's J7200 platform
+To:     Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <nm@ti.com>, <t-kristo@ti.com>, <robh+dt@kernel.org>
+References: <20201102191120.20380-1-faiz_abbas@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <f6f7c9ee-46b6-e2f5-0762-0a264a3bb2e9@ti.com>
+Date:   Wed, 4 Nov 2020 17:10:04 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: afa@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201102191120.20380-1-faiz_abbas@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Linux Automation MC-1 is built around a SIP with CPU, RAM, PMIC,
-Oscillator and EEPROM. Add a further compatible identifying the SiP,
-so boot firmware can match against it to apply fixups if necessary.
 
-To avoid intermittent dtbs_check breakage in the sole upstream device
-tree that uses that SiP, patch it here as well.
 
-Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
----
-I know that bindings and device tree patches should be separate. Does
-this apply here as well? Should I split the dts change into a follow-up
-commit? Is it ok that dtbs_check will report an intermittent breakage?
----
- Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++++-
- arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts              | 2 +-
- 2 files changed, 8 insertions(+), 2 deletions(-)
+On 03/11/20 12:41 am, Faiz Abbas wrote:
+> The following patches add gpio support for TI's J7200 platform.
+> 
+> These patches were posted as a part of an older series but have now
+> been split into three parts. The 3 parts add configs, gpios and MMC/SD
+> related dts patches respectively.
 
-diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-index 009b424e456e..9127094f0208 100644
---- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-+++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-@@ -40,7 +40,6 @@ properties:
-       - items:
-           - enum:
-               - arrow,stm32mp157a-avenger96 # Avenger96
--              - lxa,stm32mp157c-mc1
-               - shiratech,stm32mp157a-iot-box # IoT Box
-               - shiratech,stm32mp157a-stinger96 # Stinger96
-               - st,stm32mp157c-ed1
-@@ -52,6 +51,13 @@ properties:
-           - const: st,stm32mp157c-ev1
-           - const: st,stm32mp157c-ed1
-           - const: st,stm32mp157
-+      - description: Octavo OSD32MP15x System-in-Package based boards
-+        items:
-+          - enum:
-+              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
-+          - const: oct,stm32mp15xx-osd32
-+          - enum:
-+              - st,stm32mp157
-       - description: Odyssey STM32MP1 SoM based Boards
-         items:
-           - enum:
-diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-index 1e5333fd437f..cda8e871f999 100644
---- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-@@ -15,7 +15,7 @@
- 
- / {
- 	model = "Linux Automation MC-1 board";
--	compatible = "lxa,stm32mp157c-mc1", "st,stm32mp157";
-+	compatible = "lxa,stm32mp157c-mc1", "oct,stm32mp15xx-osd32", "st,stm32mp157";
- 
- 	aliases {
- 		ethernet0 = &ethernet0;
--- 
-2.28.0
+Series looks good to me.
 
+Reviewed-by: Lokesh Vutla <lokeshvutla@ti.com>
+
+Thanks and regards,
+Lokesh
