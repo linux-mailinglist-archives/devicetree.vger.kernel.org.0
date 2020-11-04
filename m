@@ -2,96 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 718AB2A6DB3
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A72632A6DCF
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:28:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731503AbgKDTP5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 14:15:57 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45408 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726564AbgKDTP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:15:57 -0500
-Received: by mail-ot1-f67.google.com with SMTP id k3so8488354otp.12;
-        Wed, 04 Nov 2020 11:15:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=xUeu7OjzCkWfl0q9Q0C25b2gAmYnfpfRf6sdmrxWckA=;
-        b=rRM4TTTc4LvENo1QxdeVaqhJBEYUiMMzLaGf/8Ex7eFnhAr1o8Vndeqetms8/n8UQn
-         8NO806T8W0IvwzeEQTMO1uO3z1E71vDcFtxZGJFrAiyLz3WxD+3KCwZiToQwLDLc/V4q
-         0/rVXl02ls7xivvjx9102Bhl2G3XW98WpxUnDLYJWvQeAD66AAqZyq5u0z6L6Ruhi39i
-         UhPGR6vVpkdG79F5C4oZiuSKXYJxwZnLosVUzwF4LGGLZSKS9zAnNjX+OsTAAe+AFiRE
-         8qSHAtakSgfzmYoZrphQ0SvvkcJWaczwEjtaXqjBQugFeEfoT0ZdYxvfRn8maAibphWe
-         znUQ==
-X-Gm-Message-State: AOAM532ovnEl3SOShAV1uAZImHcpsoDCC93Ruw36Vdi0NEB/7vwOR5MB
-        JvrMXBqx9sbAeaqQJZz9Fw==
-X-Google-Smtp-Source: ABdhPJwyVB6Vxpun9Hwox5/cSocl9xkTao6ENUk5Rm2F/NY+qCi/4EYMETnsGog5AJNAArHDE5FN3w==
-X-Received: by 2002:a9d:2283:: with SMTP id y3mr18865146ota.164.1604517355878;
-        Wed, 04 Nov 2020 11:15:55 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x21sm660177otk.39.2020.11.04.11.15.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 11:15:55 -0800 (PST)
-Received: (nullmailer pid 3972960 invoked by uid 1000);
-        Wed, 04 Nov 2020 19:15:54 -0000
-Date:   Wed, 4 Nov 2020 13:15:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jerome Pouiller <Jerome.Pouiller@silabs.com>
-Cc:     Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        linux-mmc@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org,
-        "David S . Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v3 02/24] dt-bindings: introduce silabs,wfx.yaml
-Message-ID: <20201104191554.GA3972736@bogus>
-References: <20201104155207.128076-1-Jerome.Pouiller@silabs.com>
- <20201104155207.128076-3-Jerome.Pouiller@silabs.com>
+        id S1726626AbgKDT2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 14:28:25 -0500
+Received: from pb-smtp2.pobox.com ([64.147.108.71]:61068 "EHLO
+        pb-smtp2.pobox.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725889AbgKDT2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:28:25 -0500
+Received: from pb-smtp2.pobox.com (unknown [127.0.0.1])
+        by pb-smtp2.pobox.com (Postfix) with ESMTP id 18CB9A2DAA;
+        Wed,  4 Nov 2020 14:28:24 -0500 (EST)
+        (envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=pobox.com; h=date:from:to
+        :cc:subject:in-reply-to:message-id:references:mime-version
+        :content-type; s=sasl; bh=G+dk0mBlfkCULTNUZaRBFLqVdz4=; b=ZZ4iPS
+        oIWsAm4utT8EGv4vgwBE0vIBH8xTWR11q/DF9j3WKgfzyGFjQc9gh8QIB2BjRJni
+        BkFhrX+nQY4dWfLmuPJ8HpQTSrPgdeAEwCz3AKJj27JWI3q8bV1IYywOoaO6jSbC
+        62ai295OBkwY7X6BkNjC59+NQD5LLUtatEUvs=
+Received: from pb-smtp2.nyi.icgroup.com (unknown [127.0.0.1])
+        by pb-smtp2.pobox.com (Postfix) with ESMTP id 0D041A2DA9;
+        Wed,  4 Nov 2020 14:28:24 -0500 (EST)
+        (envelope-from nico@fluxnic.net)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=fluxnic.net;
+ h=date:from:to:cc:subject:in-reply-to:message-id:references:mime-version:content-type; s=2016-12.pbsmtp; bh=TNrDFyivsmri7uxFpYE9s+Jf/mb+dymkKvwe4ozyex0=; b=o+YUSEP9eVgNrVApMFASY1LNtDsROLdOnNB/PwKAboWUVwa1XVIuMwTMsMKxQaHfP47kCMrIiUXuhRQgs9VGs7oYRiVaEV3bUVIznAIN/xk3itfSmuQJfEZSQh16vubYjHLPGicB3YvhiaJtvc8fdat3DNqeJd/NhlMY5jgoTAs=
+Received: from yoda.home (unknown [24.203.50.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by pb-smtp2.pobox.com (Postfix) with ESMTPSA id 66D10A2DA8;
+        Wed,  4 Nov 2020 14:28:23 -0500 (EST)
+        (envelope-from nico@fluxnic.net)
+Received: from xanadu.home (xanadu.home [192.168.2.2])
+        by yoda.home (Postfix) with ESMTPSA id 4B1AE2DA0AC8;
+        Wed,  4 Nov 2020 14:28:22 -0500 (EST)
+Date:   Wed, 4 Nov 2020 14:28:22 -0500 (EST)
+From:   Nicolas Pitre <nico@fluxnic.net>
+To:     Rob Herring <robh@kernel.org>
+cc:     Boris Brezillon <boris.brezillon@collabora.com>,
+        linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Laura Nixon <laura.nixon@team.mipi.org>,
+        Robert Gough <robert.gough@intel.com>,
+        Matthew Schnoor <matthew.schnoor@intel.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: MIPI I3C Host Controller
+ Interface
+In-Reply-To: <20201104183459.GA3917393@bogus>
+Message-ID: <nycvar.YSQ.7.78.906.2011041420420.2184@knanqh.ubzr>
+References: <20201102222220.1785859-1-nico@fluxnic.net> <20201102222220.1785859-2-nico@fluxnic.net> <20201104183459.GA3917393@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201104155207.128076-3-Jerome.Pouiller@silabs.com>
+Content-Type: text/plain; charset=US-ASCII
+X-Pobox-Relay-ID: E76BBFC2-1ED3-11EB-BEA4-74DE23BA3BAF-78420484!pb-smtp2.pobox.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Nov 2020 16:51:45 +0100, Jerome Pouiller wrote:
-> From: Jérôme Pouiller <jerome.pouiller@silabs.com>
+On Wed, 4 Nov 2020, Rob Herring wrote:
+
+> On Mon, Nov 02, 2020 at 05:22:19PM -0500, Nicolas Pitre wrote:
+> > From: Nicolas Pitre <npitre@baylibre.com>
+> > 
+> > The MIPI I3C HCI (Host Controller Interface) specification defines
+> > a common software driver interface to support compliant MIPI I3C
+> > host controller hardware implementations from multiple vendors.
+> > 
+> > All that is needed is an I/O area and an interrupt signal;. The hardware
+> > is self-advertising wrt its implementor and implemented capabilities so
+> > there is currently no details that the driver can't figure out on its own.
+> > 
+> > Signed-off-by: Nicolas Pitre <npitre@baylibre.com>
+> > ---
+> >  .../devicetree/bindings/i3c/mipi-i3c-hci.yaml | 45 +++++++++++++++++++
+> >  1 file changed, 45 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml
 > 
-> Signed-off-by: Jérôme Pouiller <jerome.pouiller@silabs.com>
-> ---
->  .../bindings/net/wireless/silabs,wfx.yaml     | 131 ++++++++++++++++++
->  1 file changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+> With additionalProperties added,
 > 
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
+Thanks. Fixed patch below.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+----- >8
+From: Nicolas Pitre <npitre@baylibre.com>
+Subject: [PATCH] dt-bindings: i3c: MIPI I3C Host Controller Interface
 
-yamllint warnings/errors:
+The MIPI I3C HCI (Host Controller Interface) specification defines
+a common software driver interface to support compliant MIPI I3C
+host controller hardware implementations from multiple vendors.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/net/wireless/silabs,wfx.yaml
+All that is needed is an I/O area and an interrupt signal;. The hardware
+is self-advertising wrt its implementor and implemented capabilities so
+there is currently no details that the driver can't figure out on its own.
 
+Signed-off-by: Nicolas Pitre <npitre@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-See https://patchwork.ozlabs.org/patch/1394182
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+diff --git a/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml b/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml
+new file mode 100644
+index 0000000000..07a7b10163
+--- /dev/null
++++ b/Documentation/devicetree/bindings/i3c/mipi-i3c-hci.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/i3c/mipi-i3c-hci.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: MIPI I3C HCI Device Tree Bindings
++
++maintainers:
++  - Nicolas Pitre <npitre@baylibre.com>
++
++description: |
++  MIPI I3C Host Controller Interface
++
++  The MIPI I3C HCI (Host Controller Interface) specification defines
++  a common software driver interface to support compliant MIPI I3C
++  host controller hardware implementations from multiple vendors.
++
++  The hardware is self-advertising for differences in implementation
++  capabilities, including the spec version it is based on, so there
++  isn't much to describe here (yet).
++
++  For details, please see:
++  https://www.mipi.org/specifications/i3c-hci
++
++properties:
++  compatible:
++    const: mipi-i3c-hci
++  reg:
++    maxItems: 1
++  interrupts:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    i3c@a0000000 {
++      compatible = "mipi-i3c-hci";
++      reg = <0xa0000000 0x2000>;
++      interrupts = <89>;
++    };
