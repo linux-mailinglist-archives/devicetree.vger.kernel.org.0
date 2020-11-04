@@ -2,71 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 162C02A628A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 11:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F49C2A626A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 11:44:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726344AbgKDKvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 05:51:42 -0500
-Received: from wp126.webpack.hosteurope.de ([80.237.132.133]:50410 "EHLO
-        wp126.webpack.hosteurope.de" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728066AbgKDKvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 05:51:42 -0500
-Received: from [2003:a:659:3f00:1e6f:65ff:fe31:d1d5] (helo=hermes.fivetechno.de); authenticated
-        by wp126.webpack.hosteurope.de running ExIM with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        id 1kaFjc-0007qg-O5; Wed, 04 Nov 2020 11:09:44 +0100
-X-Virus-Scanned: by amavisd-new 2.11.1 using newest ClamAV at
-        linuxbbg.five-lan.de
-Received: from odroid.fritz.box (HOSTNAME.fritz.box [192.168.34.133])
-        (authenticated bits=0)
-        by hermes.fivetechno.de (8.15.2/8.14.5/SuSE Linux 0.8) with ESMTPSA id 0A4A9hja008724
-        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO);
-        Wed, 4 Nov 2020 11:09:44 +0100
-From:   Markus Reichl <m.reichl@fivetechno.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Markus Reichl <m.reichl@fivetechno.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: exynos: Assign a fixed index to mmc devices on ODROID XU3/4 boards
-Date:   Wed,  4 Nov 2020 11:08:53 +0100
-Message-Id: <20201104100855.2337-1-m.reichl@fivetechno.de>
-X-Mailer: git-send-email 2.20.1
+        id S1729515AbgKDKnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 05:43:55 -0500
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:50406 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729036AbgKDKnz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 05:43:55 -0500
+Received: from relay12.mail.gandi.net (unknown [217.70.178.232])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 1811F3AC26A;
+        Wed,  4 Nov 2020 10:33:59 +0000 (UTC)
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 2ADE5200009;
+        Wed,  4 Nov 2020 10:33:32 +0000 (UTC)
+Date:   Wed, 4 Nov 2020 11:33:32 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
+Subject: Re: [PATCH 11/14] dt-bindings: media: i2c: Add A83T MIPI CSI-2
+ bindings documentation
+Message-ID: <20201104103332.GB285779@aptenodytes>
+References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
+ <20201023174546.504028-12-paul.kocialkowski@bootlin.com>
+ <20201026165653.7tzo2hlagee633ra@gilmour.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-bounce-key: webpack.hosteurope.de;m.reichl@fivetechno.de;1604487101;30f1027a;
-X-HE-SMSGID: 1kaFjc-0007qg-O5
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yNb1oOkm5a9FJOVX"
+Content-Disposition: inline
+In-Reply-To: <20201026165653.7tzo2hlagee633ra@gilmour.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Recently introduced async probe on mmc devices can shuffle block IDs.
-Pin them to fixed values to ease booting in evironments where UUIDs
-are not practical. Use newly introduced aliases for mmcblk devices from [1].
 
-[1]
-https://patchwork.kernel.org/patch/11747669/
+--yNb1oOkm5a9FJOVX
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
----
- arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+Hi,
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-index e35af40a55cb..91d2840ac8ca 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-common.dtsi
-@@ -13,6 +13,11 @@
- #include "exynos5422-odroid-core.dtsi"
- 
- / {
-+	aliases {
-+		mmc0 = &mmc_2;
-+		mmc1 = &mmc_0;
-+	};
-+
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
--- 
-2.20.1
+On Mon 26 Oct 20, 17:56, Maxime Ripard wrote:
+> On Fri, Oct 23, 2020 at 07:45:43PM +0200, Paul Kocialkowski wrote:
+> > This introduces YAML bindings documentation for the A83T MIPI CSI-2
+> > controller.
+> >=20
+> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+>=20
+> What is the difference with the a31/v3s one?
 
+It's a different controller, not a variation of the A31 one.
+I'll rework the commit log to make this clearer.
+
+> > ---
+> >  .../media/allwinner,sun8i-a83t-mipi-csi2.yaml | 158 ++++++++++++++++++
+> >  1 file changed, 158 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,s=
+un8i-a83t-mipi-csi2.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun8i-a8=
+3t-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun8i=
+-a83t-mipi-csi2.yaml
+> > new file mode 100644
+> > index 000000000000..2384ae4e7be0
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi=
+-csi2.yaml
+> > @@ -0,0 +1,158 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/allwinner,sun8i-a83t-mipi-csi=
+2.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Allwinner A83T MIPI CSI-2 Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: allwinner,sun8i-a83t-mipi-csi2
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Bus Clock
+> > +      - description: Module Clock
+> > +      - description: MIPI-specific Clock
+> > +      - description: Misc CSI Clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: bus
+> > +      - const: mod
+> > +      - const: mipi
+> > +      - const: misc
+>=20
+> If it's only due to the clock, it's soemething you can deal with in the
+> first schema, there's no need to duplicate them.
+
+It's a completely different controller so I don't think it makes sense to
+have a single schema for both. Even if the bindings look similar.
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--yNb1oOkm5a9FJOVX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl+ig3wACgkQ3cLmz3+f
+v9EOVAf/e4pm05QGgcVnZzLG/lyNaEDWIuSgd/OGrAGoivwtqRFyR9doN4gDBPyT
+WzqyQLUwoqabROn4uo4gDKYeVTBzurmP72wUpi56AZHwMF0GJJxBlnhPRVn+/+yA
+1ivxytdXcDsCl7I4fnU5fgLBtlSAfxKLHpXiRGvUienru9cmtfaTWI4xAZdywRAu
+ZHujRyp3UKa+4vLNsHfp3NTxowZPkXyvKQUkbl78EKyyT5q8fQdx8lnkkpoDdHlG
+0BVa4uZLd5AREHoaRkBXyRjY1BFeurVis820lxAF6ZtX3xk91nc+ZAMGVKtPdjTr
+kFZDDwiEdhWUut3CgCmxe2s656rOOA==
+=ZtOi
+-----END PGP SIGNATURE-----
+
+--yNb1oOkm5a9FJOVX--
