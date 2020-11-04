@@ -2,248 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B8B92A67AD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:30:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F27382A67F2
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:42:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730424AbgKDPao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 10:30:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55332 "EHLO
+        id S1730811AbgKDPmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 10:42:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730001AbgKDPao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:30:44 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645B9C0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:30:42 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id a7so27643065lfk.9
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:30:42 -0800 (PST)
+        with ESMTP id S1730810AbgKDPmR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:42:17 -0500
+Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C520CC0613D4
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:42:16 -0800 (PST)
+Received: by mail-vk1-xa42.google.com with SMTP id m184so2239193vkb.9
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:42:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=yRASjRKxtplopJt2MsU1Jw8BgtmuvKdoRaCX+NVYm3Q=;
-        b=q4ZJAOCqlJKBmGhQnreQ8Zb8K3jzZs0mfQJ2yqw+tBw7LbIlue4ATYMP59/eTQSvXU
-         IZPbK7je3rzunmuSe68rLjQ1y4S5hP3DxF9t1UOLgTH3qBp3HN0UWmnJAAsTnnttNY/R
-         t4LT9+5mEPsK9kJpu4iksE8z2oe41ZO3/LY3N87YLsWYeq3sKa5CwpOjtR9Olvob3kss
-         uowK4ZfjG9eRIUdm/J1WuVq5kml79TdeYBAbbKW9LrlmfroS8Ka7hHUe5WnuWzCddA1m
-         TMtzrXLMGd3ro/MGjAJ771RK02x33cjmMAo8ILH/lQ+LbRvpWA7PXERGPU9+4yKLJb2l
-         TqSA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=/FtdeSUhs74nhRFArqfFNBt0MhUao+F2IwHVVHi0aS0=;
+        b=R2E/Db42MGI+YnyGlaOGsgu2dpWlTR02Cg/FLj+Kp3JW23/91+RSpJo6HIb2Vd2OxD
+         UhNWS7AO+DC76rP5D8KfB+CIk1uhYDJJ6pcTAwzO6R7MNOTDwKRNW11SbspmVk4xCsEn
+         47OyYvCfBw3qGLbqq+IDebwZRM8ydfmrcxmdE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yRASjRKxtplopJt2MsU1Jw8BgtmuvKdoRaCX+NVYm3Q=;
-        b=Cn3qfX44ucg8tC/zZlkjoAP5FRrqP6Kh4rxh6+NI7V81fzGcu7xfHz7rJYxsvyJyqE
-         o715040WAUnZfKU4EbmXJvzD6sdFnITTAwKWl1gUnW/Ed1Xq0Lr6WtnCPJ0faKCxnyhJ
-         bBlLuvpE9sjLTGIhshp1EQ9UdEdq64YgEQAThma5YFyI1+6jlLpS9waYbgDAIhx4MCiS
-         R3mldqp4zHWxYZqtNqNwrvfEtyHqJHoPAOtT4dg7t+Ct9CBrFdG0sEtGs4p8hPvN9bQZ
-         /WAzNQ3qG/LutdmBu7WkYcbhKTV0ECgeIE3CQ4hYSoJPmWxCTK40O9G8svHbvI0ONfF1
-         LCbg==
-X-Gm-Message-State: AOAM531Ca7N32bK5dqCotifNZCQKSX3vzWmF+eGW0wtg7YbWct6SiKXW
-        GG6O/2NT6c6UhEMY3wJyC/Ysfw==
-X-Google-Smtp-Source: ABdhPJwWQDsL0nXkNgeMZUogdSYafFiiuG6oByvxrPGnXX6eGh7JZVn6u8AeKhsFNyOcYWJM2yXMHw==
-X-Received: by 2002:a19:7518:: with SMTP id y24mr7062984lfe.133.1604503840859;
-        Wed, 04 Nov 2020 07:30:40 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id c131sm440453lfg.110.2020.11.04.07.30.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 07:30:40 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Nick Dyer <nick@shmanahar.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/3 v2] Input: atmel_mxt_ts - Convert bindings to YAML and extend
-Date:   Wed,  4 Nov 2020 16:30:31 +0100
-Message-Id: <20201104153032.1387747-2-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201104153032.1387747-1-linus.walleij@linaro.org>
-References: <20201104153032.1387747-1-linus.walleij@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/FtdeSUhs74nhRFArqfFNBt0MhUao+F2IwHVVHi0aS0=;
+        b=Oyo67ptAq/bTKQfZ7OpQE3mBIHqmVYZf1WDXD4ApDWQ1MoOJdb5UcTNWxnjA0ntz1S
+         Kwp/miCxQ7Kh6aRzM6hWDYz3WCPLfroVU8Hf5pftFL5ybIQfS5smxoJRdjzOZEue0qAT
+         ObCisjL1XpBmwNsXh5SxI1JL/c9W/dsABFzeg7MLM8oYCBsOYd/Wso6AiTe8eDSm3qu3
+         80A/8WxU6uHvGbsLVIo/igVFCnotfL5l9he8kW9/0oAUtrLlgphRBbmVly8Co8NlgRqS
+         Qhi4ETICsvABSeEHil4fUubK4hMiCErHja8dcQ5OAP+ADNkCpJmPDCtA4fEXLkF2nzlg
+         d0wg==
+X-Gm-Message-State: AOAM533kjJ/OvxL/06w/ew6U1Vm8NhwSDTm6QP+xzeGDqky6XOs60aBV
+        dJzv8o7/gjl2MUSaRA8eHvcPJnqnTotc3A==
+X-Google-Smtp-Source: ABdhPJxvyODqV0XsLCcOqRTikvj8XnLCjHDgG3eT7HiYY8Ol3xcRkn8kiG5XFauNYcJqHUg35qqK2g==
+X-Received: by 2002:a1f:9f05:: with SMTP id i5mr20511843vke.12.1604504535193;
+        Wed, 04 Nov 2020 07:42:15 -0800 (PST)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id g132sm20152vkg.11.2020.11.04.07.42.14
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Nov 2020 07:42:14 -0800 (PST)
+Received: by mail-vs1-f47.google.com with SMTP id z123so6989942vsb.0
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:42:14 -0800 (PST)
+X-Received: by 2002:a67:ef98:: with SMTP id r24mr8004994vsp.37.1604504533670;
+ Wed, 04 Nov 2020 07:42:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201104094950.2096-1-m.reichl@fivetechno.de> <4984701.vSXMUKeAfh@diego>
+In-Reply-To: <4984701.vSXMUKeAfh@diego>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 4 Nov 2020 07:42:01 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=V2Vv0bv-exiZ6VrOtfMM5TVpjATO04qaXeGWDRu+6vyw@mail.gmail.com>
+Message-ID: <CAD=FV=V2Vv0bv-exiZ6VrOtfMM5TVpjATO04qaXeGWDRu+6vyw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Assign a fixed index to mmc devices
+ on rk3399-roc-pc boards.
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        Rob Herring <robh@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This converts the Armel MXT touchscreen bindings to YAML
-format and extends them with the following two properties:
+Hi,
 
-- vdda-supply: the optional analog supply voltage
-- vdd-supply: the optional digital supply voltage
+On Wed, Nov 4, 2020 at 2:51 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Hi Markus,
+>
+> Am Mittwoch, 4. November 2020, 10:49:45 CET schrieb Markus Reichl:
+> > Recently introduced async probe on mmc devices can shuffle block IDs.
+> > Pin them to fixed values to ease booting in evironments where UUIDs
+> > are not practical. Use newly introduced aliases for mmcblk devices from=
+ [1].
+> >
+> > [1]
+> > https://patchwork.kernel.org/patch/11747669/
+> >
+> > Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm=
+64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > index e7a459fa4322..bc9482b59428 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > @@ -13,6 +13,11 @@ / {
+> >       model =3D "Firefly ROC-RK3399-PC Board";
+> >       compatible =3D "firefly,roc-rk3399-pc", "rockchip,rk3399";
+> >
+> > +     aliases {
+> > +             mmc0 =3D &sdmmc;
+> > +             mmc1 =3D &sdhci;
+> > +     };
+> > +
+>
+> Any reason for this odering?
+>
+> I.e. some previous incarnations had it ordered as (emmc, mmc, sdio).
+> This is also true for the ChromeOS out-of-tree usage of those, the
+> rk3399 dts in the chromeos-4.4 tree also orders this as sdhci, sdmmc, sdi=
+o.
+>
+> And I guess a further question would be when we're doing arbitary orderin=
+gs
+> anyway, why is this not in rk3399.dtsi ;-) ?
 
-I also explained about the reset-gpios property that this
-better be flagged as active high (0) despite actually
-being active low, because all current device trees and
-drivers assume that this is the case and will actively
-drive the line low to assert RESET.
+Though I personally like the idea of eMMC, which is typically
+built-in, as being the "0" number, I'm personally happy with any
+numbering scheme that's consistent.  Ordering them by base address is
+OK w/ me and seems less controversial.  That seems like it could go in
+rk3399.dtsi and then if a particular board wanted a different order
+they could override it in their board file.  The downside of putting
+in rk3399 is that boards that don't have all SD/MMC interfaces enabled
+would definitely get a new number compared to old kernels, but
+hopefully this is the last time?
 
-Tested the schema with all in-tree users and they verify
-fine.
-
-Cc: Nick Dyer <nick@shmanahar.org>
-Cc: Stephan Gerhold <stephan@gerhold.net>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- State that the GPIO lines shall be flagged as active low.
-  We will fix all users.
----
- .../bindings/input/atmel,maxtouch.txt         | 41 ----------
- .../bindings/input/atmel,maxtouch.yaml        | 81 +++++++++++++++++++
- MAINTAINERS                                   |  2 +-
- 3 files changed, 82 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.txt
- create mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.txt b/Documentation/devicetree/bindings/input/atmel,maxtouch.txt
-deleted file mode 100644
-index c88919480d37..000000000000
---- a/Documentation/devicetree/bindings/input/atmel,maxtouch.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Atmel maXTouch touchscreen/touchpad
--
--Required properties:
--- compatible:
--    atmel,maxtouch
--
--    The following compatibles have been used in various products but are
--    deprecated:
--	atmel,qt602240_ts
--	atmel,atmel_mxt_ts
--	atmel,atmel_mxt_tp
--	atmel,mXT224
--
--- reg: The I2C address of the device
--
--- interrupts: The sink for the touchpad's IRQ output
--    See ../interrupt-controller/interrupts.txt
--
--Optional properties for main touchpad device:
--
--- linux,gpio-keymap: When enabled, the SPT_GPIOPWN_T19 object sends messages
--    on GPIO bit changes. An array of up to 8 entries can be provided
--    indicating the Linux keycode mapped to each bit of the status byte,
--    starting at the LSB. Linux keycodes are defined in
--    <dt-bindings/input/input.h>.
--
--    Note: the numbering of the GPIOs and the bit they start at varies between
--    maXTouch devices. You must either refer to the documentation, or
--    experiment to determine which bit corresponds to which input. Use
--    KEY_RESERVED for unused padding values.
--
--- reset-gpios: GPIO specifier for the touchscreen's reset pin (active low)
--
--Example:
--
--	touch@4b {
--		compatible = "atmel,maxtouch";
--		reg = <0x4b>;
--		interrupt-parent = <&gpio>;
--		interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_LOW>;
--	};
-diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-new file mode 100644
-index 000000000000..8c6418f76e94
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
-@@ -0,0 +1,81 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/atmel,maxtouch.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel maXTouch touchscreen/touchpad
-+
-+maintainers:
-+  - Nick Dyer <nick@shmanahar.org>
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  Atmel maXTouch touchscreen or touchpads such as the mXT244
-+  and similar devices.
-+
-+properties:
-+  compatible:
-+    const: atmel,maxtouch
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdda-supply:
-+    description:
-+      Optional regulator for the AVDD analog voltage.
-+
-+  vdd-supply:
-+    description:
-+      Optional regulator for the VDD digital voltage.
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      Optional GPIO specifier for the touchscreen's reset pin
-+      (active low). The line must be flagged with
-+      GPIO_ACTIVE_LOW.
-+
-+  linux,gpio-keymap:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      When enabled, the SPT_GPIOPWN_T19 object sends messages
-+      on GPIO bit changes. An array of up to 8 entries can be provided
-+      indicating the Linux keycode mapped to each bit of the status byte,
-+      starting at the LSB. Linux keycodes are defined in
-+      <dt-bindings/input/input.h>.
-+
-+      Note: the numbering of the GPIOs and the bit they start at varies
-+      between maXTouch devices. You must either refer to the documentation,
-+      or experiment to determine which bit corresponds to which input. Use
-+      KEY_RESERVED for unused padding values.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      touchscreen@4a {
-+        compatible = "atmel,maxtouch";
-+        reg = <0x4a>;
-+        interrupt-parent = <&gpio>;
-+        interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+        reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
-+        vdda-supply = <&ab8500_ldo_aux2_reg>;
-+        vdd-supply = <&ab8500_ldo_aux5_reg>;
-+      };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..b4b46fcb82db 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2966,7 +2966,7 @@ ATMEL MAXTOUCH DRIVER
- M:	Nick Dyer <nick@shmanahar.org>
- S:	Maintained
- T:	git git://github.com/ndyer/linux.git
--F:	Documentation/devicetree/bindings/input/atmel,maxtouch.txt
-+F:	Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
- F:	drivers/input/touchscreen/atmel_mxt_ts.c
- 
- ATMEL WIRELESS DRIVER
--- 
-2.26.2
-
+-Doug
