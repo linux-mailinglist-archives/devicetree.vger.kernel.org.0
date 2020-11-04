@@ -2,84 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 29D772A6CB0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96FB92A6CB7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:32:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbgKDScJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 13:32:09 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:44175 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726225AbgKDScJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:32:09 -0500
-Received: by mail-ot1-f65.google.com with SMTP id m26so20198819otk.11;
-        Wed, 04 Nov 2020 10:32:08 -0800 (PST)
+        id S1732390AbgKDScd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 13:32:33 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:43778 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726225AbgKDScd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:32:33 -0500
+Received: by mail-oi1-f193.google.com with SMTP id t143so11603017oif.10;
+        Wed, 04 Nov 2020 10:32:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=oghSgZxFlVBv7JU4WB3s/OwRzfJOnjFiQ7TPHojsDUU=;
-        b=ll7L/GjxqnrkoKqrrNBpiP6O5fNRWExaHpysMsgzUWDNSdQaqst18Smy4W8cGadCe7
-         aRmZbAB2bp/hKqnc+5zAzju9wv/wqVMWpn27zzfSmMdChCUEW9AtmrdlP/OAEkePpMP/
-         JLboAg4rTkvFGQrIuEBDSJLM3zMFd/42ecLFsZku8o5oS0Lb1gOrt21KnkQ3NTThedAi
-         MHi4mwdvdNtk2hCEMlse0NHNTfIRqnxRm9RjWgsaBX1SvjjJe6yTLpKJlPjG0TkjV6fz
-         122ouupilUPEV4BcS3dIPID05eh33funWcywSEJJ7qBkDxoqNVZqXxwi8tCWJxPhyTNn
-         fqAw==
-X-Gm-Message-State: AOAM531gEbQoxjp/qCXed3TjonL0/2Z+DgS/5q90QD4FxgmjsHmDDRvJ
-        MCN6gxbQxcKdYSrPAvuCsFLMTwdwQg==
-X-Google-Smtp-Source: ABdhPJytEnCxIKIlfBfza+NMnBCBgry1XIIkp5fTiGzOjNZ/aBg1i1I8QrMf2ufeUpbIQjxyFPOseA==
-X-Received: by 2002:a9d:649:: with SMTP id 67mr20405397otn.233.1604514728036;
-        Wed, 04 Nov 2020 10:32:08 -0800 (PST)
+        bh=300YdLoIyeU5aKbjDs5NItaT9gZ3hFeS1uekqV/d+mE=;
+        b=lJz+ApwpFPB/ZFGP4Ow623yQs0rTz5MTV0XtOWYhY52Jhh9fK/FkjCrvf8UIkwZj0m
+         ZSpfETPabnE4XhYegurQZqo1d40hD8PlDzdZO/ZKYhZ6370Fk4lKnGOn0zW4c604sCG3
+         QvtZvT+gif01NA6kRUVZbQsjNZ1kwI/TiQDeJBIqECy7axwmeyqpexkm7ndG33wuXfc3
+         f1CGN1zzqmKOQ7CvP5Lan2IdsI+gN+LMsdgtbjUHBZey/l2Oeo5w8VApRCswT/+rL84N
+         RPiyK7aqC3ccHK96thMZtaPlZKRYpeWIL3xZfn7RZ/nr5MjXa1VqUtlerXAx900SbkGD
+         FJKA==
+X-Gm-Message-State: AOAM5329EzHAmzIcxZEjQsbUXN6m7lIUHMqJzqrVP3U9rgDVM+0TdQw4
+        y6iFsnGCduVIQVFl0ruohw==
+X-Google-Smtp-Source: ABdhPJz00/M3IYCTJO7Dw9Ou6hkev6/Azqgqrw4W1uP4oowWgcUZhKw5HlKN1f6jORePrZDPRCm0jw==
+X-Received: by 2002:aca:d445:: with SMTP id l66mr3175334oig.37.1604514752242;
+        Wed, 04 Nov 2020 10:32:32 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 186sm742366ooe.20.2020.11.04.10.32.06
+        by smtp.gmail.com with ESMTPSA id h7sm722359ool.34.2020.11.04.10.32.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 10:32:07 -0800 (PST)
-Received: (nullmailer pid 3914664 invoked by uid 1000);
-        Wed, 04 Nov 2020 18:32:06 -0000
-Date:   Wed, 4 Nov 2020 12:32:06 -0600
+        Wed, 04 Nov 2020 10:32:31 -0800 (PST)
+Received: (nullmailer pid 3915209 invoked by uid 1000);
+        Wed, 04 Nov 2020 18:32:30 -0000
+Date:   Wed, 4 Nov 2020 12:32:30 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v7 1/3] dt-bindings: display: Document the Xylon LogiCVC
- display controller
-Message-ID: <20201104183206.GA3913864@bogus>
-References: <20201102155308.142691-1-paul.kocialkowski@bootlin.com>
- <20201102155308.142691-2-paul.kocialkowski@bootlin.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Jishnu Prakash <jprakash@qti.qualcomm.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Andy Gross <agross@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Subject: Re: [PATCH v9 01/15] dt-bindings: thermal: qcom: add adc-thermal
+ monitor bindings
+Message-ID: <20201104183230.GB3913864@bogus>
+References: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
+ <20201102174950.1148498-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201102155308.142691-2-paul.kocialkowski@bootlin.com>
+In-Reply-To: <20201102174950.1148498-2-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Nov 2020 16:53:06 +0100, Paul Kocialkowski wrote:
-> The Xylon LogiCVC is a display controller implemented as programmable
-> logic in Xilinx FPGAs.
+On Mon, 02 Nov 2020 20:49:36 +0300, Dmitry Baryshkov wrote:
+> Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
+> close counterpart of VADC part of those PMICs.
 > 
-> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../display/xylon,logicvc-display.yaml        | 313 ++++++++++++++++++
->  1 file changed, 313 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml
+>  .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 154 ++++++++++++++++++
+>  1 file changed, 154 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/display/xylon,logicvc-display.yaml:117:6: [warning] wrong indentation: expected 4 but found 5 (indentation)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/xylon,logicvc-display.example.dt.yaml: logicvc@43c00000: 'display-engine@0' does not match any of the regexes: '^gpio@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/xylon,logicvc.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.example.dt.yaml: adc@3100: 'io-channels' is a dependency of 'io-channel-ranges'
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/iio/iio-consumer.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1392340
+See https://patchwork.ozlabs.org/patch/1392425
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
