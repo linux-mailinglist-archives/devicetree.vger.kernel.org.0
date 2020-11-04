@@ -2,130 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 983DD2A640E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 13:18:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 302CC2A6429
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 13:21:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729801AbgKDMSA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 07:18:00 -0500
-Received: from foss.arm.com ([217.140.110.172]:36108 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729735AbgKDMSA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 07:18:00 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 87CF61474;
-        Wed,  4 Nov 2020 04:17:59 -0800 (PST)
-Received: from [10.57.54.223] (unknown [10.57.54.223])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DE70B3F719;
-        Wed,  4 Nov 2020 04:17:57 -0800 (PST)
-Subject: Re: [PATCH] arm64: dts: rockchip: Assign a fixed index to mmc devices
- on rk3399-roc-pc boards.
-To:     Markus Reichl <m.reichl@fivetechno.de>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        linux-rockchip@lists.infradead.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, dianders@chromium.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20201104094950.2096-1-m.reichl@fivetechno.de>
- <4984701.vSXMUKeAfh@diego>
- <4f4a83f2-3c9b-9549-0acf-057257b4255d@fivetechno.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <a3f0a710-91d8-0c05-35ab-9994fba16c82@arm.com>
-Date:   Wed, 4 Nov 2020 12:17:57 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1729250AbgKDMVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 07:21:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53020 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729179AbgKDMVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 07:21:42 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCE1C0613D3
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 04:21:41 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id 11so3187703ljf.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 04:21:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jWpUOTFiS8vamzWvnGQ5aOvOUIOaTF43HJKhMTXxLrA=;
+        b=RHoVhfFO+kVITT8og7bzNtjmhBmbTVZokb4HnicD+c1Huwp4s3LsOGpKku0jbxplnL
+         gChDOaNpX0LCp2FVMN3349A1jyyk+gA23+ev0jzQArVo3cQd5LIBfswDfBTp+9FatMsE
+         g7VavNIvLmoWnkB/DxUZklK4PJY2guFZR002PIRZEoGrlvNapaoqAHU2Z2hzvlX5/cPr
+         lWiHSqSGErS/r5ng1GiPEwspxqxIwnhc1b3F9a3BYc359RuGFERJtHDaCYIuhnkEXmzY
+         gvK0oLZ2l4XwhdEwHvHW3xPGbf32k6ezm1UdjN//vh40822xznh1NtWU+Fo5RR36fwxw
+         Zqlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jWpUOTFiS8vamzWvnGQ5aOvOUIOaTF43HJKhMTXxLrA=;
+        b=KJqnpPhYAIhZ2XM2Oj3Ul6nJhtNb6oWIQGO4bT60QyIpOd+ADMXtlVxYasO/acpkjY
+         ct0x8B/CDdpffqMKPL4Ho9fEo3JdAMhFE6Ha3yPf9YcvdW2U7dPMITQ6I3miF1YVE2E+
+         Zz3J+QWjjH3cEDMI+m3sCqgNC+SyKHhbacIgrp5z//5GS33UL2s/XzR6G/7Kbi2mWhRF
+         42tUYZHbBFouhu8YflN4HaUGD4YrP2cu8iQIZiPA7yq3adhHxysO6Rvd2WotH58Pu8WG
+         MZHvN4GSqRVdiLDC+eDerkoJ2oPQAYm/LVSqraTmlROzzarhTF2lv+qTOhrQLET3ZSMk
+         63yQ==
+X-Gm-Message-State: AOAM532FExD5rx3oK2qWeivHko1JBrw5GH8K8klF/CyzlL1nxj85K15n
+        LSfQCDJQo431AWJy7Wz6fEs=
+X-Google-Smtp-Source: ABdhPJxn8wVpenINR40AJtp3n+Z9ZPb+Wq/mJCLjaFL18LVYFcYyi7BKLG7osFQqeT44thnktZiiiQ==
+X-Received: by 2002:a2e:88c2:: with SMTP id a2mr10935997ljk.438.1604492500222;
+        Wed, 04 Nov 2020 04:21:40 -0800 (PST)
+Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id 70sm385436lfe.123.2020.11.04.04.21.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Nov 2020 04:21:39 -0800 (PST)
+Subject: Re: [PATCH 2/2] arm64: dts: broadcom: add BCM4908 and Asus GT-AC5300
+ early DTS files
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201028101123.6293-1-zajec5@gmail.com>
+ <20201028101123.6293-2-zajec5@gmail.com>
+ <65671fc4-96c8-aa88-543e-23f1fae6262d@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Message-ID: <9d6dd3e8-b746-48ec-5f35-5916558e35af@gmail.com>
+Date:   Wed, 4 Nov 2020 13:21:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <4f4a83f2-3c9b-9549-0acf-057257b4255d@fivetechno.de>
+In-Reply-To: <65671fc4-96c8-aa88-543e-23f1fae6262d@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-11-04 11:15, Markus Reichl wrote:
-> Hi Heiko,
+On 04.11.2020 04:33, Florian Fainelli wrote:
+>> +	gic: interrupt-controller@81000000 {
+>> +		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+>> +		#interrupt-cells = <3>;
+>> +		#address-cells = <0>;
 > 
-> Am 04.11.20 um 11:51 schrieb Heiko Stübner:
->> Hi Markus,
->>
->> Am Mittwoch, 4. November 2020, 10:49:45 CET schrieb Markus Reichl:
->>> Recently introduced async probe on mmc devices can shuffle block IDs.
->>> Pin them to fixed values to ease booting in evironments where UUIDs
->>> are not practical. Use newly introduced aliases for mmcblk devices 
->>> from [1].
->>>
->>> [1]
->>> https://patchwork.kernel.org/patch/11747669/
->>>
->>> Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
->>> ---
->>>  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi 
->>> b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
->>> index e7a459fa4322..bc9482b59428 100644
->>> --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
->>> +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
->>> @@ -13,6 +13,11 @@ / {
->>>      model = "Firefly ROC-RK3399-PC Board";
->>>      compatible = "firefly,roc-rk3399-pc", "rockchip,rk3399";
->>>
->>> +    aliases {
->>> +        mmc0 = &sdmmc;
->>> +        mmc1 = &sdhci;
->>> +    };
->>> +
->>
->> Any reason for this odering?
+> You would want to create a node that encapsulates the ARM peripheral
+> addresses within the SoC's physical address range, see
+> arch/arm/boot/dts/bcm63138.dtsi for an example with the axi bus node.
 > 
-> Without pinning roc-pc mostly booted as
-> mmcblk0 = sdmmc = µSD
-> mmcblk1 = sdhci = eMMC
-> so I kept this behaviour in aliases
-> 
-> roc-pc-mezzanine with populated SDIO-M2-slot booted
-> mmc0 = sdio = (no mmcblk)
-> mmcblk1 = sdmmc = µSD
-> mmcblk2 = sdhci = eMMC
+> [snip]
 
-FWIW that's also how my NanoPC-T4 behaves. Given that it's the order 
-they appear in the DT, not too surprising ;)
+As a general note: putting interrupt-controller directly in the root node
+seems to be (incorrectly I assume) done in about 1/3 of arm64 DTS files.
 
-Robin.
+Guessing by indention level:
 
-> With my aliases both boards behave the same now and the optional SDIO slot
-> goes out of the way to mmc2.
-> 
->>
->> I.e. some previous incarnations had it ordered as (emmc, mmc, sdio).
->> This is also true for the ChromeOS out-of-tree usage of those, the
->> rk3399 dts in the chromeos-4.4 tree also orders this as sdhci, sdmmc, 
->> sdio.
-> 
-> The boards from my zoo (exynos, rk3399) mostly come up with SD-card as mmc0
-> and eMMC as mmc1 in mainline as opposed in some vendor kernels.
-> but I have no objection to set it the other way round if this is more 
-> common
-> with rk3399 boards.
-> 
->>
->> And I guess a further question would be when we're doing arbitary 
->> orderings
->> anyway, why is this not in rk3399.dtsi ;-) ?
-> 
-> I restricted the ordering to the boards I have, not to confuse other 
-> established
-> use cases, but if a standard ordering is desired this can go to 
-> rk3399.dtsi.
-> 
->>
->>
->> Heiko
->>
->>
-> 
-> Gruß,
+ > egrep $'^\t[a-z].*interrupt-controller' arch/arm64/boot/dts/*/*.dts* | wc -l
+66
+
+Just in case someone is looking for a minor cleanup task.
