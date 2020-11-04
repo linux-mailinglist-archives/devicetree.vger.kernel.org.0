@@ -2,139 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 837AF2A68EA
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 17:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F2DA2A68FD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 17:04:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729862AbgKDQBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 11:01:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60274 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726801AbgKDQBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 11:01:47 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A9F5C0613D3;
-        Wed,  4 Nov 2020 08:01:47 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id c20so17625014pfr.8;
-        Wed, 04 Nov 2020 08:01:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2u1iCwu3NUExL8v9uHwy0KlSiN494f+zV9SSy+u0HpA=;
-        b=Fn5jqnTJCAviROi/YLFeUOFV9JK+CsbPo5Q7hWQTh0o7ltr2I3IsSPlZTRSl7jZnE6
-         9DO3aobg6ksT/EwJyT/rAViPpeelmCu3GZKq+YGsjRcUZOCMbNzwMuTvKrkcU49sXqav
-         EQbUTn2qh9Z6FD1iD/Eg2Y8zYooSW1luC2GSwOHe6TOCltfhACqnWTju+70qmGlb1B57
-         qtKEiWj7wfg/Csz6qdTdwcv2tSNbM8cRQWe4ZuSDRJuWrOXxDgrKoHK+kdN8Mr744BFo
-         aUkJXBSH4RsPLKO2VrBlYpQbA383yzYpj0zBYIe/kCGuwJH+TGR7xua7oWH4X2rCRhOC
-         P56g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2u1iCwu3NUExL8v9uHwy0KlSiN494f+zV9SSy+u0HpA=;
-        b=gRoN3CKpDSqvxtcJ178aqfNohEB9qQPhdqeTL/JpckK9pJN4L/CoZdvi8ZrKroMdtd
-         zUcPDGECjryvTSoV8kflaQznSmkltzwrA3+FtMQoLi3mDqR/IFviqMv7RsLdFregMxLO
-         s5tB5IZ8tdjsVMW1i2o90EmXoEdxsvlKQPufVL8tRvmPYk5o8m82mYvU4rXCam1vN2uA
-         QnUxVwTwUxY3SjYqCgqL560ZNZPrwjPjsLikdVJxf8x67kJj6gRAVQkOBQEIx6tfWcqo
-         RGpDl7VOb5fdnnf05zRanIWVaAECt2fK6x5CRrl9HaBj7Yl8CjFXIAW9nvvH7vvRI1l8
-         TkEg==
-X-Gm-Message-State: AOAM532FFHwfPVLYM+dRE0XTDB7Rm6Ct5FrKvPeIT/5wXPLsQ43R1tSk
-        vVN1JkgsEUewO1i/XK6mqP0=
-X-Google-Smtp-Source: ABdhPJyX05Y9HcDtz4Imtc3239h3VaP7aGo3GntRwUCM8jkGOlxSbh69LBp8l9NLQJxAIu+SoAaYQg==
-X-Received: by 2002:a63:2b53:: with SMTP id r80mr22106711pgr.439.1604505706821;
-        Wed, 04 Nov 2020 08:01:46 -0800 (PST)
-Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
-        by smtp.gmail.com with ESMTPSA id j19sm2855155pfn.107.2020.11.04.08.01.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Nov 2020 08:01:46 -0800 (PST)
-Subject: Re: [EXTERNAL] Re: [PATCH net 2/4] net:phy:smsc: expand documentation
- of clocks property
-To:     "Badel, Laurent" <LaurentBadel@eaton.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "fugang.duan@nxp.com" <fugang.duan@nxp.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "richard.leitner@skidata.com" <richard.leitner@skidata.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "Quette, Arnaud" <ArnaudQuette@Eaton.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-References: <CY4PR1701MB187834A07970380742371D78DF160@CY4PR1701MB1878.namprd17.prod.outlook.com>
- <20201030191910.GA4174476@bogus>
- <CY4PR1701MB18789E4C1FE2C3FBCB1FC010DFEF0@CY4PR1701MB1878.namprd17.prod.outlook.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <da87e8d5-01f9-50c2-5583-3876f9c12c8f@gmail.com>
-Date:   Wed, 4 Nov 2020 08:01:44 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.4.0
+        id S1728029AbgKDQEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 11:04:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51108 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727923AbgKDQEH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 11:04:07 -0500
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3B66420825;
+        Wed,  4 Nov 2020 16:04:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604505846;
+        bh=klujtJzoAVLGeYfBOBO4813dr7WdQLbjskQZ2NSHj3A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QaFTc11yiA3U8bPPwrgKRnbwnuScfUtM5Z24GLXsz/cZi1Gm1ENLCiwBV6d0vvKPw
+         RFkQHU99fsZKJ/SyqdV/LhBgxf3UKRSvLT66HWgxRq0FElpkY1mw/ICglV9FoxHK2Z
+         QLlTQcsgJdN7e59d/mttzoAMb2xe18OzkHlBvnWI=
+Received: by mail-lf1-f53.google.com with SMTP id i6so27848899lfd.1;
+        Wed, 04 Nov 2020 08:04:06 -0800 (PST)
+X-Gm-Message-State: AOAM5310XOjxNi9EzCIQqJDeFPnYxDSGzhMVEmw1KgWL/7HprFootb3a
+        z1CSnqYKilDPkruR70q7EzapksQut8GxfXBFj+8=
+X-Google-Smtp-Source: ABdhPJx0L1STVkLnDpZqex5+MrAPhy2B7AEicH4fxVDlqcsdu3VIoCKFnepTQq3TSjtMNeySUtaDJ17dVHRT6sRVjhY=
+X-Received: by 2002:a19:4281:: with SMTP id p123mr9303368lfa.398.1604505844386;
+ Wed, 04 Nov 2020 08:04:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CY4PR1701MB18789E4C1FE2C3FBCB1FC010DFEF0@CY4PR1701MB1878.namprd17.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201104094950.2096-1-m.reichl@fivetechno.de> <4984701.vSXMUKeAfh@diego>
+ <CAD=FV=V2Vv0bv-exiZ6VrOtfMM5TVpjATO04qaXeGWDRu+6vyw@mail.gmail.com> <10029979.JCShpOL5JR@diego>
+In-Reply-To: <10029979.JCShpOL5JR@diego>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Thu, 5 Nov 2020 00:03:54 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65_uxjRWygd=ACr0KTCF7yqqk5crvkeKkNp28+qk_cByA@mail.gmail.com>
+Message-ID: <CAGb2v65_uxjRWygd=ACr0KTCF7yqqk5crvkeKkNp28+qk_cByA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Assign a fixed index to mmc devices
+ on rk3399-roc-pc boards.
+To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 4, 2020 at 11:55 PM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
+>
+> Am Mittwoch, 4. November 2020, 16:42:01 CET schrieb Doug Anderson:
+> > Hi,
+> >
+> > On Wed, Nov 4, 2020 at 2:51 AM Heiko St=C3=BCbner <heiko@sntech.de> wro=
+te:
+> > >
+> > > Hi Markus,
+> > >
+> > > Am Mittwoch, 4. November 2020, 10:49:45 CET schrieb Markus Reichl:
+> > > > Recently introduced async probe on mmc devices can shuffle block ID=
+s.
+> > > > Pin them to fixed values to ease booting in evironments where UUIDs
+> > > > are not practical. Use newly introduced aliases for mmcblk devices =
+from [1].
+> > > >
+> > > > [1]
+> > > > https://patchwork.kernel.org/patch/11747669/
+> > > >
+> > > > Signed-off-by: Markus Reichl <m.reichl@fivetechno.de>
+> > > > ---
+> > > >  arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi | 5 +++++
+> > > >  1 file changed, 5 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch=
+/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > > > index e7a459fa4322..bc9482b59428 100644
+> > > > --- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
+> > > > @@ -13,6 +13,11 @@ / {
+> > > >       model =3D "Firefly ROC-RK3399-PC Board";
+> > > >       compatible =3D "firefly,roc-rk3399-pc", "rockchip,rk3399";
+> > > >
+> > > > +     aliases {
+> > > > +             mmc0 =3D &sdmmc;
+> > > > +             mmc1 =3D &sdhci;
+> > > > +     };
+> > > > +
+> > >
+> > > Any reason for this odering?
+> > >
+> > > I.e. some previous incarnations had it ordered as (emmc, mmc, sdio).
+> > > This is also true for the ChromeOS out-of-tree usage of those, the
+> > > rk3399 dts in the chromeos-4.4 tree also orders this as sdhci, sdmmc,=
+ sdio.
+> > >
+> > > And I guess a further question would be when we're doing arbitary ord=
+erings
+> > > anyway, why is this not in rk3399.dtsi ;-) ?
+> >
+> > Though I personally like the idea of eMMC, which is typically
+> > built-in, as being the "0" number, I'm personally happy with any
+> > numbering scheme that's consistent.  Ordering them by base address is
+> > OK w/ me and seems less controversial.  That seems like it could go in
+> > rk3399.dtsi and then if a particular board wanted a different order
+> > they could override it in their board file.
+>
+> Yep that sounds sensible and ordering by base address at least is one
+> "simple" type of order without too much explanation needed.
+>
+> So I guess we'd get a sdio + sdmmc + sdhci ordering
+>
+>
+> @Markus: if nobody else complains, can you do a "simple" rk3399.dtsi
+> change with that please?
 
+Please also fix the LED triggers. :)
 
-On 11/4/2020 4:11 AM, Badel, Laurent wrote:
-> ﻿> 
-> 
-> -----------------------------
-> Eaton Industries Manufacturing GmbH ~ Registered place of business: Route de la Longeraie 7, 1110, Morges, Switzerland 
-> 
-> -----------------------------
-> 
-> -----Original Message-----
->> From: Rob Herring <robh@kernel.org>
->> Sent: Friday, October 30, 2020 8:19 PM
->> To: Badel, Laurent <LaurentBadel@eaton.com>
->> Cc: davem@davemloft.net; fugang.duan@nxp.com; andrew@lunn.ch;
->> lgirdwood@gmail.com; m.felsch@pengutronix.de; robh+dt@kernel.org;
->> kuba@kernel.org; linux@armlinux.org.uk; richard.leitner@skidata.com;
->> netdev@vger.kernel.org; Quette, Arnaud <ArnaudQuette@Eaton.com>;
->> p.zabel@pengutronix.de; devicetree@vger.kernel.org; f.fainelli@gmail.com;
->> broonie@kernel.org; Heiner Kallweit <hkallweit1@gmail.com>
->> Subject: [EXTERNAL] Re: [PATCH net 2/4] net:phy:smsc: expand
->> documentation of clocks property
->>
->> On Tue, 27 Oct 2020 23:27:42 +0000, Badel, Laurent wrote:
->>> ﻿Subject: [PATCH net 2/4] net:phy:smsc: expand documentation of clocks
->>> property
->>>
->>> Description: The ref clock is managed differently when added to the DT
->>> entry for SMSC PHY. Thus, specify this more clearly in the documentation.
->>>
->>> Signed-off-by: Laurent Badel <laurentbadel@eaton.com>
->>> ---
->>>  Documentation/devicetree/bindings/net/smsc-lan87xx.txt | 3 ++-
->>>  1 file changed, 2 insertions(+), 1 deletion(-)
->>>
->>
->> Acked-by: Rob Herring <robh@kernel.org>
-> 
-> Thank you very much.
-> I'm guessing perhaps I should re-send this as a single patch since there 
-> are issues with the patch series?
-> I realize now that I should have splitted things differently.
+> > The downside of putting
+> > in rk3399 is that boards that don't have all SD/MMC interfaces enabled
+> > would definitely get a new number compared to old kernels, but
+> > hopefully this is the last time?
+>
+> With that new asynchronous mmc-probe-thingy in 5.10 that "caused" this,
+> it sounds like everything gets a new number anyway ;-) .
 
-There are several things with your patch series that make it very hard
-to be followed or to even know what is the latest version of your patch
-series. If you can resubmit everything targeting the 'net' tree along
-with a cover letter explaining the differences between v1 and v2 that
-would help. Please make sure that all of your patches reference the
-cover letter's Message-Id which is the default if you use git
-format-patch --cover-letter .
-
-Thanks
--- 
-Florian
+Yup.
