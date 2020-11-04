@@ -2,48 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2832A6D83
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:06:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C6B62A6D98
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:12:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727098AbgKDTGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 14:06:24 -0500
-Received: from mail-oo1-f65.google.com ([209.85.161.65]:35301 "EHLO
-        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729946AbgKDTGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:06:23 -0500
-Received: by mail-oo1-f65.google.com with SMTP id n16so5348634ooj.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 11:06:22 -0800 (PST)
+        id S1730262AbgKDTLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 14:11:25 -0500
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:35463 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731341AbgKDTLY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:11:24 -0500
+Received: by mail-oo1-f67.google.com with SMTP id n16so5352625ooj.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 11:11:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=R2gb5md+lT/qT0Qy1C0A7wiZJjH97JR0T8nu7AkZKBw=;
-        b=PEY60KioLjUpVrJd8OIHKklx0UHrYzYtTScqoEAH4Df3fgJZM3ni3XvuJUYY2SFr+z
-         eAHLTxMjjurOZnx82CuTVJonoNF+L1OlD8m3A7oRvdq+97migeV6HBcj7ZH+8VDtuoCm
-         JZfBMEheJtGKSPT7Ek3bZPYJT2Wi+T3l4a7ZXKuVq3v5/fefMU1vhgs20AVvzyQ+E2MM
-         nyhuOurfCfvkIvCJzpABqazDzKgAQFwvyxL7dVwAlWZyk4M5KVVnKQ7F04sV3VQ52TEV
-         xqy2gzv4jE4ExWRzW5sdCxIIBDyr0jeRbNJ2+Z8wY4kePnruF7oJtGGvXPVe9fIGDsXG
-         4lDQ==
-X-Gm-Message-State: AOAM532MzkeeK0A7McTctrLmzf4+Yvju43Xk1JhlEv9hcgLRFwC/fe4M
-        C1gvXldeQ1Q5YZOJ8vJt2MsYc8GWfw==
-X-Google-Smtp-Source: ABdhPJydRU/q7sjyN4LVnglPCUmlTYexpnq5r2D2zpd/4tsUOp7VPoj8Q9kerD3r6P9or2zPZ5/t9g==
-X-Received: by 2002:a4a:b209:: with SMTP id d9mr19637528ooo.70.1604516782442;
-        Wed, 04 Nov 2020 11:06:22 -0800 (PST)
+        bh=kUkrGaIC+6uDuIfeuIQSYAIatv4vnLAo8WozxbkcPyg=;
+        b=sMz9cxdfqPmfjihRRXyE4ic+9hI82C7kAWepIYvADv23wjPpm41onypdJEvRcIE3ZI
+         x2oIb+Qk+ymTntFR8IaWn/D4KaKO2VLCu6xoEV/yeD8Id1beTgGRdf3ZUoZHN32D6SY/
+         QT+UlwTqy065shPdtRoCG2BHKJdiJvX9vZV2sy+Hm+5QoNd+LOUQKU1Lj/MUVqHwLO1z
+         7Y0eF57qbVUlb0qc9OmDeK0aBEdSjt2EM5y1SxsKeQnuod54yKgpsCruMb0MCxDUnTVN
+         I2JHcZ8uidjnjWnWQPwdnVzBVCuqipLw8lv9+vaaa4rYQKiolwVEJIg1/rhsFhH/firX
+         bijw==
+X-Gm-Message-State: AOAM530fLI4j1eUQDw7WnMeyJ9zHE3S8eNQ/3UL9NtXyh/F9SdfPwd2T
+        neN5OntufhYY5Z1F1L37jQ==
+X-Google-Smtp-Source: ABdhPJwFpwgersXSX2VXXaLS/A62lNSk2a3yZJe/Z7StU7lSSV+EQ+vj3vr9ZP1nuOtuWwdQH2P4Lg==
+X-Received: by 2002:a4a:b601:: with SMTP id z1mr19874936oon.83.1604517082404;
+        Wed, 04 Nov 2020 11:11:22 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 92sm683274otv.29.2020.11.04.11.06.21
+        by smtp.gmail.com with ESMTPSA id h3sm722686oom.18.2020.11.04.11.11.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 11:06:21 -0800 (PST)
-Received: (nullmailer pid 3960229 invoked by uid 1000);
-        Wed, 04 Nov 2020 19:06:21 -0000
-Date:   Wed, 4 Nov 2020 13:06:21 -0600
+        Wed, 04 Nov 2020 11:11:21 -0800 (PST)
+Received: (nullmailer pid 3966731 invoked by uid 1000);
+        Wed, 04 Nov 2020 19:11:21 -0000
+Date:   Wed, 4 Nov 2020 13:11:21 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Sean Paul <sean@poorly.run>, dri-devel@lists.freedesktop.org,
+Cc:     dri-devel@lists.freedesktop.org,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org
+        Maxime Ripard <mripard@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 Subject: Re: [PATCH] dt-bindings: display: mcde: Convert to YAML schema
-Message-ID: <20201104190621.GB3959462@bogus>
+Message-ID: <20201104191121.GC3959462@bogus>
 References: <20201104133709.1373147-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -53,7 +54,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Nov 2020 14:37:09 +0100, Linus Walleij wrote:
+On Wed, Nov 04, 2020 at 02:37:09PM +0100, Linus Walleij wrote:
 > This moves the MCDE bindings over to using the YAML schema
 > to describe the ST-Ericsson MCDE display controller,
 > making use of the generic DSI controller schema.
@@ -71,28 +72,242 @@ On Wed, 04 Nov 2020 14:37:09 +0100, Linus Walleij wrote:
 >  delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
 >  create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
+> deleted file mode 100644
+> index 4c33c692bd5f..000000000000
+> --- a/Documentation/devicetree/bindings/display/ste,mcde.txt
+> +++ /dev/null
+> @@ -1,104 +0,0 @@
+> -ST-Ericsson Multi Channel Display Engine MCDE
+> -
+> -The ST-Ericsson MCDE is a display controller with support for compositing
+> -and displaying several channels memory resident graphics data on DSI or
+> -LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
+> -
+> -Required properties:
+> -
+> -- compatible: must be:
+> -  "ste,mcde"
+> -- reg: register base for the main MCDE control registers, should be
+> -  0x1000 in size
+> -- interrupts: the interrupt line for the MCDE
+> -- epod-supply: a phandle to the EPOD regulator
+> -- vana-supply: a phandle to the analog voltage regulator
+> -- clocks: an array of the MCDE clocks in this strict order:
+> -  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
+> -  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
+> -  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
+> -  save clock)
+> -- clock-names: must be the following array:
+> -  "mcde", "lcd", "hdmi"
+> -  to match the required clock inputs above.
+> -- #address-cells: should be <1> (for the DSI hosts that will be children)
+> -- #size-cells: should be <1> (for the DSI hosts that will be children)
+> -- ranges: this should always be stated
+> -
+> -Required subnodes:
+> -
+> -The devicetree must specify subnodes for the DSI host adapters.
+> -These must have the following characteristics:
+> -
+> -- compatible: must be:
+> -  "ste,mcde-dsi"
+> -- reg: must specify the register range for the DSI host
+> -- vana-supply: phandle to the VANA voltage regulator
+> -- clocks: phandles to the high speed and low power (energy save) clocks
+> -  the high speed clock is not present on the third (dsi2) block, so it
+> -  should only have the "lp" clock
+> -- clock-names: "hs" for the high speed clock and "lp" for the low power
+> -  (energy save) clock
+> -- #address-cells: should be <1>
+> -- #size-cells: should be <0>
+> -
+> -Display panels and bridges will appear as children on the DSI hosts, and
+> -the displays are connected to the DSI hosts using the common binding
+> -for video transmitter interfaces; see
+> -Documentation/devicetree/bindings/media/video-interfaces.txt
+> -
+> -If a DSI host is unused (not connected) it will have no children defined.
+> -
+> -Example:
+> -
+> -mcde@a0350000 {
+> -	compatible = "ste,mcde";
+> -	reg = <0xa0350000 0x1000>;
+> -	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+> -	epod-supply = <&db8500_b2r2_mcde_reg>;
+> -	vana-supply = <&ab8500_ldo_ana_reg>;
+> -	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
+> -		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
+> -		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
+> -	clock-names = "mcde", "lcd", "hdmi";
+> -	#address-cells = <1>;
+> -	#size-cells = <1>;
+> -	ranges;
+> -
+> -	dsi0: dsi@a0351000 {
+> -		compatible = "ste,mcde-dsi";
+> -		reg = <0xa0351000 0x1000>;
+> -		vana-supply = <&ab8500_ldo_ana_reg>;
+> -		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
+> -		clock-names = "hs", "lp";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		panel {
+> -			compatible = "samsung,s6d16d0";
+> -			reg = <0>;
+> -			vdd1-supply = <&ab8500_ldo_aux1_reg>;
+> -			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
+> -		};
+> -
+> -	};
+> -	dsi1: dsi@a0352000 {
+> -		compatible = "ste,mcde-dsi";
+> -		reg = <0xa0352000 0x1000>;
+> -		vana-supply = <&ab8500_ldo_ana_reg>;
+> -		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
+> -		clock-names = "hs", "lp";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -	};
+> -	dsi2: dsi@a0353000 {
+> -		compatible = "ste,mcde-dsi";
+> -		reg = <0xa0353000 0x1000>;
+> -		vana-supply = <&ab8500_ldo_ana_reg>;
+> -		/* This DSI port only has the Low Power / Energy Save clock */
+> -		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
+> -		clock-names = "lp";
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
+> new file mode 100644
+> index 000000000000..a00333acd9a1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
+> @@ -0,0 +1,167 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ST-Ericsson Multi Channel Display Engine MCDE
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    const: ste,mcde
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: the interrupt line for the MCDE
 
+Kind of generic description. Can drop.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+> +
+> +  clocks:
+> +    maxItems: 3
 
-yamllint warnings/errors:
+Can drop this. Implied with 'items'.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/ste,mcde.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/display/ste,mcde.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/display/ste,mcde.yaml
+> +    description: an array of the MCDE clocks
+> +    items:
+> +      - description: MCDECLK (main MCDE clock)
+> +      - description: LCDCLK (LCD clock)
+> +      - description: PLLDSI (HDMI clock)
+> +
+> +  clock-names:
+> +    maxItems: 3
 
+ditto
 
-See https://patchwork.ozlabs.org/patch/1393940
+> +    items:
+> +      - const: mcde
+> +      - const: lcd
+> +      - const: hdmi
+> +
+> +  epod-supply:
+> +    description: a phandle to the EPOD regulator
+> +
+> +  vana-supply:
+> +    description: a phandle to the analog voltage regulator
+> +
+> +  port:
+> +    type: object
+> +    description:
+> +      A DPI port node with endpoint definitions as defined in
+> +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 1
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^dsi@[0-9a-f]+$":
+> +    description: subnodes for the three DSI host adapters
+> +    type: object
+> +    allOf:
+> +      - $ref: dsi-controller.yaml#
+> +    properties:
+> +      compatible:
+> +        const: ste,mcde-dsi
+> +
+> +      reg:
+> +        maxItems: 1
+> +
+> +      vana-supply:
+> +        description: a phandle to the analog voltage regulator
+> +
+> +      clocks:
+> +        description: phandles to the high speed and low power (energy save) clocks
+> +          the high speed clock is not present on the third (dsi2) block, so it
+> +          should only have the "lp" clock
+> +        minItems: 1
+> +        maxItems: 2
+> +
+> +      clock-names:
+> +        oneOf:
+> +          - items:
+> +              - const: hs
+> +              - const: lp
+> +          - items:
+> +              - const: lp
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - vana-supply
+> +      - clocks
+> +      - clock-names
 
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
+       unevaluatedProperties: false
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - epod-supply
+> +  - vana-supply
+> +
+> +unevaluatedProperties: false
 
-pip3 install dtschema --upgrade
+The meta-schema has gotten stricter recently, so this has to be 
+'additionalProperties' since there's no other schema referenced. Moving 
+target. :)
 
-Please check and re-submit.
-
+Rob 
