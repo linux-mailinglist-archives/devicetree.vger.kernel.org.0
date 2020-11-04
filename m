@@ -2,108 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 706BA2A5BE4
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 02:29:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE23C2A5BEA
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 02:29:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729694AbgKDB3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 20:29:01 -0500
-Received: from mail-eopbgr1310112.outbound.protection.outlook.com ([40.107.131.112]:49408
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725769AbgKDB3A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Nov 2020 20:29:00 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LOOQ6PUo3LLmzFFfEHQ2mJfH+UDudprdMgJxvcN8EtR2j/zPcz6UzkrQ52lxZHSKwQA6x1uAb/f+MBq9jcj1kDjvh3TC2NT3BP2u4lIZQSVDKKHVTfk71j9/Q8lJDDuL2vxJpWA9nArrotwESmo8FEaWytnhN1tgp+EC0Fc7rOEF9Oy5WFq8Qq2fDm5kZAg/oBx0Ek6xbNKtghE46tRyfYxFcC06cvKNZ+Ji8GECJCwQpSLpMlxK4Xwp3KxWnypqyvI1vuB1nwHHzsK3sOnOZpAsG7kZe/3xGwhh7dNSkrwDigDPFgZsFCId50gWEoYkpv1D2hwhLWyC/0DbgCj9vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2HwTiNADNDEmsJDSmXFMXW8BMhtyUy8XB3DH5v236Vs=;
- b=ZKWMcMeD6suK5ZV+S9ACszmIdyhgFgjysEzQ3eDNS09YiQMOjbYXYsinPk3Ar0vTGRr2tCq5Q7g0d3pVcpxuzkJGMFBQdmZSzXrE+CE1ecshJ69bdYkKxvtsKdgmXrYnXSS6q0Nou/xleCJB5OR42xp+HQxMaAFSj2QHY7BV+1y9nKGMro/p+KbyFWIeEeQ7xLZQb+XgYQqG8ASk6RPN2BtaQeDbtrV+vvWgra4MtLdc6sXXCSJrQZf7wfC9we56x1HkisCVjl4AQuitHYuN0zLEN/tKXbVYsyy8H3eSXon3SxWuf83iDe6U5PhYssMlOXtDrK0+iY2V2xcB9bS03A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+        id S1729876AbgKDB35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 20:29:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37578 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725769AbgKDB3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 20:29:55 -0500
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B14CC0401C2
+        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 17:29:53 -0800 (PST)
+Received: by mail-pl1-x643.google.com with SMTP id b12so9488987plr.4
+        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 17:29:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2HwTiNADNDEmsJDSmXFMXW8BMhtyUy8XB3DH5v236Vs=;
- b=nLuDFEybflRfwdnR5WMUNsZS6a6BKv/4B3HeJS8hHXiVltGWS2uiMFQa2nb5VfKFWvGpGho0qoD1QWbgW4K260rAF0CiaumA7QKb9gmpdQYf6bIUQKWSeigVbUIhff0zWQZkZe3Y7e+dB9vuflKz8e06TC+SfbwI1g0ZL+Qajfw=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TY2PR01MB4297.jpnprd01.prod.outlook.com (2603:1096:404:111::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.29; Wed, 4 Nov
- 2020 01:28:53 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::bcba:dccf:7d4c:c883]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::bcba:dccf:7d4c:c883%4]) with mapi id 15.20.3499.032; Wed, 4 Nov 2020
- 01:28:53 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v2 0/3] dt-bindings: pci: rcar-pci-host: convert bindings
- to json-schema
-Thread-Topic: [PATCH v2 0/3] dt-bindings: pci: rcar-pci-host: convert bindings
- to json-schema
-Thread-Index: AQHWrn2ZTuZqlcxICUCkXeL/kgB1lam3Bt8AgAAvj8A=
-Date:   Wed, 4 Nov 2020 01:28:52 +0000
-Message-ID: <TY2PR01MB3692B8B4DE36B15EC56A6C41D8EF0@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <1604035745-22095-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <20201103223736.GA271290@bjorn-Precision-5520>
-In-Reply-To: <20201103223736.GA271290@bjorn-Precision-5520>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [240f:60:5f3e:1:184:fa7:6262:a02c]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 1cebf41f-41c8-42ab-ded6-08d88060fd82
-x-ms-traffictypediagnostic: TY2PR01MB4297:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <TY2PR01MB429737C6D756FDFAA1F02BFDD8EF0@TY2PR01MB4297.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1824;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: PtCkEBgFkC/oeKGXSdAsiCPKUSVLiisDx3HXNkI4TM42NF00zR5YzFOzkyijCXJfDRWmvvhuGbkSqLID2O6l7UhGHv5l4Q9Tw3owl7YzqI2Gs0hLA15zr0p8HBFcPxXSTy20/LSONE+vnZyKNEvkKjImYMqhbNxFHTn5+sTucp9HSctHrAXVES4Z+cwFFaBHvEFfzK2oDNQt/tXd1u3c3Z8NfXIAc/srZlaI4d7lEHthe2lr23IerYylub85z12j9zJ0Sok5v0skqbgb4dNGD2GvzmKvmzdVn8nonQpZWtEXbt/Zq0RiM54LnnVyBczJChxuhDyurAcaHawsGmd/FQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(366004)(39860400002)(136003)(396003)(2906002)(558084003)(55016002)(9686003)(8936002)(7696005)(54906003)(316002)(71200400001)(33656002)(8676002)(86362001)(5660300002)(52536014)(4326008)(66556008)(478600001)(76116006)(64756008)(66446008)(6916009)(66946007)(186003)(66476007)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: i2cg+d0b67wPMhhVrwh/RAjU4C3u0QIyfVll3TUmir8qOtgGifaqSZrPcxiG1UU/sb2o5WiQ+O44U7la0Ryfq4b2AL8sFtcEzGYYR98AB1fJ5HocSl1cZ/lCe3CYF/ftl7ez8ElZJRFDIpKLaYOzOHRxh76mg4rvOc+ebs3vhch6/iLv/pkQwlJctP2KvRkfIEhVvhRlM1mDMIEQ/ri2d5fMNvfCuM95bW5/GG1wrmmcXvYPvd9Xz1xkx8uMCB0ZabOnBmm5i19L3SQ7kPtliFOAGjuFdlhno0+P7xkMoUpUFOLPTdw6f7c1PjEp4X9/Hz60PXer8q/Q6oqVGkUdqA8wh91GEU3vkJmB1IWRdOTD9U0psu8TIv43pWajq8dzCDCCqANabJbArjoITLiNBPYc/wtuqrTCzlT2+qCgJ0cVIuPMxQ9rh/untoUzmBwd1ddLarNe+iA5bZvKWTbXYJNy7azaVy6R5ZUgKusKGIiBJCUul4b9kTv1fOBjC3HluMgrcNhiUAwVN4R3a1Z5ASPSieaAtk4XHHOTL1hDzMm5NOnlfOVX9ETpQjuCvsp+Cs5+wjZ9ZNIn8ahPFDaVDm3i2oHibQMru4cF1N348aWjl9+KytkuEbL32HnHnk3/MMRAa3exe2hnhQG7B4AhFbl/JtfCkWh7+nipUZED+hiEOl/T68y/7FcmpXMgWAN6
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aMTaSm89kT5TDRihafmXN8fpXabsdYs0qDU43+JwbS0=;
+        b=fHKmoVtGYK4sREwOdOU4Lct3hnbiNwEW+GYbl98M7c1mvS5wdl8AE21fkfFF0sd0FZ
+         C2PVeaBbQw/o9686zJwDajQOuToUyje3hR7IdmOUKKuOhsdEIXFfQkVk5CNd+5h2cYJj
+         ANOgtGhRljNjiHSSOrTiMGFLQTcQDPiuAQ1t4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aMTaSm89kT5TDRihafmXN8fpXabsdYs0qDU43+JwbS0=;
+        b=PGTf1SuSWs5/0GjmNjy+0mPV9XOGlWRUA6ftTnDhfZa9X7gASMKIk7CpfpSycZvAlo
+         bANSbG5EGM/w7E2NCvb5AK+t+cEZQaj4C90pL0v5AFMQZ0qFncowJ+MYUDnfe0CbXUxa
+         tXBcjHfA6YaiQeoPbsF8mpk32wbxZQyhwTqHGogxmmCjRwRvkxNHo3kbOQBi6ZjQSYCL
+         SGxGXeoGqcwp+PXzPgFi/I/aPMquQFNj9hYFVuZStMuLdFtABJxIgP1ma2VYhNUZj9A4
+         hzQ/Aj87V4OMVZNVMNzwMF0MU5FPszjpbn3bhRw/pZsZHe4ZpX1x/FPzYUrQN6qdTCcI
+         zsVA==
+X-Gm-Message-State: AOAM533J6kxURiTEkFmf4pof6d4PSquqGDZAlSdfzCpdyhUeJe8Pymqy
+        boYY/G78bx6ZutbTQpaRD7XbdA==
+X-Google-Smtp-Source: ABdhPJxCpGL3gLtUMaj65HaRL8OI22vjNZDD93pNWHBqdtvQvNhwYi5Rfdlm5Nm68IFVufqOv1Misg==
+X-Received: by 2002:a17:902:654a:b029:d5:e98f:2436 with SMTP id d10-20020a170902654ab02900d5e98f2436mr27621181pln.21.1604453393066;
+        Tue, 03 Nov 2020 17:29:53 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
+        by smtp.gmail.com with ESMTPSA id m3sm347424pjv.52.2020.11.03.17.29.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Nov 2020 17:29:52 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
+        gregkh@linuxfoundation.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     linux-input@vger.kernel.org, swboyd@chromium.org,
+        andrea@borgia.bo.it, kai.heng.feng@canonical.com,
+        hdegoede@redhat.com, robh+dt@kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Aaron Ma <aaron.ma@canonical.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jiri Kosina <jikos@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Olof Johansson <olof@lixom.net>, Pavel Balan <admin@kryma.net>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Xiaofei Tan <tanxiaofei@huawei.com>,
+        You-Sheng Yang <vicamo.yang@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
+Date:   Tue,  3 Nov 2020 17:29:25 -0800
+Message-Id: <20201104012929.3850691-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1cebf41f-41c8-42ab-ded6-08d88060fd82
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2020 01:28:52.9754
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gr4auOxRy6mbldilImjoSHyOfs0cofCxJIaLnnJm+ag//9kf7aYmvGD+FwCSxwDuAXc8MGPokOwX+DIe7hPjWFm6ncdmJ0+HQByDZouqH25hwwSFGCfSQ54FOrmdiTOU
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB4297
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
 
-> From: Bjorn Helgaas, Sent: Wednesday, November 4, 2020 7:38 AM
->=20
-> Please follow the subject line convention, e.g.,
->=20
->   dt-bindings: PCI: rcar-pci-host: Convert ...
->   dt-bindings: PCI: rcar-pci-host: Document ...
+The goal of this series is to support the Goodix GT7375P touchscreen.
+This touchscreen is special because it has power sequencing
+requirements that necessitate driving a reset GPIO.
 
-I got it. I'll fix these subjects.
+To do this, we totally rejigger the way i2c-hid is organized so that
+it's easier to jam the Goodix support in there.
 
-Best regards,
-Yoshihiro Shimoda
+This series was:
+- Tested on a device that uses normal i2c-hid
+- Tested on a device that pretended to have a Goodix i2c-hid device on
+  it.  I don't have a device with GT7375P setup yet and the person who
+  has been testing remotely for me hasn't tested this exact series.  I
+  think it should still work, though.
+- NOT tested on any ACPI devices (just compile tested).
+
+There are probably still small nits, but hopefully we're getting
+closer to something people like.
+
+Changes in v4:
+- Fully rejigger so ACPI and OF are full subclasses.
+- ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
+- Totally redid based on the new subclass system.
+
+Changes in v3:
+- Rework to use subclassing.
+- Removed Benjamin as a maintainer.
+- Fixed compatible in example.
+- Updated description.
+- Rework to use subclassing.
+
+Changes in v2:
+- Use a separate compatible string for this new touchscreen.
+- Get timings based on the compatible string.
+- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+
+Douglas Anderson (4):
+  HID: i2c-hid: Reorganize so ACPI and OF are subclasses
+  arm64: defconfig: Update config names for i2c-hid rejigger
+  dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P
+  HID: i2c-hid: Introduce goodix-i2c-hid as a subclass of i2c-hid
+
+ .../bindings/input/goodix,gt7375p.yaml        |  63 +++++
+ arch/arm64/configs/defconfig                  |   3 +-
+ drivers/hid/Makefile                          |   2 +-
+ drivers/hid/i2c-hid/Kconfig                   |  47 +++-
+ drivers/hid/i2c-hid/Makefile                  |   6 +-
+ drivers/hid/i2c-hid/i2c-hid-acpi.c            | 167 ++++++++++++
+ drivers/hid/i2c-hid/i2c-hid-core.c            | 253 +++---------------
+ drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 120 +++++++++
+ drivers/hid/i2c-hid/i2c-hid-of.c              | 149 +++++++++++
+ drivers/hid/i2c-hid/i2c-hid.h                 |  24 ++
+ include/linux/platform_data/i2c-hid.h         |  41 ---
+ 11 files changed, 607 insertions(+), 268 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
+ delete mode 100644 include/linux/platform_data/i2c-hid.h
+
+-- 
+2.29.1.341.ge80a0c044ae-goog
 
