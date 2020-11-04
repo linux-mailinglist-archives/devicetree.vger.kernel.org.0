@@ -2,360 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF79C2A63C8
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 12:59:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A42272A63D7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 13:04:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729361AbgKDL7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 06:59:23 -0500
-Received: from lb2-smtp-cloud9.xs4all.net ([194.109.24.26]:50329 "EHLO
-        lb2-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728645AbgKDL55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 06:57:57 -0500
-X-Greylist: delayed 328 seconds by postgrey-1.27 at vger.kernel.org; Wed, 04 Nov 2020 06:57:55 EST
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id aHNpkUghq1R0xaHNskHgpB; Wed, 04 Nov 2020 12:55:25 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
-        t=1604490925; bh=Y2EV04bpCT5yLDOBK59QpjQPIFoMdyTPUddKGuNHl1U=;
-        h=Subject:From:To:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=ZmhxhfJNp0pobFmuZ/WUHgCZP7UkumUYG1xA5JX5ZFtSGzj9xNOuXJdozNOifvazl
-         eoekWOzdgCbaOlpb6GddDwskRulbvapFQsa4XGPpRRQCT6tUCTlSXZEEBqJa11y2Yv
-         MGJsm5ZJZN/0Xep13V+ihUtl6p/89zv2vGOPaYEBUr63KzZeghJSicb4lqj5JaJ34G
-         RBAWQIFQBaHSyORKmuaAVDmAh8mMUTivR/SEEli0sc9cZS66hXs3OYIxP16LM2r9td
-         zcwJdZVvOnEGF0sIWbhgeYwo3EZijf1+lgaRBbpdOKKoLINMtELZJRN8R96q5Ne7xK
-         fMJpN8bOMgcnA==
-Subject: Re: [PATCH v4 00/11] Add V4L2 driver for i.MX8 JPEG Encoder/Decoder
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-To:     "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>,
-        mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org
-Cc:     paul.kocialkowski@bootlin.com, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        s.hauer@pengutronix.de, aisheng.dong@nxp.com,
-        daniel.baluta@nxp.com, robert.chiras@nxp.com,
-        laurentiu.palcu@nxp.com, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
-        ezequiel@collabora.com, laurent.pinchart+renesas@ideasonboard.com,
-        niklas.soderlund+renesas@ragnatech.se,
-        dafna.hirschfeld@collabora.com,
-        Mirela Rabulea <mirela.rabulea@nxp.com>
-References: <20201102030821.3049-1-mirela.rabulea@oss.nxp.com>
- <9c6cf9bf-f6d8-78f5-5f31-d7ea9e25da0d@xs4all.nl>
-Message-ID: <ca7a395a-68ea-33a3-1216-0adf225fce7b@xs4all.nl>
-Date:   Wed, 4 Nov 2020 12:55:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <9c6cf9bf-f6d8-78f5-5f31-d7ea9e25da0d@xs4all.nl>
-Content-Type: text/plain; charset=utf-8
+        id S1729179AbgKDMEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 07:04:01 -0500
+Received: from mga11.intel.com ([192.55.52.93]:2667 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728287AbgKDMEB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 07:04:01 -0500
+IronPort-SDR: oJqRPJlf7p4XzHB/i4flQkq2ga5LySWN4+8rT3GKUXmkLaZxuPpOz/1SUK33T+yV8vCSrnw5BS
+ smpD4aUup9bg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9794"; a="165698704"
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; 
+   d="scan'208";a="165698704"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2020 04:03:44 -0800
+IronPort-SDR: EncAUA+djlPzGfvppR3+adEi4rDQZ4ghraSlkWCMbyugJs89GWNBJqQKW+ZVrQaQpRG4i7uLLW
+ jzOWT2m/2Fow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,450,1596524400"; 
+   d="scan'208";a="471205045"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+  by orsmga004.jf.intel.com with ESMTP; 04 Nov 2020 04:03:44 -0800
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 4 Nov 2020 04:03:43 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 4 Nov 2020 04:03:42 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Wed, 4 Nov 2020 04:03:42 -0800
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.48) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Wed, 4 Nov 2020 04:03:42 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lG5NYQgKvaDBIuHmv9eBjJNcnDPjsVx+bcw8gvftHuju0iBcM8v/6/Yh8ss3uTdfc9IY8hPe3ZZ7oDxTqHy4JU1RPuIo+FPJ0sB2J/SYrKHboj5N9Zz1vmLQwvs7JkKcPOeIuJeu32NCeLmBNkii4TF2WZQpEIwPeWdDcADNpLp0+eeJeWrTbGUoMyeKOmx9G3h0aqGXV9EkgHneGM1fxhaiZ6mg0Aqv0q6ZFrsGZzAOKp2mB6kJxjwLmufN+4HwTkko3LLDfQDYtzK/IQfNs8jP1a01DHoOKBDwEFicSRtQ37WFYskMgbHn2RSNk8Xq6gKumlyElycTH5Viybljew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q8pZYvXH9OnrB8P9QVMUywwRaRJvU8ilF1OFkUu8XjU=;
+ b=A6aKsWl0vHTX7CJPhunlcoa0i/nhm7yr92FJiFTUKA9ZNIjLyH+tuSwqOhKNcXTYgNLs97a1t8KKheOfcGQhY1Xw874Yj0489tUWpCyBxj9Ykqw2V3n7o9FxCxM4W282gNJkcB3uO7nlVVpyNWhU8S3eaUO94qAT7igoa8H810OYSG8on7ouqqMUHWh5gZPThpqcR4AIlLuTv3oZ6nyQPnHiYJQn39mSTAijkkPo3jVbtGgvnvNgBdVepGDev+DI2m9qsuD6f8WVuq0H0zcQHxfYakgpjeljAGIb9+jGykXltwXgxBu+xpcKEepf3DAw42Mm7NiQp3sI+Z4T281h7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q8pZYvXH9OnrB8P9QVMUywwRaRJvU8ilF1OFkUu8XjU=;
+ b=TtYdxFS/AjFZZv2nEcLPiOFai0eJXkvX4/Fm6P3XpSeS/o4N2VENhfVYcuYfyusXN5spApjNOTu+vZgkyfuyKmrkt7WJZo6FFCX1B0Of0twMkAIGxT4Xc47Cf4ZUq9kaRQ59/BMz1LLnNR/s66T8opx7SRtASayZ24M4HjeYenc=
+Received: from DM6PR11MB3721.namprd11.prod.outlook.com (2603:10b6:5:142::10)
+ by DM6PR11MB4042.namprd11.prod.outlook.com (2603:10b6:5:197::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Wed, 4 Nov
+ 2020 12:03:39 +0000
+Received: from DM6PR11MB3721.namprd11.prod.outlook.com
+ ([fe80::5017:4139:6553:ded4]) by DM6PR11MB3721.namprd11.prod.outlook.com
+ ([fe80::5017:4139:6553:ded4%6]) with mapi id 15.20.3499.032; Wed, 4 Nov 2020
+ 12:03:39 +0000
+From:   "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: RE: [PATCH 2/2] PCI: keembay: Add support for Intel Keem Bay
+Thread-Topic: [PATCH 2/2] PCI: keembay: Add support for Intel Keem Bay
+Thread-Index: AQHWrCa/7JSqkgie50uK+30dhAeVBKm3B0yAgADdDoA=
+Date:   Wed, 4 Nov 2020 12:03:39 +0000
+Message-ID: <DM6PR11MB3721DE5452FA6C4CA3E23FC8DDEF0@DM6PR11MB3721.namprd11.prod.outlook.com>
+References: <20201027060011.25893-3-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20201103222223.GA269610@bjorn-Precision-5520>
+In-Reply-To: <20201103222223.GA269610@bjorn-Precision-5520>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfFscgRkqbff8Bk80vb+RwblFnXBEbmsjVBskctWxmspWSZ0UVpHncmK/DJtm7CWsMhmrv3H6YxjUed/uVJYbSFwziIWP72XOj4VVSCyteUX//shTsY5k
- 2KEjRhUXRk+0ZqLR5cdIPE8LFA4VFMIDAC9Rt/H40e0GCwU/7Eo1oTFUKWtfQNyzIhgA8avi0CESslcXMRSlJH97do3VFgLqqNAtakmJJXW4p9Sg088bX4Ib
- 1VmRWc0qjJ/RL642KMjYfN1lHEh1vdShe5FJaH4u7IXYKcAXQiaKrhXTvSPniPgAXQsVfGn9xaQcVJ/+49FlkhiPrsgBKj9WAdZzIQ1+nfni43+ehHUfcZYN
- CYY8SOWJ7FfbL4S3nyNa+mP8/iWJrzYmOtXV/WWaOTnw026wjVQo/tiPLPUfigLA4BViAXfznXpuXTQaDu519h7GBfbowyD5FgIsTk4UBSNvRkMELMJHisBI
- sJTALCwkAVza3t4t+DElawHQiJBbmcNDsqJVPVdtjRh/E/cLsoS7TdbnBiPooihVBZv3QTh63ndoJ7euII9Jynx/C/A0Ke6dJR82sBVKxVnTP+RYVzPC+xHC
- 9TGn2GOjdjvbo0MVXdGO1IhjnnZoXTcg6YlC9GzN9S2QEidCY2GtAxbWC3EOlFyhF2/wCk3Qzs0H7nZIDxRzz0OlT71au/RwE7Oja8DU3ZcAg8h1EBFkKks5
- rqaWVKyTp0/CstNFjGBz7weWWKeJ4WkRc35gbOLj2+Kt+AqRzoHvC+K9VQJYzmvw+dvo6/KzsrkonMpn8ItXIoxfQhoH7zx6wozHWutWCp0Doq4kWoCkFMvO
- HfaEpHs8LAm9ohYbEBqWqbOq33+d/npJNnC+a5fWPVXgqZJ+TK8WZqRE8k/I/dmpmjoJo7qjmcynWJo0tesgdRifcYYI2BOG9nL1H2MM6+UgS4ETwouNfF0T
- cNJXog==
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [14.1.225.240]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c23c41e2-3075-4995-ab4b-08d880b9aaf4
+x-ms-traffictypediagnostic: DM6PR11MB4042:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB4042FC28788147CB1D3EA541DDEF0@DM6PR11MB4042.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2733;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: T+T2wURgJ/OV3cEERejVHWW01umCC6dq0OIjzXTLOJyfZVu4dbSbNE6WdkPQQqDQMQ+CZMnFMc/JEoyFBp3jFvG+bROifmLuqIlpN7nRIY/VNZkr9jZQr3wiwPxSXrPlCAnfrjoHH2Uh+ADkn47iYG/Un8h2FWoDClEFMm3gvnqeHK4j7GHpbArdw9UcYr6fY24/6dlzi/nMwyojvlQvrcJ1/Jer2XhviHDVGsDOtvo7O00oN0FyBzerUaayquJmF/uV/BbmxYRnLpgs0G577waUUCGHF0oTKJJTWXMfpv5wxZT/GcQNsP3k2I+UbUP9J+hgn/V9ecDssZuGpAdPeQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3721.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(136003)(39860400002)(366004)(396003)(33656002)(478600001)(8936002)(4326008)(2906002)(186003)(7696005)(86362001)(71200400001)(9686003)(66446008)(64756008)(5660300002)(66946007)(26005)(66476007)(66556008)(8676002)(52536014)(316002)(83380400001)(6916009)(53546011)(6506007)(54906003)(76116006)(55016002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: KTVUeAxS/5e+ZJh9Mv2DbhKQ6b1GRvQv1GA4XatkTopgePsWx8i/9pnjSBPX6eYkINcxxb9aDTU9z7K/DL4k3JWQG+8GT3bnGZsKSiK5DmgNmtZ3aKezSITPAi97h1dPeXmzNz4nDDiBFNbrWjSTLuz/btFQ5DVXuM03PNvWPMKQGjyVZOsYdHQdKCD+O+zy3zJ0nQEb9tnDidWGShlbuT4Z0LSu/0eCzwW6TQ2tsXIcxMEr3U8KPqEAQpKW5NUGiAF1t4tZOVtGl9fAqLTlkuGGSgFZ0FO1EjJun5fm47wzKWe7PDNQPKtG9+7ZW5ciTVnu1Cw7s8aXdBNrlG5Lsk/mZ/jcad1XnX1Ait8bz7TNDYU2HUsZ1TBdw7c6Ekg5OxCL4ruXm4k7yUDJAsP7nLUxcYMCbyNq81m48PM9OFEVrJvzGK5QonIQKHQSwq7wihB3OUITqOioeMqTptmfOxP1bovPs8StgtvXsTvwfdoikC57wlET56BGzON8YSj/VFReAa5STZHWU0CASw73wKrpSF5oOaGgoC3p990RgVq0EKZI/aMcsELkI70qEBDdrKpKOHP/F2suSCRef65YvvAXCi3RMAE1F23ocPreUBeldwl0cOhwt0MONUFcqTnBi4KuCoYE+XJBMQWYwzTncg==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3721.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c23c41e2-3075-4995-ab4b-08d880b9aaf4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2020 12:03:39.6982
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DnFi+z1zgyXYyNf2nCJPo21fP/La9sNdnjbhvkK8atqDOmav1sN7gm1HFV1sHS3IFdLUM/b5UDXmOs4YbtGzJiGb46lZ5H2EbwbqddVajBycLmPeluGc4mJUywUPWAEX
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4042
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/11/2020 12:52, Hans Verkuil wrote:
-> On 02/11/2020 04:08, Mirela Rabulea (OSS) wrote:
->> From: Mirela Rabulea <mirela.rabulea@nxp.com>
->>
->> Changes in v4:
->> The main change is using the common jpeg helpers in imx-jpeg
->> Summary of changes:
->> Patch 1, 2, 3, 5, 6 - no change
->> Patch 4 - small update: VFL_TYPE_VIDEO-> VFL_TYPE_GRABBER and 2 typos
->> Patch 7 - new, fixed a problem with v4l2-compliance streaming tests on decoder
->> Patch 8,9,10 - new, changes in jpeg helpers.
->> Patch 11- new, use jpeg helpers in imx-jpeg, as requested during review, requires patch 8
->>
->> This patch set adds the V4L2 driver for i.MX8QXP/QM JPEG encoder/decoder
->> and it's dependencies.
->> The driver was tested on i.MX8QXP, using a unit test application and
->> the v4l2-compliance tool, including the  streaming tests for decoder & encoder.
->>
->> The output of v4l2-compliance (stable-1.20) on i.MX8QXP, decoder & encoder:
->>
->> root@imx8qxpmek:/unit_tests/JPEG# ./v4l2-compliance-stable-1.20 -d /dev/video0 -s
->> v4l2-compliance SHA: 6c415a11fceb32067cdb5c2e33f90dbf018182a4, 64 bits, 64-bit time_t
-> 
-> This is much too old. Always compile v4l2-compliance from the v4l-utils git
-> repository (https://git.linuxtv.org/v4l-utils.git/) to ensure you use the
-> latest version and the latest compliance checks.
-> 
-> I.e., the reported SHA should match that of HEAD.
+> -----Original Message-----
+> From: Bjorn Helgaas <helgaas@kernel.org>
+> Sent: Wednesday, November 4, 2020 6:22 AM
+> To: Wan Mohamad, Wan Ahmad Zainie
+> <wan.ahmad.zainie.wan.mohamad@intel.com>
+> Cc: bhelgaas@google.com; robh+dt@kernel.org; lorenzo.pieralisi@arm.com;
+> linux-pci@vger.kernel.org; devicetree@vger.kernel.org;
+> andriy.shevchenko@linux.intel.com; mgross@linux.intel.com; Raja
+> Subramanian, Lakshmi Bai <lakshmi.bai.raja.subramanian@intel.com>
+> Subject: Re: [PATCH 2/2] PCI: keembay: Add support for Intel Keem Bay
+>=20
+> On Tue, Oct 27, 2020 at 02:00:11PM +0800, Wan Ahmad Zainie wrote:
+>=20
+> > +static int keembay_pcie_link_up(struct dw_pcie *pci) {
+> > +	struct keembay_pcie *pcie =3D dev_get_drvdata(pci->dev);
+> > +	u32 val, mask;
+> > +
+> > +	val =3D keembay_pcie_readl(pcie, PCIE_REGS_PCIE_SII_PM_STATE);
+> > +	mask =3D SMLH_LINK_UP | RDLH_LINK_UP;
+> > +
+> > +	return !!((val & mask) =3D=3D mask);
+>=20
+> I think the "!!" is redundant since you're applying it to a value that's =
+a boolean
+> already.  So you should be able to do:
+>=20
+>   return (val & mask) =3D=3D mask;
+>=20
+> But it seems like "mask" just obfuscates a little bit, too.
+> Personally I think it'd be easier to add something like:
+>=20
+>   #define PCIE_REGS_PCIE_SII_LINK_UP  (SMLH_LINK_UP | RDLH_LINK_UP)
+>=20
+> and then:
+>=20
+>   if ((val & PCIE_REGS_PCIE_SII_LINK_UP) =3D=3D PCIE_REGS_PCIE_SII_LINK_U=
+P)
+>     return 1;
+>   return 0;
 
-So please recompile v4l2-compliance from the git repo and retest. If
-you find new failures, then you probably need to post a v5, otherwise
-it is enough to reply to this with the output of the updated v4l2-compliance.
+I will fix in v2, using the above as agreed by Andy.
 
-Regards,
+>=20
+> or even:
+>=20
+>   return (val & PCIE_REGS_PCIE_SII_LINK_UP) =3D=3D
+> PCIE_REGS_PCIE_SII_LINK_UP;
+>=20
+> > +static int keembay_pcie_establish_link(struct dw_pcie *pci) {
+> > +	return 0;
+> > +}
+>=20
+> Are you sure you need this?  I see other cases where the .start_link poin=
+ter is
+> left NULL, e.g., pci-exynos.c, pci-imx6.c, dw_ls1021_pcie_ops, etc.
 
-	Hans
+Yes, as in endpoint mode, link initialization is done in boot firmware.
+Leaving it NULL will cause pcie-designware-ep.c::dw_pcie_ep_start()
+to return -EINVAL.
 
-> 
-> Regards,
-> 
-> 	Hans
-> 
->>
->> Compliance test for mxc-jpeg decode device /dev/video0:
->>
->> Driver Info:
->> 	Driver name      : mxc-jpeg decode
->> 	Card type        : mxc-jpeg decoder
->> 	Bus info         : platform:58400000.jpegdec
->> 	Driver version   : 5.10.0
->> 	Capabilities     : 0x84204000
->> 		Video Memory-to-Memory Multiplanar
->> 		Streaming
->> 		Extended Pix Format
->> 		Device Capabilities
->> 	Device Caps      : 0x04204000
->> 		Video Memory-to-Memory Multiplanar
->> 		Streaming
->> 		Extended Pix Format
->> 	Detected JPEG Decoder
->>
->> Required ioctls:
->> 	test VIDIOC_QUERYCAP: OK
->>
->> Allow for multiple opens:
->> 	test second /dev/video0 open: OK
->> 	test VIDIOC_QUERYCAP: OK
->> 	test VIDIOC_G/S_PRIORITY: OK
->> 	test for unlimited opens: OK
->>
->> 	test invalid ioctls: OK
->> Debug ioctls:
->> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
->> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
->>
->> Input ioctls:
->> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
->> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
->> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
->> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
->>
->> Output ioctls:
->> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
->>
->> Input/Output configuration ioctls:
->> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
->> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
->> 	test VIDIOC_G/S_EDID: OK (Not Supported)
->>
->> Control ioctls:
->> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
->> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
->> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
->> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
->> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
->> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->> 	Standard Controls: 0 Private Controls: 0
->>
->> Format ioctls:
->> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
->> 	test VIDIOC_G/S_PARM: OK (Not Supported)
->> 	test VIDIOC_G_FBUF: OK (Not Supported)
->> 	test VIDIOC_G_FMT: OK
->> 	test VIDIOC_TRY_FMT: OK
->> 	test VIDIOC_S_FMT: OK
->> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->> 	test Cropping: OK (Not Supported)
->> 	test Composing: OK (Not Supported)
->> 	test Scaling: OK
->>
->> Codec ioctls:
->> 	test VIDIOC_(TRY_)ENCODER_CMD: OK
->> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->> 	test VIDIOC_(TRY_)DECODER_CMD: OK
->>
->> Buffer ioctls:
->> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
->> 	test VIDIOC_EXPBUF: OK
->> 	test Requests: OK (Not Supported)
->>
->> Test input 0:
->>
->> Streaming ioctls:
->> 	test read/write: OK (Not Supported)
->> 	test blocking wait: OK
->> 	Video Capture Multiplanar: Captured 58 buffers    
->> 	test MMAP (no poll): OK
->> 	Video Capture Multiplanar: Captured 58 buffers    
->> 	test MMAP (select): OK
->> 	Video Capture Multiplanar: Captured 58 buffers    
->> 	test MMAP (epoll): OK
->> 	test USERPTR (no poll): OK (Not Supported)
->> 	test USERPTR (select): OK (Not Supported)
->> 	test DMABUF: Cannot test, specify --expbuf-device
->>
->> Total for mxc-jpeg decode device /dev/video0: 52, Succeeded: 52, Failed: 0, Warnings: 0
->>  
->> root@imx8qxpmek:/unit_tests/JPEG# ./v4l2-compliance-stable-1.20 -d /dev/video1 -s
->> v4l2-compliance SHA: 6c415a11fceb32067cdb5c2e33f90dbf018182a4, 64 bits, 64-bit time_t
->>
->> Compliance test for mxc-jpeg decode device /dev/video1:
->>
->> Driver Info:
->> 	Driver name      : mxc-jpeg decode
->> 	Card type        : mxc-jpeg decoder
->> 	Bus info         : platform:58450000.jpegenc
->> 	Driver version   : 5.10.0
->> 	Capabilities     : 0x84204000
->> 		Video Memory-to-Memory Multiplanar
->> 		Streaming
->> 		Extended Pix Format
->> 		Device Capabilities
->> 	Device Caps      : 0x04204000
->> 		Video Memory-to-Memory Multiplanar
->> 		Streaming
->> 		Extended Pix Format
->> 	Detected JPEG Encoder
->>
->> Required ioctls:
->> 	test VIDIOC_QUERYCAP: OK
->>
->> Allow for multiple opens:
->> 	test second /dev/video1 open: OK
->> 	test VIDIOC_QUERYCAP: OK
->> 	test VIDIOC_G/S_PRIORITY: OK
->> 	test for unlimited opens: OK
->>
->> 	test invalid ioctls: OK
->> Debug ioctls:
->> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
->> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
->>
->> Input ioctls:
->> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
->> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
->> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
->> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
->>
->> Output ioctls:
->> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
->>
->> Input/Output configuration ioctls:
->> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
->> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
->> 	test VIDIOC_G/S_EDID: OK (Not Supported)
->>
->> Control ioctls:
->> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
->> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
->> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
->> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
->> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
->> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->> 	Standard Controls: 0 Private Controls: 0
->>
->> Format ioctls:
->> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
->> 	test VIDIOC_G/S_PARM: OK (Not Supported)
->> 	test VIDIOC_G_FBUF: OK (Not Supported)
->> 	test VIDIOC_G_FMT: OK
->> 	test VIDIOC_TRY_FMT: OK
->> 	test VIDIOC_S_FMT: OK
->> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->> 	test Cropping: OK (Not Supported)
->> 	test Composing: OK (Not Supported)
->> 	test Scaling: OK (Not Supported)
->>
->> Codec ioctls:
->> 	test VIDIOC_(TRY_)ENCODER_CMD: OK
->> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->> 	test VIDIOC_(TRY_)DECODER_CMD: OK
->>
->> Buffer ioctls:
->> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
->> 	test VIDIOC_EXPBUF: OK
->> 	test Requests: OK (Not Supported)
->>
->> Test input 0:
->>
->> Streaming ioctls:
->> 	test read/write: OK (Not Supported)
->> 	test blocking wait: OK
->> 	Video Capture Multiplanar: Captured 58 buffers    
->> 	test MMAP (no poll): OK
->> 	Video Capture Multiplanar: Captured 58 buffers    
->> 	test MMAP (select): OK
->> 	Video Capture Multiplanar: Captured 58 buffers    
->> 	test MMAP (epoll): OK
->> 	test USERPTR (no poll): OK (Not Supported)
->> 	test USERPTR (select): OK (Not Supported)
->> 	test DMABUF: Cannot test, specify --expbuf-device
->>
->> Total for mxc-jpeg decode device /dev/video1: 52, Succeeded: 52, Failed: 0, Warnings: 0
->> root@imx8qxpmek:/unit_tests/JPEG# 
->>
->>
->> Mirela Rabulea (11):
->>   media: v4l: Add packed YUV444 24bpp pixel format
->>   firmware: imx: scu-pd: Add power domains for imx-jpeg
->>   media: dt-bindings: Add bindings for i.MX8QXP/QM JPEG driver
->>   media: imx-jpeg: Add V4L2 driver for i.MX8 JPEG Encoder/Decoder
->>   arm64: dts: imx8qxp: Add jpeg encoder/decoder nodes
->>   Add maintainer for IMX jpeg v4l2 driver
->>   media: imx-jpeg: Fix v4l2-compliance streaming tests on decoder
->>   media: Add parsing for APP14 data segment in jpeg helpers
->>   media: Quit parsing stream if doesn't start with SOI
->>   media: Avoid parsing quantization and huffman tables
->>   media: imx-jpeg: Use v4l2 jpeg helpers in mxc-jpeg
->>
->>  .../devicetree/bindings/media/imx8-jpeg.yaml  |   83 +
->>  .../media/v4l/pixfmt-packed-yuv.rst           |   37 +-
->>  MAINTAINERS                                   |    8 +
->>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |    8 +
->>  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |   37 +
->>  drivers/firmware/imx/scu-pd.c                 |    6 +
->>  drivers/media/platform/Kconfig                |    2 +
->>  drivers/media/platform/Makefile               |    1 +
->>  drivers/media/platform/imx-jpeg/Kconfig       |   11 +
->>  drivers/media/platform/imx-jpeg/Makefile      |    3 +
->>  drivers/media/platform/imx-jpeg/mxc-jpeg-hw.c |  168 ++
->>  drivers/media/platform/imx-jpeg/mxc-jpeg-hw.h |  140 ++
->>  drivers/media/platform/imx-jpeg/mxc-jpeg.c    | 2185 +++++++++++++++++
->>  drivers/media/platform/imx-jpeg/mxc-jpeg.h    |  184 ++
->>  drivers/media/v4l2-core/v4l2-ioctl.c          |    1 +
->>  drivers/media/v4l2-core/v4l2-jpeg.c           |   52 +-
->>  include/media/v4l2-jpeg.h                     |   16 +-
->>  include/uapi/linux/videodev2.h                |    1 +
->>  18 files changed, 2933 insertions(+), 10 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/media/imx8-jpeg.yaml
->>  create mode 100644 drivers/media/platform/imx-jpeg/Kconfig
->>  create mode 100644 drivers/media/platform/imx-jpeg/Makefile
->>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg-hw.c
->>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg-hw.h
->>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg.c
->>  create mode 100644 drivers/media/platform/imx-jpeg/mxc-jpeg.h
->>
-> 
+Rob is refactoring DWC code and looks like .start_link is used in root comp=
+lex
+mode too. I will make changes to above function in v2, by renaming to
+keembay_pci2_start_link and add link initialization code for root complex
+mode.
 
+>=20
+> > +static int keembay_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8
+> func_no,
+> > +				     enum pci_epc_irq_type type,
+> > +				     u16 interrupt_num)
+> > +{
+> > +	struct dw_pcie *pci =3D to_dw_pcie_from_ep(ep);
+> > +
+> > +	switch (type) {
+> > +	case PCI_EPC_IRQ_LEGACY:
+> > +		/* Legacy interrupts are not supported in Keem Bay */
+> > +		dev_err(pci->dev, "Unsupported IRQ type\n");
+>=20
+> Might be nice to mention "legacy" here.
+
+I will fix in v2, using string "Legacy IRQ is not supported".
+
+>=20
+> > +		return -EINVAL;
+> > +	case PCI_EPC_IRQ_MSI:
+> > +		return dw_pcie_ep_raise_msi_irq(ep, func_no,
+> interrupt_num);
+> > +	case PCI_EPC_IRQ_MSIX:
+> > +		return dw_pcie_ep_raise_msix_irq(ep, func_no,
+> interrupt_num);
+> > +	default:
+> > +		dev_err(pci->dev, "Unknown IRQ type\n");
+>=20
+> And maybe include the %d of "type"?
+
+I will fix in v2, to show the value of "type".
+
+Best regards,
+Zainie
