@@ -2,68 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B992A6E79
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 21:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 937C82A6E7E
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 21:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731591AbgKDUDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 15:03:04 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:33858 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731394AbgKDUDE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 15:03:04 -0500
-Received: by mail-oi1-f194.google.com with SMTP id c21so8485281oic.1;
-        Wed, 04 Nov 2020 12:03:02 -0800 (PST)
+        id S1731505AbgKDUDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 15:03:51 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:40017 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731531AbgKDUDu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 15:03:50 -0500
+Received: by mail-ot1-f68.google.com with SMTP id 79so13036704otc.7;
+        Wed, 04 Nov 2020 12:03:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oBqDX2AjknVBn06K8/u+vt1ooNK8RMqy/l2tyn5+RE8=;
-        b=Os/yX1tMpL2Ku6JL91ePkLtpaxzbfARvH2GtxbTQxbJe3R8lNO8IpsfvGOugj0o3Nu
-         nteNHNAr+xaEehMEz0v0a/ehYI2SeSzWsNkFhk/jV7llOtm8UAGW3WectvcW1Ck3HmIv
-         u9VUS6qspri3PBN3eQmB4gaQ38m+IbM2wxndEI7jxNJh236iHsa3JOXSmNOKg5nWQl8J
-         ZTB1etulVsc+8nXYXJu5WadzeZBQJctIDY1fdHzZE97iQgJI+SgIAQ7fO4X9PU+n7pjU
-         22nhypsgEo6hK4V0holckrnnMycQ3PcupSchElr/zHCe7KmHk0rvqAZtl4kvwkTyFg3q
-         zniQ==
-X-Gm-Message-State: AOAM533e4GmOMWc2MIgQxyxybCobiUzaSr+DbVH3hcHp+JF80qaAhxxa
-        9sxakDmFR6R3SMgBFXLaTg==
-X-Google-Smtp-Source: ABdhPJwScFjt5SJiTj7x04SzO5UJDiz4X8g4A1clj71IAewexTQOZdLGaJUnD77962i4rsrTIwSVtQ==
-X-Received: by 2002:aca:eb06:: with SMTP id j6mr3334409oih.144.1604520181850;
-        Wed, 04 Nov 2020 12:03:01 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=JUQgQYNBfdSr9u9+0ymKrQdyAzk2HjKVNQuocc0Eq6k=;
+        b=OzKrlXr5miD5m5O7ZHU8Ovs9bvxCAnKtSAl7C7Qr07jjnOi5fHbDfHZwEUM9eKU/oe
+         RTBn2YTk8A4Bm4Mq1NVx5cY7hE9KOru08hpkw5sU3e4f0oSXvrWFC24yMz1E1brUTwHI
+         NR0iUjXiLDEZXl0gBxbRXBg1CI7ZIvrZUxJkhZfbn8qa8taMu8KD2ELtxDlEbWNStzw1
+         pE+uw7xEXUceCMs6f/F6C3IoByQTg79z7axr1a6lf08MRpK1Ags6+O6rZ6ctG/uv1DYY
+         /OivxtQxXj9yP0VVJpZlrk1zTl2T3EouXiNKyhIDQOMm15lrTn9A/qbrwUuqf7ISNfSi
+         tZZw==
+X-Gm-Message-State: AOAM532q5bQShgIbUH+ZsQYMrTjxAIpbe0r97DoMsDYPJJ/VWXOwUg/z
+        kesUOGmw8F0DzA1BnDLb8w==
+X-Google-Smtp-Source: ABdhPJxMD9nvhhhhLvNMud2OO7ROHQe7ezwZWePR1KBI/3l+/y0+uWNDNvxF/By6g8MAcyrzyv5pTA==
+X-Received: by 2002:a05:6830:1259:: with SMTP id s25mr10806430otp.66.1604520229815;
+        Wed, 04 Nov 2020 12:03:49 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h8sm660259otm.72.2020.11.04.12.03.00
+        by smtp.gmail.com with ESMTPSA id 8sm706667oii.45.2020.11.04.12.03.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 12:03:01 -0800 (PST)
-Received: (nullmailer pid 4037168 invoked by uid 1000);
-        Wed, 04 Nov 2020 20:03:00 -0000
-Date:   Wed, 4 Nov 2020 14:03:00 -0600
+        Wed, 04 Nov 2020 12:03:49 -0800 (PST)
+Received: (nullmailer pid 4038462 invoked by uid 1000);
+        Wed, 04 Nov 2020 20:03:48 -0000
+Date:   Wed, 4 Nov 2020 14:03:48 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Akhil P Oommen <akhilpo@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, freedreno@lists.freedesktop.org,
-        dri-devel@freedesktop.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dianders@chromium.org,
-        mka@chromium.org
-Subject: Re: [PATCH v5 3/3] dt-bindings: drm/msm/gpu: Add cooling device
- support
-Message-ID: <20201104200300.GA4036650@bogus>
-References: <1604054832-3114-1-git-send-email-akhilpo@codeaurora.org>
- <1604054832-3114-3-git-send-email-akhilpo@codeaurora.org>
+To:     Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
+Cc:     kgene@kernel.org, krzk@kernel.org, devicetree@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: samsung: document bindings for p4note
+ family boards
+Message-ID: <20201104200348.GA4038253@bogus>
+References: <20201031175836.47745-1-martin.juecker@gmail.com>
+ <20201031175836.47745-2-martin.juecker@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <1604054832-3114-3-git-send-email-akhilpo@codeaurora.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201031175836.47745-2-martin.juecker@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Oct 2020 16:17:12 +0530, Akhil P Oommen wrote:
-> Add cooling device support to gpu. A cooling device is bound to a
-> thermal zone to allow thermal mitigation.
+On Sat, 31 Oct 2020 18:58:33 +0100, Martin Jücker wrote:
+> Document the GT-N8010/GT-N8013 device binding and the p4note common
+> binding that it is based on.
 > 
-> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
-> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
 > ---
->  Documentation/devicetree/bindings/display/msm/gpu.txt | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../devicetree/bindings/arm/samsung/samsung-boards.yaml   | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
 
 
