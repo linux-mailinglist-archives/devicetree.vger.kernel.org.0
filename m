@@ -2,312 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C6B62A6D98
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:12:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B11E2A6D9A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:12:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730262AbgKDTLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 14:11:25 -0500
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:35463 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731341AbgKDTLY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:11:24 -0500
-Received: by mail-oo1-f67.google.com with SMTP id n16so5352625ooj.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 11:11:22 -0800 (PST)
+        id S1731243AbgKDTLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 14:11:49 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41317 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726225AbgKDTLs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:11:48 -0500
+Received: by mail-oi1-f193.google.com with SMTP id m13so14240321oih.8;
+        Wed, 04 Nov 2020 11:11:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=kUkrGaIC+6uDuIfeuIQSYAIatv4vnLAo8WozxbkcPyg=;
-        b=sMz9cxdfqPmfjihRRXyE4ic+9hI82C7kAWepIYvADv23wjPpm41onypdJEvRcIE3ZI
-         x2oIb+Qk+ymTntFR8IaWn/D4KaKO2VLCu6xoEV/yeD8Id1beTgGRdf3ZUoZHN32D6SY/
-         QT+UlwTqy065shPdtRoCG2BHKJdiJvX9vZV2sy+Hm+5QoNd+LOUQKU1Lj/MUVqHwLO1z
-         7Y0eF57qbVUlb0qc9OmDeK0aBEdSjt2EM5y1SxsKeQnuod54yKgpsCruMb0MCxDUnTVN
-         I2JHcZ8uidjnjWnWQPwdnVzBVCuqipLw8lv9+vaaa4rYQKiolwVEJIg1/rhsFhH/firX
-         bijw==
-X-Gm-Message-State: AOAM530fLI4j1eUQDw7WnMeyJ9zHE3S8eNQ/3UL9NtXyh/F9SdfPwd2T
-        neN5OntufhYY5Z1F1L37jQ==
-X-Google-Smtp-Source: ABdhPJwFpwgersXSX2VXXaLS/A62lNSk2a3yZJe/Z7StU7lSSV+EQ+vj3vr9ZP1nuOtuWwdQH2P4Lg==
-X-Received: by 2002:a4a:b601:: with SMTP id z1mr19874936oon.83.1604517082404;
-        Wed, 04 Nov 2020 11:11:22 -0800 (PST)
+        bh=8kvDlvfB/ougNgcIaK1HVi2RwwJqg5X8RCfCHinO1k4=;
+        b=HIhqw1fKaLA2s1KepNwUJccCSrm7dZOihwrYqXEVleRI6u0GDjjw7pRVqzEWCa/d3p
+         w+d5ct/P3MTH3Mz6GEhkgJQMQyzxvvJ6qKFVKYVpOzCNaZuXs3+u/GSobaQNtsfyGmVf
+         DK5sR3sIr+0gzKHU250MFUmDVMTfKJxXJpXUxZCmOTdIkUZv1Sp+mXhUE/GjQSbjDKBK
+         e/gJUTZLbodlXEk0T33MShkR0ANF/9t/5kDUU6GI2eg93uKCkQWeOERaSt5YbHYu7R0l
+         2L/G7SkHjFof2A8ILRdpYPNmU+8QKhgRt5v9OfhV8aJlm90WXpHQEvWAF46kfJ1WIRnA
+         m0QQ==
+X-Gm-Message-State: AOAM530kiiwRNbcHDftD+eWQ9E+aD+hJ5W1VX9YAxSgxTE4RpOkMwF3d
+        VDbB2wsgB81K3lg+4LAorA==
+X-Google-Smtp-Source: ABdhPJy2VWTtxX+P4OimzsGuO4yCP41YMoUq6SSdGAKVAARpRXrNgGXvevDEeX5xh15jVWPjlr45xA==
+X-Received: by 2002:aca:6185:: with SMTP id v127mr3506004oib.135.1604517107763;
+        Wed, 04 Nov 2020 11:11:47 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h3sm722686oom.18.2020.11.04.11.11.21
+        by smtp.gmail.com with ESMTPSA id f4sm710175oot.16.2020.11.04.11.11.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 11:11:21 -0800 (PST)
-Received: (nullmailer pid 3966731 invoked by uid 1000);
-        Wed, 04 Nov 2020 19:11:21 -0000
-Date:   Wed, 4 Nov 2020 13:11:21 -0600
+        Wed, 04 Nov 2020 11:11:47 -0800 (PST)
+Received: (nullmailer pid 3967436 invoked by uid 1000);
+        Wed, 04 Nov 2020 19:11:46 -0000
+Date:   Wed, 4 Nov 2020 13:11:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sean Paul <sean@poorly.run>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: mcde: Convert to YAML schema
-Message-ID: <20201104191121.GC3959462@bogus>
-References: <20201104133709.1373147-1-linus.walleij@linaro.org>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     git@xilinx.com, mturquette@baylibre.com, sboyd@kernel.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        devel@driverdev.osuosl.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v7 1/7] dt-bindings: add documentation of xilinx clocking
+ wizard
+Message-ID: <20201104191146.GA3967018@bogus>
+References: <1604502407-14352-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+ <1604502407-14352-2-git-send-email-shubhrajyoti.datta@xilinx.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201104133709.1373147-1-linus.walleij@linaro.org>
+In-Reply-To: <1604502407-14352-2-git-send-email-shubhrajyoti.datta@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 04, 2020 at 02:37:09PM +0100, Linus Walleij wrote:
-> This moves the MCDE bindings over to using the YAML schema
-> to describe the ST-Ericsson MCDE display controller,
-> making use of the generic DSI controller schema.
+On Wed, 04 Nov 2020 20:36:41 +0530, Shubhrajyoti Datta wrote:
+> Add the devicetree binding for the xilinx clocking wizard.
 > 
-> We also add the "port" node, we will use this when adding
-> LCD panels using the direct parallel interface DPI instead
-> of DSI.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
 > ---
->  .../devicetree/bindings/display/ste,mcde.txt  | 104 -----------
->  .../devicetree/bindings/display/ste,mcde.yaml | 167 ++++++++++++++++++
->  2 files changed, 167 insertions(+), 104 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
->  create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
+> v6:
+> Fix a yaml warning
+> v7:
+> Add vendor prefix speed-grade
 > 
-> diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
-> deleted file mode 100644
-> index 4c33c692bd5f..000000000000
-> --- a/Documentation/devicetree/bindings/display/ste,mcde.txt
-> +++ /dev/null
-> @@ -1,104 +0,0 @@
-> -ST-Ericsson Multi Channel Display Engine MCDE
-> -
-> -The ST-Ericsson MCDE is a display controller with support for compositing
-> -and displaying several channels memory resident graphics data on DSI or
-> -LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
-> -
-> -Required properties:
-> -
-> -- compatible: must be:
-> -  "ste,mcde"
-> -- reg: register base for the main MCDE control registers, should be
-> -  0x1000 in size
-> -- interrupts: the interrupt line for the MCDE
-> -- epod-supply: a phandle to the EPOD regulator
-> -- vana-supply: a phandle to the analog voltage regulator
-> -- clocks: an array of the MCDE clocks in this strict order:
-> -  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
-> -  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
-> -  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
-> -  save clock)
-> -- clock-names: must be the following array:
-> -  "mcde", "lcd", "hdmi"
-> -  to match the required clock inputs above.
-> -- #address-cells: should be <1> (for the DSI hosts that will be children)
-> -- #size-cells: should be <1> (for the DSI hosts that will be children)
-> -- ranges: this should always be stated
-> -
-> -Required subnodes:
-> -
-> -The devicetree must specify subnodes for the DSI host adapters.
-> -These must have the following characteristics:
-> -
-> -- compatible: must be:
-> -  "ste,mcde-dsi"
-> -- reg: must specify the register range for the DSI host
-> -- vana-supply: phandle to the VANA voltage regulator
-> -- clocks: phandles to the high speed and low power (energy save) clocks
-> -  the high speed clock is not present on the third (dsi2) block, so it
-> -  should only have the "lp" clock
-> -- clock-names: "hs" for the high speed clock and "lp" for the low power
-> -  (energy save) clock
-> -- #address-cells: should be <1>
-> -- #size-cells: should be <0>
-> -
-> -Display panels and bridges will appear as children on the DSI hosts, and
-> -the displays are connected to the DSI hosts using the common binding
-> -for video transmitter interfaces; see
-> -Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -If a DSI host is unused (not connected) it will have no children defined.
-> -
-> -Example:
-> -
-> -mcde@a0350000 {
-> -	compatible = "ste,mcde";
-> -	reg = <0xa0350000 0x1000>;
-> -	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> -	epod-supply = <&db8500_b2r2_mcde_reg>;
-> -	vana-supply = <&ab8500_ldo_ana_reg>;
-> -	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
-> -		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
-> -		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
-> -	clock-names = "mcde", "lcd", "hdmi";
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -	ranges;
-> -
-> -	dsi0: dsi@a0351000 {
-> -		compatible = "ste,mcde-dsi";
-> -		reg = <0xa0351000 0x1000>;
-> -		vana-supply = <&ab8500_ldo_ana_reg>;
-> -		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
-> -		clock-names = "hs", "lp";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		panel {
-> -			compatible = "samsung,s6d16d0";
-> -			reg = <0>;
-> -			vdd1-supply = <&ab8500_ldo_aux1_reg>;
-> -			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
-> -		};
-> -
-> -	};
-> -	dsi1: dsi@a0352000 {
-> -		compatible = "ste,mcde-dsi";
-> -		reg = <0xa0352000 0x1000>;
-> -		vana-supply = <&ab8500_ldo_ana_reg>;
-> -		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
-> -		clock-names = "hs", "lp";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -	};
-> -	dsi2: dsi@a0353000 {
-> -		compatible = "ste,mcde-dsi";
-> -		reg = <0xa0353000 0x1000>;
-> -		vana-supply = <&ab8500_ldo_ana_reg>;
-> -		/* This DSI port only has the Low Power / Energy Save clock */
-> -		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
-> -		clock-names = "lp";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-> new file mode 100644
-> index 000000000000..a00333acd9a1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-> @@ -0,0 +1,167 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ST-Ericsson Multi Channel Display Engine MCDE
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: ste,mcde
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: the interrupt line for the MCDE
+>  .../bindings/clock/xlnx,clocking-wizard.yaml       | 65 ++++++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml
+> 
 
-Kind of generic description. Can drop.
 
-> +
-> +  clocks:
-> +    maxItems: 3
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Can drop this. Implied with 'items'.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml:21:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
+./Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml:38:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
+./Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.yaml:40:5: [error] syntax error: expected <block end>, but found '<block mapping start>' (syntax)
 
-> +    description: an array of the MCDE clocks
-> +    items:
-> +      - description: MCDECLK (main MCDE clock)
-> +      - description: LCDCLK (LCD clock)
-> +      - description: PLLDSI (HDMI clock)
-> +
-> +  clock-names:
-> +    maxItems: 3
+dtschema/dtc warnings/errors:
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 891, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.parser.ParserError: while parsing a block mapping
+  in "<unicode string>", line 20, column 3
+did not find expected key
+  in "<unicode string>", line 40, column 5
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/clock/xlnx,clocking-wizard.example.dts'
+make[1]: *** Waiting for unfinished jobs....
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
+make: *** [Makefile:1364: dt_binding_check] Error 2
 
-ditto
 
-> +    items:
-> +      - const: mcde
-> +      - const: lcd
-> +      - const: hdmi
-> +
-> +  epod-supply:
-> +    description: a phandle to the EPOD regulator
-> +
-> +  vana-supply:
-> +    description: a phandle to the analog voltage regulator
-> +
-> +  port:
-> +    type: object
-> +    description:
-> +      A DPI port node with endpoint definitions as defined in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^dsi@[0-9a-f]+$":
-> +    description: subnodes for the three DSI host adapters
-> +    type: object
-> +    allOf:
-> +      - $ref: dsi-controller.yaml#
-> +    properties:
-> +      compatible:
-> +        const: ste,mcde-dsi
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      vana-supply:
-> +        description: a phandle to the analog voltage regulator
-> +
-> +      clocks:
-> +        description: phandles to the high speed and low power (energy save) clocks
-> +          the high speed clock is not present on the third (dsi2) block, so it
-> +          should only have the "lp" clock
-> +        minItems: 1
-> +        maxItems: 2
-> +
-> +      clock-names:
-> +        oneOf:
-> +          - items:
-> +              - const: hs
-> +              - const: lp
-> +          - items:
-> +              - const: lp
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - vana-supply
-> +      - clocks
-> +      - clock-names
+See https://patchwork.ozlabs.org/patch/1394053
 
-       unevaluatedProperties: false
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - epod-supply
-> +  - vana-supply
-> +
-> +unevaluatedProperties: false
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-The meta-schema has gotten stricter recently, so this has to be 
-'additionalProperties' since there's no other schema referenced. Moving 
-target. :)
+pip3 install dtschema --upgrade
 
-Rob 
+Please check and re-submit.
+
