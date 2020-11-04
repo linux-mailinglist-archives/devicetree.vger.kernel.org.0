@@ -2,116 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FCCE2A6784
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:22:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B8B92A67AD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 16:30:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730779AbgKDPWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 10:22:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53990 "EHLO
+        id S1730424AbgKDPao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 10:30:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730748AbgKDPWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:22:31 -0500
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 441BDC061A4A
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:22:31 -0800 (PST)
-Received: by mail-wr1-x442.google.com with SMTP id n18so22452760wrs.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:22:31 -0800 (PST)
+        with ESMTP id S1730001AbgKDPao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 10:30:44 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645B9C0613D3
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 07:30:42 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id a7so27643065lfk.9
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 07:30:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=q6hdviCMUNDpB25Riq30Bi5OEfr4eLtHUB6k7K/aZvY=;
-        b=N+ZQkza/J4iL2cPwAzJDzR2TDBxa/ygHQqtkEBsQnPxwe0lwLCJ8zkeWrONmUupLVt
-         I36bZ9MmN+isW9a3PipNRr7HFmQLJXRYh3h2jTx5SvCwWBbqSoCWaKhrJDzeS1c8lxbj
-         OKmo7GVKj1pCYRoW+pfE9quncDqfpUNXwxo8Q2FtwwzdSmRMBc3NCc75nuZwKSQzHyyQ
-         4WDnGDutraDZSK8aS66n6whaSUdnPCLbFK33gX8TbyWB6CALiLEyO2iruwRyI8YW2SCH
-         So/W0SKiq7vaa1AB+AVJUXO2DrMpjHR1Sly/IPzksIBFuIEzyH7jloN6kk2A5it9d8Ag
-         hsuA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=yRASjRKxtplopJt2MsU1Jw8BgtmuvKdoRaCX+NVYm3Q=;
+        b=q4ZJAOCqlJKBmGhQnreQ8Zb8K3jzZs0mfQJ2yqw+tBw7LbIlue4ATYMP59/eTQSvXU
+         IZPbK7je3rzunmuSe68rLjQ1y4S5hP3DxF9t1UOLgTH3qBp3HN0UWmnJAAsTnnttNY/R
+         t4LT9+5mEPsK9kJpu4iksE8z2oe41ZO3/LY3N87YLsWYeq3sKa5CwpOjtR9Olvob3kss
+         uowK4ZfjG9eRIUdm/J1WuVq5kml79TdeYBAbbKW9LrlmfroS8Ka7hHUe5WnuWzCddA1m
+         TMtzrXLMGd3ro/MGjAJ771RK02x33cjmMAo8ILH/lQ+LbRvpWA7PXERGPU9+4yKLJb2l
+         TqSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=q6hdviCMUNDpB25Riq30Bi5OEfr4eLtHUB6k7K/aZvY=;
-        b=Bg6x9gtjHZj5i1f0jLOxezJJ+tLkt9TrRtJYdrvRGWacFYsVR1lLz7Df9c8vg2wpm0
-         WDPe4bsWGq2glVG56TyJMQlJsa3R5OsoNTd7TzI4/Pk0Qo1E0r9HkzwQgtMYmi7rIyck
-         fFU4t3Ig5sO0ZWEzOkJDr6d1VIpgsbIxCYPxWyaTsyE1dc4v1V7tpc0a5hjC01+Cw8Rq
-         1sRfhkVHpAjkNClE3QH/trK5zZFBRoffdGg0VxmAv6RRptqmvBKCQKJJ+rVlcZ4D9ewn
-         p3E8+dt3ScElhH7N58ptMyyT4f2ira5JQeRJi6PsH4hzepYkAEUYq0xbQ9M2NPvuhMKe
-         e5Vg==
-X-Gm-Message-State: AOAM533lSg244nS1SF2BerGQCevjrRV+RQcoZOY3aZ9zkMw3zvj5RHbr
-        OV0LPwLlr49+qJO/BQFLfP+18w==
-X-Google-Smtp-Source: ABdhPJxQzdXyGNDCkYY6//Qtcy3N7vuWJ5LfVvcTG8og0tM/Z01cSnk7BnqMscR9XtB5I8c4B16htw==
-X-Received: by 2002:a5d:63cb:: with SMTP id c11mr30926563wrw.243.1604503349944;
-        Wed, 04 Nov 2020 07:22:29 -0800 (PST)
-Received: from dell ([91.110.221.242])
-        by smtp.gmail.com with ESMTPSA id y201sm2893312wmd.27.2020.11.04.07.22.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=yRASjRKxtplopJt2MsU1Jw8BgtmuvKdoRaCX+NVYm3Q=;
+        b=Cn3qfX44ucg8tC/zZlkjoAP5FRrqP6Kh4rxh6+NI7V81fzGcu7xfHz7rJYxsvyJyqE
+         o715040WAUnZfKU4EbmXJvzD6sdFnITTAwKWl1gUnW/Ed1Xq0Lr6WtnCPJ0faKCxnyhJ
+         bBlLuvpE9sjLTGIhshp1EQ9UdEdq64YgEQAThma5YFyI1+6jlLpS9waYbgDAIhx4MCiS
+         R3mldqp4zHWxYZqtNqNwrvfEtyHqJHoPAOtT4dg7t+Ct9CBrFdG0sEtGs4p8hPvN9bQZ
+         /WAzNQ3qG/LutdmBu7WkYcbhKTV0ECgeIE3CQ4hYSoJPmWxCTK40O9G8svHbvI0ONfF1
+         LCbg==
+X-Gm-Message-State: AOAM531Ca7N32bK5dqCotifNZCQKSX3vzWmF+eGW0wtg7YbWct6SiKXW
+        GG6O/2NT6c6UhEMY3wJyC/Ysfw==
+X-Google-Smtp-Source: ABdhPJwWQDsL0nXkNgeMZUogdSYafFiiuG6oByvxrPGnXX6eGh7JZVn6u8AeKhsFNyOcYWJM2yXMHw==
+X-Received: by 2002:a19:7518:: with SMTP id y24mr7062984lfe.133.1604503840859;
+        Wed, 04 Nov 2020 07:30:40 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id c131sm440453lfg.110.2020.11.04.07.30.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 07:22:29 -0800 (PST)
-Date:   Wed, 4 Nov 2020 15:22:27 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     kernel test robot <lkp@intel.com>
-Cc:     Luka Kovacic <luka.kovacic@sartura.hr>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        kbuild-all@lists.01.org, pavel@ucw.cz, dmurphy@ti.com,
-        robh+dt@kernel.org, jdelvare@suse.com, linux@roeck-us.net
-Subject: Re: [PATCH v6 2/6] drivers: mfd: Add a driver for iEi WT61P803
- PUZZLE MCU
-Message-ID: <20201104152227.GM4488@dell>
-References: <20201019221859.56680-3-luka.kovacic@sartura.hr>
- <202010201049.3V7m9mtx-lkp@intel.com>
+        Wed, 04 Nov 2020 07:30:40 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Nick Dyer <nick@shmanahar.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 2/3 v2] Input: atmel_mxt_ts - Convert bindings to YAML and extend
+Date:   Wed,  4 Nov 2020 16:30:31 +0100
+Message-Id: <20201104153032.1387747-2-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20201104153032.1387747-1-linus.walleij@linaro.org>
+References: <20201104153032.1387747-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <202010201049.3V7m9mtx-lkp@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Oct 2020, kernel test robot wrote:
+This converts the Armel MXT touchscreen bindings to YAML
+format and extends them with the following two properties:
 
-> Hi Luka,
-> 
-> Thank you for the patch! Perhaps something to improve:
-> 
-> [auto build test WARNING on hwmon/hwmon-next]
-> [also build test WARNING on v5.9]
-> [cannot apply to pavel-linux-leds/for-next lee-mfd/for-mfd-next next-20201016]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch]
-> 
-> url:    https://github.com/0day-ci/linux/commits/Luka-Kovacic/Add-support-for-the-iEi-WT61P803-PUZZLE-MCU/20201020-062048
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
-> config: ia64-randconfig-r002-20201020 (attached as .config)
-> compiler: ia64-linux-gcc (GCC) 9.3.0
-> reproduce (this is a W=1 build):
->         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->         chmod +x ~/bin/make.cross
->         # https://github.com/0day-ci/linux/commit/855e7cca9db335136d09555f9983d7245fca1f4b
->         git remote add linux-review https://github.com/0day-ci/linux
->         git fetch --no-tags linux-review Luka-Kovacic/Add-support-for-the-iEi-WT61P803-PUZZLE-MCU/20201020-062048
->         git checkout 855e7cca9db335136d09555f9983d7245fca1f4b
->         # save the attached .config to linux build tree
->         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=ia64 
-> 
-> If you fix the issue, kindly add following tag as appropriate
-> Reported-by: kernel test robot <lkp@intel.com>
-> 
-> All warnings (new ones prefixed by >>):
-> 
-> >> drivers/mfd/iei-wt61p803-puzzle.c:311:5: warning: no previous prototype for 'iei_wt61p803_puzzle_buzzer' [-Wmissing-prototypes]
->      311 | int iei_wt61p803_puzzle_buzzer(struct iei_wt61p803_puzzle *mcu, bool long_beep)
->          |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
+- vdda-supply: the optional analog supply voltage
+- vdd-supply: the optional digital supply voltage
 
-This bot has been complaining about this patch since at least v3.
+I also explained about the reset-gpios property that this
+better be flagged as active high (0) despite actually
+being active low, because all current device trees and
+drivers assume that this is the case and will actively
+drive the line low to assert RESET.
 
-Are you going to fix the issue?  Or is it moot?
+Tested the schema with all in-tree users and they verify
+fine.
 
+Cc: Nick Dyer <nick@shmanahar.org>
+Cc: Stephan Gerhold <stephan@gerhold.net>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- State that the GPIO lines shall be flagged as active low.
+  We will fix all users.
+---
+ .../bindings/input/atmel,maxtouch.txt         | 41 ----------
+ .../bindings/input/atmel,maxtouch.yaml        | 81 +++++++++++++++++++
+ MAINTAINERS                                   |  2 +-
+ 3 files changed, 82 insertions(+), 42 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.txt
+ create mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+
+diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.txt b/Documentation/devicetree/bindings/input/atmel,maxtouch.txt
+deleted file mode 100644
+index c88919480d37..000000000000
+--- a/Documentation/devicetree/bindings/input/atmel,maxtouch.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-Atmel maXTouch touchscreen/touchpad
+-
+-Required properties:
+-- compatible:
+-    atmel,maxtouch
+-
+-    The following compatibles have been used in various products but are
+-    deprecated:
+-	atmel,qt602240_ts
+-	atmel,atmel_mxt_ts
+-	atmel,atmel_mxt_tp
+-	atmel,mXT224
+-
+-- reg: The I2C address of the device
+-
+-- interrupts: The sink for the touchpad's IRQ output
+-    See ../interrupt-controller/interrupts.txt
+-
+-Optional properties for main touchpad device:
+-
+-- linux,gpio-keymap: When enabled, the SPT_GPIOPWN_T19 object sends messages
+-    on GPIO bit changes. An array of up to 8 entries can be provided
+-    indicating the Linux keycode mapped to each bit of the status byte,
+-    starting at the LSB. Linux keycodes are defined in
+-    <dt-bindings/input/input.h>.
+-
+-    Note: the numbering of the GPIOs and the bit they start at varies between
+-    maXTouch devices. You must either refer to the documentation, or
+-    experiment to determine which bit corresponds to which input. Use
+-    KEY_RESERVED for unused padding values.
+-
+-- reset-gpios: GPIO specifier for the touchscreen's reset pin (active low)
+-
+-Example:
+-
+-	touch@4b {
+-		compatible = "atmel,maxtouch";
+-		reg = <0x4b>;
+-		interrupt-parent = <&gpio>;
+-		interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_LOW>;
+-	};
+diff --git a/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+new file mode 100644
+index 000000000000..8c6418f76e94
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+@@ -0,0 +1,81 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/atmel,maxtouch.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Atmel maXTouch touchscreen/touchpad
++
++maintainers:
++  - Nick Dyer <nick@shmanahar.org>
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  Atmel maXTouch touchscreen or touchpads such as the mXT244
++  and similar devices.
++
++properties:
++  compatible:
++    const: atmel,maxtouch
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  vdda-supply:
++    description:
++      Optional regulator for the AVDD analog voltage.
++
++  vdd-supply:
++    description:
++      Optional regulator for the VDD digital voltage.
++
++  reset-gpios:
++    maxItems: 1
++    description:
++      Optional GPIO specifier for the touchscreen's reset pin
++      (active low). The line must be flagged with
++      GPIO_ACTIVE_LOW.
++
++  linux,gpio-keymap:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      When enabled, the SPT_GPIOPWN_T19 object sends messages
++      on GPIO bit changes. An array of up to 8 entries can be provided
++      indicating the Linux keycode mapped to each bit of the status byte,
++      starting at the LSB. Linux keycodes are defined in
++      <dt-bindings/input/input.h>.
++
++      Note: the numbering of the GPIOs and the bit they start at varies
++      between maXTouch devices. You must either refer to the documentation,
++      or experiment to determine which bit corresponds to which input. Use
++      KEY_RESERVED for unused padding values.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      touchscreen@4a {
++        compatible = "atmel,maxtouch";
++        reg = <0x4a>;
++        interrupt-parent = <&gpio>;
++        interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
++        reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
++        vdda-supply = <&ab8500_ldo_aux2_reg>;
++        vdd-supply = <&ab8500_ldo_aux5_reg>;
++      };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e73636b75f29..b4b46fcb82db 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -2966,7 +2966,7 @@ ATMEL MAXTOUCH DRIVER
+ M:	Nick Dyer <nick@shmanahar.org>
+ S:	Maintained
+ T:	git git://github.com/ndyer/linux.git
+-F:	Documentation/devicetree/bindings/input/atmel,maxtouch.txt
++F:	Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+ F:	drivers/input/touchscreen/atmel_mxt_ts.c
+ 
+ ATMEL WIRELESS DRIVER
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.26.2
+
