@@ -2,368 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E90132A6552
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 14:37:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB4052A656B
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 14:44:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728523AbgKDNhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 08:37:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36554 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726527AbgKDNhV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 08:37:21 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107DBC0613D3
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 05:37:21 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id m8so16937223ljj.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 05:37:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YuzDEYdnaOghE7AdVNEB5LTNZ+6AM+70CMY6cCVuBwk=;
-        b=B9ydajV4s6CXAjxdSPkjU8uIFACIJ/wPrtXa+9mx4Jo2JfpoBdeL3kH4NpxPbti8VU
-         aS9gct5iDPy4192nHA0XJfSA3GSqjbxsRQXe0P1lQHj/OlJGBQN9NLtNcaoZz30m58Ko
-         Tr+0pyY4ZoBU4RMEzC5zQH9ZZ85O5YORUxFrQIFwoLgrQbOd/1ueE0r7LAMsQHsD1Vki
-         XO97mmKp6rTo3cRhm/bCver5JRhl8aSBmsXPq9myClyewr4xyeoNtnXqwIFiLU7T/QBK
-         r2AUCLUsOKT23WQKdgNKf3fgHriyh07geSR/pP4Xwm3La7ZPcqGDEKasBpAPTM8JMH0i
-         FYYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YuzDEYdnaOghE7AdVNEB5LTNZ+6AM+70CMY6cCVuBwk=;
-        b=DhM29reVnGF0ew0yPIQfIuz9YLHEB2ZWqUhA1ObSIh40OjIuNc3K9yXpVK8m+pYl/A
-         xirakcHFu7BKXFVRmRhlnsxEPQycLk1+CAxyQt9R76UVAWTFD693XKgS6/h2cJvto6lN
-         KDAUwviCppQXULeYdIRzZGtrIWMz9/nP5aJH8EFajtUhqKacE0JrTC/QhPkdRgyiEbV2
-         Kaa3nOipedgH+Wx+3PtIjhGLrVdxtmTGOsdGK6lEieivVsheqsxVPLX0+VcRdDhW89FP
-         tu161MaiCHmHFKz3UUvo53xuZoPJ28nwn6PbOg1WpW5DAKxOQ5ckSRf6P1ZvKCjaHULv
-         3MNA==
-X-Gm-Message-State: AOAM5304mLKcIDg3xNrbYgh2f5FjLXRTDBUTeKONw/ckf+hz7/Ms4A2b
-        tF9mIgSl3IsuDYe5PtHuH60Kmw==
-X-Google-Smtp-Source: ABdhPJxAM1oo0926Z94PtWqWZxPpV+KJElZbPhatXMuKoa9VF/OwknQnXTAOttxXI2rWI8yV0uZWdQ==
-X-Received: by 2002:a2e:8ecc:: with SMTP id e12mr11090683ljl.98.1604497039454;
-        Wed, 04 Nov 2020 05:37:19 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id u25sm407418lfq.84.2020.11.04.05.37.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 05:37:18 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: display: mcde: Convert to YAML schema
-Date:   Wed,  4 Nov 2020 14:37:09 +0100
-Message-Id: <20201104133709.1373147-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        id S1730150AbgKDNoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 08:44:11 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:15830 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726608AbgKDNoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 08:44:11 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fa2b02d0000>; Wed, 04 Nov 2020 05:44:13 -0800
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 4 Nov
+ 2020 13:44:10 +0000
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
+ by HQMAIL109.nvidia.com (172.20.187.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3 via Frontend Transport; Wed, 4 Nov 2020 13:44:10 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Id5loCt0UGtoD2fNW2gMSQ0DdclVsn4VlmsLmQPIwlNfmck3b2Ue94a4hnXBMJ88XrMQOMXvp8QTVhGWEM9wOjhrcb5AHsmjmrDZ9Um+KtqyebXw9gr12UyOzPNloufb8IM1AqAUQCUVd6nnXscSGU2l6CalrbrFcUYnWwj+5rKr4M00UakVoXm+rukYLxty3EA0Px9YjjUJILS8ggGfHOqWXMAaJgMTkwI9+c0l6TU8mF0QN54A+YD6/Ec0TuV01t7vjrQz2qR1SVh4qDQzBDeDcZ7GnsD31p60WvDyoXdJPZ0jH3fD0dDDV33WVXTugiHOAKyPE08SmHsE7vV8fA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EbkKF+6lgo92dW8WzmspAMBbYpRYsqNY+TW6T+LJ6B0=;
+ b=LmPzYBy0/lHtzXjjlw19barh59UvEJXN2nV/dBYLZgvGO/dISD0oNnjvPH7aQDVDGo9IPVBxmILogZ/yi+cPxF3rx3+mQnOj0gkTi1nPkA0K9PKmg1ezl6PWX6HHeD9oP/Cngkk9XZSeRAD13FhQ1utCD4kl686X/OeaN+Lf5bbKsFbe+w4a19MeTpc4jZ7SoVCtYS2jQcdq71W9lpv6yGB8SoBWMFhqLR7q5GJg7S5zQBulKQqPbMZb9BWvpedU/pztVO7L7jMrMj1L+2U4lIbHbZWqSl3+zbzsPqAjMrn/oCF5TLnWZXlctU1v4nFXSeMsy5B7oBiFwBMFxUBacg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+Received: from MN2PR12MB3616.namprd12.prod.outlook.com (2603:10b6:208:cc::25)
+ by MN2PR12MB3584.namprd12.prod.outlook.com (2603:10b6:208:c9::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.30; Wed, 4 Nov
+ 2020 13:44:09 +0000
+Received: from MN2PR12MB3616.namprd12.prod.outlook.com
+ ([fe80::89a:e4ad:708f:363f]) by MN2PR12MB3616.namprd12.prod.outlook.com
+ ([fe80::89a:e4ad:708f:363f%5]) with mapi id 15.20.3499.032; Wed, 4 Nov 2020
+ 13:44:09 +0000
+From:   Khalil Blaiech <kblaiech@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Linux I2C <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: RE: [PATCH i2c-next v2 6/6] dt-bindings: i2c: Convert DT file to YAML
+ schema
+Thread-Topic: [PATCH i2c-next v2 6/6] dt-bindings: i2c: Convert DT file to
+ YAML schema
+Thread-Index: AQHWshttx8StFjJLf0+yuj2kGuzED6m3SMiAgACz8tA=
+Date:   Wed, 4 Nov 2020 13:44:09 +0000
+Message-ID: <MN2PR12MB3616B19658725BC33D61FBF3ABEF0@MN2PR12MB3616.namprd12.prod.outlook.com>
+References: <cover.1604432921.git.kblaiech@nvidia.com>
+ <c81a0679413dd77e68bdf7e3023d1a54e62f26ea.1604432921.git.kblaiech@nvidia.com>
+ <CAL_JsqLC5nzPmNK41s3fB6nnRqjC3DXPfYn1uqdytrEKqFBpXQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqLC5nzPmNK41s3fB6nnRqjC3DXPfYn1uqdytrEKqFBpXQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nvidia.com;
+x-originating-ip: [173.48.75.27]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d68f8354-e7d2-433e-6ab8-08d880c7b4ba
+x-ms-traffictypediagnostic: MN2PR12MB3584:
+x-microsoft-antispam-prvs: <MN2PR12MB358490C84A032513E474AD02ABEF0@MN2PR12MB3584.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: IYmAV+lLAjh7XwSbhA1GNPBoS1/zjQhE1tDVXyPx0GRubKGbqSK1SKIoGEkoD5BF0q0vLF7PltyJHl8mp1OHbTDv88SzwD1jbn0QEtIRk9JKF0BLKrvy4XQp29/qnDLDCDS1FGP95eruNUxWCEeUJ2URYdEa/4ehDqweeut35T4ng92+wCGs3WD3VYAsyAJ1AOhAjMKs2ddi+J1qqyPG15EuY8nBLcnR/smzuZ+EvN43NglfT1xOaEFfKfoX/jtJ9bB5ZR6YwKW8rSmiq5qLxTmhneb/6mfIfHqg7dNEY4QEZyvQSpkQux9lIdMMLSHzC+sBLpGa/p7VVxqrwPLQduz9nwu1z9RU7Rh8q7mQAjNgv6VlW4VQhWLx5VBVRXpZCFGUGGl78FrrxL5eVg4u1g==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN2PR12MB3616.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(396003)(366004)(136003)(376002)(66946007)(66476007)(5660300002)(4326008)(64756008)(66446008)(66556008)(52536014)(53546011)(8676002)(76116006)(71200400001)(966005)(478600001)(54906003)(6506007)(316002)(186003)(33656002)(7696005)(26005)(8936002)(2906002)(55016002)(83380400001)(86362001)(9686003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: r2jWo27gub3WEZFW+PCbO0uI0EnMjyyeFDRcq0U3hMBxZdsKVCsAz68Uoo2UH2OXq6P9TpRm+y/ziNnQgq/dM1DZ1l0k03ThuqvlAI9VPiqNNH2dMJd12sh7octPB81kwoawysEYxCXDWXRfkb/OOMw/Bz+UNH19dLdXErP3PZEkf+FcDRen+YFjlBe28dRRC4MowifxNG7cK5J5uKTLE5u8StL9pO/O0P0nqR16MoARPiFXqzPHGOMGwuS8+F4VJ/Q84tpSUSmB9CvF196syrLwjdaKx0hrktBQ3GIUQu1eMz9nvIQWij3f+w2oM182z+D4Tuw0WkBptQ1dnShY5XvSPgyx8ht7LmInTTYScB2I8XXUmRGcG6u0ZK805b7+cXTOp2bEbvGoI2eAjppEdg8xzEKHq6uglQlDlSm7lCltAaLWK/oO5PZI7vnkYjLQ4U9DM4FxfcItb/xceeHehzQWYRXridTcJrZ8gJWaHio6yixpCwCc63+Hv6JlSkYL/CfytuBR29rtXULgfWLXEcnFBTqNQkfaqOIkw4m1psqyJyMOeDuM9WofYmQZQgcLs3/2ZX6p8HRFAD2/sf+4pfAQtvYJcu4kxtdKg1OfIS8LYLDiIUvE1z84iDp5+/XDSjkfJoyE4LtWNt4AoRfclw==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3616.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d68f8354-e7d2-433e-6ab8-08d880c7b4ba
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2020 13:44:09.1288
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AeSyqa6aQGYdnX0bV+p34Zqo4Xr0SOQu65bZpJEb5B8JIRi3sojyerzg+GTj5jOvB64IuHIhKk1KUlWME9dkkQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3584
+X-OriginatorOrg: Nvidia.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1604497453; bh=EbkKF+6lgo92dW8WzmspAMBbYpRYsqNY+TW6T+LJ6B0=;
+        h=ARC-Seal:ARC-Message-Signature:ARC-Authentication-Results:From:To:
+         CC:Subject:Thread-Topic:Thread-Index:Date:Message-ID:References:
+         In-Reply-To:Accept-Language:Content-Language:X-MS-Has-Attach:
+         X-MS-TNEF-Correlator:authentication-results:x-originating-ip:
+         x-ms-publictraffictype:x-ms-office365-filtering-correlation-id:
+         x-ms-traffictypediagnostic:x-microsoft-antispam-prvs:
+         x-ms-oob-tlc-oobclassifiers:x-ms-exchange-senderadcheck:
+         x-microsoft-antispam:x-microsoft-antispam-message-info:
+         x-forefront-antispam-report:x-ms-exchange-antispam-messagedata:
+         x-ms-exchange-transport-forked:Content-Type:
+         Content-Transfer-Encoding:MIME-Version:
+         X-MS-Exchange-CrossTenant-AuthAs:
+         X-MS-Exchange-CrossTenant-AuthSource:
+         X-MS-Exchange-CrossTenant-Network-Message-Id:
+         X-MS-Exchange-CrossTenant-originalarrivaltime:
+         X-MS-Exchange-CrossTenant-fromentityheader:
+         X-MS-Exchange-CrossTenant-id:X-MS-Exchange-CrossTenant-mailboxtype:
+         X-MS-Exchange-CrossTenant-userprincipalname:
+         X-MS-Exchange-Transport-CrossTenantHeadersStamped:X-OriginatorOrg;
+        b=CKJbe1g4vBh5Vecw3PlYqgJIZZqgAaNNMFmUBc/RcG7h1VFhH+brKcJarCKqumg+B
+         PYn+16LljW7W5/b2TAypCE5kASXPNvHDXVNgwLsa41SwxyzGCMs59VCIMDjk0ZX1+m
+         t7Pi3SSLZB1vn5/B8M6C29L1uHrKKu0mDXaBxVJFHwe+CZpyQL7Uw78Elj0/2fTpXr
+         VwoYEh/4s4FATfv/rhBO4+m6EqQd2xRqrJWbyUUWFAR+bUT1sTGzhZrFvdWJ5i//hB
+         cp0UsG6D08BAACwBT9tbxhpunU2tL/yfiOIObBYV9TyxdVfJ5WMuoPd9PrHqBvp6i4
+         AerHIdqYvk1pg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This moves the MCDE bindings over to using the YAML schema
-to describe the ST-Ericsson MCDE display controller,
-making use of the generic DSI controller schema.
-
-We also add the "port" node, we will use this when adding
-LCD panels using the direct parallel interface DPI instead
-of DSI.
-
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- .../devicetree/bindings/display/ste,mcde.txt  | 104 -----------
- .../devicetree/bindings/display/ste,mcde.yaml | 167 ++++++++++++++++++
- 2 files changed, 167 insertions(+), 104 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
- create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
-
-diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
-deleted file mode 100644
-index 4c33c692bd5f..000000000000
---- a/Documentation/devicetree/bindings/display/ste,mcde.txt
-+++ /dev/null
-@@ -1,104 +0,0 @@
--ST-Ericsson Multi Channel Display Engine MCDE
--
--The ST-Ericsson MCDE is a display controller with support for compositing
--and displaying several channels memory resident graphics data on DSI or
--LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
--
--Required properties:
--
--- compatible: must be:
--  "ste,mcde"
--- reg: register base for the main MCDE control registers, should be
--  0x1000 in size
--- interrupts: the interrupt line for the MCDE
--- epod-supply: a phandle to the EPOD regulator
--- vana-supply: a phandle to the analog voltage regulator
--- clocks: an array of the MCDE clocks in this strict order:
--  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
--  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
--  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
--  save clock)
--- clock-names: must be the following array:
--  "mcde", "lcd", "hdmi"
--  to match the required clock inputs above.
--- #address-cells: should be <1> (for the DSI hosts that will be children)
--- #size-cells: should be <1> (for the DSI hosts that will be children)
--- ranges: this should always be stated
--
--Required subnodes:
--
--The devicetree must specify subnodes for the DSI host adapters.
--These must have the following characteristics:
--
--- compatible: must be:
--  "ste,mcde-dsi"
--- reg: must specify the register range for the DSI host
--- vana-supply: phandle to the VANA voltage regulator
--- clocks: phandles to the high speed and low power (energy save) clocks
--  the high speed clock is not present on the third (dsi2) block, so it
--  should only have the "lp" clock
--- clock-names: "hs" for the high speed clock and "lp" for the low power
--  (energy save) clock
--- #address-cells: should be <1>
--- #size-cells: should be <0>
--
--Display panels and bridges will appear as children on the DSI hosts, and
--the displays are connected to the DSI hosts using the common binding
--for video transmitter interfaces; see
--Documentation/devicetree/bindings/media/video-interfaces.txt
--
--If a DSI host is unused (not connected) it will have no children defined.
--
--Example:
--
--mcde@a0350000 {
--	compatible = "ste,mcde";
--	reg = <0xa0350000 0x1000>;
--	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
--	epod-supply = <&db8500_b2r2_mcde_reg>;
--	vana-supply = <&ab8500_ldo_ana_reg>;
--	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
--		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
--		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
--	clock-names = "mcde", "lcd", "hdmi";
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	dsi0: dsi@a0351000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0351000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
--		clock-names = "hs", "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		panel {
--			compatible = "samsung,s6d16d0";
--			reg = <0>;
--			vdd1-supply = <&ab8500_ldo_aux1_reg>;
--			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
--		};
--
--	};
--	dsi1: dsi@a0352000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0352000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
--		clock-names = "hs", "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--	dsi2: dsi@a0353000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0353000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		/* This DSI port only has the Low Power / Energy Save clock */
--		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
--		clock-names = "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-new file mode 100644
-index 000000000000..a00333acd9a1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-@@ -0,0 +1,167 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST-Ericsson Multi Channel Display Engine MCDE
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: ste,mcde
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+    description: the interrupt line for the MCDE
-+
-+  clocks:
-+    maxItems: 3
-+    description: an array of the MCDE clocks
-+    items:
-+      - description: MCDECLK (main MCDE clock)
-+      - description: LCDCLK (LCD clock)
-+      - description: PLLDSI (HDMI clock)
-+
-+  clock-names:
-+    maxItems: 3
-+    items:
-+      - const: mcde
-+      - const: lcd
-+      - const: hdmi
-+
-+  epod-supply:
-+    description: a phandle to the EPOD regulator
-+
-+  vana-supply:
-+    description: a phandle to the analog voltage regulator
-+
-+  port:
-+    type: object
-+    description:
-+      A DPI port node with endpoint definitions as defined in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges: true
-+
-+patternProperties:
-+  "^dsi@[0-9a-f]+$":
-+    description: subnodes for the three DSI host adapters
-+    type: object
-+    allOf:
-+      - $ref: dsi-controller.yaml#
-+    properties:
-+      compatible:
-+        const: ste,mcde-dsi
-+
-+      reg:
-+        maxItems: 1
-+
-+      vana-supply:
-+        description: a phandle to the analog voltage regulator
-+
-+      clocks:
-+        description: phandles to the high speed and low power (energy save) clocks
-+          the high speed clock is not present on the third (dsi2) block, so it
-+          should only have the "lp" clock
-+        minItems: 1
-+        maxItems: 2
-+
-+      clock-names:
-+        oneOf:
-+          - items:
-+              - const: hs
-+              - const: lp
-+          - items:
-+              - const: lp
-+
-+    required:
-+      - compatible
-+      - reg
-+      - vana-supply
-+      - clocks
-+      - clock-names
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - epod-supply
-+  - vana-supply
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/mfd/dbx500-prcmu.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    mcde@a0350000 {
-+      compatible = "ste,mcde";
-+      reg = <0xa0350000 0x1000>;
-+      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+      epod-supply = <&db8500_b2r2_mcde_reg>;
-+      vana-supply = <&ab8500_ldo_ana_reg>;
-+      clocks = <&prcmu_clk PRCMU_MCDECLK>,
-+               <&prcmu_clk PRCMU_LCDCLK>,
-+               <&prcmu_clk PRCMU_PLLDSI>;
-+      clock-names = "mcde", "lcd", "hdmi";
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      ranges;
-+
-+      dsi0: dsi@a0351000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0351000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
-+        clock-names = "hs", "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+          compatible = "samsung,s6d16d0";
-+          reg = <0>;
-+          vdd1-supply = <&ab8500_ldo_aux1_reg>;
-+          reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
-+        };
-+      };
-+
-+      dsi1: dsi@a0352000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0352000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
-+        clock-names = "hs", "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+      };
-+
-+      dsi2: dsi@a0353000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0353000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        /* This DSI port only has the Low Power / Energy Save clock */
-+        clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
-+        clock-names = "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+      };
-+    };
-+
-+...
--- 
-2.26.2
-
+DQoNCj4gT24gVHVlLCBOb3YgMywgMjAyMCBhdCAxOjU2IFBNIEtoYWxpbCBCbGFpZWNoIDxrYmxh
+aWVjaEBudmlkaWEuY29tPiB3cm90ZToNCj4gPg0KPiA+IFdyaXRlIHRoZSBkZXZpY2V0cmVlIGJp
+bmRpbmcgdGV4dCBmaWxlIGFzc29jaWF0ZWQgd2l0aA0KPiA+IHRoZSBNZWxsYW5veCBCbHVlRmll
+bGQgSTJDIGNvbnRyb2xsZXIgaW4gc2NoZW1hIGZpbGUsDQo+ID4gSlNPTiBjb21wYXRpYmxlIHN1
+YnNldCBvZiBZQU1MLiBCZXNpZGVzLCBhZGQgYW4gZW50cnkNCj4gPiB3aXRoaW4gTUFJTlRBSU5F
+UlMgZmlsZS4NCj4gDQo+IFBsZWFzZSBmaXggdGhlIHN1YmplY3QgYXMgSSBhc2tlZCBpbiB2MS4N
+Cg0KV2lsbCBkby4gVmVyeSBzb3JyeSBhYm91dCB0aGF0Lg0KDQo+ID4NCj4gPiBSZXZpZXdlZC1i
+eTogTGVvbiBSb21hbm92c2t5IDxsZW9ucm9AbnZpZGlhLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5
+OiBLaGFsaWwgQmxhaWVjaCA8a2JsYWllY2hAbnZpZGlhLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4u
+L2RldmljZXRyZWUvYmluZGluZ3MvaTJjL21lbGxhbm94LGkyYy1tbHhiZi50eHQgfCA0MiAtLS0t
+LS0tLS0tLS0NCj4gPiAgLi4uL2JpbmRpbmdzL2kyYy9tZWxsYW5veCxpMmMtbWx4YmYueWFtbCAg
+ICAgICAgICAgfCA4MA0KPiArKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIE1BSU5UQUlORVJT
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDEgKw0KPiA+ICAzIGZp
+bGVzIGNoYW5nZWQsIDgxIGluc2VydGlvbnMoKyksIDQyIGRlbGV0aW9ucygtKQ0KPiA+ICBkZWxl
+dGUgbW9kZSAxMDA2NDQNCj4gRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9t
+ZWxsYW5veCxpMmMtbWx4YmYudHh0DQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiBEb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvaTJjL21lbGxhbm94LGkyYy1tbHhiZi55YW1sDQo+
+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2ky
+Yy9tZWxsYW5veCxpMmMtbWx4YmYudHh0DQo+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL2kyYy9tZWxsYW5veCxpMmMtbWx4YmYudHh0DQo+ID4gZGVsZXRlZCBmaWxlIG1vZGUg
+MTAwNjQ0DQo+ID4gaW5kZXggNTY2ZWE4Ni4uMDAwMDAwMA0KPiA+IC0tLSBhL0RvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMvbWVsbGFub3gsaTJjLW1seGJmLnR4dA0KPiA+ICsr
+KyAvZGV2L251bGwNCj4gPiBAQCAtMSw0MiArMCwwIEBADQo+ID4gLURldmljZSB0cmVlIGNvbmZp
+Z3VyYXRpb24gZm9yIHRoZSBNZWxsYW5veCBJMkMgU01CdXMgb24gQmx1ZUZpZWxkIFNvQ3MNCj4g
+PiAtDQo+ID4gLVJlcXVpcmVkIFByb3BlcnRpZXM6DQo+ID4gLQ0KPiA+IC0tIGNvbXBhdGlibGUg
+OiBzaG91bGQgYmUgIm1lbGxhbm94LGkyYy1tbHhiZjEiIG9yICJtZWxsYW5veCxpMmMtbWx4YmYy
+Ii4NCj4gPiAtDQo+ID4gLS0gcmVnIDogYWRkcmVzcyBvZmZzZXQgYW5kIGxlbmd0aCBvZiB0aGUg
+ZGV2aWNlIHJlZ2lzdGVycy4gVGhlDQo+ID4gLSAgICAgICByZWdpc3RlcnMgY29uc2lzdCBvZiB0
+aGUgZm9sbG93aW5nIHNldCBvZiByZXNvdXJjZXM6DQo+ID4gLSAgICAgICAgICAgICAgIDEpIFNt
+YnVzIGJsb2NrIHJlZ2lzdGVycy4NCj4gPiAtICAgICAgICAgICAgICAgMikgQ2F1c2UgbWFzdGVy
+IHJlZ2lzdGVycy4NCj4gPiAtICAgICAgICAgICAgICAgMykgQ2F1c2Ugc2xhdmUgcmVnaXN0ZXJz
+Lg0KPiA+IC0gICAgICAgICAgICAgICA0KSBDYXVzZSBjb2FsZXNjZSByZWdpc3RlcnMgKGlmIGNv
+bXBhdGlibGUgaXNuJ3Qgc2V0DQo+ID4gLSAgICAgICAgICAgICAgICAgIHRvICJtZWxsYW5veCxp
+MmMtbWx4YmYxIikuDQo+ID4gLQ0KPiA+IC0tIGludGVycnVwdHMgOiBpbnRlcnJ1cHQgbnVtYmVy
+Lg0KPiA+IC0NCj4gPiAtT3B0aW9uYWwgUHJvcGVydGllczoNCj4gPiAtDQo+ID4gLS0gY2xvY2st
+ZnJlcXVlbmN5IDogYnVzIGZyZXF1ZW5jeSB1c2VkIHRvIGNvbmZpZ3VyZSB0aW1pbmcgcmVnaXN0
+ZXJzOw0KPiA+IC0gICAgICAgICAgICAgICAgICAgICAgIGFsbG93ZWQgdmFsdWVzIGFyZSAxMDAw
+MDAsIDQwMDAwMCBhbmQgMTAwMDAwMDsNCj4gPiAtICAgICAgICAgICAgICAgICAgICAgICB0aG9z
+ZSBhcmUgZXhwcmVzc2VkIGluIEh6LiBEZWZhdWx0IGlzIDEwMDAwMC4NCj4gPiAtDQo+ID4gLUV4
+YW1wbGU6DQo+ID4gLQ0KPiA+IC1pMmNAMjgwNDAwMCB7DQo+ID4gLSAgICAgICBjb21wYXRpYmxl
+ID0gIm1lbGxhbm94LGkyYy1tbHhiZjEiOw0KPiA+IC0gICAgICAgcmVnID0gICA8MHgwMjgwNDAw
+MCAweDgwMD4sDQo+ID4gLSAgICAgICAgICAgICAgIDwweDAyODAxMjAwIDB4MDIwPiwNCj4gPiAt
+ICAgICAgICAgICAgICAgPDB4MDI4MDEyNjAgMHgwMjA+Ow0KPiA+IC0gICAgICAgaW50ZXJydXB0
+cyA9IDw1Nz47DQo+ID4gLSAgICAgICBjbG9jay1mcmVxdWVuY3kgPSA8MTAwMDAwPjsNCj4gPiAt
+fTsNCj4gPiAtDQo+ID4gLWkyY0AyODA4ODAwIHsNCj4gPiAtICAgICAgIGNvbXBhdGlibGUgPSAi
+bWVsbGFub3gsaTJjLW1seGJmMiI7DQo+ID4gLSAgICAgICByZWcgPSAgIDwweDAyODA4ODAwIDB4
+NjAwPiwNCj4gPiAtICAgICAgICAgICAgICAgPDB4MDI4MDhlMDAgMHgwMjA+LA0KPiA+IC0gICAg
+ICAgICAgICAgICA8MHgwMjgwOGUyMCAweDAyMD4sDQo+ID4gLSAgICAgICAgICAgICAgIDwweDAy
+ODA4ZTQwIDB4MDEwPjsNCj4gPiAtICAgICAgIGludGVycnVwdHMgPSA8NTc+Ow0KPiA+IC0gICAg
+ICAgY2xvY2stZnJlcXVlbmN5ID0gPDQwMDAwMD47DQo+ID4gLX07DQo+ID4gZGlmZiAtLWdpdCBh
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMvbWVsbGFub3gsaTJjLQ0KPiBt
+bHhiZi55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9tZWxsYW5v
+eCxpMmMtDQo+IG1seGJmLnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGluZGV4
+IDAwMDAwMDAuLjNlYjc0NTcNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9tZWxsYW5veCxpMmMtbWx4YmYueWFtbA0KPiA+
+IEBAIC0wLDAgKzEsODAgQEANCj4gPiArIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0y
+LjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQo+ID4gKyVZQU1MIDEuMg0KPiA+ICstLS0NCj4gPiAr
+JGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9pMmMvbWVsbGFub3gsaTJjLW1seGJm
+LnlhbWwjDQo+ID4gKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMv
+Y29yZS55YW1sIw0KPiA+ICsNCj4gPiArdGl0bGU6IE1lbGxhbm94IEkyQyBTTUJ1cyBvbiBCbHVl
+RmllbGQgU29Dcw0KPiA+ICsNCj4gPiArbWFpbnRhaW5lcnM6DQo+ID4gKyAgLSBLaGFsaWwgQmxh
+aWVjaCA8a2JsYWllY2hAbnZpZGlhLmNvbT4NCj4gPiArDQo+ID4gK2FsbE9mOg0KPiA+ICsgIC0g
+JHJlZjogL3NjaGVtYXMvaTJjL2kyYy1jb250cm9sbGVyLnlhbWwjDQo+ID4gKw0KPiA+ICtwcm9w
+ZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBlbnVtOg0KPiA+ICsgICAgICAt
+IG1lbGxhbm94LGkyYy1tbHhiZjENCj4gPiArICAgICAgLSBtZWxsYW5veCxpMmMtbWx4YmYyDQo+
+ID4gKw0KPiA+ICsgIHJlZzoNCj4gPiArICAgIG1pbkl0ZW1zOiAzDQo+ID4gKyAgICBtYXhJdGVt
+czogNA0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IFNtYnVzIGJs
+b2NrIHJlZ2lzdGVycw0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBDYXVzZSBtYXN0ZXIgcmVn
+aXN0ZXJzDQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IENhdXNlIHNsYXZlIHJlZ2lzdGVycw0K
+PiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBDYXVzZSBjb2FsZXNjZSByZWdpc3RlcnMNCj4gPiAr
+DQo+ID4gKyAgaW50ZXJydXB0czoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsg
+IGNsb2NrLWZyZXF1ZW5jeToNCj4gPiArICAgIGVudW06IFsgMTAwMDAwLCA0MDAwMDAsIDEwMDAw
+MDAgXQ0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAgIGJ1cyBmcmVxdWVuY3kgdXNl
+ZCB0byBjb25maWd1cmUgdGltaW5nIHJlZ2lzdGVyczsNCj4gPiArICAgICAgVGhlIGZyZXF1ZW5j
+eSBpcyBleHByZXNzZWQgaW4gSHouIERlZmF1bHQgaXMgMTAwMDAwLg0KPiA+ICsNCj4gPiArYWRk
+aXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtyZXF1aXJlZDoNCj4gPiArICAt
+IGNvbXBhdGlibGUNCj4gPiArICAtIHJlZw0KPiA+ICsgIC0gaW50ZXJydXB0cw0KPiA+ICsNCj4g
+PiArdW5ldmFsdWF0ZWRQcm9wZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiAraWY6DQo+ID4gKyAg
+cHJvcGVydGllczoNCj4gPiArICAgIGNvbXBhdGlibGU6DQo+ID4gKyAgICAgIGNvbnRhaW5zOg0K
+PiA+ICsgICAgICAgIGVudW06DQo+ID4gKyAgICAgICAgICAtIG1lbGxhbm94LGkyYy1tbHhiZjEN
+Cj4gPiArDQo+ID4gK3RoZW46DQo+ID4gKyAgcHJvcGVydGllczoNCj4gPiArICAgIHJlZzoNCj4g
+PiArICAgICAgbWF4SXRlbXM6IDMNCj4gPiArDQo+ID4gK2V4YW1wbGVzOg0KPiA+ICsgIC0gfA0K
+PiA+ICsgICAgaTJjQDI4MDQwMDAgew0KPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVsbGFu
+b3gsaTJjLW1seGJmMSI7DQo+ID4gKyAgICAgICAgcmVnID0gPDB4MDI4MDQwMDAgMHg4MDA+LA0K
+PiA+ICsgICAgICAgICAgICAgIDwweDAyODAxMjAwIDB4MDIwPiwNCj4gPiArICAgICAgICAgICAg
+ICA8MHgwMjgwMTI2MCAweDAyMD47DQo+ID4gKyAgICAgICAgaW50ZXJydXB0cyA9IDw1Nz47DQo+
+ID4gKyAgICAgICAgY2xvY2stZnJlcXVlbmN5ID0gPDEwMDAwMD47DQo+ID4gKyAgICB9Ow0KPiA+
+ICsNCj4gPiArICAtIHwNCj4gPiArICAgIGkyY0AyODA4ODAwIHsNCj4gPiArICAgICAgICBjb21w
+YXRpYmxlID0gIm1lbGxhbm94LGkyYy1tbHhiZjIiOw0KPiA+ICsgICAgICAgIHJlZyA9IDwweDAy
+ODA4ODAwIDB4NjAwPiwNCj4gPiArICAgICAgICAgICAgICA8MHgwMjgwOGUwMCAweDAyMD4sDQo+
+ID4gKyAgICAgICAgICAgICAgPDB4MDI4MDhlMjAgMHgwMjA+LA0KPiA+ICsgICAgICAgICAgICAg
+IDwweDAyODA4ZTQwIDB4MDEwPjsNCj4gPiArICAgICAgICBpbnRlcnJ1cHRzID0gPDU3PjsNCj4g
+PiArICAgICAgICBjbG9jay1mcmVxdWVuY3kgPSA8NDAwMDAwPjsNCj4gPiArICAgIH07DQo+ID4g
+ZGlmZiAtLWdpdCBhL01BSU5UQUlORVJTIGIvTUFJTlRBSU5FUlMNCj4gPiBpbmRleCA1NTE1ODdm
+Li40MDU2OWZkIDEwMDY0NA0KPiA+IC0tLSBhL01BSU5UQUlORVJTDQo+ID4gKysrIGIvTUFJTlRB
+SU5FUlMNCj4gPiBAQCAtMTExNjYsNiArMTExNjYsNyBAQCBNRUxMQU5PWCBCTFVFRklFTEQgSTJD
+IERSSVZFUg0KPiA+ICBNOiAgICAgS2hhbGlsIEJsYWllY2ggPGtibGFpZWNoQG52aWRpYS5jb20+
+DQo+ID4gIEw6ICAgICBsaW51eC1pMmNAdmdlci5rZXJuZWwub3JnDQo+ID4gIFM6ICAgICBTdXBw
+b3J0ZWQNCj4gPiArRjogICAgIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMv
+bWVsbGFub3gsaTJjLW1seGJmLnlhbWwNCj4gPiAgRjogICAgIGRyaXZlcnMvaTJjL2J1c3Nlcy9p
+MmMtbWx4YmYuYw0KPiA+DQo+ID4gIE1FTExBTk9YIEVUSEVSTkVUIERSSVZFUiAobWx4NF9lbikN
+Cj4gPiAtLQ0KPiA+IDIuMS4yDQo+ID4NCg==
