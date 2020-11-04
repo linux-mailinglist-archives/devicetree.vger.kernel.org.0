@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28D892A6D4E
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 19:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EE062A6D62
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 20:03:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730044AbgKDS6t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 13:58:49 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:41098 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbgKDS56 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 13:57:58 -0500
-Received: by mail-oi1-f196.google.com with SMTP id m13so14191581oih.8;
-        Wed, 04 Nov 2020 10:57:57 -0800 (PST)
+        id S1731001AbgKDTCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 14:02:34 -0500
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:41325 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729555AbgKDTBC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 14:01:02 -0500
+Received: by mail-oo1-f66.google.com with SMTP id n2so5336764ooo.8;
+        Wed, 04 Nov 2020 11:01:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=D5nJCWrjLgvJLOiVLXj8dcQZ+LEC4p94v1WKcqs0NR0=;
-        b=Hny0QiT8QBLN5t76pCJKjPKupGM/UB4dEUAiPeCOq1QsUMXq3c0Z7qmvXKM5Z8ogkt
-         OKgSWQbjqYkOmd3bKFVrPSpbp7/y5t6abKe9gARblxQ38ivGbaJAEZlZzJJQQiHmZXYL
-         72RnNS3dfbeuXOwqpdYI3b+2pAXE6PsRAF7Q6Fsdq/cHxoQUrj+ESF/pHjYJY1bs5djm
-         9qWm4E/M7D9ziwvo1bYytz9cZ9BS4hPCO/tS4UKAeNQqPty+ytSwCjiy64k7EQ2RiTb8
-         SCN1EjkjFgs76Cq4t8BZW8pqkRdUhQRsa+No8JB463qlhLDLwePksLTw78TT2GEvWJ/8
-         pKiQ==
-X-Gm-Message-State: AOAM53329037lbMVn8IDhbycwtR21S628WMRWpWzastP8b9u7MnHOTJX
-        8aAgfN07FI2yhEejUGSl/g==
-X-Google-Smtp-Source: ABdhPJyhqCu+Trf+max1jMJtRFh0rWYsf0hk0dBZaQe1VhWS5v4jYK/wm7wrL8WPai77xPv0eAqHVg==
-X-Received: by 2002:aca:c4c3:: with SMTP id u186mr3574115oif.4.1604516277206;
-        Wed, 04 Nov 2020 10:57:57 -0800 (PST)
+        bh=28TSBEACDPg4TOixmPv6qTaMuTlZjdSzlb52Hl2/KaM=;
+        b=P6G3lXBXhx8x3TCJh5uvkqZefXs9JBabj6BcAArpScYQ+JwqRDDnJlw9NGAWBm3flY
+         6bTttaHmOaekTK7CXdD06V9/v3/bjMdJxg7RMiBhs/vqNc9QJmRPKAGYFY+asIyXSfog
+         PtT+W+rWwuSLfQnsO5xKcZcS0stflqu6TEWVYZWAhje+a3rinslj0efDWJ9BlTr81obQ
+         U20gIjfwiAfKxeFvXM0I2dxCfdcOwLHSpPUyaNw2xoPhxou22Ynm+R4a/1UyhdewlvnN
+         wxjTG9/NyFUnPymtMk1yq9f4DpOa0Bi/p0w8UQlxJmd7LVfLw2EYe31yodfANjXRO3UZ
+         cIAA==
+X-Gm-Message-State: AOAM530nUdyZD8ssMi/R2jGZgPJyCUJIKgbd0C0gxV2bUE2Wz8SNmjqA
+        CC5rshp/KePfxIisbaCmd/KQrqgwuQ==
+X-Google-Smtp-Source: ABdhPJzsluuC2hERxHZwZe3UQMIR6GG4OMT2RUm6D2mmZ79HE7zUD6ZJS1WAdGIgSYPCRrhTzr6AIg==
+X-Received: by 2002:a4a:d554:: with SMTP id q20mr19826886oos.23.1604516461232;
+        Wed, 04 Nov 2020 11:01:01 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 64sm660896otq.26.2020.11.04.10.57.56
+        by smtp.gmail.com with ESMTPSA id b92sm654957otc.70.2020.11.04.11.01.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 10:57:56 -0800 (PST)
-Received: (nullmailer pid 3948698 invoked by uid 1000);
-        Wed, 04 Nov 2020 18:57:55 -0000
-Date:   Wed, 4 Nov 2020 12:57:55 -0600
+        Wed, 04 Nov 2020 11:01:00 -0800 (PST)
+Received: (nullmailer pid 3952952 invoked by uid 1000);
+        Wed, 04 Nov 2020 19:00:59 -0000
+Date:   Wed, 4 Nov 2020 13:00:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, kernel@axis.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, support.opensource@diasemi.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add DA9121
-Message-ID: <20201104185755.GA3948381@bogus>
-References: <20201103100021.19603-1-vincent.whitchurch@axis.com>
- <20201103100021.19603-2-vincent.whitchurch@axis.com>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 1/3] dt-bindings: dmaengine: Document qcom,gpi dma
+ binding
+Message-ID: <20201104190059.GA3950437@bogus>
+References: <20201103112544.674566-1-vkoul@kernel.org>
+ <20201103112544.674566-2-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201103100021.19603-2-vincent.whitchurch@axis.com>
+In-Reply-To: <20201103112544.674566-2-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Nov 2020 11:00:20 +0100, Vincent Whitchurch wrote:
-> Add bindings for the Dialog Semiconductor DA9121 voltage regulator.
+On Tue, 03 Nov 2020 16:55:42 +0530, Vinod Koul wrote:
+> Add devicetree binding documentation for GPI DMA controller
+> implemented on Qualcomm SoCs
 > 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
 > ---
->  .../bindings/regulator/dlg,da9121.yaml        | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
+>  .../devicetree/bindings/dma/qcom,gpi.yaml     | 90 +++++++++++++++++++
+>  include/dt-bindings/dma/qcom-gpi.h            | 11 +++
+>  2 files changed, 101 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+>  create mode 100644 include/dt-bindings/dma/qcom-gpi.h
 > 
 
 
@@ -69,12 +76,12 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/qcom,gpi.yaml: properties: {'enum': ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'if', 'items', 'maxItems', 'maximum', 'minItems', 'minimum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'propertyNames', 'required', 'then', 'unevaluatedProperties']} is not allowed for 'additionalProperties'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dma/qcom,gpi.yaml: ignoring, error in schema: properties
+warning: no schema found in file: ./Documentation/devicetree/bindings/dma/qcom,gpi.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1392753
+See https://patchwork.ozlabs.org/patch/1392940
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
