@@ -2,100 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D2C2A5AC7
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 00:53:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB3492A5B14
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 01:39:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728494AbgKCXxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Nov 2020 18:53:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50756 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726709AbgKCXxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 18:53:19 -0500
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87581C0613D1
-        for <devicetree@vger.kernel.org>; Tue,  3 Nov 2020 15:53:19 -0800 (PST)
-Received: by mail-oi1-x241.google.com with SMTP id m13so11225391oih.8
-        for <devicetree@vger.kernel.org>; Tue, 03 Nov 2020 15:53:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Jzsl0l+u2ZdPhHNWUc0rx+5LePVZdvsGME0CN+mQrUA=;
-        b=JaRznvnyDTYEeqgQ8yqM7PV6d5L+zo5YgMLJDJFdHSg4fqPEIiPWuRKK8k8rqq/VM6
-         ngo7+vITWlWjPOD/C2JAgT13n0B0VWVLPyewn1hutnprjiGflAT0wqU6gBPUnV6P7Dbv
-         GetaXVgNaLQMkoU/zEFINLdQ6904y4DnOONg3MBlEHInfhCUmEdnZpcF7UsARQv2Z6Z1
-         NahyYYwzC6AXhv6o0bFcihmpoDHaoT+OP22kH+UUGuNC6vvkkgtalnEHvHMvdYq6Vulr
-         iQQ/98UzkUphT723nmu7VOYE/P09u0L7N91umIye8eGcKlZOM6VGNbxrjHphsmzo0aRI
-         E7UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Jzsl0l+u2ZdPhHNWUc0rx+5LePVZdvsGME0CN+mQrUA=;
-        b=oxSNAuIGlze6Vr8ohsPgz/aH0MdqePsD52Fg9nX86STE6ys9e0NRfcqbxMZyuKioil
-         6HjOrHVmCpsGdhucvNvfNJKz2WVgjejjJPF95IEPL7UNjF8gsZ4hTwH6kOQTeHIKg/s6
-         tBdl192Yefwiq+Tb9OfY1ojhYtaTn+lCEIWoobjUMVYGfjI/s1Q1oWzPpyQEk5DVE7BA
-         BbVk7ji7+EDrb04Z6uZPrDdpLalcO3CoGR1ASvCJhBeAA3aotsAOQBLdwcr0cRwbDr+Z
-         IZsr5s7hTPBa0OdkvqxGmGZWIw0fEEwOtQeXJjbmIWEvCAWKFXbBvSJI9+Ux9Mzz8oIe
-         tgjw==
-X-Gm-Message-State: AOAM532OmcRiHQobkrLlWDNsFNBFO/wifTtGTec9ZZtvUJaQ/D9dXl2V
-        Us28dAzWPaLbSjU+WOS7D2mtFsdufL+MaRkKkD6stg==
-X-Google-Smtp-Source: ABdhPJx7gKdTHZb2kbQWLJ4DWZcN9AUZld8tYMRKLc9hIwUphni6W4wdtrbpBwoiG+/X94P6mCma2lEbT3vzx7dWfmM=
-X-Received: by 2002:aca:f1c6:: with SMTP id p189mr1065757oih.18.1604447598867;
- Tue, 03 Nov 2020 15:53:18 -0800 (PST)
+        id S1729557AbgKDAjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Nov 2020 19:39:11 -0500
+Received: from anchovy3.45ru.net.au ([203.30.46.155]:57312 "EHLO
+        anchovy3.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725811AbgKDAjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Nov 2020 19:39:11 -0500
+Received: (qmail 20621 invoked by uid 5089); 4 Nov 2020 00:39:08 -0000
+Received: by simscan 1.2.0 ppid: 20565, pid: 20566, t: 0.0775s
+         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
+Received: from unknown (HELO ?192.168.0.22?) (preid@electromag.com.au@203.59.235.95)
+  by anchovy2.45ru.net.au with ESMTPA; 4 Nov 2020 00:39:08 -0000
+Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
+ conversion
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20201031184854.745828-1-jic23@kernel.org>
+ <20201031184854.745828-3-jic23@kernel.org> <20201103161039.GA1754553@bogus>
+ <20201103172834.00007040@Huawei.com>
+From:   Phil Reid <preid@electromag.com.au>
+Message-ID: <bc4219af-d77b-0f39-025d-d8905f35b574@electromag.com.au>
+Date:   Wed, 4 Nov 2020 08:39:06 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-References: <20201027015420.908945-1-dmitry.baryshkov@linaro.org>
- <20201028044056.GA3151@builder.lan> <947976df-05c5-bc6d-455f-e71aa061055f@linaro.org>
- <20201103174041.GB65067@builder.lan>
-In-Reply-To: <20201103174041.GB65067@builder.lan>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 4 Nov 2020 02:53:07 +0300
-Message-ID: <CAA8EJpoNnsBNXhHy1nO_5eYbBDndtuhi71nuiwZ4M22eU2QTrg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8250: remove wakeup-parent for TLMM node
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201103172834.00007040@Huawei.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-AU
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On 4/11/2020 01:28, Jonathan Cameron wrote:
+> On Tue, 3 Nov 2020 10:10:39 -0600
+> Rob Herring <robh@kernel.org> wrote:
+> 
+>> On Sat, Oct 31, 2020 at 06:48:10PM +0000, Jonathan Cameron wrote:
+>>> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>>>
+>>> Simple direct conversion from txt to yaml as part of a general aim of
+>>> converting all IIO bindings to this machine readable format.
+>>>
+>>> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>>> Cc: Phil Reid <preid@electromag.com.au>
+>>> ---
+>>>   .../bindings/iio/potentiometer/ad5272.txt     | 27 ----------
+>>>   .../iio/potentiometer/adi,ad5272.yaml         | 50 +++++++++++++++++++
+>>>   2 files changed, 50 insertions(+), 27 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt b/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
+>>> deleted file mode 100644
+>>> index f9b2eef946aa..000000000000
+>>> --- a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
+>>> +++ /dev/null
+>>> @@ -1,27 +0,0 @@
+>>> -* Analog Devices AD5272 digital potentiometer
+>>> -
+>>> -The node for this device must be a child node of a I2C controller, hence
+>>> -all mandatory properties for your controller must be specified. See directory:
+>>> -
+>>> -        Documentation/devicetree/bindings/i2c
+>>> -
+>>> -for more details.
+>>> -
+>>> -Required properties:
+>>> -	- compatible:  	Must be one of the following, depending on the model:
+>>> -			adi,ad5272-020
+>>> -			adi,ad5272-050
+>>> -			adi,ad5272-100
+>>> -			adi,ad5274-020
+>>> -			adi,ad5274-100
+>>> -
+>>> -Optional properties:
+>>> - - reset-gpios: GPIO specification for the RESET input. This is an
+>>> -		active low signal to the AD5272.
+>>> -
+>>> -Example:
+>>> -ad5272: potentiometer@2f {
+>>> -	reg = <0x2F>;
+>>> -	compatible = "adi,ad5272-020";
+>>> -	reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
+>>> -};
+>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
+>>> new file mode 100644
+>>> index 000000000000..b9b7d383bff1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
+>>> @@ -0,0 +1,50 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/iio/potentiometer/adi,ad5272.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Analog Devices AD5272 digital potentiometer
+>>> +
+>>> +maintainers:
+>>> +  - Phil Reid <preid@electromag.com.au>
+>>> +
+>>> +description: |
+>>> +  Datasheet: https://www.analog.com/en/products/ad5272.html
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - adi,ad5272-020
+>>> +      - adi,ad5272-050
+>>> +      - adi,ad5272-100
+>>> +      - adi,ad5274-020
+>>> +      - adi,ad5274-100
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  reset-gpios:
+>>> +    description:
+>>> +      Active low signal to the AD5272 RESET input.
+>>
+>> Not a new problem, but active low or...
+>>
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/gpio/gpio.h>
+>>> +    i2c {
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <0>;
+>>> +
+>>> +        potentiometer@2f {
+>>> +            compatible = "adi,ad5272-020";
+>>> +            reg = <0x2F>;
+>>> +            reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
+>>
+>> active high?
+> 
+> Good spot!  @Phil.  Looks like the driver is setting the reset line to
+> 0 and then to 1 to come out of reset.   So effectively inverting the logic.
+> I'm tempted to be cynical and suggest we just drop the comment above and leave
+> it vague but is there a better way we can clarify this?
 
-On Tue, 3 Nov 2020 at 20:40, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->
-> On Wed 28 Oct 06:52 CDT 2020, Dmitry Baryshkov wrote:
->
-> > On 28/10/2020 07:40, Bjorn Andersson wrote:
-> > > On Mon 26 Oct 20:54 CDT 2020, Dmitry Baryshkov wrote:
-> > >
-> > > > On SM8250 TLMM doesn't use PDC interrupt controller for wakeup events.
-> > > > Instead it handles them on their own (not implemented yet). In addition
-> > > > setting wakeup-parent property to &pdc will result in parent hwirq being
-> > > > set to ~0UL, which interact badly with the irqdomains trimming code. So
-> > > > remove the wakeup-parent property.
-> > > >
-> > >
-> > > Would you accept this patch instead?
-> > >
-> > > https://lore.kernel.org/r/20201028043642.1141723-1-bjorn.andersson@linaro.org
-> >
-> > not found
-> >
->
-> Seems like the tubes where slow last week, but the link works now.
-> Please take a look and let me know if this works better for you.
+Had a look at a few other iio drivers in regards how they handle the same thing.
+A few do the same thing, ie: the drivers are written to set gpio low to assert reset.
+So they need the device tree gpio config to be active high to work correctly.
+Not sure if this prevents users setting things up as open collector.
 
-I will check this patch. However note, that we need to get 5.10 fixed
-wrt TLMM irqs. And the mentioned patch probably doesn't stand a chance
-of being merged into 5.10-rc, does it?
+I also reviewed my boards and they aren't using the reset line at the moment.
+So I've never properly tested that, but hte code looks ok.
+
+I'm happy to go the vague way.
+> 
+>>
+>>> +        };
+>>> +    };
+>>> +...
+>>> -- 
+>>> 2.28.0
+>>>    
+> 
+> 
 
 
 -- 
-With best wishes
-Dmitry
+Regards
+Phil Reid
+
