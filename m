@@ -2,90 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA4932A6BB5
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 18:33:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAC342A6BFD
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 18:46:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731506AbgKDRco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 12:32:44 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:1605 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730019AbgKDRco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 12:32:44 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A4HVs49031157;
-        Wed, 4 Nov 2020 18:32:30 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=RD8lxnzr5dJzto5A8fvjT1RmhG9atPIVNFqjK/v2cWg=;
- b=kz8KlySfDguwtPPwhOD30PU3rDNhSV/NXwCtuIhCvppuvER2jeNFvlEb/O3LkXJzQ5P2
- XUhYEiHJpISju4c38waQztEtjQaJGwcUZNCw57UyBRmaT/wI9QAT+T51G5+qB+qlvDZJ
- S1hvucJglJ5p843bJZwT48undVQziDWBI2bIO92/B6abI7Yj8O1hoXrMhqTAs7NgSAd7
- RResEqnt0n7DIDQm7JfZg7sQ+uK99G3S/qfbr6DYRP8klppXd3KxCvfYm8W3B5Rb4Lph
- lIook+BMjh6z8aRAQbNKaDkBkIqyX2lnjOVYZc4w7eCqrZVv6Qx4P24pIXlyryb9xflJ Zg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34h00egtyr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 04 Nov 2020 18:32:30 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E007510002A;
-        Wed,  4 Nov 2020 18:32:29 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag1node1.st.com [10.75.127.1])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CD52F225C2A;
-        Wed,  4 Nov 2020 18:32:29 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG1NODE1.st.com (10.75.127.1)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 4 Nov 2020 18:32:29
- +0100
-From:   Hugues Fruchet <hugues.fruchet@st.com>
-To:     Alexandre Torgue <alexandre.torgue@st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
+        id S1730811AbgKDRpi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 12:45:38 -0500
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:55816 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730555AbgKDRph (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 12:45:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1604511937; x=1636047937;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=ZmimzAcfmhamS/+M4yrvoHe76P5sEggPdECJfrNqkVM=;
+  b=kCy/j8LcmlVMenmuQHS/CvWm3qLXi5FStFbyqbDaj81UmpAxjGHIjtUm
+   c6SLEmKYgzPy+k63uocvbae1kkwPlm2UNbDXGj1RiJBd73f5yBFaskhxP
+   Md9/oJtsH9WoPpmJqH9rbF25NFoeVP4eqpwgadIsbYUEha3gTsaF3GfmJ
+   a97M14KISAisPrRofCpTZA/y9hc+3UaYmphlwjlz2GnX/MpwVJCfViGG7
+   L0BNx49TFN2klF7NR2EZP/kkEzQGG23ZIltVsw3kKqET3LzlbrOUBmztW
+   UoSW4tU+a8jdBRlQGHvGu8LqTlW9PW0LWrDgF7JVvluCQWcR6kpT+GT+n
+   w==;
+IronPort-SDR: p2pV9b5ZSXIJ9a3BCyo3pxiqGdMkqiR78sJeOJhH1HlkXdI/h5+hYgCvyVXOj30djzfiJiY3EQ
+ FYcVVVUmA25qWXeAwyfDlcxthQ5d5eDDijYxDdwjxscBzUciH6f5+B54/G+FKG2FSROVPqjhCq
+ tttMc7V9VZ1DPWMloxYXyduIF8v4oS1oRUQN1kBEbAVrI6cfU3rMUqtr+r3xPaqWMobiXQB7mS
+ NXuL0C6TKw3/BXeiBuY5JmUVVCXKAMKMX6aGi0ot/264dDzJckztgSIi4D+FyNLqTnNOjgs1Jd
+ RIc=
+X-IronPort-AV: E=Sophos;i="5.77,451,1596524400"; 
+   d="scan'208";a="97768114"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2020 10:45:36 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 4 Nov 2020 10:45:36 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Wed, 4 Nov 2020 10:45:31 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
+CC:     <linux-clk@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Hugues Fruchet <hugues.fruchet@st.com>,
-        Alain Volmat <alain.volmat@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe CORNU <philippe.cornu@st.com>
-Subject: [PATCH v5 4/4] ARM: dts: stm32: set bus-type in DCMI endpoint for stm32429i-eval board
-Date:   Wed, 4 Nov 2020 18:32:12 +0100
-Message-ID: <1604511132-4014-5-git-send-email-hugues.fruchet@st.com>
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <eugen.hristev@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v2 0/8] clk: at91: adapt for dvfs
+Date:   Wed, 4 Nov 2020 19:45:18 +0200
+Message-ID: <1604511926-29516-1-git-send-email-claudiu.beznea@microchip.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
-References: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG6NODE2.st.com (10.75.127.17) To SFHDAG1NODE1.st.com
- (10.75.127.1)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-04_12:2020-11-04,2020-11-04 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Explicitly set bus-type to parallel mode in DCMI endpoint (bus-type=5).
+Hi,
 
-Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
----
- arch/arm/boot/dts/stm32429i-eval.dts | 1 +
- 1 file changed, 1 insertion(+)
+SAMA7G5 is capable of DVFS. The supported CPU clock frequencies could be
+obtained from CPU PLL. The hardware block diagram for clock feeding the
+CPU is as follows:
 
-diff --git a/arch/arm/boot/dts/stm32429i-eval.dts b/arch/arm/boot/dts/stm32429i-eval.dts
-index 67e7648..7e10ae7 100644
---- a/arch/arm/boot/dts/stm32429i-eval.dts
-+++ b/arch/arm/boot/dts/stm32429i-eval.dts
-@@ -188,6 +188,7 @@
- 	port {
- 		dcmi_0: endpoint {
- 			remote-endpoint = <&ov2640_0>;
-+			bus-type = <5>;
- 			bus-width = <8>;
- 			hsync-active = <0>;
- 			vsync-active = <0>;
+                               +--------+
+                           +-->|divider1|--> CPU clock
+                           |   +--------+
++--------+   +----------+  |   +--------+
+|CPU PLL |-->|prescaller|--+-->|divider0|--> MCK0 clock
++--------+   +----------+      +--------+
+
+When switching CPU clock frequencies the MCK0 is also changed by DVFS
+driver to avoid its over/under clocking (depending on CPU clock frequency
+requested by DVFS algorithms). Some of IPs feed by MCK0 are MCK0 glich
+aware, some are not. For this MCK0 was removed from the parents list of
+the IPs which are not MCK0 glitch aware (patch 5/8).
+
+This series adapt AT91 clocks (mostly sam9x60-pll and master clock drivers)
+so that runtime changes of these clocks to be allowed.
+
+The CPU clock was registered from prescaller clock (see above diagram)
+and no software control has been added for divider1 because the frequencies
+supported by SAMA7G5's CPU could be directly obtained from CPU PLL +
+prescaller.
+
+On top of this series I also added a fix for sama7g5.c code (patch 1/8).
+Please let me know if you would like me to send this one separtely (it
+would be nice if this fix could be integrated in 5.10).
+
+Thank you,
+Claudiu Beznea
+
+Changes in v2:
+- s/at91rm9200_mck_lock/at91sam9260_mck_lock in patch 7/8
+
+Claudiu Beznea (6):
+  clk: at91: sama7g5: fix compilation error
+  clk: at91: clk-sam9x60-pll: allow runtime changes for pll
+  clk: at91: sama7g5: remove mck0 from parent list of other clocks
+  clk: at91: sama7g5: decrease lower limit for MCK0 rate
+  clk: at91: clk-master: re-factor master clock
+  clk: at91: sama7g5: register cpu clock
+
+Eugen Hristev (2):
+  dt-bindings: clock: at91: add sama7g5 pll defines
+  clk: at91: sama7g5: allow SYS and CPU PLLs to be exported and
+    referenced in DT
+
+ drivers/clk/at91/at91rm9200.c      |  20 ++-
+ drivers/clk/at91/at91sam9260.c     |  24 ++-
+ drivers/clk/at91/at91sam9g45.c     |  30 ++--
+ drivers/clk/at91/at91sam9n12.c     |  34 ++--
+ drivers/clk/at91/at91sam9rl.c      |  22 ++-
+ drivers/clk/at91/at91sam9x5.c      |  27 +++-
+ drivers/clk/at91/clk-master.c      | 323 +++++++++++++++++++++++++++++++------
+ drivers/clk/at91/clk-sam9x60-pll.c | 102 ++++++++++--
+ drivers/clk/at91/dt-compat.c       |  15 +-
+ drivers/clk/at91/pmc.h             |  20 ++-
+ drivers/clk/at91/sam9x60.c         |  35 ++--
+ drivers/clk/at91/sama5d2.c         |  41 +++--
+ drivers/clk/at91/sama5d3.c         |  37 +++--
+ drivers/clk/at91/sama5d4.c         |  39 +++--
+ drivers/clk/at91/sama7g5.c         | 139 +++++++++-------
+ include/dt-bindings/clock/at91.h   |  11 ++
+ 16 files changed, 692 insertions(+), 227 deletions(-)
+
 -- 
 2.7.4
 
