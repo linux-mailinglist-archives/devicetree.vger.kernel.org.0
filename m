@@ -2,127 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B22C12A6C19
-	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 18:47:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FBDD2A6C3A
+	for <lists+devicetree@lfdr.de>; Wed,  4 Nov 2020 18:53:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732081AbgKDRq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 12:46:29 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:61541 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732076AbgKDRq2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 12:46:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1604511987; x=1636047987;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=cuSF0gSlstTy7/1sjdn75EP/sqA1SN5o3astT2nOOL0=;
-  b=iu1evf7+E4K+VqdBOZ25tK20ajYFEiBEb6a+6/lZCcKhL+GyaSW2uIx8
-   Td3/TWfZi7KBY33YcRtIMUb9/0uPmGsInRQx0XqPfdQRayfgWnDNP9Ylq
-   kgV8b+30NaOYPqJiCIAcfS8syEJWaPRywl7H/OxgVBcHOz5mTsz9My8VV
-   kQ3IcqmyehSLxx5pDi3PnuvMfRHIYt/nBTu//PqYRguwlEhTGqM60zuh0
-   fjrb6O7XlkGkznOPvC6q+XIcs8X59/Ui7AM2OXVzah6X5lVPJo5vRiltG
-   xW1FN7hO5ix0Ggdq7mczhOJCuQ6HY1y6+hkz/pa/VyUOjAsFnso6ud26d
-   A==;
-IronPort-SDR: Xu+jdCajfs21/12Fxg04RNe4pJNiOay7qYpN5lYJCWbw4k69xiGeNSk9YTqZxxx5tnyqE1d9lV
- pPxIIq2ulH2RwOM7hgIOCbPZOx0V4EQDxkHue6mTWVYsbyo2J1jne2lI31Qf0laLaSXgJcdoDq
- 6Rq1dvcZ6CL1RKV+o//RX0NCLecCnGR09XrunpfyxKJgdJdj6WDOLIGTnVZnx5TKwaB7FIhYtF
- LD9ra31Af4/wbp0uDzCXVE5C7lEGqLVNbLFNFpb2ZRXvkaBvQFngnEOpWOn76mDOqYXlJFclcT
- VMI=
-X-IronPort-AV: E=Sophos;i="5.77,451,1596524400"; 
-   d="scan'208";a="32430057"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Nov 2020 10:46:25 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 4 Nov 2020 10:46:22 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Wed, 4 Nov 2020 10:46:17 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
-CC:     <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <eugen.hristev@microchip.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v2 8/8] clk: at91: sama7g5: register cpu clock
-Date:   Wed, 4 Nov 2020 19:45:26 +0200
-Message-ID: <1604511926-29516-9-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604511926-29516-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1604511926-29516-1-git-send-email-claudiu.beznea@microchip.com>
+        id S1726434AbgKDRxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 12:53:01 -0500
+Received: from foss.arm.com ([217.140.110.172]:41210 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726152AbgKDRxB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 12:53:01 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 16965139F;
+        Wed,  4 Nov 2020 09:53:00 -0800 (PST)
+Received: from [192.168.0.11] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 01BAC3F718;
+        Wed,  4 Nov 2020 09:52:57 -0800 (PST)
+Subject: Re: [PATCH v3 2/3] opp/of: Allow empty opp-table with opp-shared
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
+        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
+        chris.redpath@arm.com
+References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
+ <20201102120115.29993-3-nicola.mazzucato@arm.com>
+ <20201103050141.kiuyotzt4brisch7@vireshk-i7>
+From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
+Message-ID: <9f442724-df13-d582-717d-535cc9c9c9f1@arm.com>
+Date:   Wed, 4 Nov 2020 17:54:31 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20201103050141.kiuyotzt4brisch7@vireshk-i7>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register CPU clock as being the master clock prescaler. This would
-be used by DVFS. The block schema of SAMA7G5's PMC contains also a divider
-between master clock prescaler and CPU (PMC_CPU_RATIO.RATIO) but the
-frequencies supported by SAMA7G5 could be directly received from
-CPUPLL + master clock prescaler and the extra divider would do no work in
-case it would be enabled.
+Hi Viresh, thanks for looking into this.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- drivers/clk/at91/sama7g5.c       | 13 ++++++-------
- include/dt-bindings/clock/at91.h |  1 +
- 2 files changed, 7 insertions(+), 7 deletions(-)
+On 11/3/20 5:01 AM, Viresh Kumar wrote:
+> On 02-11-20, 12:01, Nicola Mazzucato wrote:
+>> The opp binding now allows to have an empty opp table and shared-opp to
+>> merely describe a hw connection among devices (f/v lines).
+>>
+>> When initialising an opp table, allow such case by:
+>> - treating some errors as warnings
+>> - do not mark empty tables as shared
+>> - don't fail on empty table
+>>
+>> Signed-off-by: Nicola Mazzucato <nicola.mazzucato@arm.com>
+>> ---
+>>  drivers/opp/of.c | 13 +++++++++++--
+>>  1 file changed, 11 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
+>> index 874b58756220..b0230490bb31 100644
+>> --- a/drivers/opp/of.c
+>> +++ b/drivers/opp/of.c
+>> @@ -157,6 +157,11 @@ static void _opp_table_free_required_tables(struct opp_table *opp_table)
+>>  /*
+>>   * Populate all devices and opp tables which are part of "required-opps" list.
+>>   * Checking only the first OPP node should be enough.
+>> + *
+>> + * Corner case: empty opp table and opp-shared found. In this case we set
+>> + * unconditionally the opp table access to exclusive, as the opp-shared property
+>> + * is used purely to describe hw connections. Such information will be retrieved
+>> + * via dev_pm_opp_of_get_sharing_cpus().
+>>   */
+>>  static void _opp_table_alloc_required_tables(struct opp_table *opp_table,
+>>  					     struct device *dev,
+>> @@ -169,7 +174,9 @@ static void _opp_table_alloc_required_tables(struct opp_table *opp_table,
+>>  	/* Traversing the first OPP node is all we need */
+>>  	np = of_get_next_available_child(opp_np, NULL);
+>>  	if (!np) {
+>> -		dev_err(dev, "Empty OPP table\n");
+>> +		dev_warn(dev, "Empty OPP table\n");
+>> +
+>> +		opp_table->shared_opp = OPP_TABLE_ACCESS_EXCLUSIVE;
+> 
+> I am not sure I understand the reasoning behind this.
 
-diff --git a/drivers/clk/at91/sama7g5.c b/drivers/clk/at91/sama7g5.c
-index d38766c6fc8c..b712dd273a0b 100644
---- a/drivers/clk/at91/sama7g5.c
-+++ b/drivers/clk/at91/sama7g5.c
-@@ -852,7 +852,7 @@ static void __init sama7g5_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sama7g5_pmc = pmc_data_allocate(PMC_ETHPLL + 1,
-+	sama7g5_pmc = pmc_data_allocate(PMC_CPU + 1,
- 					nck(sama7g5_systemck),
- 					nck(sama7g5_periphck),
- 					nck(sama7g5_gck), 8);
-@@ -929,18 +929,17 @@ static void __init sama7g5_pmc_setup(struct device_node *np)
- 		}
- 	}
- 
--	parent_names[0] = md_slck_name;
--	parent_names[1] = "mainck";
--	parent_names[2] = "cpupll_divpmcck";
--	parent_names[3] = "syspll_divpmcck";
--	hw = at91_clk_register_master_pres(regmap, "mck0_pres", 4, parent_names,
-+	parent_names[0] = "cpupll_divpmcck";
-+	hw = at91_clk_register_master_pres(regmap, "cpuck", 1, parent_names,
- 					   &mck0_layout, &mck0_characteristics,
- 					   &pmc_mck0_lock,
- 					   CLK_SET_RATE_PARENT, 0);
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
--	hw = at91_clk_register_master_div(regmap, "mck0_div", "mck0_pres",
-+	sama7g5_pmc->chws[PMC_CPU] = hw;
-+
-+	hw = at91_clk_register_master_div(regmap, "mck0", "cpuck",
- 					  &mck0_layout, &mck0_characteristics,
- 					  &pmc_mck0_lock, 0);
- 	if (IS_ERR(hw))
-diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-index fab313f62e8f..98e1b2ab6403 100644
---- a/include/dt-bindings/clock/at91.h
-+++ b/include/dt-bindings/clock/at91.h
-@@ -34,6 +34,7 @@
- #define PMC_AUDIOPMCPLL		(PMC_MAIN + 6)
- #define PMC_AUDIOIOPLL		(PMC_MAIN + 7)
- #define PMC_ETHPLL		(PMC_MAIN + 8)
-+#define PMC_CPU			(PMC_MAIN + 9)
- 
- #ifndef AT91_PMC_MOSCS
- #define AT91_PMC_MOSCS		0		/* MOSCS Flag */
--- 
-2.7.4
+Initially I thought to place a comment right there but I ended up with an
+explanation of this case at the top of this function (the corner-case). It
+probably also needs more details..
+Basically, on this case - empty opp table & opp-shared - we limit the scope of
+opp-shared to *only* tell us about hw description, and not marking the opp
+points as shared, since they are not present in DT. It would be the equivalent
+of describing that devices share clock/voltage lines, but we can't tell anything
+about opp points cause they are not there (in DT).
+OTOH If we don't set shared_opp to OPP_TABLE_ACCESS_EXCLUSIVE for that specific
+case, we won't be able to add opps for the remaining cpus as the opp core
+will find the opps as duplicated. This is a corner case, really.
 
+Please let me know if it's not clear.
+
+Many thanks
+Nicola
+
+> 
+>>  		return;
+>>  	}
+>>  
+>> @@ -377,7 +384,9 @@ int dev_pm_opp_of_find_icc_paths(struct device *dev,
+>>  	struct icc_path **paths;
+>>  
+>>  	ret = _bandwidth_supported(dev, opp_table);
+>> -	if (ret <= 0)
+>> +	if (ret == -EINVAL)
+>> +		return 0; /* Empty OPP table is a valid corner-case, let's not fail */
+>> +	else if (ret <= 0)
+>>  		return ret;
+>>  
+>>  	ret = 0;
+>> -- 
+>> 2.27.0
+> 
