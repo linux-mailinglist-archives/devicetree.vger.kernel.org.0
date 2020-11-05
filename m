@@ -2,107 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A652A83BF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:43:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B77F82A840B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:53:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731060AbgKEQn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 11:43:26 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47894 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731149AbgKEQnZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 11:43:25 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A5B552080D;
-        Thu,  5 Nov 2020 16:43:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604594604;
-        bh=nzUBLENvNGw4qP7529IkPGt+67Ej7GsURN40SwoTbuQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PqIqOxZpYIytUMk1dkb5b3eIQUatp1Du9XOiOGzQ22gJ2Xofp+ZV5a/hHGDK7NXfs
-         N4qyhQfu5EeA5H8bNzRWF6Om4Zu+rIJ25FfR+VIktuHEfmU4Cyko/KJc6ie19+JLZf
-         HBKenVSBGWEPXANLQiRnbgp7EEh3c7fQVOfbFu6A=
-Date:   Thu, 5 Nov 2020 16:43:12 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Boris Brezillon <boris.brezillon@collabora.com>
-Cc:     =?iso-8859-1?Q?C=E9dric?= Le Goater <clg@kaod.org>,
-        robh+dt@kernel.org, Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        joel@jms.id.au, andrew@aj.id.au, bbrezillon@kernel.org,
+        id S1731492AbgKEQxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 11:53:34 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:33930 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730862AbgKEQxe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 11:53:34 -0500
+Received: by mail-ot1-f67.google.com with SMTP id j14so2055335ots.1;
+        Thu, 05 Nov 2020 08:53:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=t3AVzHZD6ysm61wCDKsw2GxAdZdrAdpsQuyAnywMmA8=;
+        b=FloI7jFfnSBrfP9iin2/p9mvVpSKLvUcIBnSugNAjvhNKZsfnkhgQ7zH15wVPxHEww
+         gr3ohOdcb+P98KkbcIThgn2slazQMVXBZSZAaII2VcQT+2Ef3lY25hTYHrO7oG4VEoGc
+         3iyBQdz4yS1vhrCyl9/gGj219swuUDD5Cc+YMAixZGHuJFJYzp1T5DMKFsnFS0HPcdYA
+         MlQaYD5eeq82pE4IO5F2lnbrmn687cpAm6C9TI8moxDTr7ybtxEN1/NEmXU/SJdSF6t1
+         /oXkTO1XrORzV0y/CApzBeYz4AtrRUcGVBzAx/3v/52IpRZHhUAljlyG40VaB0QovcHN
+         EE9A==
+X-Gm-Message-State: AOAM530Wojvl9SLB1hV/wrQJpIV0bxYMFByXVyGItLfv/SJsApRLhq7t
+        PFm+8eQ29P3YNElrl1g9/A==
+X-Google-Smtp-Source: ABdhPJwpxMxK2RU2lCjMIf/3ykx8mnbbYfhduNQtLMOq/fp5KWzV7Yg5tOP0ObyyKC/tySATtQayMQ==
+X-Received: by 2002:a05:6830:11a:: with SMTP id i26mr2170164otp.87.1604595212985;
+        Thu, 05 Nov 2020 08:53:32 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id c64sm476495oia.49.2020.11.05.08.53.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 08:53:32 -0800 (PST)
+Received: (nullmailer pid 1470649 invoked by uid 1000);
+        Thu, 05 Nov 2020 16:53:31 -0000
+Date:   Thu, 5 Nov 2020 10:53:31 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Tero Kristo <t-kristo@ti.com>, Roger Quadros <rogerq@ti.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, linux-spi@vger.kernel.org,
-        BMC-SW@aspeedtech.com
-Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory controller driver
-Message-ID: <20201105164312.GE4856@sirena.org.uk>
-References: <20201105120331.9853-1-chin-ting_kuo@aspeedtech.com>
- <20201105120331.9853-5-chin-ting_kuo@aspeedtech.com>
- <fd8fa472-53bb-c992-3dc2-5a984a439c07@kaod.org>
- <20201105161132.37eb3265@collabora.com>
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 8/8] arm64: dts: ti: k3-j721e-main: Fix PCIe maximum
+ outbound regions
+Message-ID: <20201105165331.GA55814@bogus>
+References: <20201102101154.13598-1-kishon@ti.com>
+ <20201102101154.13598-9-kishon@ti.com>
+ <20201102164137.ntl3v6gu274ek2r2@gauze>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="a+b56+3nqLzpiR9O"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201105161132.37eb3265@collabora.com>
-X-Cookie: It's the thought, if any, that counts!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201102164137.ntl3v6gu274ek2r2@gauze>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 02, 2020 at 10:41:37AM -0600, Nishanth Menon wrote:
+> On 15:41-20201102, Kishon Vijay Abraham I wrote:
+> > PCIe controller in J721E supports a maximum of 32 outbound regions.
+> > commit 4e5833884f66 ("arm64: dts: ti: k3-j721e-main: Add PCIe device tree
+> > nodes") incorrectly added maximum number of outbound regions to 16. Fix
+> > it here.
+> > 
+> > Fixes: 4e5833884f66 ("arm64: dts: ti: k3-j721e-main: Add PCIe device tree nodes")
+> > Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > index e2a96b2c423c..61b533130ed1 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> > @@ -652,7 +652,7 @@
+> >  		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
+> >  		clocks = <&k3_clks 239 1>;
+> >  		clock-names = "fck";
+> > -		cdns,max-outbound-regions = <16>;
+> > +		cdns,max-outbound-regions = <32>;
 
---a+b56+3nqLzpiR9O
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Can this be made detectable instead? Write to region registers and check 
+the write sticks? I'm doing this for the DWC controller.
 
-On Thu, Nov 05, 2020 at 04:11:32PM +0100, Boris Brezillon wrote:
-> C=E9dric Le Goater <clg@kaod.org> wrote:
+Or make the property optional with the default being the max (32).
 
-> > Thanks for this driver. It's much cleaner than the previous and we shou=
-ld=20
-> > try adding support for the AST2500 SoC also. I guess we can keep the ol=
-d=20
-> > driver for the AST2400 which has a different register layout.
-> >=20
-> > On the patchset, I think we should split this patch in three :=20
-> >=20
-> >  - basic support
-> >  - AHB window calculation depending on the flash size
-> >  - read training support =20
-
-> I didn't look closely at the implementation, but if the read training
-> tries to read a section of the NOR, I'd recommend exposing that feature
-> through spi-mem and letting the SPI-NOR framework trigger the training
-> instead of doing that at dirmap creation time (remember that spi-mem is
-> also used for SPI NANDs which use the dirmap API too, and this training
-> is unlikely to work there).
-
-> The SPI-NOR framework could pass a read op template and a reference
-> pattern such that all the spi-mem driver has to do is execute the
-> template op and compare the output to the reference buffer.
-
-That seems like a good idea.
-
-> > We should avoid magic values when setting registers. This is confusing=
-=20
-> > and defines are much better.
-
-It does depend a bit on documentation though, it's not a hard
-requirement.
-
---a+b56+3nqLzpiR9O
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+kK58ACgkQJNaLcl1U
-h9DGCgf+I0rBJDAblAFHQZV/Foq1amFegL1fHRXAk5+kobJswoMMwbeep5jlgZ4k
-P/9UMfROv98skgwDGByNx79txjX5xCcUMW5Oz10pk7y0e9UQya8fUTUrf0gbQza6
-OMXG9IMBZObmiJgUKahOaZqmoYo3CE0XJSwjiZwnk9hXQ23t2nsfFZMKe0ZfIORl
-vnx/OpoGDVLmnIwCGNIpV+DjdGXuXCVPB4i7NgsQUdyhORxa8WOJUrWAkwC/FCNi
-cGHBoQSQYoe1lxm8KCC/xqPqDe5MqIF5+46TFNLORhzTY529mYEdXcHDAE4QZ6bx
-nbw7Y3kGyBBE3YjsakRkeoNj/oFcjA==
-=QXki
------END PGP SIGNATURE-----
-
---a+b56+3nqLzpiR9O--
+Rob
