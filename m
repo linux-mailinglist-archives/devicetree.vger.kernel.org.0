@@ -2,68 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3F92A841A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:56:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F1532A8477
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:10:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730862AbgKEQ4c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 11:56:32 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:46244 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726214AbgKEQ4a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 11:56:30 -0500
-Received: by mail-oo1-f66.google.com with SMTP id c25so587295ooe.13;
-        Thu, 05 Nov 2020 08:56:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=u0lRutCOwKSfB7LNOinwZwq0bR1ziMUdiw46dx6Reig=;
-        b=AR3K9+QPvXL2i0aErtCQJBBKMhhspS3/7Sw+4nBz2JpejRXp9tU+iWQZiHky4kSG52
-         +HSfFlamJao8kSGekf6vUHTbxQI12utZ3DsmZzuA+BiWUWdt1uXGPIyPuH5qC3SLWMa1
-         FUql6FXeTjIBZD7DWwzAueQJ/VYnpKjXBiOfvrULf9BT880RHJgwO+T3rwr8YKNIg9eh
-         aF1n8aHWMn3Y5OdCmKOPxWwVgHfh40TOiMRmryWMbozZoXZGKnULE4qdoQCEWgY590Jt
-         ymlbELvE7GblMDSpqE1Lb3qSsykj+MNMKuo3gJ8O8zVbC8SWUpU7S1jU+BG8NpyefWZT
-         luVg==
-X-Gm-Message-State: AOAM532AsDL5PYor0PKnKTWJVsZLIArCtz3mXGVoSf8Dg3G7Lzr5U2aX
-        1V8KXkdwNdG7x5LR8bSbNCKtVop/LQ==
-X-Google-Smtp-Source: ABdhPJyPl2XBRIN6I+lGrZahqYDdCtZDKHkCfSDAoCAUjWYDMpGfqaAHV0BNK9rNy7qze71HbwZuRA==
-X-Received: by 2002:a4a:d815:: with SMTP id f21mr2461685oov.44.1604595389404;
-        Thu, 05 Nov 2020 08:56:29 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 76sm431259oty.15.2020.11.05.08.56.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 08:56:28 -0800 (PST)
-Received: (nullmailer pid 1474695 invoked by uid 1000);
-        Thu, 05 Nov 2020 16:56:27 -0000
-Date:   Thu, 5 Nov 2020 10:56:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Lee Jones <lee.jones@linaro.org>, Tero Kristo <t-kristo@ti.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Roger Quadros <rogerq@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Nishanth Menon <nm@ti.com>
-Subject: Re: [PATCH 3/8] dt-bindings: PCI: Add EP mode dt-bindings for TI's
- J7200 SoC
-Message-ID: <20201105165627.GA1474647@bogus>
-References: <20201102101154.13598-1-kishon@ti.com>
- <20201102101154.13598-4-kishon@ti.com>
+        id S1725862AbgKERKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 12:10:55 -0500
+Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:43185 "EHLO
+        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726777AbgKERKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:10:55 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 18A36CB3;
+        Thu,  5 Nov 2020 12:10:54 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 05 Nov 2020 12:10:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=5jxJjZ05MEHIANgmApYUmyWu0vB
+        OAbf8q73SX8dSjVo=; b=sTqb2lod+jH9Lf64STrSRmL1IV4y1PQJgq7jUeBDYb0
+        9t1MG0fTqj9ZSk/Ypj+8zUuSl4RaBtDuKpNriDeDvNUkeGnjhorBZJaRXfMtOMc7
+        AGOvSUwocttyQ1ktvrgEBw55RC+sLdOvcZ004AV91gnxFIaIS0oSENIVQEDqe/6/
+        AXB4+hYfpOZlHM6PON9M6fXYMQYnP0qE5PpBmlrr25ozjAMsbF3ufIvqzrKP5PW6
+        mdBiQWRhZTtSp8mbFkfI8dli1jTpe7onFzUxqoACrYY4wm2qLQG+cWJ7jZgKZgUq
+        OzpCJ5XvTkYPoYgZsoqpR1OxAZgPvh/0guNOduvMbJQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=5jxJjZ
+        05MEHIANgmApYUmyWu0vBOAbf8q73SX8dSjVo=; b=ZXp4Cxd5vfaYwErZWnkZgu
+        t4wuTG1admJdfBTe4z8OC21YoY9yt01dc/p12PwsLg9Htvs/Sk6kSbwgFK6cxyfQ
+        x7F/2HZ/6jUOBLMY9yo/kKnlK5JxS3w2gwOQ2LnCrzBBITVd2Ip+1fbUJ5geV7fT
+        Zy4Uxyu5/8U9pzwWHXq+9RKRlcdcdnQVsY9gbRA6UQ8F/+ahWmCGtXWiNwZ72y3L
+        VcP+fAzWSHuHTIQ0FGoyOcbJSnGW+yIffFt5ynFhl2+d0DCcrrtzmdFtM/Ml9kFx
+        PwMAciLH/foLN1Dbw6xfnkNBbTocAU/wk1FBa2IM3pEOeRXVxCSE3dGeKxuLGydg
+        ==
+X-ME-Sender: <xms:HDKkX8eh2j0u7mYxzVcnZLvkQr6FYGollwFmf8Z4kSuX8wLEGYkUEA>
+    <xme:HDKkX-PH2cC7U5Ra48-2nk_FlPUuL17POVN4i7jHE5W0XzFDz_8bTTmusU9yKJQBo
+    MRyoZETmwNtLT-Dg8I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtjedgleekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpeffhffvuffkfhggtggujgesghdtre
+    ertddtvdenucfhrhhomhepofgrgihimhgvucftihhprghrugcuoehmrgigihhmvgestggv
+    rhhnohdrthgvtghhqeenucggtffrrghtthgvrhhnpeelkeeghefhuddtleejgfeljeffhe
+    ffgfeijefhgfeufefhtdevteegheeiheegudenucfkphepledtrdekledrieekrdejieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigih
+    hmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:HDKkX9hl9Nw6c7j4HSZTR0YtR3Xw3jSxc6CoTe18qQ0Ei1iyjObpYg>
+    <xmx:HDKkXx_Zkh9XOtWuKgztgZqwLKiMpae2zikllMilKlKN1_NteyDQ1w>
+    <xmx:HDKkX4sQcKeRhqLI5ZfJM59X1UvNuGpI5M3Tg32yUGWRXY9tslqcwQ>
+    <xmx:HTKkX0I-JDQdaLk8GO7fXDio1gD60FIWDuyQuueFWs45mevJ0PrVjg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 865403280393;
+        Thu,  5 Nov 2020 12:10:52 -0500 (EST)
+Date:   Thu, 5 Nov 2020 18:10:51 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Yu-Tung Chang <mtwget@gmail.com>
+Cc:     robh+dt@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
+Message-ID: <20201105171051.ducvxcdj5jfarmgn@gilmour.lan>
+References: <20201102100157.85801-1-mtwget@gmail.com>
+ <20201102100157.85801-2-mtwget@gmail.com>
+ <20201103113743.5764tj2ryrht4dfs@gilmour.lan>
+ <CAHRgzyOao=w6Yyqqvi1Z26=rfJgumkzDbWLxD+_5uaLmyAWiQA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hmawvi2wmpsvk5t4"
 Content-Disposition: inline
-In-Reply-To: <20201102101154.13598-4-kishon@ti.com>
+In-Reply-To: <CAHRgzyOao=w6Yyqqvi1Z26=rfJgumkzDbWLxD+_5uaLmyAWiQA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Nov 2020 15:41:49 +0530, Kishon Vijay Abraham I wrote:
-> Add PCIe EP mode dt-bindings for TI's J7200 SoC.
-> 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  .../devicetree/bindings/pci/ti,j721e-pci-ep.yaml       | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+--hmawvi2wmpsvk5t4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Nov 04, 2020 at 04:07:48PM +0800, Yu-Tung Chang wrote:
+> > > +&uart1 {
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&uart1_pins>;
+> >
+> > This should be already set in the DTSI
+> >
+> uart0 as the debugging interface, uart1 as the external uart port,
+> uart3 as the bluetooth.
+
+What I mean is that since it's the only muxing option, the pinctrl
+properties should already be set in the DTSI, so it's redundant to put
+them in the DTS.
+
+Maxime
+
+--hmawvi2wmpsvk5t4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6QyGwAKCRDj7w1vZxhR
+xeBNAQCVB/qARdv0RwBjl6dfLEq2diwyT9786Lf3YpJlgpQH6AEAlINTtnwGkvjJ
+FL6ZIn2CEQ4GwRqfC83S/fJFuZDhIwE=
+=WiD2
+-----END PGP SIGNATURE-----
+
+--hmawvi2wmpsvk5t4--
