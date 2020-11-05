@@ -2,214 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 870A92A7E05
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:05:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB0D2A7E4E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:08:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729832AbgKEMFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 07:05:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726874AbgKEMEY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 07:04:24 -0500
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC014C0613D6
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 04:04:23 -0800 (PST)
-Received: by mail-wr1-x42d.google.com with SMTP id p1so1440483wrf.12
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 04:04:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=yoyslaxAm8PV6hIMeTxmfrY9MDfCArcqs8WY1KU6rz0=;
-        b=Q/px6eeYJssao3H6yCGM9ZQFzWv/Ip4Qoxgjfan6OtKo0o5oskWa6bYOhfbcNxPhFE
-         v+heYa/hHB1iDT3p3jrrUF/oXJJnKFyAp2ShllcVFPo0dlZ8TSaQH1cyvVDyyMMF6gNZ
-         kWe+HRQCt9She4HF07U+H3eJp0gYyQdrCfQwukbUF1IKrP/cbeHsVzqSRgDXkbbColrw
-         Bm4CnlfOTl4JG5LgB4kTuyso8oaLsWLtmeKhFMGvoV/Tpw1ITjQ1+GdWovEaChYLP6kz
-         mAtUBNTpkuCVWKRC1RL910LrmVCVt7sg+EjMvB7lju5bSLyU1srZubVnLrKDVYQWwyll
-         uxzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=yoyslaxAm8PV6hIMeTxmfrY9MDfCArcqs8WY1KU6rz0=;
-        b=Tdpk+pC7ILyFxN3Ogo2og6Jj7rIR81YYGGzKMe830+q9rWoS0n6CfFrpoXEY10+jmo
-         9jm7hTc5YP5jAyW0lWIHCU/IIFA/Clwkkc+5QG1d4NjlNfhU0K1Ca2M0/Iwc6gAOZgQv
-         MHOHjjn9PYGI/pzGS63rrvovA0KUq5p5aq4F92EKFNdBm6fzqI6KzP00XZxNNH7upFWc
-         UXcEeWe4mgvT9MatEGxe6ENcc06GoDwDgRSGgoorKRFZ67jr0f4KuxT6TQa+RrWDrgLu
-         Ka2/xtYov41KXbp97VdcuCGs72lPulZ7iJc3Otf5xUTRkNlgswDv9bARX3v7AuP8t986
-         NS0A==
-X-Gm-Message-State: AOAM533rLijzeaLMRyLtpOFn+SPdXnc280DlT0g36OoVtAQe6CIH1WqY
-        hPEH37tXPLy67iF2xas+pCj8eg==
-X-Google-Smtp-Source: ABdhPJy14ngmZTBXFrYMK/+7HY77vo3847Ea+vDsDFSZ/YZYJwZhVirxAi1vXGPy7JHhJ/W+wUjmVg==
-X-Received: by 2002:adf:f246:: with SMTP id b6mr2499877wrp.111.1604577862456;
-        Thu, 05 Nov 2020 04:04:22 -0800 (PST)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id f4sm2363094wrq.54.2020.11.05.04.04.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 04:04:21 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     linus.walleij@linaro.org, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org
-Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: pinctrl: qcom: Add sm8250 lpass lpi pinctrl bindings
-Date:   Thu,  5 Nov 2020 12:04:10 +0000
-Message-Id: <20201105120410.18305-3-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20201105120410.18305-1-srinivas.kandagatla@linaro.org>
-References: <20201105120410.18305-1-srinivas.kandagatla@linaro.org>
+        id S1730200AbgKEMIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 07:08:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49136 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726777AbgKEMIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 07:08:24 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8842A2224D;
+        Thu,  5 Nov 2020 12:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604578103;
+        bh=NWgcQz2VGvI80mRysDpVbcfbzsTP8szYfQc2OI4+R78=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=X6vS8Jk5QfVFQupeuX3ulp/x9zwmQmYYP5Z+YMmPVZwzCxMD0Przl+5ZSL+YLzV+y
+         W+gUqvJ2goSuIeV+YqHOdDS7I1qJjI5qTgISh/SBEW6XG90TZYuOHM2JQPqPt651+P
+         QL/3xcQd8fVV8BjqQ7W8/Ex2dfEXWr7Xs4AQE3AI=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kae3x-007pAP-Bn; Thu, 05 Nov 2020 12:08:21 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 05 Nov 2020 12:08:21 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
+In-Reply-To: <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
+References: <20201019141008.871177-1-daniel@0x0f.com>
+ <20201019141008.871177-4-daniel@0x0f.com>
+ <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: linus.walleij@linaro.org, daniel@0x0f.com, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree binding Documentation details for Qualcomm SM8250
-LPASS(Low Power Audio Sub System) LPI(Low Power Island) pinctrl driver.
+On 2020-11-05 09:40, Linus Walleij wrote:
+> On Mon, Oct 19, 2020 at 4:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- .../pinctrl/qcom,lpass-lpi-pinctrl.yaml       | 129 ++++++++++++++++++
- 1 file changed, 129 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+[...]
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-new file mode 100644
-index 000000000000..562520f41a33
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-@@ -0,0 +1,129 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/qcom,lpass-lpi-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Technologies, Inc. Low Power Audio SubSystem (LPASS)
-+  Low Power Island (LPI) TLMM block
-+
-+maintainers:
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+description: |
-+  This binding describes the Top Level Mode Multiplexer block found in the
-+  LPASS LPI IP on most Qualcomm SoCs
-+
-+properties:
-+  compatible:
-+    const: qcom,sm8250-lpass-lpi-pinctrl
-+
-+  reg:
-+    minItems: 2
-+    maxItems: 2
-+
-+  clocks:
-+    items:
-+      - description: LPASS Core voting clock
-+      - description: LPASS Audio voting clock
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: audio
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    description: Specifying the pin number and flags, as defined in
-+      include/dt-bindings/gpio/gpio.h
-+    const: 2
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+#PIN CONFIGURATION NODES
-+patternProperties:
-+  '-pins$':
-+    if:
-+      type: object
-+    then:
-+      properties:
-+        pins:
-+          description:
-+            List of gpio pins affected by the properties specified in this
-+            subnode.
-+          items:
-+            oneOf:
-+              - pattern: "^gpio([0-9]|[1-9][0-9])$"
-+          minItems: 1
-+          maxItems: 14
-+
-+        function:
-+          enum: [ gpio, swr_tx_clk, qua_mi2s_sclk, swr_tx_data1, qua_mi2s_ws,
-+                  swr_tx_data2, qua_mi2s_data0, swr_rx_clk, qua_mi2s_data1,
-+                  swr_rx_data1, qua_mi2s_data2, swr_tx_data3, swr_rx_data2,
-+                  dmic1_clk, i2s1_clk, dmic1_data, i2s1_ws, dmic2_clk,
-+                  i2s1_data0, dmic2_data, i2s1_data1, i2s2_clk, wsa_swr_clk,
-+                  i2s2_ws, wsa_swr_data, dmic3_clk, i2s2_data0, dmic3_data,
-+                  i2s2_data1 ]
-+          description:
-+            Specify the alternative function to be configured for the specified
-+            pins.
-+
-+        drive-strength:
-+          enum: [2, 4, 6, 8, 10, 12, 14, 16]
-+          default: 2
-+          description:
-+            Selects the drive strength for the specified pins, in mA.
-+
-+        slew-rate:
-+          enum: [0, 1, 2, 3]
-+          default: 0
-+          description: |
-+              0: No adjustments
-+              1: Higher Slew rate (faster edges)
-+              2: Lower Slew rate (slower edges)
-+              3: Reserved (No adjustments)
-+
-+        bias-pull-down: true
-+
-+        bias-pull-up: true
-+
-+        bias-disable: true
-+
-+        output-high: true
-+
-+        output-low: true
-+
-+      required:
-+        - pins
-+        - function
-+
-+      additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/sound/qcom,q6afe.h>
-+    lpi_tlmm: pinctrl@33c0000 {
-+        compatible = "qcom,sm8250-lpass-lpi-pinctrl";
-+        reg = <0x33c0000 0x20000>,
-+              <0x355a000 0x1000>;
-+        clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-+                 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-+        clock-names = "core", "audio";
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&lpi_tlmm 0 0 14>;
-+    };
+>> +/* The parent interrupt controller needs the GIC interrupt type set 
+>> to GIC_SPI
+>> + * so we need to provide the fwspec. Essentially 
+>> gpiochip_populate_parent_fwspec_twocell
+>> + * that puts GIC_SPI into the first cell.
+>> + */
+
+nit: comment style.
+
+>> +static void *msc313_gpio_populate_parent_fwspec(struct gpio_chip *gc,
+>> +                                            unsigned int 
+>> parent_hwirq,
+>> +                                            unsigned int parent_type)
+>> +{
+>> +       struct irq_fwspec *fwspec;
+>> +
+>> +       fwspec = kmalloc(sizeof(*fwspec), GFP_KERNEL);
+>> +       if (!fwspec)
+>> +               return NULL;
+>> +
+>> +       fwspec->fwnode = gc->irq.parent_domain->fwnode;
+>> +       fwspec->param_count = 3;
+>> +       fwspec->param[0] = GIC_SPI;
+>> +       fwspec->param[1] = parent_hwirq;
+>> +       fwspec->param[2] = parent_type;
+>> +
+>> +       return fwspec;
+>> +}
+> 
+> Clever. Looping in Marc Z so he can say if this looks allright to him.
+
+Yup, this looks correct. However, looking at the bit of the patch that
+isn't quoted here, I see that msc313_gpio_irqchip doesn't have a
+.irq_set_affinity callback. Is this system UP only?
+
+Thanks,
+
+         M.
 -- 
-2.21.0
-
+Jazz is not dead. It just smells funny...
