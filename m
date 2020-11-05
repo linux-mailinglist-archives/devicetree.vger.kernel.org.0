@@ -2,141 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA4BC2A7E71
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:19:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72BAD2A7E7F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:24:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725468AbgKEMTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 07:19:50 -0500
-Received: from mail-vi1eur05on2055.outbound.protection.outlook.com ([40.107.21.55]:26880
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728371AbgKEMTt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 07:19:49 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N2STEtRI05wzdShFZ8yGuPBKTIsVgNbUTcb4YzxP7cjyNlYd0rxn6wKDoRu0lwOL15hunALiXoRnDt+fvrw7pJKf5envk3WOoES5Eci+UQ1ezGhWjAYoGmLIlv57Rbf9RWiP0kFbwilJJWMwZtqNuBm9yi9lyHxjKPtB2WkeJ2mAchCZf+QTTGo+mSkOgMHZ7y5vAPvrBFwwQgADVcFDJGEgnDMrqEcgG0Pipm0LWSBZLmJbh3g7JD0P/EWX6w4aVsI+cjR+cRUfbc6ypfhfuVJa8HwbUiFUDpVQWQGkOt9+ZJcjdat5mDE8S5UI+JaDCZgM+uAa5UdslxcYqDrAlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hfmfHNlVqXlrfI58QYAW348TVPZHpHwzMKam3L9SVW0=;
- b=JhreztLyIkgUjXRv14aX1OqlQmsITsROEGd7TX9xhZghyi1YbjXRmgY4Z0srFUxNDgUBJlM9p5O9fX7MFh4ddNniu7eI0xJQMvq8kX9bsNp/ZCOfc4HWZYYPM+HX71v78oOJHcESK+BkDFXR+r8xIOxY1x127v5amVXxlXgp50wKIvbbAB0tCK78LYuTcgCbSaEaPnxWopgHfi6XZPluWmGWdPT9yLVzxSGZlFJq4HrrwkWuAxTfZZfzHrga/YeY9qwSN3zaJ786prVtNlAVm7dW/fx7yChwvO+7B367wyBHsLnJmboyXEP1MRmGO0RKnq7d753Qth20lTZFWa+Fvg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hfmfHNlVqXlrfI58QYAW348TVPZHpHwzMKam3L9SVW0=;
- b=OmW1y7RjVpDt8O9cxnpvLyqhiP7tX/nljHT8ChTc6in5CFGJue3a4NwEU7RopfLpFrhNfVfcz0+aoI0DTKaKhFYsRnEXASQ+loqEHtnPSuopS1Oveb7fg1edcmu07e9G2aSdr6D6s0k3JQG7RGMIqXoQ5OU1L06WT5NJr9h8tDY=
-Received: from VI1PR04MB7071.eurprd04.prod.outlook.com (2603:10a6:800:128::8)
- by VI1PR04MB4256.eurprd04.prod.outlook.com (2603:10a6:803:41::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Thu, 5 Nov
- 2020 12:19:46 +0000
-Received: from VI1PR04MB7071.eurprd04.prod.outlook.com
- ([fe80::1de8:9a84:bb92:f944]) by VI1PR04MB7071.eurprd04.prod.outlook.com
- ([fe80::1de8:9a84:bb92:f944%7]) with mapi id 15.20.3541.021; Thu, 5 Nov 2020
- 12:19:46 +0000
-From:   Alice Guo <alice.guo@nxp.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [EXT] Re: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Binding
- doc for soc unique ID
-Thread-Topic: [EXT] Re: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Binding
- doc for soc unique ID
-Thread-Index: AQHWs0T4Hxw5cEEm+0a41i6AANocvqm5M/eAgABACcA=
-Date:   Thu, 5 Nov 2020 12:19:45 +0000
-Message-ID: <VI1PR04MB707134F5D01274A91E1CC878E2EE0@VI1PR04MB7071.eurprd04.prod.outlook.com>
-References: <20201105072629.24175-1-alice.guo@nxp.com>
- <20201105082543.GA17569@kozik-lap>
-In-Reply-To: <20201105082543.GA17569@kozik-lap>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: e00d9870-5c57-4143-32eb-08d88185154a
-x-ms-traffictypediagnostic: VI1PR04MB4256:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB42566F64BA72DEA86AC7650AE2EE0@VI1PR04MB4256.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: gm2uB9YGnUWXOGN+fLKVLzU/Eqi7lJ2GubGg3k8ZEo5vu4twiw6pmHsHh4+lwF28lFAKXqWXE3dp7vJwz7qpnD1Nx1SFQ7ePTiOfoTNjXBIQNN3nsvDIY9Zm/eU/zejspk7l5+5mgKrFAPCAKOYl8R/VZ6a2zwHleaumjlYIqF+zN16dvoU2qUY+DoSu8DhxpjW/wKmcuRx2qItTN0lpX2vtVJnXPnGaZABPSbLkd/xmO+5ZksPAkTOJ8/x9QnEl5sOlr9xnd7CEtvhamGqHNu9P6Y2fw6HlhD0sbV0yRfYdCLTLhA5wk7k3ITP8pRpxdjpD0mcwpPJ+pWhnxRnUFB1YGSFqCsY+6tdotTiLCWehwwFk1SGU7H3SwvvMsBwk
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB7071.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(76116006)(66476007)(64756008)(66446008)(55016002)(66556008)(83380400001)(66946007)(86362001)(2906002)(9686003)(52536014)(26005)(186003)(54906003)(478600001)(44832011)(71200400001)(8676002)(8936002)(316002)(6506007)(6916009)(53546011)(4326008)(33656002)(7696005)(5660300002)(32563001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: HMQog8P7yWUATQpp1CleVYNOFqOxgFUe13FTOFVMZR3CKtASyY60FTiK2K20JF9iUTx0YvegRAT+OPqUgyW1mlHjomKD0iJaJH39iUDQ99z/1NzuCwQGw6tKfe14Yp8QGY0BMxPn+/DaA8u6lb99xNI4dww88o/+5paVgXh31fWBtTN49inth0Sa2c3yXiEvE3TJTiNDQavstnYsjJQWw4PVKiCF6vZHqsO26vpw0WakCeES66gR16S6P68E9qcN76rIdIAFXsvc1Rbw0RYDGGvXuAcIl5drQtWzp1fBF69iWlidr8OUxjPpaiOGcDKLdyA8o8X1ZUx+amTsAtS3j2ID57te9l4rxLs9JYfP/cQV5YFIgkMU0yw0iSAoI7zivY3ZG1QiPXg9cTIA0l+s7EYnpfmOQ7572DuvHoG2K57rbs5Waqarru+3ETXKEtV3/kNBH4HJvJRnZAmDLvTnjJ7513EuosL/xaD7T2EhlXJw7ikzfYyiZtOwp2679Qq96vk6PgG9Ch+M8iO2sNJjDILuKVFmBUA3/GMPa/W9jAad2UMzgfeDDnxTnw0MtW7Tj9SSf+Erve2RUk0KP6TiBE1Gj740YozfnaM8oHR2BzwWZZ09i3LTMG5NVNz+pa8D+T7AdnNSug7TQP5bVMRZ/w==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1728371AbgKEMYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 07:24:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53034 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725468AbgKEMYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 07:24:07 -0500
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BC8EC0613CF;
+        Thu,  5 Nov 2020 04:24:07 -0800 (PST)
+Received: by mail-vs1-xe42.google.com with SMTP id l22so648907vsa.4;
+        Thu, 05 Nov 2020 04:24:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=kL2m+ZFgq1/K+CQrrDxi61N8IEUFK1H2EexBFfPVxDg=;
+        b=Ygz0p7/1IFsL6fMq4vGN0ed+2c39VHo8k8ld81EIwj/BVvsosT+em3sXxoP9ZlmKPs
+         oPYvKNB1RFt5nvFV2G1USKal7xWAt3G2Qc3H8KIP6IlSCsz1ozp2jwOuFjJGxYv5bRgV
+         ULHs3CHnSVk7FXyjP0bnsm8mrVH19eoX4YGbYnRTp70hL1X7sIGzsi+74HsmdwK0a2En
+         HMNWnEN8EzxNtQPCYAJn2rqB2qiXTMltpDOeQoM5NymQhG06QKzMMBziHR1YlyTa+kKW
+         cRpwcWzTR3H/P/EBNtKFPSLt2zV0uuUo9hsW8agIOvsFsTbBviXTS8jPt6HeW0cVpuMA
+         bPwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=kL2m+ZFgq1/K+CQrrDxi61N8IEUFK1H2EexBFfPVxDg=;
+        b=Cj0IkL/gWOYSiQyVWptQCaA29VNp7rLd+9yCQtFmXRiFoVcUjk2rn3S9pEXzWutVUz
+         lcw0pAsheyPrxoLjuStMuxMvkeoY20Zv/uPI9ZrJKPFARwnsn9W4tKXAuTcblXhpCMrl
+         zMK4clfyhWwaUGAnxu50MLkVdj209OpxW7H/BvBj3yKmeMp4PlVC5U5xnwbHJIml4xRe
+         oRDYCJTnZnbWF4Phte/U4BY0OaIILmvjT+HqHDmz0Rd9xirW+jijICCWRzmTpIOUFdxN
+         HmI9krU0Mzm6ym08CkC90LJdU1wbIVXCtrS1uoEOoSSa4FWzQblnDOUR8EpcpldcxUON
+         kLvQ==
+X-Gm-Message-State: AOAM530zA+991ejRPRHuOBjuvN4vTD+6TqRLzXO83AixcSJsIxY4C8r/
+        8AOKiR0MA2rWiIot9gAKq1zmUDqf+rZXXVx6JBU=
+X-Google-Smtp-Source: ABdhPJwrw+XyaIXuE6kgWuVslPDF/evht/Qk0FVkDZi9BYHfsLnPP4rZ+nmFWRlo79G76RQdvVb6D0/EONFB1ohCn84=
+X-Received: by 2002:a05:6102:a1a:: with SMTP id t26mr814216vsa.37.1604579046470;
+ Thu, 05 Nov 2020 04:24:06 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB7071.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e00d9870-5c57-4143-32eb-08d88185154a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Nov 2020 12:19:45.9488
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Cp3hvydrEYuQBTXz6Cj30Bfg/slCX/503XLBeeDe/9kh6HFAOWH2JsZ0qkDZUQbmgCygWZs3H2ebWaZpPXXt/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4256
+References: <20201029095806.10648-1-amelie.delaunay@st.com>
+ <20201029095806.10648-2-amelie.delaunay@st.com> <20201029154016.GA1917373@bogus>
+ <860d5620-4fdf-6e01-9a04-3967d6fcfd6b@st.com> <CAL_JsqKs-Po8BdShjQNDNPjNWBCD3FSPdq4KbQGx3=VnV+3nPw@mail.gmail.com>
+ <ebccf61a-c88f-c7f4-9f06-01d2bd1f43de@st.com> <20201104210803.GA4115079@bogus>
+ <2da804ff-3b3c-0ea9-14d5-a163b28ccc33@st.com>
+In-Reply-To: <2da804ff-3b3c-0ea9-14d5-a163b28ccc33@st.com>
+From:   Jun Li <lijun.kernel@gmail.com>
+Date:   Thu, 5 Nov 2020 20:23:55 +0800
+Message-ID: <CAKgpwJU_yTTYabeMYFBqNs_6=N7gaTAc1v-+fU-dshFUrL1qVA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: connector: add power-opmode
+ optional property to usb-connector
+To:     Amelie DELAUNAY <amelie.delaunay@st.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6a0BrZXJuZWwub3JnPg0KPiBTZW50OiAyMDIw5bm0MTHmnIg15pelIDE2OjI2DQo+
-IFRvOiBBbGljZSBHdW8gPGFsaWNlLmd1b0BueHAuY29tPg0KPiBDYzogcm9iaCtkdEBrZXJuZWwu
-b3JnOyBzaGF3bmd1b0BrZXJuZWwub3JnOyBzLmhhdWVyQHBlbmd1dHJvbml4LmRlOw0KPiBkbC1s
-aW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsgUGVuZyBGYW4gPHBlbmcuZmFuQG54cC5jb20+
-Ow0KPiBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVs
-Lm9yZzsNCj4gbGludXgtYXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnDQo+IFN1YmplY3Q6
-IFtFWFRdIFJlOiBbUEFUQ0ggdjIgMS80XSBkdC1iaW5kaW5nczogc29jOiBpbXg4bTogYWRkIERU
-IEJpbmRpbmcgZG9jDQo+IGZvciBzb2MgdW5pcXVlIElEDQo+IA0KPiBDYXV0aW9uOiBFWFQgRW1h
-aWwNCj4gDQo+IE9uIFRodSwgTm92IDA1LCAyMDIwIGF0IDAzOjI2OjI2UE0gKzA4MDAsIEFsaWNl
-IEd1byB3cm90ZToNCj4gPiBBZGQgRFQgQmluZGluZyBkb2MgZm9yIHRoZSBVbmlxdWUgSUQgb2Yg
-aS5NWCA4TSBzZXJpZXMuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBBbGljZSBHdW8gPGFsaWNl
-Lmd1b0BueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0v
-ZnNsLnlhbWwgICAgICAgICAgfCAzMw0KPiArKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmls
-ZSBjaGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPiBiL0RvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnNsLnlhbWwNCj4gPiBpbmRleCBlNGRiMGY5ZWQ2
-NjQuLjA0MTlmMDc4NTAyYiAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRy
-ZWUvYmluZGluZ3MvYXJtL2ZzbC55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL2FybS9mc2wueWFtbA0KPiA+IEBAIC05MDEsNiArOTAxLDM5IEBAIHByb3Bl
-cnRpZXM6DQo+ID4gICAgICAgICAgICAgICAgLSBmc2wsczMydjIzNC1ldmIgICAgICAgICAgICMg
-UzMyVjIzNC1FVkIyIEN1c3RvbWVyDQo+IEV2YWx1YXRpb24gQm9hcmQNCj4gPiAgICAgICAgICAg
-IC0gY29uc3Q6IGZzbCxzMzJ2MjM0DQo+ID4NCj4gPiArICBzb2M6DQo+ID4gKyAgICBkZXNjcmlw
-dGlvbjoNCj4gPiArICAgICAgaS5NWDhNIEZhbWlseSBTb0MgbXVzdCBwcm92aWRlIGEgc29jIG5v
-ZGUgaW4gdGhlIHJvb3Qgb2YgdGhlIGRldmljZQ0KPiB0cmVlLA0KPiA+ICsgICAgICByZXByZXNl
-bnRpbmcgdGhlIFN5c3RlbS1vbi1DaGlwIHNpbmNlIHRoZXNlIHRlc3QgY2hpcHMgYXJlIHJhdGhl
-cg0KPiBjb21wbGV4Lg0KPiA+ICsgICAgdHlwZTogb2JqZWN0DQo+ID4gKyAgICBwcm9wZXJ0aWVz
-Og0KPiA+ICsgICAgICBjb21wYXRpYmxlOg0KPiA+ICsgICAgICAgIG9uZU9mOg0KPiA+ICsgICAg
-ICAgICAgLSBpdGVtczoNCj4gPiArICAgICAgICAgICAgICAtIGNvbnN0OiBmc2wsaW14OG1tLXNv
-Yw0KPiA+ICsgICAgICAgICAgICAgIC0gY29uc3Q6IHNpbXBsZS1idXMNCj4gPiArICAgICAgICAg
-IC0gaXRlbXM6DQo+ID4gKyAgICAgICAgICAgICAgLSBjb25zdDogZnNsLGlteDhtbi1zb2MNCj4g
-PiArICAgICAgICAgICAgICAtIGNvbnN0OiBzaW1wbGUtYnVzDQo+ID4gKyAgICAgICAgICAtIGl0
-ZW1zOg0KPiA+ICsgICAgICAgICAgICAgIC0gY29uc3Q6IGZzbCxpbXg4bXAtc29jDQo+ID4gKyAg
-ICAgICAgICAgICAgLSBjb25zdDogc2ltcGxlLWJ1cw0KPiA+ICsgICAgICAgICAgLSBpdGVtczoN
-Cj4gPiArICAgICAgICAgICAgICAtIGNvbnN0OiBmc2wsaW14OG1xLXNvYw0KPiA+ICsgICAgICAg
-ICAgICAgIC0gY29uc3Q6IHNpbXBsZS1idXMNCj4gPiArDQo+ID4gKyAgICAgIG52bWVtLWNlbGxz
-Og0KPiA+ICsgICAgICAgIG1heEl0ZW1zOiAxDQo+ID4gKyAgICAgICAgZGVzY3JpcHRpb246IFBo
-YW5kbGUgdG8gdGhlIFNPQyBVbmlxdWUgSUQgcHJvdmlkZWQgYnkgYSBudm1lbQ0KPiBub2RlDQo+
-ID4gKw0KPiA+ICsgICAgICBudm1lbS1jZWxscy1uYW1lczoNCj4gPiArICAgICAgICBjb25zdDog
-c29jX3VuaXF1ZV9pZA0KPiA+ICsNCj4gPiArICAgIHJlcXVpcmVkOg0KPiA+ICsgICAgICAtIGNv
-bXBhdGlibGUNCj4gPiArICAgICAgLSBudm1lbS1jZWxscw0KPiA+ICsgICAgICAtIG52bWVtLWNl
-bGwtbmFtZXMNCj4gPiArDQo+IA0KPiBEaWQgeW91IGFjdHVhbGx5IHRlc3QgaXQ/IEkgc2VlIG11
-bHRpcGxlIGVycm9ycyB3aXRoIHRoaXMgcGF0Y2guDQo+IGZzbC1sczEwMTJhLWZyZG0uZHQueWFt
-bDogLzogc29jOmNvbXBhdGlibGU6IFsnc2ltcGxlLWJ1cyddIGlzIG5vdCB2YWxpZCB1bmRlciBh
-bnkNCj4gb2YgdGhlIGdpdmVuIHNjaGVtYXMNCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6
-dG9mDQoNCg0KW0FsaWNlIEd1b10gU29ycnkuIEkgZGlkIG5vdCBzZWUgZXJyb3JzIHdoYXQgeW91
-IHNhaWQuIENhbiB5b3UgdGVsbCBtZSBob3cgZGlkIHlvdSB0ZXN0IGl0Pw0KDQpCZXN0IHJlZ2Fy
-ZHMsDQpBbGljZSBHdW8NCg0K
+Amelie DELAUNAY <amelie.delaunay@st.com> =E4=BA=8E2020=E5=B9=B411=E6=9C=885=
+=E6=97=A5=E5=91=A8=E5=9B=9B =E4=B8=8B=E5=8D=887:36=E5=86=99=E9=81=93=EF=BC=
+=9A
+>
+> On 11/4/20 10:08 PM, Rob Herring wrote:
+> > On Fri, Oct 30, 2020 at 04:27:14PM +0100, Amelie DELAUNAY wrote:
+> >>
+> >>
+> >> On 10/30/20 3:29 PM, Rob Herring wrote:
+> >>> On Thu, Oct 29, 2020 at 11:49 AM Amelie DELAUNAY <amelie.delaunay@st.=
+com> wrote:
+> >>>>
+> >>>>
+> >>>>
+> >>>> On 10/29/20 4:40 PM, Rob Herring wrote:
+> >>>>> On Thu, Oct 29, 2020 at 10:58:03AM +0100, Amelie Delaunay wrote:
+> >>>>>> Power operation mode may depends on hardware design, so, add the o=
+ptional
+> >>>>>> property power-opmode for usb-c connector to select the power oper=
+ation
+> >>>>>> mode capability.
+> >>>>>>
+> >>>>>> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+> >>>>>> ---
+> >>>>>>     .../bindings/connector/usb-connector.yaml      | 18 ++++++++++=
+++++++++
+> >>>>>>     1 file changed, 18 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-conne=
+ctor.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> >>>>>> index 728f82db073d..200d19c60fd5 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/connector/usb-connector.ya=
+ml
+> >>>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.ya=
+ml
+> >>>>>> @@ -93,6 +93,24 @@ properties:
+> >>>>>>           - device
+> >>>>>>           - dual
+> >>>>>>
+> >>>>>> +  power-opmode:
+> >>>>>
+> >>>>> I've acked this version:
+> >>>>>
+> >>>>> https://lore.kernel.org/r/20201020093627.256885-2-badhri@google.com
+> >>>>>
+> >>>>
+> >>>> frs is used for Fast Role Swap defined in USB PD spec.
+> >>>> I understand it allows to get the same information but I'm wondering=
+ why
+> >>>> the property name is limited to -frs- in this case. What about a
+> >>>> non-power delivery USB-C connector ?
+> >>>
+> >>> I've got no idea. The folks that know USB-C and PD details need to ge=
+t
+> >>> together and work all this out. To me, it looks like the same thing..=
+.
+> >>>
+> >>
+> >> It looks but...
+> >>
+> >> The purpose of power-opmode property is to configure the USB-C control=
+lers,
+> >> especially the non-PD USB-C controllers to determine the power operati=
+on
+> >> mode that the Type C connector will support and will advertise through=
+ CC
+> >> pins when it has no power delivery support, whatever the power role: S=
+ink,
+> >> Source or Dual
+> >> The management of the property is the same that data-role and power-ro=
+le
+> >> properties, and done by USB Type-C Connector Class.
+> >>
+> >> new-source-frs-typec-current specifies initial current capability of t=
+he new
+> >> source when vSafe5V is applied during PD3.0 Fast Role Swap. So here, t=
+his
+> >> property is not applied at usb-c controller configuration level, but d=
+uring
+> >> PD Fast Role Swap, so when the Sink become the Source.
+> >> Moreover, the related driver code says FRS can only be supported by DR=
+P
+> >> ports. So new-source-frs-typec-current property, in addition to being
+> >> specific to PD, is also dedicated to DRP usb-c controller.
+> >> The property is managed by Type-C Port Controller Manager for PD.
+> >
+> > But it's the same set of possible values, right? So we can align the
+> > values at least.
+> >
+>
+> USB Power Delivery FRS values are defined in
+> include/dt-bindings/usb/pd.h
+
+I think this can be changed if both can be aligned.
+
+>to fit with drivers/usb/typec/tcpm/tcpm.c
+> frs_typec_current enum.
+>
+> USB-C power operation mode values are defined in
+> include/linux/usb/typec.h with typec_pwr_opmode enum and matching with
+> string values of typec_pwr_opmodes tab.
+>
+> USB PD requires USB-C.
+> USB-C doesn't requires USB PD.
+>
+> drivers/usb/typec/tcpm/tcpm.c already used typec_pwr_opmode values.
+>
+> USB PD specification Table 6-14 Fixed Supply PDO says:
+> Fast Role Swap required USB Type-C Current (see also [USB Type-C 2.0]):
+> Value | Description
+>   00b  | Fast Swap not supported (default)
+>   01b  | Default USB Power
+>   10b  | 1.5A @ 5V
+>   11b  | 3.0A @ 5V
+
+This is the value in PDO of sink, the FRS property value(or after translate=
+d)
+actually is used to compare with above value.
+
+So I think both properties can share the same "value", maybe string
+like below
+
+  10 static const char * const typec_pwr_opmodes[] =3D {
+  11         [TYPEC_PWR_MODE_USB]    =3D "default",
+  12         [TYPEC_PWR_MODE_1_5A]   =3D "1.5A",
+  13         [TYPEC_PWR_MODE_3_0A]   =3D "3.0A",
+
+>
+> Note the *see also USB Type-C 2.0*.
+>
+> USB Type-C specification 4.6.2.1 USB Type-C Current says:
+> The USB Type-C connector uses CC pins for configuration including an
+> ability for a Source to advertise to its port partner (Sink) the amount
+> of current it shall supply:
+> =E2=80=A2 Default is the as-configured for high-power operation current v=
+alue as
+> defined by the USB Specification (500 mA for USB 2.0 ports; 900 mA or
+> 1,500 mA for USB 3.2 ports in single-lane or dual-lane operation,
+> respectively)
+> =E2=80=A2 1.5 A
+> =E2=80=A2 3.0 A
+>
+> > Can we align the names in some way? power-opmode and frs-source-opmode
+> > or ??
+
+how about typec-power-opmode and frs-new-source-opmode
+
+> >
+>
+> I let USB PD specialists answer.
+>
+> *frs* property fits with USB PD specification, so with USB PD protocol.
+> *power-opmode fits with USB Type-C specification, so with USB-C hardware
+> support.
+>
+> > Are these 2 properties mutually exclusive?
+
+I think yes.
+
+thanks
+Li Jun
+>> If so, that should be
+> > captured.
+>
+> FRS is specific to products with Power Delivery Support.
+>
+> power-opmode is dedicated to products with USB-C connector support.
+>
+> Regards,
+> Amelie
