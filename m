@@ -2,182 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2BCF2A87DB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 21:19:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DDA02A88F0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 22:28:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731508AbgKEUTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 15:19:25 -0500
-Received: from mailout12.rmx.de ([94.199.88.78]:35910 "EHLO mailout12.rmx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730973AbgKEUTY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 15:19:24 -0500
-Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mailout12.rmx.de (Postfix) with ESMTPS id 4CRvxg4GVwzRpXp;
-        Thu,  5 Nov 2020 21:19:19 +0100 (CET)
-Received: from mta.arri.de (unknown [217.111.95.66])
+        id S1732175AbgKEV2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 16:28:13 -0500
+Received: from plasma4.jpberlin.de ([80.241.57.33]:48569 "EHLO
+        plasma4.jpberlin.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731060AbgKEV2N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 16:28:13 -0500
+Received: from spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de [80.241.56.115])
+        by plasma.jpberlin.de (Postfix) with ESMTP id DE4ECAB7DC;
+        Thu,  5 Nov 2020 22:21:43 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from plasma.jpberlin.de ([80.241.56.68])
+        by spamfilter01.heinlein-hosting.de (spamfilter01.heinlein-hosting.de [80.241.56.115]) (amavisd-new, port 10030)
+        with ESMTP id r4z_FNNlEUTs; Thu,  5 Nov 2020 22:21:42 +0100 (CET)
+Received: from webmail.opensynergy.com (unknown [217.66.60.5])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin01.retarus.com (Postfix) with ESMTPS id 4CRvxQ6K0Kz2xDW;
-        Thu,  5 Nov 2020 21:19:06 +0100 (CET)
-Received: from n95hx1g2.localnet (192.168.54.22) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 5 Nov
- 2020 21:18:05 +0100
-From:   Christian Eggers <ceggers@arri.de>
-To:     Vladimir Oltean <olteanv@gmail.com>
-CC:     Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
+        (Client CN "*.opensynergy.com", Issuer "Starfield Secure Certificate Authority - G2" (not verified))
+        (Authenticated sender: opensynergy@jpberlin.de)
+        by plasma.jpberlin.de (Postfix) with ESMTPSA id 03EE6AB751;
+        Thu,  5 Nov 2020 22:21:41 +0100 (CET)
+From:   Peter Hilber <peter.hilber@opensynergy.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <virtualization@lists.linux-foundation.org>,
+        <virtio-dev@lists.oasis-open.org>
+CC:     Peter Hilber <peter.hilber@opensynergy.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add hardware time stamping support
-Date:   Thu, 5 Nov 2020 21:18:04 +0100
-Message-ID: <5844018.3araiXeC39@n95hx1g2>
-Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-In-Reply-To: <20201022113243.4shddtywgvpcqq6c@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de> <2541271.Km786uMvHt@n95hx1g2> <20201022113243.4shddtywgvpcqq6c@skbuf>
+        <linux-kernel@vger.kernel.org>, <sudeep.holla@arm.com>,
+        <souvik.chakravarty@arm.com>, <alex.bennee@linaro.org>,
+        <jean-philippe@linaro.org>, <igor.skalkin@opensynergy.com>,
+        <mikhail.golubev@opensynergy.com>, <anton.yakovlev@opensynergy.com>
+Subject: [RFC PATCH v2 00/10] firmware: arm_scmi: Add virtio transport
+Date:   Thu, 5 Nov 2020 22:21:06 +0100
+Message-ID: <20201105212116.411422-1-peter.hilber@opensynergy.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [192.168.54.22]
-X-RMX-ID: 20201105-211906-4CRvxQ6K0Kz2xDW-0@kdin01
-X-RMX-SOURCE: 217.111.95.66
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: SR-MAIL-01.open-synergy.com (10.26.10.21) To
+ SR-MAIL-01.open-synergy.com (10.26.10.21)
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -3.70 / 15.00 / 15.00
+X-Rspamd-Queue-Id: DE4ECAB7DC
+X-Rspamd-UID: ee1eec
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+This series implements an SCMI virtio driver according to the virtio
+SCMI device spec patch v5 [1], after simple preparatory changes to the
+existing arm-scmi driver.
 
-On Thursday, 22 October 2020, 13:32:43 CET, Vladimir Oltean wrote:
-> On Thu, Oct 22, 2020 at 01:11:40PM +0200, Christian Eggers wrote:
-> > On Thursday, 22 October 2020, 12:50:14 CEST, Vladimir Oltean wrote:
-> > after applying the RX timestamp correctly to the correction field
-> > (shifting
-> > the nanoseconds by 16),
-> 
-> That modification should have been done anyway, since the unit of
-> measurement for correctionField is scaled ppb (48 bits nanoseconds, 16
-> bits scaled nanoseconds), and not nanoseconds.
-> 
-> > it seems that "moving" the timestamp back to the tail tag on TX is not
-> > required anymore. Keeping the RX timestamp simply in the correction
-> > field (negative value), works fine now. So this halves the effort in
-> > the tag_ksz driver.
+The virtio transport differs in some respects from the existing
+shared-memory based SCMI transports.
 
-unfortunately I made a mistake when testing. Actually the timestamp *must* be
-moved from the correction field (negative) to the egress tail tag.
+Message timeouts can be a problem if the virtio device (SCMI platform)
+does not have real-time properties. I set a high message rx timeout
+value which should work for non real-time virtio devices as well. There
+are other timeouts for delayed response and polling which were not
+addressed yet. Delayed responses are not really needed since, with the
+virtio transport, message responses may be transmitted out of order.
+Polling doesn't make sense at least for virtio devices without real-time
+behavior, in my understanding.
 
-> Ok, this makes sense.
-> Depending on what Richard responds, it now looks like the cleanest
-> approach would be to move your implementation that is currently in
-> ksz9477_update_ptp_correction_field() into a generic function called
-> 
-> static inline void ptp_onestep_p2p_move_t2_to_correction(struct sk_buff
-> *skb, unsigned int ptp_type,
->  struct ptp_header *ptp_header,
-> ktime_t t2)
-I have implemented this in ptp_classify.h. Passing t2 instead of the correction
-field itself is fine for rx, but as this function is now still required for
-transmit, it looks a little bit misused there (see below).
+There are some known issues which will be resolved before removing the
+RFC tag:
 
-Shall I keep it as below, or revert it to passing value of the correction field
-itself?
+- Further work is needed on the scmi_xfer management. Unlike shmem based
+  transports, the virtio transport is actually exchanging messages with
+  the SCMI agent through the scmi_xfer tx and rx buffers. In case of a
+  message rx timeout, the arm-scmi driver could try to re-use the
+  scmi_xfer, while that might still be used by the virtio device. I
+  think part of the scmi_xfers_info bookkeeping could be optionally
+  outsourced to the transport to remediate this.
 
-regards
-Christian
+- After arm-scmi driver probe failure, or after remove, the scmi-virtio
+  driver may still try to process and forward message responses from the
+  virtio device.
 
+- We must be sure that the virtio transport option (such as virtio over
+  MMIO) is available when the virtio SCMI device is probed.
 
-static void ksz9477_xmit_timestamp(struct sk_buff *skb)
-{
-	struct sk_buff *clone = DSA_SKB_CB(skb)->clone;
-	struct ptp_header *ptp_hdr;
-	u32 tstamp_raw = 0;
-	u64 correction;
+The series is based on for-next/scmi [2], on top of
 
-	if (!clone)
-		goto out_put_tag;
+commit b9ceca6be432 ("firmware: arm_scmi: Fix duplicate workqueue name")
 
-	/* Use cached PTP header and type from ksz9477_ptp_should_tstamp(). Note
-	 * that KSZ9477_SKB_CB(clone)->ptp_header != NULL implies that this is a
-	 * Pdelay_resp message.
-	 */
-	ptp_hdr = KSZ9477_SKB_CB(clone)->ptp_header;
-	if (!ptp_hdr)
-		goto out_put_tag;
+The series was actually tested with a v5.4 based kernel, with the Base
+protocol and Sensor management protocol. The virtio SCMI device used was
+a proprietary implementation by OpenSynergy. Delayed responses were not
+tested.
 
-	correction = get_unaligned_be64(&ptp_hdr->correction);
+Changes in RFC v2:
 
-	/* For PDelay_Resp messages we will likely have a negative value in the
-	 * correction field (see ksz9477_rcv()). The switch hardware cannot
-	 * correctly update such values, so it must be moved to the time stamp
-	 * field in the tail tag.
-	 */
-	if ((s64)correction < 0) {
-		unsigned int ptp_type = KSZ9477_SKB_CB(clone)->ptp_type;
-		struct timespec64 ts;
-		u64 ns;
+- Remove the DT virtio_transport phandle, since the SCMI virtio device may
+  not be known in advance. Instead, use the first suitable probed device.
+  Change due to Rob Herring's comment.
 
-		/* Move ingress time stamp from PTP header's correction field to
-		 * tail tag. Format of the correction filed is 48 bit ns + 16
-		 * bit fractional ns.  Avoid shifting negative numbers.
-		 */
-		ns = -((s64)correction) >> 16;
-		ts = ns_to_timespec64(ns);
-		tstamp_raw = ((ts.tv_sec & 3) << 30) | ts.tv_nsec;
+Any comments are very welcome.
 
->>>		/* Set correction field to 0 (by subtracting the negative value)
->>>		 * and update UDP checksum.
->>>		 */
->>>		ptp_onestep_p2p_move_t2_to_correction(skb, ptp_type, ptp_hdr, ns_to_ktime(-ns));
-	}
-
-out_put_tag:
-	put_unaligned_be32(tstamp_raw, skb_put(skb, KSZ9477_PTP_TAG_LEN));
-}
+[1] https://lists.oasis-open.org/archives/virtio-comment/202005/msg00096.html
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git
 
 
-Addtionally ptp_onestep_p2p_move_t2_to_correction() must be able to handle negative values:
+Igor Skalkin (7):
+  firmware: arm_scmi, smccc, mailbox: Make shmem based transports
+    optional
+  firmware: arm_scmi: Document that max_msg is a per channel type limit
+  firmware: arm_scmi: Add op to override max message #
+  firmware: arm_scmi: Add per message transport data
+  firmware: arm_scmi: Add xfer_init_buffers transport op
+  dt-bindings: arm: Add virtio transport for SCMI
+  firmware: arm_scmi: Add virtio transport
 
-static inline
-void ptp_onestep_p2p_move_t2_to_correction(struct sk_buff *skb,
-					   unsigned int type,
-					   struct ptp_header *hdr,
-					   ktime_t t2)
-{
-	u8 *ptr = skb_mac_header(skb);
-	struct udphdr *uhdr = NULL;
-	s64 ns = ktime_to_ns(t2);
-	__be64 correction_old;
-	s64 correction;
+Peter Hilber (3):
+  firmware: arm_scmi: Add optional link_supplier() transport op
+  firmware: arm_scmi: Add per-device transport private info
+  firmware: arm_scmi: Add is_scmi_protocol_device()
 
-	/* previous correction value is required for checksum update. */
-	memcpy(&correction_old,  &hdr->correction, sizeof(correction_old));
-	correction = (s64)be64_to_cpu(correction_old);
+ .../devicetree/bindings/arm/arm,scmi.txt      |  35 +-
+ MAINTAINERS                                   |   1 +
+ drivers/firmware/Kconfig                      |  19 +-
+ drivers/firmware/arm_scmi/Makefile            |   3 +-
+ drivers/firmware/arm_scmi/bus.c               |   5 +
+ drivers/firmware/arm_scmi/common.h            |  37 +-
+ drivers/firmware/arm_scmi/driver.c            | 124 ++++-
+ drivers/firmware/arm_scmi/virtio.c            | 493 ++++++++++++++++++
+ drivers/firmware/smccc/Kconfig                |   1 +
+ drivers/mailbox/Kconfig                       |   1 +
+ include/uapi/linux/virtio_ids.h               |   1 +
+ include/uapi/linux/virtio_scmi.h              |  41 ++
+ 12 files changed, 736 insertions(+), 25 deletions(-)
+ create mode 100644 drivers/firmware/arm_scmi/virtio.c
+ create mode 100644 include/uapi/linux/virtio_scmi.h
 
-	/* PTP correction field consists of 32 bit nanoseconds and 16 bit
-	 * fractional nanoseconds.  Avoid shifting negative numbers.
-	 */
->>>	if (ns >= 0)
->>>		correction -= ns << 16;
->>>	else
->>>		correction += -ns << 16;
 
-	/* write new correction value */
-	put_unaligned_be64((u64)correction, &hdr->correction);
-...
-}
-
+base-commit: b9ceca6be43233845be70792be9b5ab315d2e010
+-- 
+2.25.1
 
