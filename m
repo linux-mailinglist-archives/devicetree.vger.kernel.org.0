@@ -2,75 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE052A75B6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 03:43:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEFCF2A75E0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 04:03:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388387AbgKECm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 21:42:58 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55938 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733101AbgKECm6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 21:42:58 -0500
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 889D42074B;
-        Thu,  5 Nov 2020 02:42:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604544177;
-        bh=o2ZixdoyTez57g0Hgq+WoFiK7SSCRB/m5mogC7KJns8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=McE9Hu5/PkUGK6ZzHobSX7n8IhHsT8XXclsd7NLZe73S3Bg5K6I6GHt8GFIGnVjp+
-         wo8ykXNS2687iFweCked1NsnYLD0G0JSjXvcUdzsqVstdQ6o1ctynJtl1QEPAUloAc
-         5hieE/MhytBORgcSyjGRwYJUZa9MZ2MG0Ptw38EU=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20201023131925.334864-6-dmitry.baryshkov@linaro.org>
-References: <20201023131925.334864-1-dmitry.baryshkov@linaro.org> <20201023131925.334864-6-dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v2 5/5] clk: qcom: dispcc-sm8250: handle MMCX power domain
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        id S1733062AbgKEDDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 22:03:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50646 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729669AbgKEDDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 22:03:19 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D4BC0613CF;
+        Wed,  4 Nov 2020 19:03:19 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id e7so196066pfn.12;
+        Wed, 04 Nov 2020 19:03:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=rqFSQ6ot3tici9BGFeRzqxwQhGWIWMLwTxPbfGjijXk=;
+        b=BPtbsFVvEOpPYBu/LERKDIvUHmoBAzmRjYsL/tS1nNYkZg8rGMpYaVXLwPlr+MroaD
+         Sepssjjo/wlun2gfn3kSA43k7k/MwOOR0wdO72tWmdaLjvZ5bBjz8LdbtItwAc7itKDQ
+         LaJ4pShH566VhfzD6per0aaeXLuB94ge/ttqW8HN1GfclNugvPj3dV2D29A9Aiojy1D0
+         DeD+zm6/FsGTBKvMA49GiOrMT3KV+7ieBZB8nG3y0XIZVpext2YADN752stXySGNfJRG
+         iaClQ581rXL7Z2Vz44zlUuuekLN27hF4De54+pZJzCn4EijOEO0fcVJ0Il7WjkyU3cn5
+         QLYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=rqFSQ6ot3tici9BGFeRzqxwQhGWIWMLwTxPbfGjijXk=;
+        b=VqNwUU4TIgkgoL57JANBsd+og/lgFkvOAfF2UVhqrNK+dsKEUfcHVdDe3YfALcd63Z
+         uLTk6VoHjMcgNMQj/P77GzmNVDwb3Sfz+VwjNnpeR0nu95PgJZmHKtzFxpov/0sGEZoa
+         r3+3Q06pJKOLrFV/T/EhY8F9OiV/DhLj+d6XO0pnbQU2FGJoSHEaL6ZtrZrmYdoRbkR7
+         x+aMcuHV38oCSqhGfrxj6UQlNlgGVqGSp9WK0RGIjYbWp6uK4yY/6yrBxQN3H6FBFJqp
+         p2RD4HM5ZgyR99HVTQlxcXPD+R2VEAPnYyWZElB93jmavse+LQBA1W3RaYNQ6mEB1R3H
+         QVtg==
+X-Gm-Message-State: AOAM531rtVtR0slHTSwMvuEyb6yC3qni5RgBTKn1e/5cRB5hETHmc8rS
+        c/W6VrFdI/0vWKAeFRarx21sg+SPGuc=
+X-Google-Smtp-Source: ABdhPJxSAfAtp7tfUeEQFfsJLevfSeMTq3MFHA+NJKqkpPsbvk4bowaBzLSSMk3Oj5v5XDqCSwKTaA==
+X-Received: by 2002:a63:fc15:: with SMTP id j21mr422383pgi.258.1604545398144;
+        Wed, 04 Nov 2020 19:03:18 -0800 (PST)
+Received: from [10.230.28.234] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id i6sm90005pjt.49.2020.11.04.19.03.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Nov 2020 19:03:17 -0800 (PST)
+Subject: Re: [PATCH net-next v3 4/4] net: phy: dp83td510: Add support for the
+ DP83TD510 Ethernet PHY
+To:     Dan Murphy <dmurphy@ti.com>, Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, hkallweit1@gmail.com, robh@kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
         linux-kernel@vger.kernel.org
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 04 Nov 2020 18:42:56 -0800
-Message-ID: <160454417608.3965362.16775651224166864448@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <20201030172950.12767-1-dmurphy@ti.com>
+ <20201030172950.12767-5-dmurphy@ti.com> <20201030201515.GE1042051@lunn.ch>
+ <202b6626-b7bf-3159-f474-56f6fa0c8247@ti.com>
+ <20201103171838.GN1042051@lunn.ch>
+ <f44af428-acd9-daef-3609-4d6ea24cd436@ti.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <2513627e-42d4-88d5-c8fe-f4b90b1b56b5@gmail.com>
+Date:   Wed, 4 Nov 2020 19:03:15 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.0
+MIME-Version: 1.0
+In-Reply-To: <f44af428-acd9-daef-3609-4d6ea24cd436@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Baryshkov (2020-10-23 06:19:25)
-> On SM8250 MMCX power domain is required to access MMDS_GDSC registers.
-> This power domain is expressed as mmcx-supply regulator property. Use
-> this regulator as MDSS_GDSC supply.
->=20
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  drivers/clk/qcom/dispcc-sm8250.c | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-s=
-m8250.c
-> index 07a98d3f882d..588575e1169d 100644
-> --- a/drivers/clk/qcom/dispcc-sm8250.c
-> +++ b/drivers/clk/qcom/dispcc-sm8250.c
-> @@ -963,6 +963,7 @@ static struct gdsc mdss_gdsc =3D {
->         },
->         .pwrsts =3D PWRSTS_OFF_ON,
->         .flags =3D HW_CTRL,
-> +       .supply =3D "mmcx",
->  };
-> =20
 
-Can this patch be applied to clk tree or will it break the tree without
-the dts/regulator bits in place?
+
+On 11/3/2020 9:35 AM, Dan Murphy wrote:
+> Andrew
+> 
+> On 11/3/20 11:18 AM, Andrew Lunn wrote:
+>> On Tue, Nov 03, 2020 at 11:07:00AM -0600, Dan Murphy wrote:
+>>> Andrew
+>>>
+>>> On 10/30/20 3:15 PM, Andrew Lunn wrote:
+>>>>> +static int dp83td510_config_init(struct phy_device *phydev)
+>>>>> +{
+>>>>> +    struct dp83td510_private *dp83td510 = phydev->priv;
+>>>>> +    int mst_slave_cfg;
+>>>>> +    int ret = 0;
+>>>>> +
+>>>>> +    if (phy_interface_is_rgmii(phydev)) {
+>>>>> +        if (dp83td510->rgmii_delay) {
+>>>>> +            ret = phy_set_bits_mmd(phydev, DP83TD510_DEVADDR,
+>>>>> +                           DP83TD510_MAC_CFG_1,
+>>>>> dp83td510->rgmii_delay);
+>>>>> +            if (ret)
+>>>>> +                return ret;
+>>>>> +        }
+>>>>> +    }
+>>>> Hi Dan
+>>>>
+>>>> I'm getting a bit paranoid about RGMII delays...
+>>> Not sure what this means.
+>> See the discussion and breakage around the realtek PHY. It wrongly
+>> implemented RGMII delays. When it was fixed, lots of board broke
+>> because the bug in the PHY driver hid bugs in the DT.
+>>
+> I will have to go find that thread. Do you have a link?
+
+That would be the thread:
+
+https://lore.kernel.org/netdev/CAMj1kXEEF_Un-4NTaD5iUN0NoZYaJQn-rPediX0S6oRiuVuW-A@mail.gmail.com/
+-- 
+Florian
