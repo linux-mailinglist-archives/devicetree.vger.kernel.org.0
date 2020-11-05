@@ -2,150 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF3362A7647
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 05:14:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF9A2A7689
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 05:41:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726787AbgKEEOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 23:14:50 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:51925 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726225AbgKEEOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 23:14:50 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id EC9C65C00F9;
-        Wed,  4 Nov 2020 23:14:48 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Wed, 04 Nov 2020 23:14:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=f
-        JwbcwXPY3l7mC3CKsfGxtk7DwZ8F+yxs7HUMg4dBoo=; b=ee5InBpauKyoj6Hli
-        XGUDsBjjSWn0H/Kigzlptzd8wf4B/DVphlLZaPxX9cFIxGG8FFpuglH90DZbttPN
-        Z6WsbWPt+WCqvQdsvhyOteY5Pvjqd0yO5QhEF/oIztFuL6zxr0hJ9EQggcWAIyIc
-        6iFD++fPbEHMW+3vx5+IhoTJsXoG0TSXgyMSl9OPU24yWzkCqcYVT1K54skO8Kj4
-        8C0T6EbAoZ9f+6vPTHV3CsRNdM1KAT4+QDBll+YmZAQ5EymnSBDf8gsNi9H6KzQm
-        rbbZh1d8Iw8g8t+qWk39D1sPqYY4ljYaFAieqApm7RybzE8gmVPhmvAoViZtpbQj
-        F7Fug==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=fJwbcwXPY3l7mC3CKsfGxtk7DwZ8F+yxs7HUMg4dB
-        oo=; b=goD7YzrUgOWmd+pHLJ+XHw7AxiaDaIjJW9vkJc0R+bMb2ECRbyQ0t6w8H
-        TbGjHRGp4KcnseJwCVM461q1wHM+ct9EHBYOLgSs2d8RgqLQrLkMDP933XU/mX1m
-        gkxP5Nz7lT/H7GZlCF5Jqp84uWY5rPClvKfYaciqUEy+QCT4pbmtyNh+bvnrtk/8
-        9MRzWeVocZDK6sStYQmtuL77rLmBZH9NWlTXBi8HHu99Oqy43mF+JutQDjCoYvMK
-        9t69gcD1FQrd/6ytXgy+Q1qrsrynP0Peib3SCOYmW2nr8dLityPYlAjJAa6lYXXx
-        DyLqbjp2/Y50z9Z7jCQpJG9gjpw6A==
-X-ME-Sender: <xms:OHyjX49AflmvpRAFK4qY8duxKHXkNFodQcM5j3ZwW6MD-ovNKH25MA>
-    <xme:OHyjXwsTjFZGG61O4rm7nBE1Hh4rGTMqRRc1KE_2vAMDtZGCTdjB29jPtOg_YIvG2
-    BC_xJVYmX3JZr46nA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtiedgieelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
-    hedtfeevuedvnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:OHyjX-BVRMLE2LRruB5x0YmesdMSQ0l0VIaupaaoGfcM_4v7nhV5dw>
-    <xmx:OHyjX4c8o8uvtN5unD6dzf9c9jLRmEs1HrvZuwG36WB1OD4Mn3NLSw>
-    <xmx:OHyjX9PTmXcEqPQ5wlmVhfpLlbwF3oAaTBOK79BSt3dPPyYjJpOTzA>
-    <xmx:OHyjX5DnyEHntW2hVDJal0PWHk7OPh4FIdlPnqTu_mjqHhbggysWkA>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id D1A11306005E;
-        Wed,  4 Nov 2020 23:14:47 -0500 (EST)
-To:     Paul Kocialkowski <contact@paulk.fr>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Matteo Scordino <matteo.scordino@gmail.com>
-References: <20201103205058.435207-1-contact@paulk.fr>
- <20201103205058.435207-3-contact@paulk.fr>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v2 2/6] irqchip/sunxi-nmi: Add support for the V3s NMI
-Message-ID: <85d40081-2dd1-3a0c-15ad-a58ce866700f@sholland.org>
-Date:   Wed, 4 Nov 2020 22:14:47 -0600
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1728999AbgKEElW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 23:41:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37488 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726626AbgKEElW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 23:41:22 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4395BC0613CF
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 20:41:22 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id g12so424309pgm.8
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 20:41:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=gqvFL/vbADRsFOSmwP9r5bVIotD6ZCq93UTx3nZJmwI=;
+        b=qkSgyuSL08dAID7k2/m7sqETUFHJZqzmJk2mvHyQA1xD/6RuT42ON4IKdGFdCh1LVF
+         k8wBzb9zeAPFNP7C57W4Ebgpw+j9ugbrN58f2Nl2PQu75QtiLmI84jqmLX9y2VmDjJot
+         VSAM6B8HKpmtkpsY724pYhAA9555wE4nK96/IbkKVNLDOPiEFc3bortyIHOV56xujAxd
+         hOMyuHm3mzf01BOVjTHq47l7uggBkcSPmN+A8wbImx2AOo7tdLqVORKmKMs+3qIt7Asx
+         06Xyzvx3H9ZW9K9zDIEBFL0vLYRH66G9ClyCubV5NRlq5sTTZjjhIffZL9FJR/d3NqcQ
+         t8eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gqvFL/vbADRsFOSmwP9r5bVIotD6ZCq93UTx3nZJmwI=;
+        b=YOZWc0qv0qp5oFTN/HHRRrTZLS/pQghGppM/SZX2UjxgfhDZdqDL92q7/KcgBo+plJ
+         nUMRm7HLEA4SApab6ELnO1o8h06WOdQmco4zt9bTcXehblrazyUWrX2t93Dqv/FZ1Ai6
+         az0KQz5nNf/0bV+WOURJ4RIOI92UbiSZZDmw1JVwP2MOzPpS8UCW27ZTzzu0+0xKU0Nl
+         io5MjlFAgLH5oyoFqiI2gGbjtklvJXK8nH/gVA+K+BddNU86TYxKOR7xyp9WJTfvWB8e
+         yxpLmZEaKFRtfJoM19C6Jutcuuf2WUhhk7VV0u9M/PwJfzL73+DWW03P7rs5HTj1B9uE
+         4eVg==
+X-Gm-Message-State: AOAM5302Khc50mEZWUBxgoHiDoq3qIJ0396aE2HFLuJDH/76HUYU91GC
+        5xaC3qvtIdIp5MRD3FFDbyzTdA==
+X-Google-Smtp-Source: ABdhPJzptq0jvKJOQ5q1k3fqtpa6kbr17VFFcsDUi8j5x+ZEwTT4cMxQaGIqho1XVOi11ouaxNTYKg==
+X-Received: by 2002:a17:90a:4488:: with SMTP id t8mr561064pjg.37.1604551281686;
+        Wed, 04 Nov 2020 20:41:21 -0800 (PST)
+Received: from localhost ([122.172.12.172])
+        by smtp.gmail.com with ESMTPSA id g4sm488989pgu.81.2020.11.04.20.41.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 04 Nov 2020 20:41:20 -0800 (PST)
+Date:   Thu, 5 Nov 2020 10:11:18 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Nicola Mazzucato <nicola.mazzucato@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
+        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
+        chris.redpath@arm.com
+Subject: Re: [PATCH v3 2/3] opp/of: Allow empty opp-table with opp-shared
+Message-ID: <20201105044118.k75um7gcz3ffkphc@vireshk-i7>
+References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
+ <20201102120115.29993-3-nicola.mazzucato@arm.com>
+ <20201103050141.kiuyotzt4brisch7@vireshk-i7>
+ <9f442724-df13-d582-717d-535cc9c9c9f1@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20201103205058.435207-3-contact@paulk.fr>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9f442724-df13-d582-717d-535cc9c9c9f1@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/3/20 2:50 PM, Paul Kocialkowski wrote:
-> The V3s/V3 has a NMI IRQ controller, which is mainly used for the AXP209
-> interrupt. In great wisdom, Allwinner decided to invert the enable and
-> pending register offsets, compared to the A20.
-> 
-> As a result, a specific compatible and register description is required
-> for the V3s. This was tested with an AXP209 on a V3 board.
-> 
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
-> ---
->  drivers/irqchip/irq-sunxi-nmi.c | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/irqchip/irq-sunxi-nmi.c b/drivers/irqchip/irq-sunxi-nmi.c
-> index a412b5d5d0fa..59e0e4612ef7 100644
-> --- a/drivers/irqchip/irq-sunxi-nmi.c
-> +++ b/drivers/irqchip/irq-sunxi-nmi.c
-> @@ -44,6 +44,10 @@
->  #define SUN7I_NMI_PENDING	0x04
->  #define SUN7I_NMI_ENABLE	0x08
->  
-> +#define SUN8I_V3S_NMI_CTRL	0x00
-> +#define SUN8I_V3S_NMI_ENABLE	0x04
-> +#define SUN8I_V3S_NMI_PENDING	0x08
-> +
->  #define SUN9I_NMI_CTRL		0x00
->  #define SUN9I_NMI_ENABLE	0x04
->  #define SUN9I_NMI_PENDING	0x08
+On 04-11-20, 17:54, Nicola Mazzucato wrote:
+> Initially I thought to place a comment right there but I ended up with an
+> explanation of this case at the top of this function (the corner-case). It
+> probably also needs more details..
 
-These two sets of definitions are the same. So it would make sense for
-V3S and sun9i to share a configuration, instead of creating a copy.
+I read it earlier as well but yeah, that wasn't good enough for me to
+understand what you are doing.
 
-> @@ -79,6 +83,12 @@ static const struct sunxi_sc_nmi_reg_offs sun7i_reg_offs __initconst = {
->  	.enable	= SUN7I_NMI_ENABLE,
->  };
->  
-> +static const struct sunxi_sc_nmi_reg_offs sun8i_v3s_reg_offs __initconst = {
-> +	.ctrl	= SUN8I_V3S_NMI_CTRL,
-> +	.pend	= SUN8I_V3S_NMI_PENDING,
-> +	.enable	= SUN8I_V3S_NMI_ENABLE,
-> +};
-> +
->  static const struct sunxi_sc_nmi_reg_offs sun9i_reg_offs __initconst = {
->  	.ctrl	= SUN9I_NMI_CTRL,
->  	.pend	= SUN9I_NMI_PENDING,
-> @@ -165,7 +175,6 @@ static int __init sunxi_sc_nmi_irq_init(struct device_node *node,
->  	unsigned int clr = IRQ_NOREQUEST | IRQ_NOPROBE | IRQ_NOAUTOEN;
->  	int ret;
->  
-> -
->  	domain = irq_domain_add_linear(node, 1, &irq_generic_chip_ops, NULL);
->  	if (!domain) {
->  		pr_err("Could not register interrupt domain.\n");
-> @@ -254,6 +263,13 @@ static int __init sun7i_sc_nmi_irq_init(struct device_node *node,
->  }
->  IRQCHIP_DECLARE(sun7i_sc_nmi, "allwinner,sun7i-a20-sc-nmi", sun7i_sc_nmi_irq_init);
->  
-> +static int __init sun8i_v3s_sc_nmi_irq_init(struct device_node *node,
-> +					    struct device_node *parent)
-> +{
-> +	return sunxi_sc_nmi_irq_init(node, &sun8i_v3s_reg_offs);
-> +}
-> +IRQCHIP_DECLARE(sun8i_v3s_sc_nmi, "allwinner,sun8i-v3s-sc-nmi", sun8i_v3s_sc_nmi_irq_init);
-> +
->  static int __init sun9i_nmi_irq_init(struct device_node *node,
->  				     struct device_node *parent)
->  {
-> 
+> Basically, on this case - empty opp table & opp-shared - we limit the scope of
+> opp-shared to *only* tell us about hw description, and not marking the opp
+> points as shared, since they are not present in DT.
 
+It doesn't matter where the OPP table entries are coming from. The OPP
+table should be marked shared if it is found to be shared.
+
+> It would be the equivalent
+> of describing that devices share clock/voltage lines, but we can't tell anything
+> about opp points cause they are not there (in DT).
+
+Its okay, even then we should set the right flags here. It is really
+confusing that we blindly set it as exclusive, even though it may be
+shared.
+
+> OTOH If we don't set shared_opp to OPP_TABLE_ACCESS_EXCLUSIVE for that specific
+> case, we won't be able to add opps for the remaining cpus as the opp core
+> will find the opps as duplicated. This is a corner case, really.
+
+Hmm, I am not sure where you fail and how but this should be set to
+OPP_TABLE_ACCESS_EXCLUSIVE only if the OPP table isn't shared. else it
+should be OPP_TABLE_ACCESS_SHARED.
+
+-- 
+viresh
