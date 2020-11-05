@@ -2,114 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEFCF2A75E0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 04:03:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D4F22A75F0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 04:10:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733062AbgKEDDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 22:03:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50646 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729669AbgKEDDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 22:03:19 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D4BC0613CF;
-        Wed,  4 Nov 2020 19:03:19 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id e7so196066pfn.12;
-        Wed, 04 Nov 2020 19:03:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rqFSQ6ot3tici9BGFeRzqxwQhGWIWMLwTxPbfGjijXk=;
-        b=BPtbsFVvEOpPYBu/LERKDIvUHmoBAzmRjYsL/tS1nNYkZg8rGMpYaVXLwPlr+MroaD
-         Sepssjjo/wlun2gfn3kSA43k7k/MwOOR0wdO72tWmdaLjvZ5bBjz8LdbtItwAc7itKDQ
-         LaJ4pShH566VhfzD6per0aaeXLuB94ge/ttqW8HN1GfclNugvPj3dV2D29A9Aiojy1D0
-         DeD+zm6/FsGTBKvMA49GiOrMT3KV+7ieBZB8nG3y0XIZVpext2YADN752stXySGNfJRG
-         iaClQ581rXL7Z2Vz44zlUuuekLN27hF4De54+pZJzCn4EijOEO0fcVJ0Il7WjkyU3cn5
-         QLYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=rqFSQ6ot3tici9BGFeRzqxwQhGWIWMLwTxPbfGjijXk=;
-        b=VqNwUU4TIgkgoL57JANBsd+og/lgFkvOAfF2UVhqrNK+dsKEUfcHVdDe3YfALcd63Z
-         uLTk6VoHjMcgNMQj/P77GzmNVDwb3Sfz+VwjNnpeR0nu95PgJZmHKtzFxpov/0sGEZoa
-         r3+3Q06pJKOLrFV/T/EhY8F9OiV/DhLj+d6XO0pnbQU2FGJoSHEaL6ZtrZrmYdoRbkR7
-         x+aMcuHV38oCSqhGfrxj6UQlNlgGVqGSp9WK0RGIjYbWp6uK4yY/6yrBxQN3H6FBFJqp
-         p2RD4HM5ZgyR99HVTQlxcXPD+R2VEAPnYyWZElB93jmavse+LQBA1W3RaYNQ6mEB1R3H
-         QVtg==
-X-Gm-Message-State: AOAM531rtVtR0slHTSwMvuEyb6yC3qni5RgBTKn1e/5cRB5hETHmc8rS
-        c/W6VrFdI/0vWKAeFRarx21sg+SPGuc=
-X-Google-Smtp-Source: ABdhPJxSAfAtp7tfUeEQFfsJLevfSeMTq3MFHA+NJKqkpPsbvk4bowaBzLSSMk3Oj5v5XDqCSwKTaA==
-X-Received: by 2002:a63:fc15:: with SMTP id j21mr422383pgi.258.1604545398144;
-        Wed, 04 Nov 2020 19:03:18 -0800 (PST)
-Received: from [10.230.28.234] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id i6sm90005pjt.49.2020.11.04.19.03.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 04 Nov 2020 19:03:17 -0800 (PST)
-Subject: Re: [PATCH net-next v3 4/4] net: phy: dp83td510: Add support for the
- DP83TD510 Ethernet PHY
-To:     Dan Murphy <dmurphy@ti.com>, Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, hkallweit1@gmail.com, robh@kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        id S1728085AbgKEDKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 22:10:33 -0500
+Received: from mga17.intel.com ([192.55.52.151]:7830 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731175AbgKEDKc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 22:10:32 -0500
+IronPort-SDR: EatM2lZeseVgFQW6dicSpZs9NfoTEeWmTklcGZikfTUcVN8elszCc5bwTFUjbBzXLUUu0kWAe/
+ U7YdyzL+TBTg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="149174162"
+X-IronPort-AV: E=Sophos;i="5.77,452,1596524400"; 
+   d="scan'208";a="149174162"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2020 19:10:32 -0800
+IronPort-SDR: PuvK8QPaHSE8f6b9etfQGhzDqsRW0Ahlj3lBVZPmEq5ms0IxAK0PUXeAHJbBtif2czvu1eHgOr
+ LvMtHnR3aH9A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,452,1596524400"; 
+   d="scan'208";a="325858998"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga006.jf.intel.com with ESMTP; 04 Nov 2020 19:10:31 -0800
+Received: from [10.226.38.24] (unknown [10.226.38.24])
+        by linux.intel.com (Postfix) with ESMTP id A401558078C;
+        Wed,  4 Nov 2020 19:10:28 -0800 (PST)
+Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: Re: [PATCH v16 1/2] dt-bindings: mtd: Add Nand Flash Controller
+ support for Intel LGM SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     robh+dt@kernel.org, cheol.yong.kim@intel.com,
+        tudor.ambarus@microchip.com, miquel.raynal@bootlin.com,
+        vigneshr@ti.com, devicetree@vger.kernel.org, dinguyen@kernel.org,
+        qi-ming.wu@intel.com, linux-mtd@lists.infradead.org,
+        richard@nod.at, simon.k.r.goldschmidt@gmail.com,
         linux-kernel@vger.kernel.org
-References: <20201030172950.12767-1-dmurphy@ti.com>
- <20201030172950.12767-5-dmurphy@ti.com> <20201030201515.GE1042051@lunn.ch>
- <202b6626-b7bf-3159-f474-56f6fa0c8247@ti.com>
- <20201103171838.GN1042051@lunn.ch>
- <f44af428-acd9-daef-3609-4d6ea24cd436@ti.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <2513627e-42d4-88d5-c8fe-f4b90b1b56b5@gmail.com>
-Date:   Wed, 4 Nov 2020 19:03:15 -0800
+References: <20201103075655.18699-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201103075655.18699-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201104185631.GA3946406@bogus>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <877b315f-c551-822d-71a8-84589b116c0f@linux.intel.com>
+Date:   Thu, 5 Nov 2020 11:10:27 +0800
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.4.0
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <f44af428-acd9-daef-3609-4d6ea24cd436@ti.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20201104185631.GA3946406@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-
-On 11/3/2020 9:35 AM, Dan Murphy wrote:
-> Andrew
-> 
-> On 11/3/20 11:18 AM, Andrew Lunn wrote:
->> On Tue, Nov 03, 2020 at 11:07:00AM -0600, Dan Murphy wrote:
->>> Andrew
->>>
->>> On 10/30/20 3:15 PM, Andrew Lunn wrote:
->>>>> +static int dp83td510_config_init(struct phy_device *phydev)
->>>>> +{
->>>>> +    struct dp83td510_private *dp83td510 = phydev->priv;
->>>>> +    int mst_slave_cfg;
->>>>> +    int ret = 0;
->>>>> +
->>>>> +    if (phy_interface_is_rgmii(phydev)) {
->>>>> +        if (dp83td510->rgmii_delay) {
->>>>> +            ret = phy_set_bits_mmd(phydev, DP83TD510_DEVADDR,
->>>>> +                           DP83TD510_MAC_CFG_1,
->>>>> dp83td510->rgmii_delay);
->>>>> +            if (ret)
->>>>> +                return ret;
->>>>> +        }
->>>>> +    }
->>>> Hi Dan
->>>>
->>>> I'm getting a bit paranoid about RGMII delays...
->>> Not sure what this means.
->> See the discussion and breakage around the realtek PHY. It wrongly
->> implemented RGMII delays. When it was fixed, lots of board broke
->> because the bug in the PHY driver hid bugs in the DT.
+On 5/11/2020 2:56 am, Rob Herring wrote:
+> On Tue, 03 Nov 2020 15:56:54 +0800, Ramuthevar,Vadivel MuruganX wrote:
+>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 >>
-> I will have to go find that thread. Do you have a link?
+>> Add YAML file for dt-bindings to support NAND Flash Controller
+>> on Intel's Lightning Mountain SoC.
+>>
+>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   .../devicetree/bindings/mtd/intel,lgm-nand.yaml    | 99 ++++++++++++++++++++++
+>>   1 file changed, 99 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
+>>
+> 
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml:24:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
+> 
+> dtschema/dtc warnings/errors:
+> 
+> 
+> See https://patchwork.ozlabs.org/patch/1392698
+> 
+> The base for the patch is generally the last rc1. Any dependencies
+> should be noted.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit.
+Thank you Rob, will install, check and update.
 
-That would be the thread:
-
-https://lore.kernel.org/netdev/CAMj1kXEEF_Un-4NTaD5iUN0NoZYaJQn-rPediX0S6oRiuVuW-A@mail.gmail.com/
--- 
-Florian
+Regards
+Vadivel
+> 
