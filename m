@@ -2,268 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E6742A74ED
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 02:33:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CAC2A7509
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 02:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731293AbgKEBdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 20:33:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36792 "EHLO
+        id S1732192AbgKEBrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 20:47:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732723AbgKEBdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 20:33:06 -0500
+        with ESMTP id S1725862AbgKEBre (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 20:47:34 -0500
 Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10393C0613D1
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 17:33:06 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id b3so60715pfo.2
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 17:33:06 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6539AC0613CF;
+        Wed,  4 Nov 2020 17:47:33 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id z3so57323pfb.10;
+        Wed, 04 Nov 2020 17:47:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gbX+Ow5GnFZtllSW39hQiEYpOSlmUOCZ6YI5wSQOGic=;
-        b=nZc7HWWHoy6cp+t/1wlId7QH6UchY+hZ32TPMSTskHgMRUpS4iuy7BtxMj2mb1mmO+
-         oHf4+rbp6962f9Opp6zvOmIpLzNZMbcioEJNZ/qYlJu5Os1gRLt8bA94khVFJd/TuzS1
-         CqBoi/8fA4G04PgwR2p6mulyEoqt0F9zkIuGBvcqPK+xQoJU1caT5ni8ztvtlJZSR0EE
-         1uu/0uDViQeNRZMfodHRNLa99seGn9qRbHkAKqgk6t1bstIONIBOhX6E3kmKCFaRC3GW
-         zQac13H0fUg0dWsN8uP+TlXmMUSo/mOmj3NYT9eg7TM/FnFjkSNqYmJjjn6IRwiNqXci
-         rHGw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=OCTxfpsphzxslAOqNQCh/cdk0CoQXDuv6GMoNdJRd5A=;
+        b=C3KFKDSkz8PewNH1jl/sP84lpxdqfKrg0VJoTP1+puWG7ySV+gTJkxexOQcONJq9sN
+         Ov6tBqvITJXazba66PI2+9AiQBbWk92CPcuz7+OVt+u1DM77atUE+KM7qEfwKuoEh/Pq
+         H57luRoyXAlMC8uEH9u3ey10S4uAlnK5rTU3PPiEnLuhwiBi2ggPPrUuA6Nf03bM88mW
+         D7iUUAW667Xzea/DmvPtbnxA/KgQ8p6pplYmOwtv+YUUfQMcaq0N/98pi2Dgqlb5rNho
+         C0aZjwD1+QDlEvSHqiHsdWdueHDChaBsOmXYmcZLY1pkLm/kmMH8RreeSIYLrV/7OHF2
+         GXHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gbX+Ow5GnFZtllSW39hQiEYpOSlmUOCZ6YI5wSQOGic=;
-        b=jeuIwndmjAa3UpCbpT6sxXYF/C0rGXpB6VWCk46Dn9odvFOO+mxSC9bhgdWBlZjSXC
-         wcau6yNJSCQHSzOaSJmX7epCrqaypeqgDVnmOpEjo8L0nGobUZfI477UWhcdsV8MUuMd
-         MTu8XvfbXcPyUbwVKoDsvUfyj213xyUWfUO5P7Mqd5fGhCLTmN2Ry16BZmAmI7u3vlb8
-         mv3HjY+knbm3BRw0OHVUuEuZwsnPr4N12+6PPdMc2BpMHTLX5p9tEcyvku/9aoTaZ1zO
-         KtzEznQfRiQF/trszUke7FKW0QXIEK2TPa7Hl3TO9wco/sNHOZyCHg4UHYAfo62MLFxN
-         eEQg==
-X-Gm-Message-State: AOAM531yflZ84v5xKg1C48MTEdv2LnHH0lYFW2KzmaPgtHPO2QkCh55W
-        FuhPiy9IO8uDW2N3uiHzSnse
-X-Google-Smtp-Source: ABdhPJyq84XwPjSrAn2gXvlVdmdGygNKyiD7g04/RqqOGElnmftlLOX9XBBhKDq8KUPD9bSkxdLlUw==
-X-Received: by 2002:a63:3116:: with SMTP id x22mr151822pgx.278.1604539985665;
-        Wed, 04 Nov 2020 17:33:05 -0800 (PST)
-Received: from xuyuqing-ZenBook-UX425JA-UX425JA.huaqin.com ([101.78.151.194])
-        by smtp.gmail.com with ESMTPSA id m13sm127817pjr.30.2020.11.04.17.33.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 17:33:05 -0800 (PST)
-From:   xuyuqing <xuyuqing@huaqin.corp-partner.google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
-        dgreid@chromium.org, tzungbi@chromium.org, cychiang@chromium.org,
-        judyhsiao@chromium.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        zhouguohui@huaqin.corp-partner.google.com,
-        xuyuqing@huaqin.corp-partner.google.com
-Subject: [PATCH v1 2/2] ASoC: qcom: sc7180: Modify machine driver for adau7002
-Date:   Thu,  5 Nov 2020 09:32:42 +0800
-Message-Id: <20201105013242.298518-3-xuyuqing@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201105013242.298518-1-xuyuqing@huaqin.corp-partner.google.com>
-References: <20201105013242.298518-1-xuyuqing@huaqin.corp-partner.google.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=OCTxfpsphzxslAOqNQCh/cdk0CoQXDuv6GMoNdJRd5A=;
+        b=jrh5LcpRlIBB3xIOUtcasI9tYBd00Zlh8Jz8YquFlOkYG76ANsHTl4N67K7dNcjhQU
+         wNuPszmaFsW4xtqKKa6JaIv1fhrjVsrwjbG2SfyIHYD1uKvamxY51i/jUHW7a5HawLTX
+         zAPE/Ja5ERraMyZCkkEZG+WJFG/MJwmVvg5rBoBeaPE55SGK2BShWukGIpITM4rn8y6l
+         /wlbuk/KWA3mlfa/+uivOK8/1RSD2rrDJqoGCiRGGiPeBCNfBq2YUePM/mkv9ckcxPX2
+         beATpyrEtdLetZltVgsnTsUQ9E0pMfo1u1wzv49s2JQy8i4r63fK6lue0x2Sk7GydQwQ
+         jsGg==
+X-Gm-Message-State: AOAM531/g46xbkArb8K/lv64yUMAiNV6qhoJKIMx0BlMf/ylE0cl9vF8
+        YAf5ucjddn9hE3C3aNYLbEk=
+X-Google-Smtp-Source: ABdhPJzYRJ54bpr7y5aGP5sXGN6tDVE4C64FR/ZVNJa5T6GGER3l/r0hcDTBiMTAovWtsz5k9zEixA==
+X-Received: by 2002:a17:90b:1011:: with SMTP id gm17mr346pjb.73.1604540852758;
+        Wed, 04 Nov 2020 17:47:32 -0800 (PST)
+Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id b3sm132830pfd.66.2020.11.04.17.47.31
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 04 Nov 2020 17:47:32 -0800 (PST)
+Date:   Wed, 4 Nov 2020 17:35:40 -0800
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] ASoC: fsl_aud2htx: Add aud2htx module driver
+Message-ID: <20201105013539.GA16459@Asurada-Nvidia>
+References: <1604281947-26874-1-git-send-email-shengjiu.wang@nxp.com>
+ <1604281947-26874-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1604281947-26874-2-git-send-email-shengjiu.wang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bypass set jack because there is no jack on coachz.
-Create route for dmic.
+On Mon, Nov 02, 2020 at 09:52:27AM +0800, Shengjiu Wang wrote:
+> The AUD2HTX is a digital module that provides a bridge between
+> the Audio Subsystem and the HDMI RTX Subsystem. This module
+> includes intermediate storage to queue SDMA transactions prior
+> to being synchronized and passed to the HDMI RTX Subsystem over
+> the Audio Link.
+> 
+> The AUD2HTX contains a DMA request routed to the SDMA module.
+> This DMA request is controlled based on the watermark level in
+> the 32-entry sample buffer.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-Signed-off-by: xuyuqing <xuyuqing@huaqin.corp-partner.google.com>
----
- sound/soc/qcom/Kconfig  |   1 +
- sound/soc/qcom/sc7180.c | 119 ++++++++++++++++++++++++++++++++++++----
- 2 files changed, 109 insertions(+), 11 deletions(-)
+Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
 
-diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-index 41cb08bd5588..27f93006be96 100644
---- a/sound/soc/qcom/Kconfig
-+++ b/sound/soc/qcom/Kconfig
-@@ -145,6 +145,7 @@ config SND_SOC_SC7180
- 	select SND_SOC_LPASS_SC7180
- 	select SND_SOC_MAX98357A
- 	select SND_SOC_RT5682_I2C
-+	select SND_SOC_ADAU7002
- 	help
- 	  To add support for audio on Qualcomm Technologies Inc.
- 	  SC7180 SoC-based systems.
-diff --git a/sound/soc/qcom/sc7180.c b/sound/soc/qcom/sc7180.c
-index b391f64c3a80..240b75b44716 100644
---- a/sound/soc/qcom/sc7180.c
-+++ b/sound/soc/qcom/sc7180.c
-@@ -196,33 +196,102 @@ static void sc7180_snd_shutdown(struct snd_pcm_substream *substream)
- 	}
- }
- 
-+static int sc7180_adau7002_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case MI2S_PRIMARY:
-+		return 0;
-+	case MI2S_SECONDARY:
-+		return 0;
-+	case LPASS_DP_RX:
-+		return sc7180_hdmi_init(rtd);
-+	default:
-+		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
-+			cpu_dai->id);
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
-+static int sc7180_adau7002_snd_startup(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case MI2S_PRIMARY:
-+		snd_soc_dai_set_fmt(codec_dai,
-+				    SND_SOC_DAIFMT_CBS_CFS |
-+				    SND_SOC_DAIFMT_NB_NF |
-+				    SND_SOC_DAIFMT_I2S);
-+
-+		break;
-+	case MI2S_SECONDARY:
-+		break;
-+	case LPASS_DP_RX:
-+		break;
-+	default:
-+		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
-+			cpu_dai->id);
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
- static const struct snd_soc_ops sc7180_ops = {
- 	.startup = sc7180_snd_startup,
- 	.shutdown = sc7180_snd_shutdown,
- };
- 
-+static const struct snd_soc_ops sc7180_adau7002_ops = {
-+	.startup = sc7180_adau7002_snd_startup,
-+};
-+
- static const struct snd_soc_dapm_widget sc7180_snd_widgets[] = {
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- };
- 
--static void sc7180_add_ops(struct snd_soc_card *card)
--{
--	struct snd_soc_dai_link *link;
--	int i;
-+static const struct snd_soc_dapm_widget sc7180_adau7002_snd_widgets[] = {
-+	SND_SOC_DAPM_MIC("DMIC", NULL),
-+};
- 
--	for_each_card_prelinks(card, i, link) {
--		link->ops = &sc7180_ops;
--		link->init = sc7180_init;
--	}
--}
-+static const char * const dmic_mux_text[] = {
-+	"Front Mic",
-+	"Rear Mic",
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(sc7180_dmic_enum,
-+			    SND_SOC_NOPM, 0, dmic_mux_text);
-+
-+static const struct snd_kcontrol_new sc7180_dmic_mux_control =
-+	SOC_DAPM_ENUM_EXT("DMIC Select Mux", sc7180_dmic_enum,
-+			  dmic_get, dmic_set);
-+
-+static const struct snd_soc_dapm_widget sc7180_snd_dual_mic_widgets[] = {
-+	SND_SOC_DAPM_HP("Headphone Jack", NULL),
-+	SND_SOC_DAPM_MIC("Headset Mic", NULL),
-+	SND_SOC_DAPM_MIC("DMIC", NULL),
-+	SND_SOC_DAPM_MUX("Dmic Mux", SND_SOC_NOPM, 0, 0, &sc7180_dmic_mux_control),
-+};
-+
-+static const struct snd_soc_dapm_route sc7180_snd_dual_mic_audio_route[] = {
-+	{"Dmic Mux", "Front Mic", "DMIC"},
-+	{"Dmic Mux", "Rear Mic", "DMIC"},
-+};
- 
- static int sc7180_snd_platform_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card;
- 	struct sc7180_snd_data *data;
- 	struct device *dev = &pdev->dev;
-+	struct snd_soc_dai_link *link;
- 	int ret;
-+	int i;
-+	bool no_headphone;
- 
- 	/* Allocate the private data */
- 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-@@ -238,17 +307,45 @@ static int sc7180_snd_platform_probe(struct platform_device *pdev)
- 	card->dapm_widgets = sc7180_snd_widgets;
- 	card->num_dapm_widgets = ARRAY_SIZE(sc7180_snd_widgets);
- 
-+	if (of_property_read_bool(dev->of_node, "dmic-gpios")) {
-+		card->dapm_widgets = sc7180_snd_dual_mic_widgets,
-+		card->num_dapm_widgets = ARRAY_SIZE(sc7180_snd_dual_mic_widgets),
-+		card->dapm_routes = sc7180_snd_dual_mic_audio_route,
-+		card->num_dapm_routes = ARRAY_SIZE(sc7180_snd_dual_mic_audio_route),
-+		data->dmic_sel = devm_gpiod_get(&pdev->dev, "dmic", GPIOD_OUT_LOW);
-+		if (IS_ERR(data->dmic_sel)) {
-+			dev_err(&pdev->dev, "DMIC gpio failed err=%d\n",
-+				PTR_ERR(data->dmic_sel));
-+				return PTR_ERR(data->dmic_sel);
-+		}
-+	}
-+
-+	if (of_device_is_compatible(dev->of_node, "google,sc7180-coachz")) {
-+		no_headphone = true;
-+		card->dapm_widgets = sc7180_adau7002_snd_widgets;
-+		card->num_dapm_widgets = ARRAY_SIZE(sc7180_adau7002_snd_widgets);
-+	}
-+
- 	ret = qcom_snd_parse_of(card);
- 	if (ret)
- 		return ret;
- 
--	sc7180_add_ops(card);
-+	for_each_card_prelinks(card, i, link) {
-+		if (no_headphone) {
-+			link->ops = &sc7180_adau7002_ops;
-+			link->init = sc7180_adau7002_init;
-+		} else {
-+			link->ops = &sc7180_ops;
-+			link->init = sc7180_init;
-+		}
-+	}
- 
- 	return devm_snd_soc_register_card(dev, card);
- }
- 
- static const struct of_device_id sc7180_snd_device_id[]  = {
--	{ .compatible = "google,sc7180-trogdor"},
-+	{.compatible = "google,sc7180-trogdor"},
-+	{.compatible = "google,sc7180-coachz"},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sc7180_snd_device_id);
--- 
-2.25.1
+Despite some small comments inline.
 
+> +static int fsl_aud2htx_dai_probe(struct snd_soc_dai *cpu_dai)
+> +{
+> +	struct fsl_aud2htx *aud2htx = dev_get_drvdata(cpu_dai->dev);
+> +
+> +	/* DMA request when number of entries < WTMK_LOW */
+> +	regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
+> +			   AUD2HTX_CTRE_DT_MASK, 0);
+> +
+> +	/* Disable interrupts*/
+> +	regmap_update_bits(aud2htx->regmap, AUD2HTX_IRQ_MASK,
+> +			   AUD2HTX_WM_HIGH_IRQ_MASK |
+> +			   AUD2HTX_WM_LOW_IRQ_MASK |
+> +			   AUD2HTX_OVF_MASK,
+> +			   AUD2HTX_WM_HIGH_IRQ_MASK |
+> +			   AUD2HTX_WM_LOW_IRQ_MASK |
+> +			   AUD2HTX_OVF_MASK);
+> +
+> +	/* Configure watermark */
+> +	regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
+> +			   AUD2HTX_CTRE_WL_MASK,
+> +			   AUD2HTX_WTMK_LOW << AUD2HTX_CTRE_WL_SHIFT);
+> +	regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
+> +			   AUD2HTX_CTRE_WH_MASK,
+> +			   AUD2HTX_WTMK_HIGH << AUD2HTX_CTRE_WH_SHIFT);
+
+If there isn't a hard requirement from hardware, feels better to
+combine all the writes to AUD2HTX_CTRL_EXT into one single MMIO.
+
+> +static irqreturn_t fsl_aud2htx_isr(int irq, void *dev_id)
+> +{
+> +	return IRQ_HANDLED;
+
+Empty isr? Perhaps can drop the request_irq() at all?
+
+> +static int fsl_aud2htx_probe(struct platform_device *pdev)
+> +{
+> +	struct fsl_aud2htx *aud2htx;
+> +	struct resource *res;
+> +	void __iomem *regs;
+> +	int ret, irq;
+> +
+> +	aud2htx = devm_kzalloc(&pdev->dev, sizeof(*aud2htx), GFP_KERNEL);
+> +	if (!aud2htx)
+> +		return -ENOMEM;
+> +
+> +	aud2htx->pdev = pdev;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	regs = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(regs)) {
+> +		dev_err(&pdev->dev, "failed ioremap\n");
+> +		return PTR_ERR(regs);
+> +	}
+> +
+> +	aud2htx->regmap = devm_regmap_init_mmio(&pdev->dev, regs,
+> +						&fsl_aud2htx_regmap_config);
+> +	if (IS_ERR(aud2htx->regmap)) {
+> +		dev_err(&pdev->dev, "failed to init regmap");
+> +		return PTR_ERR(aud2htx->regmap);
+> +	}
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0) {
+> +		dev_err(&pdev->dev, "no irq for node %s\n",
+> +			dev_name(&pdev->dev));
+
+dev_err() already prints dev_name, so not necessary to print again.
