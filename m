@@ -2,71 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A6BB2A89F9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 23:37:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 027ED2A89FF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 23:39:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731860AbgKEWhC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 17:37:02 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:33041 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726729AbgKEWhC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 17:37:02 -0500
-Received: by mail-oi1-f195.google.com with SMTP id k26so3420105oiw.0;
-        Thu, 05 Nov 2020 14:37:01 -0800 (PST)
+        id S1731860AbgKEWjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 17:39:53 -0500
+Received: from mail-ot1-f42.google.com ([209.85.210.42]:43680 "EHLO
+        mail-ot1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731694AbgKEWjx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 17:39:53 -0500
+Received: by mail-ot1-f42.google.com with SMTP id y22so2975695oti.10;
+        Thu, 05 Nov 2020 14:39:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=c3C5XgJRHAT7v5YhunvUxIvvrDo4P+JprtJHnujvPNA=;
-        b=KDy2QR+bHpviKioVB8JNVtUXsNJ8zcZ+KmvYrJ8PS/TClBRiR5g0LKEeihWten0lw5
-         xjVDEha6EA0DZp8GPnSmNfPCAuYuqMylH1YjkvrR51y1d6gJN7wnnba+6kLAUNQo0pYZ
-         gM7BuRI4N8Ohchn00m1wksyJCq/ItHazjV2eCgCnXSlKoW9zT211ERrcYDXTPZuRon/1
-         mT2dKHSEdTcQJSlOB/UU5ZNvw7AE12BvXhUgf+yGA7sjns7GKWMGxDMLh98ncKXe5a1A
-         xBcaYz63Sg/2BjPicpoIAJEKkrXvVrImURkpc/pMOZBHNL7AIbgdl13OQuOMyejDd/Qa
-         tS8Q==
-X-Gm-Message-State: AOAM532epUO9sd6590UCWMjkRm778ISUcZxE4iwPsVuX099jD05ZcMQc
-        knwbH5SwMviOaVSN2UpGQFhbGgldGgv1
-X-Google-Smtp-Source: ABdhPJwxq4RjY+Ng5QZd+7R7yaDhg1MuA9bc2erBAB7yVXrBvjdv24Bh3IG4EiVZF35X69h680KpaA==
-X-Received: by 2002:aca:abc1:: with SMTP id u184mr980023oie.122.1604615821597;
-        Thu, 05 Nov 2020 14:37:01 -0800 (PST)
+        bh=l33mjh6Y58sdX7p0bIXXnh8X4f5mWO8LY9kaS0QVJ4A=;
+        b=HAIAXnYDTRlzC4F32MR8xWnVa3x5nLYSwbhJiDHTlWHaw7UOn2Sxj3TrbGxFKSS1pQ
+         lFjeLzbm8TADlbO3LtTdDqoLa17tnhtF3ehuUsWEb2lIjef7vqaB2015gdXtZZzlwpj4
+         U/Kp4XDSB4I1fwcBUWc/8VGXvHFSZjsn/Rd4XGGfCYdlR6lELzep21dXRjr7IeuhmDCX
+         5ooAot2uBShQBQZY55Ol5xNV4faVx0M8Q935SyXwv+Xqxchl7NOCjL1QgRI9KsBRvGVY
+         unx9mzh/JuEPpPQ8+PhxwetSEdXwu2Bf8uShkcjbF3eiunb18HsjJXHizOcA8D5THE8c
+         ot8w==
+X-Gm-Message-State: AOAM530fRtDJssuEB6x8N6RS0XuYuy3l9VOohPXUayxLLs2tefQwEGNj
+        3XBdnVSxdRFvLvwz7SxWoRx1ANaJ1CM7
+X-Google-Smtp-Source: ABdhPJzDd/toUHUVegfNxYe5pmvS84hMCVzJYSgsN1/BIcuceQS9+OMgPmZABerM5vzQWRnLkG768w==
+X-Received: by 2002:a9d:17c5:: with SMTP id j63mr3430400otj.9.1604615992062;
+        Thu, 05 Nov 2020 14:39:52 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f34sm644286otb.34.2020.11.05.14.37.00
+        by smtp.gmail.com with ESMTPSA id x190sm693150oia.35.2020.11.05.14.39.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 14:37:01 -0800 (PST)
-Received: (nullmailer pid 1927393 invoked by uid 1000);
-        Thu, 05 Nov 2020 22:37:00 -0000
-Date:   Thu, 5 Nov 2020 16:37:00 -0600
+        Thu, 05 Nov 2020 14:39:50 -0800 (PST)
+Received: (nullmailer pid 1931122 invoked by uid 1000);
+        Thu, 05 Nov 2020 22:39:49 -0000
+Date:   Thu, 5 Nov 2020 16:39:49 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Chen <peter.chen@nxp.com>
-Cc:     devicetree@vger.kernel.org, pawell@cadence.com,
-        linux-usb@vger.kernel.org, rogerq@ti.com, jun.li@nxp.com,
-        linux-imx@nxp.com, robh+dt@kernel.org
-Subject: Re: [PATCH v3 1/1] doc: dt-binding: cdns,usb3: add wakeup-irq
-Message-ID: <20201105223700.GA1927324@bogus>
-References: <20201104080524.1821-1-peter.chen@nxp.com>
+To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+Cc:     broonie@kernel.org, joel@jms.id.au, andrew@aj.id.au, clg@kaod.org,
+        bbrezillon@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-spi@vger.kernel.org, BMC-SW@aspeedtech.com
+Subject: Re: [v3 1/4] dt-bindings: spi: Add binding file for ASPEED FMC/SPI
+ memory controller
+Message-ID: <20201105223949.GA1927504@bogus>
+References: <20201105120331.9853-1-chin-ting_kuo@aspeedtech.com>
+ <20201105120331.9853-2-chin-ting_kuo@aspeedtech.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201104080524.1821-1-peter.chen@nxp.com>
+In-Reply-To: <20201105120331.9853-2-chin-ting_kuo@aspeedtech.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Nov 2020 16:05:24 +0800, Peter Chen wrote:
-> To support low power mode for controller, the driver needs wakeup-irq
-> to reflect the signal changing after controller is stopped, and waking
-> the controller up accordingly.
+On Thu, Nov 05, 2020 at 08:03:28PM +0800, Chin-Ting Kuo wrote:
+> Create binding file with YAML syntax for ASPEED FMC/SPI memory controller.
 > 
-> Signed-off-by: Peter Chen <peter.chen@nxp.com>
+> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
 > ---
-> Changes for v3:
-> - Fix the dt_binding_check error
+>  .../bindings/spi/aspeed,spi-aspeed.yaml       | 66 +++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/aspeed,spi-aspeed.yaml
 > 
-> Changes for v2:
-> - Add "minItems: 3" to make wakeup irq optional
-> 
->  Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/spi/aspeed,spi-aspeed.yaml b/Documentation/devicetree/bindings/spi/aspeed,spi-aspeed.yaml
+> new file mode 100644
+> index 000000000000..41b9692c7226
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/aspeed,spi-aspeed.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/aspeed,spi-aspeed.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SPI memory controller for ASPEED SoCs
+> +
+> +maintainers:
+> +  - Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+> +
+> +description: |
+> +  There are three SPI memory controllers embedded in a ASPEED SoC.
+> +  They are usually connected to SPI NOR flashes. Each of them has
+> +  more than a chip select. They also support SPI single, dual and
+> +  quad IO modes for SPI NOR flash.
+> +
+> +allOf:
+> +  - $ref: /spi/spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+You can drop oneOf (there's only 1) and items.
+
+> +          - enum:
+> +              - aspeed,ast2600-fmc
+> +              - aspeed,ast2600-spi
+> +
+> +  reg:
+> +    items:
+> +      - description: the control register location and length
+> +      - description: the flash memory mapping address and length
+> +
+> +  clocks:
+> +    description: AHB bus clock which will be converted to SPI bus clock
+
+maxItems: 1
+
+Constraints on num-cs values? Or up to 2^32 is good?
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - num-cs
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/ast2600-clock.h>
+> +    spi1: spi@1e630000 {
+> +      compatible = "aspeed,ast2600-spi";
+> +      reg = <0x1e630000 0xc4>, <0x30000000 0x10000000>;
+> +      reg-names = "spi_ctrl_reg", "spi_mmap";
+> +      clocks = <&syscon ASPEED_CLK_AHB>;
+> +      num-cs = <2>;
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      flash@0 {
+> +        compatible = "jedec,spi-nor";
+> +        reg = <0>;
+> +        spi-max-frequency = <50000000>;
+> +      };
+> +      flash@1 {
+> +        compatible = "jedec,spi-nor";
+> +        reg = <1>;
+> +        spi-max-frequency = <50000000>;
+> +      };
+> +    };
+> -- 
+> 2.17.1
+> 
