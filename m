@@ -2,130 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A1F2A800C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 441C12A801B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730660AbgKENzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 08:55:03 -0500
-Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:52849 "EHLO
-        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726067AbgKENzD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:55:03 -0500
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud8.xs4all.net with ESMTPA
-        id afj6kDNilNanzafj9kobEV; Thu, 05 Nov 2020 14:55:01 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
-        t=1604584501; bh=Os8Q6RoIFzpecz6IaKw3bDHhoVHVDp/wsU85OkcRmUY=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=wVbVNiKI1ni2WRTvKI7A1TOqQHSmAor2+Nr2aLT1NIe2Fc1ge7wnKhpnxbRNayXlA
-         XIStbOZv/pHol/XIyMyhQsvsOkY1EJhG1VU54hiXtGdZMj24h0CloQ2zljt3R+jq7r
-         9HHt7HZWGLPtF9VcZdO6Aa9SdRU11Sh34O/AgNlguJmmu+qtwW3KxT+ySOXpfZDJkN
-         XVpwF03MOFVFceaBlHg5FF01e5g8/GGGN2bNp2ypa3toumFlAINuLgLnoOb+HnHT1Y
-         qYz+1j/r3uOLOrjhIjjvHNYPvWK9IDs8oEEHc3TKvmeQsXgWUucMtsfJsAcW8+44Zq
-         WlOe2T5g/AjEQ==
-Subject: Re: [PATCH v2 0/6] ARM: dts: sun8i: v3s: Enable video decoder
-To:     Martin Cerveny <m.cerveny@computer.org>,
-        Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>
-References: <20200912143052.30952-1-m.cerveny@computer.org>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <c8cc3529-3e21-2a11-d258-bb03885a5c91@xs4all.nl>
-Date:   Thu, 5 Nov 2020 14:54:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1730775AbgKEN5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 08:57:04 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:57121 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726067AbgKEN5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:57:04 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 8C8AC58034B;
+        Thu,  5 Nov 2020 08:57:00 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 05 Nov 2020 08:57:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:to:cc:subject:date:message-id:content-type:mime-version
+        :content-transfer-encoding; s=fm1; bh=/SUue8If/RDXoikA8wmeLjgste
+        Ds4PEf/i891dT0R/c=; b=vQlB0JudV+keM3oRXB26O3sX44vPzM/JU70TGVs2GK
+        WmDxJ665BZO2yY/illL8KgDILz4GjTRP8NiSShlF1ua1hTXL1UV16c9s0KFnJbJn
+        JymybJcHH6nJ/qBRclMTeh3V0sWid0RW2Ri3EUhLXmYc/ZJ63+a6a5LBclYOnwsw
+        LAb2E53jbuWJ9bjzHG0/3NcIn/mlnHtt5ZE3q2DwagE4xAG+WQijfp5STg1/Gixl
+        Gph2o3OlEEyajy3vDEi+ZNLNxHwu/c+aIV0xbMRmbHhPRyQA8O+GysZACgX27jvh
+        diSpsWkhzQkI6ItXUdz6ykou2y3yKdZZIHeqWGeh3SGQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=/SUue8
+        If/RDXoikA8wmeLjgsteDs4PEf/i891dT0R/c=; b=KT+K6Y5RthbYOgUM4SC+SF
+        otWeM+YLBTTws4GM322vng6rKhnBFjHfzQo7J7cpoGAHpDGDJJ1BF8r4Ofq/Xt1c
+        wjir1TiIKJDYl3MRjPCckxwBI9dGDVuxcQoZBu6LyXtINYJhllaTubRM+XXHWw/1
+        pWmo0uKW0IPt+pbMH/M0o+a70Sj/MqNzCnyUSOiPdeYPWUVsoTBxrJyS8YLehkP+
+        w5hZWsv45jCSh3w3Zji6MHxr/a/Q4MTE0f8HiJ6eP7vXAqAslsVd37fLn/61j+KO
+        KoMKjit/u7f6oxvFIRgTf9VSG+VpBvw7D98NZUHET5EUHZG9KFejns+iAEtbOpBA
+        ==
+X-ME-Sender: <xms:qgSkX6yXANzLIIpAQqQMazRi5RigCn3ppkVH9nA-BcWMi-jY5vGxbg>
+    <xme:qgSkX2Q4C3c-L-bqmYxAqnEtGYjGkI3fr90ZjLHMdDA6qmQX_Fg6jJqItiJ-kfIx7
+    SfU2eIjlKD1hj_QJxE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtjedgheelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffotggggfesthhqredtredtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeetieekgfffkeegkeeltdehudetteejgfekueevhffhteegudfgkedtueegfffg
+    feenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:qgSkX8UyAXCxErjJcln57g736-ZcIAG7DefeHw1vrUvQr1XI8YFLpw>
+    <xmx:qgSkXwgIn6weNMT6YvfPXCUyBdPJxuCD7PME4gDw4QiWGoJqnw482Q>
+    <xmx:qgSkX8BfkfSyGXWqKiW2CACO4EnuIOnCUqco8SCc9alBpnKZtSO5Dg>
+    <xmx:rASkX6SDFqFcfyvrpxLtOxe6afbv3AqK8rHW8ImMRR9G0OAxv8rtdw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 76EFB3280261;
+        Thu,  5 Nov 2020 08:56:58 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Eric Anholt <eric@anholt.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+Subject: [PATCH v3 0/7] drm/vc4: Rework the HVS muxing code
+Date:   Thu,  5 Nov 2020 14:56:49 +0100
+Message-Id: <20201105135656.383350-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.28.0
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20200912143052.30952-1-m.cerveny@computer.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4xfKAnj7LQGDaYmCX296c3vrxWv5e/Ef2SUUKyJz1tzh8Hg7mcghn4UOMUtiDF15DbskEEobx/3GV3mKJD2QR/+BJvDWHqtiffPg+JqxWRCXdGkL4LKcAL
- b6V5jIRASp0YnUAjPXv8sTQ8ZicE5R4ThJApeNCQqCrczKLdML9AFoY+wfoHVpYtggLajoVCksU2K1jMfy33BCDILtJpgqt/rbRZBDLwaWwKeezaENCNlvVj
- rqwkrjSzFIGCluWZ57FtuUMXwvG4ZgpyETF8Sx2IhhyDDN3ZfS8CiExo8otjngEgSIJCONqGN8Yks14AFrI6hvlGUXxAHzYvDyIEJB4OkC8B6kOG6q98pzQi
- HJpOoIFNK+wzz5zkeif0O9rV+4nkXvLst2gX25uXjEiTaeAPHEq31/rcJAio7NuAGflbfD5ws+fjF6SbgppVOcdyjCf7GVmq2lt50iGtheq/rTgQ0lsTy2yl
- 1XZ50JXtHleEL3YYTdwL5byb4JNnBec/rBzlZTCv6XRVnV7Sso9sMSPRhPhXTio4KNGI9yflco4KfQCDyJYmbn1BoOGzZ26+dXLKSljH5C+Ip10cN9/NKDr4
- niauSYp1j7DSffLElOjBPaP2
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
-
-On 12/09/2020 16:30, Martin Cerveny wrote:
-> First patch extends cedrus capability to all decoders
-> because V3s missing MPEG2 decoder.
-> 
-> Next two patches add system control node (SRAM C1) and 
-> next three patches add support for Cedrus VPU.
-> 
-> Tested on "Lichee Zero" V3s platform with testing LCD patch
-> ( https://github.com/mcerveny/linux/tree/v3s_videocodec_v4 )
-> and V4L2 raw API testing utility
-> ( https://github.com/mcerveny/v4l2-request-test ):
-> - enabled LCD (DRM dual VI and sigle UI planes)
-> - added RGB panel
-> - enabled PWM
-> 
-> There is low memory on V3s (64MB) and maximum must be available to CMA:
-> - CONFIG_CMA_SIZE_MBYTES=28
-> - add swap to swapout other processes
-> - decrease buffers in v4l2-request-test (.buffers_count from 16 to 6)
-> 
-> Only H.264 decoder working - MPEG and H.265 unsupported by V3s,
-> JPEG/MJPEG still unimplemented, encoder unimplemented
-
-When I tried to merged these patches I got merge conflicts.
-
-Possibly due to other 5.10 changes, but certainly because of conflicts
-with patches from Jernej:
-
-https://patchwork.linuxtv.org/project/linux-media/patch/20200825173523.1289379-4-jernej.skrabec@siol.net/
-https://patchwork.linuxtv.org/project/linux-media/patch/20200825173523.1289379-5-jernej.skrabec@siol.net/
-
-I've merged Jerne's patches and posted a PR for that:
-https://patchwork.linuxtv.org/project/linux-media/patch/f3b8e5e2-5f0e-fb6f-e5b2-7f44f7e365e7@xs4all.nl/
-
-Can you rebase your patches on top of my branch that contains Jernej's patches?
-
-https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=for-v5.11e
-
-Once my PR is merged into the media_tree master I can take your rebased
-patches.
-
-Regards,
-
-	Hans
-
-> 
-> best regards,
-> Martin
-> 
-> Changes since v1:
-> - patch 0005 rename
-> - added testing description
-> 
-> Martin Cerveny (6):
->   media: cedrus: Register all codecs as capability
->   dt-bindings: sram: allwinner,sun4i-a10-system-control: Add V3s
->     compatibles
->   ARM: dts: sun8i: v3s: Add node for system control
->   media: cedrus: Add support for V3s
->   dt-bindings: media: cedrus: Add V3s compatible
->   ARM: dts: sun8i: v3s: Add video engine node
-> 
->  .../allwinner,sun4i-a10-video-engine.yaml     |  1 +
->  .../allwinner,sun4i-a10-system-control.yaml   |  6 ++++
->  arch/arm/boot/dts/sun8i-v3s.dtsi              | 33 +++++++++++++++++++
->  drivers/staging/media/sunxi/cedrus/cedrus.c   | 28 +++++++++++++++-
->  drivers/staging/media/sunxi/cedrus/cedrus.h   |  2 ++
->  .../staging/media/sunxi/cedrus/cedrus_video.c |  2 ++
->  6 files changed, 71 insertions(+), 1 deletion(-)
-> 
-
+Hi,=0D
+=0D
+Here's a second attempt at fixing the current issues we have with the=0D
+muxing code that results in a PV muxing its HVS muxing when only another=0D
+CRTC is modified by a state, or vblank timeouts when trying to wait for a=0D
+vblank on a single CRTC while another one is inactive but enabled.=0D
+=0D
+Let me know what you think,=0D
+Maxime=0D
+=0D
+Changes from v1:=0D
+  - Dropped the code trying to access all the CRTCs (whether in the state=0D
+    or not) state=0D
+  - Added Hoegeun Kwon's tags=0D
+  - Fixed a build bisection error=0D
+  - Cleaned up the private state using drmm_add_action_or_reset=0D
+  - Rebased on current linux next=0D
+=0D
+Maxime Ripard (7):=0D
+  drm/vc4: kms: Switch to drmm_add_action_or_reset=0D
+  drm/vc4: kms: Remove useless define=0D
+  drm/vc4: kms: Rename NUM_CHANNELS=0D
+  drm/vc4: kms: Split the HVS muxing check in a separate function=0D
+  drm/vc4: kms: Document the muxing corner cases=0D
+  drm/vc4: kms: Store the unassigned channel list in the state=0D
+  drm/vc4: kms: Don't disable the muxing of an active CRTC=0D
+=0D
+ drivers/gpu/drm/vc4/vc4_drv.h |   2 +=0D
+ drivers/gpu/drm/vc4/vc4_kms.c | 247 +++++++++++++++++++++++++---------=0D
+ 2 files changed, 185 insertions(+), 64 deletions(-)=0D
+=0D
+-- =0D
+2.28.0=0D
+=0D
