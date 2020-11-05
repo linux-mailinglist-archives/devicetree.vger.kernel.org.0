@@ -2,121 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 102B42A8218
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 16:22:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC4F2A821E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 16:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731050AbgKEPWQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 10:22:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52754 "EHLO
+        id S1731264AbgKEPXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 10:23:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730660AbgKEPWQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 10:22:16 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5261BC0613CF;
-        Thu,  5 Nov 2020 07:22:14 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id l10so1979097lji.4;
-        Thu, 05 Nov 2020 07:22:14 -0800 (PST)
+        with ESMTP id S1730660AbgKEPXH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 10:23:07 -0500
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9CEC0613CF
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 07:23:06 -0800 (PST)
+Received: by mail-qk1-x743.google.com with SMTP id x20so1491620qkn.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 07:23:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=L7OVsr5m178XbCaCzAWNkdQoFi3/3zu9mN+yPgl2DUs=;
-        b=ZUE+lII34sxgdJMzK2yn/f7sQCJw/4+mRXBdMBq1/bhBQWtfS/PtExzwYtktIoAWgY
-         SU7g93lwJ2c7NK0CDwzeo+RytY043NhbabYKjJOBr7tIMP5wlLP/u6h82rzBRDjVxP9j
-         EdnAYAZOpmyMs1GUR/kcd37x1kAewnXFex0wqQUKK37hfYXxUIOMvhuhv9Kkm4bWWj03
-         NYOfuJLDcjhyyGqGtJNpIUWkJQCG6veMjv1sZZ5dae38lEVIkii3wjlD54ZKITpqpnKX
-         8VoeiDhs1BxqGTAhX5SPmAP4HQXgACk2ac5ePAi3NeEKCHu2erytV3AEJlNMrsBJq5S8
-         bmSA==
+        d=0x0f.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1SxuLZqP7expcmyIeWKucvYuGkstgspzMuDDrhMmksY=;
+        b=QgkcEaYbFwTbauWuAVLqGTRxvWi76twgcpDbNcMEkx8DmTQPUhNPmJTCJnGwcitJZ+
+         EcvTydCY9JAEc0P8ZsX8G4IO4KlR5W//1ksdtn7VPaN0RNh3NYcVSnEaXXQgJb94Wwij
+         RtwwcVVTXOiXvAtpie6fdSsuT/TNr9UEs2EOs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=L7OVsr5m178XbCaCzAWNkdQoFi3/3zu9mN+yPgl2DUs=;
-        b=twh5NJEnuJ62dpTxoXovRD4gCmY0BG4D9sS+edVQQaMZPACU1iuomMN04SrNwtNh22
-         xGgIaIIGj3vyBZ9oADNuwuwDVf+fnX79IRtDyPVBi0M7BStghUDNZRkAK7Of7dOgEVq2
-         SIFpM8RU39rOH0UKaL6zhX5IarWKE5o/lAJs701DcXrY8D5qmZXojcDNMiGQbuL4vFlv
-         8D9WQ5rOyXrCiJFoIgj2thbGswp7134dZ+pdmXKUUX7/i80MgJ+K3pCsyLmzkqt0AXue
-         PI8v+6G9SRCSt0uBy0cXjRGyCVaq8m9rxGnt7vnEEBfr03P1sJFKGC2UktRMnFqD8Kr0
-         RDQw==
-X-Gm-Message-State: AOAM533I23gWFQ5iK/2hzADTQc84tAIocMgvEeppzzNkLTtmlUB8KQgy
-        KSeJV8Z1IXgIGjbGxm2PEqKG+a1OJ9E=
-X-Google-Smtp-Source: ABdhPJwC5ZQ/5zYH2nUFCy93HeDhVeV9bcOjajKeeVZadnE++shSnXPj1s2oA0r6x39bDtt0cphAoQ==
-X-Received: by 2002:a2e:9a0e:: with SMTP id o14mr1127768lji.340.1604589731407;
-        Thu, 05 Nov 2020 07:22:11 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-83.dynamic.spd-mgts.ru. [109.252.192.83])
-        by smtp.googlemail.com with ESMTPSA id 144sm176642ljj.48.2020.11.05.07.22.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Nov 2020 07:22:10 -0800 (PST)
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>
-References: <20201104234427.26477-1-digetx@gmail.com>
- <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <cd147ab0-1304-a491-7a56-ee6199c02d32@gmail.com>
-Date:   Thu, 5 Nov 2020 18:22:09 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1SxuLZqP7expcmyIeWKucvYuGkstgspzMuDDrhMmksY=;
+        b=Fi8bcvkBv3p4cuBKVVvcN58oIVJt+pM4CHdOhGb28I1JhvzxDpSRLHHBdvR0g8oEaS
+         fjp4+WDIUGsdhve1LobHV5GPZXCxJdLW5op28IV6whBmuSYOa6VVmf/QQRnqER0GSaJ8
+         1a/3i6pl0nUbufFQ9hlizfh1cacDI4O0apNArDfFSXsCyUV+NR1VW4bPlM9b03C7QyGg
+         LqK+VS5PtLt1AfIQ/Vr3bdATols6FCXsVXUMrx2ml9lCnso6m6H9KjoQtlY1MTG1DlYw
+         j7bOe3q7ZXLQt4bhE2qUYs2B8IOVTMMOf8m94QVeWgHlOPmfaKZ+6EQze4c/UL0s6FGW
+         Th/Q==
+X-Gm-Message-State: AOAM5317T5+UPky6FhcrZey3Hw/Wju8sidOpPHxSJ7cEzo8Dgds6/Zk3
+        vV/KaxPpnQ9OiQsRU4p+Sd+yMez0yCDmvN6BEM4DVA==
+X-Google-Smtp-Source: ABdhPJxR5v810eCnN+xy4FPc5ORemteS4sufWGdQhxFtZCEDINdix51Ym1Hs+vbSKWGg17A+984EwIkolOj+XlVlAug=
+X-Received: by 2002:a37:7687:: with SMTP id r129mr1781089qkc.54.1604589785561;
+ Thu, 05 Nov 2020 07:23:05 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201019141008.871177-1-daniel@0x0f.com> <20201019141008.871177-4-daniel@0x0f.com>
+ <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com> <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
+In-Reply-To: <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
+From:   Daniel Palmer <daniel@0x0f.com>
+Date:   Fri, 6 Nov 2020 00:23:52 +0900
+Message-ID: <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, arm-kernel@lists.infradead.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-05.11.2020 12:45, Ulf Hansson пишет:
-...
-> I need some more time to review this, but just a quick check found a
-> few potential issues...
+Hi Marc,
 
-Thank you for starting the review! I'm pretty sure it will take a couple
-revisions until all the questions will be resolved :)
+On Thu, 5 Nov 2020 at 21:08, Marc Zyngier <maz@kernel.org> wrote:
+>
+> On 2020-11-05 09:40, Linus Walleij wrote:
+> > On Mon, Oct 19, 2020 at 4:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
+>
+> [...]
+>
+> >> +/* The parent interrupt controller needs the GIC interrupt type set
+> >> to GIC_SPI
+> >> + * so we need to provide the fwspec. Essentially
+> >> gpiochip_populate_parent_fwspec_twocell
+> >> + * that puts GIC_SPI into the first cell.
+> >> + */
+>
+> nit: comment style.
 
-> The "core-supply", that you specify as a regulator for each
-> controller's device node, is not the way we describe power domains.
-> Instead, it seems like you should register a power-domain provider
-> (with the help of genpd) and implement the ->set_performance_state()
-> callback for it. Each device node should then be hooked up to this
-> power-domain, rather than to a "core-supply". For DT bindings, please
-> have a look at Documentation/devicetree/bindings/power/power-domain.yaml
-> and Documentation/devicetree/bindings/power/power_domain.txt.
-> 
-> In regards to the "sync state" problem (preventing to change
-> performance states until all consumers have been attached), this can
-> then be managed by the genpd provider driver instead.
+I've fixed these and some other bits for the v3.
+I've held off on pushing that until the rest of it seemed right.
 
-I'll need to take a closer look at GENPD, thank you for the suggestion.
+> >> +static void *msc313_gpio_populate_parent_fwspec(struct gpio_chip *gc,
+> >> +                                            unsigned int
+> >> parent_hwirq,
+> >> +                                            unsigned int parent_type)
+> >> +{
+> >> +       struct irq_fwspec *fwspec;
+> >> +
+> >> +       fwspec = kmalloc(sizeof(*fwspec), GFP_KERNEL);
+> >> +       if (!fwspec)
+> >> +               return NULL;
+> >> +
+> >> +       fwspec->fwnode = gc->irq.parent_domain->fwnode;
+> >> +       fwspec->param_count = 3;
+> >> +       fwspec->param[0] = GIC_SPI;
+> >> +       fwspec->param[1] = parent_hwirq;
+> >> +       fwspec->param[2] = parent_type;
+> >> +
+> >> +       return fwspec;
+> >> +}
+> >
+> > Clever. Looping in Marc Z so he can say if this looks allright to him.
+>
+> Yup, this looks correct. However, looking at the bit of the patch that
+> isn't quoted here, I see that msc313_gpio_irqchip doesn't have a
+> .irq_set_affinity callback. Is this system UP only?
 
-Sounds like a software GENPD driver which manages clocks and voltages
-could be a good idea, but it also could be an unnecessary
-over-engineering. Let's see..
+What is in mainline right now is UP only but there are chips with a
+second cortex A7 that I have working in my tree.
+So I will add that in for v3 if I can work out what I should actually
+do there. :)
+
+Thanks,
+
+Daniel
