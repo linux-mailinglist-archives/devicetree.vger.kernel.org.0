@@ -2,271 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96F432A77FB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:26:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B1B42A7809
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:32:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729851AbgKEH0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 02:26:47 -0500
-Received: from mail-eopbgr50043.outbound.protection.outlook.com ([40.107.5.43]:58244
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729779AbgKEH0q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 02:26:46 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eyEWMa47AI7fu21iQ+EPfCnNVnuKUwCQewuKAFONczykadykRmXOR0w3NGJ2OPRQ9d2ilheN79L4GE8F89HmRYG9RePqTuS3pKHNoLaPgG8+loa4RugoBdq8jdzNkY/yy64pAB/IWZy/eP5o2N7xrlAzfojHLCuY2pUfU6MI3RIfbiurd563E75PNTzzspjs2knAJK10eU0DktA26WAGWVmAekJjKH94yUFdLDDMJ/t1rdDRVYun4okzKeLMDryvzXaeWIEEBvJPPwTiz9bZkScl4dhYwyKeUMGS5ijoLg1+iykYaY3YukACEy6dchszvmTISFVlpU4VHIpObpOY1w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IllMc9N7eAaQ+ljrA3HurI0uBJMA3gQmg+C53YtXF18=;
- b=WHnswN0Gk+4hWERrHWp6Yd3RbsTLyZcQPkiwTQ3k5pyL7B5IoBKJQlNLXk1pmgN75TTWx4L0xhZXRooVhU9idadm0ef1n91WH20KY3BM4hWaXsMRldABvJ3St11Rhq2WOmzSWkE1PpHw8UREudOvVMdy3Vjp/MyTedcQIU9t+cupLltwXwjdRjN9TcsuLAe6a309VpiO4/0DGrQOD4NhoK9G7W2c5i1eAesHPVRxeBFxwfleqOx/e0C2/IyXvGzJ8gdY6Hkjn2MBNq0JjLsas8t6ZByaZ9ev4fOUtksq16fJ8SYy4tiBGUJ/rImr5/XH0MFp2UKToJSPWYr7JBNUKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IllMc9N7eAaQ+ljrA3HurI0uBJMA3gQmg+C53YtXF18=;
- b=r6yT+keodU1iwXLl9WzlNWKdwt3cC+7Nu+ViiNJFgIxecrXSUoqkQ8vswv4YGlrWRv1CKIiSLboJa2TxUC5q7EBPg8T4QE5hWsoC7ZClj+WIi2LO0+mDdErEfkLwb5L0VqHHabNsQtXlMARGhNwXjl9w/zjO7KrME1CNsY0OKHE=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB7065.eurprd04.prod.outlook.com (2603:10a6:10:127::9)
- by DB8PR04MB6906.eurprd04.prod.outlook.com (2603:10a6:10:118::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19; Thu, 5 Nov
- 2020 07:26:44 +0000
-Received: from DB8PR04MB7065.eurprd04.prod.outlook.com
- ([fe80::ed87:8435:3012:9618]) by DB8PR04MB7065.eurprd04.prod.outlook.com
- ([fe80::ed87:8435:3012:9618%8]) with mapi id 15.20.3499.032; Thu, 5 Nov 2020
- 07:26:44 +0000
-From:   Alice Guo <alice.guo@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        krzk@kernel.org
-Cc:     linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/4] soc: imx8m: change to use platform driver
-Date:   Thu,  5 Nov 2020 15:26:29 +0800
-Message-Id: <20201105072629.24175-4-alice.guo@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201105072629.24175-1-alice.guo@nxp.com>
-References: <20201105072629.24175-1-alice.guo@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR02CA0054.apcprd02.prod.outlook.com
- (2603:1096:4:54::18) To DB8PR04MB7065.eurprd04.prod.outlook.com
- (2603:10a6:10:127::9)
+        id S1726756AbgKEHcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 02:32:15 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60392 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725320AbgKEHcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 02:32:15 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A57W9LW075453;
+        Thu, 5 Nov 2020 01:32:09 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604561529;
+        bh=TBAs5azRMtL2kgvAKGdeDXUMtHgfm26OZulLvGFJwUA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Q0ktcgHPPkcvKYNF2Ljb8Ctve8mCByI9W39b2OZ9ZUw63T5BXrOFJ31K5nYt4ufVr
+         7LKszzpLt7KSpGHjfSYLRoyaYPtWj3nQQ9jy2iyc/sogc8j4Iw6734fhnQ/21swfeG
+         nmSjnIYO8bTyj1mitv4r/E8KPsHCE6Ap2FVfuGPg=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A57W8Bv087797
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 Nov 2020 01:32:09 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 5 Nov
+ 2020 01:32:07 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 5 Nov 2020 01:32:07 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A57W4qM066176;
+        Thu, 5 Nov 2020 01:32:05 -0600
+Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
+ SoC dtsi level
+To:     Nishanth Menon <nm@ti.com>, Roger Quadros <rogerq@ti.com>,
+        Keerthy <j-keerthy@ti.com>, Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201104224356.18040-1-nm@ti.com>
+ <20201104224356.18040-3-nm@ti.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
+Date:   Thu, 5 Nov 2020 09:32:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from nxf55104-OptiPlex-7060.ap.freescale.net (119.31.174.71) by SG2PR02CA0054.apcprd02.prod.outlook.com (2603:1096:4:54::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend Transport; Thu, 5 Nov 2020 07:26:40 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 35e73a6d-1abf-4d49-cd12-08d8815c2565
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6906:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB8PR04MB6906E9694BA54A97714C2BF3E2EE0@DB8PR04MB6906.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3968;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6tZR6+bwSMR5yUEM48p9DNvT2BUPFoI+B/P/JADSoU/uQ6Q71opoJrJrbAP6bh94sneQuDCn7k7tpaA6hLH5x7MdrE6o8VIRbtJ7kBGUAVxsZ+cfblGIj0G01I/E6q7ebbTWDunXWo4ByuJquMPiw+bt21DFAB8L0t3qimBh5LhQs1C7ezaG/oib97K+ntqhmMcZ1CCYLvITWhq1GsjtaGvlLi5NLRty2W3/h/mN/TTvyKEvG427Kjk8JRPQQmWOnzfa++AzZe22c3x34lwN2PXvhdcNox20LbgLxqHzV8HlU8eygqfIbjMT8VDub0g3n0UPHO1nNk/f+koZ8UBVQ1LMAzUXRKgZvOs/IgOURFiKSFBfplxq4RApCacn3gHy
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB7065.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(39860400002)(396003)(376002)(346002)(5660300002)(316002)(6512007)(44832011)(6666004)(478600001)(83380400001)(66946007)(8676002)(52116002)(6506007)(2906002)(86362001)(36756003)(4326008)(186003)(8936002)(66556008)(2616005)(26005)(6486002)(66476007)(956004)(16526019)(1076003)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: nqDD8Ud0Po3hMUb70cjBFwYJnUeRMYHcm0Ry3+X56+zH0Hm48rUYT4BGrodwUQJo+HGmKyAxvxBi11eyx2G45FkB5v6SbuCEWrgo1mO0XP+mcX3zx0OLMzvPLOGokjDeiQXIxastpKTUXX1Fl46SmV81cH6cnp85UaSptW2aCTfvEM4RA71D/g6/vjwponIIN5GaalVbh99m0XYI4Ehp0NmO9nyKh/D0rjTWLzTBiQxuPsfZT3gKMFtP2uLVxhb9tp4JMluEPow18TB0qbgbVmwCDOLIt0H4XUZt+0kBaOU+/bFNRF0R5yhTNnkjR6gnem5qqaaOG3RWFfgGObvGN4rxkOcFl57qd7MAw1eYQ34oWxfJKdm86iDMhj4XueTE5dyO+ztvfPWR23lORK0Z97dJ3EUSj+kl9ypLLRDI0KhLw3UOec2V7v3p8jNlmBu5oe4ULPURTM246RlZ2yswYxJxqKdZM0FWfbgBARvcHZnbIzEoh4TPmxrVqf8O7gH+OzNtOXjFglprY2TG3rbP6XNHieWVXHjZ7Onmmq1smyfuvDs3NfXIzZpHn+NZVPJczzmhB5QE7Ngx8n+d1DaMo3lH+u0QbEjUs1h5OYC2J1C6WCP3xs0xY1LWCx/WYTsUsO3tbBB8/TiAPDDP+SD+GQ==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 35e73a6d-1abf-4d49-cd12-08d8815c2565
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB7065.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2020 07:26:43.9936
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lh3XDb29BDWEIgo0mbWk/97Ee2xVUzk+ijyBDr+uSugPzA8FHR3o37LGKmH8n9lQMnaTdWAWPq3GGXke1wxFiA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6906
+In-Reply-To: <20201104224356.18040-3-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Directly reading ocotp register depends on that bootloader enables ocotp
-clk, which is not always effective, so change to use nvmem API. Using
-nvmem API requires to support driver defer probe and thus change
-soc-imx8m.c to use platform driver.
+Nishanth,
 
-The other reason is that directly reading ocotp register causes kexec
-kernel hang because the 1st kernel running will disable unused clks
-after kernel boots up, and then ocotp clk will be disabled even if
-bootloader enables it. When kexec kernel, ocotp clk needs to be enabled
-before reading ocotp registers, and nvmem API with platform driver
-supported can accomplish this.
+On 05/11/2020 0.43, Nishanth Menon wrote:
+> The device tree standard sets the default node behavior when status
+> property as enabled.
 
-Signed-off-by: Alice Guo <alice.guo@nxp.com>
----
- drivers/soc/imx/soc-imx8m.c | 75 +++++++++++++++++++++----------------
- 1 file changed, 42 insertions(+), 33 deletions(-)
+It should be:
+When the status property is not present under a node, the "okay' value
+is assumed.
 
-diff --git a/drivers/soc/imx/soc-imx8m.c b/drivers/soc/imx/soc-imx8m.c
-index cc57a384d74d..83f3297509be 100644
---- a/drivers/soc/imx/soc-imx8m.c
-+++ b/drivers/soc/imx/soc-imx8m.c
-@@ -5,6 +5,8 @@
+Note: the device tree specification does not document default value as
+such, see v0.3 (2.3.4, page 14).
+Yes, the "okay" is used in case the status property is missing (by Linux
+at least).
 
- #include <linux/init.h>
- #include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-consumer.h>
- #include <linux/of_address.h>
- #include <linux/slab.h>
- #include <linux/sys_soc.h>
-@@ -29,7 +31,7 @@
+> There are many reasons for doing the same, number
+> of strings in device tree,
 
- struct imx8_soc_data {
- 	char *name;
--	u32 (*soc_revision)(void);
-+	u32 (*soc_revision)(struct device *dev);
- };
+with expense of loc and readability.
 
- static u64 soc_uid;
-@@ -50,12 +52,15 @@ static u32 imx8mq_soc_revision_from_atf(void)
- static inline u32 imx8mq_soc_revision_from_atf(void) { return 0; };
- #endif
+> default power management functionality etc
 
--static u32 __init imx8mq_soc_revision(void)
-+static u32 __init imx8mm_soc_uid(struct device *dev);
-+
-+static u32 __init imx8mq_soc_revision(struct device *dev)
- {
- 	struct device_node *np;
- 	void __iomem *ocotp_base;
- 	u32 magic;
- 	u32 rev;
-+	int ret = 0;
+Right, so how does that helps with devices present in the SoC, but no
+node at all? First thing which comes to mind is AASRC, we don't have
+Linux driver for it (and no DT binding document), but that does not mean
+that it is not present. How PM would take that into account?
 
- 	np = of_find_compatible_node(NULL, NULL, "fsl,imx8mq-ocotp");
- 	if (!np)
-@@ -75,9 +80,9 @@ static u32 __init imx8mq_soc_revision(void)
- 			rev = REV_B1;
- 	}
+> are few of the reasons.
+> 
+> In general, after a few rounds of discussions [1] there are few
+> options one could take when dealing with SoC dtsi and board dts
+> 
+> a. SoC dtsi provide nodes as a super-set default (aka enabled) state and
+>    to prevent messy board files, when more boards are added per SoC, we
+>    optimize and disable commonly un-used nodes in board-common.dtsi
+> b. SoC dtsi disables all hardware dependent nodes by default and board
+>    dts files enable nodes based on a need basis.
+> c. Subjectively pick and choose which nodes we will disable by default
+>    in SoC dtsi and over the years we can optimize things and change
+>    default state depending on the need.
 
--	soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
--	soc_uid <<= 32;
--	soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
-+	ret = imx8mm_soc_uid(dev);
-+	if (ret)
-+		return ret;
+For the record: c was not really an option. There were no subjectivity,
+the reason was pragmatic.
 
- 	iounmap(ocotp_base);
- 	of_node_put(np);
-@@ -85,33 +90,20 @@ static u32 __init imx8mq_soc_revision(void)
- 	return rev;
- }
+We are all familiar with the Devicetree specification, but let me quote
+from chapter 2.3.4:
+"okay"
+Indicates the device is operational.
 
--static void __init imx8mm_soc_uid(void)
-+static u32 __init imx8mm_soc_uid(struct device *dev)
- {
--	void __iomem *ocotp_base;
--	struct device_node *np;
--	u32 offset = of_machine_is_compatible("fsl,imx8mp") ?
--		     IMX8MP_OCOTP_UID_OFFSET : 0;
--
--	np = of_find_compatible_node(NULL, NULL, "fsl,imx8mm-ocotp");
--	if (!np)
--		return;
--
--	ocotp_base = of_iomap(np, 0);
--	WARN_ON(!ocotp_base);
--
--	soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH + offset);
--	soc_uid <<= 32;
--	soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW + offset);
-+	int ret = 0;
+"disabled"
+Indicates that the device is not presently operational, but it might
+become operational in the future (for example, something is not plugged
+in, or switched off).
+Refer to the device binding for details on what disabled means for a
+given device.
 
--	iounmap(ocotp_base);
--	of_node_put(np);
-+	ret = nvmem_cell_read_u64(dev, "soc_unique_id", &soc_uid);
-+	return ret;
- }
+The reason why we kept McASP nodes (and dss) disabled in the soc dtsi
+file is that they are not operation in the form they present in there.
+They _need_ additional properties to be operational and those properties
+can only be added in the board dts file.
 
--static u32 __init imx8mm_soc_revision(void)
-+static u32 __init imx8mm_soc_revision(struct device *dev)
- {
- 	struct device_node *np;
- 	void __iomem *anatop_base;
- 	u32 rev;
-+	int ret;
+This is not remotely a subjective view, this is the opposite of
+subjectivity.
 
- 	np = of_find_compatible_node(NULL, NULL, "fsl,imx8mm-anatop");
- 	if (!np)
-@@ -125,7 +117,9 @@ static u32 __init imx8mm_soc_revision(void)
- 	iounmap(anatop_base);
- 	of_node_put(np);
+As for things not owned by the OS we have the "reserved" status.
 
--	imx8mm_soc_uid();
-+	ret = imx8mm_soc_uid(dev);
-+	if (ret)
-+		return ret;
+> While there are pros and cons on each of these approaches, the right
+> thing to do will be to stick with device tree default standards and
+> work within those established rules. So, we choose to go with option
+> (a).
+> 
+> Lets cleanup defaults of j721e SoC dtsi before this gets more harder
+> to cleanup later on and new SoCs are added.
+> 
+> The only functional difference between the dtb generated is
+> status='okay' is no longer necessary for mcasp10 and depends on the
+> default state.
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20201027130701.GE5639@atomide.com/
+> 
+> Fixes: 1c4d35265fb2 ("arm64: dts: ti: k3-j721e-main: Add McASP nodes")
+> Fixes: 76921f15acc0 ("arm64: dts: ti: k3-j721e-main: Add DSS node")
+> Cc: Jyri Sarha <jsarha@ti.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Cc: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>  .../dts/ti/k3-j721e-common-proc-board.dts     | 48 ++++++++++++++++++-
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 26 ----------
+>  2 files changed, 47 insertions(+), 27 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index 52e121155563..9416528caa8a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -540,6 +540,46 @@ &dss {
+>  				 <&k3_clks 152 18>;	/* PLL23_HSDIV0 */
+>  };
+>  
+> +&mcasp0 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp1 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp2 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp3 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp4 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp5 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp6 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp7 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp8 {
+> +	status = "disabled";
+> +};
+> +
+> +&mcasp9 {
+> +	status = "disabled";
+> +};
+> +
+>  &mcasp10 {
+>  	#sound-dai-cells = <0>;
+>  
+> @@ -556,8 +596,10 @@ &mcasp10 {
+>  	>;
+>  	tx-num-evt = <0>;
+>  	rx-num-evt = <0>;
+> +};
+>  
+> -	status = "okay";
+> +&mcasp11 {
+> +	status = "disabled";
+>  };
 
- 	return rev;
- }
-@@ -151,19 +145,20 @@ static const struct imx8_soc_data imx8mp_soc_data = {
- };
+Looks much better in this way.
+?
 
- static __maybe_unused const struct of_device_id imx8_soc_match[] = {
--	{ .compatible = "fsl,imx8mq", .data = &imx8mq_soc_data, },
--	{ .compatible = "fsl,imx8mm", .data = &imx8mm_soc_data, },
--	{ .compatible = "fsl,imx8mn", .data = &imx8mn_soc_data, },
--	{ .compatible = "fsl,imx8mp", .data = &imx8mp_soc_data, },
-+	{ .compatible = "fsl,imx8mq-soc", .data = &imx8mq_soc_data, },
-+	{ .compatible = "fsl,imx8mm-soc", .data = &imx8mm_soc_data, },
-+	{ .compatible = "fsl,imx8mn-soc", .data = &imx8mn_soc_data, },
-+	{ .compatible = "fsl,imx8mp-soc", .data = &imx8mp_soc_data, },
- 	{ }
- };
-+MODULE_DEVICE_TABLE(of, imx8_soc_match);
+I always wondered what is _not_ used by the board...
+But it is not really about that, we need to disable these nodes as they
+are incomplete in dtsi, they are not operational...
 
- #define imx8_revision(soc_rev) \
- 	soc_rev ? \
- 	kasprintf(GFP_KERNEL, "%d.%d", (soc_rev >> 4) & 0xf,  soc_rev & 0xf) : \
- 	"unknown"
+>  &serdes0 {
+> @@ -639,3 +681,7 @@ &pcie3_rc {
+>  &pcie3_ep {
+>  	status = "disabled";
+>  };
+> +
+> +&dss {
+> +	status = "disabled";
+> +};
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index e2a96b2c423c..b54332d6fdc5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1327,8 +1327,6 @@ dss: dss@04a00000 {
+>  				  "common_s1",
+>  				  "common_s2";
+>  
+> -		status = "disabled";
+> -
+>  		dss_ports: ports {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+> @@ -1350,8 +1348,6 @@ mcasp0: mcasp@2b00000 {
+>  		clocks = <&k3_clks 174 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 174 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp1: mcasp@2b10000 {
+> @@ -1369,8 +1365,6 @@ mcasp1: mcasp@2b10000 {
+>  		clocks = <&k3_clks 175 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 175 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp2: mcasp@2b20000 {
+> @@ -1388,8 +1382,6 @@ mcasp2: mcasp@2b20000 {
+>  		clocks = <&k3_clks 176 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 176 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp3: mcasp@2b30000 {
+> @@ -1407,8 +1399,6 @@ mcasp3: mcasp@2b30000 {
+>  		clocks = <&k3_clks 177 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 177 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp4: mcasp@2b40000 {
+> @@ -1426,8 +1416,6 @@ mcasp4: mcasp@2b40000 {
+>  		clocks = <&k3_clks 178 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp5: mcasp@2b50000 {
+> @@ -1445,8 +1433,6 @@ mcasp5: mcasp@2b50000 {
+>  		clocks = <&k3_clks 179 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp6: mcasp@2b60000 {
+> @@ -1464,8 +1450,6 @@ mcasp6: mcasp@2b60000 {
+>  		clocks = <&k3_clks 180 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 180 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp7: mcasp@2b70000 {
+> @@ -1483,8 +1467,6 @@ mcasp7: mcasp@2b70000 {
+>  		clocks = <&k3_clks 181 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 181 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp8: mcasp@2b80000 {
+> @@ -1502,8 +1484,6 @@ mcasp8: mcasp@2b80000 {
+>  		clocks = <&k3_clks 182 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp9: mcasp@2b90000 {
+> @@ -1521,8 +1501,6 @@ mcasp9: mcasp@2b90000 {
+>  		clocks = <&k3_clks 183 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 183 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp10: mcasp@2ba0000 {
+> @@ -1540,8 +1518,6 @@ mcasp10: mcasp@2ba0000 {
+>  		clocks = <&k3_clks 184 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 184 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	mcasp11: mcasp@2bb0000 {
+> @@ -1559,8 +1535,6 @@ mcasp11: mcasp@2bb0000 {
+>  		clocks = <&k3_clks 185 1>;
+>  		clock-names = "fck";
+>  		power-domains = <&k3_pds 185 TI_SCI_PD_EXCLUSIVE>;
+> -
+> -		status = "disabled";
+>  	};
+>  
+>  	watchdog0: watchdog@2200000 {
+> 
 
--static int __init imx8_soc_init(void)
-+static int imx8_soc_init_probe(struct platform_device *pdev)
- {
- 	struct soc_device_attribute *soc_dev_attr;
- 	struct soc_device *soc_dev;
-@@ -182,7 +177,7 @@ static int __init imx8_soc_init(void)
- 	if (ret)
- 		goto free_soc;
+There is no such a tag, but:
+whatever-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
--	id = of_match_node(imx8_soc_match, of_root);
-+	id = of_match_node(imx8_soc_match, pdev->dev.of_node);
- 	if (!id) {
- 		ret = -ENODEV;
- 		goto free_soc;
-@@ -192,7 +187,11 @@ static int __init imx8_soc_init(void)
- 	if (data) {
- 		soc_dev_attr->soc_id = data->name;
- 		if (data->soc_revision)
--			soc_rev = data->soc_revision();
-+			soc_rev = data->soc_revision(&pdev->dev);
-+
-+		ret = soc_rev;
-+		if (ret < 0)
-+			goto free_soc;
- 	}
+- Péter
 
- 	soc_dev_attr->revision = imx8_revision(soc_rev);
-@@ -230,4 +229,14 @@ static int __init imx8_soc_init(void)
- 	kfree(soc_dev_attr);
- 	return ret;
- }
--device_initcall(imx8_soc_init);
-+
-+static struct platform_driver imx8_soc_init_driver = {
-+	.probe = imx8_soc_init_probe,
-+	.driver = {
-+		.name = "imx8_soc_init",
-+		.of_match_table = of_match_ptr(imx8_soc_match),
-+	},
-+};
-+
-+module_platform_driver(imx8_soc_init_driver);
-+MODULE_LICENSE("GPL v2");
---
-2.17.1
-
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
