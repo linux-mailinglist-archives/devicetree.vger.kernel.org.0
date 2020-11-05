@@ -2,176 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6042A7CDA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97DB42A7CE6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:25:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730129AbgKELYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 06:24:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43818 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729263AbgKELYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:24:30 -0500
-Received: from leonov.paulk.fr (vpn-0-22.aquilenet.fr [IPv6:2a0c:e300:4:22::])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832EAC0613CF;
-        Thu,  5 Nov 2020 03:24:30 -0800 (PST)
-Received: from gagarine.paulk.fr (gagarine [192.168.1.127])
-        by leonov.paulk.fr (Postfix) with ESMTPS id 6F049C013D;
-        Thu,  5 Nov 2020 12:24:26 +0100 (CET)
-Received: by gagarine.paulk.fr (Postfix, from userid 114)
-        id 9254FC1D5B; Thu,  5 Nov 2020 12:24:25 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on gagarine.paulk.fr
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
-        autolearn=disabled version=3.4.2
-Received: from collins (unknown [192.168.1.1])
-        by gagarine.paulk.fr (Postfix) with ESMTPSA id A4BFBC1D4F;
-        Thu,  5 Nov 2020 12:24:18 +0100 (CET)
-Date:   Thu, 5 Nov 2020 12:24:18 +0100
-From:   Paul Kocialkowski <contact@paulk.fr>
+        id S1729992AbgKELZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 06:25:26 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:35123 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729113AbgKELZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:25:26 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 3DA10B26;
+        Thu,  5 Nov 2020 06:25:25 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 05 Nov 2020 06:25:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=JksiuIJMahHykc5MTLuiF//MZ6p
+        JzDDfwl5B6+Ahx94=; b=NtgoKXP+STUlaBKKDW4oqt7ud2+2hJ4+tKwq561GjP5
+        RG+ZKX7tyTHXwI5PjejA9oV5FmDDk23+xMvRa7sYp+82BUrY7yC7YWxpTIzshlXi
+        P0WHf+RynUaNwabqWfzMueHQLFANk2P+bJysGPJeYqucaD97zQhSGR0H0xwSdW5Z
+        ucYKpaNQsVZyCqEQq5fWMOyd+WXe7Cj/PqeI3WbR5rmEKFUePhY9gZnFztF6qzqd
+        74jY9clJ64hbiCSqz7Gd0gbxDUY42SEmGSE1UJlzTjLYrmAhM/Vcyk/pJ1mJNe79
+        VhyGNyIC4qyibWYgio0e4nYMItdJfrc8U1G885Wn+Tw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=JksiuI
+        JMahHykc5MTLuiF//MZ6pJzDDfwl5B6+Ahx94=; b=S5FqE9k6vwczV1ONLdX97J
+        OnuazeCvhTFzLVmjVf2rKRnkW61Xt2k7mNkuCkpwDbRLRYVFgmRxVEdX74S1wFI8
+        BL1oiqnJ8qUmycFV7V7p2EH6Qgc8zmzLsXLxvNnq6qwGC2zmRe7tjTYNOe6PoT1t
+        Zdbyjd2S+8GUxw8zfVw6jfIU8RaZtKEbnpMozGoZu+xYSFt20eT7Kr+pnzwVzkX2
+        VgPyg10VwwvFnGmDFHkACydO7EO5ZdpDEYpqFtabPC1Wx/wJSCI2Lv7ZG0kj2qDw
+        Tfc5n8cJnnR6QWWR/qnqKEiTpZqeFeoC5GtN2wON3OsVG5dnBFk9pO9DbmP43aIw
+        ==
+X-ME-Sender: <xms:JOGjX_pkHKm38AhjjTDoPXgY2c-kKH3WRatHVGpWSvftUNki-4BLtw>
+    <xme:JOGjX5q2Pa51wOxo9ZVFhYtaWngfvFYm9-DWltIkhiY90il4VFU0kHH3R7tFY0Geg
+    gIIGATKxxU25_ffnoU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtjedgvdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:JOGjX8NzrXv2klqFBIJcQxHJZt2mDYqpARfLkHp6Na5rS1VZtBxykg>
+    <xmx:JOGjXy7ogpXr8aivBA-IrCo_DAug9ybfuTbE4kj4FsCrHiPbZLj_FQ>
+    <xmx:JOGjX-7zAXAEFmy-ZZGTCamAhk_UrpIKSp_sjkrC19gwIF80v_98SQ>
+    <xmx:JOGjXwRCW87C62OzM38gAerUmSP-PtiJJ1mvNWUc4vvhsIwvpXFqyQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 5E4F4306005C;
+        Thu,  5 Nov 2020 06:25:24 -0500 (EST)
+Date:   Thu, 5 Nov 2020 12:25:23 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
 To:     Samuel Holland <samuel@sholland.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.io>,
-        Matteo Scordino <matteo.scordino@gmail.com>
-Subject: Re: [PATCH v2 2/6] irqchip/sunxi-nmi: Add support for the V3s NMI
-Message-ID: <20201105112418.GA1237@collins>
-References: <20201103205058.435207-1-contact@paulk.fr>
- <20201103205058.435207-3-contact@paulk.fr>
- <85d40081-2dd1-3a0c-15ad-a58ce866700f@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 0/6] PinePhone Device Tree Enhancements
+Message-ID: <20201105112523.t3azspklmbnr5ool@gilmour.lan>
+References: <20201105054135.24860-1-samuel@sholland.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wac7ysb48OaltWcw"
+        protocol="application/pgp-signature"; boundary="zk3em6umaq6fe35u"
 Content-Disposition: inline
-In-Reply-To: <85d40081-2dd1-3a0c-15ad-a58ce866700f@sholland.org>
+In-Reply-To: <20201105054135.24860-1-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---wac7ysb48OaltWcw
-Content-Type: text/plain; charset=utf-8
+--zk3em6umaq6fe35u
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Samuel,
+On Wed, Nov 04, 2020 at 11:41:29PM -0600, Samuel Holland wrote:
+> This series fixes a couple of small issues with the PinePhone device
+> tree, and collects some patches adding support for peripherals that
+> recently received driver or DT binding support.
 
-On Wed 04 Nov 20, 22:14, Samuel Holland wrote:
-> On 11/3/20 2:50 PM, Paul Kocialkowski wrote:
-> > The V3s/V3 has a NMI IRQ controller, which is mainly used for the AXP209
-> > interrupt. In great wisdom, Allwinner decided to invert the enable and
-> > pending register offsets, compared to the A20.
-> >=20
-> > As a result, a specific compatible and register description is required
-> > for the V3s. This was tested with an AXP209 on a V3 board.
-> >=20
-> > Acked-by: Maxime Ripard <mripard@kernel.org>
-> > Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
-> > ---
-> >  drivers/irqchip/irq-sunxi-nmi.c | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/irqchip/irq-sunxi-nmi.c b/drivers/irqchip/irq-sunx=
-i-nmi.c
-> > index a412b5d5d0fa..59e0e4612ef7 100644
-> > --- a/drivers/irqchip/irq-sunxi-nmi.c
-> > +++ b/drivers/irqchip/irq-sunxi-nmi.c
-> > @@ -44,6 +44,10 @@
-> >  #define SUN7I_NMI_PENDING	0x04
-> >  #define SUN7I_NMI_ENABLE	0x08
-> > =20
-> > +#define SUN8I_V3S_NMI_CTRL	0x00
-> > +#define SUN8I_V3S_NMI_ENABLE	0x04
-> > +#define SUN8I_V3S_NMI_PENDING	0x08
-> > +
-> >  #define SUN9I_NMI_CTRL		0x00
-> >  #define SUN9I_NMI_ENABLE	0x04
-> >  #define SUN9I_NMI_PENDING	0x08
->=20
-> These two sets of definitions are the same. So it would make sense for
-> V3S and sun9i to share a configuration, instead of creating a copy.
+Applied all those patches, thanks!
+Maxime
 
-Oh but that's true! I initially though it was the same as sun7i, found that=
- it
-wasn't but didn't notice about sun9i.
-
-So I think we can just use the sun9i compatible after all.
-
-Thanks!
-
-Paul
-
-> > @@ -79,6 +83,12 @@ static const struct sunxi_sc_nmi_reg_offs sun7i_reg_=
-offs __initconst =3D {
-> >  	.enable	=3D SUN7I_NMI_ENABLE,
-> >  };
-> > =20
-> > +static const struct sunxi_sc_nmi_reg_offs sun8i_v3s_reg_offs __initcon=
-st =3D {
-> > +	.ctrl	=3D SUN8I_V3S_NMI_CTRL,
-> > +	.pend	=3D SUN8I_V3S_NMI_PENDING,
-> > +	.enable	=3D SUN8I_V3S_NMI_ENABLE,
-> > +};
-> > +
-> >  static const struct sunxi_sc_nmi_reg_offs sun9i_reg_offs __initconst =
-=3D {
-> >  	.ctrl	=3D SUN9I_NMI_CTRL,
-> >  	.pend	=3D SUN9I_NMI_PENDING,
-> > @@ -165,7 +175,6 @@ static int __init sunxi_sc_nmi_irq_init(struct devi=
-ce_node *node,
-> >  	unsigned int clr =3D IRQ_NOREQUEST | IRQ_NOPROBE | IRQ_NOAUTOEN;
-> >  	int ret;
-> > =20
-> > -
-> >  	domain =3D irq_domain_add_linear(node, 1, &irq_generic_chip_ops, NULL=
-);
-> >  	if (!domain) {
-> >  		pr_err("Could not register interrupt domain.\n");
-> > @@ -254,6 +263,13 @@ static int __init sun7i_sc_nmi_irq_init(struct dev=
-ice_node *node,
-> >  }
-> >  IRQCHIP_DECLARE(sun7i_sc_nmi, "allwinner,sun7i-a20-sc-nmi", sun7i_sc_n=
-mi_irq_init);
-> > =20
-> > +static int __init sun8i_v3s_sc_nmi_irq_init(struct device_node *node,
-> > +					    struct device_node *parent)
-> > +{
-> > +	return sunxi_sc_nmi_irq_init(node, &sun8i_v3s_reg_offs);
-> > +}
-> > +IRQCHIP_DECLARE(sun8i_v3s_sc_nmi, "allwinner,sun8i-v3s-sc-nmi", sun8i_=
-v3s_sc_nmi_irq_init);
-> > +
-> >  static int __init sun9i_nmi_irq_init(struct device_node *node,
-> >  				     struct device_node *parent)
-> >  {
-> >=20
->=20
-
---=20
-Developer of free digital technology and hardware support.
-
-Website: https://www.paulk.fr/
-Coding blog: https://code.paulk.fr/
-Git repositories: https://git.paulk.fr/ https://git.code.paulk.fr/
-
---wac7ysb48OaltWcw
+--zk3em6umaq6fe35u
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEAbcMXZQMtj1fphLChP3B6o/ulQwFAl+j4OEACgkQhP3B6o/u
-lQw5vA//e0p7YbREoh7LicyYYBO8wpOJt0sgRwKDy5Xhg2DtHvrcUu9BZfA7gmIM
-gJzogwi3r1dc9s6d4rhD1ZGWf2jXM7T7IUL0OnbQagVhwmTEyrSHC9S60CqibU4w
-zt0aqN7XmVDM+9bGEsdJ3pLDk9lt2SiJ9vIJq/rsy0CXn7B7EYjTOEenOzUDlWxv
-W1iS2v/WjIutWCCZkOBlaTKSsadij4piKkyKWc7DkAY9rDOCMb6zLxrdy98fom5c
-l2Pmi7XAUk04NRMA/fKO6x7rLH2Nh6xlVQPOI6gE8gFs/dRl4GuTJcm/2gZAGd+C
-zxDwxAT5bgrsBo8HygK0dcN8Ub2Ea7J/x/m4k1BnQbN6VDWFojh6TvxHNYJ86bux
-PovslJ4tJJmMSxgnCKXs/8JkEMI5hrvoG7j8RH4O8g9mrqGldAcYMVtYAio6Oq+d
-19pXfXzxMM8QPliapyDFTEgqRYQeQWwAjC/JHylXI3Dor7yDjKANh6VhkNDhJB/6
-29c46CByRCVOXH7oxPa2G/4px8bAYXeZV8LBlNfDq4cOi7AaC5HES0MZhgOMXwYO
-/3GvfNnGBh2sOXkrZMWJuJdxU9IEd9KWgmEMAX9FA9Mwm1bSM1E8HpbkAhAETfi8
-zyh2PB/XZGTOcC2gRmHD53j74QIvKH1qIshmknZVpwl7moKETJs=
-=USdf
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6PhIwAKCRDj7w1vZxhR
+xZtTAP0Wqs9XqGNllc/3pI4xg0aRRs+DJnaJ3kRTiXcUnBtRGAD7B5xOX+fFjRRa
+hu7j77fDAsRsG//sRpq4IRlboAWOAQ4=
+=jbwU
 -----END PGP SIGNATURE-----
 
---wac7ysb48OaltWcw--
+--zk3em6umaq6fe35u--
