@@ -2,82 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 91DF22A803F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 15:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 067502A8064
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 15:08:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730808AbgKEOB0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 09:01:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40072 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727275AbgKEOBZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 09:01:25 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE44C0613D4
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 06:01:25 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id 126so2434142lfi.8
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 06:01:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YTXLlhkJUN9wDt8Jv8WPFw5g42cb2iR5qevTYziYtbk=;
-        b=OK14Bnt3+9IeiZ6/M6McIw1LkFDy9LJWahWCHGMdSqbBSVOwLBmGir1yeEiClM89/t
-         mvkzJ1x4S9L/syjymwTkxNlizAAYao/MnA3qdsfAyStk6SQL6fZelVeqox0kMIKl5n6Z
-         zWgT6iKuOLL65ScYqJ9M5GQOeS5dsGoxshMLkR/qPSjvJvtAVBJaR49hdvDSfovIowtc
-         3XNGfaMTuA6XkPTGawdpx563b5LgCrVgSYFmkYUMhjvmWqZMmmYJL2P1zZzHPCgXSEXe
-         ivOCZq3p2hVOqsSq0HXrEmRt4VoRkEnVD9J2Gyvpfkc7mBArdUCN/6FJODadaK6LpIt3
-         /EmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YTXLlhkJUN9wDt8Jv8WPFw5g42cb2iR5qevTYziYtbk=;
-        b=EORw6Cz8BnYa7k23l2zL4Kcpqr+36WLaQ/RVDiSCqQRPSwDZ6Y4+PHgiat3No4V5uq
-         DLpyQm11weN/WkpnvTyVecXwxWINjCCBJie4FuQaoFv61gbFXzoC/Q0PnbGeYbe1ydVK
-         LGUsbQRuvWW8GxKySfXWdO/kBqU8Jp/mkfnHaJa0XjOTtbKSKPxBzQDLzjd1c4vk2BXy
-         P6pLfG/8iX4Sves7gflXHVNxN5emX2X4nUlsNsglSRxqWjnwcAXzb+hDh4/iZS27Ib/x
-         eUVkxl4bwh+5X3sQME0xbi5m0ML0F3L9M5YMxX/kSsR6dKMvxQzE3J9xmAMVYElqAsOI
-         bcyw==
-X-Gm-Message-State: AOAM533SEcDquZ4KgQEuRhCX6SC6mz42JYJn5x4u6EWn/x/B9/6MuhNZ
-        i27WsYuNWrYul00qukVCHRCBtsf9xmcb31g7KnQZAg==
-X-Google-Smtp-Source: ABdhPJzvM65+qqxut8Q8K9FX99fxAPBlc0gUibPjENKKmydRQK0QV33V0O2d25Zm7Cor//tf/DGwRsM1lFrKsUhrY3k=
-X-Received: by 2002:a19:824f:: with SMTP id e76mr987111lfd.572.1604584882549;
- Thu, 05 Nov 2020 06:01:22 -0800 (PST)
-MIME-Version: 1.0
-References: <20201007160611.942754-1-junak.pub@gmail.com>
-In-Reply-To: <20201007160611.942754-1-junak.pub@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Nov 2020 15:01:08 +0100
-Message-ID: <CACRpkdY_SHWbHpsHQiQswQ9DzSLH-P=tAmeHG2JddQZ76_-0mQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] pinctrl: qcom: add pinctrl driver for msm8953
-To:     Vladimir Lypak <junak.pub@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1727275AbgKEOIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 09:08:16 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:42918 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726874AbgKEOIQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 09:08:16 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A5E86hX106134;
+        Thu, 5 Nov 2020 08:08:06 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604585286;
+        bh=zcmJI2iGAsjEzlWmyxcXFNtdwy2DNlvmgs+08LYg1ck=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=RlTRpAuHsDiFGE7IgsgeEUoH6qjxVC5ivx+J3XHFk4yi4ztalvMXV8C+DvqI5OBSs
+         qsg0Gp1y+UltGIIn0PdF+IPu+br20raBDIpXOd0bEtsQ1qCUHOiZTJ30ZhykUDW7ky
+         NzTUV3eC4yV7oeMDK9BmhHWbx5di6fikr2Eg01JI=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A5E86vi051225
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 Nov 2020 08:08:06 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 5 Nov
+ 2020 08:08:06 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 5 Nov 2020 08:08:06 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A5E86eQ108247;
+        Thu, 5 Nov 2020 08:08:06 -0600
+Date:   Thu, 5 Nov 2020 08:08:06 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+CC:     Roger Quadros <rogerq@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prasad Sodagudi <psodagud@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
+ SoC dtsi level
+Message-ID: <20201105140806.326ubfppb4guexpi@cultural>
+References: <20201104224356.18040-1-nm@ti.com>
+ <20201104224356.18040-3-nm@ti.com>
+ <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 7, 2020 at 6:26 PM Vladimir Lypak <junak.pub@gmail.com> wrote:
+On 09:32-20201105, Peter Ujfalusi wrote:
+> Nishanth,
+> 
+> On 05/11/2020 0.43, Nishanth Menon wrote:
+> > The device tree standard sets the default node behavior when status
+> > property as enabled.
+> 
+> It should be:
+> When the status property is not present under a node, the "okay' value
+> is assumed.
 
-> Add inititial pinctrl driver for MSM8953 platform. Compatible SoCs are:
-> MSM8953, APQ8053, SDM(SDA)450, SDM(SDA)632.
-> Based off CAF implementation.
->
-> Signed-off-by: Prasad Sodagudi <psodagud@codeaurora.org>
-> Signed-off-by: Vladimir Lypak <junak.pub@gmail.com>
-> ---
-> Changes in V2:
-> - sorted SDC_QDSD_PINGROUP entries in msm8953_groups array.
+Thanks.. will update.
 
-Both patches applied, thanks!
+> 
+> Note: the device tree specification does not document default value as
+> such, see v0.3 (2.3.4, page 14).
+> Yes, the "okay" is used in case the status property is missing (by Linux
+> at least).
 
-Yours,
-Linus Walleij
+Maybe the spec update needs a formal release? Kumar's patch is merged:
+https://github.com/devicetree-org/devicetree-specification/pull/33
+
+on that exact same section, which you can see
+https://github.com/devicetree-org/devicetree-specification/blob/master/source/chapter2-devicetree-basics.rst
+
+Brings it to sync to:
+https://elinux.org/Device_Tree_Linux#status_property
+
+> 
+> > There are many reasons for doing the same, number
+> > of strings in device tree,
+> 
+> with expense of loc and readability.
+
+The "readability" part is subjective a bit.. enabled and disabled both
+have verbosity problem lets see how we can optimize as new boards come
+in.
+
+> 
+> > default power management functionality etc
+> 
+> Right, so how does that helps with devices present in the SoC, but no
+> node at all? First thing which comes to mind is AASRC, we don't have
+> Linux driver for it (and no DT binding document), but that does not mean
+> that it is not present. How PM would take that into account?
+
+I think we are mixing topics here -> I was stating the motivation why
+devicetree chose such as default. Do we have a suggestion to improve
+the description in the commit?
+
+> 
+> > are few of the reasons.
+> > 
+> > In general, after a few rounds of discussions [1] there are few
+> > options one could take when dealing with SoC dtsi and board dts
+> > 
+> > a. SoC dtsi provide nodes as a super-set default (aka enabled) state and
+> >    to prevent messy board files, when more boards are added per SoC, we
+> >    optimize and disable commonly un-used nodes in board-common.dtsi
+> > b. SoC dtsi disables all hardware dependent nodes by default and board
+> >    dts files enable nodes based on a need basis.
+> > c. Subjectively pick and choose which nodes we will disable by default
+> >    in SoC dtsi and over the years we can optimize things and change
+> >    default state depending on the need.
+> 
+> For the record: c was not really an option. There were no subjectivity,
+> the reason was pragmatic.
+
+
+(c) some examples where we did pick that option (fixes):
+https://lore.kernel.org/linux-arm-kernel/20201104224356.18040-4-nm@ti.com/
+https://lore.kernel.org/linux-arm-kernel/20201104224356.18040-5-nm@ti.com/
+
+> 
+> The reason why we kept McASP nodes (and dss) disabled in the soc dtsi
+> file is that they are not operation in the form they present in there.
+> They _need_ additional properties to be operational and those properties
+> can only be added in the board dts file.
+
+I dont think we are changing anything in the output dtb files, we are
+just leaving the defaults as dt defaults and set the disable state in
+board dts OR common board dtsi.
+
+> 
+> This is not remotely a subjective view, this is the opposite of
+> subjectivity.
+
+the usage of McASP was'nt meant as (c).. it is (b). is there a better way
+to describe this in a generic manner?
+
+> 
+> As for things not owned by the OS we have the "reserved" status.
+Which is correct usage. I think your point with wkup_uart should be set as
+reserved? I might have missed doing that - am I correct?
+
+[...]
+> >  
+> > -	status = "okay";
+> > +&mcasp11 {
+> > +	status = "disabled";
+> >  };
+> 
+> Looks much better in this way.
+> ?
+> 
+> I always wondered what is _not_ used by the board...
+> But it is not really about that, we need to disable these nodes as they
+> are incomplete in dtsi, they are not operational...
+
+Alright - what do we suggest we do?
+
+
+Tony, Rob - I need some guidance here.
+
+> 
+> >  &serdes0 {
+	[...]
+> >  
+> >  	watchdog0: watchdog@2200000 {
+> > 
+> 
+> There is no such a tag, but:
+> whatever-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+
+OK - I have no idea how B4 or patchworks pick that one as :D
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
