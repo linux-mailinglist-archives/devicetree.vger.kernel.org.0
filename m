@@ -2,80 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 958EF2A7F23
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:55:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2365B2A7FED
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:50:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730373AbgKEMzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 07:55:41 -0500
-Received: from foss.arm.com ([217.140.110.172]:59928 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726067AbgKEMzl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 07:55:41 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DAED4142F;
-        Thu,  5 Nov 2020 04:55:40 -0800 (PST)
-Received: from [10.57.22.37] (unknown [10.57.22.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A18D3F719;
-        Thu,  5 Nov 2020 04:55:36 -0800 (PST)
-Subject: Re: [PATCH v4 1/4] PM / EM: Add a flag indicating units of power
- values in Energy Model
-To:     Morten Rasmussen <morten.rasmussen@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com, qperret@google.com,
-        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
-        rafael@kernel.org, sudeep.holla@arm.com, viresh.kumar@linaro.org,
-        sboyd@kernel.org, nm@ti.com
-References: <20201103090600.29053-1-lukasz.luba@arm.com>
- <20201103090600.29053-2-lukasz.luba@arm.com>
- <20201105091759.GA8237@e123083-lin>
- <876ca521-1576-63c5-9af5-b000f52cc17b@arm.com>
- <20201105105633.GB8237@e123083-lin>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <7740a2a1-2e6a-1e04-91ff-364ea21540d6@arm.com>
-Date:   Thu, 5 Nov 2020 12:55:34 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1730501AbgKENuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 08:50:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38266 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725468AbgKENuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:50:13 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D3FEC0613D2;
+        Thu,  5 Nov 2020 05:50:13 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id u18so2366442lfd.9;
+        Thu, 05 Nov 2020 05:50:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=BGf3d80TYyIHjeoe0Cx5j/BQSsVOIev2ck0Z+AT+MFA=;
+        b=e/YUri2q0AwoOKKb1hssOsWev/ladQj20yWBAgFxnUNTYPuKAryxtqcYYrUISJJ2vJ
+         a39gIjb9Q6RQodOmBYioJczfUGlxshFy0MIDvx8eciIyRnKwFCz9pYD5SZ5VsLVB0P2d
+         Q7kV7TXr6dL2Din/S+YXymcmnfrKHOT7zNHnfoxy0dNlpav+Mzo404f+CVsqX1zbaJ/g
+         onGRaUTFnfQBBKoENk8PA1NFM291/PawkHb59+q5reczpOTIyfrOlRcn7TgYflcAwMep
+         ThY5zx+sEIT5sFbV4XmKRVPBcNOT3QEfQW5tx/aib/VeQPU8waOAyqnvBsTNdnl/gM+c
+         v9kQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=BGf3d80TYyIHjeoe0Cx5j/BQSsVOIev2ck0Z+AT+MFA=;
+        b=VMBl1vA/0CZFkUuNLs/bkfUfGtMHCHn0LA5/F8z0F378n5KWTZFKFuRVFsMiYIfkps
+         e1/y5+IyjLOKqf84SOtBZDCWwtrPXmYSiEw+gL9dGn00uSdWOUJ15RcViCi/NyzC8GQX
+         K0cw7PfLIRcJG2BRoAPmN1TDbK0K/PmZNoDSpWJvG6twBVHe5nQ0U1z2fTTIQWLgZo2P
+         vt9byNyTT7JFx1EP0+0CqotagiatkSHIRNh1+4vGOO5BnUiEcb12Uu4OH4niNy8g0L/T
+         pAhqelCRGTMqhl2/lX+ZsuWkiYwOucO7E8px8xnEeyzJ3d0ajmc0g1arLlio0md/QIM/
+         0JEQ==
+X-Gm-Message-State: AOAM531raSJrjzZdtUzHhoyqkvQzNOdLwFHN8HdehFEo8kk5u4MBKt7N
+        jJWjnO1QXv4P6FlAsSKJQXsXJgEv/Es=
+X-Google-Smtp-Source: ABdhPJx4ilpDj4/kx22rJ8VjlNT5VilKN2NSj8RSq3TaJ+NHg1ZFId48j+Ws8coKg74/KdbqiehQTw==
+X-Received: by 2002:a19:8755:: with SMTP id j82mr951404lfd.511.1604584211377;
+        Thu, 05 Nov 2020 05:50:11 -0800 (PST)
+Received: from [192.168.2.145] (109-252-192-83.dynamic.spd-mgts.ru. [109.252.192.83])
+        by smtp.googlemail.com with ESMTPSA id f9sm155946ljg.53.2020.11.05.05.50.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Nov 2020 05:50:10 -0800 (PST)
+Subject: Re: [PATCH v7 47/47] PM / devfreq: tegra20: Deprecate in a favor of
+ emc-stat based driver
+To:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+References: <20201104164923.21238-1-digetx@gmail.com>
+ <CGME20201104165117epcas1p1fe44f76f99454bcbbbf8b26882422224@epcas1p1.samsung.com>
+ <20201104164923.21238-48-digetx@gmail.com>
+ <cdceb3f7-9c58-5d2c-70ab-7947b4cb173e@samsung.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <164ea4c7-f770-445a-fe1a-31ddc49068be@gmail.com>
+Date:   Thu, 5 Nov 2020 16:50:09 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201105105633.GB8237@e123083-lin>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <cdceb3f7-9c58-5d2c-70ab-7947b4cb173e@samsung.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/5/20 10:56 AM, Morten Rasmussen wrote:
-> On Thu, Nov 05, 2020 at 10:09:05AM +0000, Lukasz Luba wrote:
->>
->>
->> On 11/5/20 9:18 AM, Morten Rasmussen wrote:
->>> On Tue, Nov 03, 2020 at 09:05:57AM +0000, Lukasz Luba wrote:
->>>> @@ -79,7 +82,8 @@ struct em_data_callback {
->>>>    struct em_perf_domain *em_cpu_get(int cpu);
->>>>    struct em_perf_domain *em_pd_get(struct device *dev);
->>>>    int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
->>>> -				struct em_data_callback *cb, cpumask_t *span);
->>>> +				struct em_data_callback *cb, cpumask_t *spani,
->>>
->>> "spani" looks like a typo?
->>>
->>
->> Good catch, yes, the vim 'i'.
->>
->> Thank you Morten. I will resend this patch when you don't
->> find other issues in the rest of patches.
+05.11.2020 05:25, Chanwoo Choi пишет:
+> Hi Dmitry,
 > 
-> The rest of the series looks okay to me.
-
-Thank you for checking the whole series. I have re-sent this patch only.
-
-Lukasz
-
+> You need to update the MAINTAINERS file about tegra20-devfreq.c
 > 
-> Morten
+> 11343 MEMORY FREQUENCY SCALING DRIVERS FOR NVIDIA TEGRA                               
+> 11344 M:      Dmitry Osipenko <digetx@gmail.com>                                      
+> 11345 L:      linux-pm@vger.kernel.org                                                
+> 11346 L:      linux-tegra@vger.kernel.org                                             
+> 11347 T:      git git://git.kernel.org/pub/scm/linux/kernel/git/chanwoo/linux.git     
+> 11348 S:      Maintained                                                              
+> 11349 F:      drivers/devfreq/tegra20-devfreq.c                                       
+> 11350 F:      drivers/devfreq/tegra30-devfreq.c 
 > 
+> Except of missing the updating of MAINTAINERS,
+> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+
+Hello Chanwoo,
+
+Good catch! Thank you!
