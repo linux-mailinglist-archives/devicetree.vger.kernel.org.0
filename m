@@ -2,165 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 407202A723E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 00:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F282A73C7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 01:30:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733174AbgKDXq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 18:46:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48346 "EHLO
+        id S1732270AbgKEAaK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 19:30:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728416AbgKDXpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 18:45:39 -0500
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DE3FC0613CF;
-        Wed,  4 Nov 2020 15:45:39 -0800 (PST)
-Received: by mail-lf1-x136.google.com with SMTP id v144so127177lfa.13;
-        Wed, 04 Nov 2020 15:45:39 -0800 (PST)
+        with ESMTP id S1732256AbgKEAaG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 19:30:06 -0500
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5CA2C0613D1
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 16:30:04 -0800 (PST)
+Received: by mail-ua1-x942.google.com with SMTP id p12so5803uam.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 16:30:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=H3MVi35NrfPSfRw//362HseqQCwlWGtdqp60bFnUhwA=;
-        b=OMn9xsQeCPu/4JinLc/AgoFUYFf1NUAoZIU2Zlu6R9dPQunR73wlhPP73mbb5TTpva
-         8JiMy8NqbA0ZUwEVbGtyIWXt0/tfNkV48rTG7UCuIXLFva4JtNhIA8GqUErMg0IIfKUE
-         OGNdyB9H+gojt3sZ7bQ7bIApJMJ4in5sly2bBNeehvG48k/7mXjUtjndqT8kWTqY/A8g
-         qT2PIZ20opUDRyncNfJ/LO9879zyPy4vHJoeMho7u+q9lf9+ZJxM1tYmJF+TFnEibpMR
-         nv5gAps0odmdCDhcgB3tni2hr1hAyEgQ9NPd3AF9mNe+BxeSr5+mlHHTfY0Od+dUrfDJ
-         v6DQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d5o9eOs5Tiv+TUmgROBahgNX011WshZjeFSi3IU5ZO4=;
+        b=Jz8xTXMUGfKjYINWV76nnlMyGNncfJDBZmnGTdthlDIuR5k52NxJXwzvCdDKnptQAH
+         yS3AyKnVlm7JiwHOaYYSrP0nqH4628VWotg6zKA7qq14CjilU7RYzeQ+E2gm3hCrTYWS
+         9h2CZCT1huTTy8VOtstkeS9+YJJ8ZVoinMDpQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=H3MVi35NrfPSfRw//362HseqQCwlWGtdqp60bFnUhwA=;
-        b=bcCbuF6g2RDnQRMis9eNvfMhoxq3ENTn9eWEqRTouEuAve/039rri5QgKp5o6UR3pi
-         27mub76NpLXwpnIDaHkKMcIdAnXih/Dww4cjXxLpBhDtxTrJU5OITVblqKhD5GWw/HqH
-         HgcQtST8UJs/3vZtQHuZ+SfXzuEJn92y5AQN9vtNlxWzZoYcBJDsTTQQCDKBzo5+EVw7
-         kEgFfJb1Ujux/wbeq4aGAE3q451saZRgDCT+K6wGbq5Dmdx34BKd65BDGqSvdUoBGiWl
-         2JO7kgw1PfSKdXULZUv5y5M7CHPMYfRES3zvjYFbFbX43y2Xr1jEvBzaicEHjHIU1sld
-         iEMw==
-X-Gm-Message-State: AOAM532hdMnQAwwESBVCzEGhUHr3X0de2E9C0IKPDNTxAO6kJ4VMA4KW
-        JkEJDsJu+adTA7y5X+cAfZY=
-X-Google-Smtp-Source: ABdhPJwyQ9D+w6Gwu+oNG3O4q0AAu7yTKLISIo+dIOXhdhlh+KdufIVDxOlsB9IAA16GjdDdX/+EHA==
-X-Received: by 2002:ac2:53a5:: with SMTP id j5mr41614lfh.253.1604533537747;
-        Wed, 04 Nov 2020 15:45:37 -0800 (PST)
-Received: from localhost.localdomain (109-252-192-83.dynamic.spd-mgts.ru. [109.252.192.83])
-        by smtp.gmail.com with ESMTPSA id m6sm640725ljc.112.2020.11.04.15.45.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Nov 2020 15:45:37 -0800 (PST)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>
-Cc:     linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: [PATCH v1 30/30] ARM: tegra: nexus7: Add voltage supplies to DVFS-capable devices
-Date:   Thu,  5 Nov 2020 02:44:27 +0300
-Message-Id: <20201104234427.26477-31-digetx@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201104234427.26477-1-digetx@gmail.com>
-References: <20201104234427.26477-1-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d5o9eOs5Tiv+TUmgROBahgNX011WshZjeFSi3IU5ZO4=;
+        b=oSAvnDf7emwoy/HjZ79cX5VN0FGeS5MMOzAiwE/qQVsi6ftuc4T0eW6gMQnTOhwbSE
+         75tkpMiD9U4EDgeqsof/s5j8gvU3gQxq2YEdIhclsmZmDh8+Y6y4eeUbIg8Bbgs2tQ4a
+         DdcE/vwfkGPg+NfkOSIHdz10J2wFGAkHMbhAuFL4Gxp3Q0uDBZ3YGcMFY6fyRLpKAtWa
+         Omm6QyKe0D2P02gOeNDC24hosaEqIdNFs9BOxtEKIYeDETnOkyqwwhwWpRjbquWEgt2S
+         BgpVz3FU2X+D5AVQlVMnjQAIUoYan3IK2byTEDmZpYDnZ3Gt9sKpjVfEMWF0VaQ3sJ9k
+         1xkQ==
+X-Gm-Message-State: AOAM532CHnXWJzeiCtwl52a5e+UyNK7yS2Qf38J/lKUTp+aatjO+7LpD
+        0eO7z79G8Janedvveh1kX8cZ3sqvd2Vbew==
+X-Google-Smtp-Source: ABdhPJyd5MG6FLIaxvfTSrqPYQ+y9wg9axgRCuAq1nrtax46W4spoedDKd0S6iLM2RuWmnxtVNc2zA==
+X-Received: by 2002:ab0:69c5:: with SMTP id u5mr226227uaq.45.1604536203605;
+        Wed, 04 Nov 2020 16:30:03 -0800 (PST)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id 31sm460520uac.10.2020.11.04.16.30.02
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Nov 2020 16:30:02 -0800 (PST)
+Received: by mail-ua1-f51.google.com with SMTP id t15so94469ual.6
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 16:30:02 -0800 (PST)
+X-Received: by 2002:a9f:36a1:: with SMTP id p30mr250823uap.64.1604536202255;
+ Wed, 04 Nov 2020 16:30:02 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201103103749.1.I0ed4abdd2b2916fbedf76be254bc3457fb8b9655@changeid>
+In-Reply-To: <20201103103749.1.I0ed4abdd2b2916fbedf76be254bc3457fb8b9655@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 4 Nov 2020 16:29:50 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=Wc-b75a-QSX8qLq0+fCbcnvh_6q+N6azL=+Tk+rMie1g@mail.gmail.com>
+Message-ID: <CAD=FV=Wc-b75a-QSX8qLq0+fCbcnvh_6q+N6azL=+Tk+rMie1g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Make pp3300_a the
+ default supply for pp3300_hub
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add voltage supplies to DVFS-capable devices in order to enable
-system-wide voltage scaling.
+Hi,
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- .../tegra30-asus-nexus7-grouper-common.dtsi   | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On Tue, Nov 3, 2020 at 10:38 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> The trogdor design has two options for supplying the pp3300_hub power rail,
+> it can be supplied by pp3300_l7c or pp3300_a. Initially pp3300_l7c was
+> used, newer revisions (will) use pp3300_a as supply.
+>
+> Add a DT node for the pp3300_a path which includes a power switch that is
+> controlled by a GPIO. Make this path the default and keep trogdor rev1,
+> lazor rev0 and rev1 on pp3300_l7c.
 
-diff --git a/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi b/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
-index 261e266c61d8..2b405872ad2d 100644
---- a/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
-+++ b/arch/arm/boot/dts/tegra30-asus-nexus7-grouper-common.dtsi
-@@ -60,7 +60,19 @@ trustzone@bfe00000 {
- 	};
- 
- 	host1x@50000000 {
-+		core-supply = <&vdd_core>;
-+
-+		gr2d@54140000 {
-+			core-supply = <&vdd_core>;
-+		};
-+
-+		gr3d@54180000 {
-+			core-supply = <&vdd_core>;
-+		};
-+
- 		dc@54200000 {
-+			core-supply = <&vdd_core>;
-+
- 			rgb {
- 				status = "okay";
- 
-@@ -72,6 +84,10 @@ lcd_output: endpoint {
- 				};
- 			};
- 		};
-+
-+		dc@54240000 {
-+			core-supply = <&vdd_core>;
-+		};
- 	};
- 
- 	gpio@6000d000 {
-@@ -90,6 +106,10 @@ init-low-power-mode {
- 		};
- 	};
- 
-+	vde@6001a000 {
-+		core-supply = <&vdd_core>;
-+	};
-+
- 	pinmux@70000868 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&state_default>;
-@@ -835,6 +855,7 @@ bluetooth {
- 
- 	pwm: pwm@7000a000 {
- 		status = "okay";
-+		core-supply = <&vdd_core>;
- 	};
- 
- 	i2c@7000c400 {
-@@ -994,6 +1015,7 @@ sdmmc3: mmc@78000400 {
- 
- 		mmc-pwrseq = <&brcm_wifi_pwrseq>;
- 		vmmc-supply = <&vdd_3v3_sys>;
-+		core-supply = <&vdd_core>;
- 		vqmmc-supply = <&vdd_1v8>;
- 
- 		/* Azurewave AW-NH665 BCM4330 */
-@@ -1018,6 +1040,7 @@ usb@7d000000 {
- 		compatible = "nvidia,tegra30-udc";
- 		status = "okay";
- 		dr_mode = "peripheral";
-+		core-supply = <&vdd_core>;
- 	};
- 
- 	usb-phy@7d000000 {
--- 
-2.27.0
+It might not hurt to mention that even on early hardware that GPIO84
+was allocated to this purpose but that it was a stuff option for what
+actually provided power to the hub.  This explains why it's OK to add
+the fixed regulator (just with no clients) even on old hardware.  If
+GPIO84 had been used for something else on old hardware this would
+have been bad.
 
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index bf875589d364..2d64e75a2d6d 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -174,6 +174,21 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
+>                 vin-supply = <&pp3300_a>;
+>         };
+>
+> +       pp3300_hub: pp3300-hub {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "pp3300_hub";
+> +
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +
+> +               gpio = <&tlmm 84 GPIO_ACTIVE_HIGH>;
+> +               enable-active-high;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&en_pp3300_hub>;
+> +
+> +               vin-supply = <&pp3300_a>;
+
+You're leaving things in a bit of an inconsistent state here.  The
+"pp3300_hub_7c" is always_on / boot_on.  This new one isn't.  I know
+this is slightly more complicated due to the fact that downstream we
+have a way to control the hub power but didn't quite get that resolved
+upstream, but the way you have it now, on new hardware upstream will
+power off the hub but also keep "pp3300_hub_7c" powered on for no
+reason.  Seems like that should be fixed?
+
+
+> +       };
+> +
+>         /* BOARD-SPECIFIC TOP LEVEL NODES */
+>
+>         backlight: backlight {
+> @@ -469,7 +484,7 @@ ppvar_l6c: ldo6 {
+>                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>                 };
+>
+> -               pp3300_hub:
+> +               pp3300_hub_7c:
+
+nit: If it were me, I probably wouldn't have bothered introducing the
+"pp3300_hub_7c" alias since it's not a real thing in the schematic.  I
+would have just had the older revisions refer to "pp3300_l7c".  If you
+really love the "pp3300_hub_7c", though, I won't stand in your way.
+
+
+>                 pp3300_l7c: ldo7 {
+>                         regulator-min-microvolt = <3304000>;
+>                         regulator-max-microvolt = <3304000>;
+> @@ -1151,6 +1166,19 @@ pinconf {
+>                 };
+>         };
+>
+> +       en_pp3300_hub: en-pp3300-hub {
+> +               pinmux {
+> +                       pins = "gpio84";
+> +                       function = "gpio";
+> +               };
+> +
+> +               pinconf {
+> +                       pins = "gpio84";
+> +                       drive-strength = <2>;
+> +                       bias-disable;
+> +               };
+> +       };
+> +
+>         en_pp3300_dx_edp: en-pp3300-dx-edp {
+
+"hub" sorts after "dx", so the ordering is slightly wrong here.
+
+-Doug
