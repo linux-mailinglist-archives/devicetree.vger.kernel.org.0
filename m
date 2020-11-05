@@ -2,102 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D4F22A75F0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 04:10:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3362A7647
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 05:14:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728085AbgKEDKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 22:10:33 -0500
-Received: from mga17.intel.com ([192.55.52.151]:7830 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731175AbgKEDKc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 22:10:32 -0500
-IronPort-SDR: EatM2lZeseVgFQW6dicSpZs9NfoTEeWmTklcGZikfTUcVN8elszCc5bwTFUjbBzXLUUu0kWAe/
- U7YdyzL+TBTg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="149174162"
-X-IronPort-AV: E=Sophos;i="5.77,452,1596524400"; 
-   d="scan'208";a="149174162"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2020 19:10:32 -0800
-IronPort-SDR: PuvK8QPaHSE8f6b9etfQGhzDqsRW0Ahlj3lBVZPmEq5ms0IxAK0PUXeAHJbBtif2czvu1eHgOr
- LvMtHnR3aH9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,452,1596524400"; 
-   d="scan'208";a="325858998"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga006.jf.intel.com with ESMTP; 04 Nov 2020 19:10:31 -0800
-Received: from [10.226.38.24] (unknown [10.226.38.24])
-        by linux.intel.com (Postfix) with ESMTP id A401558078C;
-        Wed,  4 Nov 2020 19:10:28 -0800 (PST)
-Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
-Subject: Re: [PATCH v16 1/2] dt-bindings: mtd: Add Nand Flash Controller
- support for Intel LGM SoC
-To:     Rob Herring <robh@kernel.org>
-Cc:     robh+dt@kernel.org, cheol.yong.kim@intel.com,
-        tudor.ambarus@microchip.com, miquel.raynal@bootlin.com,
-        vigneshr@ti.com, devicetree@vger.kernel.org, dinguyen@kernel.org,
-        qi-ming.wu@intel.com, linux-mtd@lists.infradead.org,
-        richard@nod.at, simon.k.r.goldschmidt@gmail.com,
-        linux-kernel@vger.kernel.org
-References: <20201103075655.18699-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201103075655.18699-2-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201104185631.GA3946406@bogus>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <877b315f-c551-822d-71a8-84589b116c0f@linux.intel.com>
-Date:   Thu, 5 Nov 2020 11:10:27 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+        id S1726787AbgKEEOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 23:14:50 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:51925 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726225AbgKEEOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 23:14:50 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id EC9C65C00F9;
+        Wed,  4 Nov 2020 23:14:48 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Wed, 04 Nov 2020 23:14:48 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=f
+        JwbcwXPY3l7mC3CKsfGxtk7DwZ8F+yxs7HUMg4dBoo=; b=ee5InBpauKyoj6Hli
+        XGUDsBjjSWn0H/Kigzlptzd8wf4B/DVphlLZaPxX9cFIxGG8FFpuglH90DZbttPN
+        Z6WsbWPt+WCqvQdsvhyOteY5Pvjqd0yO5QhEF/oIztFuL6zxr0hJ9EQggcWAIyIc
+        6iFD++fPbEHMW+3vx5+IhoTJsXoG0TSXgyMSl9OPU24yWzkCqcYVT1K54skO8Kj4
+        8C0T6EbAoZ9f+6vPTHV3CsRNdM1KAT4+QDBll+YmZAQ5EymnSBDf8gsNi9H6KzQm
+        rbbZh1d8Iw8g8t+qWk39D1sPqYY4ljYaFAieqApm7RybzE8gmVPhmvAoViZtpbQj
+        F7Fug==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=fJwbcwXPY3l7mC3CKsfGxtk7DwZ8F+yxs7HUMg4dB
+        oo=; b=goD7YzrUgOWmd+pHLJ+XHw7AxiaDaIjJW9vkJc0R+bMb2ECRbyQ0t6w8H
+        TbGjHRGp4KcnseJwCVM461q1wHM+ct9EHBYOLgSs2d8RgqLQrLkMDP933XU/mX1m
+        gkxP5Nz7lT/H7GZlCF5Jqp84uWY5rPClvKfYaciqUEy+QCT4pbmtyNh+bvnrtk/8
+        9MRzWeVocZDK6sStYQmtuL77rLmBZH9NWlTXBi8HHu99Oqy43mF+JutQDjCoYvMK
+        9t69gcD1FQrd/6ytXgy+Q1qrsrynP0Peib3SCOYmW2nr8dLityPYlAjJAa6lYXXx
+        DyLqbjp2/Y50z9Z7jCQpJG9gjpw6A==
+X-ME-Sender: <xms:OHyjX49AflmvpRAFK4qY8duxKHXkNFodQcM5j3ZwW6MD-ovNKH25MA>
+    <xme:OHyjXwsTjFZGG61O4rm7nBE1Hh4rGTMqRRc1KE_2vAMDtZGCTdjB29jPtOg_YIvG2
+    BC_xJVYmX3JZr46nA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtiedgieelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
+    hedtfeevuedvnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:OHyjX-BVRMLE2LRruB5x0YmesdMSQ0l0VIaupaaoGfcM_4v7nhV5dw>
+    <xmx:OHyjX4c8o8uvtN5unD6dzf9c9jLRmEs1HrvZuwG36WB1OD4Mn3NLSw>
+    <xmx:OHyjX9PTmXcEqPQ5wlmVhfpLlbwF3oAaTBOK79BSt3dPPyYjJpOTzA>
+    <xmx:OHyjX5DnyEHntW2hVDJal0PWHk7OPh4FIdlPnqTu_mjqHhbggysWkA>
+Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id D1A11306005E;
+        Wed,  4 Nov 2020 23:14:47 -0500 (EST)
+To:     Paul Kocialkowski <contact@paulk.fr>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Icenowy Zheng <icenowy@aosc.io>,
+        Matteo Scordino <matteo.scordino@gmail.com>
+References: <20201103205058.435207-1-contact@paulk.fr>
+ <20201103205058.435207-3-contact@paulk.fr>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v2 2/6] irqchip/sunxi-nmi: Add support for the V3s NMI
+Message-ID: <85d40081-2dd1-3a0c-15ad-a58ce866700f@sholland.org>
+Date:   Wed, 4 Nov 2020 22:14:47 -0600
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <20201104185631.GA3946406@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20201103205058.435207-3-contact@paulk.fr>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 11/3/20 2:50 PM, Paul Kocialkowski wrote:
+> The V3s/V3 has a NMI IRQ controller, which is mainly used for the AXP209
+> interrupt. In great wisdom, Allwinner decided to invert the enable and
+> pending register offsets, compared to the A20.
+> 
+> As a result, a specific compatible and register description is required
+> for the V3s. This was tested with an AXP209 on a V3 board.
+> 
+> Acked-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Paul Kocialkowski <contact@paulk.fr>
+> ---
+>  drivers/irqchip/irq-sunxi-nmi.c | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/irqchip/irq-sunxi-nmi.c b/drivers/irqchip/irq-sunxi-nmi.c
+> index a412b5d5d0fa..59e0e4612ef7 100644
+> --- a/drivers/irqchip/irq-sunxi-nmi.c
+> +++ b/drivers/irqchip/irq-sunxi-nmi.c
+> @@ -44,6 +44,10 @@
+>  #define SUN7I_NMI_PENDING	0x04
+>  #define SUN7I_NMI_ENABLE	0x08
+>  
+> +#define SUN8I_V3S_NMI_CTRL	0x00
+> +#define SUN8I_V3S_NMI_ENABLE	0x04
+> +#define SUN8I_V3S_NMI_PENDING	0x08
+> +
+>  #define SUN9I_NMI_CTRL		0x00
+>  #define SUN9I_NMI_ENABLE	0x04
+>  #define SUN9I_NMI_PENDING	0x08
 
-On 5/11/2020 2:56 am, Rob Herring wrote:
-> On Tue, 03 Nov 2020 15:56:54 +0800, Ramuthevar,Vadivel MuruganX wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> Add YAML file for dt-bindings to support NAND Flash Controller
->> on Intel's Lightning Mountain SoC.
->>
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>   .../devicetree/bindings/mtd/intel,lgm-nand.yaml    | 99 ++++++++++++++++++++++
->>   1 file changed, 99 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
->>
-> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml:24:8: [warning] wrong indentation: expected 6 but found 7 (indentation)
-> 
-> dtschema/dtc warnings/errors:
-> 
-> 
-> See https://patchwork.ozlabs.org/patch/1392698
-> 
-> The base for the patch is generally the last rc1. Any dependencies
-> should be noted.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-Thank you Rob, will install, check and update.
+These two sets of definitions are the same. So it would make sense for
+V3S and sun9i to share a configuration, instead of creating a copy.
 
-Regards
-Vadivel
+> @@ -79,6 +83,12 @@ static const struct sunxi_sc_nmi_reg_offs sun7i_reg_offs __initconst = {
+>  	.enable	= SUN7I_NMI_ENABLE,
+>  };
+>  
+> +static const struct sunxi_sc_nmi_reg_offs sun8i_v3s_reg_offs __initconst = {
+> +	.ctrl	= SUN8I_V3S_NMI_CTRL,
+> +	.pend	= SUN8I_V3S_NMI_PENDING,
+> +	.enable	= SUN8I_V3S_NMI_ENABLE,
+> +};
+> +
+>  static const struct sunxi_sc_nmi_reg_offs sun9i_reg_offs __initconst = {
+>  	.ctrl	= SUN9I_NMI_CTRL,
+>  	.pend	= SUN9I_NMI_PENDING,
+> @@ -165,7 +175,6 @@ static int __init sunxi_sc_nmi_irq_init(struct device_node *node,
+>  	unsigned int clr = IRQ_NOREQUEST | IRQ_NOPROBE | IRQ_NOAUTOEN;
+>  	int ret;
+>  
+> -
+>  	domain = irq_domain_add_linear(node, 1, &irq_generic_chip_ops, NULL);
+>  	if (!domain) {
+>  		pr_err("Could not register interrupt domain.\n");
+> @@ -254,6 +263,13 @@ static int __init sun7i_sc_nmi_irq_init(struct device_node *node,
+>  }
+>  IRQCHIP_DECLARE(sun7i_sc_nmi, "allwinner,sun7i-a20-sc-nmi", sun7i_sc_nmi_irq_init);
+>  
+> +static int __init sun8i_v3s_sc_nmi_irq_init(struct device_node *node,
+> +					    struct device_node *parent)
+> +{
+> +	return sunxi_sc_nmi_irq_init(node, &sun8i_v3s_reg_offs);
+> +}
+> +IRQCHIP_DECLARE(sun8i_v3s_sc_nmi, "allwinner,sun8i-v3s-sc-nmi", sun8i_v3s_sc_nmi_irq_init);
+> +
+>  static int __init sun9i_nmi_irq_init(struct device_node *node,
+>  				     struct device_node *parent)
+>  {
 > 
+
