@@ -2,82 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C38B12A8540
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:44:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F79F2A8545
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:47:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731740AbgKERo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 12:44:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47196 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727275AbgKERo6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:44:58 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4162C0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 09:44:57 -0800 (PST)
-Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kajJc-0005qB-0i; Thu, 05 Nov 2020 18:44:52 +0100
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
-        Adam Ford <aford173@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
-        patchwork-lst@pengutronix.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Thu,  5 Nov 2020 18:44:34 +0100
-Message-Id: <20201105174434.1817539-14-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201105174434.1817539-1-l.stach@pengutronix.de>
-References: <20201105174434.1817539-1-l.stach@pengutronix.de>
+        id S1730246AbgKERrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 12:47:25 -0500
+Received: from foss.arm.com ([217.140.110.172]:38670 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725862AbgKERrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 12:47:25 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E501142F;
+        Thu,  5 Nov 2020 09:47:23 -0800 (PST)
+Received: from [10.57.54.223] (unknown [10.57.54.223])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5CB3F3F719;
+        Thu,  5 Nov 2020 09:47:22 -0800 (PST)
+Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
+ property
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
+        Will Deacon <will@kernel.org>
+References: <20200904130000.691933-1-thierry.reding@gmail.com>
+ <20200914220829.GA330122@bogus> <20200915123648.GA3496938@ulmo>
+ <20200924112725.GA2486709@ulmo> <20201105164312.GD485884@ulmo>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <483cd043-980e-81fb-cccb-385206a699df@arm.com>
+Date:   Thu, 5 Nov 2020 17:47:21 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        metis.ext.pengutronix.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
-        version=3.4.2
-Subject: [PATCH v2 13/13] arm64: dts: imx8mm: put USB controllers into power-domains
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201105164312.GD485884@ulmo>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have support for the power domain controller on the i.MX8MM
-we can put the USB controllers in their respective power domains to allow
-them to power down the PHY when possible.
+On 2020-11-05 16:43, Thierry Reding wrote:
+> On Thu, Sep 24, 2020 at 01:27:25PM +0200, Thierry Reding wrote:
+>> On Tue, Sep 15, 2020 at 02:36:48PM +0200, Thierry Reding wrote:
+>>> On Mon, Sep 14, 2020 at 04:08:29PM -0600, Rob Herring wrote:
+>>>> On Fri, Sep 04, 2020 at 02:59:57PM +0200, Thierry Reding wrote:
+>>>>> From: Thierry Reding <treding@nvidia.com>
+>>>>>
+>>>>> Reserved memory regions can be marked as "active" if hardware is
+>>>>> expected to access the regions during boot and before the operating
+>>>>> system can take control. One example where this is useful is for the
+>>>>> operating system to infer whether the region needs to be identity-
+>>>>> mapped through an IOMMU.
+>>>>
+>>>> I like simple solutions, but this hardly seems adequate to solve the
+>>>> problem of passing IOMMU setup from bootloader/firmware to the OS. Like
+>>>> what is the IOVA that's supposed to be used if identity mapping is not
+>>>> used?
+>>>
+>>> The assumption here is that if the region is not active there is no need
+>>> for the IOVA to be specified because the kernel will allocate memory and
+>>> assign any IOVA of its choosing.
+>>>
+>>> Also, note that this is not meant as a way of passing IOMMU setup from
+>>> the bootloader or firmware to the OS. The purpose of this is to specify
+>>> that some region of memory is actively being accessed during boot. The
+>>> particular case that I'm looking at is where the bootloader set up a
+>>> splash screen and keeps it on during boot. The bootloader has not set up
+>>> an IOMMU mapping and the identity mapping serves as a way of keeping the
+>>> accesses by the display hardware working during the transitional period
+>>> after the IOMMU translations have been enabled by the kernel but before
+>>> the kernel display driver has had a chance to set up its own IOMMU
+>>> mappings.
+>>>
+>>>> If you know enough about the regions to assume identity mapping, then
+>>>> can't you know if active or not?
+>>>
+>>> We could alternatively add some property that describes the region as
+>>> requiring an identity mapping. But note that we can't make any
+>>> assumptions here about the usage of these regions because the IOMMU
+>>> driver simply has no way of knowing what they are being used for.
+>>>
+>>> Some additional information is required in device tree for the IOMMU
+>>> driver to be able to make that decision.
+>>
+>> Rob, can you provide any hints on exactly how you want to move this
+>> forward? I don't know in what direction you'd like to proceed.
+> 
+> Hi Rob,
+> 
+> do you have any suggestions on how to proceed with this? I'd like to get
+> this moving again because it's something that's been nagging me for some
+> months now. It also requires changes across two levels in the bootloader
+> stack as well as Linux and it takes quite a bit of work to make all the
+> changes, so before I go and rewrite everything I'd like to get the DT
+> bindings sorted out first.
+> 
+> So just to summarize why I think this simple solution is good enough: it
+> tries to solve a very narrow and simple problem. This is not an attempt
+> at describing the firmware's full IOMMU setup to the kernel. In fact, it
+> is primarily targetted at cases where the firmware hasn't setup an IOMMU
+> at all, and we just want to make sure that when the kernel takes over
+> and does want to enable the IOMMU, that all the regions that are
+> actively being accessed by non-quiesced hardware (the most typical
+> example would be a framebuffer scanning out a splat screen or animation,
+> but it could equally well be some sort of welcoming tone or music being
+> played back) are described in device tree.
+> 
+> In other words, and this is perhaps better answering your second
+> question: in addition to describing reserved memory regions, we want to
+> add a bit of information here about the usage of these memory regions.
+> Some memory regions may contain information that the kernel may want to
+> use (such an external memory frequency scaling tables) and those I would
+> describe as "inactive" memory because it isn't being accessed by
+> hardware. The framebuffer in this case is the opposite and it is being
+> actively accessed (hence it is marked "active") by hardware while the
+> kernel is busy setting everything up so that it can reconfigure that
+> hardware and take over with its own framebuffer (for the console, for
+> example). It's also not so much that we know enough about the region to
+> assume it needs identity mapping. We don't really care about that from
+> the DT point of view. In fact, depending on the rest of the system
+> configuration, we may not need identity mapping (i.e. if none of the
+> users of the reserved memory region are behind an IOMMU). But the point
+> here is that the IOMMU drivers can use this "active" property to
+> determine that if a device is using an "active" region and it is behind
+> an IOMMU, then it must identity map that region in order for the
+> hardware, which is not under the kernel's control yet, to be able to
+> continue to access that memory through an IOMMU mapping.
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Hmm, "active" is not a property of the memory itself, though, it's 
+really a property of the device accessing it. If several distinct 
+devices share a carveout region, and for simplicity the bootloader marks 
+it as active because one of those devices happens to be using some part 
+of it at boot, we don't really want to have to do all the reserved 
+region setup for all the other devices unnecessarily, when all that 
+matters is not disrupting one of them when resetting the IOMMU.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index c21901a8aea9..6fba10ad7636 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -953,6 +953,7 @@
- 				assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_500M>;
- 				fsl,usbphy = <&usbphynop1>;
- 				fsl,usbmisc = <&usbmisc1 0>;
-+				power-domains = <&pgc_otg1>;
- 				status = "disabled";
- 			};
- 
-@@ -972,6 +973,7 @@
- 				assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_500M>;
- 				fsl,usbphy = <&usbphynop2>;
- 				fsl,usbmisc = <&usbmisc2 0>;
-+				power-domains = <&pgc_otg2>;
- 				status = "disabled";
- 			};
- 
--- 
-2.20.1
+That leads to another possible hiccup - some bindings already have a 
+defined meaning for a "memory-region" property. If we use that to point 
+to some small region for a temporary low-resolution bootsplash screen 
+for visibility to an IOMMU driver, the device's own driver might also 
+interpret it as a private carveout from which it is expected to allocate 
+everything, and thus could end up failing to work well or at all.
 
+I agree that we should only need a relatively simple binding, and that 
+piggybacking off reserved-memory nodes seems like an ideal way of 
+getting address range descriptions without too much extra complexity; 
+the tricky part is how best to associate those with the other 
+information needed, which is really the "iommus" property of the 
+relevant device, and how to make it as generically discoverable as 
+possible. Perhaps it might be workable to follow almost the same 
+approach but with a dedicated property (e.g. "active-memory-region") 
+that the IOMMU code can simply scan the DT for to determine relevant 
+device nodes. Otherwise properties on the IOMMU node itself would seem 
+the next most practical option.
+
+We've also finally got things going on the IORT RMR side[1], which helps 
+add a bit more shape to things too; beyond the actual firmware parsing, 
+DT and ACPI systems should definitely be converging on the same internal 
+implementation in the IOMMU layer.
+
+Robin.
+
+[1] 
+https://lore.kernel.org/linux-iommu/20201027112646.44680-1-shameerali.kolothum.thodi@huawei.com/
