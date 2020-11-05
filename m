@@ -2,59 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02FB12A7A9B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C96EF2A7AA0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:33:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728855AbgKEJbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:31:45 -0500
-Received: from wtarreau.pck.nerim.net ([62.212.114.60]:46209 "EHLO 1wt.eu"
+        id S1726371AbgKEJd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:33:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60132 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726737AbgKEJbp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 04:31:45 -0500
-Received: (from willy@localhost)
-        by pcw.home.local (8.15.2/8.15.2/Submit) id 0A59V7WU021287;
-        Thu, 5 Nov 2020 10:31:07 +0100
-Date:   Thu, 5 Nov 2020 10:31:07 +0100
-From:   Willy Tarreau <w@1wt.eu>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 3/5] gpio: msc313: MStar MSC313 GPIO driver
-Message-ID: <20201105093107.GB21245@1wt.eu>
-References: <20201011024831.3868571-1-daniel@0x0f.com>
- <20201011024831.3868571-4-daniel@0x0f.com>
- <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
- <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
- <CACRpkdbx+T3uX9taZNjsURHGc6qVLvGGC2boEC4=NaOi4_uZTQ@mail.gmail.com>
+        id S1726428AbgKEJdZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 04:33:25 -0500
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9E1B22080D;
+        Thu,  5 Nov 2020 09:33:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604568805;
+        bh=3esBga4idpU2CSztj4UZCUzqnXaLovO1PuuzPUcV1Io=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JGGNaoA+V5Tdop3BsgFeg6nWP7EKfSbL3+02OpMkimQT9S4v6genkjnCeoZNQ9RxB
+         hACOVnqzOA8mq0q2aaY24jKKTfohJPg9W4APW/5zwtNubLJoswG1Zan7RP6/9Rx+qu
+         VrTCOw2+C0C9E9gY5H7OPnNNYKwHCGzaUUBmLHyg=
+Date:   Thu, 5 Nov 2020 10:34:13 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        kernel-team@android.com, linux-acpi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 01/18] Revert "driver core: Avoid deferred probe due
+ to fw_devlink_pause/resume()"
+Message-ID: <20201105093413.GC3439341@kroah.com>
+References: <20201104232356.4038506-1-saravanak@google.com>
+ <20201104232356.4038506-2-saravanak@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdbx+T3uX9taZNjsURHGc6qVLvGGC2boEC4=NaOi4_uZTQ@mail.gmail.com>
-User-Agent: Mutt/1.6.1 (2016-04-27)
+In-Reply-To: <20201104232356.4038506-2-saravanak@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 10:21:27AM +0100, Linus Walleij wrote:
-> If your SoC is only used by OpenWrt (like ixp4xx) then it is fine
-> to just use bool because that distribution is always built with an
-> image for a specific hardware, whereas distributions are generic.
+On Wed, Nov 04, 2020 at 03:23:38PM -0800, Saravana Kannan wrote:
+> This reverts commit 2451e746478a6a6e981cfa66b62b791ca93b90c8.
+> 
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-Speaking for myself (since I have a few now), I'm not running OpenWRT
-on mine but my own distro, and I guess most users will run either
-Buildroot or their own distro. It's unlikely that we'll see very
-generic distros there given the limited storage you'd typically have
-in an SPI NOR (16-32 MB) and the small RAM (64MB) which tends to
-discourage anyone from booting a regular distro over other storage
-anyway.
+You need to say _why_ you are doing this, it's obvious _what_ you are
+doing :)
 
-Thus my guess is that most users will keep building their own kernels.
+Same for the other reverts in this series.
 
-But this just emphasizes your points :-)
+thanks,
 
-Just my two cents,
-Willy
+greg k-h
