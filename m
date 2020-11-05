@@ -2,128 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D353A2A7C08
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:40:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F014C2A7C21
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726400AbgKEKkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 05:40:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36876 "EHLO
+        id S1729555AbgKEKsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 05:48:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbgKEKkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 05:40:14 -0500
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A29EC0613D6
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 02:40:13 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id u2so581916pls.10
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 02:40:13 -0800 (PST)
+        with ESMTP id S1729484AbgKEKsb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 05:48:31 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CCA3C0613D3
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 02:48:31 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id 62so1135495pgg.12
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 02:48:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=WCCTQKcgxT5BgoXvd55cVkeUPDruRceTke7HPT3Hkyo=;
-        b=uI5sjdIZnJfMXmb2BmcneLzfiFbBlet9wY7JQZtjHR0GF8UkHMmcqlXwBrkvsqK1WI
-         SeinhDQqNDH8/hEaMPpSpgwvj0qAA2DAOlij96dLz+WulydyVF4o3fYzumZUYFXFoH1h
-         ZgXb17DvmcshHNZxztv5zRi/aeOa+ymd+joJrRroDAhLo0nx97avxNo1KBPgxXcO+5qD
-         SXvk12UVzaw2/5tEF2FemBinKY4gdRZP1KDwgT69Jbp7nnNi1tx0Yci0mKB/TEHxbTdH
-         hUsmGHEaNuInutK+0y4SPLiOBIQ+CzV6c4LqpUQ2rUe9GYtY4Vnxx2LLLnO7akoNoqHJ
-         X5Yw==
+        h=from:to:cc:subject:date:message-id;
+        bh=6UTxDIKXxyRwcmDvCCD7p0lN1/IZKHgNHQd2xiazqvs=;
+        b=z41gi7THOrUs3aQ3BdEIIfV8WUwK5jngqY+PX6LUzKAq3813/qURswMUsO0TtQvugP
+         XHw/Jjn3a8MA9qo674YP8AaeqT6JV6zuMvxj+pQVZrlge8r4cypSKryORqVRb0m2Csae
+         m6Q0PREA1co9BMbr6E6lUPD4ULAYvVqxmbtQ/WXWqITmoog5cAM1nUx6IQYPZkBrjd8m
+         xHb5rb0xpfmIvRchTJQzpL+1yctGy1BwPZkSHdEMnZnkikvdW0DCq/CtxvB/2lEYkEkM
+         Ho2XHtBaRZ25xn/6EC/510aMTgFlJz7ovi/5wj0fNrfwpEbe9SVVVsIIiwsT7Ok1CRtv
+         fgkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WCCTQKcgxT5BgoXvd55cVkeUPDruRceTke7HPT3Hkyo=;
-        b=eSyiMuWpkAfX+cj9CuRR7NBuOsTY2SadXKxvMGadyiop61wZ8cj21KcD+jBiZr+O8Y
-         irAnLJumSFBEUrxtZI1inK88SjZMPnTkvR5QTJlYvnVXjMohT3qsuy8Gg7ordYwIcogH
-         onhJOQH4qtIJvwpEM4T3jbI2oK6wgLRqCSTkxlkvU9Qyufcaxa/APfqJIWl+pzIPkyoA
-         /pmzrAXZOuCrLEJDVoJYPFz7XCIQ52uxiyJzWWKe98pFTcgCCdGDoeK6MxhJV/psFXFr
-         60O3a/bF3YziM3uFonDl0VlacIfM/IiIExuzp+p+GAoCWIbwHdxNYJD7PsK1Zavy2S7l
-         qGqg==
-X-Gm-Message-State: AOAM533myF+BFJB0JkylmBi+q9kbsEratZhDjMFeIh9+H22YBGbAPhBS
-        qMJIKbJOY/O6DkB//+tea79Y6Q==
-X-Google-Smtp-Source: ABdhPJxaeig/5BttxMih2SwDkKcSP7+kCvVk+Bpsa5+VJfx+t48gt5Hq0JWRUoD/r4V+wRad0uK0Vw==
-X-Received: by 2002:a17:902:b601:b029:d3:e6c5:5112 with SMTP id b1-20020a170902b601b02900d3e6c55112mr1328833pls.65.1604572812590;
-        Thu, 05 Nov 2020 02:40:12 -0800 (PST)
-Received: from localhost ([122.172.12.172])
-        by smtp.gmail.com with ESMTPSA id q11sm1908845pgm.79.2020.11.05.02.40.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 05 Nov 2020 02:40:11 -0800 (PST)
-Date:   Thu, 5 Nov 2020 16:10:09 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-Message-ID: <20201105104009.oo4dc6a2gdcwduhk@vireshk-i7>
-References: <20201104234427.26477-1-digetx@gmail.com>
- <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
- <20201105100603.skrirm7uke4s2xyl@vireshk-i7>
- <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=6UTxDIKXxyRwcmDvCCD7p0lN1/IZKHgNHQd2xiazqvs=;
+        b=e5/NFN+uERIKT5VWRLFglCxSqEEs1rjbsyGTBs4T8pyI01VOIWg4MPN4YyiMzfa+rA
+         oyaXFYoJKsKJMcGf3WXzvU7bHZbYzf8rCKk/oFxuIt3jrC9HVpIiMczKVgrR1SQ01Oil
+         sgK+Y0+M0SBN47BPSdTlVtrcAPE16atVTY/x57TU0hGCS9n1G5bL0GhzCKprOSUDQYfm
+         lxmjSisu3TAUamnbR+jPJJwqUb6sxLci3ROXvqDjE3s9VfA2U3opc0CgKqb1hpJUdvq5
+         f2Ii1y6DhkXlqNovj+p5FJd0SmX61R4yVEPgSnhc/S546J6Xa5iMZ0wV9JecB8cgkTae
+         JQew==
+X-Gm-Message-State: AOAM530GbIkoyYOeVZkO3TicLsZYjOH3sQ3sykj4XXRz/PBywK9UJFtz
+        bjnoJa4vWjDpKkmFbyvwfQmr
+X-Google-Smtp-Source: ABdhPJxg1ieI0h8HHygGrJMeO83B+M9Uo6vJlJsBy0DBqxuLWhCMXtaRCRVT+6irvthNcL2Ajk2fWA==
+X-Received: by 2002:a63:34c:: with SMTP id 73mr1830048pgd.172.1604573310690;
+        Thu, 05 Nov 2020 02:48:30 -0800 (PST)
+Received: from localhost.localdomain ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id a84sm2131234pfa.53.2020.11.05.02.48.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 02:48:29 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
+Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 0/4] Add GCC and RPMh clock support for SDX55
+Date:   Thu,  5 Nov 2020 16:18:13 +0530
+Message-Id: <20201105104817.15715-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-11-20, 11:34, Ulf Hansson wrote:
-> I am not objecting about scaling the voltage through a regulator,
-> that's fine to me. However, encoding a power domain as a regulator
-> (even if it may seem like a regulator) isn't. Well, unless Mark Brown
-> has changed his mind about this.
->
-> In this case, it seems like the regulator supply belongs in the
-> description of the power domain provider.
+Hello,
 
-Okay, I wasn't sure if it is a power domain or a regulator here. Btw,
-how do we identify if it is a power domain or a regulator ?
+This series adds Global Clock Controller (GCC) and RPMh clock support
+for SDX55 SoC from Qualcomm with relevant DT bindings.
 
-> > In case of Qcom earlier (when we added the performance-state stuff),
-> > the eventual hardware was out of kernel's control and we didn't wanted
-> > (allowed) to model it as a virtual regulator just to pass the votes to
-> > the RPM. And so we did what we did.
-> >
-> > But if the hardware (where the voltage is required to be changed) is
-> > indeed a regulator and is modeled as one, then what Dmitry has done
-> > looks okay. i.e. add a supply in the device's node and microvolt
-> > property in the DT entries.
-> 
-> I guess I haven't paid enough attention how power domain regulators
-> are being described then. I was under the impression that the CPUfreq
-> case was a bit specific - and we had legacy bindings to stick with.
-> 
-> Can you point me to some other existing examples of where power domain
-> regulators are specified as a regulator in each device's node?
+This series has been tested on SDX55 MTP board. The dts patches for this
+SoC/board will be posted later.
 
-No, I thought it is a regulator here and not a power domain.
+Thanks,
+Mani
+
+Changes in v2:
+
+* Modified the GCC Kconfig symbol from GCC_SDX55 to SDX_GCC_55
+* Added S-o-b tag to bindings patch
+* Incorporated review comments from Stephen on the gcc driver
+* Added review tag from Bjorn on RPMh patch
+
+Manivannan Sadhasivam (1):
+  clk: qcom: Add support for SDX55 RPMh clocks
+
+Naveen Yadav (1):
+  clk: qcom: Add SDX55 GCC support
+
+Vinod Koul (2):
+  dt-bindings: clock: Add SDX55 GCC clock bindings
+  dt-bindings: clock: Introduce RPMHCC bindings for SDX55
+
+ .../bindings/clock/qcom,gcc-sdx55.yaml        |   71 +
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-rpmh.c                   |   20 +
+ drivers/clk/qcom/gcc-sdx55.c                  | 1626 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sdx55.h    |  112 ++
+ include/dt-bindings/clock/qcom,rpmh.h         |    1 +
+ 8 files changed, 1839 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sdx55.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx55.h
 
 -- 
-viresh
+2.17.1
+
