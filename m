@@ -2,139 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 112622A7AD6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD532A7AC7
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:42:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728345AbgKEJnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:43:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56134 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726428AbgKEJnC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:43:02 -0500
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1945BC0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:43:02 -0800 (PST)
-Received: by mail-ed1-x541.google.com with SMTP id q3so553679edr.12
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:43:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DeOBs8//T4JC8W2v/41RF/aONDtKGyNLXtxBMCRNHss=;
-        b=CyY1MxxZtzoUExDGbmpfCTNbv0CVGls7p0kDIFJHKIwdCk8Bd4QEzlmsBdJkefe5kF
-         bDVViaItqLXwHDLbA+q9Fr5dnVgW/1XDyTeTaEGjy3Dr6pOaBaYVENiOk6ilsVbG0/HL
-         xeFbvtqJO3blOzIuCgaSSkafRYQolKoH227e+GB3iGCLhm5zzOLXRXW5GdbDuLploRFF
-         FqXsj+CadpLYKdBoFr13XOn5hQRujYHvQqPzQkdCdrmCwaKQKlw9Ba8ZQB5ctigIBhSw
-         tB7ZNrEGerTHA3/IxDKAXDu6f3oUcxTz8A/mJaAdvwYjPMhFzhGJbODSNOIOvro3aJbF
-         ipug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DeOBs8//T4JC8W2v/41RF/aONDtKGyNLXtxBMCRNHss=;
-        b=ldZOfVk4nhm272CJeOQ7WyKzcICghvVdmx2etKRUCnuTYCn39jP+KRm11XhnWVDsh2
-         VKKekucd1zlPbv0JcezRtZfbRrwE0grJxvhAR3so0fH8J3NlYfLC9+7tDgw+7+4EgAEC
-         RuFzlrRD8FyMMp6hIe4K7S9YM3iMZkaZzuf9x5BKfiliz7g7MN1kMQjlCMLmFLM5VCUq
-         dPbpwzdL7S7e0WEHuxztHnwzerclTcxcheVV+TMWeOyRcjzoDryMcZ+Fll+G04jYO6Oy
-         rMLmP6NhzFn1vgl0L/by/T57sVz/Am58EmiJjx4yNqG4p6PmnumajGvJB2JvlZqJDZMt
-         m2lw==
-X-Gm-Message-State: AOAM531gQuz2UjHOPgmuiWRH/WtvOOAcyWGk1ymewIc+wXHMpob5MN30
-        LarTkVbN5El+hCvMrL03o8rCnlGyEGHHK5r9pgilUQ==
-X-Google-Smtp-Source: ABdhPJybud6FTPvTcrbvBWnuDfmJGrn2QRie046seVglh3JPax7rANBITFnA8FFir54MK6PUKO/kndp9C8T8y77d14o=
-X-Received: by 2002:a50:e442:: with SMTP id e2mr1738064edm.186.1604569380861;
- Thu, 05 Nov 2020 01:43:00 -0800 (PST)
+        id S1726993AbgKEJme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:42:34 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33396 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725308AbgKEJmd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 04:42:33 -0500
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 584552080D;
+        Thu,  5 Nov 2020 09:42:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604569351;
+        bh=rXSI1BfmjG8vLqTpJNbDhN9/kV2FABpxj9zjELdDyKk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Ydsz10KeDnFwmSbiBSVmRTIRAKtvEZWCVMohOdND4AQH02rTm/8XrGunQoUx6Qvs6
+         7DomND3bOFLNeWVGkIcg+A8W+VxSkBzop0RE1wq/yfEtXaRv+HlIis9OUfp8LyJgFm
+         x/8Eo5QLx7nVA2jhSohdMNlPKmgLjgHDTbgajfLU=
+Date:   Thu, 5 Nov 2020 10:43:18 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        kernel-team@android.com, linux-acpi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 16/18] efi: Update implementation of add_links() to
+ create fwnode links
+Message-ID: <20201105094318.GF3439341@kroah.com>
+References: <20201104232356.4038506-1-saravanak@google.com>
+ <20201104232356.4038506-17-saravanak@google.com>
 MIME-Version: 1.0
-References: <20201104103938.1286-1-nsaenzjulienne@suse.de> <20201104103938.1286-2-nsaenzjulienne@suse.de>
- <CAMpxmJWJRcQQiLitJCLWKmhQVQWr3bMDY=td5FEn5uy2YZfwkA@mail.gmail.com> <47eaba0bc71c6e23bff87b8a01cebf0c6d12efd0.camel@suse.de>
-In-Reply-To: <47eaba0bc71c6e23bff87b8a01cebf0c6d12efd0.camel@suse.de>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 5 Nov 2020 10:42:50 +0100
-Message-ID: <CAMpxmJUZ23uYM3+_L2XvTXzvA48JWrxrhZaLnGAxTpJjFiERRA@mail.gmail.com>
-Subject: Re: [PATCH v3 01/11] firmware: raspberrypi: Introduce devm_rpi_firmware_get()
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        linux-devicetree <devicetree@vger.kernel.org>, wahrenst@gmx.net,
-        Linux Input <linux-input@vger.kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        devel@driverdev.osuosl.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-rpi-kernel@lists.infradead.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201104232356.4038506-17-saravanak@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 5, 2020 at 10:28 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> Hi Bartosz, thanks for the review.
->
-> On Thu, 2020-11-05 at 10:13 +0100, Bartosz Golaszewski wrote:
-> > > +/**
-> > > + * devm_rpi_firmware_get - Get pointer to rpi_firmware structure.
-> > > + * @firmware_node:    Pointer to the firmware Device Tree node.
-> > > + *
-> > > + * Returns NULL is the firmware device is not ready.
-> > > + */
-> > > +struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
-> > > +                                          struct device_node *firmware_node)
-> > > +{
-> > > +       struct platform_device *pdev = of_find_device_by_node(firmware_node);
-> > > +       struct rpi_firmware *fw;
-> > > +
-> > > +       if (!pdev)
-> > > +               return NULL;
-> > > +
-> > > +       fw = platform_get_drvdata(pdev);
-> > > +       if (!fw)
-> > > +               return NULL;
-> > > +
-> > > +       if (!refcount_inc_not_zero(&fw->consumers))
-> > > +               return NULL;
-> > > +
-> > > +       if (devm_add_action_or_reset(dev, rpi_firmware_put, fw))
-> > > +               return NULL;
-> > > +
-> > > +       return fw;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(devm_rpi_firmware_get);
-> >
-> > Usually I'd expect the devres variant to simply call
-> > rpi_firmware_get() and then schedule a release callback which would
-> > call whatever function is the release counterpart for it currently.
-> > Devres actions are for drivers which want to schedule some more
-> > unusual tasks at driver detach. Any reason for designing it this way?
->
-> Yes, see patch #8 where I get rid of rpi_firmware_get() altogether after
-> converting all users to devres. Since there is no use for the vanilla version
-> of the function anymore, I figured it'd be better to merge everything into
-> devm_rpi_firmware_get(). That said it's not something I have strong feelings
-> about.
->
+On Wed, Nov 04, 2020 at 03:23:53PM -0800, Saravana Kannan wrote:
+> The semantics of add_links() has changed from creating device link
+> between devices to creating fwnode links between fwnodes. So, update the
+> implementation of add_links() to match the new semantics.
+> 
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/firmware/efi/efi-init.c | 23 ++---------------------
+>  1 file changed, 2 insertions(+), 21 deletions(-)
+> 
+> diff --git a/drivers/firmware/efi/efi-init.c b/drivers/firmware/efi/efi-init.c
+> index b148f1459fb3..c0c3d4c3837a 100644
+> --- a/drivers/firmware/efi/efi-init.c
+> +++ b/drivers/firmware/efi/efi-init.c
+> @@ -316,11 +316,10 @@ static struct device_node *find_pci_overlap_node(void)
+>   * resource reservation conflict on the memory window that the efifb
+>   * framebuffer steals from the PCIe host bridge.
+>   */
+> -static int efifb_add_links(const struct fwnode_handle *fwnode,
+> +static int efifb_add_links(struct fwnode_handle *fwnode,
+>  			   struct device *dev)
 
-I see. So the previous version didn't really have any reference
-counting and it leaked the reference returned by
-of_find_device_by_node(), got it. Could you just clarify for me the
-logic behind the wait_queue in rpi_firmware_remove()? If the firmware
-driver gets detached and remove() stops on the wait_queue - it will be
-stuck until the last user releases the firmware. I'm not sure this is
-correct. I'd prefer to see a kref with a release callback and remove
-would simply decrease the kref and return. Each user would do the same
-and then after the last user is detached the firmware would be
-destroyed.
+So you are fixing the build warning you added a few patches ago here?
+Please fix up the function signatures when you made that change, not
+here later on.
 
-Don't we really have some centralized firmware subsystem that would handle this?
+thanks,
 
-Bartosz
+greg k-h
