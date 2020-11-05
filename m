@@ -2,99 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EAF62A7BE4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:34:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43CD72A7BED
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:35:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726400AbgKEKeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 05:34:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35928 "EHLO
+        id S1729772AbgKEKfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 05:35:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725827AbgKEKeQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 05:34:16 -0500
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160A3C0613CF;
-        Thu,  5 Nov 2020 02:34:16 -0800 (PST)
-Received: by mail-yb1-xb42.google.com with SMTP id i186so893406ybc.11;
-        Thu, 05 Nov 2020 02:34:16 -0800 (PST)
+        with ESMTP id S1728999AbgKEKfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 05:35:04 -0500
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE2D3C0613D6
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 02:35:03 -0800 (PST)
+Received: by mail-vs1-xe44.google.com with SMTP id r14so475308vsa.13
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 02:35:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=DNYuFU0GD0dcUQBqtp/+tmf7wl9kqn5LLBU1iSOy5n0=;
-        b=qGbsefdd+w8Px17CuPflxV0d6gFCZ6+2AT+D7vjxSGQKhGPUaB/cGV22+6jhsPAQUC
-         pSB8JOS1fmrrKB0VK4iDj+sBuGClNtrSwHvogD2AcKyrmXnxa2hzkkY+O1+cnhv/NCBE
-         59wIl8btskTDnaUokQ4rASegnQQcZg7Q8V3W+sTZRv11wq5H7i4MxCTRREvQmbXg+TBa
-         CQK5YrZ1eidQIJCmj7UW5Xinckq1PQRPsTzeE7FVOlU2GT7cLFV/jocf2sR3CLWlHda3
-         uhq5KXWoF9MihYGifVSVVrb/0MDgbDx87b23rVxhjaAxL7PtJJgDlTQTnfgzNeFoxIjK
-         fpCw==
+        bh=ZdAvLjoOXomWCs8t6TmIL4j/I5mepz3FWTuHztdBTlc=;
+        b=BiAiD4e1h7itpTTBhs3DR4K8CfgZymL8qj1e7tZjDyvL22TAbVaJrB6OdCOJ9dCgt8
+         uMo1WI+cg7RQpxF0bBlJEyznK83VkivtEouWpjXE0uDzswIn9ngEEIWZkBVtGoJKPI5a
+         3gYONlFV9O8ISMzu91uUEboniTdwBNNIgS1GVf+ZVCHpgeExfkJ3HUKHZ4pHVFwQwMtx
+         5vGFFB38gJyFP7FBlRczIoGJ/8EUs8e6gc59Rm7O/sKD+Kj4+eFQl2/7R5M52mOjdRQY
+         23FqbRx5TWg7iDot8DaIDKVfEKsFUNqqGSEPkpoltdKL/CwkFxGm9pZGSMzsaqx/PW9N
+         dskg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=DNYuFU0GD0dcUQBqtp/+tmf7wl9kqn5LLBU1iSOy5n0=;
-        b=EcRRbCyu03DdLTJz+QxYs2mLlHY3uiWtyBWyo/2kmuVYLeODTE7cPk+r5+X/Xkn2kK
-         B86vSUZwip8bv1GHKv/soQ501nu1T04ty3KNVcu3hEjqlZhumEtkVNpeDAVr1CGEqNCw
-         L0wlC8vmVSsylATCq941FblUTRCt5aYikN5T4OdE5CgDaK9NTtl0eyBptxu9iCc8zbie
-         d/+XqYxnA/uoiMPunon01hLzT+EJEy7ULU8zETq6DO0iou7JOZZRjzXqp4bgWYApsknN
-         nhFc4c8apDq5w1suHE8iG6DruVatfZ4I4D5oo2DPBUO6UXdVuVoCv+xdlSjxffsGa2EU
-         agNA==
-X-Gm-Message-State: AOAM531JBe6YGZVERRbIeazgXU/4dKwY2ExuAKCGuTQvQd1yOxWzvaBQ
-        txB5ceYuA09G8gSqDMHOkWhJUziasvUU5g/5pABFQtUWYH8=
-X-Google-Smtp-Source: ABdhPJyXG4Obojla9+xSE8BY0bWQEGq5peXmisrmc0L/wogYx8CEbS+YgsgRsw6gWe0Tf1NJGRFGkvlagQF41sdgFtI=
-X-Received: by 2002:a25:b316:: with SMTP id l22mr2488154ybj.395.1604572455376;
- Thu, 05 Nov 2020 02:34:15 -0800 (PST)
+        bh=ZdAvLjoOXomWCs8t6TmIL4j/I5mepz3FWTuHztdBTlc=;
+        b=ih8oHe30vb5xW8rqK/8GiTY1THYdSQtMjETRw1oBuN0AhG6vPiqGalBMrHZmGTzUes
+         XwaY5tIc+PADRPTm13Mpf732Ms4of6UeZ17GHGbjf/IGvnEv98h9viMNKQ6iFU/X43ZK
+         wSCffcrV8e1jVwarC/ZR/Il3+XpcqoVX/n+YLAO5B5OPBDyaz9HSfeWKRKrGYVo9eFuv
+         7yiPLJ/qmY/lnLkVf205+ImGXF8M9pIrVUmfL1bYAEobc/uMmmwNBm+4KlkIOqmwEkZk
+         pdCSWmJx51NVS89FqTaiVZ0TZqD1Gi4wcXZXlqAq8lLwPKUauyfakse7oYygydw45G8A
+         coDg==
+X-Gm-Message-State: AOAM531yfyUG1l4hI+STx3AneQLN7GB+s/QE+NRY/u3hn8mZy4guSb2D
+        UO8+aDjx75UrmKYHuxc+WC3TNBmvhsNi/gT+n4mWwQ==
+X-Google-Smtp-Source: ABdhPJxVfapO8HtgRahAnJ4wz7s9HOgbHIAKW7gtu7MmcNt2t4MXd/COFLbP0begvsat+FQbNQGgY8Hv6gEHSKm9IGw=
+X-Received: by 2002:a67:f417:: with SMTP id p23mr725992vsn.42.1604572502741;
+ Thu, 05 Nov 2020 02:35:02 -0800 (PST)
 MIME-Version: 1.0
-References: <20200921072206.15182-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200921072206.15182-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Thu, 5 Nov 2020 10:33:49 +0000
-Message-ID: <CA+V-a8th6J_jTb53GfYcYUftuc5NJpw8m6YxoD64tvvmLTiJew@mail.gmail.com>
-Subject: Re: [RESEND PATCH] dt-bindings: ata: renesas,rcar-sata: Add r8a774e1 support
-To:     Jens Axboe <axboe@kernel.dk>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-ide@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20201104234427.26477-1-digetx@gmail.com> <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
+ <20201105100603.skrirm7uke4s2xyl@vireshk-i7>
+In-Reply-To: <20201105100603.skrirm7uke4s2xyl@vireshk-i7>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 5 Nov 2020 11:34:26 +0100
+Message-ID: <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
+Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
+ Tegra20/30 SoCs
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Peter Chen <Peter.Chen@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-pwm@vger.kernel.org,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jens,
+On Thu, 5 Nov 2020 at 11:06, Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> On 05-11-20, 10:45, Ulf Hansson wrote:
+> > + Viresh
+>
+> Thanks Ulf. I found a bug in OPP core because you cc'd me here :)
 
-On Mon, Sep 21, 2020 at 8:22 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> Document SATA support for the RZ/G2H, no driver change required.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> Hi All,
->
-> This patch is part of series [1] (orignal patch [2]) where rest of the
-> patches have been picked up by the respective maintainers so just
-> resending this patch.
->
-> I have included the Acks' from the maintainers.
->
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/
->     list/?series=319563
-> [2] https://patchwork.kernel.org/patch/11668061/
->
-> Cheers,
-> Prabhakar
-> ---
->  Documentation/devicetree/bindings/ata/renesas,rcar-sata.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-This patch is not in mainline yet (first version was posted in July).
-Let me know if you want me to re-send it.
+Happy to help. :-)
 
-Cheers,
-Prabhakar
+>
+> > On Thu, 5 Nov 2020 at 00:44, Dmitry Osipenko <digetx@gmail.com> wrote:
+> > I need some more time to review this, but just a quick check found a
+> > few potential issues...
+> >
+> > The "core-supply", that you specify as a regulator for each
+> > controller's device node, is not the way we describe power domains.
+>
+> Maybe I misunderstood your comment here, but there are two ways of
+> scaling the voltage of a device depending on if it is a regulator (and
+> can be modeled as one in the kernel) or a power domain.
+
+I am not objecting about scaling the voltage through a regulator,
+that's fine to me. However, encoding a power domain as a regulator
+(even if it may seem like a regulator) isn't. Well, unless Mark Brown
+has changed his mind about this.
+
+In this case, it seems like the regulator supply belongs in the
+description of the power domain provider.
+
+>
+> In case of Qcom earlier (when we added the performance-state stuff),
+> the eventual hardware was out of kernel's control and we didn't wanted
+> (allowed) to model it as a virtual regulator just to pass the votes to
+> the RPM. And so we did what we did.
+>
+> But if the hardware (where the voltage is required to be changed) is
+> indeed a regulator and is modeled as one, then what Dmitry has done
+> looks okay. i.e. add a supply in the device's node and microvolt
+> property in the DT entries.
+
+I guess I haven't paid enough attention how power domain regulators
+are being described then. I was under the impression that the CPUfreq
+case was a bit specific - and we had legacy bindings to stick with.
+
+Can you point me to some other existing examples of where power domain
+regulators are specified as a regulator in each device's node?
+
+Kind regards
+Uffe
