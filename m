@@ -2,149 +2,313 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80F4D2A7E84
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:25:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23B8A2A7E98
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:31:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727275AbgKEMZJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 07:25:09 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35604 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725468AbgKEMZJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 07:25:09 -0500
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 38F162078E;
-        Thu,  5 Nov 2020 12:25:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604579108;
-        bh=mQn6eQC8BgHY7sVHx/l8lzOgl2uWd1caiUoW+FfNyd8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Xdv3zZVRDbS/oefaYlHx0GlF+5Tza70M6VZEhQBHrBgO9szMGieEHZU/hxRV4JqyN
-         6UoaLgsyH0L68tYQzzPi8etwz09xZq5W3srfXAgy2a/rqmJa+YVzjOtjPgiTrBSIkd
-         dYSQqFSQ5834EbvsGeuRbZ7wl1kBqFmef7NQoK+o=
-Received: by mail-ej1-f50.google.com with SMTP id o9so2351526ejg.1;
-        Thu, 05 Nov 2020 04:25:08 -0800 (PST)
-X-Gm-Message-State: AOAM531iu9QkViHzYmzIA0XaC3mB9heolbEEnuSOsCaC7mEhRN4fs2Gt
-        aeeNfd3yKOnb4excC1d0C3HJC6HTJqNqtgtghmI=
-X-Google-Smtp-Source: ABdhPJxtLqq7R2+xslnKnuHlzyKI3dzkhbUoBKlME67gbPsBxdBuzfnBLveHWCaKlx1rJ771h4Hd1tVYM36lFOUIBNw=
-X-Received: by 2002:a17:906:491a:: with SMTP id b26mr1971570ejq.385.1604579106683;
- Thu, 05 Nov 2020 04:25:06 -0800 (PST)
+        id S1729992AbgKEMbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 07:31:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54224 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725468AbgKEMbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 07:31:53 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03645C0613CF;
+        Thu,  5 Nov 2020 04:31:53 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id b12so724011plr.4;
+        Thu, 05 Nov 2020 04:31:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RM772cDSHAyaI3S6Oht4zbOquKz4eJt+u106DCGoFhM=;
+        b=bnygRq/0tekVuestJ58NXP85dUydoHJKyPVveKREYhd6uhSOAo9ap+JAjyk2uSA+5m
+         DnB1R7xB/IfDmJVnq6+cxbine5kKLvla2UmDMvNRT9zs4Pr7Rq0wA7GRj3mB9tEdCNP2
+         4q782JLutfwanHXIQ60vDKY44FcAPBsaLhdGXMTmsvnKhHSsBkG0YzSJgDs14Edzio/U
+         6s9W8iG6CEW66YG8jFu6PFB8lGgi0cH+d5IBguTC9/M6dD4qbPObBYyziIzqOHVOd5Z8
+         efquoXGVm/vFhiOsS0zf3Q9f5AKwQGz8cnbAu+aHYxDJ2m4EARxdt0mAhxWHyzXdFn1M
+         NsHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RM772cDSHAyaI3S6Oht4zbOquKz4eJt+u106DCGoFhM=;
+        b=WIYvsYjLVUBOmx3V9dSOfavzscGQ+9f5Une4hIZBF5TGh1g1M3+oYXYPqxjWgEmTID
+         Oo3Dnr2TGbZahBJOgwLLRM8sZ2qWIdj8jUCpLdreHNTOSwJpnrhyzEohg2X7lxnjFcoN
+         avhfoQdn8JlsRrl+aeBcNlRDF2yf6X3piOV2AmBgh7dIOQvtBburGqjaVpfgMlSKUfch
+         ARlv+wphGzZBaXduTDMduAzOoLR9h36Rw21Gjw1Qw6/MUDlKoex0BWXazB3JD/nqR1pQ
+         S5WfF//hm+ZOEej7/v1g+EjjebdOP0rNFiIayq3CitOhh140Uz/aHMHRhM5esVYYJHHM
+         ZtMw==
+X-Gm-Message-State: AOAM532QQKJAjHH2p3VWko4hsOHVqeSwfAyiskwjdWlOcKWOgH7hXrSz
+        JMjWkUEybtg1Jq1Pd6JzdTjHSRhjMm+dQ9hCF04=
+X-Google-Smtp-Source: ABdhPJy2A7kynh+Cjoe9pc+2nVcIvUEQex3DbleQ3c/V6f04bARBgkPT2MNTmziRExEuL6jVAz/T7qDxGwQOv1rZ5U0=
+X-Received: by 2002:a17:902:bc4a:b029:d6:7ef9:689c with SMTP id
+ t10-20020a170902bc4ab02900d67ef9689cmr2146556plz.21.1604579512404; Thu, 05
+ Nov 2020 04:31:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20201105072629.24175-1-alice.guo@nxp.com> <20201105082543.GA17569@kozik-lap>
- <VI1PR04MB707134F5D01274A91E1CC878E2EE0@VI1PR04MB7071.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB707134F5D01274A91E1CC878E2EE0@VI1PR04MB7071.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Thu, 5 Nov 2020 13:24:55 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPfyuaKpDZ5akWBq2rujxZLU0TR2eqiDcHWKVVPA_NpVVQ@mail.gmail.com>
-Message-ID: <CAJKOXPfyuaKpDZ5akWBq2rujxZLU0TR2eqiDcHWKVVPA_NpVVQ@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Binding
- doc for soc unique ID
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
+References: <20201105120410.18305-1-srinivas.kandagatla@linaro.org> <20201105120410.18305-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20201105120410.18305-2-srinivas.kandagatla@linaro.org>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 5 Nov 2020 14:32:41 +0200
+Message-ID: <CAHp75VdM9LUV2M6rEZyK=4rh_+hwFK5_2-9RB7YQTuMxHSYCMg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 5 Nov 2020 at 13:19, Alice Guo <alice.guo@nxp.com> wrote:
+On Thu, Nov 5, 2020 at 2:06 PM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
 >
->
->
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > Sent: 2020=E5=B9=B411=E6=9C=885=E6=97=A5 16:26
-> > To: Alice Guo <alice.guo@nxp.com>
-> > Cc: robh+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > dl-linux-imx <linux-imx@nxp.com>; Peng Fan <peng.fan@nxp.com>;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org
-> > Subject: [EXT] Re: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Bindi=
-ng doc
-> > for soc unique ID
-> >
-> > Caution: EXT Email
-> >
-> > On Thu, Nov 05, 2020 at 03:26:26PM +0800, Alice Guo wrote:
-> > > Add DT Binding doc for the Unique ID of i.MX 8M series.
-> > >
-> > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/arm/fsl.yaml          | 33
-> > +++++++++++++++++++
-> > >  1 file changed, 33 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > index e4db0f9ed664..0419f078502b 100644
-> > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > @@ -901,6 +901,39 @@ properties:
-> > >                - fsl,s32v234-evb           # S32V234-EVB2 Customer
-> > Evaluation Board
-> > >            - const: fsl,s32v234
-> > >
-> > > +  soc:
-> > > +    description:
-> > > +      i.MX8M Family SoC must provide a soc node in the root of the d=
-evice
-> > tree,
-> > > +      representing the System-on-Chip since these test chips are rat=
-her
-> > complex.
-> > > +    type: object
-> > > +    properties:
-> > > +      compatible:
-> > > +        oneOf:
-> > > +          - items:
-> > > +              - const: fsl,imx8mm-soc
-> > > +              - const: simple-bus
-> > > +          - items:
-> > > +              - const: fsl,imx8mn-soc
-> > > +              - const: simple-bus
-> > > +          - items:
-> > > +              - const: fsl,imx8mp-soc
-> > > +              - const: simple-bus
-> > > +          - items:
-> > > +              - const: fsl,imx8mq-soc
-> > > +              - const: simple-bus
-> > > +
-> > > +      nvmem-cells:
-> > > +        maxItems: 1
-> > > +        description: Phandle to the SOC Unique ID provided by a nvme=
-m
-> > node
-> > > +
-> > > +      nvmem-cells-names:
-> > > +        const: soc_unique_id
-> > > +
-> > > +    required:
-> > > +      - compatible
-> > > +      - nvmem-cells
-> > > +      - nvmem-cell-names
-> > > +
-> >
-> > Did you actually test it? I see multiple errors with this patch.
-> > fsl-ls1012a-frdm.dt.yaml: /: soc:compatible: ['simple-bus'] is not vali=
-d under any
-> > of the given schemas
-> >
-> > Best regards,
-> > Krzysztof
->
->
-> [Alice Guo] Sorry. I did not see errors what you said. Can you tell me ho=
-w did you test it?
+> Add initial pinctrl driver to support pin configuration for
+> LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
+> on SM8250.
 
-It was a regular DT check, nothing unusual (make dtbs_check).
+> +config PINCTRL_LPASS_LPI
+> +       tristate "Qualcomm Technologies Inc LPASS LPI pin controller driver"
+> +       depends on GPIOLIB && OF
+> +       help
+> +         This is the pinctrl, pinmux, pinconf and gpiolib driver for the
+> +         Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
+> +         (Low Power Island) found on the Qualcomm Technologies Inc SoCs.
 
-Best regards,
-Krzysztof
+> +#include <linux/of_device.h>
+> +#include <linux/of.h>
+
+...
+
+> +       val = lpi_gpio_read(pctrl, pin, LPI_GPIO_REG_VAL_CTL);
+
+> +       val &= ~(LPI_GPIO_REG_FUNCTION_MASK);
+
+Redundant parentheses.
+
+> +       val |= i << LPI_GPIO_REG_FUNCTION_SHIFT;
+> +       lpi_gpio_write(pctrl, pin, LPI_GPIO_REG_VAL_CTL, val);
+
+...
+
+> +static unsigned int lpi_drive_to_regval(u32 arg)
+> +{
+> +       return (arg/2 - 1);
+
+Ditto. On top, use spaces.
+
+> +}
+
+...
+
+> +               case PIN_CONFIG_SLEW_RATE:
+> +                       if (arg > LPI_SLEW_RATE_MAX) {
+> +                               dev_err(pctldev->dev, "%s: invalid slew rate %u for pin: %d\n",
+> +                                       __func__, arg, pin);
+
+__func__ is not needed.
+
+> +                               goto set_gpio;
+> +                       }
+
+...
+
+> +                       for (i = 0; i < LPI_SLEW_BITS_SIZE; i++) {
+
+> +                               if (arg & 0x01)
+> +                                       set_bit(offset, &val);
+> +                               else
+> +                                       clear_bit(offset, &val);
+
+assign_bit(, arg & BIT(i))
+
+> +                               offset++;
+
+> +                               arg = arg >> 1;
+
+No need on a separate line, see above.
+
+> +                       }
+
+...
+
+> +done:
+
+Useless label.
+
+> +       return ret;
+
+...
+
+> +#ifdef CONFIG_DEBUG_FS
+> +#include <linux/seq_file.h>
+
+> +#else
+> +#define lpi_gpio_dbg_show NULL
+> +#endif
+
+Hmm... Doesn't pin control provide a wrapper for this?
+
+...
+
+> +       int ret, npins;
+> +       struct clk *core_vote = NULL;
+> +       struct clk *audio_vote = NULL;
+> +
+> +       struct lpi_pinctrl *pctrl;
+> +       const struct lpi_pinctrl_variant_data *data;
+> +       struct device *dev = &pdev->dev;
+> +       struct resource *res;
+
+Redundant blank line. Can you keep them in reversed xmas tree order?
+
+...
+
+> +       core_vote = devm_clk_get(&pdev->dev, "core");
+> +       if (IS_ERR(core_vote)) {
+
+> +               dev_dbg(&pdev->dev, "%s: clk get %s failed %d\n",
+> +                       __func__, "core_vote", ret);
+
+First of all you missed the deferred probe issue, second, __func__ is
+redundant for *_dbg() calls (okay, when Dynamic Debug is enabled).
+That said why not
+  return dev_err_probe();
+?
+
+> +               return PTR_ERR(core_vote);
+> +       }
+
+...
+
+> +       audio_vote = devm_clk_get(&pdev->dev, "audio");
+> +       if (IS_ERR(audio_vote)) {
+> +               dev_dbg(&pdev->dev, "%s: clk get %s failed %d\n",
+> +                       __func__, "audio_vote", ret);
+> +               return PTR_ERR(audio_vote);
+
+Ditto/
+
+> +       }
+
+Why is it not a bulk?
+
+> +       clk_prepare_enable(pctrl->core_vote);
+> +       clk_prepare_enable(pctrl->audio_vote);
+
+Either from them may return an error. Also, when you go devm_*() the
+rule of thumb is either all or none. Because here you will have
+ordering issue on ->remove().
+
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +       pctrl->tlmm_base = devm_ioremap_resource(&pdev->dev, res);
+
+devm_platform_ioremap_resource()
+
+> +       if (IS_ERR(pctrl->tlmm_base)) {
+> +               ret = PTR_ERR(pctrl->tlmm_base);
+> +               goto err;
+> +       }
+> +
+> +
+
+One blank line is enough.
+
+> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +       pctrl->slew_base = devm_ioremap_resource(&pdev->dev, res);
+
+As above.
+
+> +       if (IS_ERR(pctrl->slew_base)) {
+> +               ret = PTR_ERR(pctrl->slew_base);
+> +               goto err;
+> +       }
+
+...
+
+> +       ret = gpiochip_add_data(&pctrl->chip, pctrl);
+
+Not devm_?
+
+> +       if (ret) {
+> +               dev_err(pctrl->dev, "can't add gpio chip\n");
+> +               goto err_pinctrl;
+> +       }
+
+> +       ret = gpiochip_add_pin_range(&pctrl->chip, dev_name(dev), 0, 0, npins);
+
+Why not to define a proper callback?
+
+> +       if (ret) {
+> +               dev_err(dev, "failed to add pin range\n");
+> +               goto err_range;
+> +       }
+
+...
+
+> +err_range:
+> +       gpiochip_remove(&pctrl->chip);
+> +err_pinctrl:
+> +       mutex_destroy(&pctrl->slew_access_lock);
+> +err:
+> +       clk_disable_unprepare(pctrl->core_vote);
+> +       clk_disable_unprepare(pctrl->audio_vote);
+> +
+> +       return ret;
+
+These are not needed for devm_ case.
+
+...
+
+> +static int lpi_pinctrl_remove(struct platform_device *pdev)
+> +{
+> +       struct lpi_pinctrl *pctrl = platform_get_drvdata(pdev);
+> +
+> +       gpiochip_remove(&pctrl->chip);
+> +       mutex_destroy(&pctrl->slew_access_lock);
+> +       clk_disable_unprepare(pctrl->core_vote);
+> +       clk_disable_unprepare(pctrl->audio_vote);
+
+Ditto. It also has ordering issues.
+
+> +       return 0;
+> +}
+
+...
+
+> +static const struct of_device_id lpi_pinctrl_of_match[] = {
+> +       {
+> +              .compatible = "qcom,sm8250-lpass-lpi-pinctrl",
+> +              .data = &sm8250_lpi_data,
+> +       },
+
+> +       { },
+
+Comma is not needed here.
+
+> +};
+> +
+
+Extra blank line/
+
+> +MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
+
+...
+
+> +static struct platform_driver lpi_pinctrl_driver = {
+
+> +};
+
+> +
+
+Extra blank line.
+
+> +module_platform_driver(lpi_pinctrl_driver);
+
+-- 
+With Best Regards,
+Andy Shevchenko
