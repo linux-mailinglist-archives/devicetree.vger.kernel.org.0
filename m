@@ -2,177 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 228CD2A7F0B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:53:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 958EF2A7F23
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 13:55:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730535AbgKEMxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 07:53:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730270AbgKEMxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 07:53:16 -0500
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BF44C0613D3
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 04:53:16 -0800 (PST)
-Received: by mail-ua1-x941.google.com with SMTP id t15so474838ual.6
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 04:53:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L6TCLuc1aSDhvBsEh/oyOKoJFVXSTFCOXAYW2AUTtHo=;
-        b=y6DX4cMUVCgpxUKuGqoEligLjI7mP0FgyJ97c7sIUUHZxJlTwtRRakXekgH7YsuigB
-         Na2QU2xZN4x2PfpN6omerSdhzPwwGn9bDYKeR2k6MuBaUl4m5dH4WWWTdnhpeJeXb0wO
-         XSZFej4dNy5nb1iC9xr8tfwJeCBjFjlTzg4qI2DAs6FEDqJOv7dGIgx54zxdVZ6kpJNY
-         qEEM8136+KYXcHo4ba8akOcRfEEQa2WPh8DybrHFK+sabZgBhMR36tCVRG83K7vH1cW2
-         +tAvD7+11Tiw9WmdBdchM838Ksuv8W7UHq8LoeYHHVZz9EZWz0CY4hFIKH9bgfZDnoHM
-         MkFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L6TCLuc1aSDhvBsEh/oyOKoJFVXSTFCOXAYW2AUTtHo=;
-        b=g1NuPgp7vMsHkpJ/7bgRRozq4qR+vqy4AUam6sB8zfmw1uHJKEb4vAocpGn8aVbHge
-         7/sbU6tT4sMQKNTd0DtLXpjxQRk40nOuyzVnM3l+3fw+nv1XVGBAG38iiOhMA0zUIB/E
-         a729o53xVhXzAPVkDfvAGUlOa7TuMcHRE3Xru/2pAR6Z1YUGIkHpp9x1HfzKmYeyAVK1
-         653VXr30hu1LcbqLmcqLBITFjCi/b9gqi/MYgmEEX/6uujM5Q89kUxzQAtc0mwbrvgyI
-         AN0ismGRZpOxlBqcn5+7nN9/3EEOCfIHaLgoOv+BbUTyp+8laRdbX3FwGp3L4bcVsZaO
-         JqBw==
-X-Gm-Message-State: AOAM530m2KHXnX93eF++w001RFkvuOL9LXNpuuyaighi3PRlIA3IGMig
-        a0R6D5oQduB1vOz9SplBcoU+bBv8uegBq93+hklRaw==
-X-Google-Smtp-Source: ABdhPJycxdGkrda5dU9htxc/OSwm7s+GQAoBTPW1YXOO/bE03Yfcq+QBohkR+LMOwjYHynIUz7nEwPk/k/ZMFVtVBnc=
-X-Received: by 2002:a9f:2f15:: with SMTP id x21mr833961uaj.104.1604580795669;
- Thu, 05 Nov 2020 04:53:15 -0800 (PST)
+        id S1730373AbgKEMzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 07:55:41 -0500
+Received: from foss.arm.com ([217.140.110.172]:59928 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726067AbgKEMzl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 07:55:41 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DAED4142F;
+        Thu,  5 Nov 2020 04:55:40 -0800 (PST)
+Received: from [10.57.22.37] (unknown [10.57.22.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A18D3F719;
+        Thu,  5 Nov 2020 04:55:36 -0800 (PST)
+Subject: Re: [PATCH v4 1/4] PM / EM: Add a flag indicating units of power
+ values in Energy Model
+To:     Morten Rasmussen <morten.rasmussen@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com, qperret@google.com,
+        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
+        rafael@kernel.org, sudeep.holla@arm.com, viresh.kumar@linaro.org,
+        sboyd@kernel.org, nm@ti.com
+References: <20201103090600.29053-1-lukasz.luba@arm.com>
+ <20201103090600.29053-2-lukasz.luba@arm.com>
+ <20201105091759.GA8237@e123083-lin>
+ <876ca521-1576-63c5-9af5-b000f52cc17b@arm.com>
+ <20201105105633.GB8237@e123083-lin>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <7740a2a1-2e6a-1e04-91ff-364ea21540d6@arm.com>
+Date:   Thu, 5 Nov 2020 12:55:34 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <20201104234427.26477-1-digetx@gmail.com> <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
- <20201105100603.skrirm7uke4s2xyl@vireshk-i7> <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
- <20201105104009.oo4dc6a2gdcwduhk@vireshk-i7> <CAPDyKFpQG98d6foc1U6fp3YEBdZ1vLqY9cmWxpUwXoKgDn+ojQ@mail.gmail.com>
- <20201105111301.2hxfx2tnmf2saakp@vireshk-i7>
-In-Reply-To: <20201105111301.2hxfx2tnmf2saakp@vireshk-i7>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 5 Nov 2020 13:52:39 +0100
-Message-ID: <CAPDyKFr3LhrnK9mm=RzhZvcnfeAKez3Yzm6HU_oP1bnPokh9vg@mail.gmail.com>
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201105105633.GB8237@e123083-lin>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 5 Nov 2020 at 12:13, Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 05-11-20, 11:56, Ulf Hansson wrote:
-> > On Thu, 5 Nov 2020 at 11:40, Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > Btw, how do we identify if it is a power domain or a regulator ?
->
-> To be honest, I was a bit afraid and embarrassed to ask this question,
-> and was hoping people to make fun of me in return :)
->
-> > Good question. It's not a crystal clear line in between them, I think.
->
-> And I was relieved after reading this :)
->
-> > A power domain to me, means that some part of a silicon (a group of
-> > controllers or just a single piece, for example) needs some kind of
-> > resource (typically a power rail) to be enabled to be functional, to
-> > start with.
->
-> Isn't this what a part of regulator does as well ? i.e.
-> enabling/disabling of the regulator or power to a group of
-> controllers.
 
-It could, but it shouldn't.
 
->
-> Over that the regulator does voltage/current scaling as well, which
-> normally the power domains don't do (though we did that in
-> performance-state case).
->
-> > If there are operating points involved, that's also a
-> > clear indication to me, that it's not a regular regulator.
->
-> Is there any example of that? I hope by OPP you meant both freq and
-> voltage here. I am not sure if I know of a case where a power domain
-> handles both of them.
+On 11/5/20 10:56 AM, Morten Rasmussen wrote:
+> On Thu, Nov 05, 2020 at 10:09:05AM +0000, Lukasz Luba wrote:
+>>
+>>
+>> On 11/5/20 9:18 AM, Morten Rasmussen wrote:
+>>> On Tue, Nov 03, 2020 at 09:05:57AM +0000, Lukasz Luba wrote:
+>>>> @@ -79,7 +82,8 @@ struct em_data_callback {
+>>>>    struct em_perf_domain *em_cpu_get(int cpu);
+>>>>    struct em_perf_domain *em_pd_get(struct device *dev);
+>>>>    int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
+>>>> -				struct em_data_callback *cb, cpumask_t *span);
+>>>> +				struct em_data_callback *cb, cpumask_t *spani,
+>>>
+>>> "spani" looks like a typo?
+>>>
+>>
+>> Good catch, yes, the vim 'i'.
+>>
+>> Thank you Morten. I will resend this patch when you don't
+>> find other issues in the rest of patches.
+> 
+> The rest of the series looks okay to me.
 
-It may be both voltage and frequency - but in some cases only voltage.
-From HW point of view, many ARM legacy platforms have power domains
-that work like this.
+Thank you for checking the whole series. I have re-sent this patch only.
 
-As you know, the DVFS case has in many years not been solved in a
-generic way, but mostly via platform specific hacks.
+Lukasz
 
-The worst ones are probably those hacking clock drivers (which myself
-also have contributed to). Have a look at clk_prcmu_opp_prepare(), for
-example, which is used by the UX500 platform. Another option has been
-to use the devfreq framework, but it has limitations in regards to
-this too.
-
-That said, I am hoping that people start moving towards the
-deploying/implementing DVFS through the power-domain approach,
-together with the OPPs. Maybe there are still some pieces missing from
-an infrastructure point of view, but that should become more evident
-as more starts using it.
-
->
-> > Maybe we should try to specify this more exactly in some
-> > documentation, somewhere.
->
-> I think yes, it is very much required. And in absence of that I think,
-> many (or most) of the platforms that also need to scale the voltage
-> would have modeled their hardware as a regulator and not a PM domain.
->
-> What I always thought was:
->
-> - Module that can just enable/disable power to a block of SoC is a
->   power domain.
->
-> - Module that can enable/disable as well as scale voltage is a
->   regulator.
->
-> And so I thought that this patchset has done the right thing. This
-> changed a bit with the qcom stuff where the IP to be configured was in
-> control of RPM and not Linux and so we couldn't add it as a regulator.
-> If it was controlled by Linux, it would have been a regulator in
-> kernel for sure :)
-
-In my view, DT bindings have consistently been pushed back during the
-year, if they have tried to model power domains as regulator supplies
-from consumer device nodes. Hence, people have tried other things, as
-I mentioned above.
-
-I definitely agree that we need to update some documentations,
-explaining things more exactly. Additionally, it seems like a talk at
-some conferences should make sense, as a way to spread the word.
-
-Kind regards
-Uffe
+> 
+> Morten
+> 
