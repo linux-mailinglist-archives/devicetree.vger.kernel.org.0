@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 600B92A850E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:37:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F21B62A8511
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:39:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731677AbgKERhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 12:37:46 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:43987 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726801AbgKERhq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:37:46 -0500
-Received: by mail-ot1-f65.google.com with SMTP id y22so2170605oti.10;
-        Thu, 05 Nov 2020 09:37:45 -0800 (PST)
+        id S1726214AbgKERjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 12:39:07 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38594 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725862AbgKERjG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:39:06 -0500
+Received: by mail-ot1-f66.google.com with SMTP id b2so2186115ots.5;
+        Thu, 05 Nov 2020 09:39:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=SXNYkLqUKc8MTYanbRLkQs7GYK94sIP+QM0jXos7oP4=;
-        b=j7VYmspBYuq1ZOwOPonYCtarmLdYHe5J/BLBlnv+lvN+tJiGMmOTI3qf6msKgePWeC
-         s7M2ukGruORuoVjHk3nU7jwoxvxYEAZk9UK0EUekOkvabwsScISIn5WlobeflbTii0Pq
-         UuqcT4u871hLBy3Tqjnu7m1LKxOzUpBzVyftmc1EWH4vBNlUa9YlrUeBOGZlaVrVm+F3
-         ieE5ofU7QHU4LLAmDWxv4y4Q4Xd17IWk9+9Md4NPaLMdy4swyTD7wzzSj57NO3NMCo4r
-         /pQxIzOvW20UtLhp21OFOkkG1ZRThWRsAkXQyfhs3vqjr9l6S0gt3OnuEoabq9H+OLaW
-         tweQ==
-X-Gm-Message-State: AOAM532NlzZJU3/x4kIuZxV4lAuT2OpNgo0EFaOLXHD/PWX5pwVr+0fM
-        p/+jcsw7UP0UV1oLhUol6g==
-X-Google-Smtp-Source: ABdhPJxAI1k0VyZC87x5xf42TVt2elJ+4+m1P3SWlidqO1VtVuRTtTfa4RTIGmga6gHm4DtZwSpt8Q==
-X-Received: by 2002:a9d:12b2:: with SMTP id g47mr2337033otg.354.1604597865604;
-        Thu, 05 Nov 2020 09:37:45 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=9/dAV+YUfcPWYAGUU9ajuM8GiwgLWOqAlRSGNWO1bN0=;
+        b=Gd2zjTIi1M7D/xqFzjUDR1nX8iv71ES4BJqizGyhsoYh0yuaXBHp//BS1eLJmNkQEG
+         JGhJ1TP21IxR/Iqq6dKivwz7nviytA43AvoJOZU5Rm8bbK5kj4FzJEwcYKeHe2ZEZS15
+         vHb8RDrWnyFblOwHkPB9/chiXHd4fg+JrTZnDLwQr3KUsGV9j1zYEIy1Yu44EWSwJArT
+         /FxhJU9Xh3SlwyxgvyPevhXMA3ffXgPz77zc1MEDGYeRJKKBUGnFJWRuWvp5NBMrbAW8
+         2yMyQGC45cEgnWfw1QJG+tlUiSmtxmrEuY2dQxI7DL219h3eMvBkfrofpO9WPCtsLKu5
+         62kg==
+X-Gm-Message-State: AOAM530jY5qZf4aZ7iMF7nag0qPqstx9LI7OGI3xWETwzAQuOimtFEJr
+        lGurVZbg32G01hH7q/d3LQ==
+X-Google-Smtp-Source: ABdhPJxuTPEGRlBXmeiLBNkynERL2O1cojLMdnhsZ8onnyLrfiW5WFpgdCvpm7EGy1R6riJ/6dgDMg==
+X-Received: by 2002:a9d:3e88:: with SMTP id b8mr2195881otc.331.1604597945734;
+        Thu, 05 Nov 2020 09:39:05 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j10sm503462oii.14.2020.11.05.09.37.44
+        by smtp.gmail.com with ESMTPSA id h136sm188660oib.19.2020.11.05.09.39.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 09:37:44 -0800 (PST)
-Received: (nullmailer pid 1526952 invoked by uid 1000);
-        Thu, 05 Nov 2020 17:37:44 -0000
-Date:   Thu, 5 Nov 2020 11:37:44 -0600
+        Thu, 05 Nov 2020 09:39:05 -0800 (PST)
+Received: (nullmailer pid 1528840 invoked by uid 1000);
+        Thu, 05 Nov 2020 17:39:04 -0000
+Date:   Thu, 5 Nov 2020 11:39:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>
-Cc:     linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Johan Jonker <jbx6244@gmail.com>,
-        Aditya Prayoga <aditya@kobol.io>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: arm: rockchip: Add Kobol Helios64
-Message-ID: <20201105173744.GA1526923@bogus>
-References: <20201102150658.167161-1-uwe@kleine-koenig.org>
+To:     Cristian Marussi <cristian.marussi@arm.com>
+Cc:     vincent.guittot@linaro.org, Jonathan.Cameron@Huawei.com,
+        lukasz.luba@arm.com, james.quinlan@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, satyakim@qti.qualcomm.com,
+        f.fainelli@gmail.com, broonie@kernel.org,
+        devicetree@vger.kernel.org, souvik.chakravarty@arm.com,
+        etienne.carriere@linaro.org, sudeep.holla@arm.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] dt-bindings: arm: add support for SCMI Regulators
+Message-ID: <20201105173904.GA1528783@bogus>
+References: <20201102173238.4515-1-cristian.marussi@arm.com>
+ <20201102173238.4515-6-cristian.marussi@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201102150658.167161-1-uwe@kleine-koenig.org>
+In-Reply-To: <20201102173238.4515-6-cristian.marussi@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Nov 2020 16:06:58 +0100, Uwe Kleine-König wrote:
-> Document the new board by Kobol introduced recently in
-> rockchip/rk3399-kobol-helios64.dts.
+On Mon, 02 Nov 2020 17:32:38 +0000, Cristian Marussi wrote:
+> Add devicetree bindings to support regulators based on SCMI Voltage
+> Domain Protocol.
 > 
-> Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
+> Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
 > ---
-> Hello,
-> 
-> Heiko pointed out in irc that I missed this bit when submitting support
-> for the helios64 board (last submission starting at Message-Id:
-> <20201014200030.845759-1-uwe@kleine-koenig.org>).
-> 
-> Best regards
-> Uwe
-> 
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> v3 --> v4
+> - added list of supported Regulator bindings.
+> v2 --> v3
+> - avoid awkard examples based on _cpu/_gpu regulators
+> v1 --> v2
+> - removed any reference to negative voltages
+> ---
+>  .../devicetree/bindings/arm/arm,scmi.txt      | 43 +++++++++++++++++++
+>  1 file changed, 43 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
