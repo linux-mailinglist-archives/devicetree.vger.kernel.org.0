@@ -2,80 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC0362A74FE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 02:45:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D28D82A751D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 02:55:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730787AbgKEBpK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 20:45:10 -0500
-Received: from rere.qmqm.pl ([91.227.64.183]:21313 "EHLO rere.qmqm.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725862AbgKEBpK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 20:45:10 -0500
-Received: from remote.user (localhost [127.0.0.1])
-        by rere.qmqm.pl (Postfix) with ESMTPSA id 4CRRCz3W7Zz8p;
-        Thu,  5 Nov 2020 02:45:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
-        t=1604540706; bh=aBt8pSRmlerJrDlZ6D4FmnV067XCrMRhQWKKKTapOdw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GyZeaKLwRHgqCMhnbX5TNybo0ANsgA3gM3TWkXagDl6z0z7YM2HVQ82gMuN0HVIHU
-         7dp8iHeNlS1eCBKDju4naxFTjiE1S2c/jSNLdP0XdCQTQpCQrpbVB68WwxmQ5A1XTf
-         HnQ5aLlJ45qUjgU2s/chEVHj9kK0YGzx1K0TBruAnEEtNFfEy/FeB5JRFXlnjVynQ2
-         xj8dJwAqPPCRcBHEJBgull7vLVSSBUGpiGDT2jaC/jhSLrzGCOZ+TGsXznXqjpE9Bx
-         c3X8v/y5wwipUDKK02Lc2jvLGWIt7L90BZ89QWrFtHZZdjtuMz767NBYOLe9wQce1i
-         Ueh8sEtC2RP0g==
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.102.4 at mail
-Date:   Thu, 5 Nov 2020 02:45:02 +0100
-From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Uwe =?iso-8859-2?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1733187AbgKEBzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 20:55:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40168 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733185AbgKEBzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 20:55:05 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61B1BC0613CF
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 17:55:04 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id 1so7119ple.2
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 17:55:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=BIbhTyycJdg8v4aomXZ/rLjTbqfKa4wfwSkv3CiGgXs=;
+        b=dUppzHrDtmOkl4va+Fx+WrFGpF1BztJf6JjZXyVmIr/spj4bPIo0htN3VmSAeRlYpD
+         6kc/iHPqNy5rhMW2ijvPu2k2PMHYTTBrg8tZW4Fz5jDWUhp//QRKIS9TygUprrITg3op
+         ueEbEAwtbdgKZbbjyiVC1B7S81U+ybKp5pys8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=BIbhTyycJdg8v4aomXZ/rLjTbqfKa4wfwSkv3CiGgXs=;
+        b=TRNmsq69knzkYTNprrURhhNbli4QqlzU9IoWbVdieWH3wFhsvTL6y2vS6Qo4x27ZbU
+         rN0spf7Xg85SVVb1wJZ97VCD3eUN/f5r49IgvQ8I4t5ghkSj7vRevinDEOUvxQak0Y1l
+         cj+gdWp7qd2NHsy6JhsfdQnWJ3xPPQ/jqwvBeF16Cwc8hMp1v1RmTFIuYrG3BVYy970y
+         0VPa40vJQXahQh8xisgtxx9pGURc2EI1tXolD4i0dtcvaaz8yIjBY7GhCBDOr5uSPU8V
+         e6N4R/+zgh89RW0WtYYsF2IaxSgqSke5Syx1tWb84SOQOrsARYzrAWSHYr/8Mk0Hin0+
+         81ew==
+X-Gm-Message-State: AOAM532K3p5br8Rkx8YqlPLclmUYxkgQRejXBWWLu9iWjPDkfvI92Pxu
+        Cx3rpR0dr4A0SaK0zWBkRlHi7A==
+X-Google-Smtp-Source: ABdhPJzR3PTjViA5QvU9CtF4+v3zgRkRd/mHdtENh2KW+Fxdc/5jmJ/eheYhfIkAyalWEwBzj03F2Q==
+X-Received: by 2002:a17:902:a60c:b029:d5:dc92:a1ca with SMTP id u12-20020a170902a60cb02900d5dc92a1camr237261plq.16.1604541303863;
+        Wed, 04 Nov 2020 17:55:03 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id y8sm154592pfe.41.2020.11.04.17.55.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Nov 2020 17:55:03 -0800 (PST)
+Date:   Wed, 4 Nov 2020 17:55:01 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-Message-ID: <20201105014502.GB17266@qmqm.qmqm.pl>
-References: <20201104234427.26477-1-digetx@gmail.com>
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Make pp3300_a the
+ default supply for pp3300_hub
+Message-ID: <20201105015501.GA3079843@google.com>
+References: <20201103103749.1.I0ed4abdd2b2916fbedf76be254bc3457fb8b9655@changeid>
+ <CAD=FV=Wc-b75a-QSX8qLq0+fCbcnvh_6q+N6azL=+Tk+rMie1g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-2
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201104234427.26477-1-digetx@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAD=FV=Wc-b75a-QSX8qLq0+fCbcnvh_6q+N6azL=+Tk+rMie1g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 02:43:57AM +0300, Dmitry Osipenko wrote:
-> Introduce core voltage scaling for NVIDIA Tegra20/30 SoCs, which reduces
-> power consumption and heating of the Tegra chips. Tegra SoC has multiple
-> hardware units which belong to a core power domain of the SoC and share
-> the core voltage. The voltage must be selected in accordance to a minimum
-> requirement of every core hardware unit.
-[...]
+Hi Doug,
 
-Just looked briefly through the series - it looks like there is a lot of
-code duplication in *_init_opp_table() functions. Could this be made
-more generic / data-driven?
+On Wed, Nov 04, 2020 at 04:29:50PM -0800, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Nov 3, 2020 at 10:38 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > The trogdor design has two options for supplying the pp3300_hub power rail,
+> > it can be supplied by pp3300_l7c or pp3300_a. Initially pp3300_l7c was
+> > used, newer revisions (will) use pp3300_a as supply.
+> >
+> > Add a DT node for the pp3300_a path which includes a power switch that is
+> > controlled by a GPIO. Make this path the default and keep trogdor rev1,
+> > lazor rev0 and rev1 on pp3300_l7c.
+> 
+> It might not hurt to mention that even on early hardware that GPIO84
+> was allocated to this purpose but that it was a stuff option for what
+> actually provided power to the hub.  This explains why it's OK to add
+> the fixed regulator (just with no clients) even on old hardware.  If
+> GPIO84 had been used for something else on old hardware this would
+> have been bad.
 
-Best Regards
-Micha³ Miros³aw
+ok
+
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > index bf875589d364..2d64e75a2d6d 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > @@ -174,6 +174,21 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
+> >                 vin-supply = <&pp3300_a>;
+> >         };
+> >
+> > +       pp3300_hub: pp3300-hub {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "pp3300_hub";
+> > +
+> > +               regulator-min-microvolt = <3300000>;
+> > +               regulator-max-microvolt = <3300000>;
+> > +
+> > +               gpio = <&tlmm 84 GPIO_ACTIVE_HIGH>;
+> > +               enable-active-high;
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&en_pp3300_hub>;
+> > +
+> > +               vin-supply = <&pp3300_a>;
+> 
+> You're leaving things in a bit of an inconsistent state here.  The
+> "pp3300_hub_7c" is always_on / boot_on.  This new one isn't.
+
+Actually the new "pp3300_hub" it is also on at boot, the Chrome OS bootloader
+asserts the GPIO.
+
+> I know this is slightly more complicated due to the fact that downstream we
+> have a way to control the hub power but didn't quite get that resolved
+> upstream, but the way you have it now, on new hardware upstream will
+> power off the hub but also keep "pp3300_hub_7c" powered on for no
+> reason.  Seems like that should be fixed?
+
+Our EEs told me that it would be ok in terms of power to keep "pp3300_hub_7c"
+powered, since there would be no significant power consumption without load.
+
+In any case unused RPMH regulators are switched off by the kernel ~30s after
+boot, so I think we are ok:
+
+[   31.202219] ldo7: disabling
+
+The above is from the l7c regulator on a Lazor rev2.
+
+> > +       };
+> > +
+> >         /* BOARD-SPECIFIC TOP LEVEL NODES */
+> >
+> >         backlight: backlight {
+> > @@ -469,7 +484,7 @@ ppvar_l6c: ldo6 {
+> >                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> >                 };
+> >
+> > -               pp3300_hub:
+> > +               pp3300_hub_7c:
+> 
+> nit: If it were me, I probably wouldn't have bothered introducing the
+> "pp3300_hub_7c" alias since it's not a real thing in the schematic.  I
+> would have just had the older revisions refer to "pp3300_l7c".  If you
+> really love the "pp3300_hub_7c", though, I won't stand in your way.
+
+true, it's not really needed, I'll get rid of it in the next version.
+
+> >                 pp3300_l7c: ldo7 {
+> >                         regulator-min-microvolt = <3304000>;
+> >                         regulator-max-microvolt = <3304000>;
+> > @@ -1151,6 +1166,19 @@ pinconf {
+> >                 };
+> >         };
+> >
+> > +       en_pp3300_hub: en-pp3300-hub {
+> > +               pinmux {
+> > +                       pins = "gpio84";
+> > +                       function = "gpio";
+> > +               };
+> > +
+> > +               pinconf {
+> > +                       pins = "gpio84";
+> > +                       drive-strength = <2>;
+> > +                       bias-disable;
+> > +               };
+> > +       };
+> > +
+> >         en_pp3300_dx_edp: en-pp3300-dx-edp {
+> 
+> "hub" sorts after "dx", so the ordering is slightly wrong here.
+
+ack, will change
