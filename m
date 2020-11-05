@@ -2,89 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 057212A7AC9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:42:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 112622A7AD6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:43:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727536AbgKEJmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:42:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56076 "EHLO
+        id S1728345AbgKEJnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:43:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726688AbgKEJmm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:42:42 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EE64C0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:42:42 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id v144so1308556lfa.13
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:42:42 -0800 (PST)
+        with ESMTP id S1726428AbgKEJnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:43:02 -0500
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1945BC0613CF
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:43:02 -0800 (PST)
+Received: by mail-ed1-x541.google.com with SMTP id q3so553679edr.12
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:43:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=OHdJ9O/eb7sklBU/l07atiLZ4vkrCEwrngihboUUROU=;
-        b=iiRTzja+wq6lUOKKm42/j/gHbiF5SodCPbvKvogg5CAHNsdau6W+T8LTLaDExfQN0m
-         xsXSSkIcgtMb9/TadZq7F5dqrG4LhofhNMCD55eZsf3QuxcYNOVfttkQCmp0XmLrOEUY
-         5EJ7LqF+32FwOjC1NNLm5rd2MjaqYhthDMUF1ijtui+nSsajeLVrDwj3wO/rvjlumvBn
-         a3dtTSx3kUcFdqkC9u1imv9XL2EcRDUEg2/E/NMV1zTFrE4qppRbF9cmgAXsB+gPcG0H
-         EPEkxSM9KeXyPRunaiRtHElWwlfYfXJg1P3XvcVxtjYsqwZ4jE7uDIoXP+S9kJ5S95X3
-         44Uw==
+        bh=DeOBs8//T4JC8W2v/41RF/aONDtKGyNLXtxBMCRNHss=;
+        b=CyY1MxxZtzoUExDGbmpfCTNbv0CVGls7p0kDIFJHKIwdCk8Bd4QEzlmsBdJkefe5kF
+         bDVViaItqLXwHDLbA+q9Fr5dnVgW/1XDyTeTaEGjy3Dr6pOaBaYVENiOk6ilsVbG0/HL
+         xeFbvtqJO3blOzIuCgaSSkafRYQolKoH227e+GB3iGCLhm5zzOLXRXW5GdbDuLploRFF
+         FqXsj+CadpLYKdBoFr13XOn5hQRujYHvQqPzQkdCdrmCwaKQKlw9Ba8ZQB5ctigIBhSw
+         tB7ZNrEGerTHA3/IxDKAXDu6f3oUcxTz8A/mJaAdvwYjPMhFzhGJbODSNOIOvro3aJbF
+         ipug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=OHdJ9O/eb7sklBU/l07atiLZ4vkrCEwrngihboUUROU=;
-        b=HUvmC4pk1UnxNpWuSNdH+mQhACqJiAQALOEmMXotdBLr8rR+HQh23tlq5i4gDKBHLo
-         oTYTwRdpZk4z7eD7caCCi/ST/ECF0JnZVHTPx2LV2XC3mAW13F13D2DjUbx+DDftFEBG
-         vKMIjb9CiT6IO7Mw2SA54q682V1tPHgobnBz1hDnmZeFmNUgbSKkm+PbYGYf/aao1G1x
-         UINgybJX9q4p9Wbjy+BlyJ+5rQAXJhNfLIMsehrG6Upswx/GRMLR4cJRGJOZfJaeBW++
-         Q9pvgb6fA934jccUln0/stwUcPBTfoQRtUSDc2NqKuxl2mKIMxd00e6hO8ItSuV1Faq3
-         e4xw==
-X-Gm-Message-State: AOAM531cSyq0zoezrxR440NlidXtKC5OVKDeRu8WNajFgVfS7Q0pkMKj
-        QxVBuw9Rx1//OAdP3OKih9OBrhidreBGhMOL9EpELA==
-X-Google-Smtp-Source: ABdhPJyvHqbBfOH4pjVDXcDPP+SU3DUauVr3d4hoArhgygLP7IJAFteeJwECsCh7xRspygPGZoUQ3+4+8VofUysPWYY=
-X-Received: by 2002:a05:6512:3225:: with SMTP id f5mr608257lfe.441.1604569360750;
- Thu, 05 Nov 2020 01:42:40 -0800 (PST)
+        bh=DeOBs8//T4JC8W2v/41RF/aONDtKGyNLXtxBMCRNHss=;
+        b=ldZOfVk4nhm272CJeOQ7WyKzcICghvVdmx2etKRUCnuTYCn39jP+KRm11XhnWVDsh2
+         VKKekucd1zlPbv0JcezRtZfbRrwE0grJxvhAR3so0fH8J3NlYfLC9+7tDgw+7+4EgAEC
+         RuFzlrRD8FyMMp6hIe4K7S9YM3iMZkaZzuf9x5BKfiliz7g7MN1kMQjlCMLmFLM5VCUq
+         dPbpwzdL7S7e0WEHuxztHnwzerclTcxcheVV+TMWeOyRcjzoDryMcZ+Fll+G04jYO6Oy
+         rMLmP6NhzFn1vgl0L/by/T57sVz/Am58EmiJjx4yNqG4p6PmnumajGvJB2JvlZqJDZMt
+         m2lw==
+X-Gm-Message-State: AOAM531gQuz2UjHOPgmuiWRH/WtvOOAcyWGk1ymewIc+wXHMpob5MN30
+        LarTkVbN5El+hCvMrL03o8rCnlGyEGHHK5r9pgilUQ==
+X-Google-Smtp-Source: ABdhPJybud6FTPvTcrbvBWnuDfmJGrn2QRie046seVglh3JPax7rANBITFnA8FFir54MK6PUKO/kndp9C8T8y77d14o=
+X-Received: by 2002:a50:e442:: with SMTP id e2mr1738064edm.186.1604569380861;
+ Thu, 05 Nov 2020 01:43:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-4-daniel@0x0f.com>
- <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com>
- <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
- <CACRpkdbx+T3uX9taZNjsURHGc6qVLvGGC2boEC4=NaOi4_uZTQ@mail.gmail.com> <20201105093107.GB21245@1wt.eu>
-In-Reply-To: <20201105093107.GB21245@1wt.eu>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Nov 2020 10:42:29 +0100
-Message-ID: <CACRpkdbCB_n_jNJ+wqWWMKHG80du3kqya0vdOu41Cb4vdvOtyg@mail.gmail.com>
-Subject: Re: [PATCH 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Willy Tarreau <w@1wt.eu>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+References: <20201104103938.1286-1-nsaenzjulienne@suse.de> <20201104103938.1286-2-nsaenzjulienne@suse.de>
+ <CAMpxmJWJRcQQiLitJCLWKmhQVQWr3bMDY=td5FEn5uy2YZfwkA@mail.gmail.com> <47eaba0bc71c6e23bff87b8a01cebf0c6d12efd0.camel@suse.de>
+In-Reply-To: <47eaba0bc71c6e23bff87b8a01cebf0c6d12efd0.camel@suse.de>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Thu, 5 Nov 2020 10:42:50 +0100
+Message-ID: <CAMpxmJUZ23uYM3+_L2XvTXzvA48JWrxrhZaLnGAxTpJjFiERRA@mail.gmail.com>
+Subject: Re: [PATCH v3 01/11] firmware: raspberrypi: Introduce devm_rpi_firmware_get()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>, wahrenst@gmx.net,
+        Linux Input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        devel@driverdev.osuosl.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 5, 2020 at 10:31 AM Willy Tarreau <w@1wt.eu> wrote:
-> On Thu, Nov 05, 2020 at 10:21:27AM +0100, Linus Walleij wrote:
-
-> > If your SoC is only used by OpenWrt (like ixp4xx) then it is fine
-> > to just use bool because that distribution is always built with an
-> > image for a specific hardware, whereas distributions are generic.
+On Thu, Nov 5, 2020 at 10:28 AM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
 >
-> Speaking for myself (since I have a few now), I'm not running OpenWRT
-> on mine but my own distro, and I guess most users will run either
-> Buildroot or their own distro. It's unlikely that we'll see very
-> generic distros there given the limited storage you'd typically have
-> in an SPI NOR (16-32 MB) and the small RAM (64MB) which tends to
-> discourage anyone from booting a regular distro over other storage
-> anyway.
+> Hi Bartosz, thanks for the review.
 >
-> Thus my guess is that most users will keep building their own kernels.
+> On Thu, 2020-11-05 at 10:13 +0100, Bartosz Golaszewski wrote:
+> > > +/**
+> > > + * devm_rpi_firmware_get - Get pointer to rpi_firmware structure.
+> > > + * @firmware_node:    Pointer to the firmware Device Tree node.
+> > > + *
+> > > + * Returns NULL is the firmware device is not ready.
+> > > + */
+> > > +struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
+> > > +                                          struct device_node *firmware_node)
+> > > +{
+> > > +       struct platform_device *pdev = of_find_device_by_node(firmware_node);
+> > > +       struct rpi_firmware *fw;
+> > > +
+> > > +       if (!pdev)
+> > > +               return NULL;
+> > > +
+> > > +       fw = platform_get_drvdata(pdev);
+> > > +       if (!fw)
+> > > +               return NULL;
+> > > +
+> > > +       if (!refcount_inc_not_zero(&fw->consumers))
+> > > +               return NULL;
+> > > +
+> > > +       if (devm_add_action_or_reset(dev, rpi_firmware_put, fw))
+> > > +               return NULL;
+> > > +
+> > > +       return fw;
+> > > +}
+> > > +EXPORT_SYMBOL_GPL(devm_rpi_firmware_get);
+> >
+> > Usually I'd expect the devres variant to simply call
+> > rpi_firmware_get() and then schedule a release callback which would
+> > call whatever function is the release counterpart for it currently.
+> > Devres actions are for drivers which want to schedule some more
+> > unusual tasks at driver detach. Any reason for designing it this way?
 >
-> But this just emphasizes your points :-)
+> Yes, see patch #8 where I get rid of rpi_firmware_get() altogether after
+> converting all users to devres. Since there is no use for the vanilla version
+> of the function anymore, I figured it'd be better to merge everything into
+> devm_rpi_firmware_get(). That said it's not something I have strong feelings
+> about.
+>
 
-I think that is a good argument to keep this as bool.
+I see. So the previous version didn't really have any reference
+counting and it leaked the reference returned by
+of_find_device_by_node(), got it. Could you just clarify for me the
+logic behind the wait_queue in rpi_firmware_remove()? If the firmware
+driver gets detached and remove() stops on the wait_queue - it will be
+stuck until the last user releases the firmware. I'm not sure this is
+correct. I'd prefer to see a kref with a release callback and remove
+would simply decrease the kref and return. Each user would do the same
+and then after the last user is detached the firmware would be
+destroyed.
 
-Yours,
-Linus Walleij
+Don't we really have some centralized firmware subsystem that would handle this?
+
+Bartosz
