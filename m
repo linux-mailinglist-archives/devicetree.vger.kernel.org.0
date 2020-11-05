@@ -2,119 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3012A8271
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 16:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC98E2A828D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 16:46:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731085AbgKEPng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 10:43:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34194 "EHLO mail.kernel.org"
+        id S1730871AbgKEPqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 10:46:15 -0500
+Received: from foss.arm.com ([217.140.110.172]:35914 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730660AbgKEPnf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 10:43:35 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E25A8206FA;
-        Thu,  5 Nov 2020 15:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604591015;
-        bh=O3AhsxtY8sUUmWn1Tx+mj7l7kuAvEn+JmbDXMOa/Low=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=dDiNEL9mysTp69jFVW6Bu/aoH8wXuz7T8H+cs/AHpFmLs5+2xBFmFumlo/wxvpj0V
-         4SkmeL/sVRV9xWdrR1S1QZXqYYxkTNfy87F3jd2DDClC8Edk/GNt01bb7ZmbzU45o2
-         JBRky2AchLfI+sT4HZbfKGn979X50dqKIAofnM1Y=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kahQC-007sGn-ND; Thu, 05 Nov 2020 15:43:32 +0000
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 05 Nov 2020 15:43:32 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        id S1730721AbgKEPqP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 10:46:15 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A71C14BF;
+        Thu,  5 Nov 2020 07:46:14 -0800 (PST)
+Received: from localhost (unknown [10.1.198.32])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1CA483F718;
+        Thu,  5 Nov 2020 07:46:14 -0800 (PST)
+Date:   Thu, 5 Nov 2020 15:46:12 +0000
+From:   Ionela Voinescu <ionela.voinescu@arm.com>
+To:     Vincent Guittot <vincent.guittot@linaro.org>
+Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        LAK <linux-arm-kernel@lists.infradead.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
-In-Reply-To: <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
-References: <20201019141008.871177-1-daniel@0x0f.com>
- <20201019141008.871177-4-daniel@0x0f.com>
- <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
- <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
- <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <71f3632bee262a18e1b7edb74980ae9a@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: daniel@0x0f.com, linus.walleij@linaro.org, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        <devicetree@vger.kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Chris Redpath <chris.redpath@arm.com>
+Subject: Re: [PATCH v3 0/3] CPUFreq: Add support for cpu performance
+ dependencies
+Message-ID: <20201105154612.GA17891@arm.com>
+References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
+ <20201103101840.yrgwmcjrnjn7n5q6@vireshk-i7>
+ <87558fa9-a4c6-38c9-bcc5-f736c0229f56@arm.com>
+ <CAKfTPtDvDqHjSFCmjc_D_8Tx0kosBneDxmDZRpG6XkgAnWE3nw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKfTPtDvDqHjSFCmjc_D_8Tx0kosBneDxmDZRpG6XkgAnWE3nw@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-11-05 15:23, Daniel Palmer wrote:
-> Hi Marc,
-> 
-> On Thu, 5 Nov 2020 at 21:08, Marc Zyngier <maz@kernel.org> wrote:
->> 
->> On 2020-11-05 09:40, Linus Walleij wrote:
->> > On Mon, Oct 19, 2020 at 4:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
->> 
->> [...]
->> 
->> >> +/* The parent interrupt controller needs the GIC interrupt type set
->> >> to GIC_SPI
->> >> + * so we need to provide the fwspec. Essentially
->> >> gpiochip_populate_parent_fwspec_twocell
->> >> + * that puts GIC_SPI into the first cell.
->> >> + */
->> 
->> nit: comment style.
-> 
-> I've fixed these and some other bits for the v3.
-> I've held off on pushing that until the rest of it seemed right.
-> 
->> >> +static void *msc313_gpio_populate_parent_fwspec(struct gpio_chip *gc,
->> >> +                                            unsigned int
->> >> parent_hwirq,
->> >> +                                            unsigned int parent_type)
->> >> +{
->> >> +       struct irq_fwspec *fwspec;
->> >> +
->> >> +       fwspec = kmalloc(sizeof(*fwspec), GFP_KERNEL);
->> >> +       if (!fwspec)
->> >> +               return NULL;
->> >> +
->> >> +       fwspec->fwnode = gc->irq.parent_domain->fwnode;
->> >> +       fwspec->param_count = 3;
->> >> +       fwspec->param[0] = GIC_SPI;
->> >> +       fwspec->param[1] = parent_hwirq;
->> >> +       fwspec->param[2] = parent_type;
->> >> +
->> >> +       return fwspec;
->> >> +}
->> >
->> > Clever. Looping in Marc Z so he can say if this looks allright to him.
->> 
->> Yup, this looks correct. However, looking at the bit of the patch that
->> isn't quoted here, I see that msc313_gpio_irqchip doesn't have a
->> .irq_set_affinity callback. Is this system UP only?
-> 
-> What is in mainline right now is UP only but there are chips with a
-> second cortex A7 that I have working in my tree.
-> So I will add that in for v3 if I can work out what I should actually
-> do there. :)
+Hi guys,
 
-Probably nothing more than setting the callback to 
-irq_chip_set_affinity_parent,
-I'd expect.
+On Thursday 05 Nov 2020 at 15:25:53 (+0100), Vincent Guittot wrote:
+[..]
+> > > - Because of hardware co-ordination of otherwise co-ordinated CPUs,
+> > >   few things break. Thermal and EAS are some of the examples and so
+> > >   you are trying to fix them here by proving them the missing
+> > >   information again.
+> >
+> > Correct. And for this I have proposed two ways.
+> >
+> > >
+> > > - One other thing that breaks with this is freq-invariance in the
+> > >   scheduler, as the scheduler won't see the real frequencies the
+> > >   various CPUs are running at. Most of the hardware we have today
+> > >   doesn't have counters, like AMUs, not sure if all future ones based
+> > >   on SCMI will have that too, so how are they gong to be fixed ?
+> > >
+> >
+> > Correct. freq-invariance without counters is trying to do its best based on the
+> > information it has available. It definitely relies on the knowledge of the v/f
+> > domains to work at its best so I think in the case of per-cpu it will follow the
+> > same approach as others being affected (EAS, thermal).
+> 
+> As frequency invariance has same problem as EAS and Thermal it would
+> be good to see the solution as part of this proposal like EAS and
+> Thermal
+> 
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+I think I was waiting for a consensus on patch 3/3, although I believe the
+discussion at [1] tended towards option 2: "each driver to store
+internally the performance dependencies and let the driver directly
+provide the correct cpumask for any consumer."
+The alternative was option 1: "add a new dependent_cpus cpumaks in
+cpufreq_policy", as Nicola mentioned in the commit message for 3/3.
+
+If the choice is clear, I'm happy to take the FIE fixes in a separate
+set.
+
+Thanks,
+Ionela.
+
+[1] https://lore.kernel.org/linux-arm-kernel/20200924095347.32148-3-nicola.mazzucato@arm.com/
+
+> >
+> > >   And if we even have to fix this (freq invariance), what's hardware
+> > >   coordination giving us that makes all this worth it ?
+> >
+> > I suppose this is more a generic question for all the platforms running with h/w
+> > coordination, but for our case is that the f/w will take care of the performance
+> > optimizations for us :)
+> >
+> > >
+> > > Sorry about the long list :)
+> >
+> > No problem at all. Thank you for your time on this and I hope I have made bits
+> > clearer.
+> >
+> > Nicola
+> >
+> > >
