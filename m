@@ -2,117 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 150E32A7A68
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E31F82A7A75
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:28:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726787AbgKEJ11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:27:27 -0500
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:27474 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726737AbgKEJ11 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:27:27 -0500
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A59RCmh022319;
-        Thu, 5 Nov 2020 10:27:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=90DBQmVTazKJUz/HsVZp0MWtq8Z4KmCVtWCSf/TO+FA=;
- b=jTqLMT2vzOFEeFQODMBv723JkV/M7U/yvqBGbKWKx5kb9aSlUo6ZXYZegOyZNfSudr2O
- vuvgZfPWQBw7AomkbPnuxfi3XK20c7L+PIqGsmKFe69Ws155ST4rEkTRqhmI2EskFDQ2
- UwfpVKBjmhtnnBnnNVdOA6C7OxPSDNJMKhRZy+8iKzulmaAUXnmdqqZOqesJ4gWN+JnE
- PyWplvQ3y0G+esOoFhvXbcjM6e5QkfhLVEXbL44qqQcD2/y4ssylLVlkMGiOzSxFbAkG
- 6a+qDJdoqYi8RL3cvdTh0I/2n+TnIWXN23+hyUx6xvBEJgNq/nUFS7bphfFEiFiziW93 zg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34h031ykye-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 05 Nov 2020 10:27:14 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 92DC0100039;
-        Thu,  5 Nov 2020 10:27:12 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7875D230660;
-        Thu,  5 Nov 2020 10:27:12 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 5 Nov
- 2020 10:27:11 +0100
-Subject: Re: [PATCH v5 0/4] DCMI BT656 parallel bus mode support
-To:     Hugues Fruchet <hugues.fruchet@st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alain Volmat <alain.volmat@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe CORNU <philippe.cornu@st.com>
-References: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <016661fc-e9dd-bd4a-f26d-00e54626f030@st.com>
-Date:   Thu, 5 Nov 2020 10:26:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1730542AbgKEJ2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:28:46 -0500
+Received: from mx2.suse.de ([195.135.220.15]:55458 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730681AbgKEJ2n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 04:28:43 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id DC238AC19;
+        Thu,  5 Nov 2020 09:28:40 +0000 (UTC)
+Message-ID: <47eaba0bc71c6e23bff87b8a01cebf0c6d12efd0.camel@suse.de>
+Subject: Re: [PATCH v3 01/11] firmware: raspberrypi: Introduce
+ devm_rpi_firmware_get()
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        linux-devicetree <devicetree@vger.kernel.org>, wahrenst@gmx.net,
+        Linux Input <linux-input@vger.kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        devel@driverdev.osuosl.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 05 Nov 2020 10:28:38 +0100
+In-Reply-To: <CAMpxmJWJRcQQiLitJCLWKmhQVQWr3bMDY=td5FEn5uy2YZfwkA@mail.gmail.com>
+References: <20201104103938.1286-1-nsaenzjulienne@suse.de>
+         <20201104103938.1286-2-nsaenzjulienne@suse.de>
+         <CAMpxmJWJRcQQiLitJCLWKmhQVQWr3bMDY=td5FEn5uy2YZfwkA@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-oC8aCgFhzSXrvhwX/0tO"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-In-Reply-To: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-05_05:2020-11-05,2020-11-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Huges
 
-On 11/4/20 6:32 PM, Hugues Fruchet wrote:
-> Add support of BT656 embedded synchronization bus.
-> This mode allows to save hardware synchro lines hsync & vsync
-> by replacing them with synchro codes embedded in data stream.
-> Add "bus-type" property and make it required so that there is no
-> ambiguity between parallel mode (bus-type=5) and BT656 mode (bus-type=6).
-> 
-> ===========
-> = history =
-> ===========
-> version 5:
->    - Add revisited bindings and devicetree with explicit use of "bus-type"
-> 
-> version 4:
->    - Fix typo in commit message
-> 
-> version 3:
->    - Fix bus_width print to %u as per Sakari comment
-> 
-> version 2:
->    - As per Sakari remark, revisit commit message and document
->      BT656 parallel bus mode in bindings
-> 
-> version 1:
->    - Initial submission
-> 
-> Hugues Fruchet (4):
->    media: stm32-dcmi: add support of BT656 bus
->    media: dt-bindings: media: st,stm32-dcmi: add support of BT656 bus
->    ARM: dts: stm32: set bus-type in DCMI endpoint for stm32mp157c-ev1
->      board
->    ARM: dts: stm32: set bus-type in DCMI endpoint for stm32429i-eval
->      board
-> 
->   .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 38 ++++++++++++++++++++++
->   arch/arm/boot/dts/stm32429i-eval.dts               |  1 +
->   arch/arm/boot/dts/stm32mp157c-ev1.dts              |  1 +
->   drivers/media/platform/stm32/stm32-dcmi.c          | 37 +++++++++++++++++++--
->   4 files changed, 75 insertions(+), 2 deletions(-)
-> 
+--=-oC8aCgFhzSXrvhwX/0tO
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'll take DT patches on stm32-next tree.
+Hi Bartosz, thanks for the review.
 
-regards
-alex
+On Thu, 2020-11-05 at 10:13 +0100, Bartosz Golaszewski wrote:
+> > +/**
+> > + * devm_rpi_firmware_get - Get pointer to rpi_firmware structure.
+> > + * @firmware_node:    Pointer to the firmware Device Tree node.
+> > + *
+> > + * Returns NULL is the firmware device is not ready.
+> > + */
+> > +struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
+> > +                                          struct device_node *firmware=
+_node)
+> > +{
+> > +       struct platform_device *pdev =3D of_find_device_by_node(firmwar=
+e_node);
+> > +       struct rpi_firmware *fw;
+> > +
+> > +       if (!pdev)
+> > +               return NULL;
+> > +
+> > +       fw =3D platform_get_drvdata(pdev);
+> > +       if (!fw)
+> > +               return NULL;
+> > +
+> > +       if (!refcount_inc_not_zero(&fw->consumers))
+> > +               return NULL;
+> > +
+> > +       if (devm_add_action_or_reset(dev, rpi_firmware_put, fw))
+> > +               return NULL;
+> > +
+> > +       return fw;
+> > +}
+> > +EXPORT_SYMBOL_GPL(devm_rpi_firmware_get);
+>=20
+> Usually I'd expect the devres variant to simply call
+> rpi_firmware_get() and then schedule a release callback which would
+> call whatever function is the release counterpart for it currently.
+> Devres actions are for drivers which want to schedule some more
+> unusual tasks at driver detach. Any reason for designing it this way?
+
+Yes, see patch #8 where I get rid of rpi_firmware_get() altogether after
+converting all users to devres. Since there is no use for the vanilla versi=
+on
+of the function anymore, I figured it'd be better to merge everything into
+devm_rpi_firmware_get(). That said it's not something I have strong feeling=
+s
+about.
+
+Regards,
+Nicolas
+
+
+--=-oC8aCgFhzSXrvhwX/0tO
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+jxccACgkQlfZmHno8
+x/5VuAf/ZVJHy+YDj0FEO4FzcWJ4vn2WN7US3fwbVPePjVLjGsdlhWl+H5zdV5W2
+ZNDlMxJ8w+gcUcLGCaov80hxbNVMQJgoiK/0AeaNxVaa/6fK+IOV05LYOKCIET4a
+4FhlGaazIlYPqNLtlW2lCQHmFb7fK+sHX4BQltlAA44qaBVZv206o8WOvmUmxIrz
+d3rUtSsUcHJMf+HlCRrKol2ZEmgPjSUFdsGnvaoFVtlxeHGvSJ53cOydnRJK27TN
+bITVEZcyTfW/u7Vd+cOLi3Rd3DuzzIFbxW1nb4nIqy2mg3bg2pjFYkkshrV8m7mA
+LAhpfGsro/83lduAxqUNuNjw2PoQHQ==
+=b2j1
+-----END PGP SIGNATURE-----
+
+--=-oC8aCgFhzSXrvhwX/0tO--
+
