@@ -2,131 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3B7C2A84BA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 780002A8500
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:35:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727836AbgKERTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 12:19:43 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:34314 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726729AbgKERTn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:19:43 -0500
-Received: by mail-oi1-f193.google.com with SMTP id z26so2462508oid.1;
-        Thu, 05 Nov 2020 09:19:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=05L3sB3OfgwjfPRDm4XzH9qNouMEyPQgKMGeJaoAAxE=;
-        b=YEzPiM90Zr32L1wcbVHRX+1sub0DQCVb15fgRjAluaci5vFCYQfEyQDQsY6H2XuHBI
-         iRFAuBV+b+p3rYQilL5B5yS+rnxT1K9gjNSfZ1UZ2KPw1aXo6Zj2vumXB5E4zJ1tWjgy
-         EE8pw55rJoTKSqcNZhA+kK3baEdB4JuWIy0r0ALdLEZn0w52hNUQWE2mg+pEc1cYdgMz
-         HQBNw5kLwMYFDYUEh7pHlIwzj4k1cP7GH+O1HHh5GnhHkbvnN4PkNUDJz4f3QjcNiLb4
-         xTMQ1OWwgQkMvrLYdXM0gh/r0OT4xlkbt0/uKxpzpiyEGbade6c5gWhS9dvIUNacr7fC
-         lRqg==
-X-Gm-Message-State: AOAM531/33f4mPoZQmiclvw9SiPU/M+RKq1esg5ksp2tY3E+x5Zb3Buy
-        OcD0DbsJkh2czfH5oCD0Aw==
-X-Google-Smtp-Source: ABdhPJz1LxIaYbQB7Z1S1g0MOIWHhGFF4OqmQxG+cWMMxAi7p7yzmfHtMXOns1fo/fb1L8At9GuAxA==
-X-Received: by 2002:aca:5515:: with SMTP id j21mr281269oib.150.1604596782389;
-        Thu, 05 Nov 2020 09:19:42 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d26sm199446ooh.19.2020.11.05.09.19.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 09:19:41 -0800 (PST)
-Received: (nullmailer pid 1503059 invoked by uid 1000);
-        Thu, 05 Nov 2020 17:19:40 -0000
-Date:   Thu, 5 Nov 2020 11:19:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Cristian Pop <cristian.pop@analog.com>
-Cc:     linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        jic23@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 4/5] dt-bindings:iio:adc:adi,ad7768-1: Add
- documentation for channel label
-Message-ID: <20201105171940.GA1499984@bogus>
-References: <20201102142000.68916-1-cristian.pop@analog.com>
- <20201102142000.68916-4-cristian.pop@analog.com>
+        id S1727851AbgKERfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 12:35:14 -0500
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:33510 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730862AbgKERfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:35:14 -0500
+Received: from relay10.mail.gandi.net (unknown [217.70.178.230])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 00CF83B2ED1;
+        Thu,  5 Nov 2020 17:16:20 +0000 (UTC)
+Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E2E4524001A;
+        Thu,  5 Nov 2020 17:15:57 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        <Steen.Hegelund@microchip.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>
+Subject: [PATCH 4/6] irqchip: ocelot: Add support for Luton platforms
+Date:   Thu,  5 Nov 2020 18:15:33 +0100
+Message-Id: <20201105171535.923570-5-gregory.clement@bootlin.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201105171535.923570-1-gregory.clement@bootlin.com>
+References: <20201105171535.923570-1-gregory.clement@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201102142000.68916-4-cristian.pop@analog.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 02, 2020 at 04:19:59PM +0200, Cristian Pop wrote:
-> Optional attribute for better identification of the channels.
-> 
-> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
-> ---
-> Changes in v7:
->  - Add "additionalProperties: false" for channel child nodes.
->  - Fix "reg" spelling.
->  .../bindings/iio/adc/adi,ad7768-1.yaml        | 32 +++++++++++++++++++
->  1 file changed, 32 insertions(+)
+This patch extends irqchip driver for oceleot to be used with an other
+vcoreiii base platform: Luton.
 
-Jonathan's common ADC schema should remove the need for some of this, 
-but given it's v7:
+Based on a larger patch from Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+---
+ drivers/irqchip/irq-mscc-ocelot.c | 145 +++++++++++++++++++++++++-----
+ 1 file changed, 123 insertions(+), 22 deletions(-)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/drivers/irqchip/irq-mscc-ocelot.c b/drivers/irqchip/irq-mscc-ocelot.c
+index 88143c0b700c..9964800c53c2 100644
+--- a/drivers/irqchip/irq-mscc-ocelot.c
++++ b/drivers/irqchip/irq-mscc-ocelot.c
+@@ -12,39 +12,115 @@
+ #include <linux/irqchip/chained_irq.h>
+ #include <linux/interrupt.h>
+ 
+-#define ICPU_CFG_INTR_INTR_STICKY	0x10
+-#define ICPU_CFG_INTR_INTR_ENA		0x18
+-#define ICPU_CFG_INTR_INTR_ENA_CLR	0x1c
+-#define ICPU_CFG_INTR_INTR_ENA_SET	0x20
+-#define ICPU_CFG_INTR_DST_INTR_IDENT(x)	(0x38 + 0x4 * (x))
+-#define ICPU_CFG_INTR_INTR_TRIGGER(x)	(0x5c + 0x4 * (x))
+-
+-#define OCELOT_NR_IRQ 24
++#define ICPU_CFG_INTR_DST_INTR_IDENT(_p, x)	(_p->reg_off_ident + 0x4 * (x))
++#define ICPU_CFG_INTR_INTR_TRIGGER(_p, x)	(_p->reg_off_trigger + 0x4 * (x))
++
++#define FLAGS_NEED_INIT_ENABLE	BIT(0)
++#define FLAGS_FORCE_LUTON_STYLE	BIT(1)
++#define FLAGS_HAS_TRIGGER	BIT(2)
++
++struct chip_props {
++	u32 flags;
++	u32 reg_off_sticky;
++	u32 reg_off_ena;
++	u32 reg_off_ena_clr;
++	u32 reg_off_ena_set;
++	u32 reg_off_ident;
++	u32 reg_off_trigger;
++	u32 reg_off_force;
++	u32 reg_off_ena_irq0;
++	u32 n_irq;
++};
++
++static const struct chip_props ocelot_props = {
++	.flags			= FLAGS_HAS_TRIGGER,
++	.reg_off_sticky		= 0x10,
++	.reg_off_ena		= 0x18,
++	.reg_off_ena_clr	= 0x1c,
++	.reg_off_ena_set	= 0x20,
++	.reg_off_ident		= 0x38,
++	.reg_off_trigger	= 0x5c,
++	.reg_off_force		= 0xc,
++	.n_irq			= 24,
++};
++
++static const struct chip_props luton_props = {
++	.flags			= FLAGS_NEED_INIT_ENABLE |
++				  FLAGS_FORCE_LUTON_STYLE,
++	.reg_off_sticky		= 0,
++	.reg_off_ena		= 0x4,
++	.reg_off_ena_clr	= 0x8,
++	.reg_off_ena_set	= 0xc,
++	.reg_off_ident		= 0x18,
++	.reg_off_trigger	= 0,
++	.reg_off_force		= 0x38,
++	.reg_off_ena_irq0	= 0x14,
++	.n_irq			= 28,
++};
+ 
+ static void ocelot_irq_unmask(struct irq_data *data)
+ {
+ 	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
++	struct irq_domain *d = data->domain;
++	struct chip_props *p = d->host_data;
+ 	struct irq_chip_type *ct = irq_data_get_chip_type(data);
+ 	unsigned int mask = data->mask;
+ 	u32 val;
+ 
+ 	irq_gc_lock(gc);
+-	val = irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(0)) |
+-	      irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(1));
+-	if (!(val & mask))
+-		irq_reg_writel(gc, mask, ICPU_CFG_INTR_INTR_STICKY);
++	if (p->flags & FLAGS_HAS_TRIGGER) {
++		val = irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(p, 0)) |
++			irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(p, 1));
++		if (!(val & mask))
++			irq_reg_writel(gc, mask, p->reg_off_sticky);
++	}
+ 
+ 	*ct->mask_cache &= ~mask;
+-	irq_reg_writel(gc, mask, ICPU_CFG_INTR_INTR_ENA_SET);
++	irq_reg_writel(gc, mask, p->reg_off_ena_set);
+ 	irq_gc_unlock(gc);
+ }
+ 
++static void luton_irq_force(struct irq_data *data,
++			    struct irq_chip_generic *gc,
++			    struct chip_props *p)
++{
++	int off = p->reg_off_force + (data->hwirq * sizeof(u32));
++	u32 val = irq_reg_readl(gc, off);
++
++	irq_reg_writel(gc, val | BIT(3), off);
++}
++
++static int ocelot_irq_force(struct irq_data *data,
++			    enum irqchip_irq_state which, bool state)
++{
++	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
++	struct irq_domain *d = data->domain;
++	struct chip_props *p = d->host_data;
++	int ret = -EINVAL;
++
++	/* Only supports triggering */
++	if ((which == IRQCHIP_STATE_PENDING ||
++	     which == IRQCHIP_STATE_ACTIVE) &&
++	    state && p->reg_off_force) {
++		if (p->flags & FLAGS_FORCE_LUTON_STYLE)
++			/* Config register style */
++			luton_irq_force(data, gc, p);
++		else
++			/* New, bitmask style */
++			irq_reg_writel(gc, data->mask, p->reg_off_force);
++		ret = 0;
++	}
++
++	return ret;
++}
++
+ static void ocelot_irq_handler(struct irq_desc *desc)
+ {
+ 	struct irq_chip *chip = irq_desc_get_chip(desc);
+ 	struct irq_domain *d = irq_desc_get_handler_data(desc);
++	struct chip_props *p = d->host_data;
+ 	struct irq_chip_generic *gc = irq_get_domain_generic_chip(d, 0);
+-	u32 reg = irq_reg_readl(gc, ICPU_CFG_INTR_DST_INTR_IDENT(0));
++	u32 reg = irq_reg_readl(gc, ICPU_CFG_INTR_DST_INTR_IDENT(p, 0));
+ 
+ 	chained_irq_enter(chip, desc);
+ 
+@@ -58,25 +134,28 @@ static void ocelot_irq_handler(struct irq_desc *desc)
+ 	chained_irq_exit(chip, desc);
+ }
+ 
+-static int __init ocelot_irq_init(struct device_node *node,
+-				  struct device_node *parent)
++static int __init vcoreiii_irq_init(struct device_node *node,
++				    struct device_node *parent,
++				    const struct chip_props *p)
+ {
+ 	struct irq_domain *domain;
+ 	struct irq_chip_generic *gc;
+ 	int parent_irq, ret;
+ 
++	pr_info("%s: Load, %d irqs\n", node->name, p->n_irq);
++
+ 	parent_irq = irq_of_parse_and_map(node, 0);
+ 	if (!parent_irq)
+ 		return -EINVAL;
+ 
+-	domain = irq_domain_add_linear(node, OCELOT_NR_IRQ,
++	domain = irq_domain_add_linear(node, p->n_irq,
+ 				       &irq_generic_chip_ops, NULL);
+ 	if (!domain) {
+ 		pr_err("%pOFn: unable to add irq domain\n", node);
+ 		return -ENOMEM;
+ 	}
+ 
+-	ret = irq_alloc_domain_generic_chips(domain, OCELOT_NR_IRQ, 1,
++	ret = irq_alloc_domain_generic_chips(domain, p->n_irq, 1,
+ 					     "icpu", handle_level_irq,
+ 					     0, 0, 0);
+ 	if (ret) {
+@@ -92,16 +171,23 @@ static int __init ocelot_irq_init(struct device_node *node,
+ 		goto err_gc_free;
+ 	}
+ 
+-	gc->chip_types[0].regs.ack = ICPU_CFG_INTR_INTR_STICKY;
+-	gc->chip_types[0].regs.mask = ICPU_CFG_INTR_INTR_ENA_CLR;
++	gc->chip_types[0].regs.ack = p->reg_off_sticky;
++	gc->chip_types[0].regs.mask = p->reg_off_ena_clr;
+ 	gc->chip_types[0].chip.irq_ack = irq_gc_ack_set_bit;
+ 	gc->chip_types[0].chip.irq_mask = irq_gc_mask_set_bit;
+ 	gc->chip_types[0].chip.irq_unmask = ocelot_irq_unmask;
++	gc->chip_types[0].chip.irq_unmask = ocelot_irq_unmask;
++	gc->chip_types[0].chip.irq_set_irqchip_state = ocelot_irq_force;
+ 
+ 	/* Mask and ack all interrupts */
+-	irq_reg_writel(gc, 0, ICPU_CFG_INTR_INTR_ENA);
+-	irq_reg_writel(gc, 0xffffffff, ICPU_CFG_INTR_INTR_STICKY);
++	irq_reg_writel(gc, 0, p->reg_off_ena);
++	irq_reg_writel(gc, 0xffffffff, p->reg_off_sticky);
++
++	/* Overall init */
++	if (p->flags & FLAGS_NEED_INIT_ENABLE)
++		irq_reg_writel(gc, BIT(0), p->reg_off_ena_irq0);
+ 
++	domain->host_data = (void *)p;
+ 	irq_set_chained_handler_and_data(parent_irq, ocelot_irq_handler,
+ 					 domain);
+ 
+@@ -115,4 +201,19 @@ static int __init ocelot_irq_init(struct device_node *node,
+ 
+ 	return ret;
+ }
++
++static int __init ocelot_irq_init(struct device_node *node,
++				  struct device_node *parent)
++{
++	return vcoreiii_irq_init(node, parent, &ocelot_props);
++}
++
+ IRQCHIP_DECLARE(ocelot_icpu, "mscc,ocelot-icpu-intr", ocelot_irq_init);
++
++static int __init luton_irq_init(struct device_node *node,
++				 struct device_node *parent)
++{
++	return vcoreiii_irq_init(node, parent, &luton_props);
++}
++
++IRQCHIP_DECLARE(luton_icpu, "mscc,luton-icpu-intr", luton_irq_init);
+-- 
+2.28.0
 
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> index d3733ad8785a..6be43bf5c1e0 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> @@ -29,6 +29,12 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
->    vref-supply:
->      description:
->        ADC reference voltage supply
-> @@ -61,6 +67,24 @@ required:
->    - spi-cpha
->    - adi,sync-in-gpios
->  
-> +patternProperties:
-> +  "^channel@([0-9]|1[0-5])$":
-> +    type: object
-> +    description: |
-> +      Represents the external channels which are connected to the device.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number.
-> +
-> +      label:
-> +        description: |
-> +          Unique name to identify which channel this is.
-> +    required:
-> +      - reg
-> +    additionalProperties: false
-> +
->  additionalProperties: false
->  
->  examples:
-> @@ -84,6 +108,14 @@ examples:
->              reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
->              clocks = <&ad7768_mclk>;
->              clock-names = "mclk";
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            channel@0 {
-> +                reg = <0>;
-> +                label = "channel_0";
-> +            };
->          };
->      };
->  ...
-> -- 
-> 2.17.1
-> 
