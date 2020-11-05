@@ -2,225 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13BFD2A7AEE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:46:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6035C2A7B07
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:53:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727536AbgKEJqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:46:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56624 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726996AbgKEJqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:46:02 -0500
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61EC8C0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:46:00 -0800 (PST)
-Received: by mail-ua1-x941.google.com with SMTP id q68so339687uaq.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:46:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BPeVC0/yyKKsuDCRa2ABd9prVUPUc34ioExCTRmKEHc=;
-        b=uufJzy4G7ts1PiE/L3wJVNCw2wP3NSOmawqIi/e2dVMD4Xd21IBA/Vm2yEuo3NRkIO
-         5RTFPkxoUZgZvRGL3uCJhgSw/HE6fmf+IDx190dCfUqR+JPH8zXGsd6gelceLKdsJg6T
-         W9tmGvZtl0GRilR/Tesuwpo7+anWJCeo6NBiNViKTK2V8/GqdsDZTq11ps7gJlbfeY+i
-         pSoDKrE7a3V1srakOPqPG22Jy7SHWsEgoGIWEGTN0Htlxp1Nhn/YPfKpypwxo8uOWeve
-         gx03c3qbD5se6hfduEKaO+xHmrhlxJQp6xOVJi1NkwG4/qLyzw5ZIE/FCeeFdhAUNOiH
-         Ddqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BPeVC0/yyKKsuDCRa2ABd9prVUPUc34ioExCTRmKEHc=;
-        b=ilBKOaCnJdFerBui4MwZi4jz1GC7+Fr6iwM9xtujS6dr8QZrI8pHIISC4tgCiG+NLF
-         2pylGt+JNtrlVHq3CdFKbOBoi9+P9Hvi8mmxBkcMkAj+wfbojMjvnPxde2zpZ3PbByIb
-         a25DjiVcGbSzglRd3SRtnNL/N73/olY40kOFtr2vF7vKqNT2tbAbMBvnlZu3ca8DoqQN
-         NBa5rnJIhf2/csmj9XHNpKR4BzqjW8bH/uJ9BXt0LyY/T1s3XGaR+stK1ee8M6uKRdmA
-         O7Z4M8LR8VnhXF1q4639eNwLnGXjWepcXA/JFk6cGy+utmvboITZRJBXx5FF9d0u6Y9N
-         wwww==
-X-Gm-Message-State: AOAM532O3tx7nnsotA8lsb2FH9JlCE1WZTzHj7h9MoJDjmBEnjG0DROE
-        WWOJKHsMfipyVwY13B0AU0d9MXlLWVjGBtfeskdbUw==
-X-Google-Smtp-Source: ABdhPJyQXmDq3VGXwDr0haDHSXpl4JtWo+uo7sQGY6XWLUZgE6Tj9Jyk5i5lU0labVUxd8mL5Fh6Hi6T+EuKK3uFWNY=
-X-Received: by 2002:ab0:23d5:: with SMTP id c21mr548021uan.129.1604569559528;
- Thu, 05 Nov 2020 01:45:59 -0800 (PST)
+        id S1725862AbgKEJxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:53:01 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:45160 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725308AbgKEJxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:53:01 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 6A8D11C0B82; Thu,  5 Nov 2020 10:52:58 +0100 (CET)
+Date:   Thu, 5 Nov 2020 10:52:57 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+Cc:     linux-leds@vger.kernel.org, dmurphy@ti.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, malliamireddy009@gmail.com,
+        yixin.zhu@intel.com
+Subject: Re: [PATCH v1 1/2] dt-bindings: leds: Add bindings for intel LGM SOC
+Message-ID: <20201105095257.GA7994@amd>
+References: <c9c963a2d03fbd03bd21f71f3d776ac5800cf6cc.1604331498.git.mallikarjunax.reddy@linux.intel.com>
 MIME-Version: 1.0
-References: <20201104234427.26477-1-digetx@gmail.com>
-In-Reply-To: <20201104234427.26477-1-digetx@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 5 Nov 2020 10:45:23 +0100
-Message-ID: <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="qDbXVdCdHGoSgWSk"
+Content-Disposition: inline
+In-Reply-To: <c9c963a2d03fbd03bd21f71f3d776ac5800cf6cc.1604331498.git.mallikarjunax.reddy@linux.intel.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Viresh
 
-On Thu, 5 Nov 2020 at 00:44, Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> Introduce core voltage scaling for NVIDIA Tegra20/30 SoCs, which reduces
-> power consumption and heating of the Tegra chips. Tegra SoC has multiple
-> hardware units which belong to a core power domain of the SoC and share
-> the core voltage. The voltage must be selected in accordance to a minimum
-> requirement of every core hardware unit.
->
-> The minimum core voltage requirement depends on:
->
->   1. Clock enable state of a hardware unit.
->   2. Clock frequency.
->   3. Unit's internal idling/active state.
->
-> This series is tested on Acer A500 (T20), AC100 (T20), Nexus 7 (T30) and
-> Ouya (T30) devices. I also added voltage scaling to the Ventana (T20) and
-> Cardhu (T30) boards which are tested by NVIDIA's CI farm. Tegra30 is now up
-> to 5C cooler on Nexus 7 and stays cool on Ouya (instead of becoming burning
-> hot) while system is idling. It should be possible to improve this further
-> by implementing a more advanced power management features for the kernel
-> drivers.
->
-> The DVFS support is opt-in for all boards, meaning that older DTBs will
-> continue to work like they did it before this series. It should be possible
-> to easily add the core voltage scaling support for Tegra114+ SoCs based on
-> this grounding work later on, if anyone will want to implement it.
->
-> WARNING(!) This series is made on top of the memory interconnect patches
->            which are currently under review [1]. The Tegra EMC driver
->            and devicetree-related patches need to be applied on top of
->            the ICC series.
->
-> [1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=212196
->
-> Dmitry Osipenko (30):
->   dt-bindings: host1x: Document OPP and voltage regulator properties
->   dt-bindings: mmc: tegra: Document OPP and voltage regulator properties
->   dt-bindings: pwm: tegra: Document OPP and voltage regulator properties
->   media: dt: bindings: tegra-vde: Document OPP and voltage regulator
->     properties
->   dt-binding: usb: ci-hdrc-usb2:  Document OPP and voltage regulator
->     properties
->   dt-bindings: usb: tegra-ehci: Document OPP and voltage regulator
->     properties
->   soc/tegra: Add sync state API
->   soc/tegra: regulators: Support Tegra SoC device sync state API
->   soc/tegra: regulators: Fix lockup when voltage-spread is out of range
->   regulator: Allow skipping disabled regulators in
->     regulator_check_consumers()
->   drm/tegra: dc: Support OPP and SoC core voltage scaling
->   drm/tegra: gr2d: Correct swapped device-tree compatibles
->   drm/tegra: gr2d: Support OPP and SoC core voltage scaling
->   drm/tegra: gr3d: Support OPP and SoC core voltage scaling
->   drm/tegra: hdmi: Support OPP and SoC core voltage scaling
->   gpu: host1x: Support OPP and SoC core voltage scaling
->   mmc: sdhci-tegra: Support OPP and core voltage scaling
->   pwm: tegra: Support OPP and core voltage scaling
->   media: staging: tegra-vde: Support OPP and SoC core voltage scaling
->   usb: chipidea: tegra: Support OPP and SoC core voltage scaling
->   usb: host: ehci-tegra: Support OPP and SoC core voltage scaling
->   memory: tegra20-emc: Support Tegra SoC device state syncing
->   memory: tegra30-emc: Support Tegra SoC device state syncing
->   ARM: tegra: Add OPP tables for Tegra20 peripheral devices
->   ARM: tegra: Add OPP tables for Tegra30 peripheral devices
->   ARM: tegra: ventana: Add voltage supplies to DVFS-capable devices
->   ARM: tegra: paz00: Add voltage supplies to DVFS-capable devices
->   ARM: tegra: acer-a500: Add voltage supplies to DVFS-capable devices
->   ARM: tegra: cardhu-a04: Add voltage supplies to DVFS-capable devices
->   ARM: tegra: nexus7: Add voltage supplies to DVFS-capable devices
->
->  .../display/tegra/nvidia,tegra20-host1x.txt   |  56 +++
->  .../bindings/media/nvidia,tegra-vde.txt       |  12 +
->  .../bindings/mmc/nvidia,tegra20-sdhci.txt     |  12 +
->  .../bindings/pwm/nvidia,tegra20-pwm.txt       |  13 +
->  .../devicetree/bindings/usb/ci-hdrc-usb2.txt  |   4 +
->  .../bindings/usb/nvidia,tegra20-ehci.txt      |   2 +
->  .../boot/dts/tegra20-acer-a500-picasso.dts    |  30 +-
->  arch/arm/boot/dts/tegra20-paz00.dts           |  40 +-
->  .../arm/boot/dts/tegra20-peripherals-opp.dtsi | 386 ++++++++++++++++
->  arch/arm/boot/dts/tegra20-ventana.dts         |  65 ++-
->  arch/arm/boot/dts/tegra20.dtsi                |  14 +
->  .../tegra30-asus-nexus7-grouper-common.dtsi   |  23 +
->  arch/arm/boot/dts/tegra30-cardhu-a04.dts      |  44 ++
->  .../arm/boot/dts/tegra30-peripherals-opp.dtsi | 415 ++++++++++++++++++
->  arch/arm/boot/dts/tegra30.dtsi                |  13 +
->  drivers/gpu/drm/tegra/Kconfig                 |   1 +
->  drivers/gpu/drm/tegra/dc.c                    | 138 +++++-
->  drivers/gpu/drm/tegra/dc.h                    |   5 +
->  drivers/gpu/drm/tegra/gr2d.c                  | 140 +++++-
->  drivers/gpu/drm/tegra/gr3d.c                  | 136 ++++++
->  drivers/gpu/drm/tegra/hdmi.c                  |  63 ++-
->  drivers/gpu/host1x/Kconfig                    |   1 +
->  drivers/gpu/host1x/dev.c                      |  87 ++++
->  drivers/memory/tegra/tegra20-emc.c            |   8 +-
->  drivers/memory/tegra/tegra30-emc.c            |   8 +-
->  drivers/mmc/host/Kconfig                      |   1 +
->  drivers/mmc/host/sdhci-tegra.c                |  70 ++-
->  drivers/pwm/Kconfig                           |   1 +
->  drivers/pwm/pwm-tegra.c                       |  84 +++-
->  drivers/regulator/core.c                      |  12 +-
->  .../soc/samsung/exynos-regulator-coupler.c    |   2 +-
->  drivers/soc/tegra/common.c                    | 152 ++++++-
->  drivers/soc/tegra/regulators-tegra20.c        |  25 +-
->  drivers/soc/tegra/regulators-tegra30.c        |  30 +-
->  drivers/staging/media/tegra-vde/Kconfig       |   1 +
->  drivers/staging/media/tegra-vde/vde.c         | 127 ++++++
->  drivers/staging/media/tegra-vde/vde.h         |   1 +
->  drivers/usb/chipidea/Kconfig                  |   1 +
->  drivers/usb/chipidea/ci_hdrc_tegra.c          |  79 ++++
->  drivers/usb/host/Kconfig                      |   1 +
->  drivers/usb/host/ehci-tegra.c                 |  79 ++++
->  include/linux/regulator/coupler.h             |   6 +-
->  include/soc/tegra/common.h                    |  22 +
->  43 files changed, 2360 insertions(+), 50 deletions(-)
->
-> --
-> 2.27.0
+--qDbXVdCdHGoSgWSk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu 2020-11-05 17:43:50, Amireddy Mallikarjuna reddy wrote:
+> Add DT bindings YAML schema for SSO controller driver
+> of Lightning Mountain(LGM) SoC.
 >
 
-I need some more time to review this, but just a quick check found a
-few potential issues...
+intel -> Intel in the title.
+"Lightning Mountain(LGM)" -> 'Lightning Mountain (LGM)"
 
-The "core-supply", that you specify as a regulator for each
-controller's device node, is not the way we describe power domains.
-Instead, it seems like you should register a power-domain provider
-(with the help of genpd) and implement the ->set_performance_state()
-callback for it. Each device node should then be hooked up to this
-power-domain, rather than to a "core-supply". For DT bindings, please
-have a look at Documentation/devicetree/bindings/power/power-domain.yaml
-and Documentation/devicetree/bindings/power/power_domain.txt.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-lgm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Intel LGM Soc LED SSO driver
 
-In regards to the "sync state" problem (preventing to change
-performance states until all consumers have been attached), this can
-then be managed by the genpd provider driver instead.
+Please spell out LGM and SSO here. Soc -> SoC?
 
-Kind regards
-Uffe
+
+> +          intel,sso-brightness:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: brightness level of the LED.
+> +            minimum: 0
+> +            maximum: 255
+
+?
+
+> +          intel,sso-hw-trigger:
+> +            type: boolean
+> +            description: This property indicates Hardware driven/control=
+ LED.
+
+Why is this intel specific?
+
+> +          intel,sso-hw-blink:
+> +            type: boolean
+> +            description: This property indicates Enable LED blink by Har=
+dware.
+
+?
+
+> +          intel,sso-blink-rate:
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            description: LED HW blink frequency.
+
+?
+
+Best regards,
+						Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--qDbXVdCdHGoSgWSk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl+jy3kACgkQMOfwapXb+vItswCdHK/rBjUuX8XXr4kRgKyZnhDA
+BcAAoMRvUm2kKvgPmc4PKgqdfoK1Z4/N
+=SlwM
+-----END PGP SIGNATURE-----
+
+--qDbXVdCdHGoSgWSk--
