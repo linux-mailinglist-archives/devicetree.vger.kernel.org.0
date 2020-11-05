@@ -2,70 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B54B72A869B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 19:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 152D22A86A3
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 20:02:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731984AbgKES6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 13:58:53 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:44771 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730973AbgKES6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 13:58:53 -0500
-Received: by mail-oi1-f196.google.com with SMTP id t16so2744144oie.11;
-        Thu, 05 Nov 2020 10:58:53 -0800 (PST)
+        id S1730973AbgKETCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 14:02:37 -0500
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:40364 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729783AbgKETCh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 14:02:37 -0500
+Received: by mail-ej1-f68.google.com with SMTP id oq3so4145788ejb.7;
+        Thu, 05 Nov 2020 11:02:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=MbaUDtHJwu9D9pa2rAlfH1GLJRvR+XRMqDcaWHunhzM=;
-        b=iBx4Rntktz3UDVEgGiRWJH+vj55UqA/1MHTbIZVvdbLJOpEscQHc17KqWjR199Yntu
-         m03q+7Ask2yb3A11iJ+9KeWpdXRzx+F+9NkyUWWWqcRNfpV47DCCnkO1M9Agj75AhFYJ
-         AyWmpzlofKGqnLTft7du0Bz2oVrDWgPy9AZqh0j0G4/BCeGY66goA+1iasXW5p8p3lwG
-         PiDoZnama2Q3B9FiJwUVVFSByZGfFMNRYKnfSUc4qnXGWXx0HmZCJmb1EyUfcmHQkMIp
-         E9cUKLKJvLHegOhLWUNy5QTpEsCDAyNfciM98UUd3EgiiZ5f/u49lqfob1vgpyUCkSsl
-         MUIA==
-X-Gm-Message-State: AOAM533VZhJX2qKo7MA3xWQyLg2cRuN4fiwjClmIUsvZIfxgagCO8A2k
-        GRGr2OdVoXFiAzisfR9SXw==
-X-Google-Smtp-Source: ABdhPJzO+qpGu4aL2zaylA3VWrh0PbxwjMXLIkcMZuF1va24unRCMKjrlvFF0C2b6udP+8yvhYfYKg==
-X-Received: by 2002:aca:3e86:: with SMTP id l128mr492097oia.133.1604602732513;
-        Thu, 05 Nov 2020 10:58:52 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o63sm478826ooa.10.2020.11.05.10.58.51
+        bh=XFm1g1EiYzBluJLGmisV7ILMFqrL/YClqVXss+qbsWg=;
+        b=HAiIlWfS1pHDO2t4PvmHiOSMn9zjh7dbUqDSLqQPwnxW+ERAjABPQPu2RCHSZX6r8U
+         BVvedgfgysbBGn+b7P8fMNFbnzDNNMLA9Wsobyd9+o3CRwNLiZbxzCSTUYLzdlR3HBId
+         qKE2dpUjLsWU+gJ2SjmEohXb7Plt+Qo9CFFiZqZmWmk6FAvR4VJg8EVZgL4PpX/M2dg2
+         5u28F6rnHh6bbizpPMVzm9m7CI9ORLctmpaBZ+FyZABYlKGetpO1QbX66oLnhzSyEwYt
+         R6NsMH5/Ubqlt4zchuHTHECD6YfBnKqgpCXOGjda6lQX1D/8SON/BLzIJvwGkBF9uP35
+         N9WQ==
+X-Gm-Message-State: AOAM532YLFish1tpj2WeKT5xrP1+0VpTYsBA8xItUqjQxfOdcwY8OLp0
+        bGcXtuK0HoTHmEGqHhN1sYd1culAXyvHZQ==
+X-Google-Smtp-Source: ABdhPJzaVwqw3472Feq75GhrSLPXU+RBfAY2Wt4c7vyClo62jBznXUBzGPV0Go9B4PQbXHib9moZbA==
+X-Received: by 2002:a17:906:3a59:: with SMTP id a25mr3935249ejf.546.1604602955646;
+        Thu, 05 Nov 2020 11:02:35 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id d11sm1439614edu.2.2020.11.05.11.02.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 10:58:51 -0800 (PST)
-Received: (nullmailer pid 1634242 invoked by uid 1000);
-        Thu, 05 Nov 2020 18:58:50 -0000
-Date:   Thu, 5 Nov 2020 12:58:50 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     jason@lakedaemon.net, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, dmaengine@vger.kernel.org, vkoul@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org, tglx@linutronix.de,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        maz@kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: interrupt-controller: arm,gic: Update
- Tegra compatibles
-Message-ID: <20201105185850.GA1633758@bogus>
-References: <1604571846-14037-1-git-send-email-spujar@nvidia.com>
- <1604571846-14037-4-git-send-email-spujar@nvidia.com>
+        Thu, 05 Nov 2020 11:02:34 -0800 (PST)
+Date:   Thu, 5 Nov 2020 20:02:32 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>, Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        ming-fan.chen@mediatek.com
+Subject: Re: [PATCH v5 1/3] dt-bindings: memory: mediatek: Convert SMI to DT
+ schema
+Message-ID: <20201105190232.GA217610@kozik-lap>
+References: <20201103054200.21386-1-yong.wu@mediatek.com>
+ <20201103054200.21386-2-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1604571846-14037-4-git-send-email-spujar@nvidia.com>
+In-Reply-To: <20201103054200.21386-2-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Nov 2020 15:54:05 +0530, Sameer Pujar wrote:
-> Update Tegra compatibles to support newer Tegra chips and required
-> combinations.
+On Tue, Nov 03, 2020 at 01:41:58PM +0800, Yong Wu wrote:
+> Convert MediaTek SMI to DT schema.
 > 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 > ---
->  .../devicetree/bindings/interrupt-controller/arm,gic.yaml        | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
-> 
+>  .../mediatek,smi-common.txt                   |  50 -------
+>  .../mediatek,smi-common.yaml                  | 140 ++++++++++++++++++
+>  .../memory-controllers/mediatek,smi-larb.txt  |  50 -------
+>  .../memory-controllers/mediatek,smi-larb.yaml | 130 ++++++++++++++++
+>  4 files changed, 270 insertions(+), 100 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
 
-With the indentation fixed:
+Thanks, applied with Rob's tag.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Best regards,
+Krzysztof
+
