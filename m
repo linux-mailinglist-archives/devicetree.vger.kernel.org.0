@@ -2,91 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D1D632A77D0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:15:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 963C02A77E6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:20:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727986AbgKEHPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 02:15:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33050 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726371AbgKEHPG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 02:15:06 -0500
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17151C0613D2
-        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 23:15:05 -0800 (PST)
-Received: by mail-lj1-x241.google.com with SMTP id v19so460391lji.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 23:15:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TWG/H2FcV9+85Gv+l+usRIBA2/sArLkYfjgPcv0Ayyg=;
-        b=HZr14t3YQaS6wmZGUGGg17F6YFQZb2bfQ0ZVcOAe3K3QLDNkgnakem9GKQqVifCXoi
-         STNZDz8msWXRXzjPLk2dorsXnFOWv+cYTqj9SwP0FYXkvO56wXjbOi/oVEssEqCi1ZYD
-         LzhOcfQ+fS+CwUTzK3AN8Sj7Y0i/pcwcBXGRXdCoAlbnDmaoPX30hUJSiOgUkJVvXwU0
-         XS2Gq/vxN4oQwRmjKhARfz94fxVWwElpyCefw/fIxieFeDnt32sW5zCLpJJE8PVqkEK+
-         EZWwQ7vpmdt+f3/KDMemYQogxXdNiw0wKVIKT8DMxIYPekR3ZTMMJYGW7b9eUc8WoFzx
-         Uvzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TWG/H2FcV9+85Gv+l+usRIBA2/sArLkYfjgPcv0Ayyg=;
-        b=ZukvCnyMKa5YILhA/5U9+apLRnFpvROC92oeMCzpI7JNSFWKATHf//YnqXPXSOYrZw
-         xkpCVQUWA1u8oIltUyhWpokZK33lWyKeobDJf+Keocxc857YAScIUhwfUm0yaQ7RdPyC
-         Dwk3/KPuhJufL1A7J+8Mem623J8axy3hmYuCAkkNFvS6DU/rWkHwR4mwyMdUm4BjV0JK
-         AE7kc2wZ5DlhBF9ozXkCE75OK0LPLgh4ewUqRJGz3pT251p7TspAGIf/T52tX4mzmCCO
-         idmi87kD7s2chHW9tBUbihst+sD/xP2fEohL7G10IKf5D66883r/atkYds6myund71lb
-         XJqQ==
-X-Gm-Message-State: AOAM531sAePT7BWp1F12GgxqHAbhR5E3fAAcFVjrzD8lugb0kNp22ge5
-        p3bmP4aBY8zw4WZYxVDVZV4iFOy2B3jrO1MFdrvEdg==
-X-Google-Smtp-Source: ABdhPJwJNn+o+smBtimGxgYjMVNR/yvh4E/UcDXbPfo1VNDoO19jZdQ6gL73qx33T8BX9/T0GwuSk6VIPutEd/pDQOw=
-X-Received: by 2002:a2e:8905:: with SMTP id d5mr352399lji.144.1604560503549;
- Wed, 04 Nov 2020 23:15:03 -0800 (PST)
+        id S1727018AbgKEHU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 02:20:28 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55668 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727245AbgKEHU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 02:20:28 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A57K1qS069060;
+        Thu, 5 Nov 2020 01:20:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604560801;
+        bh=aNnXmi+/BsbX9YuV+Vb2u6E5JEoEpPn5Q9SWNj/7eck=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=q9AMAhhwXgg6+Eyfc9S3V8N/IBko+GprebnDGlxvC3vD2ce1sHxBITbG3V/9vpJWm
+         R85wRfxKe0bxydDL3MtA37dZGGgXF7LNWjfpiaq1XVsP2PrAb3fZ+f4O/qQs6ViQMC
+         +SNoLo4wTq49WyY1o7vTZ25RyGkMuyEHKcOUv2a8=
+Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A57K1fb059899
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 Nov 2020 01:20:01 -0600
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 5 Nov
+ 2020 01:20:00 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 5 Nov 2020 01:20:00 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A57JwIG037919;
+        Thu, 5 Nov 2020 01:19:59 -0600
+Subject: Re: [PATCH] arm64: dts: ti: k3-am65*/j721e*: Fix unit address format
+ error for dss node
+To:     Nishanth Menon <nm@ti.com>, Jyri Sarha <jsarha@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201104222519.12308-1-nm@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <9e1b0cf4-3048-ea54-1477-408b3bc0539b@ti.com>
+Date:   Thu, 5 Nov 2020 09:19:58 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201029062014.27620-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201029062014.27620-6-vadivel.muruganx.ramuthevar@linux.intel.com>
-In-Reply-To: <20201029062014.27620-6-vadivel.muruganx.ramuthevar@linux.intel.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Nov 2020 08:14:52 +0100
-Message-ID: <CACRpkdaz9E2yc3GnN8wus3M+qQRknW2QMe8Kn-=o=czOQf7A-Q@mail.gmail.com>
-Subject: Re: [PATCH v5 5/6] dt-bindings: spi: Convert cadence-quadspi.txt to cadence-quadspi.yaml
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     Mark Brown <broonie@kernel.org>, Vignesh R <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Simon Goldschmidt <simon.k.r.goldschmidt@gmail.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Richard Weinberger <richard@nod.at>, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201104222519.12308-1-nm@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 8:39 AM Ramuthevar,Vadivel MuruganX
-<vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
 
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->
-> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
-> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
->
-> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 
-> +  cdns,is-decoded-cs:
-> +    type: boolean
-> +    description:
-> +      Flag to indicate whether decoder is used or not.
+On 05/11/2020 00:25, Nishanth Menon wrote:
+> Fix the node address to follow the device tree convention.
+> 
+> This fixes the dtc warning:
+> <stdout>: Warning (simple_bus_reg): /bus@100000/dss@04a00000: simple-bus
+> unit address format error, expected "4a00000"
+> 
+> Fixes: 76921f15acc0 ("arm64: dts: ti: k3-j721e-main: Add DSS node")
+> Fixes: fc539b90eda2 ("arm64: dts: ti: am654: Add DSS node")
+> Cc: Jyri Sarha <jsarha@ti.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Signed-off-by: Nishanth Menon <nm@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 2 +-
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 533525229a8d..27f6fd9eaa0a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -834,7 +834,7 @@ csi2_0: port@0 {
+>  		};
+>  	};
+>  
+> -	dss: dss@04a00000 {
+> +	dss: dss@4a00000 {
+>  		compatible = "ti,am65x-dss";
+>  		reg =	<0x0 0x04a00000 0x0 0x1000>, /* common */
+>  			<0x0 0x04a02000 0x0 0x1000>, /* vidl1 */
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index e2a96b2c423c..c66ded9079be 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1278,7 +1278,7 @@ ufs@4e84000 {
+>  		};
+>  	};
+>  
+> -	dss: dss@04a00000 {
+> +	dss: dss@4a00000 {
+>  		compatible = "ti,j721e-dss";
+>  		reg =
+>  			<0x00 0x04a00000 0x00 0x10000>, /* common_m */
+> 
 
-Please elaborate a bit on what kind of decoder this is.
-I am curious! :)
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 
-Yours,
-Linus Walleij
+ Tomi
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
