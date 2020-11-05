@@ -2,132 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED3AB2A8619
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 19:28:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E381C2A862F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 19:39:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731682AbgKES2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 13:28:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54090 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728137AbgKES2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 13:28:39 -0500
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EED1C0613D3
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 10:28:37 -0800 (PST)
-Received: by mail-pj1-x1044.google.com with SMTP id k2so499424pjg.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 10:28:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YTZesUGnJn+6MgErPofDWillAKENIP3MmT4yUm+LnpY=;
-        b=kQKjxp5izjpM3xx2e+4N1ndVX7lWDj8NSy33q2Za1NZBw/jk7U8NgcBKD0DlAtnSc/
-         You6ku1Y7uY4C8I0HbyGkaZxgBDjLK43P72S5D3T8AAFXYJGA//rfBYrJhwWafePxpgm
-         Dcz/4OrTF03uqUduSRwQFzgFcE7Uj3XOMkAFw=
+        id S1726801AbgKESjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 13:39:23 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38201 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726214AbgKESjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 13:39:23 -0500
+Received: by mail-ot1-f68.google.com with SMTP id b2so2367660ots.5;
+        Thu, 05 Nov 2020 10:39:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YTZesUGnJn+6MgErPofDWillAKENIP3MmT4yUm+LnpY=;
-        b=uIbh3BgIOP8jyD1gWhULdsEXtSNJKY8HlMwrGax2bGL0UMawUIDraCrZ1E0trRCenn
-         4honRItGa4lUqpV3ERYZea/qpnKCLdH5MCcIq2uCU0fMsbDbBceKrAUAfRhWThOavQhR
-         7XktJZTT0aOdbVcHcqQyznycyYGho+oh76he2QahO9iumOWFgHS4UMWlXbwp3Fx5hzKt
-         s8SESl6J+ZD22Crhv/tgdILheiDEpbxruorOzXPfVhJ1unFfZrV/GmP5qjykPAgWxVfs
-         yw2vLe5WnblOL1xKkvoZv3hNxOJIUPIpPqmcK8SoRmpgx4CUpqf/kdfCi3rbgzl90SzI
-         HSYw==
-X-Gm-Message-State: AOAM530u+R3qAHMYJztyoU73qL5qq123f6KwnEj2/CwVHT8STKILdluI
-        03UbVijW+4d3BVUbOEfrKsBWgg==
-X-Google-Smtp-Source: ABdhPJy8FxBauEXAh5+nTi/O24YjuFAZOlFk6qqMnlnKBbr0wHFlAguOOv/PkuT5LDDpwdSlQLiXIg==
-X-Received: by 2002:a17:90a:da01:: with SMTP id e1mr3633114pjv.215.1604600917030;
-        Thu, 05 Nov 2020 10:28:37 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id j9sm3076306pjl.48.2020.11.05.10.28.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Nov 2020 10:28:36 -0800 (PST)
-Date:   Thu, 5 Nov 2020 10:28:35 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Make pp3300_a the
- default supply for pp3300_hub
-Message-ID: <20201105182835.GB3079843@google.com>
-References: <20201103103749.1.I0ed4abdd2b2916fbedf76be254bc3457fb8b9655@changeid>
- <CAD=FV=Wc-b75a-QSX8qLq0+fCbcnvh_6q+N6azL=+Tk+rMie1g@mail.gmail.com>
- <20201105015501.GA3079843@google.com>
- <CAD=FV=W=L=gjue69UCnC-xbkQYwMaqCUoaGGJsarLxxjagZPpA@mail.gmail.com>
+        bh=oPwP/MMeCFhUmSj7N3WE3Z62TN2tMAgfxgbJBwkddp4=;
+        b=OSkAigvl4a+1KT+tzxetTTYkdhhGXtmh1efUNVpsjCZQxqn9yp5RC+UwlIkMf7bAVE
+         WHFKOIr1yQkhHrKKmv5Viv2AMiqQxntBsUkqYkaGbTPUMWygj9mQGeLUH4k6SAfeWatG
+         T0ygSN0zzO8HhP4NJRmWb1dbEkfaJ57/iMC+0Os6H1M26opUwuWwG303jVq3Epjds+TP
+         SFwTUQWgYAGh3JycFxI9o9oXdR/yniTg6asVdYlvvlLnsZ+jUJi2Gd+s7bJTWhEnmn+V
+         9knRmIaPJgdjFxJE2TE3lZ9TACRu80A0WeBEVY9yTAHWT6MqmcjH+DRWkAMnc/hpOo5h
+         cacw==
+X-Gm-Message-State: AOAM530OEXrkSPGOWnqGUm/4lzPrMNEMQ6VsSrHZIo5yZ85upoN7gVi/
+        lhVY8cE2QB+g/u0kFYxXtg==
+X-Google-Smtp-Source: ABdhPJzRBgP5+/f3MDZQcsFSgW1dFGhtocXexNDBCjlPVJJSHJJGb717wfAecWqYjVCmXRQb6VMRYA==
+X-Received: by 2002:a05:6830:1dab:: with SMTP id z11mr2479004oti.247.1604601562347;
+        Thu, 05 Nov 2020 10:39:22 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id j3sm556796oij.9.2020.11.05.10.39.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 10:39:21 -0800 (PST)
+Received: (nullmailer pid 1607749 invoked by uid 1000);
+        Thu, 05 Nov 2020 18:39:20 -0000
+Date:   Thu, 5 Nov 2020 12:39:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        youlin.pei@mediatek.com, Joerg Roedel <joro@8bytes.org>,
+        linux-arm-kernel@lists.infradead.org, ming-fan.chen@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        linux-mediatek@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Tomasz Figa <tfiga@google.com>, Will Deacon <will@kernel.org>,
+        anan.sun@mediatek.com, Robin Murphy <robin.murphy@arm.com>,
+        linux-kernel@vger.kernel.org, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v5 1/3] dt-bindings: memory: mediatek: Convert SMI to DT
+ schema
+Message-ID: <20201105183920.GA1607689@bogus>
+References: <20201103054200.21386-1-yong.wu@mediatek.com>
+ <20201103054200.21386-2-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAD=FV=W=L=gjue69UCnC-xbkQYwMaqCUoaGGJsarLxxjagZPpA@mail.gmail.com>
+In-Reply-To: <20201103054200.21386-2-yong.wu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 07:57:42AM -0800, Doug Anderson wrote:
-> Hi,
+On Tue, 03 Nov 2020 13:41:58 +0800, Yong Wu wrote:
+> Convert MediaTek SMI to DT schema.
 > 
-> On Wed, Nov 4, 2020 at 5:55 PM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> > > > index bf875589d364..2d64e75a2d6d 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-> > > > @@ -174,6 +174,21 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
-> > > >                 vin-supply = <&pp3300_a>;
-> > > >         };
-> > > >
-> > > > +       pp3300_hub: pp3300-hub {
-> > > > +               compatible = "regulator-fixed";
-> > > > +               regulator-name = "pp3300_hub";
-> > > > +
-> > > > +               regulator-min-microvolt = <3300000>;
-> > > > +               regulator-max-microvolt = <3300000>;
-> > > > +
-> > > > +               gpio = <&tlmm 84 GPIO_ACTIVE_HIGH>;
-> > > > +               enable-active-high;
-> > > > +               pinctrl-names = "default";
-> > > > +               pinctrl-0 = <&en_pp3300_hub>;
-> > > > +
-> > > > +               vin-supply = <&pp3300_a>;
-> > >
-> > > You're leaving things in a bit of an inconsistent state here.  The
-> > > "pp3300_hub_7c" is always_on / boot_on.  This new one isn't.
-> >
-> > Actually the new "pp3300_hub" it is also on at boot, the Chrome OS bootloader
-> > asserts the GPIO.
-> >
-> > > I know this is slightly more complicated due to the fact that downstream we
-> > > have a way to control the hub power but didn't quite get that resolved
-> > > upstream, but the way you have it now, on new hardware upstream will
-> > > power off the hub but also keep "pp3300_hub_7c" powered on for no
-> > > reason.  Seems like that should be fixed?
-> >
-> > Our EEs told me that it would be ok in terms of power to keep "pp3300_hub_7c"
-> > powered, since there would be no significant power consumption without load.
-> >
-> > In any case unused RPMH regulators are switched off by the kernel ~30s after
-> > boot, so I think we are ok:
-> >
-> > [   31.202219] ldo7: disabling
-> >
-> > The above is from the l7c regulator on a Lazor rev2.
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  .../mediatek,smi-common.txt                   |  50 -------
+>  .../mediatek,smi-common.yaml                  | 140 ++++++++++++++++++
+>  .../memory-controllers/mediatek,smi-larb.txt  |  50 -------
+>  .../memory-controllers/mediatek,smi-larb.yaml | 130 ++++++++++++++++
+>  4 files changed, 270 insertions(+), 100 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
 > 
-> I assume this is with the downstream codebase, though?  With what you
-> have posted upstream I don't think ldo7 will ever get disabled because
-> it's marked "always-on"?
->
-> Similarly, with what you've posted upstream I think your new
-> "pp3300_hub" _will_ get disabled ~30 seconds after boot because it's
-> not marked "always-on" and it has no clients.
 
-Ah, now I see what you mean, thanks for the clarification. I associated
-the ~30 seconds disabling with the RPMH regulators, but you're right, it's
-generic regulator behavior (regulator_late_cleanup()).
-
-So yeah, it seems some reshuffling of "always-on" and "boot-on" properties
-is needed.
+Reviewed-by: Rob Herring <robh@kernel.org>
