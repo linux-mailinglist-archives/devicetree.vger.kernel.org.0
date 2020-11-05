@@ -2,99 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBEAF2A7A57
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:21:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 150E32A7A68
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:27:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729604AbgKEJVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:21:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52774 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725827AbgKEJVk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:21:40 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C0DC0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:21:39 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id l2so1290143lfk.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:21:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MLqSXCNezt+6aLqOTtVwOIFeRl7Xe1AvGFzo3fYe1IY=;
-        b=Jgn4flcDwaM4mzljPuY4s4pB7iP2cuTWB5VKgui315qkRuy92cPfVJ/shvssIW9x54
-         ot3qVvePuzmxXvqWwA9M1JCEWi58AHdtLSTwHA8QV/5i1MmA27VBu9rus5CeT/CaOZV8
-         6A+F8/YOOm+6m2YzWCu5jnOZWbHIj7S46XpDNGyQYH5CxLEiu2+M9jmw3lnBcs8hnmwV
-         /yYVTHgHb6O2DZIQxxp12BQZLIG2M9n00OKf3BYP+g+tj+PbS4wHlOsaF/ocmoCThCJb
-         z9m5vcykgPY2noV1am3wjgeLAJJOYclMBzpvO6QAlprivTLPtOaK24UYWrrJ2FIFol32
-         0JuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MLqSXCNezt+6aLqOTtVwOIFeRl7Xe1AvGFzo3fYe1IY=;
-        b=UaRAAL/Ijpp++9g3z04qSzwaaiMbtHH3pG1QySaBF0+velVvWd+3SDT9Pltjwyb59K
-         ZJXjbxeRyx/7B7q+oHgeRfKXYk61eYXSPo4FNMPvJIpmYoh6oUZnt4QLkBbAb2i3UoCZ
-         CaS6EL5kNsc/t8AUlzDQNdDvZtL956AFqMkpefRonNMhbFOs826Mi/j7BHCHWHdhVXoP
-         Z226ylbxpj9NHXdea8O5JYNaNx58XaS7WKMl6nAkTQN8vfTb4GJTlNbsYIE6BB6CJgbp
-         e8+5U/fcX0NGIrA/SpTacftjisRNAHs5cnuzhZFmZxtrA0474A5Ysd2AfMIoUrhY+YZ6
-         KotA==
-X-Gm-Message-State: AOAM533q6MYtuUveTOgflsPdrBX0v7e25/rAYT+DMb/t7X1kaqi2wH7y
-        Ln9E9dVbeDhvao9mVy63tJ6ta3WV1yE0JDPrMFRXHgQWKsV9sg==
-X-Google-Smtp-Source: ABdhPJyIx15IqdB1NPA4Sazq74uSIewpcq3AMgBd0y4Lv2GKOeKDnGro5f8DkvKwJhJ7plUKGIKFbEhFk80IWVCFJr8=
-X-Received: by 2002:a05:6512:322d:: with SMTP id f13mr567603lfe.571.1604568098468;
- Thu, 05 Nov 2020 01:21:38 -0800 (PST)
+        id S1726787AbgKEJ11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:27:27 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:27474 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726737AbgKEJ11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:27:27 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A59RCmh022319;
+        Thu, 5 Nov 2020 10:27:14 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=90DBQmVTazKJUz/HsVZp0MWtq8Z4KmCVtWCSf/TO+FA=;
+ b=jTqLMT2vzOFEeFQODMBv723JkV/M7U/yvqBGbKWKx5kb9aSlUo6ZXYZegOyZNfSudr2O
+ vuvgZfPWQBw7AomkbPnuxfi3XK20c7L+PIqGsmKFe69Ws155ST4rEkTRqhmI2EskFDQ2
+ UwfpVKBjmhtnnBnnNVdOA6C7OxPSDNJMKhRZy+8iKzulmaAUXnmdqqZOqesJ4gWN+JnE
+ PyWplvQ3y0G+esOoFhvXbcjM6e5QkfhLVEXbL44qqQcD2/y4ssylLVlkMGiOzSxFbAkG
+ 6a+qDJdoqYi8RL3cvdTh0I/2n+TnIWXN23+hyUx6xvBEJgNq/nUFS7bphfFEiFiziW93 zg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34h031ykye-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 05 Nov 2020 10:27:14 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 92DC0100039;
+        Thu,  5 Nov 2020 10:27:12 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7875D230660;
+        Thu,  5 Nov 2020 10:27:12 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 5 Nov
+ 2020 10:27:11 +0100
+Subject: Re: [PATCH v5 0/4] DCMI BT656 parallel bus mode support
+To:     Hugues Fruchet <hugues.fruchet@st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Alain Volmat <alain.volmat@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe CORNU <philippe.cornu@st.com>
+References: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <016661fc-e9dd-bd4a-f26d-00e54626f030@st.com>
+Date:   Thu, 5 Nov 2020 10:26:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-4-daniel@0x0f.com>
- <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com> <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
-In-Reply-To: <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Nov 2020 10:21:27 +0100
-Message-ID: <CACRpkdbx+T3uX9taZNjsURHGc6qVLvGGC2boEC4=NaOi4_uZTQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.50]
+X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-05_05:2020-11-05,2020-11-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 21, 2020 at 1:07 PM Daniel Palmer <daniel@0x0f.com> wrote:
+Hi Huges
 
-> Sorry to pester you again...
+On 11/4/20 6:32 PM, Hugues Fruchet wrote:
+> Add support of BT656 embedded synchronization bus.
+> This mode allows to save hardware synchro lines hsync & vsync
+> by replacing them with synchro codes embedded in data stream.
+> Add "bus-type" property and make it required so that there is no
+> ambiguity between parallel mode (bus-type=5) and BT656 mode (bus-type=6).
+> 
+> ===========
+> = history =
+> ===========
+> version 5:
+>    - Add revisited bindings and devicetree with explicit use of "bus-type"
+> 
+> version 4:
+>    - Fix typo in commit message
+> 
+> version 3:
+>    - Fix bus_width print to %u as per Sakari comment
+> 
+> version 2:
+>    - As per Sakari remark, revisit commit message and document
+>      BT656 parallel bus mode in bindings
+> 
+> version 1:
+>    - Initial submission
+> 
+> Hugues Fruchet (4):
+>    media: stm32-dcmi: add support of BT656 bus
+>    media: dt-bindings: media: st,stm32-dcmi: add support of BT656 bus
+>    ARM: dts: stm32: set bus-type in DCMI endpoint for stm32mp157c-ev1
+>      board
+>    ARM: dts: stm32: set bus-type in DCMI endpoint for stm32429i-eval
+>      board
+> 
+>   .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 38 ++++++++++++++++++++++
+>   arch/arm/boot/dts/stm32429i-eval.dts               |  1 +
+>   arch/arm/boot/dts/stm32mp157c-ev1.dts              |  1 +
+>   drivers/media/platform/stm32/stm32-dcmi.c          | 37 +++++++++++++++++++--
+>   4 files changed, 75 insertions(+), 2 deletions(-)
+> 
 
-Don't worry. I'm more worried that my replies are slow.
+I'll take DT patches on stm32-next tree.
 
-> Before I do that I have a question that maybe you could help me with:
-> Andy noted a few times that I have this driver as a built in driver
-> and not a module.
-> The gpio-ixp4xx.c driver is also a built in driver. Is there a reason
-> why it's ok there but not this driver?
-
-Not that I know of. There is a lot of push for modularization right
-now because Android (and other distributions) likes it, so if your
-SoC could be used by Android or Fedora or Debian etc it is
-generally a good idea to modularize.
-
-These distributions use the generic ARM (etc) kernel and try
-to load as many drivers as possible as modules.
-
-It is not always possible because some GPIOs might be needed
-very early, such as on-chip GPIO. So you better make sure
-that the platform can get to userspace also without this driver
-compiled in, otherwise it *MUST* be bool so people don't get
-ammunition to shoot themselves in the foot and configure a
-non-bootable kernel just because they could modularize this
-driver.
-
-If your SoC is only used by OpenWrt (like ixp4xx) then it is fine
-to just use bool because that distribution is always built with an
-image for a specific hardware, whereas distributions are generic.
-
-So it actually depends a bit on the usecase of the SoC.
-
-Yours,
-Linus Walleij
+regards
+alex
