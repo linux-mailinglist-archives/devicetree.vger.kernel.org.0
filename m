@@ -2,165 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE7E2A864D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 19:45:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2482A865F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 19:48:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732004AbgKESpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 13:45:22 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50408 "EHLO mail.kernel.org"
+        id S1727836AbgKESsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 13:48:18 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52208 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732000AbgKESpV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 13:45:21 -0500
+        id S1726801AbgKESsR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 13:48:17 -0500
 Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch [84.226.167.205])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BC3A62074B;
-        Thu,  5 Nov 2020 18:45:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B6491206C1;
+        Thu,  5 Nov 2020 18:48:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604601921;
-        bh=YmUtnlzOKXqutUN2ZjrNmQslRqCKCYAcop10QvbuLgA=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=Dl4aY1r2ypcTj0Utg+cdIdmIID+TO0jjXRQ62mficNiK94tYmbm9Oh1S/kc7v5ph/
-         fi1HJPXGon61VfR5AJn0PiIwvebI7AqPm9vUjcWJ3zKXlZr1DjkGzqe2254p/OPZ0k
-         erLTeYpECdfzAxUnMiGVjKiy2a5MBS1FLz7BPiP0=
+        s=default; t=1604602097;
+        bh=hiaJ+qpS2C8Kci86edeTVYPHnM6sAzoq5PKiZ3w8AJo=;
+        h=From:To:Subject:Date:From;
+        b=T9StjDGIKAy3SjDb7JV+xEROPu/6sKNVbvNE46WjAXIlApDlBxWcnbtD2+Jm3ysAy
+         iFZNLQ8V2I+3wNjzR4py2/s00iwwXEn/k8G+9/LDPz2cEU5Gk1RRMlbeG1aYnvu9VV
+         1DM5MFlBNAdAI4x11193dZ+a1dmxxaQxMVhwMwro=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: exynos: use hyphens in Exynos5433 node names
-Date:   Thu,  5 Nov 2020 19:45:06 +0100
-Message-Id: <20201105184506.215648-6-krzk@kernel.org>
+        Fabio Estevam <festevam@gmail.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: arm: fsl: document LS1012A FRWY board
+Date:   Thu,  5 Nov 2020 19:48:07 +0100
+Message-Id: <20201105184808.216384-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201105184506.215648-1-krzk@kernel.org>
-References: <20201105184506.215648-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use hyphens instead of underscores in the Exynos5433 node names which is
-expected by naming convention, multiple dtschema files and pointed out
-by dtc W=2 builds.
+Document the compatible for LS1012A FRWY board.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi        | 10 +++++-----
- arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi |  4 ++--
- arch/arm64/boot/dts/exynos/exynos5433.dtsi            |  8 ++++----
- 3 files changed, 11 insertions(+), 11 deletions(-)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
-index d77b88af9582..8997f8f2b96c 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-bus.dtsi
-@@ -87,7 +87,7 @@ bus_noc2: bus9 {
- 		status = "disabled";
- 	};
- 
--	bus_g2d_400_opp_table: opp_table2 {
-+	bus_g2d_400_opp_table: opp-table2 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -117,7 +117,7 @@ opp-100000000 {
- 		};
- 	};
- 
--	bus_g2d_266_opp_table: opp_table3 {
-+	bus_g2d_266_opp_table: opp-table3 {
- 		compatible = "operating-points-v2";
- 
- 		opp-267000000 {
-@@ -137,7 +137,7 @@ opp-100000000 {
- 		};
- 	};
- 
--	bus_gscl_opp_table: opp_table4 {
-+	bus_gscl_opp_table: opp-table4 {
- 		compatible = "operating-points-v2";
- 
- 		opp-333000000 {
-@@ -151,7 +151,7 @@ opp-166500000 {
- 		};
- 	};
- 
--	bus_hevc_opp_table: opp_table5 {
-+	bus_hevc_opp_table: opp-table5 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -175,7 +175,7 @@ opp-100000000 {
- 		};
- 	};
- 
--	bus_noc2_opp_table: opp_table6 {
-+	bus_noc2_opp_table: opp-table6 {
- 		compatible = "operating-points-v2";
- 
- 		opp-400000000 {
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-index 97a2f0c7c0cf..7269275c7cef 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
-@@ -860,7 +860,7 @@ pmic@66 {
- 		muic: max77843-muic {
- 			compatible = "maxim,max77843-muic";
- 
--			musb_con: musb_connector {
-+			musb_con: musb-connector {
- 				compatible = "samsung,usb-connector-11pin",
- 					     "usb-b-connector";
- 				label = "micro-USB";
-@@ -1064,7 +1064,7 @@ initial_alive: initial-state {
- 		PIN(INPUT, gpf5-7, DOWN, FAST_SR1);
- 	};
- 
--	te_irq: te_irq {
-+	te_irq: te-irq {
- 		samsung,pins = "gpf1-3";
- 		samsung,pin-function = <0xf>;
- 	};
-diff --git a/arch/arm64/boot/dts/exynos/exynos5433.dtsi b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-index 8eb4576da8f3..4ee40ead44e4 100644
---- a/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos5433.dtsi
-@@ -23,7 +23,7 @@ / {
- 
- 	interrupt-parent = <&gic>;
- 
--	arm_a53_pmu {
-+	arm-a53-pmu {
- 		compatible = "arm,cortex-a53-pmu";
- 		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-@@ -32,7 +32,7 @@ arm_a53_pmu {
- 		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
- 	};
- 
--	arm_a57_pmu {
-+	arm-a57-pmu {
- 		compatible = "arm,cortex-a57-pmu";
- 		interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>,
- 			     <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
-@@ -137,7 +137,7 @@ cpu7: cpu@3 {
- 		};
- 	};
- 
--	cluster_a53_opp_table: opp_table0 {
-+	cluster_a53_opp_table: opp-table0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-@@ -183,7 +183,7 @@ opp-1300000000 {
- 		};
- 	};
- 
--	cluster_a57_opp_table: opp_table1 {
-+	cluster_a57_opp_table: opp-table1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index e4db0f9ed664..325fee3c1900 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -794,6 +794,7 @@ properties:
+               - ebs-systart,oxalis
+               - fsl,ls1012a-rdb
+               - fsl,ls1012a-frdm
++              - fsl,ls1012a-frwy
+               - fsl,ls1012a-qds
+           - const: fsl,ls1012a
  
 -- 
 2.25.1
