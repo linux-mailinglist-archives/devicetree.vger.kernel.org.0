@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A631F2A853D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF84C2A853E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 18:44:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731677AbgKERox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 12:44:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47178 "EHLO
+        id S1731711AbgKERoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 12:44:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727275AbgKERox (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:44:53 -0500
+        with ESMTP id S1727275AbgKERoz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 12:44:55 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BDDEC0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 09:44:53 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB88EC0613CF
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 09:44:54 -0800 (PST)
 Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1kajJY-0005qB-Bc; Thu, 05 Nov 2020 18:44:48 +0100
+        id 1kajJZ-0005qB-CQ; Thu, 05 Nov 2020 18:44:50 +0100
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
@@ -26,8 +26,8 @@ Cc:     Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>,
         NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
         patchwork-lst@pengutronix.de, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Date:   Thu,  5 Nov 2020 18:44:31 +0100
-Message-Id: <20201105174434.1817539-11-l.stach@pengutronix.de>
+Date:   Thu,  5 Nov 2020 18:44:32 +0100
+Message-Id: <20201105174434.1817539-12-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20201105174434.1817539-1-l.stach@pengutronix.de>
 References: <20201105174434.1817539-1-l.stach@pengutronix.de>
@@ -41,7 +41,7 @@ X-Spam-Level:
 X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
         SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
         version=3.4.2
-Subject: [PATCH v2 10/13] dt-bindings: add defines for i.MX8MM power domains
+Subject: [PATCH v2 11/13] soc: imx: gpcv2: add support for i.MX8MM power domains
 X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
 X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
@@ -49,58 +49,239 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds support for the power domains founds on i.MX8MM. The 2D and 3D
+GPU domains are abstracted as a single domain in the driver, as they can't
+be powered up/down individually due to a shared reset.
+
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 ---
-v2: drop defines for power-domains with blk-ctl for now
-    as those need more work to enable.
+v2: drop power-domains with blk-ctl for now as those need
+    more work to enable.
 ---
- .../devicetree/bindings/power/fsl,imx-gpcv2.yaml |  2 ++
- include/dt-bindings/power/imx8mm-power.h         | 16 ++++++++++++++++
- 2 files changed, 18 insertions(+)
- create mode 100644 include/dt-bindings/power/imx8mm-power.h
+ drivers/soc/imx/gpcv2.c | 168 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 168 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-index 4330c73a2c30..d3539569d45f 100644
---- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-+++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-@@ -26,6 +26,7 @@ properties:
-     enum:
-       - fsl,imx7d-gpc
-       - fsl,imx8mq-gpc
-+      - fsl,imx8mm-gpc
+diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+index 4a2c2a255d1a..5642dd236c10 100644
+--- a/drivers/soc/imx/gpcv2.c
++++ b/drivers/soc/imx/gpcv2.c
+@@ -19,6 +19,7 @@
+ #include <linux/sizes.h>
+ #include <dt-bindings/power/imx7-power.h>
+ #include <dt-bindings/power/imx8mq-power.h>
++#include <dt-bindings/power/imx8mm-power.h>
  
-   reg:
-     maxItems: 1
-@@ -54,6 +55,7 @@ properties:
-               Power domain index. Valid values are defined in
-               include/dt-bindings/power/imx7-power.h for fsl,imx7d-gpc and
-               include/dt-bindings/power/imx8m-power.h for fsl,imx8mq-gpc
-+              include/dt-bindings/power/imx8mm-power.h for fsl,imx8mm-gpc
-             maxItems: 1
+ #define GPC_LPCR_A_CORE_BSC			0x000
  
-           clocks:
-diff --git a/include/dt-bindings/power/imx8mm-power.h b/include/dt-bindings/power/imx8mm-power.h
-new file mode 100644
-index 000000000000..2d46d4d788c0
---- /dev/null
-+++ b/include/dt-bindings/power/imx8mm-power.h
-@@ -0,0 +1,16 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/*
-+ *  Copyright (C) 2020 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-+ */
+@@ -44,6 +45,19 @@
+ #define IMX8M_PCIE1_A53_DOMAIN			BIT(3)
+ #define IMX8M_MIPI_A53_DOMAIN			BIT(2)
+ 
++#define IMX8MM_VPUH1_A53_DOMAIN			BIT(15)
++#define IMX8MM_VPUG2_A53_DOMAIN			BIT(14)
++#define IMX8MM_VPUG1_A53_DOMAIN			BIT(13)
++#define IMX8MM_DISPMIX_A53_DOMAIN		BIT(12)
++#define IMX8MM_VPUMIX_A53_DOMAIN		BIT(10)
++#define IMX8MM_GPUMIX_A53_DOMAIN		BIT(9)
++#define IMX8MM_GPU_A53_DOMAIN			(BIT(8) | BIT(11))
++#define IMX8MM_DDR1_A53_DOMAIN			BIT(7)
++#define IMX8MM_OTG2_A53_DOMAIN			BIT(5)
++#define IMX8MM_OTG1_A53_DOMAIN			BIT(4)
++#define IMX8MM_PCIE_A53_DOMAIN			BIT(3)
++#define IMX8MM_MIPI_A53_DOMAIN			BIT(2)
 +
-+#ifndef __DT_BINDINGS_IMX8MM_POWER_H__
-+#define __DT_BINDINGS_IMX8MM_POWER_H__
+ #define GPC_PU_PGC_SW_PUP_REQ		0x0f8
+ #define GPC_PU_PGC_SW_PDN_REQ		0x104
+ 
+@@ -67,6 +81,19 @@
+ #define IMX8M_PCIE1_SW_Pxx_REQ			BIT(1)
+ #define IMX8M_MIPI_SW_Pxx_REQ			BIT(0)
+ 
++#define IMX8MM_VPUH1_SW_Pxx_REQ			BIT(13)
++#define IMX8MM_VPUG2_SW_Pxx_REQ			BIT(12)
++#define IMX8MM_VPUG1_SW_Pxx_REQ			BIT(11)
++#define IMX8MM_DISPMIX_SW_Pxx_REQ		BIT(10)
++#define IMX8MM_VPUMIX_SW_Pxx_REQ		BIT(8)
++#define IMX8MM_GPUMIX_SW_Pxx_REQ		BIT(7)
++#define IMX8MM_GPU_SW_Pxx_REQ			(BIT(6) | BIT(9))
++#define IMX8MM_DDR1_SW_Pxx_REQ			BIT(5)
++#define IMX8MM_OTG2_SW_Pxx_REQ			BIT(3)
++#define IMX8MM_OTG1_SW_Pxx_REQ			BIT(2)
++#define IMX8MM_PCIE_SW_Pxx_REQ			BIT(1)
++#define IMX8MM_MIPI_SW_Pxx_REQ			BIT(0)
 +
-+#define IMX8MM_POWER_DOMAIN_HSIOMIX	0
-+#define IMX8MM_POWER_DOMAIN_PCIE	1
-+#define IMX8MM_POWER_DOMAIN_OTG1	2
-+#define IMX8MM_POWER_DOMAIN_OTG2	3
-+#define IMX8MM_POWER_DOMAIN_GPUMIX	4
-+#define IMX8MM_POWER_DOMAIN_GPU		5
+ #define GPC_M4_PU_PDN_FLG		0x1bc
+ 
+ #define GPC_PU_PWRHSK			0x1fc
+@@ -78,6 +105,17 @@
+ #define IMX8M_VPU_HSK_PWRDNREQN			BIT(5)
+ #define IMX8M_DISP_HSK_PWRDNREQN		BIT(4)
+ 
 +
-+#endif
++#define IMX8MM_GPUMIX_HSK_PWRDNACKN		BIT(29)
++#define IMX8MM_GPU_HSK_PWRDNACKN		(BIT(27) | BIT(28))
++#define IMX8MM_VPUMIX_HSK_PWRDNACKN		BIT(26)
++#define IMX8MM_DISPMIX_HSK_PWRDNACKN		BIT(25)
++#define IMX8MM_HSIO_HSK_PWRDNACKN		(BIT(23) | BIT(24))
++#define IMX8MM_GPUMIX_HSK_PWRDNREQN		BIT(11)
++#define IMX8MM_GPU_HSK_PWRDNREQN		(BIT(9) | BIT(10))
++#define IMX8MM_VPUMIX_HSK_PWRDNREQN		BIT(8)
++#define IMX8MM_DISPMIX_HSK_PWRDNREQN		BIT(7)
++#define IMX8MM_HSIO_HSK_PWRDNREQN		(BIT(5) | BIT(6))
+ /*
+  * The PGC offset values in Reference Manual
+  * (Rev. 1, 01/2018 and the older ones) GPC chapter's
+@@ -100,6 +138,20 @@
+ #define IMX8M_PGC_MIPI_CSI2		28
+ #define IMX8M_PGC_PCIE2			29
+ 
++#define IMX8MM_PGC_MIPI			16
++#define IMX8MM_PGC_PCIE			17
++#define IMX8MM_PGC_OTG1			18
++#define IMX8MM_PGC_OTG2			19
++#define IMX8MM_PGC_DDR1			21
++#define IMX8MM_PGC_GPU2D		22
++#define IMX8MM_PGC_GPUMIX		23
++#define IMX8MM_PGC_VPUMIX		24
++#define IMX8MM_PGC_GPU3D		25
++#define IMX8MM_PGC_DISPMIX		26
++#define IMX8MM_PGC_VPUG1		27
++#define IMX8MM_PGC_VPUG2		28
++#define IMX8MM_PGC_VPUH1		29
++
+ #define GPC_PGC_CTRL(n)			(0x800 + (n) * 0x40)
+ #define GPC_PGC_SR(n)			(GPC_PGC_CTRL(n) + 0xc)
+ 
+@@ -523,6 +575,121 @@ static const struct imx_pgc_domain_data imx8m_pgc_domain_data = {
+ 	.reg_access_table = &imx8m_access_table,
+ };
+ 
++static const struct imx_pgc_domain imx8mm_pgc_domains[] = {
++	[IMX8MM_POWER_DOMAIN_HSIOMIX] = {
++		.genpd = {
++			.name = "hsiomix",
++		},
++		.bits  = {
++			.pxx = 0, /* no power sequence control */
++			.map = 0, /* no power sequence control */
++			.hskreq = IMX8MM_HSIO_HSK_PWRDNREQN,
++			.hskack = IMX8MM_HSIO_HSK_PWRDNACKN,
++		},
++	},
++
++	[IMX8MM_POWER_DOMAIN_PCIE] = {
++		.genpd = {
++			.name = "pcie",
++		},
++		.bits  = {
++			.pxx = IMX8MM_PCIE_SW_Pxx_REQ,
++			.map = IMX8MM_PCIE_A53_DOMAIN,
++		},
++		.pgc   = IMX8MM_PGC_PCIE,
++	},
++
++	[IMX8MM_POWER_DOMAIN_OTG1] = {
++		.genpd = {
++			.name = "usb-otg1",
++		},
++		.bits  = {
++			.pxx = IMX8MM_OTG1_SW_Pxx_REQ,
++			.map = IMX8MM_OTG1_A53_DOMAIN,
++		},
++		.pgc   = IMX8MM_PGC_OTG1,
++	},
++
++	[IMX8MM_POWER_DOMAIN_OTG2] = {
++		.genpd = {
++			.name = "usb-otg2",
++		},
++		.bits  = {
++			.pxx = IMX8MM_OTG2_SW_Pxx_REQ,
++			.map = IMX8MM_OTG2_A53_DOMAIN,
++		},
++		.pgc   = IMX8MM_PGC_OTG2,
++	},
++
++	[IMX8MM_POWER_DOMAIN_GPUMIX] = {
++		.genpd = {
++			.name = "gpumix",
++		},
++		.bits  = {
++			.pxx = IMX8MM_GPUMIX_SW_Pxx_REQ,
++			.map = IMX8MM_GPUMIX_A53_DOMAIN,
++			.hskreq = IMX8MM_GPUMIX_HSK_PWRDNREQN,
++			.hskack = IMX8MM_GPUMIX_HSK_PWRDNACKN,
++		},
++		.pgc   = IMX8MM_PGC_GPUMIX,
++	},
++
++	[IMX8MM_POWER_DOMAIN_GPU] = {
++		.genpd = {
++			.name = "gpu",
++		},
++		.bits  = {
++			.pxx = IMX8MM_GPU_SW_Pxx_REQ,
++			.map = IMX8MM_GPU_A53_DOMAIN,
++			.hskreq = IMX8MM_GPU_HSK_PWRDNREQN,
++			.hskack = IMX8MM_GPU_HSK_PWRDNACKN,
++		},
++		.pgc   = IMX8MM_PGC_GPU2D,
++	},
++};
++
++static const struct regmap_range imx8mm_yes_ranges[] = {
++		regmap_reg_range(GPC_LPCR_A_CORE_BSC,
++				 GPC_PU_PWRHSK),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_MIPI),
++				 GPC_PGC_SR(IMX8MM_PGC_MIPI)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_PCIE),
++				 GPC_PGC_SR(IMX8MM_PGC_PCIE)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_OTG1),
++				 GPC_PGC_SR(IMX8MM_PGC_OTG1)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_OTG2),
++				 GPC_PGC_SR(IMX8MM_PGC_OTG2)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_DDR1),
++				 GPC_PGC_SR(IMX8MM_PGC_DDR1)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_GPU2D),
++				 GPC_PGC_SR(IMX8MM_PGC_GPU2D)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_GPUMIX),
++				 GPC_PGC_SR(IMX8MM_PGC_GPUMIX)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_VPUMIX),
++				 GPC_PGC_SR(IMX8MM_PGC_VPUMIX)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_GPU3D),
++				 GPC_PGC_SR(IMX8MM_PGC_GPU3D)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_DISPMIX),
++				 GPC_PGC_SR(IMX8MM_PGC_DISPMIX)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_VPUG1),
++				 GPC_PGC_SR(IMX8MM_PGC_VPUG1)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_VPUG2),
++				 GPC_PGC_SR(IMX8MM_PGC_VPUG2)),
++		regmap_reg_range(GPC_PGC_CTRL(IMX8MM_PGC_VPUH1),
++				 GPC_PGC_SR(IMX8MM_PGC_VPUH1)),
++};
++
++static const struct regmap_access_table imx8mm_access_table = {
++	.yes_ranges	= imx8mm_yes_ranges,
++	.n_yes_ranges	= ARRAY_SIZE(imx8mm_yes_ranges),
++};
++
++static const struct imx_pgc_domain_data imx8mm_pgc_domain_data = {
++	.domains = imx8mm_pgc_domains,
++	.domains_num = ARRAY_SIZE(imx8mm_pgc_domains),
++	.reg_access_table = &imx8mm_access_table,
++};
++
+ static int imx_pgc_domain_probe(struct platform_device *pdev)
+ {
+ 	struct imx_pgc_domain *domain = pdev->dev.platform_data;
+@@ -707,6 +874,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
+ 
+ static const struct of_device_id imx_gpcv2_dt_ids[] = {
+ 	{ .compatible = "fsl,imx7d-gpc", .data = &imx7_pgc_domain_data, },
++	{ .compatible = "fsl,imx8mm-gpc", .data = &imx8mm_pgc_domain_data, },
+ 	{ .compatible = "fsl,imx8mq-gpc", .data = &imx8m_pgc_domain_data, },
+ 	{ }
+ };
 -- 
 2.20.1
 
