@@ -2,100 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 581912A7CCB
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:18:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39D982A7CD5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:23:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727851AbgKELSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 06:18:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726067AbgKELSc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:18:32 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0BEC0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 03:18:31 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id 126so1724027lfi.8
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 03:18:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xr8Etnt0om9PsOUNVkw+aXNjAauI9wTZAxVpVWoVW5Y=;
-        b=nrS+R7zQOGNIad0W4DCyUiMbBDhaOzjCBxiqWijzOwMYLqIxVXgJqSi8mPf/pWcDcD
-         44ZKQwxpOg8FwfTrtIybebGzTwH513EZ4cZ8xis0+MHUeNnN62uwc1LBqjwAvI7MRPFf
-         tWbULl5zBObn8wCW22OVZGaqdfnVG5PdwMefNSVJhzRPx53wBiHQg324TI/EW54WpcV2
-         lKu+8/BYUVYthmr83c+qEZo8c66aY1OE4TkxEMCh+5pcTvEMXveJrmo6w9HN8mutufYV
-         PT9heWL6TEYC+odmOJNXQTcj/D15RacQ8pbwBZCOHEbxS9bV1PXj7IvEZ8lYr89shX2q
-         SByw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=xr8Etnt0om9PsOUNVkw+aXNjAauI9wTZAxVpVWoVW5Y=;
-        b=EeKKkKVpGBsQ4u1n0MC3aMHC1pZZMbzqddfGhQqXs5NjNzA3EbNZkK8mhg91DlZiqL
-         J7rqYHxJA+WCXpbOnzA+4pervQChLF3rlDiKgMVrg4mxredEQFlkXtuPI9nIc9prfHVb
-         BqFhteLtYe+7k85sw3HSjMpduuLf54rBCGQxqRMbk0Ae9DhCByWDqxLf1iCq4tGgpO2C
-         qaw4xUdiiAdIgeeyI/KGu4BkK0b3S8dcLxF6svITIxdKIMdnZpJ0cuUem0HQiTejKuRC
-         HWsuvy890wJlL1Vf6zmmgOzhYlW9PzLCUmygydI/Mza05Lg7c4jrSDvRKbZsipvBGXq7
-         vt5A==
-X-Gm-Message-State: AOAM533LFCXUutnkt6WW62IcQSlVL5C1uTzM4q6vGyryaWrB/iO6uh33
-        eIS6tjYM6wvuZbxviZ1/2gIG/g==
-X-Google-Smtp-Source: ABdhPJyO99WAJFi3WIONOHNT9vEfbRGdCrmUs6rmtjq+pR78LYGw0yPRNFM6c9YX4nfQf/QssU5z6g==
-X-Received: by 2002:a19:c212:: with SMTP id l18mr747517lfc.399.1604575108659;
-        Thu, 05 Nov 2020 03:18:28 -0800 (PST)
-Received: from localhost (c-9b28e555.07-21-73746f28.bbcust.telenor.se. [85.229.40.155])
-        by smtp.gmail.com with ESMTPSA id j17sm6066lfb.114.2020.11.05.03.18.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 03:18:28 -0800 (PST)
-From:   Anders Roxell <anders.roxell@linaro.org>
-To:     robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Anders Roxell <anders.roxell@linaro.org>
-Subject: [PATCH] arm64: dts: freescale: fix typo Makefile
-Date:   Thu,  5 Nov 2020 12:18:23 +0100
-Message-Id: <20201105111823.1613337-1-anders.roxell@linaro.org>
-X-Mailer: git-send-email 2.28.0
+        id S1726665AbgKELXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 06:23:25 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:50711 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726067AbgKELXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:23:24 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id 19966AD8;
+        Thu,  5 Nov 2020 06:23:23 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 05 Nov 2020 06:23:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=saApchnd9aN1F8QDQQZsmhefo66
+        C5NpK5CQWBv8jLUM=; b=CnXXs4w/JaweKP68NtUEXG6JZIFR/BJ0MjWYNtGalD0
+        0YetkSkyd1ik9YKAi/yH29FVvFKvdcnmKxANTXKW7Y8q0A17OXDwlWa4VvURdp+4
+        lTdQD/iMKgBna/pqxBwo4fJv6ebUpaHlwQ5ACkASfa2I3ounz6Il7kli8fOWPGvA
+        iQy8i9wwnyoAYPmrWu3LSNwg1LGobccEKY0R5pB9rNaJy44x+U4qVPDnR7E7A7vE
+        X4ofiXWD7/7c0EkbF9dM9eDSR7CZsDEfjE84rlpd0p4aIXQ0YutMDNZ3ZL6fFJ/W
+        WaPqxL+bF9uRLrdfEgnWLZIvgOTJMDZpdjY1dwcb8/w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=saApch
+        nd9aN1F8QDQQZsmhefo66C5NpK5CQWBv8jLUM=; b=bz3GifiSwXw9JO0EPAt1Xr
+        DkT2eRjXmevE5ou8T/gzpKdf+CUIz+d5IvcJ4Alns1sfl4L4TtNfbnxvxFSPk+rN
+        Sj8I9FQboYMUfSfPtVBcJs1NdOPwMGs5x2DeiLv0aTF1JLXORkrHBCHxkK0txpKV
+        LG5LePVxRMcmJKKN6JHtKBV91RGxu2026ABhHVm2pVQUCQv0qopr3MelT/XUTZ53
+        oTJk1sOmqUxeMnMvsNp6EKB//j7xTDDovMVsPCFFH5bbgb+FSs5fgNWfyJ5RFPtl
+        bgfCKM0Gs4hHvJVmHyqZZsgHMlu4srKJYwRz9aEgaNeUHaZ9daMpQN5XfNcftx8g
+        ==
+X-ME-Sender: <xms:qeCjX1eqEQIZL01WT7RgkORr5d-rxamBCilDditRRI-Jx_ntPGqNAw>
+    <xme:qeCjXzPNuYJQbp7NmJzwOMm-4JyXbHGzG1CJQOvMwnv8uE4aPyqsfSohW6uJSGzyR
+    k_xlB1HeZvtqU_pcas>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtjedgvdekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:qeCjX-iI3PP-jkrvjiINI13ttpCB4T_g2RHeOUoFR5T3qLvTsaJJ1w>
+    <xmx:qeCjX-8mqqKfS2iOfFeJC_QQaJ_RKJ_ziLp9XkR521JxqSUcVdptOA>
+    <xmx:qeCjXxsSBYSHUhyK6KAls4p6gsrVYTW9JKh-4uUSS25mHDiBO_lnEA>
+    <xmx:quCjX1hTqiQVjn_Wv74WenX6cJY9U4mGvE8hYilYN7fvqHh2rxGU5w>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 2640C328038D;
+        Thu,  5 Nov 2020 06:23:21 -0500 (EST)
+Date:   Thu, 5 Nov 2020 12:23:19 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Ondrej Jirman <megous@megous.com>
+Subject: Re: [PATCH 4/6] arm64: dts: allwinner: pinephone: Add
+ light/proximity sensor
+Message-ID: <20201105112319.ic2gpb7bbsqn2ueh@gilmour.lan>
+References: <20201105054135.24860-1-samuel@sholland.org>
+ <20201105054135.24860-5-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="knxcwgcsvx5clfix"
+Content-Disposition: inline
+In-Reply-To: <20201105054135.24860-5-samuel@sholland.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While trying to do 'make dtbs_install' the following error shows up
 
-make[3]: *** No rule to make target
-  '/srv/src/kernel/next/out/obj-arm64-next-20201105/dtbsinstall/freescale/imx8mm-kontron-n801x-s.dts',
-  needed by '__dtbs_install'.
-make[3]: Target '__dtbs_install' not remade because of errors.
-make[2]: *** [/srv/src/kernel/bisecting/scripts/Makefile.dtbinst:34:
-  arch/arm64/boot/dts/freescale] Error 2
-make[2]: Target '__dtbs_install' not remade because of errors.
-make[1]: *** [/srv/src/kernel/bisecting/Makefile:1344: dtbs_install]
-  Error 2
-make: *** [Makefile:185: __sub-make] Error 2
-make: Target 'dtbs_install' not remade because of errors.
+--knxcwgcsvx5clfix
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fix typo in imx8mm-kontron-n801x-s.dts change file ending to *.dtb
+Hi,
 
-Fixes: 8668d8b2e67f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
-Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
----
- arch/arm64/boot/dts/freescale/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed, Nov 04, 2020 at 11:41:33PM -0600, Samuel Holland wrote:
+> From: Ondrej Jirman <megous@megous.com>
+>=20
+> Pinephone has STK3311-X proximity sensor. Add support for it.
+>=20
+> Signed-off-by: Ondrej Jirman <megous@megous.com>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> ---
+>  .../arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/ar=
+ch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> index e595a8262920..9544d7658794 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+> @@ -160,6 +160,16 @@ lis3mdl: lis3mdl@1e {
+>  		vddio-supply =3D <&reg_dldo1>;
+>  	};
+> =20
+> +	/* Light/proximity sensor */
+> +	stk3311@48 {
+> +		compatible =3D "sensortek,stk3311";
+> +		reg =3D <0x48>;
+> +		interrupt-parent =3D <&pio>;
+> +		interrupts =3D <1 0 IRQ_TYPE_EDGE_FALLING>; /* PB0 */
+> +		vdd-supply =3D <&reg_ldo_io0>;
+> +		leda-supply =3D <&reg_dldo1>;
+> +	};
+> +
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 876bf484bbe6..6f0777ee6cd6 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -32,7 +32,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
--dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dts
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
--- 
-2.28.0
+The node names should be the class of the device, not the model. The
+other sensors here have a similar issue though, so I've applied it, but
+could you send a subsequent patch fixing this?
 
+Thanks!
+Maxime
+
+--knxcwgcsvx5clfix
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6PgpwAKCRDj7w1vZxhR
+xb4EAP40bgyEBW8OeoKMzjDfEITAHRSYuB1ae+OOUgKZ9xq3pAEAsAObBDHRV4NG
+quljybM2usk4/ikTRfohfYgDfdr31QM=
+=M/60
+-----END PGP SIGNATURE-----
+
+--knxcwgcsvx5clfix--
