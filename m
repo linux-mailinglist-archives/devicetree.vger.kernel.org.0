@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44B592A8741
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 20:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96A252A8764
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 20:36:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731694AbgKETcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 14:32:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35728 "EHLO
+        id S1732133AbgKETfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 14:35:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729783AbgKETcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 14:32:07 -0500
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6852CC0613D3
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 11:32:05 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id w11so1267858pll.8
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 11:32:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=Um0ao2Ro7HvzCNbvA5nAGZxuFgMy/MdwAFFYS8m+8Ho=;
-        b=rPWhiFSV8Dc8dx/FYpos+Ff7DcqQ2OBPkYGAGxJbfShz2xOFP/yLk1pi9GsE7KXWDn
-         oEHNrC1wLNzaGErZQ/y4zauaJPePzueggVrgs3KRefVBSMxrktIfYNfKbbIZKUOL+8Ue
-         9l0MjFLkwJaX5vMMxLIn596bnZqeP1HkPEMRG5p9xOWG9MEdRnWv6IOkuml20ClgFlox
-         FXI8RKUhxH3bWtv79aaFPMa1XwAg15HPOTi6TAORdlhaELK9KaOmrX2WdppZzaHkyiI5
-         IRaDOdl8zTSDFZuWmf7qdWDvxdpus0P+Rv1uMoiOlAdUV/nIhL+IqfOrjzDdslzcv6Q9
-         fMDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Um0ao2Ro7HvzCNbvA5nAGZxuFgMy/MdwAFFYS8m+8Ho=;
-        b=qzaI5bv6BOirlskTv4ske/Bmjz7sQDFKZuRT6c9JOTvZaotPrF5zLyKkRHL+mfxepn
-         KmkOqfrycTcJ30vV7onfbvxEdBka/9sK0nLvrH4TGeT6L83nXhdwwTrTVXmbAXhc203I
-         SC6XMsC+aVtPgSqh5csHonRni+4AYpBZmLR3JJIfsjNeLeYX7kXAQBIfXXn/7ev7+iRO
-         WamqWjY6WsGmtBOXixf8PFjkyYWUtQnbntI5o7VyhrSSvtlQ1gPLDGDpyv9+pJboEmKs
-         GU5SygczC5Z7VgHSg69G/Af4QB8VvmsB7AN4an8ZcVbsFulyPdTElzlv5pXtcShD8ucS
-         nAMA==
-X-Gm-Message-State: AOAM533wJjPPZJpgScC2Jo0ICuBAIBJDGnRa94ubi7ZBvyo1TN7kUU7t
-        Vy4KeSuwUAkOS0rqJQjZ78GoWg==
-X-Google-Smtp-Source: ABdhPJwt1K7gChJrIWvazpJKOR3yDHs3rMBH25KsCSdXPhZY4Pbnpb7U1+slz1YvHWoj4Rz8IP2Phw==
-X-Received: by 2002:a17:902:9b89:b029:d2:42a6:88f with SMTP id y9-20020a1709029b89b02900d242a6088fmr3711295plp.71.1604604724943;
-        Thu, 05 Nov 2020 11:32:04 -0800 (PST)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id d11sm3500918pfo.198.2020.11.05.11.32.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 11:32:04 -0800 (PST)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-amlogic@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: meson: remove empty lines from aml-s905x-cc v2 dts
-Date:   Thu,  5 Nov 2020 11:32:02 -0800
-Message-Id: <160460471585.10458.9400136193954173515.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201026134101.10594-1-christianshewitt@gmail.com>
-References: <20201026134101.10594-1-christianshewitt@gmail.com>
+        with ESMTP id S1732136AbgKETfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 14:35:20 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0529CC0613CF;
+        Thu,  5 Nov 2020 11:35:20 -0800 (PST)
+Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 52D3C22F99;
+        Thu,  5 Nov 2020 20:35:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1604604918;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=neMeSekzaAOM6uqf+1gwm202RIk2AZiqN2dpHLhDA9s=;
+        b=A8Df9VDwQZ24vyDkWrR/M783tkkWZoZs+RaiwlVXP9THuoeRBT1ZcqBdAUHVcY1SeNtsmR
+        oPNaJ9z7zUK2voNcjSrDvYZXVdnaliZaNmHvhjD2jsnY27wlJxiUc8FpyGmpL1LqotRmxX
+        HpjDoj9ZTFD4NSKC43h0yIZPmy+suoY=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v2 0/5] clk: add fsl-flexspi driver
+Date:   Thu,  5 Nov 2020 20:35:07 +0100
+Message-Id: <20201105193512.22388-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Oct 2020 13:41:01 +0000, Christian Hewitt wrote:
-> 
+On Layerscape SoCs which feature the FlexSPI controller there is
+a single register which can control the divider value. The base
+frequency is the platform PLL.
 
+Right now the LS1028A and the LX2160A aren't able to switch the
+SCK frequency on the FlexSPI interface. Add a new clock driver
+which operate on said register.
 
-Applied, thanks!
+Michael Walle (5):
+  clk: divider: add devm_clk_hw_register_divider_table()
+  dt-bindings: clock: document the fsl-flexspi-clk driver
+  clk: fsl-flexspi: new driver
+  arm64: dts: ls1028a: fix FlexSPI clock
+  arm64: dts: lx2160a: fix FlexSPI clock
 
-[1/1] arm64: dts: meson: remove empty lines from aml-s905x-cc v2 dts
-      commit: 8e9c052a483db5f9ae098d9b686ed80e2e98a8c5
+ .../bindings/clock/fsl,flexspi-clock.yaml     |  55 +++++++++
+ .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  15 ++-
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi |  15 ++-
+ drivers/clk/Kconfig                           |   8 ++
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-divider.c                     |  34 ++++++
+ drivers/clk/clk-fsl-flexspi.c                 | 106 ++++++++++++++++++
+ include/linux/clk-provider.h                  |  27 +++++
+ 8 files changed, 257 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,flexspi-clock.yaml
+ create mode 100644 drivers/clk/clk-fsl-flexspi.c
 
-Best regards,
 -- 
-Kevin Hilman <khilman@baylibre.com>
+2.20.1
+
