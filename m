@@ -2,174 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6678E2A830A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:07:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D695F2A8325
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:11:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730721AbgKEQHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 11:07:45 -0500
-Received: from netrider.rowland.org ([192.131.102.5]:52091 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1729862AbgKEQHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 11:07:45 -0500
-Received: (qmail 1615519 invoked by uid 1000); 5 Nov 2020 11:07:43 -0500
-Date:   Thu, 5 Nov 2020 11:07:43 -0500
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v1 21/30] usb: host: ehci-tegra: Support OPP and SoC core
- voltage scaling
-Message-ID: <20201105160743.GA1613614@rowland.harvard.edu>
-References: <20201104234427.26477-1-digetx@gmail.com>
- <20201104234427.26477-22-digetx@gmail.com>
+        id S1726729AbgKEQL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 11:11:26 -0500
+Received: from foss.arm.com ([217.140.110.172]:36456 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725998AbgKEQL0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 11:11:26 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F66514BF;
+        Thu,  5 Nov 2020 08:11:25 -0800 (PST)
+Received: from [172.16.1.113] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A0BB3F718;
+        Thu,  5 Nov 2020 08:11:17 -0800 (PST)
+Subject: Re: [PATCH v6 1/7] arm64: mm: Move reserve_crashkernel() into
+ mem_init()
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        ardb@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
+        will@kernel.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org,
+        linux-rpi-kernel@lists.infradead.org, guohanjun@huawei.com,
+        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org
+References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
+ <20201103173159.27570-2-nsaenzjulienne@suse.de>
+From:   James Morse <james.morse@arm.com>
+Message-ID: <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
+Date:   Thu, 5 Nov 2020 16:11:08 +0000
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201104234427.26477-22-digetx@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201103173159.27570-2-nsaenzjulienne@suse.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 02:44:18AM +0300, Dmitry Osipenko wrote:
-> Add initial OPP and SoC core voltage scaling support to the Tegra EHCI
-> driver. This is required for enabling system-wide DVFS on older Tegra
-> SoCs.
+Hi!
+
+On 03/11/2020 17:31, Nicolas Saenz Julienne wrote:
+> crashkernel might reserve memory located in ZONE_DMA. We plan to delay
+> ZONE_DMA's initialization after unflattening the devicetree and ACPI's
+> boot table initialization, so move it later in the boot process.
+> Specifically into mem_init(), this is the last place crashkernel will be
+> able to reserve the memory before the page allocator kicks in.
+
+> There
+> isn't any apparent reason for doing this earlier.
+
+It's so that map_mem() can carve it out of the linear/direct map.
+This is so that stray writes from a crashing kernel can't accidentally corrupt the kdump
+kernel. We depend on this if we continue with kdump, but failed to offline all the other
+CPUs. We also depend on this when skipping the checksum code in purgatory, which can be
+exceedingly slow.
+
+Grepping around, the current order is:
+
+start_kernel()
+-> setup_arch()
+	-> arm64_memblock_init()	/* reserve */
+	-> paging_init()
+		-> map_mem()		/* carve out reservation */
+[...]
+	-> mm_init()
+		-> mem_init()
+
+
+I agree we should add comments to make this apparent!
+
+
+Thanks,
+
+James
+
+
+> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> index 095540667f0f..fc4ab0d6d5d2 100644
+> --- a/arch/arm64/mm/init.c
+> +++ b/arch/arm64/mm/init.c
+> @@ -386,8 +386,6 @@ void __init arm64_memblock_init(void)
+>  	else
+>  		arm64_dma32_phys_limit = PHYS_MASK + 1;
+>  
+> -	reserve_crashkernel();
+> -
+>  	reserve_elfcorehdr();
+>  
+>  	high_memory = __va(memblock_end_of_DRAM() - 1) + 1;
+> @@ -508,6 +506,8 @@ void __init mem_init(void)
+>  	else
+>  		swiotlb_force = SWIOTLB_NO_FORCE;
+>  
+> +	reserve_crashkernel();
+> +
+>  	set_max_mapnr(max_pfn - PHYS_PFN_OFFSET);
+>  
+>  #ifndef CONFIG_SPARSEMEM_VMEMMAP
 > 
-> Tested-by: Peter Geis <pgwipeout@gmail.com>
-> Tested-by: Nicolas Chauvet <kwizart@gmail.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
 
-I'm no expert on OPP stuff, but some of what you have done here looks 
-peculiar.
-
-> diff --git a/drivers/usb/host/ehci-tegra.c b/drivers/usb/host/ehci-tegra.c
-> index 869d9c4de5fc..0976577f54b4 100644
-> --- a/drivers/usb/host/ehci-tegra.c
-> +++ b/drivers/usb/host/ehci-tegra.c
-> @@ -17,6 +17,7 @@
->  #include <linux/of_device.h>
->  #include <linux/of_gpio.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/reset.h>
->  #include <linux/slab.h>
-> @@ -364,6 +365,79 @@ static void tegra_ehci_unmap_urb_for_dma(struct usb_hcd *hcd, struct urb *urb)
->  	free_dma_aligned_buffer(urb);
->  }
->  
-> +static void tegra_ehci_deinit_opp_table(void *data)
-> +{
-> +	struct device *dev = data;
-> +	struct opp_table *opp_table;
-> +
-> +	opp_table = dev_pm_opp_get_opp_table(dev);
-> +	dev_pm_opp_of_remove_table(dev);
-> +	dev_pm_opp_put_regulators(opp_table);
-> +	dev_pm_opp_put_opp_table(opp_table);
-> +}
-> +
-> +static int devm_tegra_ehci_init_opp_table(struct device *dev)
-> +{
-> +	unsigned long rate = ULONG_MAX;
-> +	struct opp_table *opp_table;
-> +	const char *rname = "core";
-> +	struct dev_pm_opp *opp;
-> +	int err;
-> +
-> +	/* legacy device-trees don't have OPP table */
-> +	if (!device_property_present(dev, "operating-points-v2"))
-> +		return 0;
-> +
-> +	/* voltage scaling is optional */
-> +	if (device_property_present(dev, "core-supply"))
-> +		opp_table = dev_pm_opp_set_regulators(dev, &rname, 1);
-> +	else
-> +		opp_table = dev_pm_opp_get_opp_table(dev);
-> +
-> +	if (IS_ERR(opp_table))
-> +		return dev_err_probe(dev, PTR_ERR(opp_table),
-> +				     "failed to prepare OPP table\n");
-> +
-> +	err = dev_pm_opp_of_add_table(dev);
-> +	if (err) {
-> +		dev_err(dev, "failed to add OPP table: %d\n", err);
-> +		goto put_table;
-> +	}
-> +
-> +	/* find suitable OPP for the maximum clock rate */
-> +	opp = dev_pm_opp_find_freq_floor(dev, &rate);
-> +	err = PTR_ERR_OR_ZERO(opp);
-> +	if (err) {
-> +		dev_err(dev, "failed to get OPP: %d\n", err);
-> +		goto remove_table;
-> +	}
-> +
-> +	dev_pm_opp_put(opp);
-> +
-> +	/*
-> +	 * First dummy rate-set initializes voltage vote by setting voltage
-> +	 * in accordance to the clock rate.
-> +	 */
-> +	err = dev_pm_opp_set_rate(dev, rate);
-> +	if (err) {
-> +		dev_err(dev, "failed to initialize OPP clock: %d\n", err);
-> +		goto remove_table;
-> +	}
-> +
-> +	err = devm_add_action(dev, tegra_ehci_deinit_opp_table, dev);
-> +	if (err)
-> +		goto remove_table;
-> +
-> +	return 0;
-> +
-> +remove_table:
-> +	dev_pm_opp_of_remove_table(dev);
-> +put_table:
-> +	dev_pm_opp_put_regulators(opp_table);
-
-Do you really want to use the same error unwinding for opp_table values 
-obtained from dev_pm_opp_set_regulators() as from 
-dev_pm_opp_get_opp_table()?
-
-> +
-> +	return err;
-> +}
-> +
->  static const struct tegra_ehci_soc_config tegra30_soc_config = {
->  	.has_hostpc = true,
->  };
-> @@ -431,6 +505,11 @@ static int tegra_ehci_probe(struct platform_device *pdev)
->  		goto cleanup_hcd_create;
->  	}
->  
-> +	err = devm_tegra_ehci_init_opp_table(&pdev->dev);
-> +	if (err)
-> +		return dev_err_probe(&pdev->dev, err,
-> +				     "Failed to initialize OPP\n");
-
-Why log a second error message?  Just return err.
-
-Alan Stern
