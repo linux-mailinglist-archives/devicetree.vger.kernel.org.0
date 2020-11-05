@@ -2,364 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B1B42A7809
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27C1E2A781F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:40:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726756AbgKEHcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 02:32:15 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:60392 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725320AbgKEHcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 02:32:15 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A57W9LW075453;
-        Thu, 5 Nov 2020 01:32:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604561529;
-        bh=TBAs5azRMtL2kgvAKGdeDXUMtHgfm26OZulLvGFJwUA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Q0ktcgHPPkcvKYNF2Ljb8Ctve8mCByI9W39b2OZ9ZUw63T5BXrOFJ31K5nYt4ufVr
-         7LKszzpLt7KSpGHjfSYLRoyaYPtWj3nQQ9jy2iyc/sogc8j4Iw6734fhnQ/21swfeG
-         nmSjnIYO8bTyj1mitv4r/E8KPsHCE6Ap2FVfuGPg=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A57W8Bv087797
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 Nov 2020 01:32:09 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 5 Nov
- 2020 01:32:07 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 5 Nov 2020 01:32:07 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A57W4qM066176;
-        Thu, 5 Nov 2020 01:32:05 -0600
-Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
- SoC dtsi level
-To:     Nishanth Menon <nm@ti.com>, Roger Quadros <rogerq@ti.com>,
-        Keerthy <j-keerthy@ti.com>, Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20201104224356.18040-1-nm@ti.com>
- <20201104224356.18040-3-nm@ti.com>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
-Date:   Thu, 5 Nov 2020 09:32:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
-MIME-Version: 1.0
-In-Reply-To: <20201104224356.18040-3-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
+        id S1726371AbgKEHkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 02:40:55 -0500
+Received: from mail-eopbgr20048.outbound.protection.outlook.com ([40.107.2.48]:54759
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725827AbgKEHkz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 02:40:55 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mkR66oxMI0x5qNaACliI9VOxhivsCJie0iedRZxydDUdGlVNY3l2xkdXxORvrC6KtqX08Wd0xzn20tDuakSuohiIJFZPcQLBcPQ8ZBk6vbsBA2VZrIUCtMDFCR//Ppx9dH0o4QGGBIqMQYnIMSCUctMCkMA6eeT+hQDSDWRVjk276sgnZXGomFTotNFWYWROlsAp8YkG33c0W+dwN0mIABtqAEZ+vcjc2+9urlXTFdITvyFz3/0a1WOEEAZDnqqR9rT3TwvKyQMVr12NzhGORGRdAtinPpAIuwmHHV5vKEBbUxdlkX67XtFj8b8ma++e4aVZCuEIYQf4ECjivoPuvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sg7vA26L6orbYRFgYXt8t6+6yLQCvxTONjNw8/fkLQk=;
+ b=ZrNlZW0LcoL/m5pSG2E01cPFDGVvzuqqgmRGOdi9lReSqKyjQpLWLXirmsarNT3yl3R4zTAjsTHnQYjxC5FlQECaQvT7NCFown/gOJ766OzO7V7bTk9TNP8opKcOzEGCStu5go0T+vB/SiumaeHExfd2AQ6GcSiLEGgH7NneziC5D1Sm0lbMt/5hyMAe3Xo6icNeg5FNPUExKOG8opAJ/CVgDck3RKXW3AN40DAGkeLVjlGkb+l0dvB4pwIPupPpqT8i8F7hMUnGO+wqvR0tJqQB3BlGh2GZacVkiA6opXJ7TLaLX/7LiCsAx2ubNiQMOUeHI+IY+RO3PT4nfkcTdA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
+ header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rohmsemiconductoreurope.onmicrosoft.com;
+ s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sg7vA26L6orbYRFgYXt8t6+6yLQCvxTONjNw8/fkLQk=;
+ b=xKW2xwCrvme09QvOnOcFoOVtRqQyly8nCI8kEXEQs2QqpkmHo3vN0W47nHn+jTyh4jJyhPYuafdbhQXhklPhhNWUJ4jxpw0I7ELT1XzRzSZiMBrmmqkqKyek2zyzd7p0swuB4vZXPrkJHf9d6KxAE2/8IyavR3Sjno3JSM8sbVQ=
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com (2603:10a6:6:37::21) by
+ DBAPR03MB6438.eurprd03.prod.outlook.com (2603:10a6:10:19f::19) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3499.19; Thu, 5 Nov 2020 07:40:48 +0000
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::f0fb:9677:5a21:6107]) by DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::f0fb:9677:5a21:6107%7]) with mapi id 15.20.3477.038; Thu, 5 Nov 2020
+ 07:40:48 +0000
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     "lee.jones@linaro.org" <lee.jones@linaro.org>
+CC:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
+Thread-Topic: [PATCH v4 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
+Thread-Index: AQHWrQ9DwN0nkcfMkkiJSgq2+hhNRam4KrWAgAD53wCAAA83gA==
+Date:   Thu, 5 Nov 2020 07:40:47 +0000
+Message-ID: <98d3a090462d21a97dd15490ac1e9de011819b35.camel@fi.rohmeurope.com>
+References: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+         <c7a838830b7d5ea1c281e419cf0eff0cc50363e0.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+         <20201104155153.GQ4488@dell>
+         <058913084af32743f2e23228a46944bbfcbd52d2.camel@fi.rohmeurope.com>
+In-Reply-To: <058913084af32743f2e23228a46944bbfcbd52d2.camel@fi.rohmeurope.com>
+Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Accept-Language: fi-FI, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none
+ header.from=fi.rohmeurope.com;
+x-originating-ip: [62.78.225.252]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 200f175a-df2d-4641-243f-08d8815e1cb9
+x-ms-traffictypediagnostic: DBAPR03MB6438:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DBAPR03MB643820A6A48BB1AFC2E7F9E2ADEE0@DBAPR03MB6438.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: NZJkIQd06Jz7shLY+DRnS3SVXiQYP50813xNjyGwfANWKC9cUlTyAY2nGFvB6VLmzGyaeSUvnANrfeVmTWaFTDoIeaYLFCDxEzuhQAIn//tKZSt7YtyoOUNmw6FQUnwDDNnj8JdUpP2d562GmO2s66R/4eJuhboXddKFKKmIniWIcmtT+UoSKFbBM1M8X0iSOY0IJvn8kGSwlKxbOa4T706QiSvuikEoxlhaL0G3WuAqFc4C9db8sFBIwacBr+C1jLtb3C1AXcKDkknWORQMLTAj7iySy12imufPhdtnAXcErZIGZBH/z6SUbVr3tpyWidxtVMZPXHNae6NXTL6q+9uHXJmVAHdwGz0iOVfR1pPkJNCln0FF3X9CgQNk/3gAL86xXBc34Z1cLjeoyKjJjQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR03MB3160.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(346002)(376002)(39840400004)(396003)(6506007)(6916009)(6512007)(86362001)(26005)(316002)(6486002)(8936002)(8676002)(2616005)(186003)(54906003)(5660300002)(66946007)(91956017)(2906002)(3450700001)(66556008)(66476007)(66446008)(4326008)(71200400001)(64756008)(966005)(478600001)(76116006)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: DYBn02qpUiwkwLgVFhECjRHccytG2vZE83+rYeqafuu5bTS7AGPjhiQP9UdAg523y/4guSpYyeuryh43zwK/oENpsUqaABVpLFaSIy2OhOjPZ3zmA5/dOAfHA1CJHosjdup9QvWHT6MfXiYuo3AMch6GDUSeu93Vz2Or17mc006bPHvPBwTYPu/yFlGMHn48CVzMqnfd5SYd9UsCXyDTUB/mCaLgb/3J0TqOsyNZ7oh+Xn1O9Q9NDs9O/Jziw5/9MevppikgJygDDNbL0xYEGeRULpjOnIqD7rTFD7O3efg4a/vE3Di2+M7Zy4jVdaQlKwjE8TrNWU1odyp4u8nyNk+Lif76GCA8uXjIXQhU+i75b9NqFUvmnQTeCymmWRO3rLU7HKzkbZ8gUzN9m99h2eBTpX12URFuIO967R72zAgj7RWxRCbv+p0EHI9MlOXYmtxAep95q58GkXYG0RPIiwJZsyupdSNHsirRVL4aO2Ddu4spq0/m92HEitf+g8WEmTMWHXYQoLPg7GByjwAMha4RzfbtV7eeyBXMWJHFJX72ogLfVIV/WPzjlaG3+v1aFzgAFHbipqAeWw0tLpBRR/Bg5de85ypB3mT7sTEJ90uJHLg1P5nW3uVEUoorqI6yU/97xeABCI040eRlrYYpXw==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <592FFCCBE3BACF42B797212C32C1EA06@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: fi.rohmeurope.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR03MB3160.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 200f175a-df2d-4641-243f-08d8815e1cb9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Nov 2020 07:40:48.0200
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +aMpsnDekehKnhaifb7Apm2DnVEZB9afAeq6Tawu+xSgNT/fUTulKfrqocEOy/ATNRXPjSTTqAqMqqDr4fcuHrLDUFckXKy73BlP42GLN8enu1OTO/2nEKncBhCKw2/V
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR03MB6438
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Nishanth,
-
-On 05/11/2020 0.43, Nishanth Menon wrote:
-> The device tree standard sets the default node behavior when status
-> property as enabled.
-
-It should be:
-When the status property is not present under a node, the "okay' value
-is assumed.
-
-Note: the device tree specification does not document default value as
-such, see v0.3 (2.3.4, page 14).
-Yes, the "okay" is used in case the status property is missing (by Linux
-at least).
-
-> There are many reasons for doing the same, number
-> of strings in device tree,
-
-with expense of loc and readability.
-
-> default power management functionality etc
-
-Right, so how does that helps with devices present in the SoC, but no
-node at all? First thing which comes to mind is AASRC, we don't have
-Linux driver for it (and no DT binding document), but that does not mean
-that it is not present. How PM would take that into account?
-
-> are few of the reasons.
-> 
-> In general, after a few rounds of discussions [1] there are few
-> options one could take when dealing with SoC dtsi and board dts
-> 
-> a. SoC dtsi provide nodes as a super-set default (aka enabled) state and
->    to prevent messy board files, when more boards are added per SoC, we
->    optimize and disable commonly un-used nodes in board-common.dtsi
-> b. SoC dtsi disables all hardware dependent nodes by default and board
->    dts files enable nodes based on a need basis.
-> c. Subjectively pick and choose which nodes we will disable by default
->    in SoC dtsi and over the years we can optimize things and change
->    default state depending on the need.
-
-For the record: c was not really an option. There were no subjectivity,
-the reason was pragmatic.
-
-We are all familiar with the Devicetree specification, but let me quote
-from chapter 2.3.4:
-"okay"
-Indicates the device is operational.
-
-"disabled"
-Indicates that the device is not presently operational, but it might
-become operational in the future (for example, something is not plugged
-in, or switched off).
-Refer to the device binding for details on what disabled means for a
-given device.
-
-The reason why we kept McASP nodes (and dss) disabled in the soc dtsi
-file is that they are not operation in the form they present in there.
-They _need_ additional properties to be operational and those properties
-can only be added in the board dts file.
-
-This is not remotely a subjective view, this is the opposite of
-subjectivity.
-
-As for things not owned by the OS we have the "reserved" status.
-
-> While there are pros and cons on each of these approaches, the right
-> thing to do will be to stick with device tree default standards and
-> work within those established rules. So, we choose to go with option
-> (a).
-> 
-> Lets cleanup defaults of j721e SoC dtsi before this gets more harder
-> to cleanup later on and new SoCs are added.
-> 
-> The only functional difference between the dtb generated is
-> status='okay' is no longer necessary for mcasp10 and depends on the
-> default state.
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20201027130701.GE5639@atomide.com/
-> 
-> Fixes: 1c4d35265fb2 ("arm64: dts: ti: k3-j721e-main: Add McASP nodes")
-> Fixes: 76921f15acc0 ("arm64: dts: ti: k3-j721e-main: Add DSS node")
-> Cc: Jyri Sarha <jsarha@ti.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->  .../dts/ti/k3-j721e-common-proc-board.dts     | 48 ++++++++++++++++++-
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 26 ----------
->  2 files changed, 47 insertions(+), 27 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> index 52e121155563..9416528caa8a 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> @@ -540,6 +540,46 @@ &dss {
->  				 <&k3_clks 152 18>;	/* PLL23_HSDIV0 */
->  };
->  
-> +&mcasp0 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp1 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp2 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp3 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp4 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp5 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp6 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp7 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp8 {
-> +	status = "disabled";
-> +};
-> +
-> +&mcasp9 {
-> +	status = "disabled";
-> +};
-> +
->  &mcasp10 {
->  	#sound-dai-cells = <0>;
->  
-> @@ -556,8 +596,10 @@ &mcasp10 {
->  	>;
->  	tx-num-evt = <0>;
->  	rx-num-evt = <0>;
-> +};
->  
-> -	status = "okay";
-> +&mcasp11 {
-> +	status = "disabled";
->  };
-
-Looks much better in this way.
-?
-
-I always wondered what is _not_ used by the board...
-But it is not really about that, we need to disable these nodes as they
-are incomplete in dtsi, they are not operational...
-
->  &serdes0 {
-> @@ -639,3 +681,7 @@ &pcie3_rc {
->  &pcie3_ep {
->  	status = "disabled";
->  };
-> +
-> +&dss {
-> +	status = "disabled";
-> +};
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index e2a96b2c423c..b54332d6fdc5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -1327,8 +1327,6 @@ dss: dss@04a00000 {
->  				  "common_s1",
->  				  "common_s2";
->  
-> -		status = "disabled";
-> -
->  		dss_ports: ports {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
-> @@ -1350,8 +1348,6 @@ mcasp0: mcasp@2b00000 {
->  		clocks = <&k3_clks 174 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 174 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp1: mcasp@2b10000 {
-> @@ -1369,8 +1365,6 @@ mcasp1: mcasp@2b10000 {
->  		clocks = <&k3_clks 175 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 175 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp2: mcasp@2b20000 {
-> @@ -1388,8 +1382,6 @@ mcasp2: mcasp@2b20000 {
->  		clocks = <&k3_clks 176 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 176 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp3: mcasp@2b30000 {
-> @@ -1407,8 +1399,6 @@ mcasp3: mcasp@2b30000 {
->  		clocks = <&k3_clks 177 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 177 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp4: mcasp@2b40000 {
-> @@ -1426,8 +1416,6 @@ mcasp4: mcasp@2b40000 {
->  		clocks = <&k3_clks 178 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 178 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp5: mcasp@2b50000 {
-> @@ -1445,8 +1433,6 @@ mcasp5: mcasp@2b50000 {
->  		clocks = <&k3_clks 179 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 179 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp6: mcasp@2b60000 {
-> @@ -1464,8 +1450,6 @@ mcasp6: mcasp@2b60000 {
->  		clocks = <&k3_clks 180 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 180 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp7: mcasp@2b70000 {
-> @@ -1483,8 +1467,6 @@ mcasp7: mcasp@2b70000 {
->  		clocks = <&k3_clks 181 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 181 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp8: mcasp@2b80000 {
-> @@ -1502,8 +1484,6 @@ mcasp8: mcasp@2b80000 {
->  		clocks = <&k3_clks 182 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 182 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp9: mcasp@2b90000 {
-> @@ -1521,8 +1501,6 @@ mcasp9: mcasp@2b90000 {
->  		clocks = <&k3_clks 183 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 183 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp10: mcasp@2ba0000 {
-> @@ -1540,8 +1518,6 @@ mcasp10: mcasp@2ba0000 {
->  		clocks = <&k3_clks 184 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 184 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	mcasp11: mcasp@2bb0000 {
-> @@ -1559,8 +1535,6 @@ mcasp11: mcasp@2bb0000 {
->  		clocks = <&k3_clks 185 1>;
->  		clock-names = "fck";
->  		power-domains = <&k3_pds 185 TI_SCI_PD_EXCLUSIVE>;
-> -
-> -		status = "disabled";
->  	};
->  
->  	watchdog0: watchdog@2200000 {
-> 
-
-There is no such a tag, but:
-whatever-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+DQpPbiBUaHUsIDIwMjAtMTEtMDUgYXQgMDg6NDYgKzAyMDAsIE1hdHRpIFZhaXR0aW5lbiB3cm90
+ZToNCj4gTW9ybmluZyBMZWUsDQo+IA0KPiBUaGFua3MgZm9yIHRha2luZyBhIGxvb2sgYXQgdGhp
+cyA6KSBJIHNlZSBtb3N0IG9mIHRoZSBjb21tZW50cyBiZWluZw0KPiB2YWxpZC4gVGhlcmUncyB0
+d28gSSB3b3VsZCBsaWtlIHRvIGNsYXJpZnkgdGhvdWdoLi4uDQo+IA0KPiBPbiBXZWQsIDIwMjAt
+MTEtMDQgYXQgMTU6NTEgKzAwMDAsIExlZSBKb25lcyB3cm90ZToNCj4gPiBPbiBXZWQsIDI4IE9j
+dCAyMDIwLCBNYXR0aSBWYWl0dGluZW4gd3JvdGU6DQo+ID4gDQo+ID4gPiBBZGQgY29yZSBzdXBw
+b3J0IGZvciBST0hNIEJEOTU3Nk1VRiBhbmQgQkQ5NTczTVVGIFBNSUNzIHdoaWNoIGFyZQ0KPiA+
+ID4gbWFpbmx5IHVzZWQgdG8gcG93ZXIgdGhlIFItQ2FyIHNlcmllcyBwcm9jZXNzb3JzLg0KPiA+
+ID4gDQo+ID4gPiBTaWduZWQtb2ZmLWJ5OiBNYXR0aSBWYWl0dGluZW4gPG1hdHRpLnZhaXR0aW5l
+bkBmaS5yb2htZXVyb3BlLmNvbQ0KPiA+ID4gPg0KPiA+ID4gLS0tDQo+ID4gPiArCXVuc2lnbmVk
+IGludCBjaGlwX3R5cGU7DQo+ID4gPiArDQo+ID4gPiArCWNoaXBfdHlwZSA9ICh1bnNpZ25lZCBp
+bnQpKHVpbnRwdHJfdCkNCj4gPiA+ICsJCSAgICBvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEoJmky
+Yy0+ZGV2KTsNCj4gPiANCj4gPiBOb3Qgb3Zlcmx5IGtlZW4gb24gdGhpcyBjYXN0aW5nLg0KPiA+
+IA0KPiA+IFdoeSBub3QganVzdCBsZWF2ZSBpdCBhcyAodWludHB0cl90KT8NCj4gDQo+IEkgZGlk
+bid0IGRvIHNvIGJlY2F1c2Ugb24geDg2XzY0IHRoZSBhZGRyZXNzIHdpZHRoIGlzIHByb2JhYmx5
+IDY0DQo+IGJpdHMNCj4gd2hlcmVhcyB0aGUgdW5zaWduZWQgaW50IGlzIGxpa2VseSB0byBiZSAz
+MiBiaXRzLiBTbyB0aGUgYXNzaWdubWVudA0KPiB3aWxsIGNyb3AgaGFsZiBvZiB0aGUgdmFsdWUu
+IEl0IGRvZXMgbm90IHJlYWxseSBtYXR0ZXIgYXMgdmFsdWVzIGFyZQ0KPiBzbWFsbCAtIGJ1dCBJ
+IHdvdWxkIGJlIHN1cnByaXplZCBpZiBubyBjb21waWxlcnMvYW5hbHl6ZXJzIGVtaXR0ZWQgYQ0K
+PiB3YXJuaW5nLg0KPiANCj4gSSBtdXN0IGFkbWl0IEkgYW0gbm90IDEwMCUgc3VyZSB0aG91Z2gu
+IEkgc3VyZSBjYW4gY2hhbmdlIHRoaXMgaWYgeW91DQo+IGtub3cgaXQgYmV0dGVyPw0KPiANCj4g
+PiBXaGF0IGhhcHBlbnMgd2hlbiB5b3UgZG9uJ3QgY2FzdCB0byAodWludHB0cl90KSBmaXJzdD8N
+Cj4gDQo+IE9uIHNvbWUgc3lzdGVtcyBhdCBsZWFzdCB0aGUgZ2NjIHdpbGwgd2FybjoNCj4gPiB3
+YXJuaW5nOiBjYXN0IGZyb20gcG9pbnRlciB0byBpbnRlZ2VyIG9mIGRpZmZlcmVudCBzaXplIFst
+V3BvaW50ZXItDQo+IHRvLWludC1jYXN0XQ0KPiANCj4gSSBhbSBwcmV0dHkgc3VyZSBJIGRpZCBl
+bmQgdXAgdGhpcyBkb3VibGUgY2FzdGluZyB2aWEgdHJpYWwgYW5kIGVycm9yDQo+IDopDQo+ICsN
+Cj4gPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBiZDk1N3hfb2ZfbWF0Y2hb
+XSA9IHsNCj4gPiA+ICsJew0KPiA+ID4gKwkJLmNvbXBhdGlibGUgPSAicm9obSxiZDk1NzYiLA0K
+PiA+ID4gKwkJLmRhdGEgPSAodm9pZCAqKVJPSE1fQ0hJUF9UWVBFX0JEOTU3NiwNCj4gPiA+ICsJ
+fSwNCj4gPiA+ICsJew0KPiA+IA0KPiA+IFlvdSBjb3VsZCBwdXQgdGhlIDIgbGluZXMgYWJvdmUg
+b24gYSBzaW5nbGUgbGluZS4NCj4gDQo+IEJyYWNlcz8gSSBwdXQgYnJhY2VzIG9uIHNlcGFyYXRl
+IGxpbmVzIG9uIHB1cnBvc2UuIEJlZW4gZG9pbmcgdGhpcw0KPiBhZnRlciB3ZSBoYWQgdGhpcyBk
+aXNjdXNzaW9uOg0KPiANCj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvbGttbC8yMDE4MDcwNTA1
+NTIyNi5HSjQ5NkBkZWxsLw0KPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9sa21sLzIwMTgwNzA2
+MDcwNTU5LkdXNDk2QGRlbGwvDQo+IA0KPiA7KQ0KPiANCj4gSSBjYW4gY2hhbmdlIGl0IGlmIHlv
+dSB3aXNoZmVlbCBpdCBpcyBpbXBvcnRhbnQgLSBub3QgYSBwb2ludCBJIGZlZWwNCj4gbGlrZSBm
+aWdodGluZyBvdmVyIDspDQo+IA0KDQpBaC4gSSBndWVzcyB5b3UgbWVhbnQ6DQpzdGF0aWMgY29u
+c3Qgc3RydWN0IG9mX2RldmljZV9pZCBiZDk1N3hfb2ZfbWF0Y2hbXSA9IHsNCiAgICAgICAgeyAu
+Y29tcGF0aWJsZSA9ICJyb2htLGJkOTU3NiIsIC5kYXRhID0gKHZvaWQgKilST0hNX0NISVBfVFlQ
+RV9CRDk1NzYsIH0sDQogICAgICAgIHsgLmNvbXBhdGlibGUgPSAicm9obSxiZDk1NzMiLCAuZGF0
+YSA9ICh2b2lkICopUk9ITV9DSElQX1RZUEVfQkQ5NTczLCB9LA0KICAgICAgICB7fSwNCn07IA0K
+DQpGZWVsaW5nICJsaXR0bGUgYml0IiBzdHVwaWQuLi4gOnJvbGxleWVzOg0KDQo+ID4gPiArCQku
+Y29tcGF0aWJsZSA9ICJyb2htLGJkOTU3MyIsDQo+ID4gPiArCQkuZGF0YSA9ICh2b2lkICopUk9I
+TV9DSElQX1RZUEVfQkQ5NTczLA0KPiA+ID4gKwl9LA0KPiA+ID4gKwl7IH0sDQo+ID4gPiArfTsN
+Cj4gPiA+ICtNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCBiZDk1N3hfb2ZfbWF0Y2gpOw0KPiANCj4g
+QmVzdCBSZWdhcmRzDQo+IAlNYXR0aQ0KPiANCj4gLS0NCj4gTWF0dGkgVmFpdHRpbmVuLCBMaW51
+eCBkZXZpY2UgZHJpdmVycw0KPiBST0hNIFNlbWljb25kdWN0b3JzLCBGaW5sYW5kDQo+IFNXREMN
+Cj4gS2l2aWhhcmp1bmxlbmtraSAxRQ0KPiA5MDIyMCBPVUxVDQo+IEZJTkxBTkQNCj4gDQo+IH5+
+fiAiSSBkb24ndCB0aGluayBzbywiIHNhaWQgUmVuZSBEZXNjYXJ0ZXMuIEp1c3QgdGhlbiBoZSB2
+YW5pc2hlZA0KPiB+fn4NCj4gDQo+IFNpbW9uIHNheXMgLSBpbiBMYXRpbiBwbGVhc2UuDQo+ICJu
+b24gY29naXRvIG1lIiBkaXhpdCBSZW5lIERlc2NhcnRlLCBkZWluZGUgZXZhbmVzY2F2aXQNCj4g
+DQo+IChUaGFua3MgZm9yIHRoZSB0cmFuc2xhdGlvbiBTaW1vbikNCj4gDQoNCg==
