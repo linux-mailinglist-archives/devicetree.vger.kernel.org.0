@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CBDB2A89BC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 23:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F3192A89C0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 23:28:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731954AbgKEW0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 17:26:54 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:44108 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726729AbgKEW0y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 17:26:54 -0500
-Received: by mail-ot1-f65.google.com with SMTP id f16so2866098otl.11;
-        Thu, 05 Nov 2020 14:26:53 -0800 (PST)
+        id S1732174AbgKEW2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 17:28:16 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:37582 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726729AbgKEW2P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 17:28:15 -0500
+Received: by mail-ot1-f68.google.com with SMTP id l36so2959621ota.4;
+        Thu, 05 Nov 2020 14:28:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=UB3JnZ8ZO2WhkCksk0bd/Ph2fVdk0d46PH2fs96dUDM=;
-        b=LV2q1fjYkneGaXDQUcOFvMyA2uiMtu1YtrExDW5WiN1vtZV2+P6d7q55ZakKhiXN9S
-         Oi9R72CSLl/1nyVxNvHsW9LVUSg4yxzz8YALw2dtcyzr91Krz5H0NYknNAO567uMaY7T
-         O6+qZEvhp2yeTvlqUSB6/RetedZH7YskzRrruhAT6Uwed1Q/NvDQ48cgdXi9ZZNkD1yo
-         YMBMMI74MH5AuLVSvtkxlEeCWalwzY5NZ0GI7FhB8R1kwdBXyzG2nHatJGUaXwJL5U7c
-         OdOmpuTBVMZ5O9+bk9inWjCN8p/q1fLxtbYsI1nUPyYvb5OUsi1DNxhvwSafkg5IfWva
-         jPzQ==
-X-Gm-Message-State: AOAM530pOFzUoeGynPpbqNFk/mDQt++5Z+YGUQoIDG14qG48UaWjmQx5
-        9OYokSVcL8bC3O6ddLCACg==
-X-Google-Smtp-Source: ABdhPJw+B0xyUSen1aJS+VSkyCAjmi3h3Ui8u7d2MZ50yhm/Xda7Hgl0eduKXYsAlGvM6EostU/GKg==
-X-Received: by 2002:a9d:20a8:: with SMTP id x37mr3290682ota.94.1604615213562;
-        Thu, 05 Nov 2020 14:26:53 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=HAB4TfB3OG5D83YaeTiy/sDYe1f16TcNEMvC+v0nD1E=;
+        b=UfmI1MgEVcB/0L/9zulZWcuxVxvgL7nmGk8PdJduF6i0GgrpipEXXMmNP4STMQuRlM
+         lT5hoDKhg9DmB4FTHWVDLfxUfrMBmbiEI/abTu5LOafrmjY3UWS1my9jCffLVJM/J+Vo
+         9HJUv8O9XNpW9uHu089am320jmjBNPMJzV6tJNXf6ZcvYH8e25kWmg7geNqu7lt3tn3F
+         i/zkNn9RQqSNZn0WAotfNzsbfmTTBRMo58YPa76EGOCrQGojKLNFkxL7Awa99qH06K3z
+         z95GgD32bIbaqXYcm4r8qCxTuHWrs1zj6Z1QXZiRLUqd1szHSGgoKVFtw4134TQ3mTjk
+         ss2g==
+X-Gm-Message-State: AOAM5333fG4fLzjrGyB9DSsFd9l+mq2mYDQ6ky5aB5KgsSE1o6zaEJyu
+        d7f0JwJNJFWSzCBX1SykDA==
+X-Google-Smtp-Source: ABdhPJxYhbRjqk86zYy6aUoBiL/gprHxtyRj1prSv8IZnbJiDbQwuuV5tw+1saXj7G4H/i1LuT0TIg==
+X-Received: by 2002:a9d:682:: with SMTP id 2mr3291412otx.317.1604615294791;
+        Thu, 05 Nov 2020 14:28:14 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r184sm692177oie.20.2020.11.05.14.26.51
+        by smtp.gmail.com with ESMTPSA id v10sm633636otq.69.2020.11.05.14.28.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 14:26:52 -0800 (PST)
-Received: (nullmailer pid 1913256 invoked by uid 1000);
-        Thu, 05 Nov 2020 22:26:51 -0000
-Date:   Thu, 5 Nov 2020 16:26:51 -0600
+        Thu, 05 Nov 2020 14:28:14 -0800 (PST)
+Received: (nullmailer pid 1915203 invoked by uid 1000);
+        Thu, 05 Nov 2020 22:28:13 -0000
+Date:   Thu, 5 Nov 2020 16:28:13 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
-Cc:     linux-samsung-soc@vger.kernel.org, jim.cromie@gmail.com,
-        Russell King <linux@armlinux.org.uk>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Kukjin Kim <kgene@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
-        <b.zolnierkie@samsung.com>, Heiner Kallweit <hkallweit1@gmail.com>,
-        netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v5 2/5] dt-bindings: net: Add bindings for AX88796C SPI
- Ethernet Adapter
-Message-ID: <20201105222651.GA1913164@bogus>
-References: <20201103151536.26472-1-l.stelmach@samsung.com>
- <CGME20201103151539eucas1p234b5fe43c6f26272560a7d2ac791202f@eucas1p2.samsung.com>
- <20201103151536.26472-3-l.stelmach@samsung.com>
+To:     Hugues Fruchet <hugues.fruchet@st.com>
+Cc:     Alexandre Torgue <alexandre.torgue@st.com>,
+        linux-kernel@vger.kernel.org, Alain Volmat <alain.volmat@st.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Philippe CORNU <philippe.cornu@st.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Subject: Re: [PATCH v5 2/4] media: dt-bindings: media: st, stm32-dcmi: add
+ support of BT656 bus
+Message-ID: <20201105222813.GA1915114@bogus>
+References: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
+ <1604511132-4014-3-git-send-email-hugues.fruchet@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201103151536.26472-3-l.stelmach@samsung.com>
+In-Reply-To: <1604511132-4014-3-git-send-email-hugues.fruchet@st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Nov 2020 16:15:33 +0100, Łukasz Stelmach wrote:
-> Add bindings for AX88796C SPI Ethernet Adapter.
+On Wed, 04 Nov 2020 18:32:10 +0100, Hugues Fruchet wrote:
+> Add support of BT656 embedded synchronization bus mode in DCMI driver.
+> Add "bus-type" property and make it required so that there is no
+> ambiguity between parallel mode (bus-type=5) and BT656 mode (bus-type=6).
+> BT656 mode allows to save hardware synchro lines hsync & vsync by replacing
+> them with synchro codes embedded in data stream, hence hsync-active &
+> vsync-active properties are useless in this mode.
+> With DCMI, BT656 bus mode is only compatible with 8 bits width data bus.
 > 
-> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
 > ---
->  .../bindings/net/asix,ax88796c.yaml           | 73 +++++++++++++++++++
->  1 file changed, 73 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c.yaml
+>  .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 38 ++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
