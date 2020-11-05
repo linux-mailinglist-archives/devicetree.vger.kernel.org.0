@@ -2,728 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96B772A7D1F
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2002F2A7D3C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:37:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730150AbgKELgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 06:36:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45488 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730430AbgKELfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:35:12 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D871FC0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 03:35:11 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id b8so1369124wrn.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 03:35:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2pDw2IHozMJ3cjqKdHcpxPQFbVsfhsEsGsdDrY1cPGc=;
-        b=G7lYqkddpiuTllkvrgPdQEzyzzuEl/HaHj6aYI+xNPhLybl3VPxAjN485My/x9a5Kz
-         kXhIAerPe3b7j+Xo/xKjYnEM50qeH/OW4ayToxGcQs+EkxNtU2OoUleFgDJtuaT6xdAL
-         msPkwGWoksEfTKAppgPGcVwtpg7d5LsDflLQRmJllmnpplbKEztfE5HPHnnHLEcrkM+e
-         KxinPVoiBgy0gGhEjcV8/jL74byxfYByhpdRsLCU/K+rrX5KFmFYKWw7MvLk+koL/YeU
-         S5mKZqeBfkprcpFE29A9Twh7mwxxCgPwNl9gpXxrHXbAGPR0ss9IcbL7TeNP4ZDWXP9A
-         KyNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2pDw2IHozMJ3cjqKdHcpxPQFbVsfhsEsGsdDrY1cPGc=;
-        b=l8OmRaV+zWKGDrpzMRk5CUcZ/XGNAJjl+tiCPA0GDjCKLQVj3WCSvuGNL3ac7zU7xs
-         AvNpD0Jg6HkKg4ncqxf3xCJ3mL2wRXg8oh4K/9E0Oi3Iru56QWKqHZ+EaGjXTw+6FS68
-         Tn0/QqCkrXzgF1Y4W32z6F5wgX5IWv1lk0ALcUF/qXweXxRHj1+KEand/bBV2suOudDD
-         ENDufR/WmGDHLiWrUr/O/+e+O8NF7PWo93Bjs9d/p0PUAyomVM6NUilLEnS0SMtdg0/G
-         dEJrA42MSmFnC+b48yorZjHBaDe2dqCH3envEO9HxpReCwUUAqOOuarwazqWDuw/n7cU
-         Rq4w==
-X-Gm-Message-State: AOAM5328alB5BAKTH3iLnSdGajVk5qMulCJQo+62dmAWZfedlboEfcDi
-        n53kCrJqLAUvgkH4QvWSLm4oSQ==
-X-Google-Smtp-Source: ABdhPJyy88QThHtE4HTbfFCP/X/bTVOLbDCNWziF1qpWA77lgyDa4q0W4+406HZg7vWPOQ544afCeQ==
-X-Received: by 2002:adf:f181:: with SMTP id h1mr2479118wro.374.1604576110581;
-        Thu, 05 Nov 2020 03:35:10 -0800 (PST)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id t199sm2096129wmt.46.2020.11.05.03.35.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 03:35:09 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     perex@perex.cz, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 6/6] ASoC: codecs: lpass-va-macro: add dapm widgets and routes
-Date:   Thu,  5 Nov 2020 11:34:58 +0000
-Message-Id: <20201105113458.12360-7-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20201105113458.12360-1-srinivas.kandagatla@linaro.org>
-References: <20201105113458.12360-1-srinivas.kandagatla@linaro.org>
+        id S1730552AbgKELhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 06:37:21 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:36356 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729113AbgKELhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:37:18 -0500
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A5BS4XO013965;
+        Thu, 5 Nov 2020 12:36:49 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=GD9jEceIxlMsIrgJmQF6VGJY1YfRz3aoD8368VuZnoM=;
+ b=aEHtkTEVxB9ySM+wZiu9wxj8eiN+VELZNqQ7EXfUyJnIY5RLvWXsO5Z3PZRf//3squ5n
+ 5oB8oxkAAIyjcECxQRaJbfSjUZEhq7Vyp3OfYJeWH70npb2tUsO8qBxkK4ng6wDsbZL2
+ U6gvLDFleoNUQGEOoLk3XTzIo3j3Kcm+F0EeHKDHDerk6N2kopB1E5kdKVoO91FoKJSD
+ Q5I9spqpggH0GmFKE//xyx/2Z0ApUeD1CbUsU7dYfFZLJw7F88bRixIuDrDoEn397IFw
+ WkEQruy7/DBPaXpf03zn4sN+060M7XlVqM2loEtoIj3luiXn7noA4QMtOJibNLFgWLiV 6w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34h00enp2j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 05 Nov 2020 12:36:49 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A48E910002A;
+        Thu,  5 Nov 2020 12:36:48 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 88BA5244C1C;
+        Thu,  5 Nov 2020 12:36:48 +0100 (CET)
+Received: from lmecxl0995.lme.st.com (10.75.127.46) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 5 Nov
+ 2020 12:36:47 +0100
+Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: connector: add power-opmode
+ optional property to usb-connector
+To:     Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Jun Li <lijun.kernel@gmail.com>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+References: <20201029095806.10648-1-amelie.delaunay@st.com>
+ <20201029095806.10648-2-amelie.delaunay@st.com>
+ <20201029154016.GA1917373@bogus>
+ <860d5620-4fdf-6e01-9a04-3967d6fcfd6b@st.com>
+ <CAL_JsqKs-Po8BdShjQNDNPjNWBCD3FSPdq4KbQGx3=VnV+3nPw@mail.gmail.com>
+ <ebccf61a-c88f-c7f4-9f06-01d2bd1f43de@st.com>
+ <20201104210803.GA4115079@bogus>
+From:   Amelie DELAUNAY <amelie.delaunay@st.com>
+Message-ID: <2da804ff-3b3c-0ea9-14d5-a163b28ccc33@st.com>
+Date:   Thu, 5 Nov 2020 12:36:46 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20201104210803.GA4115079@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-05_07:2020-11-05,2020-11-05 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dapm widgets and routes for this codec.
+On 11/4/20 10:08 PM, Rob Herring wrote:
+> On Fri, Oct 30, 2020 at 04:27:14PM +0100, Amelie DELAUNAY wrote:
+>>
+>>
+>> On 10/30/20 3:29 PM, Rob Herring wrote:
+>>> On Thu, Oct 29, 2020 at 11:49 AM Amelie DELAUNAY <amelie.delaunay@st.com> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 10/29/20 4:40 PM, Rob Herring wrote:
+>>>>> On Thu, Oct 29, 2020 at 10:58:03AM +0100, Amelie Delaunay wrote:
+>>>>>> Power operation mode may depends on hardware design, so, add the optional
+>>>>>> property power-opmode for usb-c connector to select the power operation
+>>>>>> mode capability.
+>>>>>>
+>>>>>> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+>>>>>> ---
+>>>>>>     .../bindings/connector/usb-connector.yaml      | 18 ++++++++++++++++++
+>>>>>>     1 file changed, 18 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>>>> index 728f82db073d..200d19c60fd5 100644
+>>>>>> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+>>>>>> @@ -93,6 +93,24 @@ properties:
+>>>>>>           - device
+>>>>>>           - dual
+>>>>>>
+>>>>>> +  power-opmode:
+>>>>>
+>>>>> I've acked this version:
+>>>>>
+>>>>> https://lore.kernel.org/r/20201020093627.256885-2-badhri@google.com
+>>>>>
+>>>>
+>>>> frs is used for Fast Role Swap defined in USB PD spec.
+>>>> I understand it allows to get the same information but I'm wondering why
+>>>> the property name is limited to -frs- in this case. What about a
+>>>> non-power delivery USB-C connector ?
+>>>
+>>> I've got no idea. The folks that know USB-C and PD details need to get
+>>> together and work all this out. To me, it looks like the same thing...
+>>>
+>>
+>> It looks but...
+>>
+>> The purpose of power-opmode property is to configure the USB-C controllers,
+>> especially the non-PD USB-C controllers to determine the power operation
+>> mode that the Type C connector will support and will advertise through CC
+>> pins when it has no power delivery support, whatever the power role: Sink,
+>> Source or Dual
+>> The management of the property is the same that data-role and power-role
+>> properties, and done by USB Type-C Connector Class.
+>>
+>> new-source-frs-typec-current specifies initial current capability of the new
+>> source when vSafe5V is applied during PD3.0 Fast Role Swap. So here, this
+>> property is not applied at usb-c controller configuration level, but during
+>> PD Fast Role Swap, so when the Sink become the Source.
+>> Moreover, the related driver code says FRS can only be supported by DRP
+>> ports. So new-source-frs-typec-current property, in addition to being
+>> specific to PD, is also dedicated to DRP usb-c controller.
+>> The property is managed by Type-C Port Controller Manager for PD.
+> 
+> But it's the same set of possible values, right? So we can align the
+> values at least.
+> 
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/codecs/lpass-va-macro.c | 620 ++++++++++++++++++++++++++++++
- 1 file changed, 620 insertions(+)
+USB Power Delivery FRS values are defined in 
+include/dt-bindings/usb/pd.h to fit with drivers/usb/typec/tcpm/tcpm.c 
+frs_typec_current enum.
 
-diff --git a/sound/soc/codecs/lpass-va-macro.c b/sound/soc/codecs/lpass-va-macro.c
-index e7590e70f2c0..b604de07e650 100644
---- a/sound/soc/codecs/lpass-va-macro.c
-+++ b/sound/soc/codecs/lpass-va-macro.c
-@@ -27,6 +27,8 @@
- #define CDC_VA_TOP_CSR_DMIC1_CTL		(0x0088)
- #define CDC_VA_TOP_CSR_DMIC2_CTL		(0x008C)
- #define CDC_VA_TOP_CSR_DMIC3_CTL		(0x0090)
-+#define CDC_VA_DMIC_EN_MASK			BIT(0)
-+#define CDC_VA_DMIC_ENABLE			BIT(0)
- #define CDC_VA_DMIC_CLK_SEL_MASK		GENMASK(3, 1)
- #define CDC_VA_DMIC_CLK_SEL_SHFT		1
- #define CDC_VA_DMIC_CLK_SEL_DIV0		0x0
-@@ -452,6 +454,327 @@ static int va_macro_mclk_enable(struct va_macro *va, bool mclk_enable)
- 	return 0;
- }
- 
-+static int va_macro_mclk_event(struct snd_soc_dapm_widget *w,
-+			       struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	struct va_macro *va = snd_soc_component_get_drvdata(comp);
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_PRE_PMU:
-+		return va_macro_mclk_enable(va, true);
-+	case SND_SOC_DAPM_POST_PMD:
-+		return va_macro_mclk_enable(va, false);
-+	}
-+
-+	return 0;
-+}
-+
-+static int va_macro_put_dec_enum(struct snd_kcontrol *kcontrol,
-+				 struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_widget *widget =
-+		snd_soc_dapm_kcontrol_widget(kcontrol);
-+	struct snd_soc_component *component =
-+		snd_soc_dapm_to_component(widget->dapm);
-+	struct soc_enum *e = (struct soc_enum *)kcontrol->private_value;
-+	unsigned int val;
-+	u16 mic_sel_reg;
-+
-+	val = ucontrol->value.enumerated.item[0];
-+
-+	switch (e->reg) {
-+	case CDC_VA_INP_MUX_ADC_MUX0_CFG0:
-+		mic_sel_reg = CDC_VA_TX0_TX_PATH_CFG0;
-+		break;
-+	case CDC_VA_INP_MUX_ADC_MUX1_CFG0:
-+		mic_sel_reg = CDC_VA_TX1_TX_PATH_CFG0;
-+		break;
-+	case CDC_VA_INP_MUX_ADC_MUX2_CFG0:
-+		mic_sel_reg = CDC_VA_TX2_TX_PATH_CFG0;
-+		break;
-+	case CDC_VA_INP_MUX_ADC_MUX3_CFG0:
-+		mic_sel_reg = CDC_VA_TX3_TX_PATH_CFG0;
-+		break;
-+	default:
-+		dev_err(component->dev, "%s: e->reg: 0x%x not expected\n",
-+			__func__, e->reg);
-+		return -EINVAL;
-+	}
-+
-+	if (val != 0)
-+		snd_soc_component_update_bits(component, mic_sel_reg,
-+					      CDC_VA_TX_PATH_ADC_DMIC_SEL_MASK,
-+					      CDC_VA_TX_PATH_ADC_DMIC_SEL_DMIC);
-+
-+	return snd_soc_dapm_put_enum_double(kcontrol, ucontrol);
-+}
-+
-+static int va_macro_tx_mixer_get(struct snd_kcontrol *kcontrol,
-+				 struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_widget *widget =
-+		snd_soc_dapm_kcontrol_widget(kcontrol);
-+	struct snd_soc_component *component =
-+				snd_soc_dapm_to_component(widget->dapm);
-+	struct soc_mixer_control *mc =
-+		(struct soc_mixer_control *)kcontrol->private_value;
-+	u32 dai_id = widget->shift;
-+	u32 dec_id = mc->shift;
-+	struct va_macro *va = snd_soc_component_get_drvdata(component);
-+
-+	if (test_bit(dec_id, &va->active_ch_mask[dai_id]))
-+		ucontrol->value.integer.value[0] = 1;
-+	else
-+		ucontrol->value.integer.value[0] = 0;
-+
-+	return 0;
-+}
-+
-+static int va_macro_tx_mixer_put(struct snd_kcontrol *kcontrol,
-+				 struct snd_ctl_elem_value *ucontrol)
-+{
-+	struct snd_soc_dapm_widget *widget =
-+					snd_soc_dapm_kcontrol_widget(kcontrol);
-+	struct snd_soc_component *component =
-+				snd_soc_dapm_to_component(widget->dapm);
-+	struct snd_soc_dapm_update *update = NULL;
-+	struct soc_mixer_control *mc =
-+		(struct soc_mixer_control *)kcontrol->private_value;
-+	u32 dai_id = widget->shift;
-+	u32 dec_id = mc->shift;
-+	u32 enable = ucontrol->value.integer.value[0];
-+	struct va_macro *va = snd_soc_component_get_drvdata(component);
-+
-+	if (enable) {
-+		set_bit(dec_id, &va->active_ch_mask[dai_id]);
-+		va->active_ch_cnt[dai_id]++;
-+		va->active_decimator[dai_id] = dec_id;
-+	} else {
-+		clear_bit(dec_id, &va->active_ch_mask[dai_id]);
-+		va->active_ch_cnt[dai_id]--;
-+		va->active_decimator[dai_id] = -1;
-+	}
-+
-+	snd_soc_dapm_mixer_update_power(widget->dapm, kcontrol, enable, update);
-+
-+	return 0;
-+}
-+
-+static int va_dmic_clk_enable(struct snd_soc_component *component,
-+			      u32 dmic, bool enable)
-+{
-+	struct va_macro *va = snd_soc_component_get_drvdata(component);
-+	u16 dmic_clk_reg;
-+	s32 *dmic_clk_cnt;
-+	u8 *dmic_clk_div;
-+	u8 freq_change_mask;
-+	u8 clk_div;
-+
-+	switch (dmic) {
-+	case 0:
-+	case 1:
-+		dmic_clk_cnt = &(va->dmic_0_1_clk_cnt);
-+		dmic_clk_div = &(va->dmic_0_1_clk_div);
-+		dmic_clk_reg = CDC_VA_TOP_CSR_DMIC0_CTL;
-+		freq_change_mask = CDC_VA_DMIC0_FREQ_CHANGE_MASK;
-+		break;
-+	case 2:
-+	case 3:
-+		dmic_clk_cnt = &(va->dmic_2_3_clk_cnt);
-+		dmic_clk_div = &(va->dmic_2_3_clk_div);
-+		dmic_clk_reg = CDC_VA_TOP_CSR_DMIC1_CTL;
-+		freq_change_mask = CDC_VA_DMIC1_FREQ_CHANGE_MASK;
-+		break;
-+	case 4:
-+	case 5:
-+		dmic_clk_cnt = &(va->dmic_4_5_clk_cnt);
-+		dmic_clk_div = &(va->dmic_4_5_clk_div);
-+		dmic_clk_reg = CDC_VA_TOP_CSR_DMIC2_CTL;
-+		freq_change_mask = CDC_VA_DMIC2_FREQ_CHANGE_MASK;
-+		break;
-+	case 6:
-+	case 7:
-+		dmic_clk_cnt = &(va->dmic_6_7_clk_cnt);
-+		dmic_clk_div = &(va->dmic_6_7_clk_div);
-+		dmic_clk_reg = CDC_VA_TOP_CSR_DMIC3_CTL;
-+		freq_change_mask = CDC_VA_DMIC3_FREQ_CHANGE_MASK;
-+		break;
-+	default:
-+		dev_err(component->dev, "%s: Invalid DMIC Selection\n",
-+			__func__);
-+		return -EINVAL;
-+	}
-+
-+	if (enable) {
-+		clk_div = va->dmic_clk_div;
-+		(*dmic_clk_cnt)++;
-+		if (*dmic_clk_cnt == 1) {
-+			snd_soc_component_update_bits(component,
-+					      CDC_VA_TOP_CSR_DMIC_CFG,
-+					      CDC_VA_RESET_ALL_DMICS_MASK,
-+					      CDC_VA_RESET_ALL_DMICS_DISABLE);
-+			snd_soc_component_update_bits(component, dmic_clk_reg,
-+					CDC_VA_DMIC_CLK_SEL_MASK,
-+					clk_div << CDC_VA_DMIC_CLK_SEL_SHFT);
-+			snd_soc_component_update_bits(component, dmic_clk_reg,
-+						      CDC_VA_DMIC_EN_MASK,
-+						      CDC_VA_DMIC_ENABLE);
-+		} else {
-+			if (*dmic_clk_div > clk_div) {
-+				snd_soc_component_update_bits(component,
-+						CDC_VA_TOP_CSR_DMIC_CFG,
-+						freq_change_mask,
-+						freq_change_mask);
-+				snd_soc_component_update_bits(component, dmic_clk_reg,
-+						CDC_VA_DMIC_CLK_SEL_MASK,
-+						clk_div << CDC_VA_DMIC_CLK_SEL_SHFT);
-+				snd_soc_component_update_bits(component,
-+					      CDC_VA_TOP_CSR_DMIC_CFG,
-+					      freq_change_mask,
-+					      CDC_VA_DMIC_FREQ_CHANGE_DISABLE);
-+			} else {
-+				clk_div = *dmic_clk_div;
-+			}
-+		}
-+		*dmic_clk_div = clk_div;
-+	} else {
-+		(*dmic_clk_cnt)--;
-+		if (*dmic_clk_cnt  == 0) {
-+			snd_soc_component_update_bits(component, dmic_clk_reg,
-+						      CDC_VA_DMIC_EN_MASK, 0);
-+			clk_div = 0;
-+			snd_soc_component_update_bits(component, dmic_clk_reg,
-+						CDC_VA_DMIC_CLK_SEL_MASK,
-+						clk_div << CDC_VA_DMIC_CLK_SEL_SHFT);
-+		} else {
-+			clk_div = va->dmic_clk_div;
-+			if (*dmic_clk_div > clk_div) {
-+				clk_div = va->dmic_clk_div;
-+				snd_soc_component_update_bits(component,
-+							CDC_VA_TOP_CSR_DMIC_CFG,
-+							freq_change_mask,
-+							freq_change_mask);
-+				snd_soc_component_update_bits(component, dmic_clk_reg,
-+						CDC_VA_DMIC_CLK_SEL_MASK,
-+						clk_div << CDC_VA_DMIC_CLK_SEL_SHFT);
-+				snd_soc_component_update_bits(component,
-+						      CDC_VA_TOP_CSR_DMIC_CFG,
-+						      freq_change_mask,
-+						      CDC_VA_DMIC_FREQ_CHANGE_DISABLE);
-+			} else {
-+				clk_div = *dmic_clk_div;
-+			}
-+		}
-+		*dmic_clk_div = clk_div;
-+	}
-+
-+	return 0;
-+}
-+
-+static int va_macro_enable_dmic(struct snd_soc_dapm_widget *w,
-+				struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	unsigned int dmic = w->shift;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_PRE_PMU:
-+		va_dmic_clk_enable(comp, dmic, true);
-+		break;
-+	case SND_SOC_DAPM_POST_PMD:
-+		va_dmic_clk_enable(comp, dmic, false);
-+		break;
-+	}
-+
-+	return 0;
-+}
-+
-+static int va_macro_enable_dec(struct snd_soc_dapm_widget *w,
-+			       struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *comp = snd_soc_dapm_to_component(w->dapm);
-+	unsigned int decimator;
-+	u16 tx_vol_ctl_reg, dec_cfg_reg, hpf_gate_reg;
-+	u16 tx_gain_ctl_reg;
-+	u8 hpf_cut_off_freq;
-+
-+	struct va_macro *va = snd_soc_component_get_drvdata(comp);
-+
-+	decimator = w->shift;
-+
-+	tx_vol_ctl_reg = CDC_VA_TX0_TX_PATH_CTL +
-+				VA_MACRO_TX_PATH_OFFSET * decimator;
-+	hpf_gate_reg = CDC_VA_TX0_TX_PATH_SEC2 +
-+				VA_MACRO_TX_PATH_OFFSET * decimator;
-+	dec_cfg_reg = CDC_VA_TX0_TX_PATH_CFG0 +
-+				VA_MACRO_TX_PATH_OFFSET * decimator;
-+	tx_gain_ctl_reg = CDC_VA_TX0_TX_VOL_CTL +
-+				VA_MACRO_TX_PATH_OFFSET * decimator;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_PRE_PMU:
-+		snd_soc_component_update_bits(comp,
-+			dec_cfg_reg, CDC_VA_ADC_MODE_MASK,
-+			va->dec_mode[decimator] << CDC_VA_ADC_MODE_SHIFT);
-+		/* Enable TX PGA Mute */
-+		break;
-+	case SND_SOC_DAPM_POST_PMU:
-+		/* Enable TX CLK */
-+		snd_soc_component_update_bits(comp, tx_vol_ctl_reg,
-+					      CDC_VA_TX_PATH_CLK_EN_MASK,
-+					      CDC_VA_TX_PATH_CLK_EN);
-+		snd_soc_component_update_bits(comp, hpf_gate_reg,
-+					      CDC_VA_TX_HPF_ZERO_GATE_MASK,
-+					      CDC_VA_TX_HPF_ZERO_GATE);
-+
-+		usleep_range(1000, 1010);
-+		hpf_cut_off_freq = (snd_soc_component_read(comp, dec_cfg_reg) &
-+				    TX_HPF_CUT_OFF_FREQ_MASK) >> 5;
-+
-+		if (hpf_cut_off_freq != CF_MIN_3DB_150HZ) {
-+			snd_soc_component_update_bits(comp, dec_cfg_reg,
-+						      TX_HPF_CUT_OFF_FREQ_MASK,
-+						      CF_MIN_3DB_150HZ << 5);
-+
-+			snd_soc_component_update_bits(comp, hpf_gate_reg,
-+				      CDC_VA_TX_HPF_CUTOFF_FREQ_CHANGE_MASK,
-+				      CDC_VA_TX_HPF_CUTOFF_FREQ_CHANGE_REQ);
-+
-+			/*
-+			 * Minimum 1 clk cycle delay is required as per HW spec
-+			 */
-+			usleep_range(1000, 1010);
-+
-+			snd_soc_component_update_bits(comp,
-+				hpf_gate_reg,
-+				CDC_VA_TX_HPF_CUTOFF_FREQ_CHANGE_MASK,
-+				0x0);
-+		}
-+
-+
-+		usleep_range(1000, 1010);
-+		snd_soc_component_update_bits(comp, hpf_gate_reg,
-+					      CDC_VA_TX_HPF_ZERO_GATE_MASK,
-+					      CDC_VA_TX_HPF_ZERO_NO_GATE);
-+		/*
-+		 * 6ms delay is required as per HW spec
-+		 */
-+		usleep_range(6000, 6010);
-+		/* apply gain after decimator is enabled */
-+		snd_soc_component_write(comp, tx_gain_ctl_reg,
-+			snd_soc_component_read(comp, tx_gain_ctl_reg));
-+		break;
-+	case SND_SOC_DAPM_POST_PMD:
-+		/* Disable TX CLK */
-+		snd_soc_component_update_bits(comp, tx_vol_ctl_reg,
-+						CDC_VA_TX_PATH_CLK_EN_MASK,
-+						CDC_VA_TX_PATH_CLK_DISABLE);
-+		break;
-+	}
-+	return 0;
-+}
-+
- static int va_macro_dec_mode_get(struct snd_kcontrol *kcontrol,
- 				 struct snd_ctl_elem_value *ucontrol)
- {
-@@ -631,6 +954,299 @@ static struct snd_soc_dai_driver va_macro_dais[] = {
- 	},
- };
- 
-+static const char * const adc_mux_text[] = {
-+	"VA_DMIC", "SWR_MIC"
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(va_dec0_enum, CDC_VA_INP_MUX_ADC_MUX0_CFG1,
-+		   0, adc_mux_text);
-+static SOC_ENUM_SINGLE_DECL(va_dec1_enum, CDC_VA_INP_MUX_ADC_MUX1_CFG1,
-+		   0, adc_mux_text);
-+static SOC_ENUM_SINGLE_DECL(va_dec2_enum, CDC_VA_INP_MUX_ADC_MUX2_CFG1,
-+		   0, adc_mux_text);
-+static SOC_ENUM_SINGLE_DECL(va_dec3_enum, CDC_VA_INP_MUX_ADC_MUX3_CFG1,
-+		   0, adc_mux_text);
-+
-+static const struct snd_kcontrol_new va_dec0_mux = SOC_DAPM_ENUM("va_dec0",
-+								 va_dec0_enum);
-+static const struct snd_kcontrol_new va_dec1_mux = SOC_DAPM_ENUM("va_dec1",
-+								 va_dec1_enum);
-+static const struct snd_kcontrol_new va_dec2_mux = SOC_DAPM_ENUM("va_dec2",
-+								 va_dec2_enum);
-+static const struct snd_kcontrol_new va_dec3_mux = SOC_DAPM_ENUM("va_dec3",
-+								 va_dec3_enum);
-+
-+static const char * const dmic_mux_text[] = {
-+	"ZERO", "DMIC0", "DMIC1", "DMIC2", "DMIC3",
-+	"DMIC4", "DMIC5", "DMIC6", "DMIC7"
-+};
-+
-+static SOC_ENUM_SINGLE_DECL(va_dmic0_enum, CDC_VA_INP_MUX_ADC_MUX0_CFG0,
-+			4, dmic_mux_text);
-+
-+static SOC_ENUM_SINGLE_DECL(va_dmic1_enum, CDC_VA_INP_MUX_ADC_MUX1_CFG0,
-+			4, dmic_mux_text);
-+
-+static SOC_ENUM_SINGLE_DECL(va_dmic2_enum, CDC_VA_INP_MUX_ADC_MUX2_CFG0,
-+			4, dmic_mux_text);
-+
-+static SOC_ENUM_SINGLE_DECL(va_dmic3_enum, CDC_VA_INP_MUX_ADC_MUX3_CFG0,
-+			4, dmic_mux_text);
-+
-+static const struct snd_kcontrol_new va_dmic0_mux = SOC_DAPM_ENUM_EXT("va_dmic0",
-+			 va_dmic0_enum, snd_soc_dapm_get_enum_double,
-+			 va_macro_put_dec_enum);
-+
-+static const struct snd_kcontrol_new va_dmic1_mux = SOC_DAPM_ENUM_EXT("va_dmic1",
-+			 va_dmic1_enum, snd_soc_dapm_get_enum_double,
-+			 va_macro_put_dec_enum);
-+
-+static const struct snd_kcontrol_new va_dmic2_mux = SOC_DAPM_ENUM_EXT("va_dmic2",
-+			 va_dmic2_enum, snd_soc_dapm_get_enum_double,
-+			 va_macro_put_dec_enum);
-+
-+static const struct snd_kcontrol_new va_dmic3_mux = SOC_DAPM_ENUM_EXT("va_dmic3",
-+			 va_dmic3_enum, snd_soc_dapm_get_enum_double,
-+			 va_macro_put_dec_enum);
-+
-+static const struct snd_kcontrol_new va_aif1_cap_mixer[] = {
-+	SOC_SINGLE_EXT("DEC0", SND_SOC_NOPM, VA_MACRO_DEC0, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC1", SND_SOC_NOPM, VA_MACRO_DEC1, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC2", SND_SOC_NOPM, VA_MACRO_DEC2, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC3", SND_SOC_NOPM, VA_MACRO_DEC3, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC4", SND_SOC_NOPM, VA_MACRO_DEC4, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC5", SND_SOC_NOPM, VA_MACRO_DEC5, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC6", SND_SOC_NOPM, VA_MACRO_DEC6, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC7", SND_SOC_NOPM, VA_MACRO_DEC7, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+};
-+
-+static const struct snd_kcontrol_new va_aif2_cap_mixer[] = {
-+	SOC_SINGLE_EXT("DEC0", SND_SOC_NOPM, VA_MACRO_DEC0, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC1", SND_SOC_NOPM, VA_MACRO_DEC1, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC2", SND_SOC_NOPM, VA_MACRO_DEC2, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC3", SND_SOC_NOPM, VA_MACRO_DEC3, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC4", SND_SOC_NOPM, VA_MACRO_DEC4, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC5", SND_SOC_NOPM, VA_MACRO_DEC5, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC6", SND_SOC_NOPM, VA_MACRO_DEC6, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC7", SND_SOC_NOPM, VA_MACRO_DEC7, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+};
-+
-+static const struct snd_kcontrol_new va_aif3_cap_mixer[] = {
-+	SOC_SINGLE_EXT("DEC0", SND_SOC_NOPM, VA_MACRO_DEC0, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC1", SND_SOC_NOPM, VA_MACRO_DEC1, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC2", SND_SOC_NOPM, VA_MACRO_DEC2, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC3", SND_SOC_NOPM, VA_MACRO_DEC3, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC4", SND_SOC_NOPM, VA_MACRO_DEC4, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC5", SND_SOC_NOPM, VA_MACRO_DEC5, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC6", SND_SOC_NOPM, VA_MACRO_DEC6, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+	SOC_SINGLE_EXT("DEC7", SND_SOC_NOPM, VA_MACRO_DEC7, 1, 0,
-+			va_macro_tx_mixer_get, va_macro_tx_mixer_put),
-+};
-+
-+static const struct snd_soc_dapm_widget va_macro_dapm_widgets[] = {
-+	SND_SOC_DAPM_AIF_OUT("VA_AIF1 CAP", "VA_AIF1 Capture", 0,
-+		SND_SOC_NOPM, VA_MACRO_AIF1_CAP, 0),
-+
-+	SND_SOC_DAPM_AIF_OUT("VA_AIF2 CAP", "VA_AIF2 Capture", 0,
-+		SND_SOC_NOPM, VA_MACRO_AIF2_CAP, 0),
-+
-+	SND_SOC_DAPM_AIF_OUT("VA_AIF3 CAP", "VA_AIF3 Capture", 0,
-+		SND_SOC_NOPM, VA_MACRO_AIF3_CAP, 0),
-+
-+	SND_SOC_DAPM_MIXER("VA_AIF1_CAP Mixer", SND_SOC_NOPM,
-+		VA_MACRO_AIF1_CAP, 0,
-+		va_aif1_cap_mixer, ARRAY_SIZE(va_aif1_cap_mixer)),
-+
-+	SND_SOC_DAPM_MIXER("VA_AIF2_CAP Mixer", SND_SOC_NOPM,
-+		VA_MACRO_AIF2_CAP, 0,
-+		va_aif2_cap_mixer, ARRAY_SIZE(va_aif2_cap_mixer)),
-+
-+	SND_SOC_DAPM_MIXER("VA_AIF3_CAP Mixer", SND_SOC_NOPM,
-+		VA_MACRO_AIF3_CAP, 0,
-+		va_aif3_cap_mixer, ARRAY_SIZE(va_aif3_cap_mixer)),
-+
-+	SND_SOC_DAPM_MUX("VA DMIC MUX0", SND_SOC_NOPM, 0, 0, &va_dmic0_mux),
-+	SND_SOC_DAPM_MUX("VA DMIC MUX1", SND_SOC_NOPM, 0, 0, &va_dmic1_mux),
-+	SND_SOC_DAPM_MUX("VA DMIC MUX2", SND_SOC_NOPM, 0, 0, &va_dmic2_mux),
-+	SND_SOC_DAPM_MUX("VA DMIC MUX3", SND_SOC_NOPM, 0, 0, &va_dmic3_mux),
-+
-+	SND_SOC_DAPM_REGULATOR_SUPPLY("vdd-micb", 0, 0),
-+	SND_SOC_DAPM_INPUT("DMIC0 Pin"),
-+	SND_SOC_DAPM_INPUT("DMIC1 Pin"),
-+	SND_SOC_DAPM_INPUT("DMIC2 Pin"),
-+	SND_SOC_DAPM_INPUT("DMIC3 Pin"),
-+	SND_SOC_DAPM_INPUT("DMIC4 Pin"),
-+	SND_SOC_DAPM_INPUT("DMIC5 Pin"),
-+	SND_SOC_DAPM_INPUT("DMIC6 Pin"),
-+	SND_SOC_DAPM_INPUT("DMIC7 Pin"),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC0", NULL, SND_SOC_NOPM, 0, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC1", NULL, SND_SOC_NOPM, 1, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC2", NULL, SND_SOC_NOPM, 2, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC3", NULL, SND_SOC_NOPM, 3, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC4", NULL, SND_SOC_NOPM, 4, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC5", NULL, SND_SOC_NOPM, 5, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC6", NULL, SND_SOC_NOPM, 6, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_ADC_E("VA DMIC7", NULL, SND_SOC_NOPM, 7, 0,
-+		va_macro_enable_dmic, SND_SOC_DAPM_PRE_PMU |
-+		SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_INPUT("VA SWR_ADC0"),
-+	SND_SOC_DAPM_INPUT("VA SWR_ADC1"),
-+	SND_SOC_DAPM_INPUT("VA SWR_ADC2"),
-+	SND_SOC_DAPM_INPUT("VA SWR_ADC3"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC0"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC1"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC2"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC3"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC4"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC5"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC6"),
-+	SND_SOC_DAPM_INPUT("VA SWR_MIC7"),
-+
-+	SND_SOC_DAPM_MUX_E("VA DEC0 MUX", SND_SOC_NOPM, VA_MACRO_DEC0, 0,
-+			   &va_dec0_mux, va_macro_enable_dec,
-+			   SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-+			   SND_SOC_DAPM_PRE_PMD | SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_MUX_E("VA DEC1 MUX", SND_SOC_NOPM, VA_MACRO_DEC1, 0,
-+			   &va_dec1_mux, va_macro_enable_dec,
-+			   SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-+			   SND_SOC_DAPM_PRE_PMD | SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_MUX_E("VA DEC2 MUX", SND_SOC_NOPM, VA_MACRO_DEC2, 0,
-+			   &va_dec2_mux, va_macro_enable_dec,
-+			   SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-+			   SND_SOC_DAPM_PRE_PMD | SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_MUX_E("VA DEC3 MUX", SND_SOC_NOPM, VA_MACRO_DEC3, 0,
-+			   &va_dec3_mux, va_macro_enable_dec,
-+			   SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMU |
-+			   SND_SOC_DAPM_PRE_PMD | SND_SOC_DAPM_POST_PMD),
-+
-+	SND_SOC_DAPM_SUPPLY_S("VA_MCLK", -1, SND_SOC_NOPM, 0, 0,
-+			      va_macro_mclk_event,
-+			      SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
-+};
-+
-+static const struct snd_soc_dapm_route va_audio_map[] = {
-+	{"VA_AIF1 CAP", NULL, "VA_MCLK"},
-+	{"VA_AIF2 CAP", NULL, "VA_MCLK"},
-+	{"VA_AIF3 CAP", NULL, "VA_MCLK"},
-+
-+	{"VA_AIF1 CAP", NULL, "VA_AIF1_CAP Mixer"},
-+	{"VA_AIF2 CAP", NULL, "VA_AIF2_CAP Mixer"},
-+	{"VA_AIF3 CAP", NULL, "VA_AIF3_CAP Mixer"},
-+
-+	{"VA_AIF1_CAP Mixer", "DEC0", "VA DEC0 MUX"},
-+	{"VA_AIF1_CAP Mixer", "DEC1", "VA DEC1 MUX"},
-+	{"VA_AIF1_CAP Mixer", "DEC2", "VA DEC2 MUX"},
-+	{"VA_AIF1_CAP Mixer", "DEC3", "VA DEC3 MUX"},
-+
-+	{"VA_AIF2_CAP Mixer", "DEC0", "VA DEC0 MUX"},
-+	{"VA_AIF2_CAP Mixer", "DEC1", "VA DEC1 MUX"},
-+	{"VA_AIF2_CAP Mixer", "DEC2", "VA DEC2 MUX"},
-+	{"VA_AIF2_CAP Mixer", "DEC3", "VA DEC3 MUX"},
-+
-+	{"VA_AIF3_CAP Mixer", "DEC0", "VA DEC0 MUX"},
-+	{"VA_AIF3_CAP Mixer", "DEC1", "VA DEC1 MUX"},
-+	{"VA_AIF3_CAP Mixer", "DEC2", "VA DEC2 MUX"},
-+	{"VA_AIF3_CAP Mixer", "DEC3", "VA DEC3 MUX"},
-+
-+	{"VA DEC0 MUX", "VA_DMIC", "VA DMIC MUX0"},
-+	{"VA DMIC MUX0", "DMIC0", "VA DMIC0"},
-+	{"VA DMIC MUX0", "DMIC1", "VA DMIC1"},
-+	{"VA DMIC MUX0", "DMIC2", "VA DMIC2"},
-+	{"VA DMIC MUX0", "DMIC3", "VA DMIC3"},
-+	{"VA DMIC MUX0", "DMIC4", "VA DMIC4"},
-+	{"VA DMIC MUX0", "DMIC5", "VA DMIC5"},
-+	{"VA DMIC MUX0", "DMIC6", "VA DMIC6"},
-+	{"VA DMIC MUX0", "DMIC7", "VA DMIC7"},
-+
-+	{"VA DEC1 MUX", "VA_DMIC", "VA DMIC MUX1"},
-+	{"VA DMIC MUX1", "DMIC0", "VA DMIC0"},
-+	{"VA DMIC MUX1", "DMIC1", "VA DMIC1"},
-+	{"VA DMIC MUX1", "DMIC2", "VA DMIC2"},
-+	{"VA DMIC MUX1", "DMIC3", "VA DMIC3"},
-+	{"VA DMIC MUX1", "DMIC4", "VA DMIC4"},
-+	{"VA DMIC MUX1", "DMIC5", "VA DMIC5"},
-+	{"VA DMIC MUX1", "DMIC6", "VA DMIC6"},
-+	{"VA DMIC MUX1", "DMIC7", "VA DMIC7"},
-+
-+	{"VA DEC2 MUX", "VA_DMIC", "VA DMIC MUX2"},
-+	{"VA DMIC MUX2", "DMIC0", "VA DMIC0"},
-+	{"VA DMIC MUX2", "DMIC1", "VA DMIC1"},
-+	{"VA DMIC MUX2", "DMIC2", "VA DMIC2"},
-+	{"VA DMIC MUX2", "DMIC3", "VA DMIC3"},
-+	{"VA DMIC MUX2", "DMIC4", "VA DMIC4"},
-+	{"VA DMIC MUX2", "DMIC5", "VA DMIC5"},
-+	{"VA DMIC MUX2", "DMIC6", "VA DMIC6"},
-+	{"VA DMIC MUX2", "DMIC7", "VA DMIC7"},
-+
-+	{"VA DEC3 MUX", "VA_DMIC", "VA DMIC MUX3"},
-+	{"VA DMIC MUX3", "DMIC0", "VA DMIC0"},
-+	{"VA DMIC MUX3", "DMIC1", "VA DMIC1"},
-+	{"VA DMIC MUX3", "DMIC2", "VA DMIC2"},
-+	{"VA DMIC MUX3", "DMIC3", "VA DMIC3"},
-+	{"VA DMIC MUX3", "DMIC4", "VA DMIC4"},
-+	{"VA DMIC MUX3", "DMIC5", "VA DMIC5"},
-+	{"VA DMIC MUX3", "DMIC6", "VA DMIC6"},
-+	{"VA DMIC MUX3", "DMIC7", "VA DMIC7"},
-+
-+	{ "VA DMIC0", NULL, "DMIC0 Pin" },
-+	{ "VA DMIC1", NULL, "DMIC1 Pin" },
-+	{ "VA DMIC2", NULL, "DMIC2 Pin" },
-+	{ "VA DMIC3", NULL, "DMIC3 Pin" },
-+	{ "VA DMIC4", NULL, "DMIC4 Pin" },
-+	{ "VA DMIC5", NULL, "DMIC5 Pin" },
-+	{ "VA DMIC6", NULL, "DMIC6 Pin" },
-+	{ "VA DMIC7", NULL, "DMIC7 Pin" },
-+};
-+
- static const char * const dec_mode_mux_text[] = {
- 	"ADC_DEFAULT", "ADC_LOW_PWR", "ADC_HIGH_PERF",
- };
-@@ -680,6 +1296,10 @@ static const struct snd_soc_component_driver va_macro_component_drv = {
- 	.probe = va_macro_component_probe,
- 	.controls = va_macro_snd_controls,
- 	.num_controls = ARRAY_SIZE(va_macro_snd_controls),
-+	.dapm_widgets = va_macro_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(va_macro_dapm_widgets),
-+	.dapm_routes = va_audio_map,
-+	.num_dapm_routes = ARRAY_SIZE(va_audio_map),
- };
- 
- static int fsgen_gate_enable(struct clk_hw *hw)
--- 
-2.21.0
+USB-C power operation mode values are defined in 
+include/linux/usb/typec.h with typec_pwr_opmode enum and matching with 
+string values of typec_pwr_opmodes tab.
 
+USB PD requires USB-C.
+USB-C doesn't requires USB PD.
+
+drivers/usb/typec/tcpm/tcpm.c already used typec_pwr_opmode values.
+
+USB PD specification Table 6-14 Fixed Supply PDO says:
+Fast Role Swap required USB Type-C Current (see also [USB Type-C 2.0]):
+Value | Description
+  00b  | Fast Swap not supported (default)
+  01b  | Default USB Power
+  10b  | 1.5A @ 5V
+  11b  | 3.0A @ 5V
+
+Note the *see also USB Type-C 2.0*.
+
+USB Type-C specification 4.6.2.1 USB Type-C Current says:
+The USB Type-C connector uses CC pins for configuration including an 
+ability for a Source to advertise to its port partner (Sink) the amount 
+of current it shall supply:
+• Default is the as-configured for high-power operation current value as 
+defined by the USB Specification (500 mA for USB 2.0 ports; 900 mA or 
+1,500 mA for USB 3.2 ports in single-lane or dual-lane operation, 
+respectively)
+• 1.5 A
+• 3.0 A
+
+> Can we align the names in some way? power-opmode and frs-source-opmode
+> or ??
+> 
+
+I let USB PD specialists answer.
+
+*frs* property fits with USB PD specification, so with USB PD protocol.
+*power-opmode fits with USB Type-C specification, so with USB-C hardware 
+support.
+
+> Are these 2 properties mutually exclusive? If so, that should be
+> captured.
+
+FRS is specific to products with Power Delivery Support.
+
+power-opmode is dedicated to products with USB-C connector support.
+
+Regards,
+Amelie
