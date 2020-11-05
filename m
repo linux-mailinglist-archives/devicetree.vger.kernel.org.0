@@ -2,65 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D62272A7493
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 02:09:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04D572A74E6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 02:32:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730732AbgKEBJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 20:09:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56382 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726018AbgKEBJl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Nov 2020 20:09:41 -0500
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D7D8120867;
-        Thu,  5 Nov 2020 01:09:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604538581;
-        bh=X15HpKE6KaTHf/EyAWblPZ3s+9tEv1xJ4jxspPkc658=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=uBiW5cqH9aIOUJkhJYb6nEympqzj4n5GwABfnpowbUtClw7r5nBRdEnJy1o55LlEz
-         mhKuVBvMVNK12ZjiT+GFYVtGGAn1Q/kstFB8qXWg6IMnmEUJ91pftMCtc7LhOzRusF
-         WWUqxlAyUtz2IfsZuCi84pQwjQg5EVEfpRBo8/zo=
-Content-Type: text/plain; charset="utf-8"
+        id S1730296AbgKEBcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 20:32:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36740 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725889AbgKEBcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 20:32:52 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B791CC0613CF
+        for <devicetree@vger.kernel.org>; Wed,  4 Nov 2020 17:32:52 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id e7so22067pfn.12
+        for <devicetree@vger.kernel.org>; Wed, 04 Nov 2020 17:32:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T5SfGlFWNsb9ADFXTTd5FC+rkmT/cTom2Bm7AcT+oF8=;
+        b=buWs2k7kpsMviHovMKSpLCqDOs6SSspYr+POlCcZ7cQ0RLP2IcZQh/mchBoF1vIjqU
+         XbH06BRnoY7cKLtxQlq8dSNJ4yD5PKQ+xklQQFL7fwTDAmlGFD7Pg4ta4/E6Sw7jOIru
+         EgWTEGUlrtTVhQ9MZF/wxYJwD0hrKrVgr4NeKq86ZNSDFBkgvmCkxgYqL8pgk7wBigcZ
+         De4Dw0XZupQqdecbHJ6kZIxKEoyEPfqJxQPBL25HtJ/1kT6LaFrvSx1p8oJkkFojkCpZ
+         3N/udwjp1efpDw15cSw6FwxDBDucXtNpsunEx8pwKMpNkfCl/ifbG8nYaFsZAXAGr4T1
+         zYqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=T5SfGlFWNsb9ADFXTTd5FC+rkmT/cTom2Bm7AcT+oF8=;
+        b=msJiZ1idOpzIW3b5sXtMHM6UwGsbXrBSPcgHflbpnrqfAqfnxsvhM9hWqdWxoWGeGi
+         4sa4U1duPdzJtOApjyjNkofMVOXwmjGloVPYJejrJiErGMPvRPMtXQd9MtfWztRIEYRw
+         n3o5n5fwTG66zTWl9gxNBihxymjGDY34w/HiGCt+um6CdYmd/S8bcvs0SRUmkpsCuk9l
+         CIoqwdz+WO2Yskv+7DXJO0i5/i76OkzqaPH5pdkHsettopHIlHXbeac8EcTwCTcvQ8Pm
+         EzsohTPb0rallPLL5Bfu0fCeQDi0c+TsSF14jqnirAusbeWck9QHxtt6ppW4TCvB6eaa
+         V19g==
+X-Gm-Message-State: AOAM532jjWtiSXK56fnfvYj2IabK3R5Ak0sSjOGwZeLocyp0ob+vohaC
+        F43smVeexoE8FBm25cQ846GY
+X-Google-Smtp-Source: ABdhPJza8noyKK8dODD04Wm7xD5PY/AiLk1LSjeB9UKja7NAOYA1NN7BFuSWOkkkkCN+pBQTw5XSfg==
+X-Received: by 2002:a62:8847:0:b029:15b:51c6:6a10 with SMTP id l68-20020a6288470000b029015b51c66a10mr207919pfd.69.1604539972308;
+        Wed, 04 Nov 2020 17:32:52 -0800 (PST)
+Received: from xuyuqing-ZenBook-UX425JA-UX425JA.huaqin.com ([101.78.151.194])
+        by smtp.gmail.com with ESMTPSA id m13sm127817pjr.30.2020.11.04.17.32.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Nov 2020 17:32:51 -0800 (PST)
+From:   xuyuqing <xuyuqing@huaqin.corp-partner.google.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org, cychiang@chromium.org,
+        judyhsiao@chromium.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        zhouguohui@huaqin.corp-partner.google.com,
+        xuyuqing@huaqin.corp-partner.google.com
+Subject: [PATCH v1 0/2] Support SC7180 sound card variation without headset
+Date:   Thu,  5 Nov 2020 09:32:40 +0800
+Message-Id: <20201105013242.298518-1-xuyuqing@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1604402306-5348-12-git-send-email-abel.vesa@nxp.com>
-References: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com> <1604402306-5348-12-git-send-email-abel.vesa@nxp.com>
-Subject: Re: [PATCH v5 11/14] clk: imx: Add blk-ctl driver for i.MX8MP
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        Abel Vesa <abel.vesa@nxp.com>
-To:     Abel Vesa <abel.vesa@nxp.com>, Adam Ford <aford173@gmail.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Mike Turquette <mturquette@baylibre.com>,
-        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Date:   Wed, 04 Nov 2020 17:09:39 -0800
-Message-ID: <160453857946.3965362.2066334905806962105@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Abel Vesa (2020-11-03 03:18:23)
-> This driver is intended to work with the following BLK_CTL IPs found in
-> i.MX8MP:
->  - Audio
->  - Media
->  - HDMI
->=20
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> ---
+This series is based on patch
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+[v5,2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
+
+Use compatible string to let machine driver handle the case
+where ALC5682 headset codec is replaced with ADAU7002 dmic codec
+
+xuyuqing (2):
+  ASoC: google: dt-bindings: add new compatible for sc7180-coachz
+  ASoC: qcom: sc7180: Modify machine driver for adau7002
+
+ .../bindings/sound/google,sc7180-trogdor.yaml |   4 +-
+ sound/soc/qcom/Kconfig                        |   1 +
+ sound/soc/qcom/sc7180.c                       | 119 ++++++++++++++++--
+ 3 files changed, 112 insertions(+), 12 deletions(-)
+
+-- 
+2.25.1
+
