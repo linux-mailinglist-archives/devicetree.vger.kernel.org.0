@@ -2,223 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3AC2A86B0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 20:05:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E09352A86B6
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 20:05:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727017AbgKETFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 14:05:11 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:41446 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726214AbgKETFL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 14:05:11 -0500
-Received: by mail-ot1-f66.google.com with SMTP id n15so2428635otl.8;
-        Thu, 05 Nov 2020 11:05:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=/WFroUes3tjerQV/gKFC+1DAOPOUpnvK3ZLq++FNM3w=;
-        b=NlAnd1OcilWytOZaOIqFiYBNbxdkxqVudqLyC+y9097NwmodgqxFxp75NtIm8qfRXu
-         0AIWZfFi6AtngN5VHF5yMwzk1/bVI6zbGTckW9Uc3il8kWG8Syb0pcXyi+3Gb7bzZhM/
-         cZjUuC5y7bafhNZQvq1RdxMlAYr0ahO75sXeKKSYHTvnhZzSbUzI8JV/5tbDHPBqNGpX
-         FXSGqPWw2cn9YzzlumR5LIVQ0RhsJCiLSh/LLfNZdV2WqagYXX9Kb1c6O9okd0tlqAdF
-         jmHxXjp8RgqyJKoin9T4enxfrd/GBRq/17uHDsoCVr+/4Bzsjl8SLXpY8XcDqpYn64UH
-         BX5A==
-X-Gm-Message-State: AOAM532AvIDmGKz9Rx1Haf0EpOH+oF1R6Qq+/hjgU9z30/WQ+8D508Fc
-        sOMl5ewgOWRPTbzJi48ILVTJC5pHQPIl
-X-Google-Smtp-Source: ABdhPJwpy4tfomKY6Z2z/7HBnD+rPj33bvLMcz2xrOVfXt0mLWPR4WNSApume0HdnQM4c/fUmqmgpQ==
-X-Received: by 2002:a9d:3b4:: with SMTP id f49mr2851240otf.188.1604603109677;
-        Thu, 05 Nov 2020 11:05:09 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r24sm504639otq.77.2020.11.05.11.05.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 11:05:09 -0800 (PST)
-Received: (nullmailer pid 1642440 invoked by uid 1000);
-        Thu, 05 Nov 2020 19:05:08 -0000
-Date:   Thu, 5 Nov 2020 13:05:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     devicetree@vger.kernel.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, vkoul@kernel.org, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: bus: Convert ACONNECT doc to json-schema
-Message-ID: <20201105190508.GB1633758@bogus>
-References: <1604571846-14037-1-git-send-email-spujar@nvidia.com>
- <1604571846-14037-5-git-send-email-spujar@nvidia.com>
+        id S1732024AbgKETFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 14:05:40 -0500
+Received: from foss.arm.com ([217.140.110.172]:40486 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727851AbgKETFk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 14:05:40 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6300D1474;
+        Thu,  5 Nov 2020 11:05:39 -0800 (PST)
+Received: from bogus (unknown [10.57.22.191])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 93D663F718;
+        Thu,  5 Nov 2020 11:05:37 -0800 (PST)
+Date:   Thu, 5 Nov 2020 19:05:34 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: Add bindings for BrcmSTB SCMI
+ mailbox driver
+Message-ID: <20201105190534.jnbbnquihkryxnup@bogus>
+References: <20201029195913.5927-1-james.quinlan@broadcom.com>
+ <20201029195913.5927-2-james.quinlan@broadcom.com>
+ <20201104215050.GA4180546@bogus>
+ <CA+-6iNw1Z1dj8oFn8DdyVPuMUP-3+n9sKXuWYWo2rfPo5j4dkA@mail.gmail.com>
+ <CAL_JsqJQA_VLhez8y6HVCdFB2DZ85KoDZ1=RtbU4Mw98aQRSxA@mail.gmail.com>
+ <CA+-6iNznMY78tJBeNrtyOy58DTKKPGxfgA0Pu2Rxx42YDJWV1w@mail.gmail.com>
+ <20201105182707.l4xx3wu2ch22qysi@bogus>
+ <CA+-6iNyeUWprE8rsBWoVigYHMdU1k8W0i3j0PF3gKKvZHCM+mg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1604571846-14037-5-git-send-email-spujar@nvidia.com>
+In-Reply-To: <CA+-6iNyeUWprE8rsBWoVigYHMdU1k8W0i3j0PF3gKKvZHCM+mg@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 03:54:06PM +0530, Sameer Pujar wrote:
-> Move ACONNECT documentation to YAML format.
+On Thu, Nov 05, 2020 at 01:57:07PM -0500, Jim Quinlan wrote:
+> On Thu, Nov 5, 2020 at 1:27 PM Sudeep Holla <sudeep.holla@arm.com> wrote:
+> >
+> > On Thu, Nov 05, 2020 at 10:28:25AM -0500, Jim Quinlan wrote:
+> > > On Thu, Nov 5, 2020 at 10:13 AM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Wed, Nov 4, 2020 at 4:04 PM Jim Quinlan <james.quinlan@broadcom.com> wrote:
+> > > > >
+> > > > > On Wed, Nov 4, 2020 at 4:50 PM Rob Herring <robh@kernel.org> wrote:
+> > > > > >
+> > > > > > On Thu, Oct 29, 2020 at 03:59:06PM -0400, Jim Quinlan wrote:
+> > > > > > > Bindings are added.  Only one interrupt is needed because
+> > > > > > > we do not yet employ the SCMI p2a channel.
+> > > > > >
+> > > > > > I still don't understand what this is. To repeat from v1: I thought SCMI
+> > > > > > was a mailbox consumer, not provider?
+> > > > >
+> > > > > Hi Rob,
+> > > > >
+> > > > > I'm not sure where I am implying that SCMI is a mailbox provider?
+> > > > > Should I not mention "SCMI" in the subject line?
+> > > > >
+> > > > > This is just a mailbox driver, "consumed" by SCMI.    Our SCMI DT node
+> > > > > looks like this:
+> > > > >
+> > > > > brcm_scmi_mailbox: brcm_scmi_mailbox@0 {
+> > > > >         #mbox-cells = <1>;
+> > > > >         compatible = "brcm,brcmstb-mbox";
+> > > > > };
+> > > > >
+> > > > > brcm_scmi@0 {
+> > > > >         compatible = "arm,scmi";
+> > > > >         mboxes = <&brcm_scmi_mailbox 0>;;
+> > > > >         mbox-names = "tx";
+> > > > >         shmem = <&NWMBOX>;
+> > > > >         /* ... */
+> > > > > };
+> > > >
+> > > > Okay, that makes more sense. Though it seems like this is just adding
+> > > > a pointless level of indirection to turn an interrupt into a mailbox.
+> > > > There's nothing more to 'the mailbox' is there?
+> > >
+> > > Correct.  Although you can see that it uses both interrupts and SMC
+> > > calls to get the job done.
+> > >
+> >
+> > I was against having 2 separate solutions and would have raised my concern
+> > again. As I mentioned earlier, either extend what we have or move the
+> > existing SMC solution into this mailbox driver. Having 2 different solution
+> > for this just because you have extra interrupt to deal with is definite
+> > NACK from me as I had previously mentioned.
+> >
+> > > > So why not either
+> > > > allow SCMI to have an interrupt directly
+> > > Not sure here -- perhaps the SCMI folks have an answer?
+> > >
+> >
+> > I did ask why can't you extend the existing SCMI/SMC binding to add this
+> > as optional feature ?
+> Hi Sudeep,
 > 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  .../bindings/bus/nvidia,tegra210-aconnect.txt      | 44 -----------
->  .../bindings/bus/nvidia,tegra210-aconnect.yaml     | 86 ++++++++++++++++++++++
->  2 files changed, 86 insertions(+), 44 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.txt
->  create mode 100644 Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.txt b/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.txt
-> deleted file mode 100644
-> index 3108d03..0000000
-> --- a/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.txt
-> +++ /dev/null
-> @@ -1,44 +0,0 @@
-> -NVIDIA Tegra ACONNECT Bus
-> -
-> -The Tegra ACONNECT bus is an AXI switch which is used to connnect various
-> -components inside the Audio Processing Engine (APE). All CPU accesses to
-> -the APE subsystem go through the ACONNECT via an APB to AXI wrapper.
-> -
-> -Required properties:
-> -- compatible: Must be "nvidia,tegra210-aconnect".
-> -- clocks: Must contain the entries for the APE clock (TEGRA210_CLK_APE),
-> -  and APE interface clock (TEGRA210_CLK_APB2APE).
-> -- clock-names: Must contain the names "ape" and "apb2ape" for the corresponding
-> -  'clocks' entries.
-> -- power-domains: Must contain a phandle that points to the audio powergate
-> -  (namely 'aud') for Tegra210.
-> -- #address-cells: The number of cells used to represent physical base addresses
-> -  in the aconnect address space. Should be 1.
-> -- #size-cells: The number of cells used to represent the size of an address
-> -  range in the aconnect address space. Should be 1.
-> -- ranges: Mapping of the aconnect address space to the CPU address space.
-> -
-> -All devices accessed via the ACONNNECT are described by child-nodes.
-> -
-> -Example:
-> -
-> -	aconnect@702c0000 {
-> -		compatible = "nvidia,tegra210-aconnect";
-> -		clocks = <&tegra_car TEGRA210_CLK_APE>,
-> -			 <&tegra_car TEGRA210_CLK_APB2APE>;
-> -		clock-names = "ape", "apb2ape";
-> -		power-domains = <&pd_audio>;
-> -
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		ranges = <0x702c0000 0x0 0x702c0000 0x00040000>;
-> -
-> -
-> -		child1 {
-> -			...
-> -		};
-> -
-> -		child2 {
-> -			...
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml b/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
-> new file mode 100644
-> index 0000000..f0161bc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/nvidia,tegra210-aconnect.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra ACONNECT Bus
-> +
-> +description: |
-> +  The Tegra ACONNECT bus is an AXI switch which is used to connnect various
-> +  components inside the Audio Processing Engine (APE). All CPU accesses to
-> +  the APE subsystem go through the ACONNECT via an APB to AXI wrapper. All
-> +  devices accessed via the ACONNNECT are described by child-nodes.
-> +
-> +maintainers:
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nvidia,tegra210-aconnect
-> +      - items:
-> +          - enum:
-> +              - nvidia,tegra186-aconnect
-> +              - nvidia,tegra194-aconnect
-> +          - const: nvidia,tegra210-aconnect
-> +
-> +  clocks:
-> +    items:
-> +      - description: Must contain the entry for APE clock
-> +      - description: Must contain the entry for APE interface clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ape
-> +      - const: apb2ape
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^dma-controller(@[0-9a-f]+)?$":
-> +    $ref: /schemas/dma/nvidia,tegra210-adma.yaml#
-> +  "^interrupt-controller(@[0-9a-f]+)?$":
-> +    $ref: /schemas/interrupt-controller/arm,gic.yaml#
-> +  "^ahub(@[0-9a-f]+)?$":
-> +    $ref: /schemas/sound/nvidia,tegra210-ahub.yaml#
+> Looking at the email you said, "In that case any reason why you can't
+> reuse the existing smc transport for SCMI." ,  and I replied with the
+> reason.  I did not interpret your statement  above as what you are
+> clearly saying now: "either extend what we have or move the existing
+> SMC solution into this mailbox driver. "
+>
 
-These all get applied already since they match on compatible strings. So 
-having them here means the schema is applied twice. There's maybe some 
-value to this if it's always going to be these 3 nodes.
+No, you are right. I didn't mention that explicitly. I wanted to, but
+thought I will wait until this driver got traction to ask you to merge
+them. Sorry for that. Anyways I am against having existing solution and
+a mailbox for SMC, they need to be merged at any cost. Where the final
+solution will be doesn't matter much to me, I am fine either way.
 
-Also, the unit-addresses shouldn't be optional.
-
-I'd just do:
-
-"@[0-9a-f]+$":
-  type: object
-
-> +
-> +required:
-> +  - compatible
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include<dt-bindings/clock/tegra210-car.h>
-> +
-> +    aconnect@702c0000 {
-> +        compatible = "nvidia,tegra210-aconnect";
-> +        clocks = <&tegra_car TEGRA210_CLK_APE>,
-> +                 <&tegra_car TEGRA210_CLK_APB2APE>;
-> +        clock-names = "ape", "apb2ape";
-> +        power-domains = <&pd_audio>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0x702c0000 0x702c0000 0x00040000>;
-> +
-> +        // Child device nodes follow ...
-> +    };
-> +
-> +...
-> -- 
-> 2.7.4
-> 
+--
+Regards,
+Sudeep
