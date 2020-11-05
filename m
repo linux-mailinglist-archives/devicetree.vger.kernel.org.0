@@ -2,230 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA5142A7585
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 03:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 721322A759D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 03:40:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730396AbgKECcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Nov 2020 21:32:12 -0500
-Received: from relmlor1.renesas.com ([210.160.252.171]:26469 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729068AbgKECcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Nov 2020 21:32:12 -0500
-X-IronPort-AV: E=Sophos;i="5.77,451,1596466800"; 
-   d="scan'208";a="61708254"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Nov 2020 11:32:10 +0900
-Received: from localhost.localdomain (unknown [10.166.252.89])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7E591400D0D1;
-        Thu,  5 Nov 2020 11:32:10 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     geert+renesas@glider.be, robh+dt@kernel.org
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2] dt-bindings: clock: renesas: rcar-usb2-clock-sel: Convert bindings to json-schema
-Date:   Thu,  5 Nov 2020 11:32:04 +0900
-Message-Id: <1604543524-31482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1729240AbgKECkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Nov 2020 21:40:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54256 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726067AbgKECkh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Nov 2020 21:40:37 -0500
+Received: from kernel.org (unknown [104.132.1.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6B01920756;
+        Thu,  5 Nov 2020 02:40:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604544036;
+        bh=YJDlIrMK2qyHz2xI1nZtQeYD1mk1WvSapTV23tVc40g=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=coOMCOSijUsYfXBJz28WfNVXao6QJDMg/dCIomUMt2yrtZSG5gNL2HlGIcAy8LPnr
+         fAHDa7iD2ggWDzjET+0KWEedPJah6dnkut24WchXK54UJcHasZtPaJfxCWG2js4s9Q
+         rIPkeJTJn+t2CiQJ8AR32FDecVCwdLUIq+mq9u/g=
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20201026120221.18984-3-srinivas.kandagatla@linaro.org>
+References: <20201026120221.18984-1-srinivas.kandagatla@linaro.org> <20201026120221.18984-3-srinivas.kandagatla@linaro.org>
+Subject: Re: [RESEND PATCH v3 2/4] dt-bindings: clock: Add support for LPASS Always ON Controller
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Date:   Wed, 04 Nov 2020 18:40:34 -0800
+Message-ID: <160454403493.3965362.5888605653155602340@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Renesas R-Car USB 2.0 clock selector bindings documentation
-to json-schema.
+Quoting Srinivas Kandagatla (2020-10-26 05:02:19)
+> Always ON Clock controller is a block inside LPASS which controls
+> 1 Glitch free muxes to LPASS codec Macros.
+>=20
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
----
- Changes from v1:
- - Fix dt-schema error.
- https://patchwork.kernel.org/project/linux-renesas-soc/patch/1604475005-29495-1-git-send-email-yoshihiro.shimoda.uh@renesas.com/
-
- .../bindings/clock/renesas,rcar-usb2-clock-sel.txt |  68 --------------
- .../clock/renesas,rcar-usb2-clock-sel.yaml         | 100 +++++++++++++++++++++
- 2 files changed, 100 insertions(+), 68 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.txt
- create mode 100644 Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.txt b/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.txt
-deleted file mode 100644
-index da92f57..0000000
---- a/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.txt
-+++ /dev/null
-@@ -1,68 +0,0 @@
--* Renesas R-Car USB 2.0 clock selector
--
--This file provides information on what the device node for the R-Car USB 2.0
--clock selector.
--
--If you connect an external clock to the USB_EXTAL pin only, you should set
--the clock rate to "usb_extal" node only.
--If you connect an oscillator to both the USB_XTAL and USB_EXTAL, this module
--is not needed because this is default setting. (Of course, you can set the
--clock rates to both "usb_extal" and "usb_xtal" nodes.
--
--Case 1: An external clock connects to R-Car SoC
--	+----------+   +--- R-Car ---------------------+
--	|External  |---|USB_EXTAL ---> all usb channels|
--	|clock     |   |USB_XTAL                       |
--	+----------+   +-------------------------------+
--In this case, we need this driver with "usb_extal" clock.
--
--Case 2: An oscillator connects to R-Car SoC
--	+----------+   +--- R-Car ---------------------+
--	|Oscillator|---|USB_EXTAL -+-> all usb channels|
--	|          |---|USB_XTAL --+                   |
--	+----------+   +-------------------------------+
--In this case, we don't need this selector.
--
--Required properties:
--- compatible: "renesas,r8a7795-rcar-usb2-clock-sel" if the device is a part of
--	      an R8A7795 SoC.
--	      "renesas,r8a7796-rcar-usb2-clock-sel" if the device if a part of
--	      an R8A77960 SoC.
--	      "renesas,r8a77961-rcar-usb2-clock-sel" if the device if a part of
--	      an R8A77961 SoC.
--	      "renesas,rcar-gen3-usb2-clock-sel" for a generic R-Car Gen3
--	      compatible device.
--
--	      When compatible with the generic version, nodes must list the
--	      SoC-specific version corresponding to the platform first
--	      followed by the generic version.
--
--- reg: offset and length of the USB 2.0 clock selector register block.
--- clocks: A list of phandles and specifier pairs.
--- clock-names: Name of the clocks.
-- - The functional clock of USB 2.0 host side must be "ehci_ohci"
-- - The functional clock of HS-USB side must be "hs-usb-if"
-- - The USB_EXTAL clock pin must be "usb_extal"
-- - The USB_XTAL clock pin must be "usb_xtal"
--- #clock-cells: Must be 0
--- power-domains: A phandle and symbolic PM domain specifier.
--                 See power/renesas,rcar-sysc.yaml.
--- resets: A list of phandles and specifier pairs.
--- reset-names: Name of the resets.
-- - The reset of USB 2.0 host side must be "ehci_ohci"
-- - The reset of HS-USB side must be "hs-usb-if"
--
--Example (R-Car H3):
--
--	usb2_clksel: clock-controller@e6590630 {
--		compatible = "renesas,r8a7795-rcar-usb2-clock-sel",
--			     "renesas,rcar-gen3-usb2-clock-sel";
--		reg = <0 0xe6590630 0 0x02>;
--		clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>,
--			 <&usb_extal>, <&usb_xtal>;
--		clock-names = "ehci_ohci", "hs-usb-if", "usb_extal", "usb_xtal";
--		#clock-cells = <0>;
--		power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
--		resets = <&cpg 703>, <&cpg 704>;
--		reset-names = "ehci_ohci", "hs-usb-if";
--	};
-diff --git a/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.yaml b/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.yaml
-new file mode 100644
-index 0000000..5be1229
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/renesas,rcar-usb2-clock-sel.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/clock/renesas,rcar-usb2-clock-sel.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Renesas R-Car USB 2.0 clock selector
-+
-+maintainers:
-+  - Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-+
-+description: |
-+  If you connect an external clock to the USB_EXTAL pin only, you should set
-+  the clock rate to "usb_extal" node only.
-+  If you connect an oscillator to both the USB_XTAL and USB_EXTAL, this module
-+  is not needed because this is default setting. (Of course, you can set the
-+  clock rates to both "usb_extal" and "usb_xtal" nodes.
-+
-+  Case 1: An external clock connects to R-Car SoC
-+    +----------+   +--- R-Car ---------------------+
-+    |External  |---|USB_EXTAL ---> all usb channels|
-+    |clock     |   |USB_XTAL                       |
-+    +----------+   +-------------------------------+
-+
-+  In this case, we need this driver with "usb_extal" clock.
-+
-+  Case 2: An oscillator connects to R-Car SoC
-+    +----------+   +--- R-Car ---------------------+
-+    |Oscillator|---|USB_EXTAL -+-> all usb channels|
-+    |          |---|USB_XTAL --+                   |
-+    +----------+   +-------------------------------+
-+  In this case, we don't need this selector.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,r8a7795-rcar-usb2-clock-sel  # R-Car H3
-+          - renesas,r8a7796-rcar-usb2-clock-sel  # R-Car M3-W
-+          - renesas,r8a77961-rcar-usb2-clock-sel # R-Car M3-W+
-+      - const: renesas,rcar-gen3-usb2-clock-sel
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 4
-+    maxItems: 4
-+
-+  clock-names:
-+    items:
-+      - const: ehci_ohci
-+      - const: hs-usb-if
-+      - const: usb_extal
-+      - const: usb_xtal
-+
-+  '#clock-cells':
-+    const: 0
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    minItems: 2
-+    maxItems: 2
-+
-+  reset-names:
-+    items:
-+      - const: ehci_ohci
-+      - const: hs-usb-if
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - power-domains
-+  - resets
-+  - reset-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7795-cpg-mssr.h>
-+    #include <dt-bindings/power/r8a7795-sysc.h>
-+
-+    usb2_clksel: clock-controller@e6590630 {
-+        compatible = "renesas,r8a7795-rcar-usb2-clock-sel",
-+                     "renesas,rcar-gen3-usb2-clock-sel";
-+        reg = <0xe6590630 0x02>;
-+        clocks = <&cpg CPG_MOD 703>, <&cpg CPG_MOD 704>,
-+                 <&usb_extal>, <&usb_xtal>;
-+        clock-names = "ehci_ohci", "hs-usb-if", "usb_extal", "usb_xtal";
-+        #clock-cells = <0>;
-+        power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
-+        resets = <&cpg 703>, <&cpg 704>;
-+        reset-names = "ehci_ohci", "hs-usb-if";
-+    };
--- 
-2.7.4
-
+Applied to clk-next
