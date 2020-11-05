@@ -2,178 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F9AE2A8157
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 15:49:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E7F62A8190
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 15:53:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731395AbgKEOsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 09:48:50 -0500
-Received: from esa4.microchip.iphmx.com ([68.232.154.123]:60859 "EHLO
-        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731124AbgKEOsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 09:48:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1604587685; x=1636123685;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=FQscbZ/6+mXASBxneJANWvmPus4bNyB8IEmS0L8F8c0=;
-  b=miXUC7w3JGaJTRKNajHYpRlXBLfVIPOjaO4oLLQpxoiU93WpSyGPg2Rv
-   PjqUf2Oa4GNZdzT6lclIkemsVyGLs0TVOvonP6kXcAEADKxxi4Ir2iA4e
-   1TCy3EPrWBNORJRgCH9O20syhGDsIsOL4aSI30pT+wJAHvKE1pk1ZHKSB
-   sHqTD/+Y0fBCZQfUqSimfn3r0Hp+9BeM0OAN9aZgDFDirIS6AsezlxxMF
-   7klKRaxA4jcwj4ekBQtJZUBSzzEH5dJOnateBfCgrYFhU7pM2KIX3QlnL
-   L/wqqD+uJ5SoK3WUOl30dPVeQHil06FAVs8s/63In0hECZkSlCaRaLEqe
-   A==;
-IronPort-SDR: 12S7eUZt1trzs/VF6JPcFgg/WuhLuJgfJRS3ue9BWPKVz3BwdmGJwTitdukgdqKiKQt14SUQ1l
- cbXpKfZTejgNWDHSg8jyQf8+kKMHczO5kfBpB9DXvi1YcKoiTCTqLQ1ZlFUrjSQOGdzeooBzBs
- uMFWZY0iL+CWLhWY+WvoASTaUgma1XX+Nt6JGwaYdABwKyCRqta2BZN6a0fZyj7JtAS+3khRoM
- OJUYfkbp/xPx6ux1jCwJhaYhUX9R/yKwU3KP9KqGxjpCoBYObzJuXEAnuCfbhF9/Y6FiUF1UNp
- 5+o=
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; 
-   d="scan'208";a="92621039"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 05 Nov 2020 07:48:05 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 5 Nov 2020 07:48:04 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3 via Frontend
- Transport; Thu, 5 Nov 2020 07:48:04 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LCq4BO7bB7Irqes6aTURogKPzskrlknAvvwWGIycPmBj4nTTkrww/IY6J2P2QiUERJrwhCiSdUNKVE0eHzA1dkK8zGmU48MKoh3iH1M5UjHbL2Oi0Pn50GbdjQZR2+E3to0CbHwXbnTcOnuZNiTYHrYYKML5XI4xJqfzrWDTnU9a+hHxovj1CThr/kv5Szm/uz64+FB2Ypz3v+UFv75d2EWqXemt3vJLIFk0/717S1WvKdKl+V4H099ElJYg4jdNjMcbw6zH2Wg8K+VAB1dgUnm6Pt7DLgcyFq1FvtZd73+DseN3wkoJVkvHj3DRaguRixl4yACPC/nsvXi8S5navg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FQscbZ/6+mXASBxneJANWvmPus4bNyB8IEmS0L8F8c0=;
- b=XEDTllfJ6MlGhs4xm0iw5P09Cz4RGHTbMLGEQFCZuT55eW28MA0hF5oWZn3Q71x7PRzpFUsGUaKLFvPeRkksDD1ipwoHs+j7OfHektAjB8sehnpOegR0wuRAW8zmZZ42YE0jK8FspGu15626A8PGTz5UkHJKuPHdtQZzPXigbV7eRZKeQGHWsQ/mQQkNWsXLujEnLVjCzNUsOJrl92LkUsTuAeT7ECXlfXY/UiEj6oqiTM+pArHt0KDuXYWS6wHRAuUwuNURdR6YDukThsFECwA4uiGpOuWzk/comyiv0uEepn6QOnYLdcfXcdVhDmCzJH3Nn2nDq2/wrcwScvgHcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FQscbZ/6+mXASBxneJANWvmPus4bNyB8IEmS0L8F8c0=;
- b=pQOlw5wrqsUlt8ZZT5vw5pu+fFKt0aAj3iaQP9ZuGXTqUP6CM4c0AtuTq3pSEwtc72BPc7YBba32JaGlYLzoOL/O0kQlyNSFHlU0+BmO7yL7cn4qU+3yEdOZGnT8FamzFL8z2tIaksMcd41wQtgHEGYu+YHLhbPff1/M47VjDH8=
-Received: from DM6PR11MB3420.namprd11.prod.outlook.com (2603:10b6:5:69::31) by
- DM5PR11MB1692.namprd11.prod.outlook.com (2603:10b6:3:d::23) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3499.18; Thu, 5 Nov 2020 14:48:03 +0000
-Received: from DM6PR11MB3420.namprd11.prod.outlook.com
- ([fe80::f983:dc6d:ad81:9e18]) by DM6PR11MB3420.namprd11.prod.outlook.com
- ([fe80::f983:dc6d:ad81:9e18%7]) with mapi id 15.20.3499.032; Thu, 5 Nov 2020
- 14:48:03 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <Nicolas.Ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <Ludovic.Desroches@microchip.com>, <robh+dt@kernel.org>
-CC:     <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <Eugen.Hristev@microchip.com>
-Subject: Re: [PATCH v2 0/8] clk: at91: adapt for dvfs
-Thread-Topic: [PATCH v2 0/8] clk: at91: adapt for dvfs
-Thread-Index: AQHWs4KplaiO81PP/U6Bla1L1qoVSQ==
-Date:   Thu, 5 Nov 2020 14:48:02 +0000
-Message-ID: <6f8d8f2c-997c-7942-c894-319e8b96188f@microchip.com>
-References: <1604511926-29516-1-git-send-email-claudiu.beznea@microchip.com>
-In-Reply-To: <1604511926-29516-1-git-send-email-claudiu.beznea@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-authentication-results: baylibre.com; dkim=none (message not signed)
- header.d=none;baylibre.com; dmarc=none action=none header.from=microchip.com;
-x-originating-ip: [86.124.22.130]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3a59aa68-4a27-421f-e0c5-08d88199cc50
-x-ms-traffictypediagnostic: DM5PR11MB1692:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR11MB169225AA06378A2B4460B65187EE0@DM5PR11MB1692.namprd11.prod.outlook.com>
-x-bypassexternaltag: True
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: DqT/M9SbK6dTCn+0JwGXKdhpkPcaIV9gUB2fnZAkHSAoCmpuaA5VMrEAoRWH9suMQLKXWetxcqhTuBjj3qbAyRjdP3QkWb1oFpWuGt/Q7Ln+ILN03g5eAzw5R8I9HuuN7nZoaxiiEzxLoP6fLu026AddfK9yC6eNz+tF8b5pVkvNL2KZlnBeSWV1u6Qp/o638sobtgK8exfSiejMsOoWOGAKHVi7GiKPiJrWr3MLEx4g46uxcZSfijCCF2j8M4VLxFo3NSuXhJvpL/KErSA2bk8AdNS+gsf3QRW2NiFTR5RJM2DebN700RfCqFkxWIOv+5KTtsyRwNXb2J2bi/IyfV0aRr/Be9b1VGusazjBLV8JV4w1hjwuk7X6DnVDCo/G
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3420.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(39860400002)(346002)(396003)(376002)(366004)(136003)(64756008)(6486002)(53546011)(66556008)(6506007)(76116006)(66946007)(66476007)(91956017)(83380400001)(8676002)(31696002)(8936002)(66446008)(6512007)(86362001)(2616005)(5660300002)(26005)(2906002)(31686004)(71200400001)(186003)(4326008)(54906003)(110136005)(478600001)(316002)(107886003)(36756003)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: 5q2mY0HeHxprRACWqyqc0ppni/TiEkLMR80oZ4HseKQ8DDOr2qxbwP/XWZBcWETNb/gPwK9f31D35gMekHwFsb0qhrRmq/EY0I/qmOHVTTHFIno2tFg7T1yiaMH5P4QDfowXPUmiXMXgd8yMqRZlVssKS2W/1+etM6sB0dLGvUl9iYOuby1VyYr8FNktHkBN9XvC/AYiBIo5YN97g7lC87pQXdIq0eFV19KQGelBifcgJ1ldg4SBjSIkF7aQcYpctqERMkGdOievP3uso/UjTG3zQ2hJhYR2h3h24ju3nNea8ruPetJ1RB77HFM1rcNHGS9TvwXV67ucyuqt7qNe5yHBmOOs9+uyu/1HFsAJIMByxZUkOQE23ntLhansxUuCw6Bj3GjQmRe8k0vWWCjid8Azxs8YkPHJqHTfFHG473u1Hfo+nAmaRJyKq68mDbEEEmPQMk9af5jkBDFDkm9lDTROq8ytvFOCYSnQoeevL7tbZcj9wxwj5Ofx4IEJdC44eTl8ZfFNeTkke/uWIvjRgiDlcEY6Uo4WHneDlu4vJtkh/xqI3hnANQF+C1j5ceAtHMYXN/3m8nDKTi+Fj+JjLjleFNs4zbcX62XFNmrc0+b19fD/uC8wzSMh3oMrWKId2QA+ToF48rdTQuhBpi0qSw==
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6355AE09821B4244B321E48CD4E5B344@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1731434AbgKEOxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 09:53:07 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:40035 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731451AbgKEOwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 09:52:32 -0500
+X-Originating-IP: 93.29.109.196
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id D36D71C000D;
+        Thu,  5 Nov 2020 14:52:24 +0000 (UTC)
+Date:   Thu, 5 Nov 2020 15:52:24 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-sunxi@googlegroups.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Yong Deng <yong.deng@magewell.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>, kevin.lhopital@hotmail.com
+Subject: Re: [PATCH 08/14] media: sunxi: Add support for the A31 MIPI CSI-2
+ controller
+Message-ID: <20201105145224.GA615923@aptenodytes>
+References: <20201023174546.504028-1-paul.kocialkowski@bootlin.com>
+ <20201023174546.504028-9-paul.kocialkowski@bootlin.com>
+ <20201026165407.rrq6ccsexcsub5bm@gilmour.lan>
+ <20201104113458.GC287014@aptenodytes>
+ <20201104185650.ii7dlekjtfar2xpp@gilmour.lan>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3420.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a59aa68-4a27-421f-e0c5-08d88199cc50
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Nov 2020 14:48:02.9667
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: RhWd+kqRaOSmufgJJGqETTXmu/K3y/yipza08g1r6VZJOAzSUwYHgZ3GZbiVS9retMCkdQltOlrXFzO/GrnaAaKc0FnkJ06CoRlRJsceDr4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1692
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="VS++wcV0S1rZb1Fb"
+Content-Disposition: inline
+In-Reply-To: <20201104185650.ii7dlekjtfar2xpp@gilmour.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNClBsZWFzZSBpZ25vcmUgdGhpcyBzZXJpZXMgZm9yIHRoZSBtb21lbnQgYXMgSSB3aWxs
-IGhhdmUgdG8gcnVuIGZldyBtb3JlDQp0ZXN0cyBvbiBpdC4gU29ycnkgZm9yIHRoZSBub2lzZSEN
-Cg0KVGhhbmsgeW91LA0KQ2xhdWRpdSBCZXpuZWENCg0KT24gMDQuMTEuMjAyMCAxOTo0NSwgQ2xh
-dWRpdSBCZXpuZWEgd3JvdGU6DQo+IEhpLA0KPiANCj4gU0FNQTdHNSBpcyBjYXBhYmxlIG9mIERW
-RlMuIFRoZSBzdXBwb3J0ZWQgQ1BVIGNsb2NrIGZyZXF1ZW5jaWVzIGNvdWxkIGJlDQo+IG9idGFp
-bmVkIGZyb20gQ1BVIFBMTC4gVGhlIGhhcmR3YXJlIGJsb2NrIGRpYWdyYW0gZm9yIGNsb2NrIGZl
-ZWRpbmcgdGhlDQo+IENQVSBpcyBhcyBmb2xsb3dzOg0KPiANCj4gICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICstLS0tLS0tLSsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgKy0t
-PnxkaXZpZGVyMXwtLT4gQ1BVIGNsb2NrDQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwg
-ICArLS0tLS0tLS0rDQo+ICstLS0tLS0tLSsgICArLS0tLS0tLS0tLSsgIHwgICArLS0tLS0tLS0r
-DQo+IHxDUFUgUExMIHwtLT58cHJlc2NhbGxlcnwtLSstLT58ZGl2aWRlcjB8LS0+IE1DSzAgY2xv
-Y2sNCj4gKy0tLS0tLS0tKyAgICstLS0tLS0tLS0tKyAgICAgICstLS0tLS0tLSsNCj4gDQo+IFdo
-ZW4gc3dpdGNoaW5nIENQVSBjbG9jayBmcmVxdWVuY2llcyB0aGUgTUNLMCBpcyBhbHNvIGNoYW5n
-ZWQgYnkgRFZGUw0KPiBkcml2ZXIgdG8gYXZvaWQgaXRzIG92ZXIvdW5kZXIgY2xvY2tpbmcgKGRl
-cGVuZGluZyBvbiBDUFUgY2xvY2sgZnJlcXVlbmN5DQo+IHJlcXVlc3RlZCBieSBEVkZTIGFsZ29y
-aXRobXMpLiBTb21lIG9mIElQcyBmZWVkIGJ5IE1DSzAgYXJlIE1DSzAgZ2xpY2gNCj4gYXdhcmUs
-IHNvbWUgYXJlIG5vdC4gRm9yIHRoaXMgTUNLMCB3YXMgcmVtb3ZlZCBmcm9tIHRoZSBwYXJlbnRz
-IGxpc3Qgb2YNCj4gdGhlIElQcyB3aGljaCBhcmUgbm90IE1DSzAgZ2xpdGNoIGF3YXJlIChwYXRj
-aCA1LzgpLg0KPiANCj4gVGhpcyBzZXJpZXMgYWRhcHQgQVQ5MSBjbG9ja3MgKG1vc3RseSBzYW05
-eDYwLXBsbCBhbmQgbWFzdGVyIGNsb2NrIGRyaXZlcnMpDQo+IHNvIHRoYXQgcnVudGltZSBjaGFu
-Z2VzIG9mIHRoZXNlIGNsb2NrcyB0byBiZSBhbGxvd2VkLg0KPiANCj4gVGhlIENQVSBjbG9jayB3
-YXMgcmVnaXN0ZXJlZCBmcm9tIHByZXNjYWxsZXIgY2xvY2sgKHNlZSBhYm92ZSBkaWFncmFtKQ0K
-PiBhbmQgbm8gc29mdHdhcmUgY29udHJvbCBoYXMgYmVlbiBhZGRlZCBmb3IgZGl2aWRlcjEgYmVj
-YXVzZSB0aGUgZnJlcXVlbmNpZXMNCj4gc3VwcG9ydGVkIGJ5IFNBTUE3RzUncyBDUFUgY291bGQg
-YmUgZGlyZWN0bHkgb2J0YWluZWQgZnJvbSBDUFUgUExMICsNCj4gcHJlc2NhbGxlci4NCj4gDQo+
-IE9uIHRvcCBvZiB0aGlzIHNlcmllcyBJIGFsc28gYWRkZWQgYSBmaXggZm9yIHNhbWE3ZzUuYyBj
-b2RlIChwYXRjaCAxLzgpLg0KPiBQbGVhc2UgbGV0IG1lIGtub3cgaWYgeW91IHdvdWxkIGxpa2Ug
-bWUgdG8gc2VuZCB0aGlzIG9uZSBzZXBhcnRlbHkgKGl0DQo+IHdvdWxkIGJlIG5pY2UgaWYgdGhp
-cyBmaXggY291bGQgYmUgaW50ZWdyYXRlZCBpbiA1LjEwKS4NCj4gDQo+IFRoYW5rIHlvdSwNCj4g
-Q2xhdWRpdSBCZXpuZWENCj4gDQo+IENoYW5nZXMgaW4gdjI6DQo+IC0gcy9hdDkxcm05MjAwX21j
-a19sb2NrL2F0OTFzYW05MjYwX21ja19sb2NrIGluIHBhdGNoIDcvOA0KPiANCj4gQ2xhdWRpdSBC
-ZXpuZWEgKDYpOg0KPiAgIGNsazogYXQ5MTogc2FtYTdnNTogZml4IGNvbXBpbGF0aW9uIGVycm9y
-DQo+ICAgY2xrOiBhdDkxOiBjbGstc2FtOXg2MC1wbGw6IGFsbG93IHJ1bnRpbWUgY2hhbmdlcyBm
-b3IgcGxsDQo+ICAgY2xrOiBhdDkxOiBzYW1hN2c1OiByZW1vdmUgbWNrMCBmcm9tIHBhcmVudCBs
-aXN0IG9mIG90aGVyIGNsb2Nrcw0KPiAgIGNsazogYXQ5MTogc2FtYTdnNTogZGVjcmVhc2UgbG93
-ZXIgbGltaXQgZm9yIE1DSzAgcmF0ZQ0KPiAgIGNsazogYXQ5MTogY2xrLW1hc3RlcjogcmUtZmFj
-dG9yIG1hc3RlciBjbG9jaw0KPiAgIGNsazogYXQ5MTogc2FtYTdnNTogcmVnaXN0ZXIgY3B1IGNs
-b2NrDQo+IA0KPiBFdWdlbiBIcmlzdGV2ICgyKToNCj4gICBkdC1iaW5kaW5nczogY2xvY2s6IGF0
-OTE6IGFkZCBzYW1hN2c1IHBsbCBkZWZpbmVzDQo+ICAgY2xrOiBhdDkxOiBzYW1hN2c1OiBhbGxv
-dyBTWVMgYW5kIENQVSBQTExzIHRvIGJlIGV4cG9ydGVkIGFuZA0KPiAgICAgcmVmZXJlbmNlZCBp
-biBEVA0KPiANCj4gIGRyaXZlcnMvY2xrL2F0OTEvYXQ5MXJtOTIwMC5jICAgICAgfCAgMjAgKyst
-DQo+ICBkcml2ZXJzL2Nsay9hdDkxL2F0OTFzYW05MjYwLmMgICAgIHwgIDI0ICsrLQ0KPiAgZHJp
-dmVycy9jbGsvYXQ5MS9hdDkxc2FtOWc0NS5jICAgICB8ICAzMCArKy0tDQo+ICBkcml2ZXJzL2Ns
-ay9hdDkxL2F0OTFzYW05bjEyLmMgICAgIHwgIDM0ICsrLS0NCj4gIGRyaXZlcnMvY2xrL2F0OTEv
-YXQ5MXNhbTlybC5jICAgICAgfCAgMjIgKystDQo+ICBkcml2ZXJzL2Nsay9hdDkxL2F0OTFzYW05
-eDUuYyAgICAgIHwgIDI3ICsrKy0NCj4gIGRyaXZlcnMvY2xrL2F0OTEvY2xrLW1hc3Rlci5jICAg
-ICAgfCAzMjMgKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLQ0KPiAgZHJpdmVy
-cy9jbGsvYXQ5MS9jbGstc2FtOXg2MC1wbGwuYyB8IDEwMiArKysrKysrKysrLS0NCj4gIGRyaXZl
-cnMvY2xrL2F0OTEvZHQtY29tcGF0LmMgICAgICAgfCAgMTUgKy0NCj4gIGRyaXZlcnMvY2xrL2F0
-OTEvcG1jLmggICAgICAgICAgICAgfCAgMjAgKystDQo+ICBkcml2ZXJzL2Nsay9hdDkxL3NhbTl4
-NjAuYyAgICAgICAgIHwgIDM1ICsrLS0NCj4gIGRyaXZlcnMvY2xrL2F0OTEvc2FtYTVkMi5jICAg
-ICAgICAgfCAgNDEgKysrLS0NCj4gIGRyaXZlcnMvY2xrL2F0OTEvc2FtYTVkMy5jICAgICAgICAg
-fCAgMzcgKysrLS0NCj4gIGRyaXZlcnMvY2xrL2F0OTEvc2FtYTVkNC5jICAgICAgICAgfCAgMzkg
-KysrLS0NCj4gIGRyaXZlcnMvY2xrL2F0OTEvc2FtYTdnNS5jICAgICAgICAgfCAxMzkgKysrKysr
-KysrLS0tLS0tLQ0KPiAgaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9hdDkxLmggICB8ICAxMSAr
-Kw0KPiAgMTYgZmlsZXMgY2hhbmdlZCwgNjkyIGluc2VydGlvbnMoKyksIDIyNyBkZWxldGlvbnMo
-LSkNCj4g
+
+--VS++wcV0S1rZb1Fb
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+On Wed 04 Nov 20, 19:56, Maxime Ripard wrote:
+> On Wed, Nov 04, 2020 at 12:34:58PM +0100, Paul Kocialkowski wrote:
+> > > > +	regmap_write(regmap, SUN6I_MIPI_CSI2_CFG_REG,
+> > > > +		     SUN6I_MIPI_CSI2_CFG_CHANNEL_MODE(1) |
+> > > > +		     SUN6I_MIPI_CSI2_CFG_LANE_COUNT(lanes_count));
+> > >=20
+> > > It's not really clear what the channel is here? The number of virtual
+> > > channels? Something else?
+> >=20
+> > That's somewhat described in the controller documentation. Channels ref=
+ers to
+> > physical channels of the controller, which can be used to redirect data
+> > matching either a specific data type, a specific virtual channel, or bo=
+th.
+> > There's a somewhat similar concept of channels in the CSI controller to=
+o.
+> >=20
+> > We're currently only using one...
+> >=20
+> > > > +	regmap_write(regmap, SUN6I_MIPI_CSI2_VCDT_RX_REG,
+> > > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(3, 3) |
+> > > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(2, 2) |
+> > > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(1, 1) |
+> > > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_VC(0, 0) |
+> > > > +		     SUN6I_MIPI_CSI2_VCDT_RX_CH_DT(0, data_type));
+> >=20
+> > ... but it's safer to configure them all to virtual channel numbers so =
+we don't
+> > end up with multiple channels matching virtual channel 0.
+> >=20
+> > I'll add a comment about that.
+>=20
+> Maybe we should have pads for all of them then, even if we don't support
+> changing anything?
+
+If that's something we can add later (I think it is), I would rather do thi=
+s in
+a sub-sequent series to keep the current one lightweight and merged ASAP.
+
+It would also require some investigation to find out if the MIPI CSI-2 chan=
+nel
+number i goes directly to the CSI controller channel number i or if some
+remapping can take place.
+
+What do you think?
+
+> > > > +static const struct v4l2_subdev_pad_ops sun6i_mipi_csi2_subdev_pad=
+_ops =3D {
+> > > > +	.enum_mbus_code		=3D sun6i_mipi_csi2_enum_mbus_code,
+> > > > +	.get_fmt		=3D sun6i_mipi_csi2_get_fmt,
+> > > > +	.set_fmt		=3D sun6i_mipi_csi2_set_fmt,
+> > > > +	.enum_frame_size	=3D sun6i_mipi_csi2_enum_frame_size,
+> > > > +	.enum_frame_interval	=3D sun6i_mipi_csi2_enum_frame_interval,
+> > > > +};
+> > > > +
+> > > > +/* Subdev */
+> > > > +
+> > > > +static const struct v4l2_subdev_ops sun6i_mipi_csi2_subdev_ops =3D=
+ {
+> > > > +	.core		=3D &sun6i_mipi_csi2_subdev_core_ops,
+> > > > +	.video		=3D &sun6i_mipi_csi2_subdev_video_ops,
+> > > > +	.pad		=3D &sun6i_mipi_csi2_subdev_pad_ops,
+> > > > +};
+> > > > +
+> > > > +/* Notifier */
+> > > > +
+> > > > +static int sun6i_mipi_csi2_notifier_bound(struct v4l2_async_notifi=
+er *notifier,
+> > > > +					  struct v4l2_subdev *remote_subdev,
+> > > > +					  struct v4l2_async_subdev *remote_subdev_async)
+> > > > +{
+> > > > +	struct v4l2_subdev *subdev =3D notifier->sd;
+> > > > +	struct sun6i_mipi_csi2_video *video =3D
+> > > > +		sun6i_mipi_csi2_subdev_video(subdev);
+> > > > +	struct sun6i_mipi_csi2_dev *cdev =3D sun6i_mipi_csi2_video_dev(vi=
+deo);
+> > > > +	int source_pad;
+> > > > +	int ret;
+> > > > +
+> > > > +	source_pad =3D media_entity_get_fwnode_pad(&remote_subdev->entity,
+> > > > +						 remote_subdev->fwnode,
+> > > > +						 MEDIA_PAD_FL_SOURCE);
+> > > > +	if (source_pad < 0)
+> > > > +		return source_pad;
+> > > > +
+> > > > +	ret =3D media_create_pad_link(&remote_subdev->entity, source_pad,
+> > > > +				    &subdev->entity, 0,
+> > > > +				    MEDIA_LNK_FL_ENABLED |
+> > > > +				    MEDIA_LNK_FL_IMMUTABLE);
+> > > > +	if (ret) {
+> > > > +		dev_err(cdev->dev, "failed to create %s:%u -> %s:%u link\n",
+> > > > +			remote_subdev->entity.name, source_pad,
+> > > > +			subdev->entity.name, 0);
+> > > > +		return ret;
+> > > > +	}
+> > > > +
+> > > > +	video->remote_subdev =3D remote_subdev;
+> > > > +	video->remote_pad_index =3D source_pad;
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > > > +
+> > > > +static const struct v4l2_async_notifier_operations sun6i_mipi_csi2=
+_notifier_ops =3D {
+> > > > +	.bound		=3D sun6i_mipi_csi2_notifier_bound,
+> > > > +};
+> > > > +
+> > > > +/* Media Entity */
+> > > > +
+> > > > +static int sun6i_mipi_csi2_link_validate(struct media_link *link)
+> > > > +{
+> > > > +	struct v4l2_subdev *subdev =3D
+> > > > +		container_of(link->sink->entity, struct v4l2_subdev, entity);
+> > > > +	struct sun6i_mipi_csi2_video *video =3D
+> > > > +		sun6i_mipi_csi2_subdev_video(subdev);
+> > > > +	struct v4l2_subdev *remote_subdev;
+> > > > +	struct v4l2_subdev_format format =3D { 0 };
+> > > > +	int ret;
+> > > > +
+> > > > +	if (!is_media_entity_v4l2_subdev(link->source->entity))
+> > > > +		return -EINVAL;
+> > > > +
+> > > > +	remote_subdev =3D media_entity_to_v4l2_subdev(link->source->entit=
+y);
+> > > > +
+> > > > +	format.which =3D V4L2_SUBDEV_FORMAT_ACTIVE;
+> > > > +	format.pad =3D link->source->index;
+> > > > +
+> > > > +	ret =3D v4l2_subdev_call(remote_subdev, pad, get_fmt, NULL, &form=
+at);
+> > > > +	if (ret)
+> > > > +		return ret;
+> > > > +
+> > > > +	video->mbus_code =3D format.format.code;
+> > > > +
+> > > > +	return 0;
+> > > > +}
+> > >=20
+> > > I'm not really sure what you're trying to validate here?
+> >=20
+> > The whole purpose is to retreive video->mbus_code from the subdev, like=
+ it's
+> > done in the sun6i-csi driver. Maybe there is a more appropriate op to d=
+o it?
+>=20
+> I'm not sure why you need to do that in the link_validate though?
+>=20
+> You just need to init the pad format, and then you'll have a
+> get_fmt/set_fmt for your pads.
+
+Okay I may have misunderstood how manual/automatic propagation is supposed =
+to
+work then. The fact that this is done this way in the CSI driver maybe gave=
+ me
+a bad example to follow. I'll revisit this.
+
+> > > > +	cdev->regmap =3D devm_regmap_init_mmio_clk(&pdev->dev, "bus", io_=
+base,
+> > > > +						 &sun6i_mipi_csi2_regmap_config);
+> > > > +	if (IS_ERR(cdev->regmap)) {
+> > > > +		dev_err(&pdev->dev, "failed to init register map\n");
+> > > > +		return PTR_ERR(cdev->regmap);
+> > > > +	}
+> > >=20
+> > > Yeah, so that won't work. regmap expects to have access to those
+> > > registers when you enable that clock, but that won't happen since the
+> > > reset line can be disabled. You would be better off using runtime_pm
+> > > here.
+> >=20
+> > I don't understand what you mean here or what the problem could be.
+> > Here we're just initializing regmap and while this is done before the
+> > registers are available for I/O, I don't see why it would cause any
+> > issue at this point.
+>=20
+> The regmap here is supposed to take care of the resources, except it
+> only does it for some of the resources here, which kind of breaks the
+> expectations. And it doesn't allow you to have the reset / clock
+> sequence properly done.
+
+I'm not following any of this. Could you break it down some more?
+In particular I don't see the relationship between initializing the regmap
+API (which does take IORESOURCE_MEM in) and reset / clocks.
+
+Just initializing the regmap API for I/O mem doesn't mean that the registers
+are ready for use, does it? We're not requesting any I/O operation from it
+at this point.
+
+> > The exact same thing is done in the CSI driver.
+>=20
+> That's not an argument though, is it? :)
+
+That's not the point, the point is rather that if this is wrong, we should =
+fix
+it in the CSI driver as well.
+
+Paul
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--VS++wcV0S1rZb1Fb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl+kEagACgkQ3cLmz3+f
+v9HuSAf9Gkn+ldPjpLI6G6VyL2L/bdS/Ue56m5gMEw2d9X14pvDHAIB9GySZd9PW
+mLsWayeu3/V6sDacK3y1zwh9RLyRLg5TyaBV6w2UkgImNJcnpQRkhhUOEB9W+Ua7
+aDDIUiRynclnqXET0VptEp1MX/qJHBoA63UMuJKQaKDc/1oR3ozyJTC2R8GM7Uyx
+AWz4rgxLEkiw7VMe30gLiv2j4udFag6iZjk5zNJ7CyEXpBdzDTizXK2SCc1C54Yq
+/090KaJgH5Mn0qUocqVTEhUXoLPaFXPLx7Ue2c1YrPGRny1+HIweiNMsu9OegVQ9
+WX7GAGxkLn/VLwFvjVN5/B4laAYcsA==
+=WdiC
+-----END PGP SIGNATURE-----
+
+--VS++wcV0S1rZb1Fb--
