@@ -2,190 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C4D12A836E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:23:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AEA92A83BA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:43:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726729AbgKEQXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 11:23:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34306 "EHLO
+        id S1726214AbgKEQnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 11:43:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725998AbgKEQXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 11:23:46 -0500
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2B7C0613CF;
-        Thu,  5 Nov 2020 08:23:44 -0800 (PST)
-Received: by mail-ed1-x544.google.com with SMTP id k9so2166569edo.5;
-        Thu, 05 Nov 2020 08:23:44 -0800 (PST)
+        with ESMTP id S1725862AbgKEQnQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 11:43:16 -0500
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B392C0613CF;
+        Thu,  5 Nov 2020 08:43:16 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id 7so3578659ejm.0;
+        Thu, 05 Nov 2020 08:43:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=Hu62pbz3neBXikSEmZ96SWPoUOawE1pLh+7ImLoJflk=;
-        b=ODPCIZLT9TxECYCyI34q91uUAYLgf1QXIkyyrMHTZc2oG7+nMbbeYH0ZBTz0jUD8+T
-         UfHs2aB8JxpS5ENaGWHH7IWJyJJWVY66hsJrTKGOOFhNIm5RUBYJxsaSFWwBCGBB23Qc
-         dDlVdhL9GM94iNNakLW4OgUyPE8UQGCaSvKHhzvwfdaJQroJZZibnBaw2KHrS+92TeDx
-         uzb6zPSUDemAJqWh2x6y5X8fT6iDesPSGoIdGUf9jtvyr/YFbts0mR4kZGbcoZwWECTP
-         JqwVSKBnbhRf8Mbe3Q6ExfgUmUii7LVwACDjrLTVNu3nP1uAxuvP/SKsHHzLbpS3ioEV
-         i+hA==
+        bh=MUHzt/aOMzvK34CeKWSITVow97AJX9O5o2+ty65sZIk=;
+        b=LzA+1vr63D780w720C5xZvA6vEEXiF1QiiLbCBtFLJ/T69ol+ZbfzE8R6UgitXPesU
+         3dbPnImS5XLmMs5e6s5ZzGAwXBTS6z2X5kz817q0fybvy48YHdEtVPoW7758q7DOtLJZ
+         vn85gLnkhQS8pgLR41hNwW+2op1ZvgVKNWn/vIukp3BgReSBXDsFgmevewq8WaheRX8L
+         6ndc6DVy+qaqHZ4oJpQrOPFgUZowIh5Td4/wfiazY1bEKws2LUWfWjc/3iAdHBh8bvVw
+         ma3/H4jWNHZq+tNEjfwhcUJdsfBajTgGXyb2KI/LhjiHLM1GEjmwiLBBOJCY9wbkUA/4
+         tuew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Hu62pbz3neBXikSEmZ96SWPoUOawE1pLh+7ImLoJflk=;
-        b=GJYnhohKfU2G+uN0MpbJez0Hqh7gvwYvXumBvRRSyuvB8vlKexiO9mPEz9fMG+AHU3
-         SHzjRfcnsfdZqbUjGZehriErUcXnQaoiKpFESVX9v5CCCmnOJ2CN7tE9bpr0YEpdqAAv
-         EvlzWMdxJX56PS21fC1TA5ey1vJBQf5d5g0jRBYPswli0UrDilQ8gV28roJhkgdYd2T2
-         IxFrhScMlRS6Nw/tXJ0v7Nd4XT9xDLvAsPZIXwZe3QCKcGN/JAxG4onC7pFy61kR3lmC
-         Bq+vECE0kLZZ1kaGJQhg2cxnE9HXuoeqaftQzh5Go5A1ODMrh+7P9SdniOaOOcEGbznn
-         /ZJQ==
-X-Gm-Message-State: AOAM5316un1bo3umZq/q7VECcKitX27wgvqxvEMWpohqeHZyDCCM3MPe
-        nh2ujzCPYPcEHaj07dAALNwKlYvwkYI=
-X-Google-Smtp-Source: ABdhPJwtkbqUO5nQP/ZnEkBUiql0jynh2IPlmxMX5hd6q7UtoT97fCCdkNL4Y8AU+grGmbc2FNSdog==
-X-Received: by 2002:aa7:dd49:: with SMTP id o9mr3295364edw.143.1604593422985;
-        Thu, 05 Nov 2020 08:23:42 -0800 (PST)
+        bh=MUHzt/aOMzvK34CeKWSITVow97AJX9O5o2+ty65sZIk=;
+        b=m4G8xTH53Eh8NKC9ooeJNkC0IN3PNuHDWBESv//0Ao4qa8dj+4DW0Ki+xBEaTsoKDc
+         X+/YhHBe3F+Sus7ttuvi7lYZdbfAZOehD3+umSX1ozq1ries3O8fEBrad78vhlA8yuZH
+         3nQ/spoINlXQxP2iL0qM836axVXkXftUUUA7KVROkxN+zjuOeKz7VsskNKOkUHYZlWxh
+         0xkkR8spWZMn9Mtrm+dWtqAFl3wZ95xk9nBRjrSXMZwXguCK5n46lWq9MOtUUZYOnsK/
+         QCAdiwGOxeIWWmIJngrHf5818jckIX5IWfMwaT9+q+Y6VohReorsx5g0Dk4Fu3lRJ3pn
+         9KEw==
+X-Gm-Message-State: AOAM532z4qJ8JRLQQqdzrWALKcnMunnf7BIht2HlNFj9r7jIWt5nlyot
+        RIYRtmdwM69sInZsIKiBwM4=
+X-Google-Smtp-Source: ABdhPJw9nKZC/lQ95xHQXgLopBGxHmIZY9X3EaQNx6ZcDBIE+Emx0vsEUm6/ERUu1rdLbov8m9SUow==
+X-Received: by 2002:a17:906:b292:: with SMTP id q18mr3057756ejz.93.1604594595067;
+        Thu, 05 Nov 2020 08:43:15 -0800 (PST)
 Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id bg4sm1252002ejb.24.2020.11.05.08.23.41
+        by smtp.gmail.com with ESMTPSA id w3sm1218882edt.84.2020.11.05.08.43.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 08:23:41 -0800 (PST)
-Date:   Thu, 5 Nov 2020 17:23:40 +0100
+        Thu, 05 Nov 2020 08:43:13 -0800 (PST)
+Date:   Thu, 5 Nov 2020 17:43:12 +0100
 From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Joerg Roedel <joro@8bytes.org>,
         Frank Rowand <frowand.list@gmail.com>,
         Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
         iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+        linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
  property
-Message-ID: <20201105162340.GC485884@ulmo>
+Message-ID: <20201105164312.GD485884@ulmo>
 References: <20200904130000.691933-1-thierry.reding@gmail.com>
- <d3d69cb4-b0f9-40b0-b526-52fdc1a4b876@gmail.com>
- <20200924140130.GA2527337@ulmo>
- <ba16b795-34df-8f8c-3376-3d629cc30f8b@gmail.com>
- <484b9e90-7395-6161-577c-4d3f3716997e@arm.com>
- <70712ca4-8971-3af4-d0d0-b73788d6cfa9@gmail.com>
+ <20200914220829.GA330122@bogus>
+ <20200915123648.GA3496938@ulmo>
+ <20200924112725.GA2486709@ulmo>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="LwW0XdcUbUexiWVK"
+        protocol="application/pgp-signature"; boundary="rz+pwK2yUstbofK6"
 Content-Disposition: inline
-In-Reply-To: <70712ca4-8971-3af4-d0d0-b73788d6cfa9@gmail.com>
+In-Reply-To: <20200924112725.GA2486709@ulmo>
 User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---LwW0XdcUbUexiWVK
-Content-Type: text/plain; charset=utf-8
+--rz+pwK2yUstbofK6
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 25, 2020 at 04:21:17PM +0300, Dmitry Osipenko wrote:
-> 25.09.2020 15:39, Robin Murphy =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> ...
-> >> IIRC, in the past Robin Murphy was suggesting to read out hardware sta=
-te
-> >> early during kernel boot in order to find what regions are in use by
-> >> hardware.
+On Thu, Sep 24, 2020 at 01:27:25PM +0200, Thierry Reding wrote:
+> On Tue, Sep 15, 2020 at 02:36:48PM +0200, Thierry Reding wrote:
+> > On Mon, Sep 14, 2020 at 04:08:29PM -0600, Rob Herring wrote:
+> > > On Fri, Sep 04, 2020 at 02:59:57PM +0200, Thierry Reding wrote:
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >=20
+> > > > Reserved memory regions can be marked as "active" if hardware is
+> > > > expected to access the regions during boot and before the operating
+> > > > system can take control. One example where this is useful is for the
+> > > > operating system to infer whether the region needs to be identity-
+> > > > mapped through an IOMMU.
+> > >=20
+> > > I like simple solutions, but this hardly seems adequate to solve the=
+=20
+> > > problem of passing IOMMU setup from bootloader/firmware to the OS. Li=
+ke=20
+> > > what is the IOVA that's supposed to be used if identity mapping is no=
+t=20
+> > > used?
 > >=20
-> > I doubt I suggested that in general, because I've always firmly believed
-> > it to be a terrible idea. I've debugged too many cases where firmware or
-> > kexec has inadvertently left DMA running and corrupted kernel memory, so
-> > in general we definitely *don't* want to blindly trust random hardware
-> > state. Anything I may have said in relation to Qualcomm's fundamentally
-> > broken hypervisor/bootloader setup should not be considered outside that
-> > specific context ;)
+> > The assumption here is that if the region is not active there is no need
+> > for the IOVA to be specified because the kernel will allocate memory and
+> > assign any IOVA of its choosing.
 > >=20
-> > Robin.
+> > Also, note that this is not meant as a way of passing IOMMU setup from
+> > the bootloader or firmware to the OS. The purpose of this is to specify
+> > that some region of memory is actively being accessed during boot. The
+> > particular case that I'm looking at is where the bootloader set up a
+> > splash screen and keeps it on during boot. The bootloader has not set up
+> > an IOMMU mapping and the identity mapping serves as a way of keeping the
+> > accesses by the display hardware working during the transitional period
+> > after the IOMMU translations have been enabled by the kernel but before
+> > the kernel display driver has had a chance to set up its own IOMMU
+> > mappings.
 > >=20
-> >> I think it should be easy to do for the display controller since we
-> >> could check clock and PD states in order to decide whether DC's IO cou=
-ld
-> >> be accessed and then read out the FB pointer and size. I guess it shou=
-ld
-> >> take about hundred lines of code.
+> > > If you know enough about the regions to assume identity mapping, then=
+=20
+> > > can't you know if active or not?
+> >=20
+> > We could alternatively add some property that describes the region as
+> > requiring an identity mapping. But note that we can't make any
+> > assumptions here about the usage of these regions because the IOMMU
+> > driver simply has no way of knowing what they are being used for.
+> >=20
+> > Some additional information is required in device tree for the IOMMU
+> > driver to be able to make that decision.
 >=20
-> The active DMA is indeed very dangerous, but it's a bit less dangerous
-> in a case of read-only DMA.
->=20
-> I got another idea of how we could benefit from the active display
-> hardware. Maybe we could do the following:
->=20
-> 1. Check whether display is active
->=20
-> 2. Allocate CMA that matches the FB size
->=20
-> 3. Create identity mapping for the CMA
->=20
-> 4. Switch display framebuffer to our CMA
->=20
-> 5. Create very early simple-framebuffer out of the CMA
->=20
-> 6. Once Tegra DRM driver is loaded, it will kick out the simple-fb, and
-> thus, release temporal CMA and identity mapping.
->=20
-> This will provide us with a very early framebuffer output and it will
-> work on all devices out-of-the-box!
+> Rob, can you provide any hints on exactly how you want to move this
+> forward? I don't know in what direction you'd like to proceed.
 
-Well that's already kind of what this is trying to achieve, only
-skipping the CMA step because the memory is already there and actively
-being scanned out from. The problem with your sequence above is first
-that you have to allocate from CMA, which means that this has to wait
-until CMA becomes available. That's fairly early, but it's not
-immediately there. Until you get to that point, there's always the
-potential for the display controller to read out from memory that may
-now be used for something else. As you said, read-only active DMA isn't
-as dangerous as write DMA, but it's not very nice either.
+Hi Rob,
 
-Furthermore, your point 5. above requires device-specific knowledge and
-as I mentioned earlier that requires a small, but not necessarily
-trivial, device-specific driver to work, which is very impractical for
-multi-platform kernels.
+do you have any suggestions on how to proceed with this? I'd like to get
+this moving again because it's something that's been nagging me for some
+months now. It also requires changes across two levels in the bootloader
+stack as well as Linux and it takes quite a bit of work to make all the
+changes, so before I go and rewrite everything I'd like to get the DT
+bindings sorted out first.
 
-There's nothing preventing these reserved-memory regions from being
-reused to implement simple-framebuffer. I could in fact imagine a fairly
-simple extension to the existing simple-framebuffer binding that could
-look like this for Tegra:
+So just to summarize why I think this simple solution is good enough: it
+tries to solve a very narrow and simple problem. This is not an attempt
+at describing the firmware's full IOMMU setup to the kernel. In fact, it
+is primarily targetted at cases where the firmware hasn't setup an IOMMU
+at all, and we just want to make sure that when the kernel takes over
+and does want to enable the IOMMU, that all the regions that are
+actively being accessed by non-quiesced hardware (the most typical
+example would be a framebuffer scanning out a splat screen or animation,
+but it could equally well be some sort of welcoming tone or music being
+played back) are described in device tree.
 
-	dc@52000000 {
-		compatible =3D "nvidia,tegra210-display", "simple-framebuffer";
-		...
-		memory-region =3D <&framebuffer>;
-		width =3D <1920>;
-		height =3D <1080>;
-		stride =3D <7680>;
-		format =3D "r8g8b8";
-		...
-	};
+In other words, and this is perhaps better answering your second
+question: in addition to describing reserved memory regions, we want to
+add a bit of information here about the usage of these memory regions.
+Some memory regions may contain information that the kernel may want to
+use (such an external memory frequency scaling tables) and those I would
+describe as "inactive" memory because it isn't being accessed by
+hardware. The framebuffer in this case is the opposite and it is being
+actively accessed (hence it is marked "active") by hardware while the
+kernel is busy setting everything up so that it can reconfigure that
+hardware and take over with its own framebuffer (for the console, for
+example). It's also not so much that we know enough about the region to
+assume it needs identity mapping. We don't really care about that from
+the DT point of view. In fact, depending on the rest of the system
+configuration, we may not need identity mapping (i.e. if none of the
+users of the reserved memory region are behind an IOMMU). But the point
+here is that the IOMMU drivers can use this "active" property to
+determine that if a device is using an "active" region and it is behind
+an IOMMU, then it must identity map that region in order for the
+hardware, which is not under the kernel's control yet, to be able to
+continue to access that memory through an IOMMU mapping.
 
-That's not dissimilar to what you're proposing above, except that it
-moves everything before step 5. into the bootloader's responsibility and
-therefore avoids the need for hardware-specific early display code in
-the kernel.
-
+Thanks,
 Thierry
 
---LwW0XdcUbUexiWVK
+--rz+pwK2yUstbofK6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+kJwoACgkQ3SOs138+
-s6ERrg/9EQcqVKr72kFSZhGQZ8IsbYN6n9XzzYePwKbGLs/jpZhn1eFHLZcsP7e+
-sh62xwiC4yJBAayyE/o6pv8azUYB0RdRHbcDTkk6yWygZL6QNQ5rRrFxTaoNqvEB
-sZg8+dHup/ZTQQALWM5gV7L6jroJUMbZKKkZZ3lUvrS+JutqR+vDkNAQWhrMT5+z
-OrcNd3leMG6DV0V2gLQzoPawLCuZKAtjB7OWaLjNzqRP0wmuCEydrZqeBN7j1DC5
-4epDr9wxMF0hlJ9M3Bmgh3cj6zVhUcwK95oMTu4Ugf43JIsAtNZkIgb+o4+tEtBo
-FQRKzV+52IwfQeXeGJwz6Wl0oSH8INyy3Y6Klw5Nlp2hAGyUKP3W6LyGL2kWbJO5
-0YJYW9IxRQO3+/IZLWUlb4JKu1vsjyBgzXyem/U0gyn0txUytW805qmo90QtIM5J
-jJW3KrzfTqRP7S09R/fhNwWCVYmZrP509+CJDaIGEuhWNic6GERqbzMTG4XzVs6L
-s2HmOBEzVdoOlqMqyiK5ftooQotP3gSm2dnc7sOxQ+llPtxoXo2c+G210IMPvWxp
-9J0vzZ2RTNnoyhZtAMfYW73+Zr2xIS+6PODiYuc5ymU/gnpHLrONeSv7jRDyPBzM
-G652Pg5lVeHIvVPFySxiqjG982iZw1Tpeoy2qZEy2S3IBZO04S8=
-=gf22
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+kK50ACgkQ3SOs138+
+s6GeshAAqujd/b1kLpQk6DvCmgw/6tYbgtWCapP2KRJqZFZeWZYElnYi+AWsHY2+
+OlIHPL3tQo8vK7xIJnbHp+rWwRCdjqNnGHwO4A1uyBoCDzJbfGPZVbnz9v4o4O6t
+IbFbaxLneZ251xxmx3KcyaqYQfdbRMU5/ArctUSRk6VAExQxDwNZadR4hqAKrMBM
+yzT3+wW+tGCsRIDAJLeKoOI7NYic+HwMHk91yWuUWI/NNePxq9V++pIQpCNxhr00
+ktihG5/k9Wov78J0GLWJAg+CjxPme93T0Py9RuETpDL9Et0LyFwy82G/vkXt6JnI
+a9LzA63ZHpKINDIeEd3r9S660PNRV4C1saD6UU7i+zqbhT62S1usav/+b6WJPpVF
+rp34hsTY0oz76EsFxmh/rvfhwmrcIxdhOd893jk0HDVzeQc9eanzBfzB7o6Y0I2P
+FPFmCjzP3oDeo7AohBO6/iSNmr2h2u14i4iys8wEnfgmeLEtQjCxnRFo7CoDaUZl
+TKi84ghNvQ4FavUvgTH5xbR2YChhc6UgdGdIhzIENwTyPAcs/bqP3ncdk7e+UlDU
+B4KQUtPrpIVexJqTN/gI+xjNqHII35RzJc1Z4/8ChA2RaX22NAXtEAVyDzUkw0VH
+zAo8H7hCRhKrz9Vnl3WCy+27X/klOri8V86Vh4F5yYh5WP9SJhw=
+=xlxf
 -----END PGP SIGNATURE-----
 
---LwW0XdcUbUexiWVK--
+--rz+pwK2yUstbofK6--
