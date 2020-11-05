@@ -2,108 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CDFE2A792C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:25:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A57862A7948
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:30:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727046AbgKEIZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 03:25:48 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:43561 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725287AbgKEIZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:25:48 -0500
-Received: by mail-ed1-f67.google.com with SMTP id b9so598123edu.10;
-        Thu, 05 Nov 2020 00:25:46 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BynuZQ4IcnE7iQujs9AoYeaOaUtAjpLHhcdFHAx92NU=;
-        b=KsfvtKhUqlHfJKdbL+R7bwLAvlK/PVwicE7CoswcKOw8v4F50c5EPseD1C9Gk4wk16
-         9nF8VUbtKuzu0O+yTY6eKZsDPY7odm0vgoRkgXxe24VkzgtWEczNzm3VHtgrR9eQ8XRI
-         RIKUr7MYlxrms4wDtGkSD8sILgtkhOjokStvRKiM2oiOAFBfAY431uFaSol1xWl+culx
-         MdvSooGSe+Hse0EBOi+G2m9P3Anc9aXSWIk3QmB7VbREPH7OX1uexhqcsP7Gbz/cDkA7
-         iaMIL/T5KjW0DeIYZ9gN20lheYgMShBMo71qWG8xLqk3QBEF2suzG0hViRzRUZqZ+SE9
-         uOPg==
-X-Gm-Message-State: AOAM530pc+ZgsxRLrXAFzrIdIID1IlWtjhwUU2Pp7BSM9sryusfQKF82
-        izipVNPmMJOST6G/nOlSR18=
-X-Google-Smtp-Source: ABdhPJxkpUg1Mul8x6cVLkyTVYz10e4c3t5chhkLiHgDZkp8bbZfVtyDie7JQU7x4d52LbYCid3dFg==
-X-Received: by 2002:aa7:cdd3:: with SMTP id h19mr1411156edw.330.1604564746185;
-        Thu, 05 Nov 2020 00:25:46 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id k26sm447082edf.85.2020.11.05.00.25.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 00:25:45 -0800 (PST)
-Date:   Thu, 5 Nov 2020 09:25:43 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
- soc unique ID
-Message-ID: <20201105082543.GA17569@kozik-lap>
-References: <20201105072629.24175-1-alice.guo@nxp.com>
+        id S1729867AbgKEI37 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 03:29:59 -0500
+Received: from mga14.intel.com ([192.55.52.115]:38466 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725827AbgKEI37 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 03:29:59 -0500
+IronPort-SDR: Cj+uM4S8BHz0vTOEMHfjAtiQjHqSEfCpwFwSKXwodAWEJY8DQlCSmVxCiua/HXacAgHfU/VWq8
+ Kna28syZ91cw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="168564869"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; 
+   d="scan'208";a="168564869"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2020 00:29:59 -0800
+IronPort-SDR: bIpWq1MLoGbvv+4fLB/sb1nvEAbF/YGJYWVHJmiYLBDG12K4o23kaNDfCyCukglqXZYbgG63yr
+ BK6hOCaBOnEw==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; 
+   d="scan'208";a="306758610"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2020 00:29:54 -0800
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 4B1AE20901; Thu,  5 Nov 2020 10:29:51 +0200 (EET)
+Date:   Thu, 5 Nov 2020 10:29:51 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Hugues Fruchet <hugues.fruchet@st.com>
+Cc:     Alexandre Torgue <alexandre.torgue@st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alain Volmat <alain.volmat@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe CORNU <philippe.cornu@st.com>
+Subject: Re: [PATCH v5 0/4] DCMI BT656 parallel bus mode support
+Message-ID: <20201105082951.GY26150@paasikivi.fi.intel.com>
+References: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201105072629.24175-1-alice.guo@nxp.com>
+In-Reply-To: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 03:26:26PM +0800, Alice Guo wrote:
-> Add DT Binding doc for the Unique ID of i.MX 8M series.
-> 
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> ---
->  .../devicetree/bindings/arm/fsl.yaml          | 33 +++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index e4db0f9ed664..0419f078502b 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -901,6 +901,39 @@ properties:
->                - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
->            - const: fsl,s32v234
-> 
-> +  soc:
-> +    description:
-> +      i.MX8M Family SoC must provide a soc node in the root of the device tree,
-> +      representing the System-on-Chip since these test chips are rather complex.
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        oneOf:
-> +          - items:
-> +              - const: fsl,imx8mm-soc
-> +              - const: simple-bus
-> +          - items:
-> +              - const: fsl,imx8mn-soc
-> +              - const: simple-bus
-> +          - items:
-> +              - const: fsl,imx8mp-soc
-> +              - const: simple-bus
-> +          - items:
-> +              - const: fsl,imx8mq-soc
-> +              - const: simple-bus
-> +
-> +      nvmem-cells:
-> +        maxItems: 1
-> +        description: Phandle to the SOC Unique ID provided by a nvmem node
-> +
-> +      nvmem-cells-names:
-> +        const: soc_unique_id
-> +
-> +    required:
-> +      - compatible
-> +      - nvmem-cells
-> +      - nvmem-cell-names
-> +
+Hi Hugues,
 
-Did you actually test it? I see multiple errors with this patch.
-fsl-ls1012a-frdm.dt.yaml: /: soc:compatible: ['simple-bus'] is not valid under any of the given schemas
+On Wed, Nov 04, 2020 at 06:32:08PM +0100, Hugues Fruchet wrote:
+> Add support of BT656 embedded synchronization bus.
+> This mode allows to save hardware synchro lines hsync & vsync
+> by replacing them with synchro codes embedded in data stream.
+> Add "bus-type" property and make it required so that there is no
+> ambiguity between parallel mode (bus-type=5) and BT656 mode (bus-type=6).
 
-Best regards,
-Krzysztof
+Thanks for the update.
 
+Regarding the two last patches, which tree they're intended to go to?
+Something else than media? I can also take them if it's ok for the
+maintainer of the "right" tree.
+
+-- 
+Kind regards,
+
+Sakari Ailus
