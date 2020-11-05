@@ -2,151 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9941C2A7CAE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:13:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 581912A7CCB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:18:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729016AbgKELNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 06:13:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42064 "EHLO
+        id S1727851AbgKELSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 06:18:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730114AbgKELNF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:13:05 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 062FAC061A4A
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 03:13:05 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id 10so1239845pfp.5
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 03:13:05 -0800 (PST)
+        with ESMTP id S1726067AbgKELSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:18:32 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C0BEC0613CF
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 03:18:31 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id 126so1724027lfi.8
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 03:18:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=BcYYFtNRltYDE4hy/KAkGjdjtprJ1Trm7OKV+MnN8cU=;
-        b=u8YwcS6hVr8BwxXTTAlNESEmEgsS3lF6OTr1XaUbam4I/edC3qndBdjg6Uy8iz2Q4Q
-         hYlNAs1/XTw3soHv/si3tXmCczuo3mNDte6nlbwM878k4WF91kDK1iYVRDtibkoROSKj
-         yjfCZIqB3MO3ncbEJATqL58LXrnls4IqwABwbbGOdNIV9RGTDrMZptXqbnjj+V1N6WqI
-         HBRHng10F8RPuKJ6CJ1uCINPNb6xUgsC8CsubJFIRFcKAf9XUt6Zu0y7tcW3MCJO9JyS
-         huRJpus5BnMDQprBpyeMBR2Zh8O7Sqy9/tsu93YAUw3ok0YtILTEkI4ZmB3ZgeuvMkLC
-         Ze4g==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xr8Etnt0om9PsOUNVkw+aXNjAauI9wTZAxVpVWoVW5Y=;
+        b=nrS+R7zQOGNIad0W4DCyUiMbBDhaOzjCBxiqWijzOwMYLqIxVXgJqSi8mPf/pWcDcD
+         44ZKQwxpOg8FwfTrtIybebGzTwH513EZ4cZ8xis0+MHUeNnN62uwc1LBqjwAvI7MRPFf
+         tWbULl5zBObn8wCW22OVZGaqdfnVG5PdwMefNSVJhzRPx53wBiHQg324TI/EW54WpcV2
+         lKu+8/BYUVYthmr83c+qEZo8c66aY1OE4TkxEMCh+5pcTvEMXveJrmo6w9HN8mutufYV
+         PT9heWL6TEYC+odmOJNXQTcj/D15RacQ8pbwBZCOHEbxS9bV1PXj7IvEZ8lYr89shX2q
+         SByw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=BcYYFtNRltYDE4hy/KAkGjdjtprJ1Trm7OKV+MnN8cU=;
-        b=GFBLC6yVLJaADpa/k0sifliJj29dI84U3O2lGpZHR4IpncMT5670mZLsMo3JZJZkPr
-         ZWWH4lh3UoPaigOAdv1DyyhLPGp0cQ2ex0fg+O/IsOMtOFMZirSPVmzTbd6UEdK/ujf7
-         ZeAkUNVoKoPEL8Zs/8AjP0Aarq3+eBqeyJ6tAFNvmUUMGT6YXf80tAoprxPK3Yi5mQzK
-         pS05BGUgazd3oWh4D+8FNfDh5JIGAvHmRCInFiLnH1JtdhKC3ZOeeyRpIQ7C8ckbv7Pw
-         wNQZ9OBhTpHqDeKTSzEMvzHDL7vJHGmUfnO9BXPhozyKCt3jlUpuFwAEAzuVBYbesdsF
-         E5/g==
-X-Gm-Message-State: AOAM530yB6w4Qui8pDsvL9EH7TM/Nl1u3UY64jgmYejSzxUx53C1oohM
-        POP65ohTB5vpCq8RSXJ6jki2fw==
-X-Google-Smtp-Source: ABdhPJwnuuk4daHbZCdYn/aCWQKiS7cX8bO0eWv5v6ODss+cRR8E8lvUDPwS9VwogQBWTDgNXP1wow==
-X-Received: by 2002:a17:90a:e391:: with SMTP id b17mr1925329pjz.209.1604574784247;
-        Thu, 05 Nov 2020 03:13:04 -0800 (PST)
-Received: from localhost ([122.172.12.172])
-        by smtp.gmail.com with ESMTPSA id f204sm2296698pfa.189.2020.11.05.03.13.02
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 05 Nov 2020 03:13:03 -0800 (PST)
-Date:   Thu, 5 Nov 2020 16:43:01 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-Message-ID: <20201105111301.2hxfx2tnmf2saakp@vireshk-i7>
-References: <20201104234427.26477-1-digetx@gmail.com>
- <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
- <20201105100603.skrirm7uke4s2xyl@vireshk-i7>
- <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
- <20201105104009.oo4dc6a2gdcwduhk@vireshk-i7>
- <CAPDyKFpQG98d6foc1U6fp3YEBdZ1vLqY9cmWxpUwXoKgDn+ojQ@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=xr8Etnt0om9PsOUNVkw+aXNjAauI9wTZAxVpVWoVW5Y=;
+        b=EeKKkKVpGBsQ4u1n0MC3aMHC1pZZMbzqddfGhQqXs5NjNzA3EbNZkK8mhg91DlZiqL
+         J7rqYHxJA+WCXpbOnzA+4pervQChLF3rlDiKgMVrg4mxredEQFlkXtuPI9nIc9prfHVb
+         BqFhteLtYe+7k85sw3HSjMpduuLf54rBCGQxqRMbk0Ae9DhCByWDqxLf1iCq4tGgpO2C
+         qaw4xUdiiAdIgeeyI/KGu4BkK0b3S8dcLxF6svITIxdKIMdnZpJ0cuUem0HQiTejKuRC
+         HWsuvy890wJlL1Vf6zmmgOzhYlW9PzLCUmygydI/Mza05Lg7c4jrSDvRKbZsipvBGXq7
+         vt5A==
+X-Gm-Message-State: AOAM533LFCXUutnkt6WW62IcQSlVL5C1uTzM4q6vGyryaWrB/iO6uh33
+        eIS6tjYM6wvuZbxviZ1/2gIG/g==
+X-Google-Smtp-Source: ABdhPJyO99WAJFi3WIONOHNT9vEfbRGdCrmUs6rmtjq+pR78LYGw0yPRNFM6c9YX4nfQf/QssU5z6g==
+X-Received: by 2002:a19:c212:: with SMTP id l18mr747517lfc.399.1604575108659;
+        Thu, 05 Nov 2020 03:18:28 -0800 (PST)
+Received: from localhost (c-9b28e555.07-21-73746f28.bbcust.telenor.se. [85.229.40.155])
+        by smtp.gmail.com with ESMTPSA id j17sm6066lfb.114.2020.11.05.03.18.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 03:18:28 -0800 (PST)
+From:   Anders Roxell <anders.roxell@linaro.org>
+To:     robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Anders Roxell <anders.roxell@linaro.org>
+Subject: [PATCH] arm64: dts: freescale: fix typo Makefile
+Date:   Thu,  5 Nov 2020 12:18:23 +0100
+Message-Id: <20201105111823.1613337-1-anders.roxell@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFpQG98d6foc1U6fp3YEBdZ1vLqY9cmWxpUwXoKgDn+ojQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-11-20, 11:56, Ulf Hansson wrote:
-> On Thu, 5 Nov 2020 at 11:40, Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > Btw, how do we identify if it is a power domain or a regulator ?
+While trying to do 'make dtbs_install' the following error shows up
 
-To be honest, I was a bit afraid and embarrassed to ask this question,
-and was hoping people to make fun of me in return :)
+make[3]: *** No rule to make target
+  '/srv/src/kernel/next/out/obj-arm64-next-20201105/dtbsinstall/freescale/imx8mm-kontron-n801x-s.dts',
+  needed by '__dtbs_install'.
+make[3]: Target '__dtbs_install' not remade because of errors.
+make[2]: *** [/srv/src/kernel/bisecting/scripts/Makefile.dtbinst:34:
+  arch/arm64/boot/dts/freescale] Error 2
+make[2]: Target '__dtbs_install' not remade because of errors.
+make[1]: *** [/srv/src/kernel/bisecting/Makefile:1344: dtbs_install]
+  Error 2
+make: *** [Makefile:185: __sub-make] Error 2
+make: Target 'dtbs_install' not remade because of errors.
 
-> Good question. It's not a crystal clear line in between them, I think.
+Fix typo in imx8mm-kontron-n801x-s.dts change file ending to *.dtb
 
-And I was relieved after reading this :)
+Fixes: 8668d8b2e67f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
+Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
+---
+ arch/arm64/boot/dts/freescale/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> A power domain to me, means that some part of a silicon (a group of
-> controllers or just a single piece, for example) needs some kind of
-> resource (typically a power rail) to be enabled to be functional, to
-> start with.
-
-Isn't this what a part of regulator does as well ? i.e.
-enabling/disabling of the regulator or power to a group of
-controllers.
-
-Over that the regulator does voltage/current scaling as well, which
-normally the power domains don't do (though we did that in
-performance-state case).
-
-> If there are operating points involved, that's also a
-> clear indication to me, that it's not a regular regulator.
-
-Is there any example of that? I hope by OPP you meant both freq and
-voltage here. I am not sure if I know of a case where a power domain
-handles both of them.
-
-> Maybe we should try to specify this more exactly in some
-> documentation, somewhere.
-
-I think yes, it is very much required. And in absence of that I think,
-many (or most) of the platforms that also need to scale the voltage
-would have modeled their hardware as a regulator and not a PM domain.
-
-What I always thought was:
-
-- Module that can just enable/disable power to a block of SoC is a
-  power domain.
-
-- Module that can enable/disable as well as scale voltage is a
-  regulator.
-
-And so I thought that this patchset has done the right thing. This
-changed a bit with the qcom stuff where the IP to be configured was in
-control of RPM and not Linux and so we couldn't add it as a regulator.
-If it was controlled by Linux, it would have been a regulator in
-kernel for sure :)
-
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 876bf484bbe6..6f0777ee6cd6 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -32,7 +32,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+-dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dts
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
 -- 
-viresh
+2.28.0
+
