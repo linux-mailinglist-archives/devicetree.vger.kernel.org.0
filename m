@@ -2,57 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43CD72A7BED
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:35:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D353A2A7C08
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:40:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729772AbgKEKfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 05:35:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36078 "EHLO
+        id S1726400AbgKEKkQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 05:40:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728999AbgKEKfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 05:35:04 -0500
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE2D3C0613D6
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 02:35:03 -0800 (PST)
-Received: by mail-vs1-xe44.google.com with SMTP id r14so475308vsa.13
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 02:35:03 -0800 (PST)
+        with ESMTP id S1726152AbgKEKkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 05:40:14 -0500
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A29EC0613D6
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 02:40:13 -0800 (PST)
+Received: by mail-pl1-x643.google.com with SMTP id u2so581916pls.10
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 02:40:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZdAvLjoOXomWCs8t6TmIL4j/I5mepz3FWTuHztdBTlc=;
-        b=BiAiD4e1h7itpTTBhs3DR4K8CfgZymL8qj1e7tZjDyvL22TAbVaJrB6OdCOJ9dCgt8
-         uMo1WI+cg7RQpxF0bBlJEyznK83VkivtEouWpjXE0uDzswIn9ngEEIWZkBVtGoJKPI5a
-         3gYONlFV9O8ISMzu91uUEboniTdwBNNIgS1GVf+ZVCHpgeExfkJ3HUKHZ4pHVFwQwMtx
-         5vGFFB38gJyFP7FBlRczIoGJ/8EUs8e6gc59Rm7O/sKD+Kj4+eFQl2/7R5M52mOjdRQY
-         23FqbRx5TWg7iDot8DaIDKVfEKsFUNqqGSEPkpoltdKL/CwkFxGm9pZGSMzsaqx/PW9N
-         dskg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=WCCTQKcgxT5BgoXvd55cVkeUPDruRceTke7HPT3Hkyo=;
+        b=uI5sjdIZnJfMXmb2BmcneLzfiFbBlet9wY7JQZtjHR0GF8UkHMmcqlXwBrkvsqK1WI
+         SeinhDQqNDH8/hEaMPpSpgwvj0qAA2DAOlij96dLz+WulydyVF4o3fYzumZUYFXFoH1h
+         ZgXb17DvmcshHNZxztv5zRi/aeOa+ymd+joJrRroDAhLo0nx97avxNo1KBPgxXcO+5qD
+         SXvk12UVzaw2/5tEF2FemBinKY4gdRZP1KDwgT69Jbp7nnNi1tx0Yci0mKB/TEHxbTdH
+         hUsmGHEaNuInutK+0y4SPLiOBIQ+CzV6c4LqpUQ2rUe9GYtY4Vnxx2LLLnO7akoNoqHJ
+         X5Yw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZdAvLjoOXomWCs8t6TmIL4j/I5mepz3FWTuHztdBTlc=;
-        b=ih8oHe30vb5xW8rqK/8GiTY1THYdSQtMjETRw1oBuN0AhG6vPiqGalBMrHZmGTzUes
-         XwaY5tIc+PADRPTm13Mpf732Ms4of6UeZ17GHGbjf/IGvnEv98h9viMNKQ6iFU/X43ZK
-         wSCffcrV8e1jVwarC/ZR/Il3+XpcqoVX/n+YLAO5B5OPBDyaz9HSfeWKRKrGYVo9eFuv
-         7yiPLJ/qmY/lnLkVf205+ImGXF8M9pIrVUmfL1bYAEobc/uMmmwNBm+4KlkIOqmwEkZk
-         pdCSWmJx51NVS89FqTaiVZ0TZqD1Gi4wcXZXlqAq8lLwPKUauyfakse7oYygydw45G8A
-         coDg==
-X-Gm-Message-State: AOAM531yfyUG1l4hI+STx3AneQLN7GB+s/QE+NRY/u3hn8mZy4guSb2D
-        UO8+aDjx75UrmKYHuxc+WC3TNBmvhsNi/gT+n4mWwQ==
-X-Google-Smtp-Source: ABdhPJxVfapO8HtgRahAnJ4wz7s9HOgbHIAKW7gtu7MmcNt2t4MXd/COFLbP0begvsat+FQbNQGgY8Hv6gEHSKm9IGw=
-X-Received: by 2002:a67:f417:: with SMTP id p23mr725992vsn.42.1604572502741;
- Thu, 05 Nov 2020 02:35:02 -0800 (PST)
-MIME-Version: 1.0
-References: <20201104234427.26477-1-digetx@gmail.com> <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
- <20201105100603.skrirm7uke4s2xyl@vireshk-i7>
-In-Reply-To: <20201105100603.skrirm7uke4s2xyl@vireshk-i7>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 5 Nov 2020 11:34:26 +0100
-Message-ID: <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-To:     Viresh Kumar <viresh.kumar@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WCCTQKcgxT5BgoXvd55cVkeUPDruRceTke7HPT3Hkyo=;
+        b=eSyiMuWpkAfX+cj9CuRR7NBuOsTY2SadXKxvMGadyiop61wZ8cj21KcD+jBiZr+O8Y
+         irAnLJumSFBEUrxtZI1inK88SjZMPnTkvR5QTJlYvnVXjMohT3qsuy8Gg7ordYwIcogH
+         onhJOQH4qtIJvwpEM4T3jbI2oK6wgLRqCSTkxlkvU9Qyufcaxa/APfqJIWl+pzIPkyoA
+         /pmzrAXZOuCrLEJDVoJYPFz7XCIQ52uxiyJzWWKe98pFTcgCCdGDoeK6MxhJV/psFXFr
+         60O3a/bF3YziM3uFonDl0VlacIfM/IiIExuzp+p+GAoCWIbwHdxNYJD7PsK1Zavy2S7l
+         qGqg==
+X-Gm-Message-State: AOAM533myF+BFJB0JkylmBi+q9kbsEratZhDjMFeIh9+H22YBGbAPhBS
+        qMJIKbJOY/O6DkB//+tea79Y6Q==
+X-Google-Smtp-Source: ABdhPJxaeig/5BttxMih2SwDkKcSP7+kCvVk+Bpsa5+VJfx+t48gt5Hq0JWRUoD/r4V+wRad0uK0Vw==
+X-Received: by 2002:a17:902:b601:b029:d3:e6c5:5112 with SMTP id b1-20020a170902b601b02900d3e6c55112mr1328833pls.65.1604572812590;
+        Thu, 05 Nov 2020 02:40:12 -0800 (PST)
+Received: from localhost ([122.172.12.172])
+        by smtp.gmail.com with ESMTPSA id q11sm1908845pgm.79.2020.11.05.02.40.11
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 05 Nov 2020 02:40:11 -0800 (PST)
+Date:   Thu, 5 Nov 2020 16:10:09 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Ulf Hansson <ulf.hansson@linaro.org>
 Cc:     Dmitry Osipenko <digetx@gmail.com>,
         Thierry Reding <thierry.reding@gmail.com>,
         Jonathan Hunter <jonathanh@nvidia.com>,
@@ -64,7 +61,7 @@ Cc:     Dmitry Osipenko <digetx@gmail.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
         <u.kleine-koenig@pengutronix.de>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -81,57 +78,52 @@ Cc:     Dmitry Osipenko <digetx@gmail.com>,
         dri-devel <dri-devel@lists.freedesktop.org>,
         Linux Media Mailing List <linux-media@vger.kernel.org>,
         linux-tegra <linux-tegra@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
+ Tegra20/30 SoCs
+Message-ID: <20201105104009.oo4dc6a2gdcwduhk@vireshk-i7>
+References: <20201104234427.26477-1-digetx@gmail.com>
+ <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
+ <20201105100603.skrirm7uke4s2xyl@vireshk-i7>
+ <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFoCJt5MBSKBJ8n1OAMdVsWHdwXTx0zFEcZw_F_gQ6Ug0w@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 5 Nov 2020 at 11:06, Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On 05-11-20, 11:34, Ulf Hansson wrote:
+> I am not objecting about scaling the voltage through a regulator,
+> that's fine to me. However, encoding a power domain as a regulator
+> (even if it may seem like a regulator) isn't. Well, unless Mark Brown
+> has changed his mind about this.
 >
-> On 05-11-20, 10:45, Ulf Hansson wrote:
-> > + Viresh
->
-> Thanks Ulf. I found a bug in OPP core because you cc'd me here :)
+> In this case, it seems like the regulator supply belongs in the
+> description of the power domain provider.
 
-Happy to help. :-)
+Okay, I wasn't sure if it is a power domain or a regulator here. Btw,
+how do we identify if it is a power domain or a regulator ?
 
->
-> > On Thu, 5 Nov 2020 at 00:44, Dmitry Osipenko <digetx@gmail.com> wrote:
-> > I need some more time to review this, but just a quick check found a
-> > few potential issues...
+> > In case of Qcom earlier (when we added the performance-state stuff),
+> > the eventual hardware was out of kernel's control and we didn't wanted
+> > (allowed) to model it as a virtual regulator just to pass the votes to
+> > the RPM. And so we did what we did.
 > >
-> > The "core-supply", that you specify as a regulator for each
-> > controller's device node, is not the way we describe power domains.
->
-> Maybe I misunderstood your comment here, but there are two ways of
-> scaling the voltage of a device depending on if it is a regulator (and
-> can be modeled as one in the kernel) or a power domain.
+> > But if the hardware (where the voltage is required to be changed) is
+> > indeed a regulator and is modeled as one, then what Dmitry has done
+> > looks okay. i.e. add a supply in the device's node and microvolt
+> > property in the DT entries.
+> 
+> I guess I haven't paid enough attention how power domain regulators
+> are being described then. I was under the impression that the CPUfreq
+> case was a bit specific - and we had legacy bindings to stick with.
+> 
+> Can you point me to some other existing examples of where power domain
+> regulators are specified as a regulator in each device's node?
 
-I am not objecting about scaling the voltage through a regulator,
-that's fine to me. However, encoding a power domain as a regulator
-(even if it may seem like a regulator) isn't. Well, unless Mark Brown
-has changed his mind about this.
+No, I thought it is a regulator here and not a power domain.
 
-In this case, it seems like the regulator supply belongs in the
-description of the power domain provider.
-
->
-> In case of Qcom earlier (when we added the performance-state stuff),
-> the eventual hardware was out of kernel's control and we didn't wanted
-> (allowed) to model it as a virtual regulator just to pass the votes to
-> the RPM. And so we did what we did.
->
-> But if the hardware (where the voltage is required to be changed) is
-> indeed a regulator and is modeled as one, then what Dmitry has done
-> looks okay. i.e. add a supply in the device's node and microvolt
-> property in the DT entries.
-
-I guess I haven't paid enough attention how power domain regulators
-are being described then. I was under the impression that the CPUfreq
-case was a bit specific - and we had legacy bindings to stick with.
-
-Can you point me to some other existing examples of where power domain
-regulators are specified as a regulator in each device's node?
-
-Kind regards
-Uffe
+-- 
+viresh
