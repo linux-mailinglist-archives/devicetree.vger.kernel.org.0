@@ -2,151 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BCE2A80A4
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 15:18:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 626552A80BC
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 15:21:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730616AbgKEOSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 09:18:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42798 "EHLO
+        id S1731006AbgKEOVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 09:21:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730501AbgKEOSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 09:18:30 -0500
+        with ESMTP id S1730977AbgKEOVH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 09:21:07 -0500
 Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10FE6C0613CF;
-        Thu,  5 Nov 2020 06:18:30 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id l28so2502565lfp.10;
-        Thu, 05 Nov 2020 06:18:29 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4876C0613D2
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 06:21:05 -0800 (PST)
+Received: by mail-lf1-x144.google.com with SMTP id u18so2518023lfd.9
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 06:21:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=a5y+ASdbJF7UbQ+vp77BCT2KDi+gpOYaKC8ivtEOGj0=;
-        b=g4l+hVmvZJ+r32x9EsssFNsZ5oXkz9HqijwiMWB20Hs8LV8tDeXO5wDP2AG/Ia3GaI
-         Hwuea13bqdIIKnem0td0/UpNjHWgB9DVjy6hdPRCWVbFoNJzj4M0fZUFU/7RNBU4rt3k
-         kc9tlA0jovLN0Gusx603CbzP46guXz28PiRbiR3kuvvviuP6Rb5iGKwNBBBKtt9lmPld
-         D87eVIe2ld++drVrg0eJZY1aSlqZ4dpJU4tfJCdDrFPZ7eVkJFF2a93Zl0nVR6L6/l3m
-         hrI6o51kHJEVFgIEDT2hWkgqUBcql4bZDnxqmeku7yRtNmSh5zeKlfoGUV2h+Y+8tAdf
-         yy6A==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kZzDmTp+Cx9xiy3l7a/3HUobFreQEXAoNRDoJMIB+dY=;
+        b=j5qfXvtuye+LDrJ8cn8oiGjVXaW+/DLAc8UcbLbT033ClUvxzJhTbrKNxZrlpwDazv
+         tL+6SFUt7wMJuASPm8C9z0mdNv6Ot/HwdXiAEaB+qTEKVRzlyreGDYSeSTf4aBm7S0tD
+         x99vnBeHxRjP+8B4BG23raPlcFDAqsOpOu8e7bpzCQUxM+J7vkOnfCGK++SYfwV7w+hh
+         xd9HpqLIwsSobTSF3ROpHfKDMk4Txqw5bt0n9OQ2j0qVt4I3Rzfe3KFiTTJecYogoZEp
+         mtPf8NYjKWFn+vUb2CYLLTisgxQ0R+hIqVpNhpYkAC8FvCvOL9Szbg5aIy/uIeJpcdHc
+         YmZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=a5y+ASdbJF7UbQ+vp77BCT2KDi+gpOYaKC8ivtEOGj0=;
-        b=MH2/VWRm0UMjx6uGhpDHinf4zjncdaO5oC8dypzRnBITedBjZSPTmI+WpOynSr2lvF
-         dhjVaNMzSRfgy24FKK1VBylF9YH8vIWJQ+F+rnnEOJ2dg8CyUFSAPNGLOgtf0v11Rp3h
-         jF8GyePCS6PnW4tWJq5W+Qg49vrsMy0qdegZTWd8qUUTDNiHmPa9aIZwJuI5VNWDVoWn
-         59CHi9SGY2ra1O0TUCyxla8QibtFtH9KvulLO6+CDQK44r3hpICVoHIR79zg7jcWIrk4
-         EJDPvMKLh8zDy+2RXLUkKMt0OVqNPP7EZuFubuXTq+8fYMI18MMyjzvyGkyYh8UraB91
-         4ygg==
-X-Gm-Message-State: AOAM530JlbJKMr1gjMyJN0VFoYS2aRqC7oRP1CzC7VvwzUXC0v6gcrIy
-        /wNjuBPyQGzsnvq/xuVp5JrwtoH86eQ=
-X-Google-Smtp-Source: ABdhPJwoANVa5YaT/Dinn/I6WAD0v1YZJaRBuao5eyb3VmVXegLCD7snX/bqOHRg8V3ordcvrgDQ6A==
-X-Received: by 2002:a19:ad04:: with SMTP id t4mr1028403lfc.577.1604585908263;
-        Thu, 05 Nov 2020 06:18:28 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-83.dynamic.spd-mgts.ru. [109.252.192.83])
-        by smtp.googlemail.com with ESMTPSA id q4sm162676ljp.103.2020.11.05.06.18.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Nov 2020 06:18:27 -0800 (PST)
-Subject: Re: [PATCH v1 17/30] mmc: sdhci-tegra: Support OPP and core voltage
- scaling
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        driver-dev <devel@driverdev.osuosl.org>,
-        linux-pwm@vger.kernel.org,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org,
-        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-tegra@vger.kernel.org, linux-media@vger.kernel.org
-References: <20201104234427.26477-1-digetx@gmail.com>
- <20201104234427.26477-18-digetx@gmail.com>
- <CAOh2x==sy1w7_oEV8=toC6uQnSN44wyOixbP_X0BrMsnm1AUFg@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <6fa54ce6-d5ae-d04f-7c77-b62c148d92b7@gmail.com>
-Date:   Thu, 5 Nov 2020 17:18:26 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kZzDmTp+Cx9xiy3l7a/3HUobFreQEXAoNRDoJMIB+dY=;
+        b=jJgQgyCdOgG/qKlLwRX6dCtGxrxGEliNwuDyMlPbtHqnLyBaHUb0cfjrOIIdoUe6BQ
+         T+oUuZXZR1mAyZX2xnWSsHknbR746Mw8jl7FNPvP3A+cwnCb4UYqEKAyuLPLOvoe1L/7
+         3cB8srZF0MnS63huTe6Pct/MnZE9+v8a+gJzeRotNcPhtE6fpdjrgpPaDkr3Bc6UuPLA
+         G2Pw1KKGZ9FaDW7Oc2S/hZx5uvGR9hVfH2DHVXZ2eiFyr+i749XGnl8Uq3N1kMvKNT3N
+         ivyEai0sl/rjZ2TBUH8v+YTavrsmZNccsChIr2A52FUEcO24O9r3xqgpc/Ic1j494B38
+         MprA==
+X-Gm-Message-State: AOAM533ksaoSloZvPvWOKT+Ugejc9ELrgqYXNnq0JCd9Ib6mCp0oWTIw
+        WcojtSm+nJYZSH/hP6k3n+OCjPzylcGLPLG9cakV2g==
+X-Google-Smtp-Source: ABdhPJy3Z/j4XZjBZhJmurIWWAFx+TSCzZvuAiLP+FXiiCtQ/cfh5n1flpcgct7dmvjpZZn5bTyzaP+YU62sblNF27Q=
+X-Received: by 2002:a19:7b06:: with SMTP id w6mr1172912lfc.260.1604586064299;
+ Thu, 05 Nov 2020 06:21:04 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAOh2x==sy1w7_oEV8=toC6uQnSN44wyOixbP_X0BrMsnm1AUFg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201029134027.232951-1-lars.povlsen@microchip.com>
+In-Reply-To: <20201029134027.232951-1-lars.povlsen@microchip.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 5 Nov 2020 15:20:53 +0100
+Message-ID: <CACRpkday541uM4csZ4pn7mYw61YSnueVVvHJmwEVB0YhRT-HVQ@mail.gmail.com>
+Subject: Re: [PATCH v7 0/3] Adding support for Microchip/Microsemi serial GPIO controller
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-05.11.2020 12:58, Viresh Kumar пишет:
->> +static void sdhci_tegra_deinit_opp_table(void *data)
->> +{
->> +       struct device *dev = data;
->> +       struct opp_table *opp_table;
->> +
->> +       opp_table = dev_pm_opp_get_opp_table(dev);
-> So you need to get an OPP table to put one :)
-> You need to save the pointer returned by dev_pm_opp_set_regulators() instead.
+On Thu, Oct 29, 2020 at 2:40 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
 
-This is intentional because why do we need to save the pointer if we're
-not using it and we know that we could get this pointer using OPP API?
-This is exactly the same what I did for the CPUFreq driver [1] :)
+> The series add support for the serial GPIO controller used by
+> Microchip Sparx5, as well as (MSCC) ocelot/jaguar2 SoCs.
 
-[1]
-https://elixir.bootlin.com/linux/v5.10-rc2/source/drivers/cpufreq/tegra20-cpufreq.c#L97
+v7 is starting to look really appetizing. The kernel bot is complaining
+a bit so please fix that and follow up on Andy's comments as well.
 
->> +       dev_pm_opp_of_remove_table(dev);
->> +       dev_pm_opp_put_regulators(opp_table);
->> +       dev_pm_opp_put_opp_table(opp_table);
->> +}
->> +
->> +static int devm_sdhci_tegra_init_opp_table(struct device *dev)
->> +{
->> +       struct opp_table *opp_table;
->> +       const char *rname = "core";
->> +       int err;
->> +
->> +       /* voltage scaling is optional */
->> +       if (device_property_present(dev, "core-supply"))
->> +               opp_table = dev_pm_opp_set_regulators(dev, &rname, 1);
->> +       else
-> 
->> +               opp_table = dev_pm_opp_get_opp_table(dev);
-> Nice. I didn't think that someone will end up abusing this API and so made it
-> available for all, but someone just did that. I will fix that in the OPP core.
-
-The dev_pm_opp_put_regulators() handles the case where regulator is
-missing by acting as dev_pm_opp_get_opp_table(), but the
-dev_pm_opp_set_regulators() doesn't do it. Hence I don't think this is
-an abuse, but the OPP API drawback.
-
-> Any idea why you are doing what you are doing here ?
-
-Two reasons:
-
-1. Voltage regulator is optional, but dev_pm_opp_set_regulators()
-doesn't support optional regulators.
-
-2. We need to balance the opp_table refcount in order to use OPP API
-without polluting code with if(have_regulator), hence the
-dev_pm_opp_get_opp_table() is needed for taking the opp_table reference
-to have the same refcount as in the case of the dev_pm_opp_set_regulators().
-
-I guess we could make dev_pm_opp_set_regulators(dev, count) to accept
-regulators count=0 and then act as dev_pm_opp_get_opp_table(dev), will
-it be acceptable?
+Yours,
+Linus Walleij
