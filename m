@@ -2,107 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 019CD2A802B
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:57:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 386C02A8037
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:59:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730818AbgKEN5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 08:57:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39422 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730676AbgKEN5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:57:30 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A9DC0613CF;
-        Thu,  5 Nov 2020 05:57:30 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id v144so2385762lfa.13;
-        Thu, 05 Nov 2020 05:57:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+oB95VM8Zw9gIAt2FC+TShAF+0gIWo5rt3Q41RXJdtg=;
-        b=k7qYU/S7xIQk2jr0RN0b4YX8DQl0u0bLGIF7BIO03i9ysBwBpKDn2MliLppMdD912h
-         r6BgWfzuRYtSE1eLkUMnbUB/BLsLo+YvOQfwlkgKibkMcVVi1isY/5BggTofJ/y1r0Hm
-         YXTNppZyodPQYF16UO3KTj5p7F89cfzPcpONsMTDz0kZoeDG8Fx0XGembDMrW3FuOzXM
-         jio/WB6mh7LmvjaKoQD27SeVDVB1tKJaInHuJOCXUkAdoOyzgiBYOsX/YjAtCKwJlQaR
-         K889lN9RvZfHHalw/0sSwWgdKgiFdf9q8dpTy6GIkWbl3kBPpBC5N6gEirv5uxbLGA/i
-         qy4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+oB95VM8Zw9gIAt2FC+TShAF+0gIWo5rt3Q41RXJdtg=;
-        b=LAkh9c++vmxJSnAXiB1xqhPTXTn4TfINks8xtjJrUNHlePux9cmmeS4SC1vlOwc8l/
-         ehqkGpMEQX+IQm1iXV93wYKT4g4sTMvY60FrJe8GisSeHEAngbYqqpvV3MtBmp8fZ4J7
-         rzjoeOT5Dmr9wWWtre/PV2Ua/rOK+hPSvcemCCVAn4pda4AVGHA2BFLQGSEiRjjort9V
-         VBq1zEshzON1llta0pWrh3y7lgWwncfabTlglAHjaqJBjpUgl9on4O27cfQwdL4eTTr2
-         5pcSalCBNF5vNYUrjiMVoSpFN8+5Yjqe4k3eUl6R+da2N/yt98idovbJguXX7SHXvXuT
-         SkGQ==
-X-Gm-Message-State: AOAM532INXx3qDpNEcKJGdVzbINt3P4Kv0OXpx6pJnrFHLljH6WpoIjg
-        D++7dtqY1W3HwUcF/z1IO/DUgke/eBg=
-X-Google-Smtp-Source: ABdhPJy8aDH+pQWACig1gxUeRAo9xbkzKXDLndcNZHc3MgeMS7MQorfWYcYeqkisehyHHQbAhHZsRw==
-X-Received: by 2002:ac2:522a:: with SMTP id i10mr1023516lfl.128.1604584648429;
-        Thu, 05 Nov 2020 05:57:28 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-83.dynamic.spd-mgts.ru. [109.252.192.83])
-        by smtp.googlemail.com with ESMTPSA id h10sm158920ljj.116.2020.11.05.05.57.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Nov 2020 05:57:27 -0800 (PST)
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1730466AbgKEN7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 08:59:06 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:52899 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730687AbgKEN7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:59:06 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id DE1AC580360;
+        Thu,  5 Nov 2020 08:59:03 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Thu, 05 Nov 2020 08:59:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=qzvBcbHMYK6sYMX+WfvSh0Q3ayc
+        RLE9JGot8QENfnDc=; b=PTQ81uS+613B4vzd+PKweotT+H1+XD49AOZynuZMf00
+        wMuaVAK/UPj8bJ2VAjwErVpR3fpEmuYAyPKT09/E2aFwK17cH1dJy+2+nRrJxBuZ
+        NkjcalBfLdTeXUSuqMQRJhTejSJ1TfqVt8Y8EsNJjL/DZ3KQFp8pDrgX87mAeaXi
+        PQVjMljRHDpn4wNOHy7ipQle4k3zartYoHCVgLqC/wVwkfv5VY5Etg01LxqlPwku
+        LCuWFxkCxSj9WbIZmqM4q8jmK8Sy2E1polrVR3wGHeuwRJ468NwWLatXn9Zfk1Xv
+        5DprdLeyJtqeNugKnfg9BSjDm2Pd695uwAAVPc65wHA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=qzvBcb
+        HMYK6sYMX+WfvSh0Q3aycRLE9JGot8QENfnDc=; b=mwCwlKpORJRmFkrnqQraIP
+        Q+yWtazzMLgPNR5DdNqetHCN/9fIdzU2ho3GxjnGkzbvtE+M7epaOMWXbAfSi9hW
+        Q6GJAJrVU+yzP8h57tdsyIsTe0xjNYwMCQ10l9BzXyDUnwrh/azNBfCgjZNuYooF
+        EZaxKZYHyWYrJz2sQyJ68LoEv9BrnXsq3665cp0WyaJZ9DDFf1TRASaGFQ8i3Sd/
+        ps3I1soUTsV0y7i0/ofFIPqKpo/z0KdfuUge7tHGstoKrDKJx1bmZY+zt5R0Wb0i
+        ES3d1dQLubn0/HLhnc7OMtRxTG1uLjJ2ik5B1tzOm4MAMkduAN2BL0XO2CVj961A
+        ==
+X-ME-Sender: <xms:JwWkXxKhhRSpM0PaosDjBqflM9TUkoKarLNbiXkxAEm61MgZAzQbXA>
+    <xme:JwWkX9LcKSwTupwTX5A7-1-9xKL7ko6b7J2JLPaxTzweHCh8tRMMZkvJRttoI564r
+    EGTdzct37cXPGZK-gw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtjedgheelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:JwWkX5sJMA8dVBR8iPS1209Y4sEZ7AQj64JS3BTOsjcz47CX4ue4DA>
+    <xmx:JwWkXybF3ClYKoHVZxXHB0YOGiW5Oel6dYWFtta44X79MJMAnNMPWQ>
+    <xmx:JwWkX4bZaxuv1_NYx0qRZ2B1cm4-y0JQlWsTcdR_hu8BIUu5VTryKg>
+    <xmx:JwWkX-w9uqDGQLgxbTxSxELZVgQsl957rAPLLcQsdHIfOn5saQuAPQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 54535306005C;
+        Thu,  5 Nov 2020 08:59:03 -0500 (EST)
+Date:   Thu, 5 Nov 2020 14:59:02 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20201104234427.26477-1-digetx@gmail.com>
- <20201105014502.GB17266@qmqm.qmqm.pl>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <60e6ea6b-3a02-30a1-f0c9-d33ef7906ed6@gmail.com>
-Date:   Thu, 5 Nov 2020 16:57:26 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-rpi-kernel@lists.infradead.org,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 7/7] drm/vc4: kms: Don't disable the muxing of an
+ active CRTC
+Message-ID: <20201105135902.qycsbsvkns6e66fe@gilmour.lan>
+References: <cover.3eb3532def69f3610b18104e45b7274bbdc1b0a0.1603888799.git-series.maxime@cerno.tech>
+ <CGME20201029081313epcas1p165edbd0c8e54d978a8130f5fb9d2a422@epcas1p1.samsung.com>
+ <469ead5de989938fcf079505cbc232a620e713bc.1603888799.git-series.maxime@cerno.tech>
+ <19c6fec6-c118-6229-f683-e180ce2631b4@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20201105014502.GB17266@qmqm.qmqm.pl>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="wxyq3fidkoqttkit"
+Content-Disposition: inline
+In-Reply-To: <19c6fec6-c118-6229-f683-e180ce2631b4@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-05.11.2020 04:45, Michał Mirosław пишет:
-> On Thu, Nov 05, 2020 at 02:43:57AM +0300, Dmitry Osipenko wrote:
->> Introduce core voltage scaling for NVIDIA Tegra20/30 SoCs, which reduces
->> power consumption and heating of the Tegra chips. Tegra SoC has multiple
->> hardware units which belong to a core power domain of the SoC and share
->> the core voltage. The voltage must be selected in accordance to a minimum
->> requirement of every core hardware unit.
-> [...]
-> 
-> Just looked briefly through the series - it looks like there is a lot of
-> code duplication in *_init_opp_table() functions. Could this be made
-> more generic / data-driven?
 
-Indeed, it should be possible to add a common helper. I had a quick
-thought about doing it too, but then decided to defer for the starter
-since there were some differences among the needs of the drivers. I'll
-take a closer look for the v2, thanks!
+--wxyq3fidkoqttkit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+On Mon, Nov 02, 2020 at 05:47:04PM +0900, Hoegeun Kwon wrote:
+> Hi Maxime,
+>=20
+> Thanks for V2 patch.
+>=20
+>=20
+> On 10/28/20 9:41 PM, Maxime Ripard wrote:
+> > The current HVS muxing code will consider the CRTCs in a given state to
+> > setup their muxing in the HVS, and disable the other CRTCs muxes.
+> >
+> > However, it's valid to only update a single CRTC with a state, and in t=
+his
+> > situation we would mux out a CRTC that was enabled but left untouched by
+> > the new state.
+> >
+> > Fix this by setting a flag on the CRTC state when the muxing has been
+> > changed, and only change the muxing configuration when that flag is the=
+re.
+> >
+> > Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automatic=
+ally")
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >   drivers/gpu/drm/vc4/vc4_drv.h |  1 +-
+> >   drivers/gpu/drm/vc4/vc4_kms.c | 84 +++++++++++++++++++++-------------=
+--
+> >   2 files changed, 50 insertions(+), 35 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_dr=
+v.h
+> > index c6208b040f77..c074c0538e57 100644
+> > --- a/drivers/gpu/drm/vc4/vc4_drv.h
+> > +++ b/drivers/gpu/drm/vc4/vc4_drv.h
+> > @@ -523,6 +523,7 @@ struct vc4_crtc_state {
+> >   	struct drm_mm_node mm;
+> >   	bool feed_txp;
+> >   	bool txp_armed;
+> > +	bool needs_muxing;
+> >   	unsigned int assigned_channel;
+> >  =20
+> >   	struct {
+> > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
+s.c
+> > index 2aa726b7422c..409aeb19d210 100644
+> > --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> > @@ -224,10 +224,7 @@ static void vc5_hvs_pv_muxing_commit(struct vc4_de=
+v *vc4,
+> >   {
+> >   	struct drm_crtc_state *crtc_state;
+> >   	struct drm_crtc *crtc;
+> > -	unsigned char dsp2_mux =3D 0;
+> > -	unsigned char dsp3_mux =3D 3;
+> > -	unsigned char dsp4_mux =3D 3;
+> > -	unsigned char dsp5_mux =3D 3;
+> > +	unsigned char mux;
+> >   	unsigned int i;
+> >   	u32 reg;
+> >  =20
+> > @@ -235,50 +232,59 @@ static void vc5_hvs_pv_muxing_commit(struct vc4_d=
+ev *vc4,
+> >   		struct vc4_crtc_state *vc4_state =3D to_vc4_crtc_state(crtc_state);
+> >   		struct vc4_crtc *vc4_crtc =3D to_vc4_crtc(crtc);
+> >  =20
+> > -		if (!crtc_state->active)
+> > +		if (!vc4_state->needs_muxing)
+> >   			continue;
+> >  =20
+> >   		switch (vc4_crtc->data->hvs_output) {
+> >   		case 2:
+> > -			dsp2_mux =3D (vc4_state->assigned_channel =3D=3D 2) ? 0 : 1;
+> > +			mux =3D (vc4_state->assigned_channel =3D=3D 2) ? 0 : 1;
+> > +			reg =3D HVS_READ(SCALER_DISPECTRL);
+> > +			HVS_WRITE(SCALER_DISPECTRL,
+> > +				  (reg & ~SCALER_DISPECTRL_DSP2_MUX_MASK) |
+> > +				  VC4_SET_FIELD(mux, SCALER_DISPECTRL_DSP2_MUX));
+> >   			break;
+> >  =20
+> >   		case 3:
+> > -			dsp3_mux =3D vc4_state->assigned_channel;
+> > +			if (vc4_state->assigned_channel =3D=3D VC4_HVS_CHANNEL_DISABLED)
+> > +				mux =3D 3;
+> > +			else
+> > +				mux =3D vc4_state->assigned_channel;
+> > +
+> > +			reg =3D HVS_READ(SCALER_DISPCTRL);
+> > +			HVS_WRITE(SCALER_DISPCTRL,
+> > +				  (reg & ~SCALER_DISPCTRL_DSP3_MUX_MASK) |
+> > +				  VC4_SET_FIELD(mux, SCALER_DISPCTRL_DSP3_MUX));
+> >   			break;
+> >  =20
+> >   		case 4:
+> > -			dsp4_mux =3D vc4_state->assigned_channel;
+> > +			if (vc4_state->assigned_channel =3D=3D VC4_HVS_CHANNEL_DISABLED)
+> > +				mux =3D 3;
+> > +			else
+> > +				mux =3D vc4_state->assigned_channel;
+> > +
+> > +			reg =3D HVS_READ(SCALER_DISPEOLN);
+> > +			HVS_WRITE(SCALER_DISPEOLN,
+> > +				  (reg & ~SCALER_DISPEOLN_DSP4_MUX_MASK) |
+> > +				  VC4_SET_FIELD(mux, SCALER_DISPEOLN_DSP4_MUX));
+> > +
+> >   			break;
+> >  =20
+> >   		case 5:
+> > -			dsp5_mux =3D vc4_state->assigned_channel;
+> > +			if (vc4_state->assigned_channel =3D=3D VC4_HVS_CHANNEL_DISABLED)
+> > +				mux =3D 3;
+> > +			else
+> > +				mux =3D vc4_state->assigned_channel;
+> > +
+> > +			reg =3D HVS_READ(SCALER_DISPDITHER);
+> > +			HVS_WRITE(SCALER_DISPDITHER,
+> > +				  (reg & ~SCALER_DISPDITHER_DSP5_MUX_MASK) |
+> > +				  VC4_SET_FIELD(mux, SCALER_DISPDITHER_DSP5_MUX));
+> >   			break;
+> >  =20
+> >   		default:
+> >   			break;
+> >   		}
+> >   	}
+> > -
+> > -	reg =3D HVS_READ(SCALER_DISPECTRL);
+> > -	HVS_WRITE(SCALER_DISPECTRL,
+> > -		  (reg & ~SCALER_DISPECTRL_DSP2_MUX_MASK) |
+> > -		  VC4_SET_FIELD(dsp2_mux, SCALER_DISPECTRL_DSP2_MUX));
+> > -
+> > -	reg =3D HVS_READ(SCALER_DISPCTRL);
+> > -	HVS_WRITE(SCALER_DISPCTRL,
+> > -		  (reg & ~SCALER_DISPCTRL_DSP3_MUX_MASK) |
+> > -		  VC4_SET_FIELD(dsp3_mux, SCALER_DISPCTRL_DSP3_MUX));
+> > -
+> > -	reg =3D HVS_READ(SCALER_DISPEOLN);
+> > -	HVS_WRITE(SCALER_DISPEOLN,
+> > -		  (reg & ~SCALER_DISPEOLN_DSP4_MUX_MASK) |
+> > -		  VC4_SET_FIELD(dsp4_mux, SCALER_DISPEOLN_DSP4_MUX));
+> > -
+> > -	reg =3D HVS_READ(SCALER_DISPDITHER);
+> > -	HVS_WRITE(SCALER_DISPDITHER,
+> > -		  (reg & ~SCALER_DISPDITHER_DSP5_MUX_MASK) |
+> > -		  VC4_SET_FIELD(dsp5_mux, SCALER_DISPDITHER_DSP5_MUX));
+> >   }
+> >  =20
+> >   static void
+> > @@ -769,21 +775,29 @@ static int vc4_pv_muxing_atomic_check(struct drm_=
+device *dev,
+> >   		return -EINVAL;
+> >  =20
+> >   	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_=
+state, i) {
+> > +		struct vc4_crtc_state *old_vc4_crtc_state =3D
+> > +			to_vc4_crtc_state(old_crtc_state);
+>=20
+> In my opinion, the old_vc4_crtc_state definition is better to move to=20
+> patch6.
+> Build error occurs in patch6 because old_vc4_crtc_state is used in patch6.
+
+You're totally right, I've fixed it in my third version, thanks!
+Maxime
+
+--wxyq3fidkoqttkit
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6QFJgAKCRDj7w1vZxhR
+xZ2hAP4wEKZizsJhQ4Iv2J3mUACUh/6wbj7eQJ9EpqV6HOj6SwD+OYWSKXtx40J4
+uBBCidzBw+amMcU/OtX/i+JIxQHIygE=
+=fjgV
+-----END PGP SIGNATURE-----
+
+--wxyq3fidkoqttkit--
