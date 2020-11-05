@@ -2,127 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 71C312A7927
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:23:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CDFE2A792C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:25:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729490AbgKEIXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 03:23:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43726 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725287AbgKEIXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:23:34 -0500
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2CE2C0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 00:23:31 -0800 (PST)
-Received: by mail-wr1-x443.google.com with SMTP id g12so654672wrp.10
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 00:23:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=4Qdw96BcpJmHZY0g7ed1NLtf7VniEYgB+KrDiXrAPvU=;
-        b=tjHqgiICtDpyh3yNeU3lQucVZPooyRBbcEPGg0/7ydlw6S2MtMCOn5q8N+OsCJFB5w
-         Jity8AXhQm+byNDZkwmX6TL1nTGK7unukBlyyh3X23ObQy8VgWjlZfU5kw5QhmhXxHKx
-         60Z/Kadcue3i9+zd5tKNXDdCKqH6l5afZ2H8dXgiR6ocgjktBOJorxC6ExVEUlsxkRtP
-         JNH9L5dBQiqKaOiTfs2dFY9yTLU9S4eyJHqzDgFpTtGza5xxMGdtx6SEVBgO+WfhGlUt
-         UTlOBS6bhhUybbyUpxCWuTQQUCcsIbgivLfXHkzIyjHNH4/kv9YT1GYColycoMIyCtvc
-         NrLg==
+        id S1727046AbgKEIZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 03:25:48 -0500
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:43561 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725287AbgKEIZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:25:48 -0500
+Received: by mail-ed1-f67.google.com with SMTP id b9so598123edu.10;
+        Thu, 05 Nov 2020 00:25:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=4Qdw96BcpJmHZY0g7ed1NLtf7VniEYgB+KrDiXrAPvU=;
-        b=FHfv2ESnMngav7lOji5XohzGaoNlk5dz/03352bzgHiHkK7J0wTiCZ4ZjRZuVSz3TH
-         0SWTK7NHmRdueYEreEIOqaEkvxSXhAqTk23s9B6TRdRxgSy3NPBHndLbQaXCoMQDgERV
-         wP0b1qMdAJf7osx7Y3CNFyTDhObGLOrCQdpPCdAnHLluq1jPJnx/2u8OwPRvybqLH+tO
-         th9BIGAFDZlLyrKrHIZMYgQSdkaRiEntq8aAQte2T72zyU6bQ3SwFS6xlwo8WeMbmhiw
-         w3hij5VSAtXF07djxZRx1eEdGoAEfAO+pytjdGP0NkQslowDkX/gIYIiJIp+/QBu7aJh
-         SsyQ==
-X-Gm-Message-State: AOAM5316jm8P93vlkkUPjsbv2EbYoazoMYWSsV3OyeKO/JJRwvW1FOe8
-        4tPtnunWMp8xmLRpSvhBgiNpKw==
-X-Google-Smtp-Source: ABdhPJxKsFn9ZecT0WTRKJvEO/Q32NUdscrZxMe95r4py6FpZACFEpZ2AKp+sW6pZNPR0dFa+4VbWA==
-X-Received: by 2002:adf:cd01:: with SMTP id w1mr1443572wrm.298.1604564610752;
-        Thu, 05 Nov 2020 00:23:30 -0800 (PST)
-Received: from dell ([91.110.221.242])
-        by smtp.gmail.com with ESMTPSA id o17sm1451523wmd.34.2020.11.05.00.23.29
+         :mime-version:content-disposition:in-reply-to;
+        bh=BynuZQ4IcnE7iQujs9AoYeaOaUtAjpLHhcdFHAx92NU=;
+        b=KsfvtKhUqlHfJKdbL+R7bwLAvlK/PVwicE7CoswcKOw8v4F50c5EPseD1C9Gk4wk16
+         9nF8VUbtKuzu0O+yTY6eKZsDPY7odm0vgoRkgXxe24VkzgtWEczNzm3VHtgrR9eQ8XRI
+         RIKUr7MYlxrms4wDtGkSD8sILgtkhOjokStvRKiM2oiOAFBfAY431uFaSol1xWl+culx
+         MdvSooGSe+Hse0EBOi+G2m9P3Anc9aXSWIk3QmB7VbREPH7OX1uexhqcsP7Gbz/cDkA7
+         iaMIL/T5KjW0DeIYZ9gN20lheYgMShBMo71qWG8xLqk3QBEF2suzG0hViRzRUZqZ+SE9
+         uOPg==
+X-Gm-Message-State: AOAM530pc+ZgsxRLrXAFzrIdIID1IlWtjhwUU2Pp7BSM9sryusfQKF82
+        izipVNPmMJOST6G/nOlSR18=
+X-Google-Smtp-Source: ABdhPJxkpUg1Mul8x6cVLkyTVYz10e4c3t5chhkLiHgDZkp8bbZfVtyDie7JQU7x4d52LbYCid3dFg==
+X-Received: by 2002:aa7:cdd3:: with SMTP id h19mr1411156edw.330.1604564746185;
+        Thu, 05 Nov 2020 00:25:46 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id k26sm447082edf.85.2020.11.05.00.25.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 00:23:30 -0800 (PST)
-Date:   Thu, 5 Nov 2020 08:23:28 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc:     mazziesaccount@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
-Message-ID: <20201105082328.GV4488@dell>
-References: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
- <c7a838830b7d5ea1c281e419cf0eff0cc50363e0.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
- <20201104155153.GQ4488@dell>
+        Thu, 05 Nov 2020 00:25:45 -0800 (PST)
+Date:   Thu, 5 Nov 2020 09:25:43 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Alice Guo <alice.guo@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
+ soc unique ID
+Message-ID: <20201105082543.GA17569@kozik-lap>
+References: <20201105072629.24175-1-alice.guo@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201104155153.GQ4488@dell>
+In-Reply-To: <20201105072629.24175-1-alice.guo@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Nov 2020, Lee Jones wrote:
-
-> On Wed, 28 Oct 2020, Matti Vaittinen wrote:
+On Thu, Nov 05, 2020 at 03:26:26PM +0800, Alice Guo wrote:
+> Add DT Binding doc for the Unique ID of i.MX 8M series.
 > 
-> > Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
-> > mainly used to power the R-Car series processors.
-> > 
-> > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> > ---
-> >  drivers/mfd/Kconfig              |  11 +++
-> >  drivers/mfd/Makefile             |   1 +
-> >  drivers/mfd/rohm-bd9576.c        | 130 +++++++++++++++++++++++++++++++
-> >  include/linux/mfd/rohm-bd957x.h  |  59 ++++++++++++++
-> >  include/linux/mfd/rohm-generic.h |   2 +
-> >  5 files changed, 203 insertions(+)
-> >  create mode 100644 drivers/mfd/rohm-bd9576.c
-> >  create mode 100644 include/linux/mfd/rohm-bd957x.h
-
-[...]
-
-> > +static const struct regmap_range volatile_ranges[] = {
-> > +	{
-> > +		.range_min = BD957X_REG_SMRB_ASSERT,
-> > +		.range_max = BD957X_REG_SMRB_ASSERT,
-> > +	},
-> > +	{
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> ---
+>  .../devicetree/bindings/arm/fsl.yaml          | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
 > 
-> The way you space your braces is not consistent.
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index e4db0f9ed664..0419f078502b 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -901,6 +901,39 @@ properties:
+>                - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
+>            - const: fsl,s32v234
 > 
-> > +		.range_min = BD957X_REG_PMIC_INTERNAL_STAT,
-> > +		.range_max = BD957X_REG_PMIC_INTERNAL_STAT,
-> > +	},
-> > +	{
-> > +		.range_min = BD957X_REG_INT_THERM_STAT,
-> > +		.range_max = BD957X_REG_INT_THERM_STAT,
-> > +	},
-> > +	{
-> > +		.range_min = BD957X_REG_INT_OVP_STAT,
-> > +		.range_max = BD957X_REG_INT_SYS_STAT,
-> > +	}, {
-> > +		.range_min = BD957X_REG_INT_MAIN_STAT,
-> > +		.range_max = BD957X_REG_INT_MAIN_STAT,
-> > +	},
-> > +};
+> +  soc:
+> +    description:
+> +      i.MX8M Family SoC must provide a soc node in the root of the device tree,
+> +      representing the System-on-Chip since these test chips are rather complex.
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        oneOf:
+> +          - items:
+> +              - const: fsl,imx8mm-soc
+> +              - const: simple-bus
+> +          - items:
+> +              - const: fsl,imx8mn-soc
+> +              - const: simple-bus
+> +          - items:
+> +              - const: fsl,imx8mp-soc
+> +              - const: simple-bus
+> +          - items:
+> +              - const: fsl,imx8mq-soc
+> +              - const: simple-bus
+> +
+> +      nvmem-cells:
+> +        maxItems: 1
+> +        description: Phandle to the SOC Unique ID provided by a nvmem node
+> +
+> +      nvmem-cells-names:
+> +        const: soc_unique_id
+> +
+> +    required:
+> +      - compatible
+> +      - nvmem-cells
+> +      - nvmem-cell-names
+> +
 
-Don't forget about this.
+Did you actually test it? I see multiple errors with this patch.
+fsl-ls1012a-frdm.dt.yaml: /: soc:compatible: ['simple-bus'] is not valid under any of the given schemas
 
-I would prefer to have the braces on the same line (even if it means
-you have to change an extra line when editing), but I'm not 100% dead
-set on it.  Consistency however, I am.
+Best regards,
+Krzysztof
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
