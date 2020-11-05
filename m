@@ -2,580 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33CBB2A8001
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A1F2A800C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:55:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730759AbgKENwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 08:52:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38592 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730461AbgKENwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:52:14 -0500
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FC3DC0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 05:52:14 -0800 (PST)
-Received: by mail-wr1-x442.google.com with SMTP id x7so1867252wrl.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 05:52:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3y3h8Gt2B3dQV3uiCceEQJtTal2gmWJav/I0Vj+GOyU=;
-        b=T25OkuUQXDWnngtej/+9ragOdTSWZdRg8+VnVRzO8J9CMxdJQRU2S2L2EpTfD5eyxo
-         RMmVa35GY1K4ilU0FQiNMd1hs0CCVCKg1O12tX5cevu654FOwqI2vn8vlSNj6RDg8nX6
-         xGcwQNwhFXrDH6oy39zN1kOYELMUcIAzAoKqd2RAxF8mbS1EuU1tCTc+QO5AqrFI7C6j
-         PlZerPoMdwkDLm9GZIV40/kwt+3ekNDKdFGfLAACyoVNISDlGeYNHJtaAfe0vKRb+wvF
-         QXLCqSQ7VOUJesPd5YDlDZvPtNDJnCyHKO9bDMQFS6ugQdrQqxUczCidGWLYNtEd+6dp
-         mx4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3y3h8Gt2B3dQV3uiCceEQJtTal2gmWJav/I0Vj+GOyU=;
-        b=FIGGhQD1mQp/0MOPxKtuEb6Eh2w6FD5b0mcmY5i14+AMdaxZR+c4bPX6nvB6YuXXF+
-         15WKg6+6myM1mrjeA+dp01KNm163otanbbd4fSu2ar7EEabjy2ptobYKZ11jscOebRDW
-         b32bvP1SJWMq0G55CN51Dm+sHCe3jMStTs1Jemeo8bnSC+zZN/JtbxSuUbatOFv8QOpW
-         iEc3rGA7UxeTONPVdvArc+gd765++wINCed9Ov0s+8+rvntY8RnAx7JuW8UXMN2jzmYa
-         1waGayOtVdJT4GxkvxeC4oF2t7UrckXTkcmjsyiuZs8KMZ6I9DYp3HO0pu1H5xn8tt9a
-         MV3A==
-X-Gm-Message-State: AOAM532es+rRpHZ50kN2btn3Yrx/uBAQLgtWEB0ETKVBFODqipdP5I2I
-        92aw5ISLy08U3mnnndf4QYxVmQ==
-X-Google-Smtp-Source: ABdhPJz7/5ii7HK5bMoAedQL1YRUoj6Okm1V4pgzv17MB4XJKIgWAqVCA3hJO4rrgBuiUa0w9UrzLg==
-X-Received: by 2002:a5d:4bd1:: with SMTP id l17mr3305932wrt.38.1604584332989;
-        Thu, 05 Nov 2020 05:52:12 -0800 (PST)
-Received: from localhost.localdomain ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id h4sm2648541wrq.3.2020.11.05.05.52.11
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 05 Nov 2020 05:52:12 -0800 (PST)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     linux-pm@vger.kernel.org, bjorn.andersson@linaro.org,
-        mdtipton@codeaurora.org
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        akashast@codeaurora.org, georgi.djakov@linaro.org
-Subject: [PATCH 3/3] arm64: dts: sdm845: Add interconnect properties for QUP
-Date:   Thu,  5 Nov 2020 15:52:11 +0200
-Message-Id: <20201105135211.7160-3-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201105135211.7160-1-georgi.djakov@linaro.org>
-References: <20201105135211.7160-1-georgi.djakov@linaro.org>
+        id S1730660AbgKENzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 08:55:03 -0500
+Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:52849 "EHLO
+        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726067AbgKENzD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:55:03 -0500
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id afj6kDNilNanzafj9kobEV; Thu, 05 Nov 2020 14:55:01 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
+        t=1604584501; bh=Os8Q6RoIFzpecz6IaKw3bDHhoVHVDp/wsU85OkcRmUY=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=wVbVNiKI1ni2WRTvKI7A1TOqQHSmAor2+Nr2aLT1NIe2Fc1ge7wnKhpnxbRNayXlA
+         XIStbOZv/pHol/XIyMyhQsvsOkY1EJhG1VU54hiXtGdZMj24h0CloQ2zljt3R+jq7r
+         9HHt7HZWGLPtF9VcZdO6Aa9SdRU11Sh34O/AgNlguJmmu+qtwW3KxT+ySOXpfZDJkN
+         XVpwF03MOFVFceaBlHg5FF01e5g8/GGGN2bNp2ypa3toumFlAINuLgLnoOb+HnHT1Y
+         qYz+1j/r3uOLOrjhIjjvHNYPvWK9IDs8oEEHc3TKvmeQsXgWUucMtsfJsAcW8+44Zq
+         WlOe2T5g/AjEQ==
+Subject: Re: [PATCH v2 0/6] ARM: dts: sun8i: v3s: Enable video decoder
+To:     Martin Cerveny <m.cerveny@computer.org>,
+        Maxime Ripard <mripard@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+References: <20200912143052.30952-1-m.cerveny@computer.org>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <c8cc3529-3e21-2a11-d258-bb03885a5c91@xs4all.nl>
+Date:   Thu, 5 Nov 2020 14:54:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200912143052.30952-1-m.cerveny@computer.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4xfKAnj7LQGDaYmCX296c3vrxWv5e/Ef2SUUKyJz1tzh8Hg7mcghn4UOMUtiDF15DbskEEobx/3GV3mKJD2QR/+BJvDWHqtiffPg+JqxWRCXdGkL4LKcAL
+ b6V5jIRASp0YnUAjPXv8sTQ8ZicE5R4ThJApeNCQqCrczKLdML9AFoY+wfoHVpYtggLajoVCksU2K1jMfy33BCDILtJpgqt/rbRZBDLwaWwKeezaENCNlvVj
+ rqwkrjSzFIGCluWZ57FtuUMXwvG4ZgpyETF8Sx2IhhyDDN3ZfS8CiExo8otjngEgSIJCONqGN8Yks14AFrI6hvlGUXxAHzYvDyIEJB4OkC8B6kOG6q98pzQi
+ HJpOoIFNK+wzz5zkeif0O9rV+4nkXvLst2gX25uXjEiTaeAPHEq31/rcJAio7NuAGflbfD5ws+fjF6SbgppVOcdyjCf7GVmq2lt50iGtheq/rTgQ0lsTy2yl
+ 1XZ50JXtHleEL3YYTdwL5byb4JNnBec/rBzlZTCv6XRVnV7Sso9sMSPRhPhXTio4KNGI9yflco4KfQCDyJYmbn1BoOGzZ26+dXLKSljH5C+Ip10cN9/NKDr4
+ niauSYp1j7DSffLElOjBPaP2
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the interconnects DT property to describe the ports for GENI QUPs
-on the sdm845 platform.
+Hi Martin,
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 160 +++++++++++++++++++++++++++
- 1 file changed, 160 insertions(+)
+On 12/09/2020 16:30, Martin Cerveny wrote:
+> First patch extends cedrus capability to all decoders
+> because V3s missing MPEG2 decoder.
+> 
+> Next two patches add system control node (SRAM C1) and 
+> next three patches add support for Cedrus VPU.
+> 
+> Tested on "Lichee Zero" V3s platform with testing LCD patch
+> ( https://github.com/mcerveny/linux/tree/v3s_videocodec_v4 )
+> and V4L2 raw API testing utility
+> ( https://github.com/mcerveny/v4l2-request-test ):
+> - enabled LCD (DRM dual VI and sigle UI planes)
+> - added RGB panel
+> - enabled PWM
+> 
+> There is low memory on V3s (64MB) and maximum must be available to CMA:
+> - CONFIG_CMA_SIZE_MBYTES=28
+> - add swap to swapout other processes
+> - decrease buffers in v4l2-request-test (.buffers_count from 16 to 6)
+> 
+> Only H.264 decoder working - MPEG and H.265 unsupported by V3s,
+> JPEG/MJPEG still unimplemented, encoder unimplemented
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index aca7e9c954e0..14e74ba889c3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -1123,6 +1123,8 @@ qupv3_id_0: geniqup@8c0000 {
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-+			interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>;
-+			interconnect-names = "qup-core";
- 			status = "disabled";
- 
- 			i2c0: i2c@880000 {
-@@ -1137,6 +1139,10 @@ i2c0: i2c@880000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_QUP_1 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1150,6 +1156,9 @@ spi0: spi@880000 {
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1163,6 +1172,9 @@ uart0: serial@880000 {
- 				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1178,6 +1190,10 @@ i2c1: i2c@884000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_QUP_1 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1191,6 +1207,9 @@ spi1: spi@884000 {
- 				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1204,6 +1223,9 @@ uart1: serial@884000 {
- 				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1219,6 +1241,10 @@ i2c2: i2c@888000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_QUP_1 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1232,6 +1258,9 @@ spi2: spi@888000 {
- 				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1245,6 +1274,9 @@ uart2: serial@888000 {
- 				interrupts = <GIC_SPI 603 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1260,6 +1292,10 @@ i2c3: i2c@88c000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_QUP_1 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1273,6 +1309,9 @@ spi3: spi@88c000 {
- 				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1286,6 +1325,9 @@ uart3: serial@88c000 {
- 				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1301,6 +1343,10 @@ i2c4: i2c@890000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_QUP_1 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1314,6 +1360,9 @@ spi4: spi@890000 {
- 				interrupts = <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1327,6 +1376,9 @@ uart4: serial@890000 {
- 				interrupts = <GIC_SPI 605 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1342,6 +1394,10 @@ i2c5: i2c@894000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_QUP_1 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1355,6 +1411,9 @@ spi5: spi@894000 {
- 				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1368,6 +1427,9 @@ uart5: serial@894000 {
- 				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1383,6 +1445,10 @@ i2c6: i2c@898000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&aggre1_noc MASTER_QUP_1 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1396,6 +1462,9 @@ spi6: spi@898000 {
- 				interrupts = <GIC_SPI 607 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1409,6 +1478,9 @@ uart6: serial@898000 {
- 				interrupts = <GIC_SPI 607 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1437,6 +1509,9 @@ spi7: spi@89c000 {
- 				interrupts = <GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1450,6 +1525,9 @@ uart7: serial@89c000 {
- 				interrupts = <GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre1_noc MASTER_QUP_1 0 &config_noc SLAVE_BLSP_1 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_1 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 		};
-@@ -1463,6 +1541,8 @@ qupv3_id_1: geniqup@ac0000 {
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-+			interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>;
-+			interconnect-names = "qup-core";
- 			status = "disabled";
- 
- 			i2c8: i2c@a80000 {
-@@ -1477,6 +1557,10 @@ i2c8: i2c@a80000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1490,6 +1574,9 @@ spi8: spi@a80000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1503,6 +1590,9 @@ uart8: serial@a80000 {
- 				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1518,6 +1608,10 @@ i2c9: i2c@a84000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1531,6 +1625,9 @@ spi9: spi@a84000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1544,6 +1641,9 @@ uart9: serial@a84000 {
- 				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1559,6 +1659,10 @@ i2c10: i2c@a88000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1572,6 +1676,9 @@ spi10: spi@a88000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1585,6 +1692,9 @@ uart10: serial@a88000 {
- 				interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1600,6 +1710,10 @@ i2c11: i2c@a8c000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1613,6 +1727,9 @@ spi11: spi@a8c000 {
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1626,6 +1743,9 @@ uart11: serial@a8c000 {
- 				interrupts = <GIC_SPI 356 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1641,6 +1761,10 @@ i2c12: i2c@a90000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1654,6 +1778,9 @@ spi12: spi@a90000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1667,6 +1794,9 @@ uart12: serial@a90000 {
- 				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1682,6 +1812,10 @@ i2c13: i2c@a94000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1695,6 +1829,9 @@ spi13: spi@a94000 {
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1708,6 +1845,9 @@ uart13: serial@a94000 {
- 				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1723,6 +1863,10 @@ i2c14: i2c@a98000 {
- 				#size-cells = <0>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 				status = "disabled";
- 			};
- 
-@@ -1736,6 +1880,9 @@ spi14: spi@a98000 {
- 				interrupts = <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1749,6 +1896,9 @@ uart14: serial@a98000 {
- 				interrupts = <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1765,6 +1915,10 @@ i2c15: i2c@a9c000 {
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
- 				status = "disabled";
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&aggre2_noc MASTER_QUP_2 0 &mem_noc SLAVE_EBI1 0>;
-+				interconnect-names = "qup-core", "qup-config", "qup-memory";
- 			};
- 
- 			spi15: spi@a9c000 {
-@@ -1777,6 +1931,9 @@ spi15: spi@a9c000 {
- 				interrupts = <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
- 				#address-cells = <1>;
- 				#size-cells = <0>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 
-@@ -1790,6 +1947,9 @@ uart15: serial@a9c000 {
- 				interrupts = <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>;
- 				power-domains = <&rpmhpd SDM845_CX>;
- 				operating-points-v2 = <&qup_opp_table>;
-+				interconnects = <&aggre2_noc MASTER_QUP_2 0 &config_noc SLAVE_BLSP_2 0>,
-+						<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_BLSP_2 0>;
-+				interconnect-names = "qup-core", "qup-config";
- 				status = "disabled";
- 			};
- 		};
+When I tried to merged these patches I got merge conflicts.
+
+Possibly due to other 5.10 changes, but certainly because of conflicts
+with patches from Jernej:
+
+https://patchwork.linuxtv.org/project/linux-media/patch/20200825173523.1289379-4-jernej.skrabec@siol.net/
+https://patchwork.linuxtv.org/project/linux-media/patch/20200825173523.1289379-5-jernej.skrabec@siol.net/
+
+I've merged Jerne's patches and posted a PR for that:
+https://patchwork.linuxtv.org/project/linux-media/patch/f3b8e5e2-5f0e-fb6f-e5b2-7f44f7e365e7@xs4all.nl/
+
+Can you rebase your patches on top of my branch that contains Jernej's patches?
+
+https://git.linuxtv.org/hverkuil/media_tree.git/log/?h=for-v5.11e
+
+Once my PR is merged into the media_tree master I can take your rebased
+patches.
+
+Regards,
+
+	Hans
+
+> 
+> best regards,
+> Martin
+> 
+> Changes since v1:
+> - patch 0005 rename
+> - added testing description
+> 
+> Martin Cerveny (6):
+>   media: cedrus: Register all codecs as capability
+>   dt-bindings: sram: allwinner,sun4i-a10-system-control: Add V3s
+>     compatibles
+>   ARM: dts: sun8i: v3s: Add node for system control
+>   media: cedrus: Add support for V3s
+>   dt-bindings: media: cedrus: Add V3s compatible
+>   ARM: dts: sun8i: v3s: Add video engine node
+> 
+>  .../allwinner,sun4i-a10-video-engine.yaml     |  1 +
+>  .../allwinner,sun4i-a10-system-control.yaml   |  6 ++++
+>  arch/arm/boot/dts/sun8i-v3s.dtsi              | 33 +++++++++++++++++++
+>  drivers/staging/media/sunxi/cedrus/cedrus.c   | 28 +++++++++++++++-
+>  drivers/staging/media/sunxi/cedrus/cedrus.h   |  2 ++
+>  .../staging/media/sunxi/cedrus/cedrus_video.c |  2 ++
+>  6 files changed, 71 insertions(+), 1 deletion(-)
+> 
+
