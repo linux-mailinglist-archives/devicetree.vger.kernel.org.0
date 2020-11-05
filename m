@@ -2,182 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78FE82A7ABA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:40:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CA002A7ABF
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:41:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726849AbgKEJkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:40:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725308AbgKEJkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:40:36 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DDFDC0613D3
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:40:34 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id y184so1305646lfa.12
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:40:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3hWsdnqZNjQDKpL2B785A/d5X3xt4A0wwW61OXRwY/c=;
-        b=vazstrmuUGxShFcPSjK99UNszN8ebLO9vYsswJWPOI0ji007BIxdt1z8ZOgCPtgL0U
-         8fQ+lGVXy9yNBtPo6ecTCGNpM6ApZsTBHHdnJ8K78acvaIz7HvPnXP+fGAmNVv1/072v
-         FzDEx07N1z7LiNMI50uDbiVBjR0upi+6Ch0pMOzuqWaqp5o0mZeoBaFBcJXGQ5AtgOGH
-         vL2clxCTwdTJQvI79Ir21mh82m26V9sgmgn6fnvm611SmhTl/DFZiAT2XFhInpof2WZg
-         VsLekC5EGBhggYbUYjBqVVL9zXyIIvOUBjU636//1r9gbQZHt6QM3GnOym2A0tBfXRFU
-         25OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3hWsdnqZNjQDKpL2B785A/d5X3xt4A0wwW61OXRwY/c=;
-        b=YacgCFxyIFrauWeETfWZJ4qaqmL7QWlnt8JmvD9Cgj8s0ySsqw5912W/EtzHIikL3K
-         1e2tOWOkEqwXubPYmJZSRD0KHy0hyP1zvQmmeJqpo7wuYxTTdCyytf9exlVulXyz62jd
-         LUIudNI5gSrs8DjE2vPQAjQBYSSWMEZVgQsengsF5qlcX+kghhkAFPaOrwODJCQOdyys
-         pgYLyYPVVs18H/3n/JjEKJi2c6MCStR6z4YHtNHMVVbutjTC34lNXjl/w+NReewmdVdB
-         uP92fwgJFrbsAG/HZT5d/nn8b7Erwvky9NCsaSvajByVJ80C8MAF1djf9fSTF5loe4w0
-         hDZg==
-X-Gm-Message-State: AOAM531RvLZgP7kFTen09cQ2hh2V2lPAwTOMBO7ttQDFtqGE377/sBh9
-        gVjdNYuam2YDL+DwVNPqCjngnHT6bD3Ie3Yx2QNgjg==
-X-Google-Smtp-Source: ABdhPJyICsojisuhbFFVcr5m6NwN6GBYE+M1nU/kA+i4WxJTNQcL76qloXWk05dLRYrco2B48Gb7uez07HDSSCe9VMs=
-X-Received: by 2002:a05:6512:3225:: with SMTP id f5mr605124lfe.441.1604569232429;
- Thu, 05 Nov 2020 01:40:32 -0800 (PST)
+        id S1726179AbgKEJll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:41:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33164 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725308AbgKEJll (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 04:41:41 -0500
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 26FBF206B5;
+        Thu,  5 Nov 2020 09:41:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604569299;
+        bh=huv8wqMA4Nar/cy2G12DUonScMbkvUlAnPO9dZGQUtQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XKgo+e0jMB+yeGjTteB4S3YVuCUPMaiLJOFkoXbbyYqSHYprT1ihS58FPBsDIOtGJ
+         VXxIzszp2QyQihBD0dqxzpoXxQaFgXE9dY3ABTaOko7KIFNisxtt+aihSkE1dAxhFG
+         ObhuGaItFXB0JxXrmkYIASQuaIOyQlLPA7tG2uZE=
+Date:   Thu, 5 Nov 2020 10:42:28 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        kernel-team@android.com, linux-acpi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 15/18] of: property: Update implementation of
+ add_links() to create fwnode links
+Message-ID: <20201105094228.GE3439341@kroah.com>
+References: <20201104232356.4038506-1-saravanak@google.com>
+ <20201104232356.4038506-16-saravanak@google.com>
 MIME-Version: 1.0
-References: <20201019141008.871177-1-daniel@0x0f.com> <20201019141008.871177-4-daniel@0x0f.com>
-In-Reply-To: <20201019141008.871177-4-daniel@0x0f.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 5 Nov 2020 10:40:21 +0100
-Message-ID: <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Daniel Palmer <daniel@0x0f.com>, Marc Zyngier <maz@kernel.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, arm-kernel@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201104232356.4038506-16-saravanak@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 19, 2020 at 4:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
+On Wed, Nov 04, 2020 at 03:23:52PM -0800, Saravana Kannan wrote:
+> The semantics of add_links() has changed from creating device link
+> between devices to creating fwnode links between fwnodes. So, update the
+> implementation of add_links() to match the new semantics.
+> 
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/of/property.c | 150 ++++++++++++------------------------------
+>  1 file changed, 41 insertions(+), 109 deletions(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 408a7b5f06a9..86303803f1b3 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1038,33 +1038,9 @@ static bool of_is_ancestor_of(struct device_node *test_ancestor,
+>  }
+>  
+>  /**
+> - * of_get_next_parent_dev - Add device link to supplier from supplier phandle
+> - * @np: device tree node
+> - *
+> - * Given a device tree node (@np), this function finds its closest ancestor
+> - * device tree node that has a corresponding struct device.
+> - *
+> - * The caller of this function is expected to call put_device() on the returned
+> - * device when they are done.
+> - */
+> -static struct device *of_get_next_parent_dev(struct device_node *np)
+> -{
+> -	struct device *dev = NULL;
+> -
+> -	of_node_get(np);
+> -	do {
+> -		np = of_get_next_parent(np);
+> -		if (np)
+> -			dev = get_dev_from_fwnode(&np->fwnode);
+> -	} while (np && !dev);
+> -	of_node_put(np);
+> -	return dev;
+> -}
+> -
+> -/**
+> - * of_link_to_phandle - Add device link to supplier from supplier phandle
+> - * @dev: consumer device
+> - * @sup_np: phandle to supplier device tree node
+> + * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
+> + * @con_np: consumer device tree node
+> + * @sup_np: supplier device tree node
+>   *
+>   * Given a phandle to a supplier device tree node (@sup_np), this function
+>   * finds the device that owns the supplier device tree node and creates a
+> @@ -1074,16 +1050,14 @@ static struct device *of_get_next_parent_dev(struct device_node *np)
+>   * cases, it returns an error.
+>   *
+>   * Returns:
+> - * - 0 if link successfully created to supplier
+> - * - -EAGAIN if linking to the supplier should be reattempted
+> + * - 0 if fwnode link successfully created to supplier
+>   * - -EINVAL if the supplier link is invalid and should not be created
+> - * - -ENODEV if there is no device that corresponds to the supplier phandle
+> + * - -ENODEV if struct device will never be create for supplier
+>   */
+> -static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
+> -			      u32 dl_flags)
+> +static int of_link_to_phandle(struct device_node *con_np,
+> +			      struct device_node *sup_np)
+>  {
+> -	struct device *sup_dev, *sup_par_dev;
+> -	int ret = 0;
+> +	struct device *sup_dev;
+>  	struct device_node *tmp_np = sup_np;
+>  
+>  	of_node_get(sup_np);
+> @@ -1106,7 +1080,8 @@ static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
+>  	}
+>  
+>  	if (!sup_np) {
+> -		dev_dbg(dev, "Not linking to %pOFP - No device\n", tmp_np);
+> +		pr_debug("Not linking %pOFP to %pOFP - No device\n",
+> +			 con_np, tmp_np);
 
-> This adds a driver that supports the GPIO block found in
-> MStar/SigmaStar ARMv7 SoCs.
->
-> The controller seems to support 128 lines but where they
-> are wired up differs between chips and no currently known
-> chip uses anywhere near 128 lines so there needs to be some
-> per-chip data to collect together what lines actually have
-> physical pins attached and map the right names to them.
->
-> The core peripherals seem to use the same lines on the
-> currently known chips but the lines used for the sensor
-> interface, lcd controller etc pins seem to be totally
-> different between the infinity and mercury chips
->
-> The code tries to collect all of the re-usable names,
-> offsets etc together so that it's easy to build the extra
-> per-chip data for other chips in the future.
->
-> So far this only supports the MSC313 and MSC313E chips.
->
-> Support for the SSC8336N (mercury5) is trivial to add once
-> all of the lines have been mapped out.
->
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+Who is calling this function without a valid dev pointer?
 
-This looks really nice, the generic hierarchical IRQchip does
-its job very well here.
+>  		return -ENODEV;
+>  	}
+>  
+> @@ -1115,53 +1090,30 @@ static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
+>  	 * descendant nodes. By definition, a child node can't be a functional
+>  	 * dependency for the parent node.
+>  	 */
+> -	if (of_is_ancestor_of(dev->of_node, sup_np)) {
+> -		dev_dbg(dev, "Not linking to %pOFP - is descendant\n", sup_np);
+> +	if (of_is_ancestor_of(con_np, sup_np)) {
+> +		pr_debug("Not linking %pOFP to %pOFP - is descendant\n",
+> +			 con_np, sup_np);
 
-I saw you would send another version but this already looks
-like merge material.
+Why not dev_dbg() here?  dev should be valid, correct?
 
-Certainly any remaining issues can be ironed out in-tree.
 
-> +config GPIO_MSC313
-> +       bool "MStar MSC313 GPIO support"
-> +       default y if ARCH_MSTARV7
-> +       depends on ARCH_MSTARV7
-> +       select GPIOLIB_IRQCHIP
-
-select IRQ_DOMAIN_HIERARCHY
-
-since you are dependent on this.
-
-(Else people will soon report problems with randconfig...)
-
-> +/* The parent interrupt controller needs the GIC interrupt type set to GIC_SPI
-> + * so we need to provide the fwspec. Essentially gpiochip_populate_parent_fwspec_twocell
-> + * that puts GIC_SPI into the first cell.
-> + */
-> +static void *msc313_gpio_populate_parent_fwspec(struct gpio_chip *gc,
-> +                                            unsigned int parent_hwirq,
-> +                                            unsigned int parent_type)
-> +{
-> +       struct irq_fwspec *fwspec;
+>  		of_node_put(sup_np);
+>  		return -EINVAL;
+>  	}
 > +
-> +       fwspec = kmalloc(sizeof(*fwspec), GFP_KERNEL);
-> +       if (!fwspec)
-> +               return NULL;
+> +	/*
+> +	 * Don't create links to "early devices" that won't have struct devices
+> +	 * created for them.
+> +	 */
+>  	sup_dev = get_dev_from_fwnode(&sup_np->fwnode);
+>  	if (!sup_dev && of_node_check_flag(sup_np, OF_POPULATED)) {
+> -		/* Early device without struct device. */
+> -		dev_dbg(dev, "Not linking to %pOFP - No struct device\n",
+> -			sup_np);
+> +		pr_debug("Not linking %pOFP to %pOFP - No struct device\n",
+> +			 con_np, sup_np);
+
+How is dev not valid here?  sup_dev might not be, but dev should be.
+
+
+>  		of_node_put(sup_np);
+>  		return -ENODEV;
+> -	} else if (!sup_dev) {
+> -		/*
+> -		 * DL_FLAG_SYNC_STATE_ONLY doesn't block probing and supports
+> -		 * cycles. So cycle detection isn't necessary and shouldn't be
+> -		 * done.
+> -		 */
+> -		if (dl_flags & DL_FLAG_SYNC_STATE_ONLY) {
+> -			of_node_put(sup_np);
+> -			return -EAGAIN;
+> -		}
+> -
+> -		sup_par_dev = of_get_next_parent_dev(sup_np);
+> -
+> -		if (sup_par_dev && device_is_dependent(dev, sup_par_dev)) {
+> -			/* Cyclic dependency detected, don't try to link */
+> -			dev_dbg(dev, "Not linking to %pOFP - cycle detected\n",
+> -				sup_np);
+> -			ret = -EINVAL;
+> -		} else {
+> -			/*
+> -			 * Can't check for cycles or no cycles. So let's try
+> -			 * again later.
+> -			 */
+> -			ret = -EAGAIN;
+> -		}
+> -
+> -		of_node_put(sup_np);
+> -		put_device(sup_par_dev);
+> -		return ret;
+>  	}
+> -	of_node_put(sup_np);
+> -	if (!device_link_add(dev, sup_dev, dl_flags))
+> -		ret = -EINVAL;
+>  	put_device(sup_dev);
+> -	return ret;
 > +
-> +       fwspec->fwnode = gc->irq.parent_domain->fwnode;
-> +       fwspec->param_count = 3;
-> +       fwspec->param[0] = GIC_SPI;
-> +       fwspec->param[1] = parent_hwirq;
-> +       fwspec->param[2] = parent_type;
+> +	fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np));
+> +	of_node_put(sup_np);
 > +
-> +       return fwspec;
-> +}
+> +	return 0;
+>  }
+>  
+>  /**
+> @@ -1361,37 +1313,29 @@ static const struct supplier_bindings of_supplier_bindings[] = {
+>   * that list phandles to suppliers. If @prop_name isn't one, this function
+>   * doesn't do anything.
+>   *
+> - * If @prop_name is one, this function attempts to create device links from the
+> - * consumer device @dev to all the devices of the suppliers listed in
+> - * @prop_name.
+> + * If @prop_name is one, this function attempts to create fwnode links from the
+> + * consumer device tree node @con_np to all the suppliers device tree nodes
+> + * listed in @prop_name.
+>   *
+> - * Any failed attempt to create a device link will NOT result in an immediate
+> + * Any failed attempt to create a fwnode link will NOT result in an immediate
+>   * return.  of_link_property() must create links to all the available supplier
+> - * devices even when attempts to create a link to one or more suppliers fail.
+> + * device tree nodes even when attempts to create a link to one or more
+> + * suppliers fail.
+>   */
+> -static int of_link_property(struct device *dev, struct device_node *con_np,
+> -			     const char *prop_name)
+> +static int of_link_property(struct device_node *con_np, const char *prop_name)
+>  {
+>  	struct device_node *phandle;
+>  	const struct supplier_bindings *s = of_supplier_bindings;
+>  	unsigned int i = 0;
+>  	bool matched = false;
+>  	int ret = 0;
+> -	u32 dl_flags;
+> -
+> -	if (dev->of_node == con_np)
+> -		dl_flags = fw_devlink_get_flags();
+> -	else
+> -		dl_flags = DL_FLAG_SYNC_STATE_ONLY;
+>  
+>  	/* Do not stop at first failed link, link all available suppliers. */
+>  	while (!matched && s->parse_prop) {
+>  		while ((phandle = s->parse_prop(con_np, prop_name, i))) {
+>  			matched = true;
+>  			i++;
+> -			if (of_link_to_phandle(dev, phandle, dl_flags)
+> -								== -EAGAIN)
+> -				ret = -EAGAIN;
+> +			of_link_to_phandle(con_np, phandle);
+>  			of_node_put(phandle);
+>  		}
+>  		s++;
+> @@ -1399,31 +1343,19 @@ static int of_link_property(struct device *dev, struct device_node *con_np,
+>  	return ret;
+>  }
+>  
+> -static int of_link_to_suppliers(struct device *dev,
+> -				  struct device_node *con_np)
+> +static int of_fwnode_add_links(struct fwnode_handle *fwnode,
+> +			       struct device *dev)
+>  {
+> -	struct device_node *child;
+>  	struct property *p;
+> -	int ret = 0;
+> +	struct device_node *con_np = to_of_node(fwnode);
+>  
+> -	for_each_property_of_node(con_np, p)
+> -		if (of_link_property(dev, con_np, p->name))
+> -			ret = -ENODEV;
+> -
+> -	for_each_available_child_of_node(con_np, child)
+> -		if (of_link_to_suppliers(dev, child) && !ret)
+> -			ret = -EAGAIN;
+> -
+> -	return ret;
+> -}
+> +	if (unlikely(!con_np))
+> +		return -EINVAL;
 
-Clever. Looping in Marc Z so he can say if this looks allright to him.
+Can you prove that unlikely() results in faster code?  If not, don't use
+it.
 
-> +static int msc313e_gpio_child_to_parent_hwirq(struct gpio_chip *chip,
-> +                                            unsigned int child,
-> +                                            unsigned int child_type,
-> +                                            unsigned int *parent,
-> +                                            unsigned int *parent_type)
-> +{
-> +       struct msc313_gpio *priv = gpiochip_get_data(chip);
-> +       unsigned int offset = priv->gpio_data->offsets[child];
-> +       int ret = -EINVAL;
-> +
-> +       /* only the spi0 pins have interrupts on the parent
-> +        * on all of the known chips and so far they are all
-> +        * mapped to the same place
-> +        */
-> +       if (offset >= OFF_SPI0_CZ && offset <= OFF_SPI0_DO) {
-> +               *parent_type = child_type;
-> +               *parent = ((offset - OFF_SPI0_CZ) >> 2) + 28;
-> +               ret = 0;
-> +       }
-> +
-> +       return ret;
-> +}
+And the only way it can be NULL is if fwnode is NULL, and as you control
+the callers to it, how can that be the case?
 
-Neat!
+thanks,
 
-> +static int msc313_gpio_probe(struct platform_device *pdev)
-> +{
-> +       const struct msc313_gpio_data *match_data;
-> +       struct msc313_gpio *gpio;
-> +       struct gpio_chip *gpiochip;
-> +       struct gpio_irq_chip *gpioirqchip;
-> +       struct resource *res;
-> +       struct irq_domain *parent_domain;
-> +       struct device_node *parent_node;
-> +       int ret;
-> +
-> +       match_data = of_device_get_match_data(&pdev->dev);
-
-There is a lot of referencing &pdev->dev.
-
-I would add a local variable like this:
-
-struct device *dev = &pdev->dev
-
-and replace all &pdev->dev with that. It will make the code more
-compact and easier to read.
-
-Yours,
-Linus Walleij
+greg k-h
