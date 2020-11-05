@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C3E8B2A801D
+	by mail.lfdr.de (Postfix) with ESMTP id B090C2A801C
 	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 14:57:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726067AbgKEN5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1728371AbgKEN5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 5 Nov 2020 08:57:04 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:42869 "EHLO
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:34091 "EHLO
         new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728371AbgKEN5E (ORCPT
+        by vger.kernel.org with ESMTP id S1729990AbgKEN5E (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 08:57:04 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E198558034C;
-        Thu,  5 Nov 2020 08:57:00 -0500 (EST)
+        by mailnew.nyi.internal (Postfix) with ESMTP id 4EF7D58034D;
+        Thu,  5 Nov 2020 08:57:02 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 05 Nov 2020 08:57:00 -0500
+  by compute6.internal (MEProxy); Thu, 05 Nov 2020 08:57:02 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=1qbN14mIek/JX
-        3iS6saTd4OgwKK38+e/znp9ftVsrwE=; b=IISv2sIydF7hazIS49pvAg/DQeDg+
-        HC6ciFEvlazhKxULi/ZsxJYxzkY5rGmB0qJAXDEitcmgU2ZPlFqhuLFFt8XN2RZq
-        +1vr4taT00MHXxZE220SJg5+eE+sdpXwpsT5ySEqYGktE3jz88/GnONGAu3x30F4
-        AWyjy6sgpqlS5Pf9aLZ6HyrMe8z+LW0eklF+JkrStwx+ZfAnfwj5FhZofgnYMf/j
-        4fsMj1hhzfcemS+KziRouPy83yio2M72MWubMlnzbrhifCpZYvHJli4WYAYZcxDx
-        ynZXXh687+hLKSyNcLXMC3S7+UfoWXpTDL8JoPmD4DPh3HZFriIMzKUBw==
+        :mime-version:content-transfer-encoding; s=fm1; bh=lGJJsCc/xA29q
+        3wq8xPxyJ7pKm1qHScZ2yaE24iFS6Q=; b=ScUUcKLWk4dEVPOTRww0kxJzAUqnf
+        JUZXpr1VTC4PTitmEIk3rR/cKULsxZjz5UAoVc30zySZ6vM2Vcd/L0I6+L44QWr0
+        dQScE1k2YzBmBMJzRVxos2EH/YMMCuYIf+aYfnwimjluBK6SoRKGnZ6GJbgsoloE
+        aYjBBvXYxJbNyzxLA0HdbD8h4QAdqTOIPOy/ooIwDeU2zBb5dR00ymhqGlDx/alK
+        Yj5uRt5ZXH4vLAMpAcZUlZ6MFP+cFQYxA6UhMp1qp4yyqlSqFvX8zqIRzJvVEkjr
+        DrbpNyN7spMUvGDQ2MXXZhdePgakW5jrufPQpbdfE/NLM4ms1PgeR+O8Q==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:date:from
         :in-reply-to:message-id:mime-version:references:subject:to
         :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=1qbN14mIek/JX3iS6saTd4OgwKK38+e/znp9ftVsrwE=; b=fXXZegtI
-        VZQUBXr9e1cy83HC0EngeA/hSJEQ7yIRKNFEUduOZz/5wIDuujKfcIfWwnB0gZm5
-        qAhnpeOCjKrXBJYbs8rgofiWx6YBKyW+JHlcDKZIF6U4Q1qgGA9MI3lVjdm7euo2
-        80WHGo9NNb0VW79a90ze0/TdyRYYWbRL28jjCwFMByXwurgr2Ksfy6w8IR32pjFA
-        eN0AXkczJDl3YOHaQOFcRbPm5eQsESg/Wq8j4vh7pSFQBLrtDruhMeigQx5Pd5Fv
-        wQLZWGEqKOvZOptXYZql4a+kARqKsptlSXeiAzT8iGOaMuwMHEPiuD0jbCcbaNX6
-        2o8PFNBpE4V9Yw==
-X-ME-Sender: <xms:rASkX64hHlvHkwaSshA-RkVtOVZBRu8EQvpI9rXowgH6QyGvdxIfZg>
-    <xme:rASkXz7HdBZ2yWh9zwv7pSC_mcY2Ey5MgYo92lH-ah9uqOFcTNR_WFr5oqxc6GQaa
-    NIIqxR7uUbjRc_v_ws>
+        fm1; bh=lGJJsCc/xA29q3wq8xPxyJ7pKm1qHScZ2yaE24iFS6Q=; b=St4HTO6q
+        bIWRqqDk4Y4mWvtRCmhq43yGC0cyV6LEFzsuKl1DYEPtwS7wvhFkFGUyFcwnJOdd
+        yWrLjh8R0e7hrUzn6k2DSnKitT6NZgCZNzmFg0zPM58pk6/eM5E03MQCbDwI/0Np
+        LPEHVCH0DkRh0VWhU3cyHFjNwLtbFpQZWRbWs5+m8hU0IUoFkn7wdUBPQPn9TxFV
+        c+mrqVbhZsPVuK+lP3ttPqyszpTe3tL0sNJ2DuoK4ooj+9Rm/KzhTSIq00Vho1vi
+        6bFQ29uqj1WbBOUJqA+8BEZQUNXvy4cJsT7JjhOsJ4aIu62NnrfaPXf8ep8t9FjA
+        R/7pnyvKYVnHCg==
+X-ME-Sender: <xms:rgSkXyE12udQiUdAJhmu5puCrR34zzV6i3x2FB9oAPOIMwFKyDV_KQ>
+    <xme:rgSkXzVhBqQpyTnOHDkVIjavHZWN55PPf2_qZmx-WmIFVVDMVRedX2fC_8nvDqA2a
+    fGBBxnPHiMcQpLa_W8>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtjedgheelucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
@@ -47,13 +47,13 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtjedgheelucetufdoteggod
     htvghrnhepvdekleevfeffkeejhfffueelteelfeduieefheduudfggffhhfffheevveeh
     hedvnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:rASkX5fhQuNWdgWIw1SF8gpqgrBkLdUjCqcIjOMJZFymtrBqnNGg0A>
-    <xmx:rASkX3IjPwiuOHta41AjKDy9sQdmqHiGVw7R1x3Gvcqn8dlSUVpyaw>
-    <xmx:rASkX-JHFgJdVJ9wgSEdMIBzAaD5ZozLv91vkHrHvRwWiwWHAXg_OA>
-    <xmx:rASkXz6OCXjX4Nohk7hSQHCCEWEEhy3FMjDuC5-C89cwpugLoLkbIg>
+X-ME-Proxy: <xmx:rgSkX8JZSRxz61_rXieYShwjqEn6GFq2O4sXBuWPicUy3TN4WOEojw>
+    <xmx:rgSkX8HvmjFrrv6UhDN3Voa-n6reA5_PxKraDFFJlam6d5sYoxFDHg>
+    <xmx:rgSkX4U_j_KV7PRBRAxxY7nxrJSOEyc4zS3LZNKwRcxe6U9zHsrR6w>
+    <xmx:rgSkX9XzIXzY23TAgD28riaR4Ziqi0fSZnisB1vlvAa6JM83kOn8Cg>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 578C2306005C;
-        Thu,  5 Nov 2020 08:57:00 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id BBCC13060064;
+        Thu,  5 Nov 2020 08:57:01 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Eric Anholt <eric@anholt.net>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -72,9 +72,9 @@ Cc:     Hoegeun Kwon <hoegeun.kwon@samsung.com>,
         bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 1/7] drm/vc4: kms: Switch to drmm_add_action_or_reset
-Date:   Thu,  5 Nov 2020 14:56:50 +0100
-Message-Id: <20201105135656.383350-2-maxime@cerno.tech>
+Subject: [PATCH v3 2/7] drm/vc4: kms: Remove useless define
+Date:   Thu,  5 Nov 2020 14:56:51 +0100
+Message-Id: <20201105135656.383350-3-maxime@cerno.tech>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201105135656.383350-1-maxime@cerno.tech>
 References: <20201105135656.383350-1-maxime@cerno.tech>
@@ -84,38 +84,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Even though it was pointed in the review by Daniel, and I thought to have
-fixed it while applying the patches, but it turns out I forgot to commit
-the fixes in the process. Properly fix it this time.
+NUM_OUTPUTS isn't used anymore, let's remove it.
 
-Fixes: dcda7c28bff2 ("drm/vc4: kms: Add functions to create the state objects")
+Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
 Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 ---
- drivers/gpu/drm/vc4/vc4_kms.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/vc4/vc4_kms.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-index 2b951cae04ad..44db31e16e91 100644
+index 44db31e16e91..4b558ccb18fe 100644
 --- a/drivers/gpu/drm/vc4/vc4_kms.c
 +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-@@ -113,7 +113,7 @@ static int vc4_ctm_obj_init(struct vc4_dev *vc4)
- 	drm_atomic_private_obj_init(&vc4->base, &vc4->ctm_manager, &ctm_state->base,
- 				    &vc4_ctm_state_funcs);
- 
--	return drmm_add_action(&vc4->base, vc4_ctm_obj_fini, NULL);
-+	return drmm_add_action_or_reset(&vc4->base, vc4_ctm_obj_fini, NULL);
+@@ -660,7 +660,6 @@ static int vc4_load_tracker_obj_init(struct vc4_dev *vc4)
+ 	return drmm_add_action_or_reset(&vc4->base, vc4_load_tracker_obj_fini, NULL);
  }
  
- /* Converts a DRM S31.32 value to the HW S0.9 format. */
-@@ -657,7 +657,7 @@ static int vc4_load_tracker_obj_init(struct vc4_dev *vc4)
- 				    &load_state->base,
- 				    &vc4_load_tracker_state_funcs);
+-#define NUM_OUTPUTS  6
+ #define NUM_CHANNELS 3
  
--	return drmm_add_action(&vc4->base, vc4_load_tracker_obj_fini, NULL);
-+	return drmm_add_action_or_reset(&vc4->base, vc4_load_tracker_obj_fini, NULL);
- }
- 
- #define NUM_OUTPUTS  6
+ static int
 -- 
 2.28.0
 
