@@ -2,106 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D695F2A8325
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:11:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 164C72A8361
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 17:20:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726729AbgKEQL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 11:11:26 -0500
-Received: from foss.arm.com ([217.140.110.172]:36456 "EHLO foss.arm.com"
+        id S1731391AbgKEQUE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 11:20:04 -0500
+Received: from mga11.intel.com ([192.55.52.93]:19001 "EHLO mga11.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725998AbgKEQL0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 11:11:26 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F66514BF;
-        Thu,  5 Nov 2020 08:11:25 -0800 (PST)
-Received: from [172.16.1.113] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A0BB3F718;
-        Thu,  5 Nov 2020 08:11:17 -0800 (PST)
-Subject: Re: [PATCH v6 1/7] arm64: mm: Move reserve_crashkernel() into
- mem_init()
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
-        ardb@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        will@kernel.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org,
-        linux-rpi-kernel@lists.infradead.org, guohanjun@huawei.com,
-        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org
-References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
- <20201103173159.27570-2-nsaenzjulienne@suse.de>
-From:   James Morse <james.morse@arm.com>
-Message-ID: <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
-Date:   Thu, 5 Nov 2020 16:11:08 +0000
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726557AbgKEQUE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 11:20:04 -0500
+IronPort-SDR: zzvBNR0iExwC8tI6MGoHQu9BbLUnAwnry4M+Tewzq8yeRpbREYKN2be91udXmepy7pYpyQqY4m
+ 69JWcKr4q0+A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="165901539"
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; 
+   d="scan'208";a="165901539"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2020 08:20:02 -0800
+IronPort-SDR: ZUeKpsT88n2eEQDLWRohP3as8XuAKRILY7VEXFRa6wAxHjAow/TenrS0Eacz+7M0E1caHY3EyM
+ LcTKxgSuoBXw==
+X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; 
+   d="scan'208";a="539465896"
+Received: from umedepal-mobl2.amr.corp.intel.com (HELO [10.254.6.114]) ([10.254.6.114])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2020 08:20:01 -0800
+Subject: Re: [PATCH v3 0/6] ASoC: codecs: add support for LPASS Codec macros
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        broonie@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+References: <20201105113458.12360-1-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <f4cf1bd6-cf11-60bb-3169-c54d2cf72e19@linux.intel.com>
+Date:   Thu, 5 Nov 2020 10:20:01 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201103173159.27570-2-nsaenzjulienne@suse.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
+In-Reply-To: <20201105113458.12360-1-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
-
-On 03/11/2020 17:31, Nicolas Saenz Julienne wrote:
-> crashkernel might reserve memory located in ZONE_DMA. We plan to delay
-> ZONE_DMA's initialization after unflattening the devicetree and ACPI's
-> boot table initialization, so move it later in the boot process.
-> Specifically into mem_init(), this is the last place crashkernel will be
-> able to reserve the memory before the page allocator kicks in.
-
-> There
-> isn't any apparent reason for doing this earlier.
-
-It's so that map_mem() can carve it out of the linear/direct map.
-This is so that stray writes from a crashing kernel can't accidentally corrupt the kdump
-kernel. We depend on this if we continue with kdump, but failed to offline all the other
-CPUs. We also depend on this when skipping the checksum code in purgatory, which can be
-exceedingly slow.
-
-Grepping around, the current order is:
-
-start_kernel()
--> setup_arch()
-	-> arm64_memblock_init()	/* reserve */
-	-> paging_init()
-		-> map_mem()		/* carve out reservation */
-[...]
-	-> mm_init()
-		-> mem_init()
 
 
-I agree we should add comments to make this apparent!
-
-
-Thanks,
-
-James
-
-
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 095540667f0f..fc4ab0d6d5d2 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -386,8 +386,6 @@ void __init arm64_memblock_init(void)
->  	else
->  		arm64_dma32_phys_limit = PHYS_MASK + 1;
->  
-> -	reserve_crashkernel();
-> -
->  	reserve_elfcorehdr();
->  
->  	high_memory = __va(memblock_end_of_DRAM() - 1) + 1;
-> @@ -508,6 +506,8 @@ void __init mem_init(void)
->  	else
->  		swiotlb_force = SWIOTLB_NO_FORCE;
->  
-> +	reserve_crashkernel();
-> +
->  	set_max_mapnr(max_pfn - PHYS_PFN_OFFSET);
->  
->  #ifndef CONFIG_SPARSEMEM_VMEMMAP
+On 11/5/20 5:34 AM, Srinivas Kandagatla wrote:
+> This patchset adds support for two Codec Macro blocks( WSA and VA) available in
+> Qualcomm LPASS (Low Power Audio SubSystem).
 > 
+> There are WSA, VA, TX and RX Macros on LPASS IP, each of the Macro block
+> has specific connectivity like WSA Macros are intended to connect
+> to WSA Smart speaker codecs via SoundWire. VA Macro is intended for DMICs,
+> and TX/RX for Analog codecs via SoundWire like other WCD Codecs to provide
+> headphone/ear/lineout etc ..
+> 
+> Most of the work is derived from downstream Qualcomm kernels.
+> Credits to various Qualcomm authors from Patrick Lai's team who have
+> contributed to this code.
+> 
+> This patchset has been tested on support to Qualcomm Robotics RB5 Development
+> Kit based on QRB5165 Robotics SoC. This board has 2 WSA881X smart speakers
+> with onboard DMIC connected to internal LPASS codec via WSA  and VA macros
+> respectively.
+
+For the series,
+
+Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 
