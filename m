@@ -2,115 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC4F2A821E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 16:23:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DE152A822C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 16:27:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731264AbgKEPXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 10:23:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52890 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730660AbgKEPXH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 10:23:07 -0500
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9CEC0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 07:23:06 -0800 (PST)
-Received: by mail-qk1-x743.google.com with SMTP id x20so1491620qkn.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 07:23:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1SxuLZqP7expcmyIeWKucvYuGkstgspzMuDDrhMmksY=;
-        b=QgkcEaYbFwTbauWuAVLqGTRxvWi76twgcpDbNcMEkx8DmTQPUhNPmJTCJnGwcitJZ+
-         EcvTydCY9JAEc0P8ZsX8G4IO4KlR5W//1ksdtn7VPaN0RNh3NYcVSnEaXXQgJb94Wwij
-         RtwwcVVTXOiXvAtpie6fdSsuT/TNr9UEs2EOs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1SxuLZqP7expcmyIeWKucvYuGkstgspzMuDDrhMmksY=;
-        b=Fi8bcvkBv3p4cuBKVVvcN58oIVJt+pM4CHdOhGb28I1JhvzxDpSRLHHBdvR0g8oEaS
-         fjp4+WDIUGsdhve1LobHV5GPZXCxJdLW5op28IV6whBmuSYOa6VVmf/QQRnqER0GSaJ8
-         1a/3i6pl0nUbufFQ9hlizfh1cacDI4O0apNArDfFSXsCyUV+NR1VW4bPlM9b03C7QyGg
-         LqK+VS5PtLt1AfIQ/Vr3bdATols6FCXsVXUMrx2ml9lCnso6m6H9KjoQtlY1MTG1DlYw
-         j7bOe3q7ZXLQt4bhE2qUYs2B8IOVTMMOf8m94QVeWgHlOPmfaKZ+6EQze4c/UL0s6FGW
-         Th/Q==
-X-Gm-Message-State: AOAM5317T5+UPky6FhcrZey3Hw/Wju8sidOpPHxSJ7cEzo8Dgds6/Zk3
-        vV/KaxPpnQ9OiQsRU4p+Sd+yMez0yCDmvN6BEM4DVA==
-X-Google-Smtp-Source: ABdhPJxR5v810eCnN+xy4FPc5ORemteS4sufWGdQhxFtZCEDINdix51Ym1Hs+vbSKWGg17A+984EwIkolOj+XlVlAug=
-X-Received: by 2002:a37:7687:: with SMTP id r129mr1781089qkc.54.1604589785561;
- Thu, 05 Nov 2020 07:23:05 -0800 (PST)
+        id S1731121AbgKEP1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 10:27:48 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59644 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730660AbgKEP1s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 10:27:48 -0500
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3557522203;
+        Thu,  5 Nov 2020 15:27:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604590067;
+        bh=UK19I8OglCaJWHUkFRwd3fmiZffaNCjpPaqyNqKgbJI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=J5cWUrPLaQLNIbe0c5w98I8ZtT02bfs4Rol32WMQdCMT4RpEHRTMVvL8pSqs7UNOM
+         Nat4d8ad9XcYqPsT7bLpl7ksJU3ZkU5HvJA8hKdN7Vtl5gy7LZ3NTMb9BbR/YxjRBK
+         rZw2m8yx9gSg1kaZSFy3/WJ+bzA37pEY6XHt8NTI=
+Received: by mail-ot1-f53.google.com with SMTP id i18so1786147ots.0;
+        Thu, 05 Nov 2020 07:27:47 -0800 (PST)
+X-Gm-Message-State: AOAM532/rZ3jDSFtRLqlmYAbO6P2AsWr3yLzLfmEqTfEtnWd2Yp8gP0G
+        DLrblVFHbyLCmJvoQFZL+rH80f0ufzr+Hzz9yA==
+X-Google-Smtp-Source: ABdhPJwKfqNyaCuCxyGQthoSqbrcvdbcm7lr5Y+wBARMUUWapINuOrnTTlkPS19mnYTSVopMJI/IzduZeD4wthDYe5E=
+X-Received: by 2002:a9d:6e0c:: with SMTP id e12mr2049771otr.129.1604590066346;
+ Thu, 05 Nov 2020 07:27:46 -0800 (PST)
 MIME-Version: 1.0
-References: <20201019141008.871177-1-daniel@0x0f.com> <20201019141008.871177-4-daniel@0x0f.com>
- <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com> <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
-In-Reply-To: <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 6 Nov 2020 00:23:52 +0900
-Message-ID: <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20201029134017.27400-1-m.szyprowski@samsung.com>
+ <CGME20201029134038eucas1p28d9bd33bc9e36b960b021a40ef299b47@eucas1p2.samsung.com>
+ <20201029134017.27400-3-m.szyprowski@samsung.com> <20201104213539.GA4144654@bogus>
+ <d89f5f0a-c45e-0bda-4db7-7b0cf9cd49fe@samsung.com>
+In-Reply-To: <d89f5f0a-c45e-0bda-4db7-7b0cf9cd49fe@samsung.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 5 Nov 2020 09:27:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKQstKa7_0pjcODyyLCwMiGF9zB4_+x=GhcSUOyvuLRmw@mail.gmail.com>
+Message-ID: <CAL_JsqKQstKa7_0pjcODyyLCwMiGF9zB4_+x=GhcSUOyvuLRmw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] dt-bindings: pci: add the samsung,exynos-pcie binding
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
-
-On Thu, 5 Nov 2020 at 21:08, Marc Zyngier <maz@kernel.org> wrote:
+On Thu, Nov 5, 2020 at 2:33 AM Marek Szyprowski
+<m.szyprowski@samsung.com> wrote:
 >
-> On 2020-11-05 09:40, Linus Walleij wrote:
-> > On Mon, Oct 19, 2020 at 4:10 PM Daniel Palmer <daniel@0x0f.com> wrote:
+> Hi Rob,
 >
-> [...]
+> On 04.11.2020 22:35, Rob Herring wrote:
+> > On Thu, Oct 29, 2020 at 02:40:13PM +0100, Marek Szyprowski wrote:
+> >> Add dt-bindings for the Samsung Exynos PCIe controller (Exynos5433
+> >> variant). Based on the text dt-binding posted by Jaehoon Chung.
+> >>
+> >> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> >> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >> ---
+> >>   .../bindings/pci/samsung,exynos-pcie.yaml     | 119 ++++++++++++++++++
+> >>   1 file changed, 119 insertions(+)
+> >>   create mode 100644 Documentation/devicetree/bindings/pci/samsung,exynos-pcie.yaml
 >
-> >> +/* The parent interrupt controller needs the GIC interrupt type set
-> >> to GIC_SPI
-> >> + * so we need to provide the fwspec. Essentially
-> >> gpiochip_populate_parent_fwspec_twocell
-> >> + * that puts GIC_SPI into the first cell.
-> >> + */
+> >> ...
 >
-> nit: comment style.
-
-I've fixed these and some other bits for the v3.
-I've held off on pushing that until the rest of it seemed right.
-
-> >> +static void *msc313_gpio_populate_parent_fwspec(struct gpio_chip *gc,
-> >> +                                            unsigned int
-> >> parent_hwirq,
-> >> +                                            unsigned int parent_type)
-> >> +{
-> >> +       struct irq_fwspec *fwspec;
-> >> +
-> >> +       fwspec = kmalloc(sizeof(*fwspec), GFP_KERNEL);
-> >> +       if (!fwspec)
-> >> +               return NULL;
-> >> +
-> >> +       fwspec->fwnode = gc->irq.parent_domain->fwnode;
-> >> +       fwspec->param_count = 3;
-> >> +       fwspec->param[0] = GIC_SPI;
-> >> +       fwspec->param[1] = parent_hwirq;
-> >> +       fwspec->param[2] = parent_type;
-> >> +
-> >> +       return fwspec;
-> >> +}
-> >
-> > Clever. Looping in Marc Z so he can say if this looks allright to him.
+> >> +  num-viewport:
+> >> +    const: 3
+> > I'm confused why you need this. This is only used with the iATU except
+> > for keystone. Platforms like Exynos with their own child bus config
+> > space accessors don't have an iATU.
 >
-> Yup, this looks correct. However, looking at the bit of the patch that
-> isn't quoted here, I see that msc313_gpio_irqchip doesn't have a
-> .irq_set_affinity callback. Is this system UP only?
+> Frankly I have no idea, I don't know much about the PCI internals.
 
-What is in mainline right now is UP only but there are chips with a
-second cortex A7 that I have working in my tree.
-So I will add that in for v3 if I can work out what I should actually
-do there. :)
+Sorry, I was confused. It's fine.
 
-Thanks,
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Daniel
+Rob
