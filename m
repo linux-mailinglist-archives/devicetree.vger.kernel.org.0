@@ -2,206 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9002A78BE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:20:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 694CF2A78F4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:21:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726626AbgKEIUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 03:20:00 -0500
-Received: from mga14.intel.com ([192.55.52.115]:37310 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725320AbgKEIUA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 03:20:00 -0500
-IronPort-SDR: Gkf9i6Qx5/8f8E4KhF4tHx+9cHxERrc1T+dSjwuQ0aMnfa8epV7qxsqvhkJ5r2JamXYP+ZiXNE
- mgvLotcF0Pug==
-X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="168563474"
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; 
-   d="scan'208";a="168563474"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2020 00:19:59 -0800
-IronPort-SDR: O/o1cnDJQWHLK+3wesbrRUnUKklIQLUUX4s/ZXWpEXNmcKcSloDJmB6FLY9bcKwwjTKrSSrF7B
- tizqufv3+rdw==
-X-IronPort-AV: E=Sophos;i="5.77,453,1596524400"; 
-   d="scan'208";a="321118743"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Nov 2020 00:19:56 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 2AE2920901; Thu,  5 Nov 2020 10:19:54 +0200 (EET)
-Date:   Thu, 5 Nov 2020 10:19:54 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Maxime Ripard <mripard@kernel.org>, kevin.lhopital@hotmail.com,
-        =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: Add OV8865 bindings
- documentation
-Message-ID: <20201105081954.GX26150@paasikivi.fi.intel.com>
-References: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
- <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
- <20201102232411.GD26150@paasikivi.fi.intel.com>
- <20201104102643.GH2123@aptenodytes>
+        id S1728632AbgKEIV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 03:21:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43388 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725287AbgKEIV2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:21:28 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 387E8C0613D2
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 00:21:26 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id x12so653679wrm.8
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 00:21:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=EGm2NorsGv4NVpF0JuZ+YhufziByoMe/D5L7IgafVoo=;
+        b=l73u9BPhLQwGMUIi7oUy49iKpajVfS0uL6u7IqgsGOe1stfuOFzjELtb46fzuXrpbA
+         ACFuAAPdiXlqVz3ENWfHW1L7yJIncpr3a0GOEuFv9Ry7bUEKDzD2A7EmfF2+2KysFuIv
+         Wma7PkdpMWDUkeRAfvIpgI3VOBtnSwFW/beECfIwOaLlYNJVILFIl+Fs0eosSKqrNCHq
+         ze39AmWAOndgmGNpiwWwtoCsFm0n/lo+FKuFpt8Zhe1pkyl15sddy0To2Nu5KF1S32Dq
+         ad3ObQOyaNfRMdx0AFpMCTbS1MpzOjar1VD4NTtbJUufHAy+BSz1vUBaOfYkRmkRCYZY
+         NROw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=EGm2NorsGv4NVpF0JuZ+YhufziByoMe/D5L7IgafVoo=;
+        b=ms16slwApmabt2UrOmjAFcNoxMr2jDOgMRcn1FtakBuo0CmrVR9cXkQZLKJtNNbrH/
+         nS7BRaO4sghUlNTp3hXp8pY2kTSasXzrpK+uXtjfypArHmdZW6m4aUIpDDDXlsFprgH2
+         FT1LMiBVaTYBPKvJBOC8Go5FFu06sGTZrOgXu0JCse2F328R0n4QhQXQpve67hX2Gyel
+         c9+61InuPH5bwjYi2JPgjGRfamNOpBsiXlYc+XxhRvAXikhGSdS8al5F382ehbAlqDf4
+         g+kC1WudU3GXAZRg/frPzNWVSBrM/amAyheJ2h23I2KeLFCHzCp6SAm8cDlQdvxYaZiD
+         fxaQ==
+X-Gm-Message-State: AOAM5303dO9kr0L901AmpaJnkUWu4LUE8364C5QucdMoFRVEzrzlFPCT
+        bvImcGs8rRGp9mAEqIY9VdhfTQ==
+X-Google-Smtp-Source: ABdhPJz+aPOanI9nNufsSlPIrZvXNwvL6whEAMe+oxV2195BJuc/Z12VLFYAI4dNeS15dhAq0gB+9g==
+X-Received: by 2002:adf:914c:: with SMTP id j70mr1526513wrj.170.1604564484981;
+        Thu, 05 Nov 2020 00:21:24 -0800 (PST)
+Received: from dell ([91.110.221.242])
+        by smtp.gmail.com with ESMTPSA id a17sm1398761wra.61.2020.11.05.00.21.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 00:21:24 -0800 (PST)
+Date:   Thu, 5 Nov 2020 08:21:22 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
+Message-ID: <20201105082122.GU4488@dell>
+References: <cover.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+ <c7a838830b7d5ea1c281e419cf0eff0cc50363e0.1603877481.git.matti.vaittinen@fi.rohmeurope.com>
+ <20201104155153.GQ4488@dell>
+ <058913084af32743f2e23228a46944bbfcbd52d2.camel@fi.rohmeurope.com>
+ <98d3a090462d21a97dd15490ac1e9de011819b35.camel@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201104102643.GH2123@aptenodytes>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <98d3a090462d21a97dd15490ac1e9de011819b35.camel@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Thu, 05 Nov 2020, Vaittinen, Matti wrote:
 
-On Wed, Nov 04, 2020 at 11:26:43AM +0100, Paul Kocialkowski wrote:
-> Hi Sakari and thanks for the review!
 > 
-> On Tue 03 Nov 20, 01:24, Sakari Ailus wrote:
-> > On Fri, Oct 23, 2020 at 07:54:04PM +0200, Paul Kocialkowski wrote:
-> > > This introduces YAML bindings documentation for the OV8865
-> > > image sensor.
-> > > 
-> > > Co-developed-by: KÈvin L'hÙpital <kevin.lhopital@bootlin.com>
-> > > Signed-off-by: KÈvin L'hÙpital <kevin.lhopital@bootlin.com>
-> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > ---
-> > >  .../bindings/media/i2c/ovti,ov8865.yaml       | 124 ++++++++++++++++++
-> > >  1 file changed, 124 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> > > new file mode 100644
-> > > index 000000000000..807f1a94afae
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> > > @@ -0,0 +1,124 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8865.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: OmniVision OV8865 Image Sensor Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: ovti,ov8865
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: EXTCLK Clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: extclk
+> On Thu, 2020-11-05 at 08:46 +0200, Matti Vaittinen wrote:
+> > Morning Lee,
 > > 
-> > Is this needed with a single clock?
-> 
-> Yes I think so: we grab the clock with devm_clk_get which takes a name string
-> that matches the clock-names property.
-
-That argument may be NULL.
-
-> 
-> > And... shouldn't this also come with assigned-clock-rates etc., to set the
-> > clock frequency?
-> 
-> I'm a bit confused why we would need to do that in the device-tree rather than
-> setting the clock rate with clk_set_rate in the driver, like any other driver
-> does. I think this was discussed before (on the initial ov8865 series) and the
-> conclusion was that there is no particular reason for media i2c drivers to
-> behave differently. So I believe this is the correct approach.
-
-I'm not exactly sure about that conclusion.
-
-You can use clk_set_rate() if you get the frequency from DT, but we
-recently did conclude that camera sensor drivers can expect to get the
-frequency indicated by assigned-clock-rate property.
-
-In other words, the driver may not be specific to a particular board and
-SoC you have.
-
-Please also read Documentation/driver-api/media/camera-sensor.rst .
-
-> 
-> > > +
-> > > +  dvdd-supply:
-> > > +    description: Digital Domain Power Supply
-> > > +
-> > > +  avdd-supply:
-> > > +    description: Analog Domain Power Supply (internal AVDD is used if missing)
-> > > +
-> > > +  dovdd-supply:
-> > > +    description: I/O Domain Power Supply
-> > > +
-> > > +  powerdown-gpios:
-> > > +    maxItems: 1
-> > > +    description: Power Down Pin GPIO Control (active low)
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +    description: Reset Pin GPIO Control (active low)
-> > > +
-> > > +  port:
-> > > +    type: object
-> > > +    description: Input port, connect to a MIPI CSI-2 receiver
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        type: object
-> > > +
-> > > +        properties:
-> > > +          remote-endpoint: true
-> > > +
-> > > +          bus-type:
-> > > +            const: 4
-> > > +
-> > > +          clock-lanes:
-> > > +            maxItems: 1
+> > Thanks for taking a look at this :) I see most of the comments being
+> > valid. There's two I would like to clarify though...
 > > 
-> > I believe you can drop clock-lanes and bus-type; these are both constants.
-> 
-> I don't understand why bus-type should be dropped because it is constant:
-> if bus-type is set to something else, the driver will definitely not probe
-> since we're requesting V4L2_MBUS_CSI2_DPHY for v4l2_fwnode_endpoint_parse.
-> So I think it's quite important for the bindings to reflect this.
+> > On Wed, 2020-11-04 at 15:51 +0000, Lee Jones wrote:
+> > > On Wed, 28 Oct 2020, Matti Vaittinen wrote:
+> > > 
+> > > > Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
+> > > > mainly used to power the R-Car series processors.
+> > > > 
+> > > > Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com
+> > > > >
+> > > > ---
+> > > > +	unsigned int chip_type;
+> > > > +
+> > > > +	chip_type = (unsigned int)(uintptr_t)
+> > > > +		    of_device_get_match_data(&i2c->dev);
+> > > 
+> > > Not overly keen on this casting.
+> > > 
+> > > Why not just leave it as (uintptr_t)?
+> > 
+> > I didn't do so because on x86_64 the address width is probably 64
+> > bits
+> > whereas the unsigned int is likely to be 32 bits. So the assignment
+> > will crop half of the value. It does not really matter as values are
+> > small - but I would be surprized if no compilers/analyzers emitted a
+> > warning.
+> > 
+> > I must admit I am not 100% sure though. I sure can change this if you
+> > know it better?
 
-This driver is for a particular device that has MIPI CSI-2 on D-PHY as the
-data bus. You can assume that in the driver.
+What if you used 'long', which I believe changed with the
+architecture's bus width in Linux?
 
-> 
-> > I presume the device does not support lane remapping?
-> 
-> That's correct so this is indeed not something we can configure.
-> But shouldn't we instead specift clock-lanes = <0> as a const rather than
-> getting rid of it?
+> > > What happens when you don't cast to (uintptr_t) first?
+> > 
+> > On some systems at least the gcc will warn:
+> > > warning: cast from pointer to integer of different size [-Wpointer-
+> > to-int-cast]
+> > 
+> > I am pretty sure I did end up this double casting via trial and error
+> > :)
 
-Why would you put redundant information to DT?
+It's not uncommon. :)
 
+> > > > +static const struct of_device_id bd957x_of_match[] = {
+> > > > +	{
+> > > > +		.compatible = "rohm,bd9576",
+> > > > +		.data = (void *)ROHM_CHIP_TYPE_BD9576,
+> > > > +	},
+> > > > +	{
+> > > 
+> > > You could put the 2 lines above on a single line.
+> > 
+> > Braces? I put braces on separate lines on purpose. Been doing this
+> > after we had this discussion:
+> > 
+> > https://lore.kernel.org/lkml/20180705055226.GJ496@dell/
+> > https://lore.kernel.org/lkml/20180706070559.GW496@dell/
+> > 
+> > ;)
+> > 
+> > I can change it if you wishfeel it is important - not a point I feel
+> > like fighting over ;)
+> > 
 > 
-> > Could you also add link-frequencies, to list which frequencies are known to
-> > be good?
-> 
-> Ah right, I had missed it. I'm a bit unsure about what I should do with the
-> information from the driver though: should I refuse to use link frequencies that
-> are not in the list?
+> Ah. I guess you meant:
+> static const struct of_device_id bd957x_of_match[] = {
+>         { .compatible = "rohm,bd9576", .data = (void *)ROHM_CHIP_TYPE_BD9576, },
+>         { .compatible = "rohm,bd9573", .data = (void *)ROHM_CHIP_TYPE_BD9573, },
+>         {},
+> }; 
 
-Yes, please.
+This would be better, yes.
 
 -- 
-Regards,
-
-Sakari Ailus
+Lee Jones [ÊùéÁêºÊñØ]
+Senior Technical Lead - Developer Services
+Linaro.org ‚îÇ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
