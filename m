@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1334D2A7A14
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 798072A7A3B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:14:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730258AbgKEJJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:09:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50792 "EHLO
+        id S1731106AbgKEJOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:14:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729909AbgKEJJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:09:11 -0500
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 593A0C0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:09:11 -0800 (PST)
-Received: by mail-ed1-x544.google.com with SMTP id ay21so740931edb.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:09:11 -0800 (PST)
+        with ESMTP id S1729862AbgKEJOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:14:00 -0500
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06B0CC061A4A
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:13:57 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id 7so1585458ejm.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:13:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DAVVTcqOtshkqa//jG0tMqJnAZn8lkJ/jC3ZQlpD4iI=;
-        b=gnCWxb3A2YT1XunheHSuiLH9SajfLtYxFoSSt/SMRqAjsx1al/ZDjdmGmdcaRCgATD
-         VjIP7kiSbjNExGEXiLiKkUKac6IoHWJ/Fimd03ck22Y3TV8a4rMz01X4WGQkmlH9oyFA
-         9esubFwVfP/2m1vKPl5C03O/MKjH3usvIu/M/u1jCtkmZsVaRlPUI4GOMG2G25yqE1WE
-         FkwCiZzuIp80ijwg2sDMrq/aDxArFsCDn2GSr7ejg4GkjzXoXRmPg7sE+KMD8rfx5UT2
-         P0rDV2vx/4uXjrJDE1VHH5s96ArZURV9t0QiVse/pLv22O/+my2jfZQspbaaigUdqAgS
-         xSDg==
+         :cc:content-transfer-encoding;
+        bh=cosNbBc+pGCwoieZsWO9CcMsgFAi+qgVJh6/ZaKe1v0=;
+        b=h2AbCJ6xtX9calmobLzMDdUmOt4016ZAljqf+kWZm3SpJ5dyWf5xX8QV+8uAKO7KzB
+         whVd90vtF4kEq0FjKmV2eXJCusoVmf8b1ZXm4g19A6c9d3zpTGecCZcl0xPaOrSMnUzM
+         OGxi6KTPLoJsWq0pzXzySThLXXe1GQN0O9JNP7hJsN0mTV3NqA97jL96kLNinAgMKhRQ
+         8LQz93+7bzMlzUxaAtidPL1DLIRzbOEahVB/7cnJeyFT+Us2VOVrMCBQcnomz5KE/6GC
+         gF+l6kEcCMCIt86RD/mLxN3qSNhWZV0UIk0wGcZ/d2v9DKiSjhWGarH/Lc5p3RkZiIJ/
+         zceA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DAVVTcqOtshkqa//jG0tMqJnAZn8lkJ/jC3ZQlpD4iI=;
-        b=WjPrCZTb/RYfJRO0sdDH5PngrxZG5G43THBRed6vYhxCOgZSzNv+fW7zIKDkGqsAGf
-         zbSaHuaP2+X4FbdKJylrVD7VaMJTz5av+nE4k5xTYaqBcDs81DGBon+4R4qWgHdp+ne6
-         OUNb4kBxqZbzgPszYm143J6e5kuX4kcH7SreZQe8tLfe6X7cqHq/Gp3YFK6jCaeyLkq4
-         Hy0T47r2xihC4T5rI6CcaXUL3Knq90VNuFlirmquJpR1baST6f+8AlgQShnsTCK6x0fq
-         l5AXxtfqp72WOQZT/pJo9YCIT2uGS9mY+tEQdI2PjR8GQ/pFFJOdOEZ8jRCI+Ps2DeWZ
-         j6AQ==
-X-Gm-Message-State: AOAM531qizuTBiuzWjVyww7ucs7uJZjFiqPf47w/JZCrOXlTMffIxGth
-        5nZVt4uiNZOWrcH6+d3iF9Pkzdn5/hOkugdrcjj4bQ==
-X-Google-Smtp-Source: ABdhPJyqANWyJ3aSTbJtEhMCIaR58Dz9yl2OLSrIAItWEawq6opjRvdm8/eux/hxk+LAgMAS7EPN7dAVW7T2X8+w+iU=
-X-Received: by 2002:a05:6402:283:: with SMTP id l3mr1593849edv.232.1604567347374;
- Thu, 05 Nov 2020 01:09:07 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=cosNbBc+pGCwoieZsWO9CcMsgFAi+qgVJh6/ZaKe1v0=;
+        b=d5hEnefBCCAn4xqPIBvaWzSI7AaD75EyQOxLduhsSl1CJVyRyy3I8wIesK9ogtm11M
+         5F6WCwzdfyJxwLgp/s8Zq/2IqVRLiIYUzApAoyIjBM000nzZoqTMze0QLmPI4s+6+d8h
+         rfyOrvjIJnyuIL7zWAuz4WITgnAz7UowPhcz9bv8AN5voOHl9rqEdCC3++kJ9SvznRUN
+         uQ+KfK5mygyspilIXwXLC5kbB9VbOeVarhGLwNLfYQyNdPNNoK7QknA7k6QHgObxFwZ1
+         vhqWbZNTyPV2tAbDeN/IFuXIFUIlq+QAWovQctoytHCY12U+kb8wObAlNJ1BEW2M6/Le
+         T5BQ==
+X-Gm-Message-State: AOAM532K22Z4obOhhFt6HquKT9CjCf6sLV1pgPnc1MD4k9P+VVP5rnIw
+        Rb2A9Ow8cTWla6XrGfOjm2/XggB6ZO6L+5oyxGqHYA==
+X-Google-Smtp-Source: ABdhPJyFgzr6/OtoGqHbIjxgJayFJFC6ooeiWsm56YhTmEcoAALq1JBufGgUh3laISQqZelpAaKQMgQ7rYi7EiPI/xk=
+X-Received: by 2002:a17:907:420d:: with SMTP id oh21mr1350987ejb.429.1604567636515;
+ Thu, 05 Nov 2020 01:13:56 -0800 (PST)
 MIME-Version: 1.0
-References: <20201104103938.1286-1-nsaenzjulienne@suse.de> <20201104103938.1286-4-nsaenzjulienne@suse.de>
-In-Reply-To: <20201104103938.1286-4-nsaenzjulienne@suse.de>
+References: <20201104103938.1286-1-nsaenzjulienne@suse.de> <20201104103938.1286-2-nsaenzjulienne@suse.de>
+In-Reply-To: <20201104103938.1286-2-nsaenzjulienne@suse.de>
 From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 5 Nov 2020 10:08:56 +0100
-Message-ID: <CAMpxmJWv3nfD2xpS4jEq+vJvr=+cD7BV3AFDnsRjCG5qB60c-A@mail.gmail.com>
-Subject: Re: [PATCH v3 03/11] gpio: raspberrypi-exp: Release firmware handle
- on unbind
+Date:   Thu, 5 Nov 2020 10:13:45 +0100
+Message-ID: <CAMpxmJWJRcQQiLitJCLWKmhQVQWr3bMDY=td5FEn5uy2YZfwkA@mail.gmail.com>
+Subject: Re: [PATCH v3 01/11] firmware: raspberrypi: Introduce devm_rpi_firmware_get()
 To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
         <u.kleine-koenig@pengutronix.de>,
         LKML <linux-kernel@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        linux-pwm@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, linux-pwm@vger.kernel.org,
         arm-soc <linux-arm-kernel@lists.infradead.org>,
         linux-devicetree <devicetree@vger.kernel.org>, wahrenst@gmx.net,
         Linux Input <linux-input@vger.kernel.org>,
@@ -65,11 +65,13 @@ Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?=
         Greg KH <gregkh@linuxfoundation.org>,
         devel@driverdev.osuosl.org, Philipp Zabel <p.zabel@pengutronix.de>,
         linux-gpio <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         linux-clk <linux-clk@vger.kernel.org>,
         Stephen Boyd <sboyd@kernel.org>,
         linux-rpi-kernel@lists.infradead.org,
         Andy Shevchenko <andy.shevchenko@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -77,34 +79,166 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Wed, Nov 4, 2020 at 11:39 AM Nicolas Saenz Julienne
 <nsaenzjulienne@suse.de> wrote:
 >
-> Use devm_rpi_firmware_get() so as to make sure we release RPi's firmware
-> interface when unbinding the device.
+> When unbinding the firmware device we need to make sure it has no
+> consumers left. Otherwise we'd leave them with a firmware handle
+> pointing at freed memory.
 >
+> Keep a reference count of all consumers and introduce
+> devm_rpi_firmware_get() which will automatically decrease the reference
+> count upon unbinding consumer drivers.
+>
+> Suggested-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
 > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
 >
 > ---
 >
 > Changes since v2:
->  - Use devm_rpi_firmware_get(), instead of remove function
+>  - Create devm_rpi_firmware_get()
 >
->  drivers/gpio/gpio-raspberrypi-exp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/firmware/raspberrypi.c             | 46 ++++++++++++++++++++++
+>  include/soc/bcm2835/raspberrypi-firmware.h |  8 ++++
+>  2 files changed, 54 insertions(+)
 >
-> diff --git a/drivers/gpio/gpio-raspberrypi-exp.c b/drivers/gpio/gpio-raspberrypi-exp.c
-> index bb100e0124e6..64a552ecc2ad 100644
-> --- a/drivers/gpio/gpio-raspberrypi-exp.c
-> +++ b/drivers/gpio/gpio-raspberrypi-exp.c
-> @@ -208,7 +208,7 @@ static int rpi_exp_gpio_probe(struct platform_device *pdev)
->                 return -ENOENT;
+> diff --git a/drivers/firmware/raspberrypi.c b/drivers/firmware/raspberryp=
+i.c
+> index 2371d08bdd17..74bdb3bde9dc 100644
+> --- a/drivers/firmware/raspberrypi.c
+> +++ b/drivers/firmware/raspberrypi.c
+> @@ -11,7 +11,9 @@
+>  #include <linux/module.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/refcount.h>
+>  #include <linux/slab.h>
+> +#include <linux/wait.h>
+>  #include <soc/bcm2835/raspberrypi-firmware.h>
+>
+>  #define MBOX_MSG(chan, data28)         (((data28) & ~0xf) | ((chan) & 0x=
+f))
+> @@ -27,6 +29,9 @@ struct rpi_firmware {
+>         struct mbox_chan *chan; /* The property channel. */
+>         struct completion c;
+>         u32 enabled;
+> +
+> +       refcount_t consumers;
+> +       wait_queue_head_t wait;
+>  };
+>
+>  static DEFINE_MUTEX(transaction_lock);
+> @@ -247,6 +252,8 @@ static int rpi_firmware_probe(struct platform_device =
+*pdev)
 >         }
 >
-> -       fw = rpi_firmware_get(fw_node);
-> +       fw = devm_rpi_firmware_get(&pdev->dev, fw_node);
->         of_node_put(fw_node);
->         if (!fw)
->                 return -EPROBE_DEFER;
+>         init_completion(&fw->c);
+> +       refcount_set(&fw->consumers, 1);
+> +       init_waitqueue_head(&fw->wait);
+>
+>         platform_set_drvdata(pdev, fw);
+>
+> @@ -275,11 +282,21 @@ static int rpi_firmware_remove(struct platform_devi=
+ce *pdev)
+>         rpi_hwmon =3D NULL;
+>         platform_device_unregister(rpi_clk);
+>         rpi_clk =3D NULL;
+> +
+> +       wait_event(fw->wait, refcount_dec_if_one(&fw->consumers));
+>         mbox_free_channel(fw->chan);
+>
+>         return 0;
+>  }
+>
+> +static void rpi_firmware_put(void *data)
+> +{
+> +       struct rpi_firmware *fw =3D data;
+> +
+> +       refcount_dec(&fw->consumers);
+> +       wake_up(&fw->wait);
+> +}
+> +
+>  /**
+>   * rpi_firmware_get - Get pointer to rpi_firmware structure.
+>   * @firmware_node:    Pointer to the firmware Device Tree node.
+> @@ -297,6 +314,35 @@ struct rpi_firmware *rpi_firmware_get(struct device_=
+node *firmware_node)
+>  }
+>  EXPORT_SYMBOL_GPL(rpi_firmware_get);
+>
+> +/**
+> + * devm_rpi_firmware_get - Get pointer to rpi_firmware structure.
+> + * @firmware_node:    Pointer to the firmware Device Tree node.
+> + *
+> + * Returns NULL is the firmware device is not ready.
+> + */
+> +struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
+> +                                          struct device_node *firmware_n=
+ode)
+> +{
+> +       struct platform_device *pdev =3D of_find_device_by_node(firmware_=
+node);
+> +       struct rpi_firmware *fw;
+> +
+> +       if (!pdev)
+> +               return NULL;
+> +
+> +       fw =3D platform_get_drvdata(pdev);
+> +       if (!fw)
+> +               return NULL;
+> +
+> +       if (!refcount_inc_not_zero(&fw->consumers))
+> +               return NULL;
+> +
+> +       if (devm_add_action_or_reset(dev, rpi_firmware_put, fw))
+> +               return NULL;
+> +
+> +       return fw;
+> +}
+> +EXPORT_SYMBOL_GPL(devm_rpi_firmware_get);
+
+Usually I'd expect the devres variant to simply call
+rpi_firmware_get() and then schedule a release callback which would
+call whatever function is the release counterpart for it currently.
+Devres actions are for drivers which want to schedule some more
+unusual tasks at driver detach. Any reason for designing it this way?
+
+Bartosz
+
+> +
+>  static const struct of_device_id rpi_firmware_of_match[] =3D {
+>         { .compatible =3D "raspberrypi,bcm2835-firmware", },
+>         {},
+> diff --git a/include/soc/bcm2835/raspberrypi-firmware.h b/include/soc/bcm=
+2835/raspberrypi-firmware.h
+> index cc9cdbc66403..8fe64f53a394 100644
+> --- a/include/soc/bcm2835/raspberrypi-firmware.h
+> +++ b/include/soc/bcm2835/raspberrypi-firmware.h
+> @@ -141,6 +141,8 @@ int rpi_firmware_property(struct rpi_firmware *fw,
+>  int rpi_firmware_property_list(struct rpi_firmware *fw,
+>                                void *data, size_t tag_size);
+>  struct rpi_firmware *rpi_firmware_get(struct device_node *firmware_node)=
+;
+> +struct rpi_firmware *devm_rpi_firmware_get(struct device *dev,
+> +                                          struct device_node *firmware_n=
+ode);
+>  #else
+>  static inline int rpi_firmware_property(struct rpi_firmware *fw, u32 tag=
+,
+>                                         void *data, size_t len)
+> @@ -158,6 +160,12 @@ static inline struct rpi_firmware *rpi_firmware_get(=
+struct device_node *firmware
+>  {
+>         return NULL;
+>  }
+> +
+> +static inline struct rpi_firmware *devm_rpi_firmware_get(struct device *=
+dev,
+> +                                       struct device_node *firmware_node=
+)
+> +{
+> +       return NULL;
+> +}
+>  #endif
+>
+>  #endif /* __SOC_RASPBERRY_FIRMWARE_H__ */
 > --
 > 2.29.1
 >
-
-Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
