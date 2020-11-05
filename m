@@ -2,58 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 928C62A788C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:07:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5103F2A78BB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:18:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728119AbgKEIHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 03:07:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41102 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725827AbgKEIHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:07:04 -0500
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE536C0613CF;
-        Thu,  5 Nov 2020 00:07:03 -0800 (PST)
-Received: by mail-ej1-x642.google.com with SMTP id i19so1271430ejx.9;
-        Thu, 05 Nov 2020 00:07:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Ejbix6obkvCfSt+UMVFN1Q6vNzvWmPHr/OGkrFfoLFs=;
-        b=t1cy+4PwHGXn+yInQGTOcNHpRHZwsTgyldtVz1e6t3/dfyejQaexsQKzx9zUK8oTl2
-         +1A4K52qrignAy+RjVb3mBmJ31K04QCu44VWPNikzu55lfEClaBKYm9NCs9VlxYkfm1r
-         ydKEIs4EU73mF/MumaK/E4Hqr51W1KWotAT/N3dcG369HNRcrE5Mw358wInGkXF3lHTO
-         FQ/koqKnw/xDdVcyZV6ibxgGWIqlTqUNbr6xzS2HbHfPnRAYSLZtt9d+zdhKPIu3304T
-         wbFzQKSIq2lfhwTN3SFt1nYAeVks61wtEN82F9rJitYUOUxs3q8PSeZKnGampPJDh3VL
-         b4mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Ejbix6obkvCfSt+UMVFN1Q6vNzvWmPHr/OGkrFfoLFs=;
-        b=fN+FtgWF1KImMUzi+Qsg5DhPpTngJ81p/EaNL+DDoMyOK3xPngY4ffaXlYFQyfxAOr
-         JrGShW2baQz9VGvVNgyH9cEawe/aO7SaQYrwsmG7GWdlmIqbWW9DevlrXmImoGsy7R+t
-         ccVcONLIe+P3f2NSSP7f0X8UQFNjyPet1RfWVuR0TKG0AZ1Jda8G8SKk8TFfzXZeDbbS
-         ZDRN1voUseMHTXja+CaLXwuNDMXAbRZA6/WWP5rvmt0A/HmgM+y8n3IkGM8mDTd4tD26
-         d37vSKDfJwlocWR5w8VA0EYvF+TH6dk6NTMjpgFS2IhbdcRuoNysugN/+zzkbOAla3KG
-         USiA==
-X-Gm-Message-State: AOAM533oQxDHSFuXsK9WAKC5lg0dd1NSBwKfgJYBPxgqzhI+CoFDyRo/
-        AAECFAn/sWItuBFCiIpV/LszKh4JrVQGVbMX2enUT30sDYb3MA==
-X-Google-Smtp-Source: ABdhPJz3m2HtnIqDIg/WTO25pDMT0i+QQbqtvao1NdWSwCYoRUQX3lNPLxxIsLy8gXGTJ9Joiv/esRlckHgma7CscM8=
-X-Received: by 2002:a17:906:a098:: with SMTP id q24mr1098195ejy.191.1604563622509;
- Thu, 05 Nov 2020 00:07:02 -0800 (PST)
-MIME-Version: 1.0
-References: <CGME20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0@eucas1p2.samsung.com>
- <20200930143151.23961-1-l.stelmach@samsung.com> <20201001135254.28178-1-l.stelmach@samsung.com>
- <CANAwSgSvH+q21Tj9NijPa87ju+1LOJ07-is1Sucx1y5ggT6zCA@mail.gmail.com> <5ecd2e6d-6aaf-bff5-c000-2c56086ed95b@samsung.com>
-In-Reply-To: <5ecd2e6d-6aaf-bff5-c000-2c56086ed95b@samsung.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Thu, 5 Nov 2020 13:36:53 +0530
-Message-ID: <CANAwSgR=20AOVxi=5L_ep=uK98dzL6Ent52Mux1_iviiK-XGPA@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: exynos: Add a placeholder for a MAC address
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-Cc:     =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
+        id S1727114AbgKEISp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 03:18:45 -0500
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:53682 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725320AbgKEISp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:18:45 -0500
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201105081833euoutp01b8a2868705e08c410642058019040401~Ejr3K9qbS3110431104euoutp01i
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 08:18:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201105081833euoutp01b8a2868705e08c410642058019040401~Ejr3K9qbS3110431104euoutp01i
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604564313;
+        bh=NMK60xRFJUDlh99CHxUxHQfB82mzpqWqhXHPuf9XntA=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=cJefCIKgF6oyFjabhyUuPuM8d2rDYehaUnF1VjC9sFe4URioTtr8gP4O7BlrzfWB6
+         c9tHYVmi4vDhusIEI2wuP/hwqY2Bv72B/eG6iJu2x4PRlihTZeQYJMsbPpkrOpCLhV
+         c3NP7Hjw3bpe84y069kLqvSRRuWm6k0c3X8dG6qw=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201105081825eucas1p2edf8a2235cc36ffd94a9c48fa2e805bd~EjrwR46Dx2157521575eucas1p2e;
+        Thu,  5 Nov 2020 08:18:25 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id D2.58.06456.155B3AF5; Thu,  5
+        Nov 2020 08:18:25 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201105081825eucas1p2694c35782e89273166da44c593e72556~Ejrv7rU6X1870918709eucas1p2t;
+        Thu,  5 Nov 2020 08:18:25 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201105081825eusmtrp11945a70f7cb872d6407407b815cd4279~Ejrv64dUR3154431544eusmtrp13;
+        Thu,  5 Nov 2020 08:18:25 +0000 (GMT)
+X-AuditID: cbfec7f2-7efff70000001938-d1-5fa3b551ba0a
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 0F.7F.06017.155B3AF5; Thu,  5
+        Nov 2020 08:18:25 +0000 (GMT)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20201105081824eusmtip20006ca0ce7322a509f4b03275f5a5812~EjrvVAhSH2999429994eusmtip2n;
+        Thu,  5 Nov 2020 08:18:24 +0000 (GMT)
+Subject: Re: [PATCH v2] ARM: dts: exynos: Add a placeholder for a MAC
+ address
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     =?UTF-8?Q?=c5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Kukjin Kim <kgene@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
@@ -62,132 +57,156 @@ Cc:     =?UTF-8?Q?=C5=81ukasz_Stelmach?= <l.stelmach@samsung.com>,
         linux-samsung-soc@vger.kernel.org,
         Linux Kernel <linux-kernel@vger.kernel.org>,
         Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <71f06064-079c-1044-a51a-ce1ea7cc4049@samsung.com>
+Date:   Thu, 5 Nov 2020 09:18:26 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.4.0
+MIME-Version: 1.0
+In-Reply-To: <CANAwSgR=20AOVxi=5L_ep=uK98dzL6Ent52Mux1_iviiK-XGPA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBKsWRmVeSWpSXmKPExsWy7djP87qBWxfHG/w9pWaxccZ6Vov5R86x
+        WvQ/fs1scf78BnaLm4dWMFpsenyN1eLyrjlsFjPO72OyWLfxFrtF694j7A5cHjtn3WX32LSq
+        k81j85J6j74tqxg9Pm+SC2CN4rJJSc3JLEst0rdL4Mr41/KFvWCRXMXzgzcZGxjXiXcxcnBI
+        CJhInNnu0sXIxSEksIJR4tHDuUwQzhdGiVuPTzBCOJ8ZJVZ8vsXSxcgJ1rHj12kWiMRyRomj
+        F7czgySEBN4zSqz7Gg9iCwv4S2xsu8oEYosIqElcebqCFcRmFpjOLLFoogqIzSZgKNH1tosN
+        xOYVsJM49GIdO4jNIqAiMffobTBbVCBJ4u/nP8wQNYISJ2c+ATuCUyBQ4tWzr1Az5SWat85m
+        hrDFJW49mQ/2goTAMXaJM3dWMUJc7SLR9nABG4QtLPHq+BZ2CFtG4vTkHhaIhmZGiYfn1rJD
+        OD2MEpebZkB1W0vcOfeLDRRizAKaEut36UOEHSXar25hhQQkn8SNt4IQR/BJTNo2nRkizCvR
+        0SYEUa0mMev4Ori1By9cYp7AqDQLyWuzkLwzC8k7sxD2LmBkWcUonlpanJueWmyYl1quV5yY
+        W1yal66XnJ+7iRGYnk7/O/5pB+PXS0mHGAU4GJV4eB04FscLsSaWFVfmHmKU4GBWEuF1Ons6
+        Tog3JbGyKrUoP76oNCe1+BCjNAeLkjiv8aKXsUIC6YklqdmpqQWpRTBZJg5OqQbGMlOvzN0P
+        j5xbIGxeyWvH8JJ31TKPQ/LTJm5hZuCe9FN9p37607U3r4acurowSatse8q+lml+hW525Xs3
+        Wy68bsNyd5WvZzO33JaTyxaWNk3c4JyTsD+x9OgNvZx7H3f15Vzq4vh5SdTdaOI3i9U95Q61
+        lvI+pnPvhWnntM+XS9Pgra1YsmqiEktxRqKhFnNRcSIA2o387EsDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDIsWRmVeSWpSXmKPExsVy+t/xe7qBWxfHG9y+zW2xccZ6Vov5R86x
+        WvQ/fs1scf78BnaLm4dWMFpsenyN1eLyrjlsFjPO72OyWLfxFrtF694j7A5cHjtn3WX32LSq
+        k81j85J6j74tqxg9Pm+SC2CN0rMpyi8tSVXIyC8usVWKNrQw0jO0tNAzMrHUMzQ2j7UyMlXS
+        t7NJSc3JLEst0rdL0Mv41/KFvWCRXMXzgzcZGxjXiXcxcnJICJhI7Ph1mgXEFhJYyiixrz0F
+        Ii4jcXJaAyuELSzx51oXWxcjF1DNW0aJ7efawBLCAr4Sfy7tYQOxRQTUJK48XcEKUsQsMJtZ
+        4uHO70wQHS3MEhsuzgJbwSZgKNH1tgusg1fATuLQi3XsIDaLgIrE3KO3wWxRgSSJlxemMkHU
+        CEqcnPkErJdTIFDi1bOvYJuZBcwk5m1+yAxhy0s0b50NZYtL3Hoyn2kCo9AsJO2zkLTMQtIy
+        C0nLAkaWVYwiqaXFuem5xUZ6xYm5xaV56XrJ+bmbGIExue3Yzy07GLveBR9iFOBgVOLhdeBY
+        HC/EmlhWXJl7iFGCg1lJhNfp7Ok4Id6UxMqq1KL8+KLSnNTiQ4ymQM9NZJYSTc4Hpou8knhD
+        U0NzC0tDc2NzYzMLJXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2MeWVHLoakx3+Zav54haVv
+        01WWhb+j7/UyzvOfWhn+sS/qPXfL7Dvzf79+1H7uZaCA1BeFeaJx2qvdfy43dVVZcGj9bUbG
+        tpX1QSFbcj6V8rnu0uxaZ7BXM6+x7/HvgFaXCZPbt7NOZdTmSO5baD4jV/Wbo8ISY7njzroh
+        IQpnvgbF7JTLnPJLiaU4I9FQi7moOBEA3ss9Bd8CAAA=
+X-CMS-MailID: 20201105081825eucas1p2694c35782e89273166da44c593e72556
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0
+References: <CGME20201001135310eucas1p273e3799cec0ebb29891c1b7db38685e0@eucas1p2.samsung.com>
+        <20200930143151.23961-1-l.stelmach@samsung.com>
+        <20201001135254.28178-1-l.stelmach@samsung.com>
+        <CANAwSgSvH+q21Tj9NijPa87ju+1LOJ07-is1Sucx1y5ggT6zCA@mail.gmail.com>
+        <5ecd2e6d-6aaf-bff5-c000-2c56086ed95b@samsung.com>
+        <CANAwSgR=20AOVxi=5L_ep=uK98dzL6Ent52Mux1_iviiK-XGPA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi Anand,
 
-On Mon, 2 Nov 2020 at 21:53, Marek Szyprowski <m.szyprowski@samsung.com> wr=
-ote:
+On 05.11.2020 09:06, Anand Moon wrote:
+> On Mon, 2 Nov 2020 at 21:53, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>> On 01.11.2020 15:07, Anand Moon wrote:
+>>> On Thu, 1 Oct 2020 at 19:25, Łukasz Stelmach <l.stelmach@samsung.com> wrote:
+>>>> Add a placeholder for a MAC address. A bootloader may fill it
+>>>> to set the MAC address and override EEPROM settings.
+>>>>
+>>>> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+>>>> ---
+>>>> Changes in v2:
+>>>>    - use local-mac-address and leave mac-address to be added by a bootloader
+>>>>
+>>>>    arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
+>>>>    1 file changed, 18 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+>>>> index db0bc17a667b..d0f6ac5fa79d 100644
+>>>> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+>>>> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+>>>> @@ -70,3 +70,21 @@ &pwm {
+>>>>    &usbdrd_dwc3_1 {
+>>>>           dr_mode = "peripheral";
+>>>>    };
+>>>> +
+>>>> +&usbhost2 {
+>>>> +       #address-cells = <1>;
+>>>> +       #size-cells = <0>;
+>>>> +
+>>>> +       hub@1 {
+>>>> +               compatible = "usb8087,0024";
+>>>> +               reg = <1>;
+>>>> +               #address-cells = <1>;
+>>>> +               #size-cells = <0>;
+>>>> +
+>>>> +               ethernet: usbether@1 {
+>>>> +                       compatible = "usb0c45,6310";
+>>>> +                       reg = <1>;
+>>>> +                       local-mac-address = [00 00 00 00 00 00]; /* Filled in by a bootloader */
+>>>> +               };
+>>>> +       };
+>>>> +};
+>>>> --
+>>>> 2.26.2
+>>>>
+>>> Thanks for this patch, can you share some example on how to set the
+>>> mac address via u-boot bootargs
+>> A little bit hacky script to set permanent board unique MAC address:
+>>
+>> # setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b u2
+>> *0x10000016; setexp.b u3 *0x10000017; setenv ethaddr
+>> 0:0:${u0}:${u1}:${u2}:${u3}; setenv usbethaddr ${ethaddr};
+>>
+> OK this command worked for me.
 >
-> Hi Anand,
->
-> On 01.11.2020 15:07, Anand Moon wrote:
-> > Hi Lukasz,
-> >
-> > On Thu, 1 Oct 2020 at 19:25, =C5=81ukasz Stelmach <l.stelmach@samsung.c=
-om> wrote:
-> >> Add a placeholder for a MAC address. A bootloader may fill it
-> >> to set the MAC address and override EEPROM settings.
-> >>
-> >> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
-> >> ---
-> >> Changes in v2:
-> >>   - use local-mac-address and leave mac-address to be added by a bootl=
-oader
-> >>
-> >>   arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
-> >>   1 file changed, 18 insertions(+)
-> >>
-> >> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boo=
-t/dts/exynos5422-odroidxu3.dts
-> >> index db0bc17a667b..d0f6ac5fa79d 100644
-> >> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> >> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> >> @@ -70,3 +70,21 @@ &pwm {
-> >>   &usbdrd_dwc3_1 {
-> >>          dr_mode =3D "peripheral";
-> >>   };
-> >> +
-> >> +&usbhost2 {
-> >> +       #address-cells =3D <1>;
-> >> +       #size-cells =3D <0>;
-> >> +
-> >> +       hub@1 {
-> >> +               compatible =3D "usb8087,0024";
-> >> +               reg =3D <1>;
-> >> +               #address-cells =3D <1>;
-> >> +               #size-cells =3D <0>;
-> >> +
-> >> +               ethernet: usbether@1 {
-> >> +                       compatible =3D "usb0c45,6310";
-> >> +                       reg =3D <1>;
-> >> +                       local-mac-address =3D [00 00 00 00 00 00]; /* =
-Filled in by a bootloader */
-> >> +               };
-> >> +       };
-> >> +};
-> >> --
-> >> 2.26.2
-> >>
-> > Thanks for this patch, can you share some example on how to set the
-> > mac address via u-boot bootargs
->
-> A little bit hacky script to set permanent board unique MAC address:
->
-> # setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b u2
-> *0x10000016; setexp.b u3 *0x10000017; setenv ethaddr
-> 0:0:${u0}:${u1}:${u2}:${u3}; setenv usbethaddr ${ethaddr};
->
-OK this command worked for me.
+>> Then if there is proper ethernet0 alias set, u-boot will then
+>> automatically save the configured MAC address to the device tree. I've
+>> just check this on recent u-boot v2020.10 and Odroid U3 board.
+>>
+>> Lukasz will send updated patch soon (with proper alias entry).
+>>
+>> If you want to hack setting MAC address manually, this will work with
+>> the current patch:
+>>
+>> # setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b u2
+>> *0x10000016; setexp.b u3 *0x10000017; fdt addr ${fdtaddr}; fdt set
+>> /soc/usb@12110000/hub@1/usbether@1 local-mac-address [ 0 0 ${u0} ${u1}
+>> ${u2} ${u3} ]
+>>
+> So do we need a similar patch for u-boot ?
 
-> Then if there is proper ethernet0 alias set, u-boot will then
-> automatically save the configured MAC address to the device tree. I've
-> just check this on recent u-boot v2020.10 and Odroid U3 board.
+I've not sure that this ethaddr hack/workaround should be added to 
+mainline uboot. Some other exynos based board have proper MAC address 
+stored in EEPROM (for example Odroid XU4/HC1). I would leave it for the 
+users to add it manually if it is really needed for now.
+
+> I am getting following error on Odroid U3+ and U-Boot 2020.10
 >
-> Lukasz will send updated patch soon (with proper alias entry).
->
-> If you want to hack setting MAC address manually, this will work with
-> the current patch:
->
-> # setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b u2
-> *0x10000016; setexp.b u3 *0x10000017; fdt addr ${fdtaddr}; fdt set
+> Odroid #  setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b
+> u2 *0x10000016; setexp.b u3 *0x10000017; fdt addr ${fdtaddr}; fdt set
 > /soc/usb@12110000/hub@1/usbether@1 local-mac-address [ 0 0 ${u0} ${u1}
 > ${u2} ${u3} ]
+> No FDT memory address configured. Please configure
+> the FDT address via "fdt addr <address>" command.
+> Aborting!
 >
+> Also added these command to boot.scr but still observing the failure
 
-So do we need a similar patch for u-boot ?
-I am getting following error on Odroid U3+ and U-Boot 2020.10
+You need to use proper env for setting fdt address (the "fdt addr 
+${fdtaddr}" command). For some versions it was ${fdt_addr}, the other 
+used ${fdtaddr}. Please check which one is used for loading dtb and 
+adjust the script.
 
-Odroid #  setexp.b u0 *0x10000014; setexp.b u1 *0x10000015; setexp.b
-u2 *0x10000016; setexp.b u3 *0x10000017; fdt addr ${fdtaddr}; fdt set
-/soc/usb@12110000/hub@1/usbether@1 local-mac-address [ 0 0 ${u0} ${u1}
-${u2} ${u3} ]
-No FDT memory address configured. Please configure
-the FDT address via "fdt addr <address>" command.
-Aborting!
+Best regards
 
-Also added these command to boot.scr but still observing the failure
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
-mmc0(part 0) is current device
-Scanning mmc 0:1...
-Found U-Boot script /boot/boot.scr
-969 bytes read in 5 ms (188.5 KiB/s)
-## Executing script at 42000000
-7341440 bytes read in 265 ms (26.4 MiB/s)
-53875 bytes read in 56 ms (939.5 KiB/s)
-7964187 bytes read in 285 ms (26.6 MiB/s)
-libfdt fdt_path_offset() returned FDT_ERR_NOTFOUND
-Kernel image @ 0x41000000 [ 0x000000 - 0x700580 ]
-## Flattened Device Tree blob at 40800000
-   Booting using the fdt blob at 0x40800000
-   Loading Ramdisk to 4f867000, end 4ffff61b ... OK
-   Loading Device Tree to 4f856000, end 4f866272 ... OK
-,
-Best Regards
--Anand
-
-> > also can you update this patch for exynos5422-odroidxu3-lite.dts and
-> > exynos4412-odroidu3.dts.
->
-> Also odroid-x2 and odroid-xu. Lukasz will take care of them.
->
-> Best regards
->
-> --
-> Marek Szyprowski, PhD
-> Samsung R&D Institute Poland
->
