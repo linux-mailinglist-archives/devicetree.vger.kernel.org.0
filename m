@@ -2,51 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D6F52A7A49
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:18:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEAF2A7A57
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 10:21:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726849AbgKEJSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 04:18:38 -0500
-Received: from foss.arm.com ([217.140.110.172]:55418 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725320AbgKEJSi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Nov 2020 04:18:38 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85A8214BF;
-        Thu,  5 Nov 2020 01:18:37 -0800 (PST)
-Received: from e123083-lin (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B57C63F718;
-        Thu,  5 Nov 2020 01:18:34 -0800 (PST)
-Date:   Thu, 5 Nov 2020 10:18:25 +0100
-From:   Morten Rasmussen <morten.rasmussen@arm.com>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
-        Dietmar.Eggemann@arm.com, qperret@google.com,
-        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
-        rafael@kernel.org, sudeep.holla@arm.com, viresh.kumar@linaro.org,
-        sboyd@kernel.org, nm@ti.com
-Subject: Re: [PATCH v4 1/4] PM / EM: Add a flag indicating units of power
- values in Energy Model
-Message-ID: <20201105091759.GA8237@e123083-lin>
-References: <20201103090600.29053-1-lukasz.luba@arm.com>
- <20201103090600.29053-2-lukasz.luba@arm.com>
+        id S1729604AbgKEJVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 04:21:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52774 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725827AbgKEJVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 04:21:40 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2C0DC0613D2
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 01:21:39 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id l2so1290143lfk.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 01:21:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MLqSXCNezt+6aLqOTtVwOIFeRl7Xe1AvGFzo3fYe1IY=;
+        b=Jgn4flcDwaM4mzljPuY4s4pB7iP2cuTWB5VKgui315qkRuy92cPfVJ/shvssIW9x54
+         ot3qVvePuzmxXvqWwA9M1JCEWi58AHdtLSTwHA8QV/5i1MmA27VBu9rus5CeT/CaOZV8
+         6A+F8/YOOm+6m2YzWCu5jnOZWbHIj7S46XpDNGyQYH5CxLEiu2+M9jmw3lnBcs8hnmwV
+         /yYVTHgHb6O2DZIQxxp12BQZLIG2M9n00OKf3BYP+g+tj+PbS4wHlOsaF/ocmoCThCJb
+         z9m5vcykgPY2noV1am3wjgeLAJJOYclMBzpvO6QAlprivTLPtOaK24UYWrrJ2FIFol32
+         0JuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MLqSXCNezt+6aLqOTtVwOIFeRl7Xe1AvGFzo3fYe1IY=;
+        b=UaRAAL/Ijpp++9g3z04qSzwaaiMbtHH3pG1QySaBF0+velVvWd+3SDT9Pltjwyb59K
+         ZJXjbxeRyx/7B7q+oHgeRfKXYk61eYXSPo4FNMPvJIpmYoh6oUZnt4QLkBbAb2i3UoCZ
+         CaS6EL5kNsc/t8AUlzDQNdDvZtL956AFqMkpefRonNMhbFOs826Mi/j7BHCHWHdhVXoP
+         Z226ylbxpj9NHXdea8O5JYNaNx58XaS7WKMl6nAkTQN8vfTb4GJTlNbsYIE6BB6CJgbp
+         e8+5U/fcX0NGIrA/SpTacftjisRNAHs5cnuzhZFmZxtrA0474A5Ysd2AfMIoUrhY+YZ6
+         KotA==
+X-Gm-Message-State: AOAM533q6MYtuUveTOgflsPdrBX0v7e25/rAYT+DMb/t7X1kaqi2wH7y
+        Ln9E9dVbeDhvao9mVy63tJ6ta3WV1yE0JDPrMFRXHgQWKsV9sg==
+X-Google-Smtp-Source: ABdhPJyIx15IqdB1NPA4Sazq74uSIewpcq3AMgBd0y4Lv2GKOeKDnGro5f8DkvKwJhJ7plUKGIKFbEhFk80IWVCFJr8=
+X-Received: by 2002:a05:6512:322d:: with SMTP id f13mr567603lfe.571.1604568098468;
+ Thu, 05 Nov 2020 01:21:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201103090600.29053-2-lukasz.luba@arm.com>
+References: <20201011024831.3868571-1-daniel@0x0f.com> <20201011024831.3868571-4-daniel@0x0f.com>
+ <CACRpkdYmdZ81q_tsXRQ56aFjGsvV3AwJ8_hiu31mD14DGiK84A@mail.gmail.com> <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
+In-Reply-To: <CAFr9PXnX7QyM0VUmosFYueSe4ewA7uT2VZMfxFPaFt6-jUhoSw@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 5 Nov 2020 10:21:27 +0100
+Message-ID: <CACRpkdbx+T3uX9taZNjsURHGc6qVLvGGC2boEC4=NaOi4_uZTQ@mail.gmail.com>
+Subject: Re: [PATCH 3/5] gpio: msc313: MStar MSC313 GPIO driver
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 03, 2020 at 09:05:57AM +0000, Lukasz Luba wrote:
-> @@ -79,7 +82,8 @@ struct em_data_callback {
->  struct em_perf_domain *em_cpu_get(int cpu);
->  struct em_perf_domain *em_pd_get(struct device *dev);
->  int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
-> -				struct em_data_callback *cb, cpumask_t *span);
-> +				struct em_data_callback *cb, cpumask_t *spani,
+On Wed, Oct 21, 2020 at 1:07 PM Daniel Palmer <daniel@0x0f.com> wrote:
 
-"spani" looks like a typo?
+> Sorry to pester you again...
+
+Don't worry. I'm more worried that my replies are slow.
+
+> Before I do that I have a question that maybe you could help me with:
+> Andy noted a few times that I have this driver as a built in driver
+> and not a module.
+> The gpio-ixp4xx.c driver is also a built in driver. Is there a reason
+> why it's ok there but not this driver?
+
+Not that I know of. There is a lot of push for modularization right
+now because Android (and other distributions) likes it, so if your
+SoC could be used by Android or Fedora or Debian etc it is
+generally a good idea to modularize.
+
+These distributions use the generic ARM (etc) kernel and try
+to load as many drivers as possible as modules.
+
+It is not always possible because some GPIOs might be needed
+very early, such as on-chip GPIO. So you better make sure
+that the platform can get to userspace also without this driver
+compiled in, otherwise it *MUST* be bool so people don't get
+ammunition to shoot themselves in the foot and configure a
+non-bootable kernel just because they could modularize this
+driver.
+
+If your SoC is only used by OpenWrt (like ixp4xx) then it is fine
+to just use bool because that distribution is always built with an
+image for a specific hardware, whereas distributions are generic.
+
+So it actually depends a bit on the usecase of the SoC.
+
+Yours,
+Linus Walleij
