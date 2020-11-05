@@ -2,301 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 584242A79A6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:51:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6042C2A79B0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 09:55:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726737AbgKEIv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 03:51:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48100 "EHLO
+        id S1730179AbgKEIzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 03:55:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726400AbgKEIv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:51:58 -0500
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99716C0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 00:51:56 -0800 (PST)
-Received: by mail-pl1-x642.google.com with SMTP id b12so467561plr.4
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 00:51:56 -0800 (PST)
+        with ESMTP id S1730182AbgKEIzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 03:55:15 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 582F0C0613CF
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 00:55:13 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id 2so709594ljj.13
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 00:55:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=U86zsRZz8d5Flk+rPp0LVqAujZ6VjSA2pha2tzioGvk=;
-        b=rEez1yKcQYQhkZORMRIkrTy3RK+jbRX4lyJHrib74Ug42FO/TezyN5+uoFqBgzHZrn
-         K7NQevHN1tIN6chpeMbT5fEQ42ZbjlxTPpg6CrWmVv7nR93OiXosyZ3y6WdM08aPb97K
-         cBun1cZu2wFKJSnjRYJFNrK0vbPLKuOYyC7T8mEGUlNAQIJR/Pz3YM6Qt9+45Nz0tMzT
-         wRevH1/v2pAnuDg46g0uklXvdKnEXSqiKsGWarD+HGLNXCm7R16IzfmRi+L4S0+791Aq
-         sW2lhZ0sPbjNu+jWTg1U89kFlLtemVHO15wzH77g51Sv/twXMzyfMz2nfsFcGTD73xaY
-         Ko2A==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CM30BQGyp7IWvRqsSROldJ9vkQO94NEkbC4h78ONa3o=;
+        b=KoRtfik/4fG9NV9/A6DAfSaw2OjtHh1EnOtdGNQ8acE6GrsGpfThFaKT7u9pATcErY
+         3f4UJx/CZ1UhmVFF5PE1a+X+oLJZvvuUENl4HV+F8uJd+DSWhIatwkic6IBTSi0uUOBF
+         82fwtj9HCkJxJRqrFCOHRFFYWougRu6FD9VHoxnW+fTJ0nbSQTVpZeqnWW73AMrZHNXK
+         dXjVejm+Vv4T5dgi5u7QfDsS8GJaSx0RQWSclRDAEDcpxNlp7wdwOIFcmZ83csKqizWY
+         54VR+/76vRAoGsZDM/oRajpLTp3+RGwcvqh6IRcOSQ4kv6yTaEBPI9OCyx1rkNAZ3w56
+         1HKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=U86zsRZz8d5Flk+rPp0LVqAujZ6VjSA2pha2tzioGvk=;
-        b=TlonjC2S7Zy5KmiYxevFRv1hpZa38jL8co2tB/TL7CrH6xPEOHuq/K5owXix8MWPbH
-         NC8s9rRw1JxFQG33V3pExVOFm5nhTRSVZoKroXs3+PiPFWRaIgiBjF0N00zr/B5St2fO
-         LdZ59hlhLCGFtc+DYo08Ue+gHjmyEewTBkijYBk38Yr93xwZ695SOBFU2G+NsOKNtnTn
-         UB0qh5MjyVV7+H1gXlBnvvv34nGhBamf6xMmJwZvrnPLFVsTojGrkKpbvSoDXcWoydqi
-         7ecxUphRanYpQGveff0AGCqG2tFgm6HUVASUHwCWA06jKOqSnc7T/odDRnlxE9v7JPV7
-         r6kA==
-X-Gm-Message-State: AOAM532vCJgNFR62xtNUqTZfZSJZPkdTk9Cb4+349kOTAsdjN48O9n2f
-        2tv9XAOe9OdC4rqeD51/mVQI
-X-Google-Smtp-Source: ABdhPJzCIYYo7BNJGhfadLXCeNuuF+K4SlRBiuje284Tx9XMXq7Un6Yd5U8LCBR/ZwWKbFO1Sbczfw==
-X-Received: by 2002:a17:902:780f:b029:d6:3413:9fe8 with SMTP id p15-20020a170902780fb02900d634139fe8mr1410668pll.46.1604566315717;
-        Thu, 05 Nov 2020 00:51:55 -0800 (PST)
-Received: from work ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id d18sm1524148pfo.133.2020.11.05.00.51.51
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 05 Nov 2020 00:51:54 -0800 (PST)
-Date:   Thu, 5 Nov 2020 14:21:48 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, vkoul@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Naveen Yadav <naveenky@codeaurora.org>
-Subject: Re: [PATCH 2/4] clk: qcom: Add SDX55 GCC support
-Message-ID: <20201105085148.GA7308@work>
-References: <20201028074232.22922-1-manivannan.sadhasivam@linaro.org>
- <20201028074232.22922-3-manivannan.sadhasivam@linaro.org>
- <160454301723.3965362.9504622582275389041@swboyd.mtv.corp.google.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CM30BQGyp7IWvRqsSROldJ9vkQO94NEkbC4h78ONa3o=;
+        b=QAiliiVTzrV5ad+skHx5AUsRe6e8v/rTXjoM06GKjUztwbrPgbnWqPKi+Xui8Z8KCv
+         oCohLyMlvnWzeLeCGscJ2/YJlv8R/1vxxX5vta95ZDD4f6Jceub2l1bAdNbR/TWvQt/6
+         wPbt60Q70Vy4tzRIrkvJMmEV9pBWx1OjQ98OBWByfud7LGHFurYGxkkQaCJp3+I92yni
+         SaQ6MKj1kzRqMqD3wFKQq0OqLHp3bfuuXfvgb35at7JEEAuKYFCCtZ5UHWhBNRtYejyx
+         iE3zITGNCY2x0QH6F9AelK7jkgarTH3+1s0wQgecZD1AuTXSMOx0BytubaiUawevuBMT
+         jcaQ==
+X-Gm-Message-State: AOAM531xDjJl1xomrlIecPo98/xBWvLT9dhjr+VKMqYPvHASSgdAU8CK
+        ZEQOC59ReVj6QWoK8QFSi6Q=
+X-Google-Smtp-Source: ABdhPJzUnDpX3A9rwsZzgznpbiOcAj35w5c16kxsO7Iic4zqowGx4KJX7eMPcbTgU4aWidpGcu2rzw==
+X-Received: by 2002:a2e:9694:: with SMTP id q20mr507961lji.46.1604566511879;
+        Thu, 05 Nov 2020 00:55:11 -0800 (PST)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id q28sm114571lfn.7.2020.11.05.00.55.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 00:55:11 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V2 1/2] arm64: add config for Broadcom BCM4908 SoCs
+Date:   Thu,  5 Nov 2020 09:54:57 +0100
+Message-Id: <20201105085458.21121-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <160454301723.3965362.9504622582275389041@swboyd.mtv.corp.google.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 04, 2020 at 06:23:37PM -0800, Stephen Boyd wrote:
-> Quoting Manivannan Sadhasivam (2020-10-28 00:42:30)
-> > From: Naveen Yadav <naveenky@codeaurora.org>
-> > 
-> > Add Global Clock Controller (GCC) support for SDX55 SoCs from Qualcomm.
-> > 
-> > Signed-off-by: Naveen Yadav <naveenky@codeaurora.org>
-> > [mani: converted to parent_data, commented critical clocks, cleanups]
-> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > ---
-> >  drivers/clk/qcom/Kconfig     |    8 +
-> >  drivers/clk/qcom/Makefile    |    1 +
-> >  drivers/clk/qcom/gcc-sdx55.c | 1667 ++++++++++++++++++++++++++++++++++
-> >  3 files changed, 1676 insertions(+)
-> >  create mode 100644 drivers/clk/qcom/gcc-sdx55.c
-> > 
-> > diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> > index 3a965bd326d5..dbca8debc06f 100644
-> > --- a/drivers/clk/qcom/Kconfig
-> > +++ b/drivers/clk/qcom/Kconfig
-> > @@ -502,4 +502,12 @@ config KRAITCC
-> >           Support for the Krait CPU clocks on Qualcomm devices.
-> >           Say Y if you want to support CPU frequency scaling.
-> >  
-> > +config GCC_SDX55
-> 
-> Please sort instead of add at end.
-> 
-> > +       tristate "SDX55 Global Clock Controller"
-> > +       depends on ARM
-> 
-> Why?
-> 
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Not needed, will remove.
+Add ARCH_BCM4908 config that can be used for compiling DTS files.
 
-> > +       help
-> > +         Support for the global clock controller on SDX55 devices.
-> > +         Say Y if you want to use peripheral devices such as UART,
-> > +         SPI, I2C, USB, SD/UFS, PCIe etc.
-> > +
-> >  endif
-> > diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
-> > index 11ae86febe87..3e27d67f95aa 100644
-> > --- a/drivers/clk/qcom/Makefile
-> > +++ b/drivers/clk/qcom/Makefile
-> > @@ -75,3 +75,4 @@ obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
-> >  obj-$(CONFIG_KPSS_XCC) += kpss-xcc.o
-> >  obj-$(CONFIG_QCOM_HFPLL) += hfpll.o
-> >  obj-$(CONFIG_KRAITCC) += krait-cc.o
-> > +obj-$(CONFIG_GCC_SDX55) += gcc-sdx55.o
-> 
-> Please sort this instead of add at end.
-> 
-> > diff --git a/drivers/clk/qcom/gcc-sdx55.c b/drivers/clk/qcom/gcc-sdx55.c
-> > new file mode 100644
-> > index 000000000000..75831c829202
-> > --- /dev/null
-> > +++ b/drivers/clk/qcom/gcc-sdx55.c
-> > @@ -0,0 +1,1667 @@
-> > +
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/Kconfig.platforms | 8 ++++++++
+ arch/arm64/configs/defconfig | 1 +
+ 2 files changed, 9 insertions(+)
 
-[...]
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index cd58f8495c45..52434264a2af 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -43,6 +43,14 @@ config ARCH_BCM2835
+ 	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
+ 	  These SoCs are used in the Raspberry Pi 3 and 4 devices.
+ 
++config ARCH_BCM4908
++	bool "Broadcom BCM4908 family"
++	select GPIOLIB
++	help
++	  This enables support for the Broadcom BCM4906, BCM4908 and
++	  BCM49408 SoCs. These SoCs use Cortex-B53 cores and can be
++	  found in home routers.
++
+ config ARCH_BCM_IPROC
+ 	bool "Broadcom iProc SoC Family"
+ 	select COMMON_CLK_IPROC
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index e0f33826819f..d2717bf2afe1 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -32,6 +32,7 @@ CONFIG_ARCH_AGILEX=y
+ CONFIG_ARCH_SUNXI=y
+ CONFIG_ARCH_ALPINE=y
+ CONFIG_ARCH_BCM2835=y
++CONFIG_ARCH_BCM4908=y
+ CONFIG_ARCH_BCM_IPROC=y
+ CONFIG_ARCH_BERLIN=y
+ CONFIG_ARCH_BRCMSTB=y
+-- 
+2.27.0
 
-> > +static const struct clk_div_table post_div_table_lucid_even[] = {
-> > +       { 0x0, 1 },
-> > +       { 0x1, 2 },
-> > +       { 0x3, 4 },
-> > +       { 0x7, 8 },
-> > +       { }
-> > +};
-> 
-> I think this table is common to all lucid plls? Maybe we can push it
-> into the clk_ops somehow and stop duplicating it here?
-> 
-
-Are you referring to lucid plls in this driver? Because, this table is
-not common for other SoCs. And I don't think having this way introduces
-any overhead, so I'd prefer keeping it as it is.
-
-> > +
-> > +static struct clk_alpha_pll_postdiv gpll0_out_even = {
-> > +       .offset = 0x0,
-> > +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID],
-> > +       .post_div_shift = 8,
-> > +       .post_div_table = post_div_table_lucid_even,
-> > +       .num_post_div = ARRAY_SIZE(post_div_table_lucid_even),
-> > +       .width = 4,
-> > +       .clkr.hw.init = &(struct clk_init_data){
-> > +               .name = "gpll0_out_even",
-> > +               .parent_data = &(const struct clk_parent_data){
-> > +                       .fw_name = "gpll0",
-> > +               },
-> 
-> If this is gpll0 in this file, then this should be a clk_hws pointer
-> instead and directly pointing to the parent.
-> 
-
-Ack
-
-> > +               .num_parents = 1,
-> > +               .ops = &clk_alpha_pll_postdiv_lucid_ops,
-> > +       },
-> > +};
-> > +
-> > +static struct clk_alpha_pll gpll4 = {
-> > +       .offset = 0x76000,
-> > +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID],
-> > +       .vco_table = lucid_vco,
-> > +       .num_vco = ARRAY_SIZE(lucid_vco),
-> > +       .clkr = {
-> > +               .enable_reg = 0x6d000,
-> > +               .enable_mask = BIT(4),
-> > +               .hw.init = &(struct clk_init_data){
-> > +                       .name = "gpll4",
-> > +                       .parent_data = &(const struct clk_parent_data){
-> > +                               .fw_name = "bi_tcxo",
-> > +                       },
-> > +                       .num_parents = 1,
-> > +                       .ops = &clk_alpha_pll_fixed_lucid_ops,
-> > +               },
-> > +       },
-> > +};
-> > +
-> > +static struct clk_alpha_pll_postdiv gpll4_out_even = {
-> > +       .offset = 0x76000,
-> > +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_LUCID],
-> > +       .post_div_shift = 8,
-> > +       .post_div_table = post_div_table_lucid_even,
-> > +       .num_post_div = ARRAY_SIZE(post_div_table_lucid_even),
-> > +       .width = 4,
-> > +       .clkr.hw.init = &(struct clk_init_data){
-> > +               .name = "gpll4_out_even",
-> > +               .parent_data = &(const struct clk_parent_data){
-> > +                       .fw_name = "gpll4",
-> 
-> If this is gpll4 in this file, then this should be a clk_hws pointer
-> instead and directly pointing to the parent.
-> 
-
-Ack
-
-> > +               },
-> > +               .num_parents = 1,
-> > +               .ops = &clk_alpha_pll_postdiv_lucid_ops,
-> > +       },
-> > +};
-> > +
-
-[...]
-
-> > +/* For CPUSS functionality the SYS NOC clock needs to be left enabled */
-> > +static struct clk_branch gcc_sys_noc_cpuss_ahb_clk = {
-> > +       .halt_reg = 0x4010,
-> > +       .halt_check = BRANCH_HALT_VOTED,
-> > +       .clkr = {
-> > +               .enable_reg = 0x6d008,
-> > +               .enable_mask = BIT(0),
-> > +               .hw.init = &(struct clk_init_data){
-> > +                       .name = "gcc_sys_noc_cpuss_ahb_clk",
-> > +                       .parent_hws = (const struct clk_hw *[]){
-> > +                               &gcc_cpuss_ahb_clk_src.clkr.hw },
-> > +                       .num_parents = 1,
-> > +                       .flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
-> 
-> These CLK_IS_CRITICAL clks can't be set once at driver probe time and
-> forgotten about? It would be nice to not allocate memory for things that
-> never matter.
-> 
-
-Makes sense! But are we moving into the direction of deprecating the use
-of CLK_IS_CRITICAL?
-
-> > +                       .ops = &clk_branch2_ops,
-> > +               },
-> > +       },
-> > +};
-> > +
-> > +static struct clk_branch gcc_usb30_master_clk = {
-> > +       .halt_reg = 0xb010,
-> > +       .halt_check = BRANCH_HALT,
-> > +       .clkr = {
-> > +               .enable_reg = 0xb010,
-> > +               .enable_mask = BIT(0),
-> > +               .hw.init = &(struct clk_init_data){
-> > +                       .name = "gcc_usb30_master_clk",
-> > +                       .parent_hws = (const struct clk_hw *[]){
-> > +                               &gcc_usb30_master_clk_src.clkr.hw },
-> > +                       .num_parents = 1,
-> > +                       .flags = CLK_SET_RATE_PARENT,
-> > +                       .ops = &clk_branch2_ops,
-> [...]
-> > +
-> > +static const struct qcom_cc_desc gcc_sdx55_desc = {
-> > +       .config = &gcc_sdx55_regmap_config,
-> > +       .clks = gcc_sdx55_clocks,
-> > +       .num_clks = ARRAY_SIZE(gcc_sdx55_clocks),
-> > +       .resets = gcc_sdx55_resets,
-> > +       .num_resets = ARRAY_SIZE(gcc_sdx55_resets),
-> 
-> No gdscs?
-> 
-
-This will come at later point.
-
-> > +};
-> > +
-> > +static const struct of_device_id gcc_sdx55_match_table[] = {
-> > +       { .compatible = "qcom,gcc-sdx55" },
-> > +       { }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, gcc_sdx55_match_table);
-> > +
-> > +static int gcc_sdx55_probe(struct platform_device *pdev)
-> > +{
-> > +       return qcom_cc_probe(pdev, &gcc_sdx55_desc);
-> 
-> Wow haven't seen this in some time. There isn't some sort of PLL that
-> needs configuring or some clks that need to be slammed on with a couple
-> register writes?
-> 
-
-Nothing as per the downstream driver. Actually the downstream just sets
-the rate of few clocks but I don't find them useful at the moment. So,
-dropped the change.
-
-Thanks,
-Mani
-
-> > +}
-> > +
