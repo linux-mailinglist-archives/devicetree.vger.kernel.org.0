@@ -2,114 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 346D02A77F3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:25:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 527F02A77F5
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 08:26:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729149AbgKEHZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 02:25:34 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:60612 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbgKEHZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 02:25:34 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A57PTgx084143;
-        Thu, 5 Nov 2020 01:25:29 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604561129;
-        bh=KslEU2O68CHJb3gLVJxeNScHoYi9XbnVfavsgk9RqVU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=F0Lvsrl9udoe3tKshM8zwbmdWz/W1U4H+1Y4mPgfdynKk0xRrhC+Q1wmR/WjRc47M
-         BoChFHvicvjIBeVrHrblsmhwx1EvN8p8+4MwuMnDkXvPOUveRu01sfh/9GiS1mr5Xv
-         yTG5sZTywAGlla5aNqdYRljzB0jtINekTiLyq5Is=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A57PTY9068421
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 Nov 2020 01:25:29 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 5 Nov
- 2020 01:25:26 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 5 Nov 2020 01:25:26 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A57PNVs052480;
-        Thu, 5 Nov 2020 01:25:24 -0600
-Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
- SoC dtsi level
-To:     Nishanth Menon <nm@ti.com>, Roger Quadros <rogerq@ti.com>,
-        Keerthy <j-keerthy@ti.com>, Jyri Sarha <jsarha@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20201104224356.18040-1-nm@ti.com>
- <20201104224356.18040-3-nm@ti.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <265fdc00-7f5f-48c3-3d99-971ccd466232@ti.com>
-Date:   Thu, 5 Nov 2020 09:25:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726986AbgKEH0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 02:26:34 -0500
+Received: from mail-eopbgr50043.outbound.protection.outlook.com ([40.107.5.43]:58244
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725320AbgKEH0d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 02:26:33 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ivjg8qFhUBAJNrlv7pUZk8ya9Mbqo65tPN/gAufokNpOD7bKP77CslEE/ifR6K41H31btEQkiiOoRLpt1rLo31y9Q+B9QVFCuBhsKnBTLMnDc4/0rHv4V9fpfY9uCKzrVGhcJ8iHq5rOFkNcO1vRcwfAuBsdGutTFpSKBRx4ca/Kht7ostAI+Gr+CUEinlYXqBJ38+Qi9f+hobj+6jfEbv0+DKoN9C5zaek11hiXWkLhLRLBrXtQX4mu5d+2EDCgsiChxlSC9hYGTtTBcrlWLleY/Jc/nKIleuAgAewHZlBT/PrwCU0VqLts2lv4JdaPDKvqIpln/qCWJMiXgWmB8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eK5hFw9oZr+xplMFEbpoblSZBQfys0eL5mwf81ioG7Y=;
+ b=cV+WPbjIToyYgc0Gx4gMB1tGkT0tXmoUyNnx1cLrRmcUnJyAVqh2zCytUOgCTXdOqEg1cB9fy6pwz108L8d2bKJw1FKu3kzF45/NjCXROM3m7IhK5DOtTBPFa8z/ZjRqCi2IEnBZNHBBEg1oRYxochsfF1UUonwfLPF4nyhAwc4tdIteORz1uEaBc8D3j4/rFLfSvXiwK5DOnUeJdERDf2wnQD8Cs4OdHOwMK8lq3UVWi/c3eAACQ++hzwTpCg93f+Po0bEaPoqfiHmBCp3VugQpfQtlBfpeEvMUfgTaImRfQv2wlZGTWhNhSu4bZEDLnzK0rq+aLQMr07aoP1WS7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eK5hFw9oZr+xplMFEbpoblSZBQfys0eL5mwf81ioG7Y=;
+ b=dUI2AftmS6W+6Na4EitBCLmdYXzmvaKtQTxGet8burd1YQp3LtPtA+T2yOPjCTPOoN/chWxGYfSp2WfSzIv8+xhRGg7hRYlGQW9vmIePxSZSVTxLu1NeJ8uCzPcwql6VOEWVYMYaiUSFNT7z3BEmi10bbadYLlTcCp02Df8DIgM=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB7065.eurprd04.prod.outlook.com (2603:10a6:10:127::9)
+ by DB8PR04MB6906.eurprd04.prod.outlook.com (2603:10a6:10:118::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.19; Thu, 5 Nov
+ 2020 07:26:27 +0000
+Received: from DB8PR04MB7065.eurprd04.prod.outlook.com
+ ([fe80::ed87:8435:3012:9618]) by DB8PR04MB7065.eurprd04.prod.outlook.com
+ ([fe80::ed87:8435:3012:9618%8]) with mapi id 15.20.3499.032; Thu, 5 Nov 2020
+ 07:26:27 +0000
+From:   Alice Guo <alice.guo@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        krzk@kernel.org
+Cc:     linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Binding doc for soc unique ID
+Date:   Thu,  5 Nov 2020 15:26:26 +0800
+Message-Id: <20201105072629.24175-1-alice.guo@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: SG2PR02CA0054.apcprd02.prod.outlook.com
+ (2603:1096:4:54::18) To DB8PR04MB7065.eurprd04.prod.outlook.com
+ (2603:10a6:10:127::9)
 MIME-Version: 1.0
-In-Reply-To: <20201104224356.18040-3-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from nxf55104-OptiPlex-7060.ap.freescale.net (119.31.174.71) by SG2PR02CA0054.apcprd02.prod.outlook.com (2603:1096:4:54::18) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend Transport; Thu, 5 Nov 2020 07:26:23 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 532dbbee-5be4-49d1-c57d-08d8815c1b43
+X-MS-TrafficTypeDiagnostic: DB8PR04MB6906:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB6906E572D8DF49321E63CF5BE2EE0@DB8PR04MB6906.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3173;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: aIAH7piyR8H3gFK95r42+4SC4D7C5W0lU5NfcHl/FQidNq+eFk7GMcQXlBGsS0wV8tHWymTgmgr5LSPGmV4ycHzqNCYJ3QPvfnYfDqQduzLKOwIRmYrNbn7x9bTNo6pJCupJSmPLVCnG63ob9rhV4WfgiWUZWU1GlfJ0Ejul6sAhrIj4j3Qq4UBtM4FLxYOOZf7w5jvlRgW6Y6uxdmYM3HQDiN/OSJHT4osmYGCSISOOcoaqlHxeY402aBnQQ/zu00Jyxcm8Me788fhT66CuwMBLI+9coIiAEnYAJLMb0gFdC73Syeky2t+hCjyG1z7GkZ0nS1nu81ZcxzircpwIxUjuuYe4brNWWgMkEAfFPualpqLhVL2m9/3RXggJODDE
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB7065.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(39860400002)(396003)(376002)(346002)(5660300002)(316002)(6512007)(44832011)(478600001)(66946007)(8676002)(52116002)(6506007)(2906002)(86362001)(36756003)(4326008)(186003)(8936002)(66556008)(2616005)(26005)(6486002)(66476007)(956004)(16526019)(1076003)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: Oq04JQDUJpvR8sz0m05PJYFkoFMk0Cm3kd1Zt1XzjdFCc4fSEpaAJTj/vK4XNGgJTkgJdd10nBocct3FN0zO7wArxglrEieCHMTmhV07wzXZlhrTU3KFWDNVbK68cUy78RsI3rzoKZ/b47CS46n32SLsvrF2cZsvuIkx0mk5qCiWA9gr403DA7JK29C9osYrqbGvmmrywqSK7r2IuHfhJsD4NVzEqGC6WqxI47EHKrBHBamLar/unKO7Xk0qkz88/YUj7J+WHrXACzMOIncgRED3kSDMm1IleN0AScTpy8tL2QOd15pMJzBkwgRbWJcZYtIsvUlju6AXmoH/vP4oa2i+mtF7RwOHkDM7m2eeefcF6Qfg20YWKEBfA9UGZOX3XiuWgV5rplEcB95MQ1ITGvztlX7F5I/wRaj85QQv8k7UV93w+jqyYqbXN2NCOMrbF+r5yv9ZsvmJbKe6h3+MQOBEi+3TO6L92CouDnBCxzUiJkmdoRkqNjdKAbQMDZ7QcfNRoLGtfu3gpni4nMk7zCSFzscvNXNsgccV5ZFenaUunJF2qVbQ8moEx/KZbYzpqbLWglDL8jNb/23vVWj7fIBVQOo/2ukj+MdHVh4f4OMZz6kVWNIyulf3qo+fPjJ+IwHXi/6FJTi+XL89gHGKbA==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 532dbbee-5be4-49d1-c57d-08d8815c1b43
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB7065.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2020 07:26:26.9476
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vdfIIRvT6QyrL8czQZD6pLZ3MjNTOuVEoYom7c0VnFJBSBsqkXwWvHep5Ou7UerGFJQXbXllTFAQMd0C7EPOSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6906
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/11/2020 00:43, Nishanth Menon wrote:
-> The device tree standard sets the default node behavior when status
-> property as enabled. There are many reasons for doing the same, number
-> of strings in device tree, default power management functionality etc
-> are few of the reasons.
-> 
-> In general, after a few rounds of discussions [1] there are few
-> options one could take when dealing with SoC dtsi and board dts
-> 
-> a. SoC dtsi provide nodes as a super-set default (aka enabled) state and
->    to prevent messy board files, when more boards are added per SoC, we
->    optimize and disable commonly un-used nodes in board-common.dtsi
-> b. SoC dtsi disables all hardware dependent nodes by default and board
->    dts files enable nodes based on a need basis.
-> c. Subjectively pick and choose which nodes we will disable by default
->    in SoC dtsi and over the years we can optimize things and change
->    default state depending on the need.
-> 
-> While there are pros and cons on each of these approaches, the right
-> thing to do will be to stick with device tree default standards and
-> work within those established rules. So, we choose to go with option
-> (a).
-> 
-> Lets cleanup defaults of j721e SoC dtsi before this gets more harder
-> to cleanup later on and new SoCs are added.
-> 
-> The only functional difference between the dtb generated is
-> status='okay' is no longer necessary for mcasp10 and depends on the
-> default state.
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20201027130701.GE5639@atomide.com/
-> 
-> Fixes: 1c4d35265fb2 ("arm64: dts: ti: k3-j721e-main: Add McASP nodes")
-> Fixes: 76921f15acc0 ("arm64: dts: ti: k3-j721e-main: Add DSS node")
-> Cc: Jyri Sarha <jsarha@ti.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> ---
->  .../dts/ti/k3-j721e-common-proc-board.dts     | 48 ++++++++++++++++++-
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 26 ----------
->  2 files changed, 47 insertions(+), 27 deletions(-)
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Add DT Binding doc for the Unique ID of i.MX 8M series.
 
- Tomi
+Signed-off-by: Alice Guo <alice.guo@nxp.com>
+---
+ .../devicetree/bindings/arm/fsl.yaml          | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index e4db0f9ed664..0419f078502b 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -901,6 +901,39 @@ properties:
+               - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
+           - const: fsl,s32v234
+
++  soc:
++    description:
++      i.MX8M Family SoC must provide a soc node in the root of the device tree,
++      representing the System-on-Chip since these test chips are rather complex.
++    type: object
++    properties:
++      compatible:
++        oneOf:
++          - items:
++              - const: fsl,imx8mm-soc
++              - const: simple-bus
++          - items:
++              - const: fsl,imx8mn-soc
++              - const: simple-bus
++          - items:
++              - const: fsl,imx8mp-soc
++              - const: simple-bus
++          - items:
++              - const: fsl,imx8mq-soc
++              - const: simple-bus
++
++      nvmem-cells:
++        maxItems: 1
++        description: Phandle to the SOC Unique ID provided by a nvmem node
++
++      nvmem-cells-names:
++        const: soc_unique_id
++
++    required:
++      - compatible
++      - nvmem-cells
++      - nvmem-cell-names
++
+ additionalProperties: true
+
+ ...
+--
+2.17.1
+
