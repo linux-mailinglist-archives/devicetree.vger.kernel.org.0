@@ -2,184 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B83032A85A0
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 19:03:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B6CE2A8615
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 19:27:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731740AbgKESDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 13:03:11 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:39857 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727275AbgKESDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 13:03:11 -0500
-Received: by mail-ot1-f67.google.com with SMTP id z16so2255107otq.6;
-        Thu, 05 Nov 2020 10:03:10 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=oXCLaf3/tmMtFdlKf8NOILXkQGvPX5Ww/dhrD3bunx0=;
-        b=hbJFlDxDKp3tZkqlM/lgoBzZlAsilWypmvSXTC7S2Kg5mvqmlU/975FY4VhkjUEssa
-         vCoVIh0apk936hSBdhSOysKerF9kbGhiFXZLye+tfQInckZN4pndOrePcMBKKT6Hc00N
-         r2rTMknUx2ElBgGxpK4vT2iN4Rs1erc9wnDKX1D2bSX66kHTdE9SQYs3Xy0Q0nXcOgkd
-         3/XLrJzmupsf0J9VY5sELJX+f52g0VOhHXheuuNp71b+thJpXX+iJfZzCOxrmO17udp+
-         x+hBP0+9TzQY41h9mTngTF/ewOFRQHehGP78COtFOhpnzSUAcHMSkqvR7AWsVQn9/BCO
-         zMBg==
-X-Gm-Message-State: AOAM532MWORwFGVWw47HbW1ODvi9iZRwBVU0a/K62ExT297D3zzwRUG+
-        vqKqC4C8moYkuMPH5W1PAQ==
-X-Google-Smtp-Source: ABdhPJxkMNWyijZHXfLe8WmFrLCkIxS3KCE6tREcLod1jUIZI/jDRRod7ZbjhB2MPvJC0VKAnfaq1Q==
-X-Received: by 2002:a9d:27c9:: with SMTP id c67mr2000532otb.301.1604599389632;
-        Thu, 05 Nov 2020 10:03:09 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id g8sm526867oia.16.2020.11.05.10.03.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 10:03:09 -0800 (PST)
-Received: (nullmailer pid 1560661 invoked by uid 1000);
-        Thu, 05 Nov 2020 18:03:08 -0000
-Date:   Thu, 5 Nov 2020 12:03:08 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Milind Parab <mparab@cadence.com>,
-        Yuti Suresh Amonkar <yamonkar@cadence.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/9] dt-bindings: phy: cadence-sierra: Add bindings for
- the PLLs within SERDES
-Message-ID: <20201105180308.GA1540220@bogus>
-References: <20201103035556.21260-1-kishon@ti.com>
- <20201103035556.21260-2-kishon@ti.com>
+        id S1728137AbgKES1Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 13:27:16 -0500
+Received: from foss.arm.com ([217.140.110.172]:39630 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726214AbgKES1Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 13:27:16 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 02CC01474;
+        Thu,  5 Nov 2020 10:27:15 -0800 (PST)
+Received: from bogus (unknown [10.57.22.191])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BEDDE3F719;
+        Thu,  5 Nov 2020 10:27:13 -0800 (PST)
+Date:   Thu, 5 Nov 2020 18:27:07 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: Add bindings for BrcmSTB SCMI
+ mailbox driver
+Message-ID: <20201105182707.l4xx3wu2ch22qysi@bogus>
+References: <20201029195913.5927-1-james.quinlan@broadcom.com>
+ <20201029195913.5927-2-james.quinlan@broadcom.com>
+ <20201104215050.GA4180546@bogus>
+ <CA+-6iNw1Z1dj8oFn8DdyVPuMUP-3+n9sKXuWYWo2rfPo5j4dkA@mail.gmail.com>
+ <CAL_JsqJQA_VLhez8y6HVCdFB2DZ85KoDZ1=RtbU4Mw98aQRSxA@mail.gmail.com>
+ <CA+-6iNznMY78tJBeNrtyOy58DTKKPGxfgA0Pu2Rxx42YDJWV1w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201103035556.21260-2-kishon@ti.com>
+In-Reply-To: <CA+-6iNznMY78tJBeNrtyOy58DTKKPGxfgA0Pu2Rxx42YDJWV1w@mail.gmail.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 03, 2020 at 09:25:48AM +0530, Kishon Vijay Abraham I wrote:
-> Add binding for the PLLs within SERDES.
-> 
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  .../bindings/phy/phy-cadence-sierra.yaml      | 89 ++++++++++++++++++-
->  1 file changed, 86 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
-> index d210843863df..f574b8ed358c 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-sierra.yaml
-> @@ -49,12 +49,14 @@ properties:
->      const: serdes
->  
->    clocks:
-> -    maxItems: 2
-> +    maxItems: 4
->  
->    clock-names:
->      items:
->        - const: cmn_refclk_dig_div
->        - const: cmn_refclk1_dig_div
-> +      - const: pll_cmnlc
-> +      - const: pll_cmnlc1
->  
->    cdns,autoconf:
->      type: boolean
-> @@ -107,6 +109,58 @@ patternProperties:
->  
->      additionalProperties: false
->  
-> +  "^refrcv1?$":
-> +    type: object
-> +    description: |
-> +      Reference receivers that enables routing external clocks to the alternate
-> +      PLLCMNLC.
-> +    properties:
-> +      clocks:
-> +        maxItems: 1
-> +        description: Phandle to clock nodes representing the input to the
-> +          reference receiver.
-> +
-> +      clock-names:
-> +        items:
-> +          - const: pll_refclk
-> +
-> +      "#clock-cells":
-> +        const: 0
-> +
-> +    required:
-> +      - clocks
-> +      - "#clock-cells"
-> +
-> +  "^pll_cmnlc1?$":
-> +    type: object
-> +    description: |
-> +      SERDES node should have subnodes for each of the PLLs present in
-> +      the SERDES.
-> +    properties:
-> +      clocks:
-> +        maxItems: 2
-> +        description: Phandle to clock nodes representing the two inputs to PLL.
-> +
-> +      clock-names:
-> +        items:
-> +          - const: pll_refclk
-> +          - const: refrcv
-> +
-> +      "#clock-cells":
-> +        const: 0
-> +
-> +      assigned-clocks:
-> +        maxItems: 1
-> +
-> +      assigned-clock-parents:
-> +        maxItems: 1
-> +
-> +    required:
-> +      - clocks
-> +      - "#clock-cells"
-> +      - assigned-clocks
-> +      - assigned-clock-parents
-> +
->  required:
->    - compatible
->    - "#address-cells"
-> @@ -130,10 +184,39 @@ examples:
->              reg = <0x0 0xfd240000 0x0 0x40000>;
->              resets = <&phyrst 0>, <&phyrst 1>;
->              reset-names = "sierra_reset", "sierra_apb";
-> -            clocks = <&cmn_refclk_dig_div>, <&cmn_refclk1_dig_div>;
-> -            clock-names = "cmn_refclk_dig_div", "cmn_refclk1_dig_div";
-> +            clocks = <&cmn_refclk_dig_div>, <&cmn_refclk1_dig_div>, <&serdes_pll_cmnlc>, <&serdes_pll_cmnlc1>;
-> +            clock-names = "cmn_refclk_dig_div", "cmn_refclk1_dig_div", "pll_cmnlc", "pll_cmnlc1";
->              #address-cells = <1>;
->              #size-cells = <0>;
-> +
-> +            serdes_refrcv: refrcv {
-> +                    clocks = <&pll0_refclk>;
-> +                    clock-names = "pll_refclk";
-> +                    #clock-cells = <0>;
-> +            };
-> +
-> +            serdes_refrcv1: refrcv1 {
-> +                    clocks = <&pll1_refclk>;
-> +                    clock-names = "pll_refclk";
-> +                    #clock-cells = <0>;
-> +            };
-> +
-> +            serdes_pll_cmnlc: pll_cmnlc {
-> +                    clocks = <&pll0_refclk>, <&serdes_refrcv1>;
-> +                    clock-names = "pll_refclk", "refrcv";
-> +                    #clock-cells = <0>;
-> +                    assigned-clocks = <&serdes_pll_cmnlc>;
+On Thu, Nov 05, 2020 at 10:28:25AM -0500, Jim Quinlan wrote:
+> On Thu, Nov 5, 2020 at 10:13 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Nov 4, 2020 at 4:04 PM Jim Quinlan <james.quinlan@broadcom.com> wrote:
+> > >
+> > > On Wed, Nov 4, 2020 at 4:50 PM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Thu, Oct 29, 2020 at 03:59:06PM -0400, Jim Quinlan wrote:
+> > > > > Bindings are added.  Only one interrupt is needed because
+> > > > > we do not yet employ the SCMI p2a channel.
+> > > >
+> > > > I still don't understand what this is. To repeat from v1: I thought SCMI
+> > > > was a mailbox consumer, not provider?
+> > >
+> > > Hi Rob,
+> > >
+> > > I'm not sure where I am implying that SCMI is a mailbox provider?
+> > > Should I not mention "SCMI" in the subject line?
+> > >
+> > > This is just a mailbox driver, "consumed" by SCMI.    Our SCMI DT node
+> > > looks like this:
+> > >
+> > > brcm_scmi_mailbox: brcm_scmi_mailbox@0 {
+> > >         #mbox-cells = <1>;
+> > >         compatible = "brcm,brcmstb-mbox";
+> > > };
+> > >
+> > > brcm_scmi@0 {
+> > >         compatible = "arm,scmi";
+> > >         mboxes = <&brcm_scmi_mailbox 0>;;
+> > >         mbox-names = "tx";
+> > >         shmem = <&NWMBOX>;
+> > >         /* ... */
+> > > };
+> >
+> > Okay, that makes more sense. Though it seems like this is just adding
+> > a pointless level of indirection to turn an interrupt into a mailbox.
+> > There's nothing more to 'the mailbox' is there?
+>
+> Correct.  Although you can see that it uses both interrupts and SMC
+> calls to get the job done.
+>
 
-Isn't assigned-clocks supposed to be one of the clocks in 'clocks'?
+I was against having 2 separate solutions and would have raised my concern
+again. As I mentioned earlier, either extend what we have or move the
+existing SMC solution into this mailbox driver. Having 2 different solution
+for this just because you have extra interrupt to deal with is definite
+NACK from me as I had previously mentioned.
 
-> +                    assigned-clock-parents = <&pll0_refclk>;
+> > So why not either
+> > allow SCMI to have an interrupt directly
+> Not sure here -- perhaps the SCMI folks have an answer?
+>
 
-And this should not be a clock in 'clocks'...
+I did ask why can't you extend the existing SCMI/SMC binding to add this
+as optional feature ?
 
+> > or have a generic irq mailbox driver?
 
-More generally, why do we need to expose all these details in DT?
+Fine with this too.
 
-Rob
+> The SCMI implementation doesn't offer a generic irq mailbox driver
+> AFAICT.  The SCMI folks recently provided  an "smc transport" driver
+> in "drivers/firmware/arm_scmi/smc.c" -- it is close to what we need
+> but is missing interrupts.
+
+IIRC, you were using SGIs and it can't be represented and use today as
+is ? Am  I missing something or anything has changed ?
+
+--
+Regards,
+Sudeep
