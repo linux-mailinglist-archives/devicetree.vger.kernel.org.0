@@ -2,104 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3814D2A7D48
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8A8F2A7D83
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 12:50:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730124AbgKELje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 06:39:34 -0500
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:39112 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729916AbgKELjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:39:07 -0500
-Received: by mail-lj1-f195.google.com with SMTP id m16so1222902ljo.6;
-        Thu, 05 Nov 2020 03:39:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jck8w/E9bpQVLqgSLUvOFfHIe/qaww3VwYRc6ypuzVs=;
-        b=rVy6mb96pi//rU8b5aRGlskQj5O9Btjtj9bWFH8YK1HgdKHMzpbypQkoCAnGltrSuv
-         Y6izofwDelzMSfF8zrxydU/TP13UIel2KJah26PBzH3SNMhykX+UFsyGmPVmpI5Pg6rc
-         dKB6PZH2400PxgY7lrQrbNfWZC1IYSLqB1ggWSyS5ASSCgicnSu1l8N96h0gEZ16VTU+
-         aN+nG402K0Ihst92ZQOjLdId0bDFmlIW8Jo+S2KfPbKZTdo+1ZXXf6iMmfoK9PqSfD7O
-         BxdG3ybRxwtWseDerGOsDOgAbiMgQLM0yT68Jh/ci9XBFafWaSxjClI/LD/rmKK1aTzW
-         fXNg==
-X-Gm-Message-State: AOAM533Of7e/OMWK/PTWqCSQdtR513vv6A+Md0oE5Mp5TTXMjPaDQ3kN
-        3MjLy/bReU7tjPLgKTpvEEU=
-X-Google-Smtp-Source: ABdhPJzTkXFOD3A2pwoRy5RZFHg5E8cJ3tij6JBJxB48XvEI60+KnoAUA0gjdpI2mPOgd+89mNiS3w==
-X-Received: by 2002:a2e:3915:: with SMTP id g21mr769847lja.18.1604576345135;
-        Thu, 05 Nov 2020 03:39:05 -0800 (PST)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id r6sm130382ljg.6.2020.11.05.03.39.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 03:39:04 -0800 (PST)
-Date:   Thu, 5 Nov 2020 13:38:58 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
-        linux-watchdog@vger.kernel.org
-Subject: [PATCH v5 4/4] MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
-Message-ID: <8126292cb00ddcad2c4e2e2572fceaa305179691.1604574431.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1604574431.git.matti.vaittinen@fi.rohmeurope.com>
+        id S1729916AbgKELuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 06:50:35 -0500
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:46718 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730373AbgKELud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 06:50:33 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201105115021euoutp01164b0114f6ef341f04dd9ce3283c6acf~Emky2Cm200609006090euoutp01j
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 11:50:21 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201105115021euoutp01164b0114f6ef341f04dd9ce3283c6acf~Emky2Cm200609006090euoutp01j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1604577021;
+        bh=FvSTAw6d9kbyhdAicWbWR8jqchMAdlTjQxV1cjmwE6g=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=p2c21bKJMqkMqDJSQPSxW8tmLiMfoANfyWwO+jLDccSIOJzBpixWAX+GCb8k4JJhu
+         WNE41wzo54mvxFYxwBoWjxXMrJt1PwQ76akrbCLn/MbY1eOmNk+zOOSV0oSELI+Bsb
+         3emwMAALHJ9rhB+rR3Qwg/HeMMF8vbm7CALvsmXo=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20201105115016eucas1p1f51babf758a835d1e75168b42b152bfd~Emkt7mqFQ2968929689eucas1p1N;
+        Thu,  5 Nov 2020 11:50:16 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id C3.CB.06318.8F6E3AF5; Thu,  5
+        Nov 2020 11:50:16 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201105115015eucas1p2508f3f5aec7de700a8435097c845e371~Emktnusfw0490904909eucas1p2f;
+        Thu,  5 Nov 2020 11:50:15 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201105115015eusmtrp2dfc0d36a28f95235947bf21399a88fb0~EmktnD3QP0662606626eusmtrp2H;
+        Thu,  5 Nov 2020 11:50:15 +0000 (GMT)
+X-AuditID: cbfec7f5-38bff700000018ae-78-5fa3e6f8ec37
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 26.CE.06017.7F6E3AF5; Thu,  5
+        Nov 2020 11:50:15 +0000 (GMT)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201105115015eusmtip13f5d05f1852e9e9527e149865c178310~EmktUSrJw1880618806eusmtip1m;
+        Thu,  5 Nov 2020 11:50:15 +0000 (GMT)
+Subject: Re: [PATCH 2/5] ARM: dts: add Samsung's exynos4412-based p4note
+ boards
+To:     Martin Juecker <martin.juecker@gmail.com>
+Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <2fe97134-7044-cd86-2728-8b6b648efe68@samsung.com>
+Date:   Thu, 5 Nov 2020 12:50:17 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1604574431.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <20201103103856.GA7770@adroid>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprGKsWRmVeSWpSXmKPExsWy7djPc7o/ni2ON9jymNti/pFzrBb9j18z
+        W5w/v4HdYsb5fUwWZ/5NZXFg9dg56y67x6ZVnWwenzfJBTBHcdmkpOZklqUW6dslcGWcblnP
+        VNAuVLHz6X+WBsYevi5GTg4JAROJvV/us3YxcnEICaxglLi8aA2U84VR4ueL58wQzmdGiRfr
+        PrDAtOxet5sZxBYSWM4oseoOH0TRe0aJmxsfgyWEBQIlnu/6yARiiwjoSnT03mEDsZkFaiTO
+        7dvCCGKzCRhKdL3tAopzcPAK2Eks2KIEEmYRUJHYMWEx2C5RgSSJv5//gI3kFRCUODnzCVic
+        U0BbYvvDnYwQI+Ultr+dwwxhi0vcejKfCeQeCYHJ7BIdd56yQhztIvHp3QRGCFtY4tXxLewQ
+        tozE/50wDc2MEg/PrWWHcHqAgdE0A6rDWuLOuV9glzILaEqs36UPEXaUuP7zMTtIWEKAT+LG
+        W0GII/gkJm2bzgwR5pXoaBOCqFaTmHV8HdzagxcuMU9gVJqF5LVZSN6ZheSdWQh7FzCyrGIU
+        Ty0tzk1PLTbOSy3XK07MLS7NS9dLzs/dxAhMLaf/Hf+6g3Hfn6RDjAIcjEo8vA4ci+OFWBPL
+        iitzDzFKcDArifA6nT0dJ8SbklhZlVqUH19UmpNafIhRmoNFSZzXeNHLWCGB9MSS1OzU1ILU
+        IpgsEwenVANjQ0Ig0w/ZS7JfNimcEIu1UOG/c+rk4UYjq5krl+QcW9UbdLR9rVxgb9KJpf/9
+        w2W57gtkhf5rWDjRdG+YsKy8Y4Gu2GV+Rfso1zuSxRYShQ84+reUNnG7tHTu0LpUfevZsfvp
+        guy75L6zr+i9wLvPYXVb0FmdLAGffT7aFbNNLb/I6mbk2CixFGckGmoxFxUnAgASMJhGKQMA
+        AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrJIsWRmVeSWpSXmKPExsVy+t/xu7rfny2ONziz0NRi/pFzrBb9j18z
+        W5w/v4HdYsb5fUwWZ/5NZXFg9dg56y67x6ZVnWwenzfJBTBH6dkU5ZeWpCpk5BeX2CpFG1oY
+        6RlaWugZmVjqGRqbx1oZmSrp29mkpOZklqUW6dsl6GWcblnPVNAuVLHz6X+WBsYevi5GTg4J
+        AROJ3et2M3cxcnEICSxllLg18xczREJG4uS0BlYIW1jiz7UuNoiit4wS2/beYwJJCAsESjzf
+        9RHMFhHQlejovcMGYjML1EjsX/GHFaLhIZPEqm2zwRJsAoYSXW9BJnFw8ArYSSzYogQSZhFQ
+        kdgxYTELiC0qkCTx8sJUsJm8AoISJ2c+AYtzCmhLbH+4kxFivpnEvM0PmSFseYntb+dA2eIS
+        t57MZ5rAKDQLSfssJC2zkLTMQtKygJFlFaNIamlxbnpusZFecWJucWleul5yfu4mRmA0bTv2
+        c8sOxq53wYcYBTgYlXh4HTgWxwuxJpYVV+YeYpTgYFYS4XU6ezpOiDclsbIqtSg/vqg0J7X4
+        EKMp0HMTmaVEk/OBkZ5XEm9oamhuYWlobmxubGahJM7bIXAwRkggPbEkNTs1tSC1CKaPiYNT
+        qoGR7V9f2CfTilO8U6yuvTx7euNZvVuVBza85+TYqP6hv3emy9tF3VueTjXf8Pu3gaf1prTf
+        vf9iPEvCA5I7fu34lCjYm7NUZ3k6R7GuqWpK6E7PRQWS/mcrVveyNhx7JxZdLpF2ZpXPi+eN
+        XAnzC6IrL/1Ou7Sf6/nKFa2GawqsNi5O26OgUtaoxFKckWioxVxUnAgA461Z3LwCAAA=
+X-CMS-MailID: 20201105115015eucas1p2508f3f5aec7de700a8435097c845e371
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201102212129eucas1p1957c9dd5d6c1ebf7c340271a5e501c5b
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201102212129eucas1p1957c9dd5d6c1ebf7c340271a5e501c5b
+References: <20201031175836.47745-1-martin.juecker@gmail.com>
+        <20201031175836.47745-3-martin.juecker@gmail.com>
+        <20201102191845.GA64695@kozik-lap>
+        <CGME20201102212129eucas1p1957c9dd5d6c1ebf7c340271a5e501c5b@eucas1p1.samsung.com>
+        <20201102212118.GA2366@adroid>
+        <0af4946e-a573-ad5a-5558-de439d49434f@samsung.com>
+        <20201103103856.GA7770@adroid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer entries for ROHM BD9576MUF and ROHM BD9573MUF drivers.
-MFD, regulator and watchdog drivers were introduced for these PMICs.
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
+On 03.11.2020 11:38, Martin Juecker wrote:
+> On Tue, Nov 03, 2020 at 10:51:08AM +0100, Marek Szyprowski wrote:
+>> Hi Martin,
+>>
+>> On 02.11.2020 22:21, Martin Juecker wrote:
+>>>> ...
+>>>>> +
+>>>>> +&fimd {
+>>>>> +	pinctrl-0 = <&lcd_clk &lcd_data24 &pwm1_out>;
+>>>>> +	pinctrl-names = "default";
+>>>>> +	status = "okay";
+>>>>> +
+>>>>> +	display-timings {
+>>>>> +		timing0 {
+>>>>> +			clock-frequency = <66666666>;
+>>>>> +			hactive = <1280>;
+>>>>> +			vactive = <800>;
+>>>>> +			hfront-porch = <18>;
+>>>>> +			hback-porch = <36>;
+>>>>> +			hsync-len = <16>;
+>>>>> +			vback-porch = <16>;
+>>>>> +			vfront-porch = <4>;
+>>>>> +			vsync-len = <3>;
+>>>>> +			hsync-active = <1>;
+>>>>> +		};
+>>>>> +	};
+>>>> What happened with Marek's comment about this?
+>>>>
+>>> Should have mentioned it in the introduction mail. I had a look at the
+>>> simple panel driver and it's not enough for the display in the p4note. I
+>>> asked Marek in IRC whether it's ok to have this in a separate patch set
+>>> to have a fully working display and he agreed.
+>> Yes, I agreed that the display can be added later in a separate patch.
+>> However in such case I would simply remove the whole fimd node now.
+>> Without a panel it is a bit useless imho. With a proper panel driver you
+>> will also get rid of the timings subnode, so there is no point adding it
+>> now.
+>>
+> Removing the fimd node (or the display timings) would break the DRM and
+> display output though. The display is working but missing proper GPIO
+> handling and the possibility to adjust brightness right now. As it is
+> connected to the LCD power domain, it's still turning on and off as
+> expected as it is setup by the bootloader. I know this isn't a great
+> solution, but I'm already working on the LCD driver. Not sure when it
+> will be done though.
+>
+> The display timings are read in exynos_drm_dpi.c in the exynos_dpi_probe
+> method. As far as I understand, you can either provide the timings in
+> the fimd node itself or in a connected panel.
+>
+> If this is not intended, I can of course remove the configuration.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b516bb34a8d5..0bd788a94376 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15088,16 +15088,20 @@ F:	drivers/gpio/gpio-bd71828.c
- F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
-+F:	drivers/mfd/rohm-bd9576.c
- F:	drivers/power/supply/bd70528-charger.c
- F:	drivers/regulator/bd70528-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
-+F:	drivers/regulator/bd9576-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
- F:	drivers/watchdog/bd70528_wdt.c
-+F:	drivers/watchdog/bd9576_wdt.c
- F:	include/linux/mfd/rohm-bd70528.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
-+F:	include/linux/mfd/rohm-bd957x.h
- F:	include/linux/mfd/rohm-generic.h
- F:	include/linux/mfd/rohm-shared.h
- 
+If it works already then imho we can keep it for now and then adjust 
+later when the proper panel driver is ready.
+
+Best regards
+
 -- 
-2.21.3
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
