@@ -2,118 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 169DA2A7C30
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:48:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 436972A7C6C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 11:56:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730152AbgKEKsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 05:48:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730124AbgKEKsp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 05:48:45 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4213BC0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 02:48:45 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id z3so1183625pfz.6
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 02:48:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=7xzfNtr8zKEQZfWNHzcQs/QsPT8QqrsuV/2rOop0v6k=;
-        b=wQgCAtJ6Q49Q+La3x2z2UBeraTneHOAXQAE/VXhC4pQsD12ZdJlsDiJCJ+AG+GFBqZ
-         5TOdRmCvecQ9SsYRy/q4hQARGEficCt0wj/zpxBH9vRHNRhEtHER3qxiUgAx0VmLZAOQ
-         DnwewfuS4JYU0KbGGzeU4sVfqyFFSow/t+RIndwBm5ARnXj5g6e+r3Mhkcx032Nys0LF
-         F9UYynewR1f7oUL5IxBUbF18onqzgxIyzmszOYKN9nBam6UIqJtQiCGKEQYMS5fflfOf
-         bkcM3KTC2RpO+D0yYLjTPmQaZ1ZunvzahPo6cItmSULdjdTEdGZ2LxInb9+WQxXu+VmA
-         7zsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=7xzfNtr8zKEQZfWNHzcQs/QsPT8QqrsuV/2rOop0v6k=;
-        b=n9CjRKKs1+aZMJkMDSP//ptuJ7WBoJ0mjwi8oHftFGIlfnJMNamjUoCXPmxdPTK1jS
-         NfW6btgYcRLSjMl5b+xsxovZspMXCaDxtErpJ9qD9/L3uYE/c/uxD1VU5BQnG9MPBEsr
-         hGwwspDID3Iuh0cE3Sn06bru17bp2vw53Ose2u0Ny3qtstobVRz90zjZXQ7g0ylhOBzB
-         XSC48lN6PB3ppRnFztERxA0N5VIWuCZTmUe8S+VTJA9pi6LGecx6XqZ5ZAkWxUi9GZ+f
-         WH1vN06xzjN66DaBDQj+rn/VmV25D/2Pct5FHdS4dbZXzjoc5XD9BVIOMcQv6Vqy8JXq
-         /BXA==
-X-Gm-Message-State: AOAM531q2LTGXfmGcnmge5DsSUzluFOzFMHnWyurQOngf/frd3D7eOXI
-        D14YNAdS4yzh9AlocikmFj51
-X-Google-Smtp-Source: ABdhPJx7Qx4kh0Toh5x92fRdTSbRuCWL47WKUW9nN5k2iziqtsRg/FpiqrUEDpopUCzaScF8NBEhCw==
-X-Received: by 2002:a05:6a00:88d:b029:164:5a00:29b8 with SMTP id q13-20020a056a00088db02901645a0029b8mr2154062pfj.10.1604573324779;
-        Thu, 05 Nov 2020 02:48:44 -0800 (PST)
-Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id a84sm2131234pfa.53.2020.11.05.02.48.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Nov 2020 02:48:44 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
-Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 4/4] clk: qcom: Add support for SDX55 RPMh clocks
-Date:   Thu,  5 Nov 2020 16:18:17 +0530
-Message-Id: <20201105104817.15715-5-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201105104817.15715-1-manivannan.sadhasivam@linaro.org>
-References: <20201105104817.15715-1-manivannan.sadhasivam@linaro.org>
+        id S1729662AbgKEK4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 05:56:39 -0500
+Received: from foss.arm.com ([217.140.110.172]:57398 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726400AbgKEK4j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 05:56:39 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D0C9F142F;
+        Thu,  5 Nov 2020 02:56:38 -0800 (PST)
+Received: from e123083-lin (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A4363F66E;
+        Thu,  5 Nov 2020 02:56:35 -0800 (PST)
+Date:   Thu, 5 Nov 2020 11:56:33 +0100
+From:   Morten Rasmussen <morten.rasmussen@arm.com>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
+        Dietmar.Eggemann@arm.com, qperret@google.com,
+        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
+        rafael@kernel.org, sudeep.holla@arm.com, viresh.kumar@linaro.org,
+        sboyd@kernel.org, nm@ti.com
+Subject: Re: [PATCH v4 1/4] PM / EM: Add a flag indicating units of power
+ values in Energy Model
+Message-ID: <20201105105633.GB8237@e123083-lin>
+References: <20201103090600.29053-1-lukasz.luba@arm.com>
+ <20201103090600.29053-2-lukasz.luba@arm.com>
+ <20201105091759.GA8237@e123083-lin>
+ <876ca521-1576-63c5-9af5-b000f52cc17b@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <876ca521-1576-63c5-9af5-b000f52cc17b@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for following clocks maintained by RPMh in SDX55 SoCs.
+On Thu, Nov 05, 2020 at 10:09:05AM +0000, Lukasz Luba wrote:
+> 
+> 
+> On 11/5/20 9:18 AM, Morten Rasmussen wrote:
+> > On Tue, Nov 03, 2020 at 09:05:57AM +0000, Lukasz Luba wrote:
+> > > @@ -79,7 +82,8 @@ struct em_data_callback {
+> > >   struct em_perf_domain *em_cpu_get(int cpu);
+> > >   struct em_perf_domain *em_pd_get(struct device *dev);
+> > >   int em_dev_register_perf_domain(struct device *dev, unsigned int nr_states,
+> > > -				struct em_data_callback *cb, cpumask_t *span);
+> > > +				struct em_data_callback *cb, cpumask_t *spani,
+> > 
+> > "spani" looks like a typo?
+> > 
+> 
+> Good catch, yes, the vim 'i'.
+> 
+> Thank you Morten. I will resend this patch when you don't
+> find other issues in the rest of patches.
 
-* BI TCXO
-* RF_CLK1
-* RF_CLK1_AO
-* RF_CLK2
-* RF_CLK2_AO
-* QPIC (Qualcomm Technologies, Inc. Parallel Interface Controller)
+The rest of the series looks okay to me.
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/clk/qcom/clk-rpmh.c | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-index e2c669b08aff..fb72db957721 100644
---- a/drivers/clk/qcom/clk-rpmh.c
-+++ b/drivers/clk/qcom/clk-rpmh.c
-@@ -432,6 +432,25 @@ static const struct clk_rpmh_desc clk_rpmh_sm8250 = {
- 	.num_clks = ARRAY_SIZE(sm8250_rpmh_clocks),
- };
- 
-+DEFINE_CLK_RPMH_VRM(sdx55, rf_clk1, rf_clk1_ao, "rfclkd1", 1);
-+DEFINE_CLK_RPMH_VRM(sdx55, rf_clk2, rf_clk2_ao, "rfclkd2", 1);
-+DEFINE_CLK_RPMH_BCM(sdx55, qpic_clk, "QP0");
-+
-+static struct clk_hw *sdx55_rpmh_clocks[] = {
-+	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
-+	[RPMH_CXO_CLK_A]	= &sdm845_bi_tcxo_ao.hw,
-+	[RPMH_RF_CLK1]		= &sdx55_rf_clk1.hw,
-+	[RPMH_RF_CLK1_A]	= &sdx55_rf_clk1_ao.hw,
-+	[RPMH_RF_CLK2]		= &sdx55_rf_clk2.hw,
-+	[RPMH_RF_CLK2_A]	= &sdx55_rf_clk2_ao.hw,
-+	[RPMH_QPIC_CLK]		= &sdx55_qpic_clk.hw,
-+};
-+
-+static const struct clk_rpmh_desc clk_rpmh_sdx55 = {
-+	.clks = sdx55_rpmh_clocks,
-+	.num_clks = ARRAY_SIZE(sdx55_rpmh_clocks),
-+};
-+
- static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
- 					 void *data)
- {
-@@ -517,6 +536,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
- static const struct of_device_id clk_rpmh_match_table[] = {
- 	{ .compatible = "qcom,sc7180-rpmh-clk", .data = &clk_rpmh_sc7180},
- 	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
-+	{ .compatible = "qcom,sdx55-rpmh-clk",  .data = &clk_rpmh_sdx55},
- 	{ .compatible = "qcom,sm8150-rpmh-clk", .data = &clk_rpmh_sm8150},
- 	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
- 	{ }
--- 
-2.17.1
-
+Morten
