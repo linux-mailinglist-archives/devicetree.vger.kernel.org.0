@@ -2,113 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26CE72A7727
-	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 06:42:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2F682A7738
+	for <lists+devicetree@lfdr.de>; Thu,  5 Nov 2020 06:49:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731246AbgKEFls (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 00:41:48 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:34165 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731187AbgKEFlk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 00:41:40 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 471635C015A;
-        Thu,  5 Nov 2020 00:41:39 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Thu, 05 Nov 2020 00:41:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm1; bh=DMFfDP5sKyjZy
-        MXY7/MdyT+HBmUIZ8szMg3mFfRPJ3c=; b=nnAJJftSdi7klOyOeh5J1tRovXFHK
-        OXmHSSXQ6xFGyaUGUNvq5hEFAxlbkrhi4F4iLlOQpYUHTgDB2PHvyOPL1dAYyL1M
-        TSnWUUjeGzcE8OpwhQmDWKrV60Tlsut4sN4FCsxdJosMpjwynps8w+qy8C4W3Vhg
-        Ri8qYLiOHCQLY5oh+4aJV4piHZyZefQj1cBLPaFjIhhfhXZ3sFRTwIbaPLH3b9Ei
-        TSTWnkCw1enLASPA/0wJBClAf7cHTttpE98HOdPuPZ3RwGRb/PBNoNXUNLT/KXSQ
-        4MU/Z59Gyeo8vD1FVpxvdWZVKumI63ppY5irQKnsQvCXNWqhafp4hz63Q==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm1; bh=DMFfDP5sKyjZyMXY7/MdyT+HBmUIZ8szMg3mFfRPJ3c=; b=liTYB3ev
-        j3kRDV2ebqnZiZJggDA93QOYcmWVdVvwnuj3c7WU3II1StN28Z19d5uh7PJaU8e0
-        JP5/a4++sizudKnF0FA+3hHyIU9YGkK9HumKRN66Jm00uv0uN9AtPiPhv7I63Off
-        6Iv8QdEuRAm6z86wDVAgjnGoyza3qtZfA6e/njoONqGx1tqMYnhckZfJRgkMthbk
-        nAl/P87aVspDBklRmJunUkjG0eBjToEBwqGX30Nh9qTgAV7VNNZbfhmwttTdSnJd
-        PpRv3yU6TRC/uXZ4TmVq2SGTO88dnMBjtoi+wADnrfvold9qXG+9MQVolnFdr4cI
-        EOfI2dIsIspLjw==
-X-ME-Sender: <xms:kpCjX19ZFOGUCMisfVcbunBPAGRg-j8FDjJv4k5EYblwvohUesH6Bw>
-    <xme:kpCjX5uDfysEF9wROu1fa1z1asNqE_jGVaEjBc2bU2hxpk_IQZGFgTZcI7dHja9X6
-    ZNrsQ5oUbob_lmhyA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtiedgkeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgv
-    lhcujfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtf
-    frrghtthgvrhhnpeduhfejfedvhffgfeehtefghfeiiefgfeehgfdvvdevfeegjeehjedv
-    gfejheeuieenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuih
-    iivgepudenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghn
-    ugdrohhrgh
-X-ME-Proxy: <xmx:k5CjXzCjzMkNv2FpNgR_aczWL-0F5TzBhdXLz-bdVkOB9Nx7dbWA4A>
-    <xmx:k5CjX5cH4huI7M2iT5RNLvPs1Y7dzbOmHwOw3oBjDhPylk5JDAwqpQ>
-    <xmx:k5CjX6Ophh-6uoEyoo1ypHxc4lwSdhWhhwYZD7dt0IqNpXMMg69IoA>
-    <xmx:k5CjX5cqDb-nFGDy3adGvs6SgqJ3EERrHV9um__CXpTupfCqjokosg>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 84FD63280393;
-        Thu,  5 Nov 2020 00:41:38 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Samuel Holland <samuel@sholland.org>,
-        Ondrej Jirman <megous@megous.com>
-Subject: [PATCH 6/6] arm64: dts: allwinner: pinephone: Add Bluetooth support
-Date:   Wed,  4 Nov 2020 23:41:35 -0600
-Message-Id: <20201105054135.24860-7-samuel@sholland.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201105054135.24860-1-samuel@sholland.org>
-References: <20201105054135.24860-1-samuel@sholland.org>
+        id S1725320AbgKEFtx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 00:49:53 -0500
+Received: from mga04.intel.com ([192.55.52.120]:28363 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725287AbgKEFtx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 00:49:53 -0500
+IronPort-SDR: /wqm9nXX2AMb0Hovh+GQXgA3NQUzqlFRYWVhq/1Qw0o/rPVRXg5kGAxIa4CJzasg1H6D2n5ziC
+ qWLW/HoSYIsQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9795"; a="166742388"
+X-IronPort-AV: E=Sophos;i="5.77,452,1596524400"; 
+   d="scan'208";a="166742388"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Nov 2020 21:49:48 -0800
+IronPort-SDR: buOrznqQZj88HlI22V+86sPcSpwbbPG0oTZV9KiJhe+M0uXzgYbWh4YdPdjhuP0Sib93Jil9xa
+ ku+RgHwemoUw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,452,1596524400"; 
+   d="scan'208";a="354153890"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga004.fm.intel.com with ESMTP; 04 Nov 2020 21:49:44 -0800
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+        lee.jones@linaro.org
+Cc:     thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com,
+        Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v15 0/2] pwm: intel: Add PWM driver for a new SoC
+Date:   Thu,  5 Nov 2020 13:49:38 +0800
+Message-Id: <cover.1604555266.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=yes
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondrej Jirman <megous@megous.com>
+Patch 1 adds dt binding document in YAML format.
+Patch 2 add PWM fan controller driver for LGM SoC.
 
-The PinePhone has a Realtek rtl8723cs Bluetooth controller.
+v15:
+- Rebase to latest linux 5.10-rc2
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- .../boot/dts/allwinner/sun50i-a64-pinephone.dtsi    | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+v14:
+- Address below review concerns from Uwe Kleine-König.
+ * Add limitations info about fixed 2-wire mode support.
+ * Rename clk/reset _disable function names to _release.
+ * Remove clk & rst from driver data structure. Instead
+   use them as arguments.
+ * Add pwm_chip.base = -1.
+- Resolve missing MODULE_LICENSE warning.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-index e173096a7e68..1083055a731f 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -447,6 +447,19 @@ &uart0 {
- 	status = "okay";
- };
- 
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart1_pins>, <&uart1_rts_cts_pins>;
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "realtek,rtl8723cs-bt";
-+		device-wake-gpios = <&pio 7 6 GPIO_ACTIVE_LOW>; /* PH6 */
-+		enable-gpios = <&r_pio 0 4 GPIO_ACTIVE_HIGH>; /* PL4 */
-+		host-wake-gpios = <&r_pio 0 5 GPIO_ACTIVE_HIGH>; /* PL5 */
-+	};
-+};
-+
- /* Connected to the modem (hardware flow control can't be used) */
- &uart3 {
- 	pinctrl-names = "default";
+v13:
+- Address below review concerns (Philipp Zabel)
+ * Make unnecessary 2 line comment as 1 line comment.
+ * Move reset_deassert at the last after clk_enable.
+ * Remove unnecessary return ret statement from .remove()
+- Move platform_set_drvdata() at the top of probe. 
+
+v12:
+- Rebase to linux 5.9-rc4
+- Add Reviewed-by tags from Andy Shevchenko & Rob Herring.
+
+v11:
+- Address below review concerns (Andy Shevchenko)
+  * Fix a issue with dev_err_probe() usage & improve the usage.
+  * Fix & improve a ordering issue with clk_enable/disable &
+    reset_control assert/deassert.
+
+v10:
+- Removed unused of_device.h and added platform_device.h
+  & mod_devicetable.h
+
+v9:
+- Address code quality related review concerns (Andy Shevchenko)
+- Use devm_add_action_or_reset() instead of explicit unwind calls.
+
+v8:
+- Remove fan related optional properties usage, keep
+  them as default. If needed, change pwm-fan driver
+  separately in future to add them as generic properties.
+
+v7:
+- Address code quality related review concerns.
+- Rename fan related property to pwm-*.
+- Fix one make dt_binding_check reported error.
+
+v6:
+- Readjust .apply op as per review feedback.
+- Add back pwm-cells property to resolve make dt_binding_check error.
+  pwm-cells is a required property for PWM driver.
+- Add back fan related optional properties.
+
+v5:
+- Address below review concerns from Uwe Kleine-König.
+  * Improve comments about Limitations.
+  * Use return value of regmap_update_bits if container function returns
+    error code.
+  * Modify .apply op to have strict checking for fixed period supported
+    by PWM HW.
+  * Use u64 as type when use min_t for duty_cycle.
+  * Add reset_control_assert() in failure case in probe where it was missing
+    earlier.
+- Remove fan specific optional properties from pwm dt binding document (Rob Herring)
+
+v4:
+- Address below review concerns from Uwe Kleine-König.
+  * Improve notes and limitations comments.
+  * Add common prefixes for all #defines.
+  * Modify/Improve logic in .apply & .get_state ops as advised.
+  * Skip error messages in probe when error is -EPROBE_DEFER.
+  * Add dependencies in Kconfig (OF & HAS_IOMEM) and add select REGMAP_MMIO.
+  * Address other code quality related review concerns.
+- Fix make dt_binding_check reported error in YAML file.
+
+v3:
+- Address below review concerns from Uwe Kleine-König.
+  * Remove fan rpm calibration task from the driver.
+  * Modify apply op as per the review feedback.
+  * Add roundup & round down where necessary.
+  * Address other misc code quality related review concerns.
+  * Use devm_reset_control_get_exclusive(). (Philipp Zabel)
+  * Improve dt binding document.
+
+v2:
+- Address below review concerns from Uwe Kleine-König.
+  * Add notes and limitations about PWM HW.
+  * Rename all functions and structure to lgm_pwm_* 
+  * Readjust space aligninment in structure fields to single space.
+  * Switch to using apply instead of config/enable/disable.
+  * Address other code quality related concerns.
+  * Rebase to 5.8-rc1.
+- Address review concerns in dt binding YAML from Rob Herring.
+
+v1:
+- Initial version.
+
+
+Rahul Tanwar (2):
+  Add DT bindings YAML schema for PWM fan controller of LGM SoC
+  Add PWM fan controller driver for LGM SoC
+
+ .../devicetree/bindings/pwm/intel,lgm-pwm.yaml     |  44 ++++
+ drivers/pwm/Kconfig                                |  11 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-intel-lgm.c                        | 244 +++++++++++++++++++++
+ 4 files changed, 300 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-intel-lgm.c
+
 -- 
-2.26.2
+2.11.0
 
