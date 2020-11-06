@@ -2,113 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC802A971E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 14:41:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECE6B2A9764
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 15:04:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727351AbgKFNlS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 08:41:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36418 "EHLO
+        id S1727435AbgKFOEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 09:04:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726708AbgKFNlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 08:41:18 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C823C0613CF;
-        Fri,  6 Nov 2020 05:41:18 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id k3so1952187ejj.10;
-        Fri, 06 Nov 2020 05:41:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=YxlySBEtfM8plnPwR3qjjCyIfVvwbfiGqCyLIXMcAVY=;
-        b=bNf+JFTJi7loW9QoZYLAj1mxw3CAaxrBETbasN+Ksr6IIFCVZiJMenzWRn6BdIG2XL
-         LE/DALyZRKTHE60zpb6rAGkpZS6ag4kod9Asip/bpyt1ceCPadTaepJK+Gfa90DfJA+K
-         4kyTY7NRg33tum1uhTSN3RxZYArP87cMPJc/Ey8qgbT4UjgPCbUkb2txF28Io8BM66m0
-         QJg9/oupqK9QNybaSr+lQoGE6U7DltDxFzsFb2C5GdrkTTaolp386Psm1DmeKWJOkDYo
-         T+6SOSVHbmE67mhYkgbO2p1yXjMNl7d7gmvfb/yWOBvoTyT0IQeOw7ugR5S1p/uEdY3h
-         0fJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=YxlySBEtfM8plnPwR3qjjCyIfVvwbfiGqCyLIXMcAVY=;
-        b=cvKnb1r469TwJzl4GFVmKxS6wXLC90/AQ15XpREwMzO40N8o05KBlS9v0cIgYED9W+
-         YekD3JZTlrcEIba/Sh96uuiHTPnb6MDNbltMmlQTwoJuOW8ltb+7Wq2IzmiQMWJDxxvf
-         Whj6B7qwmaJ+5wjVuM/9iUgKdztQU0e5nE3ufRIu9HJ8Gwl4LgIkYv4Ipo9+tQyyYL8Q
-         ndcg8jrDU+PMVb/IS5l4rFjg7XeAkmLhLfKFG+YrX9w1Fhl65+jeOxA0suYZWoFFQJ5M
-         Z8NTubrIanwGtjM9xjUMokBu78E79dNAJp+hIKvMGQjpi43ztZJabUh8dRQviT7KxqOk
-         suSg==
-X-Gm-Message-State: AOAM5339TKOxzNcnh24+IVjzt/TBZUMZBkKj25VlRjm9CQSaQe7+kMqf
-        0Goxf3+fyAo7eRCAqlJORF2JC2rvjrGwris+WzU=
-X-Google-Smtp-Source: ABdhPJwedRmD3YJS+mk5L/dYqDNvjdIvAR1tRZGg45jYDZepuD2Hi9ud9Rcyv7zuPeXIuZjSxTVK7dd4xN347lIHCio=
-X-Received: by 2002:a17:906:6d83:: with SMTP id h3mr2014952ejt.481.1604670076814;
- Fri, 06 Nov 2020 05:41:16 -0800 (PST)
+        with ESMTP id S1726812AbgKFOEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 09:04:14 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C22DC0613CF;
+        Fri,  6 Nov 2020 06:04:11 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 0F42522FAD;
+        Fri,  6 Nov 2020 15:04:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1604671449;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=7dno5sBvYxAuw3MDGvBMCHVYmJvxMS+kWsqU80FUOXA=;
+        b=l4TapnhA4st1PTrh4jy7UoaFIncBkag6/FkvvKrRWxEXQzTTDpR+ElYUCpDrBqNw1YV4uI
+        qgLzk7ljoSLv3kdZ03gC1FZI6Q2kw/oxduYscwI66XSe/LSQTZr1ssWr3wXO64q+5I3KO6
+        tXQvEBfDIPaFJwuvFysWojOV+p84SqU=
 MIME-Version: 1.0
-References: <20201104234427.26477-1-digetx@gmail.com> <20201104234427.26477-18-digetx@gmail.com>
- <CAOh2x==sy1w7_oEV8=toC6uQnSN44wyOixbP_X0BrMsnm1AUFg@mail.gmail.com>
- <6fa54ce6-d5ae-d04f-7c77-b62c148d92b7@gmail.com> <20201106061513.uyys7njcqcdlah67@vireshk-i7>
- <a6926456-8bce-a438-bfaa-be334208f004@gmail.com>
-In-Reply-To: <a6926456-8bce-a438-bfaa-be334208f004@gmail.com>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Fri, 6 Nov 2020 21:41:05 +0800
-Message-ID: <CAEExFWsp0DWw1yO84e3vzr_YZkqkd+pyPfQQR3J2W6n3wTX4Jw@mail.gmail.com>
-Subject: Re: [PATCH v1 17/30] mmc: sdhci-tegra: Support OPP and core voltage scaling
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 06 Nov 2020 15:04:08 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Leo Li <leoyang.li@nxp.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        driver-dev <devel@driverdev.osuosl.org>,
-        linux-pwm@vger.kernel.org,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org,
-        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-tegra@vger.kernel.org, linux-media@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v2 5/5] arm64: dts: lx2160a: fix FlexSPI clock
+In-Reply-To: <639fa8e62e0b98bedf4077f76fd75e83@walle.cc>
+References: <20201105193512.22388-1-michael@walle.cc>
+ <20201105193512.22388-6-michael@walle.cc>
+ <VE1PR04MB6687EC27F8C230A8F334119E8FED0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+ <639fa8e62e0b98bedf4077f76fd75e83@walle.cc>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <8c96e34b3139c99f0946b62767b8cfdd@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 6, 2020 at 9:18 PM Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> 06.11.2020 09:15, Viresh Kumar =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > Setting regulators for count as 0 doesn't sound good to me.
-> >
-> > But, I understand that you don't want to have that if (have_regulator)
-> > check, and it is a fair request. What I will instead do is, allow all
-> > dev_pm_opp_put*() API to start accepting a NULL pointer for the OPP
-> > table and fail silently. And so you won't be required to have this
-> > unwanted check. But you will be required to save the pointer returned
-> > back by dev_pm_opp_set_regulators(), which is the right thing to do
-> > anyways.
->
-> Perhaps even a better variant could be to add a devm versions of the OPP
-> API functions, then drivers won't need to care about storing the
-> opp_table pointer if it's unused by drivers.
+Am 2020-11-06 09:11, schrieb Michael Walle:
+> Am 2020-11-06 03:00, schrieb Leo Li:
+>>> -----Original Message-----
+>>> From: Michael Walle <michael@walle.cc>
+>>> Sent: Thursday, November 5, 2020 1:35 PM
+>>> To: linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+>>> Cc: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
+>>> <sboyd@kernel.org>; Rob Herring <robh+dt@kernel.org>; Shawn Guo
+>>> <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Michael Walle
+>>> <michael@walle.cc>
+>>> Subject: [PATCH v2 5/5] arm64: dts: lx2160a: fix FlexSPI clock
+>>> 
+>>> Now that we have a proper driver for the FlexSPI interface use it. 
+>>> This will fix
+>>> SCK frequency switching on Layerscape SoCs.
+>>> 
+>>> This was only compile time tested.
+>>> 
+>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>> ---
+>>> Changes since v1:
+>>>  - none
+>>> 
+>>>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 15 +++++++++++++--
+>>>  1 file changed, 13 insertions(+), 2 deletions(-)
+>>> 
+>>> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>>> b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>>> index 83072da6f6c6..6e375e80bd35 100644
+>>> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+>>> @@ -659,9 +659,20 @@
+>>>  		};
+>>> 
+>>>  		dcfg: syscon@1e00000 {
+>>> -			compatible = "fsl,lx2160a-dcfg", "syscon";
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <1>;
+>>> +			compatible = "fsl,lx2160a-dcfg", "syscon", "simple-
+>>> mfd";
+>>>  			reg = <0x0 0x1e00000 0x0 0x10000>;
+>>> +			ranges = <0x0 0x0 0x1e00000 0x10000>;
+>>>  			little-endian;
+>>> +
+>>> +			fspi_clk: clock-controller@900 {
+>>> +				compatible = "fsl,lx2160a-flexspi-clk";
+>>> +				reg = <0x900 0x4>;
+>>> +				#clock-cells = <0>;
+>>> +				clocks = <&clockgen 4 0>;
+>> 
+>> This is different from the current <&clockgen 4 3>, is it an intended 
+>> change?
+> 
+> Yes, this change was intended. At least on the LS1028A this clock 
+> divider is
+> connected to the platform base clock. I don't know why there was
+> "<&clockgen 4 3>" in the first place. But because the clkgen clock 
+> cannot
+> be changed it didn't matter before this commit. The flexspi driver only
+> calls clk_set_rate(), never clk_get_rate(). On the LS1028A I actually
+> meassured the resulting SCK frequency.
+> Looking at Figure 7. (Clock subsystem block diagram) in the LX2160A RM, 
+> this
+> seems to be the case here, too.
 
-I think so. The consumer may not be so concerned about the status of
-these OPP tables.
-If the driver needs to manage the release, it needs to add a pointer
-to their driver global structure.
+Btw on the LS1028A this should be "<&clockgen 2 0>;" Will be fixed in 
+the
+new version.
+And because there so much difference between LS1028A and LX2160A, I'll 
+mark
+the last patch (this one, for the LX2160A) as RFC until someone will 
+test it.
 
-Maybe it's worth having these devm interfaces for opp.
-
-Yangtao
+-michael
