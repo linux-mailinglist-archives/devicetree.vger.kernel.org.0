@@ -2,67 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B24342A93D4
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:12:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 859A22A93B4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:08:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726858AbgKFKMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 05:12:33 -0500
-Received: from thoth.sbs.de ([192.35.17.2]:51290 "EHLO thoth.sbs.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726010AbgKFKMd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 05:12:33 -0500
-Received: from mail2.siemens.de (mail2.siemens.de [139.25.208.11])
-        by thoth.sbs.de (8.15.2/8.15.2) with ESMTPS id 0A6ACIan003171
-        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 6 Nov 2020 11:12:18 +0100
-Received: from dev.vm7.ccp.siemens.com ([139.22.40.104])
-        by mail2.siemens.de (8.15.2/8.15.2) with ESMTP id 0A6ACHAl009302;
-        Fri, 6 Nov 2020 11:12:17 +0100
-Received: from dev.vm7.ccp.siemens.com (localhost [127.0.0.1])
-        by dev.vm7.ccp.siemens.com (Postfix) with ESMTP id 3422970FF8B;
-        Fri,  6 Nov 2020 11:06:56 +0100 (CET)
-From:   Andrej Valek <andrej.valek@siemens.com>
-To:     robh@kernel.org, nick@shmanahar.org, hadess@hadess.net,
-        dmitry.torokhov@gmail.com
-Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Andrej Valek <andrej.valek@siemens.com>
-Subject: [PATCH v2 3/3] Input: goodix - add option to disable firmware loading
-Date:   Fri,  6 Nov 2020 11:05:39 +0100
-Message-Id: <20201106100539.6646-4-andrej.valek@siemens.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201029170313.25529-1-andrej.valek@siemens.com>
-References: <20201029170313.25529-1-andrej.valek@siemens.com>
+        id S1726725AbgKFKI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 05:08:56 -0500
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:38229 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726447AbgKFKIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 05:08:55 -0500
+X-Originating-IP: 91.175.115.186
+Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 2C44FFF80F;
+        Fri,  6 Nov 2020 10:08:53 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        <Steen.Hegelund@microchip.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>
+Subject: [PATCH 0/9] MIPS: Add support for more mscc SoCs: Luton, Serval and Jaguar2
+Date:   Fri,  6 Nov 2020 11:08:39 +0100
+Message-Id: <20201106100849.969240-1-gregory.clement@bootlin.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Firmware file loadind for GT911 controller takes too much time (~60s).
-There is no check that configuration is the same which is already present.
-This happens always during boot, which makes touchscreen unusable.
+Hello,
 
-Add there an option to prevent firmware file loading, but keep it enabled
-by default.
+Ocelot SoC belongs to a larger family of SoCs called VCoreIII. Luton,
+Serval and Jaguar2 are part of this family and are added with this
+series.
 
-Signed-off-by: Andrej Valek <andrej.valek@siemens.com>
----
- drivers/input/touchscreen/goodix.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+To be able to run a linux kernel the irqchip support and the pinctrl
+support are needed. Two series of patches adding this support has been
+posted to their subsystem. However there is no build dependency
+between them.
 
-diff --git a/drivers/input/touchscreen/goodix.c b/drivers/input/touchscreen/goodix.c
-index 44336ecd2acd..41f8eb8963b1 100644
---- a/drivers/input/touchscreen/goodix.c
-+++ b/drivers/input/touchscreen/goodix.c
-@@ -943,7 +943,7 @@ static int goodix_get_gpio_config(struct goodix_ts_data *ts)
- 			ts->reset_controller_at_probe = true;
- 			/* Prevent cfg loading for each start */
- 			ts->load_cfg_from_disk = !device_property_read_bool(dev,
--						 "touchscreen-do-not-load-fw");
-+						 "goodix-do-not-load-fw");
- 			ts->irq_pin_access_method = IRQ_PIN_ACCESS_GPIO;
- 		}
- 	}
+Gregory
+
+Gregory CLEMENT (9):
+  dt-bindings: mips: Add Luton
+  dt-bindings: mips: Add Serval and Jaguar2
+  MIPS: mscc: Prepare configuration to handle more SoCs
+  MIPS: mscc: Fix configuration name for ocelot legacy boards
+  MIPS: mscc: Add luton dtsi
+  MIPS: mscc: Add luton PC0B91 device tree
+  MIPS: mscc: build FIT image for Luton
+  MIPS: mscc: Add jaguar2 support
+  MIPS: mscc: Add serval support
+
+ .../devicetree/bindings/mips/mscc.txt         |   2 +-
+ arch/mips/boot/dts/Makefile                   |   2 +-
+ arch/mips/boot/dts/mscc/Makefile              |  11 +-
+ arch/mips/boot/dts/mscc/jaguar2.dtsi          | 167 +++++++++++
+ arch/mips/boot/dts/mscc/jaguar2_common.dtsi   |  25 ++
+ arch/mips/boot/dts/mscc/jaguar2_pcb110.dts    | 273 ++++++++++++++++++
+ arch/mips/boot/dts/mscc/jaguar2_pcb111.dts    | 109 +++++++
+ arch/mips/boot/dts/mscc/jaguar2_pcb118.dts    |  59 ++++
+ arch/mips/boot/dts/mscc/luton.dtsi            | 116 ++++++++
+ arch/mips/boot/dts/mscc/luton_pcb091.dts      |  30 ++
+ arch/mips/boot/dts/mscc/serval.dtsi           | 153 ++++++++++
+ arch/mips/boot/dts/mscc/serval_common.dtsi    | 127 ++++++++
+ arch/mips/boot/dts/mscc/serval_pcb105.dts     |  17 ++
+ arch/mips/boot/dts/mscc/serval_pcb106.dts     |  17 ++
+ arch/mips/generic/Kconfig                     |  37 ++-
+ arch/mips/generic/Platform                    |   3 +
+ arch/mips/generic/board-jaguar2.its.S         |  40 +++
+ arch/mips/generic/board-luton.its.S           |  23 ++
+ arch/mips/generic/board-serval.its.S          |  24 ++
+ 19 files changed, 1228 insertions(+), 7 deletions(-)
+ create mode 100644 arch/mips/boot/dts/mscc/jaguar2.dtsi
+ create mode 100644 arch/mips/boot/dts/mscc/jaguar2_common.dtsi
+ create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb110.dts
+ create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb111.dts
+ create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb118.dts
+ create mode 100644 arch/mips/boot/dts/mscc/luton.dtsi
+ create mode 100644 arch/mips/boot/dts/mscc/luton_pcb091.dts
+ create mode 100644 arch/mips/boot/dts/mscc/serval.dtsi
+ create mode 100644 arch/mips/boot/dts/mscc/serval_common.dtsi
+ create mode 100644 arch/mips/boot/dts/mscc/serval_pcb105.dts
+ create mode 100644 arch/mips/boot/dts/mscc/serval_pcb106.dts
+ create mode 100644 arch/mips/generic/board-jaguar2.its.S
+ create mode 100644 arch/mips/generic/board-luton.its.S
+ create mode 100644 arch/mips/generic/board-serval.its.S
+
 -- 
-2.20.1
+2.28.0
 
