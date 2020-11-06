@@ -2,282 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D341A2A8D5F
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 04:11:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6D5A2A8D78
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 04:21:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725950AbgKFDLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 22:11:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50824 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725885AbgKFDLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 22:11:07 -0500
-Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com [IPv6:2607:f8b0:4864:20::943])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825D0C0613D3
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 19:11:05 -0800 (PST)
-Received: by mail-ua1-x943.google.com with SMTP id h26so1179785uan.10
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 19:11:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=UG3DAlH9b9Or2QNwH1ghe+WKv0N6NvDdVmlq47TlkRU=;
-        b=bOII9tou5D9cYfGL+0ova6j8npZ0Bp7kHX3GTNHiNihnzfgTiiJQ9x+GzhAlFuXYS9
-         3yRmfDdmWUq7sZlrNIW7uGAZmU2mu0hE7XxLirbUti0eaYM7VSooxI1TEs/FBpkPoGDw
-         x2aHiW3b9UPwXKELcJ906unUzNGUngCCknlG/lrr8tOK8Xc2ec+N+GuGb3o3PUIesGqw
-         9Mo/r+eLp0NNKdxE3X8orbhqOKBfzzGQP9wHMMSl4ksVygkDaYdJCfH7EwVniz+hQcLD
-         evJ2JhbPHktOhGF8T+F4hROTh0Qq9lT+GJVwq4s/QEOeI+WroPdrxh8rbf+HX4EnntS4
-         B7YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=UG3DAlH9b9Or2QNwH1ghe+WKv0N6NvDdVmlq47TlkRU=;
-        b=BSSKyrOKHSlXVcIvVGn7oHAPab7zZakLV2XBOhCUG50BKR0lbuUIRoJSKLryiQjHSX
-         HJIY1rEuol3wo559nxgGCBp17ug5CN7OyxzdAI5bAS2U1Iew5DNfzuur9iygj+iWgm/r
-         pQPtM9QoZfD9bOTDJk5JW64hAtfd9Enc2cVe4iHQR/K8BXU/vwaIRj1zk4nRSqP/reKY
-         Zy637jg5iehmRBN6QUxGObHxf0XeErO6ZxRdfppkYd5mLdnobeAz7hwjJGqNXW8HjWsb
-         PkuiTCPxGJcqp2KrmAXgavsOmQ9F5mRWl49Gwyny0S8m8JBqmU/8vUNLqr8a1xwPIB9q
-         fwwg==
-X-Gm-Message-State: AOAM533zFgk4MQjkVQ6LKnJQprU6pbH4lbJg6dXcYdhGC7KBiRP/huGT
-        lounOGMzhuoJiFJWLoj9EU+qlhfzrHnYXSdujDdslg==
-X-Google-Smtp-Source: ABdhPJzstqO6KWunaZQtlcX7azqKa/IMOm+fpiTNoBQ1xJN75OQpFGRApY+XjVotH/xO4pWK6BRfvovl74LUlbDaGDA=
-X-Received: by 2002:ab0:5b55:: with SMTP id v21mr3403151uae.65.1604632264237;
- Thu, 05 Nov 2020 19:11:04 -0800 (PST)
+        id S1725837AbgKFDVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 22:21:48 -0500
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:60067 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725616AbgKFDVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 22:21:48 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.nyi.internal (Postfix) with ESMTP id 98E4B5C0092;
+        Thu,  5 Nov 2020 22:21:40 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Thu, 05 Nov 2020 22:21:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=WJoHCueOR0DNEXXeYK8iIK+ALL
+        Jtv8nShb95I+uDLfc=; b=P3H2SIz7adAOluTFuv782HnO/3fz6oY4HJ6t86ZMrM
+        Eh/YUUv9By84XP9evBrkU/Z25FvN9ciasRvoxgTNYCWEZLW+8wlJQtCE5jxeXPEL
+        9q9GYNyWf3feb/89BbnTseUEfuSYqbWtWLPa+0nyx01iyv+6hzCseZNnCaCyo29T
+        JuhI2GgRlSEIVcoCpMDiYtStfMyeprGh08ytz0MFd77y58mcSHqvwcdFFMJIMzQK
+        rFI1E6o4QZ+B/WvU3B1q8H6AUSViyQ1cGBCAFgPKLXfE6f+Rf9zMCQsnaOLYrtCw
+        HBh0qg0Kf/hQAbq+96n7SWgRo9zfkEhUZah5CXYMI3kQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=WJoHCueOR0DNEXXeY
+        K8iIK+ALLJtv8nShb95I+uDLfc=; b=KEVN33SDKiZJW70GsiEzGxjqA7po2qvSp
+        WQYlm256HREekQ73GwEptPaCnJZbzVnuZ3r+jyCUOHJKuTfa1L3lunouhrPPdH3d
+        MeRNqCmHOWSwNjkl32pGvnMLs3dHB7T9FqrDahtrKVct0NjJdG4LRghZoXjgd+FV
+        fhKP28aziop8GDpnssWA8NPclxUpxsPCJKR3gY/lfX4p0UwqXMDDSaaDQ7UMO8Bu
+        vwhDe/IkPbK/R0/1hjkfdnoh/TzafzIbk5xiBuvs9zynauFhISR6D+NDYu234HRz
+        w3T5WAjXwCP94S29++59ZyV5Os9N8BnH6mFqvvuL0SEM1bWkJAKrg==
+X-ME-Sender: <xms:OcGkX7jipgA0eXb9exzE9uQ6QBiSJfMrPgnMD9U3Zf8_7WDCey6s4w>
+    <xme:OcGkX4D0VRCnP3bFaoym1BFXAeozDEW0tAkMBsVTCeYSaeoa4yDdQjbMyL5rcNxAe
+    3VINMOTP81dMGv8lg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtkedgiedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
+    vedtveenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdr
+    ohhrgh
+X-ME-Proxy: <xmx:PsGkX7FypIvFmCpNbTqDR6LDBZyb8hKSNU6RP7-8bJR8XtXnCeodcg>
+    <xmx:PsGkX4RHH7LiD5DCHEqSVqhYMQG-9npf2PfApowFAm0Z-5qBcF6a9g>
+    <xmx:PsGkX4zPhZMWqXNADc9kcxgy6wWrSEHNED1nXRsd1S-4DP1pg8GDHQ>
+    <xmx:QsGkX7yeJY7YazpLh7OrRtgm3k7DdyNaGXtWjMI3pMY4uCrJQCgFxQ>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id F1E913060057;
+        Thu,  5 Nov 2020 22:21:21 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime@cerno.tech>
+Subject: [PATCH] arm64: dts: allwinner: pinephone: Use generic sensor node names
+Date:   Thu,  5 Nov 2020 21:20:55 -0600
+Message-Id: <20201106032055.51530-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20201029095806.10648-1-amelie.delaunay@st.com>
- <20201029095806.10648-2-amelie.delaunay@st.com> <20201029154016.GA1917373@bogus>
- <860d5620-4fdf-6e01-9a04-3967d6fcfd6b@st.com> <CAL_JsqKs-Po8BdShjQNDNPjNWBCD3FSPdq4KbQGx3=VnV+3nPw@mail.gmail.com>
- <ebccf61a-c88f-c7f4-9f06-01d2bd1f43de@st.com> <20201104210803.GA4115079@bogus>
- <2da804ff-3b3c-0ea9-14d5-a163b28ccc33@st.com> <CAKgpwJU_yTTYabeMYFBqNs_6=N7gaTAc1v-+fU-dshFUrL1qVA@mail.gmail.com>
- <CAL_JsqJUVRRD=j6FTFUgUuhfLkGe5WRex+gj7N6wvu-DbwL+bA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJUVRRD=j6FTFUgUuhfLkGe5WRex+gj7N6wvu-DbwL+bA@mail.gmail.com>
-From:   Badhri Jagan Sridharan <badhri@google.com>
-Date:   Thu, 5 Nov 2020 19:10:27 -0800
-Message-ID: <CAPTae5JtpRS11FxsYE4wLFoM=fng__v8wEWMtyCJqiqrgS5SmA@mail.gmail.com>
-Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: connector: add power-opmode
- optional property to usb-connector
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jun Li <lijun.kernel@gmail.com>,
-        Amelie DELAUNAY <amelie.delaunay@st.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob and Amelie,
+Instead of duplicating part of the compatible string in the node name,
+use generic names as recommended by (and listed in) section 2.2.2 of the
+Devicetree Specification.
 
-With regards to discussions in this thread,
-For https://lore.kernel.org/r/20201020093627.256885-2-badhri@google.com,
-I can send in a patch to update the new-source-frs-typec-current property.
-Amelie, If you are already planning to send that I am fine with that as wel=
-l.
-Let me know !
+Suggested-by: Maxime Ripard <maxime@cerno.tech>
+Signed-off-by: Samuel Holland <samuel@sholland.org>
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-To summarize the changes for new-source-frs-typec-current would be,
-1. Rename to frs-new-source-opmode
-2. Use string values instead of u32 similar to typec-power-opmode.
-Are these correct ?
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+index 2da69450eec1..2dfe9bae8c67 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+@@ -161,7 +161,7 @@ &i2c1 {
+ 	status = "okay";
+ 
+ 	/* Magnetometer */
+-	lis3mdl: lis3mdl@1e {
++	lis3mdl: magnetometer@1e {
+ 		compatible = "st,lis3mdl-magn";
+ 		reg = <0x1e>;
+ 		vdd-supply = <&reg_dldo1>;
+@@ -169,7 +169,7 @@ lis3mdl: lis3mdl@1e {
+ 	};
+ 
+ 	/* Light/proximity sensor */
+-	stk3311@48 {
++	light-sensor@48 {
+ 		compatible = "sensortek,stk3311";
+ 		reg = <0x48>;
+ 		interrupt-parent = <&pio>;
+@@ -179,7 +179,7 @@ stk3311@48 {
+ 	};
+ 
+ 	/* Accelerometer/gyroscope */
+-	mpu6050@68 {
++	accelerometer@68 {
+ 		compatible = "invensense,mpu6050";
+ 		reg = <0x68>;
+ 		interrupt-parent = <&pio>;
+-- 
+2.26.2
 
-Thanks,
-Badhri
-
-On Thu, Nov 5, 2020 at 7:55 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Nov 5, 2020 at 6:24 AM Jun Li <lijun.kernel@gmail.com> wrote:
-> >
-> > Amelie DELAUNAY <amelie.delaunay@st.com> =E4=BA=8E2020=E5=B9=B411=E6=9C=
-=885=E6=97=A5=E5=91=A8=E5=9B=9B =E4=B8=8B=E5=8D=887:36=E5=86=99=E9=81=93=EF=
-=BC=9A
-> > >
-> > > On 11/4/20 10:08 PM, Rob Herring wrote:
-> > > > On Fri, Oct 30, 2020 at 04:27:14PM +0100, Amelie DELAUNAY wrote:
-> > > >>
-> > > >>
-> > > >> On 10/30/20 3:29 PM, Rob Herring wrote:
-> > > >>> On Thu, Oct 29, 2020 at 11:49 AM Amelie DELAUNAY <amelie.delaunay=
-@st.com> wrote:
-> > > >>>>
-> > > >>>>
-> > > >>>>
-> > > >>>> On 10/29/20 4:40 PM, Rob Herring wrote:
-> > > >>>>> On Thu, Oct 29, 2020 at 10:58:03AM +0100, Amelie Delaunay wrote=
-:
-> > > >>>>>> Power operation mode may depends on hardware design, so, add t=
-he optional
-> > > >>>>>> property power-opmode for usb-c connector to select the power =
-operation
-> > > >>>>>> mode capability.
-> > > >>>>>>
-> > > >>>>>> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
-> > > >>>>>> ---
-> > > >>>>>>     .../bindings/connector/usb-connector.yaml      | 18 ++++++=
-++++++++++++
-> > > >>>>>>     1 file changed, 18 insertions(+)
-> > > >>>>>>
-> > > >>>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-c=
-onnector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.y=
-aml
-> > > >>>>>> index 728f82db073d..200d19c60fd5 100644
-> > > >>>>>> --- a/Documentation/devicetree/bindings/connector/usb-connecto=
-r.yaml
-> > > >>>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connecto=
-r.yaml
-> > > >>>>>> @@ -93,6 +93,24 @@ properties:
-> > > >>>>>>           - device
-> > > >>>>>>           - dual
-> > > >>>>>>
-> > > >>>>>> +  power-opmode:
-> > > >>>>>
-> > > >>>>> I've acked this version:
-> > > >>>>>
-> > > >>>>> https://lore.kernel.org/r/20201020093627.256885-2-badhri@google=
-.com
-> > > >>>>>
-> > > >>>>
-> > > >>>> frs is used for Fast Role Swap defined in USB PD spec.
-> > > >>>> I understand it allows to get the same information but I'm wonde=
-ring why
-> > > >>>> the property name is limited to -frs- in this case. What about a
-> > > >>>> non-power delivery USB-C connector ?
-> > > >>>
-> > > >>> I've got no idea. The folks that know USB-C and PD details need t=
-o get
-> > > >>> together and work all this out. To me, it looks like the same thi=
-ng...
-> > > >>>
-> > > >>
-> > > >> It looks but...
-> > > >>
-> > > >> The purpose of power-opmode property is to configure the USB-C con=
-trollers,
-> > > >> especially the non-PD USB-C controllers to determine the power ope=
-ration
-> > > >> mode that the Type C connector will support and will advertise thr=
-ough CC
-> > > >> pins when it has no power delivery support, whatever the power rol=
-e: Sink,
-> > > >> Source or Dual
-> > > >> The management of the property is the same that data-role and powe=
-r-role
-> > > >> properties, and done by USB Type-C Connector Class.
-> > > >>
-> > > >> new-source-frs-typec-current specifies initial current capability =
-of the new
-> > > >> source when vSafe5V is applied during PD3.0 Fast Role Swap. So her=
-e, this
-> > > >> property is not applied at usb-c controller configuration level, b=
-ut during
-> > > >> PD Fast Role Swap, so when the Sink become the Source.
-> > > >> Moreover, the related driver code says FRS can only be supported b=
-y DRP
-> > > >> ports. So new-source-frs-typec-current property, in addition to be=
-ing
-> > > >> specific to PD, is also dedicated to DRP usb-c controller.
-> > > >> The property is managed by Type-C Port Controller Manager for PD.
-> > > >
-> > > > But it's the same set of possible values, right? So we can align th=
-e
-> > > > values at least.
-> > > >
-> > >
-> > > USB Power Delivery FRS values are defined in
-> > > include/dt-bindings/usb/pd.h
-> >
-> > I think this can be changed if both can be aligned.
-> >
-> > >to fit with drivers/usb/typec/tcpm/tcpm.c
-> > > frs_typec_current enum.
-> > >
-> > > USB-C power operation mode values are defined in
-> > > include/linux/usb/typec.h with typec_pwr_opmode enum and matching wit=
-h
-> > > string values of typec_pwr_opmodes tab.
-> > >
-> > > USB PD requires USB-C.
-> > > USB-C doesn't requires USB PD.
-> > >
-> > > drivers/usb/typec/tcpm/tcpm.c already used typec_pwr_opmode values.
-> > >
-> > > USB PD specification Table 6-14 Fixed Supply PDO says:
-> > > Fast Role Swap required USB Type-C Current (see also [USB Type-C 2.0]=
-):
-> > > Value | Description
-> > >   00b  | Fast Swap not supported (default)
-> > >   01b  | Default USB Power
-> > >   10b  | 1.5A @ 5V
-> > >   11b  | 3.0A @ 5V
-> >
-> > This is the value in PDO of sink, the FRS property value(or after trans=
-lated)
-> > actually is used to compare with above value.
-> >
-> > So I think both properties can share the same "value", maybe string
-> > like below
-> >
-> >   10 static const char * const typec_pwr_opmodes[] =3D {
-> >   11         [TYPEC_PWR_MODE_USB]    =3D "default",
-> >   12         [TYPEC_PWR_MODE_1_5A]   =3D "1.5A",
-> >   13         [TYPEC_PWR_MODE_3_0A]   =3D "3.0A",
-> >
-> > >
-> > > Note the *see also USB Type-C 2.0*.
-> > >
-> > > USB Type-C specification 4.6.2.1 USB Type-C Current says:
-> > > The USB Type-C connector uses CC pins for configuration including an
-> > > ability for a Source to advertise to its port partner (Sink) the amou=
-nt
-> > > of current it shall supply:
-> > > =E2=80=A2 Default is the as-configured for high-power operation curre=
-nt value as
-> > > defined by the USB Specification (500 mA for USB 2.0 ports; 900 mA or
-> > > 1,500 mA for USB 3.2 ports in single-lane or dual-lane operation,
-> > > respectively)
-> > > =E2=80=A2 1.5 A
-> > > =E2=80=A2 3.0 A
-> > >
-> > > > Can we align the names in some way? power-opmode and frs-source-opm=
-ode
-> > > > or ??
-> >
-> > how about typec-power-opmode and frs-new-source-opmode
->
-> Sure.
->
-> >
-> > > >
-> > >
-> > > I let USB PD specialists answer.
-> > >
-> > > *frs* property fits with USB PD specification, so with USB PD protoco=
-l.
-> > > *power-opmode fits with USB Type-C specification, so with USB-C hardw=
-are
-> > > support.
-> > >
-> > > > Are these 2 properties mutually exclusive?
-> >
-> > I think yes.
->
-> This should work to express that:
->
-> allOf:
->   - not:
->       required:
->         - typec-power-opmode
->         - frs-new-source-opmode
->
-> Rob
