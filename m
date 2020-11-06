@@ -2,110 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 028752A95C9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:53:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E07A62A95D0
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:54:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727020AbgKFLxO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 06:53:14 -0500
-Received: from mga05.intel.com ([192.55.52.43]:41404 "EHLO mga05.intel.com"
+        id S1726692AbgKFLy1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 06:54:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52390 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726876AbgKFLxO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 06:53:14 -0500
-IronPort-SDR: vyqZ0ZEpTd2RMh0pzP1nHCvDiqB0cLOuKpEWD7owXIHpWQhInz/ayIQBXAMzX5pLWV5rcwWbdb
- oNQPV9TEPTpQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="254241285"
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; 
-   d="scan'208";a="254241285"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2020 03:53:14 -0800
-IronPort-SDR: u5lLLRj4LViCOb/QKvW4vpaGxu7xRftl+vFevt0ogDJ0ptsySK/75DosimeRUmYZquCjychi0+
- MnRticfo+YZQ==
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; 
-   d="scan'208";a="307193590"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2020 03:53:11 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 046CA207BF; Fri,  6 Nov 2020 13:53:08 +0200 (EET)
-Date:   Fri, 6 Nov 2020 13:53:08 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     Hugues Fruchet <hugues.fruchet@st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alain Volmat <alain.volmat@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe CORNU <philippe.cornu@st.com>
-Subject: Re: [PATCH v5 0/4] DCMI BT656 parallel bus mode support
-Message-ID: <20201106115308.GO26150@paasikivi.fi.intel.com>
-References: <1604511132-4014-1-git-send-email-hugues.fruchet@st.com>
- <016661fc-e9dd-bd4a-f26d-00e54626f030@st.com>
+        id S1726565AbgKFLy1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 06:54:27 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4AB0120719;
+        Fri,  6 Nov 2020 11:54:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604663666;
+        bh=t7hIe64oZxwvv8OMpmU6pe1LYNjGNe5T4p+vSi15Hdo=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=ueC6j1eazn08TXoAslq5E1lfR+oB3YJdYHN4pO33aHhoNpHKjnvQZYa/IIxvgZntC
+         lm7RSxvo0J9CLQI85wGQJG0YnLydAE7j6KF9QhOGvoeKaewRT1Ol1XDX+dEg4Ll5Qz
+         Fl5IEZTzWnTVM/u/NjQMAnEfjvAGeNC4Io8YvSxs=
+Date:   Fri, 06 Nov 2020 11:54:15 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Sameer Pujar <spujar@nvidia.com>
+In-Reply-To: <87eel8baxc.wl-kuninori.morimoto.gx@renesas.com>
+References: <87eel8baxc.wl-kuninori.morimoto.gx@renesas.com>
+Subject: Re: [PATCH v6 0/3] ASoC: dt-bindings: audio-graph-card: switch to yaml base Documentation
+Message-Id: <160466365500.22812.987228346341402469.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <016661fc-e9dd-bd4a-f26d-00e54626f030@st.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre,
-
-On Thu, Nov 05, 2020 at 10:26:37AM +0100, Alexandre Torgue wrote:
-> Hi Huges
+On 05 Nov 2020 15:04:25 +0900, Kuninori Morimoto wrote:
+> Cc: Sameer
 > 
-> On 11/4/20 6:32 PM, Hugues Fruchet wrote:
-> > Add support of BT656 embedded synchronization bus.
-> > This mode allows to save hardware synchro lines hsync & vsync
-> > by replacing them with synchro codes embedded in data stream.
-> > Add "bus-type" property and make it required so that there is no
-> > ambiguity between parallel mode (bus-type=5) and BT656 mode (bus-type=6).
-> > 
-> > ===========
-> > = history =
-> > ===========
-> > version 5:
-> >    - Add revisited bindings and devicetree with explicit use of "bus-type"
-> > 
-> > version 4:
-> >    - Fix typo in commit message
-> > 
-> > version 3:
-> >    - Fix bus_width print to %u as per Sakari comment
-> > 
-> > version 2:
-> >    - As per Sakari remark, revisit commit message and document
-> >      BT656 parallel bus mode in bindings
-> > 
-> > version 1:
-> >    - Initial submission
-> > 
-> > Hugues Fruchet (4):
-> >    media: stm32-dcmi: add support of BT656 bus
-> >    media: dt-bindings: media: st,stm32-dcmi: add support of BT656 bus
-> >    ARM: dts: stm32: set bus-type in DCMI endpoint for stm32mp157c-ev1
-> >      board
-> >    ARM: dts: stm32: set bus-type in DCMI endpoint for stm32429i-eval
-> >      board
-> > 
-> >   .../devicetree/bindings/media/st,stm32-dcmi.yaml   | 38 ++++++++++++++++++++++
-> >   arch/arm/boot/dts/stm32429i-eval.dts               |  1 +
-> >   arch/arm/boot/dts/stm32mp157c-ev1.dts              |  1 +
-> >   drivers/media/platform/stm32/stm32-dcmi.c          | 37 +++++++++++++++++++--
-> >   4 files changed, 75 insertions(+), 2 deletions(-)
-> > 
+> These are v6 of switch to yaml base Documentation for
+> audio-graph-card and renesas,rsnd which uses audio-graph-card.
 > 
-> I'll take DT patches on stm32-next tree.
+> v5 -> v6
+> 	- add Acked-by/Reviewed-by on each patch
+> 	- remove "audio-graph-card,xxx" property
+> 	- remove un-needed if "ok"
+> 
+> [...]
 
-Just checking: that is only the two last patches in the set, or also the
-binding patch?
+Applied to
 
--- 
-Regards,
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Sakari Ailus
+Thanks!
+
+[1/3] ASoC: audio-graph-card: switch to yaml base Documentation
+      commit: 97198614f6c3b019299b1189106478ffb58481c9
+[2/3] ASoC: renesas, rsnd: switch to yaml base Documentation
+      commit: 2d8fc973646c8ae87b668e30730becc8b1a57a06
+[3/3] ASoC: renesas,rsnd: Add r8a77961 support
+      commit: 8d96ec9ba9e7bd606d5d0fead9f91f0c5a3366a0
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
