@@ -2,196 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 289A62A9F54
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 22:46:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67AD52A9F9E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 22:54:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727859AbgKFVqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 16:46:48 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54548 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728592AbgKFVqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 16:46:48 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A6LkdaP037587;
-        Fri, 6 Nov 2020 15:46:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604699199;
-        bh=zsJRQ7MV3ODiDNe82AFoOfWuvXT4a+QaiBnCNXKpQDQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=gvQB0XqZdWzg01+ldQDIXFRqsTofUwzNf0jv4ei1S00Bvsd8JxEiItRP2pWGzAEA5
-         9YIRyzzbOnN1vl8FSYHlzkL7/+2YRfNmfXZ98MBwDBwBRxysUQtH1wetF6LNY5zhOu
-         1YujNuFbM5cAIcILA06XYgaQK3aeRB89q1A9RONQ=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A6Lkdir096847
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 6 Nov 2020 15:46:39 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 6 Nov
- 2020 15:46:38 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 6 Nov 2020 15:46:38 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A6LkcNn041136;
-        Fri, 6 Nov 2020 15:46:38 -0600
-Date:   Fri, 6 Nov 2020 15:46:38 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-CC:     Roger Quadros <rogerq@ti.com>, Keerthy <j-keerthy@ti.com>,
-        Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
+        id S1728489AbgKFVyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 16:54:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728464AbgKFVyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 16:54:08 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C397C0613CF;
+        Fri,  6 Nov 2020 13:54:06 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id h6so3956921lfj.3;
+        Fri, 06 Nov 2020 13:54:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=bc3gS/Kujcc3KoLYMBRT58xRZm15H9o/SpU6p0gc5Ts=;
+        b=NdVx9Kt3J1pK7OYym/8csqF8WLvbOjo+q3Jwm/cbzgbEdQO/CnOpbE6bqWcN9Sl30G
+         X/KORpC3mndxuzy8af6XGZ0UviqVAzyXdV1P9MJRXIHeVVlayXM9CmUsWK6BFn6nT9IC
+         DTwQjTGJbBI27CdxUHHRVn2ve4k7lUvDwetVpr7vqs/I8C6cFRvP/3lHXzorCSxrSgOV
+         ifJ1SinltE+9o5qAewOaZqRBwbWfGHPgM/Gn3NVu8e6tOrn7nifS9ooDwVtFEysGYKsA
+         0If7Txn7z2fK6kz8ppA/y6rMnLCgVOJ74CZ9Oz2agpFCzd6SwuJYWz8abzfa0ahR/yGF
+         8qhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bc3gS/Kujcc3KoLYMBRT58xRZm15H9o/SpU6p0gc5Ts=;
+        b=FwscGJD4Yt0GcOzpGSxhObU5pcd3NPpdB/MuuiTvPGupC/eJ8wGP2hoTuOIHen417+
+         FXsrBLg2w4gw8V1YzF8wCtVc2NdD11BibQj4LkhnUR/B8tSswNuy9EYX3CB9hjtdLKWw
+         wlatEwfxtXeGwVZQwfCuaIFKLpZIcviMjZNR+Tp9Nx2js8z5p/XltACqjujjllDpjmJk
+         fHDumMtSrEYmOMd6JzM4u3wE56Iqw527XK7irCFtGoZ9UbT8M4Z2vZQYSBW69viZ69Ta
+         bH3UgZxKrkCnm09kaur+CwYak0iZqo2GLhsBSOclZW/rXLB6bodh7HrG4umVU2i2ecs6
+         8FBg==
+X-Gm-Message-State: AOAM530lRQpX6raXp1taPT5DN8p4Nzd6Gs1nXaN4h7h6LJfF6avtw4My
+        AB6q0wxO0J7/2gNV2pnR9MHJGnA05XE=
+X-Google-Smtp-Source: ABdhPJwG1hbHsS5ENGHedoieOLi+ql3T9aVvWy84+TrVYC9E7f2C9zXhhxQrASw3WDpN25tjkqd49A==
+X-Received: by 2002:a05:6512:10cd:: with SMTP id k13mr1554068lfg.597.1604699644396;
+        Fri, 06 Nov 2020 13:54:04 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
+        by smtp.googlemail.com with ESMTPSA id t5sm268687ljc.124.2020.11.06.13.54.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Nov 2020 13:54:02 -0800 (PST)
+Subject: Re: [PATCH v7 36/47] memory: tegra20-emc: Add devfreq support
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Tero Kristo <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
- SoC dtsi level
-Message-ID: <20201106214638.amgltswy6dygnyee@tubular>
-References: <20201104224356.18040-1-nm@ti.com>
- <20201104224356.18040-3-nm@ti.com>
- <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
- <20201105140806.326ubfppb4guexpi@cultural>
- <37b4b284-0da5-c602-82a2-2b672f89891f@ti.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+References: <20201104164923.21238-1-digetx@gmail.com>
+ <20201104164923.21238-37-digetx@gmail.com> <20201106191319.GB65086@kozik-lap>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <6d8f07ed-c844-4b6e-433c-aa1499ca9dba@gmail.com>
+Date:   Sat, 7 Nov 2020 00:53:32 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <37b4b284-0da5-c602-82a2-2b672f89891f@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20201106191319.GB65086@kozik-lap>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13:32-20201106, Peter Ujfalusi wrote:
-[...]
-> > 
-> >>
-> >>> default power management functionality etc
-> >>
-> >> Right, so how does that helps with devices present in the SoC, but no
-> >> node at all? First thing which comes to mind is AASRC, we don't have
-> >> Linux driver for it (and no DT binding document), but that does not mean
-> >> that it is not present. How PM would take that into account?
-> > 
-> > I think we are mixing topics here -> I was stating the motivation why
-> > devicetree chose such as default.
+06.11.2020 22:13, Krzysztof Kozlowski пишет:
+> On Wed, Nov 04, 2020 at 07:49:12PM +0300, Dmitry Osipenko wrote:
+>> Add devfreq support to the Tegra20 EMC driver. Memory utilization
+>> statistics will be periodically polled from the memory controller and
+>> appropriate minimum clock rate will be selected by the devfreq governor.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  drivers/memory/tegra/Kconfig       |  2 +
+>>  drivers/memory/tegra/tegra20-emc.c | 92 ++++++++++++++++++++++++++++++
+>>  2 files changed, 94 insertions(+)
+>>
 > 
-> I don't question the fact that 'okay' is the default status if it is not
-> explicitly present. There is no better default than that.
+> I see this one still received comments. I skipped the DTS patches and
+> applied everything till patch #35. I understand you will send v8, so in
+> such case please skip the applied ones (you can rebase on my for-next or
+> on Monday's linux-next).
 
-^^ -> Alright, that is all we are trying to do here: defaults in the
-SoC.dtsi and specific cleanups (firmware reserved / board unused
-disables) be done in a common board.dtsi (for now, there is no such
-specific need, I guess).
-
-[..]
-
-> 
-> >> The reason why we kept McASP nodes (and dss) disabled in the soc dtsi
-> >> file is that they are not operation in the form they present in there.
-> >> They _need_ additional properties to be operational and those properties
-> >> can only be added in the board dts file.
-> > 
-> > I dont think we are changing anything in the output dtb files,
-> 
-> Correct, the resulted dtb is identical. If the developer for upcoming
-> boards did check the schematics vs TRM vs dtsi and spot the things that
-> is not configured.
-
-Yes.
-
-> 
-> > we are
-> > just leaving the defaults as dt defaults and set the disable state in
-> > board dts OR common board dtsi.
-> 
-> Yes, we leave the non working/configured node 'okay' in dtsi and expect
-> that the board file author will know which node must be disabled because
-> it is incomplete.
-
-Yes - I understand(and empathise) the implicit omission error risk we
-are incurring here. I will add that to the commit message as well.
-
-> >> This is not remotely a subjective view, this is the opposite of
-> >> subjectivity.
-> > 
-> > the usage of McASP was'nt meant as (c).. it is (b). is there a better way
-> > to describe this in a generic manner?
-> 
-> I had my saying on that ever since I have been taking care of audio on
-> TI SoCs ;)
-> 
-> I used similar analogy in a private thread around this, but imho it fits
-> the case neatly:
-> car == McASP
-> 
-> you don't put an 'okay' (as is ready, operational) stamp on the car in
-> the middle of the production line when the engine is not even installed.
-
-Completely agree with you. we are just insisting that this be done in
-either common board.dtsi OR board.dtsi where applicable.
-
-> 
-
-[..]
-
-> > Alright - what do we suggest we do?
-> 
-> Not sure, I'm 'whatever' after [1] makes it to mainline or next.
-[....]
-> [1]
-> https://lore.kernel.org/alsa-devel/20201106072551.689-1-peter.ujfalusi@ti.com/
-
-
-I don't see the relationship between the series.. I think this series
-brings no change in dtb, hence with OR without your driver cleanup
-series, there is no practical regressions.
-> 
-> > Tony, Rob - I need some guidance here.
-> 
-> I'm fine whatever way we take, but I think it is up to you to make the
-> call as the maintainer of the TI dts files... ;)
-
-Yep - I have'nt seen a reason yet that must cause us to change from the
-Device tree default approach in our debates.
-
-
-As Tony already pointed out.. if we start seeing a lot more boards for
-an SoC..
-Instead of (reverse issue- where we have a lot of places where people are
-doing "okay" problem):
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=12afc0cf81210969756daecd7eb48b307f08faed
-
-We should look at ways to consolidate in a common-board.dtsi
-
-> 
-> >>
-> >>>  &serdes0 {
-> > 	[...]
-> >>>  
-> >>>  	watchdog0: watchdog@2200000 {
-> >>>
-> >>
-> >> There is no such a tag, but:
-> >> whatever-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> > 
-> > OK - I have no idea how B4 or patchworks pick that one as :D
-> 
-> If we take this road, than I'm okay with it, but I'm going to take
-> silent protest (not sending acked-by or revired-by).
-> That should not stop you doing what you believe is best for the future!
-
-OK - thanks for your review and the discussions, always appreciate
-getting our views out there.
-
-if there are no other comments, I will try and post a v2 over the
-weekend.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Thank you! I'll also need to wait for a reply from Viresh Kumar in other
+thread regarding dev_pm_opp_get_opp_table() usage and then will probably
+need to correct patch #35+ as well now, since turned out it may be wrong
+for drivers to use dev_pm_opp_get_opp_table().
