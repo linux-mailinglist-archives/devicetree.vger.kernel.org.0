@@ -2,129 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE832A8C6D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:04:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99E6F2A8C73
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732744AbgKFCEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 21:04:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40470 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732220AbgKFCEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 21:04:45 -0500
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40B0C0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 18:04:45 -0800 (PST)
-Received: by mail-pg1-x544.google.com with SMTP id g12so2731876pgm.8
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 18:04:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Y7icUUEiNIrPUlaj0x+1jC39o2LcOwmDsvjuVu94new=;
-        b=X/VcN7fDxkB6QNSvA1o2/JBoKO1kyCOga7PWJMgYprv0D+hCk05vwNG5tM4H+lbYDN
-         Eldz8M/XVvrr/91fsElEf3XPA2itpiP2n3qLu5MBMZ2JDeuf8FY3lKvlseWBtpIRUxns
-         VDIwHa7TvMx+KH8+pYQZdqw3LCb0juFqvS2VY=
+        id S1732788AbgKFCKT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 5 Nov 2020 21:10:19 -0500
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:45625 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731060AbgKFCKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 21:10:19 -0500
+Received: by mail-lj1-f194.google.com with SMTP id t13so3676516ljk.12;
+        Thu, 05 Nov 2020 18:10:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Y7icUUEiNIrPUlaj0x+1jC39o2LcOwmDsvjuVu94new=;
-        b=sh/TI60rjUoL2eUwT09iATrtMAszWaB0qL2CW4JwPsHQjhusOZnoxW8d3VBkFe/2Wj
-         o7wZVD72fkKD3h8sOsNnBRSaMbqJLXs6LmjQkYalojDl6Am5rcbCAmoQw/l09gbzAFdD
-         mt3PRzFu8F7/GaLPF5vsMySVSNRAjVspuTG3fI+gikuiSyKlmENupdgR4qXaA2Vy5qRc
-         JF3sp+/ohMGrV/JUysjGj6meuTKdNRVVUzDGf9nONNerM34pKw3cTMsaysNz/KWdnc62
-         cR+2tr5hRqeMRD5FrLtIf47x9e0PHMUjhNMyVQXOFkHeX28GGSxLHdl38roxSkffzNun
-         2POw==
-X-Gm-Message-State: AOAM532J+jpE+zKoSZjcemYZiGjJIWmdkTCIw+dGtvlEGwg3Bk/Ie5vS
-        +hso+FXZAUbs11r8DqUYiXaeUw==
-X-Google-Smtp-Source: ABdhPJwtl5hZ0u87DJo55K2CGbET+7/W7Ihy/p7yM6/ZRxZrLq0X52Z9iBVMA1bZ22zg6DAS+hn3UA==
-X-Received: by 2002:a17:90b:1413:: with SMTP id jo19mr5193301pjb.221.1604628285166;
-        Thu, 05 Nov 2020 18:04:45 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id m10sm502259pjr.3.2020.11.05.18.04.44
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=TCAkol59pNC4A1Ep6Vh2I5icEcF6Xj0QtXarfZ1GeIo=;
+        b=Ik/fiFDSuiOGh478UJJ5WEiYLaUMzefzYkfeKRLJLZ+E4v1YQNTRMeb5WoKKoqq2J+
+         Kuun4pRezAqUPZtaRL/CPGFGWWfTuElZ4PAqaBfI9cX9ysIEYMQobRMinSkPFgftrqdJ
+         9PQOfztkTo0FlfcvKyNdQGwzKNd04Zo/n8bluh6mq4xdLEQWmalPU3bGzGrABxSGg+mM
+         bfg0D/QME1Et9ZUbup1K/3CbXkVzyFyDR7uVznqoFLnCmn7IT3itJ7E6uJPD5hCczjlm
+         v0w5Fa/uurP/Db/no3hVgK/wMvsuXrvly2wPN2ay0JhNXUkfekjTZo//zm5tEMvF8Xhc
+         Dqpg==
+X-Gm-Message-State: AOAM53140NPtFVRuOP4NT6R9vwKPc+K4Ig7/vL//53ctc+0dWotp0VLn
+        kZqGVvlaA/0rN07PW+gZd9HT2SdxL3ptXw==
+X-Google-Smtp-Source: ABdhPJwJcrJ1KHjp3J3gAxuQLQr6pm5I/n5CYQaoK6doApH7OX7iFot5iPkkMw59tyJjjlU9AyUeQw==
+X-Received: by 2002:a2e:884d:: with SMTP id z13mr1796164ljj.413.1604628617172;
+        Thu, 05 Nov 2020 18:10:17 -0800 (PST)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id c26sm358154lfh.107.2020.11.05.18.10.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Nov 2020 18:04:44 -0800 (PST)
-Date:   Thu, 5 Nov 2020 18:04:43 -0800
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sc7180: Add sc7180-lazor-r2
-Message-ID: <20201106020443.GA4128558@google.com>
-References: <20201105163724.v2.1.I5a75056d573808f40fed22ab7d28ea6be5819f84@changeid>
- <CAD=FV=WVVjj1Su2Ta9wQebDEWXs=9dNs9EO9EvTH=EjT4Fr8jg@mail.gmail.com>
+        Thu, 05 Nov 2020 18:10:16 -0800 (PST)
+Received: by mail-lj1-f171.google.com with SMTP id a25so1866848ljn.0;
+        Thu, 05 Nov 2020 18:10:16 -0800 (PST)
+X-Received: by 2002:a05:651c:336:: with SMTP id b22mr2007851ljp.75.1604628616262;
+ Thu, 05 Nov 2020 18:10:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=WVVjj1Su2Ta9wQebDEWXs=9dNs9EO9EvTH=EjT4Fr8jg@mail.gmail.com>
+References: <20201102100157.85801-1-mtwget@gmail.com> <20201102100157.85801-2-mtwget@gmail.com>
+ <20201103113743.5764tj2ryrht4dfs@gilmour.lan> <CAHRgzyOao=w6Yyqqvi1Z26=rfJgumkzDbWLxD+_5uaLmyAWiQA@mail.gmail.com>
+ <20201105171051.ducvxcdj5jfarmgn@gilmour.lan> <CAHRgzyNzXk1uJzEVLvrqPu2CT8jzF+5UFEubT6kEtF=8HVgROQ@mail.gmail.com>
+In-Reply-To: <CAHRgzyNzXk1uJzEVLvrqPu2CT8jzF+5UFEubT6kEtF=8HVgROQ@mail.gmail.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Fri, 6 Nov 2020 10:10:10 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64HyUn8KjPPA0JBA5tPaxX7-keNfs+M22pL5SmETN0FQg@mail.gmail.com>
+Message-ID: <CAGb2v64HyUn8KjPPA0JBA5tPaxX7-keNfs+M22pL5SmETN0FQg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Rob Herring <robh+dt@kernel.org>, Yu-Tung Chang <mtwget@gmail.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 04:55:40PM -0800, Doug Anderson wrote:
-> Hi,
-> 
-> On Thu, Nov 5, 2020 at 4:37 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+On Fri, Nov 6, 2020 at 10:03 AM Yu-Tung Chang <mtwget@gmail.com> wrote:
+>
+> Maxime Ripard <maxime@cerno.tech> 于2020年11月6日周五 上午1:10写道：
 > >
-> > One important delta with respect to rev1 is a switch of the power
-> > supply for the onboard USB hub from 'pp3300_l7c' to 'pp3300_a' + a
-> > load switch. The actual regulator switch is done by the patch 'arm64:
-> > dts: qcom: sc7180-trogdor: Make pp3300_a the default supply for
-> > pp3300_hub', since it affects the entire trogdor platform. Here we
-> > only add the .dts files for lazor rev2 and replace the generic
-> > compatible entries in the rev1 .dts files.
+> > On Wed, Nov 04, 2020 at 04:07:48PM +0800, Yu-Tung Chang wrote:
+> > > > > +&uart1 {
+> > > > > +     pinctrl-names = "default";
+> > > > > +     pinctrl-0 = <&uart1_pins>;
+> > > >
+> > > > This should be already set in the DTSI
+> > > >
+> > > uart0 as the debugging interface, uart1 as the external uart port,
+> > > uart3 as the bluetooth.
 > >
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
+> > What I mean is that since it's the only muxing option, the pinctrl
+> > properties should already be set in the DTSI, so it's redundant to put
+> > them in the DTS.
 > >
-> > Changes in v2:
-> > - patch added to the series
-> >
-> >  arch/arm64/boot/dts/qcom/Makefile              |  3 +++
-> >  .../dts/qcom/sc7180-trogdor-lazor-r1-kb.dts    |  4 ++--
-> >  .../dts/qcom/sc7180-trogdor-lazor-r1-lte.dts   |  4 ++--
-> >  .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts  |  4 ++--
-> >  .../dts/qcom/sc7180-trogdor-lazor-r2-kb.dts    | 17 +++++++++++++++++
-> >  .../dts/qcom/sc7180-trogdor-lazor-r2-lte.dts   | 18 ++++++++++++++++++
-> >  .../boot/dts/qcom/sc7180-trogdor-lazor-r2.dts  | 15 +++++++++++++++
-> >  7 files changed, 59 insertions(+), 6 deletions(-)
-> 
-> So it's pretty unlikely that this change actually happened in "-rev2".
-> "-rev2" was a _very_ small batch of boards that I don't think made it
-> into too many people's hands.  You probably want "-rev3".
+> I can only see the definition of uart0 in the DTSI,
+> because uart1 as the extension interface is exclusive to NanoPi R1.
 
-Ah right, now that you mention it ...
+Maxime, to clarify, UART1 can be used with or without RTS/CTS,
+so there is no default muxing in the DTSI.
 
-> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r2-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r2-kb.dts
-> > new file mode 100644
-> > index 000000000000..7c3a702ef209
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r2-kb.dts
-> > @@ -0,0 +1,17 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Google Lazor board device tree source
-> > + *
-> > + * Copyright 2020 Google LLC.
-> > + */
-> > +
-> > +#include "sc7180-trogdor-lazor-r1.dts"
-> 
-> Should have been updated to not point to '-r1', no?
-
-ack
-
-> ===
-> 
-> If you want to compare, you can also look at my (abandoned) CL:
-> https://crrev.com/c/2481550
-> 
-> ...that forked out a "-rev3" to tag the WiFi slightly differently, but
-> we ended up abandoning it because we found a better way to handle the
-> WiFi stuff.
-
-Ok, thanks
+ChenYu
