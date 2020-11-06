@@ -2,439 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 650192A9E0B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 20:32:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AC9C2A9E18
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 20:34:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728111AbgKFTcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 14:32:02 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:44374 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726415AbgKFTcB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 14:32:01 -0500
-Received: by mail-ed1-f67.google.com with SMTP id y15so2248742ede.11;
-        Fri, 06 Nov 2020 11:31:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=n9Dgigx/g9wvTHZDbIhizjSwRVcl0cDzTu9NhjhOCwc=;
-        b=rQSTijVJnXfCpz+NxfCNNrpScJtHXH6PI7/GjFVY9WSUrywLn4VZbd+Lo5mNsOIPkm
-         75YPgrx+1aAtd58Jdj1KjPx0ij0VG7L0IheeNBZ2MUu0viYttFoQqpQoFD6O/WuRqBvG
-         ZInH0dOtyN47BeZ0olTJ31s7unZCDR++Vsfz7ghNryOaube5B23c4cdNC2D7WYcIxZ0X
-         mDOLnBNknF0mhPA1k6lmkETFmqU0ENk0q0GO/9+LLM4jXhs1WwqQdlGitGGV3mJfDqjc
-         Gq788KP00jclvkT/BcfAreA2AGIBItXciGjQxkuhJyeQ7kNYIvnzKKznHCRE2wlDIQEQ
-         cdaQ==
-X-Gm-Message-State: AOAM533oiIGR0JmNz/kMOctOtlPXEeHPMyPp4LZEBdtnJwm3gV8TrxFm
-        fOxk10+Fyvv+0bsjYtiuZ9I=
-X-Google-Smtp-Source: ABdhPJwvoc1yVXZWCijv8WEl2OWF2Y7s5DJrOvSMVhXbIcxo+TUhON0Mtu2PeW32RpJTtJ2PGzM+WQ==
-X-Received: by 2002:aa7:d514:: with SMTP id y20mr3572318edq.384.1604691116198;
-        Fri, 06 Nov 2020 11:31:56 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id sa23sm1579297ejb.80.2020.11.06.11.31.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2020 11:31:54 -0800 (PST)
-Date:   Fri, 6 Nov 2020 20:31:53 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 2/3] arm64: dts: imx: Add Beacon i.MX8M Nano
- development kit
-Message-ID: <20201106193153.GB328543@kozik-lap>
-References: <20201106121238.1814427-1-aford173@gmail.com>
- <20201106121238.1814427-2-aford173@gmail.com>
+        id S1727877AbgKFTeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 14:34:12 -0500
+Received: from foss.arm.com ([217.140.110.172]:43996 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726415AbgKFTeL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 14:34:11 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC30D1474;
+        Fri,  6 Nov 2020 11:34:10 -0800 (PST)
+Received: from [172.16.1.113] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 538323F718;
+        Fri,  6 Nov 2020 11:34:09 -0800 (PST)
+Subject: Re: [PATCH 2/3] drivers/edac: Add L1 and L2 error detection for A53
+ and A57
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-edac@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tony Luck <tony.luck@intel.com>,
+        Robert Richter <rrichter@marvell.com>,
+        York Sun <york.sun@nxp.com>, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+References: <20201013125033.4749-1-s.hauer@pengutronix.de>
+ <20201013125033.4749-3-s.hauer@pengutronix.de>
+From:   James Morse <james.morse@arm.com>
+Message-ID: <6ea8a824-ba55-6c5b-993d-4c782e396f32@arm.com>
+Date:   Fri, 6 Nov 2020 19:34:07 +0000
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <20201013125033.4749-3-s.hauer@pengutronix.de>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201106121238.1814427-2-aford173@gmail.com>
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 06, 2020 at 06:12:36AM -0600, Adam Ford wrote:
-> Beacon Embeddedworks is launching a development kit based on the
-> i.MX8M Nano SoC.  The kit consists of a System on Module (SOM)
-> + baseboard.  The SOM has the SoC, eMMC, and Ethernet. The baseboard
-> has an wm8962 audio CODEC, a PDM microphone, and a single USB OTG.
+Hi Sascha,
+
+On 13/10/2020 13:50, Sascha Hauer wrote:
+> The Cortex A53 and A57 cores have error detection capabilities for the
+> L1/L2 Caches, this patch adds a driver for them.
 > 
-> The baseboard is capable of two different, mutually exclusive video
-> outputs, so the common items are in the baseboard file.  When
-> the video becomes available, LVDS output will be added to this kit
-> file, and a second kit file will be added to support HDMI.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> Based on: https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=374643
-> 
-> V2:  Fix issues noted from Krzysztof Kozlowski.
->      Set Bluetooth UART speed
->      Add supply and reset gpio to FEC
-> 
->  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->  .../freescale/imx8mn-beacon-baseboard.dtsi    | 307 +++++++++++++
->  .../boot/dts/freescale/imx8mn-beacon-kit.dts  |  19 +
->  .../boot/dts/freescale/imx8mn-beacon-som.dtsi | 433 ++++++++++++++++++
->  4 files changed, 760 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 876bf484bbe6..589290bbbbd6 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -34,6 +34,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dts
->  dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
+> Unfortunately there is no robust way to inject errors into the caches,
+> so this driver doesn't contain any code to actually test it. It has
+> been tested though with code taken from an older version of this driver
+> found here: https://lkml.org/lkml/2018/3/14/1203.
+
+> For reasons stated
+> in this thread the error injection code is not suitable for mainline,
+> so it is removed from the driver.
+
+
+> diff --git a/drivers/edac/cortex_arm64_l1_l2.c b/drivers/edac/cortex_arm64_l1_l2.c
 > new file mode 100644
-> index 000000000000..376ca8ff7213
+> index 000000000000..fb8386eb40ac
 > --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-baseboard.dtsi
-> @@ -0,0 +1,307 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2020 Compass Electronics Group, LLC
-> + */
-> +
-> +/ {
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		led-0 {
-> +			label = "gen_led0";
-> +			gpios = <&pca6416_1 4 GPIO_ACTIVE_HIGH>;
-> +			default-state = "off";
-> +		};
-> +
-> +		led-1 {
-> +			label = "gen_led1";
-> +			gpios = <&pca6416_1 5 GPIO_ACTIVE_HIGH>;
-> +			default-state = "off";
-> +		};
-> +
-> +		led-2 {
-> +			label = "gen_led2";
-> +			gpios = <&pca6416_1 6 GPIO_ACTIVE_HIGH>;
-> +			default-state = "off";
-> +		};
-> +
-> +		led-3 {
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pinctrl_led3>;
-> +			label = "heartbeat";
-> +			gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	reg_audio: regulator-audio {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3v3_aud";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&pca6416_1 11 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_usdhc2_vmmc: regulator-usdhc2 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vsd_3v3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_usb_otg_vbus: regulator-usb {
-> +		compatible = "regulator-fixed";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_reg_usb_otg>;
-> +		regulator-name = "usb_otg_vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		gpio = <&gpio4 29 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	sound {
-> +		compatible = "fsl,imx-audio-wm8962";
-> +		model = "wm8962-audio";
-> +		audio-cpu = <&sai3>;
-> +		audio-codec = <&wm8962>;
-> +		audio-routing =
-> +			"Headphone Jack", "HPOUTL",
-> +			"Headphone Jack", "HPOUTR",
-> +			"Ext Spk", "SPKOUTL",
-> +			"Ext Spk", "SPKOUTR",
-> +			"AMIC", "MICBIAS",
-> +			"IN3R", "AMIC";
-> +	};
-> +};
-> +
-> +&ecspi2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_espi2>;
-> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +
-> +	eeprom@0 {
-> +		compatible = "microchip,at25160bn", "atmel,at25";
-> +		reg = <0>;
-> +		spi-max-frequency = <5000000>;
-> +		spi-cpha;
-> +		spi-cpol;
-> +		pagesize = <32>;
-> +		size = <2048>;
-> +		address-width = <16>;
-> +	};
-> +};
-> +
-> +&i2c4 {
-> +	clock-frequency = <400000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c4>;
-> +	status = "okay";
-> +
-> +	pca6416_0: gpio@20 {
-> +		compatible = "nxp,pcal6416";
-> +		reg = <0x20>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pcal6414>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	pca6416_1: gpio@21 {
-> +		compatible = "nxp,pcal6416";
-> +		reg = <0x21>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		interrupt-parent = <&gpio4>;
-> +		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-> +	};
-> +
-> +	wm8962: audio-codec@1a {
-> +		compatible = "wlf,wm8962";
-> +		reg = <0x1a>;
-> +		clocks = <&clk IMX8MN_CLK_SAI3_ROOT>;
-> +		clock-names = "xclk";
-> +		DCVDD-supply = <&reg_audio>;
-> +		DBVDD-supply = <&reg_audio>;
-> +		AVDD-supply = <&reg_audio>;
-> +		CPVDD-supply = <&reg_audio>;
-> +		MICVDD-supply = <&reg_audio>;
-> +		PLLVDD-supply = <&reg_audio>;
-> +		SPKVDD1-supply = <&reg_audio>;
-> +		SPKVDD2-supply = <&reg_audio>;
-> +		gpio-cfg = <
-> +			0x0000 /* 0:Default */
-> +			0x0000 /* 1:Default */
-> +			0x0000 /* 2:FN_DMICCLK */
-> +			0x0000 /* 3:Default */
-> +			0x0000 /* 4:FN_DMICCDAT */
-> +			0x0000 /* 5:Default */
-> +		>;
-> +	};
-> +};
-> +
-> +&easrc {
-> +	fsl,asrc-rate  = <48000>;
-> +	status = "okay";
-> +};
-> +
-> +&sai3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sai3>;
-> +	assigned-clocks = <&clk IMX8MN_CLK_SAI3>;
-> +	assigned-clock-parents = <&clk IMX8MN_AUDIO_PLL1_OUT>;
-> +	assigned-clock-rates = <24576000>;
-> +	fsl,sai-mclk-direction-output;
-> +	status = "okay";
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 { /* console */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart3>;
-> +	assigned-clocks = <&clk IMX8MN_CLK_UART3>;
-> +	assigned-clock-parents = <&clk IMX8MN_SYS_PLL1_80M>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	vbus-supply = <&reg_usb_otg_vbus>;
-> +	disable-over-current;
-> +	dr_mode="otg";
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>;
-> +	bus-width = <4>;
-> +	vmmc-supply = <&reg_usdhc2_vmmc>;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_espi2: espi2grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_ECSPI2_SCLK_ECSPI2_SCLK		0x82
-> +			MX8MN_IOMUXC_ECSPI2_MOSI_ECSPI2_MOSI		0x82
-> +			MX8MN_IOMUXC_ECSPI2_MISO_ECSPI2_MISO		0x82
-> +			MX8MN_IOMUXC_ECSPI1_SS0_GPIO5_IO9		0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-> +			MX8MN_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c4: i2c4grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_I2C4_SCL_I2C4_SCL		0x400001c3
-> +			MX8MN_IOMUXC_I2C4_SDA_I2C4_SDA		0x400001c3
-> +		>;
-> +	};
-> +
-> +	pinctrl_led3: led3grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_pcal6414: pcal6414-gpiogrp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SAI2_MCLK_GPIO4_IO27		0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_reg_usb_otg: reg-otggrp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SAI3_RXC_GPIO4_IO29     0x19
-> +		>;
-> +	};
-> +
-> +	pinctrl_sai3: sai3grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SAI3_TXFS_SAI3_TX_SYNC     0xd6
-> +			MX8MN_IOMUXC_SAI3_TXC_SAI3_TX_BCLK      0xd6
-> +			MX8MN_IOMUXC_SAI3_MCLK_SAI3_MCLK        0xd6
-> +			MX8MN_IOMUXC_SAI3_TXD_SAI3_TX_DATA0     0xd6
-> +			MX8MN_IOMUXC_SAI3_RXD_SAI3_RX_DATA0	0xd6
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_UART2_RXD_UART2_DCE_RX	0x140
-> +			MX8MN_IOMUXC_UART2_TXD_UART2_DCE_TX	0x140
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart3: uart3grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_ECSPI1_SCLK_UART3_DCE_RX	0x40
-> +			MX8MN_IOMUXC_ECSPI1_MOSI_UART3_DCE_TX	0x40
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD2_CD_B_USDHC2_CD_B	0x41
-> +			MX8MN_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK	0x190
-> +			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD	0x1d0
-> +			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
-> +			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
-> +			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
-> +			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
-> +			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK	0x194
-> +			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD	0x1d4
-> +			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d4
-> +			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d4
-> +			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d4
-> +			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d4
-> +			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-> +		fsl,pins = <
-> +			MX8MN_IOMUXC_SD2_CLK_USDHC2_CLK	0x196
-> +			MX8MN_IOMUXC_SD2_CMD_USDHC2_CMD	0x1d6
-> +			MX8MN_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d6
-> +			MX8MN_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d6
-> +			MX8MN_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d6
-> +			MX8MN_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d6
-> +			MX8MN_IOMUXC_GPIO1_IO04_USDHC2_VSELECT	0x1d0
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mn-beacon-kit.dts
-> new file mode 100644
-> index 000000000000..faa55d888065
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-beacon-kit.dts
-> @@ -0,0 +1,19 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +/*
-> + * Copyright 2020 Compass Electronics Group, LLC
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8mn.dtsi"
-> +#include "imx8mn-beacon-som.dtsi"
-> +#include "imx8mn-beacon-baseboard.dtsi"
-> +
-> +/ {
-> +	model = "Beacon EmbeddedWorks i.MX8M Mini Development Kit";
+> +++ b/drivers/edac/cortex_arm64_l1_l2.c
+> @@ -0,0 +1,208 @@
 
-s/Mini/Nano/
+> +static void read_errors(void *data)
+> +{
+> +	struct edac_device_ctl_info *edac_ctl = data;
+> +	int cpu = smp_processor_id();
+> +	char msg[MESSAGE_SIZE];
+> +	u64 cpumerr, l2merr;
+> +
+> +	/* cpumerrsr_el1 */
+> +	asm volatile("mrs %0, s3_1_c15_c2_2" : "=r" (cpumerr));
+> +	asm volatile("msr s3_1_c15_c2_2, %0" :: "r" (0));
 
-With the change:
+I think you've seen earlier comments on using the sys_reg macros for this. There were
+versions of binutils out there that choke on this.
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+[...]
 
-Best regards,
-Krzysztof
+> +}
+> +
+> +static void cortex_arm64_edac_check(struct edac_device_ctl_info *edac_ctl)
+> +{
+> +	struct arm64_pvt *pvt = edac_ctl->pvt_info;
+> +	call_single_data_t *csd;
+> +	int cpu;
+> +
+> +	get_online_cpus();
+> +	for_each_cpu_and(cpu, cpu_online_mask, &pvt->compat_mask) {
+> +		csd = per_cpu_ptr(pvt->csd_check, cpu);
+> +		csd->func = read_errors;
+> +		csd->info = edac_ctl;
+> +		csd->flags = 0;
+
+> +		/* Read CPU L1/L2 errors */
+> +		smp_call_function_single_async(cpu, csd);
+> +		/* Wait until flags cleared */
+> +		smp_cond_load_acquire(&csd->flags, !VAL);
+
+Hmm. We end up waiting for each CPU to schedule something else. I can't see any reason we
+can't sleep here.
+
+Can't we use smp_call_function_many() here? It already considers cpu_online_mask, you'd
+just need to deal with read_errors() being called in parallel with itself.
+
+(concurrent calls into edac are one problem, but two CPUs read/writing the same L2
+register could lead to double counting)
+
+
+> +	}
+> +	put_online_cpus();
+> +}
+
+
+> +static int cortex_arm64_edac_probe(struct platform_device *pdev)
+> +{
+> +	struct device_node *np, *dn = pdev->dev.of_node;
+> +	struct edac_device_ctl_info *edac_ctl;
+> +	struct device *dev = &pdev->dev;
+> +	struct of_phandle_iterator it;
+> +	struct arm64_pvt *pvt;
+> +	int rc, cpu;
+> +
+> +	edac_ctl = edac_device_alloc_ctl_info(sizeof(*pvt), "cpu_cache",
+> +					      1, "L", 2, 1, NULL, 0,
+> +					      edac_device_alloc_index());
+
+I used this series to test on Juno to poke the user-space interface:
+This chokes on a big-little system as it can't register "cpu_cache" a second time.
+
+I think we should try to make the topology look like the one in edac_device.h. This means
+calling it 'cpu', and registering all of them up front.
+On a big/little system the second probe() call would need to be careful.
+
+I can have a go at this if you don't have a platform to hand.
+
+
+(The 'L2-cache' thing in edac_device.h turns out to be impossible and the 'Lx' you've done
+here is the most popular option. I'll post a patch to change the documentation to what
+people are doing)
+
+
+[...]
+
+> +}
+
+
+Thanks,
+
+James
 
