@@ -2,478 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 628702A93BF
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:09:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 081312A9408
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:21:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726422AbgKFKJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 05:09:11 -0500
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:41827 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726813AbgKFKJL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 05:09:11 -0500
-X-Originating-IP: 91.175.115.186
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id C71161BF20C;
-        Fri,  6 Nov 2020 10:09:07 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        <Steen.Hegelund@microchip.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH 9/9] MIPS: mscc: Add serval support
-Date:   Fri,  6 Nov 2020 11:08:49 +0100
-Message-Id: <20201106100849.969240-11-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201106100849.969240-1-gregory.clement@bootlin.com>
-References: <20201106100849.969240-1-gregory.clement@bootlin.com>
+        id S1726901AbgKFKVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 05:21:22 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:48640 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726646AbgKFKVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 05:21:21 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A6AFlJs020556;
+        Fri, 6 Nov 2020 05:21:03 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 34h1s5d0ss-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 06 Nov 2020 05:21:02 -0500
+Received: from ASHBMBX9.ad.analog.com (ashbmbx9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 0A6AL1BW006342
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Fri, 6 Nov 2020 05:21:01 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Fri, 6 Nov 2020 05:21:00 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Fri, 6 Nov 2020 05:21:00 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Fri, 6 Nov 2020 05:21:00 -0500
+Received: from saturn.ad.analog.com ([10.48.65.107])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0A6AKucs016519;
+        Fri, 6 Nov 2020 05:20:57 -0500
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <lars@metafoo.de>, <bogdan.togorean@analog.com>,
+        <robh+dt@kernel.org>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: [PATCH] dt-bindings: adau1977: convert text binding to yaml format
+Date:   Fri, 6 Nov 2020 12:20:52 +0200
+Message-ID: <20201106102052.32582-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-06_03:2020-11-05,2020-11-06 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 mlxlogscore=999 clxscore=1011 bulkscore=0 spamscore=0
+ adultscore=0 suspectscore=0 phishscore=0 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2009150000 definitions=main-2011060073
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device trees and FIT image support for the Microsemi Serval SoC
-which belongs to same family of the Ocelot SoC.
+This change converts the old device-tree binding for ADAU1977 from text
+format to the new yaml format.
 
-It is based on the work of Lars Povlsen <lars.povlsen@microchip.com>.
-
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 ---
- arch/mips/boot/dts/mscc/Makefile           |   5 +-
- arch/mips/boot/dts/mscc/serval.dtsi        | 153 +++++++++++++++++++++
- arch/mips/boot/dts/mscc/serval_common.dtsi | 127 +++++++++++++++++
- arch/mips/boot/dts/mscc/serval_pcb105.dts  |  17 +++
- arch/mips/boot/dts/mscc/serval_pcb106.dts  |  17 +++
- arch/mips/generic/Kconfig                  |   8 ++
- arch/mips/generic/Platform                 |   1 +
- arch/mips/generic/board-serval.its.S       |  24 ++++
- 8 files changed, 351 insertions(+), 1 deletion(-)
- create mode 100644 arch/mips/boot/dts/mscc/serval.dtsi
- create mode 100644 arch/mips/boot/dts/mscc/serval_common.dtsi
- create mode 100644 arch/mips/boot/dts/mscc/serval_pcb105.dts
- create mode 100644 arch/mips/boot/dts/mscc/serval_pcb106.dts
- create mode 100644 arch/mips/generic/board-serval.its.S
+ .../bindings/sound/adi,adau1977.txt           | 61 ---------------
+ .../bindings/sound/adi,adau1977.yaml          | 77 +++++++++++++++++++
+ 2 files changed, 77 insertions(+), 61 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/adi,adau1977.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/adi,adau1977.yaml
 
-diff --git a/arch/mips/boot/dts/mscc/Makefile b/arch/mips/boot/dts/mscc/Makefile
-index befda72ceb26..eeb6b7aae83b 100644
---- a/arch/mips/boot/dts/mscc/Makefile
-+++ b/arch/mips/boot/dts/mscc/Makefile
-@@ -5,6 +5,9 @@ dtb-$(CONFIG_SOC_VCOREIII)	+= \
- 	jaguar2_pcb118.dtb \
- 	luton_pcb091.dtb \
- 	ocelot_pcb120.dtb \
--	ocelot_pcb123.dtb
-+	ocelot_pcb123.dtb \
-+	serval_pcb105.dtb \
-+	serval_pcb106.dtb
-+
- 
- obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/arch/mips/boot/dts/mscc/serval.dtsi b/arch/mips/boot/dts/mscc/serval.dtsi
+diff --git a/Documentation/devicetree/bindings/sound/adi,adau1977.txt b/Documentation/devicetree/bindings/sound/adi,adau1977.txt
+deleted file mode 100644
+index 37f8aad01203..000000000000
+--- a/Documentation/devicetree/bindings/sound/adi,adau1977.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-Analog Devices ADAU1977/ADAU1978/ADAU1979
+-
+-Datasheets:
+-https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1977.pdf
+-https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1978.pdf
+-https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1979.pdf
+-
+-This driver supports both the I2C and SPI bus.
+-
+-Required properties:
+- - compatible: Should contain one of the following:
+-               "adi,adau1977"
+-               "adi,adau1978"
+-               "adi,adau1979"
+-
+- - AVDD-supply: analog power supply for the device, please consult
+-                Documentation/devicetree/bindings/regulator/regulator.txt
+-
+-Optional properties:
+- - reset-gpios: the reset pin for the chip, for more details consult
+-                Documentation/devicetree/bindings/gpio/gpio.txt
+-
+- - DVDD-supply: supply voltage for the digital core, please consult
+-                Documentation/devicetree/bindings/regulator/regulator.txt
+-
+-- adi,micbias: configures the voltage setting for the MICBIAS pin.
+-		Select 0/1/2/3/4/5/6/7/8 to specify MICBIAS voltage
+-		5V/5.5V/6V/6.5V/7V/7.5V/8V/8.5V/9V
+-		If not specified the default value will be "7" meaning 8.5 Volts.
+-		This property is only valid for the ADAU1977
+-
+-For required properties on SPI, please consult
+-Documentation/devicetree/bindings/spi/spi-bus.txt
+-
+-Required properties on I2C:
+-
+- - reg:         The i2c address. Value depends on the state of ADDR0
+-                and ADDR1, as wired in hardware.
+-
+-Examples:
+-
+-	adau1977_spi: adau1977@0 {
+-		compatible = "adi,adau1977";
+-		spi-max-frequency = <600000>;
+-
+-		AVDD-supply = <&regulator>;
+-		DVDD-supply = <&regulator_digital>;
+-
+-		adi,micbias = <3>;
+-		reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
+-	};
+-
+-	adau1977_i2c: adau1977@11 {
+-		compatible = "adi,adau1977";
+-		reg = <0x11>;
+-
+-		AVDD-supply = <&regulator>;
+-		DVDD-supply = <&regulator_digital>;
+-
+-		reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/adi,adau1977.yaml b/Documentation/devicetree/bindings/sound/adi,adau1977.yaml
 new file mode 100644
-index 000000000000..c357e2025d5a
+index 000000000000..bc097b6b066e
 --- /dev/null
-+++ b/arch/mips/boot/dts/mscc/serval.dtsi
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 Microsemi Corporation
-+ */
++++ b/Documentation/devicetree/bindings/sound/adi,adau1977.yaml
+@@ -0,0 +1,77 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/adi,adau1977.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	compatible = "mscc,serval";
++title: Analog Devices ADAU1977/ADAU1978/ADAU1979 Quad ADC with Diagnostics
 +
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
++maintainers:
++  - Lars-Peter Clausen <lars@metafoo.de>
++  - Bogdan Togorean <bogdan.togorean@analog.com>
 +
-+		cpu@0 {
-+			compatible = "mips,mips24KEc";
-+			device_type = "cpu";
-+			clocks = <&cpu_clk>;
-+			reg = <0>;
-+		};
-+	};
++description: |
++  Analog Devices ADAU1977 and similar quad ADC with Diagnostics
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1977.pdf
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1978.pdf
++  https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1979.pdf
 +
-+	aliases {
-+		serial0 = &uart0;
-+		gpio0 = &gpio;
-+	};
++properties:
++  compatible:
++    enum:
++      - adi,adau1977
++      - adi,adau1978
++      - adi,adau1979
 +
-+	cpuintc: interrupt-controller {
-+		#address-cells = <0>;
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+		compatible = "mti,cpu-interrupt-controller";
-+	};
++  reg:
++    maxItems: 1
 +
-+	cpu_clk: cpu-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <416666666>;
-+	};
++  "#sound-dai-cells":
++    const: 0
 +
-+	ahb_clk: ahb-clk {
-+		compatible = "fixed-factor-clock";
-+		#clock-cells = <0>;
-+		clocks = <&cpu_clk>;
-+		clock-div = <2>;
-+		clock-mult = <1>;
-+	};
++  reset-gpios:
++    maxItems: 1
 +
-+	ahb: ahb@70000000 {
-+		compatible = "simple-bus";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
++  AVDD-supply:
++    description: Analog power support for the device.
 +
-+		interrupt-parent = <&intc>;
++  DVDD-supply:
++    description: Supply voltage for digital core.
 +
-+		cpu_ctrl: syscon@70000000 {
-+			compatible = "mscc,ocelot-cpu-syscon", "syscon";
-+			reg = <0x70000000 0x2c>;
-+		};
++  adi,micbias:
++    description: |
++      Configures the voltage setting for the MICBIAS pin.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8]
++    default: 7
 +
-+		intc: interrupt-controller@70000070 {
-+			compatible = "mscc,serval-icpu-intr";
-+			reg = <0x70000070 0x70>;
-+			#interrupt-cells = <1>;
-+			interrupt-controller;
-+			interrupt-parent = <&cpuintc>;
-+			interrupts = <2>;
-+		};
++required:
++  - reg
++  - compatible
++  - AVDD-supply
 +
-+		uart0: serial@70100000 {
-+			pinctrl-0 = <&uart_pins>;
-+			pinctrl-names = "default";
-+			compatible = "ns16550a";
-+			reg = <0x70100000 0x20>;
-+			interrupts = <6>;
-+			clocks = <&ahb_clk>;
-+			reg-io-width = <4>;
-+			reg-shift = <2>;
++additionalProperties: false
 +
-+			status = "disabled";
-+		};
++examples:
++  - |
++    adau1977_spi: adau1977@0 {
++        compatible = "adi,adau1977";
++        reg = <0>;
++        spi-max-frequency = <600000>;
 +
-+		uart2: serial@70100800 {
-+			pinctrl-0 = <&uart2_pins>;
-+			pinctrl-names = "default";
-+			compatible = "ns16550a";
-+			reg = <0x70100800 0x20>;
-+			interrupts = <7>;
-+			clocks = <&ahb_clk>;
-+			reg-io-width = <4>;
-+			reg-shift = <2>;
++        AVDD-supply = <&regulator>;
++        DVDD-supply = <&regulator_digital>;
 +
-+			status = "disabled";
-+		};
++        adi,micbias = <3>;
++        reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
++    };
++  - |
++    adau1977_i2c: adau1977@11 {
++        compatible = "adi,adau1977";
++        reg = <0x11>;
 +
-+		gpio: pinctrl@71070034 {
-+			compatible = "mscc,serval-pinctrl";
-+			reg = <0x71070034 0x28>;
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&gpio 0 0 22>;
++        AVDD-supply = <&regulator>;
++        DVDD-supply = <&regulator_digital>;
 +
-+			sgpio_pins: sgpio-pins {
-+				pins = "GPIO_0", "GPIO_2", "GPIO_3", "GPIO_1";
-+				function = "sg0";
-+			};
-+
-+			i2c_pins: i2c-pins {
-+				pins = "GPIO_6", "GPIO_7";
-+				function = "twi";
-+			};
-+
-+			uart_pins: uart-pins {
-+				pins = "GPIO_26", "GPIO_27";
-+				function = "uart";
-+			};
-+
-+			uart2_pins: uart2-pins {
-+				pins = "GPIO_13", "GPIO_14";
-+				function = "uart2";
-+			};
-+
-+			cs1_pins: cs1-pins {
-+				pins = "GPIO_8";
-+				function = "si";
-+			};
-+
-+			irqext0_pins: irqext0-pins {
-+				pins = "GPIO_28";
-+				function = "irq0";
-+			};
-+
-+			irqext1_pins: irqext1-pins {
-+				pins = "GPIO_29";
-+				function = "irq1";
-+			};
-+		};
-+
-+		i2c0: i2c@70100400 {
-+			compatible = "mscc,ocelot-i2c", "snps,designware-i2c";
-+			status = "disabled";
-+			pinctrl-0 = <&i2c_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x70100400 0x100>, <0x70000190 0x8>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			interrupts = <8>;
-+			clock-frequency = <100000>;
-+			clocks = <&ahb_clk>;
-+		};
-+	};
-+};
-diff --git a/arch/mips/boot/dts/mscc/serval_common.dtsi b/arch/mips/boot/dts/mscc/serval_common.dtsi
-new file mode 100644
-index 000000000000..410236b6ee9b
---- /dev/null
-+++ b/arch/mips/boot/dts/mscc/serval_common.dtsi
-@@ -0,0 +1,127 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 Microsemi Corporation
-+ */
-+
-+#include "serval.dtsi"
-+
-+/ {
-+	aliases {
-+		serial0 = &uart0;
-+		i2c104  = &i2c104;
-+		i2c105  = &i2c105;
-+		i2c106  = &i2c106;
-+		i2c107  = &i2c107;
-+		i2c108  = &i2c108;
-+		i2c109  = &i2c109;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&gpio {
-+	i2c_pins: i2c-pins {
-+		pins = "GPIO_7"; /* No "default" scl for i2c0 */
-+		function = "twi";
-+	};
-+	i2cmux_pins_i: i2cmux-pins-i {
-+		pins = "GPIO_11", "GPIO_12", "GPIO_18", "GPIO_19",
-+			"GPIO_20", "GPIO_21";
-+		function = "twi_scl_m";
-+		output-low;
-+	};
-+	i2cmux_0: i2cmux-0 {
-+		pins = "GPIO_11";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_1: i2cmux-1 {
-+		pins = "GPIO_12";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_2: i2cmux-2 {
-+		pins = "GPIO_18";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_3: i2cmux-3 {
-+		pins = "GPIO_19";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_4: i2cmux-4 {
-+		pins = "GPIO_20";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+	i2cmux_5: i2cmux-5 {
-+		pins = "GPIO_21";
-+		function = "twi_scl_m";
-+		output-high;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+	i2c-sda-hold-time-ns = <300>;
-+};
-+
-+&ahb {
-+	i2c0_imux: i2c0-imux@0 {
-+		compatible = "i2c-mux-pinctrl";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-parent = <&i2c0>;
-+		pinctrl-names =
-+			"i2c104", "i2c105", "i2c106", "i2c107",
-+			"i2c108", "i2c109", "idle";
-+		pinctrl-0 = <&i2cmux_0>;
-+		pinctrl-1 = <&i2cmux_1>;
-+		pinctrl-2 = <&i2cmux_2>;
-+		pinctrl-3 = <&i2cmux_3>;
-+		pinctrl-4 = <&i2cmux_4>;
-+		pinctrl-5 = <&i2cmux_5>;
-+		pinctrl-6 = <&i2cmux_pins_i>;
-+		i2c104: i2c_sfp0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+		i2c105: i2c_sfp1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+		i2c106: i2c_sfp2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+		i2c107: i2c_sfp3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+		i2c108: i2c_sfp4 {
-+			reg = <4>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+		i2c109: i2c_sfp5 {
-+			reg = <5>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+};
-diff --git a/arch/mips/boot/dts/mscc/serval_pcb105.dts b/arch/mips/boot/dts/mscc/serval_pcb105.dts
-new file mode 100644
-index 000000000000..a1b0012b79d3
---- /dev/null
-+++ b/arch/mips/boot/dts/mscc/serval_pcb105.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 Microsemi Corporation
-+ */
-+
-+/dts-v1/;
-+#include "serval_common.dtsi"
-+
-+/ {
-+	model = "Serval PCB105 Reference Board";
-+	compatible = "mscc,serval-pcb105", "mscc,serval";
-+
-+	aliases {
-+	};
-+
-+};
-+
-diff --git a/arch/mips/boot/dts/mscc/serval_pcb106.dts b/arch/mips/boot/dts/mscc/serval_pcb106.dts
-new file mode 100644
-index 000000000000..237be7c8da57
---- /dev/null
-+++ b/arch/mips/boot/dts/mscc/serval_pcb106.dts
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2018 Microsemi Corporation
-+ */
-+
-+/dts-v1/;
-+#include "serval_common.dtsi"
-+
-+/ {
-+	model = "Serval PCB106 Reference Board";
-+	compatible = "mscc,serval-pcb106", "mscc,serval";
-+
-+	aliases {
-+	};
-+
-+};
-+
-diff --git a/arch/mips/generic/Kconfig b/arch/mips/generic/Kconfig
-index c7a840b8eaa6..657dd93c5e76 100644
---- a/arch/mips/generic/Kconfig
-+++ b/arch/mips/generic/Kconfig
-@@ -94,6 +94,14 @@ config FIT_IMAGE_FDT_JAGUAR2
- 	  from Microsemi in the FIT kernel image.
- 	  This requires u-boot on the platform.
- 
-+config FIT_IMAGE_FDT_SERVAL
-+	bool "Include FDT for Microsemi Serval development platforms"
-+	select SOC_VCOREIII
-+	help
-+	  Enable this to include the FDT for the Serval development platforms
-+	  from Microsemi in the FIT kernel image.
-+	  This requires u-boot on the platform.
-+
- config BOARD_INGENIC
- 	bool "Support boards based on Ingenic SoCs"
- 	select MACH_INGENIC_GENERIC
-diff --git a/arch/mips/generic/Platform b/arch/mips/generic/Platform
-index 3f2055bea596..b871af16b5b6 100644
---- a/arch/mips/generic/Platform
-+++ b/arch/mips/generic/Platform
-@@ -22,4 +22,5 @@ its-$(CONFIG_FIT_IMAGE_FDT_NI169445)	+= board-ni169445.its.S
- its-$(CONFIG_FIT_IMAGE_FDT_OCELOT)	+= board-ocelot.its.S
- its-$(CONFIG_FIT_IMAGE_FDT_LUTON)	+= board-luton.its.S
- its-$(CONFIG_FIT_IMAGE_FDT_JAGUAR2)	+= board-jaguar2.its.S
-+its-$(CONFIG_FIT_IMAGE_FDT_SERVAL)	+= board-serval.its.S
- its-$(CONFIG_FIT_IMAGE_FDT_XILFPGA)	+= board-xilfpga.its.S
-diff --git a/arch/mips/generic/board-serval.its.S b/arch/mips/generic/board-serval.its.S
-new file mode 100644
-index 000000000000..4ea4fc9d757f
---- /dev/null
-+++ b/arch/mips/generic/board-serval.its.S
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-+/ {
-+	images {
-+		fdt@serval_pcb105 {
-+			description = "MSCC Serval PCB105 Device Tree";
-+			data = /incbin/("boot/dts/mscc/serval_pcb105.dtb");
-+			type = "flat_dt";
-+			arch = "mips";
-+			compression = "none";
-+			hash@0 {
-+				algo = "sha1";
-+			};
-+		};
-+	};
-+
-+	configurations {
-+		pcb105 {
-+			description = "Serval Linux kernel";
-+			kernel = "kernel@0";
-+			fdt = "fdt@serval_pcb105";
-+			ramdisk = "ramdisk";
-+		};
-+	};
-+};
++        reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
++    };
 -- 
-2.28.0
+2.27.0
 
