@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 768822A93B5
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:08:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D3212A93B6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:08:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726732AbgKFKI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 05:08:58 -0500
-Received: from relay11.mail.gandi.net ([217.70.178.231]:52035 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726447AbgKFKI5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 05:08:57 -0500
-X-Greylist: delayed 60776 seconds by postgrey-1.27 at vger.kernel.org; Fri, 06 Nov 2020 05:08:56 EST
+        id S1726447AbgKFKI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 05:08:59 -0500
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:60907 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726621AbgKFKI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 05:08:59 -0500
+X-Originating-IP: 91.175.115.186
 Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
         (Authenticated sender: gregory.clement@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 59E7310000A;
-        Fri,  6 Nov 2020 10:08:54 +0000 (UTC)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 48FC040039;
+        Fri,  6 Nov 2020 10:08:56 +0000 (UTC)
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
 To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
@@ -26,9 +26,9 @@ Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Lars Povlsen <lars.povlsen@microchip.com>,
         <Steen.Hegelund@microchip.com>,
         Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH 1/9] dt-bindings: mips: Add luton
-Date:   Fri,  6 Nov 2020 11:08:40 +0100
-Message-Id: <20201106100849.969240-2-gregory.clement@bootlin.com>
+Subject: [PATCH 1/9] dt-bindings: mips: Add Luton
+Date:   Fri,  6 Nov 2020 11:08:41 +0100
+Message-Id: <20201106100849.969240-3-gregory.clement@bootlin.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <20201106100849.969240-1-gregory.clement@bootlin.com>
 References: <20201106100849.969240-1-gregory.clement@bootlin.com>
@@ -38,7 +38,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Luton SoCs belongs to the same family as Ocelot.
+Luton SoC belongs to the same family as Ocelot.
 
 Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 ---
