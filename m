@@ -2,110 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 039792A96DC
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 14:17:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C7782A9747
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 14:56:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727093AbgKFNRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 08:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60912 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726939AbgKFNRR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 08:17:17 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38995C0613CF;
-        Fri,  6 Nov 2020 05:17:17 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id 126so1860678lfi.8;
-        Fri, 06 Nov 2020 05:17:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PfeixKrzsL46qhVQbUUdb6DbSd1S0EMYRuybLQNU1/k=;
-        b=lg3hkZm7P25mT76/EiBZKMX9rM35SHKXFtDDMNMyuybG7pZ9GLdujDnb/snXEdZuOE
-         O1XEA9ClNNtaX5qSYh7ncrwbbztO4OLS1Tz0Whoh0CkglFXZtqLJZrGYf4qMX7xbO4N9
-         kP0OrdkSIWnmeqH9Syo0ZE91d0lbC13DJUCcVloa24tNriQ9PbAU1usA16wtQm2RaqeB
-         Q2Vze3+ENHkimZDRFaupbyfMF9A5/sjGDv24PaYkJkspH0+kyNRFWbP7C5sXzxYJK38b
-         RAOCNA6IR6HuCs4WSAyuab6Hb0IKVlIorOLMIzPq7sTruYyAKH9DW8JL59OaCl/toWXN
-         62hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PfeixKrzsL46qhVQbUUdb6DbSd1S0EMYRuybLQNU1/k=;
-        b=Gk/3BEhWYHBYyuhetlW0n6fa7sO3UjNYkLB8/jGxYIMRBDVYIl2lB8BFPATBcXYqjQ
-         rcYm3AOICNrl8l3a44FQpD5R+DQiyHZzm+GrGk2Y6cGPb5G/ZNeTLHnqcfhgiKyx540g
-         2gNDJNRKbY82p/2iAZF6qJuq+SYpDIl5Q9AwhDnijGZpFfPG1lIgi6vnW/IfxjTboicl
-         0vCIXmXv2KAc2fkJM2L2T1czJhakuD0qVYaTzUxaS/A8W9WEzk6or596+T6Rj/+lN/8N
-         sevwbl4iU7x3n7Z98GM4jlkIHHsJDGoLXbfKpGH4qs7a7Zl/ZbITTE94w/faLEjXJkm9
-         HDyQ==
-X-Gm-Message-State: AOAM532D+EkPoYt8CEFxbN9QSbEGmnevZvz5MikjsbwhPH9O3CdslMR7
-        wT4Mu6ANtXLKWLRgQXtkBeIPCOGFiBY=
-X-Google-Smtp-Source: ABdhPJzECHN6OMSqEGY9TM6AG4zUXHGmlFcCs46h2OzcdpdI3/ezCJG0veXmwpdjSihGTDog0yaTzA==
-X-Received: by 2002:a19:f518:: with SMTP id j24mr830455lfb.307.1604668635552;
-        Fri, 06 Nov 2020 05:17:15 -0800 (PST)
-Received: from [192.168.2.145] (109-252-192-83.dynamic.spd-mgts.ru. [109.252.192.83])
-        by smtp.googlemail.com with ESMTPSA id 9sm159077lfy.251.2020.11.06.05.17.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Nov 2020 05:17:14 -0800 (PST)
-Subject: Re: [PATCH v1 17/30] mmc: sdhci-tegra: Support OPP and core voltage
- scaling
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        driver-dev <devel@driverdev.osuosl.org>,
-        linux-pwm@vger.kernel.org,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org,
-        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-tegra@vger.kernel.org, linux-media@vger.kernel.org
-References: <20201104234427.26477-1-digetx@gmail.com>
- <20201104234427.26477-18-digetx@gmail.com>
- <CAOh2x==sy1w7_oEV8=toC6uQnSN44wyOixbP_X0BrMsnm1AUFg@mail.gmail.com>
- <6fa54ce6-d5ae-d04f-7c77-b62c148d92b7@gmail.com>
- <20201106061513.uyys7njcqcdlah67@vireshk-i7>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <a6926456-8bce-a438-bfaa-be334208f004@gmail.com>
-Date:   Fri, 6 Nov 2020 16:17:13 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727346AbgKFN4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 08:56:51 -0500
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2065 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727053AbgKFN4v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 08:56:51 -0500
+X-Greylist: delayed 1186 seconds by postgrey-1.27 at vger.kernel.org; Fri, 06 Nov 2020 08:56:50 EST
+Received: from fraeml737-chm.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4CSLx93FMhz67Grv;
+        Fri,  6 Nov 2020 21:35:25 +0800 (CST)
+Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
+ fraeml737-chm.china.huawei.com (10.206.15.218) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Fri, 6 Nov 2020 14:37:02 +0100
+Received: from [10.47.7.5] (10.47.7.5) by lhreml724-chm.china.huawei.com
+ (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 6 Nov 2020
+ 13:37:01 +0000
+Subject: Re: [PATCH v2 0/4] perf drivers: Add sysfs identifier file
+To:     <Frank.li@nxp.com>, <will@kernel.org>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>, <zhangshaokun@hisilicon.com>,
+        <qiangqing.zhang@nxp.com>
+CC:     <linuxarm@huawei.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <acme@kernel.org>,
+        <jolsa@redhat.com>, <irogers@google.com>
+References: <1602149181-237415-1-git-send-email-john.garry@huawei.com>
+From:   John Garry <john.garry@huawei.com>
+Message-ID: <6b6b96d0-19c7-8be7-5742-ed01b5b891cc@huawei.com>
+Date:   Fri, 6 Nov 2020 13:36:56 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.2
 MIME-Version: 1.0
-In-Reply-To: <20201106061513.uyys7njcqcdlah67@vireshk-i7>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <1602149181-237415-1-git-send-email-john.garry@huawei.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.47.7.5]
+X-ClientProxiedBy: lhreml738-chm.china.huawei.com (10.201.108.188) To
+ lhreml724-chm.china.huawei.com (10.201.108.75)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.11.2020 09:15, Viresh Kumar пишет:
-> Setting regulators for count as 0 doesn't sound good to me.
-> 
-> But, I understand that you don't want to have that if (have_regulator)
-> check, and it is a fair request. What I will instead do is, allow all
-> dev_pm_opp_put*() API to start accepting a NULL pointer for the OPP
-> table and fail silently. And so you won't be required to have this
-> unwanted check. But you will be required to save the pointer returned
-> back by dev_pm_opp_set_regulators(), which is the right thing to do
-> anyways.
+On 08/10/2020 10:26, John Garry wrote:
 
-Perhaps even a better variant could be to add a devm versions of the OPP
-API functions, then drivers won't need to care about storing the
-opp_table pointer if it's unused by drivers.
+Hi Will, Mark,
+
+Can you have a look at this series please?
+
+You were cc'ed on the v5 rebase of the userspace part which I sent out a 
+little while ago.
+
+Cheers,
+John
+
+> To allow perf tool to identify a specific implementation of a PMU for
+> event alias matching and metric support, expose a per-PMU identifier file.
+> 
+> There is no standard format for the identifier string. It just should be
+> unique per HW implementation.
+> 
+> Typical methods to retrieve the information for the identifier string
+> can include:
+> - Hardcoding in the driver, matched via DT bindings compat string,
+>    ACPI HID, or similar
+> - Directly from DT bindings property
+> - Read from some HW identification register
+> 
+> In this series, for the SMMUv3 PMU and HiSi uncore drivers, a HW ID
+> register is read for the identifier. For the imx8 ddr driver, the
+> identifier is hardcoded, matched via DT compat string.
+> 
+> Joakim Zhang (2):
+>    bindings/perf/imx-ddr: update compatible string
+>    perf/imx_ddr: Add system PMU identifier for userspace
+> 
+> John Garry (2):
+>    drivers/perf: hisi: Add identifier sysfs file
+>    perf/smmuv3: Support sysfs identifier file
+> 
+>   .../devicetree/bindings/perf/fsl-imx-ddr.txt  |  3 ++
+>   drivers/perf/arm_smmuv3_pmu.c                 | 39 ++++++++++++++++
+>   drivers/perf/fsl_imx8_ddr_perf.c              | 45 +++++++++++++++++--
+>   drivers/perf/hisilicon/hisi_uncore_ddrc_pmu.c | 16 +++++++
+>   drivers/perf/hisilicon/hisi_uncore_hha_pmu.c  | 16 +++++++
+>   drivers/perf/hisilicon/hisi_uncore_l3c_pmu.c  | 16 +++++++
+>   drivers/perf/hisilicon/hisi_uncore_pmu.c      | 10 +++++
+>   drivers/perf/hisilicon/hisi_uncore_pmu.h      |  7 +++
+>   8 files changed, 149 insertions(+), 3 deletions(-)
+> 
+
