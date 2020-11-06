@@ -2,118 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E282A951B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:16:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9F0F2A9526
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:24:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727211AbgKFLQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 06:16:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41604 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727206AbgKFLP7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 06:15:59 -0500
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB0D7C0613CF;
-        Fri,  6 Nov 2020 03:15:59 -0800 (PST)
-Received: by mail-io1-xd41.google.com with SMTP id s10so1080294ioe.1;
-        Fri, 06 Nov 2020 03:15:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=41N4iyrnh8OuPHFXWNvNlbvAqc/lcoCIqss0sAtNtRk=;
-        b=btxg5UCBvPd4SGfvaJaBc5xU7ZIjue7YeXUkBXWOLe36VsruFkDQ4zQW8bBegsIrTm
-         JbGwiWDImfpV7Qo0gTFXPk5EB2mfVuNk+qltmtVjVbWIawHJVlklo5QzxfP5WFrfkwYq
-         VM00vpRM17KUAY49zyeNCQ4wiIsGMhvGUhEjVvF0gvQloOIxqFi3Nug9ezg/tIVN9UvM
-         sR4izsMufNNVrUIlXqoSvKVDY8OtiLwREZ9n0m/7153GfThN2LT2kmjm6JdfgUL983j5
-         pLcodCvQ5JjjJ9GN3ta5j+a6p1P9BTdPrVESGE5KnKubkqcQGGpYxDNMhPW0Yoz1743+
-         +kmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=41N4iyrnh8OuPHFXWNvNlbvAqc/lcoCIqss0sAtNtRk=;
-        b=V2A6lw+Nq7UjBnP1KGZ5Qc1xSg7c3gviIVqVK9OJtd18ul/0N5Bppfy2h/Ha/hgzVC
-         yljm0zlO8IC3P3QbVEa27A3Ab4+XJZz0W8bAUWsge85qSqIvjLNTOJouRQJicqHqDgkk
-         B03QmuJq1wkC+qdzBDsAJfBLMosE7L4uoWRV2oVHuCTOdO51/TogpBdEMumiR9GOMeR3
-         BfPqerWLp5SY0sj7I3CJiJc8RRU67Xn2eXveupB3fUHFJgQwJvR6OLRLEbyD1IdMO/nC
-         NFUpLl3E361ncsBg3/5j9QT72NHuuzCFqTfcjZmBWk2q4i/t4lG4f3YJJnIppRin7++k
-         J/mg==
-X-Gm-Message-State: AOAM5314T6jfWN8zplcJFvj/9CXZR6SgIDgMKfxH1sZojXo8vq+0z/gw
-        XZ8tQbcHbIrLxLp2AmPpsN0=
-X-Google-Smtp-Source: ABdhPJw0gMdKrPpOubLw6EbmCv/7DUzUStPwjlCJ4YJHsfZFpZJTTri5lYLSQsgWcH5RqifCcianrg==
-X-Received: by 2002:a5d:9842:: with SMTP id p2mr1033351ios.113.1604661359089;
-        Fri, 06 Nov 2020 03:15:59 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:8492:7d60:7e29:2784])
-        by smtp.gmail.com with ESMTPSA id x5sm854597ilc.15.2020.11.06.03.15.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2020 03:15:58 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        id S1726565AbgKFLYw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 06:24:52 -0500
+Received: from mout.gmx.net ([212.227.15.15]:44167 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726317AbgKFLYw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 06:24:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1604661873;
+        bh=lhohKOIKXj6+coWa/IJX1bitwsLCvLPmJdHjI+nhsnE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=GJXP6IfKeFDNRJ+XoBldtgS/wBB50nySNORmA3RTL6nS1rVojMCgcAPVidl1rSKjJ
+         NCRMidOI8CuJQVWC8m+VTVHX3chqDVaM2nivtP76qATf4Msc4nkI/cHSC7VIy5+s+1
+         AnwkrzLVAz152j0OeGdv3cFjMBH+Ap5Hti3wdTQE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MvsIv-1kImaF3R1r-00svoh; Fri, 06
+ Nov 2020 12:24:32 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-input@vger.kernel.org
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V3 5/5] arm64: dts: imx8mn: Add node for SPDIF
-Date:   Fri,  6 Nov 2020 05:15:43 -0600
-Message-Id: <20201106111543.1806809-5-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201106111543.1806809-1-aford173@gmail.com>
-References: <20201106111543.1806809-1-aford173@gmail.com>
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/3] Support for ELAN eKTF2132 touchscreens
+Date:   Fri,  6 Nov 2020 12:24:09 +0100
+Message-Id: <20201106112412.390724-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:OmafO1ws4UlwhI8UAMxZtjR30SIUl9Uf9v8vCFwPANj/cHkC1+b
+ e5Fq2UrKNM1RLhVM2Gmc5Z3akcX6e8/r4W2A4KM7pae4R9LJ/Dnn7zO0lAtSN6eAySC3kGT
+ foMuSzwUOFRij6kkGpoQZKf47B8tVRPRRqRmGjy9Z9vn0sUWrzGyc5ND+jxkbKcX39Ns91B
+ +Sgzo/2b3LWvhXUx3Xd6Q==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:rcf8h5w3onQ=:b9YeVKlIPWbuKNBSGa+plZ
+ Mz6yRbCRDiZx63rgKo/F7ivAgDtdEENdy4Fv3PkpHYEj330yT5NNqDBnZ0s658xumiBHuJfjS
+ 72SxPHBqtgWA68BCOMddndWjnBKPMI9YY6HguUh8aDP6T87jFDyJZIhLq/L29x+tb6OG/ngHF
+ pbg7NLotASkA79F4iIhihMjEHW+hHRzQ/vSIp0UdQRpGViXobh4Fniq8sNsHHn5NdsFOzm+Tl
+ u9GrhF5hZRWWRuebc2dcD6XUOnZp5yA4980ZKLbABejGK6Vx6A6Q5FifKJwD6FQ2q6uaQkRb6
+ OSVM69z03A/NPBhjYCqLS3X7nXMsGu47Mg4WakUa7mBpv0EYLUTwoPw8UrqOR9nLDRwuZHyIo
+ VEARvfeyV1/Fp1hRBQKnf7Rz/bnYJ4owINZ9JV+u/C1m1iLD1c3p58jVfwO/MLdgwaBn0oGqq
+ FSCt13/tcSCEx8dUeJ6vxZ5CT8Cx+YW00yD4nc6RsodxU3ClmgI+mAonXErLeHQGAJH7pVwbA
+ zG8kue48JIfO5Qt+qjRYvf01zO31cZemAq0KnN72MIPP7SWaafZf+kfOAq90QhHNKuEjt/6+D
+ rec91U4AShsy32zm4qq9K5s17Tw9wwIuAaLkNa8LiLf4n8cAPSGPWVu+Am6rgga6KkWP70pkB
+ kbEON/e3WHXwDnGiAKGpyDJ2O05a5tyAv3wvAYCLEvtO89hZzbMR6IwMayXDTMtjzl8jTR/QJ
+ Nq3OZMz6jJnw8lLO6ZrOnhyeiJU8BvwxTemM/2A6MwcyK/XGCa8SWjzsDwPCcLlZiXGcGuVaZ
+ v5syP0HHkNZJciVvRCEfFTm6t9tbZsfa13NS4wuhulSXs2EfyjKoZIbSvH98jJvUxW8Td7F98
+ qbsjmKJ9cK8ICxPH6u1/p90WGwC7ZMxbhfMLHrZS4=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX8M Nano can support SPDIF which is compatible to the
-IP used on the i.MX35.
+This series adds support for the ELAN eKTF2132 touchscreen controller to
+the existing ektf2127 driver. It is similar to the eKTF2127, but it uses
+a different packet type and format to report touch events.
 
-Add the node.
+My understanding of the packet format is based on the Kobo Arua vendor
+kernel: https://github.com/neuschaefer/linux/blob/vendor/kobo-aura/drivers=
+/input/touchscreen/elan_touch_i2c.c#L237
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V3:  No Change
-V2:  No Change
+Jonathan Neusch=C3=A4fer (3):
+  dt-bindings: input: ektf2127: Add elan,ektf2132 compatible string
+  Input: ektf2127 - Add support for eKTF2132 touchscreen
+  ARM: dts: imx50-kobo-aura: Enable eKTF2132 touchscreen
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index aa3f1eb391bd..ee1790230490 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -337,6 +337,30 @@ micfil: audio-controller@30080000 {
- 					status = "disabled";
- 				};
- 
-+				spdif1: spdif@30090000 {
-+					compatible = "fsl,imx35-spdif";
-+					reg = <0x30090000 0x10000>;
-+					interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+					clocks = <&clk IMX8MN_CLK_AUDIO_AHB>, /* core */
-+						 <&clk IMX8MN_CLK_24M>, /* rxtx0 */
-+						 <&clk IMX8MN_CLK_SPDIF1>, /* rxtx1 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx2 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx3 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx4 */
-+						 <&clk IMX8MN_CLK_AUDIO_AHB>, /* rxtx5 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx6 */
-+						 <&clk IMX8MN_CLK_DUMMY>, /* rxtx7 */
-+						 <&clk IMX8MN_CLK_DUMMY>; /* spba */
-+					clock-names = "core", "rxtx0",
-+						      "rxtx1", "rxtx2",
-+						      "rxtx3", "rxtx4",
-+						      "rxtx5", "rxtx6",
-+						      "rxtx7", "spba";
-+					dmas = <&sdma2 28 18 0>, <&sdma2 29 18 0>;
-+					dma-names = "rx", "tx";
-+					status = "disabled";
-+				};
-+
- 				sai7: sai@300b0000 {
- 					compatible = "fsl,imx8mm-sai", "fsl,imx8mq-sai";
- 					reg = <0x300b0000 0x10000>;
--- 
-2.25.1
+ .../bindings/input/touchscreen/ektf2127.txt   |  2 +-
+ arch/arm/boot/dts/imx50-kobo-aura.dts         | 16 +++++++++-
+ drivers/input/touchscreen/ektf2127.c          | 32 ++++++++++++++++++-
+ 3 files changed, 47 insertions(+), 3 deletions(-)
+
+=2D-
+2.28.0
 
