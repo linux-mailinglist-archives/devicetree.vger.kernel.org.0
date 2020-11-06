@@ -2,107 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBEAC2A9035
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 08:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A592A9055
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 08:30:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726242AbgKFHXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 02:23:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45638 "EHLO mail.kernel.org"
+        id S1726406AbgKFHaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 02:30:21 -0500
+Received: from m42-4.mailgun.net ([69.72.42.4]:43892 "EHLO m42-4.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725828AbgKFHXY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 02:23:24 -0500
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726262AbgKFHaU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 02:30:20 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1604647820; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=ZGXXuu6qBXSfftqrulNTywUK6S0YxZhWGm7WSxymbYY=; b=PrRyGjv9u5W2dZJ1M9ZCR+cXU+issLjhzeemv9ATPNDSQ/f1c/QzGZ0nu0tE2VFcmMN3Clvl
+ PXmkdWv0zZsH/D5lXEUnlk3e/2/TvhTHzWnp0VPkBJSZhOORDLeLqmbryvHCr2MQ5+Vu82Ev
+ irlKZTQzI5rZDoT1rTWgcMjs/l0=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
+ 5fa4fb812e911a5cba9f7d83 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 06 Nov 2020 07:30:09
+ GMT
+Sender: akhilpo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 8FF87C433C9; Fri,  6 Nov 2020 07:30:09 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.9] (unknown [117.210.190.231])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E346F20825;
-        Fri,  6 Nov 2020 07:23:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604647403;
-        bh=bZJj9WzPD8oFm2s1+akaeCuY5a6U01z3MrdDbjK8/Wg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SIcEk99OJ4VFTbYW0yjOffgikbLeXsA+wGZwFN+Y8mCjh7EPIIibbGa5bK+p5Y+iJ
-         TjCrMctji9tbz6sdmeR5D90XVG7CS0wFRHlQetPCM1jPQhgEWoavBDWYwCqzTL/UoQ
-         /NLE8cZ86XvPHeVG7xAcrlFVIjVfRPKuzGMjSC9g=
-Date:   Fri, 6 Nov 2020 08:24:10 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 17/18] driver core: Add helper functions to convert
- fwnode links to device links
-Message-ID: <20201106072410.GC2614221@kroah.com>
-References: <20201104232356.4038506-1-saravanak@google.com>
- <20201104232356.4038506-18-saravanak@google.com>
- <20201105094350.GG3439341@kroah.com>
- <CAGETcx--D_KCpvK3b9NAQbMgWxzYT6MGEav1h2M8V7f=wK5L6A@mail.gmail.com>
+        (Authenticated sender: akhilpo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8529EC433C8;
+        Fri,  6 Nov 2020 07:30:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8529EC433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
+Subject: Re: [Freedreno] [PATCH v5 3/3] dt-bindings: drm/msm/gpu: Add cooling
+ device support
+To:     Rob Clark <robdclark@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        dri-devel@freedesktop.org,
+        freedreno <freedreno@lists.freedesktop.org>
+References: <1604054832-3114-1-git-send-email-akhilpo@codeaurora.org>
+ <1604054832-3114-3-git-send-email-akhilpo@codeaurora.org>
+ <20201104200300.GA4036650@bogus>
+ <CAF6AEGvj34MbnRS+A432AhOwMuL2BtTXJ+AD+zQ9w0_meV_-gw@mail.gmail.com>
+From:   Akhil P Oommen <akhilpo@codeaurora.org>
+Message-ID: <8c28fe20-fbcf-5076-fad8-107073df63a5@codeaurora.org>
+Date:   Fri, 6 Nov 2020 13:00:01 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx--D_KCpvK3b9NAQbMgWxzYT6MGEav1h2M8V7f=wK5L6A@mail.gmail.com>
+In-Reply-To: <CAF6AEGvj34MbnRS+A432AhOwMuL2BtTXJ+AD+zQ9w0_meV_-gw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 03:32:05PM -0800, Saravana Kannan wrote:
-> On Thu, Nov 5, 2020 at 1:43 AM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Wed, Nov 04, 2020 at 03:23:54PM -0800, Saravana Kannan wrote:
-> > > Add helper functions __fw_devlink_link_to_consumers() and
-> > > __fw_devlink_link_to_suppliers() that convert fwnode links to device
-> > > links.
-> > >
-> > > __fw_devlink_link_to_consumers() is for creating:
-> > > - Device links between a newly added device and all its consumer devices
-> > >   that have been added to driver core.
-> > > - Proxy SYNC_STATE_ONLY device links between the newly added device and
-> > >   the parent devices of all its consumers that have not been added to
-> > >   driver core yet.
-> > >
-> > > __fw_devlink_link_to_suppliers() is for creating:
-> > > - Device links between a newly added device and all its supplier devices
-> > > - Proxy SYNC_STATE_ONLY device links between the newly added device and
-> > >   all the supplier devices of its child device nodes.
-> > >
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >
-> > Did you just add build warnings with these static functions that no one
-> > calls?
+On 11/5/2020 2:28 AM, Rob Clark wrote:
+> On Wed, Nov 4, 2020 at 12:03 PM Rob Herring <robh@kernel.org> wrote:
+>>
+>> On Fri, 30 Oct 2020 16:17:12 +0530, Akhil P Oommen wrote:
+>>> Add cooling device support to gpu. A cooling device is bound to a
+>>> thermal zone to allow thermal mitigation.
+>>>
+>>> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
+>>> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+>>> ---
+>>>   Documentation/devicetree/bindings/display/msm/gpu.txt | 7 +++++++
+>>>   1 file changed, 7 insertions(+)
+>>>
+>>
+>>
+>> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+>> there's no need to repost patches *only* to add the tags. The upstream
+>> maintainer will do that for acks received on the version they apply.
+>>
+>> If a tag was not added on purpose, please state why and what changed.
+>>
 > 
-> The next patch in this series uses it. I'm just splitting it up into a
-> separate patch so that it's digestible and I can provide more details
-> in the commit text.
+> 
+> Thanks Rob
+> 
+> I've copied over your ack from the previous version.. but yes, it
+> definitely makes my life easier when patch senders do this for me ;-)
+> 
+> BR,
+> -R
+> 
+Robh, you Acked v4 after I shared v5 patches!!
 
-But you can not add build warnings, you know this :)
-
-> Couple of options:
-> 1. Drop the static in this patch and add it back when it's used in patch 18/18.
-> 2. Drop the commit text and squash this with 18/18 if you think the
-> function documentation is clear enough and it won't make patch 18/18
-> too hard to review.
-
-It is hard to review new functions when you do not see them being used,
-otherwise you have to flip back and forth between patches, which is
-difficult.
-
-Add the functions, and use them, in the same patch.  Otherwise we have
-no idea _HOW_ you are using them, or even if you end up using them at
-all.
-
-thanks,
-
-greg k-h
+-Akhil.
