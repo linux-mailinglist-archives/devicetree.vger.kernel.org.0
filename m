@@ -2,92 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A85F32A9F88
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 22:51:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 289A62A9F54
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 22:46:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728536AbgKFVvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 16:51:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57154 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728878AbgKFVvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 16:51:08 -0500
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DFF1C0613CF;
-        Fri,  6 Nov 2020 13:51:08 -0800 (PST)
-Received: by mail-pf1-x443.google.com with SMTP id c20so2601111pfr.8;
-        Fri, 06 Nov 2020 13:51:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=cCOSuspQFM76bwwc9KyVB4ygiOrAQrMSCa7jrT+WOiE=;
-        b=fofen6cX59+NrDsXNP2Ikx/VA8W/q34luWai9k3YMyeCn+Iq80JuJ+hdDhMEmzVBiU
-         DzqUnMDf/t9ouMeF5UBMoNklNSCLeaNflA6Dq5A/Gvjbsi0vSf/DnJHzwQlk/Zt6asZ1
-         5eMTrEjzTLJedHDomM3i159NfKz0tg6AeyPJ602FdfxzIiVNIWdHppHAwgFyjIYkQwnP
-         JcrolOhV4v2gF4RA+ODyZhyI3aJT6uqWl1PLX5Y4mNb8N+sI/xt6uXOQZPjISd83/nBu
-         eUcHzb0cbGjpOaKQ63JFyqqsjIpSq5L6JnkQLJg8PO1m1XPPwX/DQkIQ5kGy6vgFKX2f
-         H6uQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cCOSuspQFM76bwwc9KyVB4ygiOrAQrMSCa7jrT+WOiE=;
-        b=q4iAOeA50hPm5i/pbqm30iO+vbiIhFTzWi2XI3Jvx88ZBDT62TMHgVf6fnG9k60GHU
-         sw/ajF4tRmZ6ejzSccrWGxfTIXS/NWnDiSbH4nZGnsTBBRmpBcMnVHASEDpStCco/K1e
-         DKXFNxgFr8+YxyzoehKEG+Z13bYai3IjZZJqYeLASAk4KnLHL3C0hSHovzpv4kjVlR0T
-         YxjklT1STBqLvwtLHos1myp4yvicgFxP2HpREw7Y34nrTfbcSqYLbGtKNG5WNX6ezOOE
-         ilCW8rA0DmJfAdNsLuArAueVELQyoYWIqMpu89tLgsn+O9ShXFuKCUlV7CM6Gq2QY48z
-         5HjQ==
-X-Gm-Message-State: AOAM531GGzZFa8gJ3ApIotH/ii0/hwHe/HHPBizjN9IwEoOKdPUN7yBW
-        +UmV5mLK0dV0iVrg6DCGuA97lCVx8kkSqw==
-X-Google-Smtp-Source: ABdhPJx5mzL06fdjlBBcKuJ33iLkGeOMrXk9Sm8CfjP+23T56yaZQTLdQP60v9qx3wxztk7dMHUDJg==
-X-Received: by 2002:a17:90b:496:: with SMTP id bh22mr1721827pjb.120.1604699468015;
-        Fri, 06 Nov 2020 13:51:08 -0800 (PST)
-Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id q23sm3170599pfg.192.2020.11.06.13.51.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 06 Nov 2020 13:51:07 -0800 (PST)
-Date:   Fri, 6 Nov 2020 13:38:58 -0800
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
-        Timur Tabi <timur@kernel.org>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org, Takashi Iwai <tiwai@suse.com>,
+        id S1727859AbgKFVqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 16:46:48 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:54548 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728592AbgKFVqs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 16:46:48 -0500
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A6LkdaP037587;
+        Fri, 6 Nov 2020 15:46:39 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604699199;
+        bh=zsJRQ7MV3ODiDNe82AFoOfWuvXT4a+QaiBnCNXKpQDQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=gvQB0XqZdWzg01+ldQDIXFRqsTofUwzNf0jv4ei1S00Bvsd8JxEiItRP2pWGzAEA5
+         9YIRyzzbOnN1vl8FSYHlzkL7/+2YRfNmfXZ98MBwDBwBRxysUQtH1wetF6LNY5zhOu
+         1YujNuFbM5cAIcILA06XYgaQK3aeRB89q1A9RONQ=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A6Lkdir096847
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 6 Nov 2020 15:46:39 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 6 Nov
+ 2020 15:46:38 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 6 Nov 2020 15:46:38 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A6LkcNn041136;
+        Fri, 6 Nov 2020 15:46:38 -0600
+Date:   Fri, 6 Nov 2020 15:46:38 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+CC:     Roger Quadros <rogerq@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] ASoC: fsl_aud2htx: Add aud2htx module driver
-Message-ID: <20201106213857.GB3927@Asurada-Nvidia>
-References: <1604281947-26874-1-git-send-email-shengjiu.wang@nxp.com>
- <1604281947-26874-2-git-send-email-shengjiu.wang@nxp.com>
- <20201105013539.GA16459@Asurada-Nvidia>
- <CAA+D8ANrkgXR+8JGp4fPLvkKJ05EqQyShWTO+xWpPOycPT9Tyw@mail.gmail.com>
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
+ SoC dtsi level
+Message-ID: <20201106214638.amgltswy6dygnyee@tubular>
+References: <20201104224356.18040-1-nm@ti.com>
+ <20201104224356.18040-3-nm@ti.com>
+ <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
+ <20201105140806.326ubfppb4guexpi@cultural>
+ <37b4b284-0da5-c602-82a2-2b672f89891f@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CAA+D8ANrkgXR+8JGp4fPLvkKJ05EqQyShWTO+xWpPOycPT9Tyw@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <37b4b284-0da5-c602-82a2-2b672f89891f@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 06, 2020 at 10:51:03AM +0800, Shengjiu Wang wrote:
-
-> > > +static irqreturn_t fsl_aud2htx_isr(int irq, void *dev_id)
-> > > +{
-> > > +     return IRQ_HANDLED;
-> >
-> > Empty isr? Perhaps can drop the request_irq() at all?
+On 13:32-20201106, Peter Ujfalusi wrote:
+[...]
+> > 
+> >>
+> >>> default power management functionality etc
+> >>
+> >> Right, so how does that helps with devices present in the SoC, but no
+> >> node at all? First thing which comes to mind is AASRC, we don't have
+> >> Linux driver for it (and no DT binding document), but that does not mean
+> >> that it is not present. How PM would take that into account?
+> > 
+> > I think we are mixing topics here -> I was stating the motivation why
+> > devicetree chose such as default.
 > 
-> I'd like to keep this for future enhancement, what do you think?
+> I don't question the fact that 'okay' is the default status if it is not
+> explicitly present. There is no better default than that.
 
-I believe that usually it will be a common practice that we add
-when we use it -- exaggerating the situation, just like you will
-not actually add an empty driver for future enhancement.
+^^ -> Alright, that is all we are trying to do here: defaults in the
+SoC.dtsi and specific cleanups (firmware reserved / board unused
+disables) be done in a common board.dtsi (for now, there is no such
+specific need, I guess).
 
-But I am not strongly against it, as it's small. Since Mark has
-applied it, let's keep it then.
+[..]
+
+> 
+> >> The reason why we kept McASP nodes (and dss) disabled in the soc dtsi
+> >> file is that they are not operation in the form they present in there.
+> >> They _need_ additional properties to be operational and those properties
+> >> can only be added in the board dts file.
+> > 
+> > I dont think we are changing anything in the output dtb files,
+> 
+> Correct, the resulted dtb is identical. If the developer for upcoming
+> boards did check the schematics vs TRM vs dtsi and spot the things that
+> is not configured.
+
+Yes.
+
+> 
+> > we are
+> > just leaving the defaults as dt defaults and set the disable state in
+> > board dts OR common board dtsi.
+> 
+> Yes, we leave the non working/configured node 'okay' in dtsi and expect
+> that the board file author will know which node must be disabled because
+> it is incomplete.
+
+Yes - I understand(and empathise) the implicit omission error risk we
+are incurring here. I will add that to the commit message as well.
+
+> >> This is not remotely a subjective view, this is the opposite of
+> >> subjectivity.
+> > 
+> > the usage of McASP was'nt meant as (c).. it is (b). is there a better way
+> > to describe this in a generic manner?
+> 
+> I had my saying on that ever since I have been taking care of audio on
+> TI SoCs ;)
+> 
+> I used similar analogy in a private thread around this, but imho it fits
+> the case neatly:
+> car == McASP
+> 
+> you don't put an 'okay' (as is ready, operational) stamp on the car in
+> the middle of the production line when the engine is not even installed.
+
+Completely agree with you. we are just insisting that this be done in
+either common board.dtsi OR board.dtsi where applicable.
+
+> 
+
+[..]
+
+> > Alright - what do we suggest we do?
+> 
+> Not sure, I'm 'whatever' after [1] makes it to mainline or next.
+[....]
+> [1]
+> https://lore.kernel.org/alsa-devel/20201106072551.689-1-peter.ujfalusi@ti.com/
+
+
+I don't see the relationship between the series.. I think this series
+brings no change in dtb, hence with OR without your driver cleanup
+series, there is no practical regressions.
+> 
+> > Tony, Rob - I need some guidance here.
+> 
+> I'm fine whatever way we take, but I think it is up to you to make the
+> call as the maintainer of the TI dts files... ;)
+
+Yep - I have'nt seen a reason yet that must cause us to change from the
+Device tree default approach in our debates.
+
+
+As Tony already pointed out.. if we start seeing a lot more boards for
+an SoC..
+Instead of (reverse issue- where we have a lot of places where people are
+doing "okay" problem):
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=12afc0cf81210969756daecd7eb48b307f08faed
+
+We should look at ways to consolidate in a common-board.dtsi
+
+> 
+> >>
+> >>>  &serdes0 {
+> > 	[...]
+> >>>  
+> >>>  	watchdog0: watchdog@2200000 {
+> >>>
+> >>
+> >> There is no such a tag, but:
+> >> whatever-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> > 
+> > OK - I have no idea how B4 or patchworks pick that one as :D
+> 
+> If we take this road, than I'm okay with it, but I'm going to take
+> silent protest (not sending acked-by or revired-by).
+> That should not stop you doing what you believe is best for the future!
+
+OK - thanks for your review and the discussions, always appreciate
+getting our views out there.
+
+if there are no other comments, I will try and post a v2 over the
+weekend.
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
