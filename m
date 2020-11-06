@@ -2,194 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 919B82A8DB9
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 04:48:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BAFF72A8E21
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 05:15:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726074AbgKFDsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 22:48:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726072AbgKFDsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 22:48:51 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDE4C0613D2
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 19:48:49 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id s30so5454304lfc.4
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 19:48:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ppVeo0b190qF2Ptj5wRZlt8bVEFE8U+FRbqIrPfzfO0=;
-        b=Y0OvGdC7Ay1jBPx9c95rwCWL5YO1NKIyLtH3RBjJqksuu5AmwVeqJA3yAVePeFJpD+
-         FNnIveyBAgJypsaK51ANwnqRY7vR4BDOlrKMA1BLxssBAe6rezmriag1QbajUoT/ZYrN
-         ia/BNKgIUF2Dh8y1MMAUsf9DpJByCV5DJS2VJkfHelErXdtSUlMof+LOnHR2w5t7Lgp8
-         qXDVuCE4fh3v7LRCzvKaV2W42Pcpn+WomjbzeSw0L8WQ5PBPJfLgYXwY7wEsOObmFR7E
-         MQuyqNeRdqW4WggiOLj3w/oToWlhsUSpLUpGXRyZ/xcdo2KG7q7xYzh1w+ag4jRU6Hmu
-         2PVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ppVeo0b190qF2Ptj5wRZlt8bVEFE8U+FRbqIrPfzfO0=;
-        b=PzRM44KRAJfLh/o3iK+xnq8ibtPn+SoAYKHA0WnJrKl8VWH6fyhz9/3ULS5ZilkCQ5
-         ZYJ40xtAwls1jb62kLdheqgS4wl7n9jpvFd1MX6tqvAHnpGTG6gD0euK70z92cwDLgz/
-         rCSg5ZuAhCHRyyWVl0oRRtdEpnqxgZ+9hO5j6hN0gkmcahdZ78UJTZGYnz0nnHZi4yKr
-         bYosqMWreuT1XE2si4naGzcVAmlBlkTNgaoJbvETYtbUh08s2tlf7fp4QCDqtm5Uuwcr
-         q7xjdfeX1Mzj6W6KKaQz3RV/6Uaij6nIcoXI5rXSSadC7Nljso6ErJeCErWGxlbv0VJV
-         41/g==
-X-Gm-Message-State: AOAM531yAoTfZbHGHDBS94+MviZc1+YLAkSzgD0jGesMxfoSLJpLDMtS
-        ygqVaUbDQ5wmDqEJIjG+3IgKG4rQuBA7ggHF6oMGDw==
-X-Google-Smtp-Source: ABdhPJxbdRyNk08Ob4JHGuI4T01MyHskgm3c1DqN+BTCMCllgLD793w6HxN7Xw1dUaB0tfhybEYmpnLfDVXd/P4HXms=
-X-Received: by 2002:a19:4204:: with SMTP id p4mr39766lfa.536.1604634528395;
- Thu, 05 Nov 2020 19:48:48 -0800 (PST)
-MIME-Version: 1.0
-References: <20201103103051.34553-1-ajye_huang@compal.corp-partner.google.com>
- <20201103103051.34553-2-ajye_huang@compal.corp-partner.google.com> <20201105184350.GA1611477@bogus>
-In-Reply-To: <20201105184350.GA1611477@bogus>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Fri, 6 Nov 2020 11:48:37 +0800
-Message-ID: <CALprXBYUddwE-+Bnt2qh4ETwZJ2LnwmB1mQNT88vcqxB8kPW4Q@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] ASoC: google: dt-bindings: modify machine bindings
- for two MICs case
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ajye Huang <ajye.huang@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1726050AbgKFEPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 23:15:16 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:54161 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725616AbgKFEPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 23:15:16 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 49583580549;
+        Thu,  5 Nov 2020 23:15:15 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute5.internal (MEProxy); Thu, 05 Nov 2020 23:15:15 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm1; bh=+qDI3QewsKGWtoQxG+q8X0EcPM
+        jQpIpbBevGLhPz5J4=; b=tQH0+bRth6goR3jRxdivrAy8c0dRlWyq9Ym4pN5F3Y
+        frGMxZCqc7Rci1k3BXDtEr9sOerPVLN+leTNrpxLeCouQRiyfsmOlGB/ssYO8OeY
+        qL4PwT7VtVWSwh20Mb0bhSLKLMr7qDjB45vH4QnvHzfxJlREyz9XfiyFVp1Nojnd
+        Qz0iEpT3mQGu/8O/44SfrWpddSmfV34y3GegUi0Ukqw8Ct+cnl2DHnmP3d2mK2Qc
+        8Og20ydr9kNF9PTAqYMyAb2xVMEPkGCuat4ALFyOtpGqJHQN9bvdvw1V8lWxsll3
+        xnQXmsVHL3iU17reSm3Y9qBVVoQGY8i2V+0je0cXDPLA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=+qDI3QewsKGWtoQxG
+        +q8X0EcPMjQpIpbBevGLhPz5J4=; b=qhjir15cQmcG2e7U8sW/NJgPzoAxVONII
+        VPN02Eptah1hMwEdxWhceN8jotm5ku9MuNq3dqe6fqnjOBrxWlq+hX3m5WXfj8iC
+        Mbr1nNSsE9p/Qi1bt8fk2KtqVwxaGbcVf8l+Of16efwbPCC2supkbuBPkYMiolN+
+        s05HqFH6r33bfDrpvnUjtqZ2gQqrLaFUN4pIgneVvpj02k24tzq1di8HdF9y0kma
+        X6Hsgx6bQ7Blj7l4kExIzOaVl1+Yl400fUF9DamzLp5J+SfnC8aAaUceQJ9/usoc
+        Rmh7H+Woj0q7bqF6MBffYaXbQaYVT1kYDOjgPmtBFD+uuZP58Y6sw==
+X-ME-Sender: <xms:0s2kX1u4YDhZ5K4c3tiA4YdLJ1jnddHxdpdpzpNtP-5f0eZTUic1pQ>
+    <xme:0s2kX-dcqgyv26Nk3tws83OwQvmHr3ZSzD6ckDfvin5KZT58xGpfo0yPnoggvJz7U
+    rSA2yN_itfqCb1ZIQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtkedgjedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
+    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
+    vedtveenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdr
+    ohhrgh
+X-ME-Proxy: <xmx:0s2kX4xwVWKxwxtRsXvDXqnF72sUaC7-K5Vw5zj_txG4VAWkaJfWaA>
+    <xmx:0s2kX8Mfcg-sU_QUR6e8CXaA2fR_cRKJ2xEsRelMiIN4wQbRj1KHuA>
+    <xmx:0s2kX198KLqqVYUBqe__EQAtxcq84HLd5cSaY48Smaf5Ud7vvWuL-g>
+    <xmx:082kX0a3qnHvQ57Mb3eJub0EjmfuAvJ2dPiwWCj-4oXeNfDttq6U2g>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9B0AC306005F;
+        Thu,  5 Nov 2020 23:15:13 -0500 (EST)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Cheng-yi Chiang <cychiang@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, Samuel Holland <samuel@sholland.org>
+Subject: [PATCH 0/7] PinePhone BT audio bringup
+Date:   Thu,  5 Nov 2020 22:15:06 -0600
+Message-Id: <20201106041513.38481-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI, Rob,
+This series makes use of the additional DAIs recently added to the
+sun8i-codec driver to add hardware routing for BT SCO (headset) audio
+on the PinePhone.
 
-Thank you for the comments.
+The BT audio connection is represented by the "dummy" bt-sco codec. The
+connection to the Quectel EG-25G modem via AIF2 works as well, but I do
+not include it here because there is no appropriate codec driver in
+tree. We have been using an out-of-tree "dummy" codec driver similar to
+bt-sco, and I'm not sure if such a driver would be desired upstream.
 
+The modem has a similar amount of configurability as the rtl8723cs BT
+chip. For the BT chip, the DAI format and PCM parameters are set in a
+configuration firmware file and loaded at driver load time. For the
+modem, the DAI format and PCM parameters are set by (and can be queried
+from) an AT command. However, this AT command requires a modem restart
+to take effect, so the parameters cannot feasibly be changed at runtime.
 
-On Fri, Nov 6, 2020 at 2:43 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, Nov 03, 2020 at 06:30:50PM +0800, Ajye Huang wrote:
-> > Add a property "dmic-gpios" for switching between two MICs.
-> >
-> > Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-> > ---
-> >  .../bindings/sound/google,sc7180-trogdor.yaml | 58 +++++++++++++++++++
-> >  1 file changed, 58 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> > index efc34689d6b5..9e0505467e57 100644
-> > --- a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> > @@ -34,6 +34,9 @@ properties:
-> >    "#size-cells":
-> >      const: 0
-> >
-> > +  dmic-gpios:
-> > +    description: GPIO for switching between DMICs
->
-> Need to define how many (maxItems: 1).
+With a dummy driver, we pick some "standard" set of PCM parameters, e.g.
+16 bit mono at 8 or 16 kHz, and assume the hardware agrees. Similarly,
+we assume the DAI format pre-programmed in the remote hardware matches
+what is configured in the DAI link (in this case, in the device tree).
 
-Yes, I will add in the v6 version.
+Is that the right way to model this? Or does the modem (and maybe even
+the BT chip) deserve a more featureful driver that reads and/or programs
+the format and params at probe time?
 
->
-> > +
-> >  patternProperties:
-> >    "^dai-link(@[0-9])?$":
-> >      description:
-> > @@ -81,6 +84,7 @@ additionalProperties: false
-> >  examples:
-> >
-> >    - |
-> > +    //Example 1
-> >      sound {
-> >          compatible = "google,sc7180-trogdor";
-> >          model = "sc7180-rt5682-max98357a-1mic";
-> > @@ -128,3 +132,57 @@ examples:
-> >              };
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    //Example 2 (2mic case)
-> > +    sound {
-> > +        compatible = "google,sc7180-trogdor";
-> > +        model = "sc7180-rt5682-max98357a-2mic";
-> > +
-> > +        audio-routing =
-> > +                    "Headphone Jack", "HPOL",
-> > +                    "Headphone Jack", "HPOR";
-> > +
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        dmic-gpios = <&tlmm 86 0>;
->
-> Do we really need another example for this? Can't you just add it to the
-> existing example?
+Because of those unanswered questions, I'm sending BT SCO support
+first/only.
 
-I think just keep One example. I will remove the example2 and put
-dmic-gpios = <&tlmm 86 0>; in the first example and
-modify the model from "sc7180-rt5682-max98357a-1mic" to
-"sc7180-rt5682-max98357a-2mic". It looks clear.
+Regards,
+Samuel
 
->
-> > +
-> > +        dai-link@0 {
-> > +            link-name = "MultiMedia0";
-> > +            reg = <0>;
-> > +            cpu {
-> > +                sound-dai = <&lpass_cpu 0>;
-> > +            };
-> > +
-> > +            codec {
-> > +                sound-dai = <&alc5682 0>;
-> > +            };
-> > +        };
-> > +
-> > +        dai-link@1 {
-> > +            link-name = "MultiMedia1";
-> > +            reg = <1>;
-> > +            cpu {
-> > +                sound-dai = <&lpass_cpu 1>;
-> > +            };
-> > +
-> > +            codec {
-> > +                sound-dai = <&max98357a>;
-> > +            };
-> > +        };
-> > +
-> > +        dai-link@2 {
-> > +            link-name = "MultiMedia2";
-> > +            reg = <2>;
-> > +            cpu {
-> > +                sound-dai = <&lpass_hdmi 0>;
-> > +            };
-> > +
-> > +            codec {
-> > +                sound-dai = <&msm_dp>;
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > --
-> > 2.25.1
-> >
+Arnaud Ferraris (1):
+  arm64: dts: allwinner: pinephone: Set audio card name
+
+Samuel Holland (6):
+  ASoC: dt-bindings: sun8i-codec: Increase #sound-dai-cells
+  ARM: dts: sun8i-a33: Allow using multiple codec DAIs
+  arm64: dts: allwinner: a64: Allow using multiple codec DAIs
+  arm64: dts: allwinner: a64: Add pinmux nodes for AIF2/AIF3
+  arm64: dts: allwinner: a64: Allow multiple DAI links
+  arm64: dts: allwinner: pinephone: Add support for Bluetooth audio
+
+ .../sound/allwinner,sun8i-a33-codec.yaml      |  2 +-
+ arch/arm/boot/dts/sun8i-a33.dtsi              |  4 +-
+ .../dts/allwinner/sun50i-a64-pinephone.dtsi   | 25 +++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 37 ++++++++++++++-----
+ 4 files changed, 55 insertions(+), 13 deletions(-)
+
+-- 
+2.26.2
+
