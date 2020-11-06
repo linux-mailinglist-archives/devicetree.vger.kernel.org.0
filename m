@@ -2,99 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 021E42A8FA3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 07:45:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD682A9019
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 08:14:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726050AbgKFGpI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 01:45:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38702 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725842AbgKFGpH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 01:45:07 -0500
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E3532206B2;
-        Fri,  6 Nov 2020 06:45:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604645106;
-        bh=gSrHcJPj/8i6uoEotdwklqj12Wa4bQLC0DC3nlOvvX4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fqCwGQQooVimXHzYmO7cAz4NdXlOMrQUsSVT8WS0kLlV7zYpTh5L6yALgqgkVEIir
-         wqFoj8Rwnf5YtDUNtkRONC9AeT5Q8ce1vHaVwdlmxhbEwaznloYSfrrVD2txQBfElX
-         rGYohEflm6ap2RJAX2b6h39mD4p2ez8fJ6vew7VU=
-Date:   Fri, 6 Nov 2020 07:45:03 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 16/18] efi: Update implementation of add_links() to
- create fwnode links
-Message-ID: <20201106064503.GB697514@kroah.com>
-References: <20201104232356.4038506-1-saravanak@google.com>
- <20201104232356.4038506-17-saravanak@google.com>
- <20201105094318.GF3439341@kroah.com>
- <CAGETcx_Kh32AjVoUB3uiYBRhB+24JrceTp+HxG6vK6Ks=-e26w@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_Kh32AjVoUB3uiYBRhB+24JrceTp+HxG6vK6Ks=-e26w@mail.gmail.com>
+        id S1726337AbgKFHOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 02:14:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60312 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725828AbgKFHOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 02:14:34 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED810C0613CF
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 23:14:32 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id r186so266554pgr.0
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 23:14:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=s6YH0eSX/RwKBuEX1w8IFmHtUiOjP/eJyOwuklXDjTY=;
+        b=aIFAyjg+EyzWOA841bpmazYcgV0AEulGrJoP7hNS4+EvMG+RSK1jTROG3a5pH/GI+K
+         DkTA6VDl4j7/iESdcTK0dpUFAWWF9yaZ/LSzXIYSivrxbEuxmhmF8kMrG0eDpUWYt0Yr
+         WwChrkAa/SYesmZ96R97diB/kOp3JEj8SR1QQI+4iBl4eOMdMlGzaIWfdIIwA/sHwpmN
+         gTuSeVR4J5gm6xa1nT5gg6/Q7KX3v8BS3wBOiS3Zun/d6+JTj2YlJ/VRV3GJicCjOzwx
+         LwluV5esuaGx+mc228szbCmDrUNatBJ9QnvWfAEOIkEvPWA5b6OAicG+lUmBdYsfdnhx
+         fL5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=s6YH0eSX/RwKBuEX1w8IFmHtUiOjP/eJyOwuklXDjTY=;
+        b=IaZL7zCIBbuALGoogRKG59mfY2Zi7jBc+zZ05FHRi4WRP1T/DCLKww5175TaBB1jOR
+         Xhm1ffao+o91xKf6AsS2WqAX0zPfnKMwkI44VoBcXTTudXuxY/JxnSS5w+VT9SZhtLef
+         fkHgLIF33CGRKN2eujr4IZE+kzrIZBHLj3eYMqI5XL/eQO7oGcWqPYmevr2BkLYkw1JS
+         q8EaTfxs+b9bUCcL0LF9mv15gbar/VAZa6LuewXXeCB5CMPaiDYd5k+X3qnDa4lyLg4X
+         Ksmo6BK1Rrm7+s8NH3La9uMtq/0uye+JmRnkKBxAh+zwGiqgFWzLuOEmKh8eakfE5XKM
+         JlWQ==
+X-Gm-Message-State: AOAM530xfz6XkRZ+qr6dv7hXd83Bst9HO41w9PeDCl/b4u35rGC68HJH
+        wsK730gGuQTg+WTFk3D9YQMpEg==
+X-Google-Smtp-Source: ABdhPJwO5bd7mi+tpUBxCMN/fsu4RTpUPPzVVz7lSqd3QdBGhSN0bUat6hJsfWe7wtQ9bgwt6mCPPw==
+X-Received: by 2002:a17:90b:707:: with SMTP id s7mr1034437pjz.104.1604646872545;
+        Thu, 05 Nov 2020 23:14:32 -0800 (PST)
+Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
+        by smtp.gmail.com with ESMTPSA id s18sm632539pgh.60.2020.11.05.23.14.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 23:14:32 -0800 (PST)
+Date:   Thu, 05 Nov 2020 23:14:32 -0800 (PST)
+X-Google-Original-Date: Thu, 05 Nov 2020 22:54:57 PST (-0800)
+Subject:     Re: [RFC PATCH 1/3] RISC-V: Add Microchip PolarFire SoC kconfig option
+In-Reply-To: <20201028232759.1928479-2-atish.patra@wdc.com>
+CC:     linux-kernel@vger.kernel.org, Atish Patra <Atish.Patra@wdc.com>,
+        aou@eecs.berkeley.edu, Alistair Francis <Alistair.Francis@wdc.com>,
+        Anup Patel <Anup.Patel@wdc.com>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        padmarao.begari@microchip.com, daire.mcnamara@microchip.com,
+        Cyril.Jean@microchip.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Atish Patra <Atish.Patra@wdc.com>
+Message-ID: <mhng-849d17e7-0bff-4d49-b7d9-28909d199dfb@palmerdabbelt-glaptop1>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 03:27:52PM -0800, Saravana Kannan wrote:
-> On Thu, Nov 5, 2020 at 1:42 AM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Wed, Nov 04, 2020 at 03:23:53PM -0800, Saravana Kannan wrote:
-> > > The semantics of add_links() has changed from creating device link
-> > > between devices to creating fwnode links between fwnodes. So, update the
-> > > implementation of add_links() to match the new semantics.
-> > >
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > ---
-> > >  drivers/firmware/efi/efi-init.c | 23 ++---------------------
-> > >  1 file changed, 2 insertions(+), 21 deletions(-)
-> > >
-> > > diff --git a/drivers/firmware/efi/efi-init.c b/drivers/firmware/efi/efi-init.c
-> > > index b148f1459fb3..c0c3d4c3837a 100644
-> > > --- a/drivers/firmware/efi/efi-init.c
-> > > +++ b/drivers/firmware/efi/efi-init.c
-> > > @@ -316,11 +316,10 @@ static struct device_node *find_pci_overlap_node(void)
-> > >   * resource reservation conflict on the memory window that the efifb
-> > >   * framebuffer steals from the PCIe host bridge.
-> > >   */
-> > > -static int efifb_add_links(const struct fwnode_handle *fwnode,
-> > > +static int efifb_add_links(struct fwnode_handle *fwnode,
-> > >                          struct device *dev)
-> >
-> > So you are fixing the build warning you added a few patches ago here?
-> > Please fix up the function signatures when you made that change, not
-> > here later on.
-> 
-> I'm trying not to have a mega patcht that changes a lot of code.
-> 
-> I guess I can drop this "const" diff from this patch and then merge it
-> with the earlier patch that removes the const. But still leave the
-> rest of the changes in this patch as is. Does that work for you?
+On Wed, 28 Oct 2020 16:27:57 PDT (-0700), Atish Patra wrote:
+> Add Microchip PolarFire kconfig option which selects SoC specific
+> and common drivers that is required for this SoC.
+>
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> ---
+>  arch/riscv/Kconfig.socs | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index 8a55f6156661..74d07250ecc5 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -22,6 +22,13 @@ config SOC_VIRT
+>  	help
+>  	  This enables support for QEMU Virt Machine.
+>
+> +config SOC_MICROCHIP_POLARFIRE
+> +	bool "Microchip PolarFire SoCs"
+> +	select MCHP_CLK_PFSOC
+> +	select SIFIVE_PLIC
+> +	help
+> +	  This enables support for Microchip PolarFire SoC platforms.
+> +
+>  config SOC_KENDRYTE
+>  	bool "Kendryte K210 SoC"
+>  	depends on !MMU
 
-Yes, that's fine, you just can't add build warnings along the way.
-
-thanks,
-
-greg k-h
+Reviewed-by: Palmer Dabbelt <palmerdabbelt@google.com>
