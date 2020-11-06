@@ -2,110 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6BD32A9480
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:38:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7846A2A949D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:44:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726837AbgKFKiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 05:38:12 -0500
-Received: from foss.arm.com ([217.140.110.172]:34668 "EHLO foss.arm.com"
+        id S1726757AbgKFKow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 05:44:52 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35336 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727094AbgKFKh6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 05:37:58 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B57BA147A;
-        Fri,  6 Nov 2020 02:37:56 -0800 (PST)
-Received: from [10.57.14.85] (unknown [10.57.14.85])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6AE973F719;
-        Fri,  6 Nov 2020 02:37:53 -0800 (PST)
-Subject: Re: [PATCH v3 3/3] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Nicola Mazzucato <nicola.mazzucato@arm.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
- <20201102120115.29993-4-nicola.mazzucato@arm.com>
- <20201106092020.za3oxg7gutzc3y2b@vireshk-i7>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <0a334a73-45ef-58ff-7dfd-9df6f4ff290a@arm.com>
-Date:   Fri, 6 Nov 2020 10:37:51 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726010AbgKFKov (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 05:44:51 -0500
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2671720702;
+        Fri,  6 Nov 2020 10:44:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604659489;
+        bh=ougvJFEDJnn7GLjb5Wkwg0aE2d1u72Yu7Du/d+yLTRw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XB76eSCDBGX+2Tn28LKNoYpLWsv+KlUQgiXx3ngs0/THLwx772RPL53GyLh7II/mP
+         AF7HphcZKc1/lhlFmJUiDKixR4a9xL//MDINdwZ1awBkwRtQuOUzKjGJvPGOltMZUv
+         mugVcZ1eyufLjHooCAKIIh4fg/3vs7sF3Ng42fGQ=
+Date:   Fri, 6 Nov 2020 11:45:36 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Rob Herring <robh@kernel.org>, Thierry Reding <treding@nvidia.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Prashant Malani <pmalani@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        USB <linux-usb@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>
+Subject: Re: [PATCH v12 01/10] dt-bindings: usb: Maxim type-c controller
+ device tree binding document
+Message-ID: <20201106104536.GB2785199@kroah.com>
+References: <20201029063138.1429760-1-badhri@google.com>
+ <20201029063138.1429760-2-badhri@google.com>
+ <20201029153351.GA1911637@bogus>
+ <CAPTae5L8bnv1S6dK0XkPiF7aha88ed5vfaiw5HAdtvu7TQMD5g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201106092020.za3oxg7gutzc3y2b@vireshk-i7>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPTae5L8bnv1S6dK0XkPiF7aha88ed5vfaiw5HAdtvu7TQMD5g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viresh,
+On Thu, Oct 29, 2020 at 01:01:52PM -0700, Badhri Jagan Sridharan wrote:
+> Hi Rob,
+> 
+> The error seems to be because the following patch
+> 5ed132db5ad4 dt-bindings: connector: Add property to set initial
+> current cap for FRS
+> is in usb-next but not in the rc1 branch yet. To make the bot
+> recognize that this is a
+> dependency, Is it suffice to mention the following in the commit description?
+> This patch depends on patch "dt-bindings: connector: Add property to
+> set initial current cap for FRS".
+> Or is there something else that I should do ?
 
-On 11/6/20 9:20 AM, Viresh Kumar wrote:
-> On 02-11-20, 12:01, Nicola Mazzucato wrote:
->> This is a continuation of the previous v2, where we focused mostly on the
->> dt binding.
->>
->> I am seeking some feedback/comments on the following two approaches.
->>
->> Intro:
->> We have seen that in a system where performance control and hardware
->> description do not match (i.e. per-cpu), we still need the information of
->> how the v/f lines are shared among the cpus. We call this information
->> "performance dependencies".
->> We got this info through the opp-shared (the previous 2 patches aim for
->> that).
->>
->> Problem:
->> How do we share such info (retrieved from a cpufreq driver) to other
->> consumers that rely on it? I have two proposals.
-> 
-> I haven't really stop thinking about what and how we should solve
-> this, but I have few concerns first.
-> 
->> 2) drivers/thermal/cpufreq_cooling: Replace related_cpus with dependent_cpus
-> 
-> I am not sure if I understand completely on how this is going to be
-> modified/work.
-> 
-> The only use of related_cpus in the cooling driver is in the helper
-> cdev->get_requested_power(), where we need to find the total power
-> being consumed by devices controlled by the cooling device. Right ?
-> 
-> Now the cooling devices today are very closely related to the cpufreq
-> policy, the registration function itself takes a cpufreq policy as an
-> argument.
-> 
-> Consider that you have an octa-core platform and all the CPUs are
-> dependent on each other. With your suggested changes and hw control,
-> we will have different cpufreq policies for each CPU. And so we will
-> have a cooling device, cdev, for each CPU as well. When the IPA
-> governor calls cdev->get_requested_power(), why should we ever bother
-> to traverse the list of dependent_cpus and not related_cpus only ?
-> 
-> Otherwise the same CPU will have its load contributed to the power of
-> 8 cooling devices.
-> 
+This should all be in linux-next, Rob, is that ok?
 
-Good question.
+thanks,
 
-How about a different interface for those cpufreq drivers?
-That new registration API would allow to specify the cpumask.
-Or rely on EM cpumask: em_span_cpus(em)
-
-Currently we have two ways to register cooling device:
-1. when the cpufreq driver set a flag CPUFREQ_IS_COOLING_DEV, the core
-will register cooling device
-2. cpufreq driver can explicitly call the registration function:
-cpufreq_cooling_register() with 'policy' as argument
-
-That would need substantial change to the cpufreq cooling code, from
-policy oriented to custom driver's cpumask (like EM registration).
-
-Regards,
-Lukasz
+greg k-h
