@@ -2,165 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E20C2A8D26
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D341A2A8D5F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 04:11:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725815AbgKFCvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 21:51:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47714 "EHLO
+        id S1725950AbgKFDLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 22:11:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725616AbgKFCvP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 21:51:15 -0500
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85321C0613CF;
-        Thu,  5 Nov 2020 18:51:15 -0800 (PST)
-Received: by mail-qt1-x841.google.com with SMTP id i7so2730965qti.6;
-        Thu, 05 Nov 2020 18:51:15 -0800 (PST)
+        with ESMTP id S1725885AbgKFDLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 22:11:07 -0500
+Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com [IPv6:2607:f8b0:4864:20::943])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 825D0C0613D3
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 19:11:05 -0800 (PST)
+Received: by mail-ua1-x943.google.com with SMTP id h26so1179785uan.10
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 19:11:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WTOpuxQqUTD7Fs5ED8d6WE6HwICjQ/RXvxFgPZw8ydY=;
-        b=p/JG8EDrUjsel8y++UnIKylNNB7pdtkG84acG4fowir5XwgMGq/dJP/aJWrh0XctbL
-         ad+bYvmnzOOpMPsliLfFb9w0yxcfyKBiZd9sJOrOuniq56S3j5a3y5sYVEnZ5FO7/Q36
-         omn87/g+QkVSEEycolY5jlF6rcNa9thuBFYqBKPPlFXQ/E8nDDqgvvRU97nxZ+1guG7p
-         9OetQ7bZNAYVtwv9mHGIHzurr02g9ja+Hw36FbwjvLxyTERVcFRIsiw0a6ueba3flpt8
-         nAy9mWVR0o7N/d2XsbQVm9ncI/AmWajjppaC7uve7TaNqJSCsYc2VTGEyLRrTKSjACH9
-         z0Kg==
+         :cc:content-transfer-encoding;
+        bh=UG3DAlH9b9Or2QNwH1ghe+WKv0N6NvDdVmlq47TlkRU=;
+        b=bOII9tou5D9cYfGL+0ova6j8npZ0Bp7kHX3GTNHiNihnzfgTiiJQ9x+GzhAlFuXYS9
+         3yRmfDdmWUq7sZlrNIW7uGAZmU2mu0hE7XxLirbUti0eaYM7VSooxI1TEs/FBpkPoGDw
+         x2aHiW3b9UPwXKELcJ906unUzNGUngCCknlG/lrr8tOK8Xc2ec+N+GuGb3o3PUIesGqw
+         9Mo/r+eLp0NNKdxE3X8orbhqOKBfzzGQP9wHMMSl4ksVygkDaYdJCfH7EwVniz+hQcLD
+         evJ2JhbPHktOhGF8T+F4hROTh0Qq9lT+GJVwq4s/QEOeI+WroPdrxh8rbf+HX4EnntS4
+         B7YA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WTOpuxQqUTD7Fs5ED8d6WE6HwICjQ/RXvxFgPZw8ydY=;
-        b=UPHtsBv9Iv9ZQw6uvQ9KVtKyftLfWNc7QXUgpStfcWDFxU9O1ZvCq/FtNjnEQRw+Er
-         JGR0oWJRNZypuXFh0E5octqFSWUMtT6eyiX4TD+ytmlJJ0+gCRpZzftg80x46LV/9J5u
-         Mf7lMkILZPOY1zJ+8Xxrj329dLeEEiyMZmWjZ+s1KZgnaLela13UMr8OG4mcDFEZCs4s
-         KP2F2utQwAr759qhtT5EeXqtUuPBpeBntK8ffCcrREIvMt4RPwgQYaxSie99VZXB+ych
-         YngzgTgDi63cgAIJN8HxGTfbdhWhRIUAxQ4VT1VWrSMUR0x08iJMwgHk7/JcLW5j79eL
-         ubkA==
-X-Gm-Message-State: AOAM533xeGYPRYK4dqILY0+YPY621R0m2c/XsxgrUkc7og1CWAQ4ZD34
-        ej0KHbkLX+vXYRZ5eMpbFr3N7JVHaz6dlwiazvo=
-X-Google-Smtp-Source: ABdhPJzmaVLfpBM4DF4coroQarUHDYYbWmF3o5VQGr7jzQ39SDG3tzILiBVeORimIM8T60VCYrXH/xjW6RHzzC5xsMs=
-X-Received: by 2002:ac8:71c3:: with SMTP id i3mr340558qtp.204.1604631074809;
- Thu, 05 Nov 2020 18:51:14 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=UG3DAlH9b9Or2QNwH1ghe+WKv0N6NvDdVmlq47TlkRU=;
+        b=BSSKyrOKHSlXVcIvVGn7oHAPab7zZakLV2XBOhCUG50BKR0lbuUIRoJSKLryiQjHSX
+         HJIY1rEuol3wo559nxgGCBp17ug5CN7OyxzdAI5bAS2U1Iew5DNfzuur9iygj+iWgm/r
+         pQPtM9QoZfD9bOTDJk5JW64hAtfd9Enc2cVe4iHQR/K8BXU/vwaIRj1zk4nRSqP/reKY
+         Zy637jg5iehmRBN6QUxGObHxf0XeErO6ZxRdfppkYd5mLdnobeAz7hwjJGqNXW8HjWsb
+         PkuiTCPxGJcqp2KrmAXgavsOmQ9F5mRWl49Gwyny0S8m8JBqmU/8vUNLqr8a1xwPIB9q
+         fwwg==
+X-Gm-Message-State: AOAM533zFgk4MQjkVQ6LKnJQprU6pbH4lbJg6dXcYdhGC7KBiRP/huGT
+        lounOGMzhuoJiFJWLoj9EU+qlhfzrHnYXSdujDdslg==
+X-Google-Smtp-Source: ABdhPJzstqO6KWunaZQtlcX7azqKa/IMOm+fpiTNoBQ1xJN75OQpFGRApY+XjVotH/xO4pWK6BRfvovl74LUlbDaGDA=
+X-Received: by 2002:ab0:5b55:: with SMTP id v21mr3403151uae.65.1604632264237;
+ Thu, 05 Nov 2020 19:11:04 -0800 (PST)
 MIME-Version: 1.0
-References: <1604281947-26874-1-git-send-email-shengjiu.wang@nxp.com>
- <1604281947-26874-2-git-send-email-shengjiu.wang@nxp.com> <20201105013539.GA16459@Asurada-Nvidia>
-In-Reply-To: <20201105013539.GA16459@Asurada-Nvidia>
-From:   Shengjiu Wang <shengjiu.wang@gmail.com>
-Date:   Fri, 6 Nov 2020 10:51:03 +0800
-Message-ID: <CAA+D8ANrkgXR+8JGp4fPLvkKJ05EqQyShWTO+xWpPOycPT9Tyw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ASoC: fsl_aud2htx: Add aud2htx module driver
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>,
+References: <20201029095806.10648-1-amelie.delaunay@st.com>
+ <20201029095806.10648-2-amelie.delaunay@st.com> <20201029154016.GA1917373@bogus>
+ <860d5620-4fdf-6e01-9a04-3967d6fcfd6b@st.com> <CAL_JsqKs-Po8BdShjQNDNPjNWBCD3FSPdq4KbQGx3=VnV+3nPw@mail.gmail.com>
+ <ebccf61a-c88f-c7f4-9f06-01d2bd1f43de@st.com> <20201104210803.GA4115079@bogus>
+ <2da804ff-3b3c-0ea9-14d5-a163b28ccc33@st.com> <CAKgpwJU_yTTYabeMYFBqNs_6=N7gaTAc1v-+fU-dshFUrL1qVA@mail.gmail.com>
+ <CAL_JsqJUVRRD=j6FTFUgUuhfLkGe5WRex+gj7N6wvu-DbwL+bA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJUVRRD=j6FTFUgUuhfLkGe5WRex+gj7N6wvu-DbwL+bA@mail.gmail.com>
+From:   Badhri Jagan Sridharan <badhri@google.com>
+Date:   Thu, 5 Nov 2020 19:10:27 -0800
+Message-ID: <CAPTae5JtpRS11FxsYE4wLFoM=fng__v8wEWMtyCJqiqrgS5SmA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 1/4] dt-bindings: connector: add power-opmode
+ optional property to usb-connector
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jun Li <lijun.kernel@gmail.com>,
+        Amelie DELAUNAY <amelie.delaunay@st.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, alsa-devel@alsa-project.org,
-        Timur Tabi <timur@kernel.org>, Xiubo Li <Xiubo.Lee@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linuxppc-dev@lists.ozlabs.org, Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 5, 2020 at 9:48 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+Hi Rob and Amelie,
+
+With regards to discussions in this thread,
+For https://lore.kernel.org/r/20201020093627.256885-2-badhri@google.com,
+I can send in a patch to update the new-source-frs-typec-current property.
+Amelie, If you are already planning to send that I am fine with that as wel=
+l.
+Let me know !
+
+To summarize the changes for new-source-frs-typec-current would be,
+1. Rename to frs-new-source-opmode
+2. Use string values instead of u32 similar to typec-power-opmode.
+Are these correct ?
+
+Thanks,
+Badhri
+
+On Thu, Nov 5, 2020 at 7:55 AM Rob Herring <robh@kernel.org> wrote:
 >
-> On Mon, Nov 02, 2020 at 09:52:27AM +0800, Shengjiu Wang wrote:
-> > The AUD2HTX is a digital module that provides a bridge between
-> > the Audio Subsystem and the HDMI RTX Subsystem. This module
-> > includes intermediate storage to queue SDMA transactions prior
-> > to being synchronized and passed to the HDMI RTX Subsystem over
-> > the Audio Link.
+> On Thu, Nov 5, 2020 at 6:24 AM Jun Li <lijun.kernel@gmail.com> wrote:
 > >
-> > The AUD2HTX contains a DMA request routed to the SDMA module.
-> > This DMA request is controlled based on the watermark level in
-> > the 32-entry sample buffer.
+> > Amelie DELAUNAY <amelie.delaunay@st.com> =E4=BA=8E2020=E5=B9=B411=E6=9C=
+=885=E6=97=A5=E5=91=A8=E5=9B=9B =E4=B8=8B=E5=8D=887:36=E5=86=99=E9=81=93=EF=
+=BC=9A
+> > >
+> > > On 11/4/20 10:08 PM, Rob Herring wrote:
+> > > > On Fri, Oct 30, 2020 at 04:27:14PM +0100, Amelie DELAUNAY wrote:
+> > > >>
+> > > >>
+> > > >> On 10/30/20 3:29 PM, Rob Herring wrote:
+> > > >>> On Thu, Oct 29, 2020 at 11:49 AM Amelie DELAUNAY <amelie.delaunay=
+@st.com> wrote:
+> > > >>>>
+> > > >>>>
+> > > >>>>
+> > > >>>> On 10/29/20 4:40 PM, Rob Herring wrote:
+> > > >>>>> On Thu, Oct 29, 2020 at 10:58:03AM +0100, Amelie Delaunay wrote=
+:
+> > > >>>>>> Power operation mode may depends on hardware design, so, add t=
+he optional
+> > > >>>>>> property power-opmode for usb-c connector to select the power =
+operation
+> > > >>>>>> mode capability.
+> > > >>>>>>
+> > > >>>>>> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+> > > >>>>>> ---
+> > > >>>>>>     .../bindings/connector/usb-connector.yaml      | 18 ++++++=
+++++++++++++
+> > > >>>>>>     1 file changed, 18 insertions(+)
+> > > >>>>>>
+> > > >>>>>> diff --git a/Documentation/devicetree/bindings/connector/usb-c=
+onnector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.y=
+aml
+> > > >>>>>> index 728f82db073d..200d19c60fd5 100644
+> > > >>>>>> --- a/Documentation/devicetree/bindings/connector/usb-connecto=
+r.yaml
+> > > >>>>>> +++ b/Documentation/devicetree/bindings/connector/usb-connecto=
+r.yaml
+> > > >>>>>> @@ -93,6 +93,24 @@ properties:
+> > > >>>>>>           - device
+> > > >>>>>>           - dual
+> > > >>>>>>
+> > > >>>>>> +  power-opmode:
+> > > >>>>>
+> > > >>>>> I've acked this version:
+> > > >>>>>
+> > > >>>>> https://lore.kernel.org/r/20201020093627.256885-2-badhri@google=
+.com
+> > > >>>>>
+> > > >>>>
+> > > >>>> frs is used for Fast Role Swap defined in USB PD spec.
+> > > >>>> I understand it allows to get the same information but I'm wonde=
+ring why
+> > > >>>> the property name is limited to -frs- in this case. What about a
+> > > >>>> non-power delivery USB-C connector ?
+> > > >>>
+> > > >>> I've got no idea. The folks that know USB-C and PD details need t=
+o get
+> > > >>> together and work all this out. To me, it looks like the same thi=
+ng...
+> > > >>>
+> > > >>
+> > > >> It looks but...
+> > > >>
+> > > >> The purpose of power-opmode property is to configure the USB-C con=
+trollers,
+> > > >> especially the non-PD USB-C controllers to determine the power ope=
+ration
+> > > >> mode that the Type C connector will support and will advertise thr=
+ough CC
+> > > >> pins when it has no power delivery support, whatever the power rol=
+e: Sink,
+> > > >> Source or Dual
+> > > >> The management of the property is the same that data-role and powe=
+r-role
+> > > >> properties, and done by USB Type-C Connector Class.
+> > > >>
+> > > >> new-source-frs-typec-current specifies initial current capability =
+of the new
+> > > >> source when vSafe5V is applied during PD3.0 Fast Role Swap. So her=
+e, this
+> > > >> property is not applied at usb-c controller configuration level, b=
+ut during
+> > > >> PD Fast Role Swap, so when the Sink become the Source.
+> > > >> Moreover, the related driver code says FRS can only be supported b=
+y DRP
+> > > >> ports. So new-source-frs-typec-current property, in addition to be=
+ing
+> > > >> specific to PD, is also dedicated to DRP usb-c controller.
+> > > >> The property is managed by Type-C Port Controller Manager for PD.
+> > > >
+> > > > But it's the same set of possible values, right? So we can align th=
+e
+> > > > values at least.
+> > > >
+> > >
+> > > USB Power Delivery FRS values are defined in
+> > > include/dt-bindings/usb/pd.h
 > >
-> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > I think this can be changed if both can be aligned.
+> >
+> > >to fit with drivers/usb/typec/tcpm/tcpm.c
+> > > frs_typec_current enum.
+> > >
+> > > USB-C power operation mode values are defined in
+> > > include/linux/usb/typec.h with typec_pwr_opmode enum and matching wit=
+h
+> > > string values of typec_pwr_opmodes tab.
+> > >
+> > > USB PD requires USB-C.
+> > > USB-C doesn't requires USB PD.
+> > >
+> > > drivers/usb/typec/tcpm/tcpm.c already used typec_pwr_opmode values.
+> > >
+> > > USB PD specification Table 6-14 Fixed Supply PDO says:
+> > > Fast Role Swap required USB Type-C Current (see also [USB Type-C 2.0]=
+):
+> > > Value | Description
+> > >   00b  | Fast Swap not supported (default)
+> > >   01b  | Default USB Power
+> > >   10b  | 1.5A @ 5V
+> > >   11b  | 3.0A @ 5V
+> >
+> > This is the value in PDO of sink, the FRS property value(or after trans=
+lated)
+> > actually is used to compare with above value.
+> >
+> > So I think both properties can share the same "value", maybe string
+> > like below
+> >
+> >   10 static const char * const typec_pwr_opmodes[] =3D {
+> >   11         [TYPEC_PWR_MODE_USB]    =3D "default",
+> >   12         [TYPEC_PWR_MODE_1_5A]   =3D "1.5A",
+> >   13         [TYPEC_PWR_MODE_3_0A]   =3D "3.0A",
+> >
+> > >
+> > > Note the *see also USB Type-C 2.0*.
+> > >
+> > > USB Type-C specification 4.6.2.1 USB Type-C Current says:
+> > > The USB Type-C connector uses CC pins for configuration including an
+> > > ability for a Source to advertise to its port partner (Sink) the amou=
+nt
+> > > of current it shall supply:
+> > > =E2=80=A2 Default is the as-configured for high-power operation curre=
+nt value as
+> > > defined by the USB Specification (500 mA for USB 2.0 ports; 900 mA or
+> > > 1,500 mA for USB 3.2 ports in single-lane or dual-lane operation,
+> > > respectively)
+> > > =E2=80=A2 1.5 A
+> > > =E2=80=A2 3.0 A
+> > >
+> > > > Can we align the names in some way? power-opmode and frs-source-opm=
+ode
+> > > > or ??
+> >
+> > how about typec-power-opmode and frs-new-source-opmode
 >
-> Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
+> Sure.
 >
-> Despite some small comments inline.
+> >
+> > > >
+> > >
+> > > I let USB PD specialists answer.
+> > >
+> > > *frs* property fits with USB PD specification, so with USB PD protoco=
+l.
+> > > *power-opmode fits with USB Type-C specification, so with USB-C hardw=
+are
+> > > support.
+> > >
+> > > > Are these 2 properties mutually exclusive?
+> >
+> > I think yes.
 >
-> > +static int fsl_aud2htx_dai_probe(struct snd_soc_dai *cpu_dai)
-> > +{
-> > +     struct fsl_aud2htx *aud2htx = dev_get_drvdata(cpu_dai->dev);
-> > +
-> > +     /* DMA request when number of entries < WTMK_LOW */
-> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
-> > +                        AUD2HTX_CTRE_DT_MASK, 0);
-> > +
-> > +     /* Disable interrupts*/
-> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_IRQ_MASK,
-> > +                        AUD2HTX_WM_HIGH_IRQ_MASK |
-> > +                        AUD2HTX_WM_LOW_IRQ_MASK |
-> > +                        AUD2HTX_OVF_MASK,
-> > +                        AUD2HTX_WM_HIGH_IRQ_MASK |
-> > +                        AUD2HTX_WM_LOW_IRQ_MASK |
-> > +                        AUD2HTX_OVF_MASK);
-> > +
-> > +     /* Configure watermark */
-> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
-> > +                        AUD2HTX_CTRE_WL_MASK,
-> > +                        AUD2HTX_WTMK_LOW << AUD2HTX_CTRE_WL_SHIFT);
-> > +     regmap_update_bits(aud2htx->regmap, AUD2HTX_CTRL_EXT,
-> > +                        AUD2HTX_CTRE_WH_MASK,
-> > +                        AUD2HTX_WTMK_HIGH << AUD2HTX_CTRE_WH_SHIFT);
+> This should work to express that:
 >
-> If there isn't a hard requirement from hardware, feels better to
-> combine all the writes to AUD2HTX_CTRL_EXT into one single MMIO.
-
-ok, will update it.
-
+> allOf:
+>   - not:
+>       required:
+>         - typec-power-opmode
+>         - frs-new-source-opmode
 >
-> > +static irqreturn_t fsl_aud2htx_isr(int irq, void *dev_id)
-> > +{
-> > +     return IRQ_HANDLED;
->
-> Empty isr? Perhaps can drop the request_irq() at all?
-
-I'd like to keep this for future enhancement, what do you think?
-
->
-> > +static int fsl_aud2htx_probe(struct platform_device *pdev)
-> > +{
-> > +     struct fsl_aud2htx *aud2htx;
-> > +     struct resource *res;
-> > +     void __iomem *regs;
-> > +     int ret, irq;
-> > +
-> > +     aud2htx = devm_kzalloc(&pdev->dev, sizeof(*aud2htx), GFP_KERNEL);
-> > +     if (!aud2htx)
-> > +             return -ENOMEM;
-> > +
-> > +     aud2htx->pdev = pdev;
-> > +
-> > +     res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > +     regs = devm_ioremap_resource(&pdev->dev, res);
-> > +     if (IS_ERR(regs)) {
-> > +             dev_err(&pdev->dev, "failed ioremap\n");
-> > +             return PTR_ERR(regs);
-> > +     }
-> > +
-> > +     aud2htx->regmap = devm_regmap_init_mmio(&pdev->dev, regs,
-> > +                                             &fsl_aud2htx_regmap_config);
-> > +     if (IS_ERR(aud2htx->regmap)) {
-> > +             dev_err(&pdev->dev, "failed to init regmap");
-> > +             return PTR_ERR(aud2htx->regmap);
-> > +     }
-> > +
-> > +     irq = platform_get_irq(pdev, 0);
-> > +     if (irq < 0) {
-> > +             dev_err(&pdev->dev, "no irq for node %s\n",
-> > +                     dev_name(&pdev->dev));
->
-> dev_err() already prints dev_name, so not necessary to print again.
-
-ok, will update it
-
-best regards
-wang shengjiu
+> Rob
