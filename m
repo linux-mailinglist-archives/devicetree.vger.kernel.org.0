@@ -2,107 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A84B62A9607
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 13:13:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0FE2A960F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 13:16:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726317AbgKFMNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 07:13:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50472 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727313AbgKFMM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 07:12:58 -0500
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FDC0C0613CF;
-        Fri,  6 Nov 2020 04:12:58 -0800 (PST)
-Received: by mail-io1-xd44.google.com with SMTP id r9so1225870ioo.7;
-        Fri, 06 Nov 2020 04:12:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=L6H1fFozyeKKcyb7FCmptp2YIUA7XL8+rjQnzk8u6gE=;
-        b=e48OD3+xHZYJO0wiD2HikrNndReP6JHTnQ/It4WuemT1dVcevYBpMc8Gc+2srbFvAC
-         ekvQ5BXCTS9zB7m7z/b7uRfCf40BcmUGQSl7NsvMNwZFCGwt63JKSD8aVVQvr7JDrWwy
-         YBgDwxkBpgOCp+1WHmwunJ1YlG1G00t31H4YaPsbQI1OEJOqsIj9ii0ckMLyMyogpjVA
-         hqBHGQ5ku514TGVUzl8w3SMP6nFPi62f3F5TGIODfIUT+Rg+naKR6f8ffI29NB1MBt6+
-         u8dru7Ed5pBVMLqrq7P7YJAo7FbBwdJLNo5Loc7iILNkN3Sx+ikVzD5jkVspD2H+Rc9+
-         Frdw==
+        id S1727020AbgKFMQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 07:16:43 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:40494 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726317AbgKFMQn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 07:16:43 -0500
+Received: by mail-ot1-f66.google.com with SMTP id 79so1027071otc.7;
+        Fri, 06 Nov 2020 04:16:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=L6H1fFozyeKKcyb7FCmptp2YIUA7XL8+rjQnzk8u6gE=;
-        b=Kd7I0+PuW2VLKkN//2l2ID307Sy6nDAHkpHPg4titLPykoiLMjWXQkTRT0qR0Bql8x
-         NBK/ImcpzDZVhq+2H/EB2heOPrv8Txz+uQn1cFDJzMarOvqoie+YVsWw+doSl9nQfmB+
-         np1mltV0FhN4BLHQR1c6lAlfCPw3vn7vDBjBUdMmyfh2VV/2Qeto0/HxYAFyew/ozXAc
-         /Q3QmP2csD8aIMuDsU8GgjYGcbjxOXzUtzHnqhUCf4hIQsvawaFueBIRpVA+yDsqq4zQ
-         xLKxK5jU/X0ucvVAikWJWT3H3KjnuT7oDahe+1f4IUSYKbTFiWso+Ng2OZi1TcpU9o+s
-         mNfA==
-X-Gm-Message-State: AOAM530jt/Vkmh3AaRh1yLbW1NkOBUd3So4d0zjORuK+j6VMQCBKx9aD
-        BlQBKXm3F1K9jQMLxc+xy2g=
-X-Google-Smtp-Source: ABdhPJwwSKSQiPoLLG8/TX8+m0rwSpl/qtyR5HuVCoo5OOVMhifHRYr9oG6QhlnI4u4dR4eM1sObcA==
-X-Received: by 2002:a02:ce30:: with SMTP id v16mr1309374jar.33.1604664777977;
-        Fri, 06 Nov 2020 04:12:57 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:8492:7d60:7e29:2784])
-        by smtp.gmail.com with ESMTPSA id 9sm1102935ila.61.2020.11.06.04.12.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2020 04:12:57 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, krzk@kernel.org,
-        Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2 3/3] arm64: defconfig: Enable WM8962
-Date:   Fri,  6 Nov 2020 06:12:37 -0600
-Message-Id: <20201106121238.1814427-3-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201106121238.1814427-1-aford173@gmail.com>
-References: <20201106121238.1814427-1-aford173@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+xDAzLUg1c4ATFWXTeoRwJCCaKgy8LRS6wAzG60O47w=;
+        b=ZxT85t7P/JQRL4PmUhadUdBofRxWfA7uLrA2PoxAHpGWsv7avbzBUV155cqrOStLDR
+         KBGrII4v8l8cN3K/XMGZtdvq3GbgiYgkGzjDmA09yHVgzPNwfEosoeojzYawQE8VUsvn
+         v9hIhnzUc6j7LXdXl3+tns38ZpOi9UUmjkV1J2g38VStCxRixhjRkGYSAmprfAFGymVT
+         eJLMFj7Y0Jhgi4Xc2c7DYe3BxVnAzISiK8JKoqTQkO58WTvpL+ipSN2uu7WuzhmB9hdG
+         jfPE3agpycp3LxOXWkcOxMysBlXjHfKr9JAW1V3am26yNgZ8NDPAThF44IAEDNy6xTby
+         El1w==
+X-Gm-Message-State: AOAM533MLDaHt6XIdsPMW0rM5aExal6VtqAWLTJ1YtFdZTZ32uNHhF8P
+        POHm32trDJ9Z5aPhtAxUvL+DpoVIh4GpfqT/cgI=
+X-Google-Smtp-Source: ABdhPJwsCD7JJXjqS83wKh2AZm22ZIVZUyx+6LkKKzYyucmo+SZ5UmKV2U6I9aLbPMfL4719sAv0kSWGYWR5vCEm8/o=
+X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr914074otc.145.1604665002287;
+ Fri, 06 Nov 2020 04:16:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1602873815-1677-1-git-send-email-tdas@codeaurora.org>
+ <1602873815-1677-5-git-send-email-tdas@codeaurora.org> <160454346831.3965362.1176963402805166784@swboyd.mtv.corp.google.com>
+In-Reply-To: <160454346831.3965362.1176963402805166784@swboyd.mtv.corp.google.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 6 Nov 2020 13:16:31 +0100
+Message-ID: <CAMuHMdXL9ZdLQGtgZM3nqcQoBrUnjGaS5Hg3cB7zrW8WFGyOjg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/4] clk: qcom: camcc: Add camera clock controller
+ driver for SC7180
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>,
+        David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Beacon EmbeddedWorks development kits supporting i.MX8M Mini
-and Nano have an WM8962 audio CODEC installed.  Add modules for both
-CONFIG_SND_SOC_WM8962 and CONFIG_SND_SOC_FSL_ASOC_CARD to enable them.
+On Thu, Nov 5, 2020 at 5:52 AM Stephen Boyd <sboyd@kernel.org> wrote:
+> Quoting Taniya Das (2020-10-16 11:43:35)
+> > Add support for the camera clock controller found on SC7180 based devices.
+> > This would allow camera drivers to probe and control their clocks.
+> >
+> > Signed-off-by: Taniya Das <tdas@codeaurora.org>
+> > ---
+>
+> Applied to clk-next with some minor fixups.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V2:  New to series
+On Fri, Nov 6, 2020 at 8:43 AM <noreply@ellerman.id.au> wrote:
+> FAILED linux-next/m68k-allmodconfig/m68k-gcc8 Fri Nov 06, 18:35
+>
+> http://kisskb.ellerman.id.au/kisskb/buildresult/14393224/
+>
+> Commit:   Add linux-next specific files for 20201106
+>           c34f157421f6905e6b4a79a312e9175dce2bc607
+> Compiler: m68k-linux-gcc (GCC) 8.1.0 / GNU ld (GNU Binutils) 2.30
+>
+> Possible errors
+> ---------------
+>
+> drivers/clk/qcom/camcc-sc7180.c:1672:8: error: implicit declaration of function 'pm_clk_runtime_resume'; did you mean 'pm_runtime_resume'? [-Werror=implicit-function-declaration]
+> drivers/clk/qcom/camcc-sc7180.c:1681:3: error: implicit declaration of function 'pm_clk_runtime_suspend'; did you mean 'pm_runtime_suspend'? [-Werror=implicit-function-declaration]
+> cc1: some warnings being treated as errors
+> make[4]: *** [scripts/Makefile.build:283: drivers/clk/qcom/camcc-sc7180.o] Error 1
+> make[3]: *** [scripts/Makefile.build:500: drivers/clk/qcom] Error 2
 
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+The pm_clk_runtime_*() functions are only available if CONFIG_PM=y.
+No dummies are provided for the CONFIG_PM=n case yet.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 821b21a56ad7..00357f5c6fa5 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -701,6 +701,7 @@ CONFIG_SND_SOC_FSL_EASRC=m
- CONFIG_SND_IMX_SOC=m
- CONFIG_SND_SOC_IMX_SPDIF=m
- CONFIG_SND_SOC_IMX_AUDMIX=m
-+CONFIG_SND_SOC_FSL_ASOC_CARD=m
- CONFIG_SND_MESON_AXG_SOUND_CARD=m
- CONFIG_SND_MESON_GX_SOUND_CARD=m
- CONFIG_SND_SOC_QCOM=m
-@@ -728,6 +729,7 @@ CONFIG_SND_SOC_SIMPLE_AMPLIFIER=m
- CONFIG_SND_SOC_TAS571X=m
- CONFIG_SND_SOC_WCD934X=m
- CONFIG_SND_SOC_WM8904=m
-+CONFIG_SND_SOC_WM8962=m
- CONFIG_SND_SOC_WSA881X=m
- CONFIG_SND_SIMPLE_CARD=m
- CONFIG_SND_AUDIO_GRAPH_CARD=m
--- 
-2.25.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
