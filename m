@@ -2,109 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C43C2A94D3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:55:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C10F32A94F8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:07:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726317AbgKFKzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 05:55:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38354 "EHLO
+        id S1726813AbgKFLHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 06:07:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726408AbgKFKzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 05:55:18 -0500
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0944AC0613D2
-        for <devicetree@vger.kernel.org>; Fri,  6 Nov 2020 02:55:18 -0800 (PST)
-Received: by mail-pl1-x642.google.com with SMTP id x23so489420plr.6
-        for <devicetree@vger.kernel.org>; Fri, 06 Nov 2020 02:55:18 -0800 (PST)
+        with ESMTP id S1726694AbgKFLHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 06:07:49 -0500
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 894F9C0613CF
+        for <devicetree@vger.kernel.org>; Fri,  6 Nov 2020 03:07:46 -0800 (PST)
+Received: by mail-wm1-x343.google.com with SMTP id h2so989210wmm.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Nov 2020 03:07:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=b/EXZYeChCIs1m40/OogMCYwnFfXBPrTLz46deLiJcA=;
-        b=XE3WmDim8YAmqM4wMueP497yfYpq4mZKBuDgqPG/tLQgt6JSE0/4rnF/ynwrUFUtoD
-         PQ5xhlF+SNe+ddNm3uq1E+sW+nc5eCrwv24/wQzXUILasKZByU53yrycLJmEBB9oErna
-         IYdADsb7pse/R6UfvZYps8Y7FrZP9cIMsDW9gF4LvQH0kmFTCXYT0ESV4wOshPeby7tV
-         R23mChkPhLJr78HSEuhX9xsyg0sxLwNhU4i7N1Ru1R4slkqFpd+Rz4K/Z7wssYvRnHbp
-         U7T6XYHccwRJkqgoN0hfDBue85ZLX2awle9liKb/q4YQ+f7QZcdeIA4Vp5wWI2RDbduO
-         cOmA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=n7O8QvaxHe67uhrGjIcnRsG7AT5yAAmj1iYj13UlWSk=;
+        b=sotY8lsijBMHrgYWzuJFn2xDYKLi5oQpVgBSlGqq1p9jFgvL2qVYnUnZLOPj6Rc8Ij
+         /zYg00YTvSRuq6ZJL9EVCVxx2ZgwLw78VHw+PNSkhJSay3Xeghsksi63Gs/mFvgltOrE
+         9LOq5eOnwExTRslV6rYH9ctYH0qcMfI0gOcyW0gD77RaEd+JerRvz4BsWwS14ge9B5O3
+         tfNycJsJyxAVRXvKWm3PfvJKiwVOnrgOw861TqoJeTOiCED5HMt11B1GhD5VvJgew66U
+         BcVN925IXn3WWd34yhaESEb+WTuZX1E8oUc0tN+X2gGp4AJBlN65uRYWQkYbxmJUO5wl
+         XrNw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=b/EXZYeChCIs1m40/OogMCYwnFfXBPrTLz46deLiJcA=;
-        b=XCuvj4vLHfiR3zMTgTLk0NI2bAMfTPFdc9AvLpX5IFMW2AI8IZjrMMwsEpEpcdLatK
-         rdE4UKD+Fal9y5K4xZyhNMYuUIk0xuxjmAXTGgfW6qyCLTZplO2fRoMAa15HDazv8C7D
-         S7pYhFCjYc9txfM8tWZ+zgYwwopNguiYj9BG9wUWj6ni35sT9DsM1FzExpDARbJXoAkn
-         Lvss3N26Z4XlX01k3zu14OAJLzFB28evg5wtr18npMsxicUC8gZ1EwMGk/GOrlNdJnAA
-         Mm34twKHIODePMsCBK7ke4wymVzm5rODyPq3STA4E3pYpRQCkSuNfKzd8JLBUcBKsfVP
-         yPAA==
-X-Gm-Message-State: AOAM532v0SnAgB3jJbmAWVjn+d7xIo3VYkYhGDLS3NJooq9A0Nt4UtVv
-        Dgi+UNXX/kdK50TQAeKPAzLM1A==
-X-Google-Smtp-Source: ABdhPJwLCX4MA/OOHdhLU3UIDCLaYzo+IJOWbKzfu+djgm7NfBe6J0VuY+WxKlwV8jfW74rAFh9prA==
-X-Received: by 2002:a17:902:7c12:b029:d6:ed57:fe13 with SMTP id x18-20020a1709027c12b02900d6ed57fe13mr1373599pll.59.1604660117422;
-        Fri, 06 Nov 2020 02:55:17 -0800 (PST)
-Received: from localhost ([122.172.12.172])
-        by smtp.gmail.com with ESMTPSA id y124sm1641133pfy.28.2020.11.06.02.55.16
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=n7O8QvaxHe67uhrGjIcnRsG7AT5yAAmj1iYj13UlWSk=;
+        b=L7gfdm6WG8rQvCzJAqUSa44RrvkgDnof9tyhpMrh/fJJIbqOa9TkbWQQLptnhd2UIl
+         DA4TKbaNkvh+dGuAi2qNAD+a7EqNUF2WFbEkZmT6+goBrnnMPZKErsa+ZpRwGXZqt/Pj
+         n2tqqaRxfCiU0cUgMBjiKCLkVLubOZP3MAooQZezZG5RuZEipo7uTBMoVnSBo282sujQ
+         sMez0h4iZ9E0Iq49RpyTX2tKEvvf3eGBW6CFkJINTX98RAsCH7hI9FvfqhiKgc73yCFG
+         FPCKSjBjnUOwvdnRGT0ooZ2FrrIHuZFD/JjnPPnmXeIxLp2t8LQR3lr1+3x6QsTOLKd/
+         joQg==
+X-Gm-Message-State: AOAM531QxSscYPhhz81vbq2rPkPp2vdQ+5T/QqnMa1CinwFf5RO8QzOY
+        YFbRNhjw8PPbO31VhvjTDXY4iQ==
+X-Google-Smtp-Source: ABdhPJz0VpUwzSEJM0C94AmhzrNY+e+xXXJWgjWfhL2b/c+qUr+twopaKZjYT44xkHyz8UuRHlUL5w==
+X-Received: by 2002:a1c:e919:: with SMTP id q25mr1811606wmc.142.1604660865058;
+        Fri, 06 Nov 2020 03:07:45 -0800 (PST)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id q2sm1548574wrw.40.2020.11.06.03.07.43
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 06 Nov 2020 02:55:16 -0800 (PST)
-Date:   Fri, 6 Nov 2020 16:25:14 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-Subject: Re: [PATCH v3 3/3] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201106105514.bhtdklyhn7goml64@vireshk-i7>
-References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
- <20201102120115.29993-4-nicola.mazzucato@arm.com>
- <20201106092020.za3oxg7gutzc3y2b@vireshk-i7>
- <0a334a73-45ef-58ff-7dfd-9df6f4ff290a@arm.com>
+        Fri, 06 Nov 2020 03:07:44 -0800 (PST)
+Subject: Re: [PATCH v2 1/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20201105120410.18305-1-srinivas.kandagatla@linaro.org>
+ <20201105120410.18305-2-srinivas.kandagatla@linaro.org>
+ <CAHp75VdM9LUV2M6rEZyK=4rh_+hwFK5_2-9RB7YQTuMxHSYCMg@mail.gmail.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <640e8a15-d66d-3fca-6637-bd8dae32ea4a@linaro.org>
+Date:   Fri, 6 Nov 2020 11:07:43 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0a334a73-45ef-58ff-7dfd-9df6f4ff290a@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <CAHp75VdM9LUV2M6rEZyK=4rh_+hwFK5_2-9RB7YQTuMxHSYCMg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-11-20, 10:37, Lukasz Luba wrote:
-> Good question.
+Thanks Andy for the review,
+
+On 05/11/2020 12:32, Andy Shevchenko wrote:
+> On Thu, Nov 5, 2020 at 2:06 PM Srinivas Kandagatla
+> <srinivas.kandagatla@linaro.org> wrote:
+>>
+>> Add initial pinctrl driver to support pin configuration for
+>> LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
+>> on SM8250.
 > 
-> How about a different interface for those cpufreq drivers?
-> That new registration API would allow to specify the cpumask.
-> Or rely on EM cpumask: em_span_cpus(em)
+>> +config PINCTRL_LPASS_LPI
+>> +       tristate "Qualcomm Technologies Inc LPASS LPI pin controller driver"
+>> +       depends on GPIOLIB && OF
+>> +       help
+>> +         This is the pinctrl, pinmux, pinconf and gpiolib driver for the
+>> +         Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
+>> +         (Low Power Island) found on the Qualcomm Technologies Inc SoCs.
 > 
-> Currently we have two ways to register cooling device:
-> 1. when the cpufreq driver set a flag CPUFREQ_IS_COOLING_DEV, the core
-> will register cooling device
-> 2. cpufreq driver can explicitly call the registration function:
-> cpufreq_cooling_register() with 'policy' as argument
+>> +#include <linux/of_device.h>
+>> +#include <linux/of.h>
 > 
-> That would need substantial change to the cpufreq cooling code, from
-> policy oriented to custom driver's cpumask (like EM registration).
 
-I am even wondering if we should really make that change. Why do we
-need the combined load of the CPUs to be sent back to the IPA governor
-? Why shouldn't they all do that (they == cdev) ?
+I agree with most of the style related comments! will fix them in next 
+version!
 
-This is a bit confusing to me, sorry about that. The cpufreq governors
-take a look at all the CPUs utilization and set the frequency based on
-the highest utilization (and not the total util).
+> ...
+> 
+>> +#ifdef CONFIG_DEBUG_FS
+>> +#include <linux/seq_file.h>
+> 
+>> +#else
+>> +#define lpi_gpio_dbg_show NULL
+>> +#endif
+> 
+> Hmm... Doesn't pin control provide a wrapper for this?
+> 
+I does, but the custom code can provide additional information (such as 
+pullup/pulldown configuration) which default one does not provide.
 
-While in this case we present the total load of the CPUs to the IPA
-(based on the current frequency of the CPUs), in response to which it
-tells us the frequency at which all the CPUs of the policy can run at
-(I am not even sure if it is the right thing to do as the CPUs have
-different loads). And how do we fit this dependent_cpus thing into
-this.
+Most of the pinctrl drivers have there own version of this!
 
-Sorry, I am not sure what's the right way of doing thing here.
+> ...
+> 
+>> +       int ret, npins;
+>> +       struct clk *core_vote = NULL;
+>> +       struct clk *audio_vote = NULL;
+>> +
+>> +       struct lpi_pinctrl *pctrl;
+>> +       const struct lpi_pinctrl_variant_data *data;
+>> +       struct device *dev = &pdev->dev;
+>> +       struct resource *res;
+> 
+> Redundant blank line. Can you keep them in reversed xmas tree order?
+> 
+> ...
+> 
+>> +       core_vote = devm_clk_get(&pdev->dev, "core");
+>> +       if (IS_ERR(core_vote)) {
+> 
+>> +               dev_dbg(&pdev->dev, "%s: clk get %s failed %d\n",
+>> +                       __func__, "core_vote", ret);
+> 
+> First of all you missed the deferred probe issue, second, __func__ is
+> redundant for *_dbg() calls (okay, when Dynamic Debug is enabled).
+> That said why not
+>    return dev_err_probe();
+> ?
+It looks neat, I will use that!
+Thanks for this hint, I never knew we had some function like that!
 
--- 
-viresh
+
+> 
+>> +               return PTR_ERR(core_vote);
+>> +       }
+> 
+> ...
+> 
+>> +       audio_vote = devm_clk_get(&pdev->dev, "audio");
+>> +       if (IS_ERR(audio_vote)) {
+>> +               dev_dbg(&pdev->dev, "%s: clk get %s failed %d\n",
+>> +                       __func__, "audio_vote", ret);
+>> +               return PTR_ERR(audio_vote);
+> 
+> Ditto/
+> 
+>> +       }
+> 
+> Why is it not a bulk?
+
+I can try that!
+> 
+>> +       clk_prepare_enable(pctrl->core_vote);
+>> +       clk_prepare_enable(pctrl->audio_vote);
+> 
+> Either from them may return an error. Also, when you go devm_*() the
+> rule of thumb is either all or none. Because here you will have
+> ordering issue on ->remove().
+> 
+>> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>> +       pctrl->tlmm_base = devm_ioremap_resource(&pdev->dev, res);
+> 
+> devm_platform_ioremap_resource()
+
+make sense, I remember doing this! somehow I missed it in this version!
+
+rest of the comments looks sensible to me, will make sure that those are 
+fixed in next version.
+
+
+thanks,
+srini
