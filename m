@@ -2,207 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EAC42A9A66
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 18:06:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31F212A9AAA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 18:19:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726139AbgKFRGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 12:06:35 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:19490 "EHLO
+        id S1727608AbgKFRSr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 12:18:47 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:1566 "EHLO
         hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726010AbgKFRGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 12:06:35 -0500
+        with ESMTP id S1727287AbgKFRSq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 12:18:46 -0500
 Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fa5829d0003>; Fri, 06 Nov 2020 09:06:37 -0800
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
- 2020 17:06:34 +0000
-Received: from vdi.nvidia.com (10.124.1.5) by mail.nvidia.com (172.20.187.12)
- with Microsoft SMTP Server id 15.0.1473.3 via Frontend Transport; Fri, 6 Nov
- 2020 17:06:34 +0000
-From:   Khalil Blaiech <kblaiech@nvidia.com>
-To:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <kblaiech@nvidia.com>, <wsa+renesas@sang-engineering.com>,
-        <robh+dt@kernel.org>
-Subject: [PATCH i2c-next v3 6/6] dt-bindings: i2c: mellanox,i2c-mlxbf: convert txt to YAML schema
-Date:   Fri, 6 Nov 2020 12:06:30 -0500
-Message-ID: <3892893f87791fbf0e5e0d890fcbec7ba43106ef.1604681934.git.kblaiech@nvidia.com>
-X-Mailer: git-send-email 2.1.2
-In-Reply-To: <cover.1604681934.git.kblaiech@nvidia.com>
-References: <cover.1604681934.git.kblaiech@nvidia.com>
+        id <B5fa585790000>; Fri, 06 Nov 2020 09:18:49 -0800
+Received: from [10.2.59.206] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
+ 2020 17:18:45 +0000
+Subject: Re: [PATCH v1 1/4] dt-bindings: ata: tegra: Convert binding
+ documentation to YAML
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <thierry.reding@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-ide@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <jonathanh@nvidia.com>
+References: <1604628968-1501-1-git-send-email-skomatineni@nvidia.com>
+ <1604628968-1501-2-git-send-email-skomatineni@nvidia.com>
+ <20201106161122.GB3289870@bogus>
+ <f8ba33f1-90fa-a9f0-5834-9de23fc8ad31@nvidia.com>
+Message-ID: <d0a42b1c-8ddc-fc97-c675-70a5b7601580@nvidia.com>
+Date:   Fri, 6 Nov 2020 09:18:46 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <f8ba33f1-90fa-a9f0-5834-9de23fc8ad31@nvidia.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1604682397; bh=xXXJV8gWKyUwHYb4LvfEVuTDZAdzeb4AUB4f5YW0NAk=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Type;
-        b=YMEwx8qqUzpf8w1pGUxZR5G6GSpftqkU6I0wpgjkg+xcc5AB08IF8OJFQfHiGx7i8
-         1EiNdgjYOPnM92oCosheBn+FPb/+0vpoub4O1k698+n/RNiOEjDaL72sjTMje3odsu
-         qBA500rnEtlzTgorJ4xx8QVsR6WpsGtCkHbX94e/07P3BQNprLTewltgKpTXx90su9
-         nE0U8ysMInaCwLIBR9Pkr51YbEsIeS12t0CWwAM75du9nJF7D+PXFBbTtIVL13PyXl
-         CB8XaI/c+u7sA0mXJfF7HWzdkrBe2efEx25eTvQxWwJF7fYESGoHOhoEF2fQn2rWnc
-         pqfNUH7KYdPSQ==
+        t=1604683129; bh=VWIsRcQDKDV7PcpK5vBAO2Hxh55PFI5xtcXzYtDOamU=;
+        h=Subject:From:To:CC:References:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=LTmAX2qSsrtYTYs6gZIzVcgARkmnr0MYd66B/PoRgDLeRM5BgMSKBc6pGTC6oEc3X
+         9ElOaeZA+H5k/KoGZKKsm+2In7YdSoNefHFMWp57ghISbvgKILOfi1VdhaRwkmL4hA
+         H1alqJIjcnmg7LqG85wK8LRgnafgefJR4DZTUX+PbtnVB6iuV5ouPiX2OzSeAmhNoB
+         vFG0dkgmhIB9aMaokQCPB+2x9qSETZlcAC1BeKpbGp2uLgoU1CaUYlRIiuiiSuHfd+
+         uMGpke8O+vtt6hhRfuSzDfvAyyRf8k7ahU4DH5fCXjevAbQcZ0IBK47NwBGp3OIkq3
+         YfMyGj6KfSGLg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Write the devicetree binding text file associated with
-the Mellanox BlueField I2C controller in schema file,
-JSON compatible subset of YAML. Besides, add an entry
-within MAINTAINERS file.
 
-Signed-off-by: Khalil Blaiech <kblaiech@nvidia.com>
----
- .../devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt | 42 ------------
- .../bindings/i2c/mellanox,i2c-mlxbf.yaml           | 78 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 3 files changed, 79 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
+On 11/6/20 8:41 AM, Sowjanya Komatineni wrote:
+>
+> On 11/6/20 8:11 AM, Rob Herring wrote:
+>> On Thu, 05 Nov 2020 18:16:05 -0800, Sowjanya Komatineni wrote:
+>>> This patch converts text based dt-binding document to YAML based
+>>> dt-binding document.
+>>>
+>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>> ---
+>>> =C2=A0 .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 152=20
+>>> +++++++++++++++++++++
+>>> =C2=A0 .../bindings/ata/nvidia,tegra124-ahci.txt=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 44 ------
+>>> =C2=A0 2 files changed, 152 insertions(+), 44 deletions(-)
+>>> =C2=A0 create mode 100644=20
+>>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+>>> =C2=A0 delete mode 100644=20
+>>> Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
+>>>
+>>
+>> My bot found errors running 'make dt_binding_check' on your patch:
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> Error:=20
+>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dts:27.3=
+1-32=20
+>> syntax error
+>> FATAL ERROR: Unable to parse input tree
+>> make[1]: *** [scripts/Makefile.lib:342:=20
+>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dt.yaml]=
+=20
+>> Error 1
+>> make[1]: *** Waiting for unfinished jobs....
+>> make: *** [Makefile:1364: dt_binding_check] Error 2
+>>
+>>
+>> See https://patchwork.ozlabs.org/patch/1395390
+>>
+>> The base for the patch is generally the last rc1. Any dependencies
+>> should be noted.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit.
+> Thanks Rob. Will re-try after installing up-to-date.
 
-diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
-deleted file mode 100644
-index 566ea86..0000000
---- a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Device tree configuration for the Mellanox I2C SMBus on BlueField SoCs
--
--Required Properties:
--
--- compatible : should be "mellanox,i2c-mlxbf1" or "mellanox,i2c-mlxbf2".
--
--- reg : address offset and length of the device registers. The
--	registers consist of the following set of resources:
--		1) Smbus block registers.
--		2) Cause master registers.
--		3) Cause slave registers.
--		4) Cause coalesce registers (if compatible isn't set
--		   to "mellanox,i2c-mlxbf1").
--
--- interrupts : interrupt number.
--
--Optional Properties:
--
--- clock-frequency : bus frequency used to configure timing registers;
--			allowed values are 100000, 400000 and 1000000;
--			those are expressed in Hz. Default is 100000.
--
--Example:
--
--i2c@2804000 {
--	compatible = "mellanox,i2c-mlxbf1";
--	reg =	<0x02804000 0x800>,
--		<0x02801200 0x020>,
--		<0x02801260 0x020>;
--	interrupts = <57>;
--	clock-frequency = <100000>;
--};
--
--i2c@2808800 {
--	compatible = "mellanox,i2c-mlxbf2";
--	reg =	<0x02808800 0x600>,
--	        <0x02808e00 0x020>,
--		<0x02808e20 0x020>,
--		<0x02808e40 0x010>;
--	interrupts = <57>;
--	clock-frequency = <400000>;
--};
-diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
-new file mode 100644
-index 0000000..d2b401d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/mellanox,i2c-mlxbf.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mellanox I2C SMBus on BlueField SoCs
-+
-+maintainers:
-+  - Khalil Blaiech <kblaiech@nvidia.com>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mellanox,i2c-mlxbf1
-+      - mellanox,i2c-mlxbf2
-+
-+  reg:
-+    minItems: 3
-+    maxItems: 4
-+    items:
-+      - description: Smbus block registers
-+      - description: Cause master registers
-+      - description: Cause slave registers
-+      - description: Cause coalesce registers
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    enum: [ 100000, 400000, 1000000 ]
-+    description:
-+      bus frequency used to configure timing registers;
-+      The frequency is expressed in Hz. Default is 100000.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - mellanox,i2c-mlxbf1
-+
-+then:
-+  properties:
-+    reg:
-+      maxItems: 3
-+
-+examples:
-+  - |
-+    i2c@2804000 {
-+        compatible = "mellanox,i2c-mlxbf1";
-+        reg = <0x02804000 0x800>,
-+              <0x02801200 0x020>,
-+              <0x02801260 0x020>;
-+        interrupts = <57>;
-+        clock-frequency = <100000>;
-+    };
-+
-+  - |
-+    i2c@2808800 {
-+        compatible = "mellanox,i2c-mlxbf2";
-+        reg = <0x02808800 0x600>,
-+              <0x02808e00 0x020>,
-+              <0x02808e20 0x020>,
-+              <0x02808e40 0x010>;
-+        interrupts = <57>;
-+        clock-frequency = <400000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 54de08f..7dd2725 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11166,6 +11166,7 @@ MELLANOX BLUEFIELD I2C DRIVER
- M:	Khalil Blaiech <kblaiech@nvidia.com>
- L:	linux-i2c@vger.kernel.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
- F:	drivers/i2c/busses/i2c-mlxbf.c
- 
- MELLANOX ETHERNET DRIVER (mlx4_en)
--- 
-2.1.2
+Somehow running 'make dt_binding_check' gives below error.
+
+I have yamllint newest version (1.2.1-1). Any specific version of=20
+yamllint is needed?
+
+ =C2=A0LINT=C2=A0=C2=A0=C2=A0 Documentation/devicetree/bindings
+invalid config: unknown option "max-spaces-inside-empty" for rule "braces"
+xargs: /usr/bin/yamllint: exited with status 255; aborting
+Documentation/devicetree/bindings/Makefile:59: recipe for target=20
+'Documentation/devicetree/bindings/processed-schema-examples.json' failed
+make[1]: ***=20
+[Documentation/devicetree/bindings/processed-schema-examples.json] Error 12=
+4
+Makefile:1362: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
