@@ -2,73 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7846A2A949D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:44:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 206322A94B4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:51:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726757AbgKFKow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 05:44:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35336 "EHLO mail.kernel.org"
+        id S1726642AbgKFKvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 05:51:07 -0500
+Received: from mga01.intel.com ([192.55.52.88]:10300 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726010AbgKFKov (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 05:44:51 -0500
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2671720702;
-        Fri,  6 Nov 2020 10:44:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604659489;
-        bh=ougvJFEDJnn7GLjb5Wkwg0aE2d1u72Yu7Du/d+yLTRw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XB76eSCDBGX+2Tn28LKNoYpLWsv+KlUQgiXx3ngs0/THLwx772RPL53GyLh7II/mP
-         AF7HphcZKc1/lhlFmJUiDKixR4a9xL//MDINdwZ1awBkwRtQuOUzKjGJvPGOltMZUv
-         mugVcZ1eyufLjHooCAKIIh4fg/3vs7sF3Ng42fGQ=
-Date:   Fri, 6 Nov 2020 11:45:36 +0100
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Badhri Jagan Sridharan <badhri@google.com>
-Cc:     Rob Herring <robh@kernel.org>, Thierry Reding <treding@nvidia.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Prashant Malani <pmalani@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        USB <linux-usb@vger.kernel.org>, Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v12 01/10] dt-bindings: usb: Maxim type-c controller
- device tree binding document
-Message-ID: <20201106104536.GB2785199@kroah.com>
-References: <20201029063138.1429760-1-badhri@google.com>
- <20201029063138.1429760-2-badhri@google.com>
- <20201029153351.GA1911637@bogus>
- <CAPTae5L8bnv1S6dK0XkPiF7aha88ed5vfaiw5HAdtvu7TQMD5g@mail.gmail.com>
+        id S1726201AbgKFKvH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 05:51:07 -0500
+IronPort-SDR: YUjDNC0w3gjAySdPJymae9k9l3/r4WoXp+m0fr5e06kxnlarm9NoQRwVbg6shm/fkhTsDmnqHE
+ tJsY5W1x3dmA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9796"; a="187453480"
+X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; 
+   d="scan'208";a="187453480"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Nov 2020 02:51:06 -0800
+IronPort-SDR: lbbOiRuTeTRiQEc0yZcK//hJeV3DoVV7R2H31sSVvQu8ZS+wTeIh6mmzXWdSz7kpfYAPimOYxt
+ RSPvH84npPlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; 
+   d="scan'208";a="427289318"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 06 Nov 2020 02:51:02 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 06 Nov 2020 12:51:01 +0200
+Date:   Fri, 6 Nov 2020 12:51:01 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Amelie Delaunay <amelie.delaunay@st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Jun Li <lijun.kernel@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: Re: [PATCH v4 3/5] usb: typec: stusb160x: fix power-opmode property
+ with typec-power-opmode
+Message-ID: <20201106105101.GB4062920@kuha.fi.intel.com>
+References: <20201106091854.14958-1-amelie.delaunay@st.com>
+ <20201106091854.14958-4-amelie.delaunay@st.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAPTae5L8bnv1S6dK0XkPiF7aha88ed5vfaiw5HAdtvu7TQMD5g@mail.gmail.com>
+In-Reply-To: <20201106091854.14958-4-amelie.delaunay@st.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 29, 2020 at 01:01:52PM -0700, Badhri Jagan Sridharan wrote:
-> Hi Rob,
+On Fri, Nov 06, 2020 at 10:18:52AM +0100, Amelie Delaunay wrote:
+> Device tree property is named typec-power-opmode, not power-opmode.
 > 
-> The error seems to be because the following patch
-> 5ed132db5ad4 dt-bindings: connector: Add property to set initial
-> current cap for FRS
-> is in usb-next but not in the rc1 branch yet. To make the bot
-> recognize that this is a
-> dependency, Is it suffice to mention the following in the commit description?
-> This patch depends on patch "dt-bindings: connector: Add property to
-> set initial current cap for FRS".
-> Or is there something else that I should do ?
+> Fixes: da0cb6310094 ("usb: typec: add support for STUSB160x Type-C controller family")
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
 
-This should all be in linux-next, Rob, is that ok?
+Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+
+> ---
+>  drivers/usb/typec/stusb160x.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/typec/stusb160x.c b/drivers/usb/typec/stusb160x.c
+> index 2a618f02f4f1..d21750bbbb44 100644
+> --- a/drivers/usb/typec/stusb160x.c
+> +++ b/drivers/usb/typec/stusb160x.c
+> @@ -562,7 +562,7 @@ static int stusb160x_get_fw_caps(struct stusb160x *chip,
+>  	 * Supported power operation mode can be configured through device tree
+>  	 * else it is read from chip registers in stusb160x_get_caps.
+>  	 */
+> -	ret = fwnode_property_read_string(fwnode, "power-opmode", &cap_str);
+> +	ret = fwnode_property_read_string(fwnode, "typec-power-opmode", &cap_str);
+>  	if (!ret) {
+>  		ret = typec_find_pwr_opmode(cap_str);
+>  		/* Power delivery not yet supported */
+> -- 
+> 2.17.1
 
 thanks,
 
-greg k-h
+-- 
+heikki
