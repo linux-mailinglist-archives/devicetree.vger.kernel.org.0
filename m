@@ -2,126 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00C712A933A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 10:47:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2825B2A9361
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 10:51:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727021AbgKFJrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 04:47:41 -0500
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:41964 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbgKFJrl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 04:47:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1604656061; x=1636192061;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=gVkb/HduIodWBWgTTPTKx7ktzM9BdW4BzHHiUogCOBA=;
-  b=Uz+8L77fbyWG1zF37NTN9r88bPQbwtg+dEbzpVsfrw0+/mLOQBJ1tLsW
-   qruwgU2f7280TKzIaveGSF6aNnqnwzBfc3WdJBSTka2wnrOjEaJ5UULlA
-   x4R7+OaNHxLZItwKD7JOMmKUrsOvKuOKd1R4wYn6dpH7iMhg9F1+IJtA1
-   MWlTqygjbJdORJaGNfbOZywZrCFZJSqwIHsTIJarRjMd/vT/dHeIoWqLZ
-   ZzAPmAqlmdG2C5vwQ5c/pUTjwmBsBinjZ+zf/uPVxyh0YntD6XOyIsMC1
-   abLeR+efeL/8sesnzTMeDmue9rHhqxPy730/Me7UeDIMY/agsOM9+I/eh
-   A==;
-IronPort-SDR: OQcD0hW+21HJs/1YPlhfQ/Y9q39o4GUKUs0pJc/rTlJFVKhR11ljxT+STUs5htGDdX5vQ9PrLM
- b2zOcasvxxZ3hNdjuJzK1XppvS06r/MrHr/qf5MInMGyN1pF4SDqwPzoa2QSKSnFSxgFeJowWB
- Oqa69g30eUbHvyH8Gdih0HQXMZ2uVzo6mt9IvI+0r/0824Mbs+5gtMZ15zdYEnF7Ncno2pfXjw
- MexRpPsw26ygSTJqsW8ds5s2guz9KCvUFmier6OyYq51vWNIiTJ8ry3/i5Znj39dSBDAm934/Q
- +Vo=
-X-IronPort-AV: E=Sophos;i="5.77,456,1596524400"; 
-   d="scan'208";a="97428461"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Nov 2020 02:47:40 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 6 Nov 2020 02:47:38 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Fri, 6 Nov 2020 02:47:33 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
-CC:     <eugen.hristev@microchip.com>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v4 11/11] clk: at91: sama7g5: register cpu clock
-Date:   Fri, 6 Nov 2020 11:46:28 +0200
-Message-ID: <1604655988-353-12-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604655988-353-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1604655988-353-1-git-send-email-claudiu.beznea@microchip.com>
+        id S1726610AbgKFJvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 04:51:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56492 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726250AbgKFJvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 04:51:06 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4643EC0613D3
+        for <devicetree@vger.kernel.org>; Fri,  6 Nov 2020 01:51:06 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id 23so726168ljv.7
+        for <devicetree@vger.kernel.org>; Fri, 06 Nov 2020 01:51:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=0UwxZE4fayPRnvQxDAbTZKD+y1CSxe7+6Z1whH6kMNE=;
+        b=MP+8Ww1jr5M0U/EN/842njJFwNLARYITc9Xon6uZ8dA1TKARpQyaLBumduDVl7/uzZ
+         x6Scf/u1gF/A0Pt66DGyYin/JtmFO+qNsp8f0eY0kuGGW3tiQSDYS89wjfMv/UR3P6Zi
+         iZOE8y4Ba3dCMdte+VAqnUJPFA8nTaiV5dDFx11asKO/BxmZZoB6nhU5q7XKfeg9oVow
+         4ZV/m6ddzTMXLeYVUcl4+2Psbk3kdLFanOAxO7elc12Nigojmv8iW5zyW1Ulkk1+okKA
+         fLy5JzvQl6OMWH3Fd0nKE3Z4Ziv3WWK6SJn0zgDG2trFi2Z9feVWjuli7xkq4mLY571Z
+         /5SQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=0UwxZE4fayPRnvQxDAbTZKD+y1CSxe7+6Z1whH6kMNE=;
+        b=ITrweWisYZBbJ5Sr4qCuA6zzPVMvxCfbw4kfZzHmymboB9GdASzE1DKfEboElrn3qW
+         B5m8nJzasqX77N+1DWfT8pGopgEZXX3AoNQ/bl7jE3S5P60+stjmjBq2gNFzBddT8PPS
+         nlAfR8RJoRGIUrDZ6ijxIGUPTUCfvIY/TRnXbVlLVPRTWRNFJz0DHu4GpWDP6cN9MnUk
+         gUiO5NAuCZIOF2JISv/j1FZ2JWGAI5N6GwAKfT5gg051nPBrDuPjWNg1t2U9IxzSvfZ1
+         QmCRnyPWsu3mwC7chTWayQApOSP/aETrjYrR9klWzCSrcegpvh2sTH254HsuAhcwodl4
+         TB6A==
+X-Gm-Message-State: AOAM530rzYv7fTuLY4ceQx39H8gH6v+kXuq6D+Ae95bYyOL7dW6M+wy7
+        jEofphosjACqop0EWnZrZ2RJ162Gr1MHC4m1rkqSiQ==
+X-Google-Smtp-Source: ABdhPJxeQK2BYHJcOBYczjSxnwq3O+zvrpPSmHdio7wYUwV3iXXdNLvCmTC8KQhbsAbGmaRxdy9qN6r1KN3q0sLiqU0=
+X-Received: by 2002:a05:651c:1205:: with SMTP id i5mr479722lja.283.1604656264669;
+ Fri, 06 Nov 2020 01:51:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20201105120410.18305-1-srinivas.kandagatla@linaro.org> <20201105120410.18305-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20201105120410.18305-2-srinivas.kandagatla@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 6 Nov 2020 10:50:53 +0100
+Message-ID: <CACRpkda91ncAVGj8_qcEyKPnRQdJjXMMCQ4ZJ1t7bVfcCZF=CA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register CPU clock as being the master clock prescaler. This would
-be used by DVFS. The block schema of SAMA7G5's PMC contains also a divider
-between master clock prescaler and CPU (PMC_CPU_RATIO.RATIO) but the
-frequencies supported by SAMA7G5 could be directly received from
-CPUPLL + master clock prescaler and the extra divider would do no work in
-case it would be enabled.
+Hi Srinivas,
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- drivers/clk/at91/sama7g5.c       | 13 ++++++-------
- include/dt-bindings/clock/at91.h |  1 +
- 2 files changed, 7 insertions(+), 7 deletions(-)
+thanks for your patch!
 
-diff --git a/drivers/clk/at91/sama7g5.c b/drivers/clk/at91/sama7g5.c
-index be32d9b88d89..40fceb7595d4 100644
---- a/drivers/clk/at91/sama7g5.c
-+++ b/drivers/clk/at91/sama7g5.c
-@@ -885,7 +885,7 @@ static void __init sama7g5_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sama7g5_pmc = pmc_data_allocate(PMC_ETHPLL + 1,
-+	sama7g5_pmc = pmc_data_allocate(PMC_CPU + 1,
- 					nck(sama7g5_systemck),
- 					nck(sama7g5_periphck),
- 					nck(sama7g5_gck), 8);
-@@ -962,18 +962,17 @@ static void __init sama7g5_pmc_setup(struct device_node *np)
- 		}
- 	}
- 
--	parent_names[0] = md_slck_name;
--	parent_names[1] = "mainck";
--	parent_names[2] = "cpupll_divpmcck";
--	parent_names[3] = "syspll_divpmcck";
--	hw = at91_clk_register_master_pres(regmap, "mck0_pres", 4, parent_names,
-+	parent_names[0] = "cpupll_divpmcck";
-+	hw = at91_clk_register_master_pres(regmap, "cpuck", 1, parent_names,
- 					   &mck0_layout, &mck0_characteristics,
- 					   &pmc_mck0_lock,
- 					   CLK_SET_RATE_PARENT, 0);
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
--	hw = at91_clk_register_master_div(regmap, "mck0_div", "mck0_pres",
-+	sama7g5_pmc->chws[PMC_CPU] = hw;
-+
-+	hw = at91_clk_register_master_div(regmap, "mck0", "cpuck",
- 					  &mck0_layout, &mck0_characteristics,
- 					  &pmc_mck0_lock, 0);
- 	if (IS_ERR(hw))
-diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-index fab313f62e8f..98e1b2ab6403 100644
---- a/include/dt-bindings/clock/at91.h
-+++ b/include/dt-bindings/clock/at91.h
-@@ -34,6 +34,7 @@
- #define PMC_AUDIOPMCPLL		(PMC_MAIN + 6)
- #define PMC_AUDIOIOPLL		(PMC_MAIN + 7)
- #define PMC_ETHPLL		(PMC_MAIN + 8)
-+#define PMC_CPU			(PMC_MAIN + 9)
- 
- #ifndef AT91_PMC_MOSCS
- #define AT91_PMC_MOSCS		0		/* MOSCS Flag */
--- 
-2.7.4
+On Thu, Nov 5, 2020 at 1:04 PM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
 
+> Add initial pinctrl driver to support pin configuration for
+> LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
+> on SM8250.
+>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+
+So this is in essence a completely new pin controller that shares
+nothing with the previous Qcom SoC pin control hardware?
+
+I'd still like Bjorn to review it of course, but if you are going to
+maintain this driver an entry to the MAINTAINERS file would
+be nice.
+
+I'd like some more talk in the commit message about how this
+driver is engineered so I point those things out below.
+
+> +config PINCTRL_LPASS_LPI
+> +       tristate "Qualcomm Technologies Inc LPASS LPI pin controller driver"
+> +       depends on GPIOLIB && OF
+
+These days you can actually just
+select GPIOLIB
+but no big deal.
+
+> +#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/gpio.h>
+
+Do not use this legacy header for new GPIO drivers.
+#include <linux/gpio/driver.h>
+should work.
+
+> +#define LPI_GPIO_REG_VAL_CTL             0x00
+> +#define LPI_GPIO_REG_DIR_CTL             0x04
+> +#define LPI_SLEW_REG_VAL_CTL             0x00
+> +#define LPI_SLEW_RATE_MAX                0x03
+> +#define LPI_SLEW_BITS_SIZE               0x02
+> +#define LPI_GPIO_REG_PULL_SHIFT                0x0
+> +#define LPI_GPIO_REG_PULL_MASK         GENMASK(1, 0)
+> +#define LPI_GPIO_REG_FUNCTION_SHIFT    0x2
+> +#define LPI_GPIO_REG_FUNCTION_MASK     GENMASK(5, 2)
+> +#define LPI_GPIO_REG_OUT_STRENGTH_SHIFT        0x6
+> +#define LPI_GPIO_REG_OUT_STRENGTH_MASK GENMASK(8, 6)
+> +#define LPI_GPIO_REG_OE_SHIFT          0x9
+> +#define LPI_GPIO_REG_OE_MASK           BIT(9)
+> +#define LPI_GPIO_REG_DIR_SHIFT         0x1
+> +#define LPI_GPIO_REG_DIR_MASK          0x2
+> +#define LPI_GPIO_BIAS_DISABLE          0x0
+> +#define LPI_GPIO_PULL_DOWN             0x1
+> +#define LPI_GPIO_KEEPER                        0x2
+> +#define LPI_GPIO_PULL_UP               0x3
+
+So the way I understand it, the GPIO lines have one register each and then the
+functionality of each line is handled by different bits in that register, like
+output is driven in bit 9.
+
+This would be nice to have mentioned in the commit message.
+
+> +static const unsigned int gpio0_pins[] = { 0 };
+> +static const unsigned int gpio1_pins[] = { 1 };
+> +static const unsigned int gpio2_pins[] = { 2 };
+> +static const unsigned int gpio3_pins[] = { 3 };
+> +static const unsigned int gpio4_pins[] = { 4 };
+> +static const unsigned int gpio5_pins[] = { 5 };
+> +static const unsigned int gpio6_pins[] = { 6 };
+> +static const unsigned int gpio7_pins[] = { 7 };
+> +static const unsigned int gpio8_pins[] = { 8 };
+> +static const unsigned int gpio9_pins[] = { 9 };
+> +static const unsigned int gpio10_pins[] = { 10 };
+> +static const unsigned int gpio11_pins[] = { 11 };
+> +static const unsigned int gpio12_pins[] = { 12 };
+> +static const unsigned int gpio13_pins[] = { 13 };
+> +static const char * const swr_tx_clk_groups[] = { "gpio0" };
+> +static const char * const swr_tx_data1_groups[] = { "gpio1" };
+> +static const char * const swr_tx_data2_groups[] = { "gpio2" };
+> +static const char * const swr_rx_clk_groups[] = { "gpio3" };
+> +static const char * const swr_rx_data1_groups[] = { "gpio4" };
+> +static const char * const swr_tx_data3_groups[] = { "gpio5" };
+> +static const char * const dmic1_clk_groups[] = { "gpio6" };
+> +static const char * const dmic1_data_groups[] = { "gpio7" };
+> +static const char * const dmic2_clk_groups[] = { "gpio8" };
+> +static const char * const dmic2_data_groups[] = { "gpio9" };
+> +static const char * const i2s2_clk_groups[] = { "gpio10" };
+> +static const char * const i2s2_ws_groups[] = { "gpio11" };
+> +static const char * const dmic3_clk_groups[] = { "gpio12" };
+> +static const char * const dmic3_data_groups[] = { "gpio13" };
+> +static const char * const qua_mi2s_sclk_groups[] = { "gpio0" };
+> +static const char * const qua_mi2s_ws_groups[] = { "gpio1" };
+> +static const char * const qua_mi2s_data0_groups[] = { "gpio2" };
+> +static const char * const qua_mi2s_data1_groups[] = { "gpio3" };
+> +static const char * const qua_mi2s_data2_groups[] = { "gpio4" };
+> +static const char * const swr_rx_data2_groups[] = { "gpio5" };
+> +static const char * const i2s1_clk_groups[] = { "gpio6" };
+> +static const char * const i2s1_ws_groups[] = { "gpio7" };
+> +static const char * const i2s1_data0_groups[] = { "gpio8" };
+> +static const char * const i2s1_data1_groups[] = { "gpio9" };
+> +static const char * const wsa_swr_clk_groups[] = { "gpio10" };
+> +static const char * const wsa_swr_data_groups[] = { "gpio11" };
+> +static const char * const i2s2_data0_groups[] = { "gpio12" };
+> +static const char * const i2s2_data1_groups[] = { "gpio13" };
+
+The driver appears to follow other qualcomm pin controllers in using
+the "one group is one pin" approach. This is idiomatic and should be
+mentioned in the commit message.
+
+> +static int sm8250_slew_reg_offsets[] = {
+> +               0x0, 0x2, 0x4, 0x8, 0xa,
+> +               0xc, 0x0, 0x0, 0x0, 0x0,
+> +               0x10, 0x12, 0x0, 0x0,
+> +};
+
+Maybe it is obvious to everyone what this array is about, but why so
+many zeroes? I think it warrants a comment in the code if that
+means for example that some pins do not support slew rate setting.
+
+Overall this is a nice and self-contained driver that uses the abstractions
+the right way and very straight-forward, so I think we can merge it
+soon.
+
+(Look into Andy's comments as well.)
+
+Yours,
+Linus Walleij
