@@ -2,81 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FFDA2A9C84
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 19:39:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7DDB2A9CA4
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 19:46:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728010AbgKFSjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 13:39:20 -0500
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:36035 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727897AbgKFSjU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 13:39:20 -0500
-Received: by mail-ed1-f67.google.com with SMTP id o20so2279259eds.3;
-        Fri, 06 Nov 2020 10:39:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=u98Rgpeb4Nt49mc0QG8eEb+MB+Za9caOVTHP5k1gxr0=;
-        b=GNZqdZUQZJnyRCmM2ScQAoKrXjtpoL56yijpPQAVR3EJZhFLU0kAksC4UR49zhM0ry
-         61P5HebHFhbdnuEsi2E7GqO1nB4hjhuWx1jZUkIhPx6VcSoSzpcJxPQQbpFz85o2e8Ti
-         H5GpxY39vQiNd3yMJs+eQNfWtpfl9tiimRjsFe1LJCveoNsH6S9CdAvQ/KiCwMmuby6y
-         FGEubsOOk4CfkZ7h2fwRatU7LOVrm3st0MkhFvDUENQ22K6EuLkNrtRR7tFr5JPyuG2u
-         4AbO3oD+tCS8JNqJu55OySecxt3U7p2wAs8wjOvDXxPMH+xj/jmXhCRoitXHEN8Jg6ST
-         jlAQ==
-X-Gm-Message-State: AOAM533yRlytOemkfrZA9VqtRu+hOdYp5VZ7Me0XX4+9SKvQta5dCsyZ
-        U4YIgwlFYG2gGJuzrpvETxg=
-X-Google-Smtp-Source: ABdhPJxFr3F7asxGB0TOnmt+HUoticWJ2aCBZMi5JRtZ1kzSkCobKCu6kfaAs8KEsD4jnGtxvOiVsw==
-X-Received: by 2002:a05:6402:559:: with SMTP id i25mr3576305edx.128.1604687957598;
-        Fri, 06 Nov 2020 10:39:17 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id j20sm1588358edt.4.2020.11.06.10.39.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2020 10:39:16 -0800 (PST)
-Date:   Fri, 6 Nov 2020 19:39:14 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 19/47] dt-bindings: memory: tegra124: Add memory
- client IDs
-Message-ID: <20201106183914.GS65086@kozik-lap>
-References: <20201104164923.21238-1-digetx@gmail.com>
- <20201104164923.21238-20-digetx@gmail.com>
+        id S1726880AbgKFSqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 13:46:33 -0500
+Received: from mx2.suse.de ([195.135.220.15]:57516 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726034AbgKFSqd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 13:46:33 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id B18D4AD52;
+        Fri,  6 Nov 2020 18:46:31 +0000 (UTC)
+Message-ID: <88c69ac0c9d7e144c80cebc7e9f82b000828e7f5.camel@suse.de>
+Subject: Re: [PATCH v6 1/7] arm64: mm: Move reserve_crashkernel() into
+ mem_init()
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     James Morse <james.morse@arm.com>
+Cc:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        ardb@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
+        will@kernel.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org,
+        linux-rpi-kernel@lists.infradead.org, guohanjun@huawei.com,
+        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org
+Date:   Fri, 06 Nov 2020 19:46:29 +0100
+In-Reply-To: <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
+References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
+         <20201103173159.27570-2-nsaenzjulienne@suse.de>
+         <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-TnJp0vXFQpxxgYpSGy1Q"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201104164923.21238-20-digetx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 04, 2020 at 07:48:55PM +0300, Dmitry Osipenko wrote:
-> Each memory client has unique hardware ID, add these IDs.
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  include/dt-bindings/memory/tegra124-mc.h | 68 ++++++++++++++++++++++++
->  1 file changed, 68 insertions(+)
 
-Thanks, applied.
+--=-TnJp0vXFQpxxgYpSGy1Q
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+Hi James, thanks for the review. Some comments/questions below.
+
+On Thu, 2020-11-05 at 16:11 +0000, James Morse wrote:
+> Hi!
+>=20
+> On 03/11/2020 17:31, Nicolas Saenz Julienne wrote:
+> > crashkernel might reserve memory located in ZONE_DMA. We plan to delay
+> > ZONE_DMA's initialization after unflattening the devicetree and ACPI's
+> > boot table initialization, so move it later in the boot process.
+> > Specifically into mem_init(), this is the last place crashkernel will b=
+e
+> > able to reserve the memory before the page allocator kicks in.
+> > There
+> > isn't any apparent reason for doing this earlier.
+>=20
+> It's so that map_mem() can carve it out of the linear/direct map.
+> This is so that stray writes from a crashing kernel can't accidentally co=
+rrupt the kdump
+> kernel. We depend on this if we continue with kdump, but failed to offlin=
+e all the other
+> CPUs.
+
+I presume here you refer to arch_kexec_protect_crashkres(), IIUC this will =
+only
+happen further down the line, after having loaded the kdump kernel image. B=
+ut
+it also depends on the mappings to be PAGE sized (flags =3D=3D NO_BLOCK_MAP=
+PINGS |
+NO_CONT_MAPPINGS).
+
+> We also depend on this when skipping the checksum code in purgatory, whic=
+h can be
+> exceedingly slow.
+
+This one I don't fully understand, so I'll lazily assume the prerequisite i=
+s
+the same WRT how memory is mapped. :)
+
+Ultimately there's also /sys/kernel/kexec_crash_size's handling. Same
+prerequisite.
+
+Keeping in mind acpi_table_upgrade() and unflatten_device_tree() depend on
+having the linear mappings available. I don't see any simple way of solving
+this. Both moving the firmware description routines to use fixmap or correc=
+ting
+the linear mapping further down the line so as to include kdump's regions, =
+seem
+excessive/impossible (feel free to correct me here). I'd be happy to hear
+suggestions. Otherwise we're back to hard-coding the information as we
+initially did.
+
+Let me stress that knowing the DMA constraints in the system before reservi=
+ng
+crashkernel's regions is necessary if we ever want it to work seamlessly on=
+ all
+platforms. Be it small stuff like the Raspberry Pi or huge servers with TB =
+of
+memory.
+
+Regards,
+Nicolas
+
+
+--=-TnJp0vXFQpxxgYpSGy1Q
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+lmgUACgkQlfZmHno8
+x/5+dgf+Pf8JjmucAPuXan1nTGcvtuILsP3sC+cq8tqi84bsKFRFACqHN5J2rXwK
+ZzRX2RyPQDWT3O3Fbp7i/wYt2XDie598NvbIozdZ6ojULPL1FEUwn/6f2Eb2uuPE
+bMSfZt/hTSa7wEESYeNV2gLjAb/bsA7Y4kxy8sDrTIJl44vJLbcdbE1MGX7wyBSi
+YtNOajCrqpvkiXofu5+d6TFJLGALl27t2uLIuBMZU9OK5bkS7As75nsyPnRjwtQp
+cwLHdyNtpgY1PJ2Za6gJyvyykaz8RAlgWbxeAANcdn6lGtVgDEcwVs/d25skS2k3
+KY4U5Ag5+Nextbi5cic+Ep4C2Pfb3A==
+=8Wzl
+-----END PGP SIGNATURE-----
+
+--=-TnJp0vXFQpxxgYpSGy1Q--
 
