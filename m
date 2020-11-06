@@ -2,107 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A592A9055
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 08:30:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0332A9080
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 08:38:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726406AbgKFHaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 02:30:21 -0500
-Received: from m42-4.mailgun.net ([69.72.42.4]:43892 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726262AbgKFHaU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 02:30:20 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1604647820; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=ZGXXuu6qBXSfftqrulNTywUK6S0YxZhWGm7WSxymbYY=; b=PrRyGjv9u5W2dZJ1M9ZCR+cXU+issLjhzeemv9ATPNDSQ/f1c/QzGZ0nu0tE2VFcmMN3Clvl
- PXmkdWv0zZsH/D5lXEUnlk3e/2/TvhTHzWnp0VPkBJSZhOORDLeLqmbryvHCr2MQ5+Vu82Ev
- irlKZTQzI5rZDoT1rTWgcMjs/l0=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-west-2.postgun.com with SMTP id
- 5fa4fb812e911a5cba9f7d83 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 06 Nov 2020 07:30:09
- GMT
-Sender: akhilpo=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8FF87C433C9; Fri,  6 Nov 2020 07:30:09 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.1.9] (unknown [117.210.190.231])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: akhilpo)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 8529EC433C8;
-        Fri,  6 Nov 2020 07:30:04 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 8529EC433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akhilpo@codeaurora.org
-Subject: Re: [Freedreno] [PATCH v5 3/3] dt-bindings: drm/msm/gpu: Add cooling
- device support
-To:     Rob Clark <robdclark@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        dri-devel@freedesktop.org,
-        freedreno <freedreno@lists.freedesktop.org>
-References: <1604054832-3114-1-git-send-email-akhilpo@codeaurora.org>
- <1604054832-3114-3-git-send-email-akhilpo@codeaurora.org>
- <20201104200300.GA4036650@bogus>
- <CAF6AEGvj34MbnRS+A432AhOwMuL2BtTXJ+AD+zQ9w0_meV_-gw@mail.gmail.com>
-From:   Akhil P Oommen <akhilpo@codeaurora.org>
-Message-ID: <8c28fe20-fbcf-5076-fad8-107073df63a5@codeaurora.org>
-Date:   Fri, 6 Nov 2020 13:00:01 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.3
+        id S1726485AbgKFHh7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 02:37:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725848AbgKFHh6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 02:37:58 -0500
+Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1CDEC0613D2
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 23:37:58 -0800 (PST)
+Received: by mail-il1-x142.google.com with SMTP id x20so279080ilj.8
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 23:37:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aQB4ocSHoyHmpaIbRxFj/zt6XeUHDR7wBHeEyE4bZfQ=;
+        b=RTsENuCeCOpH73nAqLoeSA8PnD2zhQpcop4R++RTXBfDDPYpcj5zxao2ls+it7Jbbc
+         LpSMJBNT9K/5TF5LylVK2+P26EjNPL4ZjGOH4ngNffiea15xSmo/RgBDj1zwhxQehnE7
+         bAeKKD0dDcHV0XQg0465baqRrt8CeFC9dpK3Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aQB4ocSHoyHmpaIbRxFj/zt6XeUHDR7wBHeEyE4bZfQ=;
+        b=R4jyX1J29B8zyRadM5yprk6g6ZI4R616AFzxmg1QRZGPWTjH+icHo44UFtjKYaqMsa
+         bdt3/ggX0Q1B8L7lFsyfGi1TGMTatIM0EHUuoACjQ57s7ny6NgGVO2ch4fqteLu4m9ir
+         ITNimMD+Ha9Bpl6fmFChkRZl4WfvyyaN1knz9qZKOJBtRxUuja+SM164BnYQAAbApPa2
+         t0iZiEyUZh7kfPfG8djJTEH7EoLbdWZxQBZtjI+iAVM/uHGvTYwCicENsEnu2B/O0y09
+         yOPCShq1eootWXRnod4S1w0wQgUH+8OimEwcawz+vUr8H+oc3eV0VoUTJFkeZQvKS0uS
+         IQ7A==
+X-Gm-Message-State: AOAM533lFJkdOg8WwwIKQhDZqkPjJrHw9hBRCW2L+4k7hI0vH6xOJPrL
+        bZWGoL5mhMRQKBKBuM/d2su8ugqztMfq8VRycowvAc3SRwnkt9w=
+X-Google-Smtp-Source: ABdhPJzim1SBWXT2HkwUxRQYC66JPOOSOS7b965ESES+ZyL8w7EM2XoU657RReCH3oyTptlRc3S7dz8Y3knO6Kjv4LA=
+X-Received: by 2002:a92:6410:: with SMTP id y16mr510995ilb.126.1604648278164;
+ Thu, 05 Nov 2020 23:37:58 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAF6AEGvj34MbnRS+A432AhOwMuL2BtTXJ+AD+zQ9w0_meV_-gw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201028232759.1928479-1-atish.patra@wdc.com> <mhng-3a4619db-fe42-4ae0-a521-4032f23591ee@palmerdabbelt-glaptop1>
+In-Reply-To: <mhng-3a4619db-fe42-4ae0-a521-4032f23591ee@palmerdabbelt-glaptop1>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Thu, 5 Nov 2020 23:37:45 -0800
+Message-ID: <CAOnJCUJUmzVon3BWH6Du08mpgLu_rHJEhdOkCXUK4N+ZftkCRw@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/3] Add Microchip PolarFire Soc Support
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Atish Patra <Atish.Patra@wdc.com>, devicetree@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>, Cyril.Jean@microchip.com,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Padmarao Begari <padmarao.begari@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/5/2020 2:28 AM, Rob Clark wrote:
-> On Wed, Nov 4, 2020 at 12:03 PM Rob Herring <robh@kernel.org> wrote:
->>
->> On Fri, 30 Oct 2020 16:17:12 +0530, Akhil P Oommen wrote:
->>> Add cooling device support to gpu. A cooling device is bound to a
->>> thermal zone to allow thermal mitigation.
->>>
->>> Signed-off-by: Akhil P Oommen <akhilpo@codeaurora.org>
->>> Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
->>> ---
->>>   Documentation/devicetree/bindings/display/msm/gpu.txt | 7 +++++++
->>>   1 file changed, 7 insertions(+)
->>>
->>
->>
->> Please add Acked-by/Reviewed-by tags when posting new versions. However,
->> there's no need to repost patches *only* to add the tags. The upstream
->> maintainer will do that for acks received on the version they apply.
->>
->> If a tag was not added on purpose, please state why and what changed.
->>
-> 
-> 
-> Thanks Rob
-> 
-> I've copied over your ack from the previous version.. but yes, it
-> definitely makes my life easier when patch senders do this for me ;-)
-> 
-> BR,
-> -R
-> 
-Robh, you Acked v4 after I shared v5 patches!!
+On Thu, Nov 5, 2020 at 11:14 PM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+>
+> On Wed, 28 Oct 2020 16:27:56 PDT (-0700), Atish Patra wrote:
+> > This series adds minimal support for Microchip Polar Fire Soc Icicle kit.
+> > It is rebased on v5.10-rc1 and depends on clock support.
+> > Only MMC and ethernet drivers are enabled via this series.
+> > The idea here is to add the foundational patches so that other drivers
+> > can be added to on top of this.
+> >
+> > This series has been tested on Qemu and Polar Fire Soc Icicle kit.
+> > The following qemu series is necessary to test it on Qemu.
+> >
+> > The series can also be found at the following github repo.
+> >
+> > I noticed the latest version of mmc driver[2] hangs on the board with
+> > the latest clock driver. That's why, I have tested with the old clock
+> > driver available in the above github repo.
+>
+> OK, I guess that's why it's an RFC?
+>
 
--Akhil.
+Yes. The latest clock/pcie driver did not work for me. I might have
+missed something in DT.
+The idea for RFC is so that anybody who wants to try the latest kernel
+on a polarfire board
+has a meaningful way to test it.
+
+> > [1] https://lists.nongnu.org/archive/html/qemu-devel/2020-10/msg08582.html
+> > [2] https://www.spinics.net/lists/devicetree/msg383626.html
+>
+> Looks like this one hasn't been merged yet.  IDK if something is broken with my
+> mail client but I'm not seeing any github repos.  If this depends on
+> not-yet-merged drivers then it's certainly RFC material, but aside from the DT
+> stuff (which should be straight-forward) it seems fine to me.
+>
+
+I think it makes sense to take this series once the clock driver is
+merged at least.
+
+> Since you posted this an an RFC I'm going to assume you're going to re-spin it.
+>
+
+Yes. There are some feedbacks on DT which I will fix in v2.
+
+> Thanks!
+>
+> >
+> > Atish Patra (3):
+> > RISC-V: Add Microchip PolarFire SoC kconfig option
+> > RISC-V: Initial DTS for Microchip ICICLE board
+> > RISC-V: Enable Microchip PolarFire ICICLE SoC
+> >
+> > arch/riscv/Kconfig.socs                       |   7 +
+> > arch/riscv/boot/dts/Makefile                  |   1 +
+> > arch/riscv/boot/dts/microchip/Makefile        |   2 +
+> > .../microchip/microchip-icicle-kit-a000.dts   | 313 ++++++++++++++++++
+> > arch/riscv/configs/defconfig                  |   4 +
+> > 5 files changed, 327 insertions(+)
+> > create mode 100644 arch/riscv/boot/dts/microchip/Makefile
+> > create mode 100644 arch/riscv/boot/dts/microchip/microchip-icicle-kit-a000.dts
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
+
+
+-- 
+Regards,
+Atish
