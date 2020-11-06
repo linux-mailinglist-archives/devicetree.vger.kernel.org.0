@@ -2,159 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 584C22A8E92
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 06:09:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D44532A8F3D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 07:14:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725835AbgKFFJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 00:09:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
+        id S1725830AbgKFGOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 01:14:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725776AbgKFFJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 00:09:45 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F14C0613CF;
-        Thu,  5 Nov 2020 21:09:45 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9BE333D;
-        Fri,  6 Nov 2020 06:09:43 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1604639383;
-        bh=72/KUrhMBGIoUetzc6guWYFWopnI5c0uHM8v4HvuRPc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ezicyJe3TH8q8Ejj8OJ4o9ti4tZBl8nP0nWdq3cOvkoDRGPrmeo4/M6VqLD7PYK44
-         9UF8TtdfQpkYyEDrqEMG7KTEdsRoZGs5g8ssxNGacB5T1tVM05IYsjcpRedN3Auqs2
-         QN7HhTIBAHZG/EsFOmyKA0hho5RSOtc5Rn93tW6Y=
-Date:   Fri, 6 Nov 2020 07:09:40 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        kernel-team@android.com, linux-acpi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 00/18] Refactor fw_devlink to significantly improve
- boot time
-Message-ID: <20201106050940.GG16469@pendragon.ideasonboard.com>
-References: <20201104232356.4038506-1-saravanak@google.com>
+        with ESMTP id S1725828AbgKFGOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 01:14:41 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294C0C0613CF;
+        Thu,  5 Nov 2020 22:14:40 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id t6so180356plq.11;
+        Thu, 05 Nov 2020 22:14:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZlXKKq4DGEFjUy+nOWMktAH/V5heZC0/6ILxLCieIBI=;
+        b=uzq0KYojkUs4t+Q4y3YBqX0rQNXV7pH3WlTA04d9xfT2HzTtRS3Ey60ivElLdbiQ6C
+         zFVX81uumdUT5FV4Zja3UM60O36+C4AYkDG9oUsJKhIOf7gEmd434azZmqvFrOjlZg4t
+         UPBURLWtRU0ibF94bPAoRqrwQ4fKKP46UwIGQ/DND6ZD2NmUYAgOY8Y7FxC2mmjPnHFV
+         qMtxbD4JZ0jT563EdP6MPHQ0wU3XON48XbuLpy0CQPufsvMGSUpvOsGZn2qDAgVwPAaI
+         AFCfj9D21WFd9CS5UDuTQ3IgCDOlQ1pTCoc9Um/ZEV22ml05J6IGPqssKSUR9n8JSZI2
+         0PEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ZlXKKq4DGEFjUy+nOWMktAH/V5heZC0/6ILxLCieIBI=;
+        b=BWkv/s0wFbxEA/QfL6gQcLHswQSeYeTAtFZkQR0IJz/LuvPbfjk3pGhl5TwLb5DFOt
+         brktebsc10iquIU206K7riN5ZlYbx4rkmMzpfcEE1M5fIyHEGSXyBdY4+WRFMpvZn7gW
+         Vn6oQzoeLM0IS0ILUMWmlFdkHUzGJ18HnC6DI5Zf3SuscVl0h/Bz8KAo0eIymDctvcPc
+         xgUVKy1qp6TiB1D7SbJ3DW70Qqe7K229GggKd9pmOaOIqWHw615M0lJ2O6yE9CQyGcl3
+         z17WmqVx9k6KzZfHgpayhGaBIVzRilY1cEXzBYPXp9tHtbQuu5fg5CRDu7qqbnqF+M1L
+         9NfA==
+X-Gm-Message-State: AOAM533UMpZvmEEVsLVlMUGFZf5ks7SE8iqSUbbMmooB+JvbO7UJbaQR
+        GxqE5xAlw28jAaHZCbZZExYvqvGR+sGTnQ==
+X-Google-Smtp-Source: ABdhPJyroxk5j3uozX4q/49k3ilXtr3HfELI1nHsLBO+uoSc7N38F15qJ9kCIb5kPorMtxomgTZJxQ==
+X-Received: by 2002:a17:902:8a97:b029:d4:d3f4:d209 with SMTP id p23-20020a1709028a97b02900d4d3f4d209mr500321plo.35.1604643279370;
+        Thu, 05 Nov 2020 22:14:39 -0800 (PST)
+Received: from localhost (114-34-18-97.HINET-IP.hinet.net. [114.34.18.97])
+        by smtp.gmail.com with ESMTPSA id y5sm620227pfc.165.2020.11.05.22.14.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Nov 2020 22:14:38 -0800 (PST)
+From:   Ajye Huang <ajye.huang@gmail.com>
+X-Google-Original-From: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        srinivas.kandagatla@linaro.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, robh@kernel.org,
+        Jaroslav Kysela <perex@perex.cz>, cychiang@chromium.org,
+        tzungbi@chromium.org, dianders@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Subject: [PATCH v6 0/2] Modify documentation and machine driver for SC7180 sound card
+Date:   Fri,  6 Nov 2020 14:14:31 +0800
+Message-Id: <20201106061433.1483129-1-ajye_huang@compal.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201104232356.4038506-1-saravanak@google.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
+Note:
+- The patch is made by the collaboration of
+ Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+ Cheng-Yi Chiang <cychiang@chromium.org>
 
-Thank you for working on this !
+v6:
+- Documentation: Addressed suggestions from Rob Herring.
+  - Define "maxItems: 1" in dmic-gpios property.
+  - Only keep one example and add dmic-gpios property in.
+v5:
+- Machine driver:
+  - Fix a format string warning (Reported-by: kernel test robot <lkp@intel.com>).
+    detailed info at https://lore.kernel.org/patchwork/patch/1331087/
 
-On Wed, Nov 04, 2020 at 03:23:37PM -0800, Saravana Kannan wrote:
-> The current implementation of fw_devlink is very inefficient because it
-> tries to get away without creating fwnode links in the name of saving
-> memory usage. Past attempts to optimize runtime at the cost of memory
-> usage were blocked with request for data showing that the optimization
-> made significant improvement for real world scenarios.
-> 
-> We have those scenarios now. There have been several reports of boot
-> time increase in the order of seconds in this thread [1]. Several OEMs
-> and SoC manufacturers have also privately reported significant
-> (350-400ms) increase in boot time due to all the parsing done by
-> fw_devlink.
-> 
-> So this patch series refactors fw_devlink to be more efficient. The key
-> difference now is the addition of support for fwnode links -- just a few
-> simple APIs. This also allows most of the code to be moved out of
-> firmware specific (DT mostly) code into driver core.
-> 
-> This brings the following benefits:
-> - Instead of parsing the device tree multiple times (complexity was
->   close to O(N^3) where N in the number of properties) during bootup,
->   fw_devlink parses each fwnode node/property only once and creates
->   fwnode links. The rest of the fw_devlink code then just looks at these
->   fwnode links to do rest of the work.
-> 
-> - Makes it much easier to debug probe issue due to fw_devlink in the
->   future. fw_devlink=on blocks the probing of devices if they depend on
->   a device that hasn't been added yet. With this refactor, it'll be very
->   easy to tell what that device is because we now have a reference to
->   the fwnode of the device.
-> 
-> - Much easier to add fw_devlink support to ACPI and other firmware
->   types. A refactor to move the common bits from DT specific code to
->   driver core was in my TODO list as a prerequisite to adding ACPI
->   support to fw_devlink. This series gets that done.
-> 
-> Tomi/Laurent/Grygorii,
-> 
-> If you can test this series, that'd be great!
+v4:
+- Machine driver: Addressed suggestions from Tzung-Bi.
+  - Remove redundant judgments in dmic_set() and dmic_get().
+  - Remove 1 level indent of judgment of IS_ERR(data->dmic_sel).
 
-I gave it a try, rebasing my branch from v5.9 to v5.10-rc2 first. On
-v5.10-rc2 the kernel dies when booting due to a deadlock (reported by
-lockdep, so hopefully not too hard to debug). *sigh*. Fortunately, it
-dies after the fw_devlink initialization, so I can still report results.
+v3:
+- Machine driver: Addressed suggestions from Tzung-Bi.
+  - Move variables "dmic_switch" and "dmic_sel" into struct sc7180_snd_data.
+  - Remove redundant judgments in dmic_set().
 
-Before your series:
+v2:
+- Documentation: Modify the dimc-gpios property description and examples.
+- Machine driver: 
+  - Remove "qcom,sc7180-sndcard-rt5682-m98357-2mic" compatible
+  - See gpio property and use anadditional control.
 
-[    0.743065] cpuidle: using governor menu
-[   13.350259] No ATAGs?
+Thanks for the review!
 
-With your series applied:
+Ajye Huang (2):
+  ASoC: google: dt-bindings: modify machine bindings for two MICs case
+  ASoC: qcom: sc7180: Modify machine driver for 2mic
 
-[    0.722670] cpuidle: using governor menu
-[    1.135859] No ATAGs?
-
-That's a very clear improvement :-)
-
-Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> [1] - https://lore.kernel.org/linux-pm/CAGETcx-aiW251dhEXT1GNb9bi6YcX8W=jLBrro5CnPuEjGL09g@mail.gmail.com/
-> 
-> Saravana Kannan (18):
->   Revert "driver core: Avoid deferred probe due to fw_devlink_pause/resume()"
->   Revert "driver core: Rename dev_links_info.defer_sync to defer_hook"
->   Revert "driver core: Don't do deferred probe in parallel with kernel_init thread"
->   Revert "driver core: Remove check in driver_deferred_probe_force_trigger()"
->   Revert "of: platform: Batch fwnode parsing when adding all top level devices"
->   Revert "driver core: fw_devlink: Add support for batching fwnode parsing"
->   driver core: Add fwnode_init()
->   driver core: Add fwnode link support
->   driver core: Allow only unprobed consumers for SYNC_STATE_ONLY device links
->   device property: Add fwnode_is_ancestor_of()
->   driver core: Redefine the meaning of fwnode_operations.add_links()
->   driver core: Add fw_devlink_parse_fwtree()
->   driver core: Add fwnode_get_next_parent_dev() helper function
->   driver core: Use device's fwnode to check if it is waiting for suppliers
->   of: property: Update implementation of add_links() to create fwnode links
->   efi: Update implementation of add_links() to create fwnode links
->   driver core: Add helper functions to convert fwnode links to device links
->   driver core: Refactor fw_devlink feature
-> 
->  drivers/acpi/property.c         |   2 +-
->  drivers/acpi/scan.c             |   2 +-
->  drivers/base/core.c             | 584 +++++++++++++++++++++-----------
->  drivers/base/property.c         |  27 ++
->  drivers/base/swnode.c           |   2 +-
->  drivers/firmware/efi/efi-init.c |  31 +-
->  drivers/of/dynamic.c            |   1 +
->  drivers/of/platform.c           |   2 -
->  drivers/of/property.c           | 150 +++-----
->  include/linux/device.h          |  10 +-
->  include/linux/fwnode.h          |  66 ++--
->  include/linux/of.h              |   2 +-
->  include/linux/property.h        |   2 +
->  kernel/irq/irqdomain.c          |   2 +-
->  14 files changed, 490 insertions(+), 393 deletions(-)
+ .../bindings/sound/google,sc7180-trogdor.yaml |  8 ++-
+ sound/soc/qcom/sc7180.c                       | 61 +++++++++++++++++++
+ 2 files changed, 68 insertions(+), 1 deletion(-)
 
 -- 
-Regards,
+2.25.1
 
-Laurent Pinchart
