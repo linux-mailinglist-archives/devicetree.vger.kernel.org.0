@@ -2,186 +2,307 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C10F32A94F8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:07:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 849DD2A94FC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:08:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726813AbgKFLHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 06:07:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40294 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726694AbgKFLHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 06:07:49 -0500
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 894F9C0613CF
-        for <devicetree@vger.kernel.org>; Fri,  6 Nov 2020 03:07:46 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id h2so989210wmm.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Nov 2020 03:07:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=n7O8QvaxHe67uhrGjIcnRsG7AT5yAAmj1iYj13UlWSk=;
-        b=sotY8lsijBMHrgYWzuJFn2xDYKLi5oQpVgBSlGqq1p9jFgvL2qVYnUnZLOPj6Rc8Ij
-         /zYg00YTvSRuq6ZJL9EVCVxx2ZgwLw78VHw+PNSkhJSay3Xeghsksi63Gs/mFvgltOrE
-         9LOq5eOnwExTRslV6rYH9ctYH0qcMfI0gOcyW0gD77RaEd+JerRvz4BsWwS14ge9B5O3
-         tfNycJsJyxAVRXvKWm3PfvJKiwVOnrgOw861TqoJeTOiCED5HMt11B1GhD5VvJgew66U
-         BcVN925IXn3WWd34yhaESEb+WTuZX1E8oUc0tN+X2gGp4AJBlN65uRYWQkYbxmJUO5wl
-         XrNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=n7O8QvaxHe67uhrGjIcnRsG7AT5yAAmj1iYj13UlWSk=;
-        b=L7gfdm6WG8rQvCzJAqUSa44RrvkgDnof9tyhpMrh/fJJIbqOa9TkbWQQLptnhd2UIl
-         DA4TKbaNkvh+dGuAi2qNAD+a7EqNUF2WFbEkZmT6+goBrnnMPZKErsa+ZpRwGXZqt/Pj
-         n2tqqaRxfCiU0cUgMBjiKCLkVLubOZP3MAooQZezZG5RuZEipo7uTBMoVnSBo282sujQ
-         sMez0h4iZ9E0Iq49RpyTX2tKEvvf3eGBW6CFkJINTX98RAsCH7hI9FvfqhiKgc73yCFG
-         FPCKSjBjnUOwvdnRGT0ooZ2FrrIHuZFD/JjnPPnmXeIxLp2t8LQR3lr1+3x6QsTOLKd/
-         joQg==
-X-Gm-Message-State: AOAM531QxSscYPhhz81vbq2rPkPp2vdQ+5T/QqnMa1CinwFf5RO8QzOY
-        YFbRNhjw8PPbO31VhvjTDXY4iQ==
-X-Google-Smtp-Source: ABdhPJz0VpUwzSEJM0C94AmhzrNY+e+xXXJWgjWfhL2b/c+qUr+twopaKZjYT44xkHyz8UuRHlUL5w==
-X-Received: by 2002:a1c:e919:: with SMTP id q25mr1811606wmc.142.1604660865058;
-        Fri, 06 Nov 2020 03:07:45 -0800 (PST)
-Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.googlemail.com with ESMTPSA id q2sm1548574wrw.40.2020.11.06.03.07.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 06 Nov 2020 03:07:44 -0800 (PST)
-Subject: Re: [PATCH v2 1/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20201105120410.18305-1-srinivas.kandagatla@linaro.org>
- <20201105120410.18305-2-srinivas.kandagatla@linaro.org>
- <CAHp75VdM9LUV2M6rEZyK=4rh_+hwFK5_2-9RB7YQTuMxHSYCMg@mail.gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <640e8a15-d66d-3fca-6637-bd8dae32ea4a@linaro.org>
-Date:   Fri, 6 Nov 2020 11:07:43 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAHp75VdM9LUV2M6rEZyK=4rh_+hwFK5_2-9RB7YQTuMxHSYCMg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1727029AbgKFLH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 06:07:57 -0500
+Received: from mail-eopbgr70044.outbound.protection.outlook.com ([40.107.7.44]:1408
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726422AbgKFLH4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 06:07:56 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E6aLLbT1dB+CV6Y2wVh0YCwrGZau9Umer564tpFejO4ZzppB8g6ouqJT1i4VQYTXDf91qNTTNpMmeRuJgPQ2mHY8Jgx+eHTjESQmQd6V6Gt0fb/rWX2jEfIJwx0VlUdST0zi9p1OSjVXn/gX1cbj8b3gscKeSul5LnbWDVXz+UvypZmYTstnLHj8/TCT9H5BnuyDlM0h+Zk9mM1A4TTULDkRRGVnBRbJPdH6HtkVmZQxz5h8o9unAkdI8AYvAApvqKtZ+0TO1q6+b9Do3gkh5pTKmFtYbyyUWNDVwBb/OIKrYuW1jrqVSD1N1yOAPnJ6QW8V3w1G4kqVRduEW6c1lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yiVodZRAAXDiDfocbc0/d9G2UMlDh1jhHCjLVqbO87Q=;
+ b=kTho4EwAiOqSXSMf/RiaTh183FgyiYLXU1ON0pEb63TZo84S0ZrYVEASvQCiNc2qReeFX5hOSWAkZB32yMNTdlYfZicYBv/O2mD1wNjZcAEKynGW5kk7eSUoGwKd4BXnlJ0aa1WMNPErhlj1QBtLAQXTMU1czicZlcFIdetN/Ypksd4aj7SSFVuxzyQijzl21vH8q0UG7G0UwD6vtANebHKUN9DtKqh/b6wQN1tVNzxLxbCVEjM9UM/giTB0Cl2rrL4jJsA9w0U+Yi4XZgZS6hgHmKcNqfNZtiKRZDQqKmhrU+0YMpLuSmCdJUc4KKY1r2HjEZXLaigp/5Jz471x7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yiVodZRAAXDiDfocbc0/d9G2UMlDh1jhHCjLVqbO87Q=;
+ b=kDX5VIFoyRLNK5kC0G4xPC164iCmMwZozfhDvF9yGVYV9MGjp1R9frV6/X+evr9IIaOMqNVaCfobP6RQfW+OexmBmvzk8SQKuBKiX42AYxxPM0RWzwcddectqLvEm8UMmHts8IxHQ8T/Yilqpt0Qblx6h/6GIwWn+0Ec9uUnrR4=
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
+ by VI1PR04MB5551.eurprd04.prod.outlook.com (2603:10a6:803:d8::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Fri, 6 Nov
+ 2020 11:07:47 +0000
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::852e:24d5:4c9f:5bdf]) by VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::852e:24d5:4c9f:5bdf%6]) with mapi id 15.20.3499.032; Fri, 6 Nov 2020
+ 11:07:46 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "mika.westerberg@linux.intel.com" <mika.westerberg@linux.intel.com>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "prabhakar.mahadev-lad.rj@bp.renesas.com" 
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>, Peter Chen <peter.chen@nxp.com>
+Subject: RE: [PATCH v5 1/4] dt-bindings: usb: add documentation for typec
+ switch simple driver
+Thread-Topic: [PATCH v5 1/4] dt-bindings: usb: add documentation for typec
+ switch simple driver
+Thread-Index: AQHWsdbzASvYBj2HdUCPlXdENcrxN6m6IZeAgACOpnA=
+Date:   Fri, 6 Nov 2020 11:07:46 +0000
+Message-ID: <VE1PR04MB6528DB5965EFE139C7E0FAFA89ED0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+References: <1604403610-16577-1-git-send-email-jun.li@nxp.com>
+ <20201105222559.GA1701705@bogus>
+In-Reply-To: <20201105222559.GA1701705@bogus>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 5d15a498-c592-4e8a-d2ad-08d882443150
+x-ms-traffictypediagnostic: VI1PR04MB5551:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB555194E012BB6C5151C651D789ED0@VI1PR04MB5551.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Pa1ucgy+JmPhhVM83nK6VPHVWFzqlNPhZZyk58Q4xaWd1emygVPgRpvKjETnwn8z176FuVzGTwhT9zu2oHNfgal24nXQ5lhBPLdjPO2z5TzStYUQhCP7YS7GlTLcaobn7DfackkNtYWyvz9sGaprRFCv6SNgwxkEbpVFiocTZ/h2dxqzsg7hdVrvOHE61JcBaiGeztmHMhZqXHKvgKE701Ov5GpwdO6vFdZZiXmohJqZdPuY17l2zzIv1QdPxWZo1cowCkQG2lO+taVmU+uX4BqOE7swXrG3UMZNbiPPhiWSByyish1y5s0YatUdVfohJR7iybtBVpTkCeG5QTmyrCwzqATMG/bYWlxNbYa0JUsd3f8SR68DHA2kUhmz2iX7909q8anE+Mqd88IY8HpXXA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(366004)(396003)(376002)(346002)(71200400001)(478600001)(7696005)(8676002)(8936002)(54906003)(186003)(44832011)(26005)(33656002)(7416002)(4326008)(6916009)(316002)(45080400002)(5660300002)(6506007)(53546011)(86362001)(2906002)(76116006)(66476007)(66946007)(966005)(52536014)(9686003)(66556008)(66446008)(64756008)(83380400001)(55016002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: iNMJYJuFLYSbQiI6C4ROGvuHn7xFMfJtK4hYfJmAxwTOweUBwGiEWlAqTigUUwmpS96hGcb1La8ufMg00Lt21iCgDDm0MI2ERyhlzEtQQnOofHe9MBnJknBkd89kP3CxjmlgRUY6i+sKtfDKTpBc4xUJhWfLSVYYZvq6TKWh5tsOVY/EcsUdwjSSoegBbf51QJ0CalBfYzubbYKKBJnzTkVuMwZwsbLhrOClZA2h4BAOhMk6aTqRnVXZfp0qVHemSaLV1ccia/y83hoHwSfJ/CoYrRnDTgLbEqBd+sdfBEmeFAsMLNamRKlhVVF1wlANjiju5Ta8IJDbIAke5pPAn4jukRviELoIV0ipScCFsWavF8/bYc5s5OMr+wf9OR3ZVmPNWCFClMhLpY3O3eGu+/e1J9afEUcxeeWiv/ou4RDNi/92Jbm2n0FPr3/1jBOBji1i5bm+gz2EVtGMnZsKmjWblfK8TUZs8B7l99NSzYVqFkmp+z2JjDHEs3Y+GQd4EYPmgjtC7VxUxW7nydV2vry285MC4whCufOe4386C4izgruaAykYmK8jv99Xoa9vp2hzPk8qaFB3WSJLyVIWpmVZn6btZ37Ou/jpdBRfp0Ld+T7wqdaJfiWJtt17VoDjWpjYbb8EL/S2pz+aXvra7Q==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d15a498-c592-4e8a-d2ad-08d882443150
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2020 11:07:46.8333
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H2VkdSsrXh1i9Ukfbcx+NNIw4lMQfFfgy+/ocHhqXQFUco4GZTc1JJjJ3gcz9Y7R
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5551
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Andy for the review,
-
-On 05/11/2020 12:32, Andy Shevchenko wrote:
-> On Thu, Nov 5, 2020 at 2:06 PM Srinivas Kandagatla
-> <srinivas.kandagatla@linaro.org> wrote:
->>
->> Add initial pinctrl driver to support pin configuration for
->> LPASS (Low Power Audio SubSystem) LPI (Low Power Island) pinctrl
->> on SM8250.
-> 
->> +config PINCTRL_LPASS_LPI
->> +       tristate "Qualcomm Technologies Inc LPASS LPI pin controller driver"
->> +       depends on GPIOLIB && OF
->> +       help
->> +         This is the pinctrl, pinmux, pinconf and gpiolib driver for the
->> +         Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
->> +         (Low Power Island) found on the Qualcomm Technologies Inc SoCs.
-> 
->> +#include <linux/of_device.h>
->> +#include <linux/of.h>
-> 
-
-I agree with most of the style related comments! will fix them in next 
-version!
-
-> ...
-> 
->> +#ifdef CONFIG_DEBUG_FS
->> +#include <linux/seq_file.h>
-> 
->> +#else
->> +#define lpi_gpio_dbg_show NULL
->> +#endif
-> 
-> Hmm... Doesn't pin control provide a wrapper for this?
-> 
-I does, but the custom code can provide additional information (such as 
-pullup/pulldown configuration) which default one does not provide.
-
-Most of the pinctrl drivers have there own version of this!
-
-> ...
-> 
->> +       int ret, npins;
->> +       struct clk *core_vote = NULL;
->> +       struct clk *audio_vote = NULL;
->> +
->> +       struct lpi_pinctrl *pctrl;
->> +       const struct lpi_pinctrl_variant_data *data;
->> +       struct device *dev = &pdev->dev;
->> +       struct resource *res;
-> 
-> Redundant blank line. Can you keep them in reversed xmas tree order?
-> 
-> ...
-> 
->> +       core_vote = devm_clk_get(&pdev->dev, "core");
->> +       if (IS_ERR(core_vote)) {
-> 
->> +               dev_dbg(&pdev->dev, "%s: clk get %s failed %d\n",
->> +                       __func__, "core_vote", ret);
-> 
-> First of all you missed the deferred probe issue, second, __func__ is
-> redundant for *_dbg() calls (okay, when Dynamic Debug is enabled).
-> That said why not
->    return dev_err_probe();
-> ?
-It looks neat, I will use that!
-Thanks for this hint, I never knew we had some function like that!
 
 
-> 
->> +               return PTR_ERR(core_vote);
->> +       }
-> 
-> ...
-> 
->> +       audio_vote = devm_clk_get(&pdev->dev, "audio");
->> +       if (IS_ERR(audio_vote)) {
->> +               dev_dbg(&pdev->dev, "%s: clk get %s failed %d\n",
->> +                       __func__, "audio_vote", ret);
->> +               return PTR_ERR(audio_vote);
-> 
-> Ditto/
-> 
->> +       }
-> 
-> Why is it not a bulk?
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: Friday, November 6, 2020 6:26 AM
+> To: Jun Li <jun.li@nxp.com>
+> Cc: heikki.krogerus@linux.intel.com; rafael@kernel.org;
+> gregkh@linuxfoundation.org; andriy.shevchenko@linux.intel.com;
+> hdegoede@redhat.com; lee.jones@linaro.org;
+> mika.westerberg@linux.intel.com; dmitry.torokhov@gmail.com;
+> prabhakar.mahadev-lad.rj@bp.renesas.com;
+> laurent.pinchart+renesas@ideasonboard.com; linux-usb@vger.kernel.org;
+> devicetree@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>; Peter Chen
+> <peter.chen@nxp.com>
+> Subject: Re: [PATCH v5 1/4] dt-bindings: usb: add documentation for typec
+> switch simple driver
+>=20
+> On Tue, Nov 03, 2020 at 07:40:07PM +0800, Li Jun wrote:
+> > Some platforms need a simple driver to do some controls according to
+> > typec orientation, this can be extended to be a generic driver with
+> > compatible with "typec-orientation-switch".
+> >
+> > Signed-off-by: Li Jun <jun.li@nxp.com>
+> > ---
+> > No changes for v5.
+> >
+> > changes on v4:
+> > - Use compatible instead of bool property for switch matching.
+> > - Change switch GPIO to be switch simple.
+> > - Change the active channel selection GPIO to be optional.
+> >
+> > previous discussion:
+> >
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fpatch
+> >
+> work.ozlabs.org%2Fpatch%2F1054342%2F&amp;data=3D04%7C01%7Cjun.li%40nxp.c
+> >
+> om%7C78ca5205695149e2743208d881d9c753%7C686ea1d3bc2b4c6fa92cd99c5c3016
+> >
+> 35%7C0%7C0%7C637402119664101856%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLj
+> >
+> AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3D
+> > 8TY%2BPRIui6HhxhYE1%2BLmwWL38Vp7SY1Ceb5rGG%2B4DUo%3D&amp;reserved=3D0
+> >
+> >  .../bindings/usb/typec-switch-simple.yaml          | 69
+> ++++++++++++++++++++++
+> >  1 file changed, 69 insertions(+)
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+> > b/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+> > new file mode 100644
+> > index 0000000..244162d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id:
+> >
+> +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi
+> >
+> +cetree.org%2Fschemas%2Fusb%2Ftypec-switch-simple.yaml%23&amp;data=3D04%
+> >
+> +7C01%7Cjun.li%40nxp.com%7C78ca5205695149e2743208d881d9c753%7C686ea1d3
+> >
+> +bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637402119664111854%7CUnknown%7CTWF
+> >
+> +pbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6
+> >
+> +Mn0%3D%7C1000&amp;sdata=3DHjWfKlDLyqb%2FKLlL6vdnyPe%2BnB8pSllhokIXQ%2Bw
+> > +yyw8%3D&amp;reserved=3D0
+> > +$schema:
+> >
+> +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi
+> >
+> +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=3D04%7C01%7Cjun.li%40
+> >
+> +nxp.com%7C78ca5205695149e2743208d881d9c753%7C686ea1d3bc2b4c6fa92cd99c
+> >
+> +5c301635%7C0%7C0%7C637402119664111854%7CUnknown%7CTWFpbGZsb3d8eyJWIjo
+> >
+> +iMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&am
+> >
+> +p;sdata=3Dz0bO47QVl5gw0UE%2Bx3a5E27ALgz568zp%2Bf4suGlch%2Fo%3D&amp;rese
+> > +rved=3D0
+> > +
+> > +title: Typec Orientation Switch Simple Solution Bindings
+> > +
+> > +maintainers:
+> > +  - Li Jun <jun.li@nxp.com>
+> > +
+> > +description: |-
+> > +  USB SuperSpeed (SS) lanes routing to which side of typec connector
+> > +is
+> > +  decided by orientation, this maybe achieved by some simple control
+> > +like
+> > +  GPIO toggle.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: typec-orientation-switch
+> > +
+> > +  switch-gpios:
+> > +    description: |
+> > +      gpio specifier to switch the super speed active channel,
+> > +      GPIO_ACTIVE_HIGH: GPIO state high for cc1;
+> > +      GPIO_ACTIVE_LOW:  GPIO state low for cc1.
+>=20
+> What does active mean? There isn't really an active and inactive state, r=
+ight?
+> It's more a mux selecting 0 or 1 input?
 
-I can try that!
-> 
->> +       clk_prepare_enable(pctrl->core_vote);
->> +       clk_prepare_enable(pctrl->audio_vote);
-> 
-> Either from them may return an error. Also, when you go devm_*() the
-> rule of thumb is either all or none. Because here you will have
-> ordering issue on ->remove().
-> 
->> +       res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +       pctrl->tlmm_base = devm_ioremap_resource(&pdev->dev, res);
-> 
-> devm_platform_ioremap_resource()
+Yes, I will change the description:
+gpio specifier to select the target channel of mux.
 
-make sense, I remember doing this! somehow I missed it in this version!
+>=20
+> I think you want flags 0 (aka GPIO_ACTIVE_HIGH) unless there's an inverte=
+r
+> in the middle.
 
-rest of the comments looks sensible to me, will make sure that those are 
-fixed in next version.
+This depends on the switch IC design and board design, leave 2 flags
+(GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW) can cover all possible cases.
 
+NXP has 2 diff IC parts for this:
+1. PTN36043(used on iMX8MQ)
+Output selection control
+When SEL=3D0, RX_AP_*/TX_AP_* are connected to RX_CON_2*/TX_CON_2*, and
+RX_CON_1*/TX_CON_1* are connected to VDD thru low ohmic resistor.
+When SEL=3D1, RX_AP_*/TX_AP_* are connected to RX_CON_1*/TX_CON_1*, and
+RX_CON_2*/TX_CON_2* are connected to VDD thru low ohmic resistor.
 
-thanks,
-srini
+Board design connects RX_CON_1*/TX_CON_1* to typec connector CC1,
+so GPIO_ACTIVE_HIGH
+
+2. CBTU02043(used on iMX8MP)
+SEL        Function
+--------------------------------------
+Low        A to B ports and vice versa
+High       A to C ports and vice versa
+
+Board design connects B to typec connector CC1, so GPIO_ACTIVE_LOW
+
+Therefore, we need 2 flags.
+
+>=20
+> > +    maxItems: 1
+> > +
+> > +  port:
+> > +    type: object
+> > +    additionalProperties: false
+> > +    description: -|
+> > +      Connection to the remote endpoint using OF graph bindings that m=
+odel
+> SS
+> > +      data bus to typec connector.
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        type: object
+> > +        additionalProperties: false
+> > +
+> > +        properties:
+> > +          remote-endpoint: true
+> > +
+> > +        required:
+> > +          - remote-endpoint
+> > +
+> > +    required:
+> > +      - endpoint
+> > +
+> > +required:
+> > +  - compatible
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    ptn36043 {
+> > +        compatible =3D "typec-orientation-switch";
+> > +        pinctrl-names =3D "default";
+> > +        pinctrl-0 =3D <&pinctrl_ss_sel>;
+> > +        switch-gpios =3D <&gpio3 15 GPIO_ACTIVE_HIGH>;
+> > +
+> > +        port {
+> > +                usb3_data_ss: endpoint {
+> > +                        remote-endpoint =3D <&typec_con_ss>;
+>=20
+> The data goes from the connector to here and then where? You need a conne=
+ction
+> to the USB host controller.
+
+The orientation switch only need interact with type-c, no any interaction
+with USB controller, do we still need a connection to it?
+
+Thanks
+Li Jun
+>=20
+> > +                };
+> > +        };
+> > +    };
+> > --
+> > 2.7.4
+> >
