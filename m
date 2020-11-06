@@ -2,119 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34F5A2A965E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 13:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E0A7D2A965F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 13:46:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727014AbgKFMqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 07:46:14 -0500
-Received: from sonic306-1.consmr.mail.bf2.yahoo.com ([74.6.132.40]:41230 "EHLO
-        sonic306-1.consmr.mail.bf2.yahoo.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726757AbgKFMqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 07:46:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aol.fr; s=a2048; t=1604666771; bh=zS4B1yRTnNuvY3t+UCspgZgSTCynme8L74fJQbF/Eug=; h=Date:From:Reply-To:Subject:References:From:Subject; b=SNvH86qSlFLubXi1OZWd7sBu4D5trRWR6+UqvvYyHtw0jS4LRFCGtn17DJ7VEXBW/eU9fBkfrXni0svWwopwq5vGoiuucSmhB+mJkxijj88LM+5pUjks8+qvsIWsr/DguLdAqlA6aykxgsGx8XFEBPCthvYu8d8uKafMcyENZUIR5dQ6BhjTHTGsNTpym/CzCQcYkVFRegarULrg/6VyptORTuW4tqLDV2VH9jNhG7XyRxm7iChON0ciqI7ZjpNo38iGUZMuhhnWOaKS61xCeNrEzLvlqhEmQvxCZiKL8b5YxH06+/Svnfcx513AK/anDGjVjHV7Sa2frxi5N/dQZA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1604666771; bh=NYmvqxlOKf0aG+h3PSVm5LfBUAx5QIYYi7hj8zSgJpi=; h=Date:From:Subject; b=c+VjO39iN7kPFpR6vTltc7XfILxH51V0KGVBgAiqS7xC2jKwJo3zCaUNROws+XsXrfvd6geAQ0ejh64MMzI7pPLu9beTf8nwfmkhKsEG88hZYJPG5RvwP+I5TFsPx3Zd+lREScY741TgSFjkAYbzOSveeEnDE46x7m1nAMTylTncB7PVQidjd7aB5lzHhRHouMAIu5A1UYc6kRFB16pRAMOHXTtadvfSqsYlgMceePLgBJS6ZDdbotDPH4Z11fsyL57kSL8Qfc0mYQMg+5Mvx2ah/QKpcN8SC+IAcvP5qxXRUqIO6Ujj2W9ttilrAVbSmNPYPdZbOGcl5k2x1GjY2g==
-X-YMail-OSG: Du.MCdoVM1k.rV9Z8N7BkIsvHPJY3KfEcfZmZHkbateMmZB0s7nZupZ8je9so6Z
- SXAcxMQrdYt0.ZKKMiw5QnJZvG.DESAE1X1j2vJ9vtGADoRKqKsXYkdhhQIiPusRfWJn_p87r07m
- etmdYP3g_Ny2MF6FuircXHuyT05tFy5arFYkjzSuZ2dSEyq_PASrzC9bfV4HmVEwKnXQlfbvPP_Q
- E69CKUStanKCw2wXvLuCLWtouRXN1SKgxvE.aPAx3x1eKfUaxOIvfmSN2rDiovvELLDtY_HPvVfh
- rHroB4Vx6YyTYuHo_IctxvUXPEGahAiqEQzCqjRiH1ORSoIfKMvjf_f9iNioc.bLEK89XdNYcDkQ
- 0hgB.fGlkZnEQMU7HzZzoBT._Avhq._sFahsXTO9.9IOxmUmQ4w1bUnaa41wzE6jgaRJnJv3WwCt
- pV0M2Yy9mfg1VBUAuHxde6G6AHeXYd0qKsj_fojfsdeyDpOVYsYzUb8yY6pBR_ukqPem_zqia062
- pkGdudCq3CnjlJcoFr_41y2pM2RzzIFwVaT8XfbAybbWXn0eZWy5zRWoJ0lpyamtiRwMLjkGpr9C
- L5zBmk8FmlJhkkZp5PioqHsDvIImyFJb1SwatY42gtT9oAIaS9VDTG4mEirCtXJf3pfWRqO.WJuO
- WnZ.75_mwK_z5sAkgnGDSFaCniV0dP_.L52tiOV5Um7bU_VhFtV536jEOANvYXeZdnZWkefPZ4uw
- c7cJdNC7vjiE521CM15AMMUsIy5AOrRbCZsTu9HLZfs6n6_3Rx51iwr8wRgLgSjP71jDXpImHIg1
- vaLjAMqOjXufCdAZS_PFt_JXuHojtpCryjNBw2zbXDtrLHH.Mu9zP7MHWol_rnns8HfEaJiwoXLf
- hqcjoPSSXkQ3bt2A56ssfI6Awu5e0gx_ekl418CD0PXOsxjaHQQiZXqGZ3Y8Vo1A1XGeueAAI9s_
- oMYZl_T.ResNgWqlm4w3QeBRy7nuXvXIhSyhKSnHWIqPD_PfJTOltttF4TEsRGKRGaIdCO19MXdg
- lSEKYBlDCDWn1kCch1RNlL9NxrVkGyd.ACdJTdeGkQvak4ZcI3J5JO1thYJXtcWnF.W4tTB099ad
- JborzCvkkTPa9hgh70ESEwDV6KE6siQLFr_6pacBymaStwfZQ607ZyOBiy2M3hexN0KvcERhHdMN
- FLciFU.3qAhb3Wal9oQNqooMjMPquAI949dzeRdiF7OonnDwtmB1mo0OUYbSgP.os30Vovnmprrw
- 8weQ973MTCHYPdBV7mZcWRYKW16JV5c_SJTcGCdzrAjmuhwOpkp8mcKzhQaC6ZwpgmQK4GjoF6p1
- nahgdh4qxnNzte93o08GyL4lGS1LCo9RwqWAbmLXbDFRJKaplalervMqEcvt2gobc3vmpenLT7Bh
- 3aRbaituYdW.T6m6Pq.yiRIAQgs9MbuIaVKnJS9FFN17ks1WfAf63iYQW7UacPXQdJncuc3oQgBC
- kLk324_YxDNWanNG5v5YQDjRzwm9P_2gNJD0eykrS2sARabFFKK4v5LXHOrMMKfJ5TXZlfsSQuCy
- RsHg3CAn88kSyLktLM1YO2r4m3UqRUTPR6Jjzoyl1cy_8jyM1KkJruGWZyvqOF3KaZuHcopPNm5q
- N5WnGGnRlWcXn6Zg947ZB91qCLivx9LwgA7mN.ewhsIlEgvl6FLWpnY56tbDCRawFUTv9eZr1ZZD
- QBk8O3VHH9dlmIurCbR2irO1FOnPWDTlbBnWlfuVj_wE1YKd1vb8sL.zj_NA0jAToXArLX1Theu_
- 3vYSCPAyMTPk28xyxT5nqB3H_tdMjhqGuSSRoSuhEpisy5LNwe9yYMEXM.XDnb9VmsyOuXkYXlFF
- BP1GCU8g8xqvC2KyDbK8GHIWAP1Et4bxW0acR7vBZdz1LH54e3VsjwJ9V9.agZnz9G_F97GirWW7
- xU8eQRE2vR9pqq8w1W5CbfhTqbIbB0nFzLwRAVsD72TMlxcu_p87GnER4isi275rXHe1e6jC43Yw
- ve6Mx6dRR3hNK4PVuV1Djkzf9B_N7.Y3snftSN8zEsxAmL6KcQ7kAxI7LWW0hsp_JmiP76J7BheC
- yw5bnH0EVtKfnYOuITSDibDndIs1nTPXUrYhuqtMKYh6HRks9_4m4NyE2FuuGuKDpzRIVW02EJ7V
- 1Uey3xCZSImD3luFiQNn3EAUJS.QmG9aEA3MgXuIymFRHF_7QTq2PGkDhgH6omNUzHqfcaw_SVLt
- XPIkJ_nKsLomSS83zieUIkIZLewA7fQkEFAAl8D7U6_0gJ8pYoRXXJg4DT1fza6lB_ZFPif24Kv2
- ruAbC3lfdz473gcROQ0WdkcLZxzgs7arLy4FL5uqpUWVHrAzddPrRrP4CxWCJj.KMHGquObKs6cR
- 5SEPDqZVv_kFww304aSyK3q82Y4kabfV18GZygc2Q0gCDIc3k9GkbR3KEdzle4DD2kRgF7YBA_5w
- fj_SuDJTLezb8kjMIpsfBjn9fxLdHScBbiRQYumnuuhtKz_g_jwMQxHvX9L5kXTK.8i9BzoUDkCt
- ppOn9VTXAA8TB1QY0aSHDMgH2U2cMRKl45Ncm5FVtYIQXObQtTvNT4JejKkUdHBslM3JKB_54Y4D
- 2bCJD4SeTF_HJS1yjXFHCAuS4LV2lLVraszHwa9ClJDsXDcgfxmDWMLC8_GKK5esn.bds81ETZLg
- aoI5pgeI1OQ0dtLsn94pPoniafm_Z1tUYgIbNhn3tKW2_9fu8JKTWO9OSwDNYgQKTGHj.D3qCfMs
- 3WLqsrI7vdTi3oMBSgLbI57GSXiRIK6fU1ohH3FCAz6mALnZ5E_ZCoADVSp5kq7roErYu7_h7SCs
- xyRh6DE.BHC_lIN.TFYRrLX4bXXJYzIzGeBxtuzf54IkCZJy3o.kq8RkOa.jJg5pWz3q6lsI8yMu
- N.61tEL60GwCtILgLGamOJWSYHTOL0UWBWI7ec.p1ctipvZ2OOBuoROFS_N1VSQN0FjULm_um8sr
- cnnsOdnSKyRy1zQpSpEDdUeddLkEzC74AOhI86fwmrP6Kf95RNWY7oE9LiWaDe657OYG8GAeP1mx
- W2zh_7yqur2L7g.E49HX.CxtspItyxv4sHVRTsJhh43c9qbE89Eoap4YmWTwCYcTInclHH8YNXis
- aWmvQqobriOEwCCdARugfuICjS6FlugTxu83JDpcKWY_C6PTzdIxh5CwzZpF2jZkz5AANDUTLLis
- vWMrHRjRYRKuopNbvOzdZej0kweY8M9EA0p7SrmkcOM3X5o8F7xsLdbN47C9oDaVCv0sH.PPacFe
- PihXUhblXruUPf7iLIbw1.qCTIeGpol_SXKJXfABiCELPnolgOC9MGMn1XwaPeRz4F77BMmcwO84
- 3sq4PU6FS1GczQeLRUSEmuo31dpv8UhdYNMhwjViZi9ZoF.jpk4HMhRxQ17pQmNj16XPqYymgpzH
- ZL1U1qcqC9hHSGdVFvhibTfs7nUrk5BbuooXuNrJAe_dQ24ByT7lZqoGG6lWf9wDNSEpYVCg7SGY
- uK4pKZpbwbpiYDKpzcLQeOQqRMgPK0pXkcGzCvf6utSLU7bHHPTdExlheob9oLsxEJRm8g2DQ8U.
- FpGO1XVlNwYkZi36S9jQZ13uFUrE2hgYQWUpLUnCuytW6DfHZH6a8WtBVyG0tN5nj2oRRvjYaKkT
- kWsyC5eiMxmpJMNpe0o4noaKS5OFn9gOITfszZf8hReAaMgxzxPYZww6j3Z2zMHKnpk1dMxs5rct
- ZJ2CGeB.7eGJZrTp2m9fh5fiojVVPLkO3CP3OPbb3mt.dJBmD6BCsp0bSJXVH7x02QUdcnodA8pQ
- kpJM1AbFtfjsVrwZc8HmpMCaKqrLj5Cp432fhUc2i31keZQuv6sUBFIAj3.5HjPUscax_VQ3VGw5
- J6RS4kEhRZiTeqhWnRtkUIICFnusA2tyYVnv5zKEf4Ha2op2fvcEeS26wwMtBtow228gdxIPcQN8
- jVcckb8uQdg_BwzCsrklk_xzALntzSo7KqzH6Ibf4O_xx3damo9EVbvmeBmimFzaxTPjW.H2ubHa
- BzTroFwUc2RV5hqI13h72D9qougBaraW2UwpAjnkyViqMG4le9w0izVMfxrYgbIEx1oivktncCRy
- WjWDMb91tFX90XCyy6EVqNSgpJF2Erz3lJVbA5EGjiOY3W3_u7YUUwjIul.PES2kYPTmik7WEfsY
- e7dy87.Z34an.xyG3Oxk9xO3spAgCUqJMtr.yis0Bg80hZhj82iuavebipBzgIJ1NHsiwJ6f7lhA
- mCJYJrg..HpM9imMHpiJzuZxAGVCUmaAMdoXjlHEneoZd_yCUHKfV86LGSimCpLd4j21qBRAEXTq
- cj936I.FWtE_NXDmzrzjHvmPeRKAZMzkkCTcqNwZmYXhg_55yrXYcWn4M8EeWlHfA6NGBJr4VBDl
- 7xHBqp0jF5joROt9shuCEuonBwbVqtP2iDj6D5oCLJhIDaUprL1xRZ_zbpv.COTQ1Nl6hYSNfJMx
- dzR7hTbe3l5GfMLIOFwXhmTsrDEoy3g6.gP.Zm4fKJHmec_MRkQVk9qtbN9w3umo5Chgy4GIA.x8
- eYE6x4MFGihl4gPVnJbI.ag1T99WWIH4gRQWuhH9iwVHLypelEKr2EnSlEbFO6Uj1p_cncbisyA_
- 4NTJDyGHULLZUmWaW3bInZBdklyqLsZVBy9CN_Ivk3_oGTPZA.UxM6elCWtc8FkmNJ3rzblqcsa4
- WTUFWrR.7_6jYbKlJxaFIoyQ1MjOGm2yzQODW0CT5sXEjiZkIyS2U3sa6LeGAFCdxr.xi7R7Vkwk
- qY4oElcultTX5lwzl5qKOScrzDczbTuix9VTVJ8mY41FOthn8AqwIORsYt08wxjqfwtoQ0TjEo1r
- 6q5wTdBDXfxXAPqZgb6yeunjNrWLJ2Urk7U1h8sl3ddSxCPD7DNzzQ2mc4dRCOjfWWVDU2GxdXlg
- tzfCStO2VyjGSuM_BDzVUs7hYJ0PHIp1YzXEWmg3O9SX081JM2MDvoE2cqQChESVN7WD0bXmC83S
- xeKQny8xH5IGTxIojYN21kjGdHIyydAGjeluUa4C.NCpCO9NZU55gMsfZpBVEsrX6shLGY_hu4Oz
- WFRV1t4tmAvGt.zwuMtTKgNCDFiI7sYuaeQ6UtGSv9JrWLnVKC0uKtWaeQsa7OtImqsOWve94zUA
- NbofU7xhBkvNuKZVZrj2e0cbjRcu67T41x1TMFG_3l.VkMbJko3j.iRm2AFV5hF3uAUHYKioVn2s
- thgwdPGGIIPPzekB9LQSKxaqEboMp2a422z38VsyPlDKpzAMiwt8MGzcHCeZ72HDYojjfU34Pq2Y
- 69XtDNZQerQBpxB4M5zhPTdEOgGdALLToGwVGodnoOdgj1OuM85qtf9.TB.i3SbddudHxHeGDtAW
- jsD_kNx.yYjNdwIrN7632r0cueRe531t37p5EhYfEcrV61lr55eetcDf_wNn7b262_0Jgn6gh1pL
- 5XC41UB65JEjLyzsAoQfTdjvF1NurDTo9xA--
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.bf2.yahoo.com with HTTP; Fri, 6 Nov 2020 12:46:11 +0000
-Date:   Fri, 6 Nov 2020 12:46:08 +0000 (UTC)
-From:   MRS SABAH IBRAHIM <mrssabahibrahim6@aol.fr>
-Reply-To: absa50602@gmail.com
-Message-ID: <496283661.1676215.1604666768973@mail.yahoo.com>
-Subject: Compensation for your effort
+        id S1727093AbgKFMqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 07:46:35 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51916 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727020AbgKFMqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 07:46:35 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A6CkLWY099280;
+        Fri, 6 Nov 2020 06:46:21 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604666781;
+        bh=86PyDEAGqhTlwQYgakhBuJ6yxMtyDVOfU+4SvvgVLH4=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=iOPvJyEqx81hPfSNxpbLVH1B49X75y6mM0M8awv4dbpq4SMSPV3V5D+7ZqDs3b58j
+         kaXzqVmeJvP7wA6DC+c/KT3ww+OzFgE15Jj3MtIVYTJwFbJS41wteWHoht8TB8AibN
+         EZFWnYevQBpVLoKc5/Xl5YfY0riPSmK3V5eJlygQ=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A6CkLbr030568
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 6 Nov 2020 06:46:21 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 6 Nov
+ 2020 06:46:20 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 6 Nov 2020 06:46:21 -0600
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A6CkGqe084078;
+        Fri, 6 Nov 2020 06:46:17 -0600
+Subject: Re: [PATCH v1 00/18] Refactor fw_devlink to significantly improve
+ boot time
+To:     Saravana Kannan <saravanak@google.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20201104232356.4038506-1-saravanak@google.com>
+ <20201106050940.GG16469@pendragon.ideasonboard.com>
+ <CAGETcx-rvTuEmJUsf6qP3WkPLOh6m6cy8E_LsJPoGejNOXrdcw@mail.gmail.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <cf3f5bdc-caf5-82ac-daa3-8b48122306c1@ti.com>
+Date:   Fri, 6 Nov 2020 14:46:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <CAGETcx-rvTuEmJUsf6qP3WkPLOh6m6cy8E_LsJPoGejNOXrdcw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-References: <496283661.1676215.1604666768973.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.16944 YMailNodin Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36
-To:     unlisted-recipients:; (no To-header on input)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Friend,
 
-How are you I hope you are very fine with your entire family? If so glory be to  Almighty God.
-I'm happy to inform you about my success in getting those funds transferred under the cooperation of a new partner from  GREECE, Presently i'm in GREECE for a better treatment  and building of the orphanage home projects with the total  money.
 
-Meanwhile, I didn't forget your past efforts and attempts to assist me in transferring those funds and use it for the building of the orphanage home and helping the less privilege.
+On 06/11/2020 10:36, Saravana Kannan wrote:
+> On Thu, Nov 5, 2020 at 9:09 PM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+>>
+>> Hi Saravana,
+>>
+>> Thank you for working on this !
+>>
+>> On Wed, Nov 04, 2020 at 03:23:37PM -0800, Saravana Kannan wrote:
+>>> The current implementation of fw_devlink is very inefficient because it
+>>> tries to get away without creating fwnode links in the name of saving
+>>> memory usage. Past attempts to optimize runtime at the cost of memory
+>>> usage were blocked with request for data showing that the optimization
+>>> made significant improvement for real world scenarios.
+>>>
+>>> We have those scenarios now. There have been several reports of boot
+>>> time increase in the order of seconds in this thread [1]. Several OEMs
+>>> and SoC manufacturers have also privately reported significant
+>>> (350-400ms) increase in boot time due to all the parsing done by
+>>> fw_devlink.
+>>>
+>>> So this patch series refactors fw_devlink to be more efficient. The key
+>>> difference now is the addition of support for fwnode links -- just a few
+>>> simple APIs. This also allows most of the code to be moved out of
+>>> firmware specific (DT mostly) code into driver core.
+>>>
+>>> This brings the following benefits:
+>>> - Instead of parsing the device tree multiple times (complexity was
+>>>    close to O(N^3) where N in the number of properties) during bootup,
+>>>    fw_devlink parses each fwnode node/property only once and creates
+>>>    fwnode links. The rest of the fw_devlink code then just looks at these
+>>>    fwnode links to do rest of the work.
+>>>
+>>> - Makes it much easier to debug probe issue due to fw_devlink in the
+>>>    future. fw_devlink=on blocks the probing of devices if they depend on
+>>>    a device that hasn't been added yet. With this refactor, it'll be very
+>>>    easy to tell what that device is because we now have a reference to
+>>>    the fwnode of the device.
+>>>
+>>> - Much easier to add fw_devlink support to ACPI and other firmware
+>>>    types. A refactor to move the common bits from DT specific code to
+>>>    driver core was in my TODO list as a prerequisite to adding ACPI
+>>>    support to fw_devlink. This series gets that done.
+>>>
+>>> Tomi/Laurent/Grygorii,
+>>>
+>>> If you can test this series, that'd be great!
+>>
+>> I gave it a try, rebasing my branch from v5.9 to v5.10-rc2 first. On
+>> v5.10-rc2 the kernel dies when booting due to a deadlock (reported by
+>> lockdep, so hopefully not too hard to debug). *sigh*. Fortunately, it
+>> dies after the fw_devlink initialization, so I can still report results.
+> 
+> Phew! For a sec I thought you said fw_devlink was causing a deadlock.
+> 
+>>
+>> Before your series:
+>>
+>> [    0.743065] cpuidle: using governor menu
+>> [   13.350259] No ATAGs?
+>>
+>> With your series applied:
+>>
+>> [    0.722670] cpuidle: using governor menu
+>> [    1.135859] No ATAGs?
+>>
+>> That's a very clear improvement :-)
+> 
+> Thanks for testing. Great to hear it's helping!
+> 
+>> Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> I'll add it to my v2 series.
 
-Please contact my nurse in Burkina Faso, her  name is Mrs. Manal Yusuf , ask her to send you the compensation of $600,000.00USD which i have credited with  the ECOBANK bank into an ATM card before i traveled for my treatment, you will indicate your contact as my else's business associate that tried to help me, but it could not work out for us, and I appreciated your good efforts at that time very much. so feel free and get in touched with the nurse Mrs. Manal Yusuf (email: mrs1manalyusuf@gmail.com  ) and instruct her the address where to send the ATM card to you.
+I've tried your series on top of
+521b619acdc8 Merge tag 'linux-kselftest-kunit-fixes-5.10-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+on am571x-idk
 
-Please i am in the hospital here, i would not have much time to check emails or  respond to you, but in case you have any important message do send me as an update, i might instruct the doctor to check it and respond to you, meanwhile, once you received the ATM CARD,  do not delay to inform me.
+Before:
+[    0.049395] cpuidle: using governor menu
+[    1.654766] audit: type=2000 audit(0.040:1): state=initialized audit_enabled=0 res=1
+[    2.315266] No ATAGs?
+[    2.315317] hw-breakpoint: found 5 (+1 reserved) breakpoint and 4 watchpoint registers.
+[    2.315327] hw-breakpoint: maximum watchpoint size is 8 bytes.
+...
+[    6.549595] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[    6.557794] VFS: Mounted root (ext4 filesystem) on device 179:26.
+[    6.574103] devtmpfs: mounted
+[    6.577749] Freeing unused kernel memory: 1024K
+[    6.582433] Run /sbin/init as init process
 
-Finally, remember that I had forwarded an instruction to the nurse on your behalf to deliver the ATM  card to you, so feel free to get in touch with her by email  she will send the ATM card to you without any delay.
 
-Thank you and God bless you.
-MRS SABAH IBRAHIM
+after:
+[    0.049223] cpuidle: using governor menu
+[    0.095893] audit: type=2000 audit(0.040:1): state=initialized audit_enabled=0 res=1
+[    0.102958] No ATAGs?
+[    0.103010] hw-breakpoint: found 5 (+1 reserved) breakpoint and 4 watchpoint registers.
+[    0.103020] hw-breakpoint: maximum watchpoint size is 8 bytes.
+...
+[    3.518623] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+[    3.526822] VFS: Mounted root (ext4 filesystem) on device 179:26.
+[    3.543128] devtmpfs: mounted
+[    3.546781] Freeing unused kernel memory: 1024K
+[    3.551463] Run /sbin/init as init process
+
+So, it's much better. Thank you.
+Tested-by: Grygorii Strashko <grygorii.strashko@ti.com>
+
+-- 
+Best regards,
+grygorii
