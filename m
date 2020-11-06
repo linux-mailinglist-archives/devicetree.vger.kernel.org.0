@@ -2,173 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 727D82A8C0D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 02:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93DD32A8C60
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:00:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731899AbgKFBZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 20:25:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34290 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730414AbgKFBZ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 20:25:28 -0500
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6411AC0613CF
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 17:25:26 -0800 (PST)
-Received: by mail-yb1-xb44.google.com with SMTP id i186so3047799ybc.11
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 17:25:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lzV9usbcyvrZBezSzuliRNMORjroXFiHCPOIQMppm20=;
-        b=mFp6wXmb3dx9Iz2MBUFPuVyhUmTP9lVcgCQyveXhQC419PlTNsEI22yTsPSMZG3kax
-         nCA+1dWmdyC3cWpzU49fyRrvZeCLfP1DG4UmaQghxfel1tj/ATOuawBGgVV7u7rd3IXM
-         B3nOHiSCZ0UVphZueGqjVfoII+u+8CgPeywRQoPZiN90fLMexZ4OTiIWWVcJZpGuww0b
-         5i1H1jHOQRmOezoZJCcZrJFBPQxgzXBPiRWAD7uMqyCVSeIAy0hKx54ImBx5TMTl5tM1
-         ODvAV2PnmUPZgqwW3qnqbwsT2wQij3uP3CiH3p3nXpvFTtKUXi+vJi/c3j/+B8DEr9kj
-         uBQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lzV9usbcyvrZBezSzuliRNMORjroXFiHCPOIQMppm20=;
-        b=jXvd8y1cTi2IQeCsrcr+11rFPDxSA4oC/kwxVGegBvx2OZqwHEQ/09cs+jgCdcwZrl
-         4HMnf4s3i/axg42mrk1JWJ9O9xIVJQNA0f5fbEGlu2/CclIdWPcqJqQI4jbTxRbwI/Kj
-         6OMcWHM4wua+bwLaTMyDa32z1owa2E1741ExU9HDDHv2v4qkiSoCJyEwWB5VtZjRdmPx
-         OuwRMx8Onb81YFas/RxvHLrtV6TCKEldrFqOAWpLUwdLkpMn9gVLXAaUDOL6vaJrhjDu
-         /vyDMNksIHnDCSmUD4W4EhWkiwdrucb77QZIdEvJp6DZNimIse97DDcy1Z2MDmPeHhdg
-         wwGQ==
-X-Gm-Message-State: AOAM530vREqh9sLX2vFLq20wnFNSECCbSFeUlYFb1FDYSy6sPUFDfGOM
-        bYtRMy5Ae8iOGi9SQYJEFg6CALxALYmD55+oZk2TMg==
-X-Google-Smtp-Source: ABdhPJyYHml/89uqvPtNmXYMF2Pm87o8/A6MHGqILFDdIGr3l1sb+4jGsYPEXHB+yaFTcNWWksQrzvjmCxCbmsk95lA=
-X-Received: by 2002:a25:9c02:: with SMTP id c2mr7063033ybo.228.1604625925368;
- Thu, 05 Nov 2020 17:25:25 -0800 (PST)
-MIME-Version: 1.0
-References: <20201104232356.4038506-1-saravanak@google.com>
- <20201104232356.4038506-16-saravanak@google.com> <20201105094228.GE3439341@kroah.com>
- <CAGETcx-0TPte6g3Cf5F3WJwdW-9yUptLDj3AcEdvWN0YJ2H4qg@mail.gmail.com>
-In-Reply-To: <CAGETcx-0TPte6g3Cf5F3WJwdW-9yUptLDj3AcEdvWN0YJ2H4qg@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 5 Nov 2020 17:24:49 -0800
-Message-ID: <CAGETcx-AcCk2c4Jq9HGfxUcCdnpWb5d_ubNd=r6KciHCFUdAVw@mail.gmail.com>
-Subject: Re: [PATCH v1 15/18] of: property: Update implementation of
- add_links() to create fwnode links
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>, Ard Biesheuvel <ardb@kernel.org>,
+        id S1732610AbgKFCAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 21:00:14 -0500
+Received: from mail-eopbgr60049.outbound.protection.outlook.com ([40.107.6.49]:45213
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730414AbgKFCAO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Nov 2020 21:00:14 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Juf/BByKZ84OArQsV0VTQme9KmecdXnTsdGhZ9Mo/QmZi6AjfEH4jEj8npuameynTRUVLtS3H24C/GB7rsv0dzVB9mX/+pczEi5w/0N3F2qA0DOF6iaGsT5F2PSaOTIFnkLgZ3B7d0c0Oy0qGoTb5G/zsbC2fM3uA/gsEzleC9Pv3+Mr8PW8r4LPuoSRQMNdrApwp9MPmjQbPu559afDr9plQX9Ktl6dguuNCs9R9Fi84NxrPYb6YGS8qm+uiNXhNFuyVbhO2Cv7glVbBHa8FCoNmGMNzzDM3dI+hSuu8pltO0A7a606I/9PXrff07c92ZqRwcRGCEpOBaI7uthjyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=spKp2QXyQvMynh8wBxrACUhZdtKYc5r2i94j1V5Wcmw=;
+ b=EezBsW9ojshKTU1+4z+iCaCubOcdgyH3xwNfdNGtJOm0379ecflW7J4bpTwac4ZCYRvMrrpMLRTLMp1H90vwPbMAb3F/0IZxrUa82w9RMS9OzdI3PzUvR7mYC0rKMJH2rsoax9K+ETUVV0T3w3TGWp2q5zppmpl6IxoHlzlAckOLZ4LL90Kne5pDvmcJEpHNCfndLlRqeQSzpxXq6RCY2ek7vvO+ik+IP5VyM6TQtUfSJ7tv5vvHh0WnIVFSnu5GUK+bCAdONw6WwYYG5QV/4cTltyUGyj/CIMOoNi35DjMK9GO+kHJr3OrjG61nNlMgQpEEQ9GCdfrLW2shjOb1cw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=spKp2QXyQvMynh8wBxrACUhZdtKYc5r2i94j1V5Wcmw=;
+ b=hPogSb9MTw4KbqKYnQAKNcsQIaXVrWlDVsYmboaJgUwWBH5yUiv3+B6Eqr+kAmhMxDUnK1fXQLxiWoxdLtn3hN4k4+16GBjo3KKXc7QaUZaaCATCMlkQZs2hEVf4mTvO7Vt3hKokjAr8z4fJ9uG65DlZpqH/07o746cYkHlHEHs=
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (2603:10a6:803:121::30)
+ by VI1PR04MB6159.eurprd04.prod.outlook.com (2603:10a6:803:101::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Fri, 6 Nov
+ 2020 02:00:10 +0000
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::b106:ac49:e3c7:6dc8]) by VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::b106:ac49:e3c7:6dc8%7]) with mapi id 15.20.3499.032; Fri, 6 Nov 2020
+ 02:00:10 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Michael Walle <michael@walle.cc>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>
+Subject: RE: [PATCH v2 5/5] arm64: dts: lx2160a: fix FlexSPI clock
+Thread-Topic: [PATCH v2 5/5] arm64: dts: lx2160a: fix FlexSPI clock
+Thread-Index: AQHWs6rPgIwszLN78UeuTDUjVvg++am6V+oA
+Date:   Fri, 6 Nov 2020 02:00:10 +0000
+Message-ID: <VE1PR04MB6687EC27F8C230A8F334119E8FED0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20201105193512.22388-1-michael@walle.cc>
+ <20201105193512.22388-6-michael@walle.cc>
+In-Reply-To: <20201105193512.22388-6-michael@walle.cc>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: walle.cc; dkim=none (message not signed)
+ header.d=none;walle.cc; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [136.49.1.200]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7352ee88-633f-4c63-7b0f-08d881f7b130
+x-ms-traffictypediagnostic: VI1PR04MB6159:
+x-microsoft-antispam-prvs: <VI1PR04MB6159BA704AE879548366665C8FED0@VI1PR04MB6159.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: YAs+odL91ldozC4oMZvNIPn5ksQW0urI3H0gKzzJW1ED75Z7AFE7FsKx03b6vB0eTQBljfi2L3Ik7jk34+0zmEeEGhSlPAQOBVo9zP2XP+3MgCf/vO+mHfd4XY34bGYMa+bE+KPABnMkpGV2Pjbv3BIgSMhYaU9+QHRIm4PrAcWcqTNXIZwMzgbsFJnpbi4OeGBg2G/UzjjTmcIHg4Ep9DRABHvNZi4TaEqDEdzgTcTdrA5nCBtIPMxRJvilc/P20arphi7+htNiYZKY/5XTBK7q9GbevC76OFqmJ+NViPyz9scKS3SWYinSAfv2EdJj
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6687.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(136003)(366004)(346002)(39850400004)(8936002)(8676002)(55016002)(66946007)(76116006)(9686003)(83380400001)(2906002)(4326008)(66556008)(64756008)(66446008)(110136005)(316002)(7696005)(86362001)(478600001)(5660300002)(52536014)(26005)(53546011)(33656002)(71200400001)(66476007)(186003)(6506007)(54906003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: wbaPhL7EwuXuQccQ3AOb4SxUqOUTq5DtqXjDrK6cVOqEkpI3NuflD1PwLgc+bNw28xF1UBys+56Z2sfMccJNWoRSg6kTQWs1zJNZu7Kk2MAHtF2kGEDOzD0e2M3dJmb/h++oPQb5s3xTk2hF3V/C4zUcadN3Vs6FEtqRlrO5wg4B9RdEbQ77gUDLQOM1q5ZCxQCh5gs3BFpBNGfIravE/UJDOoIZaL6O1HJTycSRRDd6spQvthG3loXi4dzRkJiV2eG4xaqPFkt1QrfHj6pVDETyfUbtp7yJBdl6dKJblQ0R7Vx4+b5PWxlKyyntVGoTQMIEiZrkY4kClgVWxVyL7PEAQ+38BICs6eeCGE9PMrKdM2DYqtp/3hU3Sy2VdnXOOV7DlanLu/dnoTuhZ/0Q47mIAYgQ9JzXUL7VvhfMEg8YHhCakCb78prhudnPU688fnhZoNYTuxAZO7TC4U+FlvI0JQIXSwB0uokOg24RqmuRGUW7or2AKVdXoC1OGIYCOW8fIIiNTX1JpfE2QE//Qcac9wMbZKXihBzjdKL+OCewgwah3dNGxwNQrALKBvxg4hl8gc2eLPDwBzx1HXwAEvjRvClB6OTjg3YBOgdP2bCsFDOm3mT0X7gXu8rPWfuXk47kPkAFlajqcXAWC/zTow==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6687.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7352ee88-633f-4c63-7b0f-08d881f7b130
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2020 02:00:10.1965
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: l6erWvRU9q0nM4pPDgpXJESpRUsPZU3JdrrPtqdkMKfZNpVGdJcrcaQQhMookrK74OosxIKF/He2WLmXCMfY/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6159
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 5, 2020 at 3:25 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Thu, Nov 5, 2020 at 1:41 AM Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Wed, Nov 04, 2020 at 03:23:52PM -0800, Saravana Kannan wrote:
-> > > The semantics of add_links() has changed from creating device link
-> > > between devices to creating fwnode links between fwnodes. So, update the
-> > > implementation of add_links() to match the new semantics.
-> > >
-> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > ---
-> > >  drivers/of/property.c | 150 ++++++++++++------------------------------
-> > >  1 file changed, 41 insertions(+), 109 deletions(-)
-> > >
-> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > > index 408a7b5f06a9..86303803f1b3 100644
-> > > --- a/drivers/of/property.c
-> > > +++ b/drivers/of/property.c
-> > > @@ -1038,33 +1038,9 @@ static bool of_is_ancestor_of(struct device_node *test_ancestor,
-> > >  }
-> > >
-> > >  /**
-> > > - * of_get_next_parent_dev - Add device link to supplier from supplier phandle
-> > > - * @np: device tree node
-> > > - *
-> > > - * Given a device tree node (@np), this function finds its closest ancestor
-> > > - * device tree node that has a corresponding struct device.
-> > > - *
-> > > - * The caller of this function is expected to call put_device() on the returned
-> > > - * device when they are done.
-> > > - */
-> > > -static struct device *of_get_next_parent_dev(struct device_node *np)
-> > > -{
-> > > -     struct device *dev = NULL;
-> > > -
-> > > -     of_node_get(np);
-> > > -     do {
-> > > -             np = of_get_next_parent(np);
-> > > -             if (np)
-> > > -                     dev = get_dev_from_fwnode(&np->fwnode);
-> > > -     } while (np && !dev);
-> > > -     of_node_put(np);
-> > > -     return dev;
-> > > -}
-> > > -
-> > > -/**
-> > > - * of_link_to_phandle - Add device link to supplier from supplier phandle
-> > > - * @dev: consumer device
-> > > - * @sup_np: phandle to supplier device tree node
-> > > + * of_link_to_phandle - Add fwnode link to supplier from supplier phandle
-> > > + * @con_np: consumer device tree node
-> > > + * @sup_np: supplier device tree node
-> > >   *
-> > >   * Given a phandle to a supplier device tree node (@sup_np), this function
-> > >   * finds the device that owns the supplier device tree node and creates a
-> > > @@ -1074,16 +1050,14 @@ static struct device *of_get_next_parent_dev(struct device_node *np)
-> > >   * cases, it returns an error.
-> > >   *
-> > >   * Returns:
-> > > - * - 0 if link successfully created to supplier
-> > > - * - -EAGAIN if linking to the supplier should be reattempted
-> > > + * - 0 if fwnode link successfully created to supplier
-> > >   * - -EINVAL if the supplier link is invalid and should not be created
-> > > - * - -ENODEV if there is no device that corresponds to the supplier phandle
-> > > + * - -ENODEV if struct device will never be create for supplier
-> > >   */
-> > > -static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
-> > > -                           u32 dl_flags)
-> > > +static int of_link_to_phandle(struct device_node *con_np,
-> > > +                           struct device_node *sup_np)
-> > >  {
-> > > -     struct device *sup_dev, *sup_par_dev;
-> > > -     int ret = 0;
-> > > +     struct device *sup_dev;
-> > >       struct device_node *tmp_np = sup_np;
-> > >
-> > >       of_node_get(sup_np);
-> > > @@ -1106,7 +1080,8 @@ static int of_link_to_phandle(struct device *dev, struct device_node *sup_np,
-> > >       }
-> > >
-> > >       if (!sup_np) {
-> > > -             dev_dbg(dev, "Not linking to %pOFP - No device\n", tmp_np);
-> > > +             pr_debug("Not linking %pOFP to %pOFP - No device\n",
-> > > +                      con_np, tmp_np);
-> >
-> > Who is calling this function without a valid dev pointer?
->
-> Sorry, I plan to delete the "dev" parameter as it's not really used
-> anywhere. I'm trying to do that without causing build time errors and
-> making the series into digestible small patches.
 
-*facepalm* for my earlier response. You'll notice that I've already
-deleted the "dev" input param to this function. That's why I can't use
-it here :)
 
--Saravana
+> -----Original Message-----
+> From: Michael Walle <michael@walle.cc>
+> Sent: Thursday, November 5, 2020 1:35 PM
+> To: linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> Cc: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
+> <sboyd@kernel.org>; Rob Herring <robh+dt@kernel.org>; Shawn Guo
+> <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Michael Walle
+> <michael@walle.cc>
+> Subject: [PATCH v2 5/5] arm64: dts: lx2160a: fix FlexSPI clock
+>=20
+> Now that we have a proper driver for the FlexSPI interface use it. This w=
+ill fix
+> SCK frequency switching on Layerscape SoCs.
+>=20
+> This was only compile time tested.
+>=20
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+> Changes since v1:
+>  - none
+>=20
+>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> index 83072da6f6c6..6e375e80bd35 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+> @@ -659,9 +659,20 @@
+>  		};
+>=20
+>  		dcfg: syscon@1e00000 {
+> -			compatible =3D "fsl,lx2160a-dcfg", "syscon";
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <1>;
+> +			compatible =3D "fsl,lx2160a-dcfg", "syscon", "simple-
+> mfd";
+>  			reg =3D <0x0 0x1e00000 0x0 0x10000>;
+> +			ranges =3D <0x0 0x0 0x1e00000 0x10000>;
+>  			little-endian;
+> +
+> +			fspi_clk: clock-controller@900 {
+> +				compatible =3D "fsl,lx2160a-flexspi-clk";
+> +				reg =3D <0x900 0x4>;
+> +				#clock-cells =3D <0>;
+> +				clocks =3D <&clockgen 4 0>;
+
+This is different from the current <&clockgen 4 3>, is it an intended chang=
+e?
+
+> +				clock-output-names =3D "fspi_clk";
+> +			};
+>  		};
+>=20
+>  		tmu: tmu@1f80000 {
+> @@ -776,7 +787,7 @@
+>  			      <0x0 0x20000000 0x0 0x10000000>;
+>  			reg-names =3D "fspi_base", "fspi_mmap";
+>  			interrupts =3D <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> -			clocks =3D <&clockgen 4 3>, <&clockgen 4 3>;
+> +			clocks =3D <&clockgen 4 3>, <&fspi_clk>;
+>  			clock-names =3D "fspi_en", "fspi";
+>  			status =3D "disabled";
+>  		};
+> --
+> 2.20.1
+
