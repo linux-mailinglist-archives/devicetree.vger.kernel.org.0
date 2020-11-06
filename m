@@ -2,309 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A082A99C7
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 17:47:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9109E2A99FA
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 17:59:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726075AbgKFQrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 11:47:18 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:17668 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725868AbgKFQrS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 11:47:18 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fa57e180000>; Fri, 06 Nov 2020 08:47:20 -0800
-Received: from [10.2.59.206] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
- 2020 16:47:17 +0000
-Subject: Re: [PATCH v1 1/4] dt-bindings: ata: tegra: Convert binding
- documentation to YAML
-To:     Rob Herring <robh@kernel.org>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <devicetree@vger.kernel.org>, <linux-ide@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <1604628968-1501-1-git-send-email-skomatineni@nvidia.com>
- <1604628968-1501-2-git-send-email-skomatineni@nvidia.com>
- <20201106161517.GA3290506@bogus>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <1b664477-c49b-2e45-11f7-924d41782de5@nvidia.com>
-Date:   Fri, 6 Nov 2020 08:47:18 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727346AbgKFQ6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 11:58:36 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:56045 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726422AbgKFQ6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 11:58:35 -0500
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A6Gw7nD029551;
+        Fri, 6 Nov 2020 17:58:11 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=GozlANq+XkXoD4Q74QGPnPPxDV3VlqucsLYQ1hhMIvo=;
+ b=osKMH6zfoiMC/79lUCvr2D56sQZvaNxunhEWee4CxvNhUeY+ClsJf1iG2nkz0VXeLAWi
+ Ce9+gjQr7IZm1g86nTFj+5XmKTft5ICyAeAns2ThTqd6kosjNzWtqZ3j2IdjIZzppzWX
+ ZXTzHoQOiyiXq2fJwPLydWL2yJaam+gvXf6ExAxkQVxUqIRccRq/4ltCgNqcpnkPdZ/4
+ Kb+npNjyNvcYQr4zy1usu8r6dFFL+TKIodJmWJM7UTqGJ86yYSbk5JDzE+OcPGuVKKD2
+ YWfqRyH0/R2A/PanP/7BsyavIBrmGztHxQL9+hmwO5XnPxtixjBCCxfTMsdzXjB61yFw GQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34gyw1x7ya-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 06 Nov 2020 17:58:11 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 86EA510002A;
+        Fri,  6 Nov 2020 17:58:10 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5FD4F2C41F5;
+        Fri,  6 Nov 2020 17:58:10 +0100 (CET)
+Received: from localhost (10.75.127.46) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov 2020 17:58:09
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Jun Li <lijun.kernel@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [PATCH v5 0/5] STUSB1600 support on STM32MP15xx-DKx
+Date:   Fri, 6 Nov 2020 17:58:00 +0100
+Message-ID: <20201106165805.31534-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <20201106161517.GA3290506@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1604681240; bh=Wi3FOqlGOutZLqAlmzfVvCaaPrLMjU7AUNAseqYeTfE=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=ml3t7Jat0LElQXsLyUv83Ef1oFQvL+GkhhpnT3WYJ7wlWydkJI4Ivh5TKN2Mlur8s
-         wtkaURkYdPYfiPF1JPDWFbi+LzZKhiE0fImm5xCRQxxePywIlpnDb5d5a5L31tB1dx
-         QuiqcGkTRWtCVIPeL5ISpq1VlkLvu3cAljmGyq/H7PhDtvAfa3QehZut/rWbNlqoCk
-         C/WlIK+d2VT4wJNvVH5vdw1WH5pdA9CUgnZCVq7id6vJiH/s945m59zbRkmvdoU7+c
-         Wh67vdfuJghM+OM36QkxrrjR+5KokLjZcq5M62KFFZM66YK/sfTv8DSLdpzk+irdTd
-         icTNoSRHY080A==
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG7NODE3.st.com (10.75.127.21) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-06_06:2020-11-05,2020-11-06 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds missing bindings for Type-C typec-power-opmode property
+and STUSB160x Type-C port controllers [1].
+STUSB160x driver requires to get power operation mode via device tree,
+that's why this series also adds the optional DT property
+typec-power-opmode for usb-c-connector to select the power operation mode
+capability.
+Tested on stm32mp157c-dk2 [2], which has a Type-C connector managed by
+STUSB1600, and connected to USB OTG controller. 
 
-On 11/6/20 8:15 AM, Rob Herring wrote:
-> On Thu, Nov 05, 2020 at 06:16:05PM -0800, Sowjanya Komatineni wrote:
->> This patch converts text based dt-binding document to YAML based
->> dt-binding document.
->>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>   .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 152 +++++++++++++++++++++
->>   .../bindings/ata/nvidia,tegra124-ahci.txt          |  44 ------
->>   2 files changed, 152 insertions(+), 44 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
->>
->> diff --git a/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->> new file mode 100644
->> index 0000000..ac20f6e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->> @@ -0,0 +1,152 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/ata/nvidia,tegra-ahci.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Tegra AHCI SATA Controller
->> +
->> +maintainers:
->> +  - Thierry Reding <thierry.reding@gmail.com>
->> +  - Jonathan Hunter <jonathanh@nvidia.com>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - nvidia,tegra124-ahci
->> +      - nvidia,tegra132-ahci
->> +      - nvidia,tegra210-ahci
->> +
->> +  reg:
->> +    minItems: 2
->> +    maxItems: 3
->> +    items:
->> +      - description: AHCI registers
->> +      - description: SATA configuration and IPFS registers
->> +      - description: SATA AUX registers
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    maxItems: 2
-> Don't need maxItems, implied by the size of 'items'.
->
->> +    items:
->> +      - const: sata
->> +      - const: sata-oob
->> +
->> +  clocks:
->> +    maxItems: 2
->> +    description:
->> +      Must contain an entry for each entry in clock-names.
->> +      See ../clocks/clock-bindings.txt for details.
-> Drop 'description'. Says nothing specific to this binding.
->
->> +
->> +  reset-names:
->> +    maxItems: 3
-> Need to define what each reset is.
-reset-names are specified as conditional below.
->
->> +
->> +  resets:
->> +    maxItems: 3
->> +    description:
->> +      Must contain an entry for each entry in reset-names.
->> +      See ../reset/reset.txt for details.
-> Drop 'description'. Says nothing specific to this binding.
->
->> +
->> +  phy-names:
->> +    items:
->> +      - const: sata-0
->> +
->> +  phys:
->> +    maxItems: 1
->> +    description:
->> +      Must contain an entry for each entry in phy-names.
->> +      See ../phy/phy-bindings.txt for details.
-> Drop 'description'. Says nothing specific to this binding.
->
->> +
->> +  hvdd-supply:
->> +    description: SATA HVDD regulator supply.
->> +
->> +  vddio-supply:
->> +    description: SATA VDDIO regulator supply.
->> +
->> +  avdd-supply:
->> +    description: SATA AVDD regulator supply.
->> +
->> +  target-5v-supply:
->> +    description: SATA 5V power regulator supply.
->> +
->> +  target-12v-supply:
->> +    description: SATA 12V power regulator supply.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clock-names
->> +  - clocks
->> +  - reset-names
->> +  - resets
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - nvidia,tegra124-ahci
->> +              - nvidia,tegra132-ahci
->> +    then:
->> +      properties:
->> +        reg:
->> +          maxItems: 2
->> +        reset-names:
->> +          minItems: 3
->> +          items:
->> +            - const: sata
->> +            - const: sata-oob
->> +            - const: sata-cold
->> +        resets:
->> +          minItems: 3
-> This doesn't need to be conditional.
+[1] https://www.st.com/en/interfaces-and-transceivers/usb-type-c-and-power-delivery-controllers.html
+[2] https://www.st.com/en/evaluation-tools/stm32mp157c-dk2.html
 
-Reason for specifying reset-names as conditional is as items are ordered 
-list, index: 0 - sata, 1 - sata-oob, and 2 - sata-cold
 
-Tegra124 thru Tegra210 has all 3 resets but Tegra186 don't have sata-oob 
-and using reset-names as sata, sata-cold will change index of sata-cold 
-and I see dtbs_check shows error for sata-cold as index being wrong.
+Amelie Delaunay (5):
+  dt-bindings: connector: add typec-power-opmode property to
+    usb-connector
+  dt-bindings: usb: Add DT bindings for STUSB160x Type-C controller
+  usb: typec: stusb160x: fix power-opmode property with
+    typec-power-opmode
+  ARM: dts: stm32: add STUSB1600 Type-C using I2C4 on stm32mp15xx-dkx
+  ARM: multi_v7_defconfig: enable STUSB160X Type-C port controller
+    support
 
-So added conditional reset-names to specify different order of these 
-names for Tegra186 and prior.
+---
+Changes in v5:
+- add additionalProperties to st,stusb160x yaml
+- add Heikki reviewed-by on stusb160x driver patch 3/5
+Changes in v4:
+- power-opmode DT property renamed to typec-power-opmode and mutually
+  exclusive condition with new-source-frs-typec-current added
+- Due to DT property renaming, patch 3/5 is added to update stusb160x
+  driver.
+---
+ .../bindings/connector/usb-connector.yaml     | 24 +++++
+ .../devicetree/bindings/usb/st,stusb160x.yaml | 87 +++++++++++++++++++
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi      |  7 ++
+ arch/arm/boot/dts/stm32mp15xx-dkx.dtsi        | 30 +++++++
+ arch/arm/configs/multi_v7_defconfig           |  2 +
+ drivers/usb/typec/stusb160x.c                 |  2 +-
+ 6 files changed, 151 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/st,stusb160x.yaml
 
-Please suggest any other way of forcing order of these names separately.
+-- 
+2.17.1
 
-Otherwise, removing conditional reset-names and specifying in main 
-section also need to update all old dtbs to change order of the 
-reset-names in device tree to be sata, sata-cold and sata-oob so same 
-order will work for all SoC's.
-
->> +      required:
->> +        - phys
->> +        - phy-names
->> +        - hvdd-supply
->> +        - vddio-supply
->> +        - avdd-supply
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - nvidia,tegra210-ahci
->> +    then:
->> +      properties:
->> +        reg:
->> +          minItems: 3
->> +        reset-names:
->> +          minItems: 3
->> +          items:
->> +            - const: sata
->> +            - const: sata-oob
->> +            - const: sata-cold
->> +        resets:
->> +          minItems: 3
->> +
->> +additionalProperties: true
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/tegra210-car.h>
->> +    #include <dt-bindings/reset/tegra210-car.h>
->> +
->> +    sata@70020000 {
->> +            compatible = "nvidia,tegra210-ahci";
->> +            reg = <0x0 0x70027000 0x0 0x00002000>, /* AHCI */
->> +                  <0x0 0x70020000 0x0 0x00007000>, /* SATA */
->> +                  <0x0 0x70001100 0x0 0x00010000>; /* SATA AUX */
->> +            interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->> +            clocks = <&tegra_car TEGRA210_CLK_SATA>,
->> +                     <&tegra_car TEGRA210_CLK_SATA_OOB>;
->> +            clock-names = "sata", "sata-oob";
->> +            resets = <&tegra_car 124>,
->> +                     <&tegra_car 123>,
->> +                     <&tegra_car 129>;
->> +            reset-names = "sata", "sata-oob", "sata-cold";
->> +    };
->> diff --git a/Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt b/Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
->> deleted file mode 100644
->> index 12ab2f7..0000000
->> --- a/Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
->> +++ /dev/null
->> @@ -1,44 +0,0 @@
->> -Tegra SoC SATA AHCI controller
->> -
->> -Required properties :
->> -- compatible : Must be one of:
->> -  - Tegra124 : "nvidia,tegra124-ahci"
->> -  - Tegra132 : "nvidia,tegra132-ahci", "nvidia,tegra124-ahci"
->> -  - Tegra210 : "nvidia,tegra210-ahci"
->> -- reg : Should contain 2 entries:
->> -  - AHCI register set (SATA BAR5)
->> -  - SATA register set
->> -- interrupts : Defines the interrupt used by SATA
->> -- clocks : Must contain an entry for each entry in clock-names.
->> -  See ../clocks/clock-bindings.txt for details.
->> -- clock-names : Must include the following entries:
->> -  - sata
->> -  - sata-oob
->> -- resets : Must contain an entry for each entry in reset-names.
->> -  See ../reset/reset.txt for details.
->> -- reset-names : Must include the following entries:
->> -  - sata
->> -  - sata-oob
->> -  - sata-cold
->> -- phys : Must contain an entry for each entry in phy-names.
->> -  See ../phy/phy-bindings.txt for details.
->> -- phy-names : Must include the following entries:
->> -  - For Tegra124 and Tegra132:
->> -    - sata-phy : XUSB PADCTL SATA PHY
->> -- For Tegra124 and Tegra132:
->> -  - hvdd-supply : Defines the SATA HVDD regulator
->> -  - vddio-supply : Defines the SATA VDDIO regulator
->> -  - avdd-supply : Defines the SATA AVDD regulator
->> -  - target-5v-supply : Defines the SATA 5V power regulator
->> -  - target-12v-supply : Defines the SATA 12V power regulator
->> -
->> -Optional properties:
->> -- reg :
->> -  - AUX register set
->> -- clock-names :
->> -  - cml1 :
->> -    cml1 clock should be defined here if the PHY driver
->> -    doesn't manage them. If it does, they should not be.
->> -- phy-names :
->> -  - For T210:
->> -    - sata-phy
->> -- 
->> 2.7.4
->>
