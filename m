@@ -2,117 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6D5A2A8D78
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 04:21:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 919B82A8DB9
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 04:48:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725837AbgKFDVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 22:21:48 -0500
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:60067 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725616AbgKFDVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 22:21:48 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 98E4B5C0092;
-        Thu,  5 Nov 2020 22:21:40 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Thu, 05 Nov 2020 22:21:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        from:to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm1; bh=WJoHCueOR0DNEXXeYK8iIK+ALL
-        Jtv8nShb95I+uDLfc=; b=P3H2SIz7adAOluTFuv782HnO/3fz6oY4HJ6t86ZMrM
-        Eh/YUUv9By84XP9evBrkU/Z25FvN9ciasRvoxgTNYCWEZLW+8wlJQtCE5jxeXPEL
-        9q9GYNyWf3feb/89BbnTseUEfuSYqbWtWLPa+0nyx01iyv+6hzCseZNnCaCyo29T
-        JuhI2GgRlSEIVcoCpMDiYtStfMyeprGh08ytz0MFd77y58mcSHqvwcdFFMJIMzQK
-        rFI1E6o4QZ+B/WvU3B1q8H6AUSViyQ1cGBCAFgPKLXfE6f+Rf9zMCQsnaOLYrtCw
-        HBh0qg0Kf/hQAbq+96n7SWgRo9zfkEhUZah5CXYMI3kQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=WJoHCueOR0DNEXXeY
-        K8iIK+ALLJtv8nShb95I+uDLfc=; b=KEVN33SDKiZJW70GsiEzGxjqA7po2qvSp
-        WQYlm256HREekQ73GwEptPaCnJZbzVnuZ3r+jyCUOHJKuTfa1L3lunouhrPPdH3d
-        MeRNqCmHOWSwNjkl32pGvnMLs3dHB7T9FqrDahtrKVct0NjJdG4LRghZoXjgd+FV
-        fhKP28aziop8GDpnssWA8NPclxUpxsPCJKR3gY/lfX4p0UwqXMDDSaaDQ7UMO8Bu
-        vwhDe/IkPbK/R0/1hjkfdnoh/TzafzIbk5xiBuvs9zynauFhISR6D+NDYu234HRz
-        w3T5WAjXwCP94S29++59ZyV5Os9N8BnH6mFqvvuL0SEM1bWkJAKrg==
-X-ME-Sender: <xms:OcGkX7jipgA0eXb9exzE9uQ6QBiSJfMrPgnMD9U3Zf8_7WDCey6s4w>
-    <xme:OcGkX4D0VRCnP3bFaoym1BFXAeozDEW0tAkMBsVTCeYSaeoa4yDdQjbMyL5rcNxAe
-    3VINMOTP81dMGv8lg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtkedgiedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
-    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucggtffrrg
-    htthgvrhhnpeeiteekhfehuddugfeltddufeejjeefgeevheekueffhffhjeekheeiffdt
-    vedtveenucfkphepjedtrddufeehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdr
-    ohhrgh
-X-ME-Proxy: <xmx:PsGkX7FypIvFmCpNbTqDR6LDBZyb8hKSNU6RP7-8bJR8XtXnCeodcg>
-    <xmx:PsGkX4RHH7LiD5DCHEqSVqhYMQG-9npf2PfApowFAm0Z-5qBcF6a9g>
-    <xmx:PsGkX4zPhZMWqXNADc9kcxgy6wWrSEHNED1nXRsd1S-4DP1pg8GDHQ>
-    <xmx:QsGkX7yeJY7YazpLh7OrRtgm3k7DdyNaGXtWjMI3pMY4uCrJQCgFxQ>
-Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id F1E913060057;
-        Thu,  5 Nov 2020 22:21:21 -0500 (EST)
-From:   Samuel Holland <samuel@sholland.org>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Samuel Holland <samuel@sholland.org>,
-        Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH] arm64: dts: allwinner: pinephone: Use generic sensor node names
-Date:   Thu,  5 Nov 2020 21:20:55 -0600
-Message-Id: <20201106032055.51530-1-samuel@sholland.org>
-X-Mailer: git-send-email 2.26.2
+        id S1726074AbgKFDsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 22:48:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56620 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726072AbgKFDsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 22:48:51 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECDE4C0613D2
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 19:48:49 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id s30so5454304lfc.4
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 19:48:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ppVeo0b190qF2Ptj5wRZlt8bVEFE8U+FRbqIrPfzfO0=;
+        b=Y0OvGdC7Ay1jBPx9c95rwCWL5YO1NKIyLtH3RBjJqksuu5AmwVeqJA3yAVePeFJpD+
+         FNnIveyBAgJypsaK51ANwnqRY7vR4BDOlrKMA1BLxssBAe6rezmriag1QbajUoT/ZYrN
+         ia/BNKgIUF2Dh8y1MMAUsf9DpJByCV5DJS2VJkfHelErXdtSUlMof+LOnHR2w5t7Lgp8
+         qXDVuCE4fh3v7LRCzvKaV2W42Pcpn+WomjbzeSw0L8WQ5PBPJfLgYXwY7wEsOObmFR7E
+         MQuyqNeRdqW4WggiOLj3w/oToWlhsUSpLUpGXRyZ/xcdo2KG7q7xYzh1w+ag4jRU6Hmu
+         2PVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ppVeo0b190qF2Ptj5wRZlt8bVEFE8U+FRbqIrPfzfO0=;
+        b=PzRM44KRAJfLh/o3iK+xnq8ibtPn+SoAYKHA0WnJrKl8VWH6fyhz9/3ULS5ZilkCQ5
+         ZYJ40xtAwls1jb62kLdheqgS4wl7n9jpvFd1MX6tqvAHnpGTG6gD0euK70z92cwDLgz/
+         rCSg5ZuAhCHRyyWVl0oRRtdEpnqxgZ+9hO5j6hN0gkmcahdZ78UJTZGYnz0nnHZi4yKr
+         bYosqMWreuT1XE2si4naGzcVAmlBlkTNgaoJbvETYtbUh08s2tlf7fp4QCDqtm5Uuwcr
+         q7xjdfeX1Mzj6W6KKaQz3RV/6Uaij6nIcoXI5rXSSadC7Nljso6ErJeCErWGxlbv0VJV
+         41/g==
+X-Gm-Message-State: AOAM531yAoTfZbHGHDBS94+MviZc1+YLAkSzgD0jGesMxfoSLJpLDMtS
+        ygqVaUbDQ5wmDqEJIjG+3IgKG4rQuBA7ggHF6oMGDw==
+X-Google-Smtp-Source: ABdhPJxbdRyNk08Ob4JHGuI4T01MyHskgm3c1DqN+BTCMCllgLD793w6HxN7Xw1dUaB0tfhybEYmpnLfDVXd/P4HXms=
+X-Received: by 2002:a19:4204:: with SMTP id p4mr39766lfa.536.1604634528395;
+ Thu, 05 Nov 2020 19:48:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201103103051.34553-1-ajye_huang@compal.corp-partner.google.com>
+ <20201103103051.34553-2-ajye_huang@compal.corp-partner.google.com> <20201105184350.GA1611477@bogus>
+In-Reply-To: <20201105184350.GA1611477@bogus>
+From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Date:   Fri, 6 Nov 2020 11:48:37 +0800
+Message-ID: <CALprXBYUddwE-+Bnt2qh4ETwZJ2LnwmB1mQNT88vcqxB8kPW4Q@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] ASoC: google: dt-bindings: modify machine bindings
+ for two MICs case
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ajye Huang <ajye.huang@gmail.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Cheng-yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Instead of duplicating part of the compatible string in the node name,
-use generic names as recommended by (and listed in) section 2.2.2 of the
-Devicetree Specification.
+HI, Rob,
 
-Suggested-by: Maxime Ripard <maxime@cerno.tech>
-Signed-off-by: Samuel Holland <samuel@sholland.org>
----
- arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Thank you for the comments.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-index 2da69450eec1..2dfe9bae8c67 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
-@@ -161,7 +161,7 @@ &i2c1 {
- 	status = "okay";
- 
- 	/* Magnetometer */
--	lis3mdl: lis3mdl@1e {
-+	lis3mdl: magnetometer@1e {
- 		compatible = "st,lis3mdl-magn";
- 		reg = <0x1e>;
- 		vdd-supply = <&reg_dldo1>;
-@@ -169,7 +169,7 @@ lis3mdl: lis3mdl@1e {
- 	};
- 
- 	/* Light/proximity sensor */
--	stk3311@48 {
-+	light-sensor@48 {
- 		compatible = "sensortek,stk3311";
- 		reg = <0x48>;
- 		interrupt-parent = <&pio>;
-@@ -179,7 +179,7 @@ stk3311@48 {
- 	};
- 
- 	/* Accelerometer/gyroscope */
--	mpu6050@68 {
-+	accelerometer@68 {
- 		compatible = "invensense,mpu6050";
- 		reg = <0x68>;
- 		interrupt-parent = <&pio>;
--- 
-2.26.2
 
+On Fri, Nov 6, 2020 at 2:43 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Nov 03, 2020 at 06:30:50PM +0800, Ajye Huang wrote:
+> > Add a property "dmic-gpios" for switching between two MICs.
+> >
+> > Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+> > ---
+> >  .../bindings/sound/google,sc7180-trogdor.yaml | 58 +++++++++++++++++++
+> >  1 file changed, 58 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> > index efc34689d6b5..9e0505467e57 100644
+> > --- a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> > +++ b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> > @@ -34,6 +34,9 @@ properties:
+> >    "#size-cells":
+> >      const: 0
+> >
+> > +  dmic-gpios:
+> > +    description: GPIO for switching between DMICs
+>
+> Need to define how many (maxItems: 1).
+
+Yes, I will add in the v6 version.
+
+>
+> > +
+> >  patternProperties:
+> >    "^dai-link(@[0-9])?$":
+> >      description:
+> > @@ -81,6 +84,7 @@ additionalProperties: false
+> >  examples:
+> >
+> >    - |
+> > +    //Example 1
+> >      sound {
+> >          compatible = "google,sc7180-trogdor";
+> >          model = "sc7180-rt5682-max98357a-1mic";
+> > @@ -128,3 +132,57 @@ examples:
+> >              };
+> >          };
+> >      };
+> > +
+> > +  - |
+> > +    //Example 2 (2mic case)
+> > +    sound {
+> > +        compatible = "google,sc7180-trogdor";
+> > +        model = "sc7180-rt5682-max98357a-2mic";
+> > +
+> > +        audio-routing =
+> > +                    "Headphone Jack", "HPOL",
+> > +                    "Headphone Jack", "HPOR";
+> > +
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        dmic-gpios = <&tlmm 86 0>;
+>
+> Do we really need another example for this? Can't you just add it to the
+> existing example?
+
+I think just keep One example. I will remove the example2 and put
+dmic-gpios = <&tlmm 86 0>; in the first example and
+modify the model from "sc7180-rt5682-max98357a-1mic" to
+"sc7180-rt5682-max98357a-2mic". It looks clear.
+
+>
+> > +
+> > +        dai-link@0 {
+> > +            link-name = "MultiMedia0";
+> > +            reg = <0>;
+> > +            cpu {
+> > +                sound-dai = <&lpass_cpu 0>;
+> > +            };
+> > +
+> > +            codec {
+> > +                sound-dai = <&alc5682 0>;
+> > +            };
+> > +        };
+> > +
+> > +        dai-link@1 {
+> > +            link-name = "MultiMedia1";
+> > +            reg = <1>;
+> > +            cpu {
+> > +                sound-dai = <&lpass_cpu 1>;
+> > +            };
+> > +
+> > +            codec {
+> > +                sound-dai = <&max98357a>;
+> > +            };
+> > +        };
+> > +
+> > +        dai-link@2 {
+> > +            link-name = "MultiMedia2";
+> > +            reg = <2>;
+> > +            cpu {
+> > +                sound-dai = <&lpass_hdmi 0>;
+> > +            };
+> > +
+> > +            codec {
+> > +                sound-dai = <&msm_dp>;
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+> > --
+> > 2.25.1
+> >
