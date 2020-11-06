@@ -2,91 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 180E72A9443
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62DD72A93D8
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 11:12:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726846AbgKFK0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 05:26:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727193AbgKFK0Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 05:26:25 -0500
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED1FC0613CF;
-        Fri,  6 Nov 2020 02:26:24 -0800 (PST)
-Received: by mail-pf1-x442.google.com with SMTP id y7so896001pfq.11;
-        Fri, 06 Nov 2020 02:26:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=5gqHPPPCIFok2RSu8jyV1TQKDB5fyzeiP+3iOcRs34A=;
-        b=b3iOL2+P+eQTriuEfBioqvDrsiSo9BhwDRznYWp31cFV8f9tiWfAvonLgGSRHrunIY
-         cp3Y99y39i/tBfY6nOYhJfhULqaL3cs8rEnaIB9VMWQG0+pfUnWA49j4eVgPWHGocURc
-         YRudyfBLiYIBJvxJ6PnI862aShv3JSj5jbQxREdS9zMlgTr/y1mRNsDuy2CitXhRdDMX
-         iJnRwJpJhbA6drwpKNQA1hIe0yPluAMDhvS/WqCIszYap+ZsXsGx0YYHzMb9ne00xWcs
-         IYdbgnxDZKgQW9LCEufpuTgQ/Rs0TqY4JVkkIc3/ts4WwJon9GCXIdzOuReYaNxV59pY
-         PrWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=5gqHPPPCIFok2RSu8jyV1TQKDB5fyzeiP+3iOcRs34A=;
-        b=jJoWlYagD7jw9vJHYJBU43gcRvegOazAkS9GuCBIVtkH2Rpkh/lQigEKlwgV5pW041
-         ykmYmkzEvUL4yZHpqReI8wikPbGQp2D55T35+E5OC5gb9AdTzt1tBskkQee1LbTBUwEC
-         YzRzpKSw9DRQp3sKTvrEcst/JuGLw1kzBe0mHH5IB8hswc9pzWqPuUIQKKzDKyVY4Mxc
-         aN9Y3cwtOxwYpgW2TDjqj5WwZiVjKjNpFf9GJdagpiV//aDFIUaJbPYlytsb7kW2zE5i
-         4Cl1AmE4tig0XMzbwiWe19QDYfEqGBSK2CjI6WJ68292iJtXDVAzkiJlp39utfn7SC9A
-         qILw==
-X-Gm-Message-State: AOAM532g69g3zQ8p0OeqsbpJD6lXRTmdr3mCumMna3zhBKQ+KU+1LOUW
-        fe58tuhgidG/Da+EXmRdhF8=
-X-Google-Smtp-Source: ABdhPJzgkDd3+la268oMRdW8hfGdLHrD2+RUBL2xH+FGuoyR8aURjd2Fi9K3FJ5ZZ0O+DN9lryYESw==
-X-Received: by 2002:a62:17c8:0:b029:18b:5a97:a8d1 with SMTP id 191-20020a6217c80000b029018b5a97a8d1mr1255723pfx.15.1604658384607;
-        Fri, 06 Nov 2020 02:26:24 -0800 (PST)
-Received: from localhost.localdomain ([2402:7500:57a:6823:8ab3:4b5d:4c53:f39b])
-        by smtp.gmail.com with ESMTPSA id g3sm1260633pgl.55.2020.11.06.02.26.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 06 Nov 2020 02:26:24 -0800 (PST)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     sre@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: [PATCH v6 11/11] mfd: mt6360: Remove MT6360 regulator of_compatible attribute
-Date:   Fri,  6 Nov 2020 17:53:52 +0800
-Message-Id: <1604656432-10215-12-git-send-email-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604656432-10215-1-git-send-email-gene.chen.richtek@gmail.com>
-References: <1604656432-10215-1-git-send-email-gene.chen.richtek@gmail.com>
+        id S1726832AbgKFKMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 05:12:33 -0500
+Received: from david.siemens.de ([192.35.17.14]:52750 "EHLO david.siemens.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726242AbgKFKMc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 05:12:32 -0500
+Received: from mail1.siemens.de (mail1.siemens.de [139.23.33.14])
+        by david.siemens.de (8.15.2/8.15.2) with ESMTPS id 0A6ACI4K009414
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 6 Nov 2020 11:12:18 +0100
+Received: from dev.vm7.ccp.siemens.com ([139.22.40.104])
+        by mail1.siemens.de (8.15.2/8.15.2) with ESMTP id 0A6ACHKU025430;
+        Fri, 6 Nov 2020 11:12:17 +0100
+Received: from dev.vm7.ccp.siemens.com (localhost [127.0.0.1])
+        by dev.vm7.ccp.siemens.com (Postfix) with ESMTP id A67B170BAB5;
+        Fri,  6 Nov 2020 11:05:55 +0100 (CET)
+From:   Andrej Valek <andrej.valek@siemens.com>
+To:     robh@kernel.org, nick@shmanahar.org, hadess@hadess.net,
+        dmitry.torokhov@gmail.com
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Andrej Valek <andrej.valek@siemens.com>
+Subject: [PATCH v2 0/3] Firmware loading option
+Date:   Fri,  6 Nov 2020 11:05:36 +0100
+Message-Id: <20201106100539.6646-1-andrej.valek@siemens.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201029170313.25529-1-andrej.valek@siemens.com>
+References: <20201029170313.25529-1-andrej.valek@siemens.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Add option to prevent firmware/configuration loading during each boot.
 
-Remove MT6360 regulator of_compatible attribute because
-MFD device should just instantiate the platform device.
+Andrej Valek (3):
+  Input: st1232 - add support resolution reading
+  dt-bindings: goodix
+  Input: goodix - add option to disable firmware loading
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
----
- drivers/mfd/mt6360-core.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/input/touchscreen/goodix.yaml    |  2 +-
+ drivers/input/touchscreen/goodix.c            |  2 +-
+ drivers/input/touchscreen/st1232.c            | 52 +++++++++++++------
+ 3 files changed, 38 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/mfd/mt6360-core.c b/drivers/mfd/mt6360-core.c
-index 4bcfa7f..539ab43 100644
---- a/drivers/mfd/mt6360-core.c
-+++ b/drivers/mfd/mt6360-core.c
-@@ -340,7 +340,7 @@ static const struct mfd_cell mt6360_devs[] = {
- 	OF_MFD_CELL("mt6360-led", mt6360_led_resources,
- 		    NULL, 0, 0, "mediatek,mt6360-led"),
- 	OF_MFD_CELL("mt6360-regulator", mt6360_regulator_resources,
--		    NULL, 0, 0, "mediatek,mt6360-regulator"),
-+		    NULL, 0, 0, NULL),
- 	OF_MFD_CELL("mt6360-tcpc", NULL,
- 		    NULL, 0, 0, "mediatek,mt6360-tcpc"),
- };
 -- 
-2.7.4
+2.20.1
 
