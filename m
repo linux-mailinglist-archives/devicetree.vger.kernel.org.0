@@ -2,191 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D89DB2A956B
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:30:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29F132A9574
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 12:32:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727206AbgKFLaW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 6 Nov 2020 06:30:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43840 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726694AbgKFLaV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 06:30:21 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8428EC0613CF;
-        Fri,  6 Nov 2020 03:30:21 -0800 (PST)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id DFFD61F4687F;
-        Fri,  6 Nov 2020 11:30:19 +0000 (GMT)
-Date:   Fri, 6 Nov 2020 12:30:15 +0100
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-Cc:     =?UTF-8?B?Q8OpZHJpYw==?= Le Goater <clg@kaod.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>, Vignesh R <vigneshr@ti.com>,
-        Tudor Ambarus <Tudor.Ambarus@microchip.com>
-Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory controller
- driver
-Message-ID: <20201106123015.3248d478@collabora.com>
-In-Reply-To: <HK0PR06MB27865F0C5B2A4F680ED0D400B2ED0@HK0PR06MB2786.apcprd06.prod.outlook.com>
-References: <20201105120331.9853-1-chin-ting_kuo@aspeedtech.com>
-        <20201105120331.9853-5-chin-ting_kuo@aspeedtech.com>
-        <fd8fa472-53bb-c992-3dc2-5a984a439c07@kaod.org>
-        <20201105161132.37eb3265@collabora.com>
-        <HK0PR06MB2786DAC99A56EA302EE969CAB2ED0@HK0PR06MB2786.apcprd06.prod.outlook.com>
-        <20201106100539.62fc5249@collabora.com>
-        <HK0PR06MB27865F0C5B2A4F680ED0D400B2ED0@HK0PR06MB2786.apcprd06.prod.outlook.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1726708AbgKFLcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 06:32:24 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60414 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726565AbgKFLcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 06:32:22 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A6BWCra060273;
+        Fri, 6 Nov 2020 05:32:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604662332;
+        bh=0hZftWxeH3TzvYEWUo/ySNOeak8LFO/Ww1fttHmrXmE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=lQh4Qr9kkuR702DjqT+Zg9Y3YScafuVj1fJvpNcf7hbsCsn5rRMMhYzqGcIiiTzfZ
+         ToHU4N1TlHn7KupOiLT5DuhDBhnuGcudISQXblAzTJRIO9HlTk8LqBFXRRvzqS9a/9
+         T4OWV+AdZoecpGatVbs9lDRrIkEhWZStCxfmOGnA=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A6BWCU6005976
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 6 Nov 2020 05:32:12 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 6 Nov
+ 2020 05:32:11 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 6 Nov 2020 05:32:11 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A6BW8Y7047332;
+        Fri, 6 Nov 2020 05:32:09 -0600
+Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
+ SoC dtsi level
+To:     Nishanth Menon <nm@ti.com>
+CC:     Roger Quadros <rogerq@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201104224356.18040-1-nm@ti.com>
+ <20201104224356.18040-3-nm@ti.com>
+ <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
+ <20201105140806.326ubfppb4guexpi@cultural>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <37b4b284-0da5-c602-82a2-2b672f89891f@ti.com>
+Date:   Fri, 6 Nov 2020 13:32:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201105140806.326ubfppb4guexpi@cultural>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Tudor and Vignesh
+Nishanth,
 
-On Fri, 6 Nov 2020 10:21:06 +0000
-Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com> wrote:
+On 05/11/2020 16.08, Nishanth Menon wrote:
+> On 09:32-20201105, Peter Ujfalusi wrote:
+>> Nishanth,
+>>
+>> On 05/11/2020 0.43, Nishanth Menon wrote:
+>>> The device tree standard sets the default node behavior when status
+>>> property as enabled.
+>>
+>> It should be:
+>> When the status property is not present under a node, the "okay' value
+>> is assumed.
+> 
+> Thanks.. will update.
+> 
+>>
+>> Note: the device tree specification does not document default value as
+>> such, see v0.3 (2.3.4, page 14).
+>> Yes, the "okay" is used in case the status property is missing (by Linux
+>> at least).
+> 
+> Maybe the spec update needs a formal release? Kumar's patch is merged:
+> https://github.com/devicetree-org/devicetree-specification/pull/33
+> 
+> on that exact same section, which you can see
+> https://github.com/devicetree-org/devicetree-specification/blob/master/source/chapter2-devicetree-basics.rst
 
-> Hi Boris,
-> 
-> Thanks for your comments and suggestions.
-> 
-> > -----Original Message-----
-> > From: Boris Brezillon <boris.brezillon@collabora.com>
-> > Sent: Friday, November 6, 2020 5:06 PM
-> > To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> > Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory controller
-> > driver
-> > 
-> > On Fri, 6 Nov 2020 08:58:23 +0000
-> > Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com> wrote:
-> >   
-> > > Hi Boris,
-> > >
-> > > Thanks for your quick reply.
-> > >  
-> > > > -----Original Message-----
-> > > > From: Boris Brezillon <boris.brezillon@collabora.com>
-> > > > Sent: Thursday, November 5, 2020 11:12 PM
-> > > > To: Cédric Le Goater <clg@kaod.org>; robh+dt@kernel.org
-> > > > Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>;
-> > > > broonie@kernel.org; joel@jms.id.au; andrew@aj.id.au;
-> > > > bbrezillon@kernel.org; devicetree@vger.kernel.org;
-> > > > linux-kernel@vger.kernel.org; linux-aspeed@lists.ozlabs.org;
-> > > > linux-spi@vger.kernel.org; BMC-SW <BMC-SW@aspeedtech.com>
-> > > > Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory
-> > > > controller driver
-> > > >
-> > > > Hi,
-> > > >
-> > > > On Thu, 5 Nov 2020 15:09:11 +0100
-> > > > Cédric Le Goater <clg@kaod.org> wrote:
-> > > >  
-> > > > > Hello Chin-Ting,
-> > > > >
-> > > > > Thanks for this driver. It's much cleaner than the previous and we
-> > > > > should try adding support for the AST2500 SoC also. I guess we can
-> > > > > keep the old driver for the AST2400 which has a different register layout.
-> > > > >
-> > > > > On the patchset, I think we should split this patch in three :
-> > > > >
-> > > > >  - basic support
-> > > > >  - AHB window calculation depending on the flash size
-> > > > >  - read training support  
-> > > >
-> > > > I didn't look closely at the implementation, but if the read
-> > > > training tries to read a section of the NOR, I'd recommend exposing
-> > > > that feature through spi-mem and letting the SPI-NOR framework
-> > > > trigger the training instead of doing that at dirmap creation time
-> > > > (remember that spi-mem is also used for SPI NANDs which use the dirmap  
-> > API too, and this training is unlikely to work there).  
-> > > >
-> > > > The SPI-NOR framework could pass a read op template and a reference
-> > > > pattern such that all the spi-mem driver has to do is execute the
-> > > > template op and compare the output to the reference buffer.
-> > > >  
-> > >
-> > > I agree it. Before, I were not able to find a suitable location to implement  
-> > read training feature.  
-> > > I think that I can add a SPI timing training function in
-> > > "spi_controller_mem_ops" struct and call it by a wrapper function called at  
-> > the bottom of spi_nor_probe() in spi-nor.c.  
-> > > Maybe, SPI-NOR framework does not need to pass reference buffer since
-> > > calibration method depends on each SoC itself and buffer size may be  
-> > variant.  
-> > > The detail calibration method may be implemented in each SoC SPI driver.  
-> > 
-> > That's a real problem IMO. What makes this pattern SoC specific? I can see
-> > why the location in flash could be *board* specific, but the pattern should be
-> > pretty common, right? As for the spi-mem operation to be executed, it's
-> > definitely memory specific (I can imagine some flash vendors providing a
-> > specific command returning a fixed pattern that's not actually stored on a
-> > visible portion of the flash).  
-> 
-> You are right, the pattern should be pretty common. The thing I was worried about is the size of
-> that buffer since, maybe, some controllers need to read more data than others in order to get good
-> training result.
+I stand correct, I only checked the released version.
 
-It would be good to see how other controllers implement that. I know
-that the Cadence controller had something similar. Vignesh might be
-able to share his thoughts on this.
+> Brings it to sync to:
+> https://elinux.org/Device_Tree_Linux#status_property
+> 
+>>
+>>> There are many reasons for doing the same, number
+>>> of strings in device tree,
+>>
+>> with expense of loc and readability.
+> 
+> The "readability" part is subjective a bit.. enabled and disabled both
+> have verbosity problem lets see how we can optimize as new boards come
+> in.
+
+I agree.
 
 > 
-> > >
-> > > Besides, I am thinking about the possibility for adding a
-> > > "spi_mem_post_init" function in spi-mem framework sine for some SoCs,
-> > > SPI controller needs to adjust some settings after getting SPI flash  
-> > information.
-> > 
-> > I don't think that's a good idea. The spi-mem interface should stay
-> > memory-type agnostic and doing that means we somehow pass NOR specific
-> > info. What is it that you need exactly, and why?  
+>>
+>>> default power management functionality etc
+>>
+>> Right, so how does that helps with devices present in the SoC, but no
+>> node at all? First thing which comes to mind is AASRC, we don't have
+>> Linux driver for it (and no DT binding document), but that does not mean
+>> that it is not present. How PM would take that into account?
 > 
-> Yes, as you mention, the spi-mem interface should stay memory-type agnostic. Thus, currently, I just think about this, not implementation.
+> I think we are mixing topics here -> I was stating the motivation why
+> devicetree chose such as default.
+
+I don't question the fact that 'okay' is the default status if it is not
+explicitly present. There is no better default than that.
+
+> Do we have a suggestion to improve
+> the description in the commit?
+
+A bit later on that.
+
+>>
+>>> are few of the reasons.
+>>>
+>>> In general, after a few rounds of discussions [1] there are few
+>>> options one could take when dealing with SoC dtsi and board dts
+>>>
+>>> a. SoC dtsi provide nodes as a super-set default (aka enabled) state and
+>>>    to prevent messy board files, when more boards are added per SoC, we
+>>>    optimize and disable commonly un-used nodes in board-common.dtsi
+>>> b. SoC dtsi disables all hardware dependent nodes by default and board
+>>>    dts files enable nodes based on a need basis.
+>>> c. Subjectively pick and choose which nodes we will disable by default
+>>>    in SoC dtsi and over the years we can optimize things and change
+>>>    default state depending on the need.
+>>
+>> For the record: c was not really an option. There were no subjectivity,
+>> the reason was pragmatic.
 > 
-> Why did I need this exactly?
-> Take ASPEED SPI controller for example, ASPEED SPI controller is designed for SPI NOR flash especially.
-> When ASPEED SoC powers on or reset, MCU ROM will fetch SPI NOR flash through SPI controller.
-> But, MCU ROM does not know the current address mode of SPI NOR flash when SoC was reset (SPI flash is not reset).
-> Therefore, SPI flash driver needs to set related flag to notify MCU ROM when flash is set to 4B address mode and 4B read opcode is used.
-
-Oh, that's ugly! The SPI NOR framework tries hard to not change the
-addressing mode exactly for this reason. On most NORs there
-should now be READ/WRITE variants allowing you to address more than 2^24
-bytes without changing the addressing mode. This being said, those
-problem exists on other platform which can't even let the boot ROM know
-that addressing mode changed. I don't have a proper solution for your
-use case, but I definitely don't like the idea of exposing such details
-to spi-mem controllers...
-
-We usually recommend to connect the NOR reset pin to the global reset
-to addressing mode gets back to known state when you reboot the board
-and need to go back to the boot ROM.
-
 > 
-> Besides, for other SoCs connected to ASPEED SoC, they can read/write SPI NOR flash connected to ASPEED SoC by a pure HW channel without any interaction of SW driver.
-> But, before trigger this feature, flash read/write/erase opcode, dummy cycle and other information should be filled in the related registers in advance because that HW channel
-> does not know accurate information about connected SPI NOR flash.
+> (c) some examples where we did pick that option (fixes):
+> https://lore.kernel.org/linux-arm-kernel/20201104224356.18040-4-nm@ti.com/
+> https://lore.kernel.org/linux-arm-kernel/20201104224356.18040-5-nm@ti.com/
 
-While I can see a valid reason to allow that for READs (if we decide to
-support XIP), I really don't like the idea of allowing destructive
-operations (WRITE/ERASE) on the flash that don't go through the MTD
-layer. This sounds like risky business to me, so I'd just forget about
-that if I were you. Regarding the XIP use case, why not, but we'll need
-to extend the dirmap API to support it: mappings need to stay around
-and you need to return a pointer to the mapped memory region, which we
-don't allow right now (because we want to let controllers move their
-dirmap window if they have to).
+this is different, these patches just removing the "status = 'okay';"
+lines where they are not needed and can be omitted to save few lines and
+it does help on readablity.
+
+>> The reason why we kept McASP nodes (and dss) disabled in the soc dtsi
+>> file is that they are not operation in the form they present in there.
+>> They _need_ additional properties to be operational and those properties
+>> can only be added in the board dts file.
+> 
+> I dont think we are changing anything in the output dtb files,
+
+Correct, the resulted dtb is identical. If the developer for upcoming
+boards did check the schematics vs TRM vs dtsi and spot the things that
+is not configured.
+dtb check will complain when it is starting to check against the
+documentation, but McASP is not yet converted to yaml and to be honest I
+don't want to convert the current binding to be the binding. When it was
+done it just moved pdata variables to DT and that was wrong.
+This is off-topic a bit.
+
+> we are
+> just leaving the defaults as dt defaults and set the disable state in
+> board dts OR common board dtsi.
+
+Yes, we leave the non working/configured node 'okay' in dtsi and expect
+that the board file author will know which node must be disabled because
+it is incomplete.
+
+>> This is not remotely a subjective view, this is the opposite of
+>> subjectivity.
+> 
+> the usage of McASP was'nt meant as (c).. it is (b). is there a better way
+> to describe this in a generic manner?
+
+I had my saying on that ever since I have been taking care of audio on
+TI SoCs ;)
+
+I used similar analogy in a private thread around this, but imho it fits
+the case neatly:
+car == McASP
+
+you don't put an 'okay' (as is ready, operational) stamp on the car in
+the middle of the production line when the engine is not even installed.
+
+>> As for things not owned by the OS we have the "reserved" status.
+> Which is correct usage. I think your point with wkup_uart should be set as
+> reserved? I might have missed doing that - am I correct?
+> 
+> [...]
+>>>  
+>>> -	status = "okay";
+>>> +&mcasp11 {
+>>> +	status = "disabled";
+>>>  };
+>>
+>> Looks much better in this way.
+>> ?
+>>
+>> I always wondered what is _not_ used by the board...
+>> But it is not really about that, we need to disable these nodes as they
+>> are incomplete in dtsi, they are not operational...
+> 
+> Alright - what do we suggest we do?
+
+Not sure, I'm 'whatever' after [1] makes it to mainline or next.
+
+> Tony, Rob - I need some guidance here.
+
+I'm fine whatever way we take, but I think it is up to you to make the
+call as the maintainer of the TI dts files... ;)
+
+>>
+>>>  &serdes0 {
+> 	[...]
+>>>  
+>>>  	watchdog0: watchdog@2200000 {
+>>>
+>>
+>> There is no such a tag, but:
+>> whatever-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> 
+> OK - I have no idea how B4 or patchworks pick that one as :D
+
+If we take this road, than I'm okay with it, but I'm going to take
+silent protest (not sending acked-by or revired-by).
+That should not stop you doing what you believe is best for the future!
+
+fwiw, McASP will have sane handling for the variations of 'okay':
+[1]
+https://lore.kernel.org/alsa-devel/20201106072551.689-1-peter.ujfalusi@ti.com/
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
