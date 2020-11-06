@@ -2,131 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE6B2A9764
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 15:04:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 824E62A978F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 15:24:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727435AbgKFOEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 09:04:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726812AbgKFOEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 09:04:14 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C22DC0613CF;
-        Fri,  6 Nov 2020 06:04:11 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727232AbgKFOYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 09:24:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59812 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727166AbgKFOYh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 09:24:37 -0500
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 0F42522FAD;
-        Fri,  6 Nov 2020 15:04:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1604671449;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=7dno5sBvYxAuw3MDGvBMCHVYmJvxMS+kWsqU80FUOXA=;
-        b=l4TapnhA4st1PTrh4jy7UoaFIncBkag6/FkvvKrRWxEXQzTTDpR+ElYUCpDrBqNw1YV4uI
-        qgLzk7ljoSLv3kdZ03gC1FZI6Q2kw/oxduYscwI66XSe/LSQTZr1ssWr3wXO64q+5I3KO6
-        tXQvEBfDIPaFJwuvFysWojOV+p84SqU=
+        by mail.kernel.org (Postfix) with ESMTPSA id 55C0F2151B;
+        Fri,  6 Nov 2020 14:24:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604672676;
+        bh=8R/HkQhxiIJtH+pu6bTEhw47dgED0NJDh0oJeQr18Nk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BgazNXKjLS8bFbjvTK1EL5rNDNhSaCTiVw6n+p2pcw/zKzNtM8qHAkw1Dz+Eh8GJ5
+         tP42vEfgMnb4GpweRcdG1mVPgrjrJotDRSSDMhp0lXrVFxMpS8F033xhI7DEkBQMPk
+         5R7P2CkT6HIN5iSi/WtQdO+pYom534RqIojwcATU=
+Received: by mail-ot1-f51.google.com with SMTP id y22so1356938oti.10;
+        Fri, 06 Nov 2020 06:24:36 -0800 (PST)
+X-Gm-Message-State: AOAM533xjNcPMAiqnbVW/XA+aQXS2Y3AoD1FHOo6ZxhbAZIwZEVZ4fRK
+        +pgs9CrUqIVSpUm3SV8Is659KaH23wA7sN7VpQ==
+X-Google-Smtp-Source: ABdhPJz2lZyE8yejc5mq35b+Eqmy+/owOscHu1zVRHO7y1Dz83CYFrC4m0AbhGpdw/6gbzSieZ5FVR3NO0kbPXPXrl4=
+X-Received: by 2002:a05:6830:2259:: with SMTP id t25mr1324932otd.192.1604672673035;
+ Fri, 06 Nov 2020 06:24:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 06 Nov 2020 15:04:08 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Leo Li <leoyang.li@nxp.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v2 5/5] arm64: dts: lx2160a: fix FlexSPI clock
-In-Reply-To: <639fa8e62e0b98bedf4077f76fd75e83@walle.cc>
-References: <20201105193512.22388-1-michael@walle.cc>
- <20201105193512.22388-6-michael@walle.cc>
- <VE1PR04MB6687EC27F8C230A8F334119E8FED0@VE1PR04MB6687.eurprd04.prod.outlook.com>
- <639fa8e62e0b98bedf4077f76fd75e83@walle.cc>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <8c96e34b3139c99f0946b62767b8cfdd@walle.cc>
-X-Sender: michael@walle.cc
+References: <1604403610-16577-1-git-send-email-jun.li@nxp.com>
+ <20201105222559.GA1701705@bogus> <VE1PR04MB6528DB5965EFE139C7E0FAFA89ED0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+In-Reply-To: <VE1PR04MB6528DB5965EFE139C7E0FAFA89ED0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 6 Nov 2020 08:24:21 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJxvkG05Ds7Wa4RBU8eDqr4O=OcmgyogAYQjVwhcs02aA@mail.gmail.com>
+Message-ID: <CAL_JsqJxvkG05Ds7Wa4RBU8eDqr4O=OcmgyogAYQjVwhcs02aA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: usb: add documentation for typec
+ switch simple driver
+To:     Jun Li <jun.li@nxp.com>
+Cc:     "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "mika.westerberg@linux.intel.com" <mika.westerberg@linux.intel.com>,
+        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
+        "prabhakar.mahadev-lad.rj@bp.renesas.com" 
+        <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>, Peter Chen <peter.chen@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2020-11-06 09:11, schrieb Michael Walle:
-> Am 2020-11-06 03:00, schrieb Leo Li:
->>> -----Original Message-----
->>> From: Michael Walle <michael@walle.cc>
->>> Sent: Thursday, November 5, 2020 1:35 PM
->>> To: linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
->>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
->>> Cc: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
->>> <sboyd@kernel.org>; Rob Herring <robh+dt@kernel.org>; Shawn Guo
->>> <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Michael Walle
->>> <michael@walle.cc>
->>> Subject: [PATCH v2 5/5] arm64: dts: lx2160a: fix FlexSPI clock
->>> 
->>> Now that we have a proper driver for the FlexSPI interface use it. 
->>> This will fix
->>> SCK frequency switching on Layerscape SoCs.
->>> 
->>> This was only compile time tested.
->>> 
->>> Signed-off-by: Michael Walle <michael@walle.cc>
->>> ---
->>> Changes since v1:
->>>  - none
->>> 
->>>  arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 15 +++++++++++++--
->>>  1 file changed, 13 insertions(+), 2 deletions(-)
->>> 
->>> diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
->>> b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
->>> index 83072da6f6c6..6e375e80bd35 100644
->>> --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
->>> +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
->>> @@ -659,9 +659,20 @@
->>>  		};
->>> 
->>>  		dcfg: syscon@1e00000 {
->>> -			compatible = "fsl,lx2160a-dcfg", "syscon";
->>> +			#address-cells = <1>;
->>> +			#size-cells = <1>;
->>> +			compatible = "fsl,lx2160a-dcfg", "syscon", "simple-
->>> mfd";
->>>  			reg = <0x0 0x1e00000 0x0 0x10000>;
->>> +			ranges = <0x0 0x0 0x1e00000 0x10000>;
->>>  			little-endian;
->>> +
->>> +			fspi_clk: clock-controller@900 {
->>> +				compatible = "fsl,lx2160a-flexspi-clk";
->>> +				reg = <0x900 0x4>;
->>> +				#clock-cells = <0>;
->>> +				clocks = <&clockgen 4 0>;
->> 
->> This is different from the current <&clockgen 4 3>, is it an intended 
->> change?
-> 
-> Yes, this change was intended. At least on the LS1028A this clock 
-> divider is
-> connected to the platform base clock. I don't know why there was
-> "<&clockgen 4 3>" in the first place. But because the clkgen clock 
-> cannot
-> be changed it didn't matter before this commit. The flexspi driver only
-> calls clk_set_rate(), never clk_get_rate(). On the LS1028A I actually
-> meassured the resulting SCK frequency.
-> Looking at Figure 7. (Clock subsystem block diagram) in the LX2160A RM, 
-> this
-> seems to be the case here, too.
+On Fri, Nov 6, 2020 at 5:07 AM Jun Li <jun.li@nxp.com> wrote:
+>
+>
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Friday, November 6, 2020 6:26 AM
+> > To: Jun Li <jun.li@nxp.com>
+> > Cc: heikki.krogerus@linux.intel.com; rafael@kernel.org;
+> > gregkh@linuxfoundation.org; andriy.shevchenko@linux.intel.com;
+> > hdegoede@redhat.com; lee.jones@linaro.org;
+> > mika.westerberg@linux.intel.com; dmitry.torokhov@gmail.com;
+> > prabhakar.mahadev-lad.rj@bp.renesas.com;
+> > laurent.pinchart+renesas@ideasonboard.com; linux-usb@vger.kernel.org;
+> > devicetree@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>; Peter Chen
+> > <peter.chen@nxp.com>
+> > Subject: Re: [PATCH v5 1/4] dt-bindings: usb: add documentation for typec
+> > switch simple driver
+> >
+> > On Tue, Nov 03, 2020 at 07:40:07PM +0800, Li Jun wrote:
+> > > Some platforms need a simple driver to do some controls according to
+> > > typec orientation, this can be extended to be a generic driver with
+> > > compatible with "typec-orientation-switch".
+> > >
+> > > Signed-off-by: Li Jun <jun.li@nxp.com>
+> > > ---
+> > > No changes for v5.
+> > >
+> > > changes on v4:
+> > > - Use compatible instead of bool property for switch matching.
+> > > - Change switch GPIO to be switch simple.
+> > > - Change the active channel selection GPIO to be optional.
+> > >
+> > > previous discussion:
+> > >
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fpatch
+> > >
+> > work.ozlabs.org%2Fpatch%2F1054342%2F&amp;data=04%7C01%7Cjun.li%40nxp.c
+> > >
+> > om%7C78ca5205695149e2743208d881d9c753%7C686ea1d3bc2b4c6fa92cd99c5c3016
+> > >
+> > 35%7C0%7C0%7C637402119664101856%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLj
+> > >
+> > AwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=
+> > > 8TY%2BPRIui6HhxhYE1%2BLmwWL38Vp7SY1Ceb5rGG%2B4DUo%3D&amp;reserved=0
+> > >
+> > >  .../bindings/usb/typec-switch-simple.yaml          | 69
+> > ++++++++++++++++++++++
+> > >  1 file changed, 69 insertions(+)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+> > > b/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+> > > new file mode 100644
+> > > index 0000000..244162d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/usb/typec-switch-simple.yaml
+> > > @@ -0,0 +1,69 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id:
+> > >
+> > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+> > >
+> > +cetree.org%2Fschemas%2Fusb%2Ftypec-switch-simple.yaml%23&amp;data=04%
+> > >
+> > +7C01%7Cjun.li%40nxp.com%7C78ca5205695149e2743208d881d9c753%7C686ea1d3
+> > >
+> > +bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637402119664111854%7CUnknown%7CTWF
+> > >
+> > +pbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6
+> > >
+> > +Mn0%3D%7C1000&amp;sdata=HjWfKlDLyqb%2FKLlL6vdnyPe%2BnB8pSllhokIXQ%2Bw
+> > > +yyw8%3D&amp;reserved=0
+> > > +$schema:
+> > >
+> > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevi
+> > >
+> > +cetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cjun.li%40
+> > >
+> > +nxp.com%7C78ca5205695149e2743208d881d9c753%7C686ea1d3bc2b4c6fa92cd99c
+> > >
+> > +5c301635%7C0%7C0%7C637402119664111854%7CUnknown%7CTWFpbGZsb3d8eyJWIjo
+> > >
+> > +iMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&am
+> > >
+> > +p;sdata=z0bO47QVl5gw0UE%2Bx3a5E27ALgz568zp%2Bf4suGlch%2Fo%3D&amp;rese
+> > > +rved=0
+> > > +
+> > > +title: Typec Orientation Switch Simple Solution Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Li Jun <jun.li@nxp.com>
+> > > +
+> > > +description: |-
+> > > +  USB SuperSpeed (SS) lanes routing to which side of typec connector
+> > > +is
+> > > +  decided by orientation, this maybe achieved by some simple control
+> > > +like
+> > > +  GPIO toggle.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: typec-orientation-switch
+> > > +
+> > > +  switch-gpios:
+> > > +    description: |
+> > > +      gpio specifier to switch the super speed active channel,
+> > > +      GPIO_ACTIVE_HIGH: GPIO state high for cc1;
+> > > +      GPIO_ACTIVE_LOW:  GPIO state low for cc1.
+> >
+> > What does active mean? There isn't really an active and inactive state, right?
+> > It's more a mux selecting 0 or 1 input?
+>
+> Yes, I will change the description:
+> gpio specifier to select the target channel of mux.
 
-Btw on the LS1028A this should be "<&clockgen 2 0>;" Will be fixed in 
-the
-new version.
-And because there so much difference between LS1028A and LX2160A, I'll 
-mark
-the last patch (this one, for the LX2160A) as RFC until someone will 
-test it.
+I wonder if the existing mux bindings should be used here.
 
--michael
+> > I think you want flags 0 (aka GPIO_ACTIVE_HIGH) unless there's an inverter
+> > in the middle.
+>
+> This depends on the switch IC design and board design, leave 2 flags
+> (GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW) can cover all possible cases.
+>
+> NXP has 2 diff IC parts for this:
+> 1. PTN36043(used on iMX8MQ)
+> Output selection control
+> When SEL=0, RX_AP_*/TX_AP_* are connected to RX_CON_2*/TX_CON_2*, and
+> RX_CON_1*/TX_CON_1* are connected to VDD thru low ohmic resistor.
+> When SEL=1, RX_AP_*/TX_AP_* are connected to RX_CON_1*/TX_CON_1*, and
+> RX_CON_2*/TX_CON_2* are connected to VDD thru low ohmic resistor.
+>
+> Board design connects RX_CON_1*/TX_CON_1* to typec connector CC1,
+> so GPIO_ACTIVE_HIGH
+>
+> 2. CBTU02043(used on iMX8MP)
+> SEL        Function
+> --------------------------------------
+> Low        A to B ports and vice versa
+> High       A to C ports and vice versa
+>
+> Board design connects B to typec connector CC1, so GPIO_ACTIVE_LOW
+>
+> Therefore, we need 2 flags.
+
+I'm not saying you don't. Just that the description is a bit odd.
+Please expand the description for how one decides how to set the
+flags.
+
+>
+> >
+> > > +    maxItems: 1
+> > > +
+> > > +  port:
+> > > +    type: object
+> > > +    additionalProperties: false
+> > > +    description: -|
+> > > +      Connection to the remote endpoint using OF graph bindings that model
+> > SS
+> > > +      data bus to typec connector.
+> > > +
+> > > +    properties:
+> > > +      endpoint:
+> > > +        type: object
+> > > +        additionalProperties: false
+> > > +
+> > > +        properties:
+> > > +          remote-endpoint: true
+> > > +
+> > > +        required:
+> > > +          - remote-endpoint
+> > > +
+> > > +    required:
+> > > +      - endpoint
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - port
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +    ptn36043 {
+> > > +        compatible = "typec-orientation-switch";
+> > > +        pinctrl-names = "default";
+> > > +        pinctrl-0 = <&pinctrl_ss_sel>;
+> > > +        switch-gpios = <&gpio3 15 GPIO_ACTIVE_HIGH>;
+> > > +
+> > > +        port {
+> > > +                usb3_data_ss: endpoint {
+> > > +                        remote-endpoint = <&typec_con_ss>;
+> >
+> > The data goes from the connector to here and then where? You need a connection
+> > to the USB host controller.
+>
+> The orientation switch only need interact with type-c, no any interaction
+> with USB controller, do we still need a connection to it?
+
+If you have 2 USB hosts and 2 connectors (and 2 muxes), how would you
+describe which connector goes with which host?
+
+Rob
