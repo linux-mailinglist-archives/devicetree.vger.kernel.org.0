@@ -2,185 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E082A8F50
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 07:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 109502A8F64
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 07:19:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgKFGPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 01:15:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726295AbgKFGPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 01:15:18 -0500
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D18E5C0613D3
-        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 22:15:17 -0800 (PST)
-Received: by mail-pl1-x644.google.com with SMTP id b12so192416plr.4
-        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 22:15:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=F6tmY/1EFEb7yGiRngVYTKYYAOLMtuHBKlHb/X3FBro=;
-        b=HzLmr6JaFIcMravMY3wIPry/F1073BkN3VM3cd8Gi2O7jw7et61EBNfNlEzqqyIEDr
-         O9QiSB84NaObwQzvoVVuxKeOGt8VndPGxRzphlfH+7cLMvRgCXLb/PtEMTpcP1H83oxY
-         b+191SXYF8ylE2gKUBgugVqSge7yMZjugqqrlBWgxtA673su21UfCt+IML3oDpN4vxti
-         8gs+7/IuMoCGcBYg+3V7fWv1iCZUsugnMa0A4fQsRR3hvDwRfUGjQ+Urs3m1MNcObuQw
-         SCG2Y8JOLZc95bYGIDT0kkK9vrovP4jkrz7oM7qStmXfzFjQgjgOi7MZJht8PgCtGzrM
-         RfPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=F6tmY/1EFEb7yGiRngVYTKYYAOLMtuHBKlHb/X3FBro=;
-        b=Z4KyNxpQx4/5I/xY20yNnysLQO55G+v8FMlbwkQ4NI+enKy6w7gi/8FtR/IVt2ZPC3
-         piRQXtfA9oE835OWD2K9VNfWuYdG0kAv255Yh0m6L35PYoRKIiCxItFt/hRPx3Jmjk5R
-         X0MfMddCPXV0IMIGLn/xosPLbVeHQVVA+o343ZtFU0JOux9bZKKQsS7iyTlyjk4HGbXG
-         Jl4q/4zmIUtnQCznbMsr0WFtT/+/2KPBTDC1aFpCZrsCLunXUQP0QGas7KLWiXlC1Gpf
-         bLLaDXOhDa/KSO9IKFd5P3mKrmug0pwzQYBC/ScbqYBucQ0iSQZn6LzPD58FwNt+TRTj
-         uB3Q==
-X-Gm-Message-State: AOAM532EnL/z1P5Q+OObhjRIc9cUDeNK4salY1kqQ7Md3MBVXRdtamm9
-        zA4OHwAsWNFmgZDf2NUybN9i4w==
-X-Google-Smtp-Source: ABdhPJxg63tT7kf2/vWsP55uyoDC2lQuTRCTVcejh0K/L0eGZvU7H1zdtru1IjirtMh06PtAF/i6Ug==
-X-Received: by 2002:a17:902:9a83:b029:d6:e05e:c7e9 with SMTP id w3-20020a1709029a83b02900d6e05ec7e9mr430546plp.49.1604643317224;
-        Thu, 05 Nov 2020 22:15:17 -0800 (PST)
-Received: from localhost ([122.172.12.172])
-        by smtp.gmail.com with ESMTPSA id h16sm703800pjz.10.2020.11.05.22.15.14
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 05 Nov 2020 22:15:15 -0800 (PST)
-Date:   Fri, 6 Nov 2020 11:45:13 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        driver-dev <devel@driverdev.osuosl.org>,
-        linux-pwm@vger.kernel.org,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-usb@vger.kernel.org,
-        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-tegra@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v1 17/30] mmc: sdhci-tegra: Support OPP and core voltage
- scaling
-Message-ID: <20201106061513.uyys7njcqcdlah67@vireshk-i7>
-References: <20201104234427.26477-1-digetx@gmail.com>
- <20201104234427.26477-18-digetx@gmail.com>
- <CAOh2x==sy1w7_oEV8=toC6uQnSN44wyOixbP_X0BrMsnm1AUFg@mail.gmail.com>
- <6fa54ce6-d5ae-d04f-7c77-b62c148d92b7@gmail.com>
+        id S1725835AbgKFGTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 01:19:44 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:33730 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725828AbgKFGTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 01:19:44 -0500
+X-UUID: 737f5f261f4d49c8aeffe1954e138da0-20201106
+X-UUID: 737f5f261f4d49c8aeffe1954e138da0-20201106
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <shane.chien@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 724153232; Fri, 06 Nov 2020 14:19:36 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 6 Nov 2020 14:19:33 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 6 Nov 2020 14:19:33 +0800
+From:   Shane Chien <shane.chien@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <jiaxin.yu@mediatek.com>,
+        <chipeng.chang@mediatek.com>, <shane.chien@mediatek.com>
+Subject: [PATCH] ASoC: Fix vaud18 power leakage of mt6359
+Date:   Fri, 6 Nov 2020 14:18:37 +0800
+Message-ID: <1604643517-3527-1-git-send-email-shane.chien@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6fa54ce6-d5ae-d04f-7c77-b62c148d92b7@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain
+X-TM-SNTS-SMTP: DB50972989C26800FA4953F469746C73711B7D89010A16A1E136A054A6640E852000:8
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-11-20, 17:18, Dmitry Osipenko wrote:
-> 05.11.2020 12:58, Viresh Kumar пишет:
-> >> +static void sdhci_tegra_deinit_opp_table(void *data)
-> >> +{
-> >> +       struct device *dev = data;
-> >> +       struct opp_table *opp_table;
-> >> +
-> >> +       opp_table = dev_pm_opp_get_opp_table(dev);
-> > So you need to get an OPP table to put one :)
-> > You need to save the pointer returned by dev_pm_opp_set_regulators() instead.
-> 
-> This is intentional because why do we need to save the pointer if we're
-> not using it and we know that we could get this pointer using OPP API?
+From: "Shane.Chien" <shane.chien@mediatek.com>
 
-Because it is highly inefficient and it doesn't follow the rules set
-by the OPP core. Hypothetically speaking, the OPP core is free to
-allocate the OPP table structure as much as it wants, and if you don't
-use the value returned back to you earlier (think of it as a cookie
-assigned to your driver), then it will eventually lead to memory leak.
+vaud18 is power of mt6359 audio path. It
+should only enable when audio is used,
+instead of in boot up stage.
+Once mt6359 audio path is enabled or disabled,
+vaud18 is controlled by using regulator in
+supply widget "LDO_VAUD18". Due to vaud18 is
+controlled by regulator instead of regmap,
+the macro MT6359_LDO_VAUD18_CON0 is no used and
+remove from mt6359.h.
 
-> This is exactly the same what I did for the CPUFreq driver [1] :)
+Signed-off-by: Shane.Chien <shane.chien@mediatek.com>
+---
+ sound/soc/codecs/mt6359.c | 38 +++++++++++++++++++++++++++++---------
+ sound/soc/codecs/mt6359.h |  6 ------
+ 2 files changed, 29 insertions(+), 15 deletions(-)
 
-I will strongly suggest you to save the pointer here and do the same
-in the cpufreq driver as well.
-
-> >> +static int devm_sdhci_tegra_init_opp_table(struct device *dev)
-> >> +{
-> >> +       struct opp_table *opp_table;
-> >> +       const char *rname = "core";
-> >> +       int err;
-> >> +
-> >> +       /* voltage scaling is optional */
-> >> +       if (device_property_present(dev, "core-supply"))
-> >> +               opp_table = dev_pm_opp_set_regulators(dev, &rname, 1);
-> >> +       else
-> > 
-> >> +               opp_table = dev_pm_opp_get_opp_table(dev);
-
-To make it further clear, this will end up allocating an OPP table for
-you, which it shouldn't have.
-
-> > Nice. I didn't think that someone will end up abusing this API and so made it
-> > available for all, but someone just did that. I will fix that in the OPP core.
-
-To be fair, I allowed the cpufreq-dt driver to abuse it too, which I
-am going to fix shortly.
-
-> The dev_pm_opp_put_regulators() handles the case where regulator is
-> missing by acting as dev_pm_opp_get_opp_table(), but the
-> dev_pm_opp_set_regulators() doesn't do it. Hence I don't think this is
-> an abuse, but the OPP API drawback.
-
-I am not sure what you meant here. Normally you are required to call
-dev_pm_opp_put_regulators() only if you have called
-dev_pm_opp_set_regulators() earlier. And the refcount stays in
-balance.
-
-> > Any idea why you are doing what you are doing here ?
-> 
-> Two reasons:
-> 
-> 1. Voltage regulator is optional, but dev_pm_opp_set_regulators()
-> doesn't support optional regulators.
-> 
-> 2. We need to balance the opp_table refcount in order to use OPP API
-> without polluting code with if(have_regulator), hence the
-> dev_pm_opp_get_opp_table() is needed for taking the opp_table reference
-> to have the same refcount as in the case of the dev_pm_opp_set_regulators().
-
-I am going to send a patchset shortly after which this call to
-dev_pm_opp_get_opp_table() will fail, if it is called before adding
-the OPP table.
-
-> I guess we could make dev_pm_opp_set_regulators(dev, count) to accept
-> regulators count=0 and then act as dev_pm_opp_get_opp_table(dev), will
-> it be acceptable?
-
-Setting regulators for count as 0 doesn't sound good to me.
-
-But, I understand that you don't want to have that if (have_regulator)
-check, and it is a fair request. What I will instead do is, allow all
-dev_pm_opp_put*() API to start accepting a NULL pointer for the OPP
-table and fail silently. And so you won't be required to have this
-unwanted check. But you will be required to save the pointer returned
-back by dev_pm_opp_set_regulators(), which is the right thing to do
-anyways.
-
+diff --git a/sound/soc/codecs/mt6359.c b/sound/soc/codecs/mt6359.c
+index d20c59a..52dabdc 100644
+--- a/sound/soc/codecs/mt6359.c
++++ b/sound/soc/codecs/mt6359.c
+@@ -724,6 +724,32 @@ static SOC_VALUE_ENUM_SINGLE_DECL(pga_3_mux_map_enum,
+ static const struct snd_kcontrol_new pga_3_mux_control =
+ 	SOC_DAPM_ENUM("PGA 3 Select", pga_3_mux_map_enum);
+ 
++static int mt_vaud18_event(struct snd_soc_dapm_widget *w,
++			   struct snd_kcontrol *kcontrol,
++			   int event)
++{
++	struct snd_soc_component *cmpnt = snd_soc_dapm_to_component(w->dapm);
++	struct mt6359_priv *priv = snd_soc_component_get_drvdata(cmpnt);
++	int ret = 0;
++
++	switch (event) {
++	case SND_SOC_DAPM_PRE_PMU:
++		ret = regulator_enable(priv->avdd_reg);
++		if (ret)
++			dev_err(priv->dev, "regulator_enable err: %d\n", ret);
++		break;
++	case SND_SOC_DAPM_POST_PMD:
++		ret = regulator_disable(priv->avdd_reg);
++		if (ret)
++			dev_err(priv->dev, "regulator_disable err: %d\n", ret);
++		break;
++	default:
++		break;
++	}
++
++	return ret;
++}
++
+ static int mt_sgen_event(struct snd_soc_dapm_widget *w,
+ 			 struct snd_kcontrol *kcontrol,
+ 			 int event)
+@@ -1944,8 +1970,9 @@ static int mt_ncp_event(struct snd_soc_dapm_widget *w,
+ 			      MT6359_DCXO_CW12,
+ 			      RG_XO_AUDIO_EN_M_SFT, 0, NULL, 0),
+ 	SND_SOC_DAPM_SUPPLY_S("LDO_VAUD18", SUPPLY_SEQ_LDO_VAUD18,
+-			      MT6359_LDO_VAUD18_CON0,
+-			      RG_LDO_VAUD18_EN_SFT, 0, NULL, 0),
++			      SND_SOC_NOPM, 0, 0,
++			      mt_vaud18_event,
++			      SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
+ 	SND_SOC_DAPM_SUPPLY_S("AUDGLB", SUPPLY_SEQ_AUD_GLB,
+ 			      MT6359_AUDDEC_ANA_CON13,
+ 			      RG_AUDGLB_PWRDN_VA32_SFT, 1, NULL, 0),
+@@ -2814,13 +2841,6 @@ static int mt6359_platform_driver_probe(struct platform_device *pdev)
+ 		return PTR_ERR(priv->avdd_reg);
+ 	}
+ 
+-	ret = regulator_enable(priv->avdd_reg);
+-	if (ret) {
+-		dev_err(&pdev->dev, "%s(), failed to enable regulator!\n",
+-			__func__);
+-		return ret;
+-	}
+-
+ 	ret = mt6359_parse_dt(priv);
+ 	if (ret) {
+ 		dev_warn(&pdev->dev, "%s() failed to parse dts\n", __func__);
+diff --git a/sound/soc/codecs/mt6359.h b/sound/soc/codecs/mt6359.h
+index af6f07f..1dfb29a 100644
+--- a/sound/soc/codecs/mt6359.h
++++ b/sound/soc/codecs/mt6359.h
+@@ -135,11 +135,6 @@
+ /* MT6359_DCXO_CW12 */
+ #define RG_XO_AUDIO_EN_M_SFT				13
+ 
+-/* LDO_VAUD18_CON0 */
+-#define RG_LDO_VAUD18_EN_SFT				0
+-#define RG_LDO_VAUD18_EN_MASK				0x1
+-#define RG_LDO_VAUD18_EN_MASK_SFT			(0x1 << 0)
+-
+ /* AUD_TOP_CKPDN_CON0 */
+ #define RG_VOW13M_CK_PDN_SFT				13
+ #define RG_VOW13M_CK_PDN_MASK				0x1
+@@ -2132,7 +2127,6 @@
+ 
+ #define MT6359_DCXO_CW11				0x7a6
+ #define MT6359_DCXO_CW12				0x7a8
+-#define MT6359_LDO_VAUD18_CON0				0x1c98
+ 
+ #define MT6359_GPIO_MODE0				0xcc
+ #define MT6359_GPIO_MODE0_SET				0xce
 -- 
-viresh
+1.9.1
+
