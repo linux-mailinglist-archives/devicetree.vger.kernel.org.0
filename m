@@ -2,122 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B0CA2A9A57
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 18:04:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A97082A9A64
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 18:06:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727749AbgKFRCx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 12:02:53 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:56212 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727666AbgKFRCx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 12:02:53 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A6Gw9xf008252;
-        Fri, 6 Nov 2020 18:01:36 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=uZBV8n4mMkde4jjAqjB9u7d5zjrddtyOYSHkQR0yWT0=;
- b=GlBrR15FDgSjHbKzcM3/S6sURlZ4LTote0SFOE3JGvwsW4BqbPstlzez9WdA/50hio8y
- NCCX24+58XBb+Ny0ivGmGE0udME7kHcEfFqHqVuVsz5dDO9ZzMgq6h3tl7L7BueR51un
- NFRCJ78mvNoStxdpaoLFCUOpvoXkpmnwi8La31op9HQ1+yQK5eL5WAfMkvJCJBPMtG2u
- bH5k+aWOsFX9DWHy7cKKldWka6icYwBD4DDHaLAHeFlcThMEzCpKxpPz/JAdGFoWmaCC
- 51Eo8dIPmiz53SJobt98YOJFgt5mUPHjr9x415rY+Cl5gRK5q3IqvR53vVoVuHLX0lh1 Ng== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34h00ewkg0-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 06 Nov 2020 18:01:36 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2AE0110002A;
-        Fri,  6 Nov 2020 18:01:35 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 19DFB219D0E;
-        Fri,  6 Nov 2020 18:01:35 +0100 (CET)
-Received: from lmecxl0995.lme.st.com (10.75.127.51) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
- 2020 18:01:33 +0100
-Subject: Re: [PATCH v4 2/5] dt-bindings: usb: Add DT bindings for STUSB160x
- Type-C controller
-To:     Rob Herring <robh@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Jun Li <lijun.kernel@gmail.com>,
-        <linux-kernel@vger.kernel.org>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        <linux-usb@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20201106091854.14958-1-amelie.delaunay@st.com>
- <20201106091854.14958-3-amelie.delaunay@st.com>
- <20201106161709.GA3297832@bogus>
-From:   Amelie DELAUNAY <amelie.delaunay@st.com>
-Message-ID: <aa30c00b-383d-29d4-c782-ae8781354de9@st.com>
-Date:   Fri, 6 Nov 2020 18:01:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726075AbgKFRGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 12:06:35 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:10187 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726010AbgKFRGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 12:06:34 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fa582980000>; Fri, 06 Nov 2020 09:06:32 -0800
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
+ 2020 17:06:34 +0000
+Received: from vdi.nvidia.com (10.124.1.5) by mail.nvidia.com (172.20.187.12)
+ with Microsoft SMTP Server id 15.0.1473.3 via Frontend Transport; Fri, 6 Nov
+ 2020 17:06:33 +0000
+From:   Khalil Blaiech <kblaiech@nvidia.com>
+To:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <kblaiech@nvidia.com>, <wsa+renesas@sang-engineering.com>,
+        <robh+dt@kernel.org>
+Subject: [PATCH i2c-next v3 0/6] i2c: Incremental fixes for Mellanox BlueField I2C
+Date:   Fri, 6 Nov 2020 12:06:29 -0500
+Message-ID: <cover.1604681934.git.kblaiech@nvidia.com>
+X-Mailer: git-send-email 2.1.2
 MIME-Version: 1.0
-In-Reply-To: <20201106161709.GA3297832@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-06_06:2020-11-05,2020-11-06 signatures=0
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1604682392; bh=XUd/nwLV4kOTgtx2FIU+r3t1aHqPjPqHwEsODXpimcg=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         Content-Type;
+        b=QGXdKjBtW0Pw4LpefxlYH3WypwS1vdhVEj7bOzajPIswibOldMLuaaMkCM2sIDyIO
+         W857HV2OvZV2DeDuY/fIw7NAv7gOgQTyM5ddEJAz8yIigd2RuFjFoXm7f0eaRptkRf
+         l9WMF+luDEhhk2fRvGMc+ZQtz9WnPxNF/R5STwy/SHOqocChBZL1NtBAcTu7XtI4mB
+         m8CrOfr82h3oO1tESNvjEkqzG5MV3LgYD330GwGd46Zs/xrTfD5en4C1MIh7ii5j8V
+         W12+YwCh493vkD9TxPOxkD+qmdtsj3GU7aL3d/Qy6TE2drTNmOSFuOcEXXJ5Ng5xYY
+         gCPMMSe1Pis2Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This set of fixes tends to complement the upstream effort of the
+driver code and aims to address the following issues:
+  - Convert the DT file to a YAML schema to be consistent with the
+  latest kernel releases.
+  - Fix build issues reproted by the kernel test robot.
+  - Apply a couple of changes to the driver code to include bug fixes.
+  - Keep the MAINTAINER info up-to-date.
+---
+v2->v3:
+	- Address dtschema/dt warning/errors by removing
+        'additionalProperties: false' line.
+v1->v2:
+	- Address yamllint and dtschema/dt warning/errors.
+	- Dual license the YAML schema by adding BSD-2-Clause.
+---
 
+Khalil Blaiech (6):
+  i2c: mlxbf: Add CONFIG_ACPI to guard ACPI function call
+  i2c: mlxbf: Fix resrticted cast warning of sparse
+  i2c: mlxbf: Remove unecessary wrapper functions
+  i2c: mlxbf: Update reference clock frequency
+  i2c: mlxbf: Update author and maintainer email info
+  dt-bindings: i2c: mellanox,i2c-mlxbf: convert txt to YAML schema
 
-On 11/6/20 5:17 PM, Rob Herring wrote:
-> On Fri, 06 Nov 2020 10:18:51 +0100, Amelie Delaunay wrote:
->> Add binding documentation for the STMicroelectronics STUSB160x Type-C port
->> controller.
->>
->> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
->> ---
->>   .../devicetree/bindings/usb/st,stusb160x.yaml | 85 +++++++++++++++++++
->>   1 file changed, 85 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/usb/st,stusb160x.yaml
->>
-> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/st,stusb160x.yaml: 'additionalProperties' is a required property
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/usb/st,stusb160x.yaml: ignoring, error in schema:
-> warning: no schema found in file: ./Documentation/devicetree/bindings/usb/st,stusb160x.yaml
-> 
-> 
-> See https://patchwork.ozlabs.org/patch/1395559
-> 
-> The base for the patch is generally the last rc1. Any dependencies
-> should be noted.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
-I already ran 'make dt_binding_check' but st-schema was not up to date, 
-despite a not so old upgrade.
-I note for next time to do the upgrade autotically before the 'make 
-dt_binding_check'.
+ .../devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt |  42 -----
+ .../bindings/i2c/mellanox,i2c-mlxbf.yaml           |  78 ++++++++
+ MAINTAINERS                                        |   3 +-
+ drivers/i2c/busses/i2c-mlxbf.c                     | 204 +++++++++------------
+ 4 files changed, 166 insertions(+), 161 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
+ create mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
 
-New version submitted.
+-- 
+2.1.2
 
-Thanks,
-Amelie
