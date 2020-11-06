@@ -2,155 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AC9C2A9E18
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 20:34:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D28C62A9E29
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 20:39:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727877AbgKFTeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 14:34:12 -0500
-Received: from foss.arm.com ([217.140.110.172]:43996 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726415AbgKFTeL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 14:34:11 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DC30D1474;
-        Fri,  6 Nov 2020 11:34:10 -0800 (PST)
-Received: from [172.16.1.113] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 538323F718;
-        Fri,  6 Nov 2020 11:34:09 -0800 (PST)
-Subject: Re: [PATCH 2/3] drivers/edac: Add L1 and L2 error detection for A53
- and A57
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-edac@vger.kernel.org, Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Tony Luck <tony.luck@intel.com>,
-        Robert Richter <rrichter@marvell.com>,
-        York Sun <york.sun@nxp.com>, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-References: <20201013125033.4749-1-s.hauer@pengutronix.de>
- <20201013125033.4749-3-s.hauer@pengutronix.de>
-From:   James Morse <james.morse@arm.com>
-Message-ID: <6ea8a824-ba55-6c5b-993d-4c782e396f32@arm.com>
-Date:   Fri, 6 Nov 2020 19:34:07 +0000
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1728022AbgKFTjS convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 6 Nov 2020 14:39:18 -0500
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:38472 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727356AbgKFTjR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 14:39:17 -0500
+Received: by mail-ed1-f67.google.com with SMTP id k9so2430316edo.5;
+        Fri, 06 Nov 2020 11:39:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Gv0cSdVc7Eg5peQhu/XCzN6FvfZ7oplCo0L4j+dSzX0=;
+        b=ti1B+baq/CqCyN1gvYxfqYp4l2Y+dg9FuoqlQ/QOry9QS46RphdAHVkfP6fRC47bvb
+         cK2mvgHo66kaPWwTGk/Z/iL4jMICWs9slkx0CgZ18/9S2WpYaLoLTsT0JpxcY9dcX8v0
+         xKxk9DPp5JnQUnBmPsZn9niPKog0QEfxWZ3iQFNKdqjY4Oev6utjO2JJNzYu6WOV2POG
+         mjYJiQyqce26VHrdpbauGop8mj/59cHspii43PhukgyF4ELkNl/vNwcx4Wc6pNdb2MOq
+         dBgOWQsJAtCQ+3HteDQlyHEwoVwPsLzDjI2vMfycZJiaKHr/aWqm0YWXbYrirUj/IDRo
+         Iblw==
+X-Gm-Message-State: AOAM532/sfV3w5PbS4CPkQNI1dNe+gI9+/TzOW6T4sNYmwx1NtsZYZE8
+        Y6pnCXAEV/gSI5gGhlRFy3U=
+X-Google-Smtp-Source: ABdhPJy7AxqfdYuRa4DJO40CTepe9842ZbaB3uaP3tz30Fk7svP62F/AC6y9tTPgkLU1WuergwJldg==
+X-Received: by 2002:a50:9993:: with SMTP id m19mr3560762edb.99.1604691555563;
+        Fri, 06 Nov 2020 11:39:15 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id y2sm1697348edu.48.2020.11.06.11.39.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Nov 2020 11:39:14 -0800 (PST)
+Date:   Fri, 6 Nov 2020 20:39:12 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org,
+        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: Re: [PATCH v5 4/5] ARM: dts: exynos: Add Ethernet to Artik 5 board
+Message-ID: <20201106193912.GA329187@kozik-lap>
+References: <20201103151536.26472-1-l.stelmach@samsung.com>
+ <CGME20201103151540eucas1p2750cffe062d6abff42ee479a218c8eb8@eucas1p2.samsung.com>
+ <20201103151536.26472-5-l.stelmach@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20201013125033.4749-3-s.hauer@pengutronix.de>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201103151536.26472-5-l.stelmach@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha,
-
-On 13/10/2020 13:50, Sascha Hauer wrote:
-> The Cortex A53 and A57 cores have error detection capabilities for the
-> L1/L2 Caches, this patch adds a driver for them.
+On Tue, Nov 03, 2020 at 04:15:35PM +0100, Łukasz Stelmach wrote:
+> Add node for ax88796c ethernet chip.
 > 
-> Unfortunately there is no robust way to inject errors into the caches,
-> so this driver doesn't contain any code to actually test it. It has
-> been tested though with code taken from an older version of this driver
-> found here: https://lkml.org/lkml/2018/3/14/1203.
+> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+> ---
+>  arch/arm/boot/dts/exynos3250-artik5-eval.dts | 29 ++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
 
-> For reasons stated
-> in this thread the error injection code is not suitable for mainline,
-> so it is removed from the driver.
+Thanks, applied.
 
-
-> diff --git a/drivers/edac/cortex_arm64_l1_l2.c b/drivers/edac/cortex_arm64_l1_l2.c
-> new file mode 100644
-> index 000000000000..fb8386eb40ac
-> --- /dev/null
-> +++ b/drivers/edac/cortex_arm64_l1_l2.c
-> @@ -0,0 +1,208 @@
-
-> +static void read_errors(void *data)
-> +{
-> +	struct edac_device_ctl_info *edac_ctl = data;
-> +	int cpu = smp_processor_id();
-> +	char msg[MESSAGE_SIZE];
-> +	u64 cpumerr, l2merr;
-> +
-> +	/* cpumerrsr_el1 */
-> +	asm volatile("mrs %0, s3_1_c15_c2_2" : "=r" (cpumerr));
-> +	asm volatile("msr s3_1_c15_c2_2, %0" :: "r" (0));
-
-I think you've seen earlier comments on using the sys_reg macros for this. There were
-versions of binutils out there that choke on this.
-
-[...]
-
-> +}
-> +
-> +static void cortex_arm64_edac_check(struct edac_device_ctl_info *edac_ctl)
-> +{
-> +	struct arm64_pvt *pvt = edac_ctl->pvt_info;
-> +	call_single_data_t *csd;
-> +	int cpu;
-> +
-> +	get_online_cpus();
-> +	for_each_cpu_and(cpu, cpu_online_mask, &pvt->compat_mask) {
-> +		csd = per_cpu_ptr(pvt->csd_check, cpu);
-> +		csd->func = read_errors;
-> +		csd->info = edac_ctl;
-> +		csd->flags = 0;
-
-> +		/* Read CPU L1/L2 errors */
-> +		smp_call_function_single_async(cpu, csd);
-> +		/* Wait until flags cleared */
-> +		smp_cond_load_acquire(&csd->flags, !VAL);
-
-Hmm. We end up waiting for each CPU to schedule something else. I can't see any reason we
-can't sleep here.
-
-Can't we use smp_call_function_many() here? It already considers cpu_online_mask, you'd
-just need to deal with read_errors() being called in parallel with itself.
-
-(concurrent calls into edac are one problem, but two CPUs read/writing the same L2
-register could lead to double counting)
-
-
-> +	}
-> +	put_online_cpus();
-> +}
-
-
-> +static int cortex_arm64_edac_probe(struct platform_device *pdev)
-> +{
-> +	struct device_node *np, *dn = pdev->dev.of_node;
-> +	struct edac_device_ctl_info *edac_ctl;
-> +	struct device *dev = &pdev->dev;
-> +	struct of_phandle_iterator it;
-> +	struct arm64_pvt *pvt;
-> +	int rc, cpu;
-> +
-> +	edac_ctl = edac_device_alloc_ctl_info(sizeof(*pvt), "cpu_cache",
-> +					      1, "L", 2, 1, NULL, 0,
-> +					      edac_device_alloc_index());
-
-I used this series to test on Juno to poke the user-space interface:
-This chokes on a big-little system as it can't register "cpu_cache" a second time.
-
-I think we should try to make the topology look like the one in edac_device.h. This means
-calling it 'cpu', and registering all of them up front.
-On a big/little system the second probe() call would need to be careful.
-
-I can have a go at this if you don't have a platform to hand.
-
-
-(The 'L2-cache' thing in edac_device.h turns out to be impossible and the 'Lx' you've done
-here is the most popular option. I'll post a patch to change the documentation to what
-people are doing)
-
-
-[...]
-
-> +}
-
-
-Thanks,
-
-James
+Best regards,
+Krzysztof
 
