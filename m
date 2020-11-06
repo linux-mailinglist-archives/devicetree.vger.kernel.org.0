@@ -2,94 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC132A9EAD
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 21:45:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 285E62A9F40
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 22:40:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728454AbgKFUpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 15:45:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46734 "EHLO
+        id S1728059AbgKFVjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 16:39:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727129AbgKFUpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 15:45:08 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D22C0613CF;
-        Fri,  6 Nov 2020 12:45:08 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id w24so34882wmi.0;
-        Fri, 06 Nov 2020 12:45:08 -0800 (PST)
+        with ESMTP id S1725868AbgKFVjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 16:39:23 -0500
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 940E5C0613CF;
+        Fri,  6 Nov 2020 13:39:21 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id o129so2600580pfb.1;
+        Fri, 06 Nov 2020 13:39:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=+kHlg/AGwApi3ZxIuumsJtvX289YmFghT5WnO8YfCxo=;
-        b=sHzCBNfYfqMZnWyLv1rL7Ocb4O/KQU0Pf6WkN9kCQ6ZTEzIiO82HCTH2P4CTEksPvM
-         TKgMNVCoXWCTX+BymOXr1lqNWNnEz0tj0FA+/+7MKDL72wr+Ld5+9QR/4igL8wOzPhOG
-         zsm+kDeG2IjQTK3Hn5wcj6AEPOJfhG/dJsIxDnITJOsbsqid8B3We1FAn+V8LC6LwTr2
-         +nfz5EzrXa4C3yVBgBAZBew06gSb5XwMcgyH1Qu5SthQdjEAAE6lVbXOmimgZER3V819
-         jzrNRt0XZB6NeJ8WKf2KRBv3nj6jQBH9IpF6AsrnNKoNE9gZ8Ubmktfr+rm6u277UdMi
-         i0Vw==
+         :content-disposition:in-reply-to:user-agent;
+        bh=7aTWPGVFVbBWyajMT43VMslcFxXhz4VtDG2Makyw31Y=;
+        b=r6p4t2hBK6TaeQb58ushb4iE+SAEpBwSj1UGF6u7fYvIqBs1cEHVzdSxjnk/UvBUhQ
+         W8cQNHQveNpdu6qA1gOQgeBjly7CjVn0ieNdMmJ4AE1PhT0tBGdqAE2ATyQXtl53Rdac
+         ZSEHU6hmqv482cXm79+gjmSgYiVcLHmHBSB9ASlPgGe12tTIZ7BslHv0PrUoTc6QNCzB
+         Y4D1M3FoogsQTPU2TEZ8iGOdBXFfpwexcOJliySVCXgf/GT2xq991kkYGm2s66q1CwTr
+         P9yJmfhZKmDkC/LbEoObcnYCPuhL8uq3lxzJN/aUEe2Rfj/NIp1IosQuoV/x4T5dC36U
+         Xlvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=+kHlg/AGwApi3ZxIuumsJtvX289YmFghT5WnO8YfCxo=;
-        b=tB5/rMWhJt0SxfPNKY4pWAHj/rprFq3JYQvIEwSek5TEvCGnPXsHE6ZwgneL4cu22N
-         mwrVA84J5TFKZqrsKSXn9esoxRH0cmadrt/aeTcgHhK3l/XD7oguahHc+u1BN7egjxiR
-         LrONe63ADGiR6KX2ngn6y5FOgz6ReTOQat5N9KhPNpYJt9L43mr8F5YPk+t0bWNA9HI8
-         qbV3EbyWwC5KuoVqOfMmEV6gjUBfumJmX8zQYUkoG7j8BlotBFNVnNHL90ROXBM85n5/
-         4zPXwkigQgsQPb05tVHkML2uOZyTAuKuGT4/ElNn7rw/khZHnMWHYiZTW8JI5lwqh0xp
-         DW2Q==
-X-Gm-Message-State: AOAM5303F7nzxnPKI48rCZKiIarQOm7/PECX5KV/8KOmq3uBESs+n2sV
-        tG2010r7u9gkcH5uKEeF32mNyQO/x5ZLmw==
-X-Google-Smtp-Source: ABdhPJwZYGWa/0+kZR4UFPYprykEvnW3t8clXbFWCSyZGot/LyvsXLm3hF+ksj4tB1osUQsaThatyQ==
-X-Received: by 2002:a1c:1906:: with SMTP id 6mr1359272wmz.87.1604695507196;
-        Fri, 06 Nov 2020 12:45:07 -0800 (PST)
-Received: from adroid (165-170-184-091.ip-addr.vsenet.de. [91.184.170.165])
-        by smtp.gmail.com with ESMTPSA id c64sm3821472wmd.41.2020.11.06.12.45.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Nov 2020 12:45:06 -0800 (PST)
-Date:   Fri, 6 Nov 2020 21:45:03 +0100
-From:   Martin Juecker <martin.juecker@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     kgene@kernel.org, krzk@kernel.org, devicetree@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: samsung: document bindings for p4note
- family boards
-Message-ID: <20201106204503.GA4672@adroid>
-References: <20201031175836.47745-1-martin.juecker@gmail.com>
- <20201031175836.47745-2-martin.juecker@gmail.com>
- <20201104200348.GA4038253@bogus>
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7aTWPGVFVbBWyajMT43VMslcFxXhz4VtDG2Makyw31Y=;
+        b=Vxl4/pgZfwVJzZFpWYO18lQP5sBGo0tmoetquqOp4a0A3h9Az+OBviyLHrHlB/qGZX
+         8nNvpkdJ0LAl7z5uU8m/ccTtBPia7nnp33HbJwTueUy6G3JGDrUIo/aRBafeOGfE/ZSj
+         KUJhrF0PJBIJcHCbKDlqBlIQ+I9xA8RgOliUjyRFt76jvRlu071l0CkkRIKof3dkZ/az
+         1NWPSUDsFoyPjRUNsP4aU+baOfReBiJpw+XrMeQGx1QsPZ7/JD28JbjBcozLJNqUQrfd
+         0MSiLU6oYclCPoRb964bVF9Yj4Kst7F0l8Canqs5oXnE2Snki5Ggz7EJk5NZqIEafBvq
+         y2hA==
+X-Gm-Message-State: AOAM531vQMVSt/nbOytd5MZIHf8Pd4dwBABGyVDwHN1Ega5pi1fuMwkU
+        baoA0pgDsbZQ5iAafTynoBGXGhgCig2c7A==
+X-Google-Smtp-Source: ABdhPJwpIojmp9b1+/us6ZoC1XobJl4twTivXTCrNIPeHZ3z7HJtN7EZ21TixK2ffUkYFiMgVC+9xw==
+X-Received: by 2002:a17:90a:1f0b:: with SMTP id u11mr1596531pja.105.1604698761088;
+        Fri, 06 Nov 2020 13:39:21 -0800 (PST)
+Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id u22sm2689423pgf.24.2020.11.06.13.39.19
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 06 Nov 2020 13:39:20 -0800 (PST)
+Date:   Fri, 6 Nov 2020 13:27:08 -0800
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>, perex@perex.cz,
+        Xiubo.Lee@gmail.com, festevam@gmail.com, robh+dt@kernel.org,
+        timur@kernel.org, tiwai@suse.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, lgirdwood@gmail.com,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: fsl_aud2htx: Add binding doc
+ for aud2htx module
+Message-ID: <20201106212707.GA3927@Asurada-Nvidia>
+References: <1604281947-26874-1-git-send-email-shengjiu.wang@nxp.com>
+ <160466365499.22812.9217467877032314221.b4-ty@kernel.org>
+ <20201106122013.GB49612@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201104200348.GA4038253@bogus>
+In-Reply-To: <20201106122013.GB49612@sirena.org.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 04, 2020 at 02:03:48PM -0600, Rob Herring wrote:
-> On Sat, 31 Oct 2020 18:58:33 +0100, Martin Jücker wrote:
-> > Document the GT-N8010/GT-N8013 device binding and the p4note common
-> > binding that it is based on.
+On Fri, Nov 06, 2020 at 12:20:13PM +0000, Mark Brown wrote:
+> On Fri, Nov 06, 2020 at 11:54:23AM +0000, Mark Brown wrote:
+> > On Mon, 2 Nov 2020 09:52:26 +0800, Shengjiu Wang wrote:
+> > > AUD2HTX (Audio Subsystem TO HDMI TX Subsystem) is a new
+> > > IP module found on i.MX8MP.
 > > 
-> > Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
-> > ---
-> >  .../devicetree/bindings/arm/samsung/samsung-boards.yaml   | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
+> > Applied to
 > > 
+> >    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 > 
-> 
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
-> 
-> If a tag was not added on purpose, please state why and what changed.
-> 
+> Sorry, looks like me queueing this raced with the review comments coming
+> in.  I think the review commments are small enough that it'll be OK to
+> fix incrementally?
 
-I wasn't aware of this but it makes sense. I actually changed the board
-compatible from samsung,n801x to samsung,n8010 - I guess that would
-still be ok to add a reviewed-by in this case?
+Yes. I am okay if we move forward with this version.
 
-Cheers
-Martin
+Thanks
