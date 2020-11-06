@@ -2,99 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C7782A9747
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 14:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C822A9715
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 14:40:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727346AbgKFN4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 08:56:51 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2065 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727053AbgKFN4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 08:56:51 -0500
-X-Greylist: delayed 1186 seconds by postgrey-1.27 at vger.kernel.org; Fri, 06 Nov 2020 08:56:50 EST
-Received: from fraeml737-chm.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4CSLx93FMhz67Grv;
-        Fri,  6 Nov 2020 21:35:25 +0800 (CST)
-Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
- fraeml737-chm.china.huawei.com (10.206.15.218) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Fri, 6 Nov 2020 14:37:02 +0100
-Received: from [10.47.7.5] (10.47.7.5) by lhreml724-chm.china.huawei.com
- (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Fri, 6 Nov 2020
- 13:37:01 +0000
-Subject: Re: [PATCH v2 0/4] perf drivers: Add sysfs identifier file
-To:     <Frank.li@nxp.com>, <will@kernel.org>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <zhangshaokun@hisilicon.com>,
-        <qiangqing.zhang@nxp.com>
-CC:     <linuxarm@huawei.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <acme@kernel.org>,
-        <jolsa@redhat.com>, <irogers@google.com>
-References: <1602149181-237415-1-git-send-email-john.garry@huawei.com>
-From:   John Garry <john.garry@huawei.com>
-Message-ID: <6b6b96d0-19c7-8be7-5742-ed01b5b891cc@huawei.com>
-Date:   Fri, 6 Nov 2020 13:36:56 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.2
+        id S1727363AbgKFNkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 08:40:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36320 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727214AbgKFNkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 08:40:43 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99BBAC0613CF
+        for <devicetree@vger.kernel.org>; Fri,  6 Nov 2020 05:40:42 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id 126so1961268lfi.8
+        for <devicetree@vger.kernel.org>; Fri, 06 Nov 2020 05:40:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JfCJQ0jO5eraFDJbfYizUOVGWnEdmH9dyGuSSJLkvIw=;
+        b=W9caSxE1LFwmaV36thpbhx25S8CmHaMDJztjs2sJYmrOs3KwLI8SmDCv/KzE1u8Kp1
+         0J7/gWiX8hSRB7kFATEZR6NZS05ooJj3LxmWxh5FMqoF1IfZrnJfeq8GNvYUivZtD3he
+         oZVCrBqwPhpB5NeWR9YZqcmtu+71j/NYe5UZW+8Mt2MEXlddTWqFdGdH/eQmrFczPHxJ
+         FWuMhj2cD744AvRU7RDD1xhDM4jhs+OVwZhwnR2qvtDIIp6DSkGJ8I1l0fEWYfti7t2B
+         tOKxCTQCnAZa/XYxdl1+oRSk/P057E0JWqYJG86FgoWxzygd6R8CKuAPgFfLCtpRvEOE
+         Nonw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JfCJQ0jO5eraFDJbfYizUOVGWnEdmH9dyGuSSJLkvIw=;
+        b=Galiui5gPGu1s++ieEiLych2pvVe+Zu/Z3LM1Kna9BKz66B+4sikGM8gGNc250K1Xg
+         E+vPGO+jt8FB5wgGL02JnMpvrfP9KDJOSXO23kn7MG19+jyzzhdDYxO6B7ZJ5aY79nh5
+         hYxhq2S/d5RuGRWmK58KHy0pZtw3ga4srGaoHYIYQp/m9kpR9O3oP2n/r1a3llRuKUQf
+         remr4h5QyFRXjxTKq5m+qYFY+aTNh+wOLCNOyqQgs022y6IyNLXRJhmHNa6w99QvyPen
+         JthdPtcGtz43haxGwswhYyClYbF+yj8CNYOXgu62+ctp+cR11WyvP56qdDWbnwTxB38q
+         mlZw==
+X-Gm-Message-State: AOAM53394T10MU8nhg1w2BCxQe328ye59pl4D84N/85iSfLCopm8qM9e
+        imPa/7tb9vZ06oV4nLY5zhqRq36FlGFsfC18nEBZ0g==
+X-Google-Smtp-Source: ABdhPJwZytu/TucMs/LzjMgrHms4raPSqPz486Urbgq99iCqReLz35olpz8fmr6pdMYLedtRThpCSPblGeiM1QLNkGQ=
+X-Received: by 2002:a05:6512:3225:: with SMTP id f5mr871293lfe.441.1604670040988;
+ Fri, 06 Nov 2020 05:40:40 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1602149181-237415-1-git-send-email-john.garry@huawei.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.7.5]
-X-ClientProxiedBy: lhreml738-chm.china.huawei.com (10.201.108.188) To
- lhreml724-chm.china.huawei.com (10.201.108.75)
-X-CFilter-Loop: Reflected
+References: <20201016204019.2606-1-linux@fw-web.de> <20201016204019.2606-4-linux@fw-web.de>
+In-Reply-To: <20201016204019.2606-4-linux@fw-web.de>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 6 Nov 2020 14:40:30 +0100
+Message-ID: <CACRpkdbjp87VH0Jq8SCtcMs1xaaKy3P+DPzMN8J=cuDad-YSvw@mail.gmail.com>
+Subject: Re: [RFC 3/3] pinctl: mt7622: drop pwm ch7 as mt7622 only has 6 channels
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/10/2020 10:26, John Garry wrote:
+On Fri, Oct 16, 2020 at 10:40 PM Frank Wunderlich <linux@fw-web.de> wrote:
 
-Hi Will, Mark,
+> From: Frank Wunderlich <frank-w@public-files.de>
+>
+> mt7622 is reported by mediatek to have only 6 pwm channels
+> so drop pindefines for 7th channel
+>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 
-Can you have a look at this series please?
+This patch (3/3) applied to the pinctrl tree.
 
-You were cc'ed on the v5 rebase of the userspace part which I sent out a 
-little while ago.
+Please apply 1-2 to the ARM SoC tree.
 
-Cheers,
-John
-
-> To allow perf tool to identify a specific implementation of a PMU for
-> event alias matching and metric support, expose a per-PMU identifier file.
-> 
-> There is no standard format for the identifier string. It just should be
-> unique per HW implementation.
-> 
-> Typical methods to retrieve the information for the identifier string
-> can include:
-> - Hardcoding in the driver, matched via DT bindings compat string,
->    ACPI HID, or similar
-> - Directly from DT bindings property
-> - Read from some HW identification register
-> 
-> In this series, for the SMMUv3 PMU and HiSi uncore drivers, a HW ID
-> register is read for the identifier. For the imx8 ddr driver, the
-> identifier is hardcoded, matched via DT compat string.
-> 
-> Joakim Zhang (2):
->    bindings/perf/imx-ddr: update compatible string
->    perf/imx_ddr: Add system PMU identifier for userspace
-> 
-> John Garry (2):
->    drivers/perf: hisi: Add identifier sysfs file
->    perf/smmuv3: Support sysfs identifier file
-> 
->   .../devicetree/bindings/perf/fsl-imx-ddr.txt  |  3 ++
->   drivers/perf/arm_smmuv3_pmu.c                 | 39 ++++++++++++++++
->   drivers/perf/fsl_imx8_ddr_perf.c              | 45 +++++++++++++++++--
->   drivers/perf/hisilicon/hisi_uncore_ddrc_pmu.c | 16 +++++++
->   drivers/perf/hisilicon/hisi_uncore_hha_pmu.c  | 16 +++++++
->   drivers/perf/hisilicon/hisi_uncore_l3c_pmu.c  | 16 +++++++
->   drivers/perf/hisilicon/hisi_uncore_pmu.c      | 10 +++++
->   drivers/perf/hisilicon/hisi_uncore_pmu.h      |  7 +++
->   8 files changed, 149 insertions(+), 3 deletions(-)
-> 
-
+Yours,
+Linus Walleij
