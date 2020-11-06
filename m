@@ -2,151 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 109502A8F64
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 07:19:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BE9D2A8F9D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 07:44:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725835AbgKFGTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 01:19:44 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:33730 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725828AbgKFGTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 01:19:44 -0500
-X-UUID: 737f5f261f4d49c8aeffe1954e138da0-20201106
-X-UUID: 737f5f261f4d49c8aeffe1954e138da0-20201106
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <shane.chien@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 724153232; Fri, 06 Nov 2020 14:19:36 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 6 Nov 2020 14:19:33 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 6 Nov 2020 14:19:33 +0800
-From:   Shane Chien <shane.chien@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, <jiaxin.yu@mediatek.com>,
-        <chipeng.chang@mediatek.com>, <shane.chien@mediatek.com>
-Subject: [PATCH] ASoC: Fix vaud18 power leakage of mt6359
-Date:   Fri, 6 Nov 2020 14:18:37 +0800
-Message-ID: <1604643517-3527-1-git-send-email-shane.chien@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
+        id S1726174AbgKFGon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 01:44:43 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:7720 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726050AbgKFGon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 01:44:43 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fa4f0de0000>; Thu, 05 Nov 2020 22:44:46 -0800
+Received: from [10.25.102.172] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
+ 2020 06:44:37 +0000
+Subject: Re: [PATCH 4/4] dt-bindings: bus: Convert ACONNECT doc to json-schema
+To:     Rob Herring <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <vkoul@kernel.org>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <maz@kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+References: <1604571846-14037-1-git-send-email-spujar@nvidia.com>
+ <1604571846-14037-5-git-send-email-spujar@nvidia.com>
+ <20201105190508.GB1633758@bogus>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <8c8c7cc0-881f-5542-f23f-238e5d8608d3@nvidia.com>
+Date:   Fri, 6 Nov 2020 12:14:32 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: DB50972989C26800FA4953F469746C73711B7D89010A16A1E136A054A6640E852000:8
-X-MTK:  N
+In-Reply-To: <20201105190508.GB1633758@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1604645086; bh=CI65gxif5jEZW4MV9PdM5TeMKbiIlSvnLArX4Xc5ZqQ=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=ZqU+ReLfVjXqg0qIQuZuN8DIM7vlAVZwR4dnEt9OxJyqy43xkyDBi/94aN97BdfPi
+         Ka3qWRhTq5bUPdo9FaKIFYyEvGmoeksKLuchPfopsLafuD6u6bi2ufaFZx4c9rgJRm
+         bLTMcqFXgA0AUewb0VcCKUqWH0lNSZ5cHwqTWJ+llKQXYRYYdMYOPZl5Epp4Nz7PvH
+         8FhqDCd13tqLLjl7xufxIsYBgr7DQ3ChWK/mwFyXvPpi2NCqO+VUzx2gw6sUfvgFuV
+         UubOVO93aQfId03EX4Dv220zJol9c5SNlKAOex4YwaIKtHNPGQ3iwA+VkDaqH3BI6D
+         D/ZM6K+RTDnJA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Shane.Chien" <shane.chien@mediatek.com>
 
-vaud18 is power of mt6359 audio path. It
-should only enable when audio is used,
-instead of in boot up stage.
-Once mt6359 audio path is enabled or disabled,
-vaud18 is controlled by using regulator in
-supply widget "LDO_VAUD18". Due to vaud18 is
-controlled by regulator instead of regmap,
-the macro MT6359_LDO_VAUD18_CON0 is no used and
-remove from mt6359.h.
+>> Move ACONNECT documentation to YAML format.
+>>
+>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> ---
+>>   .../bindings/bus/nvidia,tegra210-aconnect.txt      | 44 -----------
+>>   .../bindings/bus/nvidia,tegra210-aconnect.yaml     | 86 ++++++++++++++++++++++
+>>   2 files changed, 86 insertions(+), 44 deletions(-)
+>>   delete mode 100644 Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.txt
+>>   create mode 100644 Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
+>>
 
-Signed-off-by: Shane.Chien <shane.chien@mediatek.com>
----
- sound/soc/codecs/mt6359.c | 38 +++++++++++++++++++++++++++++---------
- sound/soc/codecs/mt6359.h |  6 ------
- 2 files changed, 29 insertions(+), 15 deletions(-)
+...
 
-diff --git a/sound/soc/codecs/mt6359.c b/sound/soc/codecs/mt6359.c
-index d20c59a..52dabdc 100644
---- a/sound/soc/codecs/mt6359.c
-+++ b/sound/soc/codecs/mt6359.c
-@@ -724,6 +724,32 @@ static SOC_VALUE_ENUM_SINGLE_DECL(pga_3_mux_map_enum,
- static const struct snd_kcontrol_new pga_3_mux_control =
- 	SOC_DAPM_ENUM("PGA 3 Select", pga_3_mux_map_enum);
- 
-+static int mt_vaud18_event(struct snd_soc_dapm_widget *w,
-+			   struct snd_kcontrol *kcontrol,
-+			   int event)
-+{
-+	struct snd_soc_component *cmpnt = snd_soc_dapm_to_component(w->dapm);
-+	struct mt6359_priv *priv = snd_soc_component_get_drvdata(cmpnt);
-+	int ret = 0;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_PRE_PMU:
-+		ret = regulator_enable(priv->avdd_reg);
-+		if (ret)
-+			dev_err(priv->dev, "regulator_enable err: %d\n", ret);
-+		break;
-+	case SND_SOC_DAPM_POST_PMD:
-+		ret = regulator_disable(priv->avdd_reg);
-+		if (ret)
-+			dev_err(priv->dev, "regulator_disable err: %d\n", ret);
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
- static int mt_sgen_event(struct snd_soc_dapm_widget *w,
- 			 struct snd_kcontrol *kcontrol,
- 			 int event)
-@@ -1944,8 +1970,9 @@ static int mt_ncp_event(struct snd_soc_dapm_widget *w,
- 			      MT6359_DCXO_CW12,
- 			      RG_XO_AUDIO_EN_M_SFT, 0, NULL, 0),
- 	SND_SOC_DAPM_SUPPLY_S("LDO_VAUD18", SUPPLY_SEQ_LDO_VAUD18,
--			      MT6359_LDO_VAUD18_CON0,
--			      RG_LDO_VAUD18_EN_SFT, 0, NULL, 0),
-+			      SND_SOC_NOPM, 0, 0,
-+			      mt_vaud18_event,
-+			      SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_POST_PMD),
- 	SND_SOC_DAPM_SUPPLY_S("AUDGLB", SUPPLY_SEQ_AUD_GLB,
- 			      MT6359_AUDDEC_ANA_CON13,
- 			      RG_AUDGLB_PWRDN_VA32_SFT, 1, NULL, 0),
-@@ -2814,13 +2841,6 @@ static int mt6359_platform_driver_probe(struct platform_device *pdev)
- 		return PTR_ERR(priv->avdd_reg);
- 	}
- 
--	ret = regulator_enable(priv->avdd_reg);
--	if (ret) {
--		dev_err(&pdev->dev, "%s(), failed to enable regulator!\n",
--			__func__);
--		return ret;
--	}
--
- 	ret = mt6359_parse_dt(priv);
- 	if (ret) {
- 		dev_warn(&pdev->dev, "%s() failed to parse dts\n", __func__);
-diff --git a/sound/soc/codecs/mt6359.h b/sound/soc/codecs/mt6359.h
-index af6f07f..1dfb29a 100644
---- a/sound/soc/codecs/mt6359.h
-+++ b/sound/soc/codecs/mt6359.h
-@@ -135,11 +135,6 @@
- /* MT6359_DCXO_CW12 */
- #define RG_XO_AUDIO_EN_M_SFT				13
- 
--/* LDO_VAUD18_CON0 */
--#define RG_LDO_VAUD18_EN_SFT				0
--#define RG_LDO_VAUD18_EN_MASK				0x1
--#define RG_LDO_VAUD18_EN_MASK_SFT			(0x1 << 0)
--
- /* AUD_TOP_CKPDN_CON0 */
- #define RG_VOW13M_CK_PDN_SFT				13
- #define RG_VOW13M_CK_PDN_MASK				0x1
-@@ -2132,7 +2127,6 @@
- 
- #define MT6359_DCXO_CW11				0x7a6
- #define MT6359_DCXO_CW12				0x7a8
--#define MT6359_LDO_VAUD18_CON0				0x1c98
- 
- #define MT6359_GPIO_MODE0				0xcc
- #define MT6359_GPIO_MODE0_SET				0xce
--- 
-1.9.1
+>> diff --git a/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml b/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
+>> new file mode 100644
+>> index 0000000..f0161bc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/bus/nvidia,tegra210-aconnect.yaml
+>> @@ -0,0 +1,86 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/bus/nvidia,tegra210-aconnect.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: NVIDIA Tegra ACONNECT Bus
+>> +
+>> +description: |
+>> +  The Tegra ACONNECT bus is an AXI switch which is used to connnect various
+>> +  components inside the Audio Processing Engine (APE). All CPU accesses to
+>> +  the APE subsystem go through the ACONNECT via an APB to AXI wrapper. All
+>> +  devices accessed via the ACONNNECT are described by child-nodes.
+>> +
+
+...
+
+>> +
+>> +patternProperties:
+>> +  "^dma-controller(@[0-9a-f]+)?$":
+>> +    $ref: /schemas/dma/nvidia,tegra210-adma.yaml#
+>> +  "^interrupt-controller(@[0-9a-f]+)?$":
+>> +    $ref: /schemas/interrupt-controller/arm,gic.yaml#
+>> +  "^ahub(@[0-9a-f]+)?$":
+>> +    $ref: /schemas/sound/nvidia,tegra210-ahub.yaml#
+> These all get applied already since they match on compatible strings. So
+> having them here means the schema is applied twice. There's maybe some
+> value to this if it's always going to be these 3 nodes.
+
+1) May be this could be dropped with "additionalProperties = true", but 
+that allows any arbitary property to be added for the device. Without 
+this 'make dtbs_check' complains about not matching properties in DT files.
+
+2) These may not be the final list of nodes this device can have. In 
+future if any new device support gets added under this, above needs to 
+be updated. But it will be limited number of devices.
+
+So is [2] fine or you would suggest [1] would be good enough?
+
+>
+> Also, the unit-addresses shouldn't be optional.
+>
+> I'd just do:
+>
+> "@[0-9a-f]+$":
+>    type: object
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +  - clock-names
+>> +  - power-domains
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+>> +  - ranges
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include<dt-bindings/clock/tegra210-car.h>
+>> +
+>> +    aconnect@702c0000 {
+>> +        compatible = "nvidia,tegra210-aconnect";
+>> +        clocks = <&tegra_car TEGRA210_CLK_APE>,
+>> +                 <&tegra_car TEGRA210_CLK_APB2APE>;
+>> +        clock-names = "ape", "apb2ape";
+>> +        power-domains = <&pd_audio>;
+>> +
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0x702c0000 0x702c0000 0x00040000>;
+>> +
+>> +        // Child device nodes follow ...
+>> +    };
+>> +
+>> +...
+>> --
+>> 2.7.4
+>>
 
