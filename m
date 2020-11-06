@@ -2,196 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9272A8C8C
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A06EC2A8CA1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:19:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727470AbgKFCQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Nov 2020 21:16:20 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:9190 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727055AbgKFCQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 21:16:11 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fa4b1ee0000>; Thu, 05 Nov 2020 18:16:14 -0800
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
- 2020 02:16:10 +0000
-Received: from skomatineni-linux.nvidia.com (10.124.1.5) by mail.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Fri, 6 Nov 2020 02:16:10 +0000
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-ide@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 4/4] ata: ahci_tegra: Add AHCI support for Tegra186
-Date:   Thu, 5 Nov 2020 18:16:08 -0800
-Message-ID: <1604628968-1501-5-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1604628968-1501-1-git-send-email-skomatineni@nvidia.com>
-References: <1604628968-1501-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
+        id S1725938AbgKFCT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 21:19:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42728 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725828AbgKFCTY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 21:19:24 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7A7CC0613CF
+        for <devicetree@vger.kernel.org>; Thu,  5 Nov 2020 18:19:22 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id f38so2774404pgm.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Nov 2020 18:19:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ThqwPvqZX83KmgF5BY1PefVZt9YcjzqlfmLEG4bvmlw=;
+        b=FvHlQ+YfMPFzoBk5hdYiEqNTe/RaxVCprl/rfo+96/QbnAIiVe/LFGJLjRL065U/f0
+         v8t5kiTCi6Lz4CAFs30wgSyP1VYz+SpeCS/NzwdNM8WHXXSwpfs1E0OistQuyv6R95PS
+         0gsTngclvE0sgyXAN7tSMxE1Wv8PhBBY94yT4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ThqwPvqZX83KmgF5BY1PefVZt9YcjzqlfmLEG4bvmlw=;
+        b=lfgyERyakvpBUeSLmKuuKeY60+0m08tug6hai2THtFbm2ceByHxeFVTBZNzc3lfP40
+         az1q8emDahbId13zlxGutg69s+7sIf0CiXBQo5aVzyUwS1R7Fk6JmuxCOoWTpYcXFRsu
+         wQJ6YDHQgZ8aaLqceXPi9N04sDaVIGF7/yztYb4taWaeB9ektKjDsFiKYW00h/K5NesN
+         g1AKy7IhkNj9ScX9oyw5UO7nhd5DTGQ/MnX7jz4HzJHNUBXJfFG6BHCmKUxrfQ33kS0V
+         zkeXpJ7OXi8UweFiqOmxAYDfqVafUiQYrtdNvog8CgBjPOCc9Acj8pCSrWKjHgr2lisU
+         qMgQ==
+X-Gm-Message-State: AOAM531MduYCDnoNnQu4AOVkWVyUDFwYyWUcW+sgSXhnJWTvMloIIyxT
+        ugKL9GQdVf0l5X7uNI+y13jsGw==
+X-Google-Smtp-Source: ABdhPJwfRrkfR5rLKajUvQCxuRLHYyRA8tcQYEOUxq4EZD0w2cOHWxAPPzuDD2dndthCxI47EThnrA==
+X-Received: by 2002:a17:90a:c7c3:: with SMTP id gf3mr5367076pjb.140.1604629162354;
+        Thu, 05 Nov 2020 18:19:22 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id j13sm4045356pfd.97.2020.11.05.18.19.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Nov 2020 18:19:21 -0800 (PST)
+Date:   Thu, 5 Nov 2020 18:19:20 -0800
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sc7180-trogdor: Make pp3300_a
+ the default supply for pp3300_hub
+Message-ID: <20201106021920.GB4128558@google.com>
+References: <20201105163724.v2.1.I5a75056d573808f40fed22ab7d28ea6be5819f84@changeid>
+ <20201105163724.v2.2.I0ed4abdd2b2916fbedf76be254bc3457fb8b9655@changeid>
+ <CAD=FV=Xi-Fiay983L4WWVA07WWZvL0DSK4cazBwb9B3brVgM-g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1604628974; bh=bqvYhM4gfczmD1UkOCBSQi6kCpayixLg2a8u43aYS8U=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:X-NVConfidentiality:MIME-Version:Content-Type;
-        b=hh+lYfEhV8FLeCv8AXVzAksSQqoPTkC9vrZw2Y4QRhKLwrYG7oqLyP9fzzIIZ4Bby
-         9vmMvXEy4efwS9qc20oFTctXR5dxFOFcDgSHFJvRMMqYwqEkQyr+/GkViZyIBD/s0Z
-         mmo7SlNzkpYkkaBgdjK9RiGAXOtFzH4VBrxoLngzRTKZLjn/yzGRO45ttz/ddVjQ8O
-         F6395YPreV9L44J6RlCee6U2QpPYU3czoZvSIvI71cU0TBsZGDYs4cK8wO+m15UvJC
-         2Fm/hNorLf5+xD/E5brDtAs4hLyNAxPgYE0b46o3HWJc06PTlrPNfIHjKTHF4ohIy+
-         w+l79lowE8ZaA==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=Xi-Fiay983L4WWVA07WWZvL0DSK4cazBwb9B3brVgM-g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for AHCI-compliant Serial ATA controller
-on Tegra186 SoC.
+On Thu, Nov 05, 2020 at 05:05:38PM -0800, Doug Anderson wrote:
+> Hi,
+> 
+> On Thu, Nov 5, 2020 at 4:37 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+> > index 0a281c24841c..6603f2102233 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+> > @@ -58,10 +58,23 @@ ap_ts: touchscreen@10 {
+> >         };
+> >  };
+> >
+> > +&pp3300_hub {
+> > +       /* pp3300_l7c is used to power the USB hub */
+> > +       /delete-property/regulator-always-on;
+> > +};
+> > +
+> > +&pp3300_l7c {
+> > +       regulator-always-on;
+> 
+> Personally I always end up pairing "always-on" and "boot-on", but that
+> might just be superstition from many kernel versions ago when there
+> were weird quirks.  The way you have it now you will sometimes have
+> "boot-on" but not "always-on".  Probably what you have is fine,
+> though.
 
-Tegra186 does not have sata-oob reset.
-Tegra186 SATA_NVOOB register filed COMMA_CNT position and width are
-different compared to Tegra210 and prior.
+You are right, it makes a certain sense to have them paired, I'll change it
+even though it leads to a few more entries.
 
-So, this patch adds a flag has_sata_oob_rst and tegra_ahci_regs to
-SoC specific strcuture tegra_ahci_soc and updated their implementation
-accordingly.
+> > +};
+> > +
+> >  &sdhc_2 {
+> >         status = "okay";
+> >  };
+> >
+> > +&usb_hub {
+> > +        vdd-supply = <&pp3300_l7c>;
+> > +};
+> > +
+> >  /* PINCTRL - board-specific pinctrl */
+> >
+> >  &tlmm {
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > index bf875589d364..50e733412a7f 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> > @@ -174,6 +174,25 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
+> >                 vin-supply = <&pp3300_a>;
+> >         };
+> >
+> > +       pp3300_hub: pp3300-hub {
+> > +               compatible = "regulator-fixed";
+> > +               regulator-name = "pp3300_hub";
+> > +
+> > +               regulator-min-microvolt = <3300000>;
+> > +               regulator-max-microvolt = <3300000>;
+> > +
+> > +               gpio = <&tlmm 84 GPIO_ACTIVE_HIGH>;
+> > +               enable-active-high;
+> > +               pinctrl-names = "default";
+> > +               pinctrl-0 = <&en_pp3300_hub>;
+> > +
+> > +               /* AP turns on with en_pp3300_hub; always on for AP */
+> 
+> Delete the above comment.  It's obvious based on the properties in
+> this node.  Other similar comments are useful because they describe
+> how the _EC_ turns on regulators and why a regulator that has an
+> enable still looks like an "always-on" regulator to the AP (because
+> it's always on whenever the AP is on).
+> 
+> If you want to add a comment, you could say:
+> 
+> /* Always on until we have a way to specify it can go off in suspend */
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
----
- drivers/ata/ahci_tegra.c | 60 +++++++++++++++++++++++++++++++++++++-----------
- 1 file changed, 47 insertions(+), 13 deletions(-)
+ok
 
-diff --git a/drivers/ata/ahci_tegra.c b/drivers/ata/ahci_tegra.c
-index cb55ebc1..56612af 100644
---- a/drivers/ata/ahci_tegra.c
-+++ b/drivers/ata/ahci_tegra.c
-@@ -59,8 +59,6 @@
- #define T_SATA0_CFG_PHY_1_PAD_PLL_IDDQ_EN		BIT(22)
- 
- #define T_SATA0_NVOOB                                   0x114
--#define T_SATA0_NVOOB_COMMA_CNT_MASK                    (0xff << 16)
--#define T_SATA0_NVOOB_COMMA_CNT                         (0x07 << 16)
- #define T_SATA0_NVOOB_SQUELCH_FILTER_MODE_MASK          (0x3 << 24)
- #define T_SATA0_NVOOB_SQUELCH_FILTER_MODE               (0x1 << 24)
- #define T_SATA0_NVOOB_SQUELCH_FILTER_LENGTH_MASK        (0x3 << 26)
-@@ -154,11 +152,18 @@ struct tegra_ahci_ops {
- 	int (*init)(struct ahci_host_priv *hpriv);
- };
- 
-+struct tegra_ahci_regs {
-+	unsigned int nvoob_comma_cnt_mask;
-+	unsigned int nvoob_comma_cnt_val;
-+};
-+
- struct tegra_ahci_soc {
- 	const char *const		*supply_names;
- 	u32				num_supplies;
- 	bool				supports_devslp;
-+	bool				has_sata_oob_rst;
- 	const struct tegra_ahci_ops	*ops;
-+	const struct tegra_ahci_regs	*regs;
- };
- 
- struct tegra_ahci_priv {
-@@ -240,11 +245,13 @@ static int tegra_ahci_power_on(struct ahci_host_priv *hpriv)
- 	if (ret)
- 		return ret;
- 
--	ret = tegra_powergate_sequence_power_up(TEGRA_POWERGATE_SATA,
--						tegra->sata_clk,
--						tegra->sata_rst);
--	if (ret)
--		goto disable_regulators;
-+	if (!tegra->pdev->dev.pm_domain) {
-+		ret = tegra_powergate_sequence_power_up(TEGRA_POWERGATE_SATA,
-+							tegra->sata_clk,
-+							tegra->sata_rst);
-+		if (ret)
-+			goto disable_regulators;
-+	}
- 
- 	reset_control_assert(tegra->sata_oob_rst);
- 	reset_control_assert(tegra->sata_cold_rst);
-@@ -330,10 +337,10 @@ static int tegra_ahci_controller_init(struct ahci_host_priv *hpriv)
- 	writel(val, tegra->sata_regs + SCFG_OFFSET + T_SATA_CFG_PHY_0);
- 
- 	val = readl(tegra->sata_regs + SCFG_OFFSET + T_SATA0_NVOOB);
--	val &= ~(T_SATA0_NVOOB_COMMA_CNT_MASK |
-+	val &= ~(tegra->soc->regs->nvoob_comma_cnt_mask |
- 		 T_SATA0_NVOOB_SQUELCH_FILTER_LENGTH_MASK |
- 		 T_SATA0_NVOOB_SQUELCH_FILTER_MODE_MASK);
--	val |= (T_SATA0_NVOOB_COMMA_CNT |
-+	val |= (tegra->soc->regs->nvoob_comma_cnt_val |
- 		T_SATA0_NVOOB_SQUELCH_FILTER_LENGTH |
- 		T_SATA0_NVOOB_SQUELCH_FILTER_MODE);
- 	writel(val, tegra->sata_regs + SCFG_OFFSET + T_SATA0_NVOOB);
-@@ -449,15 +456,35 @@ static const struct tegra_ahci_ops tegra124_ahci_ops = {
- 	.init = tegra124_ahci_init,
- };
- 
-+static const struct tegra_ahci_regs tegra124_ahci_regs = {
-+	.nvoob_comma_cnt_mask = GENMASK(30, 28),
-+	.nvoob_comma_cnt_val = (7 << 28),
-+};
-+
- static const struct tegra_ahci_soc tegra124_ahci_soc = {
- 	.supply_names = tegra124_supply_names,
- 	.num_supplies = ARRAY_SIZE(tegra124_supply_names),
- 	.supports_devslp = false,
-+	.has_sata_oob_rst = true,
- 	.ops = &tegra124_ahci_ops,
-+	.regs = &tegra124_ahci_regs,
- };
- 
- static const struct tegra_ahci_soc tegra210_ahci_soc = {
- 	.supports_devslp = false,
-+	.has_sata_oob_rst = true,
-+	.regs = &tegra124_ahci_regs,
-+};
-+
-+static const struct tegra_ahci_regs tegra186_ahci_regs = {
-+	.nvoob_comma_cnt_mask = GENMASK(23, 16),
-+	.nvoob_comma_cnt_val = (7 << 16),
-+};
-+
-+static const struct tegra_ahci_soc tegra186_ahci_soc = {
-+	.supports_devslp = false,
-+	.has_sata_oob_rst = false,
-+	.regs = &tegra186_ahci_regs,
- };
- 
- static const struct of_device_id tegra_ahci_of_match[] = {
-@@ -469,6 +496,10 @@ static const struct of_device_id tegra_ahci_of_match[] = {
- 		.compatible = "nvidia,tegra210-ahci",
- 		.data = &tegra210_ahci_soc
- 	},
-+	{
-+		.compatible = "nvidia,tegra186-ahci",
-+		.data = &tegra186_ahci_soc
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, tegra_ahci_of_match);
-@@ -518,10 +549,13 @@ static int tegra_ahci_probe(struct platform_device *pdev)
- 		return PTR_ERR(tegra->sata_rst);
- 	}
- 
--	tegra->sata_oob_rst = devm_reset_control_get(&pdev->dev, "sata-oob");
--	if (IS_ERR(tegra->sata_oob_rst)) {
--		dev_err(&pdev->dev, "Failed to get sata-oob reset\n");
--		return PTR_ERR(tegra->sata_oob_rst);
-+	if (tegra->soc->has_sata_oob_rst) {
-+		tegra->sata_oob_rst = devm_reset_control_get(&pdev->dev,
-+							     "sata-oob");
-+		if (IS_ERR(tegra->sata_oob_rst)) {
-+			dev_err(&pdev->dev, "Failed to get sata-oob reset\n");
-+			return PTR_ERR(tegra->sata_oob_rst);
-+		}
- 	}
- 
- 	tegra->sata_cold_rst = devm_reset_control_get(&pdev->dev, "sata-cold");
--- 
-2.7.4
+> > @@ -469,7 +488,6 @@ ppvar_l6c: ldo6 {
+> >                         regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> >                 };
+> >
+> > -               pp3300_hub:
+> >                 pp3300_l7c: ldo7 {
+> >                         regulator-min-microvolt = <3304000>;
+> >                         regulator-max-microvolt = <3304000>;
+> 
+> Shouldn't you delete the "regulator-always-on;" from ldo7 since you're
+> adding it for all the older revs?
 
+Indeed, that was the intention, it didn't blow up into my face during testing
+since the downstream tree doesn't have it anymore.
