@@ -2,84 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99E6F2A8C73
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:10:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE6E92A8C90
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 03:16:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732788AbgKFCKT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 5 Nov 2020 21:10:19 -0500
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:45625 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731060AbgKFCKT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 21:10:19 -0500
-Received: by mail-lj1-f194.google.com with SMTP id t13so3676516ljk.12;
-        Thu, 05 Nov 2020 18:10:18 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=TCAkol59pNC4A1Ep6Vh2I5icEcF6Xj0QtXarfZ1GeIo=;
-        b=Ik/fiFDSuiOGh478UJJ5WEiYLaUMzefzYkfeKRLJLZ+E4v1YQNTRMeb5WoKKoqq2J+
-         Kuun4pRezAqUPZtaRL/CPGFGWWfTuElZ4PAqaBfI9cX9ysIEYMQobRMinSkPFgftrqdJ
-         9PQOfztkTo0FlfcvKyNdQGwzKNd04Zo/n8bluh6mq4xdLEQWmalPU3bGzGrABxSGg+mM
-         bfg0D/QME1Et9ZUbup1K/3CbXkVzyFyDR7uVznqoFLnCmn7IT3itJ7E6uJPD5hCczjlm
-         v0w5Fa/uurP/Db/no3hVgK/wMvsuXrvly2wPN2ay0JhNXUkfekjTZo//zm5tEMvF8Xhc
-         Dqpg==
-X-Gm-Message-State: AOAM53140NPtFVRuOP4NT6R9vwKPc+K4Ig7/vL//53ctc+0dWotp0VLn
-        kZqGVvlaA/0rN07PW+gZd9HT2SdxL3ptXw==
-X-Google-Smtp-Source: ABdhPJwJcrJ1KHjp3J3gAxuQLQr6pm5I/n5CYQaoK6doApH7OX7iFot5iPkkMw59tyJjjlU9AyUeQw==
-X-Received: by 2002:a2e:884d:: with SMTP id z13mr1796164ljj.413.1604628617172;
-        Thu, 05 Nov 2020 18:10:17 -0800 (PST)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
-        by smtp.gmail.com with ESMTPSA id c26sm358154lfh.107.2020.11.05.18.10.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 05 Nov 2020 18:10:16 -0800 (PST)
-Received: by mail-lj1-f171.google.com with SMTP id a25so1866848ljn.0;
-        Thu, 05 Nov 2020 18:10:16 -0800 (PST)
-X-Received: by 2002:a05:651c:336:: with SMTP id b22mr2007851ljp.75.1604628616262;
- Thu, 05 Nov 2020 18:10:16 -0800 (PST)
+        id S1726734AbgKFCQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Nov 2020 21:16:08 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:12505 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726075AbgKFCQI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Nov 2020 21:16:08 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fa4b1ea0000>; Thu, 05 Nov 2020 18:16:10 -0800
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 6 Nov
+ 2020 02:16:08 +0000
+Received: from skomatineni-linux.nvidia.com (10.124.1.5) by mail.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Fri, 6 Nov 2020 02:16:07 +0000
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-ide@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/4] Add AHCI support for Tegra186
+Date:   Thu, 5 Nov 2020 18:16:04 -0800
+Message-ID: <1604628968-1501-1-git-send-email-skomatineni@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-References: <20201102100157.85801-1-mtwget@gmail.com> <20201102100157.85801-2-mtwget@gmail.com>
- <20201103113743.5764tj2ryrht4dfs@gilmour.lan> <CAHRgzyOao=w6Yyqqvi1Z26=rfJgumkzDbWLxD+_5uaLmyAWiQA@mail.gmail.com>
- <20201105171051.ducvxcdj5jfarmgn@gilmour.lan> <CAHRgzyNzXk1uJzEVLvrqPu2CT8jzF+5UFEubT6kEtF=8HVgROQ@mail.gmail.com>
-In-Reply-To: <CAHRgzyNzXk1uJzEVLvrqPu2CT8jzF+5UFEubT6kEtF=8HVgROQ@mail.gmail.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Fri, 6 Nov 2020 10:10:10 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64HyUn8KjPPA0JBA5tPaxX7-keNfs+M22pL5SmETN0FQg@mail.gmail.com>
-Message-ID: <CAGb2v64HyUn8KjPPA0JBA5tPaxX7-keNfs+M22pL5SmETN0FQg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/1] ARM: dts: sun8i: h3: Add initial NanoPi R1 support
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Rob Herring <robh+dt@kernel.org>, Yu-Tung Chang <mtwget@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1604628970; bh=zD66V8wW3uz/Ur3S9TeficBHrXtG1p0uq70Rmiku/fI=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:X-NVConfidentiality:
+         MIME-Version:Content-Type;
+        b=VvmE6rdmSyQ2X93l6U8BFP62+eitvoLNlpxyLJL4VQjg96NR38Q41UwVrIcmjTtZX
+         3FNpGKIeHBqCNqiJgjkKkE7gJQxl1gV8HIS98mQrfUn0DbS9WBftg0dNM/zMXyaVc6
+         +Zj2ui3MffUMycAc5cZCYIT/YuNORbOkQFQi68zcoHDC/nPPGsjHu1YgyWWAMjDdW3
+         lh8Wogz0O+NqyL2K/shoMY0M1sVYtzOWN6/bMV9rdROr0hRlw4AZx5vzOvx3YKiX7V
+         nLOq5tXIVWWvM2pBs0HwJo1u7lqWj3wUnndt/IdCQ+IralLHORpOJHGA+TcEQZwaw6
+         rnhfFXsZ2xE6g==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 6, 2020 at 10:03 AM Yu-Tung Chang <mtwget@gmail.com> wrote:
->
-> Maxime Ripard <maxime@cerno.tech> 于2020年11月6日周五 上午1:10写道：
-> >
-> > On Wed, Nov 04, 2020 at 04:07:48PM +0800, Yu-Tung Chang wrote:
-> > > > > +&uart1 {
-> > > > > +     pinctrl-names = "default";
-> > > > > +     pinctrl-0 = <&uart1_pins>;
-> > > >
-> > > > This should be already set in the DTSI
-> > > >
-> > > uart0 as the debugging interface, uart1 as the external uart port,
-> > > uart3 as the bluetooth.
-> >
-> > What I mean is that since it's the only muxing option, the pinctrl
-> > properties should already be set in the DTSI, so it's redundant to put
-> > them in the DTS.
-> >
-> I can only see the definition of uart0 in the DTSI,
-> because uart1 as the extension interface is exclusive to NanoPi R1.
+This series adds support for AHCI-compliant SATA to Tegra186 SoC.
 
-Maxime, to clarify, UART1 can be used with or without RTS/CTS,
-so there is no default muxing in the DTSI.
+This series includes patches for
+- Converting text based dt-binding document to YAML.
+- Adding dt-bindings for Tegra186.
+- Enabling AHCI-compliance SATA for Jetson TX2.
+- Adding Tegra186 support to Tegra AHCI driver.
 
-ChenYu
+Sowjanya Komatineni (4):
+  dt-bindings: ata: tegra: Convert binding documentation to YAML
+  dt-binding: ata: tegra: Add dt-binding documentation for Tegra186
+  arm64: tegra: Enable AHCI on Jetson TX2
+  ata: ahci_tegra: Add AHCI support for Tegra186
+
+ .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 199 +++++++++++++++++++++
+ .../bindings/ata/nvidia,tegra124-ahci.txt          |  44 -----
+ arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts |   4 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi           |  28 +++
+ drivers/ata/ahci_tegra.c                           |  60 +++++--
+ 5 files changed, 278 insertions(+), 57 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
+
+-- 
+2.7.4
+
