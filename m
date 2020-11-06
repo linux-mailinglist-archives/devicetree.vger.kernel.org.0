@@ -2,45 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D90722A9622
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 13:20:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F34052A962B
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 13:26:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727229AbgKFMU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 07:20:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56912 "EHLO mail.kernel.org"
+        id S1727169AbgKFM0q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 07:26:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57796 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726317AbgKFMU0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Nov 2020 07:20:26 -0500
+        id S1726317AbgKFM0q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Nov 2020 07:26:46 -0500
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 572EC20715;
-        Fri,  6 Nov 2020 12:20:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2014F2071A;
+        Fri,  6 Nov 2020 12:26:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604665225;
-        bh=rLaHZxkEJ3Zmxvf7Vr/Cg2Fpa7pJbEhWMmYIrGjNiDk=;
+        s=default; t=1604665605;
+        bh=9V54Jr5H0EdeTkVkxoMOzaxfGCPypxqBxjaZGL7Cm0k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PRCZ2+/cofyw6fph+5dlIP29UiohmyXjfx6p9tNxQNp5k/ZV/y34+S5VB2DEHoG70
-         sFFdWNb3uc4gS+3Y1lPvkzhicINNnzDiJp+2xjQdsIrwwtQ57qCzowH3Wl+ikTDQOU
-         v0OScxZ0Nii410PVCbhI+keeL8HMGaPGBC+RZRFE=
-Date:   Fri, 6 Nov 2020 12:20:13 +0000
+        b=mYs4+EV9t/i7hajNy4K6BMmfClq3akssETZ5FGnkl1Bz74kMf3QK3ypU5VbkJuPKI
+         WITwP9TSJ5JIDC86DozewaI5KFy0ONn9K2/+Oj9teymV2hrgSLy6T3YfMp7VP2D2vJ
+         dDxIgjcFQINek/iwsif4jj1chN/dZZwRY4+qoqms=
+Date:   Fri, 6 Nov 2020 12:26:33 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>, perex@perex.cz,
-        Xiubo.Lee@gmail.com, festevam@gmail.com, robh+dt@kernel.org,
-        nicoleotsuka@gmail.com, timur@kernel.org, tiwai@suse.com,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        lgirdwood@gmail.com
-Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: fsl_aud2htx: Add binding doc
- for aud2htx module
-Message-ID: <20201106122013.GB49612@sirena.org.uk>
-References: <1604281947-26874-1-git-send-email-shengjiu.wang@nxp.com>
- <160466365499.22812.9217467877032314221.b4-ty@kernel.org>
+To:     Shane Chien <shane.chien@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
+        jiaxin.yu@mediatek.com, chipeng.chang@mediatek.com
+Subject: Re: [PATCH] ASoC: Fix vaud18 power leakage of mt6359
+Message-ID: <20201106122633.GD49612@sirena.org.uk>
+References: <1604643517-3527-1-git-send-email-shane.chien@mediatek.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="KFztAG8eRSV9hGtP"
+        protocol="application/pgp-signature"; boundary="hoZxPH4CaxYzWscb"
 Content-Disposition: inline
-In-Reply-To: <160466365499.22812.9217467877032314221.b4-ty@kernel.org>
+In-Reply-To: <1604643517-3527-1-git-send-email-shane.chien@mediatek.com>
 X-Cookie: When does later become never?
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -48,38 +45,48 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---KFztAG8eRSV9hGtP
+--hoZxPH4CaxYzWscb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 06, 2020 at 11:54:23AM +0000, Mark Brown wrote:
-> On Mon, 2 Nov 2020 09:52:26 +0800, Shengjiu Wang wrote:
-> > AUD2HTX (Audio Subsystem TO HDMI TX Subsystem) is a new
-> > IP module found on i.MX8MP.
->=20
-> Applied to
->=20
->    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-=
-next
+On Fri, Nov 06, 2020 at 02:18:37PM +0800, Shane Chien wrote:
 
-Sorry, looks like me queueing this raced with the review comments coming
-in.  I think the review commments are small enough that it'll be OK to
-fix incrementally?
+> +static int mt_vaud18_event(struct snd_soc_dapm_widget *w,
+> +			   struct snd_kcontrol *kcontrol,
+> +			   int event)
+> +{
+> +	struct snd_soc_component *cmpnt = snd_soc_dapm_to_component(w->dapm);
+> +	struct mt6359_priv *priv = snd_soc_component_get_drvdata(cmpnt);
+> +	int ret = 0;
+> +
+> +	switch (event) {
+> +	case SND_SOC_DAPM_PRE_PMU:
+> +		ret = regulator_enable(priv->avdd_reg);
+> +		if (ret)
+> +			dev_err(priv->dev, "regulator_enable err: %d\n", ret);
+> +		break;
+> +	case SND_SOC_DAPM_POST_PMD:
+> +		ret = regulator_disable(priv->avdd_reg);
+> +		if (ret)
+> +			dev_err(priv->dev, "regulator_disable err: %d\n", ret);
+> +		break;
 
---KFztAG8eRSV9hGtP
+This is just a SND_SOC_DAPM_REGULATOR_SUPPLY widget as far as I can see
+- why not use one of those rather than open coding?
+
+--hoZxPH4CaxYzWscb
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+lP30ACgkQJNaLcl1U
-h9BMbAf/YYxCzCGH2GbmfLoYjyffvTAUGO8REEj9IgCKa9pyWNJowu4KCdjlXYvJ
-ZeGTKytpKJqcqogSuKAWzQceby4N7aRa/Lzm12q/0GSP+TvoG9YnAr4J9w+IjxWx
-GW/TwSJlPQCfFKGcRN+JYhkTQ35l7TsApa/8snkWdCwcS004xJ2AhEqzySXZojY7
-zno2JFvQsaGgpXXCoRrO4rAJLlR/t74o8iobg19mbTbOWUa+h8Ul+UHANvnqOSml
-QORlFFFTjaFDovqs09Q9n4mGXiMCGJJU8v5FRaVtMNafoiYjM4V3uwIrt6fjt81k
-lP3Hz9pwhUC+SLgRLapwIPKTYo6ZlA==
-=bxj9
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+lQPgACgkQJNaLcl1U
+h9ATgAf+MT1NV/U76nz6AUWoZkMQhuvyA3qL76F+YzE1WOVNx0KUfjs4EkbXahvJ
++UAo0/iy/ZxtVGfKB2yGpdNb3rCVPhi4kjoUHx+o3qKdXqf9Eq4Ax45OKzTJF1PS
+3FtGEnGsOEyJuhCDomp9MTdWDQq7LlypB9Qv7BnNjU/XHt7KRZEUGAiQv4EwuwYq
+qg/H+tqFg9zozQFj2tXP7gvvsFcRZfTUqqhnlgob33RUvVKT3Uyiw8voNbeFuXby
+NQym7YshcBcIv8EiS3Tvo3t5/FOx0/+/4EPQU53Mtxv4PQafMqQlseEUaN7U83ou
+E9gWxWQ6vcKW3HNgGcDFLfUmnURj+g==
+=IN8z
 -----END PGP SIGNATURE-----
 
---KFztAG8eRSV9hGtP--
+--hoZxPH4CaxYzWscb--
