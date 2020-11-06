@@ -2,106 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67AD52A9F9E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 22:54:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C33032A9FAE
+	for <lists+devicetree@lfdr.de>; Fri,  6 Nov 2020 23:01:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728489AbgKFVyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Nov 2020 16:54:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57616 "EHLO
+        id S1728617AbgKFWBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Nov 2020 17:01:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728464AbgKFVyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 16:54:08 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C397C0613CF;
-        Fri,  6 Nov 2020 13:54:06 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id h6so3956921lfj.3;
-        Fri, 06 Nov 2020 13:54:06 -0800 (PST)
+        with ESMTP id S1728577AbgKFWBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Nov 2020 17:01:37 -0500
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEADAC0613D3
+        for <devicetree@vger.kernel.org>; Fri,  6 Nov 2020 14:01:36 -0800 (PST)
+Received: by mail-pl1-x632.google.com with SMTP id t6so1281015plq.11
+        for <devicetree@vger.kernel.org>; Fri, 06 Nov 2020 14:01:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bc3gS/Kujcc3KoLYMBRT58xRZm15H9o/SpU6p0gc5Ts=;
-        b=NdVx9Kt3J1pK7OYym/8csqF8WLvbOjo+q3Jwm/cbzgbEdQO/CnOpbE6bqWcN9Sl30G
-         X/KORpC3mndxuzy8af6XGZ0UviqVAzyXdV1P9MJRXIHeVVlayXM9CmUsWK6BFn6nT9IC
-         DTwQjTGJbBI27CdxUHHRVn2ve4k7lUvDwetVpr7vqs/I8C6cFRvP/3lHXzorCSxrSgOV
-         ifJ1SinltE+9o5qAewOaZqRBwbWfGHPgM/Gn3NVu8e6tOrn7nifS9ooDwVtFEysGYKsA
-         0If7Txn7z2fK6kz8ppA/y6rMnLCgVOJ74CZ9Oz2agpFCzd6SwuJYWz8abzfa0ahR/yGF
-         8qhQ==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=W+uIjFpomS32ORnnJTlJpgvJ2GUOPYTDFngxZooh9Yw=;
+        b=mGHs4x96E40ceUJ1gHofW8EdE9O8zAMCLZ10G3TsbE1LbeOuFCV4hLxem3lTZsPaCO
+         AC4QJ/Za62ydIR3ia+KD7GJJ2UbY6pEylwWZqABEB37Up8wJJn5Zz1LvU5CbzJnumit6
+         rZ7/ZBBFkk6QlJG6Viib77aRN3YR+S4pKLXP8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=bc3gS/Kujcc3KoLYMBRT58xRZm15H9o/SpU6p0gc5Ts=;
-        b=FwscGJD4Yt0GcOzpGSxhObU5pcd3NPpdB/MuuiTvPGupC/eJ8wGP2hoTuOIHen417+
-         FXsrBLg2w4gw8V1YzF8wCtVc2NdD11BibQj4LkhnUR/B8tSswNuy9EYX3CB9hjtdLKWw
-         wlatEwfxtXeGwVZQwfCuaIFKLpZIcviMjZNR+Tp9Nx2js8z5p/XltACqjujjllDpjmJk
-         fHDumMtSrEYmOMd6JzM4u3wE56Iqw527XK7irCFtGoZ9UbT8M4Z2vZQYSBW69viZ69Ta
-         bH3UgZxKrkCnm09kaur+CwYak0iZqo2GLhsBSOclZW/rXLB6bodh7HrG4umVU2i2ecs6
-         8FBg==
-X-Gm-Message-State: AOAM530lRQpX6raXp1taPT5DN8p4Nzd6Gs1nXaN4h7h6LJfF6avtw4My
-        AB6q0wxO0J7/2gNV2pnR9MHJGnA05XE=
-X-Google-Smtp-Source: ABdhPJwG1hbHsS5ENGHedoieOLi+ql3T9aVvWy84+TrVYC9E7f2C9zXhhxQrASw3WDpN25tjkqd49A==
-X-Received: by 2002:a05:6512:10cd:: with SMTP id k13mr1554068lfg.597.1604699644396;
-        Fri, 06 Nov 2020 13:54:04 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
-        by smtp.googlemail.com with ESMTPSA id t5sm268687ljc.124.2020.11.06.13.54.00
+        bh=W+uIjFpomS32ORnnJTlJpgvJ2GUOPYTDFngxZooh9Yw=;
+        b=i2nqc2yyuhaWirPV8Y1v2xx9sMn4d0wsLeyxieI/ogytzH9G9NtdQcRauAa0GNxXjd
+         ZBXqOUMExhD+xlgbobAt4TSmBufEU4cEzRQOwccX5uG7ncGhxX+OkQthRHJQQBgcTZxU
+         GODcznCCUSKwvpy/GfZqPRlh7cRDSqwWWYGfUNNinfT9MRvjQ4tPWnEqaeA9ejksF2gf
+         LgCmifZgogkBR/6SSObbX18MRQ7YV7ft5c8yeSBBecEK/4E89dXFF8D1GKczV3NwazmN
+         +hlVU/3/IYkILoVznL+dECuh6UYntn44wooqF7p1cPXCH/5KR/wnQQcMmLd8BXa/g9fX
+         iBKQ==
+X-Gm-Message-State: AOAM531FGrcv03nCZ7LGsXnymgS7YIEFZBeslvOT4oBYC6vwTK209mxA
+        DifgioHr0QF8GXkY6ivBnRN3mg==
+X-Google-Smtp-Source: ABdhPJxTtRLyN/KpvY0Uvm1maoJ87G0906yF1VT94dM7fgO3qTr7FAmQDfiNoP7FQTJTl5aU3BXrjg==
+X-Received: by 2002:a17:902:8bc4:b029:d6:88c3:ea41 with SMTP id r4-20020a1709028bc4b02900d688c3ea41mr3182918plo.53.1604700096250;
+        Fri, 06 Nov 2020 14:01:36 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id u5sm3389716pjn.15.2020.11.06.14.01.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Nov 2020 13:54:02 -0800 (PST)
-Subject: Re: [PATCH v7 36/47] memory: tegra20-emc: Add devfreq support
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20201104164923.21238-1-digetx@gmail.com>
- <20201104164923.21238-37-digetx@gmail.com> <20201106191319.GB65086@kozik-lap>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <6d8f07ed-c844-4b6e-433c-aa1499ca9dba@gmail.com>
-Date:   Sat, 7 Nov 2020 00:53:32 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Fri, 06 Nov 2020 14:01:35 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v3 1/2] arm64: dts: qcom: sc7180: Add sc7180-lazor-r2/r3
+Date:   Fri,  6 Nov 2020 14:01:32 -0800
+Message-Id: <20201106140125.v3.1.I5a75056d573808f40fed22ab7d28ea6be5819f84@changeid>
+X-Mailer: git-send-email 2.29.1.341.ge80a0c044ae-goog
 MIME-Version: 1.0
-In-Reply-To: <20201106191319.GB65086@kozik-lap>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-06.11.2020 22:13, Krzysztof Kozlowski пишет:
-> On Wed, Nov 04, 2020 at 07:49:12PM +0300, Dmitry Osipenko wrote:
->> Add devfreq support to the Tegra20 EMC driver. Memory utilization
->> statistics will be periodically polled from the memory controller and
->> appropriate minimum clock rate will be selected by the devfreq governor.
->>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
->> ---
->>  drivers/memory/tegra/Kconfig       |  2 +
->>  drivers/memory/tegra/tegra20-emc.c | 92 ++++++++++++++++++++++++++++++
->>  2 files changed, 94 insertions(+)
->>
-> 
-> I see this one still received comments. I skipped the DTS patches and
-> applied everything till patch #35. I understand you will send v8, so in
-> such case please skip the applied ones (you can rebase on my for-next or
-> on Monday's linux-next).
+Add configs for lazor rev2 and rev3. There are no relevant deltas
+between rev1 and rev2, so just add the rev2 compatible string to the
+rev1 config.
 
-Thank you! I'll also need to wait for a reply from Viresh Kumar in other
-thread regarding dev_pm_opp_get_opp_table() usage and then will probably
-need to correct patch #35+ as well now, since turned out it may be wrong
-for drivers to use dev_pm_opp_get_opp_table().
+One important delta in rev3 is a switch of the power supply for the
+onboard USB hub from 'pp3300_l7c' to 'pp3300_a' + a load switch. The
+actual regulator switch is done by the patch 'arm64: dts: qcom:
+sc7180-trogdor: Make pp3300_a the default supply for pp3300_hub',
+since it affects the entire trogdor platform. Here we only add the
+.dts files for lazor rev3 and replace the generic compatible entries
+in the rev1 .dts files.
+
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+
+Changes in v3:
+- rev3 switched the regulator, not rev2
+- also handle rev2 in rev1 files
+- fixed include in -r3-kb.dts
+
+Changes in v2:
+- patch added to the series
+
+ arch/arm64/boot/dts/qcom/Makefile              |  3 +++
+ .../dts/qcom/sc7180-trogdor-lazor-r1-kb.dts    |  4 ++--
+ .../dts/qcom/sc7180-trogdor-lazor-r1-lte.dts   |  4 ++--
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts  |  4 ++--
+ .../dts/qcom/sc7180-trogdor-lazor-r3-kb.dts    | 17 +++++++++++++++++
+ .../dts/qcom/sc7180-trogdor-lazor-r3-lte.dts   | 18 ++++++++++++++++++
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r3.dts  | 15 +++++++++++++++
+ 7 files changed, 59 insertions(+), 6 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index fb4631f898fd..3573f7a7b762 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -26,6 +26,9 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r0.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-kb.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r1-lte.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r3.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r3-kb.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-lazor-r3-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sc7180-trogdor-r1-lte.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm630-sony-xperia-ganges-kirin.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
+index c3f426c3c30a..919bfaea6189 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-kb.dts
+@@ -8,8 +8,8 @@
+ #include "sc7180-trogdor-lazor-r1.dts"
+ 
+ / {
+-	model = "Google Lazor (rev1+) with KB Backlight";
+-	compatible = "google,lazor-sku2", "qcom,sc7180";
++	model = "Google Lazor (rev1 - 2) with KB Backlight";
++	compatible = "google,lazor-rev1-sku2", "google,lazor-rev2-sku2", "qcom,sc7180";
+ };
+ 
+ &keyboard_backlight {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts
+index 73e59cf7752a..5a67e5baafec 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1-lte.dts
+@@ -9,8 +9,8 @@
+ #include "sc7180-trogdor-lte-sku.dtsi"
+ 
+ / {
+-	model = "Google Lazor (rev1+) with LTE";
+-	compatible = "google,lazor-sku0", "qcom,sc7180";
++	model = "Google Lazor (rev1 - 2) with LTE";
++	compatible = "google,lazor-rev1-sku0", "google,lazor-rev2-sku0", "qcom,sc7180";
+ };
+ 
+ &keyboard_backlight {
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+index 3151ae31c1cc..9354d4c5ef7d 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+@@ -10,6 +10,6 @@
+ #include "sc7180-trogdor-lazor.dtsi"
+ 
+ / {
+-	model = "Google Lazor (rev1+)";
+-	compatible = "google,lazor", "qcom,sc7180";
++	model = "Google Lazor (rev1 - 2)";
++	compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts
+new file mode 100644
+index 000000000000..6985beb97e53
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-kb.dts
+@@ -0,0 +1,17 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Lazor board device tree source
++ *
++ * Copyright 2020 Google LLC.
++ */
++
++#include "sc7180-trogdor-lazor-r3.dts"
++
++/ {
++	model = "Google Lazor (rev3+) with KB Backlight";
++	compatible = "google,lazor-sku2", "qcom,sc7180";
++};
++
++&keyboard_backlight {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts
+new file mode 100644
+index 000000000000..43836fc4d403
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3-lte.dts
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Lazor board device tree source
++ *
++ * Copyright 2020 Google LLC.
++ */
++
++#include "sc7180-trogdor-lazor-r3.dts"
++#include "sc7180-trogdor-lte-sku.dtsi"
++
++/ {
++	model = "Google Lazor (rev3+) with LTE";
++	compatible = "google,lazor-sku0", "qcom,sc7180";
++};
++
++&keyboard_backlight {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+new file mode 100644
+index 000000000000..1b9d2f46359e
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r3.dts
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Google Lazor board device tree source
++ *
++ * Copyright 2020 Google LLC.
++ */
++
++/dts-v1/;
++
++#include "sc7180-trogdor-lazor.dtsi"
++
++/ {
++	model = "Google Lazor (rev3+)";
++	compatible = "google,lazor", "qcom,sc7180";
++};
+-- 
+2.29.1.341.ge80a0c044ae-goog
+
