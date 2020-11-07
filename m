@@ -2,163 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35FB02AA51A
-	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 13:54:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 016AF2AA545
+	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 14:11:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727608AbgKGMyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Nov 2020 07:54:08 -0500
-Received: from relay5.mymailcheap.com ([159.100.248.207]:41091 "EHLO
-        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727494AbgKGMyI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 07:54:08 -0500
-Received: from relay3.mymailcheap.com (relay3.mymailcheap.com [217.182.119.157])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id B856B260EC;
-        Sat,  7 Nov 2020 12:54:05 +0000 (UTC)
-Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
-        by relay3.mymailcheap.com (Postfix) with ESMTPS id 2E1AE3ECDF;
-        Sat,  7 Nov 2020 13:54:03 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by filter2.mymailcheap.com (Postfix) with ESMTP id 0DC472A7DD;
-        Sat,  7 Nov 2020 13:54:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1604753643;
-        bh=nNi1KvzAc00IXvO21wt65MRQZ7lDmDRlFXMh2RjU9Dk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CujcacLMGt6bnTlK0IWoQIv5CLCgse7yOt7zu0FFFwz0PToKOquCit4Df1GhWBbzv
-         QHSxrlSxyd4aGHxK07hhADfPtGSpnURlM06vJTU7eHv9+QDN7iOcwdkVpUyzVY20nd
-         TZ9bED1wFFEoOhTYueL5uKtCzueUDCo1ARk5UUPE=
-X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
-Received: from filter2.mymailcheap.com ([127.0.0.1])
-        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id rvsIdDPY0VRU; Sat,  7 Nov 2020 13:54:01 +0100 (CET)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter2.mymailcheap.com (Postfix) with ESMTPS;
-        Sat,  7 Nov 2020 13:54:01 +0100 (CET)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 6C54A40849;
-        Sat,  7 Nov 2020 12:54:01 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="fN8gZvPD";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from ice-e5v2.lan (unknown [59.41.162.181])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 44A9340849;
-        Sat,  7 Nov 2020 12:53:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1604753635; bh=nNi1KvzAc00IXvO21wt65MRQZ7lDmDRlFXMh2RjU9Dk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=fN8gZvPDQ8dFOYQDRQeVwPfOvb0OEn5tkmNr3FvX/+uctar1JkO6S5NUC7Vs4Uc8l
-         iOgx/BlgVR96Gg3owsH1ucyXXcbAN8aw4aVA9WTg1sXpnPszLi7N0+58Rb9f2L5YAM
-         78q2Wwq0FWfkK8Nl1MBgCiY0Ap0oxEwKMFBGBv40=
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 3/3] arm64: allwinner: dts: a64: add DT for PineTab developer sample
-Date:   Sat,  7 Nov 2020 20:53:32 +0800
-Message-Id: <20201107125332.2223197-1-icenowy@aosc.io>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201107124958.2222253-1-icenowy@aosc.io>
-References: <20201107124958.2222253-1-icenowy@aosc.io>
+        id S1727264AbgKGNLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Nov 2020 08:11:11 -0500
+Received: from mail-ej1-f46.google.com ([209.85.218.46]:37878 "EHLO
+        mail-ej1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727084AbgKGNLL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 08:11:11 -0500
+Received: by mail-ej1-f46.google.com with SMTP id gn41so5811945ejc.4;
+        Sat, 07 Nov 2020 05:11:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kGafpp+i4jByhexi5tog7qSIZwdZfavxkpUgKQbiKRg=;
+        b=fuxL1yI3vIHiFFKJh5jwVyimpYLfs3OC73mtjqZ/kqzJBpZ3JbUoOfZ/h2dJ08/Ybw
+         ICFAl0HycI4tcIqn87jQ9WWC8GwVMwGhBpajTrHut39nWezIhbw3HeadQaiy4dFrmgdL
+         0xtYcuzy60QrrO7Fh8RP+0rhDwE4z3drd90W+5B4PlyfH3X3HCkPPBXiGqz58vS1YtRk
+         tlUnG34nvb3C5ra9eL4jzTnh+ERhlHXYabPgqF58Y1XYdEVXSDWXiT5vDDVDiOtWxXQp
+         vDbk0PXtmN+N0TPBhRjSeCk/l5p0aXdK02MzUe6sXxcnVNhxBj5nuqiMPT6+HLfPvtc+
+         EI4Q==
+X-Gm-Message-State: AOAM532z6oKcqqZI2otyRLZGrsgz8sMnIaM6M+rHIL3y6/CAQXkWjUks
+        pyfqtmn1NfRQ/PfT1ZaRTKk=
+X-Google-Smtp-Source: ABdhPJxyL1erdAP+jMIQZGb3iUoLuemsNsq/nYhAyOgNtJ8aP82hlF38S2/XB2NrFjPQjfFNZ/HORQ==
+X-Received: by 2002:a17:906:13d4:: with SMTP id g20mr6631766ejc.206.1604754668852;
+        Sat, 07 Nov 2020 05:11:08 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id k11sm3322728edh.72.2020.11.07.05.11.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Nov 2020 05:11:07 -0800 (PST)
+Date:   Sat, 7 Nov 2020 14:11:05 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 1/3] dt-bindings: arm: fsl: Add
+ beacon,imx8mn-beacon-kit
+Message-ID: <20201107131105.GA4761@kozik-lap>
+References: <20201107123334.1868360-1-aford173@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6C54A40849
-X-Spamd-Result: default: False [6.40 / 20.00];
-         ARC_NA(0.00)[];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         RECEIVED_SPAMHAUS_PBL(0.00)[59.41.162.181:received];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         R_SPF_SOFTFAIL(0.00)[~all:c];
-         DMARC_NA(0.00)[aosc.io];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[9];
-         MID_CONTAINS_FROM(1.00)[];
-         DBL_PROHIBIT(0.00)[0.0.0.0:email];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201107123334.1868360-1-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some developers received PineTab samples that used an old LCD panel.
+On Sat, Nov 07, 2020 at 06:33:31AM -0600, Adam Ford wrote:
+> Add beacon,imx8mn-beacon-kit to list of compatible options.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
+> V3:  Correct Typo and move to Nano section
+> V2:  New to series
+> 
 
-Add device tree for these samples.
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
----
- arch/arm64/boot/dts/allwinner/Makefile        |  1 +
- .../dts/allwinner/sun50i-a64-pinetab-dev.dts  | 28 +++++++++++++++++++
- 2 files changed, 29 insertions(+)
- create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev.dts
-
-diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-index 211d1e9d4701..a221dcebfad4 100644
---- a/arch/arm64/boot/dts/allwinner/Makefile
-+++ b/arch/arm64/boot/dts/allwinner/Makefile
-@@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.0.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.1.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinephone-1.2.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab.dtb
-+dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-pinetab-dev.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-sopine-baseboard.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a64-teres-i.dtb
- dtb-$(CONFIG_ARCH_SUNXI) += sun50i-a100-allwinner-perf1.dtb
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev.dts
-new file mode 100644
-index 000000000000..3a4153890f3e
---- /dev/null
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev.dts
-@@ -0,0 +1,28 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2020 Icenowy Zheng <icenowy@aosc.io>
-+ *
-+ */
-+
-+/dts-v1/;
-+
-+#include "sun50i-a64-pinetab.dts"
-+
-+/ {
-+	model = "PineTab Developer Sample";
-+	compatible = "pine64,pinetab-dev", "allwinner,sun50i-a64";
-+};
-+
-+&dsi {
-+	/delete-node/ panel@0;
-+
-+	panel@0 {
-+		compatible = "feixin,k101-im2ba02";
-+		reg = <0>;
-+		avdd-supply = <&reg_dc1sw>;
-+		dvdd-supply = <&reg_dc1sw>;
-+		cvdd-supply = <&reg_ldo_io1>;
-+		reset-gpios = <&pio 3 24 GPIO_ACTIVE_HIGH>; /* PD24 */
-+		backlight = <&backlight>;
-+	};
-+};
--- 
-2.28.0
+Best regards,
+Krzysztof
