@@ -2,137 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F3A2AA55F
-	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 14:31:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 920262AA563
+	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 14:31:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727608AbgKGNbZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Nov 2020 08:31:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60926 "EHLO
+        id S1727863AbgKGNb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Nov 2020 08:31:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727084AbgKGNbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 08:31:24 -0500
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8793DC0613CF;
-        Sat,  7 Nov 2020 05:31:24 -0800 (PST)
-Received: by mail-qt1-x844.google.com with SMTP id r8so2813648qtp.13;
-        Sat, 07 Nov 2020 05:31:24 -0800 (PST)
+        with ESMTP id S1727084AbgKGNb4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 08:31:56 -0500
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44A17C0613CF
+        for <devicetree@vger.kernel.org>; Sat,  7 Nov 2020 05:31:56 -0800 (PST)
+Received: by mail-io1-xd41.google.com with SMTP id o11so4798491ioo.11
+        for <devicetree@vger.kernel.org>; Sat, 07 Nov 2020 05:31:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9TDrtZnW4jo1TeqMQCFxvIkdEGTptcp2h1cSMWL7ZOs=;
-        b=OSEmRkLMwxQ2Gv3EtxFongMvXrd+KlowjuYwWtzrG5cURuZVSAhA4c2s6Yy3rc8bkY
-         jOROKTZAEY4MvgAXqF2Z70l1P62fqYjrwNlE1HYLatU9dbiZXbDMA1eI0f6HC2+55NdL
-         2OiSTbw0kULdCC06fGuly22Gr+Ok9Ajrqo4cspDckY+Y/evRyxdy/n4Vg3HtZolku6/E
-         l8eD2ea5brBnlzVQ19+xacwokGIgRJb59cRatPvAkVUHngNH//IXago7iSEQalIBEFBR
-         Y8igevhxFcwzu7EIHaSWs2TTLOMOIdKwYnwrHGJCYEExSQgJiZonIzqIrnR7OVwcwRW/
-         bgPQ==
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=n12XJqDzjHo85gLF/lzb7TQSLWvZtOQz8/QMuxOBm1Y=;
+        b=eIhnomM757GFjXma7y7XEmzlREF2JoTczBG7xQ0PCOG8rtiqax2LsU3vGPxAD98hXq
+         TAJ7SK+EZPcpBlzSsHbaCrNmU1kgZP1bYZ/iCiBLBWOyfYkkJuOHK3sUqmtZYnHv4aME
+         mnIhTppxtcgs2zcjM5cCXsNpuVGCi7OloY3bhj0Y9wzSaTgKQc1MoRnI/F5htckmgncb
+         G0QA2l6dP5LudiQSEr+7PkKajn4MBQFTPd5C1+movucLZ7/APk13STXb7XeYoGrs0TB9
+         7ZOgA4MbVBeRD8Y4VJ03ZPo0enwOJAK0teDBX+an+wKXCo0jRSu8T9Y9J9LZQT3F7+ni
+         +/KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=9TDrtZnW4jo1TeqMQCFxvIkdEGTptcp2h1cSMWL7ZOs=;
-        b=KbTatJ9JwjdxrE/0Rw6OKJRXs7y9db6lEcMBhTlc4c9q0E/Zo+nXubSpIwzFdCoPRA
-         4CHwteo2TQyu+Pi0EgG0qgVDUzDsuM0sKrDTx/uI1l9ELT829vAe9ZgS3A6Zjz/NMswn
-         QqbTMsFYVyOrZQxKcpK7JhuksrFE/N2p97SpLYV2Kx4km8JEIuzg1VCh1Ab22YZT76Hv
-         DsGMwDimiW6Ig1VdWNLz8obMHT/TfNprrKyCeSt5RQb8CCnKOrKV468VoTgl1lTNC+KP
-         N9ShC/u2m93RqLp3fm0FD5jcyOJpdVjd2cnUbwEM7Lsq5ASGjmWDMu97s6ekoAC8PW8m
-         Hx1w==
-X-Gm-Message-State: AOAM5331eNvBUch0SRoKsu53KMLDQr0iuQ2qMnMAry+gs7ZKkqqzWYY8
-        Efae1DnhETp6PTPvW+2ljmc=
-X-Google-Smtp-Source: ABdhPJzUCiPw92igZX6MiiIzBVtQxqlpGyp5xkP+RKxTVI+n3YKb3+ZvO1v+OEQuJq1SNLYmhCaMSw==
-X-Received: by 2002:ac8:7408:: with SMTP id p8mr5632831qtq.320.1604755883839;
-        Sat, 07 Nov 2020 05:31:23 -0800 (PST)
-Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
-        by smtp.googlemail.com with ESMTPSA id r55sm2480878qte.8.2020.11.07.05.31.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Nov 2020 05:31:23 -0800 (PST)
-Subject: Re: [PATCH 06/32] spi: dw: Add support for the Kendryte K210 SoC
-To:     Damien Le Moal <damien.lemoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-7-damien.lemoal@wdc.com>
-From:   Sean Anderson <seanga2@gmail.com>
-Autocrypt: addr=seanga2@gmail.com; prefer-encrypt=mutual; keydata=
- mQENBFe74PkBCACoLC5Zq2gwrDcCkr+EPGsT14bsxrW07GiYzQhLCgwnPdEpgU95pXltbFhw
- 46GfyffABWxHKO2x+3L1S6ZxC5AiKbYXo7lpnTBYjamPWYouz+VJEVjUx9aaSEByBah5kX6a
- lKFZWNbXLAJh+dE1HFaMi3TQXXaInaREc+aO1F7fCa2zNE75ja+6ah8L4TPRFZ2HKQzve0/Y
- GXtoRw97qmnm3U36vKWT/m2AiLF619F4T1mHvlfjyd9hrVwjH5h/2rFyroXVXBZHGA9Aj8eN
- F2si35dWSZlIwXkNu9bXp0/pIu6FD0bI+BEkD5S7aH1G1iAcMFi5Qq2RNa041DfQSDDHABEB
- AAG0K1NlYW4gR2FsbGFnaGVyIEFuZGVyc29uIDxzZWFuZ2EyQGdtYWlsLmNvbT6JAVcEEwEK
- AEECGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4ACGQEWIQSQYR1bzo1I0gPoYCg+6I/stKEQ
- bgUCXT+S2AUJB2TlXwAKCRA+6I/stKEQbhNOB/9ooea0hU9Sgh7PBloU6CgaC5mlqPLB7NTp
- +JkB+nh3Fqhk+qLZwzEynnuDLl6ESpVHIc0Ym1lyF4gT3DsrlGT1h0Gzw7vUwd1+ZfN0CuIx
- Rn861U/dAUjvbtN5kMBqOI4/5ea+0r7MACcIVnKF/wMXBD8eypHsorT2sJTzwZ6DRCNP70C5
- N1ahpqqNmXe0uLdP0pu55JCqhrGw2SinkRMdWyhSxT56uNwIVHGhLTqH7Q4t1N6G1EH626qa
- SvIJsWlNpll6Y3AYLDw2/Spw/hqieS2PQ/Ky3rPZnvJt7/aSNYsKoFGX0yjkH67Uq8Lx0k1L
- w8jpXnbEPQN3A2ZJCbeM
-Message-ID: <53859725-ca0b-5f57-9147-10346707b3cb@gmail.com>
-Date:   Sat, 7 Nov 2020 08:31:22 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=n12XJqDzjHo85gLF/lzb7TQSLWvZtOQz8/QMuxOBm1Y=;
+        b=h0PSBGVSgzPqAp5elrdkIrQhK1rIkBsrUhJ/+x6GppPESCbgttPB0vnOHRYmfsnO8M
+         UiVtEaE2EuAknRlCuJYzBdNTx4YLG7UrF6p3Ie+XV9Ayw5v7aAk5kJqCLKiD2r4vVGWf
+         PCB/7lLr7ZZ8EUx+36RPPbm6fA9heFJ8DV8D0ECSdfAiHZRVNyXro1X0+Rj0ydTtnee3
+         CW6+E7tvEt5TyOOucsAzpuKvyVbdFIw0ElOaMLJeybt0/pKlIeibXkSg57ZUA+mTbL5J
+         W4RY8ywiAIwc0iEVGBVSj2fqsN9M3FO65Dplm+revApa3wdPW3lbXRwEhYniYrZGxOPR
+         CkWg==
+X-Gm-Message-State: AOAM5312mJtZjrQjfH+qfIq3YkmyGT+H5R+DuzYUoeBLUICWw6bYMDcf
+        iUSqVOgkgII4ff3kNaaGqZCyuymm7583VOxLLHU=
+X-Google-Smtp-Source: ABdhPJysr8VK/C/JFytBJ4xJzh2XgG8MkKQjNCRIbgtKihJS4khJZcnmJIW2uYiCOwxevDNw9PfUM4qwvNrayQxPN74=
+X-Received: by 2002:a6b:be02:: with SMTP id o2mr4973257iof.102.1604755915725;
+ Sat, 07 Nov 2020 05:31:55 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201107081420.60325-7-damien.lemoal@wdc.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Received: by 2002:ad5:5fc6:0:0:0:0:0 with HTTP; Sat, 7 Nov 2020 05:31:55 -0800 (PST)
+Reply-To: armstrong.mlaren@gmail.com
+From:   Mary Armstrong <ray.16it@gmail.com>
+Date:   Sat, 7 Nov 2020 13:31:55 +0000
+Message-ID: <CAOqPB0kR_evD19W9c-rKvc1g+DKk3fNodSVGXq9iAEMbJtbsQw@mail.gmail.com>
+Subject: From, Mrs. Mary Armstrong
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/7/20 3:13 AM, Damien Le Moal wrote:
-> The DW SPI master of the Kendryte K210 RISC-V SoC uses the 32-bits
-> ctrlr0 register format. This SoC is also quite slow and gets significant
-> SD card performance improvements from using no-delay polled transfers.
-> Add the dw_spi_k210_init() function tied to the
-> "canaan,kendryte-k210-spi" compatible string to set the
-> DW_SPI_CAP_DFS_32 and DW_SPI_CAP_POLL_NODELAY DW SPI capability fields
-> for this SoC.
-> 
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  drivers/spi/spi-dw-mmio.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-> index 3f1bc384cb45..a00def6c5b39 100644
-> --- a/drivers/spi/spi-dw-mmio.c
-> +++ b/drivers/spi/spi-dw-mmio.c
-> @@ -223,6 +223,14 @@ static int dw_spi_keembay_init(struct platform_device *pdev,
->  	return 0;
->  }
->  
-> +static int dw_spi_k210_init(struct platform_device *pdev,
-> +			    struct dw_spi_mmio *dwsmmio)
-> +{
-> +	dwsmmio->dws.caps = DW_SPI_CAP_DFS_32 | DW_SPI_CAP_POLL_NODELAY;
+-- 
+From, Mrs. Mary Armstrong
 
-Can't you do runtime detection of DFS_32 in probe?
+My dear beloved,
 
---Sean
+Greetings to you and your family. My name is Mrs. Mary Laren Armstrong
+from USA, l am 59 years old childless widow suffering from Esophageal
+Cancer, my husband died after testing positive for the corona virus
+and recently my doctor told me that i have few months to live due to
+the critical condition of my cancer illness. Having known my condition
+i decided to donate my late husband funds worth US$7.5Million to help
+the poor, widows and orphanages which in return will bring blessing
+for my soul when i die.
 
-> +
-> +	return 0;
-> +}
-> +
->  static int dw_spi_mmio_probe(struct platform_device *pdev)
->  {
->  	int (*init_func)(struct platform_device *pdev,
-> @@ -340,6 +348,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
->  	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
->  	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
->  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
-> +	{ .compatible = "canaan,kendryte-k210-spi", .data = dw_spi_k210_init},
->  	{ /* end of table */}
->  };
->  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
-> 
+I took this decision because my relatives and friends have failed me
+and plundered so much of my money since my illness. If you are
+interested to receive this money to help the poor and widows kindly
+reply me back for more details.
 
+Attached is my passport.
+
+Best regards,
+Mrs. Mary Armstrong
