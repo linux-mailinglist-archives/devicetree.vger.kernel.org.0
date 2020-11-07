@@ -2,110 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A97352AA4F6
-	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 13:22:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3583C2AA505
+	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 13:33:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727298AbgKGMWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Nov 2020 07:22:07 -0500
-Received: from out28-98.mail.aliyun.com ([115.124.28.98]:42510 "EHLO
-        out28-98.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727975AbgKGMVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 07:21:44 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07986468|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0399064-0.000837473-0.959256;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047205;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.ItnhwiJ_1604751644;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.ItnhwiJ_1604751644)
-          by smtp.aliyun-inc.com(10.147.40.7);
-          Sat, 07 Nov 2020 20:20:53 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     Zubair.Kakakhel@imgtec.com, vkoul@kernel.org, paul@crapouillou.net,
-        robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Subject: [PATCH RESEND 2/2] dt-bindings: dmaengine: Add X2000 bindings.
-Date:   Sat,  7 Nov 2020 20:20:16 +0800
-Message-Id: <20201107122016.89859-3-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20201107122016.89859-1-zhouyanjie@wanyeetech.com>
-References: <20201107122016.89859-1-zhouyanjie@wanyeetech.com>
+        id S1727264AbgKGMdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Nov 2020 07:33:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52052 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727084AbgKGMdu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 07:33:50 -0500
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6472DC0613CF;
+        Sat,  7 Nov 2020 04:33:50 -0800 (PST)
+Received: by mail-il1-x143.google.com with SMTP id z2so3707701ilh.11;
+        Sat, 07 Nov 2020 04:33:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FRzeMscpwq0sNCUubfUbWF6+269i2bONNUaXfNK1Aj8=;
+        b=Y1xRrdGeivblR8MqZMR6hh7KQl18lWqSXstLg1a4lsghwuFiuqeAOJT1MYbJSW10MF
+         +Ucqi3a7734UiMMId+90GAKVqbV6DIAKJLLC6GnWzsDnVdqsKEVHPSGMHSQO9MBuFo7R
+         Y0UAIhZ6xYeYl6CbUskidD2kbEBTg4iDMYu6O4iYO+E6lb9W9kX+z8l7fWqjA1PP36MR
+         Zbosde+QGbpYc35LSgEHU7arw1w1gWtBlvJA2IdwJRczH/THc9Suh6RUj/KiQDsCOjH7
+         4t9NWlSQnIl7mtXT1K595kutmATFgKGlaDXNdA+RBogj0QzWr5OvpJ6tzVDlP+h8TPhx
+         6q+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=FRzeMscpwq0sNCUubfUbWF6+269i2bONNUaXfNK1Aj8=;
+        b=JZcuXr5CN9BUYugE9jdUtszKQQYdC8Mx+iSfkx7KMM3VnAtHMNyZ17hgolancAOAQp
+         Ub6Sj/FwhoXu9FC/Ede97MmtKYOEtLPgnRw/+VVtPsjTETumFQnBS9LDWZ9WxvIu+cD7
+         TQh29d3MpMbD3ySh2RoVGbCf+T3CGGVCEsf4BM64QGVxtgvZ3jfO720uDF5um+V6O4ME
+         TbDkQ9uHnc+faT4ryOc/GP/3WKsamEFSkKerDQVDHMUFymlXNcrKOfolftqJffqUFeSW
+         pfvcgKyEqE+v3q4l3JDZW6t0FmYDWQH9hB9NSJ0LbaD30yIJrE/mFbWAtXu5ray8XiLv
+         Z9Wg==
+X-Gm-Message-State: AOAM533/TOCo52wnD1lxvGTyeoZa/ep1TYuBfPAVRMDUXh9LfPiZ8zxC
+        mRp+tU1hKBvbDxf4aOwMpEs=
+X-Google-Smtp-Source: ABdhPJwWR+a5AHeQUb9Ol8fT/YzatZprXclYIAG8joHJN+TCoX2TXxxEli6/UtByskNnGgiUblJmpA==
+X-Received: by 2002:a92:4b06:: with SMTP id m6mr4475581ilg.305.1604752429639;
+        Sat, 07 Nov 2020 04:33:49 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:5d9e:32b:1062:f8cd])
+        by smtp.gmail.com with ESMTPSA id w12sm2830592ilo.63.2020.11.07.04.33.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Nov 2020 04:33:48 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, krzk@kernel.org,
+        Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V3 1/3] dt-bindings: arm: fsl: Add beacon,imx8mn-beacon-kit
+Date:   Sat,  7 Nov 2020 06:33:31 -0600
+Message-Id: <20201107123334.1868360-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the dmaengine bindings for the X2000 SoC from Ingenic.
+Add beacon,imx8mn-beacon-kit to list of compatible options.
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Adam Ford <aford173@gmail.com>
 ---
- include/dt-bindings/dma/x2000-dma.h | 54 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 include/dt-bindings/dma/x2000-dma.h
+V3:  Correct Typo and move to Nano section
+V2:  New to series
 
-diff --git a/include/dt-bindings/dma/x2000-dma.h b/include/dt-bindings/dma/x2000-dma.h
-new file mode 100644
-index 000000000000..db2cd4830b00
---- /dev/null
-+++ b/include/dt-bindings/dma/x2000-dma.h
-@@ -0,0 +1,54 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * This header provides macros for X2000 DMA bindings.
-+ *
-+ * Copyright (c) 2020 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
-+ */
-+
-+#ifndef __DT_BINDINGS_DMA_X2000_DMA_H__
-+#define __DT_BINDINGS_DMA_X2000_DMA_H__
-+
-+/*
-+ * Request type numbers for the X2000 DMA controller (written to the DRTn
-+ * register for the channel).
-+ */
-+#define X2000_DMA_AUTO		0x8
-+#define X2000_DMA_UART5_TX	0xa
-+#define X2000_DMA_UART5_RX	0xb
-+#define X2000_DMA_UART4_TX	0xc
-+#define X2000_DMA_UART4_RX	0xd
-+#define X2000_DMA_UART3_TX	0xe
-+#define X2000_DMA_UART3_RX	0xf
-+#define X2000_DMA_UART2_TX	0x10
-+#define X2000_DMA_UART2_RX	0x11
-+#define X2000_DMA_UART1_TX	0x12
-+#define X2000_DMA_UART1_RX	0x13
-+#define X2000_DMA_UART0_TX	0x14
-+#define X2000_DMA_UART0_RX	0x15
-+#define X2000_DMA_SSI0_TX	0x16
-+#define X2000_DMA_SSI0_RX	0x17
-+#define X2000_DMA_SSI1_TX	0x18
-+#define X2000_DMA_SSI1_RX	0x19
-+#define X2000_DMA_I2C0_TX	0x24
-+#define X2000_DMA_I2C0_RX	0x25
-+#define X2000_DMA_I2C1_TX	0x26
-+#define X2000_DMA_I2C1_RX	0x27
-+#define X2000_DMA_I2C2_TX	0x28
-+#define X2000_DMA_I2C2_RX	0x29
-+#define X2000_DMA_I2C3_TX	0x2a
-+#define X2000_DMA_I2C3_RX	0x2b
-+#define X2000_DMA_I2C4_TX	0x2c
-+#define X2000_DMA_I2C4_RX	0x2d
-+#define X2000_DMA_I2C5_TX	0x2e
-+#define X2000_DMA_I2C5_RX	0x2f
-+#define X2000_DMA_UART6_TX	0x30
-+#define X2000_DMA_UART6_RX	0x31
-+#define X2000_DMA_UART7_TX	0x32
-+#define X2000_DMA_UART7_RX	0x33
-+#define X2000_DMA_UART8_TX	0x34
-+#define X2000_DMA_UART8_RX	0x35
-+#define X2000_DMA_UART9_TX	0x36
-+#define X2000_DMA_UART9_RX	0x37
-+#define X2000_DMA_SADC_RX	0x38
-+
-+#endif /* __DT_BINDINGS_DMA_X2000_DMA_H__ */
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 85fb24da4a02..5a2608e6bc30 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -680,6 +680,7 @@ properties:
+       - description: i.MX8MN based Boards
+         items:
+           - enum:
++              - beacon,imx8mn-beacon-kit  # i.MX8MN Beacon Development Kit
+               - fsl,imx8mn-ddr4-evk       # i.MX8MN DDR4 EVK Board
+               - fsl,imx8mn-evk            # i.MX8MN LPDDR4 EVK Board
+           - const: fsl,imx8mn
 -- 
-2.11.0
+2.25.1
 
