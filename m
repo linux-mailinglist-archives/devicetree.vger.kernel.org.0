@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7C1B2AA30F
-	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 08:42:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED22F2AA325
+	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 09:02:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727786AbgKGHmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Nov 2020 02:42:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40416 "EHLO mail.kernel.org"
+        id S1727822AbgKGICN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Nov 2020 03:02:13 -0500
+Received: from m42-4.mailgun.net ([69.72.42.4]:54834 "EHLO m42-4.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725985AbgKGHmf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 7 Nov 2020 02:42:35 -0500
-Received: from saruman (88-113-213-94.elisa-laajakaista.fi [88.113.213.94])
+        id S1727738AbgKGICN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Nov 2020 03:02:13 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1604736132; h=Date: Message-Id: Cc: To: References:
+ In-Reply-To: From: Subject: Content-Transfer-Encoding: MIME-Version:
+ Content-Type: Sender; bh=plywg5V0yX06TOPuyJodo8gnX1VzwIFtl/WJvZY7r5k=;
+ b=u0IdA+lyI/5Lknf9kWIr3qjkfRifEgmior4F4tcDkEpEHPJUSsWaYLn7InpL811wmbneUnay
+ HTnD3Yi6XkW/KKx47oGQTDQbYC59Bs+dpNCAyygLUNTp2KU/FFEh/Th7uN3rJJo8TkucoRZQ
+ L/DudtEGok8Jn78QwMtOIZFnBNc=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 5fa6544de41a481b551a32d8 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 07 Nov 2020 08:01:17
+ GMT
+Sender: kvalo=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id B694AC433CB; Sat,  7 Nov 2020 08:01:16 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        MISSING_DATE,MISSING_MID,SPF_FAIL,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 59D7520704;
-        Sat,  7 Nov 2020 07:42:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604734954;
-        bh=/Nx6GNYibA0Lp1RdYl6hW7mxOH1UmCuCU069gcP3gs4=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=yJWvWc/gNpkadD/OBa6LLOUQYL6IcWGLhyGAubhPqCRQpETfryX1TqTXPwCaLL4I2
-         bNvFriX3YULOj+h/2cDmF2FEACQZnIMgUwwJ7Z03QCmkwtxTZyeTqCuYeHP2/92A8+
-         gXfhw+qaC6jJ+Mcdj2KbxBgSIiLimY4U8GaGM/mU=
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Lindsey Stanpoor <lindsey.stanpoor@gmail.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org, heiko@sntech.de,
-        cnemo@tutanota.com
-Subject: Re: [PATCH v4 1/4] dt-bindings: usb: add rk3328 dwc3 docs
-In-Reply-To: <CAEr9=gsH2UhjMO_55FKmGKS0DYrT_-XKf0iwCKCNc93epbiXNw@mail.gmail.com>
-References: <20200902181234.13955-1-lindsey.stanpoor@gmail.com>
- <CAEr9=gsH2UhjMO_55FKmGKS0DYrT_-XKf0iwCKCNc93epbiXNw@mail.gmail.com>
-Date:   Sat, 07 Nov 2020 09:42:26 +0200
-Message-ID: <87ft5ly5nh.fsf@kernel.org>
+        (Authenticated sender: kvalo)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 141DCC433C6;
+        Sat,  7 Nov 2020 08:01:13 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 141DCC433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH 1/2] dt: bindings: add new dt entry for ath11k calibration
+ variant
+From:   Kalle Valo <kvalo@codeaurora.org>
+In-Reply-To: <20201015131501.1939685-1-sven@narfation.org>
+References: <20201015131501.1939685-1-sven@narfation.org>
+To:     Sven Eckelmann <sven@narfation.org>
+Cc:     linux-wireless@vger.kernel.org, ath11k@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Sven Eckelmann <sven@narfation.org>
+User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.5.2
+Message-Id: <20201107080116.B694AC433CB@smtp.codeaurora.org>
+Date:   Sat,  7 Nov 2020 08:01:16 +0000 (UTC)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+Sven Eckelmann <sven@narfation.org> wrote:
 
+> The bus + qmi-chip-id + qmi-board-id is not enough to identify the correct
+> board data file on IPQ6018 based devices. Multiple different boards share
+> the same values. Only the original reference designs can currently be
+> identified and loaded from the board-2.bin. But these will not result in
+> the correct calibration data when combined with the pre-calibration data
+> from the device.
+> 
+> An additional "variant" information has to be provided to select the
+> correct board data for a design which was modified by an ODM. This follows
+> the same approach as ath10k.
+> 
+> Signed-off-by: Sven Eckelmann <sven@narfation.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
 
-Hi,
+2 patches applied to ath-next branch of ath.git, thanks.
 
-Lindsey Stanpoor <lindsey.stanpoor@gmail.com> writes:
-> On Wed, Sep 2, 2020 at 11:12 AM <lindsey.stanpoor@gmail.com> wrote:
->>
->> From: Cameron Nemo <cnemo@tutanota.com>
->>
->> Document compatible for dwc3 on the Rockchip rk3328 platform.
->
-> Hi all,
->
-> Wanted to give this patch submission a gentle ping.
->
-> Rob Herring acked the documentation changes, but I have not heard
-> anything
-> from the USB or Rockchip maintainers. This patchset would facilitate USB3
-> support for Rockchip rk3328 devices like the Pine Rock64.
->
-> If there is anything I can do to help move this along, please let me know.
+77581df8639f dt: bindings: add new dt entry for ath11k calibration variant
+14f43c5fca57 ath11k: search DT for qcom,ath11k-calibration-variant
 
-Sorry, it had fallen through the cracks. It's now in my testing/next.
+-- 
+https://patchwork.kernel.org/project/linux-wireless/patch/20201015131501.1939685-1-sven@narfation.org/
 
-=2D-=20
-balbi
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl+mT+MRHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQaRDw/+N2up7hCZG55bDPN8oLRW452ZCzSwXD70
-l5s+0/0dgPw6mwsSoOH1Xd/tPdtLS5gAgnNCYZzBiiCgFBgeaHKwQQ6vweSKLRRG
-BYWVAQuU2dnEZN2lCq29/CilnywKd8Rx05V1UDtoHcVPmioMi3Z8F957s5ggAo+w
-6GgrjcI2h42zsm13oqOgBAU92gik5toDEzVjW999/oGOdH+aZFLd5k3GC+nTVlmf
-AOwYDiRAHHHcIWfbKOz2ZtpkP31b++y4OcNUzZPgIIp+WO5kNm+BiSjuC60kAAuL
-kyC1WOg1uOXRP6IYQp3l90tO8VV3ZHshxxeLssbQ70TMggZacCCl/pg5qR0I8/Gr
-G6SM1bpCIhlw9LwTF0rstbvtFUVVWEWQvfmpKaQMlFvi3bcDPbv5Q/94pYvwKemK
-ieD+dK0K9ZvNAQe3+CqPqH14tIbNKZ8E/u/CFp+kItL6pUf+iVfd7urFbn+Ye8A3
-EU1C3iJEKNiwoDGPWJUB13DlqgyJyn0AC8twRhB1dvqW2B2+GqU7tTfKzYvFDJx4
-MAVBSVKmdTUUT6idPFYbo9BvK84tz9EkBcOqYXEKvEL0LgKgbfD6rOKUxcC3p+GV
-BKUkhMVmTFGGcRYsYZNytla0ioWJ+Q880PA5pQ1WBoXyHhpw4EC11tjQoEgQLcDs
-FcTTx6Jz0S8=
-=ZUy6
------END PGP SIGNATURE-----
---=-=-=--
