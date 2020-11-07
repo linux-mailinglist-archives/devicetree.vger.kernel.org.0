@@ -2,151 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 384892AA579
-	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 14:39:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 31C242AA57B
+	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 14:39:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727298AbgKGNi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Nov 2020 08:38:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33860 "EHLO
+        id S1728058AbgKGNjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Nov 2020 08:39:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727264AbgKGNi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 08:38:59 -0500
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F4BDC0613CF;
-        Sat,  7 Nov 2020 05:38:59 -0800 (PST)
-Received: by mail-qt1-x841.google.com with SMTP id n63so2832988qte.4;
-        Sat, 07 Nov 2020 05:38:59 -0800 (PST)
+        with ESMTP id S1727084AbgKGNjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 08:39:41 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AE0C0613CF;
+        Sat,  7 Nov 2020 05:39:40 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id y16so4609144ljk.1;
+        Sat, 07 Nov 2020 05:39:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=mN57aF3uFwRKik5ZN1WZ9zgD6+iSPvQKkG2jBob0/z0=;
-        b=L6tkULQ8G3ScoNOjbnTPIfkea8pDu9nEYT1Kc0JSpO/Ed9ioWMrlKrjdAwGpxsecMK
-         mAQW80EpW6fU69D0iWnhUcesxXkgpfjvT4KfoIlsqb2W0XN24YMuAgRVfZUJMru3tqhR
-         KX94LACPelo2ZX43b+A/AkapJ+rovZTsuDxz+zXsKzy+1i/bbXiTkMhOuiuhT9KyKTbT
-         JBfytyG0zkaGupBpq81koZYCW6hNbmwf7shja3uUeCpQD7dft6WKVKanovpmmBRGXqvs
-         AJi/NJLwXhItUj/icGDCffOcocLxgwrCnnRi+pdaC6uaT5ndfzVQ9SZdSMX8/8abE5mW
-         hq7w==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c5vk1HU4LMO05/HvLhuFLID0YfaxsQiSjHZGb3JZL+k=;
+        b=pp3Nijb3qelAlJYoXTJYgO4SDTsvHQB1JVzF89P6cF7PNLT/RAQs2CvY4zJ2L+s657
+         Rncm1TbS0AhZp5RWhK17AA9nfGkJuPjqOuiTzG5SUXR0X/CBwILioM5AcJwIQfNT3oNi
+         6l3Iz82nm4lT7T+93ohGSnSSQK2e0WzReQZ6oDBR1YsM0b2OGWCkPUBtqGJXh4R/zsbe
+         KIFr52Gn7obgs+qgg1HXxFe3Q+6Ig0nlw89gQ2rUe1ccXEJ9GVn4GcREF7Z1huS2l5MB
+         wGPvhOufbRsForGk7jLelkIHSAe/hKG7VFQ3BOthkkFnmdb6qq1eWE5eUd9JYdKtVV+w
+         mESg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=mN57aF3uFwRKik5ZN1WZ9zgD6+iSPvQKkG2jBob0/z0=;
-        b=ozrGKlyVhtEy7kPu1CX9FUhAEa5iacXOuHn+A2bbbvuJuuEoBxlFqrnMIC38o+dWK6
-         EUTSgs5dehAI4m6bxxpxtAvpBxC9ZFOP7zbh9dfWVpk8Xb5ViMAOgOLMfDEk61tN09II
-         0PQfo6ExqjgB57Bx9J0ehSQRMXvCq4yuHiPd0IuDN+VOXZttkcT2MZZRhypz/8GQCm72
-         PS/Va/MUhOnLtbRzDgAOvvqQqi9sedGNdfrIcrfpbSK6Y41bTscmHeHP/7hVjzzdNGUd
-         AxyveiJAgYmOHIGcJjTXuyYvfSFnPkvRW/VYMv+8CVwMbhKcd+2qpLUqo+bkqzikHkSH
-         VyBg==
-X-Gm-Message-State: AOAM531ppK5keqOWiyE7N1Prr2zxMQQ0d26H7yU2Zl5dS3iMACyoNKOW
-        qKonPUY/YFMpKH7ZB9M3Q5g=
-X-Google-Smtp-Source: ABdhPJyIp/972JuRNtCAX5kxeFqzif/DydCJUgMtgNi+VPFMt5+yf/OzzVRlPd5tDeGRlxNvkxENJQ==
-X-Received: by 2002:ac8:6b06:: with SMTP id w6mr5912684qts.6.1604756338588;
-        Sat, 07 Nov 2020 05:38:58 -0800 (PST)
-Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
-        by smtp.googlemail.com with ESMTPSA id o19sm2566333qko.3.2020.11.07.05.38.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 07 Nov 2020 05:38:58 -0800 (PST)
-Subject: Re: [PATCH 17/32] dt-bindings: Define Kendryte K210 reset signals
-To:     Damien Le Moal <damien.lemoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-18-damien.lemoal@wdc.com>
-From:   Sean Anderson <seanga2@gmail.com>
-Autocrypt: addr=seanga2@gmail.com; prefer-encrypt=mutual; keydata=
- mQENBFe74PkBCACoLC5Zq2gwrDcCkr+EPGsT14bsxrW07GiYzQhLCgwnPdEpgU95pXltbFhw
- 46GfyffABWxHKO2x+3L1S6ZxC5AiKbYXo7lpnTBYjamPWYouz+VJEVjUx9aaSEByBah5kX6a
- lKFZWNbXLAJh+dE1HFaMi3TQXXaInaREc+aO1F7fCa2zNE75ja+6ah8L4TPRFZ2HKQzve0/Y
- GXtoRw97qmnm3U36vKWT/m2AiLF619F4T1mHvlfjyd9hrVwjH5h/2rFyroXVXBZHGA9Aj8eN
- F2si35dWSZlIwXkNu9bXp0/pIu6FD0bI+BEkD5S7aH1G1iAcMFi5Qq2RNa041DfQSDDHABEB
- AAG0K1NlYW4gR2FsbGFnaGVyIEFuZGVyc29uIDxzZWFuZ2EyQGdtYWlsLmNvbT6JAVcEEwEK
- AEECGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4ACGQEWIQSQYR1bzo1I0gPoYCg+6I/stKEQ
- bgUCXT+S2AUJB2TlXwAKCRA+6I/stKEQbhNOB/9ooea0hU9Sgh7PBloU6CgaC5mlqPLB7NTp
- +JkB+nh3Fqhk+qLZwzEynnuDLl6ESpVHIc0Ym1lyF4gT3DsrlGT1h0Gzw7vUwd1+ZfN0CuIx
- Rn861U/dAUjvbtN5kMBqOI4/5ea+0r7MACcIVnKF/wMXBD8eypHsorT2sJTzwZ6DRCNP70C5
- N1ahpqqNmXe0uLdP0pu55JCqhrGw2SinkRMdWyhSxT56uNwIVHGhLTqH7Q4t1N6G1EH626qa
- SvIJsWlNpll6Y3AYLDw2/Spw/hqieS2PQ/Ky3rPZnvJt7/aSNYsKoFGX0yjkH67Uq8Lx0k1L
- w8jpXnbEPQN3A2ZJCbeM
-Message-ID: <c1d4e336-2f18-1c06-bfe8-feac9838532e@gmail.com>
-Date:   Sat, 7 Nov 2020 08:38:57 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        bh=c5vk1HU4LMO05/HvLhuFLID0YfaxsQiSjHZGb3JZL+k=;
+        b=aT+9E0ex+1rgp4p+UufwbYMQ5EHxD0GLtqyhf2/eooOm5yECywHKRf4NUCBZj/4DQO
+         INwxfEmvivFDx9uFOLy6EPpJ0XA7fPyuaT+x0Uqeahy9co7Mkx0Lc9SB9sIyok6c1iCN
+         ll9HW47ZxQrSqJVj5j+DKXebntosDVHpM4OMqnCmYmqxpF90q4l+rZ6aJj4CwgXTASNo
+         VOjh3fBZ70EmdAhpcOn3x+tRGW4EGptbyxn8bqxbjQXmBbwmKALrX03I2oSAfvWngIz7
+         TeIdPMqDT52U/WZXyl02o0a5RST48dm1YpAFyRhZXT3rswbf0mooYVZXS8aeOzvrtbCa
+         7SUQ==
+X-Gm-Message-State: AOAM531RI9Ki1QqIEE9mQYuRanFJkgGo1VuHcuMUv8ryN9ND++kYeI+F
+        mYzLh8Do5aLFSUvgGN/No1c=
+X-Google-Smtp-Source: ABdhPJykwd8X4etetyGtEH9KC2jai7rgshQmz5xZq3TNNHZcMixp/o1ZAsTHgBT0IRpaPnjMLSR6FQ==
+X-Received: by 2002:a2e:9ac4:: with SMTP id p4mr2412087ljj.247.1604756379480;
+        Sat, 07 Nov 2020 05:39:39 -0800 (PST)
+Received: from localhost.localdomain ([2a02:a315:5445:5300:d646:fcbb:9c5e:1da1])
+        by smtp.googlemail.com with ESMTPSA id y27sm524189ljm.74.2020.11.07.05.39.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 07 Nov 2020 05:39:38 -0800 (PST)
+From:   =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>
+To:     kgene@kernel.org, krzk@kernel.org, alim.akhtar@samsung.com
+Cc:     robh+dt@kernel.org, a.kesavan@samsung.com,
+        naveenkrishna.ch@gmail.com, thomas.ab@samsung.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>
+Subject: [PATCH v2 1/2] arm64: dts: exynos: Include common syscon restart/poweroff for Exynos7
+Date:   Sat,  7 Nov 2020 14:39:25 +0100
+Message-Id: <20201107133926.37187-1-pawel.mikolaj.chmiel@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <20201107081420.60325-18-damien.lemoal@wdc.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/7/20 3:14 AM, Damien Le Moal wrote:
-> Introduce the dt-bindings file include/dt-bindings/reset/k210_sysctl.h
-> to define IDs for all 30 reset signals available on the Kendryte K210
-> RISC-V SoC.
-> 
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  include/dt-bindings/reset/k210-rst.h | 42 ++++++++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 include/dt-bindings/reset/k210-rst.h
-> 
-> diff --git a/include/dt-bindings/reset/k210-rst.h b/include/dt-bindings/reset/k210-rst.h
-> new file mode 100644
-> index 000000000000..883c1aed50e8
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/k210-rst.h
-> @@ -0,0 +1,42 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/*
-> + * Copyright (C) 2019 Sean Anderson <seanga2@gmail.com>
-> + * Copyright (c) 2020 Western Digital Corporation or its affiliates.
-> + */
-> +#ifndef RESET_K210_SYSCTL_H
-> +#define RESET_K210_SYSCTL_H
-> +
-> +/*
-> + * Kendryte K210 SoC system controller K210_SYSCTL_SOFT_RESET register bits.
-> + * Taken from Kendryte SDK (kendryte-standalone-sdk).
-> + */
-> +#define K210_RST_ROM	0
-> +#define K210_RST_DMA	1
-> +#define K210_RST_AI	2
-> +#define K210_RST_DVP	3
-> +#define K210_RST_FFT	4
-> +#define K210_RST_GPIO	5
-> +#define K210_RST_SPI0	6
-> +#define K210_RST_SPI1	7
-> +#define K210_RST_SPI2	8
-> +#define K210_RST_SPI3	9
-> +#define K210_RST_I2S0	10
-> +#define K210_RST_I2S1	11
-> +#define K210_RST_I2S2	12
-> +#define K210_RST_I2C0	13
-> +#define K210_RST_I2C1	14
-> +#define K210_RST_I2C2	15
-> +#define K210_RST_UART1	16
-> +#define K210_RST_UART2	17
-> +#define K210_RST_UART3	18
-> +#define K210_RST_AES	19
-> +#define K210_RST_FPIOA	20
-> +#define K210_RST_TIMER0	21
-> +#define K210_RST_TIMER1	22
-> +#define K210_RST_TIMER2	23
-> +#define K210_RST_WDT0	24
-> +#define K210_RST_WDT1	25
-> +#define K210_RST_SHA	26
-> +#define K210_RST_RTC	29
-> +
-> +#endif /* RESET_K210_SYSCTL_H */
-> 
+Exynos7 uses the same syscon reboot and poweroff nodes as other Exynos
+SoCs, so instead of duplicating code we can just include common dtsi
+file, which already contains definitions of them. After this change,
+poweroff node will be also available, previously this dts file did
+contain only reboot node.
 
-Reviewed-by: Sean Anderson <seanga2@gmail.com>
+Fixes: fb026cb65247 ("arm64: dts: Add reboot node for exynos7")
+Fixes: b9024cbc937d ("arm64: dts: Add initial device tree support for exynos7")
+Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+---
+Changes from v1:
+  - Split into two separate patches.
+  - Include existing exynos-syscon-restart.dtsi to avoid code
+    duplication.
+---
+ arch/arm64/boot/dts/exynos/exynos7.dtsi | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+index 7a2cba4220d9..723f5d5fcf00 100644
+--- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
+@@ -624,13 +624,6 @@ hsi2c_11: hsi2c@136a0000 {
+ 		pmu_system_controller: system-controller@105c0000 {
+ 			compatible = "samsung,exynos7-pmu", "syscon";
+ 			reg = <0x105c0000 0x5000>;
+-
+-			reboot: syscon-reboot {
+-				compatible = "syscon-reboot";
+-				regmap = <&pmu_system_controller>;
+-				offset = <0x0400>;
+-				mask = <0x1>;
+-			};
+ 		};
+ 
+ 		rtc: rtc@10590000 {
+@@ -818,3 +811,5 @@ atlas_thermal: cluster0-thermal {
+ };
+ 
+ #include "exynos7-pinctrl.dtsi"
++#include "arm/exynos-syscon-restart.dtsi"
++
+-- 
+2.27.0
+
