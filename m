@@ -2,129 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 662442AA5A3
-	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 15:00:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A034B2AA5AC
+	for <lists+devicetree@lfdr.de>; Sat,  7 Nov 2020 15:03:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728241AbgKGOAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Nov 2020 09:00:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37204 "EHLO
+        id S1728063AbgKGODJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Nov 2020 09:03:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728218AbgKGOAk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 09:00:40 -0500
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9089C0613CF;
-        Sat,  7 Nov 2020 06:00:40 -0800 (PST)
-Received: by mail-io1-xd43.google.com with SMTP id m9so4924641iox.10;
-        Sat, 07 Nov 2020 06:00:40 -0800 (PST)
+        with ESMTP id S1725880AbgKGODJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Nov 2020 09:03:09 -0500
+Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DFE9C0613CF;
+        Sat,  7 Nov 2020 06:03:09 -0800 (PST)
+Received: by mail-qv1-xf42.google.com with SMTP id r12so1833370qvq.13;
+        Sat, 07 Nov 2020 06:03:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Z/jiUVfNK4+k6xToCb8OveXZPmGMjclbBVaHRBvHjcg=;
-        b=PDbMs0EAVZqHVuTPP90Uaz4parZqBFKM2woZGXq8aHzgVlKxGL8Ld5gYiK95UqpxB3
-         ZL9yGdULBYhGyRZceUFbT8CWqMvwMCK20/IV67XUL9BNGyPDVbTN9VO4pxWcCKVJjH7C
-         /oXd/tpg2VcPUZjYMJDg0N21vaMHFX28h5VPpSO0RApJ9ycyNnVVe6xZqWuXoEq/hvSt
-         Q96o6wJTo1C9YlTTWszp9LwpXJqbiOqhT7IZAiGMOc1kfbfXUMK1H5lJvsq7Hfz+T487
-         MfVvXtfMOrGYxhCxnbG4AphU3HZPqxWk4PC6knHn6JedSBXVwNSkDUZWJZYndfy1sCtv
-         Je8A==
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8E0Y2gz0Cx03JNF6tn6/f94ykdO43Amm9xSOcaF5JQs=;
+        b=WfTKL2HNtkzosF+Kk0Qh7Ek/HWatLw9vB4ZtcCu/W/cxFHFaHbJO/MUudBw4HE1AbL
+         GHZT//XL7c8R/tAB+q9dpfsx5ykoyYcx9IV6PxOGpVKBkMYfgrWBP2jffurCtiucHpJo
+         egFR9RWMcaBUgd5MKglRpd+nc4WfmGPv+Kypi2A6ypxydMV52jzH3kAtyEPuwqCdvACf
+         is1itg5mhf0Q/ds+sJfL/zHwqIgpJkgnVwHJkZKoJ/EbsxLScyJk7qDxwuGamXt2K14Q
+         4AUJ0TmbS1mBGOs6FYgEKrDzV7bRgLtz6TFdqZo3ATLJ9E70FPSnusPxNcp4OureBRzZ
+         XPog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Z/jiUVfNK4+k6xToCb8OveXZPmGMjclbBVaHRBvHjcg=;
-        b=MMT+tNVFriWqqdMOBPBMVo3FGuXRqvDBX3KTUIspHiHKJeEz4gAYbPO9P8oGDRkMdw
-         0HVJdBrhknRu9agCZFkeHC6DLLKaWj/lTEZjz09hoG7CqMVl2MW+W9oArRN+KZHb6I4F
-         AejcjV1SAezQkPYuxPTC7hCq3W8tqIHI3tWleOgw14TADqHikkEmLXhcOXAAzOE+0IPh
-         pMQgQ0v11sGv+g4LqoTq65SGrGwMso97+thhyORNg+8fAW1TC5HFw7GB+DcXZZE8AB5s
-         H2ZL6G+JI8pb4g3mzBioZaRd8SoRb6uB2JslbymWmX+1ElvHw2DyCz9Wm8kDvxT2jHGz
-         k7BA==
-X-Gm-Message-State: AOAM532dHEJ0cn+31nSwzSSDxSbui0rI9lonMAWjjBxLtCkpcti2svrl
-        lwV7sRg0urNMFnx020eSRck=
-X-Google-Smtp-Source: ABdhPJwap6GbB3E0EZE/M4jpppEAyeA20+UTnDsiRvL5Po0hT7yMjsZUDX/5YNCQSBGS59A/YcjDtQ==
-X-Received: by 2002:a02:ec3:: with SMTP id 186mr5285031jae.92.1604757639961;
-        Sat, 07 Nov 2020 06:00:39 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:5d9e:32b:1062:f8cd])
-        by smtp.gmail.com with ESMTPSA id g5sm3030257ilq.33.2020.11.07.06.00.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Nov 2020 06:00:39 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, krzk@kernel.org,
-        Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V2 5/5] arm64: dts: imx8mn: Add GPU node
-Date:   Sat,  7 Nov 2020 08:00:25 -0600
-Message-Id: <20201107140026.1974312-5-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201107140026.1974312-1-aford173@gmail.com>
-References: <20201107140026.1974312-1-aford173@gmail.com>
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8E0Y2gz0Cx03JNF6tn6/f94ykdO43Amm9xSOcaF5JQs=;
+        b=X7u2nnpjhZWSFZnh9DCAQQRFwGMypOZYkJQCvU/0yysXIjkBQqzlldmLF930e4nKhU
+         6iQRRJbsIlMmI6nY1zm5deyhES/Yiy1Y5E6KcWjUdqP8EKuaCpShEs+2W19mL9XrO0Hx
+         Bi4rKEISFV5FgPaoqNh1DiqRh2XYiWqiRa91FHbyLAqulBLcZ09rqh6prAgWoUZv9HyS
+         D2fYMTWLWzobajov3dlZJJZ4tNZ0QTxecoWBCbxLvDk1xBQVmD/oT6/Zl1zf/NbFENvk
+         kbjPdWFKX6GnTDHTCQXjdIktt+7ZlNZfk6yhbXLJknhWk56cFPa+k68Szsx86xUpoaei
+         We6w==
+X-Gm-Message-State: AOAM532Z+pXZsU0wdf/LMpA1NLg8vHbNsxMHDmtyTD+UJCn3eL9+js7a
+        XfymNRUJwbStq4rVVhZ88lI=
+X-Google-Smtp-Source: ABdhPJwbqcHjLXg5tx4/MH3uPMpVg2VJ5PVO3qVyhchEoYN+MIOaW4mW1lbhofasTce1kPelAKETDw==
+X-Received: by 2002:ad4:45d2:: with SMTP id v18mr6056079qvt.45.1604757788415;
+        Sat, 07 Nov 2020 06:03:08 -0800 (PST)
+Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
+        by smtp.googlemail.com with ESMTPSA id z125sm2590613qke.54.2020.11.07.06.03.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 07 Nov 2020 06:03:07 -0800 (PST)
+Subject: Re: [PATCH 21/32] dt-bindings: Add Kendryte and Canaan vendor prefix
+To:     Damien Le Moal <damien.lemoal@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
+ <20201107081420.60325-22-damien.lemoal@wdc.com>
+From:   Sean Anderson <seanga2@gmail.com>
+Autocrypt: addr=seanga2@gmail.com; prefer-encrypt=mutual; keydata=
+ mQENBFe74PkBCACoLC5Zq2gwrDcCkr+EPGsT14bsxrW07GiYzQhLCgwnPdEpgU95pXltbFhw
+ 46GfyffABWxHKO2x+3L1S6ZxC5AiKbYXo7lpnTBYjamPWYouz+VJEVjUx9aaSEByBah5kX6a
+ lKFZWNbXLAJh+dE1HFaMi3TQXXaInaREc+aO1F7fCa2zNE75ja+6ah8L4TPRFZ2HKQzve0/Y
+ GXtoRw97qmnm3U36vKWT/m2AiLF619F4T1mHvlfjyd9hrVwjH5h/2rFyroXVXBZHGA9Aj8eN
+ F2si35dWSZlIwXkNu9bXp0/pIu6FD0bI+BEkD5S7aH1G1iAcMFi5Qq2RNa041DfQSDDHABEB
+ AAG0K1NlYW4gR2FsbGFnaGVyIEFuZGVyc29uIDxzZWFuZ2EyQGdtYWlsLmNvbT6JAVcEEwEK
+ AEECGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4ACGQEWIQSQYR1bzo1I0gPoYCg+6I/stKEQ
+ bgUCXT+S2AUJB2TlXwAKCRA+6I/stKEQbhNOB/9ooea0hU9Sgh7PBloU6CgaC5mlqPLB7NTp
+ +JkB+nh3Fqhk+qLZwzEynnuDLl6ESpVHIc0Ym1lyF4gT3DsrlGT1h0Gzw7vUwd1+ZfN0CuIx
+ Rn861U/dAUjvbtN5kMBqOI4/5ea+0r7MACcIVnKF/wMXBD8eypHsorT2sJTzwZ6DRCNP70C5
+ N1ahpqqNmXe0uLdP0pu55JCqhrGw2SinkRMdWyhSxT56uNwIVHGhLTqH7Q4t1N6G1EH626qa
+ SvIJsWlNpll6Y3AYLDw2/Spw/hqieS2PQ/Ky3rPZnvJt7/aSNYsKoFGX0yjkH67Uq8Lx0k1L
+ w8jpXnbEPQN3A2ZJCbeM
+Message-ID: <6fcfabd4-210a-c947-6151-4f8f3b3a9e25@gmail.com>
+Date:   Sat, 7 Nov 2020 09:03:06 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201107081420.60325-22-damien.lemoal@wdc.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the documentation from NXP, the i.MX8M Nano has a
-Vivante GC7000 Ultra Lite as its GPU core.
 
-With this patch, the Etnaviv driver presents the GPU as:
-   etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
+On 11/7/20 3:14 AM, Damien Le Moal wrote:
+> Update Documentation/devicetree/bindings/vendor-prefixes.yaml to include
+> "Kendryte" and "canaan" as a vendor prefix for "Canaan Inc."
+> 
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 2735be1a8470..f53d4d8e7f2a 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -179,6 +179,8 @@ patternProperties:
+>      description: CALAO Systems SAS
+>    "^calxeda,.*":
+>      description: Calxeda
+> +  "^canaan,.*":
+> +    description: Canaan, Inc.
+>    "^caninos,.*":
+>      description: Caninos Loucos Program
+>    "^capella,.*":
+> @@ -537,6 +539,8 @@ patternProperties:
+>      description: Ka-Ro electronics GmbH
+>    "^keithkoep,.*":
+>      description: Keith & Koep GmbH
+> +  "^kendryte,.*":
+> +    description: Canaan, Inc.
+>    "^keymile,.*":
+>      description: Keymile GmbH
+>    "^khadas,.*":
+> 
 
-The stock operating voltage for the i.MX8M Nano is .85V which means
-the GPU needs to run at 400MHz.  For boards where the operating
-voltage is higher, this can be increased.
+So AFAIK Canaan is the company, and Kendryte is the brand. However, I
+was unaware of this when I did my initial porting work. So all the
+compatible strings like "kendryte,k210-foo" should really be
+"canaan,kendryte-k210-foo". These _should_ all get fixed in the device
+tree, but no one has done it yet.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
----
-V2:  Move into this series
-     Update clocking description
-
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 25 +++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 5e4b6934de40..6e650ea422a7 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -1008,6 +1008,31 @@ gpmi: nand-controller@33002000 {
- 			status = "disabled";
- 		};
- 
-+		gpu: gpu@38000000 {
-+			compatible = "vivante,gc";
-+			reg = <0x38000000 0x8000>;
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MN_CLK_GPU_AHB>,
-+				<&clk IMX8MN_CLK_GPU_BUS_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_CORE_ROOT>,
-+				<&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-+			clock-names = "reg", "bus", "core", "shader";
-+			assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE_SRC>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER_SRC>,
-+					  <&clk IMX8MN_CLK_GPU_AXI>,
-+					  <&clk IMX8MN_CLK_GPU_AHB>,
-+					  <&clk IMX8MN_GPU_PLL>,
-+					  <&clk IMX8MN_CLK_GPU_CORE_DIV>,
-+					  <&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-+			assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_GPU_PLL_OUT>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>,
-+						  <&clk IMX8MN_SYS_PLL1_800M>;
-+			assigned-clock-rates = <0>, <0>, <800000000>, <400000000>, <1200000000>,
-+				<400000000>, <400000000>;
-+			power-domains = <&pgc_gpumix>;
-+		};
-+
- 		gic: interrupt-controller@38800000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x38800000 0x10000>,
--- 
-2.25.1
-
+--Sean
