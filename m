@@ -2,423 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFBF42AACF1
-	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 19:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4D152AAD11
+	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 19:52:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727929AbgKHSuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Nov 2020 13:50:08 -0500
-Received: from sender11-of-o52.zoho.eu ([31.186.226.238]:21319 "EHLO
-        sender11-of-o52.zoho.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727910AbgKHSuI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 13:50:08 -0500
-ARC-Seal: i=1; a=rsa-sha256; t=1604861397; cv=none; 
-        d=zohomail.eu; s=zohoarc; 
-        b=K6jcg7PYusV2f+koHdpb4Bo89TX2Diwgg0Ipyx9PVrwB94ISCfLKlEx6Dl6tdCOO5gG+x/tTEch9geFf+FrqTapnQZin125Uze0xgGNYQfLMHUIWvsvIanHaHks43TngOp3HVzxwdO5WBLardV/veT2m5cBQ2AKT9rAggtOfMX4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
-        t=1604861397; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
-        bh=NWPgPRoOKIktfDyYnIUr93RgvdM9ytdtHHJ0K42iibc=; 
-        b=GO+Q4Aw+PtZeM4bQs8Bqs9tUqK/AOee4efi/JN+s0HHwLncPraZMwV8T95VQz+qhY0zmeLQKlRWTxt+GeJAxFyDhvNoQ8KHLYbASgLiHQsd3fAsThr0Nx/whK6sMbPrfTBXuIAoIUGsER8NWJJ2gATGHZCIHBSVqXze/dwri1+8=
-ARC-Authentication-Results: i=1; mx.zohomail.eu;
-        spf=pass  smtp.mailfrom=philipp@uvos.xyz;
-        dmarc=pass header.from=<philipp@uvos.xyz> header.from=<philipp@uvos.xyz>
-Received: from localhost.localdomain (ip-95-222-213-200.hsi15.unitymediagroup.de [95.222.213.200]) by mx.zoho.eu
-        with SMTPS id 1604861396957122.50309578833321; Sun, 8 Nov 2020 19:49:56 +0100 (CET)
-Date:   Sun, 8 Nov 2020 19:49:56 +0100
-From:   Carl Philipp Klemm <philipp@uvos.xyz>
-To:     Tony Lindgren <tony@atomide.com>, robh+dt@kernel.org
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH  v4] ARM: dts: mapphone: remove xt894 specific things from
- motorola-mapphone-common.dtsi and add them to omap4-droid4-xt894.dts and
- omap4-droid-bionic-xt875.dts as applicable.
-Message-Id: <20201108194956.e7f184a7bd2331907dbbe4d0@uvos.xyz>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+        id S1727929AbgKHSv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Nov 2020 13:51:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50124 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727570AbgKHSv0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 13:51:26 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5FB0C0613CF;
+        Sun,  8 Nov 2020 10:51:25 -0800 (PST)
+Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 8385422F99;
+        Sun,  8 Nov 2020 19:51:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1604861484;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=/I/CIuBByYHKkyIKlrDS4wUEwzh8MXwuUNWSe/E9rCU=;
+        b=mkVPPTBVspEG6szazT+H8AnDI30RsbcyZikq2Ze1SUah+rUUuGHQwWuchxkrY9mS4qMQk/
+        Etg2+SP+eVR+9hsNugI/YPw6a/r5qJmAs16k+rAwwNVgtx8uEBaaMQGSwCaZqxsQDodf3w
+        lWNM1FCd3Vs9IkHYo/o629K1luaq8FE=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        "Y . b . Lu" <yangbo.lu@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Ashish Kumar <Ashish.Kumar@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v3 0/9] clk: qoriq fixes and new fsl-flexspi driver
+Date:   Sun,  8 Nov 2020 19:51:04 +0100
+Message-Id: <20201108185113.31377-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ARM: dts: mapphone: remove xt894 specific things from
-motorola-mapphone-common.dtsi and add them to omap4-droid4-xt894.dts
-and omap4-droid-bionic-xt875.dts as applicable.
+The first two patches fix clock references for the ENETC and the
+FlexSPI on the LS1028A. These are intended to be picked up by the
+stable branches.
 
-Signed-off-by: Carl Philipp Klemm <philipp@uvos.xyz>
----
- .../boot/dts/motorola-mapphone-common.dtsi    | 141 +----------------
- .../arm/boot/dts/omap4-droid-bionic-xt875.dts |  30 ++++
- arch/arm/boot/dts/omap4-droid4-xt894.dts      | 143 ++++++++++++++++++
- 3 files changed, 174 insertions(+), 140 deletions(-)
+To circumvent further mistakes, I new device tree constants for
+the qoriq binding. This should make it far easier for humans to
+read the clockgen nodes.
 
-diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-index 64ba1ae69c39..f63a898ab5be 100644
---- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-+++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
-@@ -113,32 +113,9 @@ wl12xx_vmmc: regulator-wl12xx {
- 		enable-active-high;
- 	};
- 
--	gpio_keys {
--		compatible = "gpio-keys";
--
--		volume_down {
--			label = "Volume Down";
--			gpios = <&gpio5 26 GPIO_ACTIVE_LOW>; /* gpio154 */
--			linux,code = <KEY_VOLUMEDOWN>;
--			linux,can-disable;
--			/* Value above 7.95ms for no GPIO hardware debounce */
--			debounce-interval = <10>;
--		};
--
--		slider {
--			label = "Keypad Slide";
--			gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>; /* gpio122 */
--			linux,input-type = <EV_SW>;
--			linux,code = <SW_KEYPAD_SLIDE>;
--			linux,can-disable;
--			/* Value above 7.95ms for no GPIO hardware debounce */
--			debounce-interval = <10>;
--		};
--	};
--
- 	soundcard {
- 		compatible = "audio-graph-card";
--		label = "Droid 4 Audio";
-+		label = "Mapphone Audio";
- 
- 		simple-graph-card,widgets =
- 			"Speaker", "Earpiece",
-@@ -314,80 +291,6 @@ tmp105@48 {
- 	};
- };
- 
--&keypad {
--	keypad,num-rows = <8>;
--	keypad,num-columns = <8>;
--	linux,keymap = <
--
--	/* Row 1 */
--	MATRIX_KEY(0, 2, KEY_1)
--	MATRIX_KEY(0, 6, KEY_2)
--	MATRIX_KEY(2, 3, KEY_3)
--	MATRIX_KEY(0, 7, KEY_4)
--	MATRIX_KEY(0, 4, KEY_5)
--	MATRIX_KEY(5, 5, KEY_6)
--	MATRIX_KEY(0, 1, KEY_7)
--	MATRIX_KEY(0, 5, KEY_8)
--	MATRIX_KEY(0, 0, KEY_9)
--	MATRIX_KEY(1, 6, KEY_0)
--
--	/* Row 2 */
--	MATRIX_KEY(3, 4, KEY_APOSTROPHE)
--	MATRIX_KEY(7, 6, KEY_Q)
--	MATRIX_KEY(7, 7, KEY_W)
--	MATRIX_KEY(7, 2, KEY_E)
--	MATRIX_KEY(1, 0, KEY_R)
--	MATRIX_KEY(4, 4, KEY_T)
--	MATRIX_KEY(1, 2, KEY_Y)
--	MATRIX_KEY(6, 7, KEY_U)
--	MATRIX_KEY(2, 2, KEY_I)
--	MATRIX_KEY(5, 6, KEY_O)
--	MATRIX_KEY(3, 7, KEY_P)
--	MATRIX_KEY(6, 5, KEY_BACKSPACE)
--
--	/* Row 3 */
--	MATRIX_KEY(5, 4, KEY_TAB)
--	MATRIX_KEY(5, 7, KEY_A)
--	MATRIX_KEY(2, 7, KEY_S)
--	MATRIX_KEY(7, 0, KEY_D)
--	MATRIX_KEY(2, 6, KEY_F)
--	MATRIX_KEY(6, 2, KEY_G)
--	MATRIX_KEY(6, 6, KEY_H)
--	MATRIX_KEY(1, 4, KEY_J)
--	MATRIX_KEY(3, 1, KEY_K)
--	MATRIX_KEY(2, 1, KEY_L)
--	MATRIX_KEY(4, 6, KEY_ENTER)
--
--	/* Row 4 */
--	MATRIX_KEY(3, 6, KEY_LEFTSHIFT)		/* KEY_CAPSLOCK */
--	MATRIX_KEY(6, 1, KEY_Z)
--	MATRIX_KEY(7, 4, KEY_X)
--	MATRIX_KEY(5, 1, KEY_C)
--	MATRIX_KEY(1, 7, KEY_V)
--	MATRIX_KEY(2, 4, KEY_B)
--	MATRIX_KEY(4, 1, KEY_N)
--	MATRIX_KEY(1, 1, KEY_M)
--	MATRIX_KEY(3, 5, KEY_COMMA)
--	MATRIX_KEY(5, 2, KEY_DOT)
--	MATRIX_KEY(6, 3, KEY_UP)
--	MATRIX_KEY(7, 3, KEY_OK)
--
--	/* Row 5 */
--	MATRIX_KEY(2, 5, KEY_LEFTCTRL)		/* KEY_LEFTSHIFT */
--	MATRIX_KEY(4, 5, KEY_LEFTALT)		/* SYM */
--	MATRIX_KEY(6, 0, KEY_MINUS)
--	MATRIX_KEY(4, 7, KEY_EQUAL)
--	MATRIX_KEY(1, 5, KEY_SPACE)
--	MATRIX_KEY(3, 2, KEY_SLASH)
--	MATRIX_KEY(4, 3, KEY_LEFT)
--	MATRIX_KEY(5, 3, KEY_DOWN)
--	MATRIX_KEY(3, 3, KEY_RIGHT)
--
--	/* Side buttons, KEY_VOLUMEDOWN and KEY_PWER are on CPCAP? */
--	MATRIX_KEY(5, 0, KEY_VOLUMEUP)
--	>;
--};
--
- &mmc1 {
- 	vmmc-supply = <&vwlan2>;
- 	bus-width = <4>;
-@@ -427,34 +330,6 @@ wlcore: wlcore@2 {
- 	};
- };
- 
--&i2c1 {
--	led-controller@38 {
--		compatible = "ti,lm3532";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x38>;
--
--		enable-gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
--
--		ramp-up-us = <1024>;
--		ramp-down-us = <8193>;
--
--		backlight_led: led@0 {
--			reg = <0>;
--			led-sources = <2>;
--			ti,led-mode = <0>;
--			label = ":backlight";
--		};
--
--		led@1 {
--			reg = <1>;
--			led-sources = <1>;
--			ti,led-mode = <0>;
--			label = ":kbd_backlight";
--		};
--	};
--};
--
- &i2c2 {
- 	touchscreen: touchscreen@4a {
- 		compatible = "atmel,maxtouch";
-@@ -856,20 +731,6 @@ ak8975: magnetometer@c {
- 				  "0", "0", "-1";
- 
- 	};
--
--	lis3dh: accelerometer@18 {
--		compatible = "st,lis3dh-accel";
--		reg = <0x18>;
--
--		vdd-supply = <&vhvio>;
--
--		interrupt-parent = <&gpio2>;
--		interrupts = <2 IRQ_TYPE_EDGE_BOTH>; /* gpio34 */
--
--		rotation-matrix = "0", "-1", "0",
--				  "1", "0", "0",
--				  "0", "0", "1";
--	};
- };
- 
- &mcbsp2 {
-diff --git a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-index ba5c35b7027d..49b2a8d55356 100644
---- a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-+++ b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
-@@ -7,3 +7,33 @@ / {
- 	model = "Motorola Droid Bionic XT875";
- 	compatible = "motorola,droid-bionic", "ti,omap4430", "ti,omap4";
- };
-+
-+&keypad {
-+	keypad,num-rows = <8>;
-+	keypad,num-columns = <8>;
-+	linux,keymap = <
-+	MATRIX_KEY(5, 0, KEY_VOLUMEUP)
-+	MATRIX_KEY(3, 0, KEY_VOLUMEDOWN)
-+	>;
-+};
-+
-+&i2c1 {
-+	led-controller@38 {
-+		compatible = "ti,lm3532";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x38>;
-+
-+		enable-gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
-+
-+		ramp-up-us = <1024>;
-+		ramp-down-us = <8193>;
-+
-+		backlight_led: led@0 {
-+			reg = <0>;
-+			led-sources = <2>;
-+			ti,led-mode = <0>;
-+			label = ":backlight";
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/omap4-droid4-xt894.dts b/arch/arm/boot/dts/omap4-droid4-xt894.dts
-index c0d2fd92aea3..3ea4c5b9fd31 100644
---- a/arch/arm/boot/dts/omap4-droid4-xt894.dts
-+++ b/arch/arm/boot/dts/omap4-droid4-xt894.dts
-@@ -3,7 +3,150 @@
- 
- #include "motorola-mapphone-common.dtsi"
- 
-+/ {
-+	gpio_keys {
-+		compatible = "gpio-keys";
-+
-+		volume_down {
-+			label = "Volume Down";
-+			gpios = <&gpio5 26 GPIO_ACTIVE_LOW>; /* gpio154 */
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			linux,can-disable;
-+			/* Value above 7.95ms for no GPIO hardware debounce */
-+			debounce-interval = <10>;
-+		};
-+
-+		slider {
-+			label = "Keypad Slide";
-+			gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>; /* gpio122 */
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_KEYPAD_SLIDE>;
-+			linux,can-disable;
-+			/* Value above 7.95ms for no GPIO hardware debounce */
-+			debounce-interval = <10>;
-+		};
-+	};
-+};
-+
- / {
- 	model = "Motorola Droid 4 XT894";
- 	compatible = "motorola,droid4", "ti,omap4430", "ti,omap4";
- };
-+
-+&keypad {
-+	keypad,num-rows = <8>;
-+	keypad,num-columns = <8>;
-+	linux,keymap = <
-+
-+	/* Row 1 */
-+	MATRIX_KEY(0, 2, KEY_1)
-+	MATRIX_KEY(0, 6, KEY_2)
-+	MATRIX_KEY(2, 3, KEY_3)
-+	MATRIX_KEY(0, 7, KEY_4)
-+	MATRIX_KEY(0, 4, KEY_5)
-+	MATRIX_KEY(5, 5, KEY_6)
-+	MATRIX_KEY(0, 1, KEY_7)
-+	MATRIX_KEY(0, 5, KEY_8)
-+	MATRIX_KEY(0, 0, KEY_9)
-+	MATRIX_KEY(1, 6, KEY_0)
-+
-+	/* Row 2 */
-+	MATRIX_KEY(3, 4, KEY_APOSTROPHE)
-+	MATRIX_KEY(7, 6, KEY_Q)
-+	MATRIX_KEY(7, 7, KEY_W)
-+	MATRIX_KEY(7, 2, KEY_E)
-+	MATRIX_KEY(1, 0, KEY_R)
-+	MATRIX_KEY(4, 4, KEY_T)
-+	MATRIX_KEY(1, 2, KEY_Y)
-+	MATRIX_KEY(6, 7, KEY_U)
-+	MATRIX_KEY(2, 2, KEY_I)
-+	MATRIX_KEY(5, 6, KEY_O)
-+	MATRIX_KEY(3, 7, KEY_P)
-+	MATRIX_KEY(6, 5, KEY_BACKSPACE)
-+
-+	/* Row 3 */
-+	MATRIX_KEY(5, 4, KEY_TAB)
-+	MATRIX_KEY(5, 7, KEY_A)
-+	MATRIX_KEY(2, 7, KEY_S)
-+	MATRIX_KEY(7, 0, KEY_D)
-+	MATRIX_KEY(2, 6, KEY_F)
-+	MATRIX_KEY(6, 2, KEY_G)
-+	MATRIX_KEY(6, 6, KEY_H)
-+	MATRIX_KEY(1, 4, KEY_J)
-+	MATRIX_KEY(3, 1, KEY_K)
-+	MATRIX_KEY(2, 1, KEY_L)
-+	MATRIX_KEY(4, 6, KEY_ENTER)
-+
-+	/* Row 4 */
-+	MATRIX_KEY(3, 6, KEY_LEFTSHIFT)		/* KEY_CAPSLOCK */
-+	MATRIX_KEY(6, 1, KEY_Z)
-+	MATRIX_KEY(7, 4, KEY_X)
-+	MATRIX_KEY(5, 1, KEY_C)
-+	MATRIX_KEY(1, 7, KEY_V)
-+	MATRIX_KEY(2, 4, KEY_B)
-+	MATRIX_KEY(4, 1, KEY_N)
-+	MATRIX_KEY(1, 1, KEY_M)
-+	MATRIX_KEY(3, 5, KEY_COMMA)
-+	MATRIX_KEY(5, 2, KEY_DOT)
-+	MATRIX_KEY(6, 3, KEY_UP)
-+	MATRIX_KEY(7, 3, KEY_OK)
-+
-+	/* Row 5 */
-+	MATRIX_KEY(2, 5, KEY_LEFTCTRL)		/* KEY_LEFTSHIFT */
-+	MATRIX_KEY(4, 5, KEY_LEFTALT)		/* SYM */
-+	MATRIX_KEY(6, 0, KEY_MINUS)
-+	MATRIX_KEY(4, 7, KEY_EQUAL)
-+	MATRIX_KEY(1, 5, KEY_SPACE)
-+	MATRIX_KEY(3, 2, KEY_SLASH)
-+	MATRIX_KEY(4, 3, KEY_LEFT)
-+	MATRIX_KEY(5, 3, KEY_DOWN)
-+	MATRIX_KEY(3, 3, KEY_RIGHT)
-+
-+	/* Side buttons, KEY_VOLUMEDOWN and KEY_PWER are on CPCAP? */
-+	MATRIX_KEY(5, 0, KEY_VOLUMEUP)
-+	>;
-+};
-+
-+&i2c1 {
-+	led-controller@38 {
-+		compatible = "ti,lm3532";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x38>;
-+
-+		enable-gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
-+
-+		ramp-up-us = <1024>;
-+		ramp-down-us = <8193>;
-+
-+		backlight_led: led@0 {
-+			reg = <0>;
-+			led-sources = <2>;
-+			ti,led-mode = <0>;
-+			label = ":backlight";
-+		};
-+
-+		led@1 {
-+			reg = <1>;
-+			led-sources = <1>;
-+			ti,led-mode = <0>;
-+			label = ":kbd_backlight";
-+		};
-+	};
-+};
-+
-+&i2c4 {
-+	lis3dh: accelerometer@18 {
-+		compatible = "st,lis3dh-accel";
-+		reg = <0x18>;
-+
-+		vdd-supply = <&vhvio>;
-+
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <2 IRQ_TYPE_EDGE_BOTH>; /* gpio34 */
-+
-+		rotation-matrix = "0", "-1", "0",
-+				  "1", "0", "0",
-+				  "0", "0", "1";
-+	};
-+};
+The 4th patch convert the LS1028A device tree include to use the
+new constants.
+
+The last five patches add a clock driver for the FlexSPI
+controller on layerscape SoCs. There is a single register which
+can control the divider value. Right now the LS1028A and the LX2160A
+aren't able to switch the SCK frequency on the FlexSPI interface.
+
+I've included the first four patches in this series, otherwise
+there would be merge conflicts, because they depend on the new
+qoriq device tree constants.
+
+Michael Walle (9):
+  arm64: dts: ls1028a: fix ENETC PTP clock input
+  arm64: dts: ls1028a: fix FlexSPI clock input
+  clk: qoriq: provide constants for the type
+  arm64: dts: ls1028a: use constants in the clockgen phandle
+  clk: divider: add devm_clk_hw_register_divider_table()
+  dt-bindings: clock: document the fsl-flexspi-clk driver
+  clk: fsl-flexspi: new driver
+  arm64: dts: ls1028a: fix FlexSPI clock
+  arm64: dts: lx2160a: fix FlexSPI clock
+
+ .../bindings/clock/fsl,flexspi-clock.yaml     |  55 ++++++
+ .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 174 +++++++++++++-----
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi |  15 +-
+ drivers/clk/Kconfig                           |   8 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-divider.c                     |  34 ++++
+ drivers/clk/clk-fsl-flexspi.c                 | 106 +++++++++++
+ drivers/clk/clk-qoriq.c                       |  13 +-
+ .../dt-bindings/clock/fsl,qoriq-clockgen.h    |  15 ++
+ include/linux/clk-provider.h                  |  27 +++
+ 10 files changed, 393 insertions(+), 55 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,flexspi-clock.yaml
+ create mode 100644 drivers/clk/clk-fsl-flexspi.c
+ create mode 100644 include/dt-bindings/clock/fsl,qoriq-clockgen.h
+
 -- 
-2.29.1
+2.20.1
 
