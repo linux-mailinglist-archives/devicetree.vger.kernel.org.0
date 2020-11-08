@@ -2,295 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C47EA2AAB06
-	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 13:48:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B2372AAB13
+	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 14:14:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727844AbgKHMsQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Nov 2020 07:48:16 -0500
-Received: from out28-217.mail.aliyun.com ([115.124.28.217]:43863 "EHLO
-        out28-217.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726607AbgKHMsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 07:48:15 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.0755932|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.235119-0.0038911-0.76099;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047213;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=18;RT=18;SR=0;TI=SMTPD_---.Iu5FFCC_1604839687;
-Received: from 192.168.10.152(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.Iu5FFCC_1604839687)
-          by smtp.aliyun-inc.com(10.147.41.138);
-          Sun, 08 Nov 2020 20:48:08 +0800
-Subject: Re: [PATCH 2/2] MIPS: Ingenic: Refresh defconfig for Ingenic SoCs
- based boards.
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     tsbogend@alpha.franken.de, paul@crapouillou.net,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        nixiaoming@huawei.com, paulburton@kernel.org, krzk@kernel.org,
-        ak@linux.intel.com, ebiederm@xmission.com,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
-References: <20201107115251.86182-1-zhouyanjie@wanyeetech.com>
- <20201107115251.86182-3-zhouyanjie@wanyeetech.com>
- <4F963CAF-23DA-4798-8948-F3BD89B2D55E@goldelico.com>
-From:   Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Message-ID: <fea3a4f9-dcd3-296d-6f3e-f45bae763d30@wanyeetech.com>
-Date:   Sun, 8 Nov 2020 20:48:07 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1728104AbgKHNOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Nov 2020 08:14:19 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51612 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727958AbgKHNOR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Nov 2020 08:14:17 -0500
+Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 48823206ED;
+        Sun,  8 Nov 2020 13:14:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604841256;
+        bh=ACYX+dzqwM+pqodv+7eTSQQ2v0JAOW2m9T80x7FTPzM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L7O5RXI+yzbk9LJKFBokN0v+ZLqHuE7BSPzd/SEoYkJL2mr6e+0/xOPHnkYQo25O3
+         /UDhFntFg3btGKPdbvIgZ7uts47RwM5PImyTFkgAyYN0xww3jegvoMHNo684oXWm0N
+         S8mMTnROEGw5L21GeHKLPP2Lh0iAleDFd7FcqgyY=
+Date:   Sun, 8 Nov 2020 08:14:15 -0500
+From:   Sasha Levin <sashal@kernel.org>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH AUTOSEL 5.9 02/35] arm64: dts: meson-axg: add USB nodes
+Message-ID: <20201108131415.GO2092@sasha-vm>
+References: <20201103011840.182814-1-sashal@kernel.org>
+ <20201103011840.182814-2-sashal@kernel.org>
+ <d3ef0d93-a95b-2109-ef6b-3d70ce3b9cc3@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <4F963CAF-23DA-4798-8948-F3BD89B2D55E@goldelico.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <d3ef0d93-a95b-2109-ef6b-3d70ce3b9cc3@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Nikolaus,
-
-On 2020/11/8 上午3:05, H. Nikolaus Schaller wrote:
->> Am 07.11.2020 um 12:52 schrieb 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>:
+On Tue, Nov 03, 2020 at 09:55:45AM +0100, Neil Armstrong wrote:
+>On 03/11/2020 02:18, Sasha Levin wrote:
+>> From: Neil Armstrong <narmstrong@baylibre.com>
 >>
->> 1.Refresh defconfig of CI20 to support OTG and RNG.
->> 2.Refresh defconfig of CU1000-Neo to support OTG/RNG/OST/SC16IS752.
->> 3.Refresh defconfig of CU1830-Neo to support OTG/DTRNG/OST/SC16IS752.
+>> [ Upstream commit 1b208bab34dc3f4ef8f408105017d4a7b72b2a2f ]
 >>
->> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
->> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+>> This adds the USB Glue node, with the USB2 & USB3 controllers along the single
+>> USB2 PHY node.
+>>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+>> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>> Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+>> Signed-off-by: Sasha Levin <sashal@kernel.org>
 >> ---
->> arch/mips/configs/ci20_defconfig       | 14 ++++++++++++--
->> arch/mips/configs/cu1000-neo_defconfig | 28 +++++++++++++++++++++++-----
->> arch/mips/configs/cu1830-neo_defconfig | 32 +++++++++++++++++++++++++-------
->> 3 files changed, 60 insertions(+), 14 deletions(-)
+>>  arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 50 ++++++++++++++++++++++
+>>  1 file changed, 50 insertions(+)
 >>
->> diff --git a/arch/mips/configs/ci20_defconfig b/arch/mips/configs/ci20_defconfig
->> index 052c5ad0f2b1..80fbe57d68d4 100644
->> --- a/arch/mips/configs/ci20_defconfig
->> +++ b/arch/mips/configs/ci20_defconfig
->> @@ -49,6 +49,8 @@ CONFIG_MTD_RAW_NAND=y
->> CONFIG_MTD_NAND_JZ4780=y
->> CONFIG_MTD_UBI=y
->> CONFIG_MTD_UBI_FASTMAP=y
->> +CONFIG_SCSI=y
->> +CONFIG_BLK_DEV_SD=y
->> CONFIG_NETDEVICES=y
->> # CONFIG_NET_VENDOR_ARC is not set
->> # CONFIG_NET_VENDOR_BROADCOM is not set
->> @@ -77,7 +79,6 @@ CONFIG_SERIAL_8250_NR_UARTS=5
->> CONFIG_SERIAL_8250_RUNTIME_UARTS=5
->> CONFIG_SERIAL_8250_INGENIC=y
->> CONFIG_SERIAL_OF_PLATFORM=y
->> -# CONFIG_HW_RANDOM is not set
->> CONFIG_I2C=y
->> CONFIG_I2C_JZ4780=y
->> CONFIG_SPI=y
->> @@ -99,7 +100,12 @@ CONFIG_IR_GPIO_TX=m
->> CONFIG_MEDIA_SUPPORT=m
->> # CONFIG_VGA_CONSOLE is not set
->> # CONFIG_HID is not set
->> -# CONFIG_USB_SUPPORT is not set
->> +CONFIG_USB=y
->> +CONFIG_USB_STORAGE=y
->> +CONFIG_USB_DWC2=y
->> +CONFIG_USB_SERIAL=y
->> +CONFIG_USB_SERIAL_CH341=y
->> +CONFIG_USB_GADGET=y
->> CONFIG_MMC=y
->> CONFIG_MMC_JZ4740=y
->> CONFIG_NEW_LEDS=y
->> @@ -131,8 +137,12 @@ CONFIG_MEMORY=y
->> CONFIG_JZ4780_NEMC=y
->> CONFIG_PWM=y
->> CONFIG_PWM_JZ4740=m
-> maybe you can add
->
-> +CONFIG_JZ4780_EFUSE=y
->
-> here. It was forgotten when we made the NVRAM for Ethernet working.
-
-
-Sure, I will add it in the next version.
-
-
->> +CONFIG_JZ4770_PHY=y
->> CONFIG_EXT4_FS=y
->> # CONFIG_DNOTIFY is not set
->> +CONFIG_AUTOFS_FS=y
->> +CONFIG_VFAT_FS=y
->> +CONFIG_FAT_DEFAULT_UTF8=y
->> CONFIG_PROC_KCORE=y
->> # CONFIG_PROC_PAGE_MONITOR is not set
->> CONFIG_TMPFS=y
->> diff --git a/arch/mips/configs/cu1000-neo_defconfig b/arch/mips/configs/cu1000-neo_defconfig
->> index 55d0690a3ffe..9d75f5b77d5d 100644
->> --- a/arch/mips/configs/cu1000-neo_defconfig
->> +++ b/arch/mips/configs/cu1000-neo_defconfig
->> @@ -25,6 +25,7 @@ CONFIG_HIGHMEM=y
->> CONFIG_HZ_100=y
->> # CONFIG_SECCOMP is not set
->> # CONFIG_SUSPEND is not set
->> +CONFIG_MODULES=y
->> # CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
->> # CONFIG_COMPACTION is not set
->> CONFIG_CMA=y
->> @@ -32,15 +33,17 @@ CONFIG_NET=y
->> CONFIG_PACKET=y
->> CONFIG_UNIX=y
->> CONFIG_INET=y
->> -CONFIG_CFG80211=y
->> +CONFIG_CFG80211=m
->> CONFIG_UEVENT_HELPER=y
->> CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
->> CONFIG_DEVTMPFS=y
->> # CONFIG_ALLOW_DEV_COREDUMP is not set
->> +CONFIG_SCSI=y
->> +CONFIG_BLK_DEV_SD=y
->> CONFIG_NETDEVICES=y
->> CONFIG_STMMAC_ETH=y
->> CONFIG_SMSC_PHY=y
->> -CONFIG_BRCMFMAC=y
->> +CONFIG_BRCMFMAC=m
->> # CONFIG_INPUT_KEYBOARD is not set
->> # CONFIG_INPUT_MOUSE is not set
->> # CONFIG_SERIO is not set
->> @@ -52,16 +55,25 @@ CONFIG_SERIAL_8250_NR_UARTS=3
->> CONFIG_SERIAL_8250_RUNTIME_UARTS=3
->> CONFIG_SERIAL_8250_INGENIC=y
->> CONFIG_SERIAL_OF_PLATFORM=y
->> -# CONFIG_HW_RANDOM is not set
->> +CONFIG_SERIAL_SC16IS7XX=y
->> +# CONFIG_SERIAL_SC16IS7XX_I2C is not set
->> +CONFIG_SERIAL_SC16IS7XX_SPI=y
->> CONFIG_I2C=y
->> CONFIG_I2C_JZ4780=y
->> +CONFIG_SPI=y
->> +CONFIG_SPI_GPIO=y
->> CONFIG_GPIO_SYSFS=y
->> -CONFIG_SENSORS_ADS7828=y
->> +CONFIG_SENSORS_ADS7828=m
->> CONFIG_WATCHDOG=y
->> CONFIG_JZ4740_WDT=y
->> # CONFIG_VGA_CONSOLE is not set
->> # CONFIG_HID is not set
->> -# CONFIG_USB_SUPPORT is not set
->> +CONFIG_USB=y
->> +CONFIG_USB_STORAGE=y
->> +CONFIG_USB_DWC2=y
->> +CONFIG_USB_SERIAL=y
->> +CONFIG_USB_SERIAL_CH341=y
->> +CONFIG_USB_GADGET=y
->> CONFIG_MMC=y
->> CONFIG_MMC_JZ4740=y
->> CONFIG_NEW_LEDS=y
->> @@ -72,16 +84,22 @@ CONFIG_RTC_CLASS=y
->> CONFIG_RTC_DRV_JZ4740=y
->> CONFIG_DMADEVICES=y
->> CONFIG_DMA_JZ4780=y
->> +# CONFIG_INGENIC_TIMER is not set
->> +CONFIG_INGENIC_SYSOST=y
->> # CONFIG_IOMMU_SUPPORT is not set
->> +CONFIG_JZ4770_PHY=y
->> CONFIG_EXT4_FS=y
->> # CONFIG_DNOTIFY is not set
->> CONFIG_AUTOFS_FS=y
->> +CONFIG_VFAT_FS=y
->> +CONFIG_FAT_DEFAULT_UTF8=y
->> CONFIG_PROC_KCORE=y
->> # CONFIG_PROC_PAGE_MONITOR is not set
->> CONFIG_TMPFS=y
->> CONFIG_CONFIGFS_FS=y
->> CONFIG_NFS_FS=y
->> CONFIG_NLS=y
->> +CONFIG_NLS_CODEPAGE_437=y
->> CONFIG_NLS_CODEPAGE_936=y
->> CONFIG_NLS_CODEPAGE_950=y
->> CONFIG_NLS_ASCII=y
->> diff --git a/arch/mips/configs/cu1830-neo_defconfig b/arch/mips/configs/cu1830-neo_defconfig
->> index e7064851a47a..29decd0003c6 100644
->> --- a/arch/mips/configs/cu1830-neo_defconfig
->> +++ b/arch/mips/configs/cu1830-neo_defconfig
->> @@ -25,6 +25,7 @@ CONFIG_HIGHMEM=y
->> CONFIG_HZ_100=y
->> # CONFIG_SECCOMP is not set
->> # CONFIG_SUSPEND is not set
->> +CONFIG_MODULES=y
->> # CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
->> # CONFIG_COMPACTION is not set
->> CONFIG_CMA=y
->> @@ -32,18 +33,20 @@ CONFIG_NET=y
->> CONFIG_PACKET=y
->> CONFIG_UNIX=y
->> CONFIG_INET=y
->> -CONFIG_CFG80211=y
->> +CONFIG_CFG80211=m
->> CONFIG_UEVENT_HELPER=y
->> CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
->> CONFIG_DEVTMPFS=y
->> # CONFIG_ALLOW_DEV_COREDUMP is not set
->> +CONFIG_SCSI=y
->> +CONFIG_BLK_DEV_SD=y
->> CONFIG_MD=y
->> -CONFIG_BLK_DEV_MD=y
->> -CONFIG_BLK_DEV_DM=y
->> +CONFIG_BLK_DEV_MD=m
->> +CONFIG_BLK_DEV_DM=m
->> CONFIG_NETDEVICES=y
->> CONFIG_STMMAC_ETH=y
->> CONFIG_ICPLUS_PHY=y
->> -CONFIG_BRCMFMAC=y
->> +CONFIG_BRCMFMAC=m
->> # CONFIG_INPUT_KEYBOARD is not set
->> # CONFIG_INPUT_MOUSE is not set
->> # CONFIG_SERIO is not set
->> @@ -55,16 +58,25 @@ CONFIG_SERIAL_8250_NR_UARTS=2
->> CONFIG_SERIAL_8250_RUNTIME_UARTS=2
->> CONFIG_SERIAL_8250_INGENIC=y
->> CONFIG_SERIAL_OF_PLATFORM=y
->> -# CONFIG_HW_RANDOM is not set
->> +CONFIG_SERIAL_SC16IS7XX=y
->> +# CONFIG_SERIAL_SC16IS7XX_I2C is not set
->> +CONFIG_SERIAL_SC16IS7XX_SPI=y
->> CONFIG_I2C=y
->> CONFIG_I2C_JZ4780=y
->> +CONFIG_SPI=y
->> +CONFIG_SPI_GPIO=y
->> CONFIG_GPIO_SYSFS=y
->> -CONFIG_SENSORS_ADS7828=y
->> +CONFIG_SENSORS_ADS7828=m
->> CONFIG_WATCHDOG=y
->> CONFIG_JZ4740_WDT=y
->> # CONFIG_VGA_CONSOLE is not set
->> # CONFIG_HID is not set
->> -# CONFIG_USB_SUPPORT is not set
->> +CONFIG_USB=y
->> +CONFIG_USB_STORAGE=y
->> +CONFIG_USB_DWC2=y
->> +CONFIG_USB_SERIAL=y
->> +CONFIG_USB_SERIAL_CH341=y
->> +CONFIG_USB_GADGET=y
->> CONFIG_MMC=y
->> CONFIG_MMC_JZ4740=y
->> CONFIG_NEW_LEDS=y
->> @@ -75,16 +87,22 @@ CONFIG_RTC_CLASS=y
->> CONFIG_RTC_DRV_JZ4740=y
->> CONFIG_DMADEVICES=y
->> CONFIG_DMA_JZ4780=y
->> +# CONFIG_INGENIC_TIMER is not set
->> +CONFIG_INGENIC_SYSOST=y
->> # CONFIG_IOMMU_SUPPORT is not set
->> +CONFIG_JZ4770_PHY=y
->> CONFIG_EXT4_FS=y
->> # CONFIG_DNOTIFY is not set
->> CONFIG_AUTOFS_FS=y
->> +CONFIG_VFAT_FS=y
->> +CONFIG_FAT_DEFAULT_UTF8=y
->> CONFIG_PROC_KCORE=y
->> # CONFIG_PROC_PAGE_MONITOR is not set
->> CONFIG_TMPFS=y
->> CONFIG_CONFIGFS_FS=y
->> CONFIG_NFS_FS=y
->> CONFIG_NLS=y
->> +CONFIG_NLS_CODEPAGE_437=y
->> CONFIG_NLS_CODEPAGE_936=y
->> CONFIG_NLS_CODEPAGE_950=y
->> CONFIG_NLS_ASCII=y
->> -- 
->> 2.11.0
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> index b9efc8469265d..fae48efae83e9 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+>> @@ -171,6 +171,46 @@ soc {
+>>  		#size-cells = <2>;
+>>  		ranges;
 >>
+>> +		usb: usb@ffe09080 {
+>> +			compatible = "amlogic,meson-axg-usb-ctrl";
+>> +			reg = <0x0 0xffe09080 0x0 0x20>;
+>> +			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+>> +
+>> +			clocks = <&clkc CLKID_USB>, <&clkc CLKID_USB1_DDR_BRIDGE>;
+>> +			clock-names = "usb_ctrl", "ddr";
+>> +			resets = <&reset RESET_USB_OTG>;
+>> +
+>> +			dr_mode = "otg";
+>> +
+>> +			phys = <&usb2_phy1>;
+>> +			phy-names = "usb2-phy1";
+>> +
+>> +			dwc2: usb@ff400000 {
+>> +				compatible = "amlogic,meson-g12a-usb", "snps,dwc2";
+>> +				reg = <0x0 0xff400000 0x0 0x40000>;
+>> +				interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+>> +				clocks = <&clkc CLKID_USB1>;
+>> +				clock-names = "otg";
+>> +				phys = <&usb2_phy1>;
+>> +				dr_mode = "peripheral";
+>> +				g-rx-fifo-size = <192>;
+>> +				g-np-tx-fifo-size = <128>;
+>> +				g-tx-fifo-size = <128 128 16 16 16>;
+>> +			};
+>> +
+>> +			dwc3: usb@ff500000 {
+>> +				compatible = "snps,dwc3";
+>> +				reg = <0x0 0xff500000 0x0 0x100000>;
+>> +				interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
+>> +				dr_mode = "host";
+>> +				maximum-speed = "high-speed";
+>> +				snps,dis_u2_susphy_quirk;
+>> +			};
+>> +		};
+>> +
+>>  		ethmac: ethernet@ff3f0000 {
+>>  			compatible = "amlogic,meson-axg-dwmac",
+>>  				     "snps,dwmac-3.70a",
+>> @@ -1734,6 +1774,16 @@ sd_emmc_c: mmc@7000 {
+>>  				clock-names = "core", "clkin0", "clkin1";
+>>  				resets = <&reset RESET_SD_EMMC_C>;
+>>  			};
+>> +
+>> +			usb2_phy1: phy@9020 {
+>> +				compatible = "amlogic,meson-gxl-usb2-phy";
+>> +				#phy-cells = <0>;
+>> +				reg = <0x0 0x9020 0x0 0x20>;
+>> +				clocks = <&clkc CLKID_USB>;
+>> +				clock-names = "phy";
+>> +				resets = <&reset RESET_USB_OTG>;
+>> +				reset-names = "phy";
+>> +			};
+>>  		};
+>>
+>>  		sram: sram@fffc0000 {
+>>
+>
+>Hi Sasha,
+>
+>This needs also support in the dwc3-meson-g12a driver, you can drop it from backport.
+
+Dropped, thanks!
+
+-- 
+Thanks,
+Sasha
