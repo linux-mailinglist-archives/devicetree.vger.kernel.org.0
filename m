@@ -2,115 +2,423 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54A682AACEE
-	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 19:48:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFBF42AACF1
+	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 19:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727929AbgKHSsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Nov 2020 13:48:18 -0500
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:35598 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727570AbgKHSsS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 13:48:18 -0500
-Received: by mail-ej1-f68.google.com with SMTP id f23so2509998ejk.2;
-        Sun, 08 Nov 2020 10:48:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=e4MFmro9LRzZqM00MSLpje3m5vP1BDJdx4WIA1ubdow=;
-        b=s6GSTn8H+FVYnSwPPpC11opJlBDUZWGeZtZA8V7/GtBiXKPn0mJ/8jEjSMF4FtU9jq
-         PHXSZumsUggnU+VG9T81emvWOCg1R1CrF+ZdRjTcw2jnBrWK2WIUknm92+XsrJFuXVq5
-         pSbKkjhwB65iSBdG88zx93PUdve9qFaCa8w8lvKIlwEfSm7oB+DzGYVrBwISizzhEzp6
-         M/QLcnkCRQ/yfAur0xGC58uNzx1rCozbuweas0740rL/kxyG398cRyfo7vpkXAaZ0BOx
-         NH0leQNcOCJhj3fzLQQvL8kJ6YtF1PBNfSB8Nlswg8RChHrcQ8t4wj5z1vuRgoC9NVN1
-         ZbRg==
-X-Gm-Message-State: AOAM530IJyG1JT5bFHsL9KdrPCggNvh/PlHPM6gY05cvAAz6tdTeyacw
-        pjjowrNgyOP99fbvTi4HkMo=
-X-Google-Smtp-Source: ABdhPJybxe86P3/r3o9BXNWCXrIOkAU1VasfBNaZH9VotvbwckDMDeAI6+VnIdMDrHItkHNXmDtwbQ==
-X-Received: by 2002:a17:906:85c1:: with SMTP id i1mr12060491ejy.157.1604861296017;
-        Sun, 08 Nov 2020 10:48:16 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id q8sm6754088ejy.102.2020.11.08.10.48.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2020 10:48:14 -0800 (PST)
-Date:   Sun, 8 Nov 2020 19:48:13 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 5/5] arm64: dts: imx8mn: Add GPU node
-Message-ID: <20201108184813.GD7078@kozik-lap>
-References: <20201107140026.1974312-1-aford173@gmail.com>
- <20201107140026.1974312-5-aford173@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201107140026.1974312-5-aford173@gmail.com>
+        id S1727929AbgKHSuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Nov 2020 13:50:08 -0500
+Received: from sender11-of-o52.zoho.eu ([31.186.226.238]:21319 "EHLO
+        sender11-of-o52.zoho.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727910AbgKHSuI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 13:50:08 -0500
+ARC-Seal: i=1; a=rsa-sha256; t=1604861397; cv=none; 
+        d=zohomail.eu; s=zohoarc; 
+        b=K6jcg7PYusV2f+koHdpb4Bo89TX2Diwgg0Ipyx9PVrwB94ISCfLKlEx6Dl6tdCOO5gG+x/tTEch9geFf+FrqTapnQZin125Uze0xgGNYQfLMHUIWvsvIanHaHks43TngOp3HVzxwdO5WBLardV/veT2m5cBQ2AKT9rAggtOfMX4=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.eu; s=zohoarc; 
+        t=1604861397; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
+        bh=NWPgPRoOKIktfDyYnIUr93RgvdM9ytdtHHJ0K42iibc=; 
+        b=GO+Q4Aw+PtZeM4bQs8Bqs9tUqK/AOee4efi/JN+s0HHwLncPraZMwV8T95VQz+qhY0zmeLQKlRWTxt+GeJAxFyDhvNoQ8KHLYbASgLiHQsd3fAsThr0Nx/whK6sMbPrfTBXuIAoIUGsER8NWJJ2gATGHZCIHBSVqXze/dwri1+8=
+ARC-Authentication-Results: i=1; mx.zohomail.eu;
+        spf=pass  smtp.mailfrom=philipp@uvos.xyz;
+        dmarc=pass header.from=<philipp@uvos.xyz> header.from=<philipp@uvos.xyz>
+Received: from localhost.localdomain (ip-95-222-213-200.hsi15.unitymediagroup.de [95.222.213.200]) by mx.zoho.eu
+        with SMTPS id 1604861396957122.50309578833321; Sun, 8 Nov 2020 19:49:56 +0100 (CET)
+Date:   Sun, 8 Nov 2020 19:49:56 +0100
+From:   Carl Philipp Klemm <philipp@uvos.xyz>
+To:     Tony Lindgren <tony@atomide.com>, robh+dt@kernel.org
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH  v4] ARM: dts: mapphone: remove xt894 specific things from
+ motorola-mapphone-common.dtsi and add them to omap4-droid4-xt894.dts and
+ omap4-droid-bionic-xt875.dts as applicable.
+Message-Id: <20201108194956.e7f184a7bd2331907dbbe4d0@uvos.xyz>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; x86_64-unknown-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 07, 2020 at 08:00:25AM -0600, Adam Ford wrote:
-> According to the documentation from NXP, the i.MX8M Nano has a
-> Vivante GC7000 Ultra Lite as its GPU core.
-> 
-> With this patch, the Etnaviv driver presents the GPU as:
->    etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6203
-> 
-> The stock operating voltage for the i.MX8M Nano is .85V which means
-> the GPU needs to run at 400MHz.  For boards where the operating
-> voltage is higher, this can be increased.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> V2:  Move into this series
->      Update clocking description
-> 
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 25 +++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index 5e4b6934de40..6e650ea422a7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -1008,6 +1008,31 @@ gpmi: nand-controller@33002000 {
->  			status = "disabled";
->  		};
->  
-> +		gpu: gpu@38000000 {
-> +			compatible = "vivante,gc";
-> +			reg = <0x38000000 0x8000>;
-> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&clk IMX8MN_CLK_GPU_AHB>,
-> +				<&clk IMX8MN_CLK_GPU_BUS_ROOT>,
-> +				<&clk IMX8MN_CLK_GPU_CORE_ROOT>,
-> +				<&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-> +			clock-names = "reg", "bus", "core", "shader";
-> +			assigned-clocks = <&clk IMX8MN_CLK_GPU_CORE_SRC>,
-> +					  <&clk IMX8MN_CLK_GPU_SHADER_SRC>,
-> +					  <&clk IMX8MN_CLK_GPU_AXI>,
-> +					  <&clk IMX8MN_CLK_GPU_AHB>,
-> +					  <&clk IMX8MN_GPU_PLL>,
-> +					  <&clk IMX8MN_CLK_GPU_CORE_DIV>,
-> +					  <&clk IMX8MN_CLK_GPU_SHADER_DIV>;
-> +			assigned-clock-parents = <&clk IMX8MN_GPU_PLL_OUT>,
-> +						  <&clk IMX8MN_GPU_PLL_OUT>,
-> +						  <&clk IMX8MN_SYS_PLL1_800M>,
-> +						  <&clk IMX8MN_SYS_PLL1_800M>;
-> +			assigned-clock-rates = <0>, <0>, <800000000>, <400000000>, <1200000000>,
-> +				<400000000>, <400000000>;
+ARM: dts: mapphone: remove xt894 specific things from
+motorola-mapphone-common.dtsi and add them to omap4-droid4-xt894.dts
+and omap4-droid-bionic-xt875.dts as applicable.
 
-It would be nice to align indentation here to <0> above.
+Signed-off-by: Carl Philipp Klemm <philipp@uvos.xyz>
+---
+ .../boot/dts/motorola-mapphone-common.dtsi    | 141 +----------------
+ .../arm/boot/dts/omap4-droid-bionic-xt875.dts |  30 ++++
+ arch/arm/boot/dts/omap4-droid4-xt894.dts      | 143 ++++++++++++++++++
+ 3 files changed, 174 insertions(+), 140 deletions(-)
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/motorola-mapphone-common.dtsi b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+index 64ba1ae69c39..f63a898ab5be 100644
+--- a/arch/arm/boot/dts/motorola-mapphone-common.dtsi
++++ b/arch/arm/boot/dts/motorola-mapphone-common.dtsi
+@@ -113,32 +113,9 @@ wl12xx_vmmc: regulator-wl12xx {
+ 		enable-active-high;
+ 	};
+ 
+-	gpio_keys {
+-		compatible = "gpio-keys";
+-
+-		volume_down {
+-			label = "Volume Down";
+-			gpios = <&gpio5 26 GPIO_ACTIVE_LOW>; /* gpio154 */
+-			linux,code = <KEY_VOLUMEDOWN>;
+-			linux,can-disable;
+-			/* Value above 7.95ms for no GPIO hardware debounce */
+-			debounce-interval = <10>;
+-		};
+-
+-		slider {
+-			label = "Keypad Slide";
+-			gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>; /* gpio122 */
+-			linux,input-type = <EV_SW>;
+-			linux,code = <SW_KEYPAD_SLIDE>;
+-			linux,can-disable;
+-			/* Value above 7.95ms for no GPIO hardware debounce */
+-			debounce-interval = <10>;
+-		};
+-	};
+-
+ 	soundcard {
+ 		compatible = "audio-graph-card";
+-		label = "Droid 4 Audio";
++		label = "Mapphone Audio";
+ 
+ 		simple-graph-card,widgets =
+ 			"Speaker", "Earpiece",
+@@ -314,80 +291,6 @@ tmp105@48 {
+ 	};
+ };
+ 
+-&keypad {
+-	keypad,num-rows = <8>;
+-	keypad,num-columns = <8>;
+-	linux,keymap = <
+-
+-	/* Row 1 */
+-	MATRIX_KEY(0, 2, KEY_1)
+-	MATRIX_KEY(0, 6, KEY_2)
+-	MATRIX_KEY(2, 3, KEY_3)
+-	MATRIX_KEY(0, 7, KEY_4)
+-	MATRIX_KEY(0, 4, KEY_5)
+-	MATRIX_KEY(5, 5, KEY_6)
+-	MATRIX_KEY(0, 1, KEY_7)
+-	MATRIX_KEY(0, 5, KEY_8)
+-	MATRIX_KEY(0, 0, KEY_9)
+-	MATRIX_KEY(1, 6, KEY_0)
+-
+-	/* Row 2 */
+-	MATRIX_KEY(3, 4, KEY_APOSTROPHE)
+-	MATRIX_KEY(7, 6, KEY_Q)
+-	MATRIX_KEY(7, 7, KEY_W)
+-	MATRIX_KEY(7, 2, KEY_E)
+-	MATRIX_KEY(1, 0, KEY_R)
+-	MATRIX_KEY(4, 4, KEY_T)
+-	MATRIX_KEY(1, 2, KEY_Y)
+-	MATRIX_KEY(6, 7, KEY_U)
+-	MATRIX_KEY(2, 2, KEY_I)
+-	MATRIX_KEY(5, 6, KEY_O)
+-	MATRIX_KEY(3, 7, KEY_P)
+-	MATRIX_KEY(6, 5, KEY_BACKSPACE)
+-
+-	/* Row 3 */
+-	MATRIX_KEY(5, 4, KEY_TAB)
+-	MATRIX_KEY(5, 7, KEY_A)
+-	MATRIX_KEY(2, 7, KEY_S)
+-	MATRIX_KEY(7, 0, KEY_D)
+-	MATRIX_KEY(2, 6, KEY_F)
+-	MATRIX_KEY(6, 2, KEY_G)
+-	MATRIX_KEY(6, 6, KEY_H)
+-	MATRIX_KEY(1, 4, KEY_J)
+-	MATRIX_KEY(3, 1, KEY_K)
+-	MATRIX_KEY(2, 1, KEY_L)
+-	MATRIX_KEY(4, 6, KEY_ENTER)
+-
+-	/* Row 4 */
+-	MATRIX_KEY(3, 6, KEY_LEFTSHIFT)		/* KEY_CAPSLOCK */
+-	MATRIX_KEY(6, 1, KEY_Z)
+-	MATRIX_KEY(7, 4, KEY_X)
+-	MATRIX_KEY(5, 1, KEY_C)
+-	MATRIX_KEY(1, 7, KEY_V)
+-	MATRIX_KEY(2, 4, KEY_B)
+-	MATRIX_KEY(4, 1, KEY_N)
+-	MATRIX_KEY(1, 1, KEY_M)
+-	MATRIX_KEY(3, 5, KEY_COMMA)
+-	MATRIX_KEY(5, 2, KEY_DOT)
+-	MATRIX_KEY(6, 3, KEY_UP)
+-	MATRIX_KEY(7, 3, KEY_OK)
+-
+-	/* Row 5 */
+-	MATRIX_KEY(2, 5, KEY_LEFTCTRL)		/* KEY_LEFTSHIFT */
+-	MATRIX_KEY(4, 5, KEY_LEFTALT)		/* SYM */
+-	MATRIX_KEY(6, 0, KEY_MINUS)
+-	MATRIX_KEY(4, 7, KEY_EQUAL)
+-	MATRIX_KEY(1, 5, KEY_SPACE)
+-	MATRIX_KEY(3, 2, KEY_SLASH)
+-	MATRIX_KEY(4, 3, KEY_LEFT)
+-	MATRIX_KEY(5, 3, KEY_DOWN)
+-	MATRIX_KEY(3, 3, KEY_RIGHT)
+-
+-	/* Side buttons, KEY_VOLUMEDOWN and KEY_PWER are on CPCAP? */
+-	MATRIX_KEY(5, 0, KEY_VOLUMEUP)
+-	>;
+-};
+-
+ &mmc1 {
+ 	vmmc-supply = <&vwlan2>;
+ 	bus-width = <4>;
+@@ -427,34 +330,6 @@ wlcore: wlcore@2 {
+ 	};
+ };
+ 
+-&i2c1 {
+-	led-controller@38 {
+-		compatible = "ti,lm3532";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-		reg = <0x38>;
+-
+-		enable-gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
+-
+-		ramp-up-us = <1024>;
+-		ramp-down-us = <8193>;
+-
+-		backlight_led: led@0 {
+-			reg = <0>;
+-			led-sources = <2>;
+-			ti,led-mode = <0>;
+-			label = ":backlight";
+-		};
+-
+-		led@1 {
+-			reg = <1>;
+-			led-sources = <1>;
+-			ti,led-mode = <0>;
+-			label = ":kbd_backlight";
+-		};
+-	};
+-};
+-
+ &i2c2 {
+ 	touchscreen: touchscreen@4a {
+ 		compatible = "atmel,maxtouch";
+@@ -856,20 +731,6 @@ ak8975: magnetometer@c {
+ 				  "0", "0", "-1";
+ 
+ 	};
+-
+-	lis3dh: accelerometer@18 {
+-		compatible = "st,lis3dh-accel";
+-		reg = <0x18>;
+-
+-		vdd-supply = <&vhvio>;
+-
+-		interrupt-parent = <&gpio2>;
+-		interrupts = <2 IRQ_TYPE_EDGE_BOTH>; /* gpio34 */
+-
+-		rotation-matrix = "0", "-1", "0",
+-				  "1", "0", "0",
+-				  "0", "0", "1";
+-	};
+ };
+ 
+ &mcbsp2 {
+diff --git a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
+index ba5c35b7027d..49b2a8d55356 100644
+--- a/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
++++ b/arch/arm/boot/dts/omap4-droid-bionic-xt875.dts
+@@ -7,3 +7,33 @@ / {
+ 	model = "Motorola Droid Bionic XT875";
+ 	compatible = "motorola,droid-bionic", "ti,omap4430", "ti,omap4";
+ };
++
++&keypad {
++	keypad,num-rows = <8>;
++	keypad,num-columns = <8>;
++	linux,keymap = <
++	MATRIX_KEY(5, 0, KEY_VOLUMEUP)
++	MATRIX_KEY(3, 0, KEY_VOLUMEDOWN)
++	>;
++};
++
++&i2c1 {
++	led-controller@38 {
++		compatible = "ti,lm3532";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x38>;
++
++		enable-gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
++
++		ramp-up-us = <1024>;
++		ramp-down-us = <8193>;
++
++		backlight_led: led@0 {
++			reg = <0>;
++			led-sources = <2>;
++			ti,led-mode = <0>;
++			label = ":backlight";
++		};
++	};
++};
+diff --git a/arch/arm/boot/dts/omap4-droid4-xt894.dts b/arch/arm/boot/dts/omap4-droid4-xt894.dts
+index c0d2fd92aea3..3ea4c5b9fd31 100644
+--- a/arch/arm/boot/dts/omap4-droid4-xt894.dts
++++ b/arch/arm/boot/dts/omap4-droid4-xt894.dts
+@@ -3,7 +3,150 @@
+ 
+ #include "motorola-mapphone-common.dtsi"
+ 
++/ {
++	gpio_keys {
++		compatible = "gpio-keys";
++
++		volume_down {
++			label = "Volume Down";
++			gpios = <&gpio5 26 GPIO_ACTIVE_LOW>; /* gpio154 */
++			linux,code = <KEY_VOLUMEDOWN>;
++			linux,can-disable;
++			/* Value above 7.95ms for no GPIO hardware debounce */
++			debounce-interval = <10>;
++		};
++
++		slider {
++			label = "Keypad Slide";
++			gpios = <&gpio4 26 GPIO_ACTIVE_HIGH>; /* gpio122 */
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_KEYPAD_SLIDE>;
++			linux,can-disable;
++			/* Value above 7.95ms for no GPIO hardware debounce */
++			debounce-interval = <10>;
++		};
++	};
++};
++
+ / {
+ 	model = "Motorola Droid 4 XT894";
+ 	compatible = "motorola,droid4", "ti,omap4430", "ti,omap4";
+ };
++
++&keypad {
++	keypad,num-rows = <8>;
++	keypad,num-columns = <8>;
++	linux,keymap = <
++
++	/* Row 1 */
++	MATRIX_KEY(0, 2, KEY_1)
++	MATRIX_KEY(0, 6, KEY_2)
++	MATRIX_KEY(2, 3, KEY_3)
++	MATRIX_KEY(0, 7, KEY_4)
++	MATRIX_KEY(0, 4, KEY_5)
++	MATRIX_KEY(5, 5, KEY_6)
++	MATRIX_KEY(0, 1, KEY_7)
++	MATRIX_KEY(0, 5, KEY_8)
++	MATRIX_KEY(0, 0, KEY_9)
++	MATRIX_KEY(1, 6, KEY_0)
++
++	/* Row 2 */
++	MATRIX_KEY(3, 4, KEY_APOSTROPHE)
++	MATRIX_KEY(7, 6, KEY_Q)
++	MATRIX_KEY(7, 7, KEY_W)
++	MATRIX_KEY(7, 2, KEY_E)
++	MATRIX_KEY(1, 0, KEY_R)
++	MATRIX_KEY(4, 4, KEY_T)
++	MATRIX_KEY(1, 2, KEY_Y)
++	MATRIX_KEY(6, 7, KEY_U)
++	MATRIX_KEY(2, 2, KEY_I)
++	MATRIX_KEY(5, 6, KEY_O)
++	MATRIX_KEY(3, 7, KEY_P)
++	MATRIX_KEY(6, 5, KEY_BACKSPACE)
++
++	/* Row 3 */
++	MATRIX_KEY(5, 4, KEY_TAB)
++	MATRIX_KEY(5, 7, KEY_A)
++	MATRIX_KEY(2, 7, KEY_S)
++	MATRIX_KEY(7, 0, KEY_D)
++	MATRIX_KEY(2, 6, KEY_F)
++	MATRIX_KEY(6, 2, KEY_G)
++	MATRIX_KEY(6, 6, KEY_H)
++	MATRIX_KEY(1, 4, KEY_J)
++	MATRIX_KEY(3, 1, KEY_K)
++	MATRIX_KEY(2, 1, KEY_L)
++	MATRIX_KEY(4, 6, KEY_ENTER)
++
++	/* Row 4 */
++	MATRIX_KEY(3, 6, KEY_LEFTSHIFT)		/* KEY_CAPSLOCK */
++	MATRIX_KEY(6, 1, KEY_Z)
++	MATRIX_KEY(7, 4, KEY_X)
++	MATRIX_KEY(5, 1, KEY_C)
++	MATRIX_KEY(1, 7, KEY_V)
++	MATRIX_KEY(2, 4, KEY_B)
++	MATRIX_KEY(4, 1, KEY_N)
++	MATRIX_KEY(1, 1, KEY_M)
++	MATRIX_KEY(3, 5, KEY_COMMA)
++	MATRIX_KEY(5, 2, KEY_DOT)
++	MATRIX_KEY(6, 3, KEY_UP)
++	MATRIX_KEY(7, 3, KEY_OK)
++
++	/* Row 5 */
++	MATRIX_KEY(2, 5, KEY_LEFTCTRL)		/* KEY_LEFTSHIFT */
++	MATRIX_KEY(4, 5, KEY_LEFTALT)		/* SYM */
++	MATRIX_KEY(6, 0, KEY_MINUS)
++	MATRIX_KEY(4, 7, KEY_EQUAL)
++	MATRIX_KEY(1, 5, KEY_SPACE)
++	MATRIX_KEY(3, 2, KEY_SLASH)
++	MATRIX_KEY(4, 3, KEY_LEFT)
++	MATRIX_KEY(5, 3, KEY_DOWN)
++	MATRIX_KEY(3, 3, KEY_RIGHT)
++
++	/* Side buttons, KEY_VOLUMEDOWN and KEY_PWER are on CPCAP? */
++	MATRIX_KEY(5, 0, KEY_VOLUMEUP)
++	>;
++};
++
++&i2c1 {
++	led-controller@38 {
++		compatible = "ti,lm3532";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x38>;
++
++		enable-gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
++
++		ramp-up-us = <1024>;
++		ramp-down-us = <8193>;
++
++		backlight_led: led@0 {
++			reg = <0>;
++			led-sources = <2>;
++			ti,led-mode = <0>;
++			label = ":backlight";
++		};
++
++		led@1 {
++			reg = <1>;
++			led-sources = <1>;
++			ti,led-mode = <0>;
++			label = ":kbd_backlight";
++		};
++	};
++};
++
++&i2c4 {
++	lis3dh: accelerometer@18 {
++		compatible = "st,lis3dh-accel";
++		reg = <0x18>;
++
++		vdd-supply = <&vhvio>;
++
++		interrupt-parent = <&gpio2>;
++		interrupts = <2 IRQ_TYPE_EDGE_BOTH>; /* gpio34 */
++
++		rotation-matrix = "0", "-1", "0",
++				  "1", "0", "0",
++				  "0", "0", "1";
++	};
++};
+-- 
+2.29.1
 
