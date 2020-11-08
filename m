@@ -2,48 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD002AA893
-	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 01:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2C402AA89A
+	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 01:35:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728425AbgKHAb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Nov 2020 19:31:29 -0500
-Received: from gloria.sntech.de ([185.11.138.130]:40082 "EHLO gloria.sntech.de"
+        id S1726053AbgKHAf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Nov 2020 19:35:58 -0500
+Received: from gloria.sntech.de ([185.11.138.130]:40192 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726043AbgKHAb3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 7 Nov 2020 19:31:29 -0500
+        id S1726043AbgKHAf6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 7 Nov 2020 19:35:58 -0500
 Received: from p508fc3ee.dip0.t-ipconnect.de ([80.143.195.238] helo=phil.fritz.box)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1kbYc8-0008Lx-HA; Sun, 08 Nov 2020 01:31:24 +0100
+        id 1kbYgT-0008Ps-Mr; Sun, 08 Nov 2020 01:35:53 +0100
 From:   Heiko Stuebner <heiko@sntech.de>
-To:     Aditya Prayoga <aditya@kobol.io>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        Johan Jonker <jbx6244@gmail.com>,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: rockchip: Add Kobol Helios64
-Date:   Sun,  8 Nov 2020 01:31:21 +0100
-Message-Id: <160479547333.328385.5009987146654676702.b4-ty@sntech.de>
+To:     linux-rockchip@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Markus Reichl <m.reichl@fivetechno.de>
+Cc:     Heiko Stuebner <heiko@sntech.de>, dianders@chromium.org,
+        linux-kernel@vger.kernel.org, wens@kernel.org,
+        devicetree@vger.kernel.org, robin.murphy@arm.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Reorder LED triggers from mmc devices on rk3399-roc-pc.
+Date:   Sun,  8 Nov 2020 01:35:52 +0100
+Message-Id: <160479574913.328911.1441170250420756577.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201102150658.167161-1-uwe@kleine-koenig.org>
-References: <20201102150658.167161-1-uwe@kleine-koenig.org>
+In-Reply-To: <20201104192933.1001-1-m.reichl@fivetechno.de>
+References: <20201104192933.1001-1-m.reichl@fivetechno.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Nov 2020 16:06:58 +0100, Uwe Kleine-König wrote:
-> Document the new board by Kobol introduced recently in
-> rockchip/rk3399-kobol-helios64.dts.
+On Wed, 4 Nov 2020 20:29:31 +0100, Markus Reichl wrote:
+> After patch [1] SD-card becomes mmc1 and eMMC becomes mmc2.
+> Correct trigger of LEDs accordingly.
+> 
+> [1]
+> https://patchwork.kernel.org/patch/11881427
 
 Applied, thanks!
 
-[1/1] dt-bindings: arm: rockchip: Add Kobol Helios64
-      commit: 62dbf80fc581a8eed7288ed7aca24446054eb616
+[1/1] arm64: dts: rockchip: Reorder LED triggers from mmc devices on rk3399-roc-pc.
+      commit: 7327c8b98e2e14c47021eea14d1ab268086a6408
 
 Best regards,
 -- 
