@@ -2,113 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9955D2AAC4F
-	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 17:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 84D972AAC60
+	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 17:59:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728430AbgKHQxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Nov 2020 11:53:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728104AbgKHQxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 11:53:01 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 925C9C0613CF;
-        Sun,  8 Nov 2020 08:53:01 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id 7so8884153ejm.0;
-        Sun, 08 Nov 2020 08:53:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Rikl1cMUQrKKRfEty9vlE0bbTP/gldAUaSt6ZFA6Ac4=;
-        b=O7ZSLo3dzGjafmpqqFnclreHOVe9FkJWqozL3Ixox4tRNR66EfsvsldQX1ywpxfjsN
-         RxLCV/t8rwjqoS0VNyMR9fAvqEPMRCKifgbUkEpBu4oXxgck+aKQ9vQfihDe31SW7T2+
-         HF9wV5lavJbBkjFH6CL5mrwyIfFsF5B8Q+Sm4Rp5j0ti2oDzuuNc71na6PoL1/31jGTf
-         WYBg/D3Dz3clJFZmKqg7M+Xukf6JxXQKulyUYLP7osdyFrPVBXlNXIg/gRSMcBLLA9sq
-         TOzmPfq0y0Nv4So+3kAdpzo7RU/NUEXay5V1Wl9GmjFupYnCUkQFXnl91YAv/lerJSCq
-         6Z7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Rikl1cMUQrKKRfEty9vlE0bbTP/gldAUaSt6ZFA6Ac4=;
-        b=OlUrt2vLc3eKwbna8ayh0DL28QpmRWo6RwKDO2aQy7Ug1yPYzgov5XpPykNmBgj0TX
-         Z2qsBZMEgMX0JyNCdUfGRob1NQyRTUVHyndehJ47Zg/5uW0sO/Ge5azcKhiIoDwvD61x
-         dT9A8MJDTfaqExYigKolEUGw5zqJX1p81afJNfKXBsKNFQVrBu/vDzJ9EYs9fnnGv2pj
-         //LNspaF+1PY9iO2ASbmqZNMr8HIIWXG0LZAX96gY6OXO1I/fKyAX/H7StJKdqVFEvOZ
-         Rgv4rbPZ+VlpL/rhNOOeLvzMwa7UVDa+vBjcudbuMZxc71P14XM99xDY3nkGjHvuKnSZ
-         xrbA==
-X-Gm-Message-State: AOAM533OIUr44fedt6CyX7zjBBq7QSUvrn/wF6eSB8ycVR7FWu+od19U
-        PtmFH6usjydv+Yp0gPGflFc=
-X-Google-Smtp-Source: ABdhPJzKeFZ4YDUaRqvql2Gqeb1pkAFCZ/bH4q99bP/i+x+1fPoTwk4Ei85xGYCuw3ehxLZ+6mSYeA==
-X-Received: by 2002:a17:906:74c6:: with SMTP id z6mr11832276ejl.448.1604854380356;
-        Sun, 08 Nov 2020 08:53:00 -0800 (PST)
-Received: from ?IPv6:2a01:110f:b59:fd00:a483:75f7:76d4:f590? ([2a01:110f:b59:fd00:a483:75f7:76d4:f590])
-        by smtp.gmail.com with ESMTPSA id b6sm6684948edu.21.2020.11.08.08.52.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Nov 2020 08:52:59 -0800 (PST)
-Subject: Re: [RFC PATCH 1/3] leds: Add driver for QPNP flash led
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@protonmail.com>, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Brian Masney <masneyb@onstation.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        Russell King <linux@armlinux.org.uk>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-kernel@vger.kernel.org, lkcamp@lists.libreplanetbr.org,
-        andrealmeid@collabora.com
-References: <20201106165737.1029106-1-nfraprado@protonmail.com>
- <20201106165737.1029106-2-nfraprado@protonmail.com>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <e132bb75-66fb-0cbb-c636-5ef5f279d161@gmail.com>
-Date:   Sun, 8 Nov 2020 17:52:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1728006AbgKHQ7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Nov 2020 11:59:55 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37590 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727844AbgKHQ7z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Nov 2020 11:59:55 -0500
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8CF4120678;
+        Sun,  8 Nov 2020 16:59:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604854794;
+        bh=hQ8jpwkqu7IZYJyC/2BQHv1Von+2yk8napFvrpZ4eiM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=tNMp/ZGi7ymYhk2yPEwoP0TFON3Y2N6y6Occ5JF+bG83RvwOugWG5xpZcNuzqqTEe
+         omFw+BGVOgC5Qmj5SegkRXeAglQJr2fWZTCJbA1jA4XWHZgU2vOVX9XPqCnE7N/Llg
+         gqMUiWNSJLzed+EDa8v0U1qUih7FxVd9OqdNOR/Y=
+Date:   Sun, 8 Nov 2020 16:59:50 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     <linux-iio@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 37/46] dt-binding:iio:adc:ti,ads124s08: txt to yaml
+ format conversion.
+Message-ID: <20201108165950.2ea18229@archlinux>
+In-Reply-To: <db16627a-d405-1b8f-bec9-da41f7faabf8@ti.com>
+References: <20201031184854.745828-1-jic23@kernel.org>
+        <20201031184854.745828-38-jic23@kernel.org>
+        <db16627a-d405-1b8f-bec9-da41f7faabf8@ti.com>
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20201106165737.1029106-2-nfraprado@protonmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
+On Mon, 2 Nov 2020 06:49:54 -0600
+Dan Murphy <dmurphy@ti.com> wrote:
 
-We have LED flash class framework since 2015. Please refer to the
-following files:
+> Jonathan
+>=20
+> On 10/31/20 1:48 PM, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >
+> > Simple binding so straight forward format conversion.
+> >
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: Dan Murphy <dmurphy@ti.com>
+> > ---
+> >   .../bindings/iio/adc/ti,ads124s08.yaml        | 52 +++++++++++++++++++
+> >   .../bindings/iio/adc/ti-ads124s08.txt         | 25 ---------
+> >   2 files changed, 52 insertions(+), 25 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads124s08.yam=
+l b/Documentation/devicetree/bindings/iio/adc/ti,ads124s08.yaml
+> > new file mode 100644
+> > index 000000000000..5912a52953fa
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads124s08.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) =20
+> GPL-2.0-only=C2=A0 OR BSD-2-Clause
+>=20
 
-Documentation/leds/leds-class-flash.rst
-Documentation/ABI/testing/sysfs-class-led-flash
-Documentation/devicetree/bindings/leds/common.yaml
-drivers/leds/led-class-flash.c
+Fair enough, GPL-2.0 is defined as meaning the same, but is deprecated
+according to the SPDX list of names.
+@Rob, I assume we aren't taking a strong view on which is preferred for
+DT bindings?
 
-Thare are also few LED flash drivers in the tree. Since there seems to
-be boost feature present on the the device then you might want to
-compare drivers/leds/leds-max77693.c with its bindings
-Documentation/devicetree/bindings/mfd/max77693.txt (refer to LED part).
+Jonathan
 
-Please also remember to include DT bindings patch to your series.
 
-On 11/6/20 5:58 PM, Nícolas F. R. A. Prado wrote:
-> Add driver for the QPNP flash LED. It works over SPMI and is part of the
-> PM8941 PMIC.
-> 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@protonmail.com>
-> ---
->   drivers/leds/Kconfig     |    9 +
->   drivers/leds/Makefile    |    1 +
->   drivers/leds/leds-qpnp.c | 1351 ++++++++++++++++++++++++++++++++++++++
->   3 files changed, 1361 insertions(+)
->   create mode 100644 drivers/leds/leds-qpnp.c
-> 
+> Otherwise
+>=20
+> Reviewed-by: Dan Murphy <dmurphy@ti.com>
+>=20
 
--- 
-Best regards,
-Jacek Anaszewski
