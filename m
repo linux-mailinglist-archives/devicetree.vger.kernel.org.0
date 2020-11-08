@@ -2,82 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 842772AAD1B
-	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 20:01:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 695242AAD2B
+	for <lists+devicetree@lfdr.de>; Sun,  8 Nov 2020 20:13:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728430AbgKHTBT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 8 Nov 2020 14:01:19 -0500
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:37617 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727570AbgKHTBS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 14:01:18 -0500
-Received: by mail-ed1-f66.google.com with SMTP id cq7so6257351edb.4;
-        Sun, 08 Nov 2020 11:01:17 -0800 (PST)
+        id S1727999AbgKHTNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Nov 2020 14:13:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53562 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727570AbgKHTNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 14:13:49 -0500
+Received: from mail-qv1-xf44.google.com (mail-qv1-xf44.google.com [IPv6:2607:f8b0:4864:20::f44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2B76C0613CF;
+        Sun,  8 Nov 2020 11:13:49 -0800 (PST)
+Received: by mail-qv1-xf44.google.com with SMTP id g19so3038770qvy.2;
+        Sun, 08 Nov 2020 11:13:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VJ5RXvo1v3VSPSSAx4s/l/urAri8Yc/qdFDKhTM4mXU=;
+        b=aYFvg6Irq5jtrIZ6vQUUJmvuEWeuBCehNS7mpNbS/VR4nHLXTpGUejqBjKhLZendce
+         tjhdowTYZgqsmcGQ/TLQSnB0kfEhknsnwbo3zZhohTTEHuBvtDpkdHSkRjSNl63yvCWV
+         3VaoUSG06kdc7V8Q4aXbyKfC1mLKp4h4i6GJSXFCAQVAUhAoXAHc9p47ZYCRuz/3Mi6X
+         7Gd9A/rnZYISkt4BLGrrKND8bhoEsF2DVh5xbYVpp4SAEbjMa/lFyug/0sFFrN31TsbT
+         G8elpcXET5aZASiS5MfEoRJ4CGqKqZ7qD+sYQK4WDI03hWQywW5Is3yyWk9AgwbAsBWe
+         GKrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=rf8SABzfQsJaazgSJTAJXSY+0MhV6XCRywYCezqPpp0=;
-        b=iyc/EVI4plMjuyT0zPqSnQ0SupGtdBn98h8em8cI+Jj812cZUZyc6pORBawFSFk8nU
-         6Mx6BEjYUvGXCh5bYYw/ScHmbNu64NIgPp4HTrGZC83SZtPZHQ1jAoHMi2vmhAcNH4e6
-         MaPYs/l3BjG9g3qCxIKz+1EBV/IyxpLQtC/zcr+Ss33/0uBPZSIKpb3uOAPAGQKPbny+
-         0FyAK4Nk/T6NMKrttSwRsh7LGXHJtLksh75sYly/u7qvFK8m7uIPZgX2biIfu1NZag1Y
-         gzE4wBYu2eC0vUPqArtNsgAXkPCv6pA1Ue0jN7k0NYHtkP4mnJJejK8wu9M71+qSJPPO
-         /kQA==
-X-Gm-Message-State: AOAM530rD+ETTg6JmPIpb3SzlViKO2wWAueJEn04lMdywQIaQbuJJIAO
-        cBUt70TM00ApRLyvZGys2NI=
-X-Google-Smtp-Source: ABdhPJxsxh4jH9DO3X7CbBQQCXH23LJIvCVclMB3yisqew2iZYDINpjQ+6K5/JMVT2WYrqTku0Q8RQ==
-X-Received: by 2002:a50:ed96:: with SMTP id h22mr11507251edr.336.1604862077263;
-        Sun, 08 Nov 2020 11:01:17 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id r20sm5787660edq.6.2020.11.08.11.01.15
+         :mime-version:content-disposition:in-reply-to;
+        bh=VJ5RXvo1v3VSPSSAx4s/l/urAri8Yc/qdFDKhTM4mXU=;
+        b=NOZtjwieasXX4s7Qt4rrSXva94eCbGrFonQLj3ENzfueUiIY575Dy271uRm+r3tC/u
+         6jkOdUmELt1SeoGQW6+6gomCjarYjYWqHLAq/bY9V247wCEpkz1RnND5NQb3OxseDX2H
+         GaFtGd+wvSThm5uOXwNYFkQ4D9bWIsM4Ad3Nq89/uYUgxPTWEzjT+DkIFY9ZPEmUICY3
+         MYu/Xlk4Jx5NonXLDM0fOi9VP82dsLZgofMnGO9k4exleEccbzwTfwZhjAaq+zOpEgGt
+         BSQbajnHSYLcDAZ9VNBHXBOIjWmScmYEgIq5HBBMogRTfbO5HlaLiGDT1vKYFBKNsO3u
+         XztQ==
+X-Gm-Message-State: AOAM530zENS2awpSPxvd+EdeZau98AzY4i24EXoWYCY9+5YD8h3shnlV
+        CsjkNgf5KMgaj83l6Bi5piw=
+X-Google-Smtp-Source: ABdhPJyKS6GIi3iMAi6Nljy8HYW4MjqxIRxgj/L3D5IlMWdof2ZTrXFFbE21QTJ97MqgBvKS+RYPrA==
+X-Received: by 2002:a0c:9ad9:: with SMTP id k25mr11096613qvf.57.1604862828737;
+        Sun, 08 Nov 2020 11:13:48 -0800 (PST)
+Received: from ubuntu-m3-large-x86 ([2604:1380:45f1:1d00::1])
+        by smtp.gmail.com with ESMTPSA id a206sm4735810qkb.64.2020.11.08.11.13.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Nov 2020 11:01:16 -0800 (PST)
-Date:   Sun, 8 Nov 2020 20:01:14 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>
-Cc:     kgene@kernel.org, alim.akhtar@samsung.com, robh+dt@kernel.org,
-        a.kesavan@samsung.com, naveenkrishna.ch@gmail.com,
-        thomas.ab@samsung.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] arm64: dts: exynos: Correct psci compatible used
- on Exynos7
-Message-ID: <20201108190114.GB28948@kozik-lap>
-References: <20201107133926.37187-1-pawel.mikolaj.chmiel@gmail.com>
- <20201107133926.37187-2-pawel.mikolaj.chmiel@gmail.com>
+        Sun, 08 Nov 2020 11:13:48 -0800 (PST)
+Date:   Sun, 8 Nov 2020 12:13:46 -0700
+From:   Nathan Chancellor <natechancellor@gmail.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: imx: Fix imx8mm-kontron-n801x-s.dtb target
+Message-ID: <20201108191346.GA4061631@ubuntu-m3-large-x86>
+References: <20201108022321.2114430-1-natechancellor@gmail.com>
+ <CAJKOXPdVVgRMaCPfq3nPR232KQyKVVewm5LveUSuyfqE8sScQg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201107133926.37187-2-pawel.mikolaj.chmiel@gmail.com>
+In-Reply-To: <CAJKOXPdVVgRMaCPfq3nPR232KQyKVVewm5LveUSuyfqE8sScQg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 07, 2020 at 02:39:26PM +0100, Paweł Chmiel wrote:
-> It's not possible to reboot or poweroff Exynos7420 using PSCI. Instead
-> we need to use syscon reboot/poweroff drivers, like it's done for other
-> Exynos SoCs. This was confirmed by checking vendor source and testing it
-> on Samsung Galaxy S6 device based on this SoC.
+Hi Krzysztof,
+
+On Sun, Nov 08, 2020 at 10:31:10AM +0100, Krzysztof Kozlowski wrote:
+> On Sun, 8 Nov 2020 at 03:23, Nathan Chancellor <natechancellor@gmail.com> wrote:
 > 
-> To be able to use custom restart/poweroff handlers instead of PSCI
-> functions, we need to correct psci compatible. This also requires us to
-> provide function ids for CPU_ON and CPU_OFF.
+> Hi,
 > 
-> Fixes: fb026cb65247 ("arm64: dts: Add reboot node for exynos7")
-> Fixes: b9024cbc937d ("arm64: dts: Add initial device tree support for exynos7")
-> Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
-> ---
-> Changes from v1:
->   - Split into two separate patches.
-> ---
->  arch/arm64/boot/dts/exynos/exynos7.dtsi | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Thanks for the fixes.
+> 
+> Please mark patches with versions, this should be v2. Otherwise
+> maintainer might apply the older one,
+> You also need to add versioning changelog after ---.
 
-Thanks, applied.
+I have only sent this one patch. It looks like Anders Roxell sent an
+identical patch though:
 
-Best regards,
-Krzysztof
+https://lore.kernel.org/linux-devicetree/20201105111823.1613337-1-anders.roxell@linaro.org/
 
+> > $ make -skj"$(nproc)" ARCH=arm64 CROSS_COMPILE=aarch64-linux- \
+> > INSTALL_DTBS_PATH=rootfs distclean defconfig dtbs dtbs_install
+> 
+> All this is still irrelevant. Just: "make dtbs". Don't add unrelated
+> details like how many processes you spawn, where do you want to
+> install DTBS or even all other make targets.
+> Everyone should know how to cross compile so simple: make dtbs
+
+Sure, I will update it, my apologies.
+
+> > ...
+> > make[3]: *** No rule to make target
+> > 'rootfs/freescale/imx8mm-kontron-n801x-s.dts', needed by
+> > '__dtbs_install'
+> 
+> This should be joined with previous line. I mentioned it in your previous patch.
+
+Sure, I usually just let my editor do the auto wrapping but I will put
+it all onto one line!
+
+> > ...
+> 
+> Also not needed dots. This is small change and should go with small
+> and accurate description. Blowing the description does not help.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> Best regards,
+> Krzysztof
+
+Thank you for the review, I will sent v2 along shortly.
+
+Cheers,
+Nathan
