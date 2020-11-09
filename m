@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE0192ABDFB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 14:59:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24C722ABE0A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 15:00:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729850AbgKIN7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 08:59:07 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:29920 "EHLO
+        id S1730294AbgKIOAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 09:00:01 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:35250 "EHLO
         us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729697AbgKIN7G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 08:59:06 -0500
+        by vger.kernel.org with ESMTP id S1730251AbgKIOAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 09:00:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1604930345;
+        s=mimecast20190719; t=1604930398;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=7xwyMRgx6zwOoi8ggqAXxORMWSzC0EyKow3sz49WwHo=;
-        b=Scq6HiNR6YvdPzryR0DPWR7C3e5lCAsR1+Op19eZdJH7eb/ippFQd8oV/AbhM/AZ6iHuk6
-        kh3Qj8EybrsokiTkq/n0JqjM0ctZZ1T04YWu0nKy4OYToM1NNakB6E8z4xUgn3ILura86K
-        Zko1n/MbcTYi8g5lWV07jAHJVI6GeHM=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-28-Af5TMbucO1uL1FrYQ9WPTg-1; Mon, 09 Nov 2020 08:59:04 -0500
-X-MC-Unique: Af5TMbucO1uL1FrYQ9WPTg-1
-Received: by mail-ed1-f69.google.com with SMTP id h6so2730625edt.12
-        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 05:59:03 -0800 (PST)
+        bh=+Q0/WKC9ygaVRT70WbAMfpAiA9Io/Zwg/bd3hxZJLXw=;
+        b=hnO8Fpz1quoJ4i0zgwSTrYHivskH6chvNOE/rN0sj0nrRylEKYXV6VawUs/WNeXTgbXVjC
+        WQhlF0/TREsg62b8/tSUmq4yd9D5cT8pY4uG5J9RJNc49Y8FtbLsltRSSCnWK07rttEw6K
+        LejX/n6m8nbNwOwObOckd+0QKS8dLmE=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-420-kRlMwjm_NVWax6S-DorACA-1; Mon, 09 Nov 2020 08:59:57 -0500
+X-MC-Unique: kRlMwjm_NVWax6S-DorACA-1
+Received: by mail-ed1-f70.google.com with SMTP id bs10so2722925edb.22
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 05:59:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=7xwyMRgx6zwOoi8ggqAXxORMWSzC0EyKow3sz49WwHo=;
-        b=HcLPuLUYyaj8cnxpKkpRNpRb4grJXqIt0i1QfYwJFc5wQoy6Rsk5UZDtw3xtiNFE8h
-         Qs2eWseyKpDsSGqr+NYen/LxzseJCiDAQLVKK+vpM+eg9HRw+QoB8cDmDhvS2Wgk6Twq
-         vYycdssv/HRaNHmamSgZ/6SsKDMD6GLTZ9f5108NFWqreSBSoWRvoh22dJqqG9iCUQUc
-         S9FUsmg84XDcxBmGY8VF8iEtwhFWRkm0c1AyPDGSS/Qn9vyg+AjvCn1jv7fYEPI4HGKM
-         pApkMxT6MgB8ZGaWctwDVL9ooa74PzPQRj9SOKmLmWKisttwIxViDH9A4ofi7ts55YVw
-         tY5w==
-X-Gm-Message-State: AOAM531qvJ9cd+s8nlm9+wuh4yx+RMsOm6LKYS+et3McWQH0Di/8izIP
-        IrsRHrb6Vep0Rbea+6qe3Edp7Z+IKROAG3sonwB6QIvWgwtVEfYj/0wEonooY5qZOWrWiod7+KL
-        7a5GYr0NIJaaF+OLGOIg3bw==
-X-Received: by 2002:a17:906:6d13:: with SMTP id m19mr15065935ejr.345.1604930342787;
-        Mon, 09 Nov 2020 05:59:02 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwtdM3M+0YFSVIeiw2vPzebtoaAaXJrH7HsStEJdONxGf7Fpp63aS0CZ48GpVImlcZ1NZAehw==
-X-Received: by 2002:a17:906:6d13:: with SMTP id m19mr15065916ejr.345.1604930342620;
-        Mon, 09 Nov 2020 05:59:02 -0800 (PST)
+        bh=+Q0/WKC9ygaVRT70WbAMfpAiA9Io/Zwg/bd3hxZJLXw=;
+        b=UpUoIURqKeNq7pRPRyWOUzy3XzIoDkWjkHqsXQ+YmfqAtcFXF4w5nU117RVoyLYQYy
+         chXfCR67O4NaSg9Bushsv39Hns+pkITePyL9Z8H0e9B50NRjFcZ0LMB4572C4vmrj6NG
+         87i8ltASoEdyzBNjERi419qhxTm2AKBDItllnEwfo7vF0OuSqsLBsRFhc8GmgsksZ7j6
+         hmblykHNL4IMmeFBuBi6GsaCM+Q5q5RjkJvmh2gk6/uYV61P5eNOHp2YY8Zju/flshLn
+         un2nP0HyEF8agiwEAU1yAGPQqlGl2efDRoRa6xMJ0A6T3vKq8YlJCaQ7p6lcVoPyZm2X
+         UUvg==
+X-Gm-Message-State: AOAM533t6KkIufwJkktCR6RXJcCFV9Up/K+8+fHcHVzZd+0SYlbftyCk
+        Gs/OiW3zQ4V0rttXaNTFcoWaxyeYZbBEcC7+URvbXOrgWnM2ANrKtUefW7kREkBYNb23QxfMPYF
+        FWJa2tVGkyCYZMzSyIXJXlQ==
+X-Received: by 2002:a50:f104:: with SMTP id w4mr15001644edl.381.1604930390135;
+        Mon, 09 Nov 2020 05:59:50 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzE7Gi5mtM0lM74RcphRhzF9k+bg2uK0RboIYO0WxUMpofYFcAPhZ7brr7fcePLG7T9NpCKGw==
+X-Received: by 2002:a50:f104:: with SMTP id w4mr15001617edl.381.1604930389916;
+        Mon, 09 Nov 2020 05:59:49 -0800 (PST)
 Received: from x1.localdomain (2001-1c00-0c0c-fe00-6c10-fbf3-14c4-884c.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:6c10:fbf3:14c4:884c])
-        by smtp.gmail.com with ESMTPSA id c4sm8714607ejx.9.2020.11.09.05.59.01
+        by smtp.gmail.com with ESMTPSA id h23sm8797344ejf.120.2020.11.09.05.59.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2020 05:59:02 -0800 (PST)
-Subject: Re: [PATCH v2 4/9] ata: ahci: add ack callback to multi irq handler
+        Mon, 09 Nov 2020 05:59:49 -0800 (PST)
+Subject: Re: [PATCH v2 5/9] ata: ahci: mvebu: Add support for A8k legacy DT
+ bindings
 To:     sven.auhagen@voleatech.de, axboe@kernel.dk, robh+dt@kernel.org,
         tglx@linutronix.de, maz@kernel.org, gregory.clement@bootlin.com
 Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -60,14 +61,14 @@ Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
         thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
 References: <20201104155237.77772-1-sven.auhagen@voleatech.de>
- <20201104155237.77772-5-sven.auhagen@voleatech.de>
+ <20201104155237.77772-6-sven.auhagen@voleatech.de>
 From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <b27902a6-f7cb-cea4-2023-2cc6875a4f42@redhat.com>
-Date:   Mon, 9 Nov 2020 14:59:01 +0100
+Message-ID: <75818019-d578-95cc-5ae0-bf022305e068@redhat.com>
+Date:   Mon, 9 Nov 2020 14:59:48 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <20201104155237.77772-5-sven.auhagen@voleatech.de>
+In-Reply-To: <20201104155237.77772-6-sven.auhagen@voleatech.de>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -80,13 +81,27 @@ Hi,
 On 11/4/20 4:52 PM, sven.auhagen@voleatech.de wrote:
 > From: Sven Auhagen <sven.auhagen@voleatech.de>
 > 
-> In order to support custom actions at the end of the irq handler
-> a multi_irq_host_ack callback is added to the struct ahci_host_priv.
+> The CP110 SATA unit has 2 ports, and a dedicated ICU entry per
+> port. In the past, the AHCI SATA driver only supported one interrupt
+> per SATA unit. To solve this conflict, the 2 SATA wired interrupts in
+> the South-Bridge got configured as 1 GIC interrupt in the
+> North-Bridge, regardless of the number of SATA ports actually
+> enabled/in use, and the DT bindings only referenced the interrupt of
+> one port.
 > 
-> Suggested-by: Hans de Goede <hdegoede@redhat.com>
+> Since then, this limitation has been addressed and this patch ensures
+> backward compatibility with old DTs not describing SATA ports
+> correctly directly from the AHCI MVEBU driver. This way, we will be
+> able to drop the hack from the ICU driver. IOW, when the A8k
+> compatible string is used and there is no sub-nodes in the DT, we
+> fake the creation and mapping of the second (missing) interrupt.
+> 
 > Signed-off-by: Sven Auhagen <sven.auhagen@voleatech.de>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Thanks, patch looks good to me:
+Much better, thank you.
+
+The patch looks good to me now:
 
 Reviewed-by: Hans de Goede <hdegoede@redhat.com>
 
@@ -95,44 +110,239 @@ Regards,
 Hans
 
 > ---
->  drivers/ata/ahci.h    | 2 ++
->  drivers/ata/libahci.c | 4 ++++
->  2 files changed, 6 insertions(+)
+>  drivers/ata/ahci_mvebu.c       | 126 ++++++++++++++++++++++++++++++---
+>  drivers/ata/libahci_platform.c |   3 +
+>  include/linux/ahci_platform.h  |   1 +
+>  3 files changed, 120 insertions(+), 10 deletions(-)
 > 
-> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
-> index 98b8baa47dc5..d8109e06794c 100644
-> --- a/drivers/ata/ahci.h
-> +++ b/drivers/ata/ahci.h
-> @@ -371,6 +371,8 @@ struct ahci_host_priv {
->  	/* only required for per-port MSI(-X) support */
->  	int			(*get_irq_vector)(struct ata_host *host,
->  						  int port);
+> diff --git a/drivers/ata/ahci_mvebu.c b/drivers/ata/ahci_mvebu.c
+> index ed82381dc4a7..22447b1bb23f 100644
+> --- a/drivers/ata/ahci_mvebu.c
+> +++ b/drivers/ata/ahci_mvebu.c
+> @@ -16,6 +16,7 @@
+>  #include <linux/mbus.h>
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/platform_device.h>
+>  #include "ahci.h"
+>  
+> @@ -28,9 +29,15 @@
+>  #define AHCI_WINDOW_BASE(win)	(0x64 + ((win) << 4))
+>  #define AHCI_WINDOW_SIZE(win)	(0x68 + ((win) << 4))
+>  
+> +#define ICU_SATA0_ICU_ID 109
+> +#define ICU_SATA1_ICU_ID 107
 > +
-> +	int			(*multi_irq_host_ack)(int irq, struct ata_port *ap);
+>  struct ahci_mvebu_plat_data {
+> -	int (*plat_config)(struct ahci_host_priv *hpriv);
+> +	int (*plat_config)(struct platform_device *pdev,
+> +				   struct ahci_host_priv *hpriv);
+>  	unsigned int host_flags;
+> +	unsigned int resource_flags;
+> +	unsigned int port_irq[2];
 >  };
 >  
->  extern int ahci_ignore_sss;
-> diff --git a/drivers/ata/libahci.c b/drivers/ata/libahci.c
-> index ea5bf5f4cbed..cf9839135a57 100644
-> --- a/drivers/ata/libahci.c
-> +++ b/drivers/ata/libahci.c
-> @@ -1897,6 +1897,7 @@ static void ahci_port_intr(struct ata_port *ap)
->  static irqreturn_t ahci_multi_irqs_intr_hard(int irq, void *dev_instance)
+>  static void ahci_mvebu_mbus_config(struct ahci_host_priv *hpriv,
+> @@ -67,7 +74,8 @@ static void ahci_mvebu_regret_option(struct ahci_host_priv *hpriv)
+>  	writel(0x80, hpriv->mmio + AHCI_VENDOR_SPECIFIC_0_DATA);
+>  }
+>  
+> -static int ahci_mvebu_armada_380_config(struct ahci_host_priv *hpriv)
+> +static int ahci_mvebu_armada_380_config(struct platform_device *pdev,
+> +				   struct ahci_host_priv *hpriv)
 >  {
->  	struct ata_port *ap = dev_instance;
+>  	const struct mbus_dram_target_info *dram;
+>  	int rc = 0;
+> @@ -83,7 +91,8 @@ static int ahci_mvebu_armada_380_config(struct ahci_host_priv *hpriv)
+>  	return rc;
+>  }
+>  
+> -static int ahci_mvebu_armada_3700_config(struct ahci_host_priv *hpriv)
+> +static int ahci_mvebu_armada_3700_config(struct platform_device *pdev,
+> +				   struct ahci_host_priv *hpriv)
+>  {
+>  	u32 reg;
+>  
+> @@ -96,8 +105,94 @@ static int ahci_mvebu_armada_3700_config(struct ahci_host_priv *hpriv)
+>  	return 0;
+>  }
+>  
+> -static int ahci_mvebu_armada_8k_config(struct ahci_host_priv *hpriv)
+> +static int multi_irq_host_ack_armada8k(int irq, struct ata_port *ap)
+>  {
 > +	struct ahci_host_priv *hpriv = ap->host->private_data;
->  	void __iomem *port_mmio = ahci_port_base(ap);
->  	u32 status;
->  
-> @@ -1909,6 +1910,9 @@ static irqreturn_t ahci_multi_irqs_intr_hard(int irq, void *dev_instance)
->  	ahci_handle_port_interrupt(ap, port_mmio, status);
->  	spin_unlock(ap->lock);
->  
-> +	if (hpriv->multi_irq_host_ack)
-> +		hpriv->multi_irq_host_ack(irq, ap);
+> +	void __iomem *mmio = hpriv->mmio;
 > +
->  	VPRINTK("EXIT\n");
+> +	writel(BIT(ap->port_no), mmio + HOST_IRQ_STAT);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ahci_get_per_port_irq_armada8k(struct ata_host *host, int port)
+> +{
+> +	struct ahci_host_priv *hpriv = host->private_data;
+> +	struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
+> +
+> +	return pdata->port_irq[port];
+> +}
+> +
+> +static int ahci_mvebu_armada_8k_irq_backwards(struct ahci_host_priv *hpriv,
+> +				       struct device *dev)
+> +{
+> +	struct device_node *np = of_irq_find_parent(dev->of_node);
+> +	struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
+> +	struct irq_data *irqd = irq_get_irq_data(pdata->port_irq[0]);
+> +	int host_irq = irqd ? irqd_to_hwirq(irqd) : 0;
+> +	int missing_irq = (host_irq == ICU_SATA1_ICU_ID) ?
+> +		ICU_SATA0_ICU_ID : ICU_SATA1_ICU_ID;
+> +	struct irq_fwspec fwspec = {
+> +		.fwnode = of_node_to_fwnode(np),
+> +		.param_count = 2,
+> +		.param = {missing_irq, IRQ_TYPE_LEVEL_HIGH},
+> +	};
+> +	int irq;
+> +
+> +	pdata->port_irq[1] = irq_create_fwspec_mapping(&fwspec);
+> +	hpriv->mask_port_map = GENMASK(1, 0);
+> +
+> +	if (missing_irq == ICU_SATA0_ICU_ID) {
+> +		irq = pdata->port_irq[0];
+> +		pdata->port_irq[0] = pdata->port_irq[1];
+> +		pdata->port_irq[1] = irq;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ahci_mvebu_armada_8k_config(struct platform_device *pdev,
+> +				   struct ahci_host_priv *hpriv)
+> +{
+> +	struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *child;
+> +	int port_irq, child_nodes, port = 0;
+> +
+> +	/* Get IRQs per port */
+> +	child_nodes = of_get_child_count(dev->of_node);
+> +	if (child_nodes) {
+> +		for_each_child_of_node(dev->of_node, child) {
+> +
+> +			port_irq = of_irq_get(child, 0);
+> +			if (!port_irq)
+> +				port_irq = -EINVAL;
+> +
+> +			if (port_irq < 0)
+> +				goto compat;
+> +
+> +			pdata->port_irq[port] = port_irq;
+> +			port++;
+> +		}
+> +
+> +		goto out;
+> +	}
+> +
+> +compat:
+> +	/* Backwards Compatibility Check */
+> +	port_irq = platform_get_irq(pdev, 0);
+> +	if (port_irq > 0) {
+> +		pdata->port_irq[0] = port_irq;
+> +		ahci_mvebu_armada_8k_irq_backwards(hpriv, dev);
+> +	} else {
+> +		dev_err(dev, "no irq\n");
+> +		return port_irq;
+> +	}
+> +
+> +out:
+> +	hpriv->flags |= AHCI_HFLAG_MULTI_MSI;
+> +	hpriv->get_irq_vector = ahci_get_per_port_irq_armada8k;
+> +
+>  	return 0;
+>  }
 >  
->  	return IRQ_HANDLED;
+> @@ -167,7 +262,7 @@ static int ahci_mvebu_resume(struct platform_device *pdev)
+>  	struct ahci_host_priv *hpriv = host->private_data;
+>  	const struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
+>  
+> -	pdata->plat_config(hpriv);
+> +	pdata->plat_config(pdev, hpriv);
+>  
+>  	return ahci_platform_resume_host(&pdev->dev);
+>  }
+> @@ -189,15 +284,22 @@ static struct scsi_host_template ahci_platform_sht = {
+>  
+>  static int ahci_mvebu_probe(struct platform_device *pdev)
+>  {
+> -	const struct ahci_mvebu_plat_data *pdata;
+> +	const struct ahci_mvebu_plat_data *pdata_plat;
+> +	struct ahci_mvebu_plat_data *pdata;
+>  	struct ahci_host_priv *hpriv;
+>  	int rc;
+>  
+> -	pdata = of_device_get_match_data(&pdev->dev);
+> -	if (!pdata)
+> +	pdata_plat = of_device_get_match_data(&pdev->dev);
+> +	if (!pdata_plat)
+>  		return -EINVAL;
+>  
+> -	hpriv = ahci_platform_get_resources(pdev, 0);
+> +	pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
+> +	if (!pdata)
+> +		return -ENOMEM;
+> +
+> +	memcpy(pdata, pdata_plat, sizeof(*pdata));
+> +
+> +	hpriv = ahci_platform_get_resources(pdev, pdata->resource_flags);
+>  	if (IS_ERR(hpriv))
+>  		return PTR_ERR(hpriv);
+>  
+> @@ -210,10 +312,13 @@ static int ahci_mvebu_probe(struct platform_device *pdev)
+>  
+>  	hpriv->stop_engine = ahci_mvebu_stop_engine;
+>  
+> -	rc = pdata->plat_config(hpriv);
+> +	rc = pdata->plat_config(pdev, hpriv);
+>  	if (rc)
+>  		goto disable_resources;
+>  
+> +	if (pdata->resource_flags & AHCI_PLATFORM_ARMADA8K_QUIRK)
+> +		hpriv->multi_irq_host_ack = multi_irq_host_ack_armada8k;
+> +
+>  	rc = ahci_platform_init_host(pdev, hpriv, &ahci_mvebu_port_info,
+>  				     &ahci_platform_sht);
+>  	if (rc)
+> @@ -237,6 +342,7 @@ static const struct ahci_mvebu_plat_data ahci_mvebu_armada_3700_plat_data = {
+>  
+>  static const struct ahci_mvebu_plat_data ahci_mvebu_armada_8k_plat_data = {
+>  	.plat_config = ahci_mvebu_armada_8k_config,
+> +	.resource_flags = AHCI_PLATFORM_ARMADA8K_QUIRK,
+>  };
+>  
+>  static const struct of_device_id ahci_mvebu_of_match[] = {
+> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+> index f6f2a111d226..a5d06565a5c7 100644
+> --- a/drivers/ata/libahci_platform.c
+> +++ b/drivers/ata/libahci_platform.c
+> @@ -464,6 +464,9 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
+>  	if (!child_nodes)
+>  		hpriv->nports = 1;
+>  
+> +	if (!child_nodes && flags & AHCI_PLATFORM_ARMADA8K_QUIRK)
+> +		hpriv->nports = 2;
+> +
+>  	hpriv->phys = devm_kcalloc(dev, hpriv->nports, sizeof(*hpriv->phys), GFP_KERNEL);
+>  	if (!hpriv->phys) {
+>  		rc = -ENOMEM;
+> diff --git a/include/linux/ahci_platform.h b/include/linux/ahci_platform.h
+> index 49e5383d4222..99ff30b6c37c 100644
+> --- a/include/linux/ahci_platform.h
+> +++ b/include/linux/ahci_platform.h
+> @@ -42,5 +42,6 @@ int ahci_platform_suspend(struct device *dev);
+>  int ahci_platform_resume(struct device *dev);
+>  
+>  #define AHCI_PLATFORM_GET_RESETS	0x01
+> +#define AHCI_PLATFORM_ARMADA8K_QUIRK	0x02
+>  
+>  #endif /* _AHCI_PLATFORM_H */
 > 
 
