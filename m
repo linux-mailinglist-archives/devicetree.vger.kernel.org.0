@@ -2,96 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FD6F2AB2BE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 09:50:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 100DD2AB2F1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 09:55:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727791AbgKIIuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 03:50:32 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:16450 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726127AbgKIIub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 03:50:31 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A98mX9Y005110;
-        Mon, 9 Nov 2020 09:50:21 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=kbMEOF7fHi1ILrCU9QmthxuRje1kCpQhTQ54wrm0nmI=;
- b=VoVYQhrTVC0cHUBC+GLuhDgjJBxLKtKm1gcBuYZEN1uMCRT6CdjEayTClrL+3ZR/tQNV
- 7g/qvOf/k0gMWW+hET8q6Vlc46bOSBqL2tSBoGyhK6P6iWjuo7hWoTL5200H/wZRegPI
- s2zQBVve7GUMNz12eCJThSFCaP6WPGqeWyGgCm/zfWyMNSY812aByF6q//bPVmBy2u1r
- oEpmfoOFvO2is8pwuQpRU7X9rVfgghJLZBuVXrSF5E70Jt5Mt9gx6yYscarmOq7RPEid
- C52TM+eXaMfKNwXnFPxFfg+HJ8fjDcDseZOvaxx734ARbJ6mg4nT7TqgpNf8PMEyawEQ rQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34nj80gun3-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 09 Nov 2020 09:50:21 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 32AF910002A;
-        Mon,  9 Nov 2020 09:50:21 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 15FD42314C1;
-        Mon,  9 Nov 2020 09:50:21 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.46) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 9 Nov
- 2020 09:50:20 +0100
-Subject: Re: [PATCH] ARM: dts: stm32: fix DCMI DMA features on stm32mp15
- family
-To:     Hugues Fruchet <hugues.fruchet@st.com>,
+        id S1729814AbgKIIzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 03:55:24 -0500
+Received: from smtp2.axis.com ([195.60.68.18]:18086 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727826AbgKIIzY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 03:55:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=994; q=dns/txt; s=axis-central1;
+  t=1604912124; x=1636448124;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=QcYApQx6ATgZboadRHxRu9XHv0LjQTcBhXEqmxSLo+s=;
+  b=gjgkAZ1B6Zcn/6si4IuLSMlcrjAZlf8osOkJUSFGTIvYVOy9R3Dlp8j8
+   33GN75zO65R6+YRyQgu7/aeGHkskzc2Mh0aAw7LGE85Us8nb+5vgKFita
+   WhSqlU6zctTF6/crGcq0R3oHlhGK4/tm9J1c1msMWhOZ0dGDZoCwsD+tu
+   ZMX42/qnUoM1FxR3aXUqXMVB/rPda5Uj/ky9opcfpKhrHgIoNqRWTcPwa
+   5l68tGfgzU2n+aA1qzGugaJ46IqHat5sr8sxskU9Vq66AgvAm225OmD4f
+   yv1GyFx/vTabPwevQFMvKg7E3MfB1rwasWjbQwCC+Vx3H+WJVPngpJlBF
+   Q==;
+IronPort-SDR: gARHYXx/Vram6xKKFA2LQm60HbM/Nl0uAyabJrDT8TE00q6Mtrlz20vKL32ue3RfBjKh5HnRfp
+ BmGrdKimY8JxX+zpoDdyEspFOluxEABMWuDtjSUsdaYU1g7Cyxq7nB551M1lzB9livFxi12qJG
+ B6WXT6KYOaZkDxc+SiZeLdmsOupxmwpxzPGb3WuFlpFlo4bJY/eK2gi4jtR4sAUduJgMnmAEUF
+ TbwPjng57GFrSsm5KEHhQN6FfaCva5MgbLW+h7/WpMbv8lM9mbQwH+d/T0elukDnJcCE3oIQAX
+ 44c=
+X-IronPort-AV: E=Sophos;i="5.77,463,1596492000"; 
+   d="scan'208";a="14332588"
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alain Volmat <alain.volmat@st.com>,
-        Amelie DELAUNAY <amelie.delaunay@st.com>
-References: <1602148182-25869-1-git-send-email-hugues.fruchet@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <585bbff2-89a7-0e10-2280-e4236dc36d2c@st.com>
-Date:   Mon, 9 Nov 2020 09:49:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        Vincent Whitchurch <vincent.whitchurch@axis.com>
+CC:     <kernel@axis.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH] dt-bindings: regulator: da9121: Use additionalProperties
+Date:   Mon, 9 Nov 2020 09:54:37 +0100
+Message-ID: <20201109085438.16230-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <1602148182-25869-1-git-send-email-hugues.fruchet@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-09_02:2020-11-05,2020-11-09 signatures=0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hugues
+There's no $ref at the top level so use additionalProperties instead of
+unevaluatedProperties.
 
-On 10/8/20 11:09 AM, Hugues Fruchet wrote:
-> Enable FIFO mode with half-full threshold.
-> 
-> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
-> ---
->   arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index bfe2902..cfba9a1 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -1091,7 +1091,7 @@
->   			resets = <&rcc CAMITF_R>;
->   			clocks = <&rcc DCMI>;
->   			clock-names = "mclk";
-> -			dmas = <&dmamux1 75 0x400 0x0d>;
-> +			dmas = <&dmamux1 75 0x400 0x01>;
->   			dma-names = "tx";
->   			status = "disabled";
->   		};
-> 
+This fixes the following warning with the latest dtschema:
 
-Applied on stm32-next.
+ Documentation/devicetree/bindings/regulator/dlg,da9121.yaml:
+ 'additionalProperties' is a required property
 
-Thanks.
-Alex
+Reported-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+---
+ Documentation/devicetree/bindings/regulator/dlg,da9121.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml b/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
+index cde0d82dd201..2ece46ee1a59 100644
+--- a/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
++++ b/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
+@@ -22,7 +22,7 @@ properties:
+     $ref: "regulator.yaml#"
+     type: object
+ 
+-unevaluatedProperties: false
++additionalProperties: false
+ 
+ required:
+   - compatible
+-- 
+2.28.0
+
