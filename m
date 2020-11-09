@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B9102AC7F1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 23:02:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B435C2AC7F5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 23:03:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730157AbgKIWCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 17:02:38 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41031 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729879AbgKIWCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 17:02:38 -0500
-Received: by mail-oi1-f195.google.com with SMTP id m13so11935846oih.8;
-        Mon, 09 Nov 2020 14:02:37 -0800 (PST)
+        id S1729599AbgKIWDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 17:03:14 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36794 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729454AbgKIWDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 17:03:14 -0500
+Received: by mail-ot1-f67.google.com with SMTP id 32so10549698otm.3;
+        Mon, 09 Nov 2020 14:03:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=wIBC7H//iDYtazdS7WzXjRNWAC+J4eWK8kE3CjiPjBY=;
-        b=BxtT2oEHTANFOmkwIhidxBmX/d57vaLzYeSnBzwqEAJZUx8kgkjGbZZveQkGPkqIff
-         FMeiC4gEA1EP/lML+etZtoQeDThEFOor43jlGPrXKBIkIH9nnCMUahwBopXqk2D+mGQI
-         VimS6BVImYWQf8oUZEmpxMEvjC4d+MI1dmWJvAd4w5OGfRnYq5TFWRIQZ1LDrIKxqCF7
-         4C2mu3OIgnBPS9/1uv2s6v3QoFSvg7YhQ9J7FFytsdQwRfV/LCMSiJYka+VC3/OPTGTC
-         acks3sfb7C9ml+zHgEJVYoBIEMddfEEcYnn6u7VXyTAiWKuIi1dLxzXp/WGdb53YWwx1
-         v8dQ==
-X-Gm-Message-State: AOAM532Wlly62xYIL2eAnIW2x+ulgmn1rYmIHEKtyaHznTHD2KJ0GUou
-        +Ie6OwefDP66Smn9CS0LGQ==
-X-Google-Smtp-Source: ABdhPJwmPwDEGaa78me7BjlLt0XxRZfA7eXMNUDzlGTxzEA+UtwCpwmAlklWXtuicol/fRueVMb2Gw==
-X-Received: by 2002:aca:4d06:: with SMTP id a6mr838895oib.84.1604959357344;
-        Mon, 09 Nov 2020 14:02:37 -0800 (PST)
+        bh=EePEy4ijH1/6uTZdSxjulsoqmXlf9L9kEMCID3IAUL8=;
+        b=QbrQBqc1eydW2VKdjy4tGTTEbWBIqnSB/uH+wy/gpZXpesU2v3SvHI58RrDIL7pR4m
+         /hMJt3pfcOniBvyhkTcDB232aPNkkhEplvdVF96gzK8sKfsxBGsz7Ltw3TXF8IfGLGr3
+         iLg22fZ8skd21UnQ8hEaaf2J1PY+nA1QV5w0Dccbo/dmpxOioNDnPdZqUxMDYxeNmst6
+         kUMCC1p/jqXmyWbc/R98n2RmgO3ZGqmSxi0WR9opqLdI2YNFEEv0tzKM49y+1reur2oO
+         nkeay6uqhavq9wnIO5FuPEe91YIsP9fmkE/2p14QtzJowuotmk2vLG9z7lXa9evv9QEM
+         Q6wQ==
+X-Gm-Message-State: AOAM530ng/2wbTUeN5IRg90YuCdxz8RpUfnQa3tm7XbQooIpV7tK5UzX
+        Bx91Cj/lZ0Wwh2Wga1nEsA==
+X-Google-Smtp-Source: ABdhPJwtpN9Gi5e6MyNFObgMW4csuzD+Wm7XSMgWvgC3pf396MEOHK4Kea5bevGbVXkGwMaxU6bTwg==
+X-Received: by 2002:a9d:4b0a:: with SMTP id q10mr11845542otf.271.1604959393936;
+        Mon, 09 Nov 2020 14:03:13 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r67sm2658786oif.43.2020.11.09.14.02.36
+        by smtp.gmail.com with ESMTPSA id m3sm776153oim.36.2020.11.09.14.03.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 14:02:36 -0800 (PST)
-Received: (nullmailer pid 1834614 invoked by uid 1000);
-        Mon, 09 Nov 2020 22:02:35 -0000
-Date:   Mon, 9 Nov 2020 16:02:35 -0600
+        Mon, 09 Nov 2020 14:03:13 -0800 (PST)
+Received: (nullmailer pid 1835486 invoked by uid 1000);
+        Mon, 09 Nov 2020 22:03:12 -0000
+Date:   Mon, 9 Nov 2020 16:03:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     aford@beaconembedded.com, Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Will Deacon <will@kernel.org>, krzk@kernel.org,
-        Li Yang <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [PATCH V4 1/3] dt-bindings: arm: fsl: Add
- beacon,imx8mn-beacon-kit
-Message-ID: <20201109220235.GA1834565@bogus>
-References: <20201107144811.1977108-1-aford173@gmail.com>
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     heiko@sntech.de, devicetree@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v1 1/5] dt-binding: mfd: syscon: add Rockchip QoS
+ register compatibles
+Message-ID: <20201109220312.GA1835439@bogus>
+References: <20201107170103.25608-1-jbx6244@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201107144811.1977108-1-aford173@gmail.com>
+In-Reply-To: <20201107170103.25608-1-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 07 Nov 2020 08:48:08 -0600, Adam Ford wrote:
-> Add beacon,imx8mn-beacon-kit to list of compatible options.
+On Sat, 07 Nov 2020 18:00:59 +0100, Johan Jonker wrote:
+> With the conversion of syscon.yaml minItems for compatibles
+> was set to 2. Current Rockchip dtsi files only use "syscon" for
+> QoS registers. Add Rockchip QoS compatibles to reduce notifications
+> produced with:
 > 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> make ARCH=arm dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/syscon.yaml
+> 
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/syscon.yaml
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 > ---
-> V4:  Add RB note
-> V3:  Correct Typo and move to Nano section
-> V2:  New to series
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
