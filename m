@@ -2,347 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24C722ABE0A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 15:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB052ABE00
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 14:59:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730294AbgKIOAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 09:00:01 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:35250 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730251AbgKIOAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 09:00:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1604930398;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=+Q0/WKC9ygaVRT70WbAMfpAiA9Io/Zwg/bd3hxZJLXw=;
-        b=hnO8Fpz1quoJ4i0zgwSTrYHivskH6chvNOE/rN0sj0nrRylEKYXV6VawUs/WNeXTgbXVjC
-        WQhlF0/TREsg62b8/tSUmq4yd9D5cT8pY4uG5J9RJNc49Y8FtbLsltRSSCnWK07rttEw6K
-        LejX/n6m8nbNwOwObOckd+0QKS8dLmE=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-420-kRlMwjm_NVWax6S-DorACA-1; Mon, 09 Nov 2020 08:59:57 -0500
-X-MC-Unique: kRlMwjm_NVWax6S-DorACA-1
-Received: by mail-ed1-f70.google.com with SMTP id bs10so2722925edb.22
-        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 05:59:53 -0800 (PST)
+        id S1730704AbgKIN7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 08:59:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729697AbgKIN7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 08:59:30 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8045C0613CF;
+        Mon,  9 Nov 2020 05:59:27 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id f38so7232495pgm.2;
+        Mon, 09 Nov 2020 05:59:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Zd8LqA4AvziCIC3LVVI5CDJXP/RwRW09TDwr3WHSIkM=;
+        b=Z+jnaxEQ3CiyUWVlSfYghQzqYoIeYURKS4e3afZe7gQikjEfqRpP0HtUepHmqK3euV
+         m8NpMD5bwO+eLZ0UTZH2uroxZEcxkFf2Px1Z3uAuNnNsrBa+dhcaaUx82AGim6d9hncH
+         FROHCxCxNd0MfX3Kl17nvFDXLx5F7qaqoVsC+OaZHbmcqCFiBUBHkkJN7BdL4OqftzE9
+         1XQAvc6kkoYWnux3M4LCBjQpU/GFNEvC0kfz++ozefctxirbl5af7C2wzyv0B34qy62G
+         8Ogr/FhkYCTaEsVvuw16l6qXHOgFgBH0r3bQZoWL5qmfm16tXqymkfATTCnxJmjtOuvx
+         +czQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+Q0/WKC9ygaVRT70WbAMfpAiA9Io/Zwg/bd3hxZJLXw=;
-        b=UpUoIURqKeNq7pRPRyWOUzy3XzIoDkWjkHqsXQ+YmfqAtcFXF4w5nU117RVoyLYQYy
-         chXfCR67O4NaSg9Bushsv39Hns+pkITePyL9Z8H0e9B50NRjFcZ0LMB4572C4vmrj6NG
-         87i8ltASoEdyzBNjERi419qhxTm2AKBDItllnEwfo7vF0OuSqsLBsRFhc8GmgsksZ7j6
-         hmblykHNL4IMmeFBuBi6GsaCM+Q5q5RjkJvmh2gk6/uYV61P5eNOHp2YY8Zju/flshLn
-         un2nP0HyEF8agiwEAU1yAGPQqlGl2efDRoRa6xMJ0A6T3vKq8YlJCaQ7p6lcVoPyZm2X
-         UUvg==
-X-Gm-Message-State: AOAM533t6KkIufwJkktCR6RXJcCFV9Up/K+8+fHcHVzZd+0SYlbftyCk
-        Gs/OiW3zQ4V0rttXaNTFcoWaxyeYZbBEcC7+URvbXOrgWnM2ANrKtUefW7kREkBYNb23QxfMPYF
-        FWJa2tVGkyCYZMzSyIXJXlQ==
-X-Received: by 2002:a50:f104:: with SMTP id w4mr15001644edl.381.1604930390135;
-        Mon, 09 Nov 2020 05:59:50 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzE7Gi5mtM0lM74RcphRhzF9k+bg2uK0RboIYO0WxUMpofYFcAPhZ7brr7fcePLG7T9NpCKGw==
-X-Received: by 2002:a50:f104:: with SMTP id w4mr15001617edl.381.1604930389916;
-        Mon, 09 Nov 2020 05:59:49 -0800 (PST)
-Received: from x1.localdomain (2001-1c00-0c0c-fe00-6c10-fbf3-14c4-884c.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:6c10:fbf3:14c4:884c])
-        by smtp.gmail.com with ESMTPSA id h23sm8797344ejf.120.2020.11.09.05.59.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2020 05:59:49 -0800 (PST)
-Subject: Re: [PATCH v2 5/9] ata: ahci: mvebu: Add support for A8k legacy DT
- bindings
-To:     sven.auhagen@voleatech.de, axboe@kernel.dk, robh+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, gregory.clement@bootlin.com
-Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
-        rjw@rjwysocki.net, viresh.kumar@linaro.org,
-        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
-        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
-References: <20201104155237.77772-1-sven.auhagen@voleatech.de>
- <20201104155237.77772-6-sven.auhagen@voleatech.de>
-From:   Hans de Goede <hdegoede@redhat.com>
-Message-ID: <75818019-d578-95cc-5ae0-bf022305e068@redhat.com>
-Date:   Mon, 9 Nov 2020 14:59:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Zd8LqA4AvziCIC3LVVI5CDJXP/RwRW09TDwr3WHSIkM=;
+        b=mK+pbUjNgkqNq8IaH5LHGWE23E/mz/RaETpiOhtttGx2+Zohj4dfbAitJNef1mtyQX
+         Bhq8PR3UfsZL1nhp86TTwIqC3Z0zreotncreE89oMEYU2jJYYHvCMV4WhrhWqZUH9R+7
+         VB4Ip6iwKkR0hmxFhtTvOxJK2C8qbFfWhl0HXtQwoEW4USPBLrjnhs7i5KCTqkpqTeTF
+         AC0klLEroIADmcEF+EAr5NSx7Wyu9Sk+87Ht6xY8h2iyIumylrepDfJvcjH5u9lhP1h8
+         JnQs18hDGjb30yzlMPcnK3wA/AX0E4+RKMOmSbvLQRoDPTY+NyYMGK/meuYDnPNVDwwH
+         by3w==
+X-Gm-Message-State: AOAM531yZNiU7HsNcW+Ut3qTovpeFSXoO2aD3PjzP4dEYWFzSucv0C//
+        HuatSlvJENHOIsCtMG2oOKTeslaD7dBdGzA6Md6ycHO1TaQ=
+X-Google-Smtp-Source: ABdhPJya5ocOqVzr/IsQwH0RKfu6x+cnUxaTtxoNr0cNw7bTQm+3u7A+SU9B+0Trg6LYgGaPveIKJPkYbHv8BKxoelQ=
+X-Received: by 2002:aa7:942a:0:b029:164:a853:f0fc with SMTP id
+ y10-20020aa7942a0000b0290164a853f0fcmr13471964pfo.40.1604930367398; Mon, 09
+ Nov 2020 05:59:27 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201104155237.77772-6-sven.auhagen@voleatech.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201029134027.232951-1-lars.povlsen@microchip.com>
+ <20201029134027.232951-3-lars.povlsen@microchip.com> <CAHp75VedcNP5x72PN4tqZ_0HhbCyd666T=AWn+TFr7Fp8EEs7Q@mail.gmail.com>
+ <874klyg2dg.fsf@microchip.com>
+In-Reply-To: <874klyg2dg.fsf@microchip.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 9 Nov 2020 16:00:16 +0200
+Message-ID: <CAHp75VeN4jKjOA=WO0mgkSAbWZUMUfkrX3yV83y0iYnh1rp84Q@mail.gmail.com>
+Subject: Re: [PATCH v7 2/3] pinctrl: pinctrl-microchip-sgpio: Add pinctrl
+ driver for Microsemi Serial GPIO
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Nov 9, 2020 at 2:07 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+> > On Thu, Oct 29, 2020 at 3:40 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
 
-On 11/4/20 4:52 PM, sven.auhagen@voleatech.de wrote:
-> From: Sven Auhagen <sven.auhagen@voleatech.de>
-> 
-> The CP110 SATA unit has 2 ports, and a dedicated ICU entry per
-> port. In the past, the AHCI SATA driver only supported one interrupt
-> per SATA unit. To solve this conflict, the 2 SATA wired interrupts in
-> the South-Bridge got configured as 1 GIC interrupt in the
-> North-Bridge, regardless of the number of SATA ports actually
-> enabled/in use, and the DT bindings only referenced the interrupt of
-> one port.
-> 
-> Since then, this limitation has been addressed and this patch ensures
-> backward compatibility with old DTs not describing SATA ports
-> correctly directly from the AHCI MVEBU driver. This way, we will be
-> able to drop the hack from the ICU driver. IOW, when the A8k
-> compatible string is used and there is no sub-nodes in the DT, we
-> fake the creation and mapping of the second (missing) interrupt.
-> 
-> Signed-off-by: Sven Auhagen <sven.auhagen@voleatech.de>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+...
 
-Much better, thank you.
+> >> +#define __shf(x)               (__builtin_ffs(x) - 1)
+> >> +#define __BF_PREP(bf, x)       (bf & ((x) << __shf(bf)))
+> >> +#define __BF_GET(bf, x)                (((x & bf) >> __shf(bf)))
+> >
+> > Isn't it home grown reimplementation of bitfield.h?
+>
+> This was answered in the aforementioned mail.
 
-The patch looks good to me now:
+Perhaps it makes sense to add functions like field_get(), field_prep()
+to that header?
 
-Reviewed-by: Hans de Goede <hdegoede@redhat.com>
+...
 
-Regards,
+> >> +       /* Calculate port mask */
+> >> +       ret = of_property_read_variable_u32_array(np,
+> >> +                                                 "microchip,sgpio-port-ranges",
+> >> +                                                 range_params,
+> >> +                                                 2,
+> >> +                                                 ARRAY_SIZE(range_params));
+> >> +       if (ret < 0 || ret % 2) {
+> >> +               dev_err(dev, "%s port range\n",
+> >> +                       ret == -EINVAL ? "Missing" : "Invalid");
+> >
+> >
+>
+> ?? Did you have a comment?
 
-Hans
+OF vs device property API I think.
 
-> ---
->  drivers/ata/ahci_mvebu.c       | 126 ++++++++++++++++++++++++++++++---
->  drivers/ata/libahci_platform.c |   3 +
->  include/linux/ahci_platform.h  |   1 +
->  3 files changed, 120 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/ata/ahci_mvebu.c b/drivers/ata/ahci_mvebu.c
-> index ed82381dc4a7..22447b1bb23f 100644
-> --- a/drivers/ata/ahci_mvebu.c
-> +++ b/drivers/ata/ahci_mvebu.c
-> @@ -16,6 +16,7 @@
->  #include <linux/mbus.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
-> +#include <linux/of_irq.h>
->  #include <linux/platform_device.h>
->  #include "ahci.h"
->  
-> @@ -28,9 +29,15 @@
->  #define AHCI_WINDOW_BASE(win)	(0x64 + ((win) << 4))
->  #define AHCI_WINDOW_SIZE(win)	(0x68 + ((win) << 4))
->  
-> +#define ICU_SATA0_ICU_ID 109
-> +#define ICU_SATA1_ICU_ID 107
-> +
->  struct ahci_mvebu_plat_data {
-> -	int (*plat_config)(struct ahci_host_priv *hpriv);
-> +	int (*plat_config)(struct platform_device *pdev,
-> +				   struct ahci_host_priv *hpriv);
->  	unsigned int host_flags;
-> +	unsigned int resource_flags;
-> +	unsigned int port_irq[2];
->  };
->  
->  static void ahci_mvebu_mbus_config(struct ahci_host_priv *hpriv,
-> @@ -67,7 +74,8 @@ static void ahci_mvebu_regret_option(struct ahci_host_priv *hpriv)
->  	writel(0x80, hpriv->mmio + AHCI_VENDOR_SPECIFIC_0_DATA);
->  }
->  
-> -static int ahci_mvebu_armada_380_config(struct ahci_host_priv *hpriv)
-> +static int ahci_mvebu_armada_380_config(struct platform_device *pdev,
-> +				   struct ahci_host_priv *hpriv)
->  {
->  	const struct mbus_dram_target_info *dram;
->  	int rc = 0;
-> @@ -83,7 +91,8 @@ static int ahci_mvebu_armada_380_config(struct ahci_host_priv *hpriv)
->  	return rc;
->  }
->  
-> -static int ahci_mvebu_armada_3700_config(struct ahci_host_priv *hpriv)
-> +static int ahci_mvebu_armada_3700_config(struct platform_device *pdev,
-> +				   struct ahci_host_priv *hpriv)
->  {
->  	u32 reg;
->  
-> @@ -96,8 +105,94 @@ static int ahci_mvebu_armada_3700_config(struct ahci_host_priv *hpriv)
->  	return 0;
->  }
->  
-> -static int ahci_mvebu_armada_8k_config(struct ahci_host_priv *hpriv)
-> +static int multi_irq_host_ack_armada8k(int irq, struct ata_port *ap)
->  {
-> +	struct ahci_host_priv *hpriv = ap->host->private_data;
-> +	void __iomem *mmio = hpriv->mmio;
-> +
-> +	writel(BIT(ap->port_no), mmio + HOST_IRQ_STAT);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ahci_get_per_port_irq_armada8k(struct ata_host *host, int port)
-> +{
-> +	struct ahci_host_priv *hpriv = host->private_data;
-> +	struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
-> +
-> +	return pdata->port_irq[port];
-> +}
-> +
-> +static int ahci_mvebu_armada_8k_irq_backwards(struct ahci_host_priv *hpriv,
-> +				       struct device *dev)
-> +{
-> +	struct device_node *np = of_irq_find_parent(dev->of_node);
-> +	struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
-> +	struct irq_data *irqd = irq_get_irq_data(pdata->port_irq[0]);
-> +	int host_irq = irqd ? irqd_to_hwirq(irqd) : 0;
-> +	int missing_irq = (host_irq == ICU_SATA1_ICU_ID) ?
-> +		ICU_SATA0_ICU_ID : ICU_SATA1_ICU_ID;
-> +	struct irq_fwspec fwspec = {
-> +		.fwnode = of_node_to_fwnode(np),
-> +		.param_count = 2,
-> +		.param = {missing_irq, IRQ_TYPE_LEVEL_HIGH},
-> +	};
-> +	int irq;
-> +
-> +	pdata->port_irq[1] = irq_create_fwspec_mapping(&fwspec);
-> +	hpriv->mask_port_map = GENMASK(1, 0);
-> +
-> +	if (missing_irq == ICU_SATA0_ICU_ID) {
-> +		irq = pdata->port_irq[0];
-> +		pdata->port_irq[0] = pdata->port_irq[1];
-> +		pdata->port_irq[1] = irq;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ahci_mvebu_armada_8k_config(struct platform_device *pdev,
-> +				   struct ahci_host_priv *hpriv)
-> +{
-> +	struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *child;
-> +	int port_irq, child_nodes, port = 0;
-> +
-> +	/* Get IRQs per port */
-> +	child_nodes = of_get_child_count(dev->of_node);
-> +	if (child_nodes) {
-> +		for_each_child_of_node(dev->of_node, child) {
-> +
-> +			port_irq = of_irq_get(child, 0);
-> +			if (!port_irq)
-> +				port_irq = -EINVAL;
-> +
-> +			if (port_irq < 0)
-> +				goto compat;
-> +
-> +			pdata->port_irq[port] = port_irq;
-> +			port++;
-> +		}
-> +
-> +		goto out;
-> +	}
-> +
-> +compat:
-> +	/* Backwards Compatibility Check */
-> +	port_irq = platform_get_irq(pdev, 0);
-> +	if (port_irq > 0) {
-> +		pdata->port_irq[0] = port_irq;
-> +		ahci_mvebu_armada_8k_irq_backwards(hpriv, dev);
-> +	} else {
-> +		dev_err(dev, "no irq\n");
-> +		return port_irq;
-> +	}
-> +
-> +out:
-> +	hpriv->flags |= AHCI_HFLAG_MULTI_MSI;
-> +	hpriv->get_irq_vector = ahci_get_per_port_irq_armada8k;
-> +
->  	return 0;
->  }
->  
-> @@ -167,7 +262,7 @@ static int ahci_mvebu_resume(struct platform_device *pdev)
->  	struct ahci_host_priv *hpriv = host->private_data;
->  	const struct ahci_mvebu_plat_data *pdata = hpriv->plat_data;
->  
-> -	pdata->plat_config(hpriv);
-> +	pdata->plat_config(pdev, hpriv);
->  
->  	return ahci_platform_resume_host(&pdev->dev);
->  }
-> @@ -189,15 +284,22 @@ static struct scsi_host_template ahci_platform_sht = {
->  
->  static int ahci_mvebu_probe(struct platform_device *pdev)
->  {
-> -	const struct ahci_mvebu_plat_data *pdata;
-> +	const struct ahci_mvebu_plat_data *pdata_plat;
-> +	struct ahci_mvebu_plat_data *pdata;
->  	struct ahci_host_priv *hpriv;
->  	int rc;
->  
-> -	pdata = of_device_get_match_data(&pdev->dev);
-> -	if (!pdata)
-> +	pdata_plat = of_device_get_match_data(&pdev->dev);
-> +	if (!pdata_plat)
->  		return -EINVAL;
->  
-> -	hpriv = ahci_platform_get_resources(pdev, 0);
-> +	pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
-> +	if (!pdata)
-> +		return -ENOMEM;
-> +
-> +	memcpy(pdata, pdata_plat, sizeof(*pdata));
-> +
-> +	hpriv = ahci_platform_get_resources(pdev, pdata->resource_flags);
->  	if (IS_ERR(hpriv))
->  		return PTR_ERR(hpriv);
->  
-> @@ -210,10 +312,13 @@ static int ahci_mvebu_probe(struct platform_device *pdev)
->  
->  	hpriv->stop_engine = ahci_mvebu_stop_engine;
->  
-> -	rc = pdata->plat_config(hpriv);
-> +	rc = pdata->plat_config(pdev, hpriv);
->  	if (rc)
->  		goto disable_resources;
->  
-> +	if (pdata->resource_flags & AHCI_PLATFORM_ARMADA8K_QUIRK)
-> +		hpriv->multi_irq_host_ack = multi_irq_host_ack_armada8k;
-> +
->  	rc = ahci_platform_init_host(pdev, hpriv, &ahci_mvebu_port_info,
->  				     &ahci_platform_sht);
->  	if (rc)
-> @@ -237,6 +342,7 @@ static const struct ahci_mvebu_plat_data ahci_mvebu_armada_3700_plat_data = {
->  
->  static const struct ahci_mvebu_plat_data ahci_mvebu_armada_8k_plat_data = {
->  	.plat_config = ahci_mvebu_armada_8k_config,
-> +	.resource_flags = AHCI_PLATFORM_ARMADA8K_QUIRK,
->  };
->  
->  static const struct of_device_id ahci_mvebu_of_match[] = {
-> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> index f6f2a111d226..a5d06565a5c7 100644
-> --- a/drivers/ata/libahci_platform.c
-> +++ b/drivers/ata/libahci_platform.c
-> @@ -464,6 +464,9 @@ struct ahci_host_priv *ahci_platform_get_resources(struct platform_device *pdev,
->  	if (!child_nodes)
->  		hpriv->nports = 1;
->  
-> +	if (!child_nodes && flags & AHCI_PLATFORM_ARMADA8K_QUIRK)
-> +		hpriv->nports = 2;
-> +
->  	hpriv->phys = devm_kcalloc(dev, hpriv->nports, sizeof(*hpriv->phys), GFP_KERNEL);
->  	if (!hpriv->phys) {
->  		rc = -ENOMEM;
-> diff --git a/include/linux/ahci_platform.h b/include/linux/ahci_platform.h
-> index 49e5383d4222..99ff30b6c37c 100644
-> --- a/include/linux/ahci_platform.h
-> +++ b/include/linux/ahci_platform.h
-> @@ -42,5 +42,6 @@ int ahci_platform_suspend(struct device *dev);
->  int ahci_platform_resume(struct device *dev);
->  
->  #define AHCI_PLATFORM_GET_RESETS	0x01
-> +#define AHCI_PLATFORM_ARMADA8K_QUIRK	0x02
->  
->  #endif /* _AHCI_PLATFORM_H */
-> 
+> >> +               return ret;
+> >> +       }
+> >> +       for (i = 0; i < ret; i += 2) {
+> >> +               int start, end;
+> >> +
+> >> +               start = range_params[i];
+> >> +               end = range_params[i + 1];
+> >> +               if (start > end || end >= SGPIO_BITS_PER_WORD) {
+> >> +                       dev_err(dev, "Ill-formed port-range [%d:%d]\n",
+> >> +                               start, end);
+> >> +               }
+> >> +               priv->ports |= GENMASK(end, start);
+> >> +       }
+> >> +
+> >> +       return 0;
+> >> +}
+> >
+> > Doesn't GPIO / pin control framework have this helper already?
+> > If no, have you considered to use proper bitmap API here? (For
+> > example, bitmap_parselist() or so)
+>
+> Past reviews suggested using an array form. And as the binding is
+> already reviewed, I would like to keep this as is.
 
+Yes, but you are using something like a,b,c,d which corresponds to
+[a..b], [c..d] if I'm not mistaken. And I believe that there are
+plenty of drivers using this approach for some ranges (not
+specifically for GPIO). And it should be an API available which does
+all these checks and other stuff under the hood. I will be surprised
+if there is no such. In the latter case, add one and use, many will
+benefit from it.
+
+
+...
+
+> >> +       i = 0;
+> >> +       device_for_each_child_node(dev, fwnode) {
+> >
+> > Ditto.
+> >
+>
+> Don't sure I understand this comment, but device_for_each_child_node()
+> is from <linux/property.h> - this should be OK I think.
+
+Yes, either leave it (as you have done), or replace it with OF centric one.
+
+-- 
+With Best Regards,
+Andy Shevchenko
