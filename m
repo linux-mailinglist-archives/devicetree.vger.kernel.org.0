@@ -2,127 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D53302ABD92
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 14:47:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AB112ABDE8
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 14:55:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730448AbgKINrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 08:47:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56520 "EHLO
+        id S1729807AbgKINz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 08:55:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729974AbgKINrN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 08:47:13 -0500
-Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com [IPv6:2607:f8b0:4864:20::f43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C688C0613CF;
-        Mon,  9 Nov 2020 05:47:13 -0800 (PST)
-Received: by mail-qv1-xf43.google.com with SMTP id ed14so4023687qvb.4;
-        Mon, 09 Nov 2020 05:47:13 -0800 (PST)
+        with ESMTP id S1729660AbgKINz1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 08:55:27 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43727C0613D4
+        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 05:55:27 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id 23so10383190ljv.7
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 05:55:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3P4Xy4X3O8T4Nf4PgfEYUgS4xFf3jYJhHCyEVrGcPOA=;
-        b=CnkNa2H+6dHsGG7oCncPC1SvCVCwADCa9oL2vYqCUUL6ad1Mh28I2FOsrm9mgoH5WX
-         g55LdA13TrGDSXZ055BjdxAzQ0M9jIyGi3wzjqndyaXTv0IBwgw7Pc8MVJ5RDDjAgcIt
-         9ZR/1NXyTe7eLwblNB2plK5rsEMXcvcwrdKR3H2HTUllWkHNWUDrjyXm4oW2D0s72FOC
-         zbg5CnVzs0TFt18VD/0akL0kKhkS2osuOx3UfPkM7UXHtE50ZJcrVUQ4wuc+5WMA1Cms
-         hxWduHV+ffDJv0vlyOKvQsrU7c6OZuTvDYzNHKaSkBYFVxPVQkjnbZeHw7JJz4xD8F2Q
-         e34g==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lqe5HrIHoZLKJYdgktbLvnJ7WzCQkZi69agPba5hbSs=;
+        b=N94TB+YLkY2zbd2qs/JZiN2GasG9bvVVY4+qr0qm28m37JUwCxHLgcQhFLqdiwG6wP
+         36p80N800qtZO5Y5/54aZ3Ds3GAdrT9imWS8aZb8ep4LsnRqxn28rWQ0L4kka52r8KUG
+         Y2WqlS12ZqNcQ/DS/XYF4A0rpu58FzeiaQhUG5lkWFp1nZDw4XW7skWOaX2w4Q67UGUV
+         s40AMt4lrMVcsuOScsZYctM2DZ32eM3D7zQHgRHReNxiC06jnVgWx6g3kZ4JP9zfkx+S
+         5/PrEpERodbnK0pJW7+SRxRRp4I/b2YxzIp3RZBBGl+I+yAbWCR+Um/ECXQr4LTJ/X/9
+         eI2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=3P4Xy4X3O8T4Nf4PgfEYUgS4xFf3jYJhHCyEVrGcPOA=;
-        b=FtKc5rAT+AN6p3sV7dcYeq8yrw1vNkMlvjQTb77zzMP4kYMrnUspGSHgzd7nXlWxGR
-         4/pgoa1MCtCFV2LU2JYdLzNQsNx4wPtE+SKcKQe5rwpu6QI4MGW8ad98esVwGWHaraPM
-         fijVJsCkuwK2r9rLKItzjyTZvKlRjcejpVoxXRz5ZQPcjTey+EaOLnDPjVC4C1VHenAC
-         scSjIdFdhwk2ZBJxDgssKnf1a+bMZ44hzK7VVQ/vPR4HD73TiHZXrnA9HRNwgn+NxpEO
-         vmlX4ggenQ7q+gOx4ZBIQjC+3yrbnonkdwZwlEMKH9BrqrRhhj82a/9MQiTHbnFBvJ+e
-         Hbog==
-X-Gm-Message-State: AOAM531mwZFkTwnvhpcbisC5g2f5FVDy8gQL8ILDpgIVTXImJ3dL/k1I
-        d2BDcKqxuntMmwBGPkd5LhQ=
-X-Google-Smtp-Source: ABdhPJzU05Fw0kzNgO7z+uoXZtYaKr3IfKDrqYuQ/4WUNUe6l+9tEW5JmP/HvpwEVZFqdcj9iMWp3Q==
-X-Received: by 2002:ad4:4e2f:: with SMTP id dm15mr1130200qvb.7.1604929632527;
-        Mon, 09 Nov 2020 05:47:12 -0800 (PST)
-Received: from [192.168.1.201] (pool-108-51-35-162.washdc.fios.verizon.net. [108.51.35.162])
-        by smtp.googlemail.com with ESMTPSA id j50sm6081221qtc.5.2020.11.09.05.47.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2020 05:47:11 -0800 (PST)
-Subject: Re: [PATCH 03/32] spi: dw: Fix driving MOSI low while recieving
-To:     Mark Brown <broonie@kernel.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        linux-spi@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-4-damien.lemoal@wdc.com>
- <20201109132935.GB6380@sirena.org.uk>
-From:   Sean Anderson <seanga2@gmail.com>
-Autocrypt: addr=seanga2@gmail.com; prefer-encrypt=mutual; keydata=
- mQENBFe74PkBCACoLC5Zq2gwrDcCkr+EPGsT14bsxrW07GiYzQhLCgwnPdEpgU95pXltbFhw
- 46GfyffABWxHKO2x+3L1S6ZxC5AiKbYXo7lpnTBYjamPWYouz+VJEVjUx9aaSEByBah5kX6a
- lKFZWNbXLAJh+dE1HFaMi3TQXXaInaREc+aO1F7fCa2zNE75ja+6ah8L4TPRFZ2HKQzve0/Y
- GXtoRw97qmnm3U36vKWT/m2AiLF619F4T1mHvlfjyd9hrVwjH5h/2rFyroXVXBZHGA9Aj8eN
- F2si35dWSZlIwXkNu9bXp0/pIu6FD0bI+BEkD5S7aH1G1iAcMFi5Qq2RNa041DfQSDDHABEB
- AAG0K1NlYW4gR2FsbGFnaGVyIEFuZGVyc29uIDxzZWFuZ2EyQGdtYWlsLmNvbT6JAVcEEwEK
- AEECGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4ACGQEWIQSQYR1bzo1I0gPoYCg+6I/stKEQ
- bgUCXT+S2AUJB2TlXwAKCRA+6I/stKEQbhNOB/9ooea0hU9Sgh7PBloU6CgaC5mlqPLB7NTp
- +JkB+nh3Fqhk+qLZwzEynnuDLl6ESpVHIc0Ym1lyF4gT3DsrlGT1h0Gzw7vUwd1+ZfN0CuIx
- Rn861U/dAUjvbtN5kMBqOI4/5ea+0r7MACcIVnKF/wMXBD8eypHsorT2sJTzwZ6DRCNP70C5
- N1ahpqqNmXe0uLdP0pu55JCqhrGw2SinkRMdWyhSxT56uNwIVHGhLTqH7Q4t1N6G1EH626qa
- SvIJsWlNpll6Y3AYLDw2/Spw/hqieS2PQ/Ky3rPZnvJt7/aSNYsKoFGX0yjkH67Uq8Lx0k1L
- w8jpXnbEPQN3A2ZJCbeM
-Message-ID: <c37ca9be-ea92-b07a-b600-d68de4f7bde5@gmail.com>
-Date:   Mon, 9 Nov 2020 08:47:10 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lqe5HrIHoZLKJYdgktbLvnJ7WzCQkZi69agPba5hbSs=;
+        b=P0J2AVS71gmf66qI3xxZBvD00jHjs8FvCXQoclVtxaYU+7luaGMTLtIGGKC6DB7RoC
+         dQxL0asNCaML/hECnM9AK5BZCkGhHMUWrDM9hAMWze1QtElOhPcNIa1KwHv1G2zbyvZs
+         0ZN+WGQrjMAyvlFB3QF0/8m1Z98K2vuBHfMeVMcnwCaNHEiNnT80rQ9cvL5M2CQstcfj
+         hgHdvAJaoltscaxHIAbNXJrOUv60FG2vI7p+5GfXgFsjEUUiq3LWm66APIAk/MQ7ceSI
+         IMzR20pa0ZaruGkZfsgO0P6P4WtjQwUaUJT1MB3M88Ea7k7U1DW3Pr+LI+TxlQQ8kZw+
+         +Nzg==
+X-Gm-Message-State: AOAM530Ec2rM4VCArrBfJfhRwRI/aBEdCp6GEtKXpdV+jv7CI//aqwSS
+        F5r7oRxFfKi1ZYFqhWVjoUwPnecGLUDxVxo2A7W0RQ==
+X-Google-Smtp-Source: ABdhPJz3iQtflkEPiWk1FMPU1/Pd2p7uJeOvrzUebarKW+NuNnCZ6Uh/UONYKo/x7LVUoyml/JF+BdvydSLnid3qOuA=
+X-Received: by 2002:a2e:b54a:: with SMTP id a10mr5875868ljn.139.1604930125511;
+ Mon, 09 Nov 2020 05:55:25 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201109132935.GB6380@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201106061433.1483129-1-ajye_huang@compal.corp-partner.google.com>
+ <20201106061433.1483129-2-ajye_huang@compal.corp-partner.google.com>
+In-Reply-To: <20201106061433.1483129-2-ajye_huang@compal.corp-partner.google.com>
+From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Date:   Mon, 9 Nov 2020 21:55:14 +0800
+Message-ID: <CALprXBZmC=Qxk5fkGn=QJ4xW4tSGMZxb9LFUbqfMge0vLcP-dQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/2] ASoC: google: dt-bindings: modify machine bindings
+ for two MICs case
+To:     Ajye Huang <ajye.huang@gmail.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Cheng-yi Chiang <cychiang@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        ALSA development <alsa-devel@alsa-project.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/9/20 8:29 AM, Mark Brown wrote:
-> On Sat, Nov 07, 2020 at 05:13:51PM +0900, Damien Le Moal wrote:
-> 
->> The resting state of MOSI is high when nothing is driving it. If we
->> drive it low while recieving, it looks like we are transmitting 0x00
->> instead of transmitting nothing. This can confuse slaves (like SD cards)
->> which allow new commands to be sent over MOSI while they are returning
->> data over MISO. The return of MOSI from 0 to 1 at the end of recieving
->> a byte can look like a start bit and a transmission bit to an SD card.
-> 
-> If client devices are interpreting the transmitted data then I would
-> expect the drivers for that hardware to be ensuring that whatever we
-> transmit matches what the device is expecting.  We shouldn't be putting
-> a hack in a particular controller driver to paper over things, that will
-> mean that the device will break when used with other controllers and if
-> different devices have different requirements then obviously we can't
-> satisfy them.  There is not meaningfully a general specification for SPI
-> which says what happens when signals are idle, it's all specific to the
-> client device.
+Hi, Rob
+
+I follow your suggests that adding (maxItems: 1) for dmic-gpis property,
+and keep one example of adding dmic-gpios property in it
+
+Could you please kindly review it ?
+
+Thank you so much
+Ajye
+
+On Fri, Nov 6, 2020 at 2:14 PM Ajye Huang <ajye.huang@gmail.com> wrote:
 >
-> In this case it also looks like the controller hardware requires
-> transmit data and therefore should be setting SPI_MUST_TX and just
-> removing the in driver default anyway, though that will have no effect
-> one way or anther on the issue you're seeing.
-
-There is a recieve-only mode, but it is not used by this driver. Perhaps
-it should be.
-
-> Please also try to avoid the use of master/slave terminology where
-> reasonable, controller and device tend to work for SPI (though MOSI/MISO
-> are going to be harder to shift).
-
-Here I use it to draw distinction between the SPI master and the SPI
-slave, which are both devices in different contexts. 
-
---Sean
+> Add a property "dmic-gpios" for switching between two MICs.
+>
+> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+> ---
+>  .../devicetree/bindings/sound/google,sc7180-trogdor.yaml  | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> index efc34689d6b5..ce050a9dec94 100644
+> --- a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> +++ b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
+> @@ -34,6 +34,10 @@ properties:
+>    "#size-cells":
+>      const: 0
+>
+> +  dmic-gpios:
+> +    maxItems: 1
+> +    description: GPIO for switching between DMICs
+> +
+>  patternProperties:
+>    "^dai-link(@[0-9])?$":
+>      description:
+> @@ -83,7 +87,7 @@ examples:
+>    - |
+>      sound {
+>          compatible = "google,sc7180-trogdor";
+> -        model = "sc7180-rt5682-max98357a-1mic";
+> +        model = "sc7180-rt5682-max98357a-2mic";
+>
+>          audio-routing =
+>                      "Headphone Jack", "HPOL",
+> @@ -92,6 +96,8 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>
+> +        dmic-gpios = <&tlmm 86 0>;
+> +
+>          dai-link@0 {
+>              link-name = "MultiMedia0";
+>              reg = <0>;
+> --
+> 2.25.1
+>
