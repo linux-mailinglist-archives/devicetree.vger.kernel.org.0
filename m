@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B3B2AC35C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 19:11:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 83B5D2AC360
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 19:11:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730691AbgKISLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 13:11:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41228 "EHLO
+        id S1730726AbgKISLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 13:11:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730841AbgKISLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 13:11:16 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C7F9C0613CF
-        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 10:11:16 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id q5so5922859pfk.6
-        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 10:11:16 -0800 (PST)
+        with ESMTP id S1730806AbgKISLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 13:11:21 -0500
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA359C0613D3
+        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 10:11:20 -0800 (PST)
+Received: by mail-pl1-x642.google.com with SMTP id b12so5127587plr.4
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 10:11:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=zY9fGaYD8ZpsvIIwOgaSJHvbW+1SnTw/6B/N3m0LlHc=;
-        b=C2ZIkRfVq4H3EPtbgYH0dTM2/adYGtQpVSbrcupq08OM6VoJT0UeXT79ptY1HxzZR9
-         GzZi5Gww2Xxz9YG0IK0EeeRAinL2cDfRzJrwS7kMrQ7xd4kyeKmFh6Qg7j0roGh/0pDd
-         t3D0aRfsfnOhzcKMlWKYPTPIREe1mAz2s0rtc=
+        bh=T7QBOVA7GIk/o3k4EBaXjrFkoULA4iFCPhcP7O/ZYy8=;
+        b=M/inRhVgR3/j21UaRwj7aTsS/EFwbQnRQSywF0J09v6rY4+t1C1kRG+93F2U6lOyna
+         7R7jX/bcHiI+1Fx1YdoXrjUqCKhuXBUsAnLHX7DuJGKqIfecvSJiJmQYGydvbcSSQNHW
+         C/xbd0NQ9aXpme/M+hTa9OxCl8Fi/AqTh3yps=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=zY9fGaYD8ZpsvIIwOgaSJHvbW+1SnTw/6B/N3m0LlHc=;
-        b=YjQFKTUnDX9viz0SSHA0ebCupgbB2KiQRt1s7yNEjpkP2+PMjR4kjMeZ87JPt674C2
-         6L5xU//RZKrZXLl5aNFTx8ZXzwgMI9W+mvhd6nMDyA4uIH9RrLy5L7UU4qZV6Q/WYfIG
-         zDk6o3mLiIuF7HSASd5fhZvibAlzjsWjYfmU/ewtqjcfV4pL7xU2nagXXn5enRn7R7ZK
-         e3Q8kTMsWurrDeBq8Wbk2C8S7JZ3uXvoMACTFlKp10cSCu2uDoLn3S0xl+cxL2AY1YvB
-         hkkxx8Rbum3cPTxPDwqCMLLL2TV6gOZpTZnz8ZlHcLGPoxCGOsepwD/GXh+/lpTaaw0m
-         twDQ==
-X-Gm-Message-State: AOAM531mwANQPcuhojcJzLgqiiPUTq2WfebS65dbMcWBdUoKtpow7woP
-        3tF+d7QfvFzBu+GNlGqqM/+Rww==
-X-Google-Smtp-Source: ABdhPJxocp/yN7pU9O9NbxO9ycOqHvuu/mSywhTSFVGHP9k7XyV9x5tm1kRUQSdUg//VPY5X7l/pqQ==
-X-Received: by 2002:a17:90a:f0c7:: with SMTP id fa7mr424710pjb.3.1604945476261;
-        Mon, 09 Nov 2020 10:11:16 -0800 (PST)
+        bh=T7QBOVA7GIk/o3k4EBaXjrFkoULA4iFCPhcP7O/ZYy8=;
+        b=mCB5EX7lwtfXi4GeU+vJ+vxMucGhCWxT7JviIXQU/z8B38nC06WMwd8EXm6h3TOp3o
+         2RwMxrpBusXeu9ywvY1eYSH4a3khN3DUXb0aF1nEDc8Xfsu1cmTFUHJk3RSy54JNzlq4
+         vtYBxbkpsbKc0wJcGvHss1KQ/V8tQHWxNGxmZv8ieUa1TLSSuurO/DkpAN9FJmi9z+0S
+         nh6qWciOlWFdTIdnvYkt/q3DuAXJtBaj/s2bgbIpC86gZ6l9wS444wiurRMnJplShpQ4
+         +WOHzZkwbsbdWOyN0ju9ancv3V1EWquTGlpseELGOal1j7lnRde3hwX21Wce1CoCTKHX
+         e0lg==
+X-Gm-Message-State: AOAM5306h+RfVezhsvBb0e59vcNfCELR7R+TzCcwCqQqLRBJC3V+ci/D
+        weLmkdzEUdoSqki7Cc1jQZ19iA==
+X-Google-Smtp-Source: ABdhPJx1KRgz1DZDJU5pu08jnng7+auZjv0H/qX0ms2l5dNkqqxnMWAFZxwZx1QbwHOiwgULkGlTuw==
+X-Received: by 2002:a17:902:820e:b029:d6:e802:75aa with SMTP id x14-20020a170902820eb02900d6e80275aamr13333320pln.51.1604945480277;
+        Mon, 09 Nov 2020 10:11:20 -0800 (PST)
 Received: from localhost.localdomain ([2405:201:c809:c7a4:c0f0:b8ab:4687:594d])
-        by smtp.gmail.com with ESMTPSA id 136sm12027685pfa.132.2020.11.09.10.11.12
+        by smtp.gmail.com with ESMTPSA id 136sm12027685pfa.132.2020.11.09.10.11.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 10:11:15 -0800 (PST)
+        Mon, 09 Nov 2020 10:11:19 -0800 (PST)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
         Catalin Marinas <catalin.marinas@arm.com>,
@@ -55,9 +55,9 @@ Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
         linux-kernel@vger.kernel.org,
         linux-amarula <linux-amarula@amarulasolutions.com>,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 8/9] arm64: defconfig: Enable PHY_ROCKCHIP_INNO_DSIDPHY
-Date:   Mon,  9 Nov 2020 23:40:16 +0530
-Message-Id: <20201109181017.206834-9-jagan@amarulasolutions.com>
+Subject: [PATCH 9/9] arm64: defconfig: Enable USB_SERIAL_CP210X
+Date:   Mon,  9 Nov 2020 23:40:17 +0530
+Message-Id: <20201109181017.206834-10-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201109181017.206834-1-jagan@amarulasolutions.com>
 References: <20201109181017.206834-1-jagan@amarulasolutions.com>
@@ -67,11 +67,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to work LDVS, DSI in mainline tree for Rockchip based
-hardware platforms, the associated PHY driver has to enable
-in default defconfig.
+Some hardware platforms required CP20x USB to Serial converter
+in order to work onboard functionalities like Bluetooth.
 
-Enable rockchip DSI phy driver.
+An example of such a platform is from Engicam's PX30 (ARM64).
+
+Mark it as module in defconfig.
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
@@ -79,17 +80,17 @@ Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 947e14d6ecae..8d205f0a3a0a 100644
+index 8d205f0a3a0a..14bed4a41bf0 100644
 --- a/arch/arm64/configs/defconfig
 +++ b/arch/arm64/configs/defconfig
-@@ -1018,6 +1018,7 @@ CONFIG_PHY_RCAR_GEN3_USB3=m
- CONFIG_PHY_ROCKCHIP_EMMC=y
- CONFIG_PHY_ROCKCHIP_INNO_HDMI=m
- CONFIG_PHY_ROCKCHIP_INNO_USB2=y
-+CONFIG_PHY_ROCKCHIP_INNO_DSIDPHY=m
- CONFIG_PHY_ROCKCHIP_PCIE=m
- CONFIG_PHY_ROCKCHIP_TYPEC=y
- CONFIG_PHY_UNIPHIER_USB2=y
+@@ -758,6 +758,7 @@ CONFIG_USB_CHIPIDEA_UDC=y
+ CONFIG_USB_CHIPIDEA_HOST=y
+ CONFIG_USB_ISP1760=y
+ CONFIG_USB_SERIAL=m
++CONFIG_USB_SERIAL_CP210X=m
+ CONFIG_USB_SERIAL_FTDI_SIO=m
+ CONFIG_USB_HSIC_USB3503=y
+ CONFIG_NOP_USB_XCEIV=y
 -- 
 2.25.1
 
