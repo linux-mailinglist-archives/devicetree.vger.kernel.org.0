@@ -2,101 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 423C42AC23D
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:29:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5CDF2AC247
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:30:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731950AbgKIR3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 12:29:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731708AbgKIR2s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 12:28:48 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E68C0613CF;
-        Mon,  9 Nov 2020 09:28:47 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id e27so13562712lfn.7;
-        Mon, 09 Nov 2020 09:28:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=oob/x6TgbSkIzBqStoRcBvlxDjkg5j4q3OalbOiwR7k=;
-        b=nwt8yOV2OTG2ahjQwYOnUEq41venCHBjAIe1HrKvZtbjCkQRX3EFt+ZZHCrKKUUDtT
-         vbrnhoIbeKSkewOHy7hSGjVR7EZlHvqkid/pllq1f5Ho1vG4R8A/ld0N32CtbLtKJfKB
-         waziUWOsXQpXJuPgGFa65MTkG+FuzU0b3Ck3rqvX13B843l2PenlCwwMMBD6vqVnrwyr
-         5S+Gb6vPBie3zBJXdpd5mZ1YXfCRFLAHIsospYWuyolMt2PZbDLzXwGF4Oe7/2DTEZ9F
-         JY94p9nJ8mt/VG2IN8/woawnytMF5cIF9KxasuQenOeMe0qmZsCOY1Os06OIYJjpc9IN
-         fGfA==
+        id S1731958AbgKIRaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 12:30:19 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:33209 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731605AbgKIRaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 12:30:19 -0500
+Received: by mail-ot1-f66.google.com with SMTP id i18so9739070ots.0;
+        Mon, 09 Nov 2020 09:30:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=oob/x6TgbSkIzBqStoRcBvlxDjkg5j4q3OalbOiwR7k=;
-        b=hfpy69ukjs9Zcwgtz+n4D9kKcM9Jy9pCSn7ZcHpCRKcvN6XFK9BzTc34lrngKiaa8c
-         zqPdjYTJhuX6+AujZrs+KyMADuonp8yB+6SOzD5J8lhSCylnMCFssKsyC7ZmVbx00tt2
-         NswEFFexMGDGGbd+Oc7Ap74U3Ko/Tt3GOmVF70xc6FFwW/QdAewDxOLPlR2SiNEwMqud
-         o/62jwTRyzWTm1IFAPF+KwR1J3tTF0WCtGrX03CVxJqGn5xJBjznnNolODWwUIl+OlO0
-         Kg/7JEHa+hl0q+iHjz71KeqpBlL/uxz06YcSxMjIyJRumn3ZlChurLnB6Gw+/G1JIAjc
-         cisA==
-X-Gm-Message-State: AOAM532Z/hcs88jaUnOO0rIwRa5KpUHXAK2JwQcW0idxtzzqYSK2Ypgv
-        n/dSwealJ9mkWmAykeMywWG5ET89+ec=
-X-Google-Smtp-Source: ABdhPJzPG+Hasa7/HT5fpa2KLVVDf2BZ4VQ1pJwjqvsImle0uqW7VevhyqTA41Rp1oSUY3tyjrwo7g==
-X-Received: by 2002:a19:90b:: with SMTP id 11mr6487389lfj.316.1604942926195;
-        Mon, 09 Nov 2020 09:28:46 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id j64sm299533lfd.104.2020.11.09.09.28.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2020 09:28:45 -0800 (PST)
-Subject: Re: [PATCH v2] ARM: dts: BCM5301X: Linksys EA9500 add fixed
- partitions
-To:     Vivek Unune <npcomplete13@gmail.com>
-Cc:     florian.fainelli@broadcom.com, Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <e64d76cc-90bb-5b54-04de-fde21542e4fe@gmail.com>
- <20201101200804.2460-1-npcomplete13@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <b69adfa6-c867-816a-1f1d-d67fbfbd5f42@gmail.com>
-Date:   Mon, 9 Nov 2020 18:28:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=By0PfcwclbGGWqIdY33FlSgGR3U94IawXT/xMqBW40E=;
+        b=CGjWpAFE7vay4WNnUocso3+HVf8UavlRxWyAUnHcYYGFpA11axGrd2PrvXXtMY0xjs
+         yIs9GZaozkD3xbuPGXAku8tKoTuDGH/1xBS/R6sx/Xx91nlGPrF3dazeJUX4KkwlFN0q
+         QWPffsC0/q5ydVdcgqqdmeBnpi60VVmfzLFAFRUPAPTkiMZVl+3Nvo6QIh1kf73ww5A5
+         3DizGahAlil8E9heoz1P2aa30iamVhd53GkM3Y+QdAlcHtNKPK6QGcGhBxodEsBuiDFz
+         BJUel1OqQtEl7fsPyTnRNG5HR/avDKB9b0VV528bUvr0LLHOnGiuc9w25vtdivkJAjEG
+         q5Tw==
+X-Gm-Message-State: AOAM530+d83N3J6QVQTTfqedOAwrfXILK00sTsY+miJCyJTAnVSlgmRP
+        vV4r2OZwHbIJHi72iumY7SzQ4L6Tyg==
+X-Google-Smtp-Source: ABdhPJw8uESyxkiXU8hrlZbactHbSu5LN58qs7p49yMnLuL/T3mgUR7DZIbagysRkiCCZviHxpRSDg==
+X-Received: by 2002:a9d:6189:: with SMTP id g9mr2191501otk.231.1604943018638;
+        Mon, 09 Nov 2020 09:30:18 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t20sm2561274oic.1.2020.11.09.09.30.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2020 09:30:18 -0800 (PST)
+Received: (nullmailer pid 1473175 invoked by uid 1000);
+        Mon, 09 Nov 2020 17:30:17 -0000
+Date:   Mon, 9 Nov 2020 11:30:17 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-input@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        Nick Dyer <nick@shmanahar.org>
+Subject: Re: [PATCH 2/3 v2] Input: atmel_mxt_ts - Convert bindings to YAML
+ and extend
+Message-ID: <20201109173017.GA1473085@bogus>
+References: <20201104153032.1387747-1-linus.walleij@linaro.org>
+ <20201104153032.1387747-2-linus.walleij@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20201101200804.2460-1-npcomplete13@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201104153032.1387747-2-linus.walleij@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01.11.2020 21:08, Vivek Unune wrote:
-> This router has dual paritions to store trx firmware image and
-> dual partitions for nvram. The second one in each of these cases acts
-> as a backup store.
+On Wed, 04 Nov 2020 16:30:31 +0100, Linus Walleij wrote:
+> This converts the Armel MXT touchscreen bindings to YAML
+> format and extends them with the following two properties:
+> 
+> - vdda-supply: the optional analog supply voltage
+> - vdd-supply: the optional digital supply voltage
+> 
+> I also explained about the reset-gpios property that this
+> better be flagged as active high (0) despite actually
+> being active low, because all current device trees and
+> drivers assume that this is the case and will actively
+> drive the line low to assert RESET.
+> 
+> Tested the schema with all in-tree users and they verify
+> fine.
+> 
+> Cc: Nick Dyer <nick@shmanahar.org>
+> Cc: Stephan Gerhold <stephan@gerhold.net>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v1->v2:
+> - State that the GPIO lines shall be flagged as active low.
+>   We will fix all users.
+> ---
+>  .../bindings/input/atmel,maxtouch.txt         | 41 ----------
+>  .../bindings/input/atmel,maxtouch.yaml        | 81 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 82 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/atmel,maxtouch.yaml
+> 
 
-I'm quite sure CFE is supposed to flash new firmware to the backup
-partition and then mark it as main one. The old firmware partition becomes a
-new backup then.
-
-That means you need to check which partition bootloader used to handle
-partitioning properly.
-
-
-> +		partition@200000 {
-> +			label = "firmware";
-> +			reg = <0x0200000 0x01D00000>;
-> +			compatible = "brcm,trx";
-> +		};
-> +
-> +		partition@1F00000 {
-> +			label = "failsafe";
-> +			reg = <0x01F00000 0x01D00000>;
-> +			read-only;
-> +		};
-
-Here you assume CFE always boots from the first firmware partition.
-
-Unless EA9500 CFE does sth stupid it seems like a 50% - 50% guess.
+Reviewed-by: Rob Herring <robh@kernel.org>
