@@ -2,100 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E80C62AC777
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:42:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD892AC77A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:43:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730294AbgKIVmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 16:42:03 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45496 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729336AbgKIVmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:42:03 -0500
-Received: by mail-ot1-f65.google.com with SMTP id k3so10456527otp.12;
-        Mon, 09 Nov 2020 13:42:02 -0800 (PST)
+        id S1730470AbgKIVnC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 16:43:02 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:43926 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729247AbgKIVnC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:43:02 -0500
+Received: by mail-ot1-f66.google.com with SMTP id y22so10473036oti.10;
+        Mon, 09 Nov 2020 13:43:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=5NBtqR8i94SwVOiMrtP4aJkCAY5Lq2mIHTo/oqPBKrU=;
-        b=frzbbkFwlICECJcZ1dRyINba/URY08LGq+cUm7LMnyTbF0faKi6v+LoT9HfE65m3+g
-         afto+hg6c5Ps66MLt+YSjk408bNy+yhdhMTXn7oMnIxnMcYjX7KziuQ8IgYUuSb4LqX2
-         DKV/TR2vSUPrXhUBdSTA+y8zKQQr7Pa8jf68ASzp/NBQze5124D5zgfeElZh1Wjj4t48
-         wDE5fd9huE8mPKMHzsfatb5/qzr7df0uWPz6QVVzD72I9TWXnbsFnVVzuV7GoF9Jb2fw
-         +gws/GJwBSPJDje0HI6nyraRIdJnX7eS4Jo1EjdPiVJgFtDM5X/tEIBQ/4pU1VQcxJzG
-         bCkA==
-X-Gm-Message-State: AOAM530myuu7cBbcJ2azuNaTHnUwVyIBxdea0CCn1zvBWY0hvBtYWMS3
-        ROJn07hVbhBtklnUGFlhBw==
-X-Google-Smtp-Source: ABdhPJwsPPQMMzZPoKOY2gw0t7VfNaJh2KH/fUWHrJTJPnFOlsViFYjAaXukaUT5imJ1SYtyyFO9DQ==
-X-Received: by 2002:a05:6830:2401:: with SMTP id j1mr11154131ots.235.1604958121837;
-        Mon, 09 Nov 2020 13:42:01 -0800 (PST)
+        bh=9QhWZ1oAdheaUIAFyejHHmGrmHQabv1ozXKtHPuilcU=;
+        b=qMi9kyY9C9D7BM3y4pWa5IK3S16owkHANeDEKgjFYNAay9YnfqyFkWl5saPSJqQp1a
+         a8YHpHBFcOw8T0nIjwpsJ+EQTIoiQQBi8b0d5dk39kND1MQWGfjA8ekqW8CrKOu6Xw12
+         VVDaBVfkc1gDN7atuZHIcVMQ9qVPSqxmPsiVYwRBw3LIERk08qm8BEi8Hl2lVRqrK0Kh
+         CANgI6sMD5akk/e/TLE//T+FBVgTZGqKdC6HDnw4s1cuWlbDjEtQ1Ky0SaLQN3J4EWJC
+         /V75sADfeks4kZehOfn59qOdlc/ytk/oPd5sYViAvBbQ6d/qyePRd4CMcWNvn7F22E2a
+         wt8Q==
+X-Gm-Message-State: AOAM531x4jlrtiVJSt0b2bRePb7KTDFAH9FjANGUQnYiRRIFoYhkaXsL
+        sF4DSc0QUIuKqqoy1gF6XzV92j3Gpw==
+X-Google-Smtp-Source: ABdhPJyvHaYAnymWPP7L6XLb4DFX/jEbiQEhOi1OegNQOM/rcIhme7mdalsx5tWauh9DdAlaYqYP3Q==
+X-Received: by 2002:a9d:6641:: with SMTP id q1mr12212275otm.190.1604958181041;
+        Mon, 09 Nov 2020 13:43:01 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i8sm2804911otl.60.2020.11.09.13.42.00
+        by smtp.gmail.com with ESMTPSA id b23sm648845ooa.13.2020.11.09.13.43.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 13:42:01 -0800 (PST)
-Received: (nullmailer pid 1806194 invoked by uid 1000);
-        Mon, 09 Nov 2020 21:42:00 -0000
-Date:   Mon, 9 Nov 2020 15:42:00 -0600
+        Mon, 09 Nov 2020 13:43:00 -0800 (PST)
+Received: (nullmailer pid 1807522 invoked by uid 1000);
+        Mon, 09 Nov 2020 21:42:59 -0000
+Date:   Mon, 9 Nov 2020 15:42:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen.Hegelund@microchip.com
-Subject: Re: [PATCH 8/9] MIPS: mscc: Add jaguar2 support
-Message-ID: <20201109214200.GA1802298@bogus>
-References: <20201106100849.969240-1-gregory.clement@bootlin.com>
- <20201106100849.969240-10-gregory.clement@bootlin.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] PCI: cadence: Do not error if
+ "cdns,max-outbound-regions" is not found
+Message-ID: <20201109214259.GA1806607@bogus>
+References: <20201106151107.3987-1-kishon@ti.com>
+ <20201106151107.3987-3-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201106100849.969240-10-gregory.clement@bootlin.com>
+In-Reply-To: <20201106151107.3987-3-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 06, 2020 at 11:08:48AM +0100, Gregory CLEMENT wrote:
-> Add a device trees and FIT image support for the Microsemi Jaguar2 SoC
-> which belongs to same family of the Ocelot SoC.
+On Fri, Nov 06, 2020 at 08:41:07PM +0530, Kishon Vijay Abraham I wrote:
+> Now that "cdns,max-outbound-regions" is made an optional property, do
+> not error out if "cdns,max-outbound-regions" device tree property is
+> not found.
 > 
-> It is based on the work of Lars Povlsen <lars.povlsen@microchip.com>.
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Link: http://lore.kernel.org/r/20201105165331.GA55814@bogus
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  .../devicetree/bindings/mips/mscc.txt         |   2 +-
->  arch/mips/boot/dts/mscc/Makefile              |   3 +
->  arch/mips/boot/dts/mscc/jaguar2.dtsi          | 167 +++++++++++
->  arch/mips/boot/dts/mscc/jaguar2_common.dtsi   |  25 ++
->  arch/mips/boot/dts/mscc/jaguar2_pcb110.dts    | 273 ++++++++++++++++++
->  arch/mips/boot/dts/mscc/jaguar2_pcb111.dts    | 109 +++++++
->  arch/mips/boot/dts/mscc/jaguar2_pcb118.dts    |  59 ++++
->  arch/mips/generic/Kconfig                     |   8 +
->  arch/mips/generic/Platform                    |   1 +
->  arch/mips/generic/board-jaguar2.its.S         |  40 +++
->  10 files changed, 686 insertions(+), 1 deletion(-)
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2.dtsi
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_common.dtsi
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb110.dts
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb111.dts
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb118.dts
->  create mode 100644 arch/mips/generic/board-jaguar2.its.S
+>  drivers/pci/controller/cadence/pcie-cadence-ep.c | 9 +++------
+>  drivers/pci/controller/cadence/pcie-cadence.h    | 1 +
+>  2 files changed, 4 insertions(+), 6 deletions(-)
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 > 
-> diff --git a/Documentation/devicetree/bindings/mips/mscc.txt b/Documentation/devicetree/bindings/mips/mscc.txt
-> index bdbebb525393..cc916eaeed0a 100644
-> --- a/Documentation/devicetree/bindings/mips/mscc.txt
-> +++ b/Documentation/devicetree/bindings/mips/mscc.txt
-> @@ -4,7 +4,7 @@ Boards with a SoC of the Microsemi MIPS family shall have the following
->  properties:
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep.c b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> index 254a3e1eff50..9a4195af958e 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> @@ -531,12 +531,9 @@ int cdns_pcie_ep_setup(struct cdns_pcie_ep *ep)
+>  	}
+>  	pcie->mem_res = res;
 >  
->  Required properties:
-> -- compatible: "mscc,ocelot", "mscc,luton", "mscc,serval" or "mscc,jaguar2"
-> +- compatible: "mscc,ocelot", "mscc,luton", "mscc,serval" or "mscc,jr2"
-
-Goes in patch 2.
-
+> -	ret = of_property_read_u32(np, "cdns,max-outbound-regions",
+> -				   &ep->max_regions);
+> -	if (ret < 0) {
+> -		dev_err(dev, "missing \"cdns,max-outbound-regions\"\n");
+> -		return ret;
+> -	}
+> +	ep->max_regions = CDNS_PCIE_MAX_OB;
+> +	of_property_read_u32(np, "cdns,max-outbound-regions", &ep->max_regions);
+> +
+>  	ep->ob_addr = devm_kcalloc(dev,
+>  				   ep->max_regions, sizeof(*ep->ob_addr),
+>  				   GFP_KERNEL);
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+> index feed1e3038f4..30eba6cafe2c 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.h
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
+> @@ -197,6 +197,7 @@ enum cdns_pcie_rp_bar {
+>  };
 >  
+>  #define CDNS_PCIE_RP_MAX_IB	0x3
+> +#define CDNS_PCIE_MAX_OB	32
 >  
->  * Other peripherals:
+>  struct cdns_pcie_rp_ib_bar {
+>  	u64 size;
+> -- 
+> 2.17.1
+> 
