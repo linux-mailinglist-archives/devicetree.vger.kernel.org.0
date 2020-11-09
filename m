@@ -2,166 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FFA2AC761
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:37:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 987152AC766
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:37:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730347AbgKIVhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 16:37:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45022 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729247AbgKIVha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:37:30 -0500
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345FCC0613D3
-        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 13:37:30 -0800 (PST)
-Received: by mail-pf1-x442.google.com with SMTP id y7so9383863pfq.11
-        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 13:37:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IVG/pnqU/rZNPf8FUWkusV/y8FFNBFgXush0QW0Xq5w=;
-        b=KmSITxLJGqcCJ45deGdKGXIPpYDMb6vveRBn1HOVY6jEMgcT+ifQdB3G0Nal6I+V47
-         nSTUsnLUcQhMQAjWPDB5ap8OQYBYrtawZVjHw2D3ju1AoPvSRxJdOZ9mARnXlcbQxadC
-         JD2D6wyu2ywUArSYM5EzsEt9IEcySkh9UqOds=
+        id S1730920AbgKIVho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 16:37:44 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:45601 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730490AbgKIVhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:37:43 -0500
+Received: by mail-oi1-f196.google.com with SMTP id j7so11855097oie.12;
+        Mon, 09 Nov 2020 13:37:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IVG/pnqU/rZNPf8FUWkusV/y8FFNBFgXush0QW0Xq5w=;
-        b=En497CSMbmfZZK2/oAl4lBQ3dfJas68FU5R7JkpDj0E3pvjqYDXGAlV9HDQAS5NXNi
-         mny2giy5il89JScUsmH1DKPP9h8yGaoyJcj9OXYSv+rISXXgMxHQ7lRIxWbhcOaXPWuF
-         EasLsDVgOEfjkYgHH/SHDX8mg++e4mAbE6rXxQ7vJGOAdAuIMMnLY/Acay2rUmOfqs1L
-         wXtRfzf2MQ3LzShX6TOKTL++Rz/VN+h6VcrFir7L4K6nD7d+M697fUW+lN0DcJ4frg/D
-         XVLQsK6+Iqtgc7MQSqpE0k1OPkPsv1P1UjOicLf+uD5P7cw16SKyFfLRx/oE3gPN0+jZ
-         ueGA==
-X-Gm-Message-State: AOAM532DUNJnCx/6QKjE9qqLCeQAuUqjoVY+R5SmoWvVd8qOMysDmbFT
-        ccSxumd3v3Ri32p4fZbRQeRrmw==
-X-Google-Smtp-Source: ABdhPJzzp3X12Puhdm2/cXoL8BUDk0MNJMipPzxDxixAaij3gk3beeDcDcKSGToa7LMwwY12Zd1gUw==
-X-Received: by 2002:a63:134d:: with SMTP id 13mr14444377pgt.370.1604957849726;
-        Mon, 09 Nov 2020 13:37:29 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id i10sm11895444pfd.60.2020.11.09.13.37.27
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W+KR0yJBmbMDDeIPd0H7Smh/TQS3Huh+/o0TS/ugewM=;
+        b=cbxXMfUSersa+u6rfvh4WScBjF0oxvMyH5UwPOx7Sa3byScZwhVYrYBpUNvAXinRDJ
+         592Xdeu/3yRXQtjDzeUWfxgTRNAKtn5Di5C7q1AmU/qOTyAXWCUOdEKjHpSyvnyf7cJf
+         A9vv0ZR2KdYXhBXcUIJ9rlUqdu54O912Kla9RjDzMfE3BTEsc3RQ4azydFC0gTtMYBjp
+         XjhMT0KAi2FDpSt/2pm4aEH6In8Bkd6NCXpzaOCRhLIOS7GaBLL8mjWwq2nlCjVc657S
+         mxfMIy28MQibcLBP8FQGBGhKrV0FnXr2mCZgd3Fz7RJjlIv/R3Si/PmDVUIXG8ZsKsCF
+         y+FA==
+X-Gm-Message-State: AOAM532jPD1GzBe3ohdGHvCizNLWe3rQdBPfGJdroODlPigVqiEcqhOM
+        edAbKaAemQB7idoOQLk9g29IrVlqPQ==
+X-Google-Smtp-Source: ABdhPJzfGE202DhhObC7AaSKL2vd2oAkxhu3u1O5UyUGlbadiTDZ7oVC4DtjK9Uyc0bkEKufC6w7Jg==
+X-Received: by 2002:aca:cf0c:: with SMTP id f12mr800903oig.139.1604957862595;
+        Mon, 09 Nov 2020 13:37:42 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s189sm2660577oig.46.2020.11.09.13.37.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 13:37:29 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
-        gregkh@linuxfoundation.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     kai.heng.feng@canonical.com, hdegoede@redhat.com,
-        robh+dt@kernel.org, linux-input@vger.kernel.org,
-        swboyd@chromium.org, andrea@borgia.bo.it,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 3/4] dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix GT7375P
-Date:   Mon,  9 Nov 2020 13:36:35 -0800
-Message-Id: <20201109133526.v5.3.Ibb28033c81d87fcc13a6ba28c6ea7ac154d65f93@changeid>
-X-Mailer: git-send-email 2.29.2.222.g5d2a92d10f8-goog
-In-Reply-To: <20201109213636.1267536-1-dianders@chromium.org>
-References: <20201109213636.1267536-1-dianders@chromium.org>
+        Mon, 09 Nov 2020 13:37:42 -0800 (PST)
+Received: (nullmailer pid 1799914 invoked by uid 1000);
+        Mon, 09 Nov 2020 21:37:41 -0000
+Date:   Mon, 9 Nov 2020 15:37:41 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Andrej Valek <andrej.valek@siemens.com>
+Cc:     nick@shmanahar.org, hadess@hadess.net, dmitry.torokhov@gmail.com,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: goodix
+Message-ID: <20201109213741.GA1797317@bogus>
+References: <20201029170313.25529-1-andrej.valek@siemens.com>
+ <20201106100539.6646-3-andrej.valek@siemens.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201106100539.6646-3-andrej.valek@siemens.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds new bindings for the Goodix GT7375P touchscreen.  While this
-touchscreen's communications are based on the generic "i2c-over-hid"
-protocol, it needs special power sequencing and thus gets its own
-compatible and bindings.
+On Fri, Nov 06, 2020 at 11:05:38AM +0100, Andrej Valek wrote:
+> Add information about option how to disable FW loading for each boot.
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+Again, fix your subject.
 
-Changes in v5:
-- Added mention of i2c-hid in the yaml itself as per Rob.
-- Adjusted subject as per Rob.
+> 
+> Signed-off-by: Andrej Valek <andrej.valek@siemens.com>
+> ---
+>  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> index e7d9404c86ab..8b0fa25ae96e 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+> @@ -53,7 +53,7 @@ properties:
+>    touchscreen-size-x: true
+>    touchscreen-size-y: true
+>    touchscreen-swapped-x-y: true
+> -  touchscreen-do-not-load-fw: false
+> +  goodix-do-not-load-fw: false
 
-Changes in v3:
-- Fixed compatible in example.
-- Removed Benjamin as a maintainer.
-- Updated description.
+Why is this incremental on v1?
 
-Changes in v2:
-- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
-
- .../bindings/input/goodix,gt7375p.yaml        | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-new file mode 100644
-index 000000000000..fe1c5016f7f3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Goodix GT7375P touchscreen
-+
-+maintainers:
-+  - Douglas Anderson <dianders@chromium.org>
-+
-+description:
-+  Supports the Goodix GT7375P touchscreen.
-+  This touchscreen uses the i2c-hid protocol but has some non-standard
-+  power sequencing required.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: goodix,gt7375p
-+
-+  reg:
-+    enum:
-+      - 0x5d
-+      - 0x14
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    true
-+
-+  vdd-supply:
-+    description: The 3.3V supply to the touchscreen.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      ap_ts: touchscreen@5d {
-+        compatible = "goodix,gt7375p";
-+        reg = <0x5d>;
-+
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+        reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+        vdd-supply = <&pp3300_ts>;
-+      };
-+    };
--- 
-2.29.2.222.g5d2a92d10f8-goog
-
+And that's not how vendor prefixes on properties work.
