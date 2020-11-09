@@ -2,141 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 566A82AC6B8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:15:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A9502AC72C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:23:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729247AbgKIVPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 16:15:31 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38640 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729336AbgKIVPb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 16:15:31 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 84563206CB;
-        Mon,  9 Nov 2020 21:15:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604956530;
-        bh=oYr2JaLR22iQHfcymOzeBfdwEdiH+YRlgs4KPxWwOTs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aB6NCU9QwvpONEX/1Io7pQXX8zJsOMlPiu+rhJiTw7WRQ58MaJxTPiq4oxqDFkwXk
-         wR3jHAewHNE/T3mGhckgcb7r7KsFUAq+ZzEb7VdntGfAAf34MU1lqxR2C6IgGZhsWM
-         AUjTq9ON5xnHnYhNsaJ7/hCxj2m82s0NpmRzmIVc=
-Date:   Mon, 9 Nov 2020 21:15:15 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Subject: Re: ASoC: Question regarding device-tree multi-lane I2S for
- Allwinner SoC
-Message-ID: <20201109211515.GO6380@sirena.org.uk>
-References: <CAJiuCcfBOHhniDQOaB8ixU0pY9u0GVivkj7po-kozBV8LqmB6A@mail.gmail.com>
+        id S1730706AbgKIVWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 16:22:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42610 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727311AbgKIVWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:22:07 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BDF2C0613CF;
+        Mon,  9 Nov 2020 13:22:07 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id f11so8227703lfs.3;
+        Mon, 09 Nov 2020 13:22:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=erGCDfk1T8jj0P66ygwuQHbBulQ+TeFa6YVDO6ZXBrI=;
+        b=HG+R+afcnVk+JjnjUT4bLntCCRkeqWjO387aQAi+qWzlwVcG+x3ZmJm9yTlfS8vZnY
+         wmuDwnkEnegAgv6C5dTgRaW1B7M92a6LzgvNvuyaXmkItwo+wXXyWwHn2SXlLrmNgytF
+         qlsNWkDzkkolZpnHrU1Gx23bcfr0Gc27muvTkFm2qe0XjIkSYs9P2Z2Qr5mY5ToXiKL3
+         A6VKW4z2BA3xUKuP7belL/6Zl25hG6zOzmMeVSMZsKEQC2mZqIL8VNFq+PvL0uefMuen
+         0BW33KF7X6JHunCeDl42YzJDddCRT+W5fGfoFVHtG1If9YgyJZKzR0lOPJ/jeARFvqCk
+         kJyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=erGCDfk1T8jj0P66ygwuQHbBulQ+TeFa6YVDO6ZXBrI=;
+        b=AAW2rpmqKGLxRR6o92FWbaqvnccLpGK7RqCllqwPtLqmDw/coMHuHQWsdvuows3W0Q
+         zQQAwYdbGckyEcCGbOCWt5HOpYxDYTsoL36VOrcRmSwC4qN4akKn/QqzwcpmTloXrqp/
+         e6Oia2DnGBJOtNlzcMtrid3IXzIzk3MsAcVQvLxCWoAUwggaEYAU6bs3lcZcg2W5MqgP
+         HiqvmfjlCdyPjeoRU/4Z87Pii4/jQGAFeSr8hW8qmf/GzKTIpUjVMbjl+UE9XUHU09bF
+         nAYcyRYbm6R7s0Yl/UHlPWRJ1oy+MBwzbjNJkcnr89P3jeBL58U9yPCYPHNi7HnDtfzT
+         edbQ==
+X-Gm-Message-State: AOAM531MX9VYrFXUqWguGqJoeS9Pi9B7S37dr6g+33TWt9ezM2ypClBN
+        J3Pg9QvLmAEeL5x7YM1B3Fw=
+X-Google-Smtp-Source: ABdhPJyckhHVzvlbB8NBnv1YJ+bafHBWpymTA8AujTFSZMEi2aaWRiumfgLTTGBMDdsK6VkU/3Xfgw==
+X-Received: by 2002:a19:3ce:: with SMTP id 197mr6794065lfd.364.1604956925708;
+        Mon, 09 Nov 2020 13:22:05 -0800 (PST)
+Received: from mobilestation ([95.79.141.114])
+        by smtp.gmail.com with ESMTPSA id x8sm1400561lff.196.2020.11.09.13.22.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2020 13:22:05 -0800 (PST)
+Date:   Tue, 10 Nov 2020 00:21:58 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH 06/32] spi: dw: Add support for the Kendryte K210 SoC
+Message-ID: <20201109212158.y34otj3uy2hev75c@mobilestation>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
+ <20201107081420.60325-7-damien.lemoal@wdc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="da9oBGf5DLtF9ehv"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAJiuCcfBOHhniDQOaB8ixU0pY9u0GVivkj7po-kozBV8LqmB6A@mail.gmail.com>
-X-Cookie: This fortune is false.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201107081420.60325-7-damien.lemoal@wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Nov 07, 2020 at 05:13:54PM +0900, Damien Le Moal wrote:
+> The DW SPI master of the Kendryte K210 RISC-V SoC uses the 32-bits
+> ctrlr0 register format. This SoC is also quite slow and gets significant
+> SD card performance improvements from using no-delay polled transfers.
+> Add the dw_spi_k210_init() function tied to the
+> "canaan,kendryte-k210-spi" compatible string to set the
+> DW_SPI_CAP_DFS_32 and DW_SPI_CAP_POLL_NODELAY DW SPI capability fields
+> for this SoC.
+> 
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> ---
+>  drivers/spi/spi-dw-mmio.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
+> index 3f1bc384cb45..a00def6c5b39 100644
+> --- a/drivers/spi/spi-dw-mmio.c
+> +++ b/drivers/spi/spi-dw-mmio.c
+> @@ -223,6 +223,14 @@ static int dw_spi_keembay_init(struct platform_device *pdev,
+>  	return 0;
+>  }
+>  
+> +static int dw_spi_k210_init(struct platform_device *pdev,
+> +			    struct dw_spi_mmio *dwsmmio)
+> +{
+> +	dwsmmio->dws.caps = DW_SPI_CAP_DFS_32 | DW_SPI_CAP_POLL_NODELAY;
+> +
+> +	return 0;
+> +}
+> +
+>  static int dw_spi_mmio_probe(struct platform_device *pdev)
+>  {
+>  	int (*init_func)(struct platform_device *pdev,
+> @@ -340,6 +348,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
+>  	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
+>  	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
+>  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
 
---da9oBGf5DLtF9ehv
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> +	{ .compatible = "canaan,kendryte-k210-spi", .data = dw_spi_k210_init},
 
-On Sun, Nov 01, 2020 at 06:30:15PM +0100, Cl=E9ment P=E9ron wrote:
+Other than the comments from Sean and Mark regarding the DFS_32
+feature runtime detectability, I couldn't find a patch with adding the
+new new compatible string into the DW APB SSI DT schema. Have I missed
+it? If I haven't could you add one to the next version of the series?
 
-Sorry about the delay here.
+-Sergey
 
->     dai-tdm-slot-tx-mask-0 =3D <1 1>;
->     dai-tdm-slot-tx-mask-1 =3D <1 1>;
->     dai-tdm-slot-tx-mask-2 =3D <1 1>;
->     dai-tdm-slot-tx-mask-3 =3D <1 1>;
-
-=2E..
-
-> This kind of representation gives the information that 2 slots should
-> be enabled as TX per lane but don't give which slot to map.
-
-The way the above should be interpreted is as a bitmask of slots to use,
-I'm hoping that the above is for a system with 4 TX data wires each
-using two slots (such designs get used for things like surround sound
-amps). =20
-
-> I was thinking about a representation per lane but maybe it's a bit
-> complicated  ?
-
->     dai-format =3D "dsp_a";
->     dai-tdm-slot-width =3D <32>;
->     // Lane 0 : Output 8 channels 0-7 using TDM
->     dai-tdm-slot-tx-mask-0 =3D <1 1 1 1 1 1 1 1>;
->     dai-tdm-slot-chmap-0 =3D <0 1 2 3 4 5 6 7>;
->     // Lane 1 : Output 3 channels 5-7 using TDM
->     dai-tdm-slot-tx-mask-1 =3D <1 1 1>;
->     dai-tdm-slot-chmap-1 =3D <5 6 7>;
-
-I'd expect lane 1 to end up as
-
-     dai-tdm-slot-tx-mask-1 =3D < 0 0 0 0 0 1 1 1 >;
-
->     // Lane 0 : Output channels 0,1
->     dai-tdm-slot-tx-mask-0 =3D <1 1>;
->     dai-tdm-slot-chmap-0 =3D <0 1>;
->     // Lane 1: Output channels 2,3
->     dai-tdm-slot-tx-mask-1 =3D <1 1>;
->     dai-tdm-slot-chmap-1 =3D <2 3>;
->     // Lane 2: Output channels 4,5
->     dai-tdm-slot-tx-mask-2 =3D <1 1>;
->     dai-tdm-slot-chmap-2 =3D <4 5>;
->     // Lane 3: Output channels 6,7
->     dai-tdm-slot-tx-mask-3 =3D <1 1>;
->     dai-tdm-slot-chmap-3 =3D <6 7>;
-
-> What do you think? Do you have any remark / idea about this ?
-
-I can see the use for the chmap binding, I can see that we might have a
-system which has for example outputs labelled in some unusual order and
-we'd want to remap them.  I'm less sure about defining a channel map in
-a way that changes the meaning of the masks though, that seems like it'd
-lead to incompatibilities.  How about making chmap also an array like
-the mask is with the bits set in the mask indicating which slots in the
-chmap are valid, that way your -3 would end up as:
-
-      dai-tdm-slot-tx-mask-3 =3D <0 0 0 0 0 0 0 1 1>;
-      dai-tdm-slot-chmap-3   =3D <0 0 0 0 0 0 0 6 7>;
-
-and something that only understands the mask would at least get the
-correct channels even if in a jumbled order?
-
---da9oBGf5DLtF9ehv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+psWMACgkQJNaLcl1U
-h9DxiAf+LcdNMSzFM9UDPRKWBo7YMMEa3rZBYdJiTYFos60njDZu9mygoU302a4j
-1zY+3h4+36iMWuL1M6Kg3+roJuRBPBiWCIDLMsiKBcyN8rmpSKzv3Ki8na/QqpcD
-Pi6eu9MyPH/68CElJ2KYDbMhmNGXgVzPKhQ2Vmpx9f4NdTuCDE9Cs6f4ibFVzBIp
-j3V6YV/+gLNvDxpghKmfsbew/6qYtxq5ouXW/lF3zvor6W/Ez+zem1/dKFj8sqGh
-8+oWQvThKGtoz8jYjxfz3oe7C7Syvsq8ejUmPD2tlNOaYaaiXYK8wzZyDSghKdua
-UpXzlsrLN+HXuLOVpu1ShjiCPNj4wQ==
-=TwOU
------END PGP SIGNATURE-----
-
---da9oBGf5DLtF9ehv--
+>  	{ /* end of table */}
+>  };
+>  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
+> -- 
+> 2.28.0
+> 
