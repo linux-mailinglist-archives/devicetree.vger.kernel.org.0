@@ -2,403 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 098802AB7C2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 13:07:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C666B2AB7C7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 13:08:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727077AbgKIMHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 07:07:51 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:2995 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbgKIMHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 07:07:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1604923669; x=1636459669;
-  h=references:from:to:cc:subject:in-reply-to:date:
-   message-id:mime-version;
-  bh=ZFITE8s1FUU3VZjTP8ZkAcYVJGUpVToCjdKUZZw01us=;
-  b=zrnUrKL33BqAQeWDdBSa99RyXNin0zwDax0jvIx+S9xdpCXjOJ9NzRWq
-   OW3sB2z7Y224Cbhd8QBkN9fYnNDk3qFRx7ZE6OVe1Ov7XkTL7zTibAdQ8
-   pjKvjoDbg7EQjlH1nim1v2yIX1o8omj4Aqd4UqnUZfa6ii56XbmM/m4Rk
-   8KzSb9+ZEDLq8FX9V48tGaZtgfLRJhasswRjz1f7/b5V+NGtLhRVlKjXo
-   JvuZ7htEAZjYusZbaZhZd8/L3LjgzMSujngP48XfEC4x2iCKWgLoaQK79
-   knZ8GfIP67zQdbQloMTNJExQN55CKhudGdkPPwgKZmHU62e0XQzPoagJU
-   w==;
-IronPort-SDR: 7rmE2ODFt6Vlgoe/9+e+2YH5WDrfgHBRkPGQhqpupDNMiTV7iulMP/9KfHXzZx1LcpgPJXsJVA
- 84xxP0KKVas0pjvr7a0XoFNXT1ocRgRSadIx8bIhTZ7X0yJxn9rDwbxoLE/Fo8ziXFDMlsTFEq
- oI3pJPBZ6f7Uo0ZS9ODFQTIKnWeXHUVswK1Q+yH5OGs5Apv4AbANDRzBSudo3+YSJSXzDCqA+4
- hw3SUxfS5W68tThkvZy1TIEo8VUWkYs3AQ/X4XnooQJEkVqxXqc2/JX0djfMQHUEHwvPUWfVuE
- C1E=
-X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; 
-   d="scan'208";a="32921006"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Nov 2020 05:07:49 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 9 Nov 2020 05:07:48 -0700
-Received: from soft-dev10.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Mon, 9 Nov 2020 05:07:46 -0700
-References: <20201029134027.232951-1-lars.povlsen@microchip.com> <20201029134027.232951-3-lars.povlsen@microchip.com> <CAHp75VedcNP5x72PN4tqZ_0HhbCyd666T=AWn+TFr7Fp8EEs7Q@mail.gmail.com>
-User-agent: mu4e 1.2.0; emacs 26.3
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-arm Mailing List" <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v7 2/3] pinctrl: pinctrl-microchip-sgpio: Add pinctrl driver for Microsemi Serial GPIO
-In-Reply-To: <CAHp75VedcNP5x72PN4tqZ_0HhbCyd666T=AWn+TFr7Fp8EEs7Q@mail.gmail.com>
-Date:   Mon, 9 Nov 2020 13:07:23 +0100
-Message-ID: <874klyg2dg.fsf@microchip.com>
+        id S1729316AbgKIMI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 07:08:27 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:34520 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728927AbgKIMI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 07:08:27 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A9C8KGF016562;
+        Mon, 9 Nov 2020 06:08:20 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604923700;
+        bh=VvLPSZfpwiHAjS3GjsrVd0qPrDT6hWWzu3IfDCtXXms=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=pkP2c8rMzFhKqVzAynG2FpOYK+a7qBCpdIe0YYlj5r10gRe/+yqZgrrTZeULg8dYV
+         riIdbvJYa5DbekCDMRjZK8131epQtypXjzZnYM+EccDAGs8DHKzDqZHLO8CFVbXD77
+         cf1Ahi9kMjfjcb/LkjIrHClMD0JPeP45Iao//n40=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A9C8Kjg031614
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 9 Nov 2020 06:08:20 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 9 Nov
+ 2020 06:08:19 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 9 Nov 2020 06:08:19 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A9C8Hb6012848;
+        Mon, 9 Nov 2020 06:08:17 -0600
+Subject: Re: [PATCH 01/18] dmaengine: of-dma: Add support for optional router
+ configuration callback
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <nm@ti.com>, <ssantosh@kernel.org>, <robh+dt@kernel.org>,
+        <vigneshr@ti.com>, <dan.j.williams@intel.com>, <t-kristo@ti.com>,
+        <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
+ <20200930091412.8020-2-peter.ujfalusi@ti.com>
+ <20201007054404.GR2968@vkoul-mobl>
+ <be615881-1eb4-f8fe-a32d-04fabb6cb27b@ti.com>
+ <20201007155533.GZ2968@vkoul-mobl>
+ <45adb88b-1ef8-1fbf-08c1-9afc6ea4c6f0@ti.com>
+ <20201028055531.GH3550@vkoul-mobl>
+ <cf3d3de0-223b-4846-bd9f-b78654ae2d08@ti.com>
+ <20201109114534.GH3171@vkoul-mobl>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <7a7cb455-dd09-b71f-6ecc-fd6108d37051@ti.com>
+Date:   Mon, 9 Nov 2020 14:09:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.1
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20201109114534.GH3171@vkoul-mobl>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Vinod,
 
-Andy Shevchenko writes:
+On 09/11/2020 13.45, Vinod Koul wrote:
+>> Without a channel number I can not do anything.
+>> It is close to a chicken and egg problem.
+> 
+> We get 'channel' in xlate, so wont that help? I think I am still missing
+> something here :(
 
-> On Thu, Oct 29, 2020 at 3:40 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
->>
->> This adds a pinctrl driver for the Microsemi/Microchip Serial GPIO
->> (SGPIO) device used in various SoC's.
->
-> First Q is can you use gpio-regmap?
-> Second one, why this driver is a pin control? I haven't found any
-> evidence it can be plain GPIO.
+Yes, we get channel in xlate, but we get the channel after
+ofdma->of_dma_route_allocate()
 
-I think I responded in <87blgp9hhv.fsf@soft-dev15.microsemi.net>, did
-you not see that?
+of_dma_route_allocate() si the place where DMA routers create the
+dmaspec for the DMA controller to get a channel and they up until BCDMA
+did also the HW configuration to get the event routed.
 
->
-> Also note, if comment is given about one part of the code, you need to
-> check all the rest which are similar and address accordingly.
->
-> ...
->
->> +config PINCTRL_MICROCHIP_SGPIO
->> +       bool "Pinctrl driver for Microsemi/Microchip Serial GPIO"
->
->> +       depends on OF
->
-> I think this is not needed, see below.
+For a BCDMA channel we can have three triggers:
+Global trigger 0 for the channel
+Global trigger 1 for the channel
+Local trigger for the channel
 
-I will remove the OF dependency, I think you are right it can be
-done. I just did not see that as a goal in itself.
+Every BCDMA channel have these triggers and for all of them they are the
+same (from the channel's pow).
+bchan0 can be triggered by global trigger 0
+bchan1 can be triggered by global trigger 0
 
->
->> +       depends on HAS_IOMEM
->> +       select GPIOLIB
->> +       select GENERIC_PINCONF
->> +       select GENERIC_PINCTRL_GROUPS
->> +       select GENERIC_PINMUX_FUNCTIONS
->
->> +       select OF_GPIO
->
-> ...neither this...
+But these triggers are not the same ones, the real trigger depends on
+the router, which of it's input is converted to send out an event to
+trigger bchan0_trigger0 or to trigger bchan1_trigger0.
 
-OK.
+When we got the channel with the dmaspec from the router driver then we
+need to tell the router driver that it needs to send a given event in
+order to trigger the channel that we got.
 
->
->> +       help
->> +         Support for the serial GPIO interface used on Microsemi and
->> +         Microchip SoC's. By using a serial interface, the SIO
->> +         controller significantly extends the number of available
->> +         GPIOs with a minimum number of additional pins on the
->> +         device. The primary purpose of the SIO controller is to
->> +         connect control signals from SFP modules and to act as an
->> +         LED controller.
->
-> ...
->
-> Missed header here, like bits.h.
+We can not have traditional binding for BCDMA either where we would tell
+the bchan index to be used because depending on the resource allocation
+done within sysfw that exact channel might not be even available for us.
 
-I'll add that.
+- Péter
 
->
->> +#include <linux/gpio/driver.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/io.h>
->
->> +#include <linux/of_device.h>
->> +#include <linux/of_irq.h>
->> +#include <linux/of_platform.h>
->
-> I think this driver is OF independent, if you convert the OF leftovers
-> to device_/fwnode_ API.
-
-As stated, I'll be removing the OF parts.
-
->
-> Then you need to drop these headers (most of them actually are
-> redundant even now) and add property.h. Also you missed
-> mod_devicetable.h.
->
->> +#include <linux/clk.h>
->> +#include <linux/pinctrl/pinctrl.h>
->> +#include <linux/pinctrl/pinmux.h>
->> +#include <linux/pinctrl/pinconf.h>
->> +#include <linux/pinctrl/pinconf-generic.h>
->> +#include <linux/platform_device.h>
->
-> Perhaps ordered and linux/pinctrl/ be grouped after generic ones?
-
-Sure, I can do that. There's some that *are* needed, but your're right
-that some are redundant.
-
->
-> ...
->
->> +#define __shf(x)               (__builtin_ffs(x) - 1)
->> +#define __BF_PREP(bf, x)       (bf & ((x) << __shf(bf)))
->> +#define __BF_GET(bf, x)                (((x & bf) >> __shf(bf)))
->
-> Isn't it home grown reimplementation of bitfield.h?
->
-
-This was answered in the aforementioned mail.
-
-> ...
->
->> +static int sgpio_gpio_request_enable(struct pinctrl_dev *pctldev,
->> +                                    struct pinctrl_gpio_range *range,
->> +                                    unsigned int offset)
->> +{
->> +       struct sgpio_bank *bank = pinctrl_dev_get_drvdata(pctldev);
->> +       struct sgpio_priv *priv = bank->priv;
->> +       struct sgpio_port_addr addr;
->> +
->> +       sgpio_pin_to_addr(priv, offset, &addr);
->> +
->> +       if ((priv->ports & BIT(addr.port)) == 0) {
->> +               dev_warn(priv->dev, "%s: Request port %d for pin %d is not activated\n",
->> +                        __func__, addr.port, offset);
->
-> Don't use __func__ in messages, it's rarely needed and here I believe
-> is not the case.
->
-
-Ok, I will drop that.
-
->> +       }
->> +
->> +       return 0;
->> +}
->
-> ...
->
->> +       /* Note that the SGIO pin is defined by *2* numbers, a port
->> +        * number between 0 and 31, and a bit index, 0 to 3.
->> +        */
->
-> /*
->  * Fix multi-line comment
->  * style. Like in this example.
->  */
-
-Sure. A drag network style insist to be different, but thats another
-sory...
-
->
-> ...
->
->> +static int microchip_sgpio_get_ports(struct sgpio_priv *priv)
->> +{
->> +       struct device *dev = priv->dev;
->> +       struct device_node *np = dev->of_node;
->> +       int i, ret;
->> +       u32 range_params[64];
->
-> Better to use reversed xmas tree order.
->
-
-Ack.
-
->> +       /* Calculate port mask */
->> +       ret = of_property_read_variable_u32_array(np,
->> +                                                 "microchip,sgpio-port-ranges",
->> +                                                 range_params,
->> +                                                 2,
->> +                                                 ARRAY_SIZE(range_params));
->> +       if (ret < 0 || ret % 2) {
->> +               dev_err(dev, "%s port range\n",
->> +                       ret == -EINVAL ? "Missing" : "Invalid");
->
->
-
-?? Did you have a comment?
-
->
->> +               return ret;
->> +       }
->> +       for (i = 0; i < ret; i += 2) {
->> +               int start, end;
->> +
->> +               start = range_params[i];
->> +               end = range_params[i + 1];
->> +               if (start > end || end >= SGPIO_BITS_PER_WORD) {
->> +                       dev_err(dev, "Ill-formed port-range [%d:%d]\n",
->> +                               start, end);
->> +               }
->> +               priv->ports |= GENMASK(end, start);
->> +       }
->> +
->> +       return 0;
->> +}
->
-> Doesn't GPIO / pin control framework have this helper already?
-> If no, have you considered to use proper bitmap API here? (For
-> example, bitmap_parselist() or so)
->
-
-Past reviews suggested using an array form. And as the binding is
-already reviewed, I would like to keep this as is.
-
-> ...
->
->> +       if (fwnode_property_read_u32(fwnode, "ngpios", &ngpios)) {
->> +               dev_info(dev, "failed to get number of gpios for bank%d\n",
->> +                        bankno);
->> +               ngpios = 64;
->> +       }
->
-> Don't mix OF APIs with fwnode APIs.
->
-
-OF is gone.
-
-> ...
->
->> +       pins = devm_kzalloc(dev, sizeof(*pins)*ngpios, GFP_KERNEL);
->> +       if (pins) {
->
-> Use usual pattern  and drop one level of indentation ('else' is redundant).
-
-Yes, done.
-
->
->> +               int i;
->> +               char *p, *names;
->
->> +               names = devm_kzalloc(dev, PIN_NAM_SZ*ngpios, GFP_KERNEL);
->> +
->> +               if (!names)
->
-> Redundant blank line.
->
-
-Gone.
-
->> +                       return -ENOMEM;
->
->> +               for (p = names, i = 0; i < ngpios; i++, p += PIN_NAM_SZ) {
->> +                       struct sgpio_port_addr addr;
->> +
->> +                       sgpio_pin_to_addr(priv, i, &addr);
->
->> +                       snprintf(p, PIN_NAM_SZ, "SGPIO_%c_p%db%d",
->> +                                is_input ? 'I' : 'O',
->> +                                addr.port, addr.bit);
->
-> Wow, snprintf() with constant size argument in a loop. Are you sure
-> you are doing correct?
-
-I changed this to per-string allocation.
-
->
->> +                       pins[i].number = i;
->> +                       pins[i].name = p;
->> +               }
->> +       } else
->> +               return -ENOMEM;
->
-> ...
->
->> +       pctldev = devm_pinctrl_register(dev, pctl_desc, bank);
->> +       if (IS_ERR(pctldev)) {
->> +               dev_err(dev, "Failed to register pinctrl\n");
->> +               return PTR_ERR(pctldev);
->> +       }
->
-> return dev_err_probe(...);
->
-
-Yes.
-
-> ...
->
->> +       /* Get clock */
->
-> Useless comment.
-
-Ok, removed.
-
->
->> +       clk = devm_clk_get(dev, NULL);
->> +       if (IS_ERR(clk)) {
->
->> +               dev_err(dev, "Failed to get clock\n");
->> +               return PTR_ERR(clk);
->
-> dev_err_probe() as above.
->
-
-Yes.
-
->> +       }
->
-> ...
->
->> +       /* Get register map */
->
-> Useless comment.
->
-
-Removed.
-
-> ...
->
->> +       nbanks = device_get_child_node_count(dev);
->> +       if (nbanks != 2) {
->> +               dev_err(dev, "Must have 2 banks (have %d)\n", nbanks);
->> +               return -EINVAL;
->> +       }
->
-> Don't mix device_property API with OF one.
->
-
-Removed OF.
-
->> +       i = 0;
->> +       device_for_each_child_node(dev, fwnode) {
->
-> Ditto.
->
-
-Don't sure I understand this comment, but device_for_each_child_node()
-is from <linux/property.h> - this should be OK I think.
-
->> +               ret = microchip_sgpio_register_bank(dev, priv, fwnode, i++);
->> +               if (ret)
->> +                       return ret;
->> +       }
-
-Thank you for your comments. They are much appreciated.
-
-I will refresh the patch later today.
-
-Cheers,
-
----Lars
-
--- 
-Lars Povlsen,
-Microchip
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
