@@ -2,89 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 952902ABE65
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 15:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C95F12ABE6D
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 15:17:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726952AbgKIOQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 09:16:03 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48282 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730088AbgKIOQD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 09:16:03 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BB914206ED;
-        Mon,  9 Nov 2020 14:16:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604931362;
-        bh=En9Ed05eGm/mVXemcKM0+v+qUqkketwqoNTG9zmUgq4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=McKic9AMlk5ie8beb/Xzbfn6jBvWtBX6LbQjd3Kv8c7DEMYvXVbM6FKyRcqnA0vU8
-         cgw/f/iYm5OoAdXuNZ3JxEz12UhM9e26T2Nwrhut0K5Mb/Az2dNFgo42flFbVBjrkN
-         jnUUghXs18eVMeOfbOBCDyfUdVbB18Vk0Y1DFdsw=
-Date:   Mon, 9 Nov 2020 14:15:48 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Sean Anderson <seanga2@gmail.com>
-Cc:     Damien Le Moal <Damien.LeMoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 06/32] spi: dw: Add support for the Kendryte K210 SoC
-Message-ID: <20201109141548.GE6380@sirena.org.uk>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-7-damien.lemoal@wdc.com>
- <53859725-ca0b-5f57-9147-10346707b3cb@gmail.com>
- <BL0PR04MB65145CB4FC66106B62E179CEE7EC0@BL0PR04MB6514.namprd04.prod.outlook.com>
- <db97cbfb-0d42-9c45-e770-37a3c38d79c7@gmail.com>
+        id S1730098AbgKIORY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 09:17:24 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45062 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729776AbgKIORX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 09:17:23 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A9EHC3K040249;
+        Mon, 9 Nov 2020 08:17:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604931432;
+        bh=Wp7QEYjwDcoEzB1kc04C4YfUw/KaMcNtD5IHNJ49+2I=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=w5IOp6b+6S2S8m33TlPJPrQZ/ldEjELgm9GAyYEsKY6rX1tC8tzR5myo/LSFJITxf
+         IvWCmEs1S8FCkLaVXFUe+ULRm0WEn5NGzRJSoID4/eiqDZoo2Uuf/bnWzgB5nUdAxs
+         DxJzI3NX66usNzWSEoBH7zw+IC3qdx4azVeSF/+c=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A9EHCMo025563
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 9 Nov 2020 08:17:12 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 9 Nov
+ 2020 08:17:12 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 9 Nov 2020 08:17:12 -0600
+Received: from [10.250.213.167] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A9EH2Ol125926;
+        Mon, 9 Nov 2020 08:17:04 -0600
+Subject: Re: [PATCH 1/8] dt-bindings: mfd: ti,j721e-system-controller.yaml:
+ Document "pcie-ctrl"
+To:     Rob Herring <robh@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Roger Quadros <rogerq@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201102101154.13598-1-kishon@ti.com>
+ <20201102101154.13598-2-kishon@ti.com> <20201105165459.GB55814@bogus>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <07d327c6-54c7-23f9-b65e-bfd3455de47f@ti.com>
+Date:   Mon, 9 Nov 2020 19:47:01 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="o0ZfoUVt4BxPQnbU"
-Content-Disposition: inline
-In-Reply-To: <db97cbfb-0d42-9c45-e770-37a3c38d79c7@gmail.com>
-X-Cookie: This fortune is false.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201105165459.GB55814@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
---o0ZfoUVt4BxPQnbU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 05/11/20 10:24 pm, Rob Herring wrote:
+> On Mon, Nov 02, 2020 at 03:41:47PM +0530, Kishon Vijay Abraham I wrote:
+>> Add binding documentation for "pcie-ctrl" which should be a subnode of
+>> the system controller.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> ---
+>>  .../devicetree/bindings/mfd/ti,j721e-system-controller.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> index 19fcf59fd2fe..fd985794e419 100644
+>> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+>> @@ -50,6 +50,12 @@ patternProperties:
+>>        specified in
+>>        Documentation/devicetree/bindings/mux/reg-mux.txt
+>>  
+>> +  "^pcie-ctrl@[0-9a-f]+$":
+> 
+> Unit address, so it should have 'reg' too?
+> 
+> You don't need a node if there aren't any properties.
 
-On Sat, Nov 07, 2020 at 08:52:24AM -0500, Sean Anderson wrote:
+The subnodes are again a syscon node. I'll fix this up in the next revision.
 
-> I think if it is detectable at runtime it should be, instead of relying
-> on compatible strings. That way causes less future grief to anyone
-> porting a device possibly using DFS_32.
-
-Yes, runtime enumeration is generally preferred.  Having the compatible
-string is nice in case some quirks are discoverd but for things that
-can be enumerated there's less that can go wrong if we do so.
-
---o0ZfoUVt4BxPQnbU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+pTxMACgkQJNaLcl1U
-h9CCzwf/SOaVjDOfJ3WO2PcRpeRE277pJrANK1utzq6zRVou8PJIN+wBkqgHEYcr
-P2w4049o4LKkvZOCXYn69ZznYDkM75uV7oWtRWOOu+ltmyWTYNTf1bqxYJVuVp98
-ZJdHyesJpsVgVvKW5athUt1+zh6A1cOBNel0Klu5E3pY6i7JHQFMp+E33sFV+wiC
-KGEx3Y89sAkQRMLmrlbTctOMhODPxQuEx+a/9Yjgg39AYrikjOijlub7mPHE4PcB
-IEEuZUBSCtwhJ2s0W3DL9ycrfrMSdjVduXNK9X6MJafqNP1UDeCW6LsqKZVgSBWG
-Yh8sK9idMtmFzUG+lU+5JZVq9f9bnA==
-=GnrL
------END PGP SIGNATURE-----
-
---o0ZfoUVt4BxPQnbU--
+Thank You,
+Kishon
