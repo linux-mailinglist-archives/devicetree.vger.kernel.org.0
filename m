@@ -2,169 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ABB2D2AC22A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE0B42AC232
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:28:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730450AbgKIRZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 12:25:58 -0500
-Received: from mail-eopbgr70115.outbound.protection.outlook.com ([40.107.7.115]:3407
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1731754AbgKIRZ5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 12:25:57 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OF5uJvDAukgc+GU/6IKoXtua3TS3IRLZvEVxpLhOkaxnUHVMxhXTH4gsNxgWiCVrmCHC6BCg5/uIVNXV47MZ8XtMo4FiCh1FYXGPT2ftAGTMhDnndGToqmHAEonU0BF0fmbWGEWwiQUB9g/X6G3t74Tpz4ej8l2pWZ4hsAWKvBgdj8iHiNnrUJSzZtSWjSrPmSpMJqSLsYuHaYskg3PLI0Mbs0ie/TNx3V85opnIFMmKuFKSWV2i5nfbbIBA0luwpxe0weXrPaVLC271yZ4cMOxY/rfv08MOkSxrme1NFuxvU+DeUhD2v3X9JTkOBmZ5t5aSNooeNDm5lEvvsiQPDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MuZRyLvEJ2YA0fcwaxu02Q+kf+QkSqm3KgBTwEC76DQ=;
- b=BApRleLMj8uOeM4ncVkKFqtxl0AzOgMRWOt+9xgXn5RehJvXcUWfxz56GijrtrqdXJEgwjvg7LubOErVo+kkaO/a66Me4MpN3olpC17DcFCqVEMB/7/90jJ21WSKKDw3TGE4sTzFoI+Iig+4gUeZf4XAuQZp5y9LDDwHBZbIO1weEOHUz7SDdTc+ukpMkGdqz+1E4oMuJax20/ES8ZvsZHi3sm9LHsYzL4YDJqTJoQqO+IpHc7zytXfHkYJmfla4JMV5c7ywP934ByyCHUSY/PhKw158h+y7l10q7a//a5Uu9MDTHjMZWjBcF12PguiLQOzINtbpo0sCiD5zyezMrQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=voleatech.de; dmarc=pass action=none header.from=voleatech.de;
- dkim=pass header.d=voleatech.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=voleatech.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MuZRyLvEJ2YA0fcwaxu02Q+kf+QkSqm3KgBTwEC76DQ=;
- b=Ass338dJM1xJNul8iH5ZMB6eA94t9hpQ0YFPMAONNdT8sLn2typdO0a0Y6k2ZAkwlSgJDiNNsU2J1QS/PpqWFnDfjOUxgxOiEsdqURJIq/+GqxmoxdKo0KTt01GFTl+IzlDUkN6mjM6EFP2GaMavv/bGWnfd2CrkV03j8Rvj2Go=
-Authentication-Results: redhat.com; dkim=none (message not signed)
- header.d=none;redhat.com; dmarc=none action=none header.from=voleatech.de;
-Received: from AM8PR05MB7251.eurprd05.prod.outlook.com (2603:10a6:20b:1d4::23)
- by AM0PR05MB5363.eurprd05.prod.outlook.com (2603:10a6:208:f6::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.29; Mon, 9 Nov
- 2020 17:25:51 +0000
-Received: from AM8PR05MB7251.eurprd05.prod.outlook.com
- ([fe80::f132:2cc:34f2:5e4]) by AM8PR05MB7251.eurprd05.prod.outlook.com
- ([fe80::f132:2cc:34f2:5e4%7]) with mapi id 15.20.3541.025; Mon, 9 Nov 2020
- 17:25:51 +0000
-Date:   Mon, 9 Nov 2020 18:25:49 +0100
-From:   Sven Auhagen <sven.auhagen@voleatech.de>
-To:     Hans de Goede <hdegoede@redhat.com>
-Cc:     axboe@kernel.dk, robh+dt@kernel.org, tglx@linutronix.de,
-        maz@kernel.org, gregory.clement@bootlin.com,
-        linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
-        rjw@rjwysocki.net, viresh.kumar@linaro.org,
-        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
-        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
-Subject: Re: [PATCH v2 3/9] ata: ahci: custom irq init for host init
-Message-ID: <20201109172549.fetoe2jbqlw5itab@svensmacbookair.sven.lan>
-References: <20201104155237.77772-1-sven.auhagen@voleatech.de>
- <20201104155237.77772-4-sven.auhagen@voleatech.de>
- <db4c68b0-d5c3-c410-052a-99a9decef552@redhat.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <db4c68b0-d5c3-c410-052a-99a9decef552@redhat.com>
-X-Originating-IP: [109.193.235.168]
-X-ClientProxiedBy: AM9P191CA0023.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:20b:21c::28) To AM8PR05MB7251.eurprd05.prod.outlook.com
- (2603:10a6:20b:1d4::23)
+        id S1731463AbgKIR21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 12:28:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731378AbgKIR20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 12:28:26 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B146C0613CF;
+        Mon,  9 Nov 2020 09:28:25 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id y7so8779791pfq.11;
+        Mon, 09 Nov 2020 09:28:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/QlnmvdxwQ9xj4gaNBxnILqVStfu/a/ZgzdrBVFti+8=;
+        b=aCTHknDbz5sR0I+a/WAXyOw8e0v+5VRcyJc+S/nxnT0LhuDqQ4G80ZdzJh3lgB2Pw0
+         opzvGFftAkYNPVK9j/DrVzWgEenr9V0B9mK6eg8tqXJV0lejuvcSHoQ9Yi+1YvGnO6UD
+         uHAMatBgjj6KGiYPZ/FGMLLk6+97UGeQwsqAKLeIYdA3061I1gD7SIUIhxlS75ctb0Og
+         2KphUXr1HUyACHIozcHUW7aVV2fNR3FFEKV0Jy5iAIB6O9xHHgDk7CFnZY80xA/N5f82
+         8ofFlWpMOSSdPtC9oDbtNZzrrsoAMDLUqceWjtE9m9+Cqvy515ZXXL1tRndbQNS9kVJW
+         l5TQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=/QlnmvdxwQ9xj4gaNBxnILqVStfu/a/ZgzdrBVFti+8=;
+        b=gYOJ1dMQcADyrosLBJQJICXiBHmswa05em1mQW4xnZp7jCKsq9jEtQDf4oagC0U6gZ
+         kGtSH9OrsGVGwMG+aAkkoMFklLjpxyQkVXDMu9LEjGaiARGHYf5XGoQ/hvci786EOlmb
+         h9NPKJkvNBx+C8VYBcr1lTerxUbEdk7m/uCo4Eol206F/YVNKw05I4MZewTKrJn7I+LC
+         ZvOwRopg2K5BjeLZ9STlm5HhLqbR/66r9fEXD3qqOn8SoGcklK0U8hDHNJEKDOHzKVTG
+         KvXzBqJyBwEKD2pYyk3tZTkTIi1b13nFi/K27HqPoPx1/9wxD4dr1FrWZpqD2PUtyeN5
+         JWpA==
+X-Gm-Message-State: AOAM530ZrXn8dIpLdGfVFcZzTcgqArOgaxhKVDwGM9KGTEFYMyt5Wfec
+        iGYLRdFVtBMzY/SkJ6E6LCQzjRDU0SE=
+X-Google-Smtp-Source: ABdhPJypIE0N9qNCd5VYXBuKR64bHV8aYY67C5iAtTaSpoYajDTbXS8Aw6n6b9dG+ym8aDRj4URMrQ==
+X-Received: by 2002:a17:90a:e2c4:: with SMTP id fr4mr198563pjb.185.1604942904584;
+        Mon, 09 Nov 2020 09:28:24 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id h20sm10231664pgv.23.2020.11.09.09.28.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2020 09:28:23 -0800 (PST)
+Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
+ empty dma-ranges
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
+        Arnd Bergmann <arnd@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
+ <20201016090833.1892-2-thunder.leizhen@huawei.com>
+ <CAK8P3a2TSmsNSi-XFpT6AQ3jvVxJ1AW7Uf5tAo477wtwXZwUzg@mail.gmail.com>
+ <e27dc152-7aef-10df-f391-bf56e13e23df@gmail.com>
+ <CAK8P3a13ywHh7igdfDSPQz9Bw8YAnKWFLKARkk2NL5u6=6yb=w@mail.gmail.com>
+ <0eee3fd2-7400-7de7-27a7-7fcaa0955854@gmail.com>
+ <d42745b7-ef76-e584-0da2-751ac8c1cf3a@huawei.com>
+ <CAK8P3a335TT1+bdHqB=FetPanXXfGv3dC7ZCkx+w+F3j00kj5A@mail.gmail.com>
+ <07ab3bdd-dcb1-5a59-d813-f82451b3f028@huawei.com>
+ <5980552d-6e96-fd9f-c758-1b1e9f57100e@huawei.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
+ xGlkaOSDuu09rxuW+69Y2f1TzjFuGpBk4ysWOR85O2Nx8AJ6fYGCoeTbovrNlGT1M9obSFGQ
+ X3IzRnWoqlfudjTO5TKoqkbOgpYqIo5n1QbEjCCwCwCg3DOH/4ug2AUUlcIT9/l3pGvoRJ0E
+ AICDzi3l7pmC5IWn2n1mvP5247urtHFs/uusE827DDj3K8Upn2vYiOFMBhGsxAk6YKV6IP0d
+ ZdWX6fqkJJlu9cSDvWtO1hXeHIfQIE/xcqvlRH783KrihLcsmnBqOiS6rJDO2x1eAgC8meAX
+ SAgsrBhcgGl2Rl5gh/jkeA5ykwbxA/9u1eEuL70Qzt5APJmqVXR+kWvrqdBVPoUNy/tQ8mYc
+ nzJJ63ng3tHhnwHXZOu8hL4nqwlYHRa9eeglXYhBqja4ZvIvCEqSmEukfivk+DlIgVoOAJbh
+ qIWgvr3SIEuR6ayY3f5j0f2ejUMYlYYnKdiHXFlF9uXm1ELrb0YX4GMHz7QnRmxvcmlhbiBG
+ YWluZWxsaSA8Zi5mYWluZWxsaUBnbWFpbC5jb20+iGYEExECACYCGyMGCwkIBwMCBBUCCAME
+ FgIDAQIeAQIXgAUCVF/S8QUJHlwd3wAKCRBhV5kVtWN2DvCVAJ4u4/bPF4P3jxb4qEY8I2gS
+ 6hG0gACffNWlqJ2T4wSSn+3o7CCZNd7SLSC5BA0ESM+4EhAQAL/o09boR9D3Vk1Tt7+gpYr3
+ WQ6hgYVON905q2ndEoA2J0dQxJNRw3snabHDDzQBAcqOvdi7YidfBVdKi0wxHhSuRBfuOppu
+ pdXkb7zxuPQuSveCLqqZWRQ+Cc2QgF7SBqgznbe6Ngout5qXY5Dcagk9LqFNGhJQzUGHAsIs
+ hap1f0B1PoUyUNeEInV98D8Xd/edM3mhO9nRpUXRK9Bvt4iEZUXGuVtZLT52nK6Wv2EZ1TiT
+ OiqZlf1P+vxYLBx9eKmabPdm3yjalhY8yr1S1vL0gSA/C6W1o/TowdieF1rWN/MYHlkpyj9c
+ Rpc281gAO0AP3V1G00YzBEdYyi0gaJbCEQnq8Vz1vDXFxHzyhgGz7umBsVKmYwZgA8DrrB0M
+ oaP35wuGR3RJcaG30AnJpEDkBYHznI2apxdcuTPOHZyEilIRrBGzDwGtAhldzlBoBwE3Z3MY
+ 31TOpACu1ZpNOMysZ6xiE35pWkwc0KYm4hJA5GFfmWSN6DniimW3pmdDIiw4Ifcx8b3mFrRO
+ BbDIW13E51j9RjbO/nAaK9ndZ5LRO1B/8Fwat7bLzmsCiEXOJY7NNpIEpkoNoEUfCcZwmLrU
+ +eOTPzaF6drw6ayewEi5yzPg3TAT6FV3oBsNg3xlwU0gPK3v6gYPX5w9+ovPZ1/qqNfOrbsE
+ FRuiSVsZQ5s3AAMFD/9XjlnnVDh9GX/r/6hjmr4U9tEsM+VQXaVXqZuHKaSmojOLUCP/YVQo
+ 7IiYaNssCS4FCPe4yrL4FJJfJAsbeyDykMN7wAnBcOkbZ9BPJPNCbqU6dowLOiy8AuTYQ48m
+ vIyQ4Ijnb6GTrtxIUDQeOBNuQC/gyyx3nbL/lVlHbxr4tb6YkhkO6shjXhQh7nQb33FjGO4P
+ WU11Nr9i/qoV8QCo12MQEo244RRA6VMud06y/E449rWZFSTwGqb0FS0seTcYNvxt8PB2izX+
+ HZA8SL54j479ubxhfuoTu5nXdtFYFj5Lj5x34LKPx7MpgAmj0H7SDhpFWF2FzcC1bjiW9mjW
+ HaKaX23Awt97AqQZXegbfkJwX2Y53ufq8Np3e1542lh3/mpiGSilCsaTahEGrHK+lIusl6mz
+ Joil+u3k01ofvJMK0ZdzGUZ/aPMZ16LofjFA+MNxWrZFrkYmiGdv+LG45zSlZyIvzSiG2lKy
+ kuVag+IijCIom78P9jRtB1q1Q5lwZp2TLAJlz92DmFwBg1hyFzwDADjZ2nrDxKUiybXIgZp9
+ aU2d++ptEGCVJOfEW4qpWCCLPbOT7XBr+g/4H3qWbs3j/cDDq7LuVYIe+wchy/iXEJaQVeTC
+ y5arMQorqTFWlEOgRA8OP47L9knl9i4xuR0euV6DChDrguup2aJVU4hPBBgRAgAPAhsMBQJU
+ X9LxBQkeXB3fAAoJEGFXmRW1Y3YOj4UAn3nrFLPZekMeqX5aD/aq/dsbXSfyAKC45Go0YyxV
+ HGuUuzv+GKZ6nsysJ7kCDQRXG8fwARAA6q/pqBi5PjHcOAUgk2/2LR5LjjesK50bCaD4JuNc
+ YDhFR7Vs108diBtsho3w8WRd9viOqDrhLJTroVckkk74OY8r+3t1E0Dd4wHWHQZsAeUvOwDM
+ PQMqTUBFuMi6ydzTZpFA2wBR9x6ofl8Ax+zaGBcFrRlQnhsuXLnM1uuvS39+pmzIjasZBP2H
+ UPk5ifigXcpelKmj6iskP3c8QN6x6GjUSmYx+xUfs/GNVSU1XOZn61wgPDbgINJd/THGdqiO
+ iJxCLuTMqlSsmh1+E1dSdfYkCb93R/0ZHvMKWlAx7MnaFgBfsG8FqNtZu3PCLfizyVYYjXbV
+ WO1A23riZKqwrSJAATo5iTS65BuYxrFsFNPrf7TitM8E76BEBZk0OZBvZxMuOs6Z1qI8YKVK
+ UrHVGFq3NbuPWCdRul9SX3VfOunr9Gv0GABnJ0ET+K7nspax0xqq7zgnM71QEaiaH17IFYGS
+ sG34V7Wo3vyQzsk7qLf9Ajno0DhJ+VX43g8+AjxOMNVrGCt9RNXSBVpyv2AMTlWCdJ5KI6V4
+ KEzWM4HJm7QlNKE6RPoBxJVbSQLPd9St3h7mxLcne4l7NK9eNgNnneT7QZL8fL//s9K8Ns1W
+ t60uQNYvbhKDG7+/yLcmJgjF74XkGvxCmTA1rW2bsUriM533nG9gAOUFQjURkwI8jvMAEQEA
+ AYkCaAQYEQIACQUCVxvH8AIbAgIpCRBhV5kVtWN2DsFdIAQZAQIABgUCVxvH8AAKCRCH0Jac
+ RAcHBIkHD/9nmfog7X2ZXMzL9ktT++7x+W/QBrSTCTmq8PK+69+INN1ZDOrY8uz6htfTLV9+
+ e2W6G8/7zIvODuHk7r+yQ585XbplgP0V5Xc8iBHdBgXbqnY5zBrcH+Q/oQ2STalEvaGHqNoD
+ UGyLQ/fiKoLZTPMur57Fy1c9rTuKiSdMgnT0FPfWVDfpR2Ds0gpqWePlRuRGOoCln5GnREA/
+ 2MW2rWf+CO9kbIR+66j8b4RUJqIK3dWn9xbENh/aqxfonGTCZQ2zC4sLd25DQA4w1itPo+f5
+ V/SQxuhnlQkTOCdJ7b/mby/pNRz1lsLkjnXueLILj7gNjwTabZXYtL16z24qkDTI1x3g98R/
+ xunb3/fQwR8FY5/zRvXJq5us/nLvIvOmVwZFkwXc+AF+LSIajqQz9XbXeIP/BDjlBNXRZNdo
+ dVuSU51ENcMcilPr2EUnqEAqeczsCGpnvRCLfVQeSZr2L9N4svNhhfPOEscYhhpHTh0VPyxI
+ pPBNKq+byuYPMyk3nj814NKhImK0O4gTyCK9b+gZAVvQcYAXvSouCnTZeJRrNHJFTgTgu6E0
+ caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
+ 6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <43986e17-f493-b3b6-2829-3ba7d92f2e8c@gmail.com>
+Date:   Mon, 9 Nov 2020 09:28:22 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from svensmacbookair.sven.lan (109.193.235.168) by AM9P191CA0023.EURP191.PROD.OUTLOOK.COM (2603:10a6:20b:21c::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend Transport; Mon, 9 Nov 2020 17:25:50 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0edfe104-cb04-4ba4-7ba1-08d884d48165
-X-MS-TrafficTypeDiagnostic: AM0PR05MB5363:
-X-Microsoft-Antispam-PRVS: <AM0PR05MB53639F66CC989DB9340CFB5CEFEA0@AM0PR05MB5363.eurprd05.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eUdXRCIUYhAV2n8ou8DWEZENjUl9HYLOiwImxCSqfp7FutyzV8itWDVh0U8Vg/w4eGJ/C9smNL4sAeC4ugjbJBenSC4qw1Ksjyv0eX5CLpQ8oi0GgGugoKtUNhi62F65RogqXadOklFiDmsXBvkjZCvnoEZg1C2cs4/SphbqTr9FXRtibHWlOW2op+6Mc56gfjQ/pQovVJbShBrK3KQ9TWrV9QK5JfxJYOTfUu2TqY5U62jeittwgH3S1xLW40hKy9ZfIX3LQ9P69rxBkaOv41zOcAI0ureS/FZVX+X93DsdPj+Tw5WW9TElRNOmzAED
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR05MB7251.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(39830400003)(366004)(136003)(396003)(26005)(186003)(1076003)(478600001)(66946007)(956004)(66476007)(66556008)(16526019)(83380400001)(53546011)(6916009)(7696005)(52116002)(6506007)(86362001)(55016002)(9686003)(316002)(4326008)(8936002)(44832011)(2906002)(7416002)(8676002)(5660300002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: Itm4vgSbkH5X/sh0Ca9AO5U1wcrCiGxJJ9Ny3CRWFCBoqfBQq7IzWZGuIRlna2iAgNdxF61AlRWwWP58MuNW+ft0kjxLINrnQ0nBlZ6kuVBU0k6qTt9pukT3WxbHcqyochjrWdaeMLh08BfSyCRoLWZ7TO2l0j1Mo7sevKtH3QVFAqfanMuR4rLullvO0FnwrG73RKhBCj4sOsd1H+UnoUqxnTtT4t0y5+A2749jgxVGd33DXXuhOK+aOT2McRPht+0nnpAoWHCWdp6Wda6wI7ikYlRyGIVxDvXelufcMaqE+HSYrly5TB6uYWSh4e7D8q6k59IQNVEPw684IWIgYRUU6E8jC97E1FjdcYB/jjzEnKUyv2GkEcpXktePRh4qZslmh4nxsVZVM9xrArpysYw57dMzdTy4avaM8AU735xDsS4Czr2AYaPtlgXANnvzNlSqIVSCqCwvFslg5CxN2OTerV23OtQNXunVFFL8x5XzekHrHDHIHcs8z4Q1KMz6wLs7h1ggUkM8NlovIkA5icxkVE5NZiYi7mHX3b7h4SpkwZbrmmaQFm0PhdceT8prkaACOgk7xY9XHIpYjFrg6mfdmMt8smJ19/Xq8VTjseQyK2J17j3Ugh23g8u036RxZKUNWk1DR6jE8b0msN3cDQ==
-X-OriginatorOrg: voleatech.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0edfe104-cb04-4ba4-7ba1-08d884d48165
-X-MS-Exchange-CrossTenant-AuthSource: AM8PR05MB7251.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2020 17:25:51.5264
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b82a99f6-7981-4a72-9534-4d35298f847b
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k28hEJtbrL/bz6CXapjhzn5OxAHWggP5xKxIa1hazuiemfag12eFxwL9csj1zAfNzbPK8312XLuoqqd4cUZDDgI1eH72JtYELIo5EhXX02Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR05MB5363
+In-Reply-To: <5980552d-6e96-fd9f-c758-1b1e9f57100e@huawei.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 09, 2020 at 03:00:58PM +0100, Hans de Goede wrote:
-> Hi,
+On 11/8/20 10:18 PM, Leizhen (ThunderTown) wrote:
+> Hi, everybody:
+>   How do we deal with this problem? I updated the kernel to the latest and the problem still persists.
 > 
-> On 11/4/20 4:52 PM, sven.auhagen@voleatech.de wrote:
-> > From: Sven Auhagen <sven.auhagen@voleatech.de>
-> > 
-> > Disable the platform irq init in ahci init platform host
-> > if it was initiated by a custom function.
-> > To check for it I am using the AHCI_HFLAG_MULTI_MSI flag.
-> > 
-> > Suggested-by: Hans de Goede <hdegoede@redhat.com>
-> > Signed-off-by: Sven Auhagen <sven.auhagen@voleatech.de>
+>   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j24 dtbs 2>err.txt
+>   vim err.txt
 > 
-> The code is fine here. But I'm not entirely happy with
-> the commit message how about:
-> 
-> """
-> ata: libahci_platform: Do not try to get an IRQ when AHCI_HFLAG_MULTI_MSI is set
-> 
-> When the ahci-host AHCI_HFLAG_MULTI_MSI flag is set then the driver must provide
-> a get_irq_vector callback and take care of getting the IRQs itself. So in this
-> case ahci_platform_init_host() should not try to get an IRQ itself.
-> """
-> 
-> With the commit message updated to the above (or something similar) you
-> may add my:
-> 
-> Reviewed-by: Hans de Goede <hdegoede@redhat.com>
-> 
-> I've also just given you my Reviewed-by for patch 4 and 5, and the
-> result already has a Reviewed-by.
-> 
-> So if you can sendout a v3 of this series with the commit message for
-> this patch fixed, then it is ready for merging from my pov.
+> arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
 
-Thank you, I will change the commit message and send a v3.
+I was hoping that Ray or Scott could give this a try, and TBH, I am
+still not a big fan of having to mangle the 'reg' property to be
+compatible with #address-cells = <2> and #size-cells = <2>, I would have
+preferred omitting the 'dma-ranges' property entirely.
 
-Best
-Sven
-
-> 
-> Regards,
-> 
-> Hans
-> 
-> 
-> > ---
-> >  drivers/ata/libahci_platform.c | 16 +++++++++-------
-> >  1 file changed, 9 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
-> > index de638dafce21..f6f2a111d226 100644
-> > --- a/drivers/ata/libahci_platform.c
-> > +++ b/drivers/ata/libahci_platform.c
-> > @@ -581,14 +581,16 @@ int ahci_platform_init_host(struct platform_device *pdev,
-> >  	struct ata_host *host;
-> >  	int i, irq, n_ports, rc;
-> >  
-> > -	irq = platform_get_irq(pdev, 0);
-> > -	if (irq <= 0) {
-> > -		if (irq != -EPROBE_DEFER)
-> > -			dev_err(dev, "no irq\n");
-> > -		return irq;
-> > -	}
-> > +	if (!(hpriv->flags & AHCI_HFLAG_MULTI_MSI)) {
-> > +		irq = platform_get_irq(pdev, 0);
-> > +		if (irq <= 0) {
-> > +			if (irq != -EPROBE_DEFER)
-> > +				dev_err(dev, "no irq\n");
-> > +			return irq;
-> > +		}
-> >  
-> > -	hpriv->irq = irq;
-> > +		hpriv->irq = irq;
-> > +	}
-> >  
-> >  	/* prepare host */
-> >  	pi.private_data = (void *)(unsigned long)hpriv->flags;
-> > 
-> 
+We have plenty of time to get this patch applied for v5.11.
+-- 
+Florian
