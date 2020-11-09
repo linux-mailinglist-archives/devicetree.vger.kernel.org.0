@@ -2,151 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CB052ABE00
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 14:59:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2E332ABE17
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 15:01:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730704AbgKIN7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 08:59:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58394 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729697AbgKIN7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 08:59:30 -0500
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8045C0613CF;
-        Mon,  9 Nov 2020 05:59:27 -0800 (PST)
-Received: by mail-pg1-x544.google.com with SMTP id f38so7232495pgm.2;
-        Mon, 09 Nov 2020 05:59:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Zd8LqA4AvziCIC3LVVI5CDJXP/RwRW09TDwr3WHSIkM=;
-        b=Z+jnaxEQ3CiyUWVlSfYghQzqYoIeYURKS4e3afZe7gQikjEfqRpP0HtUepHmqK3euV
-         m8NpMD5bwO+eLZ0UTZH2uroxZEcxkFf2Px1Z3uAuNnNsrBa+dhcaaUx82AGim6d9hncH
-         FROHCxCxNd0MfX3Kl17nvFDXLx5F7qaqoVsC+OaZHbmcqCFiBUBHkkJN7BdL4OqftzE9
-         1XQAvc6kkoYWnux3M4LCBjQpU/GFNEvC0kfz++ozefctxirbl5af7C2wzyv0B34qy62G
-         8Ogr/FhkYCTaEsVvuw16l6qXHOgFgBH0r3bQZoWL5qmfm16tXqymkfATTCnxJmjtOuvx
-         +czQ==
+        id S1726691AbgKIOBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 09:01:06 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:54779 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730197AbgKIOBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 09:01:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1604930464;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9+UKQzgtuYMyW/SoLBP9eW/fTlDRQd3FvWyc619DNi0=;
+        b=Mxc0HTmPx+jDks0rtd4SiVE94TRbBSH4mXVjEochVbj7lJsqruyCke5grBCy3f/evYJvHK
+        /fCnVjve9ekcDv4X3G0K6lPtBGPuYa7cDXwESUJL2zhm6QisPo7/QKZvHoHgw8cnTkNsc0
+        h+8VH9zwlR16k4oXuFpZlk6bY2SGhLw=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-378-H5VJxHOpNBq9rWLeF-911w-1; Mon, 09 Nov 2020 09:01:01 -0500
+X-MC-Unique: H5VJxHOpNBq9rWLeF-911w-1
+Received: by mail-ej1-f70.google.com with SMTP id o27so3423653eji.12
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 06:01:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Zd8LqA4AvziCIC3LVVI5CDJXP/RwRW09TDwr3WHSIkM=;
-        b=mK+pbUjNgkqNq8IaH5LHGWE23E/mz/RaETpiOhtttGx2+Zohj4dfbAitJNef1mtyQX
-         Bhq8PR3UfsZL1nhp86TTwIqC3Z0zreotncreE89oMEYU2jJYYHvCMV4WhrhWqZUH9R+7
-         VB4Ip6iwKkR0hmxFhtTvOxJK2C8qbFfWhl0HXtQwoEW4USPBLrjnhs7i5KCTqkpqTeTF
-         AC0klLEroIADmcEF+EAr5NSx7Wyu9Sk+87Ht6xY8h2iyIumylrepDfJvcjH5u9lhP1h8
-         JnQs18hDGjb30yzlMPcnK3wA/AX0E4+RKMOmSbvLQRoDPTY+NyYMGK/meuYDnPNVDwwH
-         by3w==
-X-Gm-Message-State: AOAM531yZNiU7HsNcW+Ut3qTovpeFSXoO2aD3PjzP4dEYWFzSucv0C//
-        HuatSlvJENHOIsCtMG2oOKTeslaD7dBdGzA6Md6ycHO1TaQ=
-X-Google-Smtp-Source: ABdhPJya5ocOqVzr/IsQwH0RKfu6x+cnUxaTtxoNr0cNw7bTQm+3u7A+SU9B+0Trg6LYgGaPveIKJPkYbHv8BKxoelQ=
-X-Received: by 2002:aa7:942a:0:b029:164:a853:f0fc with SMTP id
- y10-20020aa7942a0000b0290164a853f0fcmr13471964pfo.40.1604930367398; Mon, 09
- Nov 2020 05:59:27 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=9+UKQzgtuYMyW/SoLBP9eW/fTlDRQd3FvWyc619DNi0=;
+        b=sjTuwai3vkkbo9L1BmARD0kd0uyGaN4UEx7HREX8khlcIJ0xbW5bYhV4soBm2ki+In
+         +qBh+kCM2hnhscCPuvDupM6ZaYc3eSwjdEnxtvVAtCLhjppUXd7nIDgl89AoROuzTb65
+         8PQntIa+UI27ibJwVRfLEi3d3dGCPXlrE+gaKJJJlblJbXb81QF5CkvHfaKlHCQRn7nU
+         urha3rWFQLbVQcXM+YbJqkBMCtxbNhEIx6x0iYMVNZy+efSEFsg90GvUU5jXiENqwv8a
+         qffDe8ZCYLqhfyDCTfxRo9GfdakxXbrBTVikdBor/T7aiEWbw660m2mHs8oF82ZOy7au
+         MDDg==
+X-Gm-Message-State: AOAM533ryYhlCJiwy/Y9HPEXWWPVHJiM9nF1zpDo+B0vWmZPG+XI/Tle
+        VBYXE4KNhtGTk7VgWrBcHs/JvzfwcJQ/KA2M+nhFylOx/5mK25o8gHVkGWJRoq/83l/EuBAE7Lw
+        snIyE+65DjixCLdG9orm5BA==
+X-Received: by 2002:aa7:d599:: with SMTP id r25mr14877793edq.280.1604930459901;
+        Mon, 09 Nov 2020 06:00:59 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyfNo4nDfbngeabQIMVcUapycE4qgM2KZLqawKsUA5teTo9BtvSSvPibXOweDelEQCXirQs/w==
+X-Received: by 2002:aa7:d599:: with SMTP id r25mr14877784edq.280.1604930459724;
+        Mon, 09 Nov 2020 06:00:59 -0800 (PST)
+Received: from x1.localdomain (2001-1c00-0c0c-fe00-6c10-fbf3-14c4-884c.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:6c10:fbf3:14c4:884c])
+        by smtp.gmail.com with ESMTPSA id n12sm3949807ejs.19.2020.11.09.06.00.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2020 06:00:59 -0800 (PST)
+Subject: Re: [PATCH v2 3/9] ata: ahci: custom irq init for host init
+To:     sven.auhagen@voleatech.de, axboe@kernel.dk, robh+dt@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, gregory.clement@bootlin.com
+Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
+        rjw@rjwysocki.net, viresh.kumar@linaro.org,
+        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
+        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
+References: <20201104155237.77772-1-sven.auhagen@voleatech.de>
+ <20201104155237.77772-4-sven.auhagen@voleatech.de>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <db4c68b0-d5c3-c410-052a-99a9decef552@redhat.com>
+Date:   Mon, 9 Nov 2020 15:00:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-References: <20201029134027.232951-1-lars.povlsen@microchip.com>
- <20201029134027.232951-3-lars.povlsen@microchip.com> <CAHp75VedcNP5x72PN4tqZ_0HhbCyd666T=AWn+TFr7Fp8EEs7Q@mail.gmail.com>
- <874klyg2dg.fsf@microchip.com>
-In-Reply-To: <874klyg2dg.fsf@microchip.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 9 Nov 2020 16:00:16 +0200
-Message-ID: <CAHp75VeN4jKjOA=WO0mgkSAbWZUMUfkrX3yV83y0iYnh1rp84Q@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] pinctrl: pinctrl-microchip-sgpio: Add pinctrl
- driver for Microsemi Serial GPIO
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201104155237.77772-4-sven.auhagen@voleatech.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 9, 2020 at 2:07 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
-> > On Thu, Oct 29, 2020 at 3:40 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+Hi,
 
-...
+On 11/4/20 4:52 PM, sven.auhagen@voleatech.de wrote:
+> From: Sven Auhagen <sven.auhagen@voleatech.de>
+> 
+> Disable the platform irq init in ahci init platform host
+> if it was initiated by a custom function.
+> To check for it I am using the AHCI_HFLAG_MULTI_MSI flag.
+> 
+> Suggested-by: Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Sven Auhagen <sven.auhagen@voleatech.de>
 
-> >> +#define __shf(x)               (__builtin_ffs(x) - 1)
-> >> +#define __BF_PREP(bf, x)       (bf & ((x) << __shf(bf)))
-> >> +#define __BF_GET(bf, x)                (((x & bf) >> __shf(bf)))
-> >
-> > Isn't it home grown reimplementation of bitfield.h?
->
-> This was answered in the aforementioned mail.
+The code is fine here. But I'm not entirely happy with
+the commit message how about:
 
-Perhaps it makes sense to add functions like field_get(), field_prep()
-to that header?
+"""
+ata: libahci_platform: Do not try to get an IRQ when AHCI_HFLAG_MULTI_MSI is set
 
-...
+When the ahci-host AHCI_HFLAG_MULTI_MSI flag is set then the driver must provide
+a get_irq_vector callback and take care of getting the IRQs itself. So in this
+case ahci_platform_init_host() should not try to get an IRQ itself.
+"""
 
-> >> +       /* Calculate port mask */
-> >> +       ret = of_property_read_variable_u32_array(np,
-> >> +                                                 "microchip,sgpio-port-ranges",
-> >> +                                                 range_params,
-> >> +                                                 2,
-> >> +                                                 ARRAY_SIZE(range_params));
-> >> +       if (ret < 0 || ret % 2) {
-> >> +               dev_err(dev, "%s port range\n",
-> >> +                       ret == -EINVAL ? "Missing" : "Invalid");
-> >
-> >
->
-> ?? Did you have a comment?
+With the commit message updated to the above (or something similar) you
+may add my:
 
-OF vs device property API I think.
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
 
-> >> +               return ret;
-> >> +       }
-> >> +       for (i = 0; i < ret; i += 2) {
-> >> +               int start, end;
-> >> +
-> >> +               start = range_params[i];
-> >> +               end = range_params[i + 1];
-> >> +               if (start > end || end >= SGPIO_BITS_PER_WORD) {
-> >> +                       dev_err(dev, "Ill-formed port-range [%d:%d]\n",
-> >> +                               start, end);
-> >> +               }
-> >> +               priv->ports |= GENMASK(end, start);
-> >> +       }
-> >> +
-> >> +       return 0;
-> >> +}
-> >
-> > Doesn't GPIO / pin control framework have this helper already?
-> > If no, have you considered to use proper bitmap API here? (For
-> > example, bitmap_parselist() or so)
->
-> Past reviews suggested using an array form. And as the binding is
-> already reviewed, I would like to keep this as is.
+I've also just given you my Reviewed-by for patch 4 and 5, and the
+result already has a Reviewed-by.
 
-Yes, but you are using something like a,b,c,d which corresponds to
-[a..b], [c..d] if I'm not mistaken. And I believe that there are
-plenty of drivers using this approach for some ranges (not
-specifically for GPIO). And it should be an API available which does
-all these checks and other stuff under the hood. I will be surprised
-if there is no such. In the latter case, add one and use, many will
-benefit from it.
+So if you can sendout a v3 of this series with the commit message for
+this patch fixed, then it is ready for merging from my pov.
+
+Regards,
+
+Hans
 
 
-...
+> ---
+>  drivers/ata/libahci_platform.c | 16 +++++++++-------
+>  1 file changed, 9 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/ata/libahci_platform.c b/drivers/ata/libahci_platform.c
+> index de638dafce21..f6f2a111d226 100644
+> --- a/drivers/ata/libahci_platform.c
+> +++ b/drivers/ata/libahci_platform.c
+> @@ -581,14 +581,16 @@ int ahci_platform_init_host(struct platform_device *pdev,
+>  	struct ata_host *host;
+>  	int i, irq, n_ports, rc;
+>  
+> -	irq = platform_get_irq(pdev, 0);
+> -	if (irq <= 0) {
+> -		if (irq != -EPROBE_DEFER)
+> -			dev_err(dev, "no irq\n");
+> -		return irq;
+> -	}
+> +	if (!(hpriv->flags & AHCI_HFLAG_MULTI_MSI)) {
+> +		irq = platform_get_irq(pdev, 0);
+> +		if (irq <= 0) {
+> +			if (irq != -EPROBE_DEFER)
+> +				dev_err(dev, "no irq\n");
+> +			return irq;
+> +		}
+>  
+> -	hpriv->irq = irq;
+> +		hpriv->irq = irq;
+> +	}
+>  
+>  	/* prepare host */
+>  	pi.private_data = (void *)(unsigned long)hpriv->flags;
+> 
 
-> >> +       i = 0;
-> >> +       device_for_each_child_node(dev, fwnode) {
-> >
-> > Ditto.
-> >
->
-> Don't sure I understand this comment, but device_for_each_child_node()
-> is from <linux/property.h> - this should be OK I think.
-
-Yes, either leave it (as you have done), or replace it with OF centric one.
-
--- 
-With Best Regards,
-Andy Shevchenko
