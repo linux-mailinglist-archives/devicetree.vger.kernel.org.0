@@ -2,67 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 536AC2AC5AD
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 21:02:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C9162AC5B2
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 21:05:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729499AbgKIUCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 15:02:52 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44253 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbgKIUCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 15:02:52 -0500
-Received: by mail-oi1-f195.google.com with SMTP id t16so11541952oie.11;
-        Mon, 09 Nov 2020 12:02:51 -0800 (PST)
+        id S1727070AbgKIUFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 15:05:08 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:46980 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726410AbgKIUFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 15:05:07 -0500
+Received: by mail-oi1-f196.google.com with SMTP id q206so11547307oif.13;
+        Mon, 09 Nov 2020 12:05:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=eCVxkwJSjblEAMus7aM6jYiFxtP7zlKllx7unS2iVPs=;
-        b=jxvc3UbNiGF5ByXg+KRE3TFcqtpGwfhWZJSVnkpf2ru0mLJwuHpu1xEVv13GzYRp6N
-         yzmH4g7gQxofjiGoqnmdiFSJQnshtL7GwOGDS7QUb0zcX/uW0wfLmWlQqfrTiCb1ciZZ
-         uvcdL3rzqLVY9cAraBIZGIocEZJd1Fk10Nbj0MvEiVskVGiRkp3vokgS960UHt69GKmf
-         2xv8MKOFcab6B41TR8BrCFQ8uePWG+WAlPAFOUwo6YtTVBbTX2fScoNnCTpEQhUfOrlG
-         LcpvYCcwOtGWakaY+nbj5ud7WkJgUVsKBw3VNdSDFSzCMKbEixb6/ODZFNH9AfRwfH+f
-         NRPQ==
-X-Gm-Message-State: AOAM533u4SkL9h86zFlGQ5qLEQY0jNT/6oUp+cOrLwsVjfxWOQC2kdEU
-        qksGPOASNFO5D52wJbgkNOf10Uw5FQ==
-X-Google-Smtp-Source: ABdhPJwn27+eOjtnJjQ5ATRNjK+SDHOiGGYK3kmlfv548H1YxyZIWpsxI8cVlnH6k5jjTgSBplMsmQ==
-X-Received: by 2002:aca:ac8f:: with SMTP id v137mr541401oie.134.1604952171042;
-        Mon, 09 Nov 2020 12:02:51 -0800 (PST)
+        bh=GuoDtFshBo0hoJJ60im92Bs8Z4Fwx/fzMQNnSPUeOIY=;
+        b=PXNIee9Aj5pUmuwiEvuqZdbLHy+KAF4k7oOj0lfBspFrZz/Cl4xc0mZPG2+0SYuh7C
+         AOCKCdp/OqlexMDlX6TW88lLCE66IyNjDbf8gRg9BS4Bykuie/NARrXqloE1IOQ+VAPj
+         89XOjbfmpkNdhGa9EvKfPGreo31JauIJJ3Z+FCYFyaxqBhd5IOOEQL/dI1HtiYjRc/Vh
+         47xrXaidljKPfHijw1cd152sfbhdovpTMR393RigOZQyCjOguf2u5X1XV5hQbyI9D8HI
+         5uUHx7ssNPCbzPedjnuZF3/nneawHE2TjwaoYgG096tBPH7G7e5Nlggj7KZW7wg/I1Tk
+         dIYA==
+X-Gm-Message-State: AOAM532N8bUdpsL3SbTNmCMEMWlRS7T19JVBLlnFADkINSkwzrgaMhpT
+        YeIWYMM6oqQKdBmWIFRgrQ==
+X-Google-Smtp-Source: ABdhPJyUj/aVccVoP5g+mV181MABiravzQIqPw5e0SX+/Fj4BD/4rW9TqtZoBeDTHxd/yGT5GrRsNg==
+X-Received: by 2002:aca:5110:: with SMTP id f16mr575283oib.94.1604952306783;
+        Mon, 09 Nov 2020 12:05:06 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s193sm2607862oos.21.2020.11.09.12.02.49
+        by smtp.gmail.com with ESMTPSA id z19sm2743224otm.58.2020.11.09.12.05.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 12:02:50 -0800 (PST)
-Received: (nullmailer pid 1673284 invoked by uid 1000);
-        Mon, 09 Nov 2020 20:02:48 -0000
-Date:   Mon, 9 Nov 2020 14:02:48 -0600
+        Mon, 09 Nov 2020 12:05:06 -0800 (PST)
+Received: (nullmailer pid 1676297 invoked by uid 1000);
+        Mon, 09 Nov 2020 20:05:04 -0000
+Date:   Mon, 9 Nov 2020 14:05:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, mdtipton@codeaurora.org,
-        bjorn.andersson@linaro.org, akashast@codeaurora.org
-Subject: Re: [PATCH 1/3] dt-bindings: interconnect: sdm845: Add IDs for the
- QUP ports
-Message-ID: <20201109200248.GA1673248@bogus>
-References: <20201105135211.7160-1-georgi.djakov@linaro.org>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen.Hegelund@microchip.com
+Subject: Re: [PATCH 1/6] dt-bindings: interrupt-controller: Add binding for
+ the Microsemi Luton interrupt controller
+Message-ID: <20201109200504.GA1673414@bogus>
+References: <20201105171535.923570-1-gregory.clement@bootlin.com>
+ <20201105171535.923570-2-gregory.clement@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201105135211.7160-1-georgi.djakov@linaro.org>
+In-Reply-To: <20201105171535.923570-2-gregory.clement@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Nov 2020 15:52:09 +0200, Georgi Djakov wrote:
-> The QUP ports exist in the topology, but are not exposed as an
-> endpoints in DT. Fix this by creating IDs and attach them to their
-> NoCs, so that the various QUP drivers (i2c/spi/uart etc.) are able
-> to request their interconnect paths and scale their bandwidth.
+On Thu, Nov 05, 2020 at 06:15:30PM +0100, Gregory CLEMENT wrote:
+> Add the Device Tree binding documentation for the Microsemi Luton
+> interrupt controller that is part of the ICPU. It is connected directly to
+> the MIPS core interrupt controller.
 > 
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 > ---
->  include/dt-bindings/interconnect/qcom,sdm845.h | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+>  .../bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt   | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 
-Acked-by: Rob Herring <robh@kernel.org>
+The patches look fine, but can you convert this to schema first.
+
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt b/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt
+> index f5baeccb689f..94dc95cb815c 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt
+> @@ -1,8 +1,10 @@
+>  Microsemi Ocelot SoC ICPU Interrupt Controller
+>  
+> +Luton belongs the same family of Ocelot: the VCoreIII family
+> +
+>  Required properties:
+>  
+> -- compatible : should be "mscc,ocelot-icpu-intr"
+> +- compatible : should be "mscc,ocelot-icpu-intr" or "mscc,luton-icpu-intr"
+>  - reg : Specifies base physical address and size of the registers.
+>  - interrupt-controller : Identifies the node as an interrupt controller
+>  - #interrupt-cells : Specifies the number of cells needed to encode an
+> -- 
+> 2.28.0
+> 
