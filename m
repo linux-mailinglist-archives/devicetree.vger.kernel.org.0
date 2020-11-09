@@ -2,121 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A7632AC4BB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 20:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F58A2AC4C5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 20:18:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730008AbgKITLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 14:11:02 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45146 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729491AbgKITLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 14:11:02 -0500
-Received: by mail-oi1-f195.google.com with SMTP id j7so11372983oie.12;
-        Mon, 09 Nov 2020 11:11:01 -0800 (PST)
+        id S1729829AbgKITS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 14:18:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727303AbgKITSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 14:18:55 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E557C0613D3
+        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 11:18:55 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id v18so11789404ljc.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 11:18:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bu0ThKEY7iNNAWO1Gs5nfun8XEbY1iHpVPn66H13xho=;
+        b=MXu1FiX/P8KsnLg7KwJk3Dr/HoYUiRRYwLCjf1j8Ckk0cbMDjVN32AAjT2KTOKu/1C
+         ZsjaDNl2c19oeNtpL5x5MKJpucyMROnOwR9d0EjWq+xjdsWxzl6pyZdjQnZHMP0+6tRz
+         eSfz9fClJxrmCocEbBKr62POOEUtZPpu7Jl8w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=XLhjrbEcMV5bi076ZeGzCwJjkoRdVWyTomnb4TsCUyQ=;
-        b=q5Pn0zhIXhH1Z8XCNb/+XofqgwOJ7fdxb0wCb54P60mQSIVM1E18WNoSL+sPMm4jZX
-         0GqJQLJGaiwleCG13AmPuUaMFedkSyj45NeHxGmwTZUhNQRKO1+wDNhJyW0/Gv3oCizk
-         2nBK5zCG9nSO97MnaHbJ/pu7cHHaMd7aavusbQ5ldoOyVTFRC2BoOs7eCr2Vu/TajS6w
-         BS6MIznHffGgYo5BhZQzxkzhKLzwuWFtEHhpIaXh6vGwKaot4yrcPlf4bi9C/vEu9ISm
-         zt+R+oRlbhfdMbV/MRhm8LB/XQvLd1qhbYQtpD7Vcwpjm8JT4JFG00DDi/lImcWkiz3w
-         UAtA==
-X-Gm-Message-State: AOAM532Vd1WSotIDHhgPxUvLbmKgf1hv9M2vhrb5arfShHu1htzWZQWb
-        hHJlOHheR87NSwzRt+pafQ==
-X-Google-Smtp-Source: ABdhPJyNRDLRB+Q/PCsvZe6htBWvosHDcpbfyiT0wNGJFbQ7YFboFfRPakz33POrB8GDA1reApdp/w==
-X-Received: by 2002:aca:d941:: with SMTP id q62mr433946oig.33.1604949061091;
-        Mon, 09 Nov 2020 11:11:01 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id h3sm979817oou.3.2020.11.09.11.11.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 11:11:00 -0800 (PST)
-Received: (nullmailer pid 1605155 invoked by uid 1000);
-        Mon, 09 Nov 2020 19:10:59 -0000
-Date:   Mon, 9 Nov 2020 13:10:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, krzk@kernel.org,
-        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
- soc unique ID
-Message-ID: <20201109191059.GA1599099@bogus>
-References: <20201105072629.24175-1-alice.guo@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bu0ThKEY7iNNAWO1Gs5nfun8XEbY1iHpVPn66H13xho=;
+        b=W+xiuFnxSe0I1ZgB/TIsB5myHXDmMRjjJuA9Au84zgHV+EHx6Ua235Ng4JVJE5zsXR
+         z7gqeb/yKXBlOWNXP/yVYiSZvoxF4YRCRZOz9wDFQZjG0BAK9ditMdbxCIM0hKsXwfB6
+         dnWAj1CiPpv4KNNGURZVjGaT11MsTDiyBSXIV588Pg4JONdEIG+bLytT2jTCNXsfKSn9
+         weFMO061LlKDVUwgzEldnVNPDPT4sWhn0y8uFZLThnKpkIAPDZvnRHabsSYZgFKCh+3S
+         dVg2468F0sEeZ36p4Oh/K5AHPZTwog2Kj2NJQ0vSRJDG7IqVBC3Dr74MNfV6OWH65edM
+         cJKQ==
+X-Gm-Message-State: AOAM532CFJ2rA03Ct7kpHgDh5N/2uoV+mE4jLvdyk0RUFpnCyR4m7GUZ
+        X5YVnD1rZ8C6kWvxlSrsBWmaeHaTGe5QUg==
+X-Google-Smtp-Source: ABdhPJxaqthUlqizZrnhbRtUOe+6sExHrMBCmSodF3OdQNK9DJlf8Ue/veE0+7k9gD6Ncoh7sHKLLQ==
+X-Received: by 2002:a2e:530c:: with SMTP id h12mr4235309ljb.237.1604949533379;
+        Mon, 09 Nov 2020 11:18:53 -0800 (PST)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id y19sm2300247ljc.4.2020.11.09.11.18.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2020 11:18:52 -0800 (PST)
+Received: by mail-lj1-f178.google.com with SMTP id o24so5073606ljj.6
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 11:18:52 -0800 (PST)
+X-Received: by 2002:a05:651c:1074:: with SMTP id y20mr4049301ljm.432.1604949531557;
+ Mon, 09 Nov 2020 11:18:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201105072629.24175-1-alice.guo@nxp.com>
+References: <1602786476-27833-1-git-send-email-sibis@codeaurora.org> <CAE=gft4FrAm_QHKm_dF6G0R8fkfJrYFYPMrRu0nPNrQtZ83skw@mail.gmail.com>
+In-Reply-To: <CAE=gft4FrAm_QHKm_dF6G0R8fkfJrYFYPMrRu0nPNrQtZ83skw@mail.gmail.com>
+From:   Evan Green <evgreen@chromium.org>
+Date:   Mon, 9 Nov 2020 11:18:14 -0800
+X-Gmail-Original-Message-ID: <CAE=gft6JKpbcirFn9LAiDYFnM=HMfDQAYfQHAFy6NF+8J4Dmkg@mail.gmail.com>
+Message-ID: <CAE=gft6JKpbcirFn9LAiDYFnM=HMfDQAYfQHAFy6NF+8J4Dmkg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Fixup modem memory region
+To:     Sibi Sankar <sibis@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 05, 2020 at 03:26:26PM +0800, Alice Guo wrote:
-> Add DT Binding doc for the Unique ID of i.MX 8M series.
-> 
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> ---
->  .../devicetree/bindings/arm/fsl.yaml          | 33 +++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index e4db0f9ed664..0419f078502b 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -901,6 +901,39 @@ properties:
->                - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
->            - const: fsl,s32v234
-> 
-> +  soc:
-> +    description:
-> +      i.MX8M Family SoC must provide a soc node in the root of the device tree,
-> +      representing the System-on-Chip since these test chips are rather complex.
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        oneOf:
-> +          - items:
-> +              - const: fsl,imx8mm-soc
-> +              - const: simple-bus
-> +          - items:
-> +              - const: fsl,imx8mn-soc
-> +              - const: simple-bus
-> +          - items:
-> +              - const: fsl,imx8mp-soc
-> +              - const: simple-bus
-> +          - items:
-> +              - const: fsl,imx8mq-soc
-> +              - const: simple-bus
+On Tue, Oct 20, 2020 at 11:37 AM Evan Green <evgreen@chromium.org> wrote:
+>
+> On Thu, Oct 15, 2020 at 11:28 AM Sibi Sankar <sibis@codeaurora.org> wrote:
+> >
+> > The modem firmware memory requirements vary between 32M/140M on
+> > no-lte/lte skus respectively, so fixup the modem memory region
+> > to reflect the requirements.
+> >
+> > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+>
+> Reviewed-by: Evan Green <evgreen@chromium.org>
 
-items:
-  - enum:
-      - fsl,imx8mm-soc
-      - fsl,imx8mn-soc
-      - fsl,imx8mp-soc
-      - fsl,imx8mq-soc
-  - const: simple-bus
-
-> +
-> +      nvmem-cells:
-> +        maxItems: 1
-> +        description: Phandle to the SOC Unique ID provided by a nvmem node
-> +
-> +      nvmem-cells-names:
-> +        const: soc_unique_id
-> +
-> +    required:
-> +      - compatible
-> +      - nvmem-cells
-> +      - nvmem-cell-names
-> +
-
-'soc' should be required?
-
->  additionalProperties: true
-> 
->  ...
-> --
-> 2.17.1
-> 
+Did this land anywhere?
