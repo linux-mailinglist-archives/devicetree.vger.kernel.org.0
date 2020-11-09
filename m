@@ -2,100 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C61FC2ABE5A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 15:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FB1A2ABE52
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 15:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730923AbgKIOOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 09:14:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47768 "EHLO mail.kernel.org"
+        id S1730649AbgKIOOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 09:14:32 -0500
+Received: from mga09.intel.com ([134.134.136.24]:23208 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730904AbgKIOOh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 09:14:37 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 30B79206ED;
-        Mon,  9 Nov 2020 14:14:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604931276;
-        bh=kLJzaopBrWpFidVU7xRvPTiQ3M4h0ap58VBp21YzxYs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jb8Tfl/071h1BNkQ95G0MdcMqzm0ItDQ91+UFxaDdcTP/Hn4YNNpN3L99eqPfm1eE
-         iTtKIyIl30zgvi2L/4YXmciVZ5xR/lk9i9XeWhcEx7rqBAE3OSbNOiS8IGnLwAhJuR
-         mYM+oWmy3+Hzzxh9jMiJiyv0s+Mz/Ziy5SENX1Ek=
-Date:   Mon, 9 Nov 2020 14:14:22 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Sean Anderson <seanga2@gmail.com>
-Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        linux-spi@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 03/32] spi: dw: Fix driving MOSI low while recieving
-Message-ID: <20201109141422.GD6380@sirena.org.uk>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-4-damien.lemoal@wdc.com>
- <20201109132935.GB6380@sirena.org.uk>
- <c37ca9be-ea92-b07a-b600-d68de4f7bde5@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5p8PegU4iirBW1oA"
-Content-Disposition: inline
-In-Reply-To: <c37ca9be-ea92-b07a-b600-d68de4f7bde5@gmail.com>
-X-Cookie: This fortune is false.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1730204AbgKIOOc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 09:14:32 -0500
+IronPort-SDR: U0JkdkLxc4kS0lHe2YyrL6ua0S4avkF32euQW81caRTMZ6dhCBov9FNbTefiKwgvnVOJWgNQea
+ AZkxKZoIBZ2g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9799"; a="169960529"
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; 
+   d="scan'208";a="169960529"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2020 06:14:31 -0800
+IronPort-SDR: /2AUkUFFIHye50qeOb/wwWUcErayFXr0rCRMXb5iJ1IACz/U5c+aiNUo+FpCckFq4Jy8bipb9Q
+ Ew0sV3MozvXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; 
+   d="scan'208";a="307661594"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga008.fm.intel.com with ESMTP; 09 Nov 2020 06:14:28 -0800
+From:   Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+To:     dmaengine@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        chuanhua.lei@linux.intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, mallikarjunax.reddy@linux.intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+Subject: [PATCH v8 0/2] Add Intel LGM SoC DMA support
+Date:   Mon,  9 Nov 2020 22:14:23 +0800
+Message-Id: <cover.1604930089.git.mallikarjunax.reddy@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add DMA controller driver for Lightning Mountain (LGM) family of SoCs.
 
---5p8PegU4iirBW1oA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The main function of the DMA controller is the transfer of data from/to any
+peripheral to/from the memory. A memory to memory copy capability can also
+be configured. This ldma driver is used for configure the device and channnels
+for data and control paths.
 
-On Mon, Nov 09, 2020 at 08:47:10AM -0500, Sean Anderson wrote:
-> On 11/9/20 8:29 AM, Mark Brown wrote:
+These controllers provide DMA capabilities for a variety of on-chip
+devices such as SSC, HSNAND and GSWIP.
 
-> > In this case it also looks like the controller hardware requires
-> > transmit data and therefore should be setting SPI_MUST_TX and just
-> > removing the in driver default anyway, though that will have no effect
-> > one way or anther on the issue you're seeing.
+-------------
+Future Plans:
+-------------
+LGM SOC also supports Hardware Memory Copy engine.
+The role of the HW Memory copy engine is to offload memory copy operations
+from the CPU.
 
-> There is a recieve-only mode, but it is not used by this driver. Perhaps
-> it should be.
+Amireddy Mallikarjuna reddy (2):
+  dt-bindings: dma: Add bindings for intel LGM SOC
+  Add Intel LGM soc DMA support.
 
-I'd expect it'd perform better, especially on systems that are
-apparently struggling for CPU bandwidth like yours seems to.
+ .../devicetree/bindings/dma/intel,ldma.yaml        |  134 ++
+ drivers/dma/Kconfig                                |    2 +
+ drivers/dma/Makefile                               |    1 +
+ drivers/dma/lgm/Kconfig                            |    9 +
+ drivers/dma/lgm/Makefile                           |    2 +
+ drivers/dma/lgm/lgm-dma.c                          | 1742 ++++++++++++++++++++
+ include/linux/dma/lgm_dma.h                        |   27 +
+ 7 files changed, 1917 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
+ create mode 100644 drivers/dma/lgm/Kconfig
+ create mode 100644 drivers/dma/lgm/Makefile
+ create mode 100644 drivers/dma/lgm/lgm-dma.c
+ create mode 100644 include/linux/dma/lgm_dma.h
 
-> > Please also try to avoid the use of master/slave terminology where
-> > reasonable, controller and device tend to work for SPI (though MOSI/MISO
-> > are going to be harder to shift).
+-- 
+2.11.0
 
-> Here I use it to draw distinction between the SPI master and the SPI
-> slave, which are both devices in different contexts.=20
-
-If you find the use of device to refer to the device being controlled
-confusing consider also using something like client device instead,
-there's a number of ways to do it (there's a list in Documentation IIRC).
-
---5p8PegU4iirBW1oA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+pTr4ACgkQJNaLcl1U
-h9DamAf9GViNS0tl9IE38rF2GQEVHH0m8fIjSSQYDUg/HaV3KWTlgA+RxBct/6Su
-0kWc3OyLDS0kbdA70oliL0kA+AQEbPnvxx6W3ktbW9HvGbf03yPhlVayBdx9QxZJ
-Gz2eWEe05CPdrQwMEo8LnjrfeL1uycSgalHjDbotqu2DBbcrvHoZkt8bL5+0EdcH
-a0MP1HmvpfvX+l36JPx8m6kOay+2cXYcQwIJ8FMV6rOZXpmgdlpT9UTTqMnUji8V
-BFLLRgEaNi6WG8WXhB8pm3o/z9w2ukz62EPCkeNEGB36a6WI8D9zxSNQ6bM/ZszD
-wqk4bWzbFhknKP96ou7EqTa6wlbLqg==
-=+WcS
------END PGP SIGNATURE-----
-
---5p8PegU4iirBW1oA--
