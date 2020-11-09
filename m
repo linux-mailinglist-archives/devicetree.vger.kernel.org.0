@@ -2,97 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DA8E2AB17A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 07:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CBD92AB1E1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 08:48:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729615AbgKIG5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 01:57:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729391AbgKIG5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 01:57:45 -0500
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8E9C0613CF
-        for <devicetree@vger.kernel.org>; Sun,  8 Nov 2020 22:57:45 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id x15so3443891pll.2
-        for <devicetree@vger.kernel.org>; Sun, 08 Nov 2020 22:57:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=KF1/cMn6ow1Nl4dL4x6qzs3WxXHhYa+fonGftd0XHGk=;
-        b=zXLhGIo6SEIUKcewyE6ufIb64yJVWCABNtTkBYh7d4D4TvYXa540vr/vFWmzrxVxyb
-         wlC0XFXCqonycWbXTsMVO+x3Py2FcLnChddb3OLJ3dHSS1jUaozYWj2h74tMNky805Uw
-         lOObM4byt6gHew/oAXo1GSDjAxHmOjPTe/D30uCZl/Rji4N4RWJH1n0EHvS0LMlTTY5e
-         h6iD19z5V/2lsqIBMxCuPE3/J0o1IoJNinBcoUQtFEtYKl05r24H3x0kFQ1yWbb1jdi0
-         XyOkkwP7iOzCyo84BvoARxMew7Flcf1qG2gciFljzZc+UgbEDc3bSwkFZxCi307NPWcH
-         +zpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KF1/cMn6ow1Nl4dL4x6qzs3WxXHhYa+fonGftd0XHGk=;
-        b=lI5cg7GZuk7mvQLq261A1gUn2V4JZFnnnUFSbYpX9Vy3nSGuQ0Or+llaN0n8p8M4Bx
-         hv8CWRnkh5kd8lMn0JI4iM5mESYeOq1Zm9EcuaNMW45qDOslPcOUjhn5Pnwrm29qmDjM
-         4nxVGJRvOob+js6xfVSyofxFiEzfj7ON6HzWQdqvN+7s+oza3+mbtGVCDy2ntZVPbYN1
-         gdQdMeMHDjZg5s4kjud2OKUYv0+C0LYwnV1R8iKBRl7j16OGiuuV9avZfmqZEFJsS5fy
-         lVA0vUcUdqL3aoHgUhmMr95L+L9Z+ygldmiKdeVyT+GSHh7H6L37jew4VElyNdS0fp/Z
-         H8zQ==
-X-Gm-Message-State: AOAM530HL1Ga4f+QpPtkqRNoor5Jm0ufeL2K6JeqjdS7J/wx6xTRXTw2
-        KzmEh1EVSeRebR0otu9CDaMTkw==
-X-Google-Smtp-Source: ABdhPJw+XEDLwRGrEJmvpdHPokEDmxTA6uwQTvouoJ2/owTVyISLQ9AuM70t0bW5X57j8Gwmgr9IJA==
-X-Received: by 2002:a17:902:6bc8:b029:d6:d9d:f28c with SMTP id m8-20020a1709026bc8b02900d60d9df28cmr11217116plt.17.1604905065103;
-        Sun, 08 Nov 2020 22:57:45 -0800 (PST)
-Received: from localhost ([122.172.12.172])
-        by smtp.gmail.com with ESMTPSA id d9sm3157998pfn.191.2020.11.08.22.57.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 08 Nov 2020 22:57:43 -0800 (PST)
-Date:   Mon, 9 Nov 2020 12:27:42 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-Subject: Re: [PATCH v3 3/3] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201109065742.22czfgyjhsjmkytf@vireshk-i7>
-References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
- <20201102120115.29993-4-nicola.mazzucato@arm.com>
- <20201106092020.za3oxg7gutzc3y2b@vireshk-i7>
- <0a334a73-45ef-58ff-7dfd-9df6f4ff290a@arm.com>
- <20201106105514.bhtdklyhn7goml64@vireshk-i7>
- <7f73bcd6-0f06-4ef0-7f02-0751e6c4d94b@arm.com>
+        id S1728951AbgKIHs4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 02:48:56 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48898 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728904AbgKIHs4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 02:48:56 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A97mh32029713;
+        Mon, 9 Nov 2020 01:48:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604908123;
+        bh=/XF0EGf1HmpAsphmVE5gnDEws49RwGsRwfQ6uNTI+4I=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=te3K6raBCO2X5Om0xvSQrZV3ZYHQx5+OmzBLHhwBI6pmhWyGHUM3rUFDvuu00x0xg
+         xR3bagdK4Qcvt7uJ4T7CQf1ZWLDGcylAbfPeGtiL7+9B+jkj50XX8flv1faKKdmBxV
+         g8OI5H9CsB0vBL6sGjxuVpfg0nv5OsNmap1vtTqw=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A97mhYn084647
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 9 Nov 2020 01:48:43 -0600
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 9 Nov
+ 2020 01:48:43 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 9 Nov 2020 01:48:43 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A97mesc128217;
+        Mon, 9 Nov 2020 01:48:41 -0600
+Subject: Re: [PATCH 2/4] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at
+ SoC dtsi level
+To:     Nishanth Menon <nm@ti.com>
+CC:     Roger Quadros <rogerq@ti.com>, Keerthy <j-keerthy@ti.com>,
+        Jyri Sarha <jsarha@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tony Lindgren <tony@atomide.com>,
+        Tero Kristo <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20201104224356.18040-1-nm@ti.com>
+ <20201104224356.18040-3-nm@ti.com>
+ <d9324b76-5587-b583-97da-5cb52f294c31@ti.com>
+ <20201105140806.326ubfppb4guexpi@cultural>
+ <37b4b284-0da5-c602-82a2-2b672f89891f@ti.com>
+ <20201106214638.amgltswy6dygnyee@tubular>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <400a464f-8d5b-9979-fb77-d939ac3bc994@ti.com>
+Date:   Mon, 9 Nov 2020 09:49:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7f73bcd6-0f06-4ef0-7f02-0751e6c4d94b@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20201106214638.amgltswy6dygnyee@tubular>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06-11-20, 11:14, Lukasz Luba wrote:
-> I also had similar doubts, because if we make frequency requests
-> independently for each CPU, why not having N cooling devs, which
-> will set independently QoS max freq for them...
-> 
-> What convinced me:
-> EAS and FIE would know the 'real' frequency of the cluster, IPA
-> can use it also and have only one cooling device per cluster.
-> 
-> We would like to keep this old style 'one cooling device per cpuset'.
-> I don't have strong opinion and if it would appear that there are
-> some errors in freq estimation for cluster, then maybe it does make
-> more sense to have cdev per CPU...
 
-Let me rephrase my question. What is it that doesn't work _correctly_
-with cdev per cpufreq policy in your case? What doesn't work well if
-the thermal stuff keeps looking at only the related_cpus thing and not
-the cpu-perf-dependencies thing?
 
--- 
-viresh
+On 06/11/2020 23.46, Nishanth Menon wrote:
+> On 13:32-20201106, Peter Ujfalusi wrote:
+> [...]
+>>>
+>>>>
+>>>>> default power management functionality etc
+>>>>
+>>>> Right, so how does that helps with devices present in the SoC, but no
+>>>> node at all? First thing which comes to mind is AASRC, we don't have
+>>>> Linux driver for it (and no DT binding document), but that does not mean
+>>>> that it is not present. How PM would take that into account?
+>>>
+>>> I think we are mixing topics here -> I was stating the motivation why
+>>> devicetree chose such as default.
+>>
+>> I don't question the fact that 'okay' is the default status if it is not
+>> explicitly present. There is no better default than that.
+> 
+> ^^ -> Alright, that is all we are trying to do here: defaults in the
+> SoC.dtsi and specific cleanups (firmware reserved / board unused
+> disables) be done in a common board.dtsi (for now, there is no such
+> specific need, I guess).
+
+The default is what it is: default choice which suits most of the nodes.
+
+If the node is not complete in it's present form then it is not in it's
+default state. imho.
+
+>>> Alright - what do we suggest we do?
+>>
+>> Not sure, I'm 'whatever' after [1] makes it to mainline or next.
+> [....]
+>> [1]
+>> https://lore.kernel.org/alsa-devel/20201106072551.689-1-peter.ujfalusi@ti.com/
+> 
+> 
+> I don't see the relationship between the series.. I think this series
+> brings no change in dtb, hence with OR without your driver cleanup
+> series, there is no practical regressions.
+
+This series opens up the possibility of nodes leaking to dtb with known
+broken state and the driver should have a better strategy than 'works by
+luck' to handle it ;)
+
+>>
+>>> Tony, Rob - I need some guidance here.
+>>
+>> I'm fine whatever way we take, but I think it is up to you to make the
+>> call as the maintainer of the TI dts files... ;)
+> 
+> Yep - I have'nt seen a reason yet that must cause us to change from the
+> Device tree default approach in our debates.
+
+Imho 'disabled' is the default for nodes like McASP as it is:
+"Indicates that the device is not presently operational, but it might
+become operational in the future" (for example, needed properties added
+to the node).
+
+>>>> There is no such a tag, but:
+>>>> whatever-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>>>
+>>> OK - I have no idea how B4 or patchworks pick that one as :D
+>>
+>> If we take this road, than I'm okay with it, but I'm going to take
+>> silent protest (not sending acked-by or revired-by).
+>> That should not stop you doing what you believe is best for the future!
+> 
+> OK - thanks for your review and the discussions, always appreciate
+> getting our views out there.
+> 
+> if there are no other comments, I will try and post a v2 over the
+> weekend.
+
+OK
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
