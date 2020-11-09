@@ -2,130 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A5612AB732
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 12:36:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D630A2AB74F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 12:40:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727311AbgKILgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 06:36:03 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:50570 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729599AbgKILgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 06:36:01 -0500
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A9BWVSo017770;
-        Mon, 9 Nov 2020 12:35:52 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=nCNWMSseoOrn7wzGNsCWWTckovRM9wFGc2kDdfQ+cUs=;
- b=f90NrHL2mnjrDStKpnkfXF4Zaojh5QRoxku70I9abypNPmGqsHUpzAbzr+i1LgRuEug1
- Gwr8aDSWAkKZQ3KaacHtVmmXc1W1xwrOgCmgNzZZ08ZvswzaGHRcYO7yXsnt7o6OQXMP
- gz2N7PY+qPKbDILLeilh1cCj0METSb+XlUI/zT99UXuLwyFaJAkDcCkuyIE0VjvStyCa
- Nb6bqAzBmlsOyYz/znJgXPaa3ieygjl6GoebBSNoOsED0oLBr9pkuYlBilrgv5/YXlhX
- gDoSvqLpAokpg/BZxWY1XPuyKbTKHROI+oKPDGkhwKFCABm0GWW2c1csfjKzNSYT7g+D 1A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34nj80hpjn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 09 Nov 2020 12:35:52 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 198F610002A;
-        Mon,  9 Nov 2020 12:35:52 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 07FEE233859;
-        Mon,  9 Nov 2020 12:35:52 +0100 (CET)
-Received: from lmecxl0912.lme.st.com (10.75.127.46) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 9 Nov
- 2020 12:35:51 +0100
-Subject: Re: [PATCH] ARM: dts: stm32: reorder spi4 within stm32mp15-pinctrl
-To:     Patrick Delaunay <patrick.delaunay@st.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     Manivannan Sadhasivam <mani@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20201022173851.20114-1-patrick.delaunay@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <d60c5bbe-0a13-ef3f-da08-7a9eff0fab50@st.com>
-Date:   Mon, 9 Nov 2020 12:35:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1729038AbgKILkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 06:40:03 -0500
+Received: from mga11.intel.com ([192.55.52.93]:49415 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727311AbgKILkD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 06:40:03 -0500
+IronPort-SDR: bgRX9y6qfVEE8mDoGITql9520iUh5mJT8XgtB2f8XrhDt15rAY17x/RF7DtVHNRx3Tkp3EVuFU
+ XjzxKuFf486Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9799"; a="166276480"
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; 
+   d="scan'208";a="166276480"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2020 03:40:02 -0800
+IronPort-SDR: f0GZK/P7FVmWfHN7XXZxrKoFtbFbzhPXi0NlWKcPSAqDiCWUwQ9WIIIFZQW32V3gHvEULu0hwL
+ JoR0CIj6g/TA==
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; 
+   d="scan'208";a="327242336"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2020 03:40:00 -0800
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kc5Xi-005AOR-9j; Mon, 09 Nov 2020 13:41:02 +0200
+Date:   Mon, 9 Nov 2020 13:41:02 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v2 2/2] phy: intel: Add Keem Bay USB PHY support
+Message-ID: <20201109114102.GY4077@smile.fi.intel.com>
+References: <20201109031654.22443-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+ <20201109031654.22443-3-wan.ahmad.zainie.wan.mohamad@intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201022173851.20114-1-patrick.delaunay@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-09_02:2020-11-05,2020-11-09 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201109031654.22443-3-wan.ahmad.zainie.wan.mohamad@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Patrick
+On Mon, Nov 09, 2020 at 11:16:54AM +0800, Wan Ahmad Zainie wrote:
+> Add support for USB PHY on Intel Keem Bay SoC.
 
-On 10/22/20 7:38 PM, Patrick Delaunay wrote:
-> Move spi4 at the right alphabetical place within stm32mp15-pinctrl
-> 
-> Fixes: 4fe663890ac5 ("ARM: dts: stm32: Fix spi4 pins in stm32mp15-pinctrl")
-> Signed-off-by: Patrick Delaunay <patrick.delaunay@st.com>
-> ---
-> 
->   arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 28 ++++++++++++------------
->   1 file changed, 14 insertions(+), 14 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> index d84686e00370..c9e514165672 100644
-> --- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
-> @@ -1591,6 +1591,20 @@
->   		};
->   	};
->   
+...
 
-Applied on stm32-next.
+> +config PHY_INTEL_KEEMBAY_USB
+> +	tristate "Intel Keem Bay USB PHY driver"
+> +	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
 
-Thanks.
-Alex
+> +	depends on OF && HAS_IOMEM
 
-> +	spi4_pins_a: spi4-0 {
-> +		pins {
-> +			pinmux = <STM32_PINMUX('E', 12, AF5)>, /* SPI4_SCK */
-> +				 <STM32_PINMUX('E', 6, AF5)>;  /* SPI4_MOSI */
-> +			bias-disable;
-> +			drive-push-pull;
-> +			slew-rate = <1>;
-> +		};
-> +		pins2 {
-> +			pinmux = <STM32_PINMUX('E', 13, AF5)>; /* SPI4_MISO */
-> +			bias-disable;
-> +		};
-> +	};
+Do you really need dependency to OF (yes, I see that it will be not functional,
+but still can be compile tested)?
+
+> +	select GENERIC_PHY
+> +	select REGMAP_MMIO
+> +	help
+> +	  Choose this option if you have an Intel Keem Bay SoC.
 > +
->   	uart4_pins_a: uart4-0 {
->   		pins1 {
->   			pinmux = <STM32_PINMUX('G', 11, AF6)>; /* UART4_TX */
-> @@ -1726,20 +1740,6 @@
->   		};
->   	};
->   
-> -	spi4_pins_a: spi4-0 {
-> -		pins {
-> -			pinmux = <STM32_PINMUX('E', 12, AF5)>, /* SPI4_SCK */
-> -				 <STM32_PINMUX('E', 6, AF5)>;  /* SPI4_MOSI */
-> -			bias-disable;
-> -			drive-push-pull;
-> -			slew-rate = <1>;
-> -		};
-> -		pins2 {
-> -			pinmux = <STM32_PINMUX('E', 13, AF5)>; /* SPI4_MISO */
-> -			bias-disable;
-> -		};
-> -	};
-> -
->   	usart2_pins_a: usart2-0 {
->   		pins1 {
->   			pinmux = <STM32_PINMUX('F', 5, AF7)>, /* USART2_TX */
-> 
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called phy-keembay-usb.ko.
+
+...
+
+> +#include <linux/bitfield.h>
+> +#include <linux/bits.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/module.h>
+
+> +#include <linux/of.h>
+
+No evidence of anything being used in this code.
+mod_devicetable.h is missed, though.
+
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+
+...
+
+> +	usleep_range(30, 50);
+
+Why 30-50?
+
+...
+
+> +	usleep_range(20, 50);
+
+Why these numbers?
+
+...
+
+> +	usleep_range(2, 10);
+
+Ditto.
+
+...
+
+> +	usleep_range(20, 50);
+
+Ditto.
+
+
+...
+
+> +	struct device_node *np = dev->of_node;
+
+It's being used only once and it doesn't bring any benefit.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
