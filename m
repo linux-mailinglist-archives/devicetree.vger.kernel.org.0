@@ -2,130 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 055BB2AC048
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 16:54:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0BBC2AC06A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:03:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729302AbgKIPyp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 10:54:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48072 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbgKIPyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 10:54:45 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E650AC0613CF;
-        Mon,  9 Nov 2020 07:54:44 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id x13so7484827pgp.7;
-        Mon, 09 Nov 2020 07:54:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=q9So97P5RaD1SfjadwJYSOU81IgJTVhXc7LrS5OO0kw=;
-        b=pyXIQ+eZbNQNFBFZyhBj4nw77KGfgHaodRGeO8QBoFZz35RgljQfJ3Da+1q1ys9nD5
-         1pIq0sm1uXdllYrmCV5k0tqs1wEHHBPcr4uFMVNbhLxmGaScjOSLz3CAKY8JrkPfiFhB
-         ngm2P8ku7lGChu45Of/r6zmxiK2E9knTYJBbcXDzaCRJl71GyoB0FpPJBDc35kIL5Ib1
-         xmO3IY1S3M+FsSLXWdI/zdvqXIS5y0ThmpMIRsDXSKp5FLuT2BbZjgbnt6yIYinqjegj
-         kA5keV96Q2JznjihtPXLpvCHngHw+gTd9lY4toimmlIAd9d2sP8Iocug90Fs/Be+Lelu
-         jgdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=q9So97P5RaD1SfjadwJYSOU81IgJTVhXc7LrS5OO0kw=;
-        b=nLTCd3aTMPUUHhXX2Ndhr72briwnbafGHGiqr8cdTUuYTmftuNDv8EE787CgfXEgpr
-         MWGQf00HRR5WziZB8SxeLLXy7EPIAk3nz+C7Wcble7adVBSDoS/njvMmbDLlki1YBl3X
-         mqDmdJOzIwvW2ycRVATZJVqMRS07yrifhaDGXCzUCC96ertNV4hvZR7Xi3dtkFVY5/D5
-         6TVs39tkPlWzNWh2veyYx+XmTxuJFD/IvYzflpEf5i89NoR13OXCwm+XWXrwXp2V8l6C
-         v6PpIIPEBKdVwTMVX3Urcml0ETdXHqM4F2qXYH+L1a8V41yqd4YeGlq2nYrsoC6ql3TT
-         vkRA==
-X-Gm-Message-State: AOAM533cBXBYAV4IvjKWiInf0bT7xcnYwOvt+PvfNAImU3OUUvjrZ+Sz
-        3MySlfmTZK7Kn90oyjNaU1JyUd4C71k=
-X-Google-Smtp-Source: ABdhPJzowlUUELs3070Lm7KfkkA0Qpe86xHqwKtTJjqhYoHQcSl+P/DeraukBAiBa6ZJtqNGyqHZHQ==
-X-Received: by 2002:a63:2b4f:: with SMTP id r76mr12846174pgr.194.1604937284019;
-        Mon, 09 Nov 2020 07:54:44 -0800 (PST)
-Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
-        by smtp.gmail.com with ESMTPSA id l62sm11174922pga.63.2020.11.09.07.54.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 09 Nov 2020 07:54:42 -0800 (PST)
-Subject: Re: [PATCH v2 2/2] ARM: dts: BCM5301X: Linksys EA9500 make use of
- pinctrl
-To:     Vivek Unune <npcomplete13@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <6687de05226dd055ee362933d4841a12b038792d.1601655904.git.npcomplete13@gmail.com>
- <20201104202952.783724-1-npcomplete13@gmail.com>
- <20201104202952.783724-3-npcomplete13@gmail.com>
- <c0d62a2e-59e2-c811-f5bd-e7299f540ca3@gmail.com>
- <20201104205836.GA783888@ubuntu>
- <CAChtp76diZQfoQXmaFw1ugfYda_rrwAacE3G1mx5j-MmHGtaEw@mail.gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <4c264a8e-5644-f5c9-f5db-2e7b9994022e@gmail.com>
-Date:   Mon, 9 Nov 2020 07:54:42 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.4.1
+        id S1729791AbgKIQDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 11:03:06 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44034 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729658AbgKIQDF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 11:03:05 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 72E74216C4;
+        Mon,  9 Nov 2020 16:03:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604937784;
+        bh=YkEwFfSdMDdq9/clov9ZEns0F1+3sR4zx7EG5cfZhYc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mRNOOAn5sC8Z//uTsvBQuvVMEaa0ZT/YLDcQyTdt+DxbBFmTDwhhhv49XpsK3Uked
+         9bpsVbMVj2tcHibCkh1OHn5NfrB/S5Bpfv3V/v4OcjwiTeqrVvqvTTEBrz6qrB6oy1
+         kBhV9RQvAaf3eWxJmgRMo60qLvA4zIR6i4xXItNo=
+Received: by mail-oi1-f174.google.com with SMTP id t16so10693797oie.11;
+        Mon, 09 Nov 2020 08:03:04 -0800 (PST)
+X-Gm-Message-State: AOAM53005avSpymzRA4pAoDaUjogIVXrvnI+2e7mmoQDvic936Iz1XyI
+        n9YLhhkPNd7iJESRYEnOFyV/xiUirT3lQH1T9g==
+X-Google-Smtp-Source: ABdhPJwUDjegKtKBMpqT91zhRknyIWujIwiGxHoxmVjfzOiuKkE6iJqRiSsYwAylWRatkHNGVt6QBND93MEfLu5Qk+c=
+X-Received: by 2002:aca:5dc2:: with SMTP id r185mr9674317oib.106.1604937783677;
+ Mon, 09 Nov 2020 08:03:03 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAChtp76diZQfoQXmaFw1ugfYda_rrwAacE3G1mx5j-MmHGtaEw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201106165805.31534-1-amelie.delaunay@st.com>
+ <20201106165805.31534-2-amelie.delaunay@st.com> <CAL_Jsq+A=nixpdrT3Omq7Osat=_Egb5g6VGao=gY4CEssOe+xQ@mail.gmail.com>
+ <a0e0bde1-5657-c0f9-9123-6b1dd5a1bd73@st.com>
+In-Reply-To: <a0e0bde1-5657-c0f9-9123-6b1dd5a1bd73@st.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 9 Nov 2020 10:02:52 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLcTNNWm7ChBjhFaTvfDm-kSYXrppcGU8uFTGEEuaT5Tg@mail.gmail.com>
+Message-ID: <CAL_JsqLcTNNWm7ChBjhFaTvfDm-kSYXrppcGU8uFTGEEuaT5Tg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] dt-bindings: connector: add typec-power-opmode
+ property to usb-connector
+To:     Amelie DELAUNAY <amelie.delaunay@st.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Jun Li <lijun.kernel@gmail.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 9, 2020 at 9:54 AM Amelie DELAUNAY <amelie.delaunay@st.com> wrote:
+>
+> On 11/9/20 4:03 PM, Rob Herring wrote:
+> > On Fri, Nov 6, 2020 at 10:58 AM Amelie Delaunay <amelie.delaunay@st.com> wrote:
+> >>
+> >> Power operation mode may depends on hardware design, so, add the optional
+> >> property typec-power-opmode for usb-c connector to select the power
+> >> operation mode capability.
+> >>
+> >> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+> >> ---
+> >> Hi Bahdri, Rob,
+> >>
+> >> I've added the exlusion with FRS property, but new FRS property name
+> >> should be use here so, be careful.
+> >>
+> >> ---
+> >>   .../bindings/connector/usb-connector.yaml     | 24 +++++++++++++++++++
+> >>   1 file changed, 24 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> >> index 62781518aefc..a84464b3e1f2 100644
+> >> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> >> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> >> @@ -93,6 +93,24 @@ properties:
+> >>         - device
+> >>         - dual
+> >>
+> >> +  typec-power-opmode:
+> >> +    description: Determines the power operation mode that the Type C connector
+> >> +      will support and will advertise through CC pins when it has no power
+> >> +      delivery support.
+> >> +      - "default" corresponds to default USB voltage and current defined by the
+> >> +        USB 2.0 and USB 3.2 specifications, 5V 500mA for USB 2.0 ports and
+> >> +        5V 900mA or 1500mA for USB 3.2 ports in single-lane or dual-lane
+> >> +        operation respectively.
+> >> +      - "1.5A" and "3.0A", 5V 1.5A and 5V 3.0A respectively, as defined in USB
+> >> +        Type-C Cable and Connector specification, when Power Delivery is not
+> >> +        supported.
+> >> +    allOf:
+> >> +      - $ref: /schemas/types.yaml#definitions/string
+> >> +    enum:
+> >> +      - default
+> >> +      - 1.5A
+> >> +      - 3.0A
+> >
+> > Use the enums here. Unless you want to define it as actual current as
+> > a numerical value.
+>
+> If I understand your point correctly, I think I should remove allOf here
+> and stick with what is done to describe power-role and data-role
+> property. Right ?
 
+No, use the numerical values like FRS:
 
-On 11/9/2020 5:24 AM, Vivek Unune wrote:
-> On Wed, Nov 4, 2020 at 3:58 PM Vivek Unune <npcomplete13@gmail.com> wrote:
->>
->> On Wed, Nov 04, 2020 at 12:37:45PM -0800, Florian Fainelli wrote:
->>>
->>>
->>> On 11/4/2020 12:29 PM, Vivek Unune wrote:
->>>> Now that we have a pin controller, use that instead of manuplating the
->>>> mdio/mdc pins directly. i.e. we no longer require the mdio-mii-mux
->>>
->>> I am a bit confused here as I thought the mux was intended to
->>> dynamically switch the pins in order to support both internal and
->>> external MDIO devices but given the register ranges that were used,
->>> these were actually the pinmux configuration for the MDC and MDIO pins.
->>>
->>> This does not break USB and/or PCIe PHY communication does it?
->>
->> Hi Florian,
->>
->> The external and internal MDIO logic is controlled by mdio-bus-mux.
->> Which controls the BIT(9) of the mdio register. This stays.
->>
->> The removal of mdio-mii-mux and it's replacement with usage of
->> pinctrl doesn't affect USB3 or PCIe. See below USB3 detection.
->>
->> [ 4295.450118] usb 1-1: new high-speed USB device number 2 using ehci-platform
->> [ 4295.690183] usb 4-1: new SuperSpeed Gen 1 USB device number 2 using xhci-hcd
->> [ 4295.721888] usb-storage 4-1:1.0: USB Mass Storage device detected
->> [ 4295.728349] scsi host0: usb-storage 4-1:1.0
->> [ 4296.811047] scsi 0:0:0:0: Direct-Access     SanDisk  Ultra Fit        1.00 PQ: 0 ANSI: 6
->> [ 4296.821159] sd 0:0:0:0: [sda] 60063744 512-byte logical blocks: (30.8 GB/28.6 GiB)
->> [ 4296.829667] sd 0:0:0:0: [sda] Write Protect is off
->> [ 4296.834502] sd 0:0:0:0: [sda] Mode Sense: 43 00 00 00
->> [ 4296.834864] sd 0:0:0:0: [sda] Write cache: disabled, read cache: enabled, doesn't support DPO or FUA
->> [ 4296.852604] GPT:Primary header thinks Alt. header is not at the end of the disk.
->> [ 4296.860079] GPT:1540387 != 60063743
->> [ 4296.863586] GPT:Alternate GPT header not at the end of the disk.
->> [ 4296.869600] GPT:1540387 != 60063743
->> [ 4296.873090] GPT: Use GNU Parted to correct GPT errors.
->> [ 4296.878266]  sda: sda1 sda2
->> [ 4296.884416] sd 0:0:0:0: [sda] Attached SCSI removable disk
->>
-> 
-> Hi Florian,
-> 
-> Does this clarify your confusion?
++      "1" refers to default USB power level as described by "Table
+6-14 Fixed Supply PDO - Sink".
++      "2" refers to 1.5A@5V.
++      "3" refers to 3.0A@5V.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [1, 2, 3]
 
-It does, thank you for bearing with me, I will apply this later today.
--- 
-Florian
+Rob
