@@ -2,129 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CEC12AC10C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:37:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C25C62AC130
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:47:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729776AbgKIQhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 11:37:35 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:45874 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726410AbgKIQhf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 11:37:35 -0500
-Received: by mail-oi1-f194.google.com with SMTP id j7so10827724oie.12;
-        Mon, 09 Nov 2020 08:37:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tq7rUzr/gw10MEoyCZnSq/EiwnB2bInd24MzCsWxH8k=;
-        b=GN/LnFw1VjgfiX7pYywruabAMSVJrL3YLT1p6aMeRofBrCG+ok96Jj9zZ3nvzf266W
-         LIGfGDx97QvoHjFAPyRLzT4nMXMTob3kuUCAh/tUpn9Db1rZCx/mAtaqsI5/LXYJQSQt
-         IzjoN5gC2+xoQTPkYG8RJP4BxGy8UyVUL4vKYvh1/996rK1/m7kHIAGwWsHauiGFtcmk
-         lf7ppM/STZLcQCb2VMTKcuKy327vsY2WB2WsrSmOmnt9KPe+vYqBlqAcxoCmATW3HYRA
-         GSjijcFreo5A2hQHCeGnVQSIlEuwlprh4OesnelUUthCHcc1eQWG7tM43j6YCz2K5A2U
-         A1QA==
-X-Gm-Message-State: AOAM53320Hs4MqEvKsKhtvEBvEQJsguoq6jVoTUFFaVV8cTBCVTtCzCC
-        UT15X8aT5GDwQidLI5fxlA==
-X-Google-Smtp-Source: ABdhPJwLqQONMstaMXV/iyNOCJ8sCnMO9TUIGoYg1lmfIEQEeF/LXCOWXsWVAAtsy+AIrYmyia3DLQ==
-X-Received: by 2002:a05:6808:b24:: with SMTP id t4mr8942748oij.93.1604939854580;
-        Mon, 09 Nov 2020 08:37:34 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e15sm1176458otj.43.2020.11.09.08.37.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 08:37:33 -0800 (PST)
-Received: (nullmailer pid 1410944 invoked by uid 1000);
-        Mon, 09 Nov 2020 16:37:33 -0000
-Date:   Mon, 9 Nov 2020 10:37:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        kernel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: arm: stm32: lxa,stm32mp157c-mc1: add
- extra SiP compatible
-Message-ID: <20201109163733.GA1404197@bogus>
-References: <20201104113932.30702-1-a.fatoum@pengutronix.de>
+        id S1730403AbgKIQqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 11:46:00 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54164 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726410AbgKIQqA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 11:46:00 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8992E2074F;
+        Mon,  9 Nov 2020 16:45:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604940360;
+        bh=Hc1kUA8u+G3SRCoMavf4BNrfi7w15jVZjdFjmr6NKhw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jz1yGbLmYqLVDaBDD5wfYnkDkVR9A33JWI1LY91jZJ7j4fGmATeOam5nwB1bcjD+Z
+         LoeO5DbCmPHvqpdpTTFvKSKqXi3RGT6Uo5dAi5PYcQ702IdUjdw4awZ91O/XNwME2t
+         6ZGvHa6wu9XovDgmpvYhoN1OIg4EyQ9byx3ELLkI=
+Date:   Mon, 9 Nov 2020 16:45:46 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Sean Anderson <seanga2@gmail.com>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 03/32] spi: dw: Fix driving MOSI low while recieving
+Message-ID: <20201109164546.GG6380@sirena.org.uk>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
+ <20201107081420.60325-4-damien.lemoal@wdc.com>
+ <20201109132935.GB6380@sirena.org.uk>
+ <c37ca9be-ea92-b07a-b600-d68de4f7bde5@gmail.com>
+ <20201109141422.GD6380@sirena.org.uk>
+ <20201109144808.mvttq2f6st7xd7sm@mobilestation>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rV8arf8D5Dod9UkK"
 Content-Disposition: inline
-In-Reply-To: <20201104113932.30702-1-a.fatoum@pengutronix.de>
+In-Reply-To: <20201109144808.mvttq2f6st7xd7sm@mobilestation>
+X-Cookie: This fortune is false.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 04, 2020 at 12:39:31PM +0100, Ahmad Fatoum wrote:
-> The Linux Automation MC-1 is built around a SIP with CPU, RAM, PMIC,
-> Oscillator and EEPROM. Add a further compatible identifying the SiP,
-> so boot firmware can match against it to apply fixups if necessary.
-> 
-> To avoid intermittent dtbs_check breakage in the sole upstream device
-> tree that uses that SiP, patch it here as well.
-> 
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> ---
-> I know that bindings and device tree patches should be separate. Does
-> this apply here as well? Should I split the dts change into a follow-up
-> commit? 
 
-Yes.
+--rV8arf8D5Dod9UkK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Is it ok that dtbs_check will report an intermittent breakage?
+On Mon, Nov 09, 2020 at 05:48:08PM +0300, Serge Semin wrote:
+> On Mon, Nov 09, 2020 at 02:14:22PM +0000, Mark Brown wrote:
+> > On Mon, Nov 09, 2020 at 08:47:10AM -0500, Sean Anderson wrote:
 
-If the binding comes first, it won't break.
+> > > There is a recieve-only mode, but it is not used by this driver. Perhaps
+> > > it should be.
 
-But generally, 'dtbs_check' being warning free is not yet a requirement. 
-That will probably first have to be per platform.
+> > I'd expect it'd perform better, especially on systems that are
+> > apparently struggling for CPU bandwidth like yours seems to.
 
-> ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++++-
->  arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts              | 2 +-
->  2 files changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index 009b424e456e..9127094f0208 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -40,7 +40,6 @@ properties:
->        - items:
->            - enum:
->                - arrow,stm32mp157a-avenger96 # Avenger96
-> -              - lxa,stm32mp157c-mc1
->                - shiratech,stm32mp157a-iot-box # IoT Box
->                - shiratech,stm32mp157a-stinger96 # Stinger96
->                - st,stm32mp157c-ed1
-> @@ -52,6 +51,13 @@ properties:
->            - const: st,stm32mp157c-ev1
->            - const: st,stm32mp157c-ed1
->            - const: st,stm32mp157
-> +      - description: Octavo OSD32MP15x System-in-Package based boards
-> +        items:
-> +          - enum:
-> +              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
-> +          - const: oct,stm32mp15xx-osd32
+> Well, it might seem a good idea to use that mode, but there are multiple problems
+> you may get in implementing it.
 
-'oct' is not docuemnted in vendor-prefixes.yaml.
+> First of all the Receive-only mode is having a limited number bytes to receive
+> at once. It's just 64KB. So in order to implement it you'd need to split the
+> bigger transfers up, and feed the DMA engine with smaller chunks one-by-one.
 
-> +          - enum:
-> +              - st,stm32mp157
->        - description: Odyssey STM32MP1 SoM based Boards
->          items:
->            - enum:
-> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> index 1e5333fd437f..cda8e871f999 100644
-> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
-> @@ -15,7 +15,7 @@
->  
->  / {
->  	model = "Linux Automation MC-1 board";
-> -	compatible = "lxa,stm32mp157c-mc1", "st,stm32mp157";
-> +	compatible = "lxa,stm32mp157c-mc1", "oct,stm32mp15xx-osd32", "st,stm32mp157";
->  
->  	aliases {
->  		ethernet0 = &ethernet0;
-> -- 
-> 2.28.0
-> 
+That at least is handlable, even if it's only by falling back to
+transmitting when the data grows over 64K.
+
+> Secondly the Receive-only mode will make the DW SSI controller to constantly receive
+> the data from the SPI bus and to put it into the Rx FIFO. So your DMA engine will
+> have to keep up with extracting the data from there on time, otherwise you'll
+> end up with Rx FIFO overflow error eventually. The problem will be actual for the
+> DMA engines/system buses, which are slower than the SPI bus speed, second for the
+> DMA engines with no hardware accelerated LLP traversal support (like on our DWC DMA
+> controller). The second problem can be also fixed by splitting the transfers up as
+> it has been already implemented in the spi-dw-dma.c. But the first problem can't be
+> fixed, but just workarounded by limiting the SPI bus frequency so the DMA engine
+> would keep up with incoming data traffic.
+
+I'd have expected that a single duplex mode would lessen the pressure on
+at least the system bus - that's the main advantage, and might help the
+DMA controllers as well depending on why they might be struggling.  From
+the comments in the code there's issues on some systems with TX and RX
+running at different rates which would go away in single duplex cases if
+nothing else.  But yeah, it's not going to just fix everything.
+
+Please fix your mail client to word wrap within paragraphs at something
+substantially less than 80 columns.  Doing this makes your messages much
+easier to read and reply to.
+
+--rV8arf8D5Dod9UkK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+pcjkACgkQJNaLcl1U
+h9CTEAf+LO8XubB/p+WOZdoLkRQLzS9jVKMHXs0H0rC1r9p2z2zyenxdNF7lwWrQ
+XvvSKHF3gVb+aZVaAqFaFz0kGL0TMKkd+vu6Q38Ueb+MD7KUOXNF7ckSZ1ASv+td
+Y4YLdX/ISBO5KcXCMZ8McdKtan2wu+X/Qx5uv3vTyG8O+RJKct+Kr65xux7yE2I6
+WqEPl/0tY3GcRBsdWxzaoLxorPgyBfprsj8jIGukk0+6QZtMo7ovGZlqPXBVd9Ma
+xMMw6AGys9Wq2+HNi/iRoimYhNEqQ5jFOIweOluVNhWaQ1+2ULmMKRqOmBuykYN2
+vILe13vdCLSb3PBUF7SPgNbUpdQEpQ==
+=vWha
+-----END PGP SIGNATURE-----
+
+--rV8arf8D5Dod9UkK--
