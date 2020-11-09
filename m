@@ -2,127 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 188412AB85C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 13:36:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 643D72AB8A5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 13:51:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729741AbgKIMgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 07:36:15 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:51170 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729693AbgKIMgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 07:36:13 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A9Ca6jS002188;
-        Mon, 9 Nov 2020 06:36:06 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604925366;
-        bh=95DTtXkfRsBVcuCi7o8HWOM6vEleEq3iPsJLfzylSFw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=cABhk27F9dcCrPbnbsUSmtQl5A3/oVFXPewl4+t8S5gnSmitofhnmOy/K6HkUt8Qc
-         vOUeYUqSvL22k+HVYDS3WRKq4+fO7Zr8h+WNhp/bkMsCmUOOR5/PgIB9I0qeYGLVNT
-         FdHsapsUQNBx/ETdJeDCzo7klRTHzyGHOhrB7pSI=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A9Ca6Gn069552
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 9 Nov 2020 06:36:06 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 9 Nov
- 2020 06:36:06 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 9 Nov 2020 06:36:06 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A9Ca3s9035270;
-        Mon, 9 Nov 2020 06:36:03 -0600
-Subject: Re: [PATCH 01/18] dmaengine: of-dma: Add support for optional router
- configuration callback
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <nm@ti.com>, <ssantosh@kernel.org>, <robh+dt@kernel.org>,
-        <vigneshr@ti.com>, <dan.j.williams@intel.com>, <t-kristo@ti.com>,
-        <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>
-References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
- <20200930091412.8020-2-peter.ujfalusi@ti.com>
- <20201007054404.GR2968@vkoul-mobl>
- <be615881-1eb4-f8fe-a32d-04fabb6cb27b@ti.com>
- <20201007155533.GZ2968@vkoul-mobl>
- <45adb88b-1ef8-1fbf-08c1-9afc6ea4c6f0@ti.com>
- <20201028055531.GH3550@vkoul-mobl>
- <cf3d3de0-223b-4846-bd9f-b78654ae2d08@ti.com>
- <20201109114534.GH3171@vkoul-mobl>
- <7a7cb455-dd09-b71f-6ecc-fd6108d37051@ti.com>
- <20201109122306.GO3171@vkoul-mobl>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <dffd3284-de4c-eb27-b6cf-1b4acc3cb79d@ti.com>
-Date:   Mon, 9 Nov 2020 14:36:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.1
+        id S1729672AbgKIMvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 07:51:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49584 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729751AbgKIMvc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 07:51:32 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0FF2020657;
+        Mon,  9 Nov 2020 12:51:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604926285;
+        bh=Bei45B1lXJhHW9eoNuI13U+f97K1W4Zn41krW3jveY0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=b4FQ89bxQNkt5pc41PUHmso0qKRSgWcUz7/8ZFk+eWlXnAzUEdBPB9yedV7c9y2DK
+         yar7WVDj/6tzsvBdG+nh7by2h8bWAGhXTV42Qe1NGvSRCYBL/oN3X3VVlYUQUMuhel
+         HyHrInH6f+tVF7brZK3IqULe0QTfSx7R7lKr/kBM=
+Date:   Mon, 9 Nov 2020 12:51:11 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+        linux-spi@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH 00/32] RISC-V Kendryte K210 support improvments
+Message-ID: <20201109125111.GA6380@sirena.org.uk>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
 MIME-Version: 1.0
-In-Reply-To: <20201109122306.GO3171@vkoul-mobl>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MGYHOYXEY6WxJCY8"
+Content-Disposition: inline
+In-Reply-To: <20201107081420.60325-1-damien.lemoal@wdc.com>
+X-Cookie: This fortune is false.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--MGYHOYXEY6WxJCY8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 09/11/2020 14.23, Vinod Koul wrote:
-> HI Peter,
-> 
-> On 09-11-20, 14:09, Peter Ujfalusi wrote:
->> Hi Vinod,
->>
->> On 09/11/2020 13.45, Vinod Koul wrote:
->>>> Without a channel number I can not do anything.
->>>> It is close to a chicken and egg problem.
->>>
->>> We get 'channel' in xlate, so wont that help? I think I am still missing
->>> something here :(
->>
->> Yes, we get channel in xlate, but we get the channel after
->> ofdma->of_dma_route_allocate()
-> 
-> That is correct, so you need this info in allocate somehow..
+On Sat, Nov 07, 2020 at 05:13:48PM +0900, Damien Le Moal wrote:
 
-To know the event number the router must send to trigger the channel I
-need the router to 'craft' the dmaspec which can be used to request the
-channel.
+> The first patch of this series is a fix of the device tree parsing code.
+> Without this fix, a warning is generated when parsing Designware gpio
+> controller nodes.
 
-To request a bcdma channel to be triggered by global trigger 0:
+> The following 6 patches are fixes and improvements to the Designware SPI
+> driver to enable support for the MMC-spi slot found on all K210 boards.
 
-[A]
-<&main_bcdma 1 0 15>
+> Pathes 8 to 13 are various fixes for riscv arch code and riscv
+> dependent devices. Of not here is patch 11 which fix system call
+> execution in the no MMU case, and patch 13 which simplifies DTB builtin
+> handling.
 
-main_bcdma - phandle to BCDMA
-1 - triggered by global trigger0
-0 - ignored
-15 - ASEL value
+> The following patches 14 to 25 implement and document idevice tree
+> mapping of several drivers for the K210 SoC: clock driver, reset
+> controller and pin function management (pinctrl).
 
-A peripheral can not really use this binding directly as we need to
-configure the get the event to be sent to the given channel's trigger0.
-The binding for the router (l2g if INTA in this case):
+> Patches 26 to 31 update the existing K210 device tree and device new
+> device tree files for several K210 based boards: the MAIX Bit,
+> MAIXSUINO, MAIX Dock and MAIX Go boards from SiPeed and the KD233
+> development board from Kendryte.
 
-[B]
-<&inta_l2g 21 0 15>
+Please don't mix unrelated changes into a single series like this -
+patch serieses this big are generally something to be avoided at the
+best of times since they're a bit overwhelming in people's inboxes and
+when unrelated changes are put in a single series it makes dependencies
+between patches unclear which can hold things up.  It is better to send
+the changes for each subsystem separately, it makes life easier all
+round.
 
-inta_l2g - phandle to therouter
-21 - local event index (input event/signal)
-0 - event detection mode (pulsed/rising)
-15 - ASEL value
+--MGYHOYXEY6WxJCY8
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The of_dma_router_xlate() receives the dmaspec for [B}, the router
-driver creates the dmaspec for [A].
+-----BEGIN PGP SIGNATURE-----
 
-The xlate can not request the channel first as it needs the dmaspec from
-the router to do so.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+pOz4ACgkQJNaLcl1U
+h9CEewf/d71EbjpYPiGmBNkn7r8dGy0+h6PgyHq7EGg+UJFjwHeWcI7BlgbNNsZt
+RwiaM5PsMdGYvoflet8kQiuKiEh8E+cgmdMcb/vey4ge0Ay1WXmVg7Uqo4dFGKOn
+wQUaomO+FwtYgXYV2G4bG4B9Ib4AsOqQn9VvhVl5lT/nPnH76Tj37FpNrMKBEjV7
+IXBPp7kCwEOzPCJRRHGlos5b54D8XRYJg3YiAbJX087dS/vAva/DbwVZXTJeNDQ1
+oKmgYnjdKHuE00Mhh224U/Km5GE00uOtFl91yTbAR56Nl0o+gMik42IBMq8NJXmn
+tozkEgo+8a5912q/BqKHL87oPW1HeQ==
+=lS0/
+-----END PGP SIGNATURE-----
 
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+--MGYHOYXEY6WxJCY8--
