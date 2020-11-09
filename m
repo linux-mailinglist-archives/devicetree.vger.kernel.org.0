@@ -2,191 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54A322AAFA1
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 03:56:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 809CF2AAFB4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 04:02:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728104AbgKIC4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Nov 2020 21:56:52 -0500
-Received: from anchovy3.45ru.net.au ([203.30.46.155]:42818 "EHLO
-        anchovy3.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728068AbgKIC4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 21:56:52 -0500
-Received: (qmail 4210 invoked by uid 5089); 9 Nov 2020 02:56:48 -0000
-Received: by simscan 1.2.0 ppid: 4128, pid: 4129, t: 0.0741s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-Received: from unknown (HELO ?192.168.0.22?) (preid@electromag.com.au@203.59.235.95)
-  by anchovy2.45ru.net.au with ESMTPA; 9 Nov 2020 02:56:48 -0000
-Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
- conversion
-From:   Phil Reid <preid@electromag.com.au>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
-References: <20201031184854.745828-1-jic23@kernel.org>
- <20201031184854.745828-3-jic23@kernel.org> <20201103161039.GA1754553@bogus>
- <20201103172834.00007040@Huawei.com>
- <bc4219af-d77b-0f39-025d-d8905f35b574@electromag.com.au>
- <CAL_JsqLAtMQhsUDG=amAG7i9mMzYq9UTDLMFRrGKOHr5rb3L+A@mail.gmail.com>
- <a6685d81-d09a-1372-cc17-96f66c87ffbe@electromag.com.au>
-Message-ID: <66e8db5d-cc37-dde9-7d55-770d54506e3d@electromag.com.au>
-Date:   Mon, 9 Nov 2020 10:56:47 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1728104AbgKIDB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Nov 2020 22:01:56 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:49482 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728038AbgKIDB4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 22:01:56 -0500
+X-UUID: 725ebfd5bdbf47c28cc4cadd0114f63c-20201109
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=2XstU6zQ5xruNoxKqD7BXfAfzeXvLG0wUg8a6JYY32Y=;
+        b=rlMBOoDWWikaZ0nVTsQ6yw/XT0kRhina1/z9m7DpzriaE7j/Tf6hTDnW7nJ75BXgT7OqvO+AgOYsdLhKP4FD0VOQjca7GJy1FgfJEr52Om54ZaiRpdCB7PJH8H+n1HO5rK9PWQtOlGgu9s/v1db26NpCYq2/HCPVBGTgS5R/MHE=;
+X-UUID: 725ebfd5bdbf47c28cc4cadd0114f63c-20201109
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <chuanjia.liu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1858883438; Mon, 09 Nov 2020 11:01:46 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 9 Nov
+ 2020 11:01:44 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 9 Nov 2020 11:01:44 +0800
+Message-ID: <1604890904.8050.13.camel@mhfsdcap03>
+Subject: Re: [PATCH v7 1/4] dt-bindings: pci: mediatek: Modified the Device
+ tree bindings
+From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        <devicetree@vger.kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        <linux-pci@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-mediatek@lists.infradead.org>, <yong.wu@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 9 Nov 2020 11:01:44 +0800
+In-Reply-To: <20201103225647.GA272422@bjorn-Precision-5520>
+References: <20201103225647.GA272422@bjorn-Precision-5520>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <a6685d81-d09a-1372-cc17-96f66c87ffbe@electromag.com.au>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-AU
-Content-Transfer-Encoding: 8bit
+X-TM-SNTS-SMTP: C860E0C27E9739533019266E3FD11CD12FC6620D6BD7AE31B71BA164D54DB8992000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4/11/2020 12:53, Phil Reid wrote:
-> On 4/11/2020 11:12, Rob Herring wrote:
->> On Tue, Nov 3, 2020 at 6:39 PM Phil Reid <preid@electromag.com.au> wrote:
->>>
->>> On 4/11/2020 01:28, Jonathan Cameron wrote:
->>>> On Tue, 3 Nov 2020 10:10:39 -0600
->>>> Rob Herring <robh@kernel.org> wrote:
->>>>
->>>>> On Sat, Oct 31, 2020 at 06:48:10PM +0000, Jonathan Cameron wrote:
->>>>>> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->>>>>>
->>>>>> Simple direct conversion from txt to yaml as part of a general aim of
->>>>>> converting all IIO bindings to this machine readable format.
->>>>>>
->>>>>> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->>>>>> Cc: Phil Reid <preid@electromag.com.au>
->>>>>> ---
->>>>>>    .../bindings/iio/potentiometer/ad5272.txt     | 27 ----------
->>>>>>    .../iio/potentiometer/adi,ad5272.yaml         | 50 +++++++++++++++++++
->>>>>>    2 files changed, 50 insertions(+), 27 deletions(-)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt b/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
->>>>>> deleted file mode 100644
->>>>>> index f9b2eef946aa..000000000000
->>>>>> --- a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
->>>>>> +++ /dev/null
->>>>>> @@ -1,27 +0,0 @@
->>>>>> -* Analog Devices AD5272 digital potentiometer
->>>>>> -
->>>>>> -The node for this device must be a child node of a I2C controller, hence
->>>>>> -all mandatory properties for your controller must be specified. See directory:
->>>>>> -
->>>>>> -        Documentation/devicetree/bindings/i2c
->>>>>> -
->>>>>> -for more details.
->>>>>> -
->>>>>> -Required properties:
->>>>>> -   - compatible:   Must be one of the following, depending on the model:
->>>>>> -                   adi,ad5272-020
->>>>>> -                   adi,ad5272-050
->>>>>> -                   adi,ad5272-100
->>>>>> -                   adi,ad5274-020
->>>>>> -                   adi,ad5274-100
->>>>>> -
->>>>>> -Optional properties:
->>>>>> - - reset-gpios: GPIO specification for the RESET input. This is an
->>>>>> -           active low signal to the AD5272.
->>>>>> -
->>>>>> -Example:
->>>>>> -ad5272: potentiometer@2f {
->>>>>> -   reg = <0x2F>;
->>>>>> -   compatible = "adi,ad5272-020";
->>>>>> -   reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
->>>>>> -};
->>>>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000..b9b7d383bff1
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
->>>>>> @@ -0,0 +1,50 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/iio/potentiometer/adi,ad5272.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Analog Devices AD5272 digital potentiometer
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Phil Reid <preid@electromag.com.au>
->>>>>> +
->>>>>> +description: |
->>>>>> +  Datasheet: https://www.analog.com/en/products/ad5272.html
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    enum:
->>>>>> +      - adi,ad5272-020
->>>>>> +      - adi,ad5272-050
->>>>>> +      - adi,ad5272-100
->>>>>> +      - adi,ad5274-020
->>>>>> +      - adi,ad5274-100
->>>>>> +
->>>>>> +  reg:
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  reset-gpios:
->>>>>> +    description:
->>>>>> +      Active low signal to the AD5272 RESET input.
->>>>>
->>>>> Not a new problem, but active low or...
->>>>>
->>>>>> +
->>>>>> +additionalProperties: false
->>>>>> +
->>>>>> +required:
->>>>>> +  - compatible
->>>>>> +  - reg
->>>>>> +
->>>>>> +examples:
->>>>>> +  - |
->>>>>> +    #include <dt-bindings/gpio/gpio.h>
->>>>>> +    i2c {
->>>>>> +        #address-cells = <1>;
->>>>>> +        #size-cells = <0>;
->>>>>> +
->>>>>> +        potentiometer@2f {
->>>>>> +            compatible = "adi,ad5272-020";
->>>>>> +            reg = <0x2F>;
->>>>>> +            reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
->>>>>
->>>>> active high?
->>>>
->>>> Good spot!  @Phil.  Looks like the driver is setting the reset line to
->>>> 0 and then to 1 to come out of reset.   So effectively inverting the logic.
->>>> I'm tempted to be cynical and suggest we just drop the comment above and leave
->>>> it vague but is there a better way we can clarify this?
->>>
->>> Had a look at a few other iio drivers in regards how they handle the same thing.
->>> A few do the same thing, ie: the drivers are written to set gpio low to assert reset.
->>> So they need the device tree gpio config to be active high to work correctly.
->>> Not sure if this prevents users setting things up as open collector.
->>
->> The driver is wrong. 'gpiod_set_value(reset_gpio, 1);' should assert
->> reset as '1' here is set to (reset) active state as defined in the DT.
->>
->> Given no upstream users, maybe it can be fixed...
->>
->> We need to make 'reset-gpios' implemented by a reset controller and
->> stop letting drivers get it wrong.
->>
-> 
-> Yes I agree, the driver is wrong, think I just copied one of the other drivers for the pattern.
-> I'd be happy to change it, there's probably few (if any) users.
-> 
-> Having a software interface to assert the reset would be nice.
-> 
-> 
-
-If there's no comments against the change, I'll submit a patch in the next day or so.
-
-
--- 
-Regards
-Phil Reid
-
+T24gVHVlLCAyMDIwLTExLTAzIGF0IDE2OjU2IC0wNjAwLCBCam9ybiBIZWxnYWFzIHdyb3RlOg0K
+PiBSdW4gImdpdCBsb2cgLS1vbmVsaW5lIiBhbmQgZm9sbG93IHRoZSBjb252ZW50aW9uLCBlLmcu
+LA0KPiANCj4gICBkdC1iaW5kaW5nczogUENJOiBtZWRpYXRlazogLi4uDQo+IA0KdGhhbmtzIGZv
+ciB5b3VyIGNvbW1lbnQsIEkgd2lsbCB1cGRhdGUgdG8NCg0KZHQtYmluZGluZ3M6IFBDSTogbWVk
+aWF0ZWs6IFVwZGF0ZSB0aGUgRGV2aWNlIHRyZWUgYmluZGluZ3MNCg0KPiBPbiBUaHUsIE9jdCAy
+OSwgMjAyMCBhdCAwNDoxNToxMFBNICswODAwLCBDaHVhbmppYSBMaXUgd3JvdGU6DQo+ID4gU3Bs
+aXQgdGhlIFBDSWUgbm9kZSBhbmQgYWRkIHBjaWVjZmcgbm9kZSB0byBmaXggTVNJIGlzc3VlLg0K
+PiANCj4gSSBhc3N1bWUgInNwbGl0IiByZWZlcnMgdG8gdGhlIG5ldyB5YW1sIGZpbGU/ICBJdCdz
+IG5vdCByZWFsbHkgb2J2aW91cw0KPiBob3cgdGhlIHR3byBmaWxlcyBhcmUgY29ubmVjdGVkLg0K
+DQpJbiBtdDI3MTIgYW5kIG10NzYyMixvbGQgRFRTIGZvcm1hdCBpcyBvbmUgUENJZSBjb250cm9s
+bGVyIGhhdmUgdHdvIHNsb3QuDQpJbiBuZXcgRFRTLCBzcGxpdCB0d28gaW5kZXBlbmRlbnQgUENJ
+ZSBjb250cm9sbGVyIGFuZCBhIHBjaWVjZmcgbm9kZS4NCkkgb25jZSBhZGRlZCB0aGUgIm1lZGlh
+dGVrLHBjaWUtY2ZnID0gPCZwY2llY2ZnPiIgaW4gUENJZSBub2RlLA0KYnV0IFJvYiBzdWdnZXN0
+ZWQgdGhhdCBzZWFyY2ggZm9yIHRoZSBub2RlIGJ5IGNvbXBhdGlibGUuc28gSSByZW1vdmUgaXQu
+DQoNCj4gQ291bGQgdGhpcyBiZSBkb25lIGluIHR3byBwYXRjaGVzPyAgT25lIGZvciB0aGUgc3Bs
+aXQgYW5kIG9uZSBmb3IgdGhlDQo+IE1TSSBpc3N1ZT8NCg0KTVNJIGlzc3VlIGlzIGZpeGVkIHdo
+ZW4gdGhlIFBDSWUgbm9kZSBpcyBzZXBhcmF0ZWQuIFNvIEkgdGhpbmsgdGhpcyBzaG91bGQgYmUg
+b25lIHBhdGNoLg0KDQo+IEl0J2QgYmUgbmljZSB0byBzYXkgc29tZXRoaW5nIG1vcmUgYWJvdXQg
+dGhlIE1TSSBpc3N1ZS4NCg0KVGhlIGRldGFpbGVkIGRlc2NyaXB0aW9uIGluIHBhdGNoIDMvNCwg
+SSB3aWxsIGFkZCBkZXNjcmlwdGlvbiBvZiB0aGUgbXNpDQppc3N1ZSBpbiB0aGUgbmV4dCB2ZXJz
+aW9uIG9mIHRoaXMgcGF0Y2guDQoNClRoYW5rcyBhZ2FpbiBmb3IgeW91ciByZXZpZXcuDQo+IA0K
+PiA+IFNpZ25lZC1vZmYtYnk6IENodWFuamlhIExpdSA8Y2h1YW5qaWEubGl1QG1lZGlhdGVrLmNv
+bT4NCj4gPiBBY2tlZC1ieTogUnlkZXIgTGVlIDxyeWRlci5sZWVAbWVkaWF0ZWsuY29tPg0KPiA+
+IC0tLQ0KPiA+ICAuLi4vYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtY2ZnLnlhbWwgICAgICAg
+fCAgMzkgKysrKysrDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1w
+Y2llLnR4dCB8IDEyOSArKysrKysrKysrKy0tLS0tLS0NCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAx
+MTggaW5zZXJ0aW9ucygrKSwgNTAgZGVsZXRpb25zKC0pDQo+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0
+NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtY2Zn
+LnlhbWwNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWNmZy55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWNmZy55YW1sDQo+ID4gbmV3IGZpbGUgbW9k
+ZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLmQzZWNiY2QwMzJhMg0KPiA+IC0tLSAv
+ZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNp
+L21lZGlhdGVrLXBjaWUtY2ZnLnlhbWwNCj4gPiBAQCAtMCwwICsxLDM5IEBADQo+ID4gKyMgU1BE
+WC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb25seSBPUiBCU0QtMi1DbGF1c2UNCj4gPiAr
+JVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hl
+bWFzL3BjaS9tZWRpYXRlay1wY2llLWNmZy55YW1sIw0KPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2
+aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiArDQo+ID4gK3RpdGxlOiBN
+ZWRpYXRlayBQQ0lFQ0ZHIGNvbnRyb2xsZXINCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+
+ICsgIC0gQ2h1YW5qaWEgTGl1IDxjaHVhbmppYS5saXVAbWVkaWF0ZWsuY29tPg0KPiA+ICsgIC0g
+Smlhbmp1biBXYW5nIDxqaWFuanVuLndhbmdAbWVkaWF0ZWsuY29tPg0KPiA+ICsNCj4gPiArZGVz
+Y3JpcHRpb246IHwNCj4gPiArICBUaGUgTWVkaWFUZWsgUENJRUNGRyBjb250cm9sbGVyIGNvbnRy
+b2xzIHNvbWUgZmVhdHVyZSBhYm91dA0KPiA+ICsgIExUU1NNLCBBU1BNIGFuZCBzbyBvbi4NCj4g
+PiArDQo+ID4gK3Byb3BlcnRpZXM6DQo+ID4gKyAgY29tcGF0aWJsZToNCj4gPiArICAgICAgaXRl
+bXM6DQo+ID4gKyAgICAgICAgLSBlbnVtOg0KPiA+ICsgICAgICAgICAgICAtIG1lZGlhdGVrLGdl
+bmVyaWMtcGNpZWNmZw0KPiA+ICsgICAgICAgIC0gY29uc3Q6IHN5c2Nvbg0KPiA+ICsNCj4gPiAr
+ICByZWc6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4g
+KyAgLSBjb21wYXRpYmxlDQo+ID4gKyAgLSByZWcNCj4gPiArDQo+ID4gK2FkZGl0aW9uYWxQcm9w
+ZXJ0aWVzOiBmYWxzZQ0KPiA+ICsNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8DQo+ID4gKyAg
+ICBwY2llY2ZnOiBwY2llY2ZnQDFhMTQwMDAwIHsNCj4gPiArICAgICAgICBjb21wYXRpYmxlID0g
+Im1lZGlhdGVrLGdlbmVyaWMtcGNpZWNmZyIsICJzeXNjb24iOw0KPiA+ICsgICAgICAgIHJlZyA9
+IDwweDFhMTQwMDAwIDB4MTAwMD47DQo+ID4gKyAgICB9Ow0KPiA+ICsuLi4NCj4gPiBkaWZmIC0t
+Z2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2ll
+LnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kvbWVkaWF0ZWstcGNp
+ZS50eHQNCj4gPiBpbmRleCA3NDY4ZDY2Njc2M2EuLmMxNGEyNzQ1ZGUzNyAxMDA2NDQNCj4gPiAt
+LS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUu
+dHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRp
+YXRlay1wY2llLnR4dA0KPiA+IEBAIC04LDcgKzgsNyBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0K
+PiA+ICAJIm1lZGlhdGVrLG10NzYyMy1wY2llIg0KPiA+ICAJIm1lZGlhdGVrLG10NzYyOS1wY2ll
+Ig0KPiA+ICAtIGRldmljZV90eXBlOiBNdXN0IGJlICJwY2kiDQo+ID4gLS0gcmVnOiBCYXNlIGFk
+ZHJlc3NlcyBhbmQgbGVuZ3RocyBvZiB0aGUgUENJZSBzdWJzeXMgYW5kIHJvb3QgcG9ydHMuDQo+
+ID4gKy0gcmVnOiBCYXNlIGFkZHJlc3NlcyBhbmQgbGVuZ3RocyBvZiB0aGUgcm9vdCBwb3J0cy4N
+Cj4gPiAgLSByZWctbmFtZXM6IE5hbWVzIG9mIHRoZSBhYm92ZSBhcmVhcyB0byB1c2UgZHVyaW5n
+IHJlc291cmNlIGxvb2t1cC4NCj4gPiAgLSAjYWRkcmVzcy1jZWxsczogQWRkcmVzcyByZXByZXNl
+bnRhdGlvbiBmb3Igcm9vdCBwb3J0cyAobXVzdCBiZSAzKQ0KPiA+ICAtICNzaXplLWNlbGxzOiBT
+aXplIHJlcHJlc2VudGF0aW9uIGZvciByb290IHBvcnRzIChtdXN0IGJlIDIpDQo+ID4gQEAgLTE0
+Myw1NiArMTQzLDcxIEBAIEV4YW1wbGVzIGZvciBNVDc2MjM6DQo+ID4gIA0KPiA+ICBFeGFtcGxl
+cyBmb3IgTVQyNzEyOg0KPiA+ICANCj4gPiAtCXBjaWU6IHBjaWVAMTE3MDAwMDAgew0KPiA+ICsJ
+cGNpZTE6IHBjaWVAMTEyZmYwMDAgew0KPiA+ICAJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQy
+NzEyLXBjaWUiOw0KPiA+ICAJCWRldmljZV90eXBlID0gInBjaSI7DQo+ID4gLQkJcmVnID0gPDAg
+MHgxMTcwMDAwMCAwIDB4MTAwMD4sDQo+ID4gLQkJICAgICAgPDAgMHgxMTJmZjAwMCAwIDB4MTAw
+MD47DQo+ID4gLQkJcmVnLW5hbWVzID0gInBvcnQwIiwgInBvcnQxIjsNCj4gPiArCQlyZWcgPSA8
+MCAweDExMmZmMDAwIDAgMHgxMDAwPjsNCj4gPiArCQlyZWctbmFtZXMgPSAicG9ydDEiOw0KPiA+
+ICAJCSNhZGRyZXNzLWNlbGxzID0gPDM+Ow0KPiA+ICAJCSNzaXplLWNlbGxzID0gPDI+Ow0KPiA+
+IC0JCWludGVycnVwdHMgPSA8R0lDX1NQSSAxMTUgSVJRX1RZUEVfTEVWRUxfSElHSD4sDQo+ID4g
+LQkJCSAgICAgPEdJQ19TUEkgMTE3IElSUV9UWVBFX0xFVkVMX0hJR0g+Ow0KPiA+IC0JCWNsb2Nr
+cyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9QRTJfTUFDX1AwX1NFTD4sDQo+ID4gLQkJCSA8JnRvcGNr
+Z2VuIENMS19UT1BfUEUyX01BQ19QMV9TRUw+LA0KPiA+IC0JCQkgPCZwZXJpY2ZnIENMS19QRVJJ
+X1BDSUUwPiwNCj4gPiArCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMTE3IElSUV9UWVBFX0xFVkVM
+X0hJR0g+Ow0KPiA+ICsJCWludGVycnVwdC1uYW1lcyA9ICJwY2llX2lycSI7DQo+ID4gKwkJY2xv
+Y2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX1BFMl9NQUNfUDFfU0VMPiwNCj4gPiAgCQkJIDwmcGVy
+aWNmZyBDTEtfUEVSSV9QQ0lFMT47DQo+ID4gLQkJY2xvY2stbmFtZXMgPSAic3lzX2NrMCIsICJz
+eXNfY2sxIiwgImFoYl9jazAiLCAiYWhiX2NrMSI7DQo+ID4gLQkJcGh5cyA9IDwmcGNpZTBfcGh5
+IFBIWV9UWVBFX1BDSUU+LCA8JnBjaWUxX3BoeSBQSFlfVFlQRV9QQ0lFPjsNCj4gPiAtCQlwaHkt
+bmFtZXMgPSAicGNpZS1waHkwIiwgInBjaWUtcGh5MSI7DQo+ID4gKwkJY2xvY2stbmFtZXMgPSAi
+c3lzX2NrMSIsICJhaGJfY2sxIjsNCj4gPiArCQlwaHlzID0gPCZ1M3BvcnQxIFBIWV9UWVBFX1BD
+SUU+Ow0KPiA+ICsJCXBoeS1uYW1lcyA9ICJwY2llLXBoeTEiOw0KPiA+ICAJCWJ1cy1yYW5nZSA9
+IDwweDAwIDB4ZmY+Ow0KPiA+IC0JCXJhbmdlcyA9IDwweDgyMDAwMDAwIDAgMHgyMDAwMDAwMCAg
+MHgwIDB4MjAwMDAwMDAgIDAgMHgxMDAwMDAwMD47DQo+ID4gKwkJcmFuZ2VzID0gPDB4ODIwMDAw
+MDAgMCAweDExNDAwMDAwICAweDAgMHgxMTQwMDAwMCAgMCAweDMwMDAwMD47DQo+ID4gIA0KPiA+
+IC0JCXBjaWUwOiBwY2llQDAsMCB7DQo+ID4gLQkJCXJlZyA9IDwweDAwMDAgMCAwIDAgMD47DQo+
+ID4gKwkJc2xvdDE6IHBjaWVAMSwwIHsNCj4gPiArCQkJcmVnID0gPDB4MDgwMCAwIDAgMCAwPjsN
+Cj4gPiAgCQkJI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQo+ID4gIAkJCSNzaXplLWNlbGxzID0gPDI+
+Ow0KPiA+ICAJCQkjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KPiA+ICAJCQlyYW5nZXM7DQo+ID4g
+IAkJCWludGVycnVwdC1tYXAtbWFzayA9IDwwIDAgMCA3PjsNCj4gPiAtCQkJaW50ZXJydXB0LW1h
+cCA9IDwwIDAgMCAxICZwY2llX2ludGMwIDA+LA0KPiA+IC0JCQkJCTwwIDAgMCAyICZwY2llX2lu
+dGMwIDE+LA0KPiA+IC0JCQkJCTwwIDAgMCAzICZwY2llX2ludGMwIDI+LA0KPiA+IC0JCQkJCTww
+IDAgMCA0ICZwY2llX2ludGMwIDM+Ow0KPiA+IC0JCQlwY2llX2ludGMwOiBpbnRlcnJ1cHQtY29u
+dHJvbGxlciB7DQo+ID4gKwkJCWludGVycnVwdC1tYXAgPSA8MCAwIDAgMSAmcGNpZV9pbnRjMSAw
+PiwNCj4gPiArCQkJCQk8MCAwIDAgMiAmcGNpZV9pbnRjMSAxPiwNCj4gPiArCQkJCQk8MCAwIDAg
+MyAmcGNpZV9pbnRjMSAyPiwNCj4gPiArCQkJCQk8MCAwIDAgNCAmcGNpZV9pbnRjMSAzPjsNCj4g
+PiArCQkJcGNpZV9pbnRjMTogaW50ZXJydXB0LWNvbnRyb2xsZXIgew0KPiA+ICAJCQkJaW50ZXJy
+dXB0LWNvbnRyb2xsZXI7DQo+ID4gIAkJCQkjYWRkcmVzcy1jZWxscyA9IDwwPjsNCj4gPiAgCQkJ
+CSNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47DQo+ID4gIAkJCX07DQo+ID4gIAkJfTsNCj4gPiArCX07
+DQo+ID4gIA0KPiA+IC0JCXBjaWUxOiBwY2llQDEsMCB7DQo+ID4gLQkJCXJlZyA9IDwweDA4MDAg
+MCAwIDAgMD47DQo+ID4gKwlwY2llMDogcGNpZUAxMTcwMDAwMCB7DQo+ID4gKwkJY29tcGF0aWJs
+ZSA9ICJtZWRpYXRlayxtdDI3MTItcGNpZSI7DQo+ID4gKwkJZGV2aWNlX3R5cGUgPSAicGNpIjsN
+Cj4gPiArCQlyZWcgPSA8MCAweDExNzAwMDAwIDAgMHgxMDAwPjsNCj4gPiArCQlyZWctbmFtZXMg
+PSAicG9ydDAiOw0KPiA+ICsJCSNhZGRyZXNzLWNlbGxzID0gPDM+Ow0KPiA+ICsJCSNzaXplLWNl
+bGxzID0gPDI+Ow0KPiA+ICsJCWludGVycnVwdHMgPSA8R0lDX1NQSSAxMTUgSVJRX1RZUEVfTEVW
+RUxfSElHSD47DQo+ID4gKwkJaW50ZXJydXB0LW5hbWVzID0gInBjaWVfaXJxIjsNCj4gPiArCQlj
+bG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfUEUyX01BQ19QMF9TRUw+LA0KPiA+ICsJCQkgPCZw
+ZXJpY2ZnIENMS19QRVJJX1BDSUUwPjsNCj4gPiArCQljbG9jay1uYW1lcyA9ICJzeXNfY2swIiwg
+ImFoYl9jazAiOw0KPiA+ICsJCXBoeXMgPSA8JnUzcG9ydDAgUEhZX1RZUEVfUENJRT47DQo+ID4g
+KwkJcGh5LW5hbWVzID0gInBjaWUtcGh5MCI7DQo+ID4gKwkJYnVzLXJhbmdlID0gPDB4MDAgMHhm
+Zj47DQo+ID4gKwkJcmFuZ2VzID0gPDB4ODIwMDAwMDAgMCAweDIwMDAwMDAwIDB4MCAweDIwMDAw
+MDAwIDAgMHgxMDAwMDAwMD47DQo+ID4gKw0KPiA+ICsJCXNsb3QwOiBwY2llQDAsMCB7DQo+ID4g
+KwkJCXJlZyA9IDwweDAwMDAgMCAwIDAgMD47DQo+ID4gIAkJCSNhZGRyZXNzLWNlbGxzID0gPDM+
+Ow0KPiA+ICAJCQkjc2l6ZS1jZWxscyA9IDwyPjsNCj4gPiAgCQkJI2ludGVycnVwdC1jZWxscyA9
+IDwxPjsNCj4gPiAgCQkJcmFuZ2VzOw0KPiA+ICAJCQlpbnRlcnJ1cHQtbWFwLW1hc2sgPSA8MCAw
+IDAgNz47DQo+ID4gLQkJCWludGVycnVwdC1tYXAgPSA8MCAwIDAgMSAmcGNpZV9pbnRjMSAwPiwN
+Cj4gPiAtCQkJCQk8MCAwIDAgMiAmcGNpZV9pbnRjMSAxPiwNCj4gPiAtCQkJCQk8MCAwIDAgMyAm
+cGNpZV9pbnRjMSAyPiwNCj4gPiAtCQkJCQk8MCAwIDAgNCAmcGNpZV9pbnRjMSAzPjsNCj4gPiAt
+CQkJcGNpZV9pbnRjMTogaW50ZXJydXB0LWNvbnRyb2xsZXIgew0KPiA+ICsJCQlpbnRlcnJ1cHQt
+bWFwID0gPDAgMCAwIDEgJnBjaWVfaW50YzAgMD4sDQo+ID4gKwkJCQkJPDAgMCAwIDIgJnBjaWVf
+aW50YzAgMT4sDQo+ID4gKwkJCQkJPDAgMCAwIDMgJnBjaWVfaW50YzAgMj4sDQo+ID4gKwkJCQkJ
+PDAgMCAwIDQgJnBjaWVfaW50YzAgMz47DQo+ID4gKwkJCXBjaWVfaW50YzA6IGludGVycnVwdC1j
+b250cm9sbGVyIHsNCj4gPiAgCQkJCWludGVycnVwdC1jb250cm9sbGVyOw0KPiA+ICAJCQkJI2Fk
+ZHJlc3MtY2VsbHMgPSA8MD47DQo+ID4gIAkJCQkjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KPiA+
+IEBAIC0yMDIsMzkgKzIxNywyOSBAQCBFeGFtcGxlcyBmb3IgTVQyNzEyOg0KPiA+ICANCj4gPiAg
+RXhhbXBsZXMgZm9yIE1UNzYyMjoNCj4gPiAgDQo+ID4gLQlwY2llOiBwY2llQDFhMTQwMDAwIHsN
+Cj4gPiArCXBjaWUwOiBwY2llQDFhMTQzMDAwIHsNCj4gPiAgCQljb21wYXRpYmxlID0gIm1lZGlh
+dGVrLG10NzYyMi1wY2llIjsNCj4gPiAgCQlkZXZpY2VfdHlwZSA9ICJwY2kiOw0KPiA+IC0JCXJl
+ZyA9IDwwIDB4MWExNDAwMDAgMCAweDEwMDA+LA0KPiA+IC0JCSAgICAgIDwwIDB4MWExNDMwMDAg
+MCAweDEwMDA+LA0KPiA+IC0JCSAgICAgIDwwIDB4MWExNDUwMDAgMCAweDEwMDA+Ow0KPiA+IC0J
+CXJlZy1uYW1lcyA9ICJzdWJzeXMiLCAicG9ydDAiLCAicG9ydDEiOw0KPiA+ICsJCXJlZyA9IDww
+IDB4MWExNDMwMDAgMCAweDEwMDA+Ow0KPiA+ICsJCXJlZy1uYW1lcyA9ICJwb3J0MCI7DQo+ID4g
+IAkJI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQo+ID4gIAkJI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4g
+LQkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyOCBJUlFfVFlQRV9MRVZFTF9MT1c+LA0KPiA+IC0J
+CQkgICAgIDxHSUNfU1BJIDIyOSBJUlFfVFlQRV9MRVZFTF9MT1c+Ow0KPiA+ICsJCWludGVycnVw
+dHMgPSA8R0lDX1NQSSAyMjggSVJRX1RZUEVfTEVWRUxfTE9XPjsNCj4gPiArCQlpbnRlcnJ1cHQt
+bmFtZXMgPSAicGNpZV9pcnEiOw0KPiA+ICAJCWNsb2NrcyA9IDwmcGNpZXN5cyBDTEtfUENJRV9Q
+MF9NQUNfRU4+LA0KPiA+IC0JCQkgPCZwY2llc3lzIENMS19QQ0lFX1AxX01BQ19FTj4sDQo+ID4g
+IAkJCSA8JnBjaWVzeXMgQ0xLX1BDSUVfUDBfQUhCX0VOPiwNCj4gPiAtCQkJIDwmcGNpZXN5cyBD
+TEtfUENJRV9QMV9BSEJfRU4+LA0KPiA+ICAJCQkgPCZwY2llc3lzIENMS19QQ0lFX1AwX0FVWF9F
+Tj4sDQo+ID4gLQkJCSA8JnBjaWVzeXMgQ0xLX1BDSUVfUDFfQVVYX0VOPiwNCj4gPiAgCQkJIDwm
+cGNpZXN5cyBDTEtfUENJRV9QMF9BWElfRU4+LA0KPiA+IC0JCQkgPCZwY2llc3lzIENMS19QQ0lF
+X1AxX0FYSV9FTj4sDQo+ID4gIAkJCSA8JnBjaWVzeXMgQ0xLX1BDSUVfUDBfT0JGRl9FTj4sDQo+
+ID4gLQkJCSA8JnBjaWVzeXMgQ0xLX1BDSUVfUDFfT0JGRl9FTj4sDQo+ID4gLQkJCSA8JnBjaWVz
+eXMgQ0xLX1BDSUVfUDBfUElQRV9FTj4sDQo+ID4gLQkJCSA8JnBjaWVzeXMgQ0xLX1BDSUVfUDFf
+UElQRV9FTj47DQo+ID4gLQkJY2xvY2stbmFtZXMgPSAic3lzX2NrMCIsICJzeXNfY2sxIiwgImFo
+Yl9jazAiLCAiYWhiX2NrMSIsDQo+ID4gLQkJCSAgICAgICJhdXhfY2swIiwgImF1eF9jazEiLCAi
+YXhpX2NrMCIsICJheGlfY2sxIiwNCj4gPiAtCQkJICAgICAgIm9iZmZfY2swIiwgIm9iZmZfY2sx
+IiwgInBpcGVfY2swIiwgInBpcGVfY2sxIjsNCj4gPiAtCQlwaHlzID0gPCZwY2llMF9waHkgUEhZ
+X1RZUEVfUENJRT4sIDwmcGNpZTFfcGh5IFBIWV9UWVBFX1BDSUU+Ow0KPiA+IC0JCXBoeS1uYW1l
+cyA9ICJwY2llLXBoeTAiLCAicGNpZS1waHkxIjsNCj4gPiArCQkJIDwmcGNpZXN5cyBDTEtfUENJ
+RV9QMF9QSVBFX0VOPjsNCj4gPiArCQljbG9jay1uYW1lcyA9ICJzeXNfY2swIiwgImFoYl9jazAi
+LCAiYXV4X2NrMCIsDQo+ID4gKwkJCSAgICAgICJheGlfY2swIiwgIm9iZmZfY2swIiwgInBpcGVf
+Y2swIjsNCj4gPiArDQo+ID4gIAkJcG93ZXItZG9tYWlucyA9IDwmc2Nwc3lzIE1UNzYyMl9QT1dF
+Ul9ET01BSU5fSElGMD47DQo+ID4gIAkJYnVzLXJhbmdlID0gPDB4MDAgMHhmZj47DQo+ID4gLQkJ
+cmFuZ2VzID0gPDB4ODIwMDAwMDAgMCAweDIwMDAwMDAwICAweDAgMHgyMDAwMDAwMCAgMCAweDEw
+MDAwMDAwPjsNCj4gPiArCQlyYW5nZXMgPSA8MHg4MjAwMDAwMCAwIDB4MjAwMDAwMDAgIDB4MCAw
+eDIwMDAwMDAwICAwIDB4ODAwMDAwMD47DQo+ID4gIA0KPiA+IC0JCXBjaWUwOiBwY2llQDAsMCB7
+DQo+ID4gKwkJc2xvdDA6IHBjaWVAMCwwIHsNCj4gPiAgCQkJcmVnID0gPDB4MDAwMCAwIDAgMCAw
+PjsNCj4gPiAgCQkJI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQo+ID4gIAkJCSNzaXplLWNlbGxzID0g
+PDI+Ow0KPiA+IEBAIC0yNTEsOCArMjU2LDMyIEBAIEV4YW1wbGVzIGZvciBNVDc2MjI6DQo+ID4g
+IAkJCQkjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KPiA+ICAJCQl9Ow0KPiA+ICAJCX07DQo+ID4g
+Kwl9Ow0KPiA+ICsNCj4gPiArCXBjaWUxOiBwY2llQDFhMTQ1MDAwIHsNCj4gPiArCQljb21wYXRp
+YmxlID0gIm1lZGlhdGVrLG10NzYyMi1wY2llIjsNCj4gPiArCQlkZXZpY2VfdHlwZSA9ICJwY2ki
+Ow0KPiA+ICsJCXJlZyA9IDwwIDB4MWExNDUwMDAgMCAweDEwMDA+Ow0KPiA+ICsJCXJlZy1uYW1l
+cyA9ICJwb3J0MSI7DQo+ID4gKwkJI2FkZHJlc3MtY2VsbHMgPSA8Mz47DQo+ID4gKwkJI3NpemUt
+Y2VsbHMgPSA8Mj47DQo+ID4gKwkJaW50ZXJydXB0cyA9IDxHSUNfU1BJIDIyOSBJUlFfVFlQRV9M
+RVZFTF9MT1c+Ow0KPiA+ICsJCWludGVycnVwdC1uYW1lcyA9ICJwY2llX2lycSI7DQo+ID4gKwkJ
+Y2xvY2tzID0gPCZwY2llc3lzIENMS19QQ0lFX1AxX01BQ19FTj4sDQo+ID4gKwkJCSAvKiBkZXNp
+Z25lciBoYXMgY29ubmVjdCBSQzEgd2l0aCBwMF9haGIgY2xvY2sgKi8NCj4gPiArCQkJIDwmcGNp
+ZXN5cyBDTEtfUENJRV9QMF9BSEJfRU4+LA0KPiA+ICsJCQkgPCZwY2llc3lzIENMS19QQ0lFX1Ax
+X0FVWF9FTj4sDQo+ID4gKwkJCSA8JnBjaWVzeXMgQ0xLX1BDSUVfUDFfQVhJX0VOPiwNCj4gPiAr
+CQkJIDwmcGNpZXN5cyBDTEtfUENJRV9QMV9PQkZGX0VOPiwNCj4gPiArCQkJIDwmcGNpZXN5cyBD
+TEtfUENJRV9QMV9QSVBFX0VOPjsNCj4gPiArCQljbG9jay1uYW1lcyA9ICJzeXNfY2sxIiwgImFo
+Yl9jazEiLCAiYXV4X2NrMSIsDQo+ID4gKwkJCSAgICAgICJheGlfY2sxIiwgIm9iZmZfY2sxIiwg
+InBpcGVfY2sxIjsNCj4gPiArDQo+ID4gKwkJcG93ZXItZG9tYWlucyA9IDwmc2Nwc3lzIE1UNzYy
+Ml9QT1dFUl9ET01BSU5fSElGMD47DQo+ID4gKwkJYnVzLXJhbmdlID0gPDB4MDAgMHhmZj47DQo+
+ID4gKwkJcmFuZ2VzID0gPDB4ODIwMDAwMDAgMCAweDI4MDAwMDAwICAweDAgMHgyODAwMDAwMCAg
+MCAweDgwMDAwMDA+Ow0KPiA+ICANCj4gPiAtCQlwY2llMTogcGNpZUAxLDAgew0KPiA+ICsJCXNs
+b3QxOiBwY2llQDEsMCB7DQo+ID4gIAkJCXJlZyA9IDwweDA4MDAgMCAwIDAgMD47DQo+ID4gIAkJ
+CSNhZGRyZXNzLWNlbGxzID0gPDM+Ow0KPiA+ICAJCQkjc2l6ZS1jZWxscyA9IDwyPjsNCj4gPiAt
+LSANCj4gPiAyLjE4LjANCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KPiA+IGxpbnV4LWFybS1rZXJuZWwgbWFpbGluZyBsaXN0DQo+ID4gbGludXgt
+YXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVh
+ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hcm0ta2VybmVsDQoNCg==
 
