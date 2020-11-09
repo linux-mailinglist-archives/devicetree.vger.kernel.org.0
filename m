@@ -2,106 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E98AF2ABF57
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 16:04:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8102ABF62
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 16:06:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730701AbgKIPEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 10:04:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34814 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730294AbgKIPEF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 10:04:05 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9AA6F21D7F;
-        Mon,  9 Nov 2020 15:04:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604934244;
-        bh=klOzq0fwls70xqZlUdJhI8p1HAh7xB/+hUm3hhvBTbc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=zRkjX1fywCRc3cml6SgOLCjAP2nOhigBWN5i0+nDFKxkORwia7b0HsX9kYPgUg7jT
-         rR/ga4f3KxVT4cND616QWDq5eHk5H3ps34SnJNgFSi/PN6cxg8R/FKQAn0OWaXk6sz
-         7+l/AC0itXBgeHXQyXwhTYa7EbU//qSkwiYccBWw=
-Received: by mail-ot1-f47.google.com with SMTP id n15so9184875otl.8;
-        Mon, 09 Nov 2020 07:04:04 -0800 (PST)
-X-Gm-Message-State: AOAM5332G4Iqsu2tMlzS0JxSvs3MHAd/ixVUk7vNkmQDbkCKS/D2rMCq
-        FgUfgE+T/BsaAGW1tSv/CppgT3nYJ7jpKYCnmw==
-X-Google-Smtp-Source: ABdhPJwVIajxUZd8pHgC4uOmEOHHpIlfzHZZGsTgFYCu33zI8wFT1W6B6OuaQFPH0g3XDgCIJq3bs4vnyzZR5TPU8Uo=
-X-Received: by 2002:a05:6830:2259:: with SMTP id t25mr10977628otd.192.1604934243782;
- Mon, 09 Nov 2020 07:04:03 -0800 (PST)
+        id S1730701AbgKIPF7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 10:05:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40340 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730350AbgKIPFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 10:05:07 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FB1EC0613CF;
+        Mon,  9 Nov 2020 07:05:07 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id q19so8979371ljc.10;
+        Mon, 09 Nov 2020 07:05:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=9Fi5Hhyl7gelaqOmcgAJ5M1MZ/xVgsIzn2nzYEuzd1A=;
+        b=tvuwBxx+Iv7Mda16xZUTuva+GASbvOuK2AZr0+o3QLQXajOmpBYoQ2ksHZau/GPle3
+         BnyfEpgqAizWpJZOUyG9cc81uDC4ctAzj7jerluvanbj5XzZFcl+OzIrG+T5tfN9aIQe
+         qx/6Xe8wJYguBk8LCwmig2QjdWGpEZwb9WPzzUuXAkETNGNZ59CSb5RNkjQCYBW0S1w8
+         xj5wtAlX1JDVF8R5eGZmckL1XFGUUoWqxvKVZN15IE90rKivrim8RltvVTvr7Nr2BXDk
+         bFLJt3HzZtH14a/FB373L3IG43mtwtw6/dazdPun9KjLC0WrFU8wdfw5s2VAMqyp/Rho
+         043w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=9Fi5Hhyl7gelaqOmcgAJ5M1MZ/xVgsIzn2nzYEuzd1A=;
+        b=nsx7gMPcxktCEypAmjdc+KRcsgMZo6om9YKS+UpR/dsBZpHxWtsEoU7EwMw4SkKsVo
+         xTB9hO2D+QO9B4dGzyK/nwSjeTXBYHOa9+WkJr1SNXVuVOLkVZV0+1XvCvGEApK6ke5i
+         vax6Tw8IwMKnu6GaRGCWz7OOXSllYcDQQHi7UHBPBVh5iA3mKbDyUNa3pJxexuJJ4Xte
+         pg0IuKJUXxi0/4PbsZxkbw/RD3cKv4mxbSNTxtmPnvvFUnelA2UHNC7EneKOZiYU2eXI
+         4OayFnYw73iOYjFgiWBs15xpVLKDn9o/v2klvr+roSSPJdbZAghCWPQiwzxBtKAMVtar
+         8J/w==
+X-Gm-Message-State: AOAM531lVwLZ5Ptml5AHdrOTIwBaOgc7pG7SvQ0LR9QRPTpKhuL5KgIt
+        h4+3Sb17b2x7D9av8BwAmSw=
+X-Google-Smtp-Source: ABdhPJz8ZT9IqU+wtfbrOXL+B3JrzFSM+Jqh+Cc+c2Mi1XuR1K1aT8v1QkfGUTsrsUzG/NrzrDIviQ==
+X-Received: by 2002:a2e:b4f3:: with SMTP id s19mr4036487ljm.196.1604934305938;
+        Mon, 09 Nov 2020 07:05:05 -0800 (PST)
+Received: from mobilestation ([95.79.141.114])
+        by smtp.gmail.com with ESMTPSA id w12sm2216805ljo.67.2020.11.09.07.05.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2020 07:05:05 -0800 (PST)
+Date:   Mon, 9 Nov 2020 18:05:03 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        linux-spi@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH 01/32] of: Fix property supplier parsing
+Message-ID: <20201109150503.ijc72z76i6wjxfhx@mobilestation>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
+ <20201107081420.60325-2-damien.lemoal@wdc.com>
 MIME-Version: 1.0
-References: <20201106165805.31534-1-amelie.delaunay@st.com> <20201106165805.31534-2-amelie.delaunay@st.com>
-In-Reply-To: <20201106165805.31534-2-amelie.delaunay@st.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 9 Nov 2020 09:03:52 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+A=nixpdrT3Omq7Osat=_Egb5g6VGao=gY4CEssOe+xQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+A=nixpdrT3Omq7Osat=_Egb5g6VGao=gY4CEssOe+xQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] dt-bindings: connector: add typec-power-opmode
- property to usb-connector
-To:     Amelie Delaunay <amelie.delaunay@st.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Jun Li <lijun.kernel@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201107081420.60325-2-damien.lemoal@wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 6, 2020 at 10:58 AM Amelie Delaunay <amelie.delaunay@st.com> wrote:
->
-> Power operation mode may depends on hardware design, so, add the optional
-> property typec-power-opmode for usb-c connector to select the power
-> operation mode capability.
->
-> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
-> ---
-> Hi Bahdri, Rob,
->
-> I've added the exlusion with FRS property, but new FRS property name
-> should be use here so, be careful.
->
-> ---
->  .../bindings/connector/usb-connector.yaml     | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> index 62781518aefc..a84464b3e1f2 100644
-> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> @@ -93,6 +93,24 @@ properties:
->        - device
->        - dual
->
-> +  typec-power-opmode:
-> +    description: Determines the power operation mode that the Type C connector
-> +      will support and will advertise through CC pins when it has no power
-> +      delivery support.
-> +      - "default" corresponds to default USB voltage and current defined by the
-> +        USB 2.0 and USB 3.2 specifications, 5V 500mA for USB 2.0 ports and
-> +        5V 900mA or 1500mA for USB 3.2 ports in single-lane or dual-lane
-> +        operation respectively.
-> +      - "1.5A" and "3.0A", 5V 1.5A and 5V 3.0A respectively, as defined in USB
-> +        Type-C Cable and Connector specification, when Power Delivery is not
-> +        supported.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#definitions/string
-> +    enum:
-> +      - default
-> +      - 1.5A
-> +      - 3.0A
+On Sat, Nov 07, 2020 at 05:13:49PM +0900, Damien Le Moal wrote:
+> The DesignWare GPIO driver gpio-dwapb ("snps,dw-apb-gpio" or
+> "apm,xgene-gpio-v2" compatible string) defines the property
+> "snps,nr-gpios" for the user to specify the number of GPIOs available
+> on a port. The "-gpios" suffix of this property name ends up being
+> interpreted as a cell reference when properties are parsed in
+> of_link_to_suppliers(), leading to error messages such as:
+> 
+> OF: /soc/bus@50200000/gpio-controller@50200000/gpio-port@0: could not
+> find phandle
+> 
+> Fix this by manually defining a parse_gpios() function which ignores
+> this property, skipping the search for the supplier and thus avoiding
+> the device tree parsing error.
 
-Use the enums here. Unless you want to define it as actual current as
-a numerical value.
+That's why I have introduced the "ngpios" property support and marked the 
+"snps,nr-gpios" as deprecated here:
+https://lkml.org/lkml/2020/7/22/1298
 
-Rob
+to encourage the later one from being used in favor of the first one. So I
+suggest for you to convert your dts'es (if you have ones) to using the
+"ngpios" property anyway.
+
+> 
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> ---
+>  drivers/of/property.c | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 408a7b5f06a9..d16111c0d6da 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1308,7 +1308,6 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+>  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+>  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+>  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
+>  
+>  static struct device_node *parse_iommu_maps(struct device_node *np,
+>  					    const char *prop_name, int index)
+> @@ -1319,6 +1318,22 @@ static struct device_node *parse_iommu_maps(struct device_node *np,
+>  	return of_parse_phandle(np, prop_name, (index * 4) + 1);
+>  }
+>  
+
+> +static struct device_node *parse_gpios(struct device_node *np,
+> +				       const char *prop_name, int index)
+> +{
+> +	/*
+> +	 * Quirck for the DesignWare gpio-dwapb GPIO driver which defines
+           ^
+           |
+           Quirk?     
+> +	 * the "snps,nr-gpios" property to indicate the total number of GPIOs
+> +	 * available. As this conflict with "xx-gpios" reference properties,
+> +	 * ignore it.
+> +	 */
+> +	if (strcmp(prop_name, "snps,nr-gpios") == 0)
+> +		return NULL;
+> +
+> +	return parse_suffix_prop_cells(np, prop_name, index,
+> +				       "-gpios", "#gpio-cells");
+> +}
+> +
+
+Personally I'd prefer to convert all the dts-es to using the "ngpios' instead of
+the vendor-specific property. That's why I haven't fixed the problem the way you
+suggest in the first place, to encourage people to send the patches with such
+fixes. Anyway it's up to the OF-subsystem maintainers to decide whether to accept
+this quirk.
+
+-Sergey
+
+>  static const struct supplier_bindings of_supplier_bindings[] = {
+>  	{ .parse_prop = parse_clocks, },
+>  	{ .parse_prop = parse_interconnects, },
+> -- 
+> 2.28.0
+> 
