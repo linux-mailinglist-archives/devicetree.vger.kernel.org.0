@@ -2,100 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69CA92AC1C0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A49E72AC1DA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:09:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731321AbgKIRE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 12:04:59 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45396 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731319AbgKIRE6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 12:04:58 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A9H4qct001909;
-        Mon, 9 Nov 2020 11:04:52 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604941492;
-        bh=IpwM0VYjFst7O7GZPtDw/QKWR6xLDCT8pa2h5EbOyBs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=tfqw9T8T151l+pyju4yVSNOUQV7OlEHiqS7soVCoFiO4f3oy9bC93V5+ThABX4i/B
-         7F7zA77+EiTQOuzQCYdI4e7ezRXx45UZy1FTdZubW/NaY3fF02x3vzYS5ocfkM8P6M
-         QPCLIXxk0p7ERpZwDb8i4f+kuTIZmyTkY3BDF6Ws=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A9H4qE7096660
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 9 Nov 2020 11:04:52 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 9 Nov
- 2020 11:04:52 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 9 Nov 2020 11:04:52 -0600
-Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A9H4Awa036684;
-        Mon, 9 Nov 2020 11:04:48 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Roger Quadros <rogerq@ti.com>, Lee Jones <lee.jones@linaro.org>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 7/7] arm64: dts: ti: k3-j7200-common-proc-board: Enable PCIe
-Date:   Mon, 9 Nov 2020 22:34:09 +0530
-Message-ID: <20201109170409.4498-8-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201109170409.4498-1-kishon@ti.com>
-References: <20201109170409.4498-1-kishon@ti.com>
+        id S1731112AbgKIRJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 12:09:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:32808 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730208AbgKIRJh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 12:09:37 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8128A216C4;
+        Mon,  9 Nov 2020 17:09:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604941777;
+        bh=jZGDyUOUHmw3l8ExwgsjkrQToJuUWt5nfwOgw9+3AF8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H6l876Kd/GZdNqWlf6aP9aaBromRqacslQ/JvqihgLLQuyQLLfgsBs8zJrbI97FJW
+         jhTuydss4LZJEb8I0gyYX2zJ1W907XWbq4qgt99G8cnEIREgUVcrVacR9KNjQc5VoW
+         aFNa04YqyXho4esJPj8rD3HVk3Ga74ZyT+y8et+s=
+Date:   Mon, 9 Nov 2020 17:09:23 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, kernel@axis.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: regulator: da9121: Use additionalProperties
+Message-ID: <20201109170923.GI6380@sirena.org.uk>
+References: <20201109085438.16230-1-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="YrQNB5Deg1WGKZi3"
+Content-Disposition: inline
+In-Reply-To: <20201109085438.16230-1-vincent.whitchurch@axis.com>
+X-Cookie: This fortune is false.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-x2 lane PCIe slot in the common processor board is enabled and connected to
-j7200 SOM. Add PCIe DT node in common processor board to reflect the
-same.
 
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- .../boot/dts/ti/k3-j7200-common-proc-board.dts    | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+--YrQNB5Deg1WGKZi3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 65a2e5aeb050..174a55a18522 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "k3-j7200-som-p0.dtsi"
-+#include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/net/ti-dp83867.h>
- #include <dt-bindings/mux/ti-serdes.h>
- #include <dt-bindings/phy/phy.h>
-@@ -236,3 +237,17 @@
- 		resets = <&serdes_wiz0 3>;
- 	};
- };
-+
-+&pcie1_rc {
-+	reset-gpios = <&exp1 2 GPIO_ACTIVE_HIGH>;
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+};
-+
-+&pcie1_ep {
-+	phys = <&serdes0_pcie_link>;
-+	phy-names = "pcie-phy";
-+	num-lanes = <2>;
-+	status = "disabled";
-+};
--- 
-2.17.1
+On Mon, Nov 09, 2020 at 09:54:37AM +0100, Vincent Whitchurch wrote:
+> There's no $ref at the top level so use additionalProperties instead of
+> unevaluatedProperties.
 
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
+
+--YrQNB5Deg1WGKZi3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+pd8IACgkQJNaLcl1U
+h9DMPQf/YPnpnHwXAcWUZXBQMLLFsZ+62tiKUc5AZZpQ+BqSweH5UqMoSj4ENiOS
+fWE1FWu5k/FrztxE6UR18A7G4Oo/jM4vNI6n+ztRmS8jwNkMNFChGxEoG8PpBSQg
+hVXHhU1Z2FHFeiHx6dJTSi7iGkerA2Ae0pqDj0X92/r6Aig2ZcryKrXsiOq/EMXE
+XQdkT06iJcZXtNfedd35ygWvvKqdHusDjmPejuSVJNarUMsqh3NA2ax4eWyvoYHl
+CXgtQwO3qoqQL+ngzAOVEfgHh22oiMtMAj72usi/sBGRzpbhM+wIRSjGyEGU/nmT
+wzunRUdh+peLTtBkBAU5He9xXczIbA==
+=je81
+-----END PGP SIGNATURE-----
+
+--YrQNB5Deg1WGKZi3--
