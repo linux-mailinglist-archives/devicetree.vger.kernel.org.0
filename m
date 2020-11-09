@@ -2,118 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C25C62AC130
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:47:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AE282AC1AB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:04:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730403AbgKIQqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 11:46:00 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54164 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726410AbgKIQqA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 11:46:00 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8992E2074F;
-        Mon,  9 Nov 2020 16:45:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604940360;
-        bh=Hc1kUA8u+G3SRCoMavf4BNrfi7w15jVZjdFjmr6NKhw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jz1yGbLmYqLVDaBDD5wfYnkDkVR9A33JWI1LY91jZJ7j4fGmATeOam5nwB1bcjD+Z
-         LoeO5DbCmPHvqpdpTTFvKSKqXi3RGT6Uo5dAi5PYcQ702IdUjdw4awZ91O/XNwME2t
-         6ZGvHa6wu9XovDgmpvYhoN1OIg4EyQ9byx3ELLkI=
-Date:   Mon, 9 Nov 2020 16:45:46 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Sean Anderson <seanga2@gmail.com>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 03/32] spi: dw: Fix driving MOSI low while recieving
-Message-ID: <20201109164546.GG6380@sirena.org.uk>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-4-damien.lemoal@wdc.com>
- <20201109132935.GB6380@sirena.org.uk>
- <c37ca9be-ea92-b07a-b600-d68de4f7bde5@gmail.com>
- <20201109141422.GD6380@sirena.org.uk>
- <20201109144808.mvttq2f6st7xd7sm@mobilestation>
+        id S1730693AbgKIREX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 12:04:23 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:55308 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726410AbgKIREX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 12:04:23 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A9H4Fh4107584;
+        Mon, 9 Nov 2020 11:04:15 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1604941455;
+        bh=Bg9FYT0fE1znyq+q7h9IJnLlKZ/jB3UvEybSIbwAaHI=;
+        h=From:To:CC:Subject:Date;
+        b=Mtq+i8ZYoOroLqUBKSmfgbuLsASkKUJ99+JWa+HFb9kbQHO1meKQm4Fk2ll6IFJ1X
+         XN0DjxHlSC3p2u3U9BX3V7zNqxlxQ+Ik++pQbbl3UwYcAnjqJkBt6X/0vjBf9xJ442
+         YUIBCQwU1bZ8slAeKoyxs/HyhS7nKW8YJ/fFy0fU=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A9H4FXh096194
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 9 Nov 2020 11:04:15 -0600
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 9 Nov
+ 2020 11:04:14 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 9 Nov 2020 11:04:14 -0600
+Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A9H4AwT036684;
+        Mon, 9 Nov 2020 11:04:11 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Roger Quadros <rogerq@ti.com>, Lee Jones <lee.jones@linaro.org>
+CC:     Kishon Vijay Abraham I <kishon@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/7] J7200: Add PCIe DT nodes to Enable PCIe
+Date:   Mon, 9 Nov 2020 22:34:02 +0530
+Message-ID: <20201109170409.4498-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rV8arf8D5Dod9UkK"
-Content-Disposition: inline
-In-Reply-To: <20201109144808.mvttq2f6st7xd7sm@mobilestation>
-X-Cookie: This fortune is false.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add DT binding documentation and device tree nodes to enable
+PCIe in J7200.
 
---rV8arf8D5Dod9UkK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Changes from v1:
+*) Renamed "pcie-ctrl" to "syscon" DT node and expanded "syscon" DT
+   sub-node
+*) Fixed "cdns,max-outbound-regions" in EP mode and removed
+   "cdns,max-outbound-regions" for RC mode.
+*) Remove patches specific to J721E
 
-On Mon, Nov 09, 2020 at 05:48:08PM +0300, Serge Semin wrote:
-> On Mon, Nov 09, 2020 at 02:14:22PM +0000, Mark Brown wrote:
-> > On Mon, Nov 09, 2020 at 08:47:10AM -0500, Sean Anderson wrote:
+V1 of the patch series can be found @:
+http://lore.kernel.org/r/20201102101154.13598-1-kishon@ti.com
 
-> > > There is a recieve-only mode, but it is not used by this driver. Perhaps
-> > > it should be.
+Kishon Vijay Abraham I (7):
+  dt-bindings: mfd: ti,j721e-system-controller.yaml: Document "syscon"
+  dt-bindings: PCI: Add host mode dt-bindings for TI's J7200 SoC
+  dt-bindings: PCI: Add EP mode dt-bindings for TI's J7200 SoC
+  arm64: dts: ti: k3-j7200-main: Add DT for WIZ and SERDES
+  arm64: dts: ti: k3-j7200-main: Add PCIe device tree node
+  arm64: dts: ti: k3-j7200-common-proc-board: Enable SERDES0
+  arm64: dts: ti: k3-j7200-common-proc-board: Enable PCIe
 
-> > I'd expect it'd perform better, especially on systems that are
-> > apparently struggling for CPU bandwidth like yours seems to.
+ .../mfd/ti,j721e-system-controller.yaml       |  40 ++++++
+ .../bindings/pci/ti,j721e-pci-ep.yaml         |  10 +-
+ .../bindings/pci/ti,j721e-pci-host.yaml       |  16 ++-
+ .../dts/ti/k3-j7200-common-proc-board.dts     |  38 ++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 118 ++++++++++++++++++
+ 5 files changed, 217 insertions(+), 5 deletions(-)
 
-> Well, it might seem a good idea to use that mode, but there are multiple problems
-> you may get in implementing it.
+-- 
+2.17.1
 
-> First of all the Receive-only mode is having a limited number bytes to receive
-> at once. It's just 64KB. So in order to implement it you'd need to split the
-> bigger transfers up, and feed the DMA engine with smaller chunks one-by-one.
-
-That at least is handlable, even if it's only by falling back to
-transmitting when the data grows over 64K.
-
-> Secondly the Receive-only mode will make the DW SSI controller to constantly receive
-> the data from the SPI bus and to put it into the Rx FIFO. So your DMA engine will
-> have to keep up with extracting the data from there on time, otherwise you'll
-> end up with Rx FIFO overflow error eventually. The problem will be actual for the
-> DMA engines/system buses, which are slower than the SPI bus speed, second for the
-> DMA engines with no hardware accelerated LLP traversal support (like on our DWC DMA
-> controller). The second problem can be also fixed by splitting the transfers up as
-> it has been already implemented in the spi-dw-dma.c. But the first problem can't be
-> fixed, but just workarounded by limiting the SPI bus frequency so the DMA engine
-> would keep up with incoming data traffic.
-
-I'd have expected that a single duplex mode would lessen the pressure on
-at least the system bus - that's the main advantage, and might help the
-DMA controllers as well depending on why they might be struggling.  From
-the comments in the code there's issues on some systems with TX and RX
-running at different rates which would go away in single duplex cases if
-nothing else.  But yeah, it's not going to just fix everything.
-
-Please fix your mail client to word wrap within paragraphs at something
-substantially less than 80 columns.  Doing this makes your messages much
-easier to read and reply to.
-
---rV8arf8D5Dod9UkK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+pcjkACgkQJNaLcl1U
-h9CTEAf+LO8XubB/p+WOZdoLkRQLzS9jVKMHXs0H0rC1r9p2z2zyenxdNF7lwWrQ
-XvvSKHF3gVb+aZVaAqFaFz0kGL0TMKkd+vu6Q38Ueb+MD7KUOXNF7ckSZ1ASv+td
-Y4YLdX/ISBO5KcXCMZ8McdKtan2wu+X/Qx5uv3vTyG8O+RJKct+Kr65xux7yE2I6
-WqEPl/0tY3GcRBsdWxzaoLxorPgyBfprsj8jIGukk0+6QZtMo7ovGZlqPXBVd9Ma
-xMMw6AGys9Wq2+HNi/iRoimYhNEqQ5jFOIweOluVNhWaQ1+2ULmMKRqOmBuykYN2
-vILe13vdCLSb3PBUF7SPgNbUpdQEpQ==
-=vWha
------END PGP SIGNATURE-----
-
---rV8arf8D5Dod9UkK--
