@@ -2,84 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56FAB2AB5D6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 12:05:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 462EF2AB629
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 12:09:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727826AbgKILFT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 06:05:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59186 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727303AbgKILFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 06:05:19 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47AD7C0613CF;
-        Mon,  9 Nov 2020 03:05:19 -0800 (PST)
-Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 25ABA22EEB;
-        Mon,  9 Nov 2020 12:05:16 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1604919916;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=kOqIuIndQf3aK9yaBEOv3D7I9b4UZvE3iTyoW8FVpLU=;
-        b=rO4j0B0yfqTFIx0ShMhu8go6NNnXWNsz4GOFGyfWQ84tagw2diaJvToVUOdJta8GF49kxa
-        Q4YyJxB16cxvLwA/zZZ99c9nnNAd7ZvEHcX+SyBdLqbvEGCMzPbuNOlh/g57WnhrFNn7hA
-        4WDF0luGmCuXYTo8Rpr9DBMVVF77ZFg=
-From:   Michael Walle <michael@walle.cc>
-To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Michael Walle <michael@walle.cc>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>
-Subject: [PATCH net RESEND] arm64: dts: fsl-ls1028a-kontron-sl28: specify in-band mode for ENETC
-Date:   Mon,  9 Nov 2020 12:04:36 +0100
-Message-Id: <20201109110436.5906-1-michael@walle.cc>
-X-Mailer: git-send-email 2.20.1
+        id S1729228AbgKILJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 06:09:41 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:43142 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727303AbgKILJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 06:09:41 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A9B6cQs001199;
+        Mon, 9 Nov 2020 12:09:31 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=htm0vOekG4ttjg1zbmaMtAIvz7vTW1YVK5qd+mjldiQ=;
+ b=exORZa/SUt2HnKsoYhoxGaAQStF/JoUI66u54353aVIeGS02MsI22SAfQunhGpD56Kkp
+ gNNifa3uezfBleTBgt+ZxazKTD80fy0XKCbA6qYSy9xg33BqocLlkeARdDp/2b/p+p4H
+ q3FLAUAIfFiGB9FwtSTtxLHKFc9kLsbjbZ+SSXJ2qvXLZt1gSXfh1IeARWolzaNkXR1i
+ 7KPL/sXkBVsWGFcADuzWD9YzB3NnbLmRtKdSKWg8J4CFbIZQdSQ2ACDsAxLCJ5EMt9xG
+ NJF71nS87mFWQf6HbOXsZpBg7Y8JOHol1yBfllxIG3JNporBYPE4uhR1wb0oec8gPGwX Gw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34nkbmsnq9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Nov 2020 12:09:31 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 60C3310002A;
+        Mon,  9 Nov 2020 12:09:31 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4811F24D149;
+        Mon,  9 Nov 2020 12:09:31 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.45) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 9 Nov
+ 2020 12:09:30 +0100
+Subject: Re: [PATCH 0/3] ARM: dts: stm32: enable crypto controllers
+To:     Lionel Debieve <lionel.debieve@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Nicolas Toromanoff <nicolas.toromanoff@st.com>
+References: <20201105102331.12984-1-lionel.debieve@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <28f5e745-bdac-7cc1-62a9-745e8d41a142@st.com>
+Date:   Mon, 9 Nov 2020 12:08:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201105102331.12984-1-lionel.debieve@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.45]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-09_02:2020-11-05,2020-11-09 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit 71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX") the
-network port of the Kontron sl28 board is broken. After the migration to
-phylink the device tree has to specify the in-band-mode property. Add
-it.
+Hi Lionel
 
-Fixes: 71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX")
-Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-Signed-off-by: Michael Walle <michael@walle.cc>
-Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
----
-Forgot to add the netdev@ mailinglist in my former submission.
+On 11/5/20 11:23 AM, Lionel Debieve wrote:
+> Enable the crypto controllers in the STM32MP157C-EV1 and STM32MP157A-DK1
+> STM32MP157C-DK2 boards.
+> 
+> Lionel Debieve (2):
+>    ARM: dts: stm32: enable HASH by default on stm32mp15
+>    ARM: dts: stm32: enable CRYP by default on stm32mp15
+> 
+> Nicolas Toromanoff (1):
+>    ARM: dts: stm32: enable CRC1 by default on stm32mp15
+> 
+>   arch/arm/boot/dts/stm32mp157c-dk2.dts  |  4 ++++
+>   arch/arm/boot/dts/stm32mp157c-ed1.dts  | 12 ++++++++++++
+>   arch/arm/boot/dts/stm32mp15xx-dkx.dtsi |  8 ++++++++
+>   3 files changed, 24 insertions(+)
+> 
 
-From my previous mail:
-> Ping. will this go through the net queue or Shawn's queue. In any case,
-> it should make it into a fixes queue, because this board is currently
-> broken in 5.10-rc2.
+Series applied on stm32-next.
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-index 17a2f5dacc3f..54ff6f7c2477 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-kontron-sl28.dts
-@@ -79,6 +79,7 @@
- &enetc_port0 {
- 	phy-handle = <&phy0>;
- 	phy-connection-type = "sgmii";
-+	managed = "in-band-status";
- 	status = "okay";
- 
- 	mdio {
--- 
-2.20.1
-
+Regards
+Alex
