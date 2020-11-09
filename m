@@ -2,133 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2B492AB227
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 09:06:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 949582AB284
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 09:36:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729730AbgKIIGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 03:06:04 -0500
-Received: from mail-eopbgr10095.outbound.protection.outlook.com ([40.107.1.95]:23015
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729764AbgKIIGD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 03:06:03 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fQzniriBdSkBrBOLKsdb0PI1tMjgqXN7EpZG4tehRIiiFYRFUsGNnXd1SLO9QfqF2c+9AaLJJ6Wu1eQIJfiqmvgOKampZfeBPE1r5Sx8aUNJSIlr1E4GX4dy50AHDUwoDEqH6O782892/CDXm+kD1sa9YWZJkd+Uj7iaoCuy+gTakozT9sxWI5e4UoGJJaqprz5IH/sXUtn/lNERtWCEg9hqUDIzmWHPJx4WWCU/Uahyn0xHDIO5OOk5iHiaj9+baOKiCEKmbk21LibSfGCyKsE82gYHIds4al+tgiFPd9LTZg/F0sua7Dl5tEbPDMQJgjxpc5sZ9dTNrfLZzbzSLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5zOXN7zop2T/HDdQXTjekwZXesIq5YSEUPoN598O2XQ=;
- b=VwOLLTdvUQtuJ0qxZlVnXLIUOTUDqcQgITKq+HTDrZE8qZN0eNcK5tIrjsgd+yEUp/V+rpsYQi1SDdqNQLmyqjQ1p5xBFEcunNtcngZyCIrclEVp/J2VLz2fIkga/ESSu/bdcu5SfoLtVSYEReVvddSyr6r1a3xVB9sx/SuJDTDZdCO2w/yZhyFl/CNvhEELRbg4cMeJz4EwNumY46hdiYu0HJGe2C+kmRyoiT5lLJdhXVyCza8bJYUs0VVMuB6GtjzSZo+S8gPgGDyYKLY8Pp9QDaYgHIOCd6MsRghDB9/fiJRbtp55YFDhi8gIGBnLtN0Z9zEoEcPCmxqS+VjSGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5zOXN7zop2T/HDdQXTjekwZXesIq5YSEUPoN598O2XQ=;
- b=mOxv9mGZPtQdf4gJ+FWNGqZmLZyyIld/YBhItFS1dtVVLJke1VsjS8OZ5Vy+HvHFFqy3pglb9ap62I1U+WADEdOKsiGL2Sp6zqx+pWFX4KEhUgyeHxkbTh4T809ROuvUpC9cByv0LTFV9DT7JrpZQSwdtWmdRpgZgFkLmOiYZEM=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=kontron.de;
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
- by AM0PR10MB3425.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:166::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.27; Mon, 9 Nov
- 2020 08:05:59 +0000
-Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a0df:b996:7029:318a]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::a0df:b996:7029:318a%7]) with mapi id 15.20.3499.032; Mon, 9 Nov 2020
- 08:05:59 +0000
-Subject: Re: [PATCH v2] arm64: dts: imx: Fix imx8mm-kontron-n801x-s.dtb target
-To:     Nathan Chancellor <natechancellor@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201108022321.2114430-1-natechancellor@gmail.com>
- <20201108191614.4062210-1-natechancellor@gmail.com>
-From:   Frieder Schrempf <frieder.schrempf@kontron.de>
-Message-ID: <ae69c4ab-7df2-c9d3-f245-d5050d18cc14@kontron.de>
-Date:   Mon, 9 Nov 2020 09:05:58 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20201108191614.4062210-1-natechancellor@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [80.147.118.32]
-X-ClientProxiedBy: AM4P190CA0012.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:200:56::22) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:208:157::14)
+        id S1727922AbgKIIg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 03:36:28 -0500
+Received: from mga09.intel.com ([134.134.136.24]:62281 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727077AbgKIIg1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 03:36:27 -0500
+IronPort-SDR: QCg9wn3MORsCwnsiivEwqPE+ZE2d2RivkJ1P9Ao6zixGMaV5ylsf0lFLk6yPpPf0l+oOhsdO8m
+ mUKy6qOkiIpQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9799"; a="169921211"
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; 
+   d="scan'208";a="169921211"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2020 00:36:27 -0800
+IronPort-SDR: zx4YSIYa8thRb83kzAa13sKwRcdsFQjANxj3PF8wk2W0iRn/8v9eq41tTfmyDKcnKliDb1LMhW
+ n5Fh/7qXGwuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,463,1596524400"; 
+   d="scan'208";a="427921962"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 09 Nov 2020 00:36:22 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 09 Nov 2020 10:36:22 +0200
+Date:   Mon, 9 Nov 2020 10:36:21 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     robh+dt@kernel.org, rafael@kernel.org, gregkh@linuxfoundation.org,
+        andriy.shevchenko@linux.intel.com, hdegoede@redhat.com,
+        lee.jones@linaro.org, mika.westerberg@linux.intel.com,
+        dmitry.torokhov@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+        laurent.pinchart+renesas@ideasonboard.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, peter.chen@nxp.com
+Subject: Re: [PATCH v5 4/4] usb: typec: mux: add typec switch simple driver
+Message-ID: <20201109083621.GJ4062920@kuha.fi.intel.com>
+References: <1604403610-16577-1-git-send-email-jun.li@nxp.com>
+ <1604403610-16577-4-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.30.119] (80.147.118.32) by AM4P190CA0012.EURP190.PROD.OUTLOOK.COM (2603:10a6:200:56::22) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend Transport; Mon, 9 Nov 2020 08:05:58 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: cb33282c-01fc-4c9d-092e-08d884864af7
-X-MS-TrafficTypeDiagnostic: AM0PR10MB3425:
-X-Microsoft-Antispam-PRVS: <AM0PR10MB3425B52281C7DFB21147330EE9EA0@AM0PR10MB3425.EURPRD10.PROD.OUTLOOK.COM>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1169;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DH0j0BsORiASg6kpaAIkJBm1ZPEP4KSnBeP40ezq3gQCTTT9ZfjonKOL/5tO7fyz3wSZkly1HjLzPtXr0C7ZwGzT9eYic0dE1ymZzynIVIIqhpB+vyOGyuYkEyfcWVXVcLsv41YVL23+VLmxGrMb6XKNxc7GLqRDlqUZZn4sui/Thr5RjN780oNMdQW6aiMUtt3XEuNf/cuZ8uJ+WavHR9PbrD5na0ky4piqck82lBA318AyNPLb7tTmkD5t9KUDfwXFh6VwQ4YctNzaHQeU34bMpGRcLOOS7+a3Aiok76BUPtJfvxNIENHysfePtCXqgAxyk4eJ7vsQqdkavhZ5zrJUr+4dat1nXjkP1PY8MCCBr1vxBmdKZkBPKs9PfZZkwRLhPasxpFd3slpKT5Dhjw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(39850400004)(366004)(346002)(376002)(136003)(396003)(31686004)(26005)(52116002)(316002)(16526019)(956004)(44832011)(66556008)(8676002)(54906003)(8936002)(36756003)(2616005)(16576012)(186003)(66946007)(53546011)(4326008)(5660300002)(6486002)(478600001)(31696002)(66476007)(86362001)(2906002)(83380400001)(110136005)(32563001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: Zwa3PRQea1JtUMacn8ZWEDUpXOqCLQwcFTN2N4DUX9e6ExXV3LmT8TZsEjdLgpmz4lruzmQpF2+aV6MShUIRh5f2be9/A3aspnUwFQ9QlD7Wm6MV5310TUnbSvGic/N2/UflX+xsgOYUddJkaakKPZ/sAlVc9IA6qrnp9/gaSL2uyMkuoSm1F6lm3Z12qCg/vlPtwtefeYgqoTa3QG+UfbIsqnl9foWgzWYRV7YRb/8mmPTOwtxFg+lfVQvY8D0cxaHZj5gXC3PJFidOiMyLA4fG4ndVHon/nFU7BYIj0B3jkK0X0yNlrP0trTFgCmTKglb2LKElzY8hgD6d7Knza2xidsx/gr2MrM2WKQUJk9TTjWW/ABnYjCqD0voLBUhVFAMCiGbm0JZGpBPxy2aQxK8ZsgXB77GcmF1qVjfE8WWw3bYayLGtOhOYNWoo8kfj9ijjzTeRyu9hJBa64IILymXTK6EqcLc5/bkq8fRV86JJh/C5oDMrvnUYl5HVfR0aOpEWiFoYSJznhnjLfLPNqIMu9gu0npOkITXLrIZBvz16s2z7pZ6RJwVN9VGgvBYqk2OC16pRwaGgZV8aXYmAqe9wd93XFiOSbbOIRl5SkXky9HtI1Bm7ql1YtHL7KYvAz8Qej7fATog17P5pR/9z5Q==
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb33282c-01fc-4c9d-092e-08d884864af7
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2020 08:05:59.4161
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XPZk2BwyETh0MRJtuYKFSCrZlmvVjLs0CDYMYe65cYf2roxJ/cT36pKmcp6BeKct1VXpyOTzGDuIlb4R5DYO44Uu26JJfsImuIlkFjOvIG8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3425
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1604403610-16577-4-git-send-email-jun.li@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.11.20 20:16, Nathan Chancellor wrote:
-> While running 'make dtbs_install', the following error occurs:
+On Tue, Nov 03, 2020 at 07:40:10PM +0800, Li Jun wrote:
+> This patch adds a simple typec switch driver for cases which only
+> needs some simple operations but a dedicated driver is required,
+> current driver only supports GPIO toggle to switch the super speed
+> active channel according to typec orientation.
 > 
-> make[3]: *** No rule to make target 'rootfs/freescale/imx8mm-kontron-n801x-s.dts', needed by '__dtbs_install'.
-> 
-> It should be .dtb, not .dts.
-> 
-> Fixes: 8668d8b2e67f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+> Signed-off-by: Li Jun <jun.li@nxp.com>
 
-Thanks for fixing my error!
-I often use Yocto to build the kernel and it doesn't use "make dtbs", 
-but reference single dtbs directly by its name. I probably should have 
-tested this more properly.
-
-Reviewed-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
 > ---
+> Changes for v5:
+> - A few changes address Andy's comment, remove gpio check as it's
+>   optional, add module name for Kconfig, use correct header files,
+>   and other minor changes.
+> - Remove the mutex lock as it's not required currently.
 > 
-> v1 -> v2:
+> Changes for v4:
+> - Change driver name to be switch simple from switch GPIO, to make it
+>   generic for possible extention.
+> - Use compatiable "typec-orientation-switch" instead of bool property
+>   for switch matching.
+> - Make acitve channel selection GPIO to be optional.
+> - Remove Andy's R-b tag since the driver changes a lot.
 > 
-> * Simplify commit message and error (Krzysztof).
-> * Pick up Krzysztof's tag.
+> Change for v3:
+> - Remove file name in driver description.
+> - Add Andy Shevchenko's Reviewed-by tag.
 > 
->   arch/arm64/boot/dts/freescale/Makefile | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> Changes for v2:
+> - Use the correct head files for gpio api and of_device_id:
+>   #include <linux/gpio/consumer.h>
+>   #include <linux/mod_devicetable.h>
+> - Add driver dependency on GPIOLIB
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index 876bf484bbe6..6f0777ee6cd6 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -32,7 +32,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
-> -dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dts
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
->   dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+>  drivers/usb/typec/mux/Kconfig         |  10 ++++
+>  drivers/usb/typec/mux/Makefile        |   1 +
+>  drivers/usb/typec/mux/switch-simple.c | 100 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 111 insertions(+)
 > 
-> base-commit: 39fabe22e0f8c00334882ceac1dc70ffbd7f4871
-> 
+> diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
+> index a4dbd11..11320d7 100644
+> --- a/drivers/usb/typec/mux/Kconfig
+> +++ b/drivers/usb/typec/mux/Kconfig
+> @@ -18,4 +18,14 @@ config TYPEC_MUX_INTEL_PMC
+>  	  control the USB role switch and also the multiplexer/demultiplexer
+>  	  switches used with USB Type-C Alternate Modes.
+>  
+> +config TYPEC_SWITCH_SIMPLE
+> +	tristate "Type-C orientation switch simple driver"
+> +	depends on GPIOLIB
+> +	help
+> +	  Say Y or M if your system need a simple driver for typec switch
+> +	  control, like use GPIO to select active channel.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called switch-simple.
+> +
+>  endmenu
+> diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
+> index 280a6f5..712d0ad 100644
+> --- a/drivers/usb/typec/mux/Makefile
+> +++ b/drivers/usb/typec/mux/Makefile
+> @@ -2,3 +2,4 @@
+>  
+>  obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
+>  obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
+> +obj-$(CONFIG_TYPEC_SWITCH_SIMPLE)	+= switch-simple.o
+> diff --git a/drivers/usb/typec/mux/switch-simple.c b/drivers/usb/typec/mux/switch-simple.c
+> new file mode 100644
+> index 0000000..8707703
+> --- /dev/null
+> +++ b/drivers/usb/typec/mux/switch-simple.c
+> @@ -0,0 +1,100 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Type-C switch simple control driver
+> + *
+> + * Copyright 2020 NXP
+> + * Author: Jun Li <jun.li@nxp.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/usb/typec_mux.h>
+> +
+> +struct typec_switch_simple {
+> +	struct typec_switch *sw;
+> +	struct gpio_desc *sel_gpio;
+> +};
+> +
+> +static int typec_switch_simple_set(struct typec_switch *sw,
+> +				   enum typec_orientation orientation)
+> +{
+> +	struct typec_switch_simple *typec_sw = typec_switch_get_drvdata(sw);
+> +
+> +	switch (orientation) {
+> +	case TYPEC_ORIENTATION_NORMAL:
+> +		gpiod_set_value_cansleep(typec_sw->sel_gpio, 1);
+> +		break;
+> +	case TYPEC_ORIENTATION_REVERSE:
+> +		gpiod_set_value_cansleep(typec_sw->sel_gpio, 0);
+> +		break;
+> +	case TYPEC_ORIENTATION_NONE:
+> +		break;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int typec_switch_simple_probe(struct platform_device *pdev)
+> +{
+> +	struct device			*dev = &pdev->dev;
+> +	struct typec_switch_desc	sw_desc;
+> +	struct typec_switch_simple	*typec_sw;
+> +
+> +	typec_sw = devm_kzalloc(dev, sizeof(*typec_sw), GFP_KERNEL);
+> +	if (!typec_sw)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, typec_sw);
+> +
+> +	sw_desc.drvdata = typec_sw;
+> +	sw_desc.fwnode = dev->fwnode;
+> +	sw_desc.set = typec_switch_simple_set;
+> +
+> +	/* Get the super speed active channel selection GPIO */
+> +	typec_sw->sel_gpio = devm_gpiod_get_optional(dev, "switch", GPIOD_OUT_LOW);
+> +	if (IS_ERR(typec_sw->sel_gpio))
+> +		return PTR_ERR(typec_sw->sel_gpio);
+> +
+> +	typec_sw->sw = typec_switch_register(dev, &sw_desc);
+> +	if (IS_ERR(typec_sw->sw)) {
+> +		dev_err(dev, "Error registering typec switch: %ld\n",
+> +			PTR_ERR(typec_sw->sw));
+> +		return PTR_ERR(typec_sw->sw);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int typec_switch_simple_remove(struct platform_device *pdev)
+> +{
+> +	struct typec_switch_simple *typec_sw = platform_get_drvdata(pdev);
+> +
+> +	typec_switch_unregister(typec_sw->sw);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id of_typec_switch_simple_match[] = {
+> +	{ .compatible = "typec-orientation-switch" },
+> +	{ /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, of_typec_switch_simple_match);
+> +
+> +static struct platform_driver typec_switch_simple_driver = {
+> +	.probe		= typec_switch_simple_probe,
+> +	.remove		= typec_switch_simple_remove,
+> +	.driver		= {
+> +		.name	= "typec-switch-simple",
+> +		.of_match_table = of_typec_switch_simple_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(typec_switch_simple_driver);
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_DESCRIPTION("TypeC Orientation Switch Simple driver");
+> +MODULE_AUTHOR("Jun Li <jun.li@nxp.com>");
+> -- 
+> 2.7.4
+
+thanks,
+
+-- 
+heikki
