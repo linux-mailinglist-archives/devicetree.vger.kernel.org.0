@@ -2,102 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95BC82AC073
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:04:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9572AC080
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:07:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729791AbgKIQEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 11:04:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44340 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726410AbgKIQEr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 11:04:47 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 850AE206CB;
-        Mon,  9 Nov 2020 16:04:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604937886;
-        bh=qpWupAqFktlAEJCGUxawGfsjvPHqwItam4PilNDZDXI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=odJWZEdORfx4XYNW+XSLTcqpyLh0L6/TizWw7/tBSYB0os70KfIybjw1fYuz2377d
-         TZLCkYm3yI1wN/YILWmIFVM5fwhRHo/ij6rbj2SLFFg5g4uH+Qu/q/wfw+ZaTeA1R7
-         D0UWuhrjTm+M+XZAwx4UXPGqnh/LqjXpXQbLeXHY=
-Date:   Mon, 9 Nov 2020 16:04:32 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        linux-spi@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Subject: Re: [PATCH 04/32] spi: dw: Introduce polling device tree property
-Message-ID: <20201109160432.GF6380@sirena.org.uk>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-5-damien.lemoal@wdc.com>
+        id S1729791AbgKIQHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 11:07:40 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:46356 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727774AbgKIQHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 11:07:40 -0500
+Received: by mail-ot1-f65.google.com with SMTP id g19so9391889otp.13;
+        Mon, 09 Nov 2020 08:07:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Wl+eg2VZccrg0Qat3l8zqj7949X5nB65JyVfX4x8H3w=;
+        b=MS4puLDQRVSg4o63cyg+0P0f3jzrtFE79KoXBDjs/C+q4Shjy40KTJmrBLCelkj01L
+         SioldE2MX98K9qq8ptYx1C43nmg7Lx73762jKTzpJYPssx0zP/VgXTnFJ8hbKod+FNIa
+         JJEtyi5xq+7OYZ/0Juq8v7x1nkAIb5xnSyIxjP79bNxQml3uY7H4AmXlpkqBXHW0LfPK
+         u9H1g5a7nyxOwU33YOvdtWQQnJ3uJNh+/nXybDc+6oj3AJWDMVhmUVukpVZ8BliDLs5F
+         Rqv1/3jT22zsZnbLPNcsf+V9Cc9r2yhk4rtt3uhbL4wa6XujdKR6Y2VOvDPPrkqECln6
+         zTIA==
+X-Gm-Message-State: AOAM532M9MGU+VbqGMAJFwURjQGmwGKyHewTngKpOI9kOTREwgMTcK1H
+        70UymU0vrZXWC+j1HZG4Cw==
+X-Google-Smtp-Source: ABdhPJyQMzS871G4Spg4tIzcHvS5D15p/CoyoX4vkMxrd9bHDwbRzKn8uTbCqErsbcSuln3XvGzuEw==
+X-Received: by 2002:a9d:5c0c:: with SMTP id o12mr10881779otk.275.1604938059184;
+        Mon, 09 Nov 2020 08:07:39 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id y35sm2601629otb.5.2020.11.09.08.07.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2020 08:07:38 -0800 (PST)
+Received: (nullmailer pid 1375401 invoked by uid 1000);
+        Mon, 09 Nov 2020 16:07:37 -0000
+Date:   Mon, 9 Nov 2020 10:07:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     gene_chen@richtek.com, linux-pm@vger.kernel.org, sre@kernel.org,
+        robh+dt@kernel.org, shufan_lee@richtek.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        cy_huang@richtek.com, matthias.bgg@gmail.com,
+        benjamin.chao@mediatek.com, Wilma.Wu@mediatek.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: Add bindings document for
+ Charger support on MT6360 PMIC
+Message-ID: <20201109160737.GA1375361@bogus>
+References: <1604400091-14618-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1604400091-14618-2-git-send-email-gene.chen.richtek@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rMWmSaSbD7nr+du9"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201107081420.60325-5-damien.lemoal@wdc.com>
-X-Cookie: This fortune is false.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1604400091-14618-2-git-send-email-gene.chen.richtek@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 03 Nov 2020 18:41:30 +0800, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
+> 
+> Add bindings document for Charger support on MT6360 PMIC
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> ---
+>  .../bindings/power/supply/mt6360_charger.yaml      | 48 ++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml
+> 
 
---rMWmSaSbD7nr+du9
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Sat, Nov 07, 2020 at 05:13:52PM +0900, Damien Le Moal wrote:
-
-> With boards that have slow interrupts context switch, and a fast device
-> connected to a spi master, e.g. an SD card through mmc-spi, using
-> dw_spi_poll_transfer() intead of the regular interrupt based
-> dw_spi_transfer_handler() function is more efficient and can avoid a lot
-> of RX FIFO overflow errors while keeping the device SPI frequency
-> reasonnably high (for speed). Introduce the "polling" device tree
-> property to allow requesting polled processing of transfer depending on
-> the connected device while keeping the spi master interrupts property
-> unschanged. E.g. device trees such as:
-
-This isn't something that looks like it should be configured via DT as a
-separate property, this is more of a tuning property as far as I can see
-- even on the same hardware there might be cases where people prefer to
-keep using interrupts but for example allow transfers to stall while
-waiting for the interrupt controller giving lower throughput but more
-CPU cycles available for other things.
-
-Unfortunately we don't have any information about how much interrupt
-latency we should expect which makes this a bit annoying.  I do see that
-there's already some existing attempt in the DMA code to tune burst
-sizes to avoid FIFO overflows - it looks like the hardware is doing
-something unusual and possibly unfortunate here though I've never
-looked at it so I'm not sure exactly what is going on there but perhaps
-ther's some tuning that can be done in there?  TBH I'm not clear what
-the failure mode is where we need software to service interrupts
-promptly in the middle of a DMA transfer in the first place, that seems
-really strange.
-
---rMWmSaSbD7nr+du9
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+paI8ACgkQJNaLcl1U
-h9D74gf+M46xb04/TMs2lLQseMfMEPw7Fh0jhSYWXuEmx5c0TM/8PPV56XCoV6CF
-RuIPkAKLK0Gz0FwLWQ7hNLwz9TczwxzKygGLVcODVuQqhQf7rRlTb4wABZirWIkp
-GnOJ3npCwKyvsCc61l3sdyasnwbnmi1X3X3qgmLWEGrK1RAyVLF/bx8swuL29L9n
-LUdhKqqzFHS0czgcTQXMgkrGE7GpM2CFZP7bYA/meuOjLB6/8u9siqAdD/e/Fvub
-ccmw/vmi5UIUGSP0xTc5p27QmjqOG/8GiZIGq4IPqKdawxgErIrYoLblm4N/BGrT
-EmfK2cMi+qlFLQLy76Fixh/wnOZhSg==
-=mHA6
------END PGP SIGNATURE-----
-
---rMWmSaSbD7nr+du9--
+Reviewed-by: Rob Herring <robh@kernel.org>
