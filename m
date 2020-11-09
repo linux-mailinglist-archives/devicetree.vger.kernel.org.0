@@ -2,151 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BEC92AC7DB
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B61952AC7E3
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 23:00:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729599AbgKIV7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 16:59:43 -0500
-Received: from mail-eopbgr80074.outbound.protection.outlook.com ([40.107.8.74]:20449
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725946AbgKIV7n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 16:59:43 -0500
+        id S1729452AbgKIWAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 17:00:21 -0500
+Received: from esa5.hgst.iphmx.com ([216.71.153.144]:32194 "EHLO
+        esa5.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725946AbgKIWAU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 17:00:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1604959220; x=1636495220;
+  h=from:to:cc:subject:date:message-id:references:
+   content-transfer-encoding:mime-version;
+  bh=gVySOS8fakcetGUqOdCBGLQ26TJ//OJHVTj6n4lh59Q=;
+  b=MN+tmqxl07x0zgAH7Y2tXTaXVAKKEZCLEPIIGXinWazTdFkHm5iL0Bx+
+   7Ibly/tdyLAXZh71V4ezGvNgdOoS5/VrAUAtWiA/07rU8Oz3g6QqJuu52
+   SttDN5+gu3IfQW+qVEQTHGN4ngXDczSlYNKfPWdGxT9Mpun3oCHiPi+wb
+   VOHqTjQ4KekPzA/66vjaM4mH8Dg8VobqYoKkBLwibBrfuaHS4cbAMD/45
+   Pg4Wv8CbPvdcS50EzO0VbgmMMjiXUBcb8pSuFRxRaIKws+qraYSI5FKbV
+   D9RTN7tAeEpOcLS4W8Iqrrjdtq94ccKA1eZizGKFiGkeCPvPPzWiFUj1H
+   Q==;
+IronPort-SDR: HjeNOS5eWYU971jpT51mCkotNkWxva6AsmGdV/0qz+wr1ASirqAYUwpa724QnLrmUAXWVPAWwe
+ EgU5vwknh23aUlp9lcog4GRbYXRnMkTO7B8dfcipywM+zmr7wKzMn7JOSERgIr48glbmXMegsO
+ LBBwtNWhXi5Tc3tvMywb8OLrjHzK2WRT6qSTiAnDloexYkZJY2opcWmHTT1LtAtVcORDBrXI66
+ byMAwXOICITd7ujbyCXvzNjvE7NokulxE02iJBjO26q1wpTv8DyqRlCsdt1zTpxc86YeaBALt9
+ 9e4=
+X-IronPort-AV: E=Sophos;i="5.77,464,1596470400"; 
+   d="scan'208";a="152323691"
+Received: from mail-bn8nam12lp2175.outbound.protection.outlook.com (HELO NAM12-BN8-obe.outbound.protection.outlook.com) ([104.47.55.175])
+  by ob1.hgst.iphmx.com with ESMTP; 10 Nov 2020 06:00:18 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WAuLZ1+gcozMKPInztam9DTrLMbHahUBzwfsM0tD01EtIzTFO1APeYCx5Cd7RmQDmaYZ74rKsCJ7NBkA+A080kDEDedECSKSZEAJf+9F903CJCrfGNVUcX1TXEexpRjNJwu5v3hxg1RwPT3Jp74YhcS3dw0qZZfFmvLZmKFeTkVdOg7XS/PTKDJAreBmyxsj1vhCsKeMkeKJCAx1Ohe2RI8MMm46bXqyHLMQRLS4GEtGK2GeTZy89PEUkWLBM05UoYn+a8p4TScjApQVBbmgsSC4SKRlTmJmBndTWvzxvDKbrSGNtPBAVeDV2MBkq/ZgCDTEkVGt2CsskkxAJuqWLg==
+ b=b1X9iJtlNIAKKMu6RZ46zsr2hZcGKRNid8M+jTcfZPIpGn2jarUtdFVDHWZvtVAskPfA2O40kr/rC2rgU5BDDFLakfA1U+f/BLP41wOL2bKf5JPDvc+4XngK8gM90m2DOX3rO3VpLtjnJhxKmojqwyee6xPfB3MrmrHz/7UogaQwiQ4qPJflbs1Mdeum4DIPd7+503b12up/Jmt9Wo1gIyK1cRmnhzQAlhlrA/is01GD+UBMIKRb+G6FPeG8q8TSglfQgKzDeoHVIFG1XBZamf71kVGLW47u4RtJQeEjXTUXy3g9F1KHpLXEoIBdJC1nZte6uvIUXTj8vpEQymop8g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yptG+qcdFVHAe44yIklrIMm0WkEpM6sfmgLImbg4zM0=;
- b=jfM6iTnALqvU/COQ+zuRnpmxFHvIiLJy6DcodB6h1BKUjHBbc9OV0iotUO7tY4807WKZAVcKcTR3r/xy3u41TEqCtn+krq9RVcY2j01deo+NZFGyHx6XDnl1ntmscJOzKjZ/gmiz9czmmh6DRaCtfXRm+lC1eN91E9ZwhlxcCwke4/69+9uETrfCJMpn6KY9bPWKPmijp5qIybrfeAUqDUAYKxqoAVXesjgyzuoM0s/cNi3ffDagV8dMJ9IBlGfSUcLLough9OShP4IdmBkxg6/aSgQk+AxWi74UuOQpCaXjMn66nzCytu9gZcAUFmOv2g+XPK9KYzbu0jY/VhZMAQ==
+ bh=E2YZbNjrkhWlRgvz9mvDvLD7atOxugYZ74Ac2hsG35s=;
+ b=SCe7qIXrgRgpINhjeggDqNc+xjtySAPcADarSkf/aNk6J0MMj/gvRlKbOZUpm4mwGtCl2fCqtmWaer8ae+tPTNfsCNTQfyUo3bEnhCZWY1xZWKf9/L38ioLvCEe5FZb95JhAel5Fs4r6oa+Jc6jfi9vPgRu3RNFiB+EzU5nh+t6w3DB64Jyj61A/6OE1MfXWQpvzFuI6jabbTkLLlFWVZE2IC/uNGybz35KtiHDj5E/vbQPlevS9bUzwQ9w4+f8GgoCgu45oWBfHerCHDImBVJBqjP0bD5PojZ/3MfCWSiXgUwC35G29bfRtJYYrWQTUgTobEvUFDt0URg3FSuHVVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=yptG+qcdFVHAe44yIklrIMm0WkEpM6sfmgLImbg4zM0=;
- b=Xzj8/6REwBL7tOK6BT6Ubm9UsPtYNINRtiHXSPYGGTFCL/IU2kUsMMW3h0wQ+rNF0USQ1/QZYLunEhDgfrQQwN7U22pFzieR3B0FdVjtMBWOdA5ExjIJJfFLVnfte+1f0fGMgoiU4T1fiO3Z7KRntlImtb1v5fwAS9a/DPKvKaY=
-Received: from AM5PR04MB3137.eurprd04.prod.outlook.com (2603:10a6:206:c::18)
- by AM6PR04MB5912.eurprd04.prod.outlook.com (2603:10a6:20b:ab::28) with
+ bh=E2YZbNjrkhWlRgvz9mvDvLD7atOxugYZ74Ac2hsG35s=;
+ b=k2nAGGMCch7kcIddlR9/tSklIOBQu09utlQXxebkVHKaE6cg7NZlWY6DDDQ4mxPHt3zOlVPmsHTBK5eeEU/ah2WG1q1gUFy7gnhIzbxNgqTEzix7a+S7qEBosCLwvoOtZgp/X3ghUXxvSZ/Co3keOeOtzITXngpVQyjRY551utw=
+Received: from BL0PR04MB6514.namprd04.prod.outlook.com (2603:10b6:208:1ca::23)
+ by MN2PR04MB6477.namprd04.prod.outlook.com (2603:10b6:208:1aa::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Mon, 9 Nov
- 2020 21:59:39 +0000
-Received: from AM5PR04MB3137.eurprd04.prod.outlook.com
- ([fe80::2d75:aaf5:5aa6:5de9]) by AM5PR04MB3137.eurprd04.prod.outlook.com
- ([fe80::2d75:aaf5:5aa6:5de9%6]) with mapi id 15.20.3541.025; Mon, 9 Nov 2020
- 21:59:39 +0000
-From:   Mirela Rabulea <mirela.rabulea@nxp.com>
-To:     "robh@kernel.org" <robh@kernel.org>,
-        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>
-CC:     dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3499.18; Mon, 9 Nov
+ 2020 22:00:17 +0000
+Received: from BL0PR04MB6514.namprd04.prod.outlook.com
+ ([fe80::4c3e:2b29:1dc5:1a85]) by BL0PR04MB6514.namprd04.prod.outlook.com
+ ([fe80::4c3e:2b29:1dc5:1a85%7]) with mapi id 15.20.3499.032; Mon, 9 Nov 2020
+ 22:00:17 +0000
+From:   Damien Le Moal <Damien.LeMoal@wdc.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "niklas.soderlund+renesas@ragnatech.se" 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
-        "ezequiel@collabora.com" <ezequiel@collabora.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Subject: Re: [EXT] Re: [PATCH v4 03/11] media: dt-bindings: Add bindings for
- i.MX8QXP/QM JPEG driver
-Thread-Topic: [EXT] Re: [PATCH v4 03/11] media: dt-bindings: Add bindings for
- i.MX8QXP/QM JPEG driver
-Thread-Index: AQHWsMWmfOnIn5n4NkGFWKzzrOKPqam4lO2AgAfQwwA=
-Date:   Mon, 9 Nov 2020 21:59:39 +0000
-Message-ID: <a575cf6a7e75f87bc84fed72a5a24b7b9ce23245.camel@nxp.com>
-References: <20201102030821.3049-1-mirela.rabulea@oss.nxp.com>
-         <20201102030821.3049-4-mirela.rabulea@oss.nxp.com>
-         <20201104223837.GA49021@bogus>
-In-Reply-To: <20201104223837.GA49021@bogus>
+        Mark Brown <broonie@kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH 06/32] spi: dw: Add support for the Kendryte K210 SoC
+Thread-Topic: [PATCH 06/32] spi: dw: Add support for the Kendryte K210 SoC
+Thread-Index: AQHWtN4N0wumwRzXdUGPL6nbxUOPpw==
+Date:   Mon, 9 Nov 2020 22:00:17 +0000
+Message-ID: <BL0PR04MB6514C9D94E2098EEA0A8462FE7EA0@BL0PR04MB6514.namprd04.prod.outlook.com>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
+ <20201107081420.60325-7-damien.lemoal@wdc.com>
+ <20201109212158.y34otj3uy2hev75c@mobilestation>
+ <BL0PR04MB6514111AE633C1E53B6F08A3E7EA0@BL0PR04MB6514.namprd04.prod.outlook.com>
+ <20201109215524.GA1819368@bogus>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [86.124.171.138]
+ header.d=none;kernel.org; dmarc=none action=none header.from=wdc.com;
+x-originating-ip: [2400:2411:43c0:6000:89bb:1cde:d92a:2dcb]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: aeb58fd1-092f-43e7-f83a-08d884fac177
-x-ms-traffictypediagnostic: AM6PR04MB5912:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR04MB5912D4E7C7B7E2787457C4E88FEA0@AM6PR04MB5912.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-office365-filtering-correlation-id: 491be48c-fc5a-401f-16d9-08d884fad80c
+x-ms-traffictypediagnostic: MN2PR04MB6477:
+x-microsoft-antispam-prvs: <MN2PR04MB6477031AE3749A055E8DA06AE7EA0@MN2PR04MB6477.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: kF7Kp6TANLOlnH6p0Tg1f9JSvOzgvXvKDSRW2GHpKi4dvq5vB2mSmWFd80XazaLMGD0/uwWv3A+BxBSNCaeSHmJ1TxQz/49Iedv+LXHW3bFUm3XcBQRxiMg+lUC+wPHoZjmoe8YlDZ6cOWB3CbJlLOBROHkGrsq4HSQbxLrYFXDW53Yn3Fnzg4nCk2OdvfTrPKQlfnSghF+olWpV458OjUgo+p0kN9rl1eYDe+TkXwhsMvD5y4NhFQNHiMc+RORc1KzPxnHT8ULyhtlTi6C6CKzrDkRo8cTCaxLJ1+KcqMfjtQPnMLZE6yzndYVBayKRSI9CozFXSEfYZtYzXDckJZt/JdmArpxMwK6u8AbuFOXOYA602Xj1ph2bCDnrLuba
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3137.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(39850400004)(346002)(366004)(396003)(8676002)(36756003)(8936002)(2616005)(71200400001)(54906003)(2906002)(316002)(478600001)(186003)(6486002)(26005)(76116006)(66556008)(66476007)(66446008)(64756008)(66946007)(6512007)(44832011)(83380400001)(6506007)(4326008)(7416002)(110136005)(5660300002)(86362001)(91956017)(99106002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: FY4m2oQnhFzVuylz9UtabMOP4hWHp4VhNYxvjRWiEXHDnLfOY+zO95PZuGGEssSJcwAxBX+/n3ErOBk0xdQuJsDab0xI1bbugA28wrwrOWoDBPK27T+d4RBIUp5fvLKAEZkW32kJ0QTg49vvlPwSKBWwnVQ32W0H0zObBSa4keArCBnhXAInjxKYYv0PE/rQ+7yc3yw7h5xSo2a3oCZKxK78bPCUISaze9HrVqXAStmftZASiqZ1rp8QTItS5Y8arN40HQTHEUjEKSHzJp1o1O2NN37+19ZKxwZbx8F75Df5cGCPMUI+0Zhe/vLr1G1lQixcFO7ddRqIcxR7h9SDTiFRkawKXp0O7S3sqDJIJil4tc8bNehZ8MBc6rWzcT9xzQhb7lnjo2bc2gwS5VW/XQLi20jOyAl7kwspWxCwq3waiMV22qbl+Z62Oktz1ZrtBKJ8ec8r/hNUOAjO5DnkXIahR5lKgs1QSFE/CH7j95MzJtXjqY2nv6Qym9plR+rz7ygsJbCisK7M4I8ojRm8c6brX6nqr7/XGOI1oYBRao6bA8/BaPdbtwpgeWfcAptrUtQJY2+EjnWqk/KowMiFvJjssVb8OihHWF0hHAzSVOGJCp+Pd/Vajs5Y1kE1H/VzuK2SasZZdILEl4rmVLcPohHF1qxO7pwT5QWZAoYRpcvurpiGJcJ4Gf7Td0wQO9vJ8wmZPlLuRs6tmm/SjfdXAfksLxzPIwl/kxE/IEHViBZUUyhEiWRXvt7SuPeYcyAu0XlcszHWrq47DPrcDy7oG80GYjIUWpXZmGsQbR9QkoHRvGCcCeUuHEUMA+8LKBZ3W1Cg+xPGzH+2XtBUHzu8emftZbaKps6/xmjoq7yCRg1Yv0fpsdFbhXk4Mxu948rsvIUH4OV+5pQmU0eNFFd4UA==
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F36B068107D0CE4AB6E746DFEAACBEE9@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: NuPBSRrVofK5SHBOP17VwvN9ZTlJvftEU/dm1EV4DpfEVqsfQqDYzduAvCZ1XzOv9Ky8OiFmuCIQvLJHsf2j/xrfK8co43xsn+jhNPrwmJyW3Hle804GbtEHDTOLgH6MHAEZRmZqvp6a01Z1S+DL+9Lyh70HcBchf4TkwWksAXq1x2/sm4Q2CjMkwCTqMZP+fcynkp0BZEGxJe14Zl3VjwoWgYg3Ft6kU4aR8a96SrocAwQRn3wXDcVyUpAu+OwhhljM1OXC/Lns0Jx9YuXVPKwnkkJVY09No28CN5sJ3a1QsEJt6wBDlxGHarJCfI8S
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR04MB6514.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(346002)(376002)(39860400002)(136003)(55016002)(52536014)(71200400001)(9686003)(66446008)(76116006)(7416002)(8936002)(66556008)(64756008)(66946007)(53546011)(66476007)(5660300002)(91956017)(6506007)(6916009)(8676002)(7696005)(86362001)(54906003)(186003)(2906002)(33656002)(316002)(478600001)(4326008)(83380400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: /vcRxQKs96NL/VyHKAwSosYX0BReL2GPCTr5Isv+ywzmupOBkKBmU0zYwgwJHOuadYts944mZAF+0oeVsS0+E2HqsVeoeeYc+zPiKdTRZZYKi/ZbYuCUZGNBQlKNRDQnVyqSZGT+INsFu3QNByutpKl442ZqWYn3lcuQoD0gS9IgtWqTONuanvVai+5k0nD0txrWleiBJOqMdSu7cWn3DZjMHiFOY4V2422j+VZwoIAzINQmna+2P7ILSCLp1OfZnTp7iufpE5u+co9+EsYNJpmkouFmEQ4mWnjHBAnq2b8PltnZK/3tjiBqmRWV6IQhQxCRa/ketQu6v42kiocXvRJx+D83cafEYnghNuz2Np92QJVoOuA++3rr96SmAlQwSqaM4ffFZ2LUGALFUwV6CsGSn91jArdM6Sswytcq2NBAmH6EfUwdJvhYRLcrqmcmg30gm+QXTho9ftnIjFtffkG4RoO19VRqIiyCt5MpGkokKsT4yFzsT3H5Y5/E47OtFpxHmcAX79LWSEJ3Ki0KvL24pDKOnn+bULUUaVsVeKvDmYTXJX6GVT7odUA32+lN4kPaM2+k/0ZrhqLe/jS/kXEnsIJscLDaZfuLvv3ptRN0VcJLcdsrfxYdB2bgA49LISUaPFzZ/tAR9DLvkYV+iHqQDrhDw3t2bSRQgdzLtUlUYPkcQHGl8+aw5QIzIGvZc8gLE04AdquGgwBKpLlsxw==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-OriginatorOrg: wdc.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3137.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aeb58fd1-092f-43e7-f83a-08d884fac177
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2020 21:59:39.4281
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR04MB6514.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 491be48c-fc5a-401f-16d9-08d884fad80c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2020 22:00:17.2648
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: f+rZ1xqCC46qDHkYFACD+Sl880Z6bdkvnrNyjAhNOz6fVfCncjL5qqph+4GeMOaDidiRS3FfG+yKIEksMl4Wrg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5912
+X-MS-Exchange-CrossTenant-userprincipalname: s34iSV/Z1Lg1ZjaKwohbr6S+SpbadShkAXWPshRC4WujcSnmbukfEiwLlNgWmFsNqyWMVdF72+axGB4Zi1DsTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR04MB6477
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCk9uIFdlZCwgMjAyMC0xMS0wNCBhdCAxNjozOCAtMDYwMCwgUm9iIEhlcnJpbmcgd3Jv
-dGU6DQo+ID4gK3RpdGxlOiBpLk1YOFFYUC9RTSBKUEVHIGRlY29kZXIvZW5jb2RlciBEZXZpY2Ug
-VHJlZSBCaW5kaW5ncw0KPiA+ICsNCj4gPiArbWFpbnRhaW5lcnM6DQo+ID4gKyAgLSBNaXJlbGEg
-UmFidWxlYSA8bWlyZWxhLnJhYnVsZWFAbnhwLmNvbT4NCj4gPiArDQo+ID4gK2Rlc2NyaXB0aW9u
-OiB8LQ0KPiA+ICsgIFRoZSBKUEVHIGRlY29kZXIvZW5jb2RlciBwcmVzZW50IGluLk1YUVhQL1FN
-IFNvQyBpcyBhbg0KPiA+ICsgIElTTy9JRUMgMTA5MTgtMSBKUEVHIHN0YW5kYXJkIGNvbXBsaWFu
-dCBkZWNvZGVyL2VuY29kZXIsIGZvcg0KPiA+IEJhc2VsaW5lDQo+ID4gKyAgYW5kIEV4dGVuZGVk
-IFNlcXVlbnRpYWwgRENUIG1vZGVzLg0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICBj
-b21wYXRpYmxlOg0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZW51bToNCj4gPiArICAg
-ICAgICAgICAgIyBKUEVHIGRlY29kZXINCj4gPiArICAgICAgICAgIC0gZnNsLGlteDgtanBnZGVj
-DQo+ID4gKyAgICAgICAgICAgICMgSlBFRyBlbmNvZGVyDQo+ID4gKyAgICAgICAgICAtIGZzbCxp
-bXg4LWpwZ2VuYw0KPiANCj4gV2hpY2ggaW14OD8gU2hvdWxkIGJlIFNvQyBzcGVjaWZpYy4NCg0K
-VGhpcyBJUCBpcyBwcmVzZW50IGluIDIgU09DcywgaW14OHF4cCAmIGlteDhxbS4NCkZvciB0aGUg
-bmV4dCB2ZXJzaW9uLCBJIG1vZGlmaWVkIHRoZSBjb21wYXRpYmxlcyB0byBueHAsaW14OHF4cC1q
-cGdkZWMNCiYgbnhwLGlteDhxeHAtanBnZW5jLCBzaW5jZSBvbmx5IDhxeHAgd2FzIHRlc3RlZCB1
-cHN0cmVhbS4NCkkga2VwdCB0aGUgbmFtZSBvZiB0aGUgeWFtbCBmaWxlIGdlbmVyaWMsIGJ1dCBt
-b2RpZmllZCBpdCB0byBueHAsaW14OC0NCmpwZWcueWFtbC4gUG9zc2libHksIGluIHRoZSBmdXR1
-cmUsIHRoaXMgZmlsZSB3aWxsIGFsc28gaG9zdCBpbXg4cW0NCmNvbXBhdGlibGVzLg0KQWxzbyBj
-aGFuZ2VkIHRoZSBkdGIgJiBkcml2ZXIgYWNjb3JkaW5nbHkuDQoNCj4gDQo+ID4gKw0KPiA+ICsg
-IHJlZzoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGludGVycnVwdHM6DQo+
-ID4gKyAgICBkZXNjcmlwdGlvbjogfA0KPiA+ICsgICAgICBUaGVyZSBhcmUgNCBzbG90cyBhdmFp
-bGFibGUgaW4gdGhlIElQDQo+ID4gKyAgICAgIElmIGEgY2VydGFpbiBzbG90IGlzIHVzZWQsIGl0
-IHNob3VsZCBoYXZlIGFuIGFzc29jaWF0ZWQNCj4gPiBpbnRlcnJ1cHQNCj4gPiArICAgIG1pbkl0
-ZW1zOiAxICAgICAgICAgICAgICAgIyBBdCBsZWFzdCBvbmUgc2xvdCBzaG91bGQgYmUNCj4gPiBh
-dmFpbGFibGUNCj4gPiArICAgIG1heEl0ZW1zOiA0ICAgICAgICAgICAgICAgIyBUaGUgSVAgaGFz
-IDQgc2xvdHMgYXZhaWxhYmxlIGZvcg0KPiA+IHVzZQ0KPiANCj4gWW91IGRvbid0IG5lZWQgdG8g
-a25vdyB3aGljaCBzbG90IGlzIGF2YWlsYWJsZT8NCg0KTm8sIHRoZSBkcml2ZXIga2VlcHMgdHJh
-Y2sgb2Ygd2hpY2ggc2xvdHMgYXJlIHVzZWQgKGFuZCwgZm9yIG5vdywgb25seQ0KdXNlcyBzbG90
-IDApLg0KSXQgaXMgYWxzbyBwb3NzaWJsZSB0byBkZXRlcm1pbmUgd2hpY2ggaXMgdGhlIGN1cnJl
-bnQgcnVubmluZyBzbG90IGJ5DQphY2Nlc3NpbmcgYSBzdGF0dXMgbWVtb3J5IG1hcHBlZCByZWdp
-c3RlciAodGhlIElQIHJ1bnMgdGhlIGNvbmZpZ3VyZWQNCnNsb3RzIGluIGEgcm91bmQtcm9iaW4g
-bWFubmVyLCBub3QgaW4gcGFyYWxsZWwpLg0KVGhlIGFzc3VtcHRpb24gaXMsIGhvd2V2ZXIsIHRo
-YXQgaW4gdGhlIGRldmljZSBub2RlLCB0aGUgaW50ZXJydXB0IGkgaXMNCmZvciBzbG90IGkuIFNv
-LCBJIHJlcGhyYXNlZCB0aGlzIHRvOg0KICBpbnRlcnJ1cHRzOg0KICAgIGRlc2NyaXB0aW9uOiB8
-DQogICAgICBUaGVyZSBhcmUgNCBzbG90cyBhdmFpbGFibGUgaW4gdGhlIElQLCB3aGljaCB0aGUg
-ZHJpdmVyIG1heSB1c2UNCiAgICAgIElmIGEgY2VydGFpbiBzbG90IGlzIHVzZWQsIGl0IHNob3Vs
-ZCBoYXZlIGFuIGFzc29jaWF0ZWQgaW50ZXJydXB0DQogICAgICBUaGUgaW50ZXJydXB0IHdpdGgg
-aW5kZXggaSBpcyBhc3N1bWVkIHRvIGJlIGZvciBzbG90IGkNCiAgICBtaW5JdGVtczogMSAgICAg
-ICAgICAgICAgICMgQXQgbGVhc3Qgb25lIHNsb3QgaXMgbmVlZGVkIGJ5IHRoZQ0KZHJpdmVyDQog
-ICAgbWF4SXRlbXM6IDQgICAgICAgICAgICAgICAjIFRoZSBJUCBoYXMgNCBzbG90cyBhdmFpbGFi
-bGUgZm9yIHVzZQ0KDQoNClRoYW5rcywNCk1pcmVsYQ0KDQo=
+On 2020/11/10 6:55, Rob Herring wrote:=0A=
+> On Mon, Nov 09, 2020 at 09:39:19PM +0000, Damien Le Moal wrote:=0A=
+>> On 2020/11/10 6:22, Serge Semin wrote:=0A=
+>>> On Sat, Nov 07, 2020 at 05:13:54PM +0900, Damien Le Moal wrote:=0A=
+>>>> The DW SPI master of the Kendryte K210 RISC-V SoC uses the 32-bits=0A=
+>>>> ctrlr0 register format. This SoC is also quite slow and gets significa=
+nt=0A=
+>>>> SD card performance improvements from using no-delay polled transfers.=
+=0A=
+>>>> Add the dw_spi_k210_init() function tied to the=0A=
+>>>> "canaan,kendryte-k210-spi" compatible string to set the=0A=
+>>>> DW_SPI_CAP_DFS_32 and DW_SPI_CAP_POLL_NODELAY DW SPI capability fields=
+=0A=
+>>>> for this SoC.=0A=
+>>>>=0A=
+>>>> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>=0A=
+>>>> ---=0A=
+>>>>  drivers/spi/spi-dw-mmio.c | 9 +++++++++=0A=
+>>>>  1 file changed, 9 insertions(+)=0A=
+>>>>=0A=
+>>>> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c=0A=
+>>>> index 3f1bc384cb45..a00def6c5b39 100644=0A=
+>>>> --- a/drivers/spi/spi-dw-mmio.c=0A=
+>>>> +++ b/drivers/spi/spi-dw-mmio.c=0A=
+>>>> @@ -223,6 +223,14 @@ static int dw_spi_keembay_init(struct platform_de=
+vice *pdev,=0A=
+>>>>  	return 0;=0A=
+>>>>  }=0A=
+>>>>  =0A=
+>>>> +static int dw_spi_k210_init(struct platform_device *pdev,=0A=
+>>>> +			    struct dw_spi_mmio *dwsmmio)=0A=
+>>>> +{=0A=
+>>>> +	dwsmmio->dws.caps =3D DW_SPI_CAP_DFS_32 | DW_SPI_CAP_POLL_NODELAY;=
+=0A=
+>>>> +=0A=
+>>>> +	return 0;=0A=
+>>>> +}=0A=
+>>>> +=0A=
+>>>>  static int dw_spi_mmio_probe(struct platform_device *pdev)=0A=
+>>>>  {=0A=
+>>>>  	int (*init_func)(struct platform_device *pdev,=0A=
+>>>> @@ -340,6 +348,7 @@ static const struct of_device_id dw_spi_mmio_of_ma=
+tch[] =3D {=0A=
+>>>>  	{ .compatible =3D "snps,dwc-ssi-1.01a", .data =3D dw_spi_dwc_ssi_ini=
+t},=0A=
+>>>>  	{ .compatible =3D "intel,keembay-ssi", .data =3D dw_spi_keembay_init=
+},=0A=
+>>>>  	{ .compatible =3D "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},=
+=0A=
+>>>=0A=
+>>>> +	{ .compatible =3D "canaan,kendryte-k210-spi", .data =3D dw_spi_k210_=
+init},=0A=
+>>>=0A=
+>>> Other than the comments from Sean and Mark regarding the DFS_32=0A=
+>>> feature runtime detectability, I couldn't find a patch with adding the=
+=0A=
+>>> new new compatible string into the DW APB SSI DT schema. Have I missed=
+=0A=
+>>> it? If I haven't could you add one to the next version of the series?=
+=0A=
+>>=0A=
+>> Yes, I will. I forgot to change the DW DT binding doc for this. I did ad=
+d a=0A=
+>> patch for the "polling" property but forgot the compatible string.=0A=
+>>=0A=
+>> In any case, I think that this new compatible string change can be dropp=
+ed by=0A=
+>> switching to automatically detecting the DFS32 and using a different sol=
+ution=0A=
+>> than the polling property change I sent for the RX fifo overflow problem=
+.=0A=
+> =0A=
+> No, new SoC needs new compatible string. Especially if a new vendor. =0A=
+=0A=
+My apologies for the bad wording: I meant to say the change to the list of=
+=0A=
+compatible strings that the DW SPI support would not be needed. So from the=
+ DW=0A=
+SPI point of view, there would be no new compatible string to add/document.=
+=0A=
+=0A=
+> =0A=
+>>=0A=
+>> I am still going through all the emails trying to understand what to try=
+ next to=0A=
+>> avoid the polling "hack".=0A=
+> =0A=
+> Use compatible.=0A=
+=0A=
+Yes, that is what this patch used. Again, I think there is a chance this ch=
+ange=0A=
+can be dropped.=0A=
+=0A=
+> =0A=
+> Rob=0A=
+> =0A=
+=0A=
+=0A=
+-- =0A=
+Damien Le Moal=0A=
+Western Digital Research=0A=
