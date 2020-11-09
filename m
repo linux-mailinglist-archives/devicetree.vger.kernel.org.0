@@ -2,132 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FDA12AC2C0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC402AC2ED
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:56:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731961AbgKIRpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 12:45:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37098 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730115AbgKIRo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 12:44:59 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A1F8C0613CF;
-        Mon,  9 Nov 2020 09:44:59 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id z21so12323743lfe.12;
-        Mon, 09 Nov 2020 09:44:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6PkEwJhx8FCOKavtGOYhsFS5NvjQTTcf+upK9UsKwU0=;
-        b=no+40PM5oXP5Stgl4mdsYfwCePictQCO/lAgDeyposk3c+C+nCnea1+PzSglmLWlXi
-         O26lupimdFAfRyt36m/nOA5IKZeiUSfQG/orEJLcBTkUsu53BEhRb70NYAJAHRYHisn0
-         hCj+ciFfuTxvljzBPnfqAp31IKxiM8rOUNwtTk1s0d2i1Unsusw6EplsLHHDSAe1cgdA
-         XTKLEUcBk3CVHY+m+9wvoxPXiuRzkWAzYYiHdxJRxsYsnUOR2gcaUs/SvanLnoPnTQ+/
-         FdNMTF5oC+sWTkiI2QYkN9V83gTDi3QdmTANTgNSlI2/oBWSxkX7sYeTKSIGXkk/NiEx
-         bd+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6PkEwJhx8FCOKavtGOYhsFS5NvjQTTcf+upK9UsKwU0=;
-        b=qK2iYJdpUTZME1Li2S//1W2JW8QoWphl7vK7BPqKrWhVrhyK2yvljxyf41sGoKDjm7
-         Q6YsDJeWjZujE0eYLP03+SzA+5rPS3GKSQwX98H6QcYsra06ULCqHbluqvQNd5W+b4Lb
-         tzAW1F3j7KQCsNAgkm/yK7zsria3AMyr9sUfMhHqXlmOrDMPdfYZjXozRnSbqPpiQfnd
-         JkC+ZyNBFSe4qFrqKWy9CX1o/ZfplP84fFYnxdWqW4U54uLvAu/DxHBTGKT02ez5gZbK
-         1xdEWIW0aCJADHpOnEKe2+lr9wmUuFL+kfvlJXp/zh+kUnAP13ypJgyi1pNtYJuMU0qU
-         hhtg==
-X-Gm-Message-State: AOAM5332csNkdYIus+UTFFWnuiQIYT7/Upbqz4JszTUzafWRs7u4WE/C
-        wF01yv0IJ98X3IuvtPA7udU=
-X-Google-Smtp-Source: ABdhPJx6EGOQqxemXoAVKmGJV6KS3yMfgwlSCFSr9pPjqbI2yQSEryRSzZcOA2ebNDyND+jYcPmf6A==
-X-Received: by 2002:a19:408b:: with SMTP id n133mr5672872lfa.564.1604943898030;
-        Mon, 09 Nov 2020 09:44:58 -0800 (PST)
-Received: from mobilestation ([95.79.141.114])
-        by smtp.gmail.com with ESMTPSA id z4sm815664lfd.123.2020.11.09.09.44.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 09:44:57 -0800 (PST)
-Date:   Mon, 9 Nov 2020 20:44:50 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Subject: Re: [PATCH 01/32] of: Fix property supplier parsing
-Message-ID: <20201109174450.myombn5skpj5wcxh@mobilestation>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-2-damien.lemoal@wdc.com>
- <CAHp75VfvUZ6h+JGCUQ65i7qFsugvbd3n=aCprgvp=geRSpQEhQ@mail.gmail.com>
+        id S1729923AbgKIR4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 12:56:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46522 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729533AbgKIR4p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 12:56:45 -0500
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B0CBE2068D;
+        Mon,  9 Nov 2020 17:56:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604944604;
+        bh=d6Nc5RiBiq3XeVeUekKRvwM0AjmxizMZD3zTXBs+VC4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FVYQvb7fC0tGjEnXYBJQ2BU5DlA5DqfngmMFCiFhFKfAgCxqRGKVSe2p8N2HqbQjq
+         /Bnb9Po+fBPysQCXYwDJrdyHYwNF0iTLU4hNyl8lp+hbb10EMnMGCUwtGWDGPMa1tV
+         ni2mTuAYNW6rsVUITrQg8PIcWLnCqm+RlqVrjSYw=
+Received: by mail-ot1-f46.google.com with SMTP id i18so9824898ots.0;
+        Mon, 09 Nov 2020 09:56:44 -0800 (PST)
+X-Gm-Message-State: AOAM530QOW6il7fcYKdDBA5LKSrOX5TY7Y/P11NrIpY0C+FMjy9/xzZ8
+        KlJd09pE0q3kKEIGo+P6bisBkca3Z1eACnXl3hs=
+X-Google-Smtp-Source: ABdhPJzwwdrokAaOrQsqgDF/PuVm5uWw4aTF/jcoTVvzI+iPfxQKuJFv+zTFsqp2WSG5m2QtpOuWLLudtXJ7Iq25qbM=
+X-Received: by 2002:a9d:65d5:: with SMTP id z21mr10432995oth.251.1604944603895;
+ Mon, 09 Nov 2020 09:56:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75VfvUZ6h+JGCUQ65i7qFsugvbd3n=aCprgvp=geRSpQEhQ@mail.gmail.com>
+References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
+ <20201016090833.1892-2-thunder.leizhen@huawei.com> <CAK8P3a2TSmsNSi-XFpT6AQ3jvVxJ1AW7Uf5tAo477wtwXZwUzg@mail.gmail.com>
+ <e27dc152-7aef-10df-f391-bf56e13e23df@gmail.com> <CAK8P3a13ywHh7igdfDSPQz9Bw8YAnKWFLKARkk2NL5u6=6yb=w@mail.gmail.com>
+ <0eee3fd2-7400-7de7-27a7-7fcaa0955854@gmail.com> <d42745b7-ef76-e584-0da2-751ac8c1cf3a@huawei.com>
+ <CAK8P3a335TT1+bdHqB=FetPanXXfGv3dC7ZCkx+w+F3j00kj5A@mail.gmail.com>
+ <07ab3bdd-dcb1-5a59-d813-f82451b3f028@huawei.com> <5980552d-6e96-fd9f-c758-1b1e9f57100e@huawei.com>
+ <43986e17-f493-b3b6-2829-3ba7d92f2e8c@gmail.com>
+In-Reply-To: <43986e17-f493-b3b6-2829-3ba7d92f2e8c@gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Mon, 9 Nov 2020 18:56:26 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a374KTVR6vC4civ0pNy8S9n4o8Ni9wCrdko-JO7aRO2GQ@mail.gmail.com>
+Message-ID: <CAK8P3a374KTVR6vC4civ0pNy8S9n4o8Ni9wCrdko-JO7aRO2GQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
+ empty dma-ranges
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andy,
+On Mon, Nov 9, 2020 at 6:30 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+> On 11/8/20 10:18 PM, Leizhen (ThunderTown) wrote:
+> > Hi, everybody:
+> >   How do we deal with this problem? I updated the kernel to the latest and the problem still persists.
+> >
+> >   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j24 dtbs 2>err.txt
+> >   vim err.txt
+> >
+> > arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
+>
+> I was hoping that Ray or Scott could give this a try, and TBH, I am
+> still not a big fan of having to mangle the 'reg' property to be
+> compatible with #address-cells = <2> and #size-cells = <2>, I would have
+> preferred omitting the 'dma-ranges' property entirely.
+>
+> We have plenty of time to get this patch applied for v5.11.
 
-On Mon, Nov 09, 2020 at 05:14:21PM +0200, Andy Shevchenko wrote:
-> On Sat, Nov 7, 2020 at 10:14 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
-> 
-> > @@ -1308,7 +1308,6 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
-> >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> >  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> >  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> > -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
-> 
-> Sorry, but the above doesn't sound right to me.
-> It's a generic code and you may imagine how many systems you broke by
-> this change.
+I would much prefer to get the warning fixed for v5.10, once we know what the
+hardware can or cannot actually do, as it is one of the warnings that shows
+up in every kernelci build.
 
-Damien replaced the macro above with the code below (your removed it from your
-message):
-
-+static struct device_node *parse_gpios(struct device_node *np,
-+                                      const char *prop_name, int index)
-+{
-+       /*
-+        * Quirck for the DesignWare gpio-dwapb GPIO driver which defines
-+        * the "snps,nr-gpios" property to indicate the total number of GPIOs
-+        * available. As this conflict with "xx-gpios" reference properties,
-+        * ignore it.
-+        */
-+       if (strcmp(prop_name, "snps,nr-gpios") == 0)
-+               return NULL;
-+
-+       return parse_suffix_prop_cells(np, prop_name, index,
-+                                      "-gpios", "#gpio-cells");
-+}
-
-So AFAICS removing the macro shouldn't cause any problem.
-
-My concern was whether the quirk has been really needed. As I said the
-"snps,nr-gpios" property has been marked as deprecated in favor of the standard
-"ngpios" one. Due to the problem noted by Damien any deprecated property
-utilization will cause the DW APB SSI DT-nodes probe malfunction. That
-though implicitly but is supposed to encourage people to provide fixes for
-the dts-files with the deprecated property replaced with "ngpios".
-
-On the other hand an encouragement based on breaking the kernel doesn't seem a
-good solution. So as I see it either we should accept the solution provided by
-Damien, or replace it with a series of fixes for all dts-es with DW APB SSI
-DT-node defined. I suggest to hear the OF-subsystem maintainers out what
-solution would they prefer.
-
--Sergey
-
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
+      Arnd
