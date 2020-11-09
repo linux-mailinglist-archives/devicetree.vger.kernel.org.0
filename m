@@ -2,92 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACC402AC2ED
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:56:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ED582AC2F7
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 18:57:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729923AbgKIR4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 12:56:46 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46522 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729533AbgKIR4p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 12:56:45 -0500
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0CBE2068D;
-        Mon,  9 Nov 2020 17:56:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604944604;
-        bh=d6Nc5RiBiq3XeVeUekKRvwM0AjmxizMZD3zTXBs+VC4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FVYQvb7fC0tGjEnXYBJQ2BU5DlA5DqfngmMFCiFhFKfAgCxqRGKVSe2p8N2HqbQjq
-         /Bnb9Po+fBPysQCXYwDJrdyHYwNF0iTLU4hNyl8lp+hbb10EMnMGCUwtGWDGPMa1tV
-         ni2mTuAYNW6rsVUITrQg8PIcWLnCqm+RlqVrjSYw=
-Received: by mail-ot1-f46.google.com with SMTP id i18so9824898ots.0;
-        Mon, 09 Nov 2020 09:56:44 -0800 (PST)
-X-Gm-Message-State: AOAM530QOW6il7fcYKdDBA5LKSrOX5TY7Y/P11NrIpY0C+FMjy9/xzZ8
-        KlJd09pE0q3kKEIGo+P6bisBkca3Z1eACnXl3hs=
-X-Google-Smtp-Source: ABdhPJzwwdrokAaOrQsqgDF/PuVm5uWw4aTF/jcoTVvzI+iPfxQKuJFv+zTFsqp2WSG5m2QtpOuWLLudtXJ7Iq25qbM=
-X-Received: by 2002:a9d:65d5:: with SMTP id z21mr10432995oth.251.1604944603895;
- Mon, 09 Nov 2020 09:56:43 -0800 (PST)
-MIME-Version: 1.0
-References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
- <20201016090833.1892-2-thunder.leizhen@huawei.com> <CAK8P3a2TSmsNSi-XFpT6AQ3jvVxJ1AW7Uf5tAo477wtwXZwUzg@mail.gmail.com>
- <e27dc152-7aef-10df-f391-bf56e13e23df@gmail.com> <CAK8P3a13ywHh7igdfDSPQz9Bw8YAnKWFLKARkk2NL5u6=6yb=w@mail.gmail.com>
- <0eee3fd2-7400-7de7-27a7-7fcaa0955854@gmail.com> <d42745b7-ef76-e584-0da2-751ac8c1cf3a@huawei.com>
- <CAK8P3a335TT1+bdHqB=FetPanXXfGv3dC7ZCkx+w+F3j00kj5A@mail.gmail.com>
- <07ab3bdd-dcb1-5a59-d813-f82451b3f028@huawei.com> <5980552d-6e96-fd9f-c758-1b1e9f57100e@huawei.com>
- <43986e17-f493-b3b6-2829-3ba7d92f2e8c@gmail.com>
-In-Reply-To: <43986e17-f493-b3b6-2829-3ba7d92f2e8c@gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Mon, 9 Nov 2020 18:56:26 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a374KTVR6vC4civ0pNy8S9n4o8Ni9wCrdko-JO7aRO2GQ@mail.gmail.com>
-Message-ID: <CAK8P3a374KTVR6vC4civ0pNy8S9n4o8Ni9wCrdko-JO7aRO2GQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
- empty dma-ranges
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        id S1730158AbgKIR5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 12:57:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38956 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729599AbgKIR5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 12:57:05 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72188C0613CF;
+        Mon,  9 Nov 2020 09:57:03 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id 11so11466924ljf.2;
+        Mon, 09 Nov 2020 09:57:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TDdC4VBGfaC0YPU2cbDOK4oEgDaGnWxSotX0J+aYafA=;
+        b=tNK0dlAGukcobevD3Ui+HanJ5riK4b1RuGctsi5HUC4wHixUwR1xO8UhDLrhZQrdTY
+         /KLcXfNq1bA767lZyiQb6FEtsW2ZhsbJ5SzmVA3x0xPNagUVVQok9UHiyCEGW6iVget6
+         l4D2GKlaE1wkwSRVG3AK0D3nY8cvReQ9uQP+rpl3FkJF3m7fovsnpTqkYAYud4C65C4b
+         zMJnuZZPzQb+XDbUgja0PPyr8nHS7MFHvQO7OZX1E8cRZoTVCgfMCIvN1a4XbsI6Zh8a
+         +ERtWl41HCUZcubdLhor/DRHOvFD2k3d3TMKKKX7XUvhbQcYkdH3OHLk6oHCsIdgJ4lk
+         d31A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TDdC4VBGfaC0YPU2cbDOK4oEgDaGnWxSotX0J+aYafA=;
+        b=omr9lUBOcwi16ibyARv2PywOA+cauqrvIHaDDfp8RByZLkZHFtjBGLaz7RoA/WD58p
+         +9v+6zgulb2fSxa27+hAxwj3jKhwYkEwWoWHgCVZpbbrmvt6Gr/1sUD1lex9iFii2xPF
+         QneK8z+XMA5rlxl4MY01vTAISKsKO8G/2RQn0I5q6zPREO2eGr5QQ65YYyvC42ynTLuZ
+         6wxIO9Fxbud4ir9L0/i+8bVhfSRJKd6ZJlr9KQ+r8L/c88FlXG15PFXCkGRWsBiy0/1s
+         8vwKEW/TSm1LzWfkcNRX1vQVnZrdIraEAsPltzZAtHT8+guBJyS3Ac4Qfo0E1RjBsWyD
+         llog==
+X-Gm-Message-State: AOAM532Y89qk/AspKkjlFlB1+tT2+2NdV+whIFV6+n/CFPB3MTKXF5Ul
+        QAZA/MymUjqejCKKWOg8yNj2PksCunQTsvbJ
+X-Google-Smtp-Source: ABdhPJwvCfO0zF+eiVJC7NsRyveQflGTHzieevzbazcb7Hmkk2IwVNnSGrnYLDnE/vzo823wANymKA==
+X-Received: by 2002:a2e:8e79:: with SMTP id t25mr2425977ljk.133.1604944621826;
+        Mon, 09 Nov 2020 09:57:01 -0800 (PST)
+Received: from mobilestation ([95.79.141.114])
+        by smtp.gmail.com with ESMTPSA id w18sm1813942lfc.5.2020.11.09.09.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2020 09:57:01 -0800 (PST)
+Date:   Mon, 9 Nov 2020 20:56:59 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH 02/32] spi: dw: Add support for 32-bits ctrlr0 layout
+Message-ID: <20201109175659.hqr6qq5qwk4sd775@mobilestation>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
+ <20201107081420.60325-3-damien.lemoal@wdc.com>
+ <20201109142529.tt5ojjyn36vd3ohe@mobilestation>
+ <CAHp75VeXT8CMumY2fif6eBX0GRWvOV_47rETTbL5Yud+zBV0XA@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAHp75VeXT8CMumY2fif6eBX0GRWvOV_47rETTbL5Yud+zBV0XA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 9, 2020 at 6:30 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> On 11/8/20 10:18 PM, Leizhen (ThunderTown) wrote:
-> > Hi, everybody:
-> >   How do we deal with this problem? I updated the kernel to the latest and the problem still persists.
-> >
-> >   make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j24 dtbs 2>err.txt
-> >   vim err.txt
-> >
-> > arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/qcom/ipq6018.dtsi:185.3-14: Warning (dma_ranges_format): /soc:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #address-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but its #size-cells (1) differs from / (2)
->
-> I was hoping that Ray or Scott could give this a try, and TBH, I am
-> still not a big fan of having to mangle the 'reg' property to be
-> compatible with #address-cells = <2> and #size-cells = <2>, I would have
-> preferred omitting the 'dma-ranges' property entirely.
->
-> We have plenty of time to get this patch applied for v5.11.
+Hello Andy,
 
-I would much prefer to get the warning fixed for v5.10, once we know what the
-hardware can or cannot actually do, as it is one of the warnings that shows
-up in every kernelci build.
+On Mon, Nov 09, 2020 at 04:36:51PM +0200, Andy Shevchenko wrote:
+> On Mon, Nov 9, 2020 at 4:25 PM Serge Semin <fancer.lancer@gmail.com> wrote:
+> >
+> > Hello Damien,
+> > Thanks for your patches. My comments are below.
+> >
+> > On Sat, Nov 07, 2020 at 05:13:50PM +0900, Damien Le Moal wrote:
+> > > Synopsis DesignWare DW_apb_ssi version 4 defines a 32-bit layout of
+> > > the ctrlr0 register for SPI masters. The layout of ctrlr0 is:
+> > >
+> > > |   31 .. 23  | 22 .. 21 | 20 .. 16 |
+> > > | other stuff | spi_frf  |  dfs_32  |
+> > >
+> > > |   15 .. 10  | 9 .. 8 | 7 .. 6 | 5 .. 4 | 3 .. 0 |
+> > > | other stuff |  tmod  |  mode  |  frf   |  dfs   |
+> > >
+> >
+> > > Th main difference of this layout with the 16-bits version is the data
+> >     ^
+> >     |
+> >     e
+> >
+> > > frame format field which resides in bits 16..20 instead of bits 3..0.
+> > >
+> >
+> > Are you sure they have been moved from [0, 3] to [16, 20]? I don't have the
+> > manual for the 4.0x version of the core, but according to this patch:
+> > https://patchwork.kernel.org/project/spi-devel-general/patch/1575907443-26377-7-git-send-email-wan.ahmad.zainie.wan.mohamad@intel.com/
+> > it has been ok to use the lowest four bits for DFS setting. Is the commit
+> > message misleading there?
+> 
 
-      Arnd
+> 20:16 DFS_32
+> Data Frame Size in 32-bit transfer size mode. Used to select
+> the data frame size in 32-bit transfer mode. These bits are
+> only valid when SSI_MAX_XFER_SIZE is configured to 32.
+> When the data frame size is programmed to be less than 32
+> bits, the receive data are automatically right-justified by the
+> receive logic, with the upper bits of the receive FIFO zero-
+> padded.
+> 
+> 3:0 DFS
+> Data Frame Size.
+> This register field is only valid when SSI_MAX_XFER_SIZE
+> is configured to 16. If SSI_MAX_XFER_SIZE is configured to
+> 32, then writing to this field will not have any effect.
+> 
+> As far as I can tell it's an extension to the existing one (which one
+> in use depends on the SSI configuration).
+> 
+> 
+> The comment you are referring to is about DW_ssi v1.x (vs. DW_apb_ssi v4.x).
+
+Ok. Thanks for clarifying this. Now I see the way it's working.
+
+-Sergey
+
+> 
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
