@@ -2,92 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC062AB39A
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 10:30:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4120C2AB3D0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 10:43:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727774AbgKIJag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 04:30:36 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:32866 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726423AbgKIJaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 04:30:35 -0500
-X-UUID: 17a307c7281f4e85ba8846965a849e5a-20201109
-X-UUID: 17a307c7281f4e85ba8846965a849e5a-20201109
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <shane.chien@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 27773945; Mon, 09 Nov 2020 17:30:32 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 9 Nov 2020 17:30:31 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 9 Nov 2020 17:30:30 +0800
-From:   Shane Chien <shane.chien@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, <jiaxin.yu@mediatek.com>,
-        <chipeng.chang@mediatek.com>, <shane.chien@mediatek.com>
-Subject: [PATCH v2 2/2] dt-bindings: mediatek: mt6359: Add new property for mt6359
-Date:   Mon, 9 Nov 2020 17:30:09 +0800
-Message-ID: <1604914209-9174-3-git-send-email-shane.chien@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1604914209-9174-1-git-send-email-shane.chien@mediatek.com>
-References: <1604914209-9174-1-git-send-email-shane.chien@mediatek.com>
+        id S1729146AbgKIJnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 04:43:07 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:39089 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728802AbgKIJnG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 04:43:06 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 4A7CE22F2D;
+        Mon,  9 Nov 2020 10:43:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1604914983;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=TISJX/0g0eTQvbb/iznKAoeAEUeQtZ4L3gDonZPa6fg=;
+        b=HGsjjCZPzp70oOWnoVY8PrIEv7hr8tj+nm0oJ/1dojWxsXcVt6k5hCgWmYJ+/AFRjB/7ZE
+        PCfR4oD41OaBZ45/z/uJvrZVZZYgLDRIhZox1LVKW5sEmwIXNz1he47uZv/z1Uas62R8Uo
+        8Qf37A0U3oSZij/OmMi+CTJq3yDTXXQ=
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 09 Nov 2020 10:43:03 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        "Y.b. Lu" <yangbo.lu@nxp.com>, Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Ashish Kumar <ashish.kumar@nxp.com>
+Subject: Re: [RFC PATCH v3 9/9] arm64: dts: lx2160a: fix FlexSPI clock
+In-Reply-To: <20201108212139.ht22zdk27pyxv6wc@skbuf>
+References: <20201108185113.31377-1-michael@walle.cc>
+ <20201108185113.31377-10-michael@walle.cc>
+ <20201108212139.ht22zdk27pyxv6wc@skbuf>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <0e165232e518c0f6c1b894311f00982a@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Shane.Chien" <shane.chien@mediatek.com>
+Am 2020-11-08 22:21, schrieb Vladimir Oltean:
+> On Sun, Nov 08, 2020 at 07:51:13PM +0100, Michael Walle wrote:
+>> Now that we have a proper driver for the FlexSPI interface use it. 
+>> This
+>> will fix SCK frequency switching on Layerscape SoCs.
+>> 
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>> Thanks to Vladimir Oltean, this was partially tested on a LX2160A RDB. 
+>> But
+>> this patch is marked as RFC nonetheless, because there is too much
+>> difference in the clock tree between LS1028A and LX2160A. It would be 
+>> nice
+>> if someone could test it and add a Tested-by.
+> 
+> You want someone to probe the SCK frequency?
 
-This patch add "LDO_VAUD18-supply" property to
-control vaud18 regulator. It is labeled as required
-due to mt6359 audio path always need to enable vaud18.
+No not really, just a thorough test.
 
-Signed-off-by: Shane.Chien <shane.chien@mediatek.com>
----
- .../devicetree/bindings/sound/mt6359.yaml          |    9 +++++++++
- 1 file changed, 9 insertions(+)
+> I expect that if frequency
+> switching works on LS1028A, and the lx2160a_flexspi_divs table is
+> correct (which, based on the documentation for 
+> FlexSPICR1[FlexSPI_CLK_DIV],
+> it is), then it would work on LX2160A too?
 
-diff --git a/Documentation/devicetree/bindings/sound/mt6359.yaml b/Documentation/devicetree/bindings/sound/mt6359.yaml
-index a54f466..7ccaa8c 100644
---- a/Documentation/devicetree/bindings/sound/mt6359.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt6359.yaml
-@@ -17,6 +17,11 @@ description: |
-   Must be a child node of PMIC wrapper.
- 
- properties:
-+  LDO_VAUD18-supply:
-+    ref: /schemas/types.yaml#/definitions/phandle
-+    description: |
-+      Regulator of LDO VAUD18 at 1.8V.
-+
-   mediatek,dmic-mode:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: |
-@@ -49,11 +54,15 @@ properties:
-     description: |
-       Specifies the type of mic type connected to adc2
- 
-+required:
-+  - LDO_VAUD18-supply
-+
- additionalProperties: false
- 
- examples:
-   - |
-     mt6359codec: mt6359codec {
-+      LDO_VAUD18-supply = <&mt6359p_vaud18_reg>;
-       mediatek,dmic-mode = <0>;
-       mediatek,mic-type-0 = <2>;
-     };
--- 
-1.7.9.5
+The switching should work. Finding out wether it is correct can be 
+checked
+by reading the raw register value, i.e. 01E0_0900h. But the parent clock 
+is
+what is bothering me a little. Getting that wrong would lead to a wrong 
+SCK
+output frequency albeit the divider is set to a correct value.
 
+> Is there a simple test that can be made in order to trivially determine
+> whether the frequencies are correct?
+
+We already found out that there seems to be kind of a saturation with
+higher frequencies, i.e. octal SPI bus is capable of a much higher
+throughput but we only achieve 50MB/s. I'd have expected a much higher
+datarate (I mean it is advertised as high performance and it uses a 8 
+bit
+wide databus..). But anyway, it might make sense to go the other way, 
+i.e.
+find out the max datathroughput at lower frequencies and look if it 
+makes
+sense. Assuming no DDR, the throughput should be around your frequency. 
+For
+example, having 4 MHz should result in 4MB/s data throughput.
+
+OTOH we already saw that after linux booted - with the current device 
+tree
+which has a setting of 50MHz max SCK frequency - the programmed divider 
+by
+my driver is the same as the former setting (0x13, div-by-32); so this 
+series
+doesn't change the SCK frequency.
+
+-michael
