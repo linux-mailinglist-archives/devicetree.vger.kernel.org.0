@@ -2,136 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AB112ABDE8
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 14:55:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE0192ABDFB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 14:59:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729807AbgKINz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 08:55:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57782 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729660AbgKINz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 08:55:27 -0500
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43727C0613D4
-        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 05:55:27 -0800 (PST)
-Received: by mail-lj1-x241.google.com with SMTP id 23so10383190ljv.7
-        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 05:55:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lqe5HrIHoZLKJYdgktbLvnJ7WzCQkZi69agPba5hbSs=;
-        b=N94TB+YLkY2zbd2qs/JZiN2GasG9bvVVY4+qr0qm28m37JUwCxHLgcQhFLqdiwG6wP
-         36p80N800qtZO5Y5/54aZ3Ds3GAdrT9imWS8aZb8ep4LsnRqxn28rWQ0L4kka52r8KUG
-         Y2WqlS12ZqNcQ/DS/XYF4A0rpu58FzeiaQhUG5lkWFp1nZDw4XW7skWOaX2w4Q67UGUV
-         s40AMt4lrMVcsuOScsZYctM2DZ32eM3D7zQHgRHReNxiC06jnVgWx6g3kZ4JP9zfkx+S
-         5/PrEpERodbnK0pJW7+SRxRRp4I/b2YxzIp3RZBBGl+I+yAbWCR+Um/ECXQr4LTJ/X/9
-         eI2g==
+        id S1729850AbgKIN7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 08:59:07 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:29920 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729697AbgKIN7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 08:59:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1604930345;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=7xwyMRgx6zwOoi8ggqAXxORMWSzC0EyKow3sz49WwHo=;
+        b=Scq6HiNR6YvdPzryR0DPWR7C3e5lCAsR1+Op19eZdJH7eb/ippFQd8oV/AbhM/AZ6iHuk6
+        kh3Qj8EybrsokiTkq/n0JqjM0ctZZ1T04YWu0nKy4OYToM1NNakB6E8z4xUgn3ILura86K
+        Zko1n/MbcTYi8g5lWV07jAHJVI6GeHM=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-28-Af5TMbucO1uL1FrYQ9WPTg-1; Mon, 09 Nov 2020 08:59:04 -0500
+X-MC-Unique: Af5TMbucO1uL1FrYQ9WPTg-1
+Received: by mail-ed1-f69.google.com with SMTP id h6so2730625edt.12
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 05:59:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lqe5HrIHoZLKJYdgktbLvnJ7WzCQkZi69agPba5hbSs=;
-        b=P0J2AVS71gmf66qI3xxZBvD00jHjs8FvCXQoclVtxaYU+7luaGMTLtIGGKC6DB7RoC
-         dQxL0asNCaML/hECnM9AK5BZCkGhHMUWrDM9hAMWze1QtElOhPcNIa1KwHv1G2zbyvZs
-         0ZN+WGQrjMAyvlFB3QF0/8m1Z98K2vuBHfMeVMcnwCaNHEiNnT80rQ9cvL5M2CQstcfj
-         hgHdvAJaoltscaxHIAbNXJrOUv60FG2vI7p+5GfXgFsjEUUiq3LWm66APIAk/MQ7ceSI
-         IMzR20pa0ZaruGkZfsgO0P6P4WtjQwUaUJT1MB3M88Ea7k7U1DW3Pr+LI+TxlQQ8kZw+
-         +Nzg==
-X-Gm-Message-State: AOAM530Ec2rM4VCArrBfJfhRwRI/aBEdCp6GEtKXpdV+jv7CI//aqwSS
-        F5r7oRxFfKi1ZYFqhWVjoUwPnecGLUDxVxo2A7W0RQ==
-X-Google-Smtp-Source: ABdhPJz3iQtflkEPiWk1FMPU1/Pd2p7uJeOvrzUebarKW+NuNnCZ6Uh/UONYKo/x7LVUoyml/JF+BdvydSLnid3qOuA=
-X-Received: by 2002:a2e:b54a:: with SMTP id a10mr5875868ljn.139.1604930125511;
- Mon, 09 Nov 2020 05:55:25 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7xwyMRgx6zwOoi8ggqAXxORMWSzC0EyKow3sz49WwHo=;
+        b=HcLPuLUYyaj8cnxpKkpRNpRb4grJXqIt0i1QfYwJFc5wQoy6Rsk5UZDtw3xtiNFE8h
+         Qs2eWseyKpDsSGqr+NYen/LxzseJCiDAQLVKK+vpM+eg9HRw+QoB8cDmDhvS2Wgk6Twq
+         vYycdssv/HRaNHmamSgZ/6SsKDMD6GLTZ9f5108NFWqreSBSoWRvoh22dJqqG9iCUQUc
+         S9FUsmg84XDcxBmGY8VF8iEtwhFWRkm0c1AyPDGSS/Qn9vyg+AjvCn1jv7fYEPI4HGKM
+         pApkMxT6MgB8ZGaWctwDVL9ooa74PzPQRj9SOKmLmWKisttwIxViDH9A4ofi7ts55YVw
+         tY5w==
+X-Gm-Message-State: AOAM531qvJ9cd+s8nlm9+wuh4yx+RMsOm6LKYS+et3McWQH0Di/8izIP
+        IrsRHrb6Vep0Rbea+6qe3Edp7Z+IKROAG3sonwB6QIvWgwtVEfYj/0wEonooY5qZOWrWiod7+KL
+        7a5GYr0NIJaaF+OLGOIg3bw==
+X-Received: by 2002:a17:906:6d13:: with SMTP id m19mr15065935ejr.345.1604930342787;
+        Mon, 09 Nov 2020 05:59:02 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwtdM3M+0YFSVIeiw2vPzebtoaAaXJrH7HsStEJdONxGf7Fpp63aS0CZ48GpVImlcZ1NZAehw==
+X-Received: by 2002:a17:906:6d13:: with SMTP id m19mr15065916ejr.345.1604930342620;
+        Mon, 09 Nov 2020 05:59:02 -0800 (PST)
+Received: from x1.localdomain (2001-1c00-0c0c-fe00-6c10-fbf3-14c4-884c.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:6c10:fbf3:14c4:884c])
+        by smtp.gmail.com with ESMTPSA id c4sm8714607ejx.9.2020.11.09.05.59.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2020 05:59:02 -0800 (PST)
+Subject: Re: [PATCH v2 4/9] ata: ahci: add ack callback to multi irq handler
+To:     sven.auhagen@voleatech.de, axboe@kernel.dk, robh+dt@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, gregory.clement@bootlin.com
+Cc:     linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
+        rjw@rjwysocki.net, viresh.kumar@linaro.org,
+        antoine.tenart@bootlin.com, maxime.chevallier@bootlin.com,
+        thomas.petazzoni@bootlin.com, miquel.raynal@bootlin.com
+References: <20201104155237.77772-1-sven.auhagen@voleatech.de>
+ <20201104155237.77772-5-sven.auhagen@voleatech.de>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <b27902a6-f7cb-cea4-2023-2cc6875a4f42@redhat.com>
+Date:   Mon, 9 Nov 2020 14:59:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-References: <20201106061433.1483129-1-ajye_huang@compal.corp-partner.google.com>
- <20201106061433.1483129-2-ajye_huang@compal.corp-partner.google.com>
-In-Reply-To: <20201106061433.1483129-2-ajye_huang@compal.corp-partner.google.com>
-From:   Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Date:   Mon, 9 Nov 2020 21:55:14 +0800
-Message-ID: <CALprXBZmC=Qxk5fkGn=QJ4xW4tSGMZxb9LFUbqfMge0vLcP-dQ@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] ASoC: google: dt-bindings: modify machine bindings
- for two MICs case
-To:     Ajye Huang <ajye.huang@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Cheng-yi Chiang <cychiang@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201104155237.77772-5-sven.auhagen@voleatech.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rob
+Hi,
 
-I follow your suggests that adding (maxItems: 1) for dmic-gpis property,
-and keep one example of adding dmic-gpios property in it
+On 11/4/20 4:52 PM, sven.auhagen@voleatech.de wrote:
+> From: Sven Auhagen <sven.auhagen@voleatech.de>
+> 
+> In order to support custom actions at the end of the irq handler
+> a multi_irq_host_ack callback is added to the struct ahci_host_priv.
+> 
+> Suggested-by: Hans de Goede <hdegoede@redhat.com>
+> Signed-off-by: Sven Auhagen <sven.auhagen@voleatech.de>
 
-Could you please kindly review it ?
+Thanks, patch looks good to me:
 
-Thank you so much
-Ajye
+Reviewed-by: Hans de Goede <hdegoede@redhat.com>
 
-On Fri, Nov 6, 2020 at 2:14 PM Ajye Huang <ajye.huang@gmail.com> wrote:
->
-> Add a property "dmic-gpios" for switching between two MICs.
->
-> Signed-off-by: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Regards,
+
+Hans
+
 > ---
->  .../devicetree/bindings/sound/google,sc7180-trogdor.yaml  | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> index efc34689d6b5..ce050a9dec94 100644
-> --- a/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> +++ b/Documentation/devicetree/bindings/sound/google,sc7180-trogdor.yaml
-> @@ -34,6 +34,10 @@ properties:
->    "#size-cells":
->      const: 0
->
-> +  dmic-gpios:
-> +    maxItems: 1
-> +    description: GPIO for switching between DMICs
+>  drivers/ata/ahci.h    | 2 ++
+>  drivers/ata/libahci.c | 4 ++++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/drivers/ata/ahci.h b/drivers/ata/ahci.h
+> index 98b8baa47dc5..d8109e06794c 100644
+> --- a/drivers/ata/ahci.h
+> +++ b/drivers/ata/ahci.h
+> @@ -371,6 +371,8 @@ struct ahci_host_priv {
+>  	/* only required for per-port MSI(-X) support */
+>  	int			(*get_irq_vector)(struct ata_host *host,
+>  						  int port);
 > +
->  patternProperties:
->    "^dai-link(@[0-9])?$":
->      description:
-> @@ -83,7 +87,7 @@ examples:
->    - |
->      sound {
->          compatible = "google,sc7180-trogdor";
-> -        model = "sc7180-rt5682-max98357a-1mic";
-> +        model = "sc7180-rt5682-max98357a-2mic";
->
->          audio-routing =
->                      "Headphone Jack", "HPOL",
-> @@ -92,6 +96,8 @@ examples:
->          #address-cells = <1>;
->          #size-cells = <0>;
->
-> +        dmic-gpios = <&tlmm 86 0>;
+> +	int			(*multi_irq_host_ack)(int irq, struct ata_port *ap);
+>  };
+>  
+>  extern int ahci_ignore_sss;
+> diff --git a/drivers/ata/libahci.c b/drivers/ata/libahci.c
+> index ea5bf5f4cbed..cf9839135a57 100644
+> --- a/drivers/ata/libahci.c
+> +++ b/drivers/ata/libahci.c
+> @@ -1897,6 +1897,7 @@ static void ahci_port_intr(struct ata_port *ap)
+>  static irqreturn_t ahci_multi_irqs_intr_hard(int irq, void *dev_instance)
+>  {
+>  	struct ata_port *ap = dev_instance;
+> +	struct ahci_host_priv *hpriv = ap->host->private_data;
+>  	void __iomem *port_mmio = ahci_port_base(ap);
+>  	u32 status;
+>  
+> @@ -1909,6 +1910,9 @@ static irqreturn_t ahci_multi_irqs_intr_hard(int irq, void *dev_instance)
+>  	ahci_handle_port_interrupt(ap, port_mmio, status);
+>  	spin_unlock(ap->lock);
+>  
+> +	if (hpriv->multi_irq_host_ack)
+> +		hpriv->multi_irq_host_ack(irq, ap);
 > +
->          dai-link@0 {
->              link-name = "MultiMedia0";
->              reg = <0>;
-> --
-> 2.25.1
->
+>  	VPRINTK("EXIT\n");
+>  
+>  	return IRQ_HANDLED;
+> 
+
