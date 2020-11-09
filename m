@@ -2,540 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D4352AC979
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 00:43:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D4792AC973
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 00:40:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729336AbgKIXna convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 9 Nov 2020 18:43:30 -0500
-Received: from aposti.net ([89.234.176.197]:57560 "EHLO aposti.net"
+        id S1729336AbgKIXk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 18:40:28 -0500
+Received: from mail.kernel.org ([198.145.29.99]:42360 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729243AbgKIXn3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 18:43:29 -0500
-Date:   Mon, 09 Nov 2020 23:37:05 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 1/2] MIPS: Ingenic: Add missing nodes for Ingenic SoCs and
- boards.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     tsbogend@alpha.franken.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, nixiaoming@huawei.com,
-        paulburton@kernel.org, krzk@kernel.org, hns@goldelico.com,
-        ak@linux.intel.com, ebiederm@xmission.com,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
-Message-Id: <TXYJJQ.TVQC48S8AVLH@crapouillou.net>
-In-Reply-To: <20201107115251.86182-2-zhouyanjie@wanyeetech.com>
-References: <20201107115251.86182-1-zhouyanjie@wanyeetech.com>
-        <20201107115251.86182-2-zhouyanjie@wanyeetech.com>
+        id S1729243AbgKIXk1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 18:40:27 -0500
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 275E72074F;
+        Mon,  9 Nov 2020 23:40:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604965226;
+        bh=HYbaJHkk7cdSoS3jVTRSnnUaEKctYjZ3NDHcRvYSXRs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aDBEuSmf7uXSEoutBPzACdHRqDjPdgmNkS9iWP0WaIaXbcxnPWTElI1E3rSOzFmsf
+         9S6VVH+SqIJ/1peSF1gE7aZpi/lYbZVvMpt2fE38MxljZiguKb1ERbBLVMrmDbehCe
+         qg0hL3Fd7lNzhFSWPRpcRxqDwgQaPoSIeVHl6bYI=
+Received: by mail-ed1-f47.google.com with SMTP id e18so10677487edy.6;
+        Mon, 09 Nov 2020 15:40:26 -0800 (PST)
+X-Gm-Message-State: AOAM532usca6MrSyEb3yz+JKfKzn2bPE0JOHoGYeaSgR1yEAttmx8RWe
+        TEk/5wq3a2kOzkpxVDzsOD3dyP5fWFRmTtoUwQ==
+X-Google-Smtp-Source: ABdhPJwMpHWBa17twiFTSrvsjpX1uPRPRaPfL/R7+B+M/B6lGR0vzIgVjxiXR1cJK4PUndcfFb4cV3+QodvnxSpzu1Y=
+X-Received: by 2002:a50:f0d4:: with SMTP id a20mr18284639edm.303.1604965224630;
+ Mon, 09 Nov 2020 15:40:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+References: <20201023133130.194140-1-fparent@baylibre.com> <20201023133130.194140-6-fparent@baylibre.com>
+In-Reply-To: <20201023133130.194140-6-fparent@baylibre.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 10 Nov 2020 07:40:13 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__w8p2=rVDnNhcn7cKBJ5rm5he+ZP6-crRBRGpiwTgWJA@mail.gmail.com>
+Message-ID: <CAAOTY__w8p2=rVDnNhcn7cKBJ5rm5he+ZP6-crRBRGpiwTgWJA@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] drm/mediatek: Add support for main DDP path on MT8167
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Fabien:
 
+Fabien Parent <fparent@baylibre.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=8823=
+=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=889:31=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Add the main (DSI) drm display path for MT8167.
 
-Le sam. 7 nov. 2020 à 19:52, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> 1.Add OTG/OTG PHY/RNG nodes for JZ4780, CGU/OTG nodes for CI20.
-> 2.Add OTG/OTG PHY/RNG/OST nodes for X1000, SSI/CGU/OST/OTG/SC16IS752
->   nodes for CU1000-Neo.
-> 3.Add OTG/OTG PHY/DTRNG/OST nodes for X1830, SSI/CGU/OST/OTG/SC16IS752
->   nodes for CU1830-Neo.
-> 
-> Tested-by: 周正 (Zhou Zheng) <sernia.zhou@foxmail.com>
-> Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
+>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > ---
->  arch/mips/boot/dts/ingenic/ci20.dts       | 16 +++++++++
->  arch/mips/boot/dts/ingenic/cu1000-neo.dts | 60 
-> +++++++++++++++++++++++++++----
->  arch/mips/boot/dts/ingenic/cu1830-neo.dts | 60 
-> +++++++++++++++++++++++++++----
->  arch/mips/boot/dts/ingenic/jz4780.dtsi    | 41 +++++++++++++++++++--
->  arch/mips/boot/dts/ingenic/x1000.dtsi     | 52 
-> ++++++++++++++++++++++++++-
->  arch/mips/boot/dts/ingenic/x1830.dtsi     | 54 
-> +++++++++++++++++++++++++++-
->  6 files changed, 267 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts 
-> b/arch/mips/boot/dts/ingenic/ci20.dts
-> index 75f5bfbf2c37..b31054a41754 100644
-> --- a/arch/mips/boot/dts/ingenic/ci20.dts
-> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
-> @@ -93,6 +93,15 @@
->  	clock-frequency = <48000000>;
+>
+> Changelog:
+>
+> V2: No change
+>
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c | 38 ++++++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
+iatek/mtk_drm_drv.c
+> index 59c85c63b7cc..3952435093fe 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -112,6 +112,17 @@ static const enum mtk_ddp_comp_id mt2712_mtk_ddp_thi=
+rd[] =3D {
+>         DDP_COMPONENT_PWM2,
 >  };
-> 
-> +&cgu {
-> +	/*
-> +	 * Use the 32.768 kHz oscillator as the parent of the RTC for a 
-> higher
-> +	 * precision.
-> +	 */
-> +	assigned-clocks = <&cgu JZ4780_CLK_RTC>;
-> +	assigned-clock-parents = <&cgu JZ4780_CLK_RTCLK>;
+>
+> +static enum mtk_ddp_comp_id mt8167_mtk_ddp_main[] =3D {
+> +       DDP_COMPONENT_OVL0,
+> +       DDP_COMPONENT_COLOR0,
+> +       DDP_COMPONENT_CCORR,
+> +       DDP_COMPONENT_AAL0,
+> +       DDP_COMPONENT_GAMMA,
+> +       DDP_COMPONENT_DITHER,
+> +       DDP_COMPONENT_RDMA0,
+> +       DDP_COMPONENT_DSI0,
 > +};
 > +
->  &mmc0 {
->  	status = "okay";
-> 
-> @@ -396,6 +405,13 @@
->  	status = "okay";
+>  static const enum mtk_ddp_comp_id mt8173_mtk_ddp_main[] =3D {
+>         DDP_COMPONENT_OVL0,
+>         DDP_COMPONENT_COLOR0,
+> @@ -163,6 +174,11 @@ static const struct mtk_mmsys_driver_data mt8173_mms=
+ys_driver_data =3D {
+>         .ext_len =3D ARRAY_SIZE(mt8173_mtk_ddp_ext),
 >  };
-> 
-> +&otg {
-> +	status = "okay";
-> +
-> +	assigned-clocks = <&cgu JZ4780_CLK_OTGPHY>;
-> +	assigned-clock-rates = <48000000>;
+>
+> +static const struct mtk_mmsys_driver_data mt8167_mmsys_driver_data =3D {
+> +       .main_path =3D mt8167_mtk_ddp_main,
+> +       .main_len =3D ARRAY_SIZE(mt8167_mtk_ddp_main),
 > +};
 > +
->  &pinctrl {
->  	pins_uart0: uart0 {
->  		function = "uart0";
-> diff --git a/arch/mips/boot/dts/ingenic/cu1000-neo.dts 
-> b/arch/mips/boot/dts/ingenic/cu1000-neo.dts
-> index 22a1066d637b..44d47d12db12 100644
-> --- a/arch/mips/boot/dts/ingenic/cu1000-neo.dts
-> +++ b/arch/mips/boot/dts/ingenic/cu1000-neo.dts
-> @@ -3,7 +3,7 @@
-> 
->  #include "x1000.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-> -#include <dt-bindings/clock/ingenic,tcu.h>
-> +#include <dt-bindings/clock/ingenic,sysost.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
-> 
->  / {
-> @@ -31,6 +31,18 @@
->  		};
->  	};
-> 
-> +	ssi: spi-gpio {
-> +		compatible = "spi-gpio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		num-chipselects = <1>;
-> +
-> +		mosi-gpios = <&gpd 2 GPIO_ACTIVE_HIGH>;
-> +		miso-gpios = <&gpd 3 GPIO_ACTIVE_HIGH>;
-> +		sck-gpios = <&gpd 0 GPIO_ACTIVE_HIGH>;
-> +		cs-gpios = <&gpd 1 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
->  	wlan_pwrseq: msc1-pwrseq {
->  		compatible = "mmc-pwrseq-simple";
-> 
-> @@ -43,13 +55,19 @@
->  	clock-frequency = <24000000>;
->  };
-> 
-> -&tcu {
-> +&cgu {
-> +	/*
-> +	 * Use the 32.768 kHz oscillator as the parent of the RTC for a 
-> higher
-> +	 * precision.
-> +	 */
-> +	assigned-clocks = <&cgu X1000_CLK_RTC>;
-> +	assigned-clock-parents = <&cgu X1000_CLK_RTCLK>;
-> +};
-> +
-> +&ost {
->  	/* 1500 kHz for the system timer and clocksource */
-> -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER2>;
-> +	assigned-clocks = <&ost OST_CLK_PERCPU_TIMER>, <&ost 
-> OST_CLK_GLOBAL_TIMER>;
->  	assigned-clock-rates = <1500000>, <1500000>;
-> -
-> -	/* Use channel #0 for the system timer channel #2 for the 
-> clocksource */
-> -	ingenic,pwm-channels-mask = <0xfa>;
->  };
-> 
->  &uart2 {
-> @@ -59,6 +77,32 @@
->  	pinctrl-0 = <&pins_uart2>;
->  };
-> 
-> +&ssi {
-> +	status = "okay";
-> +
-> +	spi-max-frequency = <50000000>;
-> +
-> +	sc16is752: expander@0 {
-> +		compatible = "nxp,sc16is752";
-> +		reg = <0>; /* CE0 */
-> +		spi-max-frequency = <4000000>;
-> +
-> +		clocks = <&exclk_sc16is752>;
-> +
-> +		interrupt-parent = <&gpc>;
-> +		interrupts = <6 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		exclk_sc16is752: sc16is752 {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <48000000>;
-> +		};
-> +	};
-> +};
-> +
->  &i2c0 {
->  	status = "okay";
-> 
-> @@ -135,6 +179,10 @@
->  	};
->  };
-> 
-> +&otg {
-> +	status = "okay";
-> +};
-> +
->  &pinctrl {
->  	pins_uart2: uart2 {
->  		function = "uart2";
-> diff --git a/arch/mips/boot/dts/ingenic/cu1830-neo.dts 
-> b/arch/mips/boot/dts/ingenic/cu1830-neo.dts
-> index 640f96c00d63..7a56e344e429 100644
-> --- a/arch/mips/boot/dts/ingenic/cu1830-neo.dts
-> +++ b/arch/mips/boot/dts/ingenic/cu1830-neo.dts
-> @@ -3,7 +3,7 @@
-> 
->  #include "x1830.dtsi"
->  #include <dt-bindings/gpio/gpio.h>
-> -#include <dt-bindings/clock/ingenic,tcu.h>
-> +#include <dt-bindings/clock/ingenic,sysost.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
-> 
->  / {
-> @@ -31,6 +31,18 @@
->  		};
->  	};
-> 
-> +	ssi0: spi-gpio {
-> +		compatible = "spi-gpio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		num-chipselects = <1>;
-> +
-> +		mosi-gpios = <&gpc 12 GPIO_ACTIVE_HIGH>;
-> +		miso-gpios = <&gpc 11 GPIO_ACTIVE_HIGH>;
-> +		sck-gpios = <&gpc 15 GPIO_ACTIVE_HIGH>;
-> +		cs-gpios = <&gpc 16 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
->  	wlan_pwrseq: msc1-pwrseq {
->  		compatible = "mmc-pwrseq-simple";
-> 
-> @@ -43,13 +55,19 @@
->  	clock-frequency = <24000000>;
->  };
-> 
-> -&tcu {
-> +&cgu {
-> +	/*
-> +	 * Use the 32.768 kHz oscillator as the parent of the RTC for a 
-> higher
-> +	 * precision.
-> +	 */
-> +	assigned-clocks = <&cgu X1830_CLK_RTC>;
-> +	assigned-clock-parents = <&cgu X1830_CLK_RTCLK>;
-> +};
-> +
-> +&ost {
->  	/* 1500 kHz for the system timer and clocksource */
-> -	assigned-clocks = <&tcu TCU_CLK_TIMER0>, <&tcu TCU_CLK_TIMER2>;
-> +	assigned-clocks = <&ost OST_CLK_PERCPU_TIMER>, <&ost 
-> OST_CLK_GLOBAL_TIMER>;
->  	assigned-clock-rates = <1500000>, <1500000>;
-> -
-> -	/* Use channel #0 for the system timer channel #2 for the 
-> clocksource */
-> -	ingenic,pwm-channels-mask = <0xfa>;
->  };
-> 
->  &uart1 {
-> @@ -59,6 +77,32 @@
->  	pinctrl-0 = <&pins_uart1>;
->  };
-> 
-> +&ssi0 {
-> +	status = "okay";
-> +
-> +	spi-max-frequency = <50000000>;
-> +
-> +	sc16is752: expander@0 {
-> +		compatible = "nxp,sc16is752";
-> +		reg = <0>; /* CE0 */
-> +		spi-max-frequency = <4000000>;
-> +
-> +		clocks = <&exclk_sc16is752>;
-> +
-> +		interrupt-parent = <&gpb>;
-> +		interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +
-> +		exclk_sc16is752: sc16is752 {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <48000000>;
-> +		};
-> +	};
-> +};
-> +
->  &i2c0 {
->  	status = "okay";
-> 
-> @@ -135,6 +179,10 @@
->  	};
->  };
-> 
-> +&otg {
-> +	status = "okay";
-> +};
-> +
->  &pinctrl {
->  	pins_uart1: uart1 {
->  		function = "uart1";
-> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi 
-> b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> index dfb5a7e1bb21..8837147e5a84 100644
-> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-> @@ -61,13 +61,30 @@
->  	};
-> 
->  	cgu: jz4780-cgu@10000000 {
-> -		compatible = "ingenic,jz4780-cgu";
-> +		compatible = "ingenic,jz4780-cgu", "simple-mfd";
->  		reg = <0x10000000 0x100>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x10000000 0x100>;
-> +
-> +		#clock-cells = <1>;
-> 
->  		clocks = <&ext>, <&rtc>;
->  		clock-names = "ext", "rtc";
-> 
-> -		#clock-cells = <1>;
-> +		otg_phy: usb-phy@3c {
-> +			compatible = "ingenic,jz4780-phy";
-> +			reg = <0x3c 0x10>;
-> +
-> +			clocks = <&cgu JZ4780_CLK_OTG1>;
-> +
-> +			#phy-cells = <0>;
-
-Something I missed in my first email: you lack the "vcc-supply" 
-required property here. But I'm not sure what it should be linked to.
-
--Paul
-
-> +		};
-> +
-> +		rng: rng@d8 {
-> +			compatible = "ingenic,jz4780-rng";
-> +			reg = <0xd8 0x8>;
-> +		};
->  	};
-> 
->  	tcu: timer@10002000 {
-> @@ -494,4 +511,24 @@
-> 
->  		status = "disabled";
->  	};
-> +
-> +	otg: usb@13500000 {
-> +		compatible = "ingenic,jz4780-otg", "snps,dwc2";
-> +		reg = <0x13500000 0x40000>;
-> +
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <21>;
-> +
-> +		clocks = <&cgu JZ4780_CLK_UHC>;
-> +		clock-names = "otg";
-> +
-> +		phys = <&otg_phy>;
-> +		phy-names = "usb2-phy";
-> +
-> +		g-rx-fifo-size = <768>;
-> +		g-np-tx-fifo-size = <256>;
-> +		g-tx-fifo-size = <256 256 256 256 256 256 256 512>;
-> +
-> +		status = "disabled";
-> +	};
->  };
-> diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi 
-> b/arch/mips/boot/dts/ingenic/x1000.dtsi
-> index 1f1f896dd1f7..854fac58f45e 100644
-> --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
-> @@ -52,13 +52,43 @@
->  	};
-> 
->  	cgu: x1000-cgu@10000000 {
-> -		compatible = "ingenic,x1000-cgu";
-> +		compatible = "ingenic,x1000-cgu", "simple-mfd";
->  		reg = <0x10000000 0x100>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x10000000 0x100>;
-> 
->  		#clock-cells = <1>;
-> 
->  		clocks = <&exclk>, <&rtclk>;
->  		clock-names = "ext", "rtc";
-> +
-> +		otg_phy: usb-phy@3c {
-> +			compatible = "ingenic,x1000-phy";
-> +			reg = <0x3c 0x10>;
-> +
-> +			clocks = <&cgu X1000_CLK_OTGPHY>;
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +
-> +		rng: rng@d8 {
-> +			compatible = "ingenic,x1000-rng";
-> +			reg = <0xd8 0x8>;
-> +		};
-> +	};
-> +
-> +	ost: timer@12000000 {
-> +		compatible = "ingenic,x1000-ost";
-> +		reg = <0x12000000 0x3c>;
-> +
-> +		#clock-cells = <1>;
-> +
-> +		clocks = <&cgu X1000_CLK_OST>;
-> +		clock-names = "ost";
-> +
-> +		interrupt-parent = <&cpuintc>;
-> +		interrupts = <3>;
->  	};
-> 
->  	tcu: timer@10002000 {
-> @@ -323,4 +353,24 @@
->  			status = "disabled";
->  		};
->  	};
-> +
-> +	otg: usb@13500000 {
-> +		compatible = "ingenic,x1000-otg", "snps,dwc2";
-> +		reg = <0x13500000 0x40000>;
-> +
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <21>;
-> +
-> +		clocks = <&cgu X1000_CLK_OTG>;
-> +		clock-names = "otg";
-> +
-> +		phys = <&otg_phy>;
-> +		phy-names = "usb2-phy";
-> +
-> +		g-rx-fifo-size = <768>;
-> +		g-np-tx-fifo-size = <256>;
-> +		g-tx-fifo-size = <256 256 256 256 256 256 256 512>;
-> +
-> +		status = "disabled";
-> +	};
->  };
-> diff --git a/arch/mips/boot/dts/ingenic/x1830.dtsi 
-> b/arch/mips/boot/dts/ingenic/x1830.dtsi
-> index b05dac3ae308..4831350efdf2 100644
-> --- a/arch/mips/boot/dts/ingenic/x1830.dtsi
-> +++ b/arch/mips/boot/dts/ingenic/x1830.dtsi
-> @@ -52,13 +52,38 @@
->  	};
-> 
->  	cgu: x1830-cgu@10000000 {
-> -		compatible = "ingenic,x1830-cgu";
-> +		compatible = "ingenic,x1830-cgu", "simple-mfd";
->  		reg = <0x10000000 0x100>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x10000000 0x100>;
-> 
->  		#clock-cells = <1>;
-> 
->  		clocks = <&exclk>, <&rtclk>;
->  		clock-names = "ext", "rtc";
-> +
-> +		otg_phy: usb-phy@3c {
-> +			compatible = "ingenic,x1830-phy";
-> +			reg = <0x3c 0x10>;
-> +
-> +			clocks = <&cgu X1830_CLK_OTGPHY>;
-> +
-> +			#phy-cells = <0>;
-> +		};
-> +	};
-> +
-> +	ost: timer@12000000 {
-> +		compatible = "ingenic,x1830-ost", "ingenic,x1000-ost";
-> +		reg = <0x12000000 0x3c>;
-> +
-> +		#clock-cells = <1>;
-> +
-> +		clocks = <&cgu X1830_CLK_OST>;
-> +		clock-names = "ost";
-> +
-> +		interrupt-parent = <&cpuintc>;
-> +		interrupts = <4>;
->  	};
-> 
->  	tcu: timer@10002000 {
-> @@ -236,6 +261,13 @@
->  		status = "disabled";
->  	};
-> 
-> +	dtrng: trng@10072000 {
-> +		compatible = "ingenic,x1830-dtrng";
-> +		reg = <0x10072000 0xc>;
-> +
-> +		clocks = <&cgu X1830_CLK_DTRNG>;
-> +	};
-> +
->  	pdma: dma-controller@13420000 {
->  		compatible = "ingenic,x1830-dma";
->  		reg = <0x13420000 0x400
-> @@ -311,4 +343,24 @@
->  			status = "disabled";
->  		};
->  	};
-> +
-> +	otg: usb@13500000 {
-> +		compatible = "ingenic,x1830-otg", "snps,dwc2";
-> +		reg = <0x13500000 0x40000>;
-> +
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <21>;
-> +
-> +		clocks = <&cgu X1830_CLK_OTG>;
-> +		clock-names = "otg";
-> +
-> +		phys = <&otg_phy>;
-> +		phy-names = "usb2-phy";
-> +
-> +		g-rx-fifo-size = <768>;
-> +		g-np-tx-fifo-size = <256>;
-> +		g-tx-fifo-size = <256 256 256 256 256 256 256 512>;
-> +
-> +		status = "disabled";
-> +	};
->  };
+>  static int mtk_drm_kms_init(struct drm_device *drm)
+>  {
+>         struct mtk_drm_private *private =3D drm->dev_private;
+> @@ -401,26 +417,42 @@ static const struct component_master_ops mtk_drm_op=
+s =3D {
+>  static const struct of_device_id mtk_ddp_comp_dt_ids[] =3D {
+>         { .compatible =3D "mediatek,mt2701-disp-ovl",
+>           .data =3D (void *)MTK_DISP_OVL },
+> +       { .compatible =3D "mediatek,mt8167-disp-ovl",
+> +         .data =3D (void *)MTK_DISP_OVL },
+>         { .compatible =3D "mediatek,mt8173-disp-ovl",
+>           .data =3D (void *)MTK_DISP_OVL },
+>         { .compatible =3D "mediatek,mt2701-disp-rdma",
+>           .data =3D (void *)MTK_DISP_RDMA },
+> +       { .compatible =3D "mediatek,mt8167-disp-rdma",
+> +         .data =3D (void *)MTK_DISP_RDMA },
+>         { .compatible =3D "mediatek,mt8173-disp-rdma",
+>           .data =3D (void *)MTK_DISP_RDMA },
+>         { .compatible =3D "mediatek,mt8173-disp-wdma",
+>           .data =3D (void *)MTK_DISP_WDMA },
+> +       { .compatible =3D "mediatek,mt8167-disp-ccorr",
+> +         .data =3D (void *)MTK_DISP_CCORR },
+>         { .compatible =3D "mediatek,mt2701-disp-color",
+>           .data =3D (void *)MTK_DISP_COLOR },
+> +       { .compatible =3D "mediatek,mt8167-disp-color",
+> +         .data =3D (void *)MTK_DISP_COLOR },
+>         { .compatible =3D "mediatek,mt8173-disp-color",
+>           .data =3D (void *)MTK_DISP_COLOR },
+> +       { .compatible =3D "mediatek,mt8167-disp-aal",
+> +         .data =3D (void *)MTK_DISP_AAL},
+>         { .compatible =3D "mediatek,mt8173-disp-aal",
+>           .data =3D (void *)MTK_DISP_AAL},
+> +       { .compatible =3D "mediatek,mt8167-disp-gamma",
+> +         .data =3D (void *)MTK_DISP_GAMMA, },
+>         { .compatible =3D "mediatek,mt8173-disp-gamma",
+>           .data =3D (void *)MTK_DISP_GAMMA, },
+> +       { .compatible =3D "mediatek,mt8167-disp-dither",
+> +         .data =3D (void *)MTK_DISP_DITHER },
+>         { .compatible =3D "mediatek,mt8173-disp-ufoe",
+>           .data =3D (void *)MTK_DISP_UFOE },
+>         { .compatible =3D "mediatek,mt2701-dsi",
+>           .data =3D (void *)MTK_DSI },
+> +       { .compatible =3D "mediatek,mt8167-dsi",
+> +         .data =3D (void *)MTK_DSI },
+>         { .compatible =3D "mediatek,mt8173-dsi",
+>           .data =3D (void *)MTK_DSI },
+>         { .compatible =3D "mediatek,mt2701-dpi",
+> @@ -431,10 +463,14 @@ static const struct of_device_id mtk_ddp_comp_dt_id=
+s[] =3D {
+>           .data =3D (void *)MTK_DISP_MUTEX },
+>         { .compatible =3D "mediatek,mt2712-disp-mutex",
+>           .data =3D (void *)MTK_DISP_MUTEX },
+> +       { .compatible =3D "mediatek,mt8167-disp-mutex",
+> +         .data =3D (void *)MTK_DISP_MUTEX },
+>         { .compatible =3D "mediatek,mt8173-disp-mutex",
+>           .data =3D (void *)MTK_DISP_MUTEX },
+>         { .compatible =3D "mediatek,mt2701-disp-pwm",
+>           .data =3D (void *)MTK_DISP_BLS },
+> +       { .compatible =3D "mediatek,mt8167-disp-pwm",
+> +         .data =3D (void *)MTK_DISP_PWM },
+>         { .compatible =3D "mediatek,mt8173-disp-pwm",
+>           .data =3D (void *)MTK_DISP_PWM },
+>         { .compatible =3D "mediatek,mt8173-disp-od",
+> @@ -449,6 +485,8 @@ static const struct of_device_id mtk_drm_of_ids[] =3D=
+ {
+>           .data =3D &mt7623_mmsys_driver_data},
+>         { .compatible =3D "mediatek,mt2712-mmsys",
+>           .data =3D &mt2712_mmsys_driver_data},
+> +       { .compatible =3D "mediatek,mt8167-mmsys",
+> +         .data =3D &mt8167_mmsys_driver_data},
+>         { .compatible =3D "mediatek,mt8173-mmsys",
+>           .data =3D &mt8173_mmsys_driver_data},
+>         { }
 > --
-> 2.11.0
-> 
-
-
+> 2.28.0
+>
