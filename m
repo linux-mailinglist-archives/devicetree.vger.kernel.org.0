@@ -2,53 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BA952AC55C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 20:48:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC1CD2AC55F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 20:48:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729673AbgKITsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 14:48:08 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43176 "EHLO mail.kernel.org"
+        id S1730947AbgKITsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 14:48:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43368 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730379AbgKITsI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 14:48:08 -0500
+        id S1730858AbgKITsO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 14:48:14 -0500
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F0275206E3;
-        Mon,  9 Nov 2020 19:48:06 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 066FB2074F;
+        Mon,  9 Nov 2020 19:48:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604951287;
-        bh=FYfmW8xxjbT53wT8eCWTN+eqI1IgYtV7lRvsksS17XI=;
+        s=default; t=1604951293;
+        bh=wqG6ZhGfatserg4suD0f4VsjtlLGT91eR9zQ6qB+ucc=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=Nq7gkvHwLVvMurmEn+w6Wqkmn0NzD78Q23fZkKNOyhOpwkn60VdMVXf2WfhIqWETM
-         FiO9+PrUmnte4662kv8IH+bfzusvB8ablPUcLAOCYsqPA8AZK8k9DUthbxifhCG5r6
-         6V8Y11eIaqR/OOBcWeTpYvAZGlxeZVUpXn2IJkGM=
-Date:   Mon, 09 Nov 2020 19:47:53 +0000
+        b=ovBiSLiaqUwvgL/D6qNgTpVEze3Mc/BDLims+fDnvSjIjCP2nx2dVfSAMhM66SQR3
+         WxDjh+Vh7daM4WLqWzYZuRcQFnY3psY2LIn2rPDmsf4L0e2CMgIv26yx6LHqtdtBlh
+         I8uVMgrQdkLXfFw7R8MpkIwj+VqMU/5qT2aFyYGo=
+Date:   Mon, 09 Nov 2020 19:47:59 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Cheng-Yi Chiang <cychiang@chromium.org>,
-        linux-kernel@vger.kernel.org
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        xuyuqing@huaqin.corp-partner.google.com, dgreid@chromium.org,
-        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>, judyhsiao@chromium.org,
-        Takashi Iwai <tiwai@suse.com>,
-        Patrick Lai <plai@codeaurora.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+To:     Rob Herring <robh+dt@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, tzungbi@chromium.org,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-In-Reply-To: <20201109103415.607495-1-cychiang@chromium.org>
-References: <20201109103415.607495-1-cychiang@chromium.org>
-Subject: Re: [PATCH] ASoC: qcom: sc7180: Add missing PM ops
-Message-Id: <160495125733.49154.11647929702514464617.b4-ty@kernel.org>
+        Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     devicetree@vger.kernel.org, kernel@axis.com,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20201109085438.16230-1-vincent.whitchurch@axis.com>
+References: <20201109085438.16230-1-vincent.whitchurch@axis.com>
+Subject: Re: [PATCH] dt-bindings: regulator: da9121: Use additionalProperties
+Message-Id: <160495127967.49303.8652990185515477963.b4-ty@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -56,18 +41,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Nov 2020 18:34:15 +0800, Cheng-Yi Chiang wrote:
-> Use PM ops snd_soc_pm_ops to handle suspend/resume like other machine
-> drivers.
+On Mon, 9 Nov 2020 09:54:37 +0100, Vincent Whitchurch wrote:
+> There's no $ref at the top level so use additionalProperties instead of
+> unevaluatedProperties.
+> 
+> This fixes the following warning with the latest dtschema:
+> 
+>  Documentation/devicetree/bindings/regulator/dlg,da9121.yaml:
+>  'additionalProperties' is a required property
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/1] ASoC: qcom: sc7180: Add missing PM ops
-      commit: b2fc3029308dd1bace4c11c733eca2ef941b0e29
+[1/1] regulator: da9121: Use additionalProperties
+      commit: 285654130d5c1bed000be6b94cd43b5110d16090
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
