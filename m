@@ -2,844 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE4FD2AC10B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:36:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CEC12AC10C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 17:37:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730180AbgKIQg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 11:36:56 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:46851 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729875AbgKIQg4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 11:36:56 -0500
-X-Originating-IP: 91.175.115.186
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id D44B1C0008;
-        Mon,  9 Nov 2020 16:36:52 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen.Hegelund@microchip.com
-Subject: Re: [PATCH 8/9] MIPS: mscc: Add jaguar2 support
-In-Reply-To: <20201106100849.969240-10-gregory.clement@bootlin.com>
-References: <20201106100849.969240-1-gregory.clement@bootlin.com> <20201106100849.969240-10-gregory.clement@bootlin.com>
-Date:   Mon, 09 Nov 2020 17:36:52 +0100
-Message-ID: <87mtzq7ahn.fsf@BL-laptop>
+        id S1729776AbgKIQhf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 11:37:35 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:45874 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726410AbgKIQhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 11:37:35 -0500
+Received: by mail-oi1-f194.google.com with SMTP id j7so10827724oie.12;
+        Mon, 09 Nov 2020 08:37:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tq7rUzr/gw10MEoyCZnSq/EiwnB2bInd24MzCsWxH8k=;
+        b=GN/LnFw1VjgfiX7pYywruabAMSVJrL3YLT1p6aMeRofBrCG+ok96Jj9zZ3nvzf266W
+         LIGfGDx97QvoHjFAPyRLzT4nMXMTob3kuUCAh/tUpn9Db1rZCx/mAtaqsI5/LXYJQSQt
+         IzjoN5gC2+xoQTPkYG8RJP4BxGy8UyVUL4vKYvh1/996rK1/m7kHIAGwWsHauiGFtcmk
+         lf7ppM/STZLcQCb2VMTKcuKy327vsY2WB2WsrSmOmnt9KPe+vYqBlqAcxoCmATW3HYRA
+         GSjijcFreo5A2hQHCeGnVQSIlEuwlprh4OesnelUUthCHcc1eQWG7tM43j6YCz2K5A2U
+         A1QA==
+X-Gm-Message-State: AOAM53320Hs4MqEvKsKhtvEBvEQJsguoq6jVoTUFFaVV8cTBCVTtCzCC
+        UT15X8aT5GDwQidLI5fxlA==
+X-Google-Smtp-Source: ABdhPJwLqQONMstaMXV/iyNOCJ8sCnMO9TUIGoYg1lmfIEQEeF/LXCOWXsWVAAtsy+AIrYmyia3DLQ==
+X-Received: by 2002:a05:6808:b24:: with SMTP id t4mr8942748oij.93.1604939854580;
+        Mon, 09 Nov 2020 08:37:34 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e15sm1176458otj.43.2020.11.09.08.37.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2020 08:37:33 -0800 (PST)
+Received: (nullmailer pid 1410944 invoked by uid 1000);
+        Mon, 09 Nov 2020 16:37:33 -0000
+Date:   Mon, 9 Nov 2020 10:37:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        kernel@pengutronix.de, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] dt-bindings: arm: stm32: lxa,stm32mp157c-mc1: add
+ extra SiP compatible
+Message-ID: <20201109163733.GA1404197@bogus>
+References: <20201104113932.30702-1-a.fatoum@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201104113932.30702-1-a.fatoum@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-> Add a device trees and FIT image support for the Microsemi Jaguar2 SoC
-> which belongs to same family of the Ocelot SoC.
->
-> It is based on the work of Lars Povlsen <lars.povlsen@microchip.com>.
->
-
-The i2c device node name are wrongs, I missed it for this submission and
-will fix it in the next version.
-
-For instance i2c_x2sfp_1_a@0 will be named i2c@0.
-
-Gregory
-
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+On Wed, Nov 04, 2020 at 12:39:31PM +0100, Ahmad Fatoum wrote:
+> The Linux Automation MC-1 is built around a SIP with CPU, RAM, PMIC,
+> Oscillator and EEPROM. Add a further compatible identifying the SiP,
+> so boot firmware can match against it to apply fixups if necessary.
+> 
+> To avoid intermittent dtbs_check breakage in the sole upstream device
+> tree that uses that SiP, patch it here as well.
+> 
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 > ---
->  .../devicetree/bindings/mips/mscc.txt         |   2 +-
->  arch/mips/boot/dts/mscc/Makefile              |   3 +
->  arch/mips/boot/dts/mscc/jaguar2.dtsi          | 167 +++++++++++
->  arch/mips/boot/dts/mscc/jaguar2_common.dtsi   |  25 ++
->  arch/mips/boot/dts/mscc/jaguar2_pcb110.dts    | 273 ++++++++++++++++++
->  arch/mips/boot/dts/mscc/jaguar2_pcb111.dts    | 109 +++++++
->  arch/mips/boot/dts/mscc/jaguar2_pcb118.dts    |  59 ++++
->  arch/mips/generic/Kconfig                     |   8 +
->  arch/mips/generic/Platform                    |   1 +
->  arch/mips/generic/board-jaguar2.its.S         |  40 +++
->  10 files changed, 686 insertions(+), 1 deletion(-)
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2.dtsi
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_common.dtsi
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb110.dts
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb111.dts
->  create mode 100644 arch/mips/boot/dts/mscc/jaguar2_pcb118.dts
->  create mode 100644 arch/mips/generic/board-jaguar2.its.S
->
-> diff --git a/Documentation/devicetree/bindings/mips/mscc.txt b/Documentation/devicetree/bindings/mips/mscc.txt
-> index bdbebb525393..cc916eaeed0a 100644
-> --- a/Documentation/devicetree/bindings/mips/mscc.txt
-> +++ b/Documentation/devicetree/bindings/mips/mscc.txt
-> @@ -4,7 +4,7 @@ Boards with a SoC of the Microsemi MIPS family shall have the following
->  properties:
+> I know that bindings and device tree patches should be separate. Does
+> this apply here as well? Should I split the dts change into a follow-up
+> commit? 
+
+Yes.
+
+> Is it ok that dtbs_check will report an intermittent breakage?
+
+If the binding comes first, it won't break.
+
+But generally, 'dtbs_check' being warning free is not yet a requirement. 
+That will probably first have to be per platform.
+
+> ---
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++++-
+>  arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts              | 2 +-
+>  2 files changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> index 009b424e456e..9127094f0208 100644
+> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
+> @@ -40,7 +40,6 @@ properties:
+>        - items:
+>            - enum:
+>                - arrow,stm32mp157a-avenger96 # Avenger96
+> -              - lxa,stm32mp157c-mc1
+>                - shiratech,stm32mp157a-iot-box # IoT Box
+>                - shiratech,stm32mp157a-stinger96 # Stinger96
+>                - st,stm32mp157c-ed1
+> @@ -52,6 +51,13 @@ properties:
+>            - const: st,stm32mp157c-ev1
+>            - const: st,stm32mp157c-ed1
+>            - const: st,stm32mp157
+> +      - description: Octavo OSD32MP15x System-in-Package based boards
+> +        items:
+> +          - enum:
+> +              - lxa,stm32mp157c-mc1 # Linux Automation MC-1
+> +          - const: oct,stm32mp15xx-osd32
+
+'oct' is not docuemnted in vendor-prefixes.yaml.
+
+> +          - enum:
+> +              - st,stm32mp157
+>        - description: Odyssey STM32MP1 SoM based Boards
+>          items:
+>            - enum:
+> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> index 1e5333fd437f..cda8e871f999 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> @@ -15,7 +15,7 @@
 >  
->  Required properties:
-> -- compatible: "mscc,ocelot", "mscc,luton", "mscc,serval" or "mscc,jaguar2"
-> +- compatible: "mscc,ocelot", "mscc,luton", "mscc,serval" or "mscc,jr2"
+>  / {
+>  	model = "Linux Automation MC-1 board";
+> -	compatible = "lxa,stm32mp157c-mc1", "st,stm32mp157";
+> +	compatible = "lxa,stm32mp157c-mc1", "oct,stm32mp15xx-osd32", "st,stm32mp157";
 >  
->  
->  * Other peripherals:
-> diff --git a/arch/mips/boot/dts/mscc/Makefile b/arch/mips/boot/dts/mscc/Makefile
-> index 40699b44ed50..befda72ceb26 100644
-> --- a/arch/mips/boot/dts/mscc/Makefile
-> +++ b/arch/mips/boot/dts/mscc/Makefile
-> @@ -1,5 +1,8 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  dtb-$(CONFIG_SOC_VCOREIII)	+= \
-> +	jaguar2_pcb110.dtb \
-> +	jaguar2_pcb111.dtb \
-> +	jaguar2_pcb118.dtb \
->  	luton_pcb091.dtb \
->  	ocelot_pcb120.dtb \
->  	ocelot_pcb123.dtb
-> diff --git a/arch/mips/boot/dts/mscc/jaguar2.dtsi b/arch/mips/boot/dts/mscc/jaguar2.dtsi
-> new file mode 100644
-> index 000000000000..717018d75a33
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/mscc/jaguar2.dtsi
-> @@ -0,0 +1,167 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Microsemi Corporation
-> + */
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +	compatible = "mscc,jr2";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart2;
-> +		gpio0 = &gpio;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu@0 {
-> +			compatible = "mips,mips24KEc";
-> +			device_type = "cpu";
-> +			clocks = <&cpu_clk>;
-> +			reg = <0>;
-> +		};
-> +	};
-> +
-> +	cpuintc: interrupt-controller {
-> +		#address-cells = <0>;
-> +		#interrupt-cells = <1>;
-> +		interrupt-controller;
-> +		compatible = "mti,cpu-interrupt-controller";
-> +	};
-> +
-> +	cpu_clk: cpu-clock {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <500000000>;
-> +	};
-> +
-> +	ahb_clk: ahb-clk {
-> +		compatible = "fixed-factor-clock";
-> +		#clock-cells = <0>;
-> +		clocks = <&cpu_clk>;
-> +		clock-div = <2>;
-> +		clock-mult = <1>;
-> +	};
-> +
-> +	ahb: ahb@70000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		interrupt-parent = <&intc>;
-> +
-> +		cpu_ctrl: syscon@70000000 {
-> +			compatible = "mscc,ocelot-cpu-syscon", "syscon";
-> +			reg = <0x70000000 0x2c>;
-> +		};
-> +
-> +		intc: interrupt-controller@70000070 {
-> +			compatible = "mscc,jaguar2-icpu-intr";
-> +			reg = <0x70000070 0x94>;
-> +			#interrupt-cells = <1>;
-> +			interrupt-controller;
-> +			interrupt-parent = <&cpuintc>;
-> +			interrupts = <2>;
-> +		};
-> +
-> +		uart0: serial@70100000 {
-> +			pinctrl-0 = <&uart_pins>;
-> +			pinctrl-names = "default";
-> +			compatible = "ns16550a";
-> +			reg = <0x70100000 0x20>;
-> +			interrupts = <6>;
-> +			clocks = <&ahb_clk>;
-> +			reg-io-width = <4>;
-> +			reg-shift = <2>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		uart2: serial@70100800 {
-> +			pinctrl-0 = <&uart2_pins>;
-> +			pinctrl-names = "default";
-> +			compatible = "ns16550a";
-> +			reg = <0x70100800 0x20>;
-> +			interrupts = <7>;
-> +			clocks = <&ahb_clk>;
-> +			reg-io-width = <4>;
-> +			reg-shift = <2>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		gpio: pinctrl@71070038 {
-> +			compatible = "mscc,jaguar2-pinctrl";
-> +			reg = <0x71010038 0x90>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&gpio 0 0 64>;
-> +
-> +			uart_pins: uart-pins {
-> +				pins = "GPIO_10", "GPIO_11";
-> +				function = "uart";
-> +			};
-> +
-> +			uart2_pins: uart2-pins {
-> +				pins = "GPIO_24", "GPIO_25";
-> +				function = "uart2";
-> +			};
-> +
-> +			cs1_pins: cs1-pins {
-> +				pins = "GPIO_16";
-> +				function = "si";
-> +			};
-> +
-> +			cs2_pins: cs2-pins {
-> +				pins = "GPIO_17";
-> +				function = "si";
-> +			};
-> +
-> +			cs3_pins: cs3-pins {
-> +				pins = "GPIO_18";
-> +				function = "si";
-> +			};
-> +
-> +			i2c_pins: i2c-pins {
-> +				pins = "GPIO_14", "GPIO_15";
-> +				function = "twi";
-> +			};
-> +
-> +			i2c2_pins: i2c2-pins {
-> +				pins = "GPIO_28", "GPIO_29";
-> +				function = "twi2";
-> +			};
-> +		};
-> +
-> +		i2c0: i2c@70100400 {
-> +			compatible = "mscc,ocelot-i2c", "snps,designware-i2c";
-> +			status = "disabled";
-> +			pinctrl-0 = <&i2c_pins>;
-> +			pinctrl-names = "default";
-> +			reg = <0x70100400 0x100>, <0x700001b8 0x8>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			interrupts = <8>;
-> +			clock-frequency = <100000>;
-> +			clocks = <&ahb_clk>;
-> +		};
-> +
-> +		i2c2: i2c@70100c00 {
-> +			compatible = "mscc,ocelot-i2c", "snps,designware-i2c";
-> +			status = "disabled";
-> +			pinctrl-0 = <&i2c2_pins>;
-> +			pinctrl-names = "default";
-> +			reg = <0x70100c00 0x100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			interrupts = <8>;
-> +			clock-frequency = <100000>;
-> +			clocks = <&ahb_clk>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/mips/boot/dts/mscc/jaguar2_common.dtsi b/arch/mips/boot/dts/mscc/jaguar2_common.dtsi
-> new file mode 100644
-> index 000000000000..679ff0d8eda8
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/mscc/jaguar2_common.dtsi
-> @@ -0,0 +1,25 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Microsemi Corporation
-> + */
-> +
-> +#include "jaguar2.dtsi"
-> +
-> +/ {
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +	i2c-sda-hold-time-ns = <300>;
-> +};
-> diff --git a/arch/mips/boot/dts/mscc/jaguar2_pcb110.dts b/arch/mips/boot/dts/mscc/jaguar2_pcb110.dts
-> new file mode 100644
-> index 000000000000..306993ad9b4a
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/mscc/jaguar2_pcb110.dts
-> @@ -0,0 +1,273 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2020 Microsemi Corporation
-> + */
-> +
-> +/dts-v1/;
-> +#include "jaguar2_common.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	model = "Jaguar2 Cu8-Sfp16 PCB110 Reference Board";
-> +	compatible = "mscc,jr2-pcb110", "mscc,jr2";
-> +
-> +	aliases {
-> +		i2c0    = &i2c0;
-> +		i2c108  = &i2c108;
-> +		i2c109  = &i2c109;
-> +		i2c110  = &i2c110;
-> +		i2c111  = &i2c111;
-> +		i2c112  = &i2c112;
-> +		i2c113  = &i2c113;
-> +		i2c114  = &i2c114;
-> +		i2c115  = &i2c115;
-> +		i2c116  = &i2c116;
-> +		i2c117  = &i2c117;
-> +		i2c118  = &i2c118;
-> +		i2c119  = &i2c119;
-> +		i2c120  = &i2c120;
-> +		i2c121  = &i2c121;
-> +		i2c122  = &i2c122;
-> +		i2c123  = &i2c123;
-> +		i2c124  = &i2c124;
-> +		i2c125  = &i2c125;
-> +		i2c126  = &i2c126;
-> +		i2c127  = &i2c127;
-> +		i2c128  = &i2c128;
-> +		i2c129  = &i2c129;
-> +		i2c130  = &i2c130;
-> +		i2c131  = &i2c131;
-> +		i2c149  = &i2c149;
-> +		i2c150  = &i2c150;
-> +		i2c151  = &i2c151;
-> +		i2c152  = &i2c152;
-> +	};
-> +};
-> +
-> +&gpio {
-> +	synce_pins: synce-pins {
-> +		// GPIO 16 == SI_nCS1
-> +		pins = "GPIO_16";
-> +		function = "si";
-> +	};
-> +	synce_builtin_pins: synce-builtin-pins {
-> +		// GPIO 49 == SI_nCS13
-> +		pins = "GPIO_49";
-> +		function = "si";
-> +	};
-> +};
-> +
-> +&gpio {
-> +	i2cmux_pins_i: i2cmux-pins-i {
-> +		pins = "GPIO_17", "GPIO_18", "GPIO_20", "GPIO_21";
-> +		function = "twi_scl_m";
-> +		output-low;
-> +	};
-> +	i2cmux_0: i2cmux-0 {
-> +		pins = "GPIO_17";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +	i2cmux_1: i2cmux-1 {
-> +		pins = "GPIO_18";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +	i2cmux_2: i2cmux-2 {
-> +		pins = "GPIO_20";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +	i2cmux_3: i2cmux-3 {
-> +		pins = "GPIO_21";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	pca9545@70 {
-> +		compatible = "nxp,pca9545";
-> +		reg = <0x70>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-mux-idle-disconnect;
-> +		i2c124: i2c_x2sfp_1_a@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0>;
-> +		};
-> +		i2c125: i2c_x2sfp_1_b@1 {
-> +			/* FMC B */
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <1>;
-> +		};
-> +		i2c126: i2c_x2sfp_1_c@2 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <2>;
-> +		};
-> +		i2c127: i2c_x2sfp_1_d@3 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <3>;
-> +		};
-> +	};
-> +	pca9545@71 {
-> +		compatible = "nxp,pca9545";
-> +		reg = <0x71>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-mux-idle-disconnect;
-> +		i2c128: i2c_x2sfp_1_a@0 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <0>;
-> +		};
-> +		i2c129: i2c_x2sfp_2_b@1 {
-> +			/* FMC B */
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <1>;
-> +		};
-> +		i2c130: i2c_x2sfp_3_c@2 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <2>;
-> +		};
-> +		i2c131: i2c_x2sfp_4_d@3 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			reg = <3>;
-> +		};
-> +	};
-> +};
-> +
-> +&ahb {
-> +	i2c0_emux: i2c0-emux@0 {
-> +		compatible = "i2c-mux-gpio";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-parent = <&i2c0>;
-> +		mux-gpios = <&gpio 51 GPIO_ACTIVE_HIGH
-> +			     &gpio 52 GPIO_ACTIVE_HIGH
-> +			     &gpio 53 GPIO_ACTIVE_HIGH
-> +			     &gpio 58 GPIO_ACTIVE_HIGH
-> +			     &gpio 59 GPIO_ACTIVE_HIGH>;
-> +		idle-state = <0x0>;
-> +		i2c108: i2c_sfp9@10 {
-> +			reg = <0x10>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c109: i2c_sfp10@11 {
-> +			reg = <0x11>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c110: i2c_sfp11@12 {
-> +			reg = <0x12>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c111: i2c_sfp12@13 {
-> +			reg = <0x13>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c112: i2c_sfp13@14 {
-> +			reg = <0x14>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c113: i2c_sfp14@15 {
-> +			reg = <0x15>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c114: i2c_sfp15@16 {
-> +			reg = <0x16>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c115: i2c_sfp16@17 {
-> +			reg = <0x17>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c116: i2c_sfp17@8 {
-> +			reg = <0x8>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c117: i2c_sfp18@9 {
-> +			reg = <0x9>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c118: i2c_sfp19@a {
-> +			reg = <0xa>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c119: i2c_sfp20@b {
-> +			reg = <0xb>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c120: i2c_sfp21@c {
-> +			reg = <0xc>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c121: i2c_sfp22@d {
-> +			reg = <0xd>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c122: i2c_sfp23@e {
-> +			reg = <0xe>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c123: i2c_sfp24@f {
-> +			reg = <0xf>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +	i2c0_imux: i2c0-imux@0 {
-> +		compatible = "i2c-mux-pinctrl";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-parent = <&i2c0>;
-> +		pinctrl-names =
-> +			"i2c149", "i2c150", "i2c151", "i2c152", "idle";
-> +		pinctrl-0 = <&i2cmux_0>;
-> +		pinctrl-1 = <&i2cmux_1>;
-> +		pinctrl-2 = <&i2cmux_2>;
-> +		pinctrl-3 = <&i2cmux_3>;
-> +		pinctrl-4 = <&i2cmux_pins_i>;
-> +		i2c149: i2c_sfp_plus_a@0 {
-> +			reg = <0x0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c150: i2c_sfp_plus_b@1 {
-> +			reg = <0x1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c151: i2c_sfp_plus_c@2 {
-> +			reg = <0x2>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c152: i2c_sfp_plus_d@3 {
-> +			reg = <0x3>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/mips/boot/dts/mscc/jaguar2_pcb111.dts b/arch/mips/boot/dts/mscc/jaguar2_pcb111.dts
-> new file mode 100644
-> index 000000000000..df159dbb5a6c
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/mscc/jaguar2_pcb111.dts
-> @@ -0,0 +1,109 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2018 Microsemi Corporation
-> + */
-> +
-> +/dts-v1/;
-> +#include "jaguar2_common.dtsi"
-> +
-> +/ {
-> +	model = "Jaguar2 Cu48 PCB111 Reference Board";
-> +	compatible = "mscc,jr2-pcb111", "mscc,jr2";
-> +
-> +	aliases {
-> +		i2c0    = &i2c0;
-> +		i2c149  = &i2c149;
-> +		i2c150  = &i2c150;
-> +		i2c151  = &i2c151;
-> +		i2c152  = &i2c152;
-> +		i2c203  = &i2c203;
-> +	};
-> +};
-> +
-> +&gpio {
-> +	synce_builtin_pins: synce-builtin-pins {
-> +		// GPIO 49 == SI_nCS13
-> +		pins = "GPIO_49";
-> +		function = "si";
-> +	};
-> +	cpld_pins: cpld-pins {
-> +		// GPIO 50 == SI_nCS14
-> +		pins = "GPIO_50";
-> +		function = "si";
-> +	};
-> +	cpld_fifo_pins: synce-builtin-pins {
-> +		// GPIO 51 == SI_nCS15
-> +		pins = "GPIO_51";
-> +		function = "si";
-> +	};
-> +};
-> +
-> +&gpio {
-> +	i2cmux_pins_i: i2cmux-pins-i {
-> +		pins = "GPIO_17", "GPIO_18";
-> +		function = "twi_scl_m";
-> +		output-low;
-> +	};
-> +	i2cmux_0: i2cmux-0 {
-> +		pins = "GPIO_17";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +	i2cmux_1: i2cmux-1 {
-> +		pins = "GPIO_18";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +	i2cmux_2: i2cmux-2 {
-> +		pins = "GPIO_20";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +	i2cmux_3: i2cmux-3 {
-> +		pins = "GPIO_21";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +};
-> +
-> +&ahb {
-> +	i2c0_imux: i2c0-imux@0 {
-> +		compatible = "i2c-mux-pinctrl";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-parent = <&i2c0>;
-> +		pinctrl-names =
-> +			"i2c149", "i2c150", "i2c151", "i2c152", "i2c203", "idle";
-> +		pinctrl-0 = <&i2cmux_0>;
-> +		pinctrl-1 = <&i2cmux_1>;
-> +		pinctrl-2 = <&i2cmux_2>;
-> +		pinctrl-3 = <&i2cmux_3>;
-> +		pinctrl-4 = <&i2cmux_pins_i>; // Added by convention for PoE
-> +		pinctrl-5 = <&i2cmux_pins_i>;
-> +		i2c149: i2c_sfp_plus_a@0 {
-> +			reg = <0x0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c150: i2c_sfp_plus_b@1 {
-> +			reg = <0x1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c151: i2c_sfp_plus_c@2 {
-> +			reg = <0x2>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c152: i2c_sfp_plus_d@3 {
-> +			reg = <0x3>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c203: i2c_pd69xxx@4 {
-> +			reg = <0x4>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/mips/boot/dts/mscc/jaguar2_pcb118.dts b/arch/mips/boot/dts/mscc/jaguar2_pcb118.dts
-> new file mode 100644
-> index 000000000000..1b718a7b5ed9
-> --- /dev/null
-> +++ b/arch/mips/boot/dts/mscc/jaguar2_pcb118.dts
-> @@ -0,0 +1,59 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2018 Microsemi Corporation
-> + */
-> +
-> +/dts-v1/;
-> +#include "jaguar2_common.dtsi"
-> +
-> +/ {
-> +	model = "Jaguar2/Aquantia PCB118 Reference Board";
-> +	compatible = "mscc,jr2-pcb118", "mscc,jr2";
-> +
-> +	aliases {
-> +		i2c150  = &i2c150;
-> +		i2c151  = &i2c151;
-> +	};
-> +};
-> +
-> +&gpio {
-> +	i2cmux_pins_i: i2cmux-pins-i {
-> +		pins = "GPIO_17", "GPIO_16";
-> +		function = "twi_scl_m";
-> +		output-low;
-> +	};
-> +	i2cmux_0: i2cmux-0 {
-> +		pins = "GPIO_17";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +	i2cmux_1: i2cmux-1 {
-> +		pins = "GPIO_16";
-> +		function = "twi_scl_m";
-> +		output-high;
-> +	};
-> +};
-> +
-> +&ahb {
-> +	i2c0_imux: i2c0-imux@0 {
-> +		compatible = "i2c-mux-pinctrl";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		i2c-parent = <&i2c0>;
-> +		pinctrl-names =
-> +			"i2c150", "i2c151", "idle";
-> +		pinctrl-0 = <&i2cmux_0>;
-> +		pinctrl-1 = <&i2cmux_1>;
-> +		pinctrl-2 = <&i2cmux_pins_i>;
-> +		i2c150: i2c_sfp_plus_a@0 {
-> +			reg = <0>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +		i2c151: i2c_sfp_plus_b@1 {
-> +			reg = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/mips/generic/Kconfig b/arch/mips/generic/Kconfig
-> index e5a7a1314e71..c7a840b8eaa6 100644
-> --- a/arch/mips/generic/Kconfig
-> +++ b/arch/mips/generic/Kconfig
-> @@ -86,6 +86,14 @@ config FIT_IMAGE_FDT_LUTON
->  	  from Microsemi in the FIT kernel image.
->  	  This requires u-boot on the platform.
->  
-> +config FIT_IMAGE_FDT_JAGUAR2
-> +	bool "Include FDT for Microsemi Jaguar2 development platforms"
-> +	select SOC_VCOREIII
-> +	help
-> +	  Enable this to include the FDT for the Jaguar2 development platforms
-> +	  from Microsemi in the FIT kernel image.
-> +	  This requires u-boot on the platform.
-> +
->  config BOARD_INGENIC
->  	bool "Support boards based on Ingenic SoCs"
->  	select MACH_INGENIC_GENERIC
-> diff --git a/arch/mips/generic/Platform b/arch/mips/generic/Platform
-> index 4b6905daa39c..3f2055bea596 100644
-> --- a/arch/mips/generic/Platform
-> +++ b/arch/mips/generic/Platform
-> @@ -21,4 +21,5 @@ its-$(CONFIG_FIT_IMAGE_FDT_BOSTON)	+= board-boston.its.S
->  its-$(CONFIG_FIT_IMAGE_FDT_NI169445)	+= board-ni169445.its.S
->  its-$(CONFIG_FIT_IMAGE_FDT_OCELOT)	+= board-ocelot.its.S
->  its-$(CONFIG_FIT_IMAGE_FDT_LUTON)	+= board-luton.its.S
-> +its-$(CONFIG_FIT_IMAGE_FDT_JAGUAR2)	+= board-jaguar2.its.S
->  its-$(CONFIG_FIT_IMAGE_FDT_XILFPGA)	+= board-xilfpga.its.S
-> diff --git a/arch/mips/generic/board-jaguar2.its.S b/arch/mips/generic/board-jaguar2.its.S
-> new file mode 100644
-> index 000000000000..fb0e589eeff7
-> --- /dev/null
-> +++ b/arch/mips/generic/board-jaguar2.its.S
-> @@ -0,0 +1,40 @@
-> +/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-> +/ {
-> +	images {
-> +		fdt@jaguar2_pcb110 {
-> +			description = "MSCC Jaguar2 PCB110 Device Tree";
-> +			data = /incbin/("boot/dts/mscc/jaguar2_pcb110.dtb");
-> +			type = "flat_dt";
-> +			arch = "mips";
-> +			compression = "none";
-> +			hash@0 {
-> +				algo = "sha1";
-> +			};
-> +		};
-> +		fdt@jaguar2_pcb111 {
-> +			description = "MSCC Jaguar2 PCB111 Device Tree";
-> +			data = /incbin/("boot/dts/mscc/jaguar2_pcb111.dtb");
-> +			type = "flat_dt";
-> +			arch = "mips";
-> +			compression = "none";
-> +			hash@0 {
-> +				algo = "sha1";
-> +			};
-> +		};
-> +	};
-> +
-> +	configurations {
-> +		pcb110 {
-> +			description = "Jaguar2 Linux kernel";
-> +			kernel = "kernel@0";
-> +			fdt = "fdt@jaguar2_pcb110";
-> +			ramdisk = "ramdisk";
-> +		};
-> +		pcb111 {
-> +			description = "Jaguar2 Linux kernel";
-> +			kernel = "kernel@0";
-> +			fdt = "fdt@jaguar2_pcb111";
-> +			ramdisk = "ramdisk";
-> +		};
-> +	};
-> +};
+>  	aliases {
+>  		ethernet0 = &ethernet0;
 > -- 
 > 2.28.0
->
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> 
