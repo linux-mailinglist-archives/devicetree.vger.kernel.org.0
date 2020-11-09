@@ -2,111 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C666B2AB7C7
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 13:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A502AB7FC
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 13:18:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729316AbgKIMI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 07:08:27 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:34520 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728927AbgKIMI1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 07:08:27 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0A9C8KGF016562;
-        Mon, 9 Nov 2020 06:08:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1604923700;
-        bh=VvLPSZfpwiHAjS3GjsrVd0qPrDT6hWWzu3IfDCtXXms=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=pkP2c8rMzFhKqVzAynG2FpOYK+a7qBCpdIe0YYlj5r10gRe/+yqZgrrTZeULg8dYV
-         riIdbvJYa5DbekCDMRjZK8131epQtypXjzZnYM+EccDAGs8DHKzDqZHLO8CFVbXD77
-         cf1Ahi9kMjfjcb/LkjIrHClMD0JPeP45Iao//n40=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0A9C8Kjg031614
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 9 Nov 2020 06:08:20 -0600
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 9 Nov
- 2020 06:08:19 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 9 Nov 2020 06:08:19 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0A9C8Hb6012848;
-        Mon, 9 Nov 2020 06:08:17 -0600
-Subject: Re: [PATCH 01/18] dmaengine: of-dma: Add support for optional router
- configuration callback
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <nm@ti.com>, <ssantosh@kernel.org>, <robh+dt@kernel.org>,
-        <vigneshr@ti.com>, <dan.j.williams@intel.com>, <t-kristo@ti.com>,
-        <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>
-References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
- <20200930091412.8020-2-peter.ujfalusi@ti.com>
- <20201007054404.GR2968@vkoul-mobl>
- <be615881-1eb4-f8fe-a32d-04fabb6cb27b@ti.com>
- <20201007155533.GZ2968@vkoul-mobl>
- <45adb88b-1ef8-1fbf-08c1-9afc6ea4c6f0@ti.com>
- <20201028055531.GH3550@vkoul-mobl>
- <cf3d3de0-223b-4846-bd9f-b78654ae2d08@ti.com>
- <20201109114534.GH3171@vkoul-mobl>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <7a7cb455-dd09-b71f-6ecc-fd6108d37051@ti.com>
-Date:   Mon, 9 Nov 2020 14:09:03 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.1
+        id S1729647AbgKIMS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 07:18:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42776 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726956AbgKIMSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 07:18:25 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C08C0613D4
+        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 04:18:24 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id g7so8016271pfc.2
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 04:18:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0ECS4fSUjBtwy6Ka0FJ1351R2BmrDJGaIrqok5xLHqc=;
+        b=DxTb+0Te0zpg9F3FsAG34GuTxjXeWUPuvJrwvHPeKZSxo9ZoOtHRVx81kpvTcsOfo8
+         oR+SMQtkwI5rzaIQudhw95vV2rkohZiS27WQlUwkJfclYxfeps+0wWMDqTVaAXeuUA9J
+         7AQKzbmzBfZSNbhm0BM7vSIvZaa9CsOctK/Yw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0ECS4fSUjBtwy6Ka0FJ1351R2BmrDJGaIrqok5xLHqc=;
+        b=b75SJ8BXAwiAk5N5OT0aqCIjxwlaAeiX8i/eFBUzOLJUul6eW21v2nkldjc6QH+GAl
+         gIcJrOXhjsx67ZjIP15fNcuEMaZJ9ZFR4cs2LQDqEUotcJ3OMZy0sjuOrsqh+Ob50jPW
+         q04pM/1P6CBQOx8Lu0ry7YW/Mawo3yZpFyuuWUJSETrPQJsosGarUR0YJ8ayf2nTZN6Y
+         S+bdG06teVw2qC4vSEL6j5MXT/sVUhc7T8hozmiFRHpbfC0DNA9GdHQfOuZthTgDKdKo
+         1d+gkurh2bQH9Y6m16FK7V6qPV3nn+JyXCr72dr/Pcb5DSQLEuzYZHx/rcl/ncnHqN2P
+         9cTg==
+X-Gm-Message-State: AOAM531I9JFIdbN2wg82IZ6dQTjtb+THyMN3Mk22DtXO5tJUlx+4mD2F
+        sp6yjc9KVUqt2IdBKzRQ9+J6xA==
+X-Google-Smtp-Source: ABdhPJwiprztaOlzoU+V3h2d05eGOMn560WX/sUv7c/t2PAq7D9nYP6sjKVdAiErqkHfsZHQaOkoGQ==
+X-Received: by 2002:a65:6649:: with SMTP id z9mr12193992pgv.18.1604924303784;
+        Mon, 09 Nov 2020 04:18:23 -0800 (PST)
+Received: from shiro.work (p1268123-ipngn200803sizuokaden.shizuoka.ocn.ne.jp. [118.13.124.123])
+        by smtp.googlemail.com with ESMTPSA id i123sm11425204pfc.13.2020.11.09.04.18.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Nov 2020 04:18:23 -0800 (PST)
+From:   Daniel Palmer <daniel@0x0f.com>
+To:     soc@kernel.org, linux-gpio@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
+        maz@kernel.org, w@1wt.eu, Daniel Palmer <daniel@0x0f.com>
+Subject: [PATCH v3 0/5] Add GPIO support for MStar/SigmaStar ARMv7
+Date:   Mon,  9 Nov 2020 21:17:26 +0900
+Message-Id: <20201109121731.1537580-1-daniel@0x0f.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20201109114534.GH3171@vkoul-mobl>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+At the moment the MStar/SigmaStar support is only really
+capable of shell from an initramfs and not much else.
 
-On 09/11/2020 13.45, Vinod Koul wrote:
->> Without a channel number I can not do anything.
->> It is close to a chicken and egg problem.
-> 
-> We get 'channel' in xlate, so wont that help? I think I am still missing
-> something here :(
+Most of the interesting drivers are blocked on clock and pinctrl
+drivers and those are going to take me a little while to get cleaned
+up.
 
-Yes, we get channel in xlate, but we get the channel after
-ofdma->of_dma_route_allocate()
+Clock and pinctrl aren't needed for basic GPIO to work (all pins
+start off as GPIOs..) and it makes it possible to actually do something
+so this series adds everything that is needed for the main GPIO
+block in these chips.
 
-of_dma_route_allocate() si the place where DMA routers create the
-dmaspec for the DMA controller to get a channel and they up until BCDMA
-did also the HW configuration to get the event routed.
+Changes since v2:
 
-For a BCDMA channel we can have three triggers:
-Global trigger 0 for the channel
-Global trigger 1 for the channel
-Local trigger for the channel
+- Numerous style and code cleanups as suggested by Andy Shevchenko,
+  Linus Walleij, Marc Zyngier and Rob Herring.
 
-Every BCDMA channel have these triggers and for all of them they are the
-same (from the channel's pow).
-bchan0 can be triggered by global trigger 0
-bchan1 can be triggered by global trigger 0
+- Pad names moved out of the binding header because they are no longer
+  needed there. The pin/pad numbers are still there as I couldn't think
+  of a better way to do this. meson8b-gpio.h seems to be similar.
 
-But these triggers are not the same ones, the real trigger depends on
-the router, which of it's input is converted to send out an event to
-trigger bchan0_trigger0 or to trigger bchan1_trigger0.
+Changes since v1:
 
-When we got the channel with the dmaspec from the router driver then we
-need to tell the router driver that it needs to send a given event in
-order to trigger the channel that we got.
+- Moves the binding header commit before the yaml commit
+  
+- Fixes the license on the binding header to include BSD-2-Clause
 
-We can not have traditional binding for BCDMA either where we would tell
-the bchan index to be used because depending on the resource allocation
-done within sysfw that exact channel might not be even available for us.
+- The driver has been reworked to use the gpiolib irqchip functionality
+  as suggested by Linus[0]. I think I got this right. The gpio controller
+  doesn't actually do anything with interrupts itself.. It just happens
+  to have 4 lines that are also wired to lines on one of the interrupt
+  controllers.
 
-- Péter
+- Now that the driver is an interrupt controller in it's own right for
+  the gpio lines that have associated interrupts the binding description
+  has been updated to add the interrupt-controller bits and remove the
+  description of the interrupt-names that described how the interrupts
+  used to be passed in.
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Daniel Palmer (5):
+  dt-bindings: gpio: Add a binding header for the MSC313 GPIO driver
+  dt-bindings: gpio: Binding for MStar MSC313 GPIO controller
+  gpio: msc313: MStar MSC313 GPIO driver
+  ARM: mstar: Add gpio controller to MStar base dtsi
+  ARM: mstar: Fill in GPIO controller properties for infinity
+
+ .../bindings/gpio/mstar,msc313-gpio.yaml      |  62 +++
+ MAINTAINERS                                   |   3 +
+ arch/arm/boot/dts/mstar-infinity.dtsi         |   7 +
+ arch/arm/boot/dts/mstar-v7.dtsi               |  10 +
+ drivers/gpio/Kconfig                          |  11 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-msc313.c                    | 460 ++++++++++++++++++
+ include/dt-bindings/gpio/msc313-gpio.h        |  53 ++
+ 8 files changed, 607 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-msc313.c
+ create mode 100644 include/dt-bindings/gpio/msc313-gpio.h
+
+-- 
+2.29.2
+
