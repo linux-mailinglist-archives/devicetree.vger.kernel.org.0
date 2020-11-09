@@ -2,123 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 048F12AC7D9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:59:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BEC92AC7DB
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:59:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729878AbgKIV7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 16:59:16 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:45622 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725946AbgKIV7Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:59:16 -0500
-Received: by mail-oi1-f194.google.com with SMTP id j7so11920002oie.12;
-        Mon, 09 Nov 2020 13:59:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=UVi7/sTYybgJh6ZYR3cD0TOWbRw3z1zGkLRVe5rvAZs=;
-        b=Uis8XzcYo2lIRvSOYCAEFJUPaeet/6ZuqRTrI3WEZBSl6ItUVPpZzJESSRDSjS6bBR
-         fEu5+dOq4XmSnbUlRY3RED0Z6SZo0gjcl+CzD5Lw6Br2vtQPJ3FMRrPY0Ibnglhg9VB0
-         WaYlFKmfENF0c3Vr4TZejgGz74dIqoQOnygxHJF04HyVCJjx9bvww2aHrpo8woQ6WOBK
-         INmPRUw07FPys1VH9Im4BhSuEgapbKqqm1yHwbIvKlgy7wh5AMOlfa2yawZfSM7BPiPZ
-         36DG2zec+KpUiuqggWlT0RfD+g0/gywM/rM+ydf3tKPFLPV+Xh/jfMkxLkCrr6usA1JP
-         80Fw==
-X-Gm-Message-State: AOAM533bOhEwq6paA6bqfpJqa7nJdwjaEdeQSzRO9eCxkrU0dOQtNZV1
-        H9bKJy1pMyS3k3XAIQCFIA==
-X-Google-Smtp-Source: ABdhPJyWkgNEZxra4dYV7f+rOtkuIME4kqLOXZ8Ih+K/nSTDfKadg1ResptqO8GoV4nmSP59pNTN2A==
-X-Received: by 2002:aca:7250:: with SMTP id p77mr860507oic.130.1604959155207;
-        Mon, 09 Nov 2020 13:59:15 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b185sm2691837oif.5.2020.11.09.13.59.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 13:59:14 -0800 (PST)
-Received: (nullmailer pid 1829665 invoked by uid 1000);
-        Mon, 09 Nov 2020 21:59:13 -0000
-Date:   Mon, 9 Nov 2020 15:59:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Subject: Re: [PATCH 15/32] dt-bindings: Define Kendryte K210 sysctl registers
-Message-ID: <20201109215913.GA1828781@bogus>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-16-damien.lemoal@wdc.com>
+        id S1729599AbgKIV7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 16:59:43 -0500
+Received: from mail-eopbgr80074.outbound.protection.outlook.com ([40.107.8.74]:20449
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725946AbgKIV7n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 16:59:43 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WAuLZ1+gcozMKPInztam9DTrLMbHahUBzwfsM0tD01EtIzTFO1APeYCx5Cd7RmQDmaYZ74rKsCJ7NBkA+A080kDEDedECSKSZEAJf+9F903CJCrfGNVUcX1TXEexpRjNJwu5v3hxg1RwPT3Jp74YhcS3dw0qZZfFmvLZmKFeTkVdOg7XS/PTKDJAreBmyxsj1vhCsKeMkeKJCAx1Ohe2RI8MMm46bXqyHLMQRLS4GEtGK2GeTZy89PEUkWLBM05UoYn+a8p4TScjApQVBbmgsSC4SKRlTmJmBndTWvzxvDKbrSGNtPBAVeDV2MBkq/ZgCDTEkVGt2CsskkxAJuqWLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yptG+qcdFVHAe44yIklrIMm0WkEpM6sfmgLImbg4zM0=;
+ b=jfM6iTnALqvU/COQ+zuRnpmxFHvIiLJy6DcodB6h1BKUjHBbc9OV0iotUO7tY4807WKZAVcKcTR3r/xy3u41TEqCtn+krq9RVcY2j01deo+NZFGyHx6XDnl1ntmscJOzKjZ/gmiz9czmmh6DRaCtfXRm+lC1eN91E9ZwhlxcCwke4/69+9uETrfCJMpn6KY9bPWKPmijp5qIybrfeAUqDUAYKxqoAVXesjgyzuoM0s/cNi3ffDagV8dMJ9IBlGfSUcLLough9OShP4IdmBkxg6/aSgQk+AxWi74UuOQpCaXjMn66nzCytu9gZcAUFmOv2g+XPK9KYzbu0jY/VhZMAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yptG+qcdFVHAe44yIklrIMm0WkEpM6sfmgLImbg4zM0=;
+ b=Xzj8/6REwBL7tOK6BT6Ubm9UsPtYNINRtiHXSPYGGTFCL/IU2kUsMMW3h0wQ+rNF0USQ1/QZYLunEhDgfrQQwN7U22pFzieR3B0FdVjtMBWOdA5ExjIJJfFLVnfte+1f0fGMgoiU4T1fiO3Z7KRntlImtb1v5fwAS9a/DPKvKaY=
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com (2603:10a6:206:c::18)
+ by AM6PR04MB5912.eurprd04.prod.outlook.com (2603:10a6:20b:ab::28) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Mon, 9 Nov
+ 2020 21:59:39 +0000
+Received: from AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::2d75:aaf5:5aa6:5de9]) by AM5PR04MB3137.eurprd04.prod.outlook.com
+ ([fe80::2d75:aaf5:5aa6:5de9%6]) with mapi id 15.20.3541.025; Mon, 9 Nov 2020
+ 21:59:39 +0000
+From:   Mirela Rabulea <mirela.rabulea@nxp.com>
+To:     "robh@kernel.org" <robh@kernel.org>,
+        "Mirela Rabulea (OSS)" <mirela.rabulea@oss.nxp.com>
+CC:     dl-linux-imx <linux-imx@nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "paul.kocialkowski@bootlin.com" <paul.kocialkowski@bootlin.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "niklas.soderlund+renesas@ragnatech.se" 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "dafna.hirschfeld@collabora.com" <dafna.hirschfeld@collabora.com>,
+        "ezequiel@collabora.com" <ezequiel@collabora.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: Re: [EXT] Re: [PATCH v4 03/11] media: dt-bindings: Add bindings for
+ i.MX8QXP/QM JPEG driver
+Thread-Topic: [EXT] Re: [PATCH v4 03/11] media: dt-bindings: Add bindings for
+ i.MX8QXP/QM JPEG driver
+Thread-Index: AQHWsMWmfOnIn5n4NkGFWKzzrOKPqam4lO2AgAfQwwA=
+Date:   Mon, 9 Nov 2020 21:59:39 +0000
+Message-ID: <a575cf6a7e75f87bc84fed72a5a24b7b9ce23245.camel@nxp.com>
+References: <20201102030821.3049-1-mirela.rabulea@oss.nxp.com>
+         <20201102030821.3049-4-mirela.rabulea@oss.nxp.com>
+         <20201104223837.GA49021@bogus>
+In-Reply-To: <20201104223837.GA49021@bogus>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [86.124.171.138]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: aeb58fd1-092f-43e7-f83a-08d884fac177
+x-ms-traffictypediagnostic: AM6PR04MB5912:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB5912D4E7C7B7E2787457C4E88FEA0@AM6PR04MB5912.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kF7Kp6TANLOlnH6p0Tg1f9JSvOzgvXvKDSRW2GHpKi4dvq5vB2mSmWFd80XazaLMGD0/uwWv3A+BxBSNCaeSHmJ1TxQz/49Iedv+LXHW3bFUm3XcBQRxiMg+lUC+wPHoZjmoe8YlDZ6cOWB3CbJlLOBROHkGrsq4HSQbxLrYFXDW53Yn3Fnzg4nCk2OdvfTrPKQlfnSghF+olWpV458OjUgo+p0kN9rl1eYDe+TkXwhsMvD5y4NhFQNHiMc+RORc1KzPxnHT8ULyhtlTi6C6CKzrDkRo8cTCaxLJ1+KcqMfjtQPnMLZE6yzndYVBayKRSI9CozFXSEfYZtYzXDckJZt/JdmArpxMwK6u8AbuFOXOYA602Xj1ph2bCDnrLuba
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM5PR04MB3137.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(39850400004)(346002)(366004)(396003)(8676002)(36756003)(8936002)(2616005)(71200400001)(54906003)(2906002)(316002)(478600001)(186003)(6486002)(26005)(76116006)(66556008)(66476007)(66446008)(64756008)(66946007)(6512007)(44832011)(83380400001)(6506007)(4326008)(7416002)(110136005)(5660300002)(86362001)(91956017)(99106002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: FY4m2oQnhFzVuylz9UtabMOP4hWHp4VhNYxvjRWiEXHDnLfOY+zO95PZuGGEssSJcwAxBX+/n3ErOBk0xdQuJsDab0xI1bbugA28wrwrOWoDBPK27T+d4RBIUp5fvLKAEZkW32kJ0QTg49vvlPwSKBWwnVQ32W0H0zObBSa4keArCBnhXAInjxKYYv0PE/rQ+7yc3yw7h5xSo2a3oCZKxK78bPCUISaze9HrVqXAStmftZASiqZ1rp8QTItS5Y8arN40HQTHEUjEKSHzJp1o1O2NN37+19ZKxwZbx8F75Df5cGCPMUI+0Zhe/vLr1G1lQixcFO7ddRqIcxR7h9SDTiFRkawKXp0O7S3sqDJIJil4tc8bNehZ8MBc6rWzcT9xzQhb7lnjo2bc2gwS5VW/XQLi20jOyAl7kwspWxCwq3waiMV22qbl+Z62Oktz1ZrtBKJ8ec8r/hNUOAjO5DnkXIahR5lKgs1QSFE/CH7j95MzJtXjqY2nv6Qym9plR+rz7ygsJbCisK7M4I8ojRm8c6brX6nqr7/XGOI1oYBRao6bA8/BaPdbtwpgeWfcAptrUtQJY2+EjnWqk/KowMiFvJjssVb8OihHWF0hHAzSVOGJCp+Pd/Vajs5Y1kE1H/VzuK2SasZZdILEl4rmVLcPohHF1qxO7pwT5QWZAoYRpcvurpiGJcJ4Gf7Td0wQO9vJ8wmZPlLuRs6tmm/SjfdXAfksLxzPIwl/kxE/IEHViBZUUyhEiWRXvt7SuPeYcyAu0XlcszHWrq47DPrcDy7oG80GYjIUWpXZmGsQbR9QkoHRvGCcCeUuHEUMA+8LKBZ3W1Cg+xPGzH+2XtBUHzu8emftZbaKps6/xmjoq7yCRg1Yv0fpsdFbhXk4Mxu948rsvIUH4OV+5pQmU0eNFFd4UA==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F36B068107D0CE4AB6E746DFEAACBEE9@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201107081420.60325-16-damien.lemoal@wdc.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM5PR04MB3137.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aeb58fd1-092f-43e7-f83a-08d884fac177
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Nov 2020 21:59:39.4281
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: f+rZ1xqCC46qDHkYFACD+Sl880Z6bdkvnrNyjAhNOz6fVfCncjL5qqph+4GeMOaDidiRS3FfG+yKIEksMl4Wrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5912
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 07, 2020 at 05:14:03PM +0900, Damien Le Moal wrote:
-> Introduce the dt-bindings file include/dt-bindings/mfd/k210_sysctl.h to
-> define the offset of all registers of the K210 system controller.
-
-We generally don't have defines for registers in DT.
-
-> 
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  include/dt-bindings/mfd/k210-sysctl.h | 41 +++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 include/dt-bindings/mfd/k210-sysctl.h
-> 
-> diff --git a/include/dt-bindings/mfd/k210-sysctl.h b/include/dt-bindings/mfd/k210-sysctl.h
-> new file mode 100644
-> index 000000000000..5cc386d3c9ca
-> --- /dev/null
-> +++ b/include/dt-bindings/mfd/k210-sysctl.h
-> @@ -0,0 +1,41 @@
-> +/* SPDX-License-Identifier: GPL-2.0+ */
-> +/*
-> + * Copyright (C) 2020 Sean Anderson <seanga2@gmail.com>
-> + * Copyright (c) 2020 Western Digital Corporation or its affiliates.
-> + */
-> +#ifndef MFD_K210_SYSCTL_H
-> +#define MFD_K210_SYSCTL_H
-> +
-> +/*
-> + * Kendryte K210 SoC system controller registers offsets.
-> + * Taken from Kendryte SDK (kendryte-standalone-sdk).
-> + */
-> +#define K210_SYSCTL_GIT_ID	0x00 /* Git short commit id */
-> +#define K210_SYSCTL_UART_BAUD	0x04 /* Default UARTHS baud rate */
-> +#define K210_SYSCTL_PLL0	0x08 /* PLL0 controller */
-> +#define K210_SYSCTL_PLL1	0x0C /* PLL1 controller */
-> +#define K210_SYSCTL_PLL2	0x10 /* PLL2 controller */
-> +#define K210_SYSCTL_PLL_LOCK	0x18 /* PLL lock tester */
-> +#define K210_SYSCTL_ROM_ERROR	0x1C /* AXI ROM detector */
-> +#define K210_SYSCTL_SEL0	0x20 /* Clock select controller 0 */
-> +#define K210_SYSCTL_SEL1	0x24 /* Clock select controller 1 */
-> +#define K210_SYSCTL_EN_CENT	0x28 /* Central clock enable */
-> +#define K210_SYSCTL_EN_PERI	0x2C /* Peripheral clock enable */
-> +#define K210_SYSCTL_SOFT_RESET	0x30 /* Soft reset ctrl */
-> +#define K210_SYSCTL_PERI_RESET	0x34 /* Peripheral reset controller */
-> +#define K210_SYSCTL_THR0	0x38 /* Clock threshold controller 0 */
-> +#define K210_SYSCTL_THR1	0x3C /* Clock threshold controller 1 */
-> +#define K210_SYSCTL_THR2	0x40 /* Clock threshold controller 2 */
-> +#define K210_SYSCTL_THR3	0x44 /* Clock threshold controller 3 */
-> +#define K210_SYSCTL_THR4	0x48 /* Clock threshold controller 4 */
-> +#define K210_SYSCTL_THR5	0x4C /* Clock threshold controller 5 */
-> +#define K210_SYSCTL_THR6	0x50 /* Clock threshold controller 6 */
-> +#define K210_SYSCTL_MISC	0x54 /* Miscellaneous controller */
-> +#define K210_SYSCTL_PERI	0x58 /* Peripheral controller */
-> +#define K210_SYSCTL_SPI_SLEEP	0x5C /* SPI sleep controller */
-> +#define K210_SYSCTL_RESET_STAT	0x60 /* Reset source status */
-> +#define K210_SYSCTL_DMA_SEL0	0x64 /* DMA handshake selector 0 */
-> +#define K210_SYSCTL_DMA_SEL1	0x68 /* DMA handshake selector 1 */
-> +#define K210_SYSCTL_POWER_SEL	0x6C /* IO Power Mode Select controller */
-> +
-> +#endif /* MFD_K210_SYSCTL_H */
-> -- 
-> 2.28.0
-> 
+SGksDQoNCk9uIFdlZCwgMjAyMC0xMS0wNCBhdCAxNjozOCAtMDYwMCwgUm9iIEhlcnJpbmcgd3Jv
+dGU6DQo+ID4gK3RpdGxlOiBpLk1YOFFYUC9RTSBKUEVHIGRlY29kZXIvZW5jb2RlciBEZXZpY2Ug
+VHJlZSBCaW5kaW5ncw0KPiA+ICsNCj4gPiArbWFpbnRhaW5lcnM6DQo+ID4gKyAgLSBNaXJlbGEg
+UmFidWxlYSA8bWlyZWxhLnJhYnVsZWFAbnhwLmNvbT4NCj4gPiArDQo+ID4gK2Rlc2NyaXB0aW9u
+OiB8LQ0KPiA+ICsgIFRoZSBKUEVHIGRlY29kZXIvZW5jb2RlciBwcmVzZW50IGluLk1YUVhQL1FN
+IFNvQyBpcyBhbg0KPiA+ICsgIElTTy9JRUMgMTA5MTgtMSBKUEVHIHN0YW5kYXJkIGNvbXBsaWFu
+dCBkZWNvZGVyL2VuY29kZXIsIGZvcg0KPiA+IEJhc2VsaW5lDQo+ID4gKyAgYW5kIEV4dGVuZGVk
+IFNlcXVlbnRpYWwgRENUIG1vZGVzLg0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICBj
+b21wYXRpYmxlOg0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZW51bToNCj4gPiArICAg
+ICAgICAgICAgIyBKUEVHIGRlY29kZXINCj4gPiArICAgICAgICAgIC0gZnNsLGlteDgtanBnZGVj
+DQo+ID4gKyAgICAgICAgICAgICMgSlBFRyBlbmNvZGVyDQo+ID4gKyAgICAgICAgICAtIGZzbCxp
+bXg4LWpwZ2VuYw0KPiANCj4gV2hpY2ggaW14OD8gU2hvdWxkIGJlIFNvQyBzcGVjaWZpYy4NCg0K
+VGhpcyBJUCBpcyBwcmVzZW50IGluIDIgU09DcywgaW14OHF4cCAmIGlteDhxbS4NCkZvciB0aGUg
+bmV4dCB2ZXJzaW9uLCBJIG1vZGlmaWVkIHRoZSBjb21wYXRpYmxlcyB0byBueHAsaW14OHF4cC1q
+cGdkZWMNCiYgbnhwLGlteDhxeHAtanBnZW5jLCBzaW5jZSBvbmx5IDhxeHAgd2FzIHRlc3RlZCB1
+cHN0cmVhbS4NCkkga2VwdCB0aGUgbmFtZSBvZiB0aGUgeWFtbCBmaWxlIGdlbmVyaWMsIGJ1dCBt
+b2RpZmllZCBpdCB0byBueHAsaW14OC0NCmpwZWcueWFtbC4gUG9zc2libHksIGluIHRoZSBmdXR1
+cmUsIHRoaXMgZmlsZSB3aWxsIGFsc28gaG9zdCBpbXg4cW0NCmNvbXBhdGlibGVzLg0KQWxzbyBj
+aGFuZ2VkIHRoZSBkdGIgJiBkcml2ZXIgYWNjb3JkaW5nbHkuDQoNCj4gDQo+ID4gKw0KPiA+ICsg
+IHJlZzoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGludGVycnVwdHM6DQo+
+ID4gKyAgICBkZXNjcmlwdGlvbjogfA0KPiA+ICsgICAgICBUaGVyZSBhcmUgNCBzbG90cyBhdmFp
+bGFibGUgaW4gdGhlIElQDQo+ID4gKyAgICAgIElmIGEgY2VydGFpbiBzbG90IGlzIHVzZWQsIGl0
+IHNob3VsZCBoYXZlIGFuIGFzc29jaWF0ZWQNCj4gPiBpbnRlcnJ1cHQNCj4gPiArICAgIG1pbkl0
+ZW1zOiAxICAgICAgICAgICAgICAgIyBBdCBsZWFzdCBvbmUgc2xvdCBzaG91bGQgYmUNCj4gPiBh
+dmFpbGFibGUNCj4gPiArICAgIG1heEl0ZW1zOiA0ICAgICAgICAgICAgICAgIyBUaGUgSVAgaGFz
+IDQgc2xvdHMgYXZhaWxhYmxlIGZvcg0KPiA+IHVzZQ0KPiANCj4gWW91IGRvbid0IG5lZWQgdG8g
+a25vdyB3aGljaCBzbG90IGlzIGF2YWlsYWJsZT8NCg0KTm8sIHRoZSBkcml2ZXIga2VlcHMgdHJh
+Y2sgb2Ygd2hpY2ggc2xvdHMgYXJlIHVzZWQgKGFuZCwgZm9yIG5vdywgb25seQ0KdXNlcyBzbG90
+IDApLg0KSXQgaXMgYWxzbyBwb3NzaWJsZSB0byBkZXRlcm1pbmUgd2hpY2ggaXMgdGhlIGN1cnJl
+bnQgcnVubmluZyBzbG90IGJ5DQphY2Nlc3NpbmcgYSBzdGF0dXMgbWVtb3J5IG1hcHBlZCByZWdp
+c3RlciAodGhlIElQIHJ1bnMgdGhlIGNvbmZpZ3VyZWQNCnNsb3RzIGluIGEgcm91bmQtcm9iaW4g
+bWFubmVyLCBub3QgaW4gcGFyYWxsZWwpLg0KVGhlIGFzc3VtcHRpb24gaXMsIGhvd2V2ZXIsIHRo
+YXQgaW4gdGhlIGRldmljZSBub2RlLCB0aGUgaW50ZXJydXB0IGkgaXMNCmZvciBzbG90IGkuIFNv
+LCBJIHJlcGhyYXNlZCB0aGlzIHRvOg0KICBpbnRlcnJ1cHRzOg0KICAgIGRlc2NyaXB0aW9uOiB8
+DQogICAgICBUaGVyZSBhcmUgNCBzbG90cyBhdmFpbGFibGUgaW4gdGhlIElQLCB3aGljaCB0aGUg
+ZHJpdmVyIG1heSB1c2UNCiAgICAgIElmIGEgY2VydGFpbiBzbG90IGlzIHVzZWQsIGl0IHNob3Vs
+ZCBoYXZlIGFuIGFzc29jaWF0ZWQgaW50ZXJydXB0DQogICAgICBUaGUgaW50ZXJydXB0IHdpdGgg
+aW5kZXggaSBpcyBhc3N1bWVkIHRvIGJlIGZvciBzbG90IGkNCiAgICBtaW5JdGVtczogMSAgICAg
+ICAgICAgICAgICMgQXQgbGVhc3Qgb25lIHNsb3QgaXMgbmVlZGVkIGJ5IHRoZQ0KZHJpdmVyDQog
+ICAgbWF4SXRlbXM6IDQgICAgICAgICAgICAgICAjIFRoZSBJUCBoYXMgNCBzbG90cyBhdmFpbGFi
+bGUgZm9yIHVzZQ0KDQoNClRoYW5rcywNCk1pcmVsYQ0KDQo=
