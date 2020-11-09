@@ -2,114 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 913152AB291
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 09:39:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FD6F2AB2BE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 09:50:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729730AbgKIIjp convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 9 Nov 2020 03:39:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726867AbgKIIjp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 03:39:45 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100F4C0613D3
-        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 00:39:45 -0800 (PST)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kc2i6-0001PF-L5; Mon, 09 Nov 2020 09:39:34 +0100
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kc2i5-0008NM-B6; Mon, 09 Nov 2020 09:39:33 +0100
-Message-ID: <6a9ef496c8360c5d4299aec3621306f1ed246dbb.camel@pengutronix.de>
-Subject: Re: [PATCH 6/9] phy: cadence: sierra: Don't configure if any plls
- are already locked
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Milind Parab <mparab@cadence.com>,
-        Yuti Suresh Amonkar <yamonkar@cadence.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Mon, 09 Nov 2020 09:39:33 +0100
-In-Reply-To: <20201103035556.21260-7-kishon@ti.com>
-References: <20201103035556.21260-1-kishon@ti.com>
-         <20201103035556.21260-7-kishon@ti.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S1727791AbgKIIuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 03:50:32 -0500
+Received: from mx07-00178001.pphosted.com ([185.132.182.106]:16450 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726127AbgKIIub (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 03:50:31 -0500
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0A98mX9Y005110;
+        Mon, 9 Nov 2020 09:50:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=kbMEOF7fHi1ILrCU9QmthxuRje1kCpQhTQ54wrm0nmI=;
+ b=VoVYQhrTVC0cHUBC+GLuhDgjJBxLKtKm1gcBuYZEN1uMCRT6CdjEayTClrL+3ZR/tQNV
+ 7g/qvOf/k0gMWW+hET8q6Vlc46bOSBqL2tSBoGyhK6P6iWjuo7hWoTL5200H/wZRegPI
+ s2zQBVve7GUMNz12eCJThSFCaP6WPGqeWyGgCm/zfWyMNSY812aByF6q//bPVmBy2u1r
+ oEpmfoOFvO2is8pwuQpRU7X9rVfgghJLZBuVXrSF5E70Jt5Mt9gx6yYscarmOq7RPEid
+ C52TM+eXaMfKNwXnFPxFfg+HJ8fjDcDseZOvaxx734ARbJ6mg4nT7TqgpNf8PMEyawEQ rQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34nj80gun3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Nov 2020 09:50:21 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 32AF910002A;
+        Mon,  9 Nov 2020 09:50:21 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 15FD42314C1;
+        Mon,  9 Nov 2020 09:50:21 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.46) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 9 Nov
+ 2020 09:50:20 +0100
+Subject: Re: [PATCH] ARM: dts: stm32: fix DCMI DMA features on stm32mp15
+ family
+To:     Hugues Fruchet <hugues.fruchet@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Alain Volmat <alain.volmat@st.com>,
+        Amelie DELAUNAY <amelie.delaunay@st.com>
+References: <1602148182-25869-1-git-send-email-hugues.fruchet@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <585bbff2-89a7-0e10-2280-e4236dc36d2c@st.com>
+Date:   Mon, 9 Nov 2020 09:49:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1602148182-25869-1-git-send-email-hugues.fruchet@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.46]
+X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-09_02:2020-11-05,2020-11-09 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2020-11-03 at 09:25 +0530, Kishon Vijay Abraham I wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
+Hi Hugues
+
+On 10/8/20 11:09 AM, Hugues Fruchet wrote:
+> Enable FIFO mode with half-full threshold.
 > 
-> Serdes lanes might be shared between multiple cores in some usecases
-> and its not possible to lock PLLs for both the lanes independently
-> by the two cores. This requires a bootloader to configure both the
-> lanes at early boot time.
-> 
-> To handle this case, skip all configuration if any of the plls are
-> already locked. This is done by adding an already_configured flag
-> and using it to gate every register access as well as any phy_ops.
-> 
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: Hugues Fruchet <hugues.fruchet@st.com>
 > ---
->  drivers/phy/cadence/phy-cadence-sierra.c | 127 ++++++++++++++---------
->  1 file changed, 78 insertions(+), 49 deletions(-)
+>   arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/phy/cadence/phy-cadence-sierra.c b/drivers/phy/cadence/phy-cadence-sierra.c
-> index e08548417bce..145e42837b7b 100644
-> --- a/drivers/phy/cadence/phy-cadence-sierra.c
-> +++ b/drivers/phy/cadence/phy-cadence-sierra.c
-> @@ -364,6 +364,10 @@ static const struct phy_ops ops = {
->  	.owner		= THIS_MODULE,
->  };
->  
-> +static const struct phy_ops noop_ops = {
-> +	.owner		= THIS_MODULE,
-> +};
-> +
->  static int cdns_sierra_get_optional(struct cdns_sierra_inst *inst,
->  				    struct device_node *child)
->  {
-> @@ -477,6 +481,49 @@ static int cdns_regmap_init_blocks(struct cdns_sierra_phy *sp,
->  	return 0;
->  }
->  
-> +static int cdns_sierra_phy_get_clocks(struct cdns_sierra_phy *sp,
-> +				      struct device *dev)
-> +{
-> +	struct clk *clk;
-> +	int ret;
-> +
-> +	sp->clk = devm_clk_get_optional(dev, "phy_clk");
-> +	if (IS_ERR(sp->clk)) {
-> +		dev_err(dev, "failed to get clock phy_clk\n");
-> +		return PTR_ERR(sp->clk);
-> +	}
-> +
-> +	sp->phy_rst = devm_reset_control_get(dev, "sierra_reset");
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index bfe2902..cfba9a1 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -1091,7 +1091,7 @@
+>   			resets = <&rcc CAMITF_R>;
+>   			clocks = <&rcc DCMI>;
+>   			clock-names = "mclk";
+> -			dmas = <&dmamux1 75 0x400 0x0d>;
+> +			dmas = <&dmamux1 75 0x400 0x01>;
+>   			dma-names = "tx";
+>   			status = "disabled";
+>   		};
+> 
 
-While you're at it, please use devm_reset_control_get_exclusive() here
-and ...
+Applied on stm32-next.
 
-> +	if (IS_ERR(sp->phy_rst)) {
-> +		dev_err(dev, "failed to get reset\n");
-> +		return PTR_ERR(sp->phy_rst);
-> +	}
-> +
-> +	sp->apb_rst = devm_reset_control_get_optional(dev, "sierra_apb");
-
-... devm_reset_control_get_optional_exclusive() here.
-
-regards
-Philipp
+Thanks.
+Alex
