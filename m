@@ -2,125 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A9502AC72C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:23:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D30592AC75A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 22:37:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730706AbgKIVWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 16:22:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42610 "EHLO
+        id S1730024AbgKIVhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 16:37:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727311AbgKIVWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:22:07 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BDF2C0613CF;
-        Mon,  9 Nov 2020 13:22:07 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id f11so8227703lfs.3;
-        Mon, 09 Nov 2020 13:22:07 -0800 (PST)
+        with ESMTP id S1729452AbgKIVhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 16:37:24 -0500
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FE60C0613D3
+        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 13:37:24 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id q5so6421173pfk.6
+        for <devicetree@vger.kernel.org>; Mon, 09 Nov 2020 13:37:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=erGCDfk1T8jj0P66ygwuQHbBulQ+TeFa6YVDO6ZXBrI=;
-        b=HG+R+afcnVk+JjnjUT4bLntCCRkeqWjO387aQAi+qWzlwVcG+x3ZmJm9yTlfS8vZnY
-         wmuDwnkEnegAgv6C5dTgRaW1B7M92a6LzgvNvuyaXmkItwo+wXXyWwHn2SXlLrmNgytF
-         qlsNWkDzkkolZpnHrU1Gx23bcfr0Gc27muvTkFm2qe0XjIkSYs9P2Z2Qr5mY5ToXiKL3
-         A6VKW4z2BA3xUKuP7belL/6Zl25hG6zOzmMeVSMZsKEQC2mZqIL8VNFq+PvL0uefMuen
-         0BW33KF7X6JHunCeDl42YzJDddCRT+W5fGfoFVHtG1If9YgyJZKzR0lOPJ/jeARFvqCk
-         kJyg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b1NwiXOXlnIKNGIq2jOgXwU9+Xz/K9vApGe2ajZ4L/M=;
+        b=R4dcTpQUd2iqX73ACvGUPmT1VVIUx3/A6Qxo4tCla0hRau8MucwhNWUtToscfnQYhX
+         sWxS1M5Ppcfib6j2cLE1xYgwwzBSW6wEjHPoKVGK0hh4+OBvnLSMKzacFIKjJBbVgaIx
+         UmMbG7zv/R+3Ny7vDuqY6mgL0gaF77Vf1ckdE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=erGCDfk1T8jj0P66ygwuQHbBulQ+TeFa6YVDO6ZXBrI=;
-        b=AAW2rpmqKGLxRR6o92FWbaqvnccLpGK7RqCllqwPtLqmDw/coMHuHQWsdvuows3W0Q
-         zQQAwYdbGckyEcCGbOCWt5HOpYxDYTsoL36VOrcRmSwC4qN4akKn/QqzwcpmTloXrqp/
-         e6Oia2DnGBJOtNlzcMtrid3IXzIzk3MsAcVQvLxCWoAUwggaEYAU6bs3lcZcg2W5MqgP
-         HiqvmfjlCdyPjeoRU/4Z87Pii4/jQGAFeSr8hW8qmf/GzKTIpUjVMbjl+UE9XUHU09bF
-         nAYcyRYbm6R7s0Yl/UHlPWRJ1oy+MBwzbjNJkcnr89P3jeBL58U9yPCYPHNi7HnDtfzT
-         edbQ==
-X-Gm-Message-State: AOAM531MX9VYrFXUqWguGqJoeS9Pi9B7S37dr6g+33TWt9ezM2ypClBN
-        J3Pg9QvLmAEeL5x7YM1B3Fw=
-X-Google-Smtp-Source: ABdhPJyckhHVzvlbB8NBnv1YJ+bafHBWpymTA8AujTFSZMEi2aaWRiumfgLTTGBMDdsK6VkU/3Xfgw==
-X-Received: by 2002:a19:3ce:: with SMTP id 197mr6794065lfd.364.1604956925708;
-        Mon, 09 Nov 2020 13:22:05 -0800 (PST)
-Received: from mobilestation ([95.79.141.114])
-        by smtp.gmail.com with ESMTPSA id x8sm1400561lff.196.2020.11.09.13.22.04
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b1NwiXOXlnIKNGIq2jOgXwU9+Xz/K9vApGe2ajZ4L/M=;
+        b=sgO+vGk6xza3s1L4/Dd4K6L6LWUBZnDZv4cmGQjdt033gHKn1g+3mqPX+Rq9J2X+J/
+         fCnPh/vSiQSbW0Emsafz3U0S/r3xzSkPo6T9z42WCpH1wC5hEAKBVRZIo3BqjeZeY1X+
+         g/xCBjNnt5Wf9vh/V424dhoouaJL0JNmYg+t3yZ9SbI9Kc/afWbYendUlb2u1MDC693F
+         DeiJ1Xb5G499M8dnepJVIDep8LR39CCzloQXEGVlaZSgoCkSE+ScRc4CBQbLTvPSSBRy
+         tnnJqaWIAJnMxAEEmZxovhQvtPI8BkkWmY/sGhERgKjLdCpe7fZLH+r+APrJJQE/tccu
+         Klng==
+X-Gm-Message-State: AOAM531NwJaGTWBfttUPUxxD7OXLJ3M41k/pQOPS62uePiofQSp9uwz+
+        RWChMCB1MaJDrKklJOi+WDb2PA==
+X-Google-Smtp-Source: ABdhPJzzLRXx56fIwabSNEYhOPA3YuOpDVtH42rriiwwfcNJKtY0Z3PUX3P7l9sEgtfXBOPAQpgwAw==
+X-Received: by 2002:aa7:868f:0:b029:155:dcd2:7320 with SMTP id d15-20020aa7868f0000b0290155dcd27320mr3869685pfo.53.1604957843517;
+        Mon, 09 Nov 2020 13:37:23 -0800 (PST)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
+        by smtp.gmail.com with ESMTPSA id i10sm11895444pfd.60.2020.11.09.13.37.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 13:22:05 -0800 (PST)
-Date:   Tue, 10 Nov 2020 00:21:58 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        linux-spi@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Subject: Re: [PATCH 06/32] spi: dw: Add support for the Kendryte K210 SoC
-Message-ID: <20201109212158.y34otj3uy2hev75c@mobilestation>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-7-damien.lemoal@wdc.com>
+        Mon, 09 Nov 2020 13:37:22 -0800 (PST)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
+        gregkh@linuxfoundation.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     kai.heng.feng@canonical.com, hdegoede@redhat.com,
+        robh+dt@kernel.org, linux-input@vger.kernel.org,
+        swboyd@chromium.org, andrea@borgia.bo.it,
+        Douglas Anderson <dianders@chromium.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Jiri Kosina <jikos@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        Olof Johansson <olof@lixom.net>, Pavel Balan <admin@kryma.net>,
+        Shawn Guo <shawnguo@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Xiaofei Tan <tanxiaofei@huawei.com>,
+        You-Sheng Yang <vicamo.yang@canonical.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 0/4] HID: i2c-hid: Reorganize to allow supporting goodix,gt7375p
+Date:   Mon,  9 Nov 2020 13:36:32 -0800
+Message-Id: <20201109213636.1267536-1-dianders@chromium.org>
+X-Mailer: git-send-email 2.29.2.222.g5d2a92d10f8-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201107081420.60325-7-damien.lemoal@wdc.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 07, 2020 at 05:13:54PM +0900, Damien Le Moal wrote:
-> The DW SPI master of the Kendryte K210 RISC-V SoC uses the 32-bits
-> ctrlr0 register format. This SoC is also quite slow and gets significant
-> SD card performance improvements from using no-delay polled transfers.
-> Add the dw_spi_k210_init() function tied to the
-> "canaan,kendryte-k210-spi" compatible string to set the
-> DW_SPI_CAP_DFS_32 and DW_SPI_CAP_POLL_NODELAY DW SPI capability fields
-> for this SoC.
-> 
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  drivers/spi/spi-dw-mmio.c | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-> index 3f1bc384cb45..a00def6c5b39 100644
-> --- a/drivers/spi/spi-dw-mmio.c
-> +++ b/drivers/spi/spi-dw-mmio.c
-> @@ -223,6 +223,14 @@ static int dw_spi_keembay_init(struct platform_device *pdev,
->  	return 0;
->  }
->  
-> +static int dw_spi_k210_init(struct platform_device *pdev,
-> +			    struct dw_spi_mmio *dwsmmio)
-> +{
-> +	dwsmmio->dws.caps = DW_SPI_CAP_DFS_32 | DW_SPI_CAP_POLL_NODELAY;
-> +
-> +	return 0;
-> +}
-> +
->  static int dw_spi_mmio_probe(struct platform_device *pdev)
->  {
->  	int (*init_func)(struct platform_device *pdev,
-> @@ -340,6 +348,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
->  	{ .compatible = "snps,dwc-ssi-1.01a", .data = dw_spi_dwc_ssi_init},
->  	{ .compatible = "intel,keembay-ssi", .data = dw_spi_keembay_init},
->  	{ .compatible = "microchip,sparx5-spi", dw_spi_mscc_sparx5_init},
 
-> +	{ .compatible = "canaan,kendryte-k210-spi", .data = dw_spi_k210_init},
+The goal of this series is to support the Goodix GT7375P touchscreen.
+This touchscreen is special because it has power sequencing
+requirements that necessitate driving a reset GPIO.
 
-Other than the comments from Sean and Mark regarding the DFS_32
-feature runtime detectability, I couldn't find a patch with adding the
-new new compatible string into the DW APB SSI DT schema. Have I missed
-it? If I haven't could you add one to the next version of the series?
+To do this, we totally rejigger the way i2c-hid is organized so that
+it's easier to jam the Goodix support in there.
 
--Sergey
+This series was:
+- Tested on a device that uses normal i2c-hid.
+- Tested on a device that has a Goodix i2c-hid device.
+- NOT tested on any ACPI devices (just compile tested).
 
->  	{ /* end of table */}
->  };
->  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
-> -- 
-> 2.28.0
-> 
+Changes in v5:
+- Add shutdown_tail op and use it in ACPI.
+- Added mention of i2c-hid in the yaml itself as per Rob.
+- Adjusted subject as per Rob.
+- i2chid_subclass_data => i2chid_ops.
+- power_up_device => power_up (same with power_down).
+- subclass => ops.
+
+Changes in v4:
+- ("arm64: defconfig: Update config names for i2c-hid rejigger") new for v4.
+- Fully rejigger so ACPI and OF are full subclasses.
+- Totally redid based on the new subclass system.
+
+Changes in v3:
+- Fixed compatible in example.
+- Removed Benjamin as a maintainer.
+- Rework to use subclassing.
+- Updated description.
+
+Changes in v2:
+- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+- Get timings based on the compatible string.
+- Use a separate compatible string for this new touchscreen.
+
+Douglas Anderson (4):
+  HID: i2c-hid: Reorganize so ACPI and OF are separate modules
+  arm64: defconfig: Update config names for i2c-hid rejigger
+  dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix
+    GT7375P
+  HID: i2c-hid: Introduce goodix-i2c-hid using i2c-hid core
+
+ .../bindings/input/goodix,gt7375p.yaml        |  65 +++++
+ arch/arm64/configs/defconfig                  |   3 +-
+ drivers/hid/Makefile                          |   2 +-
+ drivers/hid/i2c-hid/Kconfig                   |  47 +++-
+ drivers/hid/i2c-hid/Makefile                  |   6 +-
+ drivers/hid/i2c-hid/i2c-hid-acpi.c            | 170 ++++++++++++
+ drivers/hid/i2c-hid/i2c-hid-core.c            | 252 +++---------------
+ drivers/hid/i2c-hid/i2c-hid-of-goodix.c       | 120 +++++++++
+ drivers/hid/i2c-hid/i2c-hid-of.c              | 147 ++++++++++
+ drivers/hid/i2c-hid/i2c-hid.h                 |  25 ++
+ include/linux/platform_data/i2c-hid.h         |  41 ---
+ 11 files changed, 615 insertions(+), 263 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-acpi.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of-goodix.c
+ create mode 100644 drivers/hid/i2c-hid/i2c-hid-of.c
+ delete mode 100644 include/linux/platform_data/i2c-hid.h
+
+-- 
+2.29.2.222.g5d2a92d10f8-goog
+
