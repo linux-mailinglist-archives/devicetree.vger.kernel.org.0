@@ -2,120 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72CAA2AAF9E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 03:54:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54A322AAFA1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Nov 2020 03:56:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728038AbgKICy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Nov 2020 21:54:57 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:9219 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727979AbgKICy5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 21:54:57 -0500
-X-UUID: d62a8fc4c2fa46fc80703e49743d6e2b-20201109
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=DQFgYUK++/RRLNHyCwW54CGobbl9tysXmdV/Obiqr7E=;
-        b=OHfrmqQ407SVFAcWEU5Dhwzr6wYOkUCBjMbRZDlrKyHwuk6qxvVLQNLoqZoCn6f+Aoq5mS4qMuS6vrvdAZEhf1L/2Fde0cI1NiYDXsVZsCOtfiTlEtx4FCCIlKk6R4J/locxjwCOdqp8xmIvPPiXl8/eh72h1v/QvLnB/rqLifo=;
-X-UUID: d62a8fc4c2fa46fc80703e49743d6e2b-20201109
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1046264325; Mon, 09 Nov 2020 10:54:48 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 9 Nov
- 2020 10:54:46 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 9 Nov 2020 10:54:46 +0800
-Message-ID: <1604890486.8050.7.camel@mhfsdcap03>
-Subject: Re: [PATCH v7 4/4] ARM: dts: mediatek: Modified MT7629 PCIe node
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        <devicetree@vger.kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        <linux-pci@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mediatek@lists.infradead.org>, <yong.wu@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Mon, 9 Nov 2020 10:54:46 +0800
-In-Reply-To: <20201103225147.GA272037@bjorn-Precision-5520>
-References: <20201103225147.GA272037@bjorn-Precision-5520>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1728104AbgKIC4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Nov 2020 21:56:52 -0500
+Received: from anchovy3.45ru.net.au ([203.30.46.155]:42818 "EHLO
+        anchovy3.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728068AbgKIC4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Nov 2020 21:56:52 -0500
+Received: (qmail 4210 invoked by uid 5089); 9 Nov 2020 02:56:48 -0000
+Received: by simscan 1.2.0 ppid: 4128, pid: 4129, t: 0.0741s
+         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
+Received: from unknown (HELO ?192.168.0.22?) (preid@electromag.com.au@203.59.235.95)
+  by anchovy2.45ru.net.au with ESMTPA; 9 Nov 2020 02:56:48 -0000
+Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
+ conversion
+From:   Phil Reid <preid@electromag.com.au>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+References: <20201031184854.745828-1-jic23@kernel.org>
+ <20201031184854.745828-3-jic23@kernel.org> <20201103161039.GA1754553@bogus>
+ <20201103172834.00007040@Huawei.com>
+ <bc4219af-d77b-0f39-025d-d8905f35b574@electromag.com.au>
+ <CAL_JsqLAtMQhsUDG=amAG7i9mMzYq9UTDLMFRrGKOHr5rb3L+A@mail.gmail.com>
+ <a6685d81-d09a-1372-cc17-96f66c87ffbe@electromag.com.au>
+Message-ID: <66e8db5d-cc37-dde9-7d55-770d54506e3d@electromag.com.au>
+Date:   Mon, 9 Nov 2020 10:56:47 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: B8BBFD63134A1EB2BFE5FCA426352709C941954D3CCC7C2E4A7CA939853D0DE12000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <a6685d81-d09a-1372-cc17-96f66c87ffbe@electromag.com.au>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-AU
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTExLTAzIGF0IDE2OjUxIC0wNjAwLCBCam9ybiBIZWxnYWFzIHdyb3RlOg0K
-PiBUaGlzIHN1YmplY3QgbGluZSBpcyBwb2ludGxlc3MuDQo+IA0KPiBFdmVyeSBwYXRjaCBtb2Rp
-ZmllcyBzb21ldGhpbmcuICBHaXZlIHVzIGEgaGludCBhYm91dCB3aGF0IHlvdQ0KPiBtb2RpZmll
-ZCBhbmQgd2h5Lg0KPiANCj4gQW5kIHVzZSB0aGUgcHJlc2VudCB0ZW5zZSB2ZXJiLCBpLmUuLCAi
-TW9kaWZ5IC4uLiIsIG5vdCAiTW9kaWZpZWQiLg0KPiBQcm9iYWJseSAiQWRkIiB3b3VsZCBiZSBi
-ZXR0ZXIgdGhhbiAiTW9kaWZ5Ii4gIE9yICJVcGRhdGUiIHdpdGggc29tZQ0KPiBtZWFuaW5nZnVs
-IGRlc2NyaXB0aW9uIG9mIHRoZSB1cGRhdGUuDQo+IA0KPiBPbiBUaHUsIE9jdCAyOSwgMjAyMCBh
-dCAwNDoxNToxM1BNICswODAwLCBDaHVhbmppYSBMaXUgd3JvdGU6DQo+ID4gUmVtb3ZlIHVudXNl
-ZCBwcm9wZXJ0eSBhbmQgYWRkIHBjaWVjZmcgbm9kZS4NCj4gDQo+IEFwcGFyZW50bHkgdGhpcyBh
-bHNvIHJlbW92ZXMgInN1YnN5cyIgZnJvbSB0aGUgInJlZyIgcHJvcGVydHkuDQo+IEFuZCByZW1v
-dmVzIGFuIGludGVycnVwdC4gIEFuZCBhZGRzICJwY2llX2lycSIuDQoNClRoYW5rcyBmb3IgeW91
-IHJldmlld++8jEkgd2lsbCB1cGRhdGUgbXkgc3ViamVjdCBhbmQgY29tbWl0IG1lc3NhZ2UuDQoN
-CkFSTTogZHRzOiBtZWRpYXRlazogVXBkYXRlIE1UNzYyOSBQQ0llIG5vZGUNCg0KVG8gbWF0Y2gg
-dGhlIG5ldyBEVFMgQmluZGluZywgUmVtb3ZlICJzdWJzeXMiIGFuZCB1bnVzZWQgaW50ZXJydXB0
-LkFkZA0KInBjaWVfaXJxIiBwcm9wZXJ0eSBhbmQgcGNpZWNmZyBub2RlLg0KDQpJcyB0aGF0IG9r
-Pw0KDQo+ID4gU2lnbmVkLW9mZi1ieTogQ2h1YW5qaWEgTGl1IDxjaHVhbmppYS5saXVAbWVkaWF0
-ZWsuY29tPg0KPiA+IEFja2VkLWJ5OiBSeWRlciBMZWUgPHJ5ZGVyLmxlZUBtZWRpYXRlay5jb20+
-DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtL2Jvb3QvZHRzL210NzYyOS1yZmIuZHRzIHwgIDMgKyst
-DQo+ID4gIGFyY2gvYXJtL2Jvb3QvZHRzL210NzYyOS5kdHNpICAgIHwgMjIgKysrKysrKysrKysr
-LS0tLS0tLS0tLQ0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDE0IGluc2VydGlvbnMoKyksIDExIGRl
-bGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9tdDc2
-MjktcmZiLmR0cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL210NzYyOS1yZmIuZHRzDQo+ID4gaW5kZXgg
-OTk4MGMxMGM2ZTI5Li5lYjUzNmNiZWJkOWIgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm0vYm9v
-dC9kdHMvbXQ3NjI5LXJmYi5kdHMNCj4gPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9tdDc2Mjkt
-cmZiLmR0cw0KPiA+IEBAIC0xNDAsOSArMTQwLDEwIEBADQo+ID4gIAl9Ow0KPiA+ICB9Ow0KPiA+
-ICANCj4gPiAtJnBjaWUgew0KPiA+ICsmcGNpZTEgew0KPiA+ICAJcGluY3RybC1uYW1lcyA9ICJk
-ZWZhdWx0IjsNCj4gPiAgCXBpbmN0cmwtMCA9IDwmcGNpZV9waW5zPjsNCj4gPiArCXN0YXR1cyA9
-ICJva2F5IjsNCj4gPiAgfTsNCj4gPiAgDQo+ID4gICZwY2llcGh5MSB7DQo+ID4gZGlmZiAtLWdp
-dCBhL2FyY2gvYXJtL2Jvb3QvZHRzL210NzYyOS5kdHNpIGIvYXJjaC9hcm0vYm9vdC9kdHMvbXQ3
-NjI5LmR0c2kNCj4gPiBpbmRleCA1Y2JiM2QyNDRjNzUuLjZkNjM5N2YwYzJmYyAxMDA2NDQNCj4g
-PiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9tdDc2MjkuZHRzaQ0KPiA+ICsrKyBiL2FyY2gvYXJt
-L2Jvb3QvZHRzL210NzYyOS5kdHNpDQo+ID4gQEAgLTM2MCwxNiArMzYwLDIwIEBADQo+ID4gIAkJ
-CSNyZXNldC1jZWxscyA9IDwxPjsNCj4gPiAgCQl9Ow0KPiA+ICANCj4gPiAtCQlwY2llOiBwY2ll
-QDFhMTQwMDAwIHsNCj4gPiArCQlwY2llY2ZnOiBwY2llY2ZnQDFhMTQwMDAwIHsNCj4gPiArCQkJ
-Y29tcGF0aWJsZSA9ICJtZWRpYXRlayxnZW5lcmljLXBjaWVjZmciLCAic3lzY29uIjsNCj4gPiAr
-CQkJcmVnID0gPDB4MWExNDAwMDAgMHgxMDAwPjsNCj4gPiArCQl9Ow0KPiA+ICsNCj4gPiArCQlw
-Y2llMTogcGNpZUAxYTE0NTAwMCB7DQo+ID4gIAkJCWNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ3
-NjI5LXBjaWUiOw0KPiA+ICAJCQlkZXZpY2VfdHlwZSA9ICJwY2kiOw0KPiA+IC0JCQlyZWcgPSA8
-MHgxYTE0MDAwMCAweDEwMDA+LA0KPiA+IC0JCQkgICAgICA8MHgxYTE0NTAwMCAweDEwMDA+Ow0K
-PiA+IC0JCQlyZWctbmFtZXMgPSAic3Vic3lzIiwicG9ydDEiOw0KPiA+ICsJCQlyZWcgPSA8MHgx
-YTE0NTAwMCAweDEwMDA+Ow0KPiA+ICsJCQlyZWctbmFtZXMgPSAicG9ydDEiOw0KPiA+ICAJCQkj
-YWRkcmVzcy1jZWxscyA9IDwzPjsNCj4gPiAgCQkJI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gLQkJ
-CWludGVycnVwdHMgPSA8R0lDX1NQSSAxNzYgSVJRX1RZUEVfTEVWRUxfTE9XPiwNCj4gPiAtCQkJ
-CSAgICAgPEdJQ19TUEkgMjI5IElSUV9UWVBFX0xFVkVMX0xPVz47DQo+ID4gKwkJCWludGVycnVw
-dHMgPSA8R0lDX1NQSSAyMjkgSVJRX1RZUEVfTEVWRUxfTE9XPjsNCj4gPiArCQkJaW50ZXJydXB0
-LW5hbWVzID0gInBjaWVfaXJxIjsNCj4gPiAgCQkJY2xvY2tzID0gPCZwY2llc3lzIENMS19QQ0lF
-X1AxX01BQ19FTj4sDQo+ID4gIAkJCQkgPCZwY2llc3lzIENMS19QQ0lFX1AwX0FIQl9FTj4sDQo+
-ID4gIAkJCQkgPCZwY2llc3lzIENMS19QQ0lFX1AxX0FVWF9FTj4sDQo+ID4gQEAgLTM5MCwyMSAr
-Mzk0LDE5IEBADQo+ID4gIAkJCXBvd2VyLWRvbWFpbnMgPSA8JnNjcHN5cyBNVDc2MjJfUE9XRVJf
-RE9NQUlOX0hJRjA+Ow0KPiA+ICAJCQlidXMtcmFuZ2UgPSA8MHgwMCAweGZmPjsNCj4gPiAgCQkJ
-cmFuZ2VzID0gPDB4ODIwMDAwMDAgMCAweDIwMDAwMDAwIDB4MjAwMDAwMDAgMCAweDEwMDAwMDAw
-PjsNCj4gPiArCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiAgDQo+ID4gLQkJCXBjaWUxOiBw
-Y2llQDEsMCB7DQo+ID4gLQkJCQlkZXZpY2VfdHlwZSA9ICJwY2kiOw0KPiA+ICsJCQlzbG90MTog
-cGNpZUAxLDAgew0KPiA+ICAJCQkJcmVnID0gPDB4MDgwMCAwIDAgMCAwPjsNCj4gPiAgCQkJCSNh
-ZGRyZXNzLWNlbGxzID0gPDM+Ow0KPiA+ICAJCQkJI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gIAkJ
-CQkjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KPiA+ICAJCQkJcmFuZ2VzOw0KPiA+IC0JCQkJbnVt
-LWxhbmVzID0gPDE+Ow0KPiA+ICAJCQkJaW50ZXJydXB0LW1hcC1tYXNrID0gPDAgMCAwIDc+Ow0K
-PiA+ICAJCQkJaW50ZXJydXB0LW1hcCA9IDwwIDAgMCAxICZwY2llX2ludGMxIDA+LA0KPiA+ICAJ
-CQkJCQk8MCAwIDAgMiAmcGNpZV9pbnRjMSAxPiwNCj4gPiAgCQkJCQkJPDAgMCAwIDMgJnBjaWVf
-aW50YzEgMj4sDQo+ID4gIAkJCQkJCTwwIDAgMCA0ICZwY2llX2ludGMxIDM+Ow0KPiA+IC0NCj4g
-PiAgCQkJCXBjaWVfaW50YzE6IGludGVycnVwdC1jb250cm9sbGVyIHsNCj4gPiAgCQkJCQlpbnRl
-cnJ1cHQtY29udHJvbGxlcjsNCj4gPiAgCQkJCQkjYWRkcmVzcy1jZWxscyA9IDwwPjsNCj4gPiAt
-LSANCj4gPiAyLjE4LjANCj4gPiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fXw0KPiA+IGxpbnV4LWFybS1rZXJuZWwgbWFpbGluZyBsaXN0DQo+ID4gbGludXgt
-YXJtLWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnDQo+ID4gaHR0cDovL2xpc3RzLmluZnJhZGVh
-ZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hcm0ta2VybmVsDQoNCg==
+On 4/11/2020 12:53, Phil Reid wrote:
+> On 4/11/2020 11:12, Rob Herring wrote:
+>> On Tue, Nov 3, 2020 at 6:39 PM Phil Reid <preid@electromag.com.au> wrote:
+>>>
+>>> On 4/11/2020 01:28, Jonathan Cameron wrote:
+>>>> On Tue, 3 Nov 2020 10:10:39 -0600
+>>>> Rob Herring <robh@kernel.org> wrote:
+>>>>
+>>>>> On Sat, Oct 31, 2020 at 06:48:10PM +0000, Jonathan Cameron wrote:
+>>>>>> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>>>>>>
+>>>>>> Simple direct conversion from txt to yaml as part of a general aim of
+>>>>>> converting all IIO bindings to this machine readable format.
+>>>>>>
+>>>>>> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+>>>>>> Cc: Phil Reid <preid@electromag.com.au>
+>>>>>> ---
+>>>>>>    .../bindings/iio/potentiometer/ad5272.txt     | 27 ----------
+>>>>>>    .../iio/potentiometer/adi,ad5272.yaml         | 50 +++++++++++++++++++
+>>>>>>    2 files changed, 50 insertions(+), 27 deletions(-)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt b/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
+>>>>>> deleted file mode 100644
+>>>>>> index f9b2eef946aa..000000000000
+>>>>>> --- a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
+>>>>>> +++ /dev/null
+>>>>>> @@ -1,27 +0,0 @@
+>>>>>> -* Analog Devices AD5272 digital potentiometer
+>>>>>> -
+>>>>>> -The node for this device must be a child node of a I2C controller, hence
+>>>>>> -all mandatory properties for your controller must be specified. See directory:
+>>>>>> -
+>>>>>> -        Documentation/devicetree/bindings/i2c
+>>>>>> -
+>>>>>> -for more details.
+>>>>>> -
+>>>>>> -Required properties:
+>>>>>> -   - compatible:   Must be one of the following, depending on the model:
+>>>>>> -                   adi,ad5272-020
+>>>>>> -                   adi,ad5272-050
+>>>>>> -                   adi,ad5272-100
+>>>>>> -                   adi,ad5274-020
+>>>>>> -                   adi,ad5274-100
+>>>>>> -
+>>>>>> -Optional properties:
+>>>>>> - - reset-gpios: GPIO specification for the RESET input. This is an
+>>>>>> -           active low signal to the AD5272.
+>>>>>> -
+>>>>>> -Example:
+>>>>>> -ad5272: potentiometer@2f {
+>>>>>> -   reg = <0x2F>;
+>>>>>> -   compatible = "adi,ad5272-020";
+>>>>>> -   reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
+>>>>>> -};
+>>>>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..b9b7d383bff1
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad5272.yaml
+>>>>>> @@ -0,0 +1,50 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/iio/potentiometer/adi,ad5272.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Analog Devices AD5272 digital potentiometer
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Phil Reid <preid@electromag.com.au>
+>>>>>> +
+>>>>>> +description: |
+>>>>>> +  Datasheet: https://www.analog.com/en/products/ad5272.html
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    enum:
+>>>>>> +      - adi,ad5272-020
+>>>>>> +      - adi,ad5272-050
+>>>>>> +      - adi,ad5272-100
+>>>>>> +      - adi,ad5274-020
+>>>>>> +      - adi,ad5274-100
+>>>>>> +
+>>>>>> +  reg:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +  reset-gpios:
+>>>>>> +    description:
+>>>>>> +      Active low signal to the AD5272 RESET input.
+>>>>>
+>>>>> Not a new problem, but active low or...
+>>>>>
+>>>>>> +
+>>>>>> +additionalProperties: false
+>>>>>> +
+>>>>>> +required:
+>>>>>> +  - compatible
+>>>>>> +  - reg
+>>>>>> +
+>>>>>> +examples:
+>>>>>> +  - |
+>>>>>> +    #include <dt-bindings/gpio/gpio.h>
+>>>>>> +    i2c {
+>>>>>> +        #address-cells = <1>;
+>>>>>> +        #size-cells = <0>;
+>>>>>> +
+>>>>>> +        potentiometer@2f {
+>>>>>> +            compatible = "adi,ad5272-020";
+>>>>>> +            reg = <0x2F>;
+>>>>>> +            reset-gpios = <&gpio3 6 GPIO_ACTIVE_HIGH>;
+>>>>>
+>>>>> active high?
+>>>>
+>>>> Good spot!  @Phil.  Looks like the driver is setting the reset line to
+>>>> 0 and then to 1 to come out of reset.   So effectively inverting the logic.
+>>>> I'm tempted to be cynical and suggest we just drop the comment above and leave
+>>>> it vague but is there a better way we can clarify this?
+>>>
+>>> Had a look at a few other iio drivers in regards how they handle the same thing.
+>>> A few do the same thing, ie: the drivers are written to set gpio low to assert reset.
+>>> So they need the device tree gpio config to be active high to work correctly.
+>>> Not sure if this prevents users setting things up as open collector.
+>>
+>> The driver is wrong. 'gpiod_set_value(reset_gpio, 1);' should assert
+>> reset as '1' here is set to (reset) active state as defined in the DT.
+>>
+>> Given no upstream users, maybe it can be fixed...
+>>
+>> We need to make 'reset-gpios' implemented by a reset controller and
+>> stop letting drivers get it wrong.
+>>
+> 
+> Yes I agree, the driver is wrong, think I just copied one of the other drivers for the pattern.
+> I'd be happy to change it, there's probably few (if any) users.
+> 
+> Having a software interface to assert the reset would be nice.
+> 
+> 
+
+If there's no comments against the change, I'll submit a patch in the next day or so.
+
+
+-- 
+Regards
+Phil Reid
+
 
