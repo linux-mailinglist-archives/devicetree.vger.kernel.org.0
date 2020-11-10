@@ -2,32 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 359E52ACFA0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 07:27:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 929142ACFAD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 07:29:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730019AbgKJG1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 01:27:20 -0500
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:41113 "EHLO
+        id S1727176AbgKJG3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 01:29:45 -0500
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:41286 "EHLO
         smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726467AbgKJG1T (ORCPT
+        by vger.kernel.org with ESMTP id S1726307AbgKJG3p (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 01:27:19 -0500
-X-Alimail-AntiSpam: AC=SUSPECT;BC=0.61374|-1;BR=01201311R441b1;CH=blue;DM=|SUSPECT|false|;DS=CONTINUE|ham_system_inform|0.0102791-0.00112627-0.988595;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047204;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.Iuo2KNX_1604989628;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.Iuo2KNX_1604989628)
-          by smtp.aliyun-inc.com(10.147.42.198);
-          Tue, 10 Nov 2020 14:27:12 +0800
+        Tue, 10 Nov 2020 01:29:45 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.137492|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0231434-0.00763199-0.969225;FP=4947591482161697186|1|1|17|0|-1|-1|-1;HT=ay29a033018047211;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=8;RT=8;SR=0;TI=SMTPD_---.Iuo67q-_1604989774;
+Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.Iuo67q-_1604989774)
+          by smtp.aliyun-inc.com(10.147.41.137);
+          Tue, 10 Nov 2020 14:29:41 +0800
 From:   Frank Lee <frank@allwinnertech.com>
 To:     tiny.windzz@gmail.com
-Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yangtao Li <frank@allwinnertech.com>,
-        Vinod Koul <vkoul@kernel.org>,
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Yangtao Li <frank@allwinnertech.com>,
         Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>
-Subject: [RESEND PATCH 04/19] dt-bindings: dma: allwinner,sun50i-a64-dma: Add A100 compatible
-Date:   Tue, 10 Nov 2020 14:26:38 +0800
-Message-Id: <f15a18e9b8868e8853db1b5a3d1e411b0ac1c63a.1604988979.git.frank@allwinnertech.com>
+Subject: [RESEND PATCH 06/19] arm64: allwinner: a100: Add device node for DMA controller
+Date:   Tue, 10 Nov 2020 14:29:32 +0800
+Message-Id: <1b15266045edbcfff2fc3791c88a5390d7bb3185.1604988979.git.frank@allwinnertech.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <cover.1604988979.git.frank@allwinnertech.com>
 References: <cover.1604988979.git.frank@allwinnertech.com>
@@ -39,36 +37,39 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yangtao Li <frank@allwinnertech.com>
 
-Add a binding for A100's dma controller.
+The A100 SoC has a DMA controller that supports 8 DMA channels
+to and from various peripherals.
+
+Add a device node for it.
 
 Signed-off-by: Yangtao Li <frank@allwinnertech.com>
 ---
- .../devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml    | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-index 372679dbd216..b6e1ebfaf366 100644
---- a/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/allwinner,sun50i-a64-dma.yaml
-@@ -21,6 +21,7 @@ properties:
-   compatible:
-     oneOf:
-       - const: allwinner,sun50i-a64-dma
-+      - const: allwinner,sun50i-a100-dma
-       - const: allwinner,sun50i-h6-dma
-       - items:
-           - const: allwinner,sun8i-r40-dma
-@@ -56,7 +57,9 @@ required:
- if:
-   properties:
-     compatible:
--      const: allwinner,sun50i-h6-dma
-+      enum:
-+        - allwinner,sun50i-a100-dma
-+        - allwinner,sun50i-h6-dma
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+index cc321c04f121..c34ed8045363 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+@@ -101,6 +101,18 @@ ccu: clock@3001000 {
+ 			#reset-cells = <1>;
+ 		};
  
- then:
-   properties:
++		dma: dma-controller@3002000 {
++			compatible = "allwinner,sun50i-a100-dma";
++			reg = <0x03002000 0x1000>;
++			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_DMA>, <&ccu CLK_MBUS_DMA>;
++			clock-names = "bus", "mbus";
++			dma-channels = <8>;
++			dma-requests = <51>;
++			resets = <&ccu RST_BUS_DMA>;
++			#dma-cells = <1>;
++		};
++
+ 		gic: interrupt-controller@3021000 {
+ 			compatible = "arm,gic-400";
+ 			reg = <0x03021000 0x1000>, <0x03022000 0x2000>,
 -- 
 2.28.0
 
