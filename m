@@ -2,95 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B3D12ACA9E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 02:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B72692ACB0F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 03:28:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730932AbgKJBmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 20:42:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54800 "EHLO
+        id S1729777AbgKJC2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 21:28:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730348AbgKJBmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 20:42:38 -0500
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DD37C0613CF;
-        Mon,  9 Nov 2020 17:42:38 -0800 (PST)
-Received: by mail-ej1-x641.google.com with SMTP id s25so15151710ejy.6;
-        Mon, 09 Nov 2020 17:42:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=2XBv+bau2T0tT0YMQijH/9j+qP/ondesiGiFE1FM62k=;
-        b=WgSKLe5O46a5WSSuVg6p3+qRbAsRyVdFTkrCZMSDa7rKQKfscWPSe40n/5PCYI/Jwa
-         Fh9fSDw5PJmMMqbNuZkfTPbYs6UVhBq1n24uSUfsm2028DEpjnDDhO9AUQEp7aROmKz0
-         J1neQCD2dYSL6v6qql+r7TsOaDphXTK1A10o944gJLfgIZcrHWJooSjVvDJcEFdwnbc3
-         crhGU5EOi/t44dWaySv9Kwz29/Ko49uunvDTGLrDSOS4rXtS+253H+jqF/htrQtDeQ02
-         a3M/zwA7WYmOOvCpQhmQX3Nuyg2xCM4InfvzHOUskqD4Q4kLmPg8CmgQYL8s1lHjUL6w
-         m5FQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=2XBv+bau2T0tT0YMQijH/9j+qP/ondesiGiFE1FM62k=;
-        b=GSP1bFx/5RGGCsmS8AjQShTfwRraBkXGpygPIXrmx2JCQ7Xoi+wTw1cGDb+BoCgueL
-         6bd6WwsV9mpZ4plzR9ArO9TWgWfDuEdRi90NOS2SK9Cgev1IlaJ41i1WnkoSshGWJUlS
-         tAtSzD9gY4tGxEZBYHy1hsR0TChgDC8gH9kVi776WUAPYhFjQNuchn7X14m1Rj3SRbSQ
-         lHWqLqXf7wjZ1VUvqnhe+Dx6g/gQO+h9d516Ru0M/6dnofiD+fp9ZCsLxluRAyKmEL0A
-         6MEo9PylAQnA+6g3o2+/SY4k6SNE9jsyluUjJl+vgxe4A7xdKU+JuoVsijzaIsuhqz54
-         KSKw==
-X-Gm-Message-State: AOAM533I7wQnxF8jBxqLnC7oD52gWuErDm6pW88HDWuOj7eJQfqMf/Dp
-        L7e/55+wcW3zNo+/K6GChnc=
-X-Google-Smtp-Source: ABdhPJzPmjLD1wIfBHVxywlVZqFgx4NRHieYjWVu1vml6kMk1Z4UmISXQnhW7bBAznyXLf6hbJJ1TA==
-X-Received: by 2002:a17:906:a14c:: with SMTP id bu12mr18306597ejb.444.1604972556902;
-        Mon, 09 Nov 2020 17:42:36 -0800 (PST)
-Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id o31sm9673734edd.94.2020.11.09.17.42.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Nov 2020 17:42:36 -0800 (PST)
-Date:   Tue, 10 Nov 2020 03:42:34 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
- hardware time stamping support
-Message-ID: <20201110014234.b3qdmc2e74poawpz@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de>
- <2541271.Km786uMvHt@n95hx1g2>
- <20201022113243.4shddtywgvpcqq6c@skbuf>
- <5844018.3araiXeC39@n95hx1g2>
+        with ESMTP id S1727311AbgKJC2r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 21:28:47 -0500
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 410BCC0613CF
+        for <devicetree@vger.kernel.org>; Mon,  9 Nov 2020 18:28:47 -0800 (PST)
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 367C8806A8;
+        Tue, 10 Nov 2020 15:28:41 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1604975321;
+        bh=9OXKaBwvy5is2HXhWcidySRSEFy37h51UJenVysVcpA=;
+        h=From:To:Cc:Subject:Date;
+        b=jQFFvHqCfXrfNV0djYhlRoM0F92yCmv0jOzXPJBGWvMVg0ZSFd+xgws8LA0mSmk3C
+         vm5rLOu9nyf41dkTtq4BqGmw0dKOA6ZyWLlwjs/FEcfeQPCnMCvGnOJobyI8aBE1Yq
+         yKoLj0otz5aUV/JC4gmcb7M5VX5SS2IxsSgLMfgOabN//peb3fi9AWrgqj3vN42Br8
+         3zx9jrYqelqYh1fk+VeJlWiM7IwhJeANg97VGen3254mkVAhCWrUn+ceHjRlRoWZUS
+         +SnYHwG5XybOCzXz8A4vroROuW5ECa7mNCtd8aIMxP00enjNebz+t04V717gJhTQOf
+         kBqC6K+iSIBjw==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5fa9fad60000>; Tue, 10 Nov 2020 15:28:39 +1300
+Received: from evann-dl.ws.atlnz.lc (evann-dl.ws.atlnz.lc [10.33.23.31])
+        by smtp (Postfix) with ESMTP id C61B513EE9C;
+        Tue, 10 Nov 2020 15:28:38 +1300 (NZDT)
+Received: by evann-dl.ws.atlnz.lc (Postfix, from userid 1780)
+        id 048B61A4EA2; Tue, 10 Nov 2020 15:28:39 +1300 (NZDT)
+From:   Evan Nimmo <evan.nimmo@alliedtelesis.co.nz>
+To:     frowand.list@gmail.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Evan Nimmo <evan.nimmo@alliedtelesis.co.nz>
+Subject: [PATCH] of/address: Fix of_node memory leak in of_dma_is_coherent
+Date:   Tue, 10 Nov 2020 15:28:25 +1300
+Message-Id: <20201110022825.30895-1-evan.nimmo@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5844018.3araiXeC39@n95hx1g2>
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry for getting back late to you. It did not compute when I read your
-email the first time around, then I let it sit for a while.
+Commit dabf6b36b83a ("of: Add OF_DMA_DEFAULT_COHERENT & select it on
+powerpc") added a check to of_dma_is_coherent which returns early
+if OF_DMA_DEFAULT_COHERENT is enabled. This results in the of_node_put()
+being skipped causing a memory leak. Moved the of_node_get() below this
+check so we now we only get the node if OF_DMA_DEFAULT_COHERENT is not
+enabled.
 
-On Thu, Nov 05, 2020 at 09:18:04PM +0100, Christian Eggers wrote:
-> unfortunately I made a mistake when testing. Actually the timestamp *must* be
-> moved from the correction field (negative) to the egress tail tag.
+Fixes: dabf6b36b83a ("of: Add OF_DMA_DEFAULT_COHERENT & select it on
+powerpc")
 
-That doesn't sound very good at all.
+Signed-off-by: Evan Nimmo <evan.nimmo@alliedtelesis.co.nz>
+---
+ drivers/of/address.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-I have a simple question. Can your driver, when operating as a PTP
-master clock, distribute a time in 2020 into your network? (you can
-check with "phc_ctl /dev/ptp0 get")
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index eb9ab4f1e80b..1c3257a2d4e3 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -1034,11 +1034,13 @@ int of_dma_get_range(struct device_node *np, cons=
+t struct bus_dma_region **map)
+  */
+ bool of_dma_is_coherent(struct device_node *np)
+ {
+-	struct device_node *node =3D of_node_get(np);
++	struct device_node *node;
+=20
+ 	if (IS_ENABLED(CONFIG_OF_DMA_DEFAULT_COHERENT))
+ 		return true;
+=20
++	node =3D of_node_get(np);
++
+ 	while (node) {
+ 		if (of_property_read_bool(node, "dma-coherent")) {
+ 			of_node_put(node);
+--=20
+2.27.0
+
