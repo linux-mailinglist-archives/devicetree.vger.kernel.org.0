@@ -2,88 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 762AC2AD7E6
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 14:43:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 598202AD7F8
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 14:46:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730368AbgKJNno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 08:43:44 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34858 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730099AbgKJNno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 08:43:44 -0500
-Received: by mail-oi1-f194.google.com with SMTP id c80so14350735oib.2;
-        Tue, 10 Nov 2020 05:43:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WpFVE6ofl5+PZ7ETLOM4YJeMuugBjXN/ryVQoNcTj3w=;
-        b=iiwbustvPPGhdGy0jQt5BjOUWl/JCSLciOZAIiraoAC7xC2ohe8H1i4OeKTK/NbZ4I
-         QMorKb0wOApDEZSnZYwes1Xp42Ls6jmd/W08MAasDycHQcXseppaFIRaqZJeFYD2XfVo
-         IZrsqFxcVXSAfJ6bRPl5w7MQiY6FqZHsrPNjyEPEkCD15WBhsaA6Ba9AfITas7tuLBwu
-         N5LIWgDMhTtsF2GpjTNHZHddfkoAf1TQkcnlgpxWPIovmm7ARzjdGpOIt1tUCIzAoRaT
-         cipMI3P+TDGHJvdkT6VZAD38pxuiniN09njqwmp0bCV/Zx/6QmFICDJJNysLh0+bgBd6
-         lOrg==
-X-Gm-Message-State: AOAM531fPU8HCIZxpK1oTD1iXKpYR/A9LX7oTu2cc1r3lZiV8CbBcCLj
-        afgZppNCePnAt4OxO3WRCHUJHK3aHw==
-X-Google-Smtp-Source: ABdhPJxLq0HuK77T+P1JhbEOUFMIPB7pENYAAjIDpcPFoqU5pJqnjH9fqPQkwQ4DHmeCnkrjJ4qD0A==
-X-Received: by 2002:aca:4387:: with SMTP id q129mr2827367oia.108.1605015822787;
-        Tue, 10 Nov 2020 05:43:42 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a23sm3117370oot.33.2020.11.10.05.43.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 05:43:42 -0800 (PST)
-Received: (nullmailer pid 3068702 invoked by uid 1000);
-        Tue, 10 Nov 2020 13:43:40 -0000
-Date:   Tue, 10 Nov 2020 07:43:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Andrej Valek <andrej.valek@siemens.com>
-Cc:     dmitry.torokhov@gmail.com, nick@shmanahar.org, hadess@hadess.net,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: touchscreen: goodix: add info about
- disabling FW loading
-Message-ID: <20201110134340.GA3068076@bogus>
-References: <20201029170313.25529-1-andrej.valek@siemens.com>
- <20201110090720.6650-3-andrej.valek@siemens.com>
+        id S1730572AbgKJNqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 08:46:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53008 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730524AbgKJNqu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 08:46:50 -0500
+Received: from localhost.localdomain (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AD4C22076E;
+        Tue, 10 Nov 2020 13:46:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605016009;
+        bh=P7FNUoUlbSY2GKi42YVDRwQnkOib6vtn54EtBPOLiDQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=hYDBbp0DdpYpcHeeOBptc7EzMimHnzDqfHH9zPh4g/fqp3K97yvx/BjCLQYQqw/Bo
+         hm5eVhisSud5otCjw5SndxHvIiSqDHPiXzMJ6baSTsO+5Okx52I/sEFrisL1N/SI1j
+         l25I0lRJXC0UMHi7FqyVZDoJuf3v9Z41LMEfMTH0=
+From:   Will Deacon <will@kernel.org>
+To:     Jordan Crouse <jcrouse@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org
+Cc:     catalin.marinas@arm.com, kernel-team@android.com,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        linux-kernel@vger.kernel.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Thierry Reding <treding@nvidia.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Hanna Hawa <hannah@marvell.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        iommu@lists.linux-foundation.org
+Subject: Re: [PATCH v19 0/4] iommu/arm-smmu: Add adreno-smmu implementation and bindings
+Date:   Tue, 10 Nov 2020 13:46:40 +0000
+Message-Id: <160501115071.4000419.14530620296550155623.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201109184728.2463097-1-jcrouse@codeaurora.org>
+References: <20201109184728.2463097-1-jcrouse@codeaurora.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201110090720.6650-3-andrej.valek@siemens.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Nov 2020 10:07:18 +0100, Andrej Valek wrote:
-> Add information about option how to disable FW loading for each boot.
+On Mon, 9 Nov 2020 11:47:24 -0700, Jordan Crouse wrote:
+> This short series adds support for the adreno-smmu implementation of the
+> arm-smmu driver and the device-tree bindings to turn on the implementation
+> for the sm845 and sc7180 GPUs. These changes are the last ones needed to enable
+> per-instance pagetables in the drm/msm driver.
 > 
-> Signed-off-by: Andrej Valek <andrej.valek@siemens.com>
-> ---
->  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> v19: Rebase to kernel/git/will/linux.git for-joerg/arm-smmu/updates to pick up
+>      system cache patches and devm_realloc() updates. Use a function hook to
+>      modify / write sctlr
+> v18: No deltas in this patchset since the last go-around for 5.10 [1].
 > 
+> [...]
 
+Applied patches 1-3 to will (for-joerg/arm-smmu/updates), thanks!
 
-My bot found errors running 'make dt_binding_check' on your patch:
+[1/4] iommu/arm-smmu-qcom: Add implementation for the adreno GPU SMMU
+      https://git.kernel.org/will/c/5c7469c66f95
+[2/4] iommu/arm-smmu: Add a way for implementations to influence SCTLR
+      https://git.kernel.org/will/c/bffb2eaf0ba2
+[3/4] dt-bindings: arm-smmu: Add compatible string for Adreno GPU SMMU
+      https://git.kernel.org/will/c/a29bbb0861f4
 
-yamllint warnings/errors:
+I assume the .dts change will be routed separately so as to avoid conflicts.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml: properties:goodix,do-not-load-fw: False is not of type 'object'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml: ignoring, error in schema: properties: goodix,do-not-load-fw
-warning: no schema found in file: ./Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
+Cheers,
+-- 
+Will
 
-
-See https://patchwork.ozlabs.org/patch/1397438
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
