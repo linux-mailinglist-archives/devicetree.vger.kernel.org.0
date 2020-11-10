@@ -2,125 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 975DA2ADD82
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 18:56:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C4A62ADDD1
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 19:08:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726400AbgKJR4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 12:56:18 -0500
-Received: from mga03.intel.com ([134.134.136.65]:14525 "EHLO mga03.intel.com"
+        id S1731212AbgKJSIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 13:08:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:56684 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726152AbgKJR4S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 12:56:18 -0500
-IronPort-SDR: m7d4WJfjC5pCmfdpt4A7oI69G5S7/ne9Fy/+TvfdfRge5oxm5lnAOfzLSmyUBUD5nEK4dqhEah
- IZYSnxB7J+BA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="170128400"
-X-IronPort-AV: E=Sophos;i="5.77,467,1596524400"; 
-   d="scan'208";a="170128400"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 09:56:15 -0800
-IronPort-SDR: MS/56tcUZMYxOcpyM7KhvPxckbKzKsPhdOYcXWaYktY4Z31NiVhRVuS3wZFYniwjRhlutzPAIb
- glmGpIPj3Sxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,467,1596524400"; 
-   d="scan'208";a="338795401"
-Received: from ubuntu18.png.intel.com ([10.88.229.38])
-  by orsmga002.jf.intel.com with ESMTP; 10 Nov 2020 09:56:12 -0800
-From:   vijayakannan.ayyathurai@intel.com
-To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        vijayakannan.ayyathurai@intel.com
-Subject: [PATCH v2 2/2] dt-bindings: watchdog: Add bindings for Intel Keem Bay SoC
-Date:   Wed, 11 Nov 2020 01:53:08 +0800
-Message-Id: <e5b874280fded0a90f7a94b03ab1bbbae4a72ac6.1605028524.git.vijayakannan.ayyathurai@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
-In-Reply-To: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
-References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
+        id S1731259AbgKJSIe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 13:08:34 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C9F1A20797;
+        Tue, 10 Nov 2020 18:08:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605031713;
+        bh=Nz7W27yNGmMjfytfPBBLE46dVYliFnn5Y64uNGZmuIM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=i4EPEKIegCG7mQAYOmGbseMNaM7wnCzfEd0iU8/20Aa4pJOncA8X8DeXrXwY83Svn
+         t4TZmh34jIHFlzzBC6ekXO/YQdD+VmlrujLZxAQL2FhKQtzqtv4FrSwymf4yOUVjjb
+         X68VAgDfJkOW4vcNM0uJ8ayY6jAZLNdM8G5doyjU=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kcY4F-009Wjq-M6; Tue, 10 Nov 2020 18:08:31 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 10 Nov 2020 18:08:31 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Nagarjuna Kristam <nkristam@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: tegra186: Add missing CPU PMUs
+In-Reply-To: <20201110173601.GA2297135@ulmo>
+References: <20201013095851.311478-1-maz@kernel.org>
+ <20201110173601.GA2297135@ulmo>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <3da5c9b1f93699634aad997b77536a92@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: thierry.reding@gmail.com, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com, nkristam@nvidia.com, skomatineni@nvidia.com, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+On 2020-11-10 17:36, Thierry Reding wrote:
+> On Tue, Oct 13, 2020 at 10:58:51AM +0100, Marc Zyngier wrote:
+>> Add the description of CPU PMUs for both the Denver and A57 clusters,
+>> which enables the perf subsystem.
+>> 
+>> Signed-off-by: Marc Zyngier <maz@kernel.org>
 
-Add Device Tree binding document for Watchdog IP in the Intel Keem Bay SoC.
+[...]
 
-Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-Acked-by: Mark Gross <mgross@linux.intel.com>
-Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- .../bindings/watchdog/intel,keembay-wdt.yaml  | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+>> 
+>> +	pmu_denver {
+>> +		compatible = "nvidia,denver-pmu", "arm,armv8-pmuv3";
+> 
+> checkpatch complains that this isn't documented. Did I miss the DT
+> bindings patch or do we not have one for this?
 
-diff --git a/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml b/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
-new file mode 100644
-index 000000000000..1437ff8a122f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/intel,keembay-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel Keem Bay SoC non-secure Watchdog Timer
-+
-+maintainers:
-+  - Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - intel,keembay-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: interrupt specifier for threshold interrupt line
-+      - description: interrupt specifier for timeout interrupt line
-+
-+  interrupt-names:
-+    items:
-+      - const: threshold
-+      - const: timeout
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #define KEEM_BAY_A53_TIM
-+
-+    watchdog: watchdog@2033009c {
-+        compatible = "intel,keembay-wdt";
-+        reg = <0x2033009c 0x10>;
-+        interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupt-names = "threshold", "timeout";
-+        clocks = <&scmi_clk KEEM_BAY_A53_TIM>;
-+    };
-+
-+...
--- 
-2.17.1
+We don't. But I don't think adding a compatible string for each
+and every micro-architecture makes much sense unless we have something
+useful to add to that compatible string. Such as a full description
+of the implementation specific events.
 
+Thanks,
+
+         M.
