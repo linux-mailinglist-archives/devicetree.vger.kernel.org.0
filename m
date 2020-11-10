@@ -2,98 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1DBD2ADF94
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 20:32:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00E3A2ADF9D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 20:33:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732620AbgKJTck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 14:32:40 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44932 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731874AbgKJTcd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 14:32:33 -0500
-Received: by mail-oi1-f195.google.com with SMTP id t16so15693723oie.11;
-        Tue, 10 Nov 2020 11:32:33 -0800 (PST)
+        id S1732123AbgKJTcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 14:32:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51738 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732004AbgKJTct (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 14:32:49 -0500
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3D0AC0613D1;
+        Tue, 10 Nov 2020 11:32:48 -0800 (PST)
+Received: by mail-ed1-x542.google.com with SMTP id v22so3690425edt.9;
+        Tue, 10 Nov 2020 11:32:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VM/5N1Cfxe/m3bRipJoTI2B3zhN3N0f0sMhjH2eyUBU=;
+        b=KdkNh6b3qKXeJvvlcUmKWOeRgPT/zxH3+orznfb65IsHrz7oKYGtiIZacKV/w9g3rP
+         1BHn9xyNAFCM66rdtplI01RPdvPFOhsOu163eyvaJLtISgPqleiayYU9t6U4RjyMe3No
+         +mzIGAocaRP9G5AkadyXwHz+zNt8x9QJDIdy0HTZpuZlHMc1/OI0/xezTXDREFrQms2i
+         CUEcAK5uInTPaSRJ4HXPty6DGW3/+Vcrh+2MCjiwZxlF/ox1llqaLProMD4XFRytgNSV
+         PxUs4yxgM1oAdMEDdAHaSHKLOaf+TytLPyUjA4Q3B5QYCdQzPF3kDW7yEspTneFO3QSm
+         zy6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zjN4V2HIi7t5V1yE5EQ/0Tonc9lqELoKPGUr8UGft1A=;
-        b=Enw4R6mJDWrZmSE99fqUhtP0/pLk2c7dBc4mZXEoVuvAB/6OxP61Hp2aE+1vaeDKFY
-         rM7rb9wYRMmLvcGlIBDd3KEGpUDbvLqGt3mGI5VSsHakAu3qUWa3IJodP2iqDVfBhduT
-         CF1o7vk0IySZwH5vGsYNVOs82utOSMlKn02AYQlmFyRU44wuEyHsf7gqyg2TyY95rVo3
-         xWGCBWhDYa4gh7xyjjjS10i4dc5AqOj7Fua5iHETh0wgSsOYLJbHTEKQYiJZycfYehyv
-         FWWuE/bbdFWKJ4iPAPdX2SzK4ZwkoJqlINXKtdZl74epXdBI/cRsDHMGlaDx4z/iH581
-         iUPQ==
-X-Gm-Message-State: AOAM533Qa1o4x7ZC0qEqWC8IzoUmgWFvJ4M3kaiso8sMsJf9ApKNsBbh
-        h2/5qY9J2AEw7X70Cj1lWHm3z/gGJLoNkdsH7p0=
-X-Google-Smtp-Source: ABdhPJwfZG2tPHJgdaIakKbL1+cVFhfUETa9QStHz8A6yQ1aKSW3znTuh3CMGkAWBFZ9ov+Mv7hn61/NclBkv4xn6iM=
-X-Received: by 2002:aca:1c0b:: with SMTP id c11mr440766oic.71.1605036752777;
- Tue, 10 Nov 2020 11:32:32 -0800 (PST)
-MIME-Version: 1.0
-References: <20201103090600.29053-1-lukasz.luba@arm.com> <9382ea70-cc50-7b78-f5de-716678bdefbf@arm.com>
-In-Reply-To: <9382ea70-cc50-7b78-f5de-716678bdefbf@arm.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Tue, 10 Nov 2020 20:32:21 +0100
-Message-ID: <CAJZ5v0iS2jFvqiddjTDFpXq0gcNrrKML6raQOq=S4boZZC_V5Q@mail.gmail.com>
-Subject: Re: [PATCH v4 0/4] Clarify abstract scale usage for power values in
- Energy Model, EAS and IPA
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VM/5N1Cfxe/m3bRipJoTI2B3zhN3N0f0sMhjH2eyUBU=;
+        b=ENOBqh3VG0VERa0mWgXi2agTqnYrN4hKdOezr4kNnpf3HHwNVvPlejA+tAdsaEfonh
+         +SDCk0xC9Fajoaqo6yLyqDHp9mlZqkbb6N1sQbXe2xLDXPVBrmfoBB28ZTCoi4hlzXSv
+         ig++tckd+qAN8fGi29rUIs7klm3AOuI5TCwDVJfag5dhOU86UAHQO1n3VMRXFelU5bIs
+         KnYMX2p6o4J0J1GMKRhG3UJkLV19YRoxNWC2+cAut9VPdI6+6mvxHYV4VbRnNy+GnEUG
+         e6+4cg6yQVBtuxGW4kJ4NpcLGEAEHRwwOAYIvN9ZrR1X0C9MWVqg2yALVCHzjuf5l/sm
+         XlSg==
+X-Gm-Message-State: AOAM530OogVPeCQBbtLYv0ilzeG6JiYss6JavJR06Z0RQvLFFTux9cgm
+        PwjxtLqA7Rj+/ggJ7OZGvxo=
+X-Google-Smtp-Source: ABdhPJxCG5xnShiAvBFmxb7Da3biTlYt98r8QqBxKW8iMTt6wpgkAlO2l83uFJaTB/QDYZpHzQp04g==
+X-Received: by 2002:a05:6402:234a:: with SMTP id r10mr992643eda.311.1605036767418;
+        Tue, 10 Nov 2020 11:32:47 -0800 (PST)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id cz14sm1918012edb.46.2020.11.10.11.32.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 11:32:46 -0800 (PST)
+Date:   Tue, 10 Nov 2020 21:32:45 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Richard Cochran <richardcochran@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Dietmar Eggemann <Dietmar.Eggemann@arm.com>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Quentin Perret <qperret@google.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        "Nayak, Rajendra" <rnayak@codeaurora.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, Nishanth Menon <nm@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
+ hardware time stamping support
+Message-ID: <20201110193245.uwsmrqzio5hco7fb@skbuf>
+References: <20201019172435.4416-1-ceggers@arri.de>
+ <5844018.3araiXeC39@n95hx1g2>
+ <20201110014234.b3qdmc2e74poawpz@skbuf>
+ <1909178.Ky26jPeFT0@n95hx1g2>
+ <20201110164045.jqdwvmz5lq4hg54l@skbuf>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201110164045.jqdwvmz5lq4hg54l@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 4, 2020 at 11:58 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
->
-> Hi Rafael,
->
-> On 11/3/20 9:05 AM, Lukasz Luba wrote:
-> > Hi all,
-> >
-> > The Energy Model supports power values expressed in an abstract scale.
-> > This has an impact on Intelligent Power Allocation (IPA) and should be
-> > documented properly. Kernel sub-systems like EAS, IPA and DTPM
-> > (new comming PowerCap framework) would use the new flag to capture
-> > potential miss-configuration where the devices have registered different
-> > power scales, thus cannot operate together.
-> >
-> > There was a discussion below v2 of this patch series, which might help
-> > you to get context of these changes [2].
-> >
-> > The agreed approach is to have the DT as a source of power values expressed
-> > always in milli-Watts and the only way to submit with abstract scale values
-> > is via the em_dev_register_perf_domain() API.
-> >
-> > Changes:
-> > v4:
-> > - change bool to int type for 'miliwatts' in struct em_perf_domain
-> >    (suggested by Quentin)
-> > - removed one sentence from patch 2/4 in IPA doc power_allocator.rst
-> >    (suggested by Quentin)
-> > - added reviewed-by from Quentin to 1/4, 3/4, 4/4 patches
->
-> There was no major objections in the v3 and this v4 just addressed
-> minor comments. The important discussions mostly happen in v2.
->
-> Could you take the patches via your tree, please?
+On Tue, Nov 10, 2020 at 06:40:45PM +0200, Vladimir Oltean wrote:
+> I am fairly confident that this is how your hardware works, because
+> that's also how peer delay wants to be timestamped, it seems.
 
-Applied as 5.11 material, thanks!
+So I was confident and also wrong, it appears. My KSZ9477 datasheet
+says:
+
+In the host-to-switch direction, the 4-byte timestamp field is always
+present when PTP is enabled, as shown in Figure 4-6. This is true for
+all packets sent by the host, including IBA packets. The host uses this
+field to insert the receive timestamp from PTP Pdelay_Req messages into
+the Pdelay_Resp messages. For all other traffic and PTP message types,
+the host should populate the timestamp field with zeros.
+
+Hm. Does that mean that the switch updates the originTimestamp field of
+the Sync frames by itself? Ok... Very interesting that they decided to
+introduce a field in the tail tag for a single type of PTP message.
+
+But something is still wrong if you need to special-case the negative
+correctionField, it looks like the arithmetic is not done on the correct
+number of bits, either by the driver or by the hardware.
+
+And zeroing out the correctionField of the Pdelay_Resp on transmission,
+to put that value into t_Tail_Tag? How can you squeeze a 48-bit value
+into a 32-bit value without truncation?
