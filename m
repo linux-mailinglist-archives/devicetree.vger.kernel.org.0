@@ -2,140 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4678C2ADD0C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 18:36:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 897932ADD18
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 18:39:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730983AbgKJRgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 12:36:54 -0500
-Received: from mga06.intel.com ([134.134.136.31]:37254 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730299AbgKJRgy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 12:36:54 -0500
-IronPort-SDR: y/BlxRnqVcOLnrCyt83Z+8t9Vt15asWzgReZdYqtVwpyYz+y2A7TtWLU29G3FRyL6TVHufOW7i
- m/XylgFFCJrA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="231645371"
-X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
-   d="scan'208";a="231645371"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 09:36:52 -0800
-IronPort-SDR: F53sb+0lbYh1DQwyXVc27+eYvsELjCPWmvyKuGIYgvp3oxR00zOLNI1fxiWi2DyErePBLSAmLA
- KWQ9cx3hSDBA==
-X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
-   d="scan'208";a="541418650"
-Received: from bmaguire-mobl1.ger.corp.intel.com ([10.252.16.241])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 09:36:49 -0800
-Message-ID: <89bb5cd49a61d00c2d2f08a4b9273aaecd972ef8.camel@linux.intel.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: Add Keem Bay OCS HCU
- bindings
-From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        Mark Gross <mgross@linux.intel.com>,
-        Declan Murphy <declan.murphy@intel.com>,
-        daniele.alessandrelli@intel.com
-Date:   Tue, 10 Nov 2020 17:36:43 +0000
-In-Reply-To: <20201109161532.GA1382203@bogus>
-References: <20201103184925.294456-1-daniele.alessandrelli@linux.intel.com>
-         <20201103184925.294456-2-daniele.alessandrelli@linux.intel.com>
-         <20201109161532.GA1382203@bogus>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+        id S1726400AbgKJRjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 12:39:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33912 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbgKJRjQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 12:39:16 -0500
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 976D9C0613CF;
+        Tue, 10 Nov 2020 09:39:15 -0800 (PST)
+Received: by mail-wm1-x342.google.com with SMTP id a65so3924706wme.1;
+        Tue, 10 Nov 2020 09:39:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=3j7jJsyWZ8Ub1lHC9hHb6D22psgRs0mO6ewqi6sqfU8=;
+        b=X7+4MMKfLs01J5r2s0f+hUI9MKN3UCnjlGojTWp20EtXfp9QZsefXxjSrD0OlrXVvI
+         e5k/AoYs6am5TkBsWMVCHIHLd+xlcpcOocBoF5JJ9xNK4Hl34woP75LGYJrq7/tQjLx0
+         XHV9haJ4OxUAe6/8K5BpYQI4NNokVbMUJO1G3BFY6CP2rApEKP9P/IMFSk7E3rVx9kzc
+         jbrTvXkxaX3Iw7vERUYuuoGlPb9hLv1la0SU4LrVxJWbnUj0lNDz4QApiGaF4Siur5hn
+         h6GKTEoes5rUK09yL0JuNchUJLy0mAHOk+lpNeL9tfAZK8eWxK+xwiWMMQANZ4Q2XxFU
+         5GpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3j7jJsyWZ8Ub1lHC9hHb6D22psgRs0mO6ewqi6sqfU8=;
+        b=EAs3vX6ZSD/pJXmN+2ktpJXORWZ01X15tHW2kjFM3pRyyvSQsYG2+h78Eo3Dvg5iVi
+         9NfFIRc2SeVbh6tilSTekQj4u5ZL/B6YdgZaXD2OF6mm8IMVJ5b4X6gc/G09+4xl/ydo
+         nEhonyGkWZtSz9aj62/3v6IF4EFa5/+AlTJhWFQTXu2AufMzQ/zjSCsXtvBLIqlqBNb+
+         hLSo/xrgb201TFVMRMOLEFVFSB8eNdUZ6lg+ZQFGMTHuV9AqI9BzmoTSQ0Aq57Rh6T3O
+         CiQD2E9Igk3HGKHniOnrPQmTfwmQO6SSGIVUD/yfhOcFc6SmrVclz7yNZ515rWqa6v1g
+         c6gA==
+X-Gm-Message-State: AOAM531eTepYH09DY6XDbDavlsZBDkgj+oZhOF47kwwy2QM8l5wX+kKH
+        yNoZX0Rz2pIY2/I7s2g7QTQ=
+X-Google-Smtp-Source: ABdhPJwUQsXHWwDKfU7CmCQcultoJDQ2YkG6D0nUItF4uE4frQuwyxZEHXYGQ9uLe3pcVv/xYWe+xw==
+X-Received: by 2002:a05:600c:2254:: with SMTP id a20mr176477wmm.117.1605029954340;
+        Tue, 10 Nov 2020 09:39:14 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id g17sm17959068wrw.37.2020.11.10.09.39.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 09:39:12 -0800 (PST)
+Date:   Tue, 10 Nov 2020 18:39:11 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Nagarjuna Kristam <nkristam@nvidia.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        kernel-team@android.com
+Subject: Re: [PATCH] arm64: tegra: Fix GIC400 missing GICH/GICV register
+ regions
+Message-ID: <20201110173911.GC2297135@ulmo>
+References: <20201005133256.1390543-1-maz@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
+Content-Disposition: inline
+In-Reply-To: <20201005133256.1390543-1-maz@kernel.org>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2020-11-09 at 10:15 -0600, Rob Herring wrote:
-> On Tue, Nov 03, 2020 at 06:49:23PM +0000, Daniele Alessandrelli wrote:
-> > From: Declan Murphy <declan.murphy@intel.com>
-> > 
-> > Add device-tree bindings for the Intel Keem Bay Offload Crypto Subsystem
-> > (OCS) Hashing Control Unit (HCU) crypto driver.
-> > 
-> > Signed-off-by: Declan Murphy <declan.murphy@intel.com>
-> > Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > Acked-by: Mark Gross <mgross@linux.intel.com>
-> > ---
-> >  .../crypto/intel,keembay-ocs-hcu.yaml         | 51 +++++++++++++++++++
-> >  1 file changed, 51 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml b/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
-> > new file mode 100644
-> > index 000000000000..cc03e2b66d5a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
-> > @@ -0,0 +1,51 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/crypto/intel,keembay-ocs-hcu.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Intel Keem Bay OCS HCU Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Declan Murphy <declan.murphy@intel.com>
-> > +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
-> > +
-> > +description:
-> > +  The Intel Keem Bay Offload and Crypto Subsystem (OCS) Hash Control Unit (HCU)
-> > +  provides hardware-accelerated hashing and HMAC.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: intel,keembay-ocs-hcu
-> > +
-> > +  reg:
-> > +    items:
-> > +      - description: The OCS HCU base register address
-> 
-> Just need 'maxItems: 1' if there's only 1. The description doesn't add 
-> anything.
 
-Thanks for the review. I will change this and the ones below.
+--yLVHuoLXiP9kZBkt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: OCS HCU interrupt
-> 
-> Same here
-> 
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: OCS clock
-> 
-> And here.
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    crypto@3000b000 {
-> > +      compatible = "intel,keembay-ocs-hcu";
-> > +      reg = <0x3000b000 0x1000>;
-> > +      interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
-> > +      clocks = <&scmi_clk 94>;
-> > +    };
-> > +
-> > +...
-> > -- 
-> > 2.26.2
-> > 
+On Mon, Oct 05, 2020 at 02:32:56PM +0100, Marc Zyngier wrote:
+> GIC400 has full support for virtualization, and yet the tegra186
+> DT doesn't expose the GICH/GICV regions (despite exposing the
+> maintenance interrupt that only makes sense for virtualization).
+>=20
+> Add the missing regions, based on the hunch that the HW doesn't
+> use the CPU build-in interfaces, but instead the external ones
+> provided by the GIC. KVM's virtual GIC now works with this change.
+>=20
+> Signed-off-by: Marc Zyngier <maz@kernel.org>
+> ---
+>  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 
+Applied, thanks.
+
+Thierry
+
+--yLVHuoLXiP9kZBkt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+q0D8ACgkQ3SOs138+
+s6EAuA/9Gjy7dOhgu44LwHFzzy7JJqU6pWDrHAS5YKSF0Wux7V2rOHrtRRl71y9M
+MuRLoEqYb1Okq10yZalUexL4ynJVZzQliLYxRow2w2wiA/+jq618N8dcDLCYa20v
+BM556D6Rarn68hcbOiGAV5SYpCw0+5auRVrvrfU7oiz6o+4hY6YP6oiOK8PLwdfW
+ZEw3PDVtPVcLWOCq+8Z6MwzcsJFlE3gMwjr7fM+nlEWdOfu5vfa8lBRd3UnKCBoT
+om5dyZMN4Sn6C+u1sbQATithXK8QaFWrwsY+SvKNfghiuQgPaERPX6Wvvk/zSlU+
+VqJoB2UKTXY95CqSpsfducbdyt9zqPdhZfS32DVyMjD2KKjTg0sDxSGm834v9VDP
+ZokYzdF1ly2CMfM76AZ2pZiaUU7PARxQ0lNcteYZVRuJbSkGvNsb7O5XWApfIzdB
+qX6UuRFLerbCz19dsR9igH9aLMrfA+zQTJszzAoEBkxOY78pfvAqSf4bD0nTnz61
+jwz3AYwEkvr2hgPITnjU8rRWTUi151jdkIUMwapQqRqrAYDdc2bsNwqI75PL689H
+4KrQHveqxvev76QphCoS0e8Q9KKKkgUsAsNRZQmIqrgmm2wPbS1HCQaJoP5CBX3L
+kwVOyiy2MB6SwBDk776+JtPWVFaGAJOqi37M5nfU+HdYjFi5fNk=
+=rMrB
+-----END PGP SIGNATURE-----
+
+--yLVHuoLXiP9kZBkt--
