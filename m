@@ -2,98 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1106A2AE220
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 22:50:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 002FE2AE27C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 23:06:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726861AbgKJVun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 16:50:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45048 "EHLO
+        id S1730894AbgKJWGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 17:06:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726688AbgKJVum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 16:50:42 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56985C0613D1;
-        Tue, 10 Nov 2020 13:50:42 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id v18so16546150ljc.3;
-        Tue, 10 Nov 2020 13:50:42 -0800 (PST)
+        with ESMTP id S1726688AbgKJWGx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 17:06:53 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CA06C0613D1;
+        Tue, 10 Nov 2020 14:06:52 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id l5so81419edq.11;
+        Tue, 10 Nov 2020 14:06:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=QumWPjldyhkIYYrKZybLDjf0NEcp9tE/cFj+ALYFR9A=;
-        b=JajzXzj+taW37LHKKk1rBUu2Z4ElUMNSSHS0K95OnI5UImwAIF74Qu+QTmiVzypvAS
-         gAQiDrdU4a2B6Z9A/XX/OOpJu3zamPLYGVpiOdVUDJw7ZsRpBauLkm/3QQp5PvJ2UM4A
-         LlfneuREhApeooZpB9lnnAX6U7j1XdRX88sCUzdxugTvIG1jP5PTHJPC3/8IUgW/bc/i
-         LWgLoXa7caMAbqITehUnmz/UH2tBulw/gQUU8Cd3shJtQ+zvYfoUG1N8jDZq2ZIllOe/
-         aCD81lT6Dj2NRU8sGRrZHHc26lsCxBQnWNgpAjWLB1z+6WE0AmdSq+A5dXHYbs0KDWUd
-         P/Cw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ScC75wP02JgAQnoPoluzDISIKUTt7c3WoT6HKef6yH0=;
+        b=dBFVI7ErZs51pKrmKb7dNp8ZBJxmYF/Rccih1C0hZ1zsNz1gioisKEuTMnAGxOnSCn
+         OYidsTp1BF3trdMOWLxITc0kW9J70RVjbXeE3OOrOeJatH7qVDNxz+CMCgJNncRikhL7
+         1PXHVZTTXzQxWU2jqWWnILlYr9zoXfnjKuHa2g05ZWyyQnYAriZmMnpDa52jiJHkeIPd
+         ww3fTgqod9+5UQmP4FSGk9hLZ4fsmB3woK1GzhnGvmOQMUyehTPU5Dc4wldm5ZocQBYy
+         Nsk/Anr5MOyUKqyJr3yTsldPMGpeuDzgi3qtX048qywDxs7xmoZzxkLull1C5lvLu4Tz
+         u0kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=QumWPjldyhkIYYrKZybLDjf0NEcp9tE/cFj+ALYFR9A=;
-        b=KtRbblHfKi1Ay5PEaAn1KZJFAZ3msWs02D6BzwC7cpXqRlnOnvOsDkoWebzQgSmqRn
-         D0/46SSJdZtmRc8TYtLDSTqBcdmtD/q0X84oyL6u/lKoxtv+nppRHfvWEano4m6qmEmi
-         rXQQvksoL6RzOfdbBrJHfSycz4On2/LJmHdR2XfZTqHuG++IzKFo82z+nNIQWQIJJ+gC
-         z54/p8NqoA0PQEl1qM9KDrr6k3p55B55fy5vJteEuIRfeWw9c+VaI4mYgd82bPDT/auF
-         QrpRkldWJXDRAM45Qad3pyoo7E/xRG8TWtB25rXPHZpkOFrL4IPkA2bBj06S5X6rNR1s
-         bjyg==
-X-Gm-Message-State: AOAM532fAQDNrGzkhk75e2G6DC7w9w8rVE8dImJHRYvrpFlR5L1Yu6V0
-        q6s7cZc8D4FtniHhyZAm0VzFtSlyNKo=
-X-Google-Smtp-Source: ABdhPJxca3fiSpZnzLwSSmf1STAmFU4WFUoLoBVs2ZCeEEkdDu9neVJtNB2ucZnGCMuP/Af+mNHRXw==
-X-Received: by 2002:a2e:9583:: with SMTP id w3mr9542353ljh.25.1605045040627;
-        Tue, 10 Nov 2020 13:50:40 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
-        by smtp.googlemail.com with ESMTPSA id x9sm12074lfg.93.2020.11.10.13.50.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2020 13:50:39 -0800 (PST)
-Subject: Re: [PATCH v1 11/30] drm/tegra: dc: Support OPP and SoC core voltage
- scaling
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20201104234427.26477-1-digetx@gmail.com>
- <20201104234427.26477-12-digetx@gmail.com> <20201110202945.GF2375022@ulmo>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <7b0052e1-0ea7-b28f-ae46-52e669a980ac@gmail.com>
-Date:   Wed, 11 Nov 2020 00:50:38 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ScC75wP02JgAQnoPoluzDISIKUTt7c3WoT6HKef6yH0=;
+        b=UIS1zFidPp7XC8psdJ8mEdx4iPJTJLIiSXeuX9tgJ1zynjqpeLDsoADhkysOZ/rNwz
+         Y0lykcaTRSRgNQBN2lKFCWsYu2lZR6WZPqqpFe9cYRGPqAiq6YVSvHn6Q9F6KzCRFMjb
+         KCtSkc0d9JGS5jP/kQ8EI8O9uyxXdIjAJX3sZc9xeDUnqNRNkpx+YnqSSmIG59fju3Qf
+         DrLBzvQdD3C7R9aJ8gavrX3JcC8Kd5Lg2ci7aJvHXDRq2UOskhFAWOA8S4G+vwA3D3Qu
+         XLVTo9ONvZp8izk4BnPfx/a/5DD4zss++hPeD1BAhmMde6/99HUN0ZAIXweb6jajTt6q
+         zygA==
+X-Gm-Message-State: AOAM530UuPcmH0lMtpyZREQnuh1M1Q2mmfWnq5N9AevoRhA+977Z5yBH
+        CuBCZMPOn2xVXIwDoJLqoXs=
+X-Google-Smtp-Source: ABdhPJysXoRimH8cY1wEZy+FFZd4ZuxG/cdTeDnWFdxCkTtNate9qgKVA/sLEyqkLNZg6AaZ1rkzRA==
+X-Received: by 2002:a05:6402:783:: with SMTP id d3mr23728408edy.168.1605046010782;
+        Tue, 10 Nov 2020 14:06:50 -0800 (PST)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id x20sm45449ejv.66.2020.11.10.14.06.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 14:06:50 -0800 (PST)
+Date:   Wed, 11 Nov 2020 00:06:47 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Kurt Kanzenbach <kurt@kmk-computers.de>
+Subject: Re: [PATCH 04/10] ARM: dts: BCM5301X: Add a default compatible for
+ switch node
+Message-ID: <20201110220647.r5ol44etxa7xxql3@skbuf>
+References: <20201110033113.31090-1-f.fainelli@gmail.com>
+ <20201110033113.31090-5-f.fainelli@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201110202945.GF2375022@ulmo>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201110033113.31090-5-f.fainelli@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-10.11.2020 23:29, Thierry Reding пишет:
->> +	/* legacy device-trees don't have OPP table */
->> +	if (!device_property_present(dc->dev, "operating-points-v2"))
->> +		return 0;
-> "Legacy" is a bit confusing here. For one, no device trees currently
-> have these tables and secondly, for newer SoCs we may never need them.
+On Mon, Nov 09, 2020 at 07:31:07PM -0800, Florian Fainelli wrote:
+> Provide a default compatible string which is based on the 53010 SRAB
+> compatible, this allows us to have sane defaults and silences the
+> following warnings:
 > 
+> arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dt.yaml:
+> ethernet-switch@18007000: compatible: 'oneOf' conditional failed, one
+> must be fixed:
+>         ['brcm,bcm5301x-srab'] is too short
+>         'brcm,bcm5325' was expected
+>         'brcm,bcm53115' was expected
+>         'brcm,bcm53125' was expected
+>         'brcm,bcm53128' was expected
+>         'brcm,bcm5365' was expected
+>         'brcm,bcm5395' was expected
+>         'brcm,bcm5389' was expected
+>         'brcm,bcm5397' was expected
+>         'brcm,bcm5398' was expected
+>         'brcm,bcm11360-srab' was expected
+>         'brcm,bcm5301x-srab' is not one of ['brcm,bcm53010-srab',
+> 'brcm,bcm53011-srab', 'brcm,bcm53012-srab', 'brcm,bcm53018-srab',
+> 'brcm,bcm53019-srab']
+>         'brcm,bcm5301x-srab' is not one of ['brcm,bcm11404-srab',
+> 'brcm,bcm11407-srab', 'brcm,bcm11409-srab', 'brcm,bcm58310-srab',
+> 'brcm,bcm58311-srab', 'brcm,bcm58313-srab']
+>         'brcm,bcm5301x-srab' is not one of ['brcm,bcm58522-srab',
+> 'brcm,bcm58523-srab', 'brcm,bcm58525-srab', 'brcm,bcm58622-srab',
+> 'brcm,bcm58623-srab', 'brcm,bcm58625-srab', 'brcm,bcm88312-srab']
+>         'brcm,bcm5301x-srab' is not one of ['brcm,bcm3384-switch',
+> 'brcm,bcm6328-switch', 'brcm,bcm6368-switch']
+>         From schema:
+> Documentation/devicetree/bindings/net/dsa/b53.yaml
+> 
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+> ---
 
-I had the same thought and already improved such comments a day ago.
+Nice, I didn't know DSA supported the switch inside this device. In the
+default AsusWRT, the switch is well hidden from the kernel :)
+
+Not that it makes any difference as far as I can see, but how do you
+know this a BCM53010 SRAB specifically?
+
+>  arch/arm/boot/dts/bcm5301x.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+> index ee23c0841699..807580dd89f5 100644
+> --- a/arch/arm/boot/dts/bcm5301x.dtsi
+> +++ b/arch/arm/boot/dts/bcm5301x.dtsi
+> @@ -483,7 +483,7 @@ thermal: thermal@1800c2c0 {
+>  	};
+>  
+>  	srab: ethernet-switch@18007000 {
+> -		compatible = "brcm,bcm5301x-srab";
+> +		compatible = "brcm,bcm53010-srab", "brcm,bcm5301x-srab";
+>  		reg = <0x18007000 0x1000>;
+>  
+>  		status = "disabled";
+> -- 
+> 2.25.1
+> 
