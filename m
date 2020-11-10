@@ -2,95 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBE222AD8B8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:26:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F1232AD8C3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:27:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730703AbgKJO0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 09:26:15 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:34943 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730059AbgKJO0P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:26:15 -0500
-Received: by mail-oi1-f196.google.com with SMTP id c80so14507637oib.2;
-        Tue, 10 Nov 2020 06:26:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=I6eINwgPGvryXHeca8G+4NRiZwWs6cwo0lxUCGUsnnM=;
-        b=PDirRAStIMa4VK87ur1eXW+HxdYLTp3veN5PPtGWpTaeFKqJ8DSCP9RlrmN427wTmL
-         i+xNUO0vZNro8rE8nB4LUSrSzNL8oJ7kEnjFtMSzxxIlTdcYAZlrEdZbMIbaiBF+Nvji
-         N+aisTLlQ0RuwkcV5Vqd4sdKIj3Dp8DShbXie+uH+UF2LTGMVCtsPyWARwOIxaadAFRn
-         4GGvMOK1y6B385Jmf5HQWhEb8ld8EJ6skFLbP48yjRnCplWXIqfyStweXvx3wvekcczT
-         I9kIJjks60qp3QUgvJW9iQZ4Gm9t9k7B/JUXddIIiMfMHwPZ0zwhmth1OIMMjS/Wa/S8
-         9UWQ==
-X-Gm-Message-State: AOAM533T0gnDGq7UbhcrQZDzJg2bSuDaJry2Tsp0jIltZcIkRBl81oON
-        wv1z3o4qXGJ+Q3ZisO/DMw==
-X-Google-Smtp-Source: ABdhPJxmEBz2DgpgaTJfUBpq6k0kGF8zZgE3ZaEHQ0GkfG/X/Rq/tzCx9MOVxL5mhsN1tNj0erLv8A==
-X-Received: by 2002:aca:ea54:: with SMTP id i81mr2775381oih.48.1605018374555;
-        Tue, 10 Nov 2020 06:26:14 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 33sm3265678otr.25.2020.11.10.06.26.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 06:26:13 -0800 (PST)
-Received: (nullmailer pid 3120474 invoked by uid 1000);
-        Tue, 10 Nov 2020 14:26:12 -0000
-Date:   Tue, 10 Nov 2020 08:26:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     krzk@kernel.org, sw0312.kim@samsung.com, myungjoo.ham@samsung.com,
-        devicetree@vger.kernel.org, georgi.djakov@linaro.org,
-        dri-devel@lists.freedesktop.org, cw00.choi@samsung.com,
-        b.zolnierkie@samsung.com, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, m.szyprowski@samsung.com,
-        a.swigon@samsung.com
-Subject: Re: [PATCH v8 1/7] dt-bindings: devfreq: Add documentation for the
- interconnect properties
-Message-ID: <20201110142612.GA3120426@bogus>
-References: <20201104103657.18007-1-s.nawrocki@samsung.com>
- <CGME20201104103718eucas1p1c103f1a96499b03c72e5457ac2542c3d@eucas1p1.samsung.com>
- <20201104103657.18007-2-s.nawrocki@samsung.com>
+        id S1730099AbgKJO1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 09:27:51 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:55112 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730097AbgKJO1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 09:27:50 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0AAEQmCC031683;
+        Tue, 10 Nov 2020 15:27:40 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=BuSIs1RLZzn0DgKmvlINLOfEYXG1qK86zGXQ02OVN/E=;
+ b=xoy0bVj/2BNSyj4i137dqmqri5SVPGhQtk0v0Q2c8a1K+31/PHkd1J0wWxTYWF7QiJwz
+ BzolwFi0VRo5to9MgD8rodeHFKy2FcGvIGhAx/h6Jcromh0WQMzRl7ACtRY1oEEI6xah
+ jR4UmYHHj0WZr7eh9dzqK8XixvZzPPWpZ/8hqF1yMq8kayaSJC0ViES9PSA24RwKY3Jl
+ cN1mM9qv/Q2Kn7yd4Z3sppBoFRsPeh5eBoJ0JSdgbGpyyO59ad8slueUgIGmg9v4TlWU
+ Mu6oaO4eRrRZ7vtcDn1j0BIZh3ovh8BKNQnEVUh4B/DoZFEaxK1x6ptSsjQB4S6STE61 wA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34nkbn0r28-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 10 Nov 2020 15:27:40 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 583AB10002A;
+        Tue, 10 Nov 2020 15:27:40 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 462FA2BA2A5;
+        Tue, 10 Nov 2020 15:27:40 +0100 (CET)
+Received: from localhost (10.75.127.44) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 10 Nov 2020 15:27:39
+ +0100
+From:   Amelie Delaunay <amelie.delaunay@st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@st.com>
+Subject: [PATCH 1/2] ARM: dts: stm32: fix dmamux reg property on stm32mp151
+Date:   Tue, 10 Nov 2020 15:27:36 +0100
+Message-ID: <20201110142737.13106-1-amelie.delaunay@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201104103657.18007-2-s.nawrocki@samsung.com>
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG3NODE3.st.com (10.75.127.9) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-10_05:2020-11-10,2020-11-10 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Nov 2020 11:36:51 +0100, Sylwester Nawrocki wrote:
-> Add documentation for new optional properties in the exynos bus nodes:
-> interconnects, #interconnect-cells, samsung,data-clock-ratio.
-> These properties allow to specify the SoC interconnect structure which
-> then allows the interconnect consumer devices to request specific
-> bandwidth requirements.
-> 
-> Signed-off-by: Artur Świgoń <a.swigon@samsung.com>
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> ---
-> Changes for v8:
->  - updated description of the interconnects property,
->  - fixed typo in samsung,data-clk-ratio property description.
-> 
-> Changes for v7:
->  - bus-width property replaced with samsung,data-clock-ratio,
->  - the interconnect consumer bindings used instead of vendor specific
->    properties
-> 
-> Changes for v6:
->  - added dts example of bus hierarchy definition and the interconnect
->    consumer,
->  - added new bus-width property.
-> 
-> Changes for v5:
->  - exynos,interconnect-parent-node renamed to samsung,interconnect-parent
-> ---
->  .../devicetree/bindings/devfreq/exynos-bus.txt     | 71 +++++++++++++++++++++-
->  1 file changed, 69 insertions(+), 2 deletions(-)
-> 
+Reg property length should cover all DMAMUX_CxCR registers.
+DMAMUX_CxCR Address offset: 0x000 + 0x04 * x (x = 0 to 15), so latest
+offset is at 0x3c, so length should be 0x40.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+---
+ arch/arm/boot/dts/stm32mp151.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+index 928e31db1526..719a4276a348 100644
+--- a/arch/arm/boot/dts/stm32mp151.dtsi
++++ b/arch/arm/boot/dts/stm32mp151.dtsi
+@@ -1001,7 +1001,7 @@
+ 
+ 		dmamux1: dma-router@48002000 {
+ 			compatible = "st,stm32h7-dmamux";
+-			reg = <0x48002000 0x1c>;
++			reg = <0x48002000 0x40>;
+ 			#dma-cells = <3>;
+ 			dma-requests = <128>;
+ 			dma-masters = <&dma1 &dma2>;
+-- 
+2.17.1
+
