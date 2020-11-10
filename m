@@ -2,240 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D77582ADB81
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 17:20:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B96242ADC1F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 17:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730232AbgKJQUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 11:20:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49866 "EHLO
+        id S1729183AbgKJQZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 11:25:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729183AbgKJQUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 11:20:37 -0500
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40F3C0613D6
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 08:20:36 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by xavier.telenet-ops.be with bizsmtp
-        id qgLa2300k4C55Sk01gLbVr; Tue, 10 Nov 2020 17:20:35 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kcWNm-001E0w-Nq; Tue, 10 Nov 2020 17:20:34 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kcWNm-00DnvH-AI; Tue, 10 Nov 2020 17:20:34 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v5 2/2] dt-bindings: timer: renesas: tmu: Convert to json-schema
-Date:   Tue, 10 Nov 2020 17:20:14 +0100
-Message-Id: <20201110162014.3290109-3-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201110162014.3290109-1-geert+renesas@glider.be>
-References: <20201110162014.3290109-1-geert+renesas@glider.be>
+        with ESMTP id S1729674AbgKJQZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 11:25:58 -0500
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF91C0613D1;
+        Tue, 10 Nov 2020 08:25:58 -0800 (PST)
+Received: by mail-pl1-x642.google.com with SMTP id x15so5906312pll.2;
+        Tue, 10 Nov 2020 08:25:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5O4s8BL9ywl7ZsGognmWKnG6sDyMl8Xw+WZ9e3T1IIA=;
+        b=bPs9zH699DF1Siu5O9absy+Kuq0HrKfELJ1ksIWoHFUhXFNIfXZv7GRJl767J3DLip
+         r0b5N+hY/3L4bOL2iRaVW5dU5W7A54XPyJmrd4WEDVMNXvHUW0U6HKrFhWioFXVEK9p8
+         HOwKask5FOqTtEct756aF8BD1AGhUuzI/nn8tCL4P17KoY4B3c/LPDfDWKCbFwLIpKRg
+         gZCuthMLJBvsa+bT2FJqWQ3DckqNyeW2kv2ArkPkJoYU+1VV0hZhfuj6nDDGcoBeJUvT
+         nrKBA/c2bClDI5RzmazOhz6oxW1LFGmDAixCIBp7YeHekGgip3YpFcZ5EpJXOuowru1I
+         lYEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5O4s8BL9ywl7ZsGognmWKnG6sDyMl8Xw+WZ9e3T1IIA=;
+        b=PC5lBRoS6svJeCYZrCwzNt+a9qGqr35l+H/O+1damCmVem+irNsg09An94b5xJMM21
+         R2jO6CzJcjTquiZ64ks9Zl59VhuAJYVGEsEfyTaCAEtkduZOg+dCTF7HHhO2JLHTnR0+
+         dCCOUz3N3G9MXbnLrGudW308GlcC/5vnvfWNYscHOKOoUFy9VuAWIPF3Si3D53S6TOvf
+         0beBvD5apVOLHvBmOfZaI3eZDchEy/cfZQGtBLdTfKz55FJa2YRUF664fhTtFxgRvAuR
+         89CzISnddUFjwzJtV7mdYiWSSFdd4UCBGUqgh/JMUT1frTUcTWxdCzu8V5d5MMn7/4vI
+         Tl6w==
+X-Gm-Message-State: AOAM531iWiLV2YfuOAYNJizwQMBByYWg9a/4izep55v4ZxiH+hTqXhnZ
+        LApgwC1pyqX8eYAp5GY232inr+0arvXqVDdq5ek=
+X-Google-Smtp-Source: ABdhPJz/EiLvvYT1guTS3uZDBbfc/aFjk+4N5P2ZeATb+keF7p3jJxlYAyhkpEPKBD4J3hZZ9gBmAmmbxrPheu9QSAo=
+X-Received: by 2002:a17:902:aa8a:b029:d3:c9dd:77d1 with SMTP id
+ d10-20020a170902aa8ab02900d3c9dd77d1mr17502695plr.0.1605025557907; Tue, 10
+ Nov 2020 08:25:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201109132643.457932-1-lars.povlsen@microchip.com>
+ <20201109132643.457932-3-lars.povlsen@microchip.com> <CAHp75Vdfm7A5=Mi-LZ1sHJS5fSngypZQ50-rGQ7A6kD2kmVFTA@mail.gmail.com>
+ <87361hfbwu.fsf@microchip.com>
+In-Reply-To: <87361hfbwu.fsf@microchip.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 10 Nov 2020 18:26:46 +0200
+Message-ID: <CAHp75VfZ=hJvpYiAOz72yRpJTxLU6ZOo9hEz4BsBcgSwAcjCFA@mail.gmail.com>
+Subject: Re: [PATCH v8 2/3] pinctrl: pinctrl-microchip-sgpio: Add pinctrl
+ driver for Microsemi Serial GPIO
+To:     Lars Povlsen <lars.povlsen@microchip.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Renesas R-Mobile/R-Car Timer Unit (TMU) Device Tree binding
-documentation to json-schema.
+On Tue, Nov 10, 2020 at 5:51 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+> > On Mon, Nov 9, 2020 at 3:27 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
 
-Document missing properties.
-Update the example to match reality.
+> >> This adds a pinctrl driver for the Microsemi/Microchip Serial GPIO
+> >> (SGPIO) device used in various SoC's.
+> >
+> > Please, elaborate what you said previously, because now it has no
+> > justification to be a pin control driver.
+>
+> As previously stated, the individual pins have possible other functions
+> than GPIO. When these functions are added, the driver will need pinctrl
+> functinality. This was accepted by Linux Walleij.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v5:
-  - No changes,
+Yes, I understand that. What I meant is to update the commit message
+to tell this to the reviewers / readers / anthropologists.
 
-v4:
-  - Rebase on top of "dt-bindings: timer: renesas,tmu: Document r8a774e1
-    bindings",
+...
 
-v3:
-  - Remove unneeded 'allOf' container around '$ref',
+> >> +               return -EOPNOTSUPP;
+> >
+> > Are you sure? IIRC internally we are using ENOTSUPP.
+> >
+> > Couple of drivers seem to be wrongly using the other one.
+>
+> Checkpatch complains about ENOTSUPP:
+>
+> # ENOTSUPP is not a standard error code and should be avoided in new patches.
+> # Folks usually mean EOPNOTSUPP (also called ENOTSUP), when they type ENOTSUPP.
 
-v2:
-  - Add missing "additionalProperties: false",
-  - Add Reviewed-by.
----
- .../devicetree/bindings/timer/renesas,tmu.txt | 50 ----------
- .../bindings/timer/renesas,tmu.yaml           | 99 +++++++++++++++++++
- 2 files changed, 99 insertions(+), 50 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/timer/renesas,tmu.txt
- create mode 100644 Documentation/devicetree/bindings/timer/renesas,tmu.yaml
+checkpatch is wrong if this is internal code and to me sounds like
+it's not going out of the kernel.
 
-diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.txt b/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-deleted file mode 100644
-index a36cd61e74fba52e..0000000000000000
---- a/Documentation/devicetree/bindings/timer/renesas,tmu.txt
-+++ /dev/null
-@@ -1,50 +0,0 @@
--* Renesas R-Mobile/R-Car Timer Unit (TMU)
--
--The TMU is a 32-bit timer/counter with configurable clock inputs and
--programmable compare match.
--
--Channels share hardware resources but their counter and compare match value
--are independent. The TMU hardware supports up to three channels.
--
--Required Properties:
--
--  - compatible: must contain one or more of the following:
--    - "renesas,tmu-r8a7740" for the r8a7740 TMU
--    - "renesas,tmu-r8a774a1" for the r8a774A1 TMU
--    - "renesas,tmu-r8a774b1" for the r8a774B1 TMU
--    - "renesas,tmu-r8a774c0" for the r8a774C0 TMU
--    - "renesas,tmu-r8a774e1" for the r8a774E1 TMU
--    - "renesas,tmu-r8a7778" for the r8a7778 TMU
--    - "renesas,tmu-r8a7779" for the r8a7779 TMU
--    - "renesas,tmu-r8a77970" for the r8a77970 TMU
--    - "renesas,tmu-r8a77980" for the r8a77980 TMU
--    - "renesas,tmu" for any TMU.
--      This is a fallback for the above renesas,tmu-* entries
--
--  - reg: base address and length of the registers block for the timer module.
--
--  - interrupts: interrupt-specifier for the timer, one per channel.
--
--  - clocks: a list of phandle + clock-specifier pairs, one for each entry
--    in clock-names.
--  - clock-names: must contain "fck" for the functional clock.
--
--Optional Properties:
--
--  - #renesas,channels: number of channels implemented by the timer, must be 2
--    or 3 (if not specified the value defaults to 3).
--
--
--Example: R8A7779 (R-Car H1) TMU0 node
--
--	tmu0: timer@ffd80000 {
--		compatible = "renesas,tmu-r8a7779", "renesas,tmu";
--		reg = <0xffd80000 0x30>;
--		interrupts = <0 32 IRQ_TYPE_LEVEL_HIGH>,
--			     <0 33 IRQ_TYPE_LEVEL_HIGH>,
--			     <0 34 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&mstp0_clks R8A7779_CLK_TMU0>;
--		clock-names = "fck";
--
--		#renesas,channels = <3>;
--	};
-diff --git a/Documentation/devicetree/bindings/timer/renesas,tmu.yaml b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-new file mode 100644
-index 0000000000000000..c54188731a1bd7c1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/renesas,tmu.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas R-Mobile/R-Car Timer Unit (TMU)
-+
-+maintainers:
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-+
-+description:
-+  The TMU is a 32-bit timer/counter with configurable clock inputs and
-+  programmable compare match.
-+
-+  Channels share hardware resources but their counter and compare match value
-+  are independent. The TMU hardware supports up to three channels.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,tmu-r8a7740  # R-Mobile A1
-+          - renesas,tmu-r8a774a1 # RZ/G2M
-+          - renesas,tmu-r8a774b1 # RZ/G2N
-+          - renesas,tmu-r8a774c0 # RZ/G2E
-+          - renesas,tmu-r8a774e1 # RZ/G2H
-+          - renesas,tmu-r8a7778  # R-Car M1A
-+          - renesas,tmu-r8a7779  # R-Car H1
-+          - renesas,tmu-r8a77970 # R-Car V3M
-+          - renesas,tmu-r8a77980 # R-Car V3H
-+      - const: renesas,tmu
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 2
-+    maxItems: 3
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: fck
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  '#renesas,channels':
-+    description:
-+      Number of channels implemented by the timer.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 2, 3 ]
-+    default: 3
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - power-domains
-+
-+if:
-+  not:
-+    properties:
-+      compatible:
-+        contains:
-+          enum:
-+            - renesas,tmu-r8a7740
-+            - renesas,tmu-r8a7778
-+            - renesas,tmu-r8a7779
-+then:
-+  required:
-+    - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r8a7779-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/r8a7779-sysc.h>
-+    tmu0: timer@ffd80000 {
-+            compatible = "renesas,tmu-r8a7779", "renesas,tmu";
-+            reg = <0xffd80000 0x30>;
-+            interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-+            clocks = <&mstp0_clks R8A7779_CLK_TMU0>;
-+            clock-names = "fck";
-+            power-domains = <&sysc R8A7779_PD_ALWAYS_ON>;
-+            #renesas,channels = <3>;
-+    };
+...
+
+> >> +                       err = -EOPNOTSUPP;
+> >
+> > Ditto.
+>
+> Ditto.
+
+Ditto.
+
+...
+
+> >> +               dev_err(pctldev->dev, "Pin %d direction as %s is not possible\n",
+> >> +                       pin, input ? "input" : "output");
+> >
+> > Do we need this noise? Isn't user space getting a proper error code as
+> > per doc and can handle this?
+> >
+>
+> This need not go to user space, as one use-case is using the pin as a
+> i2c mux. In this case no signs of the error condition is recorded, it
+> just doesn't work. So I concur it is not noise, it is sign of an
+> erroneous situation which should be fixed, IMHO.
+>
+> The message makes it easy to locate the issue, if any. The message will
+> not occur on a properly configured system.
+
+It's noise. As we discussed with Alexandre (and I guess came to the
+same page) that its consumer's business how to treat the error.
+
+> Lets have the maintainer make the call.
+
+...
+
+> >> +static int microchip_sgpio_get_ports(struct sgpio_priv *priv)
+> >> +{
+
+> >> +}
+> >
+> > As per previous version comment, i.e. perhaps find an existing API for
+> > this kind of parser or introduce a generic one.
+>
+> I fixed the use of OF api's - that was surely an oversight.
+>
+> I have searched for a suitable API without finding one. The closest
+> thing was the parsing of "gpio-reserved-ranges" in gpiolib-of.c, but
+> that was coded directly. So I think this might not be of general use.
+>
+> If it is, lets do that after the driver is merged.
+
+I guess it will be a lot of benefit to have such API earlier than later.
+
 -- 
-2.25.1
-
+With Best Regards,
+Andy Shevchenko
