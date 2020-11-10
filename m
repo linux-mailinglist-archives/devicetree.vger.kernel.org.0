@@ -2,92 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FFB62AD7E8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 14:43:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 762AC2AD7E6
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 14:43:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730650AbgKJNnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 08:43:53 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52114 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730099AbgKJNnx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 08:43:53 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6F84420731;
-        Tue, 10 Nov 2020 13:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605015833;
-        bh=8a93PI75TfxaQ/45J7emDK1Y8Q31siD/1/I+xtXuprk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=onGLtCfW9xKqxLvawwxMVgVhxER7U4G8YaW6HCGl5H1Oc57M6y6rsASGGm5EV0csi
-         08nKnppFYrxJw8xcq0+KhtqR5TmjJyOb7SOEzbBBDCuiYVgtRGwCDDyPsPKohqgvzK
-         HqyN/6m2iyy9nSjZprAZzrqY6m0ood8Ew2dHCvLQ=
-Date:   Tue, 10 Nov 2020 13:43:38 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Sean Anderson <seanga2@gmail.com>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>
-Subject: Re: [PATCH 03/32] spi: dw: Fix driving MOSI low while recieving
-Message-ID: <20201110134338.GB5957@sirena.org.uk>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-4-damien.lemoal@wdc.com>
- <20201109132935.GB6380@sirena.org.uk>
- <c37ca9be-ea92-b07a-b600-d68de4f7bde5@gmail.com>
- <20201109141422.GD6380@sirena.org.uk>
- <20201109191909.wfuwpddng4rdn4ca@mobilestation>
- <20201109202052.GL6380@sirena.org.uk>
- <20201109210531.wp4dmug4w2r4kh4p@mobilestation>
+        id S1730368AbgKJNno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 08:43:44 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:34858 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730099AbgKJNno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 08:43:44 -0500
+Received: by mail-oi1-f194.google.com with SMTP id c80so14350735oib.2;
+        Tue, 10 Nov 2020 05:43:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WpFVE6ofl5+PZ7ETLOM4YJeMuugBjXN/ryVQoNcTj3w=;
+        b=iiwbustvPPGhdGy0jQt5BjOUWl/JCSLciOZAIiraoAC7xC2ohe8H1i4OeKTK/NbZ4I
+         QMorKb0wOApDEZSnZYwes1Xp42Ls6jmd/W08MAasDycHQcXseppaFIRaqZJeFYD2XfVo
+         IZrsqFxcVXSAfJ6bRPl5w7MQiY6FqZHsrPNjyEPEkCD15WBhsaA6Ba9AfITas7tuLBwu
+         N5LIWgDMhTtsF2GpjTNHZHddfkoAf1TQkcnlgpxWPIovmm7ARzjdGpOIt1tUCIzAoRaT
+         cipMI3P+TDGHJvdkT6VZAD38pxuiniN09njqwmp0bCV/Zx/6QmFICDJJNysLh0+bgBd6
+         lOrg==
+X-Gm-Message-State: AOAM531fPU8HCIZxpK1oTD1iXKpYR/A9LX7oTu2cc1r3lZiV8CbBcCLj
+        afgZppNCePnAt4OxO3WRCHUJHK3aHw==
+X-Google-Smtp-Source: ABdhPJxLq0HuK77T+P1JhbEOUFMIPB7pENYAAjIDpcPFoqU5pJqnjH9fqPQkwQ4DHmeCnkrjJ4qD0A==
+X-Received: by 2002:aca:4387:: with SMTP id q129mr2827367oia.108.1605015822787;
+        Tue, 10 Nov 2020 05:43:42 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id a23sm3117370oot.33.2020.11.10.05.43.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 05:43:42 -0800 (PST)
+Received: (nullmailer pid 3068702 invoked by uid 1000);
+        Tue, 10 Nov 2020 13:43:40 -0000
+Date:   Tue, 10 Nov 2020 07:43:40 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Andrej Valek <andrej.valek@siemens.com>
+Cc:     dmitry.torokhov@gmail.com, nick@shmanahar.org, hadess@hadess.net,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: touchscreen: goodix: add info about
+ disabling FW loading
+Message-ID: <20201110134340.GA3068076@bogus>
+References: <20201029170313.25529-1-andrej.valek@siemens.com>
+ <20201110090720.6650-3-andrej.valek@siemens.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="H+4ONPRPur6+Ovig"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201109210531.wp4dmug4w2r4kh4p@mobilestation>
-X-Cookie: Disk crisis, please clean up!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201110090720.6650-3-andrej.valek@siemens.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 10 Nov 2020 10:07:18 +0100, Andrej Valek wrote:
+> Add information about option how to disable FW loading for each boot.
+> 
+> Signed-off-by: Andrej Valek <andrej.valek@siemens.com>
+> ---
+>  Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
---H+4ONPRPur6+Ovig
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Tue, Nov 10, 2020 at 12:05:31AM +0300, Serge Semin wrote:
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> If by general Rx-only half-duplex transfers you meant that the client
-> SPI-device shall just not care what the MOSI level, then the only
-> acceptable solution of the noted in this patch problem is to fix the
-> client driver. Since in case of the MMC-SPI client device sometimes it
-> does care about the level.
+yamllint warnings/errors:
 
-Yes, that's how the API is at present (as you say) and is the more
-general case for SPI devices that I've seen - I'm not *totally* against
-adding something to the core if there's enough users that could usefully
-use it but if it's just one or two then it seems like it'll be more
-robust to stick with the current API.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml: properties:goodix,do-not-load-fw: False is not of type 'object'
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml: ignoring, error in schema: properties: goodix,do-not-load-fw
+warning: no schema found in file: ./Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
 
---H+4ONPRPur6+Ovig
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+See https://patchwork.ozlabs.org/patch/1397438
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+qmQoACgkQJNaLcl1U
-h9B0Rwf+KopRKnXYo5wqZqMUc6Z6nfo2YpwZsWiUO1Sy8+hG9keAbGxcnu5bOGDJ
-90r9oFQxqTjVPKZ556EN5XNqKBijwQMnBPjvCBnfV7U31rvhcd5xiOMh6GXCi18H
-yuvD88KqsXweetYSO7EHqr0MARsZ8OT7khH4/U2b+37uvhfIHDsICIkPHRp4jQQH
-p5hOgTE8uoHNPz6pMzEBmXEMq/yR3Hvt4gMSPAioVH/0sKgB77fMlAdpDyXZewl0
-tQiilBL5bv2mq9IDl/4J3oJf0gM4VT2k4oOehY5wpaXZgn5LJlJVl7DUxJBlmG0r
-4kUkW4N97ZkMpwo/MulisIT+1LpECQ==
-=ZOI9
------END PGP SIGNATURE-----
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
 
---H+4ONPRPur6+Ovig--
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
