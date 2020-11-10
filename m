@@ -2,298 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B56F2AD690
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 13:43:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E742AD6CC
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 13:48:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730070AbgKJMnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 07:43:47 -0500
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:40661 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728478AbgKJMnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 07:43:47 -0500
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0AACMZqk016416;
-        Tue, 10 Nov 2020 13:43:28 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=9T8vtd07a5HU5hAvStohIwEdj6wRptIRJ0QOWk8SQKU=;
- b=bMOJ8gzCQMwYyHGNpdQIwXjJUUx7rJ/2EKcuAadH7/Ut1NUshxJCgo5t7fxNb1Ti+M3I
- t2omcnlhSandbOxGmaozfdJWvX0ZhLENLwOONWbStRI4UnbOCf27u5QH+cnfXwNngEdI
- +6zWEohtFUL4p4WJixQnY48euhg6sO7tbextEIO+Nw7ij9QLXFWhCRqYzVYcNL5m2Zr4
- Mcz8J8FwJc9VoSaoC/wn82IXpqJe25+EnYvIiuXyHEFlFKlkPa2AAZqa/SZS9twT8Iup
- uC7Ihc+O4vCvM9rfw65MNWnSUNBNhDQd9E5uIUyw2CKUb+4rKbZBb9bJfY8CVgxXBoYo /g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 34nhx501rh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 10 Nov 2020 13:43:28 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8E39010002A;
-        Tue, 10 Nov 2020 13:43:27 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7B33D251B8E;
-        Tue, 10 Nov 2020 13:43:27 +0100 (CET)
-Received: from localhost (10.75.127.47) by SFHDAG3NODE2.st.com (10.75.127.8)
- with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 10 Nov 2020 13:43:26
- +0100
-From:   Amelie Delaunay <amelie.delaunay@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Amelie Delaunay <amelie.delaunay@st.com>
-Subject: [PATCH 1/1] dt-bindings: phy: phy-stm32-usbphyc: convert bindings to json-schema
-Date:   Tue, 10 Nov 2020 13:43:26 +0100
-Message-ID: <20201110124326.4682-1-amelie.delaunay@st.com>
-X-Mailer: git-send-email 2.17.1
+        id S1730074AbgKJMsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 07:48:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40060 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726462AbgKJMsf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 07:48:35 -0500
+Received: from localhost (unknown [122.179.121.10])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 274B220637;
+        Tue, 10 Nov 2020 12:48:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605012514;
+        bh=HqIlZJaFEcBlGvTPmE4/CCgkt70rXFffPU39yaxTjmE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DBAL5u1I4TzkVzdXuoV3Ai5oHJZmFiicO/oeiVsBnxBqZfIy7HD4oEyq7v4EX8RtU
+         TXEzqzjHJ13slfR1iCfqUsCSrf2OTWNfUx/zQAEH76ivOjVVRYjaAqv2jF1QWzmTAb
+         RPWU3YmrUBn1V7mT06dG6xz5435t1JnGh3eZL0Rc=
+Date:   Tue, 10 Nov 2020 18:18:29 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Frank Lee <tiny.windzz@gmail.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Frank Lee <frank@allwinnertech.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, kishon@ti.com,
+        wim@linux-watchdog.org, Guenter Roeck <linux@roeck-us.net>,
+        dan.j.williams@intel.com, Linus Walleij <linus.walleij@linaro.org>,
+        wsa+renesas@sang-engineering.com, dianders@chromium.org,
+        marex@denx.de, Colin King <colin.king@canonical.com>,
+        rdunlap@infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        rikard.falkeborn@gmail.com, dmaengine@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
+        linux-watchdog@vger.kernel.org,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH 00/19] Second step support for A100
+Message-ID: <20201110124829.GB161013@vkoul-mobl>
+References: <20201110040553.1381-1-frank@allwinnertech.com>
+ <CAEExFWsc4Rx2U+BVuqTJkL0wj-gdNcF=emJRcStQ2Uq=FQEx1g@mail.gmail.com>
+ <CAJKOXPf4ARNnSnvDpn7vVC0kGNd+m_dkfgKkmH_bca2AZ_Osyg@mail.gmail.com>
+ <CAEExFWv2o9aTfUVM5NzZz10kAO_Ya8VJvJrmyjh55=U_5G8RJw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-10_05:2020-11-10,2020-11-10 signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAEExFWv2o9aTfUVM5NzZz10kAO_Ya8VJvJrmyjh55=U_5G8RJw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the STM32 USB PHY Controller (USBPHYC) bindings to DT schema format
-using json-schema.
+On 10-11-20, 16:51, Frank Lee wrote:
+> On Tue, Nov 10, 2020 at 4:43 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On Tue, 10 Nov 2020 at 07:00, Frank Lee <tiny.windzz@gmail.com> wrote:
+> > >
+> > > It seems that sending too many e-mails at one time will cause some
+> > > emails to fail to be sent out. I will try again.
+> >
+> > Hi,
+> >
+> > Instead please reduce the address list to relevant people, as pointed
+> > out by scripts/get_maintainer.pl. Don't Cc irrelevant developers
+> > unless a file is abandoned and you need to get as much audience as
+> > possible... but sunxi is not abandoned.
+> 
+> Thank you for the reminder. I resend the version in the afternoon,
+> only CC the relevant people. I'm not sure. Should the cover be copied
+> to everyone?
 
-Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
----
- .../bindings/phy/phy-stm32-usbphyc.txt        |  73 ----------
- .../bindings/phy/phy-stm32-usbphyc.yaml       | 136 ++++++++++++++++++
- 2 files changed, 136 insertions(+), 73 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.txt
- create mode 100644 Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
+Any reason why this should be a single series.. why not split it to
+bunch of chunks, one per subsystem like pinctrl, phy, dmaengine, etc...
+And then DTS parts and CC relevant list and maintainers. I do not think
+there is any dependency, right?
 
-diff --git a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.txt b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.txt
-deleted file mode 100644
-index 725ae71ae653..000000000000
---- a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.txt
-+++ /dev/null
-@@ -1,73 +0,0 @@
--STMicroelectronics STM32 USB HS PHY controller
--
--The STM32 USBPHYC block contains a dual port High Speed UTMI+ PHY and a UTMI
--switch. It controls PHY configuration and status, and the UTMI+ switch that
--selects either OTG or HOST controller for the second PHY port. It also sets
--PLL configuration.
--
--USBPHYC
--      |_ PLL
--      |
--      |_ PHY port#1 _________________ HOST controller
--      |                    _                 |
--      |                  / 1|________________|
--      |_ PHY port#2 ----|   |________________
--      |                  \_0|                |
--      |_ UTMI switch_______|          OTG controller
--
--
--Phy provider node
--=================
--
--Required properties:
--- compatible: must be "st,stm32mp1-usbphyc"
--- reg: address and length of the usb phy control register set
--- clocks: phandle + clock specifier for the PLL phy clock
--- #address-cells: number of address cells for phys sub-nodes, must be <1>
--- #size-cells: number of size cells for phys sub-nodes, must be <0>
--
--Optional properties:
--- assigned-clocks: phandle + clock specifier for the PLL phy clock
--- assigned-clock-parents: the PLL phy clock parent
--- resets: phandle + reset specifier
--
--Required nodes: one sub-node per port the controller provides.
--
--Phy sub-nodes
--==============
--
--Required properties:
--- reg: phy port index
--- phy-supply: phandle to the regulator providing 3V3 power to the PHY,
--	      see phy-bindings.txt in the same directory.
--- vdda1v1-supply: phandle to the regulator providing 1V1 power to the PHY
--- vdda1v8-supply: phandle to the regulator providing 1V8 power to the PHY
--- #phy-cells: see phy-bindings.txt in the same directory, must be <0> for PHY
--  port#1 and must be <1> for PHY port#2, to select USB controller
--
--
--Example:
--		usbphyc: usb-phy@5a006000 {
--			compatible = "st,stm32mp1-usbphyc";
--			reg = <0x5a006000 0x1000>;
--			clocks = <&rcc_clk USBPHY_K>;
--			resets = <&rcc_rst USBPHY_R>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			usbphyc_port0: usb-phy@0 {
--				reg = <0>;
--				phy-supply = <&vdd_usb>;
--				vdda1v1-supply = <&reg11>;
--				vdda1v8-supply = <&reg18>
--				#phy-cells = <0>;
--			};
--
--			usbphyc_port1: usb-phy@1 {
--				reg = <1>;
--				phy-supply = <&vdd_usb>;
--				vdda1v1-supply = <&reg11>;
--				vdda1v8-supply = <&reg18>
--				#phy-cells = <1>;
--			};
--		};
-diff --git a/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-new file mode 100644
-index 000000000000..09064bbb68dc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml
-@@ -0,0 +1,136 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/phy-stm32-usbphyc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STM32 USB HS PHY controller binding
-+
-+description:
-+
-+  The STM32 USBPHYC block contains a dual port High Speed UTMI+ PHY and a UTMI
-+  switch. It controls PHY configuration and status, and the UTMI+ switch that
-+  selects either OTG or HOST controller for the second PHY port. It also sets
-+  PLL configuration.
-+
-+  USBPHYC
-+  |_ PLL
-+  |
-+  |_ PHY port#1 _________________ HOST controller
-+  |                   __                 |
-+  |                  / 1|________________|
-+  |_ PHY port#2 ----|   |________________
-+  |                  \_0|                |
-+  |_ UTMI switch_______|          OTG controller
-+
-+maintainers:
-+  - Amelie Delaunay <amelie.delaunay@st.com>
-+
-+properties:
-+  compatible:
-+    const: st,stm32mp1-usbphyc
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+#Required child nodes:
-+
-+patternProperties:
-+  "^usb-phy@[0|1]$":
-+    type: object
-+    description:
-+      Each port the controller provides must be represented as a sub-node.
-+
-+    properties:
-+      reg:
-+        description: phy port index.
-+        maxItems: 1
-+
-+      phy-supply:
-+        description: regulator providing 3V3 power supply to the PHY.
-+
-+      vdda1v1-supply:
-+        description: regulator providing 1V1 power supply to the PLL block
-+
-+      vdda1v8-supply:
-+        description: regulator providing 1V8 power supply to the PLL block
-+
-+      "#phy-cells":
-+        enum: [ 0x0, 0x1 ]
-+
-+    allOf:
-+      - if:
-+          properties:
-+            reg:
-+              const: 0
-+        then:
-+          properties:
-+            "#phy-cells":
-+              const: 0
-+        else:
-+          properties:
-+            "#phy-cells":
-+              const: 1
-+              description:
-+                The value is used to select UTMI switch output.
-+                0 for OTG controller and 1 for Host controller.
-+
-+    required:
-+      - reg
-+      - phy-supply
-+      - vdda1v1-supply
-+      - vdda1v8-supply
-+      - "#phy-cells"
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#address-cells"
-+  - "#size-cells"
-+  - usb-phy@0
-+  - usb-phy@1
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/stm32mp1-clks.h>
-+    #include <dt-bindings/reset/stm32mp1-resets.h>
-+    usbphyc: usbphyc@5a006000 {
-+        compatible = "st,stm32mp1-usbphyc";
-+        reg = <0x5a006000 0x1000>;
-+        clocks = <&rcc USBPHY_K>;
-+        resets = <&rcc USBPHY_R>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        usbphyc_port0: usb-phy@0 {
-+            reg = <0>;
-+            phy-supply = <&vdd_usb>;
-+            vdda1v1-supply = <&reg11>;
-+            vdda1v8-supply = <&reg18>;
-+            #phy-cells = <0>;
-+        };
-+
-+        usbphyc_port1: usb-phy@1 {
-+            reg = <1>;
-+            phy-supply = <&vdd_usb>;
-+            vdda1v1-supply = <&reg11>;
-+            vdda1v8-supply = <&reg18>;
-+            #phy-cells = <1>;
-+        };
-+    };
-+...
 -- 
-2.17.1
-
+~Vinod
