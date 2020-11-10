@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA0B82ADA46
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 16:22:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F0E92ADA62
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 16:26:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732526AbgKJPWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 10:22:33 -0500
-Received: from mail-mw2nam10on2088.outbound.protection.outlook.com ([40.107.94.88]:10075
-        "EHLO NAM10-MW2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732494AbgKJPWc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 10:22:32 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MLsrO8KxZnjMNAWHGjszM8xlDXeryKjZOAs47OlCNfFpwh92GNDmoHQeYoaB6Ok1i+nhWggO5Skq+JB4jMcrHNszWPYx8Xf4YfPCum3O3Ml0tpmq0koWs+8F8F7YlEP/9npQcNiHeUAgqKP3kFJ5aLyFO+YDh7hWQhy0NrqdPYNPtS3cwjviCgisLTZud5yXQF2DedwX8Q7WATMxxfdOBamjlKA4QPkorBMab2R5Mx5dGNrkzKa/jwZxx8ZwYXK911z+Ok70keqWg9AmHNj5m4uQ6y7UAHdEwpjZsK29JPMtP92C0V86LMD4xl5Byhxks7DQcjAUSsJOUoDv6QVoXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FHHd3d1b6gpGvERk2hwBholvC0mjpe3/uhOcS3bHfJU=;
- b=Q4f7FhZNqHJIaVC6kFtGM887gEjcWObfmj9dU1FZEOsGeb1yVWBsVmOYQFqbPEhnEPssdj1LYh7cBmAdysepM37xWbuuXk3BaYqA/ncq8zVXnobQkTG02SZDraF+SW427US7wUU614cuGasYvRHMyl0sObFStV6WLk1Vn79rTPfhWliosfAODzxvuiDbrC9HCytmLfzRnPOyvcOywSnq7CVgeBPTcIT4d8bqs475DMCxOfuGTHbrG2liOwadW+WOVCy3rLARsbdZG4da8xmx9TygbL++WynkpTf//dpPM2ged/CarDUW+SEsmRO24lOiMB9Eva/+FSXOoqD4stTFRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=openfive.com; dmarc=pass action=none header.from=sifive.com;
- dkim=pass header.d=sifive.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FHHd3d1b6gpGvERk2hwBholvC0mjpe3/uhOcS3bHfJU=;
- b=Yb+41DCB26e5e1JvL7XZ8zWQT52RH80wSTgDrvNayRH61/yii2V38VR2/KR+epIUhB8Qpc9ZoXGXTWhMD8spjppp3HWFVwGm+rCKy6kNfQUuwwoucBC67/0aFJweBrJh05AJ1Ywii5baVtKseYvRE2xFI1Jc+VeQ8KcViViYx9I=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=sifive.com;
-Received: from DM6PR13MB3451.namprd13.prod.outlook.com (2603:10b6:5:1c3::10)
- by DM5PR13MB1323.namprd13.prod.outlook.com (2603:10b6:3:28::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.15; Tue, 10 Nov
- 2020 15:22:30 +0000
-Received: from DM6PR13MB3451.namprd13.prod.outlook.com
- ([fe80::d55:1263:fadc:b6f5]) by DM6PR13MB3451.namprd13.prod.outlook.com
- ([fe80::d55:1263:fadc:b6f5%5]) with mapi id 15.20.3564.021; Tue, 10 Nov 2020
- 15:22:30 +0000
-From:   Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@esmil.dk, atish.patra@wdc.com, alistair.francis@wdc.com,
-        anup@brainfault.org, yash.shah@sifive.com, aou@eecs.berkeley.edu,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        Sagar Shrikant Kadam <sagar.kadam@sifive.com>
-Subject: [PATCH v2 3/3] riscv: defconfig: enable gpio support for HiFive Unleashed
-Date:   Tue, 10 Nov 2020 07:22:12 -0800
-Message-Id: <1605021732-268521-4-git-send-email-sagar.kadam@sifive.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1605021732-268521-1-git-send-email-sagar.kadam@sifive.com>
-References: <1605021732-268521-1-git-send-email-sagar.kadam@sifive.com>
-Content-Type: text/plain
-X-Originating-IP: [64.62.193.194]
-X-ClientProxiedBy: BYAPR21CA0005.namprd21.prod.outlook.com
- (2603:10b6:a03:114::15) To DM6PR13MB3451.namprd13.prod.outlook.com
- (2603:10b6:5:1c3::10)
+        id S1731068AbgKJP0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 10:26:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41424 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730754AbgKJP0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 10:26:36 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CFE9C0613D1
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 07:26:36 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id q19so13412179ljc.10
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 07:26:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Hrb6YP9kE4AwvLFEXLY+N294/vTm6VCcAtZUMc+ytIw=;
+        b=arCTA79lo8o4TuvmmtQEBn9mUMplCTkzre1af+8j0uuLIOJHU+Ny/vE0jpjcswWXrg
+         /W9cNQxZ10DZ+ZqvmyzLtZPN6otk2IBJ0zioWFvmO5AQDf8cCY0zO4XibUFV6Nt4lTSK
+         jYt+FEwhkGaq4L4pjRqpg+aYg+yJb2SNNqczMlvYRlx0GJeGb6Tb4decRX2dzwyD0xpf
+         fGXogdInnO2xL03YrBs8nf2mBMKY5Qq717DWtG8wIzYZdA42Vsqlrvqnd54LdRXLNorC
+         lbUdSBSXCVNAe2GmFCOc6kPOEsxRiONWXzIUFaF8atKf3eec9aLoohfz09FvJBak7RdG
+         XD/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Hrb6YP9kE4AwvLFEXLY+N294/vTm6VCcAtZUMc+ytIw=;
+        b=ME6/MHu3mdCKzYOS+4cVIVKTL6GFoIy8WZcJK1EytAGOhin2RHcDMRBgkYquBw64i1
+         njpErb4HqIWh7iguw1D2E/Zbc5mQTf94h6a4lRfOBdVVHpsP9t+Nv3mMVGgDs6FV5qXS
+         w81V7EzV2qn204V5JBmKQIPtgoC9J+8X028sgMTp8HMuPTNcc/m7z7U/Vlvh8n17CJl7
+         JFgW4w+akLpXfrGItxYPuQrZy4L0Ceg4F00ZQHIA7vhf+X+RK67i2iTqMa4Qlu9LAAhC
+         233jl66trk6RkzR1u+rdx+EMgAxJ1B28/tUTPS3uEDCo3BXqRmFKnKLjzsT0QECfyYfx
+         DdcA==
+X-Gm-Message-State: AOAM531ltFcCTbYIln0VAlvCeGP/tdg39DNbgFXJHeCTq8MdfBrRFNLf
+        y0RwFWn903x5OxT7Y/OUdYOqJw==
+X-Google-Smtp-Source: ABdhPJyzfSidqot4CTeXhhTaEjeRNR84mOeeF0U0Cf56XjgSm2EbaVMKCg7nAWobdrsuBHxliu0eug==
+X-Received: by 2002:a2e:b8d4:: with SMTP id s20mr57502ljp.226.1605021994870;
+        Tue, 10 Nov 2020 07:26:34 -0800 (PST)
+Received: from localhost (c-9b28e555.07-21-73746f28.bbcust.telenor.se. [85.229.40.155])
+        by smtp.gmail.com with ESMTPSA id j11sm2127665lfg.69.2020.11.10.07.26.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 07:26:34 -0800 (PST)
+From:   Anders Roxell <anders.roxell@linaro.org>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     linux-arm-kernel@lists.infradead.org, krzk@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Anders Roxell <anders.roxell@linaro.org>
+Subject: [PATCHv2] arm64: dts: freescale: fix typo Makefile
+Date:   Tue, 10 Nov 2020 16:26:31 +0100
+Message-Id: <20201110152631.3007779-1-anders.roxell@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from gamma15.internal.sifive.com (64.62.193.194) by BYAPR21CA0005.namprd21.prod.outlook.com (2603:10b6:a03:114::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3589.9 via Frontend Transport; Tue, 10 Nov 2020 15:22:29 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 038c66cc-3370-413a-ab09-08d8858c7051
-X-MS-TrafficTypeDiagnostic: DM5PR13MB1323:
-X-LD-Processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR13MB1323ADB612F48E204720862197E90@DM5PR13MB1323.namprd13.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1332;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MnN7lcfo8koNmgJnMfrJxQM0HowSTIi40a8FlINdFXdj6956rYwouA0GBtXQ+dE+2Z+Zfy977QsNEcAqPveUn5eiMILR9qcL14D+5ousNti8PN6WjJQ+BLRSCOZ7yEljjAwlz3mqUlH1iBtihB0YJvctuVVOuCjFpV93fCmjlfqP+4jFIZqdg5ar2t39CwOBMnPPn+5suJjs2Apbwq7HQzWCZJ89vcaSOGQYUxrctqdDApFwnrzt7IogqazOcZSEXoNoGNRxVouq9t+vwvp7Rh9v3t9vszOB+lhJzRlgWLt4fnOdaauTvtQFBzl5g0a7UASCj/KKS8KkMCqbVvB72A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR13MB3451.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(346002)(136003)(39850400004)(376002)(396003)(366004)(4326008)(83170400001)(6486002)(16526019)(2906002)(7416002)(186003)(2616005)(6916009)(4744005)(8676002)(956004)(83380400001)(66556008)(42882007)(316002)(66476007)(107886003)(8936002)(7696005)(66946007)(36756003)(5660300002)(478600001)(26005)(52116002)(6666004);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: bdNf7tZ0n+Gsvw06fLAWJk4tF2gHmBZnGewAjCbUeRfqlT+OFbOcQOU4yTpagQBi/8DTKKaUryjS553FLjsNRT1bm7cx67LI77Uhr43tPDk/su7c/97BVHyR/pFTKGuw8SzhO2DIMB0PVrQawLwi/axZ8OajgqCw3XveIatu0lvyGa1SVH2BXllUUpadrFCIxNt1RiOxweqNbS9HZpIgXtmATXxdZ0hOQUtZE3e8S9xVvFlzLReFYQNjSSoH/b9lWrYHBEYX8Wo9c5OunsJMWNUj3dPI3ZSvhdF8yx8vbo9oIwPB5BQij3ylyZK/1oLke52ycRvgskxetLLRItD//WHEhWV7d4unZu0erhKj4JmgtUqQ9zWsg4xT/ocSuOgN78CngJQzI2Kc8XoY8KecD+BLaDEocXaTi6G/37xMkua6E7kONwR7VEuEMOLdbSgifG0KFYMGqC0Z+aT6aRGy5YeC71uHoLC6iwMpH7zxEH96pkdhMPbo2COlPR3b2nXN48RUz4Z3csVtAQk6/MRsWk3pnjyMsiC+P2CHFe5+Ga7qXWfTLTj29ZuhZGjgB3jNTg/ZAvis6nDK/EDqxd7/HCsODgXARKOFH/85r8R/TpV5vbzevDLO4OkKNzPWLI9yt/bH6ZzlxhxfbtMw2Kl5E/d8YRXNiLrYu4zKJiyDOtZDQ5eYPEAIpCbWNJpqCJOQ/vJmJOBYH8sTQexNfIlVNSfJ7ZKBoJVG6u1YKoSktL/XqDA2edwKcvnY5FhgHPoPZfCzzXZJ51Z5xSrdRcXiVzwXld1rwCI4SgTSBi8oXbHdRzVsBH6t3uQTys9F9CUsI2VS7eNI+w29F9Wy00+WYJqfUnyTBnyRMf/bBf4e8z3tQwTpyPBAKZvyMB9AYhrtqk2wlWOP64CLFppAUdAC/A==
-X-OriginatorOrg: sifive.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 038c66cc-3370-413a-ab09-08d8858c7051
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR13MB3451.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2020 15:22:30.0950
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TXDY4q9uMdxuxSa6H5TlMzBtyPhMX/eFGDP04AMT7P6V3X5RUeYLXcF3Y/JMADrOO0TU22zgcg9epEt6YKk4Wg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR13MB1323
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ethernet phy VSC8541-01 on HiFive Unleashed has its reset line
-connected to a gpio, so enable GPIO driver's required to reset
-the phy.
+While trying to do 'make dtbs_install' the following error shows up
 
-Signed-off-by: Sagar Shrikant Kadam <sagar.kadam@sifive.com>
+make[3]: *** No rule to make target
+  '/tmp/out/obj-dir/dtbinstallfreescale/imx8mm-kontron-n801x-s.dts', needed by '__dtbs_install'.
+
+Fix typo in imx8mm-kontron-n801x-s.dts change file ending to *.dtb
+
+Fixes: 8668d8b2e67f ("arm64: dts: Add the Kontron i.MX8M Mini SoMs and baseboards")
+Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
 ---
- arch/riscv/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/freescale/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index d222d35..8c3d1e4 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -64,6 +64,8 @@ CONFIG_HW_RANDOM=y
- CONFIG_HW_RANDOM_VIRTIO=y
- CONFIG_SPI=y
- CONFIG_SPI_SIFIVE=y
-+CONFIG_GPIOLIB=y
-+CONFIG_GPIO_SIFIVE=y
- # CONFIG_PTP_1588_CLOCK is not set
- CONFIG_POWER_RESET=y
- CONFIG_DRM=y
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 876bf484bbe6..6f0777ee6cd6 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -32,7 +32,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
+-dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dts
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-n801x-s.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
 -- 
-2.7.4
+2.28.0
 
