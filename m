@@ -2,314 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B194C2AD132
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 09:20:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2562AD144
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 09:26:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726825AbgKJIU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 03:20:27 -0500
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:36579 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726462AbgKJIU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 03:20:27 -0500
-Received: by mail-lf1-f65.google.com with SMTP id f11so10003323lfs.3;
-        Tue, 10 Nov 2020 00:20:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=IDSxpkxHLT4rWHHSEG+47MZJHtsvhN3aVv1OmkPtH0M=;
-        b=Sb8h9kHvMBga7Jpxbh4sn5Z1vh86Lr89Sy9TBJwzRSIJmvjOw0lurUGuIpnMdZC5+g
-         tstxSyyQCbbW5fPtdd+QoQcCdmAXlf+uiBeYvKqc9XgvA239vVI0W7iKGkcwFigfltkd
-         C8GvzPoKCOhZ5gBq4Owg6mm+96IulV3ABp9lodib0PI3MwJcHgYSq21PvjC9s9Qmt/eE
-         bHHv6RaPisA/CoLM5dEHUn+2z+vR5L/9Sh7PfBNemRjUbhBOhXPGH6fVwOrnlgGYwI4V
-         k+81Qp5oHFe7yKrewZZLFD/QDJDk+rKh9BNeb9IjN0SPtAi8EgjxuFQql3kq9W1EhpI1
-         KkJA==
-X-Gm-Message-State: AOAM532Ak8PdolazoigYdWdbKyj5TjA/0Ede1K5HmpquSoIEMaftvNuM
-        06M8qzGXLxC6TSXSE9FwFzc=
-X-Google-Smtp-Source: ABdhPJxHXj0HApjWxiqo2OFKAOybvwc2pXzmMZ7/tBEKstH5VZM68Pu2HpiknM7iE3TFy9713zs+WQ==
-X-Received: by 2002:a19:794:: with SMTP id 142mr184661lfh.232.1604996423735;
-        Tue, 10 Nov 2020 00:20:23 -0800 (PST)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id z5sm2133915ljk.136.2020.11.10.00.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 00:20:23 -0800 (PST)
-Date:   Tue, 10 Nov 2020 10:20:17 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     mazziesaccount@gmail.com, matti.vaittinen@gmail.com
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S1727711AbgKJI02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 03:26:28 -0500
+Received: from mout.gmx.net ([212.227.15.18]:41999 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726690AbgKJI02 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 03:26:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1604996762;
+        bh=FjV2OP4hOu5FT18Fb/hwa2a/MuQBfQcgLTm4JM1TPGQ=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=HHvk1DN/aLiv07HLQknhCoEKWqN0SxitBZlbpGItSiZnTQ6caulUt3kS48TgXzGKl
+         qrtJm55hHZVyuEh6JJF1EHgD9qTgkuCWe4sU7cgPUepFlnpLKyP2ztfAKzRltQ/uj1
+         dkosrLKW1fXPyELliJhNJFY4r24Wi5Qx5gG4oOSk=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MxDp4-1kN50c0yzY-00xYEx; Tue, 10
+ Nov 2020 09:26:02 +0100
+Date:   Tue, 10 Nov 2020 09:25:55 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-input@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Subject: [RFC PATCH 3/3] regulator: bd718x7: Support external connection to
- scale voltages
-Message-ID: <89b2be87074f307a8823f15f34e1f662023cbf36.1604994184.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1604994184.git.matti.vaittinen@fi.rohmeurope.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] ARM: dts: imx50-kobo-aura: Enable eKTF2132
+ touchscreen
+Message-ID: <20201110082555.GA456020@latitude>
+References: <20201106112412.390724-1-j.neuschaefer@gmx.net>
+ <20201106112412.390724-4-j.neuschaefer@gmx.net>
+ <20201110031251.GZ31601@dragon>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MGYHOYXEY6WxJCY8"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1604994184.git.matti.vaittinen@fi.rohmeurope.com>
+In-Reply-To: <20201110031251.GZ31601@dragon>
+X-Provags-ID: V03:K1:vvMECXXuS0RV66PWf+a0sQDL4bAgQdO6/kZD3lnMRzbHwPfU52k
+ VU9anxrS4X8/ypkrsFI9xQoBc9Gvso3BaUxk6us8ewoYjhzCUc63vKDmXR1IYKLc4XFbPUW
+ lhC2c4vosP3f0Yc41Ckvi3an4UzjE5Jtl9NFpU5rQ0KzpF0Z5UCiAyEQno78oEf0gT4fMac
+ vSLT9W4BD/f69YtXmFj9Q==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:HBsSQQ+0F7Y=:mySCN6DN/xrLe1EjmoG1X9
+ 5U8Mxf8A/mx9ZIhq3+ayvXmEqwYI7+jRjM6YLnoVjWOTRI4Rk/J6G9q+2gHTAn0bv2kSmmVow
+ DkGNy7tVI27oKZrIHQoND7b8hM5IqbRpH/p8kXKdS0VlUR9bhbF4qwziJOx6KepUHdZ9KD6tv
+ uNdeVRuauCibbSDiSVXxzBdBKuWx86wB/6oDJXPkv7bkiuWC+X+rysuNcZ8Y+IvaY2VqJOP8k
+ tkqi1ZB2PzUxZGwuQTc5aqabXk6EwZUnzhw0fxDd9PLJCX11Jar/YeCYA+2tT96o43Mzk0N+a
+ fppDYqtPhqzgg5QB/fiHyYJpLudx2LF10HIMR4gG+e8BgA1mydU0H65myzausVFykOZL2xLmb
+ JkpVwNwYHPKDkg9w4VIJty5XbQ6kCUzI5RKtKHd1Lann92WeW3CrV41bgKCNwqpcRnKf/ucZI
+ gPPouu7//fp5q0OEPJrcVZ5RBu8A5rnO3LI8NGW1L43qzDr08NI8ECjIOROEPpqsMM7upXMzc
+ /3kzXB1LB7UJbCvQTySLTuXlH4vi/0dR2cA3tq7lNDMPb2N7ISIwcfVc/z7JTbi7PuyUEz4Zo
+ JnnPvWGUAdaoaZBPtNL77E4xR4XiUGzjtiP+ShL3iy373jLg4KJIJht78vR3UPr/ptCIV4oXG
+ nyWwj21kwWzqna9PZm4CsXl5uyZCcuW1DS+mDAG7LpjWrcYbF73ccOsRwi4HfQDBQuZGfpuHL
+ /2xaz8AI5ZquJnYVSmcajeZ/OTvgbhyiE/opPCpx0PN5pbZuU48sLFxibrXpshDKa09wfP9Ii
+ mZ4oaTC9gJaq3BcfrE5CFF+rvWh6sbLSB300MjnCz9dh4tddPqtJVZje0Rw9pKZpN5AnuYSaR
+ AzlbocVt33OweJWmK+XIJXGvRnI+xbLOxKQKSCwew=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setups where regulator (especially the buck8) output voltage is scaled
-by adding external connection where some other regulator output is
-connected to feedback-pin (over suitable resistors) is getting popular
-amongst users of BD71837. This allows for example scaling down the
-buck8 voltages to suit lover GPU voltages for projects where buck8 is
-(ab)used to supply power for GPU. As a note - some setups do allow DVS
-for buck8. This do produce voltage spikes and the HW must be evaluated
-to be able to survive them. Thus this commit still keep the DVS disabled
-for non DVS bucks by default. Let's not help you burn your proto board.
 
-Allow describing this external connection from DT and scale the
-voltages accordingly. This is what the connection should look like:
+--MGYHOYXEY6WxJCY8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-|------------|
-|    buck 8  |-------+----->Vout
-|            |       |
-|------------|       |
-     | FB pin        |
-     |               |
-     +-------+--R2---+
-             |
-             R1
-             |
-     V FB-pull-up
+On Tue, Nov 10, 2020 at 11:12:52AM +0800, Shawn Guo wrote:
+> On Fri, Nov 06, 2020 at 12:24:12PM +0100, Jonathan Neusch=C3=A4fer wrote:
+=2E..
+> > -	/* TODO: ektf2132 touch controller at 0x15 */
+> > +	touchscreen@15 {
+> > +		reg =3D <0x15>;
+> > +		compatible =3D "elan,ektf2132";
+> > +		pinctrl-names =3D "default";
+> > +		pinctrl-0 =3D <&pinctrl_ts>;
+> > +		power-gpios =3D <&gpio4 9 GPIO_ACTIVE_HIGH>;
+> > +		interrupts-extended =3D <&gpio5 13 IRQ_TYPE_EDGE_FALLING>;
+>=20
+> It needs include of <dt-bindings/interrupt-controller/irq.h>.
+>=20
+>   DTC     arch/arm/boot/dts/imx50-kobo-aura.dtb
+> Error: ../arch/arm/boot/dts/imx50-kobo-aura.dts:128.36-37 syntax error
+> FATAL ERROR: Unable to parse input tree
+> scripts/Makefile.lib:326: recipe for target 'arch/arm/boot/dts/imx50-kobo=
+-aura.dtb' failed
+> make[2]: *** [arch/arm/boot/dts/imx50-kobo-aura.dtb] Error 1
 
-     Here the buck output is sifted according to formula:
+Ooops, indeed.
 
-Vout_o = Vo - (Vpu - Vo)*R2/R1
-Linear_step = step_orig*(R1+R2)/R1
+> Patch dropped.
 
-where:
-Vout_o is adjusted voltage output at vsel reg value 0
-Vo is original voltage output at vsel reg value 0
-Vpu is the pull-up voltage V FB-pull-up in the picture
-R1 and R2 are resistor values.
-
-Bring support for specifying the Vpu, R1 and R2 from device tree and
-scale voltages if they are given.
-
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
- drivers/regulator/bd718x7-regulator.c | 164 ++++++++++++++++++++++++--
- 1 file changed, 157 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/regulator/bd718x7-regulator.c b/drivers/regulator/bd718x7-regulator.c
-index 0774467994fb..e6d5d98c3cea 100644
---- a/drivers/regulator/bd718x7-regulator.c
-+++ b/drivers/regulator/bd718x7-regulator.c
-@@ -1323,13 +1323,142 @@ static void mark_hw_controlled(struct device *dev, struct device_node *np,
- 	dev_warn(dev, "Bad regulator node\n");
- }
- 
--static int get_hw_controlled_regulators(struct device *dev,
--					struct bd718xx_regulator_data *reg_data,
--					unsigned int num_reg_data, int *info)
-+/*
-+ * Setups where regulator (especially the buck8) output voltage is scaled
-+ * by adding external connection where some other regulator output is connected
-+ * to feedback-pin (over suitable resistors) is getting popular amongst users
-+ * of BD71837. (This allows for example scaling down the buck8 voltages to suit
-+ * lover GPU voltages for projects where buck8 is (ab)used to supply power
-+ * for GPU. Additionally some setups do allow DVS for buck8 but as this do
-+ * produce voltage spikes the HW must be evaluated to be able to survive this
-+ * - hence I keep the DVS disabled for non DVS bucks by default. I don't want
-+ * to help you burn your proto board)
-+ *
-+ * So we allow describing this external connection from DT and scale the
-+ * voltages accordingly. This is what the connection should look like:
-+ *
-+ * |------------|
-+ * |	buck 8  |-------+----->Vout
-+ * |		|	|
-+ * |------------|	|
-+ *	| FB pin	|
-+ *	|		|
-+ *	+-------+--R2---+
-+ *		|
-+ *		R1
-+ *		|
-+ *	V FB-pull-up
-+ *
-+ *	Here the buck output is sifted according to formula:
-+ *
-+ * Vout_o = Vo - (Vpu - Vo)*R2/R1
-+ * Linear_step = step_orig*(R1+R2)/R1
-+ *
-+ * where:
-+ * Vout_o is adjusted voltage output at vsel reg value 0
-+ * Vo is original voltage output at vsel reg value 0
-+ * Vpu is the pull-up voltage V FB-pull-up in the picture
-+ * R1 and R2 are resistor values.
-+ *
-+ * As a real world example for buck8 and a specific GPU:
-+ * VLDO = 1.6V (used as FB-pull-up)
-+ * R1 = 1000ohms
-+ * R2 = 150ohms
-+ * VSEL 0x0 => 0.8V – (VLDO – 0.8) * R2 / R1 = 0.68V
-+ * Linear Step = 10mV * (R1 + R2) / R1 = 11.5mV
-+ */
-+static int setup_feedback_loop(struct device *dev, struct device_node *np,
-+			       struct bd718xx_regulator_data *reg_data,
-+			       unsigned int num_reg_data, int fb_uv)
- {
-+	int i, r1, r2, ret;
-+
-+	/*
-+	 * We do adjust the values in the global desc based on DT settings.
-+	 * This may not be best approach as it can cause problems if more than
-+	 * one PMIC is controlled from same processor. I don't see such use-case
-+	 * for BD718x7 now - so we spare some bits.
-+	 *
-+	 * If this will point out to be a problem - then we can allocate new
-+	 * bd718xx_regulator_data array at probe and just use the global
-+	 * array as a template where we copy initial values. Then we can
-+	 * use allocated descs for regultor registration and do IC specific
-+	 * modifications to this copy while leaving other PMICs untouched. But
-+	 * that means allocating new array for each PMIC - and currently I see
-+	 * no need for that.
-+	 */
-+
-+	for (i = 0; i < num_reg_data; i++) {
-+		struct regulator_desc *desc = &reg_data[i].desc;
-+		int j;
-+
-+		if (!of_node_name_eq(np, desc->of_match))
-+			continue;
-+
-+		pr_info("Looking at node '%s'\n", desc->of_match);
-+
-+		/* The feedback loop connection does not make sense for LDOs */
-+		if (desc->id >= BD718XX_LDO1)
-+			return -EINVAL;
-+
-+		ret = of_property_read_u32(np, "rohm,feedback-pull-up-r1-ohms",
-+					   &r1);
-+		if (ret)
-+			return ret;
-+
-+		if (!r1)
-+			return -EINVAL;
-+
-+		ret = of_property_read_u32(np, "rohm,feedback-pull-up-r2-ohms",
-+					   &r2);
-+		if (ret)
-+			return ret;
-+
-+		if (desc->n_linear_ranges && desc->linear_ranges) {
-+			struct linear_range *new;
-+
-+			new = devm_kzalloc(dev, desc->n_linear_ranges *
-+					   sizeof(struct linear_range),
-+					   GFP_KERNEL);
-+			if (!new)
-+				return -ENOMEM;
-+
-+			for (j = 0; j < desc->n_linear_ranges; j++) {
-+				int min = desc->linear_ranges[j].min;
-+				int step = desc->linear_ranges[j].step;
-+
-+				min -= (fb_uv - min)*r2/r1;
-+				step = step * (r1 + r2);
-+				step /= r1;
-+
-+				new[j].min = min;
-+				new[j].step = step;
-+
-+				dev_dbg(dev, "%s: old range min %d, step %d\n",
-+					desc->name, desc->linear_ranges[j].min,
-+					desc->linear_ranges[j].step);
-+				dev_dbg(dev, "new range min %d, step %d\n", min,
-+					step);
-+			}
-+			desc->linear_ranges = new;
-+		}
-+		dev_dbg(dev, "regulator '%s' has FB pull-up configured\n",
-+			desc->name);
-+
-+		return 0;
-+	}
-+
-+	return -ENODEV;
-+}
-+
-+static int get_special_regulators(struct device *dev,
-+				  struct bd718xx_regulator_data *reg_data,
-+				  unsigned int num_reg_data, int *info)
-+{
-+	int ret;
- 	struct device_node *np;
- 	struct device_node *nproot = dev->of_node;
--	const char *prop = "rohm,no-regulator-enable-control";
-+	int uv;
- 
- 	*info = 0;
- 
-@@ -1338,13 +1467,32 @@ static int get_hw_controlled_regulators(struct device *dev,
- 		dev_err(dev, "failed to find regulators node\n");
- 		return -ENODEV;
- 	}
--	for_each_child_of_node(nproot, np)
--		if (of_property_read_bool(np, prop))
-+	for_each_child_of_node(nproot, np) {
-+		if (of_property_read_bool(np, "rohm,no-regulator-enable-control"))
- 			mark_hw_controlled(dev, np, reg_data, num_reg_data,
- 					   info);
-+		ret = of_property_read_u32(np, "rohm,fb-pull-up-microvolt",
-+					   &uv);
-+		if (ret) {
-+			if (ret == -EINVAL)
-+				continue;
-+			else
-+				goto err_out;
-+		}
-+
-+		ret = setup_feedback_loop(dev, np, reg_data, num_reg_data, uv);
-+		if (ret)
-+			goto err_out;
-+	}
- 
- 	of_node_put(nproot);
- 	return 0;
-+
-+err_out:
-+	of_node_put(np);
-+	of_node_put(nproot);
-+
-+	return ret;
- }
- 
- static int bd718xx_probe(struct platform_device *pdev)
-@@ -1432,8 +1580,10 @@ static int bd718xx_probe(struct platform_device *pdev)
- 	 * be affected by PMIC state machine - Eg. regulator is likely to stay
- 	 * on even in SUSPEND
- 	 */
--	get_hw_controlled_regulators(pdev->dev.parent, reg_data, num_reg_data,
-+	err = get_special_regulators(pdev->dev.parent, reg_data, num_reg_data,
- 				     &omit_enable);
-+	if (err)
-+		return err;
- 
- 	for (i = 0; i < num_reg_data; i++) {
- 
--- 
-2.21.3
+I'll send a version 2.
 
 
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
+Thanks,
+Jonathan Neusch=C3=A4fer
 
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
+--MGYHOYXEY6WxJCY8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl+qTnIACgkQCDBEmo7z
+X9uqmA/9E8kXt2qhUQ0hfHnqWfu14Z41HVh2ojHteWnzKoLp00hgwISY8nn5OwuR
+pzEABT3YXFm2bZF7vQNhLn27/F3tcnLZhi7OLWZT5uv445+PFyeHj9YWMOjJ8tsH
+LGaHZ9wOk2JFKjInsU5cX+yWgz7FOHVYsMMDEPaEOHvsCeRnEESY/AHGSpjlyBbi
+66ssY0bMdaatB6U9VekvREjoJwAbrbnlXFuPr8oUzg4RowKgmPEHCpVfye87nK7z
+kT1EHVzV378NPicJSC4sKT622w/c0havR36SS30ep/7vahzSdzB+k78ttCREknXg
+mu6nxKBQPsG5K6FlJu4e/ZD0cKigTx+yRTwhiik5wfCQvxAj16YRPYvuJAJ0EPeS
+1gGO/jlE/gHBh86K5xboGutQrr9mYGAgTNVUUqtqpFeIU0CG4ldP0q3wzst3RxLX
+M87s6fF9J5N5jh/iy0cJzzo9SpyZMTL/a63GaAFi4DW1SWauLUMBBv3e8wPG5auX
+IFu0n0RMkIOft/BWMmVWuSKneGksOPvvIVxfd7SU0cxhzsqtG2pOtYK8F30nLgXe
+gyBA2hhl3ui6Si9dJzFs2KEcCru8CMvBOQDVT6wgm21cgSyM/iFL3TkrYR7Kvb0G
+1a4KHy6gkh5KTj2XJ7aKVEVsTTYW30AkfBOoqr5Kigwi7pB5H4s=
+=w7Th
+-----END PGP SIGNATURE-----
+
+--MGYHOYXEY6WxJCY8--
