@@ -2,61 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2677C2ACBE0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 04:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 573722ACE1C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 05:07:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731945AbgKJDcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 22:32:51 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48680 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729451AbgKJDcv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 22:32:51 -0500
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 574AA206E3;
-        Tue, 10 Nov 2020 03:32:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604979171;
-        bh=m16hqRdfFO2Sb0NGQY/rDLW8dSTrGnfkfA4FEkruTqQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hQ+qe2+LPDZWHXNGkGO+DoUdU/wZOd7JdSAQ1oSpbpPItukIH8gFE78/h6jx6QrOR
-         yAcaI/BRCbyRTW0VnpNGS5jArhbURY87lM8K4aH2DnTpY7lRR8nQZHxhW7q0RTfFYn
-         +lZ5D0kNWmnlDs1P83bRQwBVBfVYZbGfAyOVuA5A=
-Date:   Tue, 10 Nov 2020 11:32:44 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        krzk@kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V4 1/3] dt-bindings: arm: fsl: Add
- beacon,imx8mn-beacon-kit
-Message-ID: <20201110033243.GA31601@dragon>
-References: <20201107144811.1977108-1-aford173@gmail.com>
+        id S1733228AbgKJEGP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 23:06:15 -0500
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:40664 "EHLO
+        smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728403AbgKJEGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 23:06:12 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1739784|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0582695-0.00106321-0.940667;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047199;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=28;RT=28;SR=0;TI=SMTPD_---.IulFdj5_1604981159;
+Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.IulFdj5_1604981159)
+          by smtp.aliyun-inc.com(10.147.42.135);
+          Tue, 10 Nov 2020 12:06:04 +0800
+From:   Frank Lee <frank@allwinnertech.com>
+To:     vkoul@kernel.org, robh+dt@kernel.org, mripard@kernel.org,
+        wens@csie.org, ulf.hansson@linaro.org, kishon@ti.com,
+        wim@linux-watchdog.org, linux@roeck-us.net,
+        dan.j.williams@intel.com, linus.walleij@linaro.org,
+        wsa+renesas@sang-engineering.com, dianders@chromium.org,
+        marex@denx.de, colin.king@canonical.com, rdunlap@infradead.org,
+        krzk@kernel.org, gregkh@linuxfoundation.org, megous@megous.com,
+        rikard.falkeborn@gmail.com, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-gpio@vger.kernel.org,
+        tiny.windzz@gmail.com
+Cc:     Frank Lee <frank@allwinnertech.com>
+Subject: [PATCH 00/19] Second step support for A100
+Date:   Tue, 10 Nov 2020 12:05:34 +0800
+Message-Id: <20201110040553.1381-1-frank@allwinnertech.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201107144811.1977108-1-aford173@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 07, 2020 at 08:48:08AM -0600, Adam Ford wrote:
-> Add beacon,imx8mn-beacon-kit to list of compatible options.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Hi,
 
-You need to stop posting patches that have dependency not accepted yet,
-or explicitly mention the dependency.
+Let's add watchdog, arm-pmu, dma, usb, mmc..... support for allwinner
+a100 soc.
 
-Series dropped.
+Yangtao Li (19):
+  pinctrl: sunxi: fix irq bank map for the Allwinner A100 pin controller
+  pinctrl: sunxi: Mark the irq bank not found in
+    sunxi_pinctrl_irq_handler() with WARN_ON
+  pinctrl: sunxi: Always call chained_irq_{enter, exit} in
+    sunxi_pinctrl_irq_handler
+  dt-bindings: dma: allwinner,sun50i-a64-dma: Add A100 compatible
+  dmaengine: sun6i: Add support for A100 DMA
+  arm64: allwinner: a100: Add device node for DMA controller
+  arm64: dts: allwinner: A100: Add PMU mode
+  phy: sun4i-usb: remove enable_pmu_unk1 from sun50i_h6_cfg
+  phy: allwinner: Convert to devm_platform_ioremap_* API
+  dt-bindings: watchdog: sun4i: Add A100 compatible
+  arm64: dts: allwinner: a100: add watchdog node
+  dt-bindings: Add bindings for USB phy on Allwinner A100
+  phy: sun4i-usb: add support for A100 USB PHY
+  arm64: dts: allwinner: a100: add usb related nodes
+  arm64: allwinner: A100: enable EHCI, OHCI and USB PHY nodes in Perf1
+  dt-bindings: mmc: sunxi: Add A100 compatibles
+  mmc: sunxi: add support for A100 mmc controller
+  arm64: allwinner: a100: Add MMC related nodes
+  arm64: dts: allwinner: a100: perf1: Add eMMC and MMC node
 
-Shawn
+ .../dma/allwinner,sun50i-a64-dma.yaml         |   5 +-
+ .../bindings/mmc/allwinner,sun4i-a10-mmc.yaml |   2 +
+ .../phy/allwinner,sun50i-a100-usb-phy.yaml    | 105 ++++++++++
+ .../watchdog/allwinner,sun4i-a10-wdt.yaml     |   3 +
+ .../allwinner/sun50i-a100-allwinner-perf1.dts |  54 +++++
+ .../arm64/boot/dts/allwinner/sun50i-a100.dtsi | 197 +++++++++++++++++-
+ drivers/dma/sun6i-dma.c                       |  25 +++
+ drivers/mmc/host/sunxi-mmc.c                  |  28 ++-
+ drivers/phy/allwinner/phy-sun4i-usb.c         |  29 ++-
+ drivers/phy/allwinner/phy-sun50i-usb3.c       |   4 +-
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   |   4 +-
+ drivers/phy/allwinner/phy-sun9i-usb.c         |   4 +-
+ drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c   |   2 +-
+ drivers/pinctrl/sunxi/pinctrl-sunxi.c         |   9 +-
+ 14 files changed, 443 insertions(+), 28 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/allwinner,sun50i-a100-usb-phy.yaml
+
+-- 
+2.28.0
+
