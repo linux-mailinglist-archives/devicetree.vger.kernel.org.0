@@ -2,119 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D0542ADE08
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 19:17:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D281A2ADE21
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 19:21:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726179AbgKJSRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 13:17:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59886 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726152AbgKJSRr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 13:17:47 -0500
-Received: from trantor (unknown [2.26.170.190])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 68BA820781;
-        Tue, 10 Nov 2020 18:17:44 +0000 (UTC)
-Date:   Tue, 10 Nov 2020 18:17:42 +0000
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     James Morse <james.morse@arm.com>, robh+dt@kernel.org, hch@lst.de,
-        ardb@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        will@kernel.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org,
-        linux-rpi-kernel@lists.infradead.org, guohanjun@huawei.com,
-        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        Chen Zhou <chenzhou10@huawei.com>
-Subject: Re: [PATCH v6 1/7] arm64: mm: Move reserve_crashkernel() into
- mem_init()
-Message-ID: <X6rZRvWyigCJxAVW@trantor>
-References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
- <20201103173159.27570-2-nsaenzjulienne@suse.de>
- <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
- <88c69ac0c9d7e144c80cebc7e9f82b000828e7f5.camel@suse.de>
+        id S1727968AbgKJSVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 13:21:48 -0500
+Received: from mail-ej1-f66.google.com ([209.85.218.66]:41952 "EHLO
+        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725862AbgKJSVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 13:21:48 -0500
+Received: by mail-ej1-f66.google.com with SMTP id cw8so19001104ejb.8;
+        Tue, 10 Nov 2020 10:21:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=l9G1H7d6H8DN8me8HewkSUvFhp7esQeOJ1hEf3/Bq68=;
+        b=p7aKavWiiFJFu5Eeo09kTp5eU7pkPehDc31CP/VCJ8mX2fcfVZsYL5WEJQXCChL0yE
+         ydGK85hRnzXmwxjKZK19HBN0ib4nBrsxafpsexVC/fZ0WR0oibcdH8+JIL7vmu349r/K
+         AkpZNoOO9NTdbmYOrl//HXXstqabesACOmZ2mLp2G3bp/KUkQ1zSGKix5mH5+jMsCHMm
+         EzkV+xT8dThzus/3OhH9+9dfOmIF+XvnHeqnAT+Yzmo14GILVfP7VFnVeRfbNM5kn+n1
+         0dU9oDhuO7s3As2HSrU9VIa1Bg+uDB+T5efSmbZtxRcfvbPDz5FePQJk7TRzbA8BzDpv
+         k13A==
+X-Gm-Message-State: AOAM532yTRIHDG/xIvtNM+aRMect+dO4ccLjW1woFJvsjcueByzB53eY
+        m8ifMIIukfG39uPSu4y2GtzSHcc6L+o=
+X-Google-Smtp-Source: ABdhPJw8e8YV2zvKY2C/DC1nvB4CpPz2usZQyE7wCNeNbMFrD89t/14vgLrbzkuQFpB456SmQNDhAA==
+X-Received: by 2002:a17:906:ae52:: with SMTP id lf18mr22583160ejb.9.1605032506577;
+        Tue, 10 Nov 2020 10:21:46 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id n11sm1979144eds.3.2020.11.10.10.21.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 10:21:45 -0800 (PST)
+Date:   Tue, 10 Nov 2020 19:21:44 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] ARM: dts: exynos: use hyphens in Exynos3250 node
+ names
+Message-ID: <20201110182144.GA24131@kozik-lap>
+References: <20201105184506.215648-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <88c69ac0c9d7e144c80cebc7e9f82b000828e7f5.camel@suse.de>
+In-Reply-To: <20201105184506.215648-1-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 06, 2020 at 07:46:29PM +0100, Nicolas Saenz Julienne wrote:
-> On Thu, 2020-11-05 at 16:11 +0000, James Morse wrote:
-> > On 03/11/2020 17:31, Nicolas Saenz Julienne wrote:
-> > > crashkernel might reserve memory located in ZONE_DMA. We plan to delay
-> > > ZONE_DMA's initialization after unflattening the devicetree and ACPI's
-> > > boot table initialization, so move it later in the boot process.
-> > > Specifically into mem_init(), this is the last place crashkernel will be
-> > > able to reserve the memory before the page allocator kicks in.
-> > > There
-> > > isn't any apparent reason for doing this earlier.
-> > 
-> > It's so that map_mem() can carve it out of the linear/direct map.
-> > This is so that stray writes from a crashing kernel can't accidentally corrupt the kdump
-> > kernel. We depend on this if we continue with kdump, but failed to offline all the other
-> > CPUs.
+On Thu, Nov 05, 2020 at 07:45:01PM +0100, Krzysztof Kozlowski wrote:
+> Use hyphens instead of underscores in the Exynos3250 node names which is
+> expected by naming convention, multiple dtschema files and pointed out
+> by dtc W=2 builds.  Use also generic "ppmu" node name for PPMU nodes to
+> match Devicetree specification.
 > 
-> I presume here you refer to arch_kexec_protect_crashkres(), IIUC this will only
-> happen further down the line, after having loaded the kdump kernel image. But
-> it also depends on the mappings to be PAGE sized (flags == NO_BLOCK_MAPPINGS |
-> NO_CONT_MAPPINGS).
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/exynos3250.dtsi | 48 +++++++++++++++----------------
+>  1 file changed, 24 insertions(+), 24 deletions(-)
 
-IIUC, arch_kexec_protect_crashkres() is only for the crashkernel image,
-not the whole reserved memory that the crashkernel will use. For the
-latter, we avoid the linear map by marking it as nomap in map_mem().
+Applied entire set.
 
-> > We also depend on this when skipping the checksum code in purgatory, which can be
-> > exceedingly slow.
-> 
-> This one I don't fully understand, so I'll lazily assume the prerequisite is
-> the same WRT how memory is mapped. :)
-> 
-> Ultimately there's also /sys/kernel/kexec_crash_size's handling. Same
-> prerequisite.
-> 
-> Keeping in mind acpi_table_upgrade() and unflatten_device_tree() depend on
-> having the linear mappings available.
-
-So it looks like reserve_crashkernel() wants to reserve memory before
-setting up the linear map with the information about the DMA zones in
-place but that comes later when we can parse the firmware tables.
-
-I wonder, instead of not mapping the crashkernel reservation, can we not
-do an arch_kexec_protect_crashkres() for the whole reservation after we
-created the linear map?
-
-> Let me stress that knowing the DMA constraints in the system before reserving
-> crashkernel's regions is necessary if we ever want it to work seamlessly on all
-> platforms. Be it small stuff like the Raspberry Pi or huge servers with TB of
-> memory.
-
-Indeed. So we have 3 options (so far):
-
-1. Allow the crashkernel reservation to go into the linear map but set
-   it to invalid once allocated.
-
-2. Parse the flattened DT (not sure what we do with ACPI) before
-   creating the linear map. We may have to rely on some SoC ID here
-   instead of actual DMA ranges.
-
-3. Assume the smallest ZONE_DMA possible on arm64 (1GB) for crashkernel
-   reservations and not rely on arm64_dma_phys_limit in
-   reserve_crashkernel().
-
-I think (2) we tried hard to avoid. Option (3) brings us back to the
-issues we had on large crashkernel reservations regressing on some
-platforms (though it's been a while since, they mostly went quiet ;)).
-However, with Chen's crashkernel patches we end up with two
-reservations, one in the low DMA zone and one higher, potentially above
-4GB. Having a fixed 1GB limit wouldn't be any worse for crashkernel
-reservations than what we have now.
-
-If (1) works, I'd go for it (James knows this part better than me),
-otherwise we can go for (3).
-
--- 
-Catalin
+Best regards,
+Krzysztof
