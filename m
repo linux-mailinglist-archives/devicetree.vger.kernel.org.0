@@ -2,81 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C4A62ADDD1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 19:08:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF2E62ADDDF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 19:12:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731212AbgKJSIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 13:08:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56684 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731259AbgKJSIe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 13:08:34 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C9F1A20797;
-        Tue, 10 Nov 2020 18:08:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605031713;
-        bh=Nz7W27yNGmMjfytfPBBLE46dVYliFnn5Y64uNGZmuIM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=i4EPEKIegCG7mQAYOmGbseMNaM7wnCzfEd0iU8/20Aa4pJOncA8X8DeXrXwY83Svn
-         t4TZmh34jIHFlzzBC6ekXO/YQdD+VmlrujLZxAQL2FhKQtzqtv4FrSwymf4yOUVjjb
-         X68VAgDfJkOW4vcNM0uJ8ayY6jAZLNdM8G5doyjU=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kcY4F-009Wjq-M6; Tue, 10 Nov 2020 18:08:31 +0000
+        id S1726428AbgKJSMA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Nov 2020 13:12:00 -0500
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:42432 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbgKJSMA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 13:12:00 -0500
+Received: by mail-ed1-f66.google.com with SMTP id v22so3419705edt.9;
+        Tue, 10 Nov 2020 10:11:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ObZ+uatBT5aV3E0Ee3Zvvp2n0wcTHU9I6h5xLp1wh8Y=;
+        b=n/WTFtmykjcIqILh0ycRB9SG0w5VY1LQx9tbAWOoKWLL6B6WSam5zWuX6GBb0vlk+4
+         vcxKNHWA0hEasYzMDX0Vafjs4Xe4CBpIwHQEihFEn82qzlIrAY2CDP4d5nVf3gU661ub
+         J6E43rS57TqnD0sbTf1ObnZPOaElLyAdjdrECgYRTXithU8kXLbCYL6pztzRyjFB5Qfa
+         3dXss+fTfLI/KTP6Asu9Pj2CuIA/j8qYktnwh2Jhd2l3UIcy1YK9dwvCv+OQsdihcc3T
+         hhE8Oxb1yIa5GpsyQi39VfOlhlkY6cPwLNncoTc6LQok4+FQFGssi1YVZsMUGLq+oGFQ
+         8gjg==
+X-Gm-Message-State: AOAM531jzq/8G6h9EWsZLv2zqXAHk3bTM/IQeGO+yS5rYMu1zDwuV7zE
+        L+zUOlqnoKUlJaB09OJ/d9vqqZLrst8=
+X-Google-Smtp-Source: ABdhPJwH9rjo7WFDRce3ZY6Wa0VD4LphG89cjoxx/d+KTfqVHXT4euGN+saA+HjI7WjxqocCsmFDRA==
+X-Received: by 2002:aa7:c546:: with SMTP id s6mr609076edr.114.1605031918334;
+        Tue, 10 Nov 2020 10:11:58 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id rn28sm11065161ejb.22.2020.11.10.10.11.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 10:11:57 -0800 (PST)
+Date:   Tue, 10 Nov 2020 19:11:55 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     georgi.djakov@linaro.org, cw00.choi@samsung.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        a.swigon@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v8 5/7] ARM: dts: exynos: Add interconnect properties to
+ Exynos4412 bus nodes
+Message-ID: <20201110181155.GA18447@kozik-lap>
+References: <20201104103657.18007-1-s.nawrocki@samsung.com>
+ <CGME20201104103726eucas1p248b51b25f5ee42898bf03e9cb2229c5d@eucas1p2.samsung.com>
+ <20201104103657.18007-6-s.nawrocki@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 10 Nov 2020 18:08:31 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Nagarjuna Kristam <nkristam@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra186: Add missing CPU PMUs
-In-Reply-To: <20201110173601.GA2297135@ulmo>
-References: <20201013095851.311478-1-maz@kernel.org>
- <20201110173601.GA2297135@ulmo>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <3da5c9b1f93699634aad997b77536a92@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: thierry.reding@gmail.com, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com, nkristam@nvidia.com, skomatineni@nvidia.com, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201104103657.18007-6-s.nawrocki@samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-11-10 17:36, Thierry Reding wrote:
-> On Tue, Oct 13, 2020 at 10:58:51AM +0100, Marc Zyngier wrote:
->> Add the description of CPU PMUs for both the Denver and A57 clusters,
->> which enables the perf subsystem.
->> 
->> Signed-off-by: Marc Zyngier <maz@kernel.org>
-
-[...]
-
->> 
->> +	pmu_denver {
->> +		compatible = "nvidia,denver-pmu", "arm,armv8-pmuv3";
+On Wed, Nov 04, 2020 at 11:36:55AM +0100, Sylwester Nawrocki wrote:
+> This patch adds the following properties for Exynos4412 interconnect
+> bus nodes:
+>  - interconnects: to declare connections between nodes in order to
+>    guarantee PM QoS requirements between nodes,
+>  - #interconnect-cells: required by the interconnect framework,
+>  - samsung,data-clk-ratio: which allows to specify minimum data clock
+>    frequency corresponding to requested bandwidth for each bus.
 > 
-> checkpatch complains that this isn't documented. Did I miss the DT
-> bindings patch or do we not have one for this?
+> Note that #interconnect-cells is always zero and node IDs are not
+> hardcoded anywhere.
+> 
+> Signed-off-by: Artur Świgoń <a.swigon@samsung.com>
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> Changes for v8:
+>  - none.
+> 
+> Changes for v7:
+>  - adjusted to the DT property changes: "interconnects" instead
+>    of "samsung,interconnect-parent", "samsung,data-clk-ratio"
+>    instead of "bus-width".
+> 
+> Changes for v6:
+>  - added bus-width property in bus_dmc node.
+> 
+> Changes for v5:
+>  - adjust to renamed exynos,interconnect-parent-node property,
+>  - add properties in common exynos4412.dtsi file rather than
+>    in Odroid specific odroid4412-odroid-common.dtsi.
+> ---
+>  arch/arm/boot/dts/exynos4412.dtsi | 6 ++++++
 
-We don't. But I don't think adding a compatible string for each
-and every micro-architecture makes much sense unless we have something
-useful to add to that compatible string. Such as a full description
-of the implementation specific events.
+Thanks, applied with Chanwoo's tags.
 
-Thanks,
+Best regards,
+Krzysztof
 
-         M.
