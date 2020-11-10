@@ -2,106 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3102AD5B7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 12:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E8D42AD5E9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 13:12:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726690AbgKJL4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 06:56:47 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58306 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726428AbgKJL4r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 06:56:47 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A84EE20678;
-        Tue, 10 Nov 2020 11:56:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605009406;
-        bh=YryXYnKNldudDO/RjAz80bAXrbW7/qbSF3tU+VW8eT0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QDV5JKZraXd4PgJ4NstqiTlrlzLQdcoRw2n9tyyBrQ0/7KCCZWJ7JAlHBmIHBFps5
-         8lkXJxSkhjzdeouUKFsggexk820zmoLe7TN+BF4FxJqnj+oyBq/X50SdHrPHHsUQO3
-         bvVHp1xR9os+ukKwR3X0/21Alpj+n3EXFYWyThPc=
-Date:   Tue, 10 Nov 2020 11:56:31 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Ajye Huang <ajye_huang@compal.corp-partner.google.com>
-Cc:     Ajye Huang <ajye.huang@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S1730057AbgKJMMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 07:12:34 -0500
+Received: from mail.baikalelectronics.com ([87.245.175.226]:34074 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730021AbgKJMMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 07:12:34 -0500
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 25063803086A;
+        Tue, 10 Nov 2020 12:12:32 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 7_7GLs-UjHzI; Tue, 10 Nov 2020 15:12:31 +0300 (MSK)
+Date:   Tue, 10 Nov 2020 15:12:30 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Jun Li <lijun.kernel@gmail.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Cheng-yi Chiang <cychiang@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        ALSA development <alsa-devel@alsa-project.org>
-Subject: Re: [PATCH v6 0/2] Modify documentation and machine driver for
- SC7180 sound card
-Message-ID: <20201110115631.GA5957@sirena.org.uk>
-References: <20201106061433.1483129-1-ajye_huang@compal.corp-partner.google.com>
- <CALprXBZCthdkxGbJBZZ+ESJRDBHY879FZMpB_4Mgpq1YAJun2g@mail.gmail.com>
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>
+Subject: Re: [PATCH 29/29] arm64: dts: qcom: Harmonize DWC USB3 DT nodes name
+Message-ID: <20201110121230.vnyg33dbfggkonmm@mobilestation>
+References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
+ <20201020115959.2658-30-Sergey.Semin@baikalelectronics.ru>
+ <CAKgpwJWWg+fimuQOCcw=L0HZSwLYXNNCAV4ifzzG-HXfkFmazw@mail.gmail.com>
+ <20201103232347.GD65067@builder.lan>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ReaqsoxgOBHFXBhH"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CALprXBZCthdkxGbJBZZ+ESJRDBHY879FZMpB_4Mgpq1YAJun2g@mail.gmail.com>
-X-Cookie: Disk crisis, please clean up!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201103232347.GD65067@builder.lan>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Jun and Bjorn.
 
---ReaqsoxgOBHFXBhH
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Nov 03, 2020 at 05:23:47PM -0600, Bjorn Andersson wrote:
+> On Mon 02 Nov 01:34 CST 2020, Jun Li wrote:
+> 
+> > Serge Semin <Sergey.Semin@baikalelectronics.ru> ???2020???10???20????????? ??????8:04?????????
+> > >
+> > > In accordance with the DWC USB3 bindings the corresponding node
+> > > name is suppose to comply with the Generic USB HCD DT schema, which
+> > > requires the USB nodes to have the name acceptable by the regexp:
+> > > "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
+> > > named.
+> > 
 
-On Tue, Nov 10, 2020 at 05:40:40PM +0800, Ajye Huang wrote:
-> Hi, Mark
->=20
-> Could you please kindly review the series patch v6? And may I get your
-> approval if the review is done.
+> > This need a counterpart driver change:
+> > drivers/usb/dwc3/dwc3-qcom.c
+> > dwc3_np = of_get_child_by_name(np, "dwc3");
+> > 
+> 
+> Thanks for catching this Jun. The code certainly needs to be updated to
+> look for the new child node, while falling back to the old name, before
+> I can merge this change.
 
-Please don't send content free pings and please allow a reasonable time
-for review.  People get busy, go on holiday, attend conferences and so=20
-on so unless there is some reason for urgency (like critical bug fixes)
-please allow at least a couple of weeks for review.  If there have been
-review comments then people may be waiting for those to be addressed.
+Thanks for looking into this. I'll add a patch, which fixes that into
+the next series, but with no tested status guarantee, since I haven't
+got a corresponding hardware.
 
-Sending content free pings adds to the mail volume (if they are seen at
-all) which is often the problem and since they can't be reviewed
-directly if something has gone wrong you'll have to resend the patches
-anyway, so sending again is generally a better approach though there are
-some other maintainers who like them - if in doubt look at how patches
-for the subsystem are normally handled.
+-Sergey
 
---ReaqsoxgOBHFXBhH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+qf+8ACgkQJNaLcl1U
-h9DxYAf+Ml8fbU5qJTIhVmWOIV4EI0pby5cVXJ8Jm2A/+6RqBfDCWb4wpO3Znxbn
-8GZnLxdDqCAQ0Ej/aTIDFS5ssSjOluIxZb0D4awtsX8Czodu8881Clpg2vlKlUw6
-Uc7PsqBs5fGjPNpmavFnmL3Mu8JAhIuZBFF58Y1FDR5ns6A5fLa7tfFfO0Wbuggo
-rk0vvB/2lxH8jdPqM5U0h7XM0wixDmB+MDPnTjSKHtb2bbfuBik6NzVQn6UdkrTj
-vVKNExPim4TwFRG7WfVZkTBfhybxziwuFM63n0P1UCjHLIPG2Ay1lBwsPXyxrg/4
-dH2Xo1C2aS2VZy5o4pMtXvVBCawm1A==
-=oGFb
------END PGP SIGNATURE-----
-
---ReaqsoxgOBHFXBhH--
+> 
+> Regards,
+> Bjorn
