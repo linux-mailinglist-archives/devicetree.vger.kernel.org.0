@@ -2,20 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 664382AD643
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 13:31:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 300802AD645
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 13:32:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729227AbgKJMbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 07:31:38 -0500
-Received: from relay12.mail.gandi.net ([217.70.178.232]:42131 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726706AbgKJMbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 07:31:38 -0500
+        id S1729183AbgKJMci (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 07:32:38 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:29259 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726706AbgKJMci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 07:32:38 -0500
+X-Originating-IP: 86.194.74.19
 Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
         (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 9996D200003;
-        Tue, 10 Nov 2020 12:31:35 +0000 (UTC)
-Date:   Tue, 10 Nov 2020 13:31:35 +0100
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 36701240008;
+        Tue, 10 Nov 2020 12:32:35 +0000 (UTC)
+Date:   Tue, 10 Nov 2020 13:32:34 +0100
 From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
 To:     Gregory CLEMENT <gregory.clement@bootlin.com>
 Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
@@ -26,7 +27,7 @@ Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
         Lars Povlsen <lars.povlsen@microchip.com>,
         Steen.Hegelund@microchip.com
 Subject: Re: [PATCH v2 5/9] MIPS: mscc: Add luton dtsi
-Message-ID: <20201110123135.GH1769536@piout.net>
+Message-ID: <20201110123234.GI1769536@piout.net>
 References: <20201110114508.1197652-1-gregory.clement@bootlin.com>
  <20201110114508.1197652-6-gregory.clement@bootlin.com>
 MIME-Version: 1.0
