@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D26C2AD12C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 09:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 448722AD130
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 09:20:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726827AbgKJITs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 03:19:48 -0500
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:46506 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726690AbgKJITs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 03:19:48 -0500
-Received: by mail-lf1-f67.google.com with SMTP id v144so16211479lfa.13;
-        Tue, 10 Nov 2020 00:19:45 -0800 (PST)
+        id S1727001AbgKJIUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 03:20:06 -0500
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:40302 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727691AbgKJIUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 03:20:06 -0500
+Received: by mail-lf1-f68.google.com with SMTP id e27so16270982lfn.7;
+        Tue, 10 Nov 2020 00:20:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=UlXbMpsFa244UJuIxjSMkR1LlqiCKu1MwIsUY/puf+k=;
-        b=TDVXqybh0Rc2vGrgqqSgCKmbHD94AKd8jvr38BIof3xj9OoF8cJz3XmRRdfP4/qcU2
-         4/+OoZKzUjCQ5kr1vfWPr3wKVrOO+hSIBmC7ZSHi3gUIfBUhP+U6d2BHgVQ/CdeSIpw1
-         8lpIbU2W5iYgE15MqoP/rA/sDGjawbJqMack4gECXaCGdLpHV3ASA9+32VBMq/oMFCkq
-         lcugXeW0os+O0rhnctvZcmovKbMMvmA79z05aCIU3IA7VmPr8MYjT57D4GTxu8WCSWz2
-         9x4jEVmKO+JsgZ1IS9rMsybOqb/aO1e/hUwAgTkBNp/peSYNso9T2ncg4grZgLkhWjNo
-         uIdg==
-X-Gm-Message-State: AOAM531cR0IuvYV2a/g7Lm4cZdtUniSBzrZ9IIn43EX3HIo+Q9SS87jC
-        omNniG5zWkl30X4Z5Z0B4gM=
-X-Google-Smtp-Source: ABdhPJytIDfg1YooZqoNZODuaWFEQsklBhO+zntVJC+zyChrPvMgicM2aZPNrGfVcfd3B0Dhsu6u2A==
-X-Received: by 2002:ac2:5687:: with SMTP id 7mr7047702lfr.149.1604996385134;
-        Tue, 10 Nov 2020 00:19:45 -0800 (PST)
+        bh=XF58E9LpuHgK3bgwONg+IQpq5rvQT2eMBFliurRDMBY=;
+        b=aShRON+7KoBsyzXH9B7efaCm4FyisRwR7+kbdHMOiqWHtjI0eCcBBqFlVsOTrRtul6
+         lbLWpJcKafx8iDpzEUP8NwIo7ssuf4HnviNHvGRi9/+/0DGinDIbckL7MTrUcuKOuAs4
+         zSBj75EvKpJadSiwQ3TLUXLM1DCdaO80GjpCEyOdx51h+Fo7jnjzN6FeAlIP2h6buQRS
+         73mLSC5YBFUttILG3wlZ3NgPGSqXkwX8mOZ1I6u+pMhcd5DPeAgKADj5Jvey00+R/KBe
+         FONoSAqQYTz6wZ6Tm7PcJ34Pjm1QeaKwwMCNm+CY2377sUy0JiBiWLk/AKUJD5rC87L8
+         GaKw==
+X-Gm-Message-State: AOAM531TBgq2WOGWaGvzb4V473fvXlfZaFrAiJU/IMtE0DquSfo3dOc/
+        U0GYDlkUWaguv6ZY6gV6tjk=
+X-Google-Smtp-Source: ABdhPJyf4K3+aAt5coTznoNgU/gTR8hnm4VuYD1DgzBnkXfHgNc/7+RunSM3v5Zk3oisPAUKbzNe5A==
+X-Received: by 2002:a19:8982:: with SMTP id l124mr3050431lfd.368.1604996404361;
+        Tue, 10 Nov 2020 00:20:04 -0800 (PST)
 Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id t5sm2030280lfc.75.2020.11.10.00.19.44
+        by smtp.gmail.com with ESMTPSA id j127sm1438603lfd.34.2020.11.10.00.20.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 00:19:44 -0800 (PST)
-Date:   Tue, 10 Nov 2020 10:19:38 +0200
+        Tue, 10 Nov 2020 00:20:03 -0800 (PST)
+Date:   Tue, 10 Nov 2020 10:19:58 +0200
 From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 To:     mazziesaccount@gmail.com, matti.vaittinen@gmail.com
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
@@ -42,9 +42,9 @@ Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-power@fi.rohmeurope.com
-Subject: [RFC PATCH 1/3] dt-bindings: regulator: BD71837 support commonly
+Subject: [RFC PATCH 2/3] dt-bindings: regulator: BD71847 support commonly
  used feedback connection
-Message-ID: <9959924313db7c7165598604f9a07bf227f471a8.1604994184.git.matti.vaittinen@fi.rohmeurope.com>
+Message-ID: <9b6b3d8233071d478f7d1e93b498f5a2141941e6.1604994184.git.matti.vaittinen@fi.rohmeurope.com>
 References: <cover.1604994184.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -54,7 +54,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BD71837 buck output voltages are in a few cases scaled using external
+The BD71847 buck output voltages are in a few cases scaled using external
 connection which adds a pull-up to regulator feedback pin. This connection
 will adjust output voltage from regulator in a deterministic way.
 
@@ -63,17 +63,18 @@ voltage ranges accordingly.
 
 Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
 ---
- .../regulator/rohm,bd71837-regulator.yaml     | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ .../regulator/rohm,bd71847-regulator.yaml     | 49 +++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.yaml
-index f5e31196a646..1941b36cf1ef 100644
---- a/Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.yaml
-@@ -105,6 +105,54 @@ patternProperties:
+diff --git a/Documentation/devicetree/bindings/regulator/rohm,bd71847-regulator.yaml b/Documentation/devicetree/bindings/regulator/rohm,bd71847-regulator.yaml
+index eeac32cd15d6..a1b806373853 100644
+--- a/Documentation/devicetree/bindings/regulator/rohm,bd71847-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/rohm,bd71847-regulator.yaml
+@@ -99,6 +99,55 @@ patternProperties:
+           Enable/Disable control of this regulator must be left to the
            PMIC hardware state machine.
          type: boolean
- 
++
 +      # Setups where regulator (especially the buck8) output voltage is scaled
 +      # by adding external connection where some other regulator output is
 +      # connected to feedback-pin (over suitable resistors) is getting popular
