@@ -2,94 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C23D2ADB0E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 17:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CC982ADB19
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 17:02:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730746AbgKJQAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 11:00:45 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43872 "EHLO mail.kernel.org"
+        id S1730760AbgKJQCl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 11:02:41 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44492 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729909AbgKJQAo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 11:00:44 -0500
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1730200AbgKJQCl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 11:02:41 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D3F48207BB
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 16:00:43 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9ACB3206E3;
+        Tue, 10 Nov 2020 16:02:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605024044;
-        bh=RG/NgTihgLdA9a2pBThkDLJ4oix0s+fuIb+CdyGAfbg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Z8DHjwqkRfn0e7RHbqbZrapNBM8Xu7Kz79xi+VsLigXyvSukw22ekZ2KO3fGN3NvE
-         g6ZV53DBp4+T7/h6rXBWlMUwITLGelAGeqg9NSEH3cSK9ju6VCFWKAm32QBLniP6KK
-         8HBzANg2zqU1V7onj1TGmna3QxLwZywCR+uML48k=
-Received: by mail-ot1-f51.google.com with SMTP id 30so7230572otx.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 08:00:43 -0800 (PST)
-X-Gm-Message-State: AOAM530Xy4bYzEhIPI5dBstvXmDI85OOpwz0V3ZBhsi8fQYhsd4AGXMa
-        0CH6jnVvD2AUOKHEsgPs5eQt3Acw9yQnJ8Dltw==
-X-Google-Smtp-Source: ABdhPJzha/4fhemzFLUDyArlzFbgeQPDzeNA2v1DrUvZ4YO4PLgq/Upa3Zm81wPaXlzdUSWTJ33FQAKGy+fnze9zuNw=
-X-Received: by 2002:a9d:5e14:: with SMTP id d20mr13486984oti.107.1605024043019;
- Tue, 10 Nov 2020 08:00:43 -0800 (PST)
+        s=default; t=1605024160;
+        bh=ie3J/2MS7vjiEfSv1p0lPveL076A6s9sdaz+Gma5P0I=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=1k015RohfC/Wu6QB7nZOjPM+lM2kV/rT9j6zbS0aDS5FqRmbbsxkxF+Bs0NZEZVrl
+         vw9pKdZFgog48gHWXb+kUXXmdnswWO6E2S/afEmfkPywjmchiikFaYmO6CciHNK1AH
+         qXfBaNaMZyJu9tLYvxCeOwyzUlYYqGPH4FI6e6z0=
+Date:   Tue, 10 Nov 2020 16:02:26 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-kernel@vger.kernel.org, Ajye Huang <ajye.huang@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>,
+        Andy Gross <agross@kernel.org>, robh@kernel.org,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+        cychiang@chromium.org, tzungbi@chromium.org,
+        devicetree@vger.kernel.org, srinivas.kandagatla@linaro.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>, dianders@chromium.org,
+        Banajit Goswami <bgoswami@codeaurora.org>
+In-Reply-To: <20201106061433.1483129-1-ajye_huang@compal.corp-partner.google.com>
+References: <20201106061433.1483129-1-ajye_huang@compal.corp-partner.google.com>
+Subject: Re: [PATCH v6 0/2] Modify documentation and machine driver for SC7180 sound card
+Message-Id: <160502414080.45830.11882063016977646088.b4-ty@kernel.org>
 MIME-Version: 1.0
-References: <1604390378-23993-1-git-send-email-jiaxin.yu@mediatek.com>
- <1604390378-23993-8-git-send-email-jiaxin.yu@mediatek.com> <20201104185651.GB3946406@bogus>
-In-Reply-To: <20201104185651.GB3946406@bogus>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 10 Nov 2020 10:00:31 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJAhWtK6G6vLt=H+PK3=JvDuY8JgP9+mdWuFbtFxONnCg@mail.gmail.com>
-Message-ID: <CAL_JsqJAhWtK6G6vLt=H+PK3=JvDuY8JgP9+mdWuFbtFxONnCg@mail.gmail.com>
-Subject: Re: [PATCH v4 7/9] dt-bindings: mediatek: mt8192: add audio afe document
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Shane Chien <shane.chien@mediatek.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Mark Brown <broonie@kernel.org>, Trevor.Wu@mediatek.com,
-        Bicycle.Tsai@mediatek.com, Takashi Iwai <tiwai@suse.com>,
-        Tzung-Bi Shih <tzungbi@google.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 4, 2020 at 12:56 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Tue, 03 Nov 2020 15:59:36 +0800, Jiaxin Yu wrote:
-> > This patch adds mt8192 audio afe document.
-> >
-> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > ---
-> > This patch depends on following series that has not been accepted:
-> > https://patchwork.kernel.org/cover/11752231
-> > (dt-bindings/clock/mt8192-clk.h is included in it.)
-> > https://patchwork.kernel.org/patch/11755895
-> > (dt-bindings/power/mt8192-power.h is included in it.)
-> > https://lore.kernel.org/patchwork/patch/1321118
-> > (dt-bindings/reset-controller/mt8192-resets.h is included in it.)
-> >
-> >  .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ++++++++++++++++++
-> >  1 file changed, 100 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> >
->
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
-> ./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:15:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
->
-> dtschema/dtc warnings/errors:
-> Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dts:19:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
->    19 |         #include <dt-bindings/clock/mt8192-clk.h>
->       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+On Fri, 6 Nov 2020 14:14:31 +0800, Ajye Huang wrote:
+> Note:
+> - The patch is made by the collaboration of
+>  Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+>  Cheng-Yi Chiang <cychiang@chromium.org>
+> 
+> v6:
+> - Documentation: Addressed suggestions from Rob Herring.
+>   - Define "maxItems: 1" in dmic-gpios property.
+>   - Only keep one example and add dmic-gpios property in.
+> v5:
+> - Machine driver:
+>   - Fix a format string warning (Reported-by: kernel test robot <lkp@intel.com>).
+>     detailed info at https://lore.kernel.org/patchwork/patch/1331087/
+> 
+> [...]
 
-Now linux-next is broken because this dependency is not yet merged.
-That needs to land soon or this be reverted.
+Applied to
 
-Rob
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/2] ASoC: google: dt-bindings: modify machine bindings for two MICs case
+      commit: 0e38d93493c7b11bc250113dd5b7b9d17ba8c54d
+[2/2] ASoC: qcom: sc7180: Modify machine driver for 2mic
+      commit: 3cfbf07c6d2779d24a6f5b999a91f400256b1d4e
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
