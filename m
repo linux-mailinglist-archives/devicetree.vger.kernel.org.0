@@ -2,84 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 006622AD92A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:47:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E4F72AD93C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:49:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730870AbgKJOrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 09:47:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35238 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730200AbgKJOrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:47:21 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43AF5C0613D1
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:47:21 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id s30so17900098lfc.4
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:47:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kiWbHwM/Lr8KmmLC2XpYaczHAMgXswVwBOFL89IZblY=;
-        b=XZOD1vKezmecxMgGB2KrnL99f6D1FfXpEp38edLi+v6XX+/2DwlTq8GQNRMPlUGcas
-         WTmTOsZdFoW/F53Xc4MjByycnOx3skWg7Lw0au4+WC+y+fbxiT1FbuIA2K3TF1ZkM6hX
-         sfaq/f+id1NXynG39rkmv2VNdGaoFkt6cx7J2wfOatok+ZvBVD2Ytc3SsqTyLkNOvHBk
-         i0no7VAoh9Ty6snnjOyibxmv6PpiNg40TvV5mMylXUrkJUsOY9LRTDcyHLJqT04KgZqN
-         Kny7Cje9XUnNHbZ+6YjaD7VdtuKilcGIYHrsqOnNwLspmNYbT1W4Ns+IzTmDKpThPqlR
-         YhFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kiWbHwM/Lr8KmmLC2XpYaczHAMgXswVwBOFL89IZblY=;
-        b=Md5F7WHbjUsZ+lII/WU85n8iaJ2V6+onwe7QAylCcsdz5912UWw301bf22G0plDeph
-         VL6Qo8o+iAw4b/Pds3iuThOMq0zJDI3oE6NfKAsatJYsdQUVYjKtttg13P1Xck/l0baD
-         swG2PvhUC++8YoEAQiK4G07/hAmUfox1rgfivZI3aly0xPcGtuS9hvoj1Q5AR2odd3UL
-         s2VbjhE+3ZarrxSZQZs2/kDw14iE/b/iHqoUa6rMqNueeekAM4BjbQ35XzBsb+M9/KW7
-         fDTidbqgGng+6Bp+9RRtBnPj4AjIOWrV8xUJZRokXA6qEQaahswH+KJcJ2XbGZ1Dw1au
-         wnvg==
-X-Gm-Message-State: AOAM533RG8S1y2bCx2w9aMc3UZ03opilFcxbWh6Fa12J0TU65gq+xbQP
-        Hv5Q256dRpMAOTYyuBWIcUfsIvUEJcdcMBr94bssRw==
-X-Google-Smtp-Source: ABdhPJyi74cMCtvgB2LhCZiGshSdj4vtK9CzMPI7ALGe90BKtPZD+3vJoENQBsDaxfuy/JxgoF7vPVs3eoY3U4dEbmw=
-X-Received: by 2002:ac2:50c1:: with SMTP id h1mr7305358lfm.333.1605019639735;
- Tue, 10 Nov 2020 06:47:19 -0800 (PST)
+        id S1731949AbgKJOtc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 09:49:32 -0500
+Received: from esa3.microchip.iphmx.com ([68.232.153.233]:9056 "EHLO
+        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731962AbgKJOtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:49:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1605019771; x=1636555771;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=gmfSTmbZrIe0/XCpY9+CpFxXZTmo4ihW6dXadVTsN1g=;
+  b=lLPSnXY5opTcVtWz5QteQ4I5+Pe/mQxOsdFBORCfVww7MPIAF3Ar0kkV
+   MXpCHBEcMIqf7x46ZMFuHpHGtVlInuW7G5vd2uo6R5eIaYo/Y79eTam8C
+   oAJ/4EVKaekYZNx7KQ85IGxP9MmBx3tRdc2D7yautgJ4ZNeA56g5AbKRw
+   QL2RYcbZ5MikrJXnVMHyIiXUfaBlR90alw8FbT6K27DeQCx4WxbsRoswi
+   ntVNwj5Rs3KTHs5jbUVV/vmohrEuRWQPh3cBbBGaINn+NTFSNnBeGS4On
+   GKXqHV5BM6+RN+yeK4rKK4TYWP/+R7W5uG4K8c48LQ8fObzhf3+MYUYk1
+   Q==;
+IronPort-SDR: p1y03YbvVfAguSf1M658XIqeIlQKxbqb2wtVSbIq/NAvU9HRpPgUjiwupw+WxH6sAaeCItD0wK
+ dzD5eRNtrPeVNKRLibRL52aNdGEPGkmKYKvXZBT403uCVrfjEesdSiJNrXijGF5UNKOyhzAWsG
+ CAJ3clnYCp9XPQWS0H7elw/lvo+Bk1hVdZf/+UHD2qP3hzSTJ32IYmi8tuROLUT9Trm8jb/NW5
+ x39DJvwvUNHSYLGwbi/bYjKH8qL18jEsiaRkmJ1ieUeXXUiyrz9fwShIz+LXF0HjSTo//X/rPg
+ K2E=
+X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
+   d="scan'208";a="98454927"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Nov 2020 07:49:30 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Tue, 10 Nov 2020 07:49:30 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Tue, 10 Nov 2020 07:49:28 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microsemi List <microsemi@lists.bootlin.com>,
+        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 4/4] arm64: dts: sparx5: Add Sparx5 serdes driver node
+Date:   Tue, 10 Nov 2020 15:49:10 +0100
+Message-ID: <20201110144910.558164-5-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201110144910.558164-1-steen.hegelund@microchip.com>
+References: <20201110144910.558164-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-References: <20201109062620.14566-1-vkoul@kernel.org>
-In-Reply-To: <20201109062620.14566-1-vkoul@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Nov 2020 15:47:08 +0100
-Message-ID: <CACRpkdY=g4omnvgTzsBP6qwg7s8VYaFwChgAsJciQFS7SJ67jQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/2] pinctrl: qcom: Add binding and driver for SDX55 pincontrol
-To:     Vinod Koul <vkoul@kernel.org>, John Stultz <john.stultz@linaro.org>
-Cc:     MSM <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 9, 2020 at 7:26 AM Vinod Koul <vkoul@kernel.org> wrote:
+From: Lars Povlsen <lars.povlsen@microchip.com>
 
-> This series add device tree binding documentation and driver for SDX55 SOC
-> pincontroller.
->
-> Changes in v3:
->  - Add ack by Bjorn
->  - Fix dt_binding_check errors
->  - Add gpio ranges in binding
+Add Sparx5 serdes driver node, and enable it generally for all
+reference boards.
 
-Excellent, patches applied for v5.11.
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+---
+ arch/arm64/boot/dts/microchip/sparx5.dtsi | 195 ++++++++++++++++++++++
+ 1 file changed, 195 insertions(+)
 
-I also just applied John Stultz patches for modularizing the Qualcomm
-drivers so there might be some need to patch up so this driver can
-also modularize, check the result!
+diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+index 8e7724d413fb..af927e0002ff 100644
+--- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
++++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+@@ -287,5 +287,200 @@ tmon0: tmon@610508110 {
+ 			#thermal-sensor-cells = <0>;
+ 			clocks = <&ahb_clk>;
+ 		};
++
++		serdes: serdes@10808000 {
++			compatible = "microchip,sparx5-serdes";
++			#phy-cells = <1>;
++			reg =	<0x6 0x10808000 0x8000>, /* sd_cmu_0 */
++				<0x6 0x10810000 0x8000>, /* sd_cmu_1 */
++				<0x6 0x10818000 0x8000>, /* sd_cmu_2 */
++				<0x6 0x10820000 0x8000>, /* sd_cmu_3 */
++				<0x6 0x10828000 0x8000>, /* sd_cmu_4 */
++				<0x6 0x10830000 0x8000>, /* sd_cmu_5 */
++				<0x6 0x10838000 0x8000>, /* sd_cmu_6 */
++				<0x6 0x10840000 0x8000>, /* sd_cmu_7 */
++				<0x6 0x10848000 0x8000>, /* sd_cmu_8 */
++				<0x6 0x10850000 0x8000>, /* sd_cmu_cfg_0 */
++				<0x6 0x10858000 0x8000>, /* sd_cmu_cfg_1 */
++				<0x6 0x10860000 0x8000>, /* sd_cmu_cfg_2 */
++				<0x6 0x10868000 0x8000>, /* sd_cmu_cfg_3 */
++				<0x6 0x10870000 0x8000>, /* sd_cmu_cfg_4 */
++				<0x6 0x10878000 0x8000>, /* sd_cmu_cfg_5 */
++				<0x6 0x10880000 0x8000>, /* sd_cmu_cfg_6 */
++				<0x6 0x10888000 0x8000>, /* sd_cmu_cfg_7 */
++				<0x6 0x10890000 0x8000>, /* sd_cmu_cfg_8 */
++				<0x6 0x10898000 0x8000>, /* sd6g_lane_0 */
++				<0x6 0x108a0000 0x8000>, /* sd6g_lane_1 */
++				<0x6 0x108a8000 0x8000>, /* sd6g_lane_2 */
++				<0x6 0x108b0000 0x8000>, /* sd6g_lane_3 */
++				<0x6 0x108b8000 0x8000>, /* sd6g_lane_4 */
++				<0x6 0x108c0000 0x8000>, /* sd6g_lane_5 */
++				<0x6 0x108c8000 0x8000>, /* sd6g_lane_6 */
++				<0x6 0x108d0000 0x8000>, /* sd6g_lane_7 */
++				<0x6 0x108d8000 0x8000>, /* sd6g_lane_8 */
++				<0x6 0x108e0000 0x8000>, /* sd6g_lane_9 */
++				<0x6 0x108e8000 0x8000>, /* sd6g_lane_10 */
++				<0x6 0x108f0000 0x8000>, /* sd6g_lane_11 */
++				<0x6 0x108f8000 0x8000>, /* sd6g_lane_12 */
++				<0x6 0x10900000 0x8000>, /* sd10g_lane_0 */
++				<0x6 0x10908000 0x8000>, /* sd10g_lane_1 */
++				<0x6 0x10910000 0x8000>, /* sd10g_lane_2 */
++				<0x6 0x10918000 0x8000>, /* sd10g_lane_3 */
++				<0x6 0x109a8000 0x8000>, /* sd_lane_0 */
++				<0x6 0x109b0000 0x8000>, /* sd_lane_1 */
++				<0x6 0x109b8000 0x8000>, /* sd_lane_2 */
++				<0x6 0x109c0000 0x8000>, /* sd_lane_3 */
++				<0x6 0x109c8000 0x8000>, /* sd_lane_4 */
++				<0x6 0x109d0000 0x8000>, /* sd_lane_5 */
++				<0x6 0x109d8000 0x8000>, /* sd_lane_6 */
++				<0x6 0x109e0000 0x8000>, /* sd_lane_7 */
++				<0x6 0x109e8000 0x8000>, /* sd_lane_8 */
++				<0x6 0x109f0000 0x8000>, /* sd_lane_9 */
++				<0x6 0x109f8000 0x8000>, /* sd_lane_10 */
++				<0x6 0x10a00000 0x8000>, /* sd_lane_11 */
++				<0x6 0x10a08000 0x8000>, /* sd_lane_12 */
++				<0x6 0x10a10000 0x8000>, /* sd_lane_13 */
++				<0x6 0x10a18000 0x8000>, /* sd_lane_14 */
++				<0x6 0x10a20000 0x8000>, /* sd_lane_15 */
++				<0x6 0x10a28000 0x8000>, /* sd_lane_16 */
++				<0x6 0x10c08000 0x8000>, /* sd_cmu_9 */
++				<0x6 0x10c10000 0x8000>, /* sd_cmu_10 */
++				<0x6 0x10c18000 0x8000>, /* sd_cmu_11 */
++				<0x6 0x10c20000 0x8000>, /* sd_cmu_12 */
++				<0x6 0x10c28000 0x8000>, /* sd_cmu_13 */
++				<0x6 0x10c30000 0x8000>, /* sd_cmu_cfg_9 */
++				<0x6 0x10c38000 0x8000>, /* sd_cmu_cfg_10 */
++				<0x6 0x10c40000 0x8000>, /* sd_cmu_cfg_11 */
++				<0x6 0x10c48000 0x8000>, /* sd_cmu_cfg_12 */
++				<0x6 0x10c50000 0x8000>, /* sd_cmu_cfg_13 */
++				<0x6 0x10c58000 0x8000>, /* sd10g_lane_4 */
++				<0x6 0x10c60000 0x8000>, /* sd10g_lane_5 */
++				<0x6 0x10c68000 0x8000>, /* sd10g_lane_6 */
++				<0x6 0x10c70000 0x8000>, /* sd10g_lane_7 */
++				<0x6 0x10c78000 0x8000>, /* sd10g_lane_8 */
++				<0x6 0x10c80000 0x8000>, /* sd10g_lane_9 */
++				<0x6 0x10c88000 0x8000>, /* sd10g_lane_10 */
++				<0x6 0x10c90000 0x8000>, /* sd10g_lane_11 */
++				<0x6 0x10c98000 0x8000>, /* sd25g_lane_0 */
++				<0x6 0x10ca0000 0x8000>, /* sd25g_lane_1 */
++				<0x6 0x10ca8000 0x8000>, /* sd25g_lane_2 */
++				<0x6 0x10cb0000 0x8000>, /* sd25g_lane_3 */
++				<0x6 0x10cb8000 0x8000>, /* sd25g_lane_4 */
++				<0x6 0x10cc0000 0x8000>, /* sd25g_lane_5 */
++				<0x6 0x10cc8000 0x8000>, /* sd25g_lane_6 */
++				<0x6 0x10cd0000 0x8000>, /* sd25g_lane_7 */
++				<0x6 0x10d58000 0x8000>, /* sd_lane_17 */
++				<0x6 0x10d60000 0x8000>, /* sd_lane_18 */
++				<0x6 0x10d68000 0x8000>, /* sd_lane_19 */
++				<0x6 0x10d70000 0x8000>, /* sd_lane_20 */
++				<0x6 0x10d78000 0x8000>, /* sd_lane_21 */
++				<0x6 0x10d80000 0x8000>, /* sd_lane_22 */
++				<0x6 0x10d88000 0x8000>, /* sd_lane_23 */
++				<0x6 0x10d90000 0x8000>, /* sd_lane_24 */
++				<0x6 0x10d98000 0x8000>, /* sd_lane_25g_25 */
++				<0x6 0x10da0000 0x8000>, /* sd_lane_25g_26 */
++				<0x6 0x10da8000 0x8000>, /* sd_lane_25g_27 */
++				<0x6 0x10db0000 0x8000>, /* sd_lane_25g_28 */
++				<0x6 0x10db8000 0x8000>, /* sd_lane_25g_29 */
++				<0x6 0x10dc0000 0x8000>, /* sd_lane_25g_30 */
++				<0x6 0x10dc8000 0x8000>, /* sd_lane_25g_31 */
++				<0x6 0x10dd0000 0x8000>; /* sd_lane_25g_32 */
++			reg-names =
++				"sd_cmu_0",
++				"sd_cmu_1",
++				"sd_cmu_2",
++				"sd_cmu_3",
++				"sd_cmu_4",
++				"sd_cmu_5",
++				"sd_cmu_6",
++				"sd_cmu_7",
++				"sd_cmu_8",
++				"sd_cmu_cfg_0",
++				"sd_cmu_cfg_1",
++				"sd_cmu_cfg_2",
++				"sd_cmu_cfg_3",
++				"sd_cmu_cfg_4",
++				"sd_cmu_cfg_5",
++				"sd_cmu_cfg_6",
++				"sd_cmu_cfg_7",
++				"sd_cmu_cfg_8",
++				"sd6g_lane_0",
++				"sd6g_lane_1",
++				"sd6g_lane_2",
++				"sd6g_lane_3",
++				"sd6g_lane_4",
++				"sd6g_lane_5",
++				"sd6g_lane_6",
++				"sd6g_lane_7",
++				"sd6g_lane_8",
++				"sd6g_lane_9",
++				"sd6g_lane_10",
++				"sd6g_lane_11",
++				"sd6g_lane_12",
++				"sd10g_lane_0",
++				"sd10g_lane_1",
++				"sd10g_lane_2",
++				"sd10g_lane_3",
++				"sd_lane_0",
++				"sd_lane_1",
++				"sd_lane_2",
++				"sd_lane_3",
++				"sd_lane_4",
++				"sd_lane_5",
++				"sd_lane_6",
++				"sd_lane_7",
++				"sd_lane_8",
++				"sd_lane_9",
++				"sd_lane_10",
++				"sd_lane_11",
++				"sd_lane_12",
++				"sd_lane_13",
++				"sd_lane_14",
++				"sd_lane_15",
++				"sd_lane_16",
++				"sd_cmu_9",
++				"sd_cmu_10",
++				"sd_cmu_11",
++				"sd_cmu_12",
++				"sd_cmu_13",
++				"sd_cmu_cfg_9",
++				"sd_cmu_cfg_10",
++				"sd_cmu_cfg_11",
++				"sd_cmu_cfg_12",
++				"sd_cmu_cfg_13",
++				"sd10g_lane_4",
++				"sd10g_lane_5",
++				"sd10g_lane_6",
++				"sd10g_lane_7",
++				"sd10g_lane_8",
++				"sd10g_lane_9",
++				"sd10g_lane_10",
++				"sd10g_lane_11",
++				"sd25g_lane_0",
++				"sd25g_lane_1",
++				"sd25g_lane_2",
++				"sd25g_lane_3",
++				"sd25g_lane_4",
++				"sd25g_lane_5",
++				"sd25g_lane_6",
++				"sd25g_lane_7",
++				"sd_lane_17",
++				"sd_lane_18",
++				"sd_lane_19",
++				"sd_lane_20",
++				"sd_lane_21",
++				"sd_lane_22",
++				"sd_lane_23",
++				"sd_lane_24",
++				"sd_lane_25g_25",
++				"sd_lane_25g_26",
++				"sd_lane_25g_27",
++				"sd_lane_25g_28",
++				"sd_lane_25g_29",
++				"sd_lane_25g_30",
++				"sd_lane_25g_31",
++				"sd_lane_25g_32";
++		};
++
+ 	};
+ };
+-- 
+2.29.2
 
-Yours,
-Linus Walleij
