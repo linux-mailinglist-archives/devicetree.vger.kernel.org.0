@@ -2,39 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F592AD3B3
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 11:26:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65AF22AD3C2
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 11:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729909AbgKJK0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 05:26:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50958 "EHLO
+        id S1726280AbgKJK2G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 05:28:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730751AbgKJK0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 05:26:30 -0500
+        with ESMTP id S1730505AbgKJK2D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 05:28:03 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B10C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 02:26:28 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14A3C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 02:28:02 -0800 (PST)
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <a.fatoum@pengutronix.de>)
-        id 1kcQr3-00005S-9h; Tue, 10 Nov 2020 11:26:25 +0100
-Subject: Re: [PATCH v1] dt-bindings: arm: stm32: lxa,stm32mp157c-mc1: add
- extra SiP compatible
-To:     Rob Herring <robh@kernel.org>
+        id 1kcQsX-0000Gu-S8; Tue, 10 Nov 2020 11:27:57 +0100
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: stm32: add simple-mfd compatible
+ for tamp node
+To:     Alexandre Torgue <alexandre.torgue@st.com>
 Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Alexandre Torgue <alexandre.torgue@st.com>,
-        kernel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20201104113932.30702-1-a.fatoum@pengutronix.de>
- <20201109163733.GA1404197@bogus>
+        Christophe Roullier <christophe.roullier@st.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+References: <20201021102855.18026-1-a.fatoum@pengutronix.de>
+ <20201026143656.GA118160@bogus>
+ <23e423ba-25f2-c3ed-ea65-2c2d86ae9522@pengutronix.de>
+ <CAL_JsqL8sjw1o6PzCSRM9FtRx7XLDQg2bWXxo4Yw5t6fnroudw@mail.gmail.com>
 From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <decb0b4e-e6bf-98c5-df77-6b5f2405ae7f@pengutronix.de>
-Date:   Tue, 10 Nov 2020 11:26:24 +0100
+Message-ID: <20d5ccf8-c98f-fe3c-767b-1ad99be9dd19@pengutronix.de>
+Date:   Tue, 10 Nov 2020 11:27:57 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <20201109163733.GA1404197@bogus>
+In-Reply-To: <CAL_JsqL8sjw1o6PzCSRM9FtRx7XLDQg2bWXxo4Yw5t6fnroudw@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -46,36 +54,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+Hello Alex,
 
-On 11/9/20 5:37 PM, Rob Herring wrote:
-> On Wed, Nov 04, 2020 at 12:39:31PM +0100, Ahmad Fatoum wrote:
->> I know that bindings and device tree patches should be separate. Does
->> this apply here as well? Should I split the dts change into a follow-up
->> commit? 
+On 10/27/20 1:15 PM, Rob Herring wrote:
+> On Mon, Oct 26, 2020 at 4:30 PM Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
+>>
+>> Hello Rob,
+>>
+>> On 10/26/20 3:36 PM, Rob Herring wrote:
+>>> On Wed, Oct 21, 2020 at 12:28:55PM +0200, Ahmad Fatoum wrote:
+>>>> The stm32mp1 TAMP (Tamper and backup registers) does tamper detection
+>>>> and features 32 backup registers that, being in the RTC domain, may
+>>>> survive even with Vdd switched off.
+>>>>
+>>>> This makes it suitable for use to communicate a reboot mode from OS
+>>>> to bootloader via the syscon-reboot-mode binding. Add a "simple-mfd"
+>>>> to support probing such a child node. The actual reboot mode
+>>>> node could then be defined in a board.dts or fixed up by the bootloader.
+>>>
+>>> 'simple-mfd' implies there is no dependency on the parent node for the
+>>> child (such as the regmap perhaps). Is that the case here?
+>>
+>> No, there's a dependency and the Linux driver does syscon_node_to_regmap
+>> on the device tree node's parent but that's how the syscon-reboot-mode binding
+>> is documented:
+>>
+>>   The SYSCON mapped register is retrieved from the
+>>   parental dt-node plus the offset. So the SYSCON reboot-mode node
+>>   should be represented as a sub-node of a "syscon", "simple-mfd" node.
+>>
+>> How would you prefer this being done instead?
 > 
-> Yes.
+> Well, probably the syscon driver could just probe any children, but
+> I'm not sure if that would break anyone. So I guess fine as-is.
 > 
->> Is it ok that dtbs_check will report an intermittent breakage?
-> 
-> If the binding comes first, it won't break.
-> 
-> But generally, 'dtbs_check' being warning free is not yet a requirement. 
-> That will probably first have to be per platform.
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-here the old binding is deleted, so between the patches, there will be
-a dtbs_check warning, which is why I asked. I've now split it up with
-binding first.
+Gentle ping.
 
->> +          - const: oct,stm32mp15xx-osd32
 > 
-> 'oct' is not docuemnted in vendor-prefixes.yaml.
-
-Huh, I only checked whether it's in use, not if it's documented.
-I just sent out a v2 with your points addressed.
-
-Thanks for review,
-Ahmad
+> Rob
+> 
 
 -- 
 Pengutronix e.K.                           |                             |
