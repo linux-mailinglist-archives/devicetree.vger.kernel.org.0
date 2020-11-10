@@ -2,32 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 654212ACFEE
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 07:45:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D7642ACFFF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 07:48:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730120AbgKJGp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 01:45:26 -0500
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:42415 "EHLO
+        id S1730217AbgKJGsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 01:48:45 -0500
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:50000 "EHLO
         smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726010AbgKJGpZ (ORCPT
+        by vger.kernel.org with ESMTP id S1726006AbgKJGsp (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 01:45:25 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.3935514|-1;CH=blue;DM=|OVERLOAD|false|;DS=CONTINUE|ham_system_inform|0.00453423-0.000349622-0.995116;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047209;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=10;RT=10;SR=0;TI=SMTPD_---.IuotDq6_1604990718;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.IuotDq6_1604990718)
-          by smtp.aliyun-inc.com(10.147.43.230);
-          Tue, 10 Nov 2020 14:45:21 +0800
+        Tue, 10 Nov 2020 01:48:45 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07519333|-1;CH=blue;DM=|OVERLOAD|false|;DS=CONTINUE|ham_system_inform|0.360606-0.000149407-0.639244;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=8;RT=8;SR=0;TI=SMTPD_---.IuonYu5_1604990896;
+Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.IuonYu5_1604990896)
+          by smtp.aliyun-inc.com(10.147.40.233);
+          Tue, 10 Nov 2020 14:48:20 +0800
 From:   Frank Lee <frank@allwinnertech.com>
 To:     tiny.windzz@gmail.com
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        Yangtao Li <frank@allwinnertech.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-kernel@vger.kernel.org, Yangtao Li <frank@allwinnertech.com>,
         Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>
-Subject: [RESEND PATCH 16/19] dt-bindings: mmc: sunxi: Add A100 compatibles
-Date:   Tue, 10 Nov 2020 14:45:16 +0800
-Message-Id: <1e6af41ce01eafd0d366257e5be9a0aa90bb97c8.1604988979.git.frank@allwinnertech.com>
+Subject: [RESEND PATCH 18/19] arm64: allwinner: a100: Add MMC related nodes
+Date:   Tue, 10 Nov 2020 14:48:15 +0800
+Message-Id: <e818582a2968571fd4b211392c411fe8d23d301a.1604988979.git.frank@allwinnertech.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <cover.1604988979.git.frank@allwinnertech.com>
 References: <cover.1604988979.git.frank@allwinnertech.com>
@@ -39,26 +37,102 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yangtao Li <frank@allwinnertech.com>
 
-Add binding for A100's mmc and emmc controller.
+The A100 has 3 MMC controllers, one of them being especially targeted to
+eMMC. Let's add nodes on dts.
 
 Signed-off-by: Yangtao Li <frank@allwinnertech.com>
 ---
- .../devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml        | 2 ++
- 1 file changed, 2 insertions(+)
+ .../arm64/boot/dts/allwinner/sun50i-a100.dtsi | 71 +++++++++++++++++++
+ 1 file changed, 71 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-index e82c9a07b6fb..41821f14ecaa 100644
---- a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-+++ b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-@@ -26,6 +26,8 @@ properties:
-       - const: allwinner,sun9i-a80-mmc
-       - const: allwinner,sun50i-a64-emmc
-       - const: allwinner,sun50i-a64-mmc
-+      - const: allwinner,sun50i-a100-emmc
-+      - const: allwinner,sun50i-a100-mmc
-       - items:
-           - const: allwinner,sun8i-a83t-mmc
-           - const: allwinner,sun7i-a20-mmc
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+index c731bb9727c2..4adfc7d4854a 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+@@ -169,12 +169,83 @@ pio: pinctrl@300b000 {
+ 			interrupt-controller;
+ 			#interrupt-cells = <3>;
+ 
++			mmc0_pins: mmc0-pins {
++				pins = "PF0", "PF1", "PF2", "PF3",
++				       "PF4", "PF5";
++				function = "mmc0";
++				drive-strength = <30>;
++				bias-pull-up;
++			};
++
++			/omit-if-no-ref/
++			mmc1_pins: mmc1-pins {
++				pins = "PG0", "PG1", "PG2", "PG3",
++				       "PG4", "PG5";
++				function = "mmc1";
++				drive-strength = <30>;
++				bias-pull-up;
++			};
++
++			mmc2_pins: mmc2-pins {
++				pins = "PC0", "PC1", "PC5", "PC6",
++				       "PC8", "PC9", "PC10", "PC11",
++				       "PC13", "PC14", "PC15", "PC16";
++				function = "mmc2";
++				drive-strength = <30>;
++				bias-pull-up;
++			};
++
+ 			uart0_pb_pins: uart0-pb-pins {
+ 				pins = "PB9", "PB10";
+ 				function = "uart0";
+ 			};
+ 		};
+ 
++		mmc0: mmc@4020000 {
++			compatible = "allwinner,sun50i-a100-mmc";
++			reg = <0x04020000 0x1000>;
++			clocks = <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
++			clock-names = "ahb", "mmc";
++			resets = <&ccu RST_BUS_MMC0>;
++			reset-names = "ahb";
++			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&mmc0_pins>;
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++		mmc1: mmc@4021000 {
++			compatible = "allwinner,sun50i-a100-mmc";
++			reg = <0x04021000 0x1000>;
++			clocks = <&ccu CLK_BUS_MMC1>, <&ccu CLK_MMC1>;
++			clock-names = "ahb", "mmc";
++			resets = <&ccu RST_BUS_MMC1>;
++			reset-names = "ahb";
++			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&mmc1_pins>;
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
++		mmc2: mmc@4022000 {
++			compatible = "allwinner,sun50i-a100-emmc";
++			reg = <0x04022000 0x1000>;
++			clocks = <&ccu CLK_BUS_MMC2>, <&ccu CLK_MMC2>;
++			clock-names = "ahb", "mmc";
++			resets = <&ccu RST_BUS_MMC2>;
++			reset-names = "ahb";
++			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&mmc2_pins>;
++			status = "disabled";
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++
+ 		uart0: serial@5000000 {
+ 			compatible = "snps,dw-apb-uart";
+ 			reg = <0x05000000 0x400>;
 -- 
 2.28.0
 
