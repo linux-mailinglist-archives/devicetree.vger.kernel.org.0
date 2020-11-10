@@ -2,76 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D43CC2AD421
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 11:51:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C98562AD423
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 11:51:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726779AbgKJKva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 05:51:30 -0500
-Received: from foss.arm.com ([217.140.110.172]:53812 "EHLO foss.arm.com"
+        id S1729794AbgKJKvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 05:51:33 -0500
+Received: from mga17.intel.com ([192.55.52.151]:38941 "EHLO mga17.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726706AbgKJKva (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 05:51:30 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CE66511D4;
-        Tue, 10 Nov 2020 02:51:29 -0800 (PST)
-Received: from [10.57.23.123] (unknown [10.57.23.123])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A4CC93F6CF;
-        Tue, 10 Nov 2020 02:51:28 -0800 (PST)
-Subject: Re: [PATCH v3 26/26] dts: bindings: coresight: ETM system register
- access only units
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, mike.leach@linaro.org,
-        coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-References: <20201028220945.3826358-1-suzuki.poulose@arm.com>
- <20201028220945.3826358-28-suzuki.poulose@arm.com>
- <20201109205000.GE3396611@xps15>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <54dc1426-d73a-27ed-45ad-d833853fe20c@arm.com>
-Date:   Tue, 10 Nov 2020 10:51:21 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.1
+        id S1729719AbgKJKvc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 05:51:32 -0500
+IronPort-SDR: tod3+zyWZitVvXX/0+6+bd6GO+AUOKCrx6oRiJ2zOrUk9fIYHbzzw3OOE4AUkSqSqDTfcnSrHU
+ A8JZETc/ZGKQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9800"; a="149802829"
+X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
+   d="scan'208";a="149802829"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 02:51:31 -0800
+IronPort-SDR: JnkdpB6Jqnhym2CQHTGd9OFFhx4aKIwVbkKOf0G1HOKeC3IKgeQsVSKWMyelCIPIc3c0x6Zwlh
+ 5JB8zHt6MYzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
+   d="scan'208";a="428326032"
+Received: from kuha.fi.intel.com ([10.237.72.162])
+  by fmsmga001.fm.intel.com with SMTP; 10 Nov 2020 02:51:27 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 10 Nov 2020 12:51:26 +0200
+Date:   Tue, 10 Nov 2020 12:51:26 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     robh+dt@kernel.org, rafael@kernel.org, gregkh@linuxfoundation.org,
+        andriy.shevchenko@linux.intel.com, hdegoede@redhat.com,
+        lee.jones@linaro.org, mika.westerberg@linux.intel.com,
+        dmitry.torokhov@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+        laurent.pinchart+renesas@ideasonboard.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, peter.chen@nxp.com
+Subject: Re: [PATCH v5 3/4] usb: typec: mux: add "compatible" property for
+ switch match
+Message-ID: <20201110105126.GG1224435@kuha.fi.intel.com>
+References: <1604403610-16577-1-git-send-email-jun.li@nxp.com>
+ <1604403610-16577-3-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20201109205000.GE3396611@xps15>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1604403610-16577-3-git-send-email-jun.li@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/9/20 8:50 PM, Mathieu Poirier wrote:
-> On Wed, Oct 28, 2020 at 10:09:45PM +0000, Suzuki K Poulose wrote:
->> Document the bindings for ETMs with system register accesses.
->>
->> Cc: devicetree@vger.kernel.org
->> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Cc: Mike Leach <mike.leach@linaro.org>
->> Cc: Rob Herring <robh@kernel.org>
->> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> ---
->>   Documentation/devicetree/bindings/arm/coresight.txt | 5 ++++-
->>   1 file changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
->> index d711676b4a51..bff96a550102 100644
->> --- a/Documentation/devicetree/bindings/arm/coresight.txt
->> +++ b/Documentation/devicetree/bindings/arm/coresight.txt
->> @@ -34,9 +34,12 @@ its hardware characteristcs.
->>   					Program Flow Trace Macrocell:
->>   			"arm,coresight-etm3x", "arm,primecell";
->>   
->> -		- Embedded Trace Macrocell (version 4.x):
->> +		- Embedded Trace Macrocell (version 4.x), with memory mapped access.
->>   			"arm,coresight-etm4x", "arm,primecell";
->>   
->> +		- Embedded Trace Macrocell with system register access only.
->> +			"arm,coresight-etm-sysreg";
+On Tue, Nov 03, 2020 at 07:40:09PM +0800, Li Jun wrote:
+> For those need a dedicated typec switch simple solution driver,
+> use compatible property for matching.
 > 
-> Please make this "arm,coresight-etm4x-sysreg".  Up to now all reference of
-> "etm" without a version related to ETMv3/PTM1.1.  If we start mixing things it
-> will be come insanely confusing.
+> Signed-off-by: Li Jun <jun.li@nxp.com>
 
-Agreed. will rename it.
+Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
 
-Suzuki
+> ---
+> No changes for v5
+> New patch for v4
+> 
+>  drivers/usb/typec/mux.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
+> index 52ad277..3da17d1 100644
+> --- a/drivers/usb/typec/mux.c
+> +++ b/drivers/usb/typec/mux.c
+> @@ -39,7 +39,8 @@ static void *typec_switch_match(struct device_connection *con, int ep,
+>  {
+>  	struct device *dev;
+>  
+> -	if (con->id && !fwnode_property_present(con->fwnode, con->id))
+> +	if (con->id && !fwnode_is_compatible(con->fwnode, con->id) &&
+> +		       !fwnode_property_present(con->fwnode, con->id))
+>  		return NULL;
+>  
+>  	dev = class_find_device(&typec_mux_class, NULL, con->fwnode,
+> @@ -61,8 +62,8 @@ struct typec_switch *fwnode_typec_switch_get(struct fwnode_handle *fwnode)
+>  {
+>  	struct typec_switch *sw;
+>  
+> -	sw = fwnode_connection_find_match(fwnode, "orientation-switch", NULL,
+> -					  typec_switch_match);
+> +	sw = fwnode_connection_find_match(fwnode, "typec-orientation-switch",
+> +					  NULL, typec_switch_match);
+>  	if (!IS_ERR_OR_NULL(sw))
+>  		WARN_ON(!try_module_get(sw->dev.parent->driver->owner));
+>  
+> -- 
+> 2.7.4
+
+thanks,
+
+-- 
+heikki
