@@ -2,65 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 919142AD1DD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 09:54:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C9BF2AD20E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 10:08:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726462AbgKJIy2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Nov 2020 03:54:28 -0500
-Received: from aposti.net ([89.234.176.197]:35260 "EHLO aposti.net"
+        id S1726690AbgKJJIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 04:08:05 -0500
+Received: from david.siemens.de ([192.35.17.14]:38571 "EHLO david.siemens.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726213AbgKJIy2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 03:54:28 -0500
-Date:   Tue, 10 Nov 2020 08:54:11 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH RESEND 0/2] Add dmaengine bindings for the JZ4775 and the
- X2000 SoCs.
-To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
-Cc:     Zubair.Kakakhel@imgtec.com, vkoul@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Message-Id: <BQOKJQ.FNG5W5HD7VTG1@crapouillou.net>
-In-Reply-To: <20201107122016.89859-1-zhouyanjie@wanyeetech.com>
-References: <20201107122016.89859-1-zhouyanjie@wanyeetech.com>
+        id S1726462AbgKJJIF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 04:08:05 -0500
+Received: from mail2.siemens.de (mail2.siemens.de [139.25.208.11])
+        by david.siemens.de (8.15.2/8.15.2) with ESMTPS id 0AA97pEX003269
+        (version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 10 Nov 2020 10:07:51 +0100
+Received: from dev.vm7.ccp.siemens.com ([167.87.134.60])
+        by mail2.siemens.de (8.15.2/8.15.2) with ESMTP id 0AA97oYf018712;
+        Tue, 10 Nov 2020 10:07:50 +0100
+Received: from mail3.siemens.de (localhost [127.0.0.1])
+        by dev.vm7.ccp.siemens.com (Postfix) with ESMTP id 5E96B70BAB5;
+        Tue, 10 Nov 2020 10:07:48 +0100 (CET)
+From:   Andrej Valek <andrej.valek@siemens.com>
+To:     robh@kernel.org, nick@shmanahar.org, hadess@hadess.net,
+        dmitry.torokhov@gmail.com
+Cc:     linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Andrej Valek <andrej.valek@siemens.com>
+Subject: [PATCH v3 0/4] Firmware loading option
+Date:   Tue, 10 Nov 2020 10:07:16 +0100
+Message-Id: <20201110090720.6650-1-andrej.valek@siemens.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20201029170313.25529-1-andrej.valek@siemens.com>
+References: <20201029170313.25529-1-andrej.valek@siemens.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhou,
+Add option to prevent firmware/configuration loading during each boot.
 
-Le sam. 7 nov. 2020 à 20:20, 周琰杰 (Zhou Yanjie) 
-<zhouyanjie@wanyeetech.com> a écrit :
-> Add the dmaengine bindings for the JZ4775 SoC and the X2000 SoC from 
-> Ingenic.
-> 
-> 周琰杰 (Zhou Yanjie) (2):
->   dt-bindings: dmaengine: Add JZ4775 bindings.
->   dt-bindings: dmaengine: Add X2000 bindings.
-> 
->  include/dt-bindings/dma/jz4775-dma.h | 44 
-> +++++++++++++++++++++++++++++
->  include/dt-bindings/dma/x2000-dma.h  | 54 
-> ++++++++++++++++++++++++++++++++++++
+Andrej Valek (4):
+  Input: goodix - add option to disable firmware loading
+  dt-bindings: touchscreen: goodix: add info about disabling FW loading
+  Input: atmel_mxt_ts - add option to disable firmware loading
+  Input: st1232 - add support resolution reading
 
-If that's up to me, these macros aren't really needed, and you can put 
-the values directly in the dma cells. This is done already in 
-jz4740.dtsi, jz4725b.dtsi and jz4770.dtsi.
+ .../bindings/input/touchscreen/goodix.yaml    |  1 +
+ drivers/input/touchscreen/atmel_mxt_ts.c      | 17 ++++--
+ drivers/input/touchscreen/goodix.c            |  4 +-
+ drivers/input/touchscreen/st1232.c            | 52 +++++++++++++------
+ 4 files changed, 54 insertions(+), 20 deletions(-)
 
-Cheers,
--Paul
-
->  2 files changed, 98 insertions(+)
->  create mode 100644 include/dt-bindings/dma/jz4775-dma.h
->  create mode 100644 include/dt-bindings/dma/x2000-dma.h
-> 
-> --
-> 2.11.0
-> 
-
+-- 
+2.20.1
 
