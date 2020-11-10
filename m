@@ -2,68 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA4F2ADED1
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 19:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70A4F2ADEEA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 19:58:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726467AbgKJSw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 13:52:59 -0500
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:43932 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726307AbgKJSw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 13:52:58 -0500
-Received: by mail-ed1-f66.google.com with SMTP id b9so13915401edu.10;
-        Tue, 10 Nov 2020 10:52:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qFYHq+JAYlgGgKeMt0sIqJhYAgHBuCUoDc438Vz83/Q=;
-        b=oMyfifLFQRv3stMwbxaLgLOxb1Cr0RIA3Ht7Ao9rvaX+6I0P/XJF3MIVc9Yvd3CQmk
-         KgrRuFr+8r/Dj2D1q1PCgeezW7MVWXPHxgOqYomGciKNpGg5E1cFglVSKf5URu0hXmCS
-         1lCF3I/QYOUC9mLhvY9V5m5PAsRKaj/Liup7wTtDv1AcBUyfnerQOBlBTAtQOVzKKfRc
-         J7xvF98hpptN4JKzI8wNULyFQuvNgwEF05Muo28znMMZgGc3x8MU5thECiYHSiVVntIc
-         nssJ+6htrQKWnDYlcEWHqjtTPhqFq6XaNdQB5/A32ehXOfVB+1yWT4LnvLzQ4+G7dBey
-         z8Fw==
-X-Gm-Message-State: AOAM530X0+Ai+Rru5uigvAkq3cN3HvYG2S1dZKRmSyrAO1/fxbEOWmsp
-        U7asIGQB2cXSwB/CU2ewOi0=
-X-Google-Smtp-Source: ABdhPJzyeVvjIqNDtzgkS0g3WgTJMxXYFWnGvd0ZeG9LXfMEQ8cDg9+qji5Abp6tz5w7tQZnBStX7g==
-X-Received: by 2002:aa7:dd4a:: with SMTP id o10mr805227edw.109.1605034377269;
-        Tue, 10 Nov 2020 10:52:57 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id a3sm11638763edl.89.2020.11.10.10.52.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 10:52:56 -0800 (PST)
-Date:   Tue, 10 Nov 2020 19:52:54 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] MAINTAINERS: Add dt-bindings to mailbox entry
-Message-ID: <20201110185254.GA37445@kozik-lap>
-References: <20200903195325.5394-1-krzk@kernel.org>
- <20200903195325.5394-3-krzk@kernel.org>
+        id S1731499AbgKJS6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 13:58:48 -0500
+Received: from m42-4.mailgun.net ([69.72.42.4]:55666 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731359AbgKJS6s (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 13:58:48 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1605034728; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=03vIhO1DD9MMUbmvKZXZHZRt0toBn4/mIUEAO6EdjbY=;
+ b=e9GuA2Yl5yc34ZyKAo3qi2U5G2BvJdBXxGbVkNSNfMTpza7EekXZ9zYEw/0hUOnnOi3jmFeH
+ bh6ktiBBTw3klBpVd+xUf9PLRB5NosTswGYpUFbmxprpr0T068G5AVMUsXB9JZU0Fj7ptctj
+ Yt+c4fsWhGMeAJKBeh81ijaq6mg=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 5faae2dd40d44461257a237d (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 10 Nov 2020 18:58:37
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id DB930C433C9; Tue, 10 Nov 2020 18:58:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0886AC433C8;
+        Tue, 10 Nov 2020 18:58:36 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200903195325.5394-3-krzk@kernel.org>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 11 Nov 2020 00:28:36 +0530
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7180-lite: Tweak DDR/L3 scaling
+ on SC7180-lite
+In-Reply-To: <CAD=FV=XFgS-d8L5Q3SEXYYtBszmjdMbBLRWRTHX7rQ5i6Hb=4g@mail.gmail.com>
+References: <1602783939-7177-1-git-send-email-sibis@codeaurora.org>
+ <CAD=FV=XFgS-d8L5Q3SEXYYtBszmjdMbBLRWRTHX7rQ5i6Hb=4g@mail.gmail.com>
+Message-ID: <9f4ae806ba3d283caaab37f0f2aa7ea0@codeaurora.org>
+X-Sender: sibis@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 03, 2020 at 09:53:25PM +0200, Krzysztof Kozlowski wrote:
-> Cover the dt-bindings of mailbox drivers by mailbox maintainers entry.
+On 2020-10-17 04:29, Doug Anderson wrote:
+> Hi,
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> On Thu, Oct 15, 2020 at 10:53 AM Sibi Sankar <sibis@codeaurora.org> 
+> wrote:
+>> 
+>> Tweak the DDR/L3 bandwidth votes on the lite variant of the SC7180 SoC
+>> since the gold cores only support frequencies upto 2.1 GHz.
+>> 
+>> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sc7180-lite.dtsi | 14 ++++++++++++++
+>>  1 file changed, 14 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+>> new file mode 100644
+>> index 000000000000..cff50275cfe1
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+>> @@ -0,0 +1,14 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +/*
+>> + * SC7180 lite device tree source
+>> + *
+>> + * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+>> + */
+>> +
+>> +&cpu6_opp11 {
+>> +       opp-peak-kBps = <8532000 22425600>;
+>> +};
+>> +
+>> +&cpu6_opp12 {
+>> +       opp-peak-kBps = <8532000 23347200>;
+>> +};
 > 
-> ---
+> I guess this is OK, but something about it smells just a little
+> strange...  I guess:
 > 
-> Changes since v1:
-> 1. New patch
+> a) There's suddenly a big jump from opp10 to opp11.  You don't use
+> 7216000 at all anymore.
+> 
+> b) The fact that we need to do this at all feels like a sign that
+> somehow this wasn't designed quite right.
+> 
+> Just brainstorming a bit: If the higher memory rate wasn't useful for
+> OPP11/12 on the non-lite version of the chip, why are they useful for
+> that OPP on the lite version?  I guess you're just trying to eek out
+> the last little bits of performance once the cpufreq is maxed out?  It
 
-Jassi,
+Doug,
 
-Any comments on this patch?
+Really sorry about the delayed response,
+running power tests and getting some fuse
+info took longer than expected. Yes the
+mapping table as expected is a trade off
+between power/perf and it has been determined
+that lite version would meet the power
+numbers even with the high memory votes
+at lower freqs.
 
-Best regards,
-Krzysztof
+1900800000 --> opp-peak-kBps = <7216000 22425600>;
+1996800000 --> opp-peak-kBps = <7216000 22425600>;
+2112000000 --> opp-peak-kBps = <8532000 23347200>;
+
+^^ is the new recommendation from the perf/power
+QC teams for lite and is expected to have better
+power numbers with similar perf.
+
+> almost feels like a better way to do this (though it wouldn't be
+> monotonically increasing anymore so it wouldn't actually work) would
+> be to have a few "OPP" points at the top where the cpufreq stops
+> increasing and all you do is increase the memory frequency.
+> 
+> c) In theory we're supposed to be able to probe whether we're on the
+> normal, lite, or pro version, right?  Anyway we could tweak this in
+> code so we don't have to know to include the right dtsi file?
+
+Yes we can determine f_max by reading speed_bin
+efuse values or by OSM table traversal (though
+latter looks more like a hack) and use that
+along with opp-supported-hw to identity supported
+opps.
+
+I would prefer If we can avoid doing ^^ if
+we can get away with overloading the votes
+in dt but I don't have any strong opinions
+on this. So let me know how you want it done
+and I'll fix it up accordingly in the next
+re-spin.
+
+> 
+> 
+> -Doug
+
+-- 
+Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project.
