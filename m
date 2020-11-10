@@ -2,93 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 694142ACB23
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 03:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28FF52ACB2B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 03:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731131AbgKJCbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 21:31:50 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:42797 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1731095AbgKJCbt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 21:31:49 -0500
-X-UUID: 70f371acb0aa4b70b9fd181a66df00b9-20201110
-X-UUID: 70f371acb0aa4b70b9fd181a66df00b9-20201110
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <shane.chien@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1527282964; Tue, 10 Nov 2020 10:31:44 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 10 Nov 2020 10:31:41 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 10 Nov 2020 10:31:41 +0800
-From:   Shane Chien <shane.chien@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, <jiaxin.yu@mediatek.com>,
-        <chipeng.chang@mediatek.com>, <shane.chien@mediatek.com>
-Subject: [PATCH v3 2/2] dt-bindings: mediatek: mt6359: Add new property for mt6359
-Date:   Tue, 10 Nov 2020 10:31:32 +0800
-Message-ID: <1604975492-6142-3-git-send-email-shane.chien@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1604975492-6142-1-git-send-email-shane.chien@mediatek.com>
-References: <1604975492-6142-1-git-send-email-shane.chien@mediatek.com>
+        id S1727311AbgKJCfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 21:35:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:40254 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729874AbgKJCfP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 21:35:15 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7FB18205ED;
+        Tue, 10 Nov 2020 02:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1604975714;
+        bh=Wh8bi6WR/6zd6VZ+8g3BsZ2KyPfC4ojmzhyoO2W82Hc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gca15YNJYzsMmQp3Y7S0OnlOVPdii+EFcEqXckOVi+zRr2iHjDZgZbFmp/kDDkAzc
+         nsFDEc2DUy+SgfLr7rheCmsf/fRK3/9IZDLJBxx1f2MCyLZoeTEuUu5P51cpcJWyQs
+         2LfVTub/mwn3P+t8PdUhOTHMuoj4nmidMwYEPckk=
+Date:   Tue, 10 Nov 2020 10:35:09 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-input@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] ARM: dts: imx50-kobo-aura: Enable eKTF2132
+ touchscreen
+Message-ID: <20201110023508.GV31601@dragon>
+References: <20201106112412.390724-1-j.neuschaefer@gmx.net>
+ <20201106112412.390724-4-j.neuschaefer@gmx.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: FACEFA9603373427B634BAE8CE32DDF62F07EE1ED3D97E0FBE505E2C7E028E6D2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201106112412.390724-4-j.neuschaefer@gmx.net>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Shane.Chien" <shane.chien@mediatek.com>
+On Fri, Nov 06, 2020 at 12:24:12PM +0100, Jonathan Neuschäfer wrote:
+> The Kobo Aura has an eKTF2132 touchscreen controller.
+> 
+> Although the vendor kernel toggles a reset pin (GPIO5-12) during the
+> startup sequence, the touchscreen works without it.
+> 
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
 
-This patch add "LDO_VAUD18-supply" property to
-control vaud18 regulator. It is labeled as required
-due to mt6359 audio path always need to enable vaud18.
-
-Signed-off-by: Shane.Chien <shane.chien@mediatek.com>
----
- .../devicetree/bindings/sound/mt6359.yaml          |    9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/sound/mt6359.yaml b/Documentation/devicetree/bindings/sound/mt6359.yaml
-index a54f466..ef027c7 100644
---- a/Documentation/devicetree/bindings/sound/mt6359.yaml
-+++ b/Documentation/devicetree/bindings/sound/mt6359.yaml
-@@ -17,6 +17,11 @@ description: |
-   Must be a child node of PMIC wrapper.
- 
- properties:
-+  LDO_VAUD18-supply:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: |
-+      Regulator of LDO VAUD18 at 1.8V.
-+
-   mediatek,dmic-mode:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     description: |
-@@ -49,11 +54,15 @@ properties:
-     description: |
-       Specifies the type of mic type connected to adc2
- 
-+required:
-+  - LDO_VAUD18-supply
-+
- additionalProperties: false
- 
- examples:
-   - |
-     mt6359codec: mt6359codec {
-+      LDO_VAUD18-supply = <&mt6359p_vaud18_reg>;
-       mediatek,dmic-mode = <0>;
-       mediatek,mic-type-0 = <2>;
-     };
--- 
-1.7.9.5
-
+Applied, thanks.
