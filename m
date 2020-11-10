@@ -2,59 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82C342AD752
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 14:18:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C032AD761
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 14:21:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730357AbgKJNSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 08:18:16 -0500
-Received: from muru.com ([72.249.23.125]:47916 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726721AbgKJNSP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 08:18:15 -0500
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id C5A0581A8;
-        Tue, 10 Nov 2020 13:18:19 +0000 (UTC)
-Date:   Tue, 10 Nov 2020 15:18:10 +0200
-From:   Tony Lindgren <tony@atomide.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Felipe Balbi <balbi@kernel.org>,
+        id S1730254AbgKJNVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 08:21:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729898AbgKJNVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 08:21:04 -0500
+Received: from galois.linutronix.de (Galois.linutronix.de [IPv6:2a0a:51c0:0:12e:550::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C536C0613CF;
+        Tue, 10 Nov 2020 05:21:04 -0800 (PST)
+From:   Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1605014462;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=AzMhSL6JfZYLoAxLQNqOinsWfodG6w3sgRNE+je62BU=;
+        b=iNMXQPuDLaAAymCV8YNdZjYIfSNJ9dV3mI3KTjBFmGTy4lF2j74igpHBSibhkxwDRGf9CX
+        eG2eRV+hbF5GW//fUgx4HgvZHd5Lp7Bs8YR2qRBuKgRgjOD92qNdT46fqVrh7BrkwQKERO
+        jUdkTNGBxbtjqpQ2rAcOamnCqi0acF2da7QMuP3lD7/tj0iVol8K1uGNPLzut4quKGgLRX
+        O9G279PsNkfe6IZJ0DrwYYwVoUdXjSArBFrmkVZOc+gbT/WmX3RrCJV+rixpoqtNCzjZnI
+        dx02872vu64JOHz7YGp228x44FVX0bNuAq3RBRfB5NMyrB4hdLTckC3tuRvsCQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1605014462;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=AzMhSL6JfZYLoAxLQNqOinsWfodG6w3sgRNE+je62BU=;
+        b=5EStyjC2JN90PchQKFpE0zsLVrZxmq5m2ghA9RKQoPUfACMG6TqzaKsW8CEqikYZP7iKfd
+        cClD7ShI6ogSV2CA==
+To:     Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org
+Cc:     Kurt Kanzenbach <kurt@kmk-computers.de>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH 22/29] arm: dts: omap5: Harmonize DWC USB3 DT nodes name
-Message-ID: <20201110131810.GJ26857@atomide.com>
-References: <20201020115959.2658-1-Sergey.Semin@baikalelectronics.ru>
- <20201020115959.2658-23-Sergey.Semin@baikalelectronics.ru>
- <20201020124103.GP127386@kozik-lap>
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer\:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+        "open list\:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list\:BROADCOM IPROC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 10/10] dt-bindings: net: dsa: b53: Add YAML bindings
+In-Reply-To: <20201110033113.31090-11-f.fainelli@gmail.com>
+References: <20201110033113.31090-1-f.fainelli@gmail.com> <20201110033113.31090-11-f.fainelli@gmail.com>
+Date:   Tue, 10 Nov 2020 14:21:01 +0100
+Message-ID: <871rh18i0y.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201020124103.GP127386@kozik-lap>
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Krzysztof Kozlowski <krzk@kernel.org> [201020 12:41]:
-> On Tue, Oct 20, 2020 at 02:59:52PM +0300, Serge Semin wrote:
-> > In accordance with the DWC USB3 bindings the corresponding node
-> > name is suppose to comply with the Generic USB HCD DT schema, which
-> > requires the USB nodes to have the name acceptable by the regexp:
-> > "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
-> > named.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > ---
-> >  arch/arm/boot/dts/omap5-l4.dtsi | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+--=-=-=
+Content-Type: text/plain
 
-Applying this too into omap-for-v5.11/dt thanks.
+On Mon Nov 09 2020, Florian Fainelli wrote:
+> From: Kurt Kanzenbach <kurt@kmk-computers.de>
+>
+> Convert the b53 DSA device tree bindings to YAML in order to allow
+> for automatic checking and such.
+>
+> Suggested-by: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
+> ---
+>  .../devicetree/bindings/net/dsa/b53.txt       | 149 -----------
+>  .../devicetree/bindings/net/dsa/b53.yaml      | 249 ++++++++++++++++++
 
-Tony
+Maybe it should be renamed to brcm,b53.yaml to be consistent with the
+ksz and hellcreek bindings.
+
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEooWgvezyxHPhdEojeSpbgcuY8KYFAl+qk70ACgkQeSpbgcuY
+8KaoAg/+KXo2Fr8lqgfG4Ih8O7QQ5lBso9BL80dO6Iavyio2ueysGXAs5RtGxSWW
+BQCVARWEWevf7xVkyRTkvz5GNEnL+KMCkZqjfUHuhnHEuISDm2idGk2iD5U1V+op
+GZrK7dH8A9HsA8z/vGxuuOnMGQibSHC4R55XBYZKXuHGQGlqGlYaoCtXlBChxMIl
+rsOjWMRCuY6Deg6UmJYmaREDNJLZRdzGIfj8hiVFswRXSwA/+Nku4HRRegxoPqKE
+UYFtiY6ljH1eXxq78SlJu6zslB5OsfV1wFWUG1IM0bB7utauT4NdTkSj91asCUCK
+atnNIuXIBlGS41dUljCcSN/UdNDCWSuA2cyBItY8frgk7HNbtdH1rvvMn1uio9T6
+CZd9Y/mKK3XOT5KZI9FS1hzZIBiuHvw2nvpPUoEZDeIZRPYCDed1nNsKQI/armU2
+bc6kaIqv427yXAT99AaCWdsunkNAhMo7gHC+y0/6Hp/ySS51G3uDLUI18+R/iRxf
+trPJRca7pAsrXHuRMhDWRLp8o8FYAo2tTa113ZSATrUsHwq2IQ0H7MXxKVdOhOAV
+7R/utQ4EZ65vjqZN0tOcyk4MkiE5it3LVDVjw3OH1hkTBp2aUrR8JCPObFmNfCaX
+FO9kS/riUlTMUDCbl5WUt0dO+X2cOZKtpZLgzrO5bB5u2PZtK2k=
+=xhiF
+-----END PGP SIGNATURE-----
+--=-=-=--
