@@ -2,122 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3072F2ADB08
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 16:59:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C23D2ADB0E
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 17:00:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730746AbgKJP7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 10:59:31 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:58662 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729909AbgKJP7b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 10:59:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605023970; x=1636559970;
-  h=references:from:to:cc:subject:in-reply-to:date:
-   message-id:mime-version;
-  bh=0N7Na9r2kbBio0hWYqQA7bcLYhDmR5yStTYA7d1YCeA=;
-  b=NZGhY/q09Wdxl1FcpTN7J8FHhqpUUVPuTSaps2dwspbJph39OWNs8Mj7
-   slgFiZIH89GuwFmGdXwRqcXrIFmFTcfD9bqhjeTje9GDjrwovOxeqScQl
-   eSgTbmZQtQFsobI9goeqOytA61wwa5MuqPA3IRtnVEqld0/5P8R/0VMag
-   g87LRKNvGu7wFGo4tt88Zxk3tO56uzzyijZz75eGEd3Jwce2mhI1Tjoom
-   ZonOb15/vNWUtZEGeY9xxkb5hmljcJovvGsNKqQZyMn6vr2PQOAIxGRaR
-   Wr87SjJxBRbG2l2FbKxDRmvrCmR48sj5zAt7cnz+GNEXJiOnHRi4BeDVn
-   Q==;
-IronPort-SDR: hUbx+DnmA6cl3etvUuo+n8XIIKZvweW69dTEplN78vhEypddzFKZlpQbmsWUrvfF8F4o9bnLaF
- Ugh7zKK0w+Zp1pbC5sUYrx4HTWLoih1y5hKN6WrEKJaDw9EVyHlgp69V2L4mxuzJJhv1MwYaHt
- Y0GNY57BYcM6ClkBWx0N9blplphtos1P98mbra1/JbofkF52e0WBL8njL1sPpHMPrELt57fCRg
- Aiz04CEDIShYgHnzAmxu0ofIKK7CINeDuO/Emcjarb2Xs5BHTMmQWqBbz5qOeiQL4GxCyAAxf0
- DVo=
-X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
-   d="scan'208";a="33098925"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Nov 2020 08:59:30 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 10 Nov 2020 08:59:30 -0700
-Received: from soft-dev10.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Tue, 10 Nov 2020 08:59:28 -0700
-References: <20201109132643.457932-1-lars.povlsen@microchip.com> <20201109132643.457932-3-lars.povlsen@microchip.com> <CAHp75Vdfm7A5=Mi-LZ1sHJS5fSngypZQ50-rGQ7A6kD2kmVFTA@mail.gmail.com> <20201109143237.GJ1257108@piout.net> <CAHp75Vc7eRDq5wUyUdvCZCnV_VS+afGnbJpQeDSeXVE9K_MGng@mail.gmail.com> <20201109152748.GA1691943@piout.net> <CAHp75VfcgyMEr3YscC2Na_RCTtd=ozCzCGq=UO6zKAa+9b4rqg@mail.gmail.com>
-User-agent: mu4e 1.2.0; emacs 26.3
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v8 2/3] pinctrl: pinctrl-microchip-sgpio: Add pinctrl driver for Microsemi Serial GPIO
-In-Reply-To: <CAHp75VfcgyMEr3YscC2Na_RCTtd=ozCzCGq=UO6zKAa+9b4rqg@mail.gmail.com>
-Date:   Tue, 10 Nov 2020 16:59:12 +0100
-Message-ID: <871rh1fbjj.fsf@microchip.com>
+        id S1730746AbgKJQAp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 11:00:45 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43872 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729909AbgKJQAo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 11:00:44 -0500
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D3F48207BB
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 16:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605024044;
+        bh=RG/NgTihgLdA9a2pBThkDLJ4oix0s+fuIb+CdyGAfbg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Z8DHjwqkRfn0e7RHbqbZrapNBM8Xu7Kz79xi+VsLigXyvSukw22ekZ2KO3fGN3NvE
+         g6ZV53DBp4+T7/h6rXBWlMUwITLGelAGeqg9NSEH3cSK9ju6VCFWKAm32QBLniP6KK
+         8HBzANg2zqU1V7onj1TGmna3QxLwZywCR+uML48k=
+Received: by mail-ot1-f51.google.com with SMTP id 30so7230572otx.9
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 08:00:43 -0800 (PST)
+X-Gm-Message-State: AOAM530Xy4bYzEhIPI5dBstvXmDI85OOpwz0V3ZBhsi8fQYhsd4AGXMa
+        0CH6jnVvD2AUOKHEsgPs5eQt3Acw9yQnJ8Dltw==
+X-Google-Smtp-Source: ABdhPJzha/4fhemzFLUDyArlzFbgeQPDzeNA2v1DrUvZ4YO4PLgq/Upa3Zm81wPaXlzdUSWTJ33FQAKGy+fnze9zuNw=
+X-Received: by 2002:a9d:5e14:: with SMTP id d20mr13486984oti.107.1605024043019;
+ Tue, 10 Nov 2020 08:00:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <1604390378-23993-1-git-send-email-jiaxin.yu@mediatek.com>
+ <1604390378-23993-8-git-send-email-jiaxin.yu@mediatek.com> <20201104185651.GB3946406@bogus>
+In-Reply-To: <20201104185651.GB3946406@bogus>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 10 Nov 2020 10:00:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJAhWtK6G6vLt=H+PK3=JvDuY8JgP9+mdWuFbtFxONnCg@mail.gmail.com>
+Message-ID: <CAL_JsqJAhWtK6G6vLt=H+PK3=JvDuY8JgP9+mdWuFbtFxONnCg@mail.gmail.com>
+Subject: Re: [PATCH v4 7/9] dt-bindings: mediatek: mt8192: add audio afe document
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Shane Chien <shane.chien@mediatek.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Mark Brown <broonie@kernel.org>, Trevor.Wu@mediatek.com,
+        Bicycle.Tsai@mediatek.com, Takashi Iwai <tiwai@suse.com>,
+        Tzung-Bi Shih <tzungbi@google.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 4, 2020 at 12:56 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, 03 Nov 2020 15:59:36 +0800, Jiaxin Yu wrote:
+> > This patch adds mt8192 audio afe document.
+> >
+> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> > ---
+> > This patch depends on following series that has not been accepted:
+> > https://patchwork.kernel.org/cover/11752231
+> > (dt-bindings/clock/mt8192-clk.h is included in it.)
+> > https://patchwork.kernel.org/patch/11755895
+> > (dt-bindings/power/mt8192-power.h is included in it.)
+> > https://lore.kernel.org/patchwork/patch/1321118
+> > (dt-bindings/reset-controller/mt8192-resets.h is included in it.)
+> >
+> >  .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ++++++++++++++++++
+> >  1 file changed, 100 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:10:4: [warning] wrong indentation: expected 2 but found 3 (indentation)
+> ./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:15:7: [warning] wrong indentation: expected 4 but found 6 (indentation)
+>
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/sound/mt8192-afe-pcm.example.dts:19:18: fatal error: dt-bindings/clock/mt8192-clk.h: No such file or directory
+>    19 |         #include <dt-bindings/clock/mt8192-clk.h>
+>       |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Andy Shevchenko writes:
+Now linux-next is broken because this dependency is not yet merged.
+That needs to land soon or this be reverted.
 
-> On Mon, Nov 9, 2020 at 5:27 PM Alexandre Belloni
-> <alexandre.belloni@bootlin.com> wrote:
->> On 09/11/2020 17:16:49+0200, Andy Shevchenko wrote:
->> > On Mon, Nov 9, 2020 at 4:32 PM Alexandre Belloni
->> > <alexandre.belloni@bootlin.com> wrote:
->> > > On 09/11/2020 16:17:40+0200, Andy Shevchenko wrote:
->
-> ...
->
->> > > > > +               dev_err(pctldev->dev, "Pin %d direction as %s is not possible\n",
->> > > > > +                       pin, input ? "input" : "output");
->> > > >
->> > > > Do we need this noise? Isn't user space getting a proper error code as
->> > > > per doc and can handle this?
->> > >
->> > > Why would userspace get the error code?
->> >
->> > Huh?! Why it shouldn't. How will users know if they are doing something wrong?
->> >
->> > > Userspace should never have to
->> > > handle gpios directly or you are doing something wrong.
->> >
->> > This is true, but check how error codes are propagated to the user space.
->> >
->>
->> your point is to remove an error message because the error may be
->> propagated to userspace. My point is that userspace should never use
->> gpios and the kernel has to be the consumer.
->
-> Tell this to plenty of users of old sysfs interface and to libgpiod ones.
-> If what you are saying had been true, we would have never had the new
-> ABI for GPIOs.
->
->> I don't see how your answer
->> is relevant here.
->
-> I have an opposite opinion.
->
->> Did you already check all the call sites from the
->> kernel too?
->
-> If you think we have to print a message on each possible error case
-> (but not always the one) we will get lost in the messages disaster and
-> dmesg overflow.
-> It is consumer who should decide if the setting is critical or not to
-> be printed to user.
-
-I think the message is a valid one. I will change it to
-dev_err_ratelimited() - that should prevent the dmesg flooding.
-
----Lars
-
---
-Lars Povlsen,
-Microchip
+Rob
