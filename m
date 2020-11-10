@@ -2,86 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 680782AD83B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:02:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB9E2AD857
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:11:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730692AbgKJOC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 09:02:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
+        id S1730465AbgKJOLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 09:11:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730059AbgKJOC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:02:29 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3023C0613D1
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:02:28 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id q19so13058345ljc.10
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:02:28 -0800 (PST)
+        with ESMTP id S1726721AbgKJOLt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:11:49 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5596AC0613CF
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:11:49 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id i6so17747723lfd.1
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:11:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=pJq65w6MHfv54HDA+7kJE/AlEyk8Ahf0nXwLPuOGbs4=;
-        b=ssaXnhgL/V9+3zrmH550cjg6hzPJHv38SIpXQrq4Hg/9lHt0GBBA+A2T6TGro+UuqC
-         JXonfm6G0/6iGHb0BR2iY3uDOXfS0u5XgTrbFrdwF1YPeGcQsFq/4ycOTGMq+Kfqhb5Q
-         X/xqmnYsqeGP0gMqKHtZe+may2+RhBW8O9sUKNE/S1iAyD5XCXM/sA1B935fDVFYN8Ch
-         gHcnb5NyejuBqTefKUjaw7SB5ltDENtlTC1G0affLryJSB1OM6dbiE9tPzSXJjbgA2i4
-         a5BnS/7AA6GtGqFJLBrQkr+qq8eCfU9DwOMFpkc813IxXBNVR2xqimLu3MsxmDjnT4mJ
-         IbUw==
+        bh=KpEnlnWHjDYLqMoNrHt/KysUsi09ROrhJWtHTDCWRGI=;
+        b=BDkgs4woTqGqDFzLsQFt4eu4Kw92iGzSuCTQeQElSxv66BP10wEsrSFhEWFcyZ8k+1
+         PY2O0/GuW4gT1FhsqFZJi3uxOBoAEcecE1Zua8LkaBKmPibKBYDWknfrRvfVCBmfE15S
+         WHvzbxRGlltekn5L7pZkl/bAllYsZT+H9vsyI8xK8CTZujcKHBkTnRDmIdOUVT8QoiXK
+         PjOG6C3zAZa4FamO6GIFICx+i4z8QX3Yia4XxDo5GyTR8msPcqbZWUG2rvPmTTAzgugE
+         URxSZbvHY/vHKL/LjDwynre8bcWqE/RPy5l8pxFgc70rkWm08TN0LEKlQTfEiA64FeZ1
+         PQtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=pJq65w6MHfv54HDA+7kJE/AlEyk8Ahf0nXwLPuOGbs4=;
-        b=NO1XZWN4I4GY1Rd43Ff3lr2me80oA8CzIpZARtS/oJzbWWdFKurbpjK7hW8U8jVSvE
-         drKp92zNm2A+9qve7DUgKJNG9hn+xlAaVBZBHFW6bN8HiKNALDf05vO/CSj1n8XCreK/
-         LKBEcVWFo9omM0PeGAJJJFnCG/hGpLNlw+mT5ogKHSMMYPPKJ+E2MjdAPt0dnilRZuFB
-         KXUXqcZx37D9bxeXBknHXsrNfnU0Q4i0Vpv9yCV63IldTTXd1X3TRe6g1PIpiX9dbmhW
-         wDtLu1wHE/7CoFMyyGBERaGDrGxXsrV6fwqPQmiyCEg6fkcK9ZoJi1ePBOono7Gzd8VQ
-         MGnw==
-X-Gm-Message-State: AOAM530BoeeGhp0HJf5a2iP1CWU4tD4eU/FXNbMo3O9eLybYs8k+LZMd
-        J5pJObRDQhfOYVxTIQn+Qxw0LNwJisGkpI3ceRzbqA==
-X-Google-Smtp-Source: ABdhPJx9+S0o/CpR55UGyjAKVRbYDirS4+h60H7HCvYUDyYNZOghWALu3cF+NPKEm4wlk+W/JJylRBPhhTBuHs4ZkNs=
-X-Received: by 2002:a05:651c:1205:: with SMTP id i5mr8974026lja.283.1605016946760;
- Tue, 10 Nov 2020 06:02:26 -0800 (PST)
+        bh=KpEnlnWHjDYLqMoNrHt/KysUsi09ROrhJWtHTDCWRGI=;
+        b=TVnLA9Ic5F5Lc7ODT3w1nuWvhL1JYQJ003R4e0CuZhvXMofNkuKV15xewV/gOmE8XW
+         8+5drkNyZxGzPpWNJhbsXrQGVB5jNqdcKsgyCD2Sh6fN6lBwUphyLKFkK1JgXLPUq3mo
+         qxUDEMQHUHgPhYVgLycHLGA3AwzGuAM7LIxyT2S7WVgvUYnCGj7IuyjPsxZyNuxtbf4c
+         wFrwc+4BTxfJtZSpEWrWkT09sHZRE1cvqCRVxGn3s66vQnjZxQuZY/ks6YS5gtNuGqA6
+         69WlMERQjzVXO6864t3JbonmzKsqqqjPxt1+Z20Mt69k9pe44E8ft4Dlt4rEQZ2A1M5d
+         qWuA==
+X-Gm-Message-State: AOAM532OzW/ihMJGqo3/e8PgUWfIXrSKw895gEDdblovpb0X1F/l4VMG
+        VJp522TaGayaowJdH0CC2g3vOsJMJtx97nLItZBI/A==
+X-Google-Smtp-Source: ABdhPJzvVokIIH3qqB2eJVY8gRVEaKtrnAHyEY9b7k7GNoTkcxcN1g1p9HGvhDxeQyifSTCtb1kd1CZTXmDi34FpIYM=
+X-Received: by 2002:a19:5e0b:: with SMTP id s11mr6995400lfb.502.1605017507860;
+ Tue, 10 Nov 2020 06:11:47 -0800 (PST)
 MIME-Version: 1.0
-References: <20201019141008.871177-1-daniel@0x0f.com> <20201019141008.871177-4-daniel@0x0f.com>
- <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
- <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org> <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
- <71f3632bee262a18e1b7edb74980ae9a@kernel.org>
-In-Reply-To: <71f3632bee262a18e1b7edb74980ae9a@kernel.org>
+References: <20201106093118.965152-1-gregory.clement@bootlin.com>
+In-Reply-To: <20201106093118.965152-1-gregory.clement@bootlin.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Nov 2020 15:02:15 +0100
-Message-ID: <CACRpkdYr+yhyROQzaYfFrGwG74DuZiA=fMVOesgOKrDajhTodQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+Date:   Tue, 10 Nov 2020 15:11:37 +0100
+Message-ID: <CACRpkdYJHd47-vpuXjb8s0Y=Y=w+QaAMEK+=STqRFbESXJ8M-g@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Extend pinctrl ocelot driver to support other SoCs
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 5, 2020 at 4:43 PM Marc Zyngier <maz@kernel.org> wrote:
-> On 2020-11-05 15:23, Daniel Palmer wrote:
-> > On Thu, 5 Nov 2020 at 21:08, Marc Zyngier <maz@kernel.org> wrote:
+On Fri, Nov 6, 2020 at 10:31 AM Gregory CLEMENT
+<gregory.clement@bootlin.com> wrote:
 
-> > >  I see that msc313_gpio_irqchip doesn't have a
-> >> .irq_set_affinity callback. Is this system UP only?
-> >
-> > What is in mainline right now is UP only but there are chips with a
-> > second cortex A7 that I have working in my tree.
-> > So I will add that in for v3 if I can work out what I should actually
-> > do there. :)
+> Ocelot SoC belongs to a larger family of SoCs which use the same
+> interrupt controller with a few variation.
 >
-> Probably nothing more than setting the callback to
-> irq_chip_set_affinity_parent,
+> This series of patches add support for Luton and Serval, they are all
+> MIPS based.
+>
+> The first patches of the series also updates the binding documentation
+> with the new compatible strings.
 
-Hm, is this something all GPIO irqchips used on SMP systems
-should be doing? Or just hierarchical ones?
+All 4 patches applied.
+
+Please consider converting the device tree bindings to YAML
+when/if you have time.
 
 Yours,
 Linus Walleij
