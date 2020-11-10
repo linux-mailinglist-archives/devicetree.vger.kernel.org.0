@@ -2,117 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C1E32ACB89
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 04:13:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 454F82ACB98
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 04:19:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730877AbgKJDM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 22:12:59 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44910 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729454AbgKJDM7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 22:12:59 -0500
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 65D592067B;
-        Tue, 10 Nov 2020 03:12:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604977978;
-        bh=xRWm36Xa8Lut2a+G6NApapBeKIBqQd3mIZYqmYlb2uE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VXTf+5MgoEw4EBiVcFsSztQst2rA4lYpRdsed7MDjH635zr6nynvpMjhBjSixqAa1
-         MTdWVlnph4Y7SZ8m3wpuVho3V7aaVJ5sIsYCCpJqnxZsujPD/XsxbCDvpnZPENFKCC
-         Xvkqsn0gth1cU7R649KJGOb15f/vZpsPz/UJ4u14=
-Date:   Tue, 10 Nov 2020 11:12:52 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] ARM: dts: imx50-kobo-aura: Enable eKTF2132
- touchscreen
-Message-ID: <20201110031251.GZ31601@dragon>
-References: <20201106112412.390724-1-j.neuschaefer@gmx.net>
- <20201106112412.390724-4-j.neuschaefer@gmx.net>
+        id S1729661AbgKJDTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 22:19:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729648AbgKJDTe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Nov 2020 22:19:34 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1150EC0613CF;
+        Mon,  9 Nov 2020 19:19:34 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id r10so8920587pgb.10;
+        Mon, 09 Nov 2020 19:19:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=joZ0UwTM2riPXx20HoPLv33hiAIzPPd4tHYUHsZneFE=;
+        b=EIfee/lZh7v9ZQXbL+inP3xW76VtAffEOc3yh20gN53vyExmDKWhYLG4DXuFdxfQT7
+         NJRuws7Z/RVVsvAUA+bDL7gmoYg/m8S9go8nbUvc/SrPeym8aYQpPytVKp74BT+TMSuN
+         hY39ySJ5+6uzOi7NfP61rnNAW5r37YhKT85Y9+zxzfpUrxJBh7FFN7BRWRPa3QJ9FAXb
+         8mm4mvflPFsJMLEYXKKqPWxLJLkqZ021u8Ygp3Zco+1Jcg6vP1pfNLi2H7WGmlVL5Nyo
+         IrTNfF1hD/Gj6GIH96b5JImVYAyHl7RUxXzVhS9Q2xhRs4zzH5vvu/zvHmFca0DhZsl+
+         Cw0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=joZ0UwTM2riPXx20HoPLv33hiAIzPPd4tHYUHsZneFE=;
+        b=q+Cr8zDWDQTctaMgyllhyDnuY/9S/LMkkog7juyTbyUqVQTnG+XH7WeJQf1tOfy2lW
+         muBM9vYFMBCGslhMLmhD5imRAcvNrwEirVQ1Y7rg7rkq1rI0Nu9IqYhugflgt0vuwEb4
+         XjAA+HyTnrp7h+4Y3R0/9fFlQl/2wVU9YQB6X1KxyfCYVOQ9Gsjivo8i69c5cEahU4DB
+         Zm182T1CFA4Z8fELAG89NbQOuk5CjNVKjHr8oSwWappz9/4h7PbkzIvOmGILbxrjlXNB
+         cmrOBdjdtEf8Bz0AYmx7uwcIVlkOudZvshRV0GHdBL0XfIWlLJiBHniZh3eirL8LFAEu
+         /6uA==
+X-Gm-Message-State: AOAM531fBd9OIqmUPxUT5+ubNh0k7uXRgvCdB99qEq9boppFoowEkf4y
+        5HVao8gS8wqox4PB42x4KB1SNnZG6dg=
+X-Google-Smtp-Source: ABdhPJzuUrAv1E9O3d0K4Th2pQCk4Jt/dk8nCn8MuALaWpuewUA+IpASgvZLhdM4DhGZp82y38UhQQ==
+X-Received: by 2002:a17:90b:ec2:: with SMTP id gz2mr2592216pjb.211.1604978373169;
+        Mon, 09 Nov 2020 19:19:33 -0800 (PST)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id g4sm12201070pgu.81.2020.11.09.19.19.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Nov 2020 19:19:32 -0800 (PST)
+Subject: Re: [PATCH v2 02/13] ARM: dts: mmp2-olpc-xo-1-75: Delete
+ #address-cells from ssp3
+To:     Lubomir Rintel <lkundrak@v3.sk>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200718205019.184927-1-lkundrak@v3.sk>
+ <20200718205019.184927-3-lkundrak@v3.sk>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <a98683e3-c666-a308-9c67-b898134c13fe@gmail.com>
+Date:   Mon, 9 Nov 2020 19:19:30 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201106112412.390724-4-j.neuschaefer@gmx.net>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200718205019.184927-3-lkundrak@v3.sk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 06, 2020 at 12:24:12PM +0100, Jonathan Neuschäfer wrote:
-> The Kobo Aura has an eKTF2132 touchscreen controller.
-> 
-> Although the vendor kernel toggles a reset pin (GPIO5-12) during the
-> startup sequence, the touchscreen works without it.
-> 
-> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> ---
-> 
-> This patch requires "[PATCH] ARM: dts: imx50-kobo-aura: Add 'grp' suffix
-> to pinctrl node names" in order to apply cleanly.
-> (https://lore.kernel.org/lkml/20201031210729.2804471-1-j.neuschaefer@gmx.net/)
-> ---
->  arch/arm/boot/dts/imx50-kobo-aura.dts | 16 +++++++++++++++-
->  1 file changed, 15 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx50-kobo-aura.dts b/arch/arm/boot/dts/imx50-kobo-aura.dts
-> index b2fbee60271f2..82ce8c43be867 100644
-> --- a/arch/arm/boot/dts/imx50-kobo-aura.dts
-> +++ b/arch/arm/boot/dts/imx50-kobo-aura.dts
-> @@ -120,7 +120,14 @@ &i2c1 {
->  	pinctrl-0 = <&pinctrl_i2c1>;
->  	status = "okay";
-> 
-> -	/* TODO: ektf2132 touch controller at 0x15 */
-> +	touchscreen@15 {
-> +		reg = <0x15>;
-> +		compatible = "elan,ektf2132";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_ts>;
-> +		power-gpios = <&gpio4 9 GPIO_ACTIVE_HIGH>;
-> +		interrupts-extended = <&gpio5 13 IRQ_TYPE_EDGE_FALLING>;
 
-It needs include of <dt-bindings/interrupt-controller/irq.h>.
 
-  DTC     arch/arm/boot/dts/imx50-kobo-aura.dtb
-Error: ../arch/arm/boot/dts/imx50-kobo-aura.dts:128.36-37 syntax error
-FATAL ERROR: Unable to parse input tree
-scripts/Makefile.lib:326: recipe for target 'arch/arm/boot/dts/imx50-kobo-aura.dtb' failed
-make[2]: *** [arch/arm/boot/dts/imx50-kobo-aura.dtb] Error 1
-
-Patch dropped.
-
-Shawn
-
-> +	};
->  };
+On 7/18/2020 1:50 PM, Lubomir Rintel wrote:
+> On the XO-1.75, this node represents a bus interface that operates in slave
+> mode and thus is only able to accommodate a single subnode; no address
+> cells are necessary.
 > 
->  &i2c2 {
-> @@ -240,6 +247,13 @@ MX50_PAD_SD3_D7__ESDHC3_DAT7		0x1d4
->  		>;
->  	};
+> The Documentation/devicetree/bindings/spi/spi-controller.yaml binding
+> prefers that we drop the property instead of setting it to zero.
 > 
-> +	pinctrl_ts: tsgrp {
-> +		fsl,pins = <
-> +			MX50_PAD_CSPI_MOSI__GPIO4_9		0x0
-> +			MX50_PAD_SD2_D5__GPIO5_13		0x0
-> +		>;
-> +	};
-> +
->  	pinctrl_uart2: uart2grp {
->  		fsl,pins = <
->  			MX50_PAD_UART2_TXD__UART2_TXD_MUX	0x1e4
-> --
-> 2.28.0
+> This fixes a DT validation error:
 > 
+>   arch/arm/boot/dts/mmp2-olpc-xo-1-75.dt.yaml: spi@d4037000:
+>       { ... } is valid under each of {'required': ['spi-slave']},
+>                                      {'required': ['#address-cells']}
+> 
+> We also need to drop #size-cells:
+> 
+>   arch/arm/boot/dts/mmp2-olpc-xo-1-75.dt.yaml: spi@d4037000:
+>       '#address-cells' is a dependency of '#size-cells'
+> 
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+
+This patch causes the following warning to be issued when validating the
+mmp2 DTS files against specific bindings:
+
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge):
+/soc/apb@d4000000/spi@d4037000: incorrect #address-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2.dtsi:472.23-480.6: Warning (spi_bus_bridge):
+/soc/apb@d4000000/spi@d4037000: incorrect #size-cells for SPI bus
+  also defined at arch/arm/boot/dts/mmp2-olpc-xo-1-75.dts:225.7-237.3
+arch/arm/boot/dts/mmp2-olpc-xo-1-75.dt.yaml: Warning (spi_bus_reg):
+Failed prerequisite 'spi_bus_bridge'
+
+Is there a fix that we can apply to silence this warning? Thanks!
+-- 
+Florian
