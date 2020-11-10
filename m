@@ -2,85 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 598202AD7F8
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 14:46:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 680782AD83B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:02:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730572AbgKJNqu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 08:46:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53008 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730524AbgKJNqu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 08:46:50 -0500
-Received: from localhost.localdomain (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AD4C22076E;
-        Tue, 10 Nov 2020 13:46:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605016009;
-        bh=P7FNUoUlbSY2GKi42YVDRwQnkOib6vtn54EtBPOLiDQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hYDBbp0DdpYpcHeeOBptc7EzMimHnzDqfHH9zPh4g/fqp3K97yvx/BjCLQYQqw/Bo
-         hm5eVhisSud5otCjw5SndxHvIiSqDHPiXzMJ6baSTsO+5Okx52I/sEFrisL1N/SI1j
-         l25I0lRJXC0UMHi7FqyVZDoJuf3v9Z41LMEfMTH0=
-From:   Will Deacon <will@kernel.org>
-To:     Jordan Crouse <jcrouse@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     catalin.marinas@arm.com, kernel-team@android.com,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
-        Thierry Reding <treding@nvidia.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Hanna Hawa <hannah@marvell.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        iommu@lists.linux-foundation.org
-Subject: Re: [PATCH v19 0/4] iommu/arm-smmu: Add adreno-smmu implementation and bindings
-Date:   Tue, 10 Nov 2020 13:46:40 +0000
-Message-Id: <160501115071.4000419.14530620296550155623.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201109184728.2463097-1-jcrouse@codeaurora.org>
-References: <20201109184728.2463097-1-jcrouse@codeaurora.org>
+        id S1730692AbgKJOC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 09:02:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56306 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730059AbgKJOC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:02:29 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3023C0613D1
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:02:28 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id q19so13058345ljc.10
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:02:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pJq65w6MHfv54HDA+7kJE/AlEyk8Ahf0nXwLPuOGbs4=;
+        b=ssaXnhgL/V9+3zrmH550cjg6hzPJHv38SIpXQrq4Hg/9lHt0GBBA+A2T6TGro+UuqC
+         JXonfm6G0/6iGHb0BR2iY3uDOXfS0u5XgTrbFrdwF1YPeGcQsFq/4ycOTGMq+Kfqhb5Q
+         X/xqmnYsqeGP0gMqKHtZe+may2+RhBW8O9sUKNE/S1iAyD5XCXM/sA1B935fDVFYN8Ch
+         gHcnb5NyejuBqTefKUjaw7SB5ltDENtlTC1G0affLryJSB1OM6dbiE9tPzSXJjbgA2i4
+         a5BnS/7AA6GtGqFJLBrQkr+qq8eCfU9DwOMFpkc813IxXBNVR2xqimLu3MsxmDjnT4mJ
+         IbUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pJq65w6MHfv54HDA+7kJE/AlEyk8Ahf0nXwLPuOGbs4=;
+        b=NO1XZWN4I4GY1Rd43Ff3lr2me80oA8CzIpZARtS/oJzbWWdFKurbpjK7hW8U8jVSvE
+         drKp92zNm2A+9qve7DUgKJNG9hn+xlAaVBZBHFW6bN8HiKNALDf05vO/CSj1n8XCreK/
+         LKBEcVWFo9omM0PeGAJJJFnCG/hGpLNlw+mT5ogKHSMMYPPKJ+E2MjdAPt0dnilRZuFB
+         KXUXqcZx37D9bxeXBknHXsrNfnU0Q4i0Vpv9yCV63IldTTXd1X3TRe6g1PIpiX9dbmhW
+         wDtLu1wHE/7CoFMyyGBERaGDrGxXsrV6fwqPQmiyCEg6fkcK9ZoJi1ePBOono7Gzd8VQ
+         MGnw==
+X-Gm-Message-State: AOAM530BoeeGhp0HJf5a2iP1CWU4tD4eU/FXNbMo3O9eLybYs8k+LZMd
+        J5pJObRDQhfOYVxTIQn+Qxw0LNwJisGkpI3ceRzbqA==
+X-Google-Smtp-Source: ABdhPJx9+S0o/CpR55UGyjAKVRbYDirS4+h60H7HCvYUDyYNZOghWALu3cF+NPKEm4wlk+W/JJylRBPhhTBuHs4ZkNs=
+X-Received: by 2002:a05:651c:1205:: with SMTP id i5mr8974026lja.283.1605016946760;
+ Tue, 10 Nov 2020 06:02:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201019141008.871177-1-daniel@0x0f.com> <20201019141008.871177-4-daniel@0x0f.com>
+ <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
+ <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org> <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
+ <71f3632bee262a18e1b7edb74980ae9a@kernel.org>
+In-Reply-To: <71f3632bee262a18e1b7edb74980ae9a@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 10 Nov 2020 15:02:15 +0100
+Message-ID: <CACRpkdYr+yhyROQzaYfFrGwG74DuZiA=fMVOesgOKrDajhTodQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 9 Nov 2020 11:47:24 -0700, Jordan Crouse wrote:
-> This short series adds support for the adreno-smmu implementation of the
-> arm-smmu driver and the device-tree bindings to turn on the implementation
-> for the sm845 and sc7180 GPUs. These changes are the last ones needed to enable
-> per-instance pagetables in the drm/msm driver.
-> 
-> v19: Rebase to kernel/git/will/linux.git for-joerg/arm-smmu/updates to pick up
->      system cache patches and devm_realloc() updates. Use a function hook to
->      modify / write sctlr
-> v18: No deltas in this patchset since the last go-around for 5.10 [1].
-> 
-> [...]
+On Thu, Nov 5, 2020 at 4:43 PM Marc Zyngier <maz@kernel.org> wrote:
+> On 2020-11-05 15:23, Daniel Palmer wrote:
+> > On Thu, 5 Nov 2020 at 21:08, Marc Zyngier <maz@kernel.org> wrote:
 
-Applied patches 1-3 to will (for-joerg/arm-smmu/updates), thanks!
+> > >  I see that msc313_gpio_irqchip doesn't have a
+> >> .irq_set_affinity callback. Is this system UP only?
+> >
+> > What is in mainline right now is UP only but there are chips with a
+> > second cortex A7 that I have working in my tree.
+> > So I will add that in for v3 if I can work out what I should actually
+> > do there. :)
+>
+> Probably nothing more than setting the callback to
+> irq_chip_set_affinity_parent,
 
-[1/4] iommu/arm-smmu-qcom: Add implementation for the adreno GPU SMMU
-      https://git.kernel.org/will/c/5c7469c66f95
-[2/4] iommu/arm-smmu: Add a way for implementations to influence SCTLR
-      https://git.kernel.org/will/c/bffb2eaf0ba2
-[3/4] dt-bindings: arm-smmu: Add compatible string for Adreno GPU SMMU
-      https://git.kernel.org/will/c/a29bbb0861f4
+Hm, is this something all GPIO irqchips used on SMP systems
+should be doing? Or just hierarchical ones?
 
-I assume the .dts change will be routed separately so as to avoid conflicts.
-
-Cheers,
--- 
-Will
-
-https://fixes.arm64.dev
-https://next.arm64.dev
-https://will.arm64.dev
+Yours,
+Linus Walleij
