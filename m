@@ -2,254 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C5F52AE1A5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 22:24:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C83262AE1CB
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 22:32:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731709AbgKJVYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 16:24:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40952 "EHLO
+        id S1731711AbgKJVcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 16:32:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726214AbgKJVYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 16:24:20 -0500
-Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com [IPv6:2607:f8b0:4864:20::c44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F145C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 13:24:20 -0800 (PST)
-Received: by mail-oo1-xc44.google.com with SMTP id l10so2009634oom.6
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 13:24:20 -0800 (PST)
+        with ESMTP id S1725862AbgKJVcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 16:32:31 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD04C0613D1;
+        Tue, 10 Nov 2020 13:32:31 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id i6so233139lfd.1;
+        Tue, 10 Nov 2020 13:32:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=sbR5v0iU+yPZpwD0s8nKqsM8+4KSn5ZLeUULGAXG3cM=;
-        b=GviLwlObHSlQ62OtLXHeMjjIJC2rRDAaymJzN7GlRLMda/BFJCWJeHZSHQOti+psW8
-         GtqKT6D+5MlUQr/Bx1yqVOwjB0jzAthiKfVd7IXSSo1tRcVHa7T7FVjWF7E2gchZe3xh
-         sLUQYuzaVcAaN6to+8/I1KfPtQZAErC/lIkLIoL4kubWao3lSUTcgO5+jJe+j58VQciT
-         gP/BurmmLg9ryBmX0nRM+OV306JF0qI7FTM8ugoCt7paSdmQ+TRpHKNn1dpOUj1hb63T
-         P8z+BT5olAbK2DWmfShEOUd3cW7Fqt3myOFksYYJxBiOCCWyz/w0IDT5/28dggzBUZMT
-         qWvw==
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Udf8izR79EOqP1ijS53zeM3N/JUnCwVrU1fnKC8yXBM=;
+        b=TJmDKYdfhNndOw9Fc/1HEuqiqmcIfs67XGIMRW/n659q4NI/oyLnPwqYqDHpqqSze4
+         yxRdw/JI8MhkLlhqv01SA66a1lehinyiB40p03H4fmPC4kXqdPdOR9DXXI+CA8FSqBk7
+         w6wChwFGwttwXQX2Xdjz29Y+Hwu/v0WRMXMyYljuqE429oOhuZ7qiOzZFPxi1Rkyq/NW
+         nVGYWY6zZm9eoNwo6SyRQJSccBYBxUNPG9MlrFkc8UTPfeDIiXk0WNTxV7mdyps+2+6X
+         OXy/7b5VqZJ3lgMWmZYzyttqwfgys1sL/l1uEmuidS91VXkM+dhRqONrgFsT4PF6pA+C
+         zF8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sbR5v0iU+yPZpwD0s8nKqsM8+4KSn5ZLeUULGAXG3cM=;
-        b=nlyusj21L+KsOQr1DSUS5EHyNsrSeL9G3baAkW7h2tp/YK5v0NnY8TrxUOZTzxsdQv
-         Xfl5rTFdU/LxIiU2X0Jq3cYzgJMqxKd2jKCaVK7CP+b5P9RTO2qEhL7QpJ4LrP44a7UN
-         YTyAGXqUGbbqHzEGGNlk3oK/9xQ+xNRLNTWz0MXikp6QPXFo1SQU/MJvGHwngAQkVYhj
-         jhujecGo+7PPtrHne+vMkufa5yByL06GC2TnqsXpHtagtUyXlWD7C4Dk7VgVFAfiuPuZ
-         0Ctc0YHEFS9tMSOi8BW9jtL145xfeZGn2Qqs5iHqtZhRxCcS1GPhOnCSKjNsrCl8GfqV
-         0HEw==
-X-Gm-Message-State: AOAM5300fvbxowxVJjwsGFp3fmhM9vq6j5j1WcjPfggs5vfzjcR1G4eR
-        TSMVC8U6bIAwOjhlyZCMpfHZhQ==
-X-Google-Smtp-Source: ABdhPJxGMw4LxhccxkRKQ6zzF7az31jh9AC29u7CnYBuqTXH8mWrz+VrHO27QbASAW8sdWcUA6Zi9g==
-X-Received: by 2002:a4a:c915:: with SMTP id v21mr15054075ooq.76.1605043459414;
-        Tue, 10 Nov 2020 13:24:19 -0800 (PST)
-Received: from yoga (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id g8sm3393355oia.16.2020.11.10.13.24.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 13:24:18 -0800 (PST)
-Date:   Tue, 10 Nov 2020 15:24:16 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     agross@kernel.org, linus.walleij@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add sc7280 pinctrl
- bindings
-Message-ID: <20201110212416.GE807@yoga>
-References: <1604570192-15057-1-git-send-email-rnayak@codeaurora.org>
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Udf8izR79EOqP1ijS53zeM3N/JUnCwVrU1fnKC8yXBM=;
+        b=Sa/uuCxZP4Ptb4d2EkGqIo5mvHCwTvjcX0GOcY8blJ9VGqRI/sCglnNsshb41ZrPpa
+         8wDpnvDc78i92Dl6u5fR0tDsc5qt3lMj34uXKJVdf7qpDeq0ZjOA6Saz80vV7dmK8mX8
+         VlTTkPWWNLpu6yTmugFPICnbMDy/DGStcfM/ye3+r0JymlZGzRdiDI7jGO2Ov2YO6kHo
+         KRjGaMIra+b0+y544PFymU5Glqb3vpjYD5Kdmn/0/XcahIOmyrLMsoSYYBlRXzJo84fr
+         W/BJ47UQaRn7ll3CukfcKKR6nd75/JuQqscxccTSyZBlbUY1lejk0UfGS0w4/MtfNxVa
+         rjgA==
+X-Gm-Message-State: AOAM53201SGdgthvsqceDl90nOoGdj48A35DNQOWHXLUW4hl4V7voN+N
+        PDSfpbRmxgc/LOv3pcBDZHV5RrdE09s=
+X-Google-Smtp-Source: ABdhPJzgddle15uZzQkarcn6HNRYEMFyRgf1xVU2K+91PWIHM5P29WaFydPEJ+nc/MxNTQcdKv1N/w==
+X-Received: by 2002:ac2:5e6e:: with SMTP id a14mr6600177lfr.595.1605043949411;
+        Tue, 10 Nov 2020 13:32:29 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
+        by smtp.googlemail.com with ESMTPSA id o12sm2721051ljc.59.2020.11.10.13.32.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2020 13:32:28 -0800 (PST)
+Subject: Re: [PATCH v1 07/30] soc/tegra: Add sync state API
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Peter Chen <Peter.Chen@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20201104234427.26477-1-digetx@gmail.com>
+ <20201104234427.26477-8-digetx@gmail.com> <20201110204727.GG2375022@ulmo>
+ <71934373-8425-345b-7719-0903f846119f@gmail.com>
+Message-ID: <7b6c7c62-495c-eeb8-9cdb-0c33be653e3d@gmail.com>
+Date:   Wed, 11 Nov 2020 00:32:27 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1604570192-15057-1-git-send-email-rnayak@codeaurora.org>
+In-Reply-To: <71934373-8425-345b-7719-0903f846119f@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 05 Nov 03:56 CST 2020, Rajendra Nayak wrote:
+11.11.2020 00:22, Dmitry Osipenko пишет:
+> I added a special spell checking rule for this typo, but it does help
+> reliably.
 
-> Add device tree binding Documentation details for Qualcomm SC7280
-> TLMM block.
-> 
-> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
-> ---
-> v2: Consolidated functions under phase_flag and qdss
-> 
->  .../bindings/pinctrl/qcom,sc7280-pinctrl.yaml      | 158 +++++++++++++++++++++
->  1 file changed, 158 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-> new file mode 100644
-> index 0000000..7d6a2ab
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7280-pinctrl.yaml
-> @@ -0,0 +1,158 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,sc7280-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SC7280 TLMM block
-> +
-> +maintainers:
-> +  - Rajendra Nayak <rnayak@codeaurora.org>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  SC7280 platform.
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sc7280-pinctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: Specifies the TLMM summary IRQ
-> +    maxItems: 1
-> +
-> +  interrupt-controller: true
-> +
-> +  '#interrupt-cells':
-> +    description:
-> +      Specifies the PIN numbers and Flags, as defined in defined in
-> +      include/dt-bindings/interrupt-controller/irq.h
-> +    const: 2
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +  wakeup-parent:
-> +    maxItems: 1
-> +
-> +#PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '-pins$':
-> +    type: object
-> +    description:
-> +      Pinctrl node's client devices use subnodes for desired pin configuration.
-> +      Client device subnodes use below standard properties.
-> +    $ref: "/schemas/pinctrl/pincfg-node.yaml"
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          List of gpio pins affected by the properties specified in this
-> +          subnode.
-> +        items:
-> +          oneOf:
-> +            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-4])$"
-> +            - enum: [ sdc1_rclk, sdc1_clk, sdc1_cmd, sdc1_data, sdc2_clk,
-> +                      sdc2_cmd, sdc2_data, ufs_reset ]
-> +        minItems: 1
-> +        maxItems: 16
-> +
-> +      function:
-> +        description:
-> +          Specify the alternative function to be configured for the specified
-> +          pins.
-> +
-> +        enum: [ atest_char, atest_char0, atest_char1, atest_char2,
-> +                atest_char3, atest_usb0, atest_usb00, atest_usb01,
-> +                atest_usb02, atest_usb03, atest_usb1, atest_usb10,
-> +                atest_usb11, atest_usb12, atest_usb13, audio_ref,
-> +                cam_mclk, cci_async, cci_i2c, cci_timer0, cci_timer1,
-> +                cci_timer2, cci_timer3, cci_timer4, cmu_rng0, cmu_rng1,
-> +                cmu_rng2, cmu_rng3, coex_uart1, cri_trng, cri_trng0,
-> +                cri_trng1, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1, dp_hot,
-> +                dp_lcd, edp_hot, edp_lcd, gcc_gp1, gcc_gp2, gcc_gp3,
-> +                gpio, host2wlan_sol, ibi_i3c, jitter_bist, lpass_slimbus,
-> +                mdp_vsync, mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3,
-> +                mdp_vsync4, mdp_vsync5, mi2s0_data0, mi2s0_data1, mi2s0_sck,
-> +                mi2s0_ws, mi2s1_data0, mi2s1_data1, mi2s1_sck, mi2s1_ws,
-> +                mi2s2_data0, mi2s2_data1, mi2s2_sck, mi2s2_ws, mss_grfc0,
-> +                mss_grfc1, mss_grfc10, mss_grfc11, mss_grfc12, mss_grfc2,
-> +                mss_grfc3, mss_grfc4, mss_grfc5, mss_grfc6, mss_grfc7,
-> +                mss_grfc8, mss_grfc9, nav_gpio0, nav_gpio1, nav_gpio2,
-> +                pa_indicator, pcie0_clkreqn, pcie1_clkreqn, phase_flag,
-> +                pll_bist, pll_bypassnl, pll_clk, pll_reset, pri_mi2s, prng_rosc,
-> +                qdss, qdss_cti, qlink0_enable, qlink0_request, qlink0_wmss,
-> +                qlink1_enable, qlink1_request, qlink1_wmss, qspi_clk, qspi_cs,
-> +                qspi_data, qup00, qup01, qup02, qup03, qup04, qup05, qup06, qup07,
-> +                qup10, qup11, qup12, qup13, qup14, qup15, qup16, qup17,
-> +                sdc40, sdc41, sdc42, sdc43, sdc4_clk, sdc4_cmd, sd_write,
-> +                sec_mi2s, tb_trig, tgu_ch0, tgu_ch1, tsense_pwm1,
-> +                tsense_pwm2, uim0_clk, uim0_data, uim0_present, uim0_reset,
-> +                uim1_clk, uim1_data, uim1_present, uim1_reset, usb2phy_ac,
-> +                usb_phy, vfr_0, vfr_1, vsense_trigger ]
-> +
-> +      drive-strength:
-> +        enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +        default: 2
-> +        description:
-> +          Selects the drive strength for the specified pins, in mA.
-> +
-> +      bias-pull-down: true
-> +
-> +      bias-pull-up: true
-> +
-> +      bias-disable: true
-> +
-> +      output-high: true
-> +
-> +      output-low: true
-> +
-> +    required:
-> +      - pins
-> +      - function
-> +
-> +    additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        tlmm: pinctrl@f000000 {
-> +                compatible = "qcom,sc7280-pinctrl";
-> +                reg = <0xf000000 0x1000000>;
-> +                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +                gpio-controller;
-> +                #gpio-cells = <2>;
-> +                interrupt-controller;
-> +                #interrupt-cells = <2>;
-> +                gpio-ranges = <&tlmm 0 0 175>;
-> +                wakeup-parent = <&pdc>;
-> +
-> +                qup_uart5_default: qup-uart5-pins {
-> +                        pins = "gpio46", "gpio47";
-> +                        function = "qup13";
-> +                        drive-strength = <2>;
-> +                        bias-disable;
-> +                };
-> +        };
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+does *not*
