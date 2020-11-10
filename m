@@ -2,60 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 262902ACA01
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 02:04:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E042ACA5B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 02:23:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729451AbgKJBEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Nov 2020 20:04:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55818 "EHLO mail.kernel.org"
+        id S1729452AbgKJBXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Nov 2020 20:23:39 -0500
+Received: from mga09.intel.com ([134.134.136.24]:15724 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729336AbgKJBEn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Nov 2020 20:04:43 -0500
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F0DE4206D8;
-        Tue, 10 Nov 2020 01:04:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1604970282;
-        bh=OlWWjsTl4WMGc24vKtK9w41I4b37bco/u804uzeO5i0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FdkL1BpKnp16faDkxQErVyn0DLLn0G2ezBLyk7t2gsNfoHR/g/5kPG2zt1N3akYxe
-         Sx6qCPWl2klgGQnjs52YCFZH7GhaGcvIxwpheUktCQ/MdkHfyY9pq5sVPBUnhmyngZ
-         PRtCQMMnwVixJgPvJ6fNq2XoWatwuUQNnp/KWpRo=
-Date:   Tue, 10 Nov 2020 09:04:36 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Robin van der Gracht <robin@protonic.nl>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>
-Subject: Re: [PATCH v5 2/2] ARM: dts: add Van der Laan LANMCU board
-Message-ID: <20201110010435.GK31601@dragon>
-References: <20201102090212.6298-1-o.rempel@pengutronix.de>
- <20201102090212.6298-3-o.rempel@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201102090212.6298-3-o.rempel@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1727311AbgKJBXj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Nov 2020 20:23:39 -0500
+IronPort-SDR: XEzGxR0yDWbfVJnck5mYnTfBlRXU/17RZB1e+krLZPswikz102+vyZ4PW5K2ljGDGyTpAi2Do5
+ uETYHWQwoF2A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9800"; a="170049965"
+X-IronPort-AV: E=Sophos;i="5.77,464,1596524400"; 
+   d="scan'208";a="170049965"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Nov 2020 17:23:38 -0800
+IronPort-SDR: o1oatd2oCJc0tRVXSOSiOVsVeaBju0giz5lHaTB/EtgHFVxZ1NcqHSCInDYUgLvSTjUvXW5LlR
+ 0EQuCypDCjMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,464,1596524400"; 
+   d="scan'208";a="307852832"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga008.fm.intel.com with ESMTP; 09 Nov 2020 17:23:35 -0800
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     miquel.raynal@bootlin.com, vigneshr@ti.com,
+        tudor.ambarus@microchip.com, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, simon.k.r.goldschmidt@gmail.com,
+        dinguyen@kernel.org, richard@nod.at, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v17 0/2] mtd: rawnand: Add NAND controller support on Intel LGM SoC
+Date:   Tue, 10 Nov 2020 09:23:31 +0800
+Message-Id: <20201110012333.18647-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 02, 2020 at 10:02:12AM +0100, Oleksij Rempel wrote:
-> Van der Laan LANMCU is a module for the food storage rooms to control
-> proper gas composition.
-> 
-> Co-developed-by: Robin van der Gracht <robin@protonic.nl>
-> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+This patch adds the new IP of Nand Flash Controller(NFC) support
+on Intel's Lightning Mountain(LGM) SoC.
 
-Applied, thanks.
+DMA is used for burst data transfer operation, also DMA HW supports
+aligned 32bit memory address and aligned data access by default.
+DMA burst of 8 supported. Data register used to support the read/write
+operation from/to device.
+
+NAND controller also supports in-built HW ECC engine.
+
+NAND controller driver implements ->exec_op() to replace legacy hooks,
+these specific call-back method to execute NAND operations.
+
+Thanks Miquel, Boris, Andy, Arnd and Rob for the review comments and suggestions.
+---
+v17:
+  - No Change
+v16:
+  - address Miquel Raynal review comments update
+  - modify the commit message
+  - add unit for timeout_ms variable
+  - insert nand_sdr_timings directly in the function instead
+    of adding helper function.
+  - modify the code to handle single CS in probe
+  - replace 'reg' property instead of 'nand,cs'
+  - add 2 compatible strings generic one followed by intel,lgm-ebunand
+Resend-v15:
+  - Rebased to mtd/for-5.10
+v15:
+  - Address Miquel review comments update
+  - add common helper function for status check for
+    ebu_nand_waitrdy()
+v14:
+  - Address Andy's review comments
+  - align the headers and revome Duplicates
+  - replcace numerical const values by HZ_PER_MHZ and USEC_PER_SEC
+    defined macros
+  - add dev_err_probe() api instead of legacy err check
+  - add get_unaligned_le32() api instead of manual endiness
+  - remove redudent check
+  - split the lines logically in between and add require spaces
+v13:
+  - Address Miquel Raynal review comments
+  - update the return type with variable 'ret'
+  - handle err check statement properly
+  - change the naming convention aligned with recently changed the naming
+    around the data interface
+    data structure and function names
+  - replace by div 8 instead of <<4 in ecc calculation better code readability
+  - handle check_only properly like existing drivers
+v12-resend:
+  - No Change
+v12:
+  - address Miquel Raynal review comments update
+  - add/modify the comments for better understanding
+  - handle the check_only variable
+  - update the ecc function based on the existing drivers
+  - add newline
+  - verify that mtd->name is set after nand_set_flash_node()
+  - add the check WARN_ON(ret);
+v11-resend:
+  - Rebase to v5.8-rc1
+v11:
+  - No Change
+v10:
+  - No Change
+v9:
+  - No change
+v8:
+  - fix the kbuild bot warnings
+  - correct the typo's
+v7:
+  - indentation issue is fixed
+  - add error check for retrieve the resource from dt
+v6:
+  - update EBU_ADDR_SELx register base value build it from DT
+  - Add tabs in in Kconfig
+v5:
+  - replace by 'HSNAND_CLE_OFFS | HSNAND_CS_OFFS' to NAND_WRITE_CMD and NAND_WRITE_ADDR
+  - remove the unused macros
+  - update EBU_ADDR_MASK(x) macro
+  - update the EBU_ADDR_SELx register values to be written
+v4:
+  - add ebu_nand_cs structure for multiple-CS support
+  - mask/offset encoding for 0x51 value
+  - update macro HSNAND_CTL_ENABLE_ECC
+  - drop the op argument and un-used macros.
+  - updated the datatype and macros
+  - add function disable nand module
+  - remove ebu_host->dma_rx = NULL;
+  - rename MMIO address range variables to ebu and hsnand
+  - implement ->setup_data_interface()
+  - update label err_cleanup_nand and err_cleanup_dma
+  - add return value check in the nand_remove function
+  - add/remove tabs and spaces as per coding standard
+  - encoded CS ids by reg property
+v3:
+  - Add depends on MACRO in Kconfig
+  - file name update in Makefile
+  - file name update to intel-nand-controller
+  - modification of MACRO divided like EBU, HSNAND and NAND
+  - add NAND_ALE_OFFS, NAND_CLE_OFFS and NAND_CS_OFFS
+  - rename lgm_ to ebu_ and _va suffix is removed in the whole file
+  - rename structure and varaibles as per review comments.
+  - remove lgm_read_byte(), lgm_dev_ready() and cmd_ctrl() un-used function
+  - update in exec_op() as per review comments
+  - rename function lgm_dma_exit() by lgm_dma_cleanup()
+  - hardcoded magic value  for base and offset replaced by MACRO defined
+  - mtd_device_unregister() + nand_cleanup() instead of nand_release()
+v2:
+  - implement the ->exec_op() to replaces the legacy hook-up.
+  - update the commit message
+  - add MIPS maintainers and xway_nand driver author in CC
+v1:
+ - initial version
+dt-bindings: mtd: Add Nand Flash Controller support for Intel LGM SoC
+---
+v17:
+  Rob's build bot errors resolved
+v16:
+  - No change
+resend-v15:
+  - No change
+v15:
+  - No change
+v14:
+  - No change
+v13:
+  - No change
+v12-Resend:
+  - No Change
+v12:
+  - No change
+v11-resend:
+  - No change
+v11:
+  - Fixed the compatible issue with example
+10:
+  - fix bot errors
+v9:
+  - Rob's review comments address
+  - dual licensed
+  - compatible change
+  - add reg-names
+  - drop clock-names and clock-cells
+  - correct typo's
+v8:
+  No change
+v7:
+  - Rob's review comments addressed
+  - dt-schema build issue fixed with upgraded dt-schema
+v6:
+  - Rob's review comments addressed in YAML file
+  - add addr_sel0 and addr_sel1 reg-names in YAML example
+v5:
+  - add the example in YAML file
+v4:
+  - No change
+v3:
+  - No change
+v2:
+  YAML compatible string update to intel, lgm-nand-controller
+v1:
+  - initial version
+
+
+
+Ramuthevar Vadivel Murugan (2):
+  dt-bindings: mtd: Add Nand Flash Controller support for Intel LGM SoC
+  mtd: rawnand: Add NAND controller support on Intel LGM SoC
+
+ .../devicetree/bindings/mtd/intel,lgm-nand.yaml    |  99 +++
+ drivers/mtd/nand/raw/Kconfig                       |   8 +
+ drivers/mtd/nand/raw/Makefile                      |   1 +
+ drivers/mtd/nand/raw/intel-nand-controller.c       | 722 +++++++++++++++++++++
+ 4 files changed, 830 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
+ create mode 100644 drivers/mtd/nand/raw/intel-nand-controller.c
+
+-- 
+2.11.0
+
