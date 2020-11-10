@@ -2,105 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C27B72B1EA7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 099B12B1EC7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:32:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726606AbgKMP3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 10:29:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726278AbgKMP3G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 10:29:06 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD43C0613D1
-        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 07:29:06 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1kdb0V-0005ZU-Sx; Fri, 13 Nov 2020 16:28:59 +0100
-Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <afa@pengutronix.de>)
-        id 1kdb0V-0000zk-2g; Fri, 13 Nov 2020 16:28:59 +0100
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFC PATCH] ARM: dts: imx6qdl: specify vcc-supply for NOP USB PHYs
-Date:   Fri, 13 Nov 2020 16:28:55 +0100
-Message-Id: <20201113152856.3758-1-a.fatoum@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
+        id S1726691AbgKMPcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 10:32:24 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:39133 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726731AbgKMPcU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 10:32:20 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E042F58032D;
+        Fri, 13 Nov 2020 10:32:18 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:32:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        from:date:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=iQvsGPPa0tYF2NuoRivcownR9ft
+        NLwLD3BYTJEqiN68=; b=lSysGwVB7uEO/OD640HhdDjd1HDZweo4kZul3xT9ZZb
+        0QhyoL6zjbLQenu11bkjQ56NKvcFI9Vin1bBd06Uud3+PwXKy6qKeCQcaCiX3Nix
+        TqBIn+WPVvZDm7sw6drhgyS+vbLOqc6pZ+KKyHPx4xGi3A/Y/+VcNYzG+y0uuovn
+        5rWeeiiqERqhOAyiEo9akMy8TUZX4MQSkLMPkTCjY8kgFtCV5ssoWbVnXJlGmYXc
+        FRSmpXdBhD0XhpoR69kEMXizqVKgjJafS27ff3o5CRM5X79G+ONZPXg3ydPFSfut
+        6UtqsHXrQkJ6k4VqqCW68LFZLZ8z6wNmqdC7s/dPBYg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=iQvsGP
+        Pa0tYF2NuoRivcownR9ftNLwLD3BYTJEqiN68=; b=EJEe7fiMO/W7hIRq1R4VkM
+        Zit5RF0UHiDUTx6SfZKALDBAWTFgnK20cOfruzgTloS29toHAzz9N+GEz7rq/zx8
+        yLPixecY5+AXwqbZ7sCzmo0LOcrfL29ODL89uzAJlA56HyssX9qrta4NPZnMoxbz
+        I5q3M4mPKf0MwE9V4tdYhZRPJEikPDzVC5fdpaacyloLcIJOJyoKpti/64rdTwAj
+        /Gv0s9sL1Qg5aK/CboQnGKNUvqEFnTN5B0fgsQHfGoUtsPl8nhnsBVKE6eQDVxXH
+        SQ2rJ3EJVfbLNEFd3b+oFJvyjudcxqFG0onlp35JDRt7IALKPWoEbWk3YjcrD3gg
+        ==
+X-ME-Sender: <xms:AKeuXzhp5yOZuzx_8jABAGLEMIARQ5xo40fJkpSR4FuyWLt-6jzgAw>
+    <xme:AKeuXwA5pgknbzpFZOXlJtT48gdkLWQj5Td8uDZtGkQWAl8sQgDry2t8w2V5qT_XX
+    Eeuk1BzA1nEqMDoPDA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvhedgjeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephfffvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpehmrgigihhm
+    vgestggvrhhnohdrthgvtghhnecuggftrfgrthhtvghrnhephffffffgteejgeeiteelue
+    dvkeffudekjeejheevleekgffggfekkedvhfeigefgnecukfhppeeltddrkeelrdeikedr
+    jeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
+    grgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:AKeuXzGdXPY-QZyakhb_12fR12Jd5ZHQl-EScwayMt7F4680Um_lDw>
+    <xmx:AKeuXwRguMbGG6BXUiUDFA9shhP9V3h4cjovwPpd_fCwkqtq-yjcbg>
+    <xmx:AKeuXww-uHpJSrMnSdsgyDrytpFfi7fDFWSH7WxmiJVs-U6ojPrIlw>
+    <xmx:AqeuX9jrNtkIa69VlNHt4vbw5TVITyxF4-jAagikg_6BBmBDNV88dA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id BE0853064AAE;
+        Fri, 13 Nov 2020 10:32:15 -0500 (EST)
+From:   maxime@cerno.tech
+Date:   Tue, 10 Nov 2020 13:55:36 +0100
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Frank Lee <tiny.windzz@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Frank Lee <frank@allwinnertech.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, kishon@ti.com,
+        wim@linux-watchdog.org, Guenter Roeck <linux@roeck-us.net>,
+        dan.j.williams@intel.com, Linus Walleij <linus.walleij@linaro.org>,
+        wsa+renesas@sang-engineering.com, dianders@chromium.org,
+        marex@denx.de, Colin King <colin.king@canonical.com>,
+        rdunlap@infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        rikard.falkeborn@gmail.com, dmaengine@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
+        linux-watchdog@vger.kernel.org,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH 00/19] Second step support for A100
+Message-ID: <20201110125536.gxxbgzkh3tlmn2ze@gilmour.lan>
+65;6201;1cFrom: Maxime Ripard <maxime@cerno.tech>
+References: <20201110040553.1381-1-frank@allwinnertech.com>
+ <CAEExFWsc4Rx2U+BVuqTJkL0wj-gdNcF=emJRcStQ2Uq=FQEx1g@mail.gmail.com>
+ <CAJKOXPf4ARNnSnvDpn7vVC0kGNd+m_dkfgKkmH_bca2AZ_Osyg@mail.gmail.com>
+ <CAEExFWv2o9aTfUVM5NzZz10kAO_Ya8VJvJrmyjh55=U_5G8RJw@mail.gmail.com>
+ <20201110124829.GB161013@vkoul-mobl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: afa@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dakuxhxxqpi2fsmh"
+Content-Disposition: inline
+In-Reply-To: <20201110124829.GB161013@vkoul-mobl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SoC dtsi lists a NOP USB PHY for each of the two HSIC-only USB
-controllers. Their device tree node doesn't indicate a vcc-supply
-resulting in:
 
-  usb_phy_generic usbphynop1: supply vcc not found, using dummy regulator
-  usb_phy_generic usbphynop2: supply vcc not found, using dummy regulator
+--dakuxhxxqpi2fsmh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-warnings on boot up. The USB IP vcc-supply - separate from the vusb - is
-hardwired to LDO_2P5[1], which we already have a device tree node for.
-Reference it for the dummy "phy" as well.
+On Tue, Nov 10, 2020 at 06:18:29PM +0530, Vinod Koul wrote:
+> On 10-11-20, 16:51, Frank Lee wrote:
+> > On Tue, Nov 10, 2020 at 4:43 PM Krzysztof Kozlowski <krzk@kernel.org> w=
+rote:
+> > >
+> > > On Tue, 10 Nov 2020 at 07:00, Frank Lee <tiny.windzz@gmail.com> wrote:
+> > > >
+> > > > It seems that sending too many e-mails at one time will cause some
+> > > > emails to fail to be sent out. I will try again.
+> > >
+> > > Hi,
+> > >
+> > > Instead please reduce the address list to relevant people, as pointed
+> > > out by scripts/get_maintainer.pl. Don't Cc irrelevant developers
+> > > unless a file is abandoned and you need to get as much audience as
+> > > possible... but sunxi is not abandoned.
+> >=20
+> > Thank you for the reminder. I resend the version in the afternoon,
+> > only CC the relevant people. I'm not sure. Should the cover be copied
+> > to everyone?
+>=20
+> Any reason why this should be a single series.. why not split it to
+> bunch of chunks, one per subsystem like pinctrl, phy, dmaengine, etc...
+> And then DTS parts and CC relevant list and maintainers. I do not think
+> there is any dependency, right?
 
-This will lead to breakage (probe deferment) for kernels that:
-  - Use a HSIC USB controller
-  - Use this new device tree
-  - but have CONFIG_REGULATOR_ANATOP disabled
+Yeah, I agree.
 
-Because while the regulator is always-on, it can't be resolved when
-there is no driver for it.
+One series should be about one topic, so you should have at least:
+  - One for the pinctrl fixes
+  - One for the DMA controller and related DT patches
+  - One for the MMC controller and related DT patches
+  - One for the USB controllers and related DT patches
+    * And for the PHY, the enable_pmu_unk1 and devm_* patches should be
+      sent independently as well
+  - One for the watchdog
+  - And the PMU patch should be sent independently too
 
-As there are
+Maxime
 
-  - no affected upstream device trees
-  - existing device trees are unaffected without recompilation
-  - disabling CONFIG_REGULATOR_ANATOP is explicitly a non-recommended
-    configuration per symbol help text
+--dakuxhxxqpi2fsmh
+Content-Type: application/pgp-signature; name="signature.asc"
 
-this potential breakage is deemed acceptable.
+-----BEGIN PGP SIGNATURE-----
 
-[1]: i.MX 6Dual/6Quad Reference Manual, Rev. C,
-     Figure 53-1. Power System Overview
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6qNyAAKCRDj7w1vZxhR
+xZhsAQDnDysv0PDMRF+pQ9Aae6T48f6wAJcVf1ozDJ6SaYxctQEAjoXFWWcwmX5u
+DkWVsDJgDp4anqqJj/n9YqMwDCBJ9Q0=
+=LbiZ
+-----END PGP SIGNATURE-----
 
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
----
- arch/arm/boot/dts/imx6qdl.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-index 43edbf1156c7..22e4c142de13 100644
---- a/arch/arm/boot/dts/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl.dtsi
-@@ -131,11 +131,13 @@ pmu: pmu {
- 
- 	usbphynop1: usbphynop1 {
- 		compatible = "usb-nop-xceiv";
-+		vcc-supply = <&reg_vdd2p5>;
- 		#phy-cells = <0>;
- 	};
- 
- 	usbphynop2: usbphynop2 {
- 		compatible = "usb-nop-xceiv";
-+		vcc-supply = <&reg_vdd2p5>;
- 		#phy-cells = <0>;
- 	};
- 
--- 
-2.28.0
-
+--dakuxhxxqpi2fsmh--
