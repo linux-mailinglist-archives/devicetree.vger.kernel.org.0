@@ -2,85 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB9E2AD857
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:11:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A89912AD880
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 15:18:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730465AbgKJOLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 09:11:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57766 "EHLO
+        id S1730099AbgKJOS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 09:18:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726721AbgKJOLt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:11:49 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5596AC0613CF
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:11:49 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id i6so17747723lfd.1
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:11:49 -0800 (PST)
+        with ESMTP id S1730760AbgKJOSy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 09:18:54 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D0DC0613D4
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:18:51 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id u18so17728070lfd.9
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 06:18:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=KpEnlnWHjDYLqMoNrHt/KysUsi09ROrhJWtHTDCWRGI=;
-        b=BDkgs4woTqGqDFzLsQFt4eu4Kw92iGzSuCTQeQElSxv66BP10wEsrSFhEWFcyZ8k+1
-         PY2O0/GuW4gT1FhsqFZJi3uxOBoAEcecE1Zua8LkaBKmPibKBYDWknfrRvfVCBmfE15S
-         WHvzbxRGlltekn5L7pZkl/bAllYsZT+H9vsyI8xK8CTZujcKHBkTnRDmIdOUVT8QoiXK
-         PjOG6C3zAZa4FamO6GIFICx+i4z8QX3Yia4XxDo5GyTR8msPcqbZWUG2rvPmTTAzgugE
-         URxSZbvHY/vHKL/LjDwynre8bcWqE/RPy5l8pxFgc70rkWm08TN0LEKlQTfEiA64FeZ1
-         PQtA==
+        bh=yEb8SLvwYM6675N1kcLu33g5b43ooDKnUWDg2MuNw70=;
+        b=dySosniDNPpgvWYF4+JGAVaSJLsfzMMHchLwrnUw7r39jGDntjB0KjI86SPwnxMR6L
+         d14V7OlbU1WDRfwoXkx6VPRKNYd+dKojut7EImce3jBAZL4x/MbsJSUO/UzMM8JMKyOe
+         q2KwphZsBP2cGW06PXu0h64z9B6Ldr0uo+jezxWNRu5HFkDXSb9WS3dfHJmk4pkTHmun
+         xAiWGNHwY+DHgl2LMrU9speqjv1MBlOl1y5WbsKUDsN5f8IoPPRIMk5+4j1WxCId9dtG
+         811Pv4gP2GBQ8Tkdvihd7JqGt89vdyUiN7Pw4TdZUdPmbLgP0WmSqLHG4DF36jlB/XIe
+         c62Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=KpEnlnWHjDYLqMoNrHt/KysUsi09ROrhJWtHTDCWRGI=;
-        b=TVnLA9Ic5F5Lc7ODT3w1nuWvhL1JYQJ003R4e0CuZhvXMofNkuKV15xewV/gOmE8XW
-         8+5drkNyZxGzPpWNJhbsXrQGVB5jNqdcKsgyCD2Sh6fN6lBwUphyLKFkK1JgXLPUq3mo
-         qxUDEMQHUHgPhYVgLycHLGA3AwzGuAM7LIxyT2S7WVgvUYnCGj7IuyjPsxZyNuxtbf4c
-         wFrwc+4BTxfJtZSpEWrWkT09sHZRE1cvqCRVxGn3s66vQnjZxQuZY/ks6YS5gtNuGqA6
-         69WlMERQjzVXO6864t3JbonmzKsqqqjPxt1+Z20Mt69k9pe44E8ft4Dlt4rEQZ2A1M5d
-         qWuA==
-X-Gm-Message-State: AOAM532OzW/ihMJGqo3/e8PgUWfIXrSKw895gEDdblovpb0X1F/l4VMG
-        VJp522TaGayaowJdH0CC2g3vOsJMJtx97nLItZBI/A==
-X-Google-Smtp-Source: ABdhPJzvVokIIH3qqB2eJVY8gRVEaKtrnAHyEY9b7k7GNoTkcxcN1g1p9HGvhDxeQyifSTCtb1kd1CZTXmDi34FpIYM=
-X-Received: by 2002:a19:5e0b:: with SMTP id s11mr6995400lfb.502.1605017507860;
- Tue, 10 Nov 2020 06:11:47 -0800 (PST)
+        bh=yEb8SLvwYM6675N1kcLu33g5b43ooDKnUWDg2MuNw70=;
+        b=SOg+XXixNPhPl19ZZLHXFgLeQpGw37U4lbBZzjgGe16GeU3pb1jUFAYhLqCr2SDRP7
+         06A+E5SGnBwMKyDYhCdxRu6SJnhY7htPcUB7Okn6+Ishdy9Mrs9+XX4/rhMi3sZWbisG
+         XanH7ktqixk5fS952bIsMOXlBZqjm16jXuV3jUTpuLkYuR0bbeVEVFJloNDth42SvzCY
+         NeIf5p5dNyv1z4ooRqG8pDoB8ersQDHluahG8ieRuksaAa8wqzrFuOytJ0ltGqNh/IfX
+         he86ERXndq1EyneXY78IzmB+DFToAHyLx14ctkgVra1nQyD86IAo/LX9GjjzmEKC3lnH
+         YT6g==
+X-Gm-Message-State: AOAM533fp+k2hYjWT2Se688BYpYEBv3Qov1GSgio1dDmccZa98SLgCZ1
+        0eGcOSkbzHfek6cxPjWIPhrC3tIUhiPaWW88JNLoqw==
+X-Google-Smtp-Source: ABdhPJx8DR3A9HZXVyV5Hw/ZIpPtbFQchtKdOZgI87BTIuRS9xLwWyIYq34Y5zWUwvd/nYChAFW4q26/YE5DXMVzvfw=
+X-Received: by 2002:a19:ca05:: with SMTP id a5mr4558685lfg.571.1605017930249;
+ Tue, 10 Nov 2020 06:18:50 -0800 (PST)
 MIME-Version: 1.0
-References: <20201106093118.965152-1-gregory.clement@bootlin.com>
-In-Reply-To: <20201106093118.965152-1-gregory.clement@bootlin.com>
+References: <20201105120410.18305-1-srinivas.kandagatla@linaro.org>
+ <20201105120410.18305-2-srinivas.kandagatla@linaro.org> <CACRpkda91ncAVGj8_qcEyKPnRQdJjXMMCQ4ZJ1t7bVfcCZF=CA@mail.gmail.com>
+ <f6bfa003-b8c7-f0d1-24f1-14f45fa37a23@linaro.org>
+In-Reply-To: <f6bfa003-b8c7-f0d1-24f1-14f45fa37a23@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Nov 2020 15:11:37 +0100
-Message-ID: <CACRpkdYJHd47-vpuXjb8s0Y=Y=w+QaAMEK+=STqRFbESXJ8M-g@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Extend pinctrl ocelot driver to support other SoCs
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+Date:   Tue, 10 Nov 2020 15:18:39 +0100
+Message-ID: <CACRpkdZatw-zUcRNJRCcdjcv2aeYJn16PdLg3nonTMmWFbhxig@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 6, 2020 at 10:31 AM Gregory CLEMENT
-<gregory.clement@bootlin.com> wrote:
+On Fri, Nov 6, 2020 at 12:08 PM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
 
-> Ocelot SoC belongs to a larger family of SoCs which use the same
-> interrupt controller with a few variation.
+> Some more detail of wiring of this additional pin-controller IP:
 >
-> This series of patches add support for Luton and Serval, they are all
-> MIPS based.
+> This IP is an additional pinctrl block on top the existing SoC TLMM
+> pin-controller (Audio) pins.
 >
-> The first patches of the series also updates the binding documentation
-> with the new compatible strings.
+> The hw setup looks like:
+>
+> TLMM GPIO[146 - 159] --> LPASS LPI GPIO [0 - 13]
+>
+> However SoC TLMM pin-controller can only be touched for use of those
+> pins in GPIO mode and non gpio mode is completely handled by the LPASS
+> LPI pinctrl block. Apart from this slew rate is also available in this
+> block for certain pins which are connected to SLIMbus or SoundWire Bus.
 
-All 4 patches applied.
+OK put this in the commit message, good to know!
 
-Please consider converting the device tree bindings to YAML
-when/if you have time.
+I gues the pins are not quite "GPIO" at this point, instead they are
+turned into LPASS pins?
+
+> Normally we would not expect these pins to be touched by SoC TLMM
+> pin-controller as these pins are used for audio usecase and the control
+> is always with LPASS LPI controller. There are additional bits to
+> configure/enforce this in SoC TLMM block!
+
+If you start to use IRQs they might become hierarchical WRT the
+TLMM. But no IRQ support yet, so...
 
 Yours,
 Linus Walleij
