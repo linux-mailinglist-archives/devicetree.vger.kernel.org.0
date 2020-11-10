@@ -2,243 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A142AD185
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 09:43:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EDBC2AD1D5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 09:51:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727658AbgKJInb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 03:43:31 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:46336 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726827AbgKJInb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 03:43:31 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0AA8ddPR003483;
-        Tue, 10 Nov 2020 03:43:12 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 34nsc90cv5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 10 Nov 2020 03:43:12 -0500
-Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 0AA8hArq014669
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 10 Nov 2020 03:43:10 -0500
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 10 Nov 2020 00:43:09 -0800
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Tue, 10 Nov 2020 00:43:09 -0800
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0AA8h2G7020044;
-        Tue, 10 Nov 2020 03:43:03 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <lars@metafoo.de>, <robh+dt@kernel.org>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v2] dt-bindings: adau1977: convert text binding to yaml format
-Date:   Tue, 10 Nov 2020 10:47:54 +0200
-Message-ID: <20201110084754.46756-1-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201106102052.32582-1-alexandru.ardelean@analog.com>
-References: <20201106102052.32582-1-alexandru.ardelean@analog.com>
+        id S1728986AbgKJIvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 03:51:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36154 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726690AbgKJIvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 03:51:21 -0500
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43D78C0613CF;
+        Tue, 10 Nov 2020 00:51:21 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id 7so16354765ejm.0;
+        Tue, 10 Nov 2020 00:51:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TlTxhcApcg62vqX1M9f+2W2ckUK1QJqanSSJQGwPcCo=;
+        b=V3v1WsO3FDfA8JB8roAezvpRaz97QWsjdUjXFjXUWaxLZH0neXUTx39sL7DJTU8RwA
+         CoDwJ4Vprq0pitDQ3ea1B+R6KT5Xos+5qQmjDPlKyOZQR5/NtgcW2nFixSPppZmhfkEc
+         v2j+SCc8kFWyU2hKLTUsd9jx5MWRbBCBLhL9KDijN4SDasX5c0ezFg/bSbl3uwgHvL5w
+         Olehg5zZlLcn3GI2T6TmeHFxQYnHCXizKi795FDH30spBpE66Y5oiQJNI3t6Lrc2pF7u
+         inZ8IiZWFy7xmVMsvdNxjNgZojc4HJrZQGhovwtXpX6JbH1DDsB2d/nu6aHWWfPxpryq
+         HmjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TlTxhcApcg62vqX1M9f+2W2ckUK1QJqanSSJQGwPcCo=;
+        b=Mt5HOoyVwTbiD4OwwFeZFMPGY7sDFwSpfijjl5KjSK+VBZnI73il60w4QA8STFw8d3
+         /tqdxxZ7U/q6ou1E7z2aeDIsBgx/Ojg3A7wPluoX1KilSNp/1zTo2zs/s/H1DCkY1Yqi
+         +oMB3EiTbZWEF0LWhdLTrBJuS741iX6HxNLeXNssU4EZP0m/GOOqxv5Dej2DAZON4YmH
+         vO5PggUdDhsVTtKAFXhuc52qumgsdE1PimLM+QsWUbR9MbtDlPyQ51TqlBPfNaHyaKVr
+         PnoM1XYkiqcm/9jusO6Pz9FcMXG4pMOXH3PtrtqNSoPaUznVmL8W77DqnIMSRjoVNS+j
+         LZfQ==
+X-Gm-Message-State: AOAM531FMKVPV2PZj8WXY6bkyu+1IUO3n5Y0k89BfUWyzmadFYt6RYwf
+        Ye2pRFVGf5MM+w7gnHDDHLJBsaj/98EvkolhNbQ=
+X-Google-Smtp-Source: ABdhPJyivmb3ngYrw4gtkNWPfiNQYExGOC3o066XQXDnsrHRenMS2oz3iAAHjo6Ogz8WiiePxqU6Aj0qnt+2EiVRZCs=
+X-Received: by 2002:a17:906:c18c:: with SMTP id g12mr18851005ejz.334.1604998279995;
+ Tue, 10 Nov 2020 00:51:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-10_03:2020-11-05,2020-11-10 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- priorityscore=1501 bulkscore=0 clxscore=1015 lowpriorityscore=0
- impostorscore=0 adultscore=0 phishscore=0 mlxlogscore=999 malwarescore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011100062
+References: <20201110040553.1381-1-frank@allwinnertech.com>
+ <CAEExFWsc4Rx2U+BVuqTJkL0wj-gdNcF=emJRcStQ2Uq=FQEx1g@mail.gmail.com> <CAJKOXPf4ARNnSnvDpn7vVC0kGNd+m_dkfgKkmH_bca2AZ_Osyg@mail.gmail.com>
+In-Reply-To: <CAJKOXPf4ARNnSnvDpn7vVC0kGNd+m_dkfgKkmH_bca2AZ_Osyg@mail.gmail.com>
+From:   Frank Lee <tiny.windzz@gmail.com>
+Date:   Tue, 10 Nov 2020 16:51:08 +0800
+Message-ID: <CAEExFWv2o9aTfUVM5NzZz10kAO_Ya8VJvJrmyjh55=U_5G8RJw@mail.gmail.com>
+Subject: Re: [PATCH 00/19] Second step support for A100
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Frank Lee <frank@allwinnertech.com>, vkoul@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, kishon@ti.com,
+        wim@linux-watchdog.org, Guenter Roeck <linux@roeck-us.net>,
+        dan.j.williams@intel.com, Linus Walleij <linus.walleij@linaro.org>,
+        wsa+renesas@sang-engineering.com, dianders@chromium.org,
+        marex@denx.de, Colin King <colin.king@canonical.com>,
+        rdunlap@infradead.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
+        rikard.falkeborn@gmail.com, dmaengine@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
+        linux-watchdog@vger.kernel.org,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change converts the old device-tree binding for ADAU1977 from text
-format to the new yaml format.
+On Tue, Nov 10, 2020 at 4:43 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On Tue, 10 Nov 2020 at 07:00, Frank Lee <tiny.windzz@gmail.com> wrote:
+> >
+> > It seems that sending too many e-mails at one time will cause some
+> > emails to fail to be sent out. I will try again.
+>
+> Hi,
+>
+> Instead please reduce the address list to relevant people, as pointed
+> out by scripts/get_maintainer.pl. Don't Cc irrelevant developers
+> unless a file is abandoned and you need to get as much audience as
+> possible... but sunxi is not abandoned.
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
+Thank you for the reminder. I resend the version in the afternoon,
+only CC the relevant people. I'm not sure. Should the cover be copied
+to everyone?
 
-Changelog v1 -> v2:
-* updated libraries to catch newer schema errors/warnings
-* fixed examples, added i2c & spi nodes
-
- .../bindings/sound/adi,adau1977.txt           | 61 ------------
- .../bindings/sound/adi,adau1977.yaml          | 92 +++++++++++++++++++
- 2 files changed, 92 insertions(+), 61 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/adi,adau1977.txt
- create mode 100644 Documentation/devicetree/bindings/sound/adi,adau1977.yaml
-
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau1977.txt b/Documentation/devicetree/bindings/sound/adi,adau1977.txt
-deleted file mode 100644
-index 37f8aad01203..000000000000
---- a/Documentation/devicetree/bindings/sound/adi,adau1977.txt
-+++ /dev/null
-@@ -1,61 +0,0 @@
--Analog Devices ADAU1977/ADAU1978/ADAU1979
--
--Datasheets:
--https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1977.pdf
--https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1978.pdf
--https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1979.pdf
--
--This driver supports both the I2C and SPI bus.
--
--Required properties:
-- - compatible: Should contain one of the following:
--               "adi,adau1977"
--               "adi,adau1978"
--               "adi,adau1979"
--
-- - AVDD-supply: analog power supply for the device, please consult
--                Documentation/devicetree/bindings/regulator/regulator.txt
--
--Optional properties:
-- - reset-gpios: the reset pin for the chip, for more details consult
--                Documentation/devicetree/bindings/gpio/gpio.txt
--
-- - DVDD-supply: supply voltage for the digital core, please consult
--                Documentation/devicetree/bindings/regulator/regulator.txt
--
--- adi,micbias: configures the voltage setting for the MICBIAS pin.
--		Select 0/1/2/3/4/5/6/7/8 to specify MICBIAS voltage
--		5V/5.5V/6V/6.5V/7V/7.5V/8V/8.5V/9V
--		If not specified the default value will be "7" meaning 8.5 Volts.
--		This property is only valid for the ADAU1977
--
--For required properties on SPI, please consult
--Documentation/devicetree/bindings/spi/spi-bus.txt
--
--Required properties on I2C:
--
-- - reg:         The i2c address. Value depends on the state of ADDR0
--                and ADDR1, as wired in hardware.
--
--Examples:
--
--	adau1977_spi: adau1977@0 {
--		compatible = "adi,adau1977";
--		spi-max-frequency = <600000>;
--
--		AVDD-supply = <&regulator>;
--		DVDD-supply = <&regulator_digital>;
--
--		adi,micbias = <3>;
--		reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
--	};
--
--	adau1977_i2c: adau1977@11 {
--		compatible = "adi,adau1977";
--		reg = <0x11>;
--
--		AVDD-supply = <&regulator>;
--		DVDD-supply = <&regulator_digital>;
--
--		reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
--	};
-diff --git a/Documentation/devicetree/bindings/sound/adi,adau1977.yaml b/Documentation/devicetree/bindings/sound/adi,adau1977.yaml
-new file mode 100644
-index 000000000000..b80454ad97da
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/adi,adau1977.yaml
-@@ -0,0 +1,92 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/adi,adau1977.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADAU1977/ADAU1978/ADAU1979 Quad ADC with Diagnostics
-+
-+maintainers:
-+  - Lars-Peter Clausen <lars@metafoo.de>
-+  - Bogdan Togorean <bogdan.togorean@analog.com>
-+
-+description: |
-+  Analog Devices ADAU1977 and similar quad ADC with Diagnostics
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1977.pdf
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1978.pdf
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADAU1979.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adau1977
-+      - adi,adau1978
-+      - adi,adau1979
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  spi-max-frequency: true
-+
-+  AVDD-supply:
-+    description: Analog power support for the device.
-+
-+  DVDD-supply:
-+    description: Supply voltage for digital core.
-+
-+  adi,micbias:
-+    description: |
-+      Configures the voltage setting for the MICBIAS pin.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3, 4, 5, 6, 7, 8]
-+    default: 7
-+
-+required:
-+  - reg
-+  - compatible
-+  - AVDD-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        adau1977_spi: adau1977@0 {
-+            compatible = "adi,adau1977";
-+            reg = <0>;
-+            spi-max-frequency = <600000>;
-+
-+            AVDD-supply = <&regulator>;
-+            DVDD-supply = <&regulator_digital>;
-+
-+            reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
-+
-+            adi,micbias = <3>;
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        adau1977_i2c: adau1977@11 {
-+            compatible = "adi,adau1977";
-+            reg = <0x11>;
-+
-+            AVDD-supply = <&regulator>;
-+            DVDD-supply = <&regulator_digital>;
-+
-+            reset-gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
-+        };
-+    };
--- 
-2.17.1
-
+Yangtao
