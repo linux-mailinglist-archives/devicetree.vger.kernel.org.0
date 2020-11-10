@@ -2,30 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1643F2ACFB4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 07:31:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D40452ACFD4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 07:37:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730012AbgKJGbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 01:31:18 -0500
-Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:42468 "EHLO
+        id S1730756AbgKJGg7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 01:36:59 -0500
+Received: from smtp2207-205.mail.aliyun.com ([121.197.207.205]:36840 "EHLO
         smtp2207-205.mail.aliyun.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728675AbgKJGbR (ORCPT
+        by vger.kernel.org with ESMTP id S1726010AbgKJGg7 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Nov 2020 01:31:17 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1356364|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.446168-0.0014012-0.552431;FP=16495670707795891115|1|1|17|0|-1|-1|-1;HT=ay29a033018047211;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=8;RT=8;SR=0;TI=SMTPD_---.IuocOSC_1604989871;
-Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.IuocOSC_1604989871)
-          by smtp.aliyun-inc.com(10.147.41.178);
-          Tue, 10 Nov 2020 14:31:15 +0800
+        Tue, 10 Nov 2020 01:36:59 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.4385088|-1;CH=blue;DM=|OVERLOAD|false|;DS=CONTINUE|ham_system_inform|0.00646372-0.000493263-0.993043;FP=11946349065999613887|1|1|17|0|-1|-1|-1;HT=ay29a033018047209;MF=frank@allwinnertech.com;NM=1;PH=DS;RN=11;RT=11;SR=0;TI=SMTPD_---.Iup7tB7_1604990210;
+Received: from allwinnertech.com(mailfrom:frank@allwinnertech.com fp:SMTPD_---.Iup7tB7_1604990210)
+          by smtp.aliyun-inc.com(10.147.40.2);
+          Tue, 10 Nov 2020 14:36:54 +0800
 From:   Frank Lee <frank@allwinnertech.com>
 To:     tiny.windzz@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Yangtao Li <frank@allwinnertech.com>,
+Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yangtao Li <frank@allwinnertech.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
         Rob Herring <robh+dt@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
         Chen-Yu Tsai <wens@csie.org>
-Subject: [RESEND PATCH 07/19] arm64: dts: allwinner: A100: Add PMU mode
-Date:   Tue, 10 Nov 2020 14:31:05 +0800
-Message-Id: <5aede9ac5069e61913905617b20cdcf1ec84fe26.1604988979.git.frank@allwinnertech.com>
+Subject: [RESEND PATCH 10/19] dt-bindings: watchdog: sun4i: Add A100 compatible
+Date:   Tue, 10 Nov 2020 14:36:48 +0800
+Message-Id: <cd080363346d5019658afecfb251b019b4e25049.1604988979.git.frank@allwinnertech.com>
 X-Mailer: git-send-email 2.28.0
 In-Reply-To: <cover.1604988979.git.frank@allwinnertech.com>
 References: <cover.1604988979.git.frank@allwinnertech.com>
@@ -37,60 +40,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yangtao Li <frank@allwinnertech.com>
 
-Add the Performance Monitoring Unit (PMU) device tree node to the A100
-.dtsi, which tells DT users which interrupts are triggered by PMU overflow
-events on each core.
+Add a binding for A100's watchdog controller.
 
 Signed-off-by: Yangtao Li <frank@allwinnertech.com>
 ---
- arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+ .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml  | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-index c34ed8045363..01ff53b5a7a8 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-@@ -25,21 +25,21 @@ cpu0: cpu@0 {
- 			enable-method = "psci";
- 		};
- 
--		cpu@1 {
-+		cpu1: cpu@1 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			reg = <0x1>;
- 			enable-method = "psci";
- 		};
- 
--		cpu@2 {
-+		cpu2: cpu@2 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			reg = <0x2>;
- 			enable-method = "psci";
- 		};
- 
--		cpu@3 {
-+		cpu3: cpu@3 {
- 			compatible = "arm,cortex-a53";
- 			device_type = "cpu";
- 			reg = <0x3>;
-@@ -47,6 +47,15 @@ cpu@3 {
- 		};
- 	};
- 
-+	pmu {
-+		compatible = "arm,cortex-a53-pmu";
-+		interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+			     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-+	};
-+
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
+diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+index e8f226376108..5ac607de8be4 100644
+--- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+@@ -21,6 +21,9 @@ properties:
+       - items:
+           - const: allwinner,sun50i-a64-wdt
+           - const: allwinner,sun6i-a31-wdt
++      - items:
++          - const: allwinner,sun50i-a100-wdt
++          - const: allwinner,sun6i-a31-wdt
+       - items:
+           - const: allwinner,sun50i-h6-wdt
+           - const: allwinner,sun6i-a31-wdt
 -- 
 2.28.0
 
