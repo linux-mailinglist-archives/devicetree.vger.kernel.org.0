@@ -2,87 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA20C2ACF48
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 06:53:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 599342ACF55
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 07:00:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729801AbgKJFx3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 00:53:29 -0500
-Received: from asavdk3.altibox.net ([109.247.116.14]:42644 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729795AbgKJFx3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 00:53:29 -0500
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 077672003B;
-        Tue, 10 Nov 2020 06:53:25 +0100 (CET)
-Date:   Tue, 10 Nov 2020 06:53:24 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: display: panel-simple: Allow optional
- 'ports' property
-Message-ID: <20201110055324.GA1993169@ravnborg.org>
-References: <1604477017-17642-1-git-send-email-victor.liu@nxp.com>
- <20201104104735.GA1581328@ravnborg.org>
- <9a187307aa4f39c44a117f2b99a7f7fd4817e129.camel@nxp.com>
+        id S1731945AbgKJGAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 01:00:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38144 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731049AbgKJGAl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 01:00:41 -0500
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 198A4C0613CF;
+        Mon,  9 Nov 2020 22:00:41 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id oq3so15755689ejb.7;
+        Mon, 09 Nov 2020 22:00:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bE8WeeYQEHFtF17RNP5Oxj6GxutlBisvy7hbOEQf1Ak=;
+        b=OR07CcuVrCF6wYXaQDqlo/K8SH9Dw4xZULiQzKDVeg7I2cRTq9QNjisDaOAgFX7MfG
+         ef4T9zjaSnxv/bbLbrScydAvkL7BjpinwWjJwvr35EYzojjVRrt96iEiWYH8H24miseF
+         /0t+KZpK7HL7kihrBQF3skChsuuB081Fy5UQWnzSRWbkX8z5cq6JWgTXLtMs0+sL8nJp
+         pJ/QPgquVxPVkAAfcU1cUCgbh/55gVopB+l+ZWO+bt7Hc90ztbv4Mc/0NG0jDHSoPtmJ
+         lbfc3qzLnVmEpZqa8oIieKnK+k0FViYNrDT6XD/3eVm2YMVq5qH6gWHn0Wukcfx6nRyx
+         VHSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bE8WeeYQEHFtF17RNP5Oxj6GxutlBisvy7hbOEQf1Ak=;
+        b=ScfotcBJV3RdvcFybovgu6LX6ZoMhaElIhAnIdP0N0TtC345y2qm9o1++zjQGrOyOV
+         WitK8Ddf6+pDRgvCi8P7kSuxcCpahAr3+6vBC0NcoWr0htNtppnInKuqy3xPptpi4r1x
+         fNj3ZE5I2udUwR6uAvh7Gr/hWeaTAhiwq99aASrNXXLybsbr4CA23Jly1DwSOKXw200f
+         hdidN0mYjx5b1ZEcNJW6pGlpsi9Xz8VWddHKt0UcgvepdibVkti/gs0umyRRIOo0j4No
+         jcp6xUcA8sua9KhYlxPLDLdU4whhkgGLhqyemFlzbaqTlT9xy4WkzpZX72EmxUjhezMQ
+         bd8A==
+X-Gm-Message-State: AOAM531LZmRqm3K8FW/n36rWoEicijCeUXzs7OTOq1sutGF4cvHlGv61
+        dLG0yGLIkrAs0WDYe2VsNyQZNFHrfR0IxGccBjQ=
+X-Google-Smtp-Source: ABdhPJz4mf96R6on9ZrpE6+hnIU7ZS3/XWcV1xcgyurHVQJVJmer6zC2N74MUy8lKIxMalPHU5n5gkdaU/rcrB/Uir8=
+X-Received: by 2002:a17:906:5a97:: with SMTP id l23mr18192217ejq.232.1604988039859;
+ Mon, 09 Nov 2020 22:00:39 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9a187307aa4f39c44a117f2b99a7f7fd4817e129.camel@nxp.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=Todku-sVb2SKgMi1d8kA:9 a=CjuIK1q_8ugA:10
+References: <20201110040553.1381-1-frank@allwinnertech.com>
+In-Reply-To: <20201110040553.1381-1-frank@allwinnertech.com>
+From:   Frank Lee <tiny.windzz@gmail.com>
+Date:   Tue, 10 Nov 2020 14:00:28 +0800
+Message-ID: <CAEExFWsc4Rx2U+BVuqTJkL0wj-gdNcF=emJRcStQ2Uq=FQEx1g@mail.gmail.com>
+Subject: Re: [PATCH 00/19] Second step support for A100
+To:     Frank Lee <frank@allwinnertech.com>
+Cc:     vkoul@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>, kishon@ti.com,
+        wim@linux-watchdog.org, Guenter Roeck <linux@roeck-us.net>,
+        dan.j.williams@intel.com, Linus Walleij <linus.walleij@linaro.org>,
+        wsa+renesas@sang-engineering.com, dianders@chromium.org,
+        marex@denx.de, Colin King <colin.king@canonical.com>,
+        rdunlap@infradead.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
+        rikard.falkeborn@gmail.com, dmaengine@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
+        linux-watchdog@vger.kernel.org,
+        linux-gpio <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Liu Ying,
-On Tue, Nov 10, 2020 at 10:37:27AM +0800, Liu Ying wrote:
-> Hi Sam,
-> 
-> On Wed, 2020-11-04 at 11:47 +0100, Sam Ravnborg wrote:
-> > Hi Liu Ying
-> > 
-> > On Wed, Nov 04, 2020 at 04:03:37PM +0800, Liu Ying wrote:
-> > > Some simple panels have dual LVDS interfaces which receive even and
-> > > odd
-> > > pixels respectively, like 'nlt,nl192108ac18-02d' and
-> > > 'koe,tx26d202vm0bwa'.
-> > > So, let's allow optional 'ports' property so that pixel order can
-> > > be got
-> > > via drm_of_lvds_get_dual_link_pixel_order() if it's child nodes 
-> > > 'port@0'
-> > > and 'port@1' contain 'dual-lvds-even-pixels' and 'dual-lvds-odd-
-> > > pixels'
-> > > properties respectively.
-> > 
-> > A panel with dual LVDS interfaces is no longer in the "simple"
-> > category.
-> > The panel-simple binding shall be limited to the simple pnales only.
-> > 
-> > This is also why we have for example panel-simple-dsi binding.
-> > 
-> > Please consider either a binding dedicated for the dual port displays
-> > or
-> 
-> Thanks for your review.
-> 
-> Does a new 'panel-simple-lvds-dual-ports.yaml' binding look ok?
-> I assume it would inherit all properties of panel-simple.yaml and all
-> existing compatibles of LVDS panels with dual ports in
-> panel-simple.yaml can be moved to it.
+It seems that sending too many e-mails at one time will cause some
+emails to fail to be sent out. I will try again.
 
-Yes, that would be fine. If possible we shall have similar panels
-described by the same binding.
-
-Try to send out the binding for review early before starting to move too
-much around - so we can get an early look at it at see if this is indeed
-the right direction to go.
-
-	Sam
+BR / Yangtao
