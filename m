@@ -2,177 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD5B02ADD07
-	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 18:36:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4678C2ADD0C
+	for <lists+devicetree@lfdr.de>; Tue, 10 Nov 2020 18:36:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726467AbgKJRgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 12:36:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33420 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730990AbgKJRgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 12:36:07 -0500
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76274C0613CF;
-        Tue, 10 Nov 2020 09:36:05 -0800 (PST)
-Received: by mail-wr1-x442.google.com with SMTP id k2so10251753wrx.2;
-        Tue, 10 Nov 2020 09:36:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=yI7pvhhf9eYcr4c4vuzWGXxLuLv6b6en2IDwqJXbk+Y=;
-        b=do4lRAMBI6RWf83PHfjNL7LPsj3Vf2qxc4GqgjMUYqwPTvqWkyZPcShe6XJ8Pw1xqj
-         CMt1QROqtHQxccnccQjkYB1/RU50s/0pQW20jZylYDs6hK52PVtN4PQa2+ZAlnoRDGu8
-         45r/cgM5N4ZBPeLL9ICWi5HUkMJeoAOzYGv+CuyJ9l/hAihuvUlM5gTXvCeZC7xZ/2bN
-         iX7pIeJWVdJp/YF145/4GO3cbHsKP6nLfGU9u9KChlucAy6rc2qbh2SFD5ApARn56lgd
-         Kb7tZwjzlRZoS01w6KfbC1TJjIWjVlAnMv9axciNcCxkX5P1CE9eaZR8PqzCeWQF0zn/
-         addw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=yI7pvhhf9eYcr4c4vuzWGXxLuLv6b6en2IDwqJXbk+Y=;
-        b=h3pIlw8WtiYrQEx83GHC1/Agn0xXHiVivoQpQkAEv/KrnvVLHbXJbtmdp+jm+NOFel
-         0LuydyluljqvUGcecKf6YqOrY48XeCZURVLVGIme+5TlOANG2JuMxl8YC0m+Fy+M16xM
-         bkAhCZ4K5bFUTS6Gjvdl+MBpYbvlrjYSBSs7JQNVWVmVy5rxq3hP0njWE1KdVFH3EWZa
-         uvb4Z3Ad2IqC/sHblxKrDpw2BYKQyaZVjSDUrOM+qGKOVeovMuyWLwZXW7ntSEGIX9db
-         PBNblQcbcXPuyR7QJUTpUHAaDyW031v9lxYkpu/sUTNXepzMX9M3JISOrJLNKvxZtv99
-         FOxw==
-X-Gm-Message-State: AOAM531oPEfjFPuUn08/Ticj1TYvuytHKyxBvOqyi9RRMh5/+SSVuAlI
-        WG4o/EYuZFH/N+X6v6cyDCs=
-X-Google-Smtp-Source: ABdhPJzuzKaU+Y7TqU/Dvr4PZBvls9L6VEQSJmi0yNMwk/sieOXMXK1ErnIWP/rXHqhVY/x7vd6Z+A==
-X-Received: by 2002:a5d:444c:: with SMTP id x12mr13123292wrr.6.1605029764212;
-        Tue, 10 Nov 2020 09:36:04 -0800 (PST)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id n9sm3683926wmd.4.2020.11.10.09.36.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 09:36:03 -0800 (PST)
-Date:   Tue, 10 Nov 2020 18:36:01 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Nagarjuna Kristam <nkristam@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: tegra186: Add missing CPU PMUs
-Message-ID: <20201110173601.GA2297135@ulmo>
-References: <20201013095851.311478-1-maz@kernel.org>
+        id S1730983AbgKJRgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 12:36:54 -0500
+Received: from mga06.intel.com ([134.134.136.31]:37254 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730299AbgKJRgy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 12:36:54 -0500
+IronPort-SDR: y/BlxRnqVcOLnrCyt83Z+8t9Vt15asWzgReZdYqtVwpyYz+y2A7TtWLU29G3FRyL6TVHufOW7i
+ m/XylgFFCJrA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="231645371"
+X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
+   d="scan'208";a="231645371"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 09:36:52 -0800
+IronPort-SDR: F53sb+0lbYh1DQwyXVc27+eYvsELjCPWmvyKuGIYgvp3oxR00zOLNI1fxiWi2DyErePBLSAmLA
+ KWQ9cx3hSDBA==
+X-IronPort-AV: E=Sophos;i="5.77,466,1596524400"; 
+   d="scan'208";a="541418650"
+Received: from bmaguire-mobl1.ger.corp.intel.com ([10.252.16.241])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 09:36:49 -0800
+Message-ID: <89bb5cd49a61d00c2d2f08a4b9273aaecd972ef8.camel@linux.intel.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: Add Keem Bay OCS HCU
+ bindings
+From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Mark Gross <mgross@linux.intel.com>,
+        Declan Murphy <declan.murphy@intel.com>,
+        daniele.alessandrelli@intel.com
+Date:   Tue, 10 Nov 2020 17:36:43 +0000
+In-Reply-To: <20201109161532.GA1382203@bogus>
+References: <20201103184925.294456-1-daniele.alessandrelli@linux.intel.com>
+         <20201103184925.294456-2-daniele.alessandrelli@linux.intel.com>
+         <20201109161532.GA1382203@bogus>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="lrZ03NoBR/3+SXJZ"
-Content-Disposition: inline
-In-Reply-To: <20201013095851.311478-1-maz@kernel.org>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 2020-11-09 at 10:15 -0600, Rob Herring wrote:
+> On Tue, Nov 03, 2020 at 06:49:23PM +0000, Daniele Alessandrelli wrote:
+> > From: Declan Murphy <declan.murphy@intel.com>
+> > 
+> > Add device-tree bindings for the Intel Keem Bay Offload Crypto Subsystem
+> > (OCS) Hashing Control Unit (HCU) crypto driver.
+> > 
+> > Signed-off-by: Declan Murphy <declan.murphy@intel.com>
+> > Signed-off-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> > Acked-by: Mark Gross <mgross@linux.intel.com>
+> > ---
+> >  .../crypto/intel,keembay-ocs-hcu.yaml         | 51 +++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml b/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+> > new file mode 100644
+> > index 000000000000..cc03e2b66d5a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/crypto/intel,keembay-ocs-hcu.yaml
+> > @@ -0,0 +1,51 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/crypto/intel,keembay-ocs-hcu.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Intel Keem Bay OCS HCU Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Declan Murphy <declan.murphy@intel.com>
+> > +  - Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> > +
+> > +description:
+> > +  The Intel Keem Bay Offload and Crypto Subsystem (OCS) Hash Control Unit (HCU)
+> > +  provides hardware-accelerated hashing and HMAC.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: intel,keembay-ocs-hcu
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: The OCS HCU base register address
+> 
+> Just need 'maxItems: 1' if there's only 1. The description doesn't add 
+> anything.
 
---lrZ03NoBR/3+SXJZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the review. I will change this and the ones below.
 
-On Tue, Oct 13, 2020 at 10:58:51AM +0100, Marc Zyngier wrote:
-> Add the description of CPU PMUs for both the Denver and A57 clusters,
-> which enables the perf subsystem.
->=20
-> Signed-off-by: Marc Zyngier <maz@kernel.org>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra186.dtsi | 28 +++++++++++++++++++-----
->  1 file changed, 22 insertions(+), 6 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra186.dtsi
-> index fd44545e124d..6bb03668a8d3 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-> @@ -1321,7 +1321,7 @@ cpus {
->  		#address-cells =3D <1>;
->  		#size-cells =3D <0>;
-> =20
-> -		cpu@0 {
-> +		denver_0: cpu@0 {
->  			compatible =3D "nvidia,tegra186-denver";
->  			device_type =3D "cpu";
->  			i-cache-size =3D <0x20000>;
-> @@ -1334,7 +1334,7 @@ cpu@0 {
->  			reg =3D <0x000>;
->  		};
-> =20
-> -		cpu@1 {
-> +		denver_1: cpu@1 {
->  			compatible =3D "nvidia,tegra186-denver";
->  			device_type =3D "cpu";
->  			i-cache-size =3D <0x20000>;
-> @@ -1347,7 +1347,7 @@ cpu@1 {
->  			reg =3D <0x001>;
->  		};
-> =20
-> -		cpu@2 {
-> +		ca57_0: cpu@2 {
->  			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			i-cache-size =3D <0xC000>;
-> @@ -1360,7 +1360,7 @@ cpu@2 {
->  			reg =3D <0x100>;
->  		};
-> =20
-> -		cpu@3 {
-> +		ca57_1: cpu@3 {
->  			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			i-cache-size =3D <0xC000>;
-> @@ -1373,7 +1373,7 @@ cpu@3 {
->  			reg =3D <0x101>;
->  		};
-> =20
-> -		cpu@4 {
-> +		ca57_2: cpu@4 {
->  			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			i-cache-size =3D <0xC000>;
-> @@ -1386,7 +1386,7 @@ cpu@4 {
->  			reg =3D <0x102>;
->  		};
-> =20
-> -		cpu@5 {
-> +		ca57_3: cpu@5 {
->  			compatible =3D "arm,cortex-a57";
->  			device_type =3D "cpu";
->  			i-cache-size =3D <0xC000>;
-> @@ -1418,6 +1418,22 @@ L2_A57: l2-cache1 {
->  		};
->  	};
-> =20
-> +	pmu_denver {
-> +		compatible =3D "nvidia,denver-pmu", "arm,armv8-pmuv3";
+> 
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: OCS HCU interrupt
+> 
+> Same here
+> 
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: OCS clock
+> 
+> And here.
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    crypto@3000b000 {
+> > +      compatible = "intel,keembay-ocs-hcu";
+> > +      reg = <0x3000b000 0x1000>;
+> > +      interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>;
+> > +      clocks = <&scmi_clk 94>;
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.26.2
+> > 
 
-checkpatch complains that this isn't documented. Did I miss the DT
-bindings patch or do we not have one for this?
-
-Thierry
-
---lrZ03NoBR/3+SXJZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+qz30ACgkQ3SOs138+
-s6HBzxAAwEqPA1wNNau74MzrdtTvnywfhkpkSXdS4sGF1NCGM/vv/ztqHAiaaEK4
-SsqfPs5v3Qe+qPiEAH3BHZxJ9hZBtJNQHtx7bT/98I5BUXpsQB4S9IwIWXy6zoy6
-5Ji8kF59PdCXGoPrlDNSZJq1t1dje2O1OtRPKLO0pDMIFNxZN+Ae5SuTiV9BkVjJ
-e7wEF7a+Ty2davsHmZfgpkgETgDArrmZmniF6zIVWsxrj7wkr7ZvcjToxG5O/Xf0
-XJnvySxDj9ImXrgrS8BMDkGn5WbQSbPNGCTCymDoScCxlIHxkW1qFCI6y+VrdrK0
-X+uOQ8wXV5pNEUR1dna8QGHG41+dWMpih6tGXDxd94FUBFeCiZURuk8LP9tl3WDh
-vXu915BVIaWbXrL6UK5Z2Fyy1bF+3OSsl8QtwyR7cDGCPyAkp/KrDr42LEbkV2N8
-tTQtm22A65L3v3RLxnXxvG9cue4s+Jc82dPbzTwEXn23T29gcL56Bzt/mQQRICz1
-1gVT5bGHY0x3RvW+whI5CZhvmYhcZXbXg3jZiTrexRMzTqrvq24kt/UIb/TMvJi9
-y9OgY63cAUR5HPepC23mPI0sQY5kYgjlYe0p0B2oRm+fUJzCW9duTwpkknFPjh5L
-ntIopqi3tuv+flXIjaTdbuJoNZr3VbOAHrKacm9d9xB6MsEQbFo=
-=iZdz
------END PGP SIGNATURE-----
-
---lrZ03NoBR/3+SXJZ--
