@@ -2,108 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C61D2AF6EE
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 17:53:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6FD2AF802
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 19:35:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726634AbgKKQxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 11:53:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57376 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725979AbgKKQxC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 11:53:02 -0500
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C98CF207DE;
-        Wed, 11 Nov 2020 16:53:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605113581;
-        bh=JmHvo1SzasskdROAWMoAgJ6ASA6flz7HfKula4/+Rxc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vrWvgsCUe3WUikOynKF6WlqA5l0n3Ae1O6V5ZPQigDunSwUXIaYX8ZofQhXb9U4LG
-         Esja9EsroullITulSAV8dkBDv3SOgb7xsRWgGf6oTesxapQG9ngNCNgSOZufBQADRR
-         PvjNyIoTkRIvuA/Pa4Or0KVFxrn9OX8zEqdV9Jjg=
-Received: by mail-ej1-f44.google.com with SMTP id f20so3693531ejz.4;
-        Wed, 11 Nov 2020 08:53:00 -0800 (PST)
-X-Gm-Message-State: AOAM530IxLyiKx+XNMeioTQy4gn/3YDS93ei1I0sSRGMJAiC06vExWCr
-        F+qqexaCyEm+nX2maf/k+mU8lAHFt6Oy3I1A9g==
-X-Google-Smtp-Source: ABdhPJzdRmYGXhqdGMuO0dJRFroeBzeq9MJGO2EU8QQlLa+CkCedj+n4fq3F2ISZsjzb4o981Dy2VwbcJ3xH0AIJoko=
-X-Received: by 2002:a17:906:5f8d:: with SMTP id a13mr26062667eju.194.1605113579120;
- Wed, 11 Nov 2020 08:52:59 -0800 (PST)
+        id S1726126AbgKKSfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 13:35:04 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:5393 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725979AbgKKSfE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 13:35:04 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fac2ed20002>; Wed, 11 Nov 2020 10:34:58 -0800
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 11 Nov
+ 2020 18:35:03 +0000
+Received: from audio.nvidia.com (10.124.1.5) by mail.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Wed, 11 Nov 2020 18:35:00 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <thierry.reding@gmail.com>
+CC:     <jonathanh@nvidia.com>, <kuninori.morimoto.gx@renesas.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>, Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v5 0/6] Tegra210 audio graph card
+Date:   Thu, 12 Nov 2020 00:04:30 +0530
+Message-ID: <1605119676-32273-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20201111123838.15682-1-yong.wu@mediatek.com> <20201111123838.15682-25-yong.wu@mediatek.com>
-In-Reply-To: <20201111123838.15682-25-yong.wu@mediatek.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Thu, 12 Nov 2020 00:52:48 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_85-PWMVh3k+P_984irVVLaEWjPSyw1amFkRaQ+x=wg=A@mail.gmail.com>
-Message-ID: <CAAOTY_85-PWMVh3k+P_984irVVLaEWjPSyw1amFkRaQ+x=wg=A@mail.gmail.com>
-Subject: Re: [PATCH v4 24/24] MAINTAINERS: Add entry for MediaTek IOMMU
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>, youlin.pei@mediatek.com,
-        DTML <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        chao.hao@mediatek.com, kernel-team@android.com,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        iommu@lists.linux-foundation.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>, anan.sun@mediatek.com,
-        Greg Kroah-Hartman <gregkh@google.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605119698; bh=9pnGPueh9Jd4q76quuL9r1PLuTKpulNOZjgLkEmE5bY=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         Content-Type;
+        b=kEA4/XC9lwQwVATr/lOxrV0bWZwZqeeJe3xG2/2x+bCTlOoK9+W4AJF4LW++WbFB6
+         g2b6xybZEfvK2yfylUx1yfyyf7jT7/CKVROq8Q8WuMP4rvP4wp7RqY7Ng6dsMsYNNH
+         zHs5lwfvR1lDCT9Iai61kC2WbFvlzi/d7AF3UsMUwLdkx/1zcQC7zCpRZGOwMHia6N
+         BN4qT5vytcEY9AJpChuyTZJZrdz6F7Y4DdT+7kss6ZZqz6e+EtWTL95ZkkUK8WSRoU
+         qaMokeuC3nHWIrt7lnHy6qOUJIPfeg5zm1Uez0lwMm37WMVbGy2L55rLN5YjXpFWq8
+         zDUUBIRYi1NLQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yong:
+This series adds audio graph based sound card support for Tegra210
+platforms like Jetson-TX1 an Jetson-Nano. The following preparatory
+audio graph enhancement series is already merged.
+ * https://patchwork.kernel.org/project/alsa-devel/list/?series=375629&state=*
 
-Yong Wu <yong.wu@mediatek.com> =E6=96=BC 2020=E5=B9=B411=E6=9C=8811=E6=97=
-=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=888:53=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> I am the author of MediaTek iommu driver, and will to maintain and
-> develop it further.
-> Add myself to cover these items.
+Following are the summary of changes:
+ * Add graph/audio-graph based schemas or schema updates for Tegra210
+   component and machine drivers.
+ * Add Tegra audio graph machine driver.
+ * Add required DT support for Jetson-TX1/Nano.
 
-Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+This work is based on earlier discussion of DPCM usage for Tegra
+and simple card driver updates.
+ * https://lkml.org/lkml/2020/4/30/519
+ * https://lkml.org/lkml/2020/6/27/4
 
->
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  MAINTAINERS | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e73636b75f29..462a87ee19c8 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11056,6 +11056,15 @@ S:     Maintained
->  F:     Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
->  F:     drivers/i2c/busses/i2c-mt65xx.c
->
-> +MEDIATEK IOMMU DRIVER
-> +M:     Yong Wu <yong.wu@mediatek.com>
-> +L:     iommu@lists.linux-foundation.org
-> +L:     linux-mediatek@lists.infradead.org (moderated for non-subscribers=
-)
-> +S:     Supported
-> +F:     Documentation/devicetree/bindings/iommu/mediatek*
-> +F:     drivers/iommu/mtk-iommu*
-> +F:     include/dt-bindings/memory/mt*-larb-port.h
-> +
->  MEDIATEK JPEG DRIVER
->  M:     Rick Chang <rick.chang@mediatek.com>
->  M:     Bin Liu <bin.liu@mediatek.com>
-> --
-> 2.18.0
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+This series has dependency over following graph and audio-graph series.
+ * http://patchwork.ozlabs.org/project/devicetree-bindings/patch/20201102203656.220187-2-robh@kernel.org/
+ * https://patchwork.kernel.org/project/alsa-devel/list/?series=382009&state=*
+
+Changelog
+=========
+
+v4 -> v5
+--------
+ * Audio graph related changes were sent in separate v5 series as
+   mentioned above and are dropped from current series.
+ * Graph and audio graph doc patches are dropped from this series
+   and are sent separately as mentioned above.
+ * Minor change with phandle label for TX1 and Nano platform DT files.
+ * No changes in other patches.
+
+v3 -> v4
+--------
+ * Added new patches to convert graph.txt and audio-graph-card.txt
+   to corresponding json-schema files. Later these references
+   are used in Tegra audio graph schema.
+
+ * AHUB component binding docs are updated to reflect the usage
+   of ports/port/endpoint
+
+ * More common stuff is moved into graph_parse_of() and this is
+   used by both generic and Tegra audio graph.
+
+ * DT binding for Tegra audio graph is updated to included "ports { }"
+
+ * As per the suggestion 'void *data' member is dropped from
+   'asoc_simple_priv' and instead container method is used to
+   maintain required custom data internal to Tegra audio graph. 
+
+v2 -> v3
+--------
+ * Dropped new compatible addition in generic graph driver
+   after reviewing it with Morimoto-san. Instead added Tegra
+   audio graph driver and new compatibles are added in the same.
+ * Added new patches to expose new members for customization
+   in audio graph driver.
+ * Added new patch for Tegra audio graph driver and related
+   documentation.
+ * Minor change in below commit where mutex version of helper is used
+   "ASoC: audio-graph: Identify 'no_pcm' DAI links for DPCM"
+ * DT binding is updated to use the newly exposed compatibles
+ * No changes in other patches
+
+v1 -> v2
+--------
+ * Re-organized ports/endpoints description for ADMAIF and XBAR.
+   Updated DT patches accordingly.
+ * After above change, multiple Codec endpoint support is not
+   required and hence dropped for now. This will be considered
+   separately if at all required in future.
+ * Re-ordered patches in the series.
+
+
+Sameer Pujar (6):
+  ASoC: dt-bindings: tegra: Add graph bindings
+  ASoC: dt-bindings: tegra: Add json-schema for Tegra audio graph card
+  ASoC: tegra: Add audio graph based card driver
+  arm64: defconfig: Enable Tegra audio graph card driver
+  arm64: tegra: Audio graph header for Tegra210
+  arm64: tegra: Audio graph sound card for Jetson Nano and TX1
+
+ .../sound/nvidia,tegra-audio-graph-card.yaml       | 187 +++++++++++++++
+ .../bindings/sound/nvidia,tegra186-dspk.yaml       |   6 +
+ .../bindings/sound/nvidia,tegra210-admaif.yaml     |   6 +
+ .../bindings/sound/nvidia,tegra210-ahub.yaml       |  13 +-
+ .../bindings/sound/nvidia,tegra210-dmic.yaml       |   6 +
+ .../bindings/sound/nvidia,tegra210-i2s.yaml        |   6 +
+ .../boot/dts/nvidia/tegra210-audio-graph.dtsi      | 153 ++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts | 262 +++++++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 146 ++++++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ sound/soc/tegra/Kconfig                            |   9 +
+ sound/soc/tegra/Makefile                           |   2 +
+ sound/soc/tegra/tegra_audio_graph_card.c           | 255 ++++++++++++++++++++
+ 13 files changed, 1050 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra210-audio-graph.dtsi
+ create mode 100644 sound/soc/tegra/tegra_audio_graph_card.c
+
+-- 
+2.7.4
+
