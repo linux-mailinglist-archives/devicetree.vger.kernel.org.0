@@ -2,319 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC06E2AF96C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:03:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E33802AF970
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:04:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726406AbgKKUDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 15:03:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58170 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726391AbgKKUDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:03:47 -0500
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE30BC0613D6
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 12:03:47 -0800 (PST)
-Received: by mail-pg1-x544.google.com with SMTP id r10so2094558pgb.10
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 12:03:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DXaYZfXLx6Cp2pU+xUA5JlOzbe7aCi/UqFCMY0tSnls=;
-        b=D0MowZnMt52H/BXOEHQRLrGWTU9enHwLPcI+V3J22NwWe4hJWezqbZ+7tKbx82FlXO
-         Ohp7t18z81hFc6IFCmX0dla5d5WNkpR01qIFz7NO5y2KWE/qorN/kQkGPM2aalQNMemP
-         1b+F3EcVjGif5nYwBt2vwDnw33Lx7r+WHuyo0=
+        id S1726162AbgKKUD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 15:03:59 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45266 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726097AbgKKUD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:03:59 -0500
+Received: by mail-ot1-f68.google.com with SMTP id k3so3293740otp.12;
+        Wed, 11 Nov 2020 12:03:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DXaYZfXLx6Cp2pU+xUA5JlOzbe7aCi/UqFCMY0tSnls=;
-        b=QJ7Raz75eAgajOHKtMRpXknsyHfkpCmwL1qYpGYZji/iSRvJ+BH17NJR5Bh3OS00KR
-         l0QC5vMgsuG6ggWc5/nRTKN35s89QQ+PcQ0C6Fo6bdesBgRlA9nGDMfVL6LP4jGvEG/3
-         Bq632sGcVs3wna2rQkmqkK1xTtKPMO9nzLpx5JSkFGswB5TqnznFeC6BAKWj65kspzgv
-         ezydABGSUM0NloHzN3J494HzvoKlo/EiuCnz4Hl8iuXqEsfPmsoyTPi2AM+T8ghJTb/v
-         t1gu7XLZeMYOBA+dWh+XjZ+pTqbvTBoABW9Xe1h5fixEEkROn6MqQXuoTPAcCkCPGEGp
-         SIgQ==
-X-Gm-Message-State: AOAM5314PgyikV3paZSKDT26UVmYgQqhr95TOakId0nJcszYOMFkASTf
-        JlqKETSkCBsjMIZBQKts5e0YXw==
-X-Google-Smtp-Source: ABdhPJwdj6nsqjDpGwFbeVucPrC12E8DS0/xfoDbSNVHt1LqQedq70b0ikdS6MVyUf5e9Ie9kOE+YQ==
-X-Received: by 2002:a63:c43:: with SMTP id 3mr24166118pgm.222.1605125027215;
-        Wed, 11 Nov 2020 12:03:47 -0800 (PST)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id k7sm3464316pfa.184.2020.11.11.12.03.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Nov 2020 12:03:46 -0800 (PST)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Rajeshwari <rkambl@codeaurora.org>,
-        Akhil P Oommen <akhilpo@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH] arm64: dts: qcom: sc7180: Set 'polling-delay-passive' for thermal zones back to 250 ms
-Date:   Wed, 11 Nov 2020 12:03:43 -0800
-Message-Id: <20201111120334.1.Ifc04ea235c3c370e3b21ec3b4d5dead83cc403b4@changeid>
-X-Mailer: git-send-email 2.29.2.222.g5d2a92d10f8-goog
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/IvxSxqDsjPntAEOWB4PNy7P7SXXxs0HSuipSbVZsp4=;
+        b=O+0QyybVRza+3nJdrR8B6ZRyJQ2ebfmUCDYZ9SOVjTmWVLeMmh7iBVqk4DxjOCrw5S
+         zqNPl4QEzAw+yvOX5iJBeHIRhldTrtqbsRIgU9CSJI3mc4vF50u8J6IXkaSxsM2/gaQc
+         VvtyNx9VtuEdV0MMnfLE9Y11SV1Dos7pNRnB9GXxCv2NczAZm6KdfvImB4byMC2nBs6J
+         C8xdEe+w/cuAjzEG9Sd7S7TYUbY8MTpDPsfsVXrTCTpp4s6iJCltpQj47+AjHpOSAAsd
+         r7LwNH5nHV2/YXS183zTnAIFzfDPLyLefFPmPKk7RLG421nbHjESnd+IwU9nJpNlsEn0
+         Z38Q==
+X-Gm-Message-State: AOAM533PA+L6Ud/N2O9kftk3j5u6cSKg7xWKqEc5GyXfa1kM71YP7Gyw
+        M5qGGS73LzdjRNVSXigQHQ==
+X-Google-Smtp-Source: ABdhPJxXMiVyx9vlcisjS1XuPmq5k3KS8uiUoMyhzXRPwegwLn5O/ogSFFbR4kEn4OtzsGvvQDpS1g==
+X-Received: by 2002:a9d:53cc:: with SMTP id i12mr3390678oth.268.1605125038510;
+        Wed, 11 Nov 2020 12:03:58 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id m3sm651822oim.36.2020.11.11.12.03.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 12:03:57 -0800 (PST)
+Received: (nullmailer pid 1934247 invoked by uid 1000);
+        Wed, 11 Nov 2020 20:03:56 -0000
+Date:   Wed, 11 Nov 2020 14:03:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     wim@linux-watchdog.org, andriy.shevchenko@linux.intel.com,
+        devicetree@vger.kernel.org, mgross@linux.intel.com,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        linux-watchdog@vger.kernel.org, linux@roeck-us.net,
+        robh+dt@kernel.org, lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v2 2/2] dt-bindings: watchdog: Add bindings for Intel
+ Keem Bay SoC
+Message-ID: <20201111200356.GA1934066@bogus>
+References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
+ <e5b874280fded0a90f7a94b03ab1bbbae4a72ac6.1605028524.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5b874280fded0a90f7a94b03ab1bbbae4a72ac6.1605028524.git.vijayakannan.ayyathurai@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 22337b91022d ("arm64: dts: qcom: sc7180: Changed polling mode
-in Thermal-zones node") sets both 'polling-delay' and
-'polling-delay-passive' to zero with the rationale that TSENS interrupts
-are enabled. A TSENS interrupt fires when the temperature of a thermal
-zone reaches a trip point, which makes regular polling below the passive
-trip point temperature unnecessary. However the situation is different
-when passive cooling is active, regular polling is still needed to
-trigger a periodic evaluation of the thermal zone by the thermal governor.
+On Wed, 11 Nov 2020 01:53:08 +0800, vijayakannan.ayyathurai@intel.com wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> 
+> Add Device Tree binding document for Watchdog IP in the Intel Keem Bay SoC.
+> 
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> Acked-by: Mark Gross <mgross@linux.intel.com>
+> Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  .../bindings/watchdog/intel,keembay-wdt.yaml  | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+> 
 
-Change 'polling-delay-passive' back to the original value of 250 ms.
-Commit 2315ae70af95 ("arm64: dts: qcom: sc7180: Add gpu cooling
-support") recently changed the value for the GPU thermal zones from
-zero to 100 ms, also set it to 250 ms for uniformity. If some zones
-really need different values these can be changed in dedicated patches.
-
-Fixes: 22337b91022d ("arm64: dts: qcom: sc7180: Changed polling mode in Thermal-zones node")
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
-
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 50 ++++++++++++++--------------
- 1 file changed, 25 insertions(+), 25 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 4e7e58c63285..2f454686a883 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -3520,7 +3520,7 @@ lpass_hm: clock-controller@63000000 {
- 
- 	thermal-zones {
- 		cpu0-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 1>;
-@@ -3569,7 +3569,7 @@ map1 {
- 		};
- 
- 		cpu1-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 2>;
-@@ -3618,7 +3618,7 @@ map1 {
- 		};
- 
- 		cpu2-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 3>;
-@@ -3667,7 +3667,7 @@ map1 {
- 		};
- 
- 		cpu3-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 4>;
-@@ -3716,7 +3716,7 @@ map1 {
- 		};
- 
- 		cpu4-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 5>;
-@@ -3765,7 +3765,7 @@ map1 {
- 		};
- 
- 		cpu5-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 6>;
-@@ -3814,7 +3814,7 @@ map1 {
- 		};
- 
- 		cpu6-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 9>;
-@@ -3855,7 +3855,7 @@ map1 {
- 		};
- 
- 		cpu7-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 10>;
-@@ -3896,7 +3896,7 @@ map1 {
- 		};
- 
- 		cpu8-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 11>;
-@@ -3937,7 +3937,7 @@ map1 {
- 		};
- 
- 		cpu9-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 12>;
-@@ -3978,7 +3978,7 @@ map1 {
- 		};
- 
- 		aoss0-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 0>;
-@@ -3999,7 +3999,7 @@ aoss0_crit: aoss0_crit {
- 		};
- 
- 		cpuss0-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 7>;
-@@ -4019,7 +4019,7 @@ cpuss0_crit: cluster0_crit {
- 		};
- 
- 		cpuss1-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 8>;
-@@ -4039,7 +4039,7 @@ cpuss1_crit: cluster0_crit {
- 		};
- 
- 		gpuss0-thermal {
--			polling-delay-passive = <100>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 13>;
-@@ -4067,7 +4067,7 @@ map0 {
- 		};
- 
- 		gpuss1-thermal {
--			polling-delay-passive = <100>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 14>;
-@@ -4095,7 +4095,7 @@ map0 {
- 		};
- 
- 		aoss1-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 0>;
-@@ -4116,7 +4116,7 @@ aoss1_crit: aoss1_crit {
- 		};
- 
- 		cwlan-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 1>;
-@@ -4137,7 +4137,7 @@ cwlan_crit: cwlan_crit {
- 		};
- 
- 		audio-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 2>;
-@@ -4158,7 +4158,7 @@ audio_crit: audio_crit {
- 		};
- 
- 		ddr-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 3>;
-@@ -4179,7 +4179,7 @@ ddr_crit: ddr_crit {
- 		};
- 
- 		q6-hvx-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 4>;
-@@ -4200,7 +4200,7 @@ q6_hvx_crit: q6_hvx_crit {
- 		};
- 
- 		camera-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 5>;
-@@ -4221,7 +4221,7 @@ camera_crit: camera_crit {
- 		};
- 
- 		mdm-core-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 6>;
-@@ -4242,7 +4242,7 @@ mdm_crit: mdm_crit {
- 		};
- 
- 		mdm-dsp-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 7>;
-@@ -4263,7 +4263,7 @@ mdm_dsp_crit: mdm_dsp_crit {
- 		};
- 
- 		npu-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 8>;
-@@ -4284,7 +4284,7 @@ npu_crit: npu_crit {
- 		};
- 
- 		video-thermal {
--			polling-delay-passive = <0>;
-+			polling-delay-passive = <250>;
- 			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 9>;
--- 
-2.29.2.222.g5d2a92d10f8-goog
-
+Reviewed-by: Rob Herring <robh@kernel.org>
