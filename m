@@ -2,377 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13CFC2AF1A7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE032AF1DF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:19:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbgKKNIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 08:08:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49950 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726588AbgKKNIL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:08:11 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FBF4C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:08:11 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id l2so3098213lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:08:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oxwnhzkt/PN6/sXeM3n8c5ZwySGgQoKrslhl8b+S4sY=;
-        b=LoRB7XIMp+jsMO/urS8K8C+S8QcJKlGd3y80e9+mJwhmPjMAANbpmsytiUqsrOo9Zc
-         xY4ycP+c96Qz5SMtcoPxArWIjOKJ9/exdk7CXt/EgoWWkDONceqLE7P1POjqP8hlMoJs
-         6KIz693z8rYq9+BJw9XA9YS8wYkGUbu9SIuZ09NavZMxKy5AVPHjfcLv3q++oteJopOO
-         XBvLlWnoWwAqLaU1kpUZGF/DlLNGGNTVl9Jl/eh+Bddyj8vGK1fNm3Z8lj6Nje1DFJaN
-         Wcp21tHJFHcTjaKUVKXSb3f9QLH+HF4wotTB0uQThyxQoswAkH9iI8aPHMSSjSWL/pOV
-         aICQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oxwnhzkt/PN6/sXeM3n8c5ZwySGgQoKrslhl8b+S4sY=;
-        b=Ba+t28CUpZshsENJIGyZQEZHWegspsEzHNVG3yUxYaPtzq21HEvq8AoBN8Xd5Puw5y
-         Es0nUAsXyfjKh7u6gSAGmfgL5mknjd70veDo7Q62vengNZSwouctgUIKD3Oo+iy5pgDY
-         40hHLielrdA2GHlLh2uGYNnjj1eKrdaKXy/3N1n4rPzR9wFaeGrTOK+/nMyrtdvBaZzZ
-         WjZS85X//VSAbyzcqk+UD1PfE+qJ+UWAUOn994QpvFC/3OdXVIyNehvzzhtYqulJxeih
-         uckR2VZeH1yil6q0vZaTaFfil2pXFvLQPy8IPSx6EgnCsNvctL1bXTK0CuvsuaTVu1gR
-         YAmg==
-X-Gm-Message-State: AOAM530e22o4S1ENrrwG5PlleEdKiHzxosSyRbd6Kem9mNPbQOvexm66
-        /83VMXf8Ii3YBFLTzCRMq2C9Jw==
-X-Google-Smtp-Source: ABdhPJxgNW5S6E9QODxDE8bEj4LFNE6xtq3p8MFtYnZoSmvlrOsWvik98obnAQWebIZDc7hQI5BHEg==
-X-Received: by 2002:a19:ad06:: with SMTP id t6mr10021401lfc.222.1605100089749;
-        Wed, 11 Nov 2020 05:08:09 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id q7sm230512ljh.79.2020.11.11.05.08.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 05:08:09 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: display: mcde: Convert to YAML schema
-Date:   Wed, 11 Nov 2020 14:07:54 +0100
-Message-Id: <20201111130754.2283993-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        id S1726130AbgKKNTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 08:19:13 -0500
+Received: from mga01.intel.com ([192.55.52.88]:27319 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725912AbgKKNTN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 08:19:13 -0500
+IronPort-SDR: 78SL6KyKK2YKcWiKL7CbshwOjGP3kP/fkUqAGgQlJA17rb83E9n5zRxBfggCdRY42lFPlyysi8
+ 0VAg9SFz5JUg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="188123837"
+X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; 
+   d="scan'208";a="188123837"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 05:19:04 -0800
+IronPort-SDR: mSF6DKR1d7plVEUXtdZXIU68gckRtwFsoIo4F0Bp69Q5D6Vw/A0ftz7nd7zkDt5+7TYksJvtVv
+ aTSNnELYEzlA==
+X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; 
+   d="scan'208";a="308827889"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 05:19:00 -0800
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id AECA420867; Wed, 11 Nov 2020 15:18:57 +0200 (EET)
+Date:   Wed, 11 Nov 2020 15:18:57 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Maxime Ripard <mripard@kernel.org>, kevin.lhopital@hotmail.com,
+        =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
+Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: Add OV8865 bindings
+ documentation
+Message-ID: <20201111131857.GC26150@paasikivi.fi.intel.com>
+References: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
+ <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
+ <20201102232411.GD26150@paasikivi.fi.intel.com>
+ <20201104102643.GH2123@aptenodytes>
+ <20201105081954.GX26150@paasikivi.fi.intel.com>
+ <20201105153534.GD615923@aptenodytes>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201105153534.GD615923@aptenodytes>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This moves the MCDE bindings over to using the YAML schema
-to describe the ST-Ericsson MCDE display controller,
-making use of the generic DSI controller schema.
+Hi Paul,
 
-We also add the "port" node, we will use this when adding
-LCD panels using the direct parallel interface DPI instead
-of DSI.
+On Thu, Nov 05, 2020 at 04:35:34PM +0100, Paul Kocialkowski wrote:
+> Hi Sakari,
+> 
+> On Thu 05 Nov 20, 10:19, Sakari Ailus wrote:
+> > Hi Paul,
+> > 
+> > On Wed, Nov 04, 2020 at 11:26:43AM +0100, Paul Kocialkowski wrote:
+> > > Hi Sakari and thanks for the review!
+> > > 
+> > > On Tue 03 Nov 20, 01:24, Sakari Ailus wrote:
+> > > > On Fri, Oct 23, 2020 at 07:54:04PM +0200, Paul Kocialkowski wrote:
+> > > > > This introduces YAML bindings documentation for the OV8865
+> > > > > image sensor.
+> > > > > 
+> > > > > Co-developed-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> > > > > Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > ---
+> > > > >  .../bindings/media/i2c/ovti,ov8865.yaml       | 124 ++++++++++++++++++
+> > > > >  1 file changed, 124 insertions(+)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> > > > > 
+> > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..807f1a94afae
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> > > > > @@ -0,0 +1,124 @@
+> > > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8865.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: OmniVision OV8865 Image Sensor Device Tree Bindings
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    const: ovti,ov8865
+> > > > > +
+> > > > > +  reg:
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  clocks:
+> > > > > +    items:
+> > > > > +      - description: EXTCLK Clock
+> > > > > +
+> > > > > +  clock-names:
+> > > > > +    items:
+> > > > > +      - const: extclk
+> > > > 
+> > > > Is this needed with a single clock?
+> > > 
+> > > Yes I think so: we grab the clock with devm_clk_get which takes a name string
+> > > that matches the clock-names property.
+> > 
+> > That argument may be NULL.
+> 
+> Understood, let's get rid of clock-names then. I see this is done in a few
+> drivers already, but many also give it a name with a single clock.
+> 
+> It would be nice if that was consistent across all drivers just so that the
+> expectation is clear (that the best way for that to happen is probably to
+> fix up a patch myself though).
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Cut the description on the interrupts.
-- Drop maxItems: 3 on clocks and clock-names: implicit from
-  the number of listed items.
-- Tag the DSI ports with unevaluatedProperties: false
-- Tag the MCDE as such with additionalProperties: true
-- It was a bit hard to test this because of the code base
-  being out of phase with the validation tools but it seems
-  to check out.
----
- .../devicetree/bindings/display/ste,mcde.txt  | 104 -----------
- .../devicetree/bindings/display/ste,mcde.yaml | 166 ++++++++++++++++++
- 2 files changed, 166 insertions(+), 104 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
- create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
+I guess somewhat different practices exist depending on the tree albeit
+it's all DT bindings. It's also not wrong to have the name of the clock
+there, no, but virtually all camera sensors consume a single clock, so you
+may as well omit the information.
 
-diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
-deleted file mode 100644
-index 4c33c692bd5f..000000000000
---- a/Documentation/devicetree/bindings/display/ste,mcde.txt
-+++ /dev/null
-@@ -1,104 +0,0 @@
--ST-Ericsson Multi Channel Display Engine MCDE
--
--The ST-Ericsson MCDE is a display controller with support for compositing
--and displaying several channels memory resident graphics data on DSI or
--LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
--
--Required properties:
--
--- compatible: must be:
--  "ste,mcde"
--- reg: register base for the main MCDE control registers, should be
--  0x1000 in size
--- interrupts: the interrupt line for the MCDE
--- epod-supply: a phandle to the EPOD regulator
--- vana-supply: a phandle to the analog voltage regulator
--- clocks: an array of the MCDE clocks in this strict order:
--  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
--  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
--  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
--  save clock)
--- clock-names: must be the following array:
--  "mcde", "lcd", "hdmi"
--  to match the required clock inputs above.
--- #address-cells: should be <1> (for the DSI hosts that will be children)
--- #size-cells: should be <1> (for the DSI hosts that will be children)
--- ranges: this should always be stated
--
--Required subnodes:
--
--The devicetree must specify subnodes for the DSI host adapters.
--These must have the following characteristics:
--
--- compatible: must be:
--  "ste,mcde-dsi"
--- reg: must specify the register range for the DSI host
--- vana-supply: phandle to the VANA voltage regulator
--- clocks: phandles to the high speed and low power (energy save) clocks
--  the high speed clock is not present on the third (dsi2) block, so it
--  should only have the "lp" clock
--- clock-names: "hs" for the high speed clock and "lp" for the low power
--  (energy save) clock
--- #address-cells: should be <1>
--- #size-cells: should be <0>
--
--Display panels and bridges will appear as children on the DSI hosts, and
--the displays are connected to the DSI hosts using the common binding
--for video transmitter interfaces; see
--Documentation/devicetree/bindings/media/video-interfaces.txt
--
--If a DSI host is unused (not connected) it will have no children defined.
--
--Example:
--
--mcde@a0350000 {
--	compatible = "ste,mcde";
--	reg = <0xa0350000 0x1000>;
--	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
--	epod-supply = <&db8500_b2r2_mcde_reg>;
--	vana-supply = <&ab8500_ldo_ana_reg>;
--	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
--		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
--		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
--	clock-names = "mcde", "lcd", "hdmi";
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	dsi0: dsi@a0351000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0351000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
--		clock-names = "hs", "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		panel {
--			compatible = "samsung,s6d16d0";
--			reg = <0>;
--			vdd1-supply = <&ab8500_ldo_aux1_reg>;
--			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
--		};
--
--	};
--	dsi1: dsi@a0352000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0352000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
--		clock-names = "hs", "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--	dsi2: dsi@a0353000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0353000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		/* This DSI port only has the Low Power / Energy Save clock */
--		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
--		clock-names = "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-new file mode 100644
-index 000000000000..51851566c72d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-@@ -0,0 +1,166 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST-Ericsson Multi Channel Display Engine MCDE
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: ste,mcde
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    description: an array of the MCDE clocks
-+    items:
-+      - description: MCDECLK (main MCDE clock)
-+      - description: LCDCLK (LCD clock)
-+      - description: PLLDSI (HDMI clock)
-+
-+  clock-names:
-+    items:
-+      - const: mcde
-+      - const: lcd
-+      - const: hdmi
-+
-+  epod-supply:
-+    description: a phandle to the EPOD regulator
-+
-+  vana-supply:
-+    description: a phandle to the analog voltage regulator
-+
-+  port:
-+    type: object
-+    description:
-+      A DPI port node with endpoint definitions as defined in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges: true
-+
-+patternProperties:
-+  "^dsi@[0-9a-f]+$":
-+    description: subnodes for the three DSI host adapters
-+    type: object
-+    allOf:
-+      - $ref: dsi-controller.yaml#
-+    properties:
-+      compatible:
-+        const: ste,mcde-dsi
-+
-+      reg:
-+        maxItems: 1
-+
-+      vana-supply:
-+        description: a phandle to the analog voltage regulator
-+
-+      clocks:
-+        description: phandles to the high speed and low power (energy save) clocks
-+          the high speed clock is not present on the third (dsi2) block, so it
-+          should only have the "lp" clock
-+        minItems: 1
-+        maxItems: 2
-+
-+      clock-names:
-+        oneOf:
-+          - items:
-+              - const: hs
-+              - const: lp
-+          - items:
-+              - const: lp
-+
-+    required:
-+      - compatible
-+      - reg
-+      - vana-supply
-+      - clocks
-+      - clock-names
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - epod-supply
-+  - vana-supply
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/mfd/dbx500-prcmu.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    mcde@a0350000 {
-+      compatible = "ste,mcde";
-+      reg = <0xa0350000 0x1000>;
-+      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+      epod-supply = <&db8500_b2r2_mcde_reg>;
-+      vana-supply = <&ab8500_ldo_ana_reg>;
-+      clocks = <&prcmu_clk PRCMU_MCDECLK>,
-+               <&prcmu_clk PRCMU_LCDCLK>,
-+               <&prcmu_clk PRCMU_PLLDSI>;
-+      clock-names = "mcde", "lcd", "hdmi";
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      ranges;
-+
-+      dsi0: dsi@a0351000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0351000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
-+        clock-names = "hs", "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+          compatible = "samsung,s6d16d0";
-+          reg = <0>;
-+          vdd1-supply = <&ab8500_ldo_aux1_reg>;
-+          reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
-+        };
-+      };
-+
-+      dsi1: dsi@a0352000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0352000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
-+        clock-names = "hs", "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+      };
-+
-+      dsi2: dsi@a0353000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0353000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        /* This DSI port only has the Low Power / Energy Save clock */
-+        clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
-+        clock-names = "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+      };
-+    };
-+
-+...
+> 
+> > > > And... shouldn't this also come with assigned-clock-rates etc., to set the
+> > > > clock frequency?
+> > > 
+> > > I'm a bit confused why we would need to do that in the device-tree rather than
+> > > setting the clock rate with clk_set_rate in the driver, like any other driver
+> > > does. I think this was discussed before (on the initial ov8865 series) and the
+> > > conclusion was that there is no particular reason for media i2c drivers to
+> > > behave differently. So I believe this is the correct approach.
+> > 
+> > I'm not exactly sure about that conclusion.
+> 
+> I may have jumped too far here. It's not exactly clear to me what was the
+> conclusion from...
+> https://lore.kernel.org/linux-arm-kernel/20200401080705.j4goeqcqhoswhx4u@gilmour.lan/
+
+Yes, there has been more discussion on the topic, most recently in this
+thread:
+
+<URL:https://lore.kernel.org/linux-arm-kernel/20201102150547.GY26150@paasikivi.fi.intel.com/>
+
+I think this deserves to be added to camera-sensor.rst .
+
+> 
+> > You can use clk_set_rate() if you get the frequency from DT, but we
+> > recently did conclude that camera sensor drivers can expect to get the
+> > frequency indicated by assigned-clock-rate property.
+> 
+> ...but it looks like clock-frequency was preferred over assigned-clock-rates
+> and this is what the binding that was merged suggests. Is that correct?
+
+assigned-clock-rates is fine. The assumption is that the clock frequency
+does not change from the value set through DT, and the driver gets that
+exact frequency.
+
+> 
+> I now understand that the clock frequency may depend on the system integration
+> for this special case so we have to specify it via dt.
+
+Correct.
+
+> 
+> > In other words, the driver may not be specific to a particular board and
+> > SoC you have.
+> 
+> Although this is sadly more than often the case, because handling a variable
+> clock rate in the driver is quite complex (and even more with static init tables
+> that include PLL configuration). And sadly my driver is no exception and
+> only supports 24 MHz input.
+
+That's fine. If someone needs other frequencies, they can always add
+support for those in the driver.
+
+> 
+> > Please also read Documentation/driver-api/media/camera-sensor.rst .
+> 
+> Thanks, I hadn't seen that document before. It's great that it exists!
+
+You're welcome!
+
+This was indeed written to reduce the number of patch revisions needed ot
+get a driver to upstream. :-)
+
 -- 
-2.26.2
+Kind regards,
 
+Sakari Ailus
