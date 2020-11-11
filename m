@@ -2,93 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C0D2AFA64
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:34:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B5802AFA8F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:35:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725949AbgKKVec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 16:34:32 -0500
-Received: from mail-ej1-f65.google.com ([209.85.218.65]:40858 "EHLO
-        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725933AbgKKVec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:34:32 -0500
-Received: by mail-ej1-f65.google.com with SMTP id oq3so4748132ejb.7;
-        Wed, 11 Nov 2020 13:34:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cbSPGqSoajDdzgBXkcQ9pceYyj1fwUocImvC8LVuhnA=;
-        b=s+lgVQoyIW0PeKdZKrDWyFxxEpc4DbPh6p+yHWJ/IbtSjdf7cVMKb8FGU2NirNa0Hx
-         Me3cVYEXjlQt3A9SjOp4Mdt9d+EaZwIrpQVKaShXGAAtrMhHD0EELryObVxJFjssS7V7
-         K8wNAZAfEoUlCkeA1S0Ftt8lleQTdszAodLLIxE2lbohIy4LLYbMxBN9mXOgxnDsTbIX
-         yici5A8YYvQ4lK6m4ZdETQVdQSP72bvkRW6FGgjg+GkeYOJ9wyKdDUQ2L535rTidg5mz
-         jLGymmRyMoiSIny6FlPdXjiJzDqyXDfRsohSHGnDxPkGF41Akdc0/03lE0/Zhw1vxUmY
-         eRFQ==
-X-Gm-Message-State: AOAM530JYP3M+AwJ8P/L1nqNV6O+t/Xf2rxT8jo3mJASKb2TR26ZOJ7R
-        W3ARGYBmd1DkjB3DB1b5vwI=
-X-Google-Smtp-Source: ABdhPJxZ1WBxXRo++KtU6Sg0+JLnVf2CzzVbv4KmTREyVVotlVP7TjUvZ7DBVgSFoHPvAHxci/+JFw==
-X-Received: by 2002:a17:906:d7b7:: with SMTP id pk23mr28400140ejb.214.1605130469179;
-        Wed, 11 Nov 2020 13:34:29 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id x1sm1437867edl.82.2020.11.11.13.34.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 13:34:27 -0800 (PST)
-Date:   Wed, 11 Nov 2020 22:34:26 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com, Greg Kroah-Hartman <gregkh@google.com>,
-        kernel-team@android.com
-Subject: Re: [PATCH v4 18/24] iommu/mediatek: Support master use iova over
- 32bit
-Message-ID: <20201111213426.GF287176@kozik-lap>
-References: <20201111123838.15682-1-yong.wu@mediatek.com>
- <20201111123838.15682-19-yong.wu@mediatek.com>
+        id S1726157AbgKKVfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 16:35:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44144 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726510AbgKKVfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:35:54 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAADFC0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 13:35:53 -0800 (PST)
+Received: from heimdall.vpn.pengutronix.de ([2001:67c:670:205:1d::14] helo=blackshift.org)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1kcxmQ-0007CU-Id; Wed, 11 Nov 2020 22:35:50 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     kernel@pengutronix.de
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-can@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>
+Subject: [PATCH] dt-bindings: clock: imx5: fix example
+Date:   Wed, 11 Nov 2020 22:35:48 +0100
+Message-Id: <20201111213548.1621094-1-mkl@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201111123838.15682-19-yong.wu@mediatek.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:205:1d::14
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 08:38:32PM +0800, Yong Wu wrote:
-> After extending v7s, our pagetable already support iova reach
-> 16GB(34bit). the master got the iova via dma_alloc_attrs may reach
-> 34bits, but its HW register still is 32bit. then how to set the
-> bit32/bit33 iova? this depend on a SMI larb setting(bank_sel).
-> 
-> we separate whole 16GB iova to four banks:
-> bank: 0: 0~4G; 1: 4~8G; 2: 8-12G; 3: 12-16G;
-> The bank number is (iova >> 32).
-> 
-> We will preassign which bank the larbs belong to. currently we don't
-> have a interface for master to adjust its bank number.
-> 
-> Each a bank is a iova_region which is a independent iommu-domain.
-> the iova range for each iommu-domain can't cross 4G.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org> # memory part
-> ---
->  drivers/iommu/mtk_iommu.c  | 12 +++++++++---
->  drivers/memory/mtk-smi.c   |  7 +++++++
->  include/soc/mediatek/smi.h |  1 +
->  3 files changed, 17 insertions(+), 3 deletions(-)
-> 
+Since commit:
 
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+    0e030a373df3 ("can: flexcan: fix endianess detection")
 
-Best regards,
-Krzysztof
+the fsl,imx53-flexcan isn't compatible with the fsl,p1010-flexcan any more. As
+the former accesses the IP core in Little Endian mode and the latter uses Big
+Endian mode.
+
+With the conversion of the flexcan DT bindings to yaml, the dt_binding_check
+this throws the following error:
+
+Documentation/devicetree/bindings/clock/imx5-clock.example.dt.yaml: can@53fc8000: compatible: 'oneOf' conditional failed, one must be fixed:
+        ['fsl,imx53-flexcan', 'fsl,imx25-flexcan'] is too long
+        Additional items are not allowed ('fsl,imx25-flexcan' was unexpected)
+        'fsl,imx53-flexcan' is not one of ['fsl,imx7d-flexcan', 'fsl,imx6ul-flexcan', 'fsl,imx6sx-flexcan']
+        'fsl,imx53-flexcan' is not one of ['fsl,ls1028ar1-flexcan']
+        'fsl,imx6q-flexcan' was expected
+        'fsl,lx2160ar1-flexcan' was expected
+        From schema: Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+
+The error is fixed by removing the "fsl,p1010-flexcan" compatible (which turned
+out the be incompatible) from the binding example.
+
+Cc: Fabio Estevam <fabio.estevam@nxp.com>
+Cc: devicetree@vger.kernel.org
+Reported-by: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+---
+ Documentation/devicetree/bindings/clock/imx5-clock.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/imx5-clock.yaml b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
+index 4d9e7c73dce9..155379c3c41e 100644
+--- a/Documentation/devicetree/bindings/clock/imx5-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
+@@ -57,7 +57,7 @@ examples:
+     };
+ 
+     can@53fc8000 {
+-        compatible = "fsl,imx53-flexcan", "fsl,p1010-flexcan";
++        compatible = "fsl,imx53-flexcan";
+         reg = <0x53fc8000 0x4000>;
+         interrupts = <82>;
+         clocks = <&clks IMX5_CLK_CAN1_IPG_GATE>, <&clks IMX5_CLK_CAN1_SERIAL_GATE>;
+-- 
+2.28.0
+
