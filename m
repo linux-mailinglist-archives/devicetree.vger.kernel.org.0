@@ -2,184 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C112AFA9F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:40:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DCF52AFAB8
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:50:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725933AbgKKVkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 16:40:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725949AbgKKVkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:40:22 -0500
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CEA5C0613D1;
-        Wed, 11 Nov 2020 13:40:22 -0800 (PST)
-Received: by mail-pf1-x443.google.com with SMTP id q5so2512893pfk.6;
-        Wed, 11 Nov 2020 13:40:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+fzlfnA2TEDDFFxjWmlVuY8W0FfkEiYNB2C9rSQv2Nw=;
-        b=tGbRKnfEbiFdiYH22xCoHpmARpVopCQnFSWi+fbgjBIRTEZqkv26kgFRi+e+NEYG45
-         x5jKQvvsKn7rvdRUSGKR2UkF57rw7akl7AZTiO79wtdtN4Y1yQkN8DIiK7evq8wR1k5H
-         KvvyIaPcELxpO7Kv6t3OMKZ0vsuVNs++eO2lZ6O9wCbzqKQImq81kkZn4ht82+w8P0mx
-         T0RTRqep7HTrig/hfSXmqlEkNW7oA8vDpPGtE2nz0fWPnuhsI2RIhqKGJb0TytXF8nVX
-         GEyKZI+5ThdqLnNr7p6ObxR0UIlh75bnnx5UJwATfw7lHmSpTcQzyQHDSAZ4hzAU79L/
-         gkVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+fzlfnA2TEDDFFxjWmlVuY8W0FfkEiYNB2C9rSQv2Nw=;
-        b=nWvYnfIrTVFxIsV4vEt3YxsiPUxYekQMwmDV7U8/XudQlrarX7X55ZZUWOwlMszbep
-         9L8O5F74mi8ETQpYhfKdUJJBiKkjD/nFVsgrCBUU/c2ervIUbZ06TADqOqZBQcnITvvs
-         Osco8rBESoWb8hPCAi206XbNWqeG1Pms8BaBiC3PV4oolLOUJtydVGlAGv3dE7IRgE3I
-         R60eFBsjYYNDhdk4rkTGpjmpJdvbsG8D14KSMMQiZRGdbXpOLwnvePDjkQiB/49jUfZP
-         jXIp4h68cyWuc0Jv5Uu5MW/vDN2zEfeJXbXQ2W4zlWQ/rC9tsu2mb9GntkbFw9IZFt6l
-         Ed5g==
-X-Gm-Message-State: AOAM530YAzjHgn/Rbtr8maWW14O3dyh3bw9UXAp334WDTCsHpgF6MohB
-        64rsqbi7HXqLxJbBrEBfVYcuWI7JGBtsDQ==
-X-Google-Smtp-Source: ABdhPJzcXpb4uTDj7Ogjg2XMxp+t0CrGGeSWWaRMxQObt1T6Y9+Ez39YZ+6uFOCTJKt/X6F6iszSbA==
-X-Received: by 2002:a63:fb50:: with SMTP id w16mr22695107pgj.202.1605130821725;
-        Wed, 11 Nov 2020 13:40:21 -0800 (PST)
-Received: from localhost (g133.220-213-56.ppp.wakwak.ne.jp. [220.213.56.133])
-        by smtp.gmail.com with ESMTPSA id a11sm3683616pfn.125.2020.11.11.13.40.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 13:40:20 -0800 (PST)
-From:   Stafford Horne <shorne@gmail.com>
-To:     LKML <linux-kernel@vger.kernel.org>
-Cc:     Filip Kokosinski <fkokosinski@antmicro.com>,
-        Mateusz Holenko <mholenko@antmicro.com>,
-        Stafford Horne <shorne@gmail.com>,
-        Karol Gugala <kgugala@antmicro.com>,
+        id S1725933AbgKKVub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 16:50:31 -0500
+Received: from mailout04.rmx.de ([94.199.90.94]:35086 "EHLO mailout04.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726108AbgKKVua (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 16:50:30 -0500
+Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout04.rmx.de (Postfix) with ESMTPS id 4CWdh25qXYz3qcH4;
+        Wed, 11 Nov 2020 22:50:26 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin01.retarus.com (Postfix) with ESMTPS id 4CWdgw19V5z2xDM;
+        Wed, 11 Nov 2020 22:50:20 +0100 (CET)
+Received: from n95hx1g2.localnet (192.168.54.13) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 11 Nov
+ 2020 22:49:47 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>
+CC:     Richard Cochran <richardcochran@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonas Bonn <jonas@southpole.se>,
-        Stefan Kristiansson <stefan.kristiansson@saunalahti.fi>,
-        devicetree@vger.kernel.org, openrisc@lists.librecores.org
-Subject: [PATCH] openrisc: add support for LiteX
-Date:   Thu, 12 Nov 2020 06:39:59 +0900
-Message-Id: <20201111214003.1506246-1-shorne@gmail.com>
-X-Mailer: git-send-email 2.26.2
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        "Microchip Linux Driver Support" <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add hardware time stamping support
+Date:   Wed, 11 Nov 2020 22:49:44 +0100
+Message-ID: <5898097.XrYNDCFn2f@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <20201110193245.uwsmrqzio5hco7fb@skbuf>
+References: <20201019172435.4416-1-ceggers@arri.de> <20201110164045.jqdwvmz5lq4hg54l@skbuf> <20201110193245.uwsmrqzio5hco7fb@skbuf>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [192.168.54.13]
+X-RMX-ID: 20201111-225020-4CWdgw19V5z2xDM-0@kdin01
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Filip Kokosinski <fkokosinski@antmicro.com>
+Hi Vladimir,
 
-This adds support for a basic LiteX-based SoC with a mor1kx soft CPU.
+On Tuesday, 10 November 2020, 20:32:45 CET, Vladimir Oltean wrote:
+> On Tue, Nov 10, 2020 at 06:40:45PM +0200, Vladimir Oltean wrote:
+> > I am fairly confident that this is how your hardware works, because
+> > that's also how peer delay wants to be timestamped, it seems.
+> 
+> So I was confident and also wrong, it appears. My KSZ9477 datasheet
+> says:
+> 
+> In the host-to-switch direction, the 4-byte timestamp field is always
+> present when PTP is enabled, as shown in Figure 4-6. This is true for
+> all packets sent by the host, including IBA packets. The host uses this
+> field to insert the receive timestamp from PTP Pdelay_Req messages into
+> the Pdelay_Resp messages. For all other traffic and PTP message types,
+> the host should populate the timestamp field with zeros.
+> 
+> Hm. Does that mean that the switch updates the originTimestamp field of
+> the Sync frames by itself?
+IMHO this is the best solution. User space / driver do not know the exact time 
+(would require slow I2C transfer). So inserting the time in hardware seems to 
+be the better solution. Maybe this is what the data sheet meant with "egress 
+timestamp insertion".
 
-Signed-off-by: Filip Kokosinski <fkokosinski@antmicro.com>
-Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
-[shorne: Merged in soc-cntl patch, removed CROSS_COMPILE, sort MAINT.]
-Signed-off-by: Stafford Horne <shorne@gmail.com>
----
- MAINTAINERS                               |  1 +
- arch/openrisc/boot/dts/or1klitex.dts      | 55 +++++++++++++++++++++++
- arch/openrisc/configs/or1klitex_defconfig | 18 ++++++++
- 3 files changed, 74 insertions(+)
- create mode 100644 arch/openrisc/boot/dts/or1klitex.dts
- create mode 100644 arch/openrisc/configs/or1klitex_defconfig
+> Ok... Very interesting that they decided to
+> introduce a field in the tail tag for a single type of PTP message.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0b1f39b3938d..9c55a54c9673 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10177,6 +10177,7 @@ M:	Karol Gugala <kgugala@antmicro.com>
- M:	Mateusz Holenko <mholenko@antmicro.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/*/litex,*.yaml
-+F:	arch/openrisc/boot/dts/or1klitex.dts
- F:	drivers/soc/litex/litex_soc_ctrl.c
- F:	drivers/tty/serial/liteuart.c
- F:	include/linux/litex.h
-diff --git a/arch/openrisc/boot/dts/or1klitex.dts b/arch/openrisc/boot/dts/or1klitex.dts
-new file mode 100644
-index 000000000000..3f9867aa3844
---- /dev/null
-+++ b/arch/openrisc/boot/dts/or1klitex.dts
-@@ -0,0 +1,55 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * LiteX-based System on Chip
-+ *
-+ * Copyright (C) 2019 Antmicro <www.antmicro.com>
-+ */
-+
-+/dts-v1/;
-+/ {
-+	compatible = "opencores,or1ksim";
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	interrupt-parent = <&pic>;
-+
-+	aliases {
-+		serial0 = &serial0;
-+	};
-+
-+	chosen {
-+		bootargs = "console=liteuart";
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x00000000 0x10000000>;
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		cpu@0 {
-+			compatible = "opencores,or1200-rtlsvn481";
-+			reg = <0>;
-+			clock-frequency = <100000000>;
-+		};
-+	};
-+
-+	pic: pic {
-+		compatible = "opencores,or1k-pic";
-+		#interrupt-cells = <1>;
-+		interrupt-controller;
-+	};
-+
-+	serial0: serial@e0002000 {
-+		device_type = "serial";
-+		compatible = "litex,liteuart";
-+		reg = <0xe0002000 0x100>;
-+	};
-+
-+	soc_ctrl0: soc_controller@e0000000 {
-+			compatible = "litex,soc-controller";
-+			reg = <0xe0000000 0xc>;
-+			status = "okay";
-+	};
-+};
-diff --git a/arch/openrisc/configs/or1klitex_defconfig b/arch/openrisc/configs/or1klitex_defconfig
-new file mode 100644
-index 000000000000..3c2c70d3d740
---- /dev/null
-+++ b/arch/openrisc/configs/or1klitex_defconfig
-@@ -0,0 +1,18 @@
-+CONFIG_BLK_DEV_INITRD=y
-+CONFIG_BOOTPARAM_SOFTLOCKUP_PANIC=y
-+CONFIG_BUG_ON_DATA_CORRUPTION=y
-+CONFIG_CC_OPTIMIZE_FOR_SIZE=y
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+CONFIG_EMBEDDED=y
-+CONFIG_HZ_100=y
-+CONFIG_INITRAMFS_SOURCE="openrisc-rootfs.cpio.gz"
-+CONFIG_OF_OVERLAY=y
-+CONFIG_OPENRISC_BUILTIN_DTB="or1klitex"
-+CONFIG_PANIC_ON_OOPS=y
-+CONFIG_PRINTK_TIME=y
-+CONFIG_LITEX_SOC_CONTROLLER=y
-+CONFIG_SERIAL_LITEUART=y
-+CONFIG_SERIAL_LITEUART_CONSOLE=y
-+CONFIG_SOFTLOCKUP_DETECTOR=y
-+CONFIG_TTY_PRINTK=y
--- 
-2.26.2
+> But something is still wrong if you need to special-case the negative
+> correctionField, it looks like the arithmetic is not done on the correct
+> number of bits, either by the driver or by the hardware.
+> 
+Maybe I found the formula which is (should) applied to the correction field 
+for PDelayResp:
+
+correction = correction_old + now + residental_delay + tx_latency - tail_tag
+
+<correction_old>: current value from the PTP header
+<now>: Time of the PTP clock when entering the switch
+<residental_delay>: Switching delay
+<Tx latency>: Delay between time stamping unit and wire (configurable via 
+register)
+<tail_tag>: Time stamp in the tail tag
+
+The new correction value has been captured with Wireshark. For the measurement 
+I simply halted the internal PTP clock and set it to zero (so it's value is 
+exactly known). In the port's TX time stamp unit I got a non-zero time stamp 
+anyway (between, 10 to 40 ns), so this must be the residential delay.
+
+I tested with different values for the correction field and the tail_tag. 
+Negative values are no problem, but the calculation seems no to consider all 
+bits.
+
+Measurements:
+- PTP clock: 0 (frozen)
+- Residential delay: variable
+- TX delay: 45 ns (default)
+
+- correction = 0xffff ffff ffff.ffff (-1.xxx ns)
+correction = correction + now + residental_delay + tx_latency - tail_tag
+           =          -1  + 0                 40 +         45          0
+           = 84             (0000 0000 0054)
+           wireshark:       (0000 0000 0054) --> correct
+
+correction = correction + now + residental_delay + tx_latency - tail_tag
+           =          -1  + 0                 32 +         45      1.000
+           = -924           (FFFF FFFF FC64)
+           wireshark:       (0000 FFFF FC64) --> wrong
+
+correction = correction + now + residental_delay + tx_latency - tail_tag
+           =          -1  + 0                 24 +         45   2.000.000.000 
+           = -1.926.258.108 (FFFF 8D2F A244)
+           wireshark:       (0000 7B9A CA44) --> wrong
+
+- correction = 0xffff ffff 0000.0000 (-65536.0 ns)
+correction = correction + now + residental_delay + tx_latency - tail_tag
+           =     -65536     0                 24 +         45          0
+           =     -65467     (FFFF FFFF 0045)
+           wireshark:       (FFFF FFFF 0045) --> correct
+
+correction = correction + now + residental_delay + tx_latency - tail_tag
+           =     -65536   + 0                 32 +         45      1.000
+           =     -66459     (FFFF FFFE FC65)
+           wireshark:       (0000 FFFE FC65) --> wrong
+
+
+Please note that the tail tag consist of 2 bits for seconds and 30 bit 
+nanoseconds. So the value of 2.000.000.000 means 1s + 926.258.176 ns.
+
+As you are better in 2's complement as me, you can give me some more 
+combinations for testing if you need. But in the end it looks like I should 
+keep T2 in the tail tag.
+
+> And zeroing out the correctionField of the Pdelay_Resp on transmission,
+> to put that value into t_Tail_Tag? How can you squeeze a 48-bit value
+> into a 32-bit value without truncation?
+Only the lower bits are used. As long as PDelayResp doesn't take more than 4 
+seconds, this should be enough.
+
+regards
+Christian
+
+
 
