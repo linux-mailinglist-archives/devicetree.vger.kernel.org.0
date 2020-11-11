@@ -2,255 +2,392 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E2622AEDB9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 10:29:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3AC2AEDCC
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 10:31:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727262AbgKKJ3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 04:29:01 -0500
-Received: from mga01.intel.com ([192.55.52.88]:10094 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727231AbgKKJ2v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 04:28:51 -0500
-IronPort-SDR: SG79gvJ14/Zs5Im2foxKjfFR3QvOBbg6f1o0sfXzHegDaC9x5GQCUBCqgEQsJtzP0zdBzHTtrk
- Ea1kGB2A2Dzg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="188099843"
-X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; 
-   d="scan'208";a="188099843"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 01:28:35 -0800
-IronPort-SDR: D8iuSY2F0iftj79smsokn/HpPR3yKhOHNBWykvdqmtaZGvMvEnGbC1Sz2+AkG3sFNbMzSyMk6N
- DFmklwQxRe5A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; 
-   d="scan'208";a="473793760"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
-  by orsmga004.jf.intel.com with ESMTP; 11 Nov 2020 01:28:35 -0800
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 11 Nov 2020 01:28:35 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Wed, 11 Nov 2020 01:28:35 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.49) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Wed, 11 Nov 2020 01:28:35 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J6lSgGgj+3GBUN77KZDwm7CmQeVmQ1/m4H8OUTCEgzYxLbSNTDzBl3k/D+6DwQAWs6UQ5Rz1RMLDBppAspsqDNZyzTfPIxCGhuojvq7dJMwVNpNMeOZMbQCymkLrBpuYPekCAxZykPK8g3FnFCiYwW2jPmplLmOVD3/7aSb9oAzwnIy5SQp1qVH5JaykoIZB4r38bCuBDoolr4Z3HGLYmNo3IFVez1aDVBzI69ATKpTmm98WnmQs2/TlNyAs52CMmL1NHVnpbeRN26mSWee99YsGwOqwiq9jKgNkcXv1mt3Teeuno9eTVtFTxM6MyD5SgXIC0rbj4fF86HRUhGJT+Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LXbWt+lyirFMOIDYd5WgYi9+IQUc4j1/BIKG97+AyPE=;
- b=V/H4Sk41gYrCM5+/Drgz2Z+k5uBXwF+vjZHIwi1SPhS4LBhpIrEwPUCHdEJs1+4Qdy2iuPX05DmlKkuZU3vBZDb/H8BYpNxX4wSMQngxpCHO2hbP5K5Ar6bHJvilFfNzKzGzQzotTiiaTMYtDZn5aSWnloPJwe/oS+zYhKotOR5XiJjIvuOVVIyfuQv1U42y+lLL+xq6T9Bx5Ms6EKam8a3Pr/schsRFrqVWXhuwZPmFidn9ZtSvyN7M3nqR7qttOebIOY8c++K+ZYzp6OaOoW21XAOTrAWtW0l5lJ1Dl4tykC9tU3156KDtJW7SJShm601juxVJvsv1khaIjxdq+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LXbWt+lyirFMOIDYd5WgYi9+IQUc4j1/BIKG97+AyPE=;
- b=zi6SodlLSUssrhPXwMBalH79K07/8nwVB7CPsrhK05qjbIXClTRwaWXWuu58MD0g1GBTo51b4IVxVETRgQ6H+JrhgyV1zYSAQNPVptFMQaezJbIqMphEUQi+osIMB3oFZfFGvE7/ogDrjMvIn0nd3a/FSJ8ohNuyJgVS0fgqj5g=
-Received: from DM6PR11MB3721.namprd11.prod.outlook.com (2603:10b6:5:142::10)
- by DM6PR11MB3179.namprd11.prod.outlook.com (2603:10b6:5:5e::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Wed, 11 Nov
- 2020 09:28:34 +0000
-Received: from DM6PR11MB3721.namprd11.prod.outlook.com
- ([fe80::5017:4139:6553:ded4]) by DM6PR11MB3721.namprd11.prod.outlook.com
- ([fe80::5017:4139:6553:ded4%6]) with mapi id 15.20.3541.025; Wed, 11 Nov 2020
- 09:28:34 +0000
-From:   "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: RE: [PATCH v2 2/2] phy: intel: Add Keem Bay USB PHY support
-Thread-Topic: [PATCH v2 2/2] phy: intel: Add Keem Bay USB PHY support
-Thread-Index: AQHWtkcOPVqKULsgZEi/CFIJq5XoYqm/rdgAgAL6CCA=
-Date:   Wed, 11 Nov 2020 09:28:34 +0000
-Message-ID: <DM6PR11MB3721899F79D7A75BBEE85C5FDDE80@DM6PR11MB3721.namprd11.prod.outlook.com>
-References: <20201109031654.22443-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201109031654.22443-3-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201109114102.GY4077@smile.fi.intel.com>
-In-Reply-To: <20201109114102.GY4077@smile.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [14.1.225.124]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9e99ad1a-3883-44cd-3df5-08d886242953
-x-ms-traffictypediagnostic: DM6PR11MB3179:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR11MB3179C34C76EF0A873A8508A1DDE80@DM6PR11MB3179.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6Qco3kXzCT5sLvUyHKRHXzoEGEOL3PsLemY3bzuMHa7xvnn2JnpY0hhTQja0ZALRW5PloRhGKuerwdWcq9hVUU9f3mCwFZWZWqW4p/2+wEGjp3ghw0Yir/julbjijKWXp2Oe50ju0V5LyUq71PZj/Pzp1lbfPsH2b3Fyse5+RxXhsDpFu05hnVifUSPirGpbI7FUDNfRvRK++uwnTXf4gsAfjOxYs9XGwGwOfw1Y25hRvtjs1VDbFww1Koy9ke3+PYa6s9hxRuQLdkcg5DlVfnh9UUnyjb9P24udTGdmkRcAg4HN87Kt8Ae6GXfSIYbz3tF4QQbkquaRNCBwCTXSEGn+kxgpjSiDRwn0YKSQhxejZTxruLOMIPsBTLVJvu4SiN3lcpy8bbhJV1BL4s5Ejw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB3721.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(346002)(396003)(366004)(136003)(76116006)(53546011)(71200400001)(66556008)(186003)(64756008)(2906002)(6916009)(33656002)(26005)(66476007)(5660300002)(52536014)(4326008)(54906003)(66446008)(7696005)(316002)(83380400001)(966005)(8676002)(6506007)(86362001)(478600001)(8936002)(55016002)(9686003)(66946007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: vLZWN1J9j0sm1MCJE/Th6lObxbCWjiwtyYaqX6Tj/ZG+/EyB+i2uHYT0wanHOkvY5wPctzcrb1MZxxk7XEfj+fJDwID717z5U8Jv/nlq8ZcR6+X2U9Wrn8yTEejJNaQmZAMRenI6ysdho82SdhMLzq55aN9wk3SBfhfRJqRu0WjZi0xO5meFChflDBOD+SsU/mCpcvkpYEMnpF89sl+yh7We3ir1F5xlBsNDKjiDKHYDUlWviyzEpiaw5Dbyivhcwl9XV0sK/J+ILLbMG9HHm4u7FH9DASWZiF23mz0GxoP2swY0lnJoIOc1+bCy6dAck1N931KQ+NJnQ8+o2NRgLrc84QR3IJlUQ9eGYzYjPr4srmtO46tEWjTNMXLbH599NSobCXav7rbv5RFZt+hRTj/Vg1xFfQLKWjqq2s6IQUuRHEdye4I+UKKwACKz3F6lsVfoOyWPDhUdnxweBXikK59MprrN4OxigjUB5OARmhyNqmMQ5yw6TZNUpgsTROzzzTQZHnX9FM2kmaqB39nvpuEJRH1uao5jNjq+ND2GPaFJG9Y5VeTmbjGHVx3RKuZupaRakBHs1j3k3IbSMKZ9GNGYl7C0j7adIduLX++i3FiMsn2h59E/ZcVtawNgQNSOs4/pWHuHKHqyvwMMxSfcw8APhG7d8MVwozJ6CxNLL1MCyvkoC3qyn323ppkNyIb3TjObgQ0lrmt7UwjyYrcTZL8ZF4+gT1JP3zC/PZvujVx1eevpun40hl9mWCRxp7yPbgK5CxRoa4cv93spFWDClcERjvCNhArZ2vVusAGeezvldOOYqJMqdHgHK6nJa89cveL+oaR3vh2tX8XeO9TT3ogqwHamA2Z+Ztrm28d7INo1Q+L5Sp8QATiZdwpYIXZdh53m3GpWe+QBUz/Z/PFqqA==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726600AbgKKJbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 04:31:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43382 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725986AbgKKJbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 04:31:06 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C471C0613D1;
+        Wed, 11 Nov 2020 01:31:06 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id r17so1297995ljg.5;
+        Wed, 11 Nov 2020 01:31:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8DUkNb+DftkRK1N2II0Jh8IwjfDCAOXjEdUfQYAFCME=;
+        b=XfcWcDzEerkIIZfs8RSD5U5vI9Wn5OHJtyO8fSmwSdZVhpeG97lTh7mWimStjiARSF
+         PtnhNH9P8MYslUzdgnixjrZSs0WI0zZqmili6EByrH6F5ve2cdNt1svWgmd8kRlR3tM/
+         K8Hdze+jyAZfxKqOR71gxJPKFcDs92wnHhmZCOLrlNOoFq4FF4gJBna2IwyD4h0cunte
+         CiP9JaUSXfuKQmik/ngkTDwlVJLhSI9R07LLk8dzI2G5VATlhZjk6MFK3RVM2E9463cc
+         0X8ycuouaQ3SJISjjBosvgFl1L2rLjc4Cs5z69udHIqbyhLVlyzhJxBzDD5T8Ols+fo/
+         La4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8DUkNb+DftkRK1N2II0Jh8IwjfDCAOXjEdUfQYAFCME=;
+        b=HxKU9ld8V38S1wN9umgghm4V1Vs0OxtaLQjonKJiyQXQng7Y76A8cgy+Td4+P2tQZP
+         zR9R4urLcek3ksaoKLtbNyOrLNbA3xjkc0zQfny616gDfjkZB41Pj4yDf91R0Zq4nhvt
+         vmOQEvmNu65PXe5eajtov3LFBojmfkeh1qfEfHpmk3a0qh7m5tpEtjsW3KM4/rHqaenB
+         WNfVkhv7g6AakBE7tGPZY9BrYUAFL5UquUjsgULBNjR31xIO+rIxpHeaJkuAPg3UgV3Q
+         WSfBPW5zDpfWcsW69yLhsEB1F8qfTGW90dXSD7XiWcUxs9B7EKqCO2cizRbzMzqWFXLG
+         vHrg==
+X-Gm-Message-State: AOAM530hRDWyFP/Dj4w/0lqg7juNVFAAp88aQ4KfAPEG3GoQ1F6pHHU1
+        5PeM2z/uUlNSIqI0JyUESuSL7rDuLm+k0qu9Tek=
+X-Google-Smtp-Source: ABdhPJz2YQQUPhMwNGg2SxCrpZ+2SfLETyH9+eNN2yzwgtfacxEoN0+dTEwG1jBYY+c03E/0+gD4De1HrvC4BOGdMxk=
+X-Received: by 2002:a2e:b0f8:: with SMTP id h24mr10462391ljl.2.1605087064794;
+ Wed, 11 Nov 2020 01:31:04 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB3721.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e99ad1a-3883-44cd-3df5-08d886242953
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2020 09:28:34.2311
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ciJBHIszJtxxgxOwLNTcWRNb1R3g6tcGWY1cbazEnNXlc4iZjsDmCn/dLIVX1Dg4kSfucL+7OaR5MsXkz8ujvp5rSL8VcKsMFZQ+R50jHcUVr0UhuIH4TNbSClKn6EIG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3179
-X-OriginatorOrg: intel.com
+References: <1604402306-5348-1-git-send-email-abel.vesa@nxp.com> <1604402306-5348-11-git-send-email-abel.vesa@nxp.com>
+In-Reply-To: <1604402306-5348-11-git-send-email-abel.vesa@nxp.com>
+From:   Dong Aisheng <dongas86@gmail.com>
+Date:   Wed, 11 Nov 2020 17:13:25 +0800
+Message-ID: <CAA+hA=TfyW6Ya9adcQFd1=-sJyoCgMyaENmGumtV1ZYar1Ud2g@mail.gmail.com>
+Subject: Re: [PATCH v5 10/14] clk: imx: Add generic blk-ctl driver
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Mike Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy.
+On Tue, Nov 3, 2020 at 7:22 PM Abel Vesa <abel.vesa@nxp.com> wrote:
+...
+> +static int imx_blk_ctl_reset_set(struct reset_controller_dev *rcdev,
+> +                                 unsigned long id, bool assert)
+> +{
+> +       struct imx_blk_ctl_drvdata *drvdata = container_of(rcdev,
+> +                       struct imx_blk_ctl_drvdata, rcdev);
+> +       unsigned int offset = drvdata->rst_hws[id].offset;
+> +       unsigned int shift = drvdata->rst_hws[id].shift;
+> +       unsigned int mask = drvdata->rst_hws[id].mask;
+> +       void __iomem *reg_addr = drvdata->base + offset;
+> +       unsigned long flags;
+> +       u32 reg;
+> +
+> +       if (!assert && !test_bit(1, &drvdata->rst_hws[id].asserted))
+> +               return -ENODEV;
 
-Thanks for the review and sorry for the late reply.
+What if consumers call deassert first in probe which seems common in kernel?
+It seems will fail.
+e.g.
+probe() {
+    reset_control_get()
+    reset_control_deassert()
+}
 
-> -----Original Message-----
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Sent: Monday, November 9, 2020 7:41 PM
-> To: Wan Mohamad, Wan Ahmad Zainie
-> <wan.ahmad.zainie.wan.mohamad@intel.com>
-> Cc: kishon@ti.com; vkoul@kernel.org; robh+dt@kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> mgross@linux.intel.com; Raja Subramanian, Lakshmi Bai
-> <lakshmi.bai.raja.subramanian@intel.com>
-> Subject: Re: [PATCH v2 2/2] phy: intel: Add Keem Bay USB PHY support
->=20
-> On Mon, Nov 09, 2020 at 11:16:54AM +0800, Wan Ahmad Zainie wrote:
-> > Add support for USB PHY on Intel Keem Bay SoC.
->=20
-> ...
->=20
-> > +config PHY_INTEL_KEEMBAY_USB
-> > +	tristate "Intel Keem Bay USB PHY driver"
-> > +	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
->=20
-> > +	depends on OF && HAS_IOMEM
->=20
-> Do you really need dependency to OF (yes, I see that it will be not funct=
-ional,
-> but still can be compile tested)?
+Regards
+Aisheng
 
-No, I can drop OF.
-I will remove in v3.
-
->=20
-> > +	select GENERIC_PHY
-> > +	select REGMAP_MMIO
-> > +	help
-> > +	  Choose this option if you have an Intel Keem Bay SoC.
-> > +
-> > +	  To compile this driver as a module, choose M here: the module
-> > +	  will be called phy-keembay-usb.ko.
->=20
-> ...
->=20
-> > +#include <linux/bitfield.h>
-> > +#include <linux/bits.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/module.h>
->=20
-> > +#include <linux/of.h>
->=20
-> No evidence of anything being used in this code.
-> mod_devicetable.h is missed, though.
-
-I will fix in v3. Remove of.h and add mod_devicetable.h.
-
->=20
-> > +#include <linux/phy/phy.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
->=20
-> ...
->=20
-> > +	usleep_range(30, 50);
->=20
-> Why 30-50?
-
-I take this value from boot firmware.
-There is a delay of 30us after clearing IDDQ_enable bit.
-I believe the purpose is to ensure all analog blocks are powered up.
-
->=20
-> ...
->=20
-> > +	usleep_range(20, 50);
->=20
-> Why these numbers?
-
-In Keem Bay data book, under USB initialization section,
-there is step that there must be a minimum 20us wait
-after clock enable, before bringing PHYs out of reset.
-
-50 is the value that I picked randomly. Is usleep_range(20, 20)
-Better?
-
->=20
-> ...
->=20
-> > +	usleep_range(2, 10);
->=20
-> Ditto.
-
-Under the same section above, there is a step for 2us wait.
-I believe it is for register write to go through.
-
->=20
-> ...
->=20
-> > +	usleep_range(20, 50);
->=20
-> Ditto.
-
-Under the same section above, there is a step to wait 20us
-after setting SRAM load bit, before release the controller
-reset.
-
-I will add comment for those 4 delay above.
-
-Before I proceed with v3, I would like to know if I should
-use udelay(), instead of usleep_range()?
-I refer to https://www.kernel.org/doc/Documentation/timers/timers-howto.txt=
-.
-
->=20
->=20
-> ...
->=20
-> > +	struct device_node *np =3D dev->of_node;
->=20
-> It's being used only once and it doesn't bring any benefit.
-
-I will fix in v3. Use dev->of_node directly.
-
->=20
+> +
+> +       if (assert && !test_and_set_bit(1, &drvdata->rst_hws[id].asserted))
+> +               pm_runtime_get_sync(rcdev->dev)
+> +
+> +       spin_lock_irqsave(&drvdata->lock, flags);
+> +
+> +       reg = readl(reg_addr);
+> +       if (assert)
+> +               writel(reg & ~(mask << shift), reg_addr);
+> +       else
+> +               writel(reg | (mask << shift), reg_addr);
+> +
+> +       spin_unlock_irqrestore(&drvdata->lock, flags);
+> +
+> +       if (!assert && test_and_clear_bit(1, &drvdata->rst_hws[id].asserted))
+> +               pm_runtime_put(rcdev->dev)
+> +
+> +       return 0;
+> +}
+> +
+> +static int imx_blk_ctl_reset_assert(struct reset_controller_dev *rcdev,
+> +                                          unsigned long id)
+> +{
+> +       return imx_blk_ctl_reset_set(rcdev, id, true);
+> +}
+> +
+> +static int imx_blk_ctl_reset_deassert(struct reset_controller_dev *rcdev,
+> +                                            unsigned long id)
+> +{
+> +       return imx_blk_ctl_reset_set(rcdev, id, false);
+> +}
+> +
+> +static const struct reset_control_ops imx_blk_ctl_reset_ops = {
+> +       .assert         = imx_blk_ctl_reset_assert,
+> +       .deassert       = imx_blk_ctl_reset_deassert,
+> +};
+> +
+> +static int imx_blk_ctl_register_reset_controller(struct device *dev)
+> +{
+> +       const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
+> +       struct imx_blk_ctl_drvdata *drvdata = dev_get_drvdata(dev);
+> +       int max = dev_data->resets_max;
+> +       struct imx_reset_hw *hws;
+> +       int i;
+> +
+> +       spin_lock_init(&drvdata->lock);
+> +
+> +       drvdata->rcdev.owner     = THIS_MODULE;
+> +       drvdata->rcdev.nr_resets = max;
+> +       drvdata->rcdev.ops       = &imx_blk_ctl_reset_ops;
+> +       drvdata->rcdev.of_node   = dev->of_node;
+> +       drvdata->rcdev.dev       = dev;
+> +
+> +       drvdata->rst_hws = devm_kcalloc(dev, max, sizeof(struct imx_reset_hw),
+> +                                       GFP_KERNEL);
+> +       hws = drvdata->rst_hws;
+> +
+> +       for (i = 0; i < dev_data->hws_num; i++) {
+> +               struct imx_blk_ctl_hw *hw = &dev_data->hws[i];
+> +
+> +               if (hw->type != BLK_CTL_RESET)
+> +                       continue;
+> +
+> +               hws[hw->id].offset = hw->offset;
+> +               hws[hw->id].shift = hw->shift;
+> +               hws[hw->id].mask = hw->mask;
+> +       }
+> +
+> +       return devm_reset_controller_register(dev, &drvdata->rcdev);
+> +}
+> +static struct clk_hw *imx_blk_ctl_register_one_clock(struct device *dev,
+> +                                               struct imx_blk_ctl_hw *hw)
+> +{
+> +       struct imx_blk_ctl_drvdata *drvdata = dev_get_drvdata(dev);
+> +       void __iomem *base = drvdata->base;
+> +       struct clk_hw *clk_hw = NULL;
+> +
+> +       switch (hw->type) {
+> +       case BLK_CTL_CLK_MUX:
+> +               clk_hw = imx_dev_clk_hw_mux_flags(dev, hw->name,
+> +                                                 base + hw->offset,
+> +                                                 hw->shift, hw->width,
+> +                                                 hw->parents,
+> +                                                 hw->parents_count,
+> +                                                 hw->flags);
+> +               break;
+> +       case BLK_CTL_CLK_GATE:
+> +               clk_hw = imx_dev_clk_hw_gate(dev, hw->name, hw->parents,
+> +                                            base + hw->offset, hw->shift);
+> +               break;
+> +       case BLK_CTL_CLK_SHARED_GATE:
+> +               clk_hw = imx_dev_clk_hw_gate_shared(dev, hw->name,
+> +                                                   hw->parents,
+> +                                                   base + hw->offset,
+> +                                                   hw->shift,
+> +                                                   hw->shared_count);
+> +               break;
+> +       case BLK_CTL_CLK_PLL14XX:
+> +               clk_hw = imx_dev_clk_hw_pll14xx(dev, hw->name, hw->parents,
+> +                                               base + hw->offset, hw->pll_tbl);
+> +               break;
+> +       };
+> +
+> +       return clk_hw;
+> +}
+> +
+> +static int imx_blk_ctl_register_clock_controller(struct device *dev)
+> +{
+> +       const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
+> +       struct clk_hw_onecell_data *clk_hw_data;
+> +       struct clk_hw **hws;
+> +       int i;
+> +
+> +       clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data, hws,
+> +                               dev_data->hws_num), GFP_KERNEL);
+> +       if (WARN_ON(!clk_hw_data))
+> +               return -ENOMEM;
+> +
+> +       clk_hw_data->num = dev_data->clocks_max;
+> +       hws = clk_hw_data->hws;
+> +
+> +       for (i = 0; i < dev_data->hws_num; i++) {
+> +               struct imx_blk_ctl_hw *hw = &dev_data->hws[i];
+> +
+> +               if (hw->type == BLK_CTL_RESET)
+> +                       continue;
+> +
+> +               hws[hw->id] = imx_blk_ctl_register_one_clock(dev, hw);
+> +       }
+> +
+> +       imx_check_clk_hws(hws, dev_data->clocks_max);
+> +
+> +       return of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get,
+> +                                       clk_hw_data);
+> +}
+> +
+> +static int imx_blk_ctl_init_runtime_pm_safekeeping(struct device *dev)
+> +{
+> +       const struct imx_blk_ctl_dev_data *dev_data = of_device_get_match_data(dev);
+> +       struct imx_blk_ctl_drvdata *drvdata = dev_get_drvdata(dev);
+> +       struct imx_pm_safekeep_info *pm_info = &drvdata->pm_info;
+> +       u32 regs_num = dev_data->pm_runtime_saved_regs_num;
+> +       const u32 *regs_offsets = dev_data->pm_runtime_saved_regs;
+> +
+> +       if (!dev_data->pm_runtime_saved_regs_num)
+> +               return 0;
+> +
+> +       pm_info->regs_values = devm_kzalloc(dev,
+> +                                           sizeof(u32) * regs_num,
+> +                                           GFP_KERNEL);
+> +       if (WARN_ON(IS_ERR(pm_info->regs_values)))
+> +               return PTR_ERR(pm_info->regs_values);
+> +
+> +       pm_info->regs_offsets = kmemdup(regs_offsets,
+> +                                       regs_num * sizeof(u32), GFP_KERNEL);
+> +       if (WARN_ON(IS_ERR(pm_info->regs_offsets)))
+> +               return PTR_ERR(pm_info->regs_offsets);
+> +
+> +       pm_info->regs_num = regs_num;
+> +
+> +       return 0;
+> +}
+> +
+> +int imx_blk_ctl_register(struct platform_device *pdev)
+> +{
+> +       struct imx_blk_ctl_drvdata *drvdata;
+> +       struct device *dev = &pdev->dev;
+> +       int ret;
+> +
+> +       drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> +       if (WARN_ON(!drvdata))
+> +               return -ENOMEM;
+> +
+> +       drvdata->base = devm_platform_ioremap_resource(pdev, 0);
+> +       if (WARN_ON(IS_ERR(drvdata->base)))
+> +               return PTR_ERR(drvdata->base);
+> +
+> +       dev_set_drvdata(dev, drvdata);
+> +
+> +       ret = imx_blk_ctl_init_runtime_pm_safekeeping(dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       pm_runtime_get_noresume(dev);
+> +       pm_runtime_set_active(dev);
+> +       pm_runtime_enable(dev);
+> +
+> +       ret = imx_blk_ctl_register_clock_controller(dev);
+> +       if (ret) {
+> +               pm_runtime_put(dev);
+> +               return ret;
+> +       }
+> +
+> +       ret = imx_blk_ctl_register_reset_controller(dev);
+> +
+> +       pm_runtime_put(dev);
+> +
+> +       return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(imx_blk_ctl_register);
+> diff --git a/drivers/clk/imx/clk-blk-ctl.h b/drivers/clk/imx/clk-blk-ctl.h
+> new file mode 100644
+> index 00000000..3f14a47
+> --- /dev/null
+> +++ b/drivers/clk/imx/clk-blk-ctl.h
+> @@ -0,0 +1,80 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef __MACH_IMX_CLK_BLK_CTL_H
+> +#define __MACH_IMX_CLK_BLK_CTL_H
+> +
+> +enum imx_blk_ctl_hw_type {
+> +       BLK_CTL_CLK_MUX,
+> +       BLK_CTL_CLK_GATE,
+> +       BLK_CTL_CLK_SHARED_GATE,
+> +       BLK_CTL_CLK_PLL14XX,
+> +       BLK_CTL_RESET,
+> +};
+> +
+> +struct imx_blk_ctl_hw {
+> +       int type;
+> +       char *name;
+> +       u32 offset;
+> +       u32 shift;
+> +       u32 mask;
+> +       u32 width;
+> +       u32 flags;
+> +       u32 id;
+> +       const void *parents;
+> +       u32 parents_count;
+> +       int *shared_count;
+> +       const struct imx_pll14xx_clk *pll_tbl;
+> +};
+> +
+> +struct imx_blk_ctl_dev_data {
+> +       struct imx_blk_ctl_hw *hws;
+> +       u32 hws_num;
+> +
+> +       u32 clocks_max;
+> +       u32 resets_max;
+> +
+> +       u32 pm_runtime_saved_regs_num;
+> +       u32 pm_runtime_saved_regs[];
+> +};
+> +
+> +#define IMX_BLK_CTL(_type, _name, _id, _offset, _shift, _width, _mask, _parents, _parents_count, _flags, sh_count, _pll_tbl) \
+> +       {                                               \
+> +               .type = _type,                          \
+> +               .name = _name,                          \
+> +               .id = _id,                              \
+> +               .offset = _offset,                      \
+> +               .shift = _shift,                        \
+> +               .width = _width,                        \
+> +               .mask = _mask,                          \
+> +               .parents = _parents,                    \
+> +               .parents_count = _parents_count,        \
+> +               .flags = _flags,                        \
+> +               .shared_count = sh_count,               \
+> +               .pll_tbl = _pll_tbl,                    \
+> +       }
+> +
+> +#define IMX_BLK_CTL_CLK_MUX(_name, _id, _offset, _shift, _width, _parents) \
+> +       IMX_BLK_CTL(BLK_CTL_CLK_MUX, _name, _id, _offset, _shift, _width, 0, _parents, ARRAY_SIZE(_parents), 0, NULL, NULL)
+> +
+> +#define IMX_BLK_CTL_CLK_MUX_FLAGS(_name, _id, _offset, _shift, _width, _parents, _flags) \
+> +       IMX_BLK_CTL(BLK_CTL_CLK_MUX, _name, _id, _offset, _shift, _width, 0, _parents, ARRAY_SIZE(_parents), _flags, NULL, NULL)
+> +
+> +#define IMX_BLK_CTL_CLK_GATE(_name, _id, _offset, _shift, _parents) \
+> +       IMX_BLK_CTL(BLK_CTL_CLK_GATE, _name, _id, _offset, _shift, 1, 0, _parents, 1, 0, NULL, NULL)
+> +
+> +#define IMX_BLK_CTL_CLK_SHARED_GATE(_name, _id, _offset, _shift, _parents, sh_count) \
+> +       IMX_BLK_CTL(BLK_CTL_CLK_SHARED_GATE, _name, _id, _offset, _shift, 1, 0, _parents, 1, 0, sh_count, NULL)
+> +
+> +#define IMX_BLK_CTL_CLK_PLL14XX(_name, _id, _offset, _parents, _pll_tbl) \
+> +       IMX_BLK_CTL(BLK_CTL_CLK_PLL14XX, _name, _id, _offset, 0, 0, 0, _parents, 1, 0, NULL, _pll_tbl)
+> +
+> +#define IMX_BLK_CTL_RESET(_id, _offset, _shift) \
+> +       IMX_BLK_CTL(BLK_CTL_RESET, NULL, _id, _offset, _shift, 0, 1, NULL, 0, 0, NULL, NULL)
+> +
+> +#define IMX_BLK_CTL_RESET_MASK(_id, _offset, _shift, mask) \
+> +       IMX_BLK_CTL(BLK_CTL_RESET, NULL, _id, _offset, _shift, 0, mask, NULL, 0, 0, NULL, NULL)
+> +
+> +extern const struct dev_pm_ops imx_blk_ctl_pm_ops;
+> +
+> +int imx_blk_ctl_register(struct platform_device *pdev);
+> +
+> +#endif
 > --
-> With Best Regards,
-> Andy Shevchenko
->=20
-
-Best regards,
-Zainie
+> 2.7.4
+>
