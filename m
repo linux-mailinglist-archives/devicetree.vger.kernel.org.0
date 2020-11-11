@@ -2,505 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 595882AF823
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 19:36:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF402AF8AD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 20:07:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727635AbgKKSfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 13:35:33 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:5438 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727622AbgKKSfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 13:35:24 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fac2ee70000>; Wed, 11 Nov 2020 10:35:19 -0800
-Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL111.nvidia.com
- (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 11 Nov
- 2020 18:35:24 +0000
-Received: from audio.nvidia.com (10.124.1.5) by mail.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Wed, 11 Nov 2020 18:35:21 +0000
-From:   Sameer Pujar <spujar@nvidia.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <thierry.reding@gmail.com>
-CC:     <jonathanh@nvidia.com>, <kuninori.morimoto.gx@renesas.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sharadg@nvidia.com>, Sameer Pujar <spujar@nvidia.com>
-Subject: [PATCH v5 6/6] arm64: tegra: Audio graph sound card for Jetson Nano and TX1
-Date:   Thu, 12 Nov 2020 00:04:36 +0530
-Message-ID: <1605119676-32273-7-git-send-email-spujar@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1605119676-32273-1-git-send-email-spujar@nvidia.com>
-References: <1605119676-32273-1-git-send-email-spujar@nvidia.com>
+        id S1726412AbgKKTHu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 14:07:50 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:44905 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725860AbgKKTHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 14:07:49 -0500
+Received: by mail-oi1-f196.google.com with SMTP id t16so3352756oie.11;
+        Wed, 11 Nov 2020 11:07:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=m6KErXNzobTERmhFT46PCV9HWoZI2Xkicjs09eZ0AvI=;
+        b=mV8FOmz8GO0KqSfDZjlI3rxEux3/I6bjUWeSdlunmR4Ggzbp3i/yq5c+7Ke6jhpCTB
+         9vLMGPVMPzVP8JrPgjtFPRogWVw/SBtYZ4MoIixWsuXkN8hBXYBqhwEia3b4HvGJA/UV
+         +M99oelkhNuSmAP7MYuMzBN3gtIhTW3k4nUQjYBASor4KPlBitBPo0hv0EaZD+Gwvhe1
+         ny1ta/Exy8GzOc2C0OHbmbx9yx9eWfeWCqPVGcLXaqueH5OPlz9FxQyDfYP3LcPafEUT
+         Rfxqg223cKs2yHQP9lHtiju/isdJMqBqjT6JbXr71WBcon4Uzc3V7xotO9O8wmkSsGai
+         MmLA==
+X-Gm-Message-State: AOAM531qD7iy66yMjmsTZMTINcTqyc53JDJj717ON0ezxBl5n+ln5jNV
+        YIvjxX8sFnNMhHjxLn1uAg==
+X-Google-Smtp-Source: ABdhPJyCH0YBz8aBVngT7atcobywWEXc7TxgwMyadnECjWQCuZrdWHONSiZmlKkk1aMjwqkVJzWkZA==
+X-Received: by 2002:aca:62c3:: with SMTP id w186mr3113609oib.49.1605121668554;
+        Wed, 11 Nov 2020 11:07:48 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id l89sm686242otc.6.2020.11.11.11.07.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 11:07:47 -0800 (PST)
+Received: (nullmailer pid 1844434 invoked by uid 1000);
+        Wed, 11 Nov 2020 19:07:47 -0000
+Date:   Wed, 11 Nov 2020 13:07:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Evan Nimmo <evan.nimmo@alliedtelesis.co.nz>
+Cc:     linux-kernel@vger.kernel.org, frowand.list@gmail.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] of/address: Fix of_node memory leak in of_dma_is_coherent
+Message-ID: <20201111190747.GA1844086@bogus>
+References: <20201110022825.30895-1-evan.nimmo@alliedtelesis.co.nz>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605119719; bh=zgnKJF1VjTOw8+8MA5BXzpvmueNYvLnvIUw8iNhEnkY=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Type;
-        b=YESGiiWmhkwGbgPKqJ68byGgZSu460J/PGmmg5TF0MqSbln3y6MV7lYZvQBtvbGrv
-         t1E0IQFr6x9F0vellPjssIxtXNveIE8/QsbyiLPv4AwX/8dMTZT1qeKiPyrRjKcO+e
-         D4OxMQ2VWH8URyQYE4tdq2e7YD2bwFhFOnNJEaE5mr4Ui4+45HbZS/FVxPEnt/8Z4d
-         Gyci0mHZKCo1f4/AaGTDHmNtAE299+q6q/yB2MAsNIrF44OlLI0Jt3ZSAj2FUHm+nW
-         CLrN8vHWApgrVc7Bbrs+L7dPhwtZBoNMN/7CquSz3cBBkmSJEU5k+kcUjojNrXQbB/
-         okOcNB4lf5ovg==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201110022825.30895-1-evan.nimmo@alliedtelesis.co.nz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable support for audio-graph based sound card on Jetson-Nano and
-Jetson-TX1. Depending on the platform, required I/O interfaces are
-enabled.
+On Tue, 10 Nov 2020 15:28:25 +1300, Evan Nimmo wrote:
+> Commit dabf6b36b83a ("of: Add OF_DMA_DEFAULT_COHERENT & select it on
+> powerpc") added a check to of_dma_is_coherent which returns early
+> if OF_DMA_DEFAULT_COHERENT is enabled. This results in the of_node_put()
+> being skipped causing a memory leak. Moved the of_node_get() below this
+> check so we now we only get the node if OF_DMA_DEFAULT_COHERENT is not
+> enabled.
+> 
+> Fixes: dabf6b36b83a ("of: Add OF_DMA_DEFAULT_COHERENT & select it on
+> powerpc")
+> 
+> Signed-off-by: Evan Nimmo <evan.nimmo@alliedtelesis.co.nz>
+> ---
+>  drivers/of/address.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
- * Jetson-Nano: Enable I2S3, I2S4, DMIC1 and DMIC2.
- * Jetson-TX1: Enable all I2S and DMIC interfaces.
-
-Signed-off-by: Sameer Pujar <spujar@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts | 262 +++++++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 146 ++++++++++++
- 2 files changed, 408 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-index 69102dc..747ab93 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts
-@@ -3,6 +3,7 @@
- 
- #include "tegra210-p2180.dtsi"
- #include "tegra210-p2597.dtsi"
-+#include "tegra210-audio-graph.dtsi"
- 
- / {
- 	model = "NVIDIA Jetson TX1 Developer Kit";
-@@ -127,4 +128,265 @@
- 			status = "okay";
- 		};
- 	};
-+
-+	tegra_sound {
-+		status = "okay";
-+
-+		compatible = "nvidia,tegra210-audio-graph-card";
-+
-+		dais = /* FE */
-+		       <&admaif1_port>, <&admaif2_port>, <&admaif3_port>,
-+		       <&admaif4_port>, <&admaif5_port>, <&admaif6_port>,
-+		       <&admaif7_port>, <&admaif8_port>, <&admaif9_port>,
-+		       <&admaif10_port>,
-+		       /* Router */
-+		       <&xbar_i2s1_port>, <&xbar_i2s2_port>, <&xbar_i2s3_port>,
-+		       <&xbar_i2s4_port>, <&xbar_i2s5_port>, <&xbar_dmic1_port>,
-+		       <&xbar_dmic2_port>, <&xbar_dmic3_port>,
-+		       /* I/O DAP Ports */
-+		       <&i2s1_port>, <&i2s2_port>, <&i2s3_port>, <&i2s4_port>,
-+		       <&i2s5_port>, <&dmic1_port>, <&dmic2_port>, <&dmic3_port>;
-+
-+		label = "jetson-tx1-ape";
-+	};
-+};
-+
-+&tegra_admaif {
-+	status = "okay";
-+};
-+
-+&tegra_ahub {
-+	status = "okay";
-+
-+	ports {
-+		xbar_i2s1_port: port@a {
-+			reg = <0xa>;
-+			xbar_i2s1_ep: endpoint {
-+				remote-endpoint = <&i2s1_cif_ep>;
-+			};
-+		};
-+		xbar_i2s2_port: port@b {
-+			reg = <0xb>;
-+			xbar_i2s2_ep: endpoint {
-+				remote-endpoint = <&i2s2_cif_ep>;
-+			};
-+		};
-+		xbar_i2s3_port: port@c {
-+			reg = <0xc>;
-+			xbar_i2s3_ep: endpoint {
-+				remote-endpoint = <&i2s3_cif_ep>;
-+			};
-+		};
-+		xbar_i2s4_port: port@d {
-+			reg = <0xd>;
-+			xbar_i2s4_ep: endpoint {
-+				remote-endpoint = <&i2s4_cif_ep>;
-+			};
-+		};
-+		xbar_i2s5_port: port@e {
-+			reg = <0xe>;
-+			xbar_i2s5_ep: endpoint {
-+				remote-endpoint = <&i2s5_cif_ep>;
-+			};
-+		};
-+		xbar_dmic1_port: port@f {
-+			reg = <0xf>;
-+			xbar_dmic1_ep: endpoint {
-+				remote-endpoint = <&dmic1_cif_ep>;
-+			};
-+		};
-+		xbar_dmic2_port: port@10 {
-+			reg = <0x10>;
-+			xbar_dmic2_ep: endpoint {
-+				remote-endpoint = <&dmic2_cif_ep>;
-+			};
-+		};
-+		xbar_dmic3_port: port@11 {
-+			reg = <0x11>;
-+			xbar_dmic3_ep: endpoint {
-+				remote-endpoint = <&dmic3_cif_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s1 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s1_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s1_ep>;
-+			};
-+		};
-+		i2s1_port: port@1 {
-+			reg = <1>;
-+			i2s1_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s2 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s2_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s2_ep>;
-+			};
-+		};
-+		i2s2_port: port@1 {
-+			reg = <1>;
-+			i2s2_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s3 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s3_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s3_ep>;
-+			};
-+		};
-+		i2s3_port: port@1 {
-+			reg = <1>;
-+			i2s3_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s4 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s4_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s4_ep>;
-+			};
-+		};
-+		i2s4_port: port@1 {
-+			reg = <1>;
-+			i2s4_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s5 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s5_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s5_ep>;
-+			};
-+		};
-+		i2s5_port: port@1 {
-+			reg = <1>;
-+			i2s5_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic1 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic1_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_dmic1_ep>;
-+			};
-+		};
-+		dmic1_port: port@1 {
-+			reg = <1>;
-+			dmic1_dap_ep: endpoint {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic2 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic2_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_dmic2_ep>;
-+			};
-+		};
-+		dmic2_port: port@1 {
-+			reg = <1>;
-+			dmic2_dap_ep: endpoint {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic3 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic3_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_dmic3_ep>;
-+			};
-+		};
-+		dmic3_port: port@1 {
-+			reg = <1>;
-+			dmic3_dap_ep: endpoint {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
- };
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-index 6a877de..0c917a1 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts
-@@ -6,6 +6,7 @@
- #include <dt-bindings/mfd/max77620.h>
- 
- #include "tegra210.dtsi"
-+#include "tegra210-audio-graph.dtsi"
- 
- / {
- 	model = "NVIDIA Jetson Nano Developer Kit";
-@@ -870,4 +871,149 @@
- 
- 		vin-supply = <&vdd_5v0_sys>;
- 	};
-+
-+	tegra_sound {
-+		status = "okay";
-+
-+		compatible = "nvidia,tegra210-audio-graph-card";
-+
-+		dais = /* FE */
-+		       <&admaif1_port>, <&admaif2_port>, <&admaif3_port>,
-+		       <&admaif4_port>, <&admaif5_port>, <&admaif6_port>,
-+		       <&admaif7_port>, <&admaif8_port>, <&admaif9_port>,
-+		       <&admaif10_port>,
-+		       /* Router */
-+		       <&xbar_i2s3_port>, <&xbar_i2s4_port>,
-+		       <&xbar_dmic1_port>, <&xbar_dmic2_port>,
-+		       /* I/O DAP Ports */
-+		       <&i2s3_port>, <&i2s4_port>,
-+		       <&dmic1_port>, <&dmic2_port>;
-+
-+		label = "jetson-nano-ape";
-+	};
-+};
-+
-+&tegra_admaif {
-+	status = "okay";
-+};
-+
-+&tegra_ahub {
-+	status = "okay";
-+
-+	ports {
-+		xbar_i2s3_port: port@c {
-+			reg = <0xc>;
-+			xbar_i2s3_ep: endpoint {
-+				remote-endpoint = <&i2s3_cif_ep>;
-+			};
-+		};
-+		xbar_i2s4_port: port@d {
-+			reg = <0xd>;
-+			xbar_i2s4_ep: endpoint {
-+				remote-endpoint = <&i2s4_cif_ep>;
-+			};
-+		};
-+		xbar_dmic1_port: port@f {
-+			reg = <0xf>;
-+			xbar_dmic1_ep: endpoint {
-+				remote-endpoint = <&dmic1_cif_ep>;
-+			};
-+		};
-+		xbar_dmic2_port: port@10 {
-+			reg = <0x10>;
-+			xbar_dmic2_ep: endpoint {
-+				remote-endpoint = <&dmic2_cif_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s3 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s3_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s3_ep>;
-+			};
-+		};
-+		i2s3_port: port@1 {
-+			reg = <1>;
-+			i2s3_dap_ep: endpoint {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_i2s4 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			i2s4_cif_ep: endpoint {
-+				remote-endpoint = <&xbar_i2s4_ep>;
-+			};
-+		};
-+		i2s4_port: port@1 {
-+			reg = <1>;
-+			i2s4_dap_ep: endpoint@0 {
-+				dai-format = "i2s";
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic1 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic1_cif_ep: endpoint@0 {
-+				remote-endpoint = <&xbar_dmic1_ep>;
-+			};
-+		};
-+		dmic1_port: port@1 {
-+			reg = <1>;
-+			dmic1_dap_ep: endpoint@0 {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
-+};
-+
-+&tegra_dmic2 {
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			dmic2_cif_ep: endpoint@0 {
-+				remote-endpoint = <&xbar_dmic2_ep>;
-+			};
-+		};
-+		dmic2_port: port@1 {
-+			reg = <1>;
-+			dmic2_dap_ep: endpoint@0 {
-+				/* Placeholder for external Codec */
-+			};
-+		};
-+	};
- };
--- 
-2.7.4
-
+Applied, thanks!
