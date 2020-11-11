@@ -2,91 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C3A32AFA22
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:02:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4B4B2AFA29
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:06:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726632AbgKKVCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 16:02:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38944 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725933AbgKKVCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:02:00 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B377C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 13:02:00 -0800 (PST)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kcxFY-00040p-2B; Wed, 11 Nov 2020 22:01:52 +0100
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kcxFX-00061V-2F; Wed, 11 Nov 2020 22:01:51 +0100
-Date:   Wed, 11 Nov 2020 22:01:49 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Cc:     linux-pwm@vger.kernel.org, lee.jones@linaro.org,
-        thierry.reding@gmail.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
-        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com
-Subject: Re: [PATCH v15 2/2] Add PWM fan controller driver for LGM SoC
-Message-ID: <20201111210149.3eq3nh4ki5ocyfru@pengutronix.de>
-References: <cover.1604555266.git.rahul.tanwar@linux.intel.com>
- <b91a46bee54984d5ff518c9fe56744c291b1ffa4.1604555266.git.rahul.tanwar@linux.intel.com>
+        id S1726275AbgKKVGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 16:06:07 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41382 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725949AbgKKVGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:06:07 -0500
+Received: by mail-oi1-f193.google.com with SMTP id m13so3763509oih.8;
+        Wed, 11 Nov 2020 13:06:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WYNczxSjDE23Pwjm/JYzPYiAl8+Mw5j0D8+bwmWHfpk=;
+        b=pTlIwB6Cm0E9O3TL1mSRTkDy7nFyZMtjZnxAVcpfckl01E62gsQ2LpyBlaT48tz0Ul
+         GallqnVb2X6/YelpRCskCujYyh87M8niWbtUbOOPECcs7Uf0+7ylHwlA2P0H7NRjrUUy
+         DPG1Au7jAdnUHQK43+qvSoMSfQhbU+2BWQ2k4HbfuTWErrn3EehwasYU05XVzGEUJ7Vj
+         FW1yM4j4bvnh3CSKPXMkl9d6ti+sVIFk3tnLKlcPcZbkaOnKQB9yV6/LB9vwnOCcoDLb
+         2LSma+skSgHbEmrpCdaTxt7q0l2Q1XwYKolrNzhWPb3MeQng+SN6Y0YqSFfzoMIVbPR5
+         +slg==
+X-Gm-Message-State: AOAM5310pHZ2ma9sQrbVI95ygiyojO59IrhlRM+MymaFLr6vkh13+/R4
+        TjSA2sWkA1tS41S8Ahew+A==
+X-Google-Smtp-Source: ABdhPJzKxe8G0bEDi5iOyK9Zh2c59ErqGs3ZMcQtD3yw7+8doRWZsx/HDary7B0zdkaBRLQqFHt1Iw==
+X-Received: by 2002:aca:3a46:: with SMTP id h67mr3536472oia.21.1605128764582;
+        Wed, 11 Nov 2020 13:06:04 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n21sm661975oie.15.2020.11.11.13.06.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 13:06:03 -0800 (PST)
+Received: (nullmailer pid 2031561 invoked by uid 1000);
+        Wed, 11 Nov 2020 21:06:02 -0000
+Date:   Wed, 11 Nov 2020 15:06:02 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     soc@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linus.walleij@linaro.org,
+        maz@kernel.org, w@1wt.eu
+Subject: Re: [PATCH v3 2/5] dt-bindings: gpio: Binding for MStar MSC313 GPIO
+ controller
+Message-ID: <20201111210602.GA1974594@bogus>
+References: <20201109121731.1537580-1-daniel@0x0f.com>
+ <20201109121731.1537580-3-daniel@0x0f.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="g3wv7flk7x7fwvyn"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b91a46bee54984d5ff518c9fe56744c291b1ffa4.1604555266.git.rahul.tanwar@linux.intel.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201109121731.1537580-3-daniel@0x0f.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 09, 2020 at 09:17:28PM +0900, Daniel Palmer wrote:
+> Add a binding description for the MStar/SigmaStar GPIO controller
+> found in the MSC313 and later ARMv7 SoCs.
+> 
+> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
+> ---
+>  .../bindings/gpio/mstar,msc313-gpio.yaml      | 62 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> new file mode 100644
+> index 000000000000..8c7cfe3a51b3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/mstar,msc313-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MStar/SigmaStar GPIO controller
+> +
+> +maintainers:
+> +  - Daniel Palmer <daniel@thingy.jp>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^gpio@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    const: mstar,msc313-gpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  "#gpio-cells":
+> +    const: 2
+> +
+> +  gpio-ranges: true
+> +
+> +  gpio-ranges-group-names:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
 
---g3wv7flk7x7fwvyn
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Not a standard property. Probably should be dropped, but why do you need 
+this and what is it for?
 
-Hello,
-
-On Thu, Nov 05, 2020 at 01:49:40PM +0800, Rahul Tanwar wrote:
-> Intel Lightning Mountain(LGM) SoC contains a PWM fan controller.
-> This PWM controller does not have any other consumer, it is a
-> dedicated PWM controller for fan attached to the system. Add
-> driver for this PWM fan controller.
->=20
-> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---g3wv7flk7x7fwvyn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+sUToACgkQwfwUeK3K
-7AlrwAf+OYaCa2FmFmj3Splkji3o0Nz+Zd2Vy4k7pEaUXexTB5KIT85YGtivm8v7
-ThOy33mBMkFhhci7+dr1YDW4cF/Qkwy5i5D4DSi8nOgvI/7zd8G86JSGyfXDYeOn
-jDZGJspvH/OsuK6xyg9w9S4iY2xwf9KHrpHnJiopHbXJdpEGNM7P9tsClMU3i8Su
-S0H1QPHhcEQf9MVsNjVly8o8qhfPZz/05r4dCqev1fUDL9DAJsnUYl2bJ80VfTK1
-XHd0PUvm7Wr6Ko14qF6KUtknCl7G7mqwFzrfEs57D4YZ3oDMu35GrvO3VEXGFFKa
-mnO1heHL4dWCskISHt4sC/WUFJalCw==
-=uG/J
------END PGP SIGNATURE-----
-
---g3wv7flk7x7fwvyn--
+> +
+> +  interrupt-controller: true
+> +
+> +  "#interrupt-cells":
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - "#gpio-cells"
+> +  - interrupt-controller
+> +  - "#interrupt-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/msc313-gpio.h>
+> +
+> +    gpio: gpio@207800 {
+> +      compatible = "mstar,msc313e-gpio";
+> +      #gpio-cells = <2>;
+> +      reg = <0x207800 0x200>;
+> +      gpio-controller;
+> +      gpio-ranges = <&pinctrl 0 36 22>,
+> +                    <&pinctrl 22 63 4>,
+> +                    <&pinctrl 26 68 6>;
+> +      #interrupt-cells = <2>;
+> +      interrupt-controller;
+> +      interrupt-parent = <&intc_fiq>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index db9c008a0395..87ca71f55de3 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2131,6 +2131,7 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  S:	Maintained
+>  W:	http://linux-chenxing.org/
+>  F:	Documentation/devicetree/bindings/arm/mstar/*
+> +F:	Documentation/devicetree/bindings/gpio/mstar,msc313-gpio.yaml
+>  F:	arch/arm/boot/dts/mstar-*
+>  F:	arch/arm/mach-mstar/
+>  F:	include/dt-bindings/gpio/msc313-gpio.h
+> -- 
+> 2.29.2
+> 
