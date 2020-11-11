@@ -2,208 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D81812AFA33
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:11:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6273C2AFA3A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:14:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726698AbgKKVLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 16:11:00 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44893 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725933AbgKKVLA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:11:00 -0500
-Received: by mail-oi1-f195.google.com with SMTP id t16so3762700oie.11;
-        Wed, 11 Nov 2020 13:10:58 -0800 (PST)
+        id S1726670AbgKKVOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 16:14:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726492AbgKKVOh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:14:37 -0500
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74E24C0613D1;
+        Wed, 11 Nov 2020 13:14:37 -0800 (PST)
+Received: by mail-wm1-x342.google.com with SMTP id p22so3508877wmg.3;
+        Wed, 11 Nov 2020 13:14:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=bY6vAZ0tSmVBFVA037gzrHtbWFO6SEFgmLPgtYjY22g=;
+        b=PCJJ9Z/MM17eDD5kZkQcWeB6SBIS1/Ucd1SMiZuYXSCwrZoxludcCx9XmzK9Jq0KSC
+         iGOCQfDcOoHL48VBqF204XCc3nyUdjmwxu36jTyGUzwaDbzM0YWViZk0oKqzZIhHNLFy
+         h7kLKoXIuE5Kx8oUF3iYT6VLFjGeC/uRY5P9Ndu4IXjJ2aez3I89Vb+pOgF30Sm52JgW
+         BcAaQpvMKLsfNS0I2kZYxx2chfOO41Nd44Clo7oXuy5A2cDfE+zYFalOE8zj8IOskMab
+         2NoJZpiqqhnT0A9f3OSL6YjKYD38HGGkE8IzaxIDnZjPji/9hom0IdFMsRBaXZE1ABNK
+         mvPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nSLYOx15FeQ/MCYp8Li7XlQ86kVHnDDAJubkDv/yxEk=;
-        b=Oc24VwnsPQurfbvZhnDR8hAGHIUUVKUUn1XXRDAGqbGAiqtSF/kf6plYtk+EZqZZKb
-         hsaZCHIkgoJ5cyCAQ1b+JiGhy2wPVh90EbIObfb75EWi3nUW/eZKd7LAuNkrRsUYOFFd
-         WKI3/bXu2sJLYnfx87DVn5TxJ9bdhIoWc2i8PS0XiTCSOoHXeMwISCALdmJeqDUvqY7m
-         aiK8pLd3xw+dea8zrGuZykMYQYzXqHGcYplAMDK78tY/Ot5npJsmIqz6H3Y+IVgy0N/Y
-         JYGlS6yZ3ItGh9rU2+3TkQGlhSe/zpUhtl5Coa8DlqbwteQVoLqnMunDvV/Iz8vDCi2T
-         lG/Q==
-X-Gm-Message-State: AOAM533mVdsjm8l70L8NNaX54DvXRyigJcIN4+OBBMGMR1+hye6+9Lel
-        M2197fpQmzOzrOxbUTjTlw==
-X-Google-Smtp-Source: ABdhPJxCfCJ3WMwVcdYy9u0JqMve0f8zuX0Dvk7p0e5M6k8GAY30Pce9WUhCB0StbLmzvcV6L1nWuw==
-X-Received: by 2002:aca:2217:: with SMTP id b23mr3372474oic.124.1605129057739;
-        Wed, 11 Nov 2020 13:10:57 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s20sm775356oof.39.2020.11.11.13.10.56
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=bY6vAZ0tSmVBFVA037gzrHtbWFO6SEFgmLPgtYjY22g=;
+        b=J9sv5rxN8jpi9M/Z9Iif28ibwrHouBEI7eucUreYir/bYE/LTFmJemPCie1rDhFret
+         jPRIWRqr882tLBcoXDLznG/ez8QInfrrr006HXHVW1L0NU3VTUwB/IoWjdoyqJlUwV8S
+         cHzCPCLcQTtqtL6bFxEyPlxxavOLcgknHd89FDUcwW/YrN5Imnpktg5JGELx5KdEN16A
+         fIRN4A4jpgaNacRw08T+T5pzfL96QlXB+W2cUrinXmZIDAIjR6MszOfW+OyHLzU67Y84
+         Qj99sMyhQUJoJ8JWHwocYT7pZZa77VD2JKOVlVjO39gs3khjbgJBhmQzLpKaWeatrvl6
+         BTDg==
+X-Gm-Message-State: AOAM530cANF8TasKCl9EtOtaoPj1WA1GMTD9YtQY7U838w3Ozpgl8iKD
+        Ss8Qeh7/L12EMHYdbLbB4rs=
+X-Google-Smtp-Source: ABdhPJwIQVD9sMCTm7j2oLshwB0nlaXclMyL3UfR34Z7VTGFy9XFFHdUAWCJmMVJq2MgFNhkn8yM8g==
+X-Received: by 2002:a1c:6a0d:: with SMTP id f13mr6083297wmc.172.1605129276237;
+        Wed, 11 Nov 2020 13:14:36 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id t5sm3991082wmg.19.2020.11.11.13.14.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 13:10:56 -0800 (PST)
-Received: (nullmailer pid 2039191 invoked by uid 1000);
-        Wed, 11 Nov 2020 21:10:55 -0000
-Date:   Wed, 11 Nov 2020 15:10:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     linus.walleij@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add sm8250 lpass lpi
- pinctrl bindings
-Message-ID: <20201111211055.GA2033978@bogus>
-References: <20201109130135.28589-1-srinivas.kandagatla@linaro.org>
- <20201109130135.28589-2-srinivas.kandagatla@linaro.org>
+        Wed, 11 Nov 2020 13:14:34 -0800 (PST)
+Date:   Wed, 11 Nov 2020 22:14:32 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+        lee.jones@linaro.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rahul.tanwar.linux@gmail.com
+Subject: Re: [PATCH v15 0/2] pwm: intel: Add PWM driver for a new SoC
+Message-ID: <20201111211432.GA571441@ulmo>
+References: <cover.1604555266.git.rahul.tanwar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="gBBFr7Ir9EOA20Yy"
 Content-Disposition: inline
-In-Reply-To: <20201109130135.28589-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <cover.1604555266.git.rahul.tanwar@linux.intel.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 09, 2020 at 01:01:34PM +0000, Srinivas Kandagatla wrote:
-> Add device tree binding Documentation details for Qualcomm SM8250
-> LPASS(Low Power Audio Sub System) LPI(Low Power Island) pinctrl driver.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  .../pinctrl/qcom,lpass-lpi-pinctrl.yaml       | 129 ++++++++++++++++++
->  1 file changed, 129 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..562520f41a33
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
-> @@ -0,0 +1,129 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/qcom,lpass-lpi-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. Low Power Audio SubSystem (LPASS)
-> +  Low Power Island (LPI) TLMM block
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +description: |
-> +  This binding describes the Top Level Mode Multiplexer block found in the
-> +  LPASS LPI IP on most Qualcomm SoCs
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sm8250-lpass-lpi-pinctrl
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    items:
-> +      - description: LPASS Core voting clock
-> +      - description: LPASS Audio voting clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: audio
-> +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    description: Specifying the pin number and flags, as defined in
-> +      include/dt-bindings/gpio/gpio.h
-> +    const: 2
-> +
-> +  gpio-ranges:
-> +    maxItems: 1
-> +
-> +#PIN CONFIGURATION NODES
-> +patternProperties:
-> +  '-pins$':
-> +    if:
-> +      type: object
-> +    then:
 
-The hacky part was also the if/then. You can drop that (and keep 'type: 
-object').
+--gBBFr7Ir9EOA20Yy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +      properties:
-> +        pins:
-> +          description:
-> +            List of gpio pins affected by the properties specified in this
-> +            subnode.
-> +          items:
-> +            oneOf:
-> +              - pattern: "^gpio([0-9]|[1-9][0-9])$"
-> +          minItems: 1
-> +          maxItems: 14
-> +
-> +        function:
-> +          enum: [ gpio, swr_tx_clk, qua_mi2s_sclk, swr_tx_data1, qua_mi2s_ws,
-> +                  swr_tx_data2, qua_mi2s_data0, swr_rx_clk, qua_mi2s_data1,
-> +                  swr_rx_data1, qua_mi2s_data2, swr_tx_data3, swr_rx_data2,
-> +                  dmic1_clk, i2s1_clk, dmic1_data, i2s1_ws, dmic2_clk,
-> +                  i2s1_data0, dmic2_data, i2s1_data1, i2s2_clk, wsa_swr_clk,
-> +                  i2s2_ws, wsa_swr_data, dmic3_clk, i2s2_data0, dmic3_data,
-> +                  i2s2_data1 ]
-> +          description:
-> +            Specify the alternative function to be configured for the specified
-> +            pins.
-> +
-> +        drive-strength:
-> +          enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +          default: 2
-> +          description:
-> +            Selects the drive strength for the specified pins, in mA.
-> +
-> +        slew-rate:
-> +          enum: [0, 1, 2, 3]
-> +          default: 0
-> +          description: |
-> +              0: No adjustments
-> +              1: Higher Slew rate (faster edges)
-> +              2: Lower Slew rate (slower edges)
-> +              3: Reserved (No adjustments)
-> +
-> +        bias-pull-down: true
-> +
-> +        bias-pull-up: true
-> +
-> +        bias-disable: true
-> +
-> +        output-high: true
-> +
-> +        output-low: true
-> +
-> +      required:
-> +        - pins
-> +        - function
-> +
-> +      additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - gpio-ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/sound/qcom,q6afe.h>
-> +    lpi_tlmm: pinctrl@33c0000 {
-> +        compatible = "qcom,sm8250-lpass-lpi-pinctrl";
-> +        reg = <0x33c0000 0x20000>,
-> +              <0x355a000 0x1000>;
-> +        clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-> +                 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-> +        clock-names = "core", "audio";
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        gpio-ranges = <&lpi_tlmm 0 0 14>;
-> +    };
-> -- 
-> 2.21.0
-> 
+On Thu, Nov 05, 2020 at 01:49:38PM +0800, Rahul Tanwar wrote:
+> Patch 1 adds dt binding document in YAML format.
+> Patch 2 add PWM fan controller driver for LGM SoC.
+>=20
+> v15:
+> - Rebase to latest linux 5.10-rc2
+>=20
+> v14:
+> - Address below review concerns from Uwe Kleine-K?nig.
+>  * Add limitations info about fixed 2-wire mode support.
+>  * Rename clk/reset _disable function names to _release.
+>  * Remove clk & rst from driver data structure. Instead
+>    use them as arguments.
+>  * Add pwm_chip.base =3D -1.
+> - Resolve missing MODULE_LICENSE warning.
+>=20
+> v13:
+> - Address below review concerns (Philipp Zabel)
+>  * Make unnecessary 2 line comment as 1 line comment.
+>  * Move reset_deassert at the last after clk_enable.
+>  * Remove unnecessary return ret statement from .remove()
+> - Move platform_set_drvdata() at the top of probe.=20
+>=20
+> v12:
+> - Rebase to linux 5.9-rc4
+> - Add Reviewed-by tags from Andy Shevchenko & Rob Herring.
+>=20
+> v11:
+> - Address below review concerns (Andy Shevchenko)
+>   * Fix a issue with dev_err_probe() usage & improve the usage.
+>   * Fix & improve a ordering issue with clk_enable/disable &
+>     reset_control assert/deassert.
+>=20
+> v10:
+> - Removed unused of_device.h and added platform_device.h
+>   & mod_devicetable.h
+>=20
+> v9:
+> - Address code quality related review concerns (Andy Shevchenko)
+> - Use devm_add_action_or_reset() instead of explicit unwind calls.
+>=20
+> v8:
+> - Remove fan related optional properties usage, keep
+>   them as default. If needed, change pwm-fan driver
+>   separately in future to add them as generic properties.
+>=20
+> v7:
+> - Address code quality related review concerns.
+> - Rename fan related property to pwm-*.
+> - Fix one make dt_binding_check reported error.
+>=20
+> v6:
+> - Readjust .apply op as per review feedback.
+> - Add back pwm-cells property to resolve make dt_binding_check error.
+>   pwm-cells is a required property for PWM driver.
+> - Add back fan related optional properties.
+>=20
+> v5:
+> - Address below review concerns from Uwe Kleine-K?nig.
+>   * Improve comments about Limitations.
+>   * Use return value of regmap_update_bits if container function returns
+>     error code.
+>   * Modify .apply op to have strict checking for fixed period supported
+>     by PWM HW.
+>   * Use u64 as type when use min_t for duty_cycle.
+>   * Add reset_control_assert() in failure case in probe where it was miss=
+ing
+>     earlier.
+> - Remove fan specific optional properties from pwm dt binding document (R=
+ob Herring)
+>=20
+> v4:
+> - Address below review concerns from Uwe Kleine-K?nig.
+>   * Improve notes and limitations comments.
+>   * Add common prefixes for all #defines.
+>   * Modify/Improve logic in .apply & .get_state ops as advised.
+>   * Skip error messages in probe when error is -EPROBE_DEFER.
+>   * Add dependencies in Kconfig (OF & HAS_IOMEM) and add select REGMAP_MM=
+IO.
+>   * Address other code quality related review concerns.
+> - Fix make dt_binding_check reported error in YAML file.
+>=20
+> v3:
+> - Address below review concerns from Uwe Kleine-K?nig.
+>   * Remove fan rpm calibration task from the driver.
+>   * Modify apply op as per the review feedback.
+>   * Add roundup & round down where necessary.
+>   * Address other misc code quality related review concerns.
+>   * Use devm_reset_control_get_exclusive(). (Philipp Zabel)
+>   * Improve dt binding document.
+>=20
+> v2:
+> - Address below review concerns from Uwe Kleine-K?nig.
+>   * Add notes and limitations about PWM HW.
+>   * Rename all functions and structure to lgm_pwm_*=20
+>   * Readjust space aligninment in structure fields to single space.
+>   * Switch to using apply instead of config/enable/disable.
+>   * Address other code quality related concerns.
+>   * Rebase to 5.8-rc1.
+> - Address review concerns in dt binding YAML from Rob Herring.
+>=20
+> v1:
+> - Initial version.
+>=20
+>=20
+> Rahul Tanwar (2):
+>   Add DT bindings YAML schema for PWM fan controller of LGM SoC
+>   Add PWM fan controller driver for LGM SoC
+>=20
+>  .../devicetree/bindings/pwm/intel,lgm-pwm.yaml     |  44 ++++
+>  drivers/pwm/Kconfig                                |  11 +
+>  drivers/pwm/Makefile                               |   1 +
+>  drivers/pwm/pwm-intel-lgm.c                        | 244 +++++++++++++++=
+++++++
+>  4 files changed, 300 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/intel,lgm-pwm.y=
+aml
+>  create mode 100644 drivers/pwm/pwm-intel-lgm.c
+
+Both patches applied, thanks.
+
+Thierry
+
+--gBBFr7Ir9EOA20Yy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+sVDQACgkQ3SOs138+
+s6FAgA//bkEboSKJlHm6SeyDedY/54jZJJ743Gsg3m+KrPwS1JvLILrLuZDSCWxC
+zdAG6+2OSeKTbtZn0dcNkG6/v3ng1mKMqCYhJrXOFPWwaBT8TmrvBaAOY9UJIr3E
+aWXjN7AogW6U8zOAK08T5S18hlwxdPZIVUcs6fheSbeEzb9ux2rNiCtNbY0LCJah
+nqp+3TLfR6b6lyd7vgB2iM8Ut2won9M21ig2HiNAST/+ixV7AyW/ejSmy62QcY+K
+iDOOO6h7VfNt5DUSqNkdA0OBGZPcrKKgHD2UqKpSc0rywEaAGlOn2RhsjK9/x5Ru
+9VZhvpQGHLK9yNeS9746EKeE07gMocaHqGXGhh57ltxHFGbm9m79of+SHJB6JzEM
+NxJqQo7Bb2WZVkHaDsk1vkO7KhZ5nitcEUvI8T1lD/Id5eF8F03ghzCrc7OYp4fo
+KlWTNj5F/4sc/IcF55sayceqQu/jKigKgfVIr2ur/o7z81ykh99Ghvm5cGSRfpO/
+2xqBPvYvmhFgumuY+fUKWJzePJxXmAyt3DHWFhL8kfj3sdChTgua8BdgMYurbxLz
+f6i4KH3yHm3lZWXovGFv3LzeCKGGGcLYPI/jvKGyEXeT5b4/u5ksrOHMiOVE8xXW
+H4sY+Is81ABh8dVXsKdhWgPId1//jrUPgISYPDlBhh/P5n3UMlU=
+=MrmB
+-----END PGP SIGNATURE-----
+
+--gBBFr7Ir9EOA20Yy--
