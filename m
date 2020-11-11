@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9DC52AFD4C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:55:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 133772AFC07
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:31:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727881AbgKLBbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 20:31:45 -0500
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37942 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727371AbgKKWzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 17:55:31 -0500
-Received: by mail-ot1-f67.google.com with SMTP id a15so3771908otf.5
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 14:55:29 -0800 (PST)
+        id S1727371AbgKLBbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 20:31:48 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:35607 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727617AbgKKW5y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 17:57:54 -0500
+Received: by mail-oi1-f194.google.com with SMTP id c80so4134113oib.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 14:57:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JA4TKBqhr47SbrGBRF5bk7MJanz683avWDVvtVqt8SI=;
-        b=Tc4ZZAun64amWtwmtcSyMTuXdjvlXxSJ71xd2mv8er1dcrPIS+J971YgBYYN/GLUbl
-         1XCIq7Vb2e4yLXoFIhwv4Ecm7bGGBCunBc4DcuQL+m83XkZ1w80Nb9b5DYAXhRexe08S
-         7mN74uEVetCheQ6I7Ywqbi3nYgIVZBdSSa9jtLW4tuBYrtbsG0ROMrU+QyvNvSANoXZU
-         JGLCgKsroFHn7aJ9G9LSxTWzUqrFxmaEr2BUG/EuR00ThIzDPrNgDS0iwno6afGJJ91X
-         cQ+jmZr/QkwkYFPr62F72yAJLZvadkErdSoByJHGzW93MTfx6jpkKcfxF1X+mYQ4SSgs
-         XyGA==
-X-Gm-Message-State: AOAM530cBs8y4NimB/cd+DFC4m07LkkOnug4Rvwe0IYPfQjDCHZcnkV8
-        aJlug6kcfDeK19QMF4acaA==
-X-Google-Smtp-Source: ABdhPJy6W+YEtqOadVuFv2hg+hQlXdrMPHzWnqEyg4T4SOebG2+c+g3/OInmWAONo4xW092vVswV7w==
-X-Received: by 2002:a9d:2c62:: with SMTP id f89mr18258108otb.38.1605135329256;
-        Wed, 11 Nov 2020 14:55:29 -0800 (PST)
+        bh=gcD/G3Kz1diigSLqvQi0L2GY7rUK/C54CxDKnrDDAHw=;
+        b=QUccfsQ6imC7/AlkGw+slNOb7upN49EngDNdbwuWAHJOGH40STX+AlRApYuIBmgpeE
+         BFjhU1mqnAWj3c1Oz1NhlsEKHFG4IX39J+evPHAgzu0ao+aU2aibksxouUfaf3P2Gi6i
+         +S8aYc+65lHM/mgJEIlZHfVj50c4RO9l1MlYm5G3fLS2bA6/+oSp/qlrNRwksYLlld2e
+         Vx4uNSplk1ZRA4PGj0H3sGdms6zeWhARaC9rP+62EHaerQh1uKsD3dyEMVRSsc2wGxGN
+         VcpFBI7n+RocMtCBM0DArjnegDGbzsEatsxhpCYSLLM3JUAB5oxo7RGxhLmJIXRTewRv
+         R5wQ==
+X-Gm-Message-State: AOAM533ixN4T3zDVHgc72us+yT8EB7yY8LCghCbeFqtfRZVwCGbQ+h2k
+        yd/7SsHZz9RD/RAh3GDCog==
+X-Google-Smtp-Source: ABdhPJw30KP9ll41u5T6Lxo0CKw/50ThfvhuUhDSgpZmTNwpKR51O6NU6zzmG9mniuXWFzo06KJPvg==
+X-Received: by 2002:aca:cfc7:: with SMTP id f190mr763315oig.72.1605135473255;
+        Wed, 11 Nov 2020 14:57:53 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o9sm854024oos.29.2020.11.11.14.55.27
+        by smtp.gmail.com with ESMTPSA id z12sm853137oti.45.2020.11.11.14.57.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 14:55:28 -0800 (PST)
-Received: (nullmailer pid 2198096 invoked by uid 1000);
-        Wed, 11 Nov 2020 22:55:27 -0000
-Date:   Wed, 11 Nov 2020 16:55:27 -0600
+        Wed, 11 Nov 2020 14:57:52 -0800 (PST)
+Received: (nullmailer pid 2201918 invoked by uid 1000);
+        Wed, 11 Nov 2020 22:57:51 -0000
+Date:   Wed, 11 Nov 2020 16:57:51 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Liu Ying <victor.liu@nxp.com>
 Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
@@ -47,7 +47,7 @@ Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         Sebastian Reichel <sebastian.reichel@collabora.com>
 Subject: Re: [PATCH v2] dt-bindings: display: panel: one file of all simple
  LVDS panels with dual ports
-Message-ID: <20201111225527.GA2191793@bogus>
+Message-ID: <20201111225751.GA2198243@bogus>
 References: <1604993797-14240-1-git-send-email-victor.liu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -66,6 +66,9 @@ On Tue, Nov 10, 2020 at 03:36:37PM +0800, Liu Ying wrote:
 > 
 > Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
 > 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new file.
+
+Also, what about advantech,idk-2121wr?
+
 > 
 > The objectives with one file for all the simple LVDS panels with dual ports are:
 > - Make it simpler to add bindings for this kind of LVDS panels
@@ -116,9 +119,6 @@ On Tue, Nov 10, 2020 at 03:36:37PM +0800, Liu Ying wrote:
 > +  This binding file is a collection of the LVDS panels that
 > +  has dual LVDS ports and requires only a single power-supply.
 > +  One LVDS port receives even pixels, and the other receives odd pixels.
-
-You have to define which port number is which in the schema.
-
 > +  There are optionally a backlight and an enable GPIO.
 > +  The panel may use an OF graph binding for the association to the display,
 > +  or it may be a direct child node of the display.
@@ -149,9 +149,6 @@ You have to define which port number is which in the schema.
 > +  backlight: true
 > +  enable-gpios: true
 > +  port: true
-
-A single port shouldn't be valid.
-
 > +  ports: true
 > +  power-supply: true
 > +
@@ -173,11 +170,6 @@ A single port shouldn't be valid.
 > +
 > +        port@0 {
 > +          dual-lvds-odd-pixels;
-
-This needs to be documented. Though really, this property seems 
-pointless if the port numbering is fixed (though 0 for even and 1 for 
-odd would be a bit more logical).
-
 > +          reg = <0>;
 > +
 > +          panel_lvds0_in: endpoint {
