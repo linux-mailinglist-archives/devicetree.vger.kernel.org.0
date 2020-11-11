@@ -2,88 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E5F2AFB82
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 23:39:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A293A2AFC03
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:31:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727035AbgKKWje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 17:39:34 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:36052 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727162AbgKKWhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 17:37:33 -0500
-Received: by mail-oo1-f66.google.com with SMTP id l20so837879oot.3;
-        Wed, 11 Nov 2020 14:37:32 -0800 (PST)
+        id S1727739AbgKLBbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 20:31:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55594 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727267AbgKKWvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 17:51:46 -0500
+Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 115C2C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 14:23:40 -0800 (PST)
+Received: by mail-vk1-xa44.google.com with SMTP id n189so873156vkb.3
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 14:23:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DnpRf3DpQZWPCc8K1L4I004+4MFqzM2ZdFbLNwwHnYw=;
+        b=C9k51AwCxEhPRdeOTRakEQTuFFOQh4UZkwHCz1URxF01p2AOtXY84wjFUBZ43stsfn
+         LYvn0PUhMDdNs4dwckpA3Hg6lINDOc2zIzXRILApPx9B4pT1moEvZ7weshsWRZf1CUEq
+         W+7naCTDF4POLE2bhgaEEUARcAhnDvxf7N3Qo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=i7Ry0yhfayXC/BqLVWYKkth2SuWU6ba0AdxpS9Zg0gs=;
-        b=WmjoQ5nPny4xvqrbMbNoblhBL+IzZdbFKJhid8Fp6VouqLx3qGnKNfvxnWL1nDu1e7
-         ar4bu1d9HAmrk+Dn+V93iZuCc0HR5Yxm2wjM1N5ctF0CLAFjy722dsXLNIlhxBqI5IHV
-         7q2bBuYqQV+bKN6M8Onh0/6baiWmpww9pGKGJbaFIy2PH+NlesTsjc89xUqYpPjGG9pD
-         CUnCMpWxO8+vVe4je+VJdr0f0EH5hfJKacbb8+wAR5dhTztETfoCQpTd7h56hVhPyJgQ
-         G5M3CgII2m3wyDGvRyKaDJ4rhKKsST9K2N9+BokPExzXaJyT+x45rykNWymHklhLhSSn
-         z7ig==
-X-Gm-Message-State: AOAM5301TrPo57l7cibYiy0vQkeyg/niYevmN0ajdtCID6wTeIL4paZ7
-        rR0Q+9rqQui462T6ysglUw==
-X-Google-Smtp-Source: ABdhPJxZdYi7/q5dK+NoVtMT82epFre5O3KgLm3TlKYLSNx0m1CV3kuNyQfGQ22OBbks2Ii+zS3/Zg==
-X-Received: by 2002:a4a:a445:: with SMTP id w5mr14003746ool.63.1605134252531;
-        Wed, 11 Nov 2020 14:37:32 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d202sm720330oig.3.2020.11.11.14.37.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 14:37:31 -0800 (PST)
-Received: (nullmailer pid 2170567 invoked by uid 1000);
-        Wed, 11 Nov 2020 22:37:30 -0000
-Date:   Wed, 11 Nov 2020 16:37:30 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, netdev@vger.kernel.org,
-        Scott Branden <sbranden@broadcom.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Kurt Kanzenbach <kurt@kmk-computers.de>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DnpRf3DpQZWPCc8K1L4I004+4MFqzM2ZdFbLNwwHnYw=;
+        b=P/yQZ6NAEH8OMz1mC4NU42k4vK89pE6sFvO+mqZ5Oswuo94lBPI+Ya4BabdNoulX01
+         Auws2d5psJHeu0aUy9YT6oQk8tM7m6paBW7U2fGm6d9LW+Tjv3jen6QQa5UhRb0cLPsc
+         ywVpN0vJVKvCiuedpho3TX0IP39CDd5SHU+L8iCrD/e6PcnykcxrxUD8ewQZRHZNx+2V
+         YhzGKQU0/zYtdqALMCq4UCw+UE7O+i+JLbQYYA61TQ03V9jJMrFGuvpf/zjUwZkX8+Jz
+         ASxE7rX0pD9iMNFQ8QNB8A8S8hqH6K+aWxfKNq4ZJLYEgNxU4BdKZHd281wrQNJS6xne
+         vr9w==
+X-Gm-Message-State: AOAM532WNe4Y/kYUTFrVzGXUIdRgWDcqyft1kaKFCbIUv7ZflYYhbjgw
+        UsQT+4FJ0XFjH8PjaAdbTSJR5/HpZLPlIg==
+X-Google-Smtp-Source: ABdhPJw/745STr2VASsHZD2cfnUohQOfcL8AXEI5yq6gdvH2YtqY7zfNPsS3oJjy3mw+RDnEC8sj8Q==
+X-Received: by 2002:a1f:2757:: with SMTP id n84mr15457367vkn.4.1605133418818;
+        Wed, 11 Nov 2020 14:23:38 -0800 (PST)
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com. [209.85.222.51])
+        by smtp.gmail.com with ESMTPSA id 190sm386480vsz.13.2020.11.11.14.23.37
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Nov 2020 14:23:37 -0800 (PST)
+Received: by mail-ua1-f51.google.com with SMTP id x13so1234291uar.4
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 14:23:37 -0800 (PST)
+X-Received: by 2002:a9f:24eb:: with SMTP id 98mr14362417uar.90.1605133417432;
+ Wed, 11 Nov 2020 14:23:37 -0800 (PST)
+MIME-Version: 1.0
+References: <20201111120334.1.Ifc04ea235c3c370e3b21ec3b4d5dead83cc403b4@changeid>
+In-Reply-To: <20201111120334.1.Ifc04ea235c3c370e3b21ec3b4d5dead83cc403b4@changeid>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 11 Nov 2020 14:23:25 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=V6fFoEdj8bSQmz4fAJwLvzY0o8Vd+E0fknZaLTq4ZQnA@mail.gmail.com>
+Message-ID: <CAD=FV=V6fFoEdj8bSQmz4fAJwLvzY0o8Vd+E0fknZaLTq4ZQnA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Set 'polling-delay-passive' for
+ thermal zones back to 250 ms
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Rajeshwari <rkambl@codeaurora.org>,
+        Akhil P Oommen <akhilpo@codeaurora.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Ray Jui <rjui@broadcom.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>
-Subject: Re: [PATCH 10/10] dt-bindings: net: dsa: b53: Add YAML bindings
-Message-ID: <20201111223730.GA2169778@bogus>
-References: <20201110033113.31090-1-f.fainelli@gmail.com>
- <20201110033113.31090-11-f.fainelli@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201110033113.31090-11-f.fainelli@gmail.com>
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 09 Nov 2020 19:31:13 -0800, Florian Fainelli wrote:
-> From: Kurt Kanzenbach <kurt@kmk-computers.de>
-> 
-> Convert the b53 DSA device tree bindings to YAML in order to allow
-> for automatic checking and such.
-> 
-> Suggested-by: Florian Fainelli <f.fainelli@gmail.com>
-> Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
+Hi,
+
+On Wed, Nov 11, 2020 at 12:03 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> Commit 22337b91022d ("arm64: dts: qcom: sc7180: Changed polling mode
+> in Thermal-zones node") sets both 'polling-delay' and
+> 'polling-delay-passive' to zero with the rationale that TSENS interrupts
+> are enabled. A TSENS interrupt fires when the temperature of a thermal
+> zone reaches a trip point, which makes regular polling below the passive
+> trip point temperature unnecessary. However the situation is different
+> when passive cooling is active, regular polling is still needed to
+> trigger a periodic evaluation of the thermal zone by the thermal governor.
+>
+> Change 'polling-delay-passive' back to the original value of 250 ms.
+> Commit 2315ae70af95 ("arm64: dts: qcom: sc7180: Add gpu cooling
+> support") recently changed the value for the GPU thermal zones from
+> zero to 100 ms, also set it to 250 ms for uniformity. If some zones
+> really need different values these can be changed in dedicated patches.
+>
+> Fixes: 22337b91022d ("arm64: dts: qcom: sc7180: Changed polling mode in Thermal-zones node")
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  .../devicetree/bindings/net/dsa/b53.txt       | 149 -----------
->  .../devicetree/bindings/net/dsa/b53.yaml      | 249 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 250 insertions(+), 150 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/dsa/b53.txt
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/b53.yaml
-> 
+>
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 50 ++++++++++++++--------------
+>  1 file changed, 25 insertions(+), 25 deletions(-)
 
-With the rename (don't forget $id):
+For further context:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+https://lore.kernel.org/r/a4be2cf9e51e4f40aae3f9a56989a42f@codeaurora.org
+https://lore.kernel.org/r/20201015221920.GA1657396@google.com
+
+I didn't personally go dig through the code, but what's said in those
+emails seems reasonable to me.
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
