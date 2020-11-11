@@ -2,203 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE032AF1DF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:19:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E0FF2AF1F1
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:22:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726130AbgKKNTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 08:19:13 -0500
-Received: from mga01.intel.com ([192.55.52.88]:27319 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725912AbgKKNTN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 08:19:13 -0500
-IronPort-SDR: 78SL6KyKK2YKcWiKL7CbshwOjGP3kP/fkUqAGgQlJA17rb83E9n5zRxBfggCdRY42lFPlyysi8
- 0VAg9SFz5JUg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="188123837"
-X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; 
-   d="scan'208";a="188123837"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 05:19:04 -0800
-IronPort-SDR: mSF6DKR1d7plVEUXtdZXIU68gckRtwFsoIo4F0Bp69Q5D6Vw/A0ftz7nd7zkDt5+7TYksJvtVv
- aTSNnELYEzlA==
-X-IronPort-AV: E=Sophos;i="5.77,469,1596524400"; 
-   d="scan'208";a="308827889"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 05:19:00 -0800
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id AECA420867; Wed, 11 Nov 2020 15:18:57 +0200 (EET)
-Date:   Wed, 11 Nov 2020 15:18:57 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1726149AbgKKNWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 08:22:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52102 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725912AbgKKNWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:22:00 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63755C0613D1;
+        Wed, 11 Nov 2020 05:22:00 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id 11so2068986ljf.2;
+        Wed, 11 Nov 2020 05:22:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=9r8b49v3ljRgTZvFAK4d4bWtQHAXArk3oNTb3u4fiLk=;
+        b=Uj1A0CfbE2XeLHe3CdC7MeMYY0nAH9W5JXxtsE8KohRUij0Es6UpaHYgTSKcmRncl9
+         lzwd+FfeMJ0+f1sFzz47qsO+XzzHkwNW6IoK65hYUsifHPOJzhXbY2vm3Q/vmiJejbUC
+         SWJKePFV3pigYGgp0CeESneg1CAObVqHpXs2MkIPwApV4s4QV61YsWqkqMGJwnFjSBkl
+         q0sKJRKTq0c+E3i5QHDqmSKx6B7LH5cYOPPaGvWL7ei3GqKlTbCeLnT8Mg7lBEhe3hul
+         ANoHR8qJO4zWa8NBOth12VbLxl8FzSOrf+6vVpKGbDZHg9NjgGDRErjBcF+CzweJOw7M
+         oTjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9r8b49v3ljRgTZvFAK4d4bWtQHAXArk3oNTb3u4fiLk=;
+        b=hyPKCdzgQa06Y1ohcXZZX+ZjtTdEB1WviKf1EFxQLwpPFiwrpqJ9o7A6uj8Q1a4ljU
+         ujy3yzO/f4pJDjQPwkt53Tp9Upn6t1oLcy9qpsCFsOBuhjteSWtRQ6GQe3T/hIf2DL4N
+         rcOcHVlg9F9rJIHfFWDAIj50k2QczAAYZpHrGJGIqHBNxm7XEPmBn5NhkB3m2SYH1/Fk
+         tUhsFZlAfWjtVWgfg7MjXuTgn0mP0/TDaR27TZEJ6I0jmym7MizMpxm4m1CDthaVzfZh
+         NCaismtWHBNbJerusFFWv1Ylil+RFh65SR3fcN6SCwWCuLRtXU2KmYZzhLoC+WoR7L4Z
+         4Q3Q==
+X-Gm-Message-State: AOAM533dIguyoFxo7i5fCOdnAz9Ox8sYVO37fHybn2y/qjRO9loL9N27
+        6/0VMeqOzqEYskSf7XVTFK/PGVBjIm6jJqY0
+X-Google-Smtp-Source: ABdhPJzN/eXdGxoCDY5GlSXpuq9R04QSHslNVJU7LNNoweciGDxkm1itgTaG89BpzFa6dKVqTrmopw==
+X-Received: by 2002:a2e:90cb:: with SMTP id o11mr2572076ljg.465.1605100918885;
+        Wed, 11 Nov 2020 05:21:58 -0800 (PST)
+Received: from DESKTOP-GSFPEC9.localdomain (broadband-46-242-8-148.ip.moscow.rt.ru. [46.242.8.148])
+        by smtp.gmail.com with ESMTPSA id z8sm235545ljh.74.2020.11.11.05.21.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 05:21:58 -0800 (PST)
+From:   Konstantin Aladyshev <aladyshev22@gmail.com>
+Cc:     supreeth.venkatesh@amd.com, aladyshev22@gmail.com,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Maxime Ripard <mripard@kernel.org>, kevin.lhopital@hotmail.com,
-        =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
-Subject: Re: [PATCH 1/3] dt-bindings: media: i2c: Add OV8865 bindings
- documentation
-Message-ID: <20201111131857.GC26150@paasikivi.fi.intel.com>
-References: <20201023175406.504527-1-paul.kocialkowski@bootlin.com>
- <20201023175406.504527-2-paul.kocialkowski@bootlin.com>
- <20201102232411.GD26150@paasikivi.fi.intel.com>
- <20201104102643.GH2123@aptenodytes>
- <20201105081954.GX26150@paasikivi.fi.intel.com>
- <20201105153534.GD615923@aptenodytes>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201105153534.GD615923@aptenodytes>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: aspeed: amd-ethanolx: Add GPIO line names
+Date:   Wed, 11 Nov 2020 16:21:33 +0300
+Message-Id: <20201111132133.1253-1-aladyshev22@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+Add GPIO line names for AMD EthanolX customer reference board.
+It populates AST2500 GPIO lines (A0-A7 to AC0-AC7) with AMD EthanolX
+designated names.
 
-On Thu, Nov 05, 2020 at 04:35:34PM +0100, Paul Kocialkowski wrote:
-> Hi Sakari,
-> 
-> On Thu 05 Nov 20, 10:19, Sakari Ailus wrote:
-> > Hi Paul,
-> > 
-> > On Wed, Nov 04, 2020 at 11:26:43AM +0100, Paul Kocialkowski wrote:
-> > > Hi Sakari and thanks for the review!
-> > > 
-> > > On Tue 03 Nov 20, 01:24, Sakari Ailus wrote:
-> > > > On Fri, Oct 23, 2020 at 07:54:04PM +0200, Paul Kocialkowski wrote:
-> > > > > This introduces YAML bindings documentation for the OV8865
-> > > > > image sensor.
-> > > > > 
-> > > > > Co-developed-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> > > > > Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
-> > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > > ---
-> > > > >  .../bindings/media/i2c/ovti,ov8865.yaml       | 124 ++++++++++++++++++
-> > > > >  1 file changed, 124 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..807f1a94afae
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
-> > > > > @@ -0,0 +1,124 @@
-> > > > > +# SPDX-License-Identifier: GPL-2.0
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8865.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: OmniVision OV8865 Image Sensor Device Tree Bindings
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    const: ovti,ov8865
-> > > > > +
-> > > > > +  reg:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  clocks:
-> > > > > +    items:
-> > > > > +      - description: EXTCLK Clock
-> > > > > +
-> > > > > +  clock-names:
-> > > > > +    items:
-> > > > > +      - const: extclk
-> > > > 
-> > > > Is this needed with a single clock?
-> > > 
-> > > Yes I think so: we grab the clock with devm_clk_get which takes a name string
-> > > that matches the clock-names property.
-> > 
-> > That argument may be NULL.
-> 
-> Understood, let's get rid of clock-names then. I see this is done in a few
-> drivers already, but many also give it a name with a single clock.
-> 
-> It would be nice if that was consistent across all drivers just so that the
-> expectation is clear (that the best way for that to happen is probably to
-> fix up a patch myself though).
+Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
+---
+ arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-I guess somewhat different practices exist depending on the tree albeit
-it's all DT bindings. It's also not wrong to have the name of the clock
-there, no, but virtually all camera sensors consume a single clock, so you
-may as well omit the information.
-
-> 
-> > > > And... shouldn't this also come with assigned-clock-rates etc., to set the
-> > > > clock frequency?
-> > > 
-> > > I'm a bit confused why we would need to do that in the device-tree rather than
-> > > setting the clock rate with clk_set_rate in the driver, like any other driver
-> > > does. I think this was discussed before (on the initial ov8865 series) and the
-> > > conclusion was that there is no particular reason for media i2c drivers to
-> > > behave differently. So I believe this is the correct approach.
-> > 
-> > I'm not exactly sure about that conclusion.
-> 
-> I may have jumped too far here. It's not exactly clear to me what was the
-> conclusion from...
-> https://lore.kernel.org/linux-arm-kernel/20200401080705.j4goeqcqhoswhx4u@gilmour.lan/
-
-Yes, there has been more discussion on the topic, most recently in this
-thread:
-
-<URL:https://lore.kernel.org/linux-arm-kernel/20201102150547.GY26150@paasikivi.fi.intel.com/>
-
-I think this deserves to be added to camera-sensor.rst .
-
-> 
-> > You can use clk_set_rate() if you get the frequency from DT, but we
-> > recently did conclude that camera sensor drivers can expect to get the
-> > frequency indicated by assigned-clock-rate property.
-> 
-> ...but it looks like clock-frequency was preferred over assigned-clock-rates
-> and this is what the binding that was merged suggests. Is that correct?
-
-assigned-clock-rates is fine. The assumption is that the clock frequency
-does not change from the value set through DT, and the driver gets that
-exact frequency.
-
-> 
-> I now understand that the clock frequency may depend on the system integration
-> for this special case so we have to specify it via dt.
-
-Correct.
-
-> 
-> > In other words, the driver may not be specific to a particular board and
-> > SoC you have.
-> 
-> Although this is sadly more than often the case, because handling a variable
-> clock rate in the driver is quite complex (and even more with static init tables
-> that include PLL configuration). And sadly my driver is no exception and
-> only supports 24 MHz input.
-
-That's fine. If someone needs other frequencies, they can always add
-support for those in the driver.
-
-> 
-> > Please also read Documentation/driver-api/media/camera-sensor.rst .
-> 
-> Thanks, I hadn't seen that document before. It's great that it exists!
-
-You're welcome!
-
-This was indeed written to reduce the number of patch revisions needed ot
-get a driver to upstream. :-)
-
+diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+index b93ed44eba0c..96ff0aea64e5 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
+@@ -97,6 +97,50 @@
+ 		     &pinctrl_adc4_default>;
+ };
+ 
++&gpio {
++	status = "okay";
++	gpio-line-names =
++	/*A0-A7*/	"","","FAULT_LED","CHASSIS_ID_LED","","","","",
++	/*B0-B7*/	"","","","","","","","",
++	/*C0-C7*/	"CHASSIS_ID_BTN","INTRUDER","AC_LOSS","","","","","",
++	/*D0-D7*/	"HDT_DBREQ","LOCAL_SPI_ROM_SEL","FPGA_SPI_ROM_SEL","JTAG_MUX_S",
++			"JTAG_MUX_OE","HDT_SEL","ASERT_WARM_RST_BTN","FPGA_RSVD",
++	/*E0-E7*/	"","","MON_P0_PWR_BTN","MON_P0_RST_BTN","MON_P0_NMI_BTN",
++			"MON_P0_PWR_GOOD","MON_PWROK","MON_RESET",
++	/*F0-F7*/	"MON_P0_PROCHOT","MON_P1_PROCHOT","MON_P0_THERMTRIP",
++			"MON_P1_THERMTRIP","P0_PRESENT","P1_PRESENT","MON_ATX_PWR_OK","",
++	/*G0-G7*/	"BRD_REV_ID_3","BRD_REV_ID_2","BRD_REV_ID_1","BRD_REV_ID_0",
++			"P0_APML_ALERT","P1_APML_ALERT","FPGA ALERT","",
++	/*H0-H7*/	"BRD_ID_0","BRD_ID_1","BRD_ID_2","BRD_ID_3",
++			"PCIE_DISCONNECTED","USB_DISCONNECTED","SPARE_0","SPARE_1",
++	/*I0-I7*/	"","","","","","","","",
++	/*J0-J7*/	"","","","","","","","",
++	/*K0-K7*/	"","","","","","","","",
++	/*L0-L7*/	"","","","","","","","",
++	/*M0-M7*/	"ASSERT_PWR_BTN","ASSERT_RST_BTN","ASSERT_NMI_BTN",
++			"ASSERT_LOCAL_LOCK","ASSERT_P0_PROCHOT","ASSERT_P1_PROCHOT",
++			"ASSERT_CLR_CMOS","ASSERT_BMC_READY",
++	/*N0-N7*/	"","","","","","","","",
++	/*O0-O7*/	"","","","","","","","",
++	/*P0-P7*/	"P0_VDD_CORE_RUN_VRHOT","P0_VDD_SOC_RUN_VRHOT",
++			"P0_VDD_MEM_ABCD_SUS_VRHOT","P0_VDD_MEM_EFGH_SUS_VRHOT",
++			"P1_VDD_CORE_RUN_VRHOT","P1_VDD_SOC_RUN_VRHOT",
++			"P1_VDD_MEM_ABCD_SUS_VRHOT","P1_VDD_MEM_EFGH_SUS_VRHOT",
++	/*Q0-Q7*/	"","","","","","","","",
++	/*R0-R7*/	"","","","","","","","",
++	/*S0-S7*/	"","","","","","","","",
++	/*T0-T7*/	"","","","","","","","",
++	/*U0-U7*/	"","","","","","","","",
++	/*V0-V7*/	"","","","","","","","",
++	/*W0-W7*/	"","","","","","","","",
++	/*X0-X7*/	"","","","","","","","",
++	/*Y0-Y7*/	"","","","","","","","",
++	/*Z0-Z7*/	"","","","","","","","",
++	/*AA0-AA7*/	"","SENSOR THERM","","","","","","",
++	/*AB0-AB7*/	"","","","","","","","",
++	/*AC0-AC7*/	"","","","","","","","";
++};
++
+ //APML for P0
+ &i2c0 {
+ 	status = "okay";
 -- 
-Kind regards,
+2.17.1
 
-Sakari Ailus
