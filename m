@@ -2,103 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7A192AFD4B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:54:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F37272AFD4A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:54:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727942AbgKLBbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727819AbgKLBbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 11 Nov 2020 20:31:51 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:42326 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727819AbgKKXJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 18:09:57 -0500
-Received: by mail-oi1-f196.google.com with SMTP id w145so4140380oie.9;
-        Wed, 11 Nov 2020 15:09:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=60RrVFqWWdxAN6Mge7nSOxyHfyjaJE+UbXHO2MJ0/Ew=;
-        b=MjcRO3DARFMPCMxbcv8Vn7zZGkeWnLIyCz+EZKi7ud9ZcAZuhuxNM5FUuGKeKkulmX
-         hv5d6tNeZRpY4LqmbaU9h4zJvh0sng+TthM5GPkKSnM8cCJK5ETKa/YNtuNUb0zU/91j
-         EEyGL+zSKgh1RQqLv6stbhD5Q8a7BmRSe3Vx8m+25doRh82bHhGNIABiisIKD7vB564Y
-         bgt1WxLGFhJ8EsHxC77GcyGYsUr0iwfDCb5jQNTmBdPA4eesuftwjhryP77OgO8O7+Ok
-         MploKB80vakBRg0a66pzK/EOOVY3b8aQ0styCTzLBwhSv53ABHO9eXVtQa2fysZs/l1D
-         5OBw==
-X-Gm-Message-State: AOAM531gjwKZVlKhUck8yDd8/Dfolw2ijpBobqH0I+jPleqkFilxSeLT
-        81LD/sSYv28ephFtNZkT3Q==
-X-Google-Smtp-Source: ABdhPJzc4X68X6/P1ZrKLVbEWkCMzB4pbLAPm5keK9jd9uq8aLjvGozwDxCJyDCSnvSxi6+A1pil5g==
-X-Received: by 2002:aca:4797:: with SMTP id u145mr2610482oia.0.1605136196720;
-        Wed, 11 Nov 2020 15:09:56 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x8sm872464ooc.44.2020.11.11.15.09.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 15:09:55 -0800 (PST)
-Received: (nullmailer pid 2220284 invoked by uid 1000);
-        Wed, 11 Nov 2020 23:09:55 -0000
-Date:   Wed, 11 Nov 2020 17:09:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     kernel@pengutronix.de, devicetree@vger.kernel.org,
-        linux-can@vger.kernel.org, Fabio Estevam <fabio.estevam@nxp.com>
-Subject: Re: [PATCH] dt-bindings: clock: imx5: fix example
-Message-ID: <20201111230955.GA2214526@bogus>
-References: <20201111213548.1621094-1-mkl@pengutronix.de>
+Received: from mga01.intel.com ([192.55.52.88]:20332 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727837AbgKKXLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 18:11:44 -0500
+IronPort-SDR: NOdPkS69RhW3uBgKhpoBk+RD/skb9oOWtDQ/ThhW8Qj8rgju5E9CbaTmg+6fFDJ0Qi78ZEo2ds
+ 9K7lXPW0AXTg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="188220518"
+X-IronPort-AV: E=Sophos;i="5.77,470,1596524400"; 
+   d="scan'208";a="188220518"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 15:11:44 -0800
+IronPort-SDR: 2SigUd3RC6BHd0NrZjhiVcNkd4/T5ldcTrknfGqqjnYMA+dH0hh6VxbwKoY75rW1jfqAHhP1bp
+ TkxPMdnvvBtw==
+X-IronPort-AV: E=Sophos;i="5.77,470,1596524400"; 
+   d="scan'208";a="541993746"
+Received: from lmwang8-mobl.ccr.corp.intel.com (HELO [10.254.209.85]) ([10.254.209.85])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 15:11:39 -0800
+Cc:     baolu.lu@linux.intel.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, linux-mm@kvack.org, joro@8bytes.org,
+        catalin.marinas@arm.com, will@kernel.org, robin.murphy@arm.com,
+        kevin.tian@intel.com, Jonathan.Cameron@huawei.com,
+        jacob.jun.pan@linux.intel.com, christian.koenig@amd.com,
+        felix.kuehling@amd.com, zhangfei.gao@linaro.org, jgg@ziepe.ca,
+        xuzaibo@huawei.com, fenghua.yu@intel.com, hch@infradead.org
+Subject: Re: [PATCH v7 04/24] iommu: Add a page fault handler
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+References: <20200519175502.2504091-1-jean-philippe@linaro.org>
+ <20200519175502.2504091-5-jean-philippe@linaro.org>
+ <c840d771-188d-9ee5-d117-e4b91d29b329@linux.intel.com>
+ <20201111135740.GA2622074@myrica>
+From:   Lu Baolu <baolu.lu@linux.intel.com>
+Message-ID: <8e630294-8199-68e3-d55a-68e6484d953a@linux.intel.com>
+Date:   Thu, 12 Nov 2020 07:11:37 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201111213548.1621094-1-mkl@pengutronix.de>
+In-Reply-To: <20201111135740.GA2622074@myrica>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 10:35:48PM +0100, Marc Kleine-Budde wrote:
-> Since commit:
-> 
->     0e030a373df3 ("can: flexcan: fix endianess detection")
-> 
-> the fsl,imx53-flexcan isn't compatible with the fsl,p1010-flexcan any more. As
-> the former accesses the IP core in Little Endian mode and the latter uses Big
-> Endian mode.
-> 
-> With the conversion of the flexcan DT bindings to yaml, the dt_binding_check
-> this throws the following error:
-> 
-> Documentation/devicetree/bindings/clock/imx5-clock.example.dt.yaml: can@53fc8000: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['fsl,imx53-flexcan', 'fsl,imx25-flexcan'] is too long
->         Additional items are not allowed ('fsl,imx25-flexcan' was unexpected)
->         'fsl,imx53-flexcan' is not one of ['fsl,imx7d-flexcan', 'fsl,imx6ul-flexcan', 'fsl,imx6sx-flexcan']
->         'fsl,imx53-flexcan' is not one of ['fsl,ls1028ar1-flexcan']
->         'fsl,imx6q-flexcan' was expected
->         'fsl,lx2160ar1-flexcan' was expected
->         From schema: Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> 
-> The error is fixed by removing the "fsl,p1010-flexcan" compatible (which turned
-> out the be incompatible) from the binding example.
-> 
-> Cc: Fabio Estevam <fabio.estevam@nxp.com>
-> Cc: devicetree@vger.kernel.org
-> Reported-by: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/clock/imx5-clock.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/imx5-clock.yaml b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-> index 4d9e7c73dce9..155379c3c41e 100644
-> --- a/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-> +++ b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-> @@ -57,7 +57,7 @@ examples:
->      };
->  
->      can@53fc8000 {
-> -        compatible = "fsl,imx53-flexcan", "fsl,p1010-flexcan";
-> +        compatible = "fsl,imx53-flexcan";
+Hi Jean,
 
-But you just added that "fsl,imx53-flexcan" has a fallback of 
-'fsl,imx25-flexcan'. 
+On 2020/11/11 21:57, Jean-Philippe Brucker wrote:
+> Hi Baolu,
+> 
+> Thanks for the review. I'm only now reworking this and realized I've never
+> sent a reply, sorry about that.
+> 
+> On Wed, May 20, 2020 at 02:42:21PM +0800, Lu Baolu wrote:
+>> Hi Jean,
+>>
+>> On 2020/5/20 1:54, Jean-Philippe Brucker wrote:
+>>> Some systems allow devices to handle I/O Page Faults in the core mm. For
+>>> example systems implementing the PCIe PRI extension or Arm SMMU stall
+>>> model. Infrastructure for reporting these recoverable page faults was
+>>> added to the IOMMU core by commit 0c830e6b3282 ("iommu: Introduce device
+>>> fault report API"). Add a page fault handler for host SVA.
+>>>
+>>> IOMMU driver can now instantiate several fault workqueues and link them
+>>> to IOPF-capable devices. Drivers can choose between a single global
+>>> workqueue, one per IOMMU device, one per low-level fault queue, one per
+>>> domain, etc.
+>>>
+>>> When it receives a fault event, supposedly in an IRQ handler, the IOMMU
+>>> driver reports the fault using iommu_report_device_fault(), which calls
+>>> the registered handler. The page fault handler then calls the mm fault
+>>> handler, and reports either success or failure with iommu_page_response().
+>>> When the handler succeeded, the IOMMU retries the access.
+>>>
+>>> The iopf_param pointer could be embedded into iommu_fault_param. But
+>>> putting iopf_param into the iommu_param structure allows us not to care
+>>> about ordering between calls to iopf_queue_add_device() and
+>>> iommu_register_device_fault_handler().
+>>>
+>>> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> [...]
+>>> +static enum iommu_page_response_code
+>>> +iopf_handle_single(struct iopf_fault *iopf)
+>>> +{
+>>> +	vm_fault_t ret;
+>>> +	struct mm_struct *mm;
+>>> +	struct vm_area_struct *vma;
+>>> +	unsigned int access_flags = 0;
+>>> +	unsigned int fault_flags = FAULT_FLAG_REMOTE;
+>>> +	struct iommu_fault_page_request *prm = &iopf->fault.prm;
+>>> +	enum iommu_page_response_code status = IOMMU_PAGE_RESP_INVALID;
+>>> +
+>>> +	if (!(prm->flags & IOMMU_FAULT_PAGE_REQUEST_PASID_VALID))
+>>> +		return status;
+>>> +
+>>> +	mm = iommu_sva_find(prm->pasid);
+>>> +	if (IS_ERR_OR_NULL(mm))
+>>> +		return status;
+>>> +
+>>> +	down_read(&mm->mmap_sem);
+>>> +
+>>> +	vma = find_extend_vma(mm, prm->addr);
+>>> +	if (!vma)
+>>> +		/* Unmapped area */
+>>> +		goto out_put_mm;
+>>> +
+>>> +	if (prm->perm & IOMMU_FAULT_PERM_READ)
+>>> +		access_flags |= VM_READ;
+>>> +
+>>> +	if (prm->perm & IOMMU_FAULT_PERM_WRITE) {
+>>> +		access_flags |= VM_WRITE;
+>>> +		fault_flags |= FAULT_FLAG_WRITE;
+>>> +	}
+>>> +
+>>> +	if (prm->perm & IOMMU_FAULT_PERM_EXEC) {
+>>> +		access_flags |= VM_EXEC;
+>>> +		fault_flags |= FAULT_FLAG_INSTRUCTION;
+>>> +	}
+>>> +
+>>> +	if (!(prm->perm & IOMMU_FAULT_PERM_PRIV))
+>>> +		fault_flags |= FAULT_FLAG_USER;
+>>> +
+>>> +	if (access_flags & ~vma->vm_flags)
+>>> +		/* Access fault */
+>>> +		goto out_put_mm;
+>>> +
+>>> +	ret = handle_mm_fault(vma, prm->addr, fault_flags);
+>>> +	status = ret & VM_FAULT_ERROR ? IOMMU_PAGE_RESP_INVALID :
+>>
+>> Do you mind telling why it's IOMMU_PAGE_RESP_INVALID but not
+>> IOMMU_PAGE_RESP_FAILURE?
+> 
+> PAGE_RESP_FAILURE maps to PRI Response code "Response Failure" which
+> indicates a catastrophic error and causes the function to disable PRI.
+> Instead PAGE_RESP_INVALID maps to PRI Response code "Invalid request",
+> which tells the function that the address is invalid and there is no point
+> retrying this particular access.
 
-Looks like "fsl,imx53-flexcan" alone needs to be dropped. Decide the one 
-way that is valid please. I've dropped the schema change until sorted 
-out.
+Thanks for the explanation. I am also working on converting Intel VT-d
+to use this framework (and the sva helpers). So far so good.
 
-Rob
+Best regards,
+baolu
