@@ -2,267 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04C0B2AE51F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 01:48:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB06F2AE541
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 02:04:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732446AbgKKAsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 19:48:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
+        id S1731805AbgKKBEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 20:04:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732450AbgKKAsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 19:48:31 -0500
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45EBCC0613D3
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 16:48:31 -0800 (PST)
-Received: by mail-vs1-xe41.google.com with SMTP id l22so220122vsa.4
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 16:48:31 -0800 (PST)
+        with ESMTP id S1730894AbgKKBE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 20:04:29 -0500
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE56C0613D1
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:04:28 -0800 (PST)
+Received: by mail-pf1-x443.google.com with SMTP id y7so466147pfq.11
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:04:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DwI3PFSKWVnaqeshY41Xp/YVBg2cD76OjiJIiFh3rNI=;
-        b=QfIsIHzjHTjAr/jTdIRSiD+ZkEfLnev1EHOTrRrDDTB7WurSHmLapfGiBTNJvwGtWM
-         n0cecZqV6gOBimx3dJHYoejdFvYV+lM1U9yYeRQ2K3KmHrsUZUWvTeK29NnQ/CF3BEKI
-         m3e422SOkDPN1XTyRtLgENxmZHEnNWrVPZYPw=
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=rQTT04wcfpF7QK3jMNSOeddpWQqsTYbtkHPF2TgnhDw=;
+        b=rstR4NoObJzeoh+3p/JZ53mnW/kAlu+1apkEbE1fD9J5w+fxgAaUW4nBT0Qbz07+Te
+         OqmJJzaSzoKgR4OYO8VFRtlxL4rh9QuIukY7tHjv30R4N30bcUwmN2WdzQE7y9Yx851D
+         KMNj8MbF51ymPuL4xJz2DiaN/KaR26DKXFNMXFeqWIKYtmnz81xql0Wlony23a9bTjuG
+         02iiYcXNjjRDsg3l2kiK7SGySVAqfNgNMfgoeTHHhYhpmhZsWpGv/Jr6FHjfZA9BXCS3
+         bjd1vfo8sJgNDFJ8CpjxGRCbdbINNdhvOJ+HHWtFfhJWKV1n7n24AakwN3Yf2FDihXB+
+         IMwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DwI3PFSKWVnaqeshY41Xp/YVBg2cD76OjiJIiFh3rNI=;
-        b=S/LIc7BxxhOKG6Iwc+k2K7GU+XEy5TFwYpMCKxdpQU/KQSk0X9W+BT02MEwiTfgZzE
-         2c9LCG+giM8i4shxsbEeDtHJYJAygCp9mLgAD/j+yQtQg8rwqVKzVAe+1uMWyTvBIcxP
-         zOuHrFhgAGnWmBwLQuFmSb1iU2ILMJ+VWsAKKGBGfUAJXWyeyeC1wRcPe6Fr8Pnqc7P4
-         0c9IXYn8zAYWbBC+6/FIkv33akFjkbPVipLUgEMEduWz62smfiBKB5q+TDxTSIlhNDb7
-         PFJ44Zd0zsaJx3fpTXMvSN3ol4a96dXC2MsMH2dPloyN+dnJ9EiUUagDplVOW+sqJmsr
-         V46Q==
-X-Gm-Message-State: AOAM533gtaUv1IwUNvI9gZHXE7bhimsHw0Bs66z2ZuYHHVev4MDtKq08
-        dkgkxnPS+hZnSGtJ9BG9OumNFRxnlkRPDw==
-X-Google-Smtp-Source: ABdhPJzmvNLvKiDXHLRrWFHer6bY0DfwI2t5S7tVvTZtFk/OesktUktqUJrKT/74OSPLlv/3yo9EQg==
-X-Received: by 2002:a05:6102:3222:: with SMTP id x2mr3028406vsf.20.1605055709973;
-        Tue, 10 Nov 2020 16:48:29 -0800 (PST)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id t188sm58620vkg.23.2020.11.10.16.48.28
-        for <devicetree@vger.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=rQTT04wcfpF7QK3jMNSOeddpWQqsTYbtkHPF2TgnhDw=;
+        b=NPMsAyVJnFS4RWVr3dyOQ5gNtTqraTA6uN6xe9aQndFmGoahQhC2IrX4MVQiTuTGJI
+         U5h0ptfxw3jAo4grNzAlKm6H0IhT8xRV20Zoc9YJzkPT1fxAFXQMDe14+DQhRCl3XqGY
+         U0e/LD6T1ECus1yyt50AdMEuVCet1q5hbZObypPHAZ5mks+eOQj7tX4Ss8Rlk7WP4VLU
+         YkW4Ey4X6n3nInHFcZa1tKH39zIxFX7YGvMdozTxwghD5VZitaqqEWQ03Uc0V3ZjPmyp
+         jR16sWHsdGhG866t6CLbeIl8M0hsnC7gCXiGi49eH83ogPR7EnEUqScdvqbnN1BqQ5U8
+         bj1w==
+X-Gm-Message-State: AOAM531YCySVJ0Ejiyzhnz4xsO3XwYFQpwXI9/fVxnAr52uxvRNiK0VP
+        GsI5oqZbT9KtluwcUcHygWk=
+X-Google-Smtp-Source: ABdhPJxhG5chZ2tKt1wDz5JBCkRGdM/AGvYGGjlnMRg3hkAzNvxoqiN7lYUBq0ijd1Zgf7MmnG3ivg==
+X-Received: by 2002:aa7:8586:0:b029:18c:3aa6:b8bb with SMTP id w6-20020aa785860000b029018c3aa6b8bbmr7828086pfn.39.1605056668116;
+        Tue, 10 Nov 2020 17:04:28 -0800 (PST)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id i3sm244193pjd.33.2020.11.10.17.04.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2020 16:48:29 -0800 (PST)
-Received: by mail-ua1-f53.google.com with SMTP id 91so196172uar.5
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 16:48:28 -0800 (PST)
-X-Received: by 2002:a9f:24eb:: with SMTP id 98mr11624331uar.90.1605055707756;
- Tue, 10 Nov 2020 16:48:27 -0800 (PST)
-MIME-Version: 1.0
-References: <20200930223532.77755-1-bjorn.andersson@linaro.org>
- <20200930223532.77755-2-bjorn.andersson@linaro.org> <CAD=FV=Unu-PH_RThi3xRF1HUADN2PqcVAOin0O0yo0gcGRWCDQ@mail.gmail.com>
- <20201102170801.GI3151@builder.lan>
-In-Reply-To: <20201102170801.GI3151@builder.lan>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 10 Nov 2020 16:48:16 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=XEyn5tLhOFnVTP4W-_qQG_UpZ0npveEo-vE0Y=wKqaBg@mail.gmail.com>
-Message-ID: <CAD=FV=XEyn5tLhOFnVTP4W-_qQG_UpZ0npveEo-vE0Y=wKqaBg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: drm/bridge: ti-sn65dsi86: Replace #pwm-cells
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Tue, 10 Nov 2020 17:04:26 -0800 (PST)
+Subject: Re: [PATCH V2 2/2] arm64: dts: broadcom: add BCM4908 and Asus
+ GT-AC5300 early DTS files
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201105085458.21121-1-zajec5@gmail.com>
+ <20201105085458.21121-2-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <a4a1d02f-c950-62ab-fb49-b5819cf1cd11@gmail.com>
+Date:   Tue, 10 Nov 2020 17:04:25 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.1
+MIME-Version: 1.0
+In-Reply-To: <20201105085458.21121-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Nov 2, 2020 at 9:08 AM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Fri 02 Oct 15:42 CDT 2020, Doug Anderson wrote:
->
-> > Hi,
-> >
-> > On Wed, Sep 30, 2020 at 3:40 PM Bjorn Andersson
-> > <bjorn.andersson@linaro.org> wrote:
-> > >
-> > > While the signal on GPIO4 to drive the backlight controller indeed is
-> > > pulse width modulated its purpose is specifically to control the
-> > > brightness of a backlight.
-> >
-> > I'm a bit on the fence about this.  I guess you're doing this because
-> > it avoids some -EPROBE_DEFER cycles in Linux?  It does seem to have a
-> > few downsides, though.
-> >
->
-> No, the reason for exposing a backlight is that while the thing
-> certainly is a PWM signal, the description of it and the registers
-> available to control it surely seems "backlight" to me.
->
-> In particular No, the reason for exposing a backlight is that while
-> while the thing certainly is a PWM signal, the description of it and the
-> registers available to control it surely seems "backlight" to me.
->
-> > 1. It means a bit of re-inventing the wheel.  It's not a very big
-> > wheel, though, I'll give you.  ...but it's still something.
-> >
->
-> The main problem I saw with exposing this as a PWM was the fact that we
-> have both period and frequency to control...
->
-> > 2. I'm not sure why you'd want to, but in theory one could use this
-> > PWM for some other purposes.  It really is just a generic PWM.  Your
-> > change prevents that.
-> >
->
-> ...and in the even that you use it as a "generic" PWM I'd expect that
-> the specified period is related to the frequency of the signal. But the
-> period is documented to be related to the number of brightness steps of
-> the panel.
-
-I think the key here is that the "number of brightness steps of the
-panel" isn't really a thing that's worried about.  At least in my
-experience, you can pretty much just use as many steps as you can
-represent based on your PWM hardware.  If a panel happens to map some
-of those steps to the same brightness then it wouldn't be the end of
-the world, but in experience it's not really such a digital thing.  If
-you choose 4096 steps then you likely get 4096 different brightness
-levels.  If you choose 256 steps then you get 256 different brightness
-levels.  Once you have "more than enough" steps then everything's
-pretty much fine.
-
-Looking at one random panel (just to get an idea of numbers), I see
-that it specifies:
-* min PWM Freq: 200 Hz
-* max PWM Freq: 10,000 Hz.
-
-...and refclk is something between 12 MHz and 38.4 MHz, right?
-
-The bridge chip datasheet says:
-
-PWM_FREQ = REFCLK_FREQ / (PWM_PRE_DIV * BACKLIGHT_SCALE + 1)
-
-So let's see what we can do.  I'm arguing that we want the client to
-be able to specify the PWM frequency and duty cycle and we'll do the
-job of picking the number of steps.  We'll try for the most steps we
-can get (65535).
-
-I guess we need to solve for PWM_PRE_DIV :
-
-PWM_FREQ * (PWM_PRE_DIV * BACKLIGHT_SCALE + 1) = REFCLK_FREQ
-PWM_PRE_DIV * BACKLIGHT_SCALE + 1 = REFCLK_FREQ / PWM_FREQ
-PWM_PRE_DIV * BACKLIGHT_SCALE = REFCLK_FREQ / PWM_FREQ - 1
-PWM_PRE_DIV = (REFCLK_FREQ / PWM_FREQ - 1) / BACKLIGHT_SCALE
-
-...and solve for BACKLIGHT_SCALE:
-BACKLIGHT_SCALE = (REFCLK_FREQ / PWM_FREQ - 1) / PWM_PRE_DIV
 
 
-With 1000 Hz, 12 MHz refclk:
+On 11/5/2020 12:54 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> They don't descibe hardware fully yet but it's enough to boot a system.
+> 
+> Some missing blocks:
+> 1. PMC (Power Management Controller?)
+> 2. Ethernet
+> 3. Crypto
+> 4. Thermal
+> 
+> Asus DTS is missing defining full NAND partitions layout and buttons.
+> 
+> Further changes will fill those gaps as soon as required bindings will
+> be found / tested / added.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-PWM_PRE_DIV = DIV_ROUND_UP(12000000 / 1000 - 1, 65535)
-=> 1
-BACKLIGHT_SCALE = (12000000 / 1000 - 1) / 1
-=> 11999
+We would need a board/SoC binding document under
+Documentation/devicetree/bindings/arm/bcm/ which describes the 4908 SoC
+and its possible boards at least.
 
-With 1000 Hz, 38.4 MHz refclk:
-PWM_PRE_DIV = DIV_ROUND_UP(38400000 / 1000 - 1, 65535)
-=> 1
-BACKLIGHT_SCALE = (38400000 / 1000 - 1) / 1
-=> 38399
+[snip]
+h
+> +
+> +&nandcs {
+> +	nand-ecc-strength = <4>;
+> +	nand-ecc-step-size = <512>;
+> +	nand-on-flash-bbt;
+> +	brcm,nand-has-wp;
+> +
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	partitions {
+> +		compatible = "fixed-partitions";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +
+> +		partition@0 {
+> +			label = "cferom";
+> +			reg = <0x000000000000 0x000000100000>;
 
-With 200 Hz, 38.4 MHz refclk:
-PWM_PRE_DIV = DIV_ROUND_UP(38400000 / 200 - 1, 65535)
-=> 3
-BACKLIGHT_SCALE = (38400000 / 200 - 1) / 3
-=> 63999
+You can probably trim the leading zeroes.
 
-Now that you have BACKLIGHT_SCALE specified, then when someone tries
-to give you a duty cycle you just map it to the closest value you can
-make.  Obviously you won't be able to perfectly make every exact duty
-cycle / period that a client requests, but that's true of all PWMs out
-there.
+> +		};
+> +	};
+> +};
+> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> new file mode 100644
+> index 000000000000..3bbefc86b978
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+> @@ -0,0 +1,188 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/dts-v1/;
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		bootargs = "earlycon=bcm63xx_uart,0xff800640";
 
-The nice thing here is that (assuming my math is right) we should be
-getting nearly exactly the frequency that the client requested and
-that (in my mind) is what matters.  You also get as many steps as
-possible which means that (with the PWM backlight API) you'll be able
-to get as close as possible to whatever a user requests.
+We talked about it before, but the earlycon should be dropped from the
+.dtsi file, it does not really belong there.
 
-
-> > > Drop the #pwm-cells and instead expose a new property to configure the
-> > > granularity of the backlight PWM signal.
-> > >
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/display/bridge/ti,sn65dsi86.yaml | 9 ++++++---
-> > >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-> > > index f8622bd0f61e..e380218b4646 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/ti,sn65dsi86.yaml
-> > > @@ -66,9 +66,12 @@ properties:
-> > >        1-based to match the datasheet.  See ../../gpio/gpio.txt for more
-> > >        information.
-> > >
-> > > -  '#pwm-cells':
-> > > -    const: 1
-> > > -    description: See ../../pwm/pwm.yaml for description of the cell formats.
-> > > +  ti,backlight-scale:
-> > > +    description:
-> > > +      The granularity of brightness for the PWM signal provided on GPIO4, if
-> > > +      this property is specified.
-> > > +    minimum: 0
-> > > +    maximum: 65535
-> >
-> > A few issues here:
-> >
-> > 1. Maybe call this "num-steps" instead of backlight-scale.  That's
-> > essentially what it is, right?  Saying how many discrete steps you're
-> > allowing in your backlight?
-> >
->
-> That would work, I had it as "max-brightness" for a while as well. But I
-> reverted to backlight-scale, because that's the name used in the
-> datasheet.
->
-> I'm fine with whatever color of the shed though :)
->
-> > 2. IMO you need the PWM frequency specified, since it can actually
-> > matter.  NOTE: once you have the PWM frequency specified, you could
-> > imagine automatically figuring out what "num-steps" was.  Really you'd
-> > want it to be the largest possible value you could achieve with your
-> > hardware at the specified frequency.  There's no advantage (is there?)
-> > of providing fewer steps to the backlight client.
-> >
->
-> I guess there's no problem in having a "num-steps" that is unrelated to
-> the number of brightness steps of the panel - but I did distinguish them
-> because the datasheet clearly does so.
-
-I think the datasheet talks about the number of steps that you will be
-able to make, but that doesn't mean it has to be what's exposed to
-clients of this driver, right?
-
-
-> > 3. Some backlights are specified inverted.  It looks like this maps
-> > nicely to the bridge chip, which has a bit for it.  Probably nice to
-> > expose this?
-> >
->
-> Yes, that should be covered.
->
-> > Of course, if we were just exposing the PWM directly to Linux we could
-> > just use the PWM backlight driver and it'd all magically work.  ;-)
-> >
->
-> Please help me figure out how to properly expose this in the PWM api and
-> I'll be happy to respin it using this - as you say my wheel does look
-> pretty similar...
-
-Hopefully the above seems sane to you?
-
--Doug
+The rest looks good to me!
+-- 
+Florian
