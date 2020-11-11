@@ -2,133 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A8862AF09C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 13:28:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 873C72AF0C0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 13:38:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbgKKM2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 07:28:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726654AbgKKM16 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 07:27:58 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5394CC0613D1;
-        Wed, 11 Nov 2020 04:27:57 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id q19so1847460ljc.10;
-        Wed, 11 Nov 2020 04:27:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=W5WHawdyiRL/UDPwiBG0yjJUaw2ChXCIaDxzqyGijTM=;
-        b=rgp4iBF7QIwpfxVeWcUQxYv5Jkp6Xu9bjSj0N7rpmVxTxLaHXoguSDfNMidnDczwUM
-         VcKGr0eRkofLJ5ta55sg5miFXEdgXXCR85onduPj33m81gi2Pbk6OaJrFnuUxBn8Vo0+
-         Ph7+SIiGnaCk0tGPbsl9hQ+pJVG1POv+OJBemTeM0zUrDPvnzXpyXeDOYLvAmClP3DXv
-         Jf6oakkXu8+MAPBp+BZ98KPO8nLq/b9V5dQ+2qguSrPT/NC94DP5PhMYkHzTFOOwiZRh
-         XFEkbxNseJGfqjKeQ7EkgnTrSZybzeRtwtSF2FWQ6R9es6+p/YhENrnK2q28wvg9WY8p
-         Cpsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=W5WHawdyiRL/UDPwiBG0yjJUaw2ChXCIaDxzqyGijTM=;
-        b=Z16gYPu7OYx4hIQX1aCDyWC7wRjCRp5W/lXmUJg9vy6LfbsLf1rhtrhWIU+YzHF4+R
-         p0CB8L5LvRWJqfZ153jWeiVetLewjvH1sPsi9RECZR5rE9DjQYHhqZWK2DBKUHbKNhdE
-         4sFRjQZw7lAXkiR0fgsOukHhqFxfPInduZIYMeA+oypWPb0nsrNPavXp4/FkA1tlpNcy
-         CMSzYhSVimIhR9cozxw++r0iH65GxuC6Oh70wxlX2QWevMgSuSZREFPNkfe2QPKzdnMa
-         m8g/JFPg5CDoiTjaC4lM70Jj3sshf9UFzrVC6Z9Exw1LAM9t1JMa62g1MD0ATo+/Xad8
-         wmpQ==
-X-Gm-Message-State: AOAM530uRXOqFqQ8LodPuEAWSZXXkQtBHcG1KldUy58vOCd15wqh/wcn
-        /sftaeK2d/HtqxdH0eGPYQE=
-X-Google-Smtp-Source: ABdhPJyOLm7Uoq0JuJlCCWiprf07q96YUVZNNXHwv5N+mB52A4/YKQP4CeUn7zVBWJjWmngXoqwnEg==
-X-Received: by 2002:a2e:9a43:: with SMTP id k3mr10978389ljj.69.1605097675775;
-        Wed, 11 Nov 2020 04:27:55 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id x6sm206676lfn.185.2020.11.11.04.27.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Nov 2020 04:27:54 -0800 (PST)
-Subject: Re: [PATCH 05/10] ARM: dts: BCM5301X: Provide defaults ports
- container node
-To:     Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>
-Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
+        id S1726251AbgKKMiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 07:38:51 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:56479 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725912AbgKKMiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 07:38:50 -0500
+X-UUID: 18d1958a1676446c89e447b786e8e8f6-20201111
+X-UUID: 18d1958a1676446c89e447b786e8e8f6-20201111
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 336089553; Wed, 11 Nov 2020 20:38:45 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 11 Nov 2020 20:38:43 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 11 Nov 2020 20:38:42 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+CC:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        Kurt Kanzenbach <kurt@kmk-computers.de>
-References: <20201110033113.31090-1-f.fainelli@gmail.com>
- <20201110033113.31090-6-f.fainelli@gmail.com>
- <20201110221221.4sxx5h3346no7y3y@skbuf>
- <3e87038f-9e2e-676c-a000-0e6c0e8b6ae4@gmail.com>
- <cf7f91fc-8bff-68ee-cf68-072e2c795814@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <581c3e62-9d2e-f684-b035-46aeb7a52816@gmail.com>
-Date:   Wed, 11 Nov 2020 13:27:53 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
+        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@google.com>,
+        <kernel-team@android.com>
+Subject: [PATCH v4 00/24] MT8192 IOMMU support
+Date:   Wed, 11 Nov 2020 20:38:14 +0800
+Message-ID: <20201111123838.15682-1-yong.wu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-In-Reply-To: <cf7f91fc-8bff-68ee-cf68-072e2c795814@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11.11.2020 02:48, Florian Fainelli wrote:
-> On 11/10/2020 2:13 PM, Florian Fainelli wrote:
->> On 11/10/20 2:12 PM, Vladimir Oltean wrote:
->>> On Mon, Nov 09, 2020 at 07:31:08PM -0800, Florian Fainelli wrote:
->>>> Provide an empty 'ports' container node with the correct #address-cells
->>>> and #size-cells properties. This silences the following warning:
->>>>
->>>> arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dt.yaml:
->>>> ethernet-switch@18007000: 'oneOf' conditional failed, one must be fixed:
->>>>          'ports' is a required property
->>>>          'ethernet-ports' is a required property
->>>>          From schema:
->>>> Documentation/devicetree/bindings/net/dsa/b53.yaml
->>>>
->>>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
->>>> ---
->>>>   arch/arm/boot/dts/bcm5301x.dtsi | 4 ++++
->>>>   1 file changed, 4 insertions(+)
->>>>
->>>> diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
->>>> index 807580dd89f5..89993a8a6765 100644
->>>> --- a/arch/arm/boot/dts/bcm5301x.dtsi
->>>> +++ b/arch/arm/boot/dts/bcm5301x.dtsi
->>>> @@ -489,6 +489,10 @@ srab: ethernet-switch@18007000 {
->>>>   		status = "disabled";
->>>>   
->>>>   		/* ports are defined in board DTS */
->>>> +		ports {
->>>> +			#address-cells = <1>;
->>>> +			#size-cells = <0>;
->>>> +		};
->>>
->>> This look a bit 'lone wolf' here. Not sure how much time you intend to
->>> spend on this, but FWIW, others prefer to declare all ports in the SoC
->>> DTSI with status = "disabled", and just enable the ones used per-board,
->>> and add labels and PHY handles also per-board. Example: fsl-ls1028a.dtsi
->>> and fsl-ls1028a-rdb.dts.
->>
->> That's a good suggestion, I could do that.
-> 
-> There is quite a bit of variation between designs and how the ports are
-> assigned and it would end up being quite verbose, so I will punt that
-> for now.
+This patch mainly adds support for mt8192 Multimedia IOMMU and SMI.
 
-I agree with Florian, boards (vendors) use ports really randomly so pretty
-much every device needs that defined from the scratch.
+mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
+table format. The M4U-SMI HW diagram is as below:
+
+                          EMI
+                           |
+                          M4U
+                           |
+                      ------------
+                       SMI Common
+                      ------------
+                           |
+  +-------+------+------+----------------------+-------+
+  |       |      |      |       ......         |       |
+  |       |      |      |                      |       |
+larb0   larb1  larb2  larb4     ......      larb19   larb20
+disp0   disp1   mdp    vdec                   IPE      IPE
+
+All the connections are HW fixed, SW can NOT adjust it.
+
+Comparing with the preview SoC, this patchset mainly adds two new functions:
+a) add iova 34 bits support.
+b) add multi domains support since several HW has the special iova
+region requirement.
+
+change note:
+v4: a) rebase on v5.10-rc1
+    b) Move the smi part to a independent patchset.
+    c) Improve v7s code from Robin and Will.
+    d) Add a mediatek iommu entry patch in MAINTAINERS.
+
+v3: https://lore.kernel.org/linux-iommu/20200930070647.10188-1-yong.wu@mediatek.com/
+  a) Fix DT schema issue commented from Rob.
+  b) Fix a v7s issue. Use "_lvl" instead of "_l" in the macro(ARM_V7S_PTES_PER_LVL) since 
+  it is called in ARM_V7S_LVL_IDX which has already used "_l".
+  c) Fix a PM suspend issue: Avoid pm suspend in pm runtime case.
+
+v2: https://lore.kernel.org/linux-iommu/20200905080920.13396-1-yong.wu@mediatek.com/
+  a) Convert IOMMU/SMI dt-binding to DT schema.
+  b) Fix some comment from Pi-Hsun and Nicolas. like use
+  generic_iommu_put_resv_regions.
+  c) Reword some comment, like add how to use domain-id.
+
+v1: https://lore.kernel.org/linux-iommu/20200711064846.16007-1-yong.wu@mediatek.com/
+
+Yong Wu (24):
+  dt-bindings: iommu: mediatek: Convert IOMMU to DT schema
+  dt-bindings: memory: mediatek: Add a common larb-port header file
+  dt-bindings: memory: mediatek: Extend LARB_NR_MAX to 32
+  dt-bindings: memory: mediatek: Add domain definition
+  dt-bindings: mediatek: Add binding for mt8192 IOMMU
+  iommu/mediatek: Use the common mtk-smi-larb-port.h
+  iommu/io-pgtable-arm-v7s: Use ias to check the valid iova in unmap
+  iommu/io-pgtable-arm-v7s: Extend PA34 for MediaTek
+  iommu/io-pgtable-arm-v7s: Clear LVL_SHIFT/BITS macro instead of the
+    formula
+  iommu/io-pgtable-arm-v7s: Add cfg as a param in some macros
+  iommu/io-pgtable-arm-v7s: Quad lvl1 pgtable for MediaTek
+  iommu/mediatek: Move hw_init into attach_device
+  iommu/mediatek: Add device link for smi-common and m4u
+  iommu/mediatek: Add pm runtime callback
+  iommu/mediatek: Add power-domain operation
+  iommu/mediatek: Add iova reserved function
+  iommu/mediatek: Add single domain
+  iommu/mediatek: Support master use iova over 32bit
+  iommu/mediatek: Support up to 34bit iova in tlb flush
+  iommu/mediatek: Support report iova 34bit translation fault in ISR
+  iommu/mediatek: Add support for multi domain
+  iommu/mediatek: Adjust the structure
+  iommu/mediatek: Add mt8192 support
+  MAINTAINERS: Add entry for MediaTek IOMMU
+
+ .../bindings/iommu/mediatek,iommu.txt         | 105 -------
+ .../bindings/iommu/mediatek,iommu.yaml        | 183 ++++++++++++
+ MAINTAINERS                                   |   9 +
+ drivers/iommu/io-pgtable-arm-v7s.c            |  56 ++--
+ drivers/iommu/mtk_iommu.c                     | 271 +++++++++++++++---
+ drivers/iommu/mtk_iommu.h                     |  11 +-
+ drivers/memory/mtk-smi.c                      |   8 +
+ include/dt-bindings/memory/mt2712-larb-port.h |   2 +-
+ include/dt-bindings/memory/mt6779-larb-port.h |   2 +-
+ include/dt-bindings/memory/mt8167-larb-port.h |   2 +-
+ include/dt-bindings/memory/mt8173-larb-port.h |   2 +-
+ include/dt-bindings/memory/mt8183-larb-port.h |   2 +-
+ include/dt-bindings/memory/mt8192-larb-port.h | 240 ++++++++++++++++
+ .../dt-bindings/memory/mtk-smi-larb-port.h    |  22 ++
+ include/linux/io-pgtable.h                    |   4 +-
+ include/soc/mediatek/smi.h                    |   3 +-
+ 16 files changed, 735 insertions(+), 187 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+ create mode 100644 Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+ create mode 100644 include/dt-bindings/memory/mt8192-larb-port.h
+ create mode 100644 include/dt-bindings/memory/mtk-smi-larb-port.h
+
+-- 
+2.18.0
+
+
