@@ -2,165 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D29E82AF4B4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:29:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70F6E2AF4C2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:33:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726817AbgKKP3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 10:29:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43694 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726222AbgKKP3F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 10:29:05 -0500
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2FCBC0613D1;
-        Wed, 11 Nov 2020 07:29:03 -0800 (PST)
-Received: by mail-pl1-x642.google.com with SMTP id b3so1119937pls.11;
-        Wed, 11 Nov 2020 07:29:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pwRVrFra8SIDqBViKRT8+sopac1emNPXdeWfLdCx/PU=;
-        b=mQJaTVIsOIU5VBvFXVXxcNzdEOp7JgNzKHizWfLFXo63izxmVoVLEmRbnoBJtzeWIM
-         vJc9q0liQ/zwgxiqhjaY9jnunVR7/1KORY86WpNh1lQs56mJmth2mnOxlfvaEF7pPr1x
-         q/Tlujipn12QQsyQiCPxLXZC++QWPY1e99D1rjb4uiTNTM70ozg1aqvQEVd+1+uabXk0
-         K9kAW9lwmz0khpKgU8BadHj7qPWC75pyjJFzrLJKMH6p34o1v3Hl+c0pF4Sa7M9AlC5D
-         iWbCcoH7tzD2wuNGhCN83EVVXPsw5vHEYmMFXDM2X+hF8LTPsfnTeCnS8Sq/fi398Gi/
-         GPpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pwRVrFra8SIDqBViKRT8+sopac1emNPXdeWfLdCx/PU=;
-        b=HvOIXLpBioEulOmtyztC5qha2nB34IwU1saFGhC7zVFAXv/E8XN9dGtgIAkFdK8Y7D
-         sxhtT1BeUxQ6ZXwwdx86ACfVZmJZ02LRvK4dWaJaAefg2O6R6jZiJzFfKHdO+0bQvt6c
-         J6Frc+Ey1l4BbKnuxiixPc9OuCCC92dyB9cGMWN+dzbOOa5is/PbXHOootAs42tLELZU
-         6Q9jCSYKE/GAr6zup63OK2sLBBkaNTkz0qA5A/1lWKVCNuDtroyV020x57wZ7Q6UGLmn
-         DXR+DeLviNOYxsIn6sqPsxRPdoaNxKhLalKyOlxmK5yCRNEXPvUk4w85A6JlbaPQm8ms
-         VzDQ==
-X-Gm-Message-State: AOAM531L6t0KA78DwuI2CIaWKsOMl93jx8wee6xMJrCi+E54FnlZL9ur
-        yg2pwBpj8p1TxyOzkb2Y5qYCfvutAjCGL1BvTaHZQi82zU8=
-X-Google-Smtp-Source: ABdhPJzBn5AbgkRw64Otzg1aSbw28IMGYKXIGBMJdsbFNn+GGpeOhpskLORmCCfNCKLSzFDg6F7GMSHjYnQgFBJ5+bA=
-X-Received: by 2002:a17:902:8e8b:b029:d2:4276:1df0 with SMTP id
- bg11-20020a1709028e8bb02900d242761df0mr21648951plb.62.1605108543319; Wed, 11
- Nov 2020 07:29:03 -0800 (PST)
+        id S1726456AbgKKPdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 10:33:23 -0500
+Received: from mail-vi1eur05on2069.outbound.protection.outlook.com ([40.107.21.69]:52832
+        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726136AbgKKPdX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 10:33:23 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U/51454bBLIs+3vwLBPAi93+Qn61uBQDjB8cj9z5wmbw2YjVliZIHFApgxPkwzWJSofyC3owGRuuNWBRP1dsdrDC6SYGLkb4O70m3u8NUhnXmJC5VT8XAmG5s4iJyCBYK0UmIVo/Y6Ezozoy5eNQw3R2IHCiPnClWkJTd+BTBP+J1rlsbE3lPtRMdjow72xhkex25sPNnAvhZWmVew4mSRpQGlmH4iprZAh0m/SZ5mIvfaqgq229Av1lnEGndKHL8y8aSC0SDjqOWv+lOGVbAPfD1j1OJa5k5vVD+7DMwG4U9nStNbhWvaTEghlUKedXwrbfMbWqdPCLaRwdazBIRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4veWlL4XxOcV5v9rFylLAUOhW82NBYvUWmgT33/JNlQ=;
+ b=Rn8vOI8MICnoxT7MuPkkDrXgerOfEz10ZBnV9fnzdFKCGg/2uqiG4Ubz+jO9ogwmrMOAtSMbRdCpYPKpNW8/CaNsTDhFPmUCilKPODzC2q92ATGuPJGvW8Nft/KkktVNXttnQnXxIIc1FRBUk6iDokrsdzi7G4CB/ZjjfCno0dYns9P59BD/AiO44BfM8eMuAGwfPvxZZQXIzaZtDJ6V8hKSPo93ici1NQK4n/FI+CqSxak/nUuCce/xGZ5Rq24fuvFsJmjEHeNjuaie7j6v/b6F9lOBNMjuEb+/Rk6cNeyNdY0XunJu2nwgOf9GTkaUgNPhweaqLB5cE+HXqLpEww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4veWlL4XxOcV5v9rFylLAUOhW82NBYvUWmgT33/JNlQ=;
+ b=Id75R8qRr/jQsX6rcEs/NER7US9m+qdNgskRdT1VCRlgpGkvK4uDrLWKqA3chg+KUjo8I03oelsrvCqqw8iW44Wu7Tam6Fd3RwmE5WEhiNefAOINXUzCINvwNqqxhf2y15AjAvblbtaeUYPDGHvksEtmrw/oGxYJYN+W88n9XDA=
+Received: from AM6PR04MB3976.eurprd04.prod.outlook.com (2603:10a6:209:3f::17)
+ by AM6PR04MB4519.eurprd04.prod.outlook.com (2603:10a6:20b:18::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Wed, 11 Nov
+ 2020 15:33:20 +0000
+Received: from AM6PR04MB3976.eurprd04.prod.outlook.com
+ ([fe80::7824:9405:cb7:4f71]) by AM6PR04MB3976.eurprd04.prod.outlook.com
+ ([fe80::7824:9405:cb7:4f71%4]) with mapi id 15.20.3499.032; Wed, 11 Nov 2020
+ 15:33:20 +0000
+From:   Madalin Bucur <madalin.bucur@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>,
+        "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are coherent
+Thread-Topic: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are coherent
+Thread-Index: AQHWmxXjMrUGgPncOk2cha5EuEXPF6mv6Y6AgBNfpdA=
+Date:   Wed, 11 Nov 2020 15:33:19 +0000
+Message-ID: <AM6PR04MB3976F19056A613AC92118A2FECE80@AM6PR04MB3976.eurprd04.prod.outlook.com>
+References: <1601901999-28280-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <20201030073956.GH28755@dragon>
+In-Reply-To: <20201030073956.GH28755@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [82.76.227.31]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: bef2c272-1afa-4467-202b-08d886571e39
+x-ms-traffictypediagnostic: AM6PR04MB4519:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM6PR04MB4519E7FCC523D9284424C76AECE80@AM6PR04MB4519.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: SE1YtHEfW9EEDnN5TJg6a2F2sMSjTjFxatFakojqn7ZALgXm3ugdzAHdT8Xm26JEVP4O2wnTqWE4G6IyKwRC6JTdgJjGGXx9Px07cSV1bT6CTCB0xyaKDrLsn8C8WuP800FB2QryPfmRY4ph2cx0sdE6rXblTRXb9CzKHmLuc2K3qhVlPSdfGCLgJPD5WHAMbjEc0deyQdjWVNohCHpVXDto/UJqKcRlRzw5ycldXQCD1hIkLSGlcIxpzM6Vq9TgZlD5/Dq3RvXlKLlF78z0/G7w7lioTlKCZ7RWGE5X0watPkLoeCZXuBxbfGSEXhDdQ9x18IqeIj7tLKmD4jFXxw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB3976.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(346002)(136003)(396003)(366004)(7696005)(6506007)(53546011)(83380400001)(5660300002)(316002)(110136005)(54906003)(8676002)(4744005)(8936002)(26005)(71200400001)(44832011)(86362001)(33656002)(55016002)(66556008)(2906002)(66446008)(64756008)(478600001)(52536014)(66476007)(66946007)(76116006)(4326008)(9686003)(186003);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: uz0VenoHuWQIkmMCdahx8KDvT5sjV1ASgZp0YaviJHIzYuJj9RMIrAPplG5L7fp2uEVmg+R1jC9qBqlGiLmQvd4dsCYtj1lUM/pBR8MbGd2cE4Zc9lU1ZGebHz/xlcKVazxULpDF3Fi3Tlm/QXwd+1dwEwesCAKrFZ5UzrfC7TFGGukZVpfynHwc9KidP4KIFt/T75Jqqbm4vs3Ofdeyszn3ZBBWZIlWNtHGRaCp3sJgs/wPs2TwMFXdjqQ6AHYQV7cWp1D5CF+gR1QpLyMuBVKJs8qJWlB8u5MWrZqVfp2DfMPwqEPn6mkDnO/Z6LkhH3cPSMLL3jZMyQcK6udpBZytvdya0edh7gyiOBDSa55Q8rro6gexWIayR224+3LUh2tQZkx5IqkyEbYlyK4iXHZTIbdSNkdKUYHkAVL8HQDtHT3t5v9uuK3TTCQVG71OTGrgbC/V2t2SFhaiPwqzIo6dAcuomeyhY1Ql3x0kOt7fYGE5ATFxyodoXjY3nEoqZ3SVkRaD1X9Q7M0ryvT5TKM5J0tR0sVcaCf8bDSsJcsn6CaNkPRpTamRZbxVw9Amyky5hsSQeK5K0QUjhb4tllyu4Jrhl0pxlnkFV+2F5sG7AEIFHJm77dNPjX4hMWmuBsmcflc3y/O7TWZTtUo+pQ==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20201111091259.46773-1-alexandru.ardelean@analog.com>
- <20201111091259.46773-3-alexandru.ardelean@analog.com> <41f86559-9165-40f9-e7f3-3e7f5eca7315@roeck-us.net>
-In-Reply-To: <41f86559-9165-40f9-e7f3-3e7f5eca7315@roeck-us.net>
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-Date:   Wed, 11 Nov 2020 17:28:51 +0200
-Message-ID: <CA+U=DsrOTOZr2pmwAH7T6Jt8TZXNsLJBza482tmFOkyGLuGvAg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] docs: hwmon: (ltc2945): change type of val to ULL
- in ltc2945_val_to_reg()
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, jdelvare@suse.com,
-        "Thoren, Mark" <mark.thoren@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB3976.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bef2c272-1afa-4467-202b-08d886571e39
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2020 15:33:19.9682
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5gSmbzWMjo2HFtH01Z0JyPw++yyjHaK40Tqiu6fBOeH1jMh7vEwzwnxBISFcePTiS7yn2tnA88pS+KgAO3K+HA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4519
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 4:54 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 11/11/20 1:12 AM, Alexandru Ardelean wrote:
-> > In order to account for any potential overflows that could occur.
+> -----Original Message-----
+> From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On
+> Behalf Of Shawn Guo
+> To: Madalin Bucur (OSS) <madalin.bucur@oss.nxp.com>
+> Subject: Re: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are
+> coherent
+>=20
+> On Mon, Oct 05, 2020 at 03:46:39PM +0300, Madalin Bucur wrote:
+> > Although the DPAA 1 FMan operations are coherent, the device tree
+> > node for the FMan does not indicate that, resulting in a needless
+> > loss of performance. Adding the missing dma-coherent property.
 > >
-> > Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
->
-> Thinking about it, this can only really happen if the user provides
-> excessive values for limit attributes. Those are currently clamped
-> later, after the conversion. I think it would be better to modify
-> the code to apply a clamp _before_ the conversion as well instead
-> of trying to solve the overflow problem with unsigned long long.
->
-> Either case, can you send me a register dump for this chip ?
+> > Fixes: 1ffbecdd8321 ("arm64: dts: add DPAA FMan nodes")
+> >
+> > Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
+> > Tested-by: Camelia Groza <camelia.groza@oss.nxp.com>
+>=20
+> Applied, thanks.
 
-I asked Mark to help out on this.
-Right now I don't have a board around my home-office.
-I"m just pulling patches from our own tree to send upstream.
-Is there a specific command you have in mind for this i2cdump?
+Hi, Shawn,
 
-Is the output of something like this fine:
-# i2cdump -r 0x00-0x31 1 0x6f
+will this fix for the device trees be picked up in the stable trees as well=
 ?
-
-We have a board that's being developed with this driver (and chip).
-I think Mark will try to read values from the eval-board [since he has
-one around].
+Do I need to do something about it?
 
 Thanks
-Alex
+Madalin
 
-> I'd like to write a module test script to actually check if there
-> are any over/underflows or other problems.
->
-> Thanks,
-> Guenter
->
-> > ---
-> >  drivers/hwmon/ltc2945.c | 12 ++++++------
-> >  1 file changed, 6 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/hwmon/ltc2945.c b/drivers/hwmon/ltc2945.c
-> > index 1cea710df668..6d4569a25471 100644
-> > --- a/drivers/hwmon/ltc2945.c
-> > +++ b/drivers/hwmon/ltc2945.c
-> > @@ -155,7 +155,7 @@ static long long ltc2945_reg_to_val(struct device *dev, u8 reg)
-> >  }
-> >
-> >  static int ltc2945_val_to_reg(struct device *dev, u8 reg,
-> > -                           unsigned long val)
-> > +                           unsigned long long val)
-> >  {
-> >       struct ltc2945_state *st = dev_get_drvdata(dev);
-> >       struct regmap *regmap = st->regmap;
-> > @@ -181,14 +181,14 @@ static int ltc2945_val_to_reg(struct device *dev, u8 reg,
-> >                       return ret;
-> >               if (control & CONTROL_MULT_SELECT) {
-> >                       /* 25 mV * 25 uV = 0.625 uV resolution. */
-> > -                     val = DIV_ROUND_CLOSEST(val, 625);
-> > +                     val = DIV_ROUND_CLOSEST_ULL(val, 625);
-> >               } else {
-> >                       /*
-> >                        * 0.5 mV * 25 uV = 0.0125 uV resolution.
-> >                        * Divide first to avoid overflow;
-> >                        * accept loss of accuracy.
-> >                        */
-> > -                     val = DIV_ROUND_CLOSEST(val, 25) * 2;
-> > +                     val = DIV_ROUND_CLOSEST_ULL(val, 25) * 2;
-> >               }
-> >               break;
-> >       case LTC2945_VIN_H:
-> > @@ -197,7 +197,7 @@ static int ltc2945_val_to_reg(struct device *dev, u8 reg,
-> >       case LTC2945_MAX_VIN_THRES_H:
-> >       case LTC2945_MIN_VIN_THRES_H:
-> >               /* 25 mV resolution. */
-> > -             val /= 25;
-> > +             val = div_u64(val, 25);
-> >               break;
-> >       case LTC2945_ADIN_H:
-> >       case LTC2945_MAX_ADIN_H:
-> > @@ -219,7 +219,7 @@ static int ltc2945_val_to_reg(struct device *dev, u8 reg,
-> >                * dividing the reported current by the sense resistor value
-> >                * in mOhm.
-> >                */
-> > -             val = DIV_ROUND_CLOSEST(val, 25);
-> > +             val = DIV_ROUND_CLOSEST_ULL(val, 25);
-> >               break;
-> >       default:
-> >               return -EINVAL;
-> > @@ -247,7 +247,7 @@ static ssize_t ltc2945_value_store(struct device *dev,
-> >       struct ltc2945_state *st = dev_get_drvdata(dev);
-> >       struct regmap *regmap = st->regmap;
-> >       u8 reg = attr->index;
-> > -     unsigned long val;
-> > +     unsigned long long val;
-> >       u8 regbuf[3];
-> >       int num_regs;
-> >       int regval;
-> >
->
+PS: will this make it into v5.10 or v5.11?
