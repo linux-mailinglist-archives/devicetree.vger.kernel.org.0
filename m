@@ -2,148 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AAD22AF8CB
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 20:16:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4FAB2AF8D5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 20:18:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726134AbgKKTQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 14:16:44 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:34312 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725949AbgKKTQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 14:16:44 -0500
-Received: by mail-oi1-f195.google.com with SMTP id w188so3437779oib.1;
-        Wed, 11 Nov 2020 11:16:42 -0800 (PST)
+        id S1726205AbgKKTSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 14:18:11 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:41819 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726136AbgKKTSL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 14:18:11 -0500
+Received: by mail-oi1-f196.google.com with SMTP id m13so3403612oih.8;
+        Wed, 11 Nov 2020 11:18:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AiCDPZgcTf3GX/z2zx/26J8ErQhTL1mnCpMM32GGzw4=;
-        b=RZqOV73fg83NnARBzEpikXdRWXZ/wpb77UjsNn7kiEtgNlrU72pYSjCqtSRUmdAVBa
-         a062ntipt+6YkBYJscMKdraZL/2QtARcH31Oj2RKPHR1l/5icptYdNxgHF4b61Ng86/v
-         7V3ybWR/P7KBr83nJyjPdNWq4jInP66U6PJph7NA9jmWP6Dg16m419fnlm3uJ5SRr792
-         5rN3wgKdiBHd43r1xMVPMC6YowzJ6N0RJDcypR499Byy0riqb04DyXK7NlvG7EBJJNFw
-         UPZswTwLswilZv8FPRlkKmMrQ34mHe0ivwtAl+36gDl0iLgBnCBSE2ezJjxxsOEH0OCE
-         1sWA==
-X-Gm-Message-State: AOAM533Y1IqhgA1PZPg3yZZh0+gnj8FW9X7/UzCewJvT2NkuKgbzkcT6
-        KGr+49wQ+nkW5TTDSfuPrBN7G1hHdQ==
-X-Google-Smtp-Source: ABdhPJwyi016mtmjmTLTqVQpJJDCJFBGadh4UUgCNqobL85eUP5paFNnEC8U07pacXIsSPdIILspgQ==
-X-Received: by 2002:aca:72ca:: with SMTP id p193mr3299201oic.9.1605122202551;
-        Wed, 11 Nov 2020 11:16:42 -0800 (PST)
+        bh=dyEeJt9nKugdWpL04ZKWH+UXJAulW34IvqV/SnkPbEQ=;
+        b=aK2m/Cwb738OMPgeIbAJcgHmE6q6w+vdRkwvM1ICq0lGz7CgdIjGBHoyZ+OsIUjtLL
+         UW+kY4ku3/E2fOH8f+sk20e0+vKIwEJVnCaiJyCyLWoBZdEWUG/gZTD4iltaM52KP0kX
+         4ke/SH0/Nu+JhbXTshGX6gJUDdZjh5iIi/MNeSZvVzNeHh4NW5NrSkklayPB62Ju6j5o
+         YBmzcN3BDFlGfF56Da5VbBQbxPetBhQamVzXQ4oIJevBYdnC5pYIb63FXcrPziTAIInu
+         GhlAp3UH1F8fm3AHd30wwcDrmFbGV0U2B3LqQgwLUl/w6Eqd50gqkU2hdxG9cenZ1w/5
+         6xlQ==
+X-Gm-Message-State: AOAM533stbyV7KbRVHsh6BoMz1+jv54K8Erq+reImUYOgsTGzPfp3BRF
+        W3f3ocOZ5RnFCngRYtIqAg==
+X-Google-Smtp-Source: ABdhPJwB14taliF6U+AUf/N1OtoYTH8z013eOiMtyiinNMjQGcQuTpoj1Dzd40dASYXXh/ijQBZabA==
+X-Received: by 2002:aca:378a:: with SMTP id e132mr2977001oia.112.1605122290641;
+        Wed, 11 Nov 2020 11:18:10 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n81sm588991oif.53.2020.11.11.11.16.40
+        by smtp.gmail.com with ESMTPSA id t199sm606106oif.25.2020.11.11.11.18.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 11:16:41 -0800 (PST)
-Received: (nullmailer pid 1857962 invoked by uid 1000);
-        Wed, 11 Nov 2020 19:16:40 -0000
-Date:   Wed, 11 Nov 2020 13:16:40 -0600
+        Wed, 11 Nov 2020 11:18:10 -0800 (PST)
+Received: (nullmailer pid 1860547 invoked by uid 1000);
+        Wed, 11 Nov 2020 19:18:09 -0000
+Date:   Wed, 11 Nov 2020 13:18:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        linux-mips@vger.kernel.org,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        linux-snps-arc@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        linux-kernel@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Kevin Hilman <khilman@baylibre.com>, linux-usb@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v4 01/18] dt-bindings: usb: usb-hcd: Detach generic USB
- controller properties
-Message-ID: <20201111191640.GA1857205@bogus>
-References: <20201111090853.14112-1-Sergey.Semin@baikalelectronics.ru>
- <20201111090853.14112-2-Sergey.Semin@baikalelectronics.ru>
+To:     Adam Ford <aford173@gmail.com>
+Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH V4] dt-bindings: soc: imx: Add binding doc for spba bus
+Message-ID: <20201111191809.GA1859246@bogus>
+References: <20201111152523.76254-1-aford173@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201111090853.14112-2-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201111152523.76254-1-aford173@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Nov 2020 12:08:36 +0300, Serge Semin wrote:
-> There can be three distinctive types of the USB controllers: USB hosts,
-> USB peripherals/gadgets and USB OTG, which can switch from one role to
-> another. In order to have that hierarchy handled in the DT binding files,
-> we need to collect common properties in a common DT schema and specific
-> properties in dedicated schemas. Seeing the usb-hcd.yaml DT schema is
-> dedicated for the USB host controllers only, let's move some common
-> properties from there into the usb.yaml schema. So the later would be
-> available to evaluate all currently supported types of the USB
-> controllers.
+On Wed, 11 Nov 2020 09:25:23 -0600, Adam Ford wrote:
+> Add binding doc for fsl,spba-bus.
 > 
-> While at it add an explicit "additionalProperties: true" into the
-> usb-hcd.yaml as setting the additionalProperties/unevaluateProperties
-> properties is going to be get mandatory soon.
-> 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > ---
+> make dt_binding_check showed no errors if I did this right.
 > 
-> Changelog v4:
-> - This is a new patch created as a result of the comment left
->   by Chunfeng Yun in v3
-> ---
->  .../devicetree/bindings/usb/usb-hcd.yaml      | 14 ++-------
->  .../devicetree/bindings/usb/usb.yaml          | 29 +++++++++++++++++++
->  2 files changed, 32 insertions(+), 11 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/usb/usb.yaml
+> V4:  Remove an accidental makefile change
+>      Move type:object under additional properties
+> 
+> V3:  Rebase sample from aips-bus example
+>      Split off from series adding i.MX8M Nano functions to reduce noise
+> 
+> V2:  Attempted to update yaml from feedback
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/usb/usb-hcd.yaml:17:1: [error] duplication of key "additionalProperties" in mapping (key-duplicates)
 
 dtschema/dtc warnings/errors:
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 113, in get_single_data
-    return self.construct_document(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 123, in construct_document
-    for _dummy in generator:
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 723, in construct_yaml_map
-    value = self.construct_mapping(node)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 440, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 257, in construct_mapping
-    if self.check_mapping_key(node, key_node, mapping, key, value):
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
-    raise DuplicateKeyError(*args)
-ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
-  in "<unicode string>", line 4, column 1
-found duplicate key "additionalProperties" with value "True" (original value: "True")
-  in "<unicode string>", line 17, column 1
-
-To suppress this check see:
-    http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-
-Duplicate keys will become an error in future releases, and are errors
-by default when using the new API.
-
-make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/usb/usb-hcd.example.dts] Error 1
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/usb-hcd.example.dts'
-make[1]: *** Waiting for unfinished jobs....
-make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
-make: *** [Makefile:1364: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dt.yaml: bus@30000000: reg: [[805306368, 1048576]] is not of type 'object'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1398034
+See https://patchwork.ozlabs.org/patch/1398351
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
