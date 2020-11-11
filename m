@@ -2,155 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0D302AE562
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 02:14:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB64B2AE606
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 02:48:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732586AbgKKBOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 20:14:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48558 "EHLO
+        id S1732577AbgKKBsh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 20:48:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732576AbgKKBO0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 20:14:26 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BC1C0613D3
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:14:23 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id f11so910622lfs.3
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:14:23 -0800 (PST)
+        with ESMTP id S1731805AbgKKBsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 20:48:35 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BEBBC0613D1;
+        Tue, 10 Nov 2020 17:48:35 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id z3so561679pfb.10;
+        Tue, 10 Nov 2020 17:48:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=K9XBUYhR2UM3o5JW2bLsoKZhteJffpc0EMzzkZ12vrU=;
-        b=PqWe0YWuTcOTlgUfpZFss7Jov1FIYRzUvvdoVxG+fHvnGDpWZ1V5zg3/Jw4zzy0D7f
-         NDLUnTW8HfsM5IfYWcrZj0JTEp+m7RNX23gVM5ZFSojdvUhdswtkQog/NBbSFPoMGdYI
-         5d+CrTzDDPzp1kYGLPkkRKoLjc+7iaMFDJwB4ChFPuhqXkMzXf5EQUoWU46nSJEepKm/
-         o8o1T+n6AXiHc3IMJ1HAYsI6zVMkUM+ovSw/v6mz/nU0OL4BYPqaCpJrj+G+pkr2TzPR
-         /1QTr02v3z5wDsIqrcSWUzcgX7ndIqTqfXTm5j5BkMUs6vNkWlXt0VtTIbr6vOE5qTBY
-         COPg==
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=SXxBuciLME+eq+2+VtydJ0drxhhSOrRSIjNrBJLqPAc=;
+        b=p0lZ3WotwcaKB1WyfkbFkABG0Erc9IO2fmeBI3qrIChwhDwsBdtOAFnjuVGSZ4bRWl
+         MJkNlNebTM4GF91n4AJIzqwkeYOxbCVCmJGhmQPha73mKWUCbma36nE5WTyD/P/Lofol
+         4nHLP9J+G+XUc9DNIKrm8I5flPejH8e/LaXV1AqkbTjhLBsllp9R4wkPD3tZfqcxnEd/
+         KZSwIinVLpD2Yng+TgXEIF9AtHwp1AfXjsljpSahcrwLnM1cbL6fihKwrp35Ei7GEloE
+         A00RRI5qnWgYnE1Zmv6VqVsAyy926jKXc3tDh/mg8VBQKTvHuvpKFEBqlACvkhxFR91t
+         2Ngw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=K9XBUYhR2UM3o5JW2bLsoKZhteJffpc0EMzzkZ12vrU=;
-        b=F/VAQisKINA7Qp2Sb75JqDAA1dlgRp8z1OmOouGH3WnrCaCpMy0MEiFE6mxNHe4NgS
-         /AQUZc45ndh/MrqLgSU7zl5A09fnQILGEA5AJz/iJnwwC8UXVspITEZ/Gpfg8PN0HDdl
-         s/fZdz4wMQMaoDf+cTwr7DVsmRZDc+NZ5eG1mV/+DeD/dNSwchQ0zAnoGBgSA70RH5iT
-         AicSMnIl7GQjh1eOdHfy5OJPe9iRpBxpO+nI1KFjrM71t6dodz53LN3EElUAJ+K359TD
-         +Y8HpplempZXu/Odcm9zn/kB2YocbxRTW6pbbGfbwSZjoORjd8YNpFjZfaBGebc6BYdQ
-         WBbA==
-X-Gm-Message-State: AOAM530pn2EnYKQ4ZaDeJfb57xejPpoIq70AndETRj3ItZPLlPYeLHrF
-        xP7qMPZTUQDE4hce7V3CDstarQ==
-X-Google-Smtp-Source: ABdhPJx/s8//eZsR2mDWaE+/rGMrjsWcZks+Waz1MsuzmfCH+rO72bB0gt+TU3NBkomdrJuAZGx7ig==
-X-Received: by 2002:a19:587:: with SMTP id 129mr7610447lff.189.1605057262147;
-        Tue, 10 Nov 2020 17:14:22 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id r9sm47836ljd.23.2020.11.10.17.14.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 17:14:21 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
-Cc:     linux-leds@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2 v3] dt-bindings: leds: Add DT binding for Richtek RT8515
-Date:   Wed, 11 Nov 2020 02:14:16 +0100
-Message-Id: <20201111011417.2275501-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        bh=SXxBuciLME+eq+2+VtydJ0drxhhSOrRSIjNrBJLqPAc=;
+        b=g8/71dayegOudc7hgUzjsnIkEyVtm/FGauOIgmVp31Zy+wyfvSbYAlGLA5/pQ8rrAe
+         CjM5dnfs8Gd1HZmX6wRDU5dB5KHEu/r77MY7oG5uXZyAWbW2X57g/pXSYJg0nniUuCyv
+         Ax9KBspNOwJVl/wI1WD0rcncjnDHAIZTU0lQ79zGkiY3MXgXm8SpWeyKI8hcvSjvlZ3K
+         szodwQ92KOHKPl78MPPWgJgi0a9LUo0+k5o8WzOuBZu3Lz5XTGT0NjBJU1b1F7lXI65S
+         FkgskCFmcnxIOqPuUKTQvPrTnDCfnsy/uwjk+LOdXZr91lzooaCbp+j7sNtJ+yl7kR4m
+         0W2Q==
+X-Gm-Message-State: AOAM533QizjcrpwG66zwgBHUKFMMYZAhMYWnxUx4DCgUny3MuIO06SXX
+        WugGVYbCQ4E7V5NycNrK+88=
+X-Google-Smtp-Source: ABdhPJxNKnW5WM1SySEOZZ4u7oyjWRLfOS9WAoyADjxHs9GJr3tapskVeXgi9e4CQ4CitWce0XQj5A==
+X-Received: by 2002:a65:6219:: with SMTP id d25mr18935944pgv.1.1605059315012;
+        Tue, 10 Nov 2020 17:48:35 -0800 (PST)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id 203sm376959pfw.116.2020.11.10.17.48.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 10 Nov 2020 17:48:33 -0800 (PST)
+Subject: Re: [PATCH 05/10] ARM: dts: BCM5301X: Provide defaults ports
+ container node
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Kurt Kanzenbach <kurt@kmk-computers.de>
+References: <20201110033113.31090-1-f.fainelli@gmail.com>
+ <20201110033113.31090-6-f.fainelli@gmail.com>
+ <20201110221221.4sxx5h3346no7y3y@skbuf>
+ <3e87038f-9e2e-676c-a000-0e6c0e8b6ae4@gmail.com>
+Message-ID: <cf7f91fc-8bff-68ee-cf68-072e2c795814@gmail.com>
+Date:   Tue, 10 Nov 2020 17:48:32 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <3e87038f-9e2e-676c-a000-0e6c0e8b6ae4@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a YAML devicetree binding for the Richtek RT8515
-dual channel flash/torch LED driver.
 
-Cc: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: newbytee@protonmail.com
-Cc: Stephan Gerhold <stephan@gerhold.net>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Add Sakari to CC
-- Resend
-ChangeLog v1->v2:
-- Explicitly inherit function, color and flash-max-timeout-us
-  from common.yaml
-- Add "led" node as required.
----
- .../bindings/leds/richtek,rt8515.yaml         | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
 
-diff --git a/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
-new file mode 100644
-index 000000000000..0d8bb635370c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/richtek,rt8515.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Richtek RT8515 1.5A dual channel LED driver
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description: |
-+  The Richtek RT8515 is a dual channel (two mode) LED driver that
-+  supports driving a white LED in flash or torch mode.
-+
-+properties:
-+  compatible:
-+    const: richtek,rt8515
-+
-+  enf-gpios:
-+    maxItems: 1
-+    description: A connection to the 'ENF' (enable flash) pin.
-+
-+  ent-gpios:
-+    maxItems: 1
-+    description: A connection to the 'ENT' (enable torch) pin.
-+
-+  led:
-+    type: object
-+    $ref: common.yaml#
-+    properties:
-+      function: true
-+      color: true
-+      flash-max-timeout-us: true
-+
-+required:
-+  - compatible
-+  - ent-gpios
-+  - enf-gpios
-+  - led
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/leds/common.h>
-+
-+    led-controller {
-+        compatible = "richtek,rt8515";
-+        enf-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
-+        ent-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
-+
-+        led {
-+            function = LED_FUNCTION_FLASH;
-+            color = <LED_COLOR_ID_WHITE>;
-+            flash-max-timeout-us = <250000>;
-+        };
-+    };
+On 11/10/2020 2:13 PM, Florian Fainelli wrote:
+> On 11/10/20 2:12 PM, Vladimir Oltean wrote:
+>> On Mon, Nov 09, 2020 at 07:31:08PM -0800, Florian Fainelli wrote:
+>>> Provide an empty 'ports' container node with the correct #address-cells
+>>> and #size-cells properties. This silences the following warning:
+>>>
+>>> arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dt.yaml:
+>>> ethernet-switch@18007000: 'oneOf' conditional failed, one must be fixed:
+>>>         'ports' is a required property
+>>>         'ethernet-ports' is a required property
+>>>         From schema:
+>>> Documentation/devicetree/bindings/net/dsa/b53.yaml
+>>>
+>>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>>> ---
+>>>  arch/arm/boot/dts/bcm5301x.dtsi | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
+>>> index 807580dd89f5..89993a8a6765 100644
+>>> --- a/arch/arm/boot/dts/bcm5301x.dtsi
+>>> +++ b/arch/arm/boot/dts/bcm5301x.dtsi
+>>> @@ -489,6 +489,10 @@ srab: ethernet-switch@18007000 {
+>>>  		status = "disabled";
+>>>  
+>>>  		/* ports are defined in board DTS */
+>>> +		ports {
+>>> +			#address-cells = <1>;
+>>> +			#size-cells = <0>;
+>>> +		};
+>>
+>> This look a bit 'lone wolf' here. Not sure how much time you intend to
+>> spend on this, but FWIW, others prefer to declare all ports in the SoC
+>> DTSI with status = "disabled", and just enable the ones used per-board,
+>> and add labels and PHY handles also per-board. Example: fsl-ls1028a.dtsi
+>> and fsl-ls1028a-rdb.dts.
+> 
+> That's a good suggestion, I could do that.
+
+There is quite a bit of variation between designs and how the ports are
+assigned and it would end up being quite verbose, so I will punt that
+for now.
 -- 
-2.26.2
-
+Florian
