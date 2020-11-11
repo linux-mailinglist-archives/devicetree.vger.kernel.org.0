@@ -2,87 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62FA52AE622
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 03:08:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B7732AE621
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 03:08:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731984AbgKKCIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 21:08:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57018 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726307AbgKKCIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 21:08:50 -0500
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68C0C0613D1
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 18:08:49 -0800 (PST)
-Received: by mail-vs1-xe42.google.com with SMTP id f7so292001vsh.10
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 18:08:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9CTtCQABE7EZnyvMRJRp+ux2mvwXMPszr5VQjn2UmnU=;
-        b=D4hYa65WfHrMf5alNOxHlfnicpj9Vucke/Ha0ieZmTy4CL5qv4AS08Mzgf3N5Dg3LP
-         GloHepCI0Djj9Hb7x1bp/ejfxwmZbgkM7XrU5q5Yi+icuTUuhAI/m93GEiWOeeHuvt2h
-         QW6MGb5eCzhsMdU4s31tUXt4719VQbYGFbwL8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9CTtCQABE7EZnyvMRJRp+ux2mvwXMPszr5VQjn2UmnU=;
-        b=VPTFI1oLnDaSgTDoBD6jrOJBO6xS8fzTSJb+ZkYKjl5HDVD4ybYKX8oA7lGR9lyfeX
-         B5/vKoMcDgMShV6vznjF/3khscj/usY1Bf/IhXh2Y/ldIiDgVkpU5q9sYLcBiAh6WhO+
-         yJqe0TqqMzb9AFgaWYohhDwe95jjTYWcTyVWpUTWufQhzzFQY0fe6C+8IYXxTALzPLJz
-         X9SgLUy7cdTI2wlv3ftiQIictDagPqStjiNJH6GUksFo9fu13DNKPG04UgxYpU/l8gWi
-         abVBMf/Vu1olT8Ogx1U3pBJmst5yA1L3S8YrAAAv5a77jChbEjLx1fRMcSO+8DlMaUny
-         I9lg==
-X-Gm-Message-State: AOAM530425i74lFQNLmVtPKcNa+c33ijF+djOx3s4bFrpvu8Irl3xkbm
-        zyiK5I6OCvyzhgFZ71vGFAiN03LSwyCpfA==
-X-Google-Smtp-Source: ABdhPJyAeCxrh+6pXoPvG9dgRi/DoEqdEV7WQ93o8moPTde/FwiNB0kZV4oi0PEXD8ic4+gks+3fRQ==
-X-Received: by 2002:a67:b043:: with SMTP id q3mr14101104vsh.29.1605060528451;
+        id S1731713AbgKKCIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 21:08:49 -0500
+Received: from mga12.intel.com ([192.55.52.136]:46776 "EHLO mga12.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726307AbgKKCIs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Nov 2020 21:08:48 -0500
+IronPort-SDR: ty8HGBfk0xuiDI11xtzr7+7AGC5zWrN69WOVkYvQjvrHgOiW28g5E4zm0Zw2CIMQ/e9bCvaNWn
+ xvIrpFsWS9ZA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="149357074"
+X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; 
+   d="scan'208";a="149357074"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 18:08:48 -0800
+IronPort-SDR: afiVCxfiWvl7D1+uUbpRHYKGqLvSJgE1217vKWUrAdSmlH0izSyRmdOFVheO6KR+8XA84TXozv
+ i8ALRfVy2anA==
+X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; 
+   d="scan'208";a="308287645"
+Received: from smtp.ostc.intel.com ([10.54.29.231])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 18:08:48 -0800
+Received: from localhost (mtg-dev.jf.intel.com [10.54.74.10])
+        by smtp.ostc.intel.com (Postfix) with ESMTP id 1F3A56363;
         Tue, 10 Nov 2020 18:08:48 -0800 (PST)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id c135sm79025vke.16.2020.11.10.18.08.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2020 18:08:47 -0800 (PST)
-Received: by mail-vs1-f44.google.com with SMTP id f7so291961vsh.10
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 18:08:47 -0800 (PST)
-X-Received: by 2002:a67:f142:: with SMTP id t2mr13882174vsm.34.1605060526929;
- Tue, 10 Nov 2020 18:08:46 -0800 (PST)
+Date:   Tue, 10 Nov 2020 18:08:48 -0800
+From:   mark gross <mgross@linux.intel.com>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@linux.intel.com,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v2 0/2] Add drivers for Intel Keem Bay SoC watchdog
+Message-ID: <20201111020847.GM6928@mtg-dev.jf.intel.com>
+Reply-To: mgross@linux.intel.com
+References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-References: <1604687907-25712-1-git-send-email-tdas@codeaurora.org>
-In-Reply-To: <1604687907-25712-1-git-send-email-tdas@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 10 Nov 2020 18:08:35 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=Ws=s_XU8Fk0mtVmjbFDOrmYrDPk7pbLpWfBAw=bzRmsA@mail.gmail.com>
-Message-ID: <CAD=FV=Ws=s_XU8Fk0mtVmjbFDOrmYrDPk7pbLpWfBAw=bzRmsA@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: sc7180: Add camera clock controller node
-To:     Taniya Das <tdas@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, Nov 11, 2020 at 01:53:06AM +0800, vijayakannan.ayyathurai@intel.com wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> 
+> Hi,
+> 
+> This patch set adds the watchdog timer driver support for Intel Keem Bay Soc.
+> 
+> Patch 1 holds the driver and Patch 2 holds the Device Tree
+> binding documentation.
+> 
+> This driver was tested on the Keem Bay evaluation module board.
+> 
+> Thank you,
+> Vijay
+> 
+> Changes since v1:
+>  - Fix indentation error in the dt-bindings file.
+>  - Use true/false in the second arg of keembay_wdt_set_timeout_reg().
+>  - Fix the watchdog start sequence.
+>  - Avoid reduntant timeout register setting.
+>  - Remove min usage to find actual time at keembay_wdt_set_timeout().
+>  - Remove timeout configuration boundary check at
+>    keembay_wdt_set_pretimeout().
+>  - Use devm_watchdog_register_device() for wdt registration, which
+>    eventually supports driver unload functionality as well.
+> 
+> Vijayakannan Ayyathurai (2):
+>   watchdog: Add watchdog driver for Intel Keembay Soc
+>   dt-bindings: watchdog: Add bindings for Intel Keem Bay SoC
+> 
+>  .../bindings/watchdog/intel,keembay-wdt.yaml  |  57 ++++
+>  drivers/watchdog/Kconfig                      |  13 +
+>  drivers/watchdog/Makefile                     |   1 +
+>  drivers/watchdog/keembay_wdt.c                | 288 ++++++++++++++++++
+>  4 files changed, 359 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+>  create mode 100644 drivers/watchdog/keembay_wdt.c
+> 
+> 
+> base-commit: 3650b228f83adda7e5ee532e2b90429c03f7b9ec
+> prerequisite-patch-id: 822987dcf4c969ef6ac70359b088af06ba39042b
+> prerequisite-patch-id: 0a348762b660d0d817b8e70cc71647e83173c78c
+> prerequisite-patch-id: 54c661a006c7362053cb7602448d6c77419d5cf9
+> prerequisite-patch-id: d140d8534fb828778e0652fe5fcf6282e027f985
+these patch-id's are not helpful to me if I want to to a test build of this
+patch.  Those SHA1's are not available to others unless there is a public
+non-rebasing tree I can pull from.  if there is one then you should provide the
+git remot URL for that otherwise I cannot fetch those prerequisites.
 
-On Fri, Nov 6, 2020 at 10:39 AM Taniya Das <tdas@codeaurora.org> wrote:
->
-> Add the camera clock controller node supported on SC7180.
->
-> Signed-off-by: Taniya Das <tdas@codeaurora.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+Maybe it would be better to list the mailing list archive URL for each change
+instead.
 
-This matches the bindings, which has landed in the clock tree.  It's
-also sorted properly.  Thus:
+--mark
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> -- 
+> 2.17.1
+> 
