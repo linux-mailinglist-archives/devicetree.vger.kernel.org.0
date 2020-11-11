@@ -2,71 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 850302AF340
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 15:13:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 169072AF362
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 15:19:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726470AbgKKONJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 09:13:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59982 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbgKKOMW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 09:12:22 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5967C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 06:12:20 -0800 (PST)
-Received: from heimdall.vpn.pengutronix.de ([2001:67c:670:205:1d::14] helo=blackshift.org)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1kcqrB-0003AI-Em; Wed, 11 Nov 2020 15:12:17 +0100
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     kernel@pengutronix.de
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-can@vger.kernel.org, Marc Kleine-Budde <mkl@pengutronix.de>,
-        Faiz Abbas <faiz_abbas@ti.com>,
-        Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
-Subject: [PATCH] ARM: dts: dra76x: m_can: fix order of clocks
-Date:   Wed, 11 Nov 2020 15:12:11 +0100
-Message-Id: <20201111141211.1577871-1-mkl@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
+        id S1726012AbgKKOTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 09:19:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33916 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725900AbgKKOTo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 09:19:44 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F19262072C;
+        Wed, 11 Nov 2020 14:19:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605104383;
+        bh=h4WV9Lcvcmda9mj7Yvwdlkfda2VnKDl/S6Wue0cEbww=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=J+gK39itAQr1hKBU/oBohrqJyBNJp+dhObEcEcGN5hENc74Sxjkwn4y83Xr0E0scq
+         ZTuNeetHzWbbExckVB+IBU6pDWScsGE04JhlgM3smFXNE3SWRfpGk4Tk3iyVhsVsA9
+         lISmyCUIictkOKQOZ3oofavfuSId0rVBpseD76iE=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kcqyK-009mkO-WA; Wed, 11 Nov 2020 14:19:41 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:205:1d::14
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 11 Nov 2020 14:19:40 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Daniel Palmer <daniel@0x0f.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
+In-Reply-To: <CACRpkdaTknFRSm4pcSf-v7Be8A_SnMMrhegu6W67gUjOJVLEBQ@mail.gmail.com>
+References: <20201019141008.871177-1-daniel@0x0f.com>
+ <20201019141008.871177-4-daniel@0x0f.com>
+ <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
+ <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
+ <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
+ <71f3632bee262a18e1b7edb74980ae9a@kernel.org>
+ <CACRpkdYr+yhyROQzaYfFrGwG74DuZiA=fMVOesgOKrDajhTodQ@mail.gmail.com>
+ <bc0ab2f10bb72fe5b455ca12958f6444@kernel.org>
+ <CACRpkdaTknFRSm4pcSf-v7Be8A_SnMMrhegu6W67gUjOJVLEBQ@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <40fec073b2423b698ef4d91c499c7c9f@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: linus.walleij@linaro.org, daniel@0x0f.com, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the bosch,m_can.yaml bindings the first clock shall be the "hclk",
-while the second clock "cclk".
+On 2020-11-11 14:09, Linus Walleij wrote:
+> On Tue, Nov 10, 2020 at 3:19 PM Marc Zyngier <maz@kernel.org> wrote:
+>> On 2020-11-10 14:02, Linus Walleij wrote:
+> 
+>> >> Probably nothing more than setting the callback to
+>> >> irq_chip_set_affinity_parent,
+>> >
+>> > Hm, is this something all GPIO irqchips used on SMP systems
+>> > should be doing? Or just hierarchical ones?
+>> 
+>> Probably only the hierarchical ones. I'd expect the non-hierarchical
+>> GPIOs to be muxed behind a single interrupt, which makes it impossible
+>> to move a single GPIO around, and moving the mux interrupt would break
+>> userspace's expectations that interrupts move independently of each
+>> others.
+> 
+> I found two suspects and sent patches. I think I might have some
+> more candidates down in pinctrl. I do have some hierarchical IRQ
+> that is on UP systems, I suppose these are not affected.
 
-This patch fixes the order accordingly.
+Yup, they look good. Feel free to add my Ack to them.
+And yes, UP systems are naturally oblivious of interrupt affinity.
 
-Fixes: 0adbe832f21a ("ARM: dts: dra76x: Add MCAN node")
-Cc: Faiz Abbas <faiz_abbas@ti.com>
-Cc: Tony Lindgren <tony@atomide.com>
-Cc: linux-omap@vger.kernel.org
-Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
----
- arch/arm/boot/dts/dra76x.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Thanks,
 
-diff --git a/arch/arm/boot/dts/dra76x.dtsi b/arch/arm/boot/dts/dra76x.dtsi
-index b69c7d40f5d8..2f326151116b 100644
---- a/arch/arm/boot/dts/dra76x.dtsi
-+++ b/arch/arm/boot/dts/dra76x.dtsi
-@@ -32,8 +32,8 @@ m_can0: mcan@1a00 {
- 				interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,
- 					     <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
- 				interrupt-names = "int0", "int1";
--				clocks = <&mcan_clk>, <&l3_iclk_div>;
--				clock-names = "cclk", "hclk";
-+				clocks = <&l3_iclk_div>, <&mcan_clk>;
-+				clock-names = "hclk", "cclk";
- 				bosch,mram-cfg = <0x0 0 0 32 0 0 1 1>;
- 			};
- 		};
+         M.
 -- 
-2.28.0
-
+Jazz is not dead. It just smells funny...
