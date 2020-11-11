@@ -2,87 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5DBC2AF10B
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 13:42:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CAAB2AF186
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726595AbgKKMm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 07:42:26 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:58931 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727029AbgKKMmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 07:42:17 -0500
-X-UUID: 4ba3ef86842241bda09b2de57d869861-20201111
-X-UUID: 4ba3ef86842241bda09b2de57d869861-20201111
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1843626026; Wed, 11 Nov 2020 20:42:10 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 11 Nov 2020 20:42:07 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 11 Nov 2020 20:42:07 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        id S1726834AbgKKNFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 08:05:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726844AbgKKNFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:05:24 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8025AC0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:05:23 -0800 (PST)
+Received: from heimdall.vpn.pengutronix.de ([2001:67c:670:205:1d::14] helo=blackshift.org)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1kcpoE-000306-S9; Wed, 11 Nov 2020 14:05:10 +0100
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     netdev@vger.kernel.org
+Cc:     davem@davemloft.net, kuba@kernel.org, linux-can@vger.kernel.org,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        Shawn Guo <shawnguo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-CC:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@google.com>,
-        <kernel-team@android.com>
-Subject: [PATCH v4 24/24] MAINTAINERS: Add entry for MediaTek IOMMU
-Date:   Wed, 11 Nov 2020 20:38:38 +0800
-Message-ID: <20201111123838.15682-25-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201111123838.15682-1-yong.wu@mediatek.com>
-References: <20201111123838.15682-1-yong.wu@mediatek.com>
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        devicetree@vger.kernel.org
+Subject: [net v2 1/4] ARM: dts: imx: fix can fsl,stop-mode
+Date:   Wed, 11 Nov 2020 14:05:04 +0100
+Message-Id: <20201111130507.1560881-2-mkl@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201111130507.1560881-1-mkl@pengutronix.de>
+References: <[net v2 0/4] arm: imx: flexcan: fix yaml bindings and DTs>
+ <20201111130507.1560881-1-mkl@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:205:1d::14
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am the author of MediaTek iommu driver, and will to maintain and
-develop it further.
-Add myself to cover these items.
+Since commit:
 
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+    d9b081e3fc4b can: flexcan: remove ack_grp and ack_bit handling from driver
+
+the 4th and 5th value of the property "fsl,stop-mode" aren't used anymore. With
+the conversion of the flexcan binding to yaml this raises the following error
+during dtbs_check:
+
+arch/arm/boot/dts/imx6dl-apf6dev.dt.yaml: flexcan@2090000: fsl,stop-mode:0: [1, 52, 28, 16, 17] is too long
+    From schema: Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
+
+This patch fixes the error by removing the obsolete values.
+
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 ---
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm/boot/dts/imx6qdl.dtsi | 4 ++--
+ arch/arm/boot/dts/imx6sx.dtsi  | 4 ++--
+ arch/arm/boot/dts/imx6ul.dtsi  | 4 ++--
+ arch/arm/boot/dts/imx7s.dtsi   | 4 ++--
+ 4 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..462a87ee19c8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11056,6 +11056,15 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
- F:	drivers/i2c/busses/i2c-mt65xx.c
+diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+index 7a8837cbe21b..bc98b63922b0 100644
+--- a/arch/arm/boot/dts/imx6qdl.dtsi
++++ b/arch/arm/boot/dts/imx6qdl.dtsi
+@@ -549,7 +549,7 @@ can1: flexcan@2090000 {
+ 				clocks = <&clks IMX6QDL_CLK_CAN1_IPG>,
+ 					 <&clks IMX6QDL_CLK_CAN1_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x34 28 0x10 17>;
++				fsl,stop-mode = <&gpr 0x34 28>;
+ 				status = "disabled";
+ 			};
  
-+MEDIATEK IOMMU DRIVER
-+M:	Yong Wu <yong.wu@mediatek.com>
-+L:	iommu@lists.linux-foundation.org
-+L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-+S:	Supported
-+F:	Documentation/devicetree/bindings/iommu/mediatek*
-+F:	drivers/iommu/mtk-iommu*
-+F:	include/dt-bindings/memory/mt*-larb-port.h
-+
- MEDIATEK JPEG DRIVER
- M:	Rick Chang <rick.chang@mediatek.com>
- M:	Bin Liu <bin.liu@mediatek.com>
+@@ -560,7 +560,7 @@ can2: flexcan@2094000 {
+ 				clocks = <&clks IMX6QDL_CLK_CAN2_IPG>,
+ 					 <&clks IMX6QDL_CLK_CAN2_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x34 29 0x10 18>;
++				fsl,stop-mode = <&gpr 0x34 29>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+index dfdca1804f9f..6c604c38c790 100644
+--- a/arch/arm/boot/dts/imx6sx.dtsi
++++ b/arch/arm/boot/dts/imx6sx.dtsi
+@@ -463,7 +463,7 @@ flexcan1: can@2090000 {
+ 				clocks = <&clks IMX6SX_CLK_CAN1_IPG>,
+ 					 <&clks IMX6SX_CLK_CAN1_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 1 0x10 17>;
++				fsl,stop-mode = <&gpr 0x10 1>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -474,7 +474,7 @@ flexcan2: can@2094000 {
+ 				clocks = <&clks IMX6SX_CLK_CAN2_IPG>,
+ 					 <&clks IMX6SX_CLK_CAN2_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 2 0x10 18>;
++				fsl,stop-mode = <&gpr 0x10 2>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index d7d9f3e46b92..713a4bb341db 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -430,7 +430,7 @@ can1: flexcan@2090000 {
+ 				clocks = <&clks IMX6UL_CLK_CAN1_IPG>,
+ 					 <&clks IMX6UL_CLK_CAN1_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 1 0x10 17>;
++				fsl,stop-mode = <&gpr 0x10 1>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -441,7 +441,7 @@ can2: flexcan@2094000 {
+ 				clocks = <&clks IMX6UL_CLK_CAN2_IPG>,
+ 					 <&clks IMX6UL_CLK_CAN2_SERIAL>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 2 0x10 18>;
++				fsl,stop-mode = <&gpr 0x10 2>;
+ 				status = "disabled";
+ 			};
+ 
+diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+index 84d9cc13afb9..b58262acba11 100644
+--- a/arch/arm/boot/dts/imx7s.dtsi
++++ b/arch/arm/boot/dts/imx7s.dtsi
+@@ -971,7 +971,7 @@ flexcan1: can@30a00000 {
+ 				clocks = <&clks IMX7D_CLK_DUMMY>,
+ 					<&clks IMX7D_CAN1_ROOT_CLK>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 1 0x10 17>;
++				fsl,stop-mode = <&gpr 0x10 1>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -982,7 +982,7 @@ flexcan2: can@30a10000 {
+ 				clocks = <&clks IMX7D_CLK_DUMMY>,
+ 					<&clks IMX7D_CAN2_ROOT_CLK>;
+ 				clock-names = "ipg", "per";
+-				fsl,stop-mode = <&gpr 0x10 2 0x10 18>;
++				fsl,stop-mode = <&gpr 0x10 2>;
+ 				status = "disabled";
+ 			};
+ 
+
+base-commit: e87d24fce924bfcef9714bbaeb1514162420052e
 -- 
-2.18.0
+2.28.0
 
