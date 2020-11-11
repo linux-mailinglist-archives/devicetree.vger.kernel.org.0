@@ -2,69 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 67E2F2AFD50
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:55:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94EB12AFC05
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:31:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727629AbgKLBbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 20:31:42 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42972 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727252AbgKKWvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 17:51:09 -0500
-Received: by mail-oi1-f194.google.com with SMTP id w145so4086588oie.9;
-        Wed, 11 Nov 2020 14:51:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=J4gO6y2+FXbWp6kk6yQSxbYzLSmr490RK8fybVbeec4=;
-        b=FUEwiwe/HUGJLEJ7jidNj4e7p8PKULcg/pIKwiWi4pBE6z25wJW/Ba9xC4LOwYcGeQ
-         Glga+rEXzBR3b8c24O2osl4UoMkSMko0Igno8q0v0ZyNcGcJ0GtdAp6uk+BTLyu+kz3Z
-         JbNKnCjv8bEzQ/59kMNVyvCYVnARKU9B7jCYYQt/DOc7qVfBTHGHtz6L4v6BBBHYZXd4
-         p22RnNCtCVNeL5P6GFoVRviaIIyI5l+hrVj3PyZuWPiRumc5rhogjZ7AJApK5jHI3+lj
-         7JjpyBq/6xGjD0RFgnMgA7HitWBZz4sCS1Y5ljpf7X1V2CBOydxIvNtdvLOaodtSzT3U
-         vnTA==
-X-Gm-Message-State: AOAM531xpdAQgVpEaYIhW+9geudsyrqn0XiKGgEHo2rb0sGesk8pqXUY
-        6flmJDm5PobZYd4pj4MJQZI3vKyjxA==
-X-Google-Smtp-Source: ABdhPJxLE6Xc450qW/K5XRNneTiy41ELWNn8+7Dq1V98fWKkYaZKkDGwc6LQwGMIK0127+2/O+r9Pw==
-X-Received: by 2002:aca:4ccc:: with SMTP id z195mr3489679oia.124.1605135067210;
-        Wed, 11 Nov 2020 14:51:07 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m15sm837189oou.11.2020.11.11.14.51.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 14:51:06 -0800 (PST)
-Received: (nullmailer pid 2191616 invoked by uid 1000);
-        Wed, 11 Nov 2020 22:51:05 -0000
-Date:   Wed, 11 Nov 2020 16:51:05 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Frank Lee <frank@allwinnertech.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        linux-mmc@vger.kernel.org, tiny.windzz@gmail.com,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [RESEND PATCH 16/19] dt-bindings: mmc: sunxi: Add A100
- compatibles
-Message-ID: <20201111225105.GA2191562@bogus>
-References: <cover.1604988979.git.frank@allwinnertech.com>
- <1e6af41ce01eafd0d366257e5be9a0aa90bb97c8.1604988979.git.frank@allwinnertech.com>
+        id S1727267AbgKLBbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 20:31:43 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45714 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727300AbgKKWwg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 17:52:36 -0500
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.6])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CE2D020679;
+        Wed, 11 Nov 2020 22:52:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605135156;
+        bh=9+qWTCAIVfMQOoi1NRuH0DOW/jGqynk1pB7Phvv8n6o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=TeRnNZzu+eow5uNtVKN1K2Ik9Mjzrh4sJzRzHxBwNSqCEKNCHJFpO07l39HxtnMOw
+         Do+IKiduwPbaAEchVe6XeqUNObUeS9/695Jk+vV19q8i+lMZ+ji5kmqy0Xirz47rTl
+         DzWPdguqnHJDAFNcBIE0uilE1uYc3cfmmZZLCvQM=
+Date:   Wed, 11 Nov 2020 14:52:35 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH net RESEND] arm64: dts: fsl-ls1028a-kontron-sl28:
+ specify in-band mode for ENETC
+Message-ID: <20201111145235.5e41d67a@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <20201109110436.5906-1-michael@walle.cc>
+References: <20201109110436.5906-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1e6af41ce01eafd0d366257e5be9a0aa90bb97c8.1604988979.git.frank@allwinnertech.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Nov 2020 14:45:16 +0800, Frank Lee wrote:
-> From: Yangtao Li <frank@allwinnertech.com>
+On Mon,  9 Nov 2020 12:04:36 +0100 Michael Walle wrote:
+> Since commit 71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX") the
+> network port of the Kontron sl28 board is broken. After the migration to
+> phylink the device tree has to specify the in-band-mode property. Add
+> it.
 > 
-> Add binding for A100's mmc and emmc controller.
-> 
-> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
-> ---
->  .../devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml        | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+> Fixes: 71b77a7a27a3 ("enetc: Migrate to PHYLINK and PCS_LYNX")
+> Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied to net, thanks!
