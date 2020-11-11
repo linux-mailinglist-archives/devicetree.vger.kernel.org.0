@@ -2,81 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D862AEEE7
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 11:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B53B2AEF22
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 12:05:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725955AbgKKKmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 05:42:22 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:3844 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725860AbgKKKmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 05:42:21 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fabc0080000>; Wed, 11 Nov 2020 02:42:16 -0800
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 11 Nov
- 2020 10:42:21 +0000
-Received: from moonraker.nvidia.com (172.20.13.39) by mail.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Wed, 11 Nov 2020 10:42:19 +0000
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
-        <stable@vger.kernel.org>
-Subject: [PATCH] ARM64: tegra: Correct the UART for Jetson Xavier NX
-Date:   Wed, 11 Nov 2020 10:41:17 +0000
-Message-ID: <20201111104117.153020-1-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
+        id S1726036AbgKKLFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 06:05:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58598 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725959AbgKKLFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 06:05:51 -0500
+Received: from hillosipuli.retiisi.eu (hillosipuli.retiisi.eu [IPv6:2a01:4f9:c010:4572::81:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1EDC0613D1;
+        Wed, 11 Nov 2020 03:05:51 -0800 (PST)
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 16087634C24;
+        Wed, 11 Nov 2020 13:04:11 +0200 (EET)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1kcnvA-00045B-78; Wed, 11 Nov 2020 13:04:12 +0200
+Date:   Wed, 11 Nov 2020 13:04:12 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        linux-leds@vger.kernel.org, newbytee@protonmail.com,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2 v3] dt-bindings: leds: Add DT binding for Richtek
+ RT8515
+Message-ID: <20201111110412.GW6899@valkosipuli.retiisi.org.uk>
+References: <20201111011417.2275501-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605091336; bh=r4fMM7xgP6lLcIwOOTHqiwhWzQEK5LAvY225pbt0k64=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
-         X-NVConfidentiality:Content-Transfer-Encoding:Content-Type;
-        b=Tpi31tAieoFTOX5KYcUukdtvJxIh5HVaV65segZ4VhUt7uqyIBHY1kw3UvR35Ga5o
-         QVfzyjJeYXyS2kKdraTTvqWviN0jD7IMK4Ad5KdiPZMJgRTBDSjL0YCKmEctnP1k+4
-         b/6ez6bXNeKCUPr2qDjC5++q8ZakSSY6kLbsudQ9T1odVzG6/e5awI8ZTxnx8V/u0j
-         OdMDIspRq1xMXmFr5V+1vEdsYdJ0rKpHXWzeq5VqGXj6CqCakhzjjrU9ePSAziT5q+
-         tEaLym9e2dqPRRzQSy6pKfSWTwuUbONlLWKQc/DQoGaMIky4tenuJrpc4f+fvavRes
-         yTi7ETedLwo4w==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201111011417.2275501-1-linus.walleij@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Jetson Xavier NX board routes UARTA to the 40-pin header and UARTC
-to a 12-pin debug header. The UARTs can be used by either the Tegra
-Combined UART (TCU) driver or the Tegra 8250 driver. By default, the
-TCU will use UARTC on Jetson Xavier NX. Currently, device-tree for
-Xavier NX enables the TCU and the Tegra 8250 node for UARTC. Fix this
-by disabling the Tegra 8250 node for UARTC and enabling the Tegra 8250
-node for UARTA.
+Hi Linus,
 
-Fixes: 3f9efbbe57bc ("arm64: tegra: Add support for Jetson Xavier NX")
-Cc: stable@vger.kernel.org
+Thanks for the patch (and cc'ing me).
 
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra194-p3668-0000.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed, Nov 11, 2020 at 02:14:16AM +0100, Linus Walleij wrote:
+> Add a YAML devicetree binding for the Richtek RT8515
+> dual channel flash/torch LED driver.
+> 
+> Cc: Sakari Ailus <sakari.ailus@iki.fi>
+> Cc: newbytee@protonmail.com
+> Cc: Stephan Gerhold <stephan@gerhold.net>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v2->v3:
+> - Add Sakari to CC
+> - Resend
+> ChangeLog v1->v2:
+> - Explicitly inherit function, color and flash-max-timeout-us
+>   from common.yaml
+> - Add "led" node as required.
+> ---
+>  .../bindings/leds/richtek,rt8515.yaml         | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+> new file mode 100644
+> index 000000000000..0d8bb635370c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/richtek,rt8515.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Richtek RT8515 1.5A dual channel LED driver
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description: |
+> +  The Richtek RT8515 is a dual channel (two mode) LED driver that
+> +  supports driving a white LED in flash or torch mode.
+> +
+> +properties:
+> +  compatible:
+> +    const: richtek,rt8515
+> +
+> +  enf-gpios:
+> +    maxItems: 1
+> +    description: A connection to the 'ENF' (enable flash) pin.
+> +
+> +  ent-gpios:
+> +    maxItems: 1
+> +    description: A connection to the 'ENT' (enable torch) pin.
+> +
+> +  led:
+> +    type: object
+> +    $ref: common.yaml#
+> +    properties:
+> +      function: true
+> +      color: true
+> +      flash-max-timeout-us: true
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p3668-0000.dtsi b/arch/arm=
-64/boot/dts/nvidia/tegra194-p3668-0000.dtsi
-index a2893be80507..0dc8304a2edd 100644
---- a/arch/arm64/boot/dts/nvidia/tegra194-p3668-0000.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra194-p3668-0000.dtsi
-@@ -54,7 +54,7 @@ memory-controller@2c00000 {
- 			status =3D "okay";
- 		};
-=20
--		serial@c280000 {
-+		serial@3100000 {
- 			status =3D "okay";
- 		};
-=20
---=20
-2.25.1
+Don't you also need flash-max-microamp and led-max-microamp? As the maximum
+current for the LED may well be less than the driver can provide.
 
+> +
+> +required:
+> +  - compatible
+> +  - ent-gpios
+> +  - enf-gpios
+> +  - led
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    led-controller {
+> +        compatible = "richtek,rt8515";
+> +        enf-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
+> +        ent-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
+> +
+> +        led {
+> +            function = LED_FUNCTION_FLASH;
+> +            color = <LED_COLOR_ID_WHITE>;
+> +            flash-max-timeout-us = <250000>;
+> +        };
+> +    };
+> -- 
+> 2.26.2
+> 
+
+-- 
+Kind regards,
+
+Sakari Ailus
