@@ -2,156 +2,297 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4234E2AE822
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 06:28:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A0EB2AE857
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 06:45:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725860AbgKKF2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 00:28:10 -0500
-Received: from mga03.intel.com ([134.134.136.65]:2823 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725468AbgKKF2I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 00:28:08 -0500
-IronPort-SDR: M2g1kwnba+jqfNcMliTf4oqVij9N7nDIqAAXiCH++U0EGGP31NPRVEYk8WaybIqgjfzqGozItY
- gKaAHb+VYv6w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9801"; a="170205712"
-X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; 
-   d="scan'208";a="170205712"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Nov 2020 21:28:05 -0800
-IronPort-SDR: DtccRcnMWl2HOjP2/ap2pCY09HaV4zHN5WtPAZ87S0yuJPN69epEPk3DO8jppF8Z3F7TstjTM7
- DYjo1Z2h38lQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,468,1596524400"; 
-   d="scan'208";a="398907120"
-Received: from orsmsx606.amr.corp.intel.com ([10.22.229.19])
-  by orsmga001.jf.intel.com with ESMTP; 10 Nov 2020 21:28:05 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX606.amr.corp.intel.com (10.22.229.19) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 10 Nov 2020 21:28:05 -0800
-Received: from orsmsx607.amr.corp.intel.com (10.22.229.20) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 10 Nov 2020 21:28:04 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx607.amr.corp.intel.com (10.22.229.20) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Tue, 10 Nov 2020 21:28:04 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.104)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Tue, 10 Nov 2020 21:28:04 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RYaAzV0toIOxLbOkgCUJYNXDrVGGBQ2TNv2R/9VIuPfIbWhxnWxx/YjBO3hTzVmJqhX0oQ49tbiLm6lT5asf5aJCxUbek+FE9RF9YK8DJ/kNyAOHMm/c+sYOYpXoLgdD2o6FNR03OdwNC7re0nFC0TfIKjM2rakXH+24fICI0Je5NcrKiY0lGeA/QDUBjJJCg+WW/Gq+4XDRzgBcQRV933wQ2mXGTyxcbdlSTqmUVmSkGVGHYrwdvvjN51MO7lqZFJhiK9RA/pQ+QvBfKN9WZsY8vndv9aKWi6KPhnNQp1ZEPLO5nWHzLUEqd/JGhyMTFXGAgbA6y1T152mLvlBtXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sdfjreMHkHkUcrm1ZLUPj2oTmc7/2XUg6RYC5w9VMgc=;
- b=Jj05YtO4vN3QaYDk4UeShZZ40N9v5/vWUAzX0CM29bVIlqA0DtZJTA+O6fBeiOi5KCupqh05hSu1j9GD+3V+5MxHdcD6LTppu1gaj0svTUILFuXjbJJL2LAc+PvMSYlxpgFinnyKG1pMJhA70/8JJUXUNnbko+F/g8XH2YqWwtrqcA6Cljcd0G8Ig3B2qNdEmhVxk/wyRpMGhd/MNEOnPs5809UvQefUwwjlHtkvFMg7FESSOgH7/6wqJoem/VvkpjoccDTa9Wcf4gfiX5jSzdL+dg8gpnFf1qjfliK3wILCXVglFX2SiPBvpzw6yQM9L6SPZ9mO52dhjttrl+n3JQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sdfjreMHkHkUcrm1ZLUPj2oTmc7/2XUg6RYC5w9VMgc=;
- b=xbK9TroblH4t1s5CYMaYYU7FcZkkA+KxWYOcjfWtchlmmtXQz3GdNVIJ2Rnq6Hc51zcb16uGJ+1oDJm4fVcQRtT/Tgfsc/NxgLl+cFsQWFHVJuPQ3fDqZOZuwjoyJmhcVaoGh6tVDhsHeiBnRwYsy2ywrVOCg6uChRLpmFuAxFU=
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
- by DM6PR11MB4188.namprd11.prod.outlook.com (2603:10b6:5:198::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Wed, 11 Nov
- 2020 05:28:02 +0000
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::b90d:d053:9de6:e5ef]) by DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::b90d:d053:9de6:e5ef%4]) with mapi id 15.20.3541.025; Wed, 11 Nov 2020
- 05:28:02 +0000
-From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-To:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        id S1725971AbgKKFpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 00:45:14 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53162 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725903AbgKKFpN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 00:45:13 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AB5iXSg013527;
+        Tue, 10 Nov 2020 23:44:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605073473;
+        bh=J16Pr44C8yDfBtifBxjlrA5S3HKGKiZWQWjzHZlCq8o=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=bTARTyNxpscSUSYPETYc1WqcktlW8afxs479YkFRqGV/2w5m4bpOEZbMT1+vcRf73
+         yZT9RJz2QbMccCwQtW5ktNBteg+drmhhZZVW9DDnVuWx9SpyYo47mfITgLjzGzPOUg
+         LvlVzMlCRBFoVtbzNM9tJdpVLQ6mK8masLjhlVm0=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AB5iX8n097991
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 10 Nov 2020 23:44:33 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 10
+ Nov 2020 23:44:32 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 10 Nov 2020 23:44:32 -0600
+Received: from [10.250.233.179] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AB5iSCr008845;
+        Tue, 10 Nov 2020 23:44:29 -0600
+Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory controller driver
+To:     Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+CC:     =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "joel@jms.id.au" <joel@jms.id.au>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: RE: [PATCH v14 1/2] pwm: Add PWM driver for Intel Keem Bay
-Thread-Topic: [PATCH v14 1/2] pwm: Add PWM driver for Intel Keem Bay
-Thread-Index: AQHWqEHRXGxDTJAk202WJg7qNFqk3anCfFyA
-Date:   Wed, 11 Nov 2020 05:28:02 +0000
-Message-ID: <DM6PR11MB4250BCC182F2E99AA29362EDFBE80@DM6PR11MB4250.namprd11.prod.outlook.com>
-References: <cover.1603350036.git.vijayakannan.ayyathurai@intel.com>
- <9d567489a6d05da52d515de754fa97da30ba2b85.1603350036.git.vijayakannan.ayyathurai@intel.com>
-In-Reply-To: <9d567489a6d05da52d515de754fa97da30ba2b85.1603350036.git.vijayakannan.ayyathurai@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [42.106.177.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6ca4453f-be5d-4eb8-61a4-08d886028f24
-x-ms-traffictypediagnostic: DM6PR11MB4188:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR11MB4188FF20088675ED17B3E0B1FBE80@DM6PR11MB4188.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: f5mmDz/YsVoRE8ydPTx8vFKbyae5HLTr2yZKT1HLJySedIfrjm7QgocukeqJ3tPyXWqIQK9wJvfx07/+aIBY0KR37XU3c5OuUUKQVkD6Y+gqao7PfST7J/jkiKsJ+nDQxfI1K6K5DkHBayklcgkAgh+87pMmXNHdG2H+Z+Cdt0WITZUt5uV4CNHcm8qSo+6jdhrpfZC6U2fLsdoPq7nScMItutY59qGeOflhQ+qAl7hbyImkfgFT0zozbIpQ5ixVgIsXSDZPvgO3NLFHhHoGJKjvgRWGmqZwrtcit/eBmabrpNhA3IWQLM/Ros3A/kl/wAdU0PXTte+FkooWRg//uw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39860400002)(136003)(396003)(346002)(376002)(26005)(86362001)(2906002)(7696005)(64756008)(66946007)(8676002)(5660300002)(52536014)(66476007)(66556008)(186003)(66446008)(4326008)(9686003)(53546011)(76116006)(8936002)(55016002)(478600001)(316002)(110136005)(33656002)(71200400001)(54906003)(6506007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: Y8ADYJATadJ1S8Elu1UJPnOkO70F8doMJM7h6hk8xeKGI2szhU2ymbpznVs13yWRlErdUIQie79gQsZrzynX94cFLQE1x35XDByx2ywzXfD46RsSTDe+Vzq8yxW78LZDHBjTnGsupasKy0gsefCyo/701ryxp3umYXNwdGqSw9kuIbKkR7iJ9UVgH4uwJs6Cn8M5J6brqOd8338SNdc5CdBiUcKsHLprq/6qUGioWyqNOriirb1ddP+oF7fiIw2gbYsUnpUJbYfN4zvfldCs8FMiHAyZsCrtQYep6iimy7FZAHb2EBE9J9mTsgAn26CFnO/sA1JCgYsfZxxRd78lDER1Lb0LXugtm+6OoNPNs/ee7DTGpRRaOkGms20+1iPLKDIFKdZhyJihB0a3szQn87SHZBaG9Yj20ca4v/kNoYuBixBEErxq2JHYeO8n+92P2Am5Xl99TusQHUwrllBXYkh0EeikjxNIof5Av/KkK6aseBsERJPomXhTZo9f8vE25c2HtGQZUTtZfjtLoxxrm8T1tMcBad5N++fE7qwsdK92IZdTmkRh5baR7tYo3R+yR4Hq+aWxuqOPo7OGyAEHuyt3u733Ved6ZzLENFDrsGIDIcw6SSky8U7uUlOu/64dhawPP5VdUXpwi1R67ZQW0cqtHdH7p2yO07l8qp39/7dNmE5VzHZzaVrT41AuBM73QqSjzL2X4ZKqsZNjqDQXbXsQXEPwhXOSlmm5mcRqQWXgnfG2dtHM1wCFuIql2h+t28ANsXKfMl6/1eWV3e8mUzl8WwMcZwOOTq1s4nIWVtdWGg98M+UpOWAcRLTQrVnDLSx+vNmFxwMXpTxjkAeVJd3U5jdUXCvxKTgcHd+VPXMarJaNPVYpPYilMg56OV7YUws3yXi7VCTs9D7MR0ZqxA==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>,
+        Tudor Ambarus <Tudor.Ambarus@microchip.com>
+References: <20201105120331.9853-1-chin-ting_kuo@aspeedtech.com>
+ <20201105120331.9853-5-chin-ting_kuo@aspeedtech.com>
+ <fd8fa472-53bb-c992-3dc2-5a984a439c07@kaod.org>
+ <20201105161132.37eb3265@collabora.com>
+ <HK0PR06MB2786DAC99A56EA302EE969CAB2ED0@HK0PR06MB2786.apcprd06.prod.outlook.com>
+ <20201106100539.62fc5249@collabora.com>
+ <HK0PR06MB27865F0C5B2A4F680ED0D400B2ED0@HK0PR06MB2786.apcprd06.prod.outlook.com>
+ <20201106123015.3248d478@collabora.com>
+ <HK0PR06MB2786AE097106FC322D625BBFB2ED0@HK0PR06MB2786.apcprd06.prod.outlook.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <7e959d0d-1626-9816-c5cb-1b16c5ffba25@ti.com>
+Date:   Wed, 11 Nov 2020 11:14:27 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ca4453f-be5d-4eb8-61a4-08d886028f24
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2020 05:28:02.0259
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 03OP87xTtqXPI5uledSmiHFlwstG6Uu4rNjHx5hjSqvEybfq9w+r44T4NzBNBKUDY+lJlnIpYnFwh3kipAiuCLTxZpm535R9YSJQ3yW2CijygrkWyh8X8N7W60HebYp4
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4188
-X-OriginatorOrg: intel.com
+In-Reply-To: <HK0PR06MB2786AE097106FC322D625BBFB2ED0@HK0PR06MB2786.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksDQoNCj4gRnJvbTogQXl5YXRodXJhaSwgVmlqYXlha2FubmFuIDx2aWpheWFrYW5uYW4uYXl5
-YXRodXJhaUBpbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCAyMiBPY3RvYmVyLCAyMDIwIDM6
-MTUgUE0NCj4gVG86IHRoaWVycnkucmVkaW5nQGdtYWlsLmNvbTsgdS5rbGVpbmUta29lbmlnQHBl
-bmd1dHJvbml4LmRlOw0KPiByb2JoK2R0QGtlcm5lbC5vcmcNCj4gQ2M6IGxpbnV4LXB3bUB2Z2Vy
-Lmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBXYW4gTW9oYW1hZCwNCj4g
-V2FuIEFobWFkIFphaW5pZSA8d2FuLmFobWFkLnphaW5pZS53YW4ubW9oYW1hZEBpbnRlbC5jb20+
-Ow0KPiBhbmRyaXkuc2hldmNoZW5rb0BsaW51eC5pbnRlbC5jb207IG1ncm9zc0BsaW51eC5pbnRl
-bC5jb207IFJhamENCj4gU3VicmFtYW5pYW4sIExha3NobWkgQmFpIDxsYWtzaG1pLmJhaS5yYWph
-LnN1YnJhbWFuaWFuQGludGVsLmNvbT47DQo+IEF5eWF0aHVyYWksIFZpamF5YWthbm5hbiA8dmlq
-YXlha2FubmFuLmF5eWF0aHVyYWlAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0ggdjE0IDEv
-Ml0gcHdtOiBBZGQgUFdNIGRyaXZlciBmb3IgSW50ZWwgS2VlbSBCYXkNCj4gDQo+IEZyb206IFZp
-amF5YWthbm5hbiBBeXlhdGh1cmFpIDx2aWpheWFrYW5uYW4uYXl5YXRodXJhaUBpbnRlbC5jb20+
-DQo+IA0KPiBUaGUgSW50ZWwgS2VlbSBCYXkgU29DIHJlcXVpcmVzIFBXTSBzdXBwb3J0Lg0KPiBB
-ZGQgdGhlIHB3bS1rZWVtYmF5IGRyaXZlciB0byBlbmFibGUgdGhpcy4NCj4gDQo+IFNpZ25lZC1v
-ZmYtYnk6IExhaSwgUG9leSBTZW5nIDxwb2V5LnNlbmcubGFpQGludGVsLmNvbT4NCj4gQ28tZGV2
-ZWxvcGVkLWJ5OiBWaW5lZXRoYSBHLiBKYXlhIEt1bWFyYW4NCj4gPHZpbmVldGhhLmcuamF5YS5r
-dW1hcmFuQGludGVsLmNvbT4NCj4gU2lnbmVkLW9mZi1ieTogVmluZWV0aGEgRy4gSmF5YSBLdW1h
-cmFuDQo+IDx2aW5lZXRoYS5nLmpheWEua3VtYXJhbkBpbnRlbC5jb20+DQo+IFJldmlld2VkLWJ5
-OiBBbmR5IFNoZXZjaGVua28gPGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVsLmNvbT4NCj4g
-Q28tZGV2ZWxvcGVkLWJ5OiBWaWpheWFrYW5uYW4gQXl5YXRodXJhaQ0KPiA8dmlqYXlha2FubmFu
-LmF5eWF0aHVyYWlAaW50ZWwuY29tPg0KPiBTaWduZWQtb2ZmLWJ5OiBWaWpheWFrYW5uYW4gQXl5
-YXRodXJhaQ0KPiA8dmlqYXlha2FubmFuLmF5eWF0aHVyYWlAaW50ZWwuY29tPg0KPiBSZXZpZXdl
-ZC1ieTogVXdlIEtsZWluZS1Lw7ZuaWcgPHUua2xlaW5lLWtvZW5pZ0BwZW5ndXRyb25peC5kZT4N
-Cj4gLS0tDQoNClBsZWFzZSBjb25zaWRlciByZXZpZXcgdGhpcyBwYXRjaCBhbmQgbGV0IG1lIGtu
-b3cgaWYgdGhlcmUgaXMgYW55IGZ1cnRoZXIgZmVlZGJhY2suDQoNCkkgaGF2ZSBhbHNvIGNvbXBp
-bGVkIGFuZCB0ZXN0ZWQgdGhpcyBwYXRjaCB3aXRoDQoJdGFnOiB2NS4xMC1yYzIJKDNjZWExMWNk
-NWUzYjAwZDkxY2FmMGI0NzMwMTk0MDM5YjQ1YzU4OTEpDQoNClRoYW5rcyBpbiBhZHZhbmNlLA0K
-VmlqYXkNCg==
+Hi Chin-Ting,
+
+On 11/6/20 11:57 PM, Chin-Ting Kuo wrote:
+> Hi Boris,
+> 
+>> -----Original Message-----
+>> From: Boris Brezillon <boris.brezillon@collabora.com>
+>> Sent: Friday, November 6, 2020 7:30 PM
+>> To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>> Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory controller
+>> driver
+>>
+>> +Tudor and Vignesh
+>>
+>> On Fri, 6 Nov 2020 10:21:06 +0000
+>> Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com> wrote:
+>>
+>>> Hi Boris,
+>>>
+>>> Thanks for your comments and suggestions.
+>>>
+>>>> -----Original Message-----
+>>>> From: Boris Brezillon <boris.brezillon@collabora.com>
+>>>> Sent: Friday, November 6, 2020 5:06 PM
+>>>> To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>>>> Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory
+>>>> controller driver
+>>>>
+>>>> On Fri, 6 Nov 2020 08:58:23 +0000
+>>>> Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com> wrote:
+>>>>
+>>>>> Hi Boris,
+>>>>>
+>>>>> Thanks for your quick reply.
+>>>>>
+>>>>>> -----Original Message-----
+>>>>>> From: Boris Brezillon <boris.brezillon@collabora.com>
+>>>>>> Sent: Thursday, November 5, 2020 11:12 PM
+>>>>>> To: Cédric Le Goater <clg@kaod.org>; robh+dt@kernel.org
+>>>>>> Cc: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>;
+>>>>>> broonie@kernel.org; joel@jms.id.au; andrew@aj.id.au;
+>>>>>> bbrezillon@kernel.org; devicetree@vger.kernel.org;
+>>>>>> linux-kernel@vger.kernel.org; linux-aspeed@lists.ozlabs.org;
+>>>>>> linux-spi@vger.kernel.org; BMC-SW <BMC-SW@aspeedtech.com>
+>>>>>> Subject: Re: [v3 4/4] spi: aspeed: Add ASPEED FMC/SPI memory
+>>>>>> controller driver
+>>>>>>
+>>>>>> Hi,
+>>>>>>
+>>>>>> On Thu, 5 Nov 2020 15:09:11 +0100 Cédric Le Goater
+>>>>>> <clg@kaod.org> wrote:
+>>>>>>
+>>>>>>> Hello Chin-Ting,
+>>>>>>>
+>>>>>>> Thanks for this driver. It's much cleaner than the previous
+>>>>>>> and we should try adding support for the AST2500 SoC also. I
+>>>>>>> guess we can keep the old driver for the AST2400 which has a
+>> different register layout.
+>>>>>>>
+>>>>>>> On the patchset, I think we should split this patch in three :
+>>>>>>>
+>>>>>>>  - basic support
+>>>>>>>  - AHB window calculation depending on the flash size
+>>>>>>>  - read training support
+>>>>>>
+>>>>>> I didn't look closely at the implementation, but if the read
+>>>>>> training tries to read a section of the NOR, I'd recommend
+>>>>>> exposing that feature through spi-mem and letting the SPI-NOR
+>>>>>> framework trigger the training instead of doing that at dirmap
+>>>>>> creation time (remember that spi-mem is also used for SPI NANDs
+>>>>>> which use the dirmap
+>>>> API too, and this training is unlikely to work there).
+>>>>>>
+>>>>>> The SPI-NOR framework could pass a read op template and a
+>>>>>> reference pattern such that all the spi-mem driver has to do is
+>>>>>> execute the template op and compare the output to the reference
+>> buffer.
+>>>>>>
+>>>>>
+>>>>> I agree it. Before, I were not able to find a suitable location to
+>>>>> implement
+>>>> read training feature.
+>>>>> I think that I can add a SPI timing training function in
+>>>>> "spi_controller_mem_ops" struct and call it by a wrapper function
+>>>>> called at
+>>>> the bottom of spi_nor_probe() in spi-nor.c.
+>>>>> Maybe, SPI-NOR framework does not need to pass reference buffer
+>>>>> since calibration method depends on each SoC itself and buffer
+>>>>> size may be
+>>>> variant.
+>>>>> The detail calibration method may be implemented in each SoC SPI
+>> driver.
+>>>>
+>>>> That's a real problem IMO. What makes this pattern SoC specific? I
+>>>> can see why the location in flash could be *board* specific, but the
+>>>> pattern should be pretty common, right? As for the spi-mem operation
+>>>> to be executed, it's definitely memory specific (I can imagine some
+>>>> flash vendors providing a specific command returning a fixed pattern
+>>>> that's not actually stored on a visible portion of the flash).
+>>>
+>>> You are right, the pattern should be pretty common. The thing I was
+>>> worried about is the size of that buffer since, maybe, some
+>>> controllers need to read more data than others in order to get good training
+>> result.
+>>
+>> It would be good to see how other controllers implement that. I know that the
+>> Cadence controller had something similar. Vignesh might be able to share his
+>> thoughts on this.
+> 
+
+Cadence controllers requires to read fixed length calibration pattern
+multiple times (while tuning PHY registers) from non zero address
+location. Pattern is Flash independent and SoC independent. Hence, can
+be hard coded in driver (no need to read at slower speed).
+
+> Oh, maybe, I misunderstood your meaning and I did not describe clearly early.
+> As you mentioned before, for some SPI-NOR flashes, there indeed exists a command used for
+> read timing training with high SPI clock frequency.
+> When this specific command is sent, an almost common pattern with fixed length will be outputted to controller.
+> (This pattern is not stored on a normal read/write area.)
+> 
+> But, unfortunately, many flash parts we used did not support this feature. Thus, our read timing training strategy is:
+> Step 1: Use the lowest SPI clock frequency to read normal flash content with specific length as reference data.
+> Step 2: With a fixed high SPI clock frequency, adjust different timing delay cycle, then, read the same flash region for each timing delay.
+> Step 3: Compare each data read from step 2 to the reference data gotten from step 1. Then, we will get a suitable timing delay window.
+> 
+
+Using dirmap_create() to actually calibrate controller is abusing the
+interface IMO.  It is not guaranteed that flash is configured to use
+right number of dummy cycles values and mode for high speed operation
+before call to dirmap_create(). This is true today but may change in the
+future. So, there should at least be a separate callback dedicated for
+calibration along the lines Boris suggested.
+
+Max frequency that read cmd may support would not be supported by other
+cmds such as write or read SFDP. This would need to be taken into
+account before and post calibration probably by extending spi_mem_op to
+specify freq of operation per op.
+
+I see that calibration pattern is assumed to be at offset 0 in the
+flash. This may not be the ideal position as offset 0 is typically used
+to store bootloader. So, there should be a way to specify offset at
+which calibration pattern is present.
+
+Regards
+Vignesh
+
+
+>>
+>>>
+>>>>>
+>>>>> Besides, I am thinking about the possibility for adding a
+>>>>> "spi_mem_post_init" function in spi-mem framework sine for some
+>>>>> SoCs, SPI controller needs to adjust some settings after getting
+>>>>> SPI flash
+>>>> information.
+>>>>
+>>>> I don't think that's a good idea. The spi-mem interface should stay
+>>>> memory-type agnostic and doing that means we somehow pass NOR
+>>>> specific info. What is it that you need exactly, and why?
+>>>
+>>> Yes, as you mention, the spi-mem interface should stay memory-type
+>> agnostic. Thus, currently, I just think about this, not implementation.
+>>>
+>>> Why did I need this exactly?
+>>> Take ASPEED SPI controller for example, ASPEED SPI controller is designed
+>> for SPI NOR flash especially.
+>>> When ASPEED SoC powers on or reset, MCU ROM will fetch SPI NOR flash
+>> through SPI controller.
+>>> But, MCU ROM does not know the current address mode of SPI NOR flash
+>> when SoC was reset (SPI flash is not reset).
+>>> Therefore, SPI flash driver needs to set related flag to notify MCU ROM when
+>> flash is set to 4B address mode and 4B read opcode is used.
+>>
+>> Oh, that's ugly! The SPI NOR framework tries hard to not change the
+>> addressing mode exactly for this reason. On most NORs there should now be
+>> READ/WRITE variants allowing you to address more than 2^24 bytes without
+>> changing the addressing mode. This being said, those problem exists on other
+>> platform which can't even let the boot ROM know that addressing mode
+>> changed. I don't have a proper solution for your use case, but I definitely don't
+>> like the idea of exposing such details to spi-mem controllers...
+>>
+> 
+> Certainly, most of new SPI NOR flashes larger than 16MB support dedicated
+> 4B command without change flash address mode. Originally, I want to take
+> all flashes into consideration. But, now, the number of flashes, larger than 16MB and
+> without 4B dedicated command, decreases. Perhaps, I can ignore them currently.
+> 
+>> We usually recommend to connect the NOR reset pin to the global reset to
+>> addressing mode gets back to known state when you reboot the board and
+>> need to go back to the boot ROM.
+> 
+> I agree with this.
+> 
+>>
+>>>
+>>> Besides, for other SoCs connected to ASPEED SoC, they can read/write SPI
+>> NOR flash connected to ASPEED SoC by a pure HW channel without any
+>> interaction of SW driver.
+>>> But, before trigger this feature, flash read/write/erase opcode, dummy
+>>> cycle and other information should be filled in the related registers in
+>> advance because that HW channel does not know accurate information about
+>> connected SPI NOR flash.
+>>
+>> While I can see a valid reason to allow that for READs (if we decide to support
+>> XIP), I really don't like the idea of allowing destructive operations
+>> (WRITE/ERASE) on the flash that don't go through the MTD layer. This sounds
+>> like risky business to me, so I'd just forget about that if I were you. Regarding
+>> the XIP use case, why not, but we'll need to extend the dirmap API to support it:
+>> mappings need to stay around and you need to return a pointer to the mapped
+>> memory region, which we don't allow right now (because we want to let
+>> controllers move their dirmap window if they have to).
+> 
+> Yes, for SPI(-flash) driver, I think I just needs to focus on the scenario where all flash operations go through MTD layer.
+> Other application may be implemented on the other driver, not here.
+> 
+> 
+> Best Wishes,
+> Chin-Ting
+> 
+> 
