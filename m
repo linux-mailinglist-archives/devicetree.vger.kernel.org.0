@@ -2,108 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE422AF6D5
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 17:47:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C61D2AF6EE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 17:53:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726904AbgKKQrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 11:47:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726744AbgKKQrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 11:47:19 -0500
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78E10C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 08:47:18 -0800 (PST)
-Received: by mail-wr1-x442.google.com with SMTP id b8so3192322wrn.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 08:47:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=iFsaSefHhmkCScyFYoknkXxLil5Qp2yw29m3QJALDc0=;
-        b=B/+8hOwVHut4qAjEftspH+8vOftFemj7qMkkqsNfSt9PH1QrCUn7bFMuufqiEPYHvf
-         CdmPz2mS5JPSwdBBTN3N+khMGnoAGP2AMLWxir+wYUZpoPc8LzHTAHww18QLMHCLtGYB
-         WdS1kZXw1Wk0uKOLDhIKppmqhF3IRsIPWNzfTn9bLxl5JmBlg6Q7imM185QgomyT7bns
-         goQSjXEEH8X/SURQO3CsKV8CgFklhDx6f8EPYOP2Wn8iCNBG0Nh+SLEoIZhcKXUsGWMQ
-         Qy/b3ca3qV3J2XYHhKzCGO+yZLvq7xFp70cyUOg4Cn2HgU4qdJ00TQIkU9tKw04hBuju
-         YPXg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=iFsaSefHhmkCScyFYoknkXxLil5Qp2yw29m3QJALDc0=;
-        b=mlOqs14nH19edym49t5htHFCFC7xBlsukOnVkBhLE8MemHfXoK/4yYO+PD0wcLpw4g
-         Kl7RJe9A7wnuZa+UicngfWV1EjZkKMBmnFLt59ydrUIh+tn+aYPDAuZy3ltxs2jOwPJt
-         M9RWLwGQjh7ze4rzkkky6GmW3JLojF7nVMzVaUzntVB46cMs+MLw56KUbWuLxj+6MNZN
-         BifccVa7rL3YNUe694O7ViJWwi9VOATAAAT4QmLp5fWkaOVLQKYrE53h59s4HFpl6V8r
-         IyOmLhxzqsU/wecCFO5i+ak1lSJlnkXmRNQM45eEf6F91FHts+sgzthnGXjYQ0+o9Qfj
-         taPg==
-X-Gm-Message-State: AOAM5300Q1bb8zqd9A9Av9JfDdxcl1ncsTAxrNuSYPv2dcWs1Pml46ni
-        E9udrucfkgRyXxWSusBWs1bsaw==
-X-Google-Smtp-Source: ABdhPJzRnnvVYKTjowXa7ib7kM/imqHcA0TsWc1jxSxFSms9DDStsTD9noYghcLYEnaRaNhZGEfe7g==
-X-Received: by 2002:adf:ffc3:: with SMTP id x3mr2959101wrs.32.1605113237207;
-        Wed, 11 Nov 2020 08:47:17 -0800 (PST)
-Received: from dell ([91.110.221.159])
-        by smtp.gmail.com with ESMTPSA id s4sm3225443wro.10.2020.11.11.08.47.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 08:47:16 -0800 (PST)
-Date:   Wed, 11 Nov 2020 16:47:14 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     sre@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: Re: [PATCH v6 11/11] mfd: mt6360: Remove MT6360 regulator
- of_compatible attribute
-Message-ID: <20201111164714.GR2063125@dell>
-References: <1604656432-10215-1-git-send-email-gene.chen.richtek@gmail.com>
- <1604656432-10215-12-git-send-email-gene.chen.richtek@gmail.com>
+        id S1726634AbgKKQxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 11:53:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57376 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725979AbgKKQxC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 11:53:02 -0500
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C98CF207DE;
+        Wed, 11 Nov 2020 16:53:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605113581;
+        bh=JmHvo1SzasskdROAWMoAgJ6ASA6flz7HfKula4/+Rxc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vrWvgsCUe3WUikOynKF6WlqA5l0n3Ae1O6V5ZPQigDunSwUXIaYX8ZofQhXb9U4LG
+         Esja9EsroullITulSAV8dkBDv3SOgb7xsRWgGf6oTesxapQG9ngNCNgSOZufBQADRR
+         PvjNyIoTkRIvuA/Pa4Or0KVFxrn9OX8zEqdV9Jjg=
+Received: by mail-ej1-f44.google.com with SMTP id f20so3693531ejz.4;
+        Wed, 11 Nov 2020 08:53:00 -0800 (PST)
+X-Gm-Message-State: AOAM530IxLyiKx+XNMeioTQy4gn/3YDS93ei1I0sSRGMJAiC06vExWCr
+        F+qqexaCyEm+nX2maf/k+mU8lAHFt6Oy3I1A9g==
+X-Google-Smtp-Source: ABdhPJzdRmYGXhqdGMuO0dJRFroeBzeq9MJGO2EU8QQlLa+CkCedj+n4fq3F2ISZsjzb4o981Dy2VwbcJ3xH0AIJoko=
+X-Received: by 2002:a17:906:5f8d:: with SMTP id a13mr26062667eju.194.1605113579120;
+ Wed, 11 Nov 2020 08:52:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1604656432-10215-12-git-send-email-gene.chen.richtek@gmail.com>
+References: <20201111123838.15682-1-yong.wu@mediatek.com> <20201111123838.15682-25-yong.wu@mediatek.com>
+In-Reply-To: <20201111123838.15682-25-yong.wu@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Thu, 12 Nov 2020 00:52:48 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_85-PWMVh3k+P_984irVVLaEWjPSyw1amFkRaQ+x=wg=A@mail.gmail.com>
+Message-ID: <CAAOTY_85-PWMVh3k+P_984irVVLaEWjPSyw1amFkRaQ+x=wg=A@mail.gmail.com>
+Subject: Re: [PATCH v4 24/24] MAINTAINERS: Add entry for MediaTek IOMMU
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>, youlin.pei@mediatek.com,
+        DTML <devicetree@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        chao.hao@mediatek.com, kernel-team@android.com,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        iommu@lists.linux-foundation.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>, anan.sun@mediatek.com,
+        Greg Kroah-Hartman <gregkh@google.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 06 Nov 2020, Gene Chen wrote:
+Hi Yong:
 
-> From: Gene Chen <gene_chen@richtek.com>
-> 
-> Remove MT6360 regulator of_compatible attribute because
-> MFD device should just instantiate the platform device.
-> 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+Yong Wu <yong.wu@mediatek.com> =E6=96=BC 2020=E5=B9=B411=E6=9C=8811=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=888:53=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> I am the author of MediaTek iommu driver, and will to maintain and
+> develop it further.
+> Add myself to cover these items.
+
+Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+
+>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
 > ---
->  drivers/mfd/mt6360-core.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/mfd/mt6360-core.c b/drivers/mfd/mt6360-core.c
-> index 4bcfa7f..539ab43 100644
-> --- a/drivers/mfd/mt6360-core.c
-> +++ b/drivers/mfd/mt6360-core.c
-> @@ -340,7 +340,7 @@ static const struct mfd_cell mt6360_devs[] = {
->  	OF_MFD_CELL("mt6360-led", mt6360_led_resources,
->  		    NULL, 0, 0, "mediatek,mt6360-led"),
->  	OF_MFD_CELL("mt6360-regulator", mt6360_regulator_resources,
-> -		    NULL, 0, 0, "mediatek,mt6360-regulator"),
-> +		    NULL, 0, 0, NULL),
-
-If you're no longer providing an OF compatible, you should use one of
-the simper helpers.
-
->  	OF_MFD_CELL("mt6360-tcpc", NULL,
->  		    NULL, 0, 0, "mediatek,mt6360-tcpc"),
->  };
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>  MAINTAINERS | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e73636b75f29..462a87ee19c8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11056,6 +11056,15 @@ S:     Maintained
+>  F:     Documentation/devicetree/bindings/i2c/i2c-mt65xx.txt
+>  F:     drivers/i2c/busses/i2c-mt65xx.c
+>
+> +MEDIATEK IOMMU DRIVER
+> +M:     Yong Wu <yong.wu@mediatek.com>
+> +L:     iommu@lists.linux-foundation.org
+> +L:     linux-mediatek@lists.infradead.org (moderated for non-subscribers=
+)
+> +S:     Supported
+> +F:     Documentation/devicetree/bindings/iommu/mediatek*
+> +F:     drivers/iommu/mtk-iommu*
+> +F:     include/dt-bindings/memory/mt*-larb-port.h
+> +
+>  MEDIATEK JPEG DRIVER
+>  M:     Rick Chang <rick.chang@mediatek.com>
+>  M:     Bin Liu <bin.liu@mediatek.com>
+> --
+> 2.18.0
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
