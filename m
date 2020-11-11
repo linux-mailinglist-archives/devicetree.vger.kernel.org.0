@@ -2,120 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70F6E2AF4C2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:33:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CBB2AF4C4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:34:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726456AbgKKPdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 10:33:23 -0500
-Received: from mail-vi1eur05on2069.outbound.protection.outlook.com ([40.107.21.69]:52832
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726136AbgKKPdX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 10:33:23 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U/51454bBLIs+3vwLBPAi93+Qn61uBQDjB8cj9z5wmbw2YjVliZIHFApgxPkwzWJSofyC3owGRuuNWBRP1dsdrDC6SYGLkb4O70m3u8NUhnXmJC5VT8XAmG5s4iJyCBYK0UmIVo/Y6Ezozoy5eNQw3R2IHCiPnClWkJTd+BTBP+J1rlsbE3lPtRMdjow72xhkex25sPNnAvhZWmVew4mSRpQGlmH4iprZAh0m/SZ5mIvfaqgq229Av1lnEGndKHL8y8aSC0SDjqOWv+lOGVbAPfD1j1OJa5k5vVD+7DMwG4U9nStNbhWvaTEghlUKedXwrbfMbWqdPCLaRwdazBIRA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4veWlL4XxOcV5v9rFylLAUOhW82NBYvUWmgT33/JNlQ=;
- b=Rn8vOI8MICnoxT7MuPkkDrXgerOfEz10ZBnV9fnzdFKCGg/2uqiG4Ubz+jO9ogwmrMOAtSMbRdCpYPKpNW8/CaNsTDhFPmUCilKPODzC2q92ATGuPJGvW8Nft/KkktVNXttnQnXxIIc1FRBUk6iDokrsdzi7G4CB/ZjjfCno0dYns9P59BD/AiO44BfM8eMuAGwfPvxZZQXIzaZtDJ6V8hKSPo93ici1NQK4n/FI+CqSxak/nUuCce/xGZ5Rq24fuvFsJmjEHeNjuaie7j6v/b6F9lOBNMjuEb+/Rk6cNeyNdY0XunJu2nwgOf9GTkaUgNPhweaqLB5cE+HXqLpEww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4veWlL4XxOcV5v9rFylLAUOhW82NBYvUWmgT33/JNlQ=;
- b=Id75R8qRr/jQsX6rcEs/NER7US9m+qdNgskRdT1VCRlgpGkvK4uDrLWKqA3chg+KUjo8I03oelsrvCqqw8iW44Wu7Tam6Fd3RwmE5WEhiNefAOINXUzCINvwNqqxhf2y15AjAvblbtaeUYPDGHvksEtmrw/oGxYJYN+W88n9XDA=
-Received: from AM6PR04MB3976.eurprd04.prod.outlook.com (2603:10a6:209:3f::17)
- by AM6PR04MB4519.eurprd04.prod.outlook.com (2603:10a6:20b:18::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Wed, 11 Nov
- 2020 15:33:20 +0000
-Received: from AM6PR04MB3976.eurprd04.prod.outlook.com
- ([fe80::7824:9405:cb7:4f71]) by AM6PR04MB3976.eurprd04.prod.outlook.com
- ([fe80::7824:9405:cb7:4f71%4]) with mapi id 15.20.3499.032; Wed, 11 Nov 2020
- 15:33:20 +0000
-From:   Madalin Bucur <madalin.bucur@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>,
-        "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are coherent
-Thread-Topic: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are coherent
-Thread-Index: AQHWmxXjMrUGgPncOk2cha5EuEXPF6mv6Y6AgBNfpdA=
-Date:   Wed, 11 Nov 2020 15:33:19 +0000
-Message-ID: <AM6PR04MB3976F19056A613AC92118A2FECE80@AM6PR04MB3976.eurprd04.prod.outlook.com>
-References: <1601901999-28280-1-git-send-email-madalin.bucur@oss.nxp.com>
- <20201030073956.GH28755@dragon>
-In-Reply-To: <20201030073956.GH28755@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [82.76.227.31]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: bef2c272-1afa-4467-202b-08d886571e39
-x-ms-traffictypediagnostic: AM6PR04MB4519:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR04MB4519E7FCC523D9284424C76AECE80@AM6PR04MB4519.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: SE1YtHEfW9EEDnN5TJg6a2F2sMSjTjFxatFakojqn7ZALgXm3ugdzAHdT8Xm26JEVP4O2wnTqWE4G6IyKwRC6JTdgJjGGXx9Px07cSV1bT6CTCB0xyaKDrLsn8C8WuP800FB2QryPfmRY4ph2cx0sdE6rXblTRXb9CzKHmLuc2K3qhVlPSdfGCLgJPD5WHAMbjEc0deyQdjWVNohCHpVXDto/UJqKcRlRzw5ycldXQCD1hIkLSGlcIxpzM6Vq9TgZlD5/Dq3RvXlKLlF78z0/G7w7lioTlKCZ7RWGE5X0watPkLoeCZXuBxbfGSEXhDdQ9x18IqeIj7tLKmD4jFXxw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB3976.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(346002)(136003)(396003)(366004)(7696005)(6506007)(53546011)(83380400001)(5660300002)(316002)(110136005)(54906003)(8676002)(4744005)(8936002)(26005)(71200400001)(44832011)(86362001)(33656002)(55016002)(66556008)(2906002)(66446008)(64756008)(478600001)(52536014)(66476007)(66946007)(76116006)(4326008)(9686003)(186003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: uz0VenoHuWQIkmMCdahx8KDvT5sjV1ASgZp0YaviJHIzYuJj9RMIrAPplG5L7fp2uEVmg+R1jC9qBqlGiLmQvd4dsCYtj1lUM/pBR8MbGd2cE4Zc9lU1ZGebHz/xlcKVazxULpDF3Fi3Tlm/QXwd+1dwEwesCAKrFZ5UzrfC7TFGGukZVpfynHwc9KidP4KIFt/T75Jqqbm4vs3Ofdeyszn3ZBBWZIlWNtHGRaCp3sJgs/wPs2TwMFXdjqQ6AHYQV7cWp1D5CF+gR1QpLyMuBVKJs8qJWlB8u5MWrZqVfp2DfMPwqEPn6mkDnO/Z6LkhH3cPSMLL3jZMyQcK6udpBZytvdya0edh7gyiOBDSa55Q8rro6gexWIayR224+3LUh2tQZkx5IqkyEbYlyK4iXHZTIbdSNkdKUYHkAVL8HQDtHT3t5v9uuK3TTCQVG71OTGrgbC/V2t2SFhaiPwqzIo6dAcuomeyhY1Ql3x0kOt7fYGE5ATFxyodoXjY3nEoqZ3SVkRaD1X9Q7M0ryvT5TKM5J0tR0sVcaCf8bDSsJcsn6CaNkPRpTamRZbxVw9Amyky5hsSQeK5K0QUjhb4tllyu4Jrhl0pxlnkFV+2F5sG7AEIFHJm77dNPjX4hMWmuBsmcflc3y/O7TWZTtUo+pQ==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726338AbgKKPeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 10:34:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44456 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726136AbgKKPeC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 10:34:02 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE07C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 07:34:01 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id r186so1681418pgr.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 07:34:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=aKu2Cp+BR7egmkyy6gtAI7Libyaz8Ov6ncTHEd23iuY=;
+        b=ZwA/TD5l71yC02eoUv1QvNlw/SKhbJS4aYBX6zX/2OTz2g3j20S81tq4x0ux6Lksn4
+         88rzsfF3O71rmE/FMaAhLjB9Cn3/IzZaFMiRAn1mvafP/d9727mk+vxjsD3kv+0sq/SK
+         licWmXUrrbtxtwTr1LAH24hHAI3oz6rUmXFqXbmpLP+MpxY0a/v1nsojm44fo/3uWtkx
+         1a18NIrkc0mGmNf1MDhCDErjekzqDrMVAvX5NaraO1N6D4wTmPBzrpz9AkT4b4leBDsd
+         5bCgBZkPT17G6plvjG0ovo7x9WcfMrAXQBAYW+2Oiali1iqaOL14m+2TZVHxWrPAfFg7
+         5DbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=aKu2Cp+BR7egmkyy6gtAI7Libyaz8Ov6ncTHEd23iuY=;
+        b=CCP1gI08cBp3QWZe4QlLotge687Kl+/4ieK2uxuHjScCi8QQjv47juVV1KhyguCv12
+         cxwFm3pl+KHYrEwRaBWBLno6v255UHfVHOBotYE8GR+7xKtM8EJ8jRnvAUdrdWpOHQbB
+         lekwc9rhx0mVbAvUjPTTsOM3QUbRL0HhJV4TDyJjHu/Ps5SyGyxwrOBujhL9/YJ+NTwt
+         3dWxSy0ULok+ajoiG2C5g5/pIRTSH2taB1GKBf7ZOCi+26gsAPd/K6f7+h7jln7gye+X
+         /bPcEEYV3b55K7JdXjrzf6J/emA0C2aqkKmMphWdiXsE4/3BY+SHW5TxffRssibPfpCy
+         XINQ==
+X-Gm-Message-State: AOAM531tlllwZ9lDBkCRYs4IjswaE+Vs+4JZqAwiUTVeVoBtuEqqoxsb
+        eCdRN2+w43VRFs9G0JA2Kw0=
+X-Google-Smtp-Source: ABdhPJw1ZlaEQomBPdojzSnQm1sm1NUkcyfUicIhWsJ66shhD/HRdcE1o5712cfmGce7vIZrmOj88w==
+X-Received: by 2002:aa7:9601:0:b029:18a:e777:dac1 with SMTP id q1-20020aa796010000b029018ae777dac1mr23185330pfg.4.1605108840920;
+        Wed, 11 Nov 2020 07:34:00 -0800 (PST)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id x123sm3042215pfb.212.2020.11.11.07.33.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Nov 2020 07:33:59 -0800 (PST)
+Subject: Re: [PATCH V2 2/2] arm64: dts: broadcom: add BCM4908 and Asus
+ GT-AC5300 early DTS files
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201105085458.21121-1-zajec5@gmail.com>
+ <20201105085458.21121-2-zajec5@gmail.com>
+ <a4a1d02f-c950-62ab-fb49-b5819cf1cd11@gmail.com>
+ <1d62eeca-dc09-866c-85c7-235144f8e782@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <1d21b0ee-f880-746f-5dc4-5290aec1eb7e@gmail.com>
+Date:   Wed, 11 Nov 2020 07:33:58 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.4.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB3976.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bef2c272-1afa-4467-202b-08d886571e39
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2020 15:33:19.9682
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5gSmbzWMjo2HFtH01Z0JyPw++yyjHaK40Tqiu6fBOeH1jMh7vEwzwnxBISFcePTiS7yn2tnA88pS+KgAO3K+HA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4519
+In-Reply-To: <1d62eeca-dc09-866c-85c7-235144f8e782@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On
-> Behalf Of Shawn Guo
-> To: Madalin Bucur (OSS) <madalin.bucur@oss.nxp.com>
-> Subject: Re: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are
-> coherent
->=20
-> On Mon, Oct 05, 2020 at 03:46:39PM +0300, Madalin Bucur wrote:
-> > Although the DPAA 1 FMan operations are coherent, the device tree
-> > node for the FMan does not indicate that, resulting in a needless
-> > loss of performance. Adding the missing dma-coherent property.
-> >
-> > Fixes: 1ffbecdd8321 ("arm64: dts: add DPAA FMan nodes")
-> >
-> > Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
-> > Tested-by: Camelia Groza <camelia.groza@oss.nxp.com>
->=20
-> Applied, thanks.
 
-Hi, Shawn,
 
-will this fix for the device trees be picked up in the stable trees as well=
-?
-Do I need to do something about it?
+On 11/10/2020 9:59 PM, Rafał Miłecki wrote:
+> On 11.11.2020 02:04, Florian Fainelli wrote:
+>>> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+>>> b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+>>> new file mode 100644
+>>> index 000000000000..3bbefc86b978
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
+>>> @@ -0,0 +1,188 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>>> +
+>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +/ {
+>>> +    interrupt-parent = <&gic>;
+>>> +
+>>> +    #address-cells = <2>;
+>>> +    #size-cells = <2>;
+>>> +
+>>> +    aliases {
+>>> +        serial0 = &uart0;
+>>> +    };
+>>> +
+>>> +    chosen {
+>>> +        bootargs = "earlycon=bcm63xx_uart,0xff800640";
+>>
+>> We talked about it before, but the earlycon should be dropped from the
+>> .dtsi file, it does not really belong there.
+> 
+> I asked the following question that you probably missed, could you check
+> it, please?
+> 
+> On Wed, 4 Nov 2020 at 09:02, Rafał Miłecki <zajec5@gmail.com> wrote:
+>> Can you explain why, is that some kernel rule I missed? That's
+> extremely helpful for debugging.
 
-Thanks
-Madalin
-
-PS: will this make it into v5.10 or v5.11?
+It's useful for debugging but because it is meant for debugging it does
+not really belong in a .dtsi which gets included by a board level .dts
+file and I would argue that it does not belong in a board level .dts
+either. This is something that you can and should keep locally while
+debugging and remove for "production". That is not a rule that is
+written somewhere, and there are certainly cases of .dts files in the
+kernel containing "earlycon" for better or for worse.
+-- 
+Florian
