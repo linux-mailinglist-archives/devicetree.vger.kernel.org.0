@@ -2,380 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCE932AFA1C
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C3A32AFA22
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:02:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726150AbgKKU7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 15:59:08 -0500
-Received: from asavdk3.altibox.net ([109.247.116.14]:33834 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725933AbgKKU7H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:59:07 -0500
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 4794A200E0;
-        Wed, 11 Nov 2020 21:58:59 +0100 (CET)
-Date:   Wed, 11 Nov 2020 21:58:57 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sean Paul <sean@poorly.run>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: display: mcde: Convert to YAML schema
-Message-ID: <20201111205857.GB3013948@ravnborg.org>
-References: <20201111130754.2283993-1-linus.walleij@linaro.org>
+        id S1726632AbgKKVCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 16:02:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38944 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725933AbgKKVCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:02:00 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B377C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 13:02:00 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kcxFY-00040p-2B; Wed, 11 Nov 2020 22:01:52 +0100
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kcxFX-00061V-2F; Wed, 11 Nov 2020 22:01:51 +0100
+Date:   Wed, 11 Nov 2020 22:01:49 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     linux-pwm@vger.kernel.org, lee.jones@linaro.org,
+        thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com
+Subject: Re: [PATCH v15 2/2] Add PWM fan controller driver for LGM SoC
+Message-ID: <20201111210149.3eq3nh4ki5ocyfru@pengutronix.de>
+References: <cover.1604555266.git.rahul.tanwar@linux.intel.com>
+ <b91a46bee54984d5ff518c9fe56744c291b1ffa4.1604555266.git.rahul.tanwar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="g3wv7flk7x7fwvyn"
 Content-Disposition: inline
-In-Reply-To: <20201111130754.2283993-1-linus.walleij@linaro.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=gEfo2CItAAAA:8
-        a=e5mUnYsNAAAA:8 a=yBEHZZzgUMe7HTM6xYwA:9 a=cynmI1JdOsakvpse:21
-        a=Wbn6I1S6ap2JUSG2:21 a=CjuIK1q_8ugA:10 a=AjGcO6oz07-iQ99wixmX:22
-        a=cvBusfyB2V15izCimMoJ:22 a=sptkURWiP4Gy88Gu7hUp:22
-        a=Vxmtnl_E_bksehYqCbjh:22
+In-Reply-To: <b91a46bee54984d5ff518c9fe56744c291b1ffa4.1604555266.git.rahul.tanwar@linux.intel.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus.
 
-A few comments when I read through this.
+--g3wv7flk7x7fwvyn
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-	Sam
+Hello,
 
-On Wed, Nov 11, 2020 at 02:07:54PM +0100, Linus Walleij wrote:
-> This moves the MCDE bindings over to using the YAML schema
-> to describe the ST-Ericsson MCDE display controller,
-> making use of the generic DSI controller schema.
-> 
-> We also add the "port" node, we will use this when adding
-> LCD panels using the direct parallel interface DPI instead
-> of DSI.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v1->v2:
-> - Cut the description on the interrupts.
-> - Drop maxItems: 3 on clocks and clock-names: implicit from
->   the number of listed items.
-> - Tag the DSI ports with unevaluatedProperties: false
-> - Tag the MCDE as such with additionalProperties: true
-> - It was a bit hard to test this because of the code base
->   being out of phase with the validation tools but it seems
->   to check out.
-> ---
->  .../devicetree/bindings/display/ste,mcde.txt  | 104 -----------
->  .../devicetree/bindings/display/ste,mcde.yaml | 166 ++++++++++++++++++
->  2 files changed, 166 insertions(+), 104 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
->  create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
-> deleted file mode 100644
-> index 4c33c692bd5f..000000000000
-> --- a/Documentation/devicetree/bindings/display/ste,mcde.txt
-> +++ /dev/null
-> @@ -1,104 +0,0 @@
-> -ST-Ericsson Multi Channel Display Engine MCDE
-> -
-> -The ST-Ericsson MCDE is a display controller with support for compositing
-> -and displaying several channels memory resident graphics data on DSI or
-> -LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
-> -
-> -Required properties:
-> -
-> -- compatible: must be:
-> -  "ste,mcde"
-> -- reg: register base for the main MCDE control registers, should be
-> -  0x1000 in size
-> -- interrupts: the interrupt line for the MCDE
-> -- epod-supply: a phandle to the EPOD regulator
-> -- vana-supply: a phandle to the analog voltage regulator
-> -- clocks: an array of the MCDE clocks in this strict order:
-> -  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
-> -  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
+On Thu, Nov 05, 2020 at 01:49:40PM +0800, Rahul Tanwar wrote:
+> Intel Lightning Mountain(LGM) SoC contains a PWM fan controller.
+> This PWM controller does not have any other consumer, it is a
+> dedicated PWM controller for fan attached to the system. Add
+> driver for this PWM fan controller.
+>=20
+> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
 
-> -  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
-> -  save clock)
-I did not find these two clocks in the binding below.
+Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
 
-> -- clock-names: must be the following array:
-> -  "mcde", "lcd", "hdmi"
-> -  to match the required clock inputs above.
-> -- #address-cells: should be <1> (for the DSI hosts that will be children)
-> -- #size-cells: should be <1> (for the DSI hosts that will be children)
-> -- ranges: this should always be stated
-> -
-> -Required subnodes:
-> -
-> -The devicetree must specify subnodes for the DSI host adapters.
-> -These must have the following characteristics:
-> -
-> -- compatible: must be:
-> -  "ste,mcde-dsi"
-> -- reg: must specify the register range for the DSI host
-> -- vana-supply: phandle to the VANA voltage regulator
-> -- clocks: phandles to the high speed and low power (energy save) clocks
-> -  the high speed clock is not present on the third (dsi2) block, so it
-> -  should only have the "lp" clock
-> -- clock-names: "hs" for the high speed clock and "lp" for the low power
-> -  (energy save) clock
-> -- #address-cells: should be <1>
-> -- #size-cells: should be <0>
-> -
-> -Display panels and bridges will appear as children on the DSI hosts, and
-> -the displays are connected to the DSI hosts using the common binding
-> -for video transmitter interfaces; see
-> -Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -If a DSI host is unused (not connected) it will have no children defined.
-> -
-> -Example:
-> -
-> -mcde@a0350000 {
-> -	compatible = "ste,mcde";
-> -	reg = <0xa0350000 0x1000>;
-> -	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> -	epod-supply = <&db8500_b2r2_mcde_reg>;
-> -	vana-supply = <&ab8500_ldo_ana_reg>;
-> -	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
-> -		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
-> -		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
-> -	clock-names = "mcde", "lcd", "hdmi";
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -	ranges;
-> -
-> -	dsi0: dsi@a0351000 {
-> -		compatible = "ste,mcde-dsi";
-> -		reg = <0xa0351000 0x1000>;
-> -		vana-supply = <&ab8500_ldo_ana_reg>;
-> -		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
-> -		clock-names = "hs", "lp";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		panel {
-> -			compatible = "samsung,s6d16d0";
-> -			reg = <0>;
-> -			vdd1-supply = <&ab8500_ldo_aux1_reg>;
-> -			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
-> -		};
-> -
-> -	};
-> -	dsi1: dsi@a0352000 {
-> -		compatible = "ste,mcde-dsi";
-> -		reg = <0xa0352000 0x1000>;
-> -		vana-supply = <&ab8500_ldo_ana_reg>;
-> -		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
-> -		clock-names = "hs", "lp";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -	};
-> -	dsi2: dsi@a0353000 {
-> -		compatible = "ste,mcde-dsi";
-> -		reg = <0xa0353000 0x1000>;
-> -		vana-supply = <&ab8500_ldo_ana_reg>;
-> -		/* This DSI port only has the Low Power / Energy Save clock */
-> -		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
-> -		clock-names = "lp";
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-> new file mode 100644
-> index 000000000000..51851566c72d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-> @@ -0,0 +1,166 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ST-Ericsson Multi Channel Display Engine MCDE
-> +
-> +maintainers:
-> +  - Linus Walleij <linus.walleij@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: ste,mcde
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: an array of the MCDE clocks
-> +    items:
-> +      - description: MCDECLK (main MCDE clock)
-> +      - description: LCDCLK (LCD clock)
-> +      - description: PLLDSI (HDMI clock)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mcde
-> +      - const: lcd
-> +      - const: hdmi
-> +
-> +  epod-supply:
-> +    description: a phandle to the EPOD regulator
-> +
-> +  vana-supply:
-> +    description: a phandle to the analog voltage regulator
-> +
-> +  port:
-> +    type: object
-> +    description:
-> +      A DPI port node with endpoint definitions as defined in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 1
-> +
-> +  ranges: true
-> +
+Best regards
+Uwe
 
-This is a transition from .txt to DT Schema so OK with this sub-node.
-But otherwise the dsi node should have been linked using graph nodes.
-So OK - just thinking out loud.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-> +patternProperties:
-> +  "^dsi@[0-9a-f]+$":
-> +    description: subnodes for the three DSI host adapters
-> +    type: object
-> +    allOf:
-> +      - $ref: dsi-controller.yaml#
-> +    properties:
-> +      compatible:
-> +        const: ste,mcde-dsi
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      vana-supply:
-> +        description: a phandle to the analog voltage regulator
-> +
-> +      clocks:
-> +        description: phandles to the high speed and low power (energy save) clocks
-> +          the high speed clock is not present on the third (dsi2) block, so it
-> +          should only have the "lp" clock
-> +        minItems: 1
-> +        maxItems: 2
-> +
-> +      clock-names:
-> +        oneOf:
-> +          - items:
-> +              - const: hs
-> +              - const: lp
-> +          - items:
-> +              - const: lp
-> +
-The dsi nodes needs the #address-cells and #size-cells - at least if a
-panel node is specified.
+--g3wv7flk7x7fwvyn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - vana-supply
-> +      - clocks
-> +      - clock-names
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - epod-supply
-> +  - vana-supply
-> +
-> +additionalProperties: true
-Why are additional properties allowed here?
+-----BEGIN PGP SIGNATURE-----
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/mfd/dbx500-prcmu.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    mcde@a0350000 {
-> +      compatible = "ste,mcde";
-> +      reg = <0xa0350000 0x1000>;
-> +      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-> +      epod-supply = <&db8500_b2r2_mcde_reg>;
-> +      vana-supply = <&ab8500_ldo_ana_reg>;
-> +      clocks = <&prcmu_clk PRCMU_MCDECLK>,
-> +               <&prcmu_clk PRCMU_LCDCLK>,
-> +               <&prcmu_clk PRCMU_PLLDSI>;
-> +      clock-names = "mcde", "lcd", "hdmi";
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      ranges;
-> +
-> +      dsi0: dsi@a0351000 {
-> +        compatible = "ste,mcde-dsi";
-> +        reg = <0xa0351000 0x1000>;
-> +        vana-supply = <&ab8500_ldo_ana_reg>;
-> +        clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
-> +        clock-names = "hs", "lp";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        panel@0 {
-> +          compatible = "samsung,s6d16d0";
-> +          reg = <0>;
-> +          vdd1-supply = <&ab8500_ldo_aux1_reg>;
-> +          reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
-> +        };
-> +      };
-> +
-> +      dsi1: dsi@a0352000 {
-> +        compatible = "ste,mcde-dsi";
-> +        reg = <0xa0352000 0x1000>;
-> +        vana-supply = <&ab8500_ldo_ana_reg>;
-> +        clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
-> +        clock-names = "hs", "lp";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +      };
-> +
-> +      dsi2: dsi@a0353000 {
-> +        compatible = "ste,mcde-dsi";
-> +        reg = <0xa0353000 0x1000>;
-> +        vana-supply = <&ab8500_ldo_ana_reg>;
-> +        /* This DSI port only has the Low Power / Energy Save clock */
-> +        clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
-> +        clock-names = "lp";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.26.2
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+sUToACgkQwfwUeK3K
+7AlrwAf+OYaCa2FmFmj3Splkji3o0Nz+Zd2Vy4k7pEaUXexTB5KIT85YGtivm8v7
+ThOy33mBMkFhhci7+dr1YDW4cF/Qkwy5i5D4DSi8nOgvI/7zd8G86JSGyfXDYeOn
+jDZGJspvH/OsuK6xyg9w9S4iY2xwf9KHrpHnJiopHbXJdpEGNM7P9tsClMU3i8Su
+S0H1QPHhcEQf9MVsNjVly8o8qhfPZz/05r4dCqev1fUDL9DAJsnUYl2bJ80VfTK1
+XHd0PUvm7Wr6Ko14qF6KUtknCl7G7mqwFzrfEs57D4YZ3oDMu35GrvO3VEXGFFKa
+mnO1heHL4dWCskISHt4sC/WUFJalCw==
+=uG/J
+-----END PGP SIGNATURE-----
+
+--g3wv7flk7x7fwvyn--
