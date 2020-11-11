@@ -2,104 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F1EB2AE77A
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 05:37:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B1002AE781
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 05:39:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725912AbgKKEhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 23:37:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51932 "EHLO
+        id S1725870AbgKKEj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 23:39:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725902AbgKKEhY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 23:37:24 -0500
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFAFAC0613D6
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 20:37:23 -0800 (PST)
-Received: by mail-oi1-x241.google.com with SMTP id w145so744852oie.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 20:37:23 -0800 (PST)
+        with ESMTP id S1725828AbgKKEj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 23:39:27 -0500
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C77CC0613D1
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 20:39:27 -0800 (PST)
+Received: by mail-oi1-x244.google.com with SMTP id m13so753401oih.8
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 20:39:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=vq44ljmw99Z+vxoyleZFvg1Copias7KXRy4H8KP+HQo=;
-        b=wGulWlnIEq3o/KCgEakKDsvH2cDYMyyuMj4NyUFTuJX5yAdqX1dxg4TAfo3xTFL38u
-         hLo3rFmCMjdKyGo4RwoDhvRAfNHM9lF7QD02F0zB/vWGsZNnF+k+6qjn05bIjVsU70Ba
-         uNWpQXshZrEDjiYtQmx+wRW3Yiq3pWHcmXgQ8HBH9bKp6SFLy42rwY8FzFfZXm1/BPew
-         1L9M5RUXE/J+22pHmyumFxm4glxdWsv9xPWwduZGzqPkyqyiKXky3+XSs0VKSve0Ssz+
-         4QGk8YAhwVX3JoX7MXohNiHsEgW494GvRqgeORierDnsPyOd32vL2QiU0NQVs58JiEga
-         vLAg==
+        bh=s6myL+PM0HBWENmEOtU+P5/sAUeBj/Q2iWwgqjm+B7I=;
+        b=lEX6/jY0xOENWR8XChawMbi01FunU4ScwtVNApkwyop1v3KhL8wA4mYAnAcknZRbKB
+         6Csg0/xYmEvTliVPP1Coi9RdOilmoP2UWcv1ZuCejAlv/d67NzgfBzCycU4+5VAmJiXZ
+         RwcsAVytUNQiY+pWaucV4e/pKA3wArGA2enXUmo/4f0k0AiqlFuy6EGuQ277lHGqRI42
+         jQclJ1mM3Po0mOvrkcLtcTxGJUOAFiTM5ogpUKvyMILA7LR/XQlyroAkboJNIxiuKYbT
+         IyMsIV0JRwojstdu2XUkjYhSmtl52cVuxTiPeu1v4Y7IfBWbzXbtxPlefmLhY4FqeqKI
+         7dyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=vq44ljmw99Z+vxoyleZFvg1Copias7KXRy4H8KP+HQo=;
-        b=O9hnL+7FTpSDiNyvgJ8Hf78vDbBZmfmruaf45q7SOHYahH0IDaowizf08DHTcE7F/j
-         U1dwtGZ63cFLv6YWKCEKoyIks1MiQwwZtSk9ng89Ere7dbb2JuOBlhC/XW6d568lDDlX
-         ceqQwzJZeHfr90A4AK/Sc5sZ7hCaYsYw1O1jppZxBR//B+/u2Vwzc7OPur4o/PaV/985
-         Nj6COfyx2tOvk8wipL588SXJoigvxV/cSWkxvJ2gH3OHXT37sY71BRfR2rDsAzG3BDCQ
-         59yrVMSRezff9WjB7MV/eSUxP5IQnOQL71ak/4eXpMBstOFCTOHun0uHfQywJPr6KjiQ
-         bSXg==
-X-Gm-Message-State: AOAM533xWRPZygbLcVjh5gsm/6yj7uoL6gqsjqfHM4z5wawPiVfts3kZ
-        YmziRO2KApELgBYq0GcXxRNH/Q==
-X-Google-Smtp-Source: ABdhPJwRoQIUMNBMcS3WdGKPiJDma/tyFlDsORvKcE5FdiWffs1+Ga925ZSK9oIUe8IkBqqLoKX2Bw==
-X-Received: by 2002:aca:f407:: with SMTP id s7mr1039694oih.23.1605069443315;
-        Tue, 10 Nov 2020 20:37:23 -0800 (PST)
+        bh=s6myL+PM0HBWENmEOtU+P5/sAUeBj/Q2iWwgqjm+B7I=;
+        b=TwG/nQANdgvpfFC3/T0hkCdUzC7iHGFc9PYQoCqREIw1SIcj5W1QUZA5Qg0EUw0L54
+         IZcAlO9tJmdmS80f+opqGohD+bn3g6uxNijGMwd1JLotIybYxCZ/xeRHzgLmG93UBp5/
+         Aj31eJ5vvRoF/7WZb8Q1VERgaxd2DWbTRKRK9lAARjONAcZ1zrBYf+3gMJba0mhI5Bu4
+         8+xTLCVeabwoKn/KVoKrwtGGk699f64tGUkdHOy+BcHVPtOcn8Z7XAZ04/UjdWESlFd+
+         cCRKpCwije+BMw/TMEvLd1sl6yUd4E0tGiTy3pDRFzHNd5zqnKzDtl6WC6XRdsBwdB1d
+         vKOA==
+X-Gm-Message-State: AOAM530f9xMup0zkDHrMlFbU3+MEgwtCZgBL6FI0EDTv5F/ZzZW/je0u
+        exRrPc8Rp8czs5OsP17MPVyb8w==
+X-Google-Smtp-Source: ABdhPJxYdgkoOVSNdyPBmsCsuSKojJuBLc1401L/S5J5r+m8oX5GotrgrsmuepO3h0a+Clw+Ngzkgg==
+X-Received: by 2002:aca:cf0c:: with SMTP id f12mr1042745oig.139.1605069566633;
+        Tue, 10 Nov 2020 20:39:26 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 66sm277848otp.33.2020.11.10.20.37.22
+        by smtp.gmail.com with ESMTPSA id u4sm213780oib.0.2020.11.10.20.39.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Nov 2020 20:37:22 -0800 (PST)
-Date:   Tue, 10 Nov 2020 22:37:20 -0600
+        Tue, 10 Nov 2020 20:39:25 -0800 (PST)
+Date:   Tue, 10 Nov 2020 22:39:23 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     linux-pm@vger.kernel.org, mdtipton@codeaurora.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        akashast@codeaurora.org
-Subject: Re: [PATCH 1/3] dt-bindings: interconnect: sdm845: Add IDs for the
- QUP ports
-Message-ID: <20201111043720.GB173948@builder.lan>
-References: <20201105135211.7160-1-georgi.djakov@linaro.org>
+To:     Evan Green <evgreen@chromium.org>
+Cc:     Sibi Sankar <sibis@codeaurora.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180-trogdor: Fixup modem memory
+ region
+Message-ID: <20201111043923.GC173948@builder.lan>
+References: <1602786476-27833-1-git-send-email-sibis@codeaurora.org>
+ <CAE=gft4FrAm_QHKm_dF6G0R8fkfJrYFYPMrRu0nPNrQtZ83skw@mail.gmail.com>
+ <CAE=gft6JKpbcirFn9LAiDYFnM=HMfDQAYfQHAFy6NF+8J4Dmkg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201105135211.7160-1-georgi.djakov@linaro.org>
+In-Reply-To: <CAE=gft6JKpbcirFn9LAiDYFnM=HMfDQAYfQHAFy6NF+8J4Dmkg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 05 Nov 07:52 CST 2020, Georgi Djakov wrote:
+On Mon 09 Nov 13:18 CST 2020, Evan Green wrote:
 
-> The QUP ports exist in the topology, but are not exposed as an
-> endpoints in DT. Fix this by creating IDs and attach them to their
-> NoCs, so that the various QUP drivers (i2c/spi/uart etc.) are able
-> to request their interconnect paths and scale their bandwidth.
+> On Tue, Oct 20, 2020 at 11:37 AM Evan Green <evgreen@chromium.org> wrote:
+> >
+> > On Thu, Oct 15, 2020 at 11:28 AM Sibi Sankar <sibis@codeaurora.org> wrote:
+> > >
+> > > The modem firmware memory requirements vary between 32M/140M on
+> > > no-lte/lte skus respectively, so fixup the modem memory region
+> > > to reflect the requirements.
+> > >
+> > > Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+> >
+> > Reviewed-by: Evan Green <evgreen@chromium.org>
 > 
-> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
+> Did this land anywhere?
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Doesn't look like it, so I've picked it now. Thanks for the bump.
 
 Regards,
 Bjorn
-
-> ---
->  include/dt-bindings/interconnect/qcom,sdm845.h | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/include/dt-bindings/interconnect/qcom,sdm845.h b/include/dt-bindings/interconnect/qcom,sdm845.h
-> index 290be38f40e6..67b500e24915 100644
-> --- a/include/dt-bindings/interconnect/qcom,sdm845.h
-> +++ b/include/dt-bindings/interconnect/qcom,sdm845.h
-> @@ -19,6 +19,7 @@
->  #define SLAVE_A1NOC_SNOC		7
->  #define SLAVE_SERVICE_A1NOC		8
->  #define SLAVE_ANOC_PCIE_A1NOC_SNOC	9
-> +#define MASTER_QUP_1			10
->  
->  #define MASTER_A2NOC_CFG		0
->  #define MASTER_QDSS_BAM			1
-> @@ -32,6 +33,7 @@
->  #define SLAVE_A2NOC_SNOC		9
->  #define SLAVE_ANOC_PCIE_SNOC		10
->  #define SLAVE_SERVICE_A2NOC		11
-> +#define MASTER_QUP_2			12
->  
->  #define MASTER_SPDM			0
->  #define MASTER_TIC			1
