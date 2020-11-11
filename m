@@ -2,263 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 626CE2AFA47
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:20:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 641B52AFA49
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 22:23:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725949AbgKKVT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 16:19:57 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:46541 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726773AbgKKVT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:19:57 -0500
-Received: by mail-oi1-f196.google.com with SMTP id q206so3782711oif.13;
-        Wed, 11 Nov 2020 13:19:56 -0800 (PST)
+        id S1725996AbgKKVXd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 16:23:33 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:42956 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725933AbgKKVXd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 16:23:33 -0500
+Received: by mail-ot1-f66.google.com with SMTP id 30so3517528otx.9
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 13:23:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FR5cUQGJAwRsW5S/9IdaTkMTExIGPjgXJ35YYt9MG4U=;
-        b=T1DMAqJ9Xa28++mG6GQjMrCA1e3AWfW4MlDzwHFwpTDLkJxdzfXxe/gLFE8Tt181+h
-         BQoD/ty31XDltXfE2dvBj4lp/wFZmfK/rm75Rc4BPKkWzWlVN664O++ZKf+oIjWTSydj
-         tKtsmd4HA1SGdAVYWpp3/tbmS3MJmrbMP2m4X4c/RQs9H06cqbgRbR9KwhJ3E5RLGGDJ
-         FRYLltBEOkuNLM6JnuQ+sbPnGwJp4roWIjSk9WVY/iNkuaAIUXN89/mARDf8CP4ixm85
-         FH0ewSzq5wYCAvjmyg528qalI9jP3qJSfg8tLz4b/RTJY1XSGQKcjQQlI3QXZthJHeWK
-         SWmQ==
-X-Gm-Message-State: AOAM5326csuRbLaUIU8jFN9O5AeqI6C+w9INMV2HgqR+NgOZ4CkPLtBV
-        lvS5kaYWWk1aVTq5FfKVkA==
-X-Google-Smtp-Source: ABdhPJwpRBbPDJ6smqnxt6TMUzeazfYK267dHNHhpZzHmKtFqODWHYkFybaR7Xv6unoVQln9enMslQ==
-X-Received: by 2002:aca:90c:: with SMTP id 12mr3471342oij.15.1605129596483;
-        Wed, 11 Nov 2020 13:19:56 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=y98/cIm96Y+Yf0w1ete8NQ0DxU1DL4uTOXjyWGWILHw=;
+        b=sskGiWjx4Dg+g0yS83EWbo3k4x3phaGa/Bi6l5bc1Wf6z0ToO8EYry+x7r16DySwD+
+         AOh9rAB2Mff3gszDaeoZv9HWP+Jv93uUyKY2Cpa2GlGE1Wj2JAGZ9vzCS5uwym53gEA4
+         jD999kHgNm9E3yFM044b9V7dGYUXuy3ZvZaeW9iq4ri26crLCvo52+zAI91bJL0yFFTp
+         QonkKyCs7PGikb8IT8cnCHtw9G58rN4Sh7ydRudNTGE2FEgDibXBTwA7z3t4yTOjPszK
+         u+Ej65A866Q3mptrInVb3Brtti5RBsguXAX1NiMC1WC1R29qccD5Dp4nXyT89ZREXpO1
+         kxbw==
+X-Gm-Message-State: AOAM530Se8RhAE21nrHbYirwHY6p65dSmCn9s9OZtYmbJclKeKhkXW5R
+        5rGkCr+ltPRV26BUNUZsnw==
+X-Google-Smtp-Source: ABdhPJwk7NWGJOQv/lWa6xUHsqeENlNJ2VbrSJDq+vSxmcdM0FxFBKJlTIJSHtSRSbyhsfDxshXJEw==
+X-Received: by 2002:a9d:590e:: with SMTP id t14mr20018931oth.230.1605129812107;
+        Wed, 11 Nov 2020 13:23:32 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d62sm674805oia.6.2020.11.11.13.19.55
+        by smtp.gmail.com with ESMTPSA id 2sm665213oir.40.2020.11.11.13.23.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 13:19:55 -0800 (PST)
-Received: (nullmailer pid 2053382 invoked by uid 1000);
-        Wed, 11 Nov 2020 21:19:54 -0000
-Date:   Wed, 11 Nov 2020 15:19:54 -0600
+        Wed, 11 Nov 2020 13:23:30 -0800 (PST)
+Received: (nullmailer pid 2058790 invoked by uid 1000);
+        Wed, 11 Nov 2020 21:23:30 -0000
+Date:   Wed, 11 Nov 2020 15:23:30 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
-Cc:     dmaengine@vger.kernel.org, vkoul@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
-Subject: Re: [PATCH v8 1/2] dt-bindings: dma: Add bindings for intel LGM SOC
-Message-ID: <20201111211954.GA2039514@bogus>
-References: <cover.1604930089.git.mallikarjunax.reddy@linux.intel.com>
- <b06793aa409d05ac7e0729bcd2002c43ff25d48b.1604930089.git.mallikarjunax.reddy@linux.intel.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: document Broadcom's PMC binding
+Message-ID: <20201111212330.GA2054669@bogus>
+References: <20201109163519.32605-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <b06793aa409d05ac7e0729bcd2002c43ff25d48b.1604930089.git.mallikarjunax.reddy@linux.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201109163519.32605-1-zajec5@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 09, 2020 at 10:14:24PM +0800, Amireddy Mallikarjuna reddy wrote:
-> Add DT bindings YAML schema for DMA controller driver
-> of Lightning Mountain(LGM) SoC.
+On Mon, Nov 09, 2020 at 05:35:18PM +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+> Broadcom's PMC is Power Management Controller that is used for disabling
+> and enabling SoC devices.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
-> v1:
-> - Initial version.
+>  .../bindings/reset/brcm,bcm-pmc.yaml          | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/brcm,bcm-pmc.yaml
 > 
-> v2:
-> - Fix bot errors.
-> 
-> v3:
-> - No change.
-> 
-> v4:
-> - Address Thomas langer comments
->   - use node name pattern as dma-controller as in common binding.
->   - Remove "_" (underscore) in instance name.
->   - Remove "port-" and "chan-" in attribute name for both 'dma-ports' & 'dma-channels' child nodes.
-> 
-> v5:
-> - Moved some of the attributes in 'dma-ports' & 'dma-channels' child nodes to dma client/consumer side as cells in 'dmas' properties.
-> 
-> v6:
-> - Add additionalProperties: false
-> - completely removed 'dma-ports' and 'dma-channels' child nodes.
-> - Moved channel dt properties to client side dmas.
-> - Use standard dma-channels and dma-channel-mask properties.
-> - Documented reset-names
-> - Add description for dma-cells
-> 
-> v7:
-> - modified compatible to oneof
-> - Reduced number of dma-cells to 3
-> - Fine tune the description of some properties.
-> 
-> v7-resend:
-> - rebase to 5.10-rc1
-> 
-> v8:
-> - rebased to 5.10-rc3
-> - Fixing the bot issues (wrong indentation)
-> ---
->  .../devicetree/bindings/dma/intel,ldma.yaml        | 134 +++++++++++++++++++++
->  1 file changed, 134 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/intel,ldma.yaml b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+> diff --git a/Documentation/devicetree/bindings/reset/brcm,bcm-pmc.yaml b/Documentation/devicetree/bindings/reset/brcm,bcm-pmc.yaml
 > new file mode 100644
-> index 000000000000..7cf0eab1a703
+> index 000000000000..2afc2048997f
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
-> @@ -0,0 +1,134 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/reset/brcm,bcm-pmc.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/dma/intel,ldma.yaml#
+> +$id: http://devicetree.org/schemas/reset/brcm,bcm-pmc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Lightning Mountain centralized low speed DMA and high speed DMA controllers.
+> +title: Broadcom PMC (Power Management Controller) reset controller
+> +
+> +description: This document describes the Broadcom's PMC (Power Management
+> +  Controller). It supports resetting devices identified by the bus id and device
+> +  address.
 > +
 > +maintainers:
-> +  - chuanhua.lei@intel.com
-> +  - mallikarjunax.reddy@intel.com
-> +
-> +allOf:
-> +  - $ref: "dma-controller.yaml#"
+> +  - Rafał Miłecki <rafal@milecki.pl>
 > +
 > +properties:
-> +  $nodename:
-> +    pattern: "^dma-controller(@.*)?$"
-
-Drop. Already covered by dma-controller.yaml.
-
-> +
 > +  compatible:
-> +    oneOf:
-> +      - const: intel,lgm-cdma
-> +      - const: intel,lgm-dma2tx
-> +      - const: intel,lgm-dma1rx
-> +      - const: intel,lgm-dma1tx
-> +      - const: intel,lgm-dma0tx
-> +      - const: intel,lgm-dma3
-> +      - const: intel,lgm-toe-dma30
-> +      - const: intel,lgm-toe-dma31
-
-Use 'enum' instead of oneOf+const.
-
+> +    enum:
+> +      - brcm,bcm4908-pmc # PMC on BCM4908 and compatible SoCs
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  "#dma-cells":
-> +    const: 3
-> +    description:
-> +      The first cell is the peripheral's DMA request line.
-> +      The second cell is the peripheral's (port) number corresponding to the channel.
-> +      The third cell is the burst length of the channel.
-> +
-> +  dma-channels:
-> +    minimum: 1
-> +    maximum: 16
-> +
-> +  dma-channel-mask:
-> +    items:
-> +      minItems: 1
+> +  syscon-misc:
 
-It should be maxItems you define. And 'items' should be dropped. 
+Needs a vendor prefix
 
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: ctrl
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  intel,dma-poll-cnt:
-> +    $ref: /schemas/types.yaml#definitions/uint32
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 > +    description:
-> +      DMA descriptor polling counter is used to control the poling mechanism
-> +      for the descriptor fetching for all channels.
+> +      Phandle to the MISC system controller node.
 > +
-> +  intel,dma-byte-en:
-> +    type: boolean
-> +    description:
-> +      DMA byte enable is only valid for DMA write(RX).
-> +      Byte enable(1) means DMA write will be based on the number of dwords
-> +      instead of the whole burst.
-> +
-> +  intel,dma-drb:
-> +    type: boolean
-> +    description:
-> +      DMA descriptor read back to make sure data and desc synchronization.
-> +
-> +  intel,dma-desc-in-sram:
-> +    type: boolean
-> +    description:
-> +      DMA descritpors in SRAM or not. Some old controllers descriptors
-> +      can be in DRAM or SRAM. The new ones are all in SRAM.
-> +
-> +  intel,dma-orrc:
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +    description:
-> +      DMA outstanding read counter value determine the number of
-> +      ORR-Outstanding Read Request. The maximum value is 16.
+> +  syscon-procmon:
 
-blank line
+Needs a vendor prefix
 
-> +  intel,dma-dburst-wr:
-> +    type: boolean
+> +    $ref: /schemas/types.yaml#/definitions/phandle
 > +    description:
-> +      Enable RX dynamic burst write. When it is enabled, the DMA does RX dynamic burst;
-> +      if it is disabled, the DMA RX will still support programmable fixed burst size of 2,4,8,16.
-> +      It only applies to RX DMA and memcopy DMA.
+> +      Phandle to the PROC MON system controller node.
+> +
+> +  big-endian:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      Flag to use for block working in big endian mode.
+> +
+> +  "#reset-cells":
+> +    const: 2
 > +
 > +required:
 > +  - compatible
 > +  - reg
-
-> +  - '#dma-cells'
-
-dma-common.yaml covers this, you can drop it here.
-
+> +  - syscon-misc
+> +  - syscon-procmon
+> +  - "#reset-cells"
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    dma0: dma-controller@e0e00000 {
-> +      compatible = "intel,lgm-cdma";
-> +      reg = <0xe0e00000 0x1000>;
-> +      #dma-cells = <3>;
-> +      dma-channels = <16>;
-> +      dma-channel-mask = <0xFFFF>;
-> +      interrupt-parent = <&ioapic1>;
-> +      interrupts = <82 1>;
-> +      resets = <&rcu0 0x30 0>;
-> +      reset-names = "ctrl";
-> +      clocks = <&cgu0 80>;
-> +      intel,dma-poll-cnt = <4>;
-> +      intel,dma-byte-en;
-> +      intel,dma-drb;
+> +    pmc: reset-controller@80200000 {
+> +        compatible = "brcm,bcm4908-pmc";
+> +        reg = <0x80200000 0x5000>;
+> +        syscon-misc = <&misc>;
+> +        syscon-procmon = <&procmon>;
+> +        #reset-cells = <2>;
 > +    };
-> +  - |
-> +    dma3: dma-controller@ec800000 {
-> +      compatible = "intel,lgm-dma3";
-> +      reg = <0xec800000 0x1000>;
-> +      clocks = <&cgu0 71>;
-> +      resets = <&rcu0 0x10 9>;
-> +      #dma-cells = <3>;
-> +      intel,dma-poll-cnt = <16>;
-> +      intel,dma-desc-in-sram;
-> +      intel,dma-orrc = <16>;
-> +      intel,dma-byte-en;
-> +      intel,dma-dburst-wr;
+> +
+> +    procmon: syscon@80280000 {
+> +        compatible = "brcm,misc", "syscon";
+
+IIRC, not a documented compatible. Nor is it specific enough.
+
+You can just drop these from the example.
+
+> +        reg = <0x80280000 0x1000>;
+> +    };
+> +
+> +    misc: syscon@ff802600 {
+> +        compatible = "brcm,misc", "syscon";
+> +        reg = <0xff802600 0xe4>;
 > +    };
 > -- 
-> 2.11.0
+> 2.27.0
 > 
