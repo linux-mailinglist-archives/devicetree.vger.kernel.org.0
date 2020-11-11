@@ -2,157 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB06F2AE541
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 02:04:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0D302AE562
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 02:14:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731805AbgKKBEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Nov 2020 20:04:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
+        id S1732586AbgKKBOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Nov 2020 20:14:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730894AbgKKBE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 20:04:29 -0500
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EE56C0613D1
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:04:28 -0800 (PST)
-Received: by mail-pf1-x443.google.com with SMTP id y7so466147pfq.11
-        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:04:28 -0800 (PST)
+        with ESMTP id S1732576AbgKKBO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Nov 2020 20:14:26 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BC1C0613D3
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:14:23 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id f11so910622lfs.3
+        for <devicetree@vger.kernel.org>; Tue, 10 Nov 2020 17:14:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rQTT04wcfpF7QK3jMNSOeddpWQqsTYbtkHPF2TgnhDw=;
-        b=rstR4NoObJzeoh+3p/JZ53mnW/kAlu+1apkEbE1fD9J5w+fxgAaUW4nBT0Qbz07+Te
-         OqmJJzaSzoKgR4OYO8VFRtlxL4rh9QuIukY7tHjv30R4N30bcUwmN2WdzQE7y9Yx851D
-         KMNj8MbF51ymPuL4xJz2DiaN/KaR26DKXFNMXFeqWIKYtmnz81xql0Wlony23a9bTjuG
-         02iiYcXNjjRDsg3l2kiK7SGySVAqfNgNMfgoeTHHhYhpmhZsWpGv/Jr6FHjfZA9BXCS3
-         bjd1vfo8sJgNDFJ8CpjxGRCbdbINNdhvOJ+HHWtFfhJWKV1n7n24AakwN3Yf2FDihXB+
-         IMwQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K9XBUYhR2UM3o5JW2bLsoKZhteJffpc0EMzzkZ12vrU=;
+        b=PqWe0YWuTcOTlgUfpZFss7Jov1FIYRzUvvdoVxG+fHvnGDpWZ1V5zg3/Jw4zzy0D7f
+         NDLUnTW8HfsM5IfYWcrZj0JTEp+m7RNX23gVM5ZFSojdvUhdswtkQog/NBbSFPoMGdYI
+         5d+CrTzDDPzp1kYGLPkkRKoLjc+7iaMFDJwB4ChFPuhqXkMzXf5EQUoWU46nSJEepKm/
+         o8o1T+n6AXiHc3IMJ1HAYsI6zVMkUM+ovSw/v6mz/nU0OL4BYPqaCpJrj+G+pkr2TzPR
+         /1QTr02v3z5wDsIqrcSWUzcgX7ndIqTqfXTm5j5BkMUs6vNkWlXt0VtTIbr6vOE5qTBY
+         COPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=rQTT04wcfpF7QK3jMNSOeddpWQqsTYbtkHPF2TgnhDw=;
-        b=NPMsAyVJnFS4RWVr3dyOQ5gNtTqraTA6uN6xe9aQndFmGoahQhC2IrX4MVQiTuTGJI
-         U5h0ptfxw3jAo4grNzAlKm6H0IhT8xRV20Zoc9YJzkPT1fxAFXQMDe14+DQhRCl3XqGY
-         U0e/LD6T1ECus1yyt50AdMEuVCet1q5hbZObypPHAZ5mks+eOQj7tX4Ss8Rlk7WP4VLU
-         YkW4Ey4X6n3nInHFcZa1tKH39zIxFX7YGvMdozTxwghD5VZitaqqEWQ03Uc0V3ZjPmyp
-         jR16sWHsdGhG866t6CLbeIl8M0hsnC7gCXiGi49eH83ogPR7EnEUqScdvqbnN1BqQ5U8
-         bj1w==
-X-Gm-Message-State: AOAM531YCySVJ0Ejiyzhnz4xsO3XwYFQpwXI9/fVxnAr52uxvRNiK0VP
-        GsI5oqZbT9KtluwcUcHygWk=
-X-Google-Smtp-Source: ABdhPJxhG5chZ2tKt1wDz5JBCkRGdM/AGvYGGjlnMRg3hkAzNvxoqiN7lYUBq0ijd1Zgf7MmnG3ivg==
-X-Received: by 2002:aa7:8586:0:b029:18c:3aa6:b8bb with SMTP id w6-20020aa785860000b029018c3aa6b8bbmr7828086pfn.39.1605056668116;
-        Tue, 10 Nov 2020 17:04:28 -0800 (PST)
-Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
-        by smtp.gmail.com with ESMTPSA id i3sm244193pjd.33.2020.11.10.17.04.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 10 Nov 2020 17:04:26 -0800 (PST)
-Subject: Re: [PATCH V2 2/2] arm64: dts: broadcom: add BCM4908 and Asus
- GT-AC5300 early DTS files
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201105085458.21121-1-zajec5@gmail.com>
- <20201105085458.21121-2-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <a4a1d02f-c950-62ab-fb49-b5819cf1cd11@gmail.com>
-Date:   Tue, 10 Nov 2020 17:04:25 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.4.1
+        bh=K9XBUYhR2UM3o5JW2bLsoKZhteJffpc0EMzzkZ12vrU=;
+        b=F/VAQisKINA7Qp2Sb75JqDAA1dlgRp8z1OmOouGH3WnrCaCpMy0MEiFE6mxNHe4NgS
+         /AQUZc45ndh/MrqLgSU7zl5A09fnQILGEA5AJz/iJnwwC8UXVspITEZ/Gpfg8PN0HDdl
+         s/fZdz4wMQMaoDf+cTwr7DVsmRZDc+NZ5eG1mV/+DeD/dNSwchQ0zAnoGBgSA70RH5iT
+         AicSMnIl7GQjh1eOdHfy5OJPe9iRpBxpO+nI1KFjrM71t6dodz53LN3EElUAJ+K359TD
+         +Y8HpplempZXu/Odcm9zn/kB2YocbxRTW6pbbGfbwSZjoORjd8YNpFjZfaBGebc6BYdQ
+         WBbA==
+X-Gm-Message-State: AOAM530pn2EnYKQ4ZaDeJfb57xejPpoIq70AndETRj3ItZPLlPYeLHrF
+        xP7qMPZTUQDE4hce7V3CDstarQ==
+X-Google-Smtp-Source: ABdhPJx/s8//eZsR2mDWaE+/rGMrjsWcZks+Waz1MsuzmfCH+rO72bB0gt+TU3NBkomdrJuAZGx7ig==
+X-Received: by 2002:a19:587:: with SMTP id 129mr7610447lff.189.1605057262147;
+        Tue, 10 Nov 2020 17:14:22 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id r9sm47836ljd.23.2020.11.10.17.14.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Nov 2020 17:14:21 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>
+Cc:     linux-leds@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2 v3] dt-bindings: leds: Add DT binding for Richtek RT8515
+Date:   Wed, 11 Nov 2020 02:14:16 +0100
+Message-Id: <20201111011417.2275501-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20201105085458.21121-2-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add a YAML devicetree binding for the Richtek RT8515
+dual channel flash/torch LED driver.
 
+Cc: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: newbytee@protonmail.com
+Cc: Stephan Gerhold <stephan@gerhold.net>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v2->v3:
+- Add Sakari to CC
+- Resend
+ChangeLog v1->v2:
+- Explicitly inherit function, color and flash-max-timeout-us
+  from common.yaml
+- Add "led" node as required.
+---
+ .../bindings/leds/richtek,rt8515.yaml         | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
 
-On 11/5/2020 12:54 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> They don't descibe hardware fully yet but it's enough to boot a system.
-> 
-> Some missing blocks:
-> 1. PMC (Power Management Controller?)
-> 2. Ethernet
-> 3. Crypto
-> 4. Thermal
-> 
-> Asus DTS is missing defining full NAND partitions layout and buttons.
-> 
-> Further changes will fill those gaps as soon as required bindings will
-> be found / tested / added.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-
-We would need a board/SoC binding document under
-Documentation/devicetree/bindings/arm/bcm/ which describes the 4908 SoC
-and its possible boards at least.
-
-[snip]
-h
-> +
-> +&nandcs {
-> +	nand-ecc-strength = <4>;
-> +	nand-ecc-step-size = <512>;
-> +	nand-on-flash-bbt;
-> +	brcm,nand-has-wp;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	partitions {
-> +		compatible = "fixed-partitions";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +
-> +		partition@0 {
-> +			label = "cferom";
-> +			reg = <0x000000000000 0x000000100000>;
-
-You can probably trim the leading zeroes.
-
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> new file mode 100644
-> index 000000000000..3bbefc86b978
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/broadcom/bcm4908/bcm4908.dtsi
-> @@ -0,0 +1,188 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +/dts-v1/;
-> +
-> +/ {
-> +	interrupt-parent = <&gic>;
-> +
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "earlycon=bcm63xx_uart,0xff800640";
-
-We talked about it before, but the earlycon should be dropped from the
-.dtsi file, it does not really belong there.
-
-The rest looks good to me!
+diff --git a/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+new file mode 100644
+index 000000000000..0d8bb635370c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/richtek,rt8515.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/richtek,rt8515.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Richtek RT8515 1.5A dual channel LED driver
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description: |
++  The Richtek RT8515 is a dual channel (two mode) LED driver that
++  supports driving a white LED in flash or torch mode.
++
++properties:
++  compatible:
++    const: richtek,rt8515
++
++  enf-gpios:
++    maxItems: 1
++    description: A connection to the 'ENF' (enable flash) pin.
++
++  ent-gpios:
++    maxItems: 1
++    description: A connection to the 'ENT' (enable torch) pin.
++
++  led:
++    type: object
++    $ref: common.yaml#
++    properties:
++      function: true
++      color: true
++      flash-max-timeout-us: true
++
++required:
++  - compatible
++  - ent-gpios
++  - enf-gpios
++  - led
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/leds/common.h>
++
++    led-controller {
++        compatible = "richtek,rt8515";
++        enf-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
++        ent-gpios = <&gpio4 13 GPIO_ACTIVE_HIGH>;
++
++        led {
++            function = LED_FUNCTION_FLASH;
++            color = <LED_COLOR_ID_WHITE>;
++            flash-max-timeout-us = <250000>;
++        };
++    };
 -- 
-Florian
+2.26.2
+
