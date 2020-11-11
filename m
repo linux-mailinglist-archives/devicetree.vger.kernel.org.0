@@ -2,176 +2,377 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D186D2AF193
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13CFC2AF1A7
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726460AbgKKNGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 08:06:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49722 "EHLO
+        id S1726424AbgKKNIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 08:08:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725912AbgKKNGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:06:44 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A37FC0613D1;
-        Wed, 11 Nov 2020 05:06:44 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id a9so2060841lfh.2;
-        Wed, 11 Nov 2020 05:06:44 -0800 (PST)
+        with ESMTP id S1726588AbgKKNIL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:08:11 -0500
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FBF4C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:08:11 -0800 (PST)
+Received: by mail-lf1-x142.google.com with SMTP id l2so3098213lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:08:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=82RRu0ROzYm5taPzq2lMWZPSnstixBkqQF5X1RxYego=;
-        b=pcrIMq3o0TmMtnIRNs9t+1HKUABav1CurgNuFaFYakVEf+z580IjUws9F2xhMiDwQX
-         sxsTSh3pZU0M7/AiQG1xqFCqR69wm+t4RX2VQEc55FRRbB/KMtDKfGZtifUZmNq7dDYF
-         SMhoBX05Doo+F0pTepPpTw4QN5RRuLB40oV1rXdeyVwuYbCavF+ICADPwQ7oO8Oh1puX
-         15Naxi4BuzqTFtLHwUTIn2g9Gc9XHrL04F4bGT+EVEGfcqCU5cokvPlZ1/yQvrMKn407
-         6D2p4OJYeEUJYIyGsHhhM8q2ADnz3tJaw1HEk8hJo7Fa617e4oItQrlEQ6Cp5PLCgaZL
-         KD3w==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=oxwnhzkt/PN6/sXeM3n8c5ZwySGgQoKrslhl8b+S4sY=;
+        b=LoRB7XIMp+jsMO/urS8K8C+S8QcJKlGd3y80e9+mJwhmPjMAANbpmsytiUqsrOo9Zc
+         xY4ycP+c96Qz5SMtcoPxArWIjOKJ9/exdk7CXt/EgoWWkDONceqLE7P1POjqP8hlMoJs
+         6KIz693z8rYq9+BJw9XA9YS8wYkGUbu9SIuZ09NavZMxKy5AVPHjfcLv3q++oteJopOO
+         XBvLlWnoWwAqLaU1kpUZGF/DlLNGGNTVl9Jl/eh+Bddyj8vGK1fNm3Z8lj6Nje1DFJaN
+         Wcp21tHJFHcTjaKUVKXSb3f9QLH+HF4wotTB0uQThyxQoswAkH9iI8aPHMSSjSWL/pOV
+         aICQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=82RRu0ROzYm5taPzq2lMWZPSnstixBkqQF5X1RxYego=;
-        b=ZyXrIgul+e8lw+l1XZJToKt+AAin882gp+OaszU3HsVHy949hczOkoh3Kuv/D8Fqg7
-         pHKECAnx2sFHiQxs7sq4RUd5n2z/c7DapdxbsIL4/HxvsylLAGDPd4r/jPph2iBxRatx
-         65cWEcG/T27FmD5H5tS+e1aaqlE+pRpPon8z46IyPmug1+iCaLldMwdnpjXzM5BdgZ3+
-         uGceWN39qbUDMWSBzlEP8nKuh5vDsvDdV0V0CZ9cvWWhXVmfYgAOY5Tw8kKR/asfZg2W
-         aOxsspWg/vK8AQXoHbk6HI2gvuwn+OoKp9CRzrOt2KnJUjnWYSexnowhoaKjlkUxE3Su
-         PWww==
-X-Gm-Message-State: AOAM533P+mgU8o86Au7NxOxyWu7vb6lvB1xo6sDS2kERqZ66wvR/BwX2
-        tBDucZZ9P/5KqbjwFrtNQus=
-X-Google-Smtp-Source: ABdhPJxFMbJp8eNEkvkR9Sko+OH5lAZGUOWg8rrjbjnIfFbmWVvz6JsvCLZtOvrf3TnsNFdFOeqsTw==
-X-Received: by 2002:ac2:51d9:: with SMTP id u25mr2937980lfm.52.1605100003102;
-        Wed, 11 Nov 2020 05:06:43 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id b8sm230406ljo.68.2020.11.11.05.06.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Nov 2020 05:06:41 -0800 (PST)
-Subject: Re: [PATCH 04/10] ARM: dts: BCM5301X: Add a default compatible for
- switch node
-To:     Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM IPROC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Kurt Kanzenbach <kurt@kmk-computers.de>
-References: <20201110033113.31090-1-f.fainelli@gmail.com>
- <20201110033113.31090-5-f.fainelli@gmail.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <af2d0f49-38a9-d7df-8848-40050a2d5c85@gmail.com>
-Date:   Wed, 11 Nov 2020 14:06:40 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        bh=oxwnhzkt/PN6/sXeM3n8c5ZwySGgQoKrslhl8b+S4sY=;
+        b=Ba+t28CUpZshsENJIGyZQEZHWegspsEzHNVG3yUxYaPtzq21HEvq8AoBN8Xd5Puw5y
+         Es0nUAsXyfjKh7u6gSAGmfgL5mknjd70veDo7Q62vengNZSwouctgUIKD3Oo+iy5pgDY
+         40hHLielrdA2GHlLh2uGYNnjj1eKrdaKXy/3N1n4rPzR9wFaeGrTOK+/nMyrtdvBaZzZ
+         WjZS85X//VSAbyzcqk+UD1PfE+qJ+UWAUOn994QpvFC/3OdXVIyNehvzzhtYqulJxeih
+         uckR2VZeH1yil6q0vZaTaFfil2pXFvLQPy8IPSx6EgnCsNvctL1bXTK0CuvsuaTVu1gR
+         YAmg==
+X-Gm-Message-State: AOAM530e22o4S1ENrrwG5PlleEdKiHzxosSyRbd6Kem9mNPbQOvexm66
+        /83VMXf8Ii3YBFLTzCRMq2C9Jw==
+X-Google-Smtp-Source: ABdhPJxgNW5S6E9QODxDE8bEj4LFNE6xtq3p8MFtYnZoSmvlrOsWvik98obnAQWebIZDc7hQI5BHEg==
+X-Received: by 2002:a19:ad06:: with SMTP id t6mr10021401lfc.222.1605100089749;
+        Wed, 11 Nov 2020 05:08:09 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id q7sm230512ljh.79.2020.11.11.05.08.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 05:08:09 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>, Sean Paul <sean@poorly.run>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: display: mcde: Convert to YAML schema
+Date:   Wed, 11 Nov 2020 14:07:54 +0100
+Message-Id: <20201111130754.2283993-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <20201110033113.31090-5-f.fainelli@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10.11.2020 04:31, Florian Fainelli wrote:
-> Provide a default compatible string which is based on the 53010 SRAB
-> compatible, this allows us to have sane defaults and silences the
-> following warnings:
-> 
-> arch/arm/boot/dts/bcm4708-asus-rt-ac56u.dt.yaml:
-> ethernet-switch@18007000: compatible: 'oneOf' conditional failed, one
-> must be fixed:
->          ['brcm,bcm5301x-srab'] is too short
->          'brcm,bcm5325' was expected
->          'brcm,bcm53115' was expected
->          'brcm,bcm53125' was expected
->          'brcm,bcm53128' was expected
->          'brcm,bcm5365' was expected
->          'brcm,bcm5395' was expected
->          'brcm,bcm5389' was expected
->          'brcm,bcm5397' was expected
->          'brcm,bcm5398' was expected
->          'brcm,bcm11360-srab' was expected
->          'brcm,bcm5301x-srab' is not one of ['brcm,bcm53010-srab',
-> 'brcm,bcm53011-srab', 'brcm,bcm53012-srab', 'brcm,bcm53018-srab',
-> 'brcm,bcm53019-srab']
->          'brcm,bcm5301x-srab' is not one of ['brcm,bcm11404-srab',
-> 'brcm,bcm11407-srab', 'brcm,bcm11409-srab', 'brcm,bcm58310-srab',
-> 'brcm,bcm58311-srab', 'brcm,bcm58313-srab']
->          'brcm,bcm5301x-srab' is not one of ['brcm,bcm58522-srab',
-> 'brcm,bcm58523-srab', 'brcm,bcm58525-srab', 'brcm,bcm58622-srab',
-> 'brcm,bcm58623-srab', 'brcm,bcm58625-srab', 'brcm,bcm88312-srab']
->          'brcm,bcm5301x-srab' is not one of ['brcm,bcm3384-switch',
-> 'brcm,bcm6328-switch', 'brcm,bcm6368-switch']
->          From schema:
-> Documentation/devicetree/bindings/net/dsa/b53.yaml
-> 
-> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
-> ---
->   arch/arm/boot/dts/bcm5301x.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/bcm5301x.dtsi b/arch/arm/boot/dts/bcm5301x.dtsi
-> index ee23c0841699..807580dd89f5 100644
-> --- a/arch/arm/boot/dts/bcm5301x.dtsi
-> +++ b/arch/arm/boot/dts/bcm5301x.dtsi
-> @@ -483,7 +483,7 @@ thermal: thermal@1800c2c0 {
->   	};
->   
->   	srab: ethernet-switch@18007000 {
-> -		compatible = "brcm,bcm5301x-srab";
-> +		compatible = "brcm,bcm53010-srab", "brcm,bcm5301x-srab";
+This moves the MCDE bindings over to using the YAML schema
+to describe the ST-Ericsson MCDE display controller,
+making use of the generic DSI controller schema.
 
-I've never seen Northstar device with BCM53010, see below list.
+We also add the "port" node, we will use this when adding
+LCD panels using the direct parallel interface DPI instead
+of DSI.
 
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Cut the description on the interrupts.
+- Drop maxItems: 3 on clocks and clock-names: implicit from
+  the number of listed items.
+- Tag the DSI ports with unevaluatedProperties: false
+- Tag the MCDE as such with additionalProperties: true
+- It was a bit hard to test this because of the code base
+  being out of phase with the validation tools but it seems
+  to check out.
+---
+ .../devicetree/bindings/display/ste,mcde.txt  | 104 -----------
+ .../devicetree/bindings/display/ste,mcde.yaml | 166 ++++++++++++++++++
+ 2 files changed, 166 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
+ create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
 
-*** BCM47081 ***
+diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
+deleted file mode 100644
+index 4c33c692bd5f..000000000000
+--- a/Documentation/devicetree/bindings/display/ste,mcde.txt
++++ /dev/null
+@@ -1,104 +0,0 @@
+-ST-Ericsson Multi Channel Display Engine MCDE
+-
+-The ST-Ericsson MCDE is a display controller with support for compositing
+-and displaying several channels memory resident graphics data on DSI or
+-LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
+-
+-Required properties:
+-
+-- compatible: must be:
+-  "ste,mcde"
+-- reg: register base for the main MCDE control registers, should be
+-  0x1000 in size
+-- interrupts: the interrupt line for the MCDE
+-- epod-supply: a phandle to the EPOD regulator
+-- vana-supply: a phandle to the analog voltage regulator
+-- clocks: an array of the MCDE clocks in this strict order:
+-  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
+-  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
+-  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
+-  save clock)
+-- clock-names: must be the following array:
+-  "mcde", "lcd", "hdmi"
+-  to match the required clock inputs above.
+-- #address-cells: should be <1> (for the DSI hosts that will be children)
+-- #size-cells: should be <1> (for the DSI hosts that will be children)
+-- ranges: this should always be stated
+-
+-Required subnodes:
+-
+-The devicetree must specify subnodes for the DSI host adapters.
+-These must have the following characteristics:
+-
+-- compatible: must be:
+-  "ste,mcde-dsi"
+-- reg: must specify the register range for the DSI host
+-- vana-supply: phandle to the VANA voltage regulator
+-- clocks: phandles to the high speed and low power (energy save) clocks
+-  the high speed clock is not present on the third (dsi2) block, so it
+-  should only have the "lp" clock
+-- clock-names: "hs" for the high speed clock and "lp" for the low power
+-  (energy save) clock
+-- #address-cells: should be <1>
+-- #size-cells: should be <0>
+-
+-Display panels and bridges will appear as children on the DSI hosts, and
+-the displays are connected to the DSI hosts using the common binding
+-for video transmitter interfaces; see
+-Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-If a DSI host is unused (not connected) it will have no children defined.
+-
+-Example:
+-
+-mcde@a0350000 {
+-	compatible = "ste,mcde";
+-	reg = <0xa0350000 0x1000>;
+-	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+-	epod-supply = <&db8500_b2r2_mcde_reg>;
+-	vana-supply = <&ab8500_ldo_ana_reg>;
+-	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
+-		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
+-		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
+-	clock-names = "mcde", "lcd", "hdmi";
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	ranges;
+-
+-	dsi0: dsi@a0351000 {
+-		compatible = "ste,mcde-dsi";
+-		reg = <0xa0351000 0x1000>;
+-		vana-supply = <&ab8500_ldo_ana_reg>;
+-		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
+-		clock-names = "hs", "lp";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		panel {
+-			compatible = "samsung,s6d16d0";
+-			reg = <0>;
+-			vdd1-supply = <&ab8500_ldo_aux1_reg>;
+-			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
+-		};
+-
+-	};
+-	dsi1: dsi@a0352000 {
+-		compatible = "ste,mcde-dsi";
+-		reg = <0xa0352000 0x1000>;
+-		vana-supply = <&ab8500_ldo_ana_reg>;
+-		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
+-		clock-names = "hs", "lp";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+-	dsi2: dsi@a0353000 {
+-		compatible = "ste,mcde-dsi";
+-		reg = <0xa0353000 0x1000>;
+-		vana-supply = <&ab8500_ldo_ana_reg>;
+-		/* This DSI port only has the Low Power / Energy Save clock */
+-		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
+-		clock-names = "lp";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
+new file mode 100644
+index 000000000000..51851566c72d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
+@@ -0,0 +1,166 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST-Ericsson Multi Channel Display Engine MCDE
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++properties:
++  compatible:
++    const: ste,mcde
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    description: an array of the MCDE clocks
++    items:
++      - description: MCDECLK (main MCDE clock)
++      - description: LCDCLK (LCD clock)
++      - description: PLLDSI (HDMI clock)
++
++  clock-names:
++    items:
++      - const: mcde
++      - const: lcd
++      - const: hdmi
++
++  epod-supply:
++    description: a phandle to the EPOD regulator
++
++  vana-supply:
++    description: a phandle to the analog voltage regulator
++
++  port:
++    type: object
++    description:
++      A DPI port node with endpoint definitions as defined in
++      Documentation/devicetree/bindings/media/video-interfaces.txt
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  ranges: true
++
++patternProperties:
++  "^dsi@[0-9a-f]+$":
++    description: subnodes for the three DSI host adapters
++    type: object
++    allOf:
++      - $ref: dsi-controller.yaml#
++    properties:
++      compatible:
++        const: ste,mcde-dsi
++
++      reg:
++        maxItems: 1
++
++      vana-supply:
++        description: a phandle to the analog voltage regulator
++
++      clocks:
++        description: phandles to the high speed and low power (energy save) clocks
++          the high speed clock is not present on the third (dsi2) block, so it
++          should only have the "lp" clock
++        minItems: 1
++        maxItems: 2
++
++      clock-names:
++        oneOf:
++          - items:
++              - const: hs
++              - const: lp
++          - items:
++              - const: lp
++
++    required:
++      - compatible
++      - reg
++      - vana-supply
++      - clocks
++      - clock-names
++
++    unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - epod-supply
++  - vana-supply
++
++additionalProperties: true
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/mfd/dbx500-prcmu.h>
++    #include <dt-bindings/gpio/gpio.h>
++
++    mcde@a0350000 {
++      compatible = "ste,mcde";
++      reg = <0xa0350000 0x1000>;
++      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
++      epod-supply = <&db8500_b2r2_mcde_reg>;
++      vana-supply = <&ab8500_ldo_ana_reg>;
++      clocks = <&prcmu_clk PRCMU_MCDECLK>,
++               <&prcmu_clk PRCMU_LCDCLK>,
++               <&prcmu_clk PRCMU_PLLDSI>;
++      clock-names = "mcde", "lcd", "hdmi";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
++
++      dsi0: dsi@a0351000 {
++        compatible = "ste,mcde-dsi";
++        reg = <0xa0351000 0x1000>;
++        vana-supply = <&ab8500_ldo_ana_reg>;
++        clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
++        clock-names = "hs", "lp";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++          compatible = "samsung,s6d16d0";
++          reg = <0>;
++          vdd1-supply = <&ab8500_ldo_aux1_reg>;
++          reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
++        };
++      };
++
++      dsi1: dsi@a0352000 {
++        compatible = "ste,mcde-dsi";
++        reg = <0xa0352000 0x1000>;
++        vana-supply = <&ab8500_ldo_ana_reg>;
++        clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
++        clock-names = "hs", "lp";
++        #address-cells = <1>;
++        #size-cells = <0>;
++      };
++
++      dsi2: dsi@a0353000 {
++        compatible = "ste,mcde-dsi";
++        reg = <0xa0353000 0x1000>;
++        vana-supply = <&ab8500_ldo_ana_reg>;
++        /* This DSI port only has the Low Power / Energy Save clock */
++        clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
++        clock-names = "lp";
++        #address-cells = <1>;
++        #size-cells = <0>;
++      };
++    };
++
++...
+-- 
+2.26.2
 
-Buffalo WZR-600DHP2
-[    1.816948] b53_common: found switch: BCM53011, rev 2
-
-Luxul XWR-1200 V1
-[    2.602445] b53_common: found switch: BCM53011, rev 5
-
-TP-LINK Archer C5 V2
-[    0.606353] b53_common: found switch: BCM53011, rev 5
-
-
-*** BCM4708 ***
-
-Buffalo WZR-1750DHP
-[    1.961584] b53_common: found switch: BCM53011, rev 2
-
-Netgear R6250 V1
-[    2.445594] b53_common: found switch: BCM53011, rev 2
-
-SmartRG SR400ac
-[    4.258116] b53_common: found switch: BCM53011, rev 5
-
-
-*** BCM4709 ***
-
-TP-LINK Archer C9 V1
-[    0.640041] b53_common: found switch: BCM53012, rev 5
-
-
-*** BCM47094 ***
-
-D-Link DIR-885L
-[    1.373423] b53_common: found switch: BCM53012, rev 0
-
-Luxul XWR-3150 V1
-[    5.893989] b53_common: found switch: BCM53012, rev 0
-
-Luxul XAP-1610 V1
-[    0.761285] b53_common: found switch: BCM53012, rev 0
