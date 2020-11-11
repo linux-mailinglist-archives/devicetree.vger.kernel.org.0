@@ -2,186 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 307B72AF486
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:14:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2A262AF48F
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:15:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727246AbgKKPOH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 10:14:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35744 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726101AbgKKPOH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 10:14:07 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4F717206A1;
-        Wed, 11 Nov 2020 15:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605107646;
-        bh=d0sY6zcF8k38P2t09esju++5JTYGiRwTGV3GDkSzykY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eAWlPlImegdvQTY3m8tm6JNO7LKooiC3iopOwPK9+Su1UcfGl0kRPEZMh880JY69D
-         LqTSrOsPzDQMRVaGAbKahhd5agIlqtbGykcswKi0t6Jl015jqcrwRbosiQz8StmATV
-         d87Um7BWjGzcAKvam0BhmbBoNQb4MoMbfflkQAwQ=
-Received: by mail-ot1-f42.google.com with SMTP id g19so2396722otp.13;
-        Wed, 11 Nov 2020 07:14:06 -0800 (PST)
-X-Gm-Message-State: AOAM533gFQu4IvxOzSAKJwmygpHmo+zDdAAc+0kJmg1WQkFgd5TUFW11
-        pqHKbT3GDajc1AoIlD6gd4YkchibA8MGdPc/tg==
-X-Google-Smtp-Source: ABdhPJymqPf/e8ewrMpEYOfSRcOCehc460ABLXcC/qaRYD758j4cwr98EnsuW8kfp2TJFp88OcSVrA1y8Rsg+BnNdA8=
-X-Received: by 2002:a05:6830:2f8:: with SMTP id r24mr17995064ote.129.1605107645484;
- Wed, 11 Nov 2020 07:14:05 -0800 (PST)
+        id S1727046AbgKKPPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 10:15:23 -0500
+Received: from mail-eopbgr80084.outbound.protection.outlook.com ([40.107.8.84]:22181
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725995AbgKKPPW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 10:15:22 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fuBAWdJIKlocJzu033VXn2+80fROVioHm3QFw+tMWC9svtmqfF3u31ZTJtInxg7XR/NP6JoGWm+kQYczJzmy6x9BBDdaQ2XGls4WWESy28osc4fZwGC75rA5pbAilUXCX24NCTOVdu8bGnY4pF7ZOya6f8oml0EjEk4MDhSKW80W3Vdny6qLb1l7ZZYV7+yvNOwlMent0xPgqUog82zvPbaHKqZAlueePMQfREbqtvZ5T8uNZpR/jymGUt167XjpJVLPIf1mQvVRg3u93F9UV1CSoWFTikSqHvPfb4Gznex63iFHlGA0ApMv+TB6yVrDIuhEJyu8oCCmfT4vxH91rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E/zE6N4nMP2693h6yPDhjo4yX74tw6SvTYK17KCNo50=;
+ b=n4rl3U3RUZH56AJcqsfBSE4Uvcputy7JNTtS3EV3Mp+hjWbt/GzarPSclk9R62OD0SfSuvjQBdoc2uinJbl5zSLc5RGtTcUWxT/ts3A99cURUMiKzM7W7m6Q3v8OR+Q+qHedMKtx0NuRMu4Y8kWfcOobuThNg5xb5A3J8O9i7u1DB55PteBVerpnqHOxkZFgZiFErh8kiDIqGR6noMG1taf+ht4SbX9377PUF9GZZuFsm76hgEWSFb2R3c/deUXO3jbLxUX3vvMvFiHOYjvRJ8FvOhe0sjF+H+JV4QoNPCXA6WeL024hEyANnAtK5eqq3E+oURhB7ZtfxRGTjKfrcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
+ header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rohmsemiconductoreurope.onmicrosoft.com;
+ s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E/zE6N4nMP2693h6yPDhjo4yX74tw6SvTYK17KCNo50=;
+ b=fOiCcT0pPZY2FNJ16Lm/jVtgfryneeVgWyoxZozRD/WTJteOC4Nnb2r6UDS7wZ0yeTZH8IILcxgyGcBt3dAy8EsZKbINZYq+s/DQkt8WRgSU6EmFh16C4nQJegBHmVKGdCXV2qqMTI7SiZ8OG7RwuCWZqK+jdQJuyd6h6wFbPAc=
+Received: from HE1PR03MB3162.eurprd03.prod.outlook.com (2603:10a6:7:55::20) by
+ HE1PR0301MB2475.eurprd03.prod.outlook.com (2603:10a6:3:69::14) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3541.21; Wed, 11 Nov 2020 15:15:17 +0000
+Received: from HE1PR03MB3162.eurprd03.prod.outlook.com
+ ([fe80::2c6d:c39b:de6d:b343]) by HE1PR03MB3162.eurprd03.prod.outlook.com
+ ([fe80::2c6d:c39b:de6d:b343%5]) with mapi id 15.20.3541.021; Wed, 11 Nov 2020
+ 15:15:17 +0000
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>
+CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+Subject: Re: [PATCH v5 3/4] wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
+Thread-Topic: [PATCH v5 3/4] wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
+Thread-Index: AQHWs2g3f/ROJf29sU2Nc5RkpdSV3anC/3+AgAALT4CAAAlGgA==
+Date:   Wed, 11 Nov 2020 15:15:17 +0000
+Message-ID: <38cca1630a12f8b6c6a9f1e7a8669714957b0d01.camel@fi.rohmeurope.com>
+References: <cover.1604574431.git.matti.vaittinen@fi.rohmeurope.com>
+         <1a454defaf65ecc22deb0fe42a1384a5f9d5a771.1604574431.git.matti.vaittinen@fi.rohmeurope.com>
+         <7d912f9a9c1aa2be3d73287401fd2088a63b899c.camel@fi.rohmeurope.com>
+         <2f455295-9c48-c9a7-8d70-90339833eb94@roeck-us.net>
+In-Reply-To: <2f455295-9c48-c9a7-8d70-90339833eb94@roeck-us.net>
+Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Accept-Language: fi-FI, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none
+ header.from=fi.rohmeurope.com;
+x-originating-ip: [62.78.225.252]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 439decf3-a054-45ea-0f5b-08d8865498ed
+x-ms-traffictypediagnostic: HE1PR0301MB2475:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HE1PR0301MB2475A75E26462CB2E167F5D6ADE80@HE1PR0301MB2475.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: sq5LQk4Ax25bI5zzhwxnUi08B+VZxlkWd34Dwl8sKytRk47gMfz3uvkHXW3a4Vy69BxicxwX6dr4FvEeLZn6Rn4+95OpCeEc+fm5RnxBy7UnunqjUNwQWATxt7slV2nlMBe2xlaUeBxX/ArEciC+sox8lNEg+yp1+7CrT8FhiipMmfNZKbwVD4TfvBRLOU6zLOiyxpHbMb3xia49UdsQGguR5jDGZAuEUWmYN5unTc6JqMkb3+XYGwjqDA6lZpwpKcZfMT3WY1DDBjMsFTAoefdqbYEN/z3HOkCp/jfpOyiyZQ5c4ZW1cNvXtcj2IYUTeUl0yLN4Nzljt/VPbR5hRQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR03MB3162.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(136003)(376002)(39840400004)(366004)(53546011)(66476007)(83380400001)(66556008)(66946007)(478600001)(4001150100001)(6486002)(71200400001)(64756008)(6512007)(66446008)(76116006)(86362001)(186003)(54906003)(110136005)(4326008)(2616005)(2906002)(6506007)(3450700001)(316002)(8676002)(26005)(8936002)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 6Avzpa9UuPenpBodMFn6CorhoePP71hU2x2p9lkPxPgC0kT8dsSrgwft2nMhRTBeguk+n2sHHXvOF253MUcLt6uSkOXzHNlh8vyllACveI3MwdhrvDcCpfDO8GCkyHYfZyARK3RnbTqZyYPUL2n04n9maaPiFF4PP5FJdG2p0s63Mt80wMWTVNxgTHWqLE5bLscr0L2alww3+itUD9yXCDMaR/iexp5f2OF857v4tUvThbGX0fLl4yG8logrzqVPZNxeriW8aCDXjxMW8Gb2rXHp8Kq9j4/G6z1nvO0nYWh+MdMO/6aSzdDfCm3OtK1ltcPPFq28YuYrAqXrzQqrDHpg4HcQ3dN29J3CcQclE5Jdf3mN/58bytVCB5hceSD/U/71fr/Eb+FbHIjFd8Jr12uOQ5nIlhBLaE0P+6sRuWKPmV2UJobymiE67o1rAlicIGGvI2zYmIRWofNXGuyWEQYBnWwx4mQEu9sHoxt5qLLP3xS82PsTEUvd2wHBhwE21UylQiu4sGWwNIN6QXKGoSkvVAaqLPQxXXW43mgu8smepFUapudh6ixFpiJa/OOaU/MYJNbZhInkeiLCtdU1MHAVSHk2g59HiE+yjpX/M8SfplPk5mlbtje81EP9BF2b+ahc8ZdP5Oh0I7X/xs/of4A9ev7fl1OrDxg4INpoqOGU1Zfr06p2lSghtcgp/QiYeto6VQUnzXCsVla+6ql8MsNdPnQqb+5VQFfG6wIq0eOR8eZDAW2XDWS1atwUqnIJaCZIBFBskWKaOMrUbiYOe3ls3hn1S2KGeC7ycWFxDVKGVXhBH9ACPtT6IiQyqK/uDeiItJwoD3w729DmhihSLop+EMjGGLT43SmrxrNpbw0KiYwexx7bjy+BrZjESxeeoOHnvNaQ32sk7xIQFDblnQ==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <144C721DDBBF2F4695D42DA988A688F2@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20201111145757.74974-1-aford173@gmail.com>
-In-Reply-To: <20201111145757.74974-1-aford173@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 11 Nov 2020 09:13:53 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKfe=uMPS6CgSGh6OfUMMY8yuKsa-q=PsFN3=NhYVYdDw@mail.gmail.com>
-Message-ID: <CAL_JsqKfe=uMPS6CgSGh6OfUMMY8yuKsa-q=PsFN3=NhYVYdDw@mail.gmail.com>
-Subject: Re: [PATCH V3] dt-bindings: soc: imx: Add binding doc for spba bus
-To:     Adam Ford <aford173@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Adam Ford-BE <aford@beaconembedded.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: fi.rohmeurope.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR03MB3162.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 439decf3-a054-45ea-0f5b-08d8865498ed
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Nov 2020 15:15:17.2303
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 50qYPFOIBmoRYeUDzhTCURLfGP/uewq5cvgcOvwwSSQCzLaUkmSBthAoKZX1cTkXoNgMhsY5lol0fy3l8WzQCoM2LCYEEtOiICqCqOuUTyVs6Db/3I6iJ6NsooyhU+xP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0301MB2475
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 8:58 AM Adam Ford <aford173@gmail.com> wrote:
->
-> Add binding doc for fsl,spba-bus.
->
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> ---
-> make dt_binding_check showed no errors if I did this right.
->
-> V3:  Rebase sample from aips-bus example
->      Split off from series adding i.MX8M Nano functions to reduce noise
-> V2:  Attempted to update yaml from feedback
->
-> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-> index f50420099a55..ec8073cb2e71 100644
-> --- a/Documentation/devicetree/bindings/Makefile
-> +++ b/Documentation/devicetree/bindings/Makefile
-> @@ -3,8 +3,6 @@ DT_DOC_CHECKER ?= dt-doc-validate
->  DT_EXTRACT_EX ?= dt-extract-example
->  DT_MK_SCHEMA ?= dt-mk-schema
->
-> -DT_SCHEMA_LINT = $(shell which yamllint)
-> -
-
-???
-
->  DT_SCHEMA_MIN_VERSION = 2020.8.1
->
->  PHONY += check_dtschema_version
-> @@ -26,10 +24,6 @@ find_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
->                 -name 'processed-schema*' ! \
->                 -name '*.example.dt.yaml' \)
->
-> -quiet_cmd_yamllint = LINT    $(src)
-> -      cmd_yamllint = $(find_cmd) | \
-> -                     xargs $(DT_SCHEMA_LINT) -f parsable -c $(srctree)/$(src)/.yamllint
-> -
->  quiet_cmd_chk_bindings = CHKDT   $@
->        cmd_chk_bindings = $(find_cmd) | \
->                           xargs -n200 -P$$(nproc) $(DT_DOC_CHECKER) -u $(srctree)/$(src)
-> @@ -43,7 +37,6 @@ quiet_cmd_mk_schema = SCHEMA  $@
->                       rm -f $$f
->
->  define rule_chkdt
-> -       $(if $(DT_SCHEMA_LINT),$(call cmd,yamllint),)
->         $(call cmd,chk_bindings)
->         $(call cmd,mk_schema)
->  endef
-> @@ -55,7 +48,7 @@ override DTC_FLAGS := \
->         -Wno-graph_child_address \
->         -Wno-interrupt_provider
->
-> -$(obj)/processed-schema-examples.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
-> +$(obj)/processed-schema-examples.json: $(DT_DOCS) check_dtschema_version FORCE
->         $(call if_changed_rule,chkdt)
->
->  ifeq ($(DT_SCHEMA_FILES),)
-> diff --git a/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-> new file mode 100644
-> index 000000000000..91dae405ed39
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/bus/fsl,spba-bus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Shared Peripherals Bus Interface
-> +
-> +maintainers:
-> +  - Shawn Guo <shawnguo@kernel.org>
-> +
-> +description: |
-> +  A simple bus enabling access to shared peripherals.
-> +
-> +  The "spba-bus" follows the "simple-bus" set of properties, as
-> +  specified in the Devicetree Specification.  It is an extension of
-> +  "simple-bus" because the SDMA controller uses this compatible flag to
-> +  determine which peripherals are available to it and the range over which
-> +  the SDMA can access.  There are no special clocks for the bus, because
-> +  the SDMA controller itself has its interrupt, and clock assignments.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: fsl,spba-bus
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^bus(@[0-9a-f]+)?$"
-> +
-> +  compatible:
-> +    items:
-> +      - const: fsl,spba-bus
-> +      - const: simple-bus
-> +
-> +  '#address-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  '#size-cells':
-> +    enum: [ 1, 2 ]
-> +
-> +  ranges: true
-> +
-> +required:
-> +  - compatible
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - ranges
-> +
-
-> +additionalProperties: true
-> +
-> +type: object
-
-Should be:
-
-additionalProperties:
-  type: object
-
-> +
-> +examples:
-> +  - |
-> +    bus@30000000 {
-> +        compatible = "fsl,spba-bus", "simple-bus";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        reg = <0x30000000 0x100000>;
-> +        ranges;
-> +    };
-> --
-> 2.25.1
->
+DQpPbiBXZWQsIDIwMjAtMTEtMTEgYXQgMDY6NDEgLTA4MDAsIEd1ZW50ZXIgUm9lY2sgd3JvdGU6
+DQo+IE9uIDExLzExLzIwIDY6MDEgQU0sIFZhaXR0aW5lbiwgTWF0dGkgd3JvdGU6DQo+ID4gT24g
+VGh1LCAyMDIwLTExLTA1IGF0IDEzOjM4ICswMjAwLCBNYXR0aSBWYWl0dGluZW4gd3JvdGU6DQo+
+ID4gPiBBZGQgV2F0Y2hkb2cgc3VwcG9ydCBmb3IgUk9ITSBCRDk1NzZNVUYgYW5kIEJEOTU3M01V
+RiBQTUlDcyB3aGljaA0KPiA+ID4gYXJlDQo+ID4gPiBtYWlubHkgdXNlZCB0byBwb3dlciB0aGUg
+Ui1DYXIgc2VyaWVzIHByb2Nlc3NvcnMuIFRoZSB3YXRjaGRvZyBpcw0KPiA+ID4gcGluZ2VkIHVz
+aW5nIGEgR1BJTyBhbmQgZW5hYmxlZCB1c2luZyBhbm90aGVyIEdQSU8uIEFkZGl0aW9uYWxseQ0K
+PiA+ID4gd2F0Y2hkb2cgdGltZS1vdXQgY2FuIGJlIGNvbmZpZ3VyZWQgdG8gSFcgcHJpb3Igc3Rh
+cnRpbmcgdGhlDQo+ID4gPiB3YXRjaGRvZy4NCj4gPiA+IFdhdGNoZG9nIHRpbWVvdXQgY2FuIGJl
+IGNvbmZpZ3VyZWQgdG8gZGV0ZWN0IG9ubHkgZGVsYXllZCBwaW5nIG9yDQo+ID4gPiBpbg0KPiA+
+ID4gYSB3aW5kb3cgbW9kZSB3aGVyZSBhbHNvIHRvbyBmYXN0IHBpbmdzIGFyZSBkZXRlY3RlZC4N
+Cj4gPiA+IA0KPiA+ID4gU2lnbmVkLW9mZi1ieTogTWF0dGkgVmFpdHRpbmVuIDxtYXR0aS52YWl0
+dGluZW5AZmkucm9obWV1cm9wZS5jb20NCj4gPiA+ID4NCj4gPiA+IFJldmlld2VkLWJ5OiBHdWVu
+dGVyIFJvZWNrIDxsaW51eEByb2Vjay11cy5uZXQ+DQo+ID4gPiAtLS0NCj4gPiA+IA0KPiA+IA0K
+PiA+IC8vc25pcA0KPiA+IA0KPiA+ID4gKwlyZXQgPSBvZl9wcm9wZXJ0eV9yZWFkX3ZhcmlhYmxl
+X3UzMl9hcnJheShucCwgInJvaG0saHctdGltZW91dC0NCj4gPiA+IG1zIiwNCj4gPiA+ICsJCQkJ
+CQkgICZod19tYXJnaW5bMF0sIDEsIDIpOw0KPiA+ID4gKwlpZiAocmV0IDwgMCAmJiByZXQgIT0g
+LUVJTlZBTCkNCj4gPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gPiArDQo+ID4gPiArCWlmIChyZXQg
+PT0gMSkNCj4gPiA+ICsJCWh3X21hcmdpbl9tYXggPSBod19tYXJnaW5bMF07DQo+ID4gPiArDQo+
+ID4gPiArCWlmIChyZXQgPT0gMikgew0KPiA+ID4gKwkJaHdfbWFyZ2luX21heCA9IGh3X21hcmdp
+blsxXTsNCj4gPiA+ICsJCWh3X21hcmdpbl9taW4gPSBod19tYXJnaW5bMF07DQo+ID4gPiArCX0N
+Cj4gPiA+ICsNCj4gPiA+ICsJcmV0ID0gYmQ5NTd4X3NldF93ZHRfbW9kZShwcml2LCBod19tYXJn
+aW5fbWF4LCBod19tYXJnaW5fbWluKTsNCj4gPiA+ICsJaWYgKHJldCkNCj4gPiA+ICsJCXJldHVy
+biByZXQ7DQo+ID4gPiArDQo+ID4gPiArCXByaXYtPmFsd2F5c19ydW5uaW5nID0gb2ZfcHJvcGVy
+dHlfcmVhZF9ib29sKG5wLCAiYWx3YXlzLQ0KPiA+ID4gcnVubmluZyIpOw0KPiA+ID4gKw0KPiA+
+ID4gKwl3YXRjaGRvZ19zZXRfZHJ2ZGF0YSgmcHJpdi0+d2RkLCBwcml2KTsNCj4gPiA+ICsNCj4g
+PiA+ICsJcHJpdi0+d2RkLmluZm8JCQk9ICZiZDk1N3hfd2R0X2lkZW50Ow0KPiA+ID4gKwlwcml2
+LT53ZGQub3BzCQkJPSAmYmQ5NTd4X3dkdF9vcHM7DQo+ID4gPiArCXByaXYtPndkZC5taW5faHdf
+aGVhcnRiZWF0X21zCT0gaHdfbWFyZ2luX21pbjsNCj4gPiA+ICsJcHJpdi0+d2RkLm1heF9od19o
+ZWFydGJlYXRfbXMJPSBod19tYXJnaW5fbWF4Ow0KPiA+ID4gKwlwcml2LT53ZGQucGFyZW50CQk9
+IGRldjsNCj4gPiA+ICsJcHJpdi0+d2RkLnRpbWVvdXQJCT0gKGh3X21hcmdpbl9tYXggLyAyKSAq
+IDEwMDA7DQo+ID4gDQo+ID4gSG1tLiBKdXN0IG5vdGljZWQgdGhpcyB2YWx1ZSBkb2VzIG5vdCBt
+YWtlIHNlbnNlLCByaWdodD8NCj4gPiBNYXhpbXVtIGh3X21hcmdpbiBpcyA0NDE2IG1zLiBJZiBJ
+IHJlYWQgdGhpcyBjb3JyZWN0bHkgdGltZW91dA0KPiA+IHNob3VsZA0KPiA+IGJlIGluIHNlY29u
+ZHMgLSAgc28gcmVzdWx0IGlzIGFyb3VuZCAyIDAwMCAwMDAgc2Vjb25kcyBoZXJlLiBJDQo+ID4g
+dGhpbmsgaXQNCj4gPiBpcyB1c2VsZXNzIHZhbHVlLi4uDQo+ID4gDQo+ID4gUGVyaGFwcw0KPiA+
+IAlwcml2LT53ZGQudGltZW91dAkJPSAoaHdfbWFyZ2luX21heCAvIDIpIC8gMTAwMDsNCj4gPiAJ
+aWYgKCFwcml2LT53ZGQudGltZW91dCkNCj4gPiAJCXByaXYtPndkZC50aW1lb3V0ID0gMTsNCj4g
+PiB3b3VsZCBiZSBtb3JlIGFwcHJvcHJpYXRlLg0KPiA+IA0KPiANCj4gWWVzLiBHb29kIGNhdGNo
+LiBBY3R1YWxseSwgc2luY2UgbWF4X2h3X2hlYXJ0YmVhdF9tcyBpcyBzcGVjaWZpZWQsDQo+IGl0
+IGNhbiBhbmQgc2hvdWxkIGJlIGEgcmVhc29uYWJsZSBjb25zdGFudCAobGlrZSB0aGUgdXN1YWwg
+MzANCj4gc2Vjb25kcykuDQo+IEl0IGRvZXMgbm90IGFuZCBzaG91bGQgbm90IGJlIGJvdW5kIGJ5
+IG1heF9od19oZWFydGJlYXRfbXMuDQoNClRoYW5rcyBmb3IgY29uZmlybWluZyB0aGlzIEd1ZW50
+ZXIuIEknZCBiZXR0ZXIgYWRtaXQgSSBkaWRuJ3QNCnVuZGVyc3RhbmQgaG93IHRoZSBtYXhfaHdf
+aGVhcnRiZWF0X21zIHdvcmtzLg0KDQpJZiBJIG5vdyByZWFkIHRoZSBjb2RlIGNvcnJlY3RseSwg
+dGhlICJ3YXRjaGRvZyB3b3JrZXIiIHRha2VzIGNhcmUgb2YNCmZlZWRpbmcgZm9yIHNob3J0ZXIg
+cGVyaW9kcyB0aGFuIHRoZSAidGltZW91dCIgLSBhbmQgb25seSBzdG9wcw0KZmVlZGluZyBtYXhf
+aHdfaGVhcnRiZWF0X21zIGJlZm9yZSB0aW1lb3V0IGV4cGlyZXMgaWYgdXNlcmxhbmQgaGFzIG5v
+dA0KYmVlbiBmZWVkaW4gd2RnLiBUaGlzIGlzIHJlYWxseSBjb29sIGFwcHJvYWNoIGZvciBzaG9y
+dChpc2gpDQptYXhfaHdfaGVhcnRiZWF0X21zIGNvbmZpZ3VyYXRpb25zIGFzIHVzZXItc3BhY2Ug
+ZG9lcyBub3QgbmVlZCB0byBtZWV0DQoiUlQgcmVxdWlyZW1lbnRzIi4gV0RHIGZyYW1ld29yayBp
+cyBtdWNoIG1vcmUgYWR2YW5jZWQgdGhhdCBJIGtuZXcgOikNCkl0J3MgbmljZSB0byBsZWFybiEN
+Cg0KDQotLU1hdHRpDQoNCg==
