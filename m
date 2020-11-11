@@ -2,105 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 842662AF266
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:45:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A782AF282
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:48:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726756AbgKKNpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 08:45:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55700 "EHLO
+        id S1727112AbgKKNsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 08:48:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726274AbgKKNpB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:45:01 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84AF2C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:45:01 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id j205so3201317lfj.6
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:45:01 -0800 (PST)
+        with ESMTP id S1726854AbgKKNrd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:47:33 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D071C0613D1;
+        Wed, 11 Nov 2020 05:47:31 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id v144so3157593lfa.13;
+        Wed, 11 Nov 2020 05:47:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=o4pDcFw9HNJ9VZhUYbY68fNV22nURMzm7OHDvRMvP4Y=;
-        b=BB2uPR6fQqjMPJ9SwsH0x+Brfy1dMCoYWH1zHacL431t1vv+BdhvfMB9Wvp9PkrwW+
-         ep+dxiAsL5ID/rg44XJGqtGOkWop43BCGTgzOH3QVSdOOUEShCRXnWvkcHlmd3hI+VAD
-         cApW/F1BgwtK5+MVx5b4p0rs6Ob1EFM5L9/bcxM5CPCBwUlzbTo6rgS7o+mStsVQkpL+
-         0JIDgYlbkSLudu6i2pltrxb9bfEE3kTc+AAUSo/PsPNo3lGogNoOD/OsaZUBecHSCo4L
-         itsgwts2KQq5kojVcqwnElXClMzF+JbWpfuQKkf3YzBJjP7YAN+2M0bEAlIVldx3KD8J
-         vB/Q==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YBHMNmAOhYdHvBHjnStemujfpU3IXRUzuSHXrC3Zax0=;
+        b=ZZQkLQM8NNjkbIRP3s5mXJa/90H1xB+lYkX/FspeQruHDmbVRV32zpRoG5PJB4T5Ji
+         Mb9l+3zYUIWpTm4DQfWkVsVvA8qHcYG3L8t0x88ydanm8ljeX+69uR4szGvVc+fLJBuu
+         dZ0yDkM4q3jgjaStXdPuQIq5unESa/+e8OevoKIA4MCsc4MpPFaxDg94R5y2lABk/dFe
+         pw3JWoTP9f9xXO8JW3le5NeP6K5dvvmdPh6x77yoTaqVxQ053ldLOoQlvlH/PGi16xgn
+         RGlEtHpgKrbgCjfvzmc/cQDOXsoEHTAlSCU9rF2ubcvUKJZgZYcL06GDY3yG0qC+KQyY
+         BqAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=o4pDcFw9HNJ9VZhUYbY68fNV22nURMzm7OHDvRMvP4Y=;
-        b=Bb5BjBHc2p0HBGm4IILRKqJUdVcBaAooiVD6yld0rAzUwln0gCiUDr0MEFOKdw9Ax/
-         0Puom/4Ppj69K+bHXfLG+aNmiVbhP7dyEbpDXLfB0iiZ29h/E0AV/6BsD9am3sZfB2Zu
-         24PSe9ODnxqgp8ExgRZSIVNRosyHkUKBc+7HtId2epiKk4voLchC2XKMo4veDfiCWKxN
-         MGUaGSMxjB8e/5eJPeV65mHzhpHmmHtvYMRQPrPfVEQXcBXNkSYsmyFiLh89X/F70t8o
-         RuTKokUZVZi06sLyCnjWtaIlg0aST9AvKiUX9QQv11UVaa2/PbC1Dfz+PAPFP11xRmRs
-         gQiw==
-X-Gm-Message-State: AOAM530vYnkZxZB0fzoTLrmifSL3fEHolCu8mJLkFqKkk08M5sR9pob7
-        t0O55hYJEtsUJlG6QvyTkDe0Esxihsab8c3dp7MaGw==
-X-Google-Smtp-Source: ABdhPJywsbPI2EsBy4HIDztooOemIt50wpEyeH0GKUIy1cOETjKXheDLol+ph4p9W432swIOJeQZuMQvZTy+ZimRQ9o=
-X-Received: by 2002:a19:546:: with SMTP id 67mr628485lff.502.1605102300001;
- Wed, 11 Nov 2020 05:45:00 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YBHMNmAOhYdHvBHjnStemujfpU3IXRUzuSHXrC3Zax0=;
+        b=MKSUhNBpCUDgOFYRFN3S5dG7LyXZznQZ29tlha3/iSC5TyFPHyvTE1unCxRA575KZ/
+         o4rWDzeEi2FLDQHJtry7tLyJL95pFAlEy/0/IKpNM81Ucj7Z0fDfIcqhIRdrWsEgwFRn
+         SGcYKPT/EAmUBucZpTHPqqlCIIAQL7KKTlGJn2IIfVdxbb6FV/wTwP+99snLLccNKmBV
+         EHm2745m7txfNOc0dzmt9m2dbQqD+QdtDsqU0leQoBrCpharC224Rpc2XRqTajvUVCBH
+         RuSjnW8w1a9lYXflQ/KamHN7Z8C9jBl5b10ObfQA/KbM0Iixl9xHBqpG7uuVb9BzjjmV
+         LAqw==
+X-Gm-Message-State: AOAM531NLWLUpKrzAioB6ulEbtXHLATMFF30Q08Hd4C/IYBrGwG1uS5H
+        Y4+Hs/doHyxGsx4lkQNHVlEioZcBtis=
+X-Google-Smtp-Source: ABdhPJz1/b/zPAQ3KPPZ/x+HTmaWiJjAvrsEWiPZes7SQg69AfTivBIpYr5HUtTo/l2OpD232Rt3gg==
+X-Received: by 2002:ac2:57c7:: with SMTP id k7mr10005249lfo.20.1605102449554;
+        Wed, 11 Nov 2020 05:47:29 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
+        by smtp.googlemail.com with ESMTPSA id 16sm223765lfk.186.2020.11.11.05.47.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Nov 2020 05:47:28 -0800 (PST)
+Subject: Re: [PATCH] ARM: tegra: Populate OPP table for Tegra20 Ventana
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20201111103847.152721-1-jonathanh@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <7e40cd3e-7c34-c9a9-bf00-ba7d507a2d6b@gmail.com>
+Date:   Wed, 11 Nov 2020 16:47:27 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-References: <20201111011417.2275501-1-linus.walleij@linaro.org> <20201111110412.GW6899@valkosipuli.retiisi.org.uk>
-In-Reply-To: <20201111110412.GW6899@valkosipuli.retiisi.org.uk>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 11 Nov 2020 14:44:48 +0100
-Message-ID: <CACRpkdZ8a_pPiTPWKgy+wWH186=TczCLGzTfW0x1addHK_TbgA@mail.gmail.com>
-Subject: Re: [PATCH 1/2 v3] dt-bindings: leds: Add DT binding for Richtek RT8515
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        newbytee@protonmail.com, Stephan Gerhold <stephan@gerhold.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201111103847.152721-1-jonathanh@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 12:05 PM Sakari Ailus <sakari.ailus@iki.fi> wrote:
-> On Wed, Nov 11, 2020 at 02:14:16AM +0100, Linus Walleij wrote:
+11.11.2020 13:38, Jon Hunter пишет:
+> Commit 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver
+> (Tegra30 supported now)") update the Tegra20 CPUFREQ driver to use the
+> generic CPUFREQ device-tree driver. Since this change CPUFREQ support
+> on the Tegra20 Ventana platform has been broken because the necessary
+> device-tree nodes with the operating point information are not populated
+> for this platform. Fix this by updating device-tree for Venata to
+> include the operating point informration for Tegra20.
+> 
+> Fixes: 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver (Tegra30 supported now)")
+> Cc: stable@vger.kernel.org
+> 
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  arch/arm/boot/dts/tegra20-ventana.dts | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/tegra20-ventana.dts b/arch/arm/boot/dts/tegra20-ventana.dts
+> index b158771ac0b7..055334ae3d28 100644
+> --- a/arch/arm/boot/dts/tegra20-ventana.dts
+> +++ b/arch/arm/boot/dts/tegra20-ventana.dts
+> @@ -3,6 +3,7 @@
+>  
+>  #include <dt-bindings/input/input.h>
+>  #include "tegra20.dtsi"
+> +#include "tegra20-cpu-opp.dtsi"
+>  
+>  / {
+>  	model = "NVIDIA Tegra20 Ventana evaluation board";
+> @@ -592,6 +593,16 @@ clk32k_in: clock@0 {
+>  		#clock-cells = <0>;
+>  	};
+>  
+> +	cpus {
+> +		cpu0: cpu@0 {
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +		};
+> +
+> +		cpu@1 {
+> +			operating-points-v2 = <&cpu0_opp_table>;
+> +		};
+> +	};
+> +
+>  	gpio-keys {
+>  		compatible = "gpio-keys";
+>  
+> 
 
-> > Add a YAML devicetree binding for the Richtek RT8515
-> > dual channel flash/torch LED driver.
+This could be wrong to do because CPU voltage is fixed to 1000mV in
+Ventana's DT, are you sure that higher clock rates don't require higher
+voltages? What is the CPU process ID and SoC speedo ID on Ventana?
 
-> > +  led:
-> > +    type: object
-> > +    $ref: common.yaml#
-> > +    properties:
-> > +      function: true
-> > +      color: true
-> > +      flash-max-timeout-us: true
->
-> Don't you also need flash-max-microamp and led-max-microamp? As the maximum
-> current for the LED may well be less than the driver can provide.
+You could easily hook up CPU voltage scaling, please see acer-500 DT and
+patch [1] for examples of how to set up regulators in DT. But then it
+shouldn't be a stable patch.
 
-I wish I could add that.
-
-The problem is that we don't know anything about the microamps
-for this Richtek component.
-
-There is no public datasheet available. I have asked Richtek, they
-answered as follows:
-
-"RT8515 had EOL already.
- So, we couldn't provide the datasheet.
- Thank you."
-
-I do not quite understand their answer but they at least answered.
-
-I have a few out-of-tree drivers, from Asus Zenfone, and from the
-numerous Samsung mobiles using this. None of the outoftree code
-makes any reference to the actual microamperes.
-
-They make a setting from 1..100 "units" and that is handled by some
-kind of userspace that I do not have the code for. If someone knows
-of a source code for this userspace I would be happy to take a look
-so we can at least figure out if it is linear.
-
-Yours,
-Linus Walleij
+[1]
+https://patchwork.ozlabs.org/project/linux-tegra/patch/20201104234427.26477-27-digetx@gmail.com/
