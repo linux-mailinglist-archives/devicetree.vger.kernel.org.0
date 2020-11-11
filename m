@@ -2,74 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D9CA2AF55D
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F37F52AF5A0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:59:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727446AbgKKPr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 10:47:28 -0500
-Received: from mail.kernel.org ([198.145.29.99]:42776 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726274AbgKKPr2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 10:47:28 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4D8A92072C;
-        Wed, 11 Nov 2020 15:47:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605109647;
-        bh=m1RD4uBreG/nk+7WyTBCXLAvl3XYethrGPLEyqQk6SQ=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=STeXlcSm0ejPuQEanT1pBulB1iXwiCbiEAvdaGUbYvt7eyllglcKJOKaKuw6LuB22
-         01zLtXZE7Q3fHb2JUS17ngT3pw9Be4GjV4eieyhgk9lHGIsbid1WT9DyTzl8eDMO25
-         GXpchpOOghwjZgPUyUQieuYirwPkWHmCBjkzadpo=
-Date:   Wed, 11 Nov 2020 15:47:12 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Shane Chien <shane.chien@mediatek.com>
-Cc:     wsd_upstream@mediatek.com, jiaxin.yu@mediatek.com,
-        chipeng.chang@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <1605068096-12587-1-git-send-email-shane.chien@mediatek.com>
-References: <1605068096-12587-1-git-send-email-shane.chien@mediatek.com>
-Subject: Re: [PATCH] ASoC: Remove mt6359_platform_driver_remove
-Message-Id: <160510963229.12073.13028752584402276909.b4-ty@kernel.org>
+        id S1727443AbgKKP7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 10:59:34 -0500
+Received: from fallback10.mail.ru ([94.100.178.50]:44396 "EHLO
+        fallback10.mail.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727457AbgKKP7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 10:59:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
+        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From; bh=aBdXLMT74r6zkeVrrJgveQyIXIMrSCl4JXoVRSaRxYg=;
+        b=e0FKtfmY/OTPzjftseAqFZtdA6KQLzeBtME8P0tV2zd8nN7qGkOss49oopAaiWEXj2/0vMPTAxX9m0TRM1KXOBjKvteGCjgSF5XdO3Mk58LkgyZanGen4lmGTgmlFG+ypD1vQdHQ69HHyAsVyR7Z3Lctzt+XYCtCoB1petJrgXI=;
+Received: from [10.161.64.43] (port=50568 helo=smtp35.i.mail.ru)
+        by fallback10.m.smailru.net with esmtp (envelope-from <shc_work@mail.ru>)
+        id 1kcsWv-0004WQ-LJ; Wed, 11 Nov 2020 18:59:30 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
+        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=aBdXLMT74r6zkeVrrJgveQyIXIMrSCl4JXoVRSaRxYg=;
+        b=fMjfA7WnZbgrYyc4tnazg7c7SWqeeiOyoH1PUyJQHBSkGY0zJRCv2R0kh1LOfYEA4bPtG9QXnfus233q9/TawiKGnR1NO4jnhe/v+fl+i/e+guMl6V6TLaOXtg6QWda/Jb4B/EoY165SsQapmkximxj5khboyf7+2MgrZ31wh6g=;
+Received: by smtp35.i.mail.ru with esmtpa (envelope-from <shc_work@mail.ru>)
+        id 1kcsWq-0003hR-Eo; Wed, 11 Nov 2020 18:59:24 +0300
+From:   Alexander Shiyan <shc_work@mail.ru>
+To:     linux-omap@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexander Shiyan <shc_work@mail.ru>
+Subject: [PATCH] ARM: dts: am335x: Fix comments for AM335X_PIN_GPMC_WPN pin in GPIO mode
+Date:   Wed, 11 Nov 2020 18:59:10 +0300
+Message-Id: <20201111155910.13728-1-shc_work@mail.ru>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-7564579A: B8F34718100C35BD
+X-77F55803: 4F1203BC0FB41BD94AF7078E5631C70217AEEF0C535DF74E33C953CE125805A500894C459B0CD1B905DE85E9F650E6E682FAF09B7934798414FD2C451A344CC20F40345E41D45524
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE76256B078082242EEEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637F54795A05D74C8838638F802B75D45FF5571747095F342E8C7A0BC55FA0FE5FC1E70F93F28DE8F2FDBB4CB3F3B5541DD90CD140A2BADD870389733CBF5DBD5E9D5E8D9A59859A8B652D31B9D28593E51CC7F00164DA146DA6F5DAA56C3B73B2321F2F7C9D6F236AF3AA81AA40904B5D9A18204E546F3947CC8A976F1B976E0ABBA3038C0950A5D36C8A9BA7A39EFB7668729DE7A884B61D1BA3038C0950A5D36D5E8D9A59859A8B651CA34BD62E700AA76E601842F6C81A1F004C90652538430CDED94BCBF13EF3B93EC92FD9297F6718AA50765F7900637571EAFDAACF43475A7F4EDE966BC389F395957E7521B51C24C7702A67D5C33162DBA43225CD8A89F890A246B268E114E57739F23D657EF2BB5C8C57E37DE458B4C7702A67D5C3316FA3894348FB808DBA1CE242F1348D5363B503F486389A921A5CC5B56E945C8DA
+X-B7AD71C0: 14C14B24D00AF5AC321EF223B8115265C77432E3705FE0C78E1CD14B953EB46DE9612696C3A85E77355D89D7DBCDD132
+X-C8649E89: CA6993954054F6283481399E65DAFA2CE1EB7B3EDF8343E68916CE8CCAA8A54ED62046F597BFFCA5
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojctyB8EdIch5nOPK5GBS26A==
+X-Mailru-Sender: 3BC6B8CA5785035CFA3B5901239938C88E7E8148BE7714F6EA1F80C4D3C083C220E83EB45F2FDE1F6B3B2BD4812BFD4DC77752E0C033A69E93554C27080790AB3B25A7FBAAF806F0AE208404248635DF
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B4A5EAA273AC3F3BA17C01F372D9D4960050C07392B76182F668F3CF0E9FE49B69BD0A8F4BFAE735A1B3E604C713BF4572534D822186C54774B61AF2FA7485086D
+X-7FA49CB5: 0D63561A33F958A5CC1D3F28F448E31799F5FFA661B2F35EDA71843D86CBE2818941B15DA834481F8AA50765F790063778FF21EF0A487A47389733CBF5DBD5E9B5C8C57E37DE458BC2E450F102A9CDD0D32BA5DBAC0009BE9E8FC8737B5C2249A3B1E9A7D1F2C5F276E601842F6C81A12EF20D2F80756B5FDA63EEEA5E5E9D65089D37D7C0E48F6CA18204E546F3947C890A246B268E114E57739F23D657EF2BC8A9BA7A39EFB7666BA297DBC24807EA089D37D7C0E48F6C8AA50765F7900637571EAFDAACF43475EFF80C71ABB335746BA297DBC24807EA27F269C8F02392CDC58410348177836E285124B2A10EEC6C00306258E7E6ABB4E4A6367B16DE6309
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojctyB8EdIch5h0S32k8UNjA==
+X-Mailru-MI: 800
+X-Mailru-Sender: A5480F10D64C90059EC859477DBBED74D841A95E25E1B0100FF97AF8CE61F16BE8285F0AB37D98A73786569BE0651809D50E20E2BC48EF5AFF3C6AF3E48A3A73EAB4BC95F72C04283CDA0F3B3F5B9367
+X-Mras: Ok
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Nov 2020 12:14:56 +0800, Shane Chien wrote:
-> remove mt6359_platform_driver_remove due to it is
-> useless.
+According to AM335x datasheet pin AM335X_PIN_GPMC_WPN in MODE7 works as
+GPIO0[31].
 
-Applied to
+Signed-off-by: Alexander Shiyan <shc_work@mail.ru>
+---
+ arch/arm/boot/dts/am335x-baltos.dtsi   | 2 +-
+ arch/arm/boot/dts/am335x-cm-t335.dts   | 2 +-
+ arch/arm/boot/dts/am335x-evm.dts       | 2 +-
+ arch/arm/boot/dts/am335x-igep0033.dtsi | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+diff --git a/arch/arm/boot/dts/am335x-baltos.dtsi b/arch/arm/boot/dts/am335x-baltos.dtsi
+index b7f64c7ba83d..3ea286180382 100644
+--- a/arch/arm/boot/dts/am335x-baltos.dtsi
++++ b/arch/arm/boot/dts/am335x-baltos.dtsi
+@@ -168,7 +168,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_ad5.gpm
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_ad6.gpmc_ad6 */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_ad7.gpmc_ad7 */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_wait0.gpmc_wait0 */
+-			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_30 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_31 */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)		/* gpmc_csn0.gpmc_csn0  */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)		/* gpmc_advn_ale.gpmc_advn_ale */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUTPUT, MUX_MODE0)		/* gpmc_oen_ren.gpmc_oen_ren */
+diff --git a/arch/arm/boot/dts/am335x-cm-t335.dts b/arch/arm/boot/dts/am335x-cm-t335.dts
+index c6fe9db660e2..36d963db4026 100644
+--- a/arch/arm/boot/dts/am335x-cm-t335.dts
++++ b/arch/arm/boot/dts/am335x-cm-t335.dts
+@@ -122,7 +122,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)
+-			/* gpmc_wpn.gpio0_30 */
++			/* gpmc_wpn.gpio0_31 */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)
+diff --git a/arch/arm/boot/dts/am335x-evm.dts b/arch/arm/boot/dts/am335x-evm.dts
+index 12dffccd1ffd..7c6f2c11f0e1 100644
+--- a/arch/arm/boot/dts/am335x-evm.dts
++++ b/arch/arm/boot/dts/am335x-evm.dts
+@@ -229,7 +229,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)
+-			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_30 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_31 */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUTPUT, MUX_MODE0)
+diff --git a/arch/arm/boot/dts/am335x-igep0033.dtsi b/arch/arm/boot/dts/am335x-igep0033.dtsi
+index c9f354fc984a..7ec23d47a429 100644
+--- a/arch/arm/boot/dts/am335x-igep0033.dtsi
++++ b/arch/arm/boot/dts/am335x-igep0033.dtsi
+@@ -70,7 +70,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)
+-			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_30 */
++			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_31 */
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)
+ 			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUTPUT, MUX_MODE0)
+-- 
+2.26.2
 
-Thanks!
-
-[1/1] ASoC: Remove mt6359_platform_driver_remove
-      commit: 6b0e12a5c668c6b77c3e6d6c55c3ae7ed8bf5bd5
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
