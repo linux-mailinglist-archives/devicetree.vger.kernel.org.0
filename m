@@ -2,151 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F3202AED29
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 10:16:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFAFD2AEDC4
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 10:30:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726636AbgKKJQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 04:16:41 -0500
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:36993 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726843AbgKKJQf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 04:16:35 -0500
-Received: by mail-ej1-f67.google.com with SMTP id f20so1784437ejz.4;
-        Wed, 11 Nov 2020 01:16:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=5GcEmhwwM9IRtfJDyYsg4AcdXZ2r4D6ZuT6XDfsXG3U=;
-        b=uhVIjLeSDfdQ0fMQ050R9E7mC1gLN30tzzbMbzceHbJ5JuErY2DL9VMulwhEHsSS4M
-         5DX3rp0X+WBRjGejgwTB0kwfJP3tsTa+kkKTqiZWsIKuagLfTxZj4AlDURx/tjRN7X8k
-         VWjm+fwGViTi+p37rQdvWYcUDxYfX5bI6tZ+z0Q6H6QgPeWiIGlJ44KKuZh2w03Xag+l
-         KAD67kOuDstQjFmFJwrrVqTgjCKyVDpCgdMGbk1fe3aTqQgeyW1FgHiNpSnLl7xMHCMx
-         bduG/gh4kiTEQY0KylL0a+SdN52m1QQL94+PyQhg9Wzb+83VNiVrHnWy6GkdkoqCGZV9
-         /ddQ==
-X-Gm-Message-State: AOAM531CSilfWTEXn/uTC2NCjlrdZ8jFp3vcfLOttms35w0j61a27Rk8
-        qvf8SCuJwPVuRii3g5WUQls=
-X-Google-Smtp-Source: ABdhPJwnk3jD93uxeY/uvOhBZvJMTv9+ToMcbWATfaaN/gyNNy295JDWNoeMCMqf8CBghVZn1l5k+Q==
-X-Received: by 2002:a17:906:7a11:: with SMTP id d17mr20705465ejo.153.1605086190784;
-        Wed, 11 Nov 2020 01:16:30 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id nd5sm597535ejb.37.2020.11.11.01.16.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 01:16:29 -0800 (PST)
-Date:   Wed, 11 Nov 2020 10:16:28 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Mathias Nyman <mathias.nyman@intel.com>,
-        Felipe Balbi <balbi@kernel.org>,
+        id S1726260AbgKKJ3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 04:29:50 -0500
+Received: from userp2120.oracle.com ([156.151.31.85]:56398 "EHLO
+        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725986AbgKKJ3t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 04:29:49 -0500
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+        by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0AB99meS132651;
+        Wed, 11 Nov 2020 09:28:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=5jkDrh9VUno5wDztTu7VDqalYM6QsS2FNOf4jWeicfM=;
+ b=KF1FscfSPqR/jGnEnLVwcEnqGoTHFz4Z2rOgEGN8IMIFxCLnarNmEf6yLZt+ubgc38ju
+ FF6+4F5J68sfFBDifPqGnH5V3uPfk4w6FD5FUr0QS2M/Zdgwq3QISc6uHMw4K+crIWBZ
+ ONnZvtCoT0yED3aryMEFwF8QMGQ8kCWuXGE+ZzejvBwaV98VPCaKj4q8/Jm2eCyVb7sS
+ 0immoY8DntMHZsgAYS5RiANXtfW+vb+GUtthRzQTWbtXxy8A/ct0GwGlCNpnAmiN35xV
+ +MFF8KI2mIgs2JJHTTFMaUrCEPh7GBQi8YyI0SPwXnsO/TJHMLq8dD9Hgr9flHokCiDv Zg== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+        by userp2120.oracle.com with ESMTP id 34p72ep4py-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 11 Nov 2020 09:28:56 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 0AB9BEYR035947;
+        Wed, 11 Nov 2020 09:28:55 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by aserp3030.oracle.com with ESMTP id 34p55pqrs2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 11 Nov 2020 09:28:55 +0000
+Received: from abhmp0015.oracle.com (abhmp0015.oracle.com [141.146.116.21])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 0AB9Sllj029705;
+        Wed, 11 Nov 2020 09:28:47 GMT
+Received: from kadam (/41.57.98.10)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Wed, 11 Nov 2020 01:28:47 -0800
+Date:   Wed, 11 Nov 2020 12:28:32 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Peter Chen <Peter.Chen@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        dri-devel@lists.freedesktop.org,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        devel@driverdev.osuosl.org, linux-samsung-soc@vger.kernel.org,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-media@vger.kernel.org,
+        linux-pwm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-tegra@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 10/18] dt-bindings: usb: Convert DWC USB3 bindings to
- DT schema
-Message-ID: <20201111091628.GC4050@kozik-lap>
-References: <20201111090853.14112-1-Sergey.Semin@baikalelectronics.ru>
- <20201111090853.14112-11-Sergey.Semin@baikalelectronics.ru>
+        linux-usb@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v1 11/30] drm/tegra: dc: Support OPP and SoC core voltage
+ scaling
+Message-ID: <20201111092832.GI29398@kadam>
+References: <20201104234427.26477-1-digetx@gmail.com>
+ <20201104234427.26477-12-digetx@gmail.com>
+ <20201110202945.GF2375022@ulmo>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201111090853.14112-11-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201110202945.GF2375022@ulmo>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9801 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 spamscore=0 phishscore=0
+ mlxlogscore=999 mlxscore=0 malwarescore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2011110051
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9801 signatures=668682
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 mlxlogscore=999 mlxscore=0
+ malwarescore=0 suspectscore=0 lowpriorityscore=0 adultscore=0 phishscore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 clxscore=1011
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2009150000
+ definitions=main-2011110051
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 12:08:45PM +0300, Serge Semin wrote:
-> DWC USB3 DT node is supposed to be compliant with the Generic xHCI
-> Controller schema, but with additional vendor-specific properties, the
-> controller-specific reference clocks and PHYs. So let's convert the
-> currently available legacy text-based DWC USB3 bindings to the DT schema
-> and make sure the DWC USB3 nodes are also validated against the
-> usb-xhci.yaml schema.
+On Tue, Nov 10, 2020 at 09:29:45PM +0100, Thierry Reding wrote:
+> > +	err = dev_pm_opp_of_add_table(dc->dev);
+> > +	if (err) {
+> > +		dev_err(dc->dev, "failed to add OPP table: %d\n", err);
+> > +		goto put_hw;
+> > +	}
+> > +
+> > +	err = devm_add_action(dc->dev, tegra_dc_deinit_opp_table, dc);
+> > +	if (err)
+> > +		goto remove_table;
 > 
-> Note we have to discard the nodename restriction of being prefixed with
-> "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
-> are supposed to be named as "^usb(@.*)".
+> Do these functions return positive values? If not, I'd prefer if this
+> check was more explicit (i.e. err < 0) for consistency with the rest of
+> this code.
 > 
-> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> 
-> ---
-> 
-> Changelog v2:
-> - Discard '|' from the descriptions, since we don't need to preserve
->   the text formatting in any of them.
-> - Drop quotes from around the string constants.
-> - Fix the "clock-names" prop description to be referring the enumerated
->   clock-names instead of the ones from the Databook.
-> 
-> Changelog v3:
-> - Apply usb-xhci.yaml# schema only if the controller is supposed to work
->   as either host or otg.
-> 
-> Changelog v4:
-> - Apply usb-drd.yaml schema first. If the controller is configured
->   to work in a gadget mode only, then apply the usb.yaml schema too,
->   otherwise apply the usb-xhci.yaml schema.
-> - Discard the Rob'es Reviewed-by tag. Please review the patch one more
->   time.
-> ---
->  .../devicetree/bindings/usb/dwc3.txt          | 125 --------
->  .../devicetree/bindings/usb/snps,dwc3.yaml    | 303 ++++++++++++++++++
->  2 files changed, 303 insertions(+), 125 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
->  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
-> deleted file mode 100644
-> index d03edf9d3935..000000000000
-> --- a/Documentation/devicetree/bindings/usb/dwc3.txt
-> +++ /dev/null
-> @@ -1,125 +0,0 @@
-> -synopsys DWC3 CORE
-> -
-> -DWC3- USB3 CONTROLLER. Complies to the generic USB binding properties
-> -      as described in 'usb/generic.txt'
-> -
-> -Required properties:
-> - - compatible: must be "snps,dwc3"
-> - - reg : Address and length of the register set for the device
-> - - interrupts: Interrupts used by the dwc3 controller.
-> - - clock-names: list of clock names. Ideally should be "ref",
-> -                "bus_early", "suspend" but may be less or more.
-> - - clocks: list of phandle and clock specifier pairs corresponding to
-> -           entries in the clock-names property.
-> -
-> -Exception for clocks:
-> -  clocks are optional if the parent node (i.e. glue-layer) is compatible to
-> -  one of the following:
-> -    "cavium,octeon-7130-usb-uctl"
-> -    "qcom,dwc3"
-> -    "samsung,exynos5250-dwusb3"
-> -    "samsung,exynos5433-dwusb3"
-> -    "samsung,exynos7-dwusb3"
-> -    "sprd,sc9860-dwc3"
-> -    "st,stih407-dwc3"
-> -    "ti,am437x-dwc3"
-> -    "ti,dwc3"
-> -    "ti,keystone-dwc3"
-> -    "rockchip,rk3399-dwc3"
-> -    "xlnx,zynqmp-dwc3"
 
-What happened with this part of dtschema? It sees you removed it.
+Isn't it the other way around?  It's only when the check is explicitly
+for "if (ret < 0)" that we have to wonder about positives. If the codes
+says "if (ret)" then we know that it doesn't return positive values and
+every non-zero is an error.
 
-Best regards,
-Krzysztof
+In the kernel "if (ret)" is way more popular than "if (ret < 0)":
+
+    $ git grep 'if (\(ret\|rc\|err\))' | wc -l
+    92927
+    $ git grep 'if (\(ret\|rc\|err\) < 0)' | wc -l
+    36577
+
+And some of those are places where "ret" can be positive so we are
+forced to use the "if (ret < 0)" format.
+
+Checking for "if (ret)" is easier from a static analysis perspective.
+If it's one style is used consistently then they're the same but when
+there is a mismatch the "if (ret < 0) " will trigger a false positive
+and the "if (ret) " will not.
+
+	int var;
+
+	ret = frob(&var);
+	if (ret < 0)
+		return ret;
+
+Smatch thinks positive returns are not handled so it complains that
+"var can be uninitialized".
+
+regards,
+dan carpenter
+
