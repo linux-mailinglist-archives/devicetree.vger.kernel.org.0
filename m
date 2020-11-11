@@ -2,118 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9F92AF9BA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:27:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DC962AF9BD
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:27:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725860AbgKKU12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 15:27:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33622 "EHLO
+        id S1726477AbgKKU1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 15:27:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726150AbgKKU12 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:27:28 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3A82C0613D6
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 12:27:27 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id r9so4970660lfn.11
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 12:27:27 -0800 (PST)
+        with ESMTP id S1726150AbgKKU1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:27:38 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD94C0613D1;
+        Wed, 11 Nov 2020 12:27:38 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id w24so3550169wmi.0;
+        Wed, 11 Nov 2020 12:27:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=XZmfGtRxDCHjyRL+yjTXA76PNCz6+Ohv5RBOW8kx/ik=;
-        b=J2QS6vF6KKwZh4DdstPZSqvzJvRRUIk8iVfGCsPw4jmnYcBPof34if+fp8wU5qgR7n
-         B1leiB+GaLRtBXWU+GMGB4LOOPcERIWw/4E18CQsRifKX+czjCE9LXUtbx6UxqMkfc/s
-         lzhrRkfjQ7jh/E9cz8yA4GHeHKUvi8+wtaihCxo1DFPy6dm3ObF1miQgSDRuv87NO11q
-         0+HcFmj081oow/sG1YDFgyKAesZxfRcP3o2lwWVlMggcl+IZT15+XC29Og8JXosTV6Ye
-         RGai6aq028QDpT9md1yj1skwVU8cf458KwIDgxgCG4Zg5JfifqKcRcnNkJg3gburtx80
-         JdvQ==
+         :content-disposition:in-reply-to:user-agent;
+        bh=3SSKXZnWdwq0DOqj159XH5NCn8HYxBH6TPSbcPh2Y1Q=;
+        b=D8+RxB+ee3V7rv4D9DbN3BymYsiV4i6V7xi+ZM2FKjD7wr3uriBDJ1aWDaLRuXKfuo
+         pz4zUWwhOAe3AZ4PAq70bFaNObbjiNqv9MHgkBnPNiDOzbWx8e8WXj4f4nEiEgbN3R/t
+         ezV6DWXhyT5houkGSgpws1XgpEm9yuLVglRUFx/JA/j2f37BN2ABU9CP+H8C/zRgwU96
+         oKRymmI0jovLiUT0CTYEkPM6L4fllNn7Hi/waf6HD7JSdX8sv2cSiRpegYvQAOiKaoY4
+         tOmQ47ikhmOWNS96lHlEUl4kC2Fvh7Z7SdnUveo5zfWqokJeYkHqp0B2nx1MapD+xE7O
+         GUzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=XZmfGtRxDCHjyRL+yjTXA76PNCz6+Ohv5RBOW8kx/ik=;
-        b=mNicHXS3JLFKj7K1w22ataFov8zt2B/joImiKoTEZrkN5eZYHwkB++p3kCMAN0YzT4
-         DQ4xTtSMpkjXT6Gvk7DPi1Qbbuz94JUkYvjh1i+RIfKq97WKsMNo2nSvteC3egztpfjr
-         FHZEsK4s9+mY2f7QwNbLh2acDsK/aj51pvvHbcQME7X/78rRAne/exRwT0dCtr1DoBV6
-         Pj/RLw69HJySuGM8uv9bTNkmOu+ymaKfepudRutUUOQwNsPMKzi+g7Q2iuNuFzeRYzYu
-         4yM8O9F/b+e1/RpRrAJNlpIO8mI96/YBgStSfw6DP0HDPUViQRY+hcFMlrwnSrITY4k9
-         NYZw==
-X-Gm-Message-State: AOAM530RXkKMqku6RBuyuNbcuoa2DiglsjNLZUFXXN876kJ10hPNymgA
-        zsfTloQ3ZMp5ujkkqgu9vma0kw==
-X-Google-Smtp-Source: ABdhPJzUMfSbw17UCSxKUFEJXL+AvwOT7GJ0qJj0qC6GzgA1i8WaodOoYPI9Jo3JuQq7OFnETXZHAQ==
-X-Received: by 2002:a19:cc16:: with SMTP id c22mr2872720lfg.75.1605126446071;
-        Wed, 11 Nov 2020 12:27:26 -0800 (PST)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id k2sm331639lfm.20.2020.11.11.12.27.24
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3SSKXZnWdwq0DOqj159XH5NCn8HYxBH6TPSbcPh2Y1Q=;
+        b=Y3Ksb5oluh0MmzbkyAtTdCZLX8Az6l2nLcT8GwEI6JCR7tiE7Q5aXYZDE6+od6NwBn
+         rphbWqRXqkwQFPpReYFEtMEnWmEHGAfzkf86zIc1HqpzKWoDk5m5n5itzxshugaSWU88
+         NTFZERWb3uPN1jDniPNicpMEaP9V65W5mp9k3+qPyOlBEA7lTDTYzr7YhUATUHyQaAg5
+         ubPeXbA+OiojjZnAP9RL1q+jrY85YpxDNXADl7mS1UMR2GGQ0jaBbmn32cuLwWLOVaGU
+         fShIbF6DSGUlgH6AXWIPcptEiThb846aJqpjjKDQgMs8KyFj5G+mIsv+OZ/q6g1H670w
+         vS5g==
+X-Gm-Message-State: AOAM532q1zr3kkWd4B5gTxxtnTNnCeYTaP2otTm1mxZQey1nPyoWPiWe
+        +4Q03+vV4v0XymC9dUDa/pw=
+X-Google-Smtp-Source: ABdhPJyB+uwh0qX7g9Q8P68FrQC1zOZSo+JKQ/sfk5Q6Q3JRAfHsdr79q/u2RA6gPbHDLQLg0VjcOQ==
+X-Received: by 2002:a1c:df04:: with SMTP id w4mr5906338wmg.3.1605126457267;
+        Wed, 11 Nov 2020 12:27:37 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id f5sm3964460wrg.32.2020.11.11.12.27.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 12:27:24 -0800 (PST)
-Date:   Wed, 11 Nov 2020 21:27:24 +0100
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 0/2] dt-bindings: timer: renesas: tmu: Document
- r8a774e1 and
-Message-ID: <20201111202724.GB667473@oden.dyn.berto.se>
-References: <20201110162014.3290109-1-geert+renesas@glider.be>
+        Wed, 11 Nov 2020 12:27:36 -0800 (PST)
+Date:   Wed, 11 Nov 2020 21:27:34 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org, lee.jones@linaro.org,
+        u.kleine-koenig@pengutronix.de
+Subject: Re: [PATCH 0/5] Add PWM support for MT8183 EVB
+Message-ID: <20201111202734.GL6125@ulmo>
+References: <20201019140705.1518822-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="1X+6QtwRodzgDPAC"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201110162014.3290109-1-geert+renesas@glider.be>
+In-Reply-To: <20201019140705.1518822-1-fparent@baylibre.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-Thanks for your work.
+--1X+6QtwRodzgDPAC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2020-11-10 17:20:12 +0100, Geert Uytterhoeven wrote:
-> 	Hi Daniel, Thomas,
-> 
-> This patch series picks up missing Device Tree binding updates for the
-> Renesas Timer Unit (TMU), and converts the bindings to json-schema.
-> 
-> Thanks for applying!
+On Mon, Oct 19, 2020 at 04:07:00PM +0200, Fabien Parent wrote:
+> This patch series adds PWM to MT8183 EVB. MT8183 has 4 PWM channels.
+>=20
+> Fabien Parent (5):
+>   dt-bindings: pwm: pwm-mediatek: Add documentation for MT8183 SoC
+>   pwm: pwm-mediatek: always use bus clock
+>   pwm: pwm-mediatek: Add MT8183 SoC support
 
-For the whole series,
+Applied these three patches, thanks.
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Thierry
 
-> 
-> Geert Uytterhoeven (1):
->   dt-bindings: timer: renesas: tmu: Convert to json-schema
-> 
-> Marian-Cristian Rotariu (1):
->   dt-bindings: timer: renesas: tmu: Document r8a774e1 bindings
-> 
->  .../devicetree/bindings/timer/renesas,tmu.txt | 49 ---------
->  .../bindings/timer/renesas,tmu.yaml           | 99 +++++++++++++++++++
->  2 files changed, 99 insertions(+), 49 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/timer/renesas,tmu.txt
->  create mode 100644 Documentation/devicetree/bindings/timer/renesas,tmu.yaml
-> 
-> -- 
-> 2.25.1
-> 
-> Gr{oetje,eeting}s,
-> 
-> 						Geert
-> 
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
-> 							    -- Linus Torvalds
+--1X+6QtwRodzgDPAC
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-Regards,
-Niklas Söderlund
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+sSTYACgkQ3SOs138+
+s6GuAw//TXgbWEb85bt+2X/j8kLwdVl7gGV7DCzKg+8qvuaJCjOYYKwsQWv4Q3KI
+ey+W8EYrE/hAm7y8o1JYX5aMeO+FWoyt16jWjZnqGdmP6vyOguxU8HIgPoctQUE9
+4BTMWOZNCRyi55/HGUZKgpzn0nPrvEr8zx1gyCqtfeH4YRsQ7Vsgnze88bbmkp5j
+RHzm9p/77+/zHPro00KeOvUuWApXNwR9Xw8BHOK9MZvgIAXZboXP4V7Sjs3eXGLh
+5gfe5j6izeKvmGNAGb9Rm2J1sNhSKVYh0dNCzxJyvXmN5IWJhBjbnl1GobWl81ef
+LjqncsNIMp8g+p95jt5zxJ7TCpE59RzlS+FW31fgTLe4tw3CD5EcM1ibMHYdAR4x
+s2aLEN2USunPS0FnDIHY6d+s/6ngv5alyukouLoGnQXZhmm2Xkbe5BZzj22/mGq7
+ei93TERbuy5NOAJsPol7+BAbKFL9pYELQXVYBlgCY9sOat3JixGiEo9mhoKvvQPP
+aKVllQa+K6YlW1LVtX8QetjCdNnKvwj3iuKNT4aNbZg9Crk97hXFcOKbHPWp++GS
+WYsVnvo67BZy4C8CkApI25GfuP7kh+sXgv9G2F06pgZKCSMOQl+xd+tGO1tQbh2e
+a6e07/DtAnnXylT2zhXOgqM1zIpOYwZ+EusOpKU3mB8QsQ6d/PU=
+=GlhE
+-----END PGP SIGNATURE-----
+
+--1X+6QtwRodzgDPAC--
