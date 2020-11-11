@@ -2,129 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E0FF2AF1F1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:22:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 398042AF1FE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 14:24:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726149AbgKKNWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 08:22:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52102 "EHLO
+        id S1726412AbgKKNYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 08:24:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725912AbgKKNWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:22:00 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63755C0613D1;
-        Wed, 11 Nov 2020 05:22:00 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id 11so2068986ljf.2;
-        Wed, 11 Nov 2020 05:22:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=9r8b49v3ljRgTZvFAK4d4bWtQHAXArk3oNTb3u4fiLk=;
-        b=Uj1A0CfbE2XeLHe3CdC7MeMYY0nAH9W5JXxtsE8KohRUij0Es6UpaHYgTSKcmRncl9
-         lzwd+FfeMJ0+f1sFzz47qsO+XzzHkwNW6IoK65hYUsifHPOJzhXbY2vm3Q/vmiJejbUC
-         SWJKePFV3pigYGgp0CeESneg1CAObVqHpXs2MkIPwApV4s4QV61YsWqkqMGJwnFjSBkl
-         q0sKJRKTq0c+E3i5QHDqmSKx6B7LH5cYOPPaGvWL7ei3GqKlTbCeLnT8Mg7lBEhe3hul
-         ANoHR8qJO4zWa8NBOth12VbLxl8FzSOrf+6vVpKGbDZHg9NjgGDRErjBcF+CzweJOw7M
-         oTjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=9r8b49v3ljRgTZvFAK4d4bWtQHAXArk3oNTb3u4fiLk=;
-        b=hyPKCdzgQa06Y1ohcXZZX+ZjtTdEB1WviKf1EFxQLwpPFiwrpqJ9o7A6uj8Q1a4ljU
-         ujy3yzO/f4pJDjQPwkt53Tp9Upn6t1oLcy9qpsCFsOBuhjteSWtRQ6GQe3T/hIf2DL4N
-         rcOcHVlg9F9rJIHfFWDAIj50k2QczAAYZpHrGJGIqHBNxm7XEPmBn5NhkB3m2SYH1/Fk
-         tUhsFZlAfWjtVWgfg7MjXuTgn0mP0/TDaR27TZEJ6I0jmym7MizMpxm4m1CDthaVzfZh
-         NCaismtWHBNbJerusFFWv1Ylil+RFh65SR3fcN6SCwWCuLRtXU2KmYZzhLoC+WoR7L4Z
-         4Q3Q==
-X-Gm-Message-State: AOAM533dIguyoFxo7i5fCOdnAz9Ox8sYVO37fHybn2y/qjRO9loL9N27
-        6/0VMeqOzqEYskSf7XVTFK/PGVBjIm6jJqY0
-X-Google-Smtp-Source: ABdhPJzN/eXdGxoCDY5GlSXpuq9R04QSHslNVJU7LNNoweciGDxkm1itgTaG89BpzFa6dKVqTrmopw==
-X-Received: by 2002:a2e:90cb:: with SMTP id o11mr2572076ljg.465.1605100918885;
-        Wed, 11 Nov 2020 05:21:58 -0800 (PST)
-Received: from DESKTOP-GSFPEC9.localdomain (broadband-46-242-8-148.ip.moscow.rt.ru. [46.242.8.148])
-        by smtp.gmail.com with ESMTPSA id z8sm235545ljh.74.2020.11.11.05.21.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 05:21:58 -0800 (PST)
-From:   Konstantin Aladyshev <aladyshev22@gmail.com>
-Cc:     supreeth.venkatesh@amd.com, aladyshev22@gmail.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: aspeed: amd-ethanolx: Add GPIO line names
-Date:   Wed, 11 Nov 2020 16:21:33 +0300
-Message-Id: <20201111132133.1253-1-aladyshev22@gmail.com>
-X-Mailer: git-send-email 2.17.1
-To:     unlisted-recipients:; (no To-header on input)
+        with ESMTP id S1726310AbgKKNYC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 08:24:02 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5467CC0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 05:24:02 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1kcq6O-0005yj-3w; Wed, 11 Nov 2020 14:23:56 +0100
+Received: from [IPv6:2a03:f580:87bc:d400:59aa:4a7a:d5ce:5d42] (unknown [IPv6:2a03:f580:87bc:d400:59aa:4a7a:d5ce:5d42])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 2CD3658FEEC;
+        Wed, 11 Nov 2020 13:23:54 +0000 (UTC)
+Subject: Re: [PATCH v3 2/2] dt-bindings: can: flexcan: convert fsl,*flexcan
+ bindings to yaml
+To:     Rob Herring <robh+dt@kernel.org>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        linux-can@vger.kernel.org, netdev <netdev@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>
+References: <20201022075218.11880-1-o.rempel@pengutronix.de>
+ <20201022075218.11880-3-o.rempel@pengutronix.de>
+ <CAL_JsqKSdGAY03HK1SBGec-j4S0cmm-mntJ8e0ujHVX4E3dnMw@mail.gmail.com>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ mQINBFFVq30BEACtnSvtXHoeHJxG6nRULcvlkW6RuNwHKmrqoksispp43X8+nwqIFYgb8UaX
+ zu8T6kZP2wEIpM9RjEL3jdBjZNCsjSS6x1qzpc2+2ivjdiJsqeaagIgvy2JWy7vUa4/PyGfx
+ QyUeXOxdj59DvLwAx8I6hOgeHx2X/ntKAMUxwawYfPZpP3gwTNKc27dJWSomOLgp+gbmOmgc
+ 6U5KwhAxPTEb3CsT5RicsC+uQQFumdl5I6XS+pbeXZndXwnj5t84M+HEj7RN6bUfV2WZO/AB
+ Xt5+qFkC/AVUcj/dcHvZwQJlGeZxoi4veCoOT2MYqfR0ax1MmN+LVRvKm29oSyD4Ts/97cbs
+ XsZDRxnEG3z/7Winiv0ZanclA7v7CQwrzsbpCv+oj+zokGuKasofzKdpywkjAfSE1zTyF+8K
+ nxBAmzwEqeQ3iKqBc3AcCseqSPX53mPqmwvNVS2GqBpnOfY7Mxr1AEmxdEcRYbhG6Xdn+ACq
+ Dq0Db3A++3PhMSaOu125uIAIwMXRJIzCXYSqXo8NIeo9tobk0C/9w3fUfMTrBDtSviLHqlp8
+ eQEP8+TDSmRP/CwmFHv36jd+XGmBHzW5I7qw0OORRwNFYBeEuiOIgxAfjjbLGHh9SRwEqXAL
+ kw+WVTwh0MN1k7I9/CDVlGvc3yIKS0sA+wudYiselXzgLuP5cQARAQABtCZNYXJjIEtsZWlu
+ ZS1CdWRkZSA8bWtsQHBlbmd1dHJvbml4LmRlPokCVAQTAQoAPgIbAwIeAQIXgAULCQgHAwUV
+ CgkICwUWAgMBABYhBMFAC6CzmJ5vvH1bXCte4hHFiupUBQJfEWX4BQkQo2czAAoJECte4hHF
+ iupUvfMP/iNtiysSr5yU4tbMBzRkGov1/FjurfH1kPweLVHDwiQJOGBz9HgM5+n8boduRv36
+ 0lU32g3PehN0UHZdHWhygUd6J09YUi2mJo1l2Fz1fQ8elUGUOXpT/xoxNQjslZjJGItCjza8
+ +D1DO+0cNFgElcNPa7DFBnglatOCZRiMjo4Wx0i8njEVRU+4ySRU7rCI36KPts+uVmZAMD7V
+ 3qiR1buYklJaPCJsnXURXYsilBIE9mZRmQjTDVqjLWAit++flqUVmDjaD/pj2AQe2Jcmd2gm
+ sYW5P1moz7ACA1GzMjLDmeFtpJOIB7lnDX0F/vvsG3V713/701aOzrXqBcEZ0E4aWeZJzaXw
+ n1zVIrl/F3RKrWDhMKTkjYy7HA8hQ9SJApFXsgP334Vo0ea82H3dOU755P89+Eoj0y44MbQX
+ 7xUy4UTRAFydPl4pJskveHfg4dO6Yf0PGIvVWOY1K04T1C5dpnHAEMvVNBrfTA8qcahRN82V
+ /iIGB+KSC2xR79q1kv1oYn0GOnWkvZmMhqGLhxIqHYitwH4Jn5uRfanKYWBk12LicsjRiTyW
+ Z9cJf2RgAtQgvMPvmaOL8vB3U4ava48qsRdgxhXMagU618EszVdYRNxGLCqsKVYIDySTrVzu
+ ZGs2ibcRhN4TiSZjztWBAe1MaaGk05Ce4h5IdDLbOOxhuQENBF8SDLABCADohJLQ5yffd8Sq
+ 8Lo9ymzgaLcWboyZ46pY4CCCcAFDRh++QNOJ8l4mEJMNdEa/yrW4lDQDhBWV75VdBuapYoal
+ LFrSzDzrqlHGG4Rt4/XOqMo6eSeSLipYBu4Xhg59S9wZOWbHVT/6vZNmiTa3d40+gBg68dQ8
+ iqWSU5NhBJCJeLYdG6xxeUEtsq/25N1erxmhs/9TD0sIeX36rFgWldMwKmZPe8pgZEv39Sdd
+ B+ykOlRuHag+ySJxwovfdVoWT0o0LrGlHzAYo6/ZSi/Iraa9R/7A1isWOBhw087BMNkRYx36
+ B77E4KbyBPx9h3wVyD/R6T0Q3ZNPu6SQLnsWojMzABEBAAGJAjwEGAEKACYWIQTBQAugs5ie
+ b7x9W1wrXuIRxYrqVAUCXxIMsAIbDAUJAucGAAAKCRArXuIRxYrqVOu0D/48xSLyVZ5NN2Bb
+ yqo3zxdv/PMGJSzM3JqSv7hnMZPQGy9XJaTc5Iz/hyXaNRwpH5X0UNKqhQhlztChuAKZ7iu+
+ 2VKzq4JJe9qmydRUwylluc4HmGwlIrDNvE0N66pRvC3h8tOVIsippAQlt5ciH74bJYXr0PYw
+ Aksw1jugRxMbNRzgGECg4O6EBNaHwDzsVPX1tDj0d9t/7ClzJUy20gg8r9Wm/I/0rcNkQOpV
+ RJLDtSbGSusKxor2XYmVtHGauag4YO6Vdq+2RjArB3oNLgSOGlYVpeqlut+YYHjWpaX/cTf8
+ /BHtIQuSAEu/WnycpM3Z9aaLocYhbp5lQKL6/bcWQ3udd0RfFR/Gv7eR7rn3evfqNTtQdo4/
+ YNmd7P8TS7ALQV/5bNRe+ROLquoAZvhaaa6SOvArcmFccnPeyluX8+o9K3BCdXPwONhsrxGO
+ wrPI+7XKMlwWI3O076NqNshh6mm8NIC0mDUr7zBUITa67P3Q2VoPoiPkCL9RtsXdQx5BI9iI
+ h/6QlzDxcBdw2TVWyGkVTCdeCBpuRndOMVmfjSWdCXXJCLXO6sYeculJyPkuNvumxgwUiK/H
+ AqqdUfy1HqtzP2FVhG5Ce0TeMJepagR2CHPXNg88Xw3PDjzdo+zNpqPHOZVKpLUkCvRv1p1q
+ m1qwQVWtAwMML/cuPga78rkBDQRfEXGWAQgAt0Cq8SRiLhWyTqkf16Zv/GLkUgN95RO5ntYM
+ fnc2Tr3UlRq2Cqt+TAvB928lN3WHBZx6DkuxRM/Y/iSyMuhzL5FfhsICuyiBs5f3QG70eZx+
+ Bdj4I7LpnIAzmBdNWxMHpt0m7UnkNVofA0yH6rcpCsPrdPRJNOLFI6ZqXDQk9VF+AB4HVAJY
+ BDU3NAHoyVGdMlcxev0+gEXfBQswEcysAyvzcPVTAqmrDsupnIB2f0SDMROQCLO6F+/cLG4L
+ Stbz+S6YFjESyXblhLckTiPURvDLTywyTOxJ7Mafz6ZCene9uEOqyd/h81nZOvRd1HrXjiTE
+ 1CBw+Dbvbch1ZwGOTQARAQABiQNyBBgBCgAmFiEEwUALoLOYnm+8fVtcK17iEcWK6lQFAl8R
+ cZYCGwIFCQLnoRoBQAkQK17iEcWK6lTAdCAEGQEKAB0WIQQreQhYm33JNgw/d6GpyVqK+u3v
+ qQUCXxFxlgAKCRCpyVqK+u3vqatQCAC3QIk2Y0g/07xNLJwhWcD7JhIqfe7Qc5Vz9kf8ZpWr
+ +6w4xwRfjUSmrXz3s6e/vrQsfdxjVMDFOkyG8c6DWJo0TVm6Ucrf9G06fsjjE/6cbE/gpBkk
+ /hOVz/a7UIELT+HUf0zxhhu+C9hTSl8Nb0bwtm6JuoY5AW0LP2KoQ6LHXF9KNeiJZrSzG6WE
+ h7nf3KRFS8cPKe+trbujXZRb36iIYUfXKiUqv5xamhohy1hw+7Sy8nLmw8rZPa40bDxX0/Gi
+ 98eVyT4/vi+nUy1gF1jXgNBSkbTpbVwNuldBsGJsMEa8lXnYuLzn9frLdtufUjjCymdcV/iT
+ sFKziU9AX7TLZ5AP/i1QMP9OlShRqERH34ufA8zTukNSBPIBfmSGUe6G2KEWjzzNPPgcPSZx
+ Do4jfQ/m/CiiibM6YCa51Io72oq43vMeBwG9/vLdyev47bhSfMLTpxdlDJ7oXU9e8J61iAF7
+ vBwerBZL94I3QuPLAHptgG8zPGVzNKoAzxjlaxI1MfqAD9XUM80MYBVjunIQlkU/AubdvmMY
+ X7hY1oMkTkC5hZNHLgIsDvWUG0g3sACfqF6gtMHY2lhQ0RxgxAEx+ULrk/svF6XGDe6iveyc
+ z5Mg5SUggw3rMotqgjMHHRtB3nct6XqgPXVDGYR7nAkXitG+nyG5zWhbhRDglVZ0mLlW9hij
+ z3Emwa94FaDhN2+1VqLFNZXhLwrNC5mlA6LUjCwOL+zb9a07HyjekLyVAdA6bZJ5BkSXJ1CO
+ 5YeYolFjr4YU7GXcSVfUR6fpxrb8N+yH+kJhY3LmS9vb2IXxneE/ESkXM6a2YAZWfW8sgwTm
+ 0yCEJ41rW/p3UpTV9wwE2VbGD1XjzVKl8SuAUfjjcGGys3yk5XQ5cccWTCwsVdo2uAcY1MVM
+ HhN6YJjnMqbFoHQq0H+2YenTlTBn2Wsp8TIytE1GL6EbaPWbMh3VLRcihlMj28OUWGSERxat
+ xlygDG5cBiY3snN3xJyBroh5xk/sHRgOdHpmujnFyu77y4RTZ2W8
+Message-ID: <069937f4-9173-db5c-1297-3412cd3eaf8c@pengutronix.de>
+Date:   Wed, 11 Nov 2020 14:23:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqKSdGAY03HK1SBGec-j4S0cmm-mntJ8e0ujHVX4E3dnMw@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="eUDJ60eeREhWCPjWKbdWg8Vp4QT865bFZ"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add GPIO line names for AMD EthanolX customer reference board.
-It populates AST2500 GPIO lines (A0-A7 to AC0-AC7) with AMD EthanolX
-designated names.
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--eUDJ60eeREhWCPjWKbdWg8Vp4QT865bFZ
+Content-Type: multipart/mixed; boundary="ERFdNakKZUwdawvHEam35ovD1ou077l2g";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Rob Herring <robh+dt@kernel.org>, Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Wolfgang Grandegger <wg@grandegger.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Sascha Hauer <kernel@pengutronix.de>, linux-can@vger.kernel.org,
+ netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Joakim Zhang <qiangqing.zhang@nxp.com>
+Message-ID: <069937f4-9173-db5c-1297-3412cd3eaf8c@pengutronix.de>
+Subject: Re: [PATCH v3 2/2] dt-bindings: can: flexcan: convert fsl,*flexcan
+ bindings to yaml
+References: <20201022075218.11880-1-o.rempel@pengutronix.de>
+ <20201022075218.11880-3-o.rempel@pengutronix.de>
+ <CAL_JsqKSdGAY03HK1SBGec-j4S0cmm-mntJ8e0ujHVX4E3dnMw@mail.gmail.com>
+In-Reply-To: <CAL_JsqKSdGAY03HK1SBGec-j4S0cmm-mntJ8e0ujHVX4E3dnMw@mail.gmail.com>
 
-Signed-off-by: Konstantin Aladyshev <aladyshev22@gmail.com>
----
- arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+--ERFdNakKZUwdawvHEam35ovD1ou077l2g
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-index b93ed44eba0c..96ff0aea64e5 100644
---- a/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-amd-ethanolx.dts
-@@ -97,6 +97,50 @@
- 		     &pinctrl_adc4_default>;
- };
- 
-+&gpio {
-+	status = "okay";
-+	gpio-line-names =
-+	/*A0-A7*/	"","","FAULT_LED","CHASSIS_ID_LED","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"CHASSIS_ID_BTN","INTRUDER","AC_LOSS","","","","","",
-+	/*D0-D7*/	"HDT_DBREQ","LOCAL_SPI_ROM_SEL","FPGA_SPI_ROM_SEL","JTAG_MUX_S",
-+			"JTAG_MUX_OE","HDT_SEL","ASERT_WARM_RST_BTN","FPGA_RSVD",
-+	/*E0-E7*/	"","","MON_P0_PWR_BTN","MON_P0_RST_BTN","MON_P0_NMI_BTN",
-+			"MON_P0_PWR_GOOD","MON_PWROK","MON_RESET",
-+	/*F0-F7*/	"MON_P0_PROCHOT","MON_P1_PROCHOT","MON_P0_THERMTRIP",
-+			"MON_P1_THERMTRIP","P0_PRESENT","P1_PRESENT","MON_ATX_PWR_OK","",
-+	/*G0-G7*/	"BRD_REV_ID_3","BRD_REV_ID_2","BRD_REV_ID_1","BRD_REV_ID_0",
-+			"P0_APML_ALERT","P1_APML_ALERT","FPGA ALERT","",
-+	/*H0-H7*/	"BRD_ID_0","BRD_ID_1","BRD_ID_2","BRD_ID_3",
-+			"PCIE_DISCONNECTED","USB_DISCONNECTED","SPARE_0","SPARE_1",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"ASSERT_PWR_BTN","ASSERT_RST_BTN","ASSERT_NMI_BTN",
-+			"ASSERT_LOCAL_LOCK","ASSERT_P0_PROCHOT","ASSERT_P1_PROCHOT",
-+			"ASSERT_CLR_CMOS","ASSERT_BMC_READY",
-+	/*N0-N7*/	"","","","","","","","",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"P0_VDD_CORE_RUN_VRHOT","P0_VDD_SOC_RUN_VRHOT",
-+			"P0_VDD_MEM_ABCD_SUS_VRHOT","P0_VDD_MEM_EFGH_SUS_VRHOT",
-+			"P1_VDD_CORE_RUN_VRHOT","P1_VDD_SOC_RUN_VRHOT",
-+			"P1_VDD_MEM_ABCD_SUS_VRHOT","P1_VDD_MEM_EFGH_SUS_VRHOT",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","",
-+	/*AA0-AA7*/	"","SENSOR THERM","","","","","","",
-+	/*AB0-AB7*/	"","","","","","","","",
-+	/*AC0-AC7*/	"","","","","","","","";
-+};
+On 11/10/20 4:43 PM, Rob Herring wrote:
+> On Thu, Oct 22, 2020 at 2:52 AM Oleksij Rempel <o.rempel@pengutronix.de=
+> wrote:
+>>
+>> In order to automate the verification of DT nodes convert
+>> fsl-flexcan.txt to fsl,flexcan.yaml
+>>
+>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+>> Link: https://lore.kernel.org/r/20201016073315.16232-3-o.rempel@pengut=
+ronix.de
+>> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+>> ---
+>>  .../bindings/net/can/fsl,flexcan.yaml         | 135 +++++++++++++++++=
 +
- //APML for P0
- &i2c0 {
- 	status = "okay";
--- 
-2.17.1
+>>  .../bindings/net/can/fsl-flexcan.txt          |  57 --------
+>>  2 files changed, 135 insertions(+), 57 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/net/can/fsl,flex=
+can.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/net/can/fsl-flex=
+can.txt
+>=20
+> Why did this go into v5.10-rc3? It's not a fix and now a fix is needed:=
 
+
+Sorry, this was against the rules and not a good idea.
+
+> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/=
+clock/imx5-clock.example.dt.yaml:
+> can@53fc8000: compatible: 'oneOf' conditional failed, one must be
+> fixed:
+>  ['fsl,imx53-flexcan', 'fsl,p1010-flexcan'] is too long
+>  Additional items are not allowed ('fsl,p1010-flexcan' was unexpected)
+>  'fsl,imx53-flexcan' is not one of ['fsl,imx7d-flexcan',
+> 'fsl,imx6ul-flexcan', 'fsl,imx6sx-flexcan']
+>  'fsl,imx53-flexcan' is not one of ['fsl,ls1028ar1-flexcan']
+>  'fsl,imx6q-flexcan' was expected
+>  'fsl,lx2160ar1-flexcan' was expected
+>  From schema: /builds/robherring/linux-dt-bindings/Documentation/device=
+tree/bindings/net/can/fsl,flexcan.yaml
+> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/=
+net/can/fsl,flexcan.example.dt.yaml:
+> can@2090000: fsl,stop-mode: [[4294967295, 52, 28]] is too short
+>  From schema: /builds/robherring/linux-dt-bindings/Documentation/device=
+tree/bindings/net/can/fsl,flexcan.yaml
+
+I've both issues and found two more. See the following thread for details=
+:
+
+http://lore.kernel.org/r/20201111130507.1560881-1-mkl@pengutronix.de
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+
+--ERFdNakKZUwdawvHEam35ovD1ou077l2g--
+
+--eUDJ60eeREhWCPjWKbdWg8Vp4QT865bFZ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl+r5eQACgkQqclaivrt
+76nIVwf/cIaU7Yb2o1dv5Cp41tSczTTFQDJzKajAppaf+iDAt18ojiqN/67AjqdY
+RBqyp+VT9XiLONV3pyuxua368KJ8nMKOF9rKyFoWvDTCeN4MKVY3z4b67wtVktho
+iiJSoB0yrNgKb39vzzGrEvxkiSYf4DntwEvKeYy6u4V1/yeZ+y+WIX+K5HWs2H5S
+0NsfQTxxLxRUmYjwj2tvSN3BCdMLK4+rzOHI33NCDd2z3mlFfq4669HAflFp7+dO
+hc5YFvVlga9EqBtRSum+WSjsDmivMnmq+UyjG4F1Iii5uUW3pCnzKfECmLmaJ4OC
+YvvBEGPu/zCe7S+DLV7HmqmZf1Zd/Q==
+=IgaO
+-----END PGP SIGNATURE-----
+
+--eUDJ60eeREhWCPjWKbdWg8Vp4QT865bFZ--
