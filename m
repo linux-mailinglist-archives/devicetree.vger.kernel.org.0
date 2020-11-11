@@ -2,121 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F37F52AF5A0
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 16:59:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E9A2AF5CA
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 17:08:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727443AbgKKP7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 10:59:34 -0500
-Received: from fallback10.mail.ru ([94.100.178.50]:44396 "EHLO
-        fallback10.mail.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727457AbgKKP7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 10:59:34 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
-        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From; bh=aBdXLMT74r6zkeVrrJgveQyIXIMrSCl4JXoVRSaRxYg=;
-        b=e0FKtfmY/OTPzjftseAqFZtdA6KQLzeBtME8P0tV2zd8nN7qGkOss49oopAaiWEXj2/0vMPTAxX9m0TRM1KXOBjKvteGCjgSF5XdO3Mk58LkgyZanGen4lmGTgmlFG+ypD1vQdHQ69HHyAsVyR7Z3Lctzt+XYCtCoB1petJrgXI=;
-Received: from [10.161.64.43] (port=50568 helo=smtp35.i.mail.ru)
-        by fallback10.m.smailru.net with esmtp (envelope-from <shc_work@mail.ru>)
-        id 1kcsWv-0004WQ-LJ; Wed, 11 Nov 2020 18:59:30 +0300
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail3;
-        h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=aBdXLMT74r6zkeVrrJgveQyIXIMrSCl4JXoVRSaRxYg=;
-        b=fMjfA7WnZbgrYyc4tnazg7c7SWqeeiOyoH1PUyJQHBSkGY0zJRCv2R0kh1LOfYEA4bPtG9QXnfus233q9/TawiKGnR1NO4jnhe/v+fl+i/e+guMl6V6TLaOXtg6QWda/Jb4B/EoY165SsQapmkximxj5khboyf7+2MgrZ31wh6g=;
-Received: by smtp35.i.mail.ru with esmtpa (envelope-from <shc_work@mail.ru>)
-        id 1kcsWq-0003hR-Eo; Wed, 11 Nov 2020 18:59:24 +0300
-From:   Alexander Shiyan <shc_work@mail.ru>
-To:     linux-omap@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        id S1725949AbgKKQIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 11:08:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49918 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726492AbgKKQIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 11:08:49 -0500
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E903CC0613D4
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 08:08:47 -0800 (PST)
+Received: by mail-ot1-x343.google.com with SMTP id g19so2570397otp.13
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 08:08:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1V/kvhUQR5LW+HFLqYBbXQytH+a68CFzS7SDjIsD48M=;
+        b=hry/mU8E7MV9CkrCBL13xqCVo2CejWOb+M9NpejIYDSfIGsSmSJztTmcqNt62qz69m
+         r5fLZEWnbgXcxjJCbET1WWCg3qPVU69OFuP6BPGzYR4DZ+YL9vN9oKukq4dVLesao4QW
+         Fsx42szwkJv6KbKM5gom5+KgneRoeq5VzwAGw7mX3ge9Pl9I3jP/OL66N/zZAsQ6lbBp
+         fO9xSeUCci5HwOStzwWdnrb+SIa9keYC7w8tAYUISLQiPVoshsqx1/XsIb7W2iHnfUlv
+         L2r2xEPirZNACOcIUjMpvd3KXz2gj3+YKV6BDk4XrJpYHSj1DflmnVHivQUYsLQWH1AK
+         F78A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1V/kvhUQR5LW+HFLqYBbXQytH+a68CFzS7SDjIsD48M=;
+        b=OjfTWBrD/hFtIvkDbZi54JnKduxG17YXGwRG7kD5CCG+120Y6crQFC5YWlLMcp4fsb
+         NFUutd4GQAwf0O68jShNG8K9kfJvS71WLPuZF6O8pgEaIlShc8v3OMkeyeMvEv4kvjus
+         ov+51RfuxeRGKF5RoxhfYR61Yfb9a844/rgx0HbuVDb3bxL8o4S8ydouh4Q1ANkcssO/
+         EUfh0i5cSEAV7cqdj+2F5K1Y46KTpM68t1vuBd6jMqWKM0S9adWtzvdV7yprupsAWnGS
+         97W3de/jjiXy7ijWzVdxd+L7Pyl8aGOTUJ4GNMLELBKMj6Js9gCXQ6nM7MYdPpdgb4TN
+         rxWQ==
+X-Gm-Message-State: AOAM533Fa9LY+7XGqHRE5Oiiyrk2hwOACm9G7i/CRaR3fOkG/I8OOAsy
+        xZFXFhZfgFs5MhQ3INOB+X6KRQ==
+X-Google-Smtp-Source: ABdhPJwORquYl43ImR2ldQKNxHQ56oxjYZBJmAkau1L0YZ1T/gewdXHvX+ofzbMzF4MCpL8wvDvA2w==
+X-Received: by 2002:a05:6830:1aec:: with SMTP id c12mr17263189otd.227.1605110927203;
+        Wed, 11 Nov 2020 08:08:47 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id z7sm483911oib.57.2020.11.11.08.08.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 08:08:46 -0800 (PST)
+Date:   Wed, 11 Nov 2020 10:08:44 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Alexander Shiyan <shc_work@mail.ru>
-Subject: [PATCH] ARM: dts: am335x: Fix comments for AM335X_PIN_GPMC_WPN pin in GPIO mode
-Date:   Wed, 11 Nov 2020 18:59:10 +0300
-Message-Id: <20201111155910.13728-1-shc_work@mail.ru>
-X-Mailer: git-send-email 2.26.2
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 18/18] arm64: dts: qcom: Harmonize DWC USB3 DT nodes
+ name
+Message-ID: <20201111160844.GJ173948@builder.lan>
+References: <20201111091552.15593-1-Sergey.Semin@baikalelectronics.ru>
+ <20201111091552.15593-19-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-7564579A: B8F34718100C35BD
-X-77F55803: 4F1203BC0FB41BD94AF7078E5631C70217AEEF0C535DF74E33C953CE125805A500894C459B0CD1B905DE85E9F650E6E682FAF09B7934798414FD2C451A344CC20F40345E41D45524
-X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE76256B078082242EEEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637F54795A05D74C8838638F802B75D45FF5571747095F342E8C7A0BC55FA0FE5FC1E70F93F28DE8F2FDBB4CB3F3B5541DD90CD140A2BADD870389733CBF5DBD5E9D5E8D9A59859A8B652D31B9D28593E51CC7F00164DA146DA6F5DAA56C3B73B2321F2F7C9D6F236AF3AA81AA40904B5D9A18204E546F3947CC8A976F1B976E0ABBA3038C0950A5D36C8A9BA7A39EFB7668729DE7A884B61D1BA3038C0950A5D36D5E8D9A59859A8B651CA34BD62E700AA76E601842F6C81A1F004C90652538430CDED94BCBF13EF3B93EC92FD9297F6718AA50765F7900637571EAFDAACF43475A7F4EDE966BC389F395957E7521B51C24C7702A67D5C33162DBA43225CD8A89F890A246B268E114E57739F23D657EF2BB5C8C57E37DE458B4C7702A67D5C3316FA3894348FB808DBA1CE242F1348D5363B503F486389A921A5CC5B56E945C8DA
-X-B7AD71C0: 14C14B24D00AF5AC321EF223B8115265C77432E3705FE0C78E1CD14B953EB46DE9612696C3A85E77355D89D7DBCDD132
-X-C8649E89: CA6993954054F6283481399E65DAFA2CE1EB7B3EDF8343E68916CE8CCAA8A54ED62046F597BFFCA5
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojctyB8EdIch5nOPK5GBS26A==
-X-Mailru-Sender: 3BC6B8CA5785035CFA3B5901239938C88E7E8148BE7714F6EA1F80C4D3C083C220E83EB45F2FDE1F6B3B2BD4812BFD4DC77752E0C033A69E93554C27080790AB3B25A7FBAAF806F0AE208404248635DF
-X-Mras: Ok
-X-7564579A: 646B95376F6C166E
-X-77F55803: 6242723A09DB00B4A5EAA273AC3F3BA17C01F372D9D4960050C07392B76182F668F3CF0E9FE49B69BD0A8F4BFAE735A1B3E604C713BF4572534D822186C54774B61AF2FA7485086D
-X-7FA49CB5: 0D63561A33F958A5CC1D3F28F448E31799F5FFA661B2F35EDA71843D86CBE2818941B15DA834481F8AA50765F790063778FF21EF0A487A47389733CBF5DBD5E9B5C8C57E37DE458BC2E450F102A9CDD0D32BA5DBAC0009BE9E8FC8737B5C2249A3B1E9A7D1F2C5F276E601842F6C81A12EF20D2F80756B5FDA63EEEA5E5E9D65089D37D7C0E48F6CA18204E546F3947C890A246B268E114E57739F23D657EF2BC8A9BA7A39EFB7666BA297DBC24807EA089D37D7C0E48F6C8AA50765F7900637571EAFDAACF43475EFF80C71ABB335746BA297DBC24807EA27F269C8F02392CDC58410348177836E285124B2A10EEC6C00306258E7E6ABB4E4A6367B16DE6309
-X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojctyB8EdIch5h0S32k8UNjA==
-X-Mailru-MI: 800
-X-Mailru-Sender: A5480F10D64C90059EC859477DBBED74D841A95E25E1B0100FF97AF8CE61F16BE8285F0AB37D98A73786569BE0651809D50E20E2BC48EF5AFF3C6AF3E48A3A73EAB4BC95F72C04283CDA0F3B3F5B9367
-X-Mras: Ok
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201111091552.15593-19-Sergey.Semin@baikalelectronics.ru>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to AM335x datasheet pin AM335X_PIN_GPMC_WPN in MODE7 works as
-GPIO0[31].
+On Wed 11 Nov 03:15 CST 2020, Serge Semin wrote:
 
-Signed-off-by: Alexander Shiyan <shc_work@mail.ru>
----
- arch/arm/boot/dts/am335x-baltos.dtsi   | 2 +-
- arch/arm/boot/dts/am335x-cm-t335.dts   | 2 +-
- arch/arm/boot/dts/am335x-evm.dts       | 2 +-
- arch/arm/boot/dts/am335x-igep0033.dtsi | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+> In accordance with the DWC USB3 bindings the corresponding node
+> name is suppose to comply with the Generic USB HCD DT schema, which
+> requires the USB nodes to have the name acceptable by the regexp:
+> "^usb(@.*)?" . Make sure the "snps,dwc3"-compatible nodes are correctly
+> named.
+> 
+> Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/arch/arm/boot/dts/am335x-baltos.dtsi b/arch/arm/boot/dts/am335x-baltos.dtsi
-index b7f64c7ba83d..3ea286180382 100644
---- a/arch/arm/boot/dts/am335x-baltos.dtsi
-+++ b/arch/arm/boot/dts/am335x-baltos.dtsi
-@@ -168,7 +168,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_ad5.gpm
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_ad6.gpmc_ad6 */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_ad7.gpmc_ad7 */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)	/* gpmc_wait0.gpmc_wait0 */
--			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_30 */
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_31 */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)		/* gpmc_csn0.gpmc_csn0  */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)		/* gpmc_advn_ale.gpmc_advn_ale */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUTPUT, MUX_MODE0)		/* gpmc_oen_ren.gpmc_oen_ren */
-diff --git a/arch/arm/boot/dts/am335x-cm-t335.dts b/arch/arm/boot/dts/am335x-cm-t335.dts
-index c6fe9db660e2..36d963db4026 100644
---- a/arch/arm/boot/dts/am335x-cm-t335.dts
-+++ b/arch/arm/boot/dts/am335x-cm-t335.dts
-@@ -122,7 +122,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)
--			/* gpmc_wpn.gpio0_30 */
-+			/* gpmc_wpn.gpio0_31 */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)
-diff --git a/arch/arm/boot/dts/am335x-evm.dts b/arch/arm/boot/dts/am335x-evm.dts
-index 12dffccd1ffd..7c6f2c11f0e1 100644
---- a/arch/arm/boot/dts/am335x-evm.dts
-+++ b/arch/arm/boot/dts/am335x-evm.dts
-@@ -229,7 +229,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_30 */
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_31 */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUTPUT, MUX_MODE0)
-diff --git a/arch/arm/boot/dts/am335x-igep0033.dtsi b/arch/arm/boot/dts/am335x-igep0033.dtsi
-index c9f354fc984a..7ec23d47a429 100644
---- a/arch/arm/boot/dts/am335x-igep0033.dtsi
-+++ b/arch/arm/boot/dts/am335x-igep0033.dtsi
-@@ -70,7 +70,7 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD5, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD6, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_AD7, PIN_INPUT_PULLUP, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_WAIT0, PIN_INPUT_PULLUP, MUX_MODE0)
--			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_30 */
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_WPN, PIN_INPUT_PULLUP, MUX_MODE7)	/* gpmc_wpn.gpio0_31 */
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN0, PIN_OUTPUT, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_ADVN_ALE, PIN_OUTPUT, MUX_MODE0)
- 			AM33XX_PADCONF(AM335X_PIN_GPMC_OEN_REN, PIN_OUTPUT, MUX_MODE0)
--- 
-2.26.2
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
+Given the risk of merge conflicts with this patch I would prefer to take
+it through the qcom dts tree. Please let me know when patch 17 has been
+merged (or if you prefer that I take it through the same path).
+
+Regards,
+Bjorn
+
+> ---
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi | 4 ++--
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8996.dtsi        | 4 ++--
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi        | 2 +-
+>  arch/arm64/boot/dts/qcom/qcs404-evb.dtsi     | 2 +-
+>  arch/arm64/boot/dts/qcom/qcs404.dtsi         | 4 ++--
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi         | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi         | 4 ++--
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi         | 2 +-
+>  9 files changed, 14 insertions(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> index defcbd15edf9..34e97da98270 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi
+> @@ -1064,7 +1064,7 @@ &usb2 {
+>  	status = "okay";
+>  	extcon = <&usb2_id>;
+>  
+> -	dwc3@7600000 {
+> +	usb@7600000 {
+>  		extcon = <&usb2_id>;
+>  		dr_mode = "otg";
+>  		maximum-speed = "high-speed";
+> @@ -1075,7 +1075,7 @@ &usb3 {
+>  	status = "okay";
+>  	extcon = <&usb3_id>;
+>  
+> -	dwc3@6a00000 {
+> +	usb@6a00000 {
+>  		extcon = <&usb3_id>;
+>  		dr_mode = "otg";
+>  	};
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> index 96a5ec89b5f0..1129062a4ca1 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -427,7 +427,7 @@ usb_0: usb@8af8800 {
+>  			resets = <&gcc GCC_USB0_BCR>;
+>  			status = "disabled";
+>  
+> -			dwc_0: dwc3@8a00000 {
+> +			dwc_0: usb@8a00000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x8a00000 0xcd00>;
+>  				interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -468,7 +468,7 @@ usb_1: usb@8cf8800 {
+>  			resets = <&gcc GCC_USB1_BCR>;
+>  			status = "disabled";
+>  
+> -			dwc_1: dwc3@8c00000 {
+> +			dwc_1: usb@8c00000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x8c00000 0xcd00>;
+>  				interrupts = <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index 9951286db775..66b6d2f0a093 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -1767,7 +1767,7 @@ usb3: usb@6af8800 {
+>  			power-domains = <&gcc USB30_GDSC>;
+>  			status = "disabled";
+>  
+> -			dwc3@6a00000 {
+> +			usb@6a00000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x06a00000 0xcc00>;
+>  				interrupts = <0 131 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -1978,7 +1978,7 @@ usb2: usb@76f8800 {
+>  			power-domains = <&gcc USB30_GDSC>;
+>  			status = "disabled";
+>  
+> -			dwc3@7600000 {
+> +			usb@7600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x07600000 0xcc00>;
+>  				interrupts = <0 138 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index c45870600909..7cc7897e7b83 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -1678,7 +1678,7 @@ usb3: usb@a8f8800 {
+>  
+>  			resets = <&gcc GCC_USB_30_BCR>;
+>  
+> -			usb3_dwc3: dwc3@a800000 {
+> +			usb3_dwc3: usb@a800000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x0a800000 0xcd00>;
+>  				interrupts = <GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> index 6422cf9d5855..88d7b7a53743 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+> @@ -337,7 +337,7 @@ &usb2_phy_sec {
+>  &usb3 {
+>  	status = "okay";
+>  
+> -	dwc3@7580000 {
+> +	usb@7580000 {
+>  		dr_mode = "host";
+>  	};
+>  };
+> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> index b654b802e95c..f6ef17553064 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+> @@ -544,7 +544,7 @@ usb3: usb@7678800 {
+>  			assigned-clock-rates = <19200000>, <200000000>;
+>  			status = "disabled";
+>  
+> -			dwc3@7580000 {
+> +			usb@7580000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x07580000 0xcd00>;
+>  				interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -573,7 +573,7 @@ usb2: usb@79b8800 {
+>  			assigned-clock-rates = <19200000>, <133333333>;
+>  			status = "disabled";
+>  
+> -			dwc3@78c0000 {
+> +			usb@78c0000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0x078c0000 0xcc00>;
+>  				interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index d46b3833e52f..bbc9a2b5c570 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -2673,7 +2673,7 @@ usb_1: usb@a6f8800 {
+>  					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3>;
+>  			interconnect-names = "usb-ddr", "apps-usb";
+>  
+> -			usb_1_dwc3: dwc3@a600000 {
+> +			usb_1_dwc3: usb@a600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a600000 0 0xe000>;
+>  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 2884577dcb77..ca20e4e91f61 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -3573,7 +3573,7 @@ usb_1: usb@a6f8800 {
+>  					<&gladiator_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_0>;
+>  			interconnect-names = "usb-ddr", "apps-usb";
+>  
+> -			usb_1_dwc3: dwc3@a600000 {
+> +			usb_1_dwc3: usb@a600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a600000 0 0xcd00>;
+>  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -3621,7 +3621,7 @@ usb_2: usb@a8f8800 {
+>  					<&gladiator_noc MASTER_APPSS_PROC &config_noc SLAVE_USB3_1>;
+>  			interconnect-names = "usb-ddr", "apps-usb";
+>  
+> -			usb_2_dwc3: dwc3@a800000 {
+> +			usb_2_dwc3: usb@a800000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a800000 0 0xcd00>;
+>  				interrupts = <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index b86a7ead3006..167d14dda974 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -846,7 +846,7 @@ usb_1: usb@a6f8800 {
+>  
+>  			resets = <&gcc GCC_USB30_PRIM_BCR>;
+>  
+> -			usb_1_dwc3: dwc3@a600000 {
+> +			usb_1_dwc3: usb@a600000 {
+>  				compatible = "snps,dwc3";
+>  				reg = <0 0x0a600000 0 0xcd00>;
+>  				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> -- 
+> 2.28.0
+> 
