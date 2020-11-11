@@ -2,92 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 169072AF362
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 15:19:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4EDD2AF37A
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 15:25:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726012AbgKKOTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 09:19:44 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33916 "EHLO mail.kernel.org"
+        id S1725939AbgKKOZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 09:25:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39272 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725900AbgKKOTo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 09:19:44 -0500
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1725909AbgKKOZx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 09:25:53 -0500
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F19262072C;
-        Wed, 11 Nov 2020 14:19:42 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 722332168B;
+        Wed, 11 Nov 2020 14:25:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605104383;
-        bh=h4WV9Lcvcmda9mj7Yvwdlkfda2VnKDl/S6Wue0cEbww=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=J+gK39itAQr1hKBU/oBohrqJyBNJp+dhObEcEcGN5hENc74Sxjkwn4y83Xr0E0scq
-         ZTuNeetHzWbbExckVB+IBU6pDWScsGE04JhlgM3smFXNE3SWRfpGk4Tk3iyVhsVsA9
-         lISmyCUIictkOKQOZ3oofavfuSId0rVBpseD76iE=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.94)
-        (envelope-from <maz@kernel.org>)
-        id 1kcqyK-009mkO-WA; Wed, 11 Nov 2020 14:19:41 +0000
+        s=default; t=1605104752;
+        bh=yjQbz6yukbg0pWgBKEkAwfao7ZJ/mR8R8fYrOGQCgj0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WqSf4m2l7nKEllYtyUGJ9qiysRuyPiXfxI1pktiFbwsz8TQ1bQ1JHaNJ2otqvwDqb
+         g/9Ns9euHQ+OiWsj3DhfhY6rVx2/fl1Xf5baAAxPWW3E2/4XNV3gFI+atKkw5cYGPl
+         tSnyI7QvjKmf7bzEei+1SSTJayDlD9+mCs/3M4F0=
+Received: by mail-ot1-f44.google.com with SMTP id 30so2265034otx.9;
+        Wed, 11 Nov 2020 06:25:52 -0800 (PST)
+X-Gm-Message-State: AOAM531qyOUnf92yTAhnuKa9Shc51T/IiiMLFNiKqrlChpY45ds2Eh/V
+        QmHCrRLf6t3Fe/+uMZsnDy6F2feWF2+NfJyizw==
+X-Google-Smtp-Source: ABdhPJxDzbGonZ7mQJWbeGH/aeIH+jTY0iZdh6QOjcXfWz12QukgD60IRHaI+rb26aSGSNrRwt9WpH/roxgQxUS67Xw=
+X-Received: by 2002:a9d:5e14:: with SMTP id d20mr16588139oti.107.1605104751592;
+ Wed, 11 Nov 2020 06:25:51 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 11 Nov 2020 14:19:40 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Daniel Palmer <daniel@0x0f.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/5] gpio: msc313: MStar MSC313 GPIO driver
-In-Reply-To: <CACRpkdaTknFRSm4pcSf-v7Be8A_SnMMrhegu6W67gUjOJVLEBQ@mail.gmail.com>
-References: <20201019141008.871177-1-daniel@0x0f.com>
- <20201019141008.871177-4-daniel@0x0f.com>
- <CACRpkdZNr6sDqJhg3KcX0bCbcd8fh2gXFYbS1r2H2Sq+vGqjUw@mail.gmail.com>
- <3fd04aeb5047d8059ddecc1eda19c2e4@kernel.org>
- <CAFr9PX=vxCCQgCWe9FPb6Z=0=a48HwGOfM_uOG3SqGN9VSYQUA@mail.gmail.com>
- <71f3632bee262a18e1b7edb74980ae9a@kernel.org>
- <CACRpkdYr+yhyROQzaYfFrGwG74DuZiA=fMVOesgOKrDajhTodQ@mail.gmail.com>
- <bc0ab2f10bb72fe5b455ca12958f6444@kernel.org>
- <CACRpkdaTknFRSm4pcSf-v7Be8A_SnMMrhegu6W67gUjOJVLEBQ@mail.gmail.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <40fec073b2423b698ef4d91c499c7c9f@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: linus.walleij@linaro.org, daniel@0x0f.com, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+References: <20201102203656.220187-1-robh@kernel.org> <20201102203656.220187-2-robh@kernel.org>
+ <20201111140009.GD4115@pendragon.ideasonboard.com>
+In-Reply-To: <20201111140009.GD4115@pendragon.ideasonboard.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 11 Nov 2020 08:25:40 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+A6Ga+h4qK0nzyL87M1DvrRSnzxtjwUNpq--L7MDHxfA@mail.gmail.com>
+Message-ID: <CAL_Jsq+A6Ga+h4qK0nzyL87M1DvrRSnzxtjwUNpq--L7MDHxfA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: Convert graph bindings to json-schema
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, Sameer Pujar <spujar@nvidia.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-11-11 14:09, Linus Walleij wrote:
-> On Tue, Nov 10, 2020 at 3:19 PM Marc Zyngier <maz@kernel.org> wrote:
->> On 2020-11-10 14:02, Linus Walleij wrote:
-> 
->> >> Probably nothing more than setting the callback to
->> >> irq_chip_set_affinity_parent,
->> >
->> > Hm, is this something all GPIO irqchips used on SMP systems
->> > should be doing? Or just hierarchical ones?
->> 
->> Probably only the hierarchical ones. I'd expect the non-hierarchical
->> GPIOs to be muxed behind a single interrupt, which makes it impossible
->> to move a single GPIO around, and moving the mux interrupt would break
->> userspace's expectations that interrupts move independently of each
->> others.
-> 
-> I found two suspects and sent patches. I think I might have some
-> more candidates down in pinctrl. I do have some hierarchical IRQ
-> that is on UP systems, I suppose these are not affected.
+On Wed, Nov 11, 2020 at 8:00 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Rob and Sameer,
+>
+> Thank you for the patch.
+>
+> On Mon, Nov 02, 2020 at 02:36:54PM -0600, Rob Herring wrote:
+> > From: Sameer Pujar <spujar@nvidia.com>
+> >
+> > Convert device tree bindings of graph to YAML format. Currently graph.txt
+> > doc is referenced in multiple files and all of these need to use schema
+> > references. For now graph.txt is updated to refer to graph.yaml.
+> >
+> > For users of the graph binding, they should reference to the graph
+> > schema from either 'ports' or 'port' property:
+> >
+> > properties:
+> >   ports:
+> >     type: object
+> >     $ref: graph.yaml#/properties/ports
+> >
+> >     properties:
+> >       port@0:
+> >         description: What data this port has
+> >
+> >       ...
+> >
+> > Or:
+> >
+> > properties:
+> >   port:
+> >     description: What data this port has
+> >     type: object
+> >     $ref: graph.yaml#/properties/port
+>
+> Sounds like a good approach.
+>
+> > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> > Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > v3:
+> >  - Move port 'reg' to port@* and make required
+> >  - Make remote-endpoint required
+> >  - Add 'additionalProperties: true' now required
+> >  - Fix yamllint warnings
+> >
+> >  Documentation/devicetree/bindings/graph.txt  | 129 +-----------
+> >  Documentation/devicetree/bindings/graph.yaml | 199 +++++++++++++++++++
+> >  2 files changed, 200 insertions(+), 128 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/graph.yaml
 
-Yup, they look good. Feel free to add my Ack to them.
-And yes, UP systems are naturally oblivious of interrupt affinity.
+[...]
 
-Thanks,
+> > diff --git a/Documentation/devicetree/bindings/graph.yaml b/Documentation/devicetree/bindings/graph.yaml
+> > new file mode 100644
+> > index 000000000000..b56720c5a13e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/graph.yaml
+> > @@ -0,0 +1,199 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/graph.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Common bindings for device graphs
+> > +
+> > +description: |
+> > +  The hierarchical organisation of the device tree is well suited to describe
+> > +  control flow to devices, but there can be more complex connections between
+> > +  devices that work together to form a logical compound device, following an
+> > +  arbitrarily complex graph.
+> > +  There already is a simple directed graph between devices tree nodes using
+> > +  phandle properties pointing to other nodes to describe connections that
+> > +  can not be inferred from device tree parent-child relationships. The device
+> > +  tree graph bindings described herein abstract more complex devices that can
+> > +  have multiple specifiable ports, each of which can be linked to one or more
+> > +  ports of other devices.
+> > +
+> > +  These common bindings do not contain any information about the direction or
+> > +  type of the connections, they just map their existence. Specific properties
+> > +  may be described by specialized bindings depending on the type of connection.
+> > +
+> > +  To see how this binding applies to video pipelines, for example, see
+> > +  Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > +  Here the ports describe data interfaces, and the links between them are
+> > +  the connecting data buses. A single port with multiple connections can
+> > +  correspond to multiple devices being connected to the same physical bus.
+> > +
+> > +maintainers:
+> > +  - Philipp Zabel <p.zabel@pengutronix.de>
+> > +
+> > +select: false
+> > +
+> > +properties:
+> > +  port:
+> > +    type: object
+> > +    description:
+> > +      If there is more than one endpoint node or 'reg' property present in
+> > +      endpoint nodes then '#address-cells' and '#size-cells' properties are
+> > +      required.
+> > +
+> > +    properties:
+> > +      "#address-cells":
+> > +        const: 1
+> > +
+> > +      "#size-cells":
+> > +        const: 0
+> > +
+> > +    patternProperties:
+> > +      "^endpoint(@[0-9a-f]+)?$":
+> > +        type: object
+> > +        properties:
+> > +          reg:
+> > +            maxItems: 1
+> > +
+> > +          remote-endpoint:
+> > +            description: |
+> > +              phandle to an 'endpoint' subnode of a remote device node.
+> > +            $ref: /schemas/types.yaml#/definitions/phandle
+> > +
+> > +        required:
+> > +          - remote-endpoint
+>
+> As noted elsewhere, this shouldn't be required.
+>
+> Should we set additionalProperties: false here ?
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+No, we've got a bunch of properties that get added to endpoint nodes.
+There's a few cases where 'port' nodes have properties too.
+
+> > +  ports:
+> > +    type: object
+> > +    description: |
+> > +      If there is more than one port node or 'reg' property present in port
+> > +      nodes then '#address-cells' and '#size-cells' properties are required.
+> > +      In such cases all port nodes can be grouped under 'ports' independently
+> > +      from any other child device nodes a device might have.
+>
+> Allowing multiple port nodes not grouped in a ports node has created
+> complexity, with very little gain. Should we forbid that going forward ?
+
+Yes, that's probably a separate change. The examples need updating
+too. We do have a few cases we'll have to support though.
+
+> > +    properties:
+> > +      "#address-cells":
+> > +        const: 1
+> > +
+> > +      "#size-cells":
+> > +        const: 0
+> > +
+> > +    patternProperties:
+> > +      "^port(@[0-9a-f]+)?$":
+> > +        $ref: "#/properties/port"
+> > +        type: object
+> > +
+> > +        properties:
+> > +          reg:
+> > +            maxItems: 1
+> > +
+> > +        required:
+> > +          - reg
+> > +
+> > +
+>
+> Maybe a single blank line ?
+>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+I've gone thru and updated schemas to use this. Primarily to prove out
+a meta-schema for it. So I'll be sending out another version.
+
+Rob
