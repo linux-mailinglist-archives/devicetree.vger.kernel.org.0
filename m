@@ -2,111 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 659192AEF8F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 12:25:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA6292AEFC9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 12:39:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726306AbgKKLZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 06:25:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33908 "EHLO
+        id S1725965AbgKKLjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 06:39:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726054AbgKKLZa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 06:25:30 -0500
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F94C0613D1;
-        Wed, 11 Nov 2020 03:25:30 -0800 (PST)
-Received: by mail-pg1-x544.google.com with SMTP id w4so1232243pgg.13;
-        Wed, 11 Nov 2020 03:25:30 -0800 (PST)
+        with ESMTP id S1726379AbgKKLjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 06:39:05 -0500
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF0EBC061A48
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 03:39:01 -0800 (PST)
+Received: by mail-vs1-xe41.google.com with SMTP id f7so959816vsh.10
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 03:39:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AmC6zqJnTuERZcKgju96W662jvY6IqjAAXRYJAiZy84=;
-        b=DKS0zBZf5A6WZnjlzFnTohk26R3Ke3x/c/7S+5fLlwl1e+Lcy1jebSWUhffsK1ioGu
-         5Ngd/Ocz9ElBdWqzFPPXq6m2M1RpHO6sz7mLyMtIbiFp2nD21LLPiJ3rhEUCYxNc4aR8
-         PPfjLTGQEFG17k0wPMQXHAMKNQWECorHRT+bu8gkHUC/6SQ/3w5Ej/qevV3UKBH+GTRK
-         Y7452bmI6uXM98D7p/hIHdkFSG4A/H+1ytegiezjkyvjzT0yauXVe5/La6ezPokouAty
-         fd/lMD6yUkMPpjok8TCxINssqhnqCEIHuoJMyU2LG1Fn3CP57706DJOuFmuQ90eI9QBj
-         tSzw==
+         :cc:content-transfer-encoding;
+        bh=T0V5oiWQkvHXwmhtDU+OoF9iMxPj6y0LTly2Lqt4DuE=;
+        b=eHuOUIaS6IQ/Oqu0OgOBN3unkL3XIi+Fk4dITGJA16P8o+NlqUHYybky26m5NVdFR3
+         nEj77IcCvuVVn+06U+bT8lGz7uajjKyyW7FwNmgKPtbnVhkVbc/cbaQN9K5iNZEDqwN8
+         nVQaDyp75O3xA21xpf2HF2/4nmB5ZZWZ4qIBAUAFOV005XJOvP7dFdsSa13fRian8kWs
+         nlTaeO+OWJaahsba2PoUYHfcaaNFyOAgkVI/2smnCnTClDA1XqlICigzABWFlOngodfE
+         4zfFtHsuUV8spOrU42OjsyzgiiWT7pqurb12j6T+fkPcno/GvbG0zKznsHZsamzHUppY
+         mnLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AmC6zqJnTuERZcKgju96W662jvY6IqjAAXRYJAiZy84=;
-        b=V9JT2L2P5PLPGnqx8da+7/XMZvwAvwDv+uUf0jN2p9F8OgZGdv/42oMPQtU0yvCgl4
-         7jsG7aLTPKaRnBVftyH4rFpJtofxE2zsEoDQaQtT/5td7l+baXcjMLWWqLqx9/FQd1eH
-         khnZnWQQY0tJv553IAaRGN0U/ALb4v6mv9oUfAMYyIZAdQKDwQclp3KX8fv/Oy0fo8KD
-         VjxZiwqR5bLVUQTdrLbgmWj3P4t0HPoogqVxj3RGPg3gYa8oqxi8S/gys+Vd5Ndos/jR
-         QxnFIvx7qFeWCibECbskJ5fUqrd09nvBQ2SV466TtPw6/bmyf6Rele1R/hozAfoBRlys
-         hkCw==
-X-Gm-Message-State: AOAM531rbRuuvRB/n0oNgdIp0/Kn3HVQJPnChcRFR1DPlJ4n3/T46jd6
-        W8cFNAqIe4t+b3pG4NxoHLyNjDK74D+uquQHElMW+fR9Q5iaeg==
-X-Google-Smtp-Source: ABdhPJwLyg6aYFhRMr87O4OBI/F2U+vdfMliFKfXyNEdgYZDynu3xR1JpJY7Q9xdNNpS7gtKFX9Vk7Be5xEqXx84ygs=
-X-Received: by 2002:a63:3e05:: with SMTP id l5mr20863250pga.74.1605093929944;
- Wed, 11 Nov 2020 03:25:29 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=T0V5oiWQkvHXwmhtDU+OoF9iMxPj6y0LTly2Lqt4DuE=;
+        b=hNOzojsOqejLRpHIjEe5Vb2hOFJvdWIWekB8bT0DNocHZCVbCyLy1FzAanHcIs1Xkd
+         Q430bIMJUCufIo6vOkkulLqO2oaQISY760hJo7IaSlRYrhOpbUhqyvgtCGS+JhRazNMj
+         svgQEBJCa0RiZp2X1eN9kdICo2boP2aW8bjzn+m7QC30jxQNjleDDCfacduw7XALKLDC
+         U2Kvz7fV34QpllzCjn5q9MASHp+VoYtDv2xpIqEGAQPnLl5S+aDo15wYB8BbPb/ZkK5a
+         j6eE+XvZqgqCIpF+OX3eMqfMZmYGqhbEn4wBYr92iFZ16+filLzUqhguOXOH7OxqEoV0
+         8zgQ==
+X-Gm-Message-State: AOAM532OhwyWnRX9VnFnqmGXfeViQS7rUOba5pVkF57T3Q12r/mSxHmI
+        VSKGxaASmri7XgaqvsuVP1EirZqrSR6nmxxZ48g1GA==
+X-Google-Smtp-Source: ABdhPJycXgZgkNrggh2D47nvGhRFVQi/de+PIfj6XhXa1n8Wfiv9NfQ9xufbyRB0WVwWMZQ6Ct+Whjrl/7D/IIfrgqM=
+X-Received: by 2002:a67:f417:: with SMTP id p23mr14435741vsn.42.1605094740774;
+ Wed, 11 Nov 2020 03:39:00 -0800 (PST)
 MIME-Version: 1.0
-References: <20201109132643.457932-1-lars.povlsen@microchip.com>
- <20201109132643.457932-3-lars.povlsen@microchip.com> <CAHp75Vdfm7A5=Mi-LZ1sHJS5fSngypZQ50-rGQ7A6kD2kmVFTA@mail.gmail.com>
- <87361hfbwu.fsf@microchip.com> <CAHp75VfZ=hJvpYiAOz72yRpJTxLU6ZOo9hEz4BsBcgSwAcjCFA@mail.gmail.com>
- <87zh3oe0nr.fsf@microchip.com>
-In-Reply-To: <87zh3oe0nr.fsf@microchip.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Wed, 11 Nov 2020 13:26:18 +0200
-Message-ID: <CAHp75VfZRJuzvaYs-CKvxitfOxcNc-7j8MZA7FQvN0SQrPK6cw@mail.gmail.com>
-Subject: Re: [PATCH v8 2/3] pinctrl: pinctrl-microchip-sgpio: Add pinctrl
- driver for Microsemi Serial GPIO
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+References: <20201104234427.26477-1-digetx@gmail.com> <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
+ <cd147ab0-1304-a491-7a56-ee6199c02d32@gmail.com> <2716c195-083a-112f-f1e5-2f6b7152a4b5@gmail.com>
+In-Reply-To: <2716c195-083a-112f-f1e5-2f6b7152a4b5@gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 11 Nov 2020 12:38:23 +0100
+Message-ID: <CAPDyKFqUMsH9dCZ=OYqfdLt==+-8NjK9n=S5jGGNXZu6Y9q=2w@mail.gmail.com>
+Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
+ Tegra20/30 SoCs
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Peter Chen <Peter.Chen@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        driverdevel <devel@driverdev.osuosl.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-pwm@vger.kernel.org,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
+        DTML <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 10:52 AM Lars Povlsen
-<lars.povlsen@microchip.com> wrote:
-> Andy Shevchenko writes:
-> > On Tue, Nov 10, 2020 at 5:51 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
-> >> > On Mon, Nov 9, 2020 at 3:27 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
-
-...
-
-> >> >> +               return -EOPNOTSUPP;
-> >> >
-> >> > Are you sure? IIRC internally we are using ENOTSUPP.
-> >> >
-> >> > Couple of drivers seem to be wrongly using the other one.
-> >>
-> >> Checkpatch complains about ENOTSUPP:
-> >>
-> >> # ENOTSUPP is not a standard error code and should be avoided in new patches.
-> >> # Folks usually mean EOPNOTSUPP (also called ENOTSUP), when they type ENOTSUPP.
-> >
-> > checkpatch is wrong if this is internal code and to me sounds like
-> > it's not going out of the kernel.
-> >
-> > ...
+On Sun, 8 Nov 2020 at 13:19, Dmitry Osipenko <digetx@gmail.com> wrote:
 >
-> As it appears there are different opinions on this I'll let the pinctrl
-> maintainer decide.
-
-There are no other opinions.
-Read description of struct pinconf_ops and fix the code.
-checkpatch is simply wrong here.
-
-> >> >> +                       err = -EOPNOTSUPP;
-> >> >
-> >> > Ditto.
-> >>
-> >> Ditto.
+> 05.11.2020 18:22, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > 05.11.2020 12:45, Ulf Hansson =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > ...
+> >> I need some more time to review this, but just a quick check found a
+> >> few potential issues...
 > >
-> > Ditto.
+> > Thank you for starting the review! I'm pretty sure it will take a coupl=
+e
+> > revisions until all the questions will be resolved :)
+> >
+> >> The "core-supply", that you specify as a regulator for each
+> >> controller's device node, is not the way we describe power domains.
+> >> Instead, it seems like you should register a power-domain provider
+> >> (with the help of genpd) and implement the ->set_performance_state()
+> >> callback for it. Each device node should then be hooked up to this
+> >> power-domain, rather than to a "core-supply". For DT bindings, please
+> >> have a look at Documentation/devicetree/bindings/power/power-domain.ya=
+ml
+> >> and Documentation/devicetree/bindings/power/power_domain.txt.
+> >>
+> >> In regards to the "sync state" problem (preventing to change
+> >> performance states until all consumers have been attached), this can
+> >> then be managed by the genpd provider driver instead.
+> >
+> > I'll need to take a closer look at GENPD, thank you for the suggestion.
+> >
+> > Sounds like a software GENPD driver which manages clocks and voltages
+> > could be a good idea, but it also could be an unnecessary
+> > over-engineering. Let's see..
+> >
+>
+> Hello Ulf and all,
+>
+> I took a detailed look at the GENPD and tried to implement it. Here is
+> what was found:
+>
+> 1. GENPD framework doesn't aggregate performance requests from the
+> attached devices. This means that if deviceA requests performance state
+> 10 and then deviceB requests state 3, then framework will set domain's
+> state to 3 instead of 10.
+>
+> https://elixir.bootlin.com/linux/v5.10-rc2/source/drivers/base/power/doma=
+in.c#L376
 
+As Viresh also stated, genpd does aggregate the votes. It even
+performs aggregation hierarchy (a genpd is allowed to have parent(s)
+to model a topology).
 
--- 
-With Best Regards,
-Andy Shevchenko
+>
+> 2. GENPD framework has a sync() callback in the genpd.domain structure,
+> but this callback isn't allowed to be used by the GENPD implementation.
+> The GENPD framework always overrides that callback for its own needs.
+> Hence GENPD doesn't allow to solve the bootstrapping
+> state-synchronization problem in a nice way.
+>
+> https://elixir.bootlin.com/linux/v5.10-rc2/source/drivers/base/power/doma=
+in.c#L2606
+
+That ->sync() callback isn't the callback you are looking for, it's a
+PM domain specific callback - and has other purposes.
+
+To solve the problem you refer to, your genpd provider driver (a
+platform driver) should assign its ->sync_state() callback. The
+->sync_state() callback will be invoked, when all consumer devices
+have been attached (and probed) to their corresponding provider.
+
+You may have a look at drivers/cpuidle/cpuidle-psci-domain.c, to see
+an example of how this works. If there is anything unclear, just tell
+me and I will try to help.
+
+>
+> 3. Tegra doesn't have a dedicated hardware power-controller for the core
+> domain, instead there is only an external voltage regulator. Hence we
+> will need to create a phony device-tree node for the virtual power
+> domain, which is probably a wrong thing to do.
+
+No, this is absolutely the correct thing to do.
+
+This isn't a virtual power domain, it's a real power domain. You only
+happen to model the control of it as a regulator, as it fits nicely
+with that for *this* SoC. Don't get me wrong, that's fine as long as
+the supply is specified only in the power-domain provider node.
+
+On another SoC, you might have a different FW interface for the power
+domain provider that doesn't fit well with the regulator. When that
+happens, all you need to do is to implement a new power domain
+provider and potentially re-define the power domain topology. More
+importantly, you don't need to re-invent yet another slew of device
+specific bindings - for each SoC.
+
+>
+> =3D=3D=3D
+>
+> Perhaps it should be possible to create some hacks to work around
+> bullets 2 and 3 in order to achieve what we need for DVFS on Tegra, but
+> bullet 1 isn't solvable without changing how the GENPD core works.
+>
+> Altogether, the GENPD in its current form is a wrong abstraction for a
+> system-wide DVFS in a case where multiple devices share power domain and
+> this domain is a voltage regulator. The regulator framework is the
+> correct abstraction in this case for today.
+
+Well, I admit it's a bit complex. But it solves the problem in a
+nicely abstracted way that should work for everybody, at least in my
+opinion.
+
+Although, let's not exclude that there are pieces missing in genpd or
+the opp layer, as this DVFS feature is rather new - but then we should
+just extend/fix it.
+
+Kind regards
+Uffe
