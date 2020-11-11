@@ -2,154 +2,319 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FAFB2AF912
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 20:30:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC06E2AF96C
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:03:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727308AbgKKTaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 14:30:39 -0500
-Received: from mail.baikalelectronics.com ([87.245.175.226]:43366 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbgKKTai (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 14:30:38 -0500
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id C53D3803071C;
-        Wed, 11 Nov 2020 19:30:34 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id JBorFac4oRnu; Wed, 11 Nov 2020 22:30:32 +0300 (MSK)
-Date:   Wed, 11 Nov 2020 22:30:29 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Rob Herring <robh@kernel.org>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <devicetree@vger.kernel.org>, <linux-mips@vger.kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Roger Quadros <rogerq@ti.com>,
-        <linux-snps-arc@lists.infradead.org>,
-        <linuxppc-dev@lists.ozlabs.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        id S1726406AbgKKUDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 15:03:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726391AbgKKUDr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:03:47 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE30BC0613D6
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 12:03:47 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id r10so2094558pgb.10
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 12:03:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DXaYZfXLx6Cp2pU+xUA5JlOzbe7aCi/UqFCMY0tSnls=;
+        b=D0MowZnMt52H/BXOEHQRLrGWTU9enHwLPcI+V3J22NwWe4hJWezqbZ+7tKbx82FlXO
+         Ohp7t18z81hFc6IFCmX0dla5d5WNkpR01qIFz7NO5y2KWE/qorN/kQkGPM2aalQNMemP
+         1b+F3EcVjGif5nYwBt2vwDnw33Lx7r+WHuyo0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=DXaYZfXLx6Cp2pU+xUA5JlOzbe7aCi/UqFCMY0tSnls=;
+        b=QJ7Raz75eAgajOHKtMRpXknsyHfkpCmwL1qYpGYZji/iSRvJ+BH17NJR5Bh3OS00KR
+         l0QC5vMgsuG6ggWc5/nRTKN35s89QQ+PcQ0C6Fo6bdesBgRlA9nGDMfVL6LP4jGvEG/3
+         Bq632sGcVs3wna2rQkmqkK1xTtKPMO9nzLpx5JSkFGswB5TqnznFeC6BAKWj65kspzgv
+         ezydABGSUM0NloHzN3J494HzvoKlo/EiuCnz4Hl8iuXqEsfPmsoyTPi2AM+T8ghJTb/v
+         t1gu7XLZeMYOBA+dWh+XjZ+pTqbvTBoABW9Xe1h5fixEEkROn6MqQXuoTPAcCkCPGEGp
+         SIgQ==
+X-Gm-Message-State: AOAM5314PgyikV3paZSKDT26UVmYgQqhr95TOakId0nJcszYOMFkASTf
+        JlqKETSkCBsjMIZBQKts5e0YXw==
+X-Google-Smtp-Source: ABdhPJwdj6nsqjDpGwFbeVucPrC12E8DS0/xfoDbSNVHt1LqQedq70b0ikdS6MVyUf5e9Ie9kOE+YQ==
+X-Received: by 2002:a63:c43:: with SMTP id 3mr24166118pgm.222.1605125027215;
+        Wed, 11 Nov 2020 12:03:47 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id k7sm3464316pfa.184.2020.11.11.12.03.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Nov 2020 12:03:46 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        <linux-kernel@vger.kernel.org>, Andy Gross <agross@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-usb@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v4 01/18] dt-bindings: usb: usb-hcd: Detach generic USB
- controller properties
-Message-ID: <20201111193029.ao6kdwrhpsdxb7il@mobilestation>
-References: <20201111090853.14112-1-Sergey.Semin@baikalelectronics.ru>
- <20201111090853.14112-2-Sergey.Semin@baikalelectronics.ru>
- <20201111191640.GA1857205@bogus>
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Rajeshwari <rkambl@codeaurora.org>,
+        Akhil P Oommen <akhilpo@codeaurora.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH] arm64: dts: qcom: sc7180: Set 'polling-delay-passive' for thermal zones back to 250 ms
+Date:   Wed, 11 Nov 2020 12:03:43 -0800
+Message-Id: <20201111120334.1.Ifc04ea235c3c370e3b21ec3b4d5dead83cc403b4@changeid>
+X-Mailer: git-send-email 2.29.2.222.g5d2a92d10f8-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201111191640.GA1857205@bogus>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 01:16:40PM -0600, Rob Herring wrote:
-> On Wed, 11 Nov 2020 12:08:36 +0300, Serge Semin wrote:
-> > There can be three distinctive types of the USB controllers: USB hosts,
-> > USB peripherals/gadgets and USB OTG, which can switch from one role to
-> > another. In order to have that hierarchy handled in the DT binding files,
-> > we need to collect common properties in a common DT schema and specific
-> > properties in dedicated schemas. Seeing the usb-hcd.yaml DT schema is
-> > dedicated for the USB host controllers only, let's move some common
-> > properties from there into the usb.yaml schema. So the later would be
-> > available to evaluate all currently supported types of the USB
-> > controllers.
-> > 
-> > While at it add an explicit "additionalProperties: true" into the
-> > usb-hcd.yaml as setting the additionalProperties/unevaluateProperties
-> > properties is going to be get mandatory soon.
-> > 
-> > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
-> > 
-> > ---
-> > 
-> > Changelog v4:
-> > - This is a new patch created as a result of the comment left
-> >   by Chunfeng Yun in v3
-> > ---
-> >  .../devicetree/bindings/usb/usb-hcd.yaml      | 14 ++-------
-> >  .../devicetree/bindings/usb/usb.yaml          | 29 +++++++++++++++++++
-> >  2 files changed, 32 insertions(+), 11 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/usb.yaml
-> > 
-> 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
+Commit 22337b91022d ("arm64: dts: qcom: sc7180: Changed polling mode
+in Thermal-zones node") sets both 'polling-delay' and
+'polling-delay-passive' to zero with the rationale that TSENS interrupts
+are enabled. A TSENS interrupt fires when the temperature of a thermal
+zone reaches a trip point, which makes regular polling below the passive
+trip point temperature unnecessary. However the situation is different
+when passive cooling is active, regular polling is still needed to
+trigger a periodic evaluation of the thermal zone by the thermal governor.
 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/usb/usb-hcd.yaml:17:1: [error] duplication of key "additionalProperties" in mapping (key-duplicates)
+Change 'polling-delay-passive' back to the original value of 250 ms.
+Commit 2315ae70af95 ("arm64: dts: qcom: sc7180: Add gpu cooling
+support") recently changed the value for the GPU thermal zones from
+zero to 100 ms, also set it to 250 ms for uniformity. If some zones
+really need different values these can be changed in dedicated patches.
 
-Oh my. Don't know how this has slipped in. It's even more weird given
-that I've performed dt_binding_check before sending the patches out.
-Anyway I'll fix the duplication in v5. Please proceed with the series
-review.
+Fixes: 22337b91022d ("arm64: dts: qcom: sc7180: Changed polling mode in Thermal-zones node")
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
 
--Sergey
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 50 ++++++++++++++--------------
+ 1 file changed, 25 insertions(+), 25 deletions(-)
 
-> 
-> dtschema/dtc warnings/errors:
-> Traceback (most recent call last):
->   File "/usr/local/bin/dt-extract-example", line 45, in <module>
->     binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
->     return constructor.get_single_data()
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 113, in get_single_data
->     return self.construct_document(node)
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 123, in construct_document
->     for _dummy in generator:
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 723, in construct_yaml_map
->     value = self.construct_mapping(node)
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 440, in construct_mapping
->     return BaseConstructor.construct_mapping(self, node, deep=deep)
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 257, in construct_mapping
->     if self.check_mapping_key(node, key_node, mapping, key, value):
->   File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 295, in check_mapping_key
->     raise DuplicateKeyError(*args)
-> ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
->   in "<unicode string>", line 4, column 1
-> found duplicate key "additionalProperties" with value "True" (original value: "True")
->   in "<unicode string>", line 17, column 1
-> 
-> To suppress this check see:
->     http://yaml.readthedocs.io/en/latest/api.html#duplicate-keys
-> 
-> Duplicate keys will become an error in future releases, and are errors
-> by default when using the new API.
-> 
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/usb/usb-hcd.example.dts] Error 1
-> make[1]: *** Deleting file 'Documentation/devicetree/bindings/usb/usb-hcd.example.dts'
-> make[1]: *** Waiting for unfinished jobs....
-> make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
-> make: *** [Makefile:1364: dt_binding_check] Error 2
-> 
-> 
-> See https://patchwork.ozlabs.org/patch/1398034
-> 
-> The base for the patch is generally the last rc1. Any dependencies
-> should be noted.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
-> 
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 4e7e58c63285..2f454686a883 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -3520,7 +3520,7 @@ lpass_hm: clock-controller@63000000 {
+ 
+ 	thermal-zones {
+ 		cpu0-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 1>;
+@@ -3569,7 +3569,7 @@ map1 {
+ 		};
+ 
+ 		cpu1-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 2>;
+@@ -3618,7 +3618,7 @@ map1 {
+ 		};
+ 
+ 		cpu2-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 3>;
+@@ -3667,7 +3667,7 @@ map1 {
+ 		};
+ 
+ 		cpu3-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 4>;
+@@ -3716,7 +3716,7 @@ map1 {
+ 		};
+ 
+ 		cpu4-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 5>;
+@@ -3765,7 +3765,7 @@ map1 {
+ 		};
+ 
+ 		cpu5-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 6>;
+@@ -3814,7 +3814,7 @@ map1 {
+ 		};
+ 
+ 		cpu6-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 9>;
+@@ -3855,7 +3855,7 @@ map1 {
+ 		};
+ 
+ 		cpu7-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 10>;
+@@ -3896,7 +3896,7 @@ map1 {
+ 		};
+ 
+ 		cpu8-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 11>;
+@@ -3937,7 +3937,7 @@ map1 {
+ 		};
+ 
+ 		cpu9-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 12>;
+@@ -3978,7 +3978,7 @@ map1 {
+ 		};
+ 
+ 		aoss0-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 0>;
+@@ -3999,7 +3999,7 @@ aoss0_crit: aoss0_crit {
+ 		};
+ 
+ 		cpuss0-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 7>;
+@@ -4019,7 +4019,7 @@ cpuss0_crit: cluster0_crit {
+ 		};
+ 
+ 		cpuss1-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 8>;
+@@ -4039,7 +4039,7 @@ cpuss1_crit: cluster0_crit {
+ 		};
+ 
+ 		gpuss0-thermal {
+-			polling-delay-passive = <100>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 13>;
+@@ -4067,7 +4067,7 @@ map0 {
+ 		};
+ 
+ 		gpuss1-thermal {
+-			polling-delay-passive = <100>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens0 14>;
+@@ -4095,7 +4095,7 @@ map0 {
+ 		};
+ 
+ 		aoss1-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 0>;
+@@ -4116,7 +4116,7 @@ aoss1_crit: aoss1_crit {
+ 		};
+ 
+ 		cwlan-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 1>;
+@@ -4137,7 +4137,7 @@ cwlan_crit: cwlan_crit {
+ 		};
+ 
+ 		audio-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 2>;
+@@ -4158,7 +4158,7 @@ audio_crit: audio_crit {
+ 		};
+ 
+ 		ddr-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 3>;
+@@ -4179,7 +4179,7 @@ ddr_crit: ddr_crit {
+ 		};
+ 
+ 		q6-hvx-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 4>;
+@@ -4200,7 +4200,7 @@ q6_hvx_crit: q6_hvx_crit {
+ 		};
+ 
+ 		camera-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 5>;
+@@ -4221,7 +4221,7 @@ camera_crit: camera_crit {
+ 		};
+ 
+ 		mdm-core-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 6>;
+@@ -4242,7 +4242,7 @@ mdm_crit: mdm_crit {
+ 		};
+ 
+ 		mdm-dsp-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 7>;
+@@ -4263,7 +4263,7 @@ mdm_dsp_crit: mdm_dsp_crit {
+ 		};
+ 
+ 		npu-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 8>;
+@@ -4284,7 +4284,7 @@ npu_crit: npu_crit {
+ 		};
+ 
+ 		video-thermal {
+-			polling-delay-passive = <0>;
++			polling-delay-passive = <250>;
+ 			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens1 9>;
+-- 
+2.29.2.222.g5d2a92d10f8-goog
+
