@@ -2,230 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50C5C2AF381
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 15:27:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CEB92AF39D
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 15:32:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726514AbgKKO1l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 09:27:41 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:53136 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725909AbgKKO1l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 09:27:41 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 63E02A19;
-        Wed, 11 Nov 2020 15:27:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1605104858;
-        bh=x+6cQdl3k6jIh9Epg7yQvBNQmgdjXU7lzidL9akFX4Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=djkgxwnReI8Qzr43qRLT7ZIrkKza7QhYr59Lo/FuXnVJjGZITCeg2N9C48rPUf6AY
-         TGjXqQXtkvCyVLZwzJ8hUehXvczXNqOZKI0TbHdXts5ecvGc7FIG+GNwm+UhZQ13iU
-         zonazKkes7jcZp+Jl797CRXvmWeD7ixI/nfWq8IM=
-Date:   Wed, 11 Nov 2020 16:27:35 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Sameer Pujar <spujar@nvidia.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: Convert graph bindings to json-schema
-Message-ID: <20201111142735.GG4115@pendragon.ideasonboard.com>
-References: <20201102203656.220187-1-robh@kernel.org>
- <20201102203656.220187-2-robh@kernel.org>
- <20201111140009.GD4115@pendragon.ideasonboard.com>
- <CAL_Jsq+A6Ga+h4qK0nzyL87M1DvrRSnzxtjwUNpq--L7MDHxfA@mail.gmail.com>
+        id S1726988AbgKKOcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 09:32:17 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44210 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726338AbgKKOcR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 09:32:17 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7DDD9207BB;
+        Wed, 11 Nov 2020 14:32:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605105136;
+        bh=muSLYibs0ZGONy3L3c3n/+gux1chNtnCxNxW3stscoY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hFrzd16CQbRJJPLAQQTpdLQo9C4aF3SuO8TVnJGuUByiW/sFMF7U+EjQcJUgQWl8q
+         jT9hFgWFtHhUE2CXdk2ELs2U4FsIWQ1qB7qnEyINQQ+BFMIXXvXLTNnvwtf33vgQl0
+         06CfiJvGvJuGCsWAn9fthW6u8Of7C0n1Dv8/H0FQ=
+Received: by mail-oi1-f176.google.com with SMTP id m17so2372584oie.4;
+        Wed, 11 Nov 2020 06:32:16 -0800 (PST)
+X-Gm-Message-State: AOAM531NAuFq9m1ALadD7tdYO2toDm9sZ5TC98+hOz8qDCVgE6TfDCZR
+        FxdyAXq8avsGWHFmn3OeHf74bRwnRnFVNxj5cA==
+X-Google-Smtp-Source: ABdhPJyBAmSgmXMjpq6AAOkmqmbZGZptg0qCA3HGPghqhOTq/+URiIjllWXA/wYIci1U+X2mffVzaZzIIAj2IJIQudY=
+X-Received: by 2002:aca:5dc2:: with SMTP id r185mr2316288oib.106.1605105135706;
+ Wed, 11 Nov 2020 06:32:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+A6Ga+h4qK0nzyL87M1DvrRSnzxtjwUNpq--L7MDHxfA@mail.gmail.com>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com> <20201107081420.60325-25-damien.lemoal@wdc.com>
+ <20201109153625.GB1330401@bogus> <04b266c7-bba9-d847-a526-f64f76c11a50@gmail.com>
+In-Reply-To: <04b266c7-bba9-d847-a526-f64f76c11a50@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 11 Nov 2020 08:32:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJy_6ALEKdk7ZOEaM58Xi6NLBYd_aYNeVr2CpyjSBVpmA@mail.gmail.com>
+Message-ID: <CAL_JsqJy_6ALEKdk7ZOEaM58Xi6NLBYd_aYNeVr2CpyjSBVpmA@mail.gmail.com>
+Subject: Re: [PATCH 24/32] dt-bindings: Document kendryte,k210-fpioa bindings
+To:     Sean Anderson <seanga2@gmail.com>
+Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Wed, Nov 11, 2020 at 08:25:40AM -0600, Rob Herring wrote:
-> On Wed, Nov 11, 2020 at 8:00 AM Laurent Pinchart wrote:
-> > On Mon, Nov 02, 2020 at 02:36:54PM -0600, Rob Herring wrote:
-> > > From: Sameer Pujar <spujar@nvidia.com>
-> > >
-> > > Convert device tree bindings of graph to YAML format. Currently graph.txt
-> > > doc is referenced in multiple files and all of these need to use schema
-> > > references. For now graph.txt is updated to refer to graph.yaml.
-> > >
-> > > For users of the graph binding, they should reference to the graph
-> > > schema from either 'ports' or 'port' property:
-> > >
-> > > properties:
-> > >   ports:
-> > >     type: object
-> > >     $ref: graph.yaml#/properties/ports
-> > >
-> > >     properties:
-> > >       port@0:
-> > >         description: What data this port has
-> > >
-> > >       ...
-> > >
-> > > Or:
-> > >
-> > > properties:
-> > >   port:
-> > >     description: What data this port has
-> > >     type: object
-> > >     $ref: graph.yaml#/properties/port
+On Mon, Nov 9, 2020 at 9:45 AM Sean Anderson <seanga2@gmail.com> wrote:
+>
+> On 11/9/20 10:36 AM, Rob Herring wrote:
+> > On Sat, Nov 07, 2020 at 05:14:12PM +0900, Damien Le Moal wrote:
+> >> Document the device tree bindings for the Kendryte K210 SoC Fully
+> >> Programmable IO Array (FPIOA) pinctrl driver in
+> >> Documentation/devicetree/bindings/pinctrl/kendryte,k210-fpioa.yaml
+> >>
+> >> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> >> ---
+> >>  .../bindings/pinctrl/kendryte,k210-fpioa.yaml | 106 ++++++++++++++++++
+> >>  1 file changed, 106 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/pinctrl/kendryte,k210-fpioa.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/pinctrl/kendryte,k210-fpioa.yaml b/Documentation/devicetree/bindings/pinctrl/kendryte,k210-fpioa.yaml
+> >> new file mode 100644
+> >> index 000000000000..8730add88ee0
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/pinctrl/kendryte,k210-fpioa.yaml
+> >> @@ -0,0 +1,106 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/pinctrl/kendryte,k210-fpioa.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Kendryte K210 FPIOA (Fully Programmable IO Array) Device Tree Bindings
+> >> +
+> >> +maintainers:
+> >> +  - Damien Le Moal <damien.lemoal@wdc.com>
+> >> +
+> >> +description:
+> >> +  The Kendryte K210 SoC Fully Programmable IO Array controller allows assiging
+> >> +  any of 256 possible functions to any of 48 IO pins. Pin function configuration
+> >> +  is performed on a per-pin basis.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: kendryte,k210-fpioa
+> >> +
+> >> +  reg:
+> >> +    description: FPIOA controller register space base address and size
+> >> +
+> >> +  clocks:
+> >> +    minItems: 2
+> >> +    maxItems: 2
 > >
-> > Sounds like a good approach.
+> > Can drop these. Implied by 'items' length.
 > >
-> > > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> > > Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > > v3:
-> > >  - Move port 'reg' to port@* and make required
-> > >  - Make remote-endpoint required
-> > >  - Add 'additionalProperties: true' now required
-> > >  - Fix yamllint warnings
-> > >
-> > >  Documentation/devicetree/bindings/graph.txt  | 129 +-----------
-> > >  Documentation/devicetree/bindings/graph.yaml | 199 +++++++++++++++++++
-> > >  2 files changed, 200 insertions(+), 128 deletions(-)
-> > >  create mode 100644 Documentation/devicetree/bindings/graph.yaml
-> 
-> [...]
-> 
-> > > diff --git a/Documentation/devicetree/bindings/graph.yaml b/Documentation/devicetree/bindings/graph.yaml
-> > > new file mode 100644
-> > > index 000000000000..b56720c5a13e
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/graph.yaml
-> > > @@ -0,0 +1,199 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/graph.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Common bindings for device graphs
-> > > +
-> > > +description: |
-> > > +  The hierarchical organisation of the device tree is well suited to describe
-> > > +  control flow to devices, but there can be more complex connections between
-> > > +  devices that work together to form a logical compound device, following an
-> > > +  arbitrarily complex graph.
-> > > +  There already is a simple directed graph between devices tree nodes using
-> > > +  phandle properties pointing to other nodes to describe connections that
-> > > +  can not be inferred from device tree parent-child relationships. The device
-> > > +  tree graph bindings described herein abstract more complex devices that can
-> > > +  have multiple specifiable ports, each of which can be linked to one or more
-> > > +  ports of other devices.
-> > > +
-> > > +  These common bindings do not contain any information about the direction or
-> > > +  type of the connections, they just map their existence. Specific properties
-> > > +  may be described by specialized bindings depending on the type of connection.
-> > > +
-> > > +  To see how this binding applies to video pipelines, for example, see
-> > > +  Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > > +  Here the ports describe data interfaces, and the links between them are
-> > > +  the connecting data buses. A single port with multiple connections can
-> > > +  correspond to multiple devices being connected to the same physical bus.
-> > > +
-> > > +maintainers:
-> > > +  - Philipp Zabel <p.zabel@pengutronix.de>
-> > > +
-> > > +select: false
-> > > +
-> > > +properties:
-> > > +  port:
-> > > +    type: object
-> > > +    description:
-> > > +      If there is more than one endpoint node or 'reg' property present in
-> > > +      endpoint nodes then '#address-cells' and '#size-cells' properties are
-> > > +      required.
-> > > +
-> > > +    properties:
-> > > +      "#address-cells":
-> > > +        const: 1
-> > > +
-> > > +      "#size-cells":
-> > > +        const: 0
-> > > +
-> > > +    patternProperties:
-> > > +      "^endpoint(@[0-9a-f]+)?$":
-> > > +        type: object
-> > > +        properties:
-> > > +          reg:
-> > > +            maxItems: 1
-> > > +
-> > > +          remote-endpoint:
-> > > +            description: |
-> > > +              phandle to an 'endpoint' subnode of a remote device node.
-> > > +            $ref: /schemas/types.yaml#/definitions/phandle
-> > > +
-> > > +        required:
-> > > +          - remote-endpoint
+> >> +    items:
+> >> +      - description: Controller reference clock source
+> >> +      - description: APB interface clock source
+> >> +
+> >> +  clock-names:
+> >> +    minItems: 2
+> >> +    maxItems: 2
+> >> +    items:
+> >> +      - const: ref
+> >> +      - const: pclk
+> >> +
+> >> +  resets:
+> >> +    maxItems: 1
+> >> +
+> >> +  kendryte,sysctl:
+> >> +    minItems: 1
+> >> +    maxItems: 1
+> >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> >> +    description: |
+> >> +      phandle to the system controller node
+> >> +
+> >> +  kendryte,power-offset:
+> >> +    minItems: 1
+> >> +    maxItems: 1
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    description: |
+> >> +      Offset of the power domain control register of the system controller.
 > >
-> > As noted elsewhere, this shouldn't be required.
-> >
-> > Should we set additionalProperties: false here ?
-> 
-> No, we've got a bunch of properties that get added to endpoint nodes.
-> There's a few cases where 'port' nodes have properties too.
+> > Sounds like you should be using power-domains binding.
+>
+> This is for pin power domains. E.g. pins 0-5 can be set to 1V8 or 3V3 logic levels.
 
-I meant the port node, which I wasn't aware needed additional
-properties. Do you have any example ? (I wonder if you will point me to
-bindings that I have written ;-))
+Okay, please make that clear in the description. You can combine the
+above 2 properties into one which is a phandle+offset.
 
-> > > +  ports:
-> > > +    type: object
-> > > +    description: |
-> > > +      If there is more than one port node or 'reg' property present in port
-> > > +      nodes then '#address-cells' and '#size-cells' properties are required.
-> > > +      In such cases all port nodes can be grouped under 'ports' independently
-> > > +      from any other child device nodes a device might have.
-> >
-> > Allowing multiple port nodes not grouped in a ports node has created
-> > complexity, with very little gain. Should we forbid that going forward ?
-> 
-> Yes, that's probably a separate change. The examples need updating
-> too. We do have a few cases we'll have to support though.
-
-Sure, it can be done on top.
-
-> > > +    properties:
-> > > +      "#address-cells":
-> > > +        const: 1
-> > > +
-> > > +      "#size-cells":
-> > > +        const: 0
-> > > +
-> > > +    patternProperties:
-> > > +      "^port(@[0-9a-f]+)?$":
-> > > +        $ref: "#/properties/port"
-> > > +        type: object
-> > > +
-> > > +        properties:
-> > > +          reg:
-> > > +            maxItems: 1
-> > > +
-> > > +        required:
-> > > +          - reg
-> > > +
-> > > +
-> >
-> > Maybe a single blank line ?
-> >
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-> I've gone thru and updated schemas to use this. Primarily to prove out
-> a meta-schema for it. So I'll be sending out another version.
-
--- 
-Regards,
-
-Laurent Pinchart
+Rob
