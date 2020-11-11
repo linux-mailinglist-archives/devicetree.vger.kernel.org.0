@@ -2,153 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F37272AFD4A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:54:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F86F2AFC09
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:31:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727819AbgKLBbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 20:31:51 -0500
-Received: from mga01.intel.com ([192.55.52.88]:20332 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727837AbgKKXLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 18:11:44 -0500
-IronPort-SDR: NOdPkS69RhW3uBgKhpoBk+RD/skb9oOWtDQ/ThhW8Qj8rgju5E9CbaTmg+6fFDJ0Qi78ZEo2ds
- 9K7lXPW0AXTg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="188220518"
-X-IronPort-AV: E=Sophos;i="5.77,470,1596524400"; 
-   d="scan'208";a="188220518"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 15:11:44 -0800
-IronPort-SDR: 2SigUd3RC6BHd0NrZjhiVcNkd4/T5ldcTrknfGqqjnYMA+dH0hh6VxbwKoY75rW1jfqAHhP1bp
- TkxPMdnvvBtw==
-X-IronPort-AV: E=Sophos;i="5.77,470,1596524400"; 
-   d="scan'208";a="541993746"
-Received: from lmwang8-mobl.ccr.corp.intel.com (HELO [10.254.209.85]) ([10.254.209.85])
-  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 15:11:39 -0800
-Cc:     baolu.lu@linux.intel.com, iommu@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pci@vger.kernel.org, linux-mm@kvack.org, joro@8bytes.org,
-        catalin.marinas@arm.com, will@kernel.org, robin.murphy@arm.com,
-        kevin.tian@intel.com, Jonathan.Cameron@huawei.com,
-        jacob.jun.pan@linux.intel.com, christian.koenig@amd.com,
-        felix.kuehling@amd.com, zhangfei.gao@linaro.org, jgg@ziepe.ca,
-        xuzaibo@huawei.com, fenghua.yu@intel.com, hch@infradead.org
-Subject: Re: [PATCH v7 04/24] iommu: Add a page fault handler
-To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
-References: <20200519175502.2504091-1-jean-philippe@linaro.org>
- <20200519175502.2504091-5-jean-philippe@linaro.org>
- <c840d771-188d-9ee5-d117-e4b91d29b329@linux.intel.com>
- <20201111135740.GA2622074@myrica>
-From:   Lu Baolu <baolu.lu@linux.intel.com>
-Message-ID: <8e630294-8199-68e3-d55a-68e6484d953a@linux.intel.com>
-Date:   Thu, 12 Nov 2020 07:11:37 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
-MIME-Version: 1.0
-In-Reply-To: <20201111135740.GA2622074@myrica>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1727986AbgKLBby (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 20:31:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727899AbgKKXX4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 18:23:56 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDFCBC0613D6;
+        Wed, 11 Nov 2020 15:23:46 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id r186so2553119pgr.0;
+        Wed, 11 Nov 2020 15:23:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=rmvEzNyFoJX1iHYxKsv0/EGBjX8DBa3yt0/jMPmZuc0=;
+        b=SIfjbVbXY9g2nGpr3BqroW0o9pCuBd41UimxHetMt19exNTV0jskvTTI4D/ubKIHsB
+         DUf4SCe+EqQ/6L2D52wX8PE5uJ9dSwBdlrq1GFulADQLx1Thh3z8/UgMxLuaLxr8I0d9
+         8haeVcVDKdVJvIdEYtH0oxYWVhiOV8ajBx2YGhgg40jK3lUEkPeIOC3+yJ8SQst6SfER
+         ALddFewf+XAW2+kSkKkVgWuLwSK1CETx+eXOTrJsH9h4RdGYW00TCaNlHaJkZ2ZVTFM0
+         s2beFieRVB7U64JwJDuxp2kiSK5JmU4L8UMmJ4UsmY/2/pPc9GiFxNyfnL08fUywSk4f
+         QlBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=rmvEzNyFoJX1iHYxKsv0/EGBjX8DBa3yt0/jMPmZuc0=;
+        b=Ge/xDdwdGwUPrn7ShOjHCFmCW66MdRcFaVf1E/rJCHvTHRhfyFWpuzPu+TDyTiTFj4
+         OoLD1Ai0+QrU/oGFvXUB2tDPMPI/nBLSORR3sgG2E9yHoJQzTxFTaRS5CrZigeyB47eC
+         Ew+W8fMsUZzLxwPDSteRFCx5gAnEiF7qq8L9lKrH2kYc52/A/JL4mXlUsCkNFBvc/Ku8
+         3UshPo8POKRUEuJHj+OBQLZbtvaG8/aRkO5ThbQ5q1fTWNdSMN/3GInsN0AXXokpoOUn
+         PUtCFAqVO+Z7m/wEbAIoNoMuPE5LnQCoDikXnUEfD8SArxXwelpywzayTKdckvsStt/T
+         M8sg==
+X-Gm-Message-State: AOAM530+sAP/5v4jUIbhmx/jNYy8dhMUzLEvHC05LgxPVwuKMIeInhGc
+        d0hynPLYX5dS9ntpW1+fUjMbBvq/FrP3Eo7Z
+X-Google-Smtp-Source: ABdhPJwLIkmY1lx2BkFH6Ky9XCzcwXy2Tiedp8iEyPSz0H7c5glq67safBqMDc1pSrdZwJsRHwPlYg==
+X-Received: by 2002:a17:90a:4208:: with SMTP id o8mr6176658pjg.19.1605137026461;
+        Wed, 11 Nov 2020 15:23:46 -0800 (PST)
+Received: from taoren-ubuntu-R90MNF91.thefacebook.com (c-73-252-146-110.hsd1.ca.comcast.net. [73.252.146.110])
+        by smtp.gmail.com with ESMTPSA id a128sm3901431pfb.195.2020.11.11.15.23.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 15:23:45 -0800 (PST)
+From:   rentao.bupt@gmail.com
+To:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, taoren@fb.com
+Cc:     Tao Ren <rentao.bupt@gmail.com>
+Subject: [PATCH 0/4] ARM: dts: aspeed: Add Facebook Galaxy100 BMC
+Date:   Wed, 11 Nov 2020 15:23:26 -0800
+Message-Id: <20201111232330.30843-1-rentao.bupt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
+From: Tao Ren <rentao.bupt@gmail.com>
 
-On 2020/11/11 21:57, Jean-Philippe Brucker wrote:
-> Hi Baolu,
-> 
-> Thanks for the review. I'm only now reworking this and realized I've never
-> sent a reply, sorry about that.
-> 
-> On Wed, May 20, 2020 at 02:42:21PM +0800, Lu Baolu wrote:
->> Hi Jean,
->>
->> On 2020/5/20 1:54, Jean-Philippe Brucker wrote:
->>> Some systems allow devices to handle I/O Page Faults in the core mm. For
->>> example systems implementing the PCIe PRI extension or Arm SMMU stall
->>> model. Infrastructure for reporting these recoverable page faults was
->>> added to the IOMMU core by commit 0c830e6b3282 ("iommu: Introduce device
->>> fault report API"). Add a page fault handler for host SVA.
->>>
->>> IOMMU driver can now instantiate several fault workqueues and link them
->>> to IOPF-capable devices. Drivers can choose between a single global
->>> workqueue, one per IOMMU device, one per low-level fault queue, one per
->>> domain, etc.
->>>
->>> When it receives a fault event, supposedly in an IRQ handler, the IOMMU
->>> driver reports the fault using iommu_report_device_fault(), which calls
->>> the registered handler. The page fault handler then calls the mm fault
->>> handler, and reports either success or failure with iommu_page_response().
->>> When the handler succeeded, the IOMMU retries the access.
->>>
->>> The iopf_param pointer could be embedded into iommu_fault_param. But
->>> putting iopf_param into the iommu_param structure allows us not to care
->>> about ordering between calls to iopf_queue_add_device() and
->>> iommu_register_device_fault_handler().
->>>
->>> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
-> [...]
->>> +static enum iommu_page_response_code
->>> +iopf_handle_single(struct iopf_fault *iopf)
->>> +{
->>> +	vm_fault_t ret;
->>> +	struct mm_struct *mm;
->>> +	struct vm_area_struct *vma;
->>> +	unsigned int access_flags = 0;
->>> +	unsigned int fault_flags = FAULT_FLAG_REMOTE;
->>> +	struct iommu_fault_page_request *prm = &iopf->fault.prm;
->>> +	enum iommu_page_response_code status = IOMMU_PAGE_RESP_INVALID;
->>> +
->>> +	if (!(prm->flags & IOMMU_FAULT_PAGE_REQUEST_PASID_VALID))
->>> +		return status;
->>> +
->>> +	mm = iommu_sva_find(prm->pasid);
->>> +	if (IS_ERR_OR_NULL(mm))
->>> +		return status;
->>> +
->>> +	down_read(&mm->mmap_sem);
->>> +
->>> +	vma = find_extend_vma(mm, prm->addr);
->>> +	if (!vma)
->>> +		/* Unmapped area */
->>> +		goto out_put_mm;
->>> +
->>> +	if (prm->perm & IOMMU_FAULT_PERM_READ)
->>> +		access_flags |= VM_READ;
->>> +
->>> +	if (prm->perm & IOMMU_FAULT_PERM_WRITE) {
->>> +		access_flags |= VM_WRITE;
->>> +		fault_flags |= FAULT_FLAG_WRITE;
->>> +	}
->>> +
->>> +	if (prm->perm & IOMMU_FAULT_PERM_EXEC) {
->>> +		access_flags |= VM_EXEC;
->>> +		fault_flags |= FAULT_FLAG_INSTRUCTION;
->>> +	}
->>> +
->>> +	if (!(prm->perm & IOMMU_FAULT_PERM_PRIV))
->>> +		fault_flags |= FAULT_FLAG_USER;
->>> +
->>> +	if (access_flags & ~vma->vm_flags)
->>> +		/* Access fault */
->>> +		goto out_put_mm;
->>> +
->>> +	ret = handle_mm_fault(vma, prm->addr, fault_flags);
->>> +	status = ret & VM_FAULT_ERROR ? IOMMU_PAGE_RESP_INVALID :
->>
->> Do you mind telling why it's IOMMU_PAGE_RESP_INVALID but not
->> IOMMU_PAGE_RESP_FAILURE?
-> 
-> PAGE_RESP_FAILURE maps to PRI Response code "Response Failure" which
-> indicates a catastrophic error and causes the function to disable PRI.
-> Instead PAGE_RESP_INVALID maps to PRI Response code "Invalid request",
-> which tells the function that the address is invalid and there is no point
-> retrying this particular access.
+The patch series adds the initial version of device tree for Facebook
+Galaxy100 (AST2400) BMC.
 
-Thanks for the explanation. I am also working on converting Intel VT-d
-to use this framework (and the sva helpers). So far so good.
+Patch #1 adds common dtsi to minimize duplicated device entries across
+Facebook Network AST2400 BMC device trees.
 
-Best regards,
-baolu
+Patch #2 simplfies Wedge40 device tree by using the common dtsi.
+
+Patch #3 simplfies Wedge100 device tree by using the common dtsi.
+
+Patch #4 adds the initial version of device tree for Facebook Galaxy100
+BMC.
+
+Tao Ren (4):
+  ARM: dts: aspeed: Common dtsi for Facebook AST2400 Network BMCs
+  ARM: dts: aspeed: wedge40: Use common dtsi
+  ARM: dts: aspeed: wedge100: Use common dtsi
+  ARM: dts: aspeed: Add Facebook Galaxy100 (AST2400) BMC
+
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../dts/aspeed-bmc-facebook-galaxy100.dts     |  57 +++++++++
+ .../boot/dts/aspeed-bmc-facebook-wedge100.dts | 120 +++---------------
+ .../boot/dts/aspeed-bmc-facebook-wedge40.dts  | 112 +---------------
+ .../dts/ast2400-facebook-netbmc-common.dtsi   | 117 +++++++++++++++++
+ 5 files changed, 191 insertions(+), 216 deletions(-)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-galaxy100.dts
+ create mode 100644 arch/arm/boot/dts/ast2400-facebook-netbmc-common.dtsi
+
+-- 
+2.17.1
+
