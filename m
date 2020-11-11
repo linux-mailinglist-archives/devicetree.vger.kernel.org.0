@@ -2,76 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99A8C2AF9C2
-	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:28:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B692AF9CE
+	for <lists+devicetree@lfdr.de>; Wed, 11 Nov 2020 21:32:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726547AbgKKU2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 15:28:50 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:33183 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726477AbgKKU2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:28:50 -0500
-Received: by mail-ot1-f65.google.com with SMTP id i18so3425699ots.0;
-        Wed, 11 Nov 2020 12:28:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WJf51nyncLEmkY0/O8/AmM9y/TuW/LVt/kXamrqppsE=;
-        b=UZiE6L/o6VY31FLrBJWADGq6Tug55DTT61alcDpHYO1b4jgZZJSXmcrUZb3ttIWVrh
-         JmX71fULy6cEiYsnie/NsxVOPEX3ZgCMf6nP+3b5awbN078te8zqAihoqB5BEZngmIYJ
-         fKej7ukpjJwe6CTcgfp9Ajfen8CxnF9yzmr35iRhSzBby5G8YZuj/kYxNoNV3qvAA4Zy
-         Q8gDjvr382aLNqzOsYl+vTiuNJcMapdIGx0GYlIUlG159vNbwsQ4UYXHLHGHKKgV/YEr
-         QIQteHDwI/d2kFAgc2eVs1y+oAtNIu+3UsVpr/m1RRjQNtwegbycVE7qALeqT4s3VFdD
-         hglQ==
-X-Gm-Message-State: AOAM532iv1yAXXOUoebVxtzWVOR0i+XAnDkkIuUdkykOTxSIe6vpLUdd
-        THda+FQYZ9TH5JUNMCMxQQ==
-X-Google-Smtp-Source: ABdhPJzjBGK4y8JdGnGo7mz2lnpYgsMG9B4V8dQwLAkI9fFRQ6mTl1k0TJTK/sGulYG/kuqZD1Vd3Q==
-X-Received: by 2002:a05:6830:348:: with SMTP id h8mr556706ote.318.1605126529396;
-        Wed, 11 Nov 2020 12:28:49 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 186sm751073ooe.20.2020.11.11.12.28.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 12:28:48 -0800 (PST)
-Received: (nullmailer pid 1974454 invoked by uid 1000);
-        Wed, 11 Nov 2020 20:28:47 -0000
-Date:   Wed, 11 Nov 2020 14:28:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     maz@kernel.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        w@1wt.eu, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: gpio: Add a binding header for the
- MSC313 GPIO driver
-Message-ID: <20201111202847.GA1974400@bogus>
-References: <20201109121731.1537580-1-daniel@0x0f.com>
- <20201109121731.1537580-2-daniel@0x0f.com>
+        id S1726348AbgKKUcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 15:32:00 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:12148 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725860AbgKKUb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 15:31:59 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fac4a390000>; Wed, 11 Nov 2020 12:31:54 -0800
+Received: from [10.26.72.124] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 11 Nov
+ 2020 20:31:56 +0000
+Subject: Re: [PATCH] ARM: tegra: Populate OPP table for Tegra20 Ventana
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
+References: <20201111103847.152721-1-jonathanh@nvidia.com>
+ <7e40cd3e-7c34-c9a9-bf00-ba7d507a2d6b@gmail.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <5409bbb4-d3f9-ccc9-ac3e-6344975bd58e@nvidia.com>
+Date:   Wed, 11 Nov 2020 20:31:54 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201109121731.1537580-2-daniel@0x0f.com>
+In-Reply-To: <7e40cd3e-7c34-c9a9-bf00-ba7d507a2d6b@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605126714; bh=9ANYYF/RxveGkqEmqPgH2v4yk5gp3dxoJ5KwqVgeNXk=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=QRdEF8pyuNFSyj2A/dP5cEdifzrb47G+YbmVyV9ebe3BPshIkrNQ8q/QMbJk/Bjs/
+         7ye0VNn8nwekRC6yCNvm/Ts7VlJSfHQ/prp/CVZzgiAvDfnw/qonBCe652kVFw5xuD
+         xFMXCBmtAApNt+RDL45VBoEiOk/sW0gD9sSsRou1B3I3/c4jOJQo1uyvcIgiHzTYr6
+         5nOE6PjtSSKYECrL1a0GfVqwx8Rymfi/AsB2g0JaPcIVuu8fBs4F7aWvG5eAAZwFmk
+         xbGXV4+YkDh9o2XlzF7tOQIxPZ1U8ogcURs4NdwOarQjLi0UenVuRnCmmNmbZaZKQs
+         2ILS1OgganO5g==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 09 Nov 2020 21:17:27 +0900, Daniel Palmer wrote:
-> Header adds defines for the gpio number of each pad from the driver view.
-> 
-> The gpio block seems to have enough registers for 128 lines but what line
-> is mapped to a physical pin depends on the chip. The gpio block also seems
-> to contain some registers that are not related to gpio but needed somewhere
-> to go.
-> 
-> Because of the above the driver itself uses the index of a pin's offset in
-> an array of the possible offsets for a chip as the gpio number.
-> 
-> Signed-off-by: Daniel Palmer <daniel@0x0f.com>
-> ---
->  MAINTAINERS                            |  1 +
->  include/dt-bindings/gpio/msc313-gpio.h | 53 ++++++++++++++++++++++++++
->  2 files changed, 54 insertions(+)
->  create mode 100644 include/dt-bindings/gpio/msc313-gpio.h
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 11/11/2020 13:47, Dmitry Osipenko wrote:
+> 11.11.2020 13:38, Jon Hunter =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> Commit 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver
+>> (Tegra30 supported now)") update the Tegra20 CPUFREQ driver to use the
+>> generic CPUFREQ device-tree driver. Since this change CPUFREQ support
+>> on the Tegra20 Ventana platform has been broken because the necessary
+>> device-tree nodes with the operating point information are not populated
+>> for this platform. Fix this by updating device-tree for Venata to
+>> include the operating point informration for Tegra20.
+>>
+>> Fixes: 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver (T=
+egra30 supported now)")
+>> Cc: stable@vger.kernel.org
+>>
+>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>> ---
+>>  arch/arm/boot/dts/tegra20-ventana.dts | 11 +++++++++++
+>>  1 file changed, 11 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/tegra20-ventana.dts b/arch/arm/boot/dts/t=
+egra20-ventana.dts
+>> index b158771ac0b7..055334ae3d28 100644
+>> --- a/arch/arm/boot/dts/tegra20-ventana.dts
+>> +++ b/arch/arm/boot/dts/tegra20-ventana.dts
+>> @@ -3,6 +3,7 @@
+>> =20
+>>  #include <dt-bindings/input/input.h>
+>>  #include "tegra20.dtsi"
+>> +#include "tegra20-cpu-opp.dtsi"
+>> =20
+>>  / {
+>>  	model =3D "NVIDIA Tegra20 Ventana evaluation board";
+>> @@ -592,6 +593,16 @@ clk32k_in: clock@0 {
+>>  		#clock-cells =3D <0>;
+>>  	};
+>> =20
+>> +	cpus {
+>> +		cpu0: cpu@0 {
+>> +			operating-points-v2 =3D <&cpu0_opp_table>;
+>> +		};
+>> +
+>> +		cpu@1 {
+>> +			operating-points-v2 =3D <&cpu0_opp_table>;
+>> +		};
+>> +	};
+>> +
+>>  	gpio-keys {
+>>  		compatible =3D "gpio-keys";
+>> =20
+>>
+>=20
+> This could be wrong to do because CPU voltage is fixed to 1000mV in
+> Ventana's DT, are you sure that higher clock rates don't require higher
+> voltages? What is the CPU process ID and SoC speedo ID on Ventana?
+
+I see this in the bootlog ...
+
+[    2.797684] tegra20-cpufreq tegra20-cpufreq: hardware version 0x2 0x2
+
+> You could easily hook up CPU voltage scaling, please see acer-500 DT and
+> patch [1] for examples of how to set up regulators in DT. But then it
+> shouldn't be a stable patch.
+
+According to the Ventana design guide the CPU voltage range is 0.8-1.0V
+and so it appears to be set to the max. The CPUFREQ test is reporting
+the following ...
+
+cpu: cpufreq: - CPU#0:
+cpu: cpufreq:   - supported governors:
+cpu: cpufreq:     - ondemand *
+cpu: cpufreq:     - performance
+cpu: cpufreq:     - schedutil
+cpu: cpufreq:   - supported rates:
+cpu: cpufreq:     -  216000
+cpu: cpufreq:     -  312000
+cpu: cpufreq:     -  456000
+cpu: cpufreq:     -  608000
+cpu: cpufreq:     -  760000
+cpu: cpufreq:     -  816000
+cpu: cpufreq:     -  912000
+cpu: cpufreq:     - 1000000 *
+cpu: cpufreq: - CPU#1:
+cpu: cpufreq:   - supported governors:
+cpu: cpufreq:     - ondemand *
+cpu: cpufreq:     - performance
+cpu: cpufreq:     - schedutil
+cpu: cpufreq:   - supported rates:
+cpu: cpufreq:     -  216000
+cpu: cpufreq:     -  312000
+cpu: cpufreq:     -  456000
+cpu: cpufreq:     -  608000
+cpu: cpufreq:     -  760000
+cpu: cpufreq:     -  816000
+cpu: cpufreq:     -  912000
+cpu: cpufreq:     - 1000000 *
+
+Cheers
+Jon
+
+--=20
+nvpublic
