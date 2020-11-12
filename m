@@ -2,195 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C1372AFE03
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:33:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D89B2AFF3E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728039AbgKLFdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1728049AbgKLFdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 12 Nov 2020 00:33:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51472 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728864AbgKLEcu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 23:32:50 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3781BC0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:32:48 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id w13so5768051eju.13
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:32:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PrJGFWR5LfPadBQJXtxR3X13DiYJSukzmCqstyB653Y=;
-        b=HWhp+x5nR3T+EuumQWwhx5XTPD7QV5SlMbprd7oGYb7NT1tsUS8M5b4CCExQirLXf1
-         n6xB1vMrsTHoCd3FbJvdOGzMuDQtsl1hs78cs62DjPqqlEQe7GQ0p/ZW5fyjKOmsxAtD
-         iRHM55F9z6oGEmav+yyjAu5YCy5KSCZCidFCw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PrJGFWR5LfPadBQJXtxR3X13DiYJSukzmCqstyB653Y=;
-        b=H2E2e/Ne9jVIGX+nVPm4e5ub/7mgaelwJRwFq5ir3x89h8Ktdj9nIlTxPiGbEibIbI
-         hR1LcgHTsKYSmYRICZcIv9j/TJiRtrI2E8XmqEvkcypKeNDs7kb1iS3jtcCygGu5F1GA
-         sCuUhF6QUtXzdn81Ze0Wg/aCrPYerkqFrh6D60PPl9NtidYc627TGEFNrNlVPe6ffiJt
-         c8gCgIAH7oY/YIQorW1l3aaiToku2Il8UBjd658tNju3T51FcQu505kcfaJfU77e7+eQ
-         Wn8K3CXL0n+MXiHhxXqzTdQ5PVLosOj7nqPFie94sMglEqciHpjgdY61diuvTPjFPLQo
-         JMvA==
-X-Gm-Message-State: AOAM532UhdaHE6AYjQUkXk5ACbp7nOabWzu6yXu2IfW3vdWuzJT9ORVs
-        qWWhfsbW7gQUMN+RyfQpmHsgykRyzmf1Fg==
-X-Google-Smtp-Source: ABdhPJwLv/doovMNWwksutCnt0h6T7PijYrcjBM6LgzksqnW2+6EePpVY0MXWPrOhfxZgK9xGNaHBQ==
-X-Received: by 2002:a17:906:1a07:: with SMTP id i7mr27697616ejf.473.1605155566572;
-        Wed, 11 Nov 2020 20:32:46 -0800 (PST)
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com. [209.85.218.45])
-        by smtp.gmail.com with ESMTPSA id k4sm1773760edq.73.2020.11.11.20.32.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Nov 2020 20:32:46 -0800 (PST)
-Received: by mail-ej1-f45.google.com with SMTP id dk16so5779389ejb.12
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:32:46 -0800 (PST)
-X-Received: by 2002:adf:e54f:: with SMTP id z15mr32685970wrm.159.1605155209811;
- Wed, 11 Nov 2020 20:26:49 -0800 (PST)
+Received: from [125.140.134.231] ([125.140.134.231]:56673 "EHLO
+        WIN-DAONO245HJF" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728900AbgKLEgM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 23:36:12 -0500
+Received: from User ([154.127.53.41]) by WIN-DAONO245HJF with Microsoft SMTPSVC(8.5.9600.16384);
+         Thu, 12 Nov 2020 13:29:53 +0900
+Reply-To: <verenichekaterina7070@yahoo.com>
+From:   "erenich ekaterina" <verenichekaterinaekaterina11@gmail.com>
+Subject: Dear Beloved
+Date:   Wed, 11 Nov 2020 20:29:59 -0800
 MIME-Version: 1.0
-References: <20191204124732.10932-1-Jerry-Ch.chen@mediatek.com>
- <1588903371.16825.14.camel@mtksdccf07> <CAAFQd5CP+gH3zG9fejBv_hTzeAExMoY+L38W8e4e3OSc-gVRHg@mail.gmail.com>
- <20200521183825.GB249683@chromium.org> <1593526253.29676.28.camel@mtksdccf07>
- <20200630171912.GE1212092@chromium.org> <1605095509.28992.7.camel@mtksdccf07>
-In-Reply-To: <1605095509.28992.7.camel@mtksdccf07>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Thu, 12 Nov 2020 13:26:39 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5CeZYOAxwHjsVOV9eJRt15-npTsH15Y5idwr3-ux+85qQ@mail.gmail.com>
-Message-ID: <CAAFQd5CeZYOAxwHjsVOV9eJRt15-npTsH15Y5idwr3-ux+85qQ@mail.gmail.com>
-Subject: Re: [RFC PATCH V4 0/4] media: platform: Add support for Face
- Detection (FD) on mt8183 SoC
-To:     Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-Cc:     "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
-        HansVerkuil <hverkuil@xs4all.nl>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "pihsun@chromium.org" <pihsun@chromium.org>,
-        "yuzhao@chromium.org" <yuzhao@chromium.org>,
-        "zwisler@chromium.org" <zwisler@chromium.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
-        <Sean.Cheng@mediatek.com>,
-        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
-        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
-        <christie.yu@mediatek.com>,
-        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
-        <Frederic.Chen@mediatek.com>,
-        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain;
+        charset="Windows-1251"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 6.00.2600.0000
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.2600.0000
+Message-ID: <WIN-DAONO245HJFlcqz010188a1@WIN-DAONO245HJF>
+X-OriginalArrivalTime: 12 Nov 2020 04:29:53.0467 (UTC) FILETIME=[779CF8B0:01D6B8AC]
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 8:51 PM Jerry-ch Chen
-<Jerry-ch.Chen@mediatek.com> wrote:
->
-> Hi Tomasz,
->
-> On Wed, 2020-07-01 at 01:19 +0800, Tomasz Figa wrote:
-> > Hi Jerry,
-> >
-> > On Tue, Jun 30, 2020 at 10:10:53PM +0800, Jerry-ch Chen wrote:
-> > > Hi Tomasz,
-> > >
-> > > On Thu, 2020-05-21 at 18:38 +0000, Tomasz Figa wrote:
-> > > > Hi Jerry,
-> > > >
-> > > > On Wed, May 13, 2020 at 11:45:37PM +0200, Tomasz Figa wrote:
-> > > > > Hi Jerry,
-> > > > >
-> > > > > On Fri, May 8, 2020 at 4:03 AM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > >
-> > > > > > Hi Laurent, Tomasz, Matthias,
-> > > > > >
-> > > > > > gentle ping for this patch set,
-> > > > > > If no new comments, I would like to send a newer version.
-> > > > > >
-> > > > >
-> > > > > Sorry, I still haven't had a chance to look at the series, so feel
-> > > > > free to send a new version and I will take a look at the new one.
-> > > > >
-> > > >
-> > > > Finally found some time to review the series. Again sorry for the delay
-> > > > and thanks for your patience.
-> > > >
-> > > > Some general comments:
-> > > > 1) The metadata format FourCC should be added in a separate patch,
-> > > > together with documentation for it.
-> > > > 2) Control IDs, structs used by the userspace, etc. should be defined in
-> > > > a header under include/uapi/linux.
-> > > >
-> > > > Please also check my replies to particular patches for further comments.
-> > > >
-> > > > Best regards,
-> > > > Tomasz
-> > >
-> > > Appreciate for your reply,
-> > >
-> > > So far, I've locally created an uapi header:
-> > > include/uapi/linux/mtk_fd_40.h
-> > > which provides some values, control ids, and the definitions of
-> > > structures that would be needed by user of mtk_fd_40 driver.
-> > > In addition, I also provide a MACRO as example in comments that can
-> > > extract the struct member with bit length and offset
-> > > definitions(eliminate the bit-fields).
-> > >
-> > > Also, I would like to rename struct fd_user_output with struct
-> > > mtk_fd_hw_result. I worry fd_user_output would be a confusing name.
-> >
-> > The change sounds good to me.
-> >
-> > > I will add them in a separate patch in next version.
-> > >
-> >
-> > Okay.
-> >
-> > > I am still working on the documentation, which might be
-> > > Documentation/media/uapi/v4l/pixfmt-meta-mtk-fd-40.rst.
-> > > Refering the other pixfmt-*.rst files, I will try to provide the
-> > > flat-table of the metadata with the structure of the mtk_fd_hw_result.
-> > >
-> >
-> > Sounds good to me.
-> >
-> > > I am confusing that should I remain the name with -40 in the tail of rst
-> > > file?
-> >
-> > The header and documentation file names should match the driver name.  I
-> > just noticed there is some inconsistency in the naming, though. The
-> > driver seems to be located under drivers/media/platform/mtk-isp/fd, but
-> > the driver name in the platform driver struct and as reported by
-> > VIDIOC_QUERYCAP seems to be "mtk-fd-4.0".
->
-> > Since we have many mtk-* drivers in the tree currently, I think it might
-> > make sense to consolidate them under drivers/media/platform/mediatek,
-> > similarly to drivers/media/platform/qcom or /rockchip. But it could be
-> > done later, as a follow-up.
-> >
-> > My suggestion would be to place the driver under
-> > drivers/media/platform/mtk-fd-40 and also rename the related Kconfig
-> > symbol to include the _40 suffix.
-> >
-> > What do you think?
-> >
->
-> I Appreciate your comments,
-> Sorry for the late reply.
->
-> Would it be possible for me to replace the driver as drivers/media/platform/mtk_fd/mtk-fd-40?(Just like mtk-isp/isp_50)
->
+Dear Beloved
 
-I'm not a big fan of duplicating "mtk fd" in the path. How about just
-making it drivers/media/platform/mtk-fd-40?
+Life is gradually passing away from me as a result of my present medical condition and my personal doctor confided in me yesterday that I have only but few more weeks to live.
 
-Best regards,
-Tomasz
+In view of this setback, I want to donate my estate for humanitarian assistance, since this has always been the plan of my late husband and besides I have no child.
+
+In an effort to compliment the good work of God almighty and the wish of my late Husband I donate the sum of $2,800,000.00 (Two Million Eight Hundred Thousand United States Dollars) to you.
+
+On your acknowledgment of this mail and informing me of your nationality and current place of resident, my Bank will facilitate due processes for transfer of this legacy to you.
+
+May God bless you as you use this money judiciously for the work of charity.
+
+Sincere regards,
+
+Mrs.verenich ekaterina
