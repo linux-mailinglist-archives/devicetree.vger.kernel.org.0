@@ -2,178 +2,376 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 980022B0BCC
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 18:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C0372B0CAF
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 19:33:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726451AbgKLR4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 12:56:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34726 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726363AbgKLR4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 12:56:45 -0500
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929F9C0613D1
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 09:56:45 -0800 (PST)
-Received: by mail-pg1-x543.google.com with SMTP id e21so4802053pgr.11
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 09:56:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=G0rtwpshQP4CvZoXtSrINXeaaTyhi9gtdzm3vrsa7Jo=;
-        b=QCtcclVQrZrHji82U6pADdEBzX7gbK/kKps+EqrI5zcDXdoVCFq6efUeFAHWe//l73
-         vDzsrXOWOfj5Fuzd7aMOXfmVTui78p5HeK8X76DOtHpZlMCeOuxxnyrfinmU9bbwmRiS
-         fCiBLYMhEMo2MCN4huGmBaOAqxlSan/oneVZE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=G0rtwpshQP4CvZoXtSrINXeaaTyhi9gtdzm3vrsa7Jo=;
-        b=V9hd4VlYlW26fyyt2atrVuAddsHlzScPWM/iqw3uCh97MO/sggxN5lhAXDlQJsyP2N
-         pFCJsfvuZC4uVR/wf5PjA1be3jYBd9/QAYOmeqydM5lyk/mb/2d0Ozw66cr3wyCcRzZJ
-         XS6xTBnOUAICd88Df9ewwjSNDhxioLLxOxzLUkQv6I6Dulbi2bJpWCiAXqkj9qLL0+aj
-         M0WBGiflUIFOqNwg1+4VyTfErtIGLYYrdKYWxe5IMa1zn9TWbEx3l9WWDVsT2PZ7uale
-         LDga11now+XJpAJXaoCzC99+bCK0SynqRXgMbWFmi82IjM3jRDnVbhNTye369N8ilsze
-         KVuQ==
-X-Gm-Message-State: AOAM532mZ1LhTFo0p2PScVdH05Kni5SrdyRg78/M+YPDw/87UidlY/0i
-        epEQJ7+/IYJn3r/a4Viu21BjRw==
-X-Google-Smtp-Source: ABdhPJz6YHBPKKNS65iez8Ig62Aka9vOolx+PyDURQLNlxhIv9GWjtN+d3iJccwWZIGiaDB0IapN7A==
-X-Received: by 2002:a63:e:: with SMTP id 14mr577062pga.426.1605203804834;
-        Thu, 12 Nov 2020 09:56:44 -0800 (PST)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id q18sm6817303pfs.150.2020.11.12.09.56.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 09:56:44 -0800 (PST)
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 1/2] dt-bindings: arm: Add optional interrupt to smc/hvc SCMI transport
-Date:   Thu, 12 Nov 2020 12:56:26 -0500
-Message-Id: <20201112175632.42234-2-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201112175632.42234-1-james.quinlan@broadcom.com>
-References: <20201112175632.42234-1-james.quinlan@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="0000000000009926fe05b3eca24b"
+        id S1726221AbgKLSdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 13:33:25 -0500
+Received: from 6.mo3.mail-out.ovh.net ([188.165.43.173]:36173 "EHLO
+        6.mo3.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726219AbgKLSdZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 13:33:25 -0500
+X-Greylist: delayed 8393 seconds by postgrey-1.27 at vger.kernel.org; Thu, 12 Nov 2020 13:33:22 EST
+Received: from player731.ha.ovh.net (unknown [10.108.42.145])
+        by mo3.mail-out.ovh.net (Postfix) with ESMTP id 6D87226AAAE
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 15:55:32 +0100 (CET)
+Received: from milecki.pl (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player731.ha.ovh.net (Postfix) with ESMTPSA id 6E7F217E1F6AA;
+        Thu, 12 Nov 2020 14:55:25 +0000 (UTC)
+Authentication-Results: garm.ovh; auth=pass (GARM-104R005a6023b77-783b-4af6-a622-946e139c72b9,
+                    5DB2EC65EA10FA9BF03E1418F38E114673DCE3D8) smtp.auth=rafal@milecki.pl
+Subject: Re: [PATCH 2/2] reset: brcm-pmc: add driver for Broadcom's PMC
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
+References: <20201109163519.32605-1-zajec5@gmail.com>
+ <20201109163519.32605-2-zajec5@gmail.com>
+ <e89b4601-0c52-db46-4406-d9ac28687e8f@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Message-ID: <41d25c9d-3562-9549-3582-78a5e2d37330@milecki.pl>
+Date:   Thu, 12 Nov 2020 15:55:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <e89b4601-0c52-db46-4406-d9ac28687e8f@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 5540553444794469937
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedruddvfedggeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomheptfgrfhgrlhcuofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepkeduheejheffudefhffghfegjeejleetkeevueelveegkefhhfffieehleelgfevnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejfedurdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---0000000000009926fe05b3eca24b
+On 10.11.2020 05:52, Florian Fainelli wrote:
+> On 11/9/2020 8:35 AM, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> Power Management Controller can be found on BCM4908 and is needed to
+>> power on SoC blocks. It can be controlled using:
+>> 1. Firmware calls
+>> 2. Direct regs access
+>>
+>> Only the later method is supported by this initial driver. It was
+>> successfully tested on BCM4908 using HCD controllers.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+> 
+> [snip]
+> 
+>> +#define PMBM_CTRL				0x00
+>> +#define  PMC_PMBM_START				(1 << 31)
+>> +#define  PMC_PMBM_TIMEOUT			(1 << 30)
+>> +#define  PMC_PMBM_SLAVE_ERR			(1 << 29)
+>> +#define  PMC_PMBM_BUSY				(1 << 28)
+>> +#define  PMC_PMBM_READ				(0 << 20)
+>> +#define  PMC_PMBM_WRITE				(1 << 20)
+>> +#define PMBM_WR_DATA				0x04
+>> +#define PMBM_TIMEOUT				0x08
+>> +#define PMBM_RD_DATA				0x0c
+> 
+> Can you re-use the definitions from include/linux/reset/bcm63xx_pmb.h,
+> you have the same constant names.
+> 
+>> +
+>> +#define BPCM_ID_REG				0x00
+>> +#define BPCM_CAPABILITIES			0x04
+>> +#define BPCM_CONTROL				0x08
+>> +#define BPCM_STATUS				0x0c
+>> +#define BPCM_ROSC_CONTROL			0x10
+>> +#define BPCM_ROSC_THRESH_H			0x14
+>> +#define BPCM_ROSC_THRESHOLD_BCM6838		0x14
+>> +#define BPCM_ROSC_THRESH_S			0x18
+>> +#define BPCM_ROSC_COUNT_BCM6838			0x18
+>> +#define BPCM_ROSC_COUNT				0x1c
+>> +#define BPCM_PWD_CONTROL_BCM6838		0x1c
+>> +#define BPCM_PWD_CONTROL			0x20
+>> +#define BPCM_SR_CONTROL_BCM6838			0x20
+>> +#define BPCM_PWD_ACCUM_CONTROL			0x24
+>> +#define BPCM_SR_CONTROL				0x28
+>> +#define BPCM_GLOBAL_CONTROL			0x2c
+>> +#define BPCM_MISC_CONTROL			0x30
+>> +#define BPCM_MISC_CONTROL2			0x34
+>> +#define BPCM_SGPHY_CNTL				0x38
+>> +#define BPCM_SGPHY_STATUS			0x3c
+>> +#define BPCM_ZONE0				0x40
+>> +#define  BPCM_ZONE_CONTROL			0x00
+>> +#define  BPCM_ZONE_CONFIG1			0x04
+>> +#define  BPCM_ZONE_CONFIG2			0x08
+>> +#define  BPCM_ZONE_FREQ_SCALAR_CONTROL		0x0c
+>> +#define  BPCM_ZONE_SIZE				0x10
+>> +
+>> +enum brcm_pmc_chipset {
+>> +	BCM4908,
+>> +	BCM6848,
+>> +	BCM6858,
+>> +};
+>> +
+>> +struct brcm_pmc_data {
+>> +	enum brcm_pmc_chipset chipset;
+>> +	int misc_strap_bus_reg;
+>> +	int misc_strap_bus_pmc_rom_boot_bit;
+>> +};
+>> +
+>> +static const struct brcm_pmc_data brcm_pmc_4908_data = {
+>> +	.chipset				= BCM4908,
+>> +	.misc_strap_bus_reg			= 0x00,
+>> +	.misc_strap_bus_pmc_rom_boot_bit	= BIT(11),
+>> +};
+>> +
+>> +union bpcm_capabilities {
+>> +	struct {
+>> +		int num_zones:8;
+>> +		int sr_reg_bits:8;
+>> +		int pllType:2;
+>> +		int reserved0:1;
+>> +		int ubus:1;
+>> +		int reserved1:12;
+>> +	} bits;
+>> +	u32 raw32;
+>> +} __attribute__((__packed__));
+> 
+> This is not going to work well if we extend this driver to support the
+> BCM63xx DSL SoCs which are done by the same engineering group within
+> Broadcom. Can you convert that to bits/masks instead such that this
+> becomes endian independent?
+> 
+>> +
+>> +union bpcm_zone_control {
+>> +	struct {
+>> +		u32 manual_clk_en:1;
+>> +		u32 manual_reset_ctl:1;
+>> +		u32 freq_scale_used:1;		/* R/O */
+>> +		u32 dpg_capable:1;		/* R/O */
+>> +		u32 manual_mem_pwr:2;
+>> +		u32 manual_iso_ctl:1;
+>> +		u32 manual_ctl:1;
+>> +		u32 dpg_ctl_en:1;
+>> +		u32 pwr_dn_req:1;
+>> +		u32 pwr_up_req:1;
+>> +		u32 mem_pwr_ctl_en:1;
+>> +		u32 blk_reset_assert:1;
+>> +		u32 mem_stby:1;
+>> +		u32 reserved:5;
+>> +		u32 pwr_cntl_state:5;
+>> +		u32 freq_scalar_dyn_sel:1;	/* R/O */
+>> +		u32 pwr_off_state:1;		/* R/O */
+>> +		u32 pwr_on_state:1;		/* R/O */
+>> +		u32 pwr_good:1;			/* R/O */
+>> +		u32 dpg_pwr_state:1;		/* R/O */
+>> +		u32 mem_pwr_state:1;		/* R/O */
+>> +		u32 iso_state:1;		/* R/O */
+>> +		u32 reset_state:1;		/* R/O */
+>> +	} bits;
+>> +	u32 raw32;
+>> +} __attribute__((__packed__));
+>> +
+>> +struct brcm_pmc {
+>> +	const struct brcm_pmc_data *data;
+>> +	void __iomem *base;
+>> +	struct regmap *misc;
+>> +	struct regmap *procmon;
+>> +	struct device *dev;
+>> +	struct reset_controller_dev rcdev;
+>> +	bool direct;
+>> +	bool little_endian;
+>> +};
+>> +
+>> +static DEFINE_SPINLOCK(lock);
+> 
+> You have a platform device, can you store the lock there instead of
+> having a global?
+> 
+>> +
+>> +#define cpu_to_dev32(pmc, val) \
+>> +	((pmc)->little_endian ? cpu_to_le32(val) : cpu_to_be32(val))
+> 
+> This would probably be better written as a static inline helper, and
+> maybe something like this:
+> 
+> static inline u32 brcm_pmc_readl(struct brcm_pmc *pmc, u8 offset)
+> {
+> 	if (pmc->little_endian)
+> 		return ioread32(pmc->base + offset);
+> 	else
+> 		return ioread32_be(pmc->base + offset);
+> }
+> 
+>> +
+>> +#define dev32_to_cpu(pmc, val) \
+>> +	((pmc)->little_endian ? le32_to_cpu(val) : be32_to_cpu(val))
+>> +
+>> +static int brcm_pmc_bpcm_wait(struct brcm_pmc *pmc, int bus)
+>> +{
+>> +	unsigned long deadline = jiffies + usecs_to_jiffies(1000);
+>> +	int pmbm = PROCMON_PMBM + bus * PROCMON_PMBM_SIZE;
+>> +	u32 val;
+>> +
+>> +	do {
+>> +		regmap_read(pmc->procmon, pmbm + PMBM_CTRL, &val);
+>> +		if (!(val & PMC_PMBM_START))
+>> +			return 0;
+>> +		cpu_relax();
+>> +		udelay(10);
+>> +	} while (!time_after_eq(jiffies, deadline));
+>> +
+>> +	dev_err(pmc->dev, "Timeout waiting for the BPCM\n");
+> 
+> Can you use include/linux/reset/bcm63xx_pmb.h again here and check
+> arch/arm/mach-bcm/bcm63xx_pmb.c for how it is used.
 
-In normal use of smc/hvc transport in SCMI the message completion is
-indicated by the return of the SMC call.  This commit provides for an
-optional interrupt named "message-serviced" which is used instead to
-indicate the completion of a message.
-
-Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
----
- Documentation/devicetree/bindings/arm/arm,scmi.txt | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-index 55deb68230eb..7cdad11f40b1 100644
---- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-+++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-@@ -31,6 +31,14 @@ Optional properties:
- 
- - mbox-names: shall be "tx" or "rx" depending on mboxes entries.
- 
-+- interrupts : when using smc or hvc transports, this optional
-+	 property indicates that msg completion by the platform is indicated
-+	 by an interrupt rather than by the return of the smc call. This
-+	 should not be used except when the platform requires such behavior.
-+
-+- interrupt-names : if "interrupts" is present, interrupt-names must also
-+	 be present and have the value "message-serviced".
-+
- See Documentation/devicetree/bindings/mailbox/mailbox.txt for more details
- about the generic mailbox controller and client driver bindings.
- 
--- 
-2.17.1
+I use regmap while bcm63xx_pmb.h depends on raw IO access. See below though.
 
 
---0000000000009926fe05b3eca24b
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
+>> +	return -EBUSY;
+>> +}
+>> +
+>> +static int brcm_pmc_bpcm_read(struct brcm_pmc *pmc, u16 addr, int word_offset, u32 *val)
+>> +{
+>> +	int err = 0;
+>> +
+>> +	if (!pmc->direct) {
+>> +		err = -EOPNOTSUPP;
+> 
+> Do an early return here so you don't have to indent the block under by
+> one tab.
 
-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
-mOxPm7sNHsn0TVdPryi9+T2d8fVC/kUmuEdTYP/Hdu4W4b4T9BcW57fInYrmaJ+uotS6X59rAgMB
-AAGjggHRMIIBzTAOBgNVHQ8BAf8EBAMCBaAwgZ4GCCsGAQUFBwEBBIGRMIGOME0GCCsGAQUFBzAC
-hkFodHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc3BlcnNvbmFsc2lnbjJzaGEy
-ZzNvY3NwLmNydDA9BggrBgEFBQcwAYYxaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL2dzcGVy
-c29uYWxzaWduMnNoYTJnMzBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYm
-aHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBEBgNVHR8E
-PTA7MDmgN6A1hjNodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzcGVyc29uYWxzaWduMnNoYTJn
-My5jcmwwJQYDVR0RBB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYI
-KwYBBQUHAwQwHwYDVR0jBBgwFoAUaXKCYjFnlUSFd5GAxAQ2SZ17C2EwHQYDVR0OBBYEFNYm4GDl
-4WOt3laB3gNKFfYyaM8bMA0GCSqGSIb3DQEBCwUAA4IBAQBD+XYEgpG/OqeRgXAgDF8sa+lQ/00T
-wCP/3nBzwZPblTyThtDE/iaL/YZ5rdwqXwdCnSFh9cMhd/bnA+Eqw89clgTixvz9MdL9Vuo8LACI
-VpHO+sxZ2Cu3bO5lpK+UVCyr21y1zumOICsOuu4MJA5mtkpzBXQiA7b/ogjGxG+5iNjt9FAMX4JP
-V6GuAMmRknrzeTlxPy40UhUcRKk6Nm8mxl3Jh4KB68z7NFVpIx8G5w5I7S5ar1mLGNRjtFZ0RE4O
-lcCwKVGUXRaZMgQGrIhxGVelVgrcBh2vjpndlv733VI2VKE/TvV5MxMGU18RnogYSm66AEFA/Zb+
-5ztz1AtIMYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBu
-di1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEcz
-AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJ5DWBboGos8
-3TC4nV65JkmgeAQCWwNcFCTzZXYG+xkmMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
-hvcNAQkFMQ8XDTIwMTExMjE3NTY0NVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
-YIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcN
-AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQChxVxDD5IUBFyCgZtfeDjSRAuQhL69
-0tNF8Xu4HyUzZWIj6HMsCFVT0LHGHytMFC5qgR11DOnuFppAz9USVnIIhA4euF02hFaghTrjerpE
-PYzSofbBv3PsSgVVVft/yHqoK1xNBEMQ8V8ojBjtFN3ztQwYvLxZeIEy9fu6cCKg3/PGHoXjvgYi
-XnOdv7Hyo8f7Hw9J3RZMz767q9Pb8mRE1Oavut/bzYZIFjqfeCnEiK20bih42Gk7Tw+7IcOuAdy1
-tUzW8GumgnL/1Zt18GdcbALo+YRg0nG+DYnXtqEoaJEFc5owHUjNoHHwEROND6FTd7Qfyeao7mBM
-hWfC2Q9t
---0000000000009926fe05b3eca24b--
+In a long term I'll need a full if + else anyway. Having it this way now
+will save me some code moving (indent) later.
+
+
+>> +	} else {
+>> +		u8 device = addr & 0xff;
+>> +		u8 bus = addr >> 8;
+>> +		unsigned long flags;
+>> +		int pmbm;
+>> +		u32 tmp;
+>> +
+>> +		pmbm = PROCMON_PMBM + bus * PROCMON_PMBM_SIZE;
+>> +
+>> +		spin_lock_irqsave(&lock, flags);
+>> +
+>> +		/* TODO: Make sure PMBM is not busy */
+>> +
+>> +		regmap_write(pmc->procmon, pmbm + PMBM_CTRL,
+>> +			     PMC_PMBM_START | PMC_PMBM_READ | (device << 12) | word_offset);
+>> +
+>> +		err = brcm_pmc_bpcm_wait(pmc, bus);
+>> +		if (!err)
+>> +			err = regmap_read(pmc->procmon, pmbm + PMBM_RD_DATA, val);
+>> +
+>> +		spin_unlock_irqrestore(&lock, flags);
+>> +	}
+>> +
+>> +	return err;
+>> +}
+>> +
+>> +static int brcm_pmc_bpcm_write(struct brcm_pmc *pmc, u16 addr, int word_offset, u32 val)
+>> +{
+>> +	int err = 0;
+>> +
+>> +	if (!pmc->direct) {
+>> +		err = -EOPNOTSUPP;
+> 
+> Likewise.
+> 
+> [snip]
+> 
+>> +static int brcm_pmc_reset_xlate(struct reset_controller_dev *rcdev,
+>> +				const struct of_phandle_args *reset_spec)
+>> +{
+>> +	u8 device = reset_spec->args[1];
+>> +	u8 bus = reset_spec->args[0];
+>> +
+>> +	if (bus > 1)
+>> +		return -EINVAL;
+>> +
+>> +	return (bus << 8) | device;
+> 
+> IIRC the bus is limited to 8 bits, and the device ID certainly is
+> limited to 8 bits so you need to validate that before doing the
+> assignment otherwise you are going to see truncated values which could
+> be wrapped around and return some bogus reset ID combination.
+> 
+> You are using the same binding as
+> Documentation/devicetree/bindings/reset/brcm,bcm63138-pmb.txt, so maybe
+> you can add that compatible string into your binding document and
+> deprecate this old binding file.
+
+Looking at arch/arm/mach-bcm/bcm63xx_pmb.c made me realize this design may be
+actually more complex than that.
+
+
+*** PMB ***
+
+It seems like PMB Master is reset controller on its own. Even though we don't
+have actual driver for the (documented) "brcm,bcm63138-pmb" binding, arch code
+treates it like a reset.
+
+So it seems that a single PMB is capable at least of:
+1. Resetting ARM CPU core (id by 8b addr)
+2. Resetting devices (id by 8b addr) by (en|dis)abling zones
+
+Above operations are performed in a different (programming) ways.
+
+
+*** PMC ***
+
+PMC seems to be a reset controller with firmware capable at least of:
+1. Resetting devices (id by 8b addr) by (en|dis)abling zones
+
+that fallback to using PMB blocks when needed / required.
+
+
+*** Bindings ***
+
+So I started wondering if following bindings were not more applicable:
+
+pmb0: reset-controller@4800c0 {
+	compatible = "brcm,bcm4908-pmb";
+	reg = <0x802800c0 0x10>;
+	#reset-cells = <2>;
+};
+
+pmb1: reset-controller@4800e0 {
+	compatible = "brcm,bcm4908-pmb";
+	reg = <0x802800e0 0x10>;
+	#reset-cells = <2>;
+};
+
+pmc: reset-controller@80200000 {
+	compatible = "brcm,bcm4908-pmc";
+	reg = <0x80200000 0x5000>;
+	brcm,syscon-misc = <&misc>;
+	pmb-resets = <BUS_ID_0 &pmb0>, <BUS_ID_1 &pmb1>;
+	#reset-cells = <2>;
+};
+
+cpu@1 {
+	resets = <&pmb0 PMB_ARM 4>; /* ARM CPU */
+}
+
+foo {
+	resets = <&pmb1 PMB_DEVICE 17>; /* Reset USB using PMB directly */
+}
+
+foo {
+	resets = <&pmc BUS_ID_1 17>; /* Reset USB using PMC */
+}
+
+
+Then we would have:
+
+1. PMB driver handling PMB_ARM and PMB_DEVICE with 2 different code paths
+2. PMC driver falling back to PMB when needed / required
+
+
+
+Florian: can you have an extra look at it please and review proposed design,
+comment on it?
