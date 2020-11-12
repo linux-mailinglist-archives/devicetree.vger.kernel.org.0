@@ -2,131 +2,396 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CD192B12D2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 00:31:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E8522B12DB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 00:47:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726104AbgKLXba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 18:31:30 -0500
-Received: from mout.gmx.net ([212.227.15.18]:39941 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725894AbgKLXb2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 18:31:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1605223871;
-        bh=CdJMCH63lCU/DX0aU+Lzcr/mdjo2e/7o4vxJsSxA9oE=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
-        b=Nv3EWAaYbZjvPKAKCIaH6GflQ+3K6ngd1Zv2J14+LK8P5g4eSSbELb/XrMcHG7Y/T
-         pT8pl98Mf3qbVjtQR9f1YT2BZjXjOYee7ljmBV67Tj+v57TWAn3lFydFzC+vQ4fUEL
-         yV9KNh3pvJqG3lfHPcF7Krzu3c82C7nn4pzFG8S0=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MAwXr-1kS7de0w5B-00BNPG; Fri, 13
- Nov 2020 00:31:11 +0100
-From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     linux-input@vger.kernel.org
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1725973AbgKLXrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 18:47:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33082 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725894AbgKLXrU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 18:47:20 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D473EC0613D1;
+        Thu, 12 Nov 2020 15:47:19 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id v22so8514365edt.9;
+        Thu, 12 Nov 2020 15:47:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=lXeqN+RZgC4rnxXa5kUVVHNRIgkH8/pb6L8dmX3V+/Q=;
+        b=VaMPVaEbldmBOCPJTurlQEPT3vna24cjZUp5o/ZT7kYzVi6LENldNP3wEEhKWuqy/F
+         Qyk51bUnBAtFGWx67tn9oMKAOgxOKA5MnCaBomPZUr0vZHesYnzCZsM4ZDDrWgLLavPJ
+         IsMuDsj8yeUQByabsPcvgu8rGM7wUJF/H7Rs9xILc3fAizDF13Et7FfKPuzWstM3np2g
+         v5Nc9Rw/gqZPh/RH62JIv1jk2cWUeg/9ZbaYv+EMdUTQwUWEGWXpLau1bQUhEsnALx0h
+         dAiZc5SjeREEC3b95NdehiPlwWd6m+i5R+JjNhiaJt+38+/SA6wfJIQdshMvTwxTe86J
+         B9Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lXeqN+RZgC4rnxXa5kUVVHNRIgkH8/pb6L8dmX3V+/Q=;
+        b=MturKqZplnhmWK8wv10hHlS5b31gupkV0Qm1XWKxF0wl0CyuCmxTyHRCkKuuGXNBfc
+         5XANHGWBGjPSdyvrOR7YpHOvZCZjj2tGd65nVsc5+F2Ba65eAcz+VpdtBAXlklvWkGZf
+         JgGyAU7VbzbwSknJSoytgkVXhapAeFBEWH1BA5/5EANqOpmpFQW9V25Pze4Bb+h5oMsv
+         Y0ZsWSAMKC2ifqpHRLYFZlI/j9Sc/CxGKNz1UPdQ8/xuEXhVVUqU5yoYsKdGn9JId1Rb
+         NkuXFhAOOF1ltm47eg8FCdQexEk+JXjZPSOset2NXsHw1SWXuPGhk+DeHvRuKCe4RZoe
+         uowQ==
+X-Gm-Message-State: AOAM5302zDSgg8+RaYQsGLmMFDwAiPMX5t75SM0vyx/+tNK6Hb/YZJHU
+        ZSMKNJHjGVySST+gjfibxwU=
+X-Google-Smtp-Source: ABdhPJwmcy6UwRW8cP+c1Yji0H8uYXiwly9AMrgIDs+rWcjtEXMiQRKGoDIYkEcXanCh7RNGWQYw4g==
+X-Received: by 2002:a50:a105:: with SMTP id 5mr2484562edj.165.1605224838478;
+        Thu, 12 Nov 2020 15:47:18 -0800 (PST)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id w18sm3033458edq.43.2020.11.12.15.47.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2020 15:47:17 -0800 (PST)
+Date:   Fri, 13 Nov 2020 01:47:16 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2] ARM: dts: imx50-kobo-aura: Enable eKTF2132 touchscreen
-Date:   Fri, 13 Nov 2020 00:30:54 +0100
-Message-Id: <20201112233054.3837465-1-j.neuschaefer@gmx.net>
-X-Mailer: git-send-email 2.28.0
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 07/11] net: dsa: microchip: ksz9477: add
+ Posix clock support for chip PTP clock
+Message-ID: <20201112234716.tkvjnkgxo236e6gv@skbuf>
+References: <20201112153537.22383-1-ceggers@arri.de>
+ <20201112153537.22383-8-ceggers@arri.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:/2hvDUrpEcLQPLUwNRXXVjzm9d2LhtPJf6RxQ1jqI1i7wV/0+jx
- KkH4z3ivuf/pWe/BYfWfV0JC2rwyU63Xi6ZHvqgKKHdDmga4SVGsEHLqMWTmu1t6pxOvFjl
- fHiUJFYA1id7wSIwddXGUznAZ6zphYNOcffPPqHFa96Qt7wyei0EvJHNnoNiowjKoi06m3V
- s3hSPTCuyam8SqLr3DG6Q==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:hWiCK0EAw5k=:h7oJ9j4+CujP3BWS9O3hby
- VXbzXA2zHVXTIIy3jS7nVBDuAIwsIm7Yww+XzA+23JPznGrux2J3Qnn3pQJLD3s3scuKHw4xi
- Z0jwulyGJIcZsPUZRml6Ew/0B3dizaw/UxlhcA4Lxw/Om8RfQovgMuBChX3MEXw0C0Se8Fsgi
- 5jTxoBced6/t64mBSP8kgOMPK97Z5Nane7fWDP8D/GMcOv2SW3oW3mPXY7LqR1Xe1spHOg1SI
- E1Jltm6mXEsSP91k4VJ04BFyEaQFMCiod9oPuZ3vI6CqTcYxcqDQIekFPXHR1Ui6Q4oMngXT7
- wajQCn1+9tWPlzUk5SXO1r+0MFLhRmGQAmim6SV02dqpBxWflyWsUvYWrgPet6+M0jQrxjckl
- Uhwvt7o6VL+qroa2XcV8Fka6E+aV/C2ghu90pgZ0njOgRSejQ5ol/UpmkuHf7cBmfwi2w+BVU
- 9qmsIO2j50S/Pybe6HoGYdpBihqCMiuUUD32FVGl7qOeVSzsu4APaHy/IkzhVuMly3rz6ezU7
- McGIkKsj0ic2LkcmTZcWtr9BDrPNbLSorvQmZiSDGNiyoBiLIhaGL6L7pvp8nPtRKn4zGM5dv
- 2XUrlwPStovQ5mXv1eufLMkLWDF3BC/mDabqbh1sjwlKPhxpX8XT+QimGSm4oGB8r5D2l1te9
- l7UMNRtMYkN0ZG9J6fqETCrucBtMIOXoSGhJWXd8pSz9tYIOKGmg6MpQ6Th48zAuFvuiv2I0K
- JWd47YOL+TmvDBkYwlYKKJV0a1x9EJdY3ekTtyiZhSKoJZSbPVZQeECxRi+tG+D0kMxoWFRxw
- 3oUwRYUVpDeSYU0TDyKeLDNUbUTHoAg9tdXbA0+Kt/RueLWMyde89j+oNlE1pPaHiD8O6/EQd
- R+YNTX2LE095QfxsIcY6ZGcxByz8r+88rI6CZYWZw=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201112153537.22383-8-ceggers@arri.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Kobo Aura has an eKTF2132 touchscreen controller.
+On Thu, Nov 12, 2020 at 04:35:33PM +0100, Christian Eggers wrote:
+> diff --git a/drivers/net/dsa/microchip/Kconfig b/drivers/net/dsa/microchip/Kconfig
+> index 4ec6a47b7f72..71cc910e5941 100644
+> --- a/drivers/net/dsa/microchip/Kconfig
+> +++ b/drivers/net/dsa/microchip/Kconfig
+> @@ -24,6 +24,15 @@ config NET_DSA_MICROCHIP_KSZ9477_SPI
+>  	help
+>  	  Select to enable support for registering switches configured through SPI.
+>  
+> +config NET_DSA_MICROCHIP_KSZ9477_PTP
+> +	bool "PTP support for Microchip KSZ9477 series"
+> +	default n
 
-Although the vendor kernel toggles a reset pin (GPIO5-12) during the
-startup sequence, the touchscreen works without it.
+"default n" is implicit, please remove this
 
-Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-=2D--
+> +	depends on NET_DSA_MICROCHIP_KSZ9477
+> +	depends on PTP_1588_CLOCK
+> +	help
+> +	  Say Y to enable PTP hardware timestamping on Microchip KSZ switch
+> +	  chips that support it.
+> +
+>  menuconfig NET_DSA_MICROCHIP_KSZ8795
+>  	tristate "Microchip KSZ8795 series switch support"
+>  	depends on NET_DSA
+> diff --git a/drivers/net/dsa/microchip/Makefile b/drivers/net/dsa/microchip/Makefile
+> index c5cc1d5dea06..35c4356bad65 100644
+> --- a/drivers/net/dsa/microchip/Makefile
+> +++ b/drivers/net/dsa/microchip/Makefile
+> @@ -2,6 +2,7 @@
+>  obj-$(CONFIG_NET_DSA_MICROCHIP_KSZ_COMMON)	+= ksz_common.o
+>  obj-$(CONFIG_NET_DSA_MICROCHIP_KSZ9477)		+= ksz9477.o
+>  ksz9477-objs := ksz9477_main.o
+> +ksz9477-$(CONFIG_NET_DSA_MICROCHIP_KSZ9477_PTP)	+= ksz9477_ptp.o
+>  obj-$(CONFIG_NET_DSA_MICROCHIP_KSZ9477_I2C)	+= ksz9477_i2c.o
+>  obj-$(CONFIG_NET_DSA_MICROCHIP_KSZ9477_SPI)	+= ksz9477_spi.o
+>  obj-$(CONFIG_NET_DSA_MICROCHIP_KSZ8795)		+= ksz8795.o
+> diff --git a/drivers/net/dsa/microchip/ksz9477_i2c.c b/drivers/net/dsa/microchip/ksz9477_i2c.c
+> index 4ed1f503044a..315eb24c444d 100644
+> --- a/drivers/net/dsa/microchip/ksz9477_i2c.c
+> +++ b/drivers/net/dsa/microchip/ksz9477_i2c.c
+> @@ -58,7 +58,7 @@ static int ksz9477_i2c_remove(struct i2c_client *i2c)
+>  {
+>  	struct ksz_device *dev = i2c_get_clientdata(i2c);
+>  
+> -	ksz_switch_remove(dev);
+> +	ksz9477_switch_remove(dev);
+>  
+>  	return 0;
+>  }
+> diff --git a/drivers/net/dsa/microchip/ksz9477_main.c b/drivers/net/dsa/microchip/ksz9477_main.c
+> index 6b5a981fb21f..7d623400139f 100644
+> --- a/drivers/net/dsa/microchip/ksz9477_main.c
+> +++ b/drivers/net/dsa/microchip/ksz9477_main.c
+> @@ -18,6 +18,7 @@
+>  
+>  #include "ksz9477_reg.h"
+>  #include "ksz_common.h"
+> +#include "ksz9477_ptp.h"
+>  
+>  /* Used with variable features to indicate capabilities. */
+>  #define GBIT_SUPPORT			BIT(0)
+> @@ -1719,10 +1720,26 @@ int ksz9477_switch_register(struct ksz_device *dev)
+>  			phy_remove_link_mode(phydev,
+>  					     ETHTOOL_LINK_MODE_1000baseT_Full_BIT);
+>  	}
+> +
+> +	ret = ksz9477_ptp_init(dev);
+> +	if (ret)
+> +		goto error_switch_unregister;
+> +
+> +	return 0;
+> +
+> +error_switch_unregister:
+> +	ksz_switch_remove(dev);
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL(ksz9477_switch_register);
+>  
+> +void ksz9477_switch_remove(struct ksz_device *dev)
+> +{
+> +	ksz9477_ptp_deinit(dev);
+> +	ksz_switch_remove(dev);
+> +}
+> +EXPORT_SYMBOL(ksz9477_switch_remove);
+> +
+>  MODULE_AUTHOR("Woojung Huh <Woojung.Huh@microchip.com>");
+>  MODULE_DESCRIPTION("Microchip KSZ9477 Series Switch DSA Driver");
+>  MODULE_LICENSE("GPL");
+> diff --git a/drivers/net/dsa/microchip/ksz9477_ptp.c b/drivers/net/dsa/microchip/ksz9477_ptp.c
+> new file mode 100644
+> index 000000000000..44d7bbdea518
+> --- /dev/null
+> +++ b/drivers/net/dsa/microchip/ksz9477_ptp.c
+> @@ -0,0 +1,301 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Microchip KSZ9477 switch driver PTP routines
+> + *
+> + * Author: Christian Eggers <ceggers@arri.de>
+> + *
+> + * Copyright (c) 2020 ARRI Lighting
+> + */
+> +
+> +#include <linux/ptp_clock_kernel.h>
+> +
+> +#include "ksz_common.h"
+> +#include "ksz9477_reg.h"
+> +
+> +#include "ksz9477_ptp.h"
+> +
+> +#define KSZ_PTP_INC_NS 40  /* HW clock is incremented every 40 ns (by 40) */
+> +#define KSZ_PTP_SUBNS_BITS 32  /* Number of bits in sub-nanoseconds counter */
+> +
+> +/* Posix clock support */
+> +
+> +static int ksz9477_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
+> +{
+> +	struct ksz_device *dev = container_of(ptp, struct ksz_device, ptp_caps);
+> +	u16 data16;
+> +	int ret;
+> +
+> +	if (scaled_ppm) {
+> +		/* basic calculation:
+> +		 * s32 ppb = scaled_ppm_to_ppb(scaled_ppm);
+> +		 * s64 adj = div_s64(((s64)ppb * KSZ_PTP_INC_NS) << KSZ_PTP_SUBNS_BITS,
+> +		 *                   NSEC_PER_SEC);
+> +		 */
+> +
+> +		/* more precise calculation (avoids shifting out precision) */
+> +		s64 ppb, adj;
+> +		u32 data32;
 
-v2:
-- Fix devicetree build by adding #include <dt-bindings/interrupt-controlle=
-r/irq.h>
-- Drop the first two patches, which been applied in the meantime
+Don't you want to move these declarations right beneath the "if" line?
 
-v1:
-- https://lore.kernel.org/lkml/20201106112412.390724-4-j.neuschaefer@gmx.n=
-et/
-=2D--
- arch/arm/boot/dts/imx50-kobo-aura.dts | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+> +
+> +		/* see scaled_ppm_to_ppb() in ptp_clock.c for details */
+> +		ppb = 1 + scaled_ppm;
+> +		ppb *= 125;
+> +		ppb *= KSZ_PTP_INC_NS;
+> +		ppb <<= KSZ_PTP_SUBNS_BITS - 13;
+> +		adj = div_s64(ppb, NSEC_PER_SEC);
+> +
+> +		data32 = abs(adj);
+> +		data32 &= BIT_MASK(30) - 1;
+> +		if (adj >= 0)
+> +			data32 |= PTP_RATE_DIR;
+> +
+> +		ret = ksz_write32(dev, REG_PTP_SUBNANOSEC_RATE, data32);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = ksz_read16(dev, REG_PTP_CLK_CTRL, &data16);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (scaled_ppm)
+> +		data16 |= PTP_CLK_ADJ_ENABLE;
+> +	else
+> +		data16 &= ~PTP_CLK_ADJ_ENABLE;
+> +
+> +	ret = ksz_write16(dev, REG_PTP_CLK_CTRL, data16);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
+> +{
+> +	struct ksz_device *dev = container_of(ptp, struct ksz_device, ptp_caps);
+> +	s32 sec, nsec;
+> +	u16 data16;
+> +	int ret;
+> +
+> +	mutex_lock(&dev->ptp_mutex);
 
-diff --git a/arch/arm/boot/dts/imx50-kobo-aura.dts b/arch/arm/boot/dts/imx=
-50-kobo-aura.dts
-index 53b3995d37e7f..97cfd970fe742 100644
-=2D-- a/arch/arm/boot/dts/imx50-kobo-aura.dts
-+++ b/arch/arm/boot/dts/imx50-kobo-aura.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- #include "imx50.dtsi"
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
+You're skipping the mutex in ksz9477_ptp_adjfine, is that intentional or
+just a proof that it's useless? You should add a comment at its
+declaration site about what it's meant to protect.
 
- / {
- 	model =3D "Kobo Aura (N514)";
-@@ -119,7 +120,14 @@ &i2c1 {
- 	pinctrl-0 =3D <&pinctrl_i2c1>;
- 	status =3D "okay";
+> +
+> +	/* do not use ns_to_timespec64(), both sec and nsec are subtracted by hw */
+> +	sec = div_s64_rem(delta, NSEC_PER_SEC, &nsec);
+> +
+> +	ret = ksz_write32(dev, REG_PTP_RTC_NANOSEC, abs(nsec));
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	/* contradictory to the data sheet, seconds are also considered */
+> +	ret = ksz_write32(dev, REG_PTP_RTC_SEC, abs(sec));
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	ret = ksz_read16(dev, REG_PTP_CLK_CTRL, &data16);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	data16 |= PTP_STEP_ADJ;
+> +	if (delta < 0)
+> +		data16 &= ~PTP_STEP_DIR;  /* 0: subtract */
+> +	else
+> +		data16 |= PTP_STEP_DIR;   /* 1: add */
+> +
+> +	ret = ksz_write16(dev, REG_PTP_CLK_CTRL, data16);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +error_return:
+> +	mutex_unlock(&dev->ptp_mutex);
+> +	return ret;
+> +}
+> +
+> +static int _ksz9477_ptp_gettime(struct ksz_device *dev, struct timespec64 *ts)
+> +{
+> +	u32 nanoseconds;
+> +	u32 seconds;
+> +	u16 data16;
+> +	u8 phase;
+> +	int ret;
+> +
+> +	/* Copy current PTP clock into shadow registers */
+> +	ret = ksz_read16(dev, REG_PTP_CLK_CTRL, &data16);
+> +	if (ret)
+> +		return ret;
+> +
+> +	data16 |= PTP_READ_TIME;
+> +
+> +	ret = ksz_write16(dev, REG_PTP_CLK_CTRL, data16);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Read from shadow registers */
+> +	ret = ksz_read8(dev, REG_PTP_RTC_SUB_NANOSEC__2, &phase);
+> +	if (ret)
+> +		return ret;
+> +	ret = ksz_read32(dev, REG_PTP_RTC_NANOSEC, &nanoseconds);
+> +	if (ret)
+> +		return ret;
+> +	ret = ksz_read32(dev, REG_PTP_RTC_SEC, &seconds);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ts->tv_sec = seconds;
+> +	ts->tv_nsec = nanoseconds + phase * 8;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ksz9477_ptp_gettime(struct ptp_clock_info *ptp, struct timespec64 *ts)
+> +{
+> +	struct ksz_device *dev = container_of(ptp, struct ksz_device, ptp_caps);
+> +	int ret;
+> +
+> +	mutex_lock(&dev->ptp_mutex);
+> +	ret = _ksz9477_ptp_gettime(dev, ts);
+> +	mutex_unlock(&dev->ptp_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static int ksz9477_ptp_settime(struct ptp_clock_info *ptp, struct timespec64 const *ts)
+> +{
+> +	struct ksz_device *dev = container_of(ptp, struct ksz_device, ptp_caps);
+> +	u16 data16;
+> +	int ret;
+> +
+> +	mutex_lock(&dev->ptp_mutex);
+> +
+> +	/* Write to shadow registers */
+> +
+> +	/* clock phase */
+> +	ret = ksz_read16(dev, REG_PTP_RTC_SUB_NANOSEC__2, &data16);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	data16 &= ~PTP_RTC_SUB_NANOSEC_M;
+> +
+> +	ret = ksz_write16(dev, REG_PTP_RTC_SUB_NANOSEC__2, data16);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	/* nanoseconds */
+> +	ret = ksz_write32(dev, REG_PTP_RTC_NANOSEC, ts->tv_nsec);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	/* seconds */
+> +	ret = ksz_write32(dev, REG_PTP_RTC_SEC, ts->tv_sec);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	/* Load PTP clock from shadow registers */
+> +	ret = ksz_read16(dev, REG_PTP_CLK_CTRL, &data16);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +	data16 |= PTP_LOAD_TIME;
+> +
+> +	ret = ksz_write16(dev, REG_PTP_CLK_CTRL, data16);
+> +	if (ret)
+> +		goto error_return;
+> +
+> +error_return:
+> +	mutex_unlock(&dev->ptp_mutex);
+> +	return ret;
+> +}
+> +
+> +static int ksz9477_ptp_enable(struct ptp_clock_info *ptp, struct ptp_clock_request *req, int on)
+> +{
+> +	return -ENOTTY;
+> +}
 
--	/* TODO: ektf2132 touch controller at 0x15 */
-+	touchscreen@15 {
-+		reg =3D <0x15>;
-+		compatible =3D "elan,ektf2132";
-+		pinctrl-names =3D "default";
-+		pinctrl-0 =3D <&pinctrl_ts>;
-+		power-gpios =3D <&gpio4 9 GPIO_ACTIVE_HIGH>;
-+		interrupts-extended =3D <&gpio5 13 IRQ_TYPE_EDGE_FALLING>;
-+	};
- };
-
- &i2c2 {
-@@ -225,6 +233,13 @@ MX50_PAD_SD3_D7__ESDHC3_DAT7		0x1d4
- 		>;
- 	};
-
-+	pinctrl_ts: tsgrp {
-+		fsl,pins =3D <
-+			MX50_PAD_CSPI_MOSI__GPIO4_9		0x0
-+			MX50_PAD_SD2_D5__GPIO5_13		0x0
-+		>;
-+	};
-+
- 	pinctrl_uart2: uart2grp {
- 		fsl,pins =3D <
- 			MX50_PAD_UART2_TXD__UART2_TXD_MUX	0x1e4
-=2D-
-2.28.0
-
+How about -EOPNOTSUPP? I think -ENOTTY is reserved for "invalid ioctl on
+the PTP clock", you wouldn't want to confuse a user into thinking that
+they got the ioctls wrong (such as with the recent introduction of
+PTP_PEROUT_REQUEST2 etc) when in fact the error comes from the driver.
