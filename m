@@ -2,310 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C60E2AFE09
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:33:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B1182AFF20
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:44:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728150AbgKLFdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1728145AbgKLFdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 12 Nov 2020 00:33:15 -0500
-Received: from mail-eopbgr00061.outbound.protection.outlook.com ([40.107.0.61]:31678
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729311AbgKLFT1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 00:19:27 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kd55wmE5G84xjA0F8IDfII+ex9NhNHb8pMj3fR4rqTZJISFBXkWwB3SlOIlooNYDujV4Iz7yP41EUgHulBVHgwvnJ7P3htD94xpmmTAv5qtVsC4yjJA0e020OW5auihk3rtoe1WNEwCO1BqOxfmGOC/b3J/l1nXhvAguHsfNHXdxWY5rvG3v/TupNhTE/HLQeuMPRIG8psMq8yh6FKJarNJzn5J2sPQL4iyoIvJZeGHNJzsT4psTYGi7vAbyIjVm2fGOZb763b5Fkue//OTQk/8li8lX8EMa+21EwiAwu3JrvSmM+oTV4NSsrKV3qghCJJzm0g4qLk06WBS/+qt27g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z4Q8eqPf0YZf3L1Yp3sqKYcObpzgHAXzcfYIBtVVwnU=;
- b=MiNO0crzLyaKcudW8LiOcu5RIEUfKBjJGZh1UQ+PrE1ru3pmWvczobcNPhr/yXd3/rV4CEOiFn77NAn6fsOAy7XcmbsMWHNIsWH5HaSexI9FopoyYr11cU774hMF0YF6uZTW/8LJ7pxZBMbkW6g13rY4ZvcTujzxErjRYlvT4B3ZV+9NaU6q3YJmk7DENCgbyQuVibS+Iwl0uYvoZn1Y1nmK6n2fGQHrh6kdIsOTBLfvMq5Rc7f5cGfZbYTq3GXToh4s+D93MapwK58rhnF9UFgzTW6TN6Qm8ZvfvRnHrX4aUlA6wZF67ZmzRoq+6TrEJ5o1MbolM5SBDgjCQuxKHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=z4Q8eqPf0YZf3L1Yp3sqKYcObpzgHAXzcfYIBtVVwnU=;
- b=I9K2eLqIbk63Y/lWPsDc+PyrMc5hmDxlyP3brodUaMg9f7AcUgZ3a+yOjO6TrrbIE41uI8OHIWmXzJbX+IjaH/NHFkVeDboDwptroXzdnAu5OiZwvH6oI4oCRYtH1ARzRdRHMzB9OPPm1HmWzcyWQCsub8G3EQHHEop2PdR/RAg=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VE1PR04MB6352.eurprd04.prod.outlook.com (2603:10a6:803:129::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.23; Thu, 12 Nov
- 2020 05:19:22 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3541.025; Thu, 12 Nov 2020
- 05:19:22 +0000
-Message-ID: <1004a547603facca1d01c7456a5079fcc5353828.camel@nxp.com>
-Subject: Re: [PATCH v2] dt-bindings: display: panel: one file of all simple
- LVDS panels with dual ports
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Date:   Thu, 12 Nov 2020 13:17:34 +0800
-In-Reply-To: <20201111225751.GA2198243@bogus>
-References: <1604993797-14240-1-git-send-email-victor.liu@nxp.com>
-         <20201111225751.GA2198243@bogus>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR03CA0109.apcprd03.prod.outlook.com
- (2603:1096:4:91::13) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58490 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729296AbgKLFSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 00:18:39 -0500
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F4144C0613D1;
+        Wed, 11 Nov 2020 21:18:38 -0800 (PST)
+Received: by mail-ot1-x342.google.com with SMTP id k3so4431490otp.12;
+        Wed, 11 Nov 2020 21:18:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WfgY4NBj+0PmzbiLq+b9+ULskd59tjpCJgRhyG5J0k8=;
+        b=hqYpjrD8LkGtcU9kRUoSDHu9D+nk/BoGIjKN/O4ZTOEsso58G3xzPVJwEtiqnqq/iz
+         EutCOAWnRjPC4M3P4mKu1vAmlysKAJJ39gT67ujEtIEFZnYudURzfEEaFFvoby5PYDeg
+         WGwgQ8oX+IFYpLnbesqy5Ia9/WJUAk2Xl9Dxv6an9vZyDdVb2y8os93JKHiy1AKEouPz
+         ZdURh7ongmDTj7ui0P6A3RoB/Z+s3HqGImY6wP6yiACbPwssgtDy4+QGSZtRfSncp5oP
+         HYpY+qBgimQSDzpzvqB38FTtLcdq0cTY6PTDehza5Drh4GFO/c99hgr7Pt7uK18kFWxs
+         EXyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WfgY4NBj+0PmzbiLq+b9+ULskd59tjpCJgRhyG5J0k8=;
+        b=sT18voX3wZ+FBKp905p33mJTTeei1M2VDM2g6vKTo1jhjgnk5dcx2VNNfI1man+6uw
+         reDcLhLLj5x1u1K8ZMakVr8aYw9ZWLCpsGO56GLojur3dHCfbfR/L8eEmWtilzDhq3G9
+         vFQO2Ts4R+xJcaxcKpwnHtsriSzPZ9jDVG2vikWqHK3NmirFFX3L7NYcaX4Tb3SkdM2i
+         ijpju1FxmWTjHxGjz1iV8HBoyC/Xz/6+0PqmwqE7O+j2ZhMXTeEkYHFq0A4Smy8apl0L
+         hYRSsCUFpvJxW/jFy2njT0a9LHHtKzJUds/lFITi79BNMzGC/vngo2M0jlZjWgda892O
+         Md3g==
+X-Gm-Message-State: AOAM533/gt990nI+7woIygyNDF1y/DDdZ7jbh3WwNgckDX/T5l0WMy6/
+        Z8deS9iAdZfB3cHt32BAoVKEc+ldREYtQ45t27Q=
+X-Google-Smtp-Source: ABdhPJyTTQiPTf7wS9BZ6pXrL5d1+bU06pCVQUQ/opNV4D1HnkXpInj1YDPkUdArvXy14TA/5jvWZEbAY8aB1+dFm1Y=
+X-Received: by 2002:a05:6830:18c9:: with SMTP id v9mr21231685ote.74.1605158318274;
+ Wed, 11 Nov 2020 21:18:38 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR03CA0109.apcprd03.prod.outlook.com (2603:1096:4:91::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.13 via Frontend Transport; Thu, 12 Nov 2020 05:19:19 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 998f72e5-e809-43aa-1fc9-08d886ca838e
-X-MS-TrafficTypeDiagnostic: VE1PR04MB6352:
-X-Microsoft-Antispam-PRVS: <VE1PR04MB6352F7638BF4D1F9EA8D074698E70@VE1PR04MB6352.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3SUBd5ReHwYGdSDRbMpojV+KVIBmgUnEQHcGCH4mBQaCPt2wwqcansNahgJ5joLLQB9BFiYPZz+4jnVBq9AAP5RGJgX1qRv914oN170jNWPioZ9PPAymXsenT1rcth1Tn43m6mbDxKclmP7B4dkObgceNdUXx3qz5+Jg771TDdMuGEcQzKG9h6o8N9Yp6KKYVzuPAogZ5FuCz+ewUcLcs7p1xLuA4JUjMbeF0DFXS4uCsBFwgSi+RRgFrDyAkkENKNf6ezEzUkpc2W+ligF0WCOL8tRp3G/LtS5vQGd6xOuMxBHnmVPFrD16mWiGESrwSoTISHrvfawhaqa7/bV09xiDFvjVTkab6GL2E1Gr/LVktG0ZCQcSh/iuQWjfb8YvhaOOlECd/T24kNNc90kVVw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(36756003)(966005)(6916009)(16526019)(186003)(54906003)(956004)(66556008)(2616005)(6486002)(52116002)(6506007)(4001150100001)(4326008)(478600001)(83380400001)(66946007)(2906002)(316002)(86362001)(8676002)(6512007)(26005)(5660300002)(8936002)(66476007)(6666004);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: //epY5H1k3Z8HxJ+k4EyG89xxBa4cDkjWKjv3FNAbQpu8sZTF9r+45hPyHBFFlPYX6cRaS1Ep4yi2x8i+zsui6epT16ZlHm/hwJIrOCTACXVH68Pp3T4dSh/lCbnG/6cKXw9vsjcUZBcvpJfPUpzoByKl0rRizO0xnyQLTifa4VVq24id9OXA6q6ES4Ejekfl85zUrXFQNEAbX+j1tHXGOyk0o6SadHRw9S+IfujqJ8VAoPDOwRaWf4UN0b2QqoY5qK3MDThm0vRw8yOEd9M6wk+hH0YdEsk2gPS39ilq8vwK/mUnlbitYxDmmcARzUNPAjTXR/U47aj5lEclFdcFvSug6Saglyqvtg9K+u6Trl78BA0AGA839YJQEVel/98oCwVAkcADU71Odtf1dkUU1LQOeOT3DrpEk3di9Oq0RXv9/0qI4ugVh3Ce1ume6lVHGI2MlEAkCAgERkSz+jOlaX6KrFuifhneqcYG4rfgNm6t2hIXWbNbZMwn02RZ/VlYCGTbbtoAplgTogP0yyLOD2OPojR2/KG2N42je7o2WCpfQ3gUZLuxNApTG364Ph+10AQIKetVvoIT0JSruSKrzTpB8GEPAS14x8i1kUThRh4+d2PPHkyGuoyGhnXUK3p7kZRLN7ZbXotdVmxIhiqfQ==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 998f72e5-e809-43aa-1fc9-08d886ca838e
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2020 05:19:22.3759
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CqwuqZ+ttVvdfjdDKyEnhzjLRlfZrSobvmQcSO5K4YwvOPyJNVNqbZfh5Va/lmGceiGsTTsc2cSutpsrwOkm9A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6352
+References: <20201111163013.29412-1-sergio.paracuellos@gmail.com> <CAJsYDVJtPqd-aPjJZFC76R2fbv1i=tVzRR7S1VFAMzp1QcPbiQ@mail.gmail.com>
+In-Reply-To: <CAJsYDVJtPqd-aPjJZFC76R2fbv1i=tVzRR7S1VFAMzp1QcPbiQ@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Thu, 12 Nov 2020 06:18:27 +0100
+Message-ID: <CAMhs-H8ZXQ_2uJV4GC5J+sv4wmZUY8iGm-c5d-3X9t8e1PnfaQ@mail.gmail.com>
+Subject: Re: [PATCH 0/7] MIPS: ralink: add CPU clock detection and clock gate
+ driver for MT7621
+To:     Chuanhong Guo <gch981213@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        John Crispin <john@phrozen.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Weijie Gao <hackpascal@gmail.com>, jiaxun.yang@flygoat.com,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2020-11-11 at 16:57 -0600, Rob Herring wrote:
-> On Tue, Nov 10, 2020 at 03:36:37PM +0800, Liu Ying wrote:
-> > To complement panel-simple.yaml, create panel-simple-lvds-dual-
-> > ports.yaml.
-> > panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels
-> > that
-> > has dual LVDS ports and requires only a single power-supply.
-> > One LVDS port receives even pixels, and the other receives odd
-> > pixels.
-> > Optionally, a backlight and an enable GPIO can be specified as
-> > properties.
-> > 
-> > Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
-> > 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new
-> > file.
-> 
-> Also, what about advantech,idk-2121wr?
+Hi Chuanhong,
 
-It won't be migrated, because it is compatible with 'panel-
-lvds'(covered by lvds.yaml) and it requires some properties which are
-NOT allowed in this binding doc, like width-mm, data-mapping, panel-
-timing.
+On Thu, Nov 12, 2020 at 2:26 AM Chuanhong Guo <gch981213@gmail.com> wrote:
+[snip]
+>
+> I've already said in previous threads that clock assignment in
+> current linux kernel is not trustworthy.
+> I've got the clock plan for mt7621 now. (Can't share it, sorry.)
+> Most of your clock assumptions above are incorrect.
 
-> 
-> > The objectives with one file for all the simple LVDS panels with
-> > dual ports are:
-> > - Make it simpler to add bindings for this kind of LVDS panels
-> > - Keep the number of bindings file lower
-> > - Keep the binding documentation for this kind of LVDS panels more
-> > consistent
-> > - Make it possible for drivers to get pixel order via
-> >   drm_of_lvds_get_dual_link_pixel_order(), as the optional 'ports'
-> > property is
-> >   allowed
-> > 
-> > Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Lucas Stach <l.stach@pengutronix.de>
-> > Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > ---
-> > v1->v2:
-> > * Correct pixel order in example LVDS panel node.
-> > 
-> >  .../panel/panel-simple-lvds-dual-ports.yaml        | 85
-> > ++++++++++++++++++++++
-> >  .../bindings/display/panel/panel-simple.yaml       | 10 ---
-> >  2 files changed, 85 insertions(+), 10 deletions(-)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/panel/panel-simple-lvds-
-> > dual-ports.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-
-> > simple-lvds-dual-ports.yaml
-> > b/Documentation/devicetree/bindings/display/panel/panel-simple-
-> > lvds-dual-ports.yaml
-> > new file mode 100644
-> > index 00000000..58774ed
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-
-> > lvds-dual-ports.yaml
-> > @@ -0,0 +1,85 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > http://devicetree.org/schemas/display/panel/panel-simple-lvds-dual-ports.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Simple LVDS panels with one power supply and dual LVDS
-> > ports
-> > +
-> > +maintainers:
-> > +  - Liu Ying <victor.liu@nxp.com>
-> > +  - Thierry Reding <thierry.reding@gmail.com>
-> > +  - Sam Ravnborg <sam@ravnborg.org>
-> > +
-> > +description: |
-> > +  This binding file is a collection of the LVDS panels that
-> > +  has dual LVDS ports and requires only a single power-supply.
-> > +  One LVDS port receives even pixels, and the other receives odd
-> > pixels.
-> > +  There are optionally a backlight and an enable GPIO.
-> > +  The panel may use an OF graph binding for the association to the
-> > display,
-> > +  or it may be a direct child node of the display.
-> > +
-> > +  If the panel is more advanced a dedicated binding file is
-> > required.
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +
-> > +properties:
-> > +
-> > +  compatible:
-> > +    enum:
-> > +    # compatible must be listed in alphabetical order, ordered by
-> > compatible.
-> > +    # The description in the comment is mandatory for each
-> > compatible.
-> > +
-> > +        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD
-> > panel
-> > +      - auo,g133han01
-> > +        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD
-> > panel
-> > +      - auo,g185han01
-> > +        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> > +      - auo,g190ean01
-> > +        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x
-> > 1200) LVDS TFT LCD panel
-> > +      - koe,tx26d202vm0bwa
-> > +        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT
-> > LCD panel
-> > +      - nlt,nl192108ac18-02d
-> > +
-> > +  backlight: true
-> > +  enable-gpios: true
-> > +  port: true
-> > +  ports: true
-> > +  power-supply: true
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - power-supply
-> > +
-> > +examples:
-> > +  - |
-> > +    panel: panel-lvds {
-> > +      compatible = "koe,tx26d202vm0bwa";
-> > +      power-supply = <&vdd_lcd_reg>;
-> > +
-> > +      ports {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        port@0 {
-> > +          dual-lvds-odd-pixels;
-> > +          reg = <0>;
-> > +
-> > +          panel_lvds0_in: endpoint {
-> > +            remote-endpoint = <&lvds0_out>;
-> > +          };
-> > +        };
-> > +
-> > +        port@1 {
-> > +          dual-lvds-even-pixels;
-> > +          reg = <1>;
-> > +
-> > +          panel_lvds1_in: endpoint {
-> > +            remote-endpoint = <&lvds1_out>;
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-
-> > simple.yaml
-> > b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> > index f9750b0..62618e4 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel-
-> > simple.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-
-> > simple.yaml
-> > @@ -57,14 +57,8 @@ properties:
-> >        - auo,g104sn02
-> >          # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
-> >        - auo,g121ean01
-> > -        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD
-> > panel
-> > -      - auo,g133han01
-> >          # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
-> >        - auo,g156xtn01
-> > -        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD
-> > panel
-> > -      - auo,g185han01
-> > -        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> > -      - auo,g190ean01
-> >          # AU Optronics Corporation 31.5" FHD (1920x1080) TFT LCD
-> > panel
-> >        - auo,p320hvn03
-> >          # AU Optronics Corporation 21.5" FHD (1920x1080) color TFT
-> > LCD panel
-> > @@ -167,8 +161,6 @@ properties:
-> >        - kingdisplay,kd116n21-30nv-a010
-> >          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240)
-> > TFT LCD panel
-> >        - koe,tx14d24vm1bpa
-> > -        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x
-> > 1200) LVDS TFT LCD panel
-> > -      - koe,tx26d202vm0bwa
-> >          # Kaohsiung Opto-Electronics. TX31D200VM0BAA 12.3" HSXGA
-> > LVDS panel
-> >        - koe,tx31d200vm0baa
-> >          # Kyocera Corporation 12.1" XGA (1024x768) TFT LCD panel
-> > @@ -205,8 +197,6 @@ properties:
-> >        - neweast,wjfh116008a
-> >          # Newhaven Display International 480 x 272 TFT LCD panel
-> >        - newhaven,nhd-4.3-480272ef-atxl
-> > -        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT
-> > LCD panel
-> > -      - nlt,nl192108ac18-02d
-> >          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
-> >        - nvd,9128
-> >          # OKAYA Electric America, Inc. RS800480T-7X0GP 7" WVGA LCD
-> > panel
-> > -- 
-> > 2.7.4
-> > 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
--- 
- Liu Ying
+Well, that was of course expected, without a real clock plan this
+driver was only taking into account Oleksij Rempel suggestions to try
+to make a driver good enough to properly be maintained :).
 
+> I've made a clock driver with gate support a few months ago.[0]
+> but I don't have much time to really finish it.
+> Maybe you could rework your clock gate driver based on it.
+>
+> [0] https://github.com/981213/linux/commit/2eca1f045e4c3db18c941135464c0d7422ad8133
+
+Thanks for the link, I see there are three more clocks there with
+frequencies of 125, 250 and 270 Mhz. all of them having main xtal as
+parent. Ok, I will take this real information into account and will
+send v2 after a bit of more feedback comes.
+
+> --
+> Regards,
+> Chuanhong Guo
+
+Best regards,
+     Sergio Paracuellos
