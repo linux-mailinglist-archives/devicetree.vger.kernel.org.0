@@ -2,122 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACD872B04B9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 13:11:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBBCD2B04E3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 13:19:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727822AbgKLMLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 07:11:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37724 "EHLO
+        id S1728009AbgKLMTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 07:19:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726969AbgKLMLd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 07:11:33 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01916C0613D1;
-        Thu, 12 Nov 2020 04:11:33 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id l2so8086143lfk.0;
-        Thu, 12 Nov 2020 04:11:32 -0800 (PST)
+        with ESMTP id S1727789AbgKLMTr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 07:19:47 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02D3EC0613D1
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 04:19:47 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id u19so1849903lfr.7
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 04:19:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qDQm3rNb54SkhUlNL8RpgRXOxU1huiUJ9bj0ejS8kCk=;
-        b=AkrS6kZLgOxeYWXwGqpnfRdxsFJC8kUVrNHqC+x66hKRlbQKyI02IkvnEQXgS+Mpqv
-         wfUomJ2OUUNHkIOUnFqPihpisPDQBLBk8peJrFHfZlz59JxQ69BJ7N4Uf77rkP5Xf82t
-         qsFNugShHOgnDKzU1zIymdgWbVHdOhoRwVt5aKbx7AxfBiAWNqtDaBdlNFKl5bo/Efot
-         z8wGvsipy2d3YYrx09ALDYA55yCpyVnehUR5SnF+mvX3oXH6JhznejwjEz4jNHJoqQEe
-         9am6xJ4Cj4V0a2eXaE68zLYHUIwOKgKVofDGlctulPFTKSJo4a8/iKz+pm0pAuZykR9m
-         0DTg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fNo0JKoiJ1vOX3ZB6BEwcttXVx3kYmziVKFAjG7xIvE=;
+        b=RG4CArdxOaLNInraDXtxYeMoHrIrSbm3URzrzTYvW2d303uiTqraoK8L0TP+BJJi5r
+         T8Z6D0h1ThQttR6Iov8OKg3fduf+fufh1pSuzGfFupNwXRAGM9SWZ1kpQEwMEzZYeD9R
+         7X5+/O6KpZ4IaCmtqR3Aj/VnyuNMiYAaLKtNpSVk64tgPT5jL4jTWSujWpYdH/r0Djdy
+         j5wVqzhzW0frsyik2N5xDDvh41ZpWcXBqD6rkecuLvzuOQ5SaSYkX+ebDVsQSmd+dkq/
+         uBP0+cfY4nWEZTIBip7vG4lYGXda4R6xJVdxTtdiyLk8PUZOE7IJvduQ6i0EBeGRDQb7
+         BvjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=qDQm3rNb54SkhUlNL8RpgRXOxU1huiUJ9bj0ejS8kCk=;
-        b=UQS7AZzEFRRXQrmw9XH4wAOgtB+deU2ilPHNrh8XNKQshvPxYsrhZoRxtd/hRyovS0
-         zPSiT8e5FKQFapRBL5fYOdNF4zTxmNerA06xdDION3XHS1criGoW1UBDDU7uwq59a1gy
-         FKpBNJDcxz3C+F1Bq5Gd4zUcxH983/qciu4pKbaKUafrGpmRMSAVKqF2fgAXU2XnK50W
-         zlrqqHCU0mF0kymnHdQlv3lwVElxsqHKLL++/1nAlJVdUL0tyMO8ZGYBKXLFniucNpMj
-         ffGXDI/Lb6HTKvgPQbdm76WiWHgjKYnYGkjFE8fdtQSgokXu/PV5huVqn2GYhNpD1k8r
-         e3GQ==
-X-Gm-Message-State: AOAM5332WS37cnyxvIRW2Q/ddDPlBmUfXif5jNEY5/9JLsEtmf5lTrEd
-        zyZW7/9TbEMs/iqHt+BGfC7jms5jbv0=
-X-Google-Smtp-Source: ABdhPJy+/o28hDjr4pTZgv+xJ0krk9L41w8CiLD43sF8UIQDD5r7aDtBz54XuH9pd5SDQlDjxUTdmA==
-X-Received: by 2002:a19:794:: with SMTP id 142mr4117210lfh.232.1605183091360;
-        Thu, 12 Nov 2020 04:11:31 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
-        by smtp.googlemail.com with ESMTPSA id t9sm20051lfe.274.2020.11.12.04.11.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Nov 2020 04:11:30 -0800 (PST)
-Subject: Re: [PATCH] ARM: tegra: Populate OPP table for Tegra20 Ventana
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20201111103847.152721-1-jonathanh@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <ea73403a-a248-cd2e-b0af-aeb246801054@gmail.com>
-Date:   Thu, 12 Nov 2020 15:11:29 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fNo0JKoiJ1vOX3ZB6BEwcttXVx3kYmziVKFAjG7xIvE=;
+        b=TzjTzoSPzggHidwJUIBBERWsbAUTJFDthevxbr/aY7jDa/Tx0RZnapwCYJYg6ZbOz2
+         FoUab0W4hRltRc3QltZFyfOAOhw9CNrAiBU/U0W0bkJDEM2WE01LaJnV7X6apMZb/VRQ
+         L+jhW+OfnvWTABdFIy1aVFSQYU6IN9ZAcRU4xD9tqq8WgYMQbceGTEbsm8coBMMUJanj
+         ErzZBDDChbA4Xee/juOG9NJIGu5fqNEEPZEoJlskNzhflLa+CAuKacA4T2XZUawplEHN
+         /7ebPo0jpxXTdJm6IIR0pR2kWG6AWNUeQ/QW0AETUIK3nKbsLrMUYdrkKRX/gPE3btqR
+         XXnA==
+X-Gm-Message-State: AOAM532tZQ3wGcDYEPIEQ8S9VzbviBYd9N8irDQQmh5QvgUqbNDSfPPd
+        GmB0whSm4QXn2kB7C5wfQJOk4DloQCNHQ09YdeqoR839xwS9aw==
+X-Google-Smtp-Source: ABdhPJwhVAqY9IgDLkJKooOcv72RFKtk97zrU2tY0DMdBtlXUE7NyZpIvLivv7gH+mTnWrLiDkVNxEsaUL91IL5j9Y4=
+X-Received: by 2002:a19:e08:: with SMTP id 8mr2688842lfo.441.1605183585470;
+ Thu, 12 Nov 2020 04:19:45 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201111103847.152721-1-jonathanh@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201111130754.2283993-1-linus.walleij@linaro.org> <20201111205857.GB3013948@ravnborg.org>
+In-Reply-To: <20201111205857.GB3013948@ravnborg.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 12 Nov 2020 13:19:34 +0100
+Message-ID: <CACRpkdaUZMNQn7bvmPKP+kbqsW66HrS0RTDkUjrAW15EEf+8EA@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: display: mcde: Convert to YAML schema
+To:     Sam Ravnborg <sam@ravnborg.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-11.11.2020 13:38, Jon Hunter пишет:
-> Commit 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver
-> (Tegra30 supported now)") update the Tegra20 CPUFREQ driver to use the
-> generic CPUFREQ device-tree driver. Since this change CPUFREQ support
-> on the Tegra20 Ventana platform has been broken because the necessary
-> device-tree nodes with the operating point information are not populated
-> for this platform. Fix this by updating device-tree for Venata to
-> include the operating point informration for Tegra20.
-> 
-> Fixes: 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver (Tegra30 supported now)")
-> Cc: stable@vger.kernel.org
-> 
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  arch/arm/boot/dts/tegra20-ventana.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/tegra20-ventana.dts b/arch/arm/boot/dts/tegra20-ventana.dts
-> index b158771ac0b7..055334ae3d28 100644
-> --- a/arch/arm/boot/dts/tegra20-ventana.dts
-> +++ b/arch/arm/boot/dts/tegra20-ventana.dts
-> @@ -3,6 +3,7 @@
->  
->  #include <dt-bindings/input/input.h>
->  #include "tegra20.dtsi"
-> +#include "tegra20-cpu-opp.dtsi"
->  
->  / {
->  	model = "NVIDIA Tegra20 Ventana evaluation board";
-> @@ -592,6 +593,16 @@ clk32k_in: clock@0 {
->  		#clock-cells = <0>;
->  	};
->  
-> +	cpus {
-> +		cpu0: cpu@0 {
+On Wed, Nov 11, 2020 at 9:59 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> On Wed, Nov 11, 2020 at 02:07:54PM +0100, Linus Walleij wrote:
 
-I assume you're going to use this cpu0 handle later on.
+> > -- clocks: an array of the MCDE clocks in this strict order:
+> > -  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
+> > -  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
+>
+> > -  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
+> > -  save clock)
+>
+> I did not find these two clocks in the binding below.
 
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +		};
-> +
-> +		cpu@1 {
-> +			operating-points-v2 = <&cpu0_opp_table>;
-> +		};
-> +	};
-> +
->  	gpio-keys {
->  		compatible = "gpio-keys";
->  
-> 
+The old bindings are wrong. These clocks belong on the DSI
+host adapters, so they are in this part of the binding:
 
-Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
++      clocks:
++        description: phandles to the high speed and low power (energy
+save) clocks
++          the high speed clock is not present on the third (dsi2) block, so it
++          should only have the "lp" clock
++        minItems: 1
++        maxItems: 2
++
++      clock-names:
++        oneOf:
++          - items:
++              - const: hs
++              - const: lp
++          - items:
++              - const: lp
+
+All device trees have these in the right place, we just didn't notice that
+the bindings were wrong exactly because we weren't using
+formal YAML syntax. Now the strictness of this parser makes me
+fix my bugs...
+
+> > +  port:
+> > +    type: object
+> > +    description:
+> > +      A DPI port node with endpoint definitions as defined in
+> > +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 1
+> > +
+> > +  ranges: true
+>
+> This is a transition from .txt to DT Schema so OK with this sub-node.
+> But otherwise the dsi node should have been linked using graph nodes.
+> So OK - just thinking out loud.
+
+Actually when I introduced the MCDE DSI last year at first I used port
+and graphs:
+https://lore.kernel.org/dri-devel/20190207083647.20615-3-linus.walleij@linaro.org/
+Then Rob asked "why?":
+https://lore.kernel.org/dri-devel/20190225223124.GA29057@bogus/
+And then I removed it, as having a panel directly under a
+DSI host is fine.
+
+> > +patternProperties:
+> > +  "^dsi@[0-9a-f]+$":
+> > +    description: subnodes for the three DSI host adapters
+> > +    type: object
+> > +    allOf:
+> > +      - $ref: dsi-controller.yaml#
+(...)
+> The dsi nodes needs the #address-cells and #size-cells - at least if a
+> panel node is specified.
+
+This is specified in the referenced schema dsi-controller.yaml.
+
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - epod-supply
+> > +  - vana-supply
+> > +
+> > +additionalProperties: true
+>
+> Why are additional properties allowed here?
+
+It's because the SoC peripherals have things like pin control
+(currently handled by a quirk in the YAML validator I think) and
+resets is something else I will likely add at some point, and then
+this would result in warnings unless I lock-step changes in the
+schema and DTS files.
+
+I *can* disallow this if you insist.
+
+Yours.
+Linus Walleij
