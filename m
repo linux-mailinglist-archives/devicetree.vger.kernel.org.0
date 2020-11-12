@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 410632AFD30
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:52:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2E4E2AFDF5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:32:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728247AbgKLBcD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 20:32:03 -0500
-Received: from mo-csw1114.securemx.jp ([210.130.202.156]:52566 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727956AbgKKXmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 18:42:21 -0500
-Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 0ABNg7JG030509; Thu, 12 Nov 2020 08:42:07 +0900
-X-Iguazu-Qid: 2wHHadmXO0HaSfspQ8
-X-Iguazu-QSIG: v=2; s=0; t=1605138126; q=2wHHadmXO0HaSfspQ8; m=+UEpVNPoNKAz3dfcq+BQXtyCiPyl2pjBsvGtuuQkoeg=
-Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
-        by relay.securemx.jp (mx-mr1113) id 0ABNg6Id026074;
-        Thu, 12 Nov 2020 08:42:06 +0900
-Received: from enc01.toshiba.co.jp ([106.186.93.100])
-        by imx2.toshiba.co.jp  with ESMTP id 0ABNg6n1016632;
-        Thu, 12 Nov 2020 08:42:06 +0900 (JST)
-Received: from hop001.toshiba.co.jp ([133.199.164.63])
-        by enc01.toshiba.co.jp  with ESMTP id 0ABNg5hF003444;
-        Thu, 12 Nov 2020 08:42:05 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH v2 4/4] arm: dts: visconti: Add DT support for Toshiba Visconti5 GPIO driver
-Date:   Thu, 12 Nov 2020 17:40:57 +0900
-X-TSB-HOP: ON
-Message-Id: <20201112084057.1399983-5-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201112084057.1399983-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20201112084057.1399983-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S1727304AbgKLFco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 00:32:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52506 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728873AbgKLBfY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 20:35:24 -0500
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56155C0617A7;
+        Wed, 11 Nov 2020 17:34:08 -0800 (PST)
+Received: by mail-io1-xd43.google.com with SMTP id s10so4379781ioe.1;
+        Wed, 11 Nov 2020 17:34:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rbpdEV5oJs5EmTQ4qqBH8SAi38sGGbLtW6CQKc149hs=;
+        b=QJHjI8PK16X+WFhTxpfikEQQBKesGLQy41FaqcLf/NYWYbNYkYVVY4hbzUW3/zu83+
+         6LTXMHmPce3IvwNpRjh0UUYuL8X2qLjhdPiIxy706lUXRXEcc5pz3fkpGu81jquaTH+9
+         sKFgqy3n4wBPlNcT5mJDERmYeN35oyrxsu0A2IODkzQbLooR+w4nqX9mslkCSt5ISpS2
+         hAOgwGk6EzZkHldzpAi2aA1iEPC24vJwF3F0I3wnDGCMxZNCiJ+4sYLrw62wSb4ZpKWO
+         KLFcdzbICoZltLeOVJSc2VZdHIqo2dbcpMPLoj+e9cmoqk0LKNPsI5f4H+WHK2mpZ1s/
+         Z/pQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rbpdEV5oJs5EmTQ4qqBH8SAi38sGGbLtW6CQKc149hs=;
+        b=l4cASASad9JJNOv4xWs3ONSWG2rOPeeHfWvBoknAR+Lsg1GkQoNV9ZCqx7rc1yy5W4
+         AdCc27hgkS9GpUtl59QsX2J6InI8CKHcKv/hXnSJLzazxp0iQvwX0/QPAr2+hMCKwBXv
+         OMniIiOz84UwhNKJXj0k0AnrKmuEfbyVkaJxUwFrv2tPV4/j08aH/8AQhbWP4ckhS+5L
+         DzYgKcsybhBmeBqWfGkKDftNzGBmrPydptBkg6o0OsGXVfL4pGgbS/GP4VxmHtQmVBGM
+         Scj/6yY/5aQSBLwHkVCaSPNBxdEgkm7Wnia7BrbdmwmCUrKr/g8P593Hw806IDaxxUjx
+         xmaQ==
+X-Gm-Message-State: AOAM533ooXar4WQVB+Xox/elZBWTwy8LtsI8y6wAabT3blSFHPrc4qu3
+        FUU2VYePOzHMiLPuMes/s0H5HXUaYJsfARuuxc0=
+X-Google-Smtp-Source: ABdhPJx9s5i1TWJ7IiZOclN/QEVz3COO+bkdo4SQu9Uhi7hDY6mOuJ+30tEBzttD211kuDsTR9BIV8uhKO5AcbH9RrA=
+X-Received: by 2002:a02:a793:: with SMTP id e19mr21883768jaj.45.1605144847713;
+ Wed, 11 Nov 2020 17:34:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201111163013.29412-1-sergio.paracuellos@gmail.com> <CAJsYDVJtPqd-aPjJZFC76R2fbv1i=tVzRR7S1VFAMzp1QcPbiQ@mail.gmail.com>
+In-Reply-To: <CAJsYDVJtPqd-aPjJZFC76R2fbv1i=tVzRR7S1VFAMzp1QcPbiQ@mail.gmail.com>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Thu, 12 Nov 2020 09:33:56 +0800
+Message-ID: <CAJsYDVKWuygjbBErQt1B5XD8Bp06-TdrziBzDdYmMGhU_8X-aA@mail.gmail.com>
+Subject: Re: [PATCH 0/7] MIPS: ralink: add CPU clock detection and clock gate
+ driver for MT7621
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        John Crispin <john@phrozen.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Weijie Gao <hackpascal@gmail.com>, jiaxun.yang@flygoat.com,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the GPIO node in Toshiba Visconti5 SoC-specific DT file.
-And enable the GPIO node in TMPV7708 RM main board's board-specific DT file.
+On Thu, Nov 12, 2020 at 9:26 AM Chuanhong Guo <gch981213@gmail.com> wrote:
+>
+> I've already said in previous threads that clock assignment in
+> current linux kernel is not trustworthy.
+> I've got the clock plan for mt7621 now. (Can't share it, sorry.)
+> Most of your clock assumptions above are incorrect.
+> I've made a clock driver with gate support a few months ago.[0]
+> but I don't have much time to really finish it.
+> Maybe you could rework your clock gate driver based on it.
+>
+> [0] https://github.com/981213/linux/commit/2eca1f045e4c3db18c941135464c0d7422ad8133
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- .../boot/dts/toshiba/tmpv7708-rm-mbrc.dts     |  4 +++
- arch/arm64/boot/dts/toshiba/tmpv7708.dtsi     | 27 +++++++++++++++++++
- 2 files changed, 31 insertions(+)
+hsdma/eth/pio clocks are still missing in mediatek doc and
+I just made them up in the driver. Correct clock frequency for
+them aren't really important for them to work though.
+And another part I didn't finish is checking clock support for
+every drivers mt7621 used. Many drivers don't explicitly
+enable the clock and may be problematic when kernel
+gates unused clocks.
 
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-index ed0bf7f13f54..950010a290f0 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708-rm-mbrc.dts
-@@ -41,3 +41,7 @@ &uart1 {
- 	clocks = <&uart_clk>;
- 	clock-names = "apb_pclk";
- };
-+
-+&gpio {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-index 242f25f4e12a..e202ae52eca9 100644
---- a/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-+++ b/arch/arm64/boot/dts/toshiba/tmpv7708.dtsi
-@@ -157,6 +157,33 @@ pmux: pmux@24190000 {
- 			reg = <0 0x24190000 0 0x10000>;
- 		};
- 
-+		gpio: gpio@28020000 {
-+			compatible = "toshiba,gpio-visconti";
-+			reg = <0 0x28020000 0 0x1000>;
-+			#gpio-cells = <0x2>;
-+			gpio-ranges = <&pmux 0 0 32>;
-+			gpio-controller;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+			interrupts =
-+				<GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>,
-+				<GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-+		};
-+
- 		uart0: serial@28200000 {
- 			compatible = "arm,pl011", "arm,primecell";
- 			reg = <0 0x28200000 0 0x1000>;
 -- 
-2.29.2
-
+Regards,
+Chuanhong Guo
