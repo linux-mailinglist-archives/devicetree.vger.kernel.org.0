@@ -2,184 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7024E2AFDFE
+	by mail.lfdr.de (Postfix) with ESMTP id 9DDB02AFDFF
 	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727965AbgKLFc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 00:32:58 -0500
-Received: from mga14.intel.com ([192.55.52.115]:64728 "EHLO mga14.intel.com"
+        id S1727986AbgKLFdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 00:33:02 -0500
+Received: from mga14.intel.com ([192.55.52.115]:64772 "EHLO mga14.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728058AbgKLDJ2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Nov 2020 22:09:28 -0500
-IronPort-SDR: 8+U7I84nBee6i0C2mi3uiDN0Jg1g6NdWPAmhQqSwgCIPD18c3HKBa9RvmsMNSwxBMATglWOa27
- 06QVdSccoQug==
-X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="169466800"
+        id S1728073AbgKLDKK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Nov 2020 22:10:10 -0500
+IronPort-SDR: Bmkp1vqnBqP/HtiMSfXNi7YdzIAt9utFpNAN41xK89ssPp8HwUT50pFKxXqbI2j2sxDW91ap7s
+ WRJaAda+Y1ug==
+X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="169466865"
 X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; 
-   d="scan'208";a="169466800"
+   d="scan'208";a="169466865"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 19:09:28 -0800
-IronPort-SDR: YQ0fl6eD8xzAlX5XyQoASRTeAWj6hbJWPziPg5YG+qeRgpDsmQIOTA6wnkA/nSx6jlUMHzP9FP
- yW3u+JGYTkOw==
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Nov 2020 19:10:10 -0800
+IronPort-SDR: b8YHAGBphtIL3c2K5d8Z4dxxq5qiwu13MCR/R/p2Kbfgk5qEh9u6/soDZO21XSbmxThfp5P0iK
+ S4HVrCDNJDeA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; 
-   d="scan'208";a="356938853"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga004.fm.intel.com with ESMTP; 11 Nov 2020 19:09:27 -0800
-Received: from [10.215.242.65] (mreddy3x-MOBL.gar.corp.intel.com [10.215.242.65])
-        by linux.intel.com (Postfix) with ESMTP id 5279D580B99;
-        Wed, 11 Nov 2020 19:09:24 -0800 (PST)
-Subject: Re: [PATCH v7 1/2] dt-bindings: dma: Add bindings for intel LGM SOC
-To:     Thomas Langer <tlanger@maxlinear.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
+   d="scan'208";a="531954468"
+Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
+  by fmsmga005.fm.intel.com with ESMTP; 11 Nov 2020 19:10:10 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 11 Nov 2020 19:10:09 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 11 Nov 2020 19:10:08 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Wed, 11 Nov 2020 19:10:08 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Wed, 11 Nov 2020 19:10:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Hmer8CmY2NvwWAWE+QXUdKkIQsOEfl5OIYRpCbD1ITa8VrBCUA2yIDGhlk3uVdinQ7le5oapOLsHSWvpGh+KjAAXLUCH4p8UfBWrtOR3UY0lBKXH3Rqsp/CjOl8rWgHh0TziF/M/aTgsYlvy8wshLPOTFXb2hqu6XC2V07DBbF0HbVy92eSI4DWm7W5egsl3SrA5VUt2RklIjxptSQSF22J1lVzt7ZEpqlKlilX+iWfNIRI48WSe7Zj1ll3losuTM/q1YjTUYFZn7GMRFNKcgxLuKgHmqplaE0THXCPoaXiRmOj2jxsIsHSvNFiSDB55UFSaoHaw4//aJHgKYwh1gw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lNc0MtVW1XRSVH5wRR16frvJfVLOt2AN623lU9qZMqA=;
+ b=QWlO6JeHbKq5USyHzdGrVpbRZsavpLBZmreM4EnkRgEm19x8WNem12bBiF5Zqufru8k3ByUOcJ4Yb74gd6V0JkuZ6vt6vgnqGv4Vfsp05tpD2lZRNxQaqsmrNPmt+wEdt5B5cNcge4H/0L/f7NHO4MWmjVvZRQrPn/VfxIj8uRgLD+NSPTfA/pFcX0bxuOmRu6sFqPnuXnjhZ9W/cWUs0XyRejdaSzdUeMDUF5tJRAepW7A+CZ4+cm7qznd7B9RscLqI57mFW1KaqI0Ay18hA06PxduOTb0SgRn4gDsQbdAk5lsAMa1ukLIB9rLBzXE4xin5gOxyNqh0RJcIUKNMEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lNc0MtVW1XRSVH5wRR16frvJfVLOt2AN623lU9qZMqA=;
+ b=B+ovPnYn4FY2kcphXF9CsQAEJ2nzWxplQyFEobgCA/y/49i8bFb1nlMbcQWsLzRoigkwrkWbafHv9/lFCR+qVW1JInG73KGyxvU/jSWqJHDIw9vtvoZzYuRVW0ps25mHbuUw7cGxwp2mbAoi+GwR0snq2Bz2w0Yj51T9GPzkt+I=
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
+ by DM6PR11MB4187.namprd11.prod.outlook.com (2603:10b6:5:19e::32) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Thu, 12 Nov
+ 2020 03:10:00 +0000
+Received: from DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef]) by DM6PR11MB4250.namprd11.prod.outlook.com
+ ([fe80::b90d:d053:9de6:e5ef%4]) with mapi id 15.20.3541.025; Thu, 12 Nov 2020
+ 03:10:00 +0000
+From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Shevchenko, Andriy" <andriy.shevchenko@intel.com>,
-        "chuanhua.lei@linux.intel.com" <chuanhua.lei@linux.intel.com>,
-        "Kim, Cheol Yong" <Cheol.Yong.Kim@intel.com>,
-        "Wu, Qiming" <qi-ming.wu@intel.com>,
-        "malliamireddy009@gmail.com" <malliamireddy009@gmail.com>,
-        "peter.ujfalusi@ti.com" <peter.ujfalusi@ti.com>,
-        "Langer, Thomas" <thomas.langer@intel.com>
-References: <cover.1600827061.git.mallikarjunax.reddy@linux.intel.com>
- <f298715ab197ae72ab9b33caee2a19cc3e8be3f5.1600827061.git.mallikarjunax.reddy@linux.intel.com>
- <DM6PR19MB3594E466A1B76229EC1395BABB160@DM6PR19MB3594.namprd19.prod.outlook.com>
- <9882db7a-755b-84c9-b132-1839dea5e6b8@linux.intel.com>
- <DM6PR19MB397705C898DE2FBA755B2D80BBE90@DM6PR19MB3977.namprd19.prod.outlook.com>
-From:   "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
-Message-ID: <31bc9cd9-c1aa-b816-b632-e0433d0ad8cc@linux.intel.com>
-Date:   Thu, 12 Nov 2020 11:09:23 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
-MIME-Version: 1.0
-In-Reply-To: <DM6PR19MB397705C898DE2FBA755B2D80BBE90@DM6PR19MB3977.namprd19.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Wan Mohamad, Wan Ahmad Zainie" 
+        <wan.ahmad.zainie.wan.mohamad@intel.com>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>
+Subject: RE: [PATCH v2 2/2] dt-bindings: watchdog: Add bindings for Intel Keem
+ Bay SoC
+Thread-Topic: [PATCH v2 2/2] dt-bindings: watchdog: Add bindings for Intel
+ Keem Bay SoC
+Thread-Index: AQHWt4dDfnLNvk2baUG8CdSXeJy8X6nDXIMAgAB14RA=
+Date:   Thu, 12 Nov 2020 03:10:00 +0000
+Message-ID: <DM6PR11MB42500BB69009125B86C2115FFBE70@DM6PR11MB4250.namprd11.prod.outlook.com>
+References: <cover.1605028524.git.vijayakannan.ayyathurai@intel.com>
+ <e5b874280fded0a90f7a94b03ab1bbbae4a72ac6.1605028524.git.vijayakannan.ayyathurai@intel.com>
+ <20201111200356.GA1934066@bogus>
+In-Reply-To: <20201111200356.GA1934066@bogus>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [42.106.177.125]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 00e82afa-a5bc-4b42-6e6b-08d886b87128
+x-ms-traffictypediagnostic: DM6PR11MB4187:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM6PR11MB4187FAB57048D30D08F73E21FBE70@DM6PR11MB4187.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1775;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 4ump5a/UrIgZIlVaoV1FeYwmJi9MciTeaXHuupjO0RML/WarGoxFqfjy7edoZ5d5YMPvArJtHTScO5s2R9IrGdIsKQSXeBOJYJkrLmK5MqaBKmT9FQqJDVPUMgfftnbusAi1+3C0dx2tojEIcKT7RHVVvG4jLmxME9Taf8MRvohEkojLQ+ASdGo/EX66Zk+bZORS+Uo8C9GdvEow5mjHN8afc4tRg2otYmjBy8VZhB3p+qb8BRkelB7SpV3RmC40jNW1gEMV++B9yF/LPJoFqr56jYAeCb+KFQr3pD1+8zZCdlhrR/F8Eg00mDK5s1Q5SZArzrUooDVGEvJMwJoyVQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(376002)(136003)(346002)(366004)(396003)(186003)(66476007)(8936002)(316002)(66556008)(64756008)(9686003)(33656002)(8676002)(76116006)(66946007)(66446008)(478600001)(26005)(55016002)(6916009)(52536014)(54906003)(2906002)(7696005)(86362001)(53546011)(4744005)(4326008)(71200400001)(5660300002)(6506007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: JwbnVrSUibOfOjCy+KnCyb8J03cGJ8aW7toFMACPeHbgSw7lUMdxp5vPpWOVZvo6+ORQEAofvB0OWYGUBYB1H2m1tLaPf9Dsf1/BRK+JYQHftsFzNa3/EO2srQq65eCgl3TwfVbuhFzea6J8BOxMaE79ozC0AQwuQGTUZtVw9B9FGDpieI4BJGSnkfQ6T4NGGIyACNGcwqbzhgAT00VrFKLluuWJKtvQsy5kv4pxAASTTpXjDD/5OZ7H3QwcJ7yp95BPnMZ2l0NglFN+4geSDCqrQbQght4Ycd3uPtVK7AlD+UQzy6ZG9zzeknURzH62xjw3zHjzHq+Unnlh9oeY1grfg7V9MiEY3GweTKleozy7R9EB+5GUE5EeKjNkH6dHqbKpOuqPnW9mhdygAX+9mYkKPgf+o50jhOfWmQK5V5/DlmsmK+2tZV1LFDFvAm7MWOhEnqpydKmcxF+LjfOV7ZmUbIJ/dxpULWD6DBxZze/rVZoHvGrBzX/t+14pqve/0RlgzRUHk8J9D2007dE6qT7JgkArwffDeYyjP5O6eJJ4ZkHytdxgL/WNW2kJVF3HGsKg9mg+u2Oia+JliP6Lys0fD119Vn8KL0wrBA+jPr15tdQ7BWq4DDbq2Q8csW1nzib3F1SJG6kGuflJO10CtA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00e82afa-a5bc-4b42-6e6b-08d886b87128
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Nov 2020 03:10:00.2675
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: p4nWpV00rhxrXMX0OgriAyty/yElEo7XyS0vhtQa5iNvD29KEAd7tt/dvv/5tTrWwt7q7y171rwZaaEOC3GgKEB2rv4DDarjQnt+mcKqS6k/6Lcd17VD46RbZnCgdvFY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4187
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thomas,
+Hi Rob,
+Thanks for reviewing this patch.
 
-On 11/11/2020 1:39 AM, Thomas Langer wrote:
->
->> -----Original Message-----
->> From: Reddy, MallikarjunaX <mallikarjunax.reddy@linux.intel.com>
->> Sent: Montag, 2. November 2020 15:42
->> To: Thomas Langer <tlanger@maxlinear.com>; dmaengine@vger.kernel.org;
->> vkoul@kernel.org; devicetree@vger.kernel.org; robh+dt@kernel.org
->> Cc: linux-kernel@vger.kernel.org; Shevchenko, Andriy
->> <andriy.shevchenko@intel.com>; chuanhua.lei@linux.intel.com; Kim,
->> Cheol Yong <Cheol.Yong.Kim@intel.com>; Wu, Qiming <qi-
->> ming.wu@intel.com>; malliamireddy009@gmail.com; peter.ujfalusi@ti.com;
->> Langer, Thomas <thomas.langer@intel.com>
->> Subject: Re: [PATCH v7 1/2] dt-bindings: dma: Add bindings for intel
->> LGM SOC
->>
->> This email was sent from outside of MaxLinear.
->>
->>
->> Hi Thomas,
->> Thanks for the review, my comments inline.
->>
->> On 10/28/2020 3:24 AM, Thomas Langer wrote:
->>> Hello Reddy,
->>>
->>> I think "Intel" should always be written with a capital "I" (like in
->> the Subject, but except in the binding below)
->> OK.
->>>> + compatible:
->>>> +  oneOf:
->>>> +   - const: intel,lgm-cdma
->>>> +   - const: intel,lgm-dma2tx
->>>> +   - const: intel,lgm-dma1rx
->>>> +   - const: intel,lgm-dma1tx
->>>> +   - const: intel,lgm-dma0tx
->>>> +   - const: intel,lgm-dma3
->>>> +   - const: intel,lgm-toe-dma30
->>>> +   - const: intel,lgm-toe-dma31
->>> Bindings are normally not per instance.
->>> What if next generation chip gets more DMA modules but has no other
->> changes in the HW block?
->>> What is wrong with
->>>     - const: intel,lgm-cdma
->>>     - const: intel,lgm-hdma
->>> and extra attributes to define the rx/tx restriction (or what do it
->> mean?)?
->>>   From the driver code I saw that "toe" is also just of type "hdma"
->> and no further differences in code are done.
->> We had a discussion on the same in the previous patches and Rob
->> Herring
->> said Okay using Different compatibles.
->> below the snippet.
->> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->> +
->>   >>> + compatible:
->>   >>> +  anyOf:
->>   >>> +   - const: intel,lgm-cdma
->>   >>> +   - const: intel,lgm-dma2tx
->>   >>> +   - const: intel,lgm-dma1rx
->>   >>> +   - const: intel,lgm-dma1tx
->>   >>> +   - const: intel,lgm-dma0tx
->>   >>> +   - const: intel,lgm-dma3
->>   >>> +   - const: intel,lgm-toe-dma30
->>   >>> +   - const: intel,lgm-toe-dma31
->>   >> Please explain why you need so many different compatible strings.
->>   > This hw dma has 7 DMA instances.
->>   > Some for datapath, some for memcpy  and some for TOE.
->>   > Some for TX only, some for RX only, and some for TX/RX(memcpy and
->> ToE).
->>   >
->>   > dma TX/RX type we considered as driver specific data of each
->> instance and
->>   > used different compatible strings for each instance.
->>   > And also idea is in future if any driver specific data of any
->> particular
->>   > instance we can handle.
->>   >
->>   > Here if dma name and type(tx or rx) will be accepted as devicetree
->>   > attributes then we can move .name = "toe_dma31", & .type =
->> DMA_TYPE_MCPY
->>   > to devicetree. So that the compatible strings can be limited to
->> two.
->>   > intel,lgm-cdma & intel,lgm-hdma .
->>
->> [Rob]
->> Different compatibles are okay if the instances are different and we
->> don't have properties to describe the differences.
-> Okay, but then explain what the differences are, that cannot be described
-> by other properties/attributes. In the driver code I cannot see anything,
-> except the "name". But for printouts in driver, "drv_dbg" or similar will
-> just use the node path for the instance.
-On patch4 series we had the same discussion.
-i will brief it here again.
+> From: Rob Herring <robh@kernel.org>
+> Sent: Thursday, 12 November, 2020 4:04 AM
+> Subject: Re: [PATCH v2 2/2] dt-bindings: watchdog: Add bindings for Intel
+> Keem Bay SoC
+>=20
+> On Wed, 11 Nov 2020 01:53:08 +0800, vijayakannan.ayyathurai@intel.com
+> wrote:
+> > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> >
+> > Add Device Tree binding document for Watchdog IP in the Intel Keem Bay
+> SoC.
+> >
+> > Signed-off-by: Vijayakannan Ayyathurai
+> <vijayakannan.ayyathurai@intel.com>
+> > Acked-by: Mark Gross <mgross@linux.intel.com>
+> > Acked-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > ---
+> >  .../bindings/watchdog/intel,keembay-wdt.yaml  | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644
+> Documentation/devicetree/bindings/watchdog/intel,keembay-wdt.yaml
+> >
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-This hw dma has 7 DMA instances, and each Some for TX only, some for RX 
-only, and some for TX/RX.
-
-dma TX/RX type we considered as driver specific data and it cant be used 
-as dt property as per the previous reviewers.
-
-So i moved it to driver specific data.
-
-If type(tx or rx) will be accepted as devicetree attributes then we can 
-move it to devicetree.
-
-So as you said we can limit compatible strings can be limited to two. 
-intel,lgm-cdma & intel,lgm-hdma .
-
-One more advantage i see with this model is in future if any driver 
-specific data of any particular instance we can handle easily.
->
->> For some of what you have in this binding, I think it should be part
->> of
->> the consumer cells.
->> ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->> ++
->>> Best regards,
->>> Thomas
->>>
+Thanks,
+Vijay
