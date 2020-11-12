@@ -2,84 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 169E02AFF3F
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:45:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C1372AFE03
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:33:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728036AbgKLFdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1728039AbgKLFdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 12 Nov 2020 00:33:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48586 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728689AbgKLENn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 23:13:43 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58036C0613D4
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:13:42 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id a18so3307140pfl.3
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:13:42 -0800 (PST)
+        with ESMTP id S1728864AbgKLEcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 23:32:50 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3781BC0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:32:48 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id w13so5768051eju.13
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:32:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hNUSM1grWO9vy+XbwQYcKuJzWbYPa41sIt6VxAzGZ60=;
-        b=JpXqWkTNjbGP49vI7qFhq2woghriFKkTm5vcYedTvUvqt3ZwN4Axw16Cjn8ztdHybe
-         hn1tYg/E9pp/sWqFiEnUKzFWnuG4NgkdAPRatfFz21jYjn4fysmPcx7hkdLqi3KsGFV8
-         No+HRlM2rlqJGBTvdUOFpWZAEbyknpygTpslWUTDevzqGjkKgVcYVYuh/1R1yW9AtczY
-         iNSIg8pp8sRQeWj4ulAkx3yMgCVmER5YN9AgVUBP64AoHIdJV0UehM79D6v2/5JdeHsz
-         oI9dIxbzteBnktATYHoQsZ83iTPLcy24cByfsSG/wMW7Sv5oBUE5YwIRCJDxMVKl0AHy
-         ALFw==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PrJGFWR5LfPadBQJXtxR3X13DiYJSukzmCqstyB653Y=;
+        b=HWhp+x5nR3T+EuumQWwhx5XTPD7QV5SlMbprd7oGYb7NT1tsUS8M5b4CCExQirLXf1
+         n6xB1vMrsTHoCd3FbJvdOGzMuDQtsl1hs78cs62DjPqqlEQe7GQ0p/ZW5fyjKOmsxAtD
+         iRHM55F9z6oGEmav+yyjAu5YCy5KSCZCidFCw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=hNUSM1grWO9vy+XbwQYcKuJzWbYPa41sIt6VxAzGZ60=;
-        b=kPOYk3xBcdW76eh6CGKtf4Vk3Te0DYM+z0JxIlQEn6knChBRa58VbeKsl3SqFEmVgs
-         9TdkBODHurmrylCLs4KM+5Hq+UThThl+h3usKerAeVPE4X4ft2fFlYjABrm+V14VSuVY
-         D2mPf/ZocUZGRuY70eEC/GT0w7AL2u7SKOAj77mFGD+RZ+hD7kSNNQMVOZhjgncxllTv
-         bRBbGUr8Ho3LVrdWiV8AJlRqWEAPq6Y7fwCxm8OGQY3eQfVBbUpRSdDuZlfCah6S1xKa
-         QVbok/pyuDENgQXF7unntps/zElNUgw4xjjEIkjP3dUkqYrynmeEGXHtIdU3LFpTc7y9
-         C8Og==
-X-Gm-Message-State: AOAM5301Q6h+exvSw50J7Ka97D5PMuZNdATVHOk93ylhx2z3p1Jf0jM+
-        u0qD5TC/1B+awGJcobmLk1k=
-X-Google-Smtp-Source: ABdhPJwjTX204uIRWfSUxSI17Mzjy2okJbjxj0mOj9qgEBVHbetoFPSGAgZh3UdP5LV4cadBSo47rQ==
-X-Received: by 2002:a17:90a:9504:: with SMTP id t4mr7568828pjo.82.1605154421898;
-        Wed, 11 Nov 2020 20:13:41 -0800 (PST)
-Received: from [10.230.28.234] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id f4sm11200912pjp.3.2020.11.11.20.13.40
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PrJGFWR5LfPadBQJXtxR3X13DiYJSukzmCqstyB653Y=;
+        b=H2E2e/Ne9jVIGX+nVPm4e5ub/7mgaelwJRwFq5ir3x89h8Ktdj9nIlTxPiGbEibIbI
+         hR1LcgHTsKYSmYRICZcIv9j/TJiRtrI2E8XmqEvkcypKeNDs7kb1iS3jtcCygGu5F1GA
+         sCuUhF6QUtXzdn81Ze0Wg/aCrPYerkqFrh6D60PPl9NtidYc627TGEFNrNlVPe6ffiJt
+         c8gCgIAH7oY/YIQorW1l3aaiToku2Il8UBjd658tNju3T51FcQu505kcfaJfU77e7+eQ
+         Wn8K3CXL0n+MXiHhxXqzTdQ5PVLosOj7nqPFie94sMglEqciHpjgdY61diuvTPjFPLQo
+         JMvA==
+X-Gm-Message-State: AOAM532UhdaHE6AYjQUkXk5ACbp7nOabWzu6yXu2IfW3vdWuzJT9ORVs
+        qWWhfsbW7gQUMN+RyfQpmHsgykRyzmf1Fg==
+X-Google-Smtp-Source: ABdhPJwLv/doovMNWwksutCnt0h6T7PijYrcjBM6LgzksqnW2+6EePpVY0MXWPrOhfxZgK9xGNaHBQ==
+X-Received: by 2002:a17:906:1a07:: with SMTP id i7mr27697616ejf.473.1605155566572;
+        Wed, 11 Nov 2020 20:32:46 -0800 (PST)
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com. [209.85.218.45])
+        by smtp.gmail.com with ESMTPSA id k4sm1773760edq.73.2020.11.11.20.32.46
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Nov 2020 20:13:40 -0800 (PST)
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Move CRU devices to the CRU node
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201111145538.14893-1-zajec5@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <8a69d115-1906-a89d-9380-a647b8325065@gmail.com>
-Date:   Wed, 11 Nov 2020 20:13:39 -0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.4.3
+        Wed, 11 Nov 2020 20:32:46 -0800 (PST)
+Received: by mail-ej1-f45.google.com with SMTP id dk16so5779389ejb.12
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 20:32:46 -0800 (PST)
+X-Received: by 2002:adf:e54f:: with SMTP id z15mr32685970wrm.159.1605155209811;
+ Wed, 11 Nov 2020 20:26:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201111145538.14893-1-zajec5@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20191204124732.10932-1-Jerry-Ch.chen@mediatek.com>
+ <1588903371.16825.14.camel@mtksdccf07> <CAAFQd5CP+gH3zG9fejBv_hTzeAExMoY+L38W8e4e3OSc-gVRHg@mail.gmail.com>
+ <20200521183825.GB249683@chromium.org> <1593526253.29676.28.camel@mtksdccf07>
+ <20200630171912.GE1212092@chromium.org> <1605095509.28992.7.camel@mtksdccf07>
+In-Reply-To: <1605095509.28992.7.camel@mtksdccf07>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Thu, 12 Nov 2020 13:26:39 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5CeZYOAxwHjsVOV9eJRt15-npTsH15Y5idwr3-ux+85qQ@mail.gmail.com>
+Message-ID: <CAAFQd5CeZYOAxwHjsVOV9eJRt15-npTsH15Y5idwr3-ux+85qQ@mail.gmail.com>
+Subject: Re: [RFC PATCH V4 0/4] media: platform: Add support for Face
+ Detection (FD) on mt8183 SoC
+To:     Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
+Cc:     "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
+        HansVerkuil <hverkuil@xs4all.nl>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "pihsun@chromium.org" <pihsun@chromium.org>,
+        "yuzhao@chromium.org" <yuzhao@chromium.org>,
+        "zwisler@chromium.org" <zwisler@chromium.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <Sean.Cheng@mediatek.com>,
+        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
+        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
+        <christie.yu@mediatek.com>,
+        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
+        <Frederic.Chen@mediatek.com>,
+        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 11, 2020 at 8:51 PM Jerry-ch Chen
+<Jerry-ch.Chen@mediatek.com> wrote:
+>
+> Hi Tomasz,
+>
+> On Wed, 2020-07-01 at 01:19 +0800, Tomasz Figa wrote:
+> > Hi Jerry,
+> >
+> > On Tue, Jun 30, 2020 at 10:10:53PM +0800, Jerry-ch Chen wrote:
+> > > Hi Tomasz,
+> > >
+> > > On Thu, 2020-05-21 at 18:38 +0000, Tomasz Figa wrote:
+> > > > Hi Jerry,
+> > > >
+> > > > On Wed, May 13, 2020 at 11:45:37PM +0200, Tomasz Figa wrote:
+> > > > > Hi Jerry,
+> > > > >
+> > > > > On Fri, May 8, 2020 at 4:03 AM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > >
+> > > > > > Hi Laurent, Tomasz, Matthias,
+> > > > > >
+> > > > > > gentle ping for this patch set,
+> > > > > > If no new comments, I would like to send a newer version.
+> > > > > >
+> > > > >
+> > > > > Sorry, I still haven't had a chance to look at the series, so feel
+> > > > > free to send a new version and I will take a look at the new one.
+> > > > >
+> > > >
+> > > > Finally found some time to review the series. Again sorry for the delay
+> > > > and thanks for your patience.
+> > > >
+> > > > Some general comments:
+> > > > 1) The metadata format FourCC should be added in a separate patch,
+> > > > together with documentation for it.
+> > > > 2) Control IDs, structs used by the userspace, etc. should be defined in
+> > > > a header under include/uapi/linux.
+> > > >
+> > > > Please also check my replies to particular patches for further comments.
+> > > >
+> > > > Best regards,
+> > > > Tomasz
+> > >
+> > > Appreciate for your reply,
+> > >
+> > > So far, I've locally created an uapi header:
+> > > include/uapi/linux/mtk_fd_40.h
+> > > which provides some values, control ids, and the definitions of
+> > > structures that would be needed by user of mtk_fd_40 driver.
+> > > In addition, I also provide a MACRO as example in comments that can
+> > > extract the struct member with bit length and offset
+> > > definitions(eliminate the bit-fields).
+> > >
+> > > Also, I would like to rename struct fd_user_output with struct
+> > > mtk_fd_hw_result. I worry fd_user_output would be a confusing name.
+> >
+> > The change sounds good to me.
+> >
+> > > I will add them in a separate patch in next version.
+> > >
+> >
+> > Okay.
+> >
+> > > I am still working on the documentation, which might be
+> > > Documentation/media/uapi/v4l/pixfmt-meta-mtk-fd-40.rst.
+> > > Refering the other pixfmt-*.rst files, I will try to provide the
+> > > flat-table of the metadata with the structure of the mtk_fd_hw_result.
+> > >
+> >
+> > Sounds good to me.
+> >
+> > > I am confusing that should I remain the name with -40 in the tail of rst
+> > > file?
+> >
+> > The header and documentation file names should match the driver name.  I
+> > just noticed there is some inconsistency in the naming, though. The
+> > driver seems to be located under drivers/media/platform/mtk-isp/fd, but
+> > the driver name in the platform driver struct and as reported by
+> > VIDIOC_QUERYCAP seems to be "mtk-fd-4.0".
+>
+> > Since we have many mtk-* drivers in the tree currently, I think it might
+> > make sense to consolidate them under drivers/media/platform/mediatek,
+> > similarly to drivers/media/platform/qcom or /rockchip. But it could be
+> > done later, as a follow-up.
+> >
+> > My suggestion would be to place the driver under
+> > drivers/media/platform/mtk-fd-40 and also rename the related Kconfig
+> > symbol to include the _40 suffix.
+> >
+> > What do you think?
+> >
+>
+> I Appreciate your comments,
+> Sorry for the late reply.
+>
+> Would it be possible for me to replace the driver as drivers/media/platform/mtk_fd/mtk-fd-40?(Just like mtk-isp/isp_50)
+>
 
+I'm not a big fan of duplicating "mtk fd" in the path. How about just
+making it drivers/media/platform/mtk-fd-40?
 
-On 11/11/2020 6:55 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Clocks and thermal blocks are part of the CRU ("Clock and Reset Unit" or
-> "Central Resource Unit").
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-
-Applied to devicetree/next, thanks!
--- 
-Florian
+Best regards,
+Tomasz
