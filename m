@@ -2,162 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5852B0518
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 13:41:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD50D2B052A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 13:52:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727035AbgKLMlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 07:41:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727899AbgKLMly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 07:41:54 -0500
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF81AC0613D6
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 04:41:53 -0800 (PST)
-Received: by mail-oi1-x241.google.com with SMTP id o25so6207989oie.5
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 04:41:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=1xPF1Lz4nYrB6C/anWXLAqDEnq22PRnhe5LG+L020aI=;
-        b=iW1jERexvQ1poJctwFKEjsfG+AJO62Hu/YEdjGXy5qhtBWMORngcS19a8CUANUQJBZ
-         cPjxno1FNV04E3Oa+SJdWZY6UcMprEdExZfqX0TJ6OrU+98QlL1XGh4+toNkUNMs3O1a
-         o0P2Z91VkVXGOHCvy03gUcX82Qus0Omid6PqXUBcFqzqi3IKloRCef/lbtm8+VfmiYK3
-         ACTozLts8w7s8uy6dEOxr+Tf11PxT0wIdSK+hFlNTUwIcdz5Wod/xY+QeOtqZQc+dmUu
-         1BINXe0cqdPnh2Lwq284JAljvQ/XrjTUE08qcnM4PSrvsvN/O5LPgpFU6HVUDOblug4h
-         XB9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=1xPF1Lz4nYrB6C/anWXLAqDEnq22PRnhe5LG+L020aI=;
-        b=aAxk3lA148O5br810Asf/6FZgeZYAfKf/bw6bEmFxIMHOXHwrPVWRbDG9Xr2aJzIOT
-         gcpeiXbXzGfajt40SPsdJMcneXHtm73DQPIvoZIOjXleh8nNxjqlY3x7F4PwgFq2HPYt
-         Lcqhxf0eKYoBlfFxG2DEMOAXF15EArp1/HfqFbKFHV/akuWKYU/cXrD6QaZqRGBVjHVQ
-         yiYKZ6rEZE+WrxDqN0d7S+IBzoupQNTPOxf/ojY6hA77j4Grlyw+buhNh+nWd/CI2jgA
-         PUhew2GLm2BTl9fGv4QgOiHq6P6r6Kpcyc6TPcQQiQn5ALBEZ/xXCMKzOjM+hEeqXcfF
-         ImvQ==
-X-Gm-Message-State: AOAM531fZgwMs+hGUgN2Rn000RBUNwgg1g54IJpdtu6etnH3CaoGoeh5
-        fWQfIEuYspGTV1JkIPykD85mKyEIdl4qNSDiE5hwbQ==
-X-Google-Smtp-Source: ABdhPJzmjcStUcQx4ZEKaJfl4Ln54yI5c7yw8uIsCn/EiLI5nf+UwJP1vwZCHYtEjWBk7fQxjf5W9lFvqudbY503C/E=
-X-Received: by 2002:aca:548e:: with SMTP id i136mr5532382oib.177.1605184913361;
- Thu, 12 Nov 2020 04:41:53 -0800 (PST)
+        id S1727790AbgKLMwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 07:52:15 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:1158 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727223AbgKLMwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 07:52:15 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fad2ff90000>; Thu, 12 Nov 2020 04:52:09 -0800
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 12 Nov
+ 2020 12:52:14 +0000
+Received: from moonraker.nvidia.com (10.124.1.5) by mail.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Thu, 12 Nov 2020 12:52:13 +0000
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+        <stable@vger.kernel.org>
+Subject: [PATCH V2] ARM: tegra: Populate OPP table for Tegra20 Ventana
+Date:   Thu, 12 Nov 2020 12:52:10 +0000
+Message-ID: <20201112125210.214517-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org> <c943f56c-f72c-0f14-b6ed-b67e91573b1e@linaro.org>
-In-Reply-To: <c943f56c-f72c-0f14-b6ed-b67e91573b1e@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 12 Nov 2020 15:41:42 +0300
-Message-ID: <CAA8EJpp+=sQAre+kCiDLEFT+gDB0wO7KypGTXeCDncO8wWzQ-Q@mail.gmail.com>
-Subject: Re: [PATCH v9 00/15] qcom: pm8150: add support for thermal monitoring
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+X-NVConfidentiality: public
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605185529; bh=aUrF7mTyktNQ/LBkcSGmc6+2uSxejCTBWAPuhk1LS7U=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         X-NVConfidentiality:Content-Transfer-Encoding:Content-Type;
+        b=oU4bKU7TkhZrj5fkR5hnqStyziypBOn+zoYfIgJTjmr7Lh72NEwx6nlSCFgZJU+Ki
+         72Xn8yTFCyKm1wlYD85pAWHIyzaGwxPGLUfBYZqjSFGM/6XlEKyIaFQ2a35E1vmYB+
+         5xVqxj8pC8pJ681maWMvsZ4zBGjah7mBGx4/FFINdfaIfWZFMsgD+PhQG8OD6cg1W8
+         KRsUsj/XsTKylV6BEXAuUyJeT+FMsomLvYQvLnSNRe1WT829IO/whqQGw6UCkdGN/w
+         mWiYgd1KfL47xBc+yCH2Kxw6Tcyg/4k3kF2UtHu8RzQBxo4AqkBwo+sbiCV9+mEkjK
+         he3ZTTD9V1ITw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Nov 2020 at 14:39, Daniel Lezcano <daniel.lezcano@linaro.org> wr=
-ote:
->
->
-> Shall I take patch 1/15 and 12/15 ?
+Commit 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver
+(Tegra30 supported now)") update the Tegra20 CPUFREQ driver to use the
+generic CPUFREQ device-tree driver. Since this change CPUFREQ support
+on the Tegra20 Ventana platform has been broken because the necessary
+device-tree nodes with the operating point information are not populated
+for this platform. Fix this by updating device-tree for Venata to
+include the operating point informration for Tegra20.
 
-12/15 will not compile without several previous patches, so it might
-be better to take all of them through the single tree.
+Fixes: 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver (Tegr=
+a30 supported now)")
+Cc: stable@vger.kernel.org
 
->
->
->
-> On 02/11/2020 18:49, Dmitry Baryshkov wrote:
-> > This patch serie adds support for thermal monitoring block on Qualcomm'=
-s
-> > PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extende=
-d
-> > to support thermal zones provided by this thermal monitoring block.
-> > Unlike the rest of PMIC thermal senses, these thermal zones describe
-> > particular thermistors, which differ between from board to board.
-> >
-> > Changes since v8:
-> >  - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
-> >    tables support
-> >  - Simplified qcom-vadc-common volt/temp mapping code
-> >  - Implement suggestions by Matthias Kaehlcke: message formatting,
-> >    rewrite comments, remove unused variable initialization.
-> >
-> > Changes since v7:
-> >  - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
-> >  - Use explicit sizeof(var) instead of hand-coding 1 when accessing
-> >    adc-tm registers.
-> >  - Remove buffer read from adc_tm5_init().
-> >  - Remove extra on-stack var from adc_tm5_get_temp().
-> >  - Minor formatting changes as suggested Daniel.
-> >
-> > Changes since v6:
-> >  - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
-> >
-> > Changes since v5:
-> >  - Reworked DT bindings:
-> >    * Removed qcom,adc-channel, instead it is parsed from io-channels
-> >    * Renamed qcom,hw-settle-time to include -us suffix
-> >  - Re-added monitor enabling which got lost during refactored. Noted by
-> >    Jishnu Prakash.
-> >  - Use threaded IRQ handler as susggested by Jishnu.
-> >
-> > Changes since v4:
-> >  - Added kernel-doc comments to ADC-TM structures
-> >  - Used several sizeof(buf) instead of hand-conding register size
-> >
-> > Changes since v3:
-> >  - Fix DT description to spell "thermal monitoring" instead of just TM
-> >  - Fix warnings in DT example
-> >  - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
-> >  - Fixed whitespace chanes in qcom-vadc-common.c
-> >  - Removed error message if IIO chanel get returns -EPROBE_DEFER
-> >
-> > Changes since v2:
-> >  - IIO: export of_iio_channel_get_by_name() function
-> >  - dt-bindings: move individual io-channels to each thermal monitoring
-> >    channel rather than listing them all in device node
-> >  - added fallback defaults to of_device_get_match_data calls in
-> >    qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
-> >  - minor typo fixes
-> >
-> > Changes since v1:
-> >  - Introduce fixp_linear_interpolate() by Craig Tatlor
-> >  - Lots of syntax/whitespace changes
-> >  - Cleaned up register definitions per Jonathan's suggestion
-> >  - Implemented most of the suggestions from Bjorn's and Jonathan's
-> >    review
-> >
-> >
->
->
-> --
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+Changes since V1:
+- Remove unneeded 'cpu0' phandle
 
+ arch/arm/boot/dts/tegra20-ventana.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-
+diff --git a/arch/arm/boot/dts/tegra20-ventana.dts b/arch/arm/boot/dts/tegr=
+a20-ventana.dts
+index b158771ac0b7..1b2a0dcd929a 100644
+--- a/arch/arm/boot/dts/tegra20-ventana.dts
++++ b/arch/arm/boot/dts/tegra20-ventana.dts
+@@ -3,6 +3,7 @@
+=20
+ #include <dt-bindings/input/input.h>
+ #include "tegra20.dtsi"
++#include "tegra20-cpu-opp.dtsi"
+=20
+ / {
+ 	model =3D "NVIDIA Tegra20 Ventana evaluation board";
+@@ -592,6 +593,16 @@ clk32k_in: clock@0 {
+ 		#clock-cells =3D <0>;
+ 	};
+=20
++	cpus {
++		cpu@0 {
++			operating-points-v2 =3D <&cpu0_opp_table>;
++		};
++
++		cpu@1 {
++			operating-points-v2 =3D <&cpu0_opp_table>;
++		};
++	};
++
+ 	gpio-keys {
+ 		compatible =3D "gpio-keys";
+=20
 --=20
-With best wishes
-Dmitry
+2.25.1
+
