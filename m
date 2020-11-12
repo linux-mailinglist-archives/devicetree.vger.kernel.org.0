@@ -2,101 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD50D2B052A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 13:52:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4BFE2B052F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 13:52:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727790AbgKLMwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 07:52:15 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:1158 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727223AbgKLMwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 07:52:15 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fad2ff90000>; Thu, 12 Nov 2020 04:52:09 -0800
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 12 Nov
- 2020 12:52:14 +0000
-Received: from moonraker.nvidia.com (10.124.1.5) by mail.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Thu, 12 Nov 2020 12:52:13 +0000
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
-        <stable@vger.kernel.org>
-Subject: [PATCH V2] ARM: tegra: Populate OPP table for Tegra20 Ventana
-Date:   Thu, 12 Nov 2020 12:52:10 +0000
-Message-ID: <20201112125210.214517-1-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.25.1
+        id S1728072AbgKLMwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 07:52:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44034 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727993AbgKLMwl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 07:52:41 -0500
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE0C8C0613D1
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 04:52:40 -0800 (PST)
+Received: by mail-ed1-x542.google.com with SMTP id v4so6045495edi.0
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 04:52:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VO5buX3O3865XeSNAiYdkmHwudPvyFuKPpXIgcQuiQo=;
+        b=B6KAVAL2EmeGP3N+DEht9mufwYAaCbCfkacyMFL0brBEYT9mD0dCKeFFTplJf2Xvpb
+         ZjDj/GJutnYrfwHF4Nfi0WfG8SjhVPLDlnWRD0l+Qch6xKkbgxECp+jsSqP9J49DuE41
+         4fdoc6Pafv5lHMcf2Qs3RDODPOCTkuZ20mFXs9eTU+Oikpy3jiddtOqv2HyKMvZvLohN
+         w5akI2+/HrvAiK9P8CxLnGD8Cwfm8WLUApIaTRr0vymEcZHTbkcMSiYDKI3NvyCMvRtY
+         niFVY/pWUaUZ4oNPqMYMyqU/+d9+0yvxRoiRtFUnTIBugeV5SYOL9dbIGCvrwdXJH/7m
+         wgUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=VO5buX3O3865XeSNAiYdkmHwudPvyFuKPpXIgcQuiQo=;
+        b=dFwppZ72ydgcc+cH1XgOStMWSt6KLs2uDltwwGO8LtF76SH3wKTs0RA7P3J1jQ8xh3
+         4dsrz1FyVckApVU0nbMMBUq/l4IyAhU91M7o2QORH6qPPrejUqzyEThtyzx95mXCiyam
+         QdIqXwBR1XnYEUFui8fVIe74SWMQEQ8EGnNcp1Z5xWlWJgq73a6bm1D/GfQ0JgD6HEF6
+         Iz6gYa2iFt/o6uJWrk2YuwktWWL/P/ASCemP1Lm6lwyBN+THGVbGFJJIEc9fWXZkb96L
+         rvtDaEot4E2GgIu8H8jXD8223h0lqIK55tzfy6sgH1NWwRw3VIWyEifKvGnnfecCYUBK
+         1Myw==
+X-Gm-Message-State: AOAM532vD/o4XQLq03KS9RaABTqDI6+S6zsAZ4nux7P/XOaOfUNK4qyr
+        hm71kLiv0B5WZUyPDMoa3iUMvw==
+X-Google-Smtp-Source: ABdhPJx2CKi0jnU8tN9TzrbbmKHvJWYTcuNCg5vCINCVEJ0w7herYQ+R+s/dwi6a680loLwitZyRNQ==
+X-Received: by 2002:a05:6402:1352:: with SMTP id y18mr4921489edw.378.1605185559553;
+        Thu, 12 Nov 2020 04:52:39 -0800 (PST)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id n22sm2366989edr.11.2020.11.12.04.52.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 12 Nov 2020 04:52:38 -0800 (PST)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] arm64: dts: zynqmp: Wire mailbox with zynqmp-power driver
+Date:   Thu, 12 Nov 2020 13:52:34 +0100
+Message-Id: <5d3523150890e494df308ee69523d0f0e7b33b22.1605185549.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605185529; bh=aUrF7mTyktNQ/LBkcSGmc6+2uSxejCTBWAPuhk1LS7U=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
-         X-NVConfidentiality:Content-Transfer-Encoding:Content-Type;
-        b=oU4bKU7TkhZrj5fkR5hnqStyziypBOn+zoYfIgJTjmr7Lh72NEwx6nlSCFgZJU+Ki
-         72Xn8yTFCyKm1wlYD85pAWHIyzaGwxPGLUfBYZqjSFGM/6XlEKyIaFQ2a35E1vmYB+
-         5xVqxj8pC8pJ681maWMvsZ4zBGjah7mBGx4/FFINdfaIfWZFMsgD+PhQG8OD6cg1W8
-         KRsUsj/XsTKylV6BEXAuUyJeT+FMsomLvYQvLnSNRe1WT829IO/whqQGw6UCkdGN/w
-         mWiYgd1KfL47xBc+yCH2Kxw6Tcyg/4k3kF2UtHu8RzQBxo4AqkBwo+sbiCV9+mEkjK
-         he3ZTTD9V1ITw==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver
-(Tegra30 supported now)") update the Tegra20 CPUFREQ driver to use the
-generic CPUFREQ device-tree driver. Since this change CPUFREQ support
-on the Tegra20 Ventana platform has been broken because the necessary
-device-tree nodes with the operating point information are not populated
-for this platform. Fix this by updating device-tree for Venata to
-include the operating point informration for Tegra20.
+The support to driver was added by commit ffdbae28d9d1 ("drivers: soc:
+xilinx: Use mailbox IPI callback") that's why also enable it via DT by
+default. It setups communication with firmware via IPI interface.
 
-Fixes: 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver (Tegr=
-a30 supported now)")
-Cc: stable@vger.kernel.org
-
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
-Changes since V1:
-- Remove unneeded 'cpu0' phandle
 
- arch/arm/boot/dts/tegra20-ventana.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-diff --git a/arch/arm/boot/dts/tegra20-ventana.dts b/arch/arm/boot/dts/tegr=
-a20-ventana.dts
-index b158771ac0b7..1b2a0dcd929a 100644
---- a/arch/arm/boot/dts/tegra20-ventana.dts
-+++ b/arch/arm/boot/dts/tegra20-ventana.dts
-@@ -3,6 +3,7 @@
-=20
- #include <dt-bindings/input/input.h>
- #include "tegra20.dtsi"
-+#include "tegra20-cpu-opp.dtsi"
-=20
- / {
- 	model =3D "NVIDIA Tegra20 Ventana evaluation board";
-@@ -592,6 +593,16 @@ clk32k_in: clock@0 {
- 		#clock-cells =3D <0>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 66dad22b8a76..68923fbd0e89 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -99,6 +99,29 @@ opp03 {
+ 		};
  	};
-=20
-+	cpus {
-+		cpu@0 {
-+			operating-points-v2 =3D <&cpu0_opp_table>;
-+		};
+ 
++	zynqmp_ipi {
++		compatible = "xlnx,zynqmp-ipi-mailbox";
++		interrupt-parent = <&gic>;
++		interrupts = <0 35 4>;
++		xlnx,ipi-id = <0>;
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
 +
-+		cpu@1 {
-+			operating-points-v2 =3D <&cpu0_opp_table>;
++		ipi_mailbox_pmu1: mailbox@ff990400 {
++			reg = <0x0 0xff9905c0 0x0 0x20>,
++			      <0x0 0xff9905e0 0x0 0x20>,
++			      <0x0 0xff990e80 0x0 0x20>,
++			      <0x0 0xff990ea0 0x0 0x20>;
++			reg-names = "local_request_region",
++				    "local_response_region",
++				    "remote_request_region",
++				    "remote_response_region";
++			#mbox-cells = <1>;
++			xlnx,ipi-id = <4>;
 +		};
 +	};
 +
- 	gpio-keys {
- 		compatible =3D "gpio-keys";
-=20
---=20
-2.25.1
+ 	dcc: dcc {
+ 		compatible = "arm,dcc";
+ 		status = "disabled";
+@@ -128,6 +151,8 @@ zynqmp_power: zynqmp-power {
+ 				compatible = "xlnx,zynqmp-power";
+ 				interrupt-parent = <&gic>;
+ 				interrupts = <0 35 4>;
++				mboxes = <&ipi_mailbox_pmu1 0>, <&ipi_mailbox_pmu1 1>;
++				mbox-names = "tx", "rx";
+ 			};
+ 
+ 			zynqmp_clk: clock-controller {
+-- 
+2.29.2
 
