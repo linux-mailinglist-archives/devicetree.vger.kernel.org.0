@@ -2,114 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 500422B0044
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:21:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B44EF2B0046
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:21:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725884AbgKLHVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 02:21:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49108 "EHLO
+        id S1725959AbgKLHVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 02:21:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725941AbgKLHVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:21:30 -0500
-Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBFE3C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:28 -0800 (PST)
-Received: by mail-il1-x141.google.com with SMTP id k1so4344356ilc.10
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:28 -0800 (PST)
+        with ESMTP id S1725923AbgKLHVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:21:47 -0500
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B183BC0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:46 -0800 (PST)
+Received: by mail-lf1-x144.google.com with SMTP id l2so6861836lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ab2X7D8rQV+rUh3MG2vmCj3eeC4kvsZIlLSd9hzapi4=;
-        b=o695KMSlvlKK8s2nZB3RnNNjASazEvqZxx7SlWDLIfkA7DjvTGHQKtr7OeUjA+JK/W
-         6AsWT7BcKyt6qJFEm42kuZq/NhNqqk+O/5M33EKitgOxYwwKwIv4xVOTPW0KtSDKxWoi
-         N/WtmAKQP0MX+WWeb1AnqArll7M6n1MD4y/2o=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MRa8qRVzTNVMwjc9Z58WD45Itu63riYrYK/p4P2hSRk=;
+        b=q5MOoBFRiFy0R79aztQHCi9I0yuNMu1NB0EEbOqL9l79B7ChE8WvYvW/YV7Epzrs9y
+         hLS3j0YqSN2Bk9ENAq9/dQx1l0e8vFZeObOZQXNdVmJT7M+MyeX75Jksle5hfaPViBOA
+         IGwWXwLOKri55Tw5NCM9AEQZ8tCKfaW9xmqGQ7cwVpRLMpyLD36RQQMOnweZaTXJUsme
+         X/+Pc4A4yLWtBE7BJVtYQrWifZOPwN1sLVS66c3vWzk5CaZslTzbl6EUNXdHXf6BoN0t
+         CUfvLJAGqnETJcpxfoinF2ZfbYJo8laOaBV70n0zeTYu0Wrkrb8qQ0IPMfxLoPWjqEh1
+         aq2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ab2X7D8rQV+rUh3MG2vmCj3eeC4kvsZIlLSd9hzapi4=;
-        b=RAX7ooQEnqsO56wNGrjnVgeeJwEc7giN5ePtWnv47AIk2vf6bZ7qFontnBn3Mv5D8Y
-         67VBbCrzrQCKoIUzeB/2f4oeT2jfQ9aA2v+vcY3VY4KMBf5DM1mBO/RLO+rR/I2zZXNE
-         qIwxvRxe57DRI3TF/R1+cYGM0Nk+WnX5p0Mk9j3Fzs6iv6d7eeUY0ob3y2HJXe20Y+5V
-         P8Ks76J+wUZyntOgz38w1RAtsohWXpKSz6/SohHpF6O4AECCps0+LEyUHwbHnH1lbR0i
-         a2DfZMYZxi9MfynMo9tDWr5pvuPw6EjBpmvpaOisIbYHBvL0nFG29uJbPRQtaClXN1VY
-         hiPw==
-X-Gm-Message-State: AOAM531sXYTDvdkepaF7pFYu+ruQaVwuuhPhoOFENtzq0DKBBXpGxT3k
-        ZiOWGpJLoVqpIRw2CqW3XQoaX3cmD46yOR6n9Tjf
-X-Google-Smtp-Source: ABdhPJwG3l0icsmB1IU32yQpvlFd8k79z2GNzpvnNWW307BnW87hWqYbQJNHXepVhLwR9j1SCouAAn38lAiRUpIrLCw=
-X-Received: by 2002:a92:512:: with SMTP id q18mr20861835ile.147.1605165688041;
- Wed, 11 Nov 2020 23:21:28 -0800 (PST)
-MIME-Version: 1.0
-References: <20201107081420.60325-1-damien.lemoal@wdc.com> <20201107081420.60325-9-damien.lemoal@wdc.com>
-In-Reply-To: <20201107081420.60325-9-damien.lemoal@wdc.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Wed, 11 Nov 2020 23:21:17 -0800
-Message-ID: <CAOnJCUJO3Oqy94MbT-eV+xaJn9obE0H=zpvuJuch-aY5e9bfgQ@mail.gmail.com>
-Subject: Re: [PATCH 08/32] riscv: Fix kernel time_init()
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MRa8qRVzTNVMwjc9Z58WD45Itu63riYrYK/p4P2hSRk=;
+        b=epvKP6Ptf8BVXUEFw716LuplPwntlq8kb0HTH1Z4bzNKF+8xXg32ZhSM0kbP5nfUdM
+         /oubLwdGAdx6eZxiksEkj5UYMWKocFO0RMUz9yNxDoPx+qX8L3D0bpvXNuNzyIXS6F5r
+         ExmxtYX4wq2ayLTPVc8iOIdRTuZzhrmzgyW/EtljM3Os6/UOaA67iFvccSQvJlxFZoW3
+         cQpNeM9Untay0KzR7Z9hacBXgufQZLf13OiHCvvYCUH28TKEedbkQ3PSejibyQHrpVQd
+         HvSHGlk+B9eO/NRXRa6mH/OZCQSkbbRin6AlQF4nxH2DBPSXlIRMKuygwXJNuOojXHZ0
+         UQhg==
+X-Gm-Message-State: AOAM532Nx9OijFLEUsG1+J7ZZS3Qx5O+kzutjYAVFH76c+X9K/O75WP0
+        DZt8ZT0MQ9KwrMwHc2OF3+A=
+X-Google-Smtp-Source: ABdhPJzzAbd0DJP7USElBeKtIL9BO/RONxfke8um6r5woEsi/eVbcXYPUIIqV1ICzuFUKsliq9q2AA==
+X-Received: by 2002:a05:6512:3312:: with SMTP id k18mr1982507lfe.403.1605165705204;
+        Wed, 11 Nov 2020 23:21:45 -0800 (PST)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id w18sm460427lfc.5.2020.11.11.23.21.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 23:21:44 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH V3 1/3] arm64: add config for Broadcom BCM4908 SoCs
+Date:   Thu, 12 Nov 2020 08:21:31 +0100
+Message-Id: <20201112072133.17039-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.27.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 7, 2020 at 12:15 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
->
-> If of_clk_init() is not called in time_init(), clock providers defined
-> in the system device tree are not initialized, resulting in failures for
-> other devices to initialize due to missing clocks.
-> Similarly to other architectures and to the default kernel time_init()
-> implementation, call of_clk_init() before executing timer_probe() in
-> time_init().
->
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  arch/riscv/kernel/time.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/arch/riscv/kernel/time.c b/arch/riscv/kernel/time.c
-> index 4d3a1048ad8b..8a5cf99c0776 100644
-> --- a/arch/riscv/kernel/time.c
-> +++ b/arch/riscv/kernel/time.c
-> @@ -4,6 +4,7 @@
->   * Copyright (C) 2017 SiFive
->   */
->
-> +#include <linux/of_clk.h>
->  #include <linux/clocksource.h>
->  #include <linux/delay.h>
->  #include <asm/sbi.h>
-> @@ -24,6 +25,8 @@ void __init time_init(void)
->         riscv_timebase = prop;
->
->         lpj_fine = riscv_timebase / HZ;
-> +
-> +       of_clk_init(NULL);
->         timer_probe();
->  }
->
-> --
-> 2.28.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Add ARCH_BCM4908 config that can be used for compiling DTS files.
 
-Reviewed-by: Atish Patra <atish.patra@wdc.com>
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/Kconfig.platforms | 8 ++++++++
+ arch/arm64/configs/defconfig | 1 +
+ 2 files changed, 9 insertions(+)
 
+diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+index 6f2494dd6d60..d1c02a4a93c8 100644
+--- a/arch/arm64/Kconfig.platforms
++++ b/arch/arm64/Kconfig.platforms
+@@ -43,6 +43,14 @@ config ARCH_BCM2835
+ 	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
+ 	  These SoCs are used in the Raspberry Pi 3 and 4 devices.
+ 
++config ARCH_BCM4908
++	bool "Broadcom BCM4908 family"
++	select GPIOLIB
++	help
++	  This enables support for the Broadcom BCM4906, BCM4908 and
++	  BCM49408 SoCs. These SoCs use Cortex-B53 cores and can be
++	  found in home routers.
++
+ config ARCH_BCM_IPROC
+ 	bool "Broadcom iProc SoC Family"
+ 	select COMMON_CLK_IPROC
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 17a2df6a263e..ead6fa942994 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -32,6 +32,7 @@ CONFIG_ARCH_AGILEX=y
+ CONFIG_ARCH_SUNXI=y
+ CONFIG_ARCH_ALPINE=y
+ CONFIG_ARCH_BCM2835=y
++CONFIG_ARCH_BCM4908=y
+ CONFIG_ARCH_BCM_IPROC=y
+ CONFIG_ARCH_BERLIN=y
+ CONFIG_ARCH_BRCMSTB=y
 -- 
-Regards,
-Atish
+2.27.0
+
