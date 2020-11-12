@@ -2,119 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F032B0535
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 13:52:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 29F022B05C4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 14:03:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728206AbgKLMws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 07:52:48 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:7638 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728178AbgKLMwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 07:52:44 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fad301f0002>; Thu, 12 Nov 2020 04:52:47 -0800
-Received: from [10.26.72.124] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 12 Nov
- 2020 12:52:41 +0000
-Subject: Re: [PATCH] ARM: tegra: Populate OPP table for Tegra20 Ventana
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
-References: <20201111103847.152721-1-jonathanh@nvidia.com>
- <ea73403a-a248-cd2e-b0af-aeb246801054@gmail.com>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <9adf5175-d77b-5a50-8cb3-18305582a57b@nvidia.com>
-Date:   Thu, 12 Nov 2020 12:52:39 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728207AbgKLNDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 08:03:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45692 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727819AbgKLNDP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 08:03:15 -0500
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53EF1C0613D1
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 05:03:15 -0800 (PST)
+Received: by mail-wr1-x441.google.com with SMTP id r17so5945631wrw.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 05:03:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XoAG1pru+t0E0RGbZFAgVVNe78IlOrfO4ZdEb2/m39k=;
+        b=UphNYMQS/LN28Yxb1McSQM05xn0X1V0x7rJ0PnNKfQvzO7zSoSBhZ9CLBwJKzAgh16
+         17BMyTB6gytjqNUMMUrH82FFJY2PEIruw0bKT5P4mlmuWOAislyFW6xOumTDMAcADDJ/
+         3I+1KO/GAtkaunGBQ3cAe+TPQ8lRQuZK1Uk3iHPKADw+iRsHWUINdXk0j0p0aLmHWSQD
+         Lar/biWGCcmxYMOxn5/aO0uFOlgWdelEDWUgUAG103fCjfzlpWK4j4svUJKEmpdBgdzE
+         qnbdv6qFgKnizUAGgssYpzF9v1UwcuGMLi2IRXc/YY0k9b1cqi77VreSmTVMP/3andg7
+         tthQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XoAG1pru+t0E0RGbZFAgVVNe78IlOrfO4ZdEb2/m39k=;
+        b=KX6VAF/kRrRplRTWaVeRnhVlxk3NsnkZI58TjblUQJlilYbxYKVhfzblvdWwDcmxA+
+         KSerohNT0KNtqn5oXKSi983Cb15Wkgkr1jdqROPDfcFswGOrZYGuTC+5bTpiTZEgaMmX
+         6tUyS7ALtbNjzQjtoIgobp37HbQrr6bL3fRw9z5pvaMnKnvPaav3x4+PkEMzi8AJ42Ae
+         hPJ3A9JsL5+acmI9OjBNMPb5Dsslog5tjTRkJOPNNPH4ZUtvDfctT1VyV8RwrvnGdX62
+         v48ySGmvZeepzKRBSjd7sdUVbt2S2ZBG6sSiBsXPekU+lzMnJIyduG1jaLUbOcmvdfMv
+         JWaw==
+X-Gm-Message-State: AOAM531MJ5mvNM9qnK0dUei+nVMi67cU5bSc/n8ydst0suBeHWY1MY9K
+        JT7HujzVlOag3CZx7AgpLr8i8w==
+X-Google-Smtp-Source: ABdhPJxMBUohVh2fAAvMFdY17a6lP3nz140iaaxKiNjcDkvE3A2fsz0yM/aFafAdvuPkFa1NZKXESQ==
+X-Received: by 2002:adf:ce87:: with SMTP id r7mr4434152wrn.212.1605186194089;
+        Thu, 12 Nov 2020 05:03:14 -0800 (PST)
+Received: from localhost.localdomain ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
+        by smtp.gmail.com with ESMTPSA id m22sm6877508wrb.97.2020.11.12.05.03.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2020 05:03:13 -0800 (PST)
+From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
+To:     joro@8bytes.org, will@kernel.org, lorenzo.pieralisi@arm.com,
+        robh+dt@kernel.org
+Cc:     guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, robin.murphy@arm.com, bhelgaas@google.com,
+        Jonathan.Cameron@huawei.com, eric.auger@redhat.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pci@vger.kernel.org, baolu.lu@linux.intel.com,
+        zhangfei.gao@linaro.org, shameerali.kolothum.thodi@huawei.com,
+        vivek.gautam@arm.com,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Subject: [PATCH v8 0/9] iommu: I/O page faults for SMMUv3
+Date:   Thu, 12 Nov 2020 13:55:12 +0100
+Message-Id: <20201112125519.3987595-1-jean-philippe@linaro.org>
+X-Mailer: git-send-email 2.29.1
 MIME-Version: 1.0
-In-Reply-To: <ea73403a-a248-cd2e-b0af-aeb246801054@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605185567; bh=8DfHoZREZ/l0HtR64GiqLrX+xk3X9RCijo+BL6PuSZk=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=Gs/gWqN11KclIRM9X4ObMAlFz3tDXrxihkTR3fzZWiaANV0S8BQcs91k3yVZGSDli
-         NTuR3paPm6MifiqdrSlZlawcrjZkkhtNkxrY4/9kUE+iuGhZcDUq7OYmGaTt7Kw+Z8
-         /5TjAZCuwujpWAPvsP7kSOXsaEtc76BDS3e+LVM8ZQl3QDLoOlbkTKgs7Oq6M5Jj1v
-         RHybgVu7qi0V7YqU6f45Xclz4aVPyl9vGvIEp7WFr4WAF3fdEbfiOqeTYvnPYOj1BK
-         WOAr3tpdpIEfZTxI+pzpiM4yBZZsOa445G5FWQ/6imyUgqwO9n+L6UoeJ3K4aRj7na
-         z4JzPahp6q96A==
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for stall and PRI to the SMMUv3 driver, along with a common
+I/O Page Fault handler.
 
-On 12/11/2020 12:11, Dmitry Osipenko wrote:
-> 11.11.2020 13:38, Jon Hunter =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> Commit 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver
->> (Tegra30 supported now)") update the Tegra20 CPUFREQ driver to use the
->> generic CPUFREQ device-tree driver. Since this change CPUFREQ support
->> on the Tegra20 Ventana platform has been broken because the necessary
->> device-tree nodes with the operating point information are not populated
->> for this platform. Fix this by updating device-tree for Venata to
->> include the operating point informration for Tegra20.
->>
->> Fixes: 9ce274630495 ("cpufreq: tegra20: Use generic cpufreq-dt driver (T=
-egra30 supported now)")
->> Cc: stable@vger.kernel.org
->>
->> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
->> ---
->>  arch/arm/boot/dts/tegra20-ventana.dts | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/tegra20-ventana.dts b/arch/arm/boot/dts/t=
-egra20-ventana.dts
->> index b158771ac0b7..055334ae3d28 100644
->> --- a/arch/arm/boot/dts/tegra20-ventana.dts
->> +++ b/arch/arm/boot/dts/tegra20-ventana.dts
->> @@ -3,6 +3,7 @@
->> =20
->>  #include <dt-bindings/input/input.h>
->>  #include "tegra20.dtsi"
->> +#include "tegra20-cpu-opp.dtsi"
->> =20
->>  / {
->>  	model =3D "NVIDIA Tegra20 Ventana evaluation board";
->> @@ -592,6 +593,16 @@ clk32k_in: clock@0 {
->>  		#clock-cells =3D <0>;
->>  	};
->> =20
->> +	cpus {
->> +		cpu0: cpu@0 {
->=20
-> I assume you're going to use this cpu0 handle later on.
+These patches were last sent as part of v7 of the larger SVA series [1].
+Main changes since v7:
+* Dropped CONFIG_IOMMU_PAGE_FAULT, reuse CONFIG_IOMMU_SVA_LIB instead.
+* Extracted devicetree support into patch 4.
+* Added patch 5 for ACPI support.
+* Dropped event queue flush on unbind(). Since device drivers must
+  complete DMA transactions before calling unbind(), there cannot be any
+  pending stalled event.
+* A few small fixes.
 
-Opps, I will remove that.
+The series depends on "iommu/sva: Add PASID helpers" [2], since it
+provides the function to search an mm_struct by PASID.
 
->=20
->> +			operating-points-v2 =3D <&cpu0_opp_table>;
->> +		};
->> +
->> +		cpu@1 {
->> +			operating-points-v2 =3D <&cpu0_opp_table>;
->> +		};
->> +	};
->> +
->>  	gpio-keys {
->>  		compatible =3D "gpio-keys";
->> =20
->>
->=20
-> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
->=20
+Has anyone been testing the PRI patches on hardware? I still only have a
+software model to test them, so as much as I'd like to cross this off my
+list, we could leave out patches 7-9 for now.
 
-Thanks!
-Jon
+[1] https://lore.kernel.org/linux-iommu/20200519175502.2504091-1-jean-philippe@linaro.org/
+[2] https://lore.kernel.org/linux-iommu/20201106155048.997886-1-jean-philippe@linaro.org/
 
---=20
-nvpublic
+Jean-Philippe Brucker (9):
+  iommu: Add a page fault handler
+  iommu/arm-smmu-v3: Maintain a SID->device structure
+  dt-bindings: document stall property for IOMMU masters
+  of/iommu: Support dma-can-stall property
+  ACPI/IORT: Enable stall support for platform devices
+  iommu/arm-smmu-v3: Add stall support for platform devices
+  PCI/ATS: Add PRI stubs
+  PCI/ATS: Export PRI functions
+  iommu/arm-smmu-v3: Add support for PRI
+
+ drivers/iommu/Makefile                        |   1 +
+ .../devicetree/bindings/iommu/iommu.txt       |  18 +
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h   |  69 +-
+ drivers/iommu/iommu-sva-lib.h                 |  53 ++
+ include/linux/iommu.h                         |   4 +
+ include/linux/pci-ats.h                       |   7 +
+ drivers/acpi/arm64/iort.c                     |   1 +
+ .../iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c   |  52 +-
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   | 605 +++++++++++++++---
+ drivers/iommu/io-pgfault.c                    | 462 +++++++++++++
+ drivers/iommu/of_iommu.c                      |   5 +-
+ drivers/pci/ats.c                             |   4 +
+ 12 files changed, 1191 insertions(+), 90 deletions(-)
+ create mode 100644 drivers/iommu/io-pgfault.c
+
+-- 
+2.29.1
+
