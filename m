@@ -2,104 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 105882B0037
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:13:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 500422B0044
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:21:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726039AbgKLHNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 02:13:55 -0500
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:37532 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725898AbgKLHNy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:13:54 -0500
-Received: by mail-lf1-f65.google.com with SMTP id s30so6830134lfc.4;
-        Wed, 11 Nov 2020 23:13:52 -0800 (PST)
+        id S1725884AbgKLHVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 02:21:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49108 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725941AbgKLHVa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:21:30 -0500
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBFE3C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:28 -0800 (PST)
+Received: by mail-il1-x141.google.com with SMTP id k1so4344356ilc.10
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ab2X7D8rQV+rUh3MG2vmCj3eeC4kvsZIlLSd9hzapi4=;
+        b=o695KMSlvlKK8s2nZB3RnNNjASazEvqZxx7SlWDLIfkA7DjvTGHQKtr7OeUjA+JK/W
+         6AsWT7BcKyt6qJFEm42kuZq/NhNqqk+O/5M33EKitgOxYwwKwIv4xVOTPW0KtSDKxWoi
+         N/WtmAKQP0MX+WWeb1AnqArll7M6n1MD4y/2o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4Tpo4PGHFkbg8q5VpiQAUx+1sgUIwRhfOHQXgi9fu0w=;
-        b=ZfDVcmsZ6sisE57+hZR49U4xDXpbxRpx6LA8/SbuoE/G3waliXsI2k2hkiCgbnYW8E
-         go3iN3wpvOsuhMevK7cbnGBzEmpBtkChglIsjUEMU/BYpfLxBaFSgtcz+nRU/RSoC4IL
-         Cg+qEvmcU7QFTN/bhNeA5hgcM9ZcMGAqurecN9tU3ubukMRBM36eb6owI5Npot+N1bKs
-         3cdsvkEmDosj8U5eSyF4sF1hMjPJGV/HA3OwuPjPyjqz2xvtkr2WbmAfg0cIKcA7e/lc
-         njmh+M09UzHaqW7wzubl4h75mAPPNvqCyQI+Y8jYZ2CJhtTSg+omg3C8doZUGTji5yL2
-         0HQg==
-X-Gm-Message-State: AOAM531dJJR2UA9HQTq+3/VQUYy45251bpQ/+qrkVLXOdLQW6qxbrb58
-        zIrR4WhA5GpCkA5l7ImOVss=
-X-Google-Smtp-Source: ABdhPJx0hH8XXIiRX8HPGBdUIl3cbi4hTxb788bDHArl9VK0Y40u0uzhWzSLD2ZWJ1BkLf0fYRHftg==
-X-Received: by 2002:ac2:4836:: with SMTP id 22mr4379620lft.41.1605165232320;
-        Wed, 11 Nov 2020 23:13:52 -0800 (PST)
-Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
-        by smtp.gmail.com with ESMTPSA id z19sm364364lfd.128.2020.11.11.23.13.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 23:13:51 -0800 (PST)
-Date:   Thu, 12 Nov 2020 09:13:45 +0200
-From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
-        linux-watchdog@vger.kernel.org
-Subject: [PATCH v6 4/4] MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
-Message-ID: <53f2bb93767ede5719db907374444f4e465006c8.1605164323.git.matti.vaittinen@fi.rohmeurope.com>
-References: <cover.1605164323.git.matti.vaittinen@fi.rohmeurope.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ab2X7D8rQV+rUh3MG2vmCj3eeC4kvsZIlLSd9hzapi4=;
+        b=RAX7ooQEnqsO56wNGrjnVgeeJwEc7giN5ePtWnv47AIk2vf6bZ7qFontnBn3Mv5D8Y
+         67VBbCrzrQCKoIUzeB/2f4oeT2jfQ9aA2v+vcY3VY4KMBf5DM1mBO/RLO+rR/I2zZXNE
+         qIwxvRxe57DRI3TF/R1+cYGM0Nk+WnX5p0Mk9j3Fzs6iv6d7eeUY0ob3y2HJXe20Y+5V
+         P8Ks76J+wUZyntOgz38w1RAtsohWXpKSz6/SohHpF6O4AECCps0+LEyUHwbHnH1lbR0i
+         a2DfZMYZxi9MfynMo9tDWr5pvuPw6EjBpmvpaOisIbYHBvL0nFG29uJbPRQtaClXN1VY
+         hiPw==
+X-Gm-Message-State: AOAM531sXYTDvdkepaF7pFYu+ruQaVwuuhPhoOFENtzq0DKBBXpGxT3k
+        ZiOWGpJLoVqpIRw2CqW3XQoaX3cmD46yOR6n9Tjf
+X-Google-Smtp-Source: ABdhPJwG3l0icsmB1IU32yQpvlFd8k79z2GNzpvnNWW307BnW87hWqYbQJNHXepVhLwR9j1SCouAAn38lAiRUpIrLCw=
+X-Received: by 2002:a92:512:: with SMTP id q18mr20861835ile.147.1605165688041;
+ Wed, 11 Nov 2020 23:21:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1605164323.git.matti.vaittinen@fi.rohmeurope.com>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com> <20201107081420.60325-9-damien.lemoal@wdc.com>
+In-Reply-To: <20201107081420.60325-9-damien.lemoal@wdc.com>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Wed, 11 Nov 2020 23:21:17 -0800
+Message-ID: <CAOnJCUJO3Oqy94MbT-eV+xaJn9obE0H=zpvuJuch-aY5e9bfgQ@mail.gmail.com>
+Subject: Re: [PATCH 08/32] riscv: Fix kernel time_init()
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainer entries for ROHM BD9576MUF and ROHM BD9573MUF drivers.
-MFD, regulator and watchdog drivers were introduced for these PMICs.
+On Sat, Nov 7, 2020 at 12:15 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+>
+> If of_clk_init() is not called in time_init(), clock providers defined
+> in the system device tree are not initialized, resulting in failures for
+> other devices to initialize due to missing clocks.
+> Similarly to other architectures and to the default kernel time_init()
+> implementation, call of_clk_init() before executing timer_probe() in
+> time_init().
+>
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> ---
+>  arch/riscv/kernel/time.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/arch/riscv/kernel/time.c b/arch/riscv/kernel/time.c
+> index 4d3a1048ad8b..8a5cf99c0776 100644
+> --- a/arch/riscv/kernel/time.c
+> +++ b/arch/riscv/kernel/time.c
+> @@ -4,6 +4,7 @@
+>   * Copyright (C) 2017 SiFive
+>   */
+>
+> +#include <linux/of_clk.h>
+>  #include <linux/clocksource.h>
+>  #include <linux/delay.h>
+>  #include <asm/sbi.h>
+> @@ -24,6 +25,8 @@ void __init time_init(void)
+>         riscv_timebase = prop;
+>
+>         lpj_fine = riscv_timebase / HZ;
+> +
+> +       of_clk_init(NULL);
+>         timer_probe();
+>  }
+>
+> --
+> 2.28.0
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
----
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b516bb34a8d5..0bd788a94376 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15088,16 +15088,20 @@ F:	drivers/gpio/gpio-bd71828.c
- F:	drivers/mfd/rohm-bd70528.c
- F:	drivers/mfd/rohm-bd71828.c
- F:	drivers/mfd/rohm-bd718x7.c
-+F:	drivers/mfd/rohm-bd9576.c
- F:	drivers/power/supply/bd70528-charger.c
- F:	drivers/regulator/bd70528-regulator.c
- F:	drivers/regulator/bd71828-regulator.c
- F:	drivers/regulator/bd718x7-regulator.c
-+F:	drivers/regulator/bd9576-regulator.c
- F:	drivers/regulator/rohm-regulator.c
- F:	drivers/rtc/rtc-bd70528.c
- F:	drivers/watchdog/bd70528_wdt.c
-+F:	drivers/watchdog/bd9576_wdt.c
- F:	include/linux/mfd/rohm-bd70528.h
- F:	include/linux/mfd/rohm-bd71828.h
- F:	include/linux/mfd/rohm-bd718x7.h
-+F:	include/linux/mfd/rohm-bd957x.h
- F:	include/linux/mfd/rohm-generic.h
- F:	include/linux/mfd/rohm-shared.h
- 
+Reviewed-by: Atish Patra <atish.patra@wdc.com>
+
 -- 
-2.25.4
-
-
--- 
-Matti Vaittinen, Linux device drivers
-ROHM Semiconductors, Finland SWDC
-Kiviharjunlenkki 1E
-90220 OULU
-FINLAND
-
-~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
-Simon says - in Latin please.
-~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
-Thanks to Simon Glass for the translation =] 
+Regards,
+Atish
