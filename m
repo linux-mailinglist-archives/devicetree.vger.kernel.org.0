@@ -2,110 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7B92B05BE
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 14:01:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 393FD2B0611
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 14:13:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728042AbgKLNB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 08:01:58 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38834 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727803AbgKLNB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 08:01:58 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ACD1nEc068789;
-        Thu, 12 Nov 2020 07:01:49 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605186109;
-        bh=J5YXf8AeZiT1UgWE/Ust7BqXpiisWKt5rEDoeDzRI2g=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=KkCCdAbXzJmj4QFat4DACGOj/6xb6gwb9RkqYTh4Z7bMfLmaLVJk0qdyRTQsSIhoz
-         DU3NG6QqZ10P1v8lP4xp27202XqCNqM+IB3aNKjmFOJlGYzQg7+U2RuQ5HbD04OVj5
-         tJb8Q6aMJ0fLtJmfFiqsoXeVV5qaiQFpVZqMxtf0=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ACD1nNj128392
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 12 Nov 2020 07:01:49 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 12
- Nov 2020 07:01:48 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 12 Nov 2020 07:01:48 -0600
-Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ACD1j5T059667;
-        Thu, 12 Nov 2020 07:01:46 -0600
-Subject: Re: [PATCH V2 4/5] arm64: dts: ti: k3-am654-base-board: Fix up
- un-necessary status set to "okay" for USB
-To:     Nishanth Menon <nm@ti.com>, Keerthy <j-keerthy@ti.com>,
-        Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
+        id S1727035AbgKLNNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 08:13:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727863AbgKLNNz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 08:13:55 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4196C0617A6
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 05:13:54 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id s8so5925883wrw.10
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 05:13:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=bo6b3plJGeSCfqA2TlRi1WC3RGLlmTiYJkUzuyFzqgg=;
+        b=xqEnu3qOxGCBmIvnubq6qgbQFbZ1GALhsKcWy3ouPmFAnGxWqncXENS0E3AOCV/4+J
+         ZDMV3iem5aUNFgb9zxQzPdO96qfck5iIHcs1je+WjE2DSXc334BC9pqMG3SFMcvEtTg/
+         yuVD5XBeRhIdSwyjRHrf4yQW3rk/eqUvkIl4h6Ne11juJcsx+O1i7hZ9e3+CO0l5itft
+         K3DCOwWVVAkP29iBXMUkxPs94dS/gxyICz5wV7bfoVg6Q92Onq0nSzbvgP/0B0UUKIMg
+         koAMbzCfFK8Z2RVYcLIVKvncInJ/mhAeKnJCSd3dcpfz9JNQkAzEBrKHvCRZjCJ12xzX
+         TMmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=bo6b3plJGeSCfqA2TlRi1WC3RGLlmTiYJkUzuyFzqgg=;
+        b=MD/DLg57HwG4/dLlX7/AQB9ETuPa5GjJCdyQe6N2NuH3+CBAgk8xMdUQBPjtMQEOad
+         jcWivsBV/yZ5voQtMLhyDAEdWVb67tftA+bN7Npbtj+1tS8s1dbtgDsxmWLe4gc9+QIq
+         EfPZcTVvdTS9Cecueq8gf5v2NsBA/R24i3FfA7VVaCjfMdHKLJ95BPCKidRp0/JvYk94
+         Uu7clgO4Mi8O0o5xx0hhfaT+xKEpzgP6/N9gbzU5QoNk+3qDbSB+hag8XLEUVTNaIS2t
+         0qVMac/drbMZ6CeCABqfjQBXIJp/oZSyiVbpkby7gMxz4r1VN0LqMd1fhrb+k+J6oLL4
+         393Q==
+X-Gm-Message-State: AOAM530DCMQHcRRbSoMJ6WHFUIzo9T61EeW3BIEda6muwpc1E3c0r4AH
+        zVzlBphwqZkco4WjanJenMYkaw==
+X-Google-Smtp-Source: ABdhPJzSZTM0aetNvyM1aDGThFnDswNgJp25u/ogvbOp/15JLROiREI2JWpn1R9Gf3vaCpfyMX0yHg==
+X-Received: by 2002:a5d:4e4c:: with SMTP id r12mr9205512wrt.348.1605186833116;
+        Thu, 12 Nov 2020 05:13:53 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:6971:b700:3764:fa96? ([2a01:e34:ed2f:f020:6971:b700:3764:fa96])
+        by smtp.googlemail.com with ESMTPSA id f7sm7379008wrx.64.2020.11.12.05.13.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Nov 2020 05:13:52 -0800 (PST)
+Subject: Re: [PATCH v9 00/15] qcom: pm8150: add support for thermal monitoring
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20201112014929.25227-1-nm@ti.com>
- <20201112014929.25227-5-nm@ti.com>
-From:   Roger Quadros <rogerq@ti.com>
-Message-ID: <ff878520-4939-0f51-dabf-7f7b5ff54311@ti.com>
-Date:   Thu, 12 Nov 2020 15:01:45 +0200
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+References: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
+ <c943f56c-f72c-0f14-b6ed-b67e91573b1e@linaro.org>
+ <CAA8EJpp+=sQAre+kCiDLEFT+gDB0wO7KypGTXeCDncO8wWzQ-Q@mail.gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <a66e75c1-ce30-df75-c77e-e58e660f0105@linaro.org>
+Date:   Thu, 12 Nov 2020 14:13:50 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201112014929.25227-5-nm@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <CAA8EJpp+=sQAre+kCiDLEFT+gDB0wO7KypGTXeCDncO8wWzQ-Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/2020 03:49, Nishanth Menon wrote:
-> The default state of a device tree node is "okay". There is no specific
-> use of explicitly adding status = "okay" in the board dts.
+On 12/11/2020 13:41, Dmitry Baryshkov wrote:
+> On Thu, 12 Nov 2020 at 14:39, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+>>
+>>
+>> Shall I take patch 1/15 and 12/15 ?
 > 
-> Fixes: 7e7e7dd51d06 ("arm64: dts: ti: k3-am654-base-board: enable USB1")
-> Signed-off-by: Nishanth Menon <nm@ti.com>
-> Cc: Roger Quadros <rogerq@ti.com>
+> 12/15 will not compile without several previous patches, so it might
+> be better to take all of them through the single tree.
 
-Acked-by: Roger Quadros <rogerq@ti.com>
+Ok, I will take some time to review the driver and ack it, so it can be
+merged through the iio tree.
 
-cheers,
--roger
-> ---
-> Changes since v1:
-> - no change.
-> 
-> v1: https://lore.kernel.org/linux-arm-kernel/20201104224356.18040-5-nm@ti.com/
-> 
->   arch/arm64/boot/dts/ti/k3-am654-base-board.dts | 8 --------
->   1 file changed, 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> index 199c4d4e7539..744efcbb4f7f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> @@ -325,14 +325,6 @@ &sdhci1 {
->   	disable-wp;
->   };
->   
-> -&dwc3_1 {
-> -	status = "okay";
-> -};
-> -
-> -&usb1_phy {
-> -	status = "okay";
-> -};
-> -
->   &usb1 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&usb1_pins_default>;
-> 
 
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
