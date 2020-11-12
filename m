@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B44EF2B0046
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:21:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B922B0047
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:21:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725959AbgKLHVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 02:21:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49162 "EHLO
+        id S1725979AbgKLHVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 02:21:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725923AbgKLHVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:21:47 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B183BC0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:46 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id l2so6861836lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:46 -0800 (PST)
+        with ESMTP id S1725976AbgKLHVu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:21:50 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2E7C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:49 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id h23so4890156ljg.13
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:21:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MRa8qRVzTNVMwjc9Z58WD45Itu63riYrYK/p4P2hSRk=;
-        b=q5MOoBFRiFy0R79aztQHCi9I0yuNMu1NB0EEbOqL9l79B7ChE8WvYvW/YV7Epzrs9y
-         hLS3j0YqSN2Bk9ENAq9/dQx1l0e8vFZeObOZQXNdVmJT7M+MyeX75Jksle5hfaPViBOA
-         IGwWXwLOKri55Tw5NCM9AEQZ8tCKfaW9xmqGQ7cwVpRLMpyLD36RQQMOnweZaTXJUsme
-         X/+Pc4A4yLWtBE7BJVtYQrWifZOPwN1sLVS66c3vWzk5CaZslTzbl6EUNXdHXf6BoN0t
-         CUfvLJAGqnETJcpxfoinF2ZfbYJo8laOaBV70n0zeTYu0Wrkrb8qQ0IPMfxLoPWjqEh1
-         aq2Q==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=GyWk5PjDUYTSk9QfIFovmi6CDCNql+TgvrDx6+B7tds=;
+        b=aZNt4p67a9HuFvNvMHWxqKoWsGjjmevBM2+yqT86vIaT4npiWlsgatjc5hKxL9SmdE
+         JTUhwobsZOqC9w2TcHocRvMxUPfBLE8oIHF9dNOTl0ZlDj909uoBetrOM1uqMX0OZyK/
+         ROeZgKnvC/MqP7yEy96R1YNeKpVeq5I56Y9AKDBkZcP+HXDqCzcjUnS4cRRCZgnI2is+
+         pu7Cjqua9cbTDH6cv1X1XO7xeARg+kaMl1KruyMxIt3EpbnGXS41kyzR5oH0oYsF8JWb
+         GJPaYXo/svZiYuLPyX8Ln9ZVOTH+n0OEqBDm+JSATg5kOWK0+EAcj2Y4wPUkr4wChMli
+         Qf+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=MRa8qRVzTNVMwjc9Z58WD45Itu63riYrYK/p4P2hSRk=;
-        b=epvKP6Ptf8BVXUEFw716LuplPwntlq8kb0HTH1Z4bzNKF+8xXg32ZhSM0kbP5nfUdM
-         /oubLwdGAdx6eZxiksEkj5UYMWKocFO0RMUz9yNxDoPx+qX8L3D0bpvXNuNzyIXS6F5r
-         ExmxtYX4wq2ayLTPVc8iOIdRTuZzhrmzgyW/EtljM3Os6/UOaA67iFvccSQvJlxFZoW3
-         cQpNeM9Untay0KzR7Z9hacBXgufQZLf13OiHCvvYCUH28TKEedbkQ3PSejibyQHrpVQd
-         HvSHGlk+B9eO/NRXRa6mH/OZCQSkbbRin6AlQF4nxH2DBPSXlIRMKuygwXJNuOojXHZ0
-         UQhg==
-X-Gm-Message-State: AOAM532Nx9OijFLEUsG1+J7ZZS3Qx5O+kzutjYAVFH76c+X9K/O75WP0
-        DZt8ZT0MQ9KwrMwHc2OF3+A=
-X-Google-Smtp-Source: ABdhPJzzAbd0DJP7USElBeKtIL9BO/RONxfke8um6r5woEsi/eVbcXYPUIIqV1ICzuFUKsliq9q2AA==
-X-Received: by 2002:a05:6512:3312:: with SMTP id k18mr1982507lfe.403.1605165705204;
-        Wed, 11 Nov 2020 23:21:45 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=GyWk5PjDUYTSk9QfIFovmi6CDCNql+TgvrDx6+B7tds=;
+        b=fd3x/QQ8mAtPEdYinOvV3q6VLO1I5HYXKBUgrVCnb8Qhu3V6YLckwu6Q1Kx+LQHNGJ
+         Kv7OML+agqhNo81ED6A3tPn7Ks4YUgjCPwrlhBpFSzCwXvtYnhUhgb5zhDJztr+p8XTs
+         6Y+6Pli0HTbklLszcmm1heArUlVk12S/7q748IBCvZ3+GaFO2i0r+jQ1aguZp4cjcuc8
+         bkWXvaK1/0+1K4XmnDg80YLB0JaOcHxqv4WjEj4hI8HmoO1Yrqqa8haa1GOW6xXDqjJy
+         xn0liUX2DmCtRtiXfpQwpxxXFqe5G5daS8EF3RBCeWzd8f21xtkuUtGix+H+GmCshnj1
+         ampg==
+X-Gm-Message-State: AOAM530qfCFILrZ3x5p7oqpyX9ZFRtS9xWKsMieFjPzzzXdbQiVZ2EvO
+        epEGSNuSPgTOU+S1tOG5KYY=
+X-Google-Smtp-Source: ABdhPJyeqDPsFT0CAMOdUP5tSrIMjh3hPu9SOVWVbPBCT/KJaEFvRoS1RN+7CyNrzveC/keRaedo6g==
+X-Received: by 2002:a2e:8942:: with SMTP id b2mr12352853ljk.441.1605165708494;
+        Wed, 11 Nov 2020 23:21:48 -0800 (PST)
 Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id w18sm460427lfc.5.2020.11.11.23.21.43
+        by smtp.gmail.com with ESMTPSA id w18sm460427lfc.5.2020.11.11.23.21.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 23:21:44 -0800 (PST)
+        Wed, 11 Nov 2020 23:21:47 -0800 (PST)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Catalin Marinas <catalin.marinas@arm.com>,
@@ -55,10 +55,12 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH V3 1/3] arm64: add config for Broadcom BCM4908 SoCs
-Date:   Thu, 12 Nov 2020 08:21:31 +0100
-Message-Id: <20201112072133.17039-1-zajec5@gmail.com>
+Subject: [PATCH V3 2/3] dt-bindings: arm: bcm: document BCM4908 bindings
+Date:   Thu, 12 Nov 2020 08:21:32 +0100
+Message-Id: <20201112072133.17039-2-zajec5@gmail.com>
 X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20201112072133.17039-1-zajec5@gmail.com>
+References: <20201112072133.17039-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,45 +70,62 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-Add ARCH_BCM4908 config that can be used for compiling DTS files.
+BCM4908 is a new family that includes BCM4906, BCM4908 and BCM49408.
+It's mostly used in home routers and often replaces Northstar in vendors
+portfolio.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm64/Kconfig.platforms | 8 ++++++++
- arch/arm64/configs/defconfig | 1 +
- 2 files changed, 9 insertions(+)
+V3: New patch in the series
+---
+ .../bindings/arm/bcm/brcm,bcm4908.yaml        | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 6f2494dd6d60..d1c02a4a93c8 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -43,6 +43,14 @@ config ARCH_BCM2835
- 	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
- 	  These SoCs are used in the Raspberry Pi 3 and 4 devices.
- 
-+config ARCH_BCM4908
-+	bool "Broadcom BCM4908 family"
-+	select GPIOLIB
-+	help
-+	  This enables support for the Broadcom BCM4906, BCM4908 and
-+	  BCM49408 SoCs. These SoCs use Cortex-B53 cores and can be
-+	  found in home routers.
+diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+new file mode 100644
+index 000000000000..dfe1c1c6bb8c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/bcm/brcm,bcm4908.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- config ARCH_BCM_IPROC
- 	bool "Broadcom iProc SoC Family"
- 	select COMMON_CLK_IPROC
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 17a2df6a263e..ead6fa942994 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -32,6 +32,7 @@ CONFIG_ARCH_AGILEX=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_BCM2835=y
-+CONFIG_ARCH_BCM4908=y
- CONFIG_ARCH_BCM_IPROC=y
- CONFIG_ARCH_BERLIN=y
- CONFIG_ARCH_BRCMSTB=y
++title: Broadcom BCM4908 device tree bindings
++
++description:
++  Broadcom BCM4906 / BCM4908 / BCM49408 Wi-Fi/network SoCs with Brahma CPUs.
++
++maintainers:
++  - Rafał Miłecki <rafal@milecki.pl>
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - description: BCM4906 based boards
++        items:
++          - const: brcm,bcm4906
++          - const: brcm,bcm4908
++
++      - description: BCM4908 based boards
++        items:
++          - enum:
++              - asus,gt-ac5300
++          - const: brcm,bcm4908
++
++      - description: BCM49408 based boards
++        items:
++          - const: brcm,bcm49408
++          - const: brcm,bcm4908
++
++additionalProperties: false
++
++...
 -- 
 2.27.0
 
