@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 491052AFF22
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C60E2AFE09
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:33:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728139AbgKLFdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1728150AbgKLFdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 12 Nov 2020 00:33:15 -0500
-Received: from mail-db8eur05on2059.outbound.protection.outlook.com ([40.107.20.59]:25720
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+Received: from mail-eopbgr00061.outbound.protection.outlook.com ([40.107.0.61]:31678
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729285AbgKLFNx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 00:13:53 -0500
+        id S1729311AbgKLFT1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Nov 2020 00:19:27 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UlkQtrcfGXLvDgfAv7iwDO6pKKIb3dYnVO2NN7g0Lv3bcn/qeuAINitzwapzPWw28wyd1MI5pH/otlWLib5qUGC4dwgbR0aWPisB12tp7NG8+QjCAVFXvwaiNk1+leVPRItFHnGo0ZYL06Cnc8ts89utB34BcEPWlbCasOF4QMNosx5rlqdojWnE3oV6NUzDsfYtI8C48fQGgVSN1wcYKnC4bfRWAyN/KqxRoR0eavlkP2tj7kykHKqhkjES5iSc7nXA8U/+ZTWrwsZddxVHwCOdu1X+eHQjJITiN/zSjYHJJ8DSrJd74o86iHRUAup/Bry3Ytth2a+hJk0jSPFgKQ==
+ b=kd55wmE5G84xjA0F8IDfII+ex9NhNHb8pMj3fR4rqTZJISFBXkWwB3SlOIlooNYDujV4Iz7yP41EUgHulBVHgwvnJ7P3htD94xpmmTAv5qtVsC4yjJA0e020OW5auihk3rtoe1WNEwCO1BqOxfmGOC/b3J/l1nXhvAguHsfNHXdxWY5rvG3v/TupNhTE/HLQeuMPRIG8psMq8yh6FKJarNJzn5J2sPQL4iyoIvJZeGHNJzsT4psTYGi7vAbyIjVm2fGOZb763b5Fkue//OTQk/8li8lX8EMa+21EwiAwu3JrvSmM+oTV4NSsrKV3qghCJJzm0g4qLk06WBS/+qt27g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rm+zw3CkJ50S5TG5KyT36kFXbzOkcz/F589H5Zuy+N8=;
- b=SsMtztFuTKunsMu1BwqC5O227BPZO6uP83xhRgIZknyGaixG1/+sjD9c8oZmu64p67M71iaWUYsBwEzSU3/13fV1/bBJFBoMtuda7DOka3qEb5Qk9haiHqZtHOPsyVIeIEOt68GKl0iou0vEHGML5KNDFGqJfJhBTAt/5UGZh8uYZT68H0K0MD6cw4cG+h2N+6bUexfFfRLrdylcxx3BvsN8xZYP2UsQ/E1qBOhM3CbJYZYQT8QvbrGO8s8tq/DIDSKZ0rqHBkhgXc7kNatQR+dCdqzIpau/ubvxXV+Kfy+hA99rKCzwAnozPZ3S53TLtMxeSgpG3n6aG5GhxtjpSg==
+ bh=z4Q8eqPf0YZf3L1Yp3sqKYcObpzgHAXzcfYIBtVVwnU=;
+ b=MiNO0crzLyaKcudW8LiOcu5RIEUfKBjJGZh1UQ+PrE1ru3pmWvczobcNPhr/yXd3/rV4CEOiFn77NAn6fsOAy7XcmbsMWHNIsWH5HaSexI9FopoyYr11cU774hMF0YF6uZTW/8LJ7pxZBMbkW6g13rY4ZvcTujzxErjRYlvT4B3ZV+9NaU6q3YJmk7DENCgbyQuVibS+Iwl0uYvoZn1Y1nmK6n2fGQHrh6kdIsOTBLfvMq5Rc7f5cGfZbYTq3GXToh4s+D93MapwK58rhnF9UFgzTW6TN6Qm8ZvfvRnHrX4aUlA6wZF67ZmzRoq+6TrEJ5o1MbolM5SBDgjCQuxKHQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rm+zw3CkJ50S5TG5KyT36kFXbzOkcz/F589H5Zuy+N8=;
- b=GT5yMvRUpXbv2vtZwwDlqNzy/xs5z02/fscfNjgrjMDvyP0//HPGJb2UZVVs6PsScc9gSCRP+vzK/gnCpLLxTmbdhonyEsaCDvJcXhdcPVfx9LNTDZwSPHLF4RMbrBrpeV/GR7qtLABBfkxvLJzMoy58R7AEY83RJIMAgsRXMn0=
+ bh=z4Q8eqPf0YZf3L1Yp3sqKYcObpzgHAXzcfYIBtVVwnU=;
+ b=I9K2eLqIbk63Y/lWPsDc+PyrMc5hmDxlyP3brodUaMg9f7AcUgZ3a+yOjO6TrrbIE41uI8OHIWmXzJbX+IjaH/NHFkVeDboDwptroXzdnAu5OiZwvH6oI4oCRYtH1ARzRdRHMzB9OPPm1HmWzcyWQCsub8G3EQHHEop2PdR/RAg=
 Authentication-Results: kernel.org; dkim=none (message not signed)
  header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
 Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR04MB5582.eurprd04.prod.outlook.com (2603:10a6:803:ca::31) with
+ by VE1PR04MB6352.eurprd04.prod.outlook.com (2603:10a6:803:129::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Thu, 12 Nov
- 2020 05:13:47 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.23; Thu, 12 Nov
+ 2020 05:19:22 +0000
 Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
  ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
  ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3541.025; Thu, 12 Nov 2020
- 05:13:47 +0000
-Message-ID: <cee6916984b183c4a1955781afe6a35f0e6497b3.camel@nxp.com>
+ 05:19:22 +0000
+Message-ID: <1004a547603facca1d01c7456a5079fcc5353828.camel@nxp.com>
 Subject: Re: [PATCH v2] dt-bindings: display: panel: one file of all simple
  LVDS panels with dual ports
 From:   Liu Ying <victor.liu@nxp.com>
@@ -47,46 +47,47 @@ Cc:     devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
         dri-devel@lists.freedesktop.org,
         Thierry Reding <thierry.reding@gmail.com>,
         Sam Ravnborg <sam@ravnborg.org>
-Date:   Thu, 12 Nov 2020 13:12:00 +0800
-In-Reply-To: <20201111225527.GA2191793@bogus>
+Date:   Thu, 12 Nov 2020 13:17:34 +0800
+In-Reply-To: <20201111225751.GA2198243@bogus>
 References: <1604993797-14240-1-git-send-email-victor.liu@nxp.com>
-         <20201111225527.GA2191793@bogus>
+         <20201111225751.GA2198243@bogus>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.36.4-0ubuntu1 
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SGAP274CA0004.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::16)
- To VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+X-ClientProxiedBy: SG2PR03CA0109.apcprd03.prod.outlook.com
+ (2603:1096:4:91::13) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from blueberry.ap.freescale.net (119.31.174.66) by SGAP274CA0004.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend Transport; Thu, 12 Nov 2020 05:13:44 +0000
+Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR03CA0109.apcprd03.prod.outlook.com (2603:1096:4:91::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.13 via Frontend Transport; Thu, 12 Nov 2020 05:19:19 +0000
 X-MS-PublicTrafficType: Email
 X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 31c06323-0bc4-46a3-c24b-08d886c9bbaa
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5582:
-X-Microsoft-Antispam-PRVS: <VI1PR04MB558200E7085C674E8F96E60D98E70@VI1PR04MB5582.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Office365-Filtering-Correlation-Id: 998f72e5-e809-43aa-1fc9-08d886ca838e
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6352:
+X-Microsoft-Antispam-PRVS: <VE1PR04MB6352F7638BF4D1F9EA8D074698E70@VE1PR04MB6352.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lu1rZ4IlMo1MKAJwPJcl4NyFkkJ2SoxYVqyURgvm9ZP1UzdN/39zI5/YAarEOuPIYD48Fo7YulvDeOWK8I8KjggV9YIdbLNHqaZvJmN0d74eABw4QNyHgjrYXqZEZ5z0G+hDYmDRCW69Tn7ysJA1OP9hB0w/WCauHbhafNdNq4LNgHy6z1l9O0qsfHrXdgVFh7sJTnGwZ8kqSQcLHDVKGNjkvEbonPnOyplFGiI0xuImygcz95Xa3JGPXPtdYQfiBHzAHfRUPNCyoZ541zunAOfphYGBDi+TixJOePdkSGPOzT+8wMcE++koW2Q8jA/nMA6k5yP4sc1umUVeY0g4QoDfxO0E+gqQpU6kAVaXa575qIhFOkZxP4mB6rP49KuLPouFYoFw6J596GWkcfwZ8g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(136003)(376002)(39860400002)(366004)(4001150100001)(6486002)(8936002)(8676002)(478600001)(26005)(6666004)(6506007)(86362001)(83380400001)(52116002)(66946007)(66476007)(2906002)(6916009)(66556008)(36756003)(186003)(16526019)(6512007)(5660300002)(966005)(956004)(316002)(54906003)(2616005)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: kpbbfPBI/m6US6GPNZWbHnLcmS+ps2L6j9GF/QTIM72fZQAH9cKBOMRVgcmkQQ/c3JSXEafzkNIra9AaNCwDInVF7LNRj88j2mxgbD67IzbDZpWcKgnCFd6t2zxEumBLzxOJIbkkJ5w1qHVGxYHykQeIQ5e3PoaHnlpyAplhjvtEsA3GulEsYnqAVUeBf0fb43LwTxPizzOBZ0t89LyoWUBiBGwG0BAsoqx0u+LqvVua09QayDqcnj191ej/cRh/54VL2o11xk1/RkwvpMvVbIzsuaMXwRbcXVMhYD3wHzxAyc1iYvDkeR3M3fXzGOiVKST1GFwttWuLj5YJiaabZsnmH4y+hOU5iMq+JUizoEJZlWf/fF1B/2Eqe0Y69hPM6zW2kTJEZ7JoZZJRUrLye4SbTo6BS4X1NDyQyeo694lFQJKmJ+rlOAsfdaofgpMRud4DwkOH85CKDp5RRAQgWuNNJpLJxRiujv/jpz1/2dO8CeRmWx215QH8S0CRYFCAPzuvbf5mB6FedJ7z6/uAg808uOQAdoScNA5lCbk1qKng/17wuoTqxDK7BAY0Sm89wviDc112f5X5rf9zcHB+JbENP1vnd0kBBsHK49hCFzHV6qTX9TftYP+ZfuhMla+6XR8ry+9M+uwtc1MYJPHuAA==
+X-Microsoft-Antispam-Message-Info: 3SUBd5ReHwYGdSDRbMpojV+KVIBmgUnEQHcGCH4mBQaCPt2wwqcansNahgJ5joLLQB9BFiYPZz+4jnVBq9AAP5RGJgX1qRv914oN170jNWPioZ9PPAymXsenT1rcth1Tn43m6mbDxKclmP7B4dkObgceNdUXx3qz5+Jg771TDdMuGEcQzKG9h6o8N9Yp6KKYVzuPAogZ5FuCz+ewUcLcs7p1xLuA4JUjMbeF0DFXS4uCsBFwgSi+RRgFrDyAkkENKNf6ezEzUkpc2W+ligF0WCOL8tRp3G/LtS5vQGd6xOuMxBHnmVPFrD16mWiGESrwSoTISHrvfawhaqa7/bV09xiDFvjVTkab6GL2E1Gr/LVktG0ZCQcSh/iuQWjfb8YvhaOOlECd/T24kNNc90kVVw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(136003)(346002)(376002)(366004)(39860400002)(36756003)(966005)(6916009)(16526019)(186003)(54906003)(956004)(66556008)(2616005)(6486002)(52116002)(6506007)(4001150100001)(4326008)(478600001)(83380400001)(66946007)(2906002)(316002)(86362001)(8676002)(6512007)(26005)(5660300002)(8936002)(66476007)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: //epY5H1k3Z8HxJ+k4EyG89xxBa4cDkjWKjv3FNAbQpu8sZTF9r+45hPyHBFFlPYX6cRaS1Ep4yi2x8i+zsui6epT16ZlHm/hwJIrOCTACXVH68Pp3T4dSh/lCbnG/6cKXw9vsjcUZBcvpJfPUpzoByKl0rRizO0xnyQLTifa4VVq24id9OXA6q6ES4Ejekfl85zUrXFQNEAbX+j1tHXGOyk0o6SadHRw9S+IfujqJ8VAoPDOwRaWf4UN0b2QqoY5qK3MDThm0vRw8yOEd9M6wk+hH0YdEsk2gPS39ilq8vwK/mUnlbitYxDmmcARzUNPAjTXR/U47aj5lEclFdcFvSug6Saglyqvtg9K+u6Trl78BA0AGA839YJQEVel/98oCwVAkcADU71Odtf1dkUU1LQOeOT3DrpEk3di9Oq0RXv9/0qI4ugVh3Ce1ume6lVHGI2MlEAkCAgERkSz+jOlaX6KrFuifhneqcYG4rfgNm6t2hIXWbNbZMwn02RZ/VlYCGTbbtoAplgTogP0yyLOD2OPojR2/KG2N42je7o2WCpfQ3gUZLuxNApTG364Ph+10AQIKetVvoIT0JSruSKrzTpB8GEPAS14x8i1kUThRh4+d2PPHkyGuoyGhnXUK3p7kZRLN7ZbXotdVmxIhiqfQ==
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31c06323-0bc4-46a3-c24b-08d886c9bbaa
+X-MS-Exchange-CrossTenant-Network-Message-Id: 998f72e5-e809-43aa-1fc9-08d886ca838e
 X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2020 05:13:47.6468
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2020 05:19:22.3759
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7ys+XsSXXQHfBFOAFaJJtzPHgOQFq1ePHZtSGDmnQk9KgTzj3aQi8P7q2QURoz+MMC4HOzyvRULcTczUVAiRgg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5582
+X-MS-Exchange-CrossTenant-UserPrincipalName: CqwuqZ+ttVvdfjdDKyEnhzjLRlfZrSobvmQcSO5K4YwvOPyJNVNqbZfh5Va/lmGceiGsTTsc2cSutpsrwOkm9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6352
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2020-11-11 at 16:55 -0600, Rob Herring wrote:
+On Wed, 2020-11-11 at 16:57 -0600, Rob Herring wrote:
 > On Tue, Nov 10, 2020 at 03:36:37PM +0800, Liu Ying wrote:
 > > To complement panel-simple.yaml, create panel-simple-lvds-dual-
 > > ports.yaml.
@@ -101,7 +102,15 @@ On Wed, 2020-11-11 at 16:55 -0600, Rob Herring wrote:
 > > Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
 > > 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new
 > > file.
-> > 
+> 
+> Also, what about advantech,idk-2121wr?
+
+It won't be migrated, because it is compatible with 'panel-
+lvds'(covered by lvds.yaml) and it requires some properties which are
+NOT allowed in this binding doc, like width-mm, data-mapping, panel-
+timing.
+
+> 
 > > The objectives with one file for all the simple LVDS panels with
 > > dual ports are:
 > > - Make it simpler to add bindings for this kind of LVDS panels
@@ -164,14 +173,6 @@ On Wed, 2020-11-11 at 16:55 -0600, Rob Herring wrote:
 > > +  has dual LVDS ports and requires only a single power-supply.
 > > +  One LVDS port receives even pixels, and the other receives odd
 > > pixels.
-> 
-> You have to define which port number is which in the schema.
-
-Ok.  It looks that most planes receive odd pixels via the first port
-and even pixels via the second port, at least all the planes to be
-migrated do, so I'll specify that in v3.
-
-> 
 > > +  There are optionally a backlight and an enable GPIO.
 > > +  The panel may use an OF graph binding for the association to the
 > > display,
@@ -210,14 +211,6 @@ migrated do, so I'll specify that in v3.
 > > +  backlight: true
 > > +  enable-gpios: true
 > > +  port: true
-> 
-> A single port shouldn't be valid.
-
-This is inherited from panel-simple.yaml, but I assume it can dropped
-in v3 because it looks that the panels to be migrated are NOT
-referenced in any in-tree devicetree.
-
-> 
 > > +  ports: true
 > > +  power-supply: true
 > > +
@@ -239,18 +232,6 @@ referenced in any in-tree devicetree.
 > > +
 > > +        port@0 {
 > > +          dual-lvds-odd-pixels;
-> 
-> This needs to be documented. Though really, this property seems 
-> pointless if the port numbering is fixed (though 0 for even and 1
-> for 
-> odd would be a bit more logical).
-
-Will do in v3.
-
-Not sure if there is any panel swaps the pixel order or not.
-If there is, a dedicated binding is needed perhaps.
-
-> 
 > > +          reg = <0>;
 > > +
 > > +          panel_lvds0_in: endpoint {
