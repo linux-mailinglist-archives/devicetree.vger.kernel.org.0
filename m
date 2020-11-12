@@ -2,520 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B682F2AFF23
+	by mail.lfdr.de (Postfix) with ESMTP id 491052AFF22
 	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:44:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728126AbgKLFdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 00:33:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54544 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729118AbgKLEwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 23:52:54 -0500
-Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96434C061A4B;
-        Wed, 11 Nov 2020 20:51:54 -0800 (PST)
-Received: by mail-pf1-x42e.google.com with SMTP id g7so3394766pfc.2;
-        Wed, 11 Nov 2020 20:51:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WhuYA1a6TERII5H+wgmmnG4EhgqA+DZXglaNonkZwz4=;
-        b=JhzIVeWx81eexEi3AeJHg1mMK3yPoixKMojlX1N72qHq4lnFoP568Iq7SE+/46h/2b
-         Z0H0tW+eQO5KoelEREnWBJ1He2sDnsijEiyP+7JoeR4+640Q4ZAT5Knxe9X5aAmmEjxR
-         6UcCwLPJ4M6qBQPjpzlQZkpP589pgrgAS8ZUGNM1LAurqrKC/W3vdOpZOtZq6bQyd03r
-         o0zTZd+xYEFnbPZNT42LHYfGyyhDZgDGAqBzxQli3q//asxWmtzO60ihmTTQsUl/b7av
-         ZBTa/B6KvyKLfv3ySQ6BCiYo+HuH7TJNi8TX524c4ol/CidOZiZLnCg77GUBWXhp3lSS
-         oUxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WhuYA1a6TERII5H+wgmmnG4EhgqA+DZXglaNonkZwz4=;
-        b=pAM4s70iYXs0+xGnTRvUKOCu74UtXFUvVblzySMJvgTYIScyiHIcrvkQP+FZKwfHA/
-         VgTbNMPKAuYkX7dVI6wcQ02OyTB9Ppc9pfEKDVX5OC0SDA6uKClGkfiyNNRWPJQgpAsS
-         S/72xQ6XdPMrFaZcEKT3XYAtgXuXRN5uZ29ufFaG761sUAFuqYJVcLHsCgUKt3uNbd0q
-         KjhhjphNYxyhDswftYDsbaepHfUi/AY/o+ovCqRpkYM3CO5gGL1z6rAEZQh/ESoXZU1L
-         9cPVW3fiTpbwu1W5BqsXAcz21nPnzULBrQW0H5zdSQdpfi1LeHzR81ymEMPQarrsRYIq
-         IDUw==
-X-Gm-Message-State: AOAM533jO9vWXPmZUdgkXtOXYe/GXSBBNXeYK/2QqwEQYBMqNqj/bgB6
-        1kvJnXoJqoIsMnFDzKFLAhY=
-X-Google-Smtp-Source: ABdhPJyQJfGr595gk9r5bWUCaSBbmEGS7XMmoDf64r3aRYSfVqpN94GQLFOwmfTsAK59x3VdGMAMVQ==
-X-Received: by 2002:a17:90a:5b16:: with SMTP id o22mr7824361pji.224.1605156714133;
-        Wed, 11 Nov 2020 20:51:54 -0800 (PST)
-Received: from 1G5JKC2.Broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id gk22sm4189087pjb.39.2020.11.11.20.51.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 20:51:53 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Kurt Kanzenbach <kurt@kmk-computers.de>,
-        Rob Herring <robh@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com (maintainer:BROADCOM IPROC ARM
-        ARCHITECTURE), Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        netdev@vger.kernel.org (open list:NETWORKING DRIVERS),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 10/10] dt-bindings: net: dsa: b53: Add YAML bindings
-Date:   Wed, 11 Nov 2020 20:50:20 -0800
-Message-Id: <20201112045020.9766-11-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201112045020.9766-1-f.fainelli@gmail.com>
-References: <20201112045020.9766-1-f.fainelli@gmail.com>
+        id S1728139AbgKLFdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 00:33:15 -0500
+Received: from mail-db8eur05on2059.outbound.protection.outlook.com ([40.107.20.59]:25720
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729285AbgKLFNx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Nov 2020 00:13:53 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UlkQtrcfGXLvDgfAv7iwDO6pKKIb3dYnVO2NN7g0Lv3bcn/qeuAINitzwapzPWw28wyd1MI5pH/otlWLib5qUGC4dwgbR0aWPisB12tp7NG8+QjCAVFXvwaiNk1+leVPRItFHnGo0ZYL06Cnc8ts89utB34BcEPWlbCasOF4QMNosx5rlqdojWnE3oV6NUzDsfYtI8C48fQGgVSN1wcYKnC4bfRWAyN/KqxRoR0eavlkP2tj7kykHKqhkjES5iSc7nXA8U/+ZTWrwsZddxVHwCOdu1X+eHQjJITiN/zSjYHJJ8DSrJd74o86iHRUAup/Bry3Ytth2a+hJk0jSPFgKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rm+zw3CkJ50S5TG5KyT36kFXbzOkcz/F589H5Zuy+N8=;
+ b=SsMtztFuTKunsMu1BwqC5O227BPZO6uP83xhRgIZknyGaixG1/+sjD9c8oZmu64p67M71iaWUYsBwEzSU3/13fV1/bBJFBoMtuda7DOka3qEb5Qk9haiHqZtHOPsyVIeIEOt68GKl0iou0vEHGML5KNDFGqJfJhBTAt/5UGZh8uYZT68H0K0MD6cw4cG+h2N+6bUexfFfRLrdylcxx3BvsN8xZYP2UsQ/E1qBOhM3CbJYZYQT8QvbrGO8s8tq/DIDSKZ0rqHBkhgXc7kNatQR+dCdqzIpau/ubvxXV+Kfy+hA99rKCzwAnozPZ3S53TLtMxeSgpG3n6aG5GhxtjpSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rm+zw3CkJ50S5TG5KyT36kFXbzOkcz/F589H5Zuy+N8=;
+ b=GT5yMvRUpXbv2vtZwwDlqNzy/xs5z02/fscfNjgrjMDvyP0//HPGJb2UZVVs6PsScc9gSCRP+vzK/gnCpLLxTmbdhonyEsaCDvJcXhdcPVfx9LNTDZwSPHLF4RMbrBrpeV/GR7qtLABBfkxvLJzMoy58R7AEY83RJIMAgsRXMn0=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR04MB5582.eurprd04.prod.outlook.com (2603:10a6:803:ca::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Thu, 12 Nov
+ 2020 05:13:47 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3541.025; Thu, 12 Nov 2020
+ 05:13:47 +0000
+Message-ID: <cee6916984b183c4a1955781afe6a35f0e6497b3.camel@nxp.com>
+Subject: Re: [PATCH v2] dt-bindings: display: panel: one file of all simple
+ LVDS panels with dual ports
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        dri-devel@lists.freedesktop.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Date:   Thu, 12 Nov 2020 13:12:00 +0800
+In-Reply-To: <20201111225527.GA2191793@bogus>
+References: <1604993797-14240-1-git-send-email-victor.liu@nxp.com>
+         <20201111225527.GA2191793@bogus>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-0ubuntu1 
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SGAP274CA0004.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::16)
+ To VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from blueberry.ap.freescale.net (119.31.174.66) by SGAP274CA0004.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b6::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21 via Frontend Transport; Thu, 12 Nov 2020 05:13:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 31c06323-0bc4-46a3-c24b-08d886c9bbaa
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5582:
+X-Microsoft-Antispam-PRVS: <VI1PR04MB558200E7085C674E8F96E60D98E70@VI1PR04MB5582.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lu1rZ4IlMo1MKAJwPJcl4NyFkkJ2SoxYVqyURgvm9ZP1UzdN/39zI5/YAarEOuPIYD48Fo7YulvDeOWK8I8KjggV9YIdbLNHqaZvJmN0d74eABw4QNyHgjrYXqZEZ5z0G+hDYmDRCW69Tn7ysJA1OP9hB0w/WCauHbhafNdNq4LNgHy6z1l9O0qsfHrXdgVFh7sJTnGwZ8kqSQcLHDVKGNjkvEbonPnOyplFGiI0xuImygcz95Xa3JGPXPtdYQfiBHzAHfRUPNCyoZ541zunAOfphYGBDi+TixJOePdkSGPOzT+8wMcE++koW2Q8jA/nMA6k5yP4sc1umUVeY0g4QoDfxO0E+gqQpU6kAVaXa575qIhFOkZxP4mB6rP49KuLPouFYoFw6J596GWkcfwZ8g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(136003)(376002)(39860400002)(366004)(4001150100001)(6486002)(8936002)(8676002)(478600001)(26005)(6666004)(6506007)(86362001)(83380400001)(52116002)(66946007)(66476007)(2906002)(6916009)(66556008)(36756003)(186003)(16526019)(6512007)(5660300002)(966005)(956004)(316002)(54906003)(2616005)(4326008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: kpbbfPBI/m6US6GPNZWbHnLcmS+ps2L6j9GF/QTIM72fZQAH9cKBOMRVgcmkQQ/c3JSXEafzkNIra9AaNCwDInVF7LNRj88j2mxgbD67IzbDZpWcKgnCFd6t2zxEumBLzxOJIbkkJ5w1qHVGxYHykQeIQ5e3PoaHnlpyAplhjvtEsA3GulEsYnqAVUeBf0fb43LwTxPizzOBZ0t89LyoWUBiBGwG0BAsoqx0u+LqvVua09QayDqcnj191ej/cRh/54VL2o11xk1/RkwvpMvVbIzsuaMXwRbcXVMhYD3wHzxAyc1iYvDkeR3M3fXzGOiVKST1GFwttWuLj5YJiaabZsnmH4y+hOU5iMq+JUizoEJZlWf/fF1B/2Eqe0Y69hPM6zW2kTJEZ7JoZZJRUrLye4SbTo6BS4X1NDyQyeo694lFQJKmJ+rlOAsfdaofgpMRud4DwkOH85CKDp5RRAQgWuNNJpLJxRiujv/jpz1/2dO8CeRmWx215QH8S0CRYFCAPzuvbf5mB6FedJ7z6/uAg808uOQAdoScNA5lCbk1qKng/17wuoTqxDK7BAY0Sm89wviDc112f5X5rf9zcHB+JbENP1vnd0kBBsHK49hCFzHV6qTX9TftYP+ZfuhMla+6XR8ry+9M+uwtc1MYJPHuAA==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31c06323-0bc4-46a3-c24b-08d886c9bbaa
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2020 05:13:47.6468
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7ys+XsSXXQHfBFOAFaJJtzPHgOQFq1ePHZtSGDmnQk9KgTzj3aQi8P7q2QURoz+MMC4HOzyvRULcTczUVAiRgg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5582
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kurt Kanzenbach <kurt@kmk-computers.de>
+On Wed, 2020-11-11 at 16:55 -0600, Rob Herring wrote:
+> On Tue, Nov 10, 2020 at 03:36:37PM +0800, Liu Ying wrote:
+> > To complement panel-simple.yaml, create panel-simple-lvds-dual-
+> > ports.yaml.
+> > panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels
+> > that
+> > has dual LVDS ports and requires only a single power-supply.
+> > One LVDS port receives even pixels, and the other receives odd
+> > pixels.
+> > Optionally, a backlight and an enable GPIO can be specified as
+> > properties.
+> > 
+> > Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
+> > 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new
+> > file.
+> > 
+> > The objectives with one file for all the simple LVDS panels with
+> > dual ports are:
+> > - Make it simpler to add bindings for this kind of LVDS panels
+> > - Keep the number of bindings file lower
+> > - Keep the binding documentation for this kind of LVDS panels more
+> > consistent
+> > - Make it possible for drivers to get pixel order via
+> >   drm_of_lvds_get_dual_link_pixel_order(), as the optional 'ports'
+> > property is
+> >   allowed
+> > 
+> > Suggested-by: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: David Airlie <airlied@linux.ie>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v1->v2:
+> > * Correct pixel order in example LVDS panel node.
+> > 
+> >  .../panel/panel-simple-lvds-dual-ports.yaml        | 85
+> > ++++++++++++++++++++++
+> >  .../bindings/display/panel/panel-simple.yaml       | 10 ---
+> >  2 files changed, 85 insertions(+), 10 deletions(-)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/panel/panel-simple-lvds-
+> > dual-ports.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-
+> > simple-lvds-dual-ports.yaml
+> > b/Documentation/devicetree/bindings/display/panel/panel-simple-
+> > lvds-dual-ports.yaml
+> > new file mode 100644
+> > index 00000000..58774ed
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-
+> > lvds-dual-ports.yaml
+> > @@ -0,0 +1,85 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > http://devicetree.org/schemas/display/panel/panel-simple-lvds-dual-ports.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Simple LVDS panels with one power supply and dual LVDS
+> > ports
+> > +
+> > +maintainers:
+> > +  - Liu Ying <victor.liu@nxp.com>
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +  - Sam Ravnborg <sam@ravnborg.org>
+> > +
+> > +description: |
+> > +  This binding file is a collection of the LVDS panels that
+> > +  has dual LVDS ports and requires only a single power-supply.
+> > +  One LVDS port receives even pixels, and the other receives odd
+> > pixels.
+> 
+> You have to define which port number is which in the schema.
 
-Convert the b53 DSA device tree bindings to YAML in order to allow
-for automatic checking and such.
+Ok.  It looks that most planes receive odd pixels via the first port
+and even pixels via the second port, at least all the planes to be
+migrated do, so I'll specify that in v3.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Suggested-by: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: Kurt Kanzenbach <kurt@kmk-computers.de>
----
- .../devicetree/bindings/net/dsa/b53.txt       | 149 -----------
- .../devicetree/bindings/net/dsa/brcm,b53.yaml | 249 ++++++++++++++++++
- MAINTAINERS                                   |   2 +-
- 3 files changed, 250 insertions(+), 150 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/net/dsa/b53.txt
- create mode 100644 Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
+> 
+> > +  There are optionally a backlight and an enable GPIO.
+> > +  The panel may use an OF graph binding for the association to the
+> > display,
+> > +  or it may be a direct child node of the display.
+> > +
+> > +  If the panel is more advanced a dedicated binding file is
+> > required.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +
+> > +  compatible:
+> > +    enum:
+> > +    # compatible must be listed in alphabetical order, ordered by
+> > compatible.
+> > +    # The description in the comment is mandatory for each
+> > compatible.
+> > +
+> > +        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD
+> > panel
+> > +      - auo,g133han01
+> > +        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD
+> > panel
+> > +      - auo,g185han01
+> > +        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
+> > +      - auo,g190ean01
+> > +        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x
+> > 1200) LVDS TFT LCD panel
+> > +      - koe,tx26d202vm0bwa
+> > +        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT
+> > LCD panel
+> > +      - nlt,nl192108ac18-02d
+> > +
+> > +  backlight: true
+> > +  enable-gpios: true
+> > +  port: true
+> 
+> A single port shouldn't be valid.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/b53.txt b/Documentation/devicetree/bindings/net/dsa/b53.txt
-deleted file mode 100644
-index f1487a751b1a..000000000000
---- a/Documentation/devicetree/bindings/net/dsa/b53.txt
-+++ /dev/null
-@@ -1,149 +0,0 @@
--Broadcom BCM53xx Ethernet switches
--==================================
--
--Required properties:
--
--- compatible: For external switch chips, compatible string must be exactly one
--  of: "brcm,bcm5325"
--      "brcm,bcm53115"
--      "brcm,bcm53125"
--      "brcm,bcm53128"
--      "brcm,bcm5365"
--      "brcm,bcm5395"
--      "brcm,bcm5389"
--      "brcm,bcm5397"
--      "brcm,bcm5398"
--
--  For the BCM11360 SoC, must be:
--      "brcm,bcm11360-srab" and the mandatory "brcm,cygnus-srab" string
--
--  For the BCM5310x SoCs with an integrated switch, must be one of:
--      "brcm,bcm53010-srab"
--      "brcm,bcm53011-srab"
--      "brcm,bcm53012-srab"
--      "brcm,bcm53018-srab"
--      "brcm,bcm53019-srab" and the mandatory "brcm,bcm5301x-srab" string
--
--  For the BCM5831X/BCM1140x SoCs with an integrated switch, must be one of:
--      "brcm,bcm11404-srab"
--      "brcm,bcm11407-srab"
--      "brcm,bcm11409-srab"
--      "brcm,bcm58310-srab"
--      "brcm,bcm58311-srab"
--      "brcm,bcm58313-srab" and the mandatory "brcm,omega-srab" string
--
--  For the BCM585xx/586XX/88312 SoCs with an integrated switch, must be one of:
--      "brcm,bcm58522-srab"
--      "brcm,bcm58523-srab"
--      "brcm,bcm58525-srab"
--      "brcm,bcm58622-srab"
--      "brcm,bcm58623-srab"
--      "brcm,bcm58625-srab"
--      "brcm,bcm88312-srab" and the mandatory "brcm,nsp-srab string
--
--  For the BCM63xx/33xx SoCs with an integrated switch, must be one of:
--      "brcm,bcm3384-switch"
--      "brcm,bcm6328-switch"
--      "brcm,bcm6368-switch" and the mandatory "brcm,bcm63xx-switch"
--
--Required properties for BCM585xx/586xx/88312 SoCs:
--
-- - reg: a total of 3 register base addresses, the first one must be the
--   Switch Register Access block base, the second is the port 5/4 mux
--   configuration register and the third one is the SGMII configuration
--   and status register base address.
--
-- - interrupts: a total of 13 interrupts must be specified, in the following
--   order: port 0-5, 7-8 link status change, then the integrated PHY interrupt,
--   then the timestamping interrupt and the sleep timer interrupts for ports
--   5,7,8.
--
--Optional properties for BCM585xx/586xx/88312 SoCs:
--
--  - reg-names: a total of 3 names matching the 3 base register address, must
--    be in the following order:
--	"srab"
--	"mux_config"
--	"sgmii_config"
--
--  - interrupt-names: a total of 13 names matching the 13 interrupts specified
--    must be in the following order:
--	"link_state_p0"
--	"link_state_p1"
--	"link_state_p2"
--	"link_state_p3"
--	"link_state_p4"
--	"link_state_p5"
--	"link_state_p7"
--	"link_state_p8"
--	"phy"
--	"ts"
--	"imp_sleep_timer_p5"
--	"imp_sleep_timer_p7"
--	"imp_sleep_timer_p8"
--
--See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
--required and optional properties.
--
--Examples:
--
--Ethernet switch connected via MDIO to the host, CPU port wired to eth0:
--
--	eth0: ethernet@10001000 {
--		compatible = "brcm,unimac";
--		reg = <0x10001000 0x1000>;
--
--		fixed-link {
--			speed = <1000>;
--			full-duplex;
--		};
--	};
--
--	mdio0: mdio@10000000 {
--		compatible = "brcm,unimac-mdio";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		switch0: ethernet-switch@1e {
--			compatible = "brcm,bcm53125";
--			reg = <30>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			ports {
--				#address-cells = <1>;
--				#size-cells = <0>;
--
--				port0@0 {
--					reg = <0>;
--					label = "lan1";
--				};
--
--				port1@1 {
--					reg = <1>;
--					label = "lan2";
--				};
--
--				port5@5 {
--					reg = <5>;
--					label = "cable-modem";
--					fixed-link {
--						speed = <1000>;
--						full-duplex;
--					};
--					phy-mode = "rgmii-txid";
--				};
--
--				port8@8 {
--					reg = <8>;
--					label = "cpu";
--					fixed-link {
--						speed = <1000>;
--						full-duplex;
--					};
--					phy-mode = "rgmii-txid";
--					ethernet = <&eth0>;
--				};
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-new file mode 100644
-index 000000000000..c3c938893ad9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
-@@ -0,0 +1,249 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/dsa/brcm,b53.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM53xx Ethernet switches
-+
-+allOf:
-+  - $ref: dsa.yaml#
-+
-+maintainers:
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+
-+description:
-+  Broadcom BCM53xx Ethernet switches
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - const: brcm,bcm5325
-+      - const: brcm,bcm53115
-+      - const: brcm,bcm53125
-+      - const: brcm,bcm53128
-+      - const: brcm,bcm5365
-+      - const: brcm,bcm5395
-+      - const: brcm,bcm5389
-+      - const: brcm,bcm5397
-+      - const: brcm,bcm5398
-+      - items:
-+          - const: brcm,bcm11360-srab
-+          - const: brcm,cygnus-srab
-+      - items:
-+          - enum:
-+              - brcm,bcm53010-srab
-+              - brcm,bcm53011-srab
-+              - brcm,bcm53012-srab
-+              - brcm,bcm53018-srab
-+              - brcm,bcm53019-srab
-+          - const: brcm,bcm5301x-srab
-+      - items:
-+          - enum:
-+              - brcm,bcm11404-srab
-+              - brcm,bcm11407-srab
-+              - brcm,bcm11409-srab
-+              - brcm,bcm58310-srab
-+              - brcm,bcm58311-srab
-+              - brcm,bcm58313-srab
-+          - const: brcm,omega-srab
-+      - items:
-+          - enum:
-+              - brcm,bcm58522-srab
-+              - brcm,bcm58523-srab
-+              - brcm,bcm58525-srab
-+              - brcm,bcm58622-srab
-+              - brcm,bcm58623-srab
-+              - brcm,bcm58625-srab
-+              - brcm,bcm88312-srab
-+          - const: brcm,nsp-srab
-+      - items:
-+          - enum:
-+              - brcm,bcm3384-switch
-+              - brcm,bcm6328-switch
-+              - brcm,bcm6368-switch
-+          - const: brcm,bcm63xx-switch
-+
-+required:
-+  - compatible
-+  - reg
-+
-+# BCM585xx/586xx/88312 SoCs
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - brcm,bcm58522-srab
-+          - brcm,bcm58523-srab
-+          - brcm,bcm58525-srab
-+          - brcm,bcm58622-srab
-+          - brcm,bcm58623-srab
-+          - brcm,bcm58625-srab
-+          - brcm,bcm88312-srab
-+then:
-+  properties:
-+    reg:
-+      minItems: 3
-+      maxItems: 3
-+    reg-names:
-+      items:
-+        - const: srab
-+        - const: mux_config
-+        - const: sgmii_config
-+    interrupts:
-+      minItems: 13
-+      maxItems: 13
-+    interrupt-names:
-+      items:
-+        - const: link_state_p0
-+        - const: link_state_p1
-+        - const: link_state_p2
-+        - const: link_state_p3
-+        - const: link_state_p4
-+        - const: link_state_p5
-+        - const: link_state_p7
-+        - const: link_state_p8
-+        - const: phy
-+        - const: ts
-+        - const: imp_sleep_timer_p5
-+        - const: imp_sleep_timer_p7
-+        - const: imp_sleep_timer_p8
-+  required:
-+    - interrupts
-+else:
-+  properties:
-+    reg:
-+      maxItems: 1
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    mdio {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ethernet-switch@1e {
-+            compatible = "brcm,bcm53125";
-+            reg = <30>;
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+                    label = "lan1";
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+                    label = "lan2";
-+                };
-+
-+                port@5 {
-+                    reg = <5>;
-+                    label = "cable-modem";
-+                    phy-mode = "rgmii-txid";
-+                    fixed-link {
-+                        speed = <1000>;
-+                        full-duplex;
-+                    };
-+                };
-+
-+                port@8 {
-+                    reg = <8>;
-+                    label = "cpu";
-+                    phy-mode = "rgmii-txid";
-+                    ethernet = <&eth0>;
-+                    fixed-link {
-+                        speed = <1000>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    axi {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        switch@36000 {
-+            compatible = "brcm,bcm58623-srab", "brcm,nsp-srab";
-+            reg = <0x36000 0x1000>,
-+                  <0x3f308 0x8>,
-+                  <0x3f410 0xc>;
-+            reg-names = "srab", "mux_config", "sgmii_config";
-+            interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
-+                         <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "link_state_p0",
-+                              "link_state_p1",
-+                              "link_state_p2",
-+                              "link_state_p3",
-+                              "link_state_p4",
-+                              "link_state_p5",
-+                              "link_state_p7",
-+                              "link_state_p8",
-+                              "phy",
-+                              "ts",
-+                              "imp_sleep_timer_p5",
-+                              "imp_sleep_timer_p7",
-+                              "imp_sleep_timer_p8";
-+
-+            ethernet-ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    label = "port0";
-+                    reg = <0>;
-+                };
-+
-+                port@1 {
-+                    label = "port1";
-+                    reg = <1>;
-+                };
-+
-+                port@2 {
-+                    label = "port2";
-+                    reg = <2>;
-+                };
-+
-+                port@3 {
-+                    label = "port3";
-+                    reg = <3>;
-+                };
-+
-+                port@4 {
-+                    label = "port4";
-+                    reg = <4>;
-+                };
-+
-+                port@8 {
-+                    ethernet = <&amac2>;
-+                    label = "cpu";
-+                    reg = <8>;
-+                    fixed-link {
-+                        speed = <1000>;
-+                        full-duplex;
-+                    };
-+                };
-+            };
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index e73636b75f29..3786322d0bfb 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3380,7 +3380,7 @@ M:	Florian Fainelli <f.fainelli@gmail.com>
- L:	netdev@vger.kernel.org
- L:	openwrt-devel@lists.openwrt.org (subscribers-only)
- S:	Supported
--F:	Documentation/devicetree/bindings/net/dsa/b53.txt
-+F:	Documentation/devicetree/bindings/net/dsa/brcm,b53.yaml
- F:	drivers/net/dsa/b53/*
- F:	include/linux/platform_data/b53.h
- 
+This is inherited from panel-simple.yaml, but I assume it can dropped
+in v3 because it looks that the panels to be migrated are NOT
+referenced in any in-tree devicetree.
+
+> 
+> > +  ports: true
+> > +  power-supply: true
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - power-supply
+> > +
+> > +examples:
+> > +  - |
+> > +    panel: panel-lvds {
+> > +      compatible = "koe,tx26d202vm0bwa";
+> > +      power-supply = <&vdd_lcd_reg>;
+> > +
+> > +      ports {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        port@0 {
+> > +          dual-lvds-odd-pixels;
+> 
+> This needs to be documented. Though really, this property seems 
+> pointless if the port numbering is fixed (though 0 for even and 1
+> for 
+> odd would be a bit more logical).
+
+Will do in v3.
+
+Not sure if there is any panel swaps the pixel order or not.
+If there is, a dedicated binding is needed perhaps.
+
+> 
+> > +          reg = <0>;
+> > +
+> > +          panel_lvds0_in: endpoint {
+> > +            remote-endpoint = <&lvds0_out>;
+> > +          };
+> > +        };
+> > +
+> > +        port@1 {
+> > +          dual-lvds-even-pixels;
+> > +          reg = <1>;
+> > +
+> > +          panel_lvds1_in: endpoint {
+> > +            remote-endpoint = <&lvds1_out>;
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-
+> > simple.yaml
+> > b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > index f9750b0..62618e4 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/panel-
+> > simple.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-
+> > simple.yaml
+> > @@ -57,14 +57,8 @@ properties:
+> >        - auo,g104sn02
+> >          # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
+> >        - auo,g121ean01
+> > -        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD
+> > panel
+> > -      - auo,g133han01
+> >          # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
+> >        - auo,g156xtn01
+> > -        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD
+> > panel
+> > -      - auo,g185han01
+> > -        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
+> > -      - auo,g190ean01
+> >          # AU Optronics Corporation 31.5" FHD (1920x1080) TFT LCD
+> > panel
+> >        - auo,p320hvn03
+> >          # AU Optronics Corporation 21.5" FHD (1920x1080) color TFT
+> > LCD panel
+> > @@ -167,8 +161,6 @@ properties:
+> >        - kingdisplay,kd116n21-30nv-a010
+> >          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240)
+> > TFT LCD panel
+> >        - koe,tx14d24vm1bpa
+> > -        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x
+> > 1200) LVDS TFT LCD panel
+> > -      - koe,tx26d202vm0bwa
+> >          # Kaohsiung Opto-Electronics. TX31D200VM0BAA 12.3" HSXGA
+> > LVDS panel
+> >        - koe,tx31d200vm0baa
+> >          # Kyocera Corporation 12.1" XGA (1024x768) TFT LCD panel
+> > @@ -205,8 +197,6 @@ properties:
+> >        - neweast,wjfh116008a
+> >          # Newhaven Display International 480 x 272 TFT LCD panel
+> >        - newhaven,nhd-4.3-480272ef-atxl
+> > -        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT
+> > LCD panel
+> > -      - nlt,nl192108ac18-02d
+> >          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
+> >        - nvd,9128
+> >          # OKAYA Electric America, Inc. RS800480T-7X0GP 7" WVGA LCD
+> > panel
+> > -- 
+> > 2.7.4
+> > 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
 -- 
-2.25.1
+ Liu Ying
 
