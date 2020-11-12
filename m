@@ -2,152 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D99562B040D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 12:40:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 179EB2B042F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 12:45:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728063AbgKLLkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 06:40:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32770 "EHLO
+        id S1727822AbgKLLpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 06:45:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728159AbgKLLjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 06:39:51 -0500
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA76C0613D6
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 03:39:50 -0800 (PST)
-Received: by mail-wr1-x441.google.com with SMTP id k2so5674782wrx.2
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 03:39:50 -0800 (PST)
+        with ESMTP id S1727934AbgKLLoa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 06:44:30 -0500
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9390C0613D1;
+        Thu, 12 Nov 2020 03:44:28 -0800 (PST)
+Received: by mail-io1-xd42.google.com with SMTP id u21so5657257iol.12;
+        Thu, 12 Nov 2020 03:44:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2yBcVMAYM89L0pNLBwjheCruacUb1pfQ9rLevl8WsAY=;
-        b=VSkYtzoOqhMtvfFhicPy+3lWsCsFM9Uh8TuGet56GZJ4a9nfE1itQ035jgyaMj/xiD
-         /TQ+HpkdB0CSlr7avcMiGDMZSF+7MTVaRIl1MC8XiDyYLWmOkHby8A0YLw3rYH/9Z3Pi
-         bCusMAsHOvfwUp74mj8MitYrvJhW8AYjTo61vq277NtLIjzpvRYZ+Db1Zze2n+FPBDwS
-         XW/eDowiePzjNJy8tcWGVBaquOA6ZTo++ad98vhu6PwpQKl3A4fxSobPXgAdvQ9WcBcd
-         7RociI45MNzu8Jo0RHLhieurWEeUXeAC/fGbL1j1vUSRGttvkvWzcWYpo82IWJ4MIFq7
-         CEuA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=bjG+3fN6tWT0l9kBXwiMBUPZHTw/Ki7x6SY3rKyWanI=;
+        b=uqztGz9E5O3z4VS98sgFfWVmfAZ7ztqXBoHmagSMuHnpvSO8ShCExSkETu/j/MY4y/
+         WDP0+llM3771v0RFj6xFmylSk3xaNzgNkFjh6PsRwVHfU74ptHyfJ+26dQ1Z/+OfDA+i
+         IGMF2eEoGMbcmHKEjIaoXsL1Gr/hvEAyOQku4KRB8if5CqS0DsRIRW/W/hAC7j3zRqms
+         3fA/eJkvJk9OaHnoVZYJdy5viobUocBSSDVehCUW/sdnAzj+PcNYWM/SdnEoLv9ywZnY
+         KEkm1X+roX0k4jgO9tflZZVfFToKpzS7W0y67BR8c2ZTsgJYdPUsiveCjWFQtDsO4vO4
+         Rw7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2yBcVMAYM89L0pNLBwjheCruacUb1pfQ9rLevl8WsAY=;
-        b=ap3oCfrvJzkMnI1pRGBjzg6MUFH/POUw6egm+YxW8i/IoDwMaMsbSjyBxbPH+BmtZB
-         XSoZJpXeSbdqpJTESZxsuGNgQFtiDyYmG3UeKpCPwnUKwaw4O5WndHzNXjwYF1HOBSYX
-         /za6JnlP1RNaFFu5StwwMHQ3YGBvC0cQnwE3hU2k7UU7X7Cdj0gCcYvmvmGM1Vv2jN09
-         9K5XZ/FpvmReyVpgco9+6ZD+ePJJPUGTg6BvvFvxCYKYW3iarGvkzxUKABb25vJNRdLR
-         AYxqWjkNtqo9hNgE//duucNHlXXNCojB3r64htiFsxn4/D2nIYuKugmXfv+YkEO3tG2p
-         kFNA==
-X-Gm-Message-State: AOAM530Is3ebXNuFzhairc2GgEyIvXd1AqBku9F03Ocz2w1zN88Gkg6n
-        QkJ6Ohrm6p3IpThq2nhdpBTodw==
-X-Google-Smtp-Source: ABdhPJzsTxA1zW/q5sM0l2RXE9Np/KJT5Rv3SsHglK+wim7/HYjXom4ZLwemm3xLeNDbggkoeMKMDg==
-X-Received: by 2002:adf:e506:: with SMTP id j6mr25938384wrm.411.1605181189271;
-        Thu, 12 Nov 2020 03:39:49 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:6971:b700:3764:fa96? ([2a01:e34:ed2f:f020:6971:b700:3764:fa96])
-        by smtp.googlemail.com with ESMTPSA id p12sm6369412wrw.28.2020.11.12.03.39.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Nov 2020 03:39:48 -0800 (PST)
-Subject: Re: [PATCH v9 00/15] qcom: pm8150: add support for thermal monitoring
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-References: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <c943f56c-f72c-0f14-b6ed-b67e91573b1e@linaro.org>
-Date:   Thu, 12 Nov 2020 12:39:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=bjG+3fN6tWT0l9kBXwiMBUPZHTw/Ki7x6SY3rKyWanI=;
+        b=od+LIafELzo0aWkGQtCp3Aj+D0VXfElStwDGf4TGJMyZHF+Up4oVk0zxWQaBWcIxOc
+         fROLLeazH1xDEzIfLx8ugQbUKlrso8jjQI/3uxTpHcTnE9hBoMZrX5zB5uZ6Xnj3vgul
+         oLdDyPh3Tv2i3V60039AhtTgeZ2+lbNd8vx4KOGzeKt7n4WCNAfIMgc1kBzoKcFpNDxx
+         BBVbY8zVxHTXiJ3Mh+r6W8TfpLGcMhjyQXkOnl/SZIOkk8seEzUT3Uyfo39dUhWXUxr4
+         p186fEJeDbGNxwv7slMrFfnjmTBAuK17WMcnuZx3Hpf/WninE8vlwiiPslfBRtu+bwYa
+         jV5Q==
+X-Gm-Message-State: AOAM531rqNM0DWR2h/nPSU1vGSEqeUlb3xZAmKVkiHXPwgc2cxx2UBW0
+        YsJbaR1QrZJx0Ayg7W6YJ6mALO0a7kmzBQXQ/wI=
+X-Google-Smtp-Source: ABdhPJw6mtg+Wsg99W56SGu91b1DRfwQGGbt3J8n99qr1kWI36WvQ+CgwQxUWY4OSIgBtJAdzTBLlUI3RTj8Q0jsg4g=
+X-Received: by 2002:a5d:824b:: with SMTP id n11mr12310712ioo.10.1605181468096;
+ Thu, 12 Nov 2020 03:44:28 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201111152523.76254-1-aford173@gmail.com> <20201111191809.GA1859246@bogus>
+In-Reply-To: <20201111191809.GA1859246@bogus>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 12 Nov 2020 06:44:16 -0500
+Message-ID: <CAHCN7x+w3wpELWHVSd1-U38N+4TEDKWDRxzXEtDX2svkrTGJCw@mail.gmail.com>
+Subject: Re: [PATCH V4] dt-bindings: soc: imx: Add binding doc for spba bus
+To:     Rob Herring <robh@kernel.org>
+Cc:     Adam Ford-BE <aford@beaconembedded.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 11, 2020 at 2:18 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, 11 Nov 2020 09:25:23 -0600, Adam Ford wrote:
+> > Add binding doc for fsl,spba-bus.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> > make dt_binding_check showed no errors if I did this right.
+> >
+> > V4:  Remove an accidental makefile change
+> >      Move type:object under additional properties
+> >
+> > V3:  Rebase sample from aips-bus example
+> >      Split off from series adding i.MX8M Nano functions to reduce noise
+> >
+> > V2:  Attempted to update yaml from feedback
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dt.yaml: bus@30000000: reg: [[805306368, 1048576]] is not of type 'object'
+>         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+>
 
-Shall I take patch 1/15 and 12/15 ?
+Rob,
 
+Can you give me a pointer on what this message is saying?  I don't
+undertsand the YAML language, and I cannot get my machine to generate
+the same messages you're seeing.
+>
+> See https://patchwork.ozlabs.org/patch/1398351
+>
+> The base for the patch is generally the last rc1. Any dependencies
+> should be noted.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
 
+I have installed yamllint, and I have run the above line, but when I
+run make dt_binding_check it fails to finish script even before I add
+this new binding.  If I revert the Makefile back to before the
+implementation of yamllint, it works, but doesn't show the error.
+When I restore the Makefile, it runs but it doesn't show the error.
+Once I do a make clean, and run the dt_binding_check again, it fails
+to finish with the following error
 
-On 02/11/2020 18:49, Dmitry Baryshkov wrote:
-> This patch serie adds support for thermal monitoring block on Qualcomm's
-> PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
-> to support thermal zones provided by this thermal monitoring block.
-> Unlike the rest of PMIC thermal senses, these thermal zones describe
-> particular thermistors, which differ between from board to board.
-> 
-> Changes since v8:
->  - Simplified qcom_vadc_map_voltage_temp() code by removing ascending
->    tables support
->  - Simplified qcom-vadc-common volt/temp mapping code
->  - Implement suggestions by Matthias Kaehlcke: message formatting,
->    rewrite comments, remove unused variable initialization.
-> 
-> Changes since v7:
->  - Move qcom-vadc-common.h header to include/linux/iio/adc/ dir.
->  - Use explicit sizeof(var) instead of hand-coding 1 when accessing
->    adc-tm registers.
->  - Remove buffer read from adc_tm5_init().
->  - Remove extra on-stack var from adc_tm5_get_temp().
->  - Minor formatting changes as suggested Daniel.
-> 
-> Changes since v6:
->  - Added include <linux/bitfield.h> as noted by Jishnu Prakash.
-> 
-> Changes since v5:
->  - Reworked DT bindings:
->    * Removed qcom,adc-channel, instead it is parsed from io-channels
->    * Renamed qcom,hw-settle-time to include -us suffix
->  - Re-added monitor enabling which got lost during refactored. Noted by
->    Jishnu Prakash.
->  - Use threaded IRQ handler as susggested by Jishnu.
-> 
-> Changes since v4:
->  - Added kernel-doc comments to ADC-TM structures
->  - Used several sizeof(buf) instead of hand-conding register size
-> 
-> Changes since v3:
->  - Fix DT description to spell "thermal monitoring" instead of just TM
->  - Fix warnings in DT example
->  - Add EXPORT_SYMBOL_GPL(of_iio_channel_get_by_name)
->  - Fixed whitespace chanes in qcom-vadc-common.c
->  - Removed error message if IIO chanel get returns -EPROBE_DEFER
-> 
-> Changes since v2:
->  - IIO: export of_iio_channel_get_by_name() function
->  - dt-bindings: move individual io-channels to each thermal monitoring
->    channel rather than listing them all in device node
->  - added fallback defaults to of_device_get_match_data calls in
->    qcom-spmi-adc5 and qcom-spmi-adc-tm5 drivers
->  - minor typo fixes
-> 
-> Changes since v1:
->  - Introduce fixp_linear_interpolate() by Craig Tatlor
->  - Lots of syntax/whitespace changes
->  - Cleaned up register definitions per Jonathan's suggestion
->  - Implemented most of the suggestions from Bjorn's and Jonathan's
->    review
-> 
-> 
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
+Documentation/devicetree/bindings/processed-schema-examples.json]
+Error 123
 
+It appears as if the processed-schema-examples.json is not generated at all.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+When I revert back to the older makefile, it appears that file is
+generated, but when I restore the makefile to the current version and
+run it again, it doesn't show the dtschema warnings/errors you see.
+I am guessing it's because the processed-schema-examples.json isn't
+being generated correctly after I run make clean.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Do you have any ideas what might be missing from my build machine?
+
+adam
+
+>
+> Please check and re-submit.
+>
