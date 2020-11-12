@@ -2,874 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A962B0728
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 14:59:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B69672B0747
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 15:11:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727646AbgKLN7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 08:59:47 -0500
-Received: from szxga07-in.huawei.com ([45.249.212.35]:7889 "EHLO
-        szxga07-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728032AbgKLN7r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 08:59:47 -0500
-Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.58])
-        by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4CX38w5lrjz74m9;
-        Thu, 12 Nov 2020 21:58:24 +0800 (CST)
-Received: from huawei.com (10.151.151.249) by DGGEMS403-HUB.china.huawei.com
- (10.3.19.203) with Microsoft SMTP Server id 14.3.487.0; Thu, 12 Nov 2020
- 21:58:26 +0800
-From:   Dongjiu Geng <gengdongjiu@huawei.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <gengdongjiu@huawei.com>
-Subject: [PATCH v2 2/2] clk: hisilicon: Add clock driver for hi3559A SoC
-Date:   Thu, 12 Nov 2020 22:23:00 +0000
-Message-ID: <20201112222300.19860-2-gengdongjiu@huawei.com>
+        id S1728227AbgKLOLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 09:11:00 -0500
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:54809 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728088AbgKLOLA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 09:11:00 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201112141047euoutp01bdf2731f3b9add423587e05ef1f38b8d~GyAaXYLLC1492414924euoutp01g
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 14:10:47 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201112141047euoutp01bdf2731f3b9add423587e05ef1f38b8d~GyAaXYLLC1492414924euoutp01g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1605190247;
+        bh=Y8UGYXPQktNuVDpVrQPw+LqxbvaW5wF8I10yL3taz2M=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=a4D10QqbrhWOyu4a6okw0K7aaT4HFW2TGi1vq0N0E2Q1uh6q+7n6T8GX3Dtu5tpQf
+         quwQUZcDTr37NLDTVQk8ik4VjP6pulQ9k61J1JzFniHB2tt1rSjZb2gv4SB/QGKTBv
+         6tlptIW965z6jNcbqLM63DQvQ2ff+hH1n/pyvlMU=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201112141042eucas1p2eeada284ec969c498ac1e767c01401ce~GyAVOhRQV0207802078eucas1p2p;
+        Thu, 12 Nov 2020 14:10:42 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 3F.C0.27958.2624DAF5; Thu, 12
+        Nov 2020 14:10:42 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c~GyAUx8gtj2413224132eucas1p1Y;
+        Thu, 12 Nov 2020 14:10:41 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201112141041eusmtrp16859c0c7493f04e771cd58e726ce6c7d~GyAUxDcBG1172011720eusmtrp1G;
+        Thu, 12 Nov 2020 14:10:41 +0000 (GMT)
+X-AuditID: cbfec7f2-efdff70000006d36-2c-5fad426249f4
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id BE.FE.16282.1624DAF5; Thu, 12
+        Nov 2020 14:10:41 +0000 (GMT)
+Received: from AMDC3061.digital.local (unknown [106.120.51.75]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20201112141041eusmtip26d9bfce875c3e898a25ab50da413d3d6~GyAUBSU8z2680626806eusmtip2_;
+        Thu, 12 Nov 2020 14:10:40 +0000 (GMT)
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+To:     georgi.djakov@linaro.org, cw00.choi@samsung.com,
+        inki.dae@samsung.com
+Cc:     krzk@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        a.swigon@samsung.com, myungjoo.ham@samsung.com,
+        sw0312.kim@samsung.com, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, s.nawrocki@samsung.com
+Subject: [PATCH v9 0/5] Exynos: Simple QoS for exynos-bus using interconnect
+Date:   Thu, 12 Nov 2020 15:09:26 +0100
+Message-Id: <20201112140931.31139-1-s.nawrocki@samsung.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201112222300.19860-1-gengdongjiu@huawei.com>
-References: <20201112222300.19860-1-gengdongjiu@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.151.151.249]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBKsWRmVeSWpSXmKPExsWy7djP87pJTmvjDY6d5bO4P6+V0WLjjPWs
+        Fte/PGe1mH/kHKvFla/v2Sym793EZjHp/gQWi/PnN7BbbHp8jdXi8q45bBafe48wWsw4v4/J
+        Yu2Ru+wWtxtXsFm07j3CbnH4TTurxYzJL9kcBD02repk87hzbQ+bx/3u40wem5fUe/RtWcXo
+        8XmTXABbFJdNSmpOZllqkb5dAlfGvj/nmQruaFQ8frWbqYHxk0IXIyeHhICJxMw9T1m6GLk4
+        hARWMEqsfrCKEcL5wigxZdplZgjnM6PE5W+v2GBabq16zQSRWM4oseTcDoSWGR92g1WxCRhK
+        9B7tA0pwcIgIeEqcbNAHqWEWaGaWaGjexAhSIyzgI3GzrxvMZhFQlXj4/QMziM0rYC1xetoj
+        doht8hKrNxyAigtKnJz5hAXEZgaKN2+dDXaehEA7p8TTnrusEA0uEgc3LGWGsIUlXh3fAjVI
+        RuL05B4WiIZmRome3bfZIZwJjBL3jy9ghKiylrhz7hcbyNnMApoS63fpg5gSAo4Su7eaQZh8
+        EjfeCkLcwCcxadt0Zogwr0RHmxDEDBWJ36umM0HYUhLdT/6zQNgeEmvaX4KDR0ggVmL3miOM
+        ExgVZiH5bBaSz2YhnLCAkXkVo3hqaXFuemqxYV5quV5xYm5xaV66XnJ+7iZGYGI7/e/4px2M
+        c1991DvEyMTBeIhRgoNZSYRX2WFNvBBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeVbOBUgLpiSWp
+        2ampBalFMFkmDk6pBiYu5XhBlpnh927sinkWt+SPy7E/3s9vpszdn/QzOkc+szzkyYu/y1hD
+        +bf4XZ/xWfZ1UlNzHR9X++Fl11dNuH+pcEVv6PZHUx31fKP6khc8Vn9sUTrtYf5P55SsHG5/
+        403r1WX4Hx/pqNuvbHnkp8aDeV5qk7b/bNV99C0lvEF2yuT9ue2pZmwRvJxeruZvT2wumN+z
+        Za7Bvh+iN2+X75FwE53el5ISHtVn+i7BuLQq7pU/2+/vx3m18m+qHu3P2TVtfVmVi+Tc3tUd
+        HZ0eE2v38Ln5vc94MvuLMNec1RorN6tef5nxUSH+8qkvm6/Us3koNTHdW5oXNV/4aFNc9arX
+        q3OPHc3jfPzG+IPp42dKLMUZiYZazEXFiQCxL6ZV2wMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrCIsWRmVeSWpSXmKPExsVy+t/xe7qJTmvjDW780rW4P6+V0WLjjPWs
+        Fte/PGe1mH/kHKvFla/v2Sym793EZjHp/gQWi/PnN7BbbHp8jdXi8q45bBafe48wWsw4v4/J
+        Yu2Ru+wWtxtXsFm07j3CbnH4TTurxYzJL9kcBD02repk87hzbQ+bx/3u40wem5fUe/RtWcXo
+        8XmTXABblJ5NUX5pSapCRn5xia1StKGFkZ6hpYWekYmlnqGxeayVkamSvp1NSmpOZllqkb5d
+        gl7Gvj/nmQruaFQ8frWbqYHxk0IXIyeHhICJxK1Vr5m6GLk4hASWMkp8erebtYuRAyghJTG/
+        RQmiRljiz7UuNoiaT4wSvQ862UASbAKGEr1H+xhBbBEBX4nVJyexgBQxC0xmlnh0uwWsSFjA
+        R+JmXzdYEYuAqsTD7x+YQWxeAWuJ09MesUNskJdYveEAVFxQ4uTMJywgRzALqEusnycEEmYG
+        KmneOpt5AiP/LCRVsxCqZiGpWsDIvIpRJLW0ODc9t9hIrzgxt7g0L10vOT93EyMw+rYd+7ll
+        B+PKVx/1DjEycTAeYpTgYFYS4VV2WBMvxJuSWFmVWpQfX1Sak1p8iNEU6OqJzFKiyfnA+M8r
+        iTc0MzA1NDGzNDC1NDNWEuc1OQLUJJCeWJKanZpakFoE08fEwSnVwMQoNEHTtUN1972Dsx4V
+        LDfYIrCr7sMJ7X13Jq4xXzf786bSy3Nu/gu8dPl6UFVRtJOUsJ3bxtdHr68L85Kawc0jHcy/
+        6ZenVsrlXtf1ebdiQk5a7Jsj8yChtO6mVNvafRPX35r6OoeDO51j1efD05bNqQk5oXtSx3OR
+        NI+6pKL+x9e9mtdtW+X37LlQ5/SySl56tajlTA59/UZzLcXkq9InHtbVriqelBD1u2j7kxsG
+        55ZPXK7sKvLkxmd+e+cc7ZeffBUSJiyKsRR0ylj4cGujxt2335RmpeQc6mkz3WmxrPNEXe2t
+        6fvf1CuEf4tcfqNK6KzZY9bo8xNe9TmeylnZbe37ZE//yewJK49JF31QYinOSDTUYi4qTgQA
+        bXqZ80cDAAA=
+X-CMS-MailID: 20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c
+References: <CGME20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c@eucas1p1.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock drivers for hi3559A SoC, this driver
-controls the SoC registers to supply different
-clocks to different IPs in the SoC.
 
-Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
----
- drivers/clk/hisilicon/Kconfig                 |   7 +
- drivers/clk/hisilicon/Makefile                |   1 +
- drivers/clk/hisilicon/clk-hi3559a.c           | 654 ++++++++++++++++++
- include/dt-bindings/clock/hi3559av100-clock.h | 127 ++++
- 4 files changed, 789 insertions(+)
- create mode 100644 drivers/clk/hisilicon/clk-hi3559a.c
- create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
+This patchset adds interconnect API support for the Exynos SoC "samsung,
+exynos-bus" compatible devices, which already have their corresponding
+exynos-bus driver in the devfreq subsystem.  Complementing the devfreq
+driver with an interconnect functionality allows to ensure the QoS
+requirements of devices accessing the system memory (e.g. video processing
+devices) are fulfilled and allows to avoid issues like the one discussed
+in thread [1].
 
-diff --git a/drivers/clk/hisilicon/Kconfig b/drivers/clk/hisilicon/Kconfig
-index 6a9e93a0bb95..5ecc37aaa118 100644
---- a/drivers/clk/hisilicon/Kconfig
-+++ b/drivers/clk/hisilicon/Kconfig
-@@ -15,6 +15,13 @@ config COMMON_CLK_HI3519
- 	help
- 	  Build the clock driver for hi3519.
- 
-+config COMMON_CLK_HI3559A
-+	bool "Hi3559A Clock Driver"
-+	depends on ARCH_HISI || COMPILE_TEST
-+	default ARCH_HISI
-+	help
-+	  Build the clock driver for hi3559a.
-+
- config COMMON_CLK_HI3660
- 	bool "Hi3660 Clock Driver"
- 	depends on ARCH_HISI || COMPILE_TEST
-diff --git a/drivers/clk/hisilicon/Makefile b/drivers/clk/hisilicon/Makefile
-index b2441b99f3d5..bc101833b35e 100644
---- a/drivers/clk/hisilicon/Makefile
-+++ b/drivers/clk/hisilicon/Makefile
-@@ -17,3 +17,4 @@ obj-$(CONFIG_COMMON_CLK_HI6220)	+= clk-hi6220.o
- obj-$(CONFIG_RESET_HISI)	+= reset.o
- obj-$(CONFIG_STUB_CLK_HI6220)	+= clk-hi6220-stub.o
- obj-$(CONFIG_STUB_CLK_HI3660)	+= clk-hi3660-stub.o
-+obj-$(CONFIG_COMMON_CLK_HI3559A)	+= clk-hi3559a.o
-diff --git a/drivers/clk/hisilicon/clk-hi3559a.c b/drivers/clk/hisilicon/clk-hi3559a.c
-new file mode 100644
-index 000000000000..e8ac904d240c
---- /dev/null
-+++ b/drivers/clk/hisilicon/clk-hi3559a.c
-@@ -0,0 +1,654 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Hisilicon Hi3559A clock driver
-+ *
-+ * Copyright (c) 2019-2020, Huawei Tech. Co., Ltd.
-+ *
-+ * Author: Dongjiu Geng <gengdongjiu@huawei.com>
-+ */
-+
-+#include <linux/clk-provider.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+
-+#include <dt-bindings/clock/hi3559av100-clock.h>
-+
-+#include "clk.h"
-+#include "crg.h"
-+#include "reset.h"
-+
-+struct hi3559av100_pll_clock {
-+	u32     id;
-+	const char  *name;
-+	const char  *parent_name;
-+	u32     ctrl_reg1;
-+	u8      frac_shift;
-+	u8      frac_width;
-+	u8      postdiv1_shift;
-+	u8      postdiv1_width;
-+	u8      postdiv2_shift;
-+	u8      postdiv2_width;
-+	u32     ctrl_reg2;
-+	u8      fbdiv_shift;
-+	u8      fbdiv_width;
-+	u8      refdiv_shift;
-+	u8      refdiv_width;
-+};
-+
-+struct hi3559av100_clk_pll {
-+	struct clk_hw   hw;
-+	u32     id;
-+	void __iomem    *ctrl_reg1;
-+	u8      frac_shift;
-+	u8      frac_width;
-+	u8      postdiv1_shift;
-+	u8      postdiv1_width;
-+	u8      postdiv2_shift;
-+	u8      postdiv2_width;
-+	void __iomem    *ctrl_reg2;
-+	u8      fbdiv_shift;
-+	u8      fbdiv_width;
-+	u8      refdiv_shift;
-+	u8      refdiv_width;
-+};
-+
-+/* soc clk config */
-+static const struct hisi_fixed_rate_clock hi3559av100_fixed_rate_clks_crg[] = {
-+	{ HI3559AV100_FIXED_1188M, "1188m",   NULL, 0, 1188000000, },
-+	{ HI3559AV100_FIXED_1000M, "1000m",   NULL, 0, 1000000000, },
-+	{ HI3559AV100_FIXED_842M, "842m",    NULL, 0, 842000000, },
-+	{ HI3559AV100_FIXED_792M, "792m",    NULL, 0, 792000000, },
-+	{ HI3559AV100_FIXED_750M, "750m",    NULL, 0, 750000000, },
-+	{ HI3559AV100_FIXED_710M, "710m",    NULL, 0, 710000000, },
-+	{ HI3559AV100_FIXED_680M, "680m",    NULL, 0, 680000000, },
-+	{ HI3559AV100_FIXED_667M, "667m",    NULL, 0, 667000000, },
-+	{ HI3559AV100_FIXED_631M, "631m",    NULL, 0, 631000000, },
-+	{ HI3559AV100_FIXED_600M, "600m",    NULL, 0, 600000000, },
-+	{ HI3559AV100_FIXED_568M, "568m",    NULL, 0, 568000000, },
-+	{ HI3559AV100_FIXED_500M, "500m",    NULL, 0, 500000000, },
-+	{ HI3559AV100_FIXED_475M, "475m",    NULL, 0, 475000000, },
-+	{ HI3559AV100_FIXED_428M, "428m",    NULL, 0, 428000000, },
-+	{ HI3559AV100_FIXED_400M, "400m",    NULL, 0, 400000000, },
-+	{ HI3559AV100_FIXED_396M, "396m",    NULL, 0, 396000000, },
-+	{ HI3559AV100_FIXED_300M, "300m",    NULL, 0, 300000000, },
-+	{ HI3559AV100_FIXED_250M, "250m",    NULL, 0, 250000000, },
-+	{ HI3559AV100_FIXED_200M, "200m",    NULL, 0, 200000000, },
-+	{ HI3559AV100_FIXED_198M, "198m",    NULL, 0, 198000000, },
-+	{ HI3559AV100_FIXED_187p5M, "187p5m",  NULL, 0, 187500000, },
-+	{ HI3559AV100_FIXED_150M, "150m",    NULL, 0, 150000000, },
-+	{ HI3559AV100_FIXED_148p5M, "148p5m",  NULL, 0, 1485000000, },
-+	{ HI3559AV100_FIXED_125M, "125m",    NULL, 0, 125000000, },
-+	{ HI3559AV100_FIXED_107M, "107m",    NULL, 0, 107000000, },
-+	{ HI3559AV100_FIXED_100M, "100m",    NULL, 0, 100000000, },
-+	{ HI3559AV100_FIXED_99M, "99m",     NULL, 0, 99000000, },
-+	{ HI3559AV100_FIXED_75M, "75m",  NULL, 0, 75000000, },
-+	{ HI3559AV100_FIXED_74p25M, "74p25m",  NULL, 0, 74250000, },
-+	{ HI3559AV100_FIXED_72M, "72m",     NULL, 0, 72000000, },
-+	{ HI3559AV100_FIXED_60M, "60m",     NULL, 0, 60000000, },
-+	{ HI3559AV100_FIXED_54M, "54m",     NULL, 0, 54000000, },
-+	{ HI3559AV100_FIXED_50M, "50m",     NULL, 0, 50000000, },
-+	{ HI3559AV100_FIXED_49p5M, "49p5m",   NULL, 0, 49500000, },
-+	{ HI3559AV100_FIXED_37p125M, "37p125m", NULL, 0, 37125000, },
-+	{ HI3559AV100_FIXED_36M, "36m",     NULL, 0, 36000000, },
-+	{ HI3559AV100_FIXED_32p4M, "32p4m",   NULL, 0, 32400000, },
-+	{ HI3559AV100_FIXED_27M, "27m",     NULL, 0, 27000000, },
-+	{ HI3559AV100_FIXED_25M, "25m",     NULL, 0, 25000000, },
-+	{ HI3559AV100_FIXED_24M, "24m",     NULL, 0, 24000000, },
-+	{ HI3559AV100_FIXED_12M, "12m",     NULL, 0, 12000000, },
-+	{ HI3559AV100_FIXED_3M, "3m",      NULL, 0, 3000000, },
-+	{ HI3559AV100_FIXED_1p6M, "1p6m",    NULL, 0, 1600000, },
-+	{ HI3559AV100_FIXED_400K, "400k",    NULL, 0, 400000, },
-+	{ HI3559AV100_FIXED_100K, "100k",    NULL, 0, 100000, },
-+};
-+
-+
-+static const char *fmc_mux_p[] __initconst = {
-+	"24m", "75m", "125m", "150m", "200m", "250m", "300m", "400m"
-+};
-+static u32 fmc_mux_table[] = {0, 1, 2, 3, 4, 5, 6, 7};
-+
-+static const char *mmc_mux_p[] __initconst = {
-+	"100k", "25m", "49p5m", "99m", "187p5m", "150m", "198m", "400k"
-+};
-+static u32 mmc_mux_table[] = {0, 1, 2, 3, 4, 5, 6, 7};
-+
-+static const char *sysapb_mux_p[] __initconst = {
-+	"24m", "50m",
-+};
-+static u32 sysapb_mux_table[] = {0, 1};
-+
-+static const char *sysbus_mux_p[] __initconst = {
-+	"24m", "300m"
-+};
-+static u32 sysbus_mux_table[] = {0, 1};
-+
-+static const char *uart_mux_p[] __initconst = {"50m", "24m", "3m"};
-+static u32 uart_mux_table[] = {0, 1, 2};
-+
-+static const char *a73_clksel_mux_p[] __initconst = {
-+	"24m", "apll", "1000m"
-+};
-+static u32 a73_clksel_mux_table[] = {0, 1, 2};
-+
-+static struct hisi_mux_clock hi3559av100_mux_clks_crg[] __initdata = {
-+	{
-+		HI3559AV100_FMC_MUX, "fmc_mux", fmc_mux_p, ARRAY_SIZE(fmc_mux_p),
-+		CLK_SET_RATE_PARENT, 0x170, 2, 3, 0, fmc_mux_table,
-+	},
-+	{
-+		HI3559AV100_MMC0_MUX, "mmc0_mux", mmc_mux_p, ARRAY_SIZE(mmc_mux_p),
-+		CLK_SET_RATE_PARENT, 0x1a8, 24, 3, 0, mmc_mux_table,
-+	},
-+	{
-+		HI3559AV100_MMC1_MUX, "mmc1_mux", mmc_mux_p, ARRAY_SIZE(mmc_mux_p),
-+		CLK_SET_RATE_PARENT, 0x1ec, 24, 3, 0, mmc_mux_table,
-+	},
-+
-+	{
-+		HI3559AV100_MMC2_MUX, "mmc2_mux", mmc_mux_p, ARRAY_SIZE(mmc_mux_p),
-+		CLK_SET_RATE_PARENT, 0x214, 24, 3, 0, mmc_mux_table,
-+	},
-+
-+	{
-+		HI3559AV100_MMC3_MUX, "mmc3_mux", mmc_mux_p, ARRAY_SIZE(mmc_mux_p),
-+		CLK_SET_RATE_PARENT, 0x23c, 24, 3, 0, mmc_mux_table,
-+	},
-+
-+	{
-+		HI3559AV100_SYSAPB_MUX, "sysapb_mux", sysapb_mux_p, ARRAY_SIZE(sysapb_mux_p),
-+		CLK_SET_RATE_PARENT, 0xe8, 3, 1, 0, sysapb_mux_table
-+	},
-+
-+	{
-+		HI3559AV100_SYSBUS_MUX, "sysbus_mux", sysbus_mux_p, ARRAY_SIZE(sysbus_mux_p),
-+		CLK_SET_RATE_PARENT, 0xe8, 0, 1, 0, sysbus_mux_table
-+	},
-+
-+	{
-+		HI3559AV100_UART_MUX, "uart_mux", uart_mux_p, ARRAY_SIZE(uart_mux_p),
-+		CLK_SET_RATE_PARENT, 0x198, 28, 2, 0, uart_mux_table
-+	},
-+
-+	{
-+		HI3559AV100_A73_MUX, "a73_mux", a73_clksel_mux_p, ARRAY_SIZE(a73_clksel_mux_p),
-+		CLK_SET_RATE_PARENT, 0xe4, 0, 2, 0, a73_clksel_mux_table
-+	},
-+};
-+
-+static struct hisi_fixed_factor_clock hi3559av100_fixed_factor_clks[] __initdata
-+	= {
-+};
-+
-+static struct hisi_gate_clock hi3559av100_gate_clks[] __initdata = {
-+	{
-+		HI3559AV100_FMC_CLK, "clk_fmc", "fmc_mux",
-+		CLK_SET_RATE_PARENT, 0x170, 1, 0,
-+	},
-+	{
-+		HI3559AV100_MMC0_CLK, "clk_mmc0", "mmc0_mux",
-+		CLK_SET_RATE_PARENT, 0x1a8, 28, 0,
-+	},
-+	{
-+		HI3559AV100_MMC1_CLK, "clk_mmc1", "mmc1_mux",
-+		CLK_SET_RATE_PARENT, 0x1ec, 28, 0,
-+	},
-+	{
-+		HI3559AV100_MMC2_CLK, "clk_mmc2", "mmc2_mux",
-+		CLK_SET_RATE_PARENT, 0x214, 28, 0,
-+	},
-+	{
-+		HI3559AV100_MMC3_CLK, "clk_mmc3", "mmc3_mux",
-+		CLK_SET_RATE_PARENT, 0x23c, 28, 0,
-+	},
-+	{
-+		HI3559AV100_UART0_CLK, "clk_uart0", "uart_mux",
-+		CLK_SET_RATE_PARENT, 0x198, 23, 0,
-+	},
-+	{
-+		HI3559AV100_UART1_CLK, "clk_uart1", "uart_mux",
-+		CLK_SET_RATE_PARENT, 0x198, 24, 0,
-+	},
-+	{
-+		HI3559AV100_UART2_CLK, "clk_uart2", "uart_mux",
-+		CLK_SET_RATE_PARENT, 0x198, 25, 0,
-+	},
-+	{
-+		HI3559AV100_UART3_CLK, "clk_uart3", "uart_mux",
-+		CLK_SET_RATE_PARENT, 0x198, 26, 0,
-+	},
-+	{
-+		HI3559AV100_UART4_CLK, "clk_uart4", "uart_mux",
-+		CLK_SET_RATE_PARENT, 0x198, 27, 0,
-+	},
-+	{
-+		HI3559AV100_ETH_CLK, "clk_eth", NULL,
-+		CLK_SET_RATE_PARENT, 0x0174, 1, 0,
-+	},
-+	{
-+		HI3559AV100_ETH_MACIF_CLK, "clk_eth_macif", NULL,
-+		CLK_SET_RATE_PARENT, 0x0174, 5, 0,
-+	},
-+	{
-+		HI3559AV100_ETH1_CLK, "clk_eth1", NULL,
-+		CLK_SET_RATE_PARENT, 0x0174, 3, 0,
-+	},
-+	{
-+		HI3559AV100_ETH1_MACIF_CLK, "clk_eth1_macif", NULL,
-+		CLK_SET_RATE_PARENT, 0x0174, 7, 0,
-+	},
-+	{
-+		HI3559AV100_I2C0_CLK, "clk_i2c0", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 16, 0,
-+	},
-+	{
-+		HI3559AV100_I2C1_CLK, "clk_i2c1", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 17, 0,
-+	},
-+	{
-+		HI3559AV100_I2C2_CLK, "clk_i2c2", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 18, 0,
-+	},
-+	{
-+		HI3559AV100_I2C3_CLK, "clk_i2c3", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 19, 0,
-+	},
-+	{
-+		HI3559AV100_I2C4_CLK, "clk_i2c4", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 20, 0,
-+	},
-+	{
-+		HI3559AV100_I2C5_CLK, "clk_i2c5", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 21, 0,
-+	},
-+	{
-+		HI3559AV100_I2C6_CLK, "clk_i2c6", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 22, 0,
-+	},
-+	{
-+		HI3559AV100_I2C7_CLK, "clk_i2c7", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 23, 0,
-+	},
-+	{
-+		HI3559AV100_I2C8_CLK, "clk_i2c8", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 24, 0,
-+	},
-+	{
-+		HI3559AV100_I2C9_CLK, "clk_i2c9", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 25, 0,
-+	},
-+	{
-+		HI3559AV100_I2C10_CLK, "clk_i2c10", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 26, 0,
-+	},
-+	{
-+		HI3559AV100_I2C11_CLK, "clk_i2c11", "50m",
-+		CLK_SET_RATE_PARENT, 0x01a0, 27, 0,
-+	},
-+	{
-+		HI3559AV100_SPI0_CLK, "clk_spi0", "100m",
-+		CLK_SET_RATE_PARENT, 0x0198, 16, 0,
-+	},
-+	{
-+		HI3559AV100_SPI1_CLK, "clk_spi1", "100m",
-+		CLK_SET_RATE_PARENT, 0x0198, 17, 0,
-+	},
-+	{
-+		HI3559AV100_SPI2_CLK, "clk_spi2", "100m",
-+		CLK_SET_RATE_PARENT, 0x0198, 18, 0,
-+	},
-+	{
-+		HI3559AV100_SPI3_CLK, "clk_spi3", "100m",
-+		CLK_SET_RATE_PARENT, 0x0198, 19, 0,
-+	},
-+	{
-+		HI3559AV100_SPI4_CLK, "clk_spi4", "100m",
-+		CLK_SET_RATE_PARENT, 0x0198, 20, 0,
-+	},
-+	{
-+		HI3559AV100_SPI5_CLK, "clk_spi5", "100m",
-+		CLK_SET_RATE_PARENT, 0x0198, 21, 0,
-+	},
-+	{
-+		HI3559AV100_SPI6_CLK, "clk_spi6", "100m",
-+		CLK_SET_RATE_PARENT, 0x0198, 22, 0,
-+	},
-+	{
-+		HI3559AV100_EDMAC_AXICLK, "axi_clk_edmac", NULL,
-+		CLK_SET_RATE_PARENT, 0x16c, 6, 0,
-+	},
-+	{
-+		HI3559AV100_EDMAC_CLK, "clk_edmac", NULL,
-+		CLK_SET_RATE_PARENT, 0x16c, 5, 0,
-+	},
-+	{
-+		HI3559AV100_EDMAC1_AXICLK, "axi_clk_edmac1", NULL,
-+		CLK_SET_RATE_PARENT, 0x16c, 9, 0,
-+	},
-+	{
-+		HI3559AV100_EDMAC1_CLK, "clk_edmac1", NULL,
-+		CLK_SET_RATE_PARENT, 0x16c, 8, 0,
-+	},
-+	{
-+		HI3559AV100_VDMAC_CLK, "clk_vdmac", NULL,
-+		CLK_SET_RATE_PARENT, 0x14c, 5, 0,
-+	},
-+};
-+
-+static struct hi3559av100_pll_clock hi3559av100_pll_clks[] __initdata = {
-+	{
-+		HI3559AV100_APLL_CLK, "apll", NULL, 0x0, 0, 24, 24, 3, 28, 3,
-+		0x4, 0, 12, 12, 6
-+	},
-+	{
-+		HI3559AV100_GPLL_CLK, "gpll", NULL, 0x20, 0, 24, 24, 3, 28, 3,
-+		0x24, 0, 12, 12, 6
-+	},
-+};
-+
-+#define to_pll_clk(_hw) container_of(_hw, struct hi3559av100_clk_pll, hw)
-+static void hi3559av100_calc_pll(u32 *frac_val, u32 *postdiv1_val,
-+				 u32 *postdiv2_val,
-+				 u32 *fbdiv_val, u32 *refdiv_val, u64 rate)
-+{
-+	u64 rem;
-+
-+	*postdiv1_val = 2;
-+	*postdiv2_val = 1;
-+
-+	rate = rate * ((*postdiv1_val) * (*postdiv2_val));
-+
-+	*frac_val = 0;
-+	rem = do_div(rate, 1000000);
-+	rem = do_div(rate, 24);
-+	*fbdiv_val = rate;
-+	*refdiv_val = 1;
-+	rem = rem * (1 << 24);
-+	do_div(rem, 24);
-+	*frac_val = rem;
-+}
-+
-+static int clk_pll_set_rate(struct clk_hw *hw,
-+			    unsigned long rate,
-+			    unsigned long parent_rate)
-+{
-+	struct hi3559av100_clk_pll *clk = to_pll_clk(hw);
-+	u32 frac_val, postdiv1_val, postdiv2_val, fbdiv_val, refdiv_val;
-+	u32 val;
-+
-+	postdiv1_val = postdiv2_val = 0;
-+
-+	hi3559av100_calc_pll(&frac_val, &postdiv1_val, &postdiv2_val,
-+			     &fbdiv_val, &refdiv_val, (u64)rate);
-+
-+	val = readl_relaxed(clk->ctrl_reg1);
-+	val &= ~(((1 << clk->frac_width) - 1) << clk->frac_shift);
-+	val &= ~(((1 << clk->postdiv1_width) - 1) << clk->postdiv1_shift);
-+	val &= ~(((1 << clk->postdiv2_width) - 1) << clk->postdiv2_shift);
-+
-+	val |= frac_val << clk->frac_shift;
-+	val |= postdiv1_val << clk->postdiv1_shift;
-+	val |= postdiv2_val << clk->postdiv2_shift;
-+	writel_relaxed(val, clk->ctrl_reg1);
-+
-+	val = readl_relaxed(clk->ctrl_reg2);
-+	val &= ~(((1 << clk->fbdiv_width) - 1) << clk->fbdiv_shift);
-+	val &= ~(((1 << clk->refdiv_width) - 1) << clk->refdiv_shift);
-+
-+	val |= fbdiv_val << clk->fbdiv_shift;
-+	val |= refdiv_val << clk->refdiv_shift;
-+	writel_relaxed(val, clk->ctrl_reg2);
-+
-+	return 0;
-+}
-+
-+static unsigned long clk_pll_recalc_rate(struct clk_hw *hw,
-+		unsigned long parent_rate)
-+{
-+	struct hi3559av100_clk_pll *clk = to_pll_clk(hw);
-+	u64 frac_val, fbdiv_val, refdiv_val;
-+	u32 postdiv1_val, postdiv2_val;
-+	u32 val;
-+	u64 tmp, rate;
-+
-+	val = readl_relaxed(clk->ctrl_reg1);
-+	val = val >> clk->frac_shift;
-+	val &= ((1 << clk->frac_width) - 1);
-+	frac_val = val;
-+
-+	val = readl_relaxed(clk->ctrl_reg1);
-+	val = val >> clk->postdiv1_shift;
-+	val &= ((1 << clk->postdiv1_width) - 1);
-+	postdiv1_val = val;
-+
-+	val = readl_relaxed(clk->ctrl_reg1);
-+	val = val >> clk->postdiv2_shift;
-+	val &= ((1 << clk->postdiv2_width) - 1);
-+	postdiv2_val = val;
-+
-+	val = readl_relaxed(clk->ctrl_reg2);
-+	val = val >> clk->fbdiv_shift;
-+	val &= ((1 << clk->fbdiv_width) - 1);
-+	fbdiv_val = val;
-+
-+	val = readl_relaxed(clk->ctrl_reg2);
-+	val = val >> clk->refdiv_shift;
-+	val &= ((1 << clk->refdiv_width) - 1);
-+	refdiv_val = val;
-+
-+	/* rate = 24000000 * (fbdiv + frac / (1<<24) ) / refdiv  */
-+	rate = 0;
-+	tmp = 24000000 * fbdiv_val + (24000000 * frac_val) / (1 << 24);
-+	rate += tmp;
-+	do_div(rate, refdiv_val);
-+	do_div(rate, postdiv1_val * postdiv2_val);
-+
-+	return rate;
-+}
-+
-+static int clk_pll_determine_rate(struct clk_hw *hw,
-+				  struct clk_rate_request *req)
-+{
-+	return req->rate;
-+}
-+
-+static const struct clk_ops clk_pll_ops = {
-+	.set_rate = clk_pll_set_rate,
-+	.determine_rate = clk_pll_determine_rate,
-+	.recalc_rate = clk_pll_recalc_rate,
-+};
-+
-+static void hisi_clk_register_pll(struct hi3559av100_pll_clock *clks,
-+			   int nums, struct hisi_clock_data *data)
-+{
-+	void __iomem *base = data->base;
-+	int i;
-+
-+	for (i = 0; i < nums; i++) {
-+		struct hi3559av100_clk_pll *p_clk = NULL;
-+		struct clk *clk = NULL;
-+		struct clk_init_data init;
-+
-+		p_clk = kzalloc(sizeof(*p_clk), GFP_KERNEL);
-+		if (!p_clk)
-+			return;
-+
-+		init.name = clks[i].name;
-+		init.flags = 0;
-+		init.parent_names =
-+			(clks[i].parent_name ? &clks[i].parent_name : NULL);
-+		init.num_parents = (clks[i].parent_name ? 1 : 0);
-+		init.ops = &clk_pll_ops;
-+
-+		p_clk->ctrl_reg1 = base + clks[i].ctrl_reg1;
-+		p_clk->frac_shift = clks[i].frac_shift;
-+		p_clk->frac_width = clks[i].frac_width;
-+		p_clk->postdiv1_shift = clks[i].postdiv1_shift;
-+		p_clk->postdiv1_width = clks[i].postdiv1_width;
-+		p_clk->postdiv2_shift = clks[i].postdiv2_shift;
-+		p_clk->postdiv2_width = clks[i].postdiv2_width;
-+
-+		p_clk->ctrl_reg2 = base + clks[i].ctrl_reg2;
-+		p_clk->fbdiv_shift = clks[i].fbdiv_shift;
-+		p_clk->fbdiv_width = clks[i].fbdiv_width;
-+		p_clk->refdiv_shift = clks[i].refdiv_shift;
-+		p_clk->refdiv_width = clks[i].refdiv_width;
-+		p_clk->hw.init = &init;
-+
-+		clk = clk_register(NULL, &p_clk->hw);
-+		if (IS_ERR(clk)) {
-+			kfree(p_clk);
-+			pr_err("%s: failed to register clock %s\n",
-+			       __func__, clks[i].name);
-+			continue;
-+		}
-+
-+		data->clk_data.clks[clks[i].id] = clk;
-+	}
-+}
-+
-+static __init struct hisi_clock_data *hi3559av100_clk_register(
-+	struct platform_device *pdev)
-+{
-+	struct hisi_clock_data *clk_data;
-+	int ret;
-+
-+	clk_data = hisi_clk_alloc(pdev, HI3559AV100_CRG_NR_CLKS);
-+	if (!clk_data)
-+		return ERR_PTR(-ENOMEM);
-+
-+	ret = hisi_clk_register_fixed_rate(hi3559av100_fixed_rate_clks_crg,
-+					   ARRAY_SIZE(hi3559av100_fixed_rate_clks_crg), clk_data);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	hisi_clk_register_pll(hi3559av100_pll_clks,
-+			      ARRAY_SIZE(hi3559av100_pll_clks), clk_data);
-+
-+	ret = hisi_clk_register_mux(hi3559av100_mux_clks_crg,
-+				    ARRAY_SIZE(hi3559av100_mux_clks_crg), clk_data);
-+	if (ret)
-+		goto unregister_fixed_rate;
-+
-+	ret = hisi_clk_register_fixed_factor(hi3559av100_fixed_factor_clks,
-+					     ARRAY_SIZE(hi3559av100_fixed_factor_clks), clk_data);
-+	if (ret)
-+		goto unregister_mux;
-+
-+	ret = hisi_clk_register_gate(hi3559av100_gate_clks,
-+				     ARRAY_SIZE(hi3559av100_gate_clks), clk_data);
-+	if (ret)
-+		goto unregister_factor;
-+
-+	ret = of_clk_add_provider(pdev->dev.of_node,
-+				  of_clk_src_onecell_get, &clk_data->clk_data);
-+	if (ret)
-+		goto unregister_gate;
-+
-+	return clk_data;
-+
-+unregister_gate:
-+	hisi_clk_unregister_gate(hi3559av100_gate_clks,
-+				 ARRAY_SIZE(hi3559av100_gate_clks), clk_data);
-+unregister_factor:
-+	hisi_clk_unregister_fixed_factor(hi3559av100_fixed_factor_clks,
-+					 ARRAY_SIZE(hi3559av100_fixed_factor_clks), clk_data);
-+unregister_mux:
-+	hisi_clk_unregister_mux(hi3559av100_mux_clks_crg,
-+				ARRAY_SIZE(hi3559av100_mux_clks_crg), clk_data);
-+unregister_fixed_rate:
-+	hisi_clk_unregister_fixed_rate(hi3559av100_fixed_rate_clks_crg,
-+				       ARRAY_SIZE(hi3559av100_fixed_rate_clks_crg), clk_data);
-+	return ERR_PTR(ret);
-+}
-+
-+static __init void hi3559av100_clk_unregister(struct platform_device *pdev)
-+{
-+	struct hisi_crg_dev *crg = platform_get_drvdata(pdev);
-+
-+	of_clk_del_provider(pdev->dev.of_node);
-+
-+	hisi_clk_unregister_gate(hi3559av100_gate_clks,
-+				 ARRAY_SIZE(hi3559av100_gate_clks), crg->clk_data);
-+	hisi_clk_unregister_mux(hi3559av100_mux_clks_crg,
-+				ARRAY_SIZE(hi3559av100_mux_clks_crg), crg->clk_data);
-+	hisi_clk_unregister_fixed_factor(hi3559av100_fixed_factor_clks,
-+					 ARRAY_SIZE(hi3559av100_fixed_factor_clks), crg->clk_data);
-+	hisi_clk_unregister_fixed_rate(hi3559av100_fixed_rate_clks_crg,
-+				       ARRAY_SIZE(hi3559av100_fixed_rate_clks_crg), crg->clk_data);
-+}
-+
-+static const struct hisi_crg_funcs hi3559av100_crg_funcs = {
-+	.register_clks = hi3559av100_clk_register,
-+	.unregister_clks = hi3559av100_clk_unregister,
-+};
-+
-+static const struct of_device_id hi3559av100_crg_match_table[] = {
-+	{
-+		.compatible = "hisilicon,hi3559av100-clock",
-+		.data = &hi3559av100_crg_funcs
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, hi3559av100_crg_match_table);
-+
-+static int hi3559av100_crg_probe(struct platform_device *pdev)
-+{
-+	struct hisi_crg_dev *crg;
-+
-+	crg = devm_kmalloc(&pdev->dev, sizeof(*crg), GFP_KERNEL);
-+	if (!crg)
-+		return -ENOMEM;
-+
-+	crg->funcs = of_device_get_match_data(&pdev->dev);
-+	if (!crg->funcs)
-+		return -ENOENT;
-+
-+	crg->rstc = hisi_reset_init(pdev);
-+	if (!crg->rstc)
-+		return -ENOMEM;
-+
-+	crg->clk_data = crg->funcs->register_clks(pdev);
-+	if (IS_ERR(crg->clk_data)) {
-+		hisi_reset_exit(crg->rstc);
-+		return PTR_ERR(crg->clk_data);
-+	}
-+
-+	platform_set_drvdata(pdev, crg);
-+	return 0;
-+}
-+
-+static int hi3559av100_crg_remove(struct platform_device *pdev)
-+{
-+	struct hisi_crg_dev *crg = platform_get_drvdata(pdev);
-+
-+	hisi_reset_exit(crg->rstc);
-+	crg->funcs->unregister_clks(pdev);
-+	return 0;
-+}
-+
-+static struct platform_driver hi3559av100_crg_driver = {
-+	.probe          = hi3559av100_crg_probe,
-+	.remove     = hi3559av100_crg_remove,
-+	.driver         = {
-+		.name   = "hi3559av100-clock",
-+		.of_match_table = hi3559av100_crg_match_table,
-+	},
-+};
-+
-+static int __init hi3559av100_crg_init(void)
-+{
-+	return platform_driver_register(&hi3559av100_crg_driver);
-+}
-+core_initcall(hi3559av100_crg_init);
-+
-+static void __exit hi3559av100_crg_exit(void)
-+{
-+	platform_driver_unregister(&hi3559av100_crg_driver);
-+}
-+module_exit(hi3559av100_crg_exit);
-+
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("HiSilicon Hi3559AV100 CRG Driver");
-diff --git a/include/dt-bindings/clock/hi3559av100-clock.h b/include/dt-bindings/clock/hi3559av100-clock.h
-new file mode 100644
-index 000000000000..163bfa563c08
---- /dev/null
-+++ b/include/dt-bindings/clock/hi3559av100-clock.h
-@@ -0,0 +1,127 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2019-2020, Huawei Tech. Co., Ltd.
-+ *
-+ * Author: Dongjiu Geng <gengdongjiu@huawei.com>
-+ */
-+
-+#ifndef __DTS_HI3559AV100_CLOCK_H
-+#define __DTS_HI3559AV100_CLOCK_H
-+
-+/*  fixed   rate    */
-+#define HI3559AV100_FIXED_1188M     1
-+#define HI3559AV100_FIXED_1000M     2
-+#define HI3559AV100_FIXED_842M      3
-+#define HI3559AV100_FIXED_792M      4
-+#define HI3559AV100_FIXED_750M      5
-+#define HI3559AV100_FIXED_710M      6
-+#define HI3559AV100_FIXED_680M      7
-+#define HI3559AV100_FIXED_667M      8
-+#define HI3559AV100_FIXED_631M      9
-+#define HI3559AV100_FIXED_600M      10
-+#define HI3559AV100_FIXED_568M      11
-+#define HI3559AV100_FIXED_500M      12
-+#define HI3559AV100_FIXED_475M      13
-+#define HI3559AV100_FIXED_428M      14
-+#define HI3559AV100_FIXED_400M      15
-+#define HI3559AV100_FIXED_396M      16
-+#define HI3559AV100_FIXED_300M      17
-+#define HI3559AV100_FIXED_250M      18
-+#define HI3559AV100_FIXED_198M      19
-+#define HI3559AV100_FIXED_187p5M    20
-+#define HI3559AV100_FIXED_150M      21
-+#define HI3559AV100_FIXED_148p5M    22
-+#define HI3559AV100_FIXED_125M      23
-+#define HI3559AV100_FIXED_107M      24
-+#define HI3559AV100_FIXED_100M      25
-+#define HI3559AV100_FIXED_99M       26
-+#define HI3559AV100_FIXED_74p25M    27
-+#define HI3559AV100_FIXED_72M       28
-+#define HI3559AV100_FIXED_60M       29
-+#define HI3559AV100_FIXED_54M       30
-+#define HI3559AV100_FIXED_50M       31
-+#define HI3559AV100_FIXED_49p5M     32
-+#define HI3559AV100_FIXED_37p125M   33
-+#define HI3559AV100_FIXED_36M       34
-+#define HI3559AV100_FIXED_32p4M     35
-+#define HI3559AV100_FIXED_27M       36
-+#define HI3559AV100_FIXED_25M       37
-+#define HI3559AV100_FIXED_24M       38
-+#define HI3559AV100_FIXED_12M       39
-+#define HI3559AV100_FIXED_3M        40
-+#define HI3559AV100_FIXED_1p6M      41
-+#define HI3559AV100_FIXED_400K      42
-+#define HI3559AV100_FIXED_100K      43
-+#define HI3559AV100_FIXED_200M      44
-+#define HI3559AV100_FIXED_75M       75
-+
-+#define HI3559AV100_I2C0_CLK    50
-+#define HI3559AV100_I2C1_CLK    51
-+#define HI3559AV100_I2C2_CLK    52
-+#define HI3559AV100_I2C3_CLK    53
-+#define HI3559AV100_I2C4_CLK    54
-+#define HI3559AV100_I2C5_CLK    55
-+#define HI3559AV100_I2C6_CLK    56
-+#define HI3559AV100_I2C7_CLK    57
-+#define HI3559AV100_I2C8_CLK    58
-+#define HI3559AV100_I2C9_CLK    59
-+#define HI3559AV100_I2C10_CLK   60
-+#define HI3559AV100_I2C11_CLK   61
-+
-+#define HI3559AV100_SPI0_CLK    62
-+#define HI3559AV100_SPI1_CLK    63
-+#define HI3559AV100_SPI2_CLK    64
-+#define HI3559AV100_SPI3_CLK    65
-+#define HI3559AV100_SPI4_CLK    66
-+#define HI3559AV100_SPI5_CLK    67
-+#define HI3559AV100_SPI6_CLK    68
-+
-+#define HI3559AV100_EDMAC_CLK   69
-+#define HI3559AV100_EDMAC_AXICLK   70
-+#define HI3559AV100_EDMAC1_CLK  71
-+#define HI3559AV100_EDMAC1_AXICLK  72
-+#define HI3559AV100_VDMAC_CLK   73
-+
-+/*  mux clocks  */
-+#define HI3559AV100_FMC_MUX     80
-+#define HI3559AV100_SYSAPB_MUX  81
-+#define HI3559AV100_UART_MUX    82
-+#define HI3559AV100_SYSBUS_MUX  83
-+#define HI3559AV100_A73_MUX     84
-+#define HI3559AV100_MMC0_MUX    85
-+#define HI3559AV100_MMC1_MUX    86
-+#define HI3559AV100_MMC2_MUX    87
-+#define HI3559AV100_MMC3_MUX    88
-+
-+/*  gate    clocks  */
-+#define HI3559AV100_FMC_CLK     90
-+#define HI3559AV100_UART0_CLK   91
-+#define HI3559AV100_UART1_CLK   92
-+#define HI3559AV100_UART2_CLK   93
-+#define HI3559AV100_UART3_CLK   94
-+#define HI3559AV100_UART4_CLK   95
-+#define HI3559AV100_MMC0_CLK    96
-+#define HI3559AV100_MMC1_CLK    97
-+#define HI3559AV100_MMC2_CLK    98
-+#define HI3559AV100_MMC3_CLK    99
-+
-+#define HI3559AV100_ETH_CLK         100
-+#define HI3559AV100_ETH_MACIF_CLK   101
-+#define HI3559AV100_ETH1_CLK        102
-+#define HI3559AV100_ETH1_MACIF_CLK  103
-+
-+/*  complex */
-+#define HI3559AV100_MAC0_CLK    110
-+#define HI3559AV100_MAC1_CLK    111
-+#define HI3559AV100_SATA_CLK    112
-+#define HI3559AV100_USB_CLK     113
-+#define HI3559AV100_USB1_CLK    114
-+
-+/* pll clocks */
-+#define HI3559AV100_APLL_CLK        250
-+#define HI3559AV100_GPLL_CLK        251
-+
-+#define HI3559AV100_CRG_NR_CLKS 256
-+
-+#endif  /* __DTS_HI3559AV100_CLOCK_H */
-+
+This patch series adds implementation of the interconnect provider per each
+"samsung,exynos-bus" compatible DT node, with one interconnect node per
+provider.  The interconnect code which was previously added as a part of
+the devfreq driver has been converted to a separate platform driver.
+In the devfreq a corresponding virtual child platform device is registered.
+Integration of devfreq and interconnect frameworks is achieved through
+the PM QoS API.
+
+A sample interconnect consumer for exynos-mixer is added in patch 5/5,
+it is currently added only for exynos4412 and allows to address the
+mixer DMA underrun error issues [1].
+
+Changes since v8:
+ - excluded from the series already applied dts patches, 
+ - Co-developed-by/Signed-off-by tag corrections, Ack tags added,
+ - the maintainers entry corrections adressing review comments,
+ - Kconfig/Makefile improvements/corrections,
+ - whitespace/indentation cleanup.
+
+The series has been tested on Odroid U3 board. It is based on v5.10-rc1.
+
+--
+Regards,
+Sylwester
+
+Changes since v7:
+ - drivers/interconnect/exynos renamed to drivers/interconnect/samsung,
+ - added INTERCONNECT_SAMSUNG Kconfig symbol,
+ - added missing driver sync_state callback,
+ - improved the DT binding description,
+ - added a patch adding maintainers entry,
+ - updated comment in patch 7/7, typo fix (patch 1/7).
+
+Changes since v6:
+ - the interconnect consumer DT bindings are now used to describe dependencies
+   of the interconnects (samsung,exynos-bus nodes),
+ - bus-width property replaced with samsung,data-clk-ratio,
+ - adaptation to recent changes in the interconnect code
+   (of_icc_get_from_provider(), icc_node_add()).
+
+Changes since v5:
+ - addition of "bus-width: DT property, which specifies data width
+   of the interconnect bus (patches 1...2/6),
+ - addition of synchronization of the interconnect bandwidth setting
+   with VSYNC (patch 6/6).
+
+Changes since v3 [4] (v4 skipped to align with patchset [1]), detailed
+changes are listed in patches:
+ - conversion to a separate interconnect (platform) driver,
+ - an update of the DT binding documenting new optional properties:
+   #interconnect-cells, samsung,interconnect-parent in "samsung,exynos-bus"
+   nodes,
+ - new DT properties added to the SoC, rather than to the board specific
+   files.
+
+Changes since v2 [5]:
+ - Use icc_std_aggregate().
+ - Implement a different modification of apply_constraints() in
+   drivers/interconnect/core.c (patch 03).
+ - Use 'exynos,interconnect-parent-node' in the DT instead of
+   'devfreq'/'parent', depending on the bus.
+ - Rebase on DT patches that deprecate the 'devfreq' DT property.
+ - Improve error handling, including freeing generated IDs on failure.
+ - Remove exynos_bus_icc_connect() and add exynos_bus_icc_get_parent().
+
+Changes since v1 [6]:
+ - Rebase on coupled regulators patches.
+ - Use dev_pm_qos_*() API instead of overriding frequency in
+   exynos_bus_target().
+ - Use IDR for node ID allocation.
+ - Reverse order of multiplication and division in
+   mixer_set_memory_bandwidth() (patch 07) to avoid integer overflow.
+
+
+References:
+[1] https://patchwork.kernel.org/patch/10861757/ (original issue)
+[2] https://www.spinics.net/lists/linux-samsung-soc/msg70014.html
+[3] https://www.spinics.net/lists/arm-kernel/msg810722.html
+[4] https://lore.kernel.org/linux-pm/20191220115653.6487-1-a.swigon@samsung.com
+[5] https://patchwork.kernel.org/cover/11054417/ (v1 of this RFC)
+[6] https://patchwork.kernel.org/cover/11152595/ (v2 of this RFC)
+
+
+Sylwester Nawrocki (5):
+  dt-bindings: devfreq: Add documentation for the interconnect
+    properties
+  interconnect: Add generic interconnect driver for Exynos SoCs
+  MAINTAINERS: Add entry for Samsung interconnect drivers
+  PM / devfreq: exynos-bus: Add registration of interconnect child
+    device
+  drm: exynos: mixer: Add interconnect support
+
+ .../devicetree/bindings/devfreq/exynos-bus.txt     |  71 +++++++-
+ MAINTAINERS                                        |   8 +
+ drivers/devfreq/exynos-bus.c                       |  17 ++
+ drivers/gpu/drm/exynos/exynos_mixer.c              | 146 ++++++++++++++-
+ drivers/interconnect/Kconfig                       |   1 +
+ drivers/interconnect/Makefile                      |   1 +
+ drivers/interconnect/samsung/Kconfig               |  13 ++
+ drivers/interconnect/samsung/Makefile              |   4 +
+ drivers/interconnect/samsung/exynos.c              | 199 +++++++++++++++++++++
+ 9 files changed, 450 insertions(+), 10 deletions(-)
+ create mode 100644 drivers/interconnect/samsung/Kconfig
+ create mode 100644 drivers/interconnect/samsung/Makefile
+ create mode 100644 drivers/interconnect/samsung/exynos.c
+
 -- 
-2.17.1
+2.7.4
 
