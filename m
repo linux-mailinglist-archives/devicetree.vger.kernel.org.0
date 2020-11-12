@@ -2,120 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC652AFFAA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 07:30:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6542AFFCA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 07:41:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726061AbgKLGat (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 01:30:49 -0500
-Received: from alexa-out.qualcomm.com ([129.46.98.28]:22483 "EHLO
-        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725966AbgKLGat (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 01:30:49 -0500
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 11 Nov 2020 22:30:49 -0800
-X-QCInternal: smtphost
-Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 11 Nov 2020 22:30:46 -0800
-X-QCInternal: smtphost
-Received: from c-sanm-linux.qualcomm.com ([10.206.25.31])
-  by ironmsg02-blr.qualcomm.com with ESMTP; 12 Nov 2020 12:00:22 +0530
-Received: by c-sanm-linux.qualcomm.com (Postfix, from userid 2343233)
-        id 050622F87; Thu, 12 Nov 2020 12:00:21 +0530 (IST)
-From:   Sandeep Maheswaram <sanm@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>
-Subject: [PATCH] usb: dwc3: qcom: Add shutdown callback for dwc3
-Date:   Thu, 12 Nov 2020 12:00:18 +0530
-Message-Id: <1605162619-10064-1-git-send-email-sanm@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S1726466AbgKLGlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 01:41:10 -0500
+Received: from szxga02-in.huawei.com ([45.249.212.188]:2430 "EHLO
+        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725981AbgKLGlJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 01:41:09 -0500
+Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.54])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4CWsS82f9sz54B9;
+        Thu, 12 Nov 2020 14:40:56 +0800 (CST)
+Received: from [10.140.157.68] (10.140.157.68) by
+ dggeme755-chm.china.huawei.com (10.3.19.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.1913.5; Thu, 12 Nov 2020 14:41:05 +0800
+Subject: Re: [PATCH] clk: hisilicon: Add clock driver for hi3559A SoC
+To:     Rob Herring <robh@kernel.org>
+CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20201109202838.43105-1-gengdongjiu@huawei.com>
+ <20201111222340.GA2143735@bogus>
+From:   Dongjiu Geng <gengdongjiu@huawei.com>
+Message-ID: <69f78676-6e5e-867a-5b14-cb9af84a32ba@huawei.com>
+Date:   Thu, 12 Nov 2020 14:41:04 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
+ Thunderbird/52.6.0
+MIME-Version: 1.0
+In-Reply-To: <20201111222340.GA2143735@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.140.157.68]
+X-ClientProxiedBy: dggeme706-chm.china.huawei.com (10.1.199.102) To
+ dggeme755-chm.china.huawei.com (10.3.19.101)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a shutdown callback to USB DWC QCOM driver to ensure that
-it is properly shutdown in reboot/shutdown path. This is required
-where SMMU address translation is enabled like on SC7180
-SoC and few others. If the hardware is still accessing memory after
-SMMU translation is disabled as part of SMMU shutdown callback in
-system reboot or shutdown path, then IOVAs(I/O virtual address)
-which it was using will go on the bus as the physical addresses which
-might result in unknown crashes (NoC/interconnect errors).
+On 2020/11/12 6:23, Rob Herring wrote:
+> On Mon, Nov 09, 2020 at 08:28:38PM +0000, Dongjiu Geng wrote:
+>> Add clock drivers for hi3559A SoC, this driver controls the SoC
+>> registers to supply different clocks to different IPs in the SoC.
+>>
+>> Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
+>> ---
+>>  drivers/clk/hisilicon/Kconfig                 |   7 +
+>>  drivers/clk/hisilicon/Makefile                |   1 +
+>>  drivers/clk/hisilicon/clk-hi3559a.c           | 873 ++++++++++++++++++
+>>  include/dt-bindings/clock/hi3559av100-clock.h | 173 ++++
+> 
+> Is there a binding for this? The header should be part of it.
+yes, I will add it.
+Thanks for the pointing out.
 
-Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
----
- drivers/usb/dwc3/dwc3-qcom.c | 26 ++++++++++++++++++++------
- 1 file changed, 20 insertions(+), 6 deletions(-)
+> 
+>>  4 files changed, 1054 insertions(+)
+>>  create mode 100644 drivers/clk/hisilicon/clk-hi3559a.c
+>>  create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
+>>
+>> diff --git a/drivers/clk/hisilicon/Kconfig b/drivers/clk/hisilicon/Kconfig
+>> index 6a9e93a0bb95..5ecc37aaa118 100644
+>> --- a/drivers/clk/hisilicon/Kconfig
+>> +++ b/drivers/clk/hisilicon/Kconfig
+>> @@ -15,6 +15,13 @@ config COMMON_CLK_HI3519
+>>  	help
+>>  	  Build the clock driver for hi3519.
+>>  
+>> +config COMMON_CLK_HI3559A
+>> +	bool "Hi3559A Clock Driver"
+>> +	depends on ARCH_HISI || COMPILE_TEST
+>> +	default ARCH_HISI
+>> +	help
+>> +	  Build the clock driver for hi3559a.
+>> +
+>>  config COMMON_CLK_HI3660
+>>  	bool "Hi3660 Clock Driver"
+>>  	depends on ARCH_HISI || COMPILE_TEST
+>> diff --git a/drivers/clk/hisilicon/Makefile b/drivers/clk/hisilicon/Makefile
+>> index b2441b99f3d5..bc101833b35e 100644
+>> --- a/drivers/clk/hisilicon/Makefile
+>> +++ b/drivers/clk/hisilicon/Makefile
+>> @@ -17,3 +17,4 @@ obj-$(CONFIG_COMMON_CLK_HI6220)	+= clk-hi6220.o
+>>  obj-$(CONFIG_RESET_HISI)	+= reset.o
+>>  obj-$(CONFIG_STUB_CLK_HI6220)	+= clk-hi6220-stub.o
+>>  obj-$(CONFIG_STUB_CLK_HI3660)	+= clk-hi3660-stub.o
+>> +obj-$(CONFIG_COMMON_CLK_HI3559A)	+= clk-hi3559a.o
+>> diff --git a/drivers/clk/hisilicon/clk-hi3559a.c b/drivers/clk/hisilicon/clk-hi3559a.c
+>> new file mode 100644
+>> index 000000000000..bd3921fc8c8e
+>> --- /dev/null
+>> +++ b/drivers/clk/hisilicon/clk-hi3559a.c
+>> @@ -0,0 +1,873 @@
+>> +// SPDX-License-Identifier: GPL-2.0-or-later
+>> +/*
+>> + * Hisilicon Hi3559A clock driver
+>> + *
+>> + * Copyright (c) 2019-2020 HiSilicon Technologies Co., Ltd.
+>> + *
+>> + * This program is free software; you can redistribute it and/or modify
+>> + * it under the terms of the GNU General Public License as published by
+>> + * the Free Software Foundation; either version 2 of the License, or
+>> + * (at your option) any later version.
+> 
+> Don't need both this and SPDX tag. Kernel code should be GPL-2.0 (-only) 
+> generally.
 
-diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-index c703d55..a930e06 100644
---- a/drivers/usb/dwc3/dwc3-qcom.c
-+++ b/drivers/usb/dwc3/dwc3-qcom.c
-@@ -790,13 +790,11 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
--static int dwc3_qcom_remove(struct platform_device *pdev)
-+static void __dwc3_qcom_teardown(struct dwc3_qcom *qcom)
- {
--	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
--	struct device *dev = &pdev->dev;
- 	int i;
- 
--	of_platform_depopulate(dev);
-+	of_platform_depopulate(qcom->dev);
- 
- 	for (i = qcom->num_clocks - 1; i >= 0; i--) {
- 		clk_disable_unprepare(qcom->clks[i]);
-@@ -807,12 +805,27 @@ static int dwc3_qcom_remove(struct platform_device *pdev)
- 	dwc3_qcom_interconnect_exit(qcom);
- 	reset_control_assert(qcom->resets);
- 
--	pm_runtime_allow(dev);
--	pm_runtime_disable(dev);
-+	pm_runtime_allow(qcom->dev);
-+	pm_runtime_disable(qcom->dev);
-+}
-+
-+static int dwc3_qcom_remove(struct platform_device *pdev)
-+{
-+	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
-+
-+	__dwc3_qcom_teardown(qcom);
- 
- 	return 0;
- }
- 
-+static void dwc3_qcom_shutdown(struct platform_device *pdev)
-+{
-+	struct dwc3_qcom *qcom = platform_get_drvdata(pdev);
-+
-+	__dwc3_qcom_teardown(qcom);
-+
-+}
-+
- static int __maybe_unused dwc3_qcom_pm_suspend(struct device *dev)
- {
- 	struct dwc3_qcom *qcom = dev_get_drvdata(dev);
-@@ -887,6 +900,7 @@ MODULE_DEVICE_TABLE(acpi, dwc3_qcom_acpi_match);
- static struct platform_driver dwc3_qcom_driver = {
- 	.probe		= dwc3_qcom_probe,
- 	.remove		= dwc3_qcom_remove,
-+	.shutdown	= dwc3_qcom_shutdown,
- 	.driver		= {
- 		.name	= "dwc3-qcom",
- 		.pm	= &dwc3_qcom_dev_pm_ops,
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Ok, I will remove one. thanks.
 
+> 
+>> + *
+>> + * Author: Dongjiu Geng <gengdongjiu@huawei.com>
+> 
+> git will tell us this.
+> 
+> Same comments apply to the header. Though DT headers should be dual 
+> licensed.
+> 
+> Rob
+> .
+> 
