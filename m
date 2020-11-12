@@ -2,240 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF80F2AFF29
+	by mail.lfdr.de (Postfix) with ESMTP id 3C3DE2AFF28
 	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:45:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727813AbgKLFcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727822AbgKLFcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 12 Nov 2020 00:32:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54084 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728677AbgKLBqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 20:46:22 -0500
+        with ESMTP id S1729576AbgKLBq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 20:46:27 -0500
 Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19210C061A48
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 17:43:59 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id c20so3005404pfr.8
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 17:43:59 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BD36C0613D1;
+        Wed, 11 Nov 2020 17:45:47 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id g7so3039246pfc.2;
+        Wed, 11 Nov 2020 17:45:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=T0cFLEEzOBFqtPRqMbrgxpfYm1hPATc5ZUJsnwS3q7c=;
-        b=LgjrYdJr7PcK+o197Nr+M5YH81CU1kOQf2n6pwsvQRiOxMXmItm5chnTeozaAoJ0Q4
-         SxG/HgzFyozp3Og4Uif7goQ54o8689RbQEAhI1ILXi3+Q8GdvxlHRIDf1gDhPyUdzqVM
-         oXcvYE0eA5TcEi3KVaF6rmQgmkLcHtSLG9Y99caQWnsnl99fKAEAf6BEcJsTtqwddOqC
-         uf22xYAnyAW481MGFegKkOgaVXiVbXJeFLcPpLcBDNlirbysgj8ZPzpdc18opa3Cv7Zd
-         zrs9ObKES1hLHIPdk39FXE7W3Yp5U3mzu2s1QLOVX0x7ymmxHQmetvNme4G9DH6Zj2VP
-         JwDw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nOQD+47l1Vj9tZi/oOhEDued5DuJRPNMgWRyqUdj0hA=;
+        b=RMJgpf9aRvHsm7kXTPn6A4QHZjITSTMgFpSPAsMIDsD9Vq2FGlymCQ2Uy9WLTcLgud
+         qcvZWqtPn4jtyWomXgZOZuaGMlO2WRVM66OJ58RyU+8tB4/Z6t+5kyb1la/bFNvIQPNy
+         +gfGfVHSsGC88lwyTHYBVOldd5dkmJ8zNnfGN4wdGKkvtA5U/ZgbYHYAtXazC6yUv6G6
+         18AKV5PhQRuc9McMOPXFn4enN6RsZ6bzrUeznvRv50DulrL8Df1nad3nFKi4ygo6hi1F
+         vr6MAnGzpjH0q2duju6VUxCCWNB57QbzNbWKojxTfKCMb8p803FeYeAomZ9dfOGjw0HX
+         nzmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=T0cFLEEzOBFqtPRqMbrgxpfYm1hPATc5ZUJsnwS3q7c=;
-        b=T5oYaEUDkpgEb/TWJ/5qhlfjBIaVlDxsoc7C8zbPXg7+iA9ouqgPjGL/w7oOBoia+5
-         wU+zA2EUzQTZAtVgwJCOqj0kWxO0LomP5zPVgHmbi1EZTl89JM9es7QRn4DiMZP4a1cm
-         oMKGfZXvCx8nMvjIHqggjDHs2eK2zsSImRpZAn77LBhy2OjwBrArS7YPmqjCnocTUdRQ
-         YU5ueFxbN199lecMphcnmP1iNMMoJ7n02RCWAj2Dtg8uHyQ0Sel/o066QMR5rA/m6+bX
-         yY5A38CS7EHoNLKGuLb3hXSxSf7Yt8gKaByNOSQ+VKB1O2ccOLpAdPmaIqN0rGIKSEDW
-         aDYw==
-X-Gm-Message-State: AOAM5310nnTtoq74WRTPqMQ1Yv3ZCHCstKFw7b7Em/9ggSnORjIRD4oM
-        0Sy1fw7DxUH16T8OjV5v6K2d
-X-Google-Smtp-Source: ABdhPJxhXBXAQ6Jc8mv7FpRXR4ISG3WBs0ZhHALrJYJpygtGndZHImr5i3ZP86b31Evg5crtBLGF8A==
-X-Received: by 2002:a62:804d:0:b029:18b:9bf:2979 with SMTP id j74-20020a62804d0000b029018b09bf2979mr8087291pfd.11.1605145438665;
-        Wed, 11 Nov 2020 17:43:58 -0800 (PST)
-Received: from xuyuqing-ZenBook-UX425JA-UX425JA.huaqin.com ([101.78.151.194])
-        by smtp.gmail.com with ESMTPSA id m6sm4062413pfa.61.2020.11.11.17.43.53
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nOQD+47l1Vj9tZi/oOhEDued5DuJRPNMgWRyqUdj0hA=;
+        b=jYx9+7oQNHxjIczMKy+rlhs69F/hQVvDHWD3hcQLkKyTda97o7M6xeuCDi47Uns4CY
+         0RNu+bafh24ndLckrf7ZHqyzQwvGD/UV4Q9b6t+9w8ODtbk+lU1UCEjOjlMD81ZbXz34
+         CnoTAcPQE8D72kX+VIzn4SNNEBYI/qLfsEL4iAVJX6ZjN+XSNfixOhcLiNWl7QD6dTrl
+         ug6lEEue1pByYaowcQGVBm3It4Z5Y4QIADeFfr6UAxwNxYTDcWxDWblQTUVmKxFPhjHG
+         MigEfXb/XyjOrdBI+y9uuB7ckRmIKUFFr1FCF2nv5fihJX7PKp6fu+FMjP1QVOctnb/z
+         BEVw==
+X-Gm-Message-State: AOAM532kZ7itmJKepXN7HHXIh+SSxMGn8UbmRztJoL4iQO9/Tf2bUcRx
+        wtXzAhtqTL1s++PNDEjjQsI=
+X-Google-Smtp-Source: ABdhPJw49jebosLeBcZ1ZsqKR3LnVI8Mxnm8v5sWdo+ropNNGLFnXAlwpDz5nWxUdwGFQZE5kJbwXQ==
+X-Received: by 2002:a17:90a:fd0d:: with SMTP id cv13mr4600504pjb.124.1605145546448;
+        Wed, 11 Nov 2020 17:45:46 -0800 (PST)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id d11sm3944079pjm.18.2020.11.11.17.45.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 17:43:58 -0800 (PST)
-From:   xuyuqing <xuyuqing@huaqin.corp-partner.google.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
-        dgreid@chromium.org, tzungbi@chromium.org, cychiang@chromium.org,
-        judyhsiao@chromium.org, linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        zhouguohui@huaqin.corp-partner.google.com,
-        xuyuqing@huaqin.corp-partner.google.com
-Subject: [PATCH v2 2/2] ASoC: qcom: sc7180: Modify machine driver for sound card
-Date:   Thu, 12 Nov 2020 09:43:28 +0800
-Message-Id: <20201112014328.695232-3-xuyuqing@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201112014328.695232-1-xuyuqing@huaqin.corp-partner.google.com>
-References: <20201112014328.695232-1-xuyuqing@huaqin.corp-partner.google.com>
+        Wed, 11 Nov 2020 17:45:45 -0800 (PST)
+Date:   Wed, 11 Nov 2020 17:45:42 -0800
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org,
+        f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        gregkh@linuxfoundation.org, devel@driverdev.osuosl.org,
+        p.zabel@pengutronix.de, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
+        sboyd@kernel.org, linux-rpi-kernel@lists.infradead.org,
+        bgolaszewski@baylibre.com, andy.shevchenko@gmail.com
+Subject: Re: [PATCH v3 07/11] input: raspberrypi-ts: Release firmware handle
+ when not needed
+Message-ID: <20201112014542.GA1003057@dtor-ws>
+References: <20201104103938.1286-1-nsaenzjulienne@suse.de>
+ <20201104103938.1286-8-nsaenzjulienne@suse.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201104103938.1286-8-nsaenzjulienne@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bypass set jack because there is no jack on coachz.
-Create route for dmic.
+Hi Nicolas,
 
-Signed-off-by: xuyuqing <xuyuqing@huaqin.corp-partner.google.com>
----
- sound/soc/qcom/Kconfig  |  1 +
- sound/soc/qcom/sc7180.c | 86 ++++++++++++++++++++++++++++++++++-------
- 2 files changed, 74 insertions(+), 13 deletions(-)
+On Wed, Nov 04, 2020 at 11:39:33AM +0100, Nicolas Saenz Julienne wrote:
+> Use devm_rpi_firmware_get() so as to make sure we release RPi's firmware
+> interface when unbinding the device.
 
-diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
-index 41cb08bd5588..27f93006be96 100644
---- a/sound/soc/qcom/Kconfig
-+++ b/sound/soc/qcom/Kconfig
-@@ -145,6 +145,7 @@ config SND_SOC_SC7180
- 	select SND_SOC_LPASS_SC7180
- 	select SND_SOC_MAX98357A
- 	select SND_SOC_RT5682_I2C
-+	select SND_SOC_ADAU7002
- 	help
- 	  To add support for audio on Qualcomm Technologies Inc.
- 	  SC7180 SoC-based systems.
-diff --git a/sound/soc/qcom/sc7180.c b/sound/soc/qcom/sc7180.c
-index 878fd0169aab..e2e6567566af 100644
---- a/sound/soc/qcom/sc7180.c
-+++ b/sound/soc/qcom/sc7180.c
-@@ -221,16 +221,69 @@ static void sc7180_snd_shutdown(struct snd_pcm_substream *substream)
- 	}
- }
- 
-+static int sc7180_adau7002_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case MI2S_PRIMARY:
-+		return 0;
-+	case MI2S_SECONDARY:
-+		return 0;
-+	case LPASS_DP_RX:
-+		return sc7180_hdmi_init(rtd);
-+	default:
-+		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
-+			cpu_dai->id);
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
-+static int sc7180_adau7002_snd_startup(struct snd_pcm_substream *substream)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-+
-+	switch (cpu_dai->id) {
-+	case MI2S_PRIMARY:
-+		snd_soc_dai_set_fmt(codec_dai,
-+				    SND_SOC_DAIFMT_CBS_CFS |
-+				    SND_SOC_DAIFMT_NB_NF |
-+				    SND_SOC_DAIFMT_I2S);
-+
-+		break;
-+	case MI2S_SECONDARY:
-+		break;
-+	case LPASS_DP_RX:
-+		break;
-+	default:
-+		dev_err(rtd->dev, "%s: invalid dai id 0x%x\n", __func__,
-+			cpu_dai->id);
-+		return -EINVAL;
-+	}
-+	return 0;
-+}
-+
- static const struct snd_soc_ops sc7180_ops = {
- 	.startup = sc7180_snd_startup,
- 	.shutdown = sc7180_snd_shutdown,
- };
- 
-+static const struct snd_soc_ops sc7180_adau7002_ops = {
-+	.startup = sc7180_adau7002_snd_startup,
-+};
-+
- static const struct snd_soc_dapm_widget sc7180_snd_widgets[] = {
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- };
- 
-+static const struct snd_soc_dapm_widget sc7180_adau7002_snd_widgets[] = {
-+	SND_SOC_DAPM_MIC("DMIC", NULL),
-+};
-+
- static const char * const dmic_mux_text[] = {
- 	"Front Mic",
- 	"Rear Mic",
-@@ -255,23 +308,15 @@ static const struct snd_soc_dapm_route sc7180_snd_dual_mic_audio_route[] = {
- 	{"Dmic Mux", "Rear Mic", "DMIC"},
- };
- 
--static void sc7180_add_ops(struct snd_soc_card *card)
--{
--	struct snd_soc_dai_link *link;
--	int i;
--
--	for_each_card_prelinks(card, i, link) {
--		link->ops = &sc7180_ops;
--		link->init = sc7180_init;
--	}
--}
--
- static int sc7180_snd_platform_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card;
- 	struct sc7180_snd_data *data;
- 	struct device *dev = &pdev->dev;
-+	struct snd_soc_dai_link *link;
- 	int ret;
-+	int i;
-+	bool no_headphone;
- 
- 	/* Allocate the private data */
- 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-@@ -299,17 +344,32 @@ static int sc7180_snd_platform_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	if (of_device_is_compatible(dev->of_node, "google,sc7180-coachz")) {
-+		no_headphone = true;
-+		card->dapm_widgets = sc7180_adau7002_snd_widgets;
-+		card->num_dapm_widgets = ARRAY_SIZE(sc7180_adau7002_snd_widgets);
-+	}
-+
- 	ret = qcom_snd_parse_of(card);
- 	if (ret)
- 		return ret;
- 
--	sc7180_add_ops(card);
-+	for_each_card_prelinks(card, i, link) {
-+		if (no_headphone) {
-+			link->ops = &sc7180_adau7002_ops;
-+			link->init = sc7180_adau7002_init;
-+		} else {
-+			link->ops = &sc7180_ops;
-+			link->init = sc7180_init;
-+		}
-+	}
- 
- 	return devm_snd_soc_register_card(dev, card);
- }
- 
- static const struct of_device_id sc7180_snd_device_id[]  = {
--	{ .compatible = "google,sc7180-trogdor"},
-+	{.compatible = "google,sc7180-trogdor"},
-+	{.compatible = "google,sc7180-coachz"},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sc7180_snd_device_id);
+Unless I am mistaken this driver does not really need the firmware
+structure past rpi_ts_probe(), and will be fine if it disappears earlier
+than unbind time.
+
+Thanks.
+
+> 
+> Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> 
+> ---
+> 
+> Changes since v2:
+>  - Use devm_rpi_firmware_get(), instead of remove function
+> 
+>  drivers/input/touchscreen/raspberrypi-ts.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/input/touchscreen/raspberrypi-ts.c b/drivers/input/touchscreen/raspberrypi-ts.c
+> index ef6aaed217cf..efed0efa91d9 100644
+> --- a/drivers/input/touchscreen/raspberrypi-ts.c
+> +++ b/drivers/input/touchscreen/raspberrypi-ts.c
+> @@ -134,7 +134,7 @@ static int rpi_ts_probe(struct platform_device *pdev)
+>  		return -ENOENT;
+>  	}
+>  
+> -	fw = rpi_firmware_get(fw_node);
+> +	fw = devm_rpi_firmware_get(&pdev->dev, fw_node);
+>  	of_node_put(fw_node);
+>  	if (!fw)
+>  		return -EPROBE_DEFER;
+> -- 
+> 2.29.1
+> 
+
 -- 
-2.25.1
-
+Dmitry
