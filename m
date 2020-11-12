@@ -2,129 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D72E42B0091
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39FCE2B0096
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:53:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726776AbgKLHw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 02:52:26 -0500
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53561 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725884AbgKLHwT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:52:19 -0500
-X-UUID: f86e32c304ef4ebaa5b93d08d8b7ec87-20201112
-X-UUID: f86e32c304ef4ebaa5b93d08d8b7ec87-20201112
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1451875633; Thu, 12 Nov 2020 15:52:15 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 12 Nov 2020 15:52:13 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 12 Nov 2020 15:52:12 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        <irq-linux@rere.qmqm.pl>, Wenbin Mei <wenbin.mei@mediatek.com>,
-        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Ludovic Barre <ludovic.barre@st.com>,
-        Krishna Konda <kkonda@codeaurora.org>,
-        Bradley Bolen <bradleybolen@gmail.com>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <srv_heupstream@mediatek.com>
-Subject: [PATCH v1 3/3] mmc: core: Set cqe off during suspend flow
-Date:   Thu, 12 Nov 2020 15:52:08 +0800
-Message-ID: <20201112075208.28183-4-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201112075208.28183-1-wenbin.mei@mediatek.com>
-References: <20201112075208.28183-1-wenbin.mei@mediatek.com>
+        id S1725941AbgKLHxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 02:53:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725860AbgKLHxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:53:42 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC51C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:53:41 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id l2so6967244lfk.0
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:53:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=NZqGtH5DPrZOvltlAKsPmoVZYNK7niC/NzGSxKqEzH8=;
+        b=Icx5BpPatl5Ac2y0n8Xs+R5S+KyH9Zdmuzq/jR40gTiq7L7lKMGRArlxiaRxOTa74N
+         uOEw+DuF1rMYdjT2pQKTR/Cih+ttLbxqVCC/FiYytNpBCEaT3S1m7u7DefHWJJiijrYa
+         SihWzfFLQDiW55rESosEuIH7CDrg9ZbMdT4VhqBnQeDrhuxr/IKiuYHIjS8kucIuRBG8
+         wlm7OuLlSkmuOj7ojPhju4XqBA9ykA8hyX0Xs3acRIx8wMSzM0M61Lliy0qI67E8texN
+         RxwD1xuPDMDVo6Muehd6rMNKgQMnmucTGWkTrJQTQlYT9Q8hsjHcWrJX0rDLWWgK3yCE
+         Barw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=NZqGtH5DPrZOvltlAKsPmoVZYNK7niC/NzGSxKqEzH8=;
+        b=LwPShX/VRYNCGQSKkHVJhk7MoYl99txsDPR8hIRnZMsv8SMlO6+uKg8HePGAwpKxgE
+         LTLTv9Jkl+leRXa6FpsjsRHVZim+zCacD8IOC/2y73KwIbFS1myOiuVrm46K1JpgeraD
+         IQJkkZYZEFgl8Vvfn7kiDL6M9I3Uu6T7mZK2542xLL8l+DJ+qbbG7j9dIiy6T2tFrGIf
+         Dv47sVP32Q+StsjGVHTHpVr9pGZyE0OSbYkQ8/Z6t2P0kUt0+REDpZjKrxUAlYhhM9xp
+         kSRWG05IQiHc5lOWhJqjP392XyVxFpC2f9boLFGx5vE3Zn6GmjcvazoIIqEFUQzHR1JD
+         IDUQ==
+X-Gm-Message-State: AOAM5334x46nOJzImPSDXVlVcBGq0Dx+aUQxG2euLs1RlU7rIP8X4kbc
+        jNPqUNszoiGOOasCe/ggeo4HefTjpIE=
+X-Google-Smtp-Source: ABdhPJzujRugDMnh/4Nwqi0QGNZ5t+d3oyVT3t6gFrL+GI0J/3DNbX1eKFYWq83s2JsO1GwIuM2zWQ==
+X-Received: by 2002:a05:6512:3485:: with SMTP id v5mr12155861lfr.181.1605167619627;
+        Wed, 11 Nov 2020 23:53:39 -0800 (PST)
+Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id v28sm470640lfo.43.2020.11.11.23.53.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Nov 2020 23:53:39 -0800 (PST)
+Subject: Re: [PATCH V3 1/3] arm64: add config for Broadcom BCM4908 SoCs
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201112072133.17039-1-zajec5@gmail.com>
+ <87r1ozav04.fsf@tarshish>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Message-ID: <6ce8a873-6815-5796-8d62-c6847d1799d9@gmail.com>
+Date:   Thu, 12 Nov 2020 08:53:38 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+In-Reply-To: <87r1ozav04.fsf@tarshish>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Before we got these errors on MT8192 platform:
-[   59.153891] Restarting tasks ...
-[   59.154540] done.
-[   59.159175] PM: suspend exit
-[   59.218724] mtk-msdc 11f60000.mmc: phase: [map:fffffffe] [maxlen:31]
-[final:16]
-[  119.776083] mmc0: cqhci: timeout for tag 9
-[  119.780196] mmc0: cqhci: ============ CQHCI REGISTER DUMP ===========
-[  119.786709] mmc0: cqhci: Caps:      0x100020b6 | Version:  0x00000510
-[  119.793225] mmc0: cqhci: Config:    0x00000101 | Control:  0x00000000
-[  119.799706] mmc0: cqhci: Int stat:  0x00000000 | Int enab: 0x00000000
-[  119.806177] mmc0: cqhci: Int sig:   0x00000000 | Int Coal: 0x00000000
-[  119.812670] mmc0: cqhci: TDL base:  0x00000000 | TDL up32: 0x00000000
-[  119.819149] mmc0: cqhci: Doorbell:  0x003ffc00 | TCN:      0x00000200
-[  119.825656] mmc0: cqhci: Dev queue: 0x00000000 | Dev Pend: 0x00000000
-[  119.832155] mmc0: cqhci: Task clr:  0x00000000 | SSC1:     0x00001000
-[  119.838627] mmc0: cqhci: SSC2:      0x00000000 | DCMD rsp: 0x00000000
-[  119.845174] mmc0: cqhci: RED mask:  0xfdf9a080 | TERRI:    0x0000891c
-[  119.851654] mmc0: cqhci: Resp idx:  0x00000000 | Resp arg: 0x00000000
-[  119.865773] mmc0: cqhci: : ===========================================
-[  119.872358] mmc0: running CQE recovery
-From these logs, we found TDL base was back to the default value.
+On 12.11.2020 08:34, Baruch Siach wrote:
+> On Thu, Nov 12 2020, Rafał Miłecki wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> Add ARCH_BCM4908 config that can be used for compiling DTS files.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
+>>   arch/arm64/Kconfig.platforms | 8 ++++++++
+>>   arch/arm64/configs/defconfig | 1 +
+>>   2 files changed, 9 insertions(+)
+>>
+>> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+>> index 6f2494dd6d60..d1c02a4a93c8 100644
+>> --- a/arch/arm64/Kconfig.platforms
+>> +++ b/arch/arm64/Kconfig.platforms
+>> @@ -43,6 +43,14 @@ config ARCH_BCM2835
+>>   	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
+>>   	  These SoCs are used in the Raspberry Pi 3 and 4 devices.
+>>   
+>> +config ARCH_BCM4908
+>> +	bool "Broadcom BCM4908 family"
+>> +	select GPIOLIB
+>> +	help
+>> +	  This enables support for the Broadcom BCM4906, BCM4908 and
+>> +	  BCM49408 SoCs. These SoCs use Cortex-B53 cores and can be
+> 
+> Is Cortex-B53 an official name? I see reference to Brahma-B53 in other
+> places like Documentation/arm64/silicon-errata.rst.
 
-After suspend, the mmc host is powered off by HW, and bring CQE register
-to the default value, so CQE need to be re-initialized after resuming back.
+That should be Brahma-B53. Good catch.
 
-Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
----
- drivers/mmc/core/host.c | 2 ++
- drivers/mmc/core/mmc.c  | 5 +++++
- include/linux/mmc/pm.h  | 1 +
- 3 files changed, 8 insertions(+)
+Initially I didn't know "Brahma" name and thought (Brahma-) B53 is just
+minor variation of Cortex-B53. I even used:
+compatible = "brcm,cortex-b53", "arm,cortex-a53";
 
-diff --git a/drivers/mmc/core/host.c b/drivers/mmc/core/host.c
-index ce43f7573d80..c98486c8fb3b 100644
---- a/drivers/mmc/core/host.c
-+++ b/drivers/mmc/core/host.c
-@@ -284,6 +284,8 @@ int mmc_of_parse(struct mmc_host *host)
- 	if (device_property_read_bool(dev, "wakeup-source") ||
- 	    device_property_read_bool(dev, "enable-sdio-wakeup")) /* legacy */
- 		host->pm_caps |= MMC_PM_WAKE_SDIO_IRQ;
-+	if (device_property_read_bool(dev, "cqe-off-in-suspend"))
-+		host->pm_caps |= MMC_PM_CQE_OFF_IN_SUSPEND;
- 	if (device_property_read_bool(dev, "mmc-ddr-3_3v"))
- 		host->caps |= MMC_CAP_3_3V_DDR;
- 	if (device_property_read_bool(dev, "mmc-ddr-1_8v"))
-diff --git a/drivers/mmc/core/mmc.c b/drivers/mmc/core/mmc.c
-index b3fa193de846..f5ae1f13a867 100644
---- a/drivers/mmc/core/mmc.c
-+++ b/drivers/mmc/core/mmc.c
-@@ -2047,6 +2047,11 @@ static int _mmc_suspend(struct mmc_host *host, bool is_suspend)
- 		err = mmc_deselect_cards(host);
- 
- 	if (!err) {
-+		if (host->cqe_enabled &&
-+		    (host->pm_caps & MMC_PM_CQE_OFF_IN_SUSPEND)) {
-+			host->cqe_ops->cqe_disable(host);
-+			host->cqe_enabled = false;
-+		}
- 		mmc_power_off(host);
- 		mmc_card_set_suspended(host->card);
- 	}
-diff --git a/include/linux/mmc/pm.h b/include/linux/mmc/pm.h
-index 3549f8045784..3dd1046f2c8f 100644
---- a/include/linux/mmc/pm.h
-+++ b/include/linux/mmc/pm.h
-@@ -23,5 +23,6 @@ typedef unsigned int mmc_pm_flag_t;
- 
- #define MMC_PM_KEEP_POWER	(1 << 0)	/* preserve card power during suspend */
- #define MMC_PM_WAKE_SDIO_IRQ	(1 << 1)	/* wake up host system on SDIO IRQ assertion */
-+#define MMC_PM_CQE_OFF_IN_SUSPEND  (1 << 2)	/* cqe off during suspend */
- 
- #endif /* LINUX_MMC_PM_H */
--- 
-2.18.0
-
+It's clarified now but I forgot to update config help.
