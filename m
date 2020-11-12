@@ -2,314 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C67B2B097D
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 17:06:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D342B0982
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 17:07:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728414AbgKLQGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 11:06:34 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:35731 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728389AbgKLQGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 11:06:34 -0500
-Received: by mail-ot1-f66.google.com with SMTP id n11so6080615ota.2;
-        Thu, 12 Nov 2020 08:06:32 -0800 (PST)
+        id S1728771AbgKLQHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 11:07:49 -0500
+Received: from mail-oo1-f65.google.com ([209.85.161.65]:42085 "EHLO
+        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728770AbgKLQHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 11:07:48 -0500
+Received: by mail-oo1-f65.google.com with SMTP id g4so1428583oom.9;
+        Thu, 12 Nov 2020 08:07:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=3ufV/nE7yMD/9nE/SuqLhfnK8fps7nR0yXh6Zbp0Nms=;
-        b=mC0VQndCAmd6Ubs3v6R1ubCAcjIFYRofYgvGaWaKZ38MOpbHLv9pDrRDCcmnw7ZqwW
-         U1h8elmYJgUOiBQ/7JB/dQDabgm9EZF419asPfW9XlnxdtzkYb9HnBm9IZV3ebJX7/I1
-         N6N/Nw91mlMOqrJdk1LY3jIKHVVBAcGwmq5DDmvr5fSVu4iE4aDziF6Wfquz2F9DU2qF
-         t5PlPynWZ6hjdG8dQJrurjQtglM8D/4XD2AR1mtv3WMUpdOq8K3uwwqIBfEm0B7zLXXy
-         KuSFwAbUiw+yVEwIIDWyZxjYTXSNUmBTRkcfI1voOH6gbkbvf9vWHnuxJM/9u/8kCqzJ
-         JM1g==
-X-Gm-Message-State: AOAM533vt+S2VXTLIft6/T5ZsU2Xu0sYSJ1QaTia4fhaiyejYcqId05m
-        +ItujnWb430HEOIJ11t26cDF4ScqmQ==
-X-Google-Smtp-Source: ABdhPJyS6c0yPbEFXN9wyW73xxOhuVjIDcn90D3c+lrlsn8DYEzLaQDA01QgYclNrf9Xxptu3wJfZA==
-X-Received: by 2002:a9d:6311:: with SMTP id q17mr21446605otk.284.1605197192475;
-        Thu, 12 Nov 2020 08:06:32 -0800 (PST)
+        bh=u+fc+jZoo4rryAb6EXgFaAApuHJmifAKwrkVc68Jfnc=;
+        b=Z1uuRBY6IB/XAZSiwCylW8Kx5GiJRey+PBr4HjGtEKx4naHSdVKyUHrIi0DKFCk/zW
+         nixW21DBFMPizTlsAAR8HRr32T01OOuaIoJXZV3K6oIBhYAhP6Vo1K580KERmaITEZSu
+         OwV9cgPH0JmL9B7p/o0afMldUIMDBbQB0aw2eFujkykK4L6KcgLO7gi5eVXDcxoWEeve
+         yE5n3Hs5anr4NNZ8wea/FmRzUFIEVsmgVNfOglYkd6Ywv3ev8caFFKPl4Qq5fjmTEjKm
+         f7CYskcECxlGLjosqenKYNk74OPOru/ZYei0pcDdFeAGPa4jJSwiqUa/pXDnVF67pjFh
+         4yNQ==
+X-Gm-Message-State: AOAM530c444ahbQ+om5NFAULRZgoND1LbXwEIbVHTmaIeyZVVxUN9W9A
+        phWTyZY8raQdWZgqZEugRkg9XmboLw==
+X-Google-Smtp-Source: ABdhPJwIgA6W6Kn5XcmLSnjP3jXT6JXWKJfF+QPpkH57f9faLQ3g9lYAoE12cGCNrp8Ih5IU7Kq4zA==
+X-Received: by 2002:a4a:6b1a:: with SMTP id g26mr21465516ooc.13.1605197267992;
+        Thu, 12 Nov 2020 08:07:47 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s185sm1251840oia.18.2020.11.12.08.06.31
+        by smtp.gmail.com with ESMTPSA id j16sm1360618oot.24.2020.11.12.08.07.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 08:06:31 -0800 (PST)
-Received: (nullmailer pid 3681332 invoked by uid 1000);
-        Thu, 12 Nov 2020 16:06:31 -0000
-Date:   Thu, 12 Nov 2020 10:06:31 -0600
+        Thu, 12 Nov 2020 08:07:47 -0800 (PST)
+Received: (nullmailer pid 3683064 invoked by uid 1000);
+        Thu, 12 Nov 2020 16:07:46 -0000
+Date:   Thu, 12 Nov 2020 10:07:46 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Sameer Pujar <spujar@nvidia.com>
 Cc:     broonie@kernel.org, kuninori.morimoto.gx@renesas.com,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: audio-graph-card: Refactor schema
-Message-ID: <20201112160631.GA3671282@bogus>
+Subject: Re: [PATCH 2/2] ASoC: renesas,rsnd: Update audio graph references
+Message-ID: <20201112160746.GA3681609@bogus>
 References: <1605097613-25301-1-git-send-email-spujar@nvidia.com>
- <1605097613-25301-2-git-send-email-spujar@nvidia.com>
+ <1605097613-25301-3-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1605097613-25301-2-git-send-email-spujar@nvidia.com>
+In-Reply-To: <1605097613-25301-3-git-send-email-spujar@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 05:56:52PM +0530, Sameer Pujar wrote:
-> There can be customized sound cards which are based on generic audio
-> graph. In such cases most of the stuff is reused from generic audio
-> graph. To facilitate this, refactor audio graph schema into multiple
-> files and the base schema can be reused for specific sound cards.
-
-I did ack it, but it's not great that this was just applied and now it's 
-being changed. If the submitter doesn't have time to work on it more 
-then the maintainers shouldn't really have time to apply it.
-
+On Wed, Nov 11, 2020 at 05:56:53PM +0530, Sameer Pujar wrote:
+> Since audio graph schema is refactored now update the related
+> references here.
+> 
 > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
 > Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 > ---
->  .../bindings/sound/audio-graph-card.yaml           | 102 +-------------------
->  .../devicetree/bindings/sound/audio-graph.yaml     | 107 +++++++++++++++++++++
->  2 files changed, 110 insertions(+), 99 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/sound/audio-graph.yaml
+>  Documentation/devicetree/bindings/sound/renesas,rsnd.yaml | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+
+This should be part of the first patch. Things break in between.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
-> index 2329aeb..e047d7d 100644
-> --- a/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-card.yaml
-> @@ -9,113 +9,17 @@ title: Audio Graph Card Driver Device Tree Bindings
->  maintainers:
->    - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> index 51f4dca..fc2ae22 100644
+> --- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> +++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+> @@ -112,12 +112,10 @@ properties:
+>          - pattern: '^clk_(a|b|c|i)$'
 >  
-> +allOf:
-> +  - $ref: /schemas/sound/audio-graph.yaml#
-> +
->  properties:
->    compatible:
->      enum:
->        - audio-graph-card
->        - audio-graph-scu-card
+>    port:
+> -    description: OF-Graph subnode
+> -    $ref: "audio-graph-card.yaml#/properties/port"
+> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
 >  
-> -  dais:
-> -    $ref: /schemas/types.yaml#/definitions/phandle-array
-> -  label:
-> -    maxItems: 1
-> -  prefix:
-> -    description: "device name prefix"
-> -    $ref: /schemas/types.yaml#/definitions/string
-> -  routing:
-> -    description: |
-> -      A list of the connections between audio components.
-> -      Each entry is a pair of strings, the first being the
-> -      connection's sink, the second being the connection's source.
-> -    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> -  widgets:
-> -    description: User specified audio sound widgets.
-> -    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> -  convert-rate:
-> -    description: CPU to Codec rate convert.
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> -  convert-channels:
-> -    description: CPU to Codec rate channels.
-> -    $ref: /schemas/types.yaml#/definitions/uint32
-> -  pa-gpios:
-> -    maxItems: 1
-> -  hp-det-gpio:
-> -    maxItems: 1
-> -  mic-det-gpio:
-> -    maxItems: 1
-> -
-> -  port:
-> -    description: single OF-Graph subnode
-> -    type: object
-> -    properties:
-> -      reg:
-> -        maxItems: 1
-> -      prefix:
-> -        description: "device name prefix"
-> -        $ref: /schemas/types.yaml#/definitions/string
-> -      convert-rate:
-> -        description: CPU to Codec rate convert.
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -      convert-channels:
-> -        description: CPU to Codec rate channels.
-> -        $ref: /schemas/types.yaml#/definitions/uint32
-> -    patternProperties:
-> -      "^endpoint(@[0-9a-f]+)?":
-> -        type: object
-> -        properties:
-> -          remote-endpoint:
-> -            maxItems: 1
-> -          mclk-fs:
-> -            description: |
-> -              Multiplication factor between stream rate and codec mclk.
-> -              When defined, mclk-fs property defined in dai-link sub nodes are ignored.
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -          frame-inversion:
-> -            description: dai-link uses frame clock inversion
-> -            $ref: /schemas/types.yaml#/definitions/flag
-> -          bitclock-inversion:
-> -            description: dai-link uses bit clock inversion
-> -            $ref: /schemas/types.yaml#/definitions/flag
-> -          frame-master:
-> -            description: Indicates dai-link frame master.
-> -            $ref: /schemas/types.yaml#/definitions/phandle-array
-> -            maxItems: 1
-> -          bitclock-master:
-> -            description: Indicates dai-link bit clock master
-> -            $ref: /schemas/types.yaml#/definitions/phandle-array
-> -            maxItems: 1
-> -          dai-format:
-> -            description: audio format.
-> -            items:
-> -              enum:
-> -                - i2s
-> -                - right_j
-> -                - left_j
-> -                - dsp_a
-> -                - dsp_b
-> -                - ac97
-> -                - pdm
-> -                - msb
-> -                - lsb
-> -          convert-rate:
-> -            description: CPU to Codec rate convert.
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -          convert-channels:
-> -            description: CPU to Codec rate channels.
-> -            $ref: /schemas/types.yaml#/definitions/uint32
-> -        required:
-> -          - remote-endpoint
-> -
-> -  ports:
+>    ports:
 > -    description: multi OF-Graph subnode
-> -    type: object
-> -    patternProperties:
-> -      "^port(@[0-9a-f]+)?":
-> -        $ref: "#/properties/port"
-> -
->  required:
->    - compatible
-> -  - dais
+> -    $ref: "audio-graph-card.yaml#/properties/ports"
+> +    $ref: /schemas/graph.yaml#/properties/ports
 >  
->  additionalProperties: false
-
-This is not going to work with all the properties moved. 
-'additionalProperties' can't 'see' into the reference. This needs to be 
-unevaluatedProperties instead which solves that problem.
-
->  
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph.yaml b/Documentation/devicetree/bindings/sound/audio-graph.yaml
-> new file mode 100644
-> index 0000000..1e338d6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/audio-graph.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Audio Graph Card Driver Device Tree Bindings
-> +
-> +maintainers:
-> +  - Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/graph.yaml#
-> +
-> +select: false
-> +
-> +properties:
-> +  dais:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +  label:
-> +    maxItems: 1
-> +  prefix:
-> +    description: "device name prefix"
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +  routing:
-> +    description: |
-> +      A list of the connections between audio components.
-> +      Each entry is a pair of strings, the first being the
-> +      connection's sink, the second being the connection's source.
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +  widgets:
-> +    description: User specified audio sound widgets.
-> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> +  convert-rate:
-> +    description: CPU to Codec rate convert.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +  convert-channels:
-> +    description: CPU to Codec rate channels.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +  pa-gpios:
-> +    maxItems: 1
-> +  hp-det-gpio:
-> +    maxItems: 1
-> +  mic-det-gpio:
-> +    maxItems: 1
-> +
-> +  port:
-> +    description: single OF-Graph subnode
-> +    type: object
-> +    properties:
-> +      prefix:
-> +        description: "device name prefix"
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +      convert-rate:
-> +        description: CPU to Codec rate convert.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +      convert-channels:
-> +        description: CPU to Codec rate channels.
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +    patternProperties:
-> +      "^endpoint(@[0-9a-f]+)?":
-> +        type: object
-> +        properties:
-> +          mclk-fs:
-> +            description: |
-> +              Multiplication factor between stream rate and codec mclk.
-> +              When defined, mclk-fs property defined in dai-link sub nodes are
-> +              ignored.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +          frame-inversion:
-> +            description: dai-link uses frame clock inversion
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +          bitclock-inversion:
-> +            description: dai-link uses bit clock inversion
-> +            $ref: /schemas/types.yaml#/definitions/flag
-> +          frame-master:
-> +            description: Indicates dai-link frame master.
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +            maxItems: 1
-> +          bitclock-master:
-> +            description: Indicates dai-link bit clock master
-> +            $ref: /schemas/types.yaml#/definitions/phandle-array
-> +            maxItems: 1
-> +          dai-format:
-> +            description: audio format.
-> +            items:
-> +              enum:
-> +                - i2s
-> +                - right_j
-> +                - left_j
-> +                - dsp_a
-> +                - dsp_b
-> +                - ac97
-> +                - pdm
-> +                - msb
-> +                - lsb
-> +          convert-rate:
-> +            description: CPU to Codec rate convert.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +          convert-channels:
-> +            description: CPU to Codec rate channels.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +required:
-> +  - dais
-> +
-> +additionalProperties: true
+>  # use patternProperties to avoid naming "xxx,yyy" issue
+>  patternProperties:
 > -- 
 > 2.7.4
 > 
