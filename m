@@ -2,96 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B00182B019A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 10:07:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E4032B01B7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 10:08:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727855AbgKLJHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 04:07:10 -0500
-Received: from mga05.intel.com ([192.55.52.43]:38735 "EHLO mga05.intel.com"
+        id S1727934AbgKLJIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 04:08:12 -0500
+Received: from mx2.suse.de ([195.135.220.15]:37746 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727845AbgKLJHI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 04:07:08 -0500
-IronPort-SDR: +H+1Xz+qSgGpdE70EiZbdI02B/IaluvgbBXXyv1aJA7K32Ps4vsflw7vVYwqZnBOiYH/D69ZsB
- NA52fdw7HhtQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="254988333"
-X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; 
-   d="scan'208";a="254988333"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2020 01:07:08 -0800
-IronPort-SDR: /exYc94LmtEFWbbmjyIFNbgIZqmFnaaL8C2lYCI1MigXZRDdUCF37XiyclEerDI7zW4abJG1UO
- HnLbs3oMKX4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,471,1596524400"; 
-   d="scan'208";a="360911782"
-Received: from jsia-hp-z620-workstation.png.intel.com ([10.221.118.135])
-  by fmsmga002.fm.intel.com with ESMTP; 12 Nov 2020 01:07:06 -0800
-From:   Sia Jee Heng <jee.heng.sia@intel.com>
-To:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com, robh+dt@kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 15/15] dmaengine: dw-axi-dmac: Set constraint to the Max segment size
-Date:   Thu, 12 Nov 2020 16:49:53 +0800
-Message-Id: <20201112084953.21629-16-jee.heng.sia@intel.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201112084953.21629-1-jee.heng.sia@intel.com>
-References: <20201112084953.21629-1-jee.heng.sia@intel.com>
+        id S1726960AbgKLJGZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Nov 2020 04:06:25 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay1.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 96635AE78;
+        Thu, 12 Nov 2020 09:06:23 +0000 (UTC)
+Message-ID: <9e3a04f0ae76675f610bf25e6b53b4aff26afae4.camel@suse.de>
+Subject: Re: [PATCH v3 07/11] input: raspberrypi-ts: Release firmware handle
+ when not needed
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     u.kleine-koenig@pengutronix.de, linux-kernel@vger.kernel.org,
+        f.fainelli@gmail.com, linux-pwm@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        wahrenst@gmx.net, linux-input@vger.kernel.org,
+        gregkh@linuxfoundation.org, devel@driverdev.osuosl.org,
+        p.zabel@pengutronix.de, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
+        sboyd@kernel.org, linux-rpi-kernel@lists.infradead.org,
+        bgolaszewski@baylibre.com, andy.shevchenko@gmail.com
+Date:   Thu, 12 Nov 2020 10:06:21 +0100
+In-Reply-To: <20201112014542.GA1003057@dtor-ws>
+References: <20201104103938.1286-1-nsaenzjulienne@suse.de>
+         <20201104103938.1286-8-nsaenzjulienne@suse.de>
+         <20201112014542.GA1003057@dtor-ws>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-j2+UKM6wkcW3jVx2ysNJ"
+User-Agent: Evolution 3.36.5 
+MIME-Version: 1.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for DMA Scatter-Gather (SG) constraint so that DMA clients can
-handle the AxiDMA limitation.
 
-Without supporting DMA constraint the default Max segment size reported by
-dmaengine is 64KB, which is not supported by Intel KeemBay AxiDMA.
+--=-j2+UKM6wkcW3jVx2ysNJ
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
----
- drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c | 8 ++++++++
- drivers/dma/dw-axi-dmac/dw-axi-dmac.h          | 1 +
- 2 files changed, 9 insertions(+)
+On Wed, 2020-11-11 at 17:45 -0800, Dmitry Torokhov wrote:
+> Hi Nicolas,
+>=20
+> On Wed, Nov 04, 2020 at 11:39:33AM +0100, Nicolas Saenz Julienne wrote:
+> > Use devm_rpi_firmware_get() so as to make sure we release RPi's firmwar=
+e
+> > interface when unbinding the device.
+>=20
+> Unless I am mistaken this driver does not really need the firmware
+> structure past rpi_ts_probe(), and will be fine if it disappears earlier
+> than unbind time.
 
-diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 812f51c717e6..7e00d9df4d4d 100644
---- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-+++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-@@ -12,6 +12,7 @@
- #include <linux/device.h>
- #include <linux/dmaengine.h>
- #include <linux/dmapool.h>
-+#include <linux/dma-mapping.h>
- #include <linux/err.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
-@@ -1353,6 +1354,13 @@ static int dw_probe(struct platform_device *pdev)
- 	dw->dma.device_prep_slave_sg = dw_axi_dma_chan_prep_slave_sg;
- 	dw->dma.device_prep_dma_cyclic = dw_axi_dma_chan_prep_cyclic;
- 
-+	/*
-+	 * Synopsis DesignWare AxiDMA datasheet mentioned Maximum
-+	 * supported blocks is 1024. Device register width is 4 bytes.
-+	 * Therefore, set constraint to 1024 * 4.
-+	 */
-+	dw->dma.dev->dma_parms = &dw->dma_parms;
-+	dma_set_max_seg_size(&pdev->dev, MAX_BLOCK_SIZE);
- 	platform_set_drvdata(pdev, chip);
- 
- 	pm_runtime_enable(chip->dev);
-diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-index f64e8d33b127..67669049cead 100644
---- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-+++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-@@ -54,6 +54,7 @@ struct axi_dma_chan {
- struct dw_axi_dma {
- 	struct dma_device	dma;
- 	struct dw_axi_dma_hcfg	*hdata;
-+	struct device_dma_parameters	dma_parms;
- 
- 	/* channels */
- 	struct axi_dma_chan	*chan;
--- 
-2.18.0
+Yes, I missed that. Will update it.
+
+Regards,
+Nicolas
+
+
+--=-j2+UKM6wkcW3jVx2ysNJ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+s+w0ACgkQlfZmHno8
+x/5iuQgApaPJZjl0NVPJ80THZ1yICuyOa9+6d8Bal28kwj6Ft8Xb+Z6ploXmWJ5T
+EPDFQF4pFMoSBGmgGSspJj4dl/KD3UaeJIRB3c3UNqIC7icH9TpBZY4Z41Mioqsv
+l4QH1DIWYVsRYi/9I1vhoijsquL5t5WK0c1N9GBs6GIQjVwEMN9tsDcQ3flTLKZs
+93saK4xtDp6UbqsYQYtwmupmREvAIxqnm0g3GB/Qk8Fkg9vpIK0H5cRBaJT9bfb8
+tQPpTY2LWTXQ53azvlBOcZC7yJQRBKitR2GkibS1ynNoNl43f5ZjyWXkzK2TEw1j
+HOKtCH+6NObb7Wm+xwL50tkanpTaGg==
+=eql2
+-----END PGP SIGNATURE-----
+
+--=-j2+UKM6wkcW3jVx2ysNJ--
 
