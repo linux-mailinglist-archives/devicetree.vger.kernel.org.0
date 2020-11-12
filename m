@@ -2,126 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF6542AFFCA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 07:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 213C92B0025
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:10:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726466AbgKLGlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 01:41:10 -0500
-Received: from szxga02-in.huawei.com ([45.249.212.188]:2430 "EHLO
-        szxga02-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725981AbgKLGlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 01:41:09 -0500
-Received: from dggeme755-chm.china.huawei.com (unknown [172.30.72.54])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4CWsS82f9sz54B9;
-        Thu, 12 Nov 2020 14:40:56 +0800 (CST)
-Received: from [10.140.157.68] (10.140.157.68) by
- dggeme755-chm.china.huawei.com (10.3.19.101) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
- 15.1.1913.5; Thu, 12 Nov 2020 14:41:05 +0800
-Subject: Re: [PATCH] clk: hisilicon: Add clock driver for hi3559A SoC
-To:     Rob Herring <robh@kernel.org>
-CC:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20201109202838.43105-1-gengdongjiu@huawei.com>
- <20201111222340.GA2143735@bogus>
-From:   Dongjiu Geng <gengdongjiu@huawei.com>
-Message-ID: <69f78676-6e5e-867a-5b14-cb9af84a32ba@huawei.com>
-Date:   Thu, 12 Nov 2020 14:41:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101
- Thunderbird/52.6.0
+        id S1725933AbgKLHKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 02:10:34 -0500
+Received: from mail-lj1-f181.google.com ([209.85.208.181]:38628 "EHLO
+        mail-lj1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725898AbgKLHKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:10:31 -0500
+Received: by mail-lj1-f181.google.com with SMTP id r17so4887337ljg.5;
+        Wed, 11 Nov 2020 23:10:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=2c9a5L0o01m38/cywtEUnl5nDvqplwAluAIcLy9Qg8k=;
+        b=IcqQUjgIbSM3+Q1rsjQZFAJ5NOQ59tDJ5qoJdHt9RNQPq3w6YTL/n7/qedRcMPh09V
+         gbOsUI9I9Cxe7TUNDYsw58HE5j1ZQYdGcBt5HKS5PgtsKKMBYP2jwlRffxQBlk7wR61k
+         lELx9nY8rhHOK09txyPU23zZosWUeX8JiBP2FPIKQdiw1yyE2jPGrWQRoWOVZrw9ud6n
+         gw+o17dABPJ9TyaqtXBIvynQrCqMKHU9hPBxYdc+Z162taBlKTCJy2Ku5rXqBEIZECjr
+         Ad47ynsovM486yX6eltFSPujjF6lo4WvBtrwe7u4QmVu58RQs0QH9YjcjSx9ybdOvLXA
+         r+SQ==
+X-Gm-Message-State: AOAM531CfQep0xDwUoezjP1tYl2CAsQ77YDIm+1hY/z54iI/P3PkTTh6
+        rqTr2jAhuKSBS8vvTHS5GXg=
+X-Google-Smtp-Source: ABdhPJx6e4aFlf2LsfdNBw+yacGGlf+X2MxgqFYtMqMl9AWnm0gu79+J2eaqhII0HxAqZBk3ZU1Rag==
+X-Received: by 2002:a2e:9dd3:: with SMTP id x19mr13012611ljj.406.1605165029303;
+        Wed, 11 Nov 2020 23:10:29 -0800 (PST)
+Received: from localhost.localdomain (62-78-225-252.bb.dnainternet.fi. [62.78.225.252])
+        by smtp.gmail.com with ESMTPSA id t5sm457838lfc.75.2020.11.11.23.10.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Nov 2020 23:10:28 -0800 (PST)
+Date:   Thu, 12 Nov 2020 09:10:20 +0200
+From:   Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+To:     matti.vaittinen@fi.rohmeurope.com, mazziesaccount@gmail.com
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
+        linux-watchdog@vger.kernel.org
+Subject: [PATCH v6 0/4] Support ROHM BD9576MUF and BD9573MUF PMICs
+Message-ID: <cover.1605164323.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-In-Reply-To: <20201111222340.GA2143735@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.140.157.68]
-X-ClientProxiedBy: dggeme706-chm.china.huawei.com (10.1.199.102) To
- dggeme755-chm.china.huawei.com (10.3.19.101)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/11/12 6:23, Rob Herring wrote:
-> On Mon, Nov 09, 2020 at 08:28:38PM +0000, Dongjiu Geng wrote:
->> Add clock drivers for hi3559A SoC, this driver controls the SoC
->> registers to supply different clocks to different IPs in the SoC.
->>
->> Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
->> ---
->>  drivers/clk/hisilicon/Kconfig                 |   7 +
->>  drivers/clk/hisilicon/Makefile                |   1 +
->>  drivers/clk/hisilicon/clk-hi3559a.c           | 873 ++++++++++++++++++
->>  include/dt-bindings/clock/hi3559av100-clock.h | 173 ++++
-> 
-> Is there a binding for this? The header should be part of it.
-yes, I will add it.
-Thanks for the pointing out.
+Initial support for ROHM BD9576MUF and BD9573MUF PMICs.
 
-> 
->>  4 files changed, 1054 insertions(+)
->>  create mode 100644 drivers/clk/hisilicon/clk-hi3559a.c
->>  create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
->>
->> diff --git a/drivers/clk/hisilicon/Kconfig b/drivers/clk/hisilicon/Kconfig
->> index 6a9e93a0bb95..5ecc37aaa118 100644
->> --- a/drivers/clk/hisilicon/Kconfig
->> +++ b/drivers/clk/hisilicon/Kconfig
->> @@ -15,6 +15,13 @@ config COMMON_CLK_HI3519
->>  	help
->>  	  Build the clock driver for hi3519.
->>  
->> +config COMMON_CLK_HI3559A
->> +	bool "Hi3559A Clock Driver"
->> +	depends on ARCH_HISI || COMPILE_TEST
->> +	default ARCH_HISI
->> +	help
->> +	  Build the clock driver for hi3559a.
->> +
->>  config COMMON_CLK_HI3660
->>  	bool "Hi3660 Clock Driver"
->>  	depends on ARCH_HISI || COMPILE_TEST
->> diff --git a/drivers/clk/hisilicon/Makefile b/drivers/clk/hisilicon/Makefile
->> index b2441b99f3d5..bc101833b35e 100644
->> --- a/drivers/clk/hisilicon/Makefile
->> +++ b/drivers/clk/hisilicon/Makefile
->> @@ -17,3 +17,4 @@ obj-$(CONFIG_COMMON_CLK_HI6220)	+= clk-hi6220.o
->>  obj-$(CONFIG_RESET_HISI)	+= reset.o
->>  obj-$(CONFIG_STUB_CLK_HI6220)	+= clk-hi6220-stub.o
->>  obj-$(CONFIG_STUB_CLK_HI3660)	+= clk-hi3660-stub.o
->> +obj-$(CONFIG_COMMON_CLK_HI3559A)	+= clk-hi3559a.o
->> diff --git a/drivers/clk/hisilicon/clk-hi3559a.c b/drivers/clk/hisilicon/clk-hi3559a.c
->> new file mode 100644
->> index 000000000000..bd3921fc8c8e
->> --- /dev/null
->> +++ b/drivers/clk/hisilicon/clk-hi3559a.c
->> @@ -0,0 +1,873 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later
->> +/*
->> + * Hisilicon Hi3559A clock driver
->> + *
->> + * Copyright (c) 2019-2020 HiSilicon Technologies Co., Ltd.
->> + *
->> + * This program is free software; you can redistribute it and/or modify
->> + * it under the terms of the GNU General Public License as published by
->> + * the Free Software Foundation; either version 2 of the License, or
->> + * (at your option) any later version.
-> 
-> Don't need both this and SPDX tag. Kernel code should be GPL-2.0 (-only) 
-> generally.
+These PMICs are primarily intended to be used to power the R-Car family
+processors. BD9576MUF includes some additional safety features the
+BD9573MUF does not have. This initial version of drivers does not
+utilize these features and for now the SW behaviour is identical.
 
-Ok, I will remove one. thanks.
+This patch series includes MFD and watchdog drivers. Regulator part was
+already applied.
 
-> 
->> + *
->> + * Author: Dongjiu Geng <gengdongjiu@huawei.com>
-> 
-> git will tell us this.
-> 
-> Same comments apply to the header. Though DT headers should be dual 
-> licensed.
-> 
-> Rob
-> .
-> 
+- Enabling and pinging the watchdog
+- configuring watchog timeout / window from device-tree
+
+This patch series does not bring interrupt support. BD9576MUF and BD9573MUF
+are designed to keep the IRQ line low for whole duration of error
+condition. IRQ can't be 'acked'. So proper IRQ support would require
+some IRQ limiter implementation (delayed unmask?) in order to not hog
+the CPU.
+
+Changelog v6:
+  - Fixed watchdog timeout
+
+Changelog v5:
+  - rebased on top of v5.10-rc2
+  - few styling fixes in MFD as suggested by Lee
+
+Changelog v4:
+  - rebased on top of 5.10-rc1
+  - Fix typo (repeated word maximum) from the DT binding doc
+
+Changelog v3:
+  - use only one binding to specify watchdog time-out window.
+
+Changelog v2:
+  - dropped already applied regulator part
+  - dt_bindings: Fix case for regulator-names in the example
+  - watchdod: unify probe error check and revise includes
+
+---
+
+
+Matti Vaittinen (4):
+  dt_bindings: mfd: Add ROHM BD9576MUF and BD9573MUF PMICs
+  mfd: Support ROHM BD9576MUF and BD9573MUF
+  wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
+  MAINTAINERS: Add ROHM BD9576MUF and BD9573MUF drivers
+
+ .../bindings/mfd/rohm,bd9576-pmic.yaml        | 123 ++++++++
+ MAINTAINERS                                   |   4 +
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/rohm-bd9576.c                     | 108 +++++++
+ drivers/watchdog/Kconfig                      |  13 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/bd9576_wdt.c                 | 291 ++++++++++++++++++
+ include/linux/mfd/rohm-bd957x.h               |  59 ++++
+ include/linux/mfd/rohm-generic.h              |   2 +
+ 10 files changed, 613 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/rohm,bd9576-pmic.yaml
+ create mode 100644 drivers/mfd/rohm-bd9576.c
+ create mode 100644 drivers/watchdog/bd9576_wdt.c
+ create mode 100644 include/linux/mfd/rohm-bd957x.h
+
+
+base-commit: 3cea11cd5e3b00d91caf0b4730194039b45c5891
+-- 
+2.25.4
+
+
+-- 
+Matti Vaittinen, Linux device drivers
+ROHM Semiconductors, Finland SWDC
+Kiviharjunlenkki 1E
+90220 OULU
+FINLAND
+
+~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+Simon says - in Latin please.
+~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+Thanks to Simon Glass for the translation =] 
