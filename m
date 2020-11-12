@@ -2,113 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C455B2B11EF
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 23:42:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97C202B1205
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 23:49:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725973AbgKLWmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 17:42:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51230 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725965AbgKLWmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 17:42:46 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99265C0613D1;
-        Thu, 12 Nov 2020 14:42:46 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id o21so10467037ejb.3;
-        Thu, 12 Nov 2020 14:42:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=9uIFbwY/aDvICNOe+dyohdf9CD3ZKiy5rbtal4KyUec=;
-        b=hjPH1IEw1q+48yggnNsF0VvIje/fklJ3N7wK+2z/3QoXaIF0jkRaPsI7j4pYhQwYsZ
-         VQyG1v1ZssLr9Wk0a2Pk2O6RQv1oAb0FreplX9u6BqtWNIk02b8q/LN73YncotR/mp4H
-         L/AeE1jpV3bqEx9ZmaWkEdIAgQ7MQK2hdiawdYJn8Bs0Jg4flolUQtLuXtyDP/on9Sh+
-         FoKjoY6Jz3A9hy++UBKD6rtmqtnxQzNzZh/F49HwrZ9MjkdD6VKUTUcVF7aSE/v0BYqj
-         2fvBTfaATdra26erg0hmMbpTqTPdleYryX4i4YLZ0IDUOhg6iP8KpL0zGAWzNhKmrwtr
-         UTqw==
+        id S1725999AbgKLWt3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 17:49:29 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:36857 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725903AbgKLWt3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 17:49:29 -0500
+Received: by mail-oi1-f194.google.com with SMTP id d9so8305602oib.3;
+        Thu, 12 Nov 2020 14:49:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=9uIFbwY/aDvICNOe+dyohdf9CD3ZKiy5rbtal4KyUec=;
-        b=sMZOC+fk6GmHt/mbQ8DoqGFUk9gTRt2noHaOsp+BOLfMLBfgzkuehPJ07WrAinQma+
-         EL88cW/zRSWTzD2oUqQmhvoXbf1RXkduKCWWzJelZG4BwAfFDmNFHB2zdS/Xv41gZbCM
-         29DOcDI4d/Xm9LFZ3g/kc5HJ5o/jTKRAOSs/jhlc1+3fVwLKXb77M2sza4WIBd/54HrE
-         dO+Di5pe4ZyEqlxqDZsBUQUfax47T6tASUe9g7EgMHBxW8ZRi8eFPJ/dT7/tu8AyFCQy
-         PYHCcX6qn9m1teZE/sN4ARBERFpiOMO+gxpNipi2KLJPo6cvjlDipQH+FHaA5HlOypZw
-         TWmA==
-X-Gm-Message-State: AOAM5334Qk3qmTftvvk5nQP/bMHqpX3NzY/2K2mSPbIY58vPC3yCWhXi
-        Ly9EZGgq3RpV6j37mcAU7Sg=
-X-Google-Smtp-Source: ABdhPJw5fghN6w0IhVQiMzse9ol5oPT0cUSXq/kHBww2IzCqi3fWdmBvVsqtoR/WQaBMN3AnXl60YQ==
-X-Received: by 2002:a17:907:2063:: with SMTP id qp3mr1642255ejb.314.1605220965351;
-        Thu, 12 Nov 2020 14:42:45 -0800 (PST)
-Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id p1sm2944791edx.4.2020.11.12.14.42.43
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p5GGg8Ebp0FeaFVzCFVQ9l+zj8+LXU70iqTZI+zTHD0=;
+        b=Vy2DY7zQwujZLz5g/5UZVy+KU4FPPD2o+3r2acI1JEzL+11oXV01OFfzI7Hph0CSTg
+         z3UCSQzdMtSIrS6D+TZLEYxlTHamxhzCSxcMTxzwxiqCPdu08rc1jpt1zWrGk5E+oM+D
+         XL85F7slk9cmiy9EZWfs5B0xhGl1yscjU6N9Y1HgV9WD1ejysgalZCZEjXrW6/fa5NLV
+         8LqRTAjpA2b7nHLP6olnFt53vdKD8HQJHo392qA4rvz+0Zyuws5UzHwzGzDkbAKapDaH
+         uB+HnSsywSlAMjsjfxxkVeDi1ILwYCg+Xx5saHdI3VKM75ruVjY1+ELvzlBSYPJ96qJ9
+         /f9g==
+X-Gm-Message-State: AOAM531G73wA6moad5RlCIuYHPmw7RahhlDWy3Rqv4xG661NCADOQkZN
+        dOct3yWKIl+ZHdZ90GzzgPXbSpcgVg==
+X-Google-Smtp-Source: ABdhPJySpnsKn9+o+tgwoWSqIfpLXkoKOXrNb1Yb0LvpW9xgnJ4FksDkQjTOw4CkClChlGG6TniRRQ==
+X-Received: by 2002:aca:c6cb:: with SMTP id w194mr44102oif.27.1605221358652;
+        Thu, 12 Nov 2020 14:49:18 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id 85sm1456641oie.30.2020.11.12.14.49.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 14:42:44 -0800 (PST)
-Date:   Fri, 13 Nov 2020 00:42:43 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 02/11] net: dsa: microchip: support for
- "ethernet-ports" node
-Message-ID: <20201112224243.u6oxe4gnfrv7onkz@skbuf>
-References: <20201112153537.22383-1-ceggers@arri.de>
- <20201112153537.22383-3-ceggers@arri.de>
+        Thu, 12 Nov 2020 14:49:17 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     devicetree@vger.kernel.org, Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-media@vger.kernel.org
+Subject: [PATCH] media: dt-bindings: coda: Add missing 'additionalProperties'
+Date:   Thu, 12 Nov 2020 16:49:17 -0600
+Message-Id: <20201112224917.165544-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201112153537.22383-3-ceggers@arri.de>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 04:35:28PM +0100, Christian Eggers wrote:
-> The dsa.yaml device tree binding allows "ethernet-ports" (preferred) and
-> "ports".
->
-> Signed-off-by: Christian Eggers <ceggers@arri.de>
-> ---
->  drivers/net/dsa/microchip/ksz_common.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/net/dsa/microchip/ksz_common.c b/drivers/net/dsa/microchip/ksz_common.c
-> index 71cd1828e25d..a135fd5a9264 100644
-> --- a/drivers/net/dsa/microchip/ksz_common.c
-> +++ b/drivers/net/dsa/microchip/ksz_common.c
-> @@ -427,7 +427,9 @@ int ksz_switch_register(struct ksz_device *dev,
->  		ret = of_get_phy_mode(dev->dev->of_node, &interface);
->  		if (ret == 0)
->  			dev->compat_interface = interface;
-> -		ports = of_get_child_by_name(dev->dev->of_node, "ports");
-> +		ports = of_get_child_by_name(dev->dev->of_node, "ethernet-ports");
-> +		if (!ports)
-> +			ports = of_get_child_by_name(dev->dev->of_node, "ports");
+'additionalProperties' is now required by the meta-schema. Add it for
+coda.
 
-Man, I didn't think there could be something as uninspired as naming the
-private structure of your driver "dev"...
+Cc: Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: linux-media@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/media/coda.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
->  		if (ports)
->  			for_each_available_child_of_node(ports, port) {
->  				if (of_property_read_u32(port, "reg",
-> --
+diff --git a/Documentation/devicetree/bindings/media/coda.yaml b/Documentation/devicetree/bindings/media/coda.yaml
+index 7bac0057faf7..be6218354631 100644
+--- a/Documentation/devicetree/bindings/media/coda.yaml
++++ b/Documentation/devicetree/bindings/media/coda.yaml
+@@ -59,6 +59,8 @@ required:
+   - clocks
+   - clock-names
+ 
++additionalProperties: false
++
+ allOf:
+   - if:
+       properties:
+-- 
+2.25.1
 
-Either way:
-
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
