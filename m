@@ -2,90 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 048EE2B0888
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 16:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E24012B08BC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 16:46:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728218AbgKLPiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 10:38:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41454 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728186AbgKLPiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 10:38:09 -0500
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DECD7C0613D1;
-        Thu, 12 Nov 2020 07:38:08 -0800 (PST)
-Received: by mail-ej1-x642.google.com with SMTP id me8so8439613ejb.10;
-        Thu, 12 Nov 2020 07:38:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=MXQPhtQt49WN9AzFMXPyAMM7lL9ypZIAmnmHVvj/Rn4=;
-        b=crkQyLivBOzwc1ulOjNO/HXjGyk/BHDHn7aEw2ssInKQUN4APA+SGnfiocox8sbUKs
-         Ph6jHxrXWsCWMjHVJvujfCbLQP+OwiX+NWP8gwDit1hwLTDdz9VwoUr8nsY0eDJ5rJeW
-         5wO90x4ctUdJHIRoq8kyOZldeWE2XSm+6a/ywOP/pqLM3/8B25yOXos5wOr22sn0j6k8
-         9gzS1MN6jDmKtpvZyaBV20e3VJv4kJ1uOxy5r6Q+9+1OJuBfdw2gM0jDw9BVfEMLzDEI
-         Ow2H7rgka2U3sHUEJ6KTHHw+pCqW4sERdqv12bufRI36qkCT2xWr4Weo95sMekWKuASk
-         0h+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MXQPhtQt49WN9AzFMXPyAMM7lL9ypZIAmnmHVvj/Rn4=;
-        b=U/nvQK4pD238kyuquF+KHHaz3LkcFl8dEAepXzKRkk9YcvlJ3b1NsyzaiklU23Pmg8
-         4ml5MbSsa1wQUFeXQ4xjcEffiZpes96FVvINVWwQOZqC1p/8b5BL/N9lPTQPSX6dfwoK
-         VSEj95QxeMDmj0yQoVrZgjqxIkFt+yRwvGQZj9GPoUUHSljUl4wvo8NBq57VuQ+Eqzf1
-         4o5RwW2EBPUxABO+305au8muONFAqUeLNYIG7T99V60qmHf5rbpeiPjK8gNlQPfLoPWY
-         VX5KVrj0IF3ywEX3INVrxwVgquhP14uodtJQHMFqTTDEYHrY+KN+EgoT4IPqQU8JUU76
-         xHNg==
-X-Gm-Message-State: AOAM530/6m8AUCV+YYEU5PbDjojT7Jy0myOO5NGnyE5QY2NbRI1Mfixh
-        LJp6CC1rtB8NiteZHeBiHV0=
-X-Google-Smtp-Source: ABdhPJzQoA7dUAly8+fiES0ft2NsEiD8lYL593aNstumsLPQA5FZpZ8oI3inMO+dRBaBlWAecCDHOA==
-X-Received: by 2002:a17:906:9902:: with SMTP id zl2mr30284396ejb.510.1605195487579;
-        Thu, 12 Nov 2020 07:38:07 -0800 (PST)
-Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id p1sm2289366ejd.33.2020.11.12.07.38.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 07:38:06 -0800 (PST)
-Date:   Thu, 12 Nov 2020 17:38:04 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Richard Cochran <richardcochran@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH net-next 7/9] net: dsa: microchip: ksz9477: add
- hardware time stamping support
-Message-ID: <20201112153804.es56e6ym6h2i4oxx@skbuf>
-References: <20201019172435.4416-1-ceggers@arri.de>
- <20201110164045.jqdwvmz5lq4hg54l@skbuf>
- <20201110193245.uwsmrqzio5hco7fb@skbuf>
- <2477133.fPTnnZM2lx@n95hx1g2>
+        id S1728792AbgKLPqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 10:46:00 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51536 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728750AbgKLPp7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Nov 2020 10:45:59 -0500
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F094B2224A;
+        Thu, 12 Nov 2020 15:45:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605195958;
+        bh=uedioChmpjX+rYYatjJTIqC28httXXTj7mTg0k5ibY0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=FWSbf6uwaVU4Xm/6UDHgNU5HBpbAU+X28ap/afQNMZctuC694B3L7U/G/0wz1S9jl
+         6ECn2yi38Ym089qRc6Md3Ns5FTL/rLNEW6gkYWa9mpz18sjuEpy1O9TzukIye3UDuX
+         Ai+BVrlFmVegSBDJZpQAz5A7ht+2XHrrs2q3jXvg=
+Received: by mail-ot1-f49.google.com with SMTP id a15so6004560otf.5;
+        Thu, 12 Nov 2020 07:45:57 -0800 (PST)
+X-Gm-Message-State: AOAM53322+zMEuBf2Gzcpp3L6UEHDijsqsetc9sLQU5jEYpsZAZi/w/w
+        t9ESBzBfWVhVOJn+LdwFjpbJVW4n7ypK0TkG0Q==
+X-Google-Smtp-Source: ABdhPJzD+QJuIKJODRkmIOSEt7UHTD9ojZDt9bzfTQpijq/kH6OQ6Bg2UVX/XBm3s05J7Rba7bTOxHXaZgKoJ8c26VM=
+X-Received: by 2002:a05:6830:2f8:: with SMTP id r24mr21898398ote.129.1605195957153;
+ Thu, 12 Nov 2020 07:45:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2477133.fPTnnZM2lx@n95hx1g2>
+References: <20201112115646.2562467-1-linus.walleij@linaro.org>
+ <20201112145846.GA3588803@bogus> <CACRpkdbciyjbe6p-ckvXezyVvaExgdq8T2soqAhVPQQpCWmFpA@mail.gmail.com>
+In-Reply-To: <CACRpkdbciyjbe6p-ckvXezyVvaExgdq8T2soqAhVPQQpCWmFpA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 12 Nov 2020 09:45:45 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK91Pd=iZhMb8EYHgaMNgxaQ7xpO_9TP_i+Q-i_UTFQPg@mail.gmail.com>
+Message-ID: <CAL_JsqK91Pd=iZhMb8EYHgaMNgxaQ7xpO_9TP_i+Q-i_UTFQPg@mail.gmail.com>
+Subject: Re: [PATCH 1/2 v4] dt-bindings: leds: Add DT binding for Richtek RT8515
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        newbytee@protonmail.com,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, phone-devel@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Pavel Machek <pavel@ucw.cz>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 04:28:44PM +0100, Christian Eggers wrote:
-> the invalid values in the correction field were caused because much
-> more seconds were subtracted on rx than added on tx.
-[...]
-> v2 is on the way...
+On Thu, Nov 12, 2020 at 9:04 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Thu, Nov 12, 2020 at 3:58 PM Rob Herring <robh@kernel.org> wrote:
+>
+> > My bot found errors running 'make dt_binding_check' on your patch:
+>
+> I have a real hard time even testing YAML bindings after updating to the lates
+> dtschema, I just get so many errors from all over the tree and then it stops:
+>
+> make[3]: *** [../Documentation/devicetree/bindings/Makefile:59:
+> Documentation/devicetree/bindings/processed-schema-examples.json]
 
-Alright :)
+I assume there was some error message more useful before this.
+
+> Error 123
+> make[3]: Target '__build' not remade because of errors.
+> make[2]: *** [/var/linus/linux-nomadik/Makefile:1364: dt_binding_check] Error 2
+> make[2]: Leaving directory '/var/linus/linux-nomadik/build-ux500'
+> make[1]: *** [Makefile:185: __sub-make] Error 2
+> make[1]: Target 'dt_binding_check' not remade because of errors.
+> make[1]: Leaving directory '/var/linus/linux-nomadik'
+> make: *** [ux500.mak:573: check-bindings] Error 2
+>
+> Is it necessary to run on linux-next to test schema/DTS for the moment?
+
+next and rc3 are broken thanks to flexcan changes that should be v5.11
+material. next pretty much always has something warning. It's like
+maintainers just apply bindings without checking or something. rc2 and
+rc1 should be good.
+
+You can see current master and next builds here:
+
+https://gitlab.com/robherring/linux-dt-bindings/-/jobs
+
+You can also use 'make -k' to get all the warnings/errors.
+
+Rob
