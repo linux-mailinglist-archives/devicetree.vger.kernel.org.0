@@ -2,96 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 577A92B03F3
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 12:33:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0824F2B03F9
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 12:34:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728168AbgKLLd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 06:33:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59908 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728154AbgKLLcy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 06:32:54 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5E1C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 03:32:52 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id 19so4981261wmf.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 03:32:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=os5khahHPpWn88KMb1Vr8p8L3JIWYK0ZBr9FMB2vL0w=;
-        b=fki1c333F915w4zFn8q2oOpYqkI7PxR0+mBFi4LEeODBMzzkPfR+IPXf726dBZaqD0
-         f9RQewNzP/8HvVg0NAZmNJOlBfDB6r/EGLAKj7KJgmEwtZkXDAuCeFTFaNKVSKCSF4i0
-         lT5c51hDRifK7TQPpYZ5EHNcvgT7AULWAUFJMqmDJgPDbNM19DXdzy2kKSYzc13/oxVi
-         wvdNfkUBxhlkuZlbrGweY8e59SDhpSec54qntjAXNM8aubDywJ7BlYmSRK02+p0Ut6nD
-         8x87nqMBQShPpoVh57f8+40KlJ0nSSo0oDn/UFKoMTacizC66jJlDIzNXgQahKEqHVvU
-         E98w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=os5khahHPpWn88KMb1Vr8p8L3JIWYK0ZBr9FMB2vL0w=;
-        b=rZ16MXl6UvZp4uvIaknlpebyjy9ICAXH6ideYM6zi5Z5VMQCPVuas6CDbHEEmjM1/3
-         eSMgvQ8wpEisjCp4VtmrTMwimVc/jL0WHeD/NLffMtPRfczK7A0EsCaMC6q0mmXiwoq+
-         OU11Ip8qcPRZcy7PLsnPSy0zLtzgxcavM3aJfhjvZww8jdKv2EhKCiT/cX8jYrnhES7X
-         K3SzMu2ZfATFbKKDjgwq4l3jOH6NU0yb0HtvjkDLAgDtNMtatiB3PkJVyW08e0gUOCTk
-         MH0pDBgfI3hozOb0pAy4hrjqY+PBQdmqGZQPlHFeatiIWBAvlhlfqZDc0dw4mzGsimRD
-         TZnw==
-X-Gm-Message-State: AOAM5329FHqw8dQ4fJ6R3MUYuIaqyWCi9RjrfkWYsxq5EytZBL2eANLt
-        OKm57oPWJO+GSvy6h2nTnNRwNw==
-X-Google-Smtp-Source: ABdhPJxFHnwQpKvKP0sLSEDE51QQO9sH5IG91X48mB+/3vpw9ApQgn+iMRc5v+DP5drtBLYqVugkGw==
-X-Received: by 2002:a1c:acc1:: with SMTP id v184mr8648685wme.63.1605180771454;
-        Thu, 12 Nov 2020 03:32:51 -0800 (PST)
-Received: from ?IPv6:2a01:e34:ed2f:f020:6971:b700:3764:fa96? ([2a01:e34:ed2f:f020:6971:b700:3764:fa96])
-        by smtp.googlemail.com with ESMTPSA id t74sm6330516wmt.8.2020.11.12.03.32.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 12 Nov 2020 03:32:50 -0800 (PST)
-Subject: Re: [PATCH v3] dt-bindings: thermal: rcar-thermal: Improve schema
- validation
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Rob Herring <robh@kernel.org>
-References: <20201028153541.1736279-1-geert+renesas@glider.be>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <7c83cb9f-d8fc-b349-1da8-5e0bcb6da89f@linaro.org>
-Date:   Thu, 12 Nov 2020 12:32:49 +0100
+        id S1727646AbgKLLep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 06:34:45 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:18871 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727223AbgKLLeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 06:34:44 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fad1ddb0001>; Thu, 12 Nov 2020 03:34:51 -0800
+Received: from [10.26.72.124] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 12 Nov
+ 2020 11:34:40 +0000
+Subject: Re: [PATCH] ARM: tegra: Populate OPP table for Tegra20 Ventana
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
+References: <20201111103847.152721-1-jonathanh@nvidia.com>
+ <7e40cd3e-7c34-c9a9-bf00-ba7d507a2d6b@gmail.com>
+ <5409bbb4-d3f9-ccc9-ac3e-6344975bd58e@nvidia.com>
+ <acadbf40-5dea-eee1-b05e-ad788df56bf7@gmail.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <21158311-2843-0c83-2fd5-19dacdd9c21a@nvidia.com>
+Date:   Thu, 12 Nov 2020 11:34:38 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201028153541.1736279-1-geert+renesas@glider.be>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <acadbf40-5dea-eee1-b05e-ad788df56bf7@gmail.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605180891; bh=IHvwAMbKqrHNR5N1GZkSBeag2qQBKHNZAPTqztYrHTU=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=JejLUMD3iIlG0EXmEkmkcOEyW9xqomHi32i6ZOZooYeCh5yNBkqofLz3lghjx2vey
+         ghDkxXewIjzZpzFHvLonRj9dKvuT1o4m6XGaFxiBWGdfQBG7HCH3ZIrXVFyIvgbQQP
+         6ZYJK6c45fqo7eO9f2AKl+ieZf8bPeFhHafymoOzGIwMrDPanL4MwET1z0W0WuWYES
+         N56FXGBD9oYGv5m7+8c/P/ZLnqw6NnWoBY59+GdzhF/sE6fwzW74dmBER1wrl9Vbdy
+         gb8gZDuRt5Y8hPNi0Ls0p7qAuRTNUrIJfNgg9x0WdkxjtcRvfXkzogq/7ZLYvUjn5W
+         ef2Y+P0RqENog==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/10/2020 16:35, Geert Uytterhoeven wrote:
->   - Factor out common required properties,
->   - "interrupts", "clocks", and "power-domains" are required on R-Mobile
->     APE6, too,
->   - Invert logic to simplify descriptions.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Niklas Söderlund <niklas.soderlund@ragnatech.se>
-> Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
 
-Applied, thanks
+On 12/11/2020 10:51, Dmitry Osipenko wrote:
+
+...
+
+> If you don't see a message in KMSG saying "bringing vdd_cpu to
+> 1000000uV", then should be good.
+
+The bootlog shows ...
+
+[    2.271768] tps6586x 3-0034: Found TPS658621C/D, VERSIONCRC is 2c
+
+[    2.280320] vdd_sys: supplied by vdd_5v0
+
+[    2.285153] vdd_sm0,vdd_core: supplied by vdd_sys
+
+[    2.294231] vdd_sm1,vdd_cpu: supplied by vdd_sys
+
+[    2.299984] vdd_sm2,vin_ldo*: supplied by vdd_sys
+
+[    2.305285] REG-LDO_0: supplied by vdd_sm2,vin_ldo*
+
+[    2.311492] vdd_ldo1,avdd_pll*: supplied by vdd_sm2,vin_ldo*
+
+[    2.318053] vdd_ldo2,vdd_rtc: supplied by vdd_sm2,vin_ldo*
+
+[    2.324786] vdd_ldo3,avdd_usb*: supplied by vdd_sm2,vin_ldo*
+
+[    2.331848] vdd_ldo4,avdd_osc,vddio_sys: supplied by vdd_sm2,vin_ldo*
+
+[    2.339104] vdd_ldo5,vcore_mmc: supplied by vdd_sys
+
+[    2.344447] vdd_ldo6,avdd_vdac: Bringing 2850000uV into 1800000-1800000uV
+
+[    2.352226] vdd_ldo6,avdd_vdac: supplied by vdd_sm2,vin_ldo*
+
+[    2.358814] vdd_ldo7,avdd_hdmi,vdd_fuse: supplied by vdd_sm2,vin_ldo*
+
+[    2.366176] vdd_ldo8,avdd_hdmi_pll: supplied by vdd_sm2,vin_ldo*
+
+[    2.372959] vdd_ldo9,avdd_2v85,vdd_ddr_rx: supplied by vdd_sm2,vin_ldo*
+
+[    2.380373] vdd_rtc_out,vdd_cell: supplied by vdd_sys
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Jon
