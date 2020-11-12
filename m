@@ -2,110 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B56C22B0F34
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 21:49:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AF032B10B2
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 22:55:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726844AbgKLUtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 15:49:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:59380 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727138AbgKLUtS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 15:49:18 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EB12B22227;
-        Thu, 12 Nov 2020 20:49:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605214158;
-        bh=wrKaWD3LoEi3Ttr+MBj6uJxawKgQ0puebVWPB/EXaKA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OAXMhXziASJ9REsiyRT2peJV1Eni+CQ+BxxB7kFyOWOmPL0t7MXJJHVZXZ8Vw9wYa
-         k/tm6+ld1H/u1bxUqtTYnLLSfhxxnpPyrLSRB8mzNhOpIsX6bB96xdDpr4/puUVDa0
-         RpPBwJYmQxFkGA4jWWgz8sxf5zuszFvylq35kQkw=
-Received: by mail-oi1-f179.google.com with SMTP id w188so7950249oib.1;
-        Thu, 12 Nov 2020 12:49:17 -0800 (PST)
-X-Gm-Message-State: AOAM532WuUerCXQrBY4VzECSBUeXJ2kXfs/YcRv9sgYCow4GHfxcgsiW
-        BaVJfqlo6q2S0fj8RMUzZ8XxLg3yO+6FNBRTTA==
-X-Google-Smtp-Source: ABdhPJxcMk1WB5wVFqixYLOd/a/1Gfq63/2/MzkP3fgZwh7SStQ67/N9bG8B4VYXQBSpsfyYuH7oJ2H2gy6M000/fXU=
-X-Received: by 2002:aca:5dc2:: with SMTP id r185mr1100963oib.106.1605214157168;
- Thu, 12 Nov 2020 12:49:17 -0800 (PST)
-MIME-Version: 1.0
-References: <20201102203656.220187-1-robh@kernel.org> <20201102203656.220187-2-robh@kernel.org>
-In-Reply-To: <20201102203656.220187-2-robh@kernel.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 12 Nov 2020 14:49:06 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKYA+8VgVNsoU4O1taYzJACntjm-i+Jm0GDS7KEf08F9A@mail.gmail.com>
-Message-ID: <CAL_JsqKYA+8VgVNsoU4O1taYzJACntjm-i+Jm0GDS7KEf08F9A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: Convert graph bindings to json-schema
-To:     Sameer Pujar <spujar@nvidia.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Mark Brown <broonie@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        id S1727268AbgKLVzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 16:55:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43778 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727043AbgKLVzP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 16:55:15 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A79A0C0613D1
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 13:55:05 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id v20so8065841ljk.8
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 13:55:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v/3CmVlipZFwgHhvcxuym7DjFXqNo5n9hsm6eQ+Z+yk=;
+        b=i90VJSA79DqoRY0MYFhcvaAWxVXUBRbT4HSO1+XQM8Uk4+XrLGFgq7kaHiH9QUZd06
+         RKPW9IUmMOs+HaLVdlWx3LnfZKF4t61Nx6KuNu6Y09vyq8uYjHqgm/1atqO0e+5yT/v5
+         gS4jrqWD9DL+YDSNryxq+B/7C8BLawgUYVlWUxWAO7BpmYIg9w+3lO7AklGAr3wEc/mF
+         b8a5TcjW6rCJGkLzeujPb/BWUllAdnCv6Xqaa2wK8FM3ZlxwHjJGoytvepePliy+XKRS
+         2MkLDeYJoAAfVJxAlXyFgFuYkAL07s9+ca7ZrXfo+OVk6KhhOlX4EQcVXshzJNWvoV7n
+         B91g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v/3CmVlipZFwgHhvcxuym7DjFXqNo5n9hsm6eQ+Z+yk=;
+        b=p1omBPmI4BY7FDsCYD1MN0IBJ2Kwu3TrxtwpfYwJIHzJk8qlTEDEyQzGXmsXlfmY8x
+         yEMpZ+w8i/n3oAH2oRSdH5oroTYr0EUCglOhdqhwIAi+Sa0dpjjUjzhgwaE/ojHv+sIS
+         zWABHkiWajHVh/N/1dwn8WdHo2jnm03skNoyVVWP3sJ8PMa2bKttHn9RUwzoR4hrVQyK
+         qOeJpTd9PdZsjhnv/23dTNXndo8/oqZjqsR1Cj/JpZ9clxss+XU6rKuxQWPR6yyr/nhe
+         kiLBA4vyhEsTVmbNcXCRYaTnj+RbKbuMKwUq0oJgb3R3M6mBQsQgIab4vCTvRd7CZzr0
+         H1bA==
+X-Gm-Message-State: AOAM532Py1AJETHRUCwnBU57FmikcRHv4BgK1sbnWy4N49ompofOZbD+
+        x8xJDHzJ+6YrEjyV4QgvVQv46g==
+X-Google-Smtp-Source: ABdhPJzzgpyzv2K/kYruF1QaR9zrulX98gMjoiTd9fiEkJPvmDbWFb8CTGYGZioT85nzerjVnl9iCw==
+X-Received: by 2002:a2e:3a08:: with SMTP id h8mr751990lja.263.1605218104173;
+        Thu, 12 Nov 2020 13:55:04 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id x24sm967731ljj.112.2020.11.12.13.55.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2020 13:55:03 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
         devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: [PATCH 1/3 v2] iio: accel: bmc150-accel: Add DT bindings
+Date:   Thu, 12 Nov 2020 22:54:49 +0100
+Message-Id: <20201112215451.2606136-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 2, 2020 at 2:36 PM Rob Herring <robh@kernel.org> wrote:
->
-> From: Sameer Pujar <spujar@nvidia.com>
->
-> Convert device tree bindings of graph to YAML format. Currently graph.txt
-> doc is referenced in multiple files and all of these need to use schema
-> references. For now graph.txt is updated to refer to graph.yaml.
->
-> For users of the graph binding, they should reference to the graph
-> schema from either 'ports' or 'port' property:
->
-> properties:
->   ports:
->     type: object
->     $ref: graph.yaml#/properties/ports
->
->     properties:
->       port@0:
->         description: What data this port has
->
->       ...
->
-> Or:
->
-> properties:
->   port:
->     description: What data this port has
->     type: object
->     $ref: graph.yaml#/properties/port
->
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v3:
->  - Move port 'reg' to port@* and make required
->  - Make remote-endpoint required
->  - Add 'additionalProperties: true' now required
->  - Fix yamllint warnings
->
->  Documentation/devicetree/bindings/graph.txt  | 129 +-----------
->  Documentation/devicetree/bindings/graph.yaml | 199 +++++++++++++++++++
->  2 files changed, 200 insertions(+), 128 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/graph.yaml
+These accelerometers have bindings used in the kernel and
+several device trees but no proper bindings documentation.
+Add it.
 
-I've decided to move this to the dt-schema repo instead[1]. I think
-that will be easier to manage dependencies (audio-graph.yaml plus
-anything else landing this cycle) than subsystems pulling a shared
-branch. I haven't merged it yet, so let me know if any
-comments/objections. Note that the meta-schema will have to come a bit
-later once existing users are updated (which I have patches for).
+Also add a compatible for the BMA222 that I am right now
+adding support for in the driver.
 
-Rob
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ChangeLog v1->v2:
+- Rename to simply bosch,bma255.yaml after one of the
+  common accelerometers.
+- Specify that the SPI uses a 4-wire interface.
+- Specify maximum SPI clock frequency to 10MHz. (Checked
+  all the datasheets.)
+---
+ .../bindings/iio/accel/bosch,bma255.yaml      | 73 +++++++++++++++++++
+ 1 file changed, 73 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
 
-[1] https://github.com/devicetree-org/dt-schema/tree/of-graph
+diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
+new file mode 100644
+index 000000000000..5f48bdcf382c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
+@@ -0,0 +1,73 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/accel/bosch,bma255.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Bosch BMA255 and Similar Accelerometers
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  3 axis accelerometers with varying range and I2C or SPI
++  4-wire interface.
++
++properties:
++  compatible:
++    enum:
++      - bosch,bmc150
++      - bosch,bmi055
++      - bosch,bma255
++      - bosch,bma250e
++      - bosch,bma222
++      - bosch,bma222e
++      - bosch,bma280
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++  vddio-supply: true
++
++  interrupts:
++    maxItems: 1
++
++  mount-matrix:
++    description: an optional 3x3 mounting rotation matrix.
++
++  spi-max-frequency:
++    maximum: 10000000
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #include <dt-bindings/interrupt-controller/irq.h>
++        #address-cells = <1>;
++        #size-cells = <0>;
++        accelerometer@8 {
++            compatible = "bosch,bma222";
++            reg = <0x08>;
++            vddio-supply = <&vddio>;
++            vdd-supply = <&vdd>;
++            interrupts = <57 IRQ_TYPE_EDGE_FALLING>;
++        };
++    };
++  - |
++    # include <dt-bindings/interrupt-controller/irq.h>
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        accel@0 {
++            compatible = "bosch,bma222";
++            reg = <0>;
++            spi-max-frequency = <10000000>;
++        };
++    };
++...
+-- 
+2.26.2
+
