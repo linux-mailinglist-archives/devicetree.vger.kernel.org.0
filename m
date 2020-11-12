@@ -2,113 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 321042B03BA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 12:21:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 577A92B03F3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 12:33:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727973AbgKLLVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 06:21:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58054 "EHLO
+        id S1728168AbgKLLd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 06:33:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727035AbgKLLVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 06:21:05 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9462C0613D1
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 03:21:04 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kdAep-0003Oj-J8; Thu, 12 Nov 2020 12:20:51 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kdAen-0003Am-MN; Thu, 12 Nov 2020 12:20:49 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        with ESMTP id S1728154AbgKLLcy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 06:32:54 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA5E1C0613D4
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 03:32:52 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id 19so4981261wmf.1
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 03:32:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=os5khahHPpWn88KMb1Vr8p8L3JIWYK0ZBr9FMB2vL0w=;
+        b=fki1c333F915w4zFn8q2oOpYqkI7PxR0+mBFi4LEeODBMzzkPfR+IPXf726dBZaqD0
+         f9RQewNzP/8HvVg0NAZmNJOlBfDB6r/EGLAKj7KJgmEwtZkXDAuCeFTFaNKVSKCSF4i0
+         lT5c51hDRifK7TQPpYZ5EHNcvgT7AULWAUFJMqmDJgPDbNM19DXdzy2kKSYzc13/oxVi
+         wvdNfkUBxhlkuZlbrGweY8e59SDhpSec54qntjAXNM8aubDywJ7BlYmSRK02+p0Ut6nD
+         8x87nqMBQShPpoVh57f8+40KlJ0nSSo0oDn/UFKoMTacizC66jJlDIzNXgQahKEqHVvU
+         E98w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=os5khahHPpWn88KMb1Vr8p8L3JIWYK0ZBr9FMB2vL0w=;
+        b=rZ16MXl6UvZp4uvIaknlpebyjy9ICAXH6ideYM6zi5Z5VMQCPVuas6CDbHEEmjM1/3
+         eSMgvQ8wpEisjCp4VtmrTMwimVc/jL0WHeD/NLffMtPRfczK7A0EsCaMC6q0mmXiwoq+
+         OU11Ip8qcPRZcy7PLsnPSy0zLtzgxcavM3aJfhjvZww8jdKv2EhKCiT/cX8jYrnhES7X
+         K3SzMu2ZfATFbKKDjgwq4l3jOH6NU0yb0HtvjkDLAgDtNMtatiB3PkJVyW08e0gUOCTk
+         MH0pDBgfI3hozOb0pAy4hrjqY+PBQdmqGZQPlHFeatiIWBAvlhlfqZDc0dw4mzGsimRD
+         TZnw==
+X-Gm-Message-State: AOAM5329FHqw8dQ4fJ6R3MUYuIaqyWCi9RjrfkWYsxq5EytZBL2eANLt
+        OKm57oPWJO+GSvy6h2nTnNRwNw==
+X-Google-Smtp-Source: ABdhPJxFHnwQpKvKP0sLSEDE51QQO9sH5IG91X48mB+/3vpw9ApQgn+iMRc5v+DP5drtBLYqVugkGw==
+X-Received: by 2002:a1c:acc1:: with SMTP id v184mr8648685wme.63.1605180771454;
+        Thu, 12 Nov 2020 03:32:51 -0800 (PST)
+Received: from ?IPv6:2a01:e34:ed2f:f020:6971:b700:3764:fa96? ([2a01:e34:ed2f:f020:6971:b700:3764:fa96])
+        by smtp.googlemail.com with ESMTPSA id t74sm6330516wmt.8.2020.11.12.03.32.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Nov 2020 03:32:50 -0800 (PST)
+Subject: Re: [PATCH v3] dt-bindings: thermal: rcar-thermal: Improve schema
+ validation
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Niklas_S=c3=b6derlund?= <niklas.soderlund@ragnatech.se>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        David Jander <david@protonic.nl>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: touchscreen: add touchscreen-read-duration-us and touchscreen-settling-time-us properties
-Date:   Thu, 12 Nov 2020 12:20:48 +0100
-Message-Id: <20201112112048.12134-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
+Cc:     linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Rob Herring <robh@kernel.org>
+References: <20201028153541.1736279-1-geert+renesas@glider.be>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Message-ID: <7c83cb9f-d8fc-b349-1da8-5e0bcb6da89f@linaro.org>
+Date:   Thu, 12 Nov 2020 12:32:49 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20201028153541.1736279-1-geert+renesas@glider.be>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the TI application bulletin [1] we deal with two generic
-mechanisms which would affect the precision of provided input events:
+On 28/10/2020 16:35, Geert Uytterhoeven wrote:
+>   - Factor out common required properties,
+>   - "interrupts", "clocks", and "power-domains" are required on R-Mobile
+>     APE6, too,
+>   - Invert logic to simplify descriptions.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Niklas Söderlund <niklas.soderlund@ragnatech.se>
+> Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
 
-|TOUCH SCREEN SETTLING TIME
-|
-|When the touch  panel is pressed or touched, there are
-|two mechanisms that will affect the voltage level at the contact point of
-|the touch panel. These two mechanisms will cause the voltage across the
-|touch panel to “ring” (oscillate), and then slowly settle (decay)
-|down to a stable DC value.
-|
-|The two mechanisms are:
-| 1) Mechanical bouncing caused by vibration of the top layer sheet  of
-|    the touch  panel  when  the  panel  is  pressed.
-|
-| 2) Electrical  ringing  due  to  parasitic  capacitance  between the top
-|    and bottom layer sheets of the touch panel and at the  input  of  ADS7843
-|    that  causes  the  voltage  to  “ring”(oscillate).
+Applied, thanks
 
-Since both of this mechanisms are board specific and reflect the
-mechanical, and electrical properties of end product, it is better to
-provide a generic properties to address them.
 
-The touchscreen-read-duration-us property should address 1. mechanism.
-This effect can be triggered by device specific design. The duration ma be
-dependent on the use case of the end device. For example a touch where
-writing is required may have other timing requirements as the device
-where only "buttons" should be pressed.
-
-The touchscreen-settling-time-us property should address 2. mechanism
-where the size and construction of touch screen plates affect the parasitic
-capacitance and time needed between enabling power supply for the
-plates, and actual usable voltage level to detect the position of touch event.
-
-[1] https://www.ti.com/lit/an/sbaa036/sbaa036.pdf
-
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- .../bindings/input/touchscreen/touchscreen.yaml          | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-index a771a15f053f..8ba845f68d5c 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/touchscreen.yaml
-@@ -55,6 +55,15 @@ properties:
-       values dependent on the controller)
-     $ref: /schemas/types.yaml#/definitions/uint32
- 
-+  touchscreen-read-duration-us:
-+    description: Averaged time to sample each read to detect waves within
-+      specified duration (valid values dependent on the controller)
-+
-+  touchscreen-settling-time-us:
-+    description: Time it takes for the touchscreen ADC to produce valid samples
-+      again after switching between axes (valid values dependent on the
-+      controller)
-+
-   touchscreen-inverted-x:
-     description: X axis is inverted
-     type: boolean
 -- 
-2.28.0
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
