@@ -2,112 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39FCE2B0096
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:53:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 852872B009E
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 08:56:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725941AbgKLHxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 02:53:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54038 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725860AbgKLHxm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:53:42 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FC51C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:53:41 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id l2so6967244lfk.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 23:53:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=NZqGtH5DPrZOvltlAKsPmoVZYNK7niC/NzGSxKqEzH8=;
-        b=Icx5BpPatl5Ac2y0n8Xs+R5S+KyH9Zdmuzq/jR40gTiq7L7lKMGRArlxiaRxOTa74N
-         uOEw+DuF1rMYdjT2pQKTR/Cih+ttLbxqVCC/FiYytNpBCEaT3S1m7u7DefHWJJiijrYa
-         SihWzfFLQDiW55rESosEuIH7CDrg9ZbMdT4VhqBnQeDrhuxr/IKiuYHIjS8kucIuRBG8
-         wlm7OuLlSkmuOj7ojPhju4XqBA9ykA8hyX0Xs3acRIx8wMSzM0M61Lliy0qI67E8texN
-         RxwD1xuPDMDVo6Muehd6rMNKgQMnmucTGWkTrJQTQlYT9Q8hsjHcWrJX0rDLWWgK3yCE
-         Barw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=NZqGtH5DPrZOvltlAKsPmoVZYNK7niC/NzGSxKqEzH8=;
-        b=LwPShX/VRYNCGQSKkHVJhk7MoYl99txsDPR8hIRnZMsv8SMlO6+uKg8HePGAwpKxgE
-         LTLTv9Jkl+leRXa6FpsjsRHVZim+zCacD8IOC/2y73KwIbFS1myOiuVrm46K1JpgeraD
-         IQJkkZYZEFgl8Vvfn7kiDL6M9I3Uu6T7mZK2542xLL8l+DJ+qbbG7j9dIiy6T2tFrGIf
-         Dv47sVP32Q+StsjGVHTHpVr9pGZyE0OSbYkQ8/Z6t2P0kUt0+REDpZjKrxUAlYhhM9xp
-         kSRWG05IQiHc5lOWhJqjP392XyVxFpC2f9boLFGx5vE3Zn6GmjcvazoIIqEFUQzHR1JD
-         IDUQ==
-X-Gm-Message-State: AOAM5334x46nOJzImPSDXVlVcBGq0Dx+aUQxG2euLs1RlU7rIP8X4kbc
-        jNPqUNszoiGOOasCe/ggeo4HefTjpIE=
-X-Google-Smtp-Source: ABdhPJzujRugDMnh/4Nwqi0QGNZ5t+d3oyVT3t6gFrL+GI0J/3DNbX1eKFYWq83s2JsO1GwIuM2zWQ==
-X-Received: by 2002:a05:6512:3485:: with SMTP id v5mr12155861lfr.181.1605167619627;
-        Wed, 11 Nov 2020 23:53:39 -0800 (PST)
-Received: from elitebook.lan (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id v28sm470640lfo.43.2020.11.11.23.53.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Nov 2020 23:53:39 -0800 (PST)
-Subject: Re: [PATCH V3 1/3] arm64: add config for Broadcom BCM4908 SoCs
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20201112072133.17039-1-zajec5@gmail.com>
- <87r1ozav04.fsf@tarshish>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Message-ID: <6ce8a873-6815-5796-8d62-c6847d1799d9@gmail.com>
-Date:   Thu, 12 Nov 2020 08:53:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726210AbgKLH40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 02:56:26 -0500
+Received: from perceval.ideasonboard.com ([213.167.242.64]:40878 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726107AbgKLH40 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 02:56:26 -0500
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B2A7731A;
+        Thu, 12 Nov 2020 08:56:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1605167782;
+        bh=Qe8kT4bm4JlV6cWE128AGEkHVPOCYZBGKXDDcH7839M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EJDKItYI706zF2Vn5pH6Be7sepNfWDp1ZT96GHfBmncBYP5RvSxBr0ciGpxcaPJEA
+         MDMwj1ErX2+ZQ1vYcAaDTtEqkIBbqxMbXKra653RC9ux+jew98qR/y0zap+gJGTxL+
+         7i3YdmYdgZi32JkOyOYCEhrbZC/i1l2mwQTW3Spk=
+Date:   Thu, 12 Nov 2020 09:56:19 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Sameer Pujar <spujar@nvidia.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: Convert graph bindings to json-schema
+Message-ID: <20201112075619.GA7931@pendragon.ideasonboard.com>
+References: <20201102203656.220187-1-robh@kernel.org>
+ <20201102203656.220187-2-robh@kernel.org>
+ <20201111140009.GD4115@pendragon.ideasonboard.com>
+ <CAL_Jsq+A6Ga+h4qK0nzyL87M1DvrRSnzxtjwUNpq--L7MDHxfA@mail.gmail.com>
+ <20201111142735.GG4115@pendragon.ideasonboard.com>
+ <CAL_JsqJUTDAxpmXTGaPfhhF5cCuh++We6-nXyH2b2WXrh+3NmQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <87r1ozav04.fsf@tarshish>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqJUTDAxpmXTGaPfhhF5cCuh++We6-nXyH2b2WXrh+3NmQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.11.2020 08:34, Baruch Siach wrote:
-> On Thu, Nov 12 2020, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> Add ARCH_BCM4908 config that can be used for compiling DTS files.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->>   arch/arm64/Kconfig.platforms | 8 ++++++++
->>   arch/arm64/configs/defconfig | 1 +
->>   2 files changed, 9 insertions(+)
->>
->> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
->> index 6f2494dd6d60..d1c02a4a93c8 100644
->> --- a/arch/arm64/Kconfig.platforms
->> +++ b/arch/arm64/Kconfig.platforms
->> @@ -43,6 +43,14 @@ config ARCH_BCM2835
->>   	  This enables support for the Broadcom BCM2837 and BCM2711 SoC.
->>   	  These SoCs are used in the Raspberry Pi 3 and 4 devices.
->>   
->> +config ARCH_BCM4908
->> +	bool "Broadcom BCM4908 family"
->> +	select GPIOLIB
->> +	help
->> +	  This enables support for the Broadcom BCM4906, BCM4908 and
->> +	  BCM49408 SoCs. These SoCs use Cortex-B53 cores and can be
+Hi Rob,
+
+On Wed, Nov 11, 2020 at 05:03:26PM -0600, Rob Herring wrote:
+> On Wed, Nov 11, 2020 at 8:27 AM Laurent Pinchart wrote:
+> > On Wed, Nov 11, 2020 at 08:25:40AM -0600, Rob Herring wrote:
+> > > On Wed, Nov 11, 2020 at 8:00 AM Laurent Pinchart wrote:
+> > > > On Mon, Nov 02, 2020 at 02:36:54PM -0600, Rob Herring wrote:
+> > > > > From: Sameer Pujar <spujar@nvidia.com>
+> > > > >
+> > > > > Convert device tree bindings of graph to YAML format. Currently graph.txt
+> > > > > doc is referenced in multiple files and all of these need to use schema
+> > > > > references. For now graph.txt is updated to refer to graph.yaml.
+> > > > >
+> > > > > For users of the graph binding, they should reference to the graph
+> > > > > schema from either 'ports' or 'port' property:
+> > > > >
+> > > > > properties:
+> > > > >   ports:
+> > > > >     type: object
+> > > > >     $ref: graph.yaml#/properties/ports
+> > > > >
+> > > > >     properties:
+> > > > >       port@0:
+> > > > >         description: What data this port has
+> > > > >
+> > > > >       ...
+> > > > >
+> > > > > Or:
+> > > > >
+> > > > > properties:
+> > > > >   port:
+> > > > >     description: What data this port has
+> > > > >     type: object
+> > > > >     $ref: graph.yaml#/properties/port
+> > > >
+> > > > Sounds like a good approach.
+> > > >
+> > > > > Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> > > > > Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > > > > Signed-off-by: Rob Herring <robh@kernel.org>
+> > > > > ---
+> > > > > v3:
+> > > > >  - Move port 'reg' to port@* and make required
+> > > > >  - Make remote-endpoint required
+> > > > >  - Add 'additionalProperties: true' now required
+> > > > >  - Fix yamllint warnings
+> > > > >
+> > > > >  Documentation/devicetree/bindings/graph.txt  | 129 +-----------
+> > > > >  Documentation/devicetree/bindings/graph.yaml | 199 +++++++++++++++++++
+> > > > >  2 files changed, 200 insertions(+), 128 deletions(-)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/graph.yaml
+> > >
+> > > [...]
+> > >
+> > > > > diff --git a/Documentation/devicetree/bindings/graph.yaml b/Documentation/devicetree/bindings/graph.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..b56720c5a13e
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/graph.yaml
+> > > > > @@ -0,0 +1,199 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/graph.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: Common bindings for device graphs
+> > > > > +
+> > > > > +description: |
+> > > > > +  The hierarchical organisation of the device tree is well suited to describe
+> > > > > +  control flow to devices, but there can be more complex connections between
+> > > > > +  devices that work together to form a logical compound device, following an
+> > > > > +  arbitrarily complex graph.
+> > > > > +  There already is a simple directed graph between devices tree nodes using
+> > > > > +  phandle properties pointing to other nodes to describe connections that
+> > > > > +  can not be inferred from device tree parent-child relationships. The device
+> > > > > +  tree graph bindings described herein abstract more complex devices that can
+> > > > > +  have multiple specifiable ports, each of which can be linked to one or more
+> > > > > +  ports of other devices.
+> > > > > +
+> > > > > +  These common bindings do not contain any information about the direction or
+> > > > > +  type of the connections, they just map their existence. Specific properties
+> > > > > +  may be described by specialized bindings depending on the type of connection.
+> > > > > +
+> > > > > +  To see how this binding applies to video pipelines, for example, see
+> > > > > +  Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > > > > +  Here the ports describe data interfaces, and the links between them are
+> > > > > +  the connecting data buses. A single port with multiple connections can
+> > > > > +  correspond to multiple devices being connected to the same physical bus.
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Philipp Zabel <p.zabel@pengutronix.de>
+> > > > > +
+> > > > > +select: false
+> > > > > +
+> > > > > +properties:
+> > > > > +  port:
+> > > > > +    type: object
+> > > > > +    description:
+> > > > > +      If there is more than one endpoint node or 'reg' property present in
+> > > > > +      endpoint nodes then '#address-cells' and '#size-cells' properties are
+> > > > > +      required.
+> > > > > +
+> > > > > +    properties:
+> > > > > +      "#address-cells":
+> > > > > +        const: 1
+> > > > > +
+> > > > > +      "#size-cells":
+> > > > > +        const: 0
+> > > > > +
+> > > > > +    patternProperties:
+> > > > > +      "^endpoint(@[0-9a-f]+)?$":
+> > > > > +        type: object
+> > > > > +        properties:
+> > > > > +          reg:
+> > > > > +            maxItems: 1
+> > > > > +
+> > > > > +          remote-endpoint:
+> > > > > +            description: |
+> > > > > +              phandle to an 'endpoint' subnode of a remote device node.
+> > > > > +            $ref: /schemas/types.yaml#/definitions/phandle
+> > > > > +
+> > > > > +        required:
+> > > > > +          - remote-endpoint
+> > > >
+> > > > As noted elsewhere, this shouldn't be required.
+> > > >
+> > > > Should we set additionalProperties: false here ?
+> > >
+> > > No, we've got a bunch of properties that get added to endpoint nodes.
+> > > There's a few cases where 'port' nodes have properties too.
+> >
+> > I meant the port node, which I wasn't aware needed additional
+> > properties. Do you have any example ? (I wonder if you will point me to
+> > bindings that I have written ;-))
 > 
-> Is Cortex-B53 an official name? I see reference to Brahma-B53 in other
-> places like Documentation/arm64/silicon-errata.rst.
+> Not you, but Renesas. dual-lvds-{odd,even}-pixels was the only one I
+> think. But really, I think we could actually drop those if the port
+> numbering defines even/odd instead. There's a patch I just reviewed
+> for common dual lane panels. See
+> 1604993797-14240-1-git-send-email-victor.liu@nxp.com
 
-That should be Brahma-B53. Good catch.
+We've discussed this before, see
 
-Initially I didn't know "Brahma" name and thought (Brahma-) B53 is just
-minor variation of Cortex-B53. I even used:
-compatible = "brcm,cortex-b53", "arm,cortex-a53";
+Subject: Re: [PATCH v2 7/9] drm: rcar-du: lvds: Add dual-LVDS panels support
+Message-ID: <20190815130834.GM5011@pendragon.ideasonboard.com>
 
-It's clarified now but I forgot to update config help.
+"But what will then happen if you panel has more than two ports (for
+audio for instance, or for other types of video links) ? It may not be
+possible to always use port 0 and 1 for the LVDS even and odd pixels in
+DT bindings of a particular panel or bridge."
+
+-- 
+Regards,
+
+Laurent Pinchart
