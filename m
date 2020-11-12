@@ -2,88 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BE942B0690
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 14:35:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D2AE2B070B
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 14:52:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728343AbgKLNev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 08:34:51 -0500
-Received: from esa2.microchip.iphmx.com ([68.232.149.84]:30366 "EHLO
-        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728322AbgKLNeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 08:34:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605188089; x=1636724089;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=mZMYZuBCXD1r2QBjxb/5Nxy7uEFXyX6auS5QNy3Y63g=;
-  b=MnQan7/hpBg5CcC6J95C7S2borftQ+Jw5G8OJdGugW6ybYcbGWttF+5h
-   yBlr7TvLusk05+2qAcVZd8Zvl73G9d7ExbvRfxQNiMj3tUXukOYF1p2nT
-   YrgLV0svUgbDH9k+x3Tw1RXluYltsM0UU4Oj4uy0whPp0WR5Nji+qz4NG
-   MFaCMwuIWfokfeFmv6mbd7ErDBhniHMBwTpDFj/XF/VaIh3yB0K73IjmS
-   LZ8MaHn/1RkGuvnO9DAh/pJMvlKTDhVb1VpASzmt1Jk0p/CiXJu+xYN67
-   U+mISZcCns+EqXc9V2NjFCnBzvthAKRt20UkLpY2WqoIy4R3uQoLtA71/
-   g==;
-IronPort-SDR: EaF931/VbbnvEQ6rG5uaWC6ZlBcibNqP/IWoUJKzErE+vdxihPOavXbA2mDuyBIOEs10a1nMuK
- abh33OTIfmfYQ6HGlD5MUnJ1H6wiGoQw89xH0EH5rO9rv+1mYAePiiyXnf8mGs/x0g3qOLDtr3
- XSJ3xbztu2ikkXIlh0TbZRL4S3JzlVDcCHVQXcDgegXgd1339LqMfy07X0UysgZxKDnBEzN93W
- wikBLSkaEtq1miVcCkJHZpjzvH32Rf8C7rMkCTqbZOr9YcSfiqCs6CLWN515n17TtR/bWlFfir
- 5Cg=
-X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; 
-   d="scan'208";a="96064559"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Nov 2020 06:34:48 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 12 Nov 2020 06:34:48 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 12 Nov 2020 06:34:45 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <sakari.ailus@iki.fi>, <laurent.pinchart@ideasonboard.com>,
-        <jacopo@jmondi.org>
-CC:     Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH v5 3/3] MAINTAINERS: add microchip csi2dc
-Date:   Thu, 12 Nov 2020 15:34:37 +0200
-Message-ID: <20201112133437.372475-3-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201112133437.372475-1-eugen.hristev@microchip.com>
-References: <20201112133437.372475-1-eugen.hristev@microchip.com>
+        id S1728088AbgKLNwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 08:52:50 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35550 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727796AbgKLNwu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Nov 2020 08:52:50 -0500
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1730720A8B;
+        Thu, 12 Nov 2020 13:52:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605189169;
+        bh=KOQsWdsbmptEqiIz23XZR8nofnEven+O1r5V6kdPPmg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Y2qX5kPWePgtOSL/l4a8kNAg0qOAQJ09BllEPSIm/0cO6l7GUWmJ2evlJaXSQMBeD
+         rDXL7JUcDHlISp4RVYFdIWSO9eHaBT2oDs6ksu0nJ8cI1mOBYdAEO3/Iy5rWc5Oyu/
+         5S2Of04/rieeMZ5A2+GZERoMJh/rF01/9koKR6rI=
+Received: by mail-oo1-f49.google.com with SMTP id c25so1309976ooe.13;
+        Thu, 12 Nov 2020 05:52:49 -0800 (PST)
+X-Gm-Message-State: AOAM532JGATK8vGwjB1Zp8Q7f2gwGrsqqGKoesO4nATiMRsocLcEWEH9
+        pjd/a4Ez48hdW6dn3m2LQWifQJuUAqfNqWqCSw==
+X-Google-Smtp-Source: ABdhPJyO4pVq5jfcaPbDSPnAh3tegTIikMW7I9a4L0OrQE8cRh6KknxwudS2YRO23v78T94IOikH0kLsa+6dLO8Ixnc=
+X-Received: by 2002:a4a:1a82:: with SMTP id 124mr20848521oof.81.1605189168278;
+ Thu, 12 Nov 2020 05:52:48 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20201111152523.76254-1-aford173@gmail.com> <20201111191809.GA1859246@bogus>
+ <CAHCN7x+w3wpELWHVSd1-U38N+4TEDKWDRxzXEtDX2svkrTGJCw@mail.gmail.com>
+In-Reply-To: <CAHCN7x+w3wpELWHVSd1-U38N+4TEDKWDRxzXEtDX2svkrTGJCw@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 12 Nov 2020 07:52:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK580zBfPfPHF2pi52dhOkgf0Ovt8TOxfCjYz0Y54pQzA@mail.gmail.com>
+Message-ID: <CAL_JsqK580zBfPfPHF2pi52dhOkgf0Ovt8TOxfCjYz0Y54pQzA@mail.gmail.com>
+Subject: Re: [PATCH V4] dt-bindings: soc: imx: Add binding doc for spba bus
+To:     Adam Ford <aford173@gmail.com>
+Cc:     Adam Ford-BE <aford@beaconembedded.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Microchip CSI2DC driver in the list.
+On Thu, Nov 12, 2020 at 5:44 AM Adam Ford <aford173@gmail.com> wrote:
+>
+> On Wed, Nov 11, 2020 at 2:18 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, 11 Nov 2020 09:25:23 -0600, Adam Ford wrote:
+> > > Add binding doc for fsl,spba-bus.
+> > >
+> > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > ---
+> > > make dt_binding_check showed no errors if I did this right.
+> > >
+> > > V4:  Remove an accidental makefile change
+> > >      Move type:object under additional properties
+> > >
+> > > V3:  Rebase sample from aips-bus example
+> > >      Split off from series adding i.MX8M Nano functions to reduce noise
+> > >
+> > > V2:  Attempted to update yaml from feedback
+> > >
+> >
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dt.yaml: bus@30000000: reg: [[805306368, 1048576]] is not of type 'object'
+> >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+> >
+>
+> Rob,
+>
+> Can you give me a pointer on what this message is saying?  I don't
+> undertsand the YAML language, and I cannot get my machine to generate
+> the same messages you're seeing.
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+'reg' is not documented, so it's defaulting to the schema in
+'additionalProperties' which says anything else has to be a node
+(which is an 'object' in json-schema).
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2ec6fda103f8..3392a5803743 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11472,6 +11472,13 @@ L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
- S:	Supported
- F:	sound/soc/atmel
- 
-+MICROCHIP CSI2DC DRIVER
-+M:	Eugen Hristev <eugen.hristev@microchip.com>
-+L:	linux-media@vger.kernel.org
-+S:	Supported
-+F:	Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
-+F:	drivers/media/platform/atmel/microchip-csi2dc.c
-+
- MICROCHIP ECC DRIVER
- M:	Tudor Ambarus <tudor.ambarus@microchip.com>
- L:	linux-crypto@vger.kernel.org
--- 
-2.25.1
+> >
+> > See https://patchwork.ozlabs.org/patch/1398351
+> >
+> > The base for the patch is generally the last rc1. Any dependencies
+> > should be noted.
+> >
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> >
+> > pip3 install dtschema --upgrade
+>
+> I have installed yamllint, and I have run the above line, but when I
+> run make dt_binding_check it fails to finish script even before I add
+> this new binding.  If I revert the Makefile back to before the
+> implementation of yamllint, it works, but doesn't show the error.
+> When I restore the Makefile, it runs but it doesn't show the error.
+> Once I do a make clean, and run the dt_binding_check again, it fails
+> to finish with the following error
+>
+> make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
+> Documentation/devicetree/bindings/processed-schema-examples.json]
+> Error 123
+>
+> It appears as if the processed-schema-examples.json is not generated at all.
+>
+> When I revert back to the older makefile, it appears that file is
+> generated, but when I restore the makefile to the current version and
+> run it again, it doesn't show the dtschema warnings/errors you see.
+> I am guessing it's because the processed-schema-examples.json isn't
+> being generated correctly after I run make clean.
+>
+> Do you have any ideas what might be missing from my build machine?
 
+What tree? v5.10-rc3 landed some changes that shouldn't have gone in
+and broke dt_binding_check. In any case, you can use 'make -k' to work
+around any unrelated failure.
+
+Rob
