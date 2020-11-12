@@ -2,85 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DE512B0A58
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 17:42:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1860A2B0AA3
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 17:46:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728086AbgKLQmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 11:42:52 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37190 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727739AbgKLQmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 11:42:51 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ACGgjIe029624;
-        Thu, 12 Nov 2020 10:42:45 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605199365;
-        bh=2DGsLmpm70ck0G0m7wcSLhSHPrIa0aoiLqRCKAIbVp0=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=MsSIo2ksmW7EIM3Jqlco/7L9jl/dRstSDGgT8w3b3ehBblu3EZMPQV9GkGEReFM2g
-         w+JDu+lRgDh84ndOHOgcBpsDJkV9ovYWvSsxE/6zw2DjEuk/h90XTlHtvxBEUYwsoi
-         Gbysehl0jydGiWcnIEhHgTiyBN1FvBOfy29PAnbo=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ACGgjTa014006
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 12 Nov 2020 10:42:45 -0600
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 12
- Nov 2020 10:42:45 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 12 Nov 2020 10:42:45 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ACGgj3N052392;
-        Thu, 12 Nov 2020 10:42:45 -0600
-Date:   Thu, 12 Nov 2020 10:42:45 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Faiz Abbas <faiz_abbas@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <t-kristo@ti.com>,
-        <robh+dt@kernel.org>
-Subject: Re: [PATCH 0/3] Add gpio support for TI's J7200 platform
-Message-ID: <20201112164245.d6rdmsl4aomplqku@kahuna>
-References: <20201102191120.20380-1-faiz_abbas@ti.com>
+        id S1728870AbgKLQqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 11:46:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41160 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728757AbgKLQqg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Nov 2020 11:46:36 -0500
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EEAC922201;
+        Thu, 12 Nov 2020 16:46:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605199595;
+        bh=LLx0akF5qtEiY5VMQSlszIbWAgpb7UXLGfsyXCRK7Dk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=jfNQTQ0hZkzr+YiJs7bsZrYRl7397sjcqsp9yCooKZ2UJqzJHhIozdq1Fg5EsJZ/n
+         9UksIUQQKLeTPp/Ugn927wly+H3VPFz3bkcKo6vheC3y4RlOXk5vP7VwtMWyukkVNw
+         RUttv7U/0u6I8GHmbbOg4v/PkVLNnT8q6GuxSEPw=
+Received: by mail-qt1-f175.google.com with SMTP id z3so824217qtw.9;
+        Thu, 12 Nov 2020 08:46:34 -0800 (PST)
+X-Gm-Message-State: AOAM531T37UqKnwaGl07ueuWgHSeAMtq2G2DrNZHzg74PnZlu0Q7F22Z
+        XGM8O7hX7BSPqCe1CuisDnzLPDQQvRkv3jSaJg==
+X-Google-Smtp-Source: ABdhPJxNTJyWMf6+brsvjbuORMB9At5nr5f9ABeu/u5b5DtZBs4UEdwvX6ofCVpyFPU2RsM96RURemzIhbtaljLRQts=
+X-Received: by 2002:aed:2aa5:: with SMTP id t34mr13728qtd.31.1605199593992;
+ Thu, 12 Nov 2020 08:46:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201102191120.20380-1-faiz_abbas@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201109170409.4498-1-kishon@ti.com> <20201109170409.4498-2-kishon@ti.com>
+ <20201111212857.GA2059063@bogus> <f6d1b886-5c78-842c-c33c-16b5b9325130@ti.com>
+In-Reply-To: <f6d1b886-5c78-842c-c33c-16b5b9325130@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 12 Nov 2020 10:46:21 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com>
+Message-ID: <CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: mfd: ti,j721e-system-controller.yaml:
+ Document "syscon"
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Roger Quadros <rogerq@ti.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>,
+        PCI <linux-pci@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 00:41-20201103, Faiz Abbas wrote:
-> The following patches add gpio support for TI's J7200 platform.
-> 
-> These patches were posted as a part of an older series but have now
-> been split into three parts. The 3 parts add configs, gpios and MMC/SD
-> related dts patches respectively.
-> 
-> Older series is here:
-> https://lore.kernel.org/linux-arm-kernel/20201001190541.6364-1-faiz_abbas@ti.com/
-> 
-> Series adding configs to arm64 defconfig is here:
-> https://lore.kernel.org/linux-arm-kernel/20201102183005.14174-1-faiz_abbas@ti.com/
-> 
-> Faiz Abbas (3):
->   arm64: dts: ti: k3-j7200-main: Add gpio nodes in main domain
->   arm64: dts: ti: k3-j7200: Add gpio nodes in wakeup domain
+On Wed, Nov 11, 2020 at 11:25 PM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>
+> Hi Rob,
+>
+> On 12/11/20 2:58 am, Rob Herring wrote:
+> > On Mon, Nov 09, 2020 at 10:34:03PM +0530, Kishon Vijay Abraham I wrote:
+> >> Add binding documentation for "syscon" which should be a subnode of
+> >> the system controller (scm-conf).
+> >>
+> >> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> >> ---
+> >>  .../mfd/ti,j721e-system-controller.yaml       | 40 +++++++++++++++++++
+> >>  1 file changed, 40 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> >> index 19fcf59fd2fe..0b115b707ab2 100644
+> >> --- a/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> >> +++ b/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.yaml
+> >> @@ -50,6 +50,38 @@ patternProperties:
+> >>        specified in
+> >>        Documentation/devicetree/bindings/mux/reg-mux.txt
+> >>
+> >> +  "^syscon@[0-9a-f]+$":
+> >> +    type: object
+> >> +    description: |
+> >
+> > Don't need '|' if there's no formatting.
+>
+> Okay, will fix this.
+> >
+> >> +      This is the system controller configuration required to configure PCIe
+> >> +      mode, lane width and speed.
+> >> +
+> >> +    properties:
+> >> +      compatible:
+> >> +        items:
+> >> +          - enum:
+> >> +              - ti,j721e-system-controller
+> >> +          - const: syscon
+> >> +          - const: simple-mfd
+> >
+> > Humm, then what are this node's sub-nodes? And the same compatible as
+> > the parent?
+> >
+>
+> This node doesn't have sub-nodes.
+>
+> So one is the parent syscon node which has the entire system control
+> region and then sub-nodes for each of the modules. In this case the PCIe
+> in system control has only one 4 byte register that has to be configured.
+>
+> Both the parent node and sub-node are syscon, so given the same
+> compatible for both.
 
-I am not sure why we are splitting patches per domain here. We
-should just have a single patch that introduces the nodes, I dont see a
-specific benefit. In addition, series also introduces additional
- Missing #address-cells in interrupt provider
+'syscon' is just a hint. It doesn't define what any h/w is. IMO, we
+never should have added it.
 
-Which we need a conclusion for and the comments already provided.
+A compatible defines what the programming interface is for the node.
+This one should only ever appear more than once if you have multiple
+instances of the same block. So different registers, different
+compatible. What you have here is just completely broken.
 
+I don't think you even need a child node here. Just have PCIe node
+point to the parent with an offset arg.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Rob
