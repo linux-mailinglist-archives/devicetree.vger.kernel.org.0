@@ -2,126 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97C5E2AFDF6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:33:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 929522AFF75
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 06:48:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727868AbgKLFct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 00:32:49 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57356 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728877AbgKLBtx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 20:49:53 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AC1nddO087198;
-        Wed, 11 Nov 2020 19:49:39 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605145779;
-        bh=kzZUD0v8POHeVdqHJO6ZQf/TtjgIfWTQcVpUSFpITao=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=MqJf54BL8GtbBOE4aU+eGiQq4vr5aotY3l5cpMwYhmQwhyf2EFC+CD/sJt9Ni9Qvy
-         FMyuMMtIJmqw9WihIJBJHQNEu2ySAp+Wq7y579vkENyun+MIyYl9hLHND0cuvHRr3R
-         HO4YDeQrXubM6i2K5RXlRm6vaLsYG7luTgw619+Y=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AC1ndfP033101
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 11 Nov 2020 19:49:39 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 11
- Nov 2020 19:49:39 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 11 Nov 2020 19:49:39 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AC1ndbi114800;
-        Wed, 11 Nov 2020 19:49:39 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@ti.com>, Keerthy <j-keerthy@ti.com>,
-        Jyri Sarha <jsarha@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
+        id S1727875AbgKLFcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 00:32:50 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:65478 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727932AbgKLClv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 21:41:51 -0500
+X-UUID: 3e322c4d6c014b81adca0a5a36afc2e5-20201112
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Se+dg4+AYHxaxLtO87h0o7d56UKD1EUz3XmAcnOw+/s=;
+        b=oA+Dbf0qPb92/DZF3kFkxWYazzkKvsKg0/1OM5wOp9sggU1MDJbxATKYd0bHSif+NtHFeCDweuX4Xx505Zv1xeRj7V3hvcXe+mEqufaYZVEcfJvez7qhPfj56D9i4g12WU8yAbEq+Bpmpt1UfPVhRSSMTHDBrBUr75eoDoGa2HM=;
+X-UUID: 3e322c4d6c014b81adca0a5a36afc2e5-20201112
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1635741934; Thu, 12 Nov 2020 10:41:44 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32DR.mediatek.inc
+ (172.27.6.104) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 12 Nov
+ 2020 10:41:42 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 12 Nov 2020 10:41:42 +0800
+Message-ID: <1605148902.26323.126.camel@mhfsdcap03>
+Subject: Re: [PATCH v4 05/24] dt-bindings: mediatek: Add binding for mt8192
+ IOMMU
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH V2 5/5] arm64: dts: ti: am65/j721e/j7200: Mark firmware used uart as "reserved"
-Date:   Wed, 11 Nov 2020 19:49:29 -0600
-Message-ID: <20201112014929.25227-6-nm@ti.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201112014929.25227-1-nm@ti.com>
-References: <20201112014929.25227-1-nm@ti.com>
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@google.com>,
+        <kernel-team@android.com>
+Date:   Thu, 12 Nov 2020 10:41:42 +0800
+In-Reply-To: <20201111213338.GD287176@kozik-lap>
+References: <20201111123838.15682-1-yong.wu@mediatek.com>
+         <20201111123838.15682-6-yong.wu@mediatek.com>
+         <20201111213338.GD287176@kozik-lap>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-TM-SNTS-SMTP: 1C18FA5020027ADAA5CD122CFFAF794DF7B24B6C49C7403F677C225959A3CB292000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Follow the device tree standards that states to set the
-status="reserved" if an device is operational, but used by a non-linux
-firmware in the system.
-
-Signed-off-by: Nishanth Menon <nm@ti.com>
----
-- New patch introduced with V2 based on feedback on v1
-
- arch/arm64/boot/dts/ti/k3-am654-base-board.dts        | 2 +-
- arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts | 4 ++--
- arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 744efcbb4f7f..b5dba13556f8 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -211,7 +211,7 @@ AM65X_IOPAD(0x0010, PIN_INPUT, 0) /* (D21) ECAP0_IN_APWM_OUT */
- 
- &wkup_uart0 {
- 	/* Wakeup UART is used by System firmware */
--	status = "disabled";
-+	status = "reserved";
- };
- 
- &main_uart0 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index ef03e7636b66..1d08434229c7 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -79,7 +79,7 @@ J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
- 
- &wkup_uart0 {
- 	/* Wakeup UART is used by System firmware */
--	status = "disabled";
-+	status = "reserved";
- };
- 
- &main_uart0 {
-@@ -89,7 +89,7 @@ &main_uart0 {
- 
- &main_uart2 {
- 	/* MAIN UART 2 is used by R5F firmware */
--	status = "disabled";
-+	status = "reserved";
- };
- 
- &main_uart3 {
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 9416528caa8a..5754892f8501 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -221,7 +221,7 @@ J721E_WKUP_IOPAD(0x0088, PIN_INPUT, 0) /* MCU_MDIO0_MDIO */
- 
- &wkup_uart0 {
- 	/* Wakeup UART is used by System firmware */
--	status = "disabled";
-+	status = "reserved";
- };
- 
- &main_uart0 {
--- 
-2.29.2
+SGkgS3J6eXN6dG9mLA0KDQpPbiBXZWQsIDIwMjAtMTEtMTEgYXQgMjI6MzMgKzAxMDAsIEtyenlz
+enRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIFdlZCwgTm92IDExLCAyMDIwIGF0IDA4OjM4OjE5
+UE0gKzA4MDAsIFlvbmcgV3Ugd3JvdGU6DQo+ID4gVGhpcyBwYXRjaCBhZGRzIGRlY3JpcHRpb25z
+IGZvciBtdDgxOTIgSU9NTVUgYW5kIFNNSS4NCj4gPiANCj4gPiBtdDgxOTIgYWxzbyBpcyBNVEsg
+SU9NTVUgZ2VuMiB3aGljaCB1c2VzIEFSTSBTaG9ydC1EZXNjcmlwdG9yIHRyYW5zbGF0aW9uDQo+
+ID4gdGFibGUgZm9ybWF0LiBUaGUgTTRVLVNNSSBIVyBkaWFncmFtIGlzIGFzIGJlbG93Og0KPiA+
+IA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgRU1JDQo+ID4gICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgTTRVDQo+ID4gICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgfA0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAtLS0t
+LS0tLS0tLS0NCj4gPiAgICAgICAgICAgICAgICAgICAgICAgIFNNSSBDb21tb24NCj4gPiAgICAg
+ICAgICAgICAgICAgICAgICAgLS0tLS0tLS0tLS0tDQo+ID4gICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgfA0KPiA+ICAgKy0tLS0tLS0rLS0tLS0tKy0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tKy0tLS0tLS0rDQo+ID4gICB8ICAgICAgIHwgICAgICB8ICAgICAgfCAgICAgICAuLi4uLi4g
+ICAgICAgICB8ICAgICAgIHwNCj4gPiAgIHwgICAgICAgfCAgICAgIHwgICAgICB8ICAgICAgICAg
+ICAgICAgICAgICAgIHwgICAgICAgfA0KPiA+IGxhcmIwICAgbGFyYjEgIGxhcmIyICBsYXJiNCAg
+ICAgLi4uLi4uICAgICAgbGFyYjE5ICAgbGFyYjIwDQo+ID4gZGlzcDAgICBkaXNwMSAgIG1kcCAg
+ICB2ZGVjICAgICAgICAgICAgICAgICAgIElQRSAgICAgIElQRQ0KPiA+IA0KPiA+IEFsbCB0aGUg
+Y29ubmVjdGlvbnMgYXJlIEhXIGZpeGVkLCBTVyBjYW4gTk9UIGFkanVzdCBpdC4NCj4gPiANCj4g
+PiBtdDgxOTIgTTRVIHN1cHBvcnQgMH4xNkdCIGlvdmEgcmFuZ2UuIHdlIHByZWFzc2lnbiBkaWZm
+ZXJlbnQgZW5naW5lcw0KPiA+IGludG8gZGlmZmVyZW50IGlvdmEgcmFuZ2VzOg0KPiA+IA0KPiA+
+IGRvbWFpbi1pZCAgbW9kdWxlICAgICBpb3ZhLXJhbmdlICAgICAgICAgICAgICAgICAgbGFyYnMN
+Cj4gPiAgICAwICAgICAgIGRpc3AgICAgICAgIDAgfiA0RyAgICAgICAgICAgICAgICAgICAgICBs
+YXJiMC8xDQo+ID4gICAgMSAgICAgICB2Y29kZWMgICAgICA0RyB+IDhHICAgICAgICAgICAgICAg
+ICAgICAgbGFyYjQvNS83DQo+ID4gICAgMiAgICAgICBjYW0vbWRwICAgICA4RyB+IDEyRyAgICAg
+ICAgICAgICBsYXJiMi85LzExLzEzLzE0LzE2LzE3LzE4LzE5LzIwDQo+ID4gICAgMyAgICAgICBD
+Q1UwICAgIDB4NDAwMF8wMDAwIH4gMHg0M2ZmX2ZmZmYgICAgIGxhcmIxMzogcG9ydCA5LzEwDQo+
+ID4gICAgNCAgICAgICBDQ1UxICAgIDB4NDQwMF8wMDAwIH4gMHg0N2ZmX2ZmZmYgICAgIGxhcmIx
+NDogcG9ydCA0LzUNCj4gPiANCj4gPiBUaGUgaW92YSByYW5nZSBmb3IgQ0NVMC8xKGNhbWVyYSBj
+b250cm9sIHVuaXQpIGlzIEhXIHJlcXVpcmVtZW50Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6
+IFlvbmcgV3UgPHlvbmcud3VAbWVkaWF0ZWsuY29tPg0KPiA+IFJldmlld2VkLWJ5OiBSb2IgSGVy
+cmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiA+IC0tLQ0KDQpbLi4uXQ0KDQo+ID4gKyNpZm5kZWYg
+X0RUU19JT01NVV9QT1JUX01UODE5Ml9IXw0KPiA+ICsjZGVmaW5lIF9EVFNfSU9NTVVfUE9SVF9N
+VDgxOTJfSF8NCj4gDQo+IE5vdCBhY2N1cmF0ZSBoZWFkZXIgZ3VhcmQuIFNob3VkIGJlOg0KPiBf
+RFRfQklORElOR1NfTUVNT1JZX01UODE5Ml9MQVJCX1BPUlRfSF8NCj4gDQo+IFByb2JhYmx5IHlv
+dSBjb3BpZWQgaXQgZnJvbSBzb21lIG90aGVyIE1lZGlhdGVrIGhlYWRlcnMgLSBhbGwgb2YgdGhl
+bQ0KPiBoYXZlIGhlYWRlciBndWFyZCBwb2ludGluZyB0byBkaWZmZXJlbnQgZGlyZWN0b3J5Lg0K
+DQpUaGFua3MgdmVyeSBtdWNoIGZvciB5b3VyIHJldmlld2luZyBzbyBtYW55IHBhdGNoZXMuDQoN
+ClRoaXMgbmFtZSBsaWtlIHRoaXMgd2hlbiBpdCB3YXMgaW4gdGhlIGZpcnN0IHZlcnNpb24uIFNp
+bmNlIGl0IGlzIG9ubHkNCnVzZWQgd2hlbiB0aGUgY29uc3VtZXIgZGV2aWNlcyBlbmFibGUgSU9N
+TVUsIHRodXMgY2FsbGVkIGl0DQpfSU9NTVVfUE9SVC4uLg0KDQpJIHdpbGwgdXNlIGEgbmV3IHBh
+dGNoIHRvIHJlbmFtZSBhbGwgb2YgdGhlbS4NCg0KPiANCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5
+c3p0b2YNCg0K
 
