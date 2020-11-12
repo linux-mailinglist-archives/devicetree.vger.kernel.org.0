@@ -2,130 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B14A2B0D0C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 19:57:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D98A2B0DAA
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 20:16:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726148AbgKLS5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 13:57:05 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38156 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726137AbgKLS5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 13:57:04 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ACIv0xc078639;
-        Thu, 12 Nov 2020 12:57:00 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605207420;
-        bh=0mZ612yvY0+p6EwAFklsGOThGaWvihoymm9qWi7AN7Y=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=AwmOAaG+TkUIuCkejGp8Wq6wtLapYGt6fNnjQLi8BpVXcZRE/ddfo2Yb6iBVCIuom
-         R2Q+IoqYfSjJZqbreYB0iCALVK2GPbuhFToMc42hz4ye62l6MyEBt2mCRiq0l9BlaN
-         eCdXrItoXrFZca3CDZdA676Rtp16MuE5DdQvprH8=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ACIv05S084422
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 12 Nov 2020 12:57:00 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 12
- Nov 2020 12:56:56 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 12 Nov 2020 12:56:56 -0600
-Received: from [10.250.64.205] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ACIut22040910;
-        Thu, 12 Nov 2020 12:56:56 -0600
-Subject: Re: [PATCH 0/8] Add R5F nodes on TI K3 AM65x and J721E SoCs
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-References: <20201029033802.15366-1-s-anna@ti.com>
- <160520312703.31666.11099218646919403503.b4-ty@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <ae6bb8d3-4c75-4c35-fbb6-0594251b4398@ti.com>
-Date:   Thu, 12 Nov 2020 12:56:55 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726629AbgKLTQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 14:16:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726295AbgKLTQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 14:16:18 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18AE6C0613D1;
+        Thu, 12 Nov 2020 11:16:18 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id p12so7512741ljc.9;
+        Thu, 12 Nov 2020 11:16:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=jhfgYY14US6m4wxn2OreBeb6CQeVO8DRDGhHQIgAX+o=;
+        b=JFNyFw3LyyoB90fZPGzibsAizgKSOjs+HqVe40YhbRGey2zTAPm90qOBN8X1CJVzoO
+         M3SYYsbwVohly2d/++o0SchoujkkkZR3dQt9ALW0Nr5as8bdsOwP9tSGe6IWLUkjDbLQ
+         195IBsC4Go1c1FjWE4ifCXQMePRx9EASGLxk3zkSi25VwJ40hSyML0Ad1Owq7P06AL8m
+         dFmcJl1TYbfZeVB79l6ZTjRGThpjEH8gcPMSD2d7MgbQCdIrxVuQr31nNcK/3J9UPz8n
+         C+0AtkGaTIthUSxYky3m4HNI/HHnDyM1MWHC5gE8hZrjpfxfX3nJfxmyVs2Ix2MChWKO
+         Ve6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jhfgYY14US6m4wxn2OreBeb6CQeVO8DRDGhHQIgAX+o=;
+        b=Che0jVDu7B8pE34x8sdEtldRwr4yRFc9htl3oWuEdv5HFYW07SyEBbaUappE26lyq1
+         +KKTYbSqQT5UWBEyYgw+xV3etiqb8a9RTqbgNHnngJZz7wLvg+UXu4iRgP8Vv71EuYeP
+         DeKQk2cwl2TGcYpdtA5zzwIgYq6hhWk77uWf5lO54sJ5OB1PZhPoj0IohATBBJId8t0J
+         tYHKyB6OofjpvmopZE6RyLVL2YtxCIIQLyCwxRxxCwK67AEd/Lq15OWtt4vy2VV/eKMl
+         vzCMYfU0bAqAxu7m3qO7fxlqxkr8+IDNJQ4uH/v1tzUkGG+HQdT99NJxHx7yUgba4pEZ
+         pHHg==
+X-Gm-Message-State: AOAM532IXPzQwSn9E/XMsdGNfvsio7CJk8PepONetZi+QtmbgLx/uvx5
+        DbVq2lY3ms0UnvEvcxYM9U9c9RipKLk=
+X-Google-Smtp-Source: ABdhPJzE5qPV9KbGM96b/lBJNsGC5IOm8d97RUP9808EMVCjf5Dc6sywu66SXsgtyXC8GPiqUvektg==
+X-Received: by 2002:a05:651c:95:: with SMTP id 21mr428933ljq.307.1605208576330;
+        Thu, 12 Nov 2020 11:16:16 -0800 (PST)
+Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
+        by smtp.googlemail.com with ESMTPSA id z19sm721401lfd.128.2020.11.12.11.16.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Nov 2020 11:16:15 -0800 (PST)
+Subject: Re: [PATCH v1 11/30] drm/tegra: dc: Support OPP and SoC core voltage
+ scaling
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Peter Chen <Peter.Chen@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20201104234427.26477-1-digetx@gmail.com>
+ <20201104234427.26477-12-digetx@gmail.com> <20201110202945.GF2375022@ulmo>
+ <20201110203257.GC5957@sirena.org.uk>
+ <72ae6462-13df-9fcb-510e-8e57eee0f035@gmail.com>
+ <20201111115534.GA4847@sirena.org.uk>
+ <dd26eb18-8ac4-22a6-29b0-dbbe5fa6075b@gmail.com>
+ <20201112171600.GD4742@sirena.org.uk>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <b4b06c1d-c9d4-43b2-c6eb-93f8cb6c677d@gmail.com>
+Date:   Thu, 12 Nov 2020 22:16:14 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.2
 MIME-Version: 1.0
-In-Reply-To: <160520312703.31666.11099218646919403503.b4-ty@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20201112171600.GD4742@sirena.org.uk>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/12/20 11:48 AM, Nishanth Menon wrote:
-> On Wed, 28 Oct 2020 22:37:54 -0500, Suman Anna wrote:
->> The TI K3 R5F remoteproc driver and bindings were merged into 5.10-rc1,
->> and this series adds the follow-on base dt nodes for the R5F remote
->> processors on TI K3 AM65x and J721E SoCs. Additional memory nodes were
->> also added to boot these processors successfully on applicable TI K3
->> AM65x and J721E EVM boards. The series uses previously accepted mailbox
->> nodes.
->>
->> [...]
+12.11.2020 20:16, Mark Brown пишет:
+> On Thu, Nov 12, 2020 at 07:59:36PM +0300, Dmitry Osipenko wrote:
+>> 11.11.2020 14:55, Mark Brown пишет:
+>>> On Wed, Nov 11, 2020 at 12:23:41AM +0300, Dmitry Osipenko wrote:
 > 
-> Hi Suman Anna,
+>>>> I already changed that code to use regulator_get_optional() for v2.
 > 
-> I have applied the following to branch ti-k3-dts-next on [1].
-> Thank you!
+>>> That doesn't look entirely appropriate given that the core does most
+>>> likely require some kind of power to operate.
 > 
-> [1/8] arm64: dts: ti: k3-am65-mcu: Add MCU domain R5F cluster node
->       commit: 5bb9e0f6e8505e31159963150104569d9b8a8911
-> [2/8] arm64: dts: ti: k3-am654-base-board: Add mailboxes to R5Fs
->       commit: 10332cd6bcf287e22dac875d121b73adb762f96b
-> [3/8] arm64: dts: ti: k3-am654-base-board: Add DDR carveout memory nodes for R5Fs
->       commit: 954ec5139db091ff51cec4bf57c42f9deebc8747
-> [4/8] arm64: dts: ti: k3-am654-base-board: Reserve memory for IPC between R5F cores
->       commit: f82c5e0a8bc1311aee140bfed0888fc9a99afde0
-> [5/8] arm64: dts: ti: k3-j721e-mcu: Add MCU domain R5F cluster node
->       commit: dd74c9459cf2c87c3143b4b9005b7c9056fccdb0
-> [6/8] arm64: dts: ti: k3-j721e-main: Add MAIN domain R5F cluster nodes
->       commit: df445ff9de893146107d37e0cd5e542f800d9b39
-> [7/8] arm64: dts: ti: k3-j721e-som-p0: Add mailboxes to R5Fs
->       commit: 2879b593c3784e5eafc67cae915d8b7d680455f3
-> [8/8] arm64: dts: ti: k3-j721e-som-p0: Add DDR carveout memory nodes for R5Fs
->       commit: 0f191152bcba6758804eed4f6463f9bd32bdbfdb
+>> We will need to do this because older DTBs won't have that regulator and
+>> we want to keep them working.
 > 
+>> Also, some device-trees won't have that regulator anyways because board
+>> schematics isn't available, and thus, we can't fix them.
 > 
-> Please note:
-> * I understand the complexity of the code requiring the split up in the
->   incremental patches, so I believe it has a case for us to do the same.
-> * Special note on MCU R5: there are cases on J721e, J7200 and future devices
->   where "device management" functionality will run on MCU R5 core 0, which
->   means it is capable of running special firmware that may not respond on
->   mailbox at all.. The assumption is that the driver is capable of detecting
->   and handling such scenarios and this is a hardware description (as it
->   should be).
+> This is what dummy supplies are for?
 
-Yep, this is understood.
+But it's not allowed to change voltage of a dummy regulator, is it
+intentional?
 
+>>>> Regarding the enumerating supported voltage.. I think this should be
+>>>> done by the OPP core, but regulator core doesn't work well if
+>>>> regulator_get() is invoked more than one time for the same device, at
+>>>> least there is a loud debugfs warning about an already existing
 > 
-> All being well this means that it will be integrated into the linux-next
-> tree (usually sometime in the next 24 hours) and sent up the chain during
-> the next merge window (or sooner if it is a relevant bug fix), however if
-> problems are discovered then the patch may be dropped or reverted.
+>>> I don't understand why this would be an issue - if nothing else the core
+>>> could just offer an interface to trigger the check.
 > 
-> You may get further e-mails resulting from automated or manual testing
-> and review of the tree, please engage with people reporting problems and
-> send followup patches addressing any issues that are reported if needed.
+>> It's not an issue, I just described what happens when device driver
+>> tries to get a regulator twice.
 > 
-> If any updates are required or you are submitting further changes they
-> should be sent as incremental updates against current git, existing
-> patches will not be replaced.
+>> There was an issue once that check is added to the regulator core code.
+>> But perhaps not worth to discuss it for now because I don't remember
+>> details.
 > 
-> Please add any relevant lists and maintainers to the CCs when replying
-> to this mail.
-> 
-> [1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
-> 
+> So there's no known obstacle to putting enumeration of supported
+> voltages into the OPP core then?  I'm a bit confused here.
 
-Thanks, Nishanth!
+It's an obstacle if both OPP and device driver need to get the same
+regulator. Like in the case of this DRM driver, which need to control
+the voltage instead of allowing OPP core to do it.
 
-regards
-Suman
+Please notice that devm_tegra_dc_opp_table_init() of this patch doesn't
+use dev_pm_opp_set_regulators(), which would allow OPP core to filter
+out unsupported OPPs. But then OPP core will need need to get an already
+requested regulator and this doesn't work well.
 
+>>>> directory for a regulator. It's easy to check whether the debug
+>>>> directory exists before creating it, like thermal framework does it for
+>>>> example, but then there were some other more difficult issues.. I don't
+>>>> recall what they were right now. Perhaps will be easier to simply get a
+>>>> error from regulator_set_voltage() for now because it shouldn't ever
+>>>> happen in practice, unless device-tree has wrong constraints.
+> 
+>>> The constraints might not be wrong, there might be some board which has
+>>> a constraint somewhere for 
+> 
+>> In this case board's DT shouldn't specify unsupportable OPPs.
+> 
+> Ah, so each board duplicates the OPP tables then, or there's an
+> expectation that if there's some limit then they'll copy and modify the
+> table?  If that's the case then it's a bit redundant to do filtering
+> indeed.
+
+I think this is not strictly defined. Either way will work, although
+perhaps it should be more preferred that unsupported OPPs aren't present
+in a device-tree.
