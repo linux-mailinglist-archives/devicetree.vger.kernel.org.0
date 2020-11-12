@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DAA2B1279
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 00:07:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 118F82B12BB
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 00:26:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726050AbgKLXHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 18:07:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55118 "EHLO
+        id S1726157AbgKLX0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 18:26:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725929AbgKLXHf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 18:07:35 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7CAC0613D1;
-        Thu, 12 Nov 2020 15:07:35 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id 7so10531652ejm.0;
-        Thu, 12 Nov 2020 15:07:35 -0800 (PST)
+        with ESMTP id S1726120AbgKLX0j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 18:26:39 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB51DC0613D1;
+        Thu, 12 Nov 2020 15:26:20 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id v22so8462471edt.9;
+        Thu, 12 Nov 2020 15:26:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=e3ZgniTCA5H487G9tHsJ332rAm4rBS2NT56JLlTOViU=;
-        b=s/KnB+4zXRgSXtc9rFY7vBedjcryRv4v/RM8f0pKwfjtMhwC6nv8exfkvdYb2rzdjg
-         zwkJcbltgojvoJOMI5POaz63X2JCQqRJjW9mKmKmYtohlm/tdcYkpSw7f7C1WQKL1Ium
-         Na1dQvknXlnf0416jx0UK+XRvA79bTjC1BtmsqJhr2LWVDCB9yGlISlAMbU5cHwF28sU
-         1Sf4ougJVhgD2a/a8oBX+GnlLJD6mVWWGKz2eu8gxyE0r6fiMIdoaOkYuMEtp6wEQMr8
-         /HluX23eMhf7629c3fKi9Dn+oEHP350DjdVneg+kZp+9VObFPlPaVdul+GZ8GIIMkEMg
-         1WeA==
+        bh=TlYFcKTRc4uJxNFNgTXByAJcJNBkENTDk/UqmoZAVtg=;
+        b=R36fpCiiFn3VZYBIKh8DMHqlpcqbsG9UwqutfvgQXKuR4nz5yDi07yljQ56HcTEeDq
+         vqLrpPALLdwnHSMZzAruXhfTbMgdIEz7w9BU2wb/5SHU3ioBe7RPmC9RcsB/2L29TSEi
+         gniYCKg/hpFqxWUsVIyDBLqF+/nbIeqWvoz/ciqg0lE3U5/f3WyLBQWEV6qy+UB9JP5/
+         5r49RBwvBEXsad8R60L9CW8+qthLZ/dwNM1wNmQWEWbUAOTRlANewmqg2xUG1LvDfxCI
+         Nm/6AsYXDDXapKSTK0soSNg/bvNY6MX4xOqfcKP0hrr1ThNZ0Adrj1JP6nEn0ozd88LW
+         8W6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=e3ZgniTCA5H487G9tHsJ332rAm4rBS2NT56JLlTOViU=;
-        b=mwcvdxCcyxLkzIkevRxQErh5Px2HIRopv+vfmVn/WfpmMwJ81Hl9X7j7+kHjAiUow/
-         mDkaeSQ/VXNbcia62Jd7fDZvNlnh96THznL5usELOr5+hZ7kh/4k3RAZXNa+HsQwNWYC
-         X+LqoKkBFhBtc49BTeH80NoQQu5HyV+9YeAkRZcE6ju9LZn7zs8/bw6h4wDksxw4uSTV
-         UqEntAJ0agnGF3BU/1DIxO1nXFowH9iu9fhDYiCgvgtgHFQbOff8JfeggkRU3y0aRZdo
-         gUG+OUSKNv7FX+arpZUrsGauox07bJsHWKegecsCfEbw/J3G5c9S92+RNpPgbMf63V56
-         aoeA==
-X-Gm-Message-State: AOAM531htnotNqOTmc9QTki1wfz6U7YTdpLmj8PWN5wyLTfpLMoWdgIv
-        CkANTOm4SYfgEIhTjYUDlhI=
-X-Google-Smtp-Source: ABdhPJxH067wX0DdUQJ5mWZrmxQb9K8jwbmNQojuCMoHAeVNWSCZMYIVMCF2YO09Wsu3oGKRbyIhdQ==
-X-Received: by 2002:a17:906:961a:: with SMTP id s26mr1786211ejx.211.1605222454071;
-        Thu, 12 Nov 2020 15:07:34 -0800 (PST)
+        bh=TlYFcKTRc4uJxNFNgTXByAJcJNBkENTDk/UqmoZAVtg=;
+        b=Th7OTEgZjj6VBQycur/mUWPdwvr/Ovc3QxTZ9z38+ztkMem/pMzpJZEuQNlH2+UjVp
+         GC1AOpQ3VJvctley3i10WkKam5sM5tNiYxjAWwxkeGM+OhbB7UTGLeEI/kmq6ugzWO+J
+         VCfJJ9CVNfDojIghdZDr8YOEasOChqsjOoxbNYs8C9LBhMT+uK8+jIhJLahCyfinvyuk
+         vi+yJPTzhjySTE6/8zgNXoGas+7fn+UT3mmXMrbrOA/WVPjzg2LlauCeIQ0f4v9OQ38e
+         LqQYYUEZU4YtWasvAD5ktozTMSJmcDL0453jDLXCU+ReludHsog52eSSC/8/68BNbsiT
+         HI4Q==
+X-Gm-Message-State: AOAM531IE6h4q7HGzKwkoljcuJVN8XSADcmtt4+cxjC4gbczsobX3tIm
+        aN20d5IdCvbDFXgRh4iSymQ=
+X-Google-Smtp-Source: ABdhPJwsBcy6ESeUmZ85R4GIsO8XO4KI+CEQs/e7meIe3wfVUEfAWJjPfnOWq+1Kla9Nf7KIU/MGbQ==
+X-Received: by 2002:a05:6402:1813:: with SMTP id g19mr2530615edy.105.1605223579359;
+        Thu, 12 Nov 2020 15:26:19 -0800 (PST)
 Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id z2sm2991535edr.47.2020.11.12.15.07.32
+        by smtp.gmail.com with ESMTPSA id h22sm2754224ejt.21.2020.11.12.15.26.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 15:07:33 -0800 (PST)
-Date:   Fri, 13 Nov 2020 01:07:32 +0200
+        Thu, 12 Nov 2020 15:26:18 -0800 (PST)
+Date:   Fri, 13 Nov 2020 01:26:17 +0200
 From:   Vladimir Oltean <olteanv@gmail.com>
 To:     Christian Eggers <ceggers@arri.de>
 Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
@@ -66,58 +66,254 @@ Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
         Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
         netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 05/11] dt-bindings: net: dsa: microchip,ksz:
- add interrupt property
-Message-ID: <20201112230732.5spb6qgsu3zdtq4d@skbuf>
+Subject: Re: [PATCH net-next v2 06/11] net: dsa: microchip: ksz9477: basic
+ interrupt support
+Message-ID: <20201112232617.dka72sudrbii52aq@skbuf>
 References: <20201112153537.22383-1-ceggers@arri.de>
- <20201112153537.22383-6-ceggers@arri.de>
+ <20201112153537.22383-7-ceggers@arri.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201112153537.22383-6-ceggers@arri.de>
+In-Reply-To: <20201112153537.22383-7-ceggers@arri.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 04:35:31PM +0100, Christian Eggers wrote:
-> The devices have an optional interrupt line.
+On Thu, Nov 12, 2020 at 04:35:32PM +0100, Christian Eggers wrote:
+> Interrupts are required for TX time stamping. Probably they could also
+> be used for PHY connection status.
+
+Do the KSZ switches have an internal PHY? And there's a single interrupt
+line, shared between the PTP timestamping engine, and the internal PHY
+that is driver by phylib?
+
+> This patch only adds the basic infrastructure for interrupts, no
+> interrupts are actually enabled nor handled.
 >
+> ksz9477_reset_switch() must be called before requesting the IRQ (in
+> ksz9477_init() instead of ksz9477_setup()).
+
+A patch can never be "too simple". Maybe you could factor out that code
+movement into a separate patch.
+
 > Signed-off-by: Christian Eggers <ceggers@arri.de>
 > ---
->  .../devicetree/bindings/net/dsa/microchip,ksz.yaml        | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  drivers/net/dsa/microchip/ksz9477_i2c.c  |   2 +
+>  drivers/net/dsa/microchip/ksz9477_main.c | 103 +++++++++++++++++++++--
+>  drivers/net/dsa/microchip/ksz9477_spi.c  |   2 +
+>  include/linux/dsa/ksz_common.h           |   1 +
+>  4 files changed, 100 insertions(+), 8 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> index 431ca5c498a8..b2613d6c97cf 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> @@ -35,6 +35,11 @@ properties:
->        Should be a gpio specifier for a reset line.
->      maxItems: 1
+> diff --git a/drivers/net/dsa/microchip/ksz9477_i2c.c b/drivers/net/dsa/microchip/ksz9477_i2c.c
+> index 4e053a25d077..4ed1f503044a 100644
+> --- a/drivers/net/dsa/microchip/ksz9477_i2c.c
+> +++ b/drivers/net/dsa/microchip/ksz9477_i2c.c
+> @@ -41,6 +41,8 @@ static int ksz9477_i2c_probe(struct i2c_client *i2c,
+>  	if (i2c->dev.platform_data)
+>  		dev->pdata = i2c->dev.platform_data;
 >
-> +  interrupts:
-> +    description:
-> +      Interrupt specifier for the INTRP_N line from the device.
-> +    maxItems: 1
+> +	dev->irq = i2c->irq;
 > +
->    microchip,synclko-125:
->      $ref: /schemas/types.yaml#/definitions/flag
->      description:
-> @@ -47,6 +52,7 @@ required:
->  examples:
->    - |
->      #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
+>  	ret = ksz9477_switch_register(dev);
 >
->      // Ethernet switch connected via SPI to the host, CPU port wired to eth0:
->      eth0 {
-> @@ -68,6 +74,8 @@ examples:
->              compatible = "microchip,ksz9477";
->              reg = <0>;
->              reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-> +            interrupt-parent = <&gpio5>;
-> +            interrupts = <1 IRQ_TYPE_LEVEL_LOW>;  /* INTRP_N line */
+>  	/* Main DSA driver may not be started yet. */
+> diff --git a/drivers/net/dsa/microchip/ksz9477_main.c b/drivers/net/dsa/microchip/ksz9477_main.c
+> index abfd3802bb51..6b5a981fb21f 100644
+> --- a/drivers/net/dsa/microchip/ksz9477_main.c
+> +++ b/drivers/net/dsa/microchip/ksz9477_main.c
+> @@ -7,7 +7,9 @@
+>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/interrupt.h>
+>  #include <linux/iopoll.h>
+> +#include <linux/irq.h>
+>  #include <linux/platform_data/microchip-ksz.h>
+>  #include <linux/phy.h>
+>  #include <linux/if_bridge.h>
+> @@ -1345,19 +1347,12 @@ static void ksz9477_config_cpu_port(struct dsa_switch *ds)
+>  static int ksz9477_setup(struct dsa_switch *ds)
+>  {
+>  	struct ksz_device *dev = ds->priv;
+> -	int ret = 0;
+>
+>  	dev->vlan_cache = devm_kcalloc(dev->dev, sizeof(struct vlan_table),
+>  				       dev->num_vlans, GFP_KERNEL);
+>  	if (!dev->vlan_cache)
+>  		return -ENOMEM;
+>
+> -	ret = ksz9477_reset_switch(dev);
+> -	if (ret) {
+> -		dev_err(ds->dev, "failed to reset switch\n");
+> -		return ret;
+> -	}
+> -
+>  	/* Required for port partitioning. */
+>  	ksz9477_cfg32(dev, REG_SW_QM_CTRL__4, UNICAST_VLAN_BOUNDARY,
+>  		      true);
+> @@ -1535,12 +1530,84 @@ static const struct ksz_chip_data ksz9477_switch_chips[] = {
+>  	},
+>  };
+>
+> +static irqreturn_t ksz9477_switch_irq_thread(int irq, void *dev_id)
+> +{
+> +	struct ksz_device *dev = dev_id;
+> +	u32 data;
+> +	int port;
+> +	int ret;
+> +	irqreturn_t result = IRQ_NONE;
 
-Isn't it preferable to use this syntax?
+Please keep local variable declaration sorted in the reverse order of
+line length. But....
 
-		interrupts-extended = <&gpio5 1 IRQ_TYPE_LEVEL_LOW>;  /* INTRP_N line */
+> +
+> +	/* Read global port interrupt status register */
+> +	ret = ksz_read32(dev, REG_SW_PORT_INT_STATUS__4, &data);
+> +	if (ret)
+> +		return result;
+
+...Is there any point at all in keeping the "result" variable?
+
+> +
+> +	for (port = 0; port < dev->port_cnt; port++) {
+> +		if (data & BIT(port)) {
+
+You can reduce the indentation level by 1 here using:
+
+		if (!(data & BIT(port)))
+			continue;
+
+> +			u8 data8;
+> +
+> +			/* Read port interrupt status register */
+> +			ret = ksz_read8(dev, PORT_CTRL_ADDR(port, REG_PORT_INT_STATUS),
+> +					&data8);
+> +			if (ret)
+> +				return result;
+> +
+> +			/* ToDo: Add specific handling of port interrupts */
+
+Buggy? Please return IRQ_HANDLED, otherwise the system, when bisected to
+this commit exactly, will emit interrupts and complain that nobody cared.
+
+> +		}
+> +	}
+> +
+> +	return result;
+> +}
+> +
+> +static int ksz9477_enable_port_interrupts(struct ksz_device *dev)
+> +{
+> +	u32 data;
+> +	int ret;
+> +
+> +	ret = ksz_read32(dev, REG_SW_PORT_INT_MASK__4, &data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Enable port interrupts (0 means enabled) */
+> +	data &= ~((1 << dev->port_cnt) - 1);
+
+And what's the " - 1" for?
+
+> +	ret = ksz_write32(dev, REG_SW_PORT_INT_MASK__4, data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+	return ksz_write32(dev, REG_SW_PORT_INT_MASK__4, data);
+
+> +}
+> +
+> +static int ksz9477_disable_port_interrupts(struct ksz_device *dev)
+> +{
+> +	u32 data;
+> +	int ret;
+> +
+> +	ret = ksz_read32(dev, REG_SW_PORT_INT_MASK__4, &data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Disable port interrupts (1 means disabled) */
+> +	data |= ((1 << dev->port_cnt) - 1);
+> +	ret = ksz_write32(dev, REG_SW_PORT_INT_MASK__4, data);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+
+same comments as above.
+
+Also, it's almost as if you want to implement these in the same
+function, with a "bool enable"?
+
+> +}
+> +
+>  static int ksz9477_switch_init(struct ksz_device *dev)
+>  {
+> -	int i;
+> +	int i, ret;
+>
+>  	dev->ds->ops = &ksz9477_switch_ops;
+>
+> +	ret = ksz9477_reset_switch(dev);
+> +	if (ret) {
+> +		dev_err(dev->dev, "failed to reset switch\n");
+> +		return ret;
+> +	}
+> +
+>  	for (i = 0; i < ARRAY_SIZE(ksz9477_switch_chips); i++) {
+>  		const struct ksz_chip_data *chip = &ksz9477_switch_chips[i];
+>
+> @@ -1584,12 +1651,32 @@ static int ksz9477_switch_init(struct ksz_device *dev)
+>
+>  	/* set the real number of ports */
+>  	dev->ds->num_ports = dev->port_cnt;
+> +	if (dev->irq > 0) {
+> +		unsigned long irqflags = irqd_get_trigger_type(irq_get_irq_data(dev->irq));
+
+What is irqd_get_trigger_type and what does it have to do with the
+"irqflags" argument of request_threaded_irq? Where else have you even
+seen this?
+
+> +
+> +		irqflags |= IRQF_ONESHOT;
+
+And shared maybe?
+
+> +		ret = devm_request_threaded_irq(dev->dev, dev->irq, NULL,
+> +						ksz9477_switch_irq_thread,
+> +						irqflags,
+> +						dev_name(dev->dev),
+> +						dev);
+> +		if (ret) {
+> +			dev_err(dev->dev, "failed to request IRQ.\n");
+> +			return ret;
+> +		}
+> +
+> +		ret = ksz9477_enable_port_interrupts(dev);
+> +		if (ret)
+> +			return ret;
+
+Could you also clear pending interrupts before enabling the line?
+
+> +	}
+>
+>  	return 0;
+>  }
+>
+>  static void ksz9477_switch_exit(struct ksz_device *dev)
+>  {
+> +	if (dev->irq > 0)
+> +		ksz9477_disable_port_interrupts(dev);
+
+I think it'd look a bit nicer if you moved this condition into
+ksz9477_disable_port_interrupts:
+
+	if (!dev->irq)
+		return;
+
+>  	ksz9477_reset_switch(dev);
+>  }
+>
