@@ -2,186 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA252B07A6
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 15:39:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9042B07D4
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 15:52:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728233AbgKLOi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 09:38:59 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45258 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727035AbgKLOi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 09:38:58 -0500
-Received: by mail-oi1-f195.google.com with SMTP id j7so6562760oie.12;
-        Thu, 12 Nov 2020 06:38:57 -0800 (PST)
+        id S1728473AbgKLOwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 09:52:43 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34828 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727035AbgKLOwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 09:52:43 -0500
+Received: by mail-ot1-f68.google.com with SMTP id n11so5823146ota.2;
+        Thu, 12 Nov 2020 06:52:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=g2feB/PWURbtrnJtItFz1VQ5PPwL6e/I9KTZ0Uw/R1A=;
-        b=Cfpqck5LVC3fFJpbZTQfiDNgnHhu3R0CpSDeQlme4w83ufrbxFuQ/b967YA3P+R1P6
-         /6M5GSN0+iA+ZfMbLe/SmqwwEwZrITFeuXsSeImgaDwqf3ZbZB7vfieUmCn6qiwA0/ce
-         LL6B6bhbhAiiUkEvEN70TzamREz+VOCf7c5rmLN+ukksFZUTEhhYuT/QGxzk4yMIcSmc
-         xfsH1YFp0UAym/hKI4IMRQ6ryOPSUr0U56Jv9lSLoHpmwAVFgj/RQgA4SO6wyOHzZuPI
-         qE49b0HLh9/rZOjXdctk8Y3eXD+WWN3itEXVd7B+dlSHPfzli/Za7p5zAi1UR1scXPKY
-         8EUA==
-X-Gm-Message-State: AOAM533nr6wb4bKlCNwre1JwrRxWIXorXutpdSWE8J5fxzCbeg8rTU1p
-        rpBqvw4vChqCMOGNUeqTrQ==
-X-Google-Smtp-Source: ABdhPJzb4C6749pnyPFAAzZjnZI0T9oOb7W++bv3cxZb4oci7pI8qdSdXH9njzY5O/62MMrjZaaLCA==
-X-Received: by 2002:aca:ed0a:: with SMTP id l10mr5908800oih.56.1605191937418;
-        Thu, 12 Nov 2020 06:38:57 -0800 (PST)
+        bh=j+NtsxIWerG3PypKnHGj1vHWDm1dlWfy0K8oMDj6ZN0=;
+        b=uDK1jYflja3a5Khn39GtyMWM+/sXR/M7qDXDClflFS2XPaQVyzAzYKG63+4iMY3Z0S
+         Sq1JYJZvCtKPQ6JfIIp3fIFxMmZ3/jL/OI11NnmVNl0TexkDhrPf7nIcugzZ7ibZ2xm5
+         XkdZeKcQGqEHtzwNczw8SuMjUC6QSyBEG12l9bq4M0yeUfG3drSKIeQzVBfseFfndBIN
+         dMq8/tr5UkRmezA4j7GyCe26kDf/vT0MsT1GdICvLjY4ouQOjB6/6tvHhhllwAFUnoKA
+         oUqls/xA5H+8+1rNvWITj95zxpqr3gRBuXRPjXvyQDvyj8SLXSTpvLIHnt5ELPapcFJq
+         IVmQ==
+X-Gm-Message-State: AOAM531Y9z9ksAeIjAsE9rV0sY/H0uW/I2TlBayZj9Nb8FXxKNLFY3lw
+        aj0zMyrdZ0uR+THlxBc2cWP0qzTYSA==
+X-Google-Smtp-Source: ABdhPJy3LKjufxrHMWCK3kiwWxQViG1miClOrK9sNPsfoNY+EeJrFLlPdDdAnpQ0Mbvw5/pnE6StRQ==
+X-Received: by 2002:a9d:ea9:: with SMTP id 38mr5656420otj.339.1605192761971;
+        Thu, 12 Nov 2020 06:52:41 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p128sm1292890ooa.14.2020.11.12.06.38.55
+        by smtp.gmail.com with ESMTPSA id i82sm1166693oia.2.2020.11.12.06.52.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 06:38:56 -0800 (PST)
-Received: (nullmailer pid 3562944 invoked by uid 1000);
-        Thu, 12 Nov 2020 14:38:55 -0000
-Date:   Thu, 12 Nov 2020 08:38:55 -0600
+        Thu, 12 Nov 2020 06:52:41 -0800 (PST)
+Received: (nullmailer pid 3581406 invoked by uid 1000);
+        Thu, 12 Nov 2020 14:52:40 -0000
+Date:   Thu, 12 Nov 2020 08:52:40 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     broonie@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
-        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sharadg@nvidia.com
-Subject: Re: [PATCH v5 1/6] ASoC: dt-bindings: tegra: Add graph bindings
-Message-ID: <20201112143855.GA3553055@bogus>
-References: <1605119676-32273-1-git-send-email-spujar@nvidia.com>
- <1605119676-32273-2-git-send-email-spujar@nvidia.com>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     yuji2.ishikawa@toshiba.co.jp, punit1.agrawal@toshiba.co.jp,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: gpio: Add bindings for Toshiba
+ Visconti GPIO Controller
+Message-ID: <20201112145240.GA3566867@bogus>
+References: <20201112084057.1399983-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20201112084057.1399983-2-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1605119676-32273-2-git-send-email-spujar@nvidia.com>
+In-Reply-To: <20201112084057.1399983-2-nobuhiro1.iwamatsu@toshiba.co.jp>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 12:04:31AM +0530, Sameer Pujar wrote:
-> Add device tree binding properties of generic graph to ASoC component
-> devices. This allows to define audio ports out of these components or
-> DAIs and audio graph based sound card can be realised with this.
-
-This is all dependent on graph.yaml being applied which hasn't happened 
-yet. I guess I'll need to provide a branch as there's multiple 
-subsystems needing it.
-
+On Thu, 12 Nov 2020 17:40:54 +0900, Nobuhiro Iwamatsu wrote:
+> Add bindings for the Toshiba Visconti GPIO Controller.
 > 
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 > ---
->  .../devicetree/bindings/sound/nvidia,tegra186-dspk.yaml     |  6 ++++++
->  .../devicetree/bindings/sound/nvidia,tegra210-admaif.yaml   |  6 ++++++
->  .../devicetree/bindings/sound/nvidia,tegra210-ahub.yaml     | 13 +++++++++++--
->  .../devicetree/bindings/sound/nvidia,tegra210-dmic.yaml     |  6 ++++++
->  .../devicetree/bindings/sound/nvidia,tegra210-i2s.yaml      |  6 ++++++
->  5 files changed, 35 insertions(+), 2 deletions(-)
+>  .../bindings/gpio/toshiba,gpio-visconti.yaml  | 85 +++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
-> index ed2fb32..3c9364d 100644
-> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
-> @@ -55,6 +55,12 @@ properties:
->        The name can be "DSPK1" or "DSPKx", where x depends on the maximum
->        available instances on a Tegra SoC.
->  
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-
-If you have 'ports', then that means you have multiple ports and you 
-have to enumerate what each port is.
-
-> +
-> +  port:
-> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
-
-If you only have 1 port then, you can use 'port'.
 
 
-So listing both is an error.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml
-> index c028b25..162823d 100644
-> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml
-> @@ -37,6 +37,12 @@ properties:
->  
->    dma-names: true
->  
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +  port:
-> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
-> +
->  if:
->    properties:
->      compatible:
-> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
-> index d772197..59cd1f1 100644
-> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
-> @@ -56,6 +56,16 @@ properties:
->  
->    ranges: true
->  
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +  port:
-> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
-> +
-> +patternProperties:
-> +  "@[0-9a-f]+$":
-> +    type: object
-> +
->  required:
->    - compatible
->    - reg
-> @@ -67,8 +77,7 @@ required:
->    - "#size-cells"
->    - ranges
->  
-> -additionalProperties:
-> -  type: object
-> +additionalProperties: false
->  
->  examples:
->    - |
-> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
-> index 2a3207b..b16bf5e 100644
-> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
-> @@ -56,6 +56,12 @@ properties:
->        The name can be "DMIC1" or "DMIC2" ... "DMICx", where x depends
->        on the maximum available instances on a Tegra SoC.
->  
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +  port:
-> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
-> index dfc1bf7..598f763 100644
-> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
-> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
-> @@ -74,6 +74,12 @@ properties:
->        The name can be "I2S1" or "I2S2" ... "I2Sx", where x depends
->        on the maximum available instances on a Tegra SoC.
->  
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +  port:
-> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
-> +
->  required:
->    - compatible
->    - reg
-> -- 
-> 2.7.4
-> 
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.example.dt.yaml: gpio@28020000: interrupts: [[0, 24, 4], [0, 25, 4], [0, 26, 4], [0, 27, 4], [0, 28, 4], [0, 29, 4], [0, 30, 4], [0, 31, 4], [0, 32, 4], [0, 33, 4], [0, 34, 4], [0, 35, 4], [0, 36, 4], [0, 37, 4], [0, 38, 4], [0, 39, 4]] is too short
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1398656
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
