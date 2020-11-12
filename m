@@ -2,168 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17C052AFC10
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A9F2AFD36
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 02:52:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728271AbgKLBcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Nov 2020 20:32:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44536 "EHLO
+        id S1728133AbgKLBcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Nov 2020 20:32:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728133AbgKLAnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 19:43:41 -0500
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B468C061A4D
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 16:41:45 -0800 (PST)
-Received: by mail-pf1-x442.google.com with SMTP id g7so2912214pfc.2
-        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 16:41:45 -0800 (PST)
+        with ESMTP id S1728205AbgKLBLC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Nov 2020 20:11:02 -0500
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com [IPv6:2607:f8b0:4864:20::a43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71F45C0617A7
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 17:11:00 -0800 (PST)
+Received: by mail-vk1-xa43.google.com with SMTP id q77so955447vkq.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Nov 2020 17:11:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=DWB6g7SgUuqbksYreAE2hvC6FZMTkuUHQsnGWriw73M=;
-        b=CT6dNV+TWZZNUscLwC6dmB5ywU+BaFJQKP7WJw3hJFcnFMEikPzugFMiwB/iH5Wlz+
-         8bEJo8l+ztT0EllDbM8H+5EQNnyZS9Fbrjm38V/uMij8/MuNAWGwxlkOJfuFo6gypiHx
-         zq9RMncewywXY+N1e8k66hCS3ihonZOc0wfOw=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Jz5kAZbrArqI0Wtmw+vtyP3p8jdhel21wmv2CFUUROo=;
+        b=kDnlXe7tyEixWf+480/PTLTVkBUYGbtBisgVqL6qcQgy4sPKvzTV6/tSw83j47RD7q
+         Rf9VAXW9kIm4P+pX/HXhGKwX9LVFIVmcuHv/6Jag9gPlQcBFdbxZcRC33/54CUyQozsU
+         NIphtyIs1Otvd9bO8oM70co0kkF3ZZXDKONwA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=DWB6g7SgUuqbksYreAE2hvC6FZMTkuUHQsnGWriw73M=;
-        b=lz0+Ev5OYqWFVchZREGyfJRqoVOugHRPcXRxbG9Os+P/2/Rrhze3CLZsjZF2/ZOCy+
-         Q2Fndujf85pH7YCWD7wq88MdoJfYM1lEJcYbN8Y/VB7IjGFfR6cHi/POF5aPKwwDZztc
-         FR92eMcKCUVDQuu+62YIa+CQhavWaqxnENU39EhHNcz4uiulEJonnMdTOL++CPKVOna+
-         uxUo5x6Qc2o6UQ+4Y4kU+8BFN8fvhmhnwkHmejGG4ICtkWZ9X9QgVcwC1iO8Bb61WVDS
-         Cl/GMaVlokMtpvX1YyYJNW+/RMVKDftrFmfbi4d1dQSjcI21cQ7U7NhiHlMtpnBYobdR
-         TF2w==
-X-Gm-Message-State: AOAM530MCJLz9B9Dbz2QjCTvfq3hsm4l8CqZUE3rE06V//gXfrb3afj8
-        j7Rz8wtLv9W0M6ihwrpzMms/Eg==
-X-Google-Smtp-Source: ABdhPJwCNok+Lsh0ja3mTOu/Ky1lelVUsm/3MjwYBjN4SKOcugRW/jjW5QUZJgDXu5ShZPXd6OTJrg==
-X-Received: by 2002:a17:90b:33d1:: with SMTP id lk17mr6402941pjb.174.1605141704660;
-        Wed, 11 Nov 2020 16:41:44 -0800 (PST)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id t26sm4265522pfl.72.2020.11.11.16.41.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 11 Nov 2020 16:41:44 -0800 (PST)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     jkosina@suse.cz, benjamin.tissoires@redhat.com,
-        gregkh@linuxfoundation.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     andrea@borgia.bo.it, robh+dt@kernel.org,
-        kai.heng.feng@canonical.com, swboyd@chromium.org,
-        linux-input@vger.kernel.org, hdegoede@redhat.com,
-        Douglas Anderson <dianders@chromium.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v6 3/4] dt-bindings: input: HID: i2c-hid: Introduce bindings for the Goodix GT7375P
-Date:   Wed, 11 Nov 2020 16:41:29 -0800
-Message-Id: <20201111164027.v6.3.Ibb28033c81d87fcc13a6ba28c6ea7ac154d65f93@changeid>
-X-Mailer: git-send-email 2.29.2.222.g5d2a92d10f8-goog
-In-Reply-To: <20201112004130.17290-1-dianders@chromium.org>
-References: <20201112004130.17290-1-dianders@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Jz5kAZbrArqI0Wtmw+vtyP3p8jdhel21wmv2CFUUROo=;
+        b=ihTkl/MASttVQTGZYJ5nPSAynRpzK5fuhEGbP6XYxNuUzSfaOek3/Rz66QrUNSUV15
+         RBuJQcfdWjZFtXHDZLRyRJIfU2CMuFhajxJr/0um9C2aTnBIUFM5Lbo4t4FCoRsUk/IP
+         c8yo/PWRdEcprjHoqQAVHV4rkXiuS37WhDvAdCmov9u9yWX+MDww5Oudyv2SVwnE4kU6
+         Y9t05egendA1EVZQqkbv83ZAFPZYWNNV3uHZgM6NKntBN80gVK7HWiZyF7luADqlwTc+
+         BAeAF+EbIKa4bsLdQMMQ/WaPSgO32qUGcrqiyZY27cTtqbcplak8p5Gz/3uM0gRjdCaB
+         7bRg==
+X-Gm-Message-State: AOAM532AJaRTT7I5pYRUgyotdqTweUni7iL8zcESt6ngtdAi6icJFMdj
+        whSApckJVJo2bxh8TgJufLe73XeMZ4JdBviGavotpg==
+X-Google-Smtp-Source: ABdhPJw+9rZ4nbhsdwX6zx9uimjIrtTve1brVMfTJF95tCZp/3u+DvsL8qx0usBjUpgCHUXOc17+xjTd7E+Sg/oGTEc=
+X-Received: by 2002:a1f:cd07:: with SMTP id d7mr16387452vkg.10.1605143459607;
+ Wed, 11 Nov 2020 17:10:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201111123838.15682-1-yong.wu@mediatek.com> <20201111123838.15682-14-yong.wu@mediatek.com>
+In-Reply-To: <20201111123838.15682-14-yong.wu@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Thu, 12 Nov 2020 09:10:49 +0800
+Message-ID: <CANMq1KBrnhAbGdKbsSmFJWONe-mkG6TJsN_jp2xuJ=4MiPyapQ@mail.gmail.com>
+Subject: Re: [PATCH v4 13/24] iommu/mediatek: Add device link for smi-common
+ and m4u
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, chao.hao@mediatek.com,
+        Greg Kroah-Hartman <gregkh@google.com>, kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds new bindings for the Goodix GT7375P touchscreen.  While this
-touchscreen's communications are based on the generic "i2c-over-hid"
-protocol, it needs special power sequencing and thus gets its own
-compatible and bindings.
+On Wed, Nov 11, 2020 at 8:40 PM Yong Wu <yong.wu@mediatek.com> wrote:
+>
+> In the lastest SoC, M4U has its special power domain. thus, If the engine
+> begin to work, it should help enable the power for M4U firstly.
+> Currently if the engine work, it always enable the power/clocks for
+> smi-larbs/smi-common. This patch adds device_link for smi-common and M4U.
+> then, if smi-common power is enabled, the M4U power also is powered on
+> automatically.
+>
+> Normally M4U connect with several smi-larbs and their smi-common always
+> are the same, In this patch it get smi-common dev from the first smi-larb
+> device(i==0), then add the device_link only while m4u has power-domain.
+>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/iommu/mtk_iommu.c | 36 +++++++++++++++++++++++++++++++++---
+>  drivers/iommu/mtk_iommu.h |  1 +
+>  2 files changed, 34 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index cfdf5ce696fd..4ce7e0883e4d 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -20,6 +20,7 @@
+>  #include <linux/of_irq.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+>  #include <linux/regmap.h>
+>  #include <linux/slab.h>
+>  #include <linux/spinlock.h>
+> @@ -705,7 +706,7 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>                 return larb_nr;
+>
+>         for (i = 0; i < larb_nr; i++) {
+> -               struct device_node *larbnode;
+> +               struct device_node *larbnode, *smicomm_node;
+>                 struct platform_device *plarbdev;
+>                 u32 id;
+>
+> @@ -731,6 +732,26 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>
+>                 component_match_add_release(dev, &match, release_of,
+>                                             compare_of, larbnode);
+> +               if (!i) {
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+Maybe more of a style preference, but since you are actually comparing
+an integer, I prefer seeing i == 0.
 
-(no changes since v5)
+Also, might be nicer to do
 
-Changes in v5:
-- Added mention of i2c-hid in the yaml itself as per Rob.
-- Adjusted subject as per Rob.
+if (i != 0)
+   continue;
 
-Changes in v3:
-- Fixed compatible in example.
-- Removed Benjamin as a maintainer.
-- Updated description.
+And de-indent the rest.
 
-Changes in v2:
-- ("dt-bindings: HID: i2c-hid: Introduce bindings for the Goodix GT7375P") new in v2.
+> +                       smicomm_node = of_parse_phandle(larbnode, "mediatek,smi", 0);
+> +                       if (!smicomm_node)
+> +                               return -EINVAL;
+> +
+> +                       plarbdev = of_find_device_by_node(smicomm_node);
+> +                       of_node_put(smicomm_node);
+> +                       data->smicomm_dev = &plarbdev->dev;
+> +               }
+> +       }
+> +
+> +       if (dev->pm_domain) {
+> +               struct device_link *link;
+> +
+> +               link = device_link_add(data->smicomm_dev, dev,
+> +                                      DL_FLAG_STATELESS | DL_FLAG_PM_RUNTIME);
+> +               if (!link) {
+> +                       dev_err(dev, "Unable link %s.\n", dev_name(data->smicomm_dev));
+> +                       return -EINVAL;
+> +               }
+>         }
+>
+>         platform_set_drvdata(pdev, data);
+> @@ -738,14 +759,14 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>         ret = iommu_device_sysfs_add(&data->iommu, dev, NULL,
+>                                      "mtk-iommu.%pa", &ioaddr);
+>         if (ret)
+> -               return ret;
+> +               goto out_link_remove;
+>
+>         iommu_device_set_ops(&data->iommu, &mtk_iommu_ops);
+>         iommu_device_set_fwnode(&data->iommu, &pdev->dev.of_node->fwnode);
+>
+>         ret = iommu_device_register(&data->iommu);
+>         if (ret)
+> -               return ret;
+> +               goto out_sysfs_remove;
 
- .../bindings/input/goodix,gt7375p.yaml        | 65 +++++++++++++++++++
- 1 file changed, 65 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
+Technically, this change is unrelated.
 
-diff --git a/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-new file mode 100644
-index 000000000000..fe1c5016f7f3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/goodix,gt7375p.yaml
-@@ -0,0 +1,65 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/goodix,gt7375p.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Goodix GT7375P touchscreen
-+
-+maintainers:
-+  - Douglas Anderson <dianders@chromium.org>
-+
-+description:
-+  Supports the Goodix GT7375P touchscreen.
-+  This touchscreen uses the i2c-hid protocol but has some non-standard
-+  power sequencing required.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: goodix,gt7375p
-+
-+  reg:
-+    enum:
-+      - 0x5d
-+      - 0x14
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    true
-+
-+  vdd-supply:
-+    description: The 3.3V supply to the touchscreen.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - vdd-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      ap_ts: touchscreen@5d {
-+        compatible = "goodix,gt7375p";
-+        reg = <0x5d>;
-+
-+        interrupt-parent = <&tlmm>;
-+        interrupts = <9 IRQ_TYPE_LEVEL_LOW>;
-+
-+        reset-gpios = <&tlmm 8 GPIO_ACTIVE_LOW>;
-+        vdd-supply = <&pp3300_ts>;
-+      };
-+    };
--- 
-2.29.2.222.g5d2a92d10f8-goog
-
+>
+>         spin_lock_init(&data->tlb_lock);
+>         list_add_tail(&data->list, &m4ulist);
+> @@ -754,6 +775,13 @@ static int mtk_iommu_probe(struct platform_device *pdev)
+>                 bus_set_iommu(&platform_bus_type, &mtk_iommu_ops);
+>
+>         return component_master_add_with_match(dev, &mtk_iommu_com_ops, match);
+> +
+> +out_sysfs_remove:
+> +       iommu_device_sysfs_remove(&data->iommu);
+> +out_link_remove:
+> +       if (dev->pm_domain)
+> +               device_link_remove(data->smicomm_dev, dev);
+> +       return ret;
+>  }
+>
+>  static int mtk_iommu_remove(struct platform_device *pdev)
+> @@ -767,6 +795,8 @@ static int mtk_iommu_remove(struct platform_device *pdev)
+>                 bus_set_iommu(&platform_bus_type, NULL);
+>
+>         clk_disable_unprepare(data->bclk);
+> +       if (pdev->dev.pm_domain)
+> +               device_link_remove(data->smicomm_dev, &pdev->dev);
+>         devm_free_irq(&pdev->dev, data->irq, data);
+>         component_master_del(&pdev->dev, &mtk_iommu_com_ops);
+>         return 0;
+> diff --git a/drivers/iommu/mtk_iommu.h b/drivers/iommu/mtk_iommu.h
+> index d0c93652bdbe..5e03a029c4dc 100644
+> --- a/drivers/iommu/mtk_iommu.h
+> +++ b/drivers/iommu/mtk_iommu.h
+> @@ -68,6 +68,7 @@ struct mtk_iommu_data {
+>
+>         struct iommu_device             iommu;
+>         const struct mtk_iommu_plat_data *plat_data;
+> +       struct device                   *smicomm_dev;
+>
+>         struct dma_iommu_mapping        *mapping; /* For mtk_iommu_v1.c */
+>
+> --
+> 2.18.0
+>
