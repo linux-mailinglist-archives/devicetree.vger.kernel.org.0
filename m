@@ -2,83 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 623852B0BC9
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 18:56:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 980022B0BCC
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 18:57:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726202AbgKLR4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 12:56:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34710 "EHLO
+        id S1726451AbgKLR4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 12:56:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726041AbgKLR4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 12:56:42 -0500
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11C44C0613D1
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 09:56:42 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id z3so5225232pfb.10
-        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 09:56:42 -0800 (PST)
+        with ESMTP id S1726363AbgKLR4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 12:56:45 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 929F9C0613D1
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 09:56:45 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id e21so4802053pgr.11
+        for <devicetree@vger.kernel.org>; Thu, 12 Nov 2020 09:56:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=BUIJgxDO6pNTdqRF5z3Cm8enfXD7vZuWVXH97s2MHh4=;
-        b=ExZlSBr+eGtJllRdGaT7/KKk12F7NY7VII9DdDwT+JKEs866JJs62peH8FBLAbvVSv
-         m4vd74buGsy0mQI8HizFckvUDU7X+1L/38J7JeFVpkBCXTEysGFGpmvIBSLqkBQABa5t
-         YEb+ISctbfT/0kYP4Gzs2YBkB4ca2OPuOSVhc=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=G0rtwpshQP4CvZoXtSrINXeaaTyhi9gtdzm3vrsa7Jo=;
+        b=QCtcclVQrZrHji82U6pADdEBzX7gbK/kKps+EqrI5zcDXdoVCFq6efUeFAHWe//l73
+         vDzsrXOWOfj5Fuzd7aMOXfmVTui78p5HeK8X76DOtHpZlMCeOuxxnyrfinmU9bbwmRiS
+         fCiBLYMhEMo2MCN4huGmBaOAqxlSan/oneVZE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=BUIJgxDO6pNTdqRF5z3Cm8enfXD7vZuWVXH97s2MHh4=;
-        b=No4cieCb/dkOgTG490DMgrBaDiOOIVI0vH2CqpTp6wqTO5Hzk0dAhBHhnHX4BKS+9o
-         LPgBkksSW38OvYU0FNTg+juxpj/JRnSX8QMikjEB/R7RdlfkdmnzsfZUZLlWQb9yi2qt
-         VlWHsOLIwLxcqRwQjmzeye1t4ZJeIfz6ARitpu2Ocy4xTXj0m9SlCb6kWBD9dWyDxoXY
-         dPLrRF5AXGF/HoMtKOx1aI50EWQj1YRDT/at1q42mz/wbGW9GmUBDbxu1YF3dIJQeFfS
-         7BAoN7/Lj455cSZdnagMJ1CTZFj5kztr8QAB7Uw7kuz0MSPUgkvfSHTDV0W+ep0tklOg
-         4srQ==
-X-Gm-Message-State: AOAM5305wzvqhXHJyO9k6hx2U5OCmBxSSGSekbvHXBUEUvurEogLXo/3
-        zCerNfkDxlY86/TMtx7i5JHigg==
-X-Google-Smtp-Source: ABdhPJzSaMpLBB2AaSQdmGd6JZfJ/yvrHIGE0OItFv/kEs4nU4M/7SA0geZze0S6Kf9UrCFCltfI1A==
-X-Received: by 2002:a65:6a56:: with SMTP id o22mr555972pgu.47.1605203801470;
-        Thu, 12 Nov 2020 09:56:41 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=G0rtwpshQP4CvZoXtSrINXeaaTyhi9gtdzm3vrsa7Jo=;
+        b=V9hd4VlYlW26fyyt2atrVuAddsHlzScPWM/iqw3uCh97MO/sggxN5lhAXDlQJsyP2N
+         pFCJsfvuZC4uVR/wf5PjA1be3jYBd9/QAYOmeqydM5lyk/mb/2d0Ozw66cr3wyCcRzZJ
+         XS6xTBnOUAICd88Df9ewwjSNDhxioLLxOxzLUkQv6I6Dulbi2bJpWCiAXqkj9qLL0+aj
+         M0WBGiflUIFOqNwg1+4VyTfErtIGLYYrdKYWxe5IMa1zn9TWbEx3l9WWDVsT2PZ7uale
+         LDga11now+XJpAJXaoCzC99+bCK0SynqRXgMbWFmi82IjM3jRDnVbhNTye369N8ilsze
+         KVuQ==
+X-Gm-Message-State: AOAM532mZ1LhTFo0p2PScVdH05Kni5SrdyRg78/M+YPDw/87UidlY/0i
+        epEQJ7+/IYJn3r/a4Viu21BjRw==
+X-Google-Smtp-Source: ABdhPJz6YHBPKKNS65iez8Ig62Aka9vOolx+PyDURQLNlxhIv9GWjtN+d3iJccwWZIGiaDB0IapN7A==
+X-Received: by 2002:a63:e:: with SMTP id 14mr577062pga.426.1605203804834;
+        Thu, 12 Nov 2020 09:56:44 -0800 (PST)
 Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id q18sm6817303pfs.150.2020.11.12.09.56.39
+        by smtp.gmail.com with ESMTPSA id q18sm6817303pfs.150.2020.11.12.09.56.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 09:56:40 -0800 (PST)
+        Thu, 12 Nov 2020 09:56:44 -0800 (PST)
 From:   Jim Quinlan <james.quinlan@broadcom.com>
 To:     Sudeep Holla <sudeep.holla@arm.com>,
         bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
         DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 0/2] firmware: arm_scmi: Augment SMC/HVC to allow optional interrupt
-Date:   Thu, 12 Nov 2020 12:56:25 -0500
-Message-Id: <20201112175632.42234-1-james.quinlan@broadcom.com>
+Subject: [PATCH v2 1/2] dt-bindings: arm: Add optional interrupt to smc/hvc SCMI transport
+Date:   Thu, 12 Nov 2020 12:56:26 -0500
+Message-Id: <20201112175632.42234-2-james.quinlan@broadcom.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201112175632.42234-1-james.quinlan@broadcom.com>
+References: <20201112175632.42234-1-james.quinlan@broadcom.com>
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="00000000000066efec05b3eca269"
+        boundary="0000000000009926fe05b3eca24b"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---00000000000066efec05b3eca269
+--0000000000009926fe05b3eca24b
 
-v2 -- Correct commit message, s/msg/message/, and remove extra WS on
-      "dt-bindings" commit (Sudeep)
-   -- Change interrupt name to "message-serviced", move irq assignent to end
-      of function. (Sudeep)
+In normal use of smc/hvc transport in SCMI the message completion is
+indicated by the return of the SMC call.  This commit provides for an
+optional interrupt named "message-serviced" which is used instead to
+indicate the completion of a message.
 
-v1 -- original.
+Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+---
+ Documentation/devicetree/bindings/arm/arm,scmi.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Jim Quinlan (2):
-  dt-bindings: arm: Add optional interrupt to smc/hvc SCMI transport
-  firmware: arm_scmi: Augment SMC/HVC to allow optional interrupt
-
- .../devicetree/bindings/arm/arm,scmi.txt      |  8 ++++
- drivers/firmware/arm_scmi/smc.c               | 38 ++++++++++++++++++-
- 2 files changed, 45 insertions(+), 1 deletion(-)
-
+diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+index 55deb68230eb..7cdad11f40b1 100644
+--- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
++++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+@@ -31,6 +31,14 @@ Optional properties:
+ 
+ - mbox-names: shall be "tx" or "rx" depending on mboxes entries.
+ 
++- interrupts : when using smc or hvc transports, this optional
++	 property indicates that msg completion by the platform is indicated
++	 by an interrupt rather than by the return of the smc call. This
++	 should not be used except when the platform requires such behavior.
++
++- interrupt-names : if "interrupts" is present, interrupt-names must also
++	 be present and have the value "message-serviced".
++
+ See Documentation/devicetree/bindings/mailbox/mailbox.txt for more details
+ about the generic mailbox controller and client driver bindings.
+ 
 -- 
 2.17.1
 
 
---00000000000066efec05b3eca269
+--0000000000009926fe05b3eca24b
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -148,14 +166,14 @@ V6GuAMmRknrzeTlxPy40UhUcRKk6Nm8mxl3Jh4KB68z7NFVpIx8G5w5I7S5ar1mLGNRjtFZ0RE4O
 lcCwKVGUXRaZMgQGrIhxGVelVgrcBh2vjpndlv733VI2VKE/TvV5MxMGU18RnogYSm66AEFA/Zb+
 5ztz1AtIMYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBu
 di1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEcz
-AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIMFye/KNqswo
-BcXBNFAQJCGlo0zHCB6oa6dAlqtcylpfMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
-hvcNAQkFMQ8XDTIwMTExMjE3NTY0MVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
+AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJ5DWBboGos8
+3TC4nV65JkmgeAQCWwNcFCTzZXYG+xkmMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
+hvcNAQkFMQ8XDTIwMTExMjE3NTY0NVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
 YIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcN
-AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQCLoxowrT7ki1zrLzgQemCcKtNuLZIQ
-nXuGvPlzpI+6vg/vgXQenTviHjNuUqfYYMEZvvbm1kb7UNjgvHhXxD3dGvoQZzSjZ6LX+qy5+/4r
-grtB/zIyuuf7x0qvOCPAREKVvUypF7tbaEAvufrOHDflPOFkDeikJvsJhAzfG9G5TraSPM0RTgHT
-xAdOg+p5GWUFiEYHEwbot2qqcbHgtnUnZiaYuyMcyzVbnsN7/UST7mzySfYUCYhjGWsubSLCDvuR
-yaFM7xe8EA8vphixOPhc4CTTMsd3I2vXhkCa+2O0qf6vzmX1Yy6GDOp4Yk7NT+7NZUbF5XTmHSFV
-VeuSuQJG
---00000000000066efec05b3eca269--
+AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQChxVxDD5IUBFyCgZtfeDjSRAuQhL69
+0tNF8Xu4HyUzZWIj6HMsCFVT0LHGHytMFC5qgR11DOnuFppAz9USVnIIhA4euF02hFaghTrjerpE
+PYzSofbBv3PsSgVVVft/yHqoK1xNBEMQ8V8ojBjtFN3ztQwYvLxZeIEy9fu6cCKg3/PGHoXjvgYi
+XnOdv7Hyo8f7Hw9J3RZMz767q9Pb8mRE1Oavut/bzYZIFjqfeCnEiK20bih42Gk7Tw+7IcOuAdy1
+tUzW8GumgnL/1Zt18GdcbALo+YRg0nG+DYnXtqEoaJEFc5owHUjNoHHwEROND6FTd7Qfyeao7mBM
+hWfC2Q9t
+--0000000000009926fe05b3eca24b--
