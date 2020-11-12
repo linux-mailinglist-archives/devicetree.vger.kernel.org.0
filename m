@@ -2,91 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 494222B078B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 15:28:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CBA252B07A6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Nov 2020 15:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728032AbgKLO2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 09:28:13 -0500
-Received: from mga01.intel.com ([192.55.52.88]:33637 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727035AbgKLO2N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 09:28:13 -0500
-IronPort-SDR: gt/mb+yLc3LwsolG0Wz+p732i3t0FO8vRO2pQkDQ+0N35HiHr7TFrDdnrCcrIsps1Tukhv5R4P
- EQOkzA+cgBJQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9802"; a="188310752"
-X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; 
-   d="scan'208";a="188310752"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2020 06:28:06 -0800
-IronPort-SDR: t/D92XzdhmxAj1Sfdzh4kAqjT5oZkqgkP1u3e9ZQk3ubqXHJ7zWZq8eUeWHUZWEPmreSjUR5wp
- dF+uoG7AEDCg==
-X-IronPort-AV: E=Sophos;i="5.77,472,1596524400"; 
-   d="scan'208";a="532184068"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2020 06:28:04 -0800
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kdDb0-006DsY-03; Thu, 12 Nov 2020 16:29:06 +0200
-Date:   Thu, 12 Nov 2020 16:29:05 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v3 2/2] phy: intel: Add Keem Bay USB PHY support
-Message-ID: <20201112142905.GH4077@smile.fi.intel.com>
-References: <20201112095821.27110-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201112095821.27110-3-wan.ahmad.zainie.wan.mohamad@intel.com>
+        id S1728233AbgKLOi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 09:38:59 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:45258 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727035AbgKLOi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 09:38:58 -0500
+Received: by mail-oi1-f195.google.com with SMTP id j7so6562760oie.12;
+        Thu, 12 Nov 2020 06:38:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=g2feB/PWURbtrnJtItFz1VQ5PPwL6e/I9KTZ0Uw/R1A=;
+        b=Cfpqck5LVC3fFJpbZTQfiDNgnHhu3R0CpSDeQlme4w83ufrbxFuQ/b967YA3P+R1P6
+         /6M5GSN0+iA+ZfMbLe/SmqwwEwZrITFeuXsSeImgaDwqf3ZbZB7vfieUmCn6qiwA0/ce
+         LL6B6bhbhAiiUkEvEN70TzamREz+VOCf7c5rmLN+ukksFZUTEhhYuT/QGxzk4yMIcSmc
+         xfsH1YFp0UAym/hKI4IMRQ6ryOPSUr0U56Jv9lSLoHpmwAVFgj/RQgA4SO6wyOHzZuPI
+         qE49b0HLh9/rZOjXdctk8Y3eXD+WWN3itEXVd7B+dlSHPfzli/Za7p5zAi1UR1scXPKY
+         8EUA==
+X-Gm-Message-State: AOAM533nr6wb4bKlCNwre1JwrRxWIXorXutpdSWE8J5fxzCbeg8rTU1p
+        rpBqvw4vChqCMOGNUeqTrQ==
+X-Google-Smtp-Source: ABdhPJzb4C6749pnyPFAAzZjnZI0T9oOb7W++bv3cxZb4oci7pI8qdSdXH9njzY5O/62MMrjZaaLCA==
+X-Received: by 2002:aca:ed0a:: with SMTP id l10mr5908800oih.56.1605191937418;
+        Thu, 12 Nov 2020 06:38:57 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id p128sm1292890ooa.14.2020.11.12.06.38.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2020 06:38:56 -0800 (PST)
+Received: (nullmailer pid 3562944 invoked by uid 1000);
+        Thu, 12 Nov 2020 14:38:55 -0000
+Date:   Thu, 12 Nov 2020 08:38:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     broonie@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
+        kuninori.morimoto.gx@renesas.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sharadg@nvidia.com
+Subject: Re: [PATCH v5 1/6] ASoC: dt-bindings: tegra: Add graph bindings
+Message-ID: <20201112143855.GA3553055@bogus>
+References: <1605119676-32273-1-git-send-email-spujar@nvidia.com>
+ <1605119676-32273-2-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201112095821.27110-3-wan.ahmad.zainie.wan.mohamad@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <1605119676-32273-2-git-send-email-spujar@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 05:58:21PM +0800, Wan Ahmad Zainie wrote:
-> Add support for USB PHY on Intel Keem Bay SoC.
+On Thu, Nov 12, 2020 at 12:04:31AM +0530, Sameer Pujar wrote:
+> Add device tree binding properties of generic graph to ASoC component
+> devices. This allows to define audio ports out of these components or
+> DAIs and audio graph based sound card can be realised with this.
 
-Any elaboration here? What is this PHY (USB2 or USB3 or?.. etc)?
+This is all dependent on graph.yaml being applied which hasn't happened 
+yet. I guess I'll need to provide a branch as there's multiple 
+subsystems needing it.
 
-...
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> ---
+>  .../devicetree/bindings/sound/nvidia,tegra186-dspk.yaml     |  6 ++++++
+>  .../devicetree/bindings/sound/nvidia,tegra210-admaif.yaml   |  6 ++++++
+>  .../devicetree/bindings/sound/nvidia,tegra210-ahub.yaml     | 13 +++++++++++--
+>  .../devicetree/bindings/sound/nvidia,tegra210-dmic.yaml     |  6 ++++++
+>  .../devicetree/bindings/sound/nvidia,tegra210-i2s.yaml      |  6 ++++++
+>  5 files changed, 35 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> index ed2fb32..3c9364d 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra186-dspk.yaml
+> @@ -55,6 +55,12 @@ properties:
+>        The name can be "DSPK1" or "DSPKx", where x depends on the maximum
+>        available instances on a Tegra SoC.
+>  
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 
-> +config PHY_INTEL_KEEMBAY_USB
-> +	tristate "Intel Keem Bay USB PHY driver"
+If you have 'ports', then that means you have multiple ports and you 
+have to enumerate what each port is.
 
-> +	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
+> +
+> +  port:
+> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
 
-It seems other drivers that are not using ARM specific calls moved to
-
-	depends on ARCH_KEEMBAY || COMPILE_TEST
-
-> +	depends on HAS_IOMEM
-> +	select GENERIC_PHY
-> +	select REGMAP_MMIO
-
-...
-
-> +#define USS_CPR_MASK		0x7f
-
-GENMASK() ?
-
-...
-
-> +static const struct regmap_config keembay_regmap_config = {
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-
-.max_register?
-
-> +};
-
--- 
-With Best Regards,
-Andy Shevchenko
+If you only have 1 port then, you can use 'port'.
 
 
+So listing both is an error.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml
+> index c028b25..162823d 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-admaif.yaml
+> @@ -37,6 +37,12 @@ properties:
+>  
+>    dma-names: true
+>  
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +  port:
+> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
+> +
+>  if:
+>    properties:
+>      compatible:
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> index d772197..59cd1f1 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-ahub.yaml
+> @@ -56,6 +56,16 @@ properties:
+>  
+>    ranges: true
+>  
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +  port:
+> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
+> +
+> +patternProperties:
+> +  "@[0-9a-f]+$":
+> +    type: object
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -67,8 +77,7 @@ required:
+>    - "#size-cells"
+>    - ranges
+>  
+> -additionalProperties:
+> -  type: object
+> +additionalProperties: false
+>  
+>  examples:
+>    - |
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
+> index 2a3207b..b16bf5e 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-dmic.yaml
+> @@ -56,6 +56,12 @@ properties:
+>        The name can be "DMIC1" or "DMIC2" ... "DMICx", where x depends
+>        on the maximum available instances on a Tegra SoC.
+>  
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +  port:
+> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
+> +
+>  required:
+>    - compatible
+>    - reg
+> diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
+> index dfc1bf7..598f763 100644
+> --- a/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
+> +++ b/Documentation/devicetree/bindings/sound/nvidia,tegra210-i2s.yaml
+> @@ -74,6 +74,12 @@ properties:
+>        The name can be "I2S1" or "I2S2" ... "I2Sx", where x depends
+>        on the maximum available instances on a Tegra SoC.
+>  
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +  port:
+> +    $ref: /schemas/sound/audio-graph.yaml#/properties/port
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.7.4
+> 
