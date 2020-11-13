@@ -2,153 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 099B12B1EC7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:32:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 276D92B1ED3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:32:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726691AbgKMPcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 10:32:24 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:39133 "EHLO
+        id S1726734AbgKMPcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 10:32:22 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:41595 "EHLO
         new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726731AbgKMPcU (ORCPT
+        by vger.kernel.org with ESMTP id S1726439AbgKMPcU (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
         Fri, 13 Nov 2020 10:32:20 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E042F58032D;
-        Fri, 13 Nov 2020 10:32:18 -0500 (EST)
+        by mailnew.nyi.internal (Postfix) with ESMTP id 13CB458032A;
+        Fri, 13 Nov 2020 10:32:19 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:32:18 -0500
+  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:32:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:date:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=iQvsGPPa0tYF2NuoRivcownR9ft
-        NLwLD3BYTJEqiN68=; b=lSysGwVB7uEO/OD640HhdDjd1HDZweo4kZul3xT9ZZb
-        0QhyoL6zjbLQenu11bkjQ56NKvcFI9Vin1bBd06Uud3+PwXKy6qKeCQcaCiX3Nix
-        TqBIn+WPVvZDm7sw6drhgyS+vbLOqc6pZ+KKyHPx4xGi3A/Y/+VcNYzG+y0uuovn
-        5rWeeiiqERqhOAyiEo9akMy8TUZX4MQSkLMPkTCjY8kgFtCV5ssoWbVnXJlGmYXc
-        FRSmpXdBhD0XhpoR69kEMXizqVKgjJafS27ff3o5CRM5X79G+ONZPXg3ydPFSfut
-        6UtqsHXrQkJ6k4VqqCW68LFZLZ8z6wNmqdC7s/dPBYg==
+        from:to:cc:subject:date:message-id:content-type:mime-version
+        :content-transfer-encoding; s=fm1; bh=7Zmgsv4bn6m3O58vV2b3+wNJJw
+        TAQp+Lmd3f32mWRH4=; b=iKwpJqWWdMUWEN685FlV3gicMdrsWD9Lfg0cy0OB4F
+        uJNz8P4rIL8+h9xnDvVJ4Vtt+iWfRxXO6AaG38+5A6zLgmC5xP+OwaqcaMNj0bqn
+        /zGmeTWGkNbGNpzANZsmGhUkbTZp2ZkK5fdsKvLeATkmFJhWh47E9ycIRP1kPRwE
+        gMJeo/VSgIFQJunZbEj+4viPnoM0Gesd/LZxNbBIRnHdxcd9qcqe1EjkbTSp8sWj
+        4bu8MjmVpfIcmAN9aTYL16j6ibldN8tw98yOZwaW6BNkOOSsy4vfgEUd46CmMD1s
+        gvd2TA1PHWH1Wa6DpOIKvz7wUAGdbcX/6NC9hQit6biQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=iQvsGP
-        Pa0tYF2NuoRivcownR9ftNLwLD3BYTJEqiN68=; b=EJEe7fiMO/W7hIRq1R4VkM
-        Zit5RF0UHiDUTx6SfZKALDBAWTFgnK20cOfruzgTloS29toHAzz9N+GEz7rq/zx8
-        yLPixecY5+AXwqbZ7sCzmo0LOcrfL29ODL89uzAJlA56HyssX9qrta4NPZnMoxbz
-        I5q3M4mPKf0MwE9V4tdYhZRPJEikPDzVC5fdpaacyloLcIJOJyoKpti/64rdTwAj
-        /Gv0s9sL1Qg5aK/CboQnGKNUvqEFnTN5B0fgsQHfGoUtsPl8nhnsBVKE6eQDVxXH
-        SQ2rJ3EJVfbLNEFd3b+oFJvyjudcxqFG0onlp35JDRt7IALKPWoEbWk3YjcrD3gg
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:message-id:mime-version:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=7Zmgsv
+        4bn6m3O58vV2b3+wNJJwTAQp+Lmd3f32mWRH4=; b=CVIXaz06R0qdepac6VfUAA
+        2zpKqKpJu+SFoq0b9dO+LK8yk6DB5UEG0EC+tBWja6/E3NY2QuDFllqYtmD9+Wcr
+        H4OXFatu08gnmFgvxHzj3j5riKrFPHFwQ48vD5VtEuX2Ou5Qg75FCx2ZJKkuzjPc
+        nJgJT/Nw1svD3penLAjwKgo1skQE9RhTd1PG9sfdBTY87xw5CvACxWmCzMRpH8DP
+        9ArdhDsGd09989ldJbpggDMyzYA5fRuqsYEzT+y9O8g8DEgWCRkym1Sgq5gNt2N/
+        aQsSbuSshUXI7ZXT86RDp1kmQTfDyxKK8hHdF4CFXH4FcmF+mWOYlT2Q2G5IJ2mw
         ==
-X-ME-Sender: <xms:AKeuXzhp5yOZuzx_8jABAGLEMIARQ5xo40fJkpSR4FuyWLt-6jzgAw>
-    <xme:AKeuXwA5pgknbzpFZOXlJtT48gdkLWQj5Td8uDZtGkQWAl8sQgDry2t8w2V5qT_XX
-    Eeuk1BzA1nEqMDoPDA>
+X-ME-Sender: <xms:AaeuX8tqKDUZ2ts1s1GKLzLlaQYMUC1qKIqYQpmbrJ8hE7nd6N6N1A>
+    <xme:AaeuX5f2Qbd7FM4_4ujycFqfM7mirLLFud3sqgZP3iQ-yeuoFfcjA4aTmgqy-R807
+    3ilXKPczbV3xDa1GG8>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvhedgjeejucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephfffvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpehmrgigihhm
-    vgestggvrhhnohdrthgvtghhnecuggftrfgrthhtvghrnhephffffffgteejgeeiteelue
-    dvkeffudekjeejheevleekgffggfekkedvhfeigefgnecukfhppeeltddrkeelrdeikedr
-    jeeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmh
-    grgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:AKeuXzGdXPY-QZyakhb_12fR12Jd5ZHQl-EScwayMt7F4680Um_lDw>
-    <xmx:AKeuXwRguMbGG6BXUiUDFA9shhP9V3h4cjovwPpd_fCwkqtq-yjcbg>
-    <xmx:AKeuXww-uHpJSrMnSdsgyDrytpFfi7fDFWSH7WxmiJVs-U6ojPrIlw>
-    <xmx:AqeuX9jrNtkIa69VlNHt4vbw5TVITyxF4-jAagikg_6BBmBDNV88dA>
+    cujfgurhephffvufffkffotggggfesthhqredtredtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeetieekgfffkeegkeeltdehudetteejgfekueevhffhteegudfgkedtueegfffg
+    feenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:AaeuX3wANoeftHijL3xRCa9kjxqRdQyTcF-L52Ca5U_DC7-TOdv05A>
+    <xmx:AaeuX_MIoVUHHtnbwhP8R5PMWFgC6d68RrSVC3YXYMODAj3uCuV_1w>
+    <xmx:AaeuX8_l4llH0S6Z_z0-1Rwf_H1ZpJBPJtBYQC2EnU6XFWBsj2Ogqg>
+    <xmx:A6euXwXOmjTlvVIMuZzrb-2kyQ4xRiJEAw3NNLbDYMr7DUXv6FSmpg>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BE0853064AAE;
-        Fri, 13 Nov 2020 10:32:15 -0500 (EST)
-From:   maxime@cerno.tech
-Date:   Tue, 10 Nov 2020 13:55:36 +0100
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Frank Lee <tiny.windzz@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Frank Lee <frank@allwinnertech.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>, kishon@ti.com,
-        wim@linux-watchdog.org, Guenter Roeck <linux@roeck-us.net>,
-        dan.j.williams@intel.com, Linus Walleij <linus.walleij@linaro.org>,
-        wsa+renesas@sang-engineering.com, dianders@chromium.org,
-        marex@denx.de, Colin King <colin.king@canonical.com>,
-        rdunlap@infradead.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        rikard.falkeborn@gmail.com, dmaengine@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:SECURE DIGITAL HO..." <linux-mmc@vger.kernel.org>,
-        linux-watchdog@vger.kernel.org,
-        linux-gpio <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH 00/19] Second step support for A100
-Message-ID: <20201110125536.gxxbgzkh3tlmn2ze@gilmour.lan>
-65;6201;1cFrom: Maxime Ripard <maxime@cerno.tech>
-References: <20201110040553.1381-1-frank@allwinnertech.com>
- <CAEExFWsc4Rx2U+BVuqTJkL0wj-gdNcF=emJRcStQ2Uq=FQEx1g@mail.gmail.com>
- <CAJKOXPf4ARNnSnvDpn7vVC0kGNd+m_dkfgKkmH_bca2AZ_Osyg@mail.gmail.com>
- <CAEExFWv2o9aTfUVM5NzZz10kAO_Ya8VJvJrmyjh55=U_5G8RJw@mail.gmail.com>
- <20201110124829.GB161013@vkoul-mobl>
+        by mail.messagingengine.com (Postfix) with ESMTPA id 58BA43064AAA;
+        Fri, 13 Nov 2020 10:32:17 -0500 (EST)
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Eric Anholt <eric@anholt.net>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Maxime Ripard <maxime@cerno.tech>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/8] vc4: Convert to drm_atomic_helper_commit
+Date:   Fri, 13 Nov 2020 16:29:48 +0100
+Message-Id: <20201113152956.139663-1-maxime@cerno.tech>
+X-Mailer: git-send-email 2.28.0
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="dakuxhxxqpi2fsmh"
-Content-Disposition: inline
-In-Reply-To: <20201110124829.GB161013@vkoul-mobl>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---dakuxhxxqpi2fsmh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Nov 10, 2020 at 06:18:29PM +0530, Vinod Koul wrote:
-> On 10-11-20, 16:51, Frank Lee wrote:
-> > On Tue, Nov 10, 2020 at 4:43 PM Krzysztof Kozlowski <krzk@kernel.org> w=
-rote:
-> > >
-> > > On Tue, 10 Nov 2020 at 07:00, Frank Lee <tiny.windzz@gmail.com> wrote:
-> > > >
-> > > > It seems that sending too many e-mails at one time will cause some
-> > > > emails to fail to be sent out. I will try again.
-> > >
-> > > Hi,
-> > >
-> > > Instead please reduce the address list to relevant people, as pointed
-> > > out by scripts/get_maintainer.pl. Don't Cc irrelevant developers
-> > > unless a file is abandoned and you need to get as much audience as
-> > > possible... but sunxi is not abandoned.
-> >=20
-> > Thank you for the reminder. I resend the version in the afternoon,
-> > only CC the relevant people. I'm not sure. Should the cover be copied
-> > to everyone?
->=20
-> Any reason why this should be a single series.. why not split it to
-> bunch of chunks, one per subsystem like pinctrl, phy, dmaengine, etc...
-> And then DTS parts and CC relevant list and maintainers. I do not think
-> there is any dependency, right?
-
-Yeah, I agree.
-
-One series should be about one topic, so you should have at least:
-  - One for the pinctrl fixes
-  - One for the DMA controller and related DT patches
-  - One for the MMC controller and related DT patches
-  - One for the USB controllers and related DT patches
-    * And for the PHY, the enable_pmu_unk1 and devm_* patches should be
-      sent independently as well
-  - One for the watchdog
-  - And the PMU patch should be sent independently too
-
-Maxime
-
---dakuxhxxqpi2fsmh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX6qNyAAKCRDj7w1vZxhR
-xZhsAQDnDysv0PDMRF+pQ9Aae6T48f6wAJcVf1ozDJ6SaYxctQEAjoXFWWcwmX5u
-DkWVsDJgDp4anqqJj/n9YqMwDCBJ9Q0=
-=LbiZ
------END PGP SIGNATURE-----
-
---dakuxhxxqpi2fsmh--
+Hi,=0D
+=0D
+Here's a conversion of vc4 to remove the hand-rolled atomic_commit helper f=
+rom=0D
+vc4 in favour of the generic one.=0D
+=0D
+This requires some rework of vc4, but also a new hook and some documentatio=
+n=0D
+for corner-cases in the DRM core that have been reported and explained by=0D
+Daniel recently.=0D
+=0D
+Let me know what you think,=0D
+Maxime=0D
+=0D
+Maxime Ripard (8):=0D
+  drm: Introduce an atomic_commit_setup function=0D
+  drm: Document use-after-free gotcha with private objects=0D
+  drm/vc4: kms: Move HVS state helpers around=0D
+  drm/vc4: kms: Simplify a bit the private obj state hooks=0D
+  drm/vc4: Simplify a bit the global atomic_check=0D
+  drm/vc4: kms: Wait on previous FIFO users before a commit=0D
+  drm/vc4: kms: Remove async modeset semaphore=0D
+  drm/vc4: kms: Convert to atomic helpers=0D
+=0D
+ drivers/gpu/drm/drm_atomic_helper.c      |   6 +=0D
+ drivers/gpu/drm/vc4/vc4_crtc.c           |  13 --=0D
+ drivers/gpu/drm/vc4/vc4_drv.h            |   2 -=0D
+ drivers/gpu/drm/vc4/vc4_kms.c            | 269 +++++++++++------------=0D
+ include/drm/drm_atomic.h                 |  18 ++=0D
+ include/drm/drm_modeset_helper_vtables.h |  18 ++=0D
+ 6 files changed, 173 insertions(+), 153 deletions(-)=0D
+=0D
+-- =0D
+2.28.0=0D
+=0D
