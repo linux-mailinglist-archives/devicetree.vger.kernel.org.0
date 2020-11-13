@@ -2,176 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E503C2B1C61
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 14:52:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F9BC2B1CD5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 15:01:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726820AbgKMNtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 08:49:04 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47876 "EHLO mail.kernel.org"
+        id S1726820AbgKMN7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 08:59:43 -0500
+Received: from mail.kernel.org ([198.145.29.99]:58868 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726692AbgKMNs7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 08:48:59 -0500
-Received: from [10.0.0.27] (cpe-70-114-140-30.austin.res.rr.com [70.114.140.30])
+        id S1726594AbgKMN7n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 08:59:43 -0500
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 816A222201;
-        Fri, 13 Nov 2020 13:48:57 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6DD3420797;
+        Fri, 13 Nov 2020 13:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605275338;
-        bh=QPEX6286w0xB79QpotPhUSDFbx+GxUawwJAyCLFFPTU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=g1MTpno+q45fQy1hliXeRtWVDEy5RMpde+Ud1ELZ3c2ltKGLQJm07V5f5XuN9RrBI
-         9MPitUlDo4DJPiYvxh2iKlUMiO+nwdnRgf5WgMNYKXLC1wPIjbmL0/m6XDN9LOjNai
-         pDggZjU3cscttd1DaRQ3ZbacGRjNwRtXYrjSU/84=
-Subject: Re: [PATCH 8/8] ARM: dts: socfgpa: Use generic "ngpios" rather than
- "snps,nr-gpios"
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Wei Xu <xuwei5@hisilicon.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Saravana Kannan <saravanak@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-References: <20201109170258.4a70c768@xhacker.debian>
- <20201109170712.6e8c1a90@xhacker.debian>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <306c2b96-c6c1-717f-6e3c-2d37bcf30f3a@kernel.org>
-Date:   Fri, 13 Nov 2020 07:48:56 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        s=default; t=1605275982;
+        bh=5zh5U6QQTfrb1zJ1Qx6ri3/VJb6vcNkANMos1Y8u4Yk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AuM3bbMr1Y8rDFBUhaaWssTCj0V8b0g406jdEEsSbegNHXbcomzAKdFvFtY9pE+Jm
+         asDr3mJLRtlQM52OXAe9BuYUrtqVd75lkT7xtn2oY9hZyKRQtAOIfYc+C3eYCOFGHV
+         0wLy4TAWYo162p9Ev7CCTe0GcIXi8/GDKbSXsVK4=
+Received: by mail-ot1-f52.google.com with SMTP id g19so8940647otp.13;
+        Fri, 13 Nov 2020 05:59:42 -0800 (PST)
+X-Gm-Message-State: AOAM530PDLXA8cXJx83/jsJVnCDnhGl4whnPMHm07Uni9BG8CxYIaL2e
+        ywURLtIr4kLgl1QUZRi6cqMgxlG/J32LdJU8fQ==
+X-Google-Smtp-Source: ABdhPJxBUIJ2lKibMEAtB+Y6lMxOKxXu95T92jIViUP4LWwGjEKihU7Jf+EZChksfqcYHoyBhuXZQIfesQ+odI9lj/0=
+X-Received: by 2002:a05:6830:2259:: with SMTP id t25mr1630402otd.192.1605275981804;
+ Fri, 13 Nov 2020 05:59:41 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201109170712.6e8c1a90@xhacker.debian>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1604628968-1501-1-git-send-email-skomatineni@nvidia.com>
+ <1604628968-1501-2-git-send-email-skomatineni@nvidia.com> <20201106161122.GB3289870@bogus>
+ <f8ba33f1-90fa-a9f0-5834-9de23fc8ad31@nvidia.com> <d0a42b1c-8ddc-fc97-c675-70a5b7601580@nvidia.com>
+ <f7ccb10e-e375-d6a9-78b3-21a9f85a0148@nvidia.com>
+In-Reply-To: <f7ccb10e-e375-d6a9-78b3-21a9f85a0148@nvidia.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 13 Nov 2020 07:59:30 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+g_sXp4t9dPq5LOrhKrsXyu+3-ZCRFqw-AZJs_S=6M=A@mail.gmail.com>
+Message-ID: <CAL_Jsq+g_sXp4t9dPq5LOrhKrsXyu+3-ZCRFqw-AZJs_S=6M=A@mail.gmail.com>
+Subject: Re: [PATCH v1 1/4] dt-bindings: ata: tegra: Convert binding
+ documentation to YAML
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
+        <linux-ide@vger.kernel.org>, devicetree@vger.kernel.org,
+        Jon Hunter <jonathanh@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 12, 2020 at 9:54 PM Sowjanya Komatineni
+<skomatineni@nvidia.com> wrote:
+>
+> Hi Rob,
+>
+> Updated yamllint and dt-schema as well.
+>
+> When I do make dt_binding_check, I see it failed as
+> processed-schema-examples.json is not generated.
+> Any idea of what I may be missing?
+>
+> Also it did not go thru bindings/ata path. Tried with DT_SCHEMA_FILES to
+> tegra-ahci.yaml as well and I see same.
+> make dt_binding_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+>
+> LINT    Documentation/devicetree/bindings
+> ./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:20:9: [warning]
+> wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:30:9: [warning]
+> wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:33:9: [warning]
+> wrong indentation: expected 10 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml:37:2:
+> [error] syntax error: expected <block end>, but found '<scalar>' (syntax)
 
+I believe this error only occurred on linux-next. linux-next is not a
+base you should develop on (usually). rc2 is good. Unfortunately
+someone broke rc3.
 
-On 11/9/20 3:07 AM, Jisheng Zhang wrote:
-> This is to remove similar errors as below:
-> 
-> OF: /.../gpio-port@0: could not find phandle
-> 
-> Commit 7569486d79ae ("gpio: dwapb: Add ngpios DT-property support")
-> explained the reason of above errors well and added the generic
-> "ngpios" property, let's use it.
-> 
-> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-> ---
->  arch/arm/boot/dts/socfpga.dtsi         | 6 +++---
->  arch/arm/boot/dts/socfpga_arria10.dtsi | 6 +++---
->  2 files changed, 6 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/socfpga.dtsi b/arch/arm/boot/dts/socfpga.dtsi
-> index 0b021eef0b53..32b7ad814ec6 100644
-> --- a/arch/arm/boot/dts/socfpga.dtsi
-> +++ b/arch/arm/boot/dts/socfpga.dtsi
-> @@ -612,7 +612,7 @@ porta: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <29>;
-> +				ngpios = <29>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> @@ -633,7 +633,7 @@ portb: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <29>;
-> +				ngpios = <29>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> @@ -654,7 +654,7 @@ portc: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <27>;
-> +				ngpios = <27>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> diff --git a/arch/arm/boot/dts/socfpga_arria10.dtsi b/arch/arm/boot/dts/socfpga_arria10.dtsi
-> index 0013ec3463c4..34e23e0582fb 100644
-> --- a/arch/arm/boot/dts/socfpga_arria10.dtsi
-> +++ b/arch/arm/boot/dts/socfpga_arria10.dtsi
-> @@ -491,7 +491,7 @@ porta: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <29>;
-> +				ngpios = <29>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> @@ -511,7 +511,7 @@ portb: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <29>;
-> +				ngpios = <29>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> @@ -531,7 +531,7 @@ portc: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <27>;
-> +				ngpios = <27>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> 
+> ./Documentation/devicetree/bindings/soc/aspeed/xdma.yaml:10:2: [warning]
+> wrong indentation: expected 2 but found 1 (indentation)
+> ./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:10:4:
+> [warning] wrong indentation: expected 2 but found 3 (indentation)
+> ./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:18:7:
+> [warning] wrong indentation: expected 4 but found 6 (indentation)
+> ./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:10:4:
+> [warning] wrong indentation: expected 2 but found 3 (indentation)
+> ./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:15:7:
+> [warning] wrong indentation: expected 4 but found 6 (indentation)
+> ./Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml:25:10:
+> [warning] wrong indentation: expected 10 but found 9 (indentation)
+> ./Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml:52:9:
+> [warning] wrong indentation: expected 6 but found 8 (indentation)
+> ./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:32:13:
+> [warning] wrong indentation: expected 14 but found 12 (indentation)
+> ./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:35:9:
+> [warning] wrong indentation: expected 10 but found 8 (indentation)
+> Documentation/devicetree/bindings/Makefile:59: recipe for target
+> 'Documentation/devicetree/bindings/processed-schema-examples.json' failed
+> make[1]: ***
+> [Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
+> Makefile:1362: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
 
-Acked-by: Dinh Nguyen <dinguyen@kernel.org>
+Use 'make -k' if there are unrelated errors.
+
+>
+> When I do dtbs_check, I see
+> Documentation/devicetree/bindings/processed-schema.json generated and
+> also it passes for tegra-ahci.yaml
+
+Then it should be good.
+
+Rob
+
+>
+> make ARCH=arm64 dtbs_check
+> DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+>
+> Regards,
+>
+> Sowjanya
+>
+>
+> On 11/6/20 9:18 AM, Sowjanya Komatineni wrote:
+> >
+> > On 11/6/20 8:41 AM, Sowjanya Komatineni wrote:
+> >>
+> >> On 11/6/20 8:11 AM, Rob Herring wrote:
+> >>> On Thu, 05 Nov 2020 18:16:05 -0800, Sowjanya Komatineni wrote:
+> >>>> This patch converts text based dt-binding document to YAML based
+> >>>> dt-binding document.
+> >>>>
+> >>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> >>>> ---
+> >>>>   .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 152
+> >>>> +++++++++++++++++++++
+> >>>>   .../bindings/ata/nvidia,tegra124-ahci.txt          |  44 ------
+> >>>>   2 files changed, 152 insertions(+), 44 deletions(-)
+> >>>>   create mode 100644
+> >>>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+> >>>>   delete mode 100644
+> >>>> Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
+> >>>>
+> >>>
+> >>> My bot found errors running 'make dt_binding_check' on your patch:
+> >>>
+> >>> yamllint warnings/errors:
+> >>>
+> >>> dtschema/dtc warnings/errors:
+> >>> Error:
+> >>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dts:27.31-32
+> >>> syntax error
+> >>> FATAL ERROR: Unable to parse input tree
+> >>> make[1]: *** [scripts/Makefile.lib:342:
+> >>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dt.yaml]
+> >>> Error 1
+> >>> make[1]: *** Waiting for unfinished jobs....
+> >>> make: *** [Makefile:1364: dt_binding_check] Error 2
+> >>>
+> >>>
+> >>> See https://patchwork.ozlabs.org/patch/1395390
+> >>>
+> >>> The base for the patch is generally the last rc1. Any dependencies
+> >>> should be noted.
+> >>>
+> >>> If you already ran 'make dt_binding_check' and didn't see the above
+> >>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> >>> date:
+> >>>
+> >>> pip3 install dtschema --upgrade
+> >>>
+> >>> Please check and re-submit.
+> >> Thanks Rob. Will re-try after installing up-to-date.
+> >
+> > Somehow running 'make dt_binding_check' gives below error.
+> >
+> > I have yamllint newest version (1.2.1-1). Any specific version of
+> > yamllint is needed?
+> >
+> >  LINT    Documentation/devicetree/bindings
+> > invalid config: unknown option "max-spaces-inside-empty" for rule
+> > "braces"
+> > xargs: /usr/bin/yamllint: exited with status 255; aborting
+> > Documentation/devicetree/bindings/Makefile:59: recipe for target
+> > 'Documentation/devicetree/bindings/processed-schema-examples.json' failed
+> > make[1]: ***
+> > [Documentation/devicetree/bindings/processed-schema-examples.json]
+> > Error 124
+> > Makefile:1362: recipe for target 'dt_binding_check' failed
+> > make: *** [dt_binding_check] Error 2
+> >
