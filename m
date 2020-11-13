@@ -2,551 +2,906 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA37A2B1DC2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 15:52:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95ECD2B1DE5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:00:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726773AbgKMOwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 09:52:36 -0500
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:16709 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726267AbgKMOwg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 09:52:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605279156; x=1636815156;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ABbXMXJ+wjkizV38zFxbPfTkg8gQdTq8ISGdk0bwCLY=;
-  b=H1ojpijgZ6U0LviwyboRewZiP6ybVhf3asrT37YHcCiygW7pX3S5Jm02
-   y6l/NfGkfqP65CeS/wJ4TEGYx+ca0G6YxhS/IL8ccUepvcLVDaQz3ckyv
-   h1c2EIE30pE9ks5oW/l08pbK3+OLSehDKJgeQXlzKakPt8OqF9s0TXckG
-   Wta7Xyu9HItgf0CqQ6Eg0fSzg0uXGjE76Qxi+6GbsyrXfSH/8zP87JSpD
-   wtaCQXYR4nf23j5Cc5B3roP1W3PNBeLHIslxmn4gqD0BhNEVZSU8EQou0
-   5sPnrAItRchpAUGZR/U5vrWpo5ST3F23vjiqnn290yvueSuEf8HRU01IS
-   g==;
-IronPort-SDR: tyTBTKrYmzeYldquqtw0iOlB3S1HFl5hC2ev6+lk7xRJVXC/xzPe0cx/8/EUEIOXtHwOEOexhE
- P9l1RZmHCI9lzgxhMLsV0Gf8w7XSgGmzSds/X7DEFZBuY6WYDooqMNQwJrVU2XtCGJ82xxo4sX
- /U+ZMgigcL8QGpudJ03iR4Btkhpojo1nd1CNVTe45dG9zf0Xd06VjF6Z4ntI3mPLzJQe0/VezS
- yNOiXZJk34OFwU9Q5L4Lm5gs3cD9iNmAgkB3uU0rNbQ51oExHULdXEwCDOV5mLWljmud2qiqoM
- WkI=
-X-IronPort-AV: E=Sophos;i="5.77,475,1596524400"; 
-   d="scan'208";a="98333238"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Nov 2020 07:52:35 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 13 Nov 2020 07:52:35 -0700
-Received: from soft-dev10.microsemi.net (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Fri, 13 Nov 2020 07:52:33 -0700
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: [PATCH v10 3/3] arm64: dts: sparx5: Add SGPIO devices
-Date:   Fri, 13 Nov 2020 15:51:51 +0100
-Message-ID: <20201113145151.68900-4-lars.povlsen@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201113145151.68900-1-lars.povlsen@microchip.com>
-References: <20201113145151.68900-1-lars.povlsen@microchip.com>
+        id S1726682AbgKMPAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 10:00:24 -0500
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:34847 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726324AbgKMPAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 10:00:24 -0500
+X-Originating-IP: 93.29.109.196
+Received: from aptenodytes (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id D1C3E4001B;
+        Fri, 13 Nov 2020 15:00:16 +0000 (UTC)
+Date:   Fri, 13 Nov 2020 16:00:16 +0100
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 3/3] media: i2c: Introduce a driver for the Techwell
+ TW9900 decoder
+Message-ID: <20201113150016.GA2027644@aptenodytes>
+References: <20201113134417.471445-1-maxime.chevallier@bootlin.com>
+ <20201113134417.471445-4-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="sdtB3X0nJg68CQEu"
+Content-Disposition: inline
+In-Reply-To: <20201113134417.471445-4-maxime.chevallier@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds SGPIO devices for the Sparx5 SoC and configures it for the
-applicable reference boards.
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
----
- arch/arm64/boot/dts/microchip/sparx5.dtsi     |  91 ++++++
- .../boot/dts/microchip/sparx5_pcb125.dts      |   5 +
- .../dts/microchip/sparx5_pcb134_board.dtsi    | 258 ++++++++++++++++++
- .../dts/microchip/sparx5_pcb135_board.dtsi    |  55 ++++
- 4 files changed, 409 insertions(+)
+--sdtB3X0nJg68CQEu
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 3cb01c39c3c8..f09707297a9f 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -226,6 +226,22 @@ si2_pins: si2-pins {
- 				function = "si2";
- 			};
- 
-+			sgpio0_pins: sgpio-pins {
-+				pins = "GPIO_0", "GPIO_1", "GPIO_2", "GPIO_3";
-+				function = "sg0";
-+			};
-+
-+			sgpio1_pins: sgpio1-pins {
-+				pins = "GPIO_4", "GPIO_5", "GPIO_12", "GPIO_13";
-+				function = "sg1";
-+			};
-+
-+			sgpio2_pins: sgpio2-pins {
-+				pins = "GPIO_30", "GPIO_31", "GPIO_32",
-+				       "GPIO_33";
-+				function = "sg2";
-+			};
-+
- 			uart_pins: uart-pins {
- 				pins = "GPIO_10", "GPIO_11";
- 				function = "uart";
-@@ -256,6 +272,81 @@ emmc_pins: emmc-pins {
- 			};
- 		};
- 
-+		sgpio0: gpio@61101036c {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio0_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x1101036c 0x100>;
-+			sgpio_in0: gpio@0 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <0>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+			sgpio_out0: gpio@1 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <1>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+		};
-+
-+		sgpio1: gpio@611010484 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio1_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x11010484 0x100>;
-+			sgpio_in1: gpio@0 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <0>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+			sgpio_out1: gpio@1 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <1>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+		};
-+
-+		sgpio2: gpio@61101059c {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			compatible = "microchip,sparx5-sgpio";
-+			status = "disabled";
-+			clocks = <&sys_clk>;
-+			pinctrl-0 = <&sgpio2_pins>;
-+			pinctrl-names = "default";
-+			reg = <0x6 0x1101059c 0x100>;
-+			sgpio_in2: gpio@0 {
-+				reg = <0>;
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+			sgpio_out2: gpio@1 {
-+				compatible = "microchip,sparx5-sgpio-bank";
-+				reg = <1>;
-+				gpio-controller;
-+				#gpio-cells = <3>;
-+				ngpios = <96>;
-+			};
-+		};
-+
- 		i2c0: i2c@600101000 {
- 			compatible = "snps,designware-i2c";
- 			status = "disabled";
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-index 6b2da7c7520c..9baa085d7861 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb125.dts
-@@ -69,6 +69,11 @@ spi-flash@9 {
- 	};
- };
- 
-+&sgpio0 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <0 23>;
-+};
-+
- &i2c1 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-index f37b478d6534..6820579448d0 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb134_board.dtsi
-@@ -36,6 +36,242 @@ gpio-restart {
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led@0 {
-+			label = "twr0:green";
-+			gpios = <&sgpio_out0 8 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@1 {
-+			label = "twr0:yellow";
-+			gpios = <&sgpio_out0 8 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@2 {
-+			label = "twr1:green";
-+			gpios = <&sgpio_out0 9 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@3 {
-+			label = "twr1:yellow";
-+			gpios = <&sgpio_out0 9 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@4 {
-+			label = "twr2:green";
-+			gpios = <&sgpio_out0 10 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@5 {
-+			label = "twr2:yellow";
-+			gpios = <&sgpio_out0 10 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@6 {
-+			label = "twr3:green";
-+			gpios = <&sgpio_out0 11 0 GPIO_ACTIVE_LOW>;
-+		};
-+		led@7 {
-+			label = "twr3:yellow";
-+			gpios = <&sgpio_out0 11 1 GPIO_ACTIVE_LOW>;
-+		};
-+		led@8 {
-+			label = "eth12:green";
-+			gpios = <&sgpio_out0 12 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@9 {
-+			label = "eth12:yellow";
-+			gpios = <&sgpio_out0 12 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@10 {
-+			label = "eth13:green";
-+			gpios = <&sgpio_out0 13 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@11 {
-+			label = "eth13:yellow";
-+			gpios = <&sgpio_out0 13 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@12 {
-+			label = "eth14:green";
-+			gpios = <&sgpio_out0 14 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@13 {
-+			label = "eth14:yellow";
-+			gpios = <&sgpio_out0 14 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@14 {
-+			label = "eth15:green";
-+			gpios = <&sgpio_out0 15 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@15 {
-+			label = "eth15:yellow";
-+			gpios = <&sgpio_out0 15 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@16 {
-+			label = "eth48:green";
-+			gpios = <&sgpio_out1 16 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@17 {
-+			label = "eth48:yellow";
-+			gpios = <&sgpio_out1 16 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@18 {
-+			label = "eth49:green";
-+			gpios = <&sgpio_out1 17 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@19 {
-+			label = "eth49:yellow";
-+			gpios = <&sgpio_out1 17 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@20 {
-+			label = "eth50:green";
-+			gpios = <&sgpio_out1 18 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@21 {
-+			label = "eth50:yellow";
-+			gpios = <&sgpio_out1 18 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@22 {
-+			label = "eth51:green";
-+			gpios = <&sgpio_out1 19 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@23 {
-+			label = "eth51:yellow";
-+			gpios = <&sgpio_out1 19 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@24 {
-+			label = "eth52:green";
-+			gpios = <&sgpio_out1 20 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@25 {
-+			label = "eth52:yellow";
-+			gpios = <&sgpio_out1 20 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@26 {
-+			label = "eth53:green";
-+			gpios = <&sgpio_out1 21 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@27 {
-+			label = "eth53:yellow";
-+			gpios = <&sgpio_out1 21 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@28 {
-+			label = "eth54:green";
-+			gpios = <&sgpio_out1 22 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@29 {
-+			label = "eth54:yellow";
-+			gpios = <&sgpio_out1 22 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@30 {
-+			label = "eth55:green";
-+			gpios = <&sgpio_out1 23 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@31 {
-+			label = "eth55:yellow";
-+			gpios = <&sgpio_out1 23 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@32 {
-+			label = "eth56:green";
-+			gpios = <&sgpio_out1 24 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@33 {
-+			label = "eth56:yellow";
-+			gpios = <&sgpio_out1 24 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@34 {
-+			label = "eth57:green";
-+			gpios = <&sgpio_out1 25 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@35 {
-+			label = "eth57:yellow";
-+			gpios = <&sgpio_out1 25 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@36 {
-+			label = "eth58:green";
-+			gpios = <&sgpio_out1 26 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@37 {
-+			label = "eth58:yellow";
-+			gpios = <&sgpio_out1 26 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@38 {
-+			label = "eth59:green";
-+			gpios = <&sgpio_out1 27 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@39 {
-+			label = "eth59:yellow";
-+			gpios = <&sgpio_out1 27 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@40 {
-+			label = "eth60:green";
-+			gpios = <&sgpio_out1 28 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@41 {
-+			label = "eth60:yellow";
-+			gpios = <&sgpio_out1 28 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@42 {
-+			label = "eth61:green";
-+			gpios = <&sgpio_out1 29 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@43 {
-+			label = "eth61:yellow";
-+			gpios = <&sgpio_out1 29 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@44 {
-+			label = "eth62:green";
-+			gpios = <&sgpio_out1 30 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@45 {
-+			label = "eth62:yellow";
-+			gpios = <&sgpio_out1 30 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@46 {
-+			label = "eth63:green";
-+			gpios = <&sgpio_out1 31 0 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+		led@47 {
-+			label = "eth63:yellow";
-+			gpios = <&sgpio_out1 31 1 GPIO_ACTIVE_HIGH>;
-+			default-state = "off";
-+		};
-+	};
- };
- 
- &spi0 {
-@@ -70,6 +306,28 @@ spi-flash@9 {
- 	};
- };
- 
-+&sgpio0 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <8 15>;
-+	gpio@0 {
-+		ngpios = <64>;
-+	};
-+	gpio@1 {
-+		ngpios = <64>;
-+	};
-+};
-+
-+&sgpio1 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <24 31>;
-+	gpio@0 {
-+		ngpios = <64>;
-+	};
-+	gpio@1 {
-+		ngpios = <64>;
-+	};
-+};
-+
- &gpio {
- 	i2cmux_pins_i: i2cmux-pins-i {
- 	       pins = "GPIO_16", "GPIO_17", "GPIO_18", "GPIO_19",
-diff --git a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-index b02b8c8ce44d..e28c6dd16377 100644
---- a/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5_pcb135_board.dtsi
-@@ -20,6 +20,50 @@ gpio-restart {
- 		gpios = <&gpio 37 GPIO_ACTIVE_LOW>;
- 		priority = <200>;
- 	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led@0 {
-+			label = "eth60:yellow";
-+			gpios = <&sgpio_out1 28 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@1 {
-+			label = "eth60:green";
-+			gpios = <&sgpio_out1 28 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@2 {
-+			label = "eth61:yellow";
-+			gpios = <&sgpio_out1 29 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@3 {
-+			label = "eth61:green";
-+			gpios = <&sgpio_out1 29 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@4 {
-+			label = "eth62:yellow";
-+			gpios = <&sgpio_out1 30 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@5 {
-+			label = "eth62:green";
-+			gpios = <&sgpio_out1 30 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@6 {
-+			label = "eth63:yellow";
-+			gpios = <&sgpio_out1 31 0 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+		led@7 {
-+			label = "eth63:green";
-+			gpios = <&sgpio_out1 31 1 GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+	};
- };
- 
- &gpio {
-@@ -83,6 +127,17 @@ spi-flash@9 {
- 	};
- };
- 
-+&sgpio1 {
-+	status = "okay";
-+	microchip,sgpio-port-ranges = <24 31>;
-+	gpio@0 {
-+		ngpios = <64>;
-+	};
-+	gpio@1 {
-+		ngpios = <64>;
-+	};
-+};
-+
- &axi {
- 	i2c0_imux: i2c0-imux@0 {
- 		compatible = "i2c-mux-pinctrl";
--- 
-2.25.1
+Hi,
 
+On Fri 13 Nov 20, 14:44, Maxime Chevallier wrote:
+> The Techwell video decoder supports PAL, NTSC and SECAM input formats,
+> and outputs a BT.656 signal.
+>=20
+> This commit adds support for this device, with basic support for NTSC
+> and PAL, along with brightness and contrast controls.
+>=20
+> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> ---
+> v1 -> v2: Set the media entity type to decoder, and implement the
+> s_std/g_std ops
+>=20
+>  MAINTAINERS                |   6 +
+>  drivers/media/i2c/Kconfig  |   9 +
+>  drivers/media/i2c/Makefile |   1 +
+>  drivers/media/i2c/tw9900.c | 661 +++++++++++++++++++++++++++++++++++++
+>  4 files changed, 677 insertions(+)
+>  create mode 100644 drivers/media/i2c/tw9900.c
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 3da6d8c154e4..2890862a8285 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17160,6 +17160,12 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/media/rc/ttusbir.c
+> =20
+> +TECHWELL TW9900 VIDEO DECODER
+> +M:	Maxime Chevallier <maxime.chevallier@bootlin.com>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/media/i2c/tw9900.c
+> +
+>  TECHWELL TW9910 VIDEO DECODER
+>  L:	linux-media@vger.kernel.org
+>  S:	Orphan
+> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+> index 878f66ef2719..ea55aea4d949 100644
+> --- a/drivers/media/i2c/Kconfig
+> +++ b/drivers/media/i2c/Kconfig
+> @@ -426,6 +426,15 @@ config VIDEO_TW2804
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called tw2804.
+> =20
+> +config VIDEO_TW9900
+> +	tristate "Techwell TW9900 video decoder"
+> +	depends on VIDEO_V4L2 && I2C
+> +	help
+> +	  Support for the Techwell tw9900 multi-standard video decoder.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called tw9900.
+> +
+>  config VIDEO_TW9903
+>  	tristate "Techwell TW9903 video decoder"
+>  	depends on VIDEO_V4L2 && I2C
+> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
+> index f0a77473979d..cbc1d9aedd38 100644
+> --- a/drivers/media/i2c/Makefile
+> +++ b/drivers/media/i2c/Makefile
+> @@ -49,6 +49,7 @@ obj-$(CONFIG_VIDEO_TVP5150) +=3D tvp5150.o
+>  obj-$(CONFIG_VIDEO_TVP514X) +=3D tvp514x.o
+>  obj-$(CONFIG_VIDEO_TVP7002) +=3D tvp7002.o
+>  obj-$(CONFIG_VIDEO_TW2804) +=3D tw2804.o
+> +obj-$(CONFIG_VIDEO_TW9900) +=3D tw9900.o
+>  obj-$(CONFIG_VIDEO_TW9903) +=3D tw9903.o
+>  obj-$(CONFIG_VIDEO_TW9906) +=3D tw9906.o
+>  obj-$(CONFIG_VIDEO_TW9910) +=3D tw9910.o
+> diff --git a/drivers/media/i2c/tw9900.c b/drivers/media/i2c/tw9900.c
+> new file mode 100644
+> index 000000000000..2075c3c120af
+> --- /dev/null
+> +++ b/drivers/media/i2c/tw9900.c
+> @@ -0,0 +1,661 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Driver for the Techwell TW9900 multi-standard video decoder.
+> + *
+> + * Copyright (C) 2018 Fuzhou Rockchip Electronics Co., Ltd.
+> + * Copyright (C) 2020 Maxime Chevallier <maxime.chevallier@bootlin.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/sysfs.h>
+> +#include <linux/timer.h>
+> +#include <linux/delay.h>
+
+This header is not sorted.
+
+> +#include <media/media-entity.h>
+> +#include <media/v4l2-async.h>
+> +#include <media/v4l2-ctrls.h>
+> +#include <media/v4l2-event.h>
+> +#include <media/v4l2-subdev.h>
+> +
+> +#define TW9900_REG_CHIP_ID	0x00
+> +#define TW9900_REG_CHIP_STATUS  0x01
+
+You have whitespaces here for alignment, not tabs.
+Same goes for the various other values below.
+
+> +#define		TW9900_REG_CHIP_STATUS_VLOCK	0x08
+> +#define		TW9900_REG_CHIP_STATUS_VDLOSS	0x80
+
+Looks like you have two tabs here instead of a whitespace.
+
+> +#define TW9900_REG_OUT_FMT_CTL  0x03
+> +#define TW9900_REG_CKHY_HSDLY   0x04
+> +#define TW9900_REG_OUT_CTRL_I	0x05
+> +#define TW9900_REG_ANALOG_CTL   0x06
+> +#define TW9900_REG_CROP_HI	0x07
+> +#define TW9900_REG_VDELAY_LO    0x08
+> +#define TW9900_REG_VACTIVE_LO   0x09
+> +#define TW9900_REG_HACTIVE_LO	0x0B
+> +#define TW9900_REG_CNTRL1	0x0C
+> +#define TW9900_REG_BRIGHT_CTL   0x10
+> +#define TW9900_REG_CONTRAST_CTL 0x11
+> +#define TW9900_REG_VBI_CNTL	0x19
+> +#define TW9900_REG_ANAL_CTL_II  0x1A
+> +#define TW9900_REG_OUT_CTRL_II	0x1B
+> +#define TW9900_REG_STD_SEL      0x1C
+> +#define TW9900_REG_MISSCNT      0x26
+> +#define TW9900_REG_MISC_CTL_II  0x2F
+> +#define TW9900_REG_VVBI         0x55
+> +
+> +#define TW9900_CHIP_ID		0x00
+> +
+> +#define REG_SC_CTRL_MODE		TW9900_REG_OUT_FMT_CTL
+
+Why redeefine this here?
+
+> +#define     SC_CTRL_MODE_STANDBY	0xA7
+> +#define     SC_CTRL_MODE_STREAMING	0xA0
+
+YOu have a bunch of whitespaces after define here.
+
+> +
+> +#define REG_NULL			0xFF
+
+Maybe an explicit name like END or TERMINATOR would be more useful.
+
+You could also avoid using a terminator by passing explicit array sizes,
+which I find more elegant, but it's a personal taste.
+
+> +
+> +#define VSYNC_POLL_INTERVAL_MS  20
+> +#define VSYNC_WAIT_MAX_POLLS    50
+> +
+> +static const char * const tw9900_supply_names[] =3D {
+> +	"vdd",
+> +};
+> +
+> +#define TW9900_NUM_SUPPLIES ARRAY_SIZE(tw9900_supply_names)
+
+Why use the regulator bulk API here if there's only one regulator?
+Also, it could be nice to have static declarations after struct definitions.
+
+> +
+> +struct regval {
+> +	u8 addr;
+> +	u8 val;
+> +};
+> +
+> +struct tw9900_mode {
+> +	u32 width;
+> +	u32 height;
+> +	u32 skip_top;
+> +	u32 std;
+> +	u32 field;
+> +	const struct regval *reg_list;
+> +};
+> +
+> +struct tw9900 {
+> +	struct i2c_client	*client;
+> +	struct gpio_desc	*reset_gpio;
+> +	struct regulator_bulk_data supplies[TW9900_NUM_SUPPLIES];
+> +
+> +	bool			streaming;
+> +
+> +	struct v4l2_subdev	subdev;
+> +	struct v4l2_ctrl_handler hdl;
+> +	struct media_pad	pad;
+> +
+> +	struct timer_list timer;
+> +	struct work_struct work_i2c_poll;
+> +
+> +	const struct tw9900_mode *cur_mode;
+> +};
+
+Alignment in the structure above is inconsistent.
+
+> +
+> +#define to_tw9900(sd) container_of(sd, struct tw9900, subdev)
+> +
+> +static const struct regval tw9900_init_regs[] =3D {
+> +	{TW9900_REG_MISC_CTL_II,	0xE6},
+> +	{TW9900_REG_MISSCNT,		0x24},
+> +	{TW9900_REG_OUT_FMT_CTL,	0xA7},
+> +	{TW9900_REG_ANAL_CTL_II,	0x0A},
+> +	{TW9900_REG_VDELAY_LO,		0x19},
+> +	{TW9900_REG_STD_SEL,		0x00},
+> +	{TW9900_REG_VACTIVE_LO,		0xF0},
+> +	{TW9900_REG_STD_SEL,		0x07},
+> +	{TW9900_REG_CKHY_HSDLY,		0x40},
+> +	{TW9900_REG_ANALOG_CTL,		0x80},
+> +	{TW9900_REG_CNTRL1,		0xdc},
+> +	{TW9900_REG_OUT_CTRL_I,		0x98},
+> +	{REG_NULL, 0x0},
+
+Maybe add whitespaces after { and before } and pad the final entry too.
+
+> +};
+> +
+> +static const struct regval tw9900_pal_regs[] =3D {
+> +	{TW9900_REG_STD_SEL, 0x01},
+> +	{REG_NULL, 0x0},
+> +};
+> +
+> +static const struct regval tw9900_ntsc_regs[] =3D {
+> +	{TW9900_REG_OUT_FMT_CTL, 0xA4},
+> +	{TW9900_REG_VDELAY_LO, 0x12},
+> +	{TW9900_REG_VACTIVE_LO, 0xf0},
+> +	{TW9900_REG_CROP_HI, 0x02},
+> +	{TW9900_REG_HACTIVE_LO, 0xD0},
+> +	{TW9900_REG_VBI_CNTL, 0x01},
+> +	{TW9900_REG_STD_SEL, 0x00},
+> +	{REG_NULL, 0x0},
+> +};
+
+And ditto for the above.
+
+> +
+> +static const struct tw9900_mode supported_modes[] =3D {
+> +	{
+> +		.width =3D 720,
+> +		.height =3D 576,
+> +		.skip_top =3D 0,
+> +		.std =3D V4L2_STD_PAL,
+> +		.field =3D V4L2_FIELD_NONE,
+> +		.reg_list =3D tw9900_pal_regs,
+> +	},
+> +	{
+> +		.width =3D 720,
+> +		.height =3D 480,
+> +		.skip_top =3D 0,
+> +		.std =3D V4L2_STD_NTSC,
+> +		.field =3D V4L2_FIELD_NONE,
+> +		.reg_list =3D tw9900_ntsc_regs,
+> +	},
+> +};
+> +
+> +static int tw9900_write_reg(struct i2c_client *client, u8 reg, u8 val)
+> +{
+> +	int ret;
+> +
+> +	ret =3D i2c_smbus_write_byte_data(client, reg, val);
+> +
+> +	if (ret < 0)
+> +		dev_err(&client->dev, "write reg error: %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tw9900_write_array(struct i2c_client *client,
+> +			      const struct regval *regs)
+> +{
+> +	int i, ret =3D 0;
+> +
+> +	for (i =3D 0; ret =3D=3D 0 && regs[i].addr !=3D REG_NULL; i++)
+> +		ret =3D tw9900_write_reg(client, regs[i].addr, regs[i].val);
+> +
+> +	return ret;
+> +}
+> +
+> +static inline u8 tw9900_read_reg(struct i2c_client *client, u8 reg)
+> +{
+> +	return i2c_smbus_read_byte_data(client, reg);
+> +}
+> +
+> +static void tw9900_fill_fmt(const struct tw9900_mode *mode,
+> +			    struct v4l2_mbus_framefmt *fmt)
+> +{
+> +	fmt->code =3D MEDIA_BUS_FMT_UYVY8_2X8;
+> +	fmt->width =3D mode->width;
+> +	fmt->height =3D mode->height;
+> +	fmt->field =3D mode->field;
+> +	fmt->colorspace =3D V4L2_COLORSPACE_SMPTE170M;
+> +}
+> +
+> +static int tw9900_set_fmt(struct v4l2_subdev *sd,
+> +			  struct v4l2_subdev_pad_config *cfg,
+> +			  struct v4l2_subdev_format *fmt)
+> +{
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +	struct v4l2_mbus_framefmt *mbus_fmt =3D &fmt->format;
+> +
+> +	tw9900_fill_fmt(tw9900->cur_mode, mbus_fmt);
+> +
+> +	mbus_fmt->width =3D tw9900->cur_mode->width;
+> +	mbus_fmt->height =3D tw9900->cur_mode->height;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tw9900_get_fmt(struct v4l2_subdev *sd,
+> +			  struct v4l2_subdev_pad_config *cfg,
+> +			  struct v4l2_subdev_format *fmt)
+> +{
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +	struct v4l2_mbus_framefmt *mbus_fmt =3D &fmt->format;
+> +
+> +	tw9900_fill_fmt(tw9900->cur_mode, mbus_fmt);
+> +
+> +	return 0;
+> +}
+> +
+> +static int tw9900_enum_mbus_code(struct v4l2_subdev *sd,
+> +				 struct v4l2_subdev_pad_config *cfg,
+> +				 struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	if (code->index >=3D ARRAY_SIZE(supported_modes))
+> +		return -EINVAL;
+
+This check looks unrelated to the mbus code. If only one code is supported,
+the check should be index >=3D 1.
+
+> +
+> +	code->code =3D MEDIA_BUS_FMT_UYVY8_2X8;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tw9900_enum_frame_sizes(struct v4l2_subdev *sd,
+> +				   struct v4l2_subdev_pad_config *cfg,
+> +				   struct v4l2_subdev_frame_size_enum *fse)
+> +{
+> +	u32 index =3D fse->index;
+> +
+> +	if (index >=3D ARRAY_SIZE(supported_modes))
+> +		return -EINVAL;
+> +
+> +	fse->code =3D MEDIA_BUS_FMT_UYVY8_2X8;
+> +
+> +	fse->min_width  =3D supported_modes[index].width;
+> +	fse->max_width  =3D supported_modes[index].width;
+> +	fse->max_height =3D supported_modes[index].height;
+> +	fse->min_height =3D supported_modes[index].height;
+> +
+> +	return 0;
+> +}
+> +
+> +static int __tw9900_power_on(struct tw9900 *tw9900)
+
+Why the heading __ ?
+
+> +{
+> +	int ret;
+> +	struct device *dev =3D &tw9900->client->dev;
+> +
+> +	if (tw9900->reset_gpio)
+> +		gpiod_set_value_cansleep(tw9900->reset_gpio, 1);
+> +
+> +	ret =3D regulator_bulk_enable(TW9900_NUM_SUPPLIES, tw9900->supplies);
+> +	if (ret < 0)
+> +		goto error;
+
+Same comment about using the regulator bulk API in this case.
+
+> +
+> +	usleep_range(50000, 52000);
+> +
+> +	if (tw9900->reset_gpio)
+> +		gpiod_set_value_cansleep(tw9900->reset_gpio, 0);
+> +
+> +	usleep_range(1000, 2000);
+> +
+> +	ret =3D tw9900_write_array(tw9900->client, tw9900_init_regs);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to init tw9900\n");
+> +		goto error;
+> +	}
+> +
+> +	return 0;
+> +
+> +error:
+> +
+> +	return ret;
+> +}
+> +
+> +static void __tw9900_power_off(struct tw9900 *tw9900)
+
+Ditto about __.
+
+> +{
+> +	if (tw9900->reset_gpio)
+> +		gpiod_set_value_cansleep(tw9900->reset_gpio, 1);
+> +
+> +	regulator_bulk_disable(TW9900_NUM_SUPPLIES, tw9900->supplies);
+> +}
+> +
+> +static int tw9900_s_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct tw9900 *tw9900 =3D container_of(ctrl->handler, struct tw9900, hd=
+l);
+> +
+> +	if (pm_runtime_suspended(&tw9900->client->dev))
+> +		return 0;
+> +
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_BRIGHTNESS:
+> +		tw9900_write_reg(tw9900->client, 0x10, (u8)ctrl->val);
+> +		break;
+> +	case V4L2_CID_CONTRAST:
+> +		tw9900_write_reg(tw9900->client, 0x11, (u8)ctrl->val);
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static int tw9900_s_stream(struct v4l2_subdev *sd, int on)
+> +{
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +	struct i2c_client *client =3D tw9900->client;
+> +	int i, ret =3D 0;
+> +
+> +	on =3D !!on;
+> +	if (on =3D=3D tw9900->streaming)
+> +		goto unlock_and_return;
+> +
+> +	if (on) {
+> +		ret =3D pm_runtime_get_sync(&tw9900->client->dev);
+> +		if (ret < 0) {
+> +			pm_runtime_put_noidle(&client->dev);
+> +			goto unlock_and_return;
+> +		}
+> +
+> +		ret =3D v4l2_ctrl_handler_setup(sd->ctrl_handler);
+> +		if (ret) {
+> +			pm_runtime_put(&client->dev);
+
+Maybe add a label at the end with pm_runtime_put instead of duplicating it
+everywhere?
+
+> +			goto unlock_and_return;
+> +		}
+> +
+> +		ret =3D tw9900_write_array(tw9900->client,
+> +					 tw9900->cur_mode->reg_list);
+> +		if (ret) {
+> +			pm_runtime_put(&client->dev);
+> +			goto unlock_and_return;
+> +		}
+> +
+> +		/* Wait for VSync lock */
+> +		for (i =3D 0; i < VSYNC_WAIT_MAX_POLLS; i++) {
+> +			u8 status =3D tw9900_read_reg(tw9900->client,
+> +						    TW9900_REG_CHIP_STATUS);
+> +			if (!(status & TW9900_REG_CHIP_STATUS_VDLOSS) &&
+> +			    (status & TW9900_REG_CHIP_STATUS_VLOCK))
+> +				break;
+> +
+> +			msleep(VSYNC_POLL_INTERVAL_MS);
+> +		}
+> +
+> +		ret =3D tw9900_write_reg(client, REG_SC_CTRL_MODE,
+> +				       SC_CTRL_MODE_STREAMING);
+> +		if (ret) {
+> +			pm_runtime_put(&client->dev);
+> +			goto unlock_and_return;
+> +		}
+> +
+> +	} else {
+> +		tw9900_write_reg(client, REG_SC_CTRL_MODE,
+> +				 SC_CTRL_MODE_STANDBY);
+> +		pm_runtime_put(&client->dev);
+> +	}
+> +
+> +	tw9900->streaming =3D on;
+> +
+> +unlock_and_return:
+> +
+> +	return ret;
+> +}
+> +
+> +#ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
+
+You might want to make this a requirement of the driver and avoid the ifdefs
+for now.
+
+> +static int tw9900_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+> +{
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +	struct v4l2_mbus_framefmt *try_fmt;
+> +
+> +	try_fmt =3D v4l2_subdev_get_try_format(sd, fh->pad, 0);
+> +
+> +	/* Initialize try_fmt */
+> +	tw9900_fill_fmt(tw9900->cur_mode, try_fmt);
+> +
+> +	return 0;
+> +}
+> +#endif
+> +
+> +static int tw9900_runtime_resume(struct device *dev)
+> +{
+> +	struct i2c_client *client =3D to_i2c_client(dev);
+> +	struct v4l2_subdev *sd =3D i2c_get_clientdata(client);
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +
+> +	return __tw9900_power_on(tw9900);
+> +}
+> +
+> +static int tw9900_runtime_suspend(struct device *dev)
+> +{
+> +	struct i2c_client *client =3D to_i2c_client(dev);
+> +	struct v4l2_subdev *sd =3D i2c_get_clientdata(client);
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +
+> +	__tw9900_power_off(tw9900);
+> +
+> +	return 0;
+> +}
+> +
+> +static int tw9900_subscribe_event(struct v4l2_subdev *sd,
+> +				  struct v4l2_fh *fh,
+> +				  struct v4l2_event_subscription *sub)
+> +{
+> +	switch (sub->type) {
+> +	case V4L2_EVENT_SOURCE_CHANGE:
+> +		return v4l2_src_change_event_subdev_subscribe(sd, fh, sub);
+> +	case V4L2_EVENT_CTRL:
+> +		return v4l2_ctrl_subdev_subscribe_event(sd, fh, sub);
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static const struct tw9900_mode *tw9900_get_mode_from_std(v4l2_std_id st=
+d)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 0; i < ARRAY_SIZE(supported_modes); i++) {
+> +		if (supported_modes[i].std =3D=3D std)
+> +			return &supported_modes[i];
+> +	}
+
+You can avoid the { } if you want.
+
+> +
+> +	return NULL;
+> +}
+> +
+> +static int tw9900_s_std(struct v4l2_subdev *sd, v4l2_std_id norm)
+> +{
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +	const struct tw9900_mode *mode;
+> +	int ret;
+> +
+> +	if (!(norm & (V4L2_STD_NTSC | V4L2_STD_PAL)))
+> +		return -EINVAL;
+> +
+> +	mode =3D tw9900_get_mode_from_std(norm);
+> +	if (!mode)
+> +		return -EINVAL;
+> +
+> +	ret =3D tw9900_write_array(tw9900->client, mode->reg_list);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	tw9900->cur_mode =3D mode;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tw9900_g_std(struct v4l2_subdev *sd, v4l2_std_id *norm)
+> +{
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +
+> +	*norm =3D tw9900->cur_mode->std;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops tw9900_pm_ops =3D {
+> +	SET_RUNTIME_PM_OPS(tw9900_runtime_suspend,
+> +			   tw9900_runtime_resume, NULL)
+> +};
+> +
+> +static const struct v4l2_subdev_core_ops tw9900_core_ops =3D {
+> +	.subscribe_event =3D tw9900_subscribe_event,
+> +	.unsubscribe_event =3D v4l2_event_subdev_unsubscribe,
+> +};
+
+This struct would look nicer with tab-padding before the =3D.
+
+> +
+> +static const struct v4l2_subdev_video_ops tw9900_video_ops =3D {
+> +	.s_std		=3D tw9900_s_std,
+> +	.g_std		=3D tw9900_g_std,
+> +	.s_stream	=3D tw9900_s_stream,
+> +};
+> +
+> +static const struct v4l2_subdev_pad_ops tw9900_pad_ops =3D {
+> +	.enum_mbus_code =3D tw9900_enum_mbus_code,
+> +	.enum_frame_size =3D tw9900_enum_frame_sizes,
+> +	.get_fmt =3D tw9900_get_fmt,
+> +	.set_fmt =3D tw9900_set_fmt,
+> +};
+
+Same here,
+
+> +
+> +static const struct v4l2_subdev_ops tw9900_subdev_ops =3D {
+> +	.core	=3D &tw9900_core_ops,
+> +	.video	=3D &tw9900_video_ops,
+> +	.pad	=3D &tw9900_pad_ops,
+> +};
+> +
+> +static const struct v4l2_ctrl_ops tw9900_ctrl_ops =3D {
+> +	.s_ctrl =3D tw9900_s_ctrl,
+> +};
+
+here,
+
+> +
+> +#ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
+> +static const struct v4l2_subdev_internal_ops tw9900_internal_ops =3D {
+> +	.open =3D tw9900_open,
+
+and here.
+
+> +};
+> +#endif
+> +
+> +static int tw9900_check_id(struct tw9900 *tw9900,
+> +			   struct i2c_client *client)
+> +{
+> +	struct device *dev =3D &tw9900->client->dev;
+> +	u8 id;
+> +
+> +	id =3D tw9900_read_reg(client, TW9900_CHIP_ID);
+> +
+> +	if (id !=3D TW9900_CHIP_ID) {
+> +		dev_err(dev, "Unexpected decoder id(%04x)\n", id);
+> +		return -EINVAL;
+> +	}
+> +
+> +	dev_info(dev, "Detected TW9900 (%04x) decoder\n", TW9900_CHIP_ID);
+> +
+> +	return 0;
+> +}
+> +
+> +static int tw9900_configure_regulators(struct tw9900 *tw9900)
+> +{
+> +	u32 i;
+> +
+> +	for (i =3D 0; i < TW9900_NUM_SUPPLIES; i++)
+> +		tw9900->supplies[i].supply =3D tw9900_supply_names[i];
+> +
+> +	return devm_regulator_bulk_get(&tw9900->client->dev,
+> +				       TW9900_NUM_SUPPLIES,
+> +				       tw9900->supplies);
+> +}
+> +
+> +static int tw9900_probe(struct i2c_client *client,
+> +			const struct i2c_device_id *id)
+> +{
+> +	struct device *dev =3D &client->dev;
+> +	struct v4l2_ctrl_handler *hdl;
+> +	struct tw9900 *tw9900;
+> +	int ret;
+> +
+> +	tw9900 =3D devm_kzalloc(dev, sizeof(*tw9900), GFP_KERNEL);
+> +	if (!tw9900)
+> +		return -ENOMEM;
+> +
+> +	tw9900->client =3D client;
+> +	tw9900->cur_mode =3D &supported_modes[0];
+> +
+> +	tw9900->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+> +	if (IS_ERR(tw9900->reset_gpio))
+> +		tw9900->reset_gpio =3D NULL;
+> +
+> +	ret =3D tw9900_configure_regulators(tw9900);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to get power regulators\n");
+> +		return ret;
+> +	}
+> +
+> +	v4l2_i2c_subdev_init(&tw9900->subdev, client, &tw9900_subdev_ops);
+> +	tw9900->subdev.flags |=3D V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_H=
+AS_EVENTS;
+
+Break this like.
+
+> +
+> +	hdl =3D &tw9900->hdl;
+> +
+> +	v4l2_ctrl_handler_init(hdl, 2);
+> +
+> +	v4l2_ctrl_new_std(hdl, &tw9900_ctrl_ops, V4L2_CID_BRIGHTNESS,
+> +			  -128, 127, 1, 0);
+> +	v4l2_ctrl_new_std(hdl, &tw9900_ctrl_ops, V4L2_CID_CONTRAST,
+> +			  0, 255, 1, 0x60);
+> +
+> +	tw9900->subdev.ctrl_handler =3D hdl;
+> +	if (hdl->error) {
+> +		int err =3D hdl->error;
+> +
+> +		v4l2_ctrl_handler_free(hdl);
+> +		return err;
+> +	}
+> +
+> +	ret =3D __tw9900_power_on(tw9900);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D tw9900_check_id(tw9900, client);
+> +	if (ret)
+> +		goto err_power_off;
+> +
+> +#ifdef CONFIG_VIDEO_V4L2_SUBDEV_API
+> +	tw9900->subdev.internal_ops =3D &tw9900_internal_ops;
+> +	tw9900->subdev.flags |=3D V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +#endif
+> +#if defined(CONFIG_MEDIA_CONTROLLER)
+
+If you're going to keep this conditional instead of a requirement of the dr=
+iver,
+it would look nicer with ifdef instead of if defined() like the block just
+before.
+
+> +	tw9900->pad.flags =3D MEDIA_PAD_FL_SOURCE;
+> +	tw9900->subdev.entity.function =3D MEDIA_ENT_F_DV_DECODER;
+> +
+> +	ret =3D media_entity_pads_init(&tw9900->subdev.entity, 1, &tw9900->pad);
+> +	if (ret < 0)
+> +		goto err_power_off;
+> +#endif
+> +
+> +	ret =3D v4l2_async_register_subdev(&tw9900->subdev);
+> +	if (ret) {
+> +		dev_err(dev, "v4l2 async register subdev failed\n");
+> +		goto err_clean_entity;
+> +	}
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_idle(dev);
+> +
+> +	return 0;
+> +
+> +err_clean_entity:
+> +#if defined(CONFIG_MEDIA_CONTROLLER)
+> +	media_entity_cleanup(&tw9900->subdev.entity);
+> +#endif
+> +err_power_off:
+> +	__tw9900_power_off(tw9900);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tw9900_remove(struct i2c_client *client)
+> +{
+> +	struct v4l2_subdev *sd =3D i2c_get_clientdata(client);
+> +	struct tw9900 *tw9900 =3D to_tw9900(sd);
+> +
+> +	v4l2_async_unregister_subdev(sd);
+> +#if defined(CONFIG_MEDIA_CONTROLLER)
+> +	media_entity_cleanup(&sd->entity);
+> +#endif
+> +
+> +	pm_runtime_disable(&client->dev);
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		__tw9900_power_off(tw9900);
+> +	pm_runtime_set_suspended(&client->dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct i2c_device_id tw9900_id[] =3D {
+> +	{"tw9900", 0},
+> +	{},
+> +};
+
+I was told recently that using i2c_device_id tables is deprecated unless
+there's a realy need for it.
+
+> +
+> +#if IS_ENABLED(CONFIG_OF)
+> +static const struct of_device_id tw9900_of_match[] =3D {
+> +	{ .compatible =3D "techwell,tw9900" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, tw9900_of_match);
+> +#endif
+> +
+> +static struct i2c_driver tw9900_i2c_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "tw9900",
+> +		.pm =3D &tw9900_pm_ops,
+> +		.of_match_table =3D tw9900_of_match
+
+Tab-padding before =3D would look nicer here.
+
+> +	},
+> +	.probe		=3D tw9900_probe,
+> +	.remove		=3D tw9900_remove,
+> +	.id_table	=3D tw9900_id,
+> +};
+> +
+> +module_i2c_driver(tw9900_i2c_driver);
+> +
+> +MODULE_DESCRIPTION("tw9900 decoder driver");
+> +MODULE_LICENSE("GPL v2");
+> --=20
+> 2.25.4
+
+Cheers,
+
+Paul
+
+
+--=20
+Paul Kocialkowski, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
+--sdtB3X0nJg68CQEu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAl+un4AACgkQ3cLmz3+f
+v9EOZQf9EnK7y237I9yB1Z2gZkKkk4jDzbZQesSk6MWTapGESrEeyaQRcyODRqWt
+VrWlaHzwnRefEaQynBEPYFTUELvmg4q1865Qx8OSXU1BnxJ64eekoJ5yG4Gf1H3J
+R5OUO6kKGWiQykQ74cz8Q0OkOg2Epi1OVc3RhJYWN0+ONljFn6EP4b5Sux1CaCq1
+uS6SOouwKbBmSEq6yDX4JyRaqWx2PHKHqw4SqCf7LmhM9ahy5RWhAkMohNloE0Wx
+CKMWJXwmBfrV5xyGOXL6t1RPvYZrheK1gUrbIhyBjfcgiZlJaHjOZMNenH6CkGZM
+4bTf4dc3VidzTMoR3Eq3nKVqYpiAKw==
+=km//
+-----END PGP SIGNATURE-----
+
+--sdtB3X0nJg68CQEu--
