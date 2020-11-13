@@ -2,132 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF05F2B153D
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 06:09:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E7192B158F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 06:33:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726096AbgKMFJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 00:09:25 -0500
-Received: from mailout4.samsung.com ([203.254.224.34]:34620 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725866AbgKMFJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 00:09:25 -0500
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20201113050922epoutp04796e7ab57770384d37696d92e0bd21ea~G_Q_NElLw3020630206epoutp044
-        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 05:09:22 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20201113050922epoutp04796e7ab57770384d37696d92e0bd21ea~G_Q_NElLw3020630206epoutp044
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1605244162;
-        bh=fRB6FdH0gtwsT6IIEjy9W7i5gws73WKHvZQzMaW7nDM=;
-        h=Subject:Reply-To:From:To:CC:Date:References:From;
-        b=c0WLX1KRMdN4LV8/hR9Uv+J9JfB9ItYACYks+A5Drsdzz7y3Rc0Io8v3YEibWjQ51
-         9ph4upXYVNjSZKGHgv0JylgdBgjGEHV8nZFSXsNr2ItzTdNCDaURMzRTXVzvYIcozT
-         X8fRS6FOFJgRMpHtgBJpx0ufwU0WWcdtAEeE6QMM=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p1.samsung.com (KnoxPortal) with ESMTP id
-        20201113050922epcas2p1ad2553277168ae80dd793109ed42e926~G_Q94aWJY0969709697epcas2p1U;
-        Fri, 13 Nov 2020 05:09:22 +0000 (GMT)
-Received: from epsmges2p3.samsung.com (unknown [182.195.40.189]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4CXRN058VhzMqYkV; Fri, 13 Nov
-        2020 05:09:20 +0000 (GMT)
-X-AuditID: b6c32a47-72bff7000000d2c4-66-5fae15007543
-Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
-        epsmges2p3.samsung.com (Symantec Messaging Gateway) with SMTP id
-        77.7A.53956.0051EAF5; Fri, 13 Nov 2020 14:09:20 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH net-next 2/2] nfc: s3fwrn82: Add driver for Samsung S3FWRN82
- NFC Chip
-Reply-To: bongsu.jeon@samsung.com
-Sender: Bongsu Jeon <bongsu.jeon@samsung.com>
-From:   Bongsu Jeon <bongsu.jeon@samsung.com>
-To:     "kuba@kernel.org" <kuba@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>
-CC:     "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20201113050919epcms2p7487583bf846376040a9874a7eb39fdae@epcms2p7>
-Date:   Fri, 13 Nov 2020 14:09:19 +0900
-X-CMS-MailID: 20201113050919epcms2p7487583bf846376040a9874a7eb39fdae
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrDKsWRmVeSWpSXmKPExsWy7bCmhS6D6Lp4gwfLxSy2NE9it5hzvoXF
-        Yv6Rc6wWF7b1sVocWyBm0br3CLsDm8eWlTeZPDat6mTz6NuyitHj8ya5AJaoHJuM1MSU1CKF
-        1Lzk/JTMvHRbJe/geOd4UzMDQ11DSwtzJYW8xNxUWyUXnwBdt8wcoN1KCmWJOaVAoYDE4mIl
-        fTubovzSklSFjPziElul1IKUnAJDwwK94sTc4tK8dL3k/FwrQwMDI1OgyoScjG1n/rMW9PFU
-        LJv5nLWB8QhnFyMnh4SAicTl1ZPYuxi5OIQEdjBKTF7zl6mLkYODV0BQ4u8OYZAaYYFwiWl/
-        lrKD2EICihL/O86xQcR1JV78PQpmswloS6w92sgEYosIhEncXHGDGcRmFpjPKDGzKxZiF6/E
-        jPanLBC2tMT25VsZIWwNiR/LepkhbFGJm6vfssPY74/Nh6oRkWi9dxaqRlDiwc/dUHFJibf7
-        5oHdLyHQzihx/ucPNghnBqPEqc1/oTr0JRafWwF2Ha+Ar8TD94vANrAIqEo8/7EHapuLxKKz
-        25ggrpaX2P52DjMoIJgFNCXW79IHMSUElCWO3GKBqOCT6Dj8lx3mrx3znjBB2KoSvc1fmGB+
-        nDy7BepOD4kDP/+wg4wREgiUeLXefQKjwixEQM9CsnYWwtoFjMyrGMVSC4pz01OLjQqMkeN2
-        EyM4GWq572Cc8faD3iFGJg7GQ4wSHMxKIrzKDmvihXhTEiurUovy44tKc1KLDzGaAj08kVlK
-        NDkfmI7zSuINTY3MzAwsTS1MzYwslMR5Q1f2xQsJpCeWpGanphakFsH0MXFwSjUw2fStW8K8
-        M9ZWwen/u+BVL9fY3n5s/fAsf83nNclp6lMrLh19P9V4WfkR8dCK+rk7urkMtV14Pl/4uMt/
-        u6/2ERVvx/sL/VdcMAo/XWh/V0D/6rw5V3y0pI913tMR9Ql6ZBDmeelDqOeTzpIq/4dq0Usu
-        L5UPk06aZ1X1qe+tv8aElX8sxV+umxLwv3XbJ79Tn90lZhw77ukUsmLuY56bmvZFL/Z7X/99
-        x/aoeMNhdWnLo0Za5yYbnJngZvnhaNVD1kamT/8sdr0zOsvsXPH93ePbXfF/Fma4ZG1qmMSi
-        xrvqiWS5+eo7Pw/d7jvjt2Vvo8PGe6de7QlOFk+RWT33nonzjqXXUlsnefpdyD208YASS3FG
-        oqEWc1FxIgD9Mmp/DwQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20201113050919epcms2p7487583bf846376040a9874a7eb39fdae
-References: <CGME20201113050919epcms2p7487583bf846376040a9874a7eb39fdae@epcms2p7>
+        id S1726199AbgKMFdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 00:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726071AbgKMFdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 00:33:08 -0500
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82FE2C0613D1;
+        Thu, 12 Nov 2020 21:33:07 -0800 (PST)
+Received: by mail-oi1-x244.google.com with SMTP id m143so9238788oig.7;
+        Thu, 12 Nov 2020 21:33:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rzpHxVwtYfPNR5m+0xd40O02SiyxGAAISovudBzR/vE=;
+        b=h86+nsdjF93+wDYVtajUVNvY26hefcNO04S+d0kH+aiRUmxn58HcQx5GtgRzTOZZg7
+         qtXZbq4JpNzvvjKAnjgzcujlx+yLhKxWysKxVUHdj9hcYpjHiwcYjfITQyblfLCd8BL2
+         d2bOfs2FEkwNBZGGGDYwInbsQp8GwLNv+BTmQ7vmL0XGShcy94/3LcblWZu0yr2DAOYm
+         CAdnXuF54D7OuqAweTnyGlQhL7UMhXNdlcLjUWtg9CAtMYEqIn97G286HoczEHADNb/+
+         Leez1Sjob23y065wvBBKLehx4xhenW1CRkTCIzUZPa5aEFxJZX7x8ZLRUiAQpQiODjwe
+         mk9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rzpHxVwtYfPNR5m+0xd40O02SiyxGAAISovudBzR/vE=;
+        b=Bn/v+Mf6rjUSU0EBKfgmtm2nh7RNdWINZ+Qq71ndnV/ftibuqZzivcECsyx56PMmfc
+         NNU6nWGHm8OwyJhxYTJJ9ghdpHUBT1RwtYLeGprrwg1o+Wnlxsky+C8Vt8fLlgmYr8GW
+         K17UieQuUqf4I2phT3NpaNamtXoHCfMg9AXLTfrzdvLNe3XvrFgHCIktiZDjjp9P/tFW
+         JKfPc8VS+RFjfX/n585S66PNF93KAVtlXys14Uao9Vhfux49T80zYbiQeNMM3U4m2GdX
+         j6G2QWexS8WX07DeVxUiIhvMEQse5dkfkWaxUUshklzLBB7Uhczy162LXboxpptMywvg
+         usQw==
+X-Gm-Message-State: AOAM530hFQMus66crlDaEzYA6pIG2zwT1gSI9Y6x+JLU4r8GXbs6MLgZ
+        a8BEz97Y+WX3YqDcMSVZFV6RStaly2la+tW6Fzw=
+X-Google-Smtp-Source: ABdhPJzvDqnz5H8slcSClxUbBKekqGkSOvIRf7i1k5l9QQ/+KRmv33DpeSYtc0XvtPH09vHjxxEa5wSlnHz8GOQH1sA=
+X-Received: by 2002:aca:f407:: with SMTP id s7mr377123oih.23.1605245587028;
+ Thu, 12 Nov 2020 21:33:07 -0800 (PST)
+MIME-Version: 1.0
+References: <20201111163013.29412-1-sergio.paracuellos@gmail.com>
+ <CAJsYDVJtPqd-aPjJZFC76R2fbv1i=tVzRR7S1VFAMzp1QcPbiQ@mail.gmail.com>
+ <CAJsYDVKWuygjbBErQt1B5XD8Bp06-TdrziBzDdYmMGhU_8X-aA@mail.gmail.com>
+ <CAMhs-H85RCK=a_y+fVm-oR3hOEfr=rtVcLvX09YH4F65enz3oA@mail.gmail.com> <CAJsYDV+Gm-0HpvE7W8iG=t5JT+whrQjerRUT65eXxv2av9160A@mail.gmail.com>
+In-Reply-To: <CAJsYDV+Gm-0HpvE7W8iG=t5JT+whrQjerRUT65eXxv2av9160A@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Fri, 13 Nov 2020 06:32:55 +0100
+Message-ID: <CAMhs-H_qFpVv3KK5Bc4igrj7VffZSmAAT=sM8PSyY7H0-SV1yg@mail.gmail.com>
+Subject: Re: [PATCH 0/7] MIPS: ralink: add CPU clock detection and clock gate
+ driver for MT7621
+To:     Chuanhong Guo <gch981213@gmail.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        John Crispin <john@phrozen.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Weijie Gao <hackpascal@gmail.com>, jiaxun.yang@flygoat.com,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Nov 13, 2020 at 1:40 AM Chuanhong Guo <gch981213@gmail.com> wrote:
+>
+> On Thu, Nov 12, 2020 at 1:23 PM Sergio Paracuellos
+> <sergio.paracuellos@gmail.com> wrote:
+> >
+> > To avoid weird behaviour because of some drivers are
+> > not using properly clocks we have the CLK_IGNORED_UNUSED, which as you
+> > can see is currently being used in my code. Using that all seems to
+> > work as expected as it is now.
+>
+> The whole point of having a clock gate driver is to gate unused
+> clocks to save (maybe a tiny bit of) power. It's other peripheral
+> drivers' fault that it doesn't enable clocks properly and we shouldn't
+> just work-around the problem in the clock driver by disallowing auto
+> clock gating.
+>
 
-Add the device tree bindings for Samsung S3FWRN82 NFC controller.
-S3FWRN82 is using NCI protocol and I2C communication interface.
+Totally agreed with what you are saying here but I don't really think
+using the flag is a workaround. It is just a way to ensure no
+regressions occurred until all drivers are adapted and also having all
+of them enabled is the behaviour. For me adapt the rest of driver code
+ should be a different patch set after this driver is properly
+finished and mainlined.
 
-Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
----
- .../devicetree/bindings/net/nfc/s3fwrn82.txt  | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt
+> --
+> Regards,
+> Chuanhong Guo
 
-diff --git a/Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt b/Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt
-new file mode 100644
-index 000000000000..03ed880e1c7f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt
-@@ -0,0 +1,30 @@
-+* Samsung S3FWRN82 NCI NFC Controller
-+
-+Required properties:
-+- compatible: Should be "samsung,s3fwrn82-i2c".
-+- reg: address on the bus
-+- interrupts: GPIO interrupt to which the chip is connected
-+- en-gpios: Output GPIO pin used for enabling/disabling the chip
-+- wake-gpios: Output GPIO pin used to enter firmware mode and
-+  sleep/wakeup control
-+
-+Example:
-+
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c4 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        s3fwrn82@27 {
-+            compatible = "samsung,s3fwrn82-i2c";
-+            reg = <0x27>;
-+
-+            interrupt-parent = <&gpa1>;
-+            interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
-+
-+            en-gpios = <&gpf1 4 GPIO_ACTIVE_HIGH>;
-+            wake-gpios = <&gpj0 2 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
--- 
+Best regards,
+     Sergio Paracuellos
