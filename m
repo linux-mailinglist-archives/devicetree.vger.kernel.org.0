@@ -2,215 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4EAF2B142E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 03:12:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 766852B144E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 03:34:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726041AbgKMCMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 21:12:34 -0500
-Received: from mga05.intel.com ([192.55.52.43]:64228 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726017AbgKMCMe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 21:12:34 -0500
-IronPort-SDR: b8NHag+Yl4fwJEbXg+kbXUw32vA/UOUiBu38x5WQ1C4llqibfSq4R2VH/eRatGLpCZqQTTPJ6O
- NqRyZ/AkpmTg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="255124140"
-X-IronPort-AV: E=Sophos;i="5.77,473,1596524400"; 
-   d="scan'208";a="255124140"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2020 18:12:33 -0800
-IronPort-SDR: lhQaDtiYD5QTwHsKDflNoO4Uf8hm9c3qI0Z+yXcqoI+4Ugnxedda6XCa6nP2T0dIFtWbjDtyY+
- OR9589kNzF9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,473,1596524400"; 
-   d="scan'208";a="399605585"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
-  by orsmga001.jf.intel.com with ESMTP; 12 Nov 2020 18:12:32 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 12 Nov 2020 18:12:32 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 12 Nov 2020 18:12:32 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.107)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Thu, 12 Nov 2020 18:12:32 -0800
+        id S1726055AbgKMCer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 21:34:47 -0500
+Received: from mail-dm6nam11on2114.outbound.protection.outlook.com ([40.107.223.114]:17376
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726017AbgKMCer (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Nov 2020 21:34:47 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=mcyuop++hG44TmJm7HQu7ykkeCA+6yN1iNFn1b4zAtXdEe0mCyhIjEJrzzUl8HQPVG4EeoNHD1XGLe0lVKnxtHjqOnqxu27uYVAAmWlx6NjGKBNmI3oN39U7VirP7AKdgYohFiiHBL+zgP+9/km59eHBt92QbHGJ2wR1Xlw7QI/AyUvgt5EBzVv+/OPMAqr+DexKQgUPd/A6NnMh0i7YDZyBVXKtia+7zSw18sSUu61P+jxGYAo1+Zpv5z8smrV6SytV/T7mgIIpPnpSOx/rXPiJAPOvESpY81xwRrgEiXdvlV1UmV9kkNrL0TdOvzMBVVgBwrHbuj0r6JRS/ABlAg==
+ b=BRjX0jmCBMpgF3mlMJ3L05XClwJc6w4I9VRftnOwhYDT7B+1I/zcMFRAaRgtEC93LHYKJbaxsr/JN3BK9p9jzQVZY2S8NBUEokxkKWV5/NjWt4E3Rk++dYxcgys2uYnpzAuDUDV0sqXFmiHTg6v/bD/hOt8UPjohq0fEI1MHy/3L65CXaxos49QQ0oILxF7LCs48HjCT01xz56d2ANYF0gCMByXY63aYD472/OhKrdgqll/OPmqPAdDvPrEklUnlNM432SJD0oJa7ahSvmb6YcH1FQpVO1OrZcgDFAeGQhs0inmSusKSPPhXkej8xJ8bIyzd1/a3i0Bs9BZFynS6TQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v7zUTgIgEYe+OIGlNRyzH0P35wkG83EGkFw3pMziv0g=;
- b=WumH0qfyO/Y3zWkhcz/HkFQU6/zuzKMwd6fKs4CMzcT4t6AiKJQhr5i4SBS4artpTmlMuOMVVOf2qb0wMlOBoqzzP1IrQbqPjRdipq3r82m6lzVEukzt2eeyzkoCYldfSI079Mgwiuj+M+Ycx3EW+foNU5i61GAcMiRslfswxrZSqTCLuQOlTO8eghlL3Vmbqa6PySzIdwajZ06Gy01rJGzfnZ+dYQ3z4hpVUz+XkYU57OMyrEiJ50VZYAqJIvGUjHAObJiMBQYSgRT0Adk16f/p4jCvce2GRQFl2Tl5kTVBgu81qmKRK4JT6Av/VJqCkYOO+PPlcHhBYoU+DLDsnw==
+ bh=C6Kk4wFkDYgJY4/Xb10F3sjCQ6Ynx627cYhLhrYFZuI=;
+ b=YL96fzEIWUOrQrYyFlH4/s2rXiAbnlo7ERJ3hzSvIpolJc2RTh5j1zp2/y4hhckKxFxL6UboRyt29MCnMQH3M1AjULSepIyuIV0vay3OegxKY989ir8Ul/mUgDYT6P7EhR/VZvDNMt0zW56+mvKlAiDWhs+hKO640FLNwcwbdEFIyFpN1PaY1U+oEboBQ79pyFjsM2iJW/JtskexEdvEizqEomWetei2Jk4m8/RlAGDiOa6UCHlWms3WeAcRXZR8CJWlLTu7MmUCJzbTTIoza6JLQA3Da130O6PgQ2vuvYrtCv2P2UMynYuSqQCkhzLX91KdPVujTPrqnLYUGs/DiQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v7zUTgIgEYe+OIGlNRyzH0P35wkG83EGkFw3pMziv0g=;
- b=VWtyOaojwkK3HfgiveuRVVE3qJTKrQFSSztOo9MnEtrHqfvk+mBv9Zu1i32dKwXY2tlBzoUhcWrARfa9BXBnkwSs4OBPCuJvIfGFqF0c/26LFjBjx0LszD2H+8DfcJyVliISU5kuAPsvXwTHNaFq+2wwrHkio3FlM40oZxorw0k=
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
- by MWHPR1101MB2157.namprd11.prod.outlook.com (2603:10b6:301:51::10) with
+ bh=C6Kk4wFkDYgJY4/Xb10F3sjCQ6Ynx627cYhLhrYFZuI=;
+ b=dQeswAVHKfXjwyLbS1U+OfJWsUK1z1+7eo9+hotHEZ8BlOynhUJ93dhu7zVYnDyq8oiwE2yETaVeBC9kHZYDrGd1xTB5RXebqfA/UlnzZ71Yy2pzjAbUaei3OcKrNye5uizR1/jSGkjPlp2h/Vf7ljlmlWpmCUngTEQB4gPePLc=
+Authentication-Results: siol.net; dkim=none (message not signed)
+ header.d=none;siol.net; dmarc=none action=none header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by BY5PR04MB6802.namprd04.prod.outlook.com (2603:10b6:a03:22d::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.24; Fri, 13 Nov
- 2020 02:12:30 +0000
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::4820:6e90:3d0e:3b5f]) by CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::4820:6e90:3d0e:3b5f%4]) with mapi id 15.20.3541.025; Fri, 13 Nov 2020
- 02:12:30 +0000
-From:   "Sia, Jee Heng" <jee.heng.sia@intel.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "vkoul@kernel.org" <vkoul@kernel.org>,
-        "Eugeniy.Paltsev@synopsys.com" <Eugeniy.Paltsev@synopsys.com>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v3 10/15] dt-binding: dma: dw-axi-dmac: Add support for
- Intel KeemBay AxiDMA
-Thread-Topic: [PATCH v3 10/15] dt-binding: dma: dw-axi-dmac: Add support for
- Intel KeemBay AxiDMA
-Thread-Index: AQHWuQQ2tbhfyVk2xESCGm8n37pqB6nFUm5A
-Date:   Fri, 13 Nov 2020 02:12:29 +0000
-Message-ID: <CO1PR11MB5026867ECF7693C7DC86571ADAE60@CO1PR11MB5026.namprd11.prod.outlook.com>
-References: <20201112084953.21629-1-jee.heng.sia@intel.com>
- <20201112084953.21629-11-jee.heng.sia@intel.com>
- <20201112145800.GB3583607@bogus>
-In-Reply-To: <20201112145800.GB3583607@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [60.49.111.200]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f2da1620-1c05-4a25-b54a-08d887799312
-x-ms-traffictypediagnostic: MWHPR1101MB2157:
-x-microsoft-antispam-prvs: <MWHPR1101MB2157A540962F16D583BA7B77DAE60@MWHPR1101MB2157.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Idx5YFBB7IuuiSJvsKS91S0x8DtxwFoB8gSOZjdT41UP2r94BAkHs04cXPuodYVklZHYmuvcaSZWzUNhlDVsfLEuXlNtKPGs7zo7WCTzq5V7dqA0RiHjvGs2gfkMC3pvpSiQMiZr4P2e3Wzp2dswFbC3WlOB0TzSlWiuyBz6kYKUOi18mhRCuiGS43GKltU8iGoCsMQfXFaOH5KANzGSIIiX99/xLAb3s4EdAj2RP6QEyp8oz4RgTSnUJc8yXjttkWv7Hu6aVo2Byf5fj9vP0WU6IBi1VqT5Rxcofp1Np17TFOvTXPemumEeYCrRU46wIxTzWSTH9kzRxkSBw0SeUg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(136003)(39860400002)(366004)(33656002)(7696005)(66446008)(9686003)(316002)(2906002)(53546011)(52536014)(6916009)(26005)(54906003)(8936002)(5660300002)(478600001)(76116006)(8676002)(186003)(86362001)(66476007)(64756008)(6506007)(71200400001)(83380400001)(66946007)(55016002)(4326008)(66556008);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 369G1MN3kmWhyiaMUdy6bN/NXCidiDPst+ZNslnyiwbSXhJfQs/kS0d6sZdNJdyCQFMkBg0iXliNDL1txwo3CLR1xgdUzIERCc5z2ih9DaVijojxE8aKxDZ+Cm9c8jf7TExfWeHQ0xqlLpAZqhTeKTgq3laV9OQmWC9Xt8zji+Fw2OBn+VcYsF2sVbHaDv71DAFVfsZjIQF2o5518VK+ywSzFUdSt6fPmmJqupcBQgVVjDCgdoVyUSmRBLsa3LnXtigLrXAyHOuuS3g++jZOuMUBuZM6v7BvlmZfxVzwpyP11hLlFFzsVvGka4av0/sOjIj7l/LkcrtblZCzG6PKDGjS5Rfs0vZl+ZKuqfRDMk3KF9Ss9vWAuPtHJ7QuX+FB4E6iGiuBK8BrIoT5IVrKrxccgWFshrP8YoLX8EBHytv+MOlt7j2YWPga4A0R1I7vkaTJApZIixTRHUwdeIqAk2PUDV5JMQfNC7hEVsdaQG5+j0rv5VBxr/PtMT9/e9CQiYkYak6Ea6KsU0vd+Oj947iKnVqkCQPesL1aOKPzG+tLMjdz2t+UopzlCtQ9lkDdOi+HSSltAEcwp4bKsSIJ+sNd3/62u6pViVcgr18KaKh8k47E33K6dEsumMPlfiBDSK5nhOZijegG3uz2dpaGV5TfJJmxQRlI6nA4l5FAqnUnJXckSC88Osn7E1E3gZdQJHFKqw2mhX28aYGVJtgCGDeLvOvZjMQv2JKmfP6nRsaauQVMj+eXAMEMD943tu/Zzf+awhSNzAbdTuzeav1tfavy5QFesnJn9dsBQwkWOCCqf3Scgmk0CFkhpvx8yBfpJrMyoKJ/EAelxFB6BHo3zEDrDDcicMKFCiWweZecFqCjOpmU8nuCyKhN7tIGg6b2u5fxwUCLQ4xA5oMwh3/c2g==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Fri, 13 Nov
+ 2020 02:34:43 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::c9f2:c0c7:45c3:6cfb]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::c9f2:c0c7:45c3:6cfb%7]) with mapi id 15.20.3564.025; Fri, 13 Nov 2020
+ 02:34:43 +0000
+Date:   Fri, 13 Nov 2020 10:34:35 +0800
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Subject: Re: [PATCH 2/2] drm/bridge: anx7625: disable regulators when power
+ off
+Message-ID: <20201113023435.GA1948@pc-user>
+References: <20201112083704.1173908-1-hsinyi@chromium.org>
+ <20201112083704.1173908-2-hsinyi@chromium.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201112083704.1173908-2-hsinyi@chromium.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [114.247.245.146]
+X-ClientProxiedBy: HK0PR03CA0109.apcprd03.prod.outlook.com
+ (2603:1096:203:b0::25) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pc-user (114.247.245.146) by HK0PR03CA0109.apcprd03.prod.outlook.com (2603:1096:203:b0::25) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3541.21 via Frontend Transport; Fri, 13 Nov 2020 02:34:42 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 96ec1092-132d-4b9d-10b0-08d8877cad74
+X-MS-TrafficTypeDiagnostic: BY5PR04MB6802:
+X-Microsoft-Antispam-PRVS: <BY5PR04MB680225CCAF40E001BEFA27B1C7E60@BY5PR04MB6802.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 2EzMw45MoUOw5V9DWUKb0flnRMFm8DFoNbWrAE5/3ahj3bAxE7ywkXL6Oc7XGA0xzDsoj4A9LkMmw+S7fFxwW8aE6qwdY2PqHeD/LyM3SGJxF2i0yxgue0sr8NeeqcWrHxRnTefeAAvoSledDsOJ4a6rQn90VdA5C59T0q01x8+MVDGDYG/ud+3gCWsGc3xDW2rtTvRrOrhO1OB7NOB3MhCikfjDu7CVgKmPqooKe6n6MQ+cakOVjyV0cfgVFKligtv2cbQ7HAugzw0YS3dRxon42H4OaK6H/TviJ6d7ovYBkiQp1Af/kS4vb8bohWkIWKK3s49mzupyKraMbfZ23g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(136003)(396003)(346002)(376002)(39840400004)(66476007)(7416002)(66946007)(86362001)(54906003)(110136005)(52116002)(2906002)(186003)(26005)(956004)(9686003)(6496006)(33656002)(33716001)(1076003)(5660300002)(83380400001)(4326008)(316002)(8936002)(6666004)(66556008)(16526019)(8676002)(478600001)(4744005)(55016002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: 0JroEUY6xTgdGjlSLA6tTYn1iIfDa4NvsXb8aNPcpp7bFpSExcwQqHOxbtw9bbLFjG5I8tQv43A/lWhz32G5ozfxNT8lutWohgsF/aCojmd5npDKjl+9YOETk8PW1yLuSFsTricfY7g+LjbKjJGrdj8qyq207Kzq4jbq/sF/YAEnu1aGsF2urmASU7KXW59DDCdAtg2f6dspb4HJ9ouzr3BK3SDN2E/OqTRVpWMeXOEPjHlGZNhM5z0K/WQz6BLIFagGIkUR7teSxgr22P2/HQQPPRKUBzPx3ChEzui4y9aSagQaxxlYu2o8/fhCILE6k5takWJvhoewbwvaLpZN7Hj9rn0sr75T0Qra2O6z9EovcmJaWEhH7kSK9Bp0amb4Pm3M3xZ3oVj1UFk7CXg345rgzVewIVpPjW1H+HWUVPfZM8RMPWZNywWxpImoG8ck4zj0vIvYt845Gb/ZLMkIADAIyPj2m3oBUQel09UbpUyjnvtV8EzIrodqWPL3I/bI8aAikGnSJZqDSwsNisg8gs1Hk6kNweXIIJGVe3hmIE3Ks6nxZVPgnpOakmbq6G8Ohi8carx4Gyfl6L1Fv+TM4dqpv6Y9qs63S5rNiyptHyEDFnf5R6GiBR9nOK0J/wmxwl/wmklw/Umorp8UnKdmiKbXNIWpdVlpfQfuxM/g0z813hhVhMWO1+DkHDX2ZSiCPWHT5tQnq0Q42B0nrsed9OiQ81wul2ICGxG67irGRhi8yG603fjeProrc97SFCTBo5sH3ZT5yScMlCvEjywC039qaxUpVWK5l1iKhWpCgPMwb2cTVcMy4Tnbpowmq1g5YBizSEithJVCkudSrXG1kmX4CvXnQcm8/Ue1VqH0GUyaQ+LYtwpQvy1vMy20at6tLAuRj7blZnfUOH8JM77ctQ==
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96ec1092-132d-4b9d-10b0-08d8877cad74
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2da1620-1c05-4a25-b54a-08d887799312
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2020 02:12:29.9392
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2020 02:34:43.0725
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: USJNr1KHoKNPB/qg3WL5iRRss5r8lCOtfs38RHiWoxi9L7iRuNDCVNu6jwGbSZ7XzFLPO1tjslGlMsgVwe3zAw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR1101MB2157
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DuAAJuRmaYlDSVTKSvlNHIebujCtFp8pTa7spgllbpB8/P0kCotw7brskrtTRfwETSF7+NZUyacRiI688z7qkA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR04MB6802
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 12, 2020 at 04:37:04PM +0800, Hsin-Yi Wang wrote:
+> When suspending the driver, anx7625_power_standby() will be called to
+> turn off reset-gpios and enable-gpios. However, power supplies are not
+> disabled. To save power, the driver can get the power supply regulators
+> and turn off them in anx7625_power_standby().
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  drivers/gpu/drm/bridge/analogix/anx7625.c | 25 +++++++++++++++++++++++
+>  drivers/gpu/drm/bridge/analogix/anx7625.h |  1 +
+>  2 files changed, 26 insertions(+)
 
-
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 12 November 2020 10:58 PM
-> To: Sia, Jee Heng <jee.heng.sia@intel.com>
-> Cc: vkoul@kernel.org; Eugeniy.Paltsev@synopsys.com;
-> andriy.shevchenko@linux.intel.com; dmaengine@vger.kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org
-> Subject: Re: [PATCH v3 10/15] dt-binding: dma: dw-axi-dmac: Add support f=
-or
-> Intel KeemBay AxiDMA
->=20
-> On Thu, Nov 12, 2020 at 04:49:48PM +0800, Sia Jee Heng wrote:
-> > Add support for Intel KeemBay AxiDMA to the dw-axi-dmac Schemas DT
-> > binding.
-> >
-> > Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
-> > ---
-> >  .../bindings/dma/snps,dw-axi-dmac.yaml        | 25 +++++++++++++++++++
-> >  1 file changed, 25 insertions(+)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> > b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> > index 481ef0dacf5f..18e9422095bb 100644
-> > --- a/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/snps,dw-axi-dmac.yaml
-> > @@ -8,6 +8,7 @@ title: Synopsys DesignWare AXI DMA Controller
-> >
-> >  maintainers:
-> >    - Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com
-> > +  - Jee Heng Sia <jee.heng.sia@intel.com>
-> >
-> >  description: |
-> >   Synopsys DesignWare AXI DMA Controller DT Binding @@ -16,6 +17,7 @@
-> > properties:
-> >    compatible:
-> >      enum:
-> >        - snps,axi-dma-1.01a
-> > +      - intel,kmb-axi-dma
-> >
-> >    reg:
-> >      items:
-> > @@ -24,6 +26,7 @@ properties:
-> >    reg-names:
-> >      items:
-> >        - const: axidma_ctrl_regs
-> > +      - const: axidma_apb_regs
->=20
-> You need 'minItems: 1' here or everyone has to have 2 entries.
->=20
-> Also, doesn't 'reg' need updating?
->=20
-> >
-> >    interrupts:
-> >      maxItems: 1
-> > @@ -124,3 +127,25 @@ examples:
-> >           snps,priority =3D <0 1 2 3>;
-> >           snps,axi-max-burst-len =3D <16>;
-> >       };
-> > +
-> > +  - |
-> > +     #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +     #include <dt-bindings/interrupt-controller/irq.h>
-> > +     /* example with intel,kmb-axi-dma */
-> > +     #define KEEM_BAY_PSS_AXI_DMA
-> > +     #define KEEM_BAY_PSS_APB_AXI_DMA
-> > +     axi_dma: dma@28000000 {
-> > +         compatible =3D "intel,kmb-axi-dma";
-> > +         reg =3D <0x28000000 0x1000 0x20250000 0x24>;
->=20
-> reg =3D <0x28000000 0x1000>, <0x20250000 0x24>;
-[>>] Thanks Rob for the invaluable comments. Will update the changes in v4.
->=20
-> > +         reg-names =3D "axidma_ctrl_regs", "axidma_apb_regs";
-> > +         interrupts =3D <GIC_SPI 88 IRQ_TYPE_LEVEL_HIGH>;
-> > +         clock-names =3D "core-clk", "cfgr-clk";
-> > +         clocks =3D <&scmi_clk KEEM_BAY_PSS_AXI_DMA>, <&scmi_clk
-> KEEM_BAY_PSS_APB_AXI_DMA>;
-> > +         #dma-cells =3D <1>;
-> > +         dma-channels =3D <8>;
-> > +         snps,dma-masters =3D <1>;
-> > +         snps,data-width =3D <4>;
-> > +         snps,priority =3D <0 0 0 0 0 0 0 0>;
-> > +         snps,block-size =3D <1024 1024 1024 1024 1024 1024 1024 1024>=
-;
-> > +         snps,axi-max-burst-len =3D <16>;
-> > +     };
-> > --
-> > 2.18.0
-> >
+Reviewed-by: Xin Ji <xji@analogixsemi.com>
