@@ -2,90 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16A202B135E
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 01:40:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC722B135F
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 01:41:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726104AbgKMAkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 19:40:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41358 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725894AbgKMAkU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 19:40:20 -0500
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A24DCC0613D1;
-        Thu, 12 Nov 2020 16:40:20 -0800 (PST)
-Received: by mail-io1-xd42.google.com with SMTP id u21so8036364iol.12;
-        Thu, 12 Nov 2020 16:40:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KwsRYTIelL+rQfaWByBY2jDX2TK6VO5EvbvbPDRhoZM=;
-        b=ItHGWFKBEnfm/3yEFqHr4tpisqmr5LgUINwjxMECLYJ5Sd0mrylFpr6fulRr09T39A
-         FUUYt+sm3Fd7f8p2rl+B7maioKkcie9N4EhRWXwPF/pYXsLT5Xp0px5KMDQKOiAHzFuz
-         DmF4vKn9hm5xsAeym/TPrhjYeBX4dVXeP7EA/BBrlVnqHUaIcLmz+AF/DQPoywiSDnm6
-         oeFc0khKuJTd4ef7M7+M10XxOqHjf9ApbH+foEsKEUUmO6gN2bjEGJIk3Z7e4UrEaEHK
-         OTdYpoph/DPIviUOLUzu4NDn/o+02lX26JiHJmJqB09rii4ME1C3QRIepAziPJ2/pHG/
-         IpoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KwsRYTIelL+rQfaWByBY2jDX2TK6VO5EvbvbPDRhoZM=;
-        b=SKgtHzVjCHs76Nkl7HOIv/yd2UlnaQ0p0ki2oE3I9yV4gl0Qf7A5whz8yFWtEXyjKL
-         3GzSgeuPKlTu93tjCv5DfCuDvYA2LFpNb3++HuHlQG33gl0rH3TdJgUF2SFUH22cXjoh
-         OAYy5lNsp46912uJSPVQX62T8/Yx19wjzaPTSSjcBL3K7cPdok8LUhkOmnxfyBoqmha0
-         iqehVTA9tZoUKyCZ+JcKxc8OxAnJ8QsSsy5zBErUGxnzGNYY9+ai/XofeslimQceZObI
-         ypTmENC6UW351iw2PMiZA28h26lirmx+Jtt3uQuLUj90MeX4Yk5W5NNFs0cT4G0yeDMb
-         qjjg==
-X-Gm-Message-State: AOAM531oBX1H6HtAp2DX0Y8MqMv1/Maei7nM6IIZN/SL0l2zjENBgYBj
-        wM2g1ElMlxaHHZ31kwN9rkmVuoXqLXTMDXwl9o0=
-X-Google-Smtp-Source: ABdhPJzZnfm6M/D6C6FDUIUrc/BiG76DixcJoRURxDV7ng30jOeHO75IwXPePu7T8eJ0AmyOnQSk8e26ZTZDyc2lAvM=
-X-Received: by 2002:a02:c995:: with SMTP id b21mr1977945jap.65.1605228019942;
- Thu, 12 Nov 2020 16:40:19 -0800 (PST)
+        id S1725894AbgKMAlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 19:41:25 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:8076 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725929AbgKMAlZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 19:41:25 -0500
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4CXKQX5jPQzLmVr;
+        Fri, 13 Nov 2020 08:41:08 +0800 (CST)
+Received: from [10.174.179.182] (10.174.179.182) by
+ DGGEMS402-HUB.china.huawei.com (10.3.19.202) with Microsoft SMTP Server id
+ 14.3.487.0; Fri, 13 Nov 2020 08:41:14 +0800
+Subject: Re: [PATCH v8 5/9] ACPI/IORT: Enable stall support for platform
+ devices
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>,
+        <joro@8bytes.org>, <will@kernel.org>, <lorenzo.pieralisi@arm.com>,
+        <robh+dt@kernel.org>
+CC:     <sudeep.holla@arm.com>, <rjw@rjwysocki.net>, <lenb@kernel.org>,
+        <robin.murphy@arm.com>, <bhelgaas@google.com>,
+        <Jonathan.Cameron@huawei.com>, <eric.auger@redhat.com>,
+        <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
+        <linux-acpi@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-pci@vger.kernel.org>, <baolu.lu@linux.intel.com>,
+        <zhangfei.gao@linaro.org>, <shameerali.kolothum.thodi@huawei.com>,
+        <vivek.gautam@arm.com>
+References: <20201112125519.3987595-1-jean-philippe@linaro.org>
+ <20201112125519.3987595-6-jean-philippe@linaro.org>
+From:   Hanjun Guo <guohanjun@huawei.com>
+Message-ID: <f266330a-4c06-d33d-96a1-d703a6b7e76b@huawei.com>
+Date:   Fri, 13 Nov 2020 08:41:13 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-References: <20201111163013.29412-1-sergio.paracuellos@gmail.com>
- <CAJsYDVJtPqd-aPjJZFC76R2fbv1i=tVzRR7S1VFAMzp1QcPbiQ@mail.gmail.com>
- <CAJsYDVKWuygjbBErQt1B5XD8Bp06-TdrziBzDdYmMGhU_8X-aA@mail.gmail.com> <CAMhs-H85RCK=a_y+fVm-oR3hOEfr=rtVcLvX09YH4F65enz3oA@mail.gmail.com>
-In-Reply-To: <CAMhs-H85RCK=a_y+fVm-oR3hOEfr=rtVcLvX09YH4F65enz3oA@mail.gmail.com>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Fri, 13 Nov 2020 08:40:09 +0800
-Message-ID: <CAJsYDV+Gm-0HpvE7W8iG=t5JT+whrQjerRUT65eXxv2av9160A@mail.gmail.com>
-Subject: Re: [PATCH 0/7] MIPS: ralink: add CPU clock detection and clock gate
- driver for MT7621
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        John Crispin <john@phrozen.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Weijie Gao <hackpascal@gmail.com>, jiaxun.yang@flygoat.com,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201112125519.3987595-6-jean-philippe@linaro.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.179.182]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 1:23 PM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> To avoid weird behaviour because of some drivers are
-> not using properly clocks we have the CLK_IGNORED_UNUSED, which as you
-> can see is currently being used in my code. Using that all seems to
-> work as expected as it is now.
+On 2020/11/12 20:55, Jean-Philippe Brucker wrote:
+> Copy the "Stall supported" bit, that tells whether a platform device
+> supports stall, into the fwspec struct.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 
-The whole point of having a clock gate driver is to gate unused
-clocks to save (maybe a tiny bit of) power. It's other peripheral
-drivers' fault that it doesn't enable clocks properly and we shouldn't
-just work-around the problem in the clock driver by disallowing auto
-clock gating.
-
--- 
-Regards,
-Chuanhong Guo
+Acked-by: Hanjun Guo <guohanjun@huawei.com>
