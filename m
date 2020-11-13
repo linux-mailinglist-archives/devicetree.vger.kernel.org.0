@@ -2,152 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D642B1971
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 12:01:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 865952B19CF
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 12:15:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726355AbgKMLAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 06:00:49 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:39290 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726334AbgKMLAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 06:00:45 -0500
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201113110034euoutp010ca620bbd1e1e1ff9b6cdfb1070e634d~HDDnC3Mmq3082230822euoutp01Y
-        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 11:00:34 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201113110034euoutp010ca620bbd1e1e1ff9b6cdfb1070e634d~HDDnC3Mmq3082230822euoutp01Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1605265234;
-        bh=7odYSbGs70MQycT7i1R6gEMJa7Kr2avIugtbNw4LTII=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=cDqJYpRLKytyLpzzS1uZcSAjmX/x1q2ZYrac7Y+8gWDVkqqAsuywnuvx6GP5seGnH
-         bN3j7W+N3Ezluy0VrBywDSDaTgYYGcYUbfMCg3ecqy7dD9eALKh5Q5hDF+zseRFtbW
-         YzDhV7Bv5vOEikkXuS+8eNcKrYjizY70QDD8cIsM=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201113110034eucas1p196f6567f8033230ee9b1feca13212d43~HDDmsnRkB0710707107eucas1p11;
-        Fri, 13 Nov 2020 11:00:34 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 38.C9.44805.1576EAF5; Fri, 13
-        Nov 2020 11:00:33 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20201113110033eucas1p1eaa1d1bd8944d8abc509ded03f45aeef~HDDmCvC6l1771217712eucas1p1c;
-        Fri, 13 Nov 2020 11:00:33 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201113110033eusmtrp257062263f757e3ca08119cd5e9c0f6a2~HDDl-blPy2309123091eusmtrp2l;
-        Fri, 13 Nov 2020 11:00:33 +0000 (GMT)
-X-AuditID: cbfec7f4-b4fff7000000af05-f1-5fae6751f9d4
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 31.6E.16282.1576EAF5; Fri, 13
-        Nov 2020 11:00:33 +0000 (GMT)
-Received: from [106.210.88.143] (unknown [106.210.88.143]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20201113110032eusmtip2db1dd7ac887b957aee7f5b534b222540~HDDlLe4P61664016640eusmtip2-;
-        Fri, 13 Nov 2020 11:00:32 +0000 (GMT)
-Subject: Re: [PATCH v9 0/5] Exynos: Simple QoS for exynos-bus using
- interconnect
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>, inki.dae@samsung.com
-Cc:     krzk@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org,
-        a.swigon@samsung.com, myungjoo.ham@samsung.com,
-        sw0312.kim@samsung.com, b.zolnierkie@samsung.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <2e4f8aa1-7be0-f65c-da7c-277327626812@samsung.com>
-Date:   Fri, 13 Nov 2020 12:00:32 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
-        Gecko/20100101 Thunderbird/78.4.3
+        id S1726630AbgKMLPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 06:15:51 -0500
+Received: from mail-eopbgr10088.outbound.protection.outlook.com ([40.107.1.88]:56293
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726567AbgKMLEH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 06:04:07 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lmyLGwbg4KLPRuk24A8ZmpM9yT5Eelx7LdRfURUJh/oKB1j7IPED80doeCuiyVwY3nBqO/kFUYDD6bwOf0r3JEyFeAY86pLzDDJ8iFPkQjkvWoRez4+DUWPehfLOPxVvlUqzs6XvpH8URHmlx6KL89CD/AerbMazYpRH9+Hv0wjHxhDMZ1T7Js9lNzefprDHysilY/z/gvateyJPACly7WHm4oxqWyq77qCuI2gR2I+dqmgdh7f5FBsg549MJhLZZY2te0s1Z+LjOIRwUxPJwV/7qwYykxCAPqkCrnowNKhi6tPVAMIkvXfObyG1JX3tDKTQnzLJMgoauB4idvplfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V697U2okGgqJToREl1RIHEzPYza0pngjrHq9IalKaZQ=;
+ b=jGO+Xs7eKzM/mKrvpL3eA1UBK1KpQKbSmU7/+OSKCLP8pRxWkqD24fYD9JafDv0X0POmfNlxiSLajlLFSYyFs+XUkzqv+JkXtK8/EayHIeZMjUstKzzNvb+RgWT5ttBRFM1/M8czAMtZV3yFoHDFAivluQMToYkXI0RYklBlvSdJizCOCyX4gRMherYf8trsym9maBnH2sXDr3WSx2E8NS59HMw1Azk28ujz6tQiJu1MjMxIUQt/PxB3lm98dazP6cIPw804oVK5IbOpSWgtU7SYMJT9/r4Kee7eX7xbdpmW47APY8X82oxMyZE0fU+IIex312B3leZssC5Pki5urg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V697U2okGgqJToREl1RIHEzPYza0pngjrHq9IalKaZQ=;
+ b=Z34fNkWKiOAJPcDCCkFEryY1cVqVHTdqg/N4oAS/OXa0eeD9MJv6PJ5rNa3Zz9p/A5CxyDsRW6FLq+qkRa1xaO7xNJcy58463Iujtz2tP0+lnJKej6sQSfbM8e39hNRALuvGjyB1wYF5F3irnU1du32olagxb1Nv5xouwGFQduw=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB7071.eurprd04.prod.outlook.com (2603:10a6:800:128::8)
+ by VE1PR04MB7279.eurprd04.prod.outlook.com (2603:10a6:800:1a5::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Fri, 13 Nov
+ 2020 11:04:02 +0000
+Received: from VI1PR04MB7071.eurprd04.prod.outlook.com
+ ([fe80::1de8:9a84:bb92:f944]) by VI1PR04MB7071.eurprd04.prod.outlook.com
+ ([fe80::1de8:9a84:bb92:f944%7]) with mapi id 15.20.3541.025; Fri, 13 Nov 2020
+ 11:04:02 +0000
+From:   Alice Guo <alice.guo@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        krzk@kernel.org
+Cc:     linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding doc for soc unique ID
+Date:   Fri, 13 Nov 2020 19:04:06 +0800
+Message-Id: <20201113110409.13546-1-alice.guo@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.71]
+X-ClientProxiedBy: AM0PR07CA0018.eurprd07.prod.outlook.com
+ (2603:10a6:208:ac::31) To VI1PR04MB7071.eurprd04.prod.outlook.com
+ (2603:10a6:800:128::8)
 MIME-Version: 1.0
-In-Reply-To: <6687cdd3-6e5b-f3c1-f784-33cc7c0d589a@samsung.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsWy7djP87qB6eviDY5Ns7S4P6+V0WLjjPWs
-        Fte/PGe1mH/kHKvFla/v2Sym793EZjHp/gQWi/PnN7BbbHp8jdXi8q45bBafe48wWsw4v4/J
-        4nbjCjaL1r1H2C0Ov2lntZgx+SWbg4DHplWdbB53ru1h87jffZzJY/OSeo++LasYPT5vkgtg
-        i+KySUnNySxLLdK3S+DKWPh1NXvBT+6K7TPbWBoYj3N2MXJySAiYSMx6vIwFxBYSWMEo8X6/
-        bRcjF5D9hVHi1bsVbBDOZ0aJ5Q/XssB0LL73iREisZxR4ubaJ0wQzntGiVsz3rODVAkLBElM
-        vH+EHSQhIjCTUeLvzp1gLcwC55kkFv68B1bFJmAo0fW2iw3E5hWwk7i2YQpQnIODRUBV4tnF
-        UpCwqECSxPYt21khSgQlTs58AnYGp4C9xMd9fWBxZgF5ie1v5zBD2OISt57MB7tIQmAxp0Tf
-        x19MEHe7SLyas5AVwhaWeHV8CzuELSPxfydMQzOjxMNza9khnB5GictNMxghqqwl7pz7xQZy
-        HbOApsT6XfogpoSAo8TurWYQJp/EjbeCEDfwSUzaNp0ZIswr0dEmBDFDTWLW8XVwWw9euMQ8
-        gVFpFpLPZiH5ZhaSb2YhrF3AyLKKUTy1tDg3PbXYKC+1XK84Mbe4NC9dLzk/dxMjMM2d/nf8
-        yw7G5a8+6h1iZOJgPMQowcGsJMKr7LAmXog3JbGyKrUoP76oNCe1+BCjNAeLkjhv0haglEB6
-        YklqdmpqQWoRTJaJg1OqgYnh2H4baQezqV+unVo9+65F95Lda96+XqS3uffFrn3XN7cIeVyP
-        CtnKr619NuVw9Pm04w0snfe2MNt2MDw9EyXawrPYooWH6WPI3x8xLFMF0rq33HfnkN2pt3jx
-        Za0Eda2lD8OTHNkZJ3E83Mdh3iDDZx++3yk10Vv0aV2KFe9X23kbHd3ljvdaCeStPcD+8OD6
-        ND7GXXvnXnE9t6dQ9Fud2IR3R2zVijeVyG0wy+XWMbpX9WPdvhufVi+IclpdkGbiyRGqdL2n
-        9ePJhKTHD95dZDpo/2H5x42MBTdSov0Pv36XGWMUP/OB3YoDb/3uuU69YTT799+ARN+rMlfV
-        5RrfxnXlucXHcRqtDpu1N0+JpTgj0VCLuag4EQDdZUi44gMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrEIsWRmVeSWpSXmKPExsVy+t/xe7qB6eviDc5e47a4P6+V0WLjjPWs
-        Fte/PGe1mH/kHKvFla/v2Sym793EZjHp/gQWi/PnN7BbbHp8jdXi8q45bBafe48wWsw4v4/J
-        4nbjCjaL1r1H2C0Ov2lntZgx+SWbg4DHplWdbB53ru1h87jffZzJY/OSeo++LasYPT5vkgtg
-        i9KzKcovLUlVyMgvLrFVija0MNIztLTQMzKx1DM0No+1MjJV0rezSUnNySxLLdK3S9DLWPh1
-        NXvBT+6K7TPbWBoYj3N2MXJySAiYSCy+94mxi5GLQ0hgKaPEwTP7WSESMhInpzVA2cISf651
-        sYHYQgJvGSW+P6sFsYUFgiQm3j/CDtIsIjCTUeLq8v9gDrPAeSaJg2/Os0OMXcsksejrZrBR
-        bAKGEl1vIUbxCthJXNswBaiIg4NFQFXi2cVSkLCoQJLEzONn2SFKBCVOznzCAmJzCthLfNzX
-        BzaGWcBMYt7mh8wQtrzE9rdzoGxxiVtP5jNNYBSahaR9FpKWWUhaZiFpWcDIsopRJLW0ODc9
-        t9hIrzgxt7g0L10vOT93EyMwsrcd+7llB+PKVx/1DjEycTAeYpTgYFYS4VV2WBMvxJuSWFmV
-        WpQfX1Sak1p8iNEU6J2JzFKiyfnA1JJXEm9oZmBqaGJmaWBqaWasJM5rcgSoSSA9sSQ1OzW1
-        ILUIpo+Jg1Oqgcn3n9PCom2iqV0SeSE/vnubqCTKzfinbuPweeY3y7qPATJrr990EEyQ7Xr7
-        OfP+b5mqhWKvFWfqMYaq8P1krv3kvHrJShu1C2psrQbdN7ncYh5mNFrXKepenC/6bkfh9Knc
-        y0yM2ldbX1VzUaxX1E65vzp2denDMskDUfvON2ssTv/utfS3woSzVcfNp81dmryJ8ceOuQtn
-        q5f778oyPabuvMk+99EhNVOD4u3L9F5vnyR45p9N9flbrZdPFHLYlVdvjCjaKeqxfY3Duri8
-        8uSqCQWbUtL5k2csb2ZR7bgtVdfpuP22ypVgAY2X8Rz3ephWbFXmPnPO/Iqi3+prSpahov9M
-        eiK7HFd52bbLKLEUZyQaajEXFScCAOQMj1x1AwAA
-X-CMS-MailID: 20201113110033eucas1p1eaa1d1bd8944d8abc509ded03f45aeef
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c
-References: <CGME20201112141041eucas1p1a29130955afd4ec1d5d94cf17183920c@eucas1p1.samsung.com>
-        <20201112140931.31139-1-s.nawrocki@samsung.com>
-        <b0a8e994-06d2-e04a-579c-40580b71f760@linaro.org>
-        <9cb7e3a6-2a3f-8f46-2bf1-d6d8ea01613b@samsung.com>
-        <6687cdd3-6e5b-f3c1-f784-33cc7c0d589a@samsung.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from nxf55104-OptiPlex-7060.ap.freescale.net (119.31.174.71) by AM0PR07CA0018.eurprd07.prod.outlook.com (2603:10a6:208:ac::31) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.15 via Frontend Transport; Fri, 13 Nov 2020 11:03:59 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: d6bd94fe-8034-4b3d-06ce-08d887c3d445
+X-MS-TrafficTypeDiagnostic: VE1PR04MB7279:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB7279F685AA39B8EDE80559DAE2E60@VE1PR04MB7279.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2958;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 0lJGQaVC+0OSDyALDIrbselzri8K/9OL0nGsfTTc2lqIhkbRel3HbCvNuPKBnGcf0WFym9tCKEJYoYGiAai29zDfXRcr4LbpxhEOrZWJ9yAK5KHHRLcfD3tFbde5RZrhPjmdY2zKnFI3DGy9na4vHrJFEraOgUMkIYY+iXsPR5x/q+epyMxHpOlef/zu0izKXWIhpi+PGvkpuPhc8T+zBQsaIXKL4jOF3iAtUXfYyY+66LULgGvbGYj5HkY45ZF0YmntJqMDYduSN51aKW80UF+bA7GZxRDsjkAxB5xjnFozCjkFL1wSBvDjTf6xRNppjFFUs2PfgU5pU8fnPtPSpdx6VPh1eiNBL8cq/RroRTXitDO2A1cb/44scT6hilm+
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB7071.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(366004)(376002)(136003)(39860400002)(66476007)(956004)(478600001)(86362001)(66556008)(6486002)(186003)(16526019)(6512007)(1076003)(66946007)(36756003)(2616005)(2906002)(316002)(44832011)(26005)(8936002)(8676002)(5660300002)(4326008)(52116002)(6506007)(6666004)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: thrO+RLyM5Q0lg0CSuet15QwAT/liZn4RkC6nU2rVV75eoMYXGTLw403VRsnweizb5WvmpXM3UEcJ/ltlhYuze8aFdWXRF4Gacw5BxaF0QursUHE2moHtI1Rz+BPKIMSSXZFEuL38lVg4hGc78YZkcZObuCA+EWBVB35kIOED392WMrxhvIpyn+eORETdvxTJ3vMLjd7cW4X+oRh0Pj1aGL0PrIBqHhnNwisqN7c555Owzoq/psYQ1vJHEmpDO5s0QPYnx3nErHqn/Gf3KNCFyrC8RwiyJ1+7bDYgW9vW++DaRCtFxnJe8C5Ouz7NXfQrFLf4cLe/F088JvvNSyBwhah6Bf6TXDgyi2atdNofObpxVU6t4ugxltvi4WskkeW3GCJw8WrSplrS3/XzG32mAcIDssUmq+/LQQtfUBqTPnrFPxD5zsgc2vt7/L/nM5G51MwpvOFnUoSbD2jQ72ALQzyAJdynVdOjZVO1Q8YnF/73pKsWANSq23JoWbTA23XhUljI69WwK+9bQ4/SdQ+//8/KD+tGutOwqC6mOZm+qvG408x/GvopXZzseZc1CznhHqxcPqR50GuK9fYFDseGXx3yAbhNqdXuHxhnHEvz7vYpVqejNUP9ZC8hlafwWXtFOgf3nv4gjIBet9uJAkhDYQdrVkAIS30+0cjGgffXoQrfsYT6U7r9rhYJPo628syRd8InzAXHdxZDtdla9qbGqOQFtB2bpcJs3o1o+mP5kwFF+davphrufowC+mHNxJE3/F57nSj+TfO3t8iF8QO/hB+CpzddAgUOEkS59x0kpmHHzQN5YTUrdRPXC2JRFnBPKM38m6v6WsQEHH3mZTaPS9QwVW3Lt8mdZ94ijOnx8c/Syq0ldJ/PHkQ2wagsHLpCINmODWv5FanIeGKRgn54A==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6bd94fe-8034-4b3d-06ce-08d887c3d445
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB7071.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2020 11:04:02.6633
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5zXkkP8oN0wv1twoawlfsmaxlC3aAN//1Zp2EL8pzbryZcGya1c+wiPRglMrs0CO2BQJHisnkEmR0w8lv47QAg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7279
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sylwester,
+Add DT Binding doc for the Unique ID of i.MX 8M series.
 
-On 13.11.2020 11:32, Sylwester Nawrocki wrote:
-> On 13.11.2020 10:07, Chanwoo Choi wrote:
->> On 11/13/20 5:48 PM, Georgi Djakov wrote:
->>> On 11/12/20 16:09, Sylwester Nawrocki wrote:
-> [...]
->>> Good work Sylwester! Thank you and all the reviewers! What would be the merge
->>> path for this patchset? Looks like there is no build dependency between patches.
->>> Should i take just patches 2,3 or also patch 1? Chanwoo?
->> Hi Georgi,
->>
->> If you take the patch 2,3, I'll apply patch 1,4 to devfreq.git.
->> Hi Sylwester,
->> First of all, thanks for your work to finish it for a long time.
->> I'm very happy about finishing this work. It is very necessary feature
->> for the QoS. Once again, thank for your work.
-> I would also like to thank everyone for provided feedback!
->
-> As far as building is concerned the patches could be applied in any
-> order. I think we could also apply the drm/exynos patch in same
-> merge window. There could be runtime (or git bisect) regression
-> only in case when INTERCONNECT is enabled and only (or as first)
-> the dts and drm/exynos patches are applied.
->
-> Hmm, maybe it's better to hold on with the drm patch, INTERCONNECT
-> is disabled in arch/arm/configs/{multi_v7_defconfig, exynos_defconfig}
-> but it is enabled in arch/arm64/configs/defconfig.
+Signed-off-by: Alice Guo <alice.guo@nxp.com>
+---
+ .../devicetree/bindings/arm/fsl.yaml          | 25 +++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
-I don't think we need to delay DRM patch. Exynos DRM mixer is not 
-available on ARM64 SoCs, so this won't be an issue.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index e4db0f9ed664..f4faebbb57da 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -901,6 +901,31 @@ properties:
+               - fsl,s32v234-evb           # S32V234-EVB2 Customer Evaluation Board
+           - const: fsl,s32v234
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
++  soc:
++    type: object
++    properties:
++      compatible:
++        oneOf:
++          - description: i.MX8M SoCs
++            items:
++              - enum:
++                  - fsl,imx8mm-soc
++                  - fsl,imx8mn-soc
++                  - fsl,imx8mp-soc
++                  - fsl,imx8mq-soc
++              - const: simple-bus
++
++          - description: Other SoCs
++            items:
++              - const: simple-bus
++
++      nvmem-cells:
++        maxItems: 1
++        description: Phandle to the SOC Unique ID provided by a nvmem node
++
++      nvmem-cells-names:
++        const: soc_unique_id
++
+ additionalProperties: true
+
+ ...
+--
+2.17.1
 
