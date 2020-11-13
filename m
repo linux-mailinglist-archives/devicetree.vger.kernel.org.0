@@ -2,197 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0182B14D1
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 04:46:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26A0D2B14D8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 04:50:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726069AbgKMDq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 22:46:56 -0500
-Received: from mga05.intel.com ([192.55.52.43]:6173 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726011AbgKMDqz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Nov 2020 22:46:55 -0500
-IronPort-SDR: ozH8TAbQxLoNpOwGo5IAFDWg8BV+A+VOQcR+xgkCwLbs7eSOg8w+GOWWzrf0QNEP5ibZPwDzCx
- KA6V9rwGxWlQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9803"; a="255131995"
-X-IronPort-AV: E=Sophos;i="5.77,474,1596524400"; 
-   d="scan'208";a="255131995"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Nov 2020 19:46:53 -0800
-IronPort-SDR: TSpJAJPs47O0Gv8XrS7IA0lrbbqBwWenyPm2ObzikSNe9rG3vMx+4VWG83hktEITKVAmt4tIy3
- 9w8gLGiOrFpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,474,1596524400"; 
-   d="scan'208";a="542507528"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
-  by orsmga005.jf.intel.com with ESMTP; 12 Nov 2020 19:46:53 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 12 Nov 2020 19:46:52 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 12 Nov 2020 19:46:50 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 12 Nov 2020 19:46:50 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.174)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Thu, 12 Nov 2020 19:46:49 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dZlJ9eAxvfyQFBZrkcOLr+/3zF2UfZ56FvXNGUf+yph4OpmdqPvup+b2fsAi7GKrxYd2TK9vM2lORKFqvHhDEIzQ7iHDRC+T9/Ur88TZZV6G7nlXT/jpBbMBp1KGRBp/vRru6h5tljDzPPMi8B1eje8Pjt9kaAeSWB4JSVOL+vemZ4kuQDwa1JZEKbQefqYSrP7k/P3yYozxVD67rrm/XtEeIKqXLBb088y1msk4EHtQCmBHQJ2hHTq90njMklGx22FZkG2/3XV3a4O5L+jdmT50/wP8c+IDwrL3t9nMYiDx6+kVXrW3Jj58RjG9rLNaLEist62z4yDPLJx0OO1cCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SEpXYZGehsNUfGrSeJeCoNFTHimBV0JyAZWGKqWuA5s=;
- b=gqU5OU++F/IBP7GRGXUfmfpUbOTKGdiaU4nRfG+KH/x/R8fsHir6sAVzZHU2xMZ0QRoO37bUbg9QwweAkRbz53BL7x521ujdh1kozaJflXXyfDlcEw36T+aHvlfhi0RLeNVo4fBUnEkzGvkuOLgee65koVrjC88y8UEqwlu1hR918e/FQVTZa4ckkVgVJG+7y3Wha7GI2VjjV36VRJJQWdlUQJuzhpt6U8odX+WnGJsoo3LfgZZpn/VKcMpq5Z8tGc3Sf8ztd/I9IgdKq/91KVe7Xd8RKeCHqO3yaXPy8e204eNf9KsFm8EcShv/z4ccDeQmMJ5UwuIfS3nOfWHPWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SEpXYZGehsNUfGrSeJeCoNFTHimBV0JyAZWGKqWuA5s=;
- b=D3XOUOCuGHIzBVGaObuuGGpdqjzpt70WhtMpqq6/mSlwJBRVN8J2aUGojWPNa9ek2tkJcr/cN4Hzx8Iflh69XGkCRvaYc6L7hcQeeSpjJqWfS2Kn+afvJlZrdGFLovVPI0m508Gj3Q4D/rexcTgtwDbbg3BOCGWDhQzy0G5tgPg=
-Received: from BN8PR11MB3714.namprd11.prod.outlook.com (2603:10b6:408:90::17)
- by BN8PR11MB3715.namprd11.prod.outlook.com (2603:10b6:408:85::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Fri, 13 Nov
- 2020 03:46:48 +0000
-Received: from BN8PR11MB3714.namprd11.prod.outlook.com
- ([fe80::213d:ddad:993c:cd50]) by BN8PR11MB3714.namprd11.prod.outlook.com
- ([fe80::213d:ddad:993c:cd50%7]) with mapi id 15.20.3541.025; Fri, 13 Nov 2020
- 03:46:48 +0000
-From:   "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: RE: [PATCH v3 2/2] phy: intel: Add Keem Bay USB PHY support
-Thread-Topic: [PATCH v3 2/2] phy: intel: Add Keem Bay USB PHY support
-Thread-Index: AQHWuNqoNSM8nZrIJk+7EJr9fv7yMKnEjqOAgADdxgA=
-Date:   Fri, 13 Nov 2020 03:46:48 +0000
-Message-ID: <BN8PR11MB37141DA30718CA4A3243489ADDE60@BN8PR11MB3714.namprd11.prod.outlook.com>
-References: <20201112095821.27110-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201112095821.27110-3-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201112142905.GH4077@smile.fi.intel.com>
-In-Reply-To: <20201112142905.GH4077@smile.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [14.1.225.32]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c0f878ce-c016-4af9-a9ae-08d88786bfaf
-x-ms-traffictypediagnostic: BN8PR11MB3715:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BN8PR11MB3715577D9754DF0646DCA93CDDE60@BN8PR11MB3715.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iyJLX/E07cEsopKLSU+y1V9vRZ4GeiKcsqd6ReKRtQSGJwS4B4iNw/hrrKwV0SMEGZcKgWoJd9WBpiEgetNUd1MAg5iVlxzeqT9o4StngfKarLws+ta8zRmdW4Lp0IREahCzmxW6jnGMCODMohAul0dSPucANJ7Dv3WuCsyxCPFrCuJlNiz9XeurUN0YQmPzl00t0PKRgRpsCb77E80i2u30XRlf9J/zPF6c7d5s8DVxtD/P99MCmSuKCxGdmqng5VB6UrM3WWbuSQaiwqPNSVgRfo8PZku/uoOTh3jBD+GZFbR9hkStvWMbwu+mJ589
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN8PR11MB3714.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(376002)(346002)(396003)(39860400002)(86362001)(478600001)(6916009)(54906003)(66446008)(52536014)(66946007)(66476007)(66556008)(64756008)(316002)(71200400001)(9686003)(8936002)(186003)(76116006)(83380400001)(4326008)(53546011)(55016002)(6506007)(2906002)(8676002)(7696005)(26005)(5660300002)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: IMQG0toAbHzxbqoVHkYEfITS9pcxLQN8ZJwulkOG1dO7LPFa2v7LwIov6Mvn9mQ4hmVDuaZfAI9Z/+LY0+H91lqUXu3eXgoxso1F0OyQK/Qhx3jyh84ntRLRkoBJUTM4fjtntb2w5nr72bn32WDAOZwqfqpIJc/BlPqXJLk2EtdVFJNh8ZnZ4kEHfxpW688k9jSe3/A5Qzo1sSzMmSom7uwZgAo0y5ouWsJ5FY5geMRdlfgN6KaYvH21NONVg4Sv+lWpXFhKsJmq5dK2EYA1ou/ZrKot/pfSgk+1Ss9fJE1Mtx+Hmhc0/tjweF6KV+cLCPPt4VxHpX6/c4m6pGzKw2FV80zFIGlZOpRqKDiFP48DriNPoxNUHQXUSew7uVTi69RT+6IfcVhladMlhAkRDk9JfOC0YkrE8aBzSz44JvA5QSCxBDz0m+JOReTxT9hzvSCRrDELBNIINZkR1RKFUUEZ3hifhoiDjALSS1Td17aQC+YJHkxUidLoUCqQq+LMmf8S6Cu1sA/0e6muvqtekPRr416nibSx/gRlE66R/3jko5wLt0YWvJq85EwwEAyWlM/7KDsS6dWT6Y8DFBUl+bOKi1TCFUYYN1smO3P6kSPexg3XucUpotqWA9atv+D+PnqMAGjKk1X67aITxT8bhvaMC/T9ciyWcCQoXdKugWDs0R7YADTeY0Jz26rIFWeO5MlDyGifxsenRcgFwI3YDQOup9o1daabY5UkB6S1X+92zpVfDFF1vcWGqCNET9b9qRxISicCAz8svCs57+7nk+gbSFxCYVX/x031NJ6BHgfJF+gCubWfrNR97+UU+S+yuMA87n9d0Nnd2dcw5wSLjh9ryJGeqhm/9gCuklANpHVnx6p7QgLBfq/QU0NwP93lib+W6fO6mqw3G5KHvW/HXA==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726054AbgKMDuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 22:50:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42780 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726011AbgKMDuP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 22:50:15 -0500
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A58EC0613D1;
+        Thu, 12 Nov 2020 19:50:05 -0800 (PST)
+Received: by mail-pl1-x644.google.com with SMTP id g11so3890449pll.13;
+        Thu, 12 Nov 2020 19:50:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=gABDaPkcpRWm59XVoAKUWYYqP1oIGF8Ef2Jtd6N0Tyo=;
+        b=G8lEsSAua3HsCmja0zB/zOPY63CO+tQCw94u/xLgqwaasHysJ9oSVuBsJbpMhlTfSD
+         vIv9SSpKtwP4aka7hHCkzIiMQf4m+QvjE1xBAsjMHJU4PVkPI/FoZhsCFtlkeUwmBPBV
+         Vg+hSqIi6e3ubsSixfT/s6A6aRLCvloju3MT/MTx6pBgtdx5d90Zh2HjDCHX7QhICTkD
+         TvyEvXqMCa+YIHj7sR7POk+/xFyRJT9vOsE6OSi0Ae7LOqcWLKKn4ibJHoYf49lL/x+V
+         fAKYZUCxNj6NDvnQufM7y1fT4CN9qLuokxGTYPGGwG3XLJq1YSnXCAFxvIU/NwntErGa
+         NPKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=gABDaPkcpRWm59XVoAKUWYYqP1oIGF8Ef2Jtd6N0Tyo=;
+        b=Zzr3KcnMt9BCa5cM+cDQHo+dwDmmt0Z7dvGAsw+XCk0knSDSQlgLTw+h+kIC58L/u8
+         LtEcWdAVWpDaE5637MQkqgQsNd2VSmwzBrEFKkL8mwHI91Jcz4N41R0IGjxsxbxaUJ6S
+         05l1DWJ5dzVItCS+E/2K0pKB/8EHcUWDxU+UvFFB2V5EqY3KJr/cLizOPb6AhQZkGZY3
+         ztQ4K3p0KczieL1/CC4bSR2dHx3vcrzWMPLYeSgiBn+Q1+0cGq0MRz4sXPW0uSOgLBMo
+         LwY/QC/cT3M6QbA+j4jeCtDpwb9lEVpwlzACEaKVs7MV1hTJjbCAMyB4CU/cyoYQc8cS
+         eudg==
+X-Gm-Message-State: AOAM532quj9/WykCx91/OrKkOgQnQ8t+gx5Qy9ehi2d7+wvRXsiJBLzP
+        0zih3rlW5eaH4erhnjJZcbI=
+X-Google-Smtp-Source: ABdhPJyeyUBA3HpqDRkEW1v2E3CskKpk2vJI03ZCq7IfmMltMuGHtVNmHv5Wpe3R0nSsN9KtVMnelg==
+X-Received: by 2002:a17:902:778e:b029:d8:d024:a9a with SMTP id o14-20020a170902778eb02900d8d0240a9amr525188pll.12.1605239405118;
+        Thu, 12 Nov 2020 19:50:05 -0800 (PST)
+Received: from hoboy.vegasvil.org (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
+        by smtp.gmail.com with ESMTPSA id b5sm8081594pfr.193.2020.11.12.19.50.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Nov 2020 19:50:04 -0800 (PST)
+Date:   Thu, 12 Nov 2020 19:50:01 -0800
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Christian Eggers <ceggers@arri.de>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 10/11] net: dsa: microchip: ksz9477: add
+ Pulse Per Second (PPS) support
+Message-ID: <20201113035001.GD32138@hoboy.vegasvil.org>
+References: <20201112153537.22383-1-ceggers@arri.de>
+ <20201112153537.22383-11-ceggers@arri.de>
+ <20201113025311.jpkplhmacjz6lkc5@skbuf>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR11MB3714.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0f878ce-c016-4af9-a9ae-08d88786bfaf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2020 03:46:48.3193
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6XrTpvrcIWnYN9xwqwjPYE+VGsmFNw32JUMjPbG+KHUQZQcw/AxV4ub2ydPwZ5MeOhTU34fY7b4EUEVcDZ8eLdW2O4RV+jXXdH+vCIX7fauZhegCSS2m2Fxn6gRMLlnQ
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR11MB3715
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201113025311.jpkplhmacjz6lkc5@skbuf>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy.
+On Fri, Nov 13, 2020 at 04:53:11AM +0200, Vladimir Oltean wrote:
 
-> -----Original Message-----
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Sent: Thursday, November 12, 2020 10:29 PM
-> To: Wan Mohamad, Wan Ahmad Zainie
-> <wan.ahmad.zainie.wan.mohamad@intel.com>
-> Cc: kishon@ti.com; vkoul@kernel.org; robh+dt@kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> mgross@linux.intel.com; Raja Subramanian, Lakshmi Bai
-> <lakshmi.bai.raja.subramanian@intel.com>
-> Subject: Re: [PATCH v3 2/2] phy: intel: Add Keem Bay USB PHY support
->=20
-> On Thu, Nov 12, 2020 at 05:58:21PM +0800, Wan Ahmad Zainie wrote:
-> > Add support for USB PHY on Intel Keem Bay SoC.
->=20
-> Any elaboration here? What is this PHY (USB2 or USB3 or?.. etc)?
+> Richard, do you think we can clarify the intended usage of PTP_CLK_REQ_PPS
+> in the documentation? It doesn't appear to be written anywhere that
+> PTP_ENABLE_PPS is supposed to enable event generation for the drivers/pps
+> subsystem. You would sort of have to know before you could find out...
 
-Yes, I can elaborate this.
+Yes, please!
 
->=20
-> ...
->=20
-> > +config PHY_INTEL_KEEMBAY_USB
-> > +	tristate "Intel Keem Bay USB PHY driver"
->=20
-> > +	depends on ARCH_KEEMBAY || (ARM64 && COMPILE_TEST)
->=20
-> It seems other drivers that are not using ARM specific calls moved to
->=20
-> 	depends on ARCH_KEEMBAY || COMPILE_TEST
+The poor naming is a source of eternal confusion.  I think that the
+"hard pps" thing from NTP is not used very often, maybe never, but I
+didn't know that when I first drafted the whole PHC subsystem.
 
-I will fix in v4.
+Naturally developers of PHC device drivers think that this the PPS
+that they need to implement.  After all, the name matches!
 
->=20
-> > +	depends on HAS_IOMEM
-> > +	select GENERIC_PHY
-> > +	select REGMAP_MMIO
->=20
-> ...
->=20
-> > +#define USS_CPR_MASK		0x7f
->=20
-> GENMASK() ?
+(Actually, at the time I thought that this would be the way to
+synchronize the system clock to the PHC, but it turned out that
+Miroslav's generic method in phc2sys worked very well, and so the hard
+pps thing has little, if any, practical value.)
 
-I will fix in v4.
+The documentation is vague, yes, but I think even more important
+would be to remove the word PPS from the C-language identifiers.
 
->=20
-> ...
->=20
-> > +static const struct regmap_config keembay_regmap_config =3D {
-> > +	.reg_bits =3D 32,
-> > +	.val_bits =3D 32,
-> > +	.reg_stride =3D 4,
->=20
-> .max_register?
+I'm open to suggestions/patches on this...
 
-It is optional. But yes, I can add,
-.max_register =3D USS_USB_TIEOFFS_CONSTANTS_REG1
+Thanks,
+Richard
 
->=20
-> > +};
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
->=20
-
-Best regards,
-Zainie
