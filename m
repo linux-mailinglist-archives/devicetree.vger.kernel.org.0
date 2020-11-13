@@ -2,313 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E06CB2B269C
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 22:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B85D2B26EC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 22:32:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbgKMV1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 16:27:15 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:46283 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726319AbgKMV1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 16:27:13 -0500
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 98D0AC0004;
-        Fri, 13 Nov 2020 21:27:08 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH 9/9] ARM: dts: at91: remove deprecated ADC properties
-Date:   Fri, 13 Nov 2020 22:26:50 +0100
-Message-Id: <20201113212650.507680-10-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201113212650.507680-1-alexandre.belloni@bootlin.com>
-References: <20201113212650.507680-1-alexandre.belloni@bootlin.com>
+        id S1726614AbgKMVcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 16:32:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41272 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726272AbgKMVbt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 16:31:49 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9B36C061A53;
+        Fri, 13 Nov 2020 13:26:02 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id f23so15779053ejk.2;
+        Fri, 13 Nov 2020 13:26:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ca9jI3WBHA+/Ty95XDYoEtrO0wget0Oxdf5ElgxLhug=;
+        b=fZh7KoKS2atoIFT0y2rd4MnnMI13enyasI10QqACQokr98ijcqfgqEM5edQzmjbtrX
+         gJpySCE2Pkr5eCffkZsrcQUqhpGISkGNBe6UH1nsFMIyXjpGjQaVep38L8swuL+BaJTH
+         PxWROEENn/eHOp/UwiVOCQ9AfFuGhahAqGj5QHYsOXH9z8dG/7O+g3B5MJ60+v3FvvAU
+         NOPjLhVpQcTvMA2Edza93VxMoTSAp1AQwC3sRIy2lKU73mfBmGPQejOSQbbxSNB6JpV+
+         FHF9t+Jj6QYs7NEdGKhy87omRc3OMNVTEfeYS9TqTGHNR94wh+zq+CDNxM8Nc3LZTNDC
+         C3+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ca9jI3WBHA+/Ty95XDYoEtrO0wget0Oxdf5ElgxLhug=;
+        b=pBCBPPCl0LA4Q5yW5B/b10IvOt5pV0lJ8Os0REnpwnoQZkK5NEMN3CI50PHqP1OgXQ
+         1/1lS2fOcNA9I9IYpJBE2mZp7xRaofiIIOM6qhgJPnwgBURCoeJbrD9C2xmlL27Bkl5k
+         rqwtg7RF5+TfhrI78BW4jG53wk02cFY3XoMczmHWLkKwbugqmqt9quhU3vLNEhzI+EhQ
+         eQfE8/nCCXXRMVMMjioKVVCaSS+wTbpxHVk6yiwoKTbpiG2/gcYGY7jxlvlZ11/S51rx
+         7/nN3HWzQMQ4ByFOvSoivRNiGGDp5/chN1+4KqoLk3KDx6W6hdEBhgsBbOsnDQuDShhj
+         2x5A==
+X-Gm-Message-State: AOAM533OJ9o3gsp4sKt+1pjko3PSfYR8ft4lWElvCdDYZu5/haEXuiJ7
+        2HiI8zAmICCKyeGFPwcBQYU=
+X-Google-Smtp-Source: ABdhPJy256G87YyI19iLZjFO6fnuv4W3i4Cn0dtml90jNPUFVUY2p+VFQWnllYCUNK5OPIwt9PNEEA==
+X-Received: by 2002:a17:907:4302:: with SMTP id nh2mr3778126ejb.451.1605302761549;
+        Fri, 13 Nov 2020 13:26:01 -0800 (PST)
+Received: from adroid (165-170-184-091.ip-addr.vsenet.de. [91.184.170.165])
+        by smtp.gmail.com with ESMTPSA id j7sm4678200ejk.14.2020.11.13.13.26.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Nov 2020 13:26:00 -0800 (PST)
+From:   =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
+To:     linux-samsung-soc@vger.kernel.org
+Cc:     kgene@kernel.org, krzk@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 0/5] add exynos4412-based p4note device family support
+Date:   Fri, 13 Nov 2020 22:25:21 +0100
+Message-Id: <20201113212525.13455-1-martin.juecker@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-atmel,adc-res, atmel,adc-res-names and the trigger nodes are not parsed by
-the driver anymore and the information is now defined in the driver data.
+Hello,
 
-Also remove the leftover #address-cells and #size-cells that were used when
-the trigger nodes had a unit-address.
+after lots of research and trial and error, this is my first
+contribution to the linux kernel.
 
-Finally, the default is already to use the highest resoution. Remove
-atmel,adc-use-res from the SoC dtsi.
+These patches lay the foundation for supporting the Samsung Galaxy
+Note 10.1 device family. To the best of my knowledge there are around
+16 devices which use almost identical hardware inside with exceptions
+being the modem and one of the sensors. The first instance which I'm
+currently testing on is the N8010 which is the wifi only version that
+is identical to the N8013. There are some missing components still,
+but it's a start.
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- arch/arm/boot/dts/at91sam9260.dtsi | 25 -------------------------
- arch/arm/boot/dts/at91sam9g45.dtsi | 27 ---------------------------
- arch/arm/boot/dts/at91sam9rl.dtsi  | 25 -------------------------
- arch/arm/boot/dts/at91sam9x5.dtsi  | 28 ----------------------------
- arch/arm/boot/dts/sama5d3.dtsi     | 22 ----------------------
- arch/arm/boot/dts/sama5d4.dtsi     | 22 ----------------------
- 6 files changed, 149 deletions(-)
+v1:
+https://lore.kernel.org/linux-samsung-soc/20201024144421.34435-1-martin.juecker@gmail.com/
 
-diff --git a/arch/arm/boot/dts/at91sam9260.dtsi b/arch/arm/boot/dts/at91sam9260.dtsi
-index 82c5d7fd9811..019f1c3d4d30 100644
---- a/arch/arm/boot/dts/at91sam9260.dtsi
-+++ b/arch/arm/boot/dts/at91sam9260.dtsi
-@@ -697,8 +697,6 @@ spi1: spi@fffcc000 {
- 			};
- 
- 			adc0: adc@fffe0000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9260-adc";
- 				reg = <0xfffe0000 0x100>;
- 				interrupts = <5 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -708,29 +706,6 @@ adc0: adc@fffe0000 {
- 				atmel,adc-channels-used = <0xf>;
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <15>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "timer-counter-0";
--					trigger-value = <0x1>;
--				};
--				trigger1 {
--					trigger-name = "timer-counter-1";
--					trigger-value = <0x3>;
--				};
--
--				trigger2 {
--					trigger-name = "timer-counter-2";
--					trigger-value = <0x5>;
--				};
--
--				trigger3 {
--					trigger-name = "external";
--					trigger-value = <0xd>;
--					trigger-external;
--				};
- 			};
- 
- 			rtc@fffffd20 {
-diff --git a/arch/arm/boot/dts/at91sam9g45.dtsi b/arch/arm/boot/dts/at91sam9g45.dtsi
-index 19fc748a87c5..2ab730fd6472 100644
---- a/arch/arm/boot/dts/at91sam9g45.dtsi
-+++ b/arch/arm/boot/dts/at91sam9g45.dtsi
-@@ -812,8 +812,6 @@ ac97: sound@fffac000 {
- 			};
- 
- 			adc0: adc@fffb0000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9g45-adc";
- 				reg = <0xfffb0000 0x100>;
- 				interrupts = <20 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -822,31 +820,6 @@ adc0: adc@fffb0000 {
- 				atmel,adc-channels-used = <0xff>;
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <40>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			isi@fffb4000 {
-diff --git a/arch/arm/boot/dts/at91sam9rl.dtsi b/arch/arm/boot/dts/at91sam9rl.dtsi
-index 5653e70c84b4..730d1182c73e 100644
---- a/arch/arm/boot/dts/at91sam9rl.dtsi
-+++ b/arch/arm/boot/dts/at91sam9rl.dtsi
-@@ -266,8 +266,6 @@ spi0: spi@fffcc000 {
- 			};
- 
- 			adc0: adc@fffd0000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9rl-adc";
- 				reg = <0xfffd0000 0x100>;
- 				interrupts = <20 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -277,29 +275,6 @@ adc0: adc@fffd0000 {
- 				atmel,adc-channels-used = <0x3f>;
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <40>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "timer-counter-0";
--					trigger-value = <0x1>;
--				};
--				trigger1 {
--					trigger-name = "timer-counter-1";
--					trigger-value = <0x3>;
--				};
--
--				trigger2 {
--					trigger-name = "timer-counter-2";
--					trigger-value = <0x5>;
--				};
--
--				trigger3 {
--					trigger-name = "external";
--					trigger-value = <0x13>;
--					trigger-external;
--				};
- 			};
- 
- 			usb0: gadget@fffd4000 {
-diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
-index 4cdb05079cc7..395e883644cd 100644
---- a/arch/arm/boot/dts/at91sam9x5.dtsi
-+++ b/arch/arm/boot/dts/at91sam9x5.dtsi
-@@ -795,8 +795,6 @@ uart1: serial@f8044000 {
- 			};
- 
- 			adc0: adc@f804c000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9x5-adc";
- 				reg = <0xf804c000 0x100>;
- 				interrupts = <19 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -808,32 +806,6 @@ adc0: adc@f804c000 {
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <40>;
- 				atmel,adc-sample-hold-time = <11>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			spi0: spi@f0000000 {
-diff --git a/arch/arm/boot/dts/sama5d3.dtsi b/arch/arm/boot/dts/sama5d3.dtsi
-index e0807b723533..7c979652f330 100644
---- a/arch/arm/boot/dts/sama5d3.dtsi
-+++ b/arch/arm/boot/dts/sama5d3.dtsi
-@@ -305,8 +305,6 @@ ssc1: ssc@f800c000 {
- 			};
- 
- 			adc0: adc@f8018000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,sama5d3-adc";
- 				reg = <0xf8018000 0x100>;
- 				interrupts = <29 IRQ_TYPE_LEVEL_HIGH 5>;
-@@ -335,26 +333,6 @@ &pinctrl_adc0_ad11
- 				atmel,adc-vref = <3000>;
- 				atmel,adc-sample-hold-time = <11>;
- 				status = "disabled";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			i2c2: i2c@f801c000 {
-diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-index 04f24cf752d3..05c55875835d 100644
---- a/arch/arm/boot/dts/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/sama5d4.dtsi
-@@ -661,31 +661,9 @@ adc0: adc@fc034000 {
- 				atmel,adc-startup-time = <40>;
- 				atmel,adc-use-external-triggers;
- 				atmel,adc-vref = <3000>;
--				atmel,adc-res = <8 10>;
- 				atmel,adc-sample-hold-time = <11>;
--				atmel,adc-res-names = "lowres", "highres";
- 				atmel,adc-ts-pressure-threshold = <10000>;
- 				status = "disabled";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			aes@fc044000 {
--- 
-2.28.0
+v2:
+https://lore.kernel.org/linux-samsung-soc/20201031175836.47745-1-martin.juecker@gmail.com/
+
+Changes in v3:
+- copyright changed
+- indentation fix
+
+Changes in v2:
+- lots of label adjustments, some removed
+- unused ehci node removed
+- unused serials removed
+- compatible string is now samsung,n8010 instead of samsung,n801x
+- removed unused imports
+- voltage regulator name for TSP changed to match vendor kernel
+- i2c numbering starting from 1 now
+- two missing gpio configurations added
+- added vdd supply to adc node
+- added all regulators to max77686 node
+- pinctrl configs sorted by pin name
+
+
+Cheers
+Martin
+
 
