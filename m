@@ -2,396 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB32D2B15B3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 06:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A40E52B15BC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 07:04:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726112AbgKMF7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 00:59:43 -0500
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:8932 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726134AbgKMF7n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 00:59:43 -0500
-Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0AD5XGR4152877;
-        Fri, 13 Nov 2020 00:59:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references; s=pp1;
- bh=5Qoh3+6oKLP9ngIFcGlu7n7Zalvqm+05EZPZ0EuALXk=;
- b=s9yXP6qxWfhP/dXb99St1Ufe6iCu0E9hQtvhqYfgGgoGUYFcXc9JMm9uXnV0MD575bcC
- 8aza2jQm29gp/0l/sRcNCNGSnR2pix/W66X3DgdgM7XH0VF84epQ6FKNOZIhjLri48Ix
- diNThzNPlAdN9WNcHDhEBqj1rEu3cdz09O/x21StpebmR2wE4k05aHJom0TsXqkadmU9
- OX4pSUU7wLvlKEHgk2qrrysdrcVpbTRvZpoS+SVwQm63cyaYmvrRQX/hj2h/AhQbkCfx
- 7GgceKGoOHvDRQoGQhLsMXvgq9EKYihZbvbWREWNzWT7XGh5EjtN72XP3cS8TZBE1ned fQ== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 34sm060hbj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 13 Nov 2020 00:59:38 -0500
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 0AD5vUmq022862;
-        Fri, 13 Nov 2020 05:59:37 GMT
-Received: from b01cxnp23032.gho.pok.ibm.com (b01cxnp23032.gho.pok.ibm.com [9.57.198.27])
-        by ppma03dal.us.ibm.com with ESMTP id 34nk7acm4y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 13 Nov 2020 05:59:37 +0000
-Received: from b01ledav005.gho.pok.ibm.com (b01ledav005.gho.pok.ibm.com [9.57.199.110])
-        by b01cxnp23032.gho.pok.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 0AD5xbCQ4588176
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 13 Nov 2020 05:59:37 GMT
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id EC3B2AE060;
-        Fri, 13 Nov 2020 05:59:36 +0000 (GMT)
-Received: from b01ledav005.gho.pok.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id C7A1EAE05C;
-        Fri, 13 Nov 2020 05:59:36 +0000 (GMT)
-Received: from gfw170.aus.stglabs.ibm.com (unknown [9.3.62.224])
-        by b01ledav005.gho.pok.ibm.com (Postfix) with ESMTP;
-        Fri, 13 Nov 2020 05:59:36 +0000 (GMT)
-Received: by gfw170.aus.stglabs.ibm.com (Postfix, from userid 298080)
-        id 8559B152; Thu, 12 Nov 2020 23:59:36 -0600 (CST)
-From:   Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
-To:     joel@jms.id.au, linux-aspeed@lists.ozlabs.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org
-Cc:     vishwa@linux.vnet.ibm.com
-Subject: [PATCH 6/6] ARM: dts: aspeed: rainier: Add leds that are on optional PCI cable cards
-Date:   Thu, 12 Nov 2020 23:59:28 -0600
-Message-Id: <1605247168-1028-6-git-send-email-vishwa@linux.vnet.ibm.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com>
-References: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-13_03:2020-11-12,2020-11-13 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- lowpriorityscore=0 spamscore=0 priorityscore=1501 clxscore=1015
- impostorscore=0 mlxlogscore=999 malwarescore=0 adultscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011130032
+        id S1726037AbgKMGEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 01:04:40 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:7286 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725971AbgKMGEk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 01:04:40 -0500
+X-UUID: 89d45e2cf6ad43ddb87e062b94636365-20201113
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Ir233lDJkicbZtH4igG3ioOgvXcy46PlSo6Vzwnmbug=;
+        b=Uf8jZkK0iOE13tH+FOTbW/47iUDPIpFZGRrA/L9Pt0HlBZ3vBhIu9B51H63OuSMAKNS3F/PQ9p6ZvDPZDYNplg57NSOFIT7cjrF9Lxm8Dt3YSKdegKlWslgwIW/8XqsRxjIedrB85CvcJ+naUaYWJQC6HTWAeNt4MrZ+WA/1+lE=;
+X-UUID: 89d45e2cf6ad43ddb87e062b94636365-20201113
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 43766245; Fri, 13 Nov 2020 14:04:23 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N1.mediatek.inc
+ (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 13 Nov
+ 2020 14:04:20 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 13 Nov 2020 14:04:19 +0800
+Message-ID: <1605247459.31607.23.camel@mhfsdcap03>
+Subject: Re: [PATCH v4 01/18] dt-bindings: usb: usb-hcd: Detach generic USB
+ controller properties
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+CC:     Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Date:   Fri, 13 Nov 2020 14:04:19 +0800
+In-Reply-To: <20201111090853.14112-2-Sergey.Semin@baikalelectronics.ru>
+References: <20201111090853.14112-1-Sergey.Semin@baikalelectronics.ru>
+         <20201111090853.14112-2-Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 35256F855D28B8E9938E1E871FD37442AB0633F28C0BB20F747BFD0A0256B7812000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These are LEDs on the cable cards that plug into PCIE slots.
-The LEDs are controlled by PCA9552 I2C expander
-
-Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
----
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 288 +++++++++++++++++++++++++++
- 1 file changed, 288 insertions(+)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-index 67c8c40..7de5f76 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-@@ -696,6 +696,70 @@
- 			gpios = <&pca4 7 GPIO_ACTIVE_LOW>;
- 		};
- 	};
-+
-+	leds-optional-cablecard0 {
-+		compatible = "gpio-leds";
-+
-+		cablecard0-cxp-top {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca5 0 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		cablecard0-cxp-bot {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca5 1 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds-optional-cablecard3 {
-+		compatible = "gpio-leds";
-+
-+		cablecard3-cxp-top {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca6 0 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		cablecard3-cxp-bot {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca6 1 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds-optional-cablecard4 {
-+		compatible = "gpio-leds";
-+
-+		cablecard4-cxp-top {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca7 0 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		cablecard4-cxp-bot {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca7 1 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	leds-optional-cablecard10 {
-+		compatible = "gpio-leds";
-+
-+		cablecard10-cxp-top {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca8 0 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		cablecard10-cxp-bot {
-+			retain-state-shutdown;
-+			default-state = "keep";
-+			gpios = <&pca8 1 GPIO_ACTIVE_LOW>;
-+		};
-+	};
- };
- 
- &ehci1 {
-@@ -1212,6 +1276,180 @@
- 		compatible = "atmel,24c64";
- 		reg = <0x52>;
- 	};
-+
-+	pca5: pca9551@60 {
-+		compatible = "nxp,pca9551";
-+		reg = <0x60>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@4 {
-+			reg = <4>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@5 {
-+			reg = <5>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@6 {
-+			reg = <6>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@7 {
-+			reg = <7>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+
-+	tmp275@48 {
-+		compatible = "ti,tmp275";
-+		reg = <0x48>;
-+	};
-+
-+	tmp275@49 {
-+		compatible = "ti,tmp275";
-+		reg = <0x49>;
-+	};
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c64";
-+		reg = <0x50>;
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c64";
-+		reg = <0x51>;
-+	};
-+
-+	pca6: pca9551@60 {
-+		compatible = "nxp,pca9551";
-+		reg = <0x60>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@4 {
-+			reg = <4>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@5 {
-+			reg = <5>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@6 {
-+			reg = <6>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@7 {
-+			reg = <7>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
-+
-+	pca7: pca9551@61 {
-+		compatible = "nxp,pca9551";
-+		reg = <0x61>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@4 {
-+			reg = <4>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@5 {
-+			reg = <5>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@6 {
-+			reg = <6>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@7 {
-+			reg = <7>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
- };
- 
- &i2c5 {
-@@ -2028,6 +2266,56 @@
- 		compatible = "atmel,24c64";
- 		reg = <0x51>;
- 	};
-+
-+	pca8: pca9551@60 {
-+		compatible = "nxp,pca9551";
-+		reg = <0x60>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		gpio@0 {
-+			reg = <0>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@1 {
-+			reg = <1>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@2 {
-+			reg = <2>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@3 {
-+			reg = <3>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@4 {
-+			reg = <4>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@5 {
-+			reg = <5>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@6 {
-+			reg = <6>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+
-+		gpio@7 {
-+			reg = <7>;
-+			type = <PCA955X_TYPE_GPIO>;
-+		};
-+	};
- };
- 
- &i2c12 {
--- 
-1.8.3.1
+T24gV2VkLCAyMDIwLTExLTExIGF0IDEyOjA4ICswMzAwLCBTZXJnZSBTZW1pbiB3cm90ZToNCj4g
+VGhlcmUgY2FuIGJlIHRocmVlIGRpc3RpbmN0aXZlIHR5cGVzIG9mIHRoZSBVU0IgY29udHJvbGxl
+cnM6IFVTQiBob3N0cywNCj4gVVNCIHBlcmlwaGVyYWxzL2dhZGdldHMgYW5kIFVTQiBPVEcsIHdo
+aWNoIGNhbiBzd2l0Y2ggZnJvbSBvbmUgcm9sZSB0bw0KPiBhbm90aGVyLiBJbiBvcmRlciB0byBo
+YXZlIHRoYXQgaGllcmFyY2h5IGhhbmRsZWQgaW4gdGhlIERUIGJpbmRpbmcgZmlsZXMsDQo+IHdl
+IG5lZWQgdG8gY29sbGVjdCBjb21tb24gcHJvcGVydGllcyBpbiBhIGNvbW1vbiBEVCBzY2hlbWEg
+YW5kIHNwZWNpZmljDQo+IHByb3BlcnRpZXMgaW4gZGVkaWNhdGVkIHNjaGVtYXMuIFNlZWluZyB0
+aGUgdXNiLWhjZC55YW1sIERUIHNjaGVtYSBpcw0KPiBkZWRpY2F0ZWQgZm9yIHRoZSBVU0IgaG9z
+dCBjb250cm9sbGVycyBvbmx5LCBsZXQncyBtb3ZlIHNvbWUgY29tbW9uDQo+IHByb3BlcnRpZXMg
+ZnJvbSB0aGVyZSBpbnRvIHRoZSB1c2IueWFtbCBzY2hlbWEuIFNvIHRoZSBsYXRlciB3b3VsZCBi
+ZQ0KPiBhdmFpbGFibGUgdG8gZXZhbHVhdGUgYWxsIGN1cnJlbnRseSBzdXBwb3J0ZWQgdHlwZXMg
+b2YgdGhlIFVTQg0KPiBjb250cm9sbGVycy4NCj4gDQo+IFdoaWxlIGF0IGl0IGFkZCBhbiBleHBs
+aWNpdCAiYWRkaXRpb25hbFByb3BlcnRpZXM6IHRydWUiIGludG8gdGhlDQo+IHVzYi1oY2QueWFt
+bCBhcyBzZXR0aW5nIHRoZSBhZGRpdGlvbmFsUHJvcGVydGllcy91bmV2YWx1YXRlUHJvcGVydGll
+cw0KPiBwcm9wZXJ0aWVzIGlzIGdvaW5nIHRvIGJlIGdldCBtYW5kYXRvcnkgc29vbi4NCj4gDQo+
+IFNpZ25lZC1vZmYtYnk6IFNlcmdlIFNlbWluIDxTZXJnZXkuU2VtaW5AYmFpa2FsZWxlY3Ryb25p
+Y3MucnU+DQo+IA0KPiAtLS0NCj4gDQo+IENoYW5nZWxvZyB2NDoNCj4gLSBUaGlzIGlzIGEgbmV3
+IHBhdGNoIGNyZWF0ZWQgYXMgYSByZXN1bHQgb2YgdGhlIGNvbW1lbnQgbGVmdA0KPiAgIGJ5IENo
+dW5mZW5nIFl1biBpbiB2Mw0KPiAtLS0NCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91
+c2ItaGNkLnlhbWwgICAgICB8IDE0ICsrLS0tLS0tLQ0KPiAgLi4uL2RldmljZXRyZWUvYmluZGlu
+Z3MvdXNiL3VzYi55YW1sICAgICAgICAgIHwgMjkgKysrKysrKysrKysrKysrKysrKw0KPiAgMiBm
+aWxlcyBjaGFuZ2VkLCAzMiBpbnNlcnRpb25zKCspLCAxMSBkZWxldGlvbnMoLSkNCj4gIGNyZWF0
+ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL3VzYi55
+YW1sDQo+IA0KPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L3VzYi91c2ItaGNkLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNi
+L3VzYi1oY2QueWFtbA0KPiBpbmRleCA3MjYzYjdmMmI1MTAuLjgxZjNhZDE0MTlkOCAxMDA2NDQN
+Cj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2ItaGNkLnlh
+bWwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi91c2ItaGNk
+LnlhbWwNCj4gQEAgLTksMTggKzksMTAgQEAgdGl0bGU6IEdlbmVyaWMgVVNCIEhvc3QgQ29udHJv
+bGxlciBEZXZpY2UgVHJlZSBCaW5kaW5ncw0KPiAgbWFpbnRhaW5lcnM6DQo+ICAgIC0gR3JlZyBL
+cm9haC1IYXJ0bWFuIDxncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZz4NCj4gIA0KPiAtcHJvcGVy
+dGllczoNCj4gLSAgJG5vZGVuYW1lOg0KPiAtICAgIHBhdHRlcm46ICJedXNiKEAuKik/Ig0KPiAr
+YWxsT2Y6DQo+ICsgIC0gJHJlZjogdXNiLnlhbWwjDQo+ICANCj4gLSAgcGh5czoNCj4gLSAgICAk
+cmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9waGFuZGxlLWFycmF5DQo+IC0g
+ICAgZGVzY3JpcHRpb246DQo+IC0gICAgICBMaXN0IG9mIGFsbCB0aGUgVVNCIFBIWXMgb24gdGhp
+cyBIQ0QNCj4gLQ0KPiAtICBwaHktbmFtZXM6DQo+IC0gICAgZGVzY3JpcHRpb246DQo+IC0gICAg
+ICBOYW1lIHNwZWNpZmllciBmb3IgdGhlIFVTQiBQSFkNCj4gK2FkZGl0aW9uYWxQcm9wZXJ0aWVz
+OiB0cnVlDQpUaGlzIHNlZW1zIGFscmVhZHkgYWRkZWQgYnkgdGhlIGFwcGxpZWQgcGF0Y2ggNmEw
+ZTMyMWVhNzM1ICJkdC1iaW5kaW5nczoNCkV4cGxpY2l0bHkgYWxsb3cgYWRkaXRpb25hbCBwcm9w
+ZXJ0aWVzIGluIGNvbW1vbiBzY2hlbWFzIg0KDQo+ICANCj4gIGV4YW1wbGVzOg0KPiAgICAtIHwN
+Cj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvdXNi
+LnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL3VzYi55YW1sDQo+
+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMC4uOTQxYWQ1OWZiYWM1
+DQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL3VzYi91c2IueWFtbA0KPiBAQCAtMCwwICsxLDI5IEBADQo+ICsjIFNQRFgtTGljZW5zZS1J
+ZGVudGlmaWVyOiBHUEwtMi4wDQo+ICslWUFNTCAxLjINCj4gKy0tLQ0KPiArJGlkOiBodHRwOi8v
+ZGV2aWNldHJlZS5vcmcvc2NoZW1hcy91c2IvdXNiLnlhbWwjDQo+ICskc2NoZW1hOiBodHRwOi8v
+ZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gKw0KPiArdGl0bGU6IEdl
+bmVyaWMgVVNCIENvbnRyb2xsZXIgRGV2aWNlIFRyZWUgQmluZGluZ3MNCj4gKw0KPiArbWFpbnRh
+aW5lcnM6DQo+ICsgIC0gR3JlZyBLcm9haC1IYXJ0bWFuIDxncmVna2hAbGludXhmb3VuZGF0aW9u
+Lm9yZz4NCj4gKw0KPiArc2VsZWN0OiBmYWxzZQ0KPiArDQo+ICtwcm9wZXJ0aWVzOg0KPiArICAk
+bm9kZW5hbWU6DQo+ICsgICAgcGF0dGVybjogIl51c2IoQC4qKT8iDQo+ICsNCj4gKyAgcGh5czoN
+Cj4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9waGFuZGxlLWFy
+cmF5DQo+ICsgICAgZGVzY3JpcHRpb246DQo+ICsgICAgICBMaXN0IG9mIGFsbCB0aGUgVVNCIFBI
+WXMgb24gdGhpcyBIQ0QNCj4gKw0KPiArICBwaHktbmFtZXM6DQo+ICsgICAgZGVzY3JpcHRpb246
+DQo+ICsgICAgICBOYW1lIHNwZWNpZmllciBmb3IgdGhlIFVTQiBQSFkNCj4gKw0KPiArYWRkaXRp
+b25hbFByb3BlcnRpZXM6IHRydWUNCj4gKw0KPiArLi4uDQoNCg==
 
