@@ -2,119 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C032B1EA6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:29:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C27B72B1EA7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:29:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbgKMP3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 10:29:03 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:45873 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726278AbgKMP3C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 10:29:02 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id CDDDC5804E5;
-        Fri, 13 Nov 2020 10:29:01 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:29:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:content-type:mime-version
-        :content-transfer-encoding; s=fm1; bh=7Zmgsv4bn6m3O58vV2b3+wNJJw
-        TAQp+Lmd3f32mWRH4=; b=WRPfIfSHGU3sAl1UCiB9Aa75i4yfD2u10zYRTYeRvF
-        fCwWwGiWM6xYxRSbFNhySqG4W5ItSVQBzgI2e62eyoU7K+0tQKyeuFXcvVNrFu6X
-        jfuqjZPiKHU9NjUHK0W2+zVk4Cg6hVeR5cXpwPpmBTBGp0tlizMYhPRZNm4r/mJA
-        hNLbbKvg/UUfDzS4FasWpvzgmvwOZNBTMFZFgpuz4j6dVmimjhYFZAypdslmIanl
-        gGt/AvChh8FqEeIuSSlCWIqb7xK5+jbl59xkvNBGfaL9QCvbzSakAJaq8CR447BC
-        R9sAALqQ7iNQNRIgYmUVN6scj3X7pd7dEVvANHDCXETA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:message-id:mime-version:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=7Zmgsv
-        4bn6m3O58vV2b3+wNJJwTAQp+Lmd3f32mWRH4=; b=GsQS8GfFe9tTtDUOvyR8j1
-        CUl73cMBGvjtsyGxZXOPLNWpe8yWBLTFInxb7Q15/C0Eu4kwOXRW91gg6VQzDh/d
-        bqpt5ezxpYaceEkMRNMYcU+CyBse7sUHR3QwwBg14FrSFHuG7VIDGhR33ztmaHhN
-        Qt3/NbgisTxb31kpmT0aMyVBav3PmyiM+uFnfV+5vOEyf5fqzGjUpUbh/8Vnq4kP
-        +28rTYXS88M/XemrJF+fnuB8nxIyVt39B+0s4uuWQ0LHQt1Uiqjm69AAJ9pZHW0c
-        yMrBSBRwGMdocpSvAFBVzMVAJRZ2VE0osFE6Nq6IRzFYUGKKFRcRYa1fDzNlGeCA
-        ==
-X-ME-Sender: <xms:PaauX_ynIF1AXkZWYi8onJZduqoYyJxOdfCk9koLRAiRc3NAoYw38A>
-    <xme:PaauX3QKGqpZ-tVSCoQBn3Gtruaw5HEdOh40TeK4hZ3shOvHDxo7vKGjYtT9YnrzT
-    7JawkDuXCEfXJUx3Ho>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvhedgjeeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffotggggfesthhqredtredtjeenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeetieekgfffkeegkeeltdehudetteejgfekueevhffhteegudfgkedtueegfffg
-    feenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:PaauX5UDywQ6NThDLcN6QC_H2wWq7fC0nJi1gCkKtfzh-krURrANXQ>
-    <xmx:PaauX5jQ5zcx0t8Kbc8fZRdpLP9EAwJw4ZuNJ00MabZSjmBfmt5i1A>
-    <xmx:PaauXxAlgGvGJkR-qNpXTQgTLXvVMVb9yGKkAO9Sc8Qy_etIxIyiqQ>
-    <xmx:PaauX5ZWnq8AsQ4tEY4EOmZ8vgvQFxsBF4354ZrK_YDlQXDeCdzvSg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 401313064AB4;
-        Fri, 13 Nov 2020 10:29:01 -0500 (EST)
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Maxime Ripard <maxime@cerno.tech>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: [PATCH 0/8] vc4: Convert to drm_atomic_helper_commit
-Date:   Fri, 13 Nov 2020 16:28:51 +0100
-Message-Id: <20201113152859.139335-1-maxime@cerno.tech>
+        id S1726606AbgKMP3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 10:29:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726278AbgKMP3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 10:29:06 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD43C0613D1
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 07:29:06 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <afa@pengutronix.de>)
+        id 1kdb0V-0005ZU-Sx; Fri, 13 Nov 2020 16:28:59 +0100
+Received: from afa by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <afa@pengutronix.de>)
+        id 1kdb0V-0000zk-2g; Fri, 13 Nov 2020 16:28:59 +0100
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH] ARM: dts: imx6qdl: specify vcc-supply for NOP USB PHYs
+Date:   Fri, 13 Nov 2020 16:28:55 +0100
+Message-Id: <20201113152856.3758-1-a.fatoum@pengutronix.de>
 X-Mailer: git-send-email 2.28.0
-Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: afa@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,=0D
-=0D
-Here's a conversion of vc4 to remove the hand-rolled atomic_commit helper f=
-rom=0D
-vc4 in favour of the generic one.=0D
-=0D
-This requires some rework of vc4, but also a new hook and some documentatio=
-n=0D
-for corner-cases in the DRM core that have been reported and explained by=0D
-Daniel recently.=0D
-=0D
-Let me know what you think,=0D
-Maxime=0D
-=0D
-Maxime Ripard (8):=0D
-  drm: Introduce an atomic_commit_setup function=0D
-  drm: Document use-after-free gotcha with private objects=0D
-  drm/vc4: kms: Move HVS state helpers around=0D
-  drm/vc4: kms: Simplify a bit the private obj state hooks=0D
-  drm/vc4: Simplify a bit the global atomic_check=0D
-  drm/vc4: kms: Wait on previous FIFO users before a commit=0D
-  drm/vc4: kms: Remove async modeset semaphore=0D
-  drm/vc4: kms: Convert to atomic helpers=0D
-=0D
- drivers/gpu/drm/drm_atomic_helper.c      |   6 +=0D
- drivers/gpu/drm/vc4/vc4_crtc.c           |  13 --=0D
- drivers/gpu/drm/vc4/vc4_drv.h            |   2 -=0D
- drivers/gpu/drm/vc4/vc4_kms.c            | 269 +++++++++++------------=0D
- include/drm/drm_atomic.h                 |  18 ++=0D
- include/drm/drm_modeset_helper_vtables.h |  18 ++=0D
- 6 files changed, 173 insertions(+), 153 deletions(-)=0D
-=0D
--- =0D
-2.28.0=0D
-=0D
+The SoC dtsi lists a NOP USB PHY for each of the two HSIC-only USB
+controllers. Their device tree node doesn't indicate a vcc-supply
+resulting in:
+
+  usb_phy_generic usbphynop1: supply vcc not found, using dummy regulator
+  usb_phy_generic usbphynop2: supply vcc not found, using dummy regulator
+
+warnings on boot up. The USB IP vcc-supply - separate from the vusb - is
+hardwired to LDO_2P5[1], which we already have a device tree node for.
+Reference it for the dummy "phy" as well.
+
+This will lead to breakage (probe deferment) for kernels that:
+  - Use a HSIC USB controller
+  - Use this new device tree
+  - but have CONFIG_REGULATOR_ANATOP disabled
+
+Because while the regulator is always-on, it can't be resolved when
+there is no driver for it.
+
+As there are
+
+  - no affected upstream device trees
+  - existing device trees are unaffected without recompilation
+  - disabling CONFIG_REGULATOR_ANATOP is explicitly a non-recommended
+    configuration per symbol help text
+
+this potential breakage is deemed acceptable.
+
+[1]: i.MX 6Dual/6Quad Reference Manual, Rev. C,
+     Figure 53-1. Power System Overview
+
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+---
+ arch/arm/boot/dts/imx6qdl.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+index 43edbf1156c7..22e4c142de13 100644
+--- a/arch/arm/boot/dts/imx6qdl.dtsi
++++ b/arch/arm/boot/dts/imx6qdl.dtsi
+@@ -131,11 +131,13 @@ pmu: pmu {
+ 
+ 	usbphynop1: usbphynop1 {
+ 		compatible = "usb-nop-xceiv";
++		vcc-supply = <&reg_vdd2p5>;
+ 		#phy-cells = <0>;
+ 	};
+ 
+ 	usbphynop2: usbphynop2 {
+ 		compatible = "usb-nop-xceiv";
++		vcc-supply = <&reg_vdd2p5>;
+ 		#phy-cells = <0>;
+ 	};
+ 
+-- 
+2.28.0
+
