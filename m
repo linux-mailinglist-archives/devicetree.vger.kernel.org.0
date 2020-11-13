@@ -2,119 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC3D2B165A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 08:25:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CA252B165B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 08:25:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbgKMHZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 02:25:04 -0500
-Received: from cable.insite.cz ([84.242.75.189]:36789 "EHLO cable.insite.cz"
+        id S1726272AbgKMHZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 02:25:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43876 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726298AbgKMHZE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 02:25:04 -0500
-X-Greylist: delayed 358 seconds by postgrey-1.27 at vger.kernel.org; Fri, 13 Nov 2020 02:25:02 EST
-Received: from localhost (localhost [127.0.0.1])
-        by cable.insite.cz (Postfix) with ESMTP id D722EA95CEB3B;
-        Fri, 13 Nov 2020 08:18:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
-        t=1605251933; bh=jqHIgBW38VyYlMJdSn0D9x9hP7tKzWCGLqTKs+HZ+mU=;
-        h=From:Subject:To:Date:From;
-        b=cxVLoX1XvbtjJBvdsoySsp1lH2rKtEmEJgF6zl36prE8zu78ZKhawvmQ7msKIcXag
-         cwgNcLDL6DM5lq2gVnD/SVnB70Z/tZOxp1jfpC8+WiQ1M2gTStgnaSVNIWvPelfYf5
-         tMtPIbXt4xRGdG40OfacO6ueVZAF89dqxHGPrOdA=
-Received: from cable.insite.cz ([84.242.75.189])
-        by localhost (server.insite.cz [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 2I7Atbo5DQLv; Fri, 13 Nov 2020 08:18:48 +0100 (CET)
-Received: from [192.168.105.22] (ip28.insite.cz [81.0.237.28])
-        (Authenticated sender: pavel)
-        by cable.insite.cz (Postfix) with ESMTPSA id 41C55A95CEB37;
-        Fri, 13 Nov 2020 08:18:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
-        t=1605251928; bh=jqHIgBW38VyYlMJdSn0D9x9hP7tKzWCGLqTKs+HZ+mU=;
-        h=From:Subject:To:Date:From;
-        b=dIJxEwMI5JyTYt6O5LHsglRyRXoJnhLL1ZLO2FaYbLty5r1AbXxW5zLVjveuhis6y
-         4++1il8ilYSQ9tV23uNmApuIOZ0LyqmXt70SZgMN9CSZ5tdJUdMjw0rygj34MTpZxh
-         VVlK1cBD/Cw4d23Ium2bzATa+HVmxu6AwfnhGWvo=
-From:   Pavel Hofman <pavel.hofman@ivitera.com>
-Subject: [PATCH] ARM: dts: bcm283x: increase dwc2's RX FIFO size
-To:     Minas Harutyunyan <hminas@synopsys.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org
-Message-ID: <e9e7d070-593c-122f-3a5c-2435bb147ab2@ivitera.com>
-Date:   Fri, 13 Nov 2020 08:18:47 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726133AbgKMHZq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 02:25:46 -0500
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 27CDC20797;
+        Fri, 13 Nov 2020 07:25:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605252345;
+        bh=fyFpUkmXI+91nudOGLPsLDWf4nslbcl2UmwUnjAtWFI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Ao88GgYvL//H9ysQ6kM/seqVeaRDnZM2euh5tSokcvAk9dC8lo6dIhMXzCB3uKE+F
+         rsn0ARIUSV4eg94M5yVD4XX8L8iMZdDkzOELlx0NEg22mxvfAGza2lTWYLE0dxD+ry
+         YXsahSspGW91VegzwFgSi7UxJvEGhDYPNMc8V9rY=
+Received: by mail-ej1-f46.google.com with SMTP id cw8so11861265ejb.8;
+        Thu, 12 Nov 2020 23:25:45 -0800 (PST)
+X-Gm-Message-State: AOAM530x5rGmAF07OC/RF19wrrpVmlQd2rABwOPgFKppbBrOlWHNdOzM
+        dYEYpBxOUHu1Wkd21Ki4+/Et82Lpd9dQgb3nxIA=
+X-Google-Smtp-Source: ABdhPJyuf/IEWcY2xcADRIotc8slqeZFRlQp07bGOyY/9HllRFvbQq3cMOXR/Ypc9RrYDYYh1g0MSLSIFDxtiRyAfIo=
+X-Received: by 2002:a17:906:5618:: with SMTP id f24mr669714ejq.381.1605252343758;
+ Thu, 12 Nov 2020 23:25:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-2
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <CGME20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7>
+ <20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7>
+In-Reply-To: <20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 13 Nov 2020 08:25:32 +0100
+X-Gmail-Original-Message-ID: <CAJKOXPePgqWQpJjOeJ9U0jcNG7et6heAid2HnrPeWTDKXLUgjA@mail.gmail.com>
+Message-ID: <CAJKOXPePgqWQpJjOeJ9U0jcNG7et6heAid2HnrPeWTDKXLUgjA@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/2] nfc: s3fwrn82: Add driver for Samsung
+ S3FWRN82 NFC Chip
+To:     bongsu.jeon@samsung.com
+Cc:     "kuba@kernel.org" <kuba@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The previous version of the dwc2 overlay set the RX FIFO size to
-256 4-byte words. This is not enough for 1024 bytes of the largest
-isochronous high speed packet allowed, because it doesn't take into
-account extra space needed by dwc2.
+On Fri, 13 Nov 2020 at 06:09, Bongsu Jeon <bongsu.jeon@samsung.com> wrote:
+>
+>
+> Add driver for Samsung S3FWRN82 NFC controller.
+> S3FWRN82 is using NCI protocol and I2C communication interface.
+>
+> Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
+> ---
+>  drivers/nfc/Kconfig             |   1 +
+>  drivers/nfc/Makefile            |   1 +
+>  drivers/nfc/s3fwrn82/Kconfig    |  15 ++
+>  drivers/nfc/s3fwrn82/Makefile   |  10 ++
+>  drivers/nfc/s3fwrn82/core.c     | 133 +++++++++++++++
+>  drivers/nfc/s3fwrn82/i2c.c      | 288 ++++++++++++++++++++++++++++++++
+>  drivers/nfc/s3fwrn82/s3fwrn82.h |  86 ++++++++++
+>  7 files changed, 534 insertions(+)
+>  create mode 100644 drivers/nfc/s3fwrn82/Kconfig
+>  create mode 100644 drivers/nfc/s3fwrn82/Makefile
+>  create mode 100644 drivers/nfc/s3fwrn82/core.c
+>  create mode 100644 drivers/nfc/s3fwrn82/i2c.c
+>  create mode 100644 drivers/nfc/s3fwrn82/s3fwrn82.h
 
-RX FIFO's size is calculated based on the following (in 4byte words):
-- 13 locations for SETUP packets
-  5*n + 8 for Slave and Buffer DMA mode where n is number of control
-  endpoints which is 1 on the bcm283x core
+No, this is a copy of existing s3fwrn5.
 
-- 1 location for Global OUT NAK
+Please do not add drivers which are duplicating existing ones but
+instead work on extending them.
 
-- 2 * 257 locations for status information and the received packet.
-  Typically two spaces are recommended so that when the previous packet
-  is being transferred to AHB, the USB can receive the subsequent
-  packet.
-
-- 10 * 1 location for transfer complete status for last packet of each
-  endpoint. The bcm283x core has 5 IN and 5 OUT EPs
-
-- 10 * 1 additional location for EPDisable status for each endpoint
-
-- 5 * 2 additional locations are recommended for each OUT endpoint
-
-Total is 558 locations.
-
-Signed-off-by: Phil Elwell <phil@raspberrypi.com>
-Signed-off-by: Pavel Hofman <pavel.hofman@ivitera.com>
----
- arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi        | 2 +-
- arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
-b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
-index e2fd961..20322de 100644
---- a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
-+++ b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- &usb {
- 	dr_mode = "otg";
--	g-rx-fifo-size = <256>;
-+	g-rx-fifo-size = <558>;
- 	g-np-tx-fifo-size = <32>;
- 	/*
- 	 * According to dwc2 the sum of all device EP
-diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
-b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
-index 0ff0e9e..1409d1b 100644
---- a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
-+++ b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- &usb {
- 	dr_mode = "peripheral";
--	g-rx-fifo-size = <256>;
-+	g-rx-fifo-size = <558>;
- 	g-np-tx-fifo-size = <32>;
- 	g-tx-fifo-size = <256 256 512 512 512 768 768>;
- };
--- 
-1.9.1
-
-
+Best regards,
+Krzysztof
