@@ -2,93 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5907C2B18B6
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 11:01:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 579FD2B18C7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 11:09:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726260AbgKMKBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 05:01:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
+        id S1726374AbgKMKJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 05:09:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726222AbgKMKBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 05:01:36 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BC5C0613D1
-        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 02:01:36 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id h62so7839158wme.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 02:01:36 -0800 (PST)
+        with ESMTP id S1726229AbgKMKJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 05:09:28 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D295C0613D1
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 02:09:28 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id j205so12990660lfj.6
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 02:09:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=w58OruVFvZaEir64Cdqc3z6Um6BYdUEMJpA4uLf04rE=;
-        b=DhgvozdTuMFbf2Qq/nw/6CMQwter5OmfvHU5SrkR8Zd+FmWEAiosRsxbL1oCrSSdHL
-         NurkTyKSchUdEaDOyFzYdO4ac4Ffz1rwLzqPggC1xSDBM5UuZi+AuMBmYaTvJ65kbvVy
-         Ceex/4hlFwEE7giOTQaOQZ54fPxsEKMQvOkDr9xWLOv6OzpRnizfvS/xK8zT5MJVe+jD
-         lhnY+wGKKEfGBSMdMqT7Ytr5wMh3hihthMnEyg3zXPTl5CHd6vKV0TJ+HibPA0zF9yy2
-         OP5qivPSwAQ79GQ1syWd6fcXbofFgkHHEUbZG2RWQCj0BMcGEhB/7eCRALVPJrWHkYVP
-         qcTg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ktK27syoyYYOv8v3fpidm75zqVS6DjeR6Wl39IUeYHY=;
+        b=jdj2OtHKkQfJl516LTMhhMJCUeBXhb6ggix2AiCTsWsOLqC1DYg58ECcaWDYH6E9d4
+         YTDoxZMKhNnN4fafKFat3BvP++9/Rc+0zwgVSDLgYdmONOPGJBDSkwTBTIwKFFmS62n9
+         V6dPmUshxR5VznLadXFINEDuZl6Cku5W7ypBvtyHqKTtrNdQ13zG7DEgFABjtMCzr4n1
+         TEdSh76/iA4ZQtStUGdoPEVUb+DjbwVVkuq3JUE/7E3RddqwIsAupCZbTfY7dgTOEqaj
+         TJOaUohYN+afXjB2WQel53z6W3wMR2CcLW6WxsjpiBd5l7IsVT33GUPyR/i9bWzxxxCa
+         F6OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=w58OruVFvZaEir64Cdqc3z6Um6BYdUEMJpA4uLf04rE=;
-        b=RJhmmyJV3maZ3mW7C9QIGRlZ/cXVGOJv/arXbeM5qColN7ut4xo7sueHCv3qBBUM1j
-         Sb91FHxQWEnV6uxMXF+X4QsBtPubMbg8oPIB3lJi8SBY8I08Q7Lae6onVw3YPvxJjbZ5
-         SbL2rQ7dvKvC9E5pVzQ/dXnfxvpD3+AsZxvilIknfji3QY2juYODlG7do2HJHT5tPm6Y
-         1jYCLYKuPHlFduuEgZcylzFQyJ6CjD92E8zCn5qKn4bocCESiOSvARImBLhkM6/o9Rcc
-         K2XgPy2w9cgtALQUEH0RAPwl0DavHhirebM8GWgHG+5Hd5B1AVIo6CWreA7H9IvdlJ+l
-         mv/g==
-X-Gm-Message-State: AOAM531K4fGnqnGOWFWYKiilQWQq3XAK1/ZaPCfbxIIMJ1hUeEzR+y5H
-        kX+qqAQGDdexES9tCUACI22fOg==
-X-Google-Smtp-Source: ABdhPJzo16ZjEH7/M3EW3rY6dkx98RWlSc6fx09X9y+orOylikrKX+LjaU2uwv15YxH0B+m9zJwB7g==
-X-Received: by 2002:a1c:97:: with SMTP id 145mr1659512wma.72.1605261695451;
-        Fri, 13 Nov 2020 02:01:35 -0800 (PST)
-Received: from dell ([91.110.221.159])
-        by smtp.gmail.com with ESMTPSA id p3sm4150911wrs.50.2020.11.13.02.01.34
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ktK27syoyYYOv8v3fpidm75zqVS6DjeR6Wl39IUeYHY=;
+        b=CI0TqYCIHtM/aO0N3iSPE3tm1/vLhizk2OjyzWirH8g5+Padm7L36AHUcKEAtRSOh/
+         XTjpcfHiK9Vk0L66Vbu+9tbLZq9CGbR3wtroTTtM2B/bghLo/6gUQ2h1seW/6G6QxYsV
+         0RP5PZv4bM4lQ9iT2rejPkglHste6OBuP1EiXUPcy3SMFbAbWR2EnycQmB7lDKyXJCyo
+         Ex+Q24cU4483QAxKmwORVO4K4aglIEp6BFKiqcEyA422/0cgU/3Zar+MphxRzZbfEpw6
+         cJP/QlIejlzi6lEsxt2PzOZHUzvjlmuwVqJdOzfd/eOuwmxK4AbJjMhDLQn+H9KYa9Ik
+         eyqA==
+X-Gm-Message-State: AOAM530huB2NgsJkESXvvrHbJcQuSWrKy51h8IMrwja/Xwy1Xbe9AJ7g
+        M8iy/xUqR/CFD0CFYO/NayY=
+X-Google-Smtp-Source: ABdhPJyEez4v6yuHLl41+vMI6jAPe7nATn9Cf44aAZefxx5s1p7PieE5e3XfRvh06ShVHhaGhiJWzA==
+X-Received: by 2002:a19:b46:: with SMTP id 67mr525676lfl.488.1605262166906;
+        Fri, 13 Nov 2020 02:09:26 -0800 (PST)
+Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.gmail.com with ESMTPSA id x20sm1518193lff.200.2020.11.13.02.09.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2020 02:01:34 -0800 (PST)
-Date:   Fri, 13 Nov 2020 10:01:33 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     heiko@sntech.de, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/5] dt-binding: mfd: syscon: add Rockchip QoS
- register compatibles
-Message-ID: <20201113100133.GB3718728@dell>
-References: <20201107170103.25608-1-jbx6244@gmail.com>
+        Fri, 13 Nov 2020 02:09:26 -0800 (PST)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: Disable USB 3 PHY on devices without USB 3
+Date:   Fri, 13 Nov 2020 11:09:19 +0100
+Message-Id: <20201113100919.25609-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201107170103.25608-1-jbx6244@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 07 Nov 2020, Johan Jonker wrote:
+From: Rafał Miłecki <rafal@milecki.pl>
 
-> With the conversion of syscon.yaml minItems for compatibles
-> was set to 2. Current Rockchip dtsi files only use "syscon" for
-> QoS registers. Add Rockchip QoS compatibles to reduce notifications
-> produced with:
-> 
-> make ARCH=arm dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/syscon.yaml
-> 
-> make ARCH=arm64 dtbs_check
-> DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/syscon.yaml
-> 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+It seems pointless to have it enabled.
 
-Applied, thanks.
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts       | 4 ----
+ arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts       | 4 ----
+ arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts | 4 ----
+ arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts      | 4 ----
+ arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts      | 4 ----
+ arch/arm/boot/dts/bcm47081-tplink-archer-c5-v2.dts | 4 ----
+ 6 files changed, 24 deletions(-)
 
+diff --git a/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts b/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
+index 810fc32f1895..7f07b78c1ac3 100644
+--- a/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
++++ b/arch/arm/boot/dts/bcm4708-luxul-xap-1510.dts
+@@ -57,10 +57,6 @@ &spi_nor {
+ 	status = "okay";
+ };
+ 
+-&usb3_phy {
+-	status = "okay";
+-};
+-
+ &srab {
+ 	status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+index 7604b4480bb1..548faa0c44c8 100644
+--- a/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
++++ b/arch/arm/boot/dts/bcm4708-luxul-xwc-1000.dts
+@@ -64,10 +64,6 @@ &spi_nor {
+ 	status = "okay";
+ };
+ 
+-&usb3_phy {
+-	status = "okay";
+-};
+-
+ &srab {
+ 	status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts b/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts
+index 4dcec6865469..2f2d2b0a6893 100644
+--- a/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts
++++ b/arch/arm/boot/dts/bcm47081-buffalo-wzr-600dhp2.dts
+@@ -117,7 +117,3 @@ eject {
+ 		};
+ 	};
+ };
+-
+-&usb3_phy {
+-	status = "okay";
+-};
+diff --git a/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts b/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
+index 1ec655809e57..944e81cab338 100644
+--- a/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
++++ b/arch/arm/boot/dts/bcm47081-luxul-xap-1410.dts
+@@ -57,10 +57,6 @@ &spi_nor {
+ 	status = "okay";
+ };
+ 
+-&usb3_phy {
+-	status = "okay";
+-};
+-
+ &srab {
+ 	status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts b/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
+index 04bfd58127fc..d1ae7dc10775 100644
+--- a/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
++++ b/arch/arm/boot/dts/bcm47081-luxul-xwr-1200.dts
+@@ -105,10 +105,6 @@ &spi_nor {
+ 	status = "okay";
+ };
+ 
+-&usb3_phy {
+-	status = "okay";
+-};
+-
+ &srab {
+ 	status = "okay";
+ 
+diff --git a/arch/arm/boot/dts/bcm47081-tplink-archer-c5-v2.dts b/arch/arm/boot/dts/bcm47081-tplink-archer-c5-v2.dts
+index 01c390ed48ea..12e34a0439b4 100644
+--- a/arch/arm/boot/dts/bcm47081-tplink-archer-c5-v2.dts
++++ b/arch/arm/boot/dts/bcm47081-tplink-archer-c5-v2.dts
+@@ -126,7 +126,3 @@ nvram@ff0000 {
+ &usb2 {
+ 	vcc-gpio = <&chipcommon 9 GPIO_ACTIVE_HIGH>;
+ };
+-
+-&usb3_phy {
+-	status = "okay";
+-};
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.27.0
+
