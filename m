@@ -2,109 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3E7F2B23E8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 19:40:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 520302B2421
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 19:58:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726094AbgKMSkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 13:40:25 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57510 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726116AbgKMSkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 13:40:25 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ADIeLH6056023;
-        Fri, 13 Nov 2020 12:40:21 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605292821;
-        bh=65UFRQeYElHDRkzVjdvoo314CxPOa/467VA1i7mcb40=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=eH+KktJSQAHJb6XkWc7ipRKxZWz3vTE17QmNDQsRomN5HGKBHm6nR4suBK7nogbz4
-         Kl7dImz5SvgVSfP3r1T9sK7RnB4bGgzWg7GWQzOY3paWFtF+ViFd/LIXycAoJ9yHw0
-         7JuyeOC23/UHcNA2SfKwlirnghRvcSdvEWlmua78=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ADIeL3R008484
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 13 Nov 2020 12:40:21 -0600
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 13
- Nov 2020 12:40:20 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 13 Nov 2020 12:40:20 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ADIeKM3066194;
-        Fri, 13 Nov 2020 12:40:20 -0600
-Date:   Fri, 13 Nov 2020 12:40:20 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Sekhar Nori <nsekhar@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-CC:     Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <t-kristo@ti.com>,
-        <robh+dt@kernel.org>, Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j7200-main: Add gpio nodes in
- main domain
-Message-ID: <20201113184020.drntugqsnj7dzsnh@ultimatum>
-References: <20201102191120.20380-1-faiz_abbas@ti.com>
- <20201102191120.20380-2-faiz_abbas@ti.com>
- <20201112163953.soia5cje4ry42ujf@kahuna>
- <6ce6de4b-6e4d-1d2d-aa7a-570d1796d668@ti.com>
+        id S1726301AbgKMS6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 13:58:20 -0500
+Received: from mailout04.rmx.de ([94.199.90.94]:36384 "EHLO mailout04.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725967AbgKMS6U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 13:58:20 -0500
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout04.rmx.de (Postfix) with ESMTPS id 4CXnmR5LG2z3qy9M;
+        Fri, 13 Nov 2020 19:58:15 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4CXnmC0c7wz2TRmB;
+        Fri, 13 Nov 2020 19:58:03 +0100 (CET)
+Received: from n95hx1g2.localnet (192.168.54.24) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 13 Nov
+ 2020 19:57:01 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>
+CC:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        "Richard Cochran" <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Vivien Didelot" <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 05/11] dt-bindings: net: dsa: microchip,ksz: add interrupt property
+Date:   Fri, 13 Nov 2020 19:57:00 +0100
+Message-ID: <13390157.M6Fu2mDLuP@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <20201112230732.5spb6qgsu3zdtq4d@skbuf>
+References: <20201112153537.22383-1-ceggers@arri.de> <20201112153537.22383-6-ceggers@arri.de> <20201112230732.5spb6qgsu3zdtq4d@skbuf>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <6ce6de4b-6e4d-1d2d-aa7a-570d1796d668@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Originating-IP: [192.168.54.24]
+X-RMX-ID: 20201113-195803-4CXnmC0c7wz2TRmB-0@kdin02
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23:59-20201113, Sekhar Nori wrote:
-[..]
-> > dtbs_check: we added:
-> > arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@600000: Missing #address-cells in interrupt provider
-> > arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@610000: Missing #address-cells in interrupt provider
-> > arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@620000: Missing #address-cells in interrupt provider
-> > arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@630000: Missing #address-cells in interrupt provider
+On Friday, 13 November 2020, 00:07:32 CET, Vladimir Oltean wrote:
+> On Thu, Nov 12, 2020 at 04:35:31PM +0100, Christian Eggers wrote:
+> > The devices have an optional interrupt line.
+> > 
+> > Signed-off-by: Christian Eggers <ceggers@arri.de>
+> > ---
+> > 
+> >  .../devicetree/bindings/net/dsa/microchip,ksz.yaml        | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml index
+> > 431ca5c498a8..b2613d6c97cf 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
+> > 
+...
+> > +            interrupt-parent = <&gpio5>;
+> > +            interrupts = <1 IRQ_TYPE_LEVEL_LOW>;  /* INTRP_N line */
 > 
-> Hmm, running dtbs_check, I did not really see this. These are all the
-> warnings I see for TI platforms: https://pastebin.ubuntu.com/p/m2my62mjQq/
-
-Here is the full list of checks I ran through with kernel_patch_verify
-(docker)
-	https://pastebin.ubuntu.com/p/tcnWw89CMD/
-
-See lines 128 onwards for this series. kernel_patch_verify does'nt
-complain on existing warnings, but just prints when there are additional
-ones added in. Also make sure we have the right dtc as well
-dtc 1.6.0 and dt_schema 2020.8.1 was used.
-
+> Isn't it preferable to use this syntax?
 > 
-> The tree I am testing is linux-next of 12th Nov + these three patches
-> applied.
-> 
-> Also, #address-cells for interrupt provider being compulsory does not
-> make full sense to me. Nothing in
-> Documentation/devicetree/bindings/interrupt-controller/interrupts.txt or
-> Documentation/devicetree/bindings/gpio/gpio-davinci.txt suggests that as
-> well.
-> 
-> Existing GPIO nodes for AM654 or J721E does not have #address-cells as well.
-> 
-> Adding Grygorii as well, in case he knows more about this.
+> 		interrupts-extended = <&gpio5 1 IRQ_TYPE_LEVEL_LOW>;  /* INTRP_N line */
+
+After reading Documentation/devicetree/bindings/interrupt-controller/interrupts.txt,
+I would say that "interrupts-extended" is more flexible as it allows different
+interrupt parents for the case there is more than one interrupt line. Although
+there is only one line on the KSZ, I will change this.
 
 
-Yes - we need to have this conversation in the community :) I had
-tagged this internally already during the 5.10 merge cycle that we
-need to clean up the #address-cells warning and in some cases, maybe
-the bindings are probably not accurate to attempt an enforcement.
-I'd really like a conclusion on the topic as I recollect Lokesh and
-Grygorii had a debate internally, but reached no conclusion, lets get
-the wisdom of the community to help us here.
 
-[1] https://github.com/nmenon/kernel_patch_verify/blob/master/kpv
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
