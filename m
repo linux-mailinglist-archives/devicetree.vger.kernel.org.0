@@ -2,92 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EFD72B25BA
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 21:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB09B2B25D6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 21:50:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726092AbgKMUob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 15:44:31 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:33298 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725866AbgKMUob (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 15:44:31 -0500
-Received: by mail-oo1-f66.google.com with SMTP id f8so2477576oou.0;
-        Fri, 13 Nov 2020 12:44:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=ME8CGuVzeaEeQ0eJUKBVltCEd/6H1KvgQeaVHs+oC8c=;
-        b=meiiByNBgnzNRshqaojvVA3EMcekfmRO09Q/jtrR1MUPlYOG8YTWVMrY1d7M/FXNKM
-         +/QxEgZBwcKvQevqCDz/za7nm8Pa6PZXRHM1lcmClCtqKP5gr1jympu0GGaphp97jKnq
-         qCvpqkuKZ9cQkbXaL9hmKcw+zyM1nXxDPovxwsyQiQQe03SzVu3UfJB/d4VlcDUMBJtB
-         6XMKbQ/0kT5LY1AxjOSYmQCFtzyxs63/ctfO07u4sJdAiS+BuMXUiNrST6Nkrxb/oddb
-         RkypUBWXznFXyAbLcvrSR8uHP+JdkF7Z5sKwEv5iOuZXYaIfywuG0p9AaqMIa2QdtBWH
-         cxJg==
-X-Gm-Message-State: AOAM531yJXs9X3brbbALz4ZizEAFRAKZXnNqqbCRVosi0WPPcb1x5TZH
-        d5jlE64pbdtUq4Sz7JWniA==
-X-Google-Smtp-Source: ABdhPJzdJ9U1xJiS6M6L33cDAMgPWChWT3qJ/Y/ZHNieOa5v3/JDjtc+KwtaNrx/jb/iZbwS9RnSEg==
-X-Received: by 2002:a4a:a217:: with SMTP id m23mr2927488ool.26.1605300270775;
-        Fri, 13 Nov 2020 12:44:30 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z10sm2304305otp.0.2020.11.13.12.44.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2020 12:44:30 -0800 (PST)
-Received: (nullmailer pid 1963767 invoked by uid 1000);
-        Fri, 13 Nov 2020 20:44:29 -0000
-Date:   Fri, 13 Nov 2020 14:44:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        id S1726494AbgKMUuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 15:50:11 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59222 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726485AbgKMUuL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 15:50:11 -0500
+Subject: Re: [GIT PULL] Devicetree fixes for v5.10, take 2
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605300610;
+        bh=fdF2yG1ds9qe9i+luGPXKKO/VqEIjnhldEkMekEFvEI=;
+        h=From:In-Reply-To:References:Date:To:Cc:From;
+        b=CTQv1AXWYYrsLBWLVojqq2SnSkttl9y7K7Jhl528jR4ucJ/L6NxjwJKqnJHR9J98X
+         ThaMrnR33P+P6TiNy3O7OmkQQfYc6lxV3BAV9SWsjmraD6ttO8N/WwosCQXQEqaKTj
+         CAhEvqyrYd3Rx7ZvBA3MaSGET4r1yuunFi8++v3o=
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <20201113204429.GA1955280@bogus>
+References: <20201113204429.GA1955280@bogus>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20201113204429.GA1955280@bogus>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.10-2
+X-PR-Tracked-Commit-Id: bdac39a3bd28891fb0ded91c9152459c57773462
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 9e6a39eae450b81c8b2c8cbbfbdf8218e9b40c81
+Message-Id: <160530061039.27782.5555020989606855620.pr-tracker-bot@kernel.org>
+Date:   Fri, 13 Nov 2020 20:50:10 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Frank Rowand <frowand.list@gmail.com>,
         Marc Kleine-Budde <mkl@pengutronix.de>
-Subject: [GIT PULL] Devicetree fixes for v5.10, take 2
-Message-ID: <20201113204429.GA1955280@bogus>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+The pull request you sent on Fri, 13 Nov 2020 14:44:29 -0600:
 
-Please pull DT fixes. The 3 flexcan related commits haven't been in 
-linux-next, but then neither was the 5.11 material that went in for rc3 
-and broke things. :(
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.10-2
 
-Rob
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/9e6a39eae450b81c8b2c8cbbfbdf8218e9b40c81
 
+Thank you!
 
-The following changes since commit f8394f232b1eab649ce2df5c5f15b0e528c92091:
-
-  Linux 5.10-rc3 (2020-11-08 16:10:16 -0800)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.10-2
-
-for you to fetch changes up to bdac39a3bd28891fb0ded91c9152459c57773462:
-
-  dt-bindings: clock: imx5: fix example (2020-11-13 08:49:59 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.10, take 2:
-
-- Fix Flexcan binding schema errors introduced in rc3
-
-- Fix an of_node ref counting error in of_dma_is_coherent
-
-----------------------------------------------------------------
-Evan Nimmo (1):
-      of/address: Fix of_node memory leak in of_dma_is_coherent
-
-Marc Kleine-Budde (3):
-      dt-bindings: can: fsl,flexcan.yaml: fix fsl,stop-mode
-      dt-bindings: can: fsl,flexcan.yaml: fix compatible for i.MX35 and i.MX53
-      dt-bindings: clock: imx5: fix example
-
- .../devicetree/bindings/clock/imx5-clock.yaml          |  2 +-
- .../devicetree/bindings/net/can/fsl,flexcan.yaml       | 18 +++++++++++-------
- drivers/of/address.c                                   |  4 +++-
- 3 files changed, 15 insertions(+), 9 deletions(-)
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
