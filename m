@@ -2,169 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72A6D2B1ADD
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 13:13:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 530A62B1B07
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 13:23:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbgKMMNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 07:13:00 -0500
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:54591 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726336AbgKMMNA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 07:13:00 -0500
-X-Originating-IP: 91.175.115.186
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 967F140004;
-        Fri, 13 Nov 2020 12:12:56 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        <Steen.Hegelund@microchip.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH] dt-bindings: pinctrl: ocelot: convert pinctrl bindings to json-schema
-Date:   Fri, 13 Nov 2020 13:12:46 +0100
-Message-Id: <20201113121252.1433354-1-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.28.0
+        id S1726237AbgKMMXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 07:23:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726374AbgKMMXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 07:23:19 -0500
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44B0C0617A7
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 04:23:18 -0800 (PST)
+Received: by mail-lj1-x243.google.com with SMTP id i17so9351743ljd.3
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 04:23:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dmgC8A97V7x5suiNCMl412lXX/jW6+OasEq3qdC5flo=;
+        b=CMSkbrn1HlJPVpVE5iZcjuQxcDUTIWwFuKKqwZXujVWGnXLWK4DDEEfcqYBHCHKfzi
+         FFfPZvOMv/MUgqIYJG23Np3juKPHHK2T4rmXPag7QeCU/+MXfIDaygPW5C+Zepp/oPzU
+         0qNl56ZhdMPj7FkJ5XebIKjfzqEK9E4LzWbWsGQ4RcM2U6qfkRRuvVkusrKf9Fqe/dr9
+         zjNnheFeJxD6WXypSe2B+tSldZUXMSqp06lhbLx5WPbMoz1agRQY9ZsQVlMl3c5UIcCO
+         Nm78AqHC5noJoqg5YsYB1rbRcB61vY9SYSokvtSzoEt9w42zVNKzaf+b3Yx50D2QufnQ
+         DsLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dmgC8A97V7x5suiNCMl412lXX/jW6+OasEq3qdC5flo=;
+        b=qY01y9hZm00+Hslsyt90IsB1acKtyRyO+qySsxvR32a2Ot83A+N4r7q5xqF4HM+r4D
+         jQMab+X8yrFJZlzhDOm1GJudIcWSMrDJEU5DHSFLDPZuWGgeuBy1nKmw1W5wUKt/CAgF
+         icADcmTZ+KwYHoqneemeVItt6NsSGWb2sloLTcsFJIwT4JUWGKnwyxskno9sEHoO7zvI
+         H/SQLtr2y1Juf890r7t+V3j4qwzVn9QIZUbK702o9rnMWtcV804slFCUiB+yRpevb71L
+         R9YTxvAIsuMWAXGyzmwjtrd4/bUq73AFJt5YTUKOSe6VMDuB83WNw0qNviLQxOv58hcx
+         rn6Q==
+X-Gm-Message-State: AOAM533pa8hdME3VoMRmpEMsiLkRcKFTyX4345zpVf29+k6yECdPcEBo
+        VMlQcPtx2i3S74KAswA1iAUGlQh/WgSifGnP/tlROQ==
+X-Google-Smtp-Source: ABdhPJyWNf6qJzeTJtgKr//xb7A2QSRZxAGqltnhtV3A8/WBgSRjeKeRngG5/KcF97gs3wY+HSUr9vPazrCEEPEl6Co=
+X-Received: by 2002:a2e:95d2:: with SMTP id y18mr1069890ljh.286.1605270197017;
+ Fri, 13 Nov 2020 04:23:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201112115646.2562467-1-linus.walleij@linaro.org>
+ <20201112145846.GA3588803@bogus> <CACRpkdbciyjbe6p-ckvXezyVvaExgdq8T2soqAhVPQQpCWmFpA@mail.gmail.com>
+ <CAL_JsqK91Pd=iZhMb8EYHgaMNgxaQ7xpO_9TP_i+Q-i_UTFQPg@mail.gmail.com> <CAL_JsqKgV6jjW-Z9Ekgy3w0+u8gbCLYJZnu3=nsBV7MBmsZ7rQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqKgV6jjW-Z9Ekgy3w0+u8gbCLYJZnu3=nsBV7MBmsZ7rQ@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 13 Nov 2020 13:23:05 +0100
+Message-ID: <CACRpkdZyQZjOotrmD+otPU8VfWYjc_B+FDmbnKY2v1togXCcYw@mail.gmail.com>
+Subject: Re: [PATCH 1/2 v4] dt-bindings: leds: Add DT binding for Richtek RT8515
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        newbytee@protonmail.com,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, phone-devel@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Pavel Machek <pavel@ucw.cz>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert device tree bindings for Microsemi SoC (Ocelot, Luton, Serval,
-Jguar2, Sarx5) Pin Controller to YAML format
+On Thu, Nov 12, 2020 at 11:20 PM Rob Herring <robh@kernel.org> wrote:
+> On Thu, Nov 12, 2020 at 9:45 AM Rob Herring <robh@kernel.org> wrote:
+> > On Thu, Nov 12, 2020 at 9:04 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+> > > On Thu, Nov 12, 2020 at 3:58 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > > My bot found errors running 'make dt_binding_check' on your patch:
+> > >
+> > > I have a real hard time even testing YAML bindings after updating to the lates
+> > > dtschema, I just get so many errors from all over the tree and then it stops:
+> > >
+> > > make[3]: *** [../Documentation/devicetree/bindings/Makefile:59:
+> > > Documentation/devicetree/bindings/processed-schema-examples.json]
+> >
+> > I assume there was some error message more useful before this.
+> >
+> > > Error 123
+> > > make[3]: Target '__build' not remade because of errors.
+> > > make[2]: *** [/var/linus/linux-nomadik/Makefile:1364: dt_binding_check] Error 2
+> > > make[2]: Leaving directory '/var/linus/linux-nomadik/build-ux500'
+> > > make[1]: *** [Makefile:185: __sub-make] Error 2
+> > > make[1]: Target 'dt_binding_check' not remade because of errors.
+> > > make[1]: Leaving directory '/var/linus/linux-nomadik'
+> > > make: *** [ux500.mak:573: check-bindings] Error 2
+> > >
+> > > Is it necessary to run on linux-next to test schema/DTS for the moment?
+> >
+> > next and rc3 are broken thanks to flexcan changes that should be v5.11
+> > material. next pretty much always has something warning. It's like
+> > maintainers just apply bindings without checking or something. rc2 and
+> > rc1 should be good.
+>
+> Actually, rc1 was not good. I didn't get all the fixes in since armsoc
+> changes came in so late.
 
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  | 41 ------------
- .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 64 +++++++++++++++++++
- 2 files changed, 64 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+OK I try to rebase onto -rc2 and see if that solves my problem.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
-deleted file mode 100644
-index db99bd95d423..000000000000
---- a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Microsemi Ocelot pin controller Device Tree Bindings
------------------------------------------------------
--
--Required properties:
-- - compatible		: Should be "mscc,ocelot-pinctrl",
--			  "mscc,jaguar2-pinctrl", "microchip,sparx5-pinctrl",
--			  "mscc,luton-pinctrl" or "mscc,serval-pinctrl"
-- - reg			: Address and length of the register set for the device
-- - gpio-controller	: Indicates this device is a GPIO controller
-- - #gpio-cells		: Must be 2.
--			  The first cell is the pin number and the
--			  second cell specifies GPIO flags, as defined in
--			  <dt-bindings/gpio/gpio.h>.
-- - gpio-ranges		: Range of pins managed by the GPIO controller.
--
--
--The ocelot-pinctrl driver uses the generic pin multiplexing and generic pin
--configuration documented in pinctrl-bindings.txt.
--
--The following generic properties are supported:
-- - function
-- - pins
--
--Example:
--	gpio: pinctrl@71070034 {
--		compatible = "mscc,ocelot-pinctrl";
--		reg = <0x71070034 0x28>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		gpio-ranges = <&gpio 0 0 22>;
--
--		uart_pins: uart-pins {
--				pins = "GPIO_6", "GPIO_7";
--				function = "uart";
--		};
--
--		uart2_pins: uart2-pins {
--				pins = "GPIO_12", "GPIO_13";
--				function = "uart2";
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
-new file mode 100644
-index 000000000000..b774b92becc8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
-@@ -0,0 +1,64 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/mscc,ocelot-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microsemi Ocelot pin controller Device Tree Bindings
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,sparx5-pinctrl
-+      - mscc,jaguar2-pinctrl
-+      - mscc,luton-pinctrl
-+      - mscc,ocelot-pinctrl
-+      - mscc,serval-pinctrl
-+
-+  "#gpio-cells":
-+    const: 2
-+    description:
-+      The first cell is the pin number and the second cell specifies
-+      GPIO flags, as defined in <dt-bindings/gpio/gpio.h>.
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+required:
-+  - "#gpio-cells"
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - gpio-ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio: pinctrl@71070034 {
-+        compatible = "mscc,ocelot-pinctrl";
-+        reg = <0x71070034 0x28>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+                gpio-ranges = <&gpio 0 0 22>;
-+
-+        uart_pins: uart-pins {
-+        		pins = "GPIO_6", "GPIO_7";
-+        		function = "uart";
-+        };
-+
-+        uart2_pins: uart2-pins {
-+        		pins = "GPIO_12", "GPIO_13";
-+        		function = "uart2";
-+        };
-+    };
-+
-+...
-\ No newline at end of file
--- 
-2.28.0
-
+Yours,
+Linus Walleij
