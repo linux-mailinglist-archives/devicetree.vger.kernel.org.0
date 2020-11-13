@@ -2,90 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D10982B1DE8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:00:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44CBB2B1E52
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:10:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726751AbgKMPA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 10:00:28 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42722 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726614AbgKMPAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 10:00:25 -0500
-Received: by mail-ot1-f65.google.com with SMTP id h16so5043546otq.9;
-        Fri, 13 Nov 2020 07:00:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VmahaNCCiWAzP+6zAolyYpB1M5noh0yEIKUtBdGplDQ=;
-        b=PN2mLXQZHDHz8Br6rtouFdxVeecFL1Ui14IKSZtkuOQxetGISyo1ACrepll6ZSv9Ga
-         /zW8l1AEv+i4zA6UlDqOKIgIDpnz1wPf3YeQYyUL5ZzD+O/TPrKvIW6DTEo/pKetvP5s
-         05d7B1qdtmPA6AeRnEyuibZis9IxrSN/uuqcWIZ9EepymTy3BSrHDwVR0sx6Op6TzhPS
-         Q0AB1RAjUf+6ZAVqfqQUyy6qGjzYHFus/qgNP3tphSf5P2I8cmDjz1+EOgFf2ZRQfoJZ
-         7C7Rbf5jwc9SBoGb5XI+IASIZTd8XsM/AxWcw9C+qGXzWavnM+cRHpZX3HUqJGfoOLgp
-         uCUg==
-X-Gm-Message-State: AOAM532Hr5MLWiA0pKbXejFLsKvhiXm3rVTAFcODReCjsoaQDVf16kSZ
-        48g73oAsFL2xJsV8MHjfGyEKyxvNyA==
-X-Google-Smtp-Source: ABdhPJxXF/baKvpipbsRty/VEzCGFQQNM8Lt8ZUoBmoHBr1lD+FWMq2Ne5a9+aSAjUgZ1TF+pfc0gw==
-X-Received: by 2002:a9d:62c1:: with SMTP id z1mr1748469otk.108.1605279624148;
-        Fri, 13 Nov 2020 07:00:24 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d3sm1990917otb.24.2020.11.13.07.00.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2020 07:00:23 -0800 (PST)
-Received: (nullmailer pid 1457523 invoked by uid 1000);
-        Fri, 13 Nov 2020 15:00:22 -0000
-Date:   Fri, 13 Nov 2020 09:00:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marc Kleine-Budde <mkl@pengutronix.de>
-Cc:     linux-can@vger.kernel.org, kernel@pengutronix.de,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Fabio Estevam <fabio.estevam@nxp.com>
-Subject: Re: [PATCH] dt-bindings: clock: imx5: fix example
-Message-ID: <20201113150022.GA1455810@bogus>
-References: <20201111213548.1621094-1-mkl@pengutronix.de>
+        id S1726439AbgKMPKD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 10:10:03 -0500
+Received: from 1.mo1.mail-out.ovh.net ([178.32.127.22]:58052 "EHLO
+        1.mo1.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726324AbgKMPKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 10:10:03 -0500
+X-Greylist: delayed 2402 seconds by postgrey-1.27 at vger.kernel.org; Fri, 13 Nov 2020 10:10:02 EST
+Received: from player772.ha.ovh.net (unknown [10.108.54.34])
+        by mo1.mail-out.ovh.net (Postfix) with ESMTP id 21F081E2CB2
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 14:51:49 +0100 (CET)
+Received: from RCM-web9.webmail.mail.ovh.net (ip-194-187-74-233.konfederacka.maverick.com.pl [194.187.74.233])
+        (Authenticated sender: rafal@milecki.pl)
+        by player772.ha.ovh.net (Postfix) with ESMTPSA id A1EA81830ECD7;
+        Fri, 13 Nov 2020 13:51:40 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201111213548.1621094-1-mkl@pengutronix.de>
+Date:   Fri, 13 Nov 2020 14:51:40 +0100
+From:   =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
+To:     kernel test robot <lkp@intel.com>
+Cc:     =?UTF-8?Q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        kbuild-all@lists.01.org, Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Enable USB 3 PHY on Luxul XWR-3150
+In-Reply-To: <202011132105.WVl1WaBW-lkp@intel.com>
+References: <20201113095012.22422-1-zajec5@gmail.com>
+ <202011132105.WVl1WaBW-lkp@intel.com>
+User-Agent: Roundcube Webmail/1.4.3
+Message-ID: <2d13b0399c717e410c129b5f1f67ab8f@milecki.pl>
+X-Sender: rafal@milecki.pl
+X-Originating-IP: 194.187.74.233
+X-Webmail-UserID: rafal@milecki.pl
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-Ovh-Tracer-Id: 10336887047713951344
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedujedruddvhedgheejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepggffhffvufgjfhgfkfigihgtgfesthejjhdttdervdenucfhrhhomheptfgrfhgrlhgpofhilhgvtghkihcuoehrrghfrghlsehmihhlvggtkhhirdhplheqnecuggftrfgrthhtvghrnhepudffgeekfffggfeufeduffdtueduheffveeutefhhefglefgkefhheevgeeuuedtnecuffhomhgrihhnpehgihhtqdhstghmrdgtohhmpdhgihhthhhusgdrtghomhdpkhgvrhhnvghlrdhorhhgpdhgihhthhhusghushgvrhgtohhnthgvnhhtrdgtohhmnecukfhppedtrddtrddtrddtpdduleegrddukeejrdejgedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejjedvrdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheprhgrfhgrlhesmhhilhgvtghkihdrphhlpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Nov 2020 22:35:48 +0100, Marc Kleine-Budde wrote:
-> Since commit:
-> 
->     0e030a373df3 ("can: flexcan: fix endianess detection")
-> 
-> the fsl,imx53-flexcan isn't compatible with the fsl,p1010-flexcan any more. As
-> the former accesses the IP core in Little Endian mode and the latter uses Big
-> Endian mode.
-> 
-> With the conversion of the flexcan DT bindings to yaml, the dt_binding_check
-> this throws the following error:
-> 
-> Documentation/devicetree/bindings/clock/imx5-clock.example.dt.yaml: can@53fc8000: compatible: 'oneOf' conditional failed, one must be fixed:
->         ['fsl,imx53-flexcan', 'fsl,imx25-flexcan'] is too long
->         Additional items are not allowed ('fsl,imx25-flexcan' was unexpected)
->         'fsl,imx53-flexcan' is not one of ['fsl,imx7d-flexcan', 'fsl,imx6ul-flexcan', 'fsl,imx6sx-flexcan']
->         'fsl,imx53-flexcan' is not one of ['fsl,ls1028ar1-flexcan']
->         'fsl,imx6q-flexcan' was expected
->         'fsl,lx2160ar1-flexcan' was expected
->         From schema: Documentation/devicetree/bindings/net/can/fsl,flexcan.yaml
-> 
-> The error is fixed by removing the "fsl,p1010-flexcan" compatible (which turned
-> out the be incompatible) from the binding example.
-> 
-> Cc: Fabio Estevam <fabio.estevam@nxp.com>
-> Cc: devicetree@vger.kernel.org
-> Reported-by: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> ---
->  Documentation/devicetree/bindings/clock/imx5-clock.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Hey,
 
-I've fixed things up with this and the compatible fixes and applied as 
-this needs to get into rc4.
+On 2020-11-13 14:41, kernel test robot wrote:
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on v5.10-rc3 next-20201113]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:
+> https://github.com/0day-ci/linux/commits/Rafa-Mi-ecki/ARM-dts-BCM5301X-Enable-USB-3-PHY-on-Luxul-XWR-3150/20201113-175236
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git 
+> for-next
+> config: arm-randconfig-r036-20201113 (attached as .config)
+> compiler: arm-linux-gnueabi-gcc (GCC) 9.3.0
+> reproduce (this is a W=1 build):
+>         wget
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross
+> -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         #
+> https://github.com/0day-ci/linux/commit/1f7742592f638fdb90b7270d80d0c797e243ada7
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review
+> Rafa-Mi-ecki/ARM-dts-BCM5301X-Enable-USB-3-PHY-on-Luxul-XWR-3150/20201113-175236
+>         git checkout 1f7742592f638fdb90b7270d80d0c797e243ada7
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross 
+> ARCH=arm
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+>>> Error: arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts:78.1-9 syntax 
+>>> error
+>    FATAL ERROR: Unable to parse input tree
 
-Rob
+Is there a problem with bot or GitHub? I can't access any:
+
+https://github.com/0day-ci/linux/commits/Rafa-Mi-ecki/ARM-dts-BCM5301X-Enable-USB-3-PHY-on-Luxul-XWR-3150/20201113-175236
+https://github.com/0day-ci/linux/commit/1f7742592f638fdb90b7270d80d0c797e243ada7
