@@ -2,136 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B7812B1664
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 08:26:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B81272B166B
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 08:28:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726360AbgKMH0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 02:26:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726133AbgKMH0f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 02:26:35 -0500
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD95C0613D1;
-        Thu, 12 Nov 2020 23:26:19 -0800 (PST)
-Received: by mail-pl1-x641.google.com with SMTP id d3so4150880plo.4;
-        Thu, 12 Nov 2020 23:26:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=bVc4aZk4rKy/6/VqEhMXbEQ5ZVosOHXwKRbVIxDDoGY=;
-        b=GMiotV0GyRZSn0pn1dgPWm/1yR1DzPikBgKi5Lbkr2+y/iNDlpqYBVO7SfIvAgqAbf
-         uIaCVLY528t7w5yWehm/+G4BNoS1lB69IH4dB9iSPueZ2vY4/XYJoWpU0aQEMS570PMt
-         gfyrGW2DRdfuIkQPiOQfGiyd6Icf9TqwlJVhKT9GlbO7q/Mj4/7h6vRa/vNWfxW1mehI
-         GBBBTEzl+JU36/Sc52m4n+V0gVtafzPbCLB2RuMl1UZyUSG2LeWJBlAiNPu5ZgflYKFh
-         dBz3JOOX0NRmiUfmf22A+yolC5R2dAEyS/GcPJGRpS4tu3Prtj7hQV+cpG105mS2OmpU
-         cB8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=bVc4aZk4rKy/6/VqEhMXbEQ5ZVosOHXwKRbVIxDDoGY=;
-        b=ilHQ4bKelIaLk5fRLJ4K1wju+atXDEou+ME04dzDW8cMYGS+v2y4Y4OjmjWaHt6BLT
-         eEVVnoYvNVkyO6tOmQLejfAufnSDjZuoTvwvvqHkVtXRuWhISdm/Qgo9Y8tkj0WidDHo
-         ymwkSnf3iGUQ41ZzQgnQALh5rSRSgJ9QG7o48MyseNa5w2DKiU6EjmOFODonKVWSRRc5
-         AjS58F6JdNtusghqSNWVNuYSJhP7j2rnXn9Mz6NswUsWoQrVv/rv0pnZTbxSt4sU/bfn
-         6Y54Prxym1xcAfx7r49UWixjR/ArssAhsVQE5gLkxzz7gGdRLh8vjL0bBBUOV5LcWBrf
-         BwvQ==
-X-Gm-Message-State: AOAM532fH+1JKn1dF+HSjqLXCfcqO5Y2WwahbF5zC1zyGjqPSCo7Rkh5
-        esLkJOwqWGGCZ2wfXQzYJZ0=
-X-Google-Smtp-Source: ABdhPJwxvk3sEiTwtCGzh6+CErNAzuUpI0fhTqrV5pUBqPIIf6eT7t4y2GPOTdCy6tzoqSvWpYqfbA==
-X-Received: by 2002:a17:902:c016:b029:d7:1a0:7cf0 with SMTP id v22-20020a170902c016b02900d701a07cf0mr878425plx.64.1605252379251;
-        Thu, 12 Nov 2020 23:26:19 -0800 (PST)
-Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
-        by smtp.gmail.com with ESMTPSA id l20sm9170507pfd.103.2020.11.12.23.26.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 23:26:18 -0800 (PST)
-Date:   Thu, 12 Nov 2020 23:26:15 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        linux-pwm@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        linux-input <linux-input@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: Re: [PATCH v4 01/11] firmware: raspberrypi: Keep count of all
- consumers
-Message-ID: <20201113072615.GE356503@dtor-ws>
-References: <20201112163630.17177-1-nsaenzjulienne@suse.de>
- <20201112163630.17177-2-nsaenzjulienne@suse.de>
- <CAHp75Vf9E7UWVDMs=eRjLjoSN6SVOWw9thNdnR8ruCL6GmY7JQ@mail.gmail.com>
+        id S1726217AbgKMH22 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 02:28:28 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44352 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726133AbgKMH22 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 02:28:28 -0500
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5AA9020825;
+        Fri, 13 Nov 2020 07:28:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605252507;
+        bh=aFSZmq6CmY872NVYczWKbqeDbiFmSqUs9woe1qxA3ZM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=xnIjS0kPyxsUP3PwmDqBKajxq+Bi9J3LtJzlbpTazwNtpa6xuSsB9HgPu2Aab1Xr4
+         7LyA8nJYuYjRIV6PlhzCT15UBKfAhbQG75v68fb1nToGAhWrH3Aa3CHwxwCP5+g2E9
+         XruFp6xfLmpU3Nt3JWr/SBdg6e1qV9xWRdwdxCKg=
+Received: by mail-ed1-f44.google.com with SMTP id l5so9508078edq.11;
+        Thu, 12 Nov 2020 23:28:27 -0800 (PST)
+X-Gm-Message-State: AOAM530KzP0Wpd0HTDsHq/7dqW4uEay7Cmt9pwKxv4SlVgmsgvFuQxhF
+        OqCMKdfEumvMMG8iuzhAKLXipOKqfWfq3/zN5+c=
+X-Google-Smtp-Source: ABdhPJzX45wQROgRz6lZDn+ZiPZq+vZct6Juvf3yLDM+v4ouuidXvKY3lWVBOY0mzD/VK4YlXT5dq0joBTxrIWQTZQs=
+X-Received: by 2002:aa7:d414:: with SMTP id z20mr1119954edq.143.1605252505837;
+ Thu, 12 Nov 2020 23:28:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHp75Vf9E7UWVDMs=eRjLjoSN6SVOWw9thNdnR8ruCL6GmY7JQ@mail.gmail.com>
+References: <CGME20201113050919epcms2p7487583bf846376040a9874a7eb39fdae@epcms2p7>
+ <20201113050919epcms2p7487583bf846376040a9874a7eb39fdae@epcms2p7>
+In-Reply-To: <20201113050919epcms2p7487583bf846376040a9874a7eb39fdae@epcms2p7>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 13 Nov 2020 08:28:14 +0100
+X-Gmail-Original-Message-ID: <CAJKOXPez5ZbuG3jgjNbhAbDrWoDa+UGAiRpi_fjSpB=D6geo6A@mail.gmail.com>
+Message-ID: <CAJKOXPez5ZbuG3jgjNbhAbDrWoDa+UGAiRpi_fjSpB=D6geo6A@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/2] nfc: s3fwrn82: Add driver for Samsung
+ S3FWRN82 NFC Chip
+To:     bongsu.jeon@samsung.com
+Cc:     "kuba@kernel.org" <kuba@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 07:52:14PM +0200, Andy Shevchenko wrote:
-> On Thu, Nov 12, 2020 at 6:40 PM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> >
-> > When unbinding the firmware device we need to make sure it has no
-> > consumers left. Otherwise we'd leave them with a firmware handle
-> > pointing at freed memory.
-> >
-> > Keep a reference count of all consumers and introduce rpi_firmware_put()
-> > which will permit automatically decrease the reference count upon
-> > unbinding consumer drivers.
-> 
-> ...
-> 
-> >  /**
-> > - * rpi_firmware_get - Get pointer to rpi_firmware structure.
-> >   * @firmware_node:    Pointer to the firmware Device Tree node.
-> >   *
-> > + * The reference to rpi_firmware has to be released with rpi_firmware_put().
-> > + *
-> >   * Returns NULL is the firmware device is not ready.
-> >   */
-> >  struct rpi_firmware *rpi_firmware_get(struct device_node *firmware_node)
-> >  {
-> >         struct platform_device *pdev = of_find_device_by_node(firmware_node);
-> > +       struct rpi_firmware *fw;
-> >
-> >         if (!pdev)
-> >                 return NULL;
-> >
-> > -       return platform_get_drvdata(pdev);
-> > +       fw = platform_get_drvdata(pdev);
-> > +       if (!fw)
-> > +               return NULL;
-> > +
-> > +       if (!kref_get_unless_zero(&fw->consumers))
-> > +               return NULL;
-> 
-> Don't we have a more traditional way of doing this, i.e.
-> try_module_get() coupled with get_device() ?
+On Fri, 13 Nov 2020 at 06:09, Bongsu Jeon <bongsu.jeon@samsung.com> wrote:
+>
+>
+> Add the device tree bindings for Samsung S3FWRN82 NFC controller.
+> S3FWRN82 is using NCI protocol and I2C communication interface.
+>
+> Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
+> ---
+>  .../devicetree/bindings/net/nfc/s3fwrn82.txt  | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt
+>
+> diff --git a/Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt b/Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt
+> new file mode 100644
+> index 000000000000..03ed880e1c7f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nfc/s3fwrn82.txt
+> @@ -0,0 +1,30 @@
+> +* Samsung S3FWRN82 NCI NFC Controller
+> +
+> +Required properties:
+> +- compatible: Should be "samsung,s3fwrn82-i2c".
+> +- reg: address on the bus
+> +- interrupts: GPIO interrupt to which the chip is connected
+> +- en-gpios: Output GPIO pin used for enabling/disabling the chip
+> +- wake-gpios: Output GPIO pin used to enter firmware mode and
+> +  sleep/wakeup control
+> +
 
-get_device() will make sure that device is there, but gives no
-assurances that device is bound to a driver, so it will not help with
-the racy access to firmware via platform_get_drvdata() call.
+The bindings should be the first file in the series. However it does
+not really matter as this patch should be part of the existing s3fwrn5
+driver.
 
-Thanks.
+When submitting bindings, please use the title to match the bindings
+and use YAML format.
 
--- 
-Dmitry
+Best regards,
+Krzysztof
