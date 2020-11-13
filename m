@@ -2,111 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC9A2B23C7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 19:29:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 989032B23E5
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 19:38:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726146AbgKMS3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 13:29:52 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:32968 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726092AbgKMS3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 13:29:52 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ADITkav023269;
-        Fri, 13 Nov 2020 12:29:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605292186;
-        bh=0vUD35pH0zhF62AhI+ZyzQ8mAewqNaA1dAl9KpnWAlw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=MT+5T/LEmMlyBDPgkfmt5eJZGx8jFumBy8QHEJbViLkvV7LxBzCc0GTvzJH6NgZxH
-         i0Qh9xOJVDVhd0S6x66bo4lSo0/pmHBm85javUqB/8RT+B1C1FMVpRKByzKNQvuzQS
-         /feuhh8ux1oy9YOPD5lLckE7picbhWZ6/yv0SJ08=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ADITkYX120444
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 13 Nov 2020 12:29:46 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 13
- Nov 2020 12:29:46 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 13 Nov 2020 12:29:46 -0600
-Received: from [10.24.69.198] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ADITdDj128227;
-        Fri, 13 Nov 2020 12:29:41 -0600
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j7200-main: Add gpio nodes in main
- domain
-To:     Nishanth Menon <nm@ti.com>, Faiz Abbas <faiz_abbas@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <t-kristo@ti.com>,
-        <robh+dt@kernel.org>, Grygorii Strashko <grygorii.strashko@ti.com>
-References: <20201102191120.20380-1-faiz_abbas@ti.com>
- <20201102191120.20380-2-faiz_abbas@ti.com>
- <20201112163953.soia5cje4ry42ujf@kahuna>
-From:   Sekhar Nori <nsekhar@ti.com>
-Message-ID: <6ce6de4b-6e4d-1d2d-aa7a-570d1796d668@ti.com>
-Date:   Fri, 13 Nov 2020 23:59:39 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20201112163953.soia5cje4ry42ujf@kahuna>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726094AbgKMSis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 13:38:48 -0500
+Received: from m42-4.mailgun.net ([69.72.42.4]:29772 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726113AbgKMSir (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 13:38:47 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1605292727; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=bNE4U6NO9Qnui5qzRXhH3mUphBMnNuk7wBLDCqEHGzQ=; b=CYh/RG/23AHeXnRANMLpuMH+BkvbhT845RKjRxmleYBnYXx0L5J0zRcw1SoYuvHup/D86kog
+ jv9ewQZ/cUUn0F404mMAJZ6A2QSjCCFBD/kLsjYnvaBPh1QDGE2B/ui4FzxcGML3tcseIEG4
+ ieomPbHOaVIbhqHtrbWTPgwBTXI=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n10.prod.us-west-2.postgun.com with SMTP id
+ 5faed2b08bd2e3c2222313f5 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 13 Nov 2020 18:38:40
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 69565C433F0; Fri, 13 Nov 2020 18:38:40 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 21977C433C6;
+        Fri, 13 Nov 2020 18:38:33 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 21977C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH] Asoc: qcom: sc7180: Register shutdown handler for lpass platform
+Date:   Sat, 14 Nov 2020 00:08:22 +0530
+Message-Id: <1605292702-25046-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
+From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-On 12/11/20 10:09 PM, Nishanth Menon wrote:
-> On 00:41-20201103, Faiz Abbas wrote:
->> There are 4 instances of gpio modules in main domain:
->> 	gpio0, gpio2, gpio4 and gpio6
->>
->> Groups are created to provide protection between different processor virtual
->> worlds. Each of these modules I/O pins are muxed within the group. Exactly
->> one module can be selected to control the corresponding pin by selecting it
->> in the pad mux configuration registers.
-> Could you check with checkpatch --strict please?
-> 
-> I see:
-> 
-> WARNING: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-> 
->>
->> This group pins out 69 lines (5 banks).
->>
->> Add DT modes for each module instance in the main domain.
->>
->> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
->> ---
->>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 68 +++++++++++++++++++++++
-> 
-> dtbs_check: we added:
-> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@600000: Missing #address-cells in interrupt provider
-> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@610000: Missing #address-cells in interrupt provider
-> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@620000: Missing #address-cells in interrupt provider
-> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@630000: Missing #address-cells in interrupt provider
+Register shutdown handler to stop sc7180 lpass platform driver
+and to disable audio clocks.
 
-Hmm, running dtbs_check, I did not really see this. These are all the
-warnings I see for TI platforms: https://pastebin.ubuntu.com/p/m2my62mjQq/
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+ sound/soc/qcom/lpass-cpu.c    | 10 ++++++++++
+ sound/soc/qcom/lpass-sc7180.c |  1 +
+ sound/soc/qcom/lpass.h        |  1 +
+ 3 files changed, 12 insertions(+)
 
-The tree I am testing is linux-next of 12th Nov + these three patches
-applied.
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index 1fd862e..d33eae6 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -914,5 +914,15 @@ int asoc_qcom_lpass_cpu_platform_remove(struct platform_device *pdev)
+ }
+ EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_platform_remove);
+ 
++void asoc_qcom_lpass_cpu_platform_shutdown(struct platform_device *pdev)
++{
++	struct lpass_data *drvdata = platform_get_drvdata(pdev);
++
++	if (drvdata->variant->exit)
++		drvdata->variant->exit(pdev);
++
++}
++EXPORT_SYMBOL_GPL(asoc_qcom_lpass_cpu_platform_shutdown);
++
+ MODULE_DESCRIPTION("QTi LPASS CPU Driver");
+ MODULE_LICENSE("GPL v2");
+diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+index f619590..61b51b5 100644
+--- a/sound/soc/qcom/lpass-sc7180.c
++++ b/sound/soc/qcom/lpass-sc7180.c
+@@ -297,6 +297,7 @@ static struct platform_driver sc7180_lpass_cpu_platform_driver = {
+ 	},
+ 	.probe = asoc_qcom_lpass_cpu_platform_probe,
+ 	.remove = asoc_qcom_lpass_cpu_platform_remove,
++	.shutdown = asoc_qcom_lpass_cpu_platform_shutdown,
+ };
+ 
+ module_platform_driver(sc7180_lpass_cpu_platform_driver);
+diff --git a/sound/soc/qcom/lpass.h b/sound/soc/qcom/lpass.h
+index b4830f3..32a68c4 100644
+--- a/sound/soc/qcom/lpass.h
++++ b/sound/soc/qcom/lpass.h
+@@ -255,6 +255,7 @@ struct lpass_variant {
+ /* register the platform driver from the CPU DAI driver */
+ int asoc_qcom_lpass_platform_register(struct platform_device *);
+ int asoc_qcom_lpass_cpu_platform_remove(struct platform_device *pdev);
++void asoc_qcom_lpass_cpu_platform_shutdown(struct platform_device *pdev);
+ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev);
+ int asoc_qcom_lpass_cpu_dai_probe(struct snd_soc_dai *dai);
+ extern const struct snd_soc_dai_ops asoc_qcom_lpass_cpu_dai_ops;
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
-Also, #address-cells for interrupt provider being compulsory does not
-make full sense to me. Nothing in
-Documentation/devicetree/bindings/interrupt-controller/interrupts.txt or
-Documentation/devicetree/bindings/gpio/gpio-davinci.txt suggests that as
-well.
-
-Existing GPIO nodes for AM654 or J721E does not have #address-cells as well.
-
-Adding Grygorii as well, in case he knows more about this.
-
-Thanks,
-Sekhar
