@@ -2,67 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61FC32B15F2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 07:51:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDC3D2B165A
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 08:25:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbgKMGvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 01:51:51 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:47683 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726037AbgKMGvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 01:51:51 -0500
-X-IronPort-AV: E=Sophos;i="5.77,474,1596466800"; 
-   d="scan'208";a="62357456"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 13 Nov 2020 15:51:49 +0900
-Received: from localhost.localdomain (unknown [10.166.252.89])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A62E2401351A;
-        Fri, 13 Nov 2020 15:51:49 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     gregkh@linuxfoundation.org
-Cc:     geert+renesas@glider.be, robh+dt@kernel.org,
-        linux-serial@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2 RESEND] dt-bindings: serial: renesas,scif: Document r8a779a0 bindings
-Date:   Fri, 13 Nov 2020 15:51:36 +0900
-Message-Id: <1605250296-30570-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726276AbgKMHZE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 02:25:04 -0500
+Received: from cable.insite.cz ([84.242.75.189]:36789 "EHLO cable.insite.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726298AbgKMHZE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Nov 2020 02:25:04 -0500
+X-Greylist: delayed 358 seconds by postgrey-1.27 at vger.kernel.org; Fri, 13 Nov 2020 02:25:02 EST
+Received: from localhost (localhost [127.0.0.1])
+        by cable.insite.cz (Postfix) with ESMTP id D722EA95CEB3B;
+        Fri, 13 Nov 2020 08:18:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
+        t=1605251933; bh=jqHIgBW38VyYlMJdSn0D9x9hP7tKzWCGLqTKs+HZ+mU=;
+        h=From:Subject:To:Date:From;
+        b=cxVLoX1XvbtjJBvdsoySsp1lH2rKtEmEJgF6zl36prE8zu78ZKhawvmQ7msKIcXag
+         cwgNcLDL6DM5lq2gVnD/SVnB70Z/tZOxp1jfpC8+WiQ1M2gTStgnaSVNIWvPelfYf5
+         tMtPIbXt4xRGdG40OfacO6ueVZAF89dqxHGPrOdA=
+Received: from cable.insite.cz ([84.242.75.189])
+        by localhost (server.insite.cz [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 2I7Atbo5DQLv; Fri, 13 Nov 2020 08:18:48 +0100 (CET)
+Received: from [192.168.105.22] (ip28.insite.cz [81.0.237.28])
+        (Authenticated sender: pavel)
+        by cable.insite.cz (Postfix) with ESMTPSA id 41C55A95CEB37;
+        Fri, 13 Nov 2020 08:18:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ivitera.com; s=mail;
+        t=1605251928; bh=jqHIgBW38VyYlMJdSn0D9x9hP7tKzWCGLqTKs+HZ+mU=;
+        h=From:Subject:To:Date:From;
+        b=dIJxEwMI5JyTYt6O5LHsglRyRXoJnhLL1ZLO2FaYbLty5r1AbXxW5zLVjveuhis6y
+         4++1il8ilYSQ9tV23uNmApuIOZ0LyqmXt70SZgMN9CSZ5tdJUdMjw0rygj34MTpZxh
+         VVlK1cBD/Cw4d23Ium2bzATa+HVmxu6AwfnhGWvo=
+From:   Pavel Hofman <pavel.hofman@ivitera.com>
+Subject: [PATCH] ARM: dts: bcm283x: increase dwc2's RX FIFO size
+To:     Minas Harutyunyan <hminas@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org
+Message-ID: <e9e7d070-593c-122f-3a5c-2435bb147ab2@ivitera.com>
+Date:   Fri, 13 Nov 2020 08:18:47 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-2
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R-Car V3U (R8A779A0) SoC also has the R-Car Gen3 compatible
-SCIF ports, so document the SoC specific bindings.
+The previous version of the dwc2 overlay set the RX FIFO size to
+256 4-byte words. This is not enough for 1024 bytes of the largest
+isochronous high speed packet allowed, because it doesn't take into
+account extra space needed by dwc2.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Rob Herring <robh@kernel.org>
+RX FIFO's size is calculated based on the following (in 4byte words):
+- 13 locations for SETUP packets
+  5*n + 8 for Slave and Buffer DMA mode where n is number of control
+  endpoints which is 1 on the bcm283x core
+
+- 1 location for Global OUT NAK
+
+- 2 * 257 locations for status information and the received packet.
+  Typically two spaces are recommended so that when the previous packet
+  is being transferred to AHB, the USB can receive the subsequent
+  packet.
+
+- 10 * 1 location for transfer complete status for last packet of each
+  endpoint. The bcm283x core has 5 IN and 5 OUT EPs
+
+- 10 * 1 additional location for EPDisable status for each endpoint
+
+- 5 * 2 additional locations are recommended for each OUT endpoint
+
+Total is 558 locations.
+
+Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+Signed-off-by: Pavel Hofman <pavel.hofman@ivitera.com>
 ---
- I should have sent this patch to Greg. I confirmed this patch can be
- applied into next-20201112. So, I resend this now.
- 
- Changes from v1:
- - Add Reviewed-by Geert.
- - Add Acked-by Rob.
- https://patchwork.kernel.org/patch/11760273/
+ arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi        | 2 +-
+ arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
- Documentation/devicetree/bindings/serial/renesas,scif.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-index f589ac7..ae29183 100644
---- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-@@ -60,6 +60,7 @@ properties:
-               - renesas,scif-r8a77980     # R-Car V3H
-               - renesas,scif-r8a77990     # R-Car E3
-               - renesas,scif-r8a77995     # R-Car D3
-+              - renesas,scif-r8a779a0     # R-Car V3U
-           - const: renesas,rcar-gen3-scif # R-Car Gen3 and RZ/G2
-           - const: renesas,scif           # generic SCIF compatible UART
- 
+diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
+b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
+index e2fd961..20322de 100644
+--- a/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
++++ b/arch/arm/boot/dts/bcm283x-rpi-usb-otg.dtsi
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ &usb {
+ 	dr_mode = "otg";
+-	g-rx-fifo-size = <256>;
++	g-rx-fifo-size = <558>;
+ 	g-np-tx-fifo-size = <32>;
+ 	/*
+ 	 * According to dwc2 the sum of all device EP
+diff --git a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+index 0ff0e9e..1409d1b 100644
+--- a/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
++++ b/arch/arm/boot/dts/bcm283x-rpi-usb-peripheral.dtsi
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ &usb {
+ 	dr_mode = "peripheral";
+-	g-rx-fifo-size = <256>;
++	g-rx-fifo-size = <558>;
+ 	g-np-tx-fifo-size = <32>;
+ 	g-tx-fifo-size = <256 256 512 512 512 768 768>;
+ };
 -- 
-2.7.4
+1.9.1
+
 
