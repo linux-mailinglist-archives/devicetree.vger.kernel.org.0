@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276D92B1ED3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:32:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 391422B1ED0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:32:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726734AbgKMPcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 10:32:22 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:41595 "EHLO
+        id S1726889AbgKMPc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 10:32:28 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:54373 "EHLO
         new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726439AbgKMPcU (ORCPT
+        by vger.kernel.org with ESMTP id S1726642AbgKMPc0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 10:32:20 -0500
+        Fri, 13 Nov 2020 10:32:26 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 13CB458032A;
-        Fri, 13 Nov 2020 10:32:19 -0500 (EST)
+        by mailnew.nyi.internal (Postfix) with ESMTP id 04638580333;
+        Fri, 13 Nov 2020 10:32:25 -0500 (EST)
 Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:32:19 -0500
+  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:32:25 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        from:to:cc:subject:date:message-id:content-type:mime-version
-        :content-transfer-encoding; s=fm1; bh=7Zmgsv4bn6m3O58vV2b3+wNJJw
-        TAQp+Lmd3f32mWRH4=; b=iKwpJqWWdMUWEN685FlV3gicMdrsWD9Lfg0cy0OB4F
-        uJNz8P4rIL8+h9xnDvVJ4Vtt+iWfRxXO6AaG38+5A6zLgmC5xP+OwaqcaMNj0bqn
-        /zGmeTWGkNbGNpzANZsmGhUkbTZp2ZkK5fdsKvLeATkmFJhWh47E9ycIRP1kPRwE
-        gMJeo/VSgIFQJunZbEj+4viPnoM0Gesd/LZxNbBIRnHdxcd9qcqe1EjkbTSp8sWj
-        4bu8MjmVpfIcmAN9aTYL16j6ibldN8tw98yOZwaW6BNkOOSsy4vfgEUd46CmMD1s
-        gvd2TA1PHWH1Wa6DpOIKvz7wUAGdbcX/6NC9hQit6biQ==
+        from:to:cc:subject:date:message-id:in-reply-to:references
+        :mime-version:content-transfer-encoding; s=fm1; bh=j8EkEGHe/t92f
+        2Hvnx5xgl097ZjSfSkOfuxxQC4z7yE=; b=kb5uh5PPd6/cFdwmFtXP5We89y+op
+        7oPsGGtCEwvV5UrzlprBw5qrL/LEk6a3oNvnXNJ+0nVbUqewDkf/w5t2Vj4hMZ1t
+        gad3VQTStZq+q43ZixQBzfJdN56astrMm9ILH135zyi3NODh++xyV76b7xbR1sub
+        qSGsTo/M5o0IgjAf4e1hYdaoV6y4R/9soOwRd2u91vgKBb+WvWA/N/+z9cg5EM0K
+        8RLcYpqCLJH7B/dsa65inSg16fviOGywhqU1f98GK5geVCk3fLHXdKBoZHhQWqcE
+        WTJz6xMj4mION7c6mFJI8EQIwVspyCKxns6e8S2cMNz49qYLTGGW2hpDQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:message-id:mime-version:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=7Zmgsv
-        4bn6m3O58vV2b3+wNJJwTAQp+Lmd3f32mWRH4=; b=CVIXaz06R0qdepac6VfUAA
-        2zpKqKpJu+SFoq0b9dO+LK8yk6DB5UEG0EC+tBWja6/E3NY2QuDFllqYtmD9+Wcr
-        H4OXFatu08gnmFgvxHzj3j5riKrFPHFwQ48vD5VtEuX2Ou5Qg75FCx2ZJKkuzjPc
-        nJgJT/Nw1svD3penLAjwKgo1skQE9RhTd1PG9sfdBTY87xw5CvACxWmCzMRpH8DP
-        9ArdhDsGd09989ldJbpggDMyzYA5fRuqsYEzT+y9O8g8DEgWCRkym1Sgq5gNt2N/
-        aQsSbuSshUXI7ZXT86RDp1kmQTfDyxKK8hHdF4CFXH4FcmF+mWOYlT2Q2G5IJ2mw
-        ==
-X-ME-Sender: <xms:AaeuX8tqKDUZ2ts1s1GKLzLlaQYMUC1qKIqYQpmbrJ8hE7nd6N6N1A>
-    <xme:AaeuX5f2Qbd7FM4_4ujycFqfM7mirLLFud3sqgZP3iQ-yeuoFfcjA4aTmgqy-R807
-    3ilXKPczbV3xDa1GG8>
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :in-reply-to:message-id:mime-version:references:subject:to
+        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+        fm1; bh=j8EkEGHe/t92f2Hvnx5xgl097ZjSfSkOfuxxQC4z7yE=; b=lmq0WPN3
+        KbfYGSBaJ30B/6SF6FXk/dpAdBe+zvncVlXn6qIKnXrTspQWtyos4lN4bO23S37s
+        zGp9YQkfLwWOra4BOM9LRRGpD2yYtbiAGLAFAWbxJYvDpdk3u8A3Z35ZRMAOmP4p
+        W/nRms9Mw/3uEcKlCbGY+IyRUk7apCxrWUyGhU9LWKhe30Yi3l0dgOSYcRQj30N/
+        sKAA2CkyMCP/i7zzzJdhTyL2Afsn+XB5V2HY+GF7Fh9O4hC8GAq1lZRHHFD81TjM
+        tFjJf5VE7uue4u/nE5QzpcpDKkZotB0wg+ilyRbGRcZQsuZVnsIdWOE9Ven8psAJ
+        kIW0pdJl71irew==
+X-ME-Sender: <xms:CKeuX13h-5VcEZAKC-UIp1X50SldeXbG39aV4AtzbF5QUgsMOJX7rw>
+    <xme:CKeuX8GeatjTAWwQXE6RrHRUh-3Af8mkGiok6T0c5ChAiXIPaKyCsc5zqCFDyjdQf
+    RnVZhqQi9oJLtbpwNc>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvhedgjeejucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffotggggfesthhqredtredtjeenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeetieekgfffkeegkeeltdehudetteejgfekueevhffhteegudfgkedtueegfffg
-    feenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:AaeuX3wANoeftHijL3xRCa9kjxqRdQyTcF-L52Ca5U_DC7-TOdv05A>
-    <xmx:AaeuX_MIoVUHHtnbwhP8R5PMWFgC6d68RrSVC3YXYMODAj3uCuV_1w>
-    <xmx:AaeuX8_l4llH0S6Z_z0-1Rwf_H1ZpJBPJtBYQC2EnU6XFWBsj2Ogqg>
-    <xmx:A6euXwXOmjTlvVIMuZzrb-2kyQ4xRiJEAw3NNLbDYMr7DUXv6FSmpg>
+    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepvdekleevfeffkeejhfffueelteelfeduieefheduudfggffhhfffheevveeh
+    hedvnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:CKeuX15WU5_mQkdu-MMY-US_2Dad3PYbIo7psRWU5yGYlJNL7U3EIg>
+    <xmx:CKeuXy2mnx0AoSxIojU6wad80dnFSvOE4WSRbvHwpmNPzhAd1FqJCQ>
+    <xmx:CKeuX4HzBYDRkP6WyoLkPd3xQnhHadqr7t-LzrLXmrOf4UWI263Ikg>
+    <xmx:CKeuX-GxMpYYx727ip4WdMUAYvUUhpWeObOOcm46nfzn-XZqC2Qy_g>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 58BA43064AAA;
-        Fri, 13 Nov 2020 10:32:17 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 3FFFC3064AB5;
+        Fri, 13 Nov 2020 10:32:24 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -72,50 +72,100 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Phil Elwell <phil@raspberrypi.com>,
         bcm-kernel-feedback-list@broadcom.com,
         Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 0/8] vc4: Convert to drm_atomic_helper_commit
-Date:   Fri, 13 Nov 2020 16:29:48 +0100
-Message-Id: <20201113152956.139663-1-maxime@cerno.tech>
+        devicetree@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>
+Subject: [PATCH 1/8] drm: Introduce an atomic_commit_setup function
+Date:   Fri, 13 Nov 2020 16:29:49 +0100
+Message-Id: <20201113152956.139663-2-maxime@cerno.tech>
 X-Mailer: git-send-email 2.28.0
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20201113152956.139663-1-maxime@cerno.tech>
+References: <20201113152956.139663-1-maxime@cerno.tech>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,=0D
-=0D
-Here's a conversion of vc4 to remove the hand-rolled atomic_commit helper f=
-rom=0D
-vc4 in favour of the generic one.=0D
-=0D
-This requires some rework of vc4, but also a new hook and some documentatio=
-n=0D
-for corner-cases in the DRM core that have been reported and explained by=0D
-Daniel recently.=0D
-=0D
-Let me know what you think,=0D
-Maxime=0D
-=0D
-Maxime Ripard (8):=0D
-  drm: Introduce an atomic_commit_setup function=0D
-  drm: Document use-after-free gotcha with private objects=0D
-  drm/vc4: kms: Move HVS state helpers around=0D
-  drm/vc4: kms: Simplify a bit the private obj state hooks=0D
-  drm/vc4: Simplify a bit the global atomic_check=0D
-  drm/vc4: kms: Wait on previous FIFO users before a commit=0D
-  drm/vc4: kms: Remove async modeset semaphore=0D
-  drm/vc4: kms: Convert to atomic helpers=0D
-=0D
- drivers/gpu/drm/drm_atomic_helper.c      |   6 +=0D
- drivers/gpu/drm/vc4/vc4_crtc.c           |  13 --=0D
- drivers/gpu/drm/vc4/vc4_drv.h            |   2 -=0D
- drivers/gpu/drm/vc4/vc4_kms.c            | 269 +++++++++++------------=0D
- include/drm/drm_atomic.h                 |  18 ++=0D
- include/drm/drm_modeset_helper_vtables.h |  18 ++=0D
- 6 files changed, 173 insertions(+), 153 deletions(-)=0D
-=0D
--- =0D
-2.28.0=0D
-=0D
+Private objects storing a state shared across all CRTCs need to be
+carefully handled to avoid a use-after-free issue.
+
+The proper way to do this to track all the commits using that shared
+state and wait for the previous commits to be done before going on with
+the current one to avoid the reordering of commits that could occur.
+
+However, this commit setup needs to be done after
+drm_atomic_helper_setup_commit(), because before the CRTC commit
+structure hasn't been allocated before, and before the workqueue is
+scheduled, because we would be potentially reordered already otherwise.
+
+That means that drivers currently have to roll their own
+drm_atomic_helper_commit() function, even though it would be identical
+if not for the commit setup.
+
+Let's introduce a hook to do so that would be called as part of
+drm_atomic_helper_commit, allowing us to reuse the atomic helpers.
+
+Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+---
+ drivers/gpu/drm/drm_atomic_helper.c      |  6 ++++++
+ include/drm/drm_modeset_helper_vtables.h | 18 ++++++++++++++++++
+ 2 files changed, 24 insertions(+)
+
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index ddd0e3239150..7d69c7844dfc 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -2083,8 +2083,11 @@ int drm_atomic_helper_setup_commit(struct drm_atomic_state *state,
+ 	struct drm_plane *plane;
+ 	struct drm_plane_state *old_plane_state, *new_plane_state;
+ 	struct drm_crtc_commit *commit;
++	const struct drm_mode_config_helper_funcs *funcs;
+ 	int i, ret;
+ 
++	funcs = state->dev->mode_config.helper_private;
++
+ 	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+ 		commit = kzalloc(sizeof(*commit), GFP_KERNEL);
+ 		if (!commit)
+@@ -2169,6 +2172,9 @@ int drm_atomic_helper_setup_commit(struct drm_atomic_state *state,
+ 		new_plane_state->commit = drm_crtc_commit_get(commit);
+ 	}
+ 
++	if (funcs && funcs->atomic_commit_setup)
++		return funcs->atomic_commit_setup(state);
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_atomic_helper_setup_commit);
+diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
+index f2de050085be..56470baf0513 100644
+--- a/include/drm/drm_modeset_helper_vtables.h
++++ b/include/drm/drm_modeset_helper_vtables.h
+@@ -1396,6 +1396,24 @@ struct drm_mode_config_helper_funcs {
+ 	 * drm_atomic_helper_commit_tail().
+ 	 */
+ 	void (*atomic_commit_tail)(struct drm_atomic_state *state);
++
++	/**
++	 * @atomic_commit_setup:
++	 *
++	 * This hook is used by the default atomic_commit() hook implemented in
++	 * drm_atomic_helper_commit() together with the nonblocking helpers (see
++	 * drm_atomic_helper_setup_commit()) to extend the DRM commit setup. It
++	 * is not used by the atomic helpers.
++	 *
++	 * This function is called at the end of
++	 * drm_atomic_helper_setup_commit(), so once the commit has been
++	 * properly setup across the generic DRM object states. It allows
++	 * drivers to do some additional commit tracking that isn't related to a
++	 * CRTC, plane or connector, typically a private object.
++	 *
++	 * This hook is optional.
++	 */
++	int (*atomic_commit_setup)(struct drm_atomic_state *state);
+ };
+ 
+ #endif
+-- 
+2.28.0
+
