@@ -2,101 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB062B259A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 21:35:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EFD72B25BA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 21:44:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726279AbgKMUfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 15:35:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:57444 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726233AbgKMUfL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 15:35:11 -0500
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.6])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9948B2223C;
-        Fri, 13 Nov 2020 20:35:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605299710;
-        bh=cHeuOuncJHW+8hXxWpYa6tQZVFcKd3qiZmVck+KlPEc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=iRXJDAcuHA/br3g74i/3HDAiwIlZmon/0/XANIl4E9OtyDAVKz0YiO3i7lXUsSuhS
-         rBNSGw2DuAEtF2eTlcpwClf59HbtTFf4J4zA1MyYu5numvEUZgKvrgQk+mQub2dWyx
-         qmSqf7iUdvVzQgnnLeJ8Bu7h84537Wfx470wcMx8=
-Date:   Fri, 13 Nov 2020 12:35:08 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     =?UTF-8?B?xYF1a2Fzeg==?= Stelmach <l.stelmach@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v6 3/5] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Message-ID: <20201113123508.3920de4b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201112115106.16224-4-l.stelmach@samsung.com>
-References: <20201112115106.16224-1-l.stelmach@samsung.com>
-        <CGME20201112115108eucas1p22790c6cdec17e5322424e026b3985305@eucas1p2.samsung.com>
-        <20201112115106.16224-4-l.stelmach@samsung.com>
+        id S1726092AbgKMUob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 15:44:31 -0500
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:33298 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725866AbgKMUob (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 15:44:31 -0500
+Received: by mail-oo1-f66.google.com with SMTP id f8so2477576oou.0;
+        Fri, 13 Nov 2020 12:44:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition;
+        bh=ME8CGuVzeaEeQ0eJUKBVltCEd/6H1KvgQeaVHs+oC8c=;
+        b=meiiByNBgnzNRshqaojvVA3EMcekfmRO09Q/jtrR1MUPlYOG8YTWVMrY1d7M/FXNKM
+         +/QxEgZBwcKvQevqCDz/za7nm8Pa6PZXRHM1lcmClCtqKP5gr1jympu0GGaphp97jKnq
+         qCvpqkuKZ9cQkbXaL9hmKcw+zyM1nXxDPovxwsyQiQQe03SzVu3UfJB/d4VlcDUMBJtB
+         6XMKbQ/0kT5LY1AxjOSYmQCFtzyxs63/ctfO07u4sJdAiS+BuMXUiNrST6Nkrxb/oddb
+         RkypUBWXznFXyAbLcvrSR8uHP+JdkF7Z5sKwEv5iOuZXYaIfywuG0p9AaqMIa2QdtBWH
+         cxJg==
+X-Gm-Message-State: AOAM531yJXs9X3brbbALz4ZizEAFRAKZXnNqqbCRVosi0WPPcb1x5TZH
+        d5jlE64pbdtUq4Sz7JWniA==
+X-Google-Smtp-Source: ABdhPJzdJ9U1xJiS6M6L33cDAMgPWChWT3qJ/Y/ZHNieOa5v3/JDjtc+KwtaNrx/jb/iZbwS9RnSEg==
+X-Received: by 2002:a4a:a217:: with SMTP id m23mr2927488ool.26.1605300270775;
+        Fri, 13 Nov 2020 12:44:30 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z10sm2304305otp.0.2020.11.13.12.44.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Nov 2020 12:44:30 -0800 (PST)
+Received: (nullmailer pid 1963767 invoked by uid 1000);
+        Fri, 13 Nov 2020 20:44:29 -0000
+Date:   Fri, 13 Nov 2020 14:44:29 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+Subject: [GIT PULL] Devicetree fixes for v5.10, take 2
+Message-ID: <20201113204429.GA1955280@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Nov 2020 12:51:04 +0100 =C5=81ukasz Stelmach wrote:
-> ASIX AX88796[1] is a versatile ethernet adapter chip, that can be
-> connected to a CPU with a 8/16-bit bus or with an SPI. This driver
-> supports SPI connection.
->=20
-> The driver has been ported from the vendor kernel for ARTIK5[2]
-> boards. Several changes were made to adapt it to the current kernel
-> which include:
->=20
-> + updated DT configuration,
-> + clock configuration moved to DT,
-> + new timer, ethtool and gpio APIs,
-> + dev_* instead of pr_* and custom printk() wrappers,
-> + removed awkward vendor power managemtn.
-> + introduced ethtool tunable to control SPI compression
->=20
-> [1] https://www.asix.com.tw/products.php?op=3DpItemdetail&PItemID=3D104;6=
-5;86&PLine=3D65
-> [2] https://git.tizen.org/cgit/profile/common/platform/kernel/linux-3.10-=
-artik/
->=20
-> The other ax88796 driver is for NE2000 compatible AX88796L chip. These
-> chips are not compatible. Hence, two separate drivers are required.
->=20
-> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
+Linus,
 
-Please make sure the new code builds cleanly with W=3D1 C=3D1
+Please pull DT fixes. The 3 flexcan related commits haven't been in 
+linux-next, but then neither was the 5.11 material that went in for rc3 
+and broke things. :(
 
-../drivers/net/ethernet/asix/ax88796c_ioctl.c:221:19: warning: initialized =
-field overwritten [-Woverride-init]
-  221 |  .get_msglevel  =3D ax88796c_ethtool_getmsglevel,
-      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/net/ethernet/asix/ax88796c_ioctl.c:221:19: note: (near initializ=
-ation for =E2=80=98ax88796c_ethtool_ops.get_msglevel=E2=80=99)
-../drivers/net/ethernet/asix/ax88796c_ioctl.c:222:19: warning: initialized =
-field overwritten [-Woverride-init]
-  222 |  .set_msglevel  =3D ax88796c_ethtool_setmsglevel,
-      |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/net/ethernet/asix/ax88796c_ioctl.c:222:19: note: (near initializ=
-ation for =E2=80=98ax88796c_ethtool_ops.set_msglevel=E2=80=99)
-In file included from ../drivers/net/ethernet/asix/ax88796c_main.h:15,
-                 from ../drivers/net/ethernet/asix/ax88796c_ioctl.c:16:
-../drivers/net/ethernet/asix/ax88796c_spi.h:25:17: warning: =E2=80=98tx_cmd=
-_buf=E2=80=99 defined but not used [-Wunused-const-variable=3D]
-   25 | static const u8 tx_cmd_buf[4] =3D {AX_SPICMD_WRITE_TXQ, 0xFF, 0xFF,=
- 0xFF};
-      |                 ^~~~~~~~~~
+Rob
+
+
+The following changes since commit f8394f232b1eab649ce2df5c5f15b0e528c92091:
+
+  Linux 5.10-rc3 (2020-11-08 16:10:16 -0800)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.10-2
+
+for you to fetch changes up to bdac39a3bd28891fb0ded91c9152459c57773462:
+
+  dt-bindings: clock: imx5: fix example (2020-11-13 08:49:59 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for v5.10, take 2:
+
+- Fix Flexcan binding schema errors introduced in rc3
+
+- Fix an of_node ref counting error in of_dma_is_coherent
+
+----------------------------------------------------------------
+Evan Nimmo (1):
+      of/address: Fix of_node memory leak in of_dma_is_coherent
+
+Marc Kleine-Budde (3):
+      dt-bindings: can: fsl,flexcan.yaml: fix fsl,stop-mode
+      dt-bindings: can: fsl,flexcan.yaml: fix compatible for i.MX35 and i.MX53
+      dt-bindings: clock: imx5: fix example
+
+ .../devicetree/bindings/clock/imx5-clock.yaml          |  2 +-
+ .../devicetree/bindings/net/can/fsl,flexcan.yaml       | 18 +++++++++++-------
+ drivers/of/address.c                                   |  4 +++-
+ 3 files changed, 15 insertions(+), 9 deletions(-)
