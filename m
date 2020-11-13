@@ -2,63 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC04E2B2900
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 00:13:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E65742B290A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 00:17:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726196AbgKMXNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 18:13:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57196 "EHLO
+        id S1726020AbgKMXRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 18:17:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726061AbgKMXNT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 18:13:19 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 048D6C0613D1;
-        Fri, 13 Nov 2020 15:13:19 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id i13so8309590pgm.9;
-        Fri, 13 Nov 2020 15:13:19 -0800 (PST)
+        with ESMTP id S1725866AbgKMXRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 18:17:11 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BFFC0613D1
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 15:17:11 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id x15so7583420pfm.9
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 15:17:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+        h=subject:from:to:cc:references:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=CHXYnX2Zwil5Ov7etMglHETzyo/2Qqlg462z2k2RWF8=;
-        b=WLaN5ViN7oqhi3AwhMulPTcIBAymEm2biA5cmZ+2NtvsFsFvMYtdSF/LB4eN01ilRf
-         cYR0tMQwav1ND4YdV2RChCUqrY4IhPNrXxfPZvp+7qf3NtTf6YiNFYOJvW1Fs13YBHa8
-         eKJpmLnEna9o0KACS+5L0BEUnwIXrna3QfmZiNgF3Z74lQPriQdm+SuPHQBpm8vCHOQq
-         Pdv5M5ePFS6WLNmc0RZHvI/FtH+Ck5ujkk5ubQry2vRCt61MJ+EiHbF52bx6kF6y1Ol9
-         MwIL/HJ/LnYjWwxcPa66ksfJuXkoHKhv2e/Qu6km7bYtZqqWR9Uh8XDVa/aYdBEKzj1v
-         kBng==
+        bh=dMe0KomkjMb2H1QuCIBf1R7vdaes10w/HWFgnTYthcg=;
+        b=Gt2IgFaKmNYsznJXGGry1c6oStJnEKdpLU2gBfGA+DHYcTL7DHLqiScQOizpDaLAM9
+         MpWkuST9pD89F3rBwggA3MXXHIiLb7MG1l+Kfpb8vmQThbNTxDTk0Mk1FCMcOXUMUEoA
+         2QVssB6NQPhumelXXQgWHwWnTq160oKS1u7e3XKKPm1NlW6A/I2zhkQEeoDXeaxzurrD
+         yN6ERoyUob0SpqXPwCJgE/PNxrwJXHguj5PTmi2OMRaVzzaCF2t1+fJNW5niIGUO/sEA
+         qrOZgy2CVLDJUdnJdujPi3cEa9zf9wHKVyMyf+jXiRkbfBvqlzpycy+6uSPw4yxr2+Sh
+         mDkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+        h=x-gm-message-state:subject:from:to:cc:references:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=CHXYnX2Zwil5Ov7etMglHETzyo/2Qqlg462z2k2RWF8=;
-        b=RkxRn8Cn66bBc4xRxLDdNGmyjuz6wvJXhdEglvMZdVd9yV7mFs4PkTmNZLsVM8a4eg
-         8mbtw6GKDBmhNj3vmYOOexBpMD+iz+aaRlhrW+6dbLgXthOTXgFAHISfZ9QHCBbb8cNm
-         tf2oB2gShw5lEG1YPTMFFe1NWCj+JF+B94um+24v2hJ+tU5eSu4qRAHx/CwwjoRfmRkb
-         3TFHsya9b1PNTLCy+HLjU52hNvpdHlpnCTk0KqVtRkNUVNQVDL4Ysej4s2Sr+2PZT4nh
-         sDSYbVzUBLuGfBHqn9LisPgqWoHzZN8F6OJnVoHfb1rkjkGnErn2HlWtdaNSV77CnEgR
-         6h3w==
-X-Gm-Message-State: AOAM530qfQHexKKcvsnTKh6cQ00Y+CqTxXHD2IgAkEYGGpY0yU45cEvh
-        AwpN7+SpXIrZn0CqN+3DMTo=
-X-Google-Smtp-Source: ABdhPJxzv4yVjOVcAJ1NA4lp+3zUzbXaoIXHIoETEzz61bfk2OKpH9N4phCwSxiuIA95MhijAdzgpw==
-X-Received: by 2002:a63:2945:: with SMTP id p66mr3782882pgp.419.1605309198591;
-        Fri, 13 Nov 2020 15:13:18 -0800 (PST)
+        bh=dMe0KomkjMb2H1QuCIBf1R7vdaes10w/HWFgnTYthcg=;
+        b=j+bruFM7sjp1pfq1xKNI65KG8O2Se4znVITXtcBwO6WH+MvNNPOUJ0EraRYk8Ctr4E
+         4UTjmPj38af/oS6jU+k2gfqP/TMkYxbeBYszJZBNwyO+eoUgZedfriDFgDWHCtGk+hpP
+         kctsYMS2I5ii1dTen9fNmPPrMOiHkAb6jb/ssiS3M65cyaJOfR0x9ycDjexHsF+4Yrx7
+         0nvlHlohRF1b8Jyj8q1dLZnRMpXXrA47Kj1oIpN0PxBgO979kj+9bU25SdZ5DdlMEiwk
+         pwsW9VUg8LJ1UN3xNKMm6AksJiz3wFd0s/WdaPohXHW8oLVSEVvSoT3yvRIvuCmxs/OF
+         qWhA==
+X-Gm-Message-State: AOAM533oe5HnK5+cD1YJ08eD6yXx0mGXX84Gzfp1Vy4iR82UCH7s55px
+        eNcUsFXOReo8q8GLd2vaJUY=
+X-Google-Smtp-Source: ABdhPJzZYlKq61dt6bZLGTEal7kh2h58UhqOEc3tkmHSWk1oZu+eN8dclerBMs7/At78e/xu1UHN5Q==
+X-Received: by 2002:a63:1959:: with SMTP id 25mr3733411pgz.201.1605309430863;
+        Fri, 13 Nov 2020 15:17:10 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id d12sm9186601pjs.27.2020.11.13.15.13.17
+        by smtp.googlemail.com with ESMTPSA id h4sm8254927pgp.8.2020.11.13.15.17.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 13 Nov 2020 15:13:17 -0800 (PST)
-Subject: Re: [PATCH] phy: phy-bcm-ns-usb3: drop support for deprecated DT
- binding
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20201113113423.9466-1-zajec5@gmail.com>
+        Fri, 13 Nov 2020 15:17:10 -0800 (PST)
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Enable USB 3 PHY on Luxul XWR-3150
 From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201113095012.22422-1-zajec5@gmail.com>
+ <20201113231229.1632656-1-f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
  xGlkaOSDuu09rxuW+69Y2f1TzjFuGpBk4ysWOR85O2Nx8AJ6fYGCoeTbovrNlGT1M9obSFGQ
@@ -113,12 +111,12 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <289d37b9-8942-6bda-d36e-ca086a599bef@gmail.com>
-Date:   Fri, 13 Nov 2020 15:13:16 -0800
+Message-ID: <43f4a152-6e05-ee3f-d0ab-645b09e79258@gmail.com>
+Date:   Fri, 13 Nov 2020 15:17:06 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201113113423.9466-1-zajec5@gmail.com>
+In-Reply-To: <20201113231229.1632656-1-f.fainelli@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -126,21 +124,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/13/20 3:34 AM, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 11/13/20 3:12 PM, Florian Fainelli wrote:
+> On Fri, 13 Nov 2020 10:50:12 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+>> From: Rafał Miłecki <rafal@milecki.pl>
+>>
+>> This device has a functional USB 3 port so PHY is required.
+>>
+>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>> ---
 > 
-> Initially this PHY driver was implementing MDIO access on its own. It
-> was caused by lack of proper hardware design understanding.
-> 
-> It has been changed back in 2017. DT bindings were changed and driver
-> was updated to use MDIO layer.
-> 
-> It should be really safe now to drop the old deprecated code. All Linux
-> stored DT files don't use it for 3,5 year. There is close to 0 chance
-> there is any bootloader with its own DTB using old the binding.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Applied to devicetree/next, thanks!
 
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
+
+After fixing it up so it builds:
+
+diff --git a/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
+b/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
+index 1a6b9f56d67a..a361aa8627d3 100644
+--- a/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
++++ b/arch/arm/boot/dts/bcm47094-luxul-xwr-3150-v1.dts
+@@ -73,7 +73,7 @@ &usb3 {
+
+ &usb3_phy {
+        status = "okay";
+-}
++};
+
+ &spi_nor {
+        status = "okay";
 -- 
 Florian
