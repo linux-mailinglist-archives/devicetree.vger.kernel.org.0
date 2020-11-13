@@ -2,78 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 694A42B1EA2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23C032B1EA6
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 16:29:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726741AbgKMP2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 10:28:33 -0500
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:58333 "EHLO
+        id S1726621AbgKMP3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 10:29:03 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:45873 "EHLO
         new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726278AbgKMP2d (ORCPT
+        by vger.kernel.org with ESMTP id S1726278AbgKMP3C (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Nov 2020 10:28:33 -0500
+        Fri, 13 Nov 2020 10:29:02 -0500
 Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id EC3BC58051B;
-        Fri, 13 Nov 2020 10:28:31 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:28:31 -0500
+        by mailnew.nyi.internal (Postfix) with ESMTP id CDDDC5804E5;
+        Fri, 13 Nov 2020 10:29:01 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 13 Nov 2020 10:29:01 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         from:to:cc:subject:date:message-id:content-type:mime-version
         :content-transfer-encoding; s=fm1; bh=7Zmgsv4bn6m3O58vV2b3+wNJJw
-        TAQp+Lmd3f32mWRH4=; b=k7UlQIfFELipVX33MndLesTIB2ZjsgWgbg2aR7qmrb
-        y8zs9fDgXkzcoIXrDBUEkNZm4HVKwVme6nxVozLau+IC7I85Qw2ZNztyx7bz+1gf
-        YLXTnYS2Hezl5qaamo/8zdvj0ZXTA9k5orS8micuQHYan5xhS4XTYOrD57kO7R8y
-        8Psy8vU4I5brcsgHWK05g5G69q+yPNPq7vqFYIjN0Pj2g2G5WO+AdMpKpirwhvpW
-        Ckp9uh4iRrbV8fP8DhknmTPIt4eysBZFDgKC6h30HER7OwAIsOLL1DWNZQih5MXY
-        XFDq9pMtlQy2BnudQ86efgKPYurvv1b4W3K/0gbHvlSA==
+        TAQp+Lmd3f32mWRH4=; b=WRPfIfSHGU3sAl1UCiB9Aa75i4yfD2u10zYRTYeRvF
+        fCwWwGiWM6xYxRSbFNhySqG4W5ItSVQBzgI2e62eyoU7K+0tQKyeuFXcvVNrFu6X
+        jfuqjZPiKHU9NjUHK0W2+zVk4Cg6hVeR5cXpwPpmBTBGp0tlizMYhPRZNm4r/mJA
+        hNLbbKvg/UUfDzS4FasWpvzgmvwOZNBTMFZFgpuz4j6dVmimjhYFZAypdslmIanl
+        gGt/AvChh8FqEeIuSSlCWIqb7xK5+jbl59xkvNBGfaL9QCvbzSakAJaq8CR447BC
+        R9sAALqQ7iNQNRIgYmUVN6scj3X7pd7dEVvANHDCXETA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:content-type
         :date:from:message-id:mime-version:subject:to:x-me-proxy
         :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=7Zmgsv
-        4bn6m3O58vV2b3+wNJJwTAQp+Lmd3f32mWRH4=; b=KqZuYf9kT9CSy+HgMq92XQ
-        jOYNG5YWYRXEA6F1djA4Spy+tuFnd13U19G2ZQHmNmhaCTZ3wiAX1/6VKcA01rk3
-        YPVPkxRmOrNXC7upxy/d5nSfSlDd9xPToisM6eM9va35y/EhaZBvgeiBZ1CjsZpN
-        UJ1Kx5baVAgAxXXW2N8eA0eRL4E11JtzIWRsWHSXomoS9y5eOsKb1SliY9tRjlHJ
-        9aHPvhqIm/rKfYf8YSMdMPJ5OiQ9tGsSrSfuWL5XmpDVEBSHNqx1C+Z2vAr0b72r
-        QicVGXZBZNTEJCVW3vr0akBi9kMmt5/Rx340WnNg/ZVXqL0h5N5zR4JXOQ/0nW2A
+        4bn6m3O58vV2b3+wNJJwTAQp+Lmd3f32mWRH4=; b=GsQS8GfFe9tTtDUOvyR8j1
+        CUl73cMBGvjtsyGxZXOPLNWpe8yWBLTFInxb7Q15/C0Eu4kwOXRW91gg6VQzDh/d
+        bqpt5ezxpYaceEkMRNMYcU+CyBse7sUHR3QwwBg14FrSFHuG7VIDGhR33ztmaHhN
+        Qt3/NbgisTxb31kpmT0aMyVBav3PmyiM+uFnfV+5vOEyf5fqzGjUpUbh/8Vnq4kP
+        +28rTYXS88M/XemrJF+fnuB8nxIyVt39B+0s4uuWQ0LHQt1Uiqjm69AAJ9pZHW0c
+        yMrBSBRwGMdocpSvAFBVzMVAJRZ2VE0osFE6Nq6IRzFYUGKKFRcRYa1fDzNlGeCA
         ==
-X-ME-Sender: <xms:HaauX8eTfqcO7-nFieSEt4JmaS4FOFneOe1TMolRmDxSkZaaxNYyug>
-    <xme:HaauX-PREx9KU_zPG0lRs7oNTNBXLNXaMqmdKc2vYFRg0RA94JpH4eQfnEGsPIURb
-    7Q5_HE8oYdOK8JGx9Q>
+X-ME-Sender: <xms:PaauX_ynIF1AXkZWYi8onJZduqoYyJxOdfCk9koLRAiRc3NAoYw38A>
+    <xme:PaauX3QKGqpZ-tVSCoQBn3Gtruaw5HEdOh40TeK4hZ3shOvHDxo7vKGjYtT9YnrzT
+    7JawkDuXCEfXJUx3Ho>
 X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvhedgjeeiucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
     cujfgurhephffvufffkffotggggfesthhqredtredtjeenucfhrhhomhepofgrgihimhgv
     ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
     gvrhhnpeetieekgfffkeegkeeltdehudetteejgfekueevhffhteegudfgkedtueegfffg
-    feenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    feenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:HaauX9inpliFxwYna_M_xdoXpqfzULazwKVVvf_eFP7kDDfUs6F4XA>
-    <xmx:HaauXx_zxMnp2AVlmJMBdiL551_vVkqeGKuVC4sQAMMJU_VqKrgR3w>
-    <xmx:HaauX4siIRq_PBLcI-4Elu7K14sldPg-uuDvos2XeQiGslI-7yr1DA>
-    <xmx:H6auX4GxUkRiT65JtyLG2RvC_hKujEFhOD61NNX4r4ZhECUX2bqLMg>
+X-ME-Proxy: <xmx:PaauX5UDywQ6NThDLcN6QC_H2wWq7fC0nJi1gCkKtfzh-krURrANXQ>
+    <xmx:PaauX5jQ5zcx0t8Kbc8fZRdpLP9EAwJw4ZuNJ00MabZSjmBfmt5i1A>
+    <xmx:PaauXxAlgGvGJkR-qNpXTQgTLXvVMVb9yGKkAO9Sc8Qy_etIxIyiqQ>
+    <xmx:PaauX5ZWnq8AsQ4tEY4EOmZ8vgvQFxsBF4354ZrK_YDlQXDeCdzvSg>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 5F7C33280068;
-        Fri, 13 Nov 2020 10:28:29 -0500 (EST)
+        by mail.messagingengine.com (Postfix) with ESMTPA id 401313064AB4;
+        Fri, 13 Nov 2020 10:29:01 -0500 (EST)
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
+        Eric Anholt <eric@anholt.net>,
         Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>, Eric Anholt <eric@anholt.net>,
+        David Airlie <airlied@linux.ie>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
         Thomas Zimmermann <tzimmermann@suse.de>,
         Maxime Ripard <maxime@cerno.tech>
-Cc:     Tim Gover <tim.gover@raspberrypi.com>,
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
         linux-rpi-kernel@lists.infradead.org,
         Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        dri-devel@lists.freedesktop.org
+        dri-devel@lists.freedesktop.org,
+        bcm-kernel-feedback-list@broadcom.com
 Subject: [PATCH 0/8] vc4: Convert to drm_atomic_helper_commit
-Date:   Fri, 13 Nov 2020 16:28:19 +0100
-Message-Id: <20201113152827.139110-1-maxime@cerno.tech>
+Date:   Fri, 13 Nov 2020 16:28:51 +0100
+Message-Id: <20201113152859.139335-1-maxime@cerno.tech>
 X-Mailer: git-send-email 2.28.0
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
