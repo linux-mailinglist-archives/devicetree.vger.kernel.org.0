@@ -2,111 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2334C2B2331
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 19:00:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC9A2B23C7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 19:29:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726439AbgKMSAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 13:00:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35962 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726433AbgKMSAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 13:00:01 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17862C0613D1;
-        Fri, 13 Nov 2020 10:00:01 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id v20so11755887ljk.8;
-        Fri, 13 Nov 2020 10:00:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Uw0QicBXorgBvHkVMMUveBzTYOdcTlrlkWfYL8DrooQ=;
-        b=f4axpBtm11tg1JMtX2IrPRlI2vGjB68er+3shdxmBj/Uo+Zm9NBrfoZiIS5ZhqrWYr
-         9HHdWTYIFjqelqr4hCGFHaM4AcVcVxJKEYqlvN5pO/cGG+fhNfeec3X4N/J/bK3RYiv6
-         i3ZSFAz+uauB9zflPpw514ufhzv00ot4TJunOQUqLJ5DAvEAlujj2F+RiKpHYvdlbWr/
-         WAdnk1i6x2OeVc0/zPzJ9clpxJTjw3d4HTqqBNh43Y2nxSQhzCdD/3z0m7zvsRdiySzz
-         0A6XxQVyDXfblhRVHeENJpKTYpY4iidVuBAMbkwStE7h9tXJwqDdTqOHOiMNblgtJaIN
-         WDtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Uw0QicBXorgBvHkVMMUveBzTYOdcTlrlkWfYL8DrooQ=;
-        b=KEVBGiNbsq8Npp7txm/NP9kkxRDS0Ja/DxwRhKLmx49NP71kweVDYeA510Ks9SnKaE
-         Ju8eKPpj2UdnmKCx85cQ566q6tT1gaetp0ewLlZggnbs5fDccvWj5LIwFsulK9fU6geg
-         zYzd1cHtXEt7HiDdZ9q8dy52IXiFowsjMw0mdHRD+0peIlbjYQ6LahBuGCN98ctKMw4s
-         wr/+Z+M6sXIVV31nz9CE6Qx1zNHKuYHT716VqbMFz6nJDvjUUmebKFvhWSz2I7KCcRe0
-         rzMlKJoOADLXneQbKu4CHTxO91zeEfb5cDUbcgRtcByIadmztPlcMdtWc+qa8UbOXpYf
-         3y3Q==
-X-Gm-Message-State: AOAM531Fu7T9BoGafSXV+47cbYDoI+KvqTd6uSzaqu+5VnuB0HJ/lgpX
-        h7e4BQQyRdEcO4TbBE/DvS4=
-X-Google-Smtp-Source: ABdhPJy9aXj6cy4HoVjjs5LcGHaBYPc5vZQvtxUU44wkCLSHKx+ej3+ZRzCt3bnWI+3GEtUPIwPcJw==
-X-Received: by 2002:a2e:5853:: with SMTP id x19mr1549091ljd.232.1605290396985;
-        Fri, 13 Nov 2020 09:59:56 -0800 (PST)
-Received: from localhost.localdomain ([2a01:540:2326:b00:1d75:252:b367:4629])
-        by smtp.gmail.com with ESMTPSA id c1sm1629363lfj.222.2020.11.13.09.59.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2020 09:59:56 -0800 (PST)
-From:   nikitos.tr@gmail.com
-To:     agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     robh+dt@kernel.org, stephan@gerhold.net, Michael.Srba@seznam.cz,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikitos.tr@gmail.com>
-Subject: [PATCH 6/6] arm64: dts: qcom: msm8916-samsung-a2015: Disable muic i2c pin bias
-Date:   Fri, 13 Nov 2020 22:59:17 +0500
-Message-Id: <20201113175917.189123-6-nikitos.tr@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201113175917.189123-1-nikitos.tr@gmail.com>
-References: <20201113175917.189123-1-nikitos.tr@gmail.com>
+        id S1726146AbgKMS3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 13:29:52 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:32968 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726092AbgKMS3w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 13:29:52 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ADITkav023269;
+        Fri, 13 Nov 2020 12:29:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605292186;
+        bh=0vUD35pH0zhF62AhI+ZyzQ8mAewqNaA1dAl9KpnWAlw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=MT+5T/LEmMlyBDPgkfmt5eJZGx8jFumBy8QHEJbViLkvV7LxBzCc0GTvzJH6NgZxH
+         i0Qh9xOJVDVhd0S6x66bo4lSo0/pmHBm85javUqB/8RT+B1C1FMVpRKByzKNQvuzQS
+         /feuhh8ux1oy9YOPD5lLckE7picbhWZ6/yv0SJ08=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ADITkYX120444
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 Nov 2020 12:29:46 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 13
+ Nov 2020 12:29:46 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 13 Nov 2020 12:29:46 -0600
+Received: from [10.24.69.198] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ADITdDj128227;
+        Fri, 13 Nov 2020 12:29:41 -0600
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-j7200-main: Add gpio nodes in main
+ domain
+To:     Nishanth Menon <nm@ti.com>, Faiz Abbas <faiz_abbas@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <t-kristo@ti.com>,
+        <robh+dt@kernel.org>, Grygorii Strashko <grygorii.strashko@ti.com>
+References: <20201102191120.20380-1-faiz_abbas@ti.com>
+ <20201102191120.20380-2-faiz_abbas@ti.com>
+ <20201112163953.soia5cje4ry42ujf@kahuna>
+From:   Sekhar Nori <nsekhar@ti.com>
+Message-ID: <6ce6de4b-6e4d-1d2d-aa7a-570d1796d668@ti.com>
+Date:   Fri, 13 Nov 2020 23:59:39 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201112163953.soia5cje4ry42ujf@kahuna>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nikita Travkin <nikitos.tr@gmail.com>
+Hi Nishanth,
 
-Some versions of the firmware leave i2c gpios in a wrong state.
-Add pinctrl that disables pin bias since external pull-up resistors
-are present.
+On 12/11/20 10:09 PM, Nishanth Menon wrote:
+> On 00:41-20201103, Faiz Abbas wrote:
+>> There are 4 instances of gpio modules in main domain:
+>> 	gpio0, gpio2, gpio4 and gpio6
+>>
+>> Groups are created to provide protection between different processor virtual
+>> worlds. Each of these modules I/O pins are muxed within the group. Exactly
+>> one module can be selected to control the corresponding pin by selecting it
+>> in the pad mux configuration registers.
+> Could you check with checkpatch --strict please?
+> 
+> I see:
+> 
+> WARNING: Possible unwrapped commit description (prefer a maximum 75 chars per line)
+> 
+>>
+>> This group pins out 69 lines (5 banks).
+>>
+>> Add DT modes for each module instance in the main domain.
+>>
+>> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 68 +++++++++++++++++++++++
+> 
+> dtbs_check: we added:
+> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@600000: Missing #address-cells in interrupt provider
+> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@610000: Missing #address-cells in interrupt provider
+> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@620000: Missing #address-cells in interrupt provider
+> arch/arm64/boot/dts/ti/k3-j7200-main.dtsi: /bus@100000/gpio@630000: Missing #address-cells in interrupt provider
 
-Fixes: 1329c1ab0730 ("arm64: dts: qcom: Add device tree for Samsung Galaxy A3U/A5U")
-Signed-off-by: Nikita Travkin <nikitos.tr@gmail.com>
----
- .../boot/dts/qcom/msm8916-samsung-a2015-common.dtsi   | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Hmm, running dtbs_check, I did not really see this. These are all the
+warnings I see for TI platforms: https://pastebin.ubuntu.com/p/m2my62mjQq/
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-index 0b0dfd3059de..f91269492d72 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
-@@ -78,6 +78,9 @@ i2c-muic {
- 		sda-gpios = <&msmgpio 105 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
- 		scl-gpios = <&msmgpio 106 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>;
- 
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&muic_i2c_default>;
-+
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
-@@ -304,6 +307,14 @@ mdss_sleep: mdss-sleep {
- 		};
- 	};
- 
-+	muic_i2c_default: muic-i2c-default {
-+		pins = "gpio105", "gpio106";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
- 	muic_int_default: muic-int-default {
- 		pins = "gpio12";
- 		function = "gpio";
--- 
-2.25.1
+The tree I am testing is linux-next of 12th Nov + these three patches
+applied.
 
+Also, #address-cells for interrupt provider being compulsory does not
+make full sense to me. Nothing in
+Documentation/devicetree/bindings/interrupt-controller/interrupts.txt or
+Documentation/devicetree/bindings/gpio/gpio-davinci.txt suggests that as
+well.
+
+Existing GPIO nodes for AM654 or J721E does not have #address-cells as well.
+
+Adding Grygorii as well, in case he knows more about this.
+
+Thanks,
+Sekhar
