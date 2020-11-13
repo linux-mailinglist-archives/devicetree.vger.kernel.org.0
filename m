@@ -2,61 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BBD22B2721
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 22:36:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA7422B28F9
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 00:11:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726319AbgKMVgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 16:36:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42102 "EHLO
+        id S1726268AbgKMXLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 18:11:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726777AbgKMVgv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 16:36:51 -0500
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A649FC08E864;
-        Fri, 13 Nov 2020 13:27:48 -0800 (PST)
-Received: by mail-ej1-x643.google.com with SMTP id oq3so15719328ejb.7;
-        Fri, 13 Nov 2020 13:27:48 -0800 (PST)
+        with ESMTP id S1726199AbgKMXLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 18:11:35 -0500
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2B9FC0613D1
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 15:11:34 -0800 (PST)
+Received: by mail-pg1-x543.google.com with SMTP id f18so8300662pgi.8
+        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 15:11:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=teOsIIFtobz3o9oTMjr4P4N9cJSqHYC4TqodeSUTBZw=;
-        b=Yt/fymGpqgqt08fbiKm7f9HWyYKTafKQ+QzHMIcef6e9tCzPmrJR+6JEOJ8hVmwJZ3
-         khlJmwXp4IvHtLNcg9q/NfmG4Vmr3VG9MPwNHT0c8Hc95ezOhbuYra7OVx0L0YdxJ8DW
-         lO1qo8UZm9orK8W8nywJ3zHDjR9Bnaz3yRn6Fzrc79UPm+QNrAv4GMLnlfunUS3m3D0b
-         7vCkwJvFE1hz4h6UxWJZdugsvCyIllTsPeVw9GL89xIhiwp9oo0dNQJ7DVs6H+fmd6do
-         yE6sS52WwdfPbIwUuAZFuJTFc8ROC3dEF23oEPqjxPnbZcb9zna7vpxMCgazl9Yy4mIo
-         ltYg==
+        bh=RLqqkP41K5S0my+4v7z92E1irpvXESQaFOkhzOdrUuM=;
+        b=J2Wi1/9KLmpO7nkujRY7oytVw+ASfWYpOvWv1CmLuBzDO0+v+mKXPJ0JavLRL1c8Uw
+         olXukE9WbrRHDyF+SkeVjQf3spfOHqq9HFdCgTd5LNUwbXx3Jqbaap2ok2KIzFo+vzIc
+         6aNbx6l3W2pXurQvQYBDi0j9zzwL9bFWxTcH3aTOgeB35Fk1Th83F/gvR07b6CSY4jNL
+         V0kkrw9CpkeG16CJSL5lNyW+zznBLfMzVeQsdwSJozbz77P9uUMt28IUE7HMiIcSAeQa
+         iDn2F3EllqKeHN1ictK6s4L8SNcojTGKuL3DXuz/Xj5lQJ0sZh7wzLyAYHug3Ki2tbqx
+         7MUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=teOsIIFtobz3o9oTMjr4P4N9cJSqHYC4TqodeSUTBZw=;
-        b=Pzi0LY4gjw3TiMFTNASti11MVcVbnMdHECdIG4N2biRW1sPTqLOKw7+UNgJWtXhCnm
-         1F23XbP8LhCdtKwRSRx48RQ7wAPxsuxQYeqSoZQTNEbkSb//S2vC5VeqeV7G597tMOlM
-         ujTam4S3yDaVxXSB2AjkMMGQlPxWdUiqbQyOZyo0Lo4Iqxd48+CgD+UPF1d71j8k5TO5
-         1XqXr0fh7WAtg9ELdhz/FJ6sRTd/EWvKzz94OErL8hk1MBgegZN8/cKHWp/li9GaifBm
-         iFSsCWwSmR2KQXcH/tvS1HqHRRL+n1zj8hZbgSSLhoje3biu0j4lNFfjVWEig0EDRP73
-         V1jg==
-X-Gm-Message-State: AOAM532n46ztuaARqtqqHEg6IEGV9uPnQJWCGj+Fndo7affhQwgVbBb4
-        PM0SNXKWuJD7j3U2dEqMFUdOFEd/1gPR3y/E
-X-Google-Smtp-Source: ABdhPJyIEIYR0ajIEVvgWXv7jKdGClZjECHU+gJJ6yrnRiDcu4YGzeS8QY2fkMIs7ODWnv7hCeR6wg==
-X-Received: by 2002:a17:906:e216:: with SMTP id gf22mr3966401ejb.286.1605302867455;
-        Fri, 13 Nov 2020 13:27:47 -0800 (PST)
-Received: from adroid (165-170-184-091.ip-addr.vsenet.de. [91.184.170.165])
-        by smtp.gmail.com with ESMTPSA id n22sm5001549edr.11.2020.11.13.13.27.46
+        bh=RLqqkP41K5S0my+4v7z92E1irpvXESQaFOkhzOdrUuM=;
+        b=n07T6mEurbZOYGcVl9H51RQs2l09H3XDnznunvNMjqyYMUFyaia5qbDGYBQQNAeLW6
+         XEzSSwC7CRxrjXrvw90sBzaj2+oObZbPbnVXvlUVkojFb9V11dtSfUrf73+Iix+Wa6Cq
+         zoLD6RKTeOjjQSXFVAjB2Hu7faRM7t8Xas6EWBVb4Y+MfiEMg0bHa5TQDC1wLrUixmiq
+         o555xSdZSDt7HA29oEFj4NtMfySQDmOUv8DQmDMcKFFA1RiVpDIRXtb9iGWpdRunIyeJ
+         z1v8aWRKcoQcyADPW41YAnGjng5JIat+jHiOdFhDdNMMt9mI/5ttKEadisCh/Ghb/UMy
+         Ry8w==
+X-Gm-Message-State: AOAM5317sHudvJbVVQy3ZftBVpFKf7vwBJbrIFUVMyA20672Hhed6n01
+        4Z6co7t/dYWh4FHmTbDEG7E=
+X-Google-Smtp-Source: ABdhPJxxjDLlQFYLb5H2WJT0Ax0Whc8rGoHXDjoGJZMQ4xbkhMfZfFjKDyyV6bAJX//v57ZMlbG8hA==
+X-Received: by 2002:a63:4a57:: with SMTP id j23mr3539093pgl.296.1605309094311;
+        Fri, 13 Nov 2020 15:11:34 -0800 (PST)
+Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id s2sm12617193pje.9.2020.11.13.15.11.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Nov 2020 13:27:46 -0800 (PST)
-From:   =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
-To:     linux-samsung-soc@vger.kernel.org
-Cc:     kgene@kernel.org, krzk@kernel.org, devicetree@vger.kernel.org,
-        =?UTF-8?q?Martin=20J=C3=BCcker?= <martin.juecker@gmail.com>
-Subject: [PATCH v3 5/5] ARM: exynos: extend cpuidle support to p4note boards
-Date:   Fri, 13 Nov 2020 22:25:26 +0100
-Message-Id: <20201113212525.13455-6-martin.juecker@gmail.com>
+        Fri, 13 Nov 2020 15:11:33 -0800 (PST)
+From:   Florian Fainelli <f.fainelli@gmail.com>
+To:     bcm-kernel-feedback-list@broadcom.com,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
+Subject: Re: [PATCH] ARM: dts: BCM5301X: Disable USB 3 PHY on devices without USB 3
+Date:   Fri, 13 Nov 2020 15:11:32 -0800
+Message-Id: <20201113231132.1632444-1-f.fainelli@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201113212525.13455-1-martin.juecker@gmail.com>
-References: <20201113212525.13455-1-martin.juecker@gmail.com>
+In-Reply-To: <20201113100919.25609-1-zajec5@gmail.com>
+References: <20201113100919.25609-1-zajec5@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,28 +66,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The p4note family supports cpuidle, so allow it to make use of this
-feature.
+On Fri, 13 Nov 2020 11:09:19 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> It seems pointless to have it enabled.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
 
-Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
----
- arch/arm/mach-exynos/exynos.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm/mach-exynos/exynos.c b/arch/arm/mach-exynos/exynos.c
-index 700763e07083..fc8291f76263 100644
---- a/arch/arm/mach-exynos/exynos.c
-+++ b/arch/arm/mach-exynos/exynos.c
-@@ -177,7 +177,8 @@ static void __init exynos_dt_machine_init(void)
- 	if (of_machine_is_compatible("samsung,exynos4210") ||
- 	    (of_machine_is_compatible("samsung,exynos4412") &&
- 	     (of_machine_is_compatible("samsung,trats2") ||
--		  of_machine_is_compatible("samsung,midas"))) ||
-+		  of_machine_is_compatible("samsung,midas") ||
-+		  of_machine_is_compatible("samsung,p4note"))) ||
- 	    of_machine_is_compatible("samsung,exynos3250") ||
- 	    of_machine_is_compatible("samsung,exynos5250"))
- 		platform_device_register(&exynos_cpuidle);
--- 
-2.25.1
-
+Applied to devicetree/next, thanks!
+--
+Florian
