@@ -2,111 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26A0D2B14D8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 04:50:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E55472B14E8
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 04:54:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726054AbgKMDuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Nov 2020 22:50:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42780 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726011AbgKMDuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 22:50:15 -0500
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A58EC0613D1;
-        Thu, 12 Nov 2020 19:50:05 -0800 (PST)
-Received: by mail-pl1-x644.google.com with SMTP id g11so3890449pll.13;
-        Thu, 12 Nov 2020 19:50:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=gABDaPkcpRWm59XVoAKUWYYqP1oIGF8Ef2Jtd6N0Tyo=;
-        b=G8lEsSAua3HsCmja0zB/zOPY63CO+tQCw94u/xLgqwaasHysJ9oSVuBsJbpMhlTfSD
-         vIv9SSpKtwP4aka7hHCkzIiMQf4m+QvjE1xBAsjMHJU4PVkPI/FoZhsCFtlkeUwmBPBV
-         Vg+hSqIi6e3ubsSixfT/s6A6aRLCvloju3MT/MTx6pBgtdx5d90Zh2HjDCHX7QhICTkD
-         TvyEvXqMCa+YIHj7sR7POk+/xFyRJT9vOsE6OSi0Ae7LOqcWLKKn4ibJHoYf49lL/x+V
-         fAKYZUCxNj6NDvnQufM7y1fT4CN9qLuokxGTYPGGwG3XLJq1YSnXCAFxvIU/NwntErGa
-         NPKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=gABDaPkcpRWm59XVoAKUWYYqP1oIGF8Ef2Jtd6N0Tyo=;
-        b=Zzr3KcnMt9BCa5cM+cDQHo+dwDmmt0Z7dvGAsw+XCk0knSDSQlgLTw+h+kIC58L/u8
-         LtEcWdAVWpDaE5637MQkqgQsNd2VSmwzBrEFKkL8mwHI91Jcz4N41R0IGjxsxbxaUJ6S
-         05l1DWJ5dzVItCS+E/2K0pKB/8EHcUWDxU+UvFFB2V5EqY3KJr/cLizOPb6AhQZkGZY3
-         ztQ4K3p0KczieL1/CC4bSR2dHx3vcrzWMPLYeSgiBn+Q1+0cGq0MRz4sXPW0uSOgLBMo
-         LwY/QC/cT3M6QbA+j4jeCtDpwb9lEVpwlzACEaKVs7MV1hTJjbCAMyB4CU/cyoYQc8cS
-         eudg==
-X-Gm-Message-State: AOAM532quj9/WykCx91/OrKkOgQnQ8t+gx5Qy9ehi2d7+wvRXsiJBLzP
-        0zih3rlW5eaH4erhnjJZcbI=
-X-Google-Smtp-Source: ABdhPJyeyUBA3HpqDRkEW1v2E3CskKpk2vJI03ZCq7IfmMltMuGHtVNmHv5Wpe3R0nSsN9KtVMnelg==
-X-Received: by 2002:a17:902:778e:b029:d8:d024:a9a with SMTP id o14-20020a170902778eb02900d8d0240a9amr525188pll.12.1605239405118;
-        Thu, 12 Nov 2020 19:50:05 -0800 (PST)
-Received: from hoboy.vegasvil.org (c-73-241-114-122.hsd1.ca.comcast.net. [73.241.114.122])
-        by smtp.gmail.com with ESMTPSA id b5sm8081594pfr.193.2020.11.12.19.50.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Nov 2020 19:50:04 -0800 (PST)
-Date:   Thu, 12 Nov 2020 19:50:01 -0800
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Christian Eggers <ceggers@arri.de>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 10/11] net: dsa: microchip: ksz9477: add
- Pulse Per Second (PPS) support
-Message-ID: <20201113035001.GD32138@hoboy.vegasvil.org>
-References: <20201112153537.22383-1-ceggers@arri.de>
- <20201112153537.22383-11-ceggers@arri.de>
- <20201113025311.jpkplhmacjz6lkc5@skbuf>
+        id S1726083AbgKMDyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Nov 2020 22:54:39 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:15624 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726011AbgKMDyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Nov 2020 22:54:38 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fae03780000>; Thu, 12 Nov 2020 19:54:32 -0800
+Received: from [10.2.50.194] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 13 Nov
+ 2020 03:54:33 +0000
+Subject: Re: [PATCH v1 1/4] dt-bindings: ata: tegra: Convert binding
+ documentation to YAML
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <thierry.reding@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-ide@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <jonathanh@nvidia.com>
+References: <1604628968-1501-1-git-send-email-skomatineni@nvidia.com>
+ <1604628968-1501-2-git-send-email-skomatineni@nvidia.com>
+ <20201106161122.GB3289870@bogus>
+ <f8ba33f1-90fa-a9f0-5834-9de23fc8ad31@nvidia.com>
+ <d0a42b1c-8ddc-fc97-c675-70a5b7601580@nvidia.com>
+Message-ID: <f7ccb10e-e375-d6a9-78b3-21a9f85a0148@nvidia.com>
+Date:   Thu, 12 Nov 2020 19:54:39 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201113025311.jpkplhmacjz6lkc5@skbuf>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <d0a42b1c-8ddc-fc97-c675-70a5b7601580@nvidia.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605239672; bh=y9M0Fcn36/SC16+7wkHJ4+Z0grI9AV23OMNrrku0Fw8=;
+        h=Subject:From:To:CC:References:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=GZRQqzdO5zNyf7+zJteLqdzDboMjcnAztm+r9Mgi8ttmSj3i4UzwepmYd6H78e9cD
+         FoRAV+V+Tx1SxrgeMOv1/1HohNwdTXR8BZuBnhgFjzl8YO4jcQVIArEUAVeOkNjPjr
+         TklNtxKZa+ASn2JJdXaBTmDE0V2+alQVUqFqDHPh8DUHa0ivvBJ9vql7M2grwnzDWb
+         3Kt9wS5Kz9VpCZoM4cN8uq3yAGxOkbzmsnhL07RmLOOljOGxRwCGAsLjoDHolLM5vE
+         00xG3VPN1AFKGnl0eCsrOpPNZECxoFXlFOBSlkOLunSqKtd0Px1MiUE7bTV1j7M7Xe
+         1DiJrpK4JFUdg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 04:53:11AM +0200, Vladimir Oltean wrote:
+Hi Rob,
 
-> Richard, do you think we can clarify the intended usage of PTP_CLK_REQ_PPS
-> in the documentation? It doesn't appear to be written anywhere that
-> PTP_ENABLE_PPS is supposed to enable event generation for the drivers/pps
-> subsystem. You would sort of have to know before you could find out...
+Updated yamllint and dt-schema as well.
 
-Yes, please!
+When I do make dt_binding_check, I see it failed as=20
+processed-schema-examples.json is not generated.
+Any idea of what I may be missing?
 
-The poor naming is a source of eternal confusion.  I think that the
-"hard pps" thing from NTP is not used very often, maybe never, but I
-didn't know that when I first drafted the whole PHC subsystem.
+Also it did not go thru bindings/ata path. Tried with DT_SCHEMA_FILES to=20
+tegra-ahci.yaml as well and I see same.
+make dt_binding_check=20
+DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/ata/nvidia,tegra-ahci.y=
+aml
 
-Naturally developers of PHC device drivers think that this the PPS
-that they need to implement.  After all, the name matches!
+LINT=C2=A0=C2=A0=C2=A0 Documentation/devicetree/bindings
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:20:9: [warning]=20
+wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:30:9: [warning]=20
+wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/mmc/mtk-sd.yaml:33:9: [warning]=20
+wrong indentation: expected 10 but found 8 (indentation)
+./Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml:3=
+7:2:=20
+[error] syntax error: expected <block end>, but found '<scalar>' (syntax)
+./Documentation/devicetree/bindings/soc/aspeed/xdma.yaml:10:2: [warning]=20
+wrong indentation: expected 2 but found 1 (indentation)
+./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:=
+10:4:=20
+[warning] wrong indentation: expected 2 but found 3 (indentation)
+./Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml:=
+18:7:=20
+[warning] wrong indentation: expected 4 but found 6 (indentation)
+./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:10:4:=20
+[warning] wrong indentation: expected 2 but found 3 (indentation)
+./Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml:15:7:=20
+[warning] wrong indentation: expected 4 but found 6 (indentation)
+./Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml:25:=
+10:=20
+[warning] wrong indentation: expected 10 but found 9 (indentation)
+./Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml:52=
+:9:=20
+[warning] wrong indentation: expected 6 but found 8 (indentation)
+./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:32:13:=20
+[warning] wrong indentation: expected 14 but found 12 (indentation)
+./Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml:35:9:=20
+[warning] wrong indentation: expected 10 but found 8 (indentation)
+Documentation/devicetree/bindings/Makefile:59: recipe for target=20
+'Documentation/devicetree/bindings/processed-schema-examples.json' failed
+make[1]: ***=20
+[Documentation/devicetree/bindings/processed-schema-examples.json] Error 12=
+3
+Makefile:1362: recipe for target 'dt_binding_check' failed
+make: *** [dt_binding_check] Error 2
 
-(Actually, at the time I thought that this would be the way to
-synchronize the system clock to the PHC, but it turned out that
-Miroslav's generic method in phc2sys worked very well, and so the hard
-pps thing has little, if any, practical value.)
 
-The documentation is vague, yes, but I think even more important
-would be to remove the word PPS from the C-language identifiers.
+When I do dtbs_check, I see=20
+Documentation/devicetree/bindings/processed-schema.json generated and=20
+also it passes for tegra-ahci.yaml
 
-I'm open to suggestions/patches on this...
+make ARCH=3Darm64 dtbs_check=20
+DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/ata/nvidia,tegra-ahci.y=
+aml
 
-Thanks,
-Richard
+Regards,
 
+Sowjanya
+
+
+On 11/6/20 9:18 AM, Sowjanya Komatineni wrote:
+>
+> On 11/6/20 8:41 AM, Sowjanya Komatineni wrote:
+>>
+>> On 11/6/20 8:11 AM, Rob Herring wrote:
+>>> On Thu, 05 Nov 2020 18:16:05 -0800, Sowjanya Komatineni wrote:
+>>>> This patch converts text based dt-binding document to YAML based
+>>>> dt-binding document.
+>>>>
+>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>>> ---
+>>>> =C2=A0 .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 152=20
+>>>> +++++++++++++++++++++
+>>>> =C2=A0 .../bindings/ata/nvidia,tegra124-ahci.txt=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 44 ------
+>>>> =C2=A0 2 files changed, 152 insertions(+), 44 deletions(-)
+>>>> =C2=A0 create mode 100644=20
+>>>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+>>>> =C2=A0 delete mode 100644=20
+>>>> Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
+>>>>
+>>>
+>>> My bot found errors running 'make dt_binding_check' on your patch:
+>>>
+>>> yamllint warnings/errors:
+>>>
+>>> dtschema/dtc warnings/errors:
+>>> Error:=20
+>>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dts:27.=
+31-32=20
+>>> syntax error
+>>> FATAL ERROR: Unable to parse input tree
+>>> make[1]: *** [scripts/Makefile.lib:342:=20
+>>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dt.yaml=
+]=20
+>>> Error 1
+>>> make[1]: *** Waiting for unfinished jobs....
+>>> make: *** [Makefile:1364: dt_binding_check] Error 2
+>>>
+>>>
+>>> See https://patchwork.ozlabs.org/patch/1395390
+>>>
+>>> The base for the patch is generally the last rc1. Any dependencies
+>>> should be noted.
+>>>
+>>> If you already ran 'make dt_binding_check' and didn't see the above
+>>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>>> date:
+>>>
+>>> pip3 install dtschema --upgrade
+>>>
+>>> Please check and re-submit.
+>> Thanks Rob. Will re-try after installing up-to-date.
+>
+> Somehow running 'make dt_binding_check' gives below error.
+>
+> I have yamllint newest version (1.2.1-1). Any specific version of=20
+> yamllint is needed?
+>
+> =C2=A0LINT=C2=A0=C2=A0=C2=A0 Documentation/devicetree/bindings
+> invalid config: unknown option "max-spaces-inside-empty" for rule=20
+> "braces"
+> xargs: /usr/bin/yamllint: exited with status 255; aborting
+> Documentation/devicetree/bindings/Makefile:59: recipe for target=20
+> 'Documentation/devicetree/bindings/processed-schema-examples.json' failed
+> make[1]: ***=20
+> [Documentation/devicetree/bindings/processed-schema-examples.json]=20
+> Error 124
+> Makefile:1362: recipe for target 'dt_binding_check' failed
+> make: *** [dt_binding_check] Error 2
+>
