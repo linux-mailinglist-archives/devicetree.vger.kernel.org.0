@@ -2,125 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34ABD2B1DA8
-	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 15:46:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36DC12B1DBA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Nov 2020 15:52:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726648AbgKMOqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Nov 2020 09:46:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726606AbgKMOqW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 09:46:22 -0500
-Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A560FC061A4A
-        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 06:46:21 -0800 (PST)
-Received: by mail-vs1-xe42.google.com with SMTP id l22so5322165vsa.4
-        for <devicetree@vger.kernel.org>; Fri, 13 Nov 2020 06:46:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Aa2pPBMOldZH+yQGH0UrveON65rZ08/cb06MQFHGa0E=;
-        b=oI7Irk60nS8p8IJ9aebTfBT8tKh0VFGTFn4N+jHvPSrvutUGz4HDN9F2eXGWUFLUJO
-         pztkL1zvJJMqmmqAU4axiDuUUDb7ZZEfZv/0TZRBLjwcw3/kbFA/Hx96JgrITvvr02pZ
-         P9ohzUknb4wDMFPoki9mO18MI2KcxcBOr1dFLBdisyT0QQlXZ092Oz52zVXzS4AIl6nm
-         U8S/pCXL5v33Tp7vs3/soInXrThDoA5cbxXaCLXchnNuLPv28h5iBteaaK6ficGI1j82
-         XTk7m3rfU//IdaFvmbs97w3+GVYDzQv+iWKbaHXieTVM3M0QznSjPWGv6+xYuZCuLvZr
-         7YfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Aa2pPBMOldZH+yQGH0UrveON65rZ08/cb06MQFHGa0E=;
-        b=J17J0q3FtK6oR7snw963/IvFBH8WGdxf2lFeOn2Csdb7yQn/0kUmzEy1h5VjHuMee/
-         7y/TcMWJu8OchdCztnMhSrI/9nLRiw/0eMrFmS0RVN4cT/w70wwkDmKSvj8tQBtt6C5p
-         2sEceRL9wbv599IAVtXCLAAfzuIM1HYIpZHL4RETT+Xrn45Sm2rknGlsfNhv7y3srNwB
-         zPeN6otw7g6vLPHhgg/f9Eo/cgyawBFlf6ddx5Y1/FBE/KTuGqEv2PNV/AP+XC8HfDgO
-         BnSXQOfpl9+bWINc1eTMlNY793Xhxb5JUC5OApPi9ZhXARVnOrMzwsy16NKXPu3Z6QE6
-         Zv0g==
-X-Gm-Message-State: AOAM530MRg/MPTB0/89TX1rAXGns78shFImFddMceLGp4J7DlTe623lR
-        i2bCfuPApQ/oIao84RChVGBKCnypnxaL04LyPRGXVg==
-X-Google-Smtp-Source: ABdhPJwkbgKSdaTWhgIsxWjShz+Kw+ub2606C3A/AwjkR07HCOjuCnqip2AUmLV/UBcfKhNInvgSpQVBCTAIPmGnX5w=
-X-Received: by 2002:a67:3256:: with SMTP id y83mr1567875vsy.48.1605278780301;
- Fri, 13 Nov 2020 06:46:20 -0800 (PST)
+        id S1726507AbgKMOwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Nov 2020 09:52:18 -0500
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:62802 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726278AbgKMOwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Nov 2020 09:52:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1605279137; x=1636815137;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=yV2HkxAG0/DBudqLtQxcT+BFvOnhMV/3Cue+wO1EP7g=;
+  b=kk76zWlH0x4PJEA87c9J2jCxpHBUeugSwABRjLzjD9bzZwjXcW9n3eh+
+   YxJJPfKBcUksINERbOvtmnoWrTERTQSwGhHLnzByR577IMODUSvxO6Cyc
+   7R73QBLnrT65AILmyYQAvaxAhVtVUQH0O/iy5pvgNW+LyGRGsqMirFxKw
+   Paq1KVUCbywFYW/P9kQFVLNaCf/8a1rauOK5UPPlNvakypZdfkGldzdlk
+   FtRTY+SOd035yn0N/UyzQegcGFOryFEvOtkycEBV8gOIUPH/kHc+Mx1iO
+   7GWLLcTpA+70LPTeLYhrWbV7VDBquTgKR5Cs8zxpUhZ0j0Pyk6y0Z0iOq
+   Q==;
+IronPort-SDR: y46HRo/M1JjhTBpD9idJyZziUnVzas7QTVFlSFcnFagUMBYF9usKEZDlbNMN2PyFv0e0IuKAnv
+ PQYG9BG0CT0FDxBys4eqYWqDF7bJIg6VxvWYskHWR8Nx5NMEkEph/rq2lAG9bRiok46r2wK6DC
+ ij8WzojQquGy4ETWgOKQUcHoccSo6QOKKBi3Sdfh7SLQtG5DaD5f6CgQlYODdcgq4axpW7AH5x
+ L88OvvOmSZGqoIUxj1MLcdVLT2U/SfRqmJNBjgT7qn1cq0IDxVHCSk3F13vfqrDw90PE/i8oia
+ dzo=
+X-IronPort-AV: E=Sophos;i="5.77,475,1596524400"; 
+   d="scan'208";a="96233652"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 13 Nov 2020 07:52:17 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 13 Nov 2020 07:52:16 -0700
+Received: from soft-dev10.microsemi.net (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Fri, 13 Nov 2020 07:52:14 -0700
+From:   Lars Povlsen <lars.povlsen@microchip.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Lars Povlsen <lars.povlsen@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: [PATCH v10 0/3] Adding support for Microchip/Microsemi serial GPIO controller
+Date:   Fri, 13 Nov 2020 15:51:48 +0100
+Message-ID: <20201113145151.68900-1-lars.povlsen@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201104234427.26477-1-digetx@gmail.com> <CAPDyKFr7qTU2RPhA_ZrbCayoTTNUEno1zdmvmv+8HBe-Owrfeg@mail.gmail.com>
- <cd147ab0-1304-a491-7a56-ee6199c02d32@gmail.com> <2716c195-083a-112f-f1e5-2f6b7152a4b5@gmail.com>
- <CAPDyKFqUMsH9dCZ=OYqfdLt==+-8NjK9n=S5jGGNXZu6Y9q=2w@mail.gmail.com>
- <1f7e90c4-6134-2e2b-4869-5afbda18ead3@gmail.com> <20201112204358.GA1027187@ulmo>
- <25942da9-b527-c0aa-5403-53c9cc34ad93@gmail.com>
-In-Reply-To: <25942da9-b527-c0aa-5403-53c9cc34ad93@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 13 Nov 2020 15:45:43 +0100
-Message-ID: <CAPDyKFomk7mw7-wpZFPOfT27CEXuCbzRiBoicH5-k7QF_pphVw@mail.gmail.com>
-Subject: Re: [PATCH v1 00/30] Introduce core voltage scaling for NVIDIA
- Tegra20/30 SoCs
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        driverdevel <devel@driverdev.osuosl.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Nov 2020 at 23:14, Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> 12.11.2020 23:43, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> >> The difference in comparison to using voltage regulator directly is
-> >> minimal, basically the core-supply phandle is replaced is replaced wit=
-h
-> >> a power-domain phandle in a device tree.
-> > These new power-domain handles would have to be added to devices that
-> > potentially already have a power-domain handle, right? Isn't that going
-> > to cause issues? I vaguely recall that we already have multiple power
-> > domains for the XUSB controller and we have to jump through extra hoops
-> > to make that work.
->
-> I modeled the core PD as a parent of the PMC sub-domains, which
-> presumably is a correct way to represent the domains topology.
->
-> https://gist.github.com/digetx/dfd92c7f7e0aa6cef20403c4298088d7
+The series add support for the serial GPIO controller used by
+Microchip Sparx5, as well as (MSCC) ocelot/jaguar2 SoCs.
 
-That could make sense, it seems.
+v10 changes - anniversary edition (from Andy):
+ - Fixed "Author" comment
+ - Added missing "break;" in default switch case
+ - Return -EINVAL when requesting pin disabled in bitstream
+ - Change bank consistency check to return -ERANGE if failed (-EINVAL
+   previously)
 
-Anyway, this made me realize that
-dev_pm_genpd_set_performance_state(dev) returns -EINVAL, in case the
-device's genpd doesn't have the ->set_performance_state() assigned.
-This may not be correct. Instead we should likely consider an empty
-callback as okay and continue to walk the topology upwards to the
-parent domain, etc.
+v9 changes (from Andy):
+ - Avoid bitfield duplication (use FIELD_PREP/FIELD_GET)
+ - Introduce SGPIO_SRC_BITS define constant
+ - Use ENOTSUPP instead of EOPNOTSUPP (checkpatch will complain)
+ - Drop dev_err() when using pin for wrong direction
+ - Replaced left-over OF code with device_property_* flavors
+ - Use devm_kasprintf() instead of strnprintf()+devm_strdup()
+ - Minor formatting changes, deleted comments
 
-Just wanted to point this out. I intend to post a patch as soon as I
-can for this.
+v8 changes (from Andy):
+ - Removed OF dependency/usage entirely.
+ - Trimmed+sorted include files.
+ - Made local variables reverse xmas sorted.
+ - Removed __func__ usage.
+ - Changed some occurences of "if (x) { ..." to early return.
+ - Use dev_err_probe() where possible.
+ - Replace of_device_get_match_data() with device_get_match_data()
+ - Some minor formatting corrections
+ - Do per-pin string allocation as opposed to bulk allocation+chop.
 
-[...]
+v7 changes:
+- Fixed wrong sizeof in pin string name template. (Andy)
+- Collapsed sgpio_input_get() to one liner. (Andy)
+- Eliminated unneeded variable in microchip_sgpio_get_value()
+- Removed noisy dev_info(). (Andy)
+- Replaced platform_get_resource()+devm_ioremap_resource() with
+ devm_platform_ioremap_resource(). (Andy)
+- Replaced device_property_read_u32() with
+  of_property_read_u32(). (Andy)
+- Replaced __builtin_ffsll() with __builtin_ffs() for MIPS32 targets.
 
-Kind regards
-Uffe
+v6 changes:
+- Use "bus-frequency" instead of "microchip,sgpio-frequency". Drop
+  '$ref'. (Robh)
+- Added "ngpios" description, bumped minimum to 32. (Linus)
+- Added "#size-cells" description. (Linus)
+- Changed "bus-frequency" validation in driver to reflect the YAML
+  description.
+
+v5 changes (driver comments from Linus):
+- Collect bank data in sgpio_bank struct
+- Add is_input boolean to sgpio_bank struct
+- Use single-bit bitmasks in sgpio_output_set() and sgpio_output_get()
+- Eliminate superfluous struct pinctrl_dev *pctl_dev in bank data
+- Fix wrong ngpio consistency check
+
+v4 changes (binding comments from Rob):
+- microchip,sgpio-port-ranges changed to uint32-matrix so tuples can
+  be represented properly.
+- gpio controller node name changed to "gpio@[0-1]"
+- whitespace fixes
+- DT files updated as per schema changes
+
+v3 changes:
+- Renamed all usage of "mchp" abbrevation with "microchip".
+- Split the in/output directions into (two) separate banks.
+- Eliminated the bindings include file (from above)
+- Changed SPDX license to "GPL-2.0-or-later"
+- Change -ENOTSUPP to -EOPNOTSUPP
+- Minor type/symbol naming changes
+
+v2 changes:
+- Adds both in and output modes.
+- Use direct adressing of the individual banks (#gpio-cells = <4>),
+  also osoleting need for addressing macros in bindings include file.
+- Property 'microchip,sgpio-ports' (uint32, bitmask) replaced by
+  proper range set (array of [start,end]) 'microchip,sgpio-port-ranges'.
+- Fixes whitespace issues in Kconfig file
+
+Lars Povlsen (3):
+  dt-bindings: pinctrl: Add bindings for pinctrl-microchip-sgpio driver
+  pinctrl: pinctrl-microchip-sgpio: Add pinctrl driver for Microsemi
+    Serial GPIO
+  arm64: dts: sparx5: Add SGPIO devices
+
+ .../pinctrl/microchip,sparx5-sgpio.yaml       | 145 ++++
+ MAINTAINERS                                   |   1 +
+ arch/arm64/boot/dts/microchip/sparx5.dtsi     |  91 +++
+ .../boot/dts/microchip/sparx5_pcb125.dts      |   5 +
+ .../dts/microchip/sparx5_pcb134_board.dtsi    | 258 +++++++
+ .../dts/microchip/sparx5_pcb135_board.dtsi    |  55 ++
+ drivers/pinctrl/Kconfig                       |  16 +
+ drivers/pinctrl/Makefile                      |   1 +
+ drivers/pinctrl/pinctrl-microchip-sgpio.c     | 709 ++++++++++++++++++
+ 9 files changed, 1281 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/microchip,sparx5-sgpio.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-microchip-sgpio.c
+
+--
+2.25.1
