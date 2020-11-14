@@ -2,130 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F26D2B312D
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 23:33:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C699D2B314A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 23:57:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726140AbgKNWc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 17:32:58 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:55664 "EHLO vps0.lunn.ch"
+        id S1726438AbgKNWz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 17:55:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54660 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726125AbgKNWc6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 17:32:58 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ke46E-0075um-ET; Sat, 14 Nov 2020 23:32:50 +0100
-Date:   Sat, 14 Nov 2020 23:32:50 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     davem@davemloft.net, kuba@kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, jianxin.pan@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        khilman@baylibre.com, narmstrong@baylibre.com, jbrunet@baylibre.com
-Subject: Re: [PATCH RFC v1 1/4] dt-bindings: net: dwmac-meson: use
- picoseconds for the RGMII RX delay
-Message-ID: <20201114223250.GI1480543@lunn.ch>
-References: <20201114200104.4148283-1-martin.blumenstingl@googlemail.com>
- <20201114200104.4148283-2-martin.blumenstingl@googlemail.com>
+        id S1726290AbgKNWz4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Nov 2020 17:55:56 -0500
+Received: from localhost (otava-0257.koleje.cuni.cz [78.128.181.4])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9F89E24073;
+        Sat, 14 Nov 2020 22:55:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605394556;
+        bh=F03z7ASZDhMp75BaEegVxEJhoHfF4XYk1uvSxbT+eMg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=r/IF581xHU+eSnXzhIQOf1XmcOMSxc6WMGMcBkgUN3Yx7iz7PBvV3tI0UAJOUhVfo
+         VVGCDqpU60jOnPGWJZ/7trTKjALcR59wM2pV0EaX0Xws0qESnjUeMEZ3NThX/PUpVx
+         ua0liS3GwxS6us8+UyJdW7/d8SpXWNxdCi4stkUA=
+Date:   Sat, 14 Nov 2020 23:55:50 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     Andreas =?UTF-8?B?RsOkcmJlcg==?= <afaerber@suse.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <uwe@kleine-koenig.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH mvebu-dt v2 4/6] ARM: dts: turris-omnia: add SFP node
+Message-ID: <20201114235550.0ecd4a0c@kernel.org>
+In-Reply-To: <20201114214204.GE1551@shell.armlinux.org.uk>
+References: <20201114183217.1352-1-kabel@kernel.org>
+        <20201114183217.1352-5-kabel@kernel.org>
+        <972cde9c-9e4a-0e43-c9c3-9528581d8738@suse.de>
+        <20201114214204.GE1551@shell.armlinux.org.uk>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201114200104.4148283-2-martin.blumenstingl@googlemail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 14, 2020 at 09:01:01PM +0100, Martin Blumenstingl wrote:
-> Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
-> delay register which allows picoseconds precision. Deprecate the old
-> "amlogic,rx-delay-ns" in favour of a new "amlogic,rgmii-rx-delay-ps"
-> property.
-> 
-> For older SoCs the only known supported values were 0ns and 2ns. The new
-> SoCs have 200ps precision and support RGMII RX delays between 0ps and
-> 3000ps.
-> 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../bindings/net/amlogic,meson-dwmac.yaml     | 52 ++++++++++++++++++-
->  1 file changed, 51 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> index 6b057b117aa0..bafde1194193 100644
-> --- a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-> @@ -74,18 +74,68 @@ allOf:
->              Any configuration is ignored when the phy-mode is set to "rmii".
->  
->          amlogic,rx-delay-ns:
-> +          deprecated: true
->            enum:
->              - 0
->              - 2
->            default: 0
-> +          description:
-> +            The internal RGMII RX clock delay in nanoseconds. Deprecated, use
-> +            amlogic,rgmii-rx-delay-ps instead.
-> +
-> +        amlogic,rgmii-rx-delay-ps:
-> +          default: 0
->            description:
->              The internal RGMII RX clock delay (provided by this IP block) in
-> -            nanoseconds. When phy-mode is set to "rgmii" then the RX delay
-> +            picoseconds. When phy-mode is set to "rgmii" then the RX delay
->              should be explicitly configured. When the phy-mode is set to
->              either "rgmii-id" or "rgmii-rxid" the RX clock delay is already
->              provided by the PHY. Any configuration is ignored when the
->              phy-mode is set to "rmii".
+On Sat, 14 Nov 2020 21:42:04 +0000
+Russell King - ARM Linux admin <linux@armlinux.org.uk> wrote:
 
-Hi Martin
+> On Sat, Nov 14, 2020 at 10:36:09PM +0100, Andreas F=C3=A4rber wrote:
+> > Hi Marek,
+> >=20
+> > On 14.11.20 19:32, Marek Beh=C3=BAn wrote: =20
+> > > Turris Omnia has a SFP cage that, together with WAN PHY is connected =
+to =20
+> >=20
+> > "an SFP"
+> > Comma missing after PHY (or drop before together).
+> >  =20
+> > > eth2 SerDes via a SerDes multiplexor. Describe the SFP cage, but leave
+> > > it disabled. Until phylink has support for such multiplexor we will
+> > > leave it to U-Boot to enable SFP and disable WAN PHY at boot time
+> > > depending on whether a SFP module is present. =20
+> >=20
+> > multiplexor vs. multiplexer may be a British thing? Thunderbird
+> > underlines it fwiw. =20
+>=20
+> Why doesn't someone who has a Turris Omnia come up with the support
+> needed for this board, such as sending a patch to add support for
+> this multiplexer?
+>=20
 
-I don't think the wording matches what the driver is actually doing:
+Russell, I have this planned, but it is a bit complicated.
+We discussed this maybe 1 or 2 years ago.
 
-        if (dwmac->rx_delay_ns == 2)
-                rx_dly_config = PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP;
-        else
-                rx_dly_config = 0;
+The thing is that phylink does not support such a thing nor is there a
+simple way to add such support to it.
 
-        switch (dwmac->phy_mode) {
-        case PHY_INTERFACE_MODE_RGMII:
-                delay_config = tx_dly_config | rx_dly_config;
-                break;
-        case PHY_INTERFACE_MODE_RGMII_RXID:
-                delay_config = tx_dly_config;
-                break;
-        case PHY_INTERFACE_MODE_RGMII_TXID:
-                delay_config = rx_dly_config;
-                break;
-        case PHY_INTERFACE_MODE_RGMII_ID:
-        case PHY_INTERFACE_MODE_RMII:
-                delay_config = 0;
-                break;
+One problem we discussed last time is the correct DT binding. Should it
+be something like this?
+  eth2 {
+    phy-mode =3D "sgmii";
 
-So rx_delay is used for both rgmii and rgmii-txid. The binding says
-nothing about rgmii-txid.
+    multiplexer {
+      gpio =3D <&mod_def0_gpio>;
 
-And while i'm looking at the code, i wonder about this:
+      option@0 {
+        reg =3D <0>;
+        phy-handle =3D <&phy1>;
+      };
 
-       if (rx_dly_config & PRG_ETH0_ADJ_ENABLE) {
-                if (!dwmac->timing_adj_clk) {
-                        dev_err(dwmac->dev,
-                                "The timing-adjustment clock is mandatory for the RX delay re-timing\n");
-                        return -EINVAL;
-                }
+      option@1 {
+        reg =3D <1>;
+        sfp =3D <&sfp>;
+        managed =3D "in-band-status";
+      };
+    };
+  };
 
-                /* The timing adjustment logic is driven by a separate clock */
-                ret = meson8b_devm_clk_prepare_enable(dwmac,
-                                                      dwmac->timing_adj_clk);
-                if (ret) {
-                        dev_err(dwmac->dev,
-                                "Failed to enable the timing-adjustment clock\n");
-                        return ret;
-                }
-        }
+But who should handle this? Phylink, SFP, or maybe this should be
+handled generically in OF / fwnode subsystem? I.e. a change in GPIO
+value could change device's properties/children?
 
-It looks like it can be that rx_dly_config & PRG_ETH0_ADJ_ENABLE is
-true, so the clock is enabled, but delay_config does not contain
-rx_delay_config, so it is pointless turning it on.
+Also the &mod_def0_gpio is already used by the sfp node. Can this
+multiplexor node also refer to it?
 
-	Andrew
+Marek
