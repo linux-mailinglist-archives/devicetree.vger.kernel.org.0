@@ -2,106 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93C882B2C47
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 09:47:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7872B2CC9
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 11:58:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726478AbgKNIqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 03:46:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60144 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726742AbgKNIqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 03:46:45 -0500
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 715F7C0613D1
-        for <devicetree@vger.kernel.org>; Sat, 14 Nov 2020 00:46:45 -0800 (PST)
-Received: by mail-lj1-x244.google.com with SMTP id r17so13827238ljg.5
-        for <devicetree@vger.kernel.org>; Sat, 14 Nov 2020 00:46:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OCYSuNi1JCYOWWFaprqNxn30Bt1Uq8l9kVTd9Q510R8=;
-        b=ejcL9da7O8w5FN5tmzIGzQwAWtWpetZ/vbghzoH05lEbeuN/mcOxM8FGs9i2qAW4EE
-         flv1xiKWnScN8Ms6/cZSXFMp5sMfgowpz+opFHNCGk4cqLGy9gdtFjVEBnQyQlZ/Ldsy
-         /i/oY1l3khXDOtKKRzXfCSX/hrL8+KYNZVSH2JLZvDJDrZRQO7A8GhxLxa8I3GStmNn/
-         vW0krurjjgGfyb6ue6YXqp71viqOeoFZylV3KliWcnB+4+bGyY9ay1BtKu84dhuZ4628
-         yWlYNp+S1jGYZcyhFTZSUznE8CpevKxG0NfY+MEQhI0VYlqlJBPtG/brRZUWprZHVonz
-         1AtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OCYSuNi1JCYOWWFaprqNxn30Bt1Uq8l9kVTd9Q510R8=;
-        b=Ah3zFLXOBS6qILhndmGyccQCHTPsEI+/bmb9c2SrQoZjL5lliaHnO+IVEWjpbvzfaX
-         vMnPsG4qGQx7lptHDSNDDxEAzvWpLcSA5Zg8EPLqSK85gfSDpM2zN5ml3xcBU+3yZ7qr
-         AB5KUYIyVUjpLIkIsGDfQ6x1ePw2fn649KReTOFWGbs7Y/NRWgnXkux2YGoB91SmaJ7x
-         xattsx09L6a9bCiNIClte+KNIf7as78fcOtYcuThSn8H12JfgLUlvhigkq5knYFphl8p
-         R3mNvOK0XsvqgWjq9pvcCzjkra1agTefyv99i9cPdI1GDHEhHhH16tLtB+NAMRrTCiiv
-         Zh2g==
-X-Gm-Message-State: AOAM533vkOscnvGk3zzUKKuVczyXvY6cpGzf8yyVQ9veIP/b9OuTsqE1
-        vopa7NJO/949eTVFvXraxTl0sQ==
-X-Google-Smtp-Source: ABdhPJxOCtOaBNVaLtUp3RGqQhAgkWE3qbunetNHx3xw/RfWPbTg0Qw5bYgXFZmv7fFat7Ga2SKy3g==
-X-Received: by 2002:a2e:2f0f:: with SMTP id v15mr2594592ljv.402.1605343603946;
-        Sat, 14 Nov 2020 00:46:43 -0800 (PST)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id f62sm1870081lfd.144.2020.11.14.00.46.42
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 14 Nov 2020 00:46:43 -0800 (PST)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, s-anna@ti.com
-Cc:     grzegorz.jaszczyk@linaro.org, linux-remoteproc@vger.kernel.org,
-        robh+dt@kernel.org, lee.jones@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        praneeth@ti.com, rogerq@ti.com
-Subject: [PATCH 6/6] remoteproc/pru: Add support for various PRU cores on K3 J721E SoCs
-Date:   Sat, 14 Nov 2020 09:46:13 +0100
-Message-Id: <20201114084613.13503-7-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201114084613.13503-1-grzegorz.jaszczyk@linaro.org>
-References: <20201114084613.13503-1-grzegorz.jaszczyk@linaro.org>
+        id S1726356AbgKNK55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 05:57:57 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:50265 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726113AbgKNK55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 05:57:57 -0500
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 3099320000A;
+        Sat, 14 Nov 2020 10:57:52 +0000 (UTC)
+Date:   Sat, 14 Nov 2020 11:57:55 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        devicetree@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Ricardo Ribalda <ribalda@kernel.org>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH] media: dt-bindings: schema indentation fixes
+Message-ID: <20201114105755.xvdza24qapw7jxqv@uno.localdomain>
+References: <20201112224951.166313-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201112224951.166313-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suman Anna <s-anna@ti.com>
+Hi Rob,
 
-The K3 J721E family of SoCs have a revised version of the AM65x ICSSG IP
-and contains two instances of this newer ICSSG IP. Each ICSSG processor
-subsystem contains 2 primary PRU cores, 2 auxiliary PRU cores called RTUs,
-and 2 new auxiliary cores called Transmit PRUs (Tx_PRUs).
+On Thu, Nov 12, 2020 at 04:49:51PM -0600, Rob Herring wrote:
+> Fix a few new indentation warnings found with yamllint (now integrated
+> into the checks).
+>
+> Cc: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Jacopo Mondi <jacopo@jmondi.org>
+> Cc: Ricardo Ribalda <ribalda@kernel.org>
+> Cc: linux-media@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/media/i2c/adv7604.yaml       |  4 ++--
+>  .../devicetree/bindings/media/i2c/ovti,ov772x.yaml   | 12 ++++++------
+>  .../devicetree/bindings/media/i2c/sony,imx214.yaml   | 12 ++++++------
 
-Enhance the existing PRU remoteproc driver to support these new PRU
-and RTU cores by using specific compatibles. The cores have the same
-memory copying limitations as on AM65x, so reuses the custom memcpy
-function within the driver's ELF loader implementation. The initial
-names for the firmware images for each PRU core are retrieved from
-DT nodes, and can be adjusted through sysfs if required.
+Thank you!
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
----
- drivers/remoteproc/pru_rproc.c | 3 +++
- 1 file changed, 3 insertions(+)
+For ov772x and imx214
+Acked-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index 04c9f07799e2..98f9c598993f 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -855,6 +855,9 @@ static const struct of_device_id pru_rproc_match[] = {
- 	{ .compatible = "ti,am654-pru",		.data = &k3_pru_data },
- 	{ .compatible = "ti,am654-rtu",		.data = &k3_rtu_data },
- 	{ .compatible = "ti,am654-tx-pru",	.data = &k3_tx_pru_data },
-+	{ .compatible = "ti,j721e-pru",		.data = &k3_pru_data },
-+	{ .compatible = "ti,j721e-rtu",		.data = &k3_rtu_data },
-+	{ .compatible = "ti,j721e-tx-pru",	.data = &k3_tx_pru_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pru_rproc_match);
--- 
-2.29.0
-
+>  3 files changed, 14 insertions(+), 14 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> index 3897af540ddd..407baddfaa1d 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
+> @@ -21,8 +21,8 @@ properties:
+>    compatible:
+>      items:
+>        - enum:
+> -        - adi,adv7611
+> -        - adi,adv7612
+> +          - adi,adv7611
+> +          - adi,adv7612
+>
+>    reg:
+>      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> index 63b3779d7289..6866c2cdac50 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
+> @@ -75,18 +75,18 @@ properties:
+>                  bus-type:
+>                    const: 6
+>              then:
+> -                properties:
+> -                  hsync-active: false
+> -                  vsync-active: false
+> +              properties:
+> +                hsync-active: false
+> +                vsync-active: false
+>
+>            - if:
+>                properties:
+>                  bus-width:
+>                    const: 10
+>              then:
+> -                properties:
+> -                  data-shift:
+> -                    const: 0
+> +              properties:
+> +                data-shift:
+> +                  const: 0
+>
+>          required:
+>            - bus-type
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> index 0f5e25fa4e9d..1a3590dd0e98 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> @@ -68,13 +68,13 @@ properties:
+>              description: See ../video-interfaces.txt
+>              anyOf:
+>                - items:
+> -                - const: 1
+> -                - const: 2
+> +                  - const: 1
+> +                  - const: 2
+>                - items:
+> -                - const: 1
+> -                - const: 2
+> -                - const: 3
+> -                - const: 4
+> +                  - const: 1
+> +                  - const: 2
+> +                  - const: 3
+> +                  - const: 4
+>
+>            link-frequencies:
+>              $ref: /schemas/types.yaml#/definitions/uint64-array
+> --
+> 2.25.1
+>
