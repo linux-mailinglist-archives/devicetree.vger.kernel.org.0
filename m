@@ -2,128 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39CF42B315F
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 00:24:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF9D2B3160
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 00:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726140AbgKNXX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 18:23:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58494 "EHLO mail.kernel.org"
+        id S1726136AbgKNX1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 18:27:46 -0500
+Received: from mx2.suse.de ([195.135.220.15]:43018 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726125AbgKNXX5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 18:23:57 -0500
-Received: from localhost (otava-0257.koleje.cuni.cz [78.128.181.4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 58F2224137;
-        Sat, 14 Nov 2020 23:23:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605396236;
-        bh=evQsjOa3IJ8xqgSUSrTCJWla/pA/y2KDvSuAf6i5J24=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=vGfMDDBeO3fNCB2onjL6UHqmIJ5vK/mSpf1JLwwW9AjzxshzasAt5MyIohsauGzYz
-         X4Zgb70IGPa16Q3YTP7V3Nsu4EVc5uG6PE5bdT45lrnzl3c2PUlBj1hlHtORysRtjk
-         CKGNaPhbYbj5l8EWuIGhZ2jpx2qHXjrX3u/H+RVA=
-Date:   Sun, 15 Nov 2020 00:23:51 +0100
-From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
-To:     Andreas =?UTF-8?B?RsOkcmJlcg==?= <afaerber@suse.de>
-Cc:     arm@kernel.org,
-        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <uwe@kleine-koenig.org>,
+        id S1726125AbgKNX1q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Nov 2020 18:27:46 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id D17A7AC1F;
+        Sat, 14 Nov 2020 23:27:44 +0000 (UTC)
+Subject: Re: [PATCH mvebu-dt v2 4/6] ARM: dts: turris-omnia: add SFP node
+From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
+To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>
+Cc:     arm@kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>,
         Jason Cooper <jason@lakedaemon.net>,
         Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: Re: [PATCH mvebu-dt v2 5/6] ARM: dts: turris-omnia: add LED
- controller node
-Message-ID: <20201115002351.7a752599@kernel.org>
-In-Reply-To: <75e7fb40-be64-3d1a-c3ac-c705f9f6a4b1@suse.de>
 References: <20201114183217.1352-1-kabel@kernel.org>
-        <20201114183217.1352-6-kabel@kernel.org>
-        <75e7fb40-be64-3d1a-c3ac-c705f9f6a4b1@suse.de>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+ <20201114183217.1352-5-kabel@kernel.org>
+ <972cde9c-9e4a-0e43-c9c3-9528581d8738@suse.de>
+Organization: SUSE Software Solutions Germany GmbH
+Message-ID: <9135e412-4062-18bf-4d7f-5096e5c742d5@suse.de>
+Date:   Sun, 15 Nov 2020 00:27:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <972cde9c-9e4a-0e43-c9c3-9528581d8738@suse.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 14 Nov 2020 22:58:45 +0100
-Andreas F=C3=A4rber <afaerber@suse.de> wrote:
+On 14.11.20 22:36, Andreas Färber wrote:
+> Hi Marek,
+> 
+> On 14.11.20 19:32, Marek Behún wrote:
+>> diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+>> index 7ccebf7d1757..14c21cddef72 100644
+>> --- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
+>> +++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
+>> @@ -82,6 +82,22 @@ pcie@3,0 {
+>>  			};
+>>  		};
+>>  	};
+>> +
+>> +	sfp: sfp {
+>> +		compatible = "sff,sfp";
+>> +		i2c-bus = <&sfp_i2c>;
+>> +		tx-fault-gpios = <&pcawan 0 GPIO_ACTIVE_HIGH>;
+>> +		tx-disable-gpios = <&pcawan 1 GPIO_ACTIVE_HIGH>;
+>> +		rate-select0-gpios = <&pcawan 2 GPIO_ACTIVE_HIGH>;
+>> +		los-gpios = <&pcawan 3 GPIO_ACTIVE_HIGH>;
+>> +		mod-def0-gpios = <&pcawan 4 GPIO_ACTIVE_LOW>;
+>> +
+>> +		/*
+>> +		 * For now this has to be enabled at boot time by U-Boot when
+>> +		 * a SFP module is present.
+>> +		 */
+>> +		status = "disabled";
+>> +	};
+>>  };
+>>  
+>>  &bm {
+>> @@ -130,6 +146,7 @@ &eth2 {
+>>  	phy-mode = "sgmii";
+>>  	phy = <&phy1>;
+>>  	phys = <&comphy5 2>;
+>> +	sfp = <&sfp>;
+>>  	buffer-manager = <&bm>;
+>>  	bm,pool-long = <2>;
+>>  	bm,pool-short = <3>;
+>> @@ -195,7 +212,7 @@ i2c@3 {
+>>  			/* routed to PCIe2 connector (CN62A) */
+>>  		};
+>>  
+>> -		i2c@4 {
+>> +		sfp_i2c: i2c@4 {
+>>  			#address-cells = <1>;
+>>  			#size-cells = <0>;
+>>  			reg = <4>;
+> 
+> Matches what I've come up with,
 
-Hi Andreas,
+Actually one minor diff: As I had pointed out to you privately before, I
+set maximum-power-milliwatt to its max of 2000.
 
-> >  			/* STM32F0 command interface at address 0x2a */
-> >  			/* leds device (in STM32F0) at address 0x2b */ =20
->=20
-> Update and move this comment now that the node documents the address?
+Does your hardware only support the default of 1000, or are you still
+unsure of the limit that you've omitted it here? Not sure if it makes a
+difference in practice, but it does show up in dmesg.
 
-Sounds reasonable.
+Regards,
+Andreas
 
-> > +				 *   in most cases users have wifi cards in
-> > +				 *   these slots =20
->=20
-> Doesn't U-Boot detect mSATA and switches SerDes configuration? You could
-> then have it set LED_FUNCTION_DISK in case of mSATA detected.
-
-Yes, but this also needs to be changed by u-boot. And current version
-of MCU firmware on Omnia doesn't connect the mSATA/PCI3 LED when in HW
-controlled mode, so the LED has to be blinked in software anyway, for
-now.
-
-Another problem is that user can put non wireless/disk PCIe device into
-this slot. What should the LED function be then? ...
-
-> I recently didn't find any DT binding for the netdev LED trigger, but
-> you could set trigger-sources to associate the LEDS with PCIe nodes even
-> if unused. Same for the LAN LEDs and switch port nodes, if you give them
-> labels.
-
-I am also working with Pavel in LED subsystem. Trigger-sources does not
-work currently - you can put it in device tree, but the drivers ignore
-it. I am currently also working on transparent HW offloading of LED
-triggers: if you set netdev trigger for lan1 LED, the system will
-just enable HW controlled mode on Omnia, instead of blinking this LED
-in software.
-
-So please wait till this is done.
-
-BTW, another issue is the devicename and function part of LED:
-The `linux,default-trigger` property is deprecated in favor of
-`function`.
-So somehow the system should enable netdev trigger on the LED is
-trigger-source points to a network device and function is compatible
-with netdev trigger. What should this functions be? We have:
-  LED_FUNCTION_ACTIVITY
-  LED_FUNCTION_RX
-  LED_FUNCTION_TX
-  LED_FUNCTION_WAN
-  LED_FUNCTION_LAN
-
-Jacek thinks that
-  LED_FUNCTION_ACTIVITY should be used for system activity trigger
-  LED_FUNCTION_RX/TX    on uart
-  LED_FUNCTION_LAN      on a network device
-
-But I and Pavel think that if the LED_FUNCTION_ACTIVITY is used, the
-trigger should be selected depending on trigger-source:
-- if it points to a network device, "netdev"
-- if it points to a block device, a potential "blkdev" trigger which
-  does not exist now
-- ...
-Also RX/TX should be IMO used this way: for the netdev trigger you can
-use whether it should blink only on rx, only on tx, or on both.
-
-Please look at:
-https://www.spinics.net/lists/linux-leds/msg16632.html
-
->=20
-> > +				 * - there are 2 LEDs dedicated for user: A and
-> > +				 *   B. Again there is no such function defined.
-> > +				 *   For now we use LED_FUNCTION_DEBUG =20
->=20
-> I'd suggest the more neutral LED_FUNCTION_INDICATOR.
-
-Hmm, that sounds reasonable.
-
-Thanks.
-
-Marek
+-- 
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 Nürnberg, Germany
+GF: Felix Imendörffer
+HRB 36809 (AG Nürnberg)
