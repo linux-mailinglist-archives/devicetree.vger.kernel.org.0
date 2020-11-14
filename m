@@ -2,60 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33B702B301C
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 20:22:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 337532B3073
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 21:01:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726231AbgKNTWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 14:22:08 -0500
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:60057 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726182AbgKNTWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 14:22:07 -0500
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 52C8660004;
-        Sat, 14 Nov 2020 19:22:02 +0000 (UTC)
-Date:   Sat, 14 Nov 2020 20:22:02 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 7/9] iio: adc: at91_adc: use devm_input_allocate_device
-Message-ID: <20201114192202.GC5272@piout.net>
-References: <20201113212650.507680-1-alexandre.belloni@bootlin.com>
- <20201113212650.507680-8-alexandre.belloni@bootlin.com>
- <20201114171340.2bf0d61e@archlinux>
+        id S1726306AbgKNT7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 14:59:35 -0500
+Received: from asavdk4.altibox.net ([109.247.116.15]:58396 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726300AbgKNT7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 14:59:35 -0500
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 6DB808054C;
+        Sat, 14 Nov 2020 20:59:32 +0100 (CET)
+Date:   Sat, 14 Nov 2020 20:59:31 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Caleb Connolly <caleb@connolly.tech>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: panel-simple-dsi: add samsung panels
+ for OnePlus 6/T
+Message-ID: <20201114195931.GB3900471@ravnborg.org>
+References: <20201112161920.2671430-1-caleb@connolly.tech>
+ <20201112161920.2671430-3-caleb@connolly.tech>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201114171340.2bf0d61e@archlinux>
+In-Reply-To: <20201112161920.2671430-3-caleb@connolly.tech>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VafZwmh9 c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=f9cxcILiNMCIw7iZS7cA:9 a=CjuIK1q_8ugA:10
+        a=Ab_k19QNQqsA:10
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/11/2020 17:13:40+0000, Jonathan Cameron wrote:
-> On Fri, 13 Nov 2020 22:26:48 +0100
-> Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+Hi Caleb,
+On Thu, Nov 12, 2020 at 04:21:30PM +0000, Caleb Connolly wrote:
+> Add compatibles for the samsung,sofef00 and samsung,s6e3fc2x01 panels
+> used in the OnePlus 6 & 6T respectively.
 > 
-> > Use devm_input_allocate_device to allocate the input device to simplify the
-> > error and remove paths.
-> > 
-> > Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> 
-> This one I'm less keen on.  Whilst it's obviously not a problem in
-> this particular case I'd ideally like to keep the remove order
-> as the exact reverse of probe - that makes it easy to review changes
-> quickly.
-> 
-> Now, you could easily enough make this fine by using devm for the
-> other items that happen before this (dev_add_action_or_reset needed
-> in a few cases).
-> 
+> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
 
-Right, I'll drop it for now.
+Thansk, applied to drm-misc-next.
+Fixed so entries are sorted alphabetically when applying.
 
+	Sam
