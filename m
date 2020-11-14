@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F3102B3097
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 21:17:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FB802B30A0
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 21:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726334AbgKNUQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 15:16:49 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:55578 "EHLO vps0.lunn.ch"
+        id S1726200AbgKNUf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 15:35:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33444 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726325AbgKNUQt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 15:16:49 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ke1yP-0074po-V3; Sat, 14 Nov 2020 21:16:37 +0100
-Date:   Sat, 14 Nov 2020 21:16:37 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marek Behun <marek.behun@nic.cz>
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH mvebu-dt 3/6] ARM: dts: turris-omnia: describe
- ethernet-phy interrupt
-Message-ID: <20201114201637.GG1480543@lunn.ch>
-References: <20201114160409.19670-1-kabel@kernel.org>
- <20201114160409.19670-4-kabel@kernel.org>
- <20201114174928.5ab4f8ae@kernel.org>
- <20201114171639.GO1456319@lunn.ch>
- <20201114184221.1f74de86@kernel.org>
- <20201114184717.3018bff5@nic.cz>
+        id S1726112AbgKNUf3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Nov 2020 15:35:29 -0500
+Received: from kernel.org (unknown [104.132.1.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B8C60223EA;
+        Sat, 14 Nov 2020 20:35:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605386128;
+        bh=7vnaB3VFxpvaHHYts3jclhQxPRL+APAK9cgp7E6I5H0=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=LvcivOj0XV9O4mPgbisHUZs/geMn7U1K76ejPdJJ4Q6M8jjRRje6weWtOwpZSPGDg
+         Yl2Mgr8PyuUSEQz28ACRTBQqrySnOdCQFZr0X4lw8v4qNsxuzz59FFv/QHCCyhuXw0
+         AcpPCx6MEG8wOiISU0qDcgxH6up3GEihN2pM9W+w=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201114184717.3018bff5@nic.cz>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20201106093819.GE2621@vkoul-mobl>
+References: <20201105104817.15715-1-manivannan.sadhasivam@linaro.org> <20201105104817.15715-3-manivannan.sadhasivam@linaro.org> <20201106093819.GE2621@vkoul-mobl>
+Subject: Re: [PATCH v2 2/4] clk: qcom: Add SDX55 GCC support
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Naveen Yadav <naveenky@codeaurora.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Date:   Sat, 14 Nov 2020 12:35:27 -0800
+Message-ID: <160538612750.60232.17440819605514427384@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 14, 2020 at 06:47:17PM +0100, Marek Behun wrote:
-> On Sat, 14 Nov 2020 18:42:21 +0100
-> Marek Behún <kabel@kernel.org> wrote:
-> 
-> > Do you think we should just poll for interrupts with the PHY?
+Quoting Vinod Koul (2020-11-06 01:38:19)
+> On 05-11-20, 16:18, Manivannan Sadhasivam wrote:
+> > +#include "reset.h"
+> > +
+> > +enum {
+> > +     P_BI_TCXO,
+> > +     P_CORE_BI_PLL_TEST_SE,
+>=20
+> This is for test and we removed this for upstream, so can you do that as
+> well (not parent will decrease for clks below)
+>=20
+> With that updated:
+>=20
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+>=20
 
-Yes.
-
-> 
-> Andrew, JFI, there are also SFP GPIOs connected to this expander. So
-> interrupt will be generated on changes from those gpios as well. Is an
-> interrupt storm seriosly probable here?
-
-As far as i remember on the device i was using, all inputs are
-interrupt sources. And all pins default as inputs, so you don't
-accidentally drive the output against something else. So you need to
-get the device properly configured before enabling its interrupt. And
-i'm not too sure how that works with the GPIO framework where you
-effectively have a collection of individual GPIOs. How do you know
-they have all be configured, and it is safe to enable the interrupt
-output? Do you have any pins floating? Those you are going to have to
-configure as output. Plus is the interrupt output from the gpio
-expander level triggered? If so you need to ensure the upstream
-interrupt controller can do level. And Marvell SoCs often cannot.
-
-The device i was working on i had trouble even getting it to boot
-without dying. Polling the PHY and SFP was working O.K, so i gave
-up. And i suggested the next revision of the board used an sx150x
-which has much better interrupt support. That has worked well against
-a Vybrid.
-
-	   Andrew
+I half understood that. Just an FYI that I'm waiting for this update.
