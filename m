@@ -2,91 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55EF02B2E11
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 16:37:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C56C2B2E41
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 16:55:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727023AbgKNPhO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 10:37:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48974 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726955AbgKNPhN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 10:37:13 -0500
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 61FCB22263;
-        Sat, 14 Nov 2020 15:37:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605368232;
-        bh=Y0RfyQFyftFe9adOwoPVrHSMPUabcjibr2sRChUuLC4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=H0ZXnwZUDrEb2bB8ZMp2c9ZIn1stm3xcVXqAgjPkBKu9K7GC8Dp81V+03KZyi+iCr
-         2skHAeEMFQBqrfzWegBl0Fq0lIG8a8mrEOU3y2hr4p9ppqtESjLRj+Ti+4uYP71guX
-         falsYko6qIp2ZL5MECs4VVHqy0ZLytt5J4X+UJRI=
-Date:   Sat, 14 Nov 2020 15:37:08 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>
-Subject: Re: [PATCH 29/46] dt-bindings:iio:adc:atmel,sama9260-adc:
- conversion to yaml from at91_adc.txt
-Message-ID: <20201114153708.0769130d@archlinux>
-In-Reply-To: <20201113092205.GH4556@piout.net>
-References: <20201031184854.745828-1-jic23@kernel.org>
-        <20201031184854.745828-30-jic23@kernel.org>
-        <20201113092205.GH4556@piout.net>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726938AbgKNPzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 10:55:14 -0500
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:33972 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726917AbgKNPzO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 10:55:14 -0500
+Received: by mail-wr1-f68.google.com with SMTP id r17so13694071wrw.1;
+        Sat, 14 Nov 2020 07:55:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NzDYo5okVHCmYM9a04iDT562s9pozf0uDZlfSqnFdeo=;
+        b=gUHEMWOH0Fxv0KpjBefZkDvsbt423ewHZOojfjxeBwYO+JEEQ5W2XywItxGdfAz/bn
+         D1p7FvOhGB74UQbU0FDRRfyr39gB+e0VL82GvdYcKtY/XPHrrlxeHQf9qAKgfiA5KCQ1
+         p8NF85kQUIHfxvzfxGH8sxnCG6M0+FqBUmtLFsZlu8XXQ3Tprq+jO6I5s9kzj+I1L0QY
+         TEe4aEUzfAH8p+p2Cva2YBXc7OtWezmpmDdZv+zbB81+UZ45f3KmXDr12TcpUtGWxa72
+         PMV2/Jrn+A+F27KrIr2Ld9ysyKqKxUgMuAUk4J11m18mBypSxa98BDtcCE/HKIhkP+v9
+         VMOg==
+X-Gm-Message-State: AOAM530GeG/ht/FQaSmwV5lqpgRuoASrxsrot8qDMYrNcqIC4uz9sZ7I
+        SjHl3G0utKQPd9lwRucX2MM=
+X-Google-Smtp-Source: ABdhPJyYstJ6HNafjOg1KIWidr6IZURyZd7lXmkZsadLuQ7YOGEzm+tYPABeb7IeMD/dUtdLtHv7Rg==
+X-Received: by 2002:adf:9104:: with SMTP id j4mr10988042wrj.198.1605369312567;
+        Sat, 14 Nov 2020 07:55:12 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id y187sm13990854wmg.33.2020.11.14.07.55.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 14 Nov 2020 07:55:11 -0800 (PST)
+Date:   Sat, 14 Nov 2020 16:55:09 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Alice Guo <alice.guo@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
+ soc unique ID
+Message-ID: <20201114155509.GA14989@kozik-lap>
+References: <20201113110409.13546-1-alice.guo@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201113110409.13546-1-alice.guo@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Nov 2020 10:22:05 +0100
-Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
-
-> On 31/10/2020 18:48:37+0000, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > This binding raises a few questions.
-> > 1) Do we need #address-cells and #size-cells as the child nodes don't have
-> >    a reg property?  A few dtsi files include these so if we drop the
-> >    requirement we will need to clean those up as well.  
-> 
-> You can drop them.
-> 
-> > 2) Renamed to a specific part.  Given we have another at91 ADC binding
-> >    it is clear now this won't cover all at91 parts so lets name it
-> >    after a specific part.
-> > 3) For atmel,adc-res-names the description is a big vague.  Are other
-> >    resolution names allowed? We don't seem to have any currently.
-> >   
-> 
-> I had a look and this is a legacy mess, I'll send a fix soon.
-> 
-> > There are a few things we would do differently in an ADC binding if we
-> > were starting from scratch but we are stuck with what we have (which
-> > made sense back when this was written!)
-> > 
-> > We may be able to tighten up some elements of this binding in the future
-> > by careful checking of what values properties can actually take.
-> >   
-> 
-> Is there anything generic to select the resolution? I'll be happy to
-> remove atmel,adc-res-names, atmel,adc-res and atmel,adc-use-res as there
-> is no upstream users and the default is to use the highest resolution.
-
-Nothing currently defined.  I'm not against it if we have users though.
-
-If it isn't actually useful in this case, even better to just drop it.
-
-Jonathan
-
-
-> 
+On Fri, Nov 13, 2020 at 07:04:06PM +0800, Alice Guo wrote:
+> Add DT Binding doc for the Unique ID of i.MX 8M series.
 > 
 
+Please align the subject prefix with history (git log --oneline).
+
+What are the changes comparing to v2 and v1? Where is the changelog?
+
+Best regards,
+Krzysztof
