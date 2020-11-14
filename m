@@ -2,225 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E132B307E
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 21:03:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C435C2B3081
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 21:03:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbgKNUBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 15:01:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50352 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726439AbgKNUBx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 15:01:53 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78CB2C0613D2;
-        Sat, 14 Nov 2020 12:01:53 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id d142so19822129wmd.4;
-        Sat, 14 Nov 2020 12:01:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=w4KSCu27l61jUmMvpofG000bGUgTYBDrDcAVkMbuCyA=;
-        b=df1iiyg4RObmAz6QqEy/oZPHW8DWWG/RColzjhlKYrQg7ZJLAafNl84K5Ci7Gg8mEY
-         t0RzAt9YobM37tHebL1M6oVNF9sjMKtuT4BmuEZmzaZW9RTUigUC7dhR085dOTAWZcbq
-         6GjIskkHp3my2xaxquushjDsVSeP5XW7o0QElyVPXaqea8GuE38jQJzasvgT52jupqOK
-         AlyILAVDOaONhl7FWFzhz/gxU4n7JX/zQLZyK0I/5xCK5l1IQxTiQHsrwEizO0W6sUL6
-         kxGrQUJ5MaqCLTaLwK3MMWF/2mgJ9/hQWvRaHTN3llRg8PBc59T6md65s/a2nmYY2q5L
-         QMZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=w4KSCu27l61jUmMvpofG000bGUgTYBDrDcAVkMbuCyA=;
-        b=oUe/AgMcntvQZapv/w6YPVXzjwoL3ggQm7EPpKPurX4aNa3vfH+bjYimxgtZJfZ2d4
-         u5MQKz6FYBv5GJIMQfcQY2+PHw605RoCBexmnjGaJ6ZGL+Ji1nPGj7IIUGDYEsHVEVzz
-         9lRUl2nzoUZNS1lQABJolTP5D95sHexk4Qt/qgvxF8YC+KLdhT5M29aWrrOnroOBmPzZ
-         EZH9gB7NbyfCdz5PQSMf0W9v+uGZgxWAnyk3LoEIDTA7ddBb2dttl+M688h5czjSuTwr
-         GS9TOBN7FfEGVvOJ5oP+Rwk+bSLD8zp8kxuZwGRtF3CVzcGfEJlrEsIlJP4VDe0tcoYJ
-         FWJQ==
-X-Gm-Message-State: AOAM532BZqUxtkRtETihF2MCsv7tjQXQ7E+U75CFVDzZmQpE0sp4Iml6
-        mNNSYKxGivHfrEp4/r7kLVKoBy/qLkD0SQ==
-X-Google-Smtp-Source: ABdhPJxx3Gum24To/Or5CD3liT8L73i8srmistHejB729Rq0H7lIKKJ92dirWgs92RWgZMy+WiwwLg==
-X-Received: by 2002:a7b:c5c6:: with SMTP id n6mr8276033wmk.131.1605384112102;
-        Sat, 14 Nov 2020 12:01:52 -0800 (PST)
-Received: from localhost.localdomain (p4fc3ea77.dip0.t-ipconnect.de. [79.195.234.119])
-        by smtp.googlemail.com with ESMTPSA id g138sm14342953wme.39.2020.11.14.12.01.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2020 12:01:51 -0800 (PST)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     davem@davemloft.net, kuba@kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Cc:     jianxin.pan@amlogic.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
-        narmstrong@baylibre.com, jbrunet@baylibre.com, andrew@lunn.ch,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH RFC v1 4/4] net: stmmac: dwmac-meson8b: add support for the RGMII RX delay on G12A
-Date:   Sat, 14 Nov 2020 21:01:04 +0100
-Message-Id: <20201114200104.4148283-5-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201114200104.4148283-1-martin.blumenstingl@googlemail.com>
-References: <20201114200104.4148283-1-martin.blumenstingl@googlemail.com>
+        id S1726112AbgKNUC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 15:02:58 -0500
+Received: from asavdk4.altibox.net ([109.247.116.15]:58630 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726146AbgKNUC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 15:02:57 -0500
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 9F7B08054C;
+        Sat, 14 Nov 2020 21:02:52 +0100 (CET)
+Date:   Sat, 14 Nov 2020 21:02:51 +0100
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sean Paul <sean@poorly.run>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2] dt-bindings: display: mcde: Convert to YAML schema
+Message-ID: <20201114200251.GD3900471@ravnborg.org>
+References: <20201111130754.2283993-1-linus.walleij@linaro.org>
+ <20201111205857.GB3013948@ravnborg.org>
+ <CACRpkdaUZMNQn7bvmPKP+kbqsW66HrS0RTDkUjrAW15EEf+8EA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdaUZMNQn7bvmPKP+kbqsW66HrS0RTDkUjrAW15EEf+8EA@mail.gmail.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VafZwmh9 c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+        a=1O0MGL_9nWPLu35SrL0A:9 a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
+        a=AjGcO6oz07-iQ99wixmX:22 a=cvBusfyB2V15izCimMoJ:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic Meson G12A (and newer: G12B, SM1) SoCs have a more advanced RX
-delay logic. Instead of fine-tuning the delay in the nanoseconds range
-it now allows tuning in 200 picosecond steps. This support comes with
-new bits in the PRG_ETH1[19:16] register.
+On Thu, Nov 12, 2020 at 01:19:34PM +0100, Linus Walleij wrote:
+> On Wed, Nov 11, 2020 at 9:59 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> > On Wed, Nov 11, 2020 at 02:07:54PM +0100, Linus Walleij wrote:
+> 
+> > > -- clocks: an array of the MCDE clocks in this strict order:
+> > > -  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
+> > > -  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
+> >
+> > > -  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
+> > > -  save clock)
+> >
+> > I did not find these two clocks in the binding below.
+> 
+> The old bindings are wrong. These clocks belong on the DSI
+> host adapters, so they are in this part of the binding:
 
-Add support for validating the RGMII RX delay as well as configuring the
-register accordingly on these platforms.
+Please include this info in the changelog to avoid confusing others.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 63 ++++++++++++++-----
- 1 file changed, 49 insertions(+), 14 deletions(-)
+> 
+> +      clocks:
+> +        description: phandles to the high speed and low power (energy
+> save) clocks
+> +          the high speed clock is not present on the third (dsi2) block, so it
+> +          should only have the "lp" clock
+> +        minItems: 1
+> +        maxItems: 2
+> +
+> +      clock-names:
+> +        oneOf:
+> +          - items:
+> +              - const: hs
+> +              - const: lp
+> +          - items:
+> +              - const: lp
+> 
+> All device trees have these in the right place, we just didn't notice that
+> the bindings were wrong exactly because we weren't using
+> formal YAML syntax. Now the strictness of this parser makes me
+> fix my bugs...
+> 
+> > > +  port:
+> > > +    type: object
+> > > +    description:
+> > > +      A DPI port node with endpoint definitions as defined in
+> > > +      Documentation/devicetree/bindings/media/video-interfaces.txt
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 1
+> > > +
+> > > +  ranges: true
+> >
+> > This is a transition from .txt to DT Schema so OK with this sub-node.
+> > But otherwise the dsi node should have been linked using graph nodes.
+> > So OK - just thinking out loud.
+> 
+> Actually when I introduced the MCDE DSI last year at first I used port
+> and graphs:
+> https://lore.kernel.org/dri-devel/20190207083647.20615-3-linus.walleij@linaro.org/
+> Then Rob asked "why?":
+> https://lore.kernel.org/dri-devel/20190225223124.GA29057@bogus/
+> And then I removed it, as having a panel directly under a
+> DSI host is fine.
+OK, thanks for the explanation.
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-index a6e2077ed871..ae081fbc0552 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-meson8b.c
-@@ -69,10 +69,21 @@
-  */
- #define PRG_ETH0_ADJ_SKEW		GENMASK(24, 20)
- 
-+#define PRG_ETH1			0x4
-+
-+/* Defined for adding a delay to the input RX_CLK for better timing.
-+ * Each step is 200ps. These bits are used with external RGMII PHYs
-+ * because RGMII RX only has the small window. cfg_rxclk_dly can
-+ * adjust the window between RX_CLK and RX_DATA and improve the stability
-+ * of "rx data valid".
-+ */
-+#define PRG_ETH1_CFG_RXCLK_DLY		GENMASK(19, 16)
-+
- struct meson8b_dwmac;
- 
- struct meson8b_dwmac_data {
- 	int (*set_phy_mode)(struct meson8b_dwmac *dwmac);
-+	bool has_prg_eth1_rgmii_rx_delay;
- };
- 
- struct meson8b_dwmac {
-@@ -270,30 +281,35 @@ static int meson8b_devm_clk_prepare_enable(struct meson8b_dwmac *dwmac,
- 
- static int meson8b_init_rgmii_delays(struct meson8b_dwmac *dwmac)
- {
--	u32 tx_dly_config, rx_dly_config, delay_config;
-+	u32 tx_dly_config, rx_adj_config, cfg_rxclk_dly, delay_config;
- 	int ret;
- 
-+	rx_adj_config = 0;
-+	cfg_rxclk_dly = 0;
- 	tx_dly_config = FIELD_PREP(PRG_ETH0_TXDLY_MASK,
- 				   dwmac->tx_delay_ns >> 1);
- 
--	if (dwmac->rx_delay_ps == 2000)
--		rx_dly_config = PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP;
--	else
--		rx_dly_config = 0;
-+	if (dwmac->data->has_prg_eth1_rgmii_rx_delay)
-+		cfg_rxclk_dly = FIELD_PREP(PRG_ETH1_CFG_RXCLK_DLY,
-+					   dwmac->rx_delay_ps / 200);
-+	else if (dwmac->rx_delay_ps == 2000)
-+		rx_adj_config = PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP;
- 
- 	switch (dwmac->phy_mode) {
- 	case PHY_INTERFACE_MODE_RGMII:
--		delay_config = tx_dly_config | rx_dly_config;
-+		delay_config = tx_dly_config | rx_adj_config;
- 		break;
- 	case PHY_INTERFACE_MODE_RGMII_RXID:
- 		delay_config = tx_dly_config;
-+		cfg_rxclk_dly = 0;
- 		break;
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
--		delay_config = rx_dly_config;
-+		delay_config = rx_adj_config;
- 		break;
- 	case PHY_INTERFACE_MODE_RGMII_ID:
- 	case PHY_INTERFACE_MODE_RMII:
- 		delay_config = 0;
-+		cfg_rxclk_dly = 0;
- 		break;
- 	default:
- 		dev_err(dwmac->dev, "unsupported phy-mode %s\n",
-@@ -301,7 +317,7 @@ static int meson8b_init_rgmii_delays(struct meson8b_dwmac *dwmac)
- 		return -EINVAL;
- 	}
- 
--	if (rx_dly_config & PRG_ETH0_ADJ_ENABLE) {
-+	if (rx_adj_config & PRG_ETH0_ADJ_ENABLE) {
- 		if (!dwmac->timing_adj_clk) {
- 			dev_err(dwmac->dev,
- 				"The timing-adjustment clock is mandatory for the RX delay re-timing\n");
-@@ -323,6 +339,9 @@ static int meson8b_init_rgmii_delays(struct meson8b_dwmac *dwmac)
- 				PRG_ETH0_ADJ_DELAY | PRG_ETH0_ADJ_SKEW,
- 				delay_config);
- 
-+	meson8b_dwmac_mask_bits(dwmac, PRG_ETH1, PRG_ETH1_CFG_RXCLK_DLY,
-+				cfg_rxclk_dly);
-+
- 	return 0;
- }
- 
-@@ -424,11 +443,20 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 			dwmac->rx_delay_ps *= 1000;
- 	}
- 
--	if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
--		dev_err(&pdev->dev,
--			"The only allowed RX delays values are: 0ps, 2000ps");
--		ret = -EINVAL;
--		goto err_remove_config_dt;
-+	if (dwmac->data->has_prg_eth1_rgmii_rx_delay) {
-+		if (dwmac->rx_delay_ps != 0 && dwmac->rx_delay_ps != 2000) {
-+			dev_err(dwmac->dev,
-+				"The only allowed RGMII RX delays values are: 0ps, 2000ps");
-+			ret = -EINVAL;
-+			goto err_remove_config_dt;
-+		}
-+	} else {
-+		if (dwmac->rx_delay_ps > 3000 || dwmac->rx_delay_ps % 200) {
-+			dev_err(dwmac->dev,
-+				"The RGMII RX delay range is 0..3000ps in 200ps steps");
-+			ret = -EINVAL;
-+			goto err_remove_config_dt;
-+		}
- 	}
- 
- 	dwmac->timing_adj_clk = devm_clk_get_optional(dwmac->dev,
-@@ -470,10 +498,17 @@ static int meson8b_dwmac_probe(struct platform_device *pdev)
- 
- static const struct meson8b_dwmac_data meson8b_dwmac_data = {
- 	.set_phy_mode = meson8b_set_phy_mode,
-+	.has_prg_eth1_rgmii_rx_delay = false,
- };
- 
- static const struct meson8b_dwmac_data meson_axg_dwmac_data = {
- 	.set_phy_mode = meson_axg_set_phy_mode,
-+	.has_prg_eth1_rgmii_rx_delay = false,
-+};
-+
-+static const struct meson8b_dwmac_data meson_g12a_dwmac_data = {
-+	.set_phy_mode = meson_axg_set_phy_mode,
-+	.has_prg_eth1_rgmii_rx_delay = true,
- };
- 
- static const struct of_device_id meson8b_dwmac_match[] = {
-@@ -495,7 +530,7 @@ static const struct of_device_id meson8b_dwmac_match[] = {
- 	},
- 	{
- 		.compatible = "amlogic,meson-g12a-dwmac",
--		.data = &meson_axg_dwmac_data,
-+		.data = &meson_g12a_dwmac_data,
- 	},
- 	{ }
- };
--- 
-2.29.2
+> 
+> > > +patternProperties:
+> > > +  "^dsi@[0-9a-f]+$":
+> > > +    description: subnodes for the three DSI host adapters
+> > > +    type: object
+> > > +    allOf:
+> > > +      - $ref: dsi-controller.yaml#
+> (...)
+> > The dsi nodes needs the #address-cells and #size-cells - at least if a
+> > panel node is specified.
+> 
+> This is specified in the referenced schema dsi-controller.yaml.
+> 
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - epod-supply
+> > > +  - vana-supply
+> > > +
+> > > +additionalProperties: true
+> >
+> > Why are additional properties allowed here?
+> 
+> It's because the SoC peripherals have things like pin control
+> (currently handled by a quirk in the YAML validator I think) and
+> resets is something else I will likely add at some point, and then
+> this would result in warnings unless I lock-step changes in the
+> schema and DTS files.
+> 
+> I *can* disallow this if you insist.
+Add reset now as an optional property and you are covered.
+The HW does not change, and this describes the HW and not the drivers.
 
+	Sam
