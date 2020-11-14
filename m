@@ -2,281 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EDC52B2E7F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 17:41:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0A152B2E8A
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 17:49:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726969AbgKNQle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 11:41:34 -0500
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:35239 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726265AbgKNQle (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Nov 2020 11:41:34 -0500
-Received: by mail-wr1-f68.google.com with SMTP id k2so13786204wrx.2;
-        Sat, 14 Nov 2020 08:41:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SpRx3Z/j6jHk5nd0jo6lnZDJH72gLG9Ify1E26wOmjY=;
-        b=DlnRZ4zs5PHjA2fm3r645TlmnBs3sK87gq6lvqOsz3ZKs+QEHDVeiAylT77R+iCeEP
-         FhIjy/YJah27YYny1sNtNc6P2uuExJ2FvZWuBAzg7I9WHWA49inuA1fqL73dJyP9R0Lt
-         OUHqL1N85ci3G7K0M4lGA9VEByFPa3OnOOFASP7D7PPNqc3g41Rts+Kf0E7JN7E5lmOr
-         5HynHvYgAj+WkrQrHnJ7J4Rz1Ly23DMEDjaX5ul1Sr6SB2jtN3B36zNvgaD/B+AIJ0oi
-         MR2FzJQ1/nbvODaISD2HLj5BqdCCNYW+95rbcnP+A1QOWjZshKxPWBQUwEV5JUEvccx3
-         YgQA==
-X-Gm-Message-State: AOAM532EBqlk1XFPEv0LU9KgjwPgTrY/oUiL93Kci8JUfQ7hguT+6/RF
-        2uk1nO3M3kbq0Bu6e+FpHj8=
-X-Google-Smtp-Source: ABdhPJyL14R2ZiuceH6wNj3z0v7yMwHY3AYKtn5uC4XwjXoTIiJeYjfR4KWRbyrAuMK4eFNIZCqWag==
-X-Received: by 2002:adf:b358:: with SMTP id k24mr9375362wrd.388.1605372090946;
-        Sat, 14 Nov 2020 08:41:30 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id c6sm16655400wrh.74.2020.11.14.08.41.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 14 Nov 2020 08:41:29 -0800 (PST)
-Date:   Sat, 14 Nov 2020 17:41:28 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 4/4] soc: imx8m: change to use platform driver
-Message-ID: <20201114164128.GD14989@kozik-lap>
-References: <20201113110409.13546-1-alice.guo@nxp.com>
- <20201113110409.13546-4-alice.guo@nxp.com>
+        id S1726588AbgKNQtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 11:49:25 -0500
+Received: from mail-mw2nam12on2069.outbound.protection.outlook.com ([40.107.244.69]:43233
+        "EHLO NAM12-MW2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726265AbgKNQtY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Nov 2020 11:49:24 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ABkpmdJ4qYNvlN5F/loOeYKWl/RrAdspf4nnlzU9fhaI1F7lMWsUoYLpHYUWUEhCo0L8u53ClNiKosrqBrKK9aRLgppUea4U8eubmk4g9gxqggOh82AjT2XReAQe2nwxVTM6nZJEAujpkHlaDmdvL9r5Cu6sDAQ10T1rrEEEeOgbuEwcDl1LAvZHgpeYEvpe832V8xbgYFUN60/CeBPGbUUppaDcynQERQSyqR/diPHjUrUamkn5yoXbrxtqhKiU7dEvMq7tt4/jZKgjKt+TotSwshXeD4RlviYQ+d0alIzQhW/gTZ6UbE7Z4ncGCNvziLQRR5+SvMajwRoaLShxAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oB1BET5OrzqxM/2rFMEzxNkG6MsW8cwwPBZR1R4KSRA=;
+ b=NrT90o15Z3vAbnPUcarlVypAIh1PguTAYymcBKRDX1Uq6CdH50fdTSucMUgrqD/juKS6Fr8PkIr/uI0OQZJQkYT1hPVHTrV55AjsBR3LBAIOH5OwlWUcQdPAXAimTPgasmca1oam4FAedGJJQv0L67WpZ5wcGyGniTyoOq26/7ySQuqJBqgPJsQmIzyyoyqr13PYMo9otmzmh/VY/G3Dv3xLUgxLCvvATMPCM9LCpI/atRt0AU9G97JdKC4cc7sZLILyRjwdTxmf/U0FlIfFnxUPqjiOuD95u98oTU2+5tGn1GuSTvac/VlUt5eWWWtF0cXnHqGPueWHZqaTLBkszw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=linaro.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oB1BET5OrzqxM/2rFMEzxNkG6MsW8cwwPBZR1R4KSRA=;
+ b=SNY91hPsPmv/4jiXWBl3wkyIWbOrWGVc33HvqgR0TAN67hMxo3qx4HFEHS+HGohadamt78d+PS2DRhlam8fQwn2Hh03HTaXnhggED0qru2VaRh7+m5JAe5TrKFf6TX36aBUoUT8vG5O7WAZ1+ovhDYQVdqxa892eKPnISc96K7g=
+Received: from SA9PR10CA0018.namprd10.prod.outlook.com (2603:10b6:806:a7::23)
+ by SJ0PR02MB7597.namprd02.prod.outlook.com (2603:10b6:a03:319::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25; Sat, 14 Nov
+ 2020 16:49:22 +0000
+Received: from SN1NAM02FT009.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:a7:cafe::dc) by SA9PR10CA0018.outlook.office365.com
+ (2603:10b6:806:a7::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25 via Frontend
+ Transport; Sat, 14 Nov 2020 16:49:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT009.mail.protection.outlook.com (10.152.73.32) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3564.22 via Frontend Transport; Sat, 14 Nov 2020 16:49:22 +0000
+Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Sat, 14 Nov 2020 08:49:21 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Sat, 14 Nov 2020 08:49:21 -0800
+Envelope-to: mathieu.poirier@linaro.org,
+ devicetree@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+Received: from [172.19.2.206] (port=38914 helo=xsjblevinsk50.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <ben.levinsky@xilinx.com>)
+        id 1kdyjp-0007Ai-A6; Sat, 14 Nov 2020 08:49:21 -0800
+From:   Ben Levinsky <ben.levinsky@xilinx.com>
+To:     <mathieu.poirier@linaro.org>
+CC:     <devicetree@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v23 0/5] Provide basic driver to control Arm R5 co-processor found on Xilinx ZynqMP
+Date:   Sat, 14 Nov 2020 08:49:16 -0800
+Message-ID: <20201114164921.14573-1-ben.levinsky@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201113110409.13546-4-alice.guo@nxp.com>
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3560a453-7b90-40bc-a3de-08d888bd3cc0
+X-MS-TrafficTypeDiagnostic: SJ0PR02MB7597:
+X-Microsoft-Antispam-PRVS: <SJ0PR02MB759757F1492C44693BA82056B5E50@SJ0PR02MB7597.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 3UhK/V/M9t/yoTPXgnGEm8NCGYtLEKgK2wGLRdSCPWLSnnOb2/0duwgcCnYgQIDBxjCZGyyncQoms8v0ea1tHZ0zwRpWRGOn1imlYgH3H612krLo+ZAKx1E8pfG5QGREB4b2HLoUv3IZTREJXSH5zUtDIKIabhXPZJYAOFrebHImzDUanTBVdUT3Zh9lS+8OGQ4M+jCieNl4HeTdTk5QmQJRvMNBzDDTssxpjVQE2EA50CREAm/j9qN2mZb6Hp6nHNPXQ5wdyzkceTPGYL894zSkpZPnx6AkGOGBCAno2iSosAzzYTpWFqeW4N0zgEBeK7MKu7zF4oNL3wl6C6L7RawEs3gwqL4Is4gK8OislNSaX/fuv6H69zkWqCn2sZQ2h9ap5wYRVip/UpSJvmbV1t13iepvGbpi8YJAw3zB2vfHM/kVlYvGLnSUpWD36F/YkEhbJEbRjQYEZTAeWDZSYKcvKN+y3P1tUeB6qXKA0sKG/JgfdttuOLVbbbhJFtsM
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(396003)(376002)(346002)(39850400004)(46966005)(5660300002)(8936002)(54906003)(47076004)(4326008)(8676002)(6666004)(26005)(186003)(7696005)(82310400003)(7636003)(426003)(1076003)(36756003)(44832011)(6916009)(316002)(356005)(336012)(82740400003)(2906002)(70586007)(36906005)(83380400001)(966005)(478600001)(9786002)(70206006)(2616005)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2020 16:49:22.1569
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3560a453-7b90-40bc-a3de-08d888bd3cc0
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT009.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR02MB7597
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 07:04:09PM +0800, Alice Guo wrote:
-> Directly reading ocotp register depends on that bootloader enables ocotp
-> clk, which is not always effective, so change to use nvmem API. Using
-> nvmem API requires to support driver defer probe and thus change
-> soc-imx8m.c to use platform driver.
-> 
-> The other reason is that directly reading ocotp register causes kexec
-> kernel hang because the 1st kernel running will disable unused clks
-> after kernel boots up, and then ocotp clk will be disabled even if
-> bootloader enables it. When kexec kernel, ocotp clk needs to be enabled
-> before reading ocotp registers, and nvmem API with platform driver
-> supported can accomplish this.
-> 
-> Old .dts files can also work.
-> 
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> ---
->  drivers/soc/imx/soc-imx8m.c | 89 ++++++++++++++++++++++++++++++++-----
->  1 file changed, 79 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/soc/imx/soc-imx8m.c b/drivers/soc/imx/soc-imx8m.c
-> index cc57a384d74d..af2c0dbe8291 100644
-> --- a/drivers/soc/imx/soc-imx8m.c
-> +++ b/drivers/soc/imx/soc-imx8m.c
-> @@ -5,6 +5,8 @@
-> 
->  #include <linux/init.h>
->  #include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
->  #include <linux/of_address.h>
->  #include <linux/slab.h>
->  #include <linux/sys_soc.h>
-> @@ -29,7 +31,7 @@
-> 
->  struct imx8_soc_data {
->  	char *name;
-> -	u32 (*soc_revision)(void);
-> +	u32 (*soc_revision)(struct device *dev, int flag);
->  };
-> 
->  static u64 soc_uid;
-> @@ -50,7 +52,7 @@ static u32 imx8mq_soc_revision_from_atf(void)
->  static inline u32 imx8mq_soc_revision_from_atf(void) { return 0; };
->  #endif
-> 
-> -static u32 __init imx8mq_soc_revision(void)
-> +static u32 __init imx8mq_soc_revision(struct device *dev, int flag)
->  {
->  	struct device_node *np;
->  	void __iomem *ocotp_base;
-> @@ -75,9 +77,17 @@ static u32 __init imx8mq_soc_revision(void)
->  			rev = REV_B1;
->  	}
-> 
-> -	soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
-> -	soc_uid <<= 32;
-> -	soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
-> +	if (flag) {
-> +		int ret = 0;
-> +
-> +		ret = nvmem_cell_read_u64(dev, "soc_unique_id", &soc_uid);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
-> +		soc_uid <<= 32;
-> +		soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
-> +	}
-> 
->  	iounmap(ocotp_base);
->  	of_node_put(np);
-> @@ -107,7 +117,7 @@ static void __init imx8mm_soc_uid(void)
->  	of_node_put(np);
->  }
-> 
-> -static u32 __init imx8mm_soc_revision(void)
-> +static u32 __init imx8mm_soc_revision(struct device *dev, int flag)
->  {
->  	struct device_node *np;
->  	void __iomem *anatop_base;
-> @@ -125,7 +135,15 @@ static u32 __init imx8mm_soc_revision(void)
->  	iounmap(anatop_base);
->  	of_node_put(np);
-> 
-> -	imx8mm_soc_uid();
-> +	if (flag) {
-> +		int ret = 0;
-> +
-> +		ret = nvmem_cell_read_u64(dev, "soc_unique_id", &soc_uid);
-> +		if (ret)
-> +			return ret;
-> +	} else {
-> +		imx8mm_soc_uid();
-> +	}
-> 
->  	return rev;
->  }
-> @@ -158,12 +176,21 @@ static __maybe_unused const struct of_device_id imx8_soc_match[] = {
->  	{ }
->  };
-> 
-> +static __maybe_unused const struct of_device_id imx8m_soc_match[] = {
+v23:
+- add TCM Nodes to xlnx-zynqmp.h to be used in R5 Remoteproc Driver
+- Update grammar and capitalization in device tree bindings and R5 remoteproc driver comments
+- Update device tree bindings and driver to align with TI Remoteproc R5 driver
+- fix minor comments in v22 review
 
-Could this really be unused?
+Previous version:
+https://patchwork.kernel.org/project/linux-remoteproc/list/?series=376801
 
-> +	{ .compatible = "fsl,imx8mq-soc", .data = &imx8mq_soc_data, },
-> +	{ .compatible = "fsl,imx8mm-soc", .data = &imx8mm_soc_data, },
-> +	{ .compatible = "fsl,imx8mn-soc", .data = &imx8mn_soc_data, },
-> +	{ .compatible = "fsl,imx8mp-soc", .data = &imx8mp_soc_data, },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx8m_soc_match);
 
-You already have "imx8_soc_match" which covers imx8m and now you add
-"imx8m_soc_match" which also covers imx8m. Such naming is a pure
-confusion.
+Ben Levinsky (5):
+  firmware: xilinx: Add ZynqMP firmware ioctl enums for RPU
+    configuration.
+  firmware: xilinx: Add shutdown/wakeup APIs
+  firmware: xilinx: Add RPU configuration APIs
+  dt-bindings: remoteproc: Add documentation for ZynqMP R5 rproc
+    bindings
+  remoteproc: Add initial zynqmp R5 remoteproc driver
 
-> +
->  #define imx8_revision(soc_rev) \
->  	soc_rev ? \
->  	kasprintf(GFP_KERNEL, "%d.%d", (soc_rev >> 4) & 0xf,  soc_rev & 0xf) : \
->  	"unknown"
-> 
-> -static int __init imx8_soc_init(void)
-> +static int imx8_soc_init_flag(struct platform_device *pdev, int flag)
->  {
->  	struct soc_device_attribute *soc_dev_attr;
->  	struct soc_device *soc_dev;
-> @@ -182,7 +209,10 @@ static int __init imx8_soc_init(void)
->  	if (ret)
->  		goto free_soc;
-> 
-> -	id = of_match_node(imx8_soc_match, of_root);
-> +	if (flag)
-> +		id = of_match_node(imx8m_soc_match, pdev->dev.of_node);
-> +	else
-> +		id = of_match_node(imx8_soc_match, of_root);
->  	if (!id) {
->  		ret = -ENODEV;
->  		goto free_soc;
-> @@ -192,7 +222,13 @@ static int __init imx8_soc_init(void)
->  	if (data) {
->  		soc_dev_attr->soc_id = data->name;
->  		if (data->soc_revision)
-> -			soc_rev = data->soc_revision();
-> +			soc_rev = data->soc_revision(&pdev->dev, flag);
-> +
-> +		if (flag) {
-> +			ret = soc_rev;
-> +			if (ret < 0)
-> +				goto free_soc;
-> +		}
->  	}
-> 
->  	soc_dev_attr->revision = imx8_revision(soc_rev);
-> @@ -230,4 +266,37 @@ static int __init imx8_soc_init(void)
->  	kfree(soc_dev_attr);
->  	return ret;
->  }
-> +
-> +static int __init imx8_soc_init(void)
-> +{
-> +	int ret = 0, flag = 0;
-> +
-> +	if (of_find_compatible_node(NULL, NULL, "fsl,imx8mm-soc") ||
-> +	    of_find_compatible_node(NULL, NULL, "fsl,imx8mn-soc") ||
-> +	    of_find_compatible_node(NULL, NULL, "fsl,imx8mp-soc") ||
-> +	    of_find_compatible_node(NULL, NULL, "fsl,imx8mq-soc"))
+ .../xilinx,zynqmp-r5-remoteproc.yaml          | 238 +++++
+ drivers/firmware/xilinx/zynqmp.c              |  96 ++
+ drivers/remoteproc/Kconfig                    |   8 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/zynqmp_r5_remoteproc.c     | 872 ++++++++++++++++++
+ include/linux/firmware/xlnx-zynqmp.h          |  64 ++
+ 6 files changed, 1279 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+ create mode 100644 drivers/remoteproc/zynqmp_r5_remoteproc.c
 
-Missing puts.
+-- 
+2.17.1
 
-Don't duplicate the compatibles, iterate over existing structure... or
-see comments below.  Maybe you could simplify it with something like
-of_find_matching_node_and_match()... but check comments below.
-
-> +		return 0;
-> +
-> +	ret = imx8_soc_init_flag(NULL, flag);
-> +	return ret;
-> +}
->  device_initcall(imx8_soc_init);
-
-Where is the changelog? This was removed previously, now it stays...
-
-After more thoughs, it looks you have kept it for the purpose of
-supporting existing DTB, but it is not explained. Neither in the source
-code (which after applying this patch looks confusing) nor in commit
-message.
-
-In case of old DTB without fsl,imx8mm-soc-like compatibles, it would be
-better to still register a platform driver and create a device
-(of_platform_device_create())). However still this won't solve the
-problem of actually missing device node... so maybe this double entry
-point is acceptable, if properly explained.
-
-> +
-> +static int imx8_soc_init_probe(struct platform_device *pdev)
-> +{
-> +	int ret = 0, flag = 1;
-> +
-> +	ret = imx8_soc_init_flag(pdev, flag);
-
-Never name unspecified booleans like "flag". The same as string
-variables should be named "string", integers should not be named
-"number".
-
-> +	return ret;
-> +}
-> +
-> +static struct platform_driver imx8_soc_init_driver = {
-> +	.probe = imx8_soc_init_probe,
-> +	.driver = {
-> +		.name = "imx8_soc_init",
-> +		.of_match_table = of_match_ptr(imx8m_soc_match),
-
-Can it bind without OF? Why it's a of_match_ptr()?
-
-> +	},
-> +};
-> +
-> +module_platform_driver(imx8_soc_init_driver);
-
-Here and in all other places (including driver name) this is not a SoC
-initialization (init) driver. You cannot initialize a SoC. This looks
-like a SoC ID driver, so one name could be "imx8_soc_id".
-
-Best regards,
-Krzysztof
