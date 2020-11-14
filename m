@@ -2,69 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 388132B30AB
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 21:44:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 04A622B30EC
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 22:12:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726150AbgKNUm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 15:42:57 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34168 "EHLO mail.kernel.org"
+        id S1726174AbgKNVLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 16:11:53 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37658 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726112AbgKNUm5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 15:42:57 -0500
-Received: from dellmb.labs.office.nic.cz (nat-1.nic.cz [217.31.205.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726112AbgKNVLx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Nov 2020 16:11:53 -0500
+Received: from kernel.org (unknown [104.132.1.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9EC8022245;
-        Sat, 14 Nov 2020 20:42:55 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0257522384;
+        Sat, 14 Nov 2020 21:11:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605386576;
-        bh=FnCuexM0kO0jnpgp1XCR5u8z571sh6thfUS4KZTEyeU=;
-        h=From:To:Cc:Subject:Date:From;
-        b=InSksdMEeGaqVa2jPwjAmlJC1VIvWDOVykP5D24BkxqmpnZb8WP0MsXViifXneOVV
-         LTjKvqCs9V29Q2AakwftafmUKjCPtmJnxxQgKk0VBXdpA5mYOe8m7u6l8SKqZeIP6Y
-         Rj5JHxuLuEZXhFYs7xpWUxvpxWucBK/2317X+XEY=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     arm@kernel.org, =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH mvebu-dt64] arm64: dts: armada-3720-turris-mox: update ethernet-phy handle name
-Date:   Sat, 14 Nov 2020 21:42:53 +0100
-Message-Id: <20201114204253.8573-1-kabel@kernel.org>
-X-Mailer: git-send-email 2.26.2
+        s=default; t=1605388313;
+        bh=1Q9KjVq9hTB0vzxOeA6iOyT4dgFMrRUr3fO6ce+d/5w=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=UxCopOFvZZBmuX7adzbrM9SRgfWs5B06x2It9+MBz/NlwcYVP7vBxpd2MLBst3b6R
+         Gixfur142nXjLYf95uQ9q/9wYbtKj9Z+VYAavbz9v8UrPLxmg0x+uWLSR8449ejuTT
+         5huJqB9ZvOpVcfq0hELt0QTNb5vAGmmK1WNltdSU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20201023131925.334864-6-dmitry.baryshkov@linaro.org>
+References: <20201023131925.334864-1-dmitry.baryshkov@linaro.org> <20201023131925.334864-6-dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v2 5/5] clk: qcom: dispcc-sm8250: handle MMCX power domain
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Sat, 14 Nov 2020 13:11:51 -0800
+Message-ID: <160538831174.60232.12022368603603764199@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use property name `phy-handle` instead of the deprecated `phy` to
-connect eth2 to the PHY.
+Quoting Dmitry Baryshkov (2020-10-23 06:19:25)
+> On SM8250 MMCX power domain is required to access MMDS_GDSC registers.
+> This power domain is expressed as mmcx-supply regulator property. Use
+> this regulator as MDSS_GDSC supply.
+>=20
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
-Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index f3a678e0fd99..bf76ebe46379 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -146,7 +146,7 @@ &eth0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>;
- 	phy-mode = "rgmii-id";
--	phy = <&phy1>;
-+	phy-handle = <&phy1>;
- 	status = "okay";
- };
- 
--- 
-2.26.2
-
+Applied to clk-next
