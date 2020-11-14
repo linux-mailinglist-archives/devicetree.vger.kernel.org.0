@@ -2,97 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0DD32B2ED5
-	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 18:17:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D46D12B2F25
+	for <lists+devicetree@lfdr.de>; Sat, 14 Nov 2020 18:42:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726121AbgKNRRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 12:17:15 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37596 "EHLO mail.kernel.org"
+        id S1726070AbgKNRm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 12:42:27 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39700 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726070AbgKNRRP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 12:17:15 -0500
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        id S1726088AbgKNRm1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Nov 2020 12:42:27 -0500
+Received: from localhost (otava-0257.koleje.cuni.cz [78.128.181.4])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1D30D20B80;
-        Sat, 14 Nov 2020 17:17:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2D02F2222C;
+        Sat, 14 Nov 2020 17:42:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605374234;
-        bh=9fXdm0/jlVB/JoIYN6WFDDi7fbDGGhlQON/dw5QBnKY=;
+        s=default; t=1605375746;
+        bh=tmOHDtqwX1mqdiPILnvO/BND4vMYxKO3WQ5b/8ldZE4=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=ZSfJDB4i5mQGxl3rc2sTDIThpu6ID/aJ0O/Y/hXif9bxyul8vQC+kth9ly0cBOtI1
-         nRWQDBwGrL/jtY9JQ5i93bN/AMG5sWSBsawq2l+F78pxNZ5+0st/sB6jqZcdzDSBZM
-         L1PFI3Ns8lR6JRv+f/DcDQTOcwUGGeAOtBdyBdlw=
-Date:   Sat, 14 Nov 2020 17:17:09 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/9] iio: adc: at91_adc: cleanup DT bindings
-Message-ID: <20201114171709.638e8200@archlinux>
-In-Reply-To: <20201113212650.507680-1-alexandre.belloni@bootlin.com>
-References: <20201113212650.507680-1-alexandre.belloni@bootlin.com>
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        b=wns8gZ2xhj0OfXUDTPktQ043Socjjpa2/wzu9ZrlS5VKS3LOqPDA422nK1vhTVQAi
+         Ub2g5oLF2J8GEqTJXWuGmg6gkLjIENAld0s8oShEi9QUO3BCHaN19jYc/p3hTgK//b
+         JzKOqVZdkFD2SAaEcMFb9b5PMbzIQhRR8bNjNu+k=
+Date:   Sat, 14 Nov 2020 18:42:21 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <uwe@kleine-koenig.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andreas =?UTF-8?B?RsOkcmJlcg==?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH mvebu-dt 3/6] ARM: dts: turris-omnia: describe
+ ethernet-phy interrupt
+Message-ID: <20201114184221.1f74de86@kernel.org>
+In-Reply-To: <20201114171639.GO1456319@lunn.ch>
+References: <20201114160409.19670-1-kabel@kernel.org>
+        <20201114160409.19670-4-kabel@kernel.org>
+        <20201114174928.5ab4f8ae@kernel.org>
+        <20201114171639.GO1456319@lunn.ch>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Nov 2020 22:26:41 +0100
-Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+On Sat, 14 Nov 2020 18:16:39 +0100
+Andrew Lunn <andrew@lunn.ch> wrote:
 
-> Hello,
-> 
-> This series cleans up the at91_adc devicetree bindings. This mainly
-> moves back the resolution options and names and the triggers description
-> back in the driver.
-> 
-> There are also other cleanups, like removing platform data support, this
-> was pending for a while.
+> On Sat, Nov 14, 2020 at 05:49:28PM +0100, Marek Beh=C3=BAn wrote:
+> > On Sat, 14 Nov 2020 17:04:06 +0100
+> > Marek Beh=C3=BAn <kabel@kernel.org> wrote:
+> >  =20
+> > > +		interrupt-parent =3D <&pcawan>;
+> > > +		interrupt =3D <7 IRQ_TYPE_LEVEL_LOW>; =20
+> >=20
+> > Also we need to use IRQ_TYPE_EDGE_FALLING. The gpio-pca953x driver does
+> > not support IRQ_TYPE_LEVEL_LOW... =20
+>=20
+> Please check the datasheet for the PHY. I expect you will find it is
+> level triggering, not edge. So you can miss interrupts, and have the
+> wrong state.
+>=20
+> I've also had bad experiences with pca953x and interrupt storms. I
+> hope you are using one with the extended registers including the
+> interrupt mask.
+>=20
+> 	  Andrew
 
-I'm fine with everything up to patch 7.  Given it touches DT I'll leave
-a bit of time for Rob to take a quick look (can't see him objecting to the
-removal of sections of the binding though!)
+Andrew, the PHY is a 88E1514, which triggers on level. We can set
+either active-low or active-high, but not edge. Default is active-low.
 
-If you don't mind me dropping 7 I can pick 1-6 up in a week or two.
-Thanks,
+The expander is a PCA9538 (in schematics called PCA9538PWR). The driver
+does not support level interrupts:
+	if (!(type & IRQ_TYPE_EDGE_BOTH)) {
+		dev_err(&chip->client->dev, "irq %d: unsupported type %d\n",
+			d->irq, type);
+		return -EINVAL;
+	}
 
-Jonathan
+It seems that for PCA9538 the interrupts are read from input. Some of
+the chips supported by this driver can latch interrupt status into
+special register, but this chip does not...
 
-> 
-> Alexandre Belloni (8):
->   iio: adc: at91_adc: remove platform data
->   iio: adc: at91_adc: rework resolution selection
->   iio: adc: at91_adc: rework trigger definition
->   iio: adc: at91_adc: merge at91_adc_probe_dt back in at91_adc_probe
->   iio: adc: at91_adc: remove forward declaration
->   iio: adc: at91_adc: use devm_input_allocate_device
->   ARM: dts: at91: sama5d3: use proper ADC compatible
->   ARM: dts: at91: remove deprecated ADC properties
-> 
-> Jonathan Cameron (1):
->   dt-bindings:iio:adc:atmel,sama9260-adc: conversion to yaml from
->     at91_adc.txt
-> 
->  .../devicetree/bindings/iio/adc/at91_adc.txt  |  83 ----
->  .../bindings/iio/adc/atmel,sama9260-adc.yaml  | 121 ++++++
->  arch/arm/boot/dts/at91sam9260.dtsi            |  25 --
->  arch/arm/boot/dts/at91sam9g45.dtsi            |  27 --
->  arch/arm/boot/dts/at91sam9rl.dtsi             |  25 --
->  arch/arm/boot/dts/at91sam9x5.dtsi             |  28 --
->  arch/arm/boot/dts/sama5d3.dtsi                |  26 +-
->  arch/arm/boot/dts/sama5d4.dtsi                |  22 -
->  drivers/iio/adc/at91_adc.c                    | 377 +++++++-----------
->  include/linux/platform_data/at91_adc.h        |  49 ---
->  10 files changed, 259 insertions(+), 524 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/iio/adc/at91_adc.txt
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/atmel,sama9260-adc.yaml
->  delete mode 100644 include/linux/platform_data/at91_adc.h
-> 
+On interrupt the driver looks at the input register, compares it with
+cached state and looks which bits changed. So theoretically level
+support could be implemented in this driver, but currently it is not.
 
+Do you think we should just poll for interrupts with the PHY?
+
+Marek
