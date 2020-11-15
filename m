@@ -2,104 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3412B3360
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 11:22:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BD58D2B3373
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 11:33:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726929AbgKOKVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 05:21:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43674 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726849AbgKOKVm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Nov 2020 05:21:42 -0500
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9D5CB22447;
-        Sun, 15 Nov 2020 10:21:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605435701;
-        bh=rzydftkceju63cCVzuN0vhHudbX1SeIpRs/FyMWETVk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NJMH+ARhBlVaZfdlzWIlEqaZFzUwEXOS2Rfd6FOaNrZxBbeybaf0ozWCmU7O/GxID
-         PDdDGSpwXad9RPkBwvoeXLYXh2+MHpMf9NtTHWJuAE4fbBY+1CVNxI0xviTteiiMx7
-         CwEAFN2+pREj7/2KF+sNzOV8AVmnTk3b8qSmIi9U=
-Received: by mail-ed1-f49.google.com with SMTP id a15so15676408edy.1;
-        Sun, 15 Nov 2020 02:21:41 -0800 (PST)
-X-Gm-Message-State: AOAM532uygchxxigBfOy8sW60yJTzF6M0DHwsAnYzV7samLcgxG4cB3d
-        z1rsfE37JhBET3sJ5UN+1N3WXxxrpk5UQarZkmM=
-X-Google-Smtp-Source: ABdhPJxKJq+2E3NzY82/TP8puJiteJX7GiWRD0G9jz4iNvHTs5V6oRbmUX8fAg7hVa7VlUteGYG02s/rE9KjLwtr2yI=
-X-Received: by 2002:a05:6402:290:: with SMTP id l16mr11065020edv.104.1605435700190;
- Sun, 15 Nov 2020 02:21:40 -0800 (PST)
-MIME-Version: 1.0
-References: <CGME20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7>
- <20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7>
- <CAJKOXPePgqWQpJjOeJ9U0jcNG7et6heAid2HnrPeWTDKXLUgjA@mail.gmail.com> <CAEx-X7eEbL8Eoxk0smUCzxb+XOeRQTGBNUZcmDyuZNYCNa1Ghw@mail.gmail.com>
-In-Reply-To: <CAEx-X7eEbL8Eoxk0smUCzxb+XOeRQTGBNUZcmDyuZNYCNa1Ghw@mail.gmail.com>
+        id S1726634AbgKOKc4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 15 Nov 2020 05:32:56 -0500
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:38162 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726230AbgKOKc4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 05:32:56 -0500
+Received: by mail-wr1-f65.google.com with SMTP id p8so15482294wrx.5;
+        Sun, 15 Nov 2020 02:32:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=nboJra9xrDgWjRXVvjgcT7Fsw1IMwT3NAZBZdfUci98=;
+        b=q4hiYEmhWASxQzyjGTNZNP5ujBwCHpEvXm6pphRi+H5JX/E20czxxldhualuehCscp
+         0Uw/NZOsruCB8uhwVnrYpz7Q2tI0N0FGbO6Jh0Iu5BrHW8slmYsAfbjdYkJeNrTjzaRN
+         ikNVbA/Zk8gWjDRQdeRiKFlWX0U8KvLPG4PrZPRhS6dt1hRGvifJRRlZEgMstryHgL7Y
+         Q1Zxb/0Ss37i/ITFEbfvriFSNTjD59U66ecn+WM94hns7vF3rKNCuZo7f5FUXB7WpB+Y
+         5184MC+wM12vC5erj7iJ5Vt/kzoxQ0wCgHSaMtgusDOu8d8ZZ0dpWBtFV2TJh+Olcrzt
+         CupA==
+X-Gm-Message-State: AOAM532WQUsQ8Br75gojIua0EanuKoqFfQ0qyV0wxm/cip8o5UpvZlrt
+        oc9Sh3TSBMetDjlEC5bqarjGrhwLkpg=
+X-Google-Smtp-Source: ABdhPJyM/bTYQ2AwPTHnTlR+FVSvJoOH8FFFS0PRMWgUl0BjnDNWVdNzIC2Z5/qqgyxGY8O5Ka1P7g==
+X-Received: by 2002:adf:eb08:: with SMTP id s8mr14406477wrn.12.1605436373944;
+        Sun, 15 Nov 2020 02:32:53 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id q5sm14435768wrf.41.2020.11.15.02.32.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2020 02:32:52 -0800 (PST)
+Date:   Sun, 15 Nov 2020 11:32:51 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Sun, 15 Nov 2020 11:21:27 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPdXYLPbYwJiroNPtzgE7v5-bHxpmt-g1zNPFrjPo4G_MA@mail.gmail.com>
-Message-ID: <CAJKOXPdXYLPbYwJiroNPtzgE7v5-bHxpmt-g1zNPFrjPo4G_MA@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/2] nfc: s3fwrn82: Add driver for Samsung
- S3FWRN82 NFC Chip
-To:     Bongsu Jeon <bs.jeon87@gmail.com>
-Cc:     bongsu.jeon@samsung.com, "kuba@kernel.org" <kuba@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
+Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] ARM: dts: add Samsung's exynos4412-based p4note
+ boards
+Message-ID: <20201115103251.GB4587@kozik-lap>
+References: <20201113212525.13455-1-martin.juecker@gmail.com>
+ <20201113212525.13455-3-martin.juecker@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201113212525.13455-3-martin.juecker@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 15 Nov 2020 at 01:54, Bongsu Jeon <bs.jeon87@gmail.com> wrote:
->
-> On Fri, Nov 13, 2020 at 4:26 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > On Fri, 13 Nov 2020 at 06:09, Bongsu Jeon <bongsu.jeon@samsung.com> wrote:
-> > >
-> > >
-> > > Add driver for Samsung S3FWRN82 NFC controller.
-> > > S3FWRN82 is using NCI protocol and I2C communication interface.
-> > >
-> > > Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
-> > > ---
-> > >  drivers/nfc/Kconfig             |   1 +
-> > >  drivers/nfc/Makefile            |   1 +
-> > >  drivers/nfc/s3fwrn82/Kconfig    |  15 ++
-> > >  drivers/nfc/s3fwrn82/Makefile   |  10 ++
-> > >  drivers/nfc/s3fwrn82/core.c     | 133 +++++++++++++++
-> > >  drivers/nfc/s3fwrn82/i2c.c      | 288 ++++++++++++++++++++++++++++++++
-> > >  drivers/nfc/s3fwrn82/s3fwrn82.h |  86 ++++++++++
-> > >  7 files changed, 534 insertions(+)
-> > >  create mode 100644 drivers/nfc/s3fwrn82/Kconfig
-> > >  create mode 100644 drivers/nfc/s3fwrn82/Makefile
-> > >  create mode 100644 drivers/nfc/s3fwrn82/core.c
-> > >  create mode 100644 drivers/nfc/s3fwrn82/i2c.c
-> > >  create mode 100644 drivers/nfc/s3fwrn82/s3fwrn82.h
-> >
-> > No, this is a copy of existing s3fwrn5.
-> >
-> > Please do not add drivers which are duplicating existing ones but
-> > instead work on extending them.
-> >
-> > Best regards,
-> > Krzysztof
->
-> I'm bongsu jeon and working for samsung nfc chip development.
-> If I extend the code for another nfc chip model, Could I change the
-> s3fwrn5 directory and Module name?
-> I think the name would confuse some people if they use the other nfc
-> chip like s3fwrn82.
+On Fri, Nov 13, 2020 at 10:25:23PM +0100, Martin Jücker wrote:
+> The p4note family contains a couple of variants of the Galaxy Note 10.1
+> tablet with mainly different modems. The GT-N8010/GT-N8013 is the wifi
+> only version.
+> 
+> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |    1 +
+>  arch/arm/boot/dts/exynos4412-p4note-n8010.dts |   17 +
+>  arch/arm/boot/dts/exynos4412-p4note.dtsi      | 1132 +++++++++++++++++
+>  3 files changed, 1150 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/exynos4412-p4note-n8010.dts
+>  create mode 100644 arch/arm/boot/dts/exynos4412-p4note.dtsi
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index ce66ffd5a1bb..55ffee2b20f8 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -197,6 +197,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
+>  	exynos4412-odroidx.dtb \
+>  	exynos4412-odroidx2.dtb \
+>  	exynos4412-origen.dtb \
+> +	exynos4412-p4note-n8010.dtb \
+>  	exynos4412-smdk4412.dtb \
+>  	exynos4412-tiny4412.dtb \
+>  	exynos4412-trats2.dtb
+> diff --git a/arch/arm/boot/dts/exynos4412-p4note-n8010.dts b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
+> new file mode 100644
+> index 000000000000..9f559425bd2c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
+> @@ -0,0 +1,17 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Samsung's Galaxy Note 10.1 - N801x (wifi only version)
+> + *
+> + * Copyright (c) 2013 Samsung Electronics Co., Ltd.
+> + *		http://www.samsung.com
 
-Hi,
-
-Renaming would only make git history trickier to follow. Multiple
-drivers get extended and not renamed. Anyone configuring the kernel
-should check through Kconfig description, compatibles or description
-in bindings, so name of directory does not matter when looking for HW
-support. Then someone would add different chip support, and you would
-rename as well? So no, do not rename it.
+Here and in other files - why did you remove your copyright? My comment
+from previous version: "If it is true, then include the copyright of
+original work as well."
 
 Best regards,
 Krzysztof
+
