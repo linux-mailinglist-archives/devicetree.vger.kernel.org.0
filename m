@@ -2,100 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5132B322C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 05:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 600462B3313
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 09:57:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726557AbgKOE52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 23:57:28 -0500
-Received: from z5.mailgun.us ([104.130.96.5]:55427 "EHLO z5.mailgun.us"
+        id S1726755AbgKOI44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 03:56:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36232 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726315AbgKOE5W (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 23:57:22 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1605416242; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=DHZQrIgHGobEqfrhC8jO9oXKDIMrd9L7WeOf8QdR/wg=; b=r9tvNCFvETQyQv6biXlmgH32/+pHyuam90NRLSYbTA4ado28uZU+T4RCwSPQ/Ydfli3dPRgg
- CLLXgR/Sr+1pVUYM5qHcImMaQh7zNKBuM54QT4w2oUV+rGAjjdc7/58Akh3VX6aRouTqSUy+
- 4dsTl+3egnDxPHJN4d1EHik5WyA=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 5fb0b52937ede2253b5b654b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sun, 15 Nov 2020 04:57:13
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 6C88FC43464; Sun, 15 Nov 2020 04:57:13 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1726642AbgKOI44 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Nov 2020 03:56:56 -0500
+Received: from localhost (otava-0257.koleje.cuni.cz [78.128.181.4])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id DB9F2C433C6;
-        Sun, 15 Nov 2020 04:57:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org DB9F2C433C6
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Subject: [PATCH] Asoc: qcom: lpass-platform: Fix memory leak
-Date:   Sun, 15 Nov 2020 10:26:50 +0530
-Message-Id: <1605416210-14530-1-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        by mail.kernel.org (Postfix) with ESMTPSA id 073752242E;
+        Sun, 15 Nov 2020 08:56:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605430615;
+        bh=XlDHcdsl532SN92xdtOqleWanacVK4C5l0LGG518skA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=UPt0zKKVOB17S0lL9O3/xZIsjZwBnd/ahSRgC/zVMdLWyUKOvrj3fRsbxYY9Wc1HB
+         SQgiN8oXcpOvNgITU/tJPLgkCbr4EOWs8urM8GSOzPD3YiSRAAR+I4P5hkIAe13dKv
+         pCYIIWoMwG3FqXtixZkMDjNOT9GtqrD7xDD583dU=
+Date:   Sun, 15 Nov 2020 09:56:48 +0100
+From:   Marek =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>
+To:     Andreas =?UTF-8?B?RsOkcmJlcg==?= <afaerber@suse.de>
+Cc:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        "David S . Miller" <davem@davemloft.net>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <uwe@kleine-koenig.org>,
+        Michal Hrusecki <Michal.Hrusecky@nic.cz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH net-next] net: mvneta: Fix validation of 2.5G HSGMII
+ without comphy
+Message-ID: <20201115095648.0af1c42b@kernel.org>
+In-Reply-To: <4bf5376c-a7d1-17bf-1034-b793113b101e@suse.de>
+References: <20201115004151.12899-1-afaerber@suse.de>
+        <20201115010241.GF1551@shell.armlinux.org.uk>
+        <4bf5376c-a7d1-17bf-1034-b793113b101e@suse.de>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-lpass_pcm_data is not freed in error paths. Free it in
-error paths to avoid memory leak.
+On Sun, 15 Nov 2020 03:26:01 +0100
+Andreas F=C3=A4rber <afaerber@suse.de> wrote:
 
-Fixes: 022d00ee0b55 ("ASoC: lpass-platform: Fix broken pcm data usage")
+> Hi Russell,
+>=20
+> On 15.11.20 02:02, Russell King - ARM Linux admin wrote:
+> > On Sun, Nov 15, 2020 at 01:41:51AM +0100, Andreas F=C3=A4rber wrote: =20
+> >> Commit 1a642ca7f38992b086101fe204a1ae3c90ed8016 (net: ethernet: mvneta:
+> >> Add 2500BaseX support for SoCs without comphy) added support for 2500B=
+aseX.
+> >>
+> >> In case a comphy is not provided, mvneta_validate()'s check
+> >>   state->interface =3D=3D PHY_INTERFACE_MODE_2500BASEX
+> >> could never be true (it would've returned with empty bitmask before),
+> >> so that 2500baseT_Full and 2500baseX_Full do net get added to the mask=
+. =20
+> >=20
+> > This makes me nervous. It was intentional that if there is no comphy
+> > configured in DT for SoCs such as Armada 388, then there is no support
+> > to switch between 1G and 2.5G speed. Unfortunately, the configuration
+> > of the comphy is up to the board to do, not the SoC .dtsi, so we can't
+> > rely on there being a comphy on Armada 388 systems. =20
+>=20
+> Please note that the if clause at the beginning of the validate function
+> does not check for comphy at all. So even with comphy, if there is a
+> code path that attempts to validate state 2500BASEX, it is broken, too.
+>=20
+> Do you consider the modification of both ifs (validate and power_up) as
+> correct? Should they be split off from my main _NA change you discuss?
+>=20
+> > So, one of the side effects of this patch is it incorrectly opens up
+> > the possibility of allowing 2.5G support on Armada 388 without a comphy
+> > configured.
+> >=20
+> > We really need a better way to solve this; just relying on the lack of
+> > comphy and poking at a register that has no effect on Armada 388 to
+> > select 2.5G speed while allowing 1G and 2.5G to be arbitarily chosen
+> > doesn't sound like a good idea to me. =20
+> [snip]
+>=20
+> May I add that the comphy needs better documentation?
+>=20
+> Marek and I independently came up with <&comphy5 2> in the end, but the
+> DT binding doesn't explain what the index is supposed to be and how I
+> might figure it out. It cost me days of reading U-Boot and kernel
+> sources and playing around with values until I had the working one.
+>=20
+> Might be helpful to have a symbolic dt-bindings #define for this 2.
+>=20
 
-Signed-off-by: Pavel Machek <pavel@ucw.cz>
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-platform.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+The gbe mux number is described in Armada 385 documentation. Yes, maybe
+we should add these defines somewhere, but certainly we should not
+declare ability of 2500baseX if comphy is not present and the interface
+is not configured to 2500baseX by default.
 
-diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
-index 36d1512..7a3fdf8 100644
---- a/sound/soc/qcom/lpass-platform.c
-+++ b/sound/soc/qcom/lpass-platform.c
-@@ -122,8 +122,10 @@ static int lpass_platform_pcmops_open(struct snd_soc_component *component,
- 	else
- 		dma_ch = 0;
- 
--	if (dma_ch < 0)
-+	if (dma_ch < 0) {
-+		kfree(data);
- 		return dma_ch;
-+	}
- 
- 	if (cpu_dai->driver->id == LPASS_DP_RX) {
- 		map = drvdata->hdmiif_map;
-@@ -147,6 +149,7 @@ static int lpass_platform_pcmops_open(struct snd_soc_component *component,
- 	ret = snd_pcm_hw_constraint_integer(runtime,
- 			SNDRV_PCM_HW_PARAM_PERIODS);
- 	if (ret < 0) {
-+		kfree(data);
- 		dev_err(soc_runtime->dev, "setting constraints failed: %d\n",
- 			ret);
- 		return -EINVAL;
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+I propose putting this just into the dt binding documentation. No need
+for macros IMO, especially since these muxes may be different on each
+SOC.
 
+Marek
