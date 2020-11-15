@@ -2,143 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C90C2B39E5
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 23:32:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 066612B3A77
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 23:53:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728007AbgKOWcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 17:32:19 -0500
-Received: from mo4-p00-ob.smtp.rzone.de ([81.169.146.221]:15548 "EHLO
-        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728003AbgKOWcT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 17:32:19 -0500
-X-Greylist: delayed 354 seconds by postgrey-1.27 at vger.kernel.org; Sun, 15 Nov 2020 17:32:18 EST
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1605479533;
-        s=strato-dkim-0002; d=fossekall.de;
-        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
-        Subject:Sender;
-        bh=UXrol0Nf+O38g5VUogjJgV1Nuqd8cWJwbt/lFiKvDZI=;
-        b=OMJng3ditxjlxeFahYTNxlug/kVZxDNdNv7Tv3AG9aRaTSP9Bnsp2ZqNWEIvSobeGm
-        5sVmHDlG0150VcVRfTdbIcslMtVk6qR6z5t+m61GWSSSsCL4pJP+AFZ8zaMSwNKQ8Ddh
-        m5TSmmyQyJl3zPFlW6DNT7XtF2uWGNZwLddQOrIDaOWcgaFdrUxGSPTTw/FnAByzcBew
-        qRxTCxsRZ7OR2Zn58RvbZleClt2p53aSI0AEZ26jDjVzv9yw6jXw89jK2D+TGsnvsGsY
-        2UhocJMW4xbQ0JIZogviJOHBh8L6pCG4TsfwxB8WVUZZ9wJwaecr+Q1yT7oeE2FuXchN
-        Xiyw==
-X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBOdI6BL9pkS3QW19mO7I+/JwRspuzJFZuRzQ=="
-X-RZG-CLASS-ID: mo00
-Received: from aerfugl
-        by smtp.strato.de (RZmta 47.3.4 AUTH)
-        with ESMTPSA id g02087wAFMQANyt
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-        Sun, 15 Nov 2020 23:26:10 +0100 (CET)
-Received: from koltrast.a98shuttle.de ([192.168.1.27] helo=a98shuttle.de)
-        by aerfugl with smtp (Exim 4.89)
-        (envelope-from <michael@a98shuttle.de>)
-        id 1keQTH-0003GW-9a; Sun, 15 Nov 2020 23:26:07 +0100
-Received: (nullmailer pid 2885986 invoked by uid 502);
-        Sun, 15 Nov 2020 22:26:07 -0000
-From:   Michael Klein <michael@fossekall.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Michael Klein <michael@fossekall.de>
-Subject: [PATCH] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add gpio-line-names
-Date:   Sun, 15 Nov 2020 23:24:25 +0100
-Message-Id: <20201115222425.2885427-1-michael@fossekall.de>
-X-Mailer: git-send-email 2.28.0
+        id S1727302AbgKOWx2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 17:53:28 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:60629 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726004AbgKOWx2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 17:53:28 -0500
+Received: from apollo.fritz.box (unknown [IPv6:2a02:810c:c200:2e91:6257:18ff:fec4:ca34])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 9123622F99;
+        Sun, 15 Nov 2020 23:53:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1605480807;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=xHfi6k3pimdKMckwakjwbzYVNKhZX5g7ZRF9IE9zJAY=;
+        b=GwVfTzHuKYwdOhbFQBDQxtJnrDS/dJnYXd9k/87VGmROK152IvMTIbJXvvcoYs0cYAApP5
+        XNWuOMiqjd/BV1bzr1lYw0FibMXcYD9e6VlvHE9mdGuFlmRixREgvCsU9mSQiJFVOaQ61E
+        64jcge68yhrqfbAHT0Ebui7tymaS95g=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH] arm64: dts: ls1028a: add optee node
+Date:   Sun, 15 Nov 2020 23:53:14 +0100
+Message-Id: <20201115225314.8114-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add gpio-line-names as documented in the Banana Pi wiki [1] and in the
-schematics [2].
+Add the optee node which can either be enabled by a specific board or by
+the bootloader.
 
-[1]: http://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO#GPIO_PIN_define
-[2]: https://drive.google.com/file/d/0B4PAo2nW2KfnMW5sVkxWSW9qa28/view
-
-Signed-off-by: Michael Klein <michael@fossekall.de>
+Signed-off-by: Michael Walle <michael@walle.cc>
 ---
- .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 64 +++++++++++++++++++
- 1 file changed, 64 insertions(+)
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-index 4c6704e4c57e..b4ddfaf01b45 100644
---- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-+++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
-@@ -136,6 +136,70 @@ bluetooth {
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 4a1b46bf0854..b5f9525daa89 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -93,6 +93,14 @@
+ 		clocks = <&osc_27m>;
+ 	};
  
- };
- 
-+&pio {
-+	gpio-line-names =
-+		/* PA */
-+		"UART2-TX", "UART2-RX", "UART2-RTS", "UART2-CTS",
-+			"UART0-TXD", "UART0-RXD", "PWM1", "PA7-EINT7",
-+		"PA8-EINT8", "PA9-EINT9", "PA10-EINT10", "TWI0-SCK",
-+			"TWI0-SDA", "UART3-TX", "UART3-RX", "UART3-RTS",
-+		"UART3-CTS", "PA17-EINT17", "TWI1-SCK", "TWI1-SDA",
-+			"PA20-EINT20", "PA21-EINT21", "", "",
-+		"", "", "", "", "", "", "", "",
++	firmware {
++		optee {
++			compatible = "linaro,optee-tz";
++			method = "smc";
++			status = "disabled";
++		};
++	};
 +
-+		/* PB */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+
-+		/* PC */
-+		"SPI0-MOSI", "SPI0-MISO", "SPI0-CLK", "SPI0-CS", "PC4", "", "",
-+			"PC7",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+
-+		/* PD */
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "CSI-PWR-EN", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+
-+		/* PE */
-+		"CSI0-PCLK", "CSI0-MCLK", "CSI0-HSYNC", "CSI0-VSYNC",
-+			"CSI0-D0", "CSI0-D1", "CSI0-D2", "CSI0-D3",
-+		"CSI0-D4", "CSI0-D5", "CSI0-D6", "CSI0-D7",
-+			"CSI0-SCK", "CSI0-SDA", "CSI0-RST#", "CSI0-PWDN",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+
-+		/* PF */
-+		"SDC0-D1", "SDC0-D0", "SDC0-CLK", "SDC0-CMD", "SDC0-D3",
-+			"SDC0-D2", "SDC0-DET", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+
-+		/* PG */
-+		"WL-SDIO-CLK", "WL-SDIO-CMD", "WL-SDIO-D0", "WL-SDIO-D1",
-+			"WL-SDIO-D2", "WL-SDIO-D3", "UART1-TX", "UART1-RX",
-+		"UART1-RTS", "UART1-CTS", "WL-WAKE-AP", "BT-WAKE-AP",
-+			"BT-RST-N", "AP-WAKE-BT", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&r_pio {
-+	gpio-line-names =
-+		/* PL */
-+		"", "CPUX-SET", "PL2-S-EINT2", "POWER-KEY", "PL4-S-EINT4",
-+			"VCC-IO-EN", "USB0-ID", "WIFI-EN",
-+		"PWR-STB", "PWR-DRAM", "PWR-LED", "IR-RX", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
- &usb_otg {
- 	dr_mode = "otg";
- 	status = "okay";
+ 	reboot {
+ 		compatible ="syscon-reboot";
+ 		regmap = <&rst>;
 -- 
-2.28.0
+2.20.1
 
