@@ -2,143 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98B0A2B3331
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 10:22:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4D752B334E
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 11:06:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726570AbgKOJWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 04:22:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59190 "EHLO
+        id S1726884AbgKOKFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 05:05:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726552AbgKOJWV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 04:22:21 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65C37C0613D1;
-        Sun, 15 Nov 2020 01:22:21 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id 7so20068905ejm.0;
-        Sun, 15 Nov 2020 01:22:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ErxNsuDkpd1W/DgWEjOvUcqQZYKwNOZCjLfy5r+fMW4=;
-        b=EiRQv+5WibDnUbF1YEgtIVVn9/cZsIfofXuGl9oIzWePfmtK8bWFCJR4TkWuUfuS+w
-         E0uYr+CrVEX85JHkcRN1idUF45nSjh+gHru31LaQ8dN9WiSoI64HvfMufvJ8f7kkkfu+
-         CHfjek6MtyQHtl1lwKE8CAq0220jL2woE6SXZg1rrE2SPPhb3u7Su1B8aP1JOjUZFrmr
-         qaTTSMfmwV5HTA6n2E41b7nRLzl9I8S3TT974jah7fq9xkxDKZhKV/7iK2fucT4SUg95
-         TbOsG43zvqu+EGTg6PxyZFh0whCPzCdDeGgySDyB/EQaGOhL72jH5jEjYaubgx0x+Wia
-         IbDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ErxNsuDkpd1W/DgWEjOvUcqQZYKwNOZCjLfy5r+fMW4=;
-        b=O9F0E1QkVbUEjr2FDZ0NVWKMFC4ZEcbAK3WugqfX75eSfLZIuuuhFLOW9fKFpm/sUF
-         Uk5i6ncBhZrolwe42V6vesb8jHteKEXc7+RyYikcgi+k1npP9CO1Bbrc4SF6c9UeIqVL
-         gGmLYZDXxdQMdeC03Ta+P6zDGmzeANgD25+Hd/uSVU82xY6K1RrvJK26uC1VjCsxP1d5
-         O17JXQCHp7QAQv7stRQH9GWftdZvEuk4q1CN3CL2GqCL3Da8817Y6PQGrGX/RtyQBUKS
-         rD0rGdL4hgtAwqczauqxjh5P3+Jr3lj7GE6HueCNYcDw17tm35IlFeYiFAETUFpkUPgP
-         Oo2g==
-X-Gm-Message-State: AOAM5304+qSBaJ0iwBugtSfT0DdEWuLm1nZ79CeLoPwBCJz9oWYU6UX2
-        JO9Kyv6sMWl2kThp6qbDlytFRWP3FYQff0e1rCQ=
-X-Google-Smtp-Source: ABdhPJwBuH2TYudRTSq4x2ACk4w4Jv5QBQFB7KtV8gD0oxBNII0XyQUEUWfGeLMsNcLBmzBTRATH3faB9L1T+PSsmuo=
-X-Received: by 2002:a17:906:3d1:: with SMTP id c17mr9576167eja.187.1605432137878;
- Sun, 15 Nov 2020 01:22:17 -0800 (PST)
+        with ESMTP id S1726230AbgKOKFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 05:05:03 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4674CC0613D1;
+        Sun, 15 Nov 2020 02:05:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=xbB7JpUs0C23en3G8maFju9tp+wQdQlNV3DRGGRnitU=; b=R+Wcg18x0KXaGCdeD/7SwAgqZ
+        yb9yLvBhCxF8qgX6G8YOU1A1+gBVv0rfN1pqLqEnzuJwhVUPJEdLzIP/TeDUe6Kn2bn3LqBMBTZI3
+        5EkjYA707lZRJh8LnxfZm+0bmwGOH6IdX2+0s7xlvUaXhAXRAhTADnsyfB3HUDrfX6D0uyTljHAvc
+        nDaS9bvAm9QcWgmZuOrZQqW53rdssuGjLZxffYHqqXN4Z5b+vzGB/GScRQ8uC/6vLVPBuUEQ1suaT
+        mkiyzE+rwEcgQ1czmLjYKTLSivJfQxmYdeBDn95hFN+/cKn3s06XGxmySP903mSydWGAMPiIiLqfV
+        qjKuq9X1w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:59938)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1keEtu-0006Om-Iz; Sun, 15 Nov 2020 10:04:50 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1keEts-0006Lq-Ru; Sun, 15 Nov 2020 10:04:48 +0000
+Date:   Sun, 15 Nov 2020 10:04:48 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
+        Michal Hrusecki <Michal.Hrusecky@nic.cz>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH net-next] net: mvneta: Fix validation of 2.5G HSGMII
+ without comphy
+Message-ID: <20201115100448.GG1551@shell.armlinux.org.uk>
+References: <20201115004151.12899-1-afaerber@suse.de>
+ <20201115010241.GF1551@shell.armlinux.org.uk>
+ <4bf5376c-a7d1-17bf-1034-b793113b101e@suse.de>
 MIME-Version: 1.0
-References: <20201114200104.4148283-1-martin.blumenstingl@googlemail.com>
- <20201114200104.4148283-2-martin.blumenstingl@googlemail.com> <20201114223250.GI1480543@lunn.ch>
-In-Reply-To: <20201114223250.GI1480543@lunn.ch>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 15 Nov 2020 10:22:06 +0100
-Message-ID: <CAFBinCAmExHsCpP8hh_K6M6pg8SjoF1WNNj9fwSKR3dhgBGJdA@mail.gmail.com>
-Subject: Re: [PATCH RFC v1 1/4] dt-bindings: net: dwmac-meson: use picoseconds
- for the RGMII RX delay
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     davem@davemloft.net, kuba@kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, jianxin.pan@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>,
-        jbrunet@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4bf5376c-a7d1-17bf-1034-b793113b101e@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On Sun, Nov 15, 2020 at 03:26:01AM +0100, Andreas Färber wrote:
+> Hi Russell,
+> 
+> On 15.11.20 02:02, Russell King - ARM Linux admin wrote:
+> > On Sun, Nov 15, 2020 at 01:41:51AM +0100, Andreas Färber wrote:
+> >> Commit 1a642ca7f38992b086101fe204a1ae3c90ed8016 (net: ethernet: mvneta:
+> >> Add 2500BaseX support for SoCs without comphy) added support for 2500BaseX.
+> >>
+> >> In case a comphy is not provided, mvneta_validate()'s check
+> >>   state->interface == PHY_INTERFACE_MODE_2500BASEX
+> >> could never be true (it would've returned with empty bitmask before),
+> >> so that 2500baseT_Full and 2500baseX_Full do net get added to the mask.
+> > 
+> > This makes me nervous. It was intentional that if there is no comphy
+> > configured in DT for SoCs such as Armada 388, then there is no support
+> > to switch between 1G and 2.5G speed. Unfortunately, the configuration
+> > of the comphy is up to the board to do, not the SoC .dtsi, so we can't
+> > rely on there being a comphy on Armada 388 systems.
+> 
+> Please note that the if clause at the beginning of the validate function
+> does not check for comphy at all. So even with comphy, if there is a
+> code path that attempts to validate state 2500BASEX, it is broken, too.
 
-On Sat, Nov 14, 2020 at 11:32 PM Andrew Lunn <andrew@lunn.ch> wrote:
-[...]
-> > +        amlogic,rgmii-rx-delay-ps:
-> > +          default: 0
-> >            description:
-> >              The internal RGMII RX clock delay (provided by this IP block) in
-> > -            nanoseconds. When phy-mode is set to "rgmii" then the RX delay
-> > +            picoseconds. When phy-mode is set to "rgmii" then the RX delay
-> >              should be explicitly configured. When the phy-mode is set to
-> >              either "rgmii-id" or "rgmii-rxid" the RX clock delay is already
-> >              provided by the PHY. Any configuration is ignored when the
-> >              phy-mode is set to "rmii".
->
-> Hi Martin
->
-> I don't think the wording matches what the driver is actually doing:
->
->         if (dwmac->rx_delay_ns == 2)
->                 rx_dly_config = PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP;
->         else
->                 rx_dly_config = 0;
->
->         switch (dwmac->phy_mode) {
->         case PHY_INTERFACE_MODE_RGMII:
->                 delay_config = tx_dly_config | rx_dly_config;
->                 break;
->         case PHY_INTERFACE_MODE_RGMII_RXID:
->                 delay_config = tx_dly_config;
->                 break;
->         case PHY_INTERFACE_MODE_RGMII_TXID:
->                 delay_config = rx_dly_config;
->                 break;
->         case PHY_INTERFACE_MODE_RGMII_ID:
->         case PHY_INTERFACE_MODE_RMII:
->                 delay_config = 0;
->                 break;
->
-> So rx_delay is used for both rgmii and rgmii-txid. The binding says
-> nothing about rgmii-txid.
-interesting point here. it's been like this before this patch. still I
-would like to understand what the proper way to fix it is so I can
-also include a fix for it:
-1. should rgmii-txid not add any RX delay on the MAC side? that would
-mean for my board I will switch to phy-mode rgmii so the MAC applies
-both the RX and TX delays
-2. update the documentation to clarify that rgmii-txid would also add
-the RX delay on the MAC side
+I'm afraid you are mistaken.  phy_interface_mode_is_8023z() covers
+both 1000BASEX and 2500BASEX.
 
-> And while i'm looking at the code, i wonder about this:
->
->        if (rx_dly_config & PRG_ETH0_ADJ_ENABLE) {
->                 if (!dwmac->timing_adj_clk) {
->                         dev_err(dwmac->dev,
->                                 "The timing-adjustment clock is mandatory for the RX delay re-timing\n");
->                         return -EINVAL;
->                 }
->
->                 /* The timing adjustment logic is driven by a separate clock */
->                 ret = meson8b_devm_clk_prepare_enable(dwmac,
->                                                       dwmac->timing_adj_clk);
->                 if (ret) {
->                         dev_err(dwmac->dev,
->                                 "Failed to enable the timing-adjustment clock\n");
->                         return ret;
->                 }
->         }
->
-> It looks like it can be that rx_dly_config & PRG_ETH0_ADJ_ENABLE is
-> true, so the clock is enabled, but delay_config does not contain
-> rx_delay_config, so it is pointless turning it on.
-that is a good point and also a bug with one of the previous patches
-I'll include a patch fixing this in v2
+> Do you consider the modification of both ifs (validate and power_up) as
+> correct? Should they be split off from my main _NA change you discuss?
 
+Sorry, don't understand this comment.
 
-Best regards,
-Martin
+> > So, one of the side effects of this patch is it incorrectly opens up
+> > the possibility of allowing 2.5G support on Armada 388 without a comphy
+> > configured.
+> > 
+> > We really need a better way to solve this; just relying on the lack of
+> > comphy and poking at a register that has no effect on Armada 388 to
+> > select 2.5G speed while allowing 1G and 2.5G to be arbitarily chosen
+> > doesn't sound like a good idea to me.
+> [snip]
+> 
+> May I add that the comphy needs better documentation?
+> 
+> As a DT contributor I would need the binding to tell me that it's an
+> enum with 2 meaning SGMII2. Not even the max of 2 is documented. The
+> Linux driver talks of ports, but I don't see that term used in U-Boot,
+> and U-Boot APIs appeared to pass very different args in the board code.
+
+It would be nice if the comphy documentation described this parameter
+in detail for all comphys, but alas it hasn't been.
+
+This is described in the binding for Armada 38x
+Documentation/devicetree/bindings/phy/phy-armada38x-comphy.txt:
+
+- #phy-cells : from the generic phy bindings, must be 1. Defines the
+               input port to use for a given comphy lane.
+
+This came from the phy-mvebu-comphy.txt, which was maintained by
+bootlin/free-electrons, and uses the same wording.
+
+For the Armada 38x comphy, it is the internal port number for the
+ethernet controller when the comphy is connected to ethernet. So,
+0 is ethernet@70000, 1 is ethernet@30000, 2 is ethernet@34000. It
+actually defines an index into a table in the comphy driver which is
+used to look up the "Common PHYs Selectors Register" setting for each
+comphy, and also describes the bit index in an undocumented
+configuration register for the ethernet port. Look at Table 1479
+in the public Armada-38x-Functional-Spec-U0A document (which can be
+found via google.) You'll see it talks about XXX PortN. This is the
+"N" value.
+
+The Armada 38x comphy Linux driver does not support non-ethernet
+interfaces (since this was all I needed it for) but the hardware does
+support SATA and USB. The driver can be regarded as incomplete, but it
+is not necessary for it to be complete. These are not described in the
+DT for the SoC since historically they have not needed to be, since
+u-boot does all the setup there - and to add them would require a lot
+of effort to ensure that they were correct for every board. That's
+dangerous to do when we don't have a driver making use of that
+information; there would be no validation that it is correct.
+
+> The binding also still needs to be converted to YAML before we can
+> extend it with any better explanations. (And before you suggest it:
+> Since I obviously don't fully understand that hardware, I'm the wrong
+> person to attempt documenting it. The 38x comphy seems not mentioned in
+> MAINTAINERS, only the 3700 one.)
+
+I'm not sure how we'd better describe it TBH. It is the input port
+number as described by the SoC documentation.
+
+I suppose we could say:
+
+	0 for ethernet@70000
+	1 for ethernet@30000
+	2 for ethernet@34000
+	0 for usb@...
+	1 for usb@...
+	0 for pci@...
+	1 for pci@...
+	... etc ...
+
+But then what if we have that IP re-used on a different SoC where the
+devices are at different addresses in the SoC. So that would mean we
+would need to list out the devices for every SoC in the comphy
+documentation, which is hardly practical.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
