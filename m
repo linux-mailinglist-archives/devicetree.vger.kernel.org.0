@@ -2,71 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8F32B384C
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 20:09:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C951E2B38B8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 20:33:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727460AbgKOTJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 14:09:23 -0500
-Received: from asavdk4.altibox.net ([109.247.116.15]:48588 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726823AbgKOTJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 14:09:22 -0500
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727799AbgKOTcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 14:32:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:33912 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726923AbgKOTcB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Nov 2020 14:32:01 -0500
+Received: from localhost.localdomain (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 959B2804F2;
-        Sun, 15 Nov 2020 20:09:17 +0100 (CET)
-Date:   Sun, 15 Nov 2020 20:09:16 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sean Paul <sean@poorly.run>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: display: mcde: Convert to YAML schema
-Message-ID: <20201115190916.GB4067505@ravnborg.org>
-References: <20201115185145.566772-1-linus.walleij@linaro.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 471A122314;
+        Sun, 15 Nov 2020 19:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605468720;
+        bh=yvl2FChY/nKwVcFuQidhF3bYrP5jyxXEU9FBzixiq5g=;
+        h=From:To:Cc:Subject:Date:From;
+        b=YLV37UwBsgG4JqTGnh/7lqaVb2EdSj/fCr/p8y+wCSP0evjrcUqX2k3eCcrs7EfD+
+         YupEKDsFAd5RLw2TicUmV59NPkw50e/9zSZ9/P7Zeu0Sqf3+jnpHTzw5DxSv1/ZAP/
+         L3uu/lB1sWW0jOKCfUamX9SfYh2bjeVInvSmpyXs=
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     robh+dt@kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [PATCH 0/9] dt-bindings: IIO: Drop wrong use of io-channel-ranges then drop it as well.
+Date:   Sun, 15 Nov 2020 19:29:42 +0000
+Message-Id: <20201115192951.1073632-1-jic23@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201115185145.566772-1-linus.walleij@linaro.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VafZwmh9 c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=7gkXJVJtAAAA:8
-        a=Y1WVg7_6piav3bcYkzIA:9 a=CjuIK1q_8ugA:10 a=AjGcO6oz07-iQ99wixmX:22
-        a=cvBusfyB2V15izCimMoJ:22 a=E9Po1WZjFZOl8hwRPBS3:22
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-On Sun, Nov 15, 2020 at 07:51:45PM +0100, Linus Walleij wrote:
-> This moves the MCDE bindings over to using the YAML schema
-> to describe the ST-Ericsson MCDE display controller,
-> making use of the generic DSI controller schema.
-> 
-> In the process we correct an error in the old text bindings:
-> the clocks for the SDI host controllers were specified as
-> part of the main MCDE component while they should be
-> specified in the DSI host controller subnodes. This was
-> a leftover from an earlier iteration of the first patch
-> series adding the MCDE.
-> 
-> We also add the "port" node, we will use this when adding
-> LCD panels using the direct parallel interface DPI instead
-> of DSI.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v2->v3:
-> - Add resets to the bindings for future-proofing, set
->   additionalProperties: false
-> - Extend commit message to explain the the old bindings
->   were incorrect.
-Thanks, all looks good now.
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-	Sam
+Rob Herring pointed out that the recent addition of io-channel provider
+consumer interfaces to the dt_schema repo [1] has highlighted some misuse of
+this property.   It is also clear that we don't have any places where
+it is actually needed.
+
+There is at least 1 remaining instance of this in a txt file but that
+gets cleaned up in patches already under review to convert that binding
+to yaml.
+
+1-2 fix up examples in dts schema where this is missued.
+3-6,8 fix up places where the property was given for providers of io-channels
+rather than consumers.
+7 drops a consumer case where it doesn't seem to be needed
+9 is an RFC to drop the support entirely if we don't have any known correct
+users of this property outside mainline.  I'm willing to leave the code
+in place is we can identify it being used, but still wish to deprecate
+it and remote the property from examples and dt_schema.
+
+All of these can go through relevant trees as there should be no
+cross dependencies.
+
+[1] https://github.com/devicetree-org/dt-schema/commit/170a908a2204838652407662d326f30cbeb87142
+
+Jonathan Cameron (9):
+  dt-bindings:iio:qcom-spmi-vadc drop incorrect io-channel-ranges from
+    example
+  dt-bindings:iio:samsung,exynos-adc: drop missuse of io-channel-ranges
+  ARM: dts: Cygnus: Drop incorrect io-channel-ranges property.
+  ARM: dts: exynos: Drop incorrect use of io-channel-ranges
+  ARM: dts: s5pv210: Drop incorrect use of io-channel-ranges property.
+  ARM: dts: qcom-pma8084: Drop incorrect use of io-channel-ranges
+  ARM: dts: s5pv210-aries: Drop unneeded io-channel-ranges property.
+  arm64: dts: exynos: Drop incorrect use of io-channel-ranges property.
+  iio: inkern: Drop io-channel-ranges dt property support
+
+ .../bindings/iio/adc/qcom,spmi-vadc.yaml      |  3 --
+ .../bindings/iio/adc/samsung,exynos-adc.yaml  |  4 --
+ arch/arm/boot/dts/bcm-cygnus.dtsi             |  1 -
+ arch/arm/boot/dts/exynos3250.dtsi             |  1 -
+ arch/arm/boot/dts/exynos4412.dtsi             |  1 -
+ arch/arm/boot/dts/exynos5250.dtsi             |  1 -
+ arch/arm/boot/dts/exynos54xx.dtsi             |  1 -
+ arch/arm/boot/dts/qcom-pma8084.dtsi           |  1 -
+ arch/arm/boot/dts/s5pv210-aries.dtsi          |  1 -
+ arch/arm/boot/dts/s5pv210.dtsi                |  1 -
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  1 -
+ arch/arm64/boot/dts/exynos/exynos7.dtsi       |  1 -
+ drivers/iio/inkern.c                          | 49 +++++++------------
+ 13 files changed, 17 insertions(+), 49 deletions(-)
+
+-- 
+2.28.0
+
