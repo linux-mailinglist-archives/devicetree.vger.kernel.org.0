@@ -2,171 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 423082B3944
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 21:58:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A2F42B3978
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 22:23:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727517AbgKOU5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 15:57:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727434AbgKOU5u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 15:57:50 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5646FC0613CF
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 12:57:50 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id e139so2790355lfd.1
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 12:57:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rnKSl2qWRJgBLP6TH3NnZE7MB45PnhqQS5bgJdVEwCM=;
-        b=XmuYY5Cce3uA3+VhP/7nIKX1vqsNH5OspAPfISjwov42gA8Fxo9SWOEtvc3v7GGfml
-         UNio5RHf7w54jU/Htuh/j2Y4OqQyfzrUJBRgSE3ecEDVPHf26OFd3sMC1jGSQbWN9lXr
-         g3Wb5U865C1Y75f0FS7zmLh+xYm29k0aBvnHKm18QwaAz2wZ6AJqdLuLOiA+lqPzpAup
-         5JXv5JD0TNIR8cP5vLuZNKuClA5yfYSytlhXvkNk9wGCqnjXrThuEFs6CaIsPoiDI+ZT
-         IUEMAlLaTGiySkNYnAl12mDJtjmdZHjcNYeahUYcAPJONtQUQhKp9rC2XA1xbaWuf021
-         i6Yg==
+        id S1727476AbgKOVWs convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 15 Nov 2020 16:22:48 -0500
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:53956 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727425AbgKOVWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 16:22:48 -0500
+Received: by mail-wm1-f68.google.com with SMTP id p22so22034831wmg.3;
+        Sun, 15 Nov 2020 13:22:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rnKSl2qWRJgBLP6TH3NnZE7MB45PnhqQS5bgJdVEwCM=;
-        b=J2pw0wa1hawbwgKGP/h4djpQP/82feQd164jkGd0y0Ok18lWoECbARD68WtjLf2qug
-         efmqDpO2N3gpdcA7PgTQhHttsYRnzXughSz+vLKjGzBkAs6g8izpYHUILVHOmQvldkx5
-         5KsJ4c0W0A62WZmdxCMG4vdqPDirUqnBRsVGDYlumk06xP/NiMjmTz1VFwY5FyNMOreP
-         uiFY2mtyoTkwcBcmVpRQzYQU/ngNxnwqTN00dBh5a2Q+EXSk6aaxWnWAQ6eZ9bTdczy4
-         bNJyHnYvbAK3GmJSzDr6iJrjoU5vW6PkG/lFFokWU9GBRJ4m2FpqMAZOQptu5m7Fbr3S
-         OFbg==
-X-Gm-Message-State: AOAM530lvyx48EE0Z3Z75HzON1ssTwepoSBNXBc5blpvtbkZtLV7rOqR
-        ENH5AfQUOTUB5mfLDVwg1RHtQg==
-X-Google-Smtp-Source: ABdhPJzWyKwRViQzrAR3T3FBG60ThpuwSDbwrc+oohthCx5+lVFooJiiIV3EntQBkqDY19UR0mdQTg==
-X-Received: by 2002:ac2:52b2:: with SMTP id r18mr4090972lfm.50.1605473868740;
-        Sun, 15 Nov 2020 12:57:48 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id j4sm2458779lfk.275.2020.11.15.12.57.47
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=E8F1KBcq3wqB/AX7hk4SXWs/ZOv1252yR3BPS3sn6jk=;
+        b=nHsB58IqiZbboFByJSh8HCvzMAdc72GHnhrfQ24tiCMqba7nBMq5ez+jccY3aPHdCb
+         GHSuFG4lomoFpjG4QEP55ZDeFgeqf4fbgRozWT/tGVqfZDpDNoxYP68Jfu5kf8wJiT2/
+         11Uh3Nn7O/UssH25hHNCh3hV8L21u1ZpMuL3H9D30RljQJKVaulh4kNLMNJN2sU1NMit
+         3xk09A5SLP9ABozmGVIQn08MSniht876+R0+D+ZkthXRyEyvKICrKU1ZrGTzM44056es
+         ugKwqvaN9JGhBW22CWSYg5snjwnkbVf6C9Xa5x2ZUnyCSkWhUFi8eH1dSTcPi5SrkSW3
+         TMfg==
+X-Gm-Message-State: AOAM533I++gUxYbhfioIb0jCgFP9XzE4oJ3yYIQVo8mSra3KYqAJaZRK
+        bpvpn3JUmMmYqcbpibXXMyc=
+X-Google-Smtp-Source: ABdhPJxVzdr3WnJQfmaqduN9ThfRgM6DL7TzVigvCYXGzbgD4DSBeRfYlGS4AbMAE365gBeoOPe2Pg==
+X-Received: by 2002:a7b:c394:: with SMTP id s20mr12008741wmj.40.1605475366055;
+        Sun, 15 Nov 2020 13:22:46 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id k20sm17046944wmi.15.2020.11.15.13.22.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2020 12:57:48 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Sun, 15 Nov 2020 13:22:44 -0800 (PST)
+Date:   Sun, 15 Nov 2020 22:22:43 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
+Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 1/3 v3] iio: accel: bmc150-accel: Add DT bindings
-Date:   Sun, 15 Nov 2020 21:57:43 +0100
-Message-Id: <20201115205745.618455-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+Subject: Re: [PATCH v3 2/5] ARM: dts: add Samsung's exynos4412-based p4note
+ boards
+Message-ID: <20201115212243.GA346171@kozik-lap>
+References: <20201113212525.13455-1-martin.juecker@gmail.com>
+ <20201113212525.13455-3-martin.juecker@gmail.com>
+ <20201115103251.GB4587@kozik-lap>
+ <20201115174843.GA33100@adroid>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201115174843.GA33100@adroid>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These accelerometers have bindings used in the kernel and
-several device trees but no proper bindings documentation.
-Add it.
+On Sun, Nov 15, 2020 at 06:48:43PM +0100, Martin Jücker wrote:
+> On Sun, Nov 15, 2020 at 11:32:51AM +0100, Krzysztof Kozlowski wrote:
+> > On Fri, Nov 13, 2020 at 10:25:23PM +0100, Martin Jücker wrote:
+> > > The p4note family contains a couple of variants of the Galaxy Note 10.1
+> > > tablet with mainly different modems. The GT-N8010/GT-N8013 is the wifi
+> > > only version.
+> > > 
+> > > Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
+> > > ---
+> > >  arch/arm/boot/dts/Makefile                    |    1 +
+> > >  arch/arm/boot/dts/exynos4412-p4note-n8010.dts |   17 +
+> > >  arch/arm/boot/dts/exynos4412-p4note.dtsi      | 1132 +++++++++++++++++
+> > >  3 files changed, 1150 insertions(+)
+> > >  create mode 100644 arch/arm/boot/dts/exynos4412-p4note-n8010.dts
+> > >  create mode 100644 arch/arm/boot/dts/exynos4412-p4note.dtsi
+> > > 
+> > > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> > > index ce66ffd5a1bb..55ffee2b20f8 100644
+> > > --- a/arch/arm/boot/dts/Makefile
+> > > +++ b/arch/arm/boot/dts/Makefile
+> > > @@ -197,6 +197,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
+> > >  	exynos4412-odroidx.dtb \
+> > >  	exynos4412-odroidx2.dtb \
+> > >  	exynos4412-origen.dtb \
+> > > +	exynos4412-p4note-n8010.dtb \
+> > >  	exynos4412-smdk4412.dtb \
+> > >  	exynos4412-tiny4412.dtb \
+> > >  	exynos4412-trats2.dtb
+> > > diff --git a/arch/arm/boot/dts/exynos4412-p4note-n8010.dts b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
+> > > new file mode 100644
+> > > index 000000000000..9f559425bd2c
+> > > --- /dev/null
+> > > +++ b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
+> > > @@ -0,0 +1,17 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Samsung's Galaxy Note 10.1 - N801x (wifi only version)
+> > > + *
+> > > + * Copyright (c) 2013 Samsung Electronics Co., Ltd.
+> > > + *		http://www.samsung.com
+> > 
+> > Here and in other files - why did you remove your copyright? My comment
+> > from previous version: "If it is true, then include the copyright of
+> > original work as well."
+> > 
+> > Best regards,
+> > Krzysztof
+> > 
+> 
+> Hey Krzysztof,
+> 
+> in the second response you wrote that "usually we keep the copyright of
+> original file",
 
-Also add a compatible for the BMA222 that I am right now
-adding support for in the driver.
+Yes, we keep it, in the sense: "we do not remove it". However on top of
+it you can add your copyrights.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Fix up an include directive in the example to be
-  outside of the I2C node.
-ChangeLog v1->v2:
-- Rename to simply bosch,bma255.yaml after one of the
-  common accelerometers.
-- Specify that the SPI uses a 4-wire interface.
-- Specify maximum SPI clock frequency to 10MHz. (Checked
-  all the datasheets.)
----
- .../bindings/iio/accel/bosch,bma255.yaml      | 73 +++++++++++++++++++
- 1 file changed, 73 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
+> I understood this as only the Samsung header as it is
+> done for the midas, i930x and n710x. A lot of it is basically the same
+> but with changed gpios. I really don't need my copyright up there if
+> it's not strictly necessary.
 
-diff --git a/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
-new file mode 100644
-index 000000000000..6eef3480ea8f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/accel/bosch,bma255.yaml
-@@ -0,0 +1,73 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/accel/bosch,bma255.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Bosch BMA255 and Similar Accelerometers
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  3 axis accelerometers with varying range and I2C or SPI
-+  4-wire interface.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - bosch,bmc150
-+      - bosch,bmi055
-+      - bosch,bma255
-+      - bosch,bma250e
-+      - bosch,bma222
-+      - bosch,bma222e
-+      - bosch,bma280
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply: true
-+  vddio-supply: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  mount-matrix:
-+    description: an optional 3x3 mounting rotation matrix.
-+
-+  spi-max-frequency:
-+    maximum: 10000000
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        accelerometer@8 {
-+            compatible = "bosch,bma222";
-+            reg = <0x08>;
-+            vddio-supply = <&vddio>;
-+            vdd-supply = <&vdd>;
-+            interrupts = <57 IRQ_TYPE_EDGE_FALLING>;
-+        };
-+    };
-+  - |
-+    # include <dt-bindings/interrupt-controller/irq.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        accel@0 {
-+            compatible = "bosch,bma222";
-+            reg = <0>;
-+            spi-max-frequency = <10000000>;
-+        };
-+    };
-+...
--- 
-2.26.2
+Your copyright is not required, it's anyway coming through contribution
+and Git history. If you don't need it, I'll apply the patches as they
+are.
+
+Best regards,
+Krzysztof
 
