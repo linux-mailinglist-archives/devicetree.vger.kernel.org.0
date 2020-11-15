@@ -2,393 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF8C22B380D
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 19:52:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CA0A2B380F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 19:53:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727451AbgKOSvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 13:51:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
+        id S1727449AbgKOSwo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 13:52:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727449AbgKOSvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 13:51:49 -0500
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1069CC0613D1
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 10:51:49 -0800 (PST)
-Received: by mail-lj1-x241.google.com with SMTP id r17so17358232ljg.5
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 10:51:48 -0800 (PST)
+        with ESMTP id S1726722AbgKOSwn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 13:52:43 -0500
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CCB8C0613D1;
+        Sun, 15 Nov 2020 10:52:43 -0800 (PST)
+Received: by mail-ej1-x642.google.com with SMTP id o21so21333028ejb.3;
+        Sun, 15 Nov 2020 10:52:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=googlemail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=uR/XhDoVeyIzrRhErdUqxajySVHEj7lVT5My0U++OY4=;
-        b=npyf9Zw2ueN7vYFbaM2+RgiFURnYjx2mm/GV9/xeluQ+0Ozg9fXet7Sxikoj1Lpj+T
-         CxS9H65i/Wtb2+jSrWbNtNptAH2fsYWVU10dQyWoHvW3kRptGCV0PoQSwhv7SbXbqfMP
-         LEDe3+eIa52nvpB4cV/+scWMs9894/kqYXx5tQ6ED44sx4b6H1PNx8TpRu4L6mzTcU8J
-         Q9rJ0R/oywRRK+vwFlFjKj87XGQ22H0+5mZ0X1pJZd0yB9ACLruTnRggXDj/YZEAaqxu
-         9SYt+jRb9hXMGE/x5YKYxDx1IFF3cmTYnwA8y0bPJ270URl+2I41m0vUEApeNePPKDw/
-         tUQQ==
+        bh=tl2vZixbwhz7yRTmQqo4JrSMqXfMjdNjvwgPYWVQyqE=;
+        b=MnhFxIgUqNBTnwT/BhPWQYoUaaz4QQfh5TSB3dWqVk3WDf0+tg0bY0Yo5vWROnqPdd
+         o3hztCa4xazcxWRiyJ5OnRwS/8oKe6D12yCPYbEHOrVuOpi1aTaiyxq039TpF/qz3QSg
+         Hvyc3J7/kdGl71SVCoEJpqjBJGla82IT4NcVU1qlZpFE9WFEHdT+vATvU2csFOmqdix0
+         XPl/Vcn4GAWK593j6S5BAI5it9PRaS+26GJYngoihBp7b+LRq/bqPxW2EPNiFic640wF
+         WnxMxE1qPYYnAHghW7fcz+Y9LzDIsZz5QZjuQv7guhyTXtOe1sNfNI7zLN5aYApdrHG+
+         SMhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=uR/XhDoVeyIzrRhErdUqxajySVHEj7lVT5My0U++OY4=;
-        b=NzGA7U0XFX4i1K3XhiGo333YDBLWD6NFGfusVhCL7te0OaXfdTAJ9ri5ku5XbMX2Es
-         BjfD1oaJ83sGjvJH7d0HuRqvXgLeehcUNQn/JrsiBETGDFianNQP4RJXS8FL6EAf42fz
-         a4e7meyTCXCg1ryYWAltE7ulpcOX51h75i1OL+m7+khocQ10qahJFQM+UFhQKpdmw/O3
-         OiR1LLUdrxB4rSPe9gOeSK3W6hbDhbCT3wcjeOCB4Yaj4M6tuignzAa2wCbHW/Extw5E
-         yQMSodWnxmB80ASeu3CBhQt6q6cUMTTpZVqLaBRCq60IN+5U8RNqAe1hCoOl1/UCsWHy
-         VIeQ==
-X-Gm-Message-State: AOAM532/Pq1RNQwJOEVDeoDI4xbBjjo0PfdKUFUozMcXGk1mQImTsgx4
-        kmcIh4zqEGrCJ8tRcg5rzJwQB33ULYudqA==
-X-Google-Smtp-Source: ABdhPJzFJB0lIOYQ4ShMSG/XEfblRg9lLueZHgv3HXFH3X9KhzJ5AwdJmzydXHF9jShT61JCxra0Tw==
-X-Received: by 2002:a2e:5705:: with SMTP id l5mr4927051ljb.93.1605466307478;
-        Sun, 15 Nov 2020 10:51:47 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id v4sm1503882ljg.84.2020.11.15.10.51.46
+        bh=tl2vZixbwhz7yRTmQqo4JrSMqXfMjdNjvwgPYWVQyqE=;
+        b=mxhZrScE9WVgBbEFnQo8ZYtX4BvhyBAk1Y9gOIZ51n8XWalHG9Ln6i8ho1hyYEoYta
+         Zn+N3rdvojh7sL+vgQ4xPljHLC+j8W/+tynqpYkC6YVuRQFzvvo5uKndRNGQMszOtLpn
+         dLuhgK7lY+OMeeEtfe41OESJ3MOxM8QflpI0jTsuWCzdlA2d6NhpxZkJAcE/jCBo9dmV
+         U7ld0ojxpBi4VKzHPS4kJYZVz4SopCVayL3tXSRpn7L7FYjsbiLO68k42zL7cHMF9kQc
+         TSLHwOJI3MphroyWyJ+zxG99izBfo5lJuSSqAM/Ij81uLDOITS/6JkyaosUsmE6ny+kI
+         6d7w==
+X-Gm-Message-State: AOAM533f4LKrKA4Y75Cbowfeqjqf12IN8W8polkFLFQxeaUOuz/aMvQ4
+        XQgomDit9XE3Jluq8IQ+qyc=
+X-Google-Smtp-Source: ABdhPJxm69nswwaPrLAyyaLIH/a5/v+K/iaWB92oG+w66/9+rxLY97qdpvO3RfCleiTZU9LyHHnFKA==
+X-Received: by 2002:a17:906:d0cd:: with SMTP id bq13mr11057291ejb.372.1605466362047;
+        Sun, 15 Nov 2020 10:52:42 -0800 (PST)
+Received: from localhost.localdomain (p4fc3ea77.dip0.t-ipconnect.de. [79.195.234.119])
+        by smtp.googlemail.com with ESMTPSA id i13sm9233520ejv.84.2020.11.15.10.52.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2020 10:51:46 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sean Paul <sean@poorly.run>, Sam Ravnborg <sam@ravnborg.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: display: mcde: Convert to YAML schema
-Date:   Sun, 15 Nov 2020 19:51:45 +0100
-Message-Id: <20201115185145.566772-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        Sun, 15 Nov 2020 10:52:41 -0800 (PST)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     davem@davemloft.net, kuba@kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, netdev@vger.kernel.org
+Cc:     jianxin.pan@amlogic.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
+        narmstrong@baylibre.com, jbrunet@baylibre.com, andrew@lunn.ch,
+        f.fainelli@gmail.com,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH RFC v2 0/5] dwmac-meson8b: picosecond precision RX delay support
+Date:   Sun, 15 Nov 2020 19:52:05 +0100
+Message-Id: <20201115185210.573739-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This moves the MCDE bindings over to using the YAML schema
-to describe the ST-Ericsson MCDE display controller,
-making use of the generic DSI controller schema.
+Hello,
 
-In the process we correct an error in the old text bindings:
-the clocks for the SDI host controllers were specified as
-part of the main MCDE component while they should be
-specified in the DSI host controller subnodes. This was
-a leftover from an earlier iteration of the first patch
-series adding the MCDE.
+with the help of Jianxin Pan (many thanks!) the meaning of the "new"
+PRG_ETH1[19:16] register bits on Amlogic Meson G12A, G12B and SM1 SoCs
+are finally known. These SoCs allow fine-tuning the RGMII RX delay in
+200ps steps (contrary to what I have thought in the past [0] these are
+not some "calibration" values).
 
-We also add the "port" node, we will use this when adding
-LCD panels using the direct parallel interface DPI instead
-of DSI.
+The vendor u-boot has code to automatically detect the best RX/TX delay
+settings. For now we keep it simple and add a device-tree property with
+200ps precision to select the "right" RX delay for each board.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v2->v3:
-- Add resets to the bindings for future-proofing, set
-  additionalProperties: false
-- Extend commit message to explain the the old bindings
-  were incorrect.
-ChangeLog v1->v2:
-- Cut the description on the interrupts.
-- Drop maxItems: 3 on clocks and clock-names: implicit from
-  the number of listed items.
-- Tag the DSI ports with unevaluatedProperties: false
-- Tag the MCDE as such with additionalProperties: true
-- It was a bit hard to test this because of the code base
-  being out of phase with the validation tools but it seems
-  to check out.
----
- .../devicetree/bindings/display/ste,mcde.txt  | 104 -----------
- .../devicetree/bindings/display/ste,mcde.yaml | 169 ++++++++++++++++++
- 2 files changed, 169 insertions(+), 104 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
- create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
+While here, deprecate the "amlogic,rx-delay-ns" property as it's not
+used on any upstream .dts (yet). The driver is backwards compatible.
 
-diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
-deleted file mode 100644
-index 4c33c692bd5f..000000000000
---- a/Documentation/devicetree/bindings/display/ste,mcde.txt
-+++ /dev/null
-@@ -1,104 +0,0 @@
--ST-Ericsson Multi Channel Display Engine MCDE
--
--The ST-Ericsson MCDE is a display controller with support for compositing
--and displaying several channels memory resident graphics data on DSI or
--LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
--
--Required properties:
--
--- compatible: must be:
--  "ste,mcde"
--- reg: register base for the main MCDE control registers, should be
--  0x1000 in size
--- interrupts: the interrupt line for the MCDE
--- epod-supply: a phandle to the EPOD regulator
--- vana-supply: a phandle to the analog voltage regulator
--- clocks: an array of the MCDE clocks in this strict order:
--  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
--  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
--  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
--  save clock)
--- clock-names: must be the following array:
--  "mcde", "lcd", "hdmi"
--  to match the required clock inputs above.
--- #address-cells: should be <1> (for the DSI hosts that will be children)
--- #size-cells: should be <1> (for the DSI hosts that will be children)
--- ranges: this should always be stated
--
--Required subnodes:
--
--The devicetree must specify subnodes for the DSI host adapters.
--These must have the following characteristics:
--
--- compatible: must be:
--  "ste,mcde-dsi"
--- reg: must specify the register range for the DSI host
--- vana-supply: phandle to the VANA voltage regulator
--- clocks: phandles to the high speed and low power (energy save) clocks
--  the high speed clock is not present on the third (dsi2) block, so it
--  should only have the "lp" clock
--- clock-names: "hs" for the high speed clock and "lp" for the low power
--  (energy save) clock
--- #address-cells: should be <1>
--- #size-cells: should be <0>
--
--Display panels and bridges will appear as children on the DSI hosts, and
--the displays are connected to the DSI hosts using the common binding
--for video transmitter interfaces; see
--Documentation/devicetree/bindings/media/video-interfaces.txt
--
--If a DSI host is unused (not connected) it will have no children defined.
--
--Example:
--
--mcde@a0350000 {
--	compatible = "ste,mcde";
--	reg = <0xa0350000 0x1000>;
--	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
--	epod-supply = <&db8500_b2r2_mcde_reg>;
--	vana-supply = <&ab8500_ldo_ana_reg>;
--	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
--		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
--		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
--	clock-names = "mcde", "lcd", "hdmi";
--	#address-cells = <1>;
--	#size-cells = <1>;
--	ranges;
--
--	dsi0: dsi@a0351000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0351000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
--		clock-names = "hs", "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		panel {
--			compatible = "samsung,s6d16d0";
--			reg = <0>;
--			vdd1-supply = <&ab8500_ldo_aux1_reg>;
--			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
--		};
--
--	};
--	dsi1: dsi@a0352000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0352000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
--		clock-names = "hs", "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--	dsi2: dsi@a0353000 {
--		compatible = "ste,mcde-dsi";
--		reg = <0xa0353000 0x1000>;
--		vana-supply = <&ab8500_ldo_ana_reg>;
--		/* This DSI port only has the Low Power / Energy Save clock */
--		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
--		clock-names = "lp";
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-new file mode 100644
-index 000000000000..830c9b4091cc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
-@@ -0,0 +1,169 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ST-Ericsson Multi Channel Display Engine MCDE
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+properties:
-+  compatible:
-+    const: ste,mcde
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    description: an array of the MCDE clocks
-+    items:
-+      - description: MCDECLK (main MCDE clock)
-+      - description: LCDCLK (LCD clock)
-+      - description: PLLDSI (HDMI clock)
-+
-+  clock-names:
-+    items:
-+      - const: mcde
-+      - const: lcd
-+      - const: hdmi
-+
-+  resets:
-+    maxItems: 1
-+
-+  epod-supply:
-+    description: a phandle to the EPOD regulator
-+
-+  vana-supply:
-+    description: a phandle to the analog voltage regulator
-+
-+  port:
-+    type: object
-+    description:
-+      A DPI port node with endpoint definitions as defined in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+  ranges: true
-+
-+patternProperties:
-+  "^dsi@[0-9a-f]+$":
-+    description: subnodes for the three DSI host adapters
-+    type: object
-+    allOf:
-+      - $ref: dsi-controller.yaml#
-+    properties:
-+      compatible:
-+        const: ste,mcde-dsi
-+
-+      reg:
-+        maxItems: 1
-+
-+      vana-supply:
-+        description: a phandle to the analog voltage regulator
-+
-+      clocks:
-+        description: phandles to the high speed and low power (energy save) clocks
-+          the high speed clock is not present on the third (dsi2) block, so it
-+          should only have the "lp" clock
-+        minItems: 1
-+        maxItems: 2
-+
-+      clock-names:
-+        oneOf:
-+          - items:
-+              - const: hs
-+              - const: lp
-+          - items:
-+              - const: lp
-+
-+    required:
-+      - compatible
-+      - reg
-+      - vana-supply
-+      - clocks
-+      - clock-names
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - epod-supply
-+  - vana-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/mfd/dbx500-prcmu.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    mcde@a0350000 {
-+      compatible = "ste,mcde";
-+      reg = <0xa0350000 0x1000>;
-+      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
-+      epod-supply = <&db8500_b2r2_mcde_reg>;
-+      vana-supply = <&ab8500_ldo_ana_reg>;
-+      clocks = <&prcmu_clk PRCMU_MCDECLK>,
-+               <&prcmu_clk PRCMU_LCDCLK>,
-+               <&prcmu_clk PRCMU_PLLDSI>;
-+      clock-names = "mcde", "lcd", "hdmi";
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      ranges;
-+
-+      dsi0: dsi@a0351000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0351000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
-+        clock-names = "hs", "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        panel@0 {
-+          compatible = "samsung,s6d16d0";
-+          reg = <0>;
-+          vdd1-supply = <&ab8500_ldo_aux1_reg>;
-+          reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
-+        };
-+      };
-+
-+      dsi1: dsi@a0352000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0352000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
-+        clock-names = "hs", "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+      };
-+
-+      dsi2: dsi@a0353000 {
-+        compatible = "ste,mcde-dsi";
-+        reg = <0xa0353000 0x1000>;
-+        vana-supply = <&ab8500_ldo_ana_reg>;
-+        /* This DSI port only has the Low Power / Energy Save clock */
-+        clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
-+        clock-names = "lp";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+      };
-+    };
-+
-+...
+I have tested this on an X96 Air 4GB board (not upstream yet). Testing
+with iperf3 gives 938 Mbits/sec in both directions (RX and TX). The
+following network settings were used in the .dts (2ns TX delay
+generated by the PHY, 800ps RX delay generated by the MAC as the PHY
+only supports 0ns or 2ns RX delays):
+        &ext_mdio {
+                external_phy: ethernet-phy@0 {
+                        /* Realtek RTL8211F (0x001cc916) */
+                        reg = <0>;
+                        eee-broken-1000t;
+
+                        reset-assert-us = <10000>;
+                        reset-deassert-us = <30000>;
+                        reset-gpios = <&gpio GPIOZ_15 (GPIO_ACTIVE_LOW |
+                                                GPIO_OPEN_DRAIN)>;
+
+                        interrupt-parent = <&gpio_intc>;
+                        /* MAC_INTR on GPIOZ_14 */
+                        interrupts = <26 IRQ_TYPE_LEVEL_LOW>;
+                };
+        };
+
+        &ethmac {
+                status = "okay";
+
+                pinctrl-0 = <&eth_pins>, <&eth_rgmii_pins>;
+                pinctrl-names = "default";
+
+                phy-mode = "rgmii-txid";
+                phy-handle = <&external_phy>;
+
+                amlogic,rgmii-rx-delay-ps = <800>;
+        };
+
+To use the same settings from vendor u-boot (which in my case has broken
+Ethernet) the following commands can be used:
+  mw.l 0xff634540 0x1621
+  mw.l 0xff634544 0x30000
+  phyreg w 0x0 0x1040
+  phyreg w 0x1f 0xd08
+  phyreg w 0x11 0x9
+  phyreg w 0x15 0x11
+  phyreg w 0x1f 0x0
+  phyreg w 0x0 0x9200
+
+Also I have tested this on a X96 Max board without any .dts changes
+to confirm that other boards with the same IP block still work fine
+with these changes.
+
+
+Changes since v1 at [1]:
+- updated patch 1 by making it more clear when the RX delay is applied.
+  Thanks to Andrew for the suggestion!
+- added a fix to enabling the timing-adjustment clock only when really
+  needed. Found by Andrew - thanks!
+- added testing not about X96 Max
+- v1 did not go to the netdev mailing list, v2 fixes this
+
+
+[0] https://lore.kernel.org/netdev/CAFBinCATt4Hi9rigj52nMf3oygyFbnopZcsakGL=KyWnsjY3JA@mail.gmail.com/
+[1] https://patchwork.kernel.org/project/linux-amlogic/list/?series=384279
+
+Martin Blumenstingl (5):
+  dt-bindings: net: dwmac-meson: use picoseconds for the RGMII RX delay
+  net: stmmac: dwmac-meson8b: fix enabling the timing-adjustment clock
+  net: stmmac: dwmac-meson8b: use picoseconds for the RGMII RX delay
+  net: stmmac: dwmac-meson8b: move RGMII delays into a separate function
+  net: stmmac: dwmac-meson8b: add support for the RGMII RX delay on G12A
+
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 61 +++++++++++-
+ .../ethernet/stmicro/stmmac/dwmac-meson8b.c   | 92 +++++++++++++++----
+ 2 files changed, 128 insertions(+), 25 deletions(-)
+
 -- 
-2.26.2
+2.29.2
 
