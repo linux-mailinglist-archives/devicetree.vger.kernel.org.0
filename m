@@ -2,88 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E7A82B3523
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 14:59:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5660F2B35CA
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 16:37:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727179AbgKON7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 08:59:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40808 "EHLO mail.kernel.org"
+        id S1726858AbgKOPhd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 10:37:33 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:56146 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726743AbgKON7n (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Nov 2020 08:59:43 -0500
-Received: from dellmb.labs.office.nic.cz (nat-1.nic.cz [217.31.205.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 018E622447;
-        Sun, 15 Nov 2020 13:59:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605448782;
-        bh=4AE8gNQZLeWzEbgMlBFS4rclA9p6L/RhIPVCDpKVcJ4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=S6Y4yIwdllJKizlyh2So56P+OhwTeF1h5sMAh21W0DVtpySEUstHL7a0kgrN7vt1R
-         LafH8D2rU27H5LvpH4gx5/GdsGsGSaMeq19O39ARN22SZlTcB1Pgq0qotzvLg24Xor
-         7/Ac+iOmhehPjO10XG/WbNOvFx23S4shP2IapKnY=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     arm@kernel.org, =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH mvebu-dt v3 7/7] ARM: dts: turris-omnia: remove unneeded status = "okay" properties
-Date:   Sun, 15 Nov 2020 14:59:23 +0100
-Message-Id: <20201115135923.11523-8-kabel@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201115135923.11523-1-kabel@kernel.org>
-References: <20201115135923.11523-1-kabel@kernel.org>
+        id S1726749AbgKOPhd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Nov 2020 10:37:33 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1keK5j-007CBo-Gz; Sun, 15 Nov 2020 16:37:23 +0100
+Date:   Sun, 15 Nov 2020 16:37:23 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, jianxin.pan@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>,
+        jbrunet@baylibre.com
+Subject: Re: [PATCH RFC v1 1/4] dt-bindings: net: dwmac-meson: use
+ picoseconds for the RGMII RX delay
+Message-ID: <20201115153723.GA1701029@lunn.ch>
+References: <20201114200104.4148283-1-martin.blumenstingl@googlemail.com>
+ <20201114200104.4148283-2-martin.blumenstingl@googlemail.com>
+ <20201114223250.GI1480543@lunn.ch>
+ <CAFBinCAmExHsCpP8hh_K6M6pg8SjoF1WNNj9fwSKR3dhgBGJdA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFBinCAmExHsCpP8hh_K6M6pg8SjoF1WNNj9fwSKR3dhgBGJdA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Only nodes which have status = "disabled" defined from included files
-need status = "okay".
+On Sun, Nov 15, 2020 at 10:22:06AM +0100, Martin Blumenstingl wrote:
+> Hi Andrew,
+> 
+> On Sat, Nov 14, 2020 at 11:32 PM Andrew Lunn <andrew@lunn.ch> wrote:
+> [...]
+> > > +        amlogic,rgmii-rx-delay-ps:
+> > > +          default: 0
+> > >            description:
+> > >              The internal RGMII RX clock delay (provided by this IP block) in
+> > > -            nanoseconds. When phy-mode is set to "rgmii" then the RX delay
+> > > +            picoseconds. When phy-mode is set to "rgmii" then the RX delay
+> > >              should be explicitly configured. When the phy-mode is set to
+> > >              either "rgmii-id" or "rgmii-rxid" the RX clock delay is already
+> > >              provided by the PHY. Any configuration is ignored when the
+> > >              phy-mode is set to "rmii".
+> >
+> > Hi Martin
+> >
+> > I don't think the wording matches what the driver is actually doing:
+> >
+> >         if (dwmac->rx_delay_ns == 2)
+> >                 rx_dly_config = PRG_ETH0_ADJ_ENABLE | PRG_ETH0_ADJ_SETUP;
+> >         else
+> >                 rx_dly_config = 0;
+> >
+> >         switch (dwmac->phy_mode) {
+> >         case PHY_INTERFACE_MODE_RGMII:
+> >                 delay_config = tx_dly_config | rx_dly_config;
+> >                 break;
+> >         case PHY_INTERFACE_MODE_RGMII_RXID:
+> >                 delay_config = tx_dly_config;
+> >                 break;
+> >         case PHY_INTERFACE_MODE_RGMII_TXID:
+> >                 delay_config = rx_dly_config;
+> >                 break;
+> >         case PHY_INTERFACE_MODE_RGMII_ID:
+> >         case PHY_INTERFACE_MODE_RMII:
+> >                 delay_config = 0;
+> >                 break;
+> >
+> > So rx_delay is used for both rgmii and rgmii-txid. The binding says
+> > nothing about rgmii-txid.
+> interesting point here. it's been like this before this patch. still I
+> would like to understand what the proper way to fix it is so I can
+> also include a fix for it:
+> 1. should rgmii-txid not add any RX delay on the MAC side? that would
+> mean for my board I will switch to phy-mode rgmii so the MAC applies
+> both the RX and TX delays
+> 2. update the documentation to clarify that rgmii-txid would also add
+> the RX delay on the MAC side
 
-The ethernet-phy node and the i2cmux node do not need it, since they are
-wholly defined here.
+Hi Martin
 
-Signed-off-by: Marek Behún <kabel@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: Uwe Kleine-König <uwe@kleine-koenig.org>
-Cc: Jason Cooper <jason@lakedaemon.net>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Andreas Färber <afaerber@suse.de>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- arch/arm/boot/dts/armada-385-turris-omnia.dts | 2 --
- 1 file changed, 2 deletions(-)
+I would fix the documentation.
 
-diff --git a/arch/arm/boot/dts/armada-385-turris-omnia.dts b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-index 0002487b7b68..78b49287634c 100644
---- a/arch/arm/boot/dts/armada-385-turris-omnia.dts
-+++ b/arch/arm/boot/dts/armada-385-turris-omnia.dts
-@@ -173,7 +173,6 @@ i2cmux@70 {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		reg = <0x70>;
--		status = "okay";
- 
- 		i2c@0 {
- 			#address-cells = <1>;
-@@ -387,7 +386,6 @@ &mdio {
- 	status = "okay";
- 
- 	phy1: ethernet-phy@1 {
--		status = "okay";
- 		compatible = "ethernet-phy-ieee802.3-c22";
- 		reg = <1>;
- 
--- 
-2.26.2
+> that is a good point and also a bug with one of the previous patches
+> I'll include a patch fixing this in v2
 
+Thanks for looking at these.
+
+       Andrew
