@@ -2,176 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A162B3A8B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 00:12:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9287A2B3AA7
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 00:55:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727931AbgKOXMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 18:12:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
+        id S1726970AbgKOXzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 18:55:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726004AbgKOXMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 18:12:33 -0500
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9C2C0613CF;
-        Sun, 15 Nov 2020 15:12:31 -0800 (PST)
-Received: by mail-lj1-x241.google.com with SMTP id 11so18119897ljf.2;
-        Sun, 15 Nov 2020 15:12:31 -0800 (PST)
+        with ESMTP id S1726369AbgKOXzV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 18:55:21 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA4CC0613CF
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 15:55:20 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id v20so18141310ljk.8
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 15:55:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=+d69nkc43tsxlWAdrY2B8Lv8/D9Hq7HoZ8uP+nxtrpU=;
-        b=rw/MacKYgPqufYzCAcV49V9EFPkaGaY49qdhek/4+wuqbCFb3KLnZqichUMsNzXgt3
-         H1osuM3WWraMicDdhUhO9ZTmmX7BM1f0hDC2gBbZRW4cILup2m2wuNdPF8phJYSAPxru
-         vaWKJB9Zzd8Pj2PCsjloR76pHj3EctM+be3YMh/dBftfZV0hmDWBMirSxXtqduBDTG/m
-         LmyGF9JWzkCpVkkF2lTNBP/6UvYQv/nfgyPHyRGHt6oOgMA+HVh2NY1Dw7e6u3BhZi+3
-         ShdTQf8vdNazLWQUalPaHsEB5A3uXNO/Bo9ZWNKnP7trLRP8ewla8Cxzz16aehIIFbyb
-         prYw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Rg6F0h6ruc4uMsumIqafiPh49tcZmyvtzNR9XGYeSiI=;
+        b=vnDbwY0uz4LgrVArol569n8Y2hLV02BxvOF7h+XBwEa4gjWhxRQUwouS/TVWaB4N42
+         ajCA2F5NATcgFcaXG6DMxJjlHyBXFFK4FCCq34tfJsVxMkvMr/JoxaBvFiiHGl1jGv8p
+         Nn2rgAe51IeXHpnHR/kuHBCtmcaCKwrRzvrmnPQogwmk8TXDED2MTuM6lT9SJ/xaZjMk
+         v0rRjYgrxhE3yeitN4gKW1oURLlFuqAkJ6zwSlQzMdFY4vpVhicpsjzsOgPWv65wBkTE
+         ZtzHplIAqQ4C+rVYQ7JWA9go8sWNjXYG0G+Y8Ha7siSA5x3n3R55SQwrIpraL+RUyT8e
+         XqRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=+d69nkc43tsxlWAdrY2B8Lv8/D9Hq7HoZ8uP+nxtrpU=;
-        b=Xhi5IyACryoZLUyvjnKDkHC0/2fbyRetYnXSX100050yCDLaQ1ZIYdKjQrm/z67Bx7
-         eyfNQeFyT6wU8FYhSd02rSxOUVoq7oFTCrCbEA8LeyeKCO2/f/sAGBI6N25xq6pIUNbS
-         eBZSdcEBX60YucjkCX/mjMJVF7tMz9xgfMzCdbjz2StnwaO1mHe2PB1aR8oH8g0CZ6G7
-         IBtmBzRRcro8+0xz3RSnoocBQBmGdpYkpfgW0QCWPmbru2DJzlEY8CDu6+RjIq8jMjfG
-         100pVN3XAzONsgf2pYcZfTs2vgCDwZFEL2BP3LXKcaxwiJh1T0QzJyPv9E3QADge1oS9
-         Hw0g==
-X-Gm-Message-State: AOAM532Etqk3InqgGhQDANs0acR7hdQxC+JECwpMEkWShYV0sonl+tpZ
-        YNqvV3NO/ANncWtlpiBEjFe1eS4RfYI=
-X-Google-Smtp-Source: ABdhPJweNLpJrdfTfSIrR2pHU83vh4d7qoq/W7T4NCC96902xjSBicuLhW6l2KkEi2owX/3xqbrTyA==
-X-Received: by 2002:a2e:9207:: with SMTP id k7mr4906912ljg.71.1605481950294;
-        Sun, 15 Nov 2020 15:12:30 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
-        by smtp.googlemail.com with ESMTPSA id w12sm2519786ljo.67.2020.11.15.15.12.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 15 Nov 2020 15:12:29 -0800 (PST)
-Subject: Re: [PATCH v5 2/4] mfd: Add driver for Embedded Controller found on
- Acer Iconia Tab A500
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20201104203403.24937-1-digetx@gmail.com>
- <20201104203403.24937-3-digetx@gmail.com> <20201113093747.GJ2787115@dell>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <3ad644fd-cd03-a1e1-36d9-014304fdfcee@gmail.com>
-Date:   Mon, 16 Nov 2020 02:12:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Rg6F0h6ruc4uMsumIqafiPh49tcZmyvtzNR9XGYeSiI=;
+        b=AgIKxcb2YeRtpXO30UxK9NMMG5LJK2I2Av1Tolg1oGCndHPi2tqROaIw9kap3UAIL1
+         2X8ugAZhhZlTGfisBEpKLHAH9LlYWpwrCdSMTVx9Ocx7zw/kFXJkuYoxv2Nj1IhiGT5U
+         utUirGkobKHnfEfGqjL1HwN8INaXbSVZ/ZdF3en4JuCOWTVDPCTcXpGS/oz+Ng7UQbP8
+         W6dnPWM31x6gI8yfvnCwrCmEhp8vfZM+oydzpVD6xcCNxcihGP1HrNPV2uv3GVJqRcGq
+         SLidrzwZ8QIvWgJn0KelC5tChY54cpRgNSWvvsyfelbWIHZgA+47OpHrk0zmUEwaN8Qv
+         kKog==
+X-Gm-Message-State: AOAM533RtSHyYOA9neHUploJ2AUy4vx0hpZ/Vn+QpWIu6/EIBU2JKBUT
+        pG75A9ZbKgkjjPgHl5cy1QPBgu8LqZXCQd4d7v8IGg==
+X-Google-Smtp-Source: ABdhPJwCwfUREpzNJZbbW+3Dz6HulYaHf3A/yDpyNzotgLfVccKa8/VQgcpHjcFVe78zFxVNE+pMNQKqJbZdE7Ro3d0=
+X-Received: by 2002:a2e:321a:: with SMTP id y26mr5702695ljy.293.1605484519331;
+ Sun, 15 Nov 2020 15:55:19 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201113093747.GJ2787115@dell>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <1604284946-16254-1-git-send-email-u0084500@gmail.com>
+In-Reply-To: <1604284946-16254-1-git-send-email-u0084500@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 16 Nov 2020 00:55:08 +0100
+Message-ID: <CACRpkdbGs-LEWie2uzZEHxrac-0tuHqRtdDP0D22KnXKQ3rqGQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] leds: rt4505: Add support for Richtek RT4505 flash
+ LED controller
+To:     cy_huang <u0084500@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        cy_huang@richtek.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-13.11.2020 12:37, Lee Jones пишет:
-...
->> +config MFD_ACER_A500_EC
->> +	tristate "Embedded Controller driver for Acer Iconia Tab A500"
-> 
-> Drop "driver".  This is meant to be describing the device.
-> 
->> +	depends on I2C
-> 
-> depends on OF ?
-...
->> +	depends on ARCH_TEGRA_2x_SOC || COMPILE_TEST
->> +	select MFD_CORE
->> +	select REGMAP
->> +	help
+On Mon, Nov 2, 2020 at 3:42 AM cy_huang <u0084500@gmail.com> wrote:
 
-ARCH_TEGRA_2x_SOC selects OF.
+>  drivers/leds/flash/Kconfig       |  17 ++
+>  drivers/leds/flash/Makefile      |   2 +
+>  drivers/leds/flash/leds-rt4505.c | 430 +++++++++++++++++++++++++++++++++++++++
 
-For COMPILE_TEST it doesn't matter since OF framework provides stubs for
-!OF.
+Hm Pavel also asked me to create this directory and structure,
+so if this gets applied to the MFD tree there will be some
+serious clash.
 
-...
->> +static int a500_ec_read(void *context, const void *reg_buf, size_t reg_size,
->> +			void *val_buf, size_t val_sizel)
->> +{
->> +	struct i2c_client *client = context;
->> +	unsigned int reg, retries = 5;
->> +	u16 *ret_val = val_buf;
->> +	s32 ret = 0;
->> +
->> +	if (reg_size != 1 || val_sizel != 2)
-> 
-> No magic numbers please.
-> 
-> What does this *mean*?
+I can rebase on this patch set if Lee applies it first, they you
+need an immutable branch from Lee first to set up the build
+infrastructure in the LEDs tree, and then I can rebase on your
+tree once you have pulled in that.
 
-These are the size of address register and size of a read value, both in
-bytes.
-
->> +		return -EOPNOTSUPP;
-> 
-> Why EOPNOTSUPP?
-
-Other sizes aren't supported by embedded controller.
-
-Although, perhaps this check isn't really needed at all since the sizes
-are already expressed in the a500_ec_regmap_config.
-
-I'll need to take a closer look at why this size-checking was added
-because don't quite remember already. If it's not needed, then I'll
-remove it in the next revision, otherwise will add a clarifying comment.
-
->> +	reg = *(u8 *)reg_buf;
->> +
->> +	while (retries-- > 0) {
->> +		ret = i2c_smbus_read_word_data(client, reg);
->> +		if (ret >= 0)
->> +			break;
->> +
->> +		msleep(A500_EC_I2C_ERR_TIMEOUT);
->> +	}
->> +
->> +	if (ret < 0) {
->> +		dev_err(&client->dev, "read 0x%x failed: %d\n", reg, ret);
->> +		return ret;
->> +	}
->> +
->> +	*ret_val = ret;
->> +
->> +	if (reg == REG_CURRENT_NOW)
->> +		fsleep(10000);
-> 
-> Ooo, new toy!
-> 
->> +	return 0;
->> +}
-> 
-> I'm surprised there isn't a generic function which does this kind of
-> read.  Seems like pretty common/boilerplate stuff.
-
-I'm not quite sure that this is a really very common pattern which
-deserves a generic helper.
-
-...
->> +static int a500_ec_restart_notify(struct notifier_block *this,
->> +				  unsigned long reboot_mode, void *data)
->> +{
->> +	if (reboot_mode == REBOOT_WARM)
->> +		i2c_smbus_write_word_data(a500_ec_client_pm_off,
->> +					  REG_WARM_REBOOT, 0);
->> +	else
->> +		i2c_smbus_write_word_data(a500_ec_client_pm_off,
->> +					  REG_COLD_REBOOT, 1);
-> 
-> What's with the magic '0' and '1's at the end?
-
-These are the values which controller's firmware wants to see, otherwise
-it will reject command as invalid. I'll add a clarifying comment to the
-code.
-
-Thank you for the review. I'll address all the comments in the v7.
+Yours,
+Linus Walleij
