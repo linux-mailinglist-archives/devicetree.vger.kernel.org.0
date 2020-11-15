@@ -2,127 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4BE12B31F9
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 03:28:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 139572B3210
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 04:47:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726530AbgKOC0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Nov 2020 21:26:04 -0500
-Received: from mx2.suse.de ([195.135.220.15]:53324 "EHLO mx2.suse.de"
+        id S1726412AbgKODj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Nov 2020 22:39:26 -0500
+Received: from mx2.suse.de ([195.135.220.15]:34124 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726136AbgKOC0E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Nov 2020 21:26:04 -0500
+        id S1726177AbgKODjZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 14 Nov 2020 22:39:25 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+        t=1605411564; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+         mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+        bh=Nar9QyFAoVpbR6w/pIC3tSqy35WYcZIx+U7ttMG9XTI=;
+        b=Gg/R1ShzUwfYVE0g2oVaBp/r6yBz54HhjrJ8qpDKCI3DE0jk9/kwI7G+kyU7nZV055kZ6a
+        tSUL51zBMdcAw0b1W0pw879bDyaXOcV+t7m4p4Wvm6ZdBAKXU0DIaTayCEE4GX9WDPyc7d
+        fx3MqWEr/2N0lQd+EilUaLK8z9jjYC8=
 Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id F3D10AC2D;
-        Sun, 15 Nov 2020 02:26:02 +0000 (UTC)
-Subject: Re: [PATCH net-next] net: mvneta: Fix validation of 2.5G HSGMII
- without comphy
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>,
-        Michal Hrusecki <Michal.Hrusecky@nic.cz>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20201115004151.12899-1-afaerber@suse.de>
- <20201115010241.GF1551@shell.armlinux.org.uk>
-From:   =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>
-Organization: SUSE Software Solutions Germany GmbH
-Message-ID: <4bf5376c-a7d1-17bf-1034-b793113b101e@suse.de>
-Date:   Sun, 15 Nov 2020 03:26:01 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        by mx2.suse.de (Postfix) with ESMTP id 14AD8ABD1;
+        Sun, 15 Nov 2020 03:39:24 +0000 (UTC)
+From:   Qu Wenruo <wqu@suse.com>
+To:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        gouwa@khadas.com, nick@khadas.com, art@khadas.com
+Subject: [PATCH RFC] arm64: dts: Use separate dtb for Khadas vim3 usb3 and pcie controller
+Date:   Sun, 15 Nov 2020 11:39:17 +0800
+Message-Id: <20201115033917.83302-1-wqu@suse.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-In-Reply-To: <20201115010241.GF1551@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Russell,
+Although the plan is to make the bootloader (U-boot) to load overlay for
+the device, but currently the board doesn't have the upstream support
+yet.
 
-On 15.11.20 02:02, Russell King - ARM Linux admin wrote:
-> On Sun, Nov 15, 2020 at 01:41:51AM +0100, Andreas Färber wrote:
->> Commit 1a642ca7f38992b086101fe204a1ae3c90ed8016 (net: ethernet: mvneta:
->> Add 2500BaseX support for SoCs without comphy) added support for 2500BaseX.
->>
->> In case a comphy is not provided, mvneta_validate()'s check
->>   state->interface == PHY_INTERFACE_MODE_2500BASEX
->> could never be true (it would've returned with empty bitmask before),
->> so that 2500baseT_Full and 2500baseX_Full do net get added to the mask.
-> 
-> This makes me nervous. It was intentional that if there is no comphy
-> configured in DT for SoCs such as Armada 388, then there is no support
-> to switch between 1G and 2.5G speed. Unfortunately, the configuration
-> of the comphy is up to the board to do, not the SoC .dtsi, so we can't
-> rely on there being a comphy on Armada 388 systems.
+This means even upstream kernel supports all the needed drivers, we still
+can't initialize the pcie controller.
 
-Please note that the if clause at the beginning of the validate function
-does not check for comphy at all. So even with comphy, if there is a
-code path that attempts to validate state 2500BASEX, it is broken, too.
+As a workaround, make seperate device trees for pcie controller and usb3
+controller.
 
-Do you consider the modification of both ifs (validate and power_up) as
-correct? Should they be split off from my main _NA change you discuss?
+Now user still need to go into the factory bootloader to switch the mux,
+but they can easily boot the kernel with PCIE support by just swithcing
+to the pcie device tree.
 
-> So, one of the side effects of this patch is it incorrectly opens up
-> the possibility of allowing 2.5G support on Armada 388 without a comphy
-> configured.
-> 
-> We really need a better way to solve this; just relying on the lack of
-> comphy and poking at a register that has no effect on Armada 388 to
-> select 2.5G speed while allowing 1G and 2.5G to be arbitarily chosen
-> doesn't sound like a good idea to me.
-[snip]
+And since we didn't modify the original dtb, the future upstream uboot
+can still use overlay to switch mode using the same dtb file.
+The added new pcie dtb will just be a workaround.
 
-May I add that the comphy needs better documentation?
+Tested on my VIM3 pro board, now I can boot the root fs on the NVME
+drive, with upstream kernel with the new pcie dtb.
 
-Marek and I independently came up with <&comphy5 2> in the end, but the
-DT binding doesn't explain what the index is supposed to be and how I
-might figure it out. It cost me days of reading U-Boot and kernel
-sources and playing around with values until I had the working one.
+Signed-off-by: Qu Wenruo <wqu@suse.com>
+---
+ arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+ .../meson-g12b-a311d-khadas-vim3-pcie.dts     | 39 +++++++++++++++++++
+ .../amlogic/meson-g12b-a311d-khadas-vim3.dts  | 23 +----------
+ 3 files changed, 41 insertions(+), 22 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3-pcie.dts
 
-Might be helpful to have a symbolic dt-bindings #define for this 2.
-
-U-Boot v2020.10 on Turris Omnia dumps this table:
-
- | Lane # | Speed |  Type       |
- --------------------------------
- |   0    |   6   | SATA0       |
- |   1    |   5   | USB3 HOST0  |
- |   2    |   5   | PCIe1       |
- |   3    |   5   | USB3 HOST1  |
- |   4    |   5   | PCIe2       |
- |   5    |   0   | SGMII2      |
- --------------------------------
-
-But IIUC the Linux comphy driver doesn't take any type ID as argument
-but rather an index into a table of "ports" which specifies another
-index to apply or look up? Terribly indirect and magic to non-experts.
-
-As a DT contributor I would need the binding to tell me that it's an
-enum with 2 meaning SGMII2. Not even the max of 2 is documented. The
-Linux driver talks of ports, but I don't see that term used in U-Boot,
-and U-Boot APIs appeared to pass very different args in the board code.
-
-The binding also still needs to be converted to YAML before we can
-extend it with any better explanations. (And before you suggest it:
-Since I obviously don't fully understand that hardware, I'm the wrong
-person to attempt documenting it. The 38x comphy seems not mentioned in
-MAINTAINERS, only the 3700 one.)
-
-Regards,
-Andreas
-
+diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+index ced03946314f..a0b8d30539e2 100644
+--- a/arch/arm64/boot/dts/amlogic/Makefile
++++ b/arch/arm64/boot/dts/amlogic/Makefile
+@@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-gtking-pro.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3.dtb
++dtb-$(CONFIG_ARCH_MESON) += meson-g12b-a311d-khadas-vim3-pcie.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-s922x-khadas-vim3.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
+ dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2-plus.dtb
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3-pcie.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3-pcie.dts
+new file mode 100644
+index 000000000000..93641a32eeec
+--- /dev/null
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3-pcie.dts
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2019 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
++ */
++
++/dts-v1/;
++
++#include "meson-g12b-a311d.dtsi"
++#include "meson-khadas-vim3.dtsi"
++#include "meson-g12b-khadas-vim3.dtsi"
++
++/ {
++	compatible = "khadas,vim3", "amlogic,a311d", "amlogic,g12b";
++};
++
++/*
++ * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
++ * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
++ * an USB3.0 Type A connector and a M.2 Key M slot.
++ * The PHY driving these differential lines is shared between
++ * the USB3.0 controller and the PCIe Controller, thus only
++ * a single controller can use it.
++ *
++ * This is the PCIE device tree.
++ *
++ * Until upstream uboot can boot the board and modify the nodes before booting
++ * It's much easier to just choose this device tree file to use PCIE controller.
++ */
++
++&pcie {
++	status = "okay";
++};
++
++&usb {
++	phys = <&usb2_phy0>, <&usb2_phy1>;
++	phy-names = "usb2-phy0", "usb2-phy1";
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+index 124a80901084..9c111d76baec 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-a311d-khadas-vim3.dts
+@@ -16,26 +16,5 @@ / {
+ };
+ 
+ /*
+- * The VIM3 on-board  MCU can mux the PCIe/USB3.0 shared differential
+- * lines using a FUSB340TMX USB 3.1 SuperSpeed Data Switch between
+- * an USB3.0 Type A connector and a M.2 Key M slot.
+- * The PHY driving these differential lines is shared between
+- * the USB3.0 controller and the PCIe Controller, thus only
+- * a single controller can use it.
+- * If the MCU is configured to mux the PCIe/USB3.0 differential lines
+- * to the M.2 Key M slot, uncomment the following block to disable
+- * USB3.0 from the USB Complex and enable the PCIe controller.
+- * The End User is not expected to uncomment the following except for
+- * testing purposes, but instead rely on the firmware/bootloader to
+- * update these nodes accordingly if PCIe mode is selected by the MCU.
+- */
+-/*
+-&pcie {
+-	status = "okay";
+-};
+-
+-&usb {
+-	phys = <&usb2_phy0>, <&usb2_phy1>;
+-	phy-names = "usb2-phy0", "usb2-phy1";
+-};
++ * Vim3 default to USB3.0 instead of PCIE controller.
+  */
 -- 
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 Nürnberg, Germany
-GF: Felix Imendörffer
-HRB 36809 (AG Nürnberg)
+2.29.2
+
