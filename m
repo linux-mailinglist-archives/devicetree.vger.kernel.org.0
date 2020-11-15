@@ -2,127 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22B002B376B
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 18:49:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9C4D2B37E8
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 19:38:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727162AbgKORss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 12:48:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
+        id S1727105AbgKOShQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 13:37:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727156AbgKORsr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 12:48:47 -0500
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9396C0613D1;
-        Sun, 15 Nov 2020 09:48:47 -0800 (PST)
-Received: by mail-ed1-x541.google.com with SMTP id q3so16337608edr.12;
-        Sun, 15 Nov 2020 09:48:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=v/wAb02mQCQZsBiGAL1qlGOpcmGC2tOVn8KZIvlgQc0=;
-        b=ShwxGnHftRZhk3XROqm6tuG5nxh0xz0OXFbRH92hxKFIuDCu6SLBS6VqG13zRM88EY
-         0MHJldhlQB7V1cjo90AoGRQeX/kW5jyL8O8luUXpnnvboW5SgUq2bb5ILfKyJWTKaIXn
-         0JjxlI/ZJ4Z1ne8GvP2DzMYANHArdGDHZt2pVqkx2yWlSfA6+WOYEXl4ZwxR1UXQqCv0
-         aqoMYwj2X1FhdU6uqqeDBYgoIwbDKo0MgaWsufZ5acloyi31N1eCMHBvuu//r27qRqtG
-         G+DuVCGqqe4n39CtTOUsxjW6827z2AZDsI+oDpNQjuUpJ3pJrNIS1bmzF83ec0ozQdh+
-         2tyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=v/wAb02mQCQZsBiGAL1qlGOpcmGC2tOVn8KZIvlgQc0=;
-        b=AyjeBJb5N4qdKcesjGqW/hfR4L5XhQkyzRfzC57nWCgz0ycOF+kN1Dib0HwlMEHnJB
-         Gl4kK/t9BOTaraT/LyC0yaMywXQb/FkeqaKgAnm9UPpXs04wLoD8067iqFzX6OPVwsOf
-         hrHoqjLpoKgduN92Zwk5vsqFfMcDjNHGj6fCP4P6RgDo/gAMCVmChwMKkmts3EJvzCt9
-         TC+4mCkYlNStZ3RFsrOSlbNGe/0BuaF0PI8RWzEuujiVoTkiaWX32N/wXJeJXq6KXtB/
-         jlga5AAsFhx4aK+RCuLIzKgrXiHdy0fyN9pC+IwY56dCTWCHlgsOLY8CLYy9LL8Sqqk3
-         QETA==
-X-Gm-Message-State: AOAM531twsGPv0TWYSb7JPxkWIbsL/KSd8ujZQ3jAFbodQM3Wg+cq6HP
-        NbhbUPOvOHnORh01cggYgWs=
-X-Google-Smtp-Source: ABdhPJxMKaggjAxmwLnhbvDD0mwEkG1xb0o9sQyb5qL3GgJQaDnRk1qzczIkVay7AadxAaz4TaAasA==
-X-Received: by 2002:aa7:cdd3:: with SMTP id h19mr12337772edw.330.1605462526347;
-        Sun, 15 Nov 2020 09:48:46 -0800 (PST)
-Received: from adroid (165-170-184-091.ip-addr.vsenet.de. [91.184.170.165])
-        by smtp.gmail.com with ESMTPSA id e1sm9521554edy.8.2020.11.15.09.48.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2020 09:48:45 -0800 (PST)
-Date:   Sun, 15 Nov 2020 18:48:43 +0100
-From:   Martin =?iso-8859-1?Q?J=FCcker?= <martin.juecker@gmail.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] ARM: dts: add Samsung's exynos4412-based p4note
- boards
-Message-ID: <20201115174843.GA33100@adroid>
-References: <20201113212525.13455-1-martin.juecker@gmail.com>
- <20201113212525.13455-3-martin.juecker@gmail.com>
- <20201115103251.GB4587@kozik-lap>
+        with ESMTP id S1726741AbgKOShP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 13:37:15 -0500
+X-Greylist: delayed 1470 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 15 Nov 2020 10:37:15 PST
+Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C19C0613D1
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 10:37:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
+         s=the; h=Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:Sender:
+        Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=wisLx0HcXDpOlNdLfdL+yoTgFgj72O61RgzyIAG8wGM=; b=dy8tMnGNtuXH6mJMSUCWu/ZxSD
+        aKfnFL6th/pJYBY7LddhA4aKFDY85u1uFHKcDMH8yCU6UUNjRM5hrgUnt3Su3YsCwOW+sLPtJpep3
+        7fS6y43n1+2oPijYMVIpL4h4nFe59Lw//MR5EJszlgVKcttFLxORAqP3kGrM5n/ykEz6YTCYcctv8
+        bDpbD5Q5ISXEjBCk+A++XbdSn5nOHDIaj39mIv9SvednFah5yb+hBVfg4ProPdO1xpp2+9Wg28Fad
+        UCHz6ESCGHckaSlNtB7gZ+CIlAoygPXRU/RdJQfmaws92q2wS3sjnDl/ftP15e0pFAGiINgAUAOGK
+        BBIoNkvQ==;
+Received: from noodles by the.earth.li with local (Exim 4.92)
+        (envelope-from <noodles@earth.li>)
+        id 1keMW2-0007q8-AS; Sun, 15 Nov 2020 18:12:42 +0000
+Date:   Sun, 15 Nov 2020 18:12:42 +0000
+From:   Jonathan McDowell <noodles@earth.li>
+To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: dmaengine: Convert Qualcomm ADM bindings to yaml
+Message-ID: <20201115181242.GA30004@earth.li>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201115103251.GB4587@kozik-lap>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 15, 2020 at 11:32:51AM +0100, Krzysztof Kozlowski wrote:
-> On Fri, Nov 13, 2020 at 10:25:23PM +0100, Martin Jücker wrote:
-> > The p4note family contains a couple of variants of the Galaxy Note 10.1
-> > tablet with mainly different modems. The GT-N8010/GT-N8013 is the wifi
-> > only version.
-> > 
-> > Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/Makefile                    |    1 +
-> >  arch/arm/boot/dts/exynos4412-p4note-n8010.dts |   17 +
-> >  arch/arm/boot/dts/exynos4412-p4note.dtsi      | 1132 +++++++++++++++++
-> >  3 files changed, 1150 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/exynos4412-p4note-n8010.dts
-> >  create mode 100644 arch/arm/boot/dts/exynos4412-p4note.dtsi
-> > 
-> > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > index ce66ffd5a1bb..55ffee2b20f8 100644
-> > --- a/arch/arm/boot/dts/Makefile
-> > +++ b/arch/arm/boot/dts/Makefile
-> > @@ -197,6 +197,7 @@ dtb-$(CONFIG_ARCH_EXYNOS4) += \
-> >  	exynos4412-odroidx.dtb \
-> >  	exynos4412-odroidx2.dtb \
-> >  	exynos4412-origen.dtb \
-> > +	exynos4412-p4note-n8010.dtb \
-> >  	exynos4412-smdk4412.dtb \
-> >  	exynos4412-tiny4412.dtb \
-> >  	exynos4412-trats2.dtb
-> > diff --git a/arch/arm/boot/dts/exynos4412-p4note-n8010.dts b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
-> > new file mode 100644
-> > index 000000000000..9f559425bd2c
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/exynos4412-p4note-n8010.dts
-> > @@ -0,0 +1,17 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Samsung's Galaxy Note 10.1 - N801x (wifi only version)
-> > + *
-> > + * Copyright (c) 2013 Samsung Electronics Co., Ltd.
-> > + *		http://www.samsung.com
-> 
-> Here and in other files - why did you remove your copyright? My comment
-> from previous version: "If it is true, then include the copyright of
-> original work as well."
-> 
-> Best regards,
-> Krzysztof
-> 
+Converts the device tree bindings for the Qualcomm Application Data
+Mover (ADM) DMA controller over to YAML schemas.
 
-Hey Krzysztof,
+Signed-off-by: Jonathan McDowell <noodles@earth.li>
+---
+ .../devicetree/bindings/dma/qcom,adm.yaml     | 102 ++++++++++++++++++
+ .../devicetree/bindings/dma/qcom_adm.txt      |  61 -----------
+ 2 files changed, 102 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,adm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/dma/qcom_adm.txt
 
-in the second response you wrote that "usually we keep the copyright of
-original file", I understood this as only the Samsung header as it is
-done for the midas, i930x and n710x. A lot of it is basically the same
-but with changed gpios. I really don't need my copyright up there if
-it's not strictly necessary.
+diff --git a/Documentation/devicetree/bindings/dma/qcom,adm.yaml b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
+new file mode 100644
+index 000000000000..353d85d3326d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/dma/qcom,adm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QCOM ADM DMA Controller
++
++maintainers:
++  - Jonathan McDowell <noodles@earth.li>
++
++description: |
++  QCOM Application Data Mover (ADM) DMA controller found in the MSM8x60
++  and IPQ/APQ8064 platforms.
++
++properties:
++  compatible:
++    oneOf:
++      - const: qcom,adm
++
++  reg:
++    maxItems: 1
++    description:
++      Address range for DMA registers
++
++  interrupts:
++    maxItems: 1
++    description:
++      Should contain one interrupt shared by all channels
++
++  "#dma-cells":
++    const: 2
++    description:
++      First cell denotes the channel number.  Second cell denotes CRCI
++      (client rate control interface) flow control assignment. If no
++      flow control is required, use 0.
++
++  clocks:
++    maxItems: 2
++    description:
++      Should contain the core clock and interface clock.
++
++  clock-names:
++    items:
++      - const: core
++      - const: iface
++
++  resets:
++    maxItems: 4
++    description:
++      Must contain an entry for each entry in reset names.
++
++  reset-names:
++    items:
++      - const: clk
++      - const: c0
++      - const: c1
++      - const: c2
++
++  qcom,ee:
++    maxItems: 1
++    description:
++      Indicates the security domain identifier used in the secure world.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - "#dma-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - interrupts
++  - qcom,ee
++  - resets
++  - reset-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/reset/qcom,gcc-ipq806x.h>
++
++    adm_dma: dma@18300000 {
++             compatible = "qcom,adm";
++             reg = <0x18300000 0x100000>;
++             interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
++             #dma-cells = <2>;
++
++             clocks = <&gcc ADM0_CLK>, <&gcc ADM0_PBUS_CLK>;
++             clock-names = "core", "iface";
++
++             resets = <&gcc ADM0_RESET>,
++                      <&gcc ADM0_C0_RESET>,
++                      <&gcc ADM0_C1_RESET>,
++                      <&gcc ADM0_C2_RESET>;
++             reset-names = "clk", "c0", "c1", "c2";
++             qcom,ee = <0>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/dma/qcom_adm.txt b/Documentation/devicetree/bindings/dma/qcom_adm.txt
+deleted file mode 100644
+index 9d3b2f917b7b..000000000000
+--- a/Documentation/devicetree/bindings/dma/qcom_adm.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-QCOM ADM DMA Controller
+-
+-Required properties:
+-- compatible: must contain "qcom,adm" for IPQ/APQ8064 and MSM8960
+-- reg: Address range for DMA registers
+-- interrupts: Should contain one interrupt shared by all channels
+-- #dma-cells: must be <2>.  First cell denotes the channel number.  Second cell
+-  denotes CRCI (client rate control interface) flow control assignment.
+-- clocks: Should contain the core clock and interface clock.
+-- clock-names: Must contain "core" for the core clock and "iface" for the
+-  interface clock.
+-- resets: Must contain an entry for each entry in reset names.
+-- reset-names: Must include the following entries:
+-  - clk
+-  - c0
+-  - c1
+-  - c2
+-- qcom,ee: indicates the security domain identifier used in the secure world.
+-
+-Example:
+-		adm_dma: dma@18300000 {
+-			compatible = "qcom,adm";
+-			reg = <0x18300000 0x100000>;
+-			interrupts = <0 170 0>;
+-			#dma-cells = <2>;
+-
+-			clocks = <&gcc ADM0_CLK>, <&gcc ADM0_PBUS_CLK>;
+-			clock-names = "core", "iface";
+-
+-			resets = <&gcc ADM0_RESET>,
+-				<&gcc ADM0_C0_RESET>,
+-				<&gcc ADM0_C1_RESET>,
+-				<&gcc ADM0_C2_RESET>;
+-			reset-names = "clk", "c0", "c1", "c2";
+-			qcom,ee = <0>;
+-		};
+-
+-DMA clients must use the format descripted in the dma.txt file, using a three
+-cell specifier for each channel.
+-
+-Each dmas request consists of 3 cells:
+- 1. phandle pointing to the DMA controller
+- 2. channel number
+- 3. CRCI assignment, if applicable.  If no CRCI flow control is required, use 0.
+-    The CRCI is used for flow control.  It identifies the peripheral device that
+-    is the source/destination for the transferred data.
+-
+-Example:
+-
+-	spi4: spi@1a280000 {
+-		spi-max-frequency = <50000000>;
+-
+-		pinctrl-0 = <&spi_pins>;
+-		pinctrl-names = "default";
+-
+-		cs-gpios = <&qcom_pinmux 20 0>;
+-
+-		dmas = <&adm_dma 6 9>,
+-			<&adm_dma 5 10>;
+-		dma-names = "rx", "tx";
+-	};
+-- 
+2.29.2
 
-Cheers
-Martin
