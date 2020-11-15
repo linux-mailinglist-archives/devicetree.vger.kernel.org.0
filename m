@@ -2,169 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A1672B3979
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 22:26:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C90C2B39E5
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 23:32:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727531AbgKOV0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 16:26:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727425AbgKOV0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 16:26:37 -0500
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 530B4C0613D1
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 13:26:37 -0800 (PST)
-Received: by mail-lf1-x142.google.com with SMTP id d17so22324912lfq.10
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 13:26:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=kNRQyWFC1luLFZtivM+492qWfKb/Alm/CyFKDv0IwIk=;
-        b=qptWnQmU4BdfqZIMN1EBPAGW03FyLftg+ifITV0ESGN4n7AhriRM1w1TVgtPR0lR05
-         afpqmLFLJ8G14NcBgWEm5oe7vTPpMyB3UVMZOlet2IFOPOtdsak5Kn7gOlvSgPw1UNyo
-         dUhjlc4R80cfYiZYP1RgLWHQHmRgtwdrh+hqIEBESkC9BEv4jxVbPKtukwDXJo6SOCEH
-         UUTULfWZPglNqugPlDN7Cq5ctClZsQylncu+FwMHCTSIgam27SgxSD3TETzNFko3x2o/
-         b9D3R/NMrnJnzpwc5juP5wNv0lZXRWw2BHdpfRdOB8UvU0RIaT4H06H3uiUOWEnb/9LT
-         0hqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=kNRQyWFC1luLFZtivM+492qWfKb/Alm/CyFKDv0IwIk=;
-        b=lHTl9rUXIiMqg9+FNrE3ebwPSZdd7mike7h92Ac85AE/mSmQbTf7vXMPw6R5jYI0P0
-         Ea2truDk98TeDgipzebNvnp3AqJ6v4b2DvQPyU5xDDi0otX0KkdUJk1wQ8JEfAeguy1Z
-         wV4wEy0b4W7mBBeX8viaSHNfMmEvUQ51ce4Jw3ajt+pTUbY9IzxZwTkiKWUdCzXAqece
-         yA+krBD7aQ6PYSywkUZjyhVOfoib7iu7FcSZOjEpc9EAQK5CU/SkFyokzEcemQX30rKN
-         BijxvtF01YIjc9KaXjYRx+g7Zi7NthJLjmapKPln2QH4tkZszLUSM9FkxHO/9yW0hmRl
-         g+Zg==
-X-Gm-Message-State: AOAM532zcOtJrt2RQT5pV6cQjv+P5iXIBcYdbo0L2jIlO6mIUDkt9Sqa
-        s5/jvRtSEevEfWAsDnewXP0O7g==
-X-Google-Smtp-Source: ABdhPJxY8kd4liFU4EScdfDKyBLDV2sRnpoZjaBf0jexPmSErEm+e5arQidaIcDvvL94LcnItvQgXA==
-X-Received: by 2002:ac2:490f:: with SMTP id n15mr4654541lfi.158.1605475595659;
-        Sun, 15 Nov 2020 13:26:35 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id p204sm2482178lfa.168.2020.11.15.13.26.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2020 13:26:34 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org
-Subject: [PATCH] iio: accel: yamaha-yas: Add DT bindings
-Date:   Sun, 15 Nov 2020 22:26:33 +0100
-Message-Id: <20201115212633.626241-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
+        id S1728007AbgKOWcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 17:32:19 -0500
+Received: from mo4-p00-ob.smtp.rzone.de ([81.169.146.221]:15548 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728003AbgKOWcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 17:32:19 -0500
+X-Greylist: delayed 354 seconds by postgrey-1.27 at vger.kernel.org; Sun, 15 Nov 2020 17:32:18 EST
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1605479533;
+        s=strato-dkim-0002; d=fossekall.de;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=UXrol0Nf+O38g5VUogjJgV1Nuqd8cWJwbt/lFiKvDZI=;
+        b=OMJng3ditxjlxeFahYTNxlug/kVZxDNdNv7Tv3AG9aRaTSP9Bnsp2ZqNWEIvSobeGm
+        5sVmHDlG0150VcVRfTdbIcslMtVk6qR6z5t+m61GWSSSsCL4pJP+AFZ8zaMSwNKQ8Ddh
+        m5TSmmyQyJl3zPFlW6DNT7XtF2uWGNZwLddQOrIDaOWcgaFdrUxGSPTTw/FnAByzcBew
+        qRxTCxsRZ7OR2Zn58RvbZleClt2p53aSI0AEZ26jDjVzv9yw6jXw89jK2D+TGsnvsGsY
+        2UhocJMW4xbQ0JIZogviJOHBh8L6pCG4TsfwxB8WVUZZ9wJwaecr+Q1yT7oeE2FuXchN
+        Xiyw==
+X-RZG-AUTH: ":O2kGeEG7b/pS1EzgE2y7nF0STYsSLflpbjNKxx7cGrBOdI6BL9pkS3QW19mO7I+/JwRspuzJFZuRzQ=="
+X-RZG-CLASS-ID: mo00
+Received: from aerfugl
+        by smtp.strato.de (RZmta 47.3.4 AUTH)
+        with ESMTPSA id g02087wAFMQANyt
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Sun, 15 Nov 2020 23:26:10 +0100 (CET)
+Received: from koltrast.a98shuttle.de ([192.168.1.27] helo=a98shuttle.de)
+        by aerfugl with smtp (Exim 4.89)
+        (envelope-from <michael@a98shuttle.de>)
+        id 1keQTH-0003GW-9a; Sun, 15 Nov 2020 23:26:07 +0100
+Received: (nullmailer pid 2885986 invoked by uid 502);
+        Sun, 15 Nov 2020 22:26:07 -0000
+From:   Michael Klein <michael@fossekall.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Michael Klein <michael@fossekall.de>
+Subject: [PATCH] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add gpio-line-names
+Date:   Sun, 15 Nov 2020 23:24:25 +0100
+Message-Id: <20201115222425.2885427-1-michael@fossekall.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Yamaha YAS5xx
-magnetometers/compass sensors.
+Add gpio-line-names as documented in the Banana Pi wiki [1] and in the
+schematics [2].
 
-Cc: devicetree@vger.kernel.org
-Cc: phone-devel@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-I am still working on the actual driver for the magnetometer
-but why not send out the DT bindings for review, the
-hardware variants are easy to describe.
----
- .../bindings/iio/magnetometer/yamaha,yas.yaml | 80 +++++++++++++++++++
- 1 file changed, 80 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml
+[1]: http://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO#GPIO_PIN_define
+[2]: https://drive.google.com/file/d/0B4PAo2nW2KfnMW5sVkxWSW9qa28/view
 
-diff --git a/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml
-new file mode 100644
-index 000000000000..6fc4cfe4a417
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/magnetometer/yamaha,yas.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+Signed-off-by: Michael Klein <michael@fossekall.de>
+---
+ .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 64 +++++++++++++++++++
+ 1 file changed, 64 insertions(+)
+
+diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+index 4c6704e4c57e..b4ddfaf01b45 100644
+--- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
++++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+@@ -136,6 +136,70 @@ bluetooth {
+ 
+ };
+ 
++&pio {
++	gpio-line-names =
++		/* PA */
++		"UART2-TX", "UART2-RX", "UART2-RTS", "UART2-CTS",
++			"UART0-TXD", "UART0-RXD", "PWM1", "PA7-EINT7",
++		"PA8-EINT8", "PA9-EINT9", "PA10-EINT10", "TWI0-SCK",
++			"TWI0-SDA", "UART3-TX", "UART3-RX", "UART3-RTS",
++		"UART3-CTS", "PA17-EINT17", "TWI1-SCK", "TWI1-SDA",
++			"PA20-EINT20", "PA21-EINT21", "", "",
++		"", "", "", "", "", "", "", "",
 +
-+title: Yamaha YAS5xx magnetometer sensors
++		/* PB */
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
 +
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
++		/* PC */
++		"SPI0-MOSI", "SPI0-MISO", "SPI0-CLK", "SPI0-CS", "PC4", "", "",
++			"PC7",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
 +
-+description:
-+  The Yamaha YAS5xx magnetometers is a line of 3-axis magnetometers
-+  first introduced by Yamaha in 2006 with the YAS529. Over the years
-+  this magnetometer has been minatyrized and appeared in a number of
-+  different variants.
++		/* PD */
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "CSI-PWR-EN", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
 +
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - yamaha,yas529
-+          - yamaha,yas530
-+          - yamaha,yas532
-+          - yamaha,yas533
-+          - yamaha,yas535
-+          - yamaha,yas536
-+          - yamaha,yas537
-+          - yamaha,yas539
++		/* PE */
++		"CSI0-PCLK", "CSI0-MCLK", "CSI0-HSYNC", "CSI0-VSYNC",
++			"CSI0-D0", "CSI0-D1", "CSI0-D2", "CSI0-D3",
++		"CSI0-D4", "CSI0-D5", "CSI0-D6", "CSI0-D7",
++			"CSI0-SCK", "CSI0-SDA", "CSI0-RST#", "CSI0-PWDN",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
 +
-+  reg:
-+    maxItems: 1
++		/* PF */
++		"SDC0-D1", "SDC0-D0", "SDC0-CLK", "SDC0-CMD", "SDC0-D3",
++			"SDC0-D2", "SDC0-DET", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
 +
-+  reset-gpios:
-+    maxItems: 1
-+    description: The YAS5xx sensors has a RSTN pin used to reset
-+      the logic inside the sensor. This GPIO line should connect
-+      to that pin and be marked as GPIO_ACTIVE_LOW.
++		/* PG */
++		"WL-SDIO-CLK", "WL-SDIO-CMD", "WL-SDIO-D0", "WL-SDIO-D1",
++			"WL-SDIO-D2", "WL-SDIO-D3", "UART1-TX", "UART1-RX",
++		"UART1-RTS", "UART1-CTS", "WL-WAKE-AP", "BT-WAKE-AP",
++			"BT-RST-N", "AP-WAKE-BT", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
 +
-+  interrupts:
-+    maxItems: 1
-+    description: Interrupt for INT pin for variants that support
-+      interrupt generation. This polarity, whether the interrupt
-+      is active on the rising or the falling edge, is configurable
-+      in the hardware.
++&r_pio {
++	gpio-line-names =
++		/* PL */
++		"", "CPUX-SET", "PL2-S-EINT2", "POWER-KEY", "PL4-S-EINT4",
++			"VCC-IO-EN", "USB0-ID", "WIFI-EN",
++		"PWR-STB", "PWR-DRAM", "PWR-LED", "IR-RX", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
 +
-+  vdd-supply:
-+    description: An optional regulator providing core power supply
-+      on the VDD pin, typically 1.8 V or 3.0 V.
-+
-+  iovdd-supply:
-+    description: An optional regulator providing I/O power supply
-+      for the I2C interface on the IOVDD pin, typically 1.8 V.
-+      This is not present on all variants of the component, some
-+      have only the VDD voltage.
-+
-+  mount-matrix:
-+    description: An optional 3x3 mounting rotation matrix.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        magnetometer@2e {
-+          compatible = "yamaha,yas530";
-+          reg = <0x2e>;
-+          vdd-supply = <&ldo1_reg>;
-+          iovdd-supply = <&ldo2_reg>;
-+          reset-gpios = <&gpio6 12 GPIO_ACTIVE_LOW>;
-+        };
-+    };
+ &usb_otg {
+ 	dr_mode = "otg";
+ 	status = "okay";
 -- 
-2.26.2
+2.28.0
 
