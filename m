@@ -2,237 +2,393 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C4D2B37E8
-	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 19:38:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF8C22B380D
+	for <lists+devicetree@lfdr.de>; Sun, 15 Nov 2020 19:52:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727105AbgKOShQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 13:37:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59294 "EHLO
+        id S1727451AbgKOSvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 13:51:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726741AbgKOShP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 13:37:15 -0500
-X-Greylist: delayed 1470 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 15 Nov 2020 10:37:15 PST
-Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C19C0613D1
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 10:37:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
-         s=the; h=Content-Type:MIME-Version:Message-ID:Subject:To:From:Date:Sender:
-        Reply-To:Cc:Content-Transfer-Encoding:Content-ID:Content-Description:
-        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=wisLx0HcXDpOlNdLfdL+yoTgFgj72O61RgzyIAG8wGM=; b=dy8tMnGNtuXH6mJMSUCWu/ZxSD
-        aKfnFL6th/pJYBY7LddhA4aKFDY85u1uFHKcDMH8yCU6UUNjRM5hrgUnt3Su3YsCwOW+sLPtJpep3
-        7fS6y43n1+2oPijYMVIpL4h4nFe59Lw//MR5EJszlgVKcttFLxORAqP3kGrM5n/ykEz6YTCYcctv8
-        bDpbD5Q5ISXEjBCk+A++XbdSn5nOHDIaj39mIv9SvednFah5yb+hBVfg4ProPdO1xpp2+9Wg28Fad
-        UCHz6ESCGHckaSlNtB7gZ+CIlAoygPXRU/RdJQfmaws92q2wS3sjnDl/ftP15e0pFAGiINgAUAOGK
-        BBIoNkvQ==;
-Received: from noodles by the.earth.li with local (Exim 4.92)
-        (envelope-from <noodles@earth.li>)
-        id 1keMW2-0007q8-AS; Sun, 15 Nov 2020 18:12:42 +0000
-Date:   Sun, 15 Nov 2020 18:12:42 +0000
-From:   Jonathan McDowell <noodles@earth.li>
-To:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: dmaengine: Convert Qualcomm ADM bindings to yaml
-Message-ID: <20201115181242.GA30004@earth.li>
+        with ESMTP id S1727449AbgKOSvt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 13:51:49 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1069CC0613D1
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 10:51:49 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id r17so17358232ljg.5
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 10:51:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uR/XhDoVeyIzrRhErdUqxajySVHEj7lVT5My0U++OY4=;
+        b=npyf9Zw2ueN7vYFbaM2+RgiFURnYjx2mm/GV9/xeluQ+0Ozg9fXet7Sxikoj1Lpj+T
+         CxS9H65i/Wtb2+jSrWbNtNptAH2fsYWVU10dQyWoHvW3kRptGCV0PoQSwhv7SbXbqfMP
+         LEDe3+eIa52nvpB4cV/+scWMs9894/kqYXx5tQ6ED44sx4b6H1PNx8TpRu4L6mzTcU8J
+         Q9rJ0R/oywRRK+vwFlFjKj87XGQ22H0+5mZ0X1pJZd0yB9ACLruTnRggXDj/YZEAaqxu
+         9SYt+jRb9hXMGE/x5YKYxDx1IFF3cmTYnwA8y0bPJ270URl+2I41m0vUEApeNePPKDw/
+         tUQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=uR/XhDoVeyIzrRhErdUqxajySVHEj7lVT5My0U++OY4=;
+        b=NzGA7U0XFX4i1K3XhiGo333YDBLWD6NFGfusVhCL7te0OaXfdTAJ9ri5ku5XbMX2Es
+         BjfD1oaJ83sGjvJH7d0HuRqvXgLeehcUNQn/JrsiBETGDFianNQP4RJXS8FL6EAf42fz
+         a4e7meyTCXCg1ryYWAltE7ulpcOX51h75i1OL+m7+khocQ10qahJFQM+UFhQKpdmw/O3
+         OiR1LLUdrxB4rSPe9gOeSK3W6hbDhbCT3wcjeOCB4Yaj4M6tuignzAa2wCbHW/Extw5E
+         yQMSodWnxmB80ASeu3CBhQt6q6cUMTTpZVqLaBRCq60IN+5U8RNqAe1hCoOl1/UCsWHy
+         VIeQ==
+X-Gm-Message-State: AOAM532/Pq1RNQwJOEVDeoDI4xbBjjo0PfdKUFUozMcXGk1mQImTsgx4
+        kmcIh4zqEGrCJ8tRcg5rzJwQB33ULYudqA==
+X-Google-Smtp-Source: ABdhPJzFJB0lIOYQ4ShMSG/XEfblRg9lLueZHgv3HXFH3X9KhzJ5AwdJmzydXHF9jShT61JCxra0Tw==
+X-Received: by 2002:a2e:5705:: with SMTP id l5mr4927051ljb.93.1605466307478;
+        Sun, 15 Nov 2020 10:51:47 -0800 (PST)
+Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
+        by smtp.gmail.com with ESMTPSA id v4sm1503882ljg.84.2020.11.15.10.51.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2020 10:51:46 -0800 (PST)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sean Paul <sean@poorly.run>, Sam Ravnborg <sam@ravnborg.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: display: mcde: Convert to YAML schema
+Date:   Sun, 15 Nov 2020 19:51:45 +0100
+Message-Id: <20201115185145.566772-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Converts the device tree bindings for the Qualcomm Application Data
-Mover (ADM) DMA controller over to YAML schemas.
+This moves the MCDE bindings over to using the YAML schema
+to describe the ST-Ericsson MCDE display controller,
+making use of the generic DSI controller schema.
 
-Signed-off-by: Jonathan McDowell <noodles@earth.li>
+In the process we correct an error in the old text bindings:
+the clocks for the SDI host controllers were specified as
+part of the main MCDE component while they should be
+specified in the DSI host controller subnodes. This was
+a leftover from an earlier iteration of the first patch
+series adding the MCDE.
+
+We also add the "port" node, we will use this when adding
+LCD panels using the direct parallel interface DPI instead
+of DSI.
+
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- .../devicetree/bindings/dma/qcom,adm.yaml     | 102 ++++++++++++++++++
- .../devicetree/bindings/dma/qcom_adm.txt      |  61 -----------
- 2 files changed, 102 insertions(+), 61 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/dma/qcom,adm.yaml
- delete mode 100644 Documentation/devicetree/bindings/dma/qcom_adm.txt
+ChangeLog v2->v3:
+- Add resets to the bindings for future-proofing, set
+  additionalProperties: false
+- Extend commit message to explain the the old bindings
+  were incorrect.
+ChangeLog v1->v2:
+- Cut the description on the interrupts.
+- Drop maxItems: 3 on clocks and clock-names: implicit from
+  the number of listed items.
+- Tag the DSI ports with unevaluatedProperties: false
+- Tag the MCDE as such with additionalProperties: true
+- It was a bit hard to test this because of the code base
+  being out of phase with the validation tools but it seems
+  to check out.
+---
+ .../devicetree/bindings/display/ste,mcde.txt  | 104 -----------
+ .../devicetree/bindings/display/ste,mcde.yaml | 169 ++++++++++++++++++
+ 2 files changed, 169 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/ste,mcde.txt
+ create mode 100644 Documentation/devicetree/bindings/display/ste,mcde.yaml
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,adm.yaml b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
+diff --git a/Documentation/devicetree/bindings/display/ste,mcde.txt b/Documentation/devicetree/bindings/display/ste,mcde.txt
+deleted file mode 100644
+index 4c33c692bd5f..000000000000
+--- a/Documentation/devicetree/bindings/display/ste,mcde.txt
++++ /dev/null
+@@ -1,104 +0,0 @@
+-ST-Ericsson Multi Channel Display Engine MCDE
+-
+-The ST-Ericsson MCDE is a display controller with support for compositing
+-and displaying several channels memory resident graphics data on DSI or
+-LCD displays or bridges. It is used in the ST-Ericsson U8500 platform.
+-
+-Required properties:
+-
+-- compatible: must be:
+-  "ste,mcde"
+-- reg: register base for the main MCDE control registers, should be
+-  0x1000 in size
+-- interrupts: the interrupt line for the MCDE
+-- epod-supply: a phandle to the EPOD regulator
+-- vana-supply: a phandle to the analog voltage regulator
+-- clocks: an array of the MCDE clocks in this strict order:
+-  MCDECLK (main MCDE clock), LCDCLK (LCD clock), PLLDSI
+-  (HDMI clock), DSI0ESCLK (DSI0 energy save clock),
+-  DSI1ESCLK (DSI1 energy save clock), DSI2ESCLK (DSI2 energy
+-  save clock)
+-- clock-names: must be the following array:
+-  "mcde", "lcd", "hdmi"
+-  to match the required clock inputs above.
+-- #address-cells: should be <1> (for the DSI hosts that will be children)
+-- #size-cells: should be <1> (for the DSI hosts that will be children)
+-- ranges: this should always be stated
+-
+-Required subnodes:
+-
+-The devicetree must specify subnodes for the DSI host adapters.
+-These must have the following characteristics:
+-
+-- compatible: must be:
+-  "ste,mcde-dsi"
+-- reg: must specify the register range for the DSI host
+-- vana-supply: phandle to the VANA voltage regulator
+-- clocks: phandles to the high speed and low power (energy save) clocks
+-  the high speed clock is not present on the third (dsi2) block, so it
+-  should only have the "lp" clock
+-- clock-names: "hs" for the high speed clock and "lp" for the low power
+-  (energy save) clock
+-- #address-cells: should be <1>
+-- #size-cells: should be <0>
+-
+-Display panels and bridges will appear as children on the DSI hosts, and
+-the displays are connected to the DSI hosts using the common binding
+-for video transmitter interfaces; see
+-Documentation/devicetree/bindings/media/video-interfaces.txt
+-
+-If a DSI host is unused (not connected) it will have no children defined.
+-
+-Example:
+-
+-mcde@a0350000 {
+-	compatible = "ste,mcde";
+-	reg = <0xa0350000 0x1000>;
+-	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+-	epod-supply = <&db8500_b2r2_mcde_reg>;
+-	vana-supply = <&ab8500_ldo_ana_reg>;
+-	clocks = <&prcmu_clk PRCMU_MCDECLK>, /* Main MCDE clock */
+-		 <&prcmu_clk PRCMU_LCDCLK>, /* LCD clock */
+-		 <&prcmu_clk PRCMU_PLLDSI>; /* HDMI clock */
+-	clock-names = "mcde", "lcd", "hdmi";
+-	#address-cells = <1>;
+-	#size-cells = <1>;
+-	ranges;
+-
+-	dsi0: dsi@a0351000 {
+-		compatible = "ste,mcde-dsi";
+-		reg = <0xa0351000 0x1000>;
+-		vana-supply = <&ab8500_ldo_ana_reg>;
+-		clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
+-		clock-names = "hs", "lp";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		panel {
+-			compatible = "samsung,s6d16d0";
+-			reg = <0>;
+-			vdd1-supply = <&ab8500_ldo_aux1_reg>;
+-			reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
+-		};
+-
+-	};
+-	dsi1: dsi@a0352000 {
+-		compatible = "ste,mcde-dsi";
+-		reg = <0xa0352000 0x1000>;
+-		vana-supply = <&ab8500_ldo_ana_reg>;
+-		clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
+-		clock-names = "hs", "lp";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+-	dsi2: dsi@a0353000 {
+-		compatible = "ste,mcde-dsi";
+-		reg = <0xa0353000 0x1000>;
+-		vana-supply = <&ab8500_ldo_ana_reg>;
+-		/* This DSI port only has the Low Power / Energy Save clock */
+-		clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
+-		clock-names = "lp";
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/display/ste,mcde.yaml b/Documentation/devicetree/bindings/display/ste,mcde.yaml
 new file mode 100644
-index 000000000000..353d85d3326d
+index 000000000000..830c9b4091cc
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/qcom,adm.yaml
-@@ -0,0 +1,102 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++++ b/Documentation/devicetree/bindings/display/ste,mcde.yaml
+@@ -0,0 +1,169 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/dma/qcom,adm.yaml#
++$id: http://devicetree.org/schemas/display/ste,mcde.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: QCOM ADM DMA Controller
++title: ST-Ericsson Multi Channel Display Engine MCDE
 +
 +maintainers:
-+  - Jonathan McDowell <noodles@earth.li>
-+
-+description: |
-+  QCOM Application Data Mover (ADM) DMA controller found in the MSM8x60
-+  and IPQ/APQ8064 platforms.
++  - Linus Walleij <linus.walleij@linaro.org>
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - const: qcom,adm
++    const: ste,mcde
 +
 +  reg:
 +    maxItems: 1
-+    description:
-+      Address range for DMA registers
 +
 +  interrupts:
 +    maxItems: 1
-+    description:
-+      Should contain one interrupt shared by all channels
-+
-+  "#dma-cells":
-+    const: 2
-+    description:
-+      First cell denotes the channel number.  Second cell denotes CRCI
-+      (client rate control interface) flow control assignment. If no
-+      flow control is required, use 0.
 +
 +  clocks:
-+    maxItems: 2
-+    description:
-+      Should contain the core clock and interface clock.
++    description: an array of the MCDE clocks
++    items:
++      - description: MCDECLK (main MCDE clock)
++      - description: LCDCLK (LCD clock)
++      - description: PLLDSI (HDMI clock)
 +
 +  clock-names:
 +    items:
-+      - const: core
-+      - const: iface
++      - const: mcde
++      - const: lcd
++      - const: hdmi
 +
 +  resets:
-+    maxItems: 4
-+    description:
-+      Must contain an entry for each entry in reset names.
-+
-+  reset-names:
-+    items:
-+      - const: clk
-+      - const: c0
-+      - const: c1
-+      - const: c2
-+
-+  qcom,ee:
 +    maxItems: 1
++
++  epod-supply:
++    description: a phandle to the EPOD regulator
++
++  vana-supply:
++    description: a phandle to the analog voltage regulator
++
++  port:
++    type: object
 +    description:
-+      Indicates the security domain identifier used in the secure world.
-+    $ref: /schemas/types.yaml#/definitions/uint32
++      A DPI port node with endpoint definitions as defined in
++      Documentation/devicetree/bindings/media/video-interfaces.txt
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
++  ranges: true
++
++patternProperties:
++  "^dsi@[0-9a-f]+$":
++    description: subnodes for the three DSI host adapters
++    type: object
++    allOf:
++      - $ref: dsi-controller.yaml#
++    properties:
++      compatible:
++        const: ste,mcde-dsi
++
++      reg:
++        maxItems: 1
++
++      vana-supply:
++        description: a phandle to the analog voltage regulator
++
++      clocks:
++        description: phandles to the high speed and low power (energy save) clocks
++          the high speed clock is not present on the third (dsi2) block, so it
++          should only have the "lp" clock
++        minItems: 1
++        maxItems: 2
++
++      clock-names:
++        oneOf:
++          - items:
++              - const: hs
++              - const: lp
++          - items:
++              - const: lp
++
++    required:
++      - compatible
++      - reg
++      - vana-supply
++      - clocks
++      - clock-names
++
++    unevaluatedProperties: false
 +
 +required:
-+  - "#dma-cells"
 +  - compatible
 +  - reg
++  - interrupts
 +  - clocks
 +  - clock-names
-+  - interrupts
-+  - qcom,ee
-+  - resets
-+  - reset-names
++  - epod-supply
++  - vana-supply
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,gcc-ipq806x.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/reset/qcom,gcc-ipq806x.h>
++    #include <dt-bindings/mfd/dbx500-prcmu.h>
++    #include <dt-bindings/gpio/gpio.h>
 +
-+    adm_dma: dma@18300000 {
-+             compatible = "qcom,adm";
-+             reg = <0x18300000 0x100000>;
-+             interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
-+             #dma-cells = <2>;
++    mcde@a0350000 {
++      compatible = "ste,mcde";
++      reg = <0xa0350000 0x1000>;
++      interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
++      epod-supply = <&db8500_b2r2_mcde_reg>;
++      vana-supply = <&ab8500_ldo_ana_reg>;
++      clocks = <&prcmu_clk PRCMU_MCDECLK>,
++               <&prcmu_clk PRCMU_LCDCLK>,
++               <&prcmu_clk PRCMU_PLLDSI>;
++      clock-names = "mcde", "lcd", "hdmi";
++      #address-cells = <1>;
++      #size-cells = <1>;
++      ranges;
 +
-+             clocks = <&gcc ADM0_CLK>, <&gcc ADM0_PBUS_CLK>;
-+             clock-names = "core", "iface";
++      dsi0: dsi@a0351000 {
++        compatible = "ste,mcde-dsi";
++        reg = <0xa0351000 0x1000>;
++        vana-supply = <&ab8500_ldo_ana_reg>;
++        clocks = <&prcmu_clk PRCMU_DSI0CLK>, <&prcmu_clk PRCMU_DSI0ESCCLK>;
++        clock-names = "hs", "lp";
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+             resets = <&gcc ADM0_RESET>,
-+                      <&gcc ADM0_C0_RESET>,
-+                      <&gcc ADM0_C1_RESET>,
-+                      <&gcc ADM0_C2_RESET>;
-+             reset-names = "clk", "c0", "c1", "c2";
-+             qcom,ee = <0>;
++        panel@0 {
++          compatible = "samsung,s6d16d0";
++          reg = <0>;
++          vdd1-supply = <&ab8500_ldo_aux1_reg>;
++          reset-gpios = <&gpio2 1 GPIO_ACTIVE_LOW>;
++        };
++      };
++
++      dsi1: dsi@a0352000 {
++        compatible = "ste,mcde-dsi";
++        reg = <0xa0352000 0x1000>;
++        vana-supply = <&ab8500_ldo_ana_reg>;
++        clocks = <&prcmu_clk PRCMU_DSI1CLK>, <&prcmu_clk PRCMU_DSI1ESCCLK>;
++        clock-names = "hs", "lp";
++        #address-cells = <1>;
++        #size-cells = <0>;
++      };
++
++      dsi2: dsi@a0353000 {
++        compatible = "ste,mcde-dsi";
++        reg = <0xa0353000 0x1000>;
++        vana-supply = <&ab8500_ldo_ana_reg>;
++        /* This DSI port only has the Low Power / Energy Save clock */
++        clocks = <&prcmu_clk PRCMU_DSI2ESCCLK>;
++        clock-names = "lp";
++        #address-cells = <1>;
++        #size-cells = <0>;
++      };
 +    };
 +
 +...
-diff --git a/Documentation/devicetree/bindings/dma/qcom_adm.txt b/Documentation/devicetree/bindings/dma/qcom_adm.txt
-deleted file mode 100644
-index 9d3b2f917b7b..000000000000
---- a/Documentation/devicetree/bindings/dma/qcom_adm.txt
-+++ /dev/null
-@@ -1,61 +0,0 @@
--QCOM ADM DMA Controller
--
--Required properties:
--- compatible: must contain "qcom,adm" for IPQ/APQ8064 and MSM8960
--- reg: Address range for DMA registers
--- interrupts: Should contain one interrupt shared by all channels
--- #dma-cells: must be <2>.  First cell denotes the channel number.  Second cell
--  denotes CRCI (client rate control interface) flow control assignment.
--- clocks: Should contain the core clock and interface clock.
--- clock-names: Must contain "core" for the core clock and "iface" for the
--  interface clock.
--- resets: Must contain an entry for each entry in reset names.
--- reset-names: Must include the following entries:
--  - clk
--  - c0
--  - c1
--  - c2
--- qcom,ee: indicates the security domain identifier used in the secure world.
--
--Example:
--		adm_dma: dma@18300000 {
--			compatible = "qcom,adm";
--			reg = <0x18300000 0x100000>;
--			interrupts = <0 170 0>;
--			#dma-cells = <2>;
--
--			clocks = <&gcc ADM0_CLK>, <&gcc ADM0_PBUS_CLK>;
--			clock-names = "core", "iface";
--
--			resets = <&gcc ADM0_RESET>,
--				<&gcc ADM0_C0_RESET>,
--				<&gcc ADM0_C1_RESET>,
--				<&gcc ADM0_C2_RESET>;
--			reset-names = "clk", "c0", "c1", "c2";
--			qcom,ee = <0>;
--		};
--
--DMA clients must use the format descripted in the dma.txt file, using a three
--cell specifier for each channel.
--
--Each dmas request consists of 3 cells:
-- 1. phandle pointing to the DMA controller
-- 2. channel number
-- 3. CRCI assignment, if applicable.  If no CRCI flow control is required, use 0.
--    The CRCI is used for flow control.  It identifies the peripheral device that
--    is the source/destination for the transferred data.
--
--Example:
--
--	spi4: spi@1a280000 {
--		spi-max-frequency = <50000000>;
--
--		pinctrl-0 = <&spi_pins>;
--		pinctrl-names = "default";
--
--		cs-gpios = <&qcom_pinmux 20 0>;
--
--		dmas = <&adm_dma 6 9>,
--			<&adm_dma 5 10>;
--		dma-names = "rx", "tx";
--	};
 -- 
-2.29.2
+2.26.2
 
