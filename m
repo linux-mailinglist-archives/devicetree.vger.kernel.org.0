@@ -2,133 +2,1695 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E03B2B494E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:31:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EFAE2B4959
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:31:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730179AbgKPP3X convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Nov 2020 10:29:23 -0500
-Received: from mail-oi1-f172.google.com ([209.85.167.172]:44810 "EHLO
-        mail-oi1-f172.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729729AbgKPP3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:29:22 -0500
-Received: by mail-oi1-f172.google.com with SMTP id t16so19136286oie.11;
-        Mon, 16 Nov 2020 07:29:19 -0800 (PST)
+        id S1728072AbgKPPbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 10:31:12 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:42297 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730182AbgKPPbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:31:11 -0500
+Received: by mail-ot1-f65.google.com with SMTP id h16so12258928otq.9;
+        Mon, 16 Nov 2020 07:31:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=MVEUvpfHGMviV5Aq0lqG5wRuknEEDNTVDhI8XROvTiE=;
-        b=OuCZI9loRxEEKnx3AkyvCrpmUXbkfp4pC80NeLB2T/D6jyw/GvAKd1Lo7gqfmGxNlW
-         ZhQxHQBX4yvkcPo4hHQj5rFGYGY9QB1tRU7E5dOaP6wYQuIQbn3X6CyW3BBwJabXhadg
-         oum8r8HNGCPw4nePstCfzZ2AsSxf6xTVc4ENk7F9hp9OSq4iaTw9UFy6M/n+T9NUXuCa
-         4aus89YXCqWsEcToXmrkornZzFJsabl3llc6NhAlHVUkBEfq8Jj1eB8gitS1+zQup//A
-         wkZ+mu4QqORjuSvPos6UviIu46Lg5OXNVr9K2FaBCjqOScuwn7HlVCgNql2YxYFESKML
-         8Yyw==
-X-Gm-Message-State: AOAM530J0HRETYPudbQh+qkUEETveXqPDk3IgeOpVEfTHHn+9JIfiCuN
-        mstgeJ9LFI+VqGuYHedgUA==
-X-Google-Smtp-Source: ABdhPJwg9iPIZAVtFg1ADdmn8TzFMWYWw0jXsaXKAMu7UcYjcVmaDWuyzA2JgmIqp+J34J1fZ8JEng==
-X-Received: by 2002:aca:5dc5:: with SMTP id r188mr15061oib.120.1605540559244;
-        Mon, 16 Nov 2020 07:29:19 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=34IimZR4GF9p0CFNOBfgaRuCfUfgjPMfTB6VlvOngK0=;
+        b=tTVMnayIzNqmjv10F/LQ4JuK6n+juN9RhiiP26qlqMbhO9jihTHConjkcoWVuZg+PR
+         J8o7L8NsUBoEqd3Wtkv/YKL7U7B8jl2TPedUgYvSZ5/3NnufgpzNVuZDPYT4058JC85R
+         ekEltLwYw5qiGFZAgVY0gl4Hcsi/RKgBFFNEgsTkZg2vZyoNaQVSaUT2PfRJExC2tSUj
+         ypY7sI3ySHT6HEAfGyQfcgjH73rXH6++lgAf/n/Uix1fPDK8nqrjtIESvk3hJ9Pf3jb1
+         V/rrX0w2yXR2IcRAYWkKs3uNqM4TOd230lMaN0OYRHf0dqzGfnmjlSLFb1lEdN5lR0zr
+         8ZeQ==
+X-Gm-Message-State: AOAM531tW2GicegAf0QiG+qGwoWx0f1qDz4r5VN1dti0J8KZfiaY0vQH
+        xBrLaLffT6f8Ejg72FWpZA==
+X-Google-Smtp-Source: ABdhPJxvgeadHhpBzmkLkD0Ivtal2mLDloDYIexEgvqi/opMocjV0HY8c0rjRaFnbcDFVRvNOsxYDA==
+X-Received: by 2002:a05:6830:2368:: with SMTP id r8mr11167749oth.75.1605540668410;
+        Mon, 16 Nov 2020 07:31:08 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w79sm4757641oia.28.2020.11.16.07.29.18
+        by smtp.gmail.com with ESMTPSA id y62sm4768899oia.23.2020.11.16.07.31.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 07:29:18 -0800 (PST)
-Received: (nullmailer pid 1681485 invoked by uid 1000);
-        Mon, 16 Nov 2020 15:29:17 -0000
-Date:   Mon, 16 Nov 2020 09:29:17 -0600
+        Mon, 16 Nov 2020 07:31:07 -0800 (PST)
+Received: (nullmailer pid 1683977 invoked by uid 1000);
+        Mon, 16 Nov 2020 15:31:06 -0000
+Date:   Mon, 16 Nov 2020 09:31:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Ben Levinsky <ben.levinsky@xilinx.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        mathieu.poirier@linaro.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v23 4/5] dt-bindings: remoteproc: Add documentation for
- ZynqMP R5 rproc bindings
-Message-ID: <20201116152917.GA1681195@bogus>
-References: <20201114164921.14573-1-ben.levinsky@xilinx.com>
- <20201114164921.14573-5-ben.levinsky@xilinx.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Vinod Koul <vkoul@kernel.org>, linuxarm@huawei.com,
+        mauro.chehab@huawei.com, John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alex Dewar <alex.dewar90@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Yu Chen <chenyu56@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/8] phy: phy-hi3670-usb3: move driver from staging into
+ phy
+Message-ID: <20201116153106.GA1682049@bogus>
+References: <cover.1605530560.git.mchehab+huawei@kernel.org>
+ <420faf39bb03d07f8823b03bc55a429e975e23a0.1605530560.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201114164921.14573-5-ben.levinsky@xilinx.com>
+In-Reply-To: <420faf39bb03d07f8823b03bc55a429e975e23a0.1605530560.git.mchehab+huawei@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 14 Nov 2020 08:49:20 -0800, Ben Levinsky wrote:
-> Add binding for ZynqMP R5 OpenAMP.
+On Mon, Nov 16, 2020 at 01:59:27PM +0100, Mauro Carvalho Chehab wrote:
+> The phy USB3 driver for Hisilicon 970 (hi3670) is ready
+> for mainstream. Mode it from staging into the main driver's
+
+s/Mode/Move/
+
+> phy/ directory.
 > 
-> Represent the RPU domain resources in one device node. Each RPU
-> processor is a subnode of the top RPU domain node.
-> 
-> Signed-off-by: Jason Wu <j.wu@xilinx.com>
-> Signed-off-by: Wendy Liang <jliang@xilinx.com>
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> Signed-off-by: Ben Levinsky <ben.levinsky@xilinx.com>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
-> - Update grammar and capitalization
-> - Align with TI R5 Remoteproc driver as follows:
->   > Change TCM node to be generic mmio sram node
->   > Reword properties to align with TI R5 driver
->   > Change structure of Yaml parsing to mirror TI R5 driver
-> ---
->  .../xilinx,zynqmp-r5-remoteproc.yaml          | 238 ++++++++++++++++++
->  1 file changed, 238 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+>  .../bindings/phy/phy-hi3670-usb3.yaml         |  72 ++
+>  MAINTAINERS                                   |   9 +-
+>  drivers/phy/hisilicon/Kconfig                 |  10 +
+>  drivers/phy/hisilicon/Makefile                |   1 +
+>  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 671 ++++++++++++++++++
+>  drivers/staging/hikey9xx/Kconfig              |  11 -
+>  drivers/staging/hikey9xx/Makefile             |   2 -
+>  drivers/staging/hikey9xx/phy-hi3670-usb3.c    | 671 ------------------
+>  drivers/staging/hikey9xx/phy-hi3670-usb3.yaml |  72 --
+
+I assume this is only a move? Use '-M' option.
+
+>  9 files changed, 762 insertions(+), 757 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml
+>  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
+>  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.c
+>  delete mode 100644 drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
 > 
-
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dts:50.7-34: Warning (reg_format): /r5fss@ff9a0000:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dts:13.8-15: Warning (ranges_format): /zynqmp_ipi1:ranges: empty "ranges" property but its #address-cells (1) differs from / (2)
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dts:49.7-14: Warning (ranges_format): /r5fss@ff9a0000:ranges: empty "ranges" property but its #address-cells (1) differs from / (2)
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dts:6.18-43.7: Warning (avoid_default_addr_size): /zynqmp_ipi1: Relying on default #address-cells value
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dts:6.18-43.7: Warning (avoid_default_addr_size): /zynqmp_ipi1: Relying on default #size-cells value
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dts:45.20-82.7: Warning (avoid_default_addr_size): /r5fss@ff9a0000: Relying on default #address-cells value
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dts:45.20-82.7: Warning (avoid_default_addr_size): /r5fss@ff9a0000: Relying on default #size-cells value
-Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: Warning (unique_unit_address): Failed prerequisite 'avoid_default_addr_size'
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: /: 'compatible' is a required property
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/root-node.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: /: 'model' is a required property
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/root-node.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: /: '#address-cells' is a required property
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/root-node.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: /: '#size-cells' is a required property
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/root-node.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: r5fss@ff9a0000: 'xilinx,cluster-mode' does not match any of the regexes: '^#.*', '^(at25|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio|gpmc|hdmi|i2c-gpio),.*', '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*', '^(pinctrl-single|#pinctrl-single|PowerPC),.*', '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*', '^(simple-audio-card|st-plgpio|st-spics|ts),.*', '^70mai,.*', '^GEFanuc,.*', '^ORCL,.*', '^SUNW,.*', '^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$', '^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abilis,.*', '^abracon,.*', '^acer,.*', '^acme,.*', '^actions,.*', '^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*', '^adaptrum,.*', '^adh,.*', '^adi,.*', '^advantech,.*', '^aeroflexgaisler,.*', '^al,.*', '^allegro,.*', '^allo,.*', '^allwinner,.*', '^alphascale,.*', '^alps,.*', '^altr,.*', '^amarula,.*', '^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*', '^andestech,.*', '^anvo,.*', '^apm,.*', '^aptina,.*', '^arasan,.*', '^archermind,.*', '^arctic,.*', '^arcx,.*', '^aries,.*', '^arm,.*', '^armadeus,.*', '^arrow,.*', '^artesyn,.*', '^asahi-kasei,.*', '^asc,.*', '^aspeed,.*', '^asus,.*', '^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*', '^avia,.*', '^avic,.*', '^avnet,.*', '^awinic,.*', '^axentia,.*', '^axis,.*', '^azoteq,.*', '^azw,.*', '^baikal,.*', '^bananapi,.*', '^beacon,.*', '^beagle,.*', '^bhf,.*', '^bitmain,.*', '^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*', '^bticino,.*', '^buffalo,.*', '^bur,.*', '^calaosystems,.*', '^calxeda,.*', '^caninos,.*', '^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*', '^cdns,.*', '^cdtech,.*', '^cellwise,.*', '^ceva,.*', '^checkpoint,.*', '^chefree,.*', '^chipidea,.*', '^chipone,.*', '^chipspark,.*', '^chrontel,.*', '^chrp,.*', '^chunghwa,.*', '^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*', '^compulab,.*', '^coreriver,.*', '^corpro,.*', '^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*', '^crystalfontz,.*', '^csky,.*', '^csq,.*', '^cubietech,.*', '^cypress,.*', '^cznic,.*', '^dallas,.*', '^dataimage,.*', '^davicom,.*', '^dell,.*', '^delta,.*', '^denx,.*', '^devantech,.*', '^dfi,.*', '^dh,.*', '^difrnce,.*', '^digi,.*', '^digilent,.*', '^dioo,.*', '^dlc,.*', '^dlg,.*', '^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*', '^dptechnics,.*', '^dragino,.*', '^dserve,.*', '^dynaimage,.*', '^ea,.*', '^ebs-systart,.*', '^ebv,.*', '^eckelmann,.*', '^edt,.*', '^eeti,.*', '^einfochips,.*', '^elan,.*', '^elgin,.*', '^elida,.*', '^embest,.*', '^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*', '^endless,.*', '^ene,.*', '^energymicro,.*', '^engicam,.*', '^epcos,.*', '^epfl,.*', '^epson,.*', '^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*', '^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*', '^ezchip,.*', '^facebook,.*', '^fairphone,.*', '^faraday,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*', '^firefly,.*', '^focaltech,.*', '^frida,.*', '^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^gardena,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*', '^gef,.*', '^gemei,.*', '^geniatech,.*', '^giantec,.*', '^giantplus,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*', '^goodix,.*', '^google,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*', '^gw,.*', '^hannstar,.*', '^haoyu,.*', '^hardkernel,.*', '^hideep,.*', '^himax,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*', '^holtek,.*', '^honeywell,.*', '^hoperun,.*', '^hp,.*', '^hsg,.*', '^hugsun,.*', '^hwacom,.*', '^hydis,.*', '^hyundai,.*', '^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^ifi,.*', '^ilitek,.*', '^img,.*', '^imi,.*', '^incircuit,.*', '^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*', '^innolux,.*', '^inside-secure,.*', '^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*', '^inversepath,.*', '^iom,.*', '^isee,.*', '^isil,.*', '^issi,.*', '^ite,.*', '^itead,.*', '^ivo,.*', '^iwave,.*', '^jdi,.*', '^jedec,.*', '^jesurun,.*', '^jianda,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*', '^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*', '^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^koe,.*', '^kontron,.*', '^kosagi,.*', '^kyo,.*', '^lacie,.*', '^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^leadtek,.*', '^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*', '^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,.*', '^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*', '^linx,.*', '^lltc,.*', '^logicpd,.*', '^logictechno,.*', '^longcheer,.*', '^lontium,.*', '^loongson,.*', '^lsi,.*', '^lwn,.*', '^lxa,.*', '^macnica,.*', '^mantix,.*', '^mapleboard,.*', '^marvell,.*', '^maxbotix,.*', '^maxim,.*', '^mbvl,.*', '^mcube,.*', '^meas,.*', '^mecer,.*', '^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*', '^melfas,.*', '^mellanox,.*', '^memsic,.*', '^menlo,.*', '^meraki,.*', '^merrii,.*', '^micrel,.*', '^microchip,.*', '^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^mikroe,.*', '^mikrotik,.*', '^miniand,.*', '^minix,.*', '^miramems,.*', '^mitsubishi,.*', '^mosaixtech,.*', '^motorola,.*', '^moxa,.*', '^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*', '^msi,.*', '^mstar,.*', '^mti,.*', '^multi-inno,.*', '^mundoreader,.*', '^murata,.*', '^mxicy,.*', '^myir,.*', '^national,.*', '^nec,.*', '^neonode,.*', '^netgear,.*', '^netlogic,.*', '^netron-dy,.*', '^netxeon,.*', '^neweast,.*', '^newhaven,.*', '^nexbox,.*', '^nextthing,.*', '^ni,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*', '^novtech,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*', '^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*', '^opencores,.*', '^openrisc,.*', '^option,.*', '^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*', '^ozzmaker,.*', '^panasonic,.*', '^parade,.*', '^parallax,.*', '^pda,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*', '^phytec,.*', '^picochip,.*', '^pine64,.*', '^pineriver,.*', '^pixcir,.*', '^plantower,.*', '^plathome,.*', '^plda,.*', '^plx,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*', '^portwell,.*', '^poslab,.*', '^pov,.*', '^powertip,.*', '^powervr,.*', '^primux,.*', '^probox2,.*', '^prt,.*', '^pulsedlight,.*', '^purism,.*', '^qca,.*', '^qcom,.*', '^qemu,.*', '^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qnap,.*', '^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*', '^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*', '^renesas,.*', '^rervision,.*', '^rex,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riot,.*', '^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*', '^roofull,.*', '^roseapplepi,.*', '^samsung,.*', '^samtec,.*', '^sancloud,.*', '^sandisk,.*', '^satoz,.*', '^sbs,.*', '^schindler,.*', '^seagate,.*', '^seeed,.*', '^seirobotics,.*', '^semtech,.*', '^sensirion,.*', '^sensortek,.*', '^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', '^sharp,.*', '^shimafuji,.*', '^shiratech,.*', '^si-en,.*', '^si-linux,.*', '^sifive,.*', '^sigma,.*', '^sii,.*', '^sil,.*', '^silabs,.*', '^silead,.*', '^silergy,.*', '^silex-insight,.*', '^siliconmitus,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*', '^skyworks,.*', '^smartlabs,.*', '^smsc,.*', '^snps,.*', '^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*', '^sony,.*', '^spansion,.*', '^sprd,.*', '^sst,.*', '^sstar,.*', '^st,.*', '^st-ericsson,.*', '^starry,.*', '^startek,.*', '^ste,.*', '^stericsson,.*', '^summit,.*', '^sunchip,.*', '^swir,.*', '^syna,.*', '^synology,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*', '^technexion,.*', '^technologic,.*', '^techstar,.*', '^tempo,.*', '^terasic,.*', '^tfc,.*', '^thine,.*', '^thingyjp,.*', '^ti,.*', '^tianma,.*', '^tlm,.*', '^tmt,.*', '^topeet,.*', '^toppoly,.*', '^topwise,.*', '^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*', '^tpo,.*', '^tq,.*', '^tronfy,.*', '^tronsmart,.*', '^truly,.*', '^tsd,.*', '^tyan,.*', '^u-blox,.*', '^u-boot,.*', '^ubnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ugoos,.*', '^uniwest,.*', '^upisemi,.*', '^urt,.*', '^usi,.*', '^utoo,.*', '^v3,.*', '^vaisala,.*', '^vamrs,.*', '^variscite,.*', '^via,.*', '^videostrong,.*', '^virtio,.*', '^vishay,.*', '^visionox,.*', '^vitesse,.*', '^vivante,.*', '^vocore,.*', '^voipac,.*', '^vot,.*', '^vxt,.*', '^wand,.*', '^waveshare,.*', '^wd,.*', '^we,.*', '^wetek,.*', '^wexler,.*', '^whwave,.*', '^wi2wi,.*', '^winbond,.*', '^winstar,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*', '^x-powers,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*', '^xingbangda,.*', '^xinpeng,.*', '^xiphera,.*', '^xlnx,.*', '^xnano,.*', '^xunlong,.*', '^xylon,.*', '^ylm,.*', '^yna,.*', '^yones-toptech,.*', '^ysoft,.*', '^zarlink,.*', '^zealz,.*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zinitix,.*', '^zkmagic,.*', '^zte,.*', '^zyxel,.*'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/vendor-prefixes.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: r5fss@ff9a0000: ranges: True is not of type 'array'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: r5fss@ff9a0000: r5f_0:compatible:0: 'xlnx,zynqmp-r5-single-remoteproc' is not one of ['xilinx,r5f']
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: r5fss@ff9a0000: r5f_0:mboxes: [[1, 0, 1, 1]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: r5fss@ff9a0000: r5f_1:compatible:0: 'xlnx,zynqmp-r5-single-remoteproc' is not one of ['xilinx,r5f']
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.example.dt.yaml: r5fss@ff9a0000: r5f_1:mboxes: [[2, 0, 2, 1]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1400282
-
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+> diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml
+> new file mode 100644
+> index 000000000000..125a5d6546ae
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/hisilicon,hi3670-usb3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hisilicon Kirin970 USB PHY
+> +
+> +maintainers:
+> +  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> +description: |+
+> +  Bindings for USB3 PHY on HiSilicon Kirin 970.
+> +
+> +properties:
+> +  compatible:
+> +    const: hisilicon,hi3670-usb-phy
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  hisilicon,pericrg-syscon:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> +    description: phandle of syscon used to control iso refclk.
+> +
+> +  hisilicon,pctrl-syscon:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> +    description: phandle of syscon used to control usb tcxo.
+> +
+> +  hisilicon,sctrl-syscon:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> +    description: phandle of syscon used to control phy deep sleep.
+> +
+> +  hisilicon,eye-diagram-param:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: Eye diagram for phy.
+> +
+> +  hisilicon,tx-vboost-lvl:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: TX level vboost for phy.
+> +
+> +required:
+> +  - compatible
+> +  - hisilicon,pericrg-syscon
+> +  - hisilicon,pctrl-syscon
+> +  - hisilicon,sctrl-syscon
+> +  - hisilicon,eye-diagram-param
+> +  - hisilicon,tx-vboost-lvl
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +      #address-cells = <2>;
+> +      #size-cells = <2>;
+> +
+> +      usb3_otg_bc: usb3_otg_bc@ff200000 {
+> +        compatible = "syscon", "simple-mfd";
+> +        reg = <0x0 0xff200000 0x0 0x1000>;
+> +
+> +        usb_phy {
+> +          compatible = "hisilicon,hi3670-usb-phy";
+> +          #phy-cells = <0>;
+> +          hisilicon,pericrg-syscon = <&crg_ctrl>;
+> +          hisilicon,pctrl-syscon = <&pctrl>;
+> +          hisilicon,sctrl-syscon = <&sctrl>;
+> +          hisilicon,eye-diagram-param = <0xfdfee4>;
+> +          hisilicon,tx-vboost-lvl = <0x5>;
+> +        };
+> +      };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e451dcce054f..14266bb79ff8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18083,7 +18083,7 @@ L:	linux-usb@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/usb/roles/intel-xhci-usb-role-switch.c
+>  
+> -USB IP DRIVER FOR HISILICON KIRIN
+> +USB IP DRIVER FOR HISILICON KIRIN 960
+>  M:	Yu Chen <chenyu56@huawei.com>
+>  M:	Binghui Wang <wangbinghui@hisilicon.com>
+>  L:	linux-usb@vger.kernel.org
+> @@ -18091,6 +18091,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/phy/hisilicon,hi3660-usb3.yaml
+>  F:	drivers/phy/hisilicon/phy-hi3660-usb3.c
+>  
+> +USB IP DRIVER FOR HISILICON KIRIN 970
+> +M:	Mauro Carvalho Chehab <mchehab@kernel.org>
+> +L:	linux-usb@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/phy/hisilicon,kirin970-usb3.yaml
+> +F:	drivers/phy/hisilicon/phy-kirin970-usb3.c
+> +
+>  USB ISP116X DRIVER
+>  M:	Olav Kongas <ok@artecdesign.ee>
+>  L:	linux-usb@vger.kernel.org
+> diff --git a/drivers/phy/hisilicon/Kconfig b/drivers/phy/hisilicon/Kconfig
+> index 1c73053bcc98..4d008cfc279c 100644
+> --- a/drivers/phy/hisilicon/Kconfig
+> +++ b/drivers/phy/hisilicon/Kconfig
+> @@ -23,6 +23,16 @@ config PHY_HI3660_USB
+>  
+>  	  To compile this driver as a module, choose M here.
+>  
+> +config PHY_HI3670_USB
+> +	tristate "hi3670 USB PHY support"
+> +	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
+> +	select GENERIC_PHY
+> +	select MFD_SYSCON
+> +	help
+> +	  Enable this to support the HISILICON HI3670 USB PHY.
+> +
+> +	  To compile this driver as a module, choose M here.
+> +
+>  config PHY_HISTB_COMBPHY
+>  	tristate "HiSilicon STB SoCs COMBPHY support"
+>  	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
+> diff --git a/drivers/phy/hisilicon/Makefile b/drivers/phy/hisilicon/Makefile
+> index 92e874ae9c74..51729868145b 100644
+> --- a/drivers/phy/hisilicon/Makefile
+> +++ b/drivers/phy/hisilicon/Makefile
+> @@ -1,6 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  obj-$(CONFIG_PHY_HI6220_USB)		+= phy-hi6220-usb.o
+>  obj-$(CONFIG_PHY_HI3660_USB)		+= phy-hi3660-usb3.o
+> +obj-$(CONFIG_PHY_HI3670_USB)		+= phy-hi3670-usb3.o
+>  obj-$(CONFIG_PHY_HISTB_COMBPHY)		+= phy-histb-combphy.o
+>  obj-$(CONFIG_PHY_HISI_INNO_USB2)	+= phy-hisi-inno-usb2.o
+>  obj-$(CONFIG_PHY_HIX5HD2_SATA)		+= phy-hix5hd2-sata.o
+> diff --git a/drivers/phy/hisilicon/phy-hi3670-usb3.c b/drivers/phy/hisilicon/phy-hi3670-usb3.c
+> new file mode 100644
+> index 000000000000..4fc013911a78
+> --- /dev/null
+> +++ b/drivers/phy/hisilicon/phy-hi3670-usb3.c
+> @@ -0,0 +1,671 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Phy provider for USB 3.1 controller on HiSilicon Kirin970 platform
+> + *
+> + * Copyright (C) 2017-2020 Hilisicon Electronics Co., Ltd.
+> + *		http://www.huawei.com
+> + *
+> + * Authors: Yu Chen <chenyu56@huawei.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define SCTRL_SCDEEPSLEEPED		(0x0)
+> +#define USB_CLK_SELECTED		BIT(20)
+> +
+> +#define PERI_CRG_PEREN0			(0x00)
+> +#define PERI_CRG_PERDIS0		(0x04)
+> +#define PERI_CRG_PEREN4			(0x40)
+> +#define PERI_CRG_PERDIS4		(0x44)
+> +#define PERI_CRG_PERRSTEN4		(0x90)
+> +#define PERI_CRG_PERRSTDIS4		(0x94)
+> +#define PERI_CRG_ISODIS			(0x148)
+> +#define PERI_CRG_PEREN6			(0x410)
+> +#define PERI_CRG_PERDIS6		(0x414)
+> +
+> +#define USB_REFCLK_ISO_EN		BIT(25)
+> +
+> +#define GT_CLK_USB2PHY_REF		BIT(19)
+> +
+> +#define PCTRL_PERI_CTRL3		(0x10)
+> +#define PCTRL_PERI_CTRL3_MSK_START	(16)
+> +#define USB_TCXO_EN			BIT(1)
+> +
+> +#define PCTRL_PERI_CTRL24		(0x64)
+> +#define SC_CLK_USB3PHY_3MUX1_SEL	BIT(25)
+> +
+> +#define USB3OTG_CTRL0			(0x00)
+> +#define USB3OTG_CTRL3			(0x0C)
+> +#define USB3OTG_CTRL4			(0x10)
+> +#define USB3OTG_CTRL5			(0x14)
+> +#define USB3OTG_CTRL7			(0x1C)
+> +#define USB_MISC_CFG50			(0x50)
+> +#define USB_MISC_CFG54			(0x54)
+> +#define USB_MISC_CFG58			(0x58)
+> +#define USB_MISC_CFG5C			(0x5C)
+> +#define USB_MISC_CFGA0			(0xA0)
+> +#define TCA_CLK_RST			(0x200)
+> +#define TCA_INTR_EN			(0x204)
+> +#define TCA_INTR_STS			(0x208)
+> +#define TCA_GCFG			(0x210)
+> +#define TCA_TCPC			(0x214)
+> +#define TCA_SYSMODE_CFG			(0x218)
+> +#define TCA_VBUS_CTRL			(0x240)
+> +
+> +#define CTRL0_USB3_VBUSVLD		BIT(7)
+> +#define CTRL0_USB3_VBUSVLD_SEL		BIT(6)
+> +
+> +#define CTRL3_USB2_VBUSVLDEXT0		BIT(6)
+> +#define CTRL3_USB2_VBUSVLDEXTSEL0	BIT(5)
+> +
+> +#define CTRL5_USB2_SIDDQ		BIT(0)
+> +
+> +#define CTRL7_USB2_REFCLKSEL_MASK	(3 << 3)
+> +#define CTRL7_USB2_REFCLKSEL_ABB	(3 << 3)
+> +#define CTRL7_USB2_REFCLKSEL_PAD	(2 << 3)
+> +
+> +#define CFG50_USB3_PHY_TEST_POWERDOWN	BIT(23)
+> +
+> +#define CFG54_USB31PHY_CR_ADDR_MASK	(0xFFFF)
+> +#define CFG54_USB31PHY_CR_ADDR_SHIFT	(16)
+> +#define CFG54_USB3PHY_REF_USE_PAD	BIT(12)
+> +#define CFG54_PHY0_PMA_PWR_STABLE	BIT(11)
+> +#define CFG54_PHY0_PCS_PWR_STABLE	BIT(9)
+> +#define CFG54_USB31PHY_CR_ACK		BIT(7)
+> +#define CFG54_USB31PHY_CR_WR_EN		BIT(5)
+> +#define CFG54_USB31PHY_CR_SEL		BIT(4)
+> +#define CFG54_USB31PHY_CR_RD_EN		BIT(3)
+> +#define CFG54_USB31PHY_CR_CLK		BIT(2)
+> +#define CFG54_USB3_PHY0_ANA_PWR_EN	BIT(1)
+> +
+> +#define CFG58_USB31PHY_CR_DATA_MASK     (0xFFFF)
+> +#define CFG58_USB31PHY_CR_DATA_RD_START (16)
+> +
+> +#define CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN	BIT(1)
+> +
+> +#define CFGA0_VAUX_RESET		BIT(9)
+> +#define CFGA0_USB31C_RESET		BIT(8)
+> +#define CFGA0_USB2PHY_REFCLK_SELECT	BIT(4)
+> +#define CFGA0_USB3PHY_RESET		BIT(1)
+> +#define CFGA0_USB2PHY_POR		BIT(0)
+> +
+> +#define INTR_EN_XA_TIMEOUT_EVT_EN	BIT(1)
+> +#define INTR_EN_XA_ACK_EVT_EN		BIT(0)
+> +
+> +#define CLK_RST_TCA_REF_CLK_EN		BIT(1)
+> +#define CLK_RST_SUSPEND_CLK_EN		BIT(0)
+> +
+> +#define GCFG_ROLE_HSTDEV		BIT(4)
+> +#define GCFG_OP_MODE			(3 << 0)
+> +#define GCFG_OP_MODE_CTRL_SYNC_MODE	BIT(0)
+> +
+> +#define TCPC_VALID			BIT(4)
+> +#define TCPC_LOW_POWER_EN		BIT(3)
+> +#define TCPC_MUX_CONTROL_MASK		(3 << 0)
+> +#define TCPC_MUX_CONTROL_USB31		BIT(0)
+> +
+> +#define SYSMODE_CFG_TYPEC_DISABLE	BIT(3)
+> +
+> +#define VBUS_CTRL_POWERPRESENT_OVERRD	(3 << 2)
+> +#define VBUS_CTRL_VBUSVALID_OVERRD	(3 << 0)
+> +
+> +#define KIRIN970_USB_DEFAULT_PHY_PARAM	(0xFDFEE4)
+> +#define KIRIN970_USB_DEFAULT_PHY_VBOOST	(0x5)
+> +
+> +#define TX_VBOOST_LVL_REG		(0xf)
+> +#define TX_VBOOST_LVL_START		(6)
+> +#define TX_VBOOST_LVL_ENABLE		BIT(9)
+> +
+> +struct hi3670_priv {
+> +	struct device *dev;
+> +	struct regmap *peri_crg;
+> +	struct regmap *pctrl;
+> +	struct regmap *sctrl;
+> +	struct regmap *usb31misc;
+> +
+> +	u32 eye_diagram_param;
+> +	u32 tx_vboost_lvl;
+> +
+> +	u32 peri_crg_offset;
+> +	u32 pctrl_offset;
+> +	u32 usb31misc_offset;
+> +};
+> +
+> +static int hi3670_phy_cr_clk(struct regmap *usb31misc)
+> +{
+> +	int ret;
+> +
+> +	/* Clock up */
+> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +				 CFG54_USB31PHY_CR_CLK, CFG54_USB31PHY_CR_CLK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Clock down */
+> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +				 CFG54_USB31PHY_CR_CLK, 0);
+> +
+> +	return ret;
+> +}
+> +
+> +static int hi3670_phy_cr_set_sel(struct regmap *usb31misc)
+> +{
+> +	return regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +				  CFG54_USB31PHY_CR_SEL, CFG54_USB31PHY_CR_SEL);
+> +}
+> +
+> +static int hi3670_phy_cr_start(struct regmap *usb31misc, int direction)
+> +{
+> +	int ret;
+> +
+> +	if (direction)
+> +		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +					 CFG54_USB31PHY_CR_WR_EN,
+> +					 CFG54_USB31PHY_CR_WR_EN);
+> +	else
+> +		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +					 CFG54_USB31PHY_CR_RD_EN,
+> +					 CFG54_USB31PHY_CR_RD_EN);
+> +
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = hi3670_phy_cr_clk(usb31misc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> +				 CFG54_USB31PHY_CR_RD_EN | CFG54_USB31PHY_CR_WR_EN, 0);
+> +
+> +	return ret;
+> +}
+> +
+> +static int hi3670_phy_cr_wait_ack(struct regmap *usb31misc)
+> +{
+> +	u32 reg;
+> +	int retry = 100000;
+> +	int ret;
+> +
+> +	while (retry-- > 0) {
+> +		ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
+> +		if (ret)
+> +			return ret;
+> +		if ((reg & CFG54_USB31PHY_CR_ACK) == CFG54_USB31PHY_CR_ACK)
+> +			return 0;
+> +
+> +		ret = hi3670_phy_cr_clk(usb31misc);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return -ETIMEDOUT;
+> +}
+> +
+> +static int hi3670_phy_cr_set_addr(struct regmap *usb31misc, u32 addr)
+> +{
+> +	u32 reg;
+> +	int ret;
+> +
+> +	ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	reg &= ~(CFG54_USB31PHY_CR_ADDR_MASK << CFG54_USB31PHY_CR_ADDR_SHIFT);
+> +	reg |= ((addr & CFG54_USB31PHY_CR_ADDR_MASK) << CFG54_USB31PHY_CR_ADDR_SHIFT);
+> +	ret = regmap_write(usb31misc, USB_MISC_CFG54, reg);
+> +
+> +	return ret;
+> +}
+> +
+> +static int hi3670_phy_cr_read(struct regmap *usb31misc, u32 addr, u32 *val)
+> +{
+> +	int reg;
+> +	int i;
+> +	int ret;
+> +
+> +	for (i = 0; i < 100; i++) {
+> +		ret = hi3670_phy_cr_clk(usb31misc);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = hi3670_phy_cr_set_sel(usb31misc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = hi3670_phy_cr_start(usb31misc, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = hi3670_phy_cr_wait_ack(usb31misc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_read(usb31misc, USB_MISC_CFG58, &reg);
+> +	if (ret)
+> +		return ret;
+> +
+> +	*val = (reg >> CFG58_USB31PHY_CR_DATA_RD_START) &
+> +		CFG58_USB31PHY_CR_DATA_MASK;
+> +
+> +	return 0;
+> +}
+> +
+> +static int hi3670_phy_cr_write(struct regmap *usb31misc, u32 addr, u32 val)
+> +{
+> +	int i;
+> +	int ret;
+> +
+> +	for (i = 0; i < 100; i++) {
+> +		ret = hi3670_phy_cr_clk(usb31misc);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = hi3670_phy_cr_set_sel(usb31misc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(usb31misc, USB_MISC_CFG58,
+> +			   val & CFG58_USB31PHY_CR_DATA_MASK);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = hi3670_phy_cr_start(usb31misc, 1);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = hi3670_phy_cr_wait_ack(usb31misc);
+> +
+> +	return ret;
+> +}
+> +
+> +static int hi3670_phy_set_params(struct hi3670_priv *priv)
+> +{
+> +	u32 reg;
+> +	int ret;
+> +	int retry = 3;
+> +
+> +	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL4,
+> +			   priv->eye_diagram_param);
+> +	if (ret) {
+> +		dev_err(priv->dev, "set USB3OTG_CTRL4 failed\n");
+> +		return ret;
+> +	}
+> +
+> +	while (retry-- > 0) {
+> +		ret = hi3670_phy_cr_read(priv->usb31misc,
+> +					 TX_VBOOST_LVL_REG, &reg);
+> +		if (!ret)
+> +			break;
+> +
+> +		if (ret != -ETIMEDOUT) {
+> +			dev_err(priv->dev, "read TX_VBOOST_LVL_REG failed\n");
+> +			return ret;
+> +		}
+> +	}
+> +	if (ret)
+> +		return ret;
+> +
+> +	reg |= (TX_VBOOST_LVL_ENABLE | (priv->tx_vboost_lvl << TX_VBOOST_LVL_START));
+> +	ret = hi3670_phy_cr_write(priv->usb31misc, TX_VBOOST_LVL_REG, reg);
+> +	if (ret)
+> +		dev_err(priv->dev, "write TX_VBOOST_LVL_REG failed\n");
+> +
+> +	return ret;
+> +}
+> +
+> +static int hi3670_is_abbclk_seleted(struct hi3670_priv *priv)
+> +{
+> +	u32 reg;
+> +
+> +	if (!priv->sctrl) {
+> +		dev_err(priv->dev, "priv->sctrl is null!\n");
+> +		return 1;
+> +	}
+> +
+> +	if (regmap_read(priv->sctrl, SCTRL_SCDEEPSLEEPED, &reg)) {
+> +		dev_err(priv->dev, "SCTRL_SCDEEPSLEEPED read failed!\n");
+> +		return 1;
+> +	}
+> +
+> +	if ((reg & USB_CLK_SELECTED) == 0)
+> +		return 1;
+> +
+> +	return 0;
+> +}
+> +
+> +static int hi3670_config_phy_clock(struct hi3670_priv *priv)
+> +{
+> +	u32 val, mask;
+> +	int ret;
+> +
+> +	if (hi3670_is_abbclk_seleted(priv)) {
+> +		/* usb refclk iso disable */
+> +		ret = regmap_write(priv->peri_crg, PERI_CRG_ISODIS,
+> +				   USB_REFCLK_ISO_EN);
+> +		if (ret)
+> +			goto out;
+> +
+> +		/* enable usb_tcxo_en */
+> +		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
+> +				   USB_TCXO_EN |
+> +				   (USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START));
+> +
+> +		/* select usbphy clk from abb */
+> +		mask = SC_CLK_USB3PHY_3MUX1_SEL;
+> +		ret = regmap_update_bits(priv->pctrl,
+> +					 PCTRL_PERI_CTRL24, mask, 0);
+> +		if (ret)
+> +			goto out;
+> +
+> +		ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
+> +					 CFGA0_USB2PHY_REFCLK_SELECT, 0);
+> +		if (ret)
+> +			goto out;
+> +
+> +		ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
+> +		if (ret)
+> +			goto out;
+> +		val &= ~CTRL7_USB2_REFCLKSEL_MASK;
+> +		val |= CTRL7_USB2_REFCLKSEL_ABB;
+> +		ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
+> +		if (ret)
+> +			goto out;
+> +
+> +		return 0;
+> +	}
+> +
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
+> +				 CFG54_USB3PHY_REF_USE_PAD,
+> +				 CFG54_USB3PHY_REF_USE_PAD);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
+> +				 CFGA0_USB2PHY_REFCLK_SELECT,
+> +				 CFGA0_USB2PHY_REFCLK_SELECT);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
+> +	if (ret)
+> +		goto out;
+> +	val &= ~CTRL7_USB2_REFCLKSEL_MASK;
+> +	val |= CTRL7_USB2_REFCLKSEL_PAD;
+> +	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_write(priv->peri_crg,
+> +			   PERI_CRG_PEREN6, GT_CLK_USB2PHY_REF);
+> +	if (ret)
+> +		goto out;
+> +
+> +	return 0;
+> +out:
+> +	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
+> +	return ret;
+> +}
+> +
+> +static int hi3670_config_tca(struct hi3670_priv *priv)
+> +{
+> +	u32 val, mask;
+> +	int ret;
+> +
+> +	ret = regmap_write(priv->usb31misc, TCA_INTR_STS, 0xffff);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_write(priv->usb31misc, TCA_INTR_EN,
+> +			   INTR_EN_XA_TIMEOUT_EVT_EN | INTR_EN_XA_ACK_EVT_EN);
+> +	if (ret)
+> +		goto out;
+> +
+> +	mask = CLK_RST_TCA_REF_CLK_EN | CLK_RST_SUSPEND_CLK_EN;
+> +	ret = regmap_update_bits(priv->usb31misc, TCA_CLK_RST, mask, 0);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_update_bits(priv->usb31misc, TCA_GCFG,
+> +				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE,
+> +				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE_CTRL_SYNC_MODE);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_update_bits(priv->usb31misc, TCA_SYSMODE_CFG,
+> +				 SYSMODE_CFG_TYPEC_DISABLE, 0);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_read(priv->usb31misc, TCA_TCPC, &val);
+> +	if (ret)
+> +		goto out;
+> +	val &= ~(TCPC_VALID | TCPC_LOW_POWER_EN | TCPC_MUX_CONTROL_MASK);
+> +	val |= (TCPC_VALID | TCPC_MUX_CONTROL_USB31);
+> +	ret = regmap_write(priv->usb31misc, TCA_TCPC, val);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = regmap_write(priv->usb31misc, TCA_VBUS_CTRL,
+> +			   VBUS_CTRL_POWERPRESENT_OVERRD | VBUS_CTRL_VBUSVALID_OVERRD);
+> +	if (ret)
+> +		goto out;
+> +
+> +	return 0;
+> +out:
+> +	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
+> +	return ret;
+> +}
+> +
+> +static int hi3670_phy_init(struct phy *phy)
+> +{
+> +	struct hi3670_priv *priv = phy_get_drvdata(phy);
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* assert controller */
+> +	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET |
+> +	      CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, 0);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = hi3670_config_phy_clock(priv);
+> +	if (ret)
+> +		goto out;
+> +
+> +	/* Exit from IDDQ mode */
+> +	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL5,
+> +				 CTRL5_USB2_SIDDQ, 0);
+> +	if (ret)
+> +		goto out;
+> +
+> +	/* Release USB31 PHY out of TestPowerDown mode */
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG50,
+> +				 CFG50_USB3_PHY_TEST_POWERDOWN, 0);
+> +	if (ret)
+> +		goto out;
+> +
+> +	/* Deassert phy */
+> +	val = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
+> +	if (ret)
+> +		goto out;
+> +
+> +	usleep_range(100, 120);
+> +
+> +	/* Tell the PHY power is stable */
+> +	val = CFG54_USB3_PHY0_ANA_PWR_EN | CFG54_PHY0_PCS_PWR_STABLE |
+> +	      CFG54_PHY0_PMA_PWR_STABLE;
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
+> +				 val, val);
+> +	if (ret)
+> +		goto out;
+> +
+> +	ret = hi3670_config_tca(priv);
+> +	if (ret)
+> +		goto out;
+> +
+> +	/* Enable SSC */
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG5C,
+> +				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN,
+> +				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN);
+> +	if (ret)
+> +		goto out;
+> +
+> +	/* Deassert controller */
+> +	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
+> +	if (ret)
+> +		goto out;
+> +
+> +	usleep_range(100, 120);
+> +
+> +	/* Set fake vbus valid signal */
+> +	val = CTRL0_USB3_VBUSVLD | CTRL0_USB3_VBUSVLD_SEL;
+> +	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL0, val, val);
+> +	if (ret)
+> +		goto out;
+> +
+> +	val = CTRL3_USB2_VBUSVLDEXT0 | CTRL3_USB2_VBUSVLDEXTSEL0;
+> +	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL3, val, val);
+> +	if (ret)
+> +		goto out;
+> +
+> +	usleep_range(100, 120);
+> +
+> +	ret = hi3670_phy_set_params(priv);
+> +	if (ret)
+> +		goto out;
+> +
+> +	return 0;
+> +out:
+> +	dev_err(priv->dev, "failed to init phy ret: %d\n", ret);
+> +	return ret;
+> +}
+> +
+> +static int hi3670_phy_exit(struct phy *phy)
+> +{
+> +	struct hi3670_priv *priv = phy_get_drvdata(phy);
+> +	u32 mask;
+> +	int ret;
+> +
+> +	/* Assert phy */
+> +	mask = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
+> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, mask, 0);
+> +	if (ret)
+> +		goto out;
+> +
+> +	if (hi3670_is_abbclk_seleted(priv)) {
+> +		/* disable usb_tcxo_en */
+> +		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
+> +				   USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START);
+> +	} else {
+> +		ret = regmap_write(priv->peri_crg, PERI_CRG_PERDIS6,
+> +				   GT_CLK_USB2PHY_REF);
+> +		if (ret)
+> +			goto out;
+> +	}
+> +
+> +	return 0;
+> +out:
+> +	dev_err(priv->dev, "failed to exit phy ret: %d\n", ret);
+> +	return ret;
+> +}
+> +
+> +static struct phy_ops hi3670_phy_ops = {
+> +	.init		= hi3670_phy_init,
+> +	.exit		= hi3670_phy_exit,
+> +	.owner		= THIS_MODULE,
+> +};
+> +
+> +static int hi3670_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *phy_provider;
+> +	struct device *dev = &pdev->dev;
+> +	struct phy *phy;
+> +	struct hi3670_priv *priv;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->dev = dev;
+> +	priv->peri_crg = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +							 "hisilicon,pericrg-syscon");
+> +	if (IS_ERR(priv->peri_crg)) {
+> +		dev_err(dev, "no hisilicon,pericrg-syscon\n");
+> +		return PTR_ERR(priv->peri_crg);
+> +	}
+> +
+> +	priv->pctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						      "hisilicon,pctrl-syscon");
+> +	if (IS_ERR(priv->pctrl)) {
+> +		dev_err(dev, "no hisilicon,pctrl-syscon\n");
+> +		return PTR_ERR(priv->pctrl);
+> +	}
+> +
+> +	priv->sctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						      "hisilicon,sctrl-syscon");
+> +	if (IS_ERR(priv->sctrl)) {
+> +		dev_err(dev, "no hisilicon,sctrl-syscon\n");
+> +		return PTR_ERR(priv->sctrl);
+> +	}
+> +
+> +	/* node of hi3670 phy is a sub-node of usb3_otg_bc */
+> +	priv->usb31misc = syscon_node_to_regmap(dev->parent->of_node);
+> +	if (IS_ERR(priv->usb31misc)) {
+> +		dev_err(dev, "no hisilicon,usb3-otg-bc-syscon\n");
+> +		return PTR_ERR(priv->usb31misc);
+> +	}
+> +
+> +	if (of_property_read_u32(dev->of_node, "hisilicon,eye-diagram-param",
+> +				 &priv->eye_diagram_param))
+> +		priv->eye_diagram_param = KIRIN970_USB_DEFAULT_PHY_PARAM;
+> +
+> +	if (of_property_read_u32(dev->of_node, "hisilicon,tx-vboost-lvl",
+> +				 &priv->tx_vboost_lvl))
+> +		priv->tx_vboost_lvl = KIRIN970_USB_DEFAULT_PHY_VBOOST;
+> +
+> +	phy = devm_phy_create(dev, NULL, &hi3670_phy_ops);
+> +	if (IS_ERR(phy))
+> +		return PTR_ERR(phy);
+> +
+> +	phy_set_drvdata(phy, priv);
+> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> +	return PTR_ERR_OR_ZERO(phy_provider);
+> +}
+> +
+> +static const struct of_device_id hi3670_phy_of_match[] = {
+> +	{ .compatible = "hisilicon,hi3670-usb-phy" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, hi3670_phy_of_match);
+> +
+> +static struct platform_driver hi3670_phy_driver = {
+> +	.probe	= hi3670_phy_probe,
+> +	.driver = {
+> +		.name	= "hi3670-usb-phy",
+> +		.of_match_table	= hi3670_phy_of_match,
+> +	}
+> +};
+> +module_platform_driver(hi3670_phy_driver);
+> +
+> +MODULE_AUTHOR("Yu Chen <chenyu56@huawei.com>");
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_DESCRIPTION("Hilisicon Kirin970 USB31 PHY Driver");
+> diff --git a/drivers/staging/hikey9xx/Kconfig b/drivers/staging/hikey9xx/Kconfig
+> index b29f5d5df134..0e97b5b9a56a 100644
+> --- a/drivers/staging/hikey9xx/Kconfig
+> +++ b/drivers/staging/hikey9xx/Kconfig
+> @@ -1,16 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  
+> -# to be placed at drivers/phy
+> -config PHY_HI3670_USB
+> -	tristate "hi3670 USB PHY support"
+> -	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
+> -	select GENERIC_PHY
+> -	select MFD_SYSCON
+> -	help
+> -	  Enable this to support the HISILICON HI3670 USB PHY.
+> -
+> -	  To compile this driver as a module, choose M here.
+> -
+>  # to be placed at drivers/spmi
+>  config SPMI_HISI3670
+>  	tristate "Hisilicon 3670 SPMI Controller"
+> diff --git a/drivers/staging/hikey9xx/Makefile b/drivers/staging/hikey9xx/Makefile
+> index 1924fadac952..9371dcc3d35b 100644
+> --- a/drivers/staging/hikey9xx/Makefile
+> +++ b/drivers/staging/hikey9xx/Makefile
+> @@ -1,7 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  
+> -obj-$(CONFIG_PHY_HI3670_USB)		+= phy-hi3670-usb3.o
+> -
+>  obj-$(CONFIG_SPMI_HISI3670)		+= hisi-spmi-controller.o
+>  obj-$(CONFIG_MFD_HI6421_SPMI)		+= hi6421-spmi-pmic.o
+>  obj-$(CONFIG_REGULATOR_HI6421V600)	+= hi6421v600-regulator.o
+> diff --git a/drivers/staging/hikey9xx/phy-hi3670-usb3.c b/drivers/staging/hikey9xx/phy-hi3670-usb3.c
+> deleted file mode 100644
+> index 4fc013911a78..000000000000
+> --- a/drivers/staging/hikey9xx/phy-hi3670-usb3.c
+> +++ /dev/null
+> @@ -1,671 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0-only
+> -/*
+> - * Phy provider for USB 3.1 controller on HiSilicon Kirin970 platform
+> - *
+> - * Copyright (C) 2017-2020 Hilisicon Electronics Co., Ltd.
+> - *		http://www.huawei.com
+> - *
+> - * Authors: Yu Chen <chenyu56@huawei.com>
+> - */
+> -
+> -#include <linux/clk.h>
+> -#include <linux/kernel.h>
+> -#include <linux/mfd/syscon.h>
+> -#include <linux/module.h>
+> -#include <linux/phy/phy.h>
+> -#include <linux/platform_device.h>
+> -#include <linux/regmap.h>
+> -
+> -#define SCTRL_SCDEEPSLEEPED		(0x0)
+> -#define USB_CLK_SELECTED		BIT(20)
+> -
+> -#define PERI_CRG_PEREN0			(0x00)
+> -#define PERI_CRG_PERDIS0		(0x04)
+> -#define PERI_CRG_PEREN4			(0x40)
+> -#define PERI_CRG_PERDIS4		(0x44)
+> -#define PERI_CRG_PERRSTEN4		(0x90)
+> -#define PERI_CRG_PERRSTDIS4		(0x94)
+> -#define PERI_CRG_ISODIS			(0x148)
+> -#define PERI_CRG_PEREN6			(0x410)
+> -#define PERI_CRG_PERDIS6		(0x414)
+> -
+> -#define USB_REFCLK_ISO_EN		BIT(25)
+> -
+> -#define GT_CLK_USB2PHY_REF		BIT(19)
+> -
+> -#define PCTRL_PERI_CTRL3		(0x10)
+> -#define PCTRL_PERI_CTRL3_MSK_START	(16)
+> -#define USB_TCXO_EN			BIT(1)
+> -
+> -#define PCTRL_PERI_CTRL24		(0x64)
+> -#define SC_CLK_USB3PHY_3MUX1_SEL	BIT(25)
+> -
+> -#define USB3OTG_CTRL0			(0x00)
+> -#define USB3OTG_CTRL3			(0x0C)
+> -#define USB3OTG_CTRL4			(0x10)
+> -#define USB3OTG_CTRL5			(0x14)
+> -#define USB3OTG_CTRL7			(0x1C)
+> -#define USB_MISC_CFG50			(0x50)
+> -#define USB_MISC_CFG54			(0x54)
+> -#define USB_MISC_CFG58			(0x58)
+> -#define USB_MISC_CFG5C			(0x5C)
+> -#define USB_MISC_CFGA0			(0xA0)
+> -#define TCA_CLK_RST			(0x200)
+> -#define TCA_INTR_EN			(0x204)
+> -#define TCA_INTR_STS			(0x208)
+> -#define TCA_GCFG			(0x210)
+> -#define TCA_TCPC			(0x214)
+> -#define TCA_SYSMODE_CFG			(0x218)
+> -#define TCA_VBUS_CTRL			(0x240)
+> -
+> -#define CTRL0_USB3_VBUSVLD		BIT(7)
+> -#define CTRL0_USB3_VBUSVLD_SEL		BIT(6)
+> -
+> -#define CTRL3_USB2_VBUSVLDEXT0		BIT(6)
+> -#define CTRL3_USB2_VBUSVLDEXTSEL0	BIT(5)
+> -
+> -#define CTRL5_USB2_SIDDQ		BIT(0)
+> -
+> -#define CTRL7_USB2_REFCLKSEL_MASK	(3 << 3)
+> -#define CTRL7_USB2_REFCLKSEL_ABB	(3 << 3)
+> -#define CTRL7_USB2_REFCLKSEL_PAD	(2 << 3)
+> -
+> -#define CFG50_USB3_PHY_TEST_POWERDOWN	BIT(23)
+> -
+> -#define CFG54_USB31PHY_CR_ADDR_MASK	(0xFFFF)
+> -#define CFG54_USB31PHY_CR_ADDR_SHIFT	(16)
+> -#define CFG54_USB3PHY_REF_USE_PAD	BIT(12)
+> -#define CFG54_PHY0_PMA_PWR_STABLE	BIT(11)
+> -#define CFG54_PHY0_PCS_PWR_STABLE	BIT(9)
+> -#define CFG54_USB31PHY_CR_ACK		BIT(7)
+> -#define CFG54_USB31PHY_CR_WR_EN		BIT(5)
+> -#define CFG54_USB31PHY_CR_SEL		BIT(4)
+> -#define CFG54_USB31PHY_CR_RD_EN		BIT(3)
+> -#define CFG54_USB31PHY_CR_CLK		BIT(2)
+> -#define CFG54_USB3_PHY0_ANA_PWR_EN	BIT(1)
+> -
+> -#define CFG58_USB31PHY_CR_DATA_MASK     (0xFFFF)
+> -#define CFG58_USB31PHY_CR_DATA_RD_START (16)
+> -
+> -#define CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN	BIT(1)
+> -
+> -#define CFGA0_VAUX_RESET		BIT(9)
+> -#define CFGA0_USB31C_RESET		BIT(8)
+> -#define CFGA0_USB2PHY_REFCLK_SELECT	BIT(4)
+> -#define CFGA0_USB3PHY_RESET		BIT(1)
+> -#define CFGA0_USB2PHY_POR		BIT(0)
+> -
+> -#define INTR_EN_XA_TIMEOUT_EVT_EN	BIT(1)
+> -#define INTR_EN_XA_ACK_EVT_EN		BIT(0)
+> -
+> -#define CLK_RST_TCA_REF_CLK_EN		BIT(1)
+> -#define CLK_RST_SUSPEND_CLK_EN		BIT(0)
+> -
+> -#define GCFG_ROLE_HSTDEV		BIT(4)
+> -#define GCFG_OP_MODE			(3 << 0)
+> -#define GCFG_OP_MODE_CTRL_SYNC_MODE	BIT(0)
+> -
+> -#define TCPC_VALID			BIT(4)
+> -#define TCPC_LOW_POWER_EN		BIT(3)
+> -#define TCPC_MUX_CONTROL_MASK		(3 << 0)
+> -#define TCPC_MUX_CONTROL_USB31		BIT(0)
+> -
+> -#define SYSMODE_CFG_TYPEC_DISABLE	BIT(3)
+> -
+> -#define VBUS_CTRL_POWERPRESENT_OVERRD	(3 << 2)
+> -#define VBUS_CTRL_VBUSVALID_OVERRD	(3 << 0)
+> -
+> -#define KIRIN970_USB_DEFAULT_PHY_PARAM	(0xFDFEE4)
+> -#define KIRIN970_USB_DEFAULT_PHY_VBOOST	(0x5)
+> -
+> -#define TX_VBOOST_LVL_REG		(0xf)
+> -#define TX_VBOOST_LVL_START		(6)
+> -#define TX_VBOOST_LVL_ENABLE		BIT(9)
+> -
+> -struct hi3670_priv {
+> -	struct device *dev;
+> -	struct regmap *peri_crg;
+> -	struct regmap *pctrl;
+> -	struct regmap *sctrl;
+> -	struct regmap *usb31misc;
+> -
+> -	u32 eye_diagram_param;
+> -	u32 tx_vboost_lvl;
+> -
+> -	u32 peri_crg_offset;
+> -	u32 pctrl_offset;
+> -	u32 usb31misc_offset;
+> -};
+> -
+> -static int hi3670_phy_cr_clk(struct regmap *usb31misc)
+> -{
+> -	int ret;
+> -
+> -	/* Clock up */
+> -	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> -				 CFG54_USB31PHY_CR_CLK, CFG54_USB31PHY_CR_CLK);
+> -	if (ret)
+> -		return ret;
+> -
+> -	/* Clock down */
+> -	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> -				 CFG54_USB31PHY_CR_CLK, 0);
+> -
+> -	return ret;
+> -}
+> -
+> -static int hi3670_phy_cr_set_sel(struct regmap *usb31misc)
+> -{
+> -	return regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> -				  CFG54_USB31PHY_CR_SEL, CFG54_USB31PHY_CR_SEL);
+> -}
+> -
+> -static int hi3670_phy_cr_start(struct regmap *usb31misc, int direction)
+> -{
+> -	int ret;
+> -
+> -	if (direction)
+> -		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> -					 CFG54_USB31PHY_CR_WR_EN,
+> -					 CFG54_USB31PHY_CR_WR_EN);
+> -	else
+> -		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> -					 CFG54_USB31PHY_CR_RD_EN,
+> -					 CFG54_USB31PHY_CR_RD_EN);
+> -
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = hi3670_phy_cr_clk(usb31misc);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
+> -				 CFG54_USB31PHY_CR_RD_EN | CFG54_USB31PHY_CR_WR_EN, 0);
+> -
+> -	return ret;
+> -}
+> -
+> -static int hi3670_phy_cr_wait_ack(struct regmap *usb31misc)
+> -{
+> -	u32 reg;
+> -	int retry = 100000;
+> -	int ret;
+> -
+> -	while (retry-- > 0) {
+> -		ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
+> -		if (ret)
+> -			return ret;
+> -		if ((reg & CFG54_USB31PHY_CR_ACK) == CFG54_USB31PHY_CR_ACK)
+> -			return 0;
+> -
+> -		ret = hi3670_phy_cr_clk(usb31misc);
+> -		if (ret)
+> -			return ret;
+> -	}
+> -
+> -	return -ETIMEDOUT;
+> -}
+> -
+> -static int hi3670_phy_cr_set_addr(struct regmap *usb31misc, u32 addr)
+> -{
+> -	u32 reg;
+> -	int ret;
+> -
+> -	ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
+> -	if (ret)
+> -		return ret;
+> -
+> -	reg &= ~(CFG54_USB31PHY_CR_ADDR_MASK << CFG54_USB31PHY_CR_ADDR_SHIFT);
+> -	reg |= ((addr & CFG54_USB31PHY_CR_ADDR_MASK) << CFG54_USB31PHY_CR_ADDR_SHIFT);
+> -	ret = regmap_write(usb31misc, USB_MISC_CFG54, reg);
+> -
+> -	return ret;
+> -}
+> -
+> -static int hi3670_phy_cr_read(struct regmap *usb31misc, u32 addr, u32 *val)
+> -{
+> -	int reg;
+> -	int i;
+> -	int ret;
+> -
+> -	for (i = 0; i < 100; i++) {
+> -		ret = hi3670_phy_cr_clk(usb31misc);
+> -		if (ret)
+> -			return ret;
+> -	}
+> -
+> -	ret = hi3670_phy_cr_set_sel(usb31misc);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = hi3670_phy_cr_start(usb31misc, 0);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = hi3670_phy_cr_wait_ack(usb31misc);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = regmap_read(usb31misc, USB_MISC_CFG58, &reg);
+> -	if (ret)
+> -		return ret;
+> -
+> -	*val = (reg >> CFG58_USB31PHY_CR_DATA_RD_START) &
+> -		CFG58_USB31PHY_CR_DATA_MASK;
+> -
+> -	return 0;
+> -}
+> -
+> -static int hi3670_phy_cr_write(struct regmap *usb31misc, u32 addr, u32 val)
+> -{
+> -	int i;
+> -	int ret;
+> -
+> -	for (i = 0; i < 100; i++) {
+> -		ret = hi3670_phy_cr_clk(usb31misc);
+> -		if (ret)
+> -			return ret;
+> -	}
+> -
+> -	ret = hi3670_phy_cr_set_sel(usb31misc);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = hi3670_phy_cr_set_addr(usb31misc, addr);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = regmap_write(usb31misc, USB_MISC_CFG58,
+> -			   val & CFG58_USB31PHY_CR_DATA_MASK);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = hi3670_phy_cr_start(usb31misc, 1);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = hi3670_phy_cr_wait_ack(usb31misc);
+> -
+> -	return ret;
+> -}
+> -
+> -static int hi3670_phy_set_params(struct hi3670_priv *priv)
+> -{
+> -	u32 reg;
+> -	int ret;
+> -	int retry = 3;
+> -
+> -	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL4,
+> -			   priv->eye_diagram_param);
+> -	if (ret) {
+> -		dev_err(priv->dev, "set USB3OTG_CTRL4 failed\n");
+> -		return ret;
+> -	}
+> -
+> -	while (retry-- > 0) {
+> -		ret = hi3670_phy_cr_read(priv->usb31misc,
+> -					 TX_VBOOST_LVL_REG, &reg);
+> -		if (!ret)
+> -			break;
+> -
+> -		if (ret != -ETIMEDOUT) {
+> -			dev_err(priv->dev, "read TX_VBOOST_LVL_REG failed\n");
+> -			return ret;
+> -		}
+> -	}
+> -	if (ret)
+> -		return ret;
+> -
+> -	reg |= (TX_VBOOST_LVL_ENABLE | (priv->tx_vboost_lvl << TX_VBOOST_LVL_START));
+> -	ret = hi3670_phy_cr_write(priv->usb31misc, TX_VBOOST_LVL_REG, reg);
+> -	if (ret)
+> -		dev_err(priv->dev, "write TX_VBOOST_LVL_REG failed\n");
+> -
+> -	return ret;
+> -}
+> -
+> -static int hi3670_is_abbclk_seleted(struct hi3670_priv *priv)
+> -{
+> -	u32 reg;
+> -
+> -	if (!priv->sctrl) {
+> -		dev_err(priv->dev, "priv->sctrl is null!\n");
+> -		return 1;
+> -	}
+> -
+> -	if (regmap_read(priv->sctrl, SCTRL_SCDEEPSLEEPED, &reg)) {
+> -		dev_err(priv->dev, "SCTRL_SCDEEPSLEEPED read failed!\n");
+> -		return 1;
+> -	}
+> -
+> -	if ((reg & USB_CLK_SELECTED) == 0)
+> -		return 1;
+> -
+> -	return 0;
+> -}
+> -
+> -static int hi3670_config_phy_clock(struct hi3670_priv *priv)
+> -{
+> -	u32 val, mask;
+> -	int ret;
+> -
+> -	if (hi3670_is_abbclk_seleted(priv)) {
+> -		/* usb refclk iso disable */
+> -		ret = regmap_write(priv->peri_crg, PERI_CRG_ISODIS,
+> -				   USB_REFCLK_ISO_EN);
+> -		if (ret)
+> -			goto out;
+> -
+> -		/* enable usb_tcxo_en */
+> -		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
+> -				   USB_TCXO_EN |
+> -				   (USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START));
+> -
+> -		/* select usbphy clk from abb */
+> -		mask = SC_CLK_USB3PHY_3MUX1_SEL;
+> -		ret = regmap_update_bits(priv->pctrl,
+> -					 PCTRL_PERI_CTRL24, mask, 0);
+> -		if (ret)
+> -			goto out;
+> -
+> -		ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
+> -					 CFGA0_USB2PHY_REFCLK_SELECT, 0);
+> -		if (ret)
+> -			goto out;
+> -
+> -		ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
+> -		if (ret)
+> -			goto out;
+> -		val &= ~CTRL7_USB2_REFCLKSEL_MASK;
+> -		val |= CTRL7_USB2_REFCLKSEL_ABB;
+> -		ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
+> -		if (ret)
+> -			goto out;
+> -
+> -		return 0;
+> -	}
+> -
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
+> -				 CFG54_USB3PHY_REF_USE_PAD,
+> -				 CFG54_USB3PHY_REF_USE_PAD);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
+> -				 CFGA0_USB2PHY_REFCLK_SELECT,
+> -				 CFGA0_USB2PHY_REFCLK_SELECT);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
+> -	if (ret)
+> -		goto out;
+> -	val &= ~CTRL7_USB2_REFCLKSEL_MASK;
+> -	val |= CTRL7_USB2_REFCLKSEL_PAD;
+> -	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_write(priv->peri_crg,
+> -			   PERI_CRG_PEREN6, GT_CLK_USB2PHY_REF);
+> -	if (ret)
+> -		goto out;
+> -
+> -	return 0;
+> -out:
+> -	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
+> -	return ret;
+> -}
+> -
+> -static int hi3670_config_tca(struct hi3670_priv *priv)
+> -{
+> -	u32 val, mask;
+> -	int ret;
+> -
+> -	ret = regmap_write(priv->usb31misc, TCA_INTR_STS, 0xffff);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_write(priv->usb31misc, TCA_INTR_EN,
+> -			   INTR_EN_XA_TIMEOUT_EVT_EN | INTR_EN_XA_ACK_EVT_EN);
+> -	if (ret)
+> -		goto out;
+> -
+> -	mask = CLK_RST_TCA_REF_CLK_EN | CLK_RST_SUSPEND_CLK_EN;
+> -	ret = regmap_update_bits(priv->usb31misc, TCA_CLK_RST, mask, 0);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_update_bits(priv->usb31misc, TCA_GCFG,
+> -				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE,
+> -				 GCFG_ROLE_HSTDEV | GCFG_OP_MODE_CTRL_SYNC_MODE);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_update_bits(priv->usb31misc, TCA_SYSMODE_CFG,
+> -				 SYSMODE_CFG_TYPEC_DISABLE, 0);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_read(priv->usb31misc, TCA_TCPC, &val);
+> -	if (ret)
+> -		goto out;
+> -	val &= ~(TCPC_VALID | TCPC_LOW_POWER_EN | TCPC_MUX_CONTROL_MASK);
+> -	val |= (TCPC_VALID | TCPC_MUX_CONTROL_USB31);
+> -	ret = regmap_write(priv->usb31misc, TCA_TCPC, val);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = regmap_write(priv->usb31misc, TCA_VBUS_CTRL,
+> -			   VBUS_CTRL_POWERPRESENT_OVERRD | VBUS_CTRL_VBUSVALID_OVERRD);
+> -	if (ret)
+> -		goto out;
+> -
+> -	return 0;
+> -out:
+> -	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
+> -	return ret;
+> -}
+> -
+> -static int hi3670_phy_init(struct phy *phy)
+> -{
+> -	struct hi3670_priv *priv = phy_get_drvdata(phy);
+> -	u32 val;
+> -	int ret;
+> -
+> -	/* assert controller */
+> -	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET |
+> -	      CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, 0);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = hi3670_config_phy_clock(priv);
+> -	if (ret)
+> -		goto out;
+> -
+> -	/* Exit from IDDQ mode */
+> -	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL5,
+> -				 CTRL5_USB2_SIDDQ, 0);
+> -	if (ret)
+> -		goto out;
+> -
+> -	/* Release USB31 PHY out of TestPowerDown mode */
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG50,
+> -				 CFG50_USB3_PHY_TEST_POWERDOWN, 0);
+> -	if (ret)
+> -		goto out;
+> -
+> -	/* Deassert phy */
+> -	val = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
+> -	if (ret)
+> -		goto out;
+> -
+> -	usleep_range(100, 120);
+> -
+> -	/* Tell the PHY power is stable */
+> -	val = CFG54_USB3_PHY0_ANA_PWR_EN | CFG54_PHY0_PCS_PWR_STABLE |
+> -	      CFG54_PHY0_PMA_PWR_STABLE;
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
+> -				 val, val);
+> -	if (ret)
+> -		goto out;
+> -
+> -	ret = hi3670_config_tca(priv);
+> -	if (ret)
+> -		goto out;
+> -
+> -	/* Enable SSC */
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG5C,
+> -				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN,
+> -				 CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN);
+> -	if (ret)
+> -		goto out;
+> -
+> -	/* Deassert controller */
+> -	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
+> -	if (ret)
+> -		goto out;
+> -
+> -	usleep_range(100, 120);
+> -
+> -	/* Set fake vbus valid signal */
+> -	val = CTRL0_USB3_VBUSVLD | CTRL0_USB3_VBUSVLD_SEL;
+> -	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL0, val, val);
+> -	if (ret)
+> -		goto out;
+> -
+> -	val = CTRL3_USB2_VBUSVLDEXT0 | CTRL3_USB2_VBUSVLDEXTSEL0;
+> -	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL3, val, val);
+> -	if (ret)
+> -		goto out;
+> -
+> -	usleep_range(100, 120);
+> -
+> -	ret = hi3670_phy_set_params(priv);
+> -	if (ret)
+> -		goto out;
+> -
+> -	return 0;
+> -out:
+> -	dev_err(priv->dev, "failed to init phy ret: %d\n", ret);
+> -	return ret;
+> -}
+> -
+> -static int hi3670_phy_exit(struct phy *phy)
+> -{
+> -	struct hi3670_priv *priv = phy_get_drvdata(phy);
+> -	u32 mask;
+> -	int ret;
+> -
+> -	/* Assert phy */
+> -	mask = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
+> -	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, mask, 0);
+> -	if (ret)
+> -		goto out;
+> -
+> -	if (hi3670_is_abbclk_seleted(priv)) {
+> -		/* disable usb_tcxo_en */
+> -		ret = regmap_write(priv->pctrl, PCTRL_PERI_CTRL3,
+> -				   USB_TCXO_EN << PCTRL_PERI_CTRL3_MSK_START);
+> -	} else {
+> -		ret = regmap_write(priv->peri_crg, PERI_CRG_PERDIS6,
+> -				   GT_CLK_USB2PHY_REF);
+> -		if (ret)
+> -			goto out;
+> -	}
+> -
+> -	return 0;
+> -out:
+> -	dev_err(priv->dev, "failed to exit phy ret: %d\n", ret);
+> -	return ret;
+> -}
+> -
+> -static struct phy_ops hi3670_phy_ops = {
+> -	.init		= hi3670_phy_init,
+> -	.exit		= hi3670_phy_exit,
+> -	.owner		= THIS_MODULE,
+> -};
+> -
+> -static int hi3670_phy_probe(struct platform_device *pdev)
+> -{
+> -	struct phy_provider *phy_provider;
+> -	struct device *dev = &pdev->dev;
+> -	struct phy *phy;
+> -	struct hi3670_priv *priv;
+> -
+> -	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> -	if (!priv)
+> -		return -ENOMEM;
+> -
+> -	priv->dev = dev;
+> -	priv->peri_crg = syscon_regmap_lookup_by_phandle(dev->of_node,
+> -							 "hisilicon,pericrg-syscon");
+> -	if (IS_ERR(priv->peri_crg)) {
+> -		dev_err(dev, "no hisilicon,pericrg-syscon\n");
+> -		return PTR_ERR(priv->peri_crg);
+> -	}
+> -
+> -	priv->pctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
+> -						      "hisilicon,pctrl-syscon");
+> -	if (IS_ERR(priv->pctrl)) {
+> -		dev_err(dev, "no hisilicon,pctrl-syscon\n");
+> -		return PTR_ERR(priv->pctrl);
+> -	}
+> -
+> -	priv->sctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
+> -						      "hisilicon,sctrl-syscon");
+> -	if (IS_ERR(priv->sctrl)) {
+> -		dev_err(dev, "no hisilicon,sctrl-syscon\n");
+> -		return PTR_ERR(priv->sctrl);
+> -	}
+> -
+> -	/* node of hi3670 phy is a sub-node of usb3_otg_bc */
+> -	priv->usb31misc = syscon_node_to_regmap(dev->parent->of_node);
+> -	if (IS_ERR(priv->usb31misc)) {
+> -		dev_err(dev, "no hisilicon,usb3-otg-bc-syscon\n");
+> -		return PTR_ERR(priv->usb31misc);
+> -	}
+> -
+> -	if (of_property_read_u32(dev->of_node, "hisilicon,eye-diagram-param",
+> -				 &priv->eye_diagram_param))
+> -		priv->eye_diagram_param = KIRIN970_USB_DEFAULT_PHY_PARAM;
+> -
+> -	if (of_property_read_u32(dev->of_node, "hisilicon,tx-vboost-lvl",
+> -				 &priv->tx_vboost_lvl))
+> -		priv->tx_vboost_lvl = KIRIN970_USB_DEFAULT_PHY_VBOOST;
+> -
+> -	phy = devm_phy_create(dev, NULL, &hi3670_phy_ops);
+> -	if (IS_ERR(phy))
+> -		return PTR_ERR(phy);
+> -
+> -	phy_set_drvdata(phy, priv);
+> -	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> -	return PTR_ERR_OR_ZERO(phy_provider);
+> -}
+> -
+> -static const struct of_device_id hi3670_phy_of_match[] = {
+> -	{ .compatible = "hisilicon,hi3670-usb-phy" },
+> -	{ },
+> -};
+> -MODULE_DEVICE_TABLE(of, hi3670_phy_of_match);
+> -
+> -static struct platform_driver hi3670_phy_driver = {
+> -	.probe	= hi3670_phy_probe,
+> -	.driver = {
+> -		.name	= "hi3670-usb-phy",
+> -		.of_match_table	= hi3670_phy_of_match,
+> -	}
+> -};
+> -module_platform_driver(hi3670_phy_driver);
+> -
+> -MODULE_AUTHOR("Yu Chen <chenyu56@huawei.com>");
+> -MODULE_LICENSE("GPL v2");
+> -MODULE_DESCRIPTION("Hilisicon Kirin970 USB31 PHY Driver");
+> diff --git a/drivers/staging/hikey9xx/phy-hi3670-usb3.yaml b/drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
+> deleted file mode 100644
+> index 125a5d6546ae..000000000000
+> --- a/drivers/staging/hikey9xx/phy-hi3670-usb3.yaml
+> +++ /dev/null
+> @@ -1,72 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0
+> -%YAML 1.2
+> ----
+> -$id: http://devicetree.org/schemas/phy/hisilicon,hi3670-usb3.yaml#
+> -$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -
+> -title: Hisilicon Kirin970 USB PHY
+> -
+> -maintainers:
+> -  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> -description: |+
+> -  Bindings for USB3 PHY on HiSilicon Kirin 970.
+> -
+> -properties:
+> -  compatible:
+> -    const: hisilicon,hi3670-usb-phy
+> -
+> -  "#phy-cells":
+> -    const: 0
+> -
+> -  hisilicon,pericrg-syscon:
+> -    $ref: '/schemas/types.yaml#/definitions/phandle'
+> -    description: phandle of syscon used to control iso refclk.
+> -
+> -  hisilicon,pctrl-syscon:
+> -    $ref: '/schemas/types.yaml#/definitions/phandle'
+> -    description: phandle of syscon used to control usb tcxo.
+> -
+> -  hisilicon,sctrl-syscon:
+> -    $ref: '/schemas/types.yaml#/definitions/phandle'
+> -    description: phandle of syscon used to control phy deep sleep.
+> -
+> -  hisilicon,eye-diagram-param:
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -    description: Eye diagram for phy.
+> -
+> -  hisilicon,tx-vboost-lvl:
+> -    $ref: /schemas/types.yaml#/definitions/uint32
+> -    description: TX level vboost for phy.
+> -
+> -required:
+> -  - compatible
+> -  - hisilicon,pericrg-syscon
+> -  - hisilicon,pctrl-syscon
+> -  - hisilicon,sctrl-syscon
+> -  - hisilicon,eye-diagram-param
+> -  - hisilicon,tx-vboost-lvl
+> -  - "#phy-cells"
+> -
+> -additionalProperties: false
+> -
+> -examples:
+> -  - |
+> -    bus {
+> -      #address-cells = <2>;
+> -      #size-cells = <2>;
+> -
+> -      usb3_otg_bc: usb3_otg_bc@ff200000 {
+> -        compatible = "syscon", "simple-mfd";
+> -        reg = <0x0 0xff200000 0x0 0x1000>;
+> -
+> -        usb_phy {
+> -          compatible = "hisilicon,hi3670-usb-phy";
+> -          #phy-cells = <0>;
+> -          hisilicon,pericrg-syscon = <&crg_ctrl>;
+> -          hisilicon,pctrl-syscon = <&pctrl>;
+> -          hisilicon,sctrl-syscon = <&sctrl>;
+> -          hisilicon,eye-diagram-param = <0xfdfee4>;
+> -          hisilicon,tx-vboost-lvl = <0x5>;
+> -        };
+> -      };
+> -    };
+> -- 
+> 2.28.0
+> 
