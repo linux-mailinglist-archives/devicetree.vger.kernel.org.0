@@ -2,198 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB2DE2B3F17
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 09:50:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF7F2B3FA2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 10:23:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726249AbgKPIsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 03:48:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726291AbgKPIsl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 03:48:41 -0500
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B1FAC0613D2
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 00:48:41 -0800 (PST)
-Received: by mail-wr1-x444.google.com with SMTP id o15so17741308wru.6
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 00:48:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=WGmvI1sWi9YS1j1s8WAMZhMvIFqQdHs+K1s428Cn3EE=;
-        b=JlfwS0UvNDwFmEgGMj5EpB6k4TDUTpdAm5kOcfbI5FqVOSy01Wrj58s25oJjofd/00
-         bEhMrasHaeFAjOslOhnJSwDg83N0Sbn7XihT/hB2L7rsg0+lF9ndYgW/D+RZDSy9A/g+
-         uz99XgdaxlyqPrOngFaf8VVq8G3bEKKI5RyTFYLUaHpfXOMo24NinVvLdTl2wkhDnt3E
-         Uz2LHRzBg3lVCVoWAI2lIx0UCnBqU2bDlda4RqYQIrl3NQqw5a6s568LgOUK23mNAcYV
-         pw0v+q6YAl3nc/pzEG59sxOWByT/NvFSmz+75IF2CIK6vzbsS9ey5Lbx++Xp2gOwILEr
-         crKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=WGmvI1sWi9YS1j1s8WAMZhMvIFqQdHs+K1s428Cn3EE=;
-        b=f8Q/RuAAdo22vFTNbtRH4IOtgdJjlvTY8ZPKaCSPbBmVK2r6i/uqbw8nVKg5y8rfxG
-         QkOEPukmL+AtCTEeQNifpdApodRDltRBpo06MithtTtc172gixWd+wCiAzaaNigTW7vM
-         fBKGIQKl2KW0DVcOCyTx5Q7RfkM+UxjZ1HqMJszSlrkfAl/UpYxQGrGLExWDKeHXdu9Y
-         A7LHrfG19fmCPely1WttiuwHrl15ArPUVAhhEsBcD/kQBOSRlJXKQanZyORm/auNvZJ4
-         x3UVnY4fxfj3NLIo7zTBYcDCblfTgJzHwVZ/sllIfeL5CetdrL/gxCZQPr5BA0/iUv1P
-         LmPw==
-X-Gm-Message-State: AOAM5305mCZnMAFQoCAp2VlrxCMg9ZFodVa0hh++Hm9IqRApyEf5hXjW
-        kXZrG+pzY4L4Qt9HD2tmGIJx+g==
-X-Google-Smtp-Source: ABdhPJxDy+rP4A3/2HyukiqNQ0qJNHNSRtosWCvndXLoFdyArjC6L6zgQXC8EIML7eOOmBOqQBT66g==
-X-Received: by 2002:a5d:50c6:: with SMTP id f6mr19207527wrt.150.1605516519793;
-        Mon, 16 Nov 2020 00:48:39 -0800 (PST)
-Received: from dell ([91.110.221.159])
-        by smtp.gmail.com with ESMTPSA id a12sm21346583wrr.31.2020.11.16.00.48.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 00:48:39 -0800 (PST)
-Date:   Mon, 16 Nov 2020 08:48:37 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Sebastian Reichel <sre@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] mfd: Add driver for Embedded Controller found on
- Acer Iconia Tab A500
-Message-ID: <20201116084837.GM3718728@dell>
-References: <20201104203403.24937-1-digetx@gmail.com>
- <20201104203403.24937-3-digetx@gmail.com>
- <20201113093747.GJ2787115@dell>
- <3ad644fd-cd03-a1e1-36d9-014304fdfcee@gmail.com>
+        id S1726603AbgKPJWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 04:22:33 -0500
+Received: from mailout05.rmx.de ([94.199.90.90]:55885 "EHLO mailout05.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726837AbgKPJWd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 04:22:33 -0500
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout05.rmx.de (Postfix) with ESMTPS id 4CZNrj0zRpz9xCZ;
+        Mon, 16 Nov 2020 10:22:29 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4CZNrS3HBTz2TTNs;
+        Mon, 16 Nov 2020 10:22:16 +0100 (CET)
+Received: from n95hx1g2.localnet (192.168.54.154) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Mon, 16 Nov
+ 2020 10:21:15 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>
+CC:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        "Richard Cochran" <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Vivien Didelot" <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 03/11] net: dsa: microchip: split ksz_common.h
+Date:   Mon, 16 Nov 2020 10:21:14 +0100
+Message-ID: <21145167.0O08aVLsga@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <5328227.AyQhSCNoNJ@n95hx1g2>
+References: <20201112153537.22383-1-ceggers@arri.de> <20201112230254.v6bzsud3jlcmsjm2@skbuf> <5328227.AyQhSCNoNJ@n95hx1g2>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3ad644fd-cd03-a1e1-36d9-014304fdfcee@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [192.168.54.154]
+X-RMX-ID: 20201116-102216-4CZNrS3HBTz2TTNs-0@kdin02
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020, Dmitry Osipenko wrote:
+On Friday, 13 November 2020, 17:56:34 CET, Christian Eggers wrote:
+> On Friday, 13 November 2020, 00:02:54 CET, Vladimir Oltean wrote:
+> > On Thu, Nov 12, 2020 at 04:35:29PM +0100, Christian Eggers wrote:
+> > > Parts of ksz_common.h (struct ksz_device) will be required in
+> > > net/dsa/tag_ksz.c soon. So move the relevant parts into a new header
+> > > file.
+> > > 
+> > > Signed-off-by: Christian Eggers <ceggers@arri.de>
+> > > ---
+> > 
+> > I had to skip ahead to see what you're going to use struct ksz_port and
+> > 
+> > struct ksz_device for. It looks like you need:
+> > 	struct ksz_port::tstamp_rx_latency_ns
+> > 	struct ksz_device::ptp_clock_lock
+> > 	struct ksz_device::ptp_clock_time
+> > 
+> > Not more.
+I have tried to put these members into separate structs:
 
-> 13.11.2020 12:37, Lee Jones пишет:
-> ...
-> >> +config MFD_ACER_A500_EC
-> >> +	tristate "Embedded Controller driver for Acer Iconia Tab A500"
+include/linux/dsa/ksz_common.h:
+struct ksz_port_ptp_shared {
+	u16 tstamp_rx_latency_ns;   /* rx delay from wire to tstamp unit */
+};
+
+struct ksz_device_ptp_shared {
+	spinlock_t ptp_clock_lock; /* for ptp_clock_time */
+	/* approximated current time, read once per second from hardware */
+	struct timespec64 ptp_clock_time;
+};
+
+drivers/net/dsa/microchip/ksz_common.h:
+...
+#include <linux/dsa/ksz_common.h>
+...
+struct ksz_port {
+...
+#if IS_ENABLED(CONFIG_NET_DSA_MICROCHIP_KSZ9477_PTP)
+	struct ksz_port_ptp_shared ptp_shared;	/* shared with tag_ksz.c */
+	u16 tstamp_tx_latency_ns;	/* tx delay from tstamp unit to wire */
+	struct hwtstamp_config tstamp_config;
+	struct sk_buff *tstamp_tx_xdelay_skb;
+	unsigned long tstamp_state;
+#endif
+};
+...
+struct ksz_device {
+...
+#if IS_ENABLED(CONFIG_NET_DSA_MICROCHIP_KSZ9477_PTP)
+	struct ptp_clock *ptp_clock;
+	struct ptp_clock_info ptp_caps;
+	struct mutex ptp_mutex;
+	struct ksz_device_ptp_shared ptp_shared;   /* shared with tag_ksz.c */
+#endif
+};
+
+The problem with such technique is, that I still need to dereference
+struct ksz_device in tag_ksz.c:
+
+static void ksz9477_rcv_timestamp(struct sk_buff *skb, u8 *tag,
+				  struct net_device *dev, unsigned int port)
+{
+...
+	struct dsa_switch *ds = dev->dsa_ptr->ds;
+	struct ksz_device *ksz = ds->priv;
+	struct ksz_port *prt = &ksz->ports[port];
+...
+}
+
+As struct dsa_switch::priv is already occupied by the pointer to
+struct ksz_device, I see no way accessing the ptp specific device/port
+information in tag_ksz.c.
+
 > > 
-> > Drop "driver".  This is meant to be describing the device.
-> > 
-> >> +	depends on I2C
-> > 
-> > depends on OF ?
-> ...
-> >> +	depends on ARCH_TEGRA_2x_SOC || COMPILE_TEST
-> >> +	select MFD_CORE
-> >> +	select REGMAP
-> >> +	help
+> > Why don't you go the other way around, i.e. exporting some functions
+> > from your driver, and calling them from the tagger?
 > 
-> ARCH_TEGRA_2x_SOC selects OF.
+> Good question... But as for as I can see, there are a single tagger and
+> multiple device drivers (currently KSZ8795 and KSZ9477).
 > 
-> For COMPILE_TEST it doesn't matter since OF framework provides stubs for
-> !OF.
-
-I always thought it was best to be explicit.
-
-> ...
-> >> +static int a500_ec_read(void *context, const void *reg_buf, size_t reg_size,
-> >> +			void *val_buf, size_t val_sizel)
-> >> +{
-> >> +	struct i2c_client *client = context;
-> >> +	unsigned int reg, retries = 5;
-> >> +	u16 *ret_val = val_buf;
-> >> +	s32 ret = 0;
-> >> +
-> >> +	if (reg_size != 1 || val_sizel != 2)
-> > 
-> > No magic numbers please.
-> > 
-> > What does this *mean*?
+> Moving the KSZ9477 specific stuff, which is required by the tagger, into the
+> KSZ9477 device driver, would make the tagger dependent on the driver(s).
+> Currently, no tagger seems to have this direction of dependency (at least I
+> cannot find this in net/dsa/Kconfig).
 > 
-> These are the size of address register and size of a read value, both in
-> bytes.
-
-Great.  But don't tell me that.  You need to tell the next person who
-reads this code, and the next, and the next.  Defines work best for
-this.  Comments are also okay.
-
-> >> +		return -EOPNOTSUPP;
-> > 
-> > Why EOPNOTSUPP?
+> If I shall change this anyway, I would use #ifdefs within the tag_ksz driver
+> in order to avoid unnecessary dependencies to the KSZ9477 driver for the
+> case only KSZ8795 is selected.
 > 
-> Other sizes aren't supported by embedded controller.
-> 
-> Although, perhaps this check isn't really needed at all since the sizes
-> are already expressed in the a500_ec_regmap_config.
-> 
-> I'll need to take a closer look at why this size-checking was added
-> because don't quite remember already. If it's not needed, then I'll
-> remove it in the next revision, otherwise will add a clarifying comment.
+> > You could even move
+> > the entire ksz9477_tstamp_to_clock() into the driver as-is, as far as I
+> > can see.
 
-"Operation not supported on transport endpoint" doesn't seem like a
-good fit here.  If the check says, please consider changing it to
-something like -EINVAL.
+regards
+Christian
 
-> >> +	reg = *(u8 *)reg_buf;
-> >> +
-> >> +	while (retries-- > 0) {
-> >> +		ret = i2c_smbus_read_word_data(client, reg);
-> >> +		if (ret >= 0)
-> >> +			break;
-> >> +
-> >> +		msleep(A500_EC_I2C_ERR_TIMEOUT);
-> >> +	}
-> >> +
-> >> +	if (ret < 0) {
-> >> +		dev_err(&client->dev, "read 0x%x failed: %d\n", reg, ret);
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	*ret_val = ret;
-> >> +
-> >> +	if (reg == REG_CURRENT_NOW)
-> >> +		fsleep(10000);
-> > 
-> > Ooo, new toy!
-> > 
-> >> +	return 0;
-> >> +}
-> > 
-> > I'm surprised there isn't a generic function which does this kind of
-> > read.  Seems like pretty common/boilerplate stuff.
-> 
-> I'm not quite sure that this is a really very common pattern which
-> deserves a generic helper.
 
-What?  Read from I2C a few times, then sleep sounds like a pretty
-common pattern to me.
 
-> ...
-> >> +static int a500_ec_restart_notify(struct notifier_block *this,
-> >> +				  unsigned long reboot_mode, void *data)
-> >> +{
-> >> +	if (reboot_mode == REBOOT_WARM)
-> >> +		i2c_smbus_write_word_data(a500_ec_client_pm_off,
-> >> +					  REG_WARM_REBOOT, 0);
-> >> +	else
-> >> +		i2c_smbus_write_word_data(a500_ec_client_pm_off,
-> >> +					  REG_COLD_REBOOT, 1);
-> > 
-> > What's with the magic '0' and '1's at the end?
-> 
-> These are the values which controller's firmware wants to see, otherwise
-> it will reject command as invalid. I'll add a clarifying comment to the
-> code.
-
-Thanks.  Hopefully with a bit more information as to why the firmware
-expects to see them.  Hopefully they're not random.
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
