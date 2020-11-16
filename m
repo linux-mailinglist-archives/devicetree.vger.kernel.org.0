@@ -2,56 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2707C2B3CDA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 07:14:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D562B3CE1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 07:15:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726774AbgKPGN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 01:13:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52614 "EHLO
+        id S1726741AbgKPGOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 01:14:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726741AbgKPGN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 01:13:58 -0500
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4234C0613CF
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 22:13:57 -0800 (PST)
-Received: by mail-qt1-x843.google.com with SMTP id p12so12178167qtp.7
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 22:13:57 -0800 (PST)
+        with ESMTP id S1725379AbgKPGOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 01:14:08 -0500
+Received: from mail-qk1-x741.google.com (mail-qk1-x741.google.com [IPv6:2607:f8b0:4864:20::741])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C741BC0613CF
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 22:14:07 -0800 (PST)
+Received: by mail-qk1-x741.google.com with SMTP id r7so15944849qkf.3
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 22:14:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=WKOjBlDK/Lz4Ub9TpRYGCAGqonPtxtyIwbLNf9AfxqA=;
-        b=EltcBkTmqEBJnmajY77FtaV6uG0d3s83Q2D2hZ8vz6VZmCz/RM1/S6WdRs0q/wkWvK
-         0Bfi/Y9/QcoEQF0c4D7DV9Ht5+QowBpv7UW9lsYKTqfrVNVLspbW2DA6crtd0+/gAZLo
-         K4ojnUWF/LgkS2Zp2c1LRTR7hZohc7oWtsVZ8=
+        bh=IDPJ0hDw+QMwCbfwtU5/cMb2P1q7+XVEepopxSFVZUs=;
+        b=LIAjCCtES8iorpgDK8RHzG6KjduEl/e8zhzt4tgqBASno5xJZW0/djcO9cASFpH+mJ
+         dgL05YZqem99cky+4AO2DPQM1zcCOAUxgCz9FrW+exIInR+ri8fY1jdfEM9vwu2zA7Kl
+         rfsq/xeaeXJNUsxjjbXktvFxcH+asPevYgjm0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=WKOjBlDK/Lz4Ub9TpRYGCAGqonPtxtyIwbLNf9AfxqA=;
-        b=D47aYvYiogycHPW56jJX08GsEr+spjVJnsuiAfY889oc8YrzFF9uV0JfKo/6DCxPzd
-         EL2zQw5qkXIO93qBsTcCyB0EDwSTKxSXbtn5fNfhPtMAVIcWc6LXD0LxIaOSGbTCgprd
-         qca00RWfTvXBx6Tt0PgBXNYxqVuVAW8XPpUxXbpXbyx4u4oKXLweWoIAMMD0Mp7dNuMj
-         Ik3PhuhRKg7ZVD1JTZftjIp0AUsc9ImgMrfV1rRSmfuqFFKpleZjZoJTe3lawoyV3x2F
-         p2560ICacLnyUa4yIPLaF6ab/yAC5AbybXCatq0GEhF9ON10iouYKv7WmfNKYTT52sBd
-         w1PQ==
-X-Gm-Message-State: AOAM533DgGBvQS+7WVieulz/aof/jUBcYlHcK2mRFPoy+qeDwbKhsf1E
-        U0ICmFvoLB2b50+F0y9Cv2VGh1bQvEgy0QtY/FA=
-X-Google-Smtp-Source: ABdhPJxyI/NzoLy43TOTPSid5FX7fIXdywhFaNstLDLUyT8HXNdKHDsvRwtNqojKGMmRFlnw7OnQly5dftpIvWiqPfo=
-X-Received: by 2002:ac8:4d5b:: with SMTP id x27mr12851506qtv.135.1605507236888;
- Sun, 15 Nov 2020 22:13:56 -0800 (PST)
+        bh=IDPJ0hDw+QMwCbfwtU5/cMb2P1q7+XVEepopxSFVZUs=;
+        b=Dh2vGTvica+mRECziAS0+94Xp9VDwXBGnf2qs9QzAkBk/BK1ng2qIAubX0lZgOvl8h
+         F+ff/lR+VT6O06XJs3ojhVltSsSsXCcV9Cwf1xrKJEsa4tqoOoZN2shfNPwSc4G3fer8
+         BspakH94PvF0p5nKUXJWgRW/7KKZ6pX7dRYxoTxRBeYqRGfidWflWFC8UwVv7FUB6eGR
+         54yLtb2RAlCsYXn/EEyCKh63FPxMp4Rf6ps+cmIiGN2V5/lnitNGo+r6LxfakmkQ/JVE
+         jmqKDsawIpUgkotPkcApgXb2e7Lt0QCnIlT7JhYxcWo0N1w7x6AEi/wvaXnb00TWSGl0
+         SORw==
+X-Gm-Message-State: AOAM531LYemVkAElmNuwV5MPhxOAoL5UQ0IMYDG2/2z07HAkhP2M+uzt
+        QpuJ5giPsHR5DbG2be5LvZDoMrM9u2vXWkmP7BA=
+X-Google-Smtp-Source: ABdhPJxw7qMo/XDHcMm/miSXAx0lXi/G21woSkTc5vH/0ZtFtSLckMuKiGz0zTyOqc9/RWNIykC/VLeyTLfqiqs7U9A=
+X-Received: by 2002:a37:664d:: with SMTP id a74mr12974651qkc.487.1605507247059;
+ Sun, 15 Nov 2020 22:14:07 -0800 (PST)
 MIME-Version: 1.0
-References: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com> <1605247168-1028-6-git-send-email-vishwa@linux.vnet.ibm.com>
-In-Reply-To: <1605247168-1028-6-git-send-email-vishwa@linux.vnet.ibm.com>
+References: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com> <1605247168-1028-2-git-send-email-vishwa@linux.vnet.ibm.com>
+In-Reply-To: <1605247168-1028-2-git-send-email-vishwa@linux.vnet.ibm.com>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 16 Nov 2020 06:13:43 +0000
-Message-ID: <CACPK8XfttMptuYFsocBaj2v4z1vzNjDUfe18FeDcAbmZjWKjfQ@mail.gmail.com>
-Subject: Re: [PATCH 6/6] ARM: dts: aspeed: rainier: Add leds that are on
- optional PCI cable cards
-To:     Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>,
-        Eddie James <eajames@linux.ibm.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brad Bishop <bradleyb@fuzziesquirrel.com>
+Date:   Mon, 16 Nov 2020 06:13:54 +0000
+Message-ID: <CACPK8XfRS7jMmqeDFvzjA-K2-zMr-hu8msdrXsZ0K4H8F670Mw@mail.gmail.com>
+Subject: Re: [PATCH 2/6] ARM: dts: aspeed: rainier: Add directly controlled LEDs
+To:     Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
 Cc:     linux-aspeed <linux-aspeed@lists.ozlabs.org>,
         devicetree <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>
@@ -63,334 +59,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Fri, 13 Nov 2020 at 05:59, Vishwanatha Subbanna
 <vishwa@linux.vnet.ibm.com> wrote:
 >
-> These are LEDs on the cable cards that plug into PCIE slots.
-> The LEDs are controlled by PCA9552 I2C expander
+> These LEDs are directly connected to the BMC's GPIO bank.
 >
 > Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
+> Reviewed-by: Eddie James <eajames@linux.ibm.com>
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+
+
 > ---
->  arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 288 +++++++++++++++++++++++++++
->  1 file changed, 288 insertions(+)
+>  arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 24 ++++++++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
 >
 > diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> index 67c8c40..7de5f76 100644
+> index 64d8748..1da7389 100644
 > --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
 > +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> @@ -696,6 +696,70 @@
->                         gpios = <&pca4 7 GPIO_ACTIVE_LOW>;
->                 };
->         };
-> +
-> +       leds-optional-cablecard0 {
-
-Is it necessary to have separate nodes for each of the different GPIO devices?
-
-Would it make sense to combine them, or is it better to be separate?
-
-Andrew, Eddie, Brad: please review this one before I merge it.
-
-> +               compatible = "gpio-leds";
-> +
-> +               cablecard0-cxp-top {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca5 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cablecard0-cxp-bot {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca5 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +       };
-> +
-> +       leds-optional-cablecard3 {
-> +               compatible = "gpio-leds";
-> +
-> +               cablecard3-cxp-top {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca6 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cablecard3-cxp-bot {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca6 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +       };
-> +
-> +       leds-optional-cablecard4 {
-> +               compatible = "gpio-leds";
-> +
-> +               cablecard4-cxp-top {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca7 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cablecard4-cxp-bot {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca7 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +       };
-> +
-> +       leds-optional-cablecard10 {
-> +               compatible = "gpio-leds";
-> +
-> +               cablecard10-cxp-top {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca8 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cablecard10-cxp-bot {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pca8 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +       };
->  };
+> @@ -126,6 +126,26 @@
+>         leds {
+>                 compatible = "gpio-leds";
 >
->  &ehci1 {
-> @@ -1212,6 +1276,180 @@
->                 compatible = "atmel,24c64";
->                 reg = <0x52>;
->         };
-> +
-> +       pca5: pca9551@60 {
-> +               compatible = "nxp,pca9551";
-> +               reg = <0x60>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
+> +               /* BMC Card fault LED at the back */
+> +               bmc-ingraham0 {
+> +                       gpios = <&gpio0 ASPEED_GPIO(H, 1) GPIO_ACTIVE_LOW>;
 > +               };
 > +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
+> +               /* Enclosure ID LED at the back */
+> +               rear-enc-id0 {
+> +                       gpios = <&gpio0 ASPEED_GPIO(H, 2) GPIO_ACTIVE_LOW>;
 > +               };
 > +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
+> +               /* Enclosure fault LED at the back */
+> +               rear-enc-fault0 {
+> +                       gpios = <&gpio0 ASPEED_GPIO(H, 3) GPIO_ACTIVE_LOW>;
 > +               };
 > +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
+> +               /* PCIE slot power LED */
+> +               pcieslot-power {
+> +                       gpios = <&gpio0 ASPEED_GPIO(P, 4) GPIO_ACTIVE_LOW>;
 > +               };
 > +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
-> +};
-> +
-> +&i2c5 {
-> +       status = "okay";
-> +
-> +       tmp275@48 {
-> +               compatible = "ti,tmp275";
-> +               reg = <0x48>;
-> +       };
-> +
-> +       tmp275@49 {
-> +               compatible = "ti,tmp275";
-> +               reg = <0x49>;
-> +       };
-> +
-> +       eeprom@50 {
-> +               compatible = "atmel,24c64";
-> +               reg = <0x50>;
-> +       };
-> +
-> +       eeprom@51 {
-> +               compatible = "atmel,24c64";
-> +               reg = <0x51>;
-> +       };
-> +
-> +       pca6: pca9551@60 {
-> +               compatible = "nxp,pca9551";
-> +               reg = <0x60>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
-> +
-> +       pca7: pca9551@61 {
-> +               compatible = "nxp,pca9551";
-> +               reg = <0x61>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
->  };
->
->  &i2c5 {
-> @@ -2028,6 +2266,56 @@
->                 compatible = "atmel,24c64";
->                 reg = <0x51>;
->         };
-> +
-> +       pca8: pca9551@60 {
-> +               compatible = "nxp,pca9551";
-> +               reg = <0x60>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
->  };
->
->  &i2c12 {
+>                 /* System ID LED that is at front on Op Panel */
+>                 front-sys-id0 {
+>                         retain-state-shutdown;
+> @@ -169,7 +189,7 @@
+>         /*E0-E7*/       "","","","","","","","",
+>         /*F0-F7*/       "","","","","","","","",
+>         /*G0-G7*/       "","","","","","","","",
+> -       /*H0-H7*/       "","","","","","","","",
+> +       /*H0-H7*/       "","bmc-ingraham0","rear-enc-id0","rear-enc-fault0","","","","",
+>         /*I0-I7*/       "","","","","","","","",
+>         /*J0-J7*/       "","","","","","","","",
+>         /*K0-K7*/       "","","","","","","","",
+> @@ -177,7 +197,7 @@
+>         /*M0-M7*/       "","","","","","","","",
+>         /*N0-N7*/       "","","","","","","","",
+>         /*O0-O7*/       "","","","usb-power","","","","",
+> -       /*P0-P7*/       "","","","","","","","",
+> +       /*P0-P7*/       "","","","","pcieslot-power","","","",
+>         /*Q0-Q7*/       "cfam-reset","","","","","","","",
+>         /*R0-R7*/       "","","","","","","","",
+>         /*S0-S7*/       "presence-ps0","presence-ps1","presence-ps2","presence-ps3",
 > --
 > 1.8.3.1
 >
