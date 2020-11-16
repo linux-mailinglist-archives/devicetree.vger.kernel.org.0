@@ -2,153 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE2272B3E0A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 08:56:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5832B3E16
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 08:56:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727883AbgKPHzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 02:55:01 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48802 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727895AbgKPHyv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 02:54:51 -0500
-Received: from wens.tw (mirror2.csie.ntu.edu.tw [140.112.30.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9AE6F222B9;
-        Mon, 16 Nov 2020 07:54:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605513290;
-        bh=AQ/Sx1u+bYD4zoGriANF0/uI3pWLqX2+CyXLECxBBZo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vwO/bi8HxpZmfmGN+1TNtSuJ0TKhs3RpajY7obUPsQc+fyHhgCYQiZiRmakfE/dXl
-         sZLGXowQYfbzG1Df9LaM7jdluA7TKQ2pOLZnB5I1vCKOWztcQPTJ5xbtT5RZGX8rOx
-         IKv+XDU4rAde5JPL7KmlWWrJA/XL+RF+MJGhSseU=
-Received: by wens.tw (Postfix, from userid 1000)
-        id CC6FF5FD01; Mon, 16 Nov 2020 15:54:47 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Robin Murphy <robin.murphy@arm.com>,
-        Johan Jonker <jbx6244@gmail.com>, linux-pci@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        id S1727955AbgKPHzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 02:55:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39938 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728064AbgKPHzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 02:55:42 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF8AC0613D3
+        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 23:55:42 -0800 (PST)
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1keZMO-0007YL-0W; Mon, 16 Nov 2020 08:55:37 +0100
+Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@dude03.red.stw.pengutronix.de>)
+        id 1keZMM-00GrbL-Px; Mon, 16 Nov 2020 08:55:34 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: rockchip: rk3399: Add NanoPi M4B
-Date:   Mon, 16 Nov 2020 15:52:15 +0800
-Message-Id: <20201116075215.15303-5-wens@kernel.org>
-X-Mailer: git-send-email 2.29.1
-In-Reply-To: <20201116075215.15303-1-wens@kernel.org>
-References: <20201116075215.15303-1-wens@kernel.org>
+Cc:     rajanv@xilinx.com, tejasp@xilinx.com, dshah@xilinx.com,
+        rvisaval@xilinx.com, michals@xilinx.com, kernel@pengutronix.de,
+        robh+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        Michael Tretter <m.tretter@pengutronix.de>
+Date:   Mon, 16 Nov 2020 08:55:20 +0100
+Message-Id: <20201116075532.4019252-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        metis.ext.pengutronix.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
+        version=3.4.2
+Subject: [PATCH 00/12] soc: xilinx: vcu: Convert driver to clock provider
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+Hello,
 
-The NanoPi M4B is a minor revision of the original M4.
+the xlnx_vcu soc driver is actually a clock provider of a PLL and four output
+clocks created from the PLL via dividers.
 
-The differences against the original Nanopi M4 that are common with the
-other M4V2 revision include:
+This series reworks the xlnx_vcu driver to use the common clock framework to
+enable other drivers to use the clocks. I originally posted a series to expose
+the output clocks as fixed clocks [0]. This series now implements the full
+tree from the PLL to the output clocks. Therefore, I am sending a separate
+series that focuses on the clocks, but it depends on v4 of the previous series
+[1].
 
-  - microphone header removed
-  - power button added
-  - recovery button added
+Possible consumers for the clocks are the allegro-dvt video encoder driver or
+the Xilinx Video Codec Unit [2] out of tree driver.
 
-Additional changes specific to the M4B:
+Patch 1 defines the identifiers that shall be used by clock consumers in the
+device tree.
 
-  - USB 3.0 hub removed; board now has 2x USB 3.0 type-A ports and 2x
-    USB 2.0 ports
-  - ADB toggle switch added; this changes the top USB 3.0 host port to
-    a peripheral port
-  - Type-C port no longer supports data or PD
-  - WiFi/Bluetooth combo chip switched to AP6256, which supports BT 5.0
-    but only 1T1R (down from 2T2R) for WiFi
+Patch 2 fixes the generic clk-divider to correctly use parents that are passed
+via struct clk_hw instead of the clock name.
 
-Add a new dts file for the new board revision that shows the difference
-against the original.
+Patches 3-6 refactor the existing driver and split the function to configure
+the PLL into smaller helper functions.
 
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3399-nanopi-m4b.dts   | 52 +++++++++++++++++++
- 2 files changed, 53 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts
+Patch 7 registers a fixed rate clock for the PLL. The driver calculated and
+set the PLL configuration during probe, and exposing a fixed rate clock for
+that rate allows to use the existing configuration with output clocks from the
+common clock framework.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 5a53979b7057..fd47414e40eb 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-kobol-helios64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-leez-p710.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopc-t4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-orangepi.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-pinebook-pro.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts
-new file mode 100644
-index 000000000000..72182c58cc46
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-nanopi-m4b.dts
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * FriendlyElec NanoPi M4B board device tree source
-+ *
-+ * Copyright (c) 2020 Chen-Yu Tsai <wens@csie.org>
-+ */
-+
-+/dts-v1/;
-+#include "rk3399-nanopi-m4.dts"
-+
-+/ {
-+	model = "FriendlyElec NanoPi M4B";
-+	compatible = "friendlyarm,nanopi-m4b", "rockchip,rk3399";
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1500000>;
-+		poll-interval = <100>;
-+
-+		recovery {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <18000>;
-+		};
-+	};
-+};
-+
-+/* No USB type-C PD power manager */
-+/delete-node/ &fusb0;
-+
-+&i2c4 {
-+	status = "disabled";
-+};
-+
-+&u2phy0_host {
-+	phy-supply = <&vcc5v0_usb2>;
-+};
-+
-+&u2phy0_otg {
-+	phy-supply = <&vbus_typec>;
-+};
-+
-+&u2phy1_otg {
-+	phy-supply = <&vcc5v0_usb1>;
-+};
-+
-+&vbus_typec {
-+	enable-active-high;
-+	gpios = <&gpio4 RK_PD2 GPIO_ACTIVE_HIGH>;
-+};
+Patches 8-10 switch the driver to the common clock framework and register the
+clock provider.
+
+Patches 11-12 are cleanup patches.
+
+Michael
+
+[0] https://lore.kernel.org/linux-arm-kernel/20200619075913.18900-1-m.tretter@pengutronix.de/
+[1] https://lore.kernel.org/linux-arm-kernel/20201109134818.4159342-3-m.tretter@pengutronix.de/
+[2] https://github.com/Xilinx/vcu-modules
+
+Michael Tretter (12):
+  ARM: dts: define indexes for output clocks
+  clk: divider: fix initialization with parent_hw
+  soc: xilinx: vcu: drop coreclk from struct xlnx_vcu
+  soc: xilinx: vcu: add helper to wait for PLL locked
+  soc: xilinx: vcu: add helpers for configuring PLL
+  soc: xilinx: vcu: implement PLL disable
+  soc: xilinx: vcu: register PLL as fixed rate clock
+  soc: xilinx: vcu: implement clock provider for output clocks
+  soc: xilinx: vcu: make pll post divider explicit
+  soc: xilinx: vcu: make the PLL configurable
+  soc: xilinx: vcu: remove calculation of PLL configuration
+  soc: xilinx: vcu: use bitfields for register definition
+
+ drivers/clk/clk-divider.c            |   9 +-
+ drivers/soc/xilinx/Kconfig           |   2 +-
+ drivers/soc/xilinx/xlnx_vcu.c        | 613 ++++++++++++++++-----------
+ include/dt-bindings/clock/xlnx-vcu.h |  15 +
+ 4 files changed, 383 insertions(+), 256 deletions(-)
+ create mode 100644 include/dt-bindings/clock/xlnx-vcu.h
+
 -- 
-2.29.1
+2.20.1
 
