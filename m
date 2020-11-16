@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4E0B2B5080
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:04:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B748A2B5089
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:09:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727520AbgKPTEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 14:04:20 -0500
-Received: from mail.kernel.org ([198.145.29.99]:53580 "EHLO mail.kernel.org"
+        id S1727976AbgKPTHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 14:07:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:54724 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725879AbgKPTEU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 14:04:20 -0500
+        id S1725879AbgKPTHx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 14:07:53 -0500
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 52B132225B;
-        Mon, 16 Nov 2020 19:04:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 394732225B;
+        Mon, 16 Nov 2020 19:07:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605553459;
-        bh=YQbOeR0Ir0jO5GxTkZ/KPEcLOqI6KXbHLyISKeSbQ2k=;
+        s=default; t=1605553672;
+        bh=yosXMLmSKHZhkAgd5D8vJ5A8qZi+NPfl8uhqpTpOj6k=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f3nHWDB5UYIanun4/6bqobOCfJotTUjTtZItEmpy0wO6KaXjrxdusbSMS4ljgIs1V
-         pDbRIw4hq7DjsHI/TtpuMdrR/of84ih03VU/ZohdCYYh2vZ8V+NmW9wOj8Dsj2ZgmL
-         OKSRtmDgMyutH1MzfMyRjnQs3SXIohzYYhKlIbjs=
-Date:   Mon, 16 Nov 2020 19:04:00 +0000
+        b=nqKf9OldNsSdey8/QJeb1luOcd4HwBPSIVYjTLj4rB/CEnWdloMS9AvJgcRqaIgM2
+         mgirUWUsENniK2QwP3AomrpBweLg3Y6wSN+dQ54U4OIrdm5kUuW0WVBaLQs4D8sLIU
+         13UQXjlpCrGXInaBO3eJFoqP6K57yNj+VU9/tw68=
+Date:   Mon, 16 Nov 2020 19:07:33 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Subject: Re: [PATCH] Asoc: qcom: lpass-platform: Fix memory leak
-Message-ID: <20201116190400.GE4739@sirena.org.uk>
-References: <1605416210-14530-1-git-send-email-srivasam@codeaurora.org>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-mtd@lists.infradead.org, vigneshr@ti.com, p.yadav@ti.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+Subject: Re: [PATCH v7 5/6] dt-bindings: spi: Convert cadence-quadspi.txt to
+ cadence-quadspi.yaml
+Message-ID: <20201116190733.GF4739@sirena.org.uk>
+References: <20201116031003.19062-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20201116031003.19062-6-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="brEuL7wsLY8+TuWz"
+        protocol="application/pgp-signature"; boundary="eDB11BtaWSyaBkpc"
 Content-Disposition: inline
-In-Reply-To: <1605416210-14530-1-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <20201116031003.19062-6-vadivel.muruganx.ramuthevar@linux.intel.com>
 X-Cookie: Immanuel doesn't pun, he Kant.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -48,30 +48,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---brEuL7wsLY8+TuWz
+--eDB11BtaWSyaBkpc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Nov 15, 2020 at 10:26:50AM +0530, Srinivasa Rao Mandadapu wrote:
-> lpass_pcm_data is not freed in error paths. Free it in
-> error paths to avoid memory leak.
+On Mon, Nov 16, 2020 at 11:10:02AM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel=
+=2Ecom>
+>=20
+> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
+> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
 
-Please use subject lines reflecting the general style for the subsystem,
-it makes it easier for people to spot patches that need to be reviewed.
+As previously and repeatedly requested please make any conversions to
+YAML the *final* thing in serieses so that issues with the conversion do
+not hold up other development.
 
---brEuL7wsLY8+TuWz
+--eDB11BtaWSyaBkpc
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+yzSAACgkQJNaLcl1U
-h9CULgf/enozSv/x01jexTc5wfCzv9oWXsElA/pDZMQvwp2/Hix6fWeuOPzmWIo7
-7PYUVqp5i6mJWejVH+qDpIVIwo2V/KzyT81D5JmooPoOglEZzKdiJcj0LK7mkkD+
-T21T3qhVwaWml3gna9W8srBFidN3/gJ7+Agd5M3nQbxGtqINtMPBrJ1y7F6CsGhc
-+pTCkwcpDe/oOhWiV/iifsBhWYmkdCWHypN3vMSDMzuiE5u+PcnZchGhPSdCqrJF
-FXZ0dMoESRKqUS+MoVa0o3tAL6SEnY/gXvmFEJAw7bYCfpID82GULtwfDuuFmApK
-qXYtPZY8/noF2WY+pdHO582yoJ12ag==
-=NfJ5
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+yzfUACgkQJNaLcl1U
+h9Db5Af7BSeCmDzgNuAKNa2DAq6jwsMGG9DCDDfsoV8mVxxj88/2ctalltiwpuki
+WiVDc6AuNbqSQhFOWzh5kI1zqNra9A9s1YP8Z69Uld1B/ZrqL5LDr9a9xgWBvsE7
+Co768+PNi5fp1x2hoiFF1MgAUOMsGmKkALVxborYTqB4f3/CC9SJYh94yxYd2dRD
+wdtvJQr4gmGKdwhuhjwKcl+m5dyQ9uI9zWZZFmwkCXRzaW27ndw83utGRPd4Z6ht
+ExGxovoAX/V+HX/sI4133h+F3emUKGJi0c3jT5GLZPRgFDXVSx/B04FBzfn2qlE+
+uleRMfluu5LB/PQJzQrNCFNzeZSYHQ==
+=Hmhj
 -----END PGP SIGNATURE-----
 
---brEuL7wsLY8+TuWz--
+--eDB11BtaWSyaBkpc--
