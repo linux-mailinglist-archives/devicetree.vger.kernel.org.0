@@ -2,415 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CED12B458F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:11:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF1DE2B4594
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:11:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726299AbgKPOJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 09:09:44 -0500
-Received: from mga05.intel.com ([192.55.52.43]:41461 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726291AbgKPOJn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 09:09:43 -0500
-IronPort-SDR: j8EITWZy63IrQbleWK2wNuoLnyN01zqJbFrwU8ri8lXb08Qp+J8edX1/OTAchNdfe7jUXPVR5f
- tbGvSmHSSQow==
-X-IronPort-AV: E=McAfee;i="6000,8403,9806"; a="255460796"
-X-IronPort-AV: E=Sophos;i="5.77,482,1596524400"; 
-   d="scan'208";a="255460796"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2020 06:09:27 -0800
-IronPort-SDR: J3JmEK8n6rs4d+g6ZMV+4lU9ZPmLKOp67Y/zkTlPgw1uQXAQLIKwQd8UXErcqjmCN5e8k9D08z
- 48PwJsJ23pOw==
-X-IronPort-AV: E=Sophos;i="5.77,482,1596524400"; 
-   d="scan'208";a="329688194"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2020 06:09:25 -0800
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kefD9-0074vq-CC; Mon, 16 Nov 2020 16:10:27 +0200
-Date:   Mon, 16 Nov 2020 16:10:27 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v4 2/2] phy: intel: Add Keem Bay USB PHY support
-Message-ID: <20201116141027.GZ4077@smile.fi.intel.com>
-References: <20201116120831.32641-1-wan.ahmad.zainie.wan.mohamad@intel.com>
- <20201116120831.32641-3-wan.ahmad.zainie.wan.mohamad@intel.com>
+        id S1729344AbgKPOKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 09:10:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41524 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729232AbgKPOKp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 09:10:45 -0500
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38200C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 06:10:45 -0800 (PST)
+Received: by mail-il1-x143.google.com with SMTP id x18so1443652ilq.4
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 06:10:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cYP4Vu646u4Dw2kqVmRdOWO66REb1oI9drXRYeKSjdA=;
+        b=Rk0UsA/C9nnVfLmtvTYcFWvJ4zvt0pQDvfx2QqP7GwdvzLZYc0aPdxX0BdjXCAdDF8
+         8X+WJkdmc/B9XEu1eyG0jf0op6ixur1kxIieXdT9knkEN/IDXi3FvHekI68XSMrCf6dl
+         mDzQ5BV6yssIx+EjvVGClzKkKjPXRg8YLIchAwafZ7zlOq3EcqhCrs4jCpeoJbdn9e48
+         E9UzljRxJVgnJj/X6Ra7Q3NrQI/uBv964Nm1QLtZ+R4cn86A1WGgBT9Ijh1/WXhDvABR
+         naJg+6AIukiUC5pQmlb3NnLY4QPW5LhWZX635hrIldQm+szNoU3zI/H+p1AWI36VYB5l
+         4+uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cYP4Vu646u4Dw2kqVmRdOWO66REb1oI9drXRYeKSjdA=;
+        b=nE67IrZ6J72biompLmWfDNXX9JZS6DFq+tqGyoLvPnio2YmLQ3QQYsT5K0FEKvxMSg
+         qB+M/2Yt9EkInZnzeVEBRz1ORMSEGgnnYnDnLbqTXEcH1y6IuB1teSx9tAos+p9/QbII
+         sTHL7U9TY2XjyApXzKBVC5o6snnQIWpwl+SZNXUAwuL+lstYc/BCAqVfls6TGsuO2+wr
+         1DD6rR+ONnghCgprrvZaLdV+RFewLhV3fO+s5qrcu6u9BQA9VMH8F+72nolsVfoTNUVI
+         5X7fr8lHEzhyTjz3Yzo08cRVOAIqA5x/M85ESkmuI1vsoH2e/F1/HgGnlnnR94mmC6P6
+         IQ0A==
+X-Gm-Message-State: AOAM531GngmjC9M3PM0EQ8IgqXrgf5SarNpgg7TVTsIne1FzhqQUO5W7
+        fUnQz68DxRasc/4O2Jisi+XTnV6iCfbZDPiyLGVEFAvQ1ms=
+X-Google-Smtp-Source: ABdhPJyICgO7K6VQ2nJJj+9xivvKHSD8OXSdEwJY2e4iDjldYb3r4LU1hvtuC9NV4TZB61bmOGVeE/eCG3VC5cqdK3Q=
+X-Received: by 2002:a92:9845:: with SMTP id l66mr7998399ili.65.1605535844362;
+ Mon, 16 Nov 2020 06:10:44 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201116120831.32641-3-wan.ahmad.zainie.wan.mohamad@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20201105174434.1817539-1-l.stach@pengutronix.de> <20201105174434.1817539-2-l.stach@pengutronix.de>
+In-Reply-To: <20201105174434.1817539-2-l.stach@pengutronix.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 16 Nov 2020 08:10:33 -0600
+Message-ID: <CAHCN7xL0g+Fju1oUhz1ZWTM06CH5xn6y-s5xZCQKO0zwXdFAoQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/13] soc: imx: gpcv2: move to more ideomatic error
+ handling in probe
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        patchwork-lst@pengutronix.de,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 08:08:31PM +0800, Wan Ahmad Zainie wrote:
-> Add PHY driver for the USB3.1 and USB 2.0 PHYs found on Intel
-> Keem Bay SoC. This driver takes care of enabling the required
-> USB susbsystem (USS) clocks, initializing the PHYs and turning
-> on/off the USB dwc3 core.
+On Thu, Nov 5, 2020 at 11:44 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> Switch to "goto out..." error handling in domain driver probe to
+> avoid repeating all the error paths.
+>
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> Reviewed-by: Marek Vasut <marex@denx.de>
 
-FWIW,
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+I can confirm the USB is functional now without having to turn it on
+in the bootloader on the imx8mm-beacon-kit.
 
-> Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+For the series:
+
+Tested-by: Adam Ford <aford173@gmail.com>
+
 > ---
->  drivers/phy/intel/Kconfig                 |  12 +
->  drivers/phy/intel/Makefile                |   1 +
->  drivers/phy/intel/phy-intel-keembay-usb.c | 301 ++++++++++++++++++++++
->  3 files changed, 314 insertions(+)
->  create mode 100644 drivers/phy/intel/phy-intel-keembay-usb.c
-> 
-> diff --git a/drivers/phy/intel/Kconfig b/drivers/phy/intel/Kconfig
-> index 58ec695c92ec..f72c699a3e02 100644
-> --- a/drivers/phy/intel/Kconfig
-> +++ b/drivers/phy/intel/Kconfig
-> @@ -14,6 +14,18 @@ config PHY_INTEL_KEEMBAY_EMMC
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called phy-keembay-emmc.ko.
->  
-> +config PHY_INTEL_KEEMBAY_USB
-> +	tristate "Intel Keem Bay USB PHY driver"
-> +	depends on ARCH_KEEMBAY || COMPILE_TEST
-> +	depends on HAS_IOMEM
-> +	select GENERIC_PHY
-> +	select REGMAP_MMIO
-> +	help
-> +	  Choose this option if you have an Intel Keem Bay SoC.
+>  drivers/soc/imx/gpcv2.c | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index db7e7fc321b1..512e6f4acafd 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -502,18 +502,23 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>         ret = pm_genpd_init(&domain->genpd, NULL, true);
+>         if (ret) {
+>                 dev_err(domain->dev, "Failed to init power domain\n");
+> -               imx_pgc_put_clocks(domain);
+> -               return ret;
+> +               goto out_put_clocks;
+>         }
+>
+>         ret = of_genpd_add_provider_simple(domain->dev->of_node,
+>                                            &domain->genpd);
+>         if (ret) {
+>                 dev_err(domain->dev, "Failed to add genpd provider\n");
+> -               pm_genpd_remove(&domain->genpd);
+> -               imx_pgc_put_clocks(domain);
+> +               goto out_genpd_remove;
+>         }
+>
+> +       return 0;
 > +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called phy-keembay-usb.ko.
+> +out_genpd_remove:
+> +       pm_genpd_remove(&domain->genpd);
+> +out_put_clocks:
+> +       imx_pgc_put_clocks(domain);
 > +
->  config PHY_INTEL_LGM_COMBO
->  	bool "Intel Lightning Mountain ComboPHY driver"
->  	depends on X86 || COMPILE_TEST
-> diff --git a/drivers/phy/intel/Makefile b/drivers/phy/intel/Makefile
-> index a5e0af5ccd75..14550981a707 100644
-> --- a/drivers/phy/intel/Makefile
-> +++ b/drivers/phy/intel/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
->  obj-$(CONFIG_PHY_INTEL_KEEMBAY_EMMC)	+= phy-intel-keembay-emmc.o
-> +obj-$(CONFIG_PHY_INTEL_KEEMBAY_USB)	+= phy-intel-keembay-usb.o
->  obj-$(CONFIG_PHY_INTEL_LGM_COMBO)	+= phy-intel-lgm-combo.o
->  obj-$(CONFIG_PHY_INTEL_LGM_EMMC)	+= phy-intel-lgm-emmc.o
-> diff --git a/drivers/phy/intel/phy-intel-keembay-usb.c b/drivers/phy/intel/phy-intel-keembay-usb.c
-> new file mode 100644
-> index 000000000000..c8b05f7b2445
-> --- /dev/null
-> +++ b/drivers/phy/intel/phy-intel-keembay-usb.c
-> @@ -0,0 +1,301 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Intel Keem Bay USB PHY driver
-> + * Copyright (C) 2020 Intel Corporation
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +/* USS (USB Subsystem) clock control registers */
-> +#define USS_CPR_CLK_EN		0x00
-> +#define USS_CPR_CLK_SET		0x04
-> +#define USS_CPR_CLK_CLR		0x08
-> +#define USS_CPR_RST_EN		0x10
-> +#define USS_CPR_RST_SET		0x14
-> +#define USS_CPR_RST_CLR		0x18
-> +
-> +/* USS clock/reset bit fields */
-> +#define USS_CPR_PHY_TST		BIT(6)
-> +#define USS_CPR_LOW_JIT		BIT(5)
-> +#define USS_CPR_CORE		BIT(4)
-> +#define USS_CPR_SUSPEND		BIT(3)
-> +#define USS_CPR_ALT_REF		BIT(2)
-> +#define USS_CPR_REF		BIT(1)
-> +#define USS_CPR_SYS		BIT(0)
-> +#define USS_CPR_MASK		GENMASK(6, 0)
-> +
-> +/* USS APB slave registers */
-> +#define USS_USB_CTRL_CFG0		0x10
-> +#define  VCC_RESET_N_MASK		BIT(31)
-> +
-> +#define USS_USB_PHY_CFG0		0x30
-> +#define  POR_MASK			BIT(15)
-> +#define  PHY_RESET_MASK			BIT(14)
-> +#define  PHY_REF_USE_PAD_MASK		BIT(5)
-> +
-> +#define USS_USB_PHY_CFG6		0x64
-> +#define  PHY0_SRAM_EXT_LD_DONE_MASK	BIT(23)
-> +
-> +#define USS_USB_PARALLEL_IF_CTRL	0xa0
-> +#define  USB_PHY_CR_PARA_SEL_MASK	BIT(2)
-> +
-> +#define USS_USB_TSET_SIGNALS_AND_GLOB	0xac
-> +#define  USB_PHY_CR_PARA_CLK_EN_MASK	BIT(7)
-> +
-> +#define USS_USB_STATUS_REG		0xb8
-> +#define  PHY0_SRAM_INIT_DONE_MASK	BIT(3)
-> +
-> +#define USS_USB_TIEOFFS_CONSTANTS_REG1	0xc0
-> +#define  IDDQ_ENABLE_MASK		BIT(10)
-> +
-> +struct keembay_usb_phy {
-> +	struct device *dev;
-> +	struct regmap *regmap_cpr;
-> +	struct regmap *regmap_slv;
-> +};
-> +
-> +static const struct regmap_config keembay_regmap_config = {
-> +	.reg_bits = 32,
-> +	.val_bits = 32,
-> +	.reg_stride = 4,
-> +	.max_register = USS_USB_TIEOFFS_CONSTANTS_REG1,
-> +};
-> +
-> +static int keembay_usb_clocks_on(struct keembay_usb_phy *priv)
-> +{
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(priv->regmap_cpr, USS_CPR_CLK_SET,
-> +				 USS_CPR_MASK, USS_CPR_MASK);
-> +	if (ret) {
-> +		dev_err(priv->dev, "error clock set: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_update_bits(priv->regmap_cpr, USS_CPR_RST_SET,
-> +				 USS_CPR_MASK, USS_CPR_MASK);
-> +	if (ret) {
-> +		dev_err(priv->dev, "error reset set: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv,
-> +				 USS_USB_TIEOFFS_CONSTANTS_REG1,
-> +				 IDDQ_ENABLE_MASK,
-> +				 FIELD_PREP(IDDQ_ENABLE_MASK, 0));
-> +	if (ret) {
-> +		dev_err(priv->dev, "error iddq disable: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Wait 30us to ensure all analog blocks are powered up. */
-> +	usleep_range(30, 60);
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv, USS_USB_PHY_CFG0,
-> +				 PHY_REF_USE_PAD_MASK,
-> +				 FIELD_PREP(PHY_REF_USE_PAD_MASK, 1));
-> +	if (ret)
-> +		dev_err(priv->dev, "error ref clock select: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int keembay_usb_core_off(struct keembay_usb_phy *priv)
-> +{
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv, USS_USB_CTRL_CFG0,
-> +				 VCC_RESET_N_MASK,
-> +				 FIELD_PREP(VCC_RESET_N_MASK, 0));
-> +	if (ret)
-> +		dev_err(priv->dev, "error core reset: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int keembay_usb_core_on(struct keembay_usb_phy *priv)
-> +{
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv, USS_USB_CTRL_CFG0,
-> +				 VCC_RESET_N_MASK,
-> +				 FIELD_PREP(VCC_RESET_N_MASK, 1));
-> +	if (ret)
-> +		dev_err(priv->dev, "error core on: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int keembay_usb_phys_on(struct keembay_usb_phy *priv)
-> +{
-> +	int ret;
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv, USS_USB_PHY_CFG0,
-> +				 POR_MASK | PHY_RESET_MASK,
-> +				 FIELD_PREP(POR_MASK | PHY_RESET_MASK, 0));
-> +	if (ret)
-> +		dev_err(priv->dev, "error phys on: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int keembay_usb_phy_init(struct phy *phy)
-> +{
-> +	struct keembay_usb_phy *priv = phy_get_drvdata(phy);
-> +	u32 val;
-> +	int ret;
-> +
-> +	ret = keembay_usb_core_off(priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * According to Keem Bay datasheet, wait minimum 20us after clock
-> +	 * enable before bringing PHYs out of reset.
-> +	 */
-> +	usleep_range(20, 40);
-> +
-> +	ret = keembay_usb_phys_on(priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv,
-> +				 USS_USB_TSET_SIGNALS_AND_GLOB,
-> +				 USB_PHY_CR_PARA_CLK_EN_MASK,
-> +				 FIELD_PREP(USB_PHY_CR_PARA_CLK_EN_MASK, 0));
-> +	if (ret) {
-> +		dev_err(priv->dev, "error cr clock disable: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * According to Keem Bay datasheet, wait 2us after disabling the
-> +	 * clock into the USB 3.x parallel interface.
-> +	 */
-> +	udelay(2);
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv,
-> +				 USS_USB_PARALLEL_IF_CTRL,
-> +				 USB_PHY_CR_PARA_SEL_MASK,
-> +				 FIELD_PREP(USB_PHY_CR_PARA_SEL_MASK, 1));
-> +	if (ret) {
-> +		dev_err(priv->dev, "error cr select: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv,
-> +				 USS_USB_TSET_SIGNALS_AND_GLOB,
-> +				 USB_PHY_CR_PARA_CLK_EN_MASK,
-> +				 FIELD_PREP(USB_PHY_CR_PARA_CLK_EN_MASK, 1));
-> +	if (ret) {
-> +		dev_err(priv->dev, "error cr clock enable: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_read_poll_timeout(priv->regmap_slv, USS_USB_STATUS_REG,
-> +				       val, val & PHY0_SRAM_INIT_DONE_MASK,
-> +				       USEC_PER_MSEC, 10 * USEC_PER_MSEC);
-> +	if (ret) {
-> +		dev_err(priv->dev, "SRAM init not done: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_update_bits(priv->regmap_slv, USS_USB_PHY_CFG6,
-> +				 PHY0_SRAM_EXT_LD_DONE_MASK,
-> +				 FIELD_PREP(PHY0_SRAM_EXT_LD_DONE_MASK, 1));
-> +	if (ret) {
-> +		dev_err(priv->dev, "error SRAM init done set: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * According to Keem Bay datasheet, wait 20us after setting the
-> +	 * SRAM load done bit, before releasing the controller reset.
-> +	 */
-> +	usleep_range(20, 40);
-> +
-> +	return keembay_usb_core_on(priv);
-> +}
-> +
-> +static const struct phy_ops ops = {
-> +	.init		= keembay_usb_phy_init,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static int keembay_usb_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct keembay_usb_phy *priv;
-> +	struct phy *generic_phy;
-> +	struct phy_provider *phy_provider;
-> +	void __iomem *base;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	base = devm_platform_ioremap_resource_byname(pdev, "cpr-apb-base");
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	priv->regmap_cpr = devm_regmap_init_mmio(dev, base,
-> +						 &keembay_regmap_config);
-> +	if (IS_ERR(priv->regmap_cpr))
-> +		return PTR_ERR(priv->regmap_cpr);
-> +
-> +	base = devm_platform_ioremap_resource_byname(pdev, "slv-apb-base");
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	priv->regmap_slv = devm_regmap_init_mmio(dev, base,
-> +						 &keembay_regmap_config);
-> +	if (IS_ERR(priv->regmap_slv))
-> +		return PTR_ERR(priv->regmap_slv);
-> +
-> +	generic_phy = devm_phy_create(dev, dev->of_node, &ops);
-> +	if (IS_ERR(generic_phy))
-> +		return dev_err_probe(dev, PTR_ERR(generic_phy),
-> +				     "failed to create PHY\n");
-> +
-> +	phy_set_drvdata(generic_phy, priv);
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +	if (IS_ERR(phy_provider))
-> +		return dev_err_probe(dev, PTR_ERR(phy_provider),
-> +				     "failed to register phy provider\n");
-> +
-> +	/* Setup USB subsystem clocks */
-> +	ret = keembay_usb_clocks_on(priv);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* and turn on the DWC3 core, prior to DWC3 driver init. */
-> +	return keembay_usb_core_on(priv);
-> +}
-> +
-> +static const struct of_device_id keembay_usb_phy_dt_ids[] = {
-> +	{ .compatible = "intel,keembay-usb-phy" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, keembay_usb_phy_dt_ids);
-> +
-> +static struct platform_driver keembay_usb_phy_driver = {
-> +	.probe		= keembay_usb_phy_probe,
-> +	.driver		= {
-> +		.name	= "keembay-usb-phy",
-> +		.of_match_table = keembay_usb_phy_dt_ids,
-> +	},
-> +};
-> +module_platform_driver(keembay_usb_phy_driver);
-> +
-> +MODULE_AUTHOR("Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>");
-> +MODULE_DESCRIPTION("Intel Keem Bay USB PHY driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.17.1
-> 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>         return ret;
+>  }
+>
+> --
+> 2.20.1
+>
