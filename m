@@ -2,68 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D38DB2B43C8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 13:34:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E8E82B43D0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 13:35:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728568AbgKPMdK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 07:33:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:47696 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728329AbgKPMdJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 07:33:09 -0500
-Received: from dellmb.labs.office.nic.cz (nat-1.nic.cz [217.31.205.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CA886206D8;
-        Mon, 16 Nov 2020 12:33:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605529989;
-        bh=OlEpSU0xRjHHjHGXre7tgRd49ZT8S26aVDrDaUiwycU=;
-        h=From:To:Cc:Subject:Date:From;
-        b=1MPsimIeyuwVdcDtfrBQh4uXXSjqbN/p9PI3lDPrcTI9UL7mGD1iEewAxi3UqJ/kl
-         bL9WQ20u0xemtnRO6PetYnQrWdc4eDPRiaC37tJ4sKQnsIX1RIUeT9zD2uCwz4yP5Y
-         KCdPhwMCq/V2CeIqazzN45VjaloOOfJMT12zA7Ps=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     arm@kernel.org, =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-        Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH mvebu-dt64] arm64: dts: armada-3720-turris-mox: add 3W power capability to SFP cage
-Date:   Mon, 16 Nov 2020 13:33:03 +0100
-Message-Id: <20201116123303.7234-1-kabel@kernel.org>
-X-Mailer: git-send-email 2.26.2
+        id S1729515AbgKPMfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 07:35:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728329AbgKPMfQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 07:35:16 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A51D4C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 04:35:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=8O3kvJpI7KdjSrm/CbOy7Jwa9oC+EDHFLiYRVleFgHQ=; b=PET60rhPq945Yj7dDV6/fV2O6
+        kUD+6uPlXLJaRlQPgJUo28vNv763Ai7HmtSm/fr2extD0nsCdXgbzGO76RHe4lAM+QGnTD5hDlJt4
+        oi4J7iUkdtMDedFAe+UwVva3ZKhB6/xso7jEPDKSBJ/YX/lP7bNCgjTdPQhaDZ0QoVKS75gSOheHV
+        qPb7lLiVmuh1CbnIbZuGtn9DRQyuhH2a5C1ohbrVGC+g7Wz/yIE1c5RJIhl2D9fXKo69pbxT8QQYh
+        gcllgeT5PMEXb27FQb5GpuDz7OAqYvgPvacio9sAC+7MbfZPSLh8j6FFERMcikaP1osiNpwBAQP//
+        Ky+tHFgog==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:60398)
+        by pandora.armlinux.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1kedij-0007HW-SG; Mon, 16 Nov 2020 12:34:57 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1kedii-0007SO-9S; Mon, 16 Nov 2020 12:34:56 +0000
+Date:   Mon, 16 Nov 2020 12:34:56 +0000
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        linux-arm-kernel@lists.infradead.org,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH mvebu-dt v3.1 4/7] ARM: dts: turris-omnia: add SFP node
+Message-ID: <20201116123456.GJ1551@shell.armlinux.org.uk>
+References: <20201115135923.11523-5-kabel@kernel.org>
+ <20201116122422.6840-1-kabel@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201116122422.6840-1-kabel@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Sender: Russell King - ARM Linux admin <linux@armlinux.org.uk>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maximum-power-milliwatt = 3000 to SFP node of Turris MOX.
+On Mon, Nov 16, 2020 at 01:24:22PM +0100, Marek Beh˙n wrote:
+> Describe the SFP cage, but leave it disabled. Until phylink has support
+> for such configuration, we are leaving it to U-Boot to enable SFP and
+> disable WAN PHY at boot time depending on whether a SFP module is
+> present.
 
-Signed-off-by: Marek Beh√∫n <kabel@kernel.org>
-Fixes: 7109d817db2e ("arm64: dts: marvell: add DTS for Turris Mox")
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts | 1 +
- 1 file changed, 1 insertion(+)
+Let's be clear: this is _not_ something I have any plans to be working
+on adding; this is for others to get involved with.
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-index f3a678e0fd99..d032e290675f 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
-@@ -102,6 +102,7 @@ sfp: sfp {
- 		mod-def0-gpio = <&moxtet_sfp 2 GPIO_ACTIVE_LOW>;
- 		tx-disable-gpio = <&moxtet_sfp 4 GPIO_ACTIVE_HIGH>;
- 		rate-select0-gpio = <&moxtet_sfp 5 GPIO_ACTIVE_HIGH>;
-+		maximum-power-milliwatt = <3000>;
- 
- 		/* enabled by U-Boot if SFP module is present */
- 		status = "disabled";
+I am not going to ack or review your patch to hack around this either.
+
 -- 
-2.26.2
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
