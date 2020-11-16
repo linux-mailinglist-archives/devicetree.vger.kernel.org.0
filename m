@@ -2,163 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4742B5416
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 23:07:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FE52B5499
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 23:51:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727173AbgKPWGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 17:06:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59776 "EHLO
+        id S1726774AbgKPWvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 17:51:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727098AbgKPWGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 17:06:44 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD18CC0613CF;
-        Mon, 16 Nov 2020 14:06:43 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id x9so21913104ljc.7;
-        Mon, 16 Nov 2020 14:06:43 -0800 (PST)
+        with ESMTP id S1726204AbgKPWvE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 17:51:04 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E07ECC0613CF;
+        Mon, 16 Nov 2020 14:51:03 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id t21so8228515pgl.3;
+        Mon, 16 Nov 2020 14:51:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=BJxsU8gN59tvuGgU7PNdMo5fT7THwls7sknlrTbR/LI=;
-        b=Dzbvq7jedO3PcJom1SrUcQvsxJ8jFOdFumGcK2rmcwJwZGsmVTyjrYF/OMRmTFJub9
-         tVspSg+BzS5AvYB2h4VhuaIDU9XJc9IrheSXoEBnY2LNc6qODA7O7CkwpNS1iAwbjnHw
-         oiVvCY3oynumTov2j3ns3vDvoCX2nMB8KElSOu/TiY5VVAxnmK6zhPtxK9+H+QDAp60w
-         2Wrd/QzGEU+eLLmGTx4aXT7Lj52dv2gSYX59IntvyTZDa2dYIkoaieufTHpjTNon4ix4
-         pifwxW/tMNxIqIbNkp1X3OxDtH0r0FrNaAayMAck1wFjMMe7GPVof9aMYcrnT51TfTIp
-         jIKQ==
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UxZIoSF1/D7/9iM2bEIeZ11q2Wwq/vwiWnofSEAt66I=;
+        b=Sks7+E9O4JCWIv1FkOvqXHGVUDvnObGnkObbxEuixG8IqvarqzPKnN2n52mPP3CFBv
+         koNmweCyB7O64+82IgRZnFa9AGttiHAJ/lRMYX5VWbf2Cx6I2fU8WTSKzE66cwtnvcav
+         eUpz4MXPxW/JlzRfMklp6lnGtNpL45LBJ3mTK91uR2RxsYN85olqw7Sc66KYF36ywD11
+         efLfFfZpu6E54mVRulXryz1WcBU/yTYUfhrjlzU+9g+KSKP3Okb7cw3hBIduAjMbKyov
+         TIskvyi+buTgCY5uyW/M32og1+6FKmb96ydmj9STtOhYLkr789fipq7XP7Jjv6Dg2E2z
+         0F4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BJxsU8gN59tvuGgU7PNdMo5fT7THwls7sknlrTbR/LI=;
-        b=MFi7JaGw6lhwH1SKKIZQ+xpCgKynP+wyNY/TEOeDNZuVUZrSXy6d7EXa0qnZGVybrP
-         x0a2Zx3TfW9peuam85sxO7yZu1nBq4hdHuA08WmT8D/Ud0/IdmVlZLRY/SjQj/e4xDDN
-         9yEqvb2ymmhUY/QC8xFGF2iYrdA8USROkOUHj6vsYira7n5p4zbw5O7UI0iUEGb8OIl3
-         /VUMFndKA3OeUyIRe6a1yJ/ophO5bpnfe2xAJb6Pw8+IHzuc2YsvCXAV8ueDiCT5Cc5U
-         JepNLoBnZxAVWpf6u89+FijALzrtlDWpMDFeB/4cZKufKtudduQeJdclcwNrZmBtI2Bk
-         QLSw==
-X-Gm-Message-State: AOAM532gF99jMY4c2GRLUeuCtPKL/EZe8Qaz1u5HAbAFQ0z/RnRmlXft
-        WD7mdE5PBvYHqLqY/67SaCe7pUnqqU6V3/vk
-X-Google-Smtp-Source: ABdhPJyf4bQRr3U3N2oJ43oLqlb4UWVX9zldVIP1uKyiEN1cpLv1Kt1MOolmlKctMFvj+U1UU5b7xg==
-X-Received: by 2002:a05:651c:207:: with SMTP id y7mr600414ljn.428.1605564400898;
-        Mon, 16 Nov 2020 14:06:40 -0800 (PST)
-Received: from mobilestation ([95.79.141.114])
-        by smtp.gmail.com with ESMTPSA id i7sm2756834lfi.269.2020.11.16.14.06.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 14:06:40 -0800 (PST)
-Date:   Tue, 17 Nov 2020 01:06:38 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=UxZIoSF1/D7/9iM2bEIeZ11q2Wwq/vwiWnofSEAt66I=;
+        b=Jlr0WKDbY2eUnBoJFiTqEmnYafVInM3c329P11uvgPDUSQJpBnrj7sp89z2nx9be2U
+         1udaqNV/BVhNb4nSOrtHjfC1d6X3wNmcSA1fMppVyWJNCWiDo3aMxyoqRsIy+rIP9Acv
+         aIg2LJALQBp1wIsoh4iX/wN2cfB1x28O5QsuEF8tRZOXKKWq9weUhd3a2AmnOIhF/82k
+         RfvGwLPTjv9ua8fddtF7ziBPxWc9D/7vRZuVmsajlflzw6chBeIVRMTJnvgAljwYESd1
+         KnMZkxrMny0mhR3JiLWixIQL0CjdxHZwOPJsJHIg7Se+/0zGURdtLcIzge2ILxpEiBtp
+         i0Cg==
+X-Gm-Message-State: AOAM533jdDWQGH9pENgr5kybF2G5XQHXvNQyX7OwmzE9VJMdNXyw0cEw
+        xv16dld9jRuORfo8FWl4bP4YLQLeeS4=
+X-Google-Smtp-Source: ABdhPJx0XfYYI2DPdXn81RPXreWnkWEj7aqjsoo5KTcGIoY5QT39MpS1SVWc/Ibl4T/gEmYUW5XG5w==
+X-Received: by 2002:a17:90a:7c4d:: with SMTP id e13mr1293205pjl.146.1605567062880;
+        Mon, 16 Nov 2020 14:51:02 -0800 (PST)
+Received: from [10.67.48.230] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id a23sm16765635pgv.35.2020.11.16.14.51.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Nov 2020 14:51:01 -0800 (PST)
+Subject: Re: [PATCH v2 0/2] phy: phy-brcm-sata: Allow configuration SATA AFE
+ TX amplitude
+To:     Vinod Koul <vkoul@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Kishon Vijay Abraham I <kishon@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Subject: Re: [PATCH 01/32] of: Fix property supplier parsing
-Message-ID: <20201116220638.ljrj6zgvgmvyib3k@mobilestation>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com>
- <20201107081420.60325-2-damien.lemoal@wdc.com>
- <CAHp75VfvUZ6h+JGCUQ65i7qFsugvbd3n=aCprgvp=geRSpQEhQ@mail.gmail.com>
- <20201109174450.myombn5skpj5wcxh@mobilestation>
- <BL0PR04MB6514880A6977E605D38D68BEE7E30@BL0PR04MB6514.namprd04.prod.outlook.com>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+References: <20201022205056.233879-1-f.fainelli@gmail.com>
+ <20201116074206.GN7499@vkoul-mobl>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
+ xGlkaOSDuu09rxuW+69Y2f1TzjFuGpBk4ysWOR85O2Nx8AJ6fYGCoeTbovrNlGT1M9obSFGQ
+ X3IzRnWoqlfudjTO5TKoqkbOgpYqIo5n1QbEjCCwCwCg3DOH/4ug2AUUlcIT9/l3pGvoRJ0E
+ AICDzi3l7pmC5IWn2n1mvP5247urtHFs/uusE827DDj3K8Upn2vYiOFMBhGsxAk6YKV6IP0d
+ ZdWX6fqkJJlu9cSDvWtO1hXeHIfQIE/xcqvlRH783KrihLcsmnBqOiS6rJDO2x1eAgC8meAX
+ SAgsrBhcgGl2Rl5gh/jkeA5ykwbxA/9u1eEuL70Qzt5APJmqVXR+kWvrqdBVPoUNy/tQ8mYc
+ nzJJ63ng3tHhnwHXZOu8hL4nqwlYHRa9eeglXYhBqja4ZvIvCEqSmEukfivk+DlIgVoOAJbh
+ qIWgvr3SIEuR6ayY3f5j0f2ejUMYlYYnKdiHXFlF9uXm1ELrb0YX4GMHz7QnRmxvcmlhbiBG
+ YWluZWxsaSA8Zi5mYWluZWxsaUBnbWFpbC5jb20+iGYEExECACYCGyMGCwkIBwMCBBUCCAME
+ FgIDAQIeAQIXgAUCVF/S8QUJHlwd3wAKCRBhV5kVtWN2DvCVAJ4u4/bPF4P3jxb4qEY8I2gS
+ 6hG0gACffNWlqJ2T4wSSn+3o7CCZNd7SLSC5BA0ESM+4EhAQAL/o09boR9D3Vk1Tt7+gpYr3
+ WQ6hgYVON905q2ndEoA2J0dQxJNRw3snabHDDzQBAcqOvdi7YidfBVdKi0wxHhSuRBfuOppu
+ pdXkb7zxuPQuSveCLqqZWRQ+Cc2QgF7SBqgznbe6Ngout5qXY5Dcagk9LqFNGhJQzUGHAsIs
+ hap1f0B1PoUyUNeEInV98D8Xd/edM3mhO9nRpUXRK9Bvt4iEZUXGuVtZLT52nK6Wv2EZ1TiT
+ OiqZlf1P+vxYLBx9eKmabPdm3yjalhY8yr1S1vL0gSA/C6W1o/TowdieF1rWN/MYHlkpyj9c
+ Rpc281gAO0AP3V1G00YzBEdYyi0gaJbCEQnq8Vz1vDXFxHzyhgGz7umBsVKmYwZgA8DrrB0M
+ oaP35wuGR3RJcaG30AnJpEDkBYHznI2apxdcuTPOHZyEilIRrBGzDwGtAhldzlBoBwE3Z3MY
+ 31TOpACu1ZpNOMysZ6xiE35pWkwc0KYm4hJA5GFfmWSN6DniimW3pmdDIiw4Ifcx8b3mFrRO
+ BbDIW13E51j9RjbO/nAaK9ndZ5LRO1B/8Fwat7bLzmsCiEXOJY7NNpIEpkoNoEUfCcZwmLrU
+ +eOTPzaF6drw6ayewEi5yzPg3TAT6FV3oBsNg3xlwU0gPK3v6gYPX5w9+ovPZ1/qqNfOrbsE
+ FRuiSVsZQ5s3AAMFD/9XjlnnVDh9GX/r/6hjmr4U9tEsM+VQXaVXqZuHKaSmojOLUCP/YVQo
+ 7IiYaNssCS4FCPe4yrL4FJJfJAsbeyDykMN7wAnBcOkbZ9BPJPNCbqU6dowLOiy8AuTYQ48m
+ vIyQ4Ijnb6GTrtxIUDQeOBNuQC/gyyx3nbL/lVlHbxr4tb6YkhkO6shjXhQh7nQb33FjGO4P
+ WU11Nr9i/qoV8QCo12MQEo244RRA6VMud06y/E449rWZFSTwGqb0FS0seTcYNvxt8PB2izX+
+ HZA8SL54j479ubxhfuoTu5nXdtFYFj5Lj5x34LKPx7MpgAmj0H7SDhpFWF2FzcC1bjiW9mjW
+ HaKaX23Awt97AqQZXegbfkJwX2Y53ufq8Np3e1542lh3/mpiGSilCsaTahEGrHK+lIusl6mz
+ Joil+u3k01ofvJMK0ZdzGUZ/aPMZ16LofjFA+MNxWrZFrkYmiGdv+LG45zSlZyIvzSiG2lKy
+ kuVag+IijCIom78P9jRtB1q1Q5lwZp2TLAJlz92DmFwBg1hyFzwDADjZ2nrDxKUiybXIgZp9
+ aU2d++ptEGCVJOfEW4qpWCCLPbOT7XBr+g/4H3qWbs3j/cDDq7LuVYIe+wchy/iXEJaQVeTC
+ y5arMQorqTFWlEOgRA8OP47L9knl9i4xuR0euV6DChDrguup2aJVU4hPBBgRAgAPAhsMBQJU
+ X9LxBQkeXB3fAAoJEGFXmRW1Y3YOj4UAn3nrFLPZekMeqX5aD/aq/dsbXSfyAKC45Go0YyxV
+ HGuUuzv+GKZ6nsysJ7kCDQRXG8fwARAA6q/pqBi5PjHcOAUgk2/2LR5LjjesK50bCaD4JuNc
+ YDhFR7Vs108diBtsho3w8WRd9viOqDrhLJTroVckkk74OY8r+3t1E0Dd4wHWHQZsAeUvOwDM
+ PQMqTUBFuMi6ydzTZpFA2wBR9x6ofl8Ax+zaGBcFrRlQnhsuXLnM1uuvS39+pmzIjasZBP2H
+ UPk5ifigXcpelKmj6iskP3c8QN6x6GjUSmYx+xUfs/GNVSU1XOZn61wgPDbgINJd/THGdqiO
+ iJxCLuTMqlSsmh1+E1dSdfYkCb93R/0ZHvMKWlAx7MnaFgBfsG8FqNtZu3PCLfizyVYYjXbV
+ WO1A23riZKqwrSJAATo5iTS65BuYxrFsFNPrf7TitM8E76BEBZk0OZBvZxMuOs6Z1qI8YKVK
+ UrHVGFq3NbuPWCdRul9SX3VfOunr9Gv0GABnJ0ET+K7nspax0xqq7zgnM71QEaiaH17IFYGS
+ sG34V7Wo3vyQzsk7qLf9Ajno0DhJ+VX43g8+AjxOMNVrGCt9RNXSBVpyv2AMTlWCdJ5KI6V4
+ KEzWM4HJm7QlNKE6RPoBxJVbSQLPd9St3h7mxLcne4l7NK9eNgNnneT7QZL8fL//s9K8Ns1W
+ t60uQNYvbhKDG7+/yLcmJgjF74XkGvxCmTA1rW2bsUriM533nG9gAOUFQjURkwI8jvMAEQEA
+ AYkCaAQYEQIACQUCVxvH8AIbAgIpCRBhV5kVtWN2DsFdIAQZAQIABgUCVxvH8AAKCRCH0Jac
+ RAcHBIkHD/9nmfog7X2ZXMzL9ktT++7x+W/QBrSTCTmq8PK+69+INN1ZDOrY8uz6htfTLV9+
+ e2W6G8/7zIvODuHk7r+yQ585XbplgP0V5Xc8iBHdBgXbqnY5zBrcH+Q/oQ2STalEvaGHqNoD
+ UGyLQ/fiKoLZTPMur57Fy1c9rTuKiSdMgnT0FPfWVDfpR2Ds0gpqWePlRuRGOoCln5GnREA/
+ 2MW2rWf+CO9kbIR+66j8b4RUJqIK3dWn9xbENh/aqxfonGTCZQ2zC4sLd25DQA4w1itPo+f5
+ V/SQxuhnlQkTOCdJ7b/mby/pNRz1lsLkjnXueLILj7gNjwTabZXYtL16z24qkDTI1x3g98R/
+ xunb3/fQwR8FY5/zRvXJq5us/nLvIvOmVwZFkwXc+AF+LSIajqQz9XbXeIP/BDjlBNXRZNdo
+ dVuSU51ENcMcilPr2EUnqEAqeczsCGpnvRCLfVQeSZr2L9N4svNhhfPOEscYhhpHTh0VPyxI
+ pPBNKq+byuYPMyk3nj814NKhImK0O4gTyCK9b+gZAVvQcYAXvSouCnTZeJRrNHJFTgTgu6E0
+ caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
+ 6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <0dbf57f4-3d43-c0da-d463-b47e6e3bc780@gmail.com>
+Date:   Mon, 16 Nov 2020 14:51:00 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BL0PR04MB6514880A6977E605D38D68BEE7E30@BL0PR04MB6514.namprd04.prod.outlook.com>
+In-Reply-To: <20201116074206.GN7499@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 07:30:15AM +0000, Damien Le Moal wrote:
-> On 2020/11/10 2:45, Serge Semin wrote:
-> > Hello Andy,
-> > 
-> > On Mon, Nov 09, 2020 at 05:14:21PM +0200, Andy Shevchenko wrote:
-> >> On Sat, Nov 7, 2020 at 10:14 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
-> >>
-> >>> @@ -1308,7 +1308,6 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
-> >>>  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> >>>  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
-> >>>  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
-> >>> -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
-> >>
-> >> Sorry, but the above doesn't sound right to me.
-> >> It's a generic code and you may imagine how many systems you broke by
-> >> this change.
-> > 
-> > Damien replaced the macro above with the code below (your removed it from your
-> > message):
-> > 
-> > +static struct device_node *parse_gpios(struct device_node *np,
-> > +                                      const char *prop_name, int index)
-> > +{
-> > +       /*
-> > +        * Quirck for the DesignWare gpio-dwapb GPIO driver which defines
-> > +        * the "snps,nr-gpios" property to indicate the total number of GPIOs
-> > +        * available. As this conflict with "xx-gpios" reference properties,
-> > +        * ignore it.
-> > +        */
-> > +       if (strcmp(prop_name, "snps,nr-gpios") == 0)
-> > +               return NULL;
-> > +
-> > +       return parse_suffix_prop_cells(np, prop_name, index,
-> > +                                      "-gpios", "#gpio-cells");
-> > +}
-> > 
-> > So AFAICS removing the macro shouldn't cause any problem.
-> > 
-> > My concern was whether the quirk has been really needed. As I said the
-> > "snps,nr-gpios" property has been marked as deprecated in favor of the standard
-> > "ngpios" one. Due to the problem noted by Damien any deprecated property
-> > utilization will cause the DW APB SSI DT-nodes probe malfunction. That
-> > though implicitly but is supposed to encourage people to provide fixes for
-> > the dts-files with the deprecated property replaced with "ngpios".
-> > 
-> > On the other hand an encouragement based on breaking the kernel doesn't seem a
-> > good solution. So as I see it either we should accept the solution provided by
-> > Damien, or replace it with a series of fixes for all dts-es with DW APB SSI
-> > DT-node defined. I suggest to hear the OF-subsystem maintainers out what
-> > solution would they prefer.
+On 11/15/20 11:42 PM, Vinod Koul wrote:
+> On 22-10-20, 13:50, Florian Fainelli wrote:
+>> Hi Vinod, Kishon,
+>>
+>> This patch series allows the configuration of the Broadcom SATA PHY TX
+>> amplitude which may be required in order to meet specific tests.
 > 
-
-> As Rob mentioned, there are still a lot of DTS out there using "snps,nr-gpios",
-> so I think the fix is needed,
-
-Yes.
-
-> albeit with an added warning as Rob suggested so
-> that board maintainers can notice and update their DT.
-
-Yes.
-
-> And I can send a patch
-> for the DW gpio apb driver to first try the default "ngpios" property, and if it
-> is not defined, fallback to the legacy "snps,nr-gpios". With that, these new
-> RISC-V boards will not add another use case of the deprecated "snsps,nr-gpios".
-> Does that sound like a good plan ?
-
-It has already been added in 5.10:
-https://elixir.bootlin.com/linux/v5.10-rc4/source/drivers/gpio/gpio-dwapb.c#L585
-so there is no need in sending a patch for the gpio-dwapb.c driver.
-
--Sergey
-
+> Applied, thanks
 > 
-> 
-> > 
-> > -Sergey
-> > 
-> >>
-> >> -- 
-> >> With Best Regards,
-> >> Andy Shevchenko
-> > 
-> 
-> 
-> -- 
-> Damien Le Moal
-> Western Digital Research
+> Btw please do convert the binding doc to yaml
+
+Will do, thanks!
+-- 
+Florian
