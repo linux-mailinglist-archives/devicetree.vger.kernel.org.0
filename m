@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 702422B5097
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:14:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8EFB2B50A4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:17:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726571AbgKPTN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 14:13:57 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44491 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725879AbgKPTN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 14:13:57 -0500
-Received: by mail-ot1-f68.google.com with SMTP id f16so17051741otl.11;
-        Mon, 16 Nov 2020 11:13:55 -0800 (PST)
+        id S1729250AbgKPTRA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 14:17:00 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:36630 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729223AbgKPTRA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 14:17:00 -0500
+Received: by mail-oi1-f195.google.com with SMTP id d9so19967730oib.3;
+        Mon, 16 Nov 2020 11:16:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=K6I9Q7uYU+1V06QV1nRfkMu2gtpH5bALi2iSib07hAE=;
-        b=IbBVHkMM7Ze1vvvUW0xefCsL4VnRmdrt210hT3FY1a8LUotE1GPogegpsXxcJ12h1x
-         vlXfzdM3g+v12Dtfqr5EGAT84H69AUJzmmHXCP67OqPhNX2GVZNhDOi+/53SAA38lPjl
-         WvJCCiP+4Oe+xPhTqssGnuzC000vBDk+cdDqq7ihgshMUKPlaEztjXEujXefYOCS3BAm
-         itOHfQ1t0S8r6+esnVAzwQlVVQNr8HECazql9InEz3UOJE1xWqDOjsq0YS+xuyhTLece
-         cH0IJNFQtTLSpN2wgrF61IjFtvnBedVeMPI0M2QJCVlaa/2zgMqR4SjPsProikFhmkwI
-         q7oQ==
-X-Gm-Message-State: AOAM531E2WBdBfh8kGtd/iR8YPSCp1iLgZaRPe4MHx1Y6GDIGC6kPctj
-        r/65RPj4gQJIEeGx8jKmgQ==
-X-Google-Smtp-Source: ABdhPJylE0odHk1sUNwAg8pufVRl8nRqtkr00hbaJG1PTMd3S3PhR4MMd5bGJauQ+tZgDh2163zwHw==
-X-Received: by 2002:a05:6830:236d:: with SMTP id r13mr630308oth.34.1605554035585;
-        Mon, 16 Nov 2020 11:13:55 -0800 (PST)
+        bh=D4c13z/AWlllHasXtboOHruCJmJ26ohfoTPObmNGa6I=;
+        b=lFiVcBmjVw70u+icpxbE0lAFTfkIQUMxjJfrohWML4ruzkJlJQbOGSf2O6XK3Nk0f1
+         us1WTsxFMqnDyBKF/9maeAPpHJiEt8S6wMNh0VR+H8TPyj8WUACjMVwXz2WV9Fi8kZOn
+         pYsh1SoDjg3o+WLnJS5G62bPz3IBvhHEftVmDdNijd+CoEgzrVynyCIyAMhh8nlFfTd3
+         2nT40/9Trz1E6D5FqSqwpvr/RZ+eu85LtxLtdv2IOuKnzuneqzVeFopTDQbGli3kAKp5
+         7RGwDECenosRpY6ppX4kuKKiQTPZpYBcO+fMTWmKy3ApW1QnDCAvP6rEtzGEa0tHR9mI
+         ZkVg==
+X-Gm-Message-State: AOAM531YPChu/F8pFnfma409ClwPYAW6TFvmSu3wkn4sIdKrjeq1LYNF
+        ndsYkNRDe+i/T5yjSdIu4g==
+X-Google-Smtp-Source: ABdhPJzYCwATlASvNHOCVUN3DnFx1wAEYSk90oisTeLS9A3YG/B9cJipsAO6LXDTD//sFHU08Ti66w==
+X-Received: by 2002:a05:6808:7cd:: with SMTP id f13mr150333oij.38.1605554217445;
+        Mon, 16 Nov 2020 11:16:57 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 85sm5015804oie.30.2020.11.16.11.13.54
+        by smtp.gmail.com with ESMTPSA id n21sm4980586oie.15.2020.11.16.11.16.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 11:13:54 -0800 (PST)
-Received: (nullmailer pid 1977880 invoked by uid 1000);
-        Mon, 16 Nov 2020 19:13:54 -0000
-Date:   Mon, 16 Nov 2020 13:13:54 -0600
+        Mon, 16 Nov 2020 11:16:56 -0800 (PST)
+Received: (nullmailer pid 1981950 invoked by uid 1000);
+        Mon, 16 Nov 2020 19:16:55 -0000
+Date:   Mon, 16 Nov 2020 13:16:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     alexandru.tachici@analog.com
-Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, linux@roeck-us.net, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] dt-binding: hwmon: Add documentation for ltc2992
-Message-ID: <20201116191354.GA1977819@bogus>
-References: <20201111162057.73055-1-alexandru.tachici@analog.com>
- <20201111162057.73055-4-alexandru.tachici@analog.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sboyd@kernel.org, john@phrozen.org, jiaxun.yang@flygoat.com,
+        devicetree@vger.kernel.org, devel@driverdev.osuosl.org,
+        tsbogend@alpha.franken.de, robh+dt@kernel.org,
+        hackpascal@gmail.com, gregkh@linuxfoundation.org,
+        linux-mips@vger.kernel.org, mturquette@baylibre.com
+Subject: Re: [PATCH 2/7] dt: bindings: add mt7621-pll device tree binding
+ documentation
+Message-ID: <20201116191655.GA1981921@bogus>
+References: <20201111163013.29412-1-sergio.paracuellos@gmail.com>
+ <20201111163013.29412-3-sergio.paracuellos@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201111162057.73055-4-alexandru.tachici@analog.com>
+In-Reply-To: <20201111163013.29412-3-sergio.paracuellos@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Nov 2020 18:20:57 +0200, alexandru.tachici@analog.com wrote:
-> From: Alexandru Tachici <alexandru.tachici@analog.com>
+On Wed, 11 Nov 2020 17:30:08 +0100, Sergio Paracuellos wrote:
+> Adds device tree binding documentation for PLL controller in
+> the MT7621 SOC.
 > 
-> Add documentation for ltc2992.
-> 
-> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
 > ---
->  .../bindings/hwmon/adi,ltc2992.yaml           | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
+>  .../bindings/clock/mediatek,mt7621-pll.yaml   | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7621-pll.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
