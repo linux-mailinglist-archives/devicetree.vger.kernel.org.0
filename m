@@ -2,310 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85C5A2B4F32
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 19:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6C82B4FE8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 19:37:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731610AbgKPSZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 13:25:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53450 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729555AbgKPSZh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 13:25:37 -0500
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14303C0613CF;
-        Mon, 16 Nov 2020 10:25:37 -0800 (PST)
-Received: by mail-ej1-x641.google.com with SMTP id oq3so25785162ejb.7;
-        Mon, 16 Nov 2020 10:25:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=iMNNFITQTVl6xH9FIhmZAJHI+XOQfJPxPlTQJWECZ4E=;
-        b=Nm4uUOPdDKQPmpez1awCv77luKnrY1dTONrakQhSAqvfUuUI+Uiymcop9TBfqu/dsS
-         sqb+7quMnWJ9wgObFrqMMhufxRs7YQb/B/7jaclPcQ8OzpeLfVMiG9UaJx3KdgHHucWE
-         Wz1NPAiHzWkBUNs3fIcH4Bo0coThYIaeuJbGH5KgwGWGQcemM99JwPTkj3jiB8YWRSIe
-         WjvFqy6E6SrxOrkYg3y75Zg4GUUVCpRZkCuBLWy3ChkhHIb4lgO9dTn8jQjqEl3Qw7r5
-         TYst/PDWQHbStpxIlLmauJtpilbLTQLb2qDRTFLyNNpp3NNE+u4dPElY5b3dFSnxA87a
-         bwUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=iMNNFITQTVl6xH9FIhmZAJHI+XOQfJPxPlTQJWECZ4E=;
-        b=hJyAegnoJ4V4RPYoflqPzDO9uhGhsvfFDxnfhPqbeerpDmnL/mlpAd5/1PVfYrsa+X
-         F9wbniVvbK7ber4d3g+nHqZGtH9RYPiaV0cyPQeTPN3rBMHTN5WaNnB2ZsyRLbslFf/o
-         9oDlGv5lN+/7ku0AQdUGmUj+nMRMFybWmZH84iDJFUcGM6CNtDzFfQFFf9QUSD1gMvS9
-         QZZUOL4WrmmQEkyuO/Fk9Gtt0qg1sVBUID5C8tD/YZjGg4PTKUk0bsjJpulKIRCKdGCW
-         LuL4M00y1YP96+lVsody9CzWhBNtRLJJxciTzmfnxfilKwKLgRwbakbTilJY2/wAwNK2
-         6sJA==
-X-Gm-Message-State: AOAM530qIM9PfER6zGyaf0OdB7Fq7rGnoudlzoAZyvuTqAS+bxOk+++4
-        ZXv7OTwvdsmQe5xyNLjdU/Q=
-X-Google-Smtp-Source: ABdhPJyCa6sw3pwdJXhlWemEGMWgcpkeE5rSnyk3jlh1qlo9F5tW6ISm+hGVEDCgVQYrKP3pMnOxQw==
-X-Received: by 2002:a17:906:cb2:: with SMTP id k18mr17223486ejh.71.1605551135755;
-        Mon, 16 Nov 2020 10:25:35 -0800 (PST)
-Received: from ?IPv6:2a01:110f:b59:fd00:9993:6bc3:e972:e19d? ([2a01:110f:b59:fd00:9993:6bc3:e972:e19d])
-        by smtp.gmail.com with ESMTPSA id m16sm10738454eja.58.2020.11.16.10.25.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 16 Nov 2020 10:25:35 -0800 (PST)
-Subject: Re: [PATCH v5 2/2] leds: mt6360: Add LED driver for MT6360
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-References: <1602034966-3524-1-git-send-email-gene.chen.richtek@gmail.com>
- <1602034966-3524-3-git-send-email-gene.chen.richtek@gmail.com>
- <5a9b31c4-739c-06fc-2015-ed474993ad22@gmail.com>
- <CAE+NS35Y41mFKNhj+54BeeSYFu2J9BtvMWOxyMcf9a==39cbdA@mail.gmail.com>
- <8925db23-5cc4-3c5f-932a-461fe6450dad@gmail.com>
- <CAE+NS379bgtRotqzioR+Ya3mE1kZrKfe9qV=W2p=hH7Omrn8Hw@mail.gmail.com>
- <1bb76c54-14af-6c78-4623-77c6678b262e@gmail.com>
- <CAE+NS35z7_ZUdm6gRNw2z7Ozs+1A8_Vtj_9x-F65RLd4QqDFDA@mail.gmail.com>
- <af17141f-23ae-063d-ade2-42dfdf611d81@gmail.com>
- <CAE+NS37-vQ4LLbCv-1+WsLe7qEQdVvBhhNKK4=oDj5VtWuaeoQ@mail.gmail.com>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <aab50d87-c696-6480-b5c7-2f75df19f50f@gmail.com>
-Date:   Mon, 16 Nov 2020 19:25:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        id S1726200AbgKPSh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 13:37:28 -0500
+Received: from relay5.mymailcheap.com ([159.100.241.64]:52442 "EHLO
+        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726272AbgKPSh2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 13:37:28 -0500
+Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.80.154])
+        by relay5.mymailcheap.com (Postfix) with ESMTPS id 82A93200FE
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 18:37:25 +0000 (UTC)
+Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
+        by relay4.mymailcheap.com (Postfix) with ESMTPS id EB7193F1D0;
+        Mon, 16 Nov 2020 19:37:20 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by filter1.mymailcheap.com (Postfix) with ESMTP id 0AD622A365;
+        Mon, 16 Nov 2020 13:37:20 -0500 (EST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
+        s=default; t=1605551840;
+        bh=VH5KML0r+bx1HTyZIGYMOWB5EsWUiSK02/YgLi4WzhA=;
+        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
+        b=A2PVFmTdciJoOh25rPMeFPIH/z5+4f8Xco5Mq/s2e7s1XPVqNUAXuhUGW+F8vdlo1
+         IJvyjiYRXah+cjkLBi56CVFhFuDuafcgeVgDLy7ERIafWVALOaVw6TVXyFrgDJJl/7
+         XYdkXZvM31u3WQLqV4Nmx7syQSAaZyAOwI2GlLUU=
+X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
+Received: from filter1.mymailcheap.com ([127.0.0.1])
+        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ks0Cfo-Jeolh; Mon, 16 Nov 2020 13:37:18 -0500 (EST)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by filter1.mymailcheap.com (Postfix) with ESMTPS;
+        Mon, 16 Nov 2020 13:37:18 -0500 (EST)
+Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
+        by mail20.mymailcheap.com (Postfix) with ESMTP id 677C141E57;
+        Mon, 16 Nov 2020 18:37:16 +0000 (UTC)
+Authentication-Results: mail20.mymailcheap.com;
+        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="mArYa4Ll";
+        dkim-atps=neutral
+AI-Spam-Status: Not processed
+Received: from [172.19.0.1] (unknown [64.225.114.122])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 346CF412C0;
+        Mon, 16 Nov 2020 18:37:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+        t=1605551834; bh=VH5KML0r+bx1HTyZIGYMOWB5EsWUiSK02/YgLi4WzhA=;
+        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
+        b=mArYa4LlnrQWDdsSsouI06L/Skm7E8CsNVpZ2sdOeBiMKlt1YlJnLloBf0qA9v0vj
+         R7+HJaUaSlbifFOZBREuzskhblEpyimNmkbkO3XtYEB2MujOfTeQMHeam5eOaKzZgC
+         ZNSy+CPzrIHz2knYd/ozxOp07Gid3/9YRfuYfrss=
+Date:   Tue, 17 Nov 2020 02:36:48 +0800
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20201116155508.364dg6ycklwylswe@gilmour.lan>
+References: <20201107124958.2222253-1-icenowy@aosc.io> <20201107125332.2223197-1-icenowy@aosc.io> <20201110103925.rbej5ueo2fefbmlp@gilmour.lan> <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io> <20201116155508.364dg6ycklwylswe@gilmour.lan>
 MIME-Version: 1.0
-In-Reply-To: <CAE+NS37-vQ4LLbCv-1+WsLe7qEQdVvBhhNKK4=oDj5VtWuaeoQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT for PineTab developer sample
+To:     maxime@cerno.tech, Maxime Ripard <maxime@cerno.tech>
+CC:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+From:   Icenowy Zheng <icenowy@aosc.io>
+Message-ID: <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io>
+X-Rspamd-Queue-Id: 677C141E57
+X-Spamd-Result: default: False [1.40 / 10.00];
+         RCVD_VIA_SMTP_AUTH(0.00)[];
+         ARC_NA(0.00)[];
+         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
+         MID_RHS_MATCH_FROM(0.00)[];
+         FROM_HAS_DN(0.00)[];
+         TO_DN_SOME(0.00)[];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DMARC_NA(0.00)[aosc.io];
+         R_SPF_SOFTFAIL(0.00)[~all];
+         ML_SERVERS(-3.10)[213.133.102.83];
+         DKIM_TRACE(0.00)[aosc.io:+];
+         RCPT_COUNT_SEVEN(0.00)[9];
+         RCVD_NO_TLS_LAST(0.10)[];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
+         RCVD_COUNT_TWO(0.00)[2];
+         SUSPICIOUS_RECIPS(1.50)[];
+         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
+X-Rspamd-Server: mail20.mymailcheap.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/16/20 11:01 AM, Gene Chen wrote:
-> Jacek Anaszewski <jacek.anaszewski@gmail.com> 於 2020年10月31日 週六 上午6:34寫道：
->>
->> On 10/30/20 9:51 AM, Gene Chen wrote:
->>> Jacek Anaszewski <jacek.anaszewski@gmail.com> 於 2020年10月28日 週三 上午1:28寫道：
->>>>
->>>> On 10/27/20 10:28 AM, Gene Chen wrote:
->>>>> Jacek Anaszewski <jacek.anaszewski@gmail.com> 於 2020年10月21日 週三 上午5:47寫道：
->>>>>>
->>>>>> On 10/20/20 8:44 AM, Gene Chen wrote:
->>>>>>> Jacek Anaszewski <jacek.anaszewski@gmail.com> 於 2020年10月9日 週五 上午5:51寫道：
->>>>>>>>
->>>>>>>> Hi Gene,
->>>>>>>>
->>>>>>>> On 10/7/20 3:42 AM, Gene Chen wrote:
->>>>>>>>> From: Gene Chen <gene_chen@richtek.com>
->>>>>>>>>
->>>>>>>>> Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mode,
->>>>>>>>> 3-channel RGB LED support Register/Flash/Breath Mode, and 1-channel for
->>>>>>>>> moonlight LED.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Gene Chen <gene_chen@richtek.com>
->>>>>>>>> ---
->>>>>>>>>       drivers/leds/Kconfig       |  12 +
->>>>>>>>>       drivers/leds/Makefile      |   1 +
->>>>>>>>>       drivers/leds/leds-mt6360.c | 783 +++++++++++++++++++++++++++++++++++++++++++++
->>>>>>>>>       3 files changed, 796 insertions(+)
->>>>>>>>>       create mode 100644 drivers/leds/leds-mt6360.c
->>>>>>>>>
->>>>>>>>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
->>>>>>>>> index 1c181df..c7192dd 100644
->>>>>>>>> --- a/drivers/leds/Kconfig
->>>>>>>>> +++ b/drivers/leds/Kconfig
->>>>>>>>> @@ -271,6 +271,18 @@ config LEDS_MT6323
->>>>>>>>>             This option enables support for on-chip LED drivers found on
->>>>>>>>>             Mediatek MT6323 PMIC.
->>>>>>>>>
->>>>>>>>> +config LEDS_MT6360
->>>>>>>>> +     tristate "LED Support for Mediatek MT6360 PMIC"
->>>>>>>>> +     depends on LEDS_CLASS_FLASH && OF
->>>>>>>>> +     depends on LEDS_CLASS_MULTICOLOR
->>>>>>>>
->>>>>>>> Since CONFIG_LED_CLASS_MULTICOLOR can be turned off you need to have
->>>>>>>> below instead:
->>>>>>>>
->>>>>>>> depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
->>>>
->>>> My typo here, should be one "!":
->>>>
->>>> depends on LEDS_CLASS_MULTICOLOR || !LEDS_CLASS_MULTICOLOR
->>>>
->>>> And you should also have
->>>>
->>>> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
->>>>
->>>> But to make it work correctly you would have to add registration
->>>> stubs to include/linux/led-class-flash.h similarly to LED mc stubs
->>>> in include/linux/led-class-multicolor.h.
->>>>
->>>>>>>>
->>>>>>>> Unless you want to prevent enabling the driver without RGB LED,
->>>>>>>> but that does not seem to be reasonable at first glance.
->>>>>>>>
->>>>>>>
->>>>>>> May I change to "select LEDS_CLASS_MULTICOLOR"?
->>>>>>> I suppose RGB always use multicolor mode.
->>>>>>
->>>>>> You will also have moonlight LED that will not need multicolor
->>>>>> framework. Is it somehow troublesome to keep "depends on"?
->>>>>>
->>>>>
->>>>> If only use ML LED and FLED,  DTSI will only define ML LED and FLED.
->>>>> Therefore, the drivers probe will not register rgb multicolor device.
->>>>
->>>> Please test your use case again with my fixed "depends on".
->>>>
->>>> In case when there is only ML LED and FLED in the DT it should
->>>> register both devices if LEDS_CLASS_FLASH is turned on.
->>>> Multicolor framework has nothing to do in this case.
->>>>
->>>> But if you additionally had MC LED node, then it should
->>>> be registered only if LEDS_CLASS_MULTICOLOR is enabled.
->>>>
->>>> Similarly, when FLED node is present, but LEDS_CLASS_FLASH
->>>> is off, and LEDS_CLASS_MULTICOLOR is on, the driver should still
->>>> compile, but register only LED MC device (if its node is present).
->>>>
->>>
->>> I think this case only register LED device, not LED "MC" device.
->>> Because our FLASH is not a multicolor device.
->>
->> No, here I was describing following setup:
->>
->> - DT FLED node is present, CONFIG_LEDS_CLASS_FLASH is off
->> - DT MC node is present, CONFIG_LEDS_CLASS_MULTICOLOR is on
->>
->> ML LED presence in DT is irrelevant in this case.
->> It should be always registered if there is corresponding DT node
->> and LEDS_CLASS is on.
->>
-> 
-> As a long time discussion, we conclude some rules about MT6360 LED driver.
-> FLED is necessary, so Kconfig depends on LED_CLASS_FLASH
 
-Maybe it is necessary in your use case, but probably it is possible to
-use the device without FLED. If so, then you should allow users
-disabling it. Therefore you should have:
 
-depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+=E4=BA=8E 2020=E5=B9=B411=E6=9C=8816=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=88=
+11:55:08, Maxime Ripard <maxime@cerno=2Etech> =E5=86=99=E5=88=B0:
+>On Tue, Nov 10, 2020 at 06:41:37PM +0800, Icenowy Zheng wrote:
+>>=20
+>>=20
+>> =E4=BA=8E 2020=E5=B9=B411=E6=9C=8810=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=
+=886:39:25, Maxime Ripard <maxime@cerno=2Etech>
+>=E5=86=99=E5=88=B0:
+>> >On Sat, Nov 07, 2020 at 08:53:32PM +0800, Icenowy Zheng wrote:
+>> >> Some developers received PineTab samples that used an old LCD
+>panel=2E
+>> >>=20
+>> >> Add device tree for these samples=2E
+>> >>=20
+>> >> Signed-off-by: Icenowy Zheng <icenowy@aosc=2Eio>
+>> >> ---
+>> >>  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+>> >>  =2E=2E=2E/dts/allwinner/sun50i-a64-pinetab-dev=2Edts  | 28
+>> >+++++++++++++++++++
+>> >>  2 files changed, 29 insertions(+)
+>> >>  create mode 100644
+>> >arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
+>> >>=20
+>> >> diff --git a/arch/arm64/boot/dts/allwinner/Makefile
+>> >b/arch/arm64/boot/dts/allwinner/Makefile
+>> >> index 211d1e9d4701=2E=2Ea221dcebfad4 100644
+>> >> --- a/arch/arm64/boot/dts/allwinner/Makefile
+>> >> +++ b/arch/arm64/boot/dts/allwinner/Makefile
+>> >> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D
+>> >sun50i-a64-pinephone-1=2E0=2Edtb
+>> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinephone-1=2E1=2Edtb
+>> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinephone-1=2E2=2Edtb
+>> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab=2Edtb
+>> >> +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab-dev=2Edtb
+>> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-sopine-baseboard=2Edtb
+>> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-teres-i=2Edtb
+>> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a100-allwinner-perf1=2Edtb
+>> >> diff --git
+>a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
+>> >b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
+>> >> new file mode 100644
+>> >> index 000000000000=2E=2E3a4153890f3e
+>> >> --- /dev/null
+>> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
+>> >> @@ -0,0 +1,28 @@
+>> >> +// SPDX-License-Identifier: (GPL-2=2E0+ OR MIT)
+>> >> +/*
+>> >> + * Copyright (C) 2020 Icenowy Zheng <icenowy@aosc=2Eio>
+>> >> + *
+>> >> + */
+>> >> +
+>> >> +/dts-v1/;
+>> >> +
+>> >> +#include "sun50i-a64-pinetab=2Edts"
+>> >> +
+>> >> +/ {
+>> >> +	model =3D "PineTab Developer Sample";
+>> >> +	compatible =3D "pine64,pinetab-dev", "allwinner,sun50i-a64";
+>> >> +};
+>> >
+>> >Changing the DT and the compatible half-way through it isn't ok=2E
+>Please
+>> >add a new DT with the newer revision like we did for the pinephone
+>>=20
+>> We did this on Pine H64=2E
+>
+>What are you referring to? I couldn't find a commit where we did what
+>you suggested in that patch to the pine H64=2E
 
-> ML LED is optional, which is registered as led class device.
-> RGB LED can be either simple led class device or multicolor device,
-> which is decided in DT node
-> If Multicolor LED DT node is exist, it should be register multicolor
-> device success.
+Oh the situation is complex=2E On Pine H64, we didn't specify anything at
+start (which is the same here), the DT is originally version-neutral
+but then transitioned to model B, then reverted to model A=2E Here the DT =
+is always
+for the sample=2E
 
-But only if CONFIG_LEDS_CLASS_MULTICOLOR is enabled.
+However, for Pine H64 there's model A/B names, but for PineTab there's no
+any samples that are sold, thus except who got the samples, all PineTab
+owners simply owns a "PineTab", not a "PineTab xxx version"=2E
 
-> Maybe it is more specific to send a new patch?
-> 
-> Sample DT as below
-> LED "red" is simple led class device, LED "green&blue" is multicolor devices.
-> led@0 {
->          reg = <0>;
->          function = LED_FUNCTION_INDICATOR;
->          color = <LED_COLOR_ID_RED>;
->          led-max-microamp = <24000>;
-> };
-> led@6 {
->          reg = <6>;
->          function = LED_FUNCTION_INDICATOR;
->          color = <LED_COLOR_ID_MULTI>;
-> 
->          led@1 {
->                  reg = <1>;
->                  function = LED_FUNCTION_INDICATOR;
->                  color = <LED_COLOR_ID_GREEN>;
->                  led-max-microamp = <24000>;
->          };
->          led@2 {
->                  reg = <2>;
->                  function = LED_FUNCTION_INDICATOR;
->                  color = <LED_COLOR_ID_BLUE>;
->                  led-max-microamp = <24000>;
->          };
-> };
-
-It looks OK.
-
->>>> Possible should be also the case when both LEDS_CLASS_FLASH
->>>> and LEDS_CLASS_MULTICOLOR are off. Then only LED class device
->>>> for ML LED will be registered (provided there is ML DT node).
->>>> But to make it possible you should have also "depends on LEDS_CLASS"
->>>> in the Kconfig entry.
->>>>
->>>
->>> According to your suggestion,
->>> depends on LED_CLASS && LEDS_CLASS_FLASH && OF
->>
->> s/LED_CLASS/LEDS_CLASS/
->>
->> And you have to remove LEDS_CLASS_FLASH from above line.
->>
->>> depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
->>
->> s/!!LEDS_CLASS_MULTICOLOR/!LEDS_CLASS_MULTICOLOR/
->>
->>> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
->>> depends on MFD_MT6360
->>
->> You will need V4L2_FLASH_LED_CLASS dependency as well, to avoid
->> build break, when it is set to 'm'.
->>
->> To recap, following block of dependencies is required:
->>
->> depends on LEDS_CLASS && OF
->> depends on LEDS_CLASS_MULTICOLOR || !LEDS_CLASS_MULTICOLOR
->> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
->> depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
->> depends on MFD_MT6360
->>
-> 
-> LEDS_MT6360 depends on LEDS_CLASS_FLASH, and LEDS_CLASS_FLASH depends
-> on LEDS_CLASS
-> Is "depends on LEDS_CLASS" still needed?
-
-Yes, because you should allow disabling CONFIG_LEDS_CLASS_FLASH.
-In such a case driver should still compile and register ML LED class
-device when it has corresponding DT node.
-
->>> and source code add constraint
->>>
->>> #if IS_ENABLED(CONFIG_LEDS_CLASS_MULTICOLOR)
->>>       ret = devm_led_classdev_multicolor_register_ext(parent, &led->rgb,
->>> init_data);
->>> #endif
->>>
->>> #if IS_ENABLED(CONFIG_LEDS_CLASS_FLASH)
->>>       ret = devm_led_classdev_flash_register_ext(parent, &led->flash, init_data);
->>> #endif
->>
->> No, the guards should be in headers. That's why I recommended adding
->> no ops for LED flash class registration functions in previous email.
->>
->> Please compare include/linux/led-class-multicolor.h and do similar
->> changes in include/linux/led-class-flash.h.
->>
-> 
-> ACK, I will submit a fixed patch about leds-class-flash.h.
-> 
-> By the way, if CONFIG_LED_CLASS_MULTICOLOR is not enabled and we don't
-> use #if IS_ENABLED,
-> according to led-class-multicolor.h return -EINVAL,
-> we will register multicolor device fail and cause probe fail.
-
-Good point. So led-class-multicolor.h no-ops need to be fixed to return
-0 instead of -EINVAL.
-
-And no-ops in include/linux/led-class-flash.h should also return 0.
-
--- 
-Best regards,
-Jacek Anaszewski
+>
+>Maxime
