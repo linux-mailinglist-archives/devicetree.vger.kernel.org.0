@@ -2,146 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D57A2B4A3B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:04:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33D802B4A50
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:10:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731645AbgKPQDU convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Nov 2020 11:03:20 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:34873 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728858AbgKPQDT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:03:19 -0500
-Received: by mail-wm1-f68.google.com with SMTP id w24so24083175wmi.0;
-        Mon, 16 Nov 2020 08:03:18 -0800 (PST)
+        id S1730638AbgKPQIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 11:08:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60032 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729467AbgKPQIQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:08:16 -0500
+Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69825C0613D1
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 08:08:16 -0800 (PST)
+Received: by mail-il1-x144.google.com with SMTP id t13so15745940ilp.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 08:08:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atishpatra.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TYESStGAKtRivaI7ala7/9w4Y1E5hiFC107ZMldjdA0=;
+        b=PIME04S2yuh00xcv/ew8BoRWNXcxwwXikY/oKGMYfQDfOhKMKqxbvI5zE0XEojzmIL
+         fP1Dq2ACY8i0tSuOowJ0pXcrqHpbNcMx/7cXaq1E4CQiYgHyOU0mW2oJo4D6jw4uEw0r
+         0YNdhoVexSnnIcnaiVgn8WuUjZqFa/8MlpLIk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=cTPPtiGx5HABWSYjj2Jwh7qUN2s4bgdFOFffAOPRj60=;
-        b=KNT6yHRubXuHnl6ZT3BDbSFaNLiMKqyslzDvdEq/cc2/8uyBcv8J8FdrCYip98o3UU
-         0HoAS2xChWJAFUiadVD7GCSaqxwwduxDFnVh2wOujUKvJanEHWhH6678ni8fnjiwhJwv
-         3crdMohZdW9oYRzh2zjrVgnHkzy6wm9gMxCLFGUtARRNQW3nh35d1kmbGmiBYebn0BCL
-         tjw2t5epAMcbmh7dhWU78bKW13Lww953CjamB3wL7HEVNeQxwi/ejSjSU6LtDT3Tz65l
-         dhGnXC9BWyB3Wq+kWuUXphM2R/WKir+h6sbgt6oC+89b9yprpbnzKAugi/nVtnZ6GiQC
-         3dBw==
-X-Gm-Message-State: AOAM532BrWzZplrM/fIgh4zvFN0YfcV5kCkf+Ngpwjrj+BcapFQHfvYT
-        5wkG/AIDUfBdXUp6WGSnWS4=
-X-Google-Smtp-Source: ABdhPJyYNOREUfzH58jqjfzNh1gaerwk5W77qLOc2STCfqhe8DvnCZk5FlL0CNhK+5pWyIWgvS5zIQ==
-X-Received: by 2002:a1c:9901:: with SMTP id b1mr6818993wme.18.1605542597489;
-        Mon, 16 Nov 2020 08:03:17 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id n23sm20326920wmk.24.2020.11.16.08.03.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 08:03:16 -0800 (PST)
-Date:   Mon, 16 Nov 2020 17:03:14 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding
- doc for soc unique ID
-Message-ID: <20201116160314.GA25108@kozik-lap>
-References: <20201113110409.13546-1-alice.guo@nxp.com>
- <20201114164936.GA32552@kozik-lap>
- <AM6PR04MB60530B6F577A2A05B173748EE2E30@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TYESStGAKtRivaI7ala7/9w4Y1E5hiFC107ZMldjdA0=;
+        b=Wejzgnkf0CbIPaHnNXh/fQ1lm2MVIvFhkXsa7HOqRgvMU/o3mguMEzmdU8n4YoYW7k
+         O6KwR/4lklrpOwwOXICeKc/+sK8Pgsnf9SK9P2zH41WzbNI3iTY8mf1uNMDywQQxhRgM
+         p307mzZwrGOBeTLuJ18ndQtC4oT2pXcbOBKaWP6Mi1uhMHhYDrKA5Q1mfXda52ZqMVaz
+         ZjoIYEWssph9yb75y7YUhu+aIftdxZhUjE9SfJpGXRDysdDjycDSpBbcfeoyY4f1sPWo
+         ez+KL7u3Erez1OSXpLA5TS4UInW7ct9rGsPHuWqZrW5asTCGqSf/YA+IJHtYiSa2FFmA
+         e14w==
+X-Gm-Message-State: AOAM532jpSc8IyJjYKTZ+CCrSMCbyEASzxLlKAm4ZCBuF6bQVP4nVoD5
+        YdmqnmGyUAFHamJAJurgvf2DuBy1PjBscfU6EX3G
+X-Google-Smtp-Source: ABdhPJzUUHJyuXJ1duZZEAnozYsMbeM2qHFZmyqTe/AtJl9ylg9U5pPO43vAy8+qk+4tC/qsYULKaca4u7Xyar01sAs=
+X-Received: by 2002:a92:512:: with SMTP id q18mr8655253ile.147.1605542895690;
+ Mon, 16 Nov 2020 08:08:15 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <AM6PR04MB60530B6F577A2A05B173748EE2E30@AM6PR04MB6053.eurprd04.prod.outlook.com>
+References: <20201113202550.3693323-1-atish.patra@wdc.com> <20201113202550.3693323-3-atish.patra@wdc.com>
+ <20201116150129.GA1643948@bogus>
+In-Reply-To: <20201116150129.GA1643948@bogus>
+From:   Atish Patra <atishp@atishpatra.org>
+Date:   Mon, 16 Nov 2020 08:08:04 -0800
+Message-ID: <CAOnJCULj2F1ZMsWwA8KT-6yVi2bK7usw1EUJfrxTiVtrDqYAXQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/4] dt-bindings: riscv: microchip: Add YAML
+ documentation for the PolarFire SoC
+To:     Rob Herring <robh@kernel.org>
+Cc:     Atish Patra <atish.patra@wdc.com>, devicetree@vger.kernel.org,
+        Albert Ou <aou@eecs.berkeley.edu>, Cyril.Jean@microchip.com,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Anup Patel <anup.patel@wdc.com>, Conor.Dooley@microchip.com,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Ivan.Griffin@microchip.com, Rob Herring <robh+dt@kernel.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 07:04:13AM +0000, Alice Guo wrote:
-> 
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > Sent: 2020年11月15日 0:50
-> > To: Alice Guo <alice.guo@nxp.com>
-> > Cc: robh+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > dl-linux-imx <linux-imx@nxp.com>; Peng Fan <peng.fan@nxp.com>;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org
-> > Subject: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding doc
-> > for soc unique ID
-> > 
-> > Caution: EXT Email
-> > 
-> > On Fri, Nov 13, 2020 at 07:04:06PM +0800, Alice Guo wrote:
-> > > Add DT Binding doc for the Unique ID of i.MX 8M series.
-> > >
-> > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/arm/fsl.yaml          | 25
-> > +++++++++++++++++++
-> > >  1 file changed, 25 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > index e4db0f9ed664..f4faebbb57da 100644
-> > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > @@ -901,6 +901,31 @@ properties:
-> > >                - fsl,s32v234-evb           # S32V234-EVB2 Customer
-> > Evaluation Board
-> > >            - const: fsl,s32v234
-> > >
-> > > +  soc:
-> > > +    type: object
-> > > +    properties:
-> > > +      compatible:
-> > > +        oneOf:
-> > > +          - description: i.MX8M SoCs
-> > > +            items:
-> > > +              - enum:
-> > > +                  - fsl,imx8mm-soc
-> > > +                  - fsl,imx8mn-soc
-> > > +                  - fsl,imx8mp-soc
-> > > +                  - fsl,imx8mq-soc
-> > > +              - const: simple-bus
-> > > +
-> > > +          - description: Other SoCs
-> > > +            items:
-> > > +              - const: simple-bus
-> > > +
-> > > +      nvmem-cells:
-> > > +        maxItems: 1
-> > > +        description: Phandle to the SOC Unique ID provided by a nvmem
-> > > + node
-> > > +
-> > > +      nvmem-cells-names:
-> > > +        const: soc_unique_id
-> > > +
-> > >  additionalProperties: true
-> > 
-> > The "soc" node should be required for these compatibles. Otherwise you will
-> > have to stay with this backwards-compatible-DTB-device-initcall-glue for many
-> > years... I think you can achieve it with allOf.
-> > 
-> [Alice Guo]Hi,
-> I find that my description for compatible is ambiguous. There are two kinds of compatible of the "soc" node:
-> 1. For dtsi files used for SoCs other than imx8m series SoCs and old version dtsi files used for imx8m series SoCs,
-> compatible of the "soc" node is "simple-bus".
-> 2. For new version dtsi files used for imx8m series SoCs, compatible of the "soc" node is {"fsl,imx8mX-soc","simple-bus"}.
-> 
-> "nvmem-cell" is an optional property.
-> 
-> I do not understand what you mean. You mean that limit the compatible of "soc" node must include " fsl,imx8mX-soc" in new version dts files. Is my understanding correct?
+On Mon, Nov 16, 2020 at 7:23 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, 13 Nov 2020 12:25:48 -0800, Atish Patra wrote:
+> > Add YAML DT binding documentation for the Microchip PolarFire SoC.
+> > It is documented at:
+> >
+> > https://www.microsemi.com/products/fpga-soc/polarfire-soc-icicle-quick-start-guide
+> >
+> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> > ---
+> >  .../devicetree/bindings/riscv/microchip.yaml  | 27 +++++++++++++++++++
+> >  1 file changed, 27 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/riscv/microchip.yaml
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> ./Documentation/devicetree/bindings/riscv/microchip.yaml: $id: relative path/filename doesn't match actual path or filename
+>         expected: http://devicetree.org/schemas/riscv/microchip.yaml#
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/riscv/sifive.yaml: duplicate '$id' value 'http://devicetree.org/schemas/riscv/sifive.yaml#'
+>
+>
 
-All new DTS files should have soc node with "fsl,imx8mX-soc" and this
-should be required by dtschema. The nvmem-cells and related properties
-do not look like optional. From the hardware perspective - they are
-always present. From the driver point of view: they are required and
-driver will fail to work.
+Thanks for catching this. It was a copy paste error. I will fix it next version.
 
-Best regards,
-Krzysztof
+> See https://patchwork.ozlabs.org/patch/1400088
+>
+> The base for the patch is generally the last rc1. Any dependencies
+> should be noted.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
+
+
+-- 
+Regards,
+Atish
