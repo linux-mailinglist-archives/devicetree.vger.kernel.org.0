@@ -2,102 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FAA32B3B3E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 02:59:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 175A52B3BB0
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 04:10:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728416AbgKPB72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 20:59:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728413AbgKPB72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 20:59:28 -0500
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F081C0613CF;
-        Sun, 15 Nov 2020 17:59:26 -0800 (PST)
-Received: by mail-yb1-xb42.google.com with SMTP id d1so2080913ybr.10;
-        Sun, 15 Nov 2020 17:59:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=pFGInHRGdqEGsvVqPYvaZz37g34COkN/zxnAelojjto=;
-        b=YURNrb6f4g6wlo4PHzIUUH18U9AJd61l1JDBz/eBGbnFTMpmj1uySvpw3oRIujLEDD
-         83pg1jF2T1azTcm3paAwWovOb0gyFMhJgZcyx80UdFYRLFv1O0MuDxBed8wG8QdRVjPQ
-         VJKoROCGZaFY3T1YHI+LNMHoLVpZNNzn1kWqzJFJIS25SVZGfAD1IG5lQ1msIuEon7xo
-         aeRTqjuSz5ceVwhbVguUVodCcI48mApBy9BqyLx5Ns3mKuL7NlWCu4Lx/WWUryaJv4Vq
-         HM2vByuoPUwu8Fi4kAoKHH9ayfQ0lBxsnKHmzCffCHG17n3+DxMJ/CnVHP5ZM/JHXh8i
-         PKSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=pFGInHRGdqEGsvVqPYvaZz37g34COkN/zxnAelojjto=;
-        b=d5HdwgCJ8CVzO1Z9pL+zuCN41bQA9piNWBWSmcyZesCvd15GawofqoTCCsDLwHxTrt
-         3ULlTnNnCfjnBtr5jubb6B9c+TE1kcJrO9NsdUne/QOjjfcONHLK69cq4+IkDevTZPvf
-         FP8zb88hNh4ISd1RTZ2Vb9f3R96hVTsi674Y5qMMvVxgJH0QEWDonpEmStsENR16+COc
-         wv+jtV9mNWIjiW0TpAo0IcVs6b8i+kz2yObO7dtOy5nMrP1yyNfCW/2MCGCKqR4Env0k
-         1ZvHH3D41Ik5Jlnk9eaCDX8pcqJJnuct9T32dh+oJPh+8T8iMgmtJ+I5cW9OI2bsKvZR
-         kcPg==
-X-Gm-Message-State: AOAM531GyBiNQNEtyVVXwLDol/kwD1blpYpDP1To7duzpTRGLHgdGdwF
-        2WHTWNjnxTuXwJnxwXUTiNa/NTKLQXaLrHLb8o0=
-X-Google-Smtp-Source: ABdhPJyZSU5HnajrZ6tnN0hPSlqKGxF08HHOqbnwCAb+o89DKIjkC7JHykmTv2BdYGq1reIZPuY2Eu6TRMtQifMSeCQ=
-X-Received: by 2002:a25:3102:: with SMTP id x2mr384613ybx.495.1605491964636;
- Sun, 15 Nov 2020 17:59:24 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:a25:9785:0:0:0:0:0 with HTTP; Sun, 15 Nov 2020 17:59:24
- -0800 (PST)
-In-Reply-To: <CAJKOXPePgqWQpJjOeJ9U0jcNG7et6heAid2HnrPeWTDKXLUgjA@mail.gmail.com>
-References: <CGME20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7>
- <20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7> <CAJKOXPePgqWQpJjOeJ9U0jcNG7et6heAid2HnrPeWTDKXLUgjA@mail.gmail.com>
-From:   Bongsu Jeon <bs.jeon87@gmail.com>
-Date:   Mon, 16 Nov 2020 10:59:24 +0900
-Message-ID: <CAEx-X7cufBcO38RR2SQzvTOA=JRyG7XSR-KNMcui99WGrsvfZw@mail.gmail.com>
-Subject: Re: [PATCH net-next 1/2] nfc: s3fwrn82: Add driver for Samsung
- S3FWRN82 NFC Chip
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     bongsu.jeon@samsung.com, "kuba@kernel.org" <kuba@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726265AbgKPDKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 22:10:14 -0500
+Received: from mga01.intel.com ([192.55.52.88]:42262 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725969AbgKPDKN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Nov 2020 22:10:13 -0500
+IronPort-SDR: djWTrLSP/YkzghHz+Qth35KN2pcVFPaVZkmWWFTfdebMijOpQD3M38OO7DVCCGFPcsKLL9PmRA
+ 8laHWVlbHqKQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9806"; a="188738386"
+X-IronPort-AV: E=Sophos;i="5.77,481,1596524400"; 
+   d="scan'208";a="188738386"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Nov 2020 19:10:10 -0800
+IronPort-SDR: TaDzZTfWkaejxD4kS6h9W9HBW18eGESkAesfrzvY792ZwXvRrcwEtVfLipnTdIjiiY6i19NkXL
+ vxN9QMeA1DsQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,481,1596524400"; 
+   d="scan'208";a="533266214"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga005.fm.intel.com with ESMTP; 15 Nov 2020 19:10:08 -0800
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     broonie@kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org
+Cc:     linux-mtd@lists.infradead.org, vigneshr@ti.com, p.yadav@ti.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v7 0/6] spi: cadence-quadspi: Add QSPI controller support for Intel LGM SoC
+Date:   Mon, 16 Nov 2020 11:09:57 +0800
+Message-Id: <20201116031003.19062-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020, 4:26 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+Add QSPI controller support for Intel LGM SoC.
 
-> On Fri, 13 Nov 2020 at 06:09, Bongsu Jeon <bongsu.jeon@samsung.com> wrote:
-> >
-> >
-> > Add driver for Samsung S3FWRN82 NFC controller.
-> > S3FWRN82 is using NCI protocol and I2C communication interface.
-> >
-> > Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
-> > ---
-> >  drivers/nfc/Kconfig             |   1 +
-> >  drivers/nfc/Makefile            |   1 +
-> >  drivers/nfc/s3fwrn82/Kconfig    |  15 ++
-> >  drivers/nfc/s3fwrn82/Makefile   |  10 ++
-> >  drivers/nfc/s3fwrn82/core.c     | 133 +++++++++++++++
-> >  drivers/nfc/s3fwrn82/i2c.c      | 288 ++++++++++++++++++++++++++++++++
-> >  drivers/nfc/s3fwrn82/s3fwrn82.h |  86 ++++++++++
-> >  7 files changed, 534 insertions(+)
-> >  create mode 100644 drivers/nfc/s3fwrn82/Kconfig
-> >  create mode 100644 drivers/nfc/s3fwrn82/Makefile
-> >  create mode 100644 drivers/nfc/s3fwrn82/core.c
-> >  create mode 100644 drivers/nfc/s3fwrn82/i2c.c
-> >  create mode 100644 drivers/nfc/s3fwrn82/s3fwrn82.h
->
-> No, this is a copy of existing s3fwrn5.
->
-> Please do not add drivers which are duplicating existing ones but
-> instead work on extending them.
->
-> Best regards,
-> Krzysztof
->
+Note from Vignesh(mtd subsystem maintainer):
+This series is a subset of "[PATCH v12 0/4] spi: cadence-quadspi: Add
+support for the Cadence QSPI controller" by Ramuthevar,Vadivel MuruganX
+<vadivel.muruganx.ramuthevar@linux.intel.com> that intended to move
+cadence-quadspi driver to spi-mem framework
 
-I understand your explain.
-Actually I thought that generic name like samsung-nci would be better
-than samsung's nfc chip name.
+Those patches were trying to accomplish too many things in a single set
+of patches and need to split into smaller patches. This is reduced
+version of above series.
+
+Changes that are intended to make migration easy are split into separate
+patches. Patches 1 to 3 drop features that cannot be supported under
+spi-mem at the moment (backward compatibility is maintained).
+Patch 4-5 are trivial cleanups. Patch 6 does the actual conversion to
+spi-mem and patch 7 moves the driver to drivers/spi folder.
+
+I have tested both INDAC mode (used by non TI platforms like Altera
+SoCFPGA) and DAC mode (used by TI platforms) on TI EVMs.
+
+Patches to move move bindings over to
+"Documentation/devicetree/bindings/spi/" directory and also conversion
+of bindig doc to YAML will be posted separately.  Support for Intel
+platform would follow that.
+
+Reference:
+        https://lkml.org/lkml/2020/6/1/50
+
+---
+v7:
+  - Rob's review comments address and fixed dt-schema warning 
+  - Pratyush review comments address and update
+  - DAC bit reset to 0 and 1 (enable/disable)
+  - tested QSI-NOR flash mx25l12805d on LGM soc, it's working after disable DAC
+  - Linus suggested to use 'num-cs' prperty instead of 'num-chipselect'
+v6:
+  - Rob's review comments update
+  - add compatible string in properly aligned
+  - remove cadence-qspi extra comaptible string in example
+v5:
+  - Rob's review comments update
+  - const with single compatible string kept
+v4:
+  - Rob's review comments update
+  - remove '|' no formatting to preserve
+  - child node attributes follows under 'properties' under '@[0-9a-f]+$'.
+v3:
+  - Pratyush review comments update
+  - CQSPI_SUPPORTS_MULTI_CHIPSELECT macro used instead of cqspi->use_direct_mode
+  - disable DAC support placed in end of controller_init
+v2:
+  - Rob's review comments update for dt-bindings
+  - add 'oneOf' for compatible selection
+  - drop un-neccessary descriptions
+  - add the cdns,is-decoded-cs and cdns,rclk-en properties as schema
+  - remove 'allOf' in not required place
+  - add AdditionalProperties false
+  - add minItems/maxItems for qspi reset attributes
+
+resend-v1:
+  - As per Mark's suggestion , reorder the patch series 1-3 driver
+    support patches, series 4-6 dt-bindings patches.
+v1:
+  - initial version
+
+Ramuthevar Vadivel Murugan (6):
+  spi: cadence-quadspi: Add QSPI support for Intel LGM SoC
+  spi: cadence-quadspi: Disable the DAC for Intel LGM SoC
+  spi: cadence-quadspi: Add multi-chipselect support for Intel LGM SoC
+  spi: Move cadence-quadspi.txt to Documentation/devicetree/bindings/spi
+  dt-bindings: spi: Convert cadence-quadspi.txt to cadence-quadspi.yaml
+  dt-bindings: spi: Add compatible for Intel LGM SoC
+
+ .../devicetree/bindings/mtd/cadence-quadspi.txt    |  67 ----------
+ .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 148 +++++++++++++++++++++
+ drivers/spi/Kconfig                                |   2 +-
+ drivers/spi/spi-cadence-quadspi.c                  |  33 ++++-
+ 4 files changed, 178 insertions(+), 72 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mtd/cadence-quadspi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+
+-- 
+2.11.0
+
