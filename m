@@ -2,114 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2064E2B4B05
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:28:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 499F02B4B19
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:30:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731776AbgKPQ1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 11:27:21 -0500
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:43985 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730986AbgKPQ1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:27:20 -0500
-Received: by mail-oo1-f67.google.com with SMTP id h10so2457556ooi.10;
-        Mon, 16 Nov 2020 08:27:20 -0800 (PST)
+        id S1732111AbgKPQ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 11:28:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34990 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730795AbgKPQ2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:28:42 -0500
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D46C0613CF;
+        Mon, 16 Nov 2020 08:28:40 -0800 (PST)
+Received: by mail-wm1-x342.google.com with SMTP id d142so24300305wmd.4;
+        Mon, 16 Nov 2020 08:28:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=kc1ukQL6kODEhYMjeZ7pxJqnx32Rr60HwhEN3ntpjVc=;
+        b=UxBYdxDXJqyuI9q1ZSGmjgAUJ4mL+wy4j4uuuWqfc4yEwtZ10juLennZBZTj7M1uyz
+         J1aJoJjcw6tMmTizfzahUIp1EE9twSatetgO3KoKmr9MZFX6GkMe9KPCfN54Rl/gIQqZ
+         bbcNnh6jJP4xtjTWw6CuN/Ymf8NKE5J3v4jcqILCiXe7VjnapOP3SuVG2fx9JO2W3q4W
+         SGEW49mharcANcfNwrt4FegjKfklH64NT2ydo3iBfgWQB7lD4mWTc/f7qivs9xPHujpy
+         iioN+HWyAq86yCGdkEbDF2uZQYAijZ0t3oQaGCGfs9GolKBlIG53xyJy3oyszRR1q7wF
+         ODcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uf/c2Bl0LKSLy/2BRYxp58QUykMnC0SpcawnTE36dag=;
-        b=ho5KnlN5rBsM22w1gg3WtCOv9ufHIg+GVexdALBEysvtoclWluu8eWs6h/lar8gLeJ
-         3pDH2dx/upeTArSXX1ymPM3nL2qP3v1XV8vTmOWNqimpUhFIObEDQZjChkKWNxokSTJ1
-         Wy/7fNKSKJNfBoyM/vUQZ8rKNUXIodlm2qDGtRPCZSdEGYU6ehE+PkJaR0+dVKZ9m5r0
-         Em51u4r8XesPTaCSJn9nSpA+hFIOhyQuW++cQBRH+0LzMywMqmiaIBnWjCN05kQqBAU6
-         9LOoZ6J138eZeyz84WuP9JD0hlZ6ZY5x5PhKgu7p/cvtu/N7Tm8NJV7VOLWzKQBR1+Ri
-         A8Fg==
-X-Gm-Message-State: AOAM531tplixk0n068dg3cnx51AOnXxY96ypj7kjmpYpmxDYJxEMr8p8
-        zC+q1TtQs5AWv6mfK/lui9tucIArQezEs/z0+d6JTh9B
-X-Google-Smtp-Source: ABdhPJymR65UUIvisBsI+lq9YGIqUU4yE9nPrcP2jprlqU70qkrN9p6QO98tHnyp1ZfUmRNUDaNzjbRUAfGTcMV+LUg=
-X-Received: by 2002:a4a:e80b:: with SMTP id b11mr115974oob.1.1605544039581;
- Mon, 16 Nov 2020 08:27:19 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=kc1ukQL6kODEhYMjeZ7pxJqnx32Rr60HwhEN3ntpjVc=;
+        b=hKnZUmZN98T+GThpd2JUWBw9zY/DPzNizuBbhyjQxGwxcMT8duj1BKvLz12EahDrUl
+         Ly3hMfuE5/kT+bYl//PNidlKiNKlUXlBh3bzgdVi0EmnDyBM34HjitJN3zaVY9OSuqnj
+         ZvZCWBj8r0SljK8lDUxn5fXWViWCz85lp/uF3+ZmafE9bhUuvqAhg60uod/l8N8lDGip
+         kPr+6fV5bmW3G4OOQ/Xc/EeSx8qVqHNzcRLWsLbXA/fDQCStyvhB3PEEQiR2x0dOvqVe
+         IlNCHhTnLL+5MzQ1U/WaCZNRdCWKFlXhsSErA3VTQ7tN236dGst+Ype15LflhrVf3i/D
+         EItQ==
+X-Gm-Message-State: AOAM530LL7O+2Zcl/n7WsPIddSJOzkrBwx2HbqKYbGDJSvPeBsbV8H7q
+        EP5VEm2WYKYYxJNlM2XUSy4=
+X-Google-Smtp-Source: ABdhPJxKuChqUtkDnjK9Sld3PAl+AhOvfZ1+a8Q+TWJTveN8BrHyvOHpKKlNCUQ5gyrEg8tY19Phpw==
+X-Received: by 2002:a1c:67d5:: with SMTP id b204mr16685204wmc.92.1605544119102;
+        Mon, 16 Nov 2020 08:28:39 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id s133sm20597171wmf.30.2020.11.16.08.28.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2020 08:28:37 -0800 (PST)
+Date:   Mon, 16 Nov 2020 17:28:36 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: Re: [PATCH] ARM64: tegra: Disable the ACONNECT for Jetson TX2
+Message-ID: <20201116162836.GA2584498@ulmo>
+References: <20201116162026.5324-1-jonathanh@nvidia.com>
 MIME-Version: 1.0
-References: <20201104232356.4038506-1-saravanak@google.com> <20201104232356.4038506-14-saravanak@google.com>
-In-Reply-To: <20201104232356.4038506-14-saravanak@google.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Mon, 16 Nov 2020 17:27:08 +0100
-Message-ID: <CAJZ5v0hVRd2pYfGwpa4FLwhtrS2pj9Ng2a2gf61BO5F-94PPXQ@mail.gmail.com>
-Subject: Re: [PATCH v1 13/18] driver core: Add fwnode_get_next_parent_dev()
- helper function
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        "Cc: Android Kernel" <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6c2NcOVqGQ03X4Wi"
+Content-Disposition: inline
+In-Reply-To: <20201116162026.5324-1-jonathanh@nvidia.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 5, 2020 at 12:24 AM Saravana Kannan <saravanak@google.com> wrote:
->
-> Given a fwnode, this function finds the closest ancestor fwnode that has
-> a corresponding struct device. The function returns this struct device.
-> This function will be used in a subsequent patch in this series.
->
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-I would combine this one with patch [10/18].
+--6c2NcOVqGQ03X4Wi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Nov 16, 2020 at 04:20:26PM +0000, Jon Hunter wrote:
+> Commit ff4c371d2bc0 ("arm64: defconfig: Build ADMA and ACONNECT driver")
+> enable the Tegra ADMA and ACONNECT drivers and this is causing resume
+> from system suspend to fail on Jetson TX2. Resume is failing because the
+> ACONNECT driver is being resumed before the BPMP driver, and the ACONNECT
+> driver is attempting to power on a power-domain that is provided by the
+> BPMP. While a proper fix for the resume sequencing problem is identified,
+> disable the ACONNECT for Jetson TX2 temporarily to avoid breaking system
+> suspend.
+>=20
+> Please note that ACONNECT driver is used by the Audio Processing Engine
+> (APE) on Tegra, but because there is no mainline support for APE on
+> Jetson TX2 currently, disabling the ACONNECT does not disable any useful
+> feature at the moment.
+>=20
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  drivers/base/core.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/drivers/base/core.c b/drivers/base/core.c
-> index ee28d8c7ee85..4ae5f2885ac5 100644
-> --- a/drivers/base/core.c
-> +++ b/drivers/base/core.c
-> @@ -1562,6 +1562,31 @@ static void fw_devlink_parse_fwtree(struct fwnode_handle *fwnode)
->                 fw_devlink_parse_fwtree(child);
->  }
->
-> +/**
-> + * fwnode_get_next_parent_dev - Find device of closest ancestor fwnode
-> + * @fwnode: firmware node
-> + *
-> + * Given a firmware node (@fwnode), this function finds its closest ancestor
-> + * firmware node that has a corresponding struct device and returns that struct
-> + * device.
-> + *
-> + * The caller of this function is expected to call put_device() on the returned
-> + * device when they are done.
-> + */
-> +static struct device *fwnode_get_next_parent_dev(struct fwnode_handle *fwnode)
-> +{
-> +       struct device *dev = NULL;
-> +
-> +       fwnode_handle_get(fwnode);
-> +       do {
-> +               fwnode = fwnode_get_next_parent(fwnode);
-> +               if (fwnode)
-> +                       dev = get_dev_from_fwnode(fwnode);
-> +       } while (fwnode && !dev);
-> +       fwnode_handle_put(fwnode);
-> +       return dev;
-> +}
-> +
->  static void fw_devlink_link_device(struct device *dev)
->  {
->         int fw_ret;
-> --
-> 2.29.1.341.ge80a0c044ae-goog
->
+>  arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 12 ------------
+>  1 file changed, 12 deletions(-)
+
+Applied, thanks.
+
+Thierry
+
+--6c2NcOVqGQ03X4Wi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+yqLEACgkQ3SOs138+
+s6Hpcw/+Iu/rWot+hOpP6WeujWh6gTdlJ+IGP2y3hjXg3r5lSOQXG3VuFiT0dgmg
+Mt7eQuJdHOKMe5r4+CD28sS6KXxd7UDcjZvfq0xf0wEz8jL0eSttbypeR/Z5Fh6E
+MG5YDIQwJZt1uQlEeErR1lwNyKl++IJpfccIiJPgl2jeSaOECQeECK8O3SdfZEAJ
+cLjxOADSGmFqTCw8JqbTXhaRotY7wTUgm/adXuXoIrfjXNuJSnSBnk3C3qxIbD4p
+eIymWbSCsfR5JZxarJkpbjZSRMguDt643xNEWKukSw+JbNRGt4XPym56RsG23+LE
+7+p/ZMMwbLf4H7M5YUaP4j+vo88z71s2HwiMIn2W4Bxl7I0oEymAY9IkUfBZ2DpB
+Wo9YbrKQhcwKsUuWfZyDTsG/hVWxc6lOTPqXq+Il6bhhHBaSSqHKyitqcSDKk/0t
+VAknYpAv+xXzPTks6zquGVLYpIdhMoDiA3QNOTgl1xYq24EripZwZkPxdKY+njA5
+6dcFvMjoZf3TeeC/JWw/iO7lT75mSdh2cRZn4juh5iwMsJMmO8K+Vhs3DVR1cijr
+5U+GK9bcYID7mJ6NlG3Q80/BOEzhgGo2wjfcmkp2PF8Oy0+AvBtYePa8lxP1VV7a
+ZADisDv3RniYRwPwwCtW2qrhTRnEJWUI7Mlf5bUplcPMgZkGROs=
+=gD68
+-----END PGP SIGNATURE-----
+
+--6c2NcOVqGQ03X4Wi--
