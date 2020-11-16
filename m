@@ -2,76 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 490A62B42DF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 12:35:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5AF92B42E4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 12:35:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728945AbgKPLdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 06:33:19 -0500
-Received: from foss.arm.com ([217.140.110.172]:38220 "EHLO foss.arm.com"
+        id S1729007AbgKPLeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 06:34:14 -0500
+Received: from z5.mailgun.us ([104.130.96.5]:62270 "EHLO z5.mailgun.us"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728921AbgKPLdT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 06:33:19 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EFF7C101E;
-        Mon, 16 Nov 2020 03:33:18 -0800 (PST)
-Received: from [10.57.26.102] (unknown [10.57.26.102])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CB5D43F70D;
-        Mon, 16 Nov 2020 03:33:15 -0800 (PST)
-Subject: Re: [PATCH v3 3/3] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
- <20201102120115.29993-4-nicola.mazzucato@arm.com>
- <20201106092020.za3oxg7gutzc3y2b@vireshk-i7>
- <0a334a73-45ef-58ff-7dfd-9df6f4ff290a@arm.com>
- <20201106105514.bhtdklyhn7goml64@vireshk-i7>
- <7f73bcd6-0f06-4ef0-7f02-0751e6c4d94b@arm.com>
- <20201109065742.22czfgyjhsjmkytf@vireshk-i7>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <2fa8a5c0-f66d-34bc-7f1c-8462e7532e0a@arm.com>
-Date:   Mon, 16 Nov 2020 11:33:13 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <20201109065742.22czfgyjhsjmkytf@vireshk-i7>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1728839AbgKPLeO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 06:34:14 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1605526453; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=4R/SJz4piuEq/2FZIirdd0xK/g3RiqqG2lw5ozxZmT4=; b=ZmVo2Ay2Re56IDO/AiX0LGBPXqyA/Bj/tKfkUSmWhWs0SU1cBfCnVAJmNh2GFJb4kIp6IuYt
+ Sf2T5pfSD7kIHOCK2KBBuTQ6geGhZSw7D7bcuTI4QdH4FEg/Alfq24WbZhCeOotFBMtP8Hio
+ kC0B8zxrT4teloCWoEwjTGJ+DHU=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n10.prod.us-west-2.postgun.com with SMTP id
+ 5fb263988e090a888661d954 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 16 Nov 2020 11:33:44
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 11277C433ED; Mon, 16 Nov 2020 11:33:44 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CAB1AC43460;
+        Mon, 16 Nov 2020 11:33:39 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CAB1AC43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH] Asoc: qcom: dts: Change MI2S GPIO configuration to pulldown
+Date:   Mon, 16 Nov 2020 17:03:28 +0530
+Message-Id: <1605526408-15671-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
+Change LPASS MI2S gpio configuration to pull down from pull up.
 
-On 11/9/20 6:57 AM, Viresh Kumar wrote:
-> On 06-11-20, 11:14, Lukasz Luba wrote:
->> I also had similar doubts, because if we make frequency requests
->> independently for each CPU, why not having N cooling devs, which
->> will set independently QoS max freq for them...
->>
->> What convinced me:
->> EAS and FIE would know the 'real' frequency of the cluster, IPA
->> can use it also and have only one cooling device per cluster.
->>
->> We would like to keep this old style 'one cooling device per cpuset'.
->> I don't have strong opinion and if it would appear that there are
->> some errors in freq estimation for cluster, then maybe it does make
->> more sense to have cdev per CPU...
-> 
-> Let me rephrase my question. What is it that doesn't work _correctly_
-> with cdev per cpufreq policy in your case? What doesn't work well if
-> the thermal stuff keeps looking at only the related_cpus thing and not
-> the cpu-perf-dependencies thing?
-> 
+Fixes: 9b72f4e6a3f8 (arm64: dts: qcom: sc7180: Add lpass cpu node for I2S driver)
 
-We don't have a platform which would be this per-cpu freq request, yet.
-Thus it's hard to answer your question. The EAS would work in 'old
-style' - cluster mode. I don't know how IPA would work on such HW
-and SW configuration. To figure this out I need a real platform.
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+index 802ea0a..b0419e0 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+@@ -1751,8 +1751,8 @@
+ 
+ 				pinconf {
+ 					pins = "gpio49", "gpio50", "gpio51";
+-					drive-strength = <8>;
+-					bias-pull-up;
++					drive-strength = <2>;
++					bias-pull-down;
+ 				};
+ 			};
+ 
+@@ -1764,8 +1764,8 @@
+ 
+ 				pinconf {
+ 					pins = "gpio53", "gpio54", "gpio55", "gpio56";
+-					drive-strength = <8>;
+-					bias-pull-up;
++					drive-strength = <2>;
++					bias-pull-down;
+ 				};
+ 			};
+ 
+@@ -1777,8 +1777,8 @@
+ 
+ 				pinconf {
+ 					pins = "gpio57";
+-					drive-strength = <8>;
+-					bias-pull-up;
++					drive-strength = <2>;
++					bias-pull-down;
+ 				};
+ 			};
+ 
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
