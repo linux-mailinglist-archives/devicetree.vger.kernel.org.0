@@ -2,279 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C9A2B50FF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:25:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB6D2B511D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:30:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729054AbgKPTXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 14:23:48 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:45768 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727654AbgKPTXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 14:23:48 -0500
-Received: by mail-oi1-f193.google.com with SMTP id k19so11340311oic.12
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 11:23:47 -0800 (PST)
+        id S1729751AbgKPT2F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 14:28:05 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:40984 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727460AbgKPT2F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 14:28:05 -0500
+Received: by mail-oi1-f194.google.com with SMTP id m13so19991489oih.8;
+        Mon, 16 Nov 2020 11:28:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YHp22h0sVh8aF3zAeJ2CnzjjIElJ5AdSSWhtA5Wjy5w=;
-        b=brTew89wTTBbJXscABuHtrf0ONWhJwhiTtkjOdVu0o30XZKuMpke6NVpzMYJ09xi+F
-         cTVRBvfYGw7R22lb++5J4bxvQ9TxhpwG5ZDev2j9u64r941YJ20lW+CZAvXd79rCbnIO
-         jVYTjA97RjBMHHLqa7QkarkMoDCSvywpAGEMQ2DKd74dVk/i0sAPBSsRRkQ2aSeaYRe7
-         Okg26F+tgFcV+D+KpLxGL+sC5lcnog+EBaw7z4vbh7KTwziDPCl9qGTiPJP/t94UDNNU
-         emY2tX8ask9RluyJYZ2n2MXwt2OgoLyQD+lPbjOwmVJK65DqgVNz6DjJ8M4qXF9psWfU
-         m8qw==
-X-Gm-Message-State: AOAM533dXKNAC1zNALgeMeDQOC53gt9wc0mv+Uhu8dxAyZJ53+y6fgyw
-        0Pm9OOSCoQZPmqXBPBGoOw==
-X-Google-Smtp-Source: ABdhPJzFCZdH0TcC7gxkghxyOwwj30pxT2y5PWpUPrPv74uo7FaLf9G8rZRnE+MWX1TFD3LMRU98LQ==
-X-Received: by 2002:aca:418b:: with SMTP id o133mr171767oia.18.1605554626560;
-        Mon, 16 Nov 2020 11:23:46 -0800 (PST)
+        bh=J5xc6rlfZ7HkVMV7Y3cl/fG8HMDEF4/W02PLjaicwzc=;
+        b=bK2+aSY8RK1yAZ1UgQ2nsYRg89Mimi9sVRx5kv1NbN2N+4wxBsc2vjLkE6bkxPrM3L
+         e0ytPy0JXcbDIhjd2V9i2JSgoBo9e5G4PlWVat6e3iHmXrGetJ2mNR89d6w4XzEf18Mg
+         xktNQJkt/Kk8AkXuFkope2bFBhCjyojcHsG03otHvg4UZyOzJhgd1Oco0yD1vv4mMjh1
+         e0Y5PHrbIEUSal+5f2hF+a3zOFoTVi0xLnDwqxOh0FIx+9i1387sp6KxGupmidgDRH7y
+         pRxJBQUj0RHTZLtNVkFcpL3An+lpQC8Dq0DH1Ak8r7LsfUBlibIUVSEj5MJgDW4GssjN
+         RqxA==
+X-Gm-Message-State: AOAM533sT9LI1Vo6U/pnlg+lanPhF4nXTuUmY0fOUotomlHPQrhbGT53
+        TxmwDjiFkHOEISIJIdofBg==
+X-Google-Smtp-Source: ABdhPJx+VuHmhNuk88lWqmW72X8caft5bTSKDVs2hFRYpkVa4mGiEBKMSKP8OWiHJYpybYH5HkXiJw==
+X-Received: by 2002:aca:3606:: with SMTP id d6mr146246oia.7.1605554883878;
+        Mon, 16 Nov 2020 11:28:03 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c18sm4054429oob.45.2020.11.16.11.23.45
+        by smtp.gmail.com with ESMTPSA id w18sm5046800otl.38.2020.11.16.11.28.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 11:23:45 -0800 (PST)
-Received: (nullmailer pid 1990886 invoked by uid 1000);
-        Mon, 16 Nov 2020 19:23:45 -0000
-Date:   Mon, 16 Nov 2020 13:23:45 -0600
+        Mon, 16 Nov 2020 11:28:03 -0800 (PST)
+Received: (nullmailer pid 1996222 invoked by uid 1000);
+        Mon, 16 Nov 2020 19:28:01 -0000
+Date:   Mon, 16 Nov 2020 13:28:01 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v3] dt-bindings: display: panel: one file of all simple
- LVDS panels with dual ports
-Message-ID: <20201116192345.GA1985442@bogus>
-References: <1605161831-10740-1-git-send-email-victor.liu@nxp.com>
+To:     Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        irq-linux@rere.qmqm.pl,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Ludovic Barre <ludovic.barre@st.com>,
+        Krishna Konda <kkonda@codeaurora.org>,
+        Bradley Bolen <bradleybolen@gmail.com>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Add optional cqe off properties
+Message-ID: <20201116192801.GA1991505@bogus>
+References: <20201112075208.28183-1-wenbin.mei@mediatek.com>
+ <20201112075208.28183-2-wenbin.mei@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1605161831-10740-1-git-send-email-victor.liu@nxp.com>
+In-Reply-To: <20201112075208.28183-2-wenbin.mei@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 02:17:11PM +0800, Liu Ying wrote:
-> To complement panel-simple.yaml, create panel-simple-lvds-dual-ports.yaml.
-> panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels that
-> have dual LVDS ports and require only a single power-supply.
-> The first port receives odd pixels, and the second port receives even pixels.
-> Optionally, a backlight and an enable GPIO can be specified as properties.
+On Thu, Nov 12, 2020 at 03:52:06PM +0800, Wenbin Mei wrote:
+> Add optional properties for cqe hosts which are used to set cqe off
+> during suspend flow.
 > 
-> Panels with swapped pixel order, if any, need dedicated bindings.
-> 
-> Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
-> 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new file.
-> 
-> The objectives with one file for all the simple LVDS panels with dual ports are:
-> - Make it simpler to add bindings for this kind of LVDS panels
-> - Keep the number of bindings file lower
-> - Keep the binding documentation for this kind of LVDS panels more consistent
-> - Make it possible for drivers to get pixel order via
->   drm_of_lvds_get_dual_link_pixel_order(), as the optional 'ports' property is
->   allowed
-> 
-> Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
 > ---
-> v2->v3:
-> * Do not allow 'port' property. (Rob)
-> * Define port number. (Rob)
-> * Specify 'dual-lvds-odd-pixels' and 'dual-lvds-even-pixels' properties. (Rob)
+>  Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> v1->v2:
-> * Correct pixel order in example LVDS panel node.
-> 
->  .../panel/panel-simple-lvds-dual-ports.yaml        | 126 +++++++++++++++++++++
->  .../bindings/display/panel/panel-simple.yaml       |  10 --
->  2 files changed, 126 insertions(+), 10 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> new file mode 100644
-> index 00000000..d30ae82
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-simple-lvds-dual-ports.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Simple LVDS panels with one power supply and dual LVDS ports
-> +
-> +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Sam Ravnborg <sam@ravnborg.org>
-> +
-> +description: |
-> +  This binding file is a collection of the LVDS panels that
-> +  has dual LVDS ports and requires only a single power-supply.
-> +  The first port receives odd pixels, and the second port receives even pixels.
-> +  There are optionally a backlight and an enable GPIO.
-> +  The panel may use an OF graph binding for the association to the display,
-> +  or it may be a direct child node of the display.
-> +
-> +  If the panel is more advanced a dedicated binding file is required.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
-> +
-> +properties:
-> +
-> +  compatible:
-> +    enum:
-> +    # compatible must be listed in alphabetical order, ordered by compatible.
-> +    # The description in the comment is mandatory for each compatible.
-> +
-> +        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> +      - auo,g133han01
-> +        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> +      - auo,g185han01
-> +        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> +      - auo,g190ean01
-> +        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
-> +      - koe,tx26d202vm0bwa
-> +        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> +      - nlt,nl192108ac18-02d
-> +
-> +  ports:
-> +    type: object
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
-> +
-> +      '#size-cells':
-> +        const: 0
-> +
-> +      port@0:
-> +        type: object
-> +        description: The sink for odd pixels.
-> +        properties:
-> +          reg:
-> +            const: 0
-> +
-> +          dual-lvds-odd-pixels: true
+> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> index b96da0c7f819..457c9a84b988 100644
+> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
+> @@ -164,6 +164,13 @@ properties:
+>      description:
+>        enable SDIO IRQ signalling on this interface
+>  
+> +  cqe-off-in-suspend:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      After suspend, the mmc host is powered off by HW, and bring CQE register
+> +      to default state, so we add the flag to re-init CQE register after resume
+> +      back.
 
-Needs a type and description.
+The driver change is before suspend, but this says on resume...
+
+In any case, this should be implied by the SoC specific compatible.
 
 > +
-> +        required:
-> +          - reg
-> +          - dual-lvds-odd-pixels
-> +
-> +      port@1:
-> +        type: object
-> +        description: The sink for even pixels.
-> +        properties:
-> +          reg:
-> +            const: 1
-> +
-> +          dual-lvds-even-pixels: true
-
-Needs a type and description.
-
-> +
-> +        required:
-> +          - reg
-> +          - dual-lvds-even-pixels
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +      - port@0
-> +      - port@1
-> +
-> +    additionalProperties: false
-> +
-> +  backlight: true
-> +  enable-gpios: true
-> +  power-supply: true
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - power-supply
-> +
-> +examples:
-> +  - |
-> +    panel: panel-lvds {
-> +      compatible = "koe,tx26d202vm0bwa";
-> +      power-supply = <&vdd_lcd_reg>;
-> +
-> +      ports {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        port@0 {
-> +          dual-lvds-odd-pixels;
-> +          reg = <0>;
-> +
-> +          panel_lvds0_in: endpoint {
-> +            remote-endpoint = <&lvds0_out>;
-> +          };
-> +        };
-> +
-> +        port@1 {
-> +          dual-lvds-even-pixels;
-> +          reg = <1>;
-> +
-> +          panel_lvds1_in: endpoint {
-> +            remote-endpoint = <&lvds1_out>;
-> +          };
-> +        };
-> +      };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index f9750b0..62618e4 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -57,14 +57,8 @@ properties:
->        - auo,g104sn02
->          # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
->        - auo,g121ean01
-> -        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> -      - auo,g133han01
->          # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
->        - auo,g156xtn01
-> -        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> -      - auo,g185han01
-> -        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> -      - auo,g190ean01
->          # AU Optronics Corporation 31.5" FHD (1920x1080) TFT LCD panel
->        - auo,p320hvn03
->          # AU Optronics Corporation 21.5" FHD (1920x1080) color TFT LCD panel
-> @@ -167,8 +161,6 @@ properties:
->        - kingdisplay,kd116n21-30nv-a010
->          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240) TFT LCD panel
->        - koe,tx14d24vm1bpa
-> -        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
-> -      - koe,tx26d202vm0bwa
->          # Kaohsiung Opto-Electronics. TX31D200VM0BAA 12.3" HSXGA LVDS panel
->        - koe,tx31d200vm0baa
->          # Kyocera Corporation 12.1" XGA (1024x768) TFT LCD panel
-> @@ -205,8 +197,6 @@ properties:
->        - neweast,wjfh116008a
->          # Newhaven Display International 480 x 272 TFT LCD panel
->        - newhaven,nhd-4.3-480272ef-atxl
-> -        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> -      - nlt,nl192108ac18-02d
->          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
->        - nvd,9128
->          # OKAYA Electric America, Inc. RS800480T-7X0GP 7" WVGA LCD panel
+>    full-pwr-cycle:
+>      $ref: /schemas/types.yaml#/definitions/flag
+>      description:
 > -- 
-> 2.7.4
+> 2.18.0
 > 
