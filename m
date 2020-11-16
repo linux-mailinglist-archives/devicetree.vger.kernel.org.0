@@ -2,188 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFB2F2B4D12
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:36:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C4D02B4D58
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:38:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733052AbgKPRcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 12:32:23 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40294 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732063AbgKPRcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:32:22 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AGHW97B043081;
-        Mon, 16 Nov 2020 11:32:09 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605547929;
-        bh=ipn+VdtiySLcfcY4iB/vvPz6zJCnt01vn7+29Jujkhc=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=K09hyQGnPyE3aukYmVDzbeN245PzTgpjNJTgHAgmJ32f97eHXwGYrsx3XHq337sBI
-         XWmQP+P+AmtdSGxnGEOatg9jLsRkODf3l3sr9pnlmlusNjGkSjjMCgGWjEwerbEjIC
-         xmiPBi4qx55zQdIzWvw/4KZaiblz51+KtJZRdWPo=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AGHW9xd002368
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 Nov 2020 11:32:09 -0600
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 16
- Nov 2020 11:32:08 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 16 Nov 2020 11:32:08 -0600
-Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AGHVgJI030552;
-        Mon, 16 Nov 2020 11:32:05 -0600
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Joseph <tjoseph@cadence.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-CC:     <linux-omap@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for pcieX_ctrl
-Date:   Mon, 16 Nov 2020 23:01:41 +0530
-Message-ID: <20201116173141.31873-4-kishon@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201116173141.31873-1-kishon@ti.com>
-References: <20201116173141.31873-1-kishon@ti.com>
+        id S1733075AbgKPRgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 12:36:23 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:45582 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731590AbgKPRgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:36:22 -0500
+Received: by mail-ot1-f68.google.com with SMTP id k3so16754828otp.12;
+        Mon, 16 Nov 2020 09:36:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Eu89zIOkkQ+RwpYfgoglgMZA8e7V2O4a44a0i8NV0Ww=;
+        b=uWz5skyCwca/Lw5bEb00tD4rsww1ygt+PSKDS/tY8PTd11z3uaVh7tbFPnvBqBM4gu
+         hpXuCT8m/vgW7MObbszDFJ5KaidNfmkZ+xZOGxo3pKUKXBdLWG8oySxl7QRKKMW2qXqv
+         BTDSshLG13X3gosSdKISEMjeofoYPkFzgJ6yUf0qKtubwO3urwMjdVKbIi9gnV2AUUBh
+         irHY1/Yq1/o9YtGAUF42xLV/6qD4ImLwDpA3vJmw1j/9moHQyIP/vwC0Bs1yhTgL3ll5
+         Ng+W09Rbbmv8Zng6Z8ReU1LTMij/TNke9bkUwTGGfeguGcYQ2Tr+PdCWWikXdtDJVQCX
+         SdoA==
+X-Gm-Message-State: AOAM533E54YwADmk2E4Vuxg7l6X/gXCp/tBeEcQ4itgRjB58RjRYH61q
+        1a/8gWRTGXq/aSOnX5kBeQ==
+X-Google-Smtp-Source: ABdhPJzcJKA6DG3DNaW7RINXauhrTJBWHQr9psD8GzmUDpKfVnqr1JGdZSSOZD10NyPP2yCcXifMAA==
+X-Received: by 2002:a05:6830:3151:: with SMTP id c17mr270339ots.336.1605548181631;
+        Mon, 16 Nov 2020 09:36:21 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id d26sm4944086ooh.19.2020.11.16.09.36.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2020 09:36:21 -0800 (PST)
+Received: (nullmailer pid 1852133 invoked by uid 1000);
+        Mon, 16 Nov 2020 17:36:20 -0000
+Date:   Mon, 16 Nov 2020 11:36:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     linux-kernel@vger.kernel.org, mark.thoren@analog.com,
+        devicetree@vger.kernel.org, jdelvare@suse.com,
+        ardeleanalex@gmail.com, linux@roeck-us.net,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v2 4/4] dt-bindings: hwmon: ltc2945: add device tree doc
+ for ltc2945
+Message-ID: <20201116173620.GA1852071@bogus>
+References: <20201111091259.46773-1-alexandru.ardelean@analog.com>
+ <20201111091259.46773-5-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201111091259.46773-5-alexandru.ardelean@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove "syscon" nodes added for pcieX_ctrl and have the PCIe node
-point to the parent with an offset argument.
+On Wed, 11 Nov 2020 11:12:59 +0200, Alexandru Ardelean wrote:
+> This change adds a device-tree binding documentation for the Linear
+> Technology (now Analog Devices) LTC2945 Wide Range I2C Power Monitor.
+> 
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>  .../bindings/hwmon/adi,ltc2945.yaml           | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2945.yaml
+> 
 
-Link: http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
-Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 48 ++++-------------------
- 1 file changed, 8 insertions(+), 40 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index 620e69e42974..23a0024dda79 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -28,38 +28,6 @@
- 		#size-cells = <1>;
- 		ranges = <0x0 0x0 0x00100000 0x1c000>;
- 
--		pcie0_ctrl: syscon@4070 {
--			compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
--			reg = <0x00004070 0x4>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0x4070 0x4070 0x4>;
--		};
--
--		pcie1_ctrl: syscon@4074 {
--			compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
--			reg = <0x00004074 0x4>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0x4074 0x4074 0x4>;
--		};
--
--		pcie2_ctrl: syscon@4078 {
--			compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
--			reg = <0x00004078 0x4>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0x4078 0x4078 0x4>;
--		};
--
--		pcie3_ctrl: syscon@407c {
--			compatible = "ti,j721e-system-controller", "syscon", "simple-mfd";
--			reg = <0x0000407c 0x4>;
--			#address-cells = <1>;
--			#size-cells = <1>;
--			ranges = <0x407c 0x407c 0x4>;
--		};
--
- 		serdes_ln_ctrl: mux@4080 {
- 			compatible = "mmio-mux";
- 			reg = <0x00004080 0x50>;
-@@ -619,7 +587,7 @@
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
- 		device_type = "pci";
--		ti,syscon-pcie-ctrl = <&pcie0_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
-@@ -646,7 +614,7 @@
- 		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 318 IRQ_TYPE_EDGE_RISING>;
--		ti,syscon-pcie-ctrl = <&pcie0_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4070>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 239 TI_SCI_PD_EXCLUSIVE>;
-@@ -668,7 +636,7 @@
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
- 		device_type = "pci";
--		ti,syscon-pcie-ctrl = <&pcie1_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
-@@ -695,7 +663,7 @@
- 		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
--		ti,syscon-pcie-ctrl = <&pcie1_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
-@@ -717,7 +685,7 @@
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 342 IRQ_TYPE_EDGE_RISING>;
- 		device_type = "pci";
--		ti,syscon-pcie-ctrl = <&pcie2_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4078>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 241 TI_SCI_PD_EXCLUSIVE>;
-@@ -744,7 +712,7 @@
- 		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 342 IRQ_TYPE_EDGE_RISING>;
--		ti,syscon-pcie-ctrl = <&pcie2_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x4078>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 241 TI_SCI_PD_EXCLUSIVE>;
-@@ -766,7 +734,7 @@
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 354 IRQ_TYPE_EDGE_RISING>;
- 		device_type = "pci";
--		ti,syscon-pcie-ctrl = <&pcie3_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x407c>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
-@@ -793,7 +761,7 @@
- 		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
- 		interrupt-names = "link_state";
- 		interrupts = <GIC_SPI 354 IRQ_TYPE_EDGE_RISING>;
--		ti,syscon-pcie-ctrl = <&pcie3_ctrl>;
-+		ti,syscon-pcie-ctrl = <&scm_conf 0x407c>;
- 		max-link-speed = <3>;
- 		num-lanes = <2>;
- 		power-domains = <&k3_pds 242 TI_SCI_PD_EXCLUSIVE>;
--- 
-2.17.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
