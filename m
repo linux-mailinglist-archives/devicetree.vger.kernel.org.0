@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EAB72B476C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:06:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 392CD2B4800
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:07:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730713AbgKPO6y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 09:58:54 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34261 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730678AbgKPO6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 09:58:53 -0500
-Received: by mail-oi1-f194.google.com with SMTP id w188so19091884oib.1;
-        Mon, 16 Nov 2020 06:58:52 -0800 (PST)
+        id S1731211AbgKPPAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 10:00:37 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38065 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731147AbgKPPAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:00:24 -0500
+Received: by mail-ot1-f66.google.com with SMTP id a15so16276689otf.5;
+        Mon, 16 Nov 2020 07:00:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9Gfhy/yjV1GXVhi6NSk7xstYcxR79T3ACbInqJLsafY=;
-        b=CrOOWO6bZkK0jD6mAZu34RO6PvGsj0L4UIzf2l8YGALv83gm57t8QU0eYRapJ0M0Ii
-         xfEc04KQo1290eekMzLU2uzO06MK54RxYVlgXRzmrfc+Z4cOeJC/JJT4bO0ka55ijS+K
-         rcyLX4CfvayemBSkHD6K69CbIKyuYAu0DH6M2v5K4PVlORPtHQokkLAvMtUMhFul1DX7
-         xV3Ij2bZn0oy9OOi5Es5UyyI72l4iksRjg8HWAXo9opO0nNUFiZqFylLJ/z2E5GoIGAh
-         PlapTKRvbzN8c0MpCY/ve/0h2X79J7VzMSBCu9oDib3erban0XduAvdt/oqDuBlZQvzb
-         FXJQ==
-X-Gm-Message-State: AOAM531UNxXgiWnzAGzDAeC/3vLXlUy5LRSuEJ4ENJE7W4Ct8lGvkyEW
-        HjaA9EOB5sMr1jz70gRk5CThqMVwbQ==
-X-Google-Smtp-Source: ABdhPJzQAvANeGr+VifH3Ry3wGi/leVqwv0JFC1O1upObnagqRSGpHomNuydlWtAynDJdWwN8NbQJw==
-X-Received: by 2002:aca:4ed0:: with SMTP id c199mr9582156oib.14.1605538732440;
-        Mon, 16 Nov 2020 06:58:52 -0800 (PST)
+        bh=mmkzgNSoeEUQq9ZJSPSCkP5fe2eYf8fnvdnTvX3FQ9o=;
+        b=SiPxBCi3i/uY0jIYI/T1JMFd1eJw2nNv10aG4fz03bQdYA+Z9YYCeHWkSM8bz7OioF
+         +DE5l92nsP2b58tRHNEH/Y1mAJkeM26Hu/rmxthmRU4/LF07opvZp3i8CW19/bN435VP
+         mQLBBRmcySv6LD/myVcPwB/0v78zgJapOjWxW7RyjUlhENVmMZ0pNZKk/1TA2VtAyhYK
+         yf0i0wZ5VtT+AYyh7sgODV/LGT5O+0YWRF/v/WhXkrbLexcnWcJn1XzRNp+JeGdoSbE3
+         13Zpm0ItO71hebc44KyuwDh1K+ZMbbXtrpEHElkzDAvyI6FVJ5PbLt7+aD2TskvO/4Tr
+         mgiA==
+X-Gm-Message-State: AOAM5312UmnHLe81O69/culHfRseuex/APPPVMGZuu2oVBLJ172ycfxw
+        0KsIa36ngvQvO1hANlclOA==
+X-Google-Smtp-Source: ABdhPJwvG0kAayLRkygCXMCLVdZADmD40ITyYLucvzOzIYkakNUFC8ID4apKoUygBywvx1BB4tJteQ==
+X-Received: by 2002:a9d:12b2:: with SMTP id g47mr10353352otg.354.1605538823702;
+        Mon, 16 Nov 2020 07:00:23 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w21sm3113791ooj.32.2020.11.16.06.58.51
+        by smtp.gmail.com with ESMTPSA id h8sm4872162otm.72.2020.11.16.07.00.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 06:58:51 -0800 (PST)
-Received: (nullmailer pid 1641092 invoked by uid 1000);
-        Mon, 16 Nov 2020 14:58:50 -0000
-Date:   Mon, 16 Nov 2020 08:58:50 -0600
+        Mon, 16 Nov 2020 07:00:22 -0800 (PST)
+Received: (nullmailer pid 1643194 invoked by uid 1000);
+        Mon, 16 Nov 2020 15:00:22 -0000
+Date:   Mon, 16 Nov 2020 09:00:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     devicetree@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-media@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Subject: Re: [PATCH v2 2/3] media: dt-bindings: media: i2c: Add bindings for
- TW9900
-Message-ID: <20201116145850.GA1640813@bogus>
-References: <20201113134417.471445-1-maxime.chevallier@bootlin.com>
- <20201113134417.471445-3-maxime.chevallier@bootlin.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-ide@vger.kernel.org, thierry.reding@gmail.com,
+        devicetree@vger.kernel.org, jonathanh@nvidia.com,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v2 3/6] dt-bindings: ata: tegra: Convert binding
+ documentation to YAML
+Message-ID: <20201116150022.GA1642318@bogus>
+References: <1605296218-2510-1-git-send-email-skomatineni@nvidia.com>
+ <1605296218-2510-4-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201113134417.471445-3-maxime.chevallier@bootlin.com>
+In-Reply-To: <1605296218-2510-4-git-send-email-skomatineni@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Nov 2020 14:44:16 +0100, Maxime Chevallier wrote:
-> The Techwell TW9900 is a video decoder supporting multiple input
-> standards, such as PAL, NTSC and SECAM, and outputs a BT.656 video
-> signal.
+On Fri, 13 Nov 2020 11:36:55 -0800, Sowjanya Komatineni wrote:
+> This patch converts text based dt-binding document to YAML based
+> dt-binding document.
 > 
-> It's designed to be low-power, posesses some features such as a
-> programmable comb-filter, and automatic input standard detection.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
 > ---
-> v1->v2: Fix the example not compiling
-> 
->  .../devicetree/bindings/media/i2c/tw9900.yaml | 60 +++++++++++++++++++
->  1 file changed, 60 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/tw9900.yaml
+>  .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 137 +++++++++++++++++++++
+>  .../bindings/ata/nvidia,tegra124-ahci.txt          |  44 -------
+>  2 files changed, 137 insertions(+), 44 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
 > 
 
 
@@ -84,11 +74,14 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/tw9900.example.dt.yaml: tw9900@44: 'reset-gpio' does not match any of the regexes: 'pinctrl-[0-9]+'
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/tw9900.yaml
+Error: Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dts:27.31-32 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1364: dt_binding_check] Error 2
 
 
-See https://patchwork.ozlabs.org/patch/1399805
+See https://patchwork.ozlabs.org/patch/1400065
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
