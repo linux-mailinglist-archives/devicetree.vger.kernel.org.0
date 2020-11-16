@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDDD82B4CCA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:28:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 990762B4D07
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:32:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732853AbgKPR2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 12:28:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44322 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731210AbgKPR2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:28:42 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1453FC0613CF
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 09:28:42 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1keiIx-0003MA-2L; Mon, 16 Nov 2020 18:28:39 +0100
-Subject: Re: [PATCH v3 0/2] nvmem: skip nodes with compatibles other than
- "nvmem-cell"
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, ceggers@arri.de,
-        linux-kernel@vger.kernel.org, kernel@pengutronix.de
-References: <20200428111829.2215-1-a.fatoum@pengutronix.de>
- <20200512141834.GA3023@bogus>
- <f03ecee7-c4b6-7a59-7ab8-42c5dfcaffc4@pengutronix.de>
- <3f050e96-8bd3-a77e-b1cf-1739a1be0c2d@pengutronix.de>
- <adb40d7d-c5e9-19b7-a561-10c33a6cf8ab@pengutronix.de>
- <58738d86-7822-cd9f-6f05-6333d9251bf9@linaro.org>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <74673dd2-a49f-9b23-8470-dcec56b42efe@pengutronix.de>
-Date:   Mon, 16 Nov 2020 18:28:38 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.3.1
+        id S1733049AbgKPRcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 12:32:07 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:40260 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733047AbgKPRcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:32:07 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AGHVuu8043031;
+        Mon, 16 Nov 2020 11:31:56 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605547916;
+        bh=dZGi3ypT0ZFXTzoD+yEupcW6YeD06JU7GidsOmlz2qI=;
+        h=From:To:CC:Subject:Date;
+        b=lOtXQKA3ZazEDBx9IBCgl6euohVmhHOLDqMPIlIhs+miIK44tSaKX/mCXBvkttQsw
+         2PlT+rqw8k1jNIiHA10gQL+kfqUS+/CwUrWuSYVLGn14VCr/+CbcfxR6bklhA850bs
+         T3dr0HNWOmdUtaQD00kCc/xn4alRgQ8eadI36aZI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AGHVuC6076163
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 16 Nov 2020 11:31:56 -0600
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 16
+ Nov 2020 11:31:55 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 16 Nov 2020 11:31:55 -0600
+Received: from a0393678-ssd.dal.design.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AGHVgJF030552;
+        Mon, 16 Nov 2020 11:31:43 -0600
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Joseph <tjoseph@cadence.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+CC:     <linux-omap@vger.kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/3] PCI: J721E: Fix Broken DT w.r.t SYSCON DT
+Date:   Mon, 16 Nov 2020 23:01:38 +0530
+Message-ID: <20201116173141.31873-1-kishon@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-In-Reply-To: <58738d86-7822-cd9f-6f05-6333d9251bf9@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Srini,
+Previously a subnode to syscon node was added which has the
+exact memory mapped address of pcie_ctrl but based on review comment
+provided by Rob [1], the offset is now being passed as argument to
+"ti,syscon-pcie-ctrl" phandle.
 
-On 16.11.20 18:21, Srinivas Kandagatla wrote:
-> 
-> 
-> On 16/11/2020 17:04, Ahmad Fatoum wrote:
->>>> To allow for co-existence of NVMEM cells and other subnodes, would following patch be
->>>> acceptable to you and Srini?
->>> Gentle ping. Would the patch below be acceptable?
->> Did you have time to look at this?
->>
-> 
-> I did reply back to this thread way back in June saying that
-> 
-> "Thanks for the patch, this looks good to me, lets wait for Rob to ack the bindings! "
+This series has both driver change and DT change and both has to
+get in together in the -rc cycle.
 
-Rob replied a day later saying that he would prefer it done otherwise.
-What Rob suggested doesn't solve my actual issue, so I suggested another
-solution a month ago. I have not yet received feedback on it, so that's
-why I pinged:
+[1] -> Link: http://lore.kernel.org/r/CAL_JsqKiUcO76bo1GoepWM1TusJWoty_BRy2hFSgtEVMqtrvvQ@mail.gmail.com
 
-https://lore.kernel.org/lkml/f03ecee7-c4b6-7a59-7ab8-42c5dfcaffc4@pengutronix.de/
+Kishon Vijay Abraham I (3):
+  dt-bindings: pci: ti,j721e: Fix "ti,syscon-pcie-ctrl" to take argument
+  PCI: j721e: Get offset within "syscon" from "ti,syscon-pcie-ctrl"
+    phandle arg
+  arm64: dts: ti: k3-j721e-main: Remove "syscon" nodes added for
+    pcieX_ctrl
 
-> 
-> 
-> --srini
-> 
+ .../bindings/pci/ti,j721e-pci-ep.yaml         | 12 +++--
+ .../bindings/pci/ti,j721e-pci-host.yaml       | 12 +++--
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 48 ++++---------------
+ drivers/pci/controller/cadence/pci-j721e.c    | 28 +++++++----
+ 4 files changed, 43 insertions(+), 57 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
+
