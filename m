@@ -2,121 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF1DE2B4594
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C79542B45B4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:20:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729344AbgKPOKp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 09:10:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41524 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729232AbgKPOKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 09:10:45 -0500
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38200C0613CF
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 06:10:45 -0800 (PST)
-Received: by mail-il1-x143.google.com with SMTP id x18so1443652ilq.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 06:10:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cYP4Vu646u4Dw2kqVmRdOWO66REb1oI9drXRYeKSjdA=;
-        b=Rk0UsA/C9nnVfLmtvTYcFWvJ4zvt0pQDvfx2QqP7GwdvzLZYc0aPdxX0BdjXCAdDF8
-         8X+WJkdmc/B9XEu1eyG0jf0op6ixur1kxIieXdT9knkEN/IDXi3FvHekI68XSMrCf6dl
-         mDzQ5BV6yssIx+EjvVGClzKkKjPXRg8YLIchAwafZ7zlOq3EcqhCrs4jCpeoJbdn9e48
-         E9UzljRxJVgnJj/X6Ra7Q3NrQI/uBv964Nm1QLtZ+R4cn86A1WGgBT9Ijh1/WXhDvABR
-         naJg+6AIukiUC5pQmlb3NnLY4QPW5LhWZX635hrIldQm+szNoU3zI/H+p1AWI36VYB5l
-         4+uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cYP4Vu646u4Dw2kqVmRdOWO66REb1oI9drXRYeKSjdA=;
-        b=nE67IrZ6J72biompLmWfDNXX9JZS6DFq+tqGyoLvPnio2YmLQ3QQYsT5K0FEKvxMSg
-         qB+M/2Yt9EkInZnzeVEBRz1ORMSEGgnnYnDnLbqTXEcH1y6IuB1teSx9tAos+p9/QbII
-         sTHL7U9TY2XjyApXzKBVC5o6snnQIWpwl+SZNXUAwuL+lstYc/BCAqVfls6TGsuO2+wr
-         1DD6rR+ONnghCgprrvZaLdV+RFewLhV3fO+s5qrcu6u9BQA9VMH8F+72nolsVfoTNUVI
-         5X7fr8lHEzhyTjz3Yzo08cRVOAIqA5x/M85ESkmuI1vsoH2e/F1/HgGnlnnR94mmC6P6
-         IQ0A==
-X-Gm-Message-State: AOAM531GngmjC9M3PM0EQ8IgqXrgf5SarNpgg7TVTsIne1FzhqQUO5W7
-        fUnQz68DxRasc/4O2Jisi+XTnV6iCfbZDPiyLGVEFAvQ1ms=
-X-Google-Smtp-Source: ABdhPJyICgO7K6VQ2nJJj+9xivvKHSD8OXSdEwJY2e4iDjldYb3r4LU1hvtuC9NV4TZB61bmOGVeE/eCG3VC5cqdK3Q=
-X-Received: by 2002:a92:9845:: with SMTP id l66mr7998399ili.65.1605535844362;
- Mon, 16 Nov 2020 06:10:44 -0800 (PST)
+        id S1729969AbgKPOT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 09:19:57 -0500
+Received: from out28-170.mail.aliyun.com ([115.124.28.170]:59150 "EHLO
+        out28-170.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726321AbgKPOTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 09:19:51 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.08245762|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.22616-0.0193576-0.754482;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047211;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=18;RT=18;SR=0;TI=SMTPD_---.IxS0Otf_1605536372;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.IxS0Otf_1605536372)
+          by smtp.aliyun-inc.com(10.147.40.7);
+          Mon, 16 Nov 2020 22:19:44 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     balbi@kernel.org, gregkh@linuxfoundation.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        kishon@ti.com, vkoul@kernel.org
+Cc:     linux-clk@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
+        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
+        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, paul@crapouillou.net
+Subject: [PATCH v9 0/3] Use the generic PHY framework for Ingenic USB PHY.
+Date:   Mon, 16 Nov 2020 22:19:03 +0800
+Message-Id: <20201116141906.11758-1-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-References: <20201105174434.1817539-1-l.stach@pengutronix.de> <20201105174434.1817539-2-l.stach@pengutronix.de>
-In-Reply-To: <20201105174434.1817539-2-l.stach@pengutronix.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 16 Nov 2020 08:10:33 -0600
-Message-ID: <CAHCN7xL0g+Fju1oUhz1ZWTM06CH5xn6y-s5xZCQKO0zwXdFAoQ@mail.gmail.com>
-Subject: Re: [PATCH v2 01/13] soc: imx: gpcv2: move to more ideomatic error
- handling in probe
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        patchwork-lst@pengutronix.de,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 5, 2020 at 11:44 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Switch to "goto out..." error handling in domain driver probe to
-> avoid repeating all the error paths.
->
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Reviewed-by: Marek Vasut <marex@denx.de>
+v3->v4:
+Only add new generic-PHY driver, without removing the old one. Because the
+jz4740-musb driver is not ready to use the generic PHY framework. When the
+jz4740-musb driver is modified to use the generic PHY framework, the old
+jz4770-phy driver can be "retired".
 
-I can confirm the USB is functional now without having to turn it on
-in the bootloader on the imx8mm-beacon-kit.
+v4->v5:
+1.Add an extra blank line between "devm_of_phy_provider_register" and "return".
+2.Remove unnecessary "phy_set_drvdata".
+3.Add Paul Cercueil's Reviewed-by.
 
-For the series:
+v5->v6:
+1.Revert the removal of "phy_set_drvdata" in v5, removing "phy_set_drvdata" will
+  cause a kernel panic on CI20.
+  Reported-by: H. Nikolaus Schaller <hns@goldelico.com>
+2.Rewrite the macro definitions, replace the original code with "FIELD_PREP()"
+  and "u32p_replace_bits()" according to Vinod Koul's suggestion.
 
-Tested-by: Adam Ford <aford173@gmail.com>
+v6->v7:
+1.Remove the stray tab character.
+2.Remove unnecessary "platform_set_drvdata".
+3.Remove the "dev" field in priv structure, and use &phy->dev instead.
 
-> ---
->  drivers/soc/imx/gpcv2.c | 13 +++++++++----
->  1 file changed, 9 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-> index db7e7fc321b1..512e6f4acafd 100644
-> --- a/drivers/soc/imx/gpcv2.c
-> +++ b/drivers/soc/imx/gpcv2.c
-> @@ -502,18 +502,23 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
->         ret = pm_genpd_init(&domain->genpd, NULL, true);
->         if (ret) {
->                 dev_err(domain->dev, "Failed to init power domain\n");
-> -               imx_pgc_put_clocks(domain);
-> -               return ret;
-> +               goto out_put_clocks;
->         }
->
->         ret = of_genpd_add_provider_simple(domain->dev->of_node,
->                                            &domain->genpd);
->         if (ret) {
->                 dev_err(domain->dev, "Failed to add genpd provider\n");
-> -               pm_genpd_remove(&domain->genpd);
-> -               imx_pgc_put_clocks(domain);
-> +               goto out_genpd_remove;
->         }
->
-> +       return 0;
-> +
-> +out_genpd_remove:
-> +       pm_genpd_remove(&domain->genpd);
-> +out_put_clocks:
-> +       imx_pgc_put_clocks(domain);
-> +
->         return ret;
->  }
->
-> --
-> 2.20.1
->
+v7->v8:
+Add support for Ingenic JZ4775 SoC and X2000 SoC.
+
+v8->v9:
+Correct the path errors in "ingenic,phy-usb.yaml" and "ingenic,cgu.yaml".
+
+周琰杰 (Zhou Yanjie) (3):
+  USB: PHY: JZ4770: Remove unnecessary function calls.
+  dt-bindings: USB: Add bindings for Ingenic JZ4775 and X2000.
+  PHY: Ingenic: Add USB PHY driver using generic PHY framework.
+
+ .../devicetree/bindings/clock/ingenic,cgu.yaml     |   2 +-
+ .../ingenic,phy-usb.yaml}                          |   4 +-
+ drivers/phy/Kconfig                                |   1 +
+ drivers/phy/Makefile                               |   1 +
+ drivers/phy/ingenic/Kconfig                        |  12 +
+ drivers/phy/ingenic/Makefile                       |   2 +
+ drivers/phy/ingenic/phy-ingenic-usb.c              | 412 +++++++++++++++++++++
+ drivers/usb/phy/phy-jz4770.c                       |   2 +-
+ 8 files changed, 433 insertions(+), 3 deletions(-)
+ rename Documentation/devicetree/bindings/{usb/ingenic,jz4770-phy.yaml => phy/ingenic,phy-usb.yaml} (89%)
+ create mode 100644 drivers/phy/ingenic/Kconfig
+ create mode 100644 drivers/phy/ingenic/Makefile
+ create mode 100644 drivers/phy/ingenic/phy-ingenic-usb.c
+
+-- 
+2.11.0
+
