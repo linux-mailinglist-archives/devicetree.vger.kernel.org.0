@@ -2,74 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 559B72B4C03
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:04:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5B5B2B4C19
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732465AbgKPRB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 12:01:57 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:41199 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730829AbgKPRB5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:01:57 -0500
-Received: by mail-oi1-f193.google.com with SMTP id m13so19522084oih.8;
-        Mon, 16 Nov 2020 09:01:56 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=u+JXrZYifKdUs7FbxLSzL5FeCPiKddkCqanejgp6YUk=;
-        b=Pi2fDs/d1SwyUhQyyYgliVpIVHVJX2+HKMwZ5M8l/Hb9Z63isJ14a8Yz8+2vGTZysT
-         gLMrW7rm+BEGGWv2aX1qxxrKbChqs2iY8+xOhjmW/baR9zi91ip4mEe/lfscQ+ybxb0A
-         UB5Xs2yoz+gdgEmxQVnztbwFWD0x3mPNIwDkxJDIvXeKLKrWYKSnEYSsltzkq37/xtzZ
-         CWlycqw7oXbaxXjlIQzz9FBWwqDsuDDO01fUbTTORsbMjlkEQI1rLsBytvmpu6FCmQeV
-         EUTInl/1XpC1Ervr1oGlgUOxgSYxsAL6Q9fPyfxGuQqGfzJp+EfhTvurw+G0de+beIpD
-         3Czw==
-X-Gm-Message-State: AOAM533ycTdRug10UDh73LDEHBYjTN3aqsJzdlQLilSffJLYRC+PqfnJ
-        TSPawdRhHWrTmDjVBPBOcg==
-X-Google-Smtp-Source: ABdhPJxfIngqPIPPFq6gc+SDNZG2oWmf4zFtDxQiQMoBenm1qbDm6a92Xa7UhiT2+YDtpgUuD0aGRg==
-X-Received: by 2002:aca:5110:: with SMTP id f16mr290638oib.94.1605546116505;
-        Mon, 16 Nov 2020 09:01:56 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s131sm4819187oie.58.2020.11.16.09.01.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 09:01:55 -0800 (PST)
-Received: (nullmailer pid 1808233 invoked by uid 1000);
-        Mon, 16 Nov 2020 17:01:54 -0000
-Date:   Mon, 16 Nov 2020 11:01:54 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        kernel@pengutronix.de, Alexandre Torgue <alexandre.torgue@st.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: arm: stm32: add extra SiP compatible
- for lxa, stm32mp157c-mc1
-Message-ID: <20201116170154.GA1808177@bogus>
-References: <20201110102552.7270-1-a.fatoum@pengutronix.de>
- <20201110102552.7270-2-a.fatoum@pengutronix.de>
+        id S1732406AbgKPREc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 12:04:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40570 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726236AbgKPREc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:04:32 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E69D4C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 09:04:31 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kehvX-0000mC-Qt; Mon, 16 Nov 2020 18:04:27 +0100
+Subject: Re: [PATCH v3 0/2] nvmem: skip nodes with compatibles other than
+ "nvmem-cell"
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     devicetree@vger.kernel.org, ceggers@arri.de,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de
+References: <20200428111829.2215-1-a.fatoum@pengutronix.de>
+ <20200512141834.GA3023@bogus>
+ <f03ecee7-c4b6-7a59-7ab8-42c5dfcaffc4@pengutronix.de>
+ <3f050e96-8bd3-a77e-b1cf-1739a1be0c2d@pengutronix.de>
+Message-ID: <adb40d7d-c5e9-19b7-a561-10c33a6cf8ab@pengutronix.de>
+Date:   Mon, 16 Nov 2020 18:04:26 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201110102552.7270-2-a.fatoum@pengutronix.de>
+In-Reply-To: <3f050e96-8bd3-a77e-b1cf-1739a1be0c2d@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Nov 2020 11:25:50 +0100, Ahmad Fatoum wrote:
-> The Linux Automation MC-1 is built around an OSD32MP15x SiP with CPU,
-> RAM, PMIC, Oscillator and EEPROM. Adjust the binding, so the SiP
-> compatible is contained as well. This allows boot firmware to match
-> against it to apply fixups if necessary.
+Hello Rob,
+Hello Srini,
+
+On 02.11.20 16:23, Ahmad Fatoum wrote:
+>>> I think instead, nvmem cells should be contained within a partition. 
+>>> The partition should then have a compatible to indicate it contains 
+>>> nvmem cells.
+>>
+>> I thought I had understood what needs to be done, but now that I finally have time
+>> to do it, I see that this only solves the second issue "extending the NVMEM binding
+>> to nodes that already have other child nodes, e.g., MTD and its partitions".
+>>
+>> The first issue: "future extension of e.g. eeprom nodes by any child nodes other than
+>> nvmem cells" isn't solved by having a containing partition.
+>>
+>>
+>> My issue is that the bootloader fixes up a partitions { compatible = "fixed-partitions"; }
+>> child node into the kernel device tree. The NVMEM core driver tries to parse all eeprom child
+>> nodes as cells and will make the driver probe of the EEPROM fail, because it can't parse that
+>> fixed-partitions node as a nvmem cell.
+>>
+>> To allow for co-existence of NVMEM cells and other subnodes, would following patch be
+>> acceptable to you and Srini?
 > 
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> ---
-> v1 -> v2:
->  - split up binding and device tree change
-> ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+> Gentle ping. Would the patch below be acceptable?
+
+Did you have time to look at this?
+
+> 
+>>
+>> ---------------------------------------- 8< --------------------------------------
+>> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+>> @@ -45,7 +45,15 @@ properties:
+>>  patternProperties:
+>>    "^.*@[0-9a-f]+$":
+>>      type: object
+>> -
+>> +    if:
+>> +      not:
+>> +        properties:
+>> +          compatible:
+>> +    then:
+>> +      $ref: "#/definitions/nvmem-cell"
+>> +
+>> +definitions:
+>> +  nvmem-cell:
+>>      properties:
+>>        reg:
+>>          maxItems: 1
+> 
+> Cheers,
+> Ahmad
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
