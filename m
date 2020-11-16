@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E112B481F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:07:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B352B4830
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:07:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731253AbgKPPBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 10:01:31 -0500
-Received: from mail-oo1-f66.google.com ([209.85.161.66]:39503 "EHLO
-        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731022AbgKPPBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:01:31 -0500
-Received: by mail-oo1-f66.google.com with SMTP id l10so3959457oom.6;
-        Mon, 16 Nov 2020 07:01:30 -0800 (PST)
+        id S1731364AbgKPPC1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 10:02:27 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:42040 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731362AbgKPPCZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:02:25 -0500
+Received: by mail-oi1-f194.google.com with SMTP id w145so19085246oie.9;
+        Mon, 16 Nov 2020 07:02:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=R9UEviXeV1rCp92wR+Tm/LJi3BfQJ2Jz6UOv857MPrI=;
-        b=DAnjOz1spXYZnSXDsl7qkirWx6lbOs1FPSxcyVc+z+MziHb5B1fG/iYpz81DlsAKgh
-         ZbZuBJRkrxKdKHBeE6EQX5IwI8+lHV+r4QSidiRzC9pxTpVYcpy21N6/qoB/jIcei2fj
-         /Ya3mF1XeQjLaQsv6oEbHOUnuRo95BtfJ5opmuKYS3yTwFr2hcKj2rYggKKQfyDzQJEy
-         L9JuSDCk2wP9zAHJTeKP9bRLJIer6+oRAYbFO81k6ci9hiij4ZnYZkGCdrFpnVjPmuYN
-         WtlihZUO+GNgxijKAZzPWjkJYkAJGkA/uJux31gMfz5QQQ6enCyzDDRibqPVBmvia4TO
-         Q1xg==
-X-Gm-Message-State: AOAM532F0yDeOKRNH5IfIOnn5xcS93I8y00g/5QCaQQoywsUFILSZOjc
-        5fU1r4xa1dSh+Dqi54nrkJeLuOCIfw==
-X-Google-Smtp-Source: ABdhPJz3Q8ZtWwqwoKoqJ8DJgQkQSMvokTPqq7g2GQ7VgqFzk5fu9ft/rdmq7jCSS4a+8S89uwA4wA==
-X-Received: by 2002:a4a:d5d3:: with SMTP id a19mr3821973oot.61.1605538890565;
-        Mon, 16 Nov 2020 07:01:30 -0800 (PST)
+        bh=5UEnDHX9Jbs+qN0J6DLL+cnyF7sD4QFf8RH39CNakCE=;
+        b=DFi1m61j/fdJ83VM2adXSsyy8AxxcPL6iTC6dp7tuNPLvN2dyAKwYnzscN0e+XZ9Qs
+         7LItrZgiLtiXU7NCRMBIPDX578i0xU/+/aSZmzec1VrcJeDGnJkc22De6OkWH1FDhvzq
+         bb9VmHnKMW7L7RPxfxYVdAJ2j7vbcaHYGnIw/uS+7NYmzRda9QoeJ+RbwFk4/Z0iK+i/
+         YS+Plk0xSFoWTnZHSSQSXurRTMbPd2kQ2dcz0EGXczVJePPf78QyYaSYn2p6KnkMuOqs
+         ZXgspUJsZIf1AHLT1+AAQeVY7V/sbunGFMDk41NBzIR780k9cIb5OpfI7DPB8omWG495
+         o+5g==
+X-Gm-Message-State: AOAM530iW5bhsVjtFbLekhHtF2mQLGtzJI1Gca6/UVFnATcGmkFQMyM6
+        Igtjw7R/Xyg7wzH2Q+vItA==
+X-Google-Smtp-Source: ABdhPJxzto15rppWybSuDJqeDtl3VAtUal3PsHP9sZ2dQgdcjF+ayTUu/zIIZ40pbpCr9rhDQ0TAPA==
+X-Received: by 2002:aca:4257:: with SMTP id p84mr10237364oia.176.1605538944696;
+        Mon, 16 Nov 2020 07:02:24 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i8sm4703311otl.60.2020.11.16.07.01.29
+        by smtp.gmail.com with ESMTPSA id h3sm4847814oou.3.2020.11.16.07.02.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 07:01:29 -0800 (PST)
-Received: (nullmailer pid 1644751 invoked by uid 1000);
-        Mon, 16 Nov 2020 15:01:29 -0000
-Date:   Mon, 16 Nov 2020 09:01:29 -0600
+        Mon, 16 Nov 2020 07:02:24 -0800 (PST)
+Received: (nullmailer pid 1646073 invoked by uid 1000);
+        Mon, 16 Nov 2020 15:02:23 -0000
+Date:   Mon, 16 Nov 2020 09:02:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     Cyril.Jean@microchip.com, Ivan.Griffin@microchip.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor.Dooley@microchip.com, linux-kernel@vger.kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH v2 2/4] dt-bindings: riscv: microchip: Add YAML
- documentation for the PolarFire SoC
-Message-ID: <20201116150129.GA1643948@bogus>
-References: <20201113202550.3693323-1-atish.patra@wdc.com>
- <20201113202550.3693323-3-atish.patra@wdc.com>
+To:     Dongjiu Geng <gengdongjiu@huawei.com>
+Cc:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: Document the hi3559a clock bindings
+Message-ID: <20201116150223.GA1645329@bogus>
+References: <20201114002237.35962-1-gengdongjiu@huawei.com>
+ <20201114002237.35962-2-gengdongjiu@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201113202550.3693323-3-atish.patra@wdc.com>
+In-Reply-To: <20201114002237.35962-2-gengdongjiu@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Nov 2020 12:25:48 -0800, Atish Patra wrote:
-> Add YAML DT binding documentation for the Microchip PolarFire SoC.
-> It is documented at:
+On Sat, 14 Nov 2020 00:22:36 +0000, Dongjiu Geng wrote:
+> Add DT bindings documentation for hi3559a SoC clock.
 > 
-> https://www.microsemi.com/products/fpga-soc/polarfire-soc-icicle-quick-start-guide
-> 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> Signed-off-by: Dongjiu Geng <gengdongjiu@huawei.com>
 > ---
->  .../devicetree/bindings/riscv/microchip.yaml  | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/riscv/microchip.yaml
+>  .../clock/hisilicon,hi3559av100-clock.yaml    |  65 +++++++
+>  include/dt-bindings/clock/hi3559av100-clock.h | 165 ++++++++++++++++++
+>  2 files changed, 230 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
 > 
 
 
@@ -80,12 +71,16 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-./Documentation/devicetree/bindings/riscv/microchip.yaml: $id: relative path/filename doesn't match actual path or filename
-	expected: http://devicetree.org/schemas/riscv/microchip.yaml#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/riscv/sifive.yaml: duplicate '$id' value 'http://devicetree.org/schemas/riscv/sifive.yaml#'
+Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.example.dts:20.23-27.11: Warning (unit_address_vs_reg): /example-0/clock0: node has a reg or ranges property, but no unit name
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.example.dt.yaml: clock0: compatible: ['hisilicon,hi3559av100-clock', 'syscon'] is too long
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.example.dt.yaml: clock0: compatible: Additional items are not allowed ('syscon' was unexpected)
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.example.dt.yaml: clock0: #reset-cells:0:0: 1 was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1400088
+See https://patchwork.ozlabs.org/patch/1399891
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
