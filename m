@@ -2,782 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AA4C2B3CE7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 07:15:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CB762B3CF5
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 07:20:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726820AbgKPGPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 01:15:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52830 "EHLO
+        id S1726035AbgKPGUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 01:20:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726748AbgKPGPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 01:15:16 -0500
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6150EC0613CF
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 22:15:16 -0800 (PST)
-Received: by mail-qk1-x742.google.com with SMTP id d9so15915705qke.8
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 22:15:16 -0800 (PST)
+        with ESMTP id S1725379AbgKPGUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 01:20:38 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77323C0613CF;
+        Sun, 15 Nov 2020 22:20:36 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id k2so17418990wrx.2;
+        Sun, 15 Nov 2020 22:20:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6DA3hOjYLWWIzsKj8PYNULLwVDGEIjO9RwvpREsgkVs=;
-        b=TR99GbGpiW9k41uOQtly9dNHs14I6xCqBskyqTp2gzjsBChZqQiLzmrtf7wyG4z86R
-         pAnDDo7BqPE/sRdRzSp4MFU+9rgkjsuQFsQ7je0yg8AH6PTqg+4ePO3q/GYLlLlGTX+2
-         TmORPPFiUiYLKni0Z54pFqRXlWVAfc+eagBKA=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=PRE33PyX0DgQV+nPjucF/BuaE/3yxdmGeh7qvmvEzro=;
+        b=TI6RaHtEPsDA2gqYraJ1fkUSJhdCI6IMKeSAjnX8tAupeoT+MgZnMJytGNyIeJZb8E
+         tejpSnUoo2UJl1gYC6y9klVRPRhiTrakvO4ZCFqcry7L52wJBCNEoN1riuc7MWnkSfED
+         i4AWh/1K0qK32fKaLtQECbwi89jKWtlg/hKWREor0cWTAcRgg2mqbtr/DL9tT9YVO96t
+         cIudPEJKp45VpY01drRruOxH/iZRoCFtBuCqIevGTc8yQMJZYXMwLiZ/sELtds2iy0M/
+         ZDRiBx3yvk+9u2V0DNPPyTqspOCcXxm4FE6cMZ2fhtaa+wOq3UY5+hlJoMQHDSnGqeA1
+         wHWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6DA3hOjYLWWIzsKj8PYNULLwVDGEIjO9RwvpREsgkVs=;
-        b=XOH/j899HVuIKPhO49CymkBCcXuqRCMS8yODz93n+aVIGEiggd3uD5iQj1M0oJEuZY
-         F7DoOwDNSbW3qZOK3HAQwzJaSmfD3EoFxWivUOFmbvwQpwZowkjrEwiO0URx43OcSp1t
-         pRm0yL1Xyz68dOoE54E5nUIRPcIUhZKrajraeSLggUnHHpFtkk2nvNkeiyDFyov/X95e
-         pNpAF+/yf3dqvo/S/iEfqMKlrgelYqVmy9JXq7kGRsCCWth9XijZZz35NmqP2KC/cV/9
-         L96/ft17e5CnCiYapi9le992UnqoKWN/7tOeLU3B2WoXFF3UW1QlRUTEzy4nJSPTnlEJ
-         EKoQ==
-X-Gm-Message-State: AOAM531zQQof3WyL6IWeXnGcgmNEHEfFlZZKeMU7yGmrDYEPZDXQPHyZ
-        giSNs32gQxTT2CrqAWPLqYnpyAm/Sm7Wcvf1nXs=
-X-Google-Smtp-Source: ABdhPJw5AkGElAv624sA1SEY1S+gBa0hTqbq4MUUs7ocewaiY85ZpT/hCZV0kxE3TYF6MtHQTkxfHv2jwJAnmfsqhUY=
-X-Received: by 2002:a37:664d:: with SMTP id a74mr12976897qkc.487.1605507315573;
- Sun, 15 Nov 2020 22:15:15 -0800 (PST)
-MIME-Version: 1.0
-References: <1605247168-1028-1-git-send-email-vishwa@linux.vnet.ibm.com> <1605247168-1028-4-git-send-email-vishwa@linux.vnet.ibm.com>
-In-Reply-To: <1605247168-1028-4-git-send-email-vishwa@linux.vnet.ibm.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 16 Nov 2020 06:15:03 +0000
-Message-ID: <CACPK8XeQS3xWHGnuqpNY-cdAdNOkxZtC-YN2zO9wOR2G0W183w@mail.gmail.com>
-Subject: Re: [PATCH 4/6] ARM: dts: aspeed: rainier: Add leds that are off PIC16F882
-To:     Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
-Cc:     linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=PRE33PyX0DgQV+nPjucF/BuaE/3yxdmGeh7qvmvEzro=;
+        b=WTCPfzWI6duv8S3jMbf3IR9KQnzCYVEDAYTXptR0vaoHZDhzbzpUXObJ9zUZlPLm/U
+         51yOMxSXKgfdJeZaTgCXncVSrrAoCohNdcxsg7HPnoW0Sl4XgQDIaklq/4Ca3207deiV
+         Nh2Xdbx+KyBGMNDuFYArQcsFro7BwXwp860gGKjtJnmoSkOTeGlhEeOIvPgo9Xxpz5W1
+         mBWhE9olEmWXMpWAf2MiOR91ysPXEq0px89wSlPBNtptl1OmWiHn5crJOpNVanfMAGtO
+         jcoxiAZV21E22RitSFaLaF1vgiUJJsl1Gjms4l+2RAzKMjSvK31gPmR+ZlAyOWHw8Z0/
+         FxPQ==
+X-Gm-Message-State: AOAM530jQ3hZaAOedB0e3X37ZWcyBZU+R+H5tTxrBc2EPPCI+6bkh19f
+        AsrqTgprZ8Tc/h1qwPY17pI=
+X-Google-Smtp-Source: ABdhPJzKlFtq6d42gqMkJc5oVxVrMJJ1WBeET4rSm0rF+ADL8gJZL3ZhaIZJBUubub86R0pfcSCdDw==
+X-Received: by 2002:a5d:4d02:: with SMTP id z2mr9475903wrt.109.1605507635254;
+        Sun, 15 Nov 2020 22:20:35 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id m3sm17065985wrv.6.2020.11.15.22.20.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Nov 2020 22:20:34 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH v3 0/7] arm64: dts: meson: add more GX soundcards
+Date:   Mon, 16 Nov 2020 06:20:24 +0000
+Message-Id: <20201116062031.11233-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Nov 2020 at 05:59, Vishwanatha Subbanna
-<vishwa@linux.vnet.ibm.com> wrote:
->
-> There are many LEDs that are connected to PIC16F882.
-> PIC has the software implementation of PCA9552
->
-> Signed-off-by: Vishwanatha Subbanna <vishwa@linux.vnet.ibm.com>
+This series adds basic support for LPCM audio over HDMI and S/PDIF
+to GXBB/GXL/GXM devices that I own and have tested with. Audio can
+be extended in the future (some devices have DACs and headphone
+hardware to connect) but this gets the basics working.
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+Changes from v2
+- Drop p200/p201/p212-s905x/vega-s95 changes
+- Add khadas-vim(1)
 
-> ---
->  arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 690 +++++++++++++++++++++++++++
->  1 file changed, 690 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> index b7d7246..88fefc0 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> @@ -209,6 +209,336 @@
->                         default-state = "keep";
->                         gpios = <&pca0 5 GPIO_ACTIVE_LOW>;
->                 };
-> +
-> +               ddimm0 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm1 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm2 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 2 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm3 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 3 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm4 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 4 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm5 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 5 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm6 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 6 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm7 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 7 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm8 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 8 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm9 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 9 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm10 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 10 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm11 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 11 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm12 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 12 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm13 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 13 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm14 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 14 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm15 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic1 15 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm16 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm17 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm18 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 2 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm19 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 3 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm20 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 4 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm21 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 5 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm22 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 6 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm23 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 7 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm24 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 8 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm25 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 9 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm26 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 10 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm27 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 11 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm28 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 12 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm29 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 13 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm30 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 14 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               ddimm31 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic2 15 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot0 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot1 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot2 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 2 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot3 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 3 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot4 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 4 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cpu1 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 5 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cpu1-vrm0 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 6 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               lcd-russel {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic3 8 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               planar {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 0 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cpu0 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 1 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               dasd-pyramid0 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 3 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               dasd-pyramid1 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 4 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               dasd-pyramid2 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 5 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               cpu0-vrm0 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 6 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               rtc-battery {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 7 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               base-blyth {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 8 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot6 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 9 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot7 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 10 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot8 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 11 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot9 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 12 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot10 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 13 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               pcieslot11 {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 14 GPIO_ACTIVE_LOW>;
-> +               };
-> +
-> +               tpm-wilson {
-> +                       retain-state-shutdown;
-> +                       default-state = "keep";
-> +                       gpios = <&pic4 15 GPIO_ACTIVE_LOW>;
-> +               };
->         };
->  };
->
-> @@ -981,6 +1311,366 @@
->                 reg = <(0x62 | I2C_OWN_SLAVE_ADDRESS)>;
->         };
->
-> +       pic1: pca9952@32 {
-> +               compatible = "ibm,pca9552";
-> +               reg = <0x32>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@8 {
-> +                       reg = <8>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@9 {
-> +                       reg = <9>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@10 {
-> +                       reg = <10>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@11 {
-> +                       reg = <11>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@12 {
-> +                       reg = <12>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@13 {
-> +                       reg = <13>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@14 {
-> +                       reg = <14>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@15 {
-> +                       reg = <15>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
-> +
-> +       pic2: pca9552@31 {
-> +               compatible = "ibm,pca9552";
-> +               reg = <0x31>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@8 {
-> +                       reg = <8>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@9 {
-> +                       reg = <9>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@10 {
-> +                       reg = <10>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@11 {
-> +                       reg = <11>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@12 {
-> +                       reg = <12>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@13 {
-> +                       reg = <13>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@14 {
-> +                       reg = <14>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@15 {
-> +                       reg = <15>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
-> +
-> +       pic3: pca9552@30 {
-> +               compatible = "ibm,pca9552";
-> +               reg = <0x30>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@8 {
-> +                       reg = <8>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@9 {
-> +                       reg = <9>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@10 {
-> +                       reg = <10>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@11 {
-> +                       reg = <11>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@12 {
-> +                       reg = <12>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@13 {
-> +                       reg = <13>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@14 {
-> +                       reg = <14>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@15 {
-> +                       reg = <15>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
-> +
-> +       pic4: pca9552@33 {
-> +               compatible = "ibm,pca9552";
-> +               reg = <0x33>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
-> +
-> +               gpio@0 {
-> +                       reg = <0>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@1 {
-> +                       reg = <1>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@2 {
-> +                       reg = <2>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@3 {
-> +                       reg = <3>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@4 {
-> +                       reg = <4>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@5 {
-> +                       reg = <5>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@6 {
-> +                       reg = <6>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@7 {
-> +                       reg = <7>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@8 {
-> +                       reg = <8>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@9 {
-> +                       reg = <9>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@10 {
-> +                       reg = <10>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@11 {
-> +                       reg = <11>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@12 {
-> +                       reg = <12>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@13 {
-> +                       reg = <13>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@14 {
-> +                       reg = <14>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +
-> +               gpio@15 {
-> +                       reg = <15>;
-> +                       type = <PCA955X_TYPE_GPIO>;
-> +               };
-> +       };
-> +
->         dps: dps310@76 {
->                 compatible = "infineon,dps310";
->                 reg = <0x76>;
-> --
-> 1.8.3.1
->
+Changes from v1
+- Drop nexbox-a1 and rbox-pro 
+
+Christian Hewitt (7):
+  arm64: dts: meson: add audio playback to a95x
+  arm64: dts: meson: add audio playback to khadas-vim
+  arm64: dts: meson: add audio playback to khadas-vim2
+  arm64: dts: meson: add audio playback to nanopi-k2
+  arm64: dts: meson: add audio playback to odroid-c2
+  arm64: dts: meson: add audio playback to wetek-hub
+  arm64: dts: meson: add audio playback to wetek-play2
+
+ .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 40 ++++++++++++
+ .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 40 ++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 40 ++++++++++++
+ .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts | 40 ++++++++++++
+ .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 +++++++++++++++++++
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    | 43 ++++++++++++-
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 44 ++++++++++++-
+ 7 files changed, 303 insertions(+), 5 deletions(-)
+
+-- 
+2.17.1
