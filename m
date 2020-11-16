@@ -2,189 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 214D92B3DE3
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 08:50:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C89002B3DE9
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 08:50:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727132AbgKPHtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 02:49:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38940 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726524AbgKPHtV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 02:49:21 -0500
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42953C0613CF;
-        Sun, 15 Nov 2020 23:49:21 -0800 (PST)
-Received: by mail-lj1-x235.google.com with SMTP id l10so19025494lji.4;
-        Sun, 15 Nov 2020 23:49:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uEgau9nQGqNz6ZXzmaV6+j0vQE+uEXLhXRKT84vgtQc=;
-        b=Kpe5fNjJXV2Wqnfrv9u8SvBB7SUE4WTvuVm1KvNqrPw5R17cokq048j0mkndTBNXl/
-         zZ0gk9JbVnN4IBBW+7NdaAYVdzGk1qxlUhQ97iFUolKJpPhc4MyKJPowPccp6DMKpnxu
-         zS/T79HkmoJ5VOxk3MkV6O+h8677Z3Txt+uwjsEvnOYELmi69f3YBYzVmd6V0t8UZwhL
-         ij6ZYiIxHbx0QyWLmWFuZ+0TgRAFOWZZxFedgJlTMpv9EGKS8pI1YzWgMvJ2zIAaHUD3
-         /ZaWyOF0xcKFYIH8km31JuL4RMGEWEhqJcxNgXr1vmAenk/6p7ZL0aPdTnUlP6OcMFO2
-         bjhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uEgau9nQGqNz6ZXzmaV6+j0vQE+uEXLhXRKT84vgtQc=;
-        b=ea07HPk3lqyxGleYxqqhlfB5eZhOH6Y3hN1HrQkXEZBqoI9sktcJKqaRWyJ+r4/hJ9
-         Yn7QS5xtX5S6Mm3Ac3JTgHE7o3R+HMc7L6N7mfMCAYp5VEp9JpCHaCvRvTcPG6mrKnaq
-         JG5sQFabt/DXFlB2wEGna0Eziv0joi/vAKHovlSox1SASPWNJGodD8c9cePlz7VvBu8c
-         RIw7vkEVyX3Q5C+DdKg4gwKwprccFEb34Fu3mehFA9Q7Kt1kpzNPtrZKil6EKYMEH5rN
-         hKva8Nmn3GVmcnfPgCOB6snCluDmDZP4MGdgxTQxpz1xBzSmsgSYky4uYjrMRo5zmper
-         xvMA==
-X-Gm-Message-State: AOAM530VzFcs45S60gKN1GTcRAdgjfVxOCDzOHF0/qU8YYcRB4O5bNH5
-        qPfrQUJPzgTAGv80zgLvt2Q=
-X-Google-Smtp-Source: ABdhPJzG+C1YH7nheYHlhFRBT1UeMKElffaRKwR5CB6IEVJB1CSp9+npeBYzfdoAmYiCIpQmaMrdyg==
-X-Received: by 2002:a2e:2a86:: with SMTP id q128mr5679600ljq.158.1605512959779;
-        Sun, 15 Nov 2020 23:49:19 -0800 (PST)
-Received: from localhost.localdomain (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.gmail.com with ESMTPSA id v20sm2612441ljh.19.2020.11.15.23.49.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 15 Nov 2020 23:49:19 -0800 (PST)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: phy: bcm-ns-usb2-phy: convert to yaml
-Date:   Mon, 16 Nov 2020 08:46:50 +0100
-Message-Id: <20201116074650.16070-2-zajec5@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201116074650.16070-1-zajec5@gmail.com>
-References: <20201116074650.16070-1-zajec5@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1727879AbgKPHtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 02:49:45 -0500
+Received: from z5.mailgun.us ([104.130.96.5]:44460 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727736AbgKPHtp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 02:49:45 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1605512985; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=uyOlTM80iUIKUo0V/zn7BpuxDHK919VWbhuQkHHN89w=; b=AzKL2k3DSxPjTCxWtnLCccHt+JVebZYB5u3SV3y4yhYRc+IMXaS8r41QGZEVpE1/uBjebhYJ
+ FzG/o0x992sR7G4kZpvVgvJAC9QCeG7ZGPPDOJy7caeO4kJDYt+ITrtkYdyuQJkHwFsNyrFI
+ +f8YqM+57gGoaGg/3sf30UVc2Rw=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 5fb22f0ed3e05bb6db631e02 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 16 Nov 2020 07:49:34
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4A0BAC433ED; Mon, 16 Nov 2020 07:49:34 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7A5D0C433ED;
+        Mon, 16 Nov 2020 07:49:28 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7A5D0C433ED
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao Manidadapu <srivasam@codeaurora.org>
+Subject: [PATCH] Asoc: qcom: lpass-sc7180: Add 32 bit format support for capture
+Date:   Mon, 16 Nov 2020 13:19:15 +0530
+Message-Id: <1605512955-7017-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-1. Convert from txt to yaml
-2. Drop "Driver for" from the title
-3. Document "#phy-cells"
-4. Fix example node name (noticed by dt_binding_check)
-5. Add #include to example (noticed by dt_binding_check)
-6. Specify license
+Add 32 bit format support for capture in lpass-sc7180
+snd_soc_dai_driver capabilities. Need to add contstraints
+in machine driver so that only specific format allowed.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Manidadapu <srivasam@codeaurora.org>
 ---
-I think this should go through linux-phy tree. Kishon, Vinod, can you
-take this patch?
+ sound/soc/qcom/lpass-sc7180.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-This patch generates a false positive checkpatch.pl warning [0].
-Please ignore:
-WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
-
-[0] https://lkml.org/lkml/2020/2/18/1084
----
- .../bindings/phy/bcm-ns-usb2-phy.txt          | 21 -------
- .../bindings/phy/bcm-ns-usb2-phy.yaml         | 59 +++++++++++++++++++
- 2 files changed, 59 insertions(+), 21 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.txt
- create mode 100644 Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.txt b/Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.txt
-deleted file mode 100644
-index a7aee9ea8926..000000000000
---- a/Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.txt
-+++ /dev/null
-@@ -1,21 +0,0 @@
--Driver for Broadcom Northstar USB 2.0 PHY
--
--Required properties:
--- compatible: brcm,ns-usb2-phy
--- reg: iomem address range of DMU (Device Management Unit)
--- reg-names: "dmu", the only needed & supported reg right now
--- clocks: USB PHY reference clock
--- clock-names: "phy-ref-clk", the only needed & supported clock right now
--
--To initialize USB 2.0 PHY driver needs to setup PLL correctly. To do this it
--requires passing phandle to the USB PHY reference clock.
--
--Example:
--	usb2-phy {
--		compatible = "brcm,ns-usb2-phy";
--		reg = <0x1800c000 0x1000>;
--		reg-names = "dmu";
--		#phy-cells = <0>;
--		clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
--		clock-names = "phy-ref-clk";
--	};
-diff --git a/Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.yaml
-new file mode 100644
-index 000000000000..05b4dcd80019
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/bcm-ns-usb2-phy.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/bcm-ns-usb2-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Northstar USB 2.0 PHY
-+
-+description: >
-+  To initialize USB 2.0 PHY driver needs to setup PLL correctly.
-+  To do this it requires passing phandle to the USB PHY reference clock.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  compatible:
-+    const: brcm,ns-usb2-phy
-+
-+  reg:
-+    items:
-+      - description: iomem address range of DMU (Device Management Unit)
-+
-+  reg-names:
-+    items:
-+      - const: dmu
-+
-+  clocks:
-+    items:
-+      - description: USB PHY reference clock
-+
-+  clock-names:
-+    items:
-+      - const: phy-ref-clk
-+
-+  "#phy-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - clock-names
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm-nsp.h>
-+    phy@1800c000 {
-+        compatible = "brcm,ns-usb2-phy";
-+        reg = <0x1800c000 0x1000>;
-+        reg-names = "dmu";
-+        clocks = <&genpll BCM_NSP_GENPLL_USB_PHY_REF_CLK>;
-+        clock-names = "phy-ref-clk";
-+        #phy-cells = <0>;
-+    };
+diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
+index 61b51b5..3dc80fc 100644
+--- a/sound/soc/qcom/lpass-sc7180.c
++++ b/sound/soc/qcom/lpass-sc7180.c
+@@ -34,7 +34,8 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
+ 		},
+ 		.capture = {
+ 			.stream_name = "Primary Capture",
+-			.formats = SNDRV_PCM_FMTBIT_S16,
++			.formats = SNDRV_PCM_FMTBIT_S16 |
++				SNDRV_PCM_FMTBIT_S32,
+ 			.rates = SNDRV_PCM_RATE_48000,
+ 			.rate_min	= 48000,
+ 			.rate_max	= 48000,
 -- 
-2.27.0
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
