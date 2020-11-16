@@ -2,73 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 759212B4AA7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:20:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F4082B4AC1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:21:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730836AbgKPQS0 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Nov 2020 11:18:26 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:36569 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730807AbgKPQSZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:18:25 -0500
-Received: by mail-wm1-f68.google.com with SMTP id a65so24146367wme.1;
-        Mon, 16 Nov 2020 08:18:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=PbgwAmW6Lz3dqeU5xSor1wsOYK6dIOHqYRMNAiFO25s=;
-        b=YPK1n8R+SjgkplALEqI7bgQXPJSJZIJzGgItE5marp/gSpRZekZqgTFi07f3ZZhJ/C
-         b/C6N2spYefCtyejLVA3D5g9h7Jmc637El9+i+ln0rHD7SWCuVI0cwGC4ks0VhX1J6qM
-         LxFU27pO8QhrKJTelYzzOSoQipLoxlpk0DS4vWoMGvMflSuYqm4RKrt0ICY/Mi0wbVCV
-         j2v8CWJhlThaAeyt+A1EDVV4HXnK76RcfieygU7d/a2rJTD6+wC2ZjqDMLJHsu4cKkI0
-         WVDN0QcEnqr32U2VCINC43VGd981wP0PcU3NlIz4heVhI1TCHnFjIXqypcYNFRGuTZOI
-         LeIA==
-X-Gm-Message-State: AOAM530s0Oh0eLjoY0wqU9ZAVI4kiV8GtCEICqJ9xPPIqDDBjoDkm1Bx
-        pO/K8EGPlLKYNuHTtwSqtNM=
-X-Google-Smtp-Source: ABdhPJzJBNm+T25RTJHrN+VjsBcA2jYXeWFB0ei08ow3bzg6qrZwugxaxhE2yeqxElyupCt2rJXOBQ==
-X-Received: by 2002:a05:600c:2cb4:: with SMTP id h20mr16272190wmc.119.1605543501974;
-        Mon, 16 Nov 2020 08:18:21 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id i11sm24221025wro.85.2020.11.16.08.18.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 08:18:20 -0800 (PST)
-Date:   Mon, 16 Nov 2020 17:18:19 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
-Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] ARM: dts: add Samsung's exynos4412-based p4note
- boards
-Message-ID: <20201116161819.GD25108@kozik-lap>
-References: <20201113212525.13455-1-martin.juecker@gmail.com>
- <20201113212525.13455-3-martin.juecker@gmail.com>
+        id S1731934AbgKPQUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 11:20:39 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:5675 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731932AbgKPQUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:20:38 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fb2a6e00000>; Mon, 16 Nov 2020 08:20:48 -0800
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 16 Nov
+ 2020 16:20:37 +0000
+Received: from thunderball.nvidia.com (10.124.1.5) by mail.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Mon, 16 Nov 2020 16:20:36 +0000
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Sameer Pujar <spujar@nvidia.com>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH] ARM64: tegra: Disable the ACONNECT for Jetson TX2
+Date:   Mon, 16 Nov 2020 16:20:26 +0000
+Message-ID: <20201116162026.5324-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201113212525.13455-3-martin.juecker@gmail.com>
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605543648; bh=0nqF3sVXBBRyuBpYV3tfZHHlcdqt140Li43Wa2GIlls=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:X-NVConfidentiality:
+         MIME-Version:Content-Type;
+        b=CfxBPIwRn8yMJ7EjFhVITEXgE/MeYo1notk9e4TL84PuCu+maeidHIbGUlgHj+Z3s
+         Gd+AJlcTGZOD8GLTsiyocYlJV9TsZDpVgWmcSDrjTskZ72cz1nLWbM5WCPk/Auj2Bf
+         GD779wzZic+hvwR26IKve/ztTXd9zcp5KTc0j1EDAXJxCp49YZ/q2UvbO2XlLkM21A
+         C6AwpBd3bhAE1XkO/+qaG6mUonUsJTDS4qnQJdaI77MF+EeVDSBXvNL4rF2eKiy/kV
+         j/y6Ql1Eehek56FDxN6kKUiZf6Ik8ybPrnfCvwThsaVX1Djz4ss5u4phNTzH8NlDTU
+         CNki7ekLNveJg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 10:25:23PM +0100, Martin Jücker wrote:
-> The p4note family contains a couple of variants of the Galaxy Note 10.1
-> tablet with mainly different modems. The GT-N8010/GT-N8013 is the wifi
-> only version.
-> 
-> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |    1 +
->  arch/arm/boot/dts/exynos4412-p4note-n8010.dts |   17 +
->  arch/arm/boot/dts/exynos4412-p4note.dtsi      | 1132 +++++++++++++++++
->  3 files changed, 1150 insertions(+)
->  create mode 100644 arch/arm/boot/dts/exynos4412-p4note-n8010.dts
->  create mode 100644 arch/arm/boot/dts/exynos4412-p4note.dtsi
+Commit ff4c371d2bc0 ("arm64: defconfig: Build ADMA and ACONNECT driver")
+enable the Tegra ADMA and ACONNECT drivers and this is causing resume
+from system suspend to fail on Jetson TX2. Resume is failing because the
+ACONNECT driver is being resumed before the BPMP driver, and the ACONNECT
+driver is attempting to power on a power-domain that is provided by the
+BPMP. While a proper fix for the resume sequencing problem is identified,
+disable the ACONNECT for Jetson TX2 temporarily to avoid breaking system
+suspend.
 
-Thanks, applied.
+Please note that ACONNECT driver is used by the Audio Processing Engine
+(APE) on Tegra, but because there is no mainline support for APE on
+Jetson TX2 currently, disabling the ACONNECT does not disable any useful
+feature at the moment.
 
-Best regards,
-Krzysztof
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 12 ------------
+ 1 file changed, 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
+index 381a84912ba8..c28d51cc5797 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
+@@ -10,18 +10,6 @@
+ 	model = "NVIDIA Jetson TX2 Developer Kit";
+ 	compatible = "nvidia,p2771-0000", "nvidia,tegra186";
+ 
+-	aconnect {
+-		status = "okay";
+-
+-		dma-controller@2930000 {
+-			status = "okay";
+-		};
+-
+-		interrupt-controller@2a40000 {
+-			status = "okay";
+-		};
+-	};
+-
+ 	i2c@3160000 {
+ 		power-monitor@42 {
+ 			compatible = "ti,ina3221";
+-- 
+2.17.1
 
