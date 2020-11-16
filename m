@@ -2,222 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2894E2B52D0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 21:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1B12B53A4
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 22:20:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733222AbgKPUkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 15:40:42 -0500
-Received: from alexa-out-sd-02.qualcomm.com ([199.106.114.39]:39083 "EHLO
-        alexa-out-sd-02.qualcomm.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730680AbgKPUkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 15:40:35 -0500
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 16 Nov 2020 12:40:34 -0800
-X-QCInternal: smtphost
-Received: from gurus-linux.qualcomm.com ([10.46.162.81])
-  by ironmsg01-sd.qualcomm.com with ESMTP; 16 Nov 2020 12:40:34 -0800
-Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
-        id 32EE5192D; Mon, 16 Nov 2020 12:40:34 -0800 (PST)
-From:   Guru Das Srinagesh <gurus@codeaurora.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
-        David Collins <collinsd@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>,
-        Anirudh Ghayal <aghayal@codeaurora.org>,
-        Kavya Nunna <knunna@codeaurora.org>,
-        Guru Das Srinagesh <gurus@codeaurora.org>
-Subject: [PATCH v6 3/3] extcon: qcom-spmi: Add support for VBUS detection
-Date:   Mon, 16 Nov 2020 12:40:32 -0800
-Message-Id: <88468584643c5f9f93812715e2325fdd5387309f.1605559069.git.gurus@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1605559069.git.gurus@codeaurora.org>
-References: <cover.1605559069.git.gurus@codeaurora.org>
-In-Reply-To: <cover.1605559069.git.gurus@codeaurora.org>
-References: <cover.1605559069.git.gurus@codeaurora.org>
+        id S1727796AbgKPVTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 16:19:16 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53202 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726774AbgKPVTQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 16:19:16 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1053822240;
+        Mon, 16 Nov 2020 21:19:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605561555;
+        bh=SHY23h33dgv8QkmIOXbfR+0ymnh1DApjt1ZFMQXzwTI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MVAC0WhP2O+fs3GrwV/DVLOTVaTvNFQDQ1YEkTpeW4GpzoHpkC7VzoL5kimjr6EK+
+         FbhVQmHdNZwIwtXDDAbZB9xI6bGzJ7wyqkxfnGpw48w5coejnjZJ5kJ6T5b4VVY8e2
+         L7+bsvzJs3+ZYjIf1yoYAdUJbiVUz7pwM23hCJJQ=
+Date:   Mon, 16 Nov 2020 21:18:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        lgirdwood@gmail.com
+Subject: Re: [PATCH v2] dt-bindings: adau1977: convert text binding to yaml
+ format
+Message-ID: <20201116211856.GM4739@sirena.org.uk>
+References: <20201106102052.32582-1-alexandru.ardelean@analog.com>
+ <20201110084754.46756-1-alexandru.ardelean@analog.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wAI/bQb0EMvlZCHl"
+Content-Disposition: inline
+In-Reply-To: <20201110084754.46756-1-alexandru.ardelean@analog.com>
+X-Cookie: Immanuel doesn't pun, he Kant.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anirudh Ghayal <aghayal@codeaurora.org>
 
-VBUS can be detected via a dedicated PMIC pin. Add support
-for reporting the VBUS status.
+--wAI/bQb0EMvlZCHl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Anirudh Ghayal <aghayal@codeaurora.org>
-Signed-off-by: Kavya Nunna <knunna@codeaurora.org>
-Signed-off-by: Guru Das Srinagesh <gurus@codeaurora.org>
----
- drivers/extcon/extcon-qcom-spmi-misc.c | 99 +++++++++++++++++++++++++++-------
- 1 file changed, 80 insertions(+), 19 deletions(-)
+On Tue, Nov 10, 2020 at 10:47:54AM +0200, Alexandru Ardelean wrote:
+> This change converts the old device-tree binding for ADAU1977 from text
+> format to the new yaml format.
 
-diff --git a/drivers/extcon/extcon-qcom-spmi-misc.c b/drivers/extcon/extcon-qcom-spmi-misc.c
-index 6b836ae..9e8ccfb 100644
---- a/drivers/extcon/extcon-qcom-spmi-misc.c
-+++ b/drivers/extcon/extcon-qcom-spmi-misc.c
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-only
- /**
-  * extcon-qcom-spmi-misc.c - Qualcomm USB extcon driver to support USB ID
-- *				detection based on extcon-usb-gpio.c.
-+ *			and VBUS detection based on extcon-usb-gpio.c.
-  *
-  * Copyright (C) 2016 Linaro, Ltd.
-  * Stephen Boyd <stephen.boyd@linaro.org>
-@@ -21,30 +21,56 @@
- 
- struct qcom_usb_extcon_info {
- 	struct extcon_dev *edev;
--	int irq;
-+	int id_irq;
-+	int vbus_irq;
- 	struct delayed_work wq_detcable;
- 	unsigned long debounce_jiffies;
- };
- 
- static const unsigned int qcom_usb_extcon_cable[] = {
-+	EXTCON_USB,
- 	EXTCON_USB_HOST,
- 	EXTCON_NONE,
- };
- 
- static void qcom_usb_extcon_detect_cable(struct work_struct *work)
- {
--	bool id;
-+	bool state = false;
- 	int ret;
-+	union extcon_property_value val;
- 	struct qcom_usb_extcon_info *info = container_of(to_delayed_work(work),
- 						    struct qcom_usb_extcon_info,
- 						    wq_detcable);
- 
--	/* check ID and update cable state */
--	ret = irq_get_irqchip_state(info->irq, IRQCHIP_STATE_LINE_LEVEL, &id);
--	if (ret)
--		return;
-+	if (info->id_irq > 0) {
-+		/* check ID and update cable state */
-+		ret = irq_get_irqchip_state(info->id_irq,
-+				IRQCHIP_STATE_LINE_LEVEL, &state);
-+		if (ret)
-+			return;
-+
-+		if (!state) {
-+			val.intval = true;
-+			extcon_set_property(info->edev, EXTCON_USB_HOST,
-+						EXTCON_PROP_USB_SS, val);
-+		}
-+		extcon_set_state_sync(info->edev, EXTCON_USB_HOST, !state);
-+	}
- 
--	extcon_set_state_sync(info->edev, EXTCON_USB_HOST, !id);
-+	if (info->vbus_irq > 0) {
-+		/* check VBUS and update cable state */
-+		ret = irq_get_irqchip_state(info->vbus_irq,
-+				IRQCHIP_STATE_LINE_LEVEL, &state);
-+		if (ret)
-+			return;
-+
-+		if (state) {
-+			val.intval = true;
-+			extcon_set_property(info->edev, EXTCON_USB,
-+						EXTCON_PROP_USB_SS, val);
-+		}
-+		extcon_set_state_sync(info->edev, EXTCON_USB, state);
-+	}
- }
- 
- static irqreturn_t qcom_usb_irq_handler(int irq, void *dev_id)
-@@ -79,21 +105,48 @@ static int qcom_usb_extcon_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
-+	ret = extcon_set_property_capability(info->edev,
-+			EXTCON_USB, EXTCON_PROP_USB_SS);
-+	ret |= extcon_set_property_capability(info->edev,
-+			EXTCON_USB_HOST, EXTCON_PROP_USB_SS);
-+	if (ret) {
-+		dev_err(dev, "failed to register extcon props rc=%d\n",
-+						ret);
-+		return ret;
-+	}
-+
- 	info->debounce_jiffies = msecs_to_jiffies(USB_ID_DEBOUNCE_MS);
- 	INIT_DELAYED_WORK(&info->wq_detcable, qcom_usb_extcon_detect_cable);
- 
--	info->irq = platform_get_irq_byname(pdev, "usb_id");
--	if (info->irq < 0)
--		return info->irq;
-+	info->id_irq = platform_get_irq_byname(pdev, "usb_id");
-+	if (info->id_irq > 0) {
-+		ret = devm_request_threaded_irq(dev, info->id_irq, NULL,
-+					qcom_usb_irq_handler,
-+					IRQF_TRIGGER_RISING |
-+					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-+					pdev->name, info);
-+		if (ret < 0) {
-+			dev_err(dev, "failed to request handler for ID IRQ\n");
-+			return ret;
-+		}
-+	}
- 
--	ret = devm_request_threaded_irq(dev, info->irq, NULL,
-+	info->vbus_irq = platform_get_irq_byname(pdev, "usb_vbus");
-+	if (info->vbus_irq > 0) {
-+		ret = devm_request_threaded_irq(dev, info->vbus_irq, NULL,
- 					qcom_usb_irq_handler,
- 					IRQF_TRIGGER_RISING |
- 					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
- 					pdev->name, info);
--	if (ret < 0) {
--		dev_err(dev, "failed to request handler for ID IRQ\n");
--		return ret;
-+		if (ret < 0) {
-+			dev_err(dev, "failed to request handler for VBUS IRQ\n");
-+			return ret;
-+		}
-+	}
-+
-+	if (info->id_irq < 0 && info->vbus_irq < 0) {
-+		dev_err(dev, "ID and VBUS IRQ not found\n");
-+		return -EINVAL;
- 	}
- 
- 	platform_set_drvdata(pdev, info);
-@@ -120,8 +173,12 @@ static int qcom_usb_extcon_suspend(struct device *dev)
- 	struct qcom_usb_extcon_info *info = dev_get_drvdata(dev);
- 	int ret = 0;
- 
--	if (device_may_wakeup(dev))
--		ret = enable_irq_wake(info->irq);
-+	if (device_may_wakeup(dev)) {
-+		if (info->id_irq > 0)
-+			ret = enable_irq_wake(info->id_irq);
-+		if (info->vbus_irq > 0)
-+			ret = enable_irq_wake(info->vbus_irq);
-+	}
- 
- 	return ret;
- }
-@@ -131,8 +188,12 @@ static int qcom_usb_extcon_resume(struct device *dev)
- 	struct qcom_usb_extcon_info *info = dev_get_drvdata(dev);
- 	int ret = 0;
- 
--	if (device_may_wakeup(dev))
--		ret = disable_irq_wake(info->irq);
-+	if (device_may_wakeup(dev)) {
-+		if (info->id_irq > 0)
-+			ret = disable_irq_wake(info->id_irq);
-+		if (info->vbus_irq > 0)
-+			ret = disable_irq_wake(info->vbus_irq);
-+	}
- 
- 	return ret;
- }
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
+--wAI/bQb0EMvlZCHl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+y7L8ACgkQJNaLcl1U
+h9BAwgf/YWLXXnZ0TekHKPuo3Pmjs/ILWyySMjpUzT1SzSNT7QyhFeVobu6IaeBP
+smT812NxLhwlQFkGneTbOJveZCqfX5qMJQ5CYLnZVyoHFOVhUL2veRA4+JWSwzjJ
+/dgf/Oijz5epN5cz20Gh8mNpfjJQoPfia7hpZLO/UeWKcbCIODBr9zWEdZs2IGyR
+dfPY5Ha9LbcpJhuAFg0rKu3j15hC1AHhtP+5bT6ilfwMEFnerP+2RS+yEHOJH9NX
+/4t7RyOkEGbktOKHNXMYB+Or3j+NyGJP0G814M3UJtGG7QvJIeMQUhg0SEdFbnFV
+ZSMy7Ozjlnp5KjN+/Tl3gncoYiOgmw==
+=xNKB
+-----END PGP SIGNATURE-----
+
+--wAI/bQb0EMvlZCHl--
