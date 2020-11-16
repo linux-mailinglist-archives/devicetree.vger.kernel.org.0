@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19FE32B4BF8
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:04:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 559B72B4C03
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:04:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731939AbgKPRAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 12:00:10 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:38958 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730840AbgKPRAK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:00:10 -0500
-Received: by mail-ot1-f68.google.com with SMTP id z16so16673838otq.6;
-        Mon, 16 Nov 2020 09:00:08 -0800 (PST)
+        id S1732465AbgKPRB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 12:01:57 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41199 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730829AbgKPRB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:01:57 -0500
+Received: by mail-oi1-f193.google.com with SMTP id m13so19522084oih.8;
+        Mon, 16 Nov 2020 09:01:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AcLujU/XcYert0gEatW7givS6gqW+TvLh+BjzpfDdRM=;
-        b=ekKRPLaQ1qE20FYBeS3I3RKmdBNTg+nMqkGXXPsGuVgCkC/QLzSQRXFd12ZLYLeCKR
-         Do0pVT32hZNZg38x5U86FdvR28vWB1hd2vn/BTJesAnX58BHPVnAXfRYhWztpzhqLmou
-         zxs+FzDcab+SPZpMa0amQn7H1XBnwprqwxvb3oEzWQrYxQKiSJPUarODJPI01ZoHQ88w
-         0giyRkunf3IUEIzcv0hi3ZaDjh24wmHjK7/KBH/thuNy47tSMchXVQ/WLjN2PXFHpPnO
-         mIUO4nce6E/UwiGycv2MMuT2maqnSqQHqXSOZIFqFj/16DOIvRYolR6w1Ejztjak9p79
-         RpXg==
-X-Gm-Message-State: AOAM531rklBQs0YzkBs2Kkq73RK9cZJAmdfoTSA6eUnFH2l5G4UF3ogp
-        6ZIse+76g2ZaNF51ajB0oQ==
-X-Google-Smtp-Source: ABdhPJz6z1MX9d1u+yLFna+XLipBPR70Synp9H9LXc/tFdSxPMb7qBzLEPdr3cLM7jo+cGj4l2YgQQ==
-X-Received: by 2002:a05:6830:12c2:: with SMTP id a2mr177047otq.162.1605546008236;
-        Mon, 16 Nov 2020 09:00:08 -0800 (PST)
+        bh=u+JXrZYifKdUs7FbxLSzL5FeCPiKddkCqanejgp6YUk=;
+        b=Pi2fDs/d1SwyUhQyyYgliVpIVHVJX2+HKMwZ5M8l/Hb9Z63isJ14a8Yz8+2vGTZysT
+         gLMrW7rm+BEGGWv2aX1qxxrKbChqs2iY8+xOhjmW/baR9zi91ip4mEe/lfscQ+ybxb0A
+         UB5Xs2yoz+gdgEmxQVnztbwFWD0x3mPNIwDkxJDIvXeKLKrWYKSnEYSsltzkq37/xtzZ
+         CWlycqw7oXbaxXjlIQzz9FBWwqDsuDDO01fUbTTORsbMjlkEQI1rLsBytvmpu6FCmQeV
+         EUTInl/1XpC1Ervr1oGlgUOxgSYxsAL6Q9fPyfxGuQqGfzJp+EfhTvurw+G0de+beIpD
+         3Czw==
+X-Gm-Message-State: AOAM533ycTdRug10UDh73LDEHBYjTN3aqsJzdlQLilSffJLYRC+PqfnJ
+        TSPawdRhHWrTmDjVBPBOcg==
+X-Google-Smtp-Source: ABdhPJxfIngqPIPPFq6gc+SDNZG2oWmf4zFtDxQiQMoBenm1qbDm6a92Xa7UhiT2+YDtpgUuD0aGRg==
+X-Received: by 2002:aca:5110:: with SMTP id f16mr290638oib.94.1605546116505;
+        Mon, 16 Nov 2020 09:01:56 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i27sm849915otf.25.2020.11.16.09.00.07
+        by smtp.gmail.com with ESMTPSA id s131sm4819187oie.58.2020.11.16.09.01.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 09:00:07 -0800 (PST)
-Received: (nullmailer pid 1805750 invoked by uid 1000);
-        Mon, 16 Nov 2020 17:00:06 -0000
-Date:   Mon, 16 Nov 2020 11:00:06 -0600
+        Mon, 16 Nov 2020 09:01:55 -0800 (PST)
+Received: (nullmailer pid 1808233 invoked by uid 1000);
+        Mon, 16 Nov 2020 17:01:54 -0000
+Date:   Mon, 16 Nov 2020 11:01:54 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Neeraj Dantu <neeraj.dantu@octavosystems.com>,
-        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: document Octavo
- Systems oct prefix
-Message-ID: <20201116170006.GA1805656@bogus>
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        kernel@pengutronix.de, Alexandre Torgue <alexandre.torgue@st.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: stm32: add extra SiP compatible
+ for lxa, stm32mp157c-mc1
+Message-ID: <20201116170154.GA1808177@bogus>
 References: <20201110102552.7270-1-a.fatoum@pengutronix.de>
+ <20201110102552.7270-2-a.fatoum@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201110102552.7270-1-a.fatoum@pengutronix.de>
+In-Reply-To: <20201110102552.7270-2-a.fatoum@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Nov 2020 11:25:49 +0100, Ahmad Fatoum wrote:
-> Octavo Systems is an American company specializing in design and
-> manufacturing of System-in-Package devices.
+On Tue, 10 Nov 2020 11:25:50 +0100, Ahmad Fatoum wrote:
+> The Linux Automation MC-1 is built around an OSD32MP15x SiP with CPU,
+> RAM, PMIC, Oscillator and EEPROM. Adjust the binding, so the SiP
+> compatible is contained as well. This allows boot firmware to match
+> against it to apply fixups if necessary.
 > 
-> The prefix is already in use for the Octavo Systems OSD3358-SM-RED
-> device tree, but was so far undocumented. Fix this.
-> 
-> Cc: Neeraj Dantu <neeraj.dantu@octavosystems.com>
 > Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 > ---
 > v1 -> v2:
->   - new patch, suggested by Rob
+>  - split up binding and device tree change
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
