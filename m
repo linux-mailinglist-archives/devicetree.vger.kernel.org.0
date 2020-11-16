@@ -2,71 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 242FA2B4C2C
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:10:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5052B4C44
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:13:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730962AbgKPRIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 12:08:42 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:35170 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730296AbgKPRIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:08:42 -0500
-Received: by mail-ot1-f65.google.com with SMTP id n11so16730325ota.2;
-        Mon, 16 Nov 2020 09:08:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=cpje3Ch1E7xsRe01ORBCqLDrqUWUK2vaTS9b/qGcoGw=;
-        b=GPXhFnCXj0xnqj3gDHUrk0xlg++YqBf5XoVD58Z426dvrGA/cG7kZhc4onGJ58pXvZ
-         rHLUgSbAJnQ7VB9R+HJ+8G3W3OrBMgOWCud6E5X3lFzVroGuYSqyFhW0iWQpoGOYBZhX
-         rqoBph60jJeBPSPpDFHzTwD4ETL9vX1LMgrTc8VBySOu8ao7pO+9a0ZjWq+gS4W86b6U
-         myDaQUHwXSVnsG2NYxBu8gUr+jkAPBkGdbUNNWkqKGCyroWk88UrPEfSHB6EGt0V4xOF
-         Geoq09ZvyLw4xi3IAg/8hd1EMnRrga/r72Qh+0NGYuDPLbfMAoxIjeKf+IWPih5zLsDG
-         FlTw==
-X-Gm-Message-State: AOAM533RNwCQ/mI6RmwqiCH00kp+TSUtyCSeuLJze4CwkyzQALyBPGgy
-        9/+Wt+oMlNTQit7oql82Ew==
-X-Google-Smtp-Source: ABdhPJwkLS4G7CmYy/+6uMtcAlryYwRd4L3Fhxdc+19D87FDBiWWkwziEXOXNjQzl1fO4w/qkF4kVA==
-X-Received: by 2002:a9d:65c7:: with SMTP id z7mr195112oth.25.1605546521077;
-        Mon, 16 Nov 2020 09:08:41 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r206sm4850030oih.14.2020.11.16.09.08.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 09:08:40 -0800 (PST)
-Received: (nullmailer pid 1816812 invoked by uid 1000);
-        Mon, 16 Nov 2020 17:08:39 -0000
-Date:   Mon, 16 Nov 2020 11:08:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        broonie@kernel.org, tzungbi@google.com, matthias.bgg@gmail.com,
-        devicetree@vger.kernel.org, Trevor.Wu@mediatek.com,
-        linux-arm-kernel@lists.infradead.org, shane.chien@mediatek.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH] dt-bindings: mediatek: mt8192: revert "add audio afe
- document"
-Message-ID: <20201116170839.GA1816761@bogus>
-References: <1605081920-11848-1-git-send-email-jiaxin.yu@mediatek.com>
+        id S1732443AbgKPRMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 12:12:17 -0500
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:52991 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731108AbgKPRMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:12:17 -0500
+X-Originating-IP: 91.175.115.186
+Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 3564E1BF227;
+        Mon, 16 Nov 2020 17:12:14 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        <Steen.Hegelund@microchip.com>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>
+Subject: [PATCH 0/5] Improve reset for ocelot and add support for new platfrom
+Date:   Mon, 16 Nov 2020 18:11:54 +0100
+Message-Id: <20201116171159.1735315-1-gregory.clement@bootlin.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1605081920-11848-1-git-send-email-jiaxin.yu@mediatek.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Nov 2020 16:05:20 +0800, Jiaxin Yu wrote:
-> This reverts commit 1afc60e00de3abbb6c559da409c5c1bb8c1d98ec.
-> 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> ---
->  https://mailman.alsa-project.org/pipermail/alsa-devel/2020-November/176873.html
->  These dependency are continuing to upstream, I will revert this patch first.
->  After the dependencies are merged, I will send 'mt8192-afe-pcm.yaml' again.
-> 
->  .../bindings/sound/mt8192-afe-pcm.yaml        | 100 ------------------
->  1 file changed, 100 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> 
+Hello,
 
-Acked-by: Rob Herring <robh@kernel.org>
+This series first adds new feature to the ocelot reset driver and then
+it extends its support for 2 other MIPS based SoCs: Luton and Jaguar 2.
+
+Patches 1, 2 and 4 should be merged through the reset subsystem, while
+the device tree changes in patches 3 and 5 should go through the mips
+subsystem.
+
+Gregory
+
+Gregory CLEMENT (3):
+  MIPS: dts: mscc: add reset switch property
+  power: reset: ocelot: Add support 2 othe MIPS based SoCs
+  MIPS: dts: mscc: add reset support for Luton and Jaguar2
+
+Lars Povlsen (2):
+  dt-bindings: reset: ocelot: Add documentation for
+    'microchip,reset-switch-core' property
+  power: reset: ocelot: Add support for reset switch on load time
+
+ .../bindings/power/reset/ocelot-reset.txt     |  6 ++
+ arch/mips/boot/dts/mscc/jaguar2.dtsi          |  6 ++
+ arch/mips/boot/dts/mscc/luton.dtsi            |  5 ++
+ arch/mips/boot/dts/mscc/ocelot.dtsi           |  1 +
+ drivers/power/reset/ocelot-reset.c            | 70 +++++++++++++++++--
+ 5 files changed, 83 insertions(+), 5 deletions(-)
+
+-- 
+2.29.2
+
