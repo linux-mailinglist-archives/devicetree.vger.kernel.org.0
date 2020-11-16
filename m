@@ -2,314 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5C842B4429
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 14:01:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E97562B44A6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 14:25:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728180AbgKPM7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 07:59:41 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54170 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727740AbgKPM7j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 07:59:39 -0500
-Received: from mail.kernel.org (ip5f5ad5de.dynamic.kabel-deutschland.de [95.90.213.222])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5F07822384;
-        Mon, 16 Nov 2020 12:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605531578;
-        bh=3MLkjMOzpkCzhqMZjpieN2eCUoUlK4znktltjX5CDf8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ThjPlXBRSpOxlFAhR3QrGwTfVonSwzLJvrU+8tiQpxFp0JMB9MMyiCJBkjxJD6D6o
-         LOp0loFZ69GaXOzb5APqJMgQHqbJlcGhRMCWG4+I7S+n8Aw5wNWA6gKcKD6MiVUaX2
-         luqD7tWUlznH5gG3iYhK/UnjTZB2n42T/IY2FYB4=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1kee6Z-00Fyfk-Si; Mon, 16 Nov 2020 13:59:35 +0100
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "John Stultz" <john.stultz@linaro.org>,
-        "Manivannan Sadhasivam" <mani@kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 8/8] dts: hisilicon: add support for the PMIC found on Hikey 970
-Date:   Mon, 16 Nov 2020 13:59:34 +0100
-Message-Id: <eb5250f1bb0d19efe2d3e48ba08f5f1a6613e175.1605530560.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <cover.1605530560.git.mchehab+huawei@kernel.org>
-References: <cover.1605530560.git.mchehab+huawei@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Sender: Mauro Carvalho Chehab <mchehab@kernel.org>
+        id S1728546AbgKPNXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 08:23:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727061AbgKPNXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 08:23:19 -0500
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65897C0613CF;
+        Mon, 16 Nov 2020 05:23:19 -0800 (PST)
+Received: by mail-ed1-x541.google.com with SMTP id m16so3811167edr.3;
+        Mon, 16 Nov 2020 05:23:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=G0T5yMoydp6E6nfIQvkyLdPxpOSjZqvp9iT1QJ5MAdI=;
+        b=sm5O5h5tKDovkV/5mskWrX+P9iq6xa4y3wieGVnqK77Mw/fmWo0dC9ciHHIx8qsSXB
+         HXfYvmPSoFDCvRQB+wcrLdEEAZq0w1lbRBih+gJNLA9P0OX2YsFpgDPJeZSOssDeOGhs
+         0FqdFmYjkR5/7RmML/007eeScOLD+JFMo3YVtMxvsN/2vz/JBHFJyUIVn38Ry++PM3kU
+         F61o+7TeywzZ2XpdDvvTx/Zq83YuxSRMO7MVp3AS9dCyCLz2z4IbPtySnj862smoN8nD
+         3V+MkDg3TOoSFAWIFfZGITGF8sKdDb/LNObh+CvB41oDXgBjTucJvEovRyS/I9dD7j6x
+         t/3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=G0T5yMoydp6E6nfIQvkyLdPxpOSjZqvp9iT1QJ5MAdI=;
+        b=TlagNoAXtFKmwbJ2JqRyfF3zCSJRrMwfodHquUUq8b/zK1cNgEL+Lk5YNpjLrIBUfp
+         1W1dzc0z/odx3qanBlXFl7iBN5NJp2LdYMAVGV9yPzHPSbdqaY84NATynAhJopSUKFHM
+         7zb1fgL87BU0M0yfwaGzSKW7ukV/sCVY1uNyVJrk4HmhdMVpKXhD3qIVZCofm7qpnclV
+         XRkYOZ2YPwGJOwz5Qe2LjN6RSq+4Ufv9FF+6nqk6Eod52fwlUN7TQnAzSN45HuUiu8eM
+         biN640a+5U9iJIzHmZ0bGHXHpXwGms8oTNsw06GjzsUlb++lQKK14DZQwTD2wbeP9JLt
+         s2Cg==
+X-Gm-Message-State: AOAM531d6KbIbZXeH660liKIZxCuwIGhRPb7sQ87eOYSVmj+eul84vMS
+        BkdmNX7+IDXD7xWmkcdMoTk=
+X-Google-Smtp-Source: ABdhPJxKH+eJazMgAP6plRVNSIXMKel5IbKw8Yiu7z8hTL10hQo3Efm98BHivxowuJn4oaVgwGHvTg==
+X-Received: by 2002:a50:ab15:: with SMTP id s21mr15519457edc.88.1605532998207;
+        Mon, 16 Nov 2020 05:23:18 -0800 (PST)
+Received: from debian.home (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id oh19sm10550650ejb.49.2020.11.16.05.23.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 16 Nov 2020 05:23:17 -0800 (PST)
+From:   Johan Jonker <jbx6244@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: rename sdhci nodename to mmc in rk3399.dtsi
+Date:   Mon, 16 Nov 2020 14:23:11 +0100
+Message-Id: <20201116132311.8318-1-jbx6244@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a device tree for the HiSilicon 6421v600 SPMI PMIC, used
-on HiKey970 board.
+A test with the command below gives for example this error:
 
-As we now have support for it, change the fixed regulators
-used by the SD I/O to use the proper LDO supplies.
+/arch/arm64/boot/dts/rockchip/rk3399-evb.dt.yaml:
+sdhci@fe330000: $nodename:0: 'sdhci@fe330000'
+does not match '^mmc(@.*)?$'
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Fix it by renaming sdhci to mmc.
+
+make ARCH=arm64 dtbs_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/
+mmc/arasan,sdhci.yaml
+
+Signed-off-by: Johan Jonker <jbx6244@gmail.com>
 ---
- .../boot/dts/hisilicon/hi3670-hikey970.dts    |  22 +-
- .../boot/dts/hisilicon/hikey970-pmic.dtsi     | 197 ++++++++++++++++++
- 2 files changed, 200 insertions(+), 19 deletions(-)
- create mode 100644 arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-index fe6600dbad61..1f221cb97690 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-@@ -12,6 +12,7 @@
- 
- #include "hi3670.dtsi"
- #include "hikey970-pinctrl.dtsi"
-+#include "hikey970-pmic.dtsi"
- 
- / {
- 	model = "HiKey970";
-@@ -39,23 +40,6 @@ memory@0 {
- 		reg = <0x0 0x0 0x0 0x0>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+index 32e867179..6cba2c77e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
+@@ -328,7 +328,7 @@
+ 		status = "disabled";
  	};
  
--	sd_1v8: regulator-1v8 {
--		compatible = "regulator-fixed";
--		regulator-name = "fixed-1.8V";
--		regulator-min-microvolt = <1800000>;
--		regulator-max-microvolt = <1800000>;
--		regulator-always-on;
--	};
--
--	sd_3v3: regulator-3v3 {
--		compatible = "regulator-fixed";
--		regulator-name = "fixed-3.3V";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		regulator-boot-on;
--		regulator-always-on;
--	};
--
- 	wlan_en: wlan-en-1-8v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wlan-en-regulator";
-@@ -425,8 +409,8 @@ &dwmmc1 {
- 	pinctrl-0 = <&sd_pmx_func
- 		     &sd_clk_cfg_func
- 		     &sd_cfg_func>;
--	vmmc-supply = <&sd_3v3>;
--	vqmmc-supply = <&sd_1v8>;
-+	vmmc-supply = <&ldo16>;
-+	vqmmc-supply = <&ldo9>;
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-new file mode 100644
-index 000000000000..7d79017ccfa5
---- /dev/null
-+++ b/arch/arm64/boot/dts/hisilicon/hikey970-pmic.dtsi
-@@ -0,0 +1,197 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * dts file for Hi6421v600 SPMI PMIC used at the HiKey970 Development Board
-+ *
-+ * Copyright (C) 2020, Huawei Tech. Co., Ltd.
-+ */
-+
-+#include <dt-bindings/spmi/spmi.h>
-+
-+/ {
-+	spmi: spmi@fff24000 {
-+		compatible = "hisilicon,kirin970-spmi-controller";
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+		status = "okay";
-+		reg = <0x0 0xfff24000 0x0 0x1000>;
-+		spmi-channel = <2>;
-+
-+		pmic: pmic@0 {
-+			compatible = "hisilicon,hi6421-spmi";
-+			reg = <0 SPMI_USID>;
-+
-+			#interrupt-cells = <2>;
-+			interrupt-controller;
-+			gpios = <&gpio28 0 0>;
-+
-+			regulators {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				ldo3: ldo3@16 {
-+					reg = <0x16>;
-+					vsel-reg = <0x51>;
-+
-+					regulator-name = "ldo3";
-+					regulator-min-microvolt = <1500000>;
-+					regulator-max-microvolt = <2000000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+
-+					voltage-table = <1500000>, <1550000>,
-+							<1600000>, <1650000>,
-+							<1700000>, <1725000>,
-+							<1750000>, <1775000>,
-+							<1800000>, <1825000>,
-+							<1850000>, <1875000>,
-+							<1900000>, <1925000>,
-+							<1950000>, <2000000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo4: ldo4@17 { /* 40 PIN */
-+					reg = <0x17>;
-+					vsel-reg = <0x52>;
-+
-+					regulator-name = "ldo4";
-+					regulator-min-microvolt = <1725000>;
-+					regulator-max-microvolt = <1900000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					hi6421-vsel = <0x52 0x07>;
-+					voltage-table = <1725000>, <1750000>,
-+							<1775000>, <1800000>,
-+							<1825000>, <1850000>,
-+							<1875000>, <1900000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo9: ldo9@1C { /* SDCARD I/O */
-+					reg = <0x1C>;
-+					vsel-reg = <0x57>;
-+
-+					regulator-name = "ldo9";
-+					regulator-min-microvolt = <1750000>;
-+					regulator-max-microvolt = <3300000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <1750000>, <1800000>,
-+							<1825000>, <2800000>,
-+							<2850000>, <2950000>,
-+							<3000000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <360>;
-+				};
-+
-+				ldo15: ldo15@21 { /* UFS */
-+					reg = <0x21>;
-+					vsel-reg = <0x5c>;
-+
-+					regulator-name = "ldo15";
-+					regulator-min-microvolt = <1800000>;
-+					regulator-max-microvolt = <3000000>;
-+					regulator-always-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <1800000>, <1850000>,
-+							<2400000>, <2600000>,
-+							<2700000>, <2850000>,
-+							<2950000>, <3000000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo16: ldo16@22 { /* SD */
-+					reg = <0x22>;
-+					vsel-reg = <0x5d>;
-+
-+					regulator-name = "ldo16";
-+					regulator-min-microvolt = <1800000>;
-+					regulator-max-microvolt = <3000000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <1800000>, <1850000>,
-+							<2400000>, <2600000>,
-+							<2700000>, <2850000>,
-+							<2950000>, <3000000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <360>;
-+				};
-+
-+				ldo17: ldo17@23 {
-+					reg = <0x23>;
-+					vsel-reg = <0x5e>;
-+
-+					regulator-name = "ldo17";
-+					regulator-min-microvolt = <2500000>;
-+					regulator-max-microvolt = <3300000>;
-+
-+					enable-mask = <0x01>;
-+					idle-mode-mask = <0x10>;
-+					eco-microamp = <10000>;
-+
-+					voltage-table = <2500000>, <2600000>,
-+							<2700000>, <2800000>,
-+							<3000000>, <3100000>,
-+							<3200000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo33: ldo33@32 { /* PEX8606 */
-+					reg = <0x32>;
-+					vsel-reg = <0x6d>;
-+					regulator-name = "ldo33";
-+					regulator-min-microvolt = <2500000>;
-+					regulator-max-microvolt = <3300000>;
-+					regulator-boot-on;
-+
-+					enable-mask = <0x01>;
-+
-+					voltage-table = <2500000>, <2600000>,
-+							<2700000>, <2800000>,
-+							<3000000>, <3100000>,
-+							<3200000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+
-+				ldo34: ldo34@33 { /* GPS AUX IN VDD */
-+					reg = <0x33>;
-+					vsel-reg = <0x6e>;
-+
-+					regulator-name = "ldo34";
-+					regulator-min-microvolt = <2600000>;
-+					regulator-max-microvolt = <3300000>;
-+
-+					enable-mask = <0x01>;
-+
-+					voltage-table = <2600000>, <2700000>,
-+							<2800000>, <2900000>,
-+							<3000000>, <3100000>,
-+							<3200000>, <3300000>;
-+					off-on-delay-us = <20000>;
-+					startup-delay-us = <120>;
-+				};
-+			};
-+		};
-+	};
-+};
+-	sdhci: sdhci@fe330000 {
++	sdhci: mmc@fe330000 {
+ 		compatible = "rockchip,rk3399-sdhci-5.1", "arasan,sdhci-5.1";
+ 		reg = <0x0 0xfe330000 0x0 0x10000>;
+ 		interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH 0>;
 -- 
-2.28.0
+2.11.0
 
