@@ -2,122 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF662B4669
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:53:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B2E62B466E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727820AbgKPOxz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 09:53:55 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42163 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728396AbgKPOxz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 09:53:55 -0500
-Received: by mail-oi1-f194.google.com with SMTP id w145so19052521oie.9;
-        Mon, 16 Nov 2020 06:53:54 -0800 (PST)
+        id S1730340AbgKPOyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 09:54:47 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:33822 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728396AbgKPOyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 09:54:47 -0500
+Received: by mail-oi1-f195.google.com with SMTP id w188so19077067oib.1;
+        Mon, 16 Nov 2020 06:54:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=YlpjPvTQYT+rqdni5qJzLiGhROd+f/379cy54KdKCm0=;
-        b=UdOkcRVeKkKulfhfAgp40GpUXlbmHBzCKUguCuO95nYxA9ASiDUEYr5CPA89WxW7cQ
-         +x/J/dZKZgjB2EW/GDwWBuJUDYK52ndSDmdS/xv43ypAUIcJIWe/UM+eTMjkCtZJusIT
-         Tzz4PIXxThWvx5YTrXOGE2kcgoF2YZ0rCEEOhx5SLQfXGb3bjkRrF7ORhO/i58pXwOH5
-         n5ICp68r0HYnFk+A0QQLe4US9qUiBJhb1F10Sll5VId95k5PrYnk9fvC/PNOM2GOMXAs
-         8HNhVKgOx5AQZciY0lljJ4N1de+Q/vnPRs4UCKR4pf/Tg4yCmn5UdnLpSFbQw5TuYANv
-         DOyA==
-X-Gm-Message-State: AOAM532EYrqPmk8ImgS/XBsRfzZyXEsCFT+TCQbhuPZgFfHJN6wpdKdY
-        b/b3ebLFT26YTc1L4RTxTXUY/Q+HNw==
-X-Google-Smtp-Source: ABdhPJysYAvyeMCmUOQIRzey6h9TQ6Yjr9KAi3Sw8KNdrUru374RMQwgv+i8cZ3MEKgNmhT2nujfMg==
-X-Received: by 2002:aca:1e13:: with SMTP id m19mr4492399oic.176.1605538434197;
-        Mon, 16 Nov 2020 06:53:54 -0800 (PST)
+        bh=H1fyXfriaU5b4SAeacTn2vCNWOWHstHOi6kBAkwLmps=;
+        b=Go7vaomOVVHxeTMKCsb/9a4of+7qRb7TrSFKzmwhQr6rZfcuAfwX4/tRrkvI8H2q06
+         DugXbHjPUAgbLiJwvCZ3ODBHYSra/B9A4KQjhld3EZMPYnJvlgGI2J7QGWFBFJKhWb/O
+         VfE7ivfxmEMHxsMwpz2ykJ5BGN1bRDDOb65r8e1Q4xcLi3PgDe2PgnjZ7x6AZUdrCM32
+         8yiduEs0El6oZC+YwOgnLJtqeg1O+HuH0QtXABAH5Ghxb2YZXFjAGsQq81m+AQ8WvhSR
+         cY6c5Iv187uad39hoMZg+BCB3NFtUygVwmmFtmYRV2jat1P9i6F6Qw4TioG+X6cLW0Ai
+         pVug==
+X-Gm-Message-State: AOAM5302Qo6wnv3ZFWemkFji+11KG1t5bSKIx2w/N/IYoghKxXknxPHk
+        yTbSj4N6IsYZEv04coqM8Q==
+X-Google-Smtp-Source: ABdhPJz5gWioJ8NqYo4oG9SUmUzRw7oWLBP2V+XP7Gx8sDtfeW4CefAXIkAElVf39xP91omtQMlQqg==
+X-Received: by 2002:aca:bdc4:: with SMTP id n187mr884007oif.154.1605538486308;
+        Mon, 16 Nov 2020 06:54:46 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 64sm4702013otq.26.2020.11.16.06.53.53
+        by smtp.gmail.com with ESMTPSA id k10sm4849639otb.81.2020.11.16.06.54.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 06:53:53 -0800 (PST)
-Received: (nullmailer pid 1634415 invoked by uid 1000);
-        Mon, 16 Nov 2020 14:53:52 -0000
-Date:   Mon, 16 Nov 2020 08:53:52 -0600
+        Mon, 16 Nov 2020 06:54:45 -0800 (PST)
+Received: (nullmailer pid 1635671 invoked by uid 1000);
+        Mon, 16 Nov 2020 14:54:44 -0000
+Date:   Mon, 16 Nov 2020 08:54:44 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Caleb Connolly <caleb@connolly.tech>
-Cc:     linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: add vendor bindings for OnePlus
-Message-ID: <20201116145352.GB1625774@bogus>
-References: <20201112161920.2671430-1-caleb@connolly.tech>
- <20201112161920.2671430-5-caleb@connolly.tech>
+To:     Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     Orson Zhai <orsonzhai@gmail.com>, linux-input@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        devicetree@vger.kernel.org, Baolin Wang <baolin.wang7@gmail.com>,
+        Nemo Han <nemo.han@unisoc.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: input: Convert sc27xx-vibra.txt to
+ json-schema
+Message-ID: <20201116145444.GA1635499@bogus>
+References: <20201113113451.52355-1-zhang.lyra@gmail.com>
+ <20201113113451.52355-2-zhang.lyra@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201112161920.2671430-5-caleb@connolly.tech>
+In-Reply-To: <20201113113451.52355-2-zhang.lyra@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 04:21:54PM +0000, Caleb Connolly wrote:
-> Used by the OnePlus 6/T device trees
+On Fri, 13 Nov 2020 19:34:50 +0800, Chunyan Zhang wrote:
+> From: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > 
-> Signed-off-by: Caleb Connolly <caleb@connolly.tech>
+> Convert the sprd sc27xx vibrator binding to DT schema using json-schema.
+> 
+> Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
 > ---
->  .../bindings/arm/oneplus/oneplus-boards.yaml  | 25 +++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
->  2 files changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml
+>  .../bindings/input/sprd,sc27xx-vibra.txt      | 23 ----------
+>  .../bindings/input/sprd,sc27xx-vibrator.yaml  | 44 +++++++++++++++++++
+>  2 files changed, 44 insertions(+), 23 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibra.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml b/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml
-> new file mode 100644
-> index 000000000000..a4d9bbd5681f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/oneplus/oneplus-boards.yaml
-> @@ -0,0 +1,25 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/oneplus/oneplus-boards.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: OnePlus based boards
-> +
-> +maintainers:
-> +  - Caleb Connolly <caleb@connolly.tech>
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: SDM845 based boards
 
-There should be a sdm845 fallback compatible. Also, board level 
-compatibles are documented in a per SoC family schema (qcom.yaml) which 
-should already define the fallback.
 
-> +        items:
-> +          - enum:
-> +              - oneplus,enchilada               # OnePlus 6
-> +              - oneplus,fajita                  # OnePlus 6T
-> +          - const: oneplus,oneplus6             # OnePlus 6 and derivatives
+My bot found errors running 'make dt_binding_check' on your patch:
 
-With a SoC fallback, having this as a 3rd compatible probably isn't too 
-useful. 3 levels of compatible is mainly done when there's a SoM plus 
-baseboard.
+yamllint warnings/errors:
 
-> +
-> +required:
-> +  - compatible
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 2735be1a8470..372c1136081e 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -768,6 +768,8 @@ patternProperties:
->      description: OLIMEX Ltd.
->    "^olpc,.*":
->      description: One Laptop Per Child
-> +  "^oneplus,.*":
-> +    description: One Plus Technology (Shenzhen) Co., Ltd.
->    "^onion,.*":
->      description: Onion Corporation
->    "^onnn,.*":
-> -- 
-> 2.29.2
-> 
-> 
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml: 'additionalProperties' is a required property
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml: ignoring, error in schema: 
+warning: no schema found in file: ./Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
+
+
+See https://patchwork.ozlabs.org/patch/1399724
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
