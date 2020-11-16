@@ -2,91 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0F4E2B45D1
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:28:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7133A2B45F1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 15:35:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727820AbgKPO2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 09:28:03 -0500
-Received: from vern.gendns.com ([98.142.107.122]:38928 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727305AbgKPO2D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 09:28:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=0q44A1LrsVM1ufm10U18bRl/Slcf2gwki6qy7vTVfFg=; b=DxZbsbv7eWjuFxzo7H7NjhfMCD
-        lEpEJZ5Wz/cUzwC3XuO00/CsuNEqlLxcrNuiLlSVOMOJgIB0YrqfVgUsV0ty/6rAdDIQHfbfg4PZY
-        SeXbJgcqJdqXgh7iJajpdRR61oSHva0mPch3htNLh0FwJt7GYgsfj9D+O1soo8rJx1Rt+CocsVMRN
-        o6x2xJ60h87bMkKyaDAsT7SCkw+CXhtB7s7GiybCzx6F5vhs9fRPoImz9Pw+e1yrM/chj6kPcRVXe
-        2wJxbIsl0WxGaitrAxD7ml34yZMCVP07/OrDWov+zslX6EpgUn3EkNje2yMnFZ8aKPRwg1Qaj5b7i
-        55JBvpRg==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:37112 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <david@lechnology.com>)
-        id 1kefU6-0002sg-PC; Mon, 16 Nov 2020 09:27:58 -0500
-Subject: Re: [PATCH 0/3] Enable eQEP counter driver on BeagleBone Blue
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     linux-omap@vger.kernel.org,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Drew Fustini <drew@beagleboard.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20201012211229.3282128-1-david@lechnology.com>
- <20201116113658.GE26857@atomide.com>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <34752e5c-a9fa-daac-3295-b686875b5d21@lechnology.com>
-Date:   Mon, 16 Nov 2020 08:27:56 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728609AbgKPOes (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 09:34:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45244 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727820AbgKPOer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 09:34:47 -0500
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73D41C0613D3
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 06:34:47 -0800 (PST)
+Received: by mail-wr1-x441.google.com with SMTP id s8so18903932wrw.10
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 06:34:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y9AsLr5r10zSP+gdGxgf1aue1g5+LWymISqP1WqQRQg=;
+        b=OOFzDx60psyHV2Jdyx2JT1Vuq80hedNzwO4A6PSeUrTzLN82AgdBTFNfYMB00idc5f
+         qk73WhV+B6yaDxjk6BWd05lvDYkEvm0AovhOdPOA16vaQCHegClh+vfGabu60Gst5M2Q
+         jyHbZKxyGIHtN9GGWbLHJZ7aCmdCSql2e/UBwuOwGZiOWyNrtScaGu4YIM3/bMvxEBSm
+         p/ChLfdqsZoP5Y9PPRPKPomzrjvANAtvui5kENUygCSP67A58lNUg1HsJGoXTD8cygC2
+         uTXq6uadw2aIk0R1r676+H/DLUpfgH/08lth8cmDJt22jNAqkiZ9Jey3Eb/NVds80efU
+         T57g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y9AsLr5r10zSP+gdGxgf1aue1g5+LWymISqP1WqQRQg=;
+        b=StMV7nSzUnJcYlLj9M4wexsQC+Xt+v2rXBZuDHn1gJ6M8I7vC9IZ9B+4Rg9H0eZRsf
+         ZXqZRMTD4Q8zsh40b4qCJE18WbYizVv+ucKn0ftb0VlfGMgKNJnhNSrAnAO2yBOEZolt
+         5lWRRGL6DyV0CqaEPRFB7qztMp02xUaWgBdIMAM6RW3KUfNqsOza7aV10mnptVBV01Ep
+         Aa1BtBliXOrTHj4OS37Yrryh+W4aH2HqVyXnjBeZETK53hheb/9FbxvXNiSE3vSht/LW
+         s7YDGqZac3bvqnjSIuCUcGQcvqgYPLO7P0JgSlngZBk+wVazQ3OnVOtyvNeM+znHhVSf
+         pVCQ==
+X-Gm-Message-State: AOAM530bU+Of0gBbdOPriKRdhMmPdGQJiwoq31y/ryMqt+QbZg3q/8Zv
+        kTlBmpN/Ww9KAjW0s4m2z/cM2A==
+X-Google-Smtp-Source: ABdhPJwxIgvPQ7wGXjm2pSTJYMFsok8uLuxEChR7JEz4aiM6M+B4dw3yqAVKL3WkZbk1VT0s76EX6w==
+X-Received: by 2002:a5d:6992:: with SMTP id g18mr19515249wru.362.1605537285971;
+        Mon, 16 Nov 2020 06:34:45 -0800 (PST)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id n10sm24013501wrx.9.2020.11.16.06.34.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2020 06:34:45 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     linus.walleij@linaro.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v4 0/2] pinctrl: qcom: Add sm8250 lpass lpi pinctrl support
+Date:   Mon, 16 Nov 2020 14:34:30 +0000
+Message-Id: <20201116143432.15809-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20201116113658.GE26857@atomide.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/16/20 5:36 AM, Tony Lindgren wrote:
-> * David Lechner <david@lechnology.com> [201013 00:13]:
->> This series adds device tree nodes for the eQEP portion of the PWMSS on AM33xx
->> and enables it on BeagleBone Blue.
->>
->> I actually submitted these a year ago, but it looks like these patches never got
->> applied with the actual eQEP driver when it was merged.
-> 
-> Sorry if I dropped these earlier, I guess I though you're reposting the
-> series and untagged them.
+This patch adds support for LPASS (Low Power Audio SubSystem)
+LPI (Low Power Island) pinctrl on SM8250.
 
-No worries, I forgot about them too. :-)
+This patch has been tested on support to Qualcomm Robotics RB5 Development
+Kit based on QRB5165 Robotics SoC. This board has 2 WSA881X smart speakers
+with onboard DMIC connected to internal LPASS codec via WSA  and VA macros
+respectively.
 
-> 
->> For reference, there was some previous discussion about the clocks in "ARM: dts:
->> am33xx: Add nodes for eQEP". [1]
->>
->> [1]: https://lore.kernel.org/linux-omap/20190723145100.GS5447@atomide.com/
->>
->> I have also included a new patch to enable the eQEP driver in the defconfig.
-> 
-> Great, thanks applying these into omap-for-v5.11/dt and defconfig branches.
-> 
-> Regards,
-> 
-> Tony
-> 
+Most of the work is derived from downstream Qualcomm kernels.
+Credits to various Qualcomm authors from Patrick Lai's team who have
+contributed to this code.
+
+Am guessing existing qcom folder should cover maintining this driver too!
+If not I can send additional patch to consolidate this along with other
+Audio related drivers in Maintainer file!
+
+Changes since v3:
+ - updated bindings as per Rob's review!
+
+Srinivas Kandagatla (2):
+  dt-bindings: pinctrl: qcom: Add sm8250 lpass lpi pinctrl bindings
+  pinctrl: qcom: Add sm8250 lpass lpi pinctrl driver
+
+ .../pinctrl/qcom,lpass-lpi-pinctrl.yaml       | 132 ++++
+ drivers/pinctrl/qcom/Kconfig                  |   8 +
+ drivers/pinctrl/qcom/Makefile                 |   1 +
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c      | 734 ++++++++++++++++++
+ 4 files changed, 875 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,lpass-lpi-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+
+-- 
+2.21.0
 
