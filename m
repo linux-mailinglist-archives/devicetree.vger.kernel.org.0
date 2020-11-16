@@ -2,58 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 349022B3E9E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 09:29:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2280F2B3EAB
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 09:32:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726241AbgKPI1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 03:27:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55204 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726236AbgKPI1w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 03:27:52 -0500
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1B6032071E;
-        Mon, 16 Nov 2020 08:27:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605515272;
-        bh=8mce2BagjP4rTxmFCfk10rUSrWCgd6QVmCRChIcQj1A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t6gpoNisjIds8tnrPVeEaRTAe1QzXlCJJvTsBHdRhBHGueCsQE1k02iv1el6uhF5l
-         wZqUV9/FxG+hux7CBq7Wgyfofk3sxT8NunelNJfj/CENWErNbPwGOl84EIxQdIQvhl
-         00eG24ZlwezNZOBVW2YtAuCIXusdycbJgUujFe5s=
-Date:   Mon, 16 Nov 2020 16:27:46 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-input@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        id S1726597AbgKPIa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 03:30:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45230 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726249AbgKPIa0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 03:30:26 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED2EFC0613CF;
+        Mon, 16 Nov 2020 00:30:25 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id q28so2051749pgk.1;
+        Mon, 16 Nov 2020 00:30:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jbxb2khKyk+y1AIZPk4FBSYKN7b5uI6tHI8Glj/80TI=;
+        b=j3C6TsHguxy5f0E3VtIWwOguLdPZIgBg8t4CjhQ5USXn5KqLieGRowZEm7QXOLJ59I
+         znx1HI8DTuJNyNhmP2yMF39R9LdgSTvwRvemjHhG5sUX0hzUqgoAt+ug5VH+1kGEbjtB
+         vGkp7FzJZTLeOfwsa3KJsaYvF8dwUvLK9b1yj67ma85xraIWscXzS+Bwl9YtVovWrfbj
+         zkqzGpWdFqNs3mqsPHDWNaFsHJZta9g1FS2iydseCbpsj+cDOGIcRwC7MVSFGwdCMB0e
+         41EXO2S5Q5bzu0FbbTiChgyRGPvhq6/ZL8LvMND4CYAsV+7lG5sF0GjXAfDCdltpIM5G
+         EvKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Jbxb2khKyk+y1AIZPk4FBSYKN7b5uI6tHI8Glj/80TI=;
+        b=PYyFvMt6YukC4+2JSS6Atjcl4G8dCq2+gMbfWYz425PakP7mFWV50/vTnSwirSn6Pe
+         6hnlJBnztkljE2eAV/YHo7Y+TrJbwqLPKAlYCdzXg4D9P34GVH4YbMluxAUHF3RrFaRY
+         AYoA3hVTIvnmzItDL00ymmKSJhskgvPe1VwZDVe0QiaKvceRa/x332zHpRoca87lKCHu
+         k7GmuGKPR3DwKWjpTqfN+GSgnYg1TR5ib+Lc005BJEcI3o5eUa8Bp3kqyAOZfEzwkP6N
+         LMdKAnMqZnvobt6XRGWTVlj6I9wS/HW7KeXs3JADTAGSe11fdnrcIPtLJiz033mUIhXu
+         ymHQ==
+X-Gm-Message-State: AOAM533X2rsjkaiSRpJDGj8Dbz8LPqyfG6YaBE/mzh1iFrZ3PD4DgB0/
+        jTk9dWIcr0kJg2T80r4Ni93Bt4cYQyhYYA==
+X-Google-Smtp-Source: ABdhPJxY/3Z8cTJir3PLkDclrLS7OiU3jKitrjkL9BdBne7cOV2nK+cNaz1FVUP18aqclkLPkANHww==
+X-Received: by 2002:a17:90a:609:: with SMTP id j9mr14754476pjj.121.1605515425129;
+        Mon, 16 Nov 2020 00:30:25 -0800 (PST)
+Received: from localhost.localdomain (59-125-183-19.HINET-IP.hinet.net. [59.125.183.19])
+        by smtp.gmail.com with ESMTPSA id ce19sm19670079pjb.53.2020.11.16.00.30.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2020 00:30:24 -0800 (PST)
+From:   Terry Hsiao <a804335@gmail.com>
+X-Google-Original-From: Terry Hsiao <terry_hsiao@compal.corp-partner.google.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] ARM: dts: imx50-kobo-aura: Enable eKTF2132 touchscreen
-Message-ID: <20201116082745.GJ5849@dragon>
-References: <20201112233054.3837465-1-j.neuschaefer@gmx.net>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        dianders@chromium.org, terry_hsiao@compal.corp-partner.google.com,
+        danny_kuo@compal.corp-partner.google.com,
+        jasper_lee@compal.corp-partner.google.com,
+        van_chen@compal.corp-partner.google.com
+Subject: [PATCH] arm64: dts: qcom: sc7180-trogdor: add "pen-insert" label for trogdor
+Date:   Mon, 16 Nov 2020 16:30:14 +0800
+Message-Id: <20201116083014.547-1-terry_hsiao@compal.corp-partner.google.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201112233054.3837465-1-j.neuschaefer@gmx.net>
-User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 12:30:54AM +0100, Jonathan Neuschäfer wrote:
-> The Kobo Aura has an eKTF2132 touchscreen controller.
-> 
-> Although the vendor kernel toggles a reset pin (GPIO5-12) during the
-> startup sequence, the touchscreen works without it.
-> 
-> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+Add a label to the "pen-insert" node in sc7180-trogdor.dtsi
 
-Applied, thanks.
+Signed-off-by: Terry Hsiao <terry_hsiao@compal.corp-partner.google.com>
+---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 781e61ad75a61..9de95493ed902 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -201,7 +201,7 @@ gpio_keys: gpio-keys {
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pen_pdct_l>;
+ 
+-		pen-insert {
++		pen_insert: pen-insert {
+ 			label = "Pen Insert";
+ 
+ 			/* Insert = low, eject = high */
+-- 
+2.26.2
+
