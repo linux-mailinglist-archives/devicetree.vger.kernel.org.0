@@ -2,98 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A4372B52B6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 21:36:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D8A522B52CA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 21:40:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbgKPUfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 15:35:21 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56814 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733083AbgKPUfV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 15:35:21 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1264A208C3;
-        Mon, 16 Nov 2020 20:35:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605558920;
-        bh=jhUOvvAHDTaESBzHYQFhKVnmB4C5xBaHNH3HdupyLKA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=iFB+6AmGkcDLfuuxTF5O5X1FZ3Hghye7yUyyxbxyMJQ36utPvwRqHcnWt/yzWY3wI
-         j3DydNo4K1TmD2RF99sNYXhxc1jogU1OZcwKq2hcx+c1/fTR89uAhHkgiOvrGVGP9g
-         0ez0KUV7T2emAymGyXuDf8BLEUD90CmIoeqZOaCA=
-Date:   Mon, 16 Nov 2020 20:35:17 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH 0/7] dt-bindings:iio: Move to trivial-devices.yaml from
- txt files.
-Message-ID: <20201116203517.70e43273@archlinux>
-In-Reply-To: <20201103023501.GA693302@bogus>
-References: <20201031182922.743153-1-jic23@kernel.org>
-        <20201103023501.GA693302@bogus>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1727372AbgKPUkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 15:40:36 -0500
+Received: from alexa-out-sd-01.qualcomm.com ([199.106.114.38]:57955 "EHLO
+        alexa-out-sd-01.qualcomm.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730970AbgKPUkf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 15:40:35 -0500
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 16 Nov 2020 12:40:34 -0800
+X-QCInternal: smtphost
+Received: from gurus-linux.qualcomm.com ([10.46.162.81])
+  by ironmsg02-sd.qualcomm.com with ESMTP; 16 Nov 2020 12:40:33 -0800
+Received: by gurus-linux.qualcomm.com (Postfix, from userid 383780)
+        id F3596192D; Mon, 16 Nov 2020 12:40:33 -0800 (PST)
+From:   Guru Das Srinagesh <gurus@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Cc:     Subbaraman Narayanamurthy <subbaram@codeaurora.org>,
+        David Collins <collinsd@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Guru Das Srinagesh <gurus@codeaurora.org>
+Subject: [PATCH v6 0/3] Add support for VBUS detection
+Date:   Mon, 16 Nov 2020 12:40:29 -0800
+Message-Id: <cover.1605559069.git.gurus@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2 Nov 2020 20:35:01 -0600
-Rob Herring <robh@kernel.org> wrote:
+[REQUEST]
 
-> On Sat, Oct 31, 2020 at 06:29:15PM +0000, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > Rather than convert this group of bindings to yaml, let us just add
-> > them to trivial-devices.yaml.
-> > 
-> > It is more than possible that we may need to give some of these their own
-> > files at somepoint in the future (for example due to additional of
-> > channel provider bindings for the potentiometers) but for now there seems
-> > to be little advantage to keeping them separate.
-> > 
-> > Jonathan Cameron (7):
-> >   dt-bindings:iio:chemical:sensirion,sgp30: Move to
-> >     trivial-bindings.yaml
-> >   dt-bindings:iio:chemical:bosch,bme180: Move to trivial devices
-> >   dt-bindings:iio:potentiometer:maxim,ds1803 move to trivial devices.
-> >   dt-bindings:iio:potentiometer:maxim,max5481 move to trivial devices
-> >   dt-bindings:iio:light:renesas,isl29501: Move to trivial devices.
-> >   dt-bindings:iio:magnetometer:memsic,mmc35240: move to
-> >     trivial-devices.yaml
-> >   dt-bindings:iio:accel:domintech,dmard06: Move to trivial-devices.yaml  
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Series applied.
+Thanks Rob for reviewing the dt patches.
 
-thanks,
+Would it be possible for the maintainers and reviewers to review the code as
+well? 
 
-Jonathan
+[COVER LETTER]
 
-> 
-> > 
-> >  .../devicetree/bindings/iio/accel/dmard06.txt | 19 ------------
-> >  .../bindings/iio/chemical/bme680.txt          | 11 -------
-> >  .../bindings/iio/chemical/sensirion,sgp30.txt | 15 ----------
-> >  .../bindings/iio/light/renesas,isl29501.txt   | 13 --------
-> >  .../bindings/iio/magnetometer/mmc35240.txt    | 13 --------
-> >  .../bindings/iio/potentiometer/ds1803.txt     | 21 -------------
-> >  .../bindings/iio/potentiometer/max5481.txt    | 23 --------------
-> >  .../devicetree/bindings/trivial-devices.yaml  | 30 +++++++++++++++++++
-> >  8 files changed, 30 insertions(+), 115 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/accel/dmard06.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/bme680.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/sensirion,sgp30.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/light/renesas,isl29501.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/magnetometer/mmc35240.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/potentiometer/ds1803.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/iio/potentiometer/max5481.txt
-> > 
-> > -- 
-> > 2.28.0
-> >   
+Add support to enable VBUS detection in the pm8941 extcon driver.
+
+Changes from v5:
+- Gathered Rob H's Acked-by for the dt-bindings patch.
+
+Changes from v4:
+- Drop addition of new compatible string in both bindings and driver.
+
+Changes from v3:
+- Split bindings into direct conversion of txt file, and addition of VBUS
+  detection support.
+
+Changes from v2:
+- Fix YAML errors in dt binding document.
+
+Changes from v1:
+- Change bindings from txt to YAML.
+
+
+
+Anirudh Ghayal (1):
+  extcon: qcom-spmi: Add support for VBUS detection
+
+Guru Das Srinagesh (2):
+  bindings: pm8941-misc: Convert bindings to YAML
+  bindings: pm8941-misc: Add support for VBUS detection
+
+ .../bindings/extcon/qcom,pm8941-misc.txt           | 41 ---------
+ .../bindings/extcon/qcom,pm8941-misc.yaml          | 62 ++++++++++++++
+ drivers/extcon/extcon-qcom-spmi-misc.c             | 99 +++++++++++++++++-----
+ 3 files changed, 142 insertions(+), 60 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.txt
+ create mode 100644 Documentation/devicetree/bindings/extcon/qcom,pm8941-misc.yaml
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
