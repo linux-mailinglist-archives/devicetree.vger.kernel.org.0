@@ -2,73 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28DC92B3D78
+	by mail.lfdr.de (Postfix) with ESMTP id B426B2B3D79
 	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 08:07:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727234AbgKPHGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 02:06:55 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41550 "EHLO mail.kernel.org"
+        id S1727277AbgKPHG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 02:06:59 -0500
+Received: from mail.kernel.org ([198.145.29.99]:41602 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727204AbgKPHGz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 02:06:55 -0500
-Received: from kernel.org (unknown [104.132.1.79])
+        id S1727204AbgKPHG7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 02:06:59 -0500
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 580CE2078E;
-        Mon, 16 Nov 2020 07:06:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 14D0A20DD4;
+        Mon, 16 Nov 2020 07:06:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605510414;
-        bh=4vaNtfCqdJUurqy3FJA41ufFG5N1KaaL1IPJ71eCFe8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=oZ038gYHLaHG/Z4BTqv8BDY/QNGIh5D7reKoYhwcU1/AkgOuQa7Qqb9S9wVykxpTm
-         JVin1f/wdjH5kjgQqxQk1BzJv8fC/wV36vWUKUGYdsh2csBAvbPOKiFHGwsDs57VP3
-         79gKITZqNHWcJuFWrHb/5/2pqNf7rRfWlacXtEww=
-Content-Type: text/plain; charset="utf-8"
+        s=default; t=1605510418;
+        bh=JuV7U3bOtW9yCKwQ2YRwqRwM0gsqsHl+TVzuGuy6faQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZS427FLfJu4VL7NCuBLxRB4JYpMVaPTM5MXvJ8Bz4krlcMSqIxgQPWI19y/Gt33h1
+         Emc4YDAGD22mG/nLbaCEEWJdWQFF2PoRuJD+FphF2RLxlgNsWAUgcMnxn6o9nyUJSN
+         x4XiMuXoVcJGABvJnmFJJJLuPTyyAEd3t9rhld7A=
+Date:   Mon, 16 Nov 2020 15:06:53 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Madalin Bucur <madalin.bucur@nxp.com>
+Cc:     "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Camelia Alexandra Groza (OSS)" <camelia.groza@oss.nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are coherent
+Message-ID: <20201116070652.GA5849@dragon>
+References: <1601901999-28280-1-git-send-email-madalin.bucur@oss.nxp.com>
+ <20201030073956.GH28755@dragon>
+ <AM6PR04MB3976F19056A613AC92118A2FECE80@AM6PR04MB3976.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <BL0PR04MB65142F688DB54141C46D1D92E7E60@BL0PR04MB6514.namprd04.prod.outlook.com>
-References: <20201107081420.60325-1-damien.lemoal@wdc.com> <20201107081420.60325-9-damien.lemoal@wdc.com> <160525270249.60232.12874105352298232293@swboyd.mtv.corp.google.com> <BL0PR04MB6514621FDC804DAD854AFA06E7E60@BL0PR04MB6514.namprd04.prod.outlook.com> <160525398691.60232.17463845218341195554@swboyd.mtv.corp.google.com> <BL0PR04MB65144DA979067F3760D26B01E7E60@BL0PR04MB6514.namprd04.prod.outlook.com> <160525508016.60232.12394737512819290718@swboyd.mtv.corp.google.com> <BL0PR04MB65142F688DB54141C46D1D92E7E60@BL0PR04MB6514.namprd04.prod.outlook.com>
-Subject: Re: [PATCH 08/32] riscv: Fix kernel time_init()
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Sean Anderson <seanga2@gmail.com>
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Date:   Sun, 15 Nov 2020 23:06:52 -0800
-Message-ID: <160551041285.60232.8430654706414782453@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM6PR04MB3976F19056A613AC92118A2FECE80@AM6PR04MB3976.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Damien Le Moal (2020-11-13 00:23:52)
-> On 2020/11/13 17:11, Stephen Boyd wrote:
-> >=20
-> > Also of_clk_init() is for the CLK_OF_DECLARE() users and if they can
-> > wait to platform bus population time then they could be converted to
-> > regular old platform device drivers. Maybe the problem is the clk driver
-> > you're using is only using CLK_OF_DECLARE() and not registering a
-> > platform driver?
->=20
-> Yep, correct, that is what I did. SO yes, indeed, if I where to use a reg=
-ular
-> platform_driver, then the of_clk_init() change would not be needed.
->=20
-> For the clock driver, I followed the pattern used by most other drivers w=
-ith the
-> majority I think using CLK_OF_DECLARE(). I did see some using the platform
-> driver declaration though.
->=20
-> I could spend time trying to figure out if I can get away without using
-> CLK_OF_DECLARE(), but since I think other riscv board clock driver are ar=
-riving,
-> we may as well keep that of_clk_init() change, no ?
->=20
+On Wed, Nov 11, 2020 at 03:33:19PM +0000, Madalin Bucur wrote:
+> > -----Original Message-----
+> > From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On
+> > Behalf Of Shawn Guo
+> > To: Madalin Bucur (OSS) <madalin.bucur@oss.nxp.com>
+> > Subject: Re: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are
+> > coherent
+> > 
+> > On Mon, Oct 05, 2020 at 03:46:39PM +0300, Madalin Bucur wrote:
+> > > Although the DPAA 1 FMan operations are coherent, the device tree
+> > > node for the FMan does not indicate that, resulting in a needless
+> > > loss of performance. Adding the missing dma-coherent property.
+> > >
+> > > Fixes: 1ffbecdd8321 ("arm64: dts: add DPAA FMan nodes")
+> > >
+> > > Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
+> > > Tested-by: Camelia Groza <camelia.groza@oss.nxp.com>
+> > 
+> > Applied, thanks.
+> 
+> Hi, Shawn,
+> 
+> will this fix for the device trees be picked up in the stable trees as well?
+> Do I need to do something about it?
 
-Sure keeping of_clk_init() in riscv architecture code is fine. It would
-be good to use a platform driver though and avoid the use of
-CLK_OF_DECLARE() so we don't burden ourselves with more code that
-registers clks early unnecessarily.
+When it's landed in Linus' tree, stable kernel will pick it up due to
+the Fixes: tag there.  So you do not need to do anything about it.
+
+> 
+> Thanks
+> Madalin
+> 
+> PS: will this make it into v5.10 or v5.11?
+
+I'm sending it to arm-soc folks as a material for v5.10-rc.  So if
+everything goes well, it will get into v5.10.
+
+Shawn
