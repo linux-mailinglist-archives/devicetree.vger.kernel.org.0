@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A3B2B4BEA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:59:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19FE32B4BF8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 18:04:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731834AbgKPQ7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 11:59:22 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44692 "EHLO
+        id S1731939AbgKPRAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 12:00:10 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:38958 "EHLO
         mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731187AbgKPQ7W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:59:22 -0500
-Received: by mail-ot1-f68.google.com with SMTP id f16so16629258otl.11;
-        Mon, 16 Nov 2020 08:59:21 -0800 (PST)
+        with ESMTP id S1730840AbgKPRAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 12:00:10 -0500
+Received: by mail-ot1-f68.google.com with SMTP id z16so16673838otq.6;
+        Mon, 16 Nov 2020 09:00:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gPm6sA9oRClgJ6QfZp27nZDmEP+LS+OgTAXUUaGYMo8=;
-        b=NQu+Kgkz4/ZpIJNtRP/rVQFO8P+Cxxz75tZu57kSZB2ypMrls+xrfct+OfU/eTzz7b
-         FfxLzgHWVMebyKXu4V0ODkPUamMGl1tJrT3g/jkTH8O2FJ3vF42VesP4rbmsiDNdPZ7c
-         ZYY7kp0h7WqtEzvItRmLxdlsksybpBOxroi/yOJczboyH28Nx6ro66trdJRhhlYfsXW+
-         G+u2nA78B7f06NtE1FS8W+Itniu3KsZg4gdjyq3iJ9mAinRex11T01fc3D2NolihN4QT
-         eiPd+db79F3ojN3755EYhe32LfSS5/NriCv/u/R/SoAja16biXX5KjSKG5o8Lvo/9el1
-         zyKw==
-X-Gm-Message-State: AOAM532r5D+M6COQ8zI9KW/tCMyqWoea+QRqcHbdghx/dphvsvkSVCN8
-        Nm7VgsYM4wwpUNTLSLIxKQ==
-X-Google-Smtp-Source: ABdhPJzHMBn693UwxypsTfTm45fxNBdSjJ65WWD0gGtLKkeCDqW0MqxiCMCZuQZCn4s/O1X/I1R23A==
-X-Received: by 2002:a9d:222f:: with SMTP id o44mr128581ota.321.1605545961368;
-        Mon, 16 Nov 2020 08:59:21 -0800 (PST)
+        bh=AcLujU/XcYert0gEatW7givS6gqW+TvLh+BjzpfDdRM=;
+        b=ekKRPLaQ1qE20FYBeS3I3RKmdBNTg+nMqkGXXPsGuVgCkC/QLzSQRXFd12ZLYLeCKR
+         Do0pVT32hZNZg38x5U86FdvR28vWB1hd2vn/BTJesAnX58BHPVnAXfRYhWztpzhqLmou
+         zxs+FzDcab+SPZpMa0amQn7H1XBnwprqwxvb3oEzWQrYxQKiSJPUarODJPI01ZoHQ88w
+         0giyRkunf3IUEIzcv0hi3ZaDjh24wmHjK7/KBH/thuNy47tSMchXVQ/WLjN2PXFHpPnO
+         mIUO4nce6E/UwiGycv2MMuT2maqnSqQHqXSOZIFqFj/16DOIvRYolR6w1Ejztjak9p79
+         RpXg==
+X-Gm-Message-State: AOAM531rklBQs0YzkBs2Kkq73RK9cZJAmdfoTSA6eUnFH2l5G4UF3ogp
+        6ZIse+76g2ZaNF51ajB0oQ==
+X-Google-Smtp-Source: ABdhPJz6z1MX9d1u+yLFna+XLipBPR70Synp9H9LXc/tFdSxPMb7qBzLEPdr3cLM7jo+cGj4l2YgQQ==
+X-Received: by 2002:a05:6830:12c2:: with SMTP id a2mr177047otq.162.1605546008236;
+        Mon, 16 Nov 2020 09:00:08 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x1sm829638oog.41.2020.11.16.08.59.20
+        by smtp.gmail.com with ESMTPSA id i27sm849915otf.25.2020.11.16.09.00.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 08:59:20 -0800 (PST)
-Received: (nullmailer pid 1804579 invoked by uid 1000);
-        Mon, 16 Nov 2020 16:59:19 -0000
-Date:   Mon, 16 Nov 2020 10:59:19 -0600
+        Mon, 16 Nov 2020 09:00:07 -0800 (PST)
+Received: (nullmailer pid 1805750 invoked by uid 1000);
+        Mon, 16 Nov 2020 17:00:06 -0000
+Date:   Mon, 16 Nov 2020 11:00:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     lgirdwood@gmail.com, linux-kernel@vger.kernel.org, lars@metafoo.de,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        broonie@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: adau1977: convert text binding to yaml
- format
-Message-ID: <20201116165919.GA1804532@bogus>
-References: <20201106102052.32582-1-alexandru.ardelean@analog.com>
- <20201110084754.46756-1-alexandru.ardelean@analog.com>
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     Neeraj Dantu <neeraj.dantu@octavosystems.com>,
+        kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: document Octavo
+ Systems oct prefix
+Message-ID: <20201116170006.GA1805656@bogus>
+References: <20201110102552.7270-1-a.fatoum@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201110084754.46756-1-alexandru.ardelean@analog.com>
+In-Reply-To: <20201110102552.7270-1-a.fatoum@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Nov 2020 10:47:54 +0200, Alexandru Ardelean wrote:
-> This change converts the old device-tree binding for ADAU1977 from text
-> format to the new yaml format.
+On Tue, 10 Nov 2020 11:25:49 +0100, Ahmad Fatoum wrote:
+> Octavo Systems is an American company specializing in design and
+> manufacturing of System-in-Package devices.
 > 
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> The prefix is already in use for the Octavo Systems OSD3358-SM-RED
+> device tree, but was so far undocumented. Fix this.
+> 
+> Cc: Neeraj Dantu <neeraj.dantu@octavosystems.com>
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 > ---
-> 
-> Changelog v1 -> v2:
-> * updated libraries to catch newer schema errors/warnings
-> * fixed examples, added i2c & spi nodes
-> 
->  .../bindings/sound/adi,adau1977.txt           | 61 ------------
->  .../bindings/sound/adi,adau1977.yaml          | 92 +++++++++++++++++++
->  2 files changed, 92 insertions(+), 61 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/adi,adau1977.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/adi,adau1977.yaml
+> v1 -> v2:
+>   - new patch, suggested by Rob
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
