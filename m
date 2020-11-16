@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB1582B3DAA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 08:30:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5521D2B3DC2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 08:33:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727626AbgKPHae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 02:30:34 -0500
-Received: from mail.kernel.org ([198.145.29.99]:44984 "EHLO mail.kernel.org"
+        id S1727812AbgKPHco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 02:32:44 -0500
+Received: from mail.kernel.org ([198.145.29.99]:45560 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727618AbgKPHae (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 02:30:34 -0500
+        id S1726247AbgKPHco (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 02:32:44 -0500
 Received: from localhost (unknown [122.171.203.152])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0366C2225B;
-        Mon, 16 Nov 2020 07:30:32 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id BA9DB2224F;
+        Mon, 16 Nov 2020 07:32:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605511834;
-        bh=kuJZwKY/IYkjSZSOji4K+N/t3ZrSh9loZk56Bj/FUeg=;
+        s=default; t=1605511963;
+        bh=gcJcac9u3R1uqW1nIhiT9WQ5y+7r3mBsbuZrSsKJHZw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CtJyznWc2TNkU+uX/kJ+1njGxc4ik9VYyaku3knQb+Sc7wCIFWEjccKXIaJ8rCGhF
-         MyoPYr+lnROdN21gDm8JkGE2XtDdDFTpzm0PH152GnkKSyOzvEIZ68H97dNBk2+R8R
-         odHAa4bRBO0PbcqAEx3C709yEQyg/iydFtw6o6ms=
-Date:   Mon, 16 Nov 2020 13:00:29 +0530
+        b=PH6ao4hl3AOvati2msPnVVS3sXLrDHg2Tf5bztiBC1cXOZyub316no/Pq8e5KEJCh
+         4dKmuwQPoH3WZIfGcxlQmYKRZsbbqzQ1xpXX/C7gpt9TYo+uK4JP6gjxESQXaQZakJ
+         hXdjdzD5k1Ter5p1zqwcc4Or0cSAfltZa0XD8tCw=
+Date:   Mon, 16 Nov 2020 13:02:39 +0530
 From:   Vinod Koul <vkoul@kernel.org>
 To:     Kishon Vijay Abraham I <kishon@ti.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -32,118 +32,60 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Milind Parab <mparab@cadence.com>,
         Yuti Suresh Amonkar <yamonkar@cadence.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/9] phy: ti: j721e-wiz: Don't configure wiz if its
- already configured
-Message-ID: <20201116073029.GI7499@vkoul-mobl>
+Subject: Re: [PATCH 5/9] phy: cadence: Sierra: Fix PHY power_on sequence
+Message-ID: <20201116073239.GJ7499@vkoul-mobl>
 References: <20201103035556.21260-1-kishon@ti.com>
- <20201103035556.21260-4-kishon@ti.com>
+ <20201103035556.21260-6-kishon@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201103035556.21260-4-kishon@ti.com>
+In-Reply-To: <20201103035556.21260-6-kishon@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03-11-20, 09:25, Kishon Vijay Abraham I wrote:
-> From: Faiz Abbas <faiz_abbas@ti.com>
-> 
-> Serdes lanes might be shared between multiple cores in some usecases
-> and its not possible to lock PLLs for both the lanes independently
-> by the two cores. This requires a bootloader to configure both the
-> lanes at early boot time.
-> 
-> To handle this case, skip all configuration if any of the lanes has
-> already been enabled.
-> 
-> While we are here, also fix the wiz_init() to be called before the
-> of_platform_device_create() call.
+> Commit 44d30d622821d ("phy: cadence: Add driver for Sierra PHY")
+> de-asserts PHY_RESET even before the configurations are loaded in
+> phy_init(). However PHY_RESET should be de-asserted only after
+> all the configurations has been initialized, instead of de-asserting
+> in probe. Fix it here.
 
-Let's do two patches for these two issues :-)
+Move this up in series..? Also I think we should apply this to fixes and
+perhaps cc stable..?
 
-Other than that, change lgtm, with exception of minor nit
-
-> Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
+> 
+> Fixes: 44d30d622821d ("phy: cadence: Add driver for Sierra PHY")
 > Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
 > ---
->  drivers/phy/ti/phy-j721e-wiz.c | 36 +++++++++++++++++++++-------------
->  1 file changed, 22 insertions(+), 14 deletions(-)
+>  drivers/phy/cadence/phy-cadence-sierra.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/phy/ti/phy-j721e-wiz.c b/drivers/phy/ti/phy-j721e-wiz.c
-> index d57d29382ce4..9786e8aec252 100644
-> --- a/drivers/phy/ti/phy-j721e-wiz.c
-> +++ b/drivers/phy/ti/phy-j721e-wiz.c
-> @@ -816,13 +816,14 @@ static int wiz_probe(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  	struct device_node *node = dev->of_node;
->  	struct platform_device *serdes_pdev;
-> +	bool already_configured = false;
->  	struct device_node *child_node;
->  	struct regmap *regmap;
->  	struct resource res;
->  	void __iomem *base;
->  	struct wiz *wiz;
->  	u32 num_lanes;
-> -	int ret;
-> +	int ret, val, i;
+> diff --git a/drivers/phy/cadence/phy-cadence-sierra.c b/drivers/phy/cadence/phy-cadence-sierra.c
+> index 4429f41a8f58..e08548417bce 100644
+> --- a/drivers/phy/cadence/phy-cadence-sierra.c
+> +++ b/drivers/phy/cadence/phy-cadence-sierra.c
+> @@ -319,6 +319,12 @@ static int cdns_sierra_phy_on(struct phy *gphy)
+>  	u32 val;
+>  	int ret;
 >  
->  	wiz = devm_kzalloc(dev, sizeof(*wiz), GFP_KERNEL);
->  	if (!wiz)
-> @@ -944,10 +945,26 @@ static int wiz_probe(struct platform_device *pdev)
->  		goto err_get_sync;
->  	}
->  
-> -	ret = wiz_clock_init(wiz, node);
-> -	if (ret < 0) {
-> -		dev_warn(dev, "Failed to initialize clocks\n");
-> -		goto err_get_sync;
-> +	for (i = 0; i < wiz->num_lanes; i++) {
-> +		regmap_field_read(wiz->p_enable[i], &val);
-> +		if (val & (P_ENABLE | P_ENABLE_FORCE)) {
-> +			already_configured = true;
-> +			break;
-> +		}
+> +	ret = reset_control_deassert(sp->phy_rst);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to take the PHY out of reset\n");
+> +		return ret;
 > +	}
 > +
-> +	if (!already_configured) {
-
-do you really need this variable and check, why not move the below into
-precceding block and do wiz_clock_init() and wiz_init() inside the
-if condition and drop the variable
-
-> +		ret = wiz_clock_init(wiz, node);
-> +		if (ret < 0) {
-> +			dev_warn(dev, "Failed to initialize clocks\n");
-> +			goto err_get_sync;
-> +		}
-> +
-> +		ret = wiz_init(wiz);
-> +		if (ret) {
-> +			dev_err(dev, "WIZ initialization failed\n");
-> +			goto err_pdev_create;
-> +		}
->  	}
+>  	/* Take the PHY lane group out of reset */
+>  	ret = reset_control_deassert(ins->lnk_rst);
+>  	if (ret) {
+> @@ -621,7 +627,6 @@ static int cdns_sierra_phy_probe(struct platform_device *pdev)
 >  
->  	serdes_pdev = of_platform_device_create(child_node, NULL, dev);
-> @@ -958,18 +975,9 @@ static int wiz_probe(struct platform_device *pdev)
->  	}
->  	wiz->serdes_pdev = serdes_pdev;
+>  	pm_runtime_enable(dev);
+>  	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> -	reset_control_deassert(sp->phy_rst);
+>  	return PTR_ERR_OR_ZERO(phy_provider);
 >  
-> -	ret = wiz_init(wiz);
-> -	if (ret) {
-> -		dev_err(dev, "WIZ initialization failed\n");
-> -		goto err_wiz_init;
-> -	}
-> -
->  	of_node_put(child_node);
->  	return 0;
->  
-> -err_wiz_init:
-> -	of_platform_device_destroy(&serdes_pdev->dev, NULL);
-> -
->  err_pdev_create:
->  	wiz_clock_cleanup(wiz, node);
->  
+>  put_child:
 > -- 
 > 2.17.1
 
