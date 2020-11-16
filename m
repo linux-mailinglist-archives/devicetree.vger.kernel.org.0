@@ -2,117 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 499F02B4B19
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:30:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68FC02B4B34
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:33:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732111AbgKPQ2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 11:28:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34990 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730795AbgKPQ2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:28:42 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D46C0613CF;
-        Mon, 16 Nov 2020 08:28:40 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id d142so24300305wmd.4;
-        Mon, 16 Nov 2020 08:28:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=kc1ukQL6kODEhYMjeZ7pxJqnx32Rr60HwhEN3ntpjVc=;
-        b=UxBYdxDXJqyuI9q1ZSGmjgAUJ4mL+wy4j4uuuWqfc4yEwtZ10juLennZBZTj7M1uyz
-         J1aJoJjcw6tMmTizfzahUIp1EE9twSatetgO3KoKmr9MZFX6GkMe9KPCfN54Rl/gIQqZ
-         bbcNnh6jJP4xtjTWw6CuN/Ymf8NKE5J3v4jcqILCiXe7VjnapOP3SuVG2fx9JO2W3q4W
-         SGEW49mharcANcfNwrt4FegjKfklH64NT2ydo3iBfgWQB7lD4mWTc/f7qivs9xPHujpy
-         iioN+HWyAq86yCGdkEbDF2uZQYAijZ0t3oQaGCGfs9GolKBlIG53xyJy3oyszRR1q7wF
-         ODcg==
+        id S1729833AbgKPQce convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Nov 2020 11:32:34 -0500
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:38267 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730830AbgKPQce (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:32:34 -0500
+Received: by mail-wm1-f67.google.com with SMTP id m125so12899038wmm.3;
+        Mon, 16 Nov 2020 08:32:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=kc1ukQL6kODEhYMjeZ7pxJqnx32Rr60HwhEN3ntpjVc=;
-        b=hKnZUmZN98T+GThpd2JUWBw9zY/DPzNizuBbhyjQxGwxcMT8duj1BKvLz12EahDrUl
-         Ly3hMfuE5/kT+bYl//PNidlKiNKlUXlBh3bzgdVi0EmnDyBM34HjitJN3zaVY9OSuqnj
-         ZvZCWBj8r0SljK8lDUxn5fXWViWCz85lp/uF3+ZmafE9bhUuvqAhg60uod/l8N8lDGip
-         kPr+6fV5bmW3G4OOQ/Xc/EeSx8qVqHNzcRLWsLbXA/fDQCStyvhB3PEEQiR2x0dOvqVe
-         IlNCHhTnLL+5MzQ1U/WaCZNRdCWKFlXhsSErA3VTQ7tN236dGst+Ype15LflhrVf3i/D
-         EItQ==
-X-Gm-Message-State: AOAM530LL7O+2Zcl/n7WsPIddSJOzkrBwx2HbqKYbGDJSvPeBsbV8H7q
-        EP5VEm2WYKYYxJNlM2XUSy4=
-X-Google-Smtp-Source: ABdhPJxKuChqUtkDnjK9Sld3PAl+AhOvfZ1+a8Q+TWJTveN8BrHyvOHpKKlNCUQ5gyrEg8tY19Phpw==
-X-Received: by 2002:a1c:67d5:: with SMTP id b204mr16685204wmc.92.1605544119102;
-        Mon, 16 Nov 2020 08:28:39 -0800 (PST)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id s133sm20597171wmf.30.2020.11.16.08.28.37
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=L/Kiv/hvmGXAFXybNuDo0hZoh70H5Wyb3qtrSsFGdpc=;
+        b=K23SbrVQ7c2ppHJjMyUAMKkSrCCCtyKeDjs9ij5UJqa5fWH3cyrj+DJLObhVKJvIYT
+         Bqq83Qmpj0BQc9IcXfLMknmSC8q+ZHBUAidi4+ttYuT7JFASR4u5f+FVLMqz9mfmmdDo
+         LyKcMbPKbwI7aDZIPddlD9ToxeRtibE1p+s+8Hg9DHhh2/YRW9aFOS9uZwhrLlTspomG
+         oOxjk8tb/D627veayenfzP/VWpxxb307SWO7hvamQke1QSFAEJFwnRFeTeKkWjkE0/Lm
+         MwIGhxsuml5E0UVSVJSDx+O1m0mvtzzCaVLH2TbXrXrouwRydsasFkXCvnT7jJFR5acu
+         CWkQ==
+X-Gm-Message-State: AOAM533fvDSXqNHIy4XmWxt4vQQHqq7G/Lzcf/jqBVlObVpDMzTQIyaZ
+        DiqH1iDVUC1L0PKa0omOZ00=
+X-Google-Smtp-Source: ABdhPJyPwe7Nsm/oHNWd/mih6yAzX2BY06dUwzNl8Nh10T5DW8XrObYlgkr6cZMz+jhRSwom/m57/A==
+X-Received: by 2002:a05:600c:2949:: with SMTP id n9mr15978431wmd.29.1605544352436;
+        Mon, 16 Nov 2020 08:32:32 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id c4sm2924898wrd.30.2020.11.16.08.32.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 08:28:37 -0800 (PST)
-Date:   Mon, 16 Nov 2020 17:28:36 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        Sameer Pujar <spujar@nvidia.com>
-Subject: Re: [PATCH] ARM64: tegra: Disable the ACONNECT for Jetson TX2
-Message-ID: <20201116162836.GA2584498@ulmo>
-References: <20201116162026.5324-1-jonathanh@nvidia.com>
+        Mon, 16 Nov 2020 08:32:30 -0800 (PST)
+Date:   Mon, 16 Nov 2020 17:32:29 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
+Cc:     linux-samsung-soc@vger.kernel.org, kgene@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] ARM: exynos: extend cpuidle support to p4note
+ boards
+Message-ID: <20201116163229.GG25108@kozik-lap>
+References: <20201113212525.13455-1-martin.juecker@gmail.com>
+ <20201113212525.13455-6-martin.juecker@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6c2NcOVqGQ03X4Wi"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201116162026.5324-1-jonathanh@nvidia.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201113212525.13455-6-martin.juecker@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---6c2NcOVqGQ03X4Wi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Nov 16, 2020 at 04:20:26PM +0000, Jon Hunter wrote:
-> Commit ff4c371d2bc0 ("arm64: defconfig: Build ADMA and ACONNECT driver")
-> enable the Tegra ADMA and ACONNECT drivers and this is causing resume
-> from system suspend to fail on Jetson TX2. Resume is failing because the
-> ACONNECT driver is being resumed before the BPMP driver, and the ACONNECT
-> driver is attempting to power on a power-domain that is provided by the
-> BPMP. While a proper fix for the resume sequencing problem is identified,
-> disable the ACONNECT for Jetson TX2 temporarily to avoid breaking system
-> suspend.
->=20
-> Please note that ACONNECT driver is used by the Audio Processing Engine
-> (APE) on Tegra, but because there is no mainline support for APE on
-> Jetson TX2 currently, disabling the ACONNECT does not disable any useful
-> feature at the moment.
->=20
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+On Fri, Nov 13, 2020 at 10:25:26PM +0100, Martin Jücker wrote:
+> The p4note family supports cpuidle, so allow it to make use of this
+> feature.
+> 
+> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
 > ---
->  arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 12 ------------
->  1 file changed, 12 deletions(-)
+>  arch/arm/mach-exynos/exynos.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Applied, thanks.
+Thanks, applied.
 
-Thierry
+Best regards,
+Krzysztof
 
---6c2NcOVqGQ03X4Wi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+yqLEACgkQ3SOs138+
-s6Hpcw/+Iu/rWot+hOpP6WeujWh6gTdlJ+IGP2y3hjXg3r5lSOQXG3VuFiT0dgmg
-Mt7eQuJdHOKMe5r4+CD28sS6KXxd7UDcjZvfq0xf0wEz8jL0eSttbypeR/Z5Fh6E
-MG5YDIQwJZt1uQlEeErR1lwNyKl++IJpfccIiJPgl2jeSaOECQeECK8O3SdfZEAJ
-cLjxOADSGmFqTCw8JqbTXhaRotY7wTUgm/adXuXoIrfjXNuJSnSBnk3C3qxIbD4p
-eIymWbSCsfR5JZxarJkpbjZSRMguDt643xNEWKukSw+JbNRGt4XPym56RsG23+LE
-7+p/ZMMwbLf4H7M5YUaP4j+vo88z71s2HwiMIn2W4Bxl7I0oEymAY9IkUfBZ2DpB
-Wo9YbrKQhcwKsUuWfZyDTsG/hVWxc6lOTPqXq+Il6bhhHBaSSqHKyitqcSDKk/0t
-VAknYpAv+xXzPTks6zquGVLYpIdhMoDiA3QNOTgl1xYq24EripZwZkPxdKY+njA5
-6dcFvMjoZf3TeeC/JWw/iO7lT75mSdh2cRZn4juh5iwMsJMmO8K+Vhs3DVR1cijr
-5U+GK9bcYID7mJ6NlG3Q80/BOEzhgGo2wjfcmkp2PF8Oy0+AvBtYePa8lxP1VV7a
-ZADisDv3RniYRwPwwCtW2qrhTRnEJWUI7Mlf5bUplcPMgZkGROs=
-=gD68
------END PGP SIGNATURE-----
-
---6c2NcOVqGQ03X4Wi--
