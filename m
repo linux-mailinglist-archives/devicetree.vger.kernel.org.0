@@ -2,211 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 87DD02B4976
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:35:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B0DF2B49EE
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 16:52:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731253AbgKPPeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 10:34:05 -0500
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:43641 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731246AbgKPPeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:34:05 -0500
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201116153352euoutp0106ff13bdf5872be8ff29064d70ad696f~IBuFsw4023046530465euoutp01R;
-        Mon, 16 Nov 2020 15:33:52 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201116153352euoutp0106ff13bdf5872be8ff29064d70ad696f~IBuFsw4023046530465euoutp01R
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1605540832;
-        bh=m0k3+eSeLWCICP7BKzTsnQn/EWujqoJBtu4lSVOfN8Q=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=soOhkd5Y6XHFF0mnea07GZJ0Szmn6s/u3rT36/wz2qqd1rHNPcXiqU0hZXmHgk4Zh
-         52zYGxBo84p3QX+kdfog8T+FDo5v8rOuc0mkY3sLE2RKPUb6uVaP/15rHnUz5ryFWP
-         omrtg1WGJzxHZp0bjeiSSPa0If4/qUaT62liXqo8=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20201116153345eucas1p1b31f07006957cb0f86adb0c41f04ade4~IBt-nCXMB1965819658eucas1p1l;
-        Mon, 16 Nov 2020 15:33:45 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 15.56.44805.9DB92BF5; Mon, 16
-        Nov 2020 15:33:45 +0000 (GMT)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201116153345eucas1p24790148b7fd52a7ae1c055cc7b832bd7~IBt_-CmIs0103401034eucas1p2R;
-        Mon, 16 Nov 2020 15:33:45 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201116153345eusmtrp2a5daf8e25632a5659e74528c8ae531f3~IBt_4Lx-a0350903509eusmtrp2h;
-        Mon, 16 Nov 2020 15:33:45 +0000 (GMT)
-X-AuditID: cbfec7f4-b4fff7000000af05-af-5fb29bd9916f
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 0E.13.21957.8DB92BF5; Mon, 16
-        Nov 2020 15:33:44 +0000 (GMT)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201116153344eusmtip19d566479076bdfe45b280444e9471cc2~IBt_qam3Y0581905819eusmtip18;
-        Mon, 16 Nov 2020 15:33:44 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBolni?= =?utf-8?Q?erkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v6 3/5] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Date:   Mon, 16 Nov 2020 16:33:26 +0100
-In-Reply-To: <20201113123508.3920de4b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        (Jakub Kicinski's message of "Fri, 13 Nov 2020 12:35:08 -0800")
-Message-ID: <dleftjblfxl3jt.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+        id S1731545AbgKPPvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 10:51:46 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:39821 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730396AbgKPPvq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:51:46 -0500
+Received: by mail-oi1-f193.google.com with SMTP id f11so5565313oij.6;
+        Mon, 16 Nov 2020 07:51:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+6BhWVUPlp+sxbhC/biJ0Qbq43f3USshsqWNEHivfAE=;
+        b=lICjOeDFzxVHOPB6nVzDwf0Y6n++w7NO/5jOYsU+MJsOgaUlXhqnlunHHhkCC4fDEl
+         x1rhZOt1vtT+xnTcX3Jy6yKQvNhE8mM0bA1a0mkgCYjHvhRs5f7vUeG+dasQkZhMcMlS
+         8EcK+aBjUkJcMz1MVQceXkmD2y9HlJqRQyMmGD5aX2yJBQ4vWGMrNTGBLBkQaIcQCRyD
+         ojlK6c1L7qVHdLbY/kI3HWC3fg7Pr/f8FJfmZ1Wl64gy5y5BcHW8e+t1vPmytuQHTNdt
+         I5g373OgcL03ACdfZWUhWXLfy+/D8VFcwtzLtomjFwbAJp/4wZ8ouBrfjxyppX0WVACL
+         K7/Q==
+X-Gm-Message-State: AOAM531SylM2VL1/8kz2ghRHHbZO9GGT0yukspo65KcSnT4tApB5zVuJ
+        KHE6raK18hvS+9bFjklQZ1yXipVsPuCE0/32xWA=
+X-Google-Smtp-Source: ABdhPJx7AZgd52Eraq7o5B0azLdJssVRdqorylldk6A9FqX6PvhOXf6BprbvnW3q+S/XElzb1tREm2QZDfKxIar4ZlM=
+X-Received: by 2002:aca:cf4b:: with SMTP id f72mr43045oig.157.1605541905112;
+ Mon, 16 Nov 2020 07:51:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHKsWRmVeSWpSXmKPExsWy7djP87o3Z2+KN9jyTt/i/N1DzBYbZ6xn
-        tZhzvoXFYv6Rc6wWi97PYLW49vYOq0X/49fMFufPb2C3uLCtj9Vi0+NrrBaXd81hs5hxfh+T
-        xaGpexkt1h65y25xbIGYReveI+wOAh6Xr11k9tiy8iaTx85Zd9k9Nq3qZPPYvKTeY+eOz0we
-        fVtWMXp83iQXwBHFZZOSmpNZllqkb5fAlbF1vULBVvmK1b3fWRoYm6W7GDk5JARMJFom3mYB
-        sYUEVjBKrD0Y0MXIBWR/YZRouzabDcL5zCgx9f5uVpiOrve/GCESyxklJnydxArhPGeUeDnr
-        O5DDwcEmoCexdm0ESIOIgIpEy+aZLCA1zAIXWSTWd39mAakRFgiT+DmtGKSGRUBVYsf+ZrAz
-        OAWmMUrMPZAMYvMKmEucmfEIbLGogKXElhf32SHighInZz4Bq2cWyJWYef4N2EESAqc4JXp2
-        PGWEuNRF4t6FNVBXC0u8Or6FHcKWkfi/cz4TyA0SAvUSkyeZQfT2MEpsm/ODBaLGWuLOuV9s
-        ELajxOklu9gg6vkkbrwVhNjLJzFp23RmiDCvREebEES1isS6/j1QU6Qkel+tgLrGQ+Lj5p1s
-        8HD7vOQqywRGhVlI3pmF5J1ZQGOZBTQl1u/ShwhrSyxb+JoZwraVWLfuPcsCRtZVjOKppcW5
-        6anFRnmp5XrFibnFpXnpesn5uZsYgcnw9L/jX3YwLn/1Ue8QIxMH4yFGFaDmRxtWX2CUYsnL
-        z0tVEuF1MdkYL8SbklhZlVqUH19UmpNafIhRmoNFSZw3acuaeCGB9MSS1OzU1ILUIpgsEwen
-        VANT59evKToJ7Q+lPm5at/z4bDkFxkZdld0mgpaH1ESvfl9Z48mwgSnM8O8CiZDpB2bP2m1t
-        /KzoRmzI4VMO6noPTL5O9DEsstkYtViEe9e9zTPtX37coPi18VDpHK3rr3tmp7RGp+c94lx+
-        ZUpd48HXZt8qj9b+fSrT8mvlFl5l9sUzUx0bFx3cktzbV6poZvdPzatM1+QGw7f+7q8MgSoy
-        0ml/vu462TNZ39bz+pa1q2P4FMr6Q/t3dPX6ik6dwxXek114zda6rNaz9UD0nvWpGf2Zxkl3
-        Wmrenv+8TDL53Iu54Q5C6X1i8154TFZL/86VbtviwzPxYMHZnQ+bPd4/PPxe8PksExl3pzm1
-        /CuUWIozEg21mIuKEwG27oGeAQQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrGIsWRmVeSWpSXmKPExsVy+t/xu7o3Z2+KN2iUtzh/9xCzxcYZ61kt
-        5pxvYbGYf+Qcq8Wi9zNYLa69vcNq0f/4NbPF+fMb2C0ubOtjtdj0+BqrxeVdc9gsZpzfx2Rx
-        aOpeRou1R+6yWxxbIGbRuvcIu4OAx+VrF5k9tqy8yeSxc9Zddo9NqzrZPDYvqffYueMzk0ff
-        llWMHp83yQVwROnZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJal
-        FunbJehlbF2vULBVvmJ173eWBsZm6S5GTg4JAROJrve/GLsYuTiEBJYySnTMOc7axcgBlJCS
-        WDk3HaJGWOLPtS42iJqnjBL3X34Aq2ET0JNYuzYCpEZEQEWiZfNMFpAaZoErLBKrPrawgiSE
-        BUIk2ladYwGxhQSCJTbu28cOYrMIqErs2N8MFucUmMYoMfdAMojNK2AucWbGI7BeUQFLiS0v
-        7rNDxAUlTs58AlbPLJAt8XX1c+YJjAKzkKRmIUnNAjqPWUBTYv0ufYiwtsSyha+ZIWxbiXXr
-        3rMsYGRdxSiSWlqcm55bbKhXnJhbXJqXrpecn7uJERjJ24793LyDcd6rj3qHGJk4GA8xqgB1
-        Ptqw+gKjFEtefl6qkgivi8nGeCHelMTKqtSi/Pii0pzU4kOMpkCvTWSWEk3OB6aYvJJ4QzMD
-        U0MTM0sDU0szYyVx3q1z18QLCaQnlqRmp6YWpBbB9DFxcEo1MHne0Pg2Y3ufysUu4WT35D9C
-        Tifm5jos/dZedC6/nmvSkRsXmwukfKK5Y24IejMl5P97J9Gzoll2b9jqiVP8/uu3CqZd1J1h
-        7ZthPYlRZpeItjB3DPdWpusPYriNb/+36bwtHs7zqbZhjZt88j3jFrGNm8wi2PXSdsXMTRW9
-        /Wim/e7cf4u2HuCftF55VWHZyeuidarvtS8dd4t+5z7x7kfmuvIJuU0nTt5Y9j+GrfuLyOcP
-        ChOmfuSVOTd5ixL/55YQ+1WzYlJf56htDk1tZ3KewrFI1EOfqZT5TFx+XOROPXE7R7frDmZq
-        +74sCvq0okvBv+3sfUdh2bLNl14ufZ3r8vnh4R2h1mW+PxboKrEUZyQaajEXFScCAGDV5r55
-        AwAA
-X-CMS-MailID: 20201116153345eucas1p24790148b7fd52a7ae1c055cc7b832bd7
-X-Msg-Generator: CA
-X-RootMTR: 20201116153345eucas1p24790148b7fd52a7ae1c055cc7b832bd7
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201116153345eucas1p24790148b7fd52a7ae1c055cc7b832bd7
-References: <20201113123508.3920de4b@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-        <CGME20201116153345eucas1p24790148b7fd52a7ae1c055cc7b832bd7@eucas1p2.samsung.com>
+References: <20201104232356.4038506-1-saravanak@google.com> <20201104232356.4038506-9-saravanak@google.com>
+In-Reply-To: <20201104232356.4038506-9-saravanak@google.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Mon, 16 Nov 2020 16:51:34 +0100
+Message-ID: <CAJZ5v0iKAzkP1jDo202J117Mb=NipEMiLiV0-C8b4LPLDyUSmw@mail.gmail.com>
+Subject: Re: [PATCH v1 08/18] driver core: Add fwnode link support
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        "Cc: Android Kernel" <kernel-team@android.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-It was <2020-11-13 pi=C4=85 12:35>, when Jakub Kicinski wrote:
-> On Thu, 12 Nov 2020 12:51:04 +0100 =C5=81ukasz Stelmach wrote:
->> ASIX AX88796[1] is a versatile ethernet adapter chip, that can be
->> connected to a CPU with a 8/16-bit bus or with an SPI. This driver
->> supports SPI connection.
->>=20
->> The driver has been ported from the vendor kernel for ARTIK5[2]
->> boards. Several changes were made to adapt it to the current kernel
->> which include:
->>=20
->> + updated DT configuration,
->> + clock configuration moved to DT,
->> + new timer, ethtool and gpio APIs,
->> + dev_* instead of pr_* and custom printk() wrappers,
->> + removed awkward vendor power managemtn.
->> + introduced ethtool tunable to control SPI compression
->>=20
->> [1]
->> https://protect2.fireeye.com/v1/url?k=3D96d0e769-c94bde24-96d16c26-0cc47=
-aa8f5ba-09ef5c65a6139da8&q=3D1&e=3D472aea40-d885-45aa-bc04-66e70be69a4c&u=
-=3Dhttps%3A%2F%2Fwww.asix.com.tw%2Fproducts.php%3Fop%3DpItemdetail%26PItemI=
-D%3D104%3B65%3B86%26PLine%3D65
->> [2]
->> https://protect2.fireeye.com/v1/url?k=3D3834941b-67afad56-38351f54-0cc47=
-aa8f5ba-067355624cc12466&q=3D1&e=3D472aea40-d885-45aa-bc04-66e70be69a4c&u=
-=3Dhttps%3A%2F%2Fgit.tizen.org%2Fcgit%2Fprofile%2Fcommon%2Fplatform%2Fkerne=
-l%2Flinux-3.10-artik%2F
->>=20
->> The other ax88796 driver is for NE2000 compatible AX88796L chip. These
->> chips are not compatible. Hence, two separate drivers are required.
->>=20
->> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
+On Thu, Nov 5, 2020 at 12:24 AM Saravana Kannan <saravanak@google.com> wrote:
 >
-> Please make sure the new code builds cleanly with W=3D1 C=3D1
+> This patch adds support for creating supplier-consumer links between
+
+Generally speaking the "This patch" part is redundant.  It is
+sufficient to simply say "Add ...".
+
+> fwnode.
+
+fwnodes (plural)?
+
+> It is intentionally kept simple and with limited APIs as it is
+> meant to be used only by driver core and firmware code (Eg: device tree,
+> ACPI, etc).
+
+I'd say "It is intended for internal use in the driver core and
+generic firmware support code (eg. Device Tree, ACPI), so it is simple
+by design and the API provided by it is limited."
+
 >
-> ../drivers/net/ethernet/asix/ax88796c_ioctl.c:221:19: warning: initialize=
-d field overwritten [-Woverride-init]
->   221 |  .get_msglevel  =3D ax88796c_ethtool_getmsglevel,
->       |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/net/ethernet/asix/ax88796c_ioctl.c:221:19: note: (near initial=
-ization for =E2=80=98ax88796c_ethtool_ops.get_msglevel=E2=80=99)
-> ../drivers/net/ethernet/asix/ax88796c_ioctl.c:222:19: warning: initialize=
-d field overwritten [-Woverride-init]
->   222 |  .set_msglevel  =3D ax88796c_ethtool_setmsglevel,
->       |                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> ../drivers/net/ethernet/asix/ax88796c_ioctl.c:222:19: note: (near initial=
-ization for =E2=80=98ax88796c_ethtool_ops.set_msglevel=E2=80=99)
-> In file included from ../drivers/net/ethernet/asix/ax88796c_main.h:15,
->                  from ../drivers/net/ethernet/asix/ax88796c_ioctl.c:16:
-> ../drivers/net/ethernet/asix/ax88796c_spi.h:25:17: warning: =E2=80=98tx_c=
-md_buf=E2=80=99 defined but not used [-Wunused-const-variable=3D]
->    25 | static const u8 tx_cmd_buf[4] =3D {AX_SPICMD_WRITE_TXQ, 0xFF, 0xF=
-F, 0xFF};
->       |                 ^~~~~~~~~~
+> We can expand the APIs later if there is ever a need for
+> drivers/frameworks to start using them.
 
-I fixed the problems reported by W=3D1, but I am afraid I can't do
-anything about C=3D1. sparse is is reporting
+The above is totally redundant IMO.
 
-[...]
-./include/linux/atomic-fallback.h:266:16: error: Expected ; at end ofdeclar=
-ation
-./include/linux/atomic-fallback.h:266:16: error: got ret
-./include/linux/atomic-fallback.h:267:1: error: Expected ; at the end of ty=
-pe declaration
-./include/linux/atomic-fallback.h:267:1: error: too many errors
-Segmentation fault
+>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/base/core.c    | 95 ++++++++++++++++++++++++++++++++++++++++++
+>  drivers/of/dynamic.c   |  1 +
+>  include/linux/fwnode.h | 14 +++++++
+>  3 files changed, 110 insertions(+)
+>
+> diff --git a/drivers/base/core.c b/drivers/base/core.c
+> index 31a76159f118..1a1d9a55645c 100644
+> --- a/drivers/base/core.c
+> +++ b/drivers/base/core.c
+> @@ -50,6 +50,101 @@ static LIST_HEAD(wait_for_suppliers);
+>  static DEFINE_MUTEX(wfs_lock);
+>  static LIST_HEAD(deferred_sync);
+>  static unsigned int defer_sync_state_count = 1;
+> +static DEFINE_MUTEX(fwnode_link_lock);
+> +
+> +/**
+> + * fwnode_link_add - Create a link between two fwnode_handles.
+> + * @con: Consumer end of the link.
+> + * @sup: Supplier end of the link.
+> + *
+> + * Creates a fwnode link between two fwnode_handles. These fwnode links are
 
-in the headers and gets killed.
+Why don't you refer to the arguments here, that is "Create a link
+between fwnode handles @con and @sup ..."
 
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
+> + * used by the driver core to automatically generate device links. Attempts to
+> + * create duplicate links are simply ignored and there is no refcounting.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+And I'd generally write it this way:
 
------BEGIN PGP SIGNATURE-----
+"Create a link between fwnode handles @con and @sup representing a
+pair of devices the first of which uses certain resources provided by
+the second one, respectively.
 
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl+ym8YACgkQsK4enJil
-gBCPRQf7Bxu8ESSLzfLd1U4jXdzFD7HFLwqvUqDnK3tVI6nN0Xtd00jqLdRjpcei
-Qxr3dIH0moYdE7vgVdWof0p38D0aVE/tWZXT+l4IsifEq3cSbW66sEvBiq8S9ZsE
-Tsbru/aoOv1eV4BOinfcMdudpjkoXbJNbS55QwIimk9YOSQrNudl121WxdgfHCIt
-TRlSUfS2G7pbJJkGdz+UMkjfym6X2dGebvaV4WOrJ5WY/oheYBXG6trMHmiR9GGw
-jl56jGOjryUJQiyPFaWEjkJxTBS5qSz5LrgPWK/YM80bcQorzaIEEbtEtiQDC5Cw
-WzgNGCjjyiTPgSh+cp9Df4IGFWEVkQ==
-=2T1s
------END PGP SIGNATURE-----
---=-=-=--
+The driver core will use that link to create a device link between the
+two device objects corresponding to @con and @sup when they are
+created and it will automatically delete the link between @con and
+@sup after doing that.
+
+Attempts to create a duplicate link between the same pair of fwnode
+handles are ignored and there is no reference counting."
+
+> + *
+> + * These links are automatically deleted once they are converted to device
+> + * links or when the fwnode_handles (or their corresponding devices) are
+> + * deleted.
+> + */
+> +int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup)
+
+Why doesn't it return a pointer to the new link or NULL?
+
+That would be consistent with device_link_add().
+
+> +{
+> +       struct fwnode_link *link;
+> +       int ret = 0;
+> +
+> +       mutex_lock(&fwnode_link_lock);
+> +
+> +       /* Duplicate requests are intentionally not refcounted. */
+
+Is this comment really necessary?
+
+> +       list_for_each_entry(link, &sup->consumers, s_hook)
+> +               if (link->consumer == con)
+> +                       goto out;
+
+It is also necessary to look the other way around AFAICS, that is if
+there is a link between the two fwnode handles in the other direction
+already, the creation of a new one should fail.
+
+> +
+> +       link = kzalloc(sizeof(*link), GFP_KERNEL);
+> +       if (!link) {
+> +               ret = -ENOMEM;
+> +               goto out;
+> +       }
+> +
+> +       link->supplier = sup;
+> +       INIT_LIST_HEAD(&link->s_hook);
+> +       link->consumer = con;
+> +       INIT_LIST_HEAD(&link->c_hook);
+> +
+> +       list_add(&link->s_hook, &sup->consumers);
+> +       list_add(&link->c_hook, &con->suppliers);
+> +out:
+> +       mutex_unlock(&fwnode_link_lock);
+> +
+> +       return ret;
+> +}
+> +
+> +/**
+> + * fwnode_links_purge_suppliers - Delete all supplier links of fwnode_handle.
+> + * @fwnode: fwnode whose supplier links needs to be deleted
+
+s/needs/need/
+
+> + *
+> + * Deletes all supplier links connecting directly to a fwnode.
+
+I'd say "Delete all supplier links connecting directly to @fwnode."
+and analogously below.
+
+> + */
+> +static void fwnode_links_purge_suppliers(struct fwnode_handle *fwnode)
+> +{
+> +       struct fwnode_link *link, *tmp;
+> +
+> +       mutex_lock(&fwnode_link_lock);
+> +       list_for_each_entry_safe(link, tmp, &fwnode->suppliers, c_hook) {
+> +               list_del(&link->s_hook);
+> +               list_del(&link->c_hook);
+> +               kfree(link);
+> +       }
+> +       mutex_unlock(&fwnode_link_lock);
+> +}
+> +
+> +/**
+> + * fwnode_links_purge_consumers - Delete all consumer links of fwnode_handle.
+> + * @fwnode: fwnode whose consumer links needs to be deleted
+> + *
+> + * Deletes all consumer links connecting directly to a fwnode.
+> + */
+> +static void fwnode_links_purge_consumers(struct fwnode_handle *fwnode)
+> +{
+> +       struct fwnode_link *link, *tmp;
+> +
+> +       mutex_lock(&fwnode_link_lock);
+> +       list_for_each_entry_safe(link, tmp, &fwnode->consumers, s_hook) {
+> +               list_del(&link->s_hook);
+> +               list_del(&link->c_hook);
+> +               kfree(link);
+
+I'd avoid the code duplication, even though it doesn't appear to be
+significant ATM.
+
+> +       }
+> +       mutex_unlock(&fwnode_link_lock);
+> +}
+> +
+> +/**
+> + * fwnode_links_purge - Delete all links connected to a fwnode_handle.
+> + * @fwnode: fwnode whose links needs to be deleted
+> + *
+> + * Deletes all links connecting directly to a fwnode.
+> + */
+> +void fwnode_links_purge(struct fwnode_handle *fwnode)
+> +{
+> +       fwnode_links_purge_suppliers(fwnode);
+
+Dropping the lock here may turn out to be problematic at one point
+going forward.  IMO it is better to hold it throughout the entire
+operation.
+
+> +       fwnode_links_purge_consumers(fwnode);
+
+I'd get rid of the two functions above, add something like
+fwnode_link_del() and walk the lists directly here calling it for
+every link on the way.
+
+> +}
+>
+>  #ifdef CONFIG_SRCU
+>  static DEFINE_MUTEX(device_links_lock);
+> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> index fe64430b438a..9a824decf61f 100644
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+> @@ -356,6 +356,7 @@ void of_node_release(struct kobject *kobj)
+>
+>         property_list_free(node->properties);
+>         property_list_free(node->deadprops);
+> +       fwnode_links_purge(of_fwnode_handle(node));
+>
+>         kfree(node->full_name);
+>         kfree(node->data);
+> diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
+> index 593fb8e58f21..afde643f37a2 100644
+> --- a/include/linux/fwnode.h
+> +++ b/include/linux/fwnode.h
+> @@ -10,6 +10,7 @@
+>  #define _LINUX_FWNODE_H_
+>
+>  #include <linux/types.h>
+> +#include <linux/list.h>
+>
+>  struct fwnode_operations;
+>  struct device;
+> @@ -18,6 +19,15 @@ struct fwnode_handle {
+>         struct fwnode_handle *secondary;
+>         const struct fwnode_operations *ops;
+>         struct device *dev;
+> +       struct list_head suppliers;
+> +       struct list_head consumers;
+> +};
+> +
+> +struct fwnode_link {
+> +       struct fwnode_handle *supplier;
+> +       struct list_head s_hook;
+> +       struct fwnode_handle *consumer;
+> +       struct list_head c_hook;
+>  };
+>
+>  /**
+> @@ -173,8 +183,12 @@ static inline void fwnode_init(struct fwnode_handle *fwnode,
+>                                const struct fwnode_operations *ops)
+>  {
+>         fwnode->ops = ops;
+> +       INIT_LIST_HEAD(&fwnode->consumers);
+> +       INIT_LIST_HEAD(&fwnode->suppliers);
+>  }
+>
+>  extern u32 fw_devlink_get_flags(void);
+> +int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup);
+> +void fwnode_links_purge(struct fwnode_handle *fwnode);
+>
+>  #endif
+> --
+> 2.29.1.341.ge80a0c044ae-goog
+>
