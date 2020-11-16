@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B748A2B5089
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:09:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 702422B5097
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 20:14:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727976AbgKPTHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 14:07:54 -0500
-Received: from mail.kernel.org ([198.145.29.99]:54724 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725879AbgKPTHx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 14:07:53 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 394732225B;
-        Mon, 16 Nov 2020 19:07:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605553672;
-        bh=yosXMLmSKHZhkAgd5D8vJ5A8qZi+NPfl8uhqpTpOj6k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nqKf9OldNsSdey8/QJeb1luOcd4HwBPSIVYjTLj4rB/CEnWdloMS9AvJgcRqaIgM2
-         mgirUWUsENniK2QwP3AomrpBweLg3Y6wSN+dQ54U4OIrdm5kUuW0WVBaLQs4D8sLIU
-         13UQXjlpCrGXInaBO3eJFoqP6K57yNj+VU9/tw68=
-Date:   Mon, 16 Nov 2020 19:07:33 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org, vigneshr@ti.com, p.yadav@ti.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH v7 5/6] dt-bindings: spi: Convert cadence-quadspi.txt to
- cadence-quadspi.yaml
-Message-ID: <20201116190733.GF4739@sirena.org.uk>
-References: <20201116031003.19062-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201116031003.19062-6-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1726571AbgKPTN5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 14:13:57 -0500
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:44491 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725879AbgKPTN5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 14:13:57 -0500
+Received: by mail-ot1-f68.google.com with SMTP id f16so17051741otl.11;
+        Mon, 16 Nov 2020 11:13:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=K6I9Q7uYU+1V06QV1nRfkMu2gtpH5bALi2iSib07hAE=;
+        b=IbBVHkMM7Ze1vvvUW0xefCsL4VnRmdrt210hT3FY1a8LUotE1GPogegpsXxcJ12h1x
+         vlXfzdM3g+v12Dtfqr5EGAT84H69AUJzmmHXCP67OqPhNX2GVZNhDOi+/53SAA38lPjl
+         WvJCCiP+4Oe+xPhTqssGnuzC000vBDk+cdDqq7ihgshMUKPlaEztjXEujXefYOCS3BAm
+         itOHfQ1t0S8r6+esnVAzwQlVVQNr8HECazql9InEz3UOJE1xWqDOjsq0YS+xuyhTLece
+         cH0IJNFQtTLSpN2wgrF61IjFtvnBedVeMPI0M2QJCVlaa/2zgMqR4SjPsProikFhmkwI
+         q7oQ==
+X-Gm-Message-State: AOAM531E2WBdBfh8kGtd/iR8YPSCp1iLgZaRPe4MHx1Y6GDIGC6kPctj
+        r/65RPj4gQJIEeGx8jKmgQ==
+X-Google-Smtp-Source: ABdhPJylE0odHk1sUNwAg8pufVRl8nRqtkr00hbaJG1PTMd3S3PhR4MMd5bGJauQ+tZgDh2163zwHw==
+X-Received: by 2002:a05:6830:236d:: with SMTP id r13mr630308oth.34.1605554035585;
+        Mon, 16 Nov 2020 11:13:55 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 85sm5015804oie.30.2020.11.16.11.13.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2020 11:13:54 -0800 (PST)
+Received: (nullmailer pid 1977880 invoked by uid 1000);
+        Mon, 16 Nov 2020 19:13:54 -0000
+Date:   Mon, 16 Nov 2020 13:13:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     alexandru.tachici@analog.com
+Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, linux@roeck-us.net, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-binding: hwmon: Add documentation for ltc2992
+Message-ID: <20201116191354.GA1977819@bogus>
+References: <20201111162057.73055-1-alexandru.tachici@analog.com>
+ <20201111162057.73055-4-alexandru.tachici@analog.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eDB11BtaWSyaBkpc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201116031003.19062-6-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Cookie: Immanuel doesn't pun, he Kant.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201111162057.73055-4-alexandru.tachici@analog.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 11 Nov 2020 18:20:57 +0200, alexandru.tachici@analog.com wrote:
+> From: Alexandru Tachici <alexandru.tachici@analog.com>
+> 
+> Add documentation for ltc2992.
+> 
+> Signed-off-by: Alexandru Tachici <alexandru.tachici@analog.com>
+> ---
+>  .../bindings/hwmon/adi,ltc2992.yaml           | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/adi,ltc2992.yaml
+> 
 
---eDB11BtaWSyaBkpc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Nov 16, 2020 at 11:10:02AM +0800, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel=
-=2Ecom>
->=20
-> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
-> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
-
-As previously and repeatedly requested please make any conversions to
-YAML the *final* thing in serieses so that issues with the conversion do
-not hold up other development.
-
---eDB11BtaWSyaBkpc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+yzfUACgkQJNaLcl1U
-h9Db5Af7BSeCmDzgNuAKNa2DAq6jwsMGG9DCDDfsoV8mVxxj88/2ctalltiwpuki
-WiVDc6AuNbqSQhFOWzh5kI1zqNra9A9s1YP8Z69Uld1B/ZrqL5LDr9a9xgWBvsE7
-Co768+PNi5fp1x2hoiFF1MgAUOMsGmKkALVxborYTqB4f3/CC9SJYh94yxYd2dRD
-wdtvJQr4gmGKdwhuhjwKcl+m5dyQ9uI9zWZZFmwkCXRzaW27ndw83utGRPd4Z6ht
-ExGxovoAX/V+HX/sI4133h+F3emUKGJi0c3jT5GLZPRgFDXVSx/B04FBzfn2qlE+
-uleRMfluu5LB/PQJzQrNCFNzeZSYHQ==
-=Hmhj
------END PGP SIGNATURE-----
-
---eDB11BtaWSyaBkpc--
+Reviewed-by: Rob Herring <robh@kernel.org>
