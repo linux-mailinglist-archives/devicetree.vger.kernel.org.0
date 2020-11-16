@@ -2,161 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 06F0C2B4EF4
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 19:15:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 388E12B4F26
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 19:24:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730660AbgKPSOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 13:14:05 -0500
-Received: from foss.arm.com ([217.140.110.172]:44822 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730628AbgKPSOE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 13:14:04 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E1E7631B;
-        Mon, 16 Nov 2020 10:14:03 -0800 (PST)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A170C3F719;
-        Mon, 16 Nov 2020 10:14:02 -0800 (PST)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2] dt-bindings: dvfs: Add support for generic performance domains
-Date:   Mon, 16 Nov 2020 18:13:56 +0000
-Message-Id: <20201116181356.804590-1-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.25.1
+        id S1730547AbgKPSXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 13:23:36 -0500
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:41131 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730520AbgKPSXg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 13:23:36 -0500
+X-Originating-IP: 2.224.242.101
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 4D06F1C0004;
+        Mon, 16 Nov 2020 18:23:31 +0000 (UTC)
+Date:   Mon, 16 Nov 2020 19:23:34 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+Cc:     linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        sakari.ailus@iki.fi, laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v5 1/3] dt-bindings: media: atmel: csi2dc: add bindings
+ for microchip csi2dc
+Message-ID: <20201116182334.colrvkj7lztz52t4@uno.localdomain>
+References: <20201112133437.372475-1-eugen.hristev@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201112133437.372475-1-eugen.hristev@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The CLKSCREW attack [0] exposed security vulnerabilities in energy management
-implementations where untrusted software had direct access to clock and
-voltage hardware controls. In this attack, the malicious software was able to
-place the platform into unsafe overclocked or undervolted configurations. Such
-configurations then enabled the injection of predictable faults to reveal
-secrets.
+Hello Eugen,
 
-Many Arm-based systems used to or still use voltage regulator and clock
-frameworks in the kernel. These frameworks allow callers to independently
-manipulate frequency and voltage settings. Such implementations can render
-systems susceptible to this form of attack.
+On Thu, Nov 12, 2020 at 03:34:35PM +0200, Eugen Hristev wrote:
+> Add bindings documentation for Microchip CSI2 Demultiplexer controller.
+>
+> CSI2DC is a demultiplexer from Synopsys IDI interface specification to
+> parallel interface connection or direct memory access.
+>
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> ---
+> Changes in v5:
+> - modified bindings as per Rob Herring review
+>
+> Changes in v4:
+> - Removed property for inter-line-delay and for clock continuous/non-continuous
+> - Removed virtual channel by reg for second endpoint
+>
+> Changes in v3:
+> - Removed some text from description, as it was explained in the schema
+> - fixed other things as per Rob's review
+> - moved some text inside the schema, like the clock description
+>
+> Changes in v2:
+> - fixed warnings reported by dt_binding_check
+>
+>  .../bindings/media/microchip,csi2dc.yaml      | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml b/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+> new file mode 100644
+> index 000000000000..e79f0d6ba9db
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/microchip,csi2dc.yaml
+> @@ -0,0 +1,119 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/microchip,csi2dc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip CSI2 Demux Controller (CSI2DC)
+> +
+> +maintainers:
+> +  - Eugen Hristev <eugen.hristev@microchip.com>
+> +
+> +description:
+> +  CSI2DC - Camera Serial Interface 2 Demux Controller
+> +
+> +  CSI2DC is a hardware block that receives incoming data from an IDI interface
+> +  and filters packets based on their data type and virtual channel identifier,
+> +  then converts the byte stream into a cross clock domain to a pixel stream
+> +  to a parallel interface that can be read by a sensor controller.
+> +
+> +  CSI2DC provides two pipes, one video pipe and one data pipe. Video pipe
+> +  is connected to a sensor controller and the data pipe is accessible
+> +  as a DMA slave port to a DMA controller.
+> +
+> +  CSI2DC supports a single 'port' node as a source pad with Synopsys 32-bit
+> +  IDI interface. The connected endpoint must be a IDI interface compatible
+> +  device (like Synopsys CSI2HOST) , that can provide 32-bit IDI interface
+> +  connection as sink pad.
 
-Attacks such as CLKSCREW are now being mitigated by not having direct and
-independent control of clock and voltage in the kernel and moving that
-control to a trusted entity, such as the SCP firmware or secure world
-firmware/software which are to perform sanity checking on the requested
-performance levels, thereby preventing any attempted malicious programming.
+Comments on a description from a non-native speaker might be
+mis-leading, take the following as suggestions only :)
 
-With the advent of such an abstraction, there is a need to replace the
-generic clock and regulator bindings used by such devices with a generic
-performance domains bindings.
+the here mentioned port node is said to be a 'source' to which an IDI
+interface that provides data is connected ? Is this a s/sink/source
+mistake or did you mean the first port node has to be connected to a
+source (the IDI interface) ?
 
-[0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+Also, maybe it's me but 'pad' is a media-controller concept, which
+should not be mentioned in bindings (as well as 'source' and 'sink'
+but they have a more generic usage)
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- .../bindings/dvfs/performance-domain.yaml     | 76 +++++++++++++++++++
- 1 file changed, 76 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+The first port, to me, is simply an 'IDI input port'
 
-v1[1]->v2:
-	- Changed to Dual License
-	- Added select: true, enum for #performance-domain-cells and
-	  $ref for performance-domain
-	- Changed the example to use real existing compatibles instead
-	  of made-up ones
+> +  For media entity and endpoints please refer to the bindings defined in
+> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
 
-[1] https://lore.kernel.org/lkml/20201105173539.1426301-1-sudeep.holla@arm.com
+I would drop 'media-entity'. To be honest I would drop this phrase and
+mention ../video-interfaces.txt in the ports description. Up to you.
 
-diff --git a/Documentation/devicetree/bindings/dvfs/performance-domain.yaml b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-new file mode 100644
-index 000000000000..29fb589a5192
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-@@ -0,0 +1,76 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dvfs/performance-domain.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Generic performance domains
-+
-+maintainers:
-+  - Sudeep Holla <sudeep.holla@arm.com>
-+
-+description: |+
-+  This binding is intended for performance management of groups of devices or
-+  CPUs that run in the same performance domain. Performance domains must not
-+  be confused with power domains. A performance domain is defined by a set
-+  of devices that always have to run at the same performance level. For a given
-+  performance domain, there is a single point of control that affects all the
-+  devices in the domain, making it impossible to set the performance level of
-+  an individual device in the domain independently from other devices in
-+  that domain. For example, a set of CPUs that share a voltage domain, and
-+  have a common frequency control, is said to be in the same performance
-+  domain.
-+
-+  This device tree binding can be used to bind performance domain consumer
-+  devices with their performance domains provided by performance domain
-+  providers. A performance domain provider can be represented by any node in
-+  the device tree and can provide one or more performance domains. A consumer
-+  node can refer to the provider by a phandle and a set of phandle arguments
-+  (so called performance domain specifiers) of length specified by the
-+  \#performance-domain-cells property in the performance domain provider node.
-+
-+select: true
-+
-+properties:
-+  "#performance-domain-cells":
-+    description:
-+      Number of cells in a performance domain specifier. Typically 0 for nodes
-+      representing a single performance domain and 1 for nodes providing
-+      multiple performance domains (e.g. performance controllers), but can be
-+      any value as specified by device tree binding documentation of particular
-+      provider.
-+    enum: [ 0, 1 ]
-+
-+  performance-domains:
-+    $ref: '/schemas/types.yaml#/definitions/phandle-array'
-+    description:
-+      A phandle and performance domain specifier as defined by bindings of the
-+      performance controller/provider specified by phandle.
-+
-+required:
-+  - "#performance-domain-cells"
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    performance: performance-controller@12340000 {
-+        compatible = "qcom,cpufreq-hw";
-+        reg = <0x12340000 0x1000>;
-+        #performance-domain-cells = <1>;
-+    };
-+
-+    // The node above defines a performance controller that is a performance
-+    // domain provider and expects one cell as its phandle argument.
-+    cpus {
-+        #address-cells = <2>;
-+        #size-cells = <0>;
-+
-+        cpu@0 {
-+            device_type = "cpu";
-+            compatible = "arm,cortex-a57";
-+            reg = <0x0 0x0>;
-+            performance-domains = <&performance 1>;
-+        };
-+    };
-+
--- 
-2.25.1
+> +  For Synopsys IDI interface please refer to
+> +  Documentation/devicetree/bindings/media/snps,dw-csi-plat.txt
+> +
+> +  CSI2DC supports one 'port' node as sink pad with parallel interface. This is
+> +  called video pipe.
 
+I'm confused again, isn't the parallel interface an output ? Why is it
+said to be a 'sink pad' ?
+
+Isn't port one simply a 'video output port' ?
+
+Also the association between bindings' 'port' and their representation
+as media-controller constructs should in my opinion be avoided.
+Bindings are about describing hardware, and they could be used by
+non-Linux systems as well (at least, I've been told this multiple
+times :)
+
+> +  This port has an 'endpoint' can then be used as a source pad for another
+> +  controller (next in pipeline).
+> +  Please refer to the bindings defined in
+> +  Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +
+> +  CSI2DC also supports direct access to the data through AHB, via DMA channel,
+> +  called data pipe.
+
+Is my understanding correct of this 'direct access' is not represented
+in DTS ?
+
+> +  Because of this, the sink 'port' child node (second) is not mandatory.
+> +  If the sink 'port' child node is missing, only data pipe is available.
+
+And so the DMA channel and the output video port are mutually
+exclusive ? I feel like the DMA port should be described or at least
+represented and made exclusive with port1 presence ?
+
+> +
+> +properties:
+> +  compatible:
+> +    const: microchip,sama7g5-csi2dc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    description:
+> +      CSI2DC must have two clocks to function correctly. One clock is the
+> +      peripheral clock for the inside functionality of the hardware block.
+> +      This is named 'pclk'. The second clock must be the cross domain clock,
+> +      in which CSI2DC will perform clock crossing. This clock must be fed
+> +      by the next controller in pipeline, which usually is a sensor controller.
+> +      Normally this clock should be given by this sensor controller who
+> +      is also a clock source. This clock is named 'scck', sensor controller clock.
+> +    items:
+> +      - const: pclk
+> +      - const: scck
+> +
+> +  ports:
+> +    type: object
+> +    description:
+> +      List of ports
+> +
+> +    properties:
+> +      port@0:
+> +        type: object
+> +        description:
+> +          Input port node, single endpoint describing the input pad.
+> +      port@1:
+> +        type: object
+> +        description:
+> +          Output port node, single endpoint, describing the output pad.
+
+That's a parallel video output, correct ? Does this port support any
+configurable property of the ones defined by video-interfaces.txt ?
+
+Thanks
+   j
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - ports
+> +
+> +examples:
+> +  - |
+> +    csi2dc@e1404000 {
+> +        compatible = "microchip,sama7g5-csi2dc";
+> +        reg = <0xe1404000 0x500>;
+> +        clocks = <&pclk>, <&scck>;
+> +        clock-names = "pclk", "scck";
+> +
+> +        ports {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +               port@0 {
+> +                       reg = <0>; /* must be 0, first child port */
+> +                       csi2dc_in: endpoint { /* input from IDI interface */
+> +                               remote-endpoint = <&csi2host_out>;
+> +                       };
+> +               };
+> +
+> +               port@1 {
+> +                       reg = <1>; /* must be 1, second child port */
+> +                       csi2dc_out: endpoint {
+> +                               remote-endpoint = <&xisc_in>; /* output to sensor controller */
+> +                       };
+> +               };
+> +        };
+> +    };
+> +
+> +...
+> --
+> 2.25.1
+>
