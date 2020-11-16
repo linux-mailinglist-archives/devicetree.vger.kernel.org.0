@@ -2,82 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9287A2B3AA7
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 00:55:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FAA32B3B3E
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 02:59:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726970AbgKOXzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Nov 2020 18:55:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51406 "EHLO
+        id S1728416AbgKPB72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Nov 2020 20:59:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726369AbgKOXzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 18:55:21 -0500
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA4CC0613CF
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 15:55:20 -0800 (PST)
-Received: by mail-lj1-x242.google.com with SMTP id v20so18141310ljk.8
-        for <devicetree@vger.kernel.org>; Sun, 15 Nov 2020 15:55:20 -0800 (PST)
+        with ESMTP id S1728413AbgKPB72 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Nov 2020 20:59:28 -0500
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F081C0613CF;
+        Sun, 15 Nov 2020 17:59:26 -0800 (PST)
+Received: by mail-yb1-xb42.google.com with SMTP id d1so2080913ybr.10;
+        Sun, 15 Nov 2020 17:59:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
          :cc;
-        bh=Rg6F0h6ruc4uMsumIqafiPh49tcZmyvtzNR9XGYeSiI=;
-        b=vnDbwY0uz4LgrVArol569n8Y2hLV02BxvOF7h+XBwEa4gjWhxRQUwouS/TVWaB4N42
-         ajCA2F5NATcgFcaXG6DMxJjlHyBXFFK4FCCq34tfJsVxMkvMr/JoxaBvFiiHGl1jGv8p
-         Nn2rgAe51IeXHpnHR/kuHBCtmcaCKwrRzvrmnPQogwmk8TXDED2MTuM6lT9SJ/xaZjMk
-         v0rRjYgrxhE3yeitN4gKW1oURLlFuqAkJ6zwSlQzMdFY4vpVhicpsjzsOgPWv65wBkTE
-         ZtzHplIAqQ4C+rVYQ7JWA9go8sWNjXYG0G+Y8Ha7siSA5x3n3R55SQwrIpraL+RUyT8e
-         XqRw==
+        bh=pFGInHRGdqEGsvVqPYvaZz37g34COkN/zxnAelojjto=;
+        b=YURNrb6f4g6wlo4PHzIUUH18U9AJd61l1JDBz/eBGbnFTMpmj1uySvpw3oRIujLEDD
+         83pg1jF2T1azTcm3paAwWovOb0gyFMhJgZcyx80UdFYRLFv1O0MuDxBed8wG8QdRVjPQ
+         VJKoROCGZaFY3T1YHI+LNMHoLVpZNNzn1kWqzJFJIS25SVZGfAD1IG5lQ1msIuEon7xo
+         aeRTqjuSz5ceVwhbVguUVodCcI48mApBy9BqyLx5Ns3mKuL7NlWCu4Lx/WWUryaJv4Vq
+         HM2vByuoPUwu8Fi4kAoKHH9ayfQ0lBxsnKHmzCffCHG17n3+DxMJ/CnVHP5ZM/JHXh8i
+         PKSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
          :message-id:subject:to:cc;
-        bh=Rg6F0h6ruc4uMsumIqafiPh49tcZmyvtzNR9XGYeSiI=;
-        b=AgIKxcb2YeRtpXO30UxK9NMMG5LJK2I2Av1Tolg1oGCndHPi2tqROaIw9kap3UAIL1
-         2X8ugAZhhZlTGfisBEpKLHAH9LlYWpwrCdSMTVx9Ocx7zw/kFXJkuYoxv2Nj1IhiGT5U
-         utUirGkobKHnfEfGqjL1HwN8INaXbSVZ/ZdF3en4JuCOWTVDPCTcXpGS/oz+Ng7UQbP8
-         W6dnPWM31x6gI8yfvnCwrCmEhp8vfZM+oydzpVD6xcCNxcihGP1HrNPV2uv3GVJqRcGq
-         SLidrzwZ8QIvWgJn0KelC5tChY54cpRgNSWvvsyfelbWIHZgA+47OpHrk0zmUEwaN8Qv
-         kKog==
-X-Gm-Message-State: AOAM533RtSHyYOA9neHUploJ2AUy4vx0hpZ/Vn+QpWIu6/EIBU2JKBUT
-        pG75A9ZbKgkjjPgHl5cy1QPBgu8LqZXCQd4d7v8IGg==
-X-Google-Smtp-Source: ABdhPJwCwfUREpzNJZbbW+3Dz6HulYaHf3A/yDpyNzotgLfVccKa8/VQgcpHjcFVe78zFxVNE+pMNQKqJbZdE7Ro3d0=
-X-Received: by 2002:a2e:321a:: with SMTP id y26mr5702695ljy.293.1605484519331;
- Sun, 15 Nov 2020 15:55:19 -0800 (PST)
+        bh=pFGInHRGdqEGsvVqPYvaZz37g34COkN/zxnAelojjto=;
+        b=d5HdwgCJ8CVzO1Z9pL+zuCN41bQA9piNWBWSmcyZesCvd15GawofqoTCCsDLwHxTrt
+         3ULlTnNnCfjnBtr5jubb6B9c+TE1kcJrO9NsdUne/QOjjfcONHLK69cq4+IkDevTZPvf
+         FP8zb88hNh4ISd1RTZ2Vb9f3R96hVTsi674Y5qMMvVxgJH0QEWDonpEmStsENR16+COc
+         wv+jtV9mNWIjiW0TpAo0IcVs6b8i+kz2yObO7dtOy5nMrP1yyNfCW/2MCGCKqR4Env0k
+         1ZvHH3D41Ik5Jlnk9eaCDX8pcqJJnuct9T32dh+oJPh+8T8iMgmtJ+I5cW9OI2bsKvZR
+         kcPg==
+X-Gm-Message-State: AOAM531GyBiNQNEtyVVXwLDol/kwD1blpYpDP1To7duzpTRGLHgdGdwF
+        2WHTWNjnxTuXwJnxwXUTiNa/NTKLQXaLrHLb8o0=
+X-Google-Smtp-Source: ABdhPJyZSU5HnajrZ6tnN0hPSlqKGxF08HHOqbnwCAb+o89DKIjkC7JHykmTv2BdYGq1reIZPuY2Eu6TRMtQifMSeCQ=
+X-Received: by 2002:a25:3102:: with SMTP id x2mr384613ybx.495.1605491964636;
+ Sun, 15 Nov 2020 17:59:24 -0800 (PST)
 MIME-Version: 1.0
-References: <1604284946-16254-1-git-send-email-u0084500@gmail.com>
-In-Reply-To: <1604284946-16254-1-git-send-email-u0084500@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 16 Nov 2020 00:55:08 +0100
-Message-ID: <CACRpkdbGs-LEWie2uzZEHxrac-0tuHqRtdDP0D22KnXKQ3rqGQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] leds: rt4505: Add support for Richtek RT4505 flash
- LED controller
-To:     cy_huang <u0084500@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        cy_huang@richtek.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+Received: by 2002:a25:9785:0:0:0:0:0 with HTTP; Sun, 15 Nov 2020 17:59:24
+ -0800 (PST)
+In-Reply-To: <CAJKOXPePgqWQpJjOeJ9U0jcNG7et6heAid2HnrPeWTDKXLUgjA@mail.gmail.com>
+References: <CGME20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7>
+ <20201113050719epcms2p7ba0a549e386259a01753714da1b79ea3@epcms2p7> <CAJKOXPePgqWQpJjOeJ9U0jcNG7et6heAid2HnrPeWTDKXLUgjA@mail.gmail.com>
+From:   Bongsu Jeon <bs.jeon87@gmail.com>
+Date:   Mon, 16 Nov 2020 10:59:24 +0900
+Message-ID: <CAEx-X7cufBcO38RR2SQzvTOA=JRyG7XSR-KNMcui99WGrsvfZw@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/2] nfc: s3fwrn82: Add driver for Samsung
+ S3FWRN82 NFC Chip
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     bongsu.jeon@samsung.com, "kuba@kernel.org" <kuba@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 2, 2020 at 3:42 AM cy_huang <u0084500@gmail.com> wrote:
+On Fri, Nov 13, 2020, 4:26 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
->  drivers/leds/flash/Kconfig       |  17 ++
->  drivers/leds/flash/Makefile      |   2 +
->  drivers/leds/flash/leds-rt4505.c | 430 +++++++++++++++++++++++++++++++++++++++
+> On Fri, 13 Nov 2020 at 06:09, Bongsu Jeon <bongsu.jeon@samsung.com> wrote:
+> >
+> >
+> > Add driver for Samsung S3FWRN82 NFC controller.
+> > S3FWRN82 is using NCI protocol and I2C communication interface.
+> >
+> > Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
+> > ---
+> >  drivers/nfc/Kconfig             |   1 +
+> >  drivers/nfc/Makefile            |   1 +
+> >  drivers/nfc/s3fwrn82/Kconfig    |  15 ++
+> >  drivers/nfc/s3fwrn82/Makefile   |  10 ++
+> >  drivers/nfc/s3fwrn82/core.c     | 133 +++++++++++++++
+> >  drivers/nfc/s3fwrn82/i2c.c      | 288 ++++++++++++++++++++++++++++++++
+> >  drivers/nfc/s3fwrn82/s3fwrn82.h |  86 ++++++++++
+> >  7 files changed, 534 insertions(+)
+> >  create mode 100644 drivers/nfc/s3fwrn82/Kconfig
+> >  create mode 100644 drivers/nfc/s3fwrn82/Makefile
+> >  create mode 100644 drivers/nfc/s3fwrn82/core.c
+> >  create mode 100644 drivers/nfc/s3fwrn82/i2c.c
+> >  create mode 100644 drivers/nfc/s3fwrn82/s3fwrn82.h
+>
+> No, this is a copy of existing s3fwrn5.
+>
+> Please do not add drivers which are duplicating existing ones but
+> instead work on extending them.
+>
+> Best regards,
+> Krzysztof
+>
 
-Hm Pavel also asked me to create this directory and structure,
-so if this gets applied to the MFD tree there will be some
-serious clash.
-
-I can rebase on this patch set if Lee applies it first, they you
-need an immutable branch from Lee first to set up the build
-infrastructure in the LEDs tree, and then I can rebase on your
-tree once you have pulled in that.
-
-Yours,
-Linus Walleij
+I understand your explain.
+Actually I thought that generic name like samsung-nci would be better
+than samsung's nfc chip name.
