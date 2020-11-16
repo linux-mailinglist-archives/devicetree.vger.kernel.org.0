@@ -2,104 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0988D2B4A2D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:01:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D57A2B4A3B
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 17:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731554AbgKPP7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 10:59:21 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:43504 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730176AbgKPP7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 10:59:20 -0500
-Received: by mail-oi1-f193.google.com with SMTP id t143so19251623oif.10;
-        Mon, 16 Nov 2020 07:59:19 -0800 (PST)
+        id S1731645AbgKPQDU convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 16 Nov 2020 11:03:20 -0500
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:34873 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728858AbgKPQDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 11:03:19 -0500
+Received: by mail-wm1-f68.google.com with SMTP id w24so24083175wmi.0;
+        Mon, 16 Nov 2020 08:03:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SJJPyWX2YfUe3Oo/pSRmO63ep2/WK35OXd5bs3M2IcQ=;
-        b=c6/xKqnxyy4sBROghcDLpPwbkHY6cQlgjBRg6IynbSfGuQZzwDOgbyrJUQX0B72c6u
-         VkMrf+Hri8ffWTpeZ+KWDd2jw+dVdySiMqr39T/rHjJSoTDxmtkBcbMNlqa6q+Oe9hWR
-         AA4vU+6KVMfI6WBH+Y6blE9Hv6ZJlprPbMbUMJw8BpzBaeOBwFL1KTj+d5pziH34kfHa
-         9ZGZe0w8Gl6gN+UxG0lEyxVXUUFl1uvWTFcIngdjArpYbb0pbCH6baM7SNIgkIAarZof
-         enKFVt/wQLWGnLxB7iRJa9r55RAmFDfnk+ufmYBLeRBzkmS9tTu+DDB/4QAhqZ/AxAyM
-         extQ==
-X-Gm-Message-State: AOAM533Kvgom6kI7SgyQIDz24gFR3KxcpjQec2KoXMLk3ePFR3O2sCCo
-        Ng2edO2//HHEqBlWzTHrwQ==
-X-Google-Smtp-Source: ABdhPJzQVVlCe5JBQgZWAhVNGpgd/3mlIHTXO3Qh2MI/c+q0LPqR/euoc7LLgVnhVEWw5aDq2rcggQ==
-X-Received: by 2002:aca:b156:: with SMTP id a83mr78786oif.150.1605542359327;
-        Mon, 16 Nov 2020 07:59:19 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id w22sm209679oie.49.2020.11.16.07.59.18
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=cTPPtiGx5HABWSYjj2Jwh7qUN2s4bgdFOFffAOPRj60=;
+        b=KNT6yHRubXuHnl6ZT3BDbSFaNLiMKqyslzDvdEq/cc2/8uyBcv8J8FdrCYip98o3UU
+         0HoAS2xChWJAFUiadVD7GCSaqxwwduxDFnVh2wOujUKvJanEHWhH6678ni8fnjiwhJwv
+         3crdMohZdW9oYRzh2zjrVgnHkzy6wm9gMxCLFGUtARRNQW3nh35d1kmbGmiBYebn0BCL
+         tjw2t5epAMcbmh7dhWU78bKW13Lww953CjamB3wL7HEVNeQxwi/ejSjSU6LtDT3Tz65l
+         dhGnXC9BWyB3Wq+kWuUXphM2R/WKir+h6sbgt6oC+89b9yprpbnzKAugi/nVtnZ6GiQC
+         3dBw==
+X-Gm-Message-State: AOAM532BrWzZplrM/fIgh4zvFN0YfcV5kCkf+Ngpwjrj+BcapFQHfvYT
+        5wkG/AIDUfBdXUp6WGSnWS4=
+X-Google-Smtp-Source: ABdhPJyYNOREUfzH58jqjfzNh1gaerwk5W77qLOc2STCfqhe8DvnCZk5FlL0CNhK+5pWyIWgvS5zIQ==
+X-Received: by 2002:a1c:9901:: with SMTP id b1mr6818993wme.18.1605542597489;
+        Mon, 16 Nov 2020 08:03:17 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id n23sm20326920wmk.24.2020.11.16.08.03.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 07:59:18 -0800 (PST)
-Received: (nullmailer pid 1725008 invoked by uid 1000);
-        Mon, 16 Nov 2020 15:59:17 -0000
-Date:   Mon, 16 Nov 2020 09:59:17 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     broonie@kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org,
-        vigneshr@ti.com, p.yadav@ti.com, devicetree@vger.kernel.org,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH v7 5/6] dt-bindings: spi: Convert cadence-quadspi.txt to
- cadence-quadspi.yaml
-Message-ID: <20201116155917.GA1719083@bogus>
-References: <20201116031003.19062-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20201116031003.19062-6-vadivel.muruganx.ramuthevar@linux.intel.com>
+        Mon, 16 Nov 2020 08:03:16 -0800 (PST)
+Date:   Mon, 16 Nov 2020 17:03:14 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Alice Guo <alice.guo@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding
+ doc for soc unique ID
+Message-ID: <20201116160314.GA25108@kozik-lap>
+References: <20201113110409.13546-1-alice.guo@nxp.com>
+ <20201114164936.GA32552@kozik-lap>
+ <AM6PR04MB60530B6F577A2A05B173748EE2E30@AM6PR04MB6053.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201116031003.19062-6-vadivel.muruganx.ramuthevar@linux.intel.com>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <AM6PR04MB60530B6F577A2A05B173748EE2E30@AM6PR04MB6053.eurprd04.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 11:10:02AM +0800, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+On Mon, Nov 16, 2020 at 07:04:13AM +0000, Alice Guo wrote:
 > 
-> Convert the cadence-quadspi.txt documentation to cadence-quadspi.yaml
-> remove the cadence-quadspi.txt from Documentation/devicetree/bindings/spi/
+> > -----Original Message-----
+> > From: Krzysztof Kozlowski <krzk@kernel.org>
+> > Sent: 2020年11月15日 0:50
+> > To: Alice Guo <alice.guo@nxp.com>
+> > Cc: robh+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
+> > dl-linux-imx <linux-imx@nxp.com>; Peng Fan <peng.fan@nxp.com>;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org
+> > Subject: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding doc
+> > for soc unique ID
+> > 
+> > Caution: EXT Email
+> > 
+> > On Fri, Nov 13, 2020 at 07:04:06PM +0800, Alice Guo wrote:
+> > > Add DT Binding doc for the Unique ID of i.MX 8M series.
+> > >
+> > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> > > ---
+> > >  .../devicetree/bindings/arm/fsl.yaml          | 25
+> > +++++++++++++++++++
+> > >  1 file changed, 25 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > index e4db0f9ed664..f4faebbb57da 100644
+> > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > @@ -901,6 +901,31 @@ properties:
+> > >                - fsl,s32v234-evb           # S32V234-EVB2 Customer
+> > Evaluation Board
+> > >            - const: fsl,s32v234
+> > >
+> > > +  soc:
+> > > +    type: object
+> > > +    properties:
+> > > +      compatible:
+> > > +        oneOf:
+> > > +          - description: i.MX8M SoCs
+> > > +            items:
+> > > +              - enum:
+> > > +                  - fsl,imx8mm-soc
+> > > +                  - fsl,imx8mn-soc
+> > > +                  - fsl,imx8mp-soc
+> > > +                  - fsl,imx8mq-soc
+> > > +              - const: simple-bus
+> > > +
+> > > +          - description: Other SoCs
+> > > +            items:
+> > > +              - const: simple-bus
+> > > +
+> > > +      nvmem-cells:
+> > > +        maxItems: 1
+> > > +        description: Phandle to the SOC Unique ID provided by a nvmem
+> > > + node
+> > > +
+> > > +      nvmem-cells-names:
+> > > +        const: soc_unique_id
+> > > +
+> > >  additionalProperties: true
+> > 
+> > The "soc" node should be required for these compatibles. Otherwise you will
+> > have to stay with this backwards-compatible-DTB-device-initcall-glue for many
+> > years... I think you can achieve it with allOf.
+> > 
+> [Alice Guo]Hi,
+> I find that my description for compatible is ambiguous. There are two kinds of compatible of the "soc" node:
+> 1. For dtsi files used for SoCs other than imx8m series SoCs and old version dtsi files used for imx8m series SoCs,
+> compatible of the "soc" node is "simple-bus".
+> 2. For new version dtsi files used for imx8m series SoCs, compatible of the "soc" node is {"fsl,imx8mX-soc","simple-bus"}.
 > 
-> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> ---
->  .../devicetree/bindings/spi/cadence-quadspi.txt    |  67 ----------
->  .../devicetree/bindings/spi/cdns,qspi-nor.yaml     | 147 +++++++++++++++++++++
->  2 files changed, 147 insertions(+), 67 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/spi/cadence-quadspi.txt
->  create mode 100644 Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
+> "nvmem-cell" is an optional property.
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt b/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
-> deleted file mode 100644
-> index 945be7d5b236..000000000000
-> --- a/Documentation/devicetree/bindings/spi/cadence-quadspi.txt
-> +++ /dev/null
-> @@ -1,67 +0,0 @@
-> -* Cadence Quad SPI controller
-> -
+> I do not understand what you mean. You mean that limit the compatible of "soc" node must include " fsl,imx8mX-soc" in new version dts files. Is my understanding correct?
 
-WTF?
+All new DTS files should have soc node with "fsl,imx8mX-soc" and this
+should be required by dtschema. The nvmem-cells and related properties
+do not look like optional. From the hardware perspective - they are
+always present. From the driver point of view: they are required and
+driver will fail to work.
 
-> -Required properties:
-> -- compatible : should be one of the following:
-> -	Generic default - "cdns,qspi-nor".
-> -	For TI 66AK2G SoC - "ti,k2g-qspi", "cdns,qspi-nor".
-> -	For TI AM654 SoC  - "ti,am654-ospi", "cdns,qspi-nor".
+Best regards,
+Krzysztof
 
-
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - cdns,qspi-nor
-> +          - ti,k2g-qspi
-> +          - ti,am654-ospi
-
-
-> +examples:
-> +  - |
-> +    qspi: spi@ff705000 {
-> +      compatible = "cdns,qspi-nor";
-
-I give up.
