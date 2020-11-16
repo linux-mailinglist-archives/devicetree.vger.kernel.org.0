@@ -2,238 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AAF92B405E
-	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 11:02:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7152B4066
+	for <lists+devicetree@lfdr.de>; Mon, 16 Nov 2020 11:02:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728063AbgKPJ7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 04:59:19 -0500
-Received: from mx0a-00328301.pphosted.com ([148.163.145.46]:38978 "EHLO
-        mx0a-00328301.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726236AbgKPJ7S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 04:59:18 -0500
-X-Greylist: delayed 2023 seconds by postgrey-1.27 at vger.kernel.org; Mon, 16 Nov 2020 04:59:17 EST
-Received: from pps.filterd (m0156134.ppops.net [127.0.0.1])
-        by mx0a-00328301.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0AG9Ocsw007228;
-        Mon, 16 Nov 2020 01:25:29 -0800
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=invensense.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=pfpt1;
- bh=zZzYd+0pnelnvyf52A5knBWbi4wGINCM2e9FYi+njDA=;
- b=s87stTpnTosX6x+xqNgCK+kLKvPLPD+56cof33BHu/7MdedUeVT8HRniomPzKySAoo1Z
- anmxDnTAel5d4p2txwRQZSuWqqBTLWz/2Q2DmHrxve/k9eMzAHyY9t54U3nvwTK3YFA5
- YntRGHriGZCGL2q//qVOD00FrCDAe5gdlXR7es/2Vym+cA0q7SuQr8HYrRnbf/vaLw8I
- 0pRErXx/RVEcuuEAouZanB3fwQwo/FP873+XTOD5ZwhiCL4mWfNGKeXzgIsc+0Pp5Uoe
- QEwmuDbYEWompvat17DDAYTyjyzVv5w9OtbbgWNY4ltfK+rVf18qBMcU+nflN0DxI+ji wQ== 
-Received: from nam11-dm6-obe.outbound.protection.outlook.com (mail-dm6nam11lp2177.outbound.protection.outlook.com [104.47.57.177])
-        by mx0a-00328301.pphosted.com with ESMTP id 34tbksrmjt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 16 Nov 2020 01:25:28 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fN/DKvHyQUOyG7M7Crv5nuInbjq8BHDZgvzgqYAmmE36wm2/t9Y3VblEhKVZ8NXduHYvJXnZmCyASeV/tmA04zlK3xyPfhnkiCtQwvZ0HmhiXE5CQIYHmXOj+Y1J7/kb6cgBApvQ2shw4ybVqD0JAZ5ikNK3iDL2rTE1e/XDIDMnWex2WdcVTHeU+WFh4VeQXZpcApcL73+DFdkS9XxuloGQlmgyEI3lE2MC4VpkiwV76ppFRkPHsiy8eC/lyw4FeAO6ZKcIYxR5GH+m2YXqvI355LhfcQ28lIaXCcF2B2kMtXRwgEA4axwvh+kBChi262EwqEGsOU4/zppZFK0hgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zZzYd+0pnelnvyf52A5knBWbi4wGINCM2e9FYi+njDA=;
- b=FkYyTizu2/Ru8uRJ3QHoP0eDbxnWm6bDsGj8FLYEYL2aWhSKoe3NJtePWKkPjPzIsyJBY0BIpkf/xBT3awySahQbfJr+B0vJex3Z3Zkl6VP04XL+vMI3ZhsMnBpye7zytkWFlkzbe2F3Hgx2ZjD3Xt2fXu1oklIzA/JlWwZ+l3mfLmJsX45Ep1+5g/7C7z0R0TOcQ6OWJJ28n46o+4Zq5fxLlQQ/dpw1kz+ruHXu3QFLodjtYSJwo+D2rgg2gnP1Ha26zV9Cf/fxAQU7+VuhbbhuiKflD3YRotsa9fIDQIVNK3qdjIv5rCmSgvnXm2hk3Zfl38rjez2IU5FxMawA8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=invensense.com; dmarc=pass action=none
- header.from=invensense.com; dkim=pass header.d=invensense.com; arc=none
+        id S1727134AbgKPKBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 05:01:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59316 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727107AbgKPKBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 05:01:37 -0500
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B251C0613CF;
+        Mon, 16 Nov 2020 02:01:37 -0800 (PST)
+Received: by mail-oi1-x241.google.com with SMTP id c80so18197489oib.2;
+        Mon, 16 Nov 2020 02:01:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=invensense.onmicrosoft.com; s=selector2-invensense-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zZzYd+0pnelnvyf52A5knBWbi4wGINCM2e9FYi+njDA=;
- b=h5l0Fg11S39fUWW2kIkeYfXkRuEvNUQC8lI5/cTVJnfYloAjp2EvXvDmNfQSrYjAuHeOEOO2K0pyQjJq1cSodV7emodPEav8BYNzQpZyRRvGiGIm6CWdBn0dTfEdcHrp6OouJvG/t4IMJ5JnAQbpjmXUzUW/JvENTdBMAvJS/pQ=
-Received: from BL0PR12MB5011.namprd12.prod.outlook.com (2603:10b6:208:1c9::17)
- by MN2PR12MB3664.namprd12.prod.outlook.com (2603:10b6:208:159::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.21; Mon, 16 Nov
- 2020 09:25:26 +0000
-Received: from BL0PR12MB5011.namprd12.prod.outlook.com
- ([fe80::c4d3:1f4e:6198:ce6f]) by BL0PR12MB5011.namprd12.prod.outlook.com
- ([fe80::c4d3:1f4e:6198:ce6f%4]) with mapi id 15.20.3541.028; Mon, 16 Nov 2020
- 09:25:26 +0000
-From:   Jean-Baptiste Maneyrol <JManeyrol@invensense.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "mchehab+huawei@kernel.org" <mchehab+huawei@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 08/13] Documentation: ABI: add specific icm42600
- documentation
-Thread-Topic: [PATCH v4 08/13] Documentation: ABI: add specific icm42600
- documentation
-Thread-Index: AQHWSKsgRJzyGbHlXkO1VgJbvsWR6KnIor8AgALAXHA=
-Date:   Mon, 16 Nov 2020 09:25:26 +0000
-Message-ID: <BL0PR12MB5011F8499380AAF4D19DC88DC4E30@BL0PR12MB5011.namprd12.prod.outlook.com>
-References: <20200622153729.12702-1-jmaneyrol@invensense.com>
-        <20200622153729.12702-9-jmaneyrol@invensense.com>,<20201114152302.3b05c4ea@archlinux>
-In-Reply-To: <20201114152302.3b05c4ea@archlinux>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=invensense.com;
-x-originating-ip: [2a01:e0a:393:a700:99eb:6b53:697d:27b2]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d1027e10-4ab5-43d3-8d56-08d88a118d68
-x-ms-traffictypediagnostic: MN2PR12MB3664:
-x-microsoft-antispam-prvs: <MN2PR12MB36647EB54D81DF3887C629D1C4E30@MN2PR12MB3664.namprd12.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4303;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +JN9j5qarVg29tjbVBV5cmuHw2dl+tgmWWhSou62ei+9k/xYARSGfaqkt6DWmTx2P1WvmK4hpUGw3YoUhTZXW/Zfar/YK9ynLkl2qMF468jdK2OlSZeGzKN4ZWdwyBTSsKSkEyx0GPr/fWiO3YNIKvjerOo1c0eE7kVK/HJUMW6Nj770bS+WB6JdF0TqAACK/gKKrBRdKQSQi+jRtyZfpyLQBCwBTbMjpFve1egk759k8iRCMz0CxgfPdhHJVmKH07N1dZZs/tVQWo2zgEb9yOajlNL1lY21CLVDkn9BcGsP70tNqIxHjcDEWmBtAaXqrys678zx6kvayDXbb0/wQg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB5011.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(136003)(366004)(39850400004)(346002)(376002)(396003)(66946007)(66556008)(64756008)(91956017)(76116006)(52536014)(66476007)(86362001)(55016002)(8676002)(4326008)(316002)(66446008)(5660300002)(8936002)(6916009)(33656002)(478600001)(71200400001)(7696005)(186003)(54906003)(6506007)(53546011)(2906002)(9686003)(19627235002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: =?iso-8859-1?Q?KzK//OOHQ9e6uzyUPe/PcmhzIjNZRyxtZASn7LI9KP0RzDP89kMvbOZplV?=
- =?iso-8859-1?Q?3FPKlfNN7TNUdxQSVj2XDbbYxxLTB+ZLW4gV5zgC60qvR7dirnFTvwjgy1?=
- =?iso-8859-1?Q?/fpG21IBwnt2RY+5P02hABTSwZIpOW5cNB1+GUHpXGQyxMZcmyX+Lg7bwP?=
- =?iso-8859-1?Q?4FAUAFcDy0X2RB51+Y/s0IaGGTg1tqw83Vp/4iEi6dEDO3aDMMsLiBv3yz?=
- =?iso-8859-1?Q?4SoTdgSHgSmczSdIPa3KB3fJlJ8UbE/CQVkj176wY3NmfmYnUHToH2QDa+?=
- =?iso-8859-1?Q?i9fwcKIaRHoHRi+8+Xlg4t61jfB5HziH9Gt4/zMJufcMich1gcM34bqOEs?=
- =?iso-8859-1?Q?lW+pL7aRNAet8fwLz1L5mPg5zFupJh1WrqVLFjA9AC7e4sjImo0mLodSkH?=
- =?iso-8859-1?Q?71fk9VF7slMqHlAypWB/CJQOE/AyExduXpCNVY6vGnU4M4Uumes0KGsagf?=
- =?iso-8859-1?Q?YzAvx0qP9IDeyg8PbRqQqPEAhmpcbcSC9fWT/7z7dJj0E+cH6hWsxgXWe2?=
- =?iso-8859-1?Q?Q55Hc+/Rqu+NrzyoGyYyh7g3VG4CV+XIdl6nGVEjEvhY4IZ0qrQVA8hS3A?=
- =?iso-8859-1?Q?MuNmREgFIoJlkNlGRg08nGMyIeIAEjrgMsNaQKA7vknxMMKWuSIPwi1Leu?=
- =?iso-8859-1?Q?ONBoBJx7NwzjSUVytQRRMzolsTRWqBoOI0CM1sjVLQJqqPMg05u8ry1bDj?=
- =?iso-8859-1?Q?ArrfZWD/cQfbhJjYq8smHA/Ydymj7vp+F6aBYAqigSJgftkQnjbUdUgJ+w?=
- =?iso-8859-1?Q?ivXgPg+JiwJl7mfE3nHP3rezqCTI2qpB2mVAhcdqDapc9nZ9spoNsethrI?=
- =?iso-8859-1?Q?2Xohje33+BXwRCRFvvO1JTxX2JuibeMPLMQ50rjAoT2VHgXkMhR8v9rPMT?=
- =?iso-8859-1?Q?vnbF8w0L/1WW1eQUMrdWjbhyLitgWNCzNX3vcgZN7wfXj/QMjNDeXDApDL?=
- =?iso-8859-1?Q?lRRtGs8GJbWrD8P5QJRJ0M8al9yOvfO8J4Zm4EQcyc1RyXjCIm7Ceg=3D?=
- =?iso-8859-1?Q?=3D?=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=mF19ZwIo780m+wantWBq442Gr3sYDvkJbbMnqZkJcqk=;
+        b=Sbn5b/vWMuIEheE9SnWl+WiNU7+9gR8hzT7MVsE1rOGoF9NhdcHWCiJbPyOLqBhvnc
+         R5OsDZiwk0ehiZmQfaHm/A7yqhZRsPNIZ02HSGqbjc5TGP9arSxalYOcvyQ4Ndrd15Us
+         RNtqPVlAFD+c0+NAvUXluQkLSYvgho/BI00U7fcvp5HnZCAMXYr0GGvYuFjDEmkct1gT
+         lsgfIVJ0nmg5+pA4fCA4FyHCKxRjINPaDGgAnfoK+C9nHy7E0jJlLDxL9xwaOQzlbjd/
+         VGzZPF7lpR7SUaA9MN/jU0+amcBELWc8lquSLwVr+D8LiJB2eVRN1FmVnE5S8e3/kiYZ
+         8SOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=mF19ZwIo780m+wantWBq442Gr3sYDvkJbbMnqZkJcqk=;
+        b=WYHCFEZvUocSL2hVBfu8ILa9OhwzQv17Jz/lJIY39n2Ny0+jkgyiD2qqgkZ2qpa/Br
+         eQ3cw/++UCVN87GpoR+p52YxWDT4PcyyMgL82Q6GEkRONaGTFe7B0k+xYahS+xqkd4sg
+         KWWl0ZslHzE+XUNFo0YGxQbhP6Sm6Rx4vtO9/S573e1YWJ0KYFPNDpFr/3rfuublJ8k6
+         ADX07sphVIP+FQ7YMHLJz6yIOqpIoHdMTMZH0JV9aG776L0BwE1xqP3uARhyhCC/8xo1
+         kkytlVqEOlJKkyHoRKxxsflkJG2FbvGh2CodnjWD/lxJdlmwZ25oVsQXZljVMnmZcK30
+         qDzw==
+X-Gm-Message-State: AOAM53036vJNrMMWNri5bLcwZPvnMk0DOfPiNCkd3ww0eqvMwV4lyqG8
+        5f5dl/a8BZhGQxzENN6kbyrwfkYcVk38uNjipeJm2xU/oi0=
+X-Google-Smtp-Source: ABdhPJyfEXXi/wTtDJZuiEyBKNQI545S2UU5krCd+c/8mhVnTifSZ4aiQ1TsqAL+nTv6lZmY1GSf68+zI1sopsfuyRM=
+X-Received: by 2002:aca:4783:: with SMTP id u125mr9490525oia.23.1605520896546;
+ Mon, 16 Nov 2020 02:01:36 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: invensense.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB5011.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1027e10-4ab5-43d3-8d56-08d88a118d68
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Nov 2020 09:25:26.3943
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 462b3b3b-e42b-47ea-801a-f1581aac892d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /8puLAupI1/8pF2DCkjtYSgfGdOPpq5a7gjaepOMEfIwAo+C+yf9a1JHcBTkTbBp3uq/7X8R3EYbRVkXsK5mlystqqSXMW/MPdXdwM0jZHU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3664
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-16_03:2020-11-13,2020-11-16 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- impostorscore=0 suspectscore=0 phishscore=0 mlxlogscore=999 clxscore=1011
- priorityscore=1501 bulkscore=0 mlxscore=0 spamscore=0 lowpriorityscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011160055
+References: <1602034966-3524-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1602034966-3524-3-git-send-email-gene.chen.richtek@gmail.com>
+ <5a9b31c4-739c-06fc-2015-ed474993ad22@gmail.com> <CAE+NS35Y41mFKNhj+54BeeSYFu2J9BtvMWOxyMcf9a==39cbdA@mail.gmail.com>
+ <8925db23-5cc4-3c5f-932a-461fe6450dad@gmail.com> <CAE+NS379bgtRotqzioR+Ya3mE1kZrKfe9qV=W2p=hH7Omrn8Hw@mail.gmail.com>
+ <1bb76c54-14af-6c78-4623-77c6678b262e@gmail.com> <CAE+NS35z7_ZUdm6gRNw2z7Ozs+1A8_Vtj_9x-F65RLd4QqDFDA@mail.gmail.com>
+ <af17141f-23ae-063d-ade2-42dfdf611d81@gmail.com>
+In-Reply-To: <af17141f-23ae-063d-ade2-42dfdf611d81@gmail.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Mon, 16 Nov 2020 18:01:24 +0800
+Message-ID: <CAE+NS37-vQ4LLbCv-1+WsLe7qEQdVvBhhNKK4=oDj5VtWuaeoQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] leds: mt6360: Add LED driver for MT6360
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jonathan,=0A=
-=0A=
-no problem for me, you can move it wherever you see fit.=0A=
-=0A=
-Thank you.=0A=
-JB=0A=
-=0A=
-=0A=
-From: Jonathan Cameron <jic23@kernel.org>=0A=
-Sent: Saturday, November 14, 2020 16:23=0A=
-To: Jean-Baptiste Maneyrol <JManeyrol@invensense.com>=0A=
-Cc: robh+dt@kernel.org <robh+dt@kernel.org>; robh@kernel.org <robh@kernel.o=
-rg>; mchehab+huawei@kernel.org <mchehab+huawei@kernel.org>; davem@davemloft=
-.net <davem@davemloft.net>; gregkh@linuxfoundation.org <gregkh@linuxfoundat=
-ion.org>; linux-iio@vger.kernel.org <linux-iio@vger.kernel.org>; devicetree=
-@vger.kernel.org <devicetree@vger.kernel.org>; linux-kernel@vger.kernel.org=
- <linux-kernel@vger.kernel.org>=0A=
-Subject: Re: [PATCH v4 08/13] Documentation: ABI: add specific icm42600 doc=
-umentation =0A=
-=A0=0A=
-=A0CAUTION: This email originated from outside of the organization. Please =
-make sure the sender is who they say they are and do not click links or ope=
-n attachments unless you recognize the sender and know the content is safe.=
-=0A=
-=0A=
-On Mon, 22 Jun 2020 17:37:24 +0200=0A=
-Jean-Baptiste Maneyrol <jmaneyrol@invensense.com> wrote:=0A=
-=0A=
-> Hardware offset available as calibscale sysfs attributes are real=0A=
-> physical values exprimed in SI units.=0A=
-> =0A=
-> calibscale_available sysfs attributes represents the range of=0A=
-> acceptable values.=0A=
-> =0A=
-> Signed-off-by: Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>=0A=
-=0A=
-Hi Jean-Baptiste. =0A=
-=0A=
-This is causing us some issues as the ABI docs are now added to the=0A=
-generated html docs for the kernel.=A0 It's been a while, so I've kind=0A=
-of forgotten why we have this file.=A0 Was the issue that these are=0A=
-in SI units as opposed to most calibbias controls which are offsets=0A=
-applied to the raw analog reading hitting the ADC?=0A=
-=0A=
-Would you mind if we moved this into the main doc as a note for this=0A=
-particular device?=0A=
-=0A=
-i.e. something in sysfs-bus-iio saying=0A=
-=0A=
-icm42600: Hardware applied calibration offset is in SI units (rad/s or m/s^=
-2 as appropriate)=0A=
-=0A=
-?=0A=
-=0A=
-Thanks,=0A=
-=0A=
-Jonathan=0A=
-=A0=0A=
-> ---=0A=
->=A0 .../ABI/testing/sysfs-bus-iio-icm42600=A0=A0=A0=A0=A0=A0=A0 | 20 +++++=
-++++++++++++++=0A=
->=A0 1 file changed, 20 insertions(+)=0A=
->=A0 create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-icm42600=0A=
-> =0A=
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-icm42600 b/Documenta=
-tion/ABI/testing/sysfs-bus-iio-icm42600=0A=
-> new file mode 100644=0A=
-> index 000000000000..0bf1fd4f5bf1=0A=
-> --- /dev/null=0A=
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-icm42600=0A=
-> @@ -0,0 +1,20 @@=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_accel_x_calibbias=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_accel_y_calibbias=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_accel_z_calibbias=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_anglvel_x_calibbias=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_anglvel_y_calibbias=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_anglvel_z_calibbias=0A=
-> +KernelVersion:=A0 5.8=0A=
-> +Contact:=A0=A0=A0=A0=A0=A0=A0 linux-iio@vger.kernel.org=0A=
-> +Description:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 Hardware applied calibration offset=
- (assumed to fix production=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 inaccuracies). Values represent a r=
-eal physical offset expressed=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 in SI units (m/s^2 for acceleromete=
-r and rad/s for gyroscope).=0A=
-> +=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_accel_calibbias_available=0A=
-> +What:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 /sys/bus/iio/devices/=
-iio:deviceX/in_anglvel_calibbias_available=0A=
-> +KernelVersion:=A0 5.8=0A=
-> +Contact:=A0=A0=A0=A0=A0=A0=A0 linux-iio@vger.kernel.org=0A=
-> +Description:=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 Range of available values for hardw=
-are offset. Values in SI=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 units (m/s^2 for accelerometer and =
-rad/s for gyroscope).=0A=
+Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B410=E6=
+=9C=8831=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=886:34=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+>
+> On 10/30/20 9:51 AM, Gene Chen wrote:
+> > Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B410=
+=E6=9C=8828=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=881:28=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> >>
+> >> On 10/27/20 10:28 AM, Gene Chen wrote:
+> >>> Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B4=
+10=E6=9C=8821=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=885:47=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+> >>>>
+> >>>> On 10/20/20 8:44 AM, Gene Chen wrote:
+> >>>>> Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=
+=B410=E6=9C=889=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=885:51=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+> >>>>>>
+> >>>>>> Hi Gene,
+> >>>>>>
+> >>>>>> On 10/7/20 3:42 AM, Gene Chen wrote:
+> >>>>>>> From: Gene Chen <gene_chen@richtek.com>
+> >>>>>>>
+> >>>>>>> Add MT6360 LED driver include 2-channel Flash LED with torch/stro=
+be mode,
+> >>>>>>> 3-channel RGB LED support Register/Flash/Breath Mode, and 1-chann=
+el for
+> >>>>>>> moonlight LED.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> >>>>>>> ---
+> >>>>>>>      drivers/leds/Kconfig       |  12 +
+> >>>>>>>      drivers/leds/Makefile      |   1 +
+> >>>>>>>      drivers/leds/leds-mt6360.c | 783 +++++++++++++++++++++++++++=
+++++++++++++++++++
+> >>>>>>>      3 files changed, 796 insertions(+)
+> >>>>>>>      create mode 100644 drivers/leds/leds-mt6360.c
+> >>>>>>>
+> >>>>>>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> >>>>>>> index 1c181df..c7192dd 100644
+> >>>>>>> --- a/drivers/leds/Kconfig
+> >>>>>>> +++ b/drivers/leds/Kconfig
+> >>>>>>> @@ -271,6 +271,18 @@ config LEDS_MT6323
+> >>>>>>>            This option enables support for on-chip LED drivers fo=
+und on
+> >>>>>>>            Mediatek MT6323 PMIC.
+> >>>>>>>
+> >>>>>>> +config LEDS_MT6360
+> >>>>>>> +     tristate "LED Support for Mediatek MT6360 PMIC"
+> >>>>>>> +     depends on LEDS_CLASS_FLASH && OF
+> >>>>>>> +     depends on LEDS_CLASS_MULTICOLOR
+> >>>>>>
+> >>>>>> Since CONFIG_LED_CLASS_MULTICOLOR can be turned off you need to ha=
+ve
+> >>>>>> below instead:
+> >>>>>>
+> >>>>>> depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
+> >>
+> >> My typo here, should be one "!":
+> >>
+> >> depends on LEDS_CLASS_MULTICOLOR || !LEDS_CLASS_MULTICOLOR
+> >>
+> >> And you should also have
+> >>
+> >> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+> >>
+> >> But to make it work correctly you would have to add registration
+> >> stubs to include/linux/led-class-flash.h similarly to LED mc stubs
+> >> in include/linux/led-class-multicolor.h.
+> >>
+> >>>>>>
+> >>>>>> Unless you want to prevent enabling the driver without RGB LED,
+> >>>>>> but that does not seem to be reasonable at first glance.
+> >>>>>>
+> >>>>>
+> >>>>> May I change to "select LEDS_CLASS_MULTICOLOR"?
+> >>>>> I suppose RGB always use multicolor mode.
+> >>>>
+> >>>> You will also have moonlight LED that will not need multicolor
+> >>>> framework. Is it somehow troublesome to keep "depends on"?
+> >>>>
+> >>>
+> >>> If only use ML LED and FLED,  DTSI will only define ML LED and FLED.
+> >>> Therefore, the drivers probe will not register rgb multicolor device.
+> >>
+> >> Please test your use case again with my fixed "depends on".
+> >>
+> >> In case when there is only ML LED and FLED in the DT it should
+> >> register both devices if LEDS_CLASS_FLASH is turned on.
+> >> Multicolor framework has nothing to do in this case.
+> >>
+> >> But if you additionally had MC LED node, then it should
+> >> be registered only if LEDS_CLASS_MULTICOLOR is enabled.
+> >>
+> >> Similarly, when FLED node is present, but LEDS_CLASS_FLASH
+> >> is off, and LEDS_CLASS_MULTICOLOR is on, the driver should still
+> >> compile, but register only LED MC device (if its node is present).
+> >>
+> >
+> > I think this case only register LED device, not LED "MC" device.
+> > Because our FLASH is not a multicolor device.
+>
+> No, here I was describing following setup:
+>
+> - DT FLED node is present, CONFIG_LEDS_CLASS_FLASH is off
+> - DT MC node is present, CONFIG_LEDS_CLASS_MULTICOLOR is on
+>
+> ML LED presence in DT is irrelevant in this case.
+> It should be always registered if there is corresponding DT node
+> and LEDS_CLASS is on.
+>
+
+As a long time discussion, we conclude some rules about MT6360 LED driver.
+FLED is necessary, so Kconfig depends on LED_CLASS_FLASH
+ML LED is optional, which is registered as led class device.
+RGB LED can be either simple led class device or multicolor device,
+which is decided in DT node
+If Multicolor LED DT node is exist, it should be register multicolor
+device success.
+Maybe it is more specific to send a new patch?
+
+Sample DT as below
+LED "red" is simple led class device, LED "green&blue" is multicolor device=
+s.
+led@0 {
+        reg =3D <0>;
+        function =3D LED_FUNCTION_INDICATOR;
+        color =3D <LED_COLOR_ID_RED>;
+        led-max-microamp =3D <24000>;
+};
+led@6 {
+        reg =3D <6>;
+        function =3D LED_FUNCTION_INDICATOR;
+        color =3D <LED_COLOR_ID_MULTI>;
+
+        led@1 {
+                reg =3D <1>;
+                function =3D LED_FUNCTION_INDICATOR;
+                color =3D <LED_COLOR_ID_GREEN>;
+                led-max-microamp =3D <24000>;
+        };
+        led@2 {
+                reg =3D <2>;
+                function =3D LED_FUNCTION_INDICATOR;
+                color =3D <LED_COLOR_ID_BLUE>;
+                led-max-microamp =3D <24000>;
+        };
+};
+
+> >
+> >> Possible should be also the case when both LEDS_CLASS_FLASH
+> >> and LEDS_CLASS_MULTICOLOR are off. Then only LED class device
+> >> for ML LED will be registered (provided there is ML DT node).
+> >> But to make it possible you should have also "depends on LEDS_CLASS"
+> >> in the Kconfig entry.
+> >>
+> >
+> > According to your suggestion,
+> > depends on LED_CLASS && LEDS_CLASS_FLASH && OF
+>
+> s/LED_CLASS/LEDS_CLASS/
+>
+> And you have to remove LEDS_CLASS_FLASH from above line.
+>
+> > depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
+>
+> s/!!LEDS_CLASS_MULTICOLOR/!LEDS_CLASS_MULTICOLOR/
+>
+> > depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+> > depends on MFD_MT6360
+>
+> You will need V4L2_FLASH_LED_CLASS dependency as well, to avoid
+> build break, when it is set to 'm'.
+>
+> To recap, following block of dependencies is required:
+>
+> depends on LEDS_CLASS && OF
+> depends on LEDS_CLASS_MULTICOLOR || !LEDS_CLASS_MULTICOLOR
+> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+> depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
+> depends on MFD_MT6360
+>
+
+LEDS_MT6360 depends on LEDS_CLASS_FLASH, and LEDS_CLASS_FLASH depends
+on LEDS_CLASS
+Is "depends on LEDS_CLASS" still needed?
+
+> >
+> > and source code add constraint
+> >
+> > #if IS_ENABLED(CONFIG_LEDS_CLASS_MULTICOLOR)
+> >      ret =3D devm_led_classdev_multicolor_register_ext(parent, &led->rg=
+b,
+> > init_data);
+> > #endif
+> >
+> > #if IS_ENABLED(CONFIG_LEDS_CLASS_FLASH)
+> >      ret =3D devm_led_classdev_flash_register_ext(parent, &led->flash, =
+init_data);
+> > #endif
+>
+> No, the guards should be in headers. That's why I recommended adding
+> no ops for LED flash class registration functions in previous email.
+>
+> Please compare include/linux/led-class-multicolor.h and do similar
+> changes in include/linux/led-class-flash.h.
+>
+
+ACK, I will submit a fixed patch about leds-class-flash.h.
+
+By the way, if CONFIG_LED_CLASS_MULTICOLOR is not enabled and we don't
+use #if IS_ENABLED,
+according to led-class-multicolor.h return -EINVAL,
+we will register multicolor device fail and cause probe fail.
+
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > Or Should I seperate two drivers?
+> > one for RGB LED, one for ML LED and FLED
+>
+> This would incur unnecessary code duplication.
+>
+> --
+> Best regards,
+> Jacek Anaszewski
