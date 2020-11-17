@@ -2,126 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B80DB2B57F4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:36:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C37692B57EF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:34:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726598AbgKQDfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 22:35:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53930 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726503AbgKQDfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 22:35:07 -0500
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AD7C0613CF;
-        Mon, 16 Nov 2020 19:35:05 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id w24so1884593wmi.0;
-        Mon, 16 Nov 2020 19:35:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VDboQmgyjLAX52xymUAu+8xSc/wlXdquqvvYv+AI8ZI=;
-        b=R2UsKu/+ZXJ7ubFdvoPnecjI5wYX7RTMs7CVoRZxkq8ACexdUMcAEa7h3QkEa1KD9L
-         eB1kqFUpHWszjCHWFXoujW1VzMVcA3ohMiVktMylTkTFrCgOjwrtOLQmSi/LHMfQPq04
-         VtE3GhalkfhjDyFpk7hDIuYmxbE7yyt2IeJd1YtW0F9Pg3F/4KX+CN4bQb0B1Ql3JVFX
-         Z+u1XfCUbnzFQXzghC+TgVBW/VZll0I9oC+2tsyIMkuixtoFgJEs5ktYLJdFRjfHfKiB
-         QrZTp2e95YbuJwuhdop1qp6LOEgYleKsZDih0KU0M+0Ddar7lDZrEBnXY6gE4bMlz9s3
-         yEGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VDboQmgyjLAX52xymUAu+8xSc/wlXdquqvvYv+AI8ZI=;
-        b=VO3eHbR5pmyqvFBwkEI5GY/VmQRqt9DP4S/TJFhEEWZckr0haFP0+qxG1SfJow9odk
-         SceLXJhe1i9UvrJcZN4iUxpxzS1XT79cNEhZX0d0qe0cCpfuzsNngxJrLWcn/GSCQzTj
-         rlODzk+iSuW4J4dHAHsguTi+WCNuILi36HC8HfeLm27FyOa9jSBCERsjWCBshpBVHHT3
-         voCZXTBnbd6leDWB0fNb4Cel2OGoTkPG+NP8bpEGeAaUI6B3z/V1aiBHupoBE5/oe5Hx
-         6z80ElBfVgPzhE3RWcmlVdrIid6RckUsW+JEpQHY6fQZKeXIHhQMHRZw6mIaNQ+I+o7m
-         UxJw==
-X-Gm-Message-State: AOAM533pg8ZLZwZ938YCGRY0Bd0ZEzOX5jFyr37sl8KF9N05XyKeeQz8
-        LcMHGpyY9h03St6qL7pVDPNGYRieuuALrlpnrK8zg04tVEAYmw==
-X-Google-Smtp-Source: ABdhPJyGvmqtYih5lEdg6I72hpi+LwY6R9zYoolfKtGq6HyOBpf8ZZJN+OWgahTXePGQHBv31BGAEcOOarjT92f+lFE=
-X-Received: by 2002:a1c:b387:: with SMTP id c129mr1959876wmf.58.1605584104606;
- Mon, 16 Nov 2020 19:35:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20201113113451.52355-1-zhang.lyra@gmail.com> <20201113113451.52355-2-zhang.lyra@gmail.com>
- <20201116145444.GA1635499@bogus>
-In-Reply-To: <20201116145444.GA1635499@bogus>
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-Date:   Tue, 17 Nov 2020 11:34:28 +0800
-Message-ID: <CAAfSe-tgX=ajiUeZ+4Kp5HG95OUJz573Fj9pw2suLqQp89AeRg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: input: Convert sc27xx-vibra.txt to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Orson Zhai <orsonzhai@gmail.com>, linux-input@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Nemo Han <nemo.han@unisoc.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726397AbgKQDek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 22:34:40 -0500
+Received: from inva021.nxp.com ([92.121.34.21]:43226 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725730AbgKQDek (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 22:34:40 -0500
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8FC3A200E26;
+        Tue, 17 Nov 2020 04:34:37 +0100 (CET)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 60DB12011C9;
+        Tue, 17 Nov 2020 04:34:34 +0100 (CET)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 180A2402D2;
+        Tue, 17 Nov 2020 04:34:30 +0100 (CET)
+From:   andy.tang@nxp.com
+To:     shawnguo@kernel.org
+Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
+Subject: [PATCH 1/2] arm64: dts: freescale: update calibration table for TMU module
+Date:   Tue, 17 Nov 2020 11:43:04 +0800
+Message-Id: <20201117034305.42546-1-andy.tang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 at 22:54, Rob Herring <robh@kernel.org> wrote:
->
-> On Fri, 13 Nov 2020 19:34:50 +0800, Chunyan Zhang wrote:
-> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> >
-> > Convert the sprd sc27xx vibrator binding to DT schema using json-schema.
-> >
-> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
-> > ---
-> >  .../bindings/input/sprd,sc27xx-vibra.txt      | 23 ----------
-> >  .../bindings/input/sprd,sc27xx-vibrator.yaml  | 44 +++++++++++++++++++
-> >  2 files changed, 44 insertions(+), 23 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibra.txt
-> >  create mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
-> >
->
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml: 'additionalProperties' is a required property
-> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml: ignoring, error in schema:
-> warning: no schema found in file: ./Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
->
->
-> See https://patchwork.ozlabs.org/patch/1399724
->
-> The base for the patch is generally the last rc1. Any dependencies
+From: Yuantian Tang <andy.tang@nxp.com>
 
-When trying to reproduce the error, I found there's an error on rc1
-along with a lot of unrelated warnings, but rc2 is good.
+Update the calibration table to make the temperature more accurate.
+Three platforms have been updated: ls1012a, ls1043a and ls1046a.
 
-$ make -k dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
-  LINT    Documentation/devicetree/bindings
+Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+---
+ .../arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 63 ++++++++-------
+ .../arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 78 ++++++++++---------
+ .../arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 72 +++++++++--------
+ 3 files changed, 112 insertions(+), 101 deletions(-)
 
-[snip...]
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+index 5be686a0de54..b3683cda7f5b 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
+@@ -293,43 +293,46 @@
+ 			compatible = "fsl,qoriq-tmu";
+ 			reg = <0x0 0x1f00000 0x0 0x10000>;
+ 			interrupts = <0 33 0x4>;
+-			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x30062>;
+-			fsl,tmu-calibration = <0x00000000 0x00000026
+-					       0x00000001 0x0000002d
++			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x60062>;
++			fsl,tmu-calibration = <0x00000000 0x00000025
++					       0x00000001 0x0000002c
+ 					       0x00000002 0x00000032
+ 					       0x00000003 0x00000039
+ 					       0x00000004 0x0000003f
+ 					       0x00000005 0x00000046
+-					       0x00000006 0x0000004d
+-					       0x00000007 0x00000054
+-					       0x00000008 0x0000005a
+-					       0x00000009 0x00000061
+-					       0x0000000a 0x0000006a
+-					       0x0000000b 0x00000071
+-
+-					       0x00010000 0x00000025
+-					       0x00010001 0x0000002c
++					       0x00000006 0x0000004c
++					       0x00000007 0x00000053
++					       0x00000008 0x00000059
++					       0x00000009 0x0000005f
++					       0x0000000a 0x00000066
++					       0x0000000b 0x0000006c
++
++					       0x00010000 0x00000026
++					       0x00010001 0x0000002d
+ 					       0x00010002 0x00000035
+ 					       0x00010003 0x0000003d
+ 					       0x00010004 0x00000045
+-					       0x00010005 0x0000004e
+-					       0x00010006 0x00000057
+-					       0x00010007 0x00000061
+-					       0x00010008 0x0000006b
+-					       0x00010009 0x00000076
+-
+-					       0x00020000 0x00000029
+-					       0x00020001 0x00000033
+-					       0x00020002 0x0000003d
+-					       0x00020003 0x00000049
+-					       0x00020004 0x00000056
+-					       0x00020005 0x00000061
+-					       0x00020006 0x0000006d
+-
+-					       0x00030000 0x00000021
+-					       0x00030001 0x0000002a
+-					       0x00030002 0x0000003c
+-					       0x00030003 0x0000004e>;
++					       0x00010005 0x0000004d
++					       0x00010006 0x00000055
++					       0x00010007 0x0000005d
++					       0x00010008 0x00000065
++					       0x00010009 0x0000006d
++
++					       0x00020000 0x00000026
++					       0x00020001 0x00000030
++					       0x00020002 0x0000003a
++					       0x00020003 0x00000044
++					       0x00020004 0x0000004e
++					       0x00020005 0x00000059
++					       0x00020006 0x00000063
++
++					       0x00030000 0x00000014
++					       0x00030001 0x00000021
++					       0x00030002 0x0000002e
++					       0x00030003 0x0000003a
++					       0x00030004 0x00000047
++					       0x00030005 0x00000053
++					       0x00030006 0x00000060>;
+ 			big-endian;
+ 			#thermal-sensor-cells = <1>;
+ 		};
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+index d5d219311161..bbae4b353d3f 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
+@@ -403,43 +403,47 @@
+ 			compatible = "fsl,qoriq-tmu";
+ 			reg = <0x0 0x1f00000 0x0 0x10000>;
+ 			interrupts = <0 33 0x4>;
+-			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x30062>;
+-			fsl,tmu-calibration = <0x00000000 0x00000026
+-					       0x00000001 0x0000002d
+-					       0x00000002 0x00000032
+-					       0x00000003 0x00000039
+-					       0x00000004 0x0000003f
+-					       0x00000005 0x00000046
+-					       0x00000006 0x0000004d
+-					       0x00000007 0x00000054
+-					       0x00000008 0x0000005a
+-					       0x00000009 0x00000061
+-					       0x0000000a 0x0000006a
+-					       0x0000000b 0x00000071
+-
+-					       0x00010000 0x00000025
+-					       0x00010001 0x0000002c
+-					       0x00010002 0x00000035
+-					       0x00010003 0x0000003d
+-					       0x00010004 0x00000045
+-					       0x00010005 0x0000004e
+-					       0x00010006 0x00000057
+-					       0x00010007 0x00000061
+-					       0x00010008 0x0000006b
+-					       0x00010009 0x00000076
+-
+-					       0x00020000 0x00000029
+-					       0x00020001 0x00000033
+-					       0x00020002 0x0000003d
+-					       0x00020003 0x00000049
+-					       0x00020004 0x00000056
+-					       0x00020005 0x00000061
+-					       0x00020006 0x0000006d
+-
+-					       0x00030000 0x00000021
+-					       0x00030001 0x0000002a
+-					       0x00030002 0x0000003c
+-					       0x00030003 0x0000004e>;
++			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x70062>;
++			fsl,tmu-calibration = <0x00000000 0x00000023
++					       0x00000001 0x0000002a
++					       0x00000002 0x00000031
++					       0x00000003 0x00000037
++					       0x00000004 0x0000003e
++					       0x00000005 0x00000044
++					       0x00000006 0x0000004b
++					       0x00000007 0x00000051
++					       0x00000008 0x00000058
++					       0x00000009 0x0000005e
++					       0x0000000a 0x00000065
++					       0x0000000b 0x0000006b
++
++					       0x00010000 0x00000023
++					       0x00010001 0x0000002b
++					       0x00010002 0x00000033
++					       0x00010003 0x0000003b
++					       0x00010004 0x00000043
++					       0x00010005 0x0000004b
++					       0x00010006 0x00000054
++					       0x00010007 0x0000005c
++					       0x00010008 0x00000064
++					       0x00010009 0x0000006c
++
++					       0x00020000 0x00000021
++					       0x00020001 0x0000002c
++					       0x00020002 0x00000036
++					       0x00020003 0x00000040
++					       0x00020004 0x0000004b
++					       0x00020005 0x00000055
++					       0x00020006 0x0000005f
++
++					       0x00030000 0x00000013
++					       0x00030001 0x0000001d
++					       0x00030002 0x00000028
++					       0x00030003 0x00000032
++					       0x00030004 0x0000003d
++					       0x00030005 0x00000047
++					       0x00030006 0x00000052
++					       0x00030007 0x0000005c>;
+ 			#thermal-sensor-cells = <1>;
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+index 1fa39bacff4b..025e1f587662 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
+@@ -400,45 +400,49 @@
+ 			compatible = "fsl,qoriq-tmu";
+ 			reg = <0x0 0x1f00000 0x0 0x10000>;
+ 			interrupts = <0 33 0x4>;
+-			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x30062>;
++			fsl,tmu-range = <0xb0000 0x9002a 0x6004c 0x70062>;
+ 			fsl,tmu-calibration =
+ 				/* Calibration data group 1 */
+-				<0x00000000 0x00000026
+-				0x00000001 0x0000002d
+-				0x00000002 0x00000032
+-				0x00000003 0x00000039
+-				0x00000004 0x0000003f
+-				0x00000005 0x00000046
+-				0x00000006 0x0000004d
+-				0x00000007 0x00000054
+-				0x00000008 0x0000005a
+-				0x00000009 0x00000061
+-				0x0000000a 0x0000006a
+-				0x0000000b 0x00000071
++				<0x00000000 0x00000023
++				0x00000001 0x00000029
++				0x00000002 0x0000002f
++				0x00000003 0x00000036
++				0x00000004 0x0000003c
++				0x00000005 0x00000042
++				0x00000006 0x00000049
++				0x00000007 0x0000004f
++				0x00000008 0x00000055
++				0x00000009 0x0000005c
++				0x0000000a 0x00000062
++				0x0000000b 0x00000068
+ 				/* Calibration data group 2 */
+-				0x00010000 0x00000025
+-				0x00010001 0x0000002c
+-				0x00010002 0x00000035
+-				0x00010003 0x0000003d
+-				0x00010004 0x00000045
+-				0x00010005 0x0000004e
+-				0x00010006 0x00000057
+-				0x00010007 0x00000061
+-				0x00010008 0x0000006b
+-				0x00010009 0x00000076
++				0x00010000 0x00000022
++				0x00010001 0x0000002a
++				0x00010002 0x00000032
++				0x00010003 0x0000003a
++				0x00010004 0x00000042
++				0x00010005 0x0000004a
++				0x00010006 0x00000052
++				0x00010007 0x0000005a
++				0x00010008 0x00000062
++				0x00010009 0x0000006a
+ 				/* Calibration data group 3 */
+-				0x00020000 0x00000029
+-				0x00020001 0x00000033
+-				0x00020002 0x0000003d
+-				0x00020003 0x00000049
+-				0x00020004 0x00000056
+-				0x00020005 0x00000061
+-				0x00020006 0x0000006d
++				0x00020000 0x00000021
++				0x00020001 0x0000002b
++				0x00020002 0x00000035
++				0x00020003 0x0000003e
++				0x00020004 0x00000048
++				0x00020005 0x00000052
++				0x00020006 0x0000005c
+ 				/* Calibration data group 4 */
+-				0x00030000 0x00000021
+-				0x00030001 0x0000002a
+-				0x00030002 0x0000003c
+-				0x00030003 0x0000004e>;
++				0x00030000 0x00000011
++				0x00030001 0x0000001a
++				0x00030002 0x00000024
++				0x00030003 0x0000002e
++				0x00030004 0x00000038
++				0x00030005 0x00000042
++				0x00030006 0x0000004c
++				0x00030007 0x00000056>;
+ 			big-endian;
+ 			#thermal-sensor-cells = <1>;
+ 		};
+-- 
+2.17.1
 
-make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
-Documentation/devicetree/bindings/processed-schema-examples.json]
-Error 123
-  DTEX    Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.example.dts
-make[1]: Target '__build' not remade because of errors.
-make: *** [Makefile:1364: dt_binding_check] Error 2
-
-> should be noted.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
-
-Ok, thanks for pointing this out.
-
-Chunyan
