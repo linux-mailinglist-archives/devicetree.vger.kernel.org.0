@@ -2,110 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9F192B5872
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:46:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEEAE2B587F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:50:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726897AbgKQDpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 22:45:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38864 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726437AbgKQDpW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 22:45:22 -0500
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E12A6206C0;
-        Tue, 17 Nov 2020 03:45:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605584722;
-        bh=drQcFzeE83tYePhTQAMPI109uNcJDc7j2Dq1wNZibSE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=VjjlEIGgDNDhib3HCD/ecC6ccR7GzEYF9OdOftw9gAYWzFub+Viwl4q+IUWmwlF2Y
-         urB1uwAis2lyOonRS8IIOXWG7VEZDmC46HVF66jLRVxYfRJMqqivSXdPv+26HnOiVm
-         AKMffiOwCL+v1YuqZgKBoeN/92pD/1KELFik5mvQ=
-Received: by mail-lf1-f52.google.com with SMTP id s30so28221660lfc.4;
-        Mon, 16 Nov 2020 19:45:21 -0800 (PST)
-X-Gm-Message-State: AOAM530SyYEIoB+lYsTP9NNUUYLxyv5fyX3QTWdfJV25e/7yZwrYQFIF
-        f0gLJDqRzzJBvk5DXbKUm9xsUAgVJbvVcDfb+p8=
-X-Google-Smtp-Source: ABdhPJwu9KvFb4x2d38z4QPfSz9ugM2w2KFYs5tx1WnJv/d/x+L//RCuQWZUkx1an8X909f+rrZEhLo/Hs797o1lGpM=
-X-Received: by 2002:a19:c354:: with SMTP id t81mr860303lff.283.1605584720130;
- Mon, 16 Nov 2020 19:45:20 -0800 (PST)
+        id S1726855AbgKQDuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 22:50:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56230 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725730AbgKQDuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 22:50:03 -0500
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F0C9C0613CF;
+        Mon, 16 Nov 2020 19:50:03 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id w14so16210690pfd.7;
+        Mon, 16 Nov 2020 19:50:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=04W0q41mu5V5Xz079AesIuQUygiTimp7vRBCy6AxuE0=;
+        b=m2Ef7ZLf65LxoVznjcnwL6XS0WGOICYCGCcRrVAxW+e6LrfDQRo4X3ifOhOaP/31ph
+         HS62W2CnDiIKFGL8dmG6pPoviH6yAuNRZu5UOT2+6tuCJ3+MzQ7Vb3dRNopFT0Jii4KK
+         rq8qr9eSFoz88J/Zac0+yHMQRAgs5LLr7mvLpB/JaOjTeKzA0Si+GJUo6Bcbf1v8s2vT
+         9qlJ8CGnBWaQWIKZtrBeNhUUlRO2s8WjLkii5Y/WuzpzZF5nMLfHU68Mn5tqPhmOajyD
+         FOiKDSBfXQ4KAGUg5MAJ1yt9V8gmJKfGBMZi01O0jzjRIphGYBYIWaDjFPbXycTgF1by
+         CU2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=04W0q41mu5V5Xz079AesIuQUygiTimp7vRBCy6AxuE0=;
+        b=p71A/i8u7z7sSdVk9o7HhwcIE2OC2CHQ+RAoPdLBNxyKtEHM78AAggdDX8CkmEC3Jj
+         /BS/X1vsGT9RlZLCKHc+iuxdctDZOuKXVMc9DtQZM+FMcS7R1zLzrcLLXEQ+8Qjyl+Kq
+         j80Y8XptoFal51jeBLXOibQQggFtrcFBIB9hrz09e8tGblwZBPgHlEfz/aE1z0CBM7Eo
+         QndUHD7rcygGagrPxVa5/hZfL/waJ+IoVic+9/9u9RLmqo5XzJ2zlEY6s/R+aq2uJ4LO
+         wZLllYBBxZ7UFWtzd4kK41TUe4CG59776Xd16dV5JF3zdgn8FjmcGBJUq3WEgz3m0wiD
+         piDw==
+X-Gm-Message-State: AOAM533rYrtzRJfrZg0CGNek24ib4+O1WLJ5WCbOP67TmYu+35q4fs87
+        NFkhbcuxwe1YcKJQFb4cbyaBz4bDN2ESnQ==
+X-Google-Smtp-Source: ABdhPJxVnZs0zqTKzNmohHJcEU4BHD2rGdcTXWvF1t7Z+TNMmY52sYaGexkkVxr+lp1b5EfVN6oe+w==
+X-Received: by 2002:a17:90b:1289:: with SMTP id fw9mr2462763pjb.85.1605585003105;
+        Mon, 16 Nov 2020 19:50:03 -0800 (PST)
+Received: from ubt.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id u24sm19602329pfm.51.2020.11.16.19.49.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2020 19:50:02 -0800 (PST)
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Nemo Han <nemo.han@unisoc.com>
+Subject: [PATCH v2 0/3] Add support for sc2730 and sc2721
+Date:   Tue, 17 Nov 2020 11:49:46 +0800
+Message-Id: <20201117034949.47877-1-zhang.lyra@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201116075215.15303-2-wens@kernel.org> <20201116164159.GA1282970@bjorn-Precision-5520>
-In-Reply-To: <20201116164159.GA1282970@bjorn-Precision-5520>
-From:   Chen-Yu Tsai <wens@kernel.org>
-Date:   Tue, 17 Nov 2020 11:45:09 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66mMMQmQYay0EVREiQYmSvefmvbsFSCN=C3qG22P8U5HA@mail.gmail.com>
-Message-ID: <CAGb2v66mMMQmQYay0EVREiQYmSvefmvbsFSCN=C3qG22P8U5HA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] PCI: rockchip: make ep_gpio optional
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Chen-Yu Tsai <wens@kernel.org>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Johan Jonker <jbx6244@gmail.com>, linux-pci@vger.kernel.org,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 12:42 AM Bjorn Helgaas <helgaas@kernel.org> wrote:
->
-> Run "git log --oneline drivers/pci/controller/pcie-rockchip.c" (or
-> even just look at the Fixes: commits you mention) and follow the
-> convention, e.g.,
->
->   PCI: rockchip: Make 'ep-gpios' DT property optional
->
-> Also, you used 'ep_gpio' (singular, with an underline) in the subject
-> but 'ep-gpios' (plural, with hyphen) in the commit log.  The error
-> message and Documentation/devicetree/bindings/pci/rockchip-pcie-host.txt
-> both say 'ep-gpios' (plural, with hyphen).
+This patchset add new compatible strings and match data to support sc2730 and sc2721,
+also convert the bindings to yaml schema.
 
-'ep_gpio' refers to the variable used within the driver. But reading it
-again, it does seem kind of weird. I will rewrite it to be more consistent.
+Changes since v1:
+* fixed the error when running dt_binding_check;
 
-ChenYu
+Chunyan Zhang (2):
+  dt-bindings: input: Convert sc27xx-vibra.txt to json-schema
+  dt-bindings: input: Add compatible string for SC2721 and SC2730
 
-> Please fix so this is all consistent.  Details matter.
->
-> On Mon, Nov 16, 2020 at 03:52:12PM +0800, Chen-Yu Tsai wrote:
-> > From: Chen-Yu Tsai <wens@csie.org>
-> >
-> > The Rockchip PCIe controller DT binding clearly states that ep-gpios is
-> > an optional property. And indeed there are boards that don't require it.
-> >
-> > Make the driver follow the binding by using devm_gpiod_get_optional()
-> > instead of devm_gpiod_get().
-> >
-> > Fixes: e77f847df54c ("PCI: rockchip: Add Rockchip PCIe controller support")
-> > Fixes: 956cd99b35a8 ("PCI: rockchip: Separate common code from RC driver")
-> > Fixes: 964bac9455be ("PCI: rockchip: Split out rockchip_pcie_parse_dt() to parse DT")
-> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> > ---
-> >  drivers/pci/controller/pcie-rockchip.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/pci/controller/pcie-rockchip.c b/drivers/pci/controller/pcie-rockchip.c
-> > index 904dec0d3a88..c95950e9004f 100644
-> > --- a/drivers/pci/controller/pcie-rockchip.c
-> > +++ b/drivers/pci/controller/pcie-rockchip.c
-> > @@ -118,7 +118,7 @@ int rockchip_pcie_parse_dt(struct rockchip_pcie *rockchip)
-> >       }
-> >
-> >       if (rockchip->is_rc) {
-> > -             rockchip->ep_gpio = devm_gpiod_get(dev, "ep", GPIOD_OUT_HIGH);
-> > +             rockchip->ep_gpio = devm_gpiod_get_optional(dev, "ep", GPIOD_OUT_HIGH);
-> >               if (IS_ERR(rockchip->ep_gpio)) {
-> >                       dev_err(dev, "missing ep-gpios property in node\n");
-> >                       return PTR_ERR(rockchip->ep_gpio);
-> > --
-> > 2.29.1
-> >
+Nemo Han (1):
+  input: sc27xx: Add support for sc2730 and sc2721
+
+ .../bindings/input/sprd,sc27xx-vibra.txt      | 23 -------
+ .../bindings/input/sprd,sc27xx-vibrator.yaml  | 48 ++++++++++++++
+ drivers/input/misc/sc27xx-vibra.c             | 64 ++++++++++++++++---
+ 3 files changed, 102 insertions(+), 33 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibra.txt
+ create mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
+
+-- 
+2.25.1
+
