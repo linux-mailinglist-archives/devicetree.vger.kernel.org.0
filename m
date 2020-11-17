@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA9502B6CD1
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:16:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A021B2B6CC2
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:16:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729976AbgKQSQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 13:16:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48788 "EHLO
+        id S1730589AbgKQSQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 13:16:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726731AbgKQSQX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:16:23 -0500
-Received: from mail-wm1-x34a.google.com (mail-wm1-x34a.google.com [IPv6:2a00:1450:4864:20::34a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B05C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:22 -0800 (PST)
-Received: by mail-wm1-x34a.google.com with SMTP id o19so2144400wme.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:22 -0800 (PST)
+        with ESMTP id S1726731AbgKQSQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:16:24 -0500
+Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3505C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:24 -0800 (PST)
+Received: by mail-qv1-xf49.google.com with SMTP id ek3so7956048qvb.0
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=wfMub1Dq2/zzWvEJdcb9YkOg3Kk4cyIQtTysz5FPZ9k=;
-        b=i29eJtch8pt4MddWICqOePgkq/MwJTbTc/hOyGFj3909KVEBPm5n0cRj+EplVnonKY
-         WbI373E5+4cYXjRgWXgB7yoEj51rISpjpUCCpNubJ4wb3DMp/jUm/ja856YXPM1roevU
-         DCSoS5kmz/1ross0mm9LO5aO5Df0pZvR0PhjdaR8ldJFyvyqiVcNi/BAVeb15byHXn9C
-         8IMifCCt418cG8UX7UZpo+rA5552KYu5sl1fjIkWTaOGhboJk+EaVtU77VEJh1fdvKKP
-         1csKvBXdENtZrlIOODJUyxJZCWUu3IhGdceC5DZsOslbPK2hFkR/d4psXG8fA7BWlsm1
-         lmjg==
+        bh=BJadavlyJaEECXi/UfC92ghmWl3ZHk3QkybvjorYO/E=;
+        b=Dnk6DEKLEHkZgTwkTbD6MYFgmWYFpJl2OGFyj4gCuoFYePt7Mtzuqdl8/Pq1pvD11U
+         BWX8ZkLWbm00UHzCwQKUlwmt7cxlXEikfwIeaywi0jAmubiAVQC6UFZRSD64nhv4OajC
+         8GM+OO1cEmHVMjDnBj1yjfr+CpFs5FuisgZcCrst6Kti8soVn7OtELYLgmoHevMNGj7L
+         Ui7OZS+hF5d9GnfYGHSfJS66fNDOL0URBhlRZdoDaUHxQZNAySSvA8fmrx/lkyK/2roN
+         5HV6l22AiuuUqQ38FO7K47r4nUDftLLbmFziAUUXdVz5RHqS++6+XcMJfWYt3sxg7qBB
+         Li+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=wfMub1Dq2/zzWvEJdcb9YkOg3Kk4cyIQtTysz5FPZ9k=;
-        b=We+JKN9EAjkFR1+nOr5x6mbTSTUkVJf5/NM61jOhkMwGrXW/gx89FcLhPgcfGHTxU2
-         dxuoY/jC2v4cl63YaUAT9YY4Mnz3tJJUK5iXWwzhDCf0E+Gnyyef1n4qoPRs37aIsKE1
-         QXvSpN2mLeSMuBfFj6+q0AbZ7alOrlMnaTXIzklqPOm6VfR/la5ZIqvCgBNESPRpWcQe
-         mbV1Lg+qK5p6VPYUtMjHt+Pc5+hhUDqKjZzePzd8zl3gPMfErxfB57HFnF6a4VhrZQrS
-         zvQyRH7Mn8aoxCh9j31KxwInyG9pILF/F2Qp1V7BWIlh4Bl/D3ScU1/f8sp21H+pF6Hg
-         EZNA==
-X-Gm-Message-State: AOAM532S7PyBF/URMyedrqDfbO0dBGNzl3MUyqd1ZH62/vHz+lFSjul3
-        Clb4DFkJgjqe8WFUmTPMFIiJTj9l/CNO
-X-Google-Smtp-Source: ABdhPJwLzQmM3f+/yXxfkHBpPHMIy89xImU6xwZzUPy415BoTaClg6AeXK5YHYslpqgilPliowk09nC1PT5L
+        bh=BJadavlyJaEECXi/UfC92ghmWl3ZHk3QkybvjorYO/E=;
+        b=NyYNztUdPlYEGqyzvGTyDGfjf7+1aqmNtPKBG5sp64keWToDmG1YNo0waF6G/agJG9
+         jIvru7GAAsOyA/wbeBvQ3VVVE+47HRceC8c76yVFK1TYZmtBfOL9t+gpHt+R/l1HjUsS
+         xzdguYa3ndgped5RAUP3rnzSnPr2xV3v1YlsQ8m8G1h+6uqyILrB6yIjOnfL5h04Y/Hz
+         u7dpnlTUYb8vmraZ50FfWn/mN7jMJoZpWJUrAVM1qlHVpa+UOqPJ7aq8S5LMJoSkOA04
+         Bqr874BxOEcB+t1dPIVfZpFYljKjE6gC4uNRikP86giZn4wPpU6K+7sKGDuiG7/Dju+y
+         /01A==
+X-Gm-Message-State: AOAM530d3SAoRA2i1Cb+t06jebZQn5m+ZKpJ5iG9s+9FEk5HCkMOMps3
+        OgRymcPv21uryIawLe5tqQxeKFqSJf7Y
+X-Google-Smtp-Source: ABdhPJwADVZ7KA4lluf+rS88dHojtzpcrwFUrsFZ5Z/Kf+n3XgZdS9/NeT5dfwme4Jn7l/egpgFYp8Qa6c6N
 Sender: "qperret via sendgmr" <qperret@luke.lon.corp.google.com>
 X-Received: from luke.lon.corp.google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
- (user=qperret job=sendgmr) by 2002:a1c:3d54:: with SMTP id
- k81mr389168wma.144.1605636981668; Tue, 17 Nov 2020 10:16:21 -0800 (PST)
-Date:   Tue, 17 Nov 2020 18:15:41 +0000
+ (user=qperret job=sendgmr) by 2002:a0c:cd92:: with SMTP id
+ v18mr884407qvm.47.1605636983901; Tue, 17 Nov 2020 10:16:23 -0800 (PST)
+Date:   Tue, 17 Nov 2020 18:15:42 +0000
 In-Reply-To: <20201117181607.1761516-1-qperret@google.com>
-Message-Id: <20201117181607.1761516-2-qperret@google.com>
+Message-Id: <20201117181607.1761516-3-qperret@google.com>
 Mime-Version: 1.0
 References: <20201117181607.1761516-1-qperret@google.com>
 X-Mailer: git-send-email 2.29.2.299.gdc1121823c-goog
-Subject: [RFC PATCH 01/27] arm64: lib: Annotate {clear,copy}_page() as position-independent
+Subject: [RFC PATCH 02/27] KVM: arm64: Link position-independent string
+ routines into .hyp.text
 From:   Quentin Perret <qperret@google.com>
 To:     Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
@@ -67,7 +68,7 @@ Cc:     "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)"
         <kvmarm@lists.cs.columbia.edu>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
         <devicetree@vger.kernel.org>, kernel-team@android.com,
-        android-kvm@google.com
+        android-kvm@google.com, Quentin Perret <qperret@google.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -75,55 +76,60 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Will Deacon <will@kernel.org>
 
-clear_page() and copy_page() are suitable for use outside of the kernel
-address space, so annotate them as position-independent code.
+Pull clear_page(), copy_page(), memcpy() and memset() into the nVHE hyp
+code and ensure that we always execute the '__pi_' entry point on the
+offchance that it changes in future.
+
+[ qperret: Commit title nits ]
 
 Signed-off-by: Will Deacon <will@kernel.org>
+Signed-off-by: Quentin Perret <qperret@google.com>
 ---
- arch/arm64/lib/clear_page.S | 4 ++--
- arch/arm64/lib/copy_page.S  | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/kernel/image-vars.h   | 11 +++++++++++
+ arch/arm64/kvm/hyp/nvhe/Makefile |  4 ++++
+ 2 files changed, 15 insertions(+)
 
-diff --git a/arch/arm64/lib/clear_page.S b/arch/arm64/lib/clear_page.S
-index 073acbf02a7c..b84b179edba3 100644
---- a/arch/arm64/lib/clear_page.S
-+++ b/arch/arm64/lib/clear_page.S
-@@ -14,7 +14,7 @@
-  * Parameters:
-  *	x0 - dest
-  */
--SYM_FUNC_START(clear_page)
-+SYM_FUNC_START_PI(clear_page)
- 	mrs	x1, dczid_el0
- 	and	w1, w1, #0xf
- 	mov	x2, #4
-@@ -25,5 +25,5 @@ SYM_FUNC_START(clear_page)
- 	tst	x0, #(PAGE_SIZE - 1)
- 	b.ne	1b
- 	ret
--SYM_FUNC_END(clear_page)
-+SYM_FUNC_END_PI(clear_page)
- EXPORT_SYMBOL(clear_page)
-diff --git a/arch/arm64/lib/copy_page.S b/arch/arm64/lib/copy_page.S
-index e7a793961408..29144f4cd449 100644
---- a/arch/arm64/lib/copy_page.S
-+++ b/arch/arm64/lib/copy_page.S
-@@ -17,7 +17,7 @@
-  *	x0 - dest
-  *	x1 - src
-  */
--SYM_FUNC_START(copy_page)
-+SYM_FUNC_START_PI(copy_page)
- alternative_if ARM64_HAS_NO_HW_PREFETCH
- 	// Prefetch three cache lines ahead.
- 	prfm	pldl1strm, [x1, #128]
-@@ -75,5 +75,5 @@ alternative_else_nop_endif
- 	stnp	x16, x17, [x0, #112 - 256]
+diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
+index 8539f34d7538..dd8ccc9efb6a 100644
+--- a/arch/arm64/kernel/image-vars.h
++++ b/arch/arm64/kernel/image-vars.h
+@@ -105,6 +105,17 @@ KVM_NVHE_ALIAS(__stop___kvm_ex_table);
+ /* Array containing bases of nVHE per-CPU memory regions. */
+ KVM_NVHE_ALIAS(kvm_arm_hyp_percpu_base);
  
- 	ret
--SYM_FUNC_END(copy_page)
-+SYM_FUNC_END_PI(copy_page)
- EXPORT_SYMBOL(copy_page)
++/* Position-independent library routines */
++__kvm_nvhe_clear_page			= __kvm_nvhe___pi_clear_page;
++__kvm_nvhe_copy_page			= __kvm_nvhe___pi_copy_page;
++__kvm_nvhe_memcpy			= __kvm_nvhe___pi_memcpy;
++__kvm_nvhe_memset			= __kvm_nvhe___pi_memset;
++
++#ifdef CONFIG_KASAN
++__kvm_nvhe___memcpy			= __kvm_nvhe___pi_memcpy;
++__kvm_nvhe___memset			= __kvm_nvhe___pi_memset;
++#endif
++
+ #endif /* CONFIG_KVM */
+ 
+ #endif /* __ARM64_KERNEL_IMAGE_VARS_H */
+diff --git a/arch/arm64/kvm/hyp/nvhe/Makefile b/arch/arm64/kvm/hyp/nvhe/Makefile
+index 1f1e351c5fe2..590fdefb42dd 100644
+--- a/arch/arm64/kvm/hyp/nvhe/Makefile
++++ b/arch/arm64/kvm/hyp/nvhe/Makefile
+@@ -6,10 +6,14 @@
+ asflags-y := -D__KVM_NVHE_HYPERVISOR__
+ ccflags-y := -D__KVM_NVHE_HYPERVISOR__
+ 
++lib-objs := clear_page.o copy_page.o memcpy.o memset.o
++lib-objs := $(addprefix ../../../lib/, $(lib-objs))
++
+ obj-y := timer-sr.o sysreg-sr.o debug-sr.o switch.o tlb.o hyp-init.o host.o \
+ 	 hyp-main.o hyp-smp.o psci-relay.o
+ obj-y += ../vgic-v3-sr.o ../aarch32.o ../vgic-v2-cpuif-proxy.o ../entry.o \
+ 	 ../fpsimd.o ../hyp-entry.o ../exception.o
++obj-y += $(lib-objs)
+ 
+ ##
+ ## Build rules for compiling nVHE hyp code
 -- 
 2.29.2.299.gdc1121823c-goog
 
