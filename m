@@ -2,72 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 453242B71B2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 23:40:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DB532B71D1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 23:51:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728044AbgKQWiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 17:38:10 -0500
-Received: from mail.kernel.org ([198.145.29.99]:41446 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726433AbgKQWiJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Nov 2020 17:38:09 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D817B21D7E;
-        Tue, 17 Nov 2020 22:38:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605652689;
-        bh=RcLKHkW3XsWqdPM91oIiy4VtLboMA/41WJfQchqi9x0=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=RxRKJK3yjB1dsp1gwjslCASMai/Zic10iw+5JAJGi0cu9ymWMHBavzkCpe8mrbH0K
-         iXNOjC7+iq+muHrgyjz7MfUPPhVPbcsoKJUykxee56Hkbma5wDKFlG7UC8yZF/ZgAd
-         CnsiAAOvIHVBS+X8p39BuDHepBL5woFhjP0Gxwew=
-Date:   Tue, 17 Nov 2020 22:37:49 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, lars@metafoo.de
-In-Reply-To: <20201110084754.46756-1-alexandru.ardelean@analog.com>
-References: <20201106102052.32582-1-alexandru.ardelean@analog.com> <20201110084754.46756-1-alexandru.ardelean@analog.com>
-Subject: Re: [PATCH v2] dt-bindings: adau1977: convert text binding to yaml format
-Message-Id: <160565265702.23689.9722907741077657192.b4-ty@kernel.org>
+        id S1728924AbgKQWuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 17:50:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35270 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726182AbgKQWuo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 17:50:44 -0500
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23C7AC0613CF;
+        Tue, 17 Nov 2020 14:50:44 -0800 (PST)
+Received: by mail-ed1-x544.google.com with SMTP id a15so24252943edy.1;
+        Tue, 17 Nov 2020 14:50:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=wVFMj1y28y9lr6i3Dua9IiKKVDRLL249TgbSSA9JSCo=;
+        b=REHKISixART/wrV+ZOVp3ijOYlxb3WgEeV1AGG0ndKx8Vp1KielOgtykVIScLLiILW
+         eHQvntNLmDdkKqNHFQ5t/zDYDKnPV02kl9WeYKzCODIjQtae5+aRQrjaAtkIAuc/CAao
+         mXcqjOJm8nM++k8Rf4hg6TsSVCjS06iPMVx2yu08U7AXFKeYJyTAcXOj0cgxT+lhPH+S
+         foZbO7ZAshb9uO3lzqd9D6FLjzkzFEILKOY+Uz67HmR6eFZIiPGnboNtNNzALtm3Ffky
+         pQbsdK56pX2bw0ZDHDhauYB1EJ5+aPw5bWE1sdFw4TD1TuNbWDQgjx/AtW536hK+IIx8
+         Yo2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=wVFMj1y28y9lr6i3Dua9IiKKVDRLL249TgbSSA9JSCo=;
+        b=nW7DOnCpIgv1HJxHOYVKDTto2KQhZujepKwnctQIsL4ljhQwmr/OqYAPsivbfo1kgF
+         TpoT3j/UhvnyVHaAb9paRirhDzdwdo9Vva1KA+BZrs43gPB6+L1l5JmAvCpndAv1I3f+
+         AzR6EYPBspnOmFtxBT93b5kKH2cvH0jx1pcLRTThYuovCPUOPF648RNZ2k5Jz2SQkHEO
+         pH+4IkJKGZtzaKC9seerxBlqcwmJ3qKW/pf9Ha/w7RSAmPM83O8RON+cSL34IssTnza4
+         avNrf6wFAPzOr+et3Bapzlf9XHSH0sd0YIC+BM9D3c0CiqmJ7YCfS+y3Rllx/cfXpm0y
+         nH2A==
+X-Gm-Message-State: AOAM532F+GXuH/nMOvvw8Piu/DzVU4e/f/wAtTl7OX0VmNtC2T3bbXdr
+        wtUymlojVPcsm4mzpsiXMFa/xLXHda7iHSxYEGg=
+X-Google-Smtp-Source: ABdhPJwxnZw7fIrQBMEeIJ22JQkOmnYSBJCCB1bD2WqJ0lVQ2RE3nYgJiV9dfPiwS1OUR85WGbfkhGf+bUYog4KweqA=
+X-Received: by 2002:a05:6402:3d9:: with SMTP id t25mr23308333edw.338.1605653442816;
+ Tue, 17 Nov 2020 14:50:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20201115185210.573739-1-martin.blumenstingl@googlemail.com>
+ <20201115185210.573739-4-martin.blumenstingl@googlemail.com> <88c043ba-e7a4-6b4d-f93f-efdf6c525e95@gmail.com>
+In-Reply-To: <88c043ba-e7a4-6b4d-f93f-efdf6c525e95@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 17 Nov 2020 23:50:31 +0100
+Message-ID: <CAFBinCDM=COSpZLSaqqDwpk48QC-sjASwD9O3VJU_SRgB_H_1A@mail.gmail.com>
+Subject: Re: [PATCH RFC v2 3/5] net: stmmac: dwmac-meson8b: use picoseconds
+ for the RGMII RX delay
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     davem@davemloft.net, kuba@kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, netdev@vger.kernel.org,
+        jianxin.pan@amlogic.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
+        Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com,
+        andrew@lunn.ch
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Nov 2020 10:47:54 +0200, Alexandru Ardelean wrote:
-> This change converts the old device-tree binding for ADAU1977 from text
-> format to the new yaml format.
+Hi Florian,
 
-Applied to
+On Tue, Nov 17, 2020 at 7:36 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+> On 11/15/20 10:52 AM, Martin Blumenstingl wrote:
+> > Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
+> > delay register which allows picoseconds precision. Parse the new
+> > "amlogic,rgmii-rx-delay-ps" property or fall back to the old
+> > "amlogic,rx-delay-ns".
+> >
+> > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+first of all: thanks for reviewing this (and the rest of the series)!
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> Maybe also issue a warning when the 'amlogic,rx-delay-ns' property is
+> found in addition to the 'amlogic,rgmii-rx-delay-ps'? Up to you how to
+> manage existing DTBs being deployed.
+none of the upstream DTBs uses amlogic,rx-delay-ns - and I am also not
+aware of anything being in use "downstream".
+I will add a sentence to the commit description when I re-send this
+without RFC, something along those lines: "No upstream DTB uses the
+old amlogic,rx-delay-ns (yet). Only include minimalistic logic to fall
+back to the old property, without any special validation (for example:
+old and new property are given at the same time)"
 
-Thanks!
+What do you think?
 
-[1/1] ASoC: adau1977: convert text binding to yaml format
-      commit: f077770b2675feb2ea2188ef7109d5a41545e7a9
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Best regards,
+Martin
