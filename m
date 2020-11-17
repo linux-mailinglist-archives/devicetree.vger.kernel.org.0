@@ -2,169 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9062B5A64
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 08:40:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3209D2B5A7D
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 08:48:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726315AbgKQHjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 02:39:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725978AbgKQHjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 02:39:35 -0500
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17848C0617A7
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 23:39:35 -0800 (PST)
-Received: by mail-yb1-xb42.google.com with SMTP id s8so18060399yba.13
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 23:39:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=benyossef-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=81ys4Af4st2C7XlSsqfW1vjLoryjipiQwkJBYd8Bo1U=;
-        b=qPO31PsA3+HYL9IisFSxJrvBZLmIsrkN8o/iV2M3AOUHsepg70/TfKn0eS8qY+TxQi
-         ej+Bp4N1qNv+itrMiWmkurTzf8Z0yHtm60c/6Vr6+n8pkDmnynE1F5wCZNqPC1u5dnby
-         dKG+hNM5L+uPwAPk+svJaiZT8hQfCH3fqzth6l8+Kr3X4UDCunB9uYtZHUpr/SptrDYH
-         ecGWIM01/Up1MhaMoemLFK8FDHIyOFPv2NtqnYz7d3He52aPPKVirz4pdHU4P6OU5nMO
-         crL6KY6HYqCEJCYEIYrpuW7c+38mKemrZK3MBpVK8ai3eVskkm6PpFEtf5dlDlTVOoyL
-         +UZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=81ys4Af4st2C7XlSsqfW1vjLoryjipiQwkJBYd8Bo1U=;
-        b=I4rDMkXzBfl5rwBervOCllDTCR5K3qW54MW4Pzl8AZwuq/jJtx5B4WcjCU6/McDFXb
-         YjLgmvYFpzznkYdBS9MkI5asrpXoNHE8QRY2/b7xtAWVnnzmczHH/Nmk9CvB4MVqQyrs
-         PaSFb1cxPJ7l65zIsNnbH3tetkjJOx4pnzIMUMs/P/DXZCtul7WxeIrwPgAvc9qkfFOm
-         bN+W/l+kIq18eBRmWTIKcWfBlhj9kdOVVYaVHd8Xfcw+3kdLnMchD7dyAKinfWliJB0v
-         FeRcQJq+k1VapMFFK/2hsqM8mJRGB/orRrxuB0IVK+VIv5HTIpla5WhM9YMKLPTXMjRv
-         M8GQ==
-X-Gm-Message-State: AOAM531J9HSJvEn+YO2hGk8T9O8yqBdU50axezxcXOFxwpIr3lnMY2oJ
-        +Q5ZhmK9D9xVer8mw3Zuh3eWMuooUNnmTNiv17Preg==
-X-Google-Smtp-Source: ABdhPJzDnZMr2YRtv9cPXx5CTKyXfN/NpaliyWDLrR2posEVPhRIdfPrLI3ancUlJyJxW4OfYDMnCrpcotjbsg0YoZ0=
-X-Received: by 2002:a25:e7cd:: with SMTP id e196mr23631737ybh.375.1605598772788;
- Mon, 16 Nov 2020 23:39:32 -0800 (PST)
+        id S1726511AbgKQHrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 02:47:45 -0500
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:41340 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725792AbgKQHrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Nov 2020 02:47:45 -0500
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0AH7e4GW003060;
+        Tue, 17 Nov 2020 02:47:43 -0500
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+        by mx0a-00128a01.pphosted.com with ESMTP id 34t9ybgt13-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Nov 2020 02:47:43 -0500
+Received: from ASHBMBX9.ad.analog.com (ashbmbx9.ad.analog.com [10.64.17.10])
+        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 0AH7lgfe033644
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Tue, 17 Nov 2020 02:47:42 -0500
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Tue, 17 Nov 2020 02:47:41 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1779.2; Tue, 17 Nov 2020 02:47:40 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
+ Transport; Tue, 17 Nov 2020 02:47:40 -0500
+Received: from localhost.localdomain ([10.48.65.12])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0AH7lbGJ002920;
+        Tue, 17 Nov 2020 02:47:38 -0500
+From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
+To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Subject: [PATCH 1/3] iio: adc: ad7887: convert dual-channel mode to DT/ACPI
+Date:   Tue, 17 Nov 2020 09:52:52 +0200
+Message-ID: <20201117075254.4861-1-alexandru.ardelean@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20200916071950.1493-1-gilad@benyossef.com> <20200916071950.1493-2-gilad@benyossef.com>
- <20200923015702.GA3676455@bogus> <CAOtvUMekoMjFij_xDnrwRj2PsfgO8tKx4Jk6d7C5vq-Vh+boWw@mail.gmail.com>
- <CAOtvUMfAKnodo+7EYx2M4yAvxu_VmxwXNRmgOW=KFWi3Wy7msQ@mail.gmail.com> <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
-In-Reply-To: <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
-From:   Gilad Ben-Yossef <gilad@benyossef.com>
-Date:   Tue, 17 Nov 2020 09:39:21 +0200
-Message-ID: <CAOtvUMdN2NOJ+7g=XnjOyW7W=77OM=d-d69YDk-a-QmO8Wze5w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: update ccree optional params
-To:     Rob Herring <robh@kernel.org>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Ofir Drang <ofir.drang@arm.com>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        Steven Price <steven.price@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-17_02:2020-11-13,2020-11-17 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1015 spamscore=0 adultscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2009150000 definitions=main-2011170055
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 8:54 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Oct 22, 2020 at 1:18 AM Gilad Ben-Yossef <gilad@benyossef.com> wr=
-ote:
-> >
-> >
-> > Hi again,
-> >
-> > Any opinion on the suggested below?
->
-> Sorry, lost in the pile...
+This change converts the configuration of the dual-channel mode from the
+old platform-data, to the device_property_present() function, which
+supports both device-tree and ACPI configuration setups.
 
-No problem at all. I know how it is...
+With this change the old platform_data include of the driver can be
+removed.
 
+Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+---
+ drivers/iio/adc/ad7887.c             | 10 +++++-----
+ include/linux/platform_data/ad7887.h | 21 ---------------------
+ 2 files changed, 5 insertions(+), 26 deletions(-)
+ delete mode 100644 include/linux/platform_data/ad7887.h
 
-> >
-> >
-> > On Tue, Sep 29, 2020 at 9:08 PM Gilad Ben-Yossef <gilad@benyossef.com> =
-wrote:
-> >>
-> >>
-> >> On Wed, Sep 23, 2020 at 4:57 AM Rob Herring <robh@kernel.org> wrote:
-> >> >
-> >> > On Wed, Sep 16, 2020 at 10:19:49AM +0300, Gilad Ben-Yossef wrote:
-> >> > > Document ccree driver supporting new optional parameters allowing =
-to
-> >> > > customize the DMA transactions cache parameters and ACE bus sharab=
-ility
-> >> > > properties.
-> >> > >
-> >> > > Signed-off-by: Gilad Ben-Yossef <gilad@benyossef.com>
-> >> > > ---
-> >> > >  Documentation/devicetree/bindings/crypto/arm-cryptocell.txt | 4 +=
-+++
-> >> > >  1 file changed, 4 insertions(+)
-> >> > >
-> >> > > diff --git a/Documentation/devicetree/bindings/crypto/arm-cryptoce=
-ll.txt b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
-> >> > > index 6130e6eb4af8..1a1603e457a8 100644
-> >> > > --- a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
-> >> > > +++ b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
-> >> > > @@ -13,6 +13,10 @@ Required properties:
-> >> > >  Optional properties:
-> >> > >  - clocks: Reference to the crypto engine clock.
-> >> > >  - dma-coherent: Present if dma operations are coherent.
-> >> > > +- awcache: Set write transactions cache attributes
-> >> > > +- arcache: Set read transactions cache attributes
-> >> >
+diff --git a/drivers/iio/adc/ad7887.c b/drivers/iio/adc/ad7887.c
+index 4f6f0e0e03ee..06f684c053a0 100644
+--- a/drivers/iio/adc/ad7887.c
++++ b/drivers/iio/adc/ad7887.c
+@@ -23,8 +23,6 @@
+ #include <linux/iio/trigger_consumer.h>
+ #include <linux/iio/triggered_buffer.h>
+ 
+-#include <linux/platform_data/ad7887.h>
+-
+ #define AD7887_REF_DIS		BIT(5)	/* on-chip reference disable */
+ #define AD7887_DUAL		BIT(4)	/* dual-channel mode */
+ #define AD7887_CH_AIN1		BIT(3)	/* convert on channel 1, DUAL=1 */
+@@ -241,9 +239,9 @@ static void ad7887_reg_disable(void *data)
+ 
+ static int ad7887_probe(struct spi_device *spi)
+ {
+-	struct ad7887_platform_data *pdata = spi->dev.platform_data;
+ 	struct ad7887_state *st;
+ 	struct iio_dev *indio_dev;
++	bool dual_mode;
+ 	uint8_t mode;
+ 	int ret;
+ 
+@@ -286,7 +284,9 @@ static int ad7887_probe(struct spi_device *spi)
+ 	mode = AD7887_PM_MODE4;
+ 	if (!st->reg)
+ 		mode |= AD7887_REF_DIS;
+-	if (pdata && pdata->en_dual)
++
++	dual_mode = device_property_present(&spi->dev, "adi,dual-channel-mode");
++	if (dual_mode)
+ 		mode |= AD7887_DUAL;
+ 
+ 	st->tx_cmd_buf[0] = AD7887_CH_AIN0 | mode;
+@@ -298,7 +298,7 @@ static int ad7887_probe(struct spi_device *spi)
+ 	spi_message_init(&st->msg[AD7887_CH0]);
+ 	spi_message_add_tail(&st->xfer[0], &st->msg[AD7887_CH0]);
+ 
+-	if (pdata && pdata->en_dual) {
++	if (dual_mode) {
+ 		st->tx_cmd_buf[2] = AD7887_CH_AIN1 | mode;
+ 
+ 		st->xfer[1].rx_buf = &st->data[0];
+diff --git a/include/linux/platform_data/ad7887.h b/include/linux/platform_data/ad7887.h
+deleted file mode 100644
+index 9b4dca6ae70b..000000000000
+--- a/include/linux/platform_data/ad7887.h
++++ /dev/null
+@@ -1,21 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-or-later */
+-/*
+- * AD7887 SPI ADC driver
+- *
+- * Copyright 2010 Analog Devices Inc.
+- */
+-#ifndef IIO_ADC_AD7887_H_
+-#define IIO_ADC_AD7887_H_
+-
+-/**
+- * struct ad7887_platform_data - AD7887 ADC driver platform data
+- * @en_dual: Whether to use dual channel mode. If set to true AIN1 becomes the
+- *	second input channel, and Vref is internally connected to Vdd. If set to
+- *	false the device is used in single channel mode and AIN1/Vref is used as
+- *	VREF input.
+- */
+-struct ad7887_platform_data {
+-	bool en_dual;
+-};
+-
+-#endif /* IIO_ADC_AD7887_H_ */
+-- 
+2.17.1
 
-<snip>
-
-> >> > These could also just be implied by the compatible string (and requi=
-ring
-> >> > an SoC specific one).
-> >>
-> >> hm... we could do it but this will require us to know (and publicly
-> >> acknowledge) of every SoC making use of this piece of hardware design.
->
-> That's already a requirement in general. Sometimes we can avoid it,
-> but that's cases of getting lucky.
->
-> >> There is currently no other part of the driver that needs this.
->
-> If your DT is part of firmware, then waiting until adding some driver
-> feature or quirk based on a new DT property is too late. Whereas with
-> a SoC specific compatible, you can handle any new feature or quirk
-> without a DT change (e.g. just a stable kernel update). Some platforms
-> may not care about that model, but in general that's the policy we
-> follow. Not doing that, we end up with the DWC3 binding.
->
-> A fallback compatible is how we avoid updating drivers for every
-> single SoC unless needed.
-
-OK, I now better understand what you meant and that does make some
-sense and I will defer to your better judgment  about the proper way
-to do this.
-
-Having said that, there is still something that bugs me about this,
-even just at the level of better understanding why we do things:
-
-Way back when, before DT, we had SoC specific code that identified the
-SoC somehow and set things up in a SoC specific way.
-Then we introduced DT as a way to say - "hey look, this is how my
-busses looks like, these are the devices I have, deal with it" and I
-always assumed that this was meant as a way to release us from having
-SoC specific setup code.
-
-It seems now potentially every SoC vendor needs to modify not just the
-device tree source (which makes sense of course) but also the driver
-supporting their platform.
-It now looks like we've come a full circle to me :-)
-
-Thanks!
-Gilad
-
---=20
-Gilad Ben-Yossef
-Chief Coffee Drinker
-
-values of =CE=B2 will give rise to dom!
