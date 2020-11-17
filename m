@@ -2,775 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A42E52B5C39
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 10:53:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2182B5C57
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 10:57:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727439AbgKQJw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 04:52:29 -0500
-Received: from perceval.ideasonboard.com ([213.167.242.64]:58084 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725774AbgKQJw2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 04:52:28 -0500
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 625EA563;
-        Tue, 17 Nov 2020 10:52:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1605606743;
-        bh=HFsUyxT+VwjIjKr6Tk8TcIaHxXcdK2hfDv/i3MuI5JA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kTigat5AdPBC51pxFsC/RB+rMjFfBIRyoFLH//XPezXGNfdSLCg0yRgY/K1LWP+9B
-         RZefBs5xgZiUdGvGW9plOBfW3btVHocmuYNNUrUeFSi6IsaIoRIfCrX2nmG0boIePQ
-         JGkaxysDmlz5TC14vNhaXgq/ogtLZVN5kyIlYPV4=
-Date:   Tue, 17 Nov 2020 11:52:18 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: media: Use OF graph schema
-Message-ID: <20201117095218.GB3940@pendragon.ideasonboard.com>
-References: <20201117013947.2479625-1-robh@kernel.org>
+        id S1727727AbgKQJzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 04:55:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727724AbgKQJzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 04:55:10 -0500
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29DCC0613CF;
+        Tue, 17 Nov 2020 01:55:10 -0800 (PST)
+Received: by mail-oi1-x241.google.com with SMTP id t16so21923434oie.11;
+        Tue, 17 Nov 2020 01:55:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=g6cFr1GWe/3eh4NUqXWAinlK5cgfPVLY2u3q3tSx53o=;
+        b=CzawzkGYSM3k6pL0T1hbwyHjk6lf4OIJYruDp2QL9npIt9xSBOSoriYK+lZN9iL+1X
+         Rcg9c8kQYukPpCN7TI/x193Dnvx9ojNTqpQD9pRj/8HF9pLMqS+OHXMcCkLl9uqVDXOg
+         +dpwSRi5RPt+5kwajoY5fEgEg6mIUXRavCobmMSmukmp+kmUagl1I+8xeqZCMAm2dOKj
+         5GapsgPY+wOutrJEWvwAD9zyseIihpDzWEpMAAonb1aiZ8MVdJRJOZdKhxs/Q7I5VokN
+         eAVT1dU8mjcSJsiklHSwc26Qpa+BWC/Hdg3gS1B8COd1jgrAbqvhKWTj+NzoaSwfKFSJ
+         /C8g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=g6cFr1GWe/3eh4NUqXWAinlK5cgfPVLY2u3q3tSx53o=;
+        b=AbUlJZPlCQqjuwh8j+YjzFrFuivBjD5/uGpOQI4OPWbflbQ9ZGAMxkreyys97ulHqM
+         KDhWOaBPNv15HeIzJmqqS8Ikk44TBB3c9O62m6FzG7NqnrGam+rwNlJvQSD3fIJtoheK
+         1d+eIOsJmN+sNjLZv86mhWbt7Lg2cfjhvgSeBd8ZHVzdLAyacrugIQ1w1wsF/4MTworJ
+         bLQxw8lYZy+2HDdrWVrZ+tsgT9NPgkzTlvw9LieRorJqOpE57PrFeg+rXTfxSdKGO8A8
+         d0gQpGMxoM0EtdqPRrpN3P7YA4mHoUJNpDA6JyhwuAtXDuOgWLfGEg2UzvsAe/+/9EuT
+         zmtw==
+X-Gm-Message-State: AOAM5325/E6iPrcgvN/cRJnmaDYApXHuUIKR71Ie25A0ubtq+i37xRN/
+        z5sb+tmD1SggmlEIN+rfZINsvMSS0rJ4GCLnOOs=
+X-Google-Smtp-Source: ABdhPJya8F6HqaXOxv32vLbvDlmGZZUV8Q00KUBZXfRPq3qbh5S+PA3y0CdQ8g7uWdODqTVA4V0Epe3FABZHNroWpjk=
+X-Received: by 2002:aca:4783:: with SMTP id u125mr1917664oia.23.1605606909920;
+ Tue, 17 Nov 2020 01:55:09 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201117013947.2479625-1-robh@kernel.org>
+References: <1602034966-3524-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1602034966-3524-3-git-send-email-gene.chen.richtek@gmail.com>
+ <5a9b31c4-739c-06fc-2015-ed474993ad22@gmail.com> <CAE+NS35Y41mFKNhj+54BeeSYFu2J9BtvMWOxyMcf9a==39cbdA@mail.gmail.com>
+ <8925db23-5cc4-3c5f-932a-461fe6450dad@gmail.com> <CAE+NS379bgtRotqzioR+Ya3mE1kZrKfe9qV=W2p=hH7Omrn8Hw@mail.gmail.com>
+ <1bb76c54-14af-6c78-4623-77c6678b262e@gmail.com> <CAE+NS35z7_ZUdm6gRNw2z7Ozs+1A8_Vtj_9x-F65RLd4QqDFDA@mail.gmail.com>
+ <af17141f-23ae-063d-ade2-42dfdf611d81@gmail.com> <CAE+NS37-vQ4LLbCv-1+WsLe7qEQdVvBhhNKK4=oDj5VtWuaeoQ@mail.gmail.com>
+ <aab50d87-c696-6480-b5c7-2f75df19f50f@gmail.com>
+In-Reply-To: <aab50d87-c696-6480-b5c7-2f75df19f50f@gmail.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Tue, 17 Nov 2020 17:54:58 +0800
+Message-ID: <CAE+NS36aqhNwF=+n=-UHTgLvb+PTt1VHR1pV5+rxR7d3p3N2zA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/2] leds: mt6360: Add LED driver for MT6360
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B411=E6=
+=9C=8817=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:25=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+>
+> On 11/16/20 11:01 AM, Gene Chen wrote:
+> > Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B410=
+=E6=9C=8831=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8A=E5=8D=886:34=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> >>
+> >> On 10/30/20 9:51 AM, Gene Chen wrote:
+> >>> Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B4=
+10=E6=9C=8828=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=881:28=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+> >>>>
+> >>>> On 10/27/20 10:28 AM, Gene Chen wrote:
+> >>>>> Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=
+=B410=E6=9C=8821=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=885:47=E5=AF=
+=AB=E9=81=93=EF=BC=9A
+> >>>>>>
+> >>>>>> On 10/20/20 8:44 AM, Gene Chen wrote:
+> >>>>>>> Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=
+=B9=B410=E6=9C=889=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=885:51=E5=AF=
+=AB=E9=81=93=EF=BC=9A
+> >>>>>>>>
+> >>>>>>>> Hi Gene,
+> >>>>>>>>
+> >>>>>>>> On 10/7/20 3:42 AM, Gene Chen wrote:
+> >>>>>>>>> From: Gene Chen <gene_chen@richtek.com>
+> >>>>>>>>>
+> >>>>>>>>> Add MT6360 LED driver include 2-channel Flash LED with torch/st=
+robe mode,
+> >>>>>>>>> 3-channel RGB LED support Register/Flash/Breath Mode, and 1-cha=
+nnel for
+> >>>>>>>>> moonlight LED.
+> >>>>>>>>>
+> >>>>>>>>> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> >>>>>>>>> ---
+> >>>>>>>>>       drivers/leds/Kconfig       |  12 +
+> >>>>>>>>>       drivers/leds/Makefile      |   1 +
+> >>>>>>>>>       drivers/leds/leds-mt6360.c | 783 ++++++++++++++++++++++++=
++++++++++++++++++++++
+> >>>>>>>>>       3 files changed, 796 insertions(+)
+> >>>>>>>>>       create mode 100644 drivers/leds/leds-mt6360.c
+> >>>>>>>>>
+> >>>>>>>>> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> >>>>>>>>> index 1c181df..c7192dd 100644
+> >>>>>>>>> --- a/drivers/leds/Kconfig
+> >>>>>>>>> +++ b/drivers/leds/Kconfig
+> >>>>>>>>> @@ -271,6 +271,18 @@ config LEDS_MT6323
+> >>>>>>>>>             This option enables support for on-chip LED drivers=
+ found on
+> >>>>>>>>>             Mediatek MT6323 PMIC.
+> >>>>>>>>>
+> >>>>>>>>> +config LEDS_MT6360
+> >>>>>>>>> +     tristate "LED Support for Mediatek MT6360 PMIC"
+> >>>>>>>>> +     depends on LEDS_CLASS_FLASH && OF
+> >>>>>>>>> +     depends on LEDS_CLASS_MULTICOLOR
+> >>>>>>>>
+> >>>>>>>> Since CONFIG_LED_CLASS_MULTICOLOR can be turned off you need to =
+have
+> >>>>>>>> below instead:
+> >>>>>>>>
+> >>>>>>>> depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
+> >>>>
+> >>>> My typo here, should be one "!":
+> >>>>
+> >>>> depends on LEDS_CLASS_MULTICOLOR || !LEDS_CLASS_MULTICOLOR
+> >>>>
+> >>>> And you should also have
+> >>>>
+> >>>> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+> >>>>
+> >>>> But to make it work correctly you would have to add registration
+> >>>> stubs to include/linux/led-class-flash.h similarly to LED mc stubs
+> >>>> in include/linux/led-class-multicolor.h.
+> >>>>
+> >>>>>>>>
+> >>>>>>>> Unless you want to prevent enabling the driver without RGB LED,
+> >>>>>>>> but that does not seem to be reasonable at first glance.
+> >>>>>>>>
+> >>>>>>>
+> >>>>>>> May I change to "select LEDS_CLASS_MULTICOLOR"?
+> >>>>>>> I suppose RGB always use multicolor mode.
+> >>>>>>
+> >>>>>> You will also have moonlight LED that will not need multicolor
+> >>>>>> framework. Is it somehow troublesome to keep "depends on"?
+> >>>>>>
+> >>>>>
+> >>>>> If only use ML LED and FLED,  DTSI will only define ML LED and FLED=
+.
+> >>>>> Therefore, the drivers probe will not register rgb multicolor devic=
+e.
+> >>>>
+> >>>> Please test your use case again with my fixed "depends on".
+> >>>>
+> >>>> In case when there is only ML LED and FLED in the DT it should
+> >>>> register both devices if LEDS_CLASS_FLASH is turned on.
+> >>>> Multicolor framework has nothing to do in this case.
+> >>>>
+> >>>> But if you additionally had MC LED node, then it should
+> >>>> be registered only if LEDS_CLASS_MULTICOLOR is enabled.
+> >>>>
+> >>>> Similarly, when FLED node is present, but LEDS_CLASS_FLASH
+> >>>> is off, and LEDS_CLASS_MULTICOLOR is on, the driver should still
+> >>>> compile, but register only LED MC device (if its node is present).
+> >>>>
+> >>>
+> >>> I think this case only register LED device, not LED "MC" device.
+> >>> Because our FLASH is not a multicolor device.
+> >>
+> >> No, here I was describing following setup:
+> >>
+> >> - DT FLED node is present, CONFIG_LEDS_CLASS_FLASH is off
+> >> - DT MC node is present, CONFIG_LEDS_CLASS_MULTICOLOR is on
+> >>
+> >> ML LED presence in DT is irrelevant in this case.
+> >> It should be always registered if there is corresponding DT node
+> >> and LEDS_CLASS is on.
+> >>
+> >
+> > As a long time discussion, we conclude some rules about MT6360 LED driv=
+er.
+> > FLED is necessary, so Kconfig depends on LED_CLASS_FLASH
+>
+> Maybe it is necessary in your use case, but probably it is possible to
+> use the device without FLED. If so, then you should allow users
+> disabling it. Therefore you should have:
+>
+> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+>
 
-Thank you for the patch.
+ACK
 
-On Mon, Nov 16, 2020 at 07:39:47PM -0600, Rob Herring wrote:
-> Now that we have a graph schema, rework the media related schemas to
-> use it. Mostly this is adding a reference to graph.yaml and dropping
-> duplicate parts from schemas.
-> 
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Jacopo Mondi <jacopo@jmondi.org>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: linux-media@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> This can go via the media tree. Ideally anything else subsequently added 
-> will be fixed up too.
-> 
->  .../media/allwinner,sun4i-a10-csi.yaml        |  1 +
->  .../media/allwinner,sun6i-a31-csi.yaml        |  1 +
->  .../bindings/media/i2c/adv7180.yaml           | 31 ++------
->  .../bindings/media/i2c/adv7604.yaml           | 32 ++------
->  .../bindings/media/i2c/aptina,mt9v111.yaml    |  2 +-
->  .../bindings/media/i2c/imi,rdacm2x-gmsl.yaml  | 25 +-----
->  .../devicetree/bindings/media/i2c/imx219.yaml |  4 +
->  .../bindings/media/i2c/maxim,max9286.yaml     | 76 ++++---------------
->  .../devicetree/bindings/media/i2c/ov5647.yaml |  5 +-
->  .../devicetree/bindings/media/i2c/ov8856.yaml |  5 +-
->  .../bindings/media/i2c/ovti,ov772x.yaml       |  1 +
->  .../bindings/media/i2c/sony,imx214.yaml       |  1 +
->  .../bindings/media/i2c/sony,imx274.yaml       |  3 +-
->  .../bindings/media/marvell,mmp2-ccic.yaml     |  1 +
->  .../bindings/media/renesas,ceu.yaml           |  1 +
->  .../bindings/media/renesas,csi2.yaml          | 36 ++-------
->  .../bindings/media/renesas,vin.yaml           |  7 +-
->  .../bindings/media/st,stm32-dcmi.yaml         |  7 +-
->  .../devicetree/bindings/media/ti,cal.yaml     | 15 +---
->  .../bindings/media/xilinx/xlnx,csi2rxss.yaml  | 21 +----
->  20 files changed, 61 insertions(+), 214 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> index 09318830db47..0205f7dd7fdb 100644
-> --- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> @@ -70,6 +70,7 @@ properties:
->    # See ./video-interfaces.txt for details
->    port:
->      type: object
+> > ML LED is optional, which is registered as led class device.
+> > RGB LED can be either simple led class device or multicolor device,
+> > which is decided in DT node
+> > If Multicolor LED DT node is exist, it should be register multicolor
+> > device success.
+>
+> But only if CONFIG_LEDS_CLASS_MULTICOLOR is enabled.
+>
+> > Maybe it is more specific to send a new patch?
+> >
+> > Sample DT as below
+> > LED "red" is simple led class device, LED "green&blue" is multicolor de=
+vices.
+> > led@0 {
+> >          reg =3D <0>;
+> >          function =3D LED_FUNCTION_INDICATOR;
+> >          color =3D <LED_COLOR_ID_RED>;
+> >          led-max-microamp =3D <24000>;
+> > };
+> > led@6 {
+> >          reg =3D <6>;
+> >          function =3D LED_FUNCTION_INDICATOR;
+> >          color =3D <LED_COLOR_ID_MULTI>;
+> >
+> >          led@1 {
+> >                  reg =3D <1>;
+> >                  function =3D LED_FUNCTION_INDICATOR;
+> >                  color =3D <LED_COLOR_ID_GREEN>;
+> >                  led-max-microamp =3D <24000>;
+> >          };
+> >          led@2 {
+> >                  reg =3D <2>;
+> >                  function =3D LED_FUNCTION_INDICATOR;
+> >                  color =3D <LED_COLOR_ID_BLUE>;
+> >                  led-max-microamp =3D <24000>;
+> >          };
+> > };
+>
+> It looks OK.
+>
+> >>>> Possible should be also the case when both LEDS_CLASS_FLASH
+> >>>> and LEDS_CLASS_MULTICOLOR are off. Then only LED class device
+> >>>> for ML LED will be registered (provided there is ML DT node).
+> >>>> But to make it possible you should have also "depends on LEDS_CLASS"
+> >>>> in the Kconfig entry.
+> >>>>
+> >>>
+> >>> According to your suggestion,
+> >>> depends on LED_CLASS && LEDS_CLASS_FLASH && OF
+> >>
+> >> s/LED_CLASS/LEDS_CLASS/
+> >>
+> >> And you have to remove LEDS_CLASS_FLASH from above line.
+> >>
+> >>> depends on LEDS_CLASS_MULTICOLOR || !!LEDS_CLASS_MULTICOLOR
+> >>
+> >> s/!!LEDS_CLASS_MULTICOLOR/!LEDS_CLASS_MULTICOLOR/
+> >>
+> >>> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+> >>> depends on MFD_MT6360
+> >>
+> >> You will need V4L2_FLASH_LED_CLASS dependency as well, to avoid
+> >> build break, when it is set to 'm'.
+> >>
+> >> To recap, following block of dependencies is required:
+> >>
+> >> depends on LEDS_CLASS && OF
+> >> depends on LEDS_CLASS_MULTICOLOR || !LEDS_CLASS_MULTICOLOR
+> >> depends on LEDS_CLASS_FLASH || !LEDS_CLASS_FLASH
+> >> depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
+> >> depends on MFD_MT6360
+> >>
+> >
+> > LEDS_MT6360 depends on LEDS_CLASS_FLASH, and LEDS_CLASS_FLASH depends
+> > on LEDS_CLASS
+> > Is "depends on LEDS_CLASS" still needed?
+>
+> Yes, because you should allow disabling CONFIG_LEDS_CLASS_FLASH.
+> In such a case driver should still compile and register ML LED class
+> device when it has corresponding DT node.
+>
 
-Could the type be dropped (here and below, I haven't mentioned it in all
-locations) as it's specified in /schemas/graph.yaml#/properties/port ?
+ACK
 
-> +    $ref: /schemas/graph.yaml#/properties/port
->      additionalProperties: false
+> >>> and source code add constraint
+> >>>
+> >>> #if IS_ENABLED(CONFIG_LEDS_CLASS_MULTICOLOR)
+> >>>       ret =3D devm_led_classdev_multicolor_register_ext(parent, &led-=
+>rgb,
+> >>> init_data);
+> >>> #endif
+> >>>
+> >>> #if IS_ENABLED(CONFIG_LEDS_CLASS_FLASH)
+> >>>       ret =3D devm_led_classdev_flash_register_ext(parent, &led->flas=
+h, init_data);
+> >>> #endif
+> >>
+> >> No, the guards should be in headers. That's why I recommended adding
+> >> no ops for LED flash class registration functions in previous email.
+> >>
+> >> Please compare include/linux/led-class-multicolor.h and do similar
+> >> changes in include/linux/led-class-flash.h.
+> >>
+> >
+> > ACK, I will submit a fixed patch about leds-class-flash.h.
+> >
+> > By the way, if CONFIG_LED_CLASS_MULTICOLOR is not enabled and we don't
+> > use #if IS_ENABLED,
+> > according to led-class-multicolor.h return -EINVAL,
+> > we will register multicolor device fail and cause probe fail.
+>
+> Good point. So led-class-multicolor.h no-ops need to be fixed to return
+> 0 instead of -EINVAL.
+>
+> And no-ops in include/linux/led-class-flash.h should also return 0.
 
-Don't we need to switch to unevaluatedProperties ?
+DT node is first priority to decide how leds work.
+If RGB LED use multicolor form in DT, CONFIG_LEDS_CLASS_FLASH should be def=
+ined.
+Otherwise It is right action to probe fail.
 
->  
->      properties:
-> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> index 1fd9b5532a21..48d8f73ce7ab 100644
-> --- a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-> @@ -43,6 +43,7 @@ properties:
->    # See ./video-interfaces.txt for details
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->  
->      properties:
->        endpoint:
-> diff --git a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-> index d8c54f9d9506..7f28954a4508 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-> @@ -36,17 +36,9 @@ properties:
->      maxItems: 1
->  
->    port:
-> -    type: object
-> -    description:
-> -      A node containing a single endpoint as doucmented in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt
-> -
-> -  ports:
-> -    type: object
-> -    description:
-> -      A node containing input and output port nodes with endpoint definitions
-> -      as documented in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +
-> +  ports: true
->  
->  additionalProperties: false
->  
-> @@ -80,24 +72,19 @@ allOf:
->      then:
->        properties:
->          ports:
-> +          $ref: /schemas/graph.yaml#/properties/ports
->            properties:
-> -            '#address-cells':
-> -              const: 1
-> -            '#size-cells':
-> -              const: 0
->              port@3:
-> -              type: object
->                description: Output port
->  
->            patternProperties:
->              "^port@[0-2]$":
-> -              type: object
->                description: Input port
->  
->            required:
->              - port@3
->  
-> -          additionalProperties: false
-> +          unevaluatedProperties: false
->  
->        required:
->          - ports
-> @@ -110,24 +97,20 @@ allOf:
->      then:
->        properties:
->          ports:
-> +          $ref: /schemas/graph.yaml#/properties/ports
->            properties:
-> -            '#address-cells':
-> -              const: 1
-> -            '#size-cells':
-> -              const: 0
->              port@6:
->                type: object
->                description: Output port
->  
->            patternProperties:
->              "^port@[0-5]$":
-> -              type: object
->                description: Input port
->  
->            required:
->              - port@6
->  
-> -          additionalProperties: false
-> +          unevaluatedProperties: false
->  
->        required:
->          - ports
-> diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-> index 407baddfaa1d..693f31daf5aa 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-> @@ -64,16 +64,12 @@ properties:
->      description:
->        Select which input is selected after reset.
->  
-> -  ports:
-> -    type: object
-> -    description:
-> -      A node containing input and output port nodes with endpoint definitions
-> -      as documented in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +  ports: true
->  
->  required:
->    - compatible
->    - reg
-> +  - ports
->  
->  additionalProperties: false
->  
-> @@ -86,25 +82,17 @@ allOf:
->      then:
->        properties:
->          ports:
-> +          $ref: /schemas/graph.yaml#/properties/ports
->            properties:
-> -            '#address-cells':
-> -              const: 1
-> -            '#size-cells':
-> -              const: 0
->              port@0:
-> -              type: object
->                description: Input port
->              port@1:
-> -              type: object
->                description: Output port
->  
->            required:
->              - port@1
->  
-> -          additionalProperties: false
-> -
-> -      required:
-> -        - ports
-> +          unevaluatedProperties: false
->  
->    - if:
->        properties:
-> @@ -114,27 +102,19 @@ allOf:
->      then:
->        properties:
->          ports:
-> +          $ref: /schemas/graph.yaml#/properties/ports
->            properties:
-> -            '#address-cells':
-> -              const: 1
-> -            '#size-cells':
-> -              const: 0
->              port@2:
-> -              type: object
->                description: Output port
->  
->            patternProperties:
->              "^port@[0-1]$":
-> -              type: object
->                description: Input port
->  
->            required:
->              - port@2
->  
-> -          additionalProperties: false
-> -
-> -      required:
-> -        - ports
-> +          unevaluatedProperties: false
->  
->  examples:
->    - |
-> diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-> index ff9546e95d05..17ec4ab1dbd0 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-> @@ -41,7 +41,7 @@ properties:
->      maxItems: 1
->  
->    port:
-> -    type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      description: |
->        Output video port. See ../video-interfaces.txt.
->  
-> diff --git a/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml b/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml
-> index 3dc06c628e64..e0ea3acca89a 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml
-> @@ -86,33 +86,12 @@ properties:
->      maxItems: 3
->  
->    port:
-> -    type: object
-> -    additionalProperties: false
-> -    description: -|
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description:
->        Connection to the remote GMSL endpoint are modelled using the OF graph
->        bindings in accordance with the video interface bindings defined in
->        Documentation/devicetree/bindings/media/video-interfaces.txt.
->  
-> -      The device node contains a single "port" child node with a single
-> -      "endpoint" sub-device.
-> -
-> -    properties:
-> -      endpoint:
-> -        type: object
-> -        additionalProperties: false
-> -
-> -        properties:
-> -          remote-endpoint:
-> -            description: -|
-> -              phandle to the remote GMSL endpoint sub-node in the remote node
-> -              port.
-> -            maxItems: 1
-> -
-> -        required:
-> -          - remote-endpoint
-> -
-> -    required:
-> -      - endpoint
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> index dfc4d29a4f04..bba42e015c98 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-> @@ -47,6 +47,8 @@ properties:
->    # See ../video-interfaces.txt for more details
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +
->      properties:
->        endpoint:
->          type: object
-
-Can we drop type from the endpoint ?
-
-> @@ -74,6 +76,8 @@ properties:
->          required:
->            - link-frequencies
->  
-> +    additionalProperties: false
-
-I supppose additionalProperties works here as the endpoint property is
-specified in this schema, but conceptually speaking, wouldn't
-unevaluatedProperties be a better match ?
-
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> index 9ea827092fdd..2e89a5458afe 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-> @@ -53,56 +53,25 @@ properties:
->  
->    ports:
->      type: object
-> -    description: |
-> -      The connections to the MAX9286 GMSL and its endpoint nodes are modelled
-> -      using the OF graph bindings in accordance with the video interface
-> -      bindings defined in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt.
-> -
-> -      The following table lists the port number corresponding to each device
-> -      port.
-> -
-> -        Port            Description
-> -        ----------------------------------------
-> -        Port 0          GMSL Input 0
-> -        Port 1          GMSL Input 1
-> -        Port 2          GMSL Input 2
-> -        Port 3          GMSL Input 3
-> -        Port 4          CSI-2 Output
-> +    $ref: /schemas/graph.yaml#/properties/ports
->  
->      properties:
-> -      '#address-cells':
-> -        const: 1
-> -
-> -      '#size-cells':
-> -        const: 0
-> +      port@0:
-> +        description: GMSL Input 0
->  
-> -      port@[0-3]:
-> -        type: object
-> -        properties:
-> -          reg:
-> -            enum: [ 0, 1, 2, 3 ]
-> +      port@1:
-> +        description: GMSL Input 1
->  
-> -          endpoint:
-> -            type: object
-> +      port@2:
-> +        description: GMSL Input 2
->  
-> -            properties:
-> -              remote-endpoint:
-> -                description: |
-> -                 phandle to the remote GMSL source endpoint subnode in the
-> -                 remote node port.
-> -
-> -            required:
-> -              - remote-endpoint
-> -
-> -        required:
-> -          - reg
-> -          - endpoint
-> -
-> -        additionalProperties: false
-> +      port@3:
-> +        description: GMSL Input 3
->  
->        port@4:
->          type: object
-
-Dropping type here too ?
-
-> +        description: CSI-2 Output
-> +
->          properties:
->            reg:
->              const: 4
-> @@ -130,6 +99,8 @@ properties:
->      required:
->        - port@4
->  
-> +    unevaluatedProperties: false
-> +
->    i2c-mux:
->      type: object
->      description: |
-> @@ -184,25 +155,8 @@ properties:
->                    requirements of the currently connected remote device.
->  
->                port:
-> -                type: object
-> -
-> -                properties:
-> -                  endpoint:
-> -                    type: object
-> -
-> -                    properties:
-> -                      remote-endpoint:
-> -                        description: phandle to the MAX9286 sink endpoint.
-> -
-> -                    required:
-> -                      - remote-endpoint
-> -
-> -                    additionalProperties: false
-> -
-> -                required:
-> -                  - endpoint
-> -
-> -                additionalProperties: false
-> +                $ref: /schemas/graph.yaml#/properties/port
-> +                description: Connection to the MAX9286 sink.
->  
->              required:
->                - compatible
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
-> index 280c62afae13..cd5291602a70 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
-> @@ -32,10 +32,7 @@ properties:
->  
->    port:
->      type: object
-> -    description: |-
-> -      Should contain one endpoint sub-node used to model connection to the
-> -      video receiver according to the specification defined in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +    $ref: /schemas/graph.yaml#/properties/port
->  
->      properties:
->        endpoint:
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> index cde85553fd01..2611eb69b3b2 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-> @@ -58,11 +58,8 @@ properties:
->  
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      additionalProperties: false
-> -    description:
-> -      A node containing an output port node with an endpoint definition
-> -      as documented in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt
->  
->      properties:
->        endpoint:
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> index 6866c2cdac50..eedc560837d2 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-> @@ -38,6 +38,7 @@ properties:
->  
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      description: |
->        Video output port. See ../video-interfaces.txt.
->  
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-> index 1a3590dd0e98..0599df605a4f 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-> @@ -55,6 +55,7 @@ properties:
->  
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      description: |
->        Video output port. See ../video-interfaces.txt.
->  
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> index f697e1a20beb..90828020e42a 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> @@ -44,8 +44,7 @@ properties:
->      maxItems: 1
->  
->    port:
-> -    type: object
-> -    description: Output video port. See ../video-interfaces.txt.
-> +    $ref: /schemas/graph.yaml#/properties/port
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-> index 49bff738aca5..4832f55654cc 100644
-> --- a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-> +++ b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-> @@ -25,6 +25,7 @@ properties:
->  
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      additionalProperties: false
->  
->      properties:
-> diff --git a/Documentation/devicetree/bindings/media/renesas,ceu.yaml b/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-> index c7e1e4fe67e6..2d493d503d07 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-> @@ -35,6 +35,7 @@ properties:
->  
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      additionalProperties: false
->  
->      properties:
-> diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> index 533c2f181db7..e34dfbef25a2 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-> @@ -47,10 +47,7 @@ properties:
->  
->    ports:
->      type: object
-> -    description:
-> -      A node containing input and output port nodes with endpoint definitions
-> -      as documented in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +    $ref: /schemas/graph.yaml#/properties/ports
->  
->      properties:
->        port@0:
-> @@ -84,38 +81,15 @@ properties:
->          additionalProperties: false
->  
->        port@1:
-> -        type: object
->          description:
->            Output port node, multiple endpoints describing all the R-Car VIN
->            modules connected the CSI-2 receiver.
->  
-> -        properties:
-> -          '#address-cells':
-> -            const: 1
-> -
-> -          '#size-cells':
-> -            const: 0
-> -
-> -          reg:
-> -            const: 1
-> -
-> -        patternProperties:
-> -          "^endpoint@[0-9a-f]$":
-> -            type: object
-> +    required:
-> +      - port@0
-> +      - port@1
->  
-> -            properties:
-> -              reg:
-> -                maxItems: 1
-> -
-> -              remote-endpoint: true
-> -
-> -            required:
-> -              - reg
-> -              - remote-endpoint
-> -
-> -            additionalProperties: false
-> -
-> -        additionalProperties: false
-> +    unevaluatedProperties: false
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> index ad2fe660364b..25a70dc89a4c 100644
-> --- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> +++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-> @@ -70,6 +70,7 @@ properties:
->    #The per-board settings for Gen2 and RZ/G1 platforms:
->    port:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      description:
->        A node containing a parallel input with a single endpoint definitions as
->        documented in
-> @@ -124,9 +125,7 @@ properties:
->  
->    ports:
->      type: object
-> -    description:
-> -      A node containing input nodes with endpoint definitions as documented in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +    $ref: /schemas/graph.yaml#/properties/ports
->  
->      properties:
->        port@0:
-> @@ -272,6 +271,8 @@ properties:
->  
->          additionalProperties: false
->  
-> +    unevaluatedProperties: false
-> +
->  required:
->    - compatible
->    - reg
-> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> index 3fe778cb5cc3..66bdef5e1273 100644
-> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-> @@ -37,12 +37,9 @@ properties:
->      maxItems: 1
->  
->    port:
-> -    type: object
-> +    $ref: /schemas/graph.yaml#/properties/port
->      description:
-> -      DCMI supports a single port node with parallel bus. It should contain
-> -      one 'port' child node with child 'endpoint' node. Please refer to the
-> -      bindings defined in
-> -      Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +      DCMI supports a single port node with parallel bus.
->  
->  required:
->    - compatible
-> diff --git a/Documentation/devicetree/bindings/media/ti,cal.yaml b/Documentation/devicetree/bindings/media/ti,cal.yaml
-> index 5e066629287d..dc2c6be4fa4d 100644
-> --- a/Documentation/devicetree/bindings/media/ti,cal.yaml
-> +++ b/Documentation/devicetree/bindings/media/ti,cal.yaml
-> @@ -70,23 +70,18 @@ properties:
->    # See ./video-interfaces.txt for details
->    ports:
->      type: object
-> -    additionalProperties: false
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    unevaluatedProperties: false
->  
->      properties:
-> -      "#address-cells":
-> -        const: 1
-> -
-> -      "#size-cells":
-> -        const: 0
-> -
->        port@0:
->          type: object
-> +        description: CSI2 Port #0
->          additionalProperties: false
->  
->          properties:
->            reg:
->              const: 0
-> -            description: CSI2 Port #0
->  
->          patternProperties:
->            endpoint:
-> @@ -108,12 +103,12 @@ properties:
->  
->        port@1:
->          type: object
-> +        description: CSI2 Port #1
->          additionalProperties: false
->  
->          properties:
->            reg:
->              const: 1
-> -            description: CSI2 Port #1
->  
->          patternProperties:
->            endpoint:
-> @@ -134,8 +129,6 @@ properties:
->            - reg
->  
->      required:
-> -      - "#address-cells"
-> -      - "#size-cells"
->        - port@0
->  
->  required:
-> diff --git a/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml b/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml
-> index 2961a5b6872f..0868718c3691 100644
-> --- a/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml
-> +++ b/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml
-> @@ -98,6 +98,7 @@ properties:
->  
->    ports:
->      type: object
-> +    $ref: /schemas/graph.yaml#/properties/ports
->  
->      properties:
->        port@0:
-> @@ -141,29 +142,11 @@ properties:
->          additionalProperties: false
->  
->        port@1:
-> -        type: object
->          description: |
->            Output / source port node, endpoint describing modules
->            connected the CSI-2 receiver.
->  
-> -        properties:
-> -
-> -          reg:
-> -            const: 1
-> -
-> -          endpoint:
-> -            type: object
-> -
-> -            properties:
-> -
-> -              remote-endpoint: true
-> -
-> -            required:
-> -              - remote-endpoint
-> -
-> -            additionalProperties: false
-> -
-> -        additionalProperties: false
-> +    unevaluatedProperties: false
->  
->  required:
->    - compatible
-
--- 
-Regards,
-
-Laurent Pinchart
+>
+> --
+> Best regards,
+> Jacek Anaszewski
