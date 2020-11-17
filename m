@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A48D42B6CBE
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:16:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B832B6CC3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:16:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729969AbgKQSQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 13:16:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48806 "EHLO
+        id S1730678AbgKQSQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 13:16:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727838AbgKQSQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:16:27 -0500
-Received: from mail-wr1-x44a.google.com (mail-wr1-x44a.google.com [IPv6:2a00:1450:4864:20::44a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 702A6C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:27 -0800 (PST)
-Received: by mail-wr1-x44a.google.com with SMTP id r15so13411175wrn.15
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:27 -0800 (PST)
+        with ESMTP id S1730671AbgKQSQb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:16:31 -0500
+Received: from mail-wm1-x349.google.com (mail-wm1-x349.google.com [IPv6:2a00:1450:4864:20::349])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A483EC0617A7
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:29 -0800 (PST)
+Received: by mail-wm1-x349.google.com with SMTP id q17so1912711wmc.1
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=NKT870NUlC/fR/KT4iQDh391rPBCM0t1P6CT6nmxduk=;
-        b=m4MI8sDpmwsqB62UcR7cNmGEWAr1ts32ZyLwXA1tnB9t+yJAMMGil4BHA5iGFJ7isM
-         umGqL0u0iLk+qAebFVa2/UT/SQWeeh7tni7O556SIB6aDKkpJxCYHRGUoUB/25AJyogM
-         m0GtNJ9pve1RrMyvX1nGKvXZMC5UI2L2akL8ld7Q4/y+8HqxmmV9yUUCBjG3B1alizqu
-         8zjAts8U7BaAYdyVNKihGgQdLMb6oQFGE2FpINJY51qA6o8yP59LmhW7Ib9PbyrhYwXD
-         MkzMfv1BcHdsGpSFaKYYevM+SLgZoP9bPFgKtRVWF2iuGJDAmZDeIv19lHS+uvxwOZfN
-         +4Tg==
+        bh=IZC56EUbcZGLv67uWppNeQH9/JsQWBJOLy6w8MLjYOk=;
+        b=vS+rvB1/6KGnGkdgssdAFqr2pdbbPpSdTO3v0TbihY/ScWy+IKWsAhYSb+9u1xIoQY
+         iJ5ArdUb3OBFMAalNNv9B0qc726x3h1bvk8i+Bt1in0DvI/BetdAiJgv2iq6+11P85K3
+         POOkjSLXMrr5CvPC7Usq08l9ERlJLMKxBdTUq+O3qFMGt1wjdx9cjLeG1FpZm0WbcGgI
+         gWEdRNRf4cc7JUlIQ8kW/6J7K8sBCpWEHsM8GS/TPC0z9RhMv2am4tyeUPp/P/FUsJ0h
+         xuW1/Ugcc9nP8aKCuNn+d2qK3dxsz5m2Qxz8K4SfKxYCDJLLMPLQDJAyyK1BKwJgdl4V
+         VQOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=NKT870NUlC/fR/KT4iQDh391rPBCM0t1P6CT6nmxduk=;
-        b=B3ClA/zp++zi6tmqTA7Bf2ezOIZVKOpNg0+sOMTXktD6hugLqLT5uQxezrrYMzDsJU
-         FyaegXpIB1Qv3TsGibyYTJcUJHdG2p1NJAp4BeRrSdQRcjx0WdimsysMv/UR/GBUdJS2
-         RGg4LSm49FlO6XYFQeTk/hGpGu5xgHgiM+YLM94pD9tc7nVV+VU9T+TLwwNDcITtVAGr
-         uwFQTeAlc8wdf246iWM+v8R8wgTKYwUi+xQk4hhJY0oGtevH1918yl49Ukos5BE/Blde
-         bI+pa8zMFteTdw8hUMs5MUhLDctTPlFN0bsHz+Lbq7KV+KLTdrz3Oq4ESBddJ0uZLIXq
-         huMw==
-X-Gm-Message-State: AOAM531IyniihEj7KSvWa0l1atBIKCcIIh5wbGmfrp6+d2ll1eC2j6CH
-        I48ub466iTSkAJFAEFuQd4+UEMufrc3j
-X-Google-Smtp-Source: ABdhPJwaipw8Yg+hF0IOY//Mk8QfB1T5Et/1Qnq5qCttJhd99HX+QQmEaSPNLhuQ7z/N6ynjdi4lLhEzca6o
+        bh=IZC56EUbcZGLv67uWppNeQH9/JsQWBJOLy6w8MLjYOk=;
+        b=bBCv1aUZ1se+wNFAtv4fNG7ilrzhTKREZlF63s4tBprPhzzKAxCh1mBszI6l/q8ZPW
+         EZSQZSpvc+PHlsK9Ntrs/q1aGWh2D1oYpaT+WOhh0NzKXGRzpVsNgqe6NMUYA3Em6nk1
+         DSUguZXfjw4JsZxpKMhKznnAR5fJjsVzrphjYM5R92xPkJHmk8f2jNqUWwRBBNY4KyUH
+         2NDzXyJwc05svJkAKsx4Yhyl6LDHyL8IekD+1iqF8u8ZX+BcV3Cq7CQ/ONN4kkdu7Ovv
+         vroAFGw/tKTquFcwmTfSW4dBzu5W4Y+hPfyk1wqeMTk60uul5isi6nbJP9rV0OUCviTT
+         V/xw==
+X-Gm-Message-State: AOAM530jfc31CjE7ilUxk85gE5g2Eg8SGrKx5OiyZYxTDRCk7m2nSxxo
+        CXvoCrLNeFlqk7P/NcXtw+R/Bpaai6Ix
+X-Google-Smtp-Source: ABdhPJzcNUt5sppuGQvEX0isAFbepTz9C9E9Dic3GRImbsOwvG5qyl5LhxGBa5f3ag7x2AHxrvf7fK/v7tNU
 Sender: "qperret via sendgmr" <qperret@luke.lon.corp.google.com>
 X-Received: from luke.lon.corp.google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
- (user=qperret job=sendgmr) by 2002:a1c:bc08:: with SMTP id
- m8mr360694wmf.137.1605636986141; Tue, 17 Nov 2020 10:16:26 -0800 (PST)
-Date:   Tue, 17 Nov 2020 18:15:43 +0000
+ (user=qperret job=sendgmr) by 2002:a7b:cd10:: with SMTP id
+ f16mr348760wmj.69.1605636988252; Tue, 17 Nov 2020 10:16:28 -0800 (PST)
+Date:   Tue, 17 Nov 2020 18:15:44 +0000
 In-Reply-To: <20201117181607.1761516-1-qperret@google.com>
-Message-Id: <20201117181607.1761516-4-qperret@google.com>
+Message-Id: <20201117181607.1761516-5-qperret@google.com>
 Mime-Version: 1.0
 References: <20201117181607.1761516-1-qperret@google.com>
 X-Mailer: git-send-email 2.29.2.299.gdc1121823c-goog
-Subject: [RFC PATCH 03/27] KVM: arm64: Add standalone ticket spinlock
- implementation for use at hyp
+Subject: [RFC PATCH 04/27] KVM: arm64: Initialize kvm_nvhe_init_params early
 From:   Quentin Perret <qperret@google.com>
 To:     Catalin Marinas <catalin.marinas@arm.com>,
         Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
@@ -74,160 +73,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Will Deacon <will@kernel.org>
+Move the initialization of kvm_nvhe_init_params in a dedicated function
+that is run early, and only once during KVM init, rather than every time
+the KVM vectors are set and reset.
 
-We will soon need to synchronise multiple CPUs in the hyp text at EL2.
-The qspinlock-based locking used by the host is overkill for this purpose
-and requires a working "percpu" implementation for the MCS nodes.
+This also opens the opportunity for the hypervisor to change the init
+structs during boot, hence simplifying the replacement of host-provided
+page-tables and stacks by the ones the hypervisor will create for
+itself.
 
-Implement a simple ticket locking scheme based heavily on the code removed
-by c11090474d70 ("arm64: locking: Replace ticket lock implementation with
-qspinlock").
-
-[ qperret: removed the __KVM_NVHE_HYPERVISOR__ build-time check from
-  spinlock.h ]
-
-Signed-off-by: Will Deacon <will@kernel.org>
 Signed-off-by: Quentin Perret <qperret@google.com>
 ---
- arch/arm64/kvm/hyp/include/nvhe/spinlock.h | 95 ++++++++++++++++++++++
- arch/arm64/kvm/hyp/include/nvhe/util.h     | 25 ++++++
- 2 files changed, 120 insertions(+)
- create mode 100644 arch/arm64/kvm/hyp/include/nvhe/spinlock.h
- create mode 100644 arch/arm64/kvm/hyp/include/nvhe/util.h
+ arch/arm64/kvm/arm.c | 28 ++++++++++++++++++++--------
+ 1 file changed, 20 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/kvm/hyp/include/nvhe/spinlock.h b/arch/arm64/kvm/hyp/include/nvhe/spinlock.h
-new file mode 100644
-index 000000000000..bbfe2cbd9f62
---- /dev/null
-+++ b/arch/arm64/kvm/hyp/include/nvhe/spinlock.h
-@@ -0,0 +1,95 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * A stand-alone ticket spinlock implementation, primarily for use by the
-+ * non-VHE hypervisor code running at EL2.
-+ *
-+ * Copyright (C) 2020 Google LLC
-+ * Author: Will Deacon <will@kernel.org>
-+ *
-+ * Heavily based on the implementation removed by c11090474d70 which was:
-+ * Copyright (C) 2012 ARM Ltd.
-+ */
+diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+index d6d5211653b7..7335eb4fb0bd 100644
+--- a/arch/arm64/kvm/arm.c
++++ b/arch/arm64/kvm/arm.c
+@@ -1355,24 +1355,20 @@ static int kvm_init_vector_slots(void)
+ 	return 0;
+ }
+ 
+-static void cpu_init_hyp_mode(void)
++static void cpu_prepare_hyp_mode(int cpu)
+ {
+-	struct kvm_nvhe_init_params *params = this_cpu_ptr_nvhe_sym(kvm_init_params);
+-	struct arm_smccc_res res;
+-
+-	/* Switch from the HYP stub to our own HYP init vector */
+-	__hyp_set_vectors(kvm_get_idmap_vector());
++	struct kvm_nvhe_init_params *params = per_cpu_ptr_nvhe_sym(kvm_init_params, cpu);
+ 
+ 	/*
+ 	 * Calculate the raw per-cpu offset without a translation from the
+ 	 * kernel's mapping to the linear mapping, and store it in tpidr_el2
+ 	 * so that we can use adr_l to access per-cpu variables in EL2.
+ 	 */
+-	params->tpidr_el2 = (unsigned long)this_cpu_ptr_nvhe_sym(__per_cpu_start) -
++	params->tpidr_el2 = (unsigned long)per_cpu_ptr_nvhe_sym(__per_cpu_start, cpu) -
+ 			    (unsigned long)kvm_ksym_ref(CHOOSE_NVHE_SYM(__per_cpu_start));
+ 
+ 	params->vector_hyp_va = kern_hyp_va((unsigned long)kvm_ksym_ref(__kvm_hyp_host_vector));
+-	params->stack_hyp_va = kern_hyp_va(__this_cpu_read(kvm_arm_hyp_stack_page) + PAGE_SIZE);
++	params->stack_hyp_va = kern_hyp_va(per_cpu(kvm_arm_hyp_stack_page, cpu) + PAGE_SIZE);
+ 	params->entry_hyp_va = kern_hyp_va((unsigned long)kvm_ksym_ref(__kvm_hyp_psci_cpu_entry));
+ 	params->pgd_pa = kvm_mmu_get_httbr();
+ 
+@@ -1381,6 +1377,15 @@ static void cpu_init_hyp_mode(void)
+ 	 * be read while the MMU is off.
+ 	 */
+ 	__flush_dcache_area(params, sizeof(*params));
++}
 +
-+#ifndef __ARM64_KVM_HYP_SPINLOCK_H__
-+#define __ARM64_KVM_HYP_SPINLOCK_H__
-+
-+#include <asm/alternative.h>
-+
-+typedef union hyp_spinlock {
-+	u32	__val;
-+	struct {
-+#ifdef __AARCH64EB__
-+		u16 next, owner;
-+#else
-+		u16 owner, next;
-+#endif
-+	};
-+} hyp_spinlock_t;
-+
-+#define hyp_spin_lock_init(l)						\
-+do {									\
-+	*(l) = (hyp_spinlock_t){ .__val = 0 };				\
-+} while (0)
-+
-+static inline void hyp_spin_lock(hyp_spinlock_t *lock)
++static void cpu_init_hyp_mode(void)
 +{
-+	u32 tmp;
-+	hyp_spinlock_t lockval, newval;
++	struct kvm_nvhe_init_params *params;
++	struct arm_smccc_res res;
 +
-+	asm volatile(
-+	/* Atomically increment the next ticket. */
-+	ALTERNATIVE(
-+	/* LL/SC */
-+"	prfm	pstl1strm, %3\n"
-+"1:	ldaxr	%w0, %3\n"
-+"	add	%w1, %w0, #(1 << 16)\n"
-+"	stxr	%w2, %w1, %3\n"
-+"	cbnz	%w2, 1b\n",
-+	/* LSE atomics */
-+"	.arch_extension lse\n"
-+"	mov	%w2, #(1 << 16)\n"
-+"	ldadda	%w2, %w0, %3\n"
-+	__nops(3),
-+	ARM64_HAS_LSE_ATOMICS)
-+
-+	/* Did we get the lock? */
-+"	eor	%w1, %w0, %w0, ror #16\n"
-+"	cbz	%w1, 3f\n"
++	/* Switch from the HYP stub to our own HYP init vector */
++	__hyp_set_vectors(kvm_get_idmap_vector());
+ 
+ 	/*
+ 	 * Call initialization code, and switch to the full blown HYP code.
+@@ -1389,6 +1394,7 @@ static void cpu_init_hyp_mode(void)
+ 	 * cpus_have_const_cap() wrapper.
+ 	 */
+ 	BUG_ON(!system_capabilities_finalized());
++	params = this_cpu_ptr_nvhe_sym(kvm_init_params);
+ 	arm_smccc_1_1_hvc(KVM_HOST_SMCCC_FUNC(__kvm_hyp_init), virt_to_phys(params), &res);
+ 	WARN_ON(res.a0 != SMCCC_RET_SUCCESS);
+ 
+@@ -1742,6 +1748,12 @@ static int init_hyp_mode(void)
+ 	init_cpu_logical_map();
+ 	init_psci_relay();
+ 
 +	/*
-+	 * No: spin on the owner. Send a local event to avoid missing an
-+	 * unlock before the exclusive load.
++	 * Prepare the CPU initialization parameters
 +	 */
-+"	sevl\n"
-+"2:	wfe\n"
-+"	ldaxrh	%w2, %4\n"
-+"	eor	%w1, %w2, %w0, lsr #16\n"
-+"	cbnz	%w1, 2b\n"
-+	/* We got the lock. Critical section starts here. */
-+"3:"
-+	: "=&r" (lockval), "=&r" (newval), "=&r" (tmp), "+Q" (*lock)
-+	: "Q" (lock->owner)
-+	: "memory");
-+}
++	for_each_possible_cpu(cpu)
++		cpu_prepare_hyp_mode(cpu);
 +
-+static inline void hyp_spin_unlock(hyp_spinlock_t *lock)
-+{
-+	u64 tmp;
-+
-+	asm volatile(
-+	ALTERNATIVE(
-+	/* LL/SC */
-+	"	ldrh	%w1, %0\n"
-+	"	add	%w1, %w1, #1\n"
-+	"	stlrh	%w1, %0",
-+	/* LSE atomics */
-+	"	.arch_extension lse\n"
-+	"	mov	%w1, #1\n"
-+	"	staddlh	%w1, %0\n"
-+	__nops(1),
-+	ARM64_HAS_LSE_ATOMICS)
-+	: "=Q" (lock->owner), "=&r" (tmp)
-+	:
-+	: "memory");
-+}
-+
-+#endif /* __ARM64_KVM_HYP_SPINLOCK_H__ */
-diff --git a/arch/arm64/kvm/hyp/include/nvhe/util.h b/arch/arm64/kvm/hyp/include/nvhe/util.h
-new file mode 100644
-index 000000000000..9c58cc436a83
---- /dev/null
-+++ b/arch/arm64/kvm/hyp/include/nvhe/util.h
-@@ -0,0 +1,25 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Standalone re-implementations of kernel interfaces for use at EL2.
-+ * Copyright (C) 2020 Google LLC
-+ * Author: Will Deacon <will@kernel.org>
-+ */
-+
-+#ifndef __KVM_NVHE_HYPERVISOR__
-+#error "Attempt to include nVHE code outside of EL2 object"
-+#endif
-+
-+#ifndef __ARM64_KVM_NVHE_UTIL_H__
-+#define __ARM64_KVM_NVHE_UTIL_H__
-+
-+/* Locking (hyp_spinlock_t) */
-+#include <nvhe/spinlock.h>
-+
-+#undef spin_lock_init
-+#define spin_lock_init				hyp_spin_lock_init
-+#undef spin_lock
-+#define spin_lock				hyp_spin_lock
-+#undef spin_unlock
-+#define	spin_unlock				hyp_spin_unlock
-+
-+#endif	/* __ARM64_KVM_NVHE_UTIL_H__ */
+ 	return 0;
+ 
+ out_err:
 -- 
 2.29.2.299.gdc1121823c-goog
 
