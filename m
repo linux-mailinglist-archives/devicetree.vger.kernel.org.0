@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED6AA2B561F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 02:17:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7DE2B5646
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 02:34:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727393AbgKQBQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 20:16:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60858 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726321AbgKQBQK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 20:16:10 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCFCEC0613CF;
-        Mon, 16 Nov 2020 17:16:10 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id m9so5228152pgb.4;
-        Mon, 16 Nov 2020 17:16:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=8QL8bbL+oGG6j6oJ9WDXTBxGYp2AuVWWexQCgXhyNIw=;
-        b=UzrhGmoUmM8ZOz+737sUWqYfpZdtl90uocjfMWmiVl9dmtFbEMana3Bc3y8L9pp7II
-         wnIpwQwAs70r5FmJBe+p10GqkY84K1z+l1imKI25hqOoG7gPXQccxHBPMS7nsymmz/YU
-         6gvgFLulRuKS2VqsccCdluS6S4soaChBTxcLwijS1onUrjad1u/DvPJe6e9ZvdeeOC5T
-         CbCpRZ4wvMez0H2dz5reHYPdu6qlyjTKzntDoQsCsbQzB5nGOkGax9Jk9UDSfO7fveLX
-         i0TJvZVrRZnMqmZZplsdXRGfvKRfOlIQ6BQiVPIGbY0dtA0um6bhTEYCnAv7dpqPM6NB
-         2ahw==
+        id S1726365AbgKQBdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 20:33:51 -0500
+Received: from mail-oo1-f66.google.com ([209.85.161.66]:38957 "EHLO
+        mail-oo1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726238AbgKQBdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 20:33:51 -0500
+Received: by mail-oo1-f66.google.com with SMTP id l10so4372962oom.6
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 17:33:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8QL8bbL+oGG6j6oJ9WDXTBxGYp2AuVWWexQCgXhyNIw=;
-        b=Zsd5JUqyFWJAo5jLd7AklKwIBQjKa3rMPxFgja1/g+3xF533vQDTghfiCZ7JrKSMCn
-         yXzAeX9BZPVHpdgEgLMarknuvXessMQvE8fMlKb9TcsUvWDQdVVby2mHCPPg98tEWT1M
-         me0hNtdV01YOC5LuLl230QCgASI8aRKgUodCH14+Im3ctp9+9U9G6yFGGu+3n48GNmLd
-         3dKW74IRok4Sc949l3xv0j9MScu+Fo52hl0XylUPI/8W7fhkm70eWzc+5oZvvy2aKgVY
-         TSIxZ/8snINS1HNP8b50vqTDPBzRsqdH+paE3v8LvbVv/JlouFYcAWffQgrmTsQJa0Sw
-         dl5g==
-X-Gm-Message-State: AOAM532CYzvXpBBCSITd/scN15mG/QGnlHfbkVwFK+jtOd209RSfxG/L
-        gw2Bm2XW2zM6cHEoHO2vvqQ=
-X-Google-Smtp-Source: ABdhPJyZmrK95Glb6r1a/zk7QiBx5GV1jnOBBZa8fDAoJbRhXkoD/TKm2WoqieMhtraGYKlO38A0hA==
-X-Received: by 2002:a17:90a:4a12:: with SMTP id e18mr1870538pjh.9.1605575770256;
-        Mon, 16 Nov 2020 17:16:10 -0800 (PST)
-Received: from taoren-ubuntu-R90MNF91 (c-73-252-146-110.hsd1.ca.comcast.net. [73.252.146.110])
-        by smtp.gmail.com with ESMTPSA id h14sm19306404pfr.32.2020.11.16.17.16.08
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 16 Nov 2020 17:16:09 -0800 (PST)
-Date:   Mon, 16 Nov 2020 17:16:03 -0800
-From:   Tao Ren <rentao.bupt@gmail.com>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tao Ren <taoren@fb.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: minipack: Fixup I2C tree
-Message-ID: <20201117011602.GA28529@taoren-ubuntu-R90MNF91>
-References: <20201110072446.8218-1-rentao.bupt@gmail.com>
- <CACPK8Xcpj_LsYOJ=S0p1D5Wqof_2m7SLnPRantQen61B2_XjAA@mail.gmail.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PIVuRHuQpPLtHXGEDoAwUODOVnqOwSMNScZjMJ33YwE=;
+        b=IKoH1UTCDPUBrqbrfjS3QNtDb/fqGOAxaNkrf50gorXIoHKIduVQJb5h44dQ7cDPW/
+         8n13QRRSPNQLLWV7Bux35DTE+q9b7MH6fZqflMkZ7zaVb+OwWp60MwLsNCNoY3RhePfC
+         9Hidqlr+0xz3wF2+qGwlLCT1/DEOJlM1PaQFofRpUzpHXL0CvHH47Wdic+cZHkgg1jnF
+         XBFQ9fMbhjZ2e/LMWf+ovn+91joGCog2glf5IJHyRxoEFbdd2e1SwiWVdjw4eiUxt0L1
+         CoebTLwdggzLKXsQ/JpRAfq7+MePPjSyzajINP8zr/7647B/taNfav+edECJGy6Zw3Gl
+         0vlQ==
+X-Gm-Message-State: AOAM533c8QFqH/u+bmORrbGFseldxqXRU3avJ/E6xEVVf/snOnX3hl0F
+        ulFDvqU82QuotcKtJKAniNSoSQyeJg==
+X-Google-Smtp-Source: ABdhPJyh7k15dAFdbxkEOsVwyoHF5mvXPEsj3sCoz0n4Vx6Avi75UW55OWe8b49iffOzcTA3D2l6nQ==
+X-Received: by 2002:a4a:c018:: with SMTP id v24mr1515621oop.2.1605576830587;
+        Mon, 16 Nov 2020 17:33:50 -0800 (PST)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id j9sm3861325oij.44.2020.11.16.17.33.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Nov 2020 17:33:49 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH 0/4] ASoC: graph card schema rework
+Date:   Mon, 16 Nov 2020 19:33:45 -0600
+Message-Id: <20201117013349.2458416-1-robh@kernel.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACPK8Xcpj_LsYOJ=S0p1D5Wqof_2m7SLnPRantQen61B2_XjAA@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 03:33:45AM +0000, Joel Stanley wrote:
-> On Tue, 10 Nov 2020 at 07:24, <rentao.bupt@gmail.com> wrote:
-> >
-> > From: Tao Ren <rentao.bupt@gmail.com>
-> >
-> > Create all the i2c switches in device tree and use aliases to assign
-> > child channels with consistent bus numbers.
-> >
-> > Besides, "i2c-mux-idle-disconnect" is set for all the i2c switches to
-> > avoid potential conflicts when multiple devices (beind the switches) use
-> > the same device address.
-> >
-> > Signed-off-by: Tao Ren <rentao.bupt@gmail.com>
-> 
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
-> 
-> I will apply for 5.11.
+This series updates Sameer's patch to repartition the graph card binding 
+schema and incorporate the OF graph schema. The schema was also mixing 
+card node and DAI node properties, so I've split the DAI part (the 
+'port' node) into a separate schema.
 
-Great. Thank you Joel!
+There's another problem that 'frame-master' and 'bitclock-master' have 
+inconsistent types of boolean and phandle. Having the properties just 
+point to the local or remote endpoint within an endpoint node is kind of 
+pointless. We should have gone with just boolean, but looks like we 
+already have several users. MMP OLPC is the one platform using boolean, 
+but it happens to work because the properties are effectively ignored 
+and CPU DAI as the master is the default.
+
+Rob
+
+Rob Herring (3):
+  ASoC: dt-bindings: Use OF graph schema
+  ASoC: dt-bindings: marvell,mmp-sspa: Use audio-graph-port schema
+  ASoC: dt-bindings: Refine 'frame-master' and 'bitclock-master' type
+
+Sameer Pujar (1):
+  ASoC: audio-graph-card: Refactor schema
+
+ .../bindings/sound/audio-graph-card.yaml      | 106 +-----------------
+ .../bindings/sound/audio-graph-port.yaml      |  72 ++++++++++++
+ .../bindings/sound/audio-graph.yaml           |  45 ++++++++
+ .../bindings/sound/marvell,mmp-sspa.yaml      |  25 +----
+ .../bindings/sound/renesas,rsnd.yaml          |  12 +-
+ .../bindings/sound/simple-card.yaml           |   6 +-
+ 6 files changed, 132 insertions(+), 134 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/audio-graph-port.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/audio-graph.yaml
 
 
-Cheers,
+base-commit: e2e99930ec006c6fe1d62af339a765ade71a0d9a
+-- 
+2.25.1
 
-Tao
