@@ -2,95 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ADF52B5888
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:50:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 983AC2B58F3
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 05:50:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727297AbgKQDuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 22:50:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56268 "EHLO
+        id S1726570AbgKQEtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 23:49:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbgKQDuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 22:50:15 -0500
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DFAFC0613CF;
-        Mon, 16 Nov 2020 19:50:15 -0800 (PST)
-Received: by mail-pl1-x644.google.com with SMTP id k7so9516986plk.3;
-        Mon, 16 Nov 2020 19:50:15 -0800 (PST)
+        with ESMTP id S1726339AbgKQEtP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 23:49:15 -0500
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58BE7C0617A6
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 20:49:15 -0800 (PST)
+Received: by mail-pl1-x642.google.com with SMTP id x15so9586248pll.2
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 20:49:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=O/kWm3Dkd2STDm+LsQ3zyZK4EutUpyL4Yg9Ub+0dX+8=;
-        b=aeuBm54MVbfPhkalpTCqWszSKOyZjk7yqkv3eLCh6lgj4JEThoDtP9l9eeJ8J7SChr
-         zHehSUmxC8jC0+ypeCCxqOXI1hz/7V8e4GZdregDdItv7suctn9SVkWkcwmRbAf+SLhs
-         BPeeZVqvRj4NBT9Roj4cMhsL7vbgJpqQVN0+aLNoOO1qMsYmCa/N+JNWwYrolmdEl8h+
-         rjrHITJ6fFWFMF9HSCMa48m8ABdewDZA8NLtVetETfMnCdM3soHoZSexH2xeGi+Rufqj
-         qnL53sAWlu4e6mx+XtA5JsjvzRwtY3zk0/1rQxdqwSFY4ToHhFsqOuG8NBIy/gPbYt6v
-         m5ng==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Jf2aIjShD4iVmybDcbPAalYnkGJJs6/Mleod0uBw2fY=;
+        b=fNNmCb/RMfl+hVapIhliNSCowc/j3+etgB5FbEZj64xErDnZJ2c12LUB04PQGqwT0v
+         +UcGieBgB0gK0q3dNsIGgpi9ckbZfg4mf0PJf4TZ6si2R/TDvzH7NTBPgEYj4KeCJxb+
+         ogNwHjpKAdYqnQGMu+ZsV5pR+mSHrx2o+Sxlw9AinlfrHhSU0aHOXSnTGXwFMCEQe0wO
+         VFcvrEd5T53igZeUk7GOcaRrLH+0VkZ1uwyoGY5owIzno3s/h9+VZPw+icGqITliND+b
+         Ic9iNRsNmgmcnaObzvNtiCtYSmOfjPsWd4WsxcHfW2bEvgfiLc369iH+mNV9HSyRHEt0
+         Y9VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=O/kWm3Dkd2STDm+LsQ3zyZK4EutUpyL4Yg9Ub+0dX+8=;
-        b=rKK2D2d+sRzNTiPDO7Ak2bxDbItcn3UzTe2xttkD5W0hdGuSmoJwri8ZVFtrVr0D6X
-         ckCSMsygyo0NJSb6QTj2mNSbPCBHuPPqVx5KtMVGejUUucOVMrWGQP3uQpS08m1sqtmI
-         96JtT9t+DgA++V94nmq6gk90kpZjbkJ3DQATX+UWF4TDTTHOw2e07qPI7yMbQznDNsfD
-         GqDRbpfoBkQCkNUJpjZfmFn1G6ZVlCEx9Et2gPh+f/RYmN6t65TIce51NRCNeGgQ3y1o
-         x+j5FFC3cXu72daaLxLVMk0NYCW+bynb90d3fbJ4bVQyx1e+JJP58rZzHdv7sk5z98SO
-         vcog==
-X-Gm-Message-State: AOAM531U2hznhi7dVJyGjrA8mjIZvX0SMAtRVnXuHaUbqfYliW0fmnGt
-        KxvatGC2PxN+gTJBeRUKzup0cjzJ+AmAcA==
-X-Google-Smtp-Source: ABdhPJw/YgdOpMlt6WDYoWdVMVeEqFZIXgEY4KizmZcCJG24mEXKfFFKvEPqWpvj0ydwskClPxfs+w==
-X-Received: by 2002:a17:902:d211:b029:d7:cd5e:2857 with SMTP id t17-20020a170902d211b02900d7cd5e2857mr15475441ply.45.1605585014871;
-        Mon, 16 Nov 2020 19:50:14 -0800 (PST)
-Received: from ubt.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id u24sm19602329pfm.51.2020.11.16.19.50.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 19:50:14 -0800 (PST)
-From:   Chunyan Zhang <zhang.lyra@gmail.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Jf2aIjShD4iVmybDcbPAalYnkGJJs6/Mleod0uBw2fY=;
+        b=Qrw2KUWbjHCGIIAVfsdURumAdDtlGH0t8/flXjTAue2fENOl7ONT0aAbdXqJuqUIuc
+         wy55bEo+1rvEhCpYGMPgxLTsfduwCNGouWwSbEASu6ilRboOF0PObzrSL6bPyl1xWgjV
+         PfsalwbNhcFBKu9lsL/TUZw2oSbRb8EXxbTKSvTbBG9R8+88iARH+qhrjcLyBJd4k6QA
+         Ff3oPKcNSXvk44mMwy5czhiVF2PUBczp2EWMp4HKLNkbRI6Ep2mBgiaaLY8RnQdD4s6o
+         jC+JVuQLZZZ8C7eWQ/tjydgrLNWD6k945s1rW3Xjc9RfyMElmP2kbsFNCVEzvds6/KGO
+         K1RA==
+X-Gm-Message-State: AOAM530gtXAGT4XFSnSUBOQQKDE4/794XSyrA2l0Pg57v3oigM51QpIT
+        nayhv9x5Nvm4Ucqg4CUyOt7rZw==
+X-Google-Smtp-Source: ABdhPJyJDEC5MnNQUCPJkJoEmtBD+pIRYGL2cGyoD+1qZHidQRQsal2JsGoVIIOS6nv4xXksggE3Fg==
+X-Received: by 2002:a17:902:be07:b029:d8:afa1:3d76 with SMTP id r7-20020a170902be07b02900d8afa13d76mr16093356pls.14.1605588554383;
+        Mon, 16 Nov 2020 20:49:14 -0800 (PST)
+Received: from localhost ([122.172.12.172])
+        by smtp.gmail.com with ESMTPSA id c15sm1257489pjc.43.2020.11.16.20.49.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 16 Nov 2020 20:49:13 -0800 (PST)
+Date:   Tue, 17 Nov 2020 10:19:11 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Chunyan Zhang <chunyan.zhang@unisoc.com>,
-        Nemo Han <nemo.han@unisoc.com>
-Subject: [PATCH v2 3/3] dt-bindings: input: Add compatible string for SC2721 and SC2730
-Date:   Tue, 17 Nov 2020 11:49:49 +0800
-Message-Id: <20201117034949.47877-4-zhang.lyra@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201117034949.47877-1-zhang.lyra@gmail.com>
-References: <20201117034949.47877-1-zhang.lyra@gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: dvfs: Add support for generic
+ performance domains
+Message-ID: <20201117044911.hzmmkasmgpnaxu3m@vireshk-i7>
+References: <20201116181356.804590-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201116181356.804590-1-sudeep.holla@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+On 16-11-20, 18:13, Sudeep Holla wrote:
+> The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+> implementations where untrusted software had direct access to clock and
+> voltage hardware controls. In this attack, the malicious software was able to
+> place the platform into unsafe overclocked or undervolted configurations. Such
+> configurations then enabled the injection of predictable faults to reveal
+> secrets.
+> 
+> Many Arm-based systems used to or still use voltage regulator and clock
+> frameworks in the kernel. These frameworks allow callers to independently
+> manipulate frequency and voltage settings. Such implementations can render
+> systems susceptible to this form of attack.
+> 
+> Attacks such as CLKSCREW are now being mitigated by not having direct and
+> independent control of clock and voltage in the kernel and moving that
+> control to a trusted entity, such as the SCP firmware or secure world
+> firmware/software which are to perform sanity checking on the requested
+> performance levels, thereby preventing any attempted malicious programming.
+> 
+> With the advent of such an abstraction, there is a need to replace the
+> generic clock and regulator bindings used by such devices with a generic
+> performance domains bindings.
+> 
+> [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> ---
+>  .../bindings/dvfs/performance-domain.yaml     | 76 +++++++++++++++++++
+>  1 file changed, 76 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dvfs/performance-domain.yaml
 
-Add new compatible strings to support sc2730 and sc2721 which are
-two varieties of SC27XX family.
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
----
- .../devicetree/bindings/input/sprd,sc27xx-vibrator.yaml         | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml b/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
-index b8a3f23ee3dd..5d67fc8ebc18 100644
---- a/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
-+++ b/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
-@@ -15,6 +15,8 @@ maintainers:
- properties:
-   compatible:
-     enum:
-+      - sprd,sc2721-vibrator
-+      - sprd,sc2730-vibrator
-       - sprd,sc2731-vibrator
- 
-   reg:
 -- 
-2.25.1
-
+viresh
