@@ -2,85 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88F482B6729
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 15:13:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC94C2B6759
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 15:29:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728255AbgKQOMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 09:12:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39010 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729682AbgKQOLh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 09:11:37 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC0C7C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 06:11:37 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=localhost)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kf1hi-00032j-Aq; Tue, 17 Nov 2020 15:11:30 +0100
-Message-ID: <5b6c97dc74ccb38107a50972427d091cdb114209.camel@pengutronix.de>
-Subject: Re: [PATCH v2 08/13] dt-bindings: imx: gpcv2: add support for
- optional resets
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        NXP Linux Team <linux-imx@nxp.com>, kernel@pengutronix.de,
-        patchwork-lst@pengutronix.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Tue, 17 Nov 2020 15:11:28 +0100
-In-Reply-To: <20201109201557.GA1690230@bogus>
-References: <20201105174434.1817539-1-l.stach@pengutronix.de>
-         <20201105174434.1817539-9-l.stach@pengutronix.de>
-         <20201109201557.GA1690230@bogus>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 (3.36.5-1.fc32) 
+        id S1728511AbgKQO1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 09:27:52 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:20648 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728063AbgKQO1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Nov 2020 09:27:51 -0500
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0AHEQqZ1010083;
+        Tue, 17 Nov 2020 15:27:38 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=Vj2Fn4LsQM5ZirBQzqSd0b6wK1xakoRZ2IbWQcg5ueM=;
+ b=rbqG/WSH/9tr2HVMjWfNRa+kUFmfjS5xNVpt6zDkF+erzglU/6bW8x5JYTJH0WEv70uP
+ CECOTXKis00OqVw0MfL4YU1106RxL6ma7wcJIZQ9YjwaL8E1FSX8NUkzOXHVyH1T0G0Y
+ c4Ltlxy/tZLbVbttrXhfkC3eihEZ8KExcsaGKUhpDCvgYHaHWquIiWVOy+9j/TKZ/l5H
+ jM67ePa0OVcYw8JhPtEgiuQDzhroumBfE/g0Jd+yy8Jmmp1UbggUiJosptFapMFz7f09
+ V6F4ODZmEKR7aTK290PItG1pVA7o98vCP7oyVaQSqaDLnYh96YeSibwG861v0vOClLMd 3Q== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34t58cj7et-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 17 Nov 2020 15:27:38 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EDB8C100038;
+        Tue, 17 Nov 2020 15:27:37 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D99D6231294;
+        Tue, 17 Nov 2020 15:27:37 +0100 (CET)
+Received: from lmecxl0912.lme.st.com (10.75.127.51) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Nov
+ 2020 15:27:37 +0100
+Subject: Re: [PATCH v2 3/3] ARM: dts: stm32: lxa-mc1: add OSD32MP15x to list
+ of compatibles
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <kernel@pengutronix.de>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20201110102552.7270-1-a.fatoum@pengutronix.de>
+ <20201110102552.7270-3-a.fatoum@pengutronix.de>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <f98a412c-d64f-e9b7-cfe4-a92b12806a28@st.com>
+Date:   Tue, 17 Nov 2020 15:26:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20201110102552.7270-3-a.fatoum@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG3NODE2.st.com (10.75.127.8) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
+ definitions=2020-11-17_04:2020-11-17,2020-11-17 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, den 09.11.2020, 14:15 -0600 schrieb Rob Herring:
-> On Thu, Nov 05, 2020 at 06:44:29PM +0100, Lucas Stach wrote:
-> > For some domains the resets of the devices in the domain are not
-> > automatically triggered. Add an optional resets property to allow
-> > the GPC driver to trigger those resets explicitly.
-> > 
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > ---
-> >  Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > index a96e6dbf1858..4330c73a2c30 100644
-> > --- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> > @@ -66,6 +66,13 @@ properties:
-> >  
-> >            power-supply: true
-> >  
-> > +          resets:
-> > +            description: |
-> > +              A number of phandles to resets that need to be asserted during
-> > +              power-up sequencing of the domain.
-> > +            minItems: 1
-> > +            maxItems: 4
+Hi Ahmad
+
+On 11/10/20 11:25 AM, Ahmad Fatoum wrote:
+> Earlier commit modified the binding, so the SiP is to be specified
+> as well. Adjust the device tree accordingly.
 > 
-> You need to define what each reset is.
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> ---
+> v1 -> v2:
+>    - split up binding and device tree change
+> ---
+>   arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> index 1e5333fd437f..cda8e871f999 100644
+> --- a/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> +++ b/arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts
+> @@ -15,7 +15,7 @@
+>   
+>   / {
+>   	model = "Linux Automation MC-1 board";
+> -	compatible = "lxa,stm32mp157c-mc1", "st,stm32mp157";
+> +	compatible = "lxa,stm32mp157c-mc1", "oct,stm32mp15xx-osd32", "st,stm32mp157";
+>   
+>   	aliases {
+>   		ethernet0 = &ethernet0;
+> 
 
-I can't. The resets belong to devices located inside the power domain,
-which need to be held in reset across the power-up sequence. So I have
-no means to specify what each reset is in a generic power-domain
-binding. Same situation as with the clocks in this binding actually.
+Series applied on stm32-next.
 
-Regards,
-Lucas
-
+Regards
+Alex
