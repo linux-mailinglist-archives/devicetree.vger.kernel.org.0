@@ -2,97 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 384832B6C98
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:09:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 052E22B6CBA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:16:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730267AbgKQSHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 13:07:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47426 "EHLO
+        id S1726891AbgKQSQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 13:16:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726306AbgKQSHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:07:40 -0500
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD600C0617A6
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:07:39 -0800 (PST)
-Received: by mail-qt1-x842.google.com with SMTP id m65so16354689qte.11
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:07:39 -0800 (PST)
+        with ESMTP id S1725808AbgKQSQU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:16:20 -0500
+Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40636C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:20 -0800 (PST)
+Received: by mail-qv1-xf4a.google.com with SMTP id u19so13698916qvx.4
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:16:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=2SS128aons6BQS3TKpOR9L0j7t9FSqGwHFgxqCfMpDU=;
-        b=fBNW3I5RV8rBpWXFp56lTRkZhxGxYxMOdZN4ufQ5AR7Aiv4TsAZziPHSOw4y5pWsE3
-         48h5FIdIgpYKP1E2NXvI/AcxoTYF768F+P6C6JC5/+xLAM9Oj9Mfw9AKk/JD2BzUKSKd
-         Km5AGnuylL2kyRGfMDnHTlVDJuLD594rUwr3nQIjw0Ejsz/cyXkVEzvjedls5q3smlSB
-         CQA5AhwAi4BgZ8cZjemn6HGwSAzDB/TPGPgHJZeE0ghuB4zr7f4F6IEeOJPOpsFHEB2h
-         8x1pQFbnTA57mqAqt3wS3b3p9YEWcNGMxtOLJ/MdheQpCcpHbSigJozKkVbSd007760T
-         jJBA==
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=4x2LPs+SVLChp+56gdHoWBr1y6qmTjYGgcctnhFKsXo=;
+        b=H73ISXjMOGVV1w3bN1jGOFUiUY1yRfJ7AOCQXuOoODvokljw2HLFEN5+G9rTeK4xVQ
+         VXDPG0olr7xSsDBmpit1p1vTjkFCBj36EsT2dRlNaWtGF5FcY85I4gkFpRu7u08zuVud
+         5wOsR+OmSbpw5Rd9N2yadrUm7yKlp4dzBvrlC706Z2UssEbMifZzzTvFNPT8ull40jm/
+         Mp2OrAkvIn5KnQqV7wpr6uhGzhKZUdifsJbQlrLaXfcmhVmbpQCnY2GFqI7DeuVvIJ0a
+         ik6fE1aZ/Rgj7Wn0TXAg2fK49UYC7cq5nkUANKEJ+eVYpDDjlqtV65E67i/HISd7jeEd
+         1Ccg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=2SS128aons6BQS3TKpOR9L0j7t9FSqGwHFgxqCfMpDU=;
-        b=rhxDRvuyrpERlPvFcO9jeq4d5HlZIM/YHqxi4pq0a/gFno2KATehLiRQafJMJnRotW
-         3bigRvq+oPBcbicHUQTKEVx5wVXY33UpqOvvLgCdff/RdGwzXfzNtKBhsXH5slJm0mq7
-         WqP6zqcbBfB70uC+orJtDs2wSIb/MhRvVjNzARhClOhaCW4aIdqTCG9dku3dUvyOq9We
-         nw+4Zh51gUBUuEWDPhIRho17Fffz+Y5jfN0BPVnSem0O7L0zzZApklQBHBQAS4njHOJj
-         CgSDTDGB9pacX2g6JibwYsEMuj37T0RK8DxBbWWNG4bdN98p5o9CqJ1Z60b7Ht3qRvDS
-         QP9Q==
-X-Gm-Message-State: AOAM533IY/8bU736WkrUnKS26pSU2HNNSdj7SQI0EtOZtnAMfKnken2+
-        n/LpqekjXMdPNq39O10HzeCTvg==
-X-Google-Smtp-Source: ABdhPJzu1uZfI39HSUvCvU1l/3UKdy6XJ21aOheouU1xUuby7ej2D5BtDzqZgwhLlk5/sYIGR/PJzg==
-X-Received: by 2002:ac8:6f3b:: with SMTP id i27mr915044qtv.221.1605636459096;
-        Tue, 17 Nov 2020 10:07:39 -0800 (PST)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id w30sm2997727qkw.24.2020.11.17.10.07.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Nov 2020 10:07:37 -0800 (PST)
-Subject: Re: [PATCH 0/6] Enable Qualcomm Crypto Engine on sdm845
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20201117134714.3456446-1-thara.gopinath@linaro.org>
- <X7QA/BMr/A/jjayk@sol.localdomain>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <49ba008a-fd92-46bf-daf5-a8d3dd4132ea@linaro.org>
-Date:   Tue, 17 Nov 2020 13:07:37 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <X7QA/BMr/A/jjayk@sol.localdomain>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=4x2LPs+SVLChp+56gdHoWBr1y6qmTjYGgcctnhFKsXo=;
+        b=j908nphv1+6BIuRwY5LO9M0Y0XP59lQYIwgHy7M/gJb/lna+h2CZ3zcQPRla5joyBM
+         QtF440EdDu9VdmOZpGPJ7uFAi9zIvNOJxrISjewUajHEj1td0Ve72uLRiiYIJrDiflrL
+         511by5Qgl+EA4TVnSGeTJKFgFVYC3h8RP8+1JQiSMhE2/VS6Fktmi8HP7wy7S6GBxGQo
+         Ix73xLXHLglYl0Owe/RDPl7uZKT8cGrYPcGTO0vucxa7PbIFYGttP9ZCfrYSLunJiipn
+         0AecQHmo3hZspbWorcstcFswhJ7YYdCfdxVj/amlEkd3uKlcVLzq8T1hIN2aE5ogv6qt
+         FxqQ==
+X-Gm-Message-State: AOAM532BKvGpNIZPeutffIHxPCrcpq7IV9eRqTwBMZripdGpMP9Qd1w2
+        L7h2U5gqdvwPKo9tgOElbPZ4C/8R6iE9
+X-Google-Smtp-Source: ABdhPJx8GBSOh7X/x/f3+0D0vrCA1gVP067PW6ywKbFjbKrFdmO63xQSY+G4mk1iJInpYT3Z/CtEUZb0Pssr
+Sender: "qperret via sendgmr" <qperret@luke.lon.corp.google.com>
+X-Received: from luke.lon.corp.google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
+ (user=qperret job=sendgmr) by 2002:ad4:4a8a:: with SMTP id
+ h10mr884248qvx.55.1605636979378; Tue, 17 Nov 2020 10:16:19 -0800 (PST)
+Date:   Tue, 17 Nov 2020 18:15:40 +0000
+Message-Id: <20201117181607.1761516-1-qperret@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.29.2.299.gdc1121823c-goog
+Subject: [RFC PATCH 00/27] KVM/arm64: A stage 2 for the host
+From:   Quentin Perret <qperret@google.com>
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        android-kvm@google.com, Quentin Perret <qperret@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all,
+
+This RFC series provides the infrastructure enabling to wrap the host
+kernel with a stage 2 when running KVM in nVHE. This can be useful for
+several use-cases, but the primary motivation is to (eventually) be able
+to protect guest memory from the host kernel. More details about the
+overall idea, design, and motivations can be found in Will's talk at KVM
+Forum 2020 [1], or the pKVM talk at the Android uconf during LPC 2020
+[2].
+
+This series essentially gets us to a point where the 'VM' bit is set
+in the host's HCR_EL2 when running in nVHE and if 'kvm-arm.protected'
+is set on the kernel command line. The EL2 object directly handles
+memory aborts from the host and manages entirely its stage 2 page table.
+
+However, this series does _not_ provide any real user for this (yet)
+and simply idmaps everything into the host stage 2 as RWX cacheable.
+This is all about the infrastructure for now, so clearly not ready for
+inclusion upstream yet (hence the RFC tag), but the bases are there and
+I thought it'd be useful to start a discussion with the community early
+as this is a rather intrusive change. So, here goes.
+
+One of the interesting requirements that comes with the series is that
+managing page-tables requires some sort of memory allocator at EL2 to
+allocate, refcount and free memory pages. Clearly, none of that is
+currently possible in nVHE, so a significant chunk of the series is
+dedicated to solving that problem. The proposed EL2 memory allocator
+mimics Linux' buddy system in principles, and re-uses some of the arm64
+mm design choices. Specifically, it uses a vmemmap at EL2 which contains
+a set of struct hyp_page entries to hold pages metadata. To support
+this, I extended the EL2 object to make it manage its own stage 1
+page-table in addition to host stage 2. This simplifies the hyp_vmemmap
+creation and was going to be required anyway for the protected VM
+use-case -- the threat model implies the host cannot be trusted after
+boot, and it will thus be crucial to ensure it cannot map arbitrary code
+at EL2.
+
+The pool of memory pages used by the EL2 allocator are reserved by the
+host early during boot (while it is still trusted) using the memblock
+API, and are donated to EL2 during KVM init. The current assumption is
+that the host reserves enough pages to allow the EL2 object to map all
+of memory at page granularity for both hyp stage 1 and host stage 2,
+plus some extra pages for device mappings.
+
+On top of that the series introduces a few smaller features that are
+needed along the way, but hopefully all of those are detailed properly
+in the relevant commit messages.
+
+And as a last note, I'd like to point out that there are at this point
+trivial ways for the host to circumvent its stage 2 protection. It still
+owns the guests stage 2 for example, meaning that nothing would prevent
+a malicious host from using a guest as a proxy to access protected
+memory, _yet_. This series lays the ground for future work to address
+these things, which will clearly require a stage 2 over the host at some
+point, so I just wanted to set the expectations right.
+
+With all that in mind, the series is organized as follows:
+
+ - patches 01-03 provide EL2 with some utility libraries needed for
+   memory management and synchronization;
+
+ - patches 04-09 mostly refactor smalls portions of the code to ease the
+   EL2 memory management;
+
+ - patches 10-17 add the actual EL2 memory management code, as well as
+   the setup/bootstrap code on the KVM init path;
+
+ - patches 18-24 refactor the existing stage 2 management code to make
+   it re-usable from the EL2 object;
+
+ - and finally patches 25-27 introduce the host stage 2 and the trap
+   handling logic at EL2.
+
+This work is based on the latest kvmarm/queue (which includes Marc's
+host EL2 entry rework [3], as well as Will's guest vector refactoring
+[4]) + David's PSCI proxying series [5].
+
+And if you'd like a branch that has all the bits and pieces:
+
+    https://android-kvm.googlesource.com/linux qperret/host-stage2
+
+Boot-tested (host and guest) using qemu in VHE and nVHE, and on real
+hardware on a AML-S905X-CC (Le Potato).
+
+Thanks,
+Quentin
+
+[1] https://kvmforum2020.sched.com/event/eE24/virtualization-for-the-masses-exposing-kvm-on-android-will-deacon-google
+[2] https://youtu.be/54q6RzS9BpQ?t=10859
+[3] https://lore.kernel.org/kvmarm/20201109175923.445945-1-maz@kernel.org/
+[4] https://lore.kernel.org/kvmarm/20201113113847.21619-1-will@kernel.org/
+[5] https://lore.kernel.org/kvmarm/20201116204318.63987-1-dbrazdil@google.com/
 
 
-On 11/17/20 11:57 AM, Eric Biggers wrote:
-> On Tue, Nov 17, 2020 at 08:47:08AM -0500, Thara Gopinath wrote:
->> Qualcomm crypto engine supports hardware accelerated algorithms for
->> encryption and authentication. Enable support for aes,des,3des encryption
->> algorithms and sha1,sha256, hmac(sha1),hmac(sha256) authentication
->> algorithms on sdm845.The patch series has been tested using the kernel
->> crypto testing module tcrypto.ko.
-> 
-> Did you do this testing with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS enabled?
-> Do all tests pass with it enabled?
+Quentin Perret (24):
+  KVM: arm64: Initialize kvm_nvhe_init_params early
+  KVM: arm64: Avoid free_page() in page-table allocator
+  KVM: arm64: Factor memory allocation out of pgtable.c
+  KVM: arm64: Introduce a BSS section for use at Hyp
+  KVM: arm64: Make kvm_call_hyp() a function call at Hyp
+  KVM: arm64: Allow using kvm_nvhe_sym() in hyp code
+  KVM: arm64: Introduce an early Hyp page allocator
+  KVM: arm64: Stub CONFIG_DEBUG_LIST at Hyp
+  KVM: arm64: Introduce a Hyp buddy page allocator
+  KVM: arm64: Enable access to sanitized CPU features at EL2
+  KVM: arm64: Factor out vector address calculation
+  of/fdt: Introduce early_init_dt_add_memory_hyp()
+  KVM: arm64: Prepare Hyp memory protection
+  KVM: arm64: Elevate Hyp mappings creation at EL2
+  KVM: arm64: Use kvm_arch for stage 2 pgtable
+  KVM: arm64: Use kvm_arch in kvm_s2_mmu
+  KVM: arm64: Set host stage 2 using kvm_nvhe_init_params
+  KVM: arm64: Refactor kvm_arm_setup_stage2()
+  KVM: arm64: Refactor __load_guest_stage2()
+  KVM: arm64: Refactor __populate_fault_info()
+  KVM: arm64: Make memcache anonymous in pgtable allocator
+  KVM: arm64: Reserve memory for host stage 2
+  KVM: arm64: Sort the memblock regions list
+  KVM: arm64: Wrap the host with a stage 2
 
-No I have not. This is in my todo list though. I am trying to enable 
-AEAD algorithms on the crypto engine right now. I will try to test it 
-out with that set.
+Will Deacon (3):
+  arm64: lib: Annotate {clear,copy}_page() as position-independent
+  KVM: arm64: Link position-independent string routines into .hyp.text
+  KVM: arm64: Add standalone ticket spinlock implementation for use at
+    hyp
 
-> 
-> - Eric
-> 
+ arch/arm64/include/asm/cpufeature.h           |   1 +
+ arch/arm64/include/asm/hyp_image.h            |   4 +
+ arch/arm64/include/asm/kvm_asm.h              |  13 +-
+ arch/arm64/include/asm/kvm_cpufeature.h       |  19 ++
+ arch/arm64/include/asm/kvm_host.h             |  17 +-
+ arch/arm64/include/asm/kvm_hyp.h              |   8 +
+ arch/arm64/include/asm/kvm_mmu.h              |  69 +++++-
+ arch/arm64/include/asm/kvm_pgtable.h          |  41 +++-
+ arch/arm64/include/asm/sections.h             |   1 +
+ arch/arm64/kernel/asm-offsets.c               |   3 +
+ arch/arm64/kernel/cpufeature.c                |  14 +-
+ arch/arm64/kernel/image-vars.h                |  35 +++
+ arch/arm64/kernel/vmlinux.lds.S               |   7 +
+ arch/arm64/kvm/arm.c                          | 136 +++++++++--
+ arch/arm64/kvm/hyp/Makefile                   |   2 +-
+ arch/arm64/kvm/hyp/include/hyp/switch.h       |  36 +--
+ arch/arm64/kvm/hyp/include/nvhe/early_alloc.h |  14 ++
+ arch/arm64/kvm/hyp/include/nvhe/gfp.h         |  32 +++
+ arch/arm64/kvm/hyp/include/nvhe/mem_protect.h |  33 +++
+ arch/arm64/kvm/hyp/include/nvhe/memory.h      |  55 +++++
+ arch/arm64/kvm/hyp/include/nvhe/mm.h          | 107 +++++++++
+ arch/arm64/kvm/hyp/include/nvhe/spinlock.h    |  95 ++++++++
+ arch/arm64/kvm/hyp/include/nvhe/util.h        |  25 ++
+ arch/arm64/kvm/hyp/nvhe/Makefile              |   9 +-
+ arch/arm64/kvm/hyp/nvhe/cache.S               |  13 ++
+ arch/arm64/kvm/hyp/nvhe/cpufeature.c          |   8 +
+ arch/arm64/kvm/hyp/nvhe/early_alloc.c         |  60 +++++
+ arch/arm64/kvm/hyp/nvhe/hyp-init.S            |  39 ++++
+ arch/arm64/kvm/hyp/nvhe/hyp-main.c            |  50 ++++
+ arch/arm64/kvm/hyp/nvhe/hyp.lds.S             |   1 +
+ arch/arm64/kvm/hyp/nvhe/mem_protect.c         | 191 ++++++++++++++++
+ arch/arm64/kvm/hyp/nvhe/mm.c                  | 175 ++++++++++++++
+ arch/arm64/kvm/hyp/nvhe/page_alloc.c          | 185 +++++++++++++++
+ arch/arm64/kvm/hyp/nvhe/psci-relay.c          |   7 +-
+ arch/arm64/kvm/hyp/nvhe/setup.c               | 214 ++++++++++++++++++
+ arch/arm64/kvm/hyp/nvhe/stub.c                |  22 ++
+ arch/arm64/kvm/hyp/nvhe/switch.c              |  12 +-
+ arch/arm64/kvm/hyp/nvhe/tlb.c                 |   4 +-
+ arch/arm64/kvm/hyp/pgtable.c                  |  98 ++++----
+ arch/arm64/kvm/hyp/reserved_mem.c             |  95 ++++++++
+ arch/arm64/kvm/mmu.c                          | 114 +++++++++-
+ arch/arm64/kvm/reset.c                        |  42 +---
+ arch/arm64/lib/clear_page.S                   |   4 +-
+ arch/arm64/lib/copy_page.S                    |   4 +-
+ arch/arm64/mm/init.c                          |   3 +
+ drivers/of/fdt.c                              |   5 +
+ 46 files changed, 1971 insertions(+), 151 deletions(-)
+ create mode 100644 arch/arm64/include/asm/kvm_cpufeature.h
+ create mode 100644 arch/arm64/kvm/hyp/include/nvhe/early_alloc.h
+ create mode 100644 arch/arm64/kvm/hyp/include/nvhe/gfp.h
+ create mode 100644 arch/arm64/kvm/hyp/include/nvhe/mem_protect.h
+ create mode 100644 arch/arm64/kvm/hyp/include/nvhe/memory.h
+ create mode 100644 arch/arm64/kvm/hyp/include/nvhe/mm.h
+ create mode 100644 arch/arm64/kvm/hyp/include/nvhe/spinlock.h
+ create mode 100644 arch/arm64/kvm/hyp/include/nvhe/util.h
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/cache.S
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/cpufeature.c
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/early_alloc.c
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/mem_protect.c
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/mm.c
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/page_alloc.c
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/setup.c
+ create mode 100644 arch/arm64/kvm/hyp/nvhe/stub.c
+ create mode 100644 arch/arm64/kvm/hyp/reserved_mem.c
 
 -- 
-Warm Regards
-Thara
+2.29.2.299.gdc1121823c-goog
+
