@@ -2,321 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 045672B670F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 15:11:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E642B6721
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 15:11:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387537AbgKQOIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 09:08:24 -0500
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:1819 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387994AbgKQOIL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 09:08:11 -0500
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id E6D86240003;
-        Tue, 17 Nov 2020 14:08:06 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: [PATCH v2 11/11] ARM: dts: at91: remove deprecated ADC properties
-Date:   Tue, 17 Nov 2020 15:06:56 +0100
-Message-Id: <20201117140656.1235055-12-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201117140656.1235055-1-alexandre.belloni@bootlin.com>
-References: <20201117140656.1235055-1-alexandre.belloni@bootlin.com>
+        id S1728725AbgKQOJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 09:09:00 -0500
+Received: from foss.arm.com ([217.140.110.172]:58580 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729498AbgKQOH4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Nov 2020 09:07:56 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C0635101E;
+        Tue, 17 Nov 2020 06:07:55 -0800 (PST)
+Received: from [10.57.60.109] (unknown [10.57.60.109])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 572773F718;
+        Tue, 17 Nov 2020 06:07:54 -0800 (PST)
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: update ccree optional params
+To:     Rob Herring <robh@kernel.org>,
+        Gilad Ben-Yossef <gilad@benyossef.com>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Ofir Drang <ofir.drang@arm.com>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
+        Steven Price <steven.price@arm.com>
+References: <20200916071950.1493-1-gilad@benyossef.com>
+ <20200916071950.1493-2-gilad@benyossef.com> <20200923015702.GA3676455@bogus>
+ <CAOtvUMekoMjFij_xDnrwRj2PsfgO8tKx4Jk6d7C5vq-Vh+boWw@mail.gmail.com>
+ <CAOtvUMfAKnodo+7EYx2M4yAvxu_VmxwXNRmgOW=KFWi3Wy7msQ@mail.gmail.com>
+ <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <1450044c-5150-1da2-11e0-2ae48d8b4d0c@arm.com>
+Date:   Tue, 17 Nov 2020 14:07:19 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-atmel,adc-res, atmel,adc-res-names and the trigger nodes are not parsed by
-the driver anymore and the information is now defined in the driver data.
+On 2020-11-16 18:54, Rob Herring wrote:
+> On Thu, Oct 22, 2020 at 1:18 AM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
+>>
+>>
+>> Hi again,
+>>
+>> Any opinion on the suggested below?
+> 
+> Sorry, lost in the pile...
+> 
+>> Thanks!
+>> Gilad
+>>
+>>
+>> On Tue, Sep 29, 2020 at 9:08 PM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
+>>>
+>>>
+>>> On Wed, Sep 23, 2020 at 4:57 AM Rob Herring <robh@kernel.org> wrote:
+>>>>
+>>>> On Wed, Sep 16, 2020 at 10:19:49AM +0300, Gilad Ben-Yossef wrote:
+>>>>> Document ccree driver supporting new optional parameters allowing to
+>>>>> customize the DMA transactions cache parameters and ACE bus sharability
+>>>>> properties.
+>>>>>
+>>>>> Signed-off-by: Gilad Ben-Yossef <gilad@benyossef.com>
+>>>>> ---
+>>>>>   Documentation/devicetree/bindings/crypto/arm-cryptocell.txt | 4 ++++
+>>>>>   1 file changed, 4 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+>>>>> index 6130e6eb4af8..1a1603e457a8 100644
+>>>>> --- a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+>>>>> +++ b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+>>>>> @@ -13,6 +13,10 @@ Required properties:
+>>>>>   Optional properties:
+>>>>>   - clocks: Reference to the crypto engine clock.
+>>>>>   - dma-coherent: Present if dma operations are coherent.
+>>>>> +- awcache: Set write transactions cache attributes
+>>>>> +- arcache: Set read transactions cache attributes
+>>>>
+>>>> dma-coherent already implies these are 011x, 101x or 111x. In my limited
+>>>> experience configuring these (Calxeda SATA and ethernet), writeback,
+>>>> write-allocate was pretty much always optimal.
+>>>
+>>> Indeed and these are the default. But not all SoC are born equal and
+>>> we got a request to allow setting these.
+>>>
+>>> Maybe instead of numerical values have three possible verbal setting
+>>> would be better?
+>>>
+>>>
+>>>>> +- awdomain: Set write transactions ACE sharability domain (712, 703, 713 only)
+>>>>> +- ardomain: Set read transactions ACE sharability domain (712, 703, 713 only)
+>>>>
+>>>> This probably needs something common. We may need something for Mali,
+>>>> too. I don't think different settings for read and write makes much
+>>>> sense nor does anything beyond IS or OS.
+>>>
+>>> I agree. Maybe
+>>>
+>>> sharability_domain: either "IS" or "OS"?
+> 
+> It's still an Arm thing, so it would need at least an 'arm,' prefix.
+> But ideally it wouldn't be Arm specific though I'm not sure if any
+> such thing is needed for other arches. If common either for Arm or
+> across arches, then it needs to be documented in a common doc with
+> some wider agreement than what a device specific property needs.
 
-Also remove the leftover #address-cells and #size-cells that were used when
-the trigger nodes had a unit-address.
+"dma-coherent" already encapsulates the shareability. To claim coherency 
+you need to be able to access memory with inner shareable inner-outer 
+write back attributes, because that's how regular kernel memory is 
+mapped. If you don't claim coherency, then you should be using 
+non-cacheable (and thus implicitly outer shareable) attributes, because 
+there may still be cacheable aliases hanging around and if you 
+inadvertently snoop those instead of going direct to DRAM as everything 
+else expects, you're going to have a bad time.
 
-Finally, the default is already to use the highest resoution. Remove
-atmel,adc-use-res from the SoC dtsi.
+Essentially, Linux only uses two sets of memory attributes for DMA 
+memory, so any perceived need for more than that is already something 
+sufficiently esoteric that it probably doesn't need a generic binding. 
+I'm aware that it's against type for me to be arguing Linux details in a 
+DT binding, but I checked the TRMs for some of these devices and they 
+essentially say "you don't program the hardware directly, you use the 
+Linux driver we give you", so it seems like this binding is specifically 
+intended never to be consumed by anything else.
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Reviewed-by: Ludovic Desroches <ludovic.desroches@microchip.com>
----
- arch/arm/boot/dts/at91sam9260.dtsi | 25 -------------------------
- arch/arm/boot/dts/at91sam9g45.dtsi | 27 ---------------------------
- arch/arm/boot/dts/at91sam9rl.dtsi  | 28 ----------------------------
- arch/arm/boot/dts/at91sam9x5.dtsi  | 28 ----------------------------
- arch/arm/boot/dts/sama5d3.dtsi     | 24 ------------------------
- arch/arm/boot/dts/sama5d4.dtsi     | 22 ----------------------
- 6 files changed, 154 deletions(-)
+>>>> These could also just be implied by the compatible string (and requiring
+>>>> an SoC specific one).
+>>>
+>>> hm... we could do it but this will require us to know (and publicly
+>>> acknowledge) of every SoC making use of this piece of hardware design.
+> 
+> That's already a requirement in general. Sometimes we can avoid it,
+> but that's cases of getting lucky.
+> 
+>>> There is currently no other part of the driver that needs this.
+> 
+> If your DT is part of firmware, then waiting until adding some driver
+> feature or quirk based on a new DT property is too late. Whereas with
+> a SoC specific compatible, you can handle any new feature or quirk
+> without a DT change (e.g. just a stable kernel update). Some platforms
+> may not care about that model, but in general that's the policy we
+> follow. Not doing that, we end up with the DWC3 binding.
+> 
+> A fallback compatible is how we avoid updating drivers for every
+> single SoC unless needed.
 
-diff --git a/arch/arm/boot/dts/at91sam9260.dtsi b/arch/arm/boot/dts/at91sam9260.dtsi
-index 82c5d7fd9811..019f1c3d4d30 100644
---- a/arch/arm/boot/dts/at91sam9260.dtsi
-+++ b/arch/arm/boot/dts/at91sam9260.dtsi
-@@ -697,8 +697,6 @@ spi1: spi@fffcc000 {
- 			};
- 
- 			adc0: adc@fffe0000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9260-adc";
- 				reg = <0xfffe0000 0x100>;
- 				interrupts = <5 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -708,29 +706,6 @@ adc0: adc@fffe0000 {
- 				atmel,adc-channels-used = <0xf>;
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <15>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "timer-counter-0";
--					trigger-value = <0x1>;
--				};
--				trigger1 {
--					trigger-name = "timer-counter-1";
--					trigger-value = <0x3>;
--				};
--
--				trigger2 {
--					trigger-name = "timer-counter-2";
--					trigger-value = <0x5>;
--				};
--
--				trigger3 {
--					trigger-name = "external";
--					trigger-value = <0xd>;
--					trigger-external;
--				};
- 			};
- 
- 			rtc@fffffd20 {
-diff --git a/arch/arm/boot/dts/at91sam9g45.dtsi b/arch/arm/boot/dts/at91sam9g45.dtsi
-index 19fc748a87c5..2ab730fd6472 100644
---- a/arch/arm/boot/dts/at91sam9g45.dtsi
-+++ b/arch/arm/boot/dts/at91sam9g45.dtsi
-@@ -812,8 +812,6 @@ ac97: sound@fffac000 {
- 			};
- 
- 			adc0: adc@fffb0000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9g45-adc";
- 				reg = <0xfffb0000 0x100>;
- 				interrupts = <20 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -822,31 +820,6 @@ adc0: adc@fffb0000 {
- 				atmel,adc-channels-used = <0xff>;
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <40>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			isi@fffb4000 {
-diff --git a/arch/arm/boot/dts/at91sam9rl.dtsi b/arch/arm/boot/dts/at91sam9rl.dtsi
-index 36a42a9fe195..730d1182c73e 100644
---- a/arch/arm/boot/dts/at91sam9rl.dtsi
-+++ b/arch/arm/boot/dts/at91sam9rl.dtsi
-@@ -266,8 +266,6 @@ spi0: spi@fffcc000 {
- 			};
- 
- 			adc0: adc@fffd0000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9rl-adc";
- 				reg = <0xfffd0000 0x100>;
- 				interrupts = <20 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -277,32 +275,6 @@ adc0: adc@fffd0000 {
- 				atmel,adc-channels-used = <0x3f>;
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <40>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			usb0: gadget@fffd4000 {
-diff --git a/arch/arm/boot/dts/at91sam9x5.dtsi b/arch/arm/boot/dts/at91sam9x5.dtsi
-index 4cdb05079cc7..395e883644cd 100644
---- a/arch/arm/boot/dts/at91sam9x5.dtsi
-+++ b/arch/arm/boot/dts/at91sam9x5.dtsi
-@@ -795,8 +795,6 @@ uart1: serial@f8044000 {
- 			};
- 
- 			adc0: adc@f804c000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,at91sam9x5-adc";
- 				reg = <0xf804c000 0x100>;
- 				interrupts = <19 IRQ_TYPE_LEVEL_HIGH 0>;
-@@ -808,32 +806,6 @@ adc0: adc@f804c000 {
- 				atmel,adc-vref = <3300>;
- 				atmel,adc-startup-time = <40>;
- 				atmel,adc-sample-hold-time = <11>;
--				atmel,adc-res = <8 10>;
--				atmel,adc-res-names = "lowres", "highres";
--				atmel,adc-use-res = "highres";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			spi0: spi@f0000000 {
-diff --git a/arch/arm/boot/dts/sama5d3.dtsi b/arch/arm/boot/dts/sama5d3.dtsi
-index bba2a3f41c42..7c979652f330 100644
---- a/arch/arm/boot/dts/sama5d3.dtsi
-+++ b/arch/arm/boot/dts/sama5d3.dtsi
-@@ -305,8 +305,6 @@ ssc1: ssc@f800c000 {
- 			};
- 
- 			adc0: adc@f8018000 {
--				#address-cells = <1>;
--				#size-cells = <0>;
- 				compatible = "atmel,sama5d3-adc";
- 				reg = <0xf8018000 0x100>;
- 				interrupts = <29 IRQ_TYPE_LEVEL_HIGH 5>;
-@@ -333,30 +331,8 @@ &pinctrl_adc0_ad11
- 				atmel,adc-startup-time = <40>;
- 				atmel,adc-use-external-triggers;
- 				atmel,adc-vref = <3000>;
--				atmel,adc-res = <10 12>;
- 				atmel,adc-sample-hold-time = <11>;
--				atmel,adc-res-names = "lowres", "highres";
- 				status = "disabled";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			i2c2: i2c@f801c000 {
-diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
-index 04f24cf752d3..05c55875835d 100644
---- a/arch/arm/boot/dts/sama5d4.dtsi
-+++ b/arch/arm/boot/dts/sama5d4.dtsi
-@@ -661,31 +661,9 @@ adc0: adc@fc034000 {
- 				atmel,adc-startup-time = <40>;
- 				atmel,adc-use-external-triggers;
- 				atmel,adc-vref = <3000>;
--				atmel,adc-res = <8 10>;
- 				atmel,adc-sample-hold-time = <11>;
--				atmel,adc-res-names = "lowres", "highres";
- 				atmel,adc-ts-pressure-threshold = <10000>;
- 				status = "disabled";
--
--				trigger0 {
--					trigger-name = "external-rising";
--					trigger-value = <0x1>;
--					trigger-external;
--				};
--				trigger1 {
--					trigger-name = "external-falling";
--					trigger-value = <0x2>;
--					trigger-external;
--				};
--				trigger2 {
--					trigger-name = "external-any";
--					trigger-value = <0x3>;
--					trigger-external;
--				};
--				trigger3 {
--					trigger-name = "continuous";
--					trigger-value = <0x6>;
--				};
- 			};
- 
- 			aes@fc044000 {
--- 
-2.28.0
+IMO if this is like PL330 where you just stick some raw AXI attributes 
+in a register and that's what goes out on transactions then it's not 
+really part of the platform description anyway, it's just driver policy. 
+If folks want to tweak the driver's behaviour for secret SoC-specific 
+performance optimisation, then give them some module parameters or a 
+sysfs interface. I'm assuming this has to be purely a performance thing, 
+because I can't see how two different integrations could reasonably 
+depend on different baseline attributes for correctness, and even if 
+they did then you'd be able to determine that from the compatible 
+strings, because they would be different, because those integrations 
+would be fundamentally *not* compatible with each other.
 
+Robin.
