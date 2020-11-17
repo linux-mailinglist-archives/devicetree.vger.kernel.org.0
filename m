@@ -2,66 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E422B6FC6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 21:11:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32CFA2B6FD5
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 21:17:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731550AbgKQULT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 15:11:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35892 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731741AbgKQULQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Nov 2020 15:11:16 -0500
-Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch [84.226.167.205])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0BFB420707;
-        Tue, 17 Nov 2020 20:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605643876;
-        bh=jt3COWZLzl9ve+Zx+BT2k5uQvogQhg+pYvxdJh0yaqQ=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=u7ftQ6gxVw1+ovi5PpK7Yoa+JTjd/jIJ+gi6GTqrQP0lJSeizZz70/Ijt6P1nKxLJ
-         10GL9ouSt/nXuagaUgEn2GSReFv7EBKnIeNhPR114mnQdl29VJH4UafbpXa2JNJPwk
-         dhSQQgbVHAuwZxH1D7F6pIo0h5xpmozUK+VwZh9g=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 4/4] ARM: dts: s3c6410: correct SMDK6410 board compatible
-Date:   Tue, 17 Nov 2020 21:11:06 +0100
-Message-Id: <20201117201106.128813-4-krzk@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201117201106.128813-1-krzk@kernel.org>
-References: <20201117201106.128813-1-krzk@kernel.org>
+        id S1731407AbgKQUQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 15:16:10 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51068 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726851AbgKQUQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 15:16:10 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AHKG20J065922;
+        Tue, 17 Nov 2020 14:16:02 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605644162;
+        bh=gGrYoD9iSXXe6ylPSSoWK2G1ukRk1mCo7mwklCw0+OU=;
+        h=From:To:CC:Subject:Date;
+        b=sXxBbKP2rSUZ5xxRQayjIJ6QcBX5Me/Rx1oNZC743VtvbCOVPofmBP+67e1b+ahlA
+         99hn2T2q9vqAjsC99Y5UCBbcMkz2/uNp/+eB0OVcApDoXZRR1cKajC8Zuv2n/CHvlj
+         0uYVkxi3MGaDcCyZsTCZi0Xa1btJUu/q1SJPfZ0U=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AHKG2ob015633
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 17 Nov 2020 14:16:02 -0600
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 17
+ Nov 2020 14:16:01 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 17 Nov 2020 14:16:01 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AHKG1JI052496;
+        Tue, 17 Nov 2020 14:16:01 -0600
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <davem@davemloft.net>, <andrew@lunn.ch>, <f.fainelli@gmail.com>,
+        <hkallweit1@gmail.com>, <robh@kernel.org>, <ciorneiioana@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH net-next v4 0/4] DP83TD510 Single Pair 10Mbps Ethernet PHY
+Date:   Tue, 17 Nov 2020 14:15:51 -0600
+Message-ID: <20201117201555.26723-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SMDK6410 DTS was incorrectly called mini6410, probably copy-paste
-from FriendlyARM Mini6410 board.
+Hello
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/s3c6410-smdk6410.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The DP83TD510 is an Ethernet PHY supporting single pair of twisted wires. The
+PHY is capable of 10Mbps communication over long distances and exceeds the
+IEEE 802.3cg 10BASE-T1L single-pair Ethernet specification.  The PHY supports
+various voltage level signalling and can be forced to support a specific
+voltage or allowed to perfrom auto negotiation on the voltage level. The
+default for the PHY is auto negotiation but if the PHY is forced to a specific
+voltage then the LP must also support the same voltage.
 
-diff --git a/arch/arm/boot/dts/s3c6410-smdk6410.dts b/arch/arm/boot/dts/s3c6410-smdk6410.dts
-index 69c9ec4cf381..581309e7f15e 100644
---- a/arch/arm/boot/dts/s3c6410-smdk6410.dts
-+++ b/arch/arm/boot/dts/s3c6410-smdk6410.dts
-@@ -17,7 +17,7 @@
- 
- / {
- 	model = "Samsung SMDK6410 board based on S3C6410";
--	compatible = "samsung,mini6410", "samsung,s3c6410";
-+	compatible = "samsung,smdk6410", "samsung,s3c6410";
- 
- 	memory@50000000 {
- 		device_type = "memory";
+Add the 10BASE-T1L linkmodes for ethtool to properly advertise the PHY's
+capability.
+
+Dan
+
+Dan Murphy (4):
+  ethtool: Add 10base-T1L link mode entries
+  dt-bindings: net: Add Rx/Tx output configuration for 10base T1L
+  dt-bindings: dp83td510: Add binding for DP83TD510 Ethernet PHY
+  net: phy: dp83td510: Add support for the DP83TD510 Ethernet PHY
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |   6 +
+ .../devicetree/bindings/net/ti,dp83td510.yaml |  64 +++
+ drivers/net/phy/Kconfig                       |   6 +
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/dp83td510.c                   | 505 ++++++++++++++++++
+ drivers/net/phy/phy-core.c                    |   4 +-
+ include/uapi/linux/ethtool.h                  |   2 +
+ net/ethtool/common.c                          |   2 +
+ net/ethtool/linkmodes.c                       |   2 +
+ 9 files changed, 591 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,dp83td510.yaml
+ create mode 100644 drivers/net/phy/dp83td510.c
+
 -- 
-2.25.1
+2.29.2
 
