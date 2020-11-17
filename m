@@ -2,174 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A541D2B681B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 15:58:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 849C02B682B
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 16:03:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730006AbgKQO6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 09:58:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:49946 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729875AbgKQO6X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Nov 2020 09:58:23 -0500
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7B67B24198;
-        Tue, 17 Nov 2020 14:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605625102;
-        bh=ntJaD8fOjxDYGmX2Qdy51YlJpyvBSJbhwkEb7CuraqY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=L6+F9+39hJDJ2LJ07FgxJsizUSiHF4hhUH8EyvtqzZSXTJXV9IuJjM4C7bHwckbEr
-         fwqAg8tVHb5cTonFG6VVP28EwX+VaiDxpG8SsRUn9hxD3bNg41d8GSy1sMp7e10jBl
-         6QMw1HhE1xkaelac5XtdVIHyksI5y1bdKZYfrbpw=
-Received: by mail-ot1-f52.google.com with SMTP id 79so19626435otc.7;
-        Tue, 17 Nov 2020 06:58:22 -0800 (PST)
-X-Gm-Message-State: AOAM531+eGMGdPOFYUkDu4I0ZMg9PfFEEeVg38s+cKDb+YBexFibE8ef
-        j1D+2w+j9WUAVyFSFBALV63fHUwi/1gC3qrupw==
-X-Google-Smtp-Source: ABdhPJwJY25KwVJRjJCwnl/SMbCUykxVzPqGEFaXZ7R5w36zpxQ3ggqNg4707acf03hjg1ZUuAa9bHo6M3JMJtJiqU0=
-X-Received: by 2002:a9d:5e14:: with SMTP id d20mr3083096oti.107.1605625101656;
- Tue, 17 Nov 2020 06:58:21 -0800 (PST)
+        id S1729164AbgKQPDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 10:03:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46988 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728662AbgKQPDT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 10:03:19 -0500
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED631C0613CF;
+        Tue, 17 Nov 2020 07:03:19 -0800 (PST)
+Received: by mail-io1-xd41.google.com with SMTP id r12so21442657iot.4;
+        Tue, 17 Nov 2020 07:03:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=XafKqgWOlqV0B4UFtBBC/BN1qaFCNv2WWmGeQ8KThYY=;
+        b=oJsHTJ+R9YAPP9dXLGee0Lptfm4kvyzFtLHxk/drb2L6jbGaTW097adw7koMmM4yTm
+         okKggpdmzNqPPM8NZdTTznMgQAPyAEVx2um1AuqjAJBiVewP0S22N+vYM512fQE5zA9X
+         yLqZCtT7s6aGCMDYim7iBoNfnXx2F0q6sSvLRMyupyX/bupuvbHYo7bWQ4sZbXXUDniR
+         jr8U1eRdg6pXsx5JR6PDt3nkPKlhjj7DWQbXEzWI7N0sX19VD0myGV2AZDAbnUOQiqOJ
+         WlLjP4Ig1Ie6DjBQWd+KsNV5ZK7pYBOSAMXFqxlH982KORONIqw64g1YWUKVqFy0K6tT
+         O7CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=XafKqgWOlqV0B4UFtBBC/BN1qaFCNv2WWmGeQ8KThYY=;
+        b=m21RreFkb8guUvz7LJok9NtSTU0UWX8wmYb+LCJ8ctpJhtfNuNpRJrmg+fGN6PSUYs
+         hGFrEJbXicRU+wXhMUAvopeyylTkfxSDMOT+qWnBVXY5wciEc4D2lxANqxPlJKt0gcdt
+         ux9JzWpsdL5hzcwHaREBzG3HNlkb1RfRrUcuTLN1eHMTJHCAWQUJHnXsdY7EXi6AuU4L
+         Fzg33J3bdkt9KVZibNpUuFBYK+wKwnkNQyAfrONx2oJdj7jcSSLdDvP4+UVAOzROuL9t
+         BTVtzUA+yvlu0R79+hQoCPhN7HVz403sWazWlpm2V1UxhHHwzDe07A5LtiKb1r0C7ZRv
+         NubA==
+X-Gm-Message-State: AOAM532qDrtBk8eih5tn+YG5m6xtLPVyEEWTTfuO54BnGZSQfgW+jfDK
+        ulsOqnJojyqy3eay0Z6ZDVUXW3hGU+tf1aAcgNs=
+X-Google-Smtp-Source: ABdhPJzFPoCzdY6jhqL1GT/IzI+254UhNFEm2qTiXxOCMawqHX0kKAlIQfmPvhR8kvqfgsYT7Jq6tY6+OyABTQS3dtU=
+X-Received: by 2002:a02:cbde:: with SMTP id u30mr4128549jaq.69.1605625398650;
+ Tue, 17 Nov 2020 07:03:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20200916071950.1493-1-gilad@benyossef.com> <20200916071950.1493-2-gilad@benyossef.com>
- <20200923015702.GA3676455@bogus> <CAOtvUMekoMjFij_xDnrwRj2PsfgO8tKx4Jk6d7C5vq-Vh+boWw@mail.gmail.com>
- <CAOtvUMfAKnodo+7EYx2M4yAvxu_VmxwXNRmgOW=KFWi3Wy7msQ@mail.gmail.com>
- <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com> <CAOtvUMdN2NOJ+7g=XnjOyW7W=77OM=d-d69YDk-a-QmO8Wze5w@mail.gmail.com>
-In-Reply-To: <CAOtvUMdN2NOJ+7g=XnjOyW7W=77OM=d-d69YDk-a-QmO8Wze5w@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 17 Nov 2020 08:58:10 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLh88p6nFprUkac-pBi=r_+De0zyJs0UJAJ3o-S+BPzwg@mail.gmail.com>
-Message-ID: <CAL_JsqLh88p6nFprUkac-pBi=r_+De0zyJs0UJAJ3o-S+BPzwg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: update ccree optional params
-To:     Gilad Ben-Yossef <gilad@benyossef.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Ofir Drang <ofir.drang@arm.com>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
-        Robin Murphy <Robin.Murphy@arm.com>,
-        Steven Price <steven.price@arm.com>
+References: <20201117075254.4861-1-alexandru.ardelean@analog.com>
+ <20201117075254.4861-2-alexandru.ardelean@analog.com> <20201117110111.0000468a@Huawei.com>
+ <20201117110447.0000393c@Huawei.com>
+In-Reply-To: <20201117110447.0000393c@Huawei.com>
+From:   Alexandru Ardelean <ardeleanalex@gmail.com>
+Date:   Tue, 17 Nov 2020 17:03:06 +0200
+Message-ID: <CA+U=DsoXG3JderYJL8_7Vu+UYZf9jiW-tW4pRiRY3a0p-y2peg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] iio: adc: ad7887: convert driver to full DT probing
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vaishnav M A <vaishnav@beagleboard.org>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 1:39 AM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
+On Tue, Nov 17, 2020 at 1:06 PM Jonathan Cameron
+<Jonathan.Cameron@huawei.com> wrote:
 >
-> On Mon, Nov 16, 2020 at 8:54 PM Rob Herring <robh@kernel.org> wrote:
+> On Tue, 17 Nov 2020 11:01:11 +0000
+> Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+>
+> > On Tue, 17 Nov 2020 09:52:53 +0200
+> > Alexandru Ardelean <alexandru.ardelean@analog.com> wrote:
 > >
-> > On Thu, Oct 22, 2020 at 1:18 AM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
+> > > This change removes the SPI device table, adds an OF device table ins=
+tead.
+> > > This should also be usable for ACPI via PRP0001.
 > > >
+> > > This device is usually probed via device-tree, so it makes more sense=
+ to
+> > > use the OF device table.
 > > >
-> > > Hi again,
+> > > Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> > So, we've had a few cases of having to put the device_id table
+> > back again recently.
+> > https://lore.kernel.org/linux-iio/20201101152613.2c37581a@archlinux/
+> >
+> > They tend to be due to greybus doing it's probing in yet another fashio=
+n.
+> > So far they've been all i2c devices, but I kind of assume it does the s=
+ame for spi.
+> > https://elixir.bootlin.com/linux/latest/source/drivers/staging/greybus/=
+spilib.c#L437
+> >
+> > How device_get_match_data() plays with that I'm not sure. It probably
+> > doesn't right now given swnode doesn't have a device_get_match_data() c=
+allback.
+> >
+> > https://elixir.bootlin.com/linux/latest/source/drivers/base/swnode.c#L5=
+39
+> >
+> > So after all that I think I've argued myself around to thinking what yo=
+u have
+> > here is fine.  If someone wants to support this via a swnode then they =
+can
+> > figure out how to make that work.
+> >
+> > +CC Vaishnav and Andy for their input.
+> >
+> > Otherwise looks fine to me.
+>
+> Having said that.... Why are we going through this dance for driver with
+> only one compatible?   Are there other parts on their way?
+> If not, perhaps we should just rip out the matching code entirely in
+> the interests of simplicity.
+
+So, this one has a bit of a funny story.
+There's an AD7888 which is similar in terms of registers but with more chan=
+nels.
+Lars did a patch to support it on top of AD7887:
+    https://github.com/analogdevicesinc/linux/commits/iio-ad7888
+
+We tried to order a part for this to test the changes, but we got a
+reply that it's obsolete.
+The website says it is still in production.
+So, I was confused about the answer we got. =C2=AF\_(=E3=83=84)_/=C2=AF
+
+In the meantime, I thought I'd take some of the cleanup value of Lars'
+work and do the cleanup only.
+We may still find that part somewhere and maybe add it, or maybe
+another one would come along.
+I don't know at this point. I'm mostly looking at some of my backlog
+stuff and trying to cleanup old stuff.
+
+I'm fine to simplify the driver now and add the matching bits later.
+
+>
+> Jonathan
+>
+> >
+> > Thanks,
+> >
+> > Jonathan
+> >
+> >
+> > > ---
+> > >  drivers/iio/adc/ad7887.c | 23 +++++++++++++++--------
+> > >  1 file changed, 15 insertions(+), 8 deletions(-)
 > > >
-> > > Any opinion on the suggested below?
-> >
-> > Sorry, lost in the pile...
->
-> No problem at all. I know how it is...
->
->
+> > > diff --git a/drivers/iio/adc/ad7887.c b/drivers/iio/adc/ad7887.c
+> > > index 06f684c053a0..4f68a1b17ec8 100644
+> > > --- a/drivers/iio/adc/ad7887.c
+> > > +++ b/drivers/iio/adc/ad7887.c
+> > > @@ -40,6 +40,7 @@ enum ad7887_channels {
 > > >
+> > >  /**
+> > >   * struct ad7887_chip_info - chip specifc information
+> > > + * @name:          the name of the part
+> > >   * @int_vref_mv:   the internal reference voltage
+> > >   * @channels:              channels specification
+> > >   * @num_channels:  number of channels
+> > > @@ -47,6 +48,7 @@ enum ad7887_channels {
+> > >   * @num_dual_channels:     number of channels in dual mode
+> > >   */
+> > >  struct ad7887_chip_info {
+> > > +   const char                      *name;
+> > >     u16                             int_vref_mv;
+> > >     const struct iio_chan_spec      *channels;
+> > >     unsigned int                    num_channels;
+> > > @@ -218,6 +220,7 @@ static const struct ad7887_chip_info ad7887_chip_=
+info_tbl[] =3D {
+> > >      * More devices added in future
+> > >      */
+> > >     [ID_AD7887] =3D {
+> > > +           .name =3D "ad7887",
+> > >             .channels =3D ad7887_channels,
+> > >             .num_channels =3D ARRAY_SIZE(ad7887_channels),
+> > >             .dual_channels =3D ad7887_dual_channels,
+> > > @@ -239,12 +242,17 @@ static void ad7887_reg_disable(void *data)
 > > >
-> > > On Tue, Sep 29, 2020 at 9:08 PM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
-> > >>
-> > >>
-> > >> On Wed, Sep 23, 2020 at 4:57 AM Rob Herring <robh@kernel.org> wrote:
-> > >> >
-> > >> > On Wed, Sep 16, 2020 at 10:19:49AM +0300, Gilad Ben-Yossef wrote:
-> > >> > > Document ccree driver supporting new optional parameters allowing to
-> > >> > > customize the DMA transactions cache parameters and ACE bus sharability
-> > >> > > properties.
-> > >> > >
-> > >> > > Signed-off-by: Gilad Ben-Yossef <gilad@benyossef.com>
-> > >> > > ---
-> > >> > >  Documentation/devicetree/bindings/crypto/arm-cryptocell.txt | 4 ++++
-> > >> > >  1 file changed, 4 insertions(+)
-> > >> > >
-> > >> > > diff --git a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
-> > >> > > index 6130e6eb4af8..1a1603e457a8 100644
-> > >> > > --- a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
-> > >> > > +++ b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
-> > >> > > @@ -13,6 +13,10 @@ Required properties:
-> > >> > >  Optional properties:
-> > >> > >  - clocks: Reference to the crypto engine clock.
-> > >> > >  - dma-coherent: Present if dma operations are coherent.
-> > >> > > +- awcache: Set write transactions cache attributes
-> > >> > > +- arcache: Set read transactions cache attributes
-> > >> >
->
-> <snip>
->
-> > >> > These could also just be implied by the compatible string (and requiring
-> > >> > an SoC specific one).
-> > >>
-> > >> hm... we could do it but this will require us to know (and publicly
-> > >> acknowledge) of every SoC making use of this piece of hardware design.
+> > >  static int ad7887_probe(struct spi_device *spi)
+> > >  {
+> > > +   const struct ad7887_chip_info *info;
+> > >     struct ad7887_state *st;
+> > >     struct iio_dev *indio_dev;
+> > >     bool dual_mode;
+> > >     uint8_t mode;
+> > >     int ret;
+> > >
+> > > +   info =3D device_get_match_data(&spi->dev);
+> > > +   if (!info)
+> > > +           return -ENODEV;
+> > > +
+> > >     indio_dev =3D devm_iio_device_alloc(&spi->dev, sizeof(*st));
+> > >     if (indio_dev =3D=3D NULL)
+> > >             return -ENOMEM;
+> > > @@ -269,13 +277,12 @@ static int ad7887_probe(struct spi_device *spi)
+> > >                     return ret;
+> > >     }
+> > >
+> > > -   st->chip_info =3D
+> > > -           &ad7887_chip_info_tbl[spi_get_device_id(spi)->driver_data=
+];
+> > > +   st->chip_info =3D info;
+> > >
+> > >     spi_set_drvdata(spi, indio_dev);
+> > >     st->spi =3D spi;
+> > >
+> > > -   indio_dev->name =3D spi_get_device_id(spi)->name;
+> > > +   indio_dev->name =3D st->chip_info->name;
+> > >     indio_dev->info =3D &ad7887_info;
+> > >     indio_dev->modes =3D INDIO_DIRECT_MODE;
+> > >
+> > > @@ -336,18 +343,18 @@ static int ad7887_probe(struct spi_device *spi)
+> > >     return devm_iio_device_register(&spi->dev, indio_dev);
+> > >  }
+> > >
+> > > -static const struct spi_device_id ad7887_id[] =3D {
+> > > -   {"ad7887", ID_AD7887},
+> > > -   {}
+> > > +static const struct of_device_id ad7887_of_match[] =3D {
+> > > +   { .compatible =3D "adi,ad7887", .data =3D &ad7887_chip_info_tbl[I=
+D_AD7887] },
+> > > +   { }
+> > >  };
+> > > -MODULE_DEVICE_TABLE(spi, ad7887_id);
+> > > +MODULE_DEVICE_TABLE(of, ad7887_of_match);
+> > >
+> > >  static struct spi_driver ad7887_driver =3D {
+> > >     .driver =3D {
+> > >             .name   =3D "ad7887",
+> > > +           .of_match_table =3D ad7887_of_match,
+> > >     },
+> > >     .probe          =3D ad7887_probe,
+> > > -   .id_table       =3D ad7887_id,
+> > >  };
+> > >  module_spi_driver(ad7887_driver);
+> > >
 > >
-> > That's already a requirement in general. Sometimes we can avoid it,
-> > but that's cases of getting lucky.
-> >
-> > >> There is currently no other part of the driver that needs this.
-> >
-> > If your DT is part of firmware, then waiting until adding some driver
-> > feature or quirk based on a new DT property is too late. Whereas with
-> > a SoC specific compatible, you can handle any new feature or quirk
-> > without a DT change (e.g. just a stable kernel update). Some platforms
-> > may not care about that model, but in general that's the policy we
-> > follow. Not doing that, we end up with the DWC3 binding.
-> >
-> > A fallback compatible is how we avoid updating drivers for every
-> > single SoC unless needed.
 >
-> OK, I now better understand what you meant and that does make some
-> sense and I will defer to your better judgment  about the proper way
-> to do this.
->
-> Having said that, there is still something that bugs me about this,
-> even just at the level of better understanding why we do things:
->
-> Way back when, before DT, we had SoC specific code that identified the
-> SoC somehow and set things up in a SoC specific way.
-> Then we introduced DT as a way to say - "hey look, this is how my
-> busses looks like, these are the devices I have, deal with it" and I
-> always assumed that this was meant as a way to release us from having
-> SoC specific setup code.
-
-Yes, but in the end it's a judgement call as to what the boundary is.
-Take clocks for example, in the beginning we were trying to describe
-clocks on a mux/divider/gate level in DT. We realized this would
-result in hundreds to thousands of DT nodes and it would never be
-completely correct. So we model only the leaf clocks for the most part
-and there's lots of SoC code for clock controller blocks still.
-
-The questions for having properties or not to ask is:
-
-Is this board specific? Yes, then use a property.
-
-Who needs to change this and when? Should/would you want to control
-this in your PC BIOS or via a BIOS update?
-
-
-Zero SoC code was never a goal. It was about a standard way to define
-SoCs and having common frameworks (we have a common clock api, but not
-implementation at the time). We have *way* less SoC code per SoC than
-we used to. At the start of the DT conversion for Arm, we had ~400
-boards and now we're at ~1400 last I checked.
-
-> It seems now potentially every SoC vendor needs to modify not just the
-> device tree source (which makes sense of course) but also the driver
-> supporting their platform.
-> It now looks like we've come a full circle to me :-)
-
-As I said, if the h/w is 'exactly the same' (hint: it rarely is), then
-use a fallback compatible. Then the new SoC specific compatible is
-there just in case.
-
-Think of compatible just as a VID/PID in PCI and USB land (though the
-closest thing to a fallback there is class codes). They are the only
-way we can uniquely identify h/w.
-
-Rob
