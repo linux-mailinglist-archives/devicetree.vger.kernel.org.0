@@ -2,301 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 902E42B5C81
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 11:02:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 624712B5CA9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 11:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727829AbgKQKCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 05:02:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56958 "EHLO
+        id S1726545AbgKQKLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 05:11:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726035AbgKQKCQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 05:02:16 -0500
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAD97C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:02:15 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id q5so16971457pfk.6
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:02:15 -0800 (PST)
+        with ESMTP id S1726085AbgKQKLc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 05:11:32 -0500
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559A4C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:11:32 -0800 (PST)
+Received: by mail-pf1-x441.google.com with SMTP id g7so17002275pfc.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:11:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Ahe89r+r+D+YbMRJiR/RJ+K3X0e/5dw5oqnPUzAYC04=;
-        b=iJSZt8qI4u6EPjsDa7j9r7GgXxvwuCnD8wREfz1Nlell7OlPuY5jmK6vVleKSo4upy
-         oClBjnT6Rsx+5y6+QB8AdliYZWBdg99vOPy/iy2jHjUcibYgLhKx+yn/tw7dAHitSqlS
-         IFaMBvx8IC5ZVvZeaoarTrf09vXn5Hss4ZXvovyWNvfNX6U8Rr3M6qg+cYlv6VvqymbU
-         uyUiRzK6xGySDYCnzNUffkxNsaNzxAV0tq2F9bo1atAZGKiLIF7Y6fH03odisATnBWQW
-         DM5zpItuoeGaYQN5APpdIEIEkDIn98udlx7Aa3dFSZ8xg35mkQ+gDgbCsKGerR+fy3H8
-         EEEA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Gfl/KXO19CRZ3YJcbkbpX9kcAUtuTjnrugBzUwzzQ9E=;
+        b=uouFjwtxxF/R7baTvaVjaaLTfwWbQnLGL03905q7iEeujxS/9yt/SpLSH7MA3e255j
+         pDUZROD7kGIT2aAqtLuPFLFQwdSXcCzL3dTLPU5Z0f2F2iKBShfhhiSKMsxbeADtPTZZ
+         jDibWihrlQ+SRnq9emh58EPvRMrEdloT+tQbgEvFaxCMQn7nKyos/Tg+mFz7tdoZvba4
+         jz76EE2JBHosoww6FYkLcxs8yJlEzLANZGynaLiHN96UWOjoqRBhQrubAloP8EyAmv+6
+         ow7Ivl4zcCjeDLG5X0LjJRED8QkzH0tTA4lyOislGNAk3xBR9+obJoIDUdpEpkyVLGJB
+         C5gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Ahe89r+r+D+YbMRJiR/RJ+K3X0e/5dw5oqnPUzAYC04=;
-        b=EkuMYzGN1tISLytddGJwrUFuAdSP0lRe44rsgt3Pg7gS+D8+6vByzXGlrXr+fPVdFU
-         A9mgNCOQTPVvqHEzp2gItMEYZSOML5dk3WDBTqFu3f5eSNUua5maYEs7zOp6pfo0k26C
-         a5ICjNjPHOSMJrYYJZzKnaV9kel+wCavV8qJTKmqi4tzBS/L5pqxQyFby6PBSL0bDLTz
-         o0dP1HgO9cwh9DMoQdkYwB/S1CLA4vSiIC4auKG43vUG+1VeXwda1FL0xWtYF+VJDymZ
-         Jk7gpZNwmciPHnpFxIeJjexiVkGL4f784T7HgScCWWI4SltvcbUwrxhzOUClzGV9I880
-         LBAQ==
-X-Gm-Message-State: AOAM533DARAa/Cq2Rc26/nkAF3U/cxreyAMtcXOPuFEF96+chnyeYxJK
-        4nHbDPAccqbRgyC/kHAUccvjOA==
-X-Google-Smtp-Source: ABdhPJyIoW6iuGXtw+z6QnwmwA1lntY0QgUXfOhu87pliGd+jQVGAxYWmT3iXnCVazFq1lKI99ImwA==
-X-Received: by 2002:a63:e14a:: with SMTP id h10mr2843067pgk.231.1605607335346;
-        Tue, 17 Nov 2020 02:02:15 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Gfl/KXO19CRZ3YJcbkbpX9kcAUtuTjnrugBzUwzzQ9E=;
+        b=ePFbBEh6vYjfhiAiKiuiy4+6oT4sM1YVaoJ6tb+m5zNm73Rim6QDy2N1FMXcCA9GAD
+         4AB5qtku9itz2dBJSgTEnDa7/EER933eEkX2lHwLDYK/rkiN11+QjTp04sweEo6PY+ql
+         3EuacvNVroo+hUeJVtj7ar72M6guRS9fw4kQKHahs3gtTNtF1TVX0XTw4UQb0hj6uLMG
+         3qQIICQkp46Isx5Edtc0zY7ppZXs+ZyBAsDozRtNggRJaxhkEhRrJydVDJVktmUpGZN/
+         UED4qx1uDEmm+JBIBE/W2WBlJZH9g163tJIdnmvUQqrKU7Ymcc8bIINNuCNmIU583HEF
+         RjgA==
+X-Gm-Message-State: AOAM531ZSeht8UW9PuwYpTPETDDib3cUf9OEI8mnH9yTrgM0s/eRZkvC
+        AuK3KYYIRHPA+J7U6UfRzUMiwQ==
+X-Google-Smtp-Source: ABdhPJyEd9x6pa7YTattwldbAJjKXQBZNOHDV4vQhwfsHVSJHGnxGEfzxEdDT3MAHqievsCDUiL0Wg==
+X-Received: by 2002:aa7:868d:0:b029:18a:ea7b:342f with SMTP id d13-20020aa7868d0000b029018aea7b342fmr18181060pfo.68.1605607891905;
+        Tue, 17 Nov 2020 02:11:31 -0800 (PST)
 Received: from localhost ([122.172.12.172])
-        by smtp.gmail.com with ESMTPSA id cm20sm2552672pjb.18.2020.11.17.02.02.13
+        by smtp.gmail.com with ESMTPSA id mp16sm2634674pjb.13.2020.11.17.02.11.30
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 17 Nov 2020 02:02:14 -0800 (PST)
+        Tue, 17 Nov 2020 02:11:30 -0800 (PST)
+Date:   Tue, 17 Nov 2020 15:41:28 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Tushar Khandelwal <Tushar.Khandelwal@arm.com>
-Cc:     Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, Sudeep.Holla@arm.com,
-        morten_bp@live.dk, Tushar Khandelwal <tushar.khandelwal@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH V5 1/2] dt-bindings: mailbox : arm,mhuv2: Add bindings
-Date:   Tue, 17 Nov 2020 15:32:05 +0530
-Message-Id: <bb190c4030a3bfd02fbb1c2bfaffd7480913f3d1.1605607138.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
-In-Reply-To: <cover.1605607138.git.viresh.kumar@linaro.org>
-References: <cover.1605607138.git.viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
+        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
+        chris.redpath@arm.com
+Subject: Re: [PATCH v3 3/3] [RFC] CPUFreq: Add support for
+ cpu-perf-dependencies
+Message-ID: <20201117101128.6uapqg56arwqmm5p@vireshk-i7>
+References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
+ <20201102120115.29993-4-nicola.mazzucato@arm.com>
+ <20201106092020.za3oxg7gutzc3y2b@vireshk-i7>
+ <0a334a73-45ef-58ff-7dfd-9df6f4ff290a@arm.com>
+ <20201106105514.bhtdklyhn7goml64@vireshk-i7>
+ <7f73bcd6-0f06-4ef0-7f02-0751e6c4d94b@arm.com>
+ <20201109065742.22czfgyjhsjmkytf@vireshk-i7>
+ <2fa8a5c0-f66d-34bc-7f1c-8462e7532e0a@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2fa8a5c0-f66d-34bc-7f1c-8462e7532e0a@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds device tree binding for ARM Message Handling Unit (MHU)
-controller version 2.
+On 16-11-20, 11:33, Lukasz Luba wrote:
+> On 11/9/20 6:57 AM, Viresh Kumar wrote:
+> > On 06-11-20, 11:14, Lukasz Luba wrote:
+> > > I also had similar doubts, because if we make frequency requests
+> > > independently for each CPU, why not having N cooling devs, which
+> > > will set independently QoS max freq for them...
+> > > 
+> > > What convinced me:
+> > > EAS and FIE would know the 'real' frequency of the cluster, IPA
+> > > can use it also and have only one cooling device per cluster.
+> > > 
+> > > We would like to keep this old style 'one cooling device per cpuset'.
+> > > I don't have strong opinion and if it would appear that there are
+> > > some errors in freq estimation for cluster, then maybe it does make
+> > > more sense to have cdev per CPU...
+> > 
+> > Let me rephrase my question. What is it that doesn't work _correctly_
+> > with cdev per cpufreq policy in your case? What doesn't work well if
+> > the thermal stuff keeps looking at only the related_cpus thing and not
+> > the cpu-perf-dependencies thing?
+> > 
+> 
+> We don't have a platform which would be this per-cpu freq request, yet.
+> Thus it's hard to answer your question. The EAS would work in 'old
+> style' - cluster mode. I don't know how IPA would work on such HW
+> and SW configuration. To figure this out I need a real platform.
 
-Based on earlier work by Morten Borup Petersen.
+Hmm, so who are going to be the users of this new stuff (dependent
+CPUs) ? I don't think cpufreq-cooling should be updated, unless there
+is a compelling reason to.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Co-developed-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
-Signed-off-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
- .../bindings/mailbox/arm,mhuv2.yaml           | 209 ++++++++++++++++++
- 1 file changed, 209 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
+The other one in energy model ? Why does it need this information ?
 
-diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-new file mode 100644
-index 000000000000..6608545ea66f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.yaml
-@@ -0,0 +1,209 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mailbox/arm,mhuv2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM MHUv2 Mailbox Controller
-+
-+maintainers:
-+  - Tushar Khandelwal <tushar.khandelwal@arm.com>
-+  - Viresh Kumar <viresh.kumar@linaro.org>
-+
-+description: |
-+  The Arm Message Handling Unit (MHU) Version 2 is a mailbox controller that has
-+  between 1 and 124 channel windows (each 32-bit wide) to provide unidirectional
-+  communication with remote processor(s), where the number of channel windows
-+  are implementation dependent.
-+
-+  Given the unidirectional nature of the controller, an MHUv2 mailbox may only
-+  be written to or read from. If a pair of MHU controllers is implemented
-+  between two processing elements to provide bidirectional communication, these
-+  must be specified as two separate mailboxes.
-+
-+  If the interrupts property is present in device tree node, then its treated as
-+  a "receiver" mailbox, otherwise a "sender".
-+
-+  An MHU controller must be specified along with the supported transport
-+  protocols. The transport protocols determine the method of data transmission
-+  as well as the number of provided mailbox channels.
-+
-+  Following are the possible transport protocols.
-+
-+  - Data-transfer: Each transfer is made of one or more words, using one or more
-+    channel windows.
-+
-+  - Doorbell: Each transfer is made up of single bit flag, using any one of the
-+    bits in a channel window. A channel window can support up to 32 doorbells
-+    and the entire window shall be used in doorbell protocol.  Optionally, data
-+    may be transmitted through a shared memory region, wherein the MHU is used
-+    strictly as an interrupt generation mechanism but that is out of the scope
-+    of these bindings.
-+
-+# We need a select here so we don't match all nodes with 'arm,primecell'
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - arm,mhuv2-tx
-+          - arm,mhuv2-rx
-+  required:
-+    - compatible
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: Sender mode
-+        items:
-+          - const: arm,mhuv2-tx
-+          - const: arm,primecell
-+
-+      - description: Receiver-mode
-+        items:
-+          - const: arm,mhuv2-rx
-+          - const: arm,primecell
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: |
-+      The MHUv2 controller always implements an interrupt in the "receiver"
-+      mode, while the interrupt in the "sender" mode was not available in the
-+      version MHUv2.0, but the later versions do have it.
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    maxItems: 1
-+
-+  arm,mhuv2-protocols:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    description: |
-+      The MHUv2 controller may contain up to 124 channel windows (each 32-bit
-+      wide). The hardware and the DT bindings allows any combination of those to
-+      be used for various transport protocols.
-+
-+      This property allows a platform to describe how these channel windows are
-+      used in various transport protocols. The entries in this property shall be
-+      present as an array of tuples, where each tuple describes details about
-+      one of the transport protocol being implemented over some channel
-+      window(s).
-+
-+      The first field of a tuple signifies the transfer protocol, 0 is reserved
-+      for doorbell protocol, and 1 is reserved for data-transfer protocol.
-+      Using any other value in the first field of a tuple makes it invalid.
-+
-+      The second field of a tuple signifies the number of channel windows where
-+      the protocol would be used and should be set to a non zero value. For
-+      doorbell protocol this field signifies the number of 32-bit channel
-+      windows that implement the doorbell protocol. For data-transfer protocol,
-+      this field signifies the number of 32-bit channel windows that implement
-+      the data-transfer protocol.
-+
-+      The total number of channel windows specified here shouldn't be more than
-+      the ones implemented by the platform, though one can specify lesser number
-+      of windows here than what the platform implements.
-+
-+      mhu: mailbox@2b1f0000 {
-+          ...
-+
-+          arm,mhuv2-protocols = <0 2>, <1 1>, <1 5>, <1 7>;
-+      }
-+
-+      The above example defines the protocols of an ARM MHUv2 mailbox
-+      controller, where a total of 15 channel windows are used. The first two
-+      windows are used in doorbell protocol (64 doorbells), followed by 1, 5 and
-+      7 windows (separately) used in data-transfer protocol.
-+
-+    minItems: 1
-+    maxItems: 124
-+    items:
-+      items:
-+        - enum: [ 0, 1 ]
-+        - minimum: 0
-+          maximum: 124
-+
-+
-+  '#mbox-cells':
-+    description: |
-+      It is always set to 2. The first argument in the consumers 'mboxes'
-+      property represents the channel window group, which may be used in
-+      doorbell, or data-transfer protocol, and the second argument (only
-+      relevant in doorbell protocol, should be 0 otherwise) represents the
-+      doorbell number within the 32 bit wide channel window.
-+
-+      From the example given above for arm,mhuv2-protocols, here is how a client
-+      node can reference them.
-+
-+      mboxes = <&mhu 0 5>; // Channel Window Group 0, doorbell 5.
-+      mboxes = <&mhu 1 7>; // Channel Window Group 1, doorbell 7.
-+      mboxes = <&mhu 2 0>; // Channel Window Group 2, data transfer protocol with 1 window.
-+      mboxes = <&mhu 3 0>; // Channel Window Group 3, data transfer protocol with 5 windows.
-+      mboxes = <&mhu 4 0>; // Channel Window Group 4, data transfer protocol with 7 windows.
-+
-+    const: 2
-+
-+if:
-+  # Interrupt is compulsory for receiver
-+  properties:
-+    compatible:
-+      contains:
-+        const: arm,mhuv2-rx
-+then:
-+  required:
-+    - interrupts
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#mbox-cells'
-+  - arm,mhuv2-protocols
-+
-+additionalProperties: false
-+
-+examples:
-+  # Multiple transport protocols implemented by the mailbox controllers
-+  - |
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        mhu_tx: mailbox@2b1f0000 {
-+            #mbox-cells = <2>;
-+            compatible = "arm,mhuv2-tx", "arm,primecell";
-+            reg = <0 0x2b1f0000 0 0x1000>;
-+            clocks = <&clock 0>;
-+            clock-names = "apb_pclk";
-+            interrupts = <0 45 4>;
-+            arm,mhuv2-protocols = <1 5>, <1 2>, <1 5>, <1 7>, <0 2>;
-+        };
-+
-+        mhu_rx: mailbox@2b1f1000 {
-+            #mbox-cells = <2>;
-+            compatible = "arm,mhuv2-rx", "arm,primecell";
-+            reg = <0 0x2b1f1000 0 0x1000>;
-+            clocks = <&clock 0>;
-+            clock-names = "apb_pclk";
-+            interrupts = <0 46 4>;
-+            arm,mhuv2-protocols = <1 1>, <1 7>, <0 2>;
-+        };
-+
-+        mhu_client: scb@2e000000 {
-+            compatible = "fujitsu,mb86s70-scb-1.0";
-+            reg = <0 0x2e000000 0 0x4000>;
-+
-+            mboxes =
-+                     //data-transfer protocol with 5 windows, mhu-tx
-+                     <&mhu_tx 2 0>,
-+                     //data-transfer protocol with 7 windows, mhu-tx
-+                     <&mhu_tx 3 0>,
-+                     //doorbell protocol channel 4, doorbell 27, mhu-tx
-+                     <&mhu_tx 4 27>,
-+                     //data-transfer protocol with 1 window, mhu-rx
-+                     <&mhu_rx 0 0>;
-+        };
-+    };
+Who else ?
+
 -- 
-2.25.0.rc1.19.g042ed3e048af
-
+viresh
