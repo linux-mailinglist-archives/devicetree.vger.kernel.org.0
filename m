@@ -2,69 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F1A2B5C2F
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 10:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B4582B5C34
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 10:53:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726338AbgKQJtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 04:49:15 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:41656 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgKQJtP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 04:49:15 -0500
-Received: by mail-wr1-f66.google.com with SMTP id 23so22467211wrc.8;
-        Tue, 17 Nov 2020 01:49:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WP8gt1gz+xHiJXIAB6gIFMSD97UgB4y9NAsXrhH2A1k=;
-        b=CirXokaBuxz8nYMLISpIX9Zwmjw9AiJTY6dLqvU3+meWCGBho8KEiRmAvaFn9JZ1M7
-         28CYzgj+GNvLAya19Mz9CXPo+3r9+6jotUZ6MgD5+6mChR929O7qI902Z9jh6vEq8rwI
-         C1GbuPB74XlzvOz7yBAEoOCAzPngE+RgeXAQI9bXBMALGD7yvyrYxtL4N7Jt2MN+CWxp
-         OdZ7FFvmOlKjxiZp0qu8wNbq9L5U9/QEVkgB1C7RqWKSQ+i7xG4OKp3o8mcdCzJppYQI
-         7BrqkZoZs1lZTuMzPHgU9OLRWW+uwYiSq9keVzGSpNeBe70b0Jm66DDQS4JirJHUWosP
-         KxFg==
-X-Gm-Message-State: AOAM532BE9ZahGbMXA6Te8rQUvpqxjgtywuQTLiaaGDsRuigxk7oUkDK
-        nUJFdXduci8VbukViQpDUIw=
-X-Google-Smtp-Source: ABdhPJwQE5i8G/mCBPJ2kPDLTUqOiMCkwJU9yW8yVP7EDL8/Xd+UhdtP0OKPatRiiHWnr7PAzQ2HXw==
-X-Received: by 2002:a5d:634b:: with SMTP id b11mr23350825wrw.97.1605606553463;
-        Tue, 17 Nov 2020 01:49:13 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id i10sm26889284wrs.22.2020.11.17.01.49.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2020 01:49:12 -0800 (PST)
-Date:   Tue, 17 Nov 2020 10:49:11 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH 2/9] dt-bindings:iio:samsung,exynos-adc: drop missuse of
- io-channel-ranges
-Message-ID: <20201117094911.GA13513@kozik-lap>
-References: <20201115192951.1073632-1-jic23@kernel.org>
- <20201115192951.1073632-3-jic23@kernel.org>
+        id S1727408AbgKQJvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 04:51:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:35222 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727406AbgKQJvx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Nov 2020 04:51:53 -0500
+Received: from localhost (unknown [122.171.203.152])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E7B8F2078E;
+        Tue, 17 Nov 2020 09:51:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605606712;
+        bh=iHE9RAnQLkyx8y3cmGgcwjxd7Z4g7wQ3Exd7zWtOw5M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NpT1yoy1UrT6V+QTgn6JElcmwV3hdG2JGBsFWVJ3cdcuIn+O8ubigST8UBcGamAY+
+         M3QSzyzq+JY1EtZ5xo1Opub0cj/O7qlU9gtd+IrXX+J9xbD62hB7vA0gCw9p9EjkGt
+         Xq+k76QlnKaMYoJzxPyUG7xqFr8o58rdFqKG7cBM=
+Date:   Tue, 17 Nov 2020 15:21:48 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, linuxarm@huawei.com,
+        mauro.chehab@huawei.com, John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Alex Dewar <alex.dewar90@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Yu Chen <chenyu56@huawei.com>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/8] phy: phy-hi3670-usb3: move driver from staging into
+ phy
+Message-ID: <20201117095148.GE50232@vkoul-mobl>
+References: <cover.1605530560.git.mchehab+huawei@kernel.org>
+ <420faf39bb03d07f8823b03bc55a429e975e23a0.1605530560.git.mchehab+huawei@kernel.org>
+ <20201116153106.GA1682049@bogus>
+ <20201117075542.734f429b@coco.lan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201115192951.1073632-3-jic23@kernel.org>
+In-Reply-To: <20201117075542.734f429b@coco.lan>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 15, 2020 at 07:29:44PM +0000, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On 17-11-20, 07:55, Mauro Carvalho Chehab wrote:
+> Em Mon, 16 Nov 2020 09:31:06 -0600
+> Rob Herring <robh@kernel.org> escreveu:
 > 
-> io-channel-ranges is a property for consumers of io-channels, not
-> providers.  Hence it is not relevant in this binding or the examples
-> given.
+> > On Mon, Nov 16, 2020 at 01:59:27PM +0100, Mauro Carvalho Chehab wrote:
+> > > The phy USB3 driver for Hisilicon 970 (hi3670) is ready
+> > > for mainstream. Mode it from staging into the main driver's  
+> > 
+> > s/Mode/Move/
+> > 
+> > > phy/ directory.
+> > > 
+> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > > ---
+> > >  .../bindings/phy/phy-hi3670-usb3.yaml         |  72 ++
+> > >  MAINTAINERS                                   |   9 +-
+> > >  drivers/phy/hisilicon/Kconfig                 |  10 +
+> > >  drivers/phy/hisilicon/Makefile                |   1 +
+> > >  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 671 ++++++++++++++++++
+> > >  drivers/staging/hikey9xx/Kconfig              |  11 -
+> > >  drivers/staging/hikey9xx/Makefile             |   2 -
+> > >  drivers/staging/hikey9xx/phy-hi3670-usb3.c    | 671 ------------------
+> > >  drivers/staging/hikey9xx/phy-hi3670-usb3.yaml |  72 --  
+> > 
+> > I assume this is only a move? Use '-M' option.
 > 
-> Recent changes to dt-schema result int his being reported as an error
+> This is a move, although I explicitly disabled -M on this series, as both
+> the driver code and DT may still require some review, as those patches
+> are for subsystems that I haven't made any relevant contributions
+> so far.
 
-s/int his/in this/
+I for one am appreciating the intent here, it helps to review the patch
+coming in from staging
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-Best regards,
-Krzysztof
+Thanks
+-- 
+~Vinod
