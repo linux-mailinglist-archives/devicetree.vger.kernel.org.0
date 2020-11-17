@@ -2,137 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2935E2B57F2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:34:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9F192B5872
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:46:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725730AbgKQDem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 22:34:42 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:56540 "EHLO inva020.nxp.com"
+        id S1726897AbgKQDpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 22:45:23 -0500
+Received: from mail.kernel.org ([198.145.29.99]:38864 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726379AbgKQDel (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 22:34:41 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 66F821A01D1;
-        Tue, 17 Nov 2020 04:34:39 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 62ED21A0678;
-        Tue, 17 Nov 2020 04:34:36 +0100 (CET)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 0C2D5402ED;
-        Tue, 17 Nov 2020 04:34:31 +0100 (CET)
-From:   andy.tang@nxp.com
-To:     shawnguo@kernel.org
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
-Subject: [PATCH 2/2] ARM: dts: ls1021a: update calibration table for TMU module
-Date:   Tue, 17 Nov 2020 11:43:05 +0800
-Message-Id: <20201117034305.42546-2-andy.tang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201117034305.42546-1-andy.tang@nxp.com>
-References: <20201117034305.42546-1-andy.tang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726437AbgKQDpW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 22:45:22 -0500
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E12A6206C0;
+        Tue, 17 Nov 2020 03:45:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605584722;
+        bh=drQcFzeE83tYePhTQAMPI109uNcJDc7j2Dq1wNZibSE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=VjjlEIGgDNDhib3HCD/ecC6ccR7GzEYF9OdOftw9gAYWzFub+Viwl4q+IUWmwlF2Y
+         urB1uwAis2lyOonRS8IIOXWG7VEZDmC46HVF66jLRVxYfRJMqqivSXdPv+26HnOiVm
+         AKMffiOwCL+v1YuqZgKBoeN/92pD/1KELFik5mvQ=
+Received: by mail-lf1-f52.google.com with SMTP id s30so28221660lfc.4;
+        Mon, 16 Nov 2020 19:45:21 -0800 (PST)
+X-Gm-Message-State: AOAM530SyYEIoB+lYsTP9NNUUYLxyv5fyX3QTWdfJV25e/7yZwrYQFIF
+        f0gLJDqRzzJBvk5DXbKUm9xsUAgVJbvVcDfb+p8=
+X-Google-Smtp-Source: ABdhPJwu9KvFb4x2d38z4QPfSz9ugM2w2KFYs5tx1WnJv/d/x+L//RCuQWZUkx1an8X909f+rrZEhLo/Hs797o1lGpM=
+X-Received: by 2002:a19:c354:: with SMTP id t81mr860303lff.283.1605584720130;
+ Mon, 16 Nov 2020 19:45:20 -0800 (PST)
+MIME-Version: 1.0
+References: <20201116075215.15303-2-wens@kernel.org> <20201116164159.GA1282970@bjorn-Precision-5520>
+In-Reply-To: <20201116164159.GA1282970@bjorn-Precision-5520>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Tue, 17 Nov 2020 11:45:09 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66mMMQmQYay0EVREiQYmSvefmvbsFSCN=C3qG22P8U5HA@mail.gmail.com>
+Message-ID: <CAGb2v66mMMQmQYay0EVREiQYmSvefmvbsFSCN=C3qG22P8U5HA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] PCI: rockchip: make ep_gpio optional
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Chen-Yu Tsai <wens@kernel.org>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Johan Jonker <jbx6244@gmail.com>, linux-pci@vger.kernel.org,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yuantian Tang <andy.tang@nxp.com>
+On Tue, Nov 17, 2020 at 12:42 AM Bjorn Helgaas <helgaas@kernel.org> wrote:
+>
+> Run "git log --oneline drivers/pci/controller/pcie-rockchip.c" (or
+> even just look at the Fixes: commits you mention) and follow the
+> convention, e.g.,
+>
+>   PCI: rockchip: Make 'ep-gpios' DT property optional
+>
+> Also, you used 'ep_gpio' (singular, with an underline) in the subject
+> but 'ep-gpios' (plural, with hyphen) in the commit log.  The error
+> message and Documentation/devicetree/bindings/pci/rockchip-pcie-host.txt
+> both say 'ep-gpios' (plural, with hyphen).
 
-Update the calibration table to make the temperature more accurate.
+'ep_gpio' refers to the variable used within the driver. But reading it
+again, it does seem kind of weird. I will rewrite it to be more consistent.
 
-Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
----
- arch/arm/boot/dts/ls1021a.dtsi | 77 ++++++++++++++++------------------
- 1 file changed, 37 insertions(+), 40 deletions(-)
+ChenYu
 
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index 827373ef1a54..0d569be0d2b2 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -288,46 +288,43 @@
- 			compatible = "fsl,qoriq-tmu";
- 			reg = <0x0 0x1f00000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
--			fsl,tmu-range = <0xb0000 0xa0026 0x80048 0x30061>;
--			fsl,tmu-calibration = <0x00000000 0x0000000f
--					       0x00000001 0x00000017
--					       0x00000002 0x0000001e
--					       0x00000003 0x00000026
--					       0x00000004 0x0000002e
--					       0x00000005 0x00000035
--					       0x00000006 0x0000003d
--					       0x00000007 0x00000044
--					       0x00000008 0x0000004c
--					       0x00000009 0x00000053
--					       0x0000000a 0x0000005b
--					       0x0000000b 0x00000064
--
--					       0x00010000 0x00000011
--					       0x00010001 0x0000001c
--					       0x00010002 0x00000024
--					       0x00010003 0x0000002b
--					       0x00010004 0x00000034
--					       0x00010005 0x00000039
--					       0x00010006 0x00000042
--					       0x00010007 0x0000004c
--					       0x00010008 0x00000051
--					       0x00010009 0x0000005a
--					       0x0001000a 0x00000063
--
--					       0x00020000 0x00000013
--					       0x00020001 0x00000019
--					       0x00020002 0x00000024
--					       0x00020003 0x0000002c
--					       0x00020004 0x00000035
--					       0x00020005 0x0000003d
--					       0x00020006 0x00000046
--					       0x00020007 0x00000050
--					       0x00020008 0x00000059
--
--					       0x00030000 0x00000002
--					       0x00030001 0x0000000d
--					       0x00030002 0x00000019
--					       0x00030003 0x00000024>;
-+			fsl,tmu-range = <0xb0000 0x9002c 0x6004e 0x30066>;
-+			fsl,tmu-calibration = <0x00000000 0x00000020
-+					       0x00000001 0x00000024
-+					       0x00000002 0x0000002a
-+					       0x00000003 0x00000032
-+					       0x00000004 0x00000038
-+					       0x00000005 0x0000003e
-+					       0x00000006 0x00000043
-+					       0x00000007 0x0000004a
-+					       0x00000008 0x00000050
-+					       0x00000009 0x00000059
-+					       0x0000000a 0x0000005f
-+					       0x0000000b 0x00000066
-+
-+					       0x00010000 0x00000023
-+					       0x00010001 0x0000002b
-+					       0x00010002 0x00000033
-+					       0x00010003 0x0000003a
-+					       0x00010004 0x00000042
-+					       0x00010005 0x0000004a
-+					       0x00010006 0x00000054
-+					       0x00010007 0x0000005c
-+					       0x00010008 0x00000065
-+					       0x00010009 0x0000006f
-+
-+					       0x00020000 0x00000029
-+					       0x00020001 0x00000033
-+					       0x00020002 0x0000003d
-+					       0x00020003 0x00000048
-+					       0x00020004 0x00000054
-+					       0x00020005 0x00000060
-+					       0x00020006 0x0000006c
-+
-+					       0x00030000 0x00000025
-+					       0x00030001 0x00000033
-+					       0x00030002 0x00000043
-+					       0x00030003 0x00000055>;
- 			#thermal-sensor-cells = <1>;
- 		};
- 
--- 
-2.17.1
-
+> Please fix so this is all consistent.  Details matter.
+>
+> On Mon, Nov 16, 2020 at 03:52:12PM +0800, Chen-Yu Tsai wrote:
+> > From: Chen-Yu Tsai <wens@csie.org>
+> >
+> > The Rockchip PCIe controller DT binding clearly states that ep-gpios is
+> > an optional property. And indeed there are boards that don't require it.
+> >
+> > Make the driver follow the binding by using devm_gpiod_get_optional()
+> > instead of devm_gpiod_get().
+> >
+> > Fixes: e77f847df54c ("PCI: rockchip: Add Rockchip PCIe controller support")
+> > Fixes: 956cd99b35a8 ("PCI: rockchip: Separate common code from RC driver")
+> > Fixes: 964bac9455be ("PCI: rockchip: Split out rockchip_pcie_parse_dt() to parse DT")
+> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> > ---
+> >  drivers/pci/controller/pcie-rockchip.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/pci/controller/pcie-rockchip.c b/drivers/pci/controller/pcie-rockchip.c
+> > index 904dec0d3a88..c95950e9004f 100644
+> > --- a/drivers/pci/controller/pcie-rockchip.c
+> > +++ b/drivers/pci/controller/pcie-rockchip.c
+> > @@ -118,7 +118,7 @@ int rockchip_pcie_parse_dt(struct rockchip_pcie *rockchip)
+> >       }
+> >
+> >       if (rockchip->is_rc) {
+> > -             rockchip->ep_gpio = devm_gpiod_get(dev, "ep", GPIOD_OUT_HIGH);
+> > +             rockchip->ep_gpio = devm_gpiod_get_optional(dev, "ep", GPIOD_OUT_HIGH);
+> >               if (IS_ERR(rockchip->ep_gpio)) {
+> >                       dev_err(dev, "missing ep-gpios property in node\n");
+> >                       return PTR_ERR(rockchip->ep_gpio);
+> > --
+> > 2.29.1
+> >
