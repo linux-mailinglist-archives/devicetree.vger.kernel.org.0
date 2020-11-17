@@ -2,759 +2,362 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9292B5655
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 02:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D96D62B5663
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 02:47:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726198AbgKQBjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 20:39:53 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39504 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725730AbgKQBjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 20:39:52 -0500
-Received: by mail-ot1-f65.google.com with SMTP id z16so17963706otq.6;
-        Mon, 16 Nov 2020 17:39:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YiArAjqUh/zvmo3Z+qGzgu/13lPQKgeSJLEXcUJZhqU=;
-        b=jUj6WnHQXL0bRI20Vov3HIBzFNmGLz6YwZh0xUYaJoX0LC/C+bevoGFxN5qSlAXg+p
-         WIb9OS5dxxGDcYSVBxzW7GV07sukn4SeNq1QqYBXHUfRR3kIp/X9xgSP0wXGx06mnuK2
-         kr1NOyaypGsmkZsBge6z/PdWcgHhB1KdRzamV2jdUhhrUwvDnP/jH0yWzPE9Y111+2Mu
-         lGPDtDoG0Hn6toH7JsmaOfaySpM0tR7KcbKDnFi0PfUdSJci7bXqRyJsXgwNYItOV4iU
-         nZPf7FTa1k7KENdWg3OHsW5dalgWjpwzkilF8YfRZSZqsHil/dzZY3b4VNvI7fFh6uJf
-         C+cQ==
-X-Gm-Message-State: AOAM5322Yw/Jx7MkW64NHSzfJNeFxk5Xja0AOxQDP8CTqL5nLHsz/Bs9
-        zDcFMfzX117ztPx0tr4L4Q==
-X-Google-Smtp-Source: ABdhPJwnfTvby5qfUqFklfwTKwYVB7zTblmmWR9wvL3LURxLt3CiukkBnBtid+6bEedn8y0Fe8jJxA==
-X-Received: by 2002:a9d:bf4:: with SMTP id 107mr1506972oth.320.1605577189127;
-        Mon, 16 Nov 2020 17:39:49 -0800 (PST)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id y11sm1606527oog.34.2020.11.16.17.39.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 17:39:48 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     devicetree@vger.kernel.org, Maxime Ripard <mripard@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Subject: [PATCH] dt-bindings: media: Use OF graph schema
-Date:   Mon, 16 Nov 2020 19:39:47 -0600
-Message-Id: <20201117013947.2479625-1-robh@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        id S1728205AbgKQBq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 20:46:57 -0500
+Received: from mail-eopbgr00059.outbound.protection.outlook.com ([40.107.0.59]:61327
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728437AbgKQBq4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Nov 2020 20:46:56 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BeEqpB9xUC/NlDllHw5A1xwLRLKU4FfzRGWDRCHWyvy6is4bubT7hRYHIy8Mms9LeQeQUfrWjSfBcFQKnjG4PO7K9Qfv+XxoQx2qHUvLaFzx18+nZ2hXmlNRX7/djNkrwb4unqj11BECtm1sLkpb1az/gUn+KRTWJB0uvPZxgHuHP0QASjm/pC98wy8fmtVQhiD6ytg6S0nctdC6evucew0QzSAij/I1M/M76AHt/eSRePnD3A+1SA2uGK1IIZtbswttRm8tSTKCchwMW6QT1MqJ7JE/8tqo+iIc5hHMpVKCKoqXAexET0b9aofK+uEJemh66Xnjdw2Im98vBM40gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HjrcQmZihyau4ZM1AHExasE3F2gTN3fn21wpc7hpGdw=;
+ b=a0D/RYsuBVnn1QyIg0+ve7jtkafikXpc1Tmlruqm50EICGHN0lBJyx/p0Chk/enqjIvMQrjThPjd5+gdkZ5IReE1BQhIVpqBJUzeUaGHJtDc0nIVS3V8gO7aXa2vpz73X/D8SuUHWMEcUI+BQeIyRtsCPcdOI6/vvY8AT0yGXmtrDvw8/blCt5HjaoehqyrXzDRGaga7Ya+A8VqazjxRerN/qsarb7Gd4V3qdv+yqrGs7Wpi7sJWt1rssxiiUDLHu+8tBPc/q1HHlVsTJpgHhuTW6zaYdow9+wcf4WF9HUAFRnq4mj+H1ejHwD6DB9hGasWMA8M2ovUvxt/RhLGU6w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HjrcQmZihyau4ZM1AHExasE3F2gTN3fn21wpc7hpGdw=;
+ b=KNrVzNQxqyUa4IzSnAn7BX5LdcZHmKZrEeYMSsl4mAT9OBsKqHP/+3meQWLtUEjUyLzDLymdUE8u3tyac+mH/70UZFyFCsAQmkKUr4YVbStQfNO6AOd1dsxkjETbWUnVqghyXztMYFaEGJ42kwvHZRlVywgkd7Wdm6rnVNauZEE=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR0402MB2816.eurprd04.prod.outlook.com (2603:10a6:800:b7::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.28; Tue, 17 Nov
+ 2020 01:46:47 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3564.028; Tue, 17 Nov 2020
+ 01:46:47 +0000
+Message-ID: <03084845f931181a31dec2a06a36a2df828c6cfc.camel@nxp.com>
+Subject: Re: [PATCH v3] dt-bindings: display: panel: one file of all simple
+ LVDS panels with dual ports
+From:   Liu Ying <victor.liu@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Date:   Tue, 17 Nov 2020 09:45:04 +0800
+In-Reply-To: <20201116192345.GA1985442@bogus>
+References: <1605161831-10740-1-git-send-email-victor.liu@nxp.com>
+         <20201116192345.GA1985442@bogus>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-0ubuntu1 
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR02CA0037.apcprd02.prod.outlook.com
+ (2603:1096:3:18::25) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR02CA0037.apcprd02.prod.outlook.com (2603:1096:3:18::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.28 via Frontend Transport; Tue, 17 Nov 2020 01:46:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 20fcdb8c-ef6b-40ce-cf39-08d88a9aa505
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB2816:
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB2816C55DF65F903FFD98E35098E20@VI1PR0402MB2816.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: y9druN+FdfuRNkSGi2U9ZY3tiPTZ0DKpsNCCI3vB7JmBN4g5xZcims6QUPAm0Wu+WYRbcJBcJ8g1iYqnWCDkhSjPTPzeAUz05Qa05/hExloyk+yB8mzoIYfCwujKhlH0g7q/mnB7AHTHyQ/Vqxk4+atnx+jqQMNaWTjHe6MYnzvCBGBI4VBU7krWFFGXoIrzjeknZ4tuCxjZiiRK1aYBzjG2AaI3H/m0F2CAbfrJkoIxIv0dSWUkEFjQ9hZIWINZjk5CMfOkKUO0NVf5Mr6SOcxQezl1HNMcOmqRY8hikm+H5gBZmWxolrauUEOkaFTvREgZabe6mijynorghLYbOJwaeTKFicfVyWhsBdW2x4rh4IPdb45ellRLJYhrqDjQfBMmVP8p59UMqHCGmJhLdw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(136003)(376002)(366004)(396003)(45080400002)(316002)(478600001)(6486002)(6916009)(54906003)(4326008)(966005)(26005)(2906002)(16526019)(186003)(8676002)(2616005)(8936002)(52116002)(6512007)(956004)(6506007)(36756003)(4001150100001)(86362001)(66946007)(5660300002)(6666004)(66476007)(66556008)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: YLuAL/Lks5I+rosva8OBzE/ZjexIFmdU9JbAxzdhAqeULmN7CNqorieCYFhfsoqSwS4x88fyvZwaj4yczlgLKmdvbrvBup/SweiHSFabH3LzfE2L96esZBo3h9zkIyWJJgI0Cr0CKX7S0RA03vfRTNMg4O4i7rNJ3eXyFMb5uF0U0SvKxWOaYM9thKdnTKl5cYbAgVbprxuEu2yubP+59fEMd7QuUAUpr3XzVoD42HZOyXYSRVCvWFabxfeKYhunvQkQHJfouxUxtSoBgBFxjJQi+jpVWcsbjT+dAVFGJy6ZqM8Z9uU+u5rpoKGuUct90rlzZ8zG4sPukhq0RQhmCB+hpVOymPJdSu9wZBWT1M4juzjDwW5N1pFaaOdbFPnZKzaxAzESMvXvry7nTKio+/AL8J2TM3UgjnQIr4i0oO7zRDkLR05utvOgFEY3Xmoky7HJa+qUkrV08REytbKdrRp5aP38g/Py8669KsS+syRuhjEzmkbuVHRVKIivH5V6ft/z7MnmX6LJQkVmEcowtkCNMRZXp4ysXS5zTCjLKZEw7WVsiDD95hzWMLbPYjLrNzhCcN/lAiCUVhWxoiVpkMkQLBz4x0VJraWx7P+TjOiY+61yJL7qXsTY4VPVxjocZYWHHH88W9EDK5iNx9sXvw==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20fcdb8c-ef6b-40ce-cf39-08d88a9aa505
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2020 01:46:47.6040
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gS8uWpOE77/Ijumsr13l9I9PVXYsrOFZQTfcr6BlutSIC/2cUw+zWMJ9ZyBGIRX98yEDkhWRlfTnhi7EwOJ/uQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2816
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have a graph schema, rework the media related schemas to
-use it. Mostly this is adding a reference to graph.yaml and dropping
-duplicate parts from schemas.
+On Mon, 2020-11-16 at 13:23 -0600, Rob Herring wrote:
+> On Thu, Nov 12, 2020 at 02:17:11PM +0800, Liu Ying wrote:
+> > To complement panel-simple.yaml, create panel-simple-lvds-dual-
+> > ports.yaml.
+> > panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels
+> > that
+> > have dual LVDS ports and require only a single power-supply.
+> > The first port receives odd pixels, and the second port receives
+> > even pixels.
+> > Optionally, a backlight and an enable GPIO can be specified as
+> > properties.
+> > 
+> > Panels with swapped pixel order, if any, need dedicated bindings.
+> > 
+> > Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
+> > 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new
+> > file.
+> > 
+> > The objectives with one file for all the simple LVDS panels with
+> > dual ports are:
+> > - Make it simpler to add bindings for this kind of LVDS panels
+> > - Keep the number of bindings file lower
+> > - Keep the binding documentation for this kind of LVDS panels more
+> > consistent
+> > - Make it possible for drivers to get pixel order via
+> >   drm_of_lvds_get_dual_link_pixel_order(), as the optional 'ports'
+> > property is
+> >   allowed
+> > 
+> > Suggested-by: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > Cc: Sam Ravnborg <sam@ravnborg.org>
+> > Cc: David Airlie <airlied@linux.ie>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> > v2->v3:
+> > * Do not allow 'port' property. (Rob)
+> > * Define port number. (Rob)
+> > * Specify 'dual-lvds-odd-pixels' and 'dual-lvds-even-pixels'
+> > properties. (Rob)
+> > 
+> > v1->v2:
+> > * Correct pixel order in example LVDS panel node.
+> > 
+> >  .../panel/panel-simple-lvds-dual-ports.yaml        | 126
+> > +++++++++++++++++++++
+> >  .../bindings/display/panel/panel-simple.yaml       |  10 --
+> >  2 files changed, 126 insertions(+), 10 deletions(-)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/panel/panel-simple-lvds-
+> > dual-ports.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-
+> > simple-lvds-dual-ports.yaml
+> > b/Documentation/devicetree/bindings/display/panel/panel-simple-
+> > lvds-dual-ports.yaml
+> > new file mode 100644
+> > index 00000000..d30ae82
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-
+> > lvds-dual-ports.yaml
+> > @@ -0,0 +1,126 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: 
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fdisplay%2Fpanel%2Fpanel-simple-lvds-dual-ports.yaml%23&amp;data=04%7C01%7Cvictor.liu%40nxp.com%7Ce8617e47af5e4d939a3708d88a652499%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637411514310871830%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=%2F5Jad81MpVVoRLGbEGAka5S4walK1UpsE8y6PGsgLiw%3D&amp;reserved=0
+> > +$schema: 
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=04%7C01%7Cvictor.liu%40nxp.com%7Ce8617e47af5e4d939a3708d88a652499%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637411514310871830%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000&amp;sdata=3maA8Yc%2FoDzjSY2njq0bkM6%2FFo4J%2BFv0bEH4IbknM1w%3D&amp;reserved=0
+> > +
+> > +title: Simple LVDS panels with one power supply and dual LVDS
+> > ports
+> > +
+> > +maintainers:
+> > +  - Liu Ying <victor.liu@nxp.com>
+> > +  - Thierry Reding <thierry.reding@gmail.com>
+> > +  - Sam Ravnborg <sam@ravnborg.org>
+> > +
+> > +description: |
+> > +  This binding file is a collection of the LVDS panels that
+> > +  has dual LVDS ports and requires only a single power-supply.
+> > +  The first port receives odd pixels, and the second port receives
+> > even pixels.
+> > +  There are optionally a backlight and an enable GPIO.
+> > +  The panel may use an OF graph binding for the association to the
+> > display,
+> > +  or it may be a direct child node of the display.
+> > +
+> > +  If the panel is more advanced a dedicated binding file is
+> > required.
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +
+> > +  compatible:
+> > +    enum:
+> > +    # compatible must be listed in alphabetical order, ordered by
+> > compatible.
+> > +    # The description in the comment is mandatory for each
+> > compatible.
+> > +
+> > +        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD
+> > panel
+> > +      - auo,g133han01
+> > +        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD
+> > panel
+> > +      - auo,g185han01
+> > +        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
+> > +      - auo,g190ean01
+> > +        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x
+> > 1200) LVDS TFT LCD panel
+> > +      - koe,tx26d202vm0bwa
+> > +        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT
+> > LCD panel
+> > +      - nlt,nl192108ac18-02d
+> > +
+> > +  ports:
+> > +    type: object
+> > +    properties:
+> > +      '#address-cells':
+> > +        const: 1
+> > +
+> > +      '#size-cells':
+> > +        const: 0
+> > +
+> > +      port@0:
+> > +        type: object
+> > +        description: The sink for odd pixels.
+> > +        properties:
+> > +          reg:
+> > +            const: 0
+> > +
+> > +          dual-lvds-odd-pixels: true
+> 
+> Needs a type and description.
 
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc: Jacopo Mondi <jacopo@jmondi.org>
-Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Cc: linux-media@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-This can go via the media tree. Ideally anything else subsequently added 
-will be fixed up too.
+Will do in v4.
 
- .../media/allwinner,sun4i-a10-csi.yaml        |  1 +
- .../media/allwinner,sun6i-a31-csi.yaml        |  1 +
- .../bindings/media/i2c/adv7180.yaml           | 31 ++------
- .../bindings/media/i2c/adv7604.yaml           | 32 ++------
- .../bindings/media/i2c/aptina,mt9v111.yaml    |  2 +-
- .../bindings/media/i2c/imi,rdacm2x-gmsl.yaml  | 25 +-----
- .../devicetree/bindings/media/i2c/imx219.yaml |  4 +
- .../bindings/media/i2c/maxim,max9286.yaml     | 76 ++++---------------
- .../devicetree/bindings/media/i2c/ov5647.yaml |  5 +-
- .../devicetree/bindings/media/i2c/ov8856.yaml |  5 +-
- .../bindings/media/i2c/ovti,ov772x.yaml       |  1 +
- .../bindings/media/i2c/sony,imx214.yaml       |  1 +
- .../bindings/media/i2c/sony,imx274.yaml       |  3 +-
- .../bindings/media/marvell,mmp2-ccic.yaml     |  1 +
- .../bindings/media/renesas,ceu.yaml           |  1 +
- .../bindings/media/renesas,csi2.yaml          | 36 ++-------
- .../bindings/media/renesas,vin.yaml           |  7 +-
- .../bindings/media/st,stm32-dcmi.yaml         |  7 +-
- .../devicetree/bindings/media/ti,cal.yaml     | 15 +---
- .../bindings/media/xilinx/xlnx,csi2rxss.yaml  | 21 +----
- 20 files changed, 61 insertions(+), 214 deletions(-)
+> 
+> > +
+> > +        required:
+> > +          - reg
+> > +          - dual-lvds-odd-pixels
+> > +
+> > +      port@1:
+> > +        type: object
+> > +        description: The sink for even pixels.
+> > +        properties:
+> > +          reg:
+> > +            const: 1
+> > +
+> > +          dual-lvds-even-pixels: true
+> 
+> Needs a type and description.
 
-diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-index 09318830db47..0205f7dd7fdb 100644
---- a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-+++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-@@ -70,6 +70,7 @@ properties:
-   # See ./video-interfaces.txt for details
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     additionalProperties: false
- 
-     properties:
-diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-index 1fd9b5532a21..48d8f73ce7ab 100644
---- a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-+++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-csi.yaml
-@@ -43,6 +43,7 @@ properties:
-   # See ./video-interfaces.txt for details
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
- 
-     properties:
-       endpoint:
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-index d8c54f9d9506..7f28954a4508 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-@@ -36,17 +36,9 @@ properties:
-     maxItems: 1
- 
-   port:
--    type: object
--    description:
--      A node containing a single endpoint as doucmented in
--      Documentation/devicetree/bindings/media/video-interfaces.txt
--
--  ports:
--    type: object
--    description:
--      A node containing input and output port nodes with endpoint definitions
--      as documented in
--      Documentation/devicetree/bindings/media/video-interfaces.txt
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-+  ports: true
- 
- additionalProperties: false
- 
-@@ -80,24 +72,19 @@ allOf:
-     then:
-       properties:
-         ports:
-+          $ref: /schemas/graph.yaml#/properties/ports
-           properties:
--            '#address-cells':
--              const: 1
--            '#size-cells':
--              const: 0
-             port@3:
--              type: object
-               description: Output port
- 
-           patternProperties:
-             "^port@[0-2]$":
--              type: object
-               description: Input port
- 
-           required:
-             - port@3
- 
--          additionalProperties: false
-+          unevaluatedProperties: false
- 
-       required:
-         - ports
-@@ -110,24 +97,20 @@ allOf:
-     then:
-       properties:
-         ports:
-+          $ref: /schemas/graph.yaml#/properties/ports
-           properties:
--            '#address-cells':
--              const: 1
--            '#size-cells':
--              const: 0
-             port@6:
-               type: object
-               description: Output port
- 
-           patternProperties:
-             "^port@[0-5]$":
--              type: object
-               description: Input port
- 
-           required:
-             - port@6
- 
--          additionalProperties: false
-+          unevaluatedProperties: false
- 
-       required:
-         - ports
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-index 407baddfaa1d..693f31daf5aa 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adv7604.yaml
-@@ -64,16 +64,12 @@ properties:
-     description:
-       Select which input is selected after reset.
- 
--  ports:
--    type: object
--    description:
--      A node containing input and output port nodes with endpoint definitions
--      as documented in
--      Documentation/devicetree/bindings/media/video-interfaces.txt
-+  ports: true
- 
- required:
-   - compatible
-   - reg
-+  - ports
- 
- additionalProperties: false
- 
-@@ -86,25 +82,17 @@ allOf:
-     then:
-       properties:
-         ports:
-+          $ref: /schemas/graph.yaml#/properties/ports
-           properties:
--            '#address-cells':
--              const: 1
--            '#size-cells':
--              const: 0
-             port@0:
--              type: object
-               description: Input port
-             port@1:
--              type: object
-               description: Output port
- 
-           required:
-             - port@1
- 
--          additionalProperties: false
--
--      required:
--        - ports
-+          unevaluatedProperties: false
- 
-   - if:
-       properties:
-@@ -114,27 +102,19 @@ allOf:
-     then:
-       properties:
-         ports:
-+          $ref: /schemas/graph.yaml#/properties/ports
-           properties:
--            '#address-cells':
--              const: 1
--            '#size-cells':
--              const: 0
-             port@2:
--              type: object
-               description: Output port
- 
-           patternProperties:
-             "^port@[0-1]$":
--              type: object
-               description: Input port
- 
-           required:
-             - port@2
- 
--          additionalProperties: false
--
--      required:
--        - ports
-+          unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-index ff9546e95d05..17ec4ab1dbd0 100644
---- a/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/aptina,mt9v111.yaml
-@@ -41,7 +41,7 @@ properties:
-     maxItems: 1
- 
-   port:
--    type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     description: |
-       Output video port. See ../video-interfaces.txt.
- 
-diff --git a/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml b/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml
-index 3dc06c628e64..e0ea3acca89a 100644
---- a/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/imi,rdacm2x-gmsl.yaml
-@@ -86,33 +86,12 @@ properties:
-     maxItems: 3
- 
-   port:
--    type: object
--    additionalProperties: false
--    description: -|
-+    $ref: /schemas/graph.yaml#/properties/port
-+    description:
-       Connection to the remote GMSL endpoint are modelled using the OF graph
-       bindings in accordance with the video interface bindings defined in
-       Documentation/devicetree/bindings/media/video-interfaces.txt.
- 
--      The device node contains a single "port" child node with a single
--      "endpoint" sub-device.
--
--    properties:
--      endpoint:
--        type: object
--        additionalProperties: false
--
--        properties:
--          remote-endpoint:
--            description: -|
--              phandle to the remote GMSL endpoint sub-node in the remote node
--              port.
--            maxItems: 1
--
--        required:
--          - remote-endpoint
--
--    required:
--      - endpoint
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-index dfc4d29a4f04..bba42e015c98 100644
---- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
-@@ -47,6 +47,8 @@ properties:
-   # See ../video-interfaces.txt for more details
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-+
-     properties:
-       endpoint:
-         type: object
-@@ -74,6 +76,8 @@ properties:
-         required:
-           - link-frequencies
- 
-+    additionalProperties: false
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-index 9ea827092fdd..2e89a5458afe 100644
---- a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.yaml
-@@ -53,56 +53,25 @@ properties:
- 
-   ports:
-     type: object
--    description: |
--      The connections to the MAX9286 GMSL and its endpoint nodes are modelled
--      using the OF graph bindings in accordance with the video interface
--      bindings defined in
--      Documentation/devicetree/bindings/media/video-interfaces.txt.
--
--      The following table lists the port number corresponding to each device
--      port.
--
--        Port            Description
--        ----------------------------------------
--        Port 0          GMSL Input 0
--        Port 1          GMSL Input 1
--        Port 2          GMSL Input 2
--        Port 3          GMSL Input 3
--        Port 4          CSI-2 Output
-+    $ref: /schemas/graph.yaml#/properties/ports
- 
-     properties:
--      '#address-cells':
--        const: 1
--
--      '#size-cells':
--        const: 0
-+      port@0:
-+        description: GMSL Input 0
- 
--      port@[0-3]:
--        type: object
--        properties:
--          reg:
--            enum: [ 0, 1, 2, 3 ]
-+      port@1:
-+        description: GMSL Input 1
- 
--          endpoint:
--            type: object
-+      port@2:
-+        description: GMSL Input 2
- 
--            properties:
--              remote-endpoint:
--                description: |
--                 phandle to the remote GMSL source endpoint subnode in the
--                 remote node port.
--
--            required:
--              - remote-endpoint
--
--        required:
--          - reg
--          - endpoint
--
--        additionalProperties: false
-+      port@3:
-+        description: GMSL Input 3
- 
-       port@4:
-         type: object
-+        description: CSI-2 Output
-+
-         properties:
-           reg:
-             const: 4
-@@ -130,6 +99,8 @@ properties:
-     required:
-       - port@4
- 
-+    unevaluatedProperties: false
-+
-   i2c-mux:
-     type: object
-     description: |
-@@ -184,25 +155,8 @@ properties:
-                   requirements of the currently connected remote device.
- 
-               port:
--                type: object
--
--                properties:
--                  endpoint:
--                    type: object
--
--                    properties:
--                      remote-endpoint:
--                        description: phandle to the MAX9286 sink endpoint.
--
--                    required:
--                      - remote-endpoint
--
--                    additionalProperties: false
--
--                required:
--                  - endpoint
--
--                additionalProperties: false
-+                $ref: /schemas/graph.yaml#/properties/port
-+                description: Connection to the MAX9286 sink.
- 
-             required:
-               - compatible
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov5647.yaml b/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
-index 280c62afae13..cd5291602a70 100644
---- a/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ov5647.yaml
-@@ -32,10 +32,7 @@ properties:
- 
-   port:
-     type: object
--    description: |-
--      Should contain one endpoint sub-node used to model connection to the
--      video receiver according to the specification defined in
--      Documentation/devicetree/bindings/media/video-interfaces.txt.
-+    $ref: /schemas/graph.yaml#/properties/port
- 
-     properties:
-       endpoint:
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-index cde85553fd01..2611eb69b3b2 100644
---- a/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ov8856.yaml
-@@ -58,11 +58,8 @@ properties:
- 
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     additionalProperties: false
--    description:
--      A node containing an output port node with an endpoint definition
--      as documented in
--      Documentation/devicetree/bindings/media/video-interfaces.txt
- 
-     properties:
-       endpoint:
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-index 6866c2cdac50..eedc560837d2 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-@@ -38,6 +38,7 @@ properties:
- 
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     description: |
-       Video output port. See ../video-interfaces.txt.
- 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-index 1a3590dd0e98..0599df605a4f 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
-@@ -55,6 +55,7 @@ properties:
- 
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     description: |
-       Video output port. See ../video-interfaces.txt.
- 
-diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-index f697e1a20beb..90828020e42a 100644
---- a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-@@ -44,8 +44,7 @@ properties:
-     maxItems: 1
- 
-   port:
--    type: object
--    description: Output video port. See ../video-interfaces.txt.
-+    $ref: /schemas/graph.yaml#/properties/port
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-index 49bff738aca5..4832f55654cc 100644
---- a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-+++ b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-@@ -25,6 +25,7 @@ properties:
- 
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     additionalProperties: false
- 
-     properties:
-diff --git a/Documentation/devicetree/bindings/media/renesas,ceu.yaml b/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-index c7e1e4fe67e6..2d493d503d07 100644
---- a/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,ceu.yaml
-@@ -35,6 +35,7 @@ properties:
- 
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     additionalProperties: false
- 
-     properties:
-diff --git a/Documentation/devicetree/bindings/media/renesas,csi2.yaml b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-index 533c2f181db7..e34dfbef25a2 100644
---- a/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,csi2.yaml
-@@ -47,10 +47,7 @@ properties:
- 
-   ports:
-     type: object
--    description:
--      A node containing input and output port nodes with endpoint definitions
--      as documented in
--      Documentation/devicetree/bindings/media/video-interfaces.txt
-+    $ref: /schemas/graph.yaml#/properties/ports
- 
-     properties:
-       port@0:
-@@ -84,38 +81,15 @@ properties:
-         additionalProperties: false
- 
-       port@1:
--        type: object
-         description:
-           Output port node, multiple endpoints describing all the R-Car VIN
-           modules connected the CSI-2 receiver.
- 
--        properties:
--          '#address-cells':
--            const: 1
--
--          '#size-cells':
--            const: 0
--
--          reg:
--            const: 1
--
--        patternProperties:
--          "^endpoint@[0-9a-f]$":
--            type: object
-+    required:
-+      - port@0
-+      - port@1
- 
--            properties:
--              reg:
--                maxItems: 1
--
--              remote-endpoint: true
--
--            required:
--              - reg
--              - remote-endpoint
--
--            additionalProperties: false
--
--        additionalProperties: false
-+    unevaluatedProperties: false
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/media/renesas,vin.yaml b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-index ad2fe660364b..25a70dc89a4c 100644
---- a/Documentation/devicetree/bindings/media/renesas,vin.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,vin.yaml
-@@ -70,6 +70,7 @@ properties:
-   #The per-board settings for Gen2 and RZ/G1 platforms:
-   port:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     description:
-       A node containing a parallel input with a single endpoint definitions as
-       documented in
-@@ -124,9 +125,7 @@ properties:
- 
-   ports:
-     type: object
--    description:
--      A node containing input nodes with endpoint definitions as documented in
--      Documentation/devicetree/bindings/media/video-interfaces.txt
-+    $ref: /schemas/graph.yaml#/properties/ports
- 
-     properties:
-       port@0:
-@@ -272,6 +271,8 @@ properties:
- 
-         additionalProperties: false
- 
-+    unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
-diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-index 3fe778cb5cc3..66bdef5e1273 100644
---- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-+++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-@@ -37,12 +37,9 @@ properties:
-     maxItems: 1
- 
-   port:
--    type: object
-+    $ref: /schemas/graph.yaml#/properties/port
-     description:
--      DCMI supports a single port node with parallel bus. It should contain
--      one 'port' child node with child 'endpoint' node. Please refer to the
--      bindings defined in
--      Documentation/devicetree/bindings/media/video-interfaces.txt.
-+      DCMI supports a single port node with parallel bus.
- 
- required:
-   - compatible
-diff --git a/Documentation/devicetree/bindings/media/ti,cal.yaml b/Documentation/devicetree/bindings/media/ti,cal.yaml
-index 5e066629287d..dc2c6be4fa4d 100644
---- a/Documentation/devicetree/bindings/media/ti,cal.yaml
-+++ b/Documentation/devicetree/bindings/media/ti,cal.yaml
-@@ -70,23 +70,18 @@ properties:
-   # See ./video-interfaces.txt for details
-   ports:
-     type: object
--    additionalProperties: false
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    unevaluatedProperties: false
- 
-     properties:
--      "#address-cells":
--        const: 1
--
--      "#size-cells":
--        const: 0
--
-       port@0:
-         type: object
-+        description: CSI2 Port #0
-         additionalProperties: false
- 
-         properties:
-           reg:
-             const: 0
--            description: CSI2 Port #0
- 
-         patternProperties:
-           endpoint:
-@@ -108,12 +103,12 @@ properties:
- 
-       port@1:
-         type: object
-+        description: CSI2 Port #1
-         additionalProperties: false
- 
-         properties:
-           reg:
-             const: 1
--            description: CSI2 Port #1
- 
-         patternProperties:
-           endpoint:
-@@ -134,8 +129,6 @@ properties:
-           - reg
- 
-     required:
--      - "#address-cells"
--      - "#size-cells"
-       - port@0
- 
- required:
-diff --git a/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml b/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml
-index 2961a5b6872f..0868718c3691 100644
---- a/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml
-+++ b/Documentation/devicetree/bindings/media/xilinx/xlnx,csi2rxss.yaml
-@@ -98,6 +98,7 @@ properties:
- 
-   ports:
-     type: object
-+    $ref: /schemas/graph.yaml#/properties/ports
- 
-     properties:
-       port@0:
-@@ -141,29 +142,11 @@ properties:
-         additionalProperties: false
- 
-       port@1:
--        type: object
-         description: |
-           Output / source port node, endpoint describing modules
-           connected the CSI-2 receiver.
- 
--        properties:
--
--          reg:
--            const: 1
--
--          endpoint:
--            type: object
--
--            properties:
--
--              remote-endpoint: true
--
--            required:
--              - remote-endpoint
--
--            additionalProperties: false
--
--        additionalProperties: false
-+    unevaluatedProperties: false
- 
- required:
-   - compatible
+Ditto.
+
+> 
+> > +
+> > +        required:
+> > +          - reg
+> > +          - dual-lvds-even-pixels
+> > +
+> > +    required:
+> > +      - "#address-cells"
+> > +      - "#size-cells"
+> > +      - port@0
+> > +      - port@1
+> > +
+> > +    additionalProperties: false
+> > +
+> > +  backlight: true
+> > +  enable-gpios: true
+> > +  power-supply: true
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - power-supply
+> > +
+> > +examples:
+> > +  - |
+> > +    panel: panel-lvds {
+> > +      compatible = "koe,tx26d202vm0bwa";
+> > +      power-supply = <&vdd_lcd_reg>;
+> > +
+> > +      ports {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        port@0 {
+> > +          dual-lvds-odd-pixels;
+> > +          reg = <0>;
+> > +
+> > +          panel_lvds0_in: endpoint {
+> > +            remote-endpoint = <&lvds0_out>;
+> > +          };
+> > +        };
+> > +
+> > +        port@1 {
+> > +          dual-lvds-even-pixels;
+> > +          reg = <1>;
+> > +
+> > +          panel_lvds1_in: endpoint {
+> > +            remote-endpoint = <&lvds1_out>;
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-
+> > simple.yaml
+> > b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+> > index f9750b0..62618e4 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/panel-
+> > simple.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-
+> > simple.yaml
+> > @@ -57,14 +57,8 @@ properties:
+> >        - auo,g104sn02
+> >          # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
+> >        - auo,g121ean01
+> > -        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD
+> > panel
+> > -      - auo,g133han01
+> >          # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
+> >        - auo,g156xtn01
+> > -        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD
+> > panel
+> > -      - auo,g185han01
+> > -        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
+> > -      - auo,g190ean01
+> >          # AU Optronics Corporation 31.5" FHD (1920x1080) TFT LCD
+> > panel
+> >        - auo,p320hvn03
+> >          # AU Optronics Corporation 21.5" FHD (1920x1080) color TFT
+> > LCD panel
+> > @@ -167,8 +161,6 @@ properties:
+> >        - kingdisplay,kd116n21-30nv-a010
+> >          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240)
+> > TFT LCD panel
+> >        - koe,tx14d24vm1bpa
+> > -        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x
+> > 1200) LVDS TFT LCD panel
+> > -      - koe,tx26d202vm0bwa
+> >          # Kaohsiung Opto-Electronics. TX31D200VM0BAA 12.3" HSXGA
+> > LVDS panel
+> >        - koe,tx31d200vm0baa
+> >          # Kyocera Corporation 12.1" XGA (1024x768) TFT LCD panel
+> > @@ -205,8 +197,6 @@ properties:
+> >        - neweast,wjfh116008a
+> >          # Newhaven Display International 480 x 272 TFT LCD panel
+> >        - newhaven,nhd-4.3-480272ef-atxl
+> > -        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT
+> > LCD panel
+> > -      - nlt,nl192108ac18-02d
+> >          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
+> >        - nvd,9128
+> >          # OKAYA Electric America, Inc. RS800480T-7X0GP 7" WVGA LCD
+> > panel
+> > -- 
+> > 2.7.4
+> > 
 -- 
-2.25.1
+ Liu Ying
 
