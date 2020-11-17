@@ -2,150 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A4032B6968
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 17:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A632B69B9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 17:15:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726830AbgKQQHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 11:07:38 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2125 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726533AbgKQQHi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 11:07:38 -0500
-Received: from fraeml707-chm.china.huawei.com (unknown [172.18.147.200])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Cb9lW4vPxz67Cqs;
-        Wed, 18 Nov 2020 00:05:43 +0800 (CST)
-Received: from lhreml710-chm.china.huawei.com (10.201.108.61) by
- fraeml707-chm.china.huawei.com (10.206.15.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Tue, 17 Nov 2020 17:07:32 +0100
-Received: from localhost (10.47.31.177) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Tue, 17 Nov
- 2020 16:07:31 +0000
-Date:   Tue, 17 Nov 2020 16:07:23 +0000
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-CC:     <jic23@kernel.org>, <lorenzo.bianconi@redhat.com>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] iio: imu: st_lsm6dsx: add vdd-vddio voltage
- regulator
-Message-ID: <20201117160723.00003ac2@Huawei.com>
-In-Reply-To: <823bbe45fc7b7feb144bd16a6757816ba5e67b86.1605625579.git.lorenzo@kernel.org>
-References: <cover.1605625579.git.lorenzo@kernel.org>
-        <823bbe45fc7b7feb144bd16a6757816ba5e67b86.1605625579.git.lorenzo@kernel.org>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1727114AbgKQQPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 11:15:35 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:7429 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727012AbgKQQPe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 11:15:34 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fb3f72a0000>; Tue, 17 Nov 2020 08:15:38 -0800
+Received: from [10.2.53.74] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Nov
+ 2020 16:15:32 +0000
+Subject: Re: [PATCH v2 3/6] dt-bindings: ata: tegra: Convert binding
+ documentation to YAML
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-ide@vger.kernel.org>, <thierry.reding@gmail.com>,
+        <devicetree@vger.kernel.org>, <jonathanh@nvidia.com>,
+        <robh+dt@kernel.org>
+References: <1605296218-2510-1-git-send-email-skomatineni@nvidia.com>
+ <1605296218-2510-4-git-send-email-skomatineni@nvidia.com>
+ <20201116150022.GA1642318@bogus>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <4b1d90b7-63e7-8b32-16f8-a1020827f207@nvidia.com>
+Date:   Tue, 17 Nov 2020 08:15:33 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+In-Reply-To: <20201116150022.GA1642318@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.31.177]
-X-ClientProxiedBy: lhreml736-chm.china.huawei.com (10.201.108.87) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Language: en-US
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605629738; bh=18wsPT8+1d4fVxmKRiuoV3ixoFKxrPxACtJejsOp+Cs=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=cdn4ijPz1qfOZvWGWdxjHT625Z1ufEtVZ9AB32TR8/QeyhoszmT/8P6Iyf9hfSBE4
+         aLJFxnC2TKZio3rNBSN49G00embWxfZl6+3nAu0hm2gAiA894An0BYRx+BiivWJOQR
+         hNqtCcB2DDnuezHzLKw2QDVb+2zRVctAqVI9nQ4cWhU1SX/0Ko+8+Fh/EFHrim1wDw
+         Q2nOr1nu5eBhMRFWs4F3RnfmG+UKOFAm/cMktiRPKX/Z81+DMt5VhH9SeAsu2OFkpf
+         eRSKvo521m8Zjdkwii6o3LdQmajp8f5HDs2ag6HIXn7mgga96697oM9BsFd1NM10JV
+         B0djcb3m7Vx+w==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Nov 2020 16:11:37 +0100
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
 
-> Like all other ST sensors, st_lsm6dsx devices have VDD and VDDIO power
-> lines. Introduce voltage regulators to control them.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-Looks good to me.
+On 11/16/20 7:00 AM, Rob Herring wrote:
+> On Fri, 13 Nov 2020 11:36:55 -0800, Sowjanya Komatineni wrote:
+>> This patch converts text based dt-binding document to YAML based
+>> dt-binding document.
+>>
+>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>> ---
+>>   .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 137 +++++++++++++++++++++
+>>   .../bindings/ata/nvidia,tegra124-ahci.txt          |  44 -------
+>>   2 files changed, 137 insertions(+), 44 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
+>>   delete mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
+>>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> Error: Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dts:27.31-32 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1364: dt_binding_check] Error 2
+>
+>
+> See https://patchwork.ozlabs.org/patch/1400065
+>
+> The base for the patch is generally the last rc1. Any dependencies
+> should be noted.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
 
-> ---
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h      |  3 ++
->  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c | 42 ++++++++++++++++++++
->  2 files changed, 45 insertions(+)
-> 
-> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> index 1f31657a7a0e..4b4ec39d4400 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> @@ -13,6 +13,7 @@
->  
->  #include <linux/device.h>
->  #include <linux/iio/iio.h>
-> +#include <linux/regulator/consumer.h>
->  
->  #define ST_LSM6DS3_DEV_NAME	"lsm6ds3"
->  #define ST_LSM6DS3H_DEV_NAME	"lsm6ds3h"
-> @@ -368,6 +369,7 @@ struct st_lsm6dsx_sensor {
->   * struct st_lsm6dsx_hw - ST IMU MEMS hw instance
->   * @dev: Pointer to instance of struct device (I2C or SPI).
->   * @regmap: Register map of the device.
-> + * @regulators: VDD/VDDIO voltage regulators.
->   * @irq: Device interrupt line (I2C or SPI).
->   * @fifo_lock: Mutex to prevent concurrent access to the hw FIFO.
->   * @conf_lock: Mutex to prevent concurrent FIFO configuration update.
-> @@ -390,6 +392,7 @@ struct st_lsm6dsx_sensor {
->  struct st_lsm6dsx_hw {
->  	struct device *dev;
->  	struct regmap *regmap;
-> +	struct regulator_bulk_data regulators[2];
->  	int irq;
->  
->  	struct mutex fifo_lock;
-> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> index da91f5e7e86d..8b9b724121a8 100644
-> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> @@ -2549,6 +2549,40 @@ static int st_lsm6dsx_irq_setup(struct st_lsm6dsx_hw *hw)
->  	return 0;
->  }
->  
-> +static int st_lsm6dsx_init_regulators(struct device *dev)
-> +{
-> +	struct st_lsm6dsx_hw *hw = dev_get_drvdata(dev);
-> +	int err;
-> +
-> +	/* vdd-vddio power regulators */
-> +	hw->regulators[0].supply = "vdd";
-> +	hw->regulators[1].supply = "vddio";
-> +	err = devm_regulator_bulk_get(dev, ARRAY_SIZE(hw->regulators),
-> +				      hw->regulators);
-> +	if (err) {
-> +		dev_err(dev, "failed to get regulators: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	err = regulator_bulk_enable(ARRAY_SIZE(hw->regulators),
-> +				    hw->regulators);
-> +	if (err) {
-> +		dev_err(dev, "failed to enable regulators: %d\n", err);
-> +		return err;
-> +	}
-> +
-> +	msleep(50);
-> +
-> +	return 0;
-> +}
-> +
-> +static void st_lsm6dsx_chip_uninit(void *data)
-> +{
-> +	struct st_lsm6dsx_hw *hw = data;
-> +
-> +	regulator_bulk_disable(ARRAY_SIZE(hw->regulators), hw->regulators);
-> +}
-> +
->  int st_lsm6dsx_probe(struct device *dev, int irq, int hw_id,
->  		     struct regmap *regmap)
->  {
-> @@ -2568,6 +2602,14 @@ int st_lsm6dsx_probe(struct device *dev, int irq, int hw_id,
->  	mutex_init(&hw->conf_lock);
->  	mutex_init(&hw->page_lock);
->  
-> +	err = st_lsm6dsx_init_regulators(dev);
-> +	if (err)
-> +		return err;
-> +
-> +	err = devm_add_action_or_reset(dev, st_lsm6dsx_chip_uninit, hw);
-> +	if (err)
-> +		return err;
-> +
->  	hw->buff = devm_kzalloc(dev, ST_LSM6DSX_BUFF_SIZE, GFP_KERNEL);
->  	if (!hw->buff)
->  		return -ENOMEM;
+Hi Rob,
 
+make dt_binding_check shows other yaml warmings and didn't go thru 
+tegra-ahci.yaml even with specifying DT_SHHEMA_FILES
+
+But, When I do dtbs_check, I see
+Documentation/devicetree/bindings/processed-schema.json generated and
+also it passes for tegra-ahci.yaml
+
+
+In v1 feedback discussion, you mentioned it should be good if dtbs_check 
+passes.
+
+Regards,
+
+Sowjanya
+
+>
