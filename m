@@ -2,168 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2E642B6721
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 15:11:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A6072B66E1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 15:11:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728725AbgKQOJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 09:09:00 -0500
-Received: from foss.arm.com ([217.140.110.172]:58580 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729498AbgKQOH4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Nov 2020 09:07:56 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C0635101E;
-        Tue, 17 Nov 2020 06:07:55 -0800 (PST)
-Received: from [10.57.60.109] (unknown [10.57.60.109])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 572773F718;
-        Tue, 17 Nov 2020 06:07:54 -0800 (PST)
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: update ccree optional params
+        id S2387564AbgKQOH3 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 17 Nov 2020 09:07:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38326 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729706AbgKQOH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 09:07:29 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19D98C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 06:07:29 -0800 (PST)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kf1dl-00022x-4X; Tue, 17 Nov 2020 15:07:25 +0100
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kf1dk-00072q-SF; Tue, 17 Nov 2020 15:07:24 +0100
+Message-ID: <01cdd884e890f337a315362008cba05b10525b54.camel@pengutronix.de>
+Subject: Re: [PATCH] media: dt-bindings: coda: Add missing
+ 'additionalProperties'
+From:   Philipp Zabel <p.zabel@pengutronix.de>
 To:     Rob Herring <robh@kernel.org>,
-        Gilad Ben-Yossef <gilad@benyossef.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Ofir Drang <ofir.drang@arm.com>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
-        Steven Price <steven.price@arm.com>
-References: <20200916071950.1493-1-gilad@benyossef.com>
- <20200916071950.1493-2-gilad@benyossef.com> <20200923015702.GA3676455@bogus>
- <CAOtvUMekoMjFij_xDnrwRj2PsfgO8tKx4Jk6d7C5vq-Vh+boWw@mail.gmail.com>
- <CAOtvUMfAKnodo+7EYx2M4yAvxu_VmxwXNRmgOW=KFWi3Wy7msQ@mail.gmail.com>
- <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <1450044c-5150-1da2-11e0-2ae48d8b4d0c@arm.com>
-Date:   Tue, 17 Nov 2020 14:07:19 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.4.3
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>
+Date:   Tue, 17 Nov 2020 15:07:24 +0100
+In-Reply-To: <CAL_Jsq+L4TOYWLgk=_xihtw_Jxfjigbn=h3J0LLXiPrMy0gjMA@mail.gmail.com>
+References: <20201112224917.165544-1-robh@kernel.org>
+         <CAL_Jsq+L4TOYWLgk=_xihtw_Jxfjigbn=h3J0LLXiPrMy0gjMA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-11-16 18:54, Rob Herring wrote:
-> On Thu, Oct 22, 2020 at 1:18 AM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
->>
->>
->> Hi again,
->>
->> Any opinion on the suggested below?
+On Tue, 2020-11-17 at 07:48 -0600, Rob Herring wrote:
+> On Thu, Nov 12, 2020 at 4:49 PM Rob Herring <robh@kernel.org> wrote:
+> > 'additionalProperties' is now required by the meta-schema. Add it for
+> > coda.
+> > 
+> > Cc: Philipp Zabel <p.zabel@pengutronix.de>
+> > Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> > Cc: linux-media@vger.kernel.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/media/coda.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
 > 
-> Sorry, lost in the pile...
+> I missed an error this introduces:
 > 
->> Thanks!
->> Gilad
->>
->>
->> On Tue, Sep 29, 2020 at 9:08 PM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
->>>
->>>
->>> On Wed, Sep 23, 2020 at 4:57 AM Rob Herring <robh@kernel.org> wrote:
->>>>
->>>> On Wed, Sep 16, 2020 at 10:19:49AM +0300, Gilad Ben-Yossef wrote:
->>>>> Document ccree driver supporting new optional parameters allowing to
->>>>> customize the DMA transactions cache parameters and ACE bus sharability
->>>>> properties.
->>>>>
->>>>> Signed-off-by: Gilad Ben-Yossef <gilad@benyossef.com>
->>>>> ---
->>>>>   Documentation/devicetree/bindings/crypto/arm-cryptocell.txt | 4 ++++
->>>>>   1 file changed, 4 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
->>>>> index 6130e6eb4af8..1a1603e457a8 100644
->>>>> --- a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
->>>>> +++ b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
->>>>> @@ -13,6 +13,10 @@ Required properties:
->>>>>   Optional properties:
->>>>>   - clocks: Reference to the crypto engine clock.
->>>>>   - dma-coherent: Present if dma operations are coherent.
->>>>> +- awcache: Set write transactions cache attributes
->>>>> +- arcache: Set read transactions cache attributes
->>>>
->>>> dma-coherent already implies these are 011x, 101x or 111x. In my limited
->>>> experience configuring these (Calxeda SATA and ethernet), writeback,
->>>> write-allocate was pretty much always optimal.
->>>
->>> Indeed and these are the default. But not all SoC are born equal and
->>> we got a request to allow setting these.
->>>
->>> Maybe instead of numerical values have three possible verbal setting
->>> would be better?
->>>
->>>
->>>>> +- awdomain: Set write transactions ACE sharability domain (712, 703, 713 only)
->>>>> +- ardomain: Set read transactions ACE sharability domain (712, 703, 713 only)
->>>>
->>>> This probably needs something common. We may need something for Mali,
->>>> too. I don't think different settings for read and write makes much
->>>> sense nor does anything beyond IS or OS.
->>>
->>> I agree. Maybe
->>>
->>> sharability_domain: either "IS" or "OS"?
-> 
-> It's still an Arm thing, so it would need at least an 'arm,' prefix.
-> But ideally it wouldn't be Arm specific though I'm not sure if any
-> such thing is needed for other arches. If common either for Arm or
-> across arches, then it needs to be documented in a common doc with
-> some wider agreement than what a device specific property needs.
+> /home/rob/proj/git/linux-dt/.build-arm/Documentation/devicetree/bindings/media/coda.example.dt.yaml:
+> video-codec@63ff4000: 'interrupts' does not match any of the regexes:
+> 'pinctrl-[0-9]+'
+>         From schema:
+> /home/rob/proj/git/linux-dt/Documentation/devicetree/bindings/media/coda.yaml
 
-"dma-coherent" already encapsulates the shareability. To claim coherency 
-you need to be able to access memory with inner shareable inner-outer 
-write back attributes, because that's how regular kernel memory is 
-mapped. If you don't claim coherency, then you should be using 
-non-cacheable (and thus implicitly outer shareable) attributes, because 
-there may still be cacheable aliases hanging around and if you 
-inadvertently snoop those instead of going direct to DRAM as everything 
-else expects, you're going to have a bad time.
+Right, because interrupts are only specified conditionally:
 
-Essentially, Linux only uses two sets of memory attributes for DMA 
-memory, so any perceived need for more than that is already something 
-sufficiently esoteric that it probably doesn't need a generic binding. 
-I'm aware that it's against type for me to be arguing Linux details in a 
-DT binding, but I checked the TRMs for some of these devices and they 
-essentially say "you don't program the hardware directly, you use the 
-Linux driver we give you", so it seems like this binding is specifically 
-intended never to be consumed by anything else.
+allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+            const: cnm,coda960
+    then:
+      properties:
+        interrupts:
+          items:
+            - description: BIT processor interrupt
+            - description: JPEG unit interrupt
 
->>>> These could also just be implied by the compatible string (and requiring
->>>> an SoC specific one).
->>>
->>> hm... we could do it but this will require us to know (and publicly
->>> acknowledge) of every SoC making use of this piece of hardware design.
-> 
-> That's already a requirement in general. Sometimes we can avoid it,
-> but that's cases of getting lucky.
-> 
->>> There is currently no other part of the driver that needs this.
-> 
-> If your DT is part of firmware, then waiting until adding some driver
-> feature or quirk based on a new DT property is too late. Whereas with
-> a SoC specific compatible, you can handle any new feature or quirk
-> without a DT change (e.g. just a stable kernel update). Some platforms
-> may not care about that model, but in general that's the policy we
-> follow. Not doing that, we end up with the DWC3 binding.
-> 
-> A fallback compatible is how we avoid updating drivers for every
-> single SoC unless needed.
+        interrupt-names:
+          items:
+            - const: bit
+            - const: jpeg
+    else:
+      properties:
+        interrupts:
+          items:
+            - description: BIT processor interrupt
 
-IMO if this is like PL330 where you just stick some raw AXI attributes 
-in a register and that's what goes out on transactions then it's not 
-really part of the platform description anyway, it's just driver policy. 
-If folks want to tweak the driver's behaviour for secret SoC-specific 
-performance optimisation, then give them some module parameters or a 
-sysfs interface. I'm assuming this has to be purely a performance thing, 
-because I can't see how two different integrations could reasonably 
-depend on different baseline attributes for correctness, and even if 
-they did then you'd be able to determine that from the compatible 
-strings, because they would be different, because those integrations 
-would be fundamentally *not* compatible with each other.
+What is the proper way to fix this?
 
-Robin.
+regards
+Philipp
