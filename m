@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B2E12B5F6A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 13:54:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 733BF2B60EF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 14:14:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725747AbgKQMxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 07:53:49 -0500
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53318 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgKQMxt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 07:53:49 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AHCrkbk021528;
-        Tue, 17 Nov 2020 06:53:46 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605617626;
-        bh=wd7lpsmgL3oO/7m40yMsS0a5Udumy2NOFBKofsbxGlM=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=svwhR96rfcT87IJ7kZz5dcqwRuLV9iFHlrkGemhq0F1nTc7AbM9dNvlbNNgg5X0SQ
-         EpMP34Y6UMzJt5l9L6y3GLVPFaXnB+KuGyTJeRHS2HLIQi7E6VWuefPvkzeF35K0La
-         fbYKuPpUfxvxfmrmtiGFmC9zN6n6Pu4fzS5XfqFg=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AHCrkCf037927
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 17 Nov 2020 06:53:46 -0600
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 17
- Nov 2020 06:53:46 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 17 Nov 2020 06:53:46 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AHCrkrh025858;
-        Tue, 17 Nov 2020 06:53:46 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Suman Anna <s-anna@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 0/3] Add HwSpinlock & Mailbox nodes on J7200 SoCs
-Date:   Tue, 17 Nov 2020 06:53:46 -0600
-Message-ID: <160561756333.22964.1029119444913341855.b4-ty@ti.com>
+        id S1730026AbgKQNOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 08:14:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58300 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730019AbgKQNOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 08:14:11 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72460C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 05:14:11 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kf0o1-0002hU-DB; Tue, 17 Nov 2020 14:13:57 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kf0nz-00083z-3q; Tue, 17 Nov 2020 14:13:55 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: [PATCH v4 0/3] mainline Protonic WD3 board 
+Date:   Tue, 17 Nov 2020 14:13:51 +0100
+Message-Id: <20201117131354.30943-1-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201026232637.15681-1-s-anna@ti.com>
-References: <20201026232637.15681-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Oct 2020 18:26:34 -0500, Suman Anna wrote:
-> The following series adds the HwSpinlock and Mailbox nodes for the J7200
-> series. The sub-mailbox nodes that will be used by the K3 R5F remoteproc
-> nodes are also added to the k3-j7200-som-p0.dtsi file in sync with the
-> convention used on J721E SoCs.
-> 
-> Patches are based on 5.10-rc1 and your current staged branch commit
-> 9dcd17be61e4 ("arm64: dts: ti: k3-am65: ringacc: drop
-> ti,dma-ring-reset-quirk")
-> 
-> [...]
+changes v4:
+- spell fix for "virtual"
+- change SPI CAN freq to 10MHz
+- change SPI CAN irq from IRQ_TYPE_EDGE_FALLING to IRQ_TYPE_LEVEL_LOW 
 
-Hi Suman Anna,
+changes v3:
+- fix checkpatch varnings
+- add "virtual" to the vendor-prefixes.yaml 
 
-I have applied the following to branch ti-k3-dts-next on [1].
-Thank you!
+changes v2:
+- fix comment: WD2 -> WD3
 
-[1/3] arm64: dts: ti: k3-j7200-main: Add hwspinlock node
-      commit: 1d7a01c40840d844fb5d353c151f0ee0a7680c2f
-[2/3] arm64: dts: ti: k3-j7200-main: Add mailbox cluster nodes
-      commit: d15d1cfbd765b4b2a113b6025e8edc7db4a7800a
-[3/3] arm64: dts: ti: k3-j7200-som-p0: Add IPC sub-mailbox nodes
-      commit: 6804a987de733c805675973e3afde128fe7a7cfa
+Oleksij Rempel (3):
+  dt-bindings: vendor-prefixes: add "virtual" prefix
+  dt-bindings: arm: fsl: add Protonic WD3 board
+  ARM: dts: add Protonic WD3 board
 
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ arch/arm/boot/dts/imx6qp-prtwd3.dts           | 553 ++++++++++++++++++
+ 4 files changed, 557 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6qp-prtwd3.dts
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent up the chain during
-the next merge window (or sooner if it is a relevant bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.29.2
 
