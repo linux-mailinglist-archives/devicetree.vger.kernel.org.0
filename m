@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A620B2B5D0B
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 11:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C4AD2B5D0F
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 11:39:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727321AbgKQKjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 05:39:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34422 "EHLO
+        id S1727727AbgKQKjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 05:39:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgKQKjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 05:39:08 -0500
+        with ESMTP id S1727702AbgKQKjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 05:39:19 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12688C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:39:08 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA444C0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:39:19 -0800 (PST)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1keyO2-0004mi-Ux; Tue, 17 Nov 2020 11:38:58 +0100
+        id 1keyO2-0004mj-Uw; Tue, 17 Nov 2020 11:38:58 +0100
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1keyO2-0001b9-3D; Tue, 17 Nov 2020 11:38:58 +0100
+        id 1keyO2-0001bJ-49; Tue, 17 Nov 2020 11:38:58 +0100
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -33,10 +33,12 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         David Jander <david@protonic.nl>
-Subject: [PATCH v3 0/3] mainline Protonic WD3 board 
-Date:   Tue, 17 Nov 2020 11:38:54 +0100
-Message-Id: <20201117103857.6089-1-o.rempel@pengutronix.de>
+Subject: [PATCH v3 1/3] dt-bindings: vendor-prefixes: add "virtual" prefix
+Date:   Tue, 17 Nov 2020 11:38:55 +0100
+Message-Id: <20201117103857.6089-2-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201117103857.6089-1-o.rempel@pengutronix.de>
+References: <20201117103857.6089-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
@@ -47,25 +49,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-changes v3:
-- fix checkpatch varnings
-- add "virtual" to the vendor-prefixes.yaml 
+"virtual" is used for vendor-less "devices". For example for the GPIO
+based MDIO bus "virtual,mdio-gpio".
 
-changes v2:
-- fix comment: WD2 -> WD3
+This patch is needed to fix the checkpatch warning for the Protonic WD3 board.
 
-Oleksij Rempel (3):
-  dt-bindings: vendor-prefixes: add "virtual" prefix
-  dt-bindings: arm: fsl: add Protonic WD3 board
-  ARM: dts: add Protonic WD3 board
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
- .../devicetree/bindings/arm/fsl.yaml          |   1 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/imx6qp-prtwd3.dts           | 552 ++++++++++++++++++
- 4 files changed, 556 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6qp-prtwd3.dts
-
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index d3454100e94e..365ac2fedd7d 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1160,6 +1160,8 @@ patternProperties:
+     description: Videostrong Technology Co., Ltd.
+   "^virtio,.*":
+     description: Virtual I/O Device Specification, developed by the OASIS consortium
++  "^virtual,.*":
++    description: Used for virtula device without specific vendor.
+   "^vishay,.*":
+     description: Vishay Intertechnology, Inc
+   "^vitesse,.*":
 -- 
 2.29.2
 
