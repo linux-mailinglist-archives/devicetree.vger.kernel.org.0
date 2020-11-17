@@ -2,213 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE41B2B5A53
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 08:36:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E9062B5A64
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 08:40:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725792AbgKQHgO convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 17 Nov 2020 02:36:14 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:40471 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725771AbgKQHgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 02:36:14 -0500
-Received: by mail-wm1-f68.google.com with SMTP id a3so2249700wmb.5;
-        Mon, 16 Nov 2020 23:36:13 -0800 (PST)
+        id S1726315AbgKQHjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 02:39:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725978AbgKQHjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 02:39:35 -0500
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17848C0617A7
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 23:39:35 -0800 (PST)
+Received: by mail-yb1-xb42.google.com with SMTP id s8so18060399yba.13
+        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 23:39:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=benyossef-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=81ys4Af4st2C7XlSsqfW1vjLoryjipiQwkJBYd8Bo1U=;
+        b=qPO31PsA3+HYL9IisFSxJrvBZLmIsrkN8o/iV2M3AOUHsepg70/TfKn0eS8qY+TxQi
+         ej+Bp4N1qNv+itrMiWmkurTzf8Z0yHtm60c/6Vr6+n8pkDmnynE1F5wCZNqPC1u5dnby
+         dKG+hNM5L+uPwAPk+svJaiZT8hQfCH3fqzth6l8+Kr3X4UDCunB9uYtZHUpr/SptrDYH
+         ecGWIM01/Up1MhaMoemLFK8FDHIyOFPv2NtqnYz7d3He52aPPKVirz4pdHU4P6OU5nMO
+         crL6KY6HYqCEJCYEIYrpuW7c+38mKemrZK3MBpVK8ai3eVskkm6PpFEtf5dlDlTVOoyL
+         +UZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=9MPQ28eRVEZoeAfW6tqzwdTMKkuu3vxDE3zbTGm+kt8=;
-        b=RhDYMHSxm6+CP4RZIuSvf4Z7yG7z7Yi3yvwnoqVq4PiLsGBY6goiYrEZjGiTx+CG/3
-         tGlPPw8xjf4xtAsKv414nsKXOLxNGQk9h7j59n7hFmK37Rs4nywSgKhwYrMGnI/CFO6Y
-         BE4n0YkSZi90S9JNpHpvthLZl3eGsQSB+I5PDdOeGP9NnAJVuEQYiSihaDAAoDJFgBpc
-         3Hz5k2eWbbNCYa7EcA14KWRRaU07VT8t7InhXqGS8j1Dm2vsDe+7tfU1CupY91UWQP/Q
-         VNMxLlUoFJntpmz+Ahn2ocF310fhZs/RPI2SHS6gvo1OdvIWkcKqlqW8XbCSM21CSddw
-         9s4w==
-X-Gm-Message-State: AOAM532L+xmqWhQhW/lL2KMLArIlOidJrxMt/0TaTPcX0ygluw3r2z8n
-        VgWs14X9ct9GQ/nCmz+gAu4=
-X-Google-Smtp-Source: ABdhPJwdQB+H6BgFI1QGO/+y7B87Ik2Fqrj1kQIreMHp3NfwdFDpfZ4JoZpHxjmghG10HkbgHsfEdg==
-X-Received: by 2002:a7b:c202:: with SMTP id x2mr2754290wmi.48.1605598572563;
-        Mon, 16 Nov 2020 23:36:12 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id 89sm27113016wrp.58.2020.11.16.23.36.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Nov 2020 23:36:11 -0800 (PST)
-Date:   Tue, 17 Nov 2020 08:36:09 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding
- doc for soc unique ID
-Message-ID: <20201117073609.GA3436@kozik-lap>
-References: <AM6PR04MB605309F95A4BBD29DFA42B61E2E20@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=81ys4Af4st2C7XlSsqfW1vjLoryjipiQwkJBYd8Bo1U=;
+        b=I4rDMkXzBfl5rwBervOCllDTCR5K3qW54MW4Pzl8AZwuq/jJtx5B4WcjCU6/McDFXb
+         YjLgmvYFpzznkYdBS9MkI5asrpXoNHE8QRY2/b7xtAWVnnzmczHH/Nmk9CvB4MVqQyrs
+         PaSFb1cxPJ7l65zIsNnbH3tetkjJOx4pnzIMUMs/P/DXZCtul7WxeIrwPgAvc9qkfFOm
+         bN+W/l+kIq18eBRmWTIKcWfBlhj9kdOVVYaVHd8Xfcw+3kdLnMchD7dyAKinfWliJB0v
+         FeRcQJq+k1VapMFFK/2hsqM8mJRGB/orRrxuB0IVK+VIv5HTIpla5WhM9YMKLPTXMjRv
+         M8GQ==
+X-Gm-Message-State: AOAM531J9HSJvEn+YO2hGk8T9O8yqBdU50axezxcXOFxwpIr3lnMY2oJ
+        +Q5ZhmK9D9xVer8mw3Zuh3eWMuooUNnmTNiv17Preg==
+X-Google-Smtp-Source: ABdhPJzDnZMr2YRtv9cPXx5CTKyXfN/NpaliyWDLrR2posEVPhRIdfPrLI3ancUlJyJxW4OfYDMnCrpcotjbsg0YoZ0=
+X-Received: by 2002:a25:e7cd:: with SMTP id e196mr23631737ybh.375.1605598772788;
+ Mon, 16 Nov 2020 23:39:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <AM6PR04MB605309F95A4BBD29DFA42B61E2E20@AM6PR04MB6053.eurprd04.prod.outlook.com>
+References: <20200916071950.1493-1-gilad@benyossef.com> <20200916071950.1493-2-gilad@benyossef.com>
+ <20200923015702.GA3676455@bogus> <CAOtvUMekoMjFij_xDnrwRj2PsfgO8tKx4Jk6d7C5vq-Vh+boWw@mail.gmail.com>
+ <CAOtvUMfAKnodo+7EYx2M4yAvxu_VmxwXNRmgOW=KFWi3Wy7msQ@mail.gmail.com> <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
+In-Reply-To: <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com>
+From:   Gilad Ben-Yossef <gilad@benyossef.com>
+Date:   Tue, 17 Nov 2020 09:39:21 +0200
+Message-ID: <CAOtvUMdN2NOJ+7g=XnjOyW7W=77OM=d-d69YDk-a-QmO8Wze5w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: update ccree optional params
+To:     Rob Herring <robh@kernel.org>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Ofir Drang <ofir.drang@arm.com>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
+        Robin Murphy <Robin.Murphy@arm.com>,
+        Steven Price <steven.price@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 07:10:28AM +0000, Alice Guo wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > Sent: 2020年11月17日 0:03
-> > To: Alice Guo <alice.guo@nxp.com>
-> > Cc: robh+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > dl-linux-imx <linux-imx@nxp.com>; Peng Fan <peng.fan@nxp.com>;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org
-> > Subject: Re: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding
-> > doc for soc unique ID
-> > 
-> > Caution: EXT Email
-> > 
-> > On Mon, Nov 16, 2020 at 07:04:13AM +0000, Alice Guo wrote:
-> > >
-> > > > -----Original Message-----
-> > > > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > > > Sent: 2020年11月15日 0:50
-> > > > To: Alice Guo <alice.guo@nxp.com>
-> > > > Cc: robh+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > > > dl-linux-imx <linux-imx@nxp.com>; Peng Fan <peng.fan@nxp.com>;
-> > > > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > > > linux-arm-kernel@lists.infradead.org
-> > > > Subject: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT
-> > > > Binding doc for soc unique ID
-> > > >
-> > > > Caution: EXT Email
-> > > >
-> > > > On Fri, Nov 13, 2020 at 07:04:06PM +0800, Alice Guo wrote:
-> > > > > Add DT Binding doc for the Unique ID of i.MX 8M series.
-> > > > >
-> > > > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/arm/fsl.yaml          | 25
-> > > > +++++++++++++++++++
-> > > > >  1 file changed, 25 insertions(+)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > index e4db0f9ed664..f4faebbb57da 100644
-> > > > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > > > @@ -901,6 +901,31 @@ properties:
-> > > > >                - fsl,s32v234-evb           # S32V234-EVB2
-> > Customer
-> > > > Evaluation Board
-> > > > >            - const: fsl,s32v234
-> > > > >
-> > > > > +  soc:
-> > > > > +    type: object
-> > > > > +    properties:
-> > > > > +      compatible:
-> > > > > +        oneOf:
-> > > > > +          - description: i.MX8M SoCs
-> > > > > +            items:
-> > > > > +              - enum:
-> > > > > +                  - fsl,imx8mm-soc
-> > > > > +                  - fsl,imx8mn-soc
-> > > > > +                  - fsl,imx8mp-soc
-> > > > > +                  - fsl,imx8mq-soc
-> > > > > +              - const: simple-bus
-> > > > > +
-> > > > > +          - description: Other SoCs
-> > > > > +            items:
-> > > > > +              - const: simple-bus
-> > > > > +
-> > > > > +      nvmem-cells:
-> > > > > +        maxItems: 1
-> > > > > +        description: Phandle to the SOC Unique ID provided by a
-> > > > > + nvmem node
-> > > > > +
-> > > > > +      nvmem-cells-names:
-> > > > > +        const: soc_unique_id
-> > > > > +
-> > > > >  additionalProperties: true
-> > > >
-> > > > The "soc" node should be required for these compatibles. Otherwise
-> > > > you will have to stay with this
-> > > > backwards-compatible-DTB-device-initcall-glue for many years... I think you
-> > can achieve it with allOf.
-> > > >
-> > > [Alice Guo]Hi,
-> > > I find that my description for compatible is ambiguous. There are two kinds of
-> > compatible of the "soc" node:
-> > > 1. For dtsi files used for SoCs other than imx8m series SoCs and old
-> > > version dtsi files used for imx8m series SoCs, compatible of the "soc" node is
-> > "simple-bus".
-> > > 2. For new version dtsi files used for imx8m series SoCs, compatible of the
-> > "soc" node is {"fsl,imx8mX-soc","simple-bus"}.
-> > >
-> > > "nvmem-cell" is an optional property.
-> > >
-> > > I do not understand what you mean. You mean that limit the compatible of
-> > "soc" node must include " fsl,imx8mX-soc" in new version dts files. Is my
-> > understanding correct?
-> > 
-> > All new DTS files should have soc node with "fsl,imx8mX-soc" and this should be
-> > required by dtschema. The nvmem-cells and related properties do not look like
-> > optional. From the hardware perspective - they are always present. From the
-> > driver point of view: they are required and driver will fail to work.
-> 
-> [Alice Guo] 
-> +  soc:
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        oneOf:
-> +          - description: new version DTS for i.MX8M SoCs
-> +            items:
-> +              - enum:
-> +                  - fsl,imx8mm-soc
-> +                  - fsl,imx8mn-soc
-> +                  - fsl,imx8mp-soc
-> +                  - fsl,imx8mq-soc
-> +              - const: simple-bus
-> +
-> +          - description: other SoCs and old version DTS for i.MX8M SoCs
-> +            items:
-> +              - const: simple-bus
-> +
-> +      nvmem-cells:
-> +        maxItems: 1
-> +        description: Phandle to the SOC Unique ID provided by a nvmem node
-> +
-> +      nvmem-cells-names:
-> +        const: soc_unique_id
-> +
-> +    allOf:
-> +      - if:
-> +          properties:
-> +            compatible:
-> +              contains:
-> +                enum:
-> +                  - fsl,imx8mm-soc
-> +                  - fsl,imx8mn-soc
-> +                  - fsl,imx8mp-soc
-> +                  - fsl,imx8mq-soc
-> +                const: simple-bus
-> +
-> +        then:
-> +          required:
-> +            - nvmem-cells
-> +            - nvmem-cells-names
-> 
-> The above is my modification. Is that ok?
+On Mon, Nov 16, 2020 at 8:54 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Oct 22, 2020 at 1:18 AM Gilad Ben-Yossef <gilad@benyossef.com> wr=
+ote:
+> >
+> >
+> > Hi again,
+> >
+> > Any opinion on the suggested below?
+>
+> Sorry, lost in the pile...
 
-Does not look like solving anything.
+No problem at all. I know how it is...
 
-Best regards,
-Krzysztof
 
+> >
+> >
+> > On Tue, Sep 29, 2020 at 9:08 PM Gilad Ben-Yossef <gilad@benyossef.com> =
+wrote:
+> >>
+> >>
+> >> On Wed, Sep 23, 2020 at 4:57 AM Rob Herring <robh@kernel.org> wrote:
+> >> >
+> >> > On Wed, Sep 16, 2020 at 10:19:49AM +0300, Gilad Ben-Yossef wrote:
+> >> > > Document ccree driver supporting new optional parameters allowing =
+to
+> >> > > customize the DMA transactions cache parameters and ACE bus sharab=
+ility
+> >> > > properties.
+> >> > >
+> >> > > Signed-off-by: Gilad Ben-Yossef <gilad@benyossef.com>
+> >> > > ---
+> >> > >  Documentation/devicetree/bindings/crypto/arm-cryptocell.txt | 4 +=
++++
+> >> > >  1 file changed, 4 insertions(+)
+> >> > >
+> >> > > diff --git a/Documentation/devicetree/bindings/crypto/arm-cryptoce=
+ll.txt b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+> >> > > index 6130e6eb4af8..1a1603e457a8 100644
+> >> > > --- a/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+> >> > > +++ b/Documentation/devicetree/bindings/crypto/arm-cryptocell.txt
+> >> > > @@ -13,6 +13,10 @@ Required properties:
+> >> > >  Optional properties:
+> >> > >  - clocks: Reference to the crypto engine clock.
+> >> > >  - dma-coherent: Present if dma operations are coherent.
+> >> > > +- awcache: Set write transactions cache attributes
+> >> > > +- arcache: Set read transactions cache attributes
+> >> >
+
+<snip>
+
+> >> > These could also just be implied by the compatible string (and requi=
+ring
+> >> > an SoC specific one).
+> >>
+> >> hm... we could do it but this will require us to know (and publicly
+> >> acknowledge) of every SoC making use of this piece of hardware design.
+>
+> That's already a requirement in general. Sometimes we can avoid it,
+> but that's cases of getting lucky.
+>
+> >> There is currently no other part of the driver that needs this.
+>
+> If your DT is part of firmware, then waiting until adding some driver
+> feature or quirk based on a new DT property is too late. Whereas with
+> a SoC specific compatible, you can handle any new feature or quirk
+> without a DT change (e.g. just a stable kernel update). Some platforms
+> may not care about that model, but in general that's the policy we
+> follow. Not doing that, we end up with the DWC3 binding.
+>
+> A fallback compatible is how we avoid updating drivers for every
+> single SoC unless needed.
+
+OK, I now better understand what you meant and that does make some
+sense and I will defer to your better judgment  about the proper way
+to do this.
+
+Having said that, there is still something that bugs me about this,
+even just at the level of better understanding why we do things:
+
+Way back when, before DT, we had SoC specific code that identified the
+SoC somehow and set things up in a SoC specific way.
+Then we introduced DT as a way to say - "hey look, this is how my
+busses looks like, these are the devices I have, deal with it" and I
+always assumed that this was meant as a way to release us from having
+SoC specific setup code.
+
+It seems now potentially every SoC vendor needs to modify not just the
+device tree source (which makes sense of course) but also the driver
+supporting their platform.
+It now looks like we've come a full circle to me :-)
+
+Thanks!
+Gilad
+
+--=20
+Gilad Ben-Yossef
+Chief Coffee Drinker
+
+values of =CE=B2 will give rise to dom!
