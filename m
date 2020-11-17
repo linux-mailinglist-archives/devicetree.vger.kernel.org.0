@@ -2,115 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 624712B5CA9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 11:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F5552B5CB9
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 11:18:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726545AbgKQKLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 05:11:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58394 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726085AbgKQKLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 05:11:32 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559A4C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:11:32 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id g7so17002275pfc.2
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 02:11:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Gfl/KXO19CRZ3YJcbkbpX9kcAUtuTjnrugBzUwzzQ9E=;
-        b=uouFjwtxxF/R7baTvaVjaaLTfwWbQnLGL03905q7iEeujxS/9yt/SpLSH7MA3e255j
-         pDUZROD7kGIT2aAqtLuPFLFQwdSXcCzL3dTLPU5Z0f2F2iKBShfhhiSKMsxbeADtPTZZ
-         jDibWihrlQ+SRnq9emh58EPvRMrEdloT+tQbgEvFaxCMQn7nKyos/Tg+mFz7tdoZvba4
-         jz76EE2JBHosoww6FYkLcxs8yJlEzLANZGynaLiHN96UWOjoqRBhQrubAloP8EyAmv+6
-         ow7Ivl4zcCjeDLG5X0LjJRED8QkzH0tTA4lyOislGNAk3xBR9+obJoIDUdpEpkyVLGJB
-         C5gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Gfl/KXO19CRZ3YJcbkbpX9kcAUtuTjnrugBzUwzzQ9E=;
-        b=ePFbBEh6vYjfhiAiKiuiy4+6oT4sM1YVaoJ6tb+m5zNm73Rim6QDy2N1FMXcCA9GAD
-         4AB5qtku9itz2dBJSgTEnDa7/EER933eEkX2lHwLDYK/rkiN11+QjTp04sweEo6PY+ql
-         3EuacvNVroo+hUeJVtj7ar72M6guRS9fw4kQKHahs3gtTNtF1TVX0XTw4UQb0hj6uLMG
-         3qQIICQkp46Isx5Edtc0zY7ppZXs+ZyBAsDozRtNggRJaxhkEhRrJydVDJVktmUpGZN/
-         UED4qx1uDEmm+JBIBE/W2WBlJZH9g163tJIdnmvUQqrKU7Ymcc8bIINNuCNmIU583HEF
-         RjgA==
-X-Gm-Message-State: AOAM531ZSeht8UW9PuwYpTPETDDib3cUf9OEI8mnH9yTrgM0s/eRZkvC
-        AuK3KYYIRHPA+J7U6UfRzUMiwQ==
-X-Google-Smtp-Source: ABdhPJyEd9x6pa7YTattwldbAJjKXQBZNOHDV4vQhwfsHVSJHGnxGEfzxEdDT3MAHqievsCDUiL0Wg==
-X-Received: by 2002:aa7:868d:0:b029:18a:ea7b:342f with SMTP id d13-20020aa7868d0000b029018aea7b342fmr18181060pfo.68.1605607891905;
-        Tue, 17 Nov 2020 02:11:31 -0800 (PST)
-Received: from localhost ([122.172.12.172])
-        by smtp.gmail.com with ESMTPSA id mp16sm2634674pjb.13.2020.11.17.02.11.30
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 17 Nov 2020 02:11:30 -0800 (PST)
-Date:   Tue, 17 Nov 2020 15:41:28 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Nicola Mazzucato <nicola.mazzucato@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, nm@ti.com,
-        daniel.lezcano@linaro.org, morten.rasmussen@arm.com,
-        chris.redpath@arm.com
-Subject: Re: [PATCH v3 3/3] [RFC] CPUFreq: Add support for
- cpu-perf-dependencies
-Message-ID: <20201117101128.6uapqg56arwqmm5p@vireshk-i7>
-References: <20201102120115.29993-1-nicola.mazzucato@arm.com>
- <20201102120115.29993-4-nicola.mazzucato@arm.com>
- <20201106092020.za3oxg7gutzc3y2b@vireshk-i7>
- <0a334a73-45ef-58ff-7dfd-9df6f4ff290a@arm.com>
- <20201106105514.bhtdklyhn7goml64@vireshk-i7>
- <7f73bcd6-0f06-4ef0-7f02-0751e6c4d94b@arm.com>
- <20201109065742.22czfgyjhsjmkytf@vireshk-i7>
- <2fa8a5c0-f66d-34bc-7f1c-8462e7532e0a@arm.com>
+        id S1727401AbgKQKRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 05:17:11 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:54942 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726266AbgKQKRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 05:17:11 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AHAH1Rb104903;
+        Tue, 17 Nov 2020 04:17:01 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605608221;
+        bh=5PzqAjOn9hqrl9Xboz9UFRMFNQDjVdOmm7f31tzlDxw=;
+        h=From:To:CC:Subject:Date;
+        b=r9ayo/7x2gfjwhubJ+ZzTelcV1NmgWqBV0wJBGD+MFvLXaPF9TEJDBFdC07YcO1eb
+         7EKDmay2N/SGeShMTEgcvjgRv+MtKPpai9meYoYw2slKi5NlFq3iEuMfZk0r039dBr
+         dBnxc85ANMpy40Jnxe82em5NbOoux2ceeuEhVpc4=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AHAH14o080415
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 17 Nov 2020 04:17:01 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 17
+ Nov 2020 04:17:00 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 17 Nov 2020 04:17:01 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AHAGwie017469;
+        Tue, 17 Nov 2020 04:16:59 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <ssantosh@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <nsekhar@ti.com>, <tomi.valkeinen@ti.com>, <jsarha@ti.com>
+Subject: [PATCH] ARM: dts: keystone-k2g-evm: add HDMI and analog audio data
+Date:   Tue, 17 Nov 2020 12:17:49 +0200
+Message-ID: <20201117101749.26187-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2fa8a5c0-f66d-34bc-7f1c-8462e7532e0a@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-11-20, 11:33, Lukasz Luba wrote:
-> On 11/9/20 6:57 AM, Viresh Kumar wrote:
-> > On 06-11-20, 11:14, Lukasz Luba wrote:
-> > > I also had similar doubts, because if we make frequency requests
-> > > independently for each CPU, why not having N cooling devs, which
-> > > will set independently QoS max freq for them...
-> > > 
-> > > What convinced me:
-> > > EAS and FIE would know the 'real' frequency of the cluster, IPA
-> > > can use it also and have only one cooling device per cluster.
-> > > 
-> > > We would like to keep this old style 'one cooling device per cpuset'.
-> > > I don't have strong opinion and if it would appear that there are
-> > > some errors in freq estimation for cluster, then maybe it does make
-> > > more sense to have cdev per CPU...
-> > 
-> > Let me rephrase my question. What is it that doesn't work _correctly_
-> > with cdev per cpufreq policy in your case? What doesn't work well if
-> > the thermal stuff keeps looking at only the related_cpus thing and not
-> > the cpu-perf-dependencies thing?
-> > 
-> 
-> We don't have a platform which would be this per-cpu freq request, yet.
-> Thus it's hard to answer your question. The EAS would work in 'old
-> style' - cluster mode. I don't know how IPA would work on such HW
-> and SW configuration. To figure this out I need a real platform.
+The board is using McASP2 for both analog (tlv320aic3106) and
+HDMI (SiI9022) audio.
 
-Hmm, so who are going to be the users of this new stuff (dependent
-CPUs) ? I don't think cpufreq-cooling should be updated, unless there
-is a compelling reason to.
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+---
+ arch/arm/boot/dts/keystone-k2g-evm.dts | 112 +++++++++++++++++++++++++
+ 1 file changed, 112 insertions(+)
 
-The other one in energy model ? Why does it need this information ?
-
-Who else ?
-
+diff --git a/arch/arm/boot/dts/keystone-k2g-evm.dts b/arch/arm/boot/dts/keystone-k2g-evm.dts
+index 8b3d64c913d8..4d7e3514a3a7 100644
+--- a/arch/arm/boot/dts/keystone-k2g-evm.dts
++++ b/arch/arm/boot/dts/keystone-k2g-evm.dts
+@@ -46,6 +46,14 @@ vcc1v8_ldo1_reg: fixedregulator-vcc1v8-ldo1 {
+ 		regulator-always-on;
+ 	};
+ 
++	vcc1v8_ldo2_reg: fixedregulator-vcc1v8-ldo2 {
++		compatible = "regulator-fixed";
++		regulator-name = "ldo2";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++	};
++
+ 	hdmi: connector {
+ 		compatible = "hdmi-connector";
+ 		label = "hdmi";
+@@ -58,6 +66,57 @@ hdmi_connector_in: endpoint {
+ 			};
+ 		};
+ 	};
++
++	sound0: sound@0 {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "K2G-EVM";
++		simple-audio-card,widgets =
++			"Headphone", "Headphone Jack",
++			"Line", "Line In";
++		simple-audio-card,routing =
++			"Headphone Jack",	"HPLOUT",
++			"Headphone Jack",	"HPROUT",
++			"LINE1L",		"Line In",
++			"LINE1R",		"Line In";
++
++		simple-audio-card,dai-link@0 {
++			format = "i2s";
++			bitclock-master = <&sound0_0_master>;
++			frame-master = <&sound0_0_master>;
++			sound0_0_master: cpu {
++				sound-dai = <&mcasp2>;
++				clocks = <&k2g_clks 0x6 1>;
++				system-clock-direction-out;
++			};
++
++			codec {
++				sound-dai = <&tlv320aic3106>;
++				system-clock-frequency = <12288000>;
++			};
++		};
++
++		simple-audio-card,dai-link@1 {
++			format = "i2s";
++			bitclock-master = <&sound0_1_master>;
++			frame-master = <&sound0_1_master>;
++			sound0_1_master: cpu {
++				sound-dai = <&mcasp2>;
++				clocks = <&k2g_clks 0x6 1>;
++				system-clock-direction-out;
++			};
++
++			codec {
++				sound-dai = <&sii9022>;
++				system-clock-frequency = <12288000>;
++			};
++		};
++	};
++
++	sii9022_mclk: sii9022_mclk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <12288000>;
++	};
+ };
+ 
+ &k2g_pinctrl {
+@@ -214,6 +273,15 @@ K2G_CORE_IOPAD(0x10e4) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssde.dssd
+ 			K2G_CORE_IOPAD(0x10e8) (BUFFER_CLASS_B | PULL_DISABLE | MUX_MODE0) /* dssfid.dssfid */
+ 		>;
+ 	};
++
++	mcasp2_pins: pinmux_mcasp2_pins {
++		pinctrl-single,pins = <
++			K2G_CORE_IOPAD(0x1234) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo2.mcasp2_axr2 */
++			K2G_CORE_IOPAD(0x1238) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo3.mcasp2_axr3 */
++			K2G_CORE_IOPAD(0x1254) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo10.mcasp2_afsx */
++			K2G_CORE_IOPAD(0x125c) (BUFFER_CLASS_B | PIN_PULLDOWN | MUX_MODE4) /* pr0_pru_gpo12.mcasp2_aclkx */
++		>;
++	};
+ };
+ 
+ &uart0 {
+@@ -423,6 +491,10 @@ sii9022: sii9022@3b {
+ 		compatible = "sil,sii9022";
+ 		reg = <0x3b>;
+ 
++		sil,i2s-data-lanes = < 0 >;
++		clocks = <&sii9022_mclk>;
++		clock-names = "mclk";
++
+ 		ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+@@ -444,6 +516,19 @@ sii9022_out: endpoint {
+ 			};
+ 		};
+ 	};
++
++	tlv320aic3106: tlv320aic3106@1b {
++		#sound-dai-cells = <0>;
++		compatible = "ti,tlv320aic3106";
++		reg = <0x1b>;
++		status = "okay";
++
++		/* Regulators */
++		AVDD-supply = <&vcc3v3_dcin_reg>;
++		IOVDD-supply = <&vcc3v3_dcin_reg>;
++		DRVDD-supply = <&vcc3v3_dcin_reg>;
++		DVDD-supply = <&vcc1v8_ldo2_reg>;
++	};
+ };
+ 
+ &dss {
+@@ -458,3 +543,30 @@ dpi_out: endpoint {
+ 		};
+ 	};
+ };
++
++&k2g_clks {
++	/* on the board 22.5792MHz is connected to AUDOSC_IN */
++	assigned-clocks = <&k2g_clks 0x4c 2>;
++	assigned-clock-rates = <22579200>;
++};
++
++&mcasp2 {
++	#sound-dai-cells = <0>;
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&mcasp2_pins>;
++
++	assigned-clocks = <&k2g_clks 0x6 1>;
++	assigned-clock-parents = <&k2g_clks 0x6 2>;
++
++	status = "okay";
++
++	op-mode = <0>;		/* MCASP_IIS_MODE */
++	tdm-slots = <2>;
++	/* 6 serializer */
++	serial-dir = <	/* 0: INACTIVE, 1: TX, 2: RX */
++		0 0 1 2 0 0 // AXR2: TX, AXR3: rx
++	>;
++	tx-num-evt = <32>;
++	rx-num-evt = <32>;
++};
 -- 
-viresh
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
