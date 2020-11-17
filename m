@@ -2,96 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 584412B56F8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 03:41:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B80DB2B57F4
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 04:36:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727543AbgKQCjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Nov 2020 21:39:24 -0500
-Received: from mga04.intel.com ([192.55.52.120]:52576 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727482AbgKQCjX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Nov 2020 21:39:23 -0500
-IronPort-SDR: rI1IP4Nmlgs9G9NHAKTJV0lOd7RwtgMHKBMKn2OZu8dqzCLnGnNh2o70KU6knzljgCdM1IWu1b
- TFBApSpZJsSw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9807"; a="168274117"
-X-IronPort-AV: E=Sophos;i="5.77,484,1596524400"; 
-   d="scan'208";a="168274117"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Nov 2020 18:39:23 -0800
-IronPort-SDR: pnQnnQoUht6oCx03o1gFgST3/vExmvYCidK67wZqAoN72d+Av75JUVeJZ727/XlEb+KICfusIC
- /Au0COsKUwGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,484,1596524400"; 
-   d="scan'208";a="358706155"
-Received: from jsia-hp-z620-workstation.png.intel.com ([10.221.118.135])
-  by fmsmga004.fm.intel.com with ESMTP; 16 Nov 2020 18:39:21 -0800
-From:   Sia Jee Heng <jee.heng.sia@intel.com>
-To:     vkoul@kernel.org, Eugeniy.Paltsev@synopsys.com, robh+dt@kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v4 15/15] dmaengine: dw-axi-dmac: Set constraint to the Max segment size
-Date:   Tue, 17 Nov 2020 10:22:15 +0800
-Message-Id: <20201117022215.2461-16-jee.heng.sia@intel.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201117022215.2461-1-jee.heng.sia@intel.com>
-References: <20201117022215.2461-1-jee.heng.sia@intel.com>
+        id S1726598AbgKQDfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Nov 2020 22:35:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53930 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726503AbgKQDfH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Nov 2020 22:35:07 -0500
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5AD7C0613CF;
+        Mon, 16 Nov 2020 19:35:05 -0800 (PST)
+Received: by mail-wm1-x343.google.com with SMTP id w24so1884593wmi.0;
+        Mon, 16 Nov 2020 19:35:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VDboQmgyjLAX52xymUAu+8xSc/wlXdquqvvYv+AI8ZI=;
+        b=R2UsKu/+ZXJ7ubFdvoPnecjI5wYX7RTMs7CVoRZxkq8ACexdUMcAEa7h3QkEa1KD9L
+         eB1kqFUpHWszjCHWFXoujW1VzMVcA3ohMiVktMylTkTFrCgOjwrtOLQmSi/LHMfQPq04
+         VtE3GhalkfhjDyFpk7hDIuYmxbE7yyt2IeJd1YtW0F9Pg3F/4KX+CN4bQb0B1Ql3JVFX
+         Z+u1XfCUbnzFQXzghC+TgVBW/VZll0I9oC+2tsyIMkuixtoFgJEs5ktYLJdFRjfHfKiB
+         QrZTp2e95YbuJwuhdop1qp6LOEgYleKsZDih0KU0M+0Ddar7lDZrEBnXY6gE4bMlz9s3
+         yEGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VDboQmgyjLAX52xymUAu+8xSc/wlXdquqvvYv+AI8ZI=;
+        b=VO3eHbR5pmyqvFBwkEI5GY/VmQRqt9DP4S/TJFhEEWZckr0haFP0+qxG1SfJow9odk
+         SceLXJhe1i9UvrJcZN4iUxpxzS1XT79cNEhZX0d0qe0cCpfuzsNngxJrLWcn/GSCQzTj
+         rlODzk+iSuW4J4dHAHsguTi+WCNuILi36HC8HfeLm27FyOa9jSBCERsjWCBshpBVHHT3
+         voCZXTBnbd6leDWB0fNb4Cel2OGoTkPG+NP8bpEGeAaUI6B3z/V1aiBHupoBE5/oe5Hx
+         6z80ElBfVgPzhE3RWcmlVdrIid6RckUsW+JEpQHY6fQZKeXIHhQMHRZw6mIaNQ+I+o7m
+         UxJw==
+X-Gm-Message-State: AOAM533pg8ZLZwZ938YCGRY0Bd0ZEzOX5jFyr37sl8KF9N05XyKeeQz8
+        LcMHGpyY9h03St6qL7pVDPNGYRieuuALrlpnrK8zg04tVEAYmw==
+X-Google-Smtp-Source: ABdhPJyGvmqtYih5lEdg6I72hpi+LwY6R9zYoolfKtGq6HyOBpf8ZZJN+OWgahTXePGQHBv31BGAEcOOarjT92f+lFE=
+X-Received: by 2002:a1c:b387:: with SMTP id c129mr1959876wmf.58.1605584104606;
+ Mon, 16 Nov 2020 19:35:04 -0800 (PST)
+MIME-Version: 1.0
+References: <20201113113451.52355-1-zhang.lyra@gmail.com> <20201113113451.52355-2-zhang.lyra@gmail.com>
+ <20201116145444.GA1635499@bogus>
+In-Reply-To: <20201116145444.GA1635499@bogus>
+From:   Chunyan Zhang <zhang.lyra@gmail.com>
+Date:   Tue, 17 Nov 2020 11:34:28 +0800
+Message-ID: <CAAfSe-tgX=ajiUeZ+4Kp5HG95OUJz573Fj9pw2suLqQp89AeRg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: input: Convert sc27xx-vibra.txt to json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Orson Zhai <orsonzhai@gmail.com>, linux-input@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Chunyan Zhang <chunyan.zhang@unisoc.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Nemo Han <nemo.han@unisoc.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for DMA Scatter-Gather (SG) constraint so that DMA clients can
-handle the AxiDMA limitation.
+On Mon, 16 Nov 2020 at 22:54, Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, 13 Nov 2020 19:34:50 +0800, Chunyan Zhang wrote:
+> > From: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> >
+> > Convert the sprd sc27xx vibrator binding to DT schema using json-schema.
+> >
+> > Signed-off-by: Chunyan Zhang <chunyan.zhang@unisoc.com>
+> > ---
+> >  .../bindings/input/sprd,sc27xx-vibra.txt      | 23 ----------
+> >  .../bindings/input/sprd,sc27xx-vibrator.yaml  | 44 +++++++++++++++++++
+> >  2 files changed, 44 insertions(+), 23 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibra.txt
+> >  create mode 100644 Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+>
+> dtschema/dtc warnings/errors:
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml: 'additionalProperties' is a required property
+> /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml: ignoring, error in schema:
+> warning: no schema found in file: ./Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
+>
+>
+> See https://patchwork.ozlabs.org/patch/1399724
+>
+> The base for the patch is generally the last rc1. Any dependencies
 
-Without supporting DMA constraint the default Max segment size reported by
-dmaengine is 64KB, which is not supported by Intel KeemBay AxiDMA.
+When trying to reproduce the error, I found there's an error on rc1
+along with a lot of unrelated warnings, but rc2 is good.
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
----
- drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c | 8 ++++++++
- drivers/dma/dw-axi-dmac/dw-axi-dmac.h          | 1 +
- 2 files changed, 9 insertions(+)
+$ make -k dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.yaml
+  LINT    Documentation/devicetree/bindings
 
-diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index cc05f66c7a4f..e20d8d4b1dff 100644
---- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-+++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-@@ -12,6 +12,7 @@
- #include <linux/device.h>
- #include <linux/dmaengine.h>
- #include <linux/dmapool.h>
-+#include <linux/dma-mapping.h>
- #include <linux/err.h>
- #include <linux/interrupt.h>
- #include <linux/io.h>
-@@ -1347,6 +1348,13 @@ static int dw_probe(struct platform_device *pdev)
- 	dw->dma.device_prep_slave_sg = dw_axi_dma_chan_prep_slave_sg;
- 	dw->dma.device_prep_dma_cyclic = dw_axi_dma_chan_prep_cyclic;
- 
-+	/*
-+	 * Synopsis DesignWare AxiDMA datasheet mentioned Maximum
-+	 * supported blocks is 1024. Device register width is 4 bytes.
-+	 * Therefore, set constraint to 1024 * 4.
-+	 */
-+	dw->dma.dev->dma_parms = &dw->dma_parms;
-+	dma_set_max_seg_size(&pdev->dev, MAX_BLOCK_SIZE);
- 	platform_set_drvdata(pdev, chip);
- 
- 	pm_runtime_enable(chip->dev);
-diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-index f64e8d33b127..67669049cead 100644
---- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-+++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-@@ -54,6 +54,7 @@ struct axi_dma_chan {
- struct dw_axi_dma {
- 	struct dma_device	dma;
- 	struct dw_axi_dma_hcfg	*hdata;
-+	struct device_dma_parameters	dma_parms;
- 
- 	/* channels */
- 	struct axi_dma_chan	*chan;
--- 
-2.18.0
+[snip...]
 
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
+Documentation/devicetree/bindings/processed-schema-examples.json]
+Error 123
+  DTEX    Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.example.dts
+make[1]: Target '__build' not remade because of errors.
+make: *** [Makefile:1364: dt_binding_check] Error 2
+
+> should be noted.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
+
+Ok, thanks for pointing this out.
+
+Chunyan
