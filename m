@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22A8F2B6D89
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:38:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F352B6DEF
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:56:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727245AbgKQSiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 13:38:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52270 "EHLO
+        id S1726812AbgKQS4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 13:56:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726860AbgKQSiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:38:03 -0500
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F041AC0613CF;
-        Tue, 17 Nov 2020 10:38:02 -0800 (PST)
-Received: by mail-pj1-x1044.google.com with SMTP id f12so933725pjp.4;
-        Tue, 17 Nov 2020 10:38:02 -0800 (PST)
+        with ESMTP id S1726644AbgKQS4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:56:09 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55BECC0613CF
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:56:08 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id m9so7036317pgb.4
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 10:56:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=yu92GNSLaJazZbwGQ6R6KeiEaYOAIoD6D1oOqv5idBY=;
-        b=ZmyIu4rdDl1SZD/zRg0ts2ItNCDOh+c9fezEKou8I7NGQHIjjWIw9RyCuPvu081NXI
-         r26f4Y40K9tEBDNOnOHaBOh4m7KzPjLoWZKV3YyNC5qiSsKYDt+YDwymaxFtPQjh+ul/
-         sXZWn5+H0DXjJwLpuAaM9zoK5IxPUuSKx7oh/2+RXFmKUsdej4svog+n9cOmZfQa+vbW
-         frl2A7y081AadLFAy+lKt0spqw3ATb/1/Uf7ZDtrPiN9YhLSB93ABv4hiyceH2i15pTx
-         KC9+34usj3NAXvC6IK3jItS9YeR1NW3hBtdRkXxBDDhRo6gaHZYWfJZ24PBQibIRZrPd
-         N2aQ==
+        bh=/lb0rRvo31GgeGHWLPFRrBkvNkiQrp++1/GWXPEbd5w=;
+        b=I9/GCATy59PeWR2Scx4nYHr9U0maQfyTwEEPV+LsUw3++/ciUB5xAzDcVfdiwO+0FF
+         TNoNJElccJR/HdSNcMUwsEZuHvVtPST8HQp1OLlzgQGOaXyyGOyHZ+2w5STCQUS4ZObn
+         R0bRiXC58emsdmTbPFdmQxBCnWxSdmDp6zGk/b7lKiEfWToLV1RpBGlBxssH4/9fKIDn
+         g7/LgtvaAPgOui11uLpW6sWGYKf0L4K87DlEM4JgdSkuKzjzhqjhcwk/FzC+HlyVfLzj
+         vdXRzrC4rVBHm6W4vR2E3dXALUDvpUZy134NntlbG60JHDtn9fWOCaeCvEvMB/i2e7NC
+         JuFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=yu92GNSLaJazZbwGQ6R6KeiEaYOAIoD6D1oOqv5idBY=;
-        b=Eme73P6y79ImhlN9K/eqnjd4U+t7I6bLW7h2jOc7RTubetYDMr5MdKnJ62NZ7nOVt+
-         E3JDWzYE4jtq9zhW6EWe45+G8v2SbRoSnPG6+LxTVETT1VeK+aAjHnlwUx4U9s/vVvFc
-         87m6x61Ezq3XptuQL3alOshtssYbYvAI2FRj/1EGuJpm7ZwrH2rtPb2XONkRj7o4zEbU
-         2eMiJBYY/8usg4r6rjeWMJUoB/tX7ONyN6F0qrfvr0fVwhaQJWwaQn8IT43KUxr/Ni3r
-         TNFmIVPa2gAQEtF8R3iiyL3OL/YJ+iB3u8tL4COhdULgN73yV6GFYofNj7HetVgtu36i
-         DA5A==
-X-Gm-Message-State: AOAM530s0LWhn5gOlHtVhoOU2jCgnCatIYp24E3cOoE274eNlQ3/3LSU
-        8HbAFggzYd02dKQRLN+KniI=
-X-Google-Smtp-Source: ABdhPJzh8ruo2Qq2CiTdpU3CKCHjF26KmnAV0cgydIFJY1fbynk22VVOKoacTamYbbVugLiJnDbGRw==
-X-Received: by 2002:a17:90a:d246:: with SMTP id o6mr382734pjw.236.1605638282512;
-        Tue, 17 Nov 2020 10:38:02 -0800 (PST)
+        bh=/lb0rRvo31GgeGHWLPFRrBkvNkiQrp++1/GWXPEbd5w=;
+        b=iU2m6i+CKQ/R3Pcu/pXwlwsM1siT0KcPpbOmv/1J6Ryk1v/q/mLvJM3JM18gdgvJsL
+         qRXZeVADA8FJyim4lW8UL6qqcU6rBdkYuQ6HXsaGvkS0ni9UsCjFEVAJJqcLgWlBmeIc
+         FXcA0fGpGrfxXGZdquheaJ9VC0yLztHWPVPptWGyLH+KY8mdgrtQd+LYL+Fz5lfahy9F
+         IipqlyggLCh1hUJ3E4adg7NEOeuKp92PzCUklppCDcsmt8BfEJjw8xysbsupXLfaERcM
+         6uklQTJfp6Rn8Ed9UgT9AWXf8QdmD6yYbViRLnp+aSwSYQY+s4jAtjeR5HUM8AVIW1hD
+         3Ocg==
+X-Gm-Message-State: AOAM5325iDSj3Lm78VtJJ8HVCppA+NfyBDScG9UAPB9mCwa0vSnDAbng
+        J1kRC4cWru3fiSvstd4uQss=
+X-Google-Smtp-Source: ABdhPJyl+K/cUOeVqvVQkIfLIegx++VhLYeXDURajXkpDkcK7JyMyQm4Dh7UlBIevYju6clTyrpGdw==
+X-Received: by 2002:aa7:9903:0:b029:18b:9271:a468 with SMTP id z3-20020aa799030000b029018b9271a468mr950191pff.11.1605639367786;
+        Tue, 17 Nov 2020 10:56:07 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id y69sm1267645pfb.12.2020.11.17.10.37.55
+        by smtp.googlemail.com with ESMTPSA id h15sm1470917pgk.3.2020.11.17.10.56.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Nov 2020 10:38:01 -0800 (PST)
-Subject: Re: [PATCH RFC v2 5/5] net: stmmac: dwmac-meson8b: add support for
- the RGMII RX delay on G12A
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        davem@davemloft.net, kuba@kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, netdev@vger.kernel.org
-Cc:     jianxin.pan@amlogic.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
-        narmstrong@baylibre.com, jbrunet@baylibre.com, andrew@lunn.ch
-References: <20201115185210.573739-1-martin.blumenstingl@googlemail.com>
- <20201115185210.573739-6-martin.blumenstingl@googlemail.com>
+        Tue, 17 Nov 2020 10:56:06 -0800 (PST)
+Subject: Re: [PATCH 2/2] reset: brcm-pmc: add driver for Broadcom's PMC
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
+References: <20201109163519.32605-1-zajec5@gmail.com>
+ <20201109163519.32605-2-zajec5@gmail.com>
+ <e89b4601-0c52-db46-4406-d9ac28687e8f@gmail.com>
+ <41d25c9d-3562-9549-3582-78a5e2d37330@milecki.pl>
+ <e064498a-aacb-eb7a-13a7-441b1994ed7b@milecki.pl>
 From:   Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -114,30 +115,102 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <db97971e-3dc5-2187-2965-2cae547506a6@gmail.com>
-Date:   Tue, 17 Nov 2020 10:37:51 -0800
+Message-ID: <a92d4457-1610-6017-1e06-e73e70713d72@gmail.com>
+Date:   Tue, 17 Nov 2020 10:55:57 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201115185210.573739-6-martin.blumenstingl@googlemail.com>
+In-Reply-To: <e064498a-aacb-eb7a-13a7-441b1994ed7b@milecki.pl>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/15/20 10:52 AM, Martin Blumenstingl wrote:
-> Amlogic Meson G12A (and newer: G12B, SM1) SoCs have a more advanced RX
-> delay logic. Instead of fine-tuning the delay in the nanoseconds range
-> it now allows tuning in 200 picosecond steps. This support comes with
-> new bits in the PRG_ETH1[19:16] register.
+On 11/17/20 10:44 AM, Rafał Miłecki wrote:
+> On 12.11.2020 15:55, Rafał Miłecki wrote:
+>> *** PMB ***
+>>
+>> It seems like PMB Master is reset controller on its own. Even though
+>> we don't
+>> have actual driver for the (documented) "brcm,bcm63138-pmb" binding,
+>> arch code
+>> treates it like a reset.
+>>
+>> So it seems that a single PMB is capable at least of:
+>> 1. Resetting ARM CPU core (id by 8b addr)
+>> 2. Resetting devices (id by 8b addr) by (en|dis)abling zones
+>>
+>> Above operations are performed in a different (programming) ways.
+>>
+>>
+>> *** PMC ***
+>>
+>> PMC seems to be a reset controller with firmware capable at least of:
+>> 1. Resetting devices (id by 8b addr) by (en|dis)abling zones
+>>
+>> that fallback to using PMB blocks when needed / required.
 > 
-> Add support for validating the RGMII RX delay as well as configuring the
-> register accordingly on these platforms.
+> This just got more complex as I started playing with PMC / PMB and PCIe
+> controller.
 > 
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 1. BPCM_CAPABILITIES reg for PCIe controller reports 0 num_zones
+> 2. Enabling PCIe requires powering on zone 0 manually
+> 3. After powering on zone, PCIe requires setting SR_CONTROL
+> 
+> It means that PMB driver (and so PMC one as it fallback to the PMB)
+> needs to
+> know what type of device we're addressing.
 
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+From prior attempts at getting the 63138 supported which was a fairly
+early silicon revision with a mix of PMB and PMC ultimately, the reset
+driver does need to know what kind of device ID is being reset/powered
+on. I stopped after seeing that SATA, USB, PCIe, Switch would all need
+to be treated differently, and the board I had should have been upgraded
+to a B0:
+
+https://github.com/ffainelli/linux/commit/50f1dfb17b624ee41a11dda01bc899e6756869b7
+
+There are way too many quirks for Device Tree to express all of them,
+and the whole point of the BPCM was to design a re-usable and
+self-discoverable  power/reset/clocking module. As you found out, if the
+capabilities are wrong, it defeats the purpose.
+
+> 
+> Anything simple like:
+> 
+> resets = <&pmb0 14>;
+> resets = <&pmc 1 14>;
+> 
+> won't work (unless we hardcode ids in driver - which is unwanted for DTS).
+> 
+> 
+> So I guess that after all we'll need something like:
+> 
+> cpu@1 {
+>     resets = <&pmb0 PMB_ARM 4>; /* ARM CPU */
+> }
+> 
+> foo {
+>     resets = <&pmb1 PMB_USB_DEVICE 17>; /* Reset USB using PMB directly */
+> }
+> 
+> bar {
+>     resets = <&pmb1 PMB_PCIE_DEVICE 15>; /* Reset PCIE using PMB
+> directly */
+> }
+
+What is the second reset cell mapping to? Maybe you can define a C
+preprocessor macro that expressed both the PMB bus + device ID?
+
+> 
+> and also
+> 
+> qux {
+>     resets = <&pmc PMB_PCIE_DEVICE 1 15>; /* Reset PCIe using PMC */
+> }
+
+
 -- 
 Florian
