@@ -2,189 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56B082B5EF6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 13:18:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E782B5F30
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 13:36:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726536AbgKQMSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 07:18:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49714 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgKQMSP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 07:18:15 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE4BCC0617A7
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 04:18:14 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id r17so23993256ljg.5
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 04:18:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DAZbZSxcI71M0LVfy83Qq3cXSi4UOJMbtQEtUu1ICRM=;
-        b=a/OvA6+hoEi29hwk3HyX2fSLzesinExvg2iQ/BKLYFn4Cu9I6THdyqY0Ctr9qRvf/y
-         2zEgpAhH53lMWZj5qslla8oHnNtbyAo2PLjBUqD/i2FaYOuVKbxinK0QLZYcDE61B/We
-         1ek/ZP4VdUeCGS8CurzeWoL/v537JFTM4psogQPCy2VqvwPs7fpyXvL2IEv8y/NHUB9J
-         t9+j0T3DtBxAyMO6b6appok9bYGDKBvY2QDelSJZLljnoDbHXQMccheQ2/FtruogT61l
-         U66XS/NgyfcnxJ4jFPqi/3vYDzqVJFdnFU8WOLxxYm5/CF+m4WjGr3gIcut+YfD3qId8
-         7dtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=DAZbZSxcI71M0LVfy83Qq3cXSi4UOJMbtQEtUu1ICRM=;
-        b=ObywiGFA3/ujK5l63W06TCdYcYI0a9YGAt9CwvrDumG7YI9Fw6gXUGzxVdNXs7E/y/
-         AoprIu2XStut9ac0o1IcIEAh6tpEUuPoxqIsryHw0pBHcSyz83oQcSauk3u+8HZ9+BlG
-         4NRAvWMZBgeOoiS2XB2ZWc6YF6ikIMrmZWyy3wPneKPyuY3QkIf/5dkk57tgvJZzLpVZ
-         8pyv048ol5H3vlAei2UfEnLc+6Pnwsv1YYsunbKYGiXAPEUnoa7XHiWpu3F4RmZnnpyg
-         iMAxKK2js3uWUIJvLJRe/+KJrplP55t8iQvjYpTBbJIl5KzmCKMDi/BBBPzETO+pcexV
-         UZKw==
-X-Gm-Message-State: AOAM531Ic5k72IcRjSC1osqloPzz8X66VeXU85E94F0zG8oM3LYhYijn
-        S/tiaKsMdOndB4QzncJ1WuGh8w==
-X-Google-Smtp-Source: ABdhPJxRxEsHezDfXhkW96+Ceg8hXglyWHbt6vtZbE7gWeXB7oGP5dKwUhJEvWJIykb5KDEv1iOPDQ==
-X-Received: by 2002:a2e:a312:: with SMTP id l18mr1787582lje.231.1605615492979;
-        Tue, 17 Nov 2020 04:18:12 -0800 (PST)
-Received: from localhost.bredbandsbolaget (c-92d7225c.014-348-6c756e10.bbcust.telenor.se. [92.34.215.146])
-        by smtp.gmail.com with ESMTPSA id f25sm3116380lfc.234.2020.11.17.04.18.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2020 04:18:12 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, phone-devel@vger.kernel.org
-Subject: [PATCH v2] iio: accel: yamaha-yas: Add DT bindings
-Date:   Tue, 17 Nov 2020 13:18:10 +0100
-Message-Id: <20201117121810.830743-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.26.2
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726536AbgKQMel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 07:34:41 -0500
+Received: from foss.arm.com ([217.140.110.172]:55422 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726315AbgKQMel (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Nov 2020 07:34:41 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1A2E2101E;
+        Tue, 17 Nov 2020 04:34:41 -0800 (PST)
+Received: from e120937-lin.home (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 432AB3F719;
+        Tue, 17 Nov 2020 04:34:39 -0800 (PST)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     sudeep.holla@arm.com, lukasz.luba@arm.com,
+        Jonathan.Cameron@Huawei.com, broonie@kernel.org, robh@kernel.org,
+        satyakim@qti.qualcomm.com, etienne.carriere@linaro.org,
+        f.fainelli@gmail.com, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com, cristian.marussi@arm.com
+Subject: [PATCH v5 0/5] Add support for SCMIv3.0 Voltage Domain Protocol and SCMI-Regulator
+Date:   Tue, 17 Nov 2020 12:34:10 +0000
+Message-Id: <20201117123415.55105-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the Yamaha YAS5xx
-magnetometers/compass sensors.
+Hi,
 
-Cc: devicetree@vger.kernel.org
-Cc: phone-devel@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+this series introduces the support for the new SCMI Voltage Domain Protocol
+defined by the upcoming SCMIv3.0 specification, whose BETA release is
+available at [1].
+
+Afterwards, a new generic SCMI Regulator driver is developed on top of the
+new SCMI VD Protocol.
+
+in V4 Patch 3/5 introduced a needed fix in Regulator framework to cope with
+generic named nodes.
+
+The series is currently based on for-next/scmi [2] on top of:
+
+commit b141fca08207 ("firmware: arm_scmi: Fix missing destroy_workqueue()")
+
+Any feedback welcome,
+
+Thanks,
+
+Cristian
+
 ---
-ChangeLog v1->v2:
-- Add Yamaha to the vendor list, I was surprised to find
-  they were not yet listed.
+v4 --> v5
+- rebased
+- VD Protocol
+ - removed inline
+ - moved segmented intervals defines
+ - fixed some macros complaints by checkpatch
 
-I am still working on the actual driver for the magnetometer
-but why not send out the DT bindings for review, the
-hardware variants are easy to describe. This makes it possibe
-for people to include these magnetometers in device
-trees.
----
- .../bindings/iio/magnetometer/yamaha,yas.yaml | 80 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 82 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml
+v3 --> v4
+- DT bindings
+ - using generic node names
+ - listing explicitly subset of supported regulators bindings
+- SCMI Regulator
+ - using of_match_full_name core regulator flag
+ - avoid coccinelle false flag complaints
+- VD Protocol
+ - avoid coccinelle false flag complaints
+ - avoiding fixed size typing
 
-diff --git a/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml
-new file mode 100644
-index 000000000000..6fc4cfe4a417
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas.yaml
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/magnetometer/yamaha,yas.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Yamaha YAS5xx magnetometer sensors
-+
-+maintainers:
-+  - Linus Walleij <linus.walleij@linaro.org>
-+
-+description:
-+  The Yamaha YAS5xx magnetometers is a line of 3-axis magnetometers
-+  first introduced by Yamaha in 2006 with the YAS529. Over the years
-+  this magnetometer has been minatyrized and appeared in a number of
-+  different variants.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - yamaha,yas529
-+          - yamaha,yas530
-+          - yamaha,yas532
-+          - yamaha,yas533
-+          - yamaha,yas535
-+          - yamaha,yas536
-+          - yamaha,yas537
-+          - yamaha,yas539
-+
-+  reg:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: The YAS5xx sensors has a RSTN pin used to reset
-+      the logic inside the sensor. This GPIO line should connect
-+      to that pin and be marked as GPIO_ACTIVE_LOW.
-+
-+  interrupts:
-+    maxItems: 1
-+    description: Interrupt for INT pin for variants that support
-+      interrupt generation. This polarity, whether the interrupt
-+      is active on the rising or the falling edge, is configurable
-+      in the hardware.
-+
-+  vdd-supply:
-+    description: An optional regulator providing core power supply
-+      on the VDD pin, typically 1.8 V or 3.0 V.
-+
-+  iovdd-supply:
-+    description: An optional regulator providing I/O power supply
-+      for the I2C interface on the IOVDD pin, typically 1.8 V.
-+      This is not present on all variants of the component, some
-+      have only the VDD voltage.
-+
-+  mount-matrix:
-+    description: An optional 3x3 mounting rotation matrix.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        magnetometer@2e {
-+          compatible = "yamaha,yas530";
-+          reg = <0x2e>;
-+          vdd-supply = <&ldo1_reg>;
-+          iovdd-supply = <&ldo2_reg>;
-+          reset-gpios = <&gpio6 12 GPIO_ACTIVE_LOW>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 2735be1a8470..0340674c72bd 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1210,6 +1210,8 @@ patternProperties:
-     description: Shenzhen Xunlong Software CO.,Limited
-   "^xylon,.*":
-     description: Xylon
-+  "^yamaha,.*":
-+    description: Yamaha Corporation
-   "^ylm,.*":
-     description: Shenzhen Yangliming Electronic Technology Co., Ltd.
-   "^yna,.*":
+v2 --> v3
+- DT bindings
+  - avoid awkard examples based on _cpu/_gpu regulators
+- SCMI Regulator
+  - remove multiple linear mappings support
+  - removed duplicated voltage name printout
+  - added a few comments
+  - simplified return path in scmi_reg_set_voltage_sel()
+- VD Protocol
+  - restrict segmented voltage domain descriptors to one triplet
+  - removed unneeded inline
+  - free allocated resources for invalid voltage domain
+  - added __must_check to info_get voltage operations
+  - added a few comments
+  - removed fixed size typing from struct voltage_info
+    
+v1 --> v2
+- rebased on for-next/scmi v5.10
+- DT bindings
+  - removed any reference to negative voltages
+- SCMI Regulator
+  - removed duplicate regulator naming
+  - removed redundant .get/set_voltage ops: only _sel variants implemented
+  - removed condexpr on fail path to increase readability
+- VD Protocol
+  - fix voltage levels query loop to reload full cmd description
+    between iterations as reported by Etienne Carriere
+  - ensure transport rx buffer is properly sized calli scmi_reset_rx_to_maxsz
+    between transfers
+
+[1]:https://developer.arm.com/documentation/den0056/c/
+[2]:https://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git/log/?h=for-next/scmi
+
+Cristian Marussi (5):
+  firmware: arm_scmi: Add Voltage Domain Support
+  firmware: arm_scmi: add SCMI Voltage Domain devname
+  regulator: core: add of_match_full_name boolean flag
+  regulator: add SCMI driver
+  dt-bindings: arm: add support for SCMI Regulators
+
+ .../devicetree/bindings/arm/arm,scmi.txt      |  43 ++
+ drivers/firmware/arm_scmi/Makefile            |   2 +-
+ drivers/firmware/arm_scmi/common.h            |   1 +
+ drivers/firmware/arm_scmi/driver.c            |   3 +
+ drivers/firmware/arm_scmi/voltage.c           | 397 +++++++++++++++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/of_regulator.c              |   8 +-
+ drivers/regulator/scmi-regulator.c            | 409 ++++++++++++++++++
+ include/linux/regulator/driver.h              |   3 +
+ include/linux/scmi_protocol.h                 |  64 +++
+ 11 files changed, 937 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/firmware/arm_scmi/voltage.c
+ create mode 100644 drivers/regulator/scmi-regulator.c
+
 -- 
-2.26.2
+2.17.1
 
