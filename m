@@ -2,113 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A632B69B9
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 17:15:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 514702B69C6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 17:18:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727114AbgKQQPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 11:15:35 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:7429 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727012AbgKQQPe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 11:15:34 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fb3f72a0000>; Tue, 17 Nov 2020 08:15:38 -0800
-Received: from [10.2.53.74] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Nov
- 2020 16:15:32 +0000
-Subject: Re: [PATCH v2 3/6] dt-bindings: ata: tegra: Convert binding
- documentation to YAML
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-ide@vger.kernel.org>, <thierry.reding@gmail.com>,
-        <devicetree@vger.kernel.org>, <jonathanh@nvidia.com>,
-        <robh+dt@kernel.org>
-References: <1605296218-2510-1-git-send-email-skomatineni@nvidia.com>
- <1605296218-2510-4-git-send-email-skomatineni@nvidia.com>
- <20201116150022.GA1642318@bogus>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <4b1d90b7-63e7-8b32-16f8-a1020827f207@nvidia.com>
-Date:   Tue, 17 Nov 2020 08:15:33 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727156AbgKQQR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 11:17:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46244 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726854AbgKQQR5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Nov 2020 11:17:57 -0500
+Received: from localhost (unknown [151.66.8.153])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 45DFB20897;
+        Tue, 17 Nov 2020 16:17:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605629876;
+        bh=hy16ffRPWMRaQuWUaBmTQjp1UvwrgSDxEHy0QZMekS8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qZ97cIHfIDl1Sk7p70Ql0/Pu7m3g7of0zkDJyMfqpI868jJxFf9QeFS+YTdaSOvaN
+         FFJR+0EaJAI+iOLY+ajhpa6DhGTZv53SY/MmWXG9z/i8WZKIs31oqyBonLLpVOnRyw
+         Dov/wBkQe5c34RmzDA0TingQKK1x+O1kiNTCU5E4=
+Date:   Tue, 17 Nov 2020 17:17:51 +0100
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     jic23@kernel.org, lorenzo.bianconi@redhat.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: introduce
+ vdd-vddio regulators bindings
+Message-ID: <20201117161751.GC149198@lore-desk>
+References: <cover.1605625579.git.lorenzo@kernel.org>
+ <fd692095f2cdda5a99327f57e69c34a4ffce232f.1605625579.git.lorenzo@kernel.org>
+ <20201117160618.00003807@Huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <20201116150022.GA1642318@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605629738; bh=18wsPT8+1d4fVxmKRiuoV3ixoFKxrPxACtJejsOp+Cs=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=cdn4ijPz1qfOZvWGWdxjHT625Z1ufEtVZ9AB32TR8/QeyhoszmT/8P6Iyf9hfSBE4
-         aLJFxnC2TKZio3rNBSN49G00embWxfZl6+3nAu0hm2gAiA894An0BYRx+BiivWJOQR
-         hNqtCcB2DDnuezHzLKw2QDVb+2zRVctAqVI9nQ4cWhU1SX/0Ko+8+Fh/EFHrim1wDw
-         Q2nOr1nu5eBhMRFWs4F3RnfmG+UKOFAm/cMktiRPKX/Z81+DMt5VhH9SeAsu2OFkpf
-         eRSKvo521m8Zjdkwii6o3LdQmajp8f5HDs2ag6HIXn7mgga96697oM9BsFd1NM10JV
-         B0djcb3m7Vx+w==
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="/e2eDi0V/xtL+Mc8"
+Content-Disposition: inline
+In-Reply-To: <20201117160618.00003807@Huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 11/16/20 7:00 AM, Rob Herring wrote:
-> On Fri, 13 Nov 2020 11:36:55 -0800, Sowjanya Komatineni wrote:
->> This patch converts text based dt-binding document to YAML based
->> dt-binding document.
->>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>   .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 137 +++++++++++++++++++++
->>   .../bindings/ata/nvidia,tegra124-ahci.txt          |  44 -------
->>   2 files changed, 137 insertions(+), 44 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
->>
->
-> My bot found errors running 'make dt_binding_check' on your patch:
->
-> yamllint warnings/errors:
->
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dts:27.31-32 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1364: dt_binding_check] Error 2
->
->
-> See https://patchwork.ozlabs.org/patch/1400065
->
-> The base for the patch is generally the last rc1. Any dependencies
-> should be noted.
->
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->
-> pip3 install dtschema --upgrade
->
-> Please check and re-submit.
+--/e2eDi0V/xtL+Mc8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+> On Tue, 17 Nov 2020 16:11:38 +0100
+> Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+>=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt b=
+/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
+> > index 7c6742d3e992..bc3448df9647 100644
+> > --- a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
+> > +++ b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
+> > @@ -20,6 +20,10 @@ Required properties:
+> >  - reg: i2c address of the sensor / spi cs line
+> > =20
+> >  Optional properties:
+> > +- vdd-supply: an optional regulator that needs to be on to provide VDD
+> > +  power to the sensor.
+> > +- vddio-supply: an optional regulator that needs to be on to provide t=
+he
+> > +  VDD IO power to the sensor.
+> >  - st,drdy-int-pin: the pin on the package that will be used to signal
+> >    "data ready" (valid values: 1 or 2).
+> >  - st,pullups : enable/disable internal i2c controller pullup resistors.
+>=20
+> Hi Lorenzo,
+>=20
+> Please could you rebase this on top of=20
+> https://lore.kernel.org/linux-iio/20201031184854.745828-13-jic23@kernel.o=
+rg/
+>=20
+> Which does a yaml conversion of this file.
 
-make dt_binding_check shows other yaml warmings and didn't go thru 
-tegra-ahci.yaml even with specifying DT_SHHEMA_FILES
+Hi Jonathan,
 
-But, When I do dtbs_check, I see
-Documentation/devicetree/bindings/processed-schema.json generated and
-also it passes for tegra-ahci.yaml
-
-
-In v1 feedback discussion, you mentioned it should be good if dtbs_check 
-passes.
+sure, no worries. I was quite sure the yaml conversion was merged but then I
+discovered it was not :) I will post v2 soon.
 
 Regards,
+Lorenzo
 
-Sowjanya
+>=20
+> I'm working my way through backlog of those this week so will pick that up
+> at some point very soon.
+>=20
+> I'll resend a v2 of some patches in those series, but only those where th=
+ere
+> are outstanding comments that aren't trivial.
+>=20
+> (Rob's acked most with a few requested tweaks).
+>=20
+> Thanks,
+>=20
+> Jonathan
 
->
+--/e2eDi0V/xtL+Mc8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCX7P3rQAKCRA6cBh0uS2t
+rB4MAQDS5p9xXBz0f8bv3d+jrB8v75pPz2reYxbVgi8PgloWiAD/XB7xLSjIWivi
+xXe2z1mVKtxDUknDJGo4ND1dCbQ7zgw=
+=Yxs6
+-----END PGP SIGNATURE-----
+
+--/e2eDi0V/xtL+Mc8--
