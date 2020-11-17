@@ -2,106 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FC052B6F11
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 20:45:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E5362B6F13
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 20:45:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729035AbgKQTpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 14:45:06 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55836 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727955AbgKQTpG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Nov 2020 14:45:06 -0500
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D93CA24654;
-        Tue, 17 Nov 2020 19:45:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605642306;
-        bh=qNozKMsilVGHcKuDFqYgNc1oR4jJ69WTtekuHemKsA4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uzOYWmAFsp5u8A1goye7laB+uln8gqXV99XauIwSEYwYTGXnrkndJ1sdA0QPbsHW/
-         uXFPVcvnzkLe+GYCOMvNnDStRP9jwZYNOFkt+AwKP1ltA3sG4bxugT2gpWZQD9Krqq
-         7zwau8mE4xSeZENQKfIlP12S23rRKNZejLI/7ECQ=
-Received: by mail-ot1-f52.google.com with SMTP id a15so20644085otf.5;
-        Tue, 17 Nov 2020 11:45:05 -0800 (PST)
-X-Gm-Message-State: AOAM5326K/lD+bUu0rZXSicp8roCoOvGJGIWq/L/L6aMsWuVHJNWs9DA
-        UVPV6DhTCQZhkIOKRcpSoDzegIK1SfXcWlGQBQ==
-X-Google-Smtp-Source: ABdhPJw7Y8/Ws5bUvi26+LLUZzk81vYwcXh6i4hVHe44wC1JXmPPzqpT+2F4tA2/k2KaDRk1Kh11f9DUxexOONIhShQ=
-X-Received: by 2002:a05:6830:2259:: with SMTP id t25mr4284277otd.192.1605642305060;
- Tue, 17 Nov 2020 11:45:05 -0800 (PST)
+        id S1730298AbgKQTpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 14:45:09 -0500
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:46765 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730287AbgKQTpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 14:45:09 -0500
+Received: by mail-ed1-f65.google.com with SMTP id t11so23695597edj.13;
+        Tue, 17 Nov 2020 11:45:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=muiIIdpzRpISIhpEP3s4OT743jHKC4403fMvxisSzME=;
+        b=qhfLx+d/5uGEBHacvSDCnP73RTAHVuFxx1vVEzwDyguJnQeYwXhT+iq5+Pn0Ymipm0
+         OIPpuALoHehhB1VOqgSDcRkbstqjwDxfFPKp6MnvOaAPrLnOK3gT1PfI7HGND+a+/hFh
+         7dm/I4jI67WLYXFOhmq3IskyECqrqoU9OzifCfPZEVjAzcADexXwaYD6Pn4CxgviQNs5
+         ihqAM+3zczNEUFuGi0UupvXb+1IKJkih8KukjJnk/IAWo0VYCXw7770kfy1v+GM0YV7w
+         mt+dWVag6DcCyCo4uvFWsoIwL4SrGOh2M1rXysSDU3RJGBJohhJEig4x0MnmpALyKELH
+         vbsA==
+X-Gm-Message-State: AOAM530Tf7hiqzDk1zupYOubx0zdoVgjPa+wl8ZKgUa5OV7cpmGLdt0W
+        3zcIepeAF2W80AwlYxtVwDI=
+X-Google-Smtp-Source: ABdhPJwJbZ7sC8YgF4QqYdP6pFK8WPOxYbuDV8bApZi5uHEWgST49QnMBcag3a6MHQvJmHycJyreHQ==
+X-Received: by 2002:a05:6402:1d87:: with SMTP id dk7mr23076000edb.199.1605642307470;
+        Tue, 17 Nov 2020 11:45:07 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id e17sm939164edc.45.2020.11.17.11.45.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Nov 2020 11:45:06 -0800 (PST)
+Date:   Tue, 17 Nov 2020 20:45:04 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 4/9] ARM: dts: exynos: Drop incorrect use of
+ io-channel-ranges
+Message-ID: <20201117194504.GA108045@kozik-lap>
+References: <20201115192951.1073632-1-jic23@kernel.org>
+ <20201115192951.1073632-5-jic23@kernel.org>
 MIME-Version: 1.0
-References: <20201117181607.1761516-1-qperret@google.com> <20201117181607.1761516-16-qperret@google.com>
-In-Reply-To: <20201117181607.1761516-16-qperret@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 17 Nov 2020 13:44:53 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+xAy9+HjH6vqfmaAEKBe9MMm+wWvUtiz5dFnHmMneqNw@mail.gmail.com>
-Message-ID: <CAL_Jsq+xAy9+HjH6vqfmaAEKBe9MMm+wWvUtiz5dFnHmMneqNw@mail.gmail.com>
-Subject: Re: [RFC PATCH 15/27] of/fdt: Introduce early_init_dt_add_memory_hyp()
-To:     Quentin Perret <qperret@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        android-kvm@google.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201115192951.1073632-5-jic23@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 12:16 PM Quentin Perret <qperret@google.com> wrote:
->
-> Introduce early_init_dt_add_memory_hyp() to allow KVM to conserve a copy
-> of the memory regions parsed from DT. This will be needed in the context
-> of the protected nVHE feature of KVM/arm64 where the code running at EL2
-> will be cleanly separated from the host kernel during boot, and will
-> need its own representation of memory.
->
-> Signed-off-by: Quentin Perret <qperret@google.com>
+On Sun, Nov 15, 2020 at 07:29:46PM +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> This property is only relevant to consumers of io-channels, not providers.
+> All these dtsi files have it alongside #io-channel-cells which indicates
+> they are providers of io-channels, not consumers.
+> 
+> Note that dt_schema will now flag this up due to a dependency between
+> this property and io-channels.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  drivers/of/fdt.c | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 4602e467ca8b..af2b5a09c5b4 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1099,6 +1099,10 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->  #define MAX_MEMBLOCK_ADDR      ((phys_addr_t)~0)
->  #endif
->
-> +void __init __weak early_init_dt_add_memory_hyp(u64 base, u64 size)
-> +{
-> +}
-> +
->  void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
->  {
->         const u64 phys_offset = MIN_MEMBLOCK_ADDR;
-> @@ -1139,6 +1143,7 @@ void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
->                 base = phys_offset;
->         }
->         memblock_add(base, size);
-> +       early_init_dt_add_memory_hyp(base, size);
+>  arch/arm/boot/dts/exynos3250.dtsi | 1 -
+>  arch/arm/boot/dts/exynos4412.dtsi | 1 -
+>  arch/arm/boot/dts/exynos5250.dtsi | 1 -
+>  arch/arm/boot/dts/exynos54xx.dtsi | 1 -
+>  4 files changed, 4 deletions(-)
 
-Can this be done right after we add all the memblocks using the
-memblock API? I thought EFI would also need to be handled, but looks
-like it just calls early_init_dt_add_memory_arch(). That's odd
-especially for ACPI systems...
+Thanks, applied.
 
-I don't really like putting what looks like an arm64 only hook here,
-but then I don't want an arm64 version of
-early_init_dt_add_memory_arch() either. We're almost to the point of
-getting rid of the arch specific ones. But I don't have a better
-suggestion currently.
+Best regards,
+Krzysztof
 
-Rob
