@@ -2,56 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A25762B5F65
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 13:53:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2E12B5F6A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 13:54:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728341AbgKQMwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 07:52:46 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:50430 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727350AbgKQMwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 07:52:46 -0500
+        id S1725747AbgKQMxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 07:53:49 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:53318 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725355AbgKQMxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 07:53:49 -0500
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AHCqbYq053910;
-        Tue, 17 Nov 2020 06:52:37 -0600
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AHCrkbk021528;
+        Tue, 17 Nov 2020 06:53:46 -0600
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1605617557;
-        bh=DGMIL9bjshIBnyCRIB0aJStK052SCWOqCEtJuYD63dA=;
+        s=ti-com-17Q1; t=1605617626;
+        bh=wd7lpsmgL3oO/7m40yMsS0a5Udumy2NOFBKofsbxGlM=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=gOf7UQvvP/nupM8xdhGmnj9rVHHvVqJ8Hd9q/4ipEdPBUk1ZL7HBbN86hLs7/hXlD
-         m5dBLshi4sOA2VJNpC783fJaF/XnYhZ+YRl2WPhSH3x+TAdbHMo0qCPtH0LNPWPHe8
-         i8y6MCZzcWJzhVRSzTx2loQineSwhda8h7xwpfMc=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AHCqbjP036824
+        b=svwhR96rfcT87IJ7kZz5dcqwRuLV9iFHlrkGemhq0F1nTc7AbM9dNvlbNNgg5X0SQ
+         EpMP34Y6UMzJt5l9L6y3GLVPFaXnB+KuGyTJeRHS2HLIQi7E6VWuefPvkzeF35K0La
+         fbYKuPpUfxvxfmrmtiGFmC9zN6n6Pu4fzS5XfqFg=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AHCrkCf037927
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 17 Nov 2020 06:52:37 -0600
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 17 Nov 2020 06:53:46 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 17
- Nov 2020 06:52:36 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ Nov 2020 06:53:46 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 17 Nov 2020 06:52:37 -0600
+ Frontend Transport; Tue, 17 Nov 2020 06:53:46 -0600
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AHCqaMw119516;
-        Tue, 17 Nov 2020 06:52:37 -0600
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AHCrkrh025858;
+        Tue, 17 Nov 2020 06:53:46 -0600
 From:   Nishanth Menon <nm@ti.com>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Roger Quadros <rogerq@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>, Keerthy <j-keerthy@ti.com>,
-        Nishanth Menon <nm@ti.com>, Jyri Sarha <jsarha@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V4 0/5] arm64: dts: ti: Cleanup mix of "okay" and "disabled"
-Date:   Tue, 17 Nov 2020 06:52:35 -0600
-Message-ID: <160561743968.22347.10185221222649723152.b4-ty@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Suman Anna <s-anna@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 0/3] Add HwSpinlock & Mailbox nodes on J7200 SoCs
+Date:   Tue, 17 Nov 2020 06:53:46 -0600
+Message-ID: <160561756333.22964.1029119444913341855.b4-ty@ti.com>
 X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201113211826.13087-1-nm@ti.com>
-References: <20201113211826.13087-1-nm@ti.com>
+In-Reply-To: <20201026232637.15681-1-s-anna@ti.com>
+References: <20201026232637.15681-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -60,31 +54,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Nov 2020 15:18:21 -0600, Nishanth Menon wrote:
-> V4 changes:
-> - drops the fixes tags (as this is not strictly a stable fix)
+On Mon, 26 Oct 2020 18:26:34 -0500, Suman Anna wrote:
+> The following series adds the HwSpinlock and Mailbox nodes for the J7200
+> series. The sub-mailbox nodes that will be used by the K3 R5F remoteproc
+> nodes are also added to the k3-j7200-som-p0.dtsi file in sync with the
+> convention used on J721E SoCs.
 > 
-> Repost. older versions v3[3] v2[2] v1[1]
-> 
-> Summarising the blurb of the discussion[4] we have had, there are few
-> options one could take when dealing with SoC dtsi and board dts:
+> Patches are based on 5.10-rc1 and your current staged branch commit
+> 9dcd17be61e4 ("arm64: dts: ti: k3-am65: ringacc: drop
+> ti,dma-ring-reset-quirk")
 > 
 > [...]
 
-I have applied this revision to branch ti-k3-dts-next on [1].
+Hi Suman Anna,
+
+I have applied the following to branch ti-k3-dts-next on [1].
 Thank you!
 
-[1/5] arm64: dts: ti: k3-am65*: Cleanup disabled nodes at SoC dtsi level
-      commit: af03de2b9b908e776c233744b84ce9dbb70dcafb
-[2/5] arm64: dts: ti: k3-j721e*: Cleanup disabled nodes at SoC dtsi level
-      commit: 5d1bedf252db3ec2becb9f43c55e0f33af1fd7fc
-[3/5] arm64: dts: ti: am65/j721e: Fix up un-necessary status set to "okay" for crypto
-      commit: bfbf9be725d8effdbb60eb2ece44c06ae87a54de
-[4/5] arm64: dts: ti: k3-am654-base-board: Fix up un-necessary status set to "okay" for USB
-      commit: 90e6c38848f8e86047e0e758c0725b155e2e349b
-[5/5] arm64: dts: ti: am65/j721e/j7200: Mark firmware used uart as "reserved"
-      commit: 4cc34aa8a208665aa0362a615deefc3db6a5d7bd
+[1/3] arm64: dts: ti: k3-j7200-main: Add hwspinlock node
+      commit: 1d7a01c40840d844fb5d353c151f0ee0a7680c2f
+[2/3] arm64: dts: ti: k3-j7200-main: Add mailbox cluster nodes
+      commit: d15d1cfbd765b4b2a113b6025e8edc7db4a7800a
+[3/3] arm64: dts: ti: k3-j7200-som-p0: Add IPC sub-mailbox nodes
+      commit: 6804a987de733c805675973e3afde128fe7a7cfa
 
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
 [1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
