@@ -2,118 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 514702B69C6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 17:18:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE6C52B69E6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 17:20:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727156AbgKQQR6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 11:17:58 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46244 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726854AbgKQQR5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Nov 2020 11:17:57 -0500
-Received: from localhost (unknown [151.66.8.153])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 45DFB20897;
-        Tue, 17 Nov 2020 16:17:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605629876;
-        bh=hy16ffRPWMRaQuWUaBmTQjp1UvwrgSDxEHy0QZMekS8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qZ97cIHfIDl1Sk7p70Ql0/Pu7m3g7of0zkDJyMfqpI868jJxFf9QeFS+YTdaSOvaN
-         FFJR+0EaJAI+iOLY+ajhpa6DhGTZv53SY/MmWXG9z/i8WZKIs31oqyBonLLpVOnRyw
-         Dov/wBkQe5c34RmzDA0TingQKK1x+O1kiNTCU5E4=
-Date:   Tue, 17 Nov 2020 17:17:51 +0100
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     jic23@kernel.org, lorenzo.bianconi@redhat.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: introduce
- vdd-vddio regulators bindings
-Message-ID: <20201117161751.GC149198@lore-desk>
-References: <cover.1605625579.git.lorenzo@kernel.org>
- <fd692095f2cdda5a99327f57e69c34a4ffce232f.1605625579.git.lorenzo@kernel.org>
- <20201117160618.00003807@Huawei.com>
+        id S1726854AbgKQQUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 11:20:01 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50608 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726379AbgKQQUA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 11:20:00 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AHGJl5P106024;
+        Tue, 17 Nov 2020 10:19:47 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605629987;
+        bh=kg41fzr6IfLFG85hwpt903XW2gFVaU++Z+vl0ZxbKSo=;
+        h=From:To:CC:Subject:Date;
+        b=TJuKbf0IzzH9zDaFn2SpZ9cB3npN4Uve/9gfuHuFb56fas+WE/VVAKRpdN5h8Gipe
+         02/JjA40AiBGcMLBWyYJ9aapSYR4dRobUG+UfcqJOnrlsNa6HIr89UApBTnFF5kavD
+         4JvcRb8GphyO6lBHxxUZGVNCq6yPLoRE1nkPwQy0=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AHGJlLA098410
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 17 Nov 2020 10:19:47 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 17
+ Nov 2020 10:19:46 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 17 Nov 2020 10:19:46 -0600
+Received: from pxplinux063.india.englab.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AHGJhwG032251;
+        Tue, 17 Nov 2020 10:19:43 -0600
+From:   Sekhar Nori <nsekhar@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>
+CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Faiz Abbas <faiz_abbas@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Andre Przywara <andre.przywara@arm.com>
+Subject: [PATCH v2 0/4] arm64: dts: ti: J7200 GPIO support and warning fixes
+Date:   Tue, 17 Nov 2020 21:49:38 +0530
+Message-ID: <20201117161942.38754-1-nsekhar@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="/e2eDi0V/xtL+Mc8"
-Content-Disposition: inline
-In-Reply-To: <20201117160618.00003807@Huawei.com>
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+These patches add gpio support for TI's J7200 platform. The first
+two patches fix existing warnings in preparation for adding GPIO
+support.
 
---/e2eDi0V/xtL+Mc8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes in v2:
+- Add patches fixing existing warnings so GPIO support does not
+  end up adding more warnings
+- Addressed Nishanth's comments on GPIO patches
+  - merge patches adding main and wakeup domain GPIOs into single patch
+  - fix commit description going over 75 chars
+  - fix W=2 warnings about lack of #address-cells in GPIO nodes
 
-> On Tue, 17 Nov 2020 16:11:38 +0100
-> Lorenzo Bianconi <lorenzo@kernel.org> wrote:
->=20
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt b=
-/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> > index 7c6742d3e992..bc3448df9647 100644
-> > --- a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> > +++ b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> > @@ -20,6 +20,10 @@ Required properties:
-> >  - reg: i2c address of the sensor / spi cs line
-> > =20
-> >  Optional properties:
-> > +- vdd-supply: an optional regulator that needs to be on to provide VDD
-> > +  power to the sensor.
-> > +- vddio-supply: an optional regulator that needs to be on to provide t=
-he
-> > +  VDD IO power to the sensor.
-> >  - st,drdy-int-pin: the pin on the package that will be used to signal
-> >    "data ready" (valid values: 1 or 2).
-> >  - st,pullups : enable/disable internal i2c controller pullup resistors.
->=20
-> Hi Lorenzo,
->=20
-> Please could you rebase this on top of=20
-> https://lore.kernel.org/linux-iio/20201031184854.745828-13-jic23@kernel.o=
-rg/
->=20
-> Which does a yaml conversion of this file.
+Faiz Abbas (2):
+  arm64: dts: ti: k3-j7200: Add gpio nodes
+  arm64: dts: ti: k3-j7200-common-proc-board: Disable unused gpio
+    modules
 
-Hi Jonathan,
+Sekhar Nori (2):
+  arm64: dts: ti: k3: squelch warning about lack of #interrupt-cells
+  arm64: dts: ti: k3: squelch warnings regarding no #address-cells for
+    interrupt-controller
 
-sure, no worries. I was quite sure the yaml conversion was merged but then I
-discovered it was not :) I will post v2 soon.
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi      |  6 ++
+ arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |  2 +
+ .../arm64/boot/dts/ti/k3-am654-base-board.dts |  1 +
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 16 ++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 75 +++++++++++++++++++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 35 +++++++++
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  1 +
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 12 +++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  3 +
+ 9 files changed, 151 insertions(+)
 
-Regards,
-Lorenzo
+-- 
+2.17.1
 
->=20
-> I'm working my way through backlog of those this week so will pick that up
-> at some point very soon.
->=20
-> I'll resend a v2 of some patches in those series, but only those where th=
-ere
-> are outstanding comments that aren't trivial.
->=20
-> (Rob's acked most with a few requested tweaks).
->=20
-> Thanks,
->=20
-> Jonathan
-
---/e2eDi0V/xtL+Mc8
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCX7P3rQAKCRA6cBh0uS2t
-rB4MAQDS5p9xXBz0f8bv3d+jrB8v75pPz2reYxbVgi8PgloWiAD/XB7xLSjIWivi
-xXe2z1mVKtxDUknDJGo4ND1dCbQ7zgw=
-=Yxs6
------END PGP SIGNATURE-----
-
---/e2eDi0V/xtL+Mc8--
