@@ -2,552 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE23B2B598C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 07:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 130712B5996
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 07:15:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726756AbgKQGIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 01:08:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgKQGIF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 01:08:05 -0500
-Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAA32C0617A6
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 22:08:03 -0800 (PST)
-Received: by mail-il1-x143.google.com with SMTP id x18so3636681ilq.4
-        for <devicetree@vger.kernel.org>; Mon, 16 Nov 2020 22:08:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atishpatra.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VXj1kMps1/BK6Uch4Qccm9xtXkpubngO/RTHap1t+GY=;
-        b=CoOfCo8kLOw8/Y/mqhjtUquRGoicSNh0QmNNf8vaiUT2AIlNCH8ulBSZx1QIFCqWYh
-         MlFMOKBMvoEGmalteNU258do7/fcT3tCz7VU+Guc6RTfHTF/j7e0ogy21DAc6RHzzHKp
-         9TH4Q2F5x8TiMdhJphoVd883IR+k/E1KzkKb0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VXj1kMps1/BK6Uch4Qccm9xtXkpubngO/RTHap1t+GY=;
-        b=FIF+8kQq5FvWY8jsYhtSItADX74rZcQRjQd31LSjcI46N/3iDtyxvhlgxKySaj1qRE
-         6q6WevKegma9wa/kPRfg4j/9X6g0z5Oe2f6FgSNiRMSSrDmqAanIsSERqam0JSu79/68
-         c4QSzsUkJniOGaohIRi+My6SnB6P+XlLUurulyl4A68Kysj11YCg4qBUuxC6XuNpt4Ok
-         zRDHnPHqYOlc0TZVxtDDpbTe7CH897t01WdtvYQciQNBeJ1zhzrB8lu8ZXmXfO9mihQb
-         mb/gBRXdCLJy6iW4uwg3fyHUmf8pq9GJwxnvlW0Fa86g2mQ60C0EOO465ru8G3tlxKD0
-         1slw==
-X-Gm-Message-State: AOAM532O5LQ5xdpnemhx9Tt1unmoyfSatb6z/73VPIB6doMXbSGXV8oP
-        PFuQa0GKC7WaW4h45ypau+dvhpepXN3SGVBs8tQX
-X-Google-Smtp-Source: ABdhPJzGWiK/KC2t4nyuDIr7OpOzHmY6EUEtoQhrkmKv2suUIRXrzoYR6q28k/oA9fjmpRn1+PT/DbmZVkao+0SkPPM=
-X-Received: by 2002:a92:1f8d:: with SMTP id f13mr11538671ilf.77.1605593282829;
- Mon, 16 Nov 2020 22:08:02 -0800 (PST)
+        id S1726297AbgKQGOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 01:14:38 -0500
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:16269 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725355AbgKQGOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 01:14:38 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fb36a570000>; Mon, 16 Nov 2020 22:14:47 -0800
+Received: from [10.19.109.31] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Nov
+ 2020 06:14:34 +0000
+Subject: Re: [PATCH v4 00/16] Tegra XHCI controller ELPG support
+To:     Thierry Reding <thierry.reding@gmail.com>
+CC:     <gregkh@linuxfoundation.org>, <robh@kernel.org>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>,
+        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nkristam@nvidia.com>
+References: <20201016130726.1378666-1-jckuo@nvidia.com>
+ <20201113164455.GG1408970@ulmo>
+X-Nvconfidentiality: public
+From:   JC Kuo <jckuo@nvidia.com>
+Message-ID: <9b64c181-1c5b-f6bd-d9db-03e30b4479a5@nvidia.com>
+Date:   Tue, 17 Nov 2020 14:14:33 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201113202550.3693323-1-atish.patra@wdc.com> <20201113202550.3693323-4-atish.patra@wdc.com>
- <CAEUhbmVq=O29MLGraHD_1AvV+UH0q0gh0JAu1ZJ5n7qk4Gb-tQ@mail.gmail.com>
-In-Reply-To: <CAEUhbmVq=O29MLGraHD_1AvV+UH0q0gh0JAu1ZJ5n7qk4Gb-tQ@mail.gmail.com>
-From:   Atish Patra <atishp@atishpatra.org>
-Date:   Mon, 16 Nov 2020 22:07:51 -0800
-Message-ID: <CAOnJCUKq9xP+yYGU0OLYPqBGqph7oD4pihZzfOLyXFoBPs2uTQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/4] RISC-V: Initial DTS for Microchip ICICLE board
-To:     Bin Meng <bmeng.cn@gmail.com>
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Conor.Dooley@microchip.com, Albert Ou <aou@eecs.berkeley.edu>,
-        Cyril.Jean@microchip.com,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Ivan.Griffin@microchip.com, Rob Herring <robh+dt@kernel.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201113164455.GG1408970@ulmo>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1605593687; bh=QZtXCGM+q2rMWr9GD4knohnZaY8gE+YhOGU4SliD8f8=;
+        h=Subject:To:CC:References:X-Nvconfidentiality:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=dtSwXK3cExvCd5/vTA9KS9ceZHJWqbCCJa4ZWUTa4B2WYCKvBD0pGUhZh+XOpkEbw
+         XKsJ53r5QU1m9ySB+upTh02wQdd/2JgtB73483lcdBDjcfLPWLQA+iBZL8idK7zl/g
+         NqULrQGmwqok51Ojg7ggUzHnig3pMVECDQGtZhWmnuM/z3QGOLWWk3E0eAyRfid3DP
+         m0621WgNKcA72Ip8dpyq+eyWzutgpO7Ks7ALYf8/K/06CFYV2gYsOkLL8L1WTm/84B
+         iPHlBIfBsvgIBGtO0Mq1VaGNSaNTnDxWWhp+1INzj4aH4K6fAgYlxbRQU3Zv9151Pi
+         /9+IOMtJO5qvQ==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 6:15 PM Bin Meng <bmeng.cn@gmail.com> wrote:
->
-> On Sat, Nov 14, 2020 at 4:29 AM Atish Patra <atish.patra@wdc.com> wrote:
-> >
-> > Add initial DTS for Microchip ICICLE board having only
-> > essential devcies (clocks, sdhci, ethernet, serial, etc).
->
-> typo: devices
->
 
-Thanks. Will fix it.
+On 11/14/20 12:44 AM, Thierry Reding wrote:
+> On Fri, Oct 16, 2020 at 09:07:10PM +0800, JC Kuo wrote:
+>> Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
+>> state for power saving when all of the connected USB devices are in
+>> suspended state. This patch series includes clk, phy and pmc changes
+>> that are required for properly place controller in ELPG and bring
+>> controller out of ELPG.
+>>
+>> JC Kuo (16):
+>>   clk: tegra: Add PLLE HW power sequencer control
+>>   clk: tegra: Don't enable PLLE HW sequencer at init
+>>   phy: tegra: xusb: Move usb3 port init for Tegra210
+>>   phy: tegra: xusb: tegra210: Do not reset UPHY PLL
+>>   phy: tegra: xusb: Rearrange UPHY init on Tegra210
+>>   phy: tegra: xusb: Add Tegra210 lane_iddq operation
+>>   phy: tegra: xusb: Add sleepwalk and suspend/resume
+>>   soc/tegra: pmc: Provide USB sleepwalk register map
+>>   arm64: tegra210: XUSB PADCTL add "nvidia,pmc" prop
+>>   dt-bindings: phy: tegra-xusb: Add nvidia,pmc prop
+>>   phy: tegra: xusb: Add wake/sleepwalk for Tegra210
+>>   phy: tegra: xusb: Tegra210 host mode VBUS control
+>>   phy: tegra: xusb: Add wake/sleepwalk for Tegra186
+>>   arm64: tegra210/tegra186/tegra194: XUSB PADCTL irq
+>>   usb: host: xhci-tegra: Unlink power domain devices
+>>   xhci: tegra: Enable ELPG for runtime/system PM
+>>
+>>  .../phy/nvidia,tegra124-xusb-padctl.txt       |    1 +
+>>  arch/arm64/boot/dts/nvidia/tegra186.dtsi      |    1 +
+>>  arch/arm64/boot/dts/nvidia/tegra194.dtsi      |    1 +
+>>  arch/arm64/boot/dts/nvidia/tegra210.dtsi      |    2 +
+>>  drivers/clk/tegra/clk-pll.c                   |   12 -
+>>  drivers/clk/tegra/clk-tegra210.c              |   53 +-
+>>  drivers/phy/tegra/xusb-tegra186.c             |  558 ++++-
+>>  drivers/phy/tegra/xusb-tegra210.c             | 1889 +++++++++++++----
+>>  drivers/phy/tegra/xusb.c                      |   92 +-
+>>  drivers/phy/tegra/xusb.h                      |   22 +-
+>>  drivers/soc/tegra/pmc.c                       |   94 +
+>>  drivers/usb/host/xhci-tegra.c                 |  610 ++++--
+>>  include/linux/clk/tegra.h                     |    4 +-
+>>  include/linux/phy/tegra/xusb.h                |   10 +-
+>>  14 files changed, 2785 insertions(+), 564 deletions(-)
+> 
+> I've been testing this, but I keep seeing the following oops on suspend
+> on a Jetson TX1:
+> 
+> [  153.451108] tegra-xusb-padctl phy-usb2.0: > tegra_xusb_padctl_suspend_noirq(dev=ffff000080917000)
+> [  153.460353] tegra-xusb-padctl phy-usb2.0:   driver: ffff8000114453e0 (tegra_xusb_padctl_driver)
+> [  153.469245] tegra-xusb-padctl phy-usb2.0:   padctl: ffff0000829f6480
+> [  153.475772] tegra-xusb-padctl phy-usb2.0:     soc: ef7bdd7fffffffff (0xef7bdd7fffffffff)
+> [  153.484061] Unable to handle kernel paging request at virtual address 007bdd800000004f
+> [  153.492132] Mem abort info:
+> [  153.495083]   ESR = 0x96000004
+> [  153.498308]   EC = 0x25: DABT (current EL), IL = 32 bits
+> [  153.503771]   SET = 0, FnV = 0
+> [  153.506979]   EA = 0, S1PTW = 0
+> [  153.510260] Data abort info:
+> [  153.513200]   ISV = 0, ISS = 0x00000004
+> [  153.517181]   CM = 0, WnR = 0
+> [  153.520302] [007bdd800000004f] address between user and kernel address ranges
+> [  153.527600] Internal error: Oops: 96000004 [#1] PREEMPT SMP
+> [  153.533231] Modules linked in: nouveau panel_simple tegra_video(C) tegra_drm drm_ttm_helper videobuf2_dma_contig ttm videobuf2_memops cec videobuf2_v4l2 videobuf2_common drm_kms_helper v4l2_fwnode videodev drm mc snd_hda_codec_hdmi cdc_ether usbnet snd_hda_tegra r8152 crct10dif_ce snd_hda_codec snd_hda_core tegra_xudc host1x lp855x_bl at24 ip_tables x_tables ipv6
+> [  153.566417] CPU: 0 PID: 300 Comm: systemd-sleep Tainted: G         C        5.10.0-rc3-next-20201113-00019-g5c064d5372b0-dirty #624
+> [  153.578283] Hardware name: NVIDIA Jetson TX1 Developer Kit (DT)
+> [  153.584281] pstate: 40000005 (nZcv daif -PAN -UAO -TCO BTYPE=--)
+> [  153.590381] pc : tegra_xusb_padctl_suspend_noirq+0x88/0x100
+> [  153.596016] lr : tegra_xusb_padctl_suspend_noirq+0x80/0x100
+> [  153.601632] sp : ffff8000120dbb60
+> [  153.604999] x29: ffff8000120dbb60 x28: ffff000080a1df00
+> [  153.610430] x27: 0000000000000002 x26: ffff8000106f8540
+> [  153.615858] x25: ffff8000113ac4a4 x24: ffff80001148c198
+> [  153.621277] x23: ffff800010c4538c x22: 0000000000000002
+> [  153.626692] x21: ffff800010ccde80 x20: ffff0000829f6480
+> [  153.632107] x19: ffff000080917000 x18: 0000000000000030
+> [  153.637521] x17: 0000000000000000 x16: 0000000000000000
+> [  153.642933] x15: ffff000080a1e380 x14: 74636461702d6273
+> [  153.648346] x13: ffff8000113ad058 x12: 0000000000000f39
+> [  153.653759] x11: 0000000000000513 x10: ffff800011405058
+> [  153.659176] x9 : 00000000fffff000 x8 : ffff8000113ad058
+> [  153.664590] x7 : ffff800011405058 x6 : 0000000000000000
+> [  153.670002] x5 : 0000000000000000 x4 : ffff0000fe908bc0
+> [  153.675414] x3 : ffff0000fe910228 x2 : 162ef67e0581e700
+> [  153.680826] x1 : 162ef67e0581e700 x0 : ef7bdd7fffffffff
+> [  153.686241] Call trace:
+> [  153.688769]  tegra_xusb_padctl_suspend_noirq+0x88/0x100
+> [  153.694077]  __device_suspend_noirq+0x68/0x1cc
+> [  153.698594]  dpm_noirq_suspend_devices+0x10c/0x1d0
+> [  153.703456]  dpm_suspend_noirq+0x28/0xa0
+> [  153.707461]  suspend_devices_and_enter+0x234/0x4bc
+> [  153.712314]  pm_suspend+0x1e4/0x270
+> [  153.715868]  state_store+0x8c/0x110
+> [  153.719440]  kobj_attr_store+0x1c/0x30
+> [  153.723259]  sysfs_kf_write+0x4c/0x7c
+> [  153.726981]  kernfs_fop_write+0x124/0x240
+> [  153.731065]  vfs_write+0xe4/0x204
+> [  153.734449]  ksys_write+0x6c/0x100
+> [  153.737925]  __arm64_sys_write+0x20/0x30
+> [  153.741931]  el0_svc_common.constprop.0+0x78/0x1a0
+> [  153.746789]  do_el0_svc+0x24/0x90
+> [  153.750181]  el0_sync_handler+0x254/0x260
+> [  153.754251]  el0_sync+0x174/0x180
+> [  153.757663] Code: aa0303e2 94000f64 f9405680 b40000e0 (f9402803)
+> [  153.763826] ---[ end trace 81543a3394cb409d ]---
+> 
+> Note that I've added a bit of debug information there to show what's
+> going on. See how tegra_xusb_padctl_suspend_noirq() is being called for
+> the phy-usb2.0 device? That's one of the PHYs that's being created for
+> the USB2 lanes. Sometimes I do see that padctl->soc ends up being NULL
+> for that device and in that case the function just aborts early and then
+> tegra_xusb_padctl_suspend_noirq() will get called again for the padctl
+> device and succeed.
+> 
+> I can't explain what's happening here. tegra_xusb_padctl_driver never
+> binds to the phy-usb2.0 device, so I don't understand how it could end
+> up suspending the device with that set of dev_pm_ops. Perhaps this is
+> some weird type of corruption somewhere?
+> 
+> Thierry
+> 
 
-> > The device tree is based on the U-Boot patch.
-> >
-> > https://patchwork.ozlabs.org/project/uboot/patch/20201110103414.10142-6-padmarao.begari@microchip.com/
-> >
-> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> > ---
-> >  arch/riscv/boot/dts/Makefile                  |   1 +
-> >  arch/riscv/boot/dts/microchip/Makefile        |   2 +
-> >  .../microchip/microchip-mpfs-icicle-kit.dts   |  54 +++
-> >  .../boot/dts/microchip/microchip-mpfs.dtsi    | 342 ++++++++++++++++++
-> >  4 files changed, 399 insertions(+)
-> >  create mode 100644 arch/riscv/boot/dts/microchip/Makefile
-> >  create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> >  create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> >
-> > diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-> > index ca1f8cbd78c0..3ea94ea0a18a 100644
-> > --- a/arch/riscv/boot/dts/Makefile
-> > +++ b/arch/riscv/boot/dts/Makefile
-> > @@ -1,5 +1,6 @@
-> >  # SPDX-License-Identifier: GPL-2.0
-> >  subdir-y += sifive
-> >  subdir-y += kendryte
-> > +subdir-y += microchip
-> >
-> >  obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
-> > diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-> > new file mode 100644
-> > index 000000000000..622b12771fd3
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/microchip/Makefile
-> > @@ -0,0 +1,2 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +dtb-$(CONFIG_SOC_MICROCHIP_POLARFIRE) += microchip-mpfs-icicle-kit.dtb
-> > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> > new file mode 100644
-> > index 000000000000..9a382ab0a799
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs-icicle-kit.dts
-> > @@ -0,0 +1,54 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
->
-> Please make this dual-licensed, GPL or MIT.
-> See https://github.com/polarfire-soc/meta-polarfire-soc-yocto-bsp/blob/master/recipes-kernel/linux/files/icicle-kit-es/icicle-kit-es-a000-microchip.dts
->
+Hi Thierry,
+I figured out that phy-usb2.0 device is bound to tegra-xusb-padctl driver by
+those two lines in tegra_xusb_setup_usb_role_switch()
 
-I had that originally. Checkpatch did not like that. I will revert it
-and investigate the real cause for the checkpatch complaint.
+	port->usb_phy.dev = &lane->pad->lanes[port->index]->dev;
+	port->usb_phy.dev->driver = port->padctl->dev->driver;
 
-> > +/* Copyright (c) 2020 Microchip Technology Inc */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "microchip-mpfs.dtsi"
-> > +
-> > +/* Clock frequency (in Hz) of the rtcclk */
-> > +#define RTCCLK_FREQ            1000000
-> > +
-> > +/ {
-> > +       #address-cells = <2>;
-> > +       #size-cells = <2>;
-> > +       model = "Microchip PolarFire-SoC Icicle Kit";
-> > +       compatible = "microchip,mpfs-icicle-kit", "microchip,polarfire-soc";
-> > +
-> > +       chosen {
-> > +               stdout-path = &serial0;
-> > +       };
-> > +
-> > +       cpus {
-> > +               timebase-frequency = <RTCCLK_FREQ>;
-> > +       };
-> > +
-> > +       memory@80000000 {
-> > +               device_type = "memory";
-> > +               reg = <0x0 0x80000000 0x0 0x40000000>;
-> > +               clocks = <&clkcfg 26>;
-> > +       };
-> > +
-> > +       soc {
-> > +       };
-> > +};
-> > +
-> > +&serial0 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&serial1 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&serial2 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&serial3 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&sdcard {
-> > +       status = "okay";
-> > +};
-> > +
-> > diff --git a/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> > new file mode 100644
-> > index 000000000000..63ac60f345d8
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/microchip/microchip-mpfs.dtsi
-> > @@ -0,0 +1,342 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +/* Copyright (c) 2020 Microchip Technology Inc */
-> > +
-> > +/dts-v1/;
-> > +
-> > +/ {
-> > +       #address-cells = <2>;
-> > +       #size-cells = <2>;
-> > +       model = "Microchip PolarFire-SoC";
-> > +       compatible = "microchip,polarfire-soc";
-> > +
-> > +       chosen {
-> > +       };
-> > +
-> > +       cpus {
-> > +               #address-cells = <1>;
-> > +               #size-cells = <0>;
-> > +
-> > +               cpu@0 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <128>;
-> > +                       i-cache-size = <16384>;
-> > +                       reg = <0>;
-> > +                       riscv,isa = "rv64imac";
-> > +                       status = "disabled";
-> > +
-> > +                       cpu0_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@1 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <1>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +
-> > +                       cpu1_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@2 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <2>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +
-> > +                       cpu2_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@3 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <3>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +
-> > +                       cpu3_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +
-> > +               cpu@4 {
-> > +                       clock-frequency = <0>;
-> > +                       compatible = "sifive,rocket0", "riscv";
-> > +                       d-cache-block-size = <64>;
-> > +                       d-cache-sets = <64>;
-> > +                       d-cache-size = <32768>;
-> > +                       d-tlb-sets = <1>;
-> > +                       d-tlb-size = <32>;
-> > +                       device_type = "cpu";
-> > +                       i-cache-block-size = <64>;
-> > +                       i-cache-sets = <64>;
-> > +                       i-cache-size = <32768>;
-> > +                       i-tlb-sets = <1>;
-> > +                       i-tlb-size = <32>;
-> > +                       mmu-type = "riscv,sv39";
-> > +                       reg = <4>;
-> > +                       riscv,isa = "rv64imafdc";
-> > +                       tlb-split;
-> > +                       status = "okay";
-> > +                       cpu4_intc: interrupt-controller {
-> > +                               #interrupt-cells = <1>;
-> > +                               compatible = "riscv,cpu-intc";
-> > +                               interrupt-controller;
-> > +                       };
-> > +               };
-> > +       };
-> > +
-> > +       soc {
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               compatible = "simple-bus";
-> > +               ranges;
-> > +
-> > +               cache-controller@2010000 {
-> > +                       compatible = "sifive,fu540-c000-ccache", "cache";
-> > +                       cache-block-size = <64>;
-> > +                       cache-level = <2>;
-> > +                       cache-sets = <1024>;
-> > +                       cache-size = <2097152>;
-> > +                       cache-unified;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <1 2 3>;
-> > +                       reg = <0x0 0x2010000 0x0 0x1000>;
-> > +               };
-> > +
-> > +               clint@2000000 {
-> > +                       compatible = "riscv,clint0";
-> > +                       reg = <0x0 0x2000000 0x0 0xC000>;
-> > +                       interrupts-extended = <&cpu0_intc 3 &cpu0_intc 7
-> > +                                               &cpu1_intc 3 &cpu1_intc 7
-> > +                                               &cpu2_intc 3 &cpu2_intc 7
-> > +                                               &cpu3_intc 3 &cpu3_intc 7
-> > +                                               &cpu4_intc 3 &cpu4_intc 7>;
-> > +               };
-> > +
-> > +               plic: interrupt-controller@c000000 {
-> > +                       #interrupt-cells = <1>;
-> > +                       compatible = "sifive,plic-1.0.0";
-> > +                       reg = <0x0 0xc000000 0x0 0x4000000>;
-> > +                       riscv,ndev = <53>;
-> > +                       interrupt-controller;
-> > +                       interrupts-extended = <&cpu0_intc 11
-> > +                                       &cpu1_intc 11 &cpu1_intc 9
-> > +                                       &cpu2_intc 11 &cpu2_intc 9
-> > +                                       &cpu3_intc 11 &cpu3_intc 9
-> > +                                       &cpu4_intc 11 &cpu4_intc 9>;
-> > +               };
-> > +
-> > +               dma@3000000 {
-> > +                       compatible = "sifive,fu540-c000-pdma";
-> > +                       reg = <0x0 0x3000000 0x0 0x8000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <23 24 25 26 27 28 29 30>;
-> > +                       #dma-cells = <1>;
-> > +               };
-> > +
-> > +               refclk: refclk {
-> > +                       compatible = "fixed-clock";
-> > +                       #clock-cells = <0>;
-> > +                       clock-frequency = <600000000>;
-> > +                       clock-output-names = "msspllclk";
-> > +               };
-> > +
-> > +               clkcfg: clkcfg@20002000 {
-> > +                       compatible = "microchip,pfsoc-clkcfg";
-> > +                       reg = <0x0 0x20002000 0x0 0x1000>;
-> > +                       reg-names = "mss_sysreg";
-> > +                       clocks = <&refclk>;
-> > +                       #clock-cells = <1>;
-> > +                       clock-output-names = "cpuclk", "axiclk", "ahbclk", "ENVMclk",   /* 0-3   */
-> > +                                "MAC0clk", "MAC1clk", "MMCclk", "TIMERclk",            /* 4-7   */
-> > +                               "MMUART0clk", "MMUART1clk", "MMUART2clk", "MMUART3clk", /* 8-11  */
-> > +                               "MMUART4clk", "SPI0clk", "SPI1clk", "I2C0clk",          /* 12-15 */
-> > +                               "I2C1clk", "CAN0clk", "CAN1clk", "USBclk",              /* 16-19 */
-> > +                               "RESERVED", "RTCclk", "QSPIclk", "GPIO0clk",            /* 20-23 */
-> > +                               "GPIO1clk", "GPIO2clk", "DDRCclk", "FIC0clk",           /* 24-27 */
-> > +                               "FIC1clk", "FIC2clk", "FIC3clk", "ATHENAclk", "CFMclk"; /* 28-32 */
->
-> Should all these names be lower case?
->
+Instead of assigning lane (phy) device to 'struct usb_phy', I think it should be
+the port device (port->dev) since the 'usb-role-switch' capability belongs to
+port device.
 
-Probably yes. The DT binding document did not specify any case.
-However, I just checked the linux kernel source. Most of the DT
-actually use lowercase.
-I will change it lower case in the next version.
+	port->usb_phy.dev = &port->dev;
 
-> > +               };
-> > +
-> > +               serial0: serial@20000000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20000000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <90>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 8>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               serial1: serial@20100000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20100000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <91>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 9>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               serial2: serial@20102000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20102000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <92>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 10>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               serial3: serial@20104000 {
-> > +                       compatible = "ns16550a";
-> > +                       reg = <0x0 0x20104000 0x0 0x400>;
-> > +                       reg-io-width = <4>;
-> > +                       reg-shift = <2>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <93>;
-> > +                       current-speed = <115200>;
-> > +                       clocks = <&clkcfg 11>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               emmc: mmc@20008000 {
-> > +                       compatible = "cdns,sd4hc";
-> > +                       reg = <0x0 0x20008000 0x0 0x1000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <88 89>;
-> > +                       pinctrl-names = "default";
-> > +                       clocks = <&clkcfg 6>;
-> > +                       bus-width = <4>;
-> > +                       cap-mmc-highspeed;
-> > +                       mmc-ddr-3_3v;
-> > +                       max-frequency = <200000000>;
-> > +                       non-removable;
-> > +                       no-sd;
-> > +                       no-sdio;
-> > +                       voltage-ranges = <3300 3300>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               sdcard: sdhc@20008000 {
-> > +                       compatible = "cdns,sd4hc";
-> > +                       reg = <0x0 0x20008000 0x0 0x1000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <88>;
-> > +                       pinctrl-names = "default";
-> > +                       clocks = <&clkcfg 6>;
-> > +                       bus-width = <4>;
-> > +                       disable-wp;
-> > +                       no-1-8-v;
-> > +                       cap-mmc-highspeed;
-> > +                       cap-sd-highspeed;
-> > +                       card-detect-delay = <200>;
-> > +                       sd-uhs-sdr12;
-> > +                       sd-uhs-sdr25;
-> > +                       sd-uhs-sdr50;
-> > +                       sd-uhs-sdr104;
-> > +                       max-frequency = <200000000>;
-> > +                       status = "disabled";
-> > +               };
-> > +
-> > +               emac0: ethernet@20110000 {
-> > +                       compatible = "cdns,macb";
-> > +                       reg = <0x0 0x20110000 0x0 0x2000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <64 65 66 67>;
-> > +                       local-mac-address = [00 00 00 00 00 00];
-> > +                       phy-mode = "sgmii";
-> > +                       clocks = <&clkcfg 5>, <&clkcfg 2>;
-> > +                       clock-names = "pclk", "hclk";
-> > +                       status = "disabled";
-> > +
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <0>;
-> > +                       phy-handle = <&phy0>;
-> > +                       phy0: ethernet-phy@8 {
-> > +                               reg = <8>;
-> > +                               ti,fifo-depth = <0x01>;
-> > +                       };
-> > +               };
-> > +
-> > +               emac1: ethernet@20112000 {
-> > +                       compatible = "cdns,macb";
-> > +                       reg = <0x0 0x20112000 0x0 0x2000>;
-> > +                       interrupt-parent = <&plic>;
-> > +                       interrupts = <70 71 72 73>;
-> > +                       mac-address = [00 00 00 00 00 00];
-> > +                       phy-mode = "sgmii";
-> > +                       clocks = <&clkcfg 5>, <&clkcfg 2>;
-> > +                       clock-names = "pclk", "hclk";
-> > +                       #address-cells = <1>;
-> > +                       #size-cells = <0>;
-> > +                       phy1: ethernet-phy@9 {
-> > +                               reg = <9>;
-> > +                               ti,fifo-depth = <0x01>;
-> > +                       };
-> > +               };
-> > +
-> > +       };
-> > +};
->
-> Regards,
-> Bin
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+I will submit a patch and ask for your review.
 
-
-
--- 
-Regards,
-Atish
+Thanks,
+JC
