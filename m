@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C7842B6D76
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 105C72B6D7E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 19:36:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731155AbgKQSeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 13:34:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51698 "EHLO
+        id S1731345AbgKQSgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 13:36:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729918AbgKQSeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:34:19 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5984AC0613CF;
-        Tue, 17 Nov 2020 10:34:18 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id q10so17883390pfn.0;
-        Tue, 17 Nov 2020 10:34:18 -0800 (PST)
+        with ESMTP id S1727007AbgKQSgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 13:36:11 -0500
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8859C0613CF;
+        Tue, 17 Nov 2020 10:36:11 -0800 (PST)
+Received: by mail-pj1-x1042.google.com with SMTP id mn12so756738pjb.1;
+        Tue, 17 Nov 2020 10:36:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=t8vEei8jCO3UT92pQAietBcd60srMB8CV6ts6QC+CFc=;
-        b=UZhDcnZ0atUvDTSiaHG4fVVBpHxOuDDS3RrpNIfpUA4wpP0hV/NwwGX3SU7plPgOno
-         VQI/c2A938X3JpOOc4MLGvU9Mrr1gKriHNb12+a5qR/B3H4jSUqsvRE7Bs3emf+h7iZi
-         iuRBIoFKZqN5yro+Xc4qJ1ONJvBY1/beEZE0NDRzG5dvTG5LBz/0zcl5AUxMYRowLRPP
-         Qbscl/a1rttsSS/YxgcX8PXPixOI4WtkFEiit1RfGFYDiEbRCAjleTh+I7zNo1B8qv4k
-         5FkY+flBOHNYd3j/ra9EcbfTuMOdMVbdrMPW7Jmu78MX6Mb11SsQI0hdLwBj8YQTDLdz
-         MdMQ==
+        bh=WVQ30Yx+YvNOyWaEigqtiOAJGX0VFEmySL9gW02Js/A=;
+        b=bYY0WzsOpD/W+b7cawX7fuVnFvjpAfzalj8svibghtuSTggNioME8qD+RDs0iPi/vW
+         wtZ3pDDYJ4h4N2rmJJEdW+d6vy0mrSUXQkm3UrKvYjATFJV4LgG+0OJQgqUPyohWZS8B
+         2+NTSFwADvWARtJEFmbmqfXjDEKGuge+QrLX/PEbHdRR6Sa/rr8mbu5iKjH9qRWfTIjh
+         Bweqq+Q7bdkMgKgpYKxGF4cBeMFjUVN/0IzQeL5+sM8ctg/E83gZAx1EWKpK/3LITGdg
+         O4MatckP4+uFXm8jZl83k1Sl5nAWJedPl9vPB5xqr+EChri+Q7JtNF4zSWJWx1H2rYxT
+         BOfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=t8vEei8jCO3UT92pQAietBcd60srMB8CV6ts6QC+CFc=;
-        b=oegQSNh0iY6nECdnRt8OcTaGuC7AyoA9QEPeilPKTNlVhzWTfUBGa2hcuW898qBDKr
-         etxdFrPxyJ004v1Vhg9GNurdNILdWOvGVJYFGeusmhncbM3JlPn0IzSWjkwHv80Hb0Hn
-         RFto6cRAQreKTCugyzKjqVt1E65FamdjzPymmgtfHqLijVB0Z8cww4iX4MTLGenAvc43
-         ta0TMm0Iy/zAUsL3d0enQAAyOGi4WpQG4xLZEx2gHMgeJQ5T3z+7o0jH4vvp7IjrgWih
-         8Kp0wCeKeW6W1OHjvLzv50snSZqLkLuuigTXX/Vh7+12ev03vKsGqIF7pHGXyBMgMSKe
-         EARQ==
-X-Gm-Message-State: AOAM530ykFWXzl/rQ0do1tCq37zEzTWzIUkR5iO8/1M1jO0v/n40T3di
-        0EAdEOf1yA817Lo2Lva8dMzzaHLOc/w=
-X-Google-Smtp-Source: ABdhPJwbStR9Ukr58qoYh0FKqIs9JfES9JRJaQI2vUOEY+YKnWT58dRVY51AXBGw6pXjmjlYKWOMHw==
-X-Received: by 2002:a63:e757:: with SMTP id j23mr4155605pgk.301.1605638057877;
-        Tue, 17 Nov 2020 10:34:17 -0800 (PST)
+        bh=WVQ30Yx+YvNOyWaEigqtiOAJGX0VFEmySL9gW02Js/A=;
+        b=o/3HADeJLkSz32OG1CFv6TdLLHN4hKOgko2po6L5hd1VVBubZk9bFf6xlfAaHhAFTe
+         8+hh15MIPlNwnFPUtCrJseUGnVGiarF4za73XJgeKTDqplkzHxe4fSHmedj8wCwASBZd
+         oakJOqNv7tLzuY33ZVIqvGHP5r7oKipZrbo74w9m6ADyk9mpZI9ZpLjTemmV62hNxLde
+         xL6CeL6ZsUNUS2/yffadiLP2GVNcuJf85YKVYnSsS/t3Ht0ThoNtAIncal7tHlnECOeS
+         OgpSWvRCPVhryS53oDIgcBKuIB9b+dYzOcE7tUWfSLO/MAdP07n+SYduJpsF46UIVSEe
+         lreQ==
+X-Gm-Message-State: AOAM530U12Zm5pxoXynKcVQfew96TgHs5jxck740lJBElZNc3P/+1r1n
+        KcFuZE8/4XNtjKCpyUaymP9I77V9SoU=
+X-Google-Smtp-Source: ABdhPJz3LC3EoTEhJ6mTh1BtZzmY8sKd0rqfKFDhbCkZ4H87gn59+UUE1kp+rTc3tCEK3BIEbKj/4g==
+X-Received: by 2002:a17:902:8d97:b029:d8:94dd:43ea with SMTP id v23-20020a1709028d97b02900d894dd43eamr883296plo.43.1605638171352;
+        Tue, 17 Nov 2020 10:36:11 -0800 (PST)
 Received: from [10.67.48.230] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id h13sm4208772pjj.30.2020.11.17.10.34.09
+        by smtp.googlemail.com with ESMTPSA id 92sm4165937pjv.32.2020.11.17.10.36.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 17 Nov 2020 10:34:17 -0800 (PST)
-Subject: Re: [PATCH RFC v2 2/5] net: stmmac: dwmac-meson8b: fix enabling the
- timing-adjustment clock
+        Tue, 17 Nov 2020 10:36:10 -0800 (PST)
+Subject: Re: [PATCH RFC v2 3/5] net: stmmac: dwmac-meson8b: use picoseconds
+ for the RGMII RX delay
 To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         davem@davemloft.net, kuba@kernel.org,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
@@ -58,7 +58,7 @@ Cc:     jianxin.pan@amlogic.com, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
         narmstrong@baylibre.com, jbrunet@baylibre.com, andrew@lunn.ch
 References: <20201115185210.573739-1-martin.blumenstingl@googlemail.com>
- <20201115185210.573739-3-martin.blumenstingl@googlemail.com>
+ <20201115185210.573739-4-martin.blumenstingl@googlemail.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
 Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  mQGiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
@@ -114,12 +114,12 @@ Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
  caxTGgc5zzQHeX67eMzrGomG3ZnIxmd1sAbgvJUDaD2GrYlulfwGWwWyTNbWRvMighVdPkSF
  6XFgQaosWxkV0OELLy2N485YrTr2Uq64VKyxpncLh50e2RnyAJ9Za0Dx0yyp44iD1OvHtkEI
  M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <b9449baf-9b18-ddcc-bd1e-5507fa43b8ad@gmail.com>
-Date:   Tue, 17 Nov 2020 10:34:04 -0800
+Message-ID: <88c043ba-e7a4-6b4d-f93f-efdf6c525e95@gmail.com>
+Date:   Tue, 17 Nov 2020 10:36:00 -0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201115185210.573739-3-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20201115185210.573739-4-martin.blumenstingl@googlemail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -128,18 +128,17 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/15/20 10:52 AM, Martin Blumenstingl wrote:
-> The timing-adjustment clock only has to be enabled when a) there is a
-> 2ns RX delay configured using device-tree and b) the phy-mode indicates
-> that the RX delay should be enabled.
+> Amlogic Meson G12A, G12B and SM1 SoCs have a more advanced RGMII RX
+> delay register which allows picoseconds precision. Parse the new
+> "amlogic,rgmii-rx-delay-ps" property or fall back to the old
+> "amlogic,rx-delay-ns".
 > 
-> Only enable the RX delay if both are true, instead of (by accident) also
-> enabling it when there's the 2ns RX delay configured but the phy-mode
-> incicates that the RX delay is not used.
-> 
-> Fixes: 9308c47640d515 ("net: stmmac: dwmac-meson8b: add support for the RX delay configuration")
-> Reported-by: Andrew Lunn <andrew@lunn.ch>
 > Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+
+Maybe also issue a warning when the 'amlogic,rx-delay-ns' property is
+found in addition to the 'amlogic,rgmii-rx-delay-ps'? Up to you how to
+manage existing DTBs being deployed.
 -- 
 Florian
