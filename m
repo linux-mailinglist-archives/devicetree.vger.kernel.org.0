@@ -2,183 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAF472B7084
-	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 21:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 068FB2B7092
+	for <lists+devicetree@lfdr.de>; Tue, 17 Nov 2020 21:59:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725355AbgKQU5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 15:57:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45734 "EHLO
+        id S1726308AbgKQU7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 15:59:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726156AbgKQU5E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 15:57:04 -0500
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0547BC0613CF;
-        Tue, 17 Nov 2020 12:57:03 -0800 (PST)
-Received: by mail-ed1-x541.google.com with SMTP id m16so9078998edr.3;
-        Tue, 17 Nov 2020 12:57:03 -0800 (PST)
+        with ESMTP id S1726199AbgKQU7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 15:59:19 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0533C0617A6
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 12:59:18 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id 11so25934359ljf.2
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 12:59:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ddOfz6r21avy+Gf5L6KkTvDcz/FVQukeuhfDgsb2Gz8=;
-        b=svJ9Vk5Pp32nkIViNuhyl+wme/EAIknlj4Uw/KAckNvqSwMiraD6LyAcUMn4JxttXa
-         j4NC69v1pj/ZyN7SrTmoObbzWm5tLrF6rYlvU/oNTiAXKPsb6fRyjnron6qWd4p9FLsZ
-         FSxhxATCssVyj5MY3XnJDBNkquwF3c2lV+5tiYrvbyfivlx8UcseFwk6OwRGwyDV8Vsd
-         SHDwroSBFp7+mqpOv3YRNVREEE0ZoxyFmnMRB6RG+n0SR1N+2/UeMH0HtAFhbzHFv+Xs
-         wl/Z94Eq0eFvOgooDOMZfX975RLmObA0k+O1K0UFC5jtR2jaf6rGhDHRoc9wLar/SLub
-         gYGw==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lhOVKceVBv7kVKCgOWNBzO70XQrC0EF5U4LspVOWhdQ=;
+        b=jFWNWp2TgwOeIaJn/jRrE7BtuYTGCLhCbYE1gTAv9xgjHbnUiLNIEgwBwRvKlTP/bW
+         EYstaUc5JEc0i4QC2VMllWpVxHobX2i95V0FGI/LQF35NIJjY9Pn96rE2RzgO588ungl
+         EXiEGgjrT3HGHa4BzkBHA5XlatVXLUwTAANULsOvBtkNeGKIFfqsqwrxasdbzxiFLpoZ
+         jOhE37cjXz3dN7vSaw2HY19SCUhSz0AkicBVW49Ovamx3xoTaRKO7MgaJkI+oTEcIeoY
+         k9GBD+p52hRY5liL5DAx6xBuZH1JDEFrh6/uuxfbnU+tma0kHkEcZX2ImRsdqCo9WCZN
+         t7rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ddOfz6r21avy+Gf5L6KkTvDcz/FVQukeuhfDgsb2Gz8=;
-        b=fDy7uKhYKZI+OGIw+/OL5Plz+Fpeo56/RdBRGu8kAt3+p1vPR1aCFvhPMfpv3DXYng
-         jIimWcBAgyXA/xZvADgcCZ9mp/aaTLbVxOIPEMFVrIk3sRggCPmSEcIeIyunyu1Wu8HR
-         wfzCRiGnP6/qhciuZLEZGG+Lh9Q4imL5te8I2xk/ziEnob9m1F3ws2gMxtZ3YkkMNyHo
-         FfN6KtB1EXxbPssFhS7lGq5AEazrLx0P+YjMSgH4JU5qMLweHHyXa8jEVlDCQDzs1GSF
-         /KQqylZfg867e9cfQNxSGqF6ncp33cgz75cLliigDg9BWZQek0+r6bsk8bOsZHti2DzM
-         mJHw==
-X-Gm-Message-State: AOAM531vPywLRympA1if0LU4TexsMxhy7eMpJcC/n8bA4FhzkLEcUnSL
-        Hf6jqCBnHGNkJTAIpEUTA6w=
-X-Google-Smtp-Source: ABdhPJyoQgV3y0Y/kAeZqRFPyaod8kZF8F+DWFpzgW5AaJLeEBIGdgw0h+WzFzDkPy3TcaeZDrwo4w==
-X-Received: by 2002:a50:daca:: with SMTP id s10mr14271292edj.263.1605646622596;
-        Tue, 17 Nov 2020 12:57:02 -0800 (PST)
-Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id k2sm11859258ejp.6.2020.11.17.12.57.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2020 12:57:01 -0800 (PST)
-From:   Ioana Ciornei <ciorneiioana@gmail.com>
-X-Google-Original-From: Ioana Ciornei <ciornei.ioana@gmail.com>
-Date:   Tue, 17 Nov 2020 22:57:00 +0200
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     davem@davemloft.net, andrew@lunn.ch, f.fainelli@gmail.com,
-        hkallweit1@gmail.com, robh@kernel.org, ciorneiioana@gmail.com,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v4 4/4] net: phy: dp83td510: Add support for the
- DP83TD510 Ethernet PHY
-Message-ID: <20201117205700.to7h7pfgniq5fx5l@skbuf>
-References: <20201117201555.26723-1-dmurphy@ti.com>
- <20201117201555.26723-5-dmurphy@ti.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lhOVKceVBv7kVKCgOWNBzO70XQrC0EF5U4LspVOWhdQ=;
+        b=O7PfczmfqGonPPLCesPn6doOz+G/WlS1V+SDYvGd2yT8gNe7TpM0K6Di+jWiXmJPHw
+         f4IsXzub9xbi35nyoSd1H6clRavTTTFPPM2DkUs4veeJzWO381LouG+ow6JbmEp+697I
+         AC0t6ZjyVAaqEmPRo5YfHAovgJrPoP+B4lGfQZWdJlU4wRBwHpTxlImmURgPqD6T6CBJ
+         Opa1i/3MdkjfXoLMOxyj6pkU5bwUIUiH/jmqL2VzM+9hUuvEO6704XtO0covlLAxgz1a
+         /7Q3IpJpADKtbSIg64smbkN050YUXghPrs5WCrnuVxYAgyTzToUuGiu4WsY0s2f3zD7m
+         sFmg==
+X-Gm-Message-State: AOAM5336Qi2TLRhlJbWTMxh86gBv6m8vLxOldxOkl4eF9vclUGhl56mp
+        5uUv5FsnKSgxW4zDLV5zT2PRANiEGT21D+OzQAaE6Q==
+X-Google-Smtp-Source: ABdhPJxjUwnRMlyZ1I6GdoT/R74osOxNheL4gleSpdaSISqhkb43ujnEF7gLzIuthlDegCWIFpbwtFMORGY7wdDa0eU=
+X-Received: by 2002:a2e:321a:: with SMTP id y26mr2883348ljy.293.1605646757115;
+ Tue, 17 Nov 2020 12:59:17 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201117201555.26723-5-dmurphy@ti.com>
+References: <20201112084057.1399983-1-nobuhiro1.iwamatsu@toshiba.co.jp> <20201112084057.1399983-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20201112084057.1399983-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 17 Nov 2020 21:59:06 +0100
+Message-ID: <CACRpkdbtkLjzMqRKzd3ppmwZ9hZESL4+zGOf7-uqjuF==Wm=3A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] gpio: visoconti: Add Toshiba Visconti GPIO support
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Punit Agrawal <punit1.agrawal@toshiba.co.jp>,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 02:15:55PM -0600, Dan Murphy wrote:
-> The DP83TD510E is an ultra-low power Ethernet physical layer transceiver
-> that supports 10M single pair cable.
-> 
-> The device supports both 2.4-V p2p and 1-V p2p output voltage as defined
-> by IEEE 802.3cg 10Base-T1L specfications. These modes can be forced via
-> the device tree or the device is defaulted to auto negotiation to
-> determine the proper p2p voltage.
-> 
-> Signed-off-by: Dan Murphy <dmurphy@ti.com>
-> ---
-> 
-> v4 - Considerable rework of the code after secondary test setup was created.
-> This version also uses the handle_interrupt call back and reduces the
-> configuration arrays as it was determined that 80% of the array was the same.
-> 
->  drivers/net/phy/Kconfig     |   6 +
->  drivers/net/phy/Makefile    |   1 +
->  drivers/net/phy/dp83td510.c | 505 ++++++++++++++++++++++++++++++++++++
->  3 files changed, 512 insertions(+)
->  create mode 100644 drivers/net/phy/dp83td510.c
-> 
+Hi Nobuhiro,
 
-[snip]
+On Thu, Nov 12, 2020 at 12:42 AM Nobuhiro Iwamatsu
+<nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
 
-> +static int dp83td510_ack_interrupt(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = phy_read(phydev, DP83TD510_INT_REG1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = phy_read(phydev, DP83TD510_INT_REG2);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	phy_trigger_machine(phydev);
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t dp83td510_handle_interrupt(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = dp83td510_ack_interrupt(phydev);
-> +	if (ret)
-> +		return IRQ_NONE;
-> +
-> +	return IRQ_HANDLED;
-> +}
+> Add the GPIO driver for Toshiba Visconti ARM SoCs.
+>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 
-From what I can see in the datasheet, the INT_REG1 and INT_REG2 are used
-for both interrupt configuration and interrupt status.
+I just noticed this:
 
-If this is the case, the state machine should only be triggered if the
-interrupt was triggered (eg DP83TD510_INT1_LINK is set), not if _any_
-bit from the register is set. This is broken since anytime you have
-interrupts enabled, the lower half of the register will be non-zero
-since that contains you interrupt enabled bits.
+> +config GPIO_VISCONTI
+> +       tristate "Toshiba Visconti GPIO support"
+> +       depends on ARCH_VISCONTI || COMPILE_TEST
+> +       depends on OF_GPIO
+> +       select GPIOLIB_IRQCHIP
+> +       help
+> +         Say yes here to support GPIO on Tohisba Visconti.
 
-The .handle_interrupt() should look something like:
+Add:
+select GPIO_GENERIC
 
-	ret = phy_read(phydev, DP83TD510_INT_REG1);
-	if (ret < 0)
-		return ret;
-	
-	if (!(ret & (DP83TD510_INT1_ESD | DP83TD510_INT1_LINK | DP83TD510_INT1_RHF)))
-		return IRQ_NONE;
+Then all of these:
 
-	ret = phy_read(phydev, DP83TD510_INT_REG2);
-	if (ret < 0)
-		return ret;
-	
-	if (!(ret & (DP83TD510_INT2_POR | DP83TD510_INT2_POL | DP83TD510_INT2_PAGE)))
-		return IRQ_NONE;
+> +static int visconti_gpio_get(struct gpio_chip *chip, unsigned int offset)
+> +static void visconti_gpio_set(struct gpio_chip *chip, unsigned int offset, int value)
+> +static int visconti_gpio_get_dir(struct gpio_chip *chip, unsigned int offset)
+> +static int visconti_gpio_dir_in(struct gpio_chip *chip, unsigned int offset)
+> +static int visconti_gpio_dir_out(struct gpio_chip *chip, unsigned int offset, int value)
 
-	phy_trigger_machine(phydev);
+Can be implemented by the genric MMIO GPIO library.
 
-	return IRQ_HANDLED;
+> +       gpio_chip = &priv->gpio_chip;
+> +       gpio_chip->label = name;
+> +       gpio_chip->owner = THIS_MODULE;
+> +       gpio_chip->parent = dev;
+> +       gpio_chip->request = gpiochip_generic_request;
+> +       gpio_chip->free = gpiochip_generic_free;
+> +       gpio_chip->get = visconti_gpio_get;
+> +       gpio_chip->set = visconti_gpio_set;
+> +       gpio_chip->get_direction = visconti_gpio_get_dir;
+> +       gpio_chip->direction_input = visconti_gpio_dir_in;
+> +       gpio_chip->direction_output = visconti_gpio_dir_out;
+> +       gpio_chip->base = 0;
+> +       gpio_chip->ngpio = VISCONTI_GPIO_NR;
+> +       gpio_chip->irq.init_valid_mask = visconti_init_irq_valid_mask;
 
-> +
-> +static int dp83td510_config_intr(struct phy_device *phydev)
-> +{
-> +	int int_status;
-> +	int gen_cfg_val;
-> +	int ret;
-> +
-> +	if (phydev->interrupts == PHY_INTERRUPT_ENABLED) {
-> +		int_status = phy_read(phydev, DP83TD510_INT_REG1);
-> +		if (int_status < 0)
-> +			return int_status;
-> +
-> +		int_status = (DP83TD510_INT1_ESD_EN | DP83TD510_INT1_LINK_EN |
-> +			      DP83TD510_INT1_RHF_EN);
-> +
-> +		ret = phy_write(phydev, DP83TD510_INT_REG1, int_status);
-> +		if (ret)
-> +			return ret;
-> +
-> +		int_status = phy_read(phydev, DP83TD510_INT_REG2);
-> +		if (int_status < 0)
-> +			return int_status;
-> +
-> +		int_status = (DP83TD510_INT2_POR | DP83TD510_INT2_POL |
-> +				DP83TD510_INT2_PAGE);
-> +
+Initialized the generic helpers using the addresses of the
+GPIO registers here by a call to bgpio_init().
 
-Shouldn't you use DP83TD510_INT2_POR_EN, DP83TD510_INT2_POL_EN etc here?
-It seems that you are setting up the bits corresponding with the
-interrupt status and not the interrupt enable.
+Check this driver for an example:
+drivers/gpio/gpio-ftgpio010.c
 
-Ioana
+If you get uncertain about the arguments to bgpio_init()
+check drivers/gpio/gpio-mmio.c, there is kerneldoc for the
+function.
+
+By doing this you get implementations of gpio_[get|set]_multiple()
+for free.
+
+Yours,
+Linus Walleij
