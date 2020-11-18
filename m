@@ -2,281 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7E22B7D47
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 13:06:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FAE12B7D70
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 13:14:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728024AbgKRME2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 07:04:28 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:14398 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727584AbgKRME1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 07:04:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605701065; x=1637237065;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=7alZks1myJCzUENYUnmDaIC/hCRY63uHci3rPg9Dlsg=;
-  b=cSp0dBRZGnHK0eLxLobTzQrhgenCCjV0E5K1FEU13mbZfcPGBHqML1rK
-   nnMYrs9FwtimVNNFtD+Lk1HY93BK2ePFUYomo1iEUXx6hYuWk1YQsa6sU
-   tFSKsvBExhlWB0w4CuSwfUw9ztW/7mfs/oGcfH/YZwYOVkkbv2sWalsYA
-   Rx70sMR2fr8YdT8nQxdx8emTOKfdcmE9g86PEbES0utJ0IoHvptJL8KwR
-   wFkzSlEmq9mfbxBDsJOC2f8ns7X80KhUBgBIuY/ueEKubJwq1w1pUtjg3
-   YIeDVQ2PNy2oUg2sWe2OnFlwaHWwIi5hyvh+4XpN3hfGiqI1kUVjEhkpn
-   Q==;
-IronPort-SDR: csBmANalLFlPNAULQ0jY9gh4lBTcPcA3jbtSOyl5DVFP4aVo33h5Odl0THVt6ip2W7HWM04ag1
- 0NwKASxtxozim9g2nDBb71mikT8mmoRGIh17Ne0NhV2tDRBRkNToC2kzDJMCe0kJbS21kHdTNG
- 3J0qfDNdjohMOO7lTfj2zxTsXM4GLlg/YSY32IN+s6e/+jt5xeh7z08Ni3/EYJgVc9woDYO9KJ
- OBcDWJrIdSjTdWFp8Vp8OAEBgyxrsL+ZOSH7UjK7Hysd9Lr2fs6UA19Ohq/1bCW6Ukn8qriCUa
- ghc=
-X-IronPort-AV: E=Sophos;i="5.77,486,1596524400"; 
-   d="scan'208";a="34121838"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Nov 2020 05:04:24 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Wed, 18 Nov 2020 05:04:24 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3 via Frontend
- Transport; Wed, 18 Nov 2020 05:04:24 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ltTRnn1QTo4cjELNrBQDNStSPfQGHZ3OUhWx1x1nP23vEMJuC9MKpZ+VAh25cmOymGGuP2IKfzklyn56bXwPcKsoKcc49Ia2KTIC3lw5DC7u770t3KFNAGAF1/jG2x8R3/ACOYL6F3xd0G5aPwCv5ZA3VM3DItN/36Qojs0gA4yI/YiyS2HvxeUX4enfZ1Qhe9eHbzfweayHoo6zCzBnSz6ljEVpzMMHDiVWh8lyVMwrNVao4qVPHuoOlDTBPi8SYK6KETqDnIU0alFo/dXW4miEDkmQ4emm+PdPIX01tRbcXLGw9wJWUQNHL46o3jhDSr16cvyzS9JylPZKq/Xi/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7alZks1myJCzUENYUnmDaIC/hCRY63uHci3rPg9Dlsg=;
- b=ANN4yV1VytLWOTBS7zc3Rno/RBOvc+eTm1QNIKtyI+3bTZC2EXI+etUd2mLep96PWzshQEiCsQCS+Yp+YIDKJjuxxaDCnw9hwDoxdfPc42lfEBg0dkeCwJ86S3+l37zXgshbBAcosnv13lBPx1gUIWE9rWeLV5MP6UmLyF2lkJzbL8nKVsJuN4bXoLwHcyjCvh18wcqQyjVFvZRlhQZeSIDoz+q6ZsB7yCG306gVdAT+NdThCfRJtKs9Wn6anG/Xq2bsYv9xYr12jSTH71IVipeUwIhBD4pwN7RGK1DGCtIN4hbFzSHiw9pfaRhZ1PiRON0HRhCjf+NQlJx0qjR8xA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S1727196AbgKRMN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 07:13:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46328 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727195AbgKRMN4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 07:13:56 -0500
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5748C0613D4;
+        Wed, 18 Nov 2020 04:13:55 -0800 (PST)
+Received: by mail-io1-xd42.google.com with SMTP id j12so1778381iow.0;
+        Wed, 18 Nov 2020 04:13:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7alZks1myJCzUENYUnmDaIC/hCRY63uHci3rPg9Dlsg=;
- b=lCdMzoHc8SanTWlDptFwfqA+FtjeM6omiXCpC7O4XoISil2W74uPNQP2952s3X44UEqJtBlJRzehsr0ebsg2ow8mRyP0GeEHMXT73bhS9uVD469gq4sW7p+6xSyS9+78luTbtxuHXvXf43PHSpmJLts3QnE31gr9YOT1fP1rQ68=
-Received: from BN6PR11MB1827.namprd11.prod.outlook.com (2603:10b6:404:fb::19)
- by BN6PR11MB1362.namprd11.prod.outlook.com (2603:10b6:404:3c::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.28; Wed, 18 Nov
- 2020 12:04:22 +0000
-Received: from BN6PR11MB1827.namprd11.prod.outlook.com
- ([fe80::589a:5eca:a0e2:da55]) by BN6PR11MB1827.namprd11.prod.outlook.com
- ([fe80::589a:5eca:a0e2:da55%4]) with mapi id 15.20.3564.032; Wed, 18 Nov 2020
- 12:04:21 +0000
-From:   <Eugen.Hristev@microchip.com>
-To:     <jacopo@jmondi.org>
-CC:     <laurent.pinchart@ideasonboard.com>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
-        <sakari.ailus@iki.fi>
-Subject: Re: [PATCH v5 2/3] media: atmel: introduce microchip csi2dc driver
-Thread-Topic: [PATCH v5 2/3] media: atmel: introduce microchip csi2dc driver
-Thread-Index: AQHWuPibaT2tWlQByU+886//p3UJRKnMQCMAgAADBYCAAFfoAIABCJyAgAAKQYCAAB7YAIAABy4A
-Date:   Wed, 18 Nov 2020 12:04:21 +0000
-Message-ID: <e959fe6c-2beb-18fb-b9a0-c67c00edd9c0@microchip.com>
-References: <20201112133437.372475-1-eugen.hristev@microchip.com>
- <20201112133437.372475-2-eugen.hristev@microchip.com>
- <20201117115902.unnrnccoj3s4gtam@uno.localdomain>
- <20201117120951.GC3940@pendragon.ideasonboard.com>
- <3615c6eb-e475-9a2b-21e5-0b8d8f64f9c6@microchip.com>
- <20201118091133.hr5iwjqijnj6tjfs@uno.localdomain>
- <29449196-f67b-06bd-a586-03309459cc72@microchip.com>
- <20201118113838.kyz2qw24yowgkerj@uno.localdomain>
-In-Reply-To: <20201118113838.kyz2qw24yowgkerj@uno.localdomain>
-Accept-Language: en-US, ro-RO
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.8.0
-authentication-results: jmondi.org; dkim=none (message not signed)
- header.d=none;jmondi.org; dmarc=none action=none header.from=microchip.com;
-x-originating-ip: [86.121.125.44]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 462c884c-7b38-405e-b000-08d88bba15c6
-x-ms-traffictypediagnostic: BN6PR11MB1362:
-x-microsoft-antispam-prvs: <BN6PR11MB1362FC5B0E2185212FB03185E8E10@BN6PR11MB1362.namprd11.prod.outlook.com>
-x-bypassexternaltag: True
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: W9ablg15JF8hx3vQBsXMWe0za2/+1C8SXrgr1Wz4xjDD+2sxLtaYUi6Am11863vB9iVX/7VjuFhn0uCxF3Dzwd2VkOJr4MBj3EsFNI0TmGXNJc5NLN2jIAZO2KZvVQYTn4rBb8YSCTDXwI16NSalqpscsKJ5a4WZajOPt+OF5AEGuzeLBKtrQ3g4B2ZXmBS0tqIs3g053iKMdf9DHTyVMVOd7oegginEXs99XsoCXZQMSbYM4SmZB8InsJBlZUJ38vMYtU8CdCyopR+ZdkfQuWSy6wM2MHjoR8tH79IzY3vWENxSYIpNUOheQks0ydRZsbjSlQi4HNVaMZGolu2S4uxmrdfJWghpRcLQdfMQjeTjm0WcjCsfFGFH+V27neaaHbvzGQRtPvqccRt/RNQeg9haWGvd97KLjlVPD4pl2dJu7qN0M9023GDIumkdBfX5n/2lUC1j2XdViI64YE0y/g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR11MB1827.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(136003)(366004)(39860400002)(376002)(396003)(76116006)(91956017)(83380400001)(66446008)(6486002)(66556008)(966005)(66946007)(316002)(478600001)(2616005)(54906003)(31696002)(64756008)(6916009)(5660300002)(86362001)(53546011)(6512007)(2906002)(6506007)(66476007)(36756003)(4326008)(8936002)(26005)(186003)(71200400001)(31686004)(8676002)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: ehLmDLjzfquks1N4UvtXvKmXuuKWDTZLSv3OpX9112UtPFuSAyOBRVnLWkxD4MHTuMfXJB5yBs97KSJsZxtZfJv9Ch047rnYqKyR9403tUIecooB5DD4HhYqtl4zwzpXfN0ejWjK0zpMNTNAOePGdP5U0xlp9vb+cL5hbx/5v6AwmYnzP+IB/lpfn3AKovDRRc/IWohHGC6vbYOtVCtj7hfax7z7Ke5/z/1vJPOkL4EdG4X7iqBDLAS0KIJwVVNTYNFMBVz8FBV6cuNfhHdeEbHVDAlDF39WwuxbvJsJ/RgEdMeuhFrkRJ7bRjEH/wUerVzfcPrEPBZOsBefWiI6Ygob9oitKixk5lbWcGk8cQwFj8xDzRy/5HVbnrtmFx0aEtOG6CwWWPVIuXS14iYreKH9DPvryOKj/v4JZA4jCUmDXQJsWeM3pT+kZjcd/1PjhJNNflxg3YQMr0AraXOJ6YEgTvIC9z9yLN7Et6oW86JQI/3rSJ2VlkS0Q1ADRv8/PpyEkBWJC/7g6V7lgRfRcIRKdVP0LTjPlhTil7dJe9Vi/T+q0dBLZjOh4sf45/0Ral96ylyVknvNA9Qb13fGwRmWKRRTAfeXBxng1D0SBaZbuFaBC/5ENBihkwzyAJWP4a1LkQvnhZXofw6RZvtDAtkQ83Y7rFCqVEA05p1eKSVjZKmMteBDqw9/NZTDXcVe4r1knFuUGf4NQF43ZjpY7AS+wi1VbkaShbflONct8hLmnOW3R8NCSEvqc3mAaPMqkChfbjwso3rvjfwgXoKkXjFcMHPjz4arNr+i2VamJxVv+e2x57KYYWZCyZtvJqFSMq0CFnM1juUBxNBevorxzICC1v1RXo805XV4ycnXbZcJIsZ9lgpJtouHJCZ843gy+njT9pq2UrQLbwsmXT/V6A==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B98EFAAF88C143468395C7995A990F44@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=iF3K7BJnTiuP8dKZzbv6GYR2q4prKoKxdgZTYHPcqT8=;
+        b=Q/S87YQtG1fuvVEQ1ExJqNbmG28uSgkfTIS6DginMfaKPXvFaiNnTpHFVEfWqzonuu
+         T4waCvsjcoV2rwjDEuuAHhwbJjWo97g7sF06yFhpmIZoOW0uqfHcRSE9zI33z497xDbZ
+         hckzF5rXLOAy2qhMC3Wytca0Y8BJIVqrRRJ8puG3d5yTJq5w4aGzCPm/q1xAumLLY/nh
+         r87TdJCMdwO0S4Uyn4A82kIp45/GvWCG5+p7t48FABK2VKlGCa19fl0TS/OIAsKQoSn1
+         8u4rgtSJg77N91GshfgwCAZHqRRyqCJv2KXkUloRaMFHXdPii8Wi0hrN6ugPjkYqiEHN
+         qpbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=iF3K7BJnTiuP8dKZzbv6GYR2q4prKoKxdgZTYHPcqT8=;
+        b=JHh8F4YxKz1PRmP5vqF7OtSGUqtT8R3XOJg04p188M8lRMFpDI1IrPiXR7hcsc85q2
+         kii/WNcSEjGXfv2cEishe/OdwRy3fplYy1S14ZCJlqHWDxkkcO+JVHJwYEhzlUa/s4M/
+         SuwX3fdNTZ4n4xNTqrq68ntMSw1GHMPrbkSryNI0bFhxgOfSUXgU6Xiy79WlsHApKT9F
+         Z12ohgDZpNlw9o8Z3I8U2YmMehbW48C83G1xoW+rfTIUkkvBd5OcJ4DqYAvMAaqi39QJ
+         aN5u5uWQTqMvUnf7/IHZhKd9axgBBy6LKfQdVxVjZ2hKAGoiSSCMooAVHCyln0vs4vJ/
+         71BQ==
+X-Gm-Message-State: AOAM531kn2i5oxPH4HCF9gliHVuM6FH5NJINQQCAC/u5DmMYwddO7YYA
+        JVaxK2hWppiHyrJ8dh1tpmCpUp/nmdAwxMrQrdd3mxzN06jVmQ==
+X-Google-Smtp-Source: ABdhPJxTWBYuvxdMAVVRtCgmy0owVY/5zjE7dHHSPDYLM45iY0W9qlTNGj2VpvVUHW9eHXe49XA9qumjO40kUNJlQRM=
+X-Received: by 2002:a05:6602:d7:: with SMTP id z23mr15859729ioe.142.1605701635073;
+ Wed, 18 Nov 2020 04:13:55 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN6PR11MB1827.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 462c884c-7b38-405e-b000-08d88bba15c6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2020 12:04:21.6606
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fmegXbCGvVjKf0GCUoic8qy+muv367EWZSLzh1ngzLzCbetrw+YXkmG7J3bE6GiQX8cy/PzhH+AldWEKbOS56bYdSlA5iNuDNxV8lwi9Wds=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1362
+References: <20201111152523.76254-1-aford173@gmail.com> <20201111191809.GA1859246@bogus>
+ <CAHCN7x+w3wpELWHVSd1-U38N+4TEDKWDRxzXEtDX2svkrTGJCw@mail.gmail.com> <CAL_JsqK580zBfPfPHF2pi52dhOkgf0Ovt8TOxfCjYz0Y54pQzA@mail.gmail.com>
+In-Reply-To: <CAL_JsqK580zBfPfPHF2pi52dhOkgf0Ovt8TOxfCjYz0Y54pQzA@mail.gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 18 Nov 2020 06:13:43 -0600
+Message-ID: <CAHCN7xLRaB49n=Bja_aCZD_rUaD_A54_pL5ApC4Fh8Q8+mhwdQ@mail.gmail.com>
+Subject: Re: [PATCH V4] dt-bindings: soc: imx: Add binding doc for spba bus
+To:     Rob Herring <robh@kernel.org>
+Cc:     Adam Ford-BE <aford@beaconembedded.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMTguMTEuMjAyMCAxMzozOCwgSmFjb3BvIE1vbmRpIHdyb3RlOg0KPiBIaSBFdWdlbiwNCj4g
-DQo+IE9uIFdlZCwgTm92IDE4LCAyMDIwIGF0IDA5OjQ4OjE5QU0gKzAwMDAsIEV1Z2VuLkhyaXN0
-ZXZAbWljcm9jaGlwLmNvbSB3cm90ZToNCj4+IE9uIDE4LjExLjIwMjAgMTE6MTEsIEphY29wbyBN
-b25kaSB3cm90ZToNCj4+PiBIZWxsbyBFdWdlbiwNCj4+Pg0KPiANCj4gW3NuaXBdDQo+IA0KPj4+
-PiBIZWxsbywNCj4+Pj4NCj4+Pj4gRmlyc3Qgb2YgYWxsIHRoYW5rIHlvdSBmb3IgdGhlIHJldmll
-dyBhbmQgZXhwbGFuYXRpb25zLg0KPj4+Pg0KPj4+PiBJIGFtIHN0aWxsIGNvbmZ1c2VkIGFib3V0
-IGhvdyBkb2VzIHRoZSB1c2Vyc3BhY2Uga25vdyB3aGljaCBlbGVtZW50cyBhcmUNCj4+Pj4gaW4g
-dGhlIHBpcGVsaW5lIGFuZCBob3cgdG8gY29ubmVjdCB0aGVtID8NCj4+Pg0KPj4+IFVzaW5nIHRo
-ZSBtZWRpYS1jb250cm9sbGVyIHVBUEkgdG8gaW5zcGVjdCwgZXhwbG9yZSBhbmQgY29uZmlndXJl
-IHRoZQ0KPj4+IG1lZGlhIGdyYXBoIChpdCdzIG1vc3RseSBhYm91dCBlbmFibGluZyBhbmQgZGlz
-YWJsaW5nIG1lZGlhIGxpbmtzKSwNCj4+PiBhbmQgdXNpbmcgdGhlIHY0bDIgc3ViZGV2IHVBUEkg
-dG8gY29uZmlndXJlIGZvcm1hdHMsIHNpemVzIGFuZCBzdWNoIG9uDQo+Pj4gZWFjaCBzdWJkZXZp
-Y2UgZGV2aWNlIG5vZGUgYXNzb2NpYXRlZCB3aXRoIGEgbWVkaWEgZW50aXR5LiBGaW5hbGx5LA0K
-Pj4+IHVzaW5nIHRoZSB2NGwyIHVBUEkgdG8gc3RyZWFtIGZyb20gdGhlIHRvcC1sZXZlbCBkcml2
-ZXIgdGhhdCBleHBvc2UgYQ0KPj4+IHZpZGVvIGRldmljZSBub2RlLg0KPj4NCj4+IE9rYXkgYnV0
-IHdoaWNoIGFwcGxpY2F0aW9uIGluIHVzZXJzcGFjZSB1c2VzIHRoaXMgdXNlckFQSSA/DQo+IA0K
-PiBtZWRpYS1jdGwgd2hpY2ggaXMgcGFydCBvZiB2NGwyLXV0aWxzLg0KPiANCj4gZXhpc3Rpbmcg
-YXBwbGljYXRpb25zIG9yIGZyYW1ld29ya3MgbGlrZSBnc3RyZWFtZXIgaGF2ZSBubyBub3Rpb24g
-b2YNCj4gdGhlIHBsYXRmb3JtIHRoZXkgcnVuIG9uLCB0aGV5IGNhbid0IGNvbmZpZ3VyZSBpdCwg
-dGhleSBvbmx5DQo+IHVuZGVyc3RhbmQgJy9kZXYvdmlkZW8wJw0KPiANCj4+IFNvIEkgY291bGQg
-dXNlIGl0IHRvIHRlc3QgbXkgcGlwZWxpbmUuDQo+Pg0KPiANCj4gVGhlIGZpcnN0IHN0ZXAgaXMg
-dG8gdXNlIG1lZGlhLWN0bCB0byBtYW51YWxseSBzZXR1cCB0aGUgcGlwZWxpbmUgYW5kDQo+IHRl
-c3QuIE9uY2UgaXQncyBzZXR1cCB5b3UgY2FuIHVzdWFsbHkga2VlcCB1c2luZyB0aGUgbGVnYWN5
-DQo+IGFwcGxpY2F0aW9ucyB0aGF0IG9ubHkgc3RyZWFtIGZyb20gL2Rldi92aWRlbzAuDQo+IA0K
-PiBPZiBjb3Vyc2UgbWFudWFsbHkgc2V0dGluZyB1cCB0aGUgcGlwZWxpbmUgdXNpbmcgYSBzY3Jp
-cHQgZG9lcyBub3QNCj4gc2NhbGUsIHRoYXQncyB3aGF0IHRoZSAnbGliY2FtZXJhIHBpcGVsaW5l
-IGhhbmRsZXInIGRvZXMgaW4gZmFjdHMuDQo+IEl0IGltcGxlbWVudHMgdGhlIHNhbWUgbG9naWMg
-dGhhdCB5b3Ugd291bGQgbWFudWFsbHkgYXBwbHkgd2l0aA0KPiBtZWRpYS1jdGwNCj4gDQo+Pj4N
-Cj4+PiBJdCdzIHJlYWxseSAoY29uY2VwdHVhbGx5KSBub3QgZGlmZmVyZW50IHRoYW4gZG9pbmcg
-dGhlIHNhbWUgdXNpbmcNCj4+PiBtZWRpYS1jdGwgYW5kIHY0bDItY3RsLg0KPj4+DQo+Pj4+IEFu
-ZCBpZiB0aGlzIGlzIHRoZSBjYXNlLCB3aGF0IGlzIHRoZSBwdXJwb3NlIG9mIHRoZSBlbmRwb2lu
-dHMgaW4gdGhlIERUID8NCj4+Pj4NCj4+Pg0KPj4+IERUUyBkZXNjcmliZSB0aGUgaGFyZHdhcmUu
-IFVzdWFsbHkgYSBkcml2ZXIgcGFyc2VzIHRoZSBmaXJtd2FyZSBncmFwaA0KPj4+IHRvIGNyZWF0
-ZSBhbmQgbW9kZWwgdGhlIG1lZGlhIGdyYXBoIGFuZCB0aGUgYXZhaWxhYmxlIGNvbm5lY3Rpb25z
-DQo+Pj4gYmV0d2VlbiBtZWRpYSBlbnRpdGllcyBidXQgdGhlcmUncyBubyByZXF1aXJlbWVudCB0
-byBoYXZlIGEgMS10by0xDQo+Pj4gbWF0Y2ggKGFzIGZhciBJJ20gYXdhcmUpLg0KPj4NCj4+IFNv
-IHRoZSB0b3AgbGV2ZWwgdjRsMiBkcml2ZXIgc2hvdWxkIHBhcnNlIHRoZSB3aG9sZSBncmFwaCA/
-DQo+Pg0KPiANCj4gVXNlcnNwYWNlIHNob3VsZCA6KQ0KPiANCj4+Pg0KPj4+IE1lZGlhIGxpbmtz
-IG9uIGEgbWVkaWEgZ3JhcGggdGhlbiBuZWVkIHRvIGJlIGVuYWJsZWQgb3Bwb3J0dW5lbHkNCj4+
-PiBkZXBlbmRpbmcgb24gdGhlIGRlc2lyZWQgdXNlIGNhc2UsIHRoZSBwbGF0Zm9ybSB0b3BvbG9n
-eSBldGMNCj4+Pg0KPj4+PiBBdCB0aGlzIG1vbWVudCwgSSBqdXN0IHVzZSB0aGUgL2Rldi92aWRl
-bzAsIGJlY2F1c2UgdGhlIHRvcCB2NGwyIGRyaXZlcg0KPj4+PiBjb25maWd1cmVzIHRoZSBzdWJk
-ZXZpY2UsIGFuZCB0aGlzIHN1YmRldmljZSBjb25maWd1cmVzIGl0J3Mgb3duDQo+Pj4+IHN1YmRl
-dmljZSBhbmQgc28gb24sIHVudGlsIHRoZSBzZW5zb3IgaXRzZWxmLg0KPj4+Pg0KPj4+PiBNeSB0
-b3AgdjRsMiBkcml2ZXIgd2lsbCBub3QgJ2NvbXBsZXRlJyB1bmxlc3MgYSBzdWJkZXZpY2UgcmVn
-aXN0ZXJzDQo+Pj4+IGl0c2VsZiAsIGFuZCBpZiB0aGlzIHN1YmRldmljZSBkb2VzIG5vdCBwcm92
-aWRlIGFueSBpbmZvcm1hdGlvbg0KPj4+PiByZWdhcmRpbmcgaXRzIGZvcm1hdHMsIHRoZSBwcm9i
-ZSBvZiB0aGUgdG9wIHY0bDIgZHJpdmVyIHdpbGwgZmFpbCwNCj4+Pj4gYmVjYXVzZSBpdCB3aWxs
-IG5vdCBmaW5kIGNvbXBhdGliaWxpdHkgYmV0d2VlbiBpdCdzIHN1cHBvcnRlZCBpbnB1dA0KPj4+
-PiBmb3JtYXRzIGFuZCB3aGF0IHRoZSBzdWJkZXZpY2UgcHJvdmlkZXMuDQo+Pj4NCj4+PiBvdWNo
-LCBJIHNlZS4uIFdoaWNoIGRyaXZlciBpcyB0aGF0ID8NCj4+DQo+PiBUaGUgYXRtZWwgaW1hZ2Ug
-c2Vuc29yIGNvbnRyb2xsZXIgZHJpdmVyLg0KPj4gQWxsIHNlbnNvciBkcml2ZXJzIHRoYXQgd2Ug
-dXNlIChmb3IgZXhhbXBsZSA6IG92NTY0MCwgb3Y3NzQwLCBvdjc2NzApDQo+PiByZWdpc3RlciBh
-cyBzdWJkZXZpY2VzLCBhbmQgdGhlIGF0bWVsLWlzYyB3aWxsICdjb21wbGV0ZScgd2hlbiB0aGUN
-Cj4+IHNlbnNvciBpcyBwcm9iZWQgYW5kIHJlZ2lzdGVyZWQuDQo+IA0KPiBUaGF0J3Mgb2ssIHRo
-ZSBjb21wbGV0ZSBjYWxsYmFjayBpcyBjYWxsZWQgd2hlbiBhbGwgdGhlIGFzeW5jIGRldmljZXMN
-Cj4gcmVnaXN0ZXJlZCBpbiBhIG5vdGlmaWVyIGFyZSBtYXRjaGVkLg0KPiANCj4+IFRvIGhhdmUg
-dGhlIGNzaTJkYyBtb2R1bGUgY29tcGF0aWJsZSB3aXRoIHdoYXQgd2UgaGF2ZSBvbiBhdG1lbC1p
-c2MsDQo+PiBpdCdzIG5hdHVyYWwgdG8gaGF2ZSB0aGUgY3NpMmRjIHJlZ2lzdGVyIGl0c2VsZiBh
-cyBhIHN1YmRldmljZSBzdWNoIHRoYXQNCj4+IHRoZSBhdG1lbC1pc2MgY2FuICdjb21wbGV0ZScu
-DQo+IA0KPiB0aGUgY3NpMmQgcmVnaXN0ZXJpbmcgYXMgc3ViZGV2IGlzIGFsbCBnb29kIChhcGFy
-dCBmcm9tIHRoZSBpc3N1ZSBvZg0KPiBoYXZpbmcgMiB2NGwyX2RldmljZSwgYnV0IGFzIHlvdSd2
-ZSBzZWUgdGhlcmUncyBhIHNvbHV0aW9uIGZvciB0aGF0DQo+IGFuZCBpdCdzIGNhbGxlZCBzdWIt
-bm90aWZpZXJzKS4NCj4gDQo+IFRoZSAnaXNzdWUnIGhlcmUgaXMgdGhhdCB5b3VyIHRvcCBkcml2
-ZXIgd2FudHMgdG8gbWF0Y2ggZm9ybWF0cyB0byBpbml0aWFsaXplDQo+IGl0cyBzdXBwb3J0ZWQg
-Zm9ybWF0IGxpc3QgKGluIGlzY19mb3JtYXRzX2luaXQoKSBmcm9tIHdoYXQgSSBjYW4gc2VlKS4N
-Cj4gDQo+IEFuIE1DIGRyaXZlciBzaG91bGQgbm90IGNhcmUgYWJvdXQgdGhhdC4gRWFjaCBwaWVj
-ZSBvZiB0aGUgcGlwZWxpbmUNCj4gaGFzIHRvIGJlIGNvbnNpZGVyZWQgaW4gaXNvbGF0aW9uLCBh
-bmQgdGhlIGZvcm1hdCBtYXRjaGluZyBoYXBwZW5zIGF0DQo+IGxpbmtfdmFsaWRhdGUoKSB0aW1l
-IGZvciBsaW5rcyBiZXR3ZWVuIHN1YmRldmljZXMgYW5kIHVzdWFsbHkgYXQNCj4gc19zdHJlYW0o
-MSkgdGltZSBiZXR3ZWVuIHN1Yi1kZXZpY2VzIGFuZCB2aWRlbyBkZXZpY2VzLg0KPiANCj4gSW4g
-ZXhhbXBsZSwgZm9ybWF0IGVudW1lcmF0aW9uIG9uIHRoZSB2aWRlbyBkZXZpY2UgcmVnaXN0ZXJl
-ZCBieSB0aGUNCj4gdG9wIHY0bDIgZHJpdmVyIGlzIGNvbmRpdGlvbmFsIHRvIHRoZSBwcmVzZW5j
-ZSBvZiB0aGUgbWJ1c19jb2RlIGZpZWxkDQo+IGFzIHlvdSBjYW4gcmVhZCBpbjoNCj4gaHR0cHM6
-Ly93d3cua2VybmVsLm9yZy9kb2MvaHRtbC9sYXRlc3QvdXNlcnNwYWNlLWFwaS9tZWRpYS92NGwv
-dmlkaW9jLWVudW0tZm10Lmh0bWw/aGlnaGxpZ2h0PWVudW1fZm10I2MuVjRMLlZJRElPQ19FTlVN
-X0ZNVA0KPiANCj4gQW5kIGl0IHNob3VsZCBiZSBwb3NzaWJsZSBieSBzZXR0aW5nIG1idXNfY29k
-ZSA9IDAgdG8gZ2V0IGEgbGlzdCBvZg0KPiBhbGwgZm9ybWF0cyBzdXBwb3J0ZWQgLWJ5IHRoZSBo
-YXJkd2FyZS0gbm90IGxpbWl0ZWQgdG8gdGhlIGN1cnJlbnQgdXNlDQo+IGNhc2UuDQo+IA0KPiBV
-c2Vyc3BhY2Uga25vd3MgdGhlIHBsYXRmb3JtIGFuZCBpZiBhc2tlZCBmb3IgNjQweDQ4MFtZVVY0
-MjBdIHdpbGwgZ28NCj4gYW5kIHNldCB0aGUgcmlnaHQgZm9ybWF0IG9uIGVhY2ggcGllY2Ugb2Yg
-dGhlIHBpcGVsaW5lLCBhZnRlciBoYXZpbmcNCj4gZW5hYmxlZCB0aGUgcmVsZXZhbnQgbGlua3Ms
-IHVzaW5nIHRoZSByaWdodCBtZWRpYSBidXMgY29kZXMgYW5kIHNpemVzDQo+IA0KPiBUb3RhbGx5
-IHJhbmRvbSBleGFtcGxlOg0KPiANCj4gICAgICAgICAgW3ZpZGVvMF0gc19mbXQoNjQweDQ4MCwg
-UElYRk1UX1lVVjQyMikNCj4gICAgICAgICAgIChwYWQgMCkNCj4gICAgICAgICAgICAgfA0KPiAg
-ICAgICAgICAgICB2DQo+ICAgICAgICAgICAocGFkIDEpIHN1ZGV2X3NfZm10KDEsIDY0MHg0ODAs
-IE1CVVNfWVVZVjhfMVgxNikNCj4gICAgICAgICAgW2NzaTJkY10gICAgICAgLS0tIHlvdXIgc3Vi
-ZGV2IGNhbiBjcm9wIC0tLQ0KPiAgICAgICAgICAgKHBhZCAwKSBzdWRldl9zX2ZtdCgwLCA2NDh4
-NDk2LCBNQlVTX1lVWVY4XzFYMTYpDQo+ICAgICAgICAgICAgIHwNCj4gICAgICAgICAgICAgVg0K
-PiAgICAgICAgICAgKHBhZCAwKSBzdWJkZXZfc19mbXQoMCwgNjQ4eDQ5NiwgTUJVU19ZVVlWXzFY
-MTYpDQo+ICAgICAgICAgIFtvdjU2NDBdDQo+IA0KPiBJZiB5b3VyIHRvcCB2NGwyIGRyaXZlciBj
-YW4gcHJvZHVjZSBSR0IgZnJvbSBhIFlVViBzdHJlYW0gaXQncw0KPiBwZXJmZWN0bHkgbGVnaXQg
-dGhlbiB0byBzX2ZtdCh2aWRlbzAsIDY0MHg0ODAsIFBJWEZNVF9SR0I1NjUpIGFuZA0KPiBzdWJk
-ZXZfc19mbXQoY3NpMmRjLCAxLCA2NDB4NDgwLCBNQlVTX1lVWVY4XzFYMTYpLg0KPiANCj4gQXMg
-eW91IGNhbiBzZWUgaXQgYWxsIGRlcGVuZHMgb24gd2hhdCB5b3VyIGhhcmR3YXJlIGNhbiBkby4N
-Cj4gDQoNCkhpIGFnYWluLA0KDQpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB0aGUgZXhwbGFuYXRp
-b25zLiBJdCBpcyBkaWZmZXJlbnQgZnJvbSB3aGF0IEkgDQpoYWQgaW4gbWluZCAoYW5kIGhvdyB3
-ZSB1c2UgdGhlIHN1YnN5c3RlbSByaWdodCBub3cgaW4gb3VyIGRyaXZlcnMgaGVyZSANCikuIEkg
-d2lsbCB0YWtlIHNvbWUgdGltZSB0byB1bmRlcnN0YW5kIGFsbCB0aGlzLCBhbmQgaG9wZWZ1bGx5
-IEkgY2FuIA0KY29tZSB3aXRoIGJldHRlciBkcml2ZXJzLCBiZXR0ZXIgcGlwZWxpbmUgaGFuZGxp
-bmcgYW5kIGxpYmNhbWVyYSANCnBsYXRmb3JtIHN1cHBvcnQuDQoNCkkgbWF5IGhhdmUgcXVlc3Rp
-b25zIGR1cmluZyB0aGUgZGV2ZWxvcG1lbnQsIGJ1dCBJIHRoaW5rIEkgaGF2ZSBlbm91Z2ggDQpp
-bmZvcm1hdGlvbiB0byBnZXQgc3RhcnRlZC4NCg0KdGhhbmtzIGFnYWluICENCg0KRXVnZW4NCj4+
-DQo+Pg0KPj4+DQo+Pj4gSWYgdGhhdCdzIGFuIE1DIGRyaXZlciwgYW5kIHRoYXQgc2VlbXMgdGhl
-IGNhc2UsIGl0IHNob3VsZCBub3QgYm90aGVyDQo+Pj4gdmFsaWRhdGluZyB0aGUgc3ViZGV2aWNl
-IGZvcm1hdHMsIGJ1dCBvbmx5IGNhcmUgYWJvdXQgbGlzdGluZyB3aGF0IGl0cw0KPj4+IGNhcGFi
-aWxpdGllcyBhcmUuDQo+Pg0KPj4gaWYgdGhpcyBhdG1lbC1pc2MgZG9lcyBub3Qgb2ZmZXIgZm9y
-bWF0IGNhcGFiaWxpdGllcyBmb3IgdGhlIHVzZXJzcGFjZQ0KPj4gdmlhIHRoZSAvZGV2L3ZpZGVv
-MCwgdGhlbiBhbGwgYXBwbGljYXRpb25zIHRoYXQgd2UgdXNlIChnc3RyZWFtZXINCj4+IHY0bDJz
-cmMsIGZmbXBlZyApIGZhaWwuDQo+PiBXaGF0IGNhbiB3ZSB1c2UgdGhlbiwgaWYgd2UgY2Fubm90
-IHVzZSB0aGVzZSBhcHBsaWNhdGlvbnMgPw0KPj4NCj4gDQo+IEkgdGhpbmsgaWYgeW91IHNldHVw
-IHRoZSBwaXBlbGluZSB3aXRoIG1lZGlhLWN0bCBjb3JyZWN0bHkgKGllIHlvdQ0KPiBkb24ndCBn
-ZXQgYW55IC1FUElQRSBhdCBzX3N0cmVhbSkgeW91IHNob3VsZCBiZSBhYmxlIHRvIGtlZXAgdXNp
-bmcNCj4gbGVnYWN5IGFwcHMsIGJ1dCBpdCB2ZXJ5IG11Y2ggZGVwZW5kcyBvbiBob3cgdGhleSBh
-cmUgaW1wbGVtZW50ZWQuDQo+IA0KPiBVc3VhbGx5IHNldHRpbmcgdXAgdGhlIHBpcGVsaW5lIHVz
-aW5nIG1lZGlhLWN0bCBhbmQgc3RyZWFtaW5nIHVzaW5nDQo+IHY0bDItY3RsIG9yIHlhdnRhIGlz
-IHRoZSBmaXJzdCB2YWxpZGF0aW9uIHRlc3QuDQo+IA0KPj4+DQo+Pj4+DQo+Pj4+IFNvIHdoYXQg
-dG8gZG8gaW4gdGhpcyBjYXNlID8gTGliY2FtZXJhIHdpbGwgY29uZmlndXJlIHRoaXMgd2hvbGUN
-Cj4+Pj4gcGlwZWxpbmUgZm9yIG1lICwgaWYgdGhlIGRyaXZlcnMganVzdCBwcm9iZSAoIGFuZCBz
-dGFydC9zdG9wIHN0cmVhbWluZw0KPj4+PiBieSBzZWxlY3RpbmcgdGhlIHJlc3BlY3RpdmUgcmVn
-aXN0ZXJzKSA/IG9yIGhvdyB0byBkbyB0aGlzIHdob2xlDQo+Pj4+IHBpcGVsaW5lIGNvbmZpZ3Vy
-YXRpb24gPw0KPj4+Pg0KPj4+DQo+Pj4gV2VsbCwgbGliY2FtZXJhIG9mZmVycyBhIGZyYW1ld29y
-ayB0byBlbmFibGUgc3BlY2lhbGl6ZWQgY29kZSAoY2FsbGVkDQo+Pj4gInBpcGVsaW5lIGhhbmRs
-ZXIiKSB0byBvcGVyYXRlIHVuZGVyIGFuIGhpZ2gtbGV2ZWwgQVBJIHRvd2FyZHMgYXBwbGljYXRp
-b24NCj4+PiBhbmQgaW1wbGVtZW50IGltYWdlIHR1bmluZyBhbGdvcml0aG1zIG9uIHRvcCBvZiB0
-aGF0IGNvbW1vbiBBUEkuDQo+Pj4NCj4+PiBUaGUgY29kZSB0byBjb25maWd1cmUgdGhlIHBpcGVs
-aW5lIGlzIGRldmljZSBzcGVjaWZpYyAodW5sZXNzIHlvdXINCj4+PiBwaXBlbGluZSBpcyB2ZXJ5
-IHNpbXBsZSkuIFNvIGl0J3Mgbm90IHRoYXQgbGliY2FtZXJhIGp1c3QgbWFnaWNhbGx5DQo+Pj4g
-a25vd3MgaG93IHRvIG9wZXJhdGUgb24gZXZlcnkgcGxhdGZvcm1zIGl0IHJ1bnMgb24sIGl0IG5l
-ZWRzIHBsYXRmb3JtDQo+Pj4gc3BlY2lmaWMgY29kZSB0byBkbyBzby4gV2hhdCB5b3UgZ2V0IGlu
-IGV4Y2hhbmdlIGlzIGFuIGhpZ2ggbGV2ZWwgQVBJDQo+Pj4gdG8gb2ZmZXIgdG8gYXBwbGljYXRp
-b24gZGV2ZWxvcGVycywgYSBmcmFtZXdvcmsgdG8gaW1wbGVtZW50IDNBIGFuZA0KPj4+IHR1bmlu
-ZyBhbGdvcml0aG1zLCBpbnRlZ3JhdGlvbiB3aXRoIGEgZ3Jvd2luZyBzZXQgb2Ygb3RoZXIgdXNl
-cnNwYWNlDQo+Pj4gZnJhbWV3b3JrcyAoYW5kcm9pZCwgZ3N0cmVhbWVyLCBwaXBld2lyZSBhbmQg
-YSBsZWdhY3kgdjRsMi1jb21wYXQNCj4+PiBsYXllcikNCj4+DQo+PiBJIHRyaWVkIGEgYnVpbGRy
-b290IHdpdGggbGliY2FtZXJhIGFuZCBnc3RyZWFtZXIgbGliY2FtZXJhc3JjICwgdG8gc2VlDQo+
-PiBob3cgaXQgZ29lcy4gTGliY2FtZXJhIGRvZXMgbm90IHJlY29nbml6ZSB0aGUgL2Rldi92aWRl
-bzAgZGV2aWNlIHRoYXQgd2UNCj4+IGhhdmUuIFRoZSB2NGwyIGNvbXBhdGliaWxpdHkgbGF5ZXIg
-c2hvdWxkIG5vdCBwZXJmb3JtIGV4YWN0bHkgdGhpcyA/DQo+IA0KPiBUaGVyZSdzIG5vIHBpcGVs
-aW5lIGhhbmRsZXIgZm9yIHlvdXIgcGxhdGZvcm0gKHVubGVzcyB5b3UgaGF2ZQ0KPiBkZXZlbG9w
-ZWQgb25lKQ0KPiANCj4+DQo+PiAjIGdzdC1sYXVuY2gtMS4wIGxpYmNhbWVyYXNyYyAhIGZha2Vz
-aW5rDQo+PiBTZXR0aW5nIHBpcGVsaW5lIHRvIFBBVVNFRCAuLi4NCj4+IFswOjAwOjI4LjQ0ODY4
-NzIwMF0gWzIxNl0gIFdBUk4gSVBBTWFuYWdlciBpcGFfbWFuYWdlci5jcHA6MTQ3IE5vIElQQQ0K
-Pj4gZm91bmQgaW4gJy91c3IvbGliL2xpYmNhbWVyYScNCj4+IFswOjAwOjI4LjQ0ODg5MDgwMF0g
-WzIxNl0gIElORk8gQ2FtZXJhIGNhbWVyYV9tYW5hZ2VyLmNwcDoyODcgbGliY2FtZXJhDQo+PiB2
-MC4wLjArNTQzMjgtMjAyMC4xMS1yYzItZGlydHkgKDIwMjAtMTEtMTdUMjA6NTg6MzcrMDI6MDAp
-DQo+PiBFUlJPUjogZnJvbSBlbGVtZW50DQo+PiAvR3N0UGlwZWxpbmU6cGlwZWxpbmUwL0dzdExp
-YmNhbWVyYVNyYzpsaWJjYW1lcmFzcmMwOiBDb3VsZCBub3QgZmluZCBhbnkNCj4+IHN1cHBvcnRl
-ZCBjYW1lcmEgb24gdGhpcyBzeXN0ZW0uDQo+ICAgICAgICAgICAgICBeDQo+IEFuZCB0aGlzIGlz
-IHRoZSBleHBlY3RlZCBvdXRjb21lIDopDQo+IA0KPiBBcyBzYWlkLCBpdCdzIG5vdCB0aGF0IGxp
-YmNhbWVyYSBtYWdpY2FsbHkga25vd3MgaG93IHRvIGRlYWwgd2l0aCBhbGwNCj4gZGV2aWNlcyBp
-dCBpcyBydW4gb24uIFdlIHdvdWxkIG5vdCBuZWVkIGxpYmNhbWVyYSBhdCBhbGwgaWYgdGhhdCB3
-YXMNCj4gdGhlIGNhc2UsIGFueSBhcHBsaWNhdGlvbiB3b3VsZCBiZSBzZWxmLWNvbmZpZ3VyYWJs
-ZSBhbmQgdGhhdCdzIGl0IDopDQo+IA0KDQo=
+On Thu, Nov 12, 2020 at 7:52 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Nov 12, 2020 at 5:44 AM Adam Ford <aford173@gmail.com> wrote:
+> >
+> > On Wed, Nov 11, 2020 at 2:18 PM Rob Herring <robh@kernel.org> wrote:
+> > >
+> > > On Wed, 11 Nov 2020 09:25:23 -0600, Adam Ford wrote:
+> > > > Add binding doc for fsl,spba-bus.
+> > > >
+> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > > > ---
+> > > > make dt_binding_check showed no errors if I did this right.
+> > > >
+> > > > V4:  Remove an accidental makefile change
+> > > >      Move type:object under additional properties
+> > > >
+> > > > V3:  Rebase sample from aips-bus example
+> > > >      Split off from series adding i.MX8M Nano functions to reduce noise
+> > > >
+> > > > V2:  Attempted to update yaml from feedback
+> > > >
+> > >
+> > >
+> > > My bot found errors running 'make dt_binding_check' on your patch:
+> > >
+> > > yamllint warnings/errors:
+> > >
+> > > dtschema/dtc warnings/errors:
+> > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dt.yaml: bus@30000000: reg: [[805306368, 1048576]] is not of type 'object'
+> > >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
+> > >
+> >
+> > Rob,
+> >
+> > Can you give me a pointer on what this message is saying?  I don't
+> > undertsand the YAML language, and I cannot get my machine to generate
+> > the same messages you're seeing.
+>
+> 'reg' is not documented, so it's defaulting to the schema in
+> 'additionalProperties' which says anything else has to be a node
+> (which is an 'object' in json-schema).
+>
+> > >
+> > > See https://patchwork.ozlabs.org/patch/1398351
+> > >
+> > > The base for the patch is generally the last rc1. Any dependencies
+> > > should be noted.
+> > >
+> > > If you already ran 'make dt_binding_check' and didn't see the above
+> > > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > > date:
+> > >
+> > > pip3 install dtschema --upgrade
+> >
+> > I have installed yamllint, and I have run the above line, but when I
+> > run make dt_binding_check it fails to finish script even before I add
+> > this new binding.  If I revert the Makefile back to before the
+> > implementation of yamllint, it works, but doesn't show the error.
+> > When I restore the Makefile, it runs but it doesn't show the error.
+> > Once I do a make clean, and run the dt_binding_check again, it fails
+> > to finish with the following error
+> >
+> > make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
+> > Documentation/devicetree/bindings/processed-schema-examples.json]
+> > Error 123
+> >
+> > It appears as if the processed-schema-examples.json is not generated at all.
+> >
+> > When I revert back to the older makefile, it appears that file is
+> > generated, but when I restore the makefile to the current version and
+> > run it again, it doesn't show the dtschema warnings/errors you see.
+> > I am guessing it's because the processed-schema-examples.json isn't
+> > being generated correctly after I run make clean.
+> >
+> > Do you have any ideas what might be missing from my build machine?
+>
+> What tree? v5.10-rc3 landed some changes that shouldn't have gone in
+> and broke dt_binding_check. In any case, you can use 'make -k' to work
+> around any unrelated failure.
+
+Rob,
+
+I went and pulled a clean copy of 5.10-RC1 and did "make
+dt_binding_check -k" without adding my patch or modifying the branch
+in any way.
+
+After a bunch of DTEX, then starts to give feedback from various yaml
+files like wrong intendentation, etc.  I can give you a larger log
+dump if you want.
+
+Then I get the error message again:
+./Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml:35:15:
+[warning] wrong indentation: expected 16 but found 14 (indentation)
+./Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml:38:15:
+[warning] wrong indentation: expected 16 but found 14 (indentation)
+./Documentation/devicetree/bindings/eeprom/at25.yaml:84:8: [warning]
+wrong indentation: expected 6 but found 7 (indentation)
+./Documentation/devicetree/bindings/eeprom/at25.yaml:90:8: [warning]
+wrong indentation: expected 6 but found 7 (indentation)
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
+Documentation/devicetree/bindings/processed-schema-examples.json]
+Error 123
+make[1]: Target '__build' not remade because of errors.
+make: *** [Makefile:1364: dt_binding_check] Error 2
+
+It appears that
+Documentation/devicetree/bindings/processed-schema-examples.json was
+not generated.
+
+I went through the writing-schema.rst file to see what/if anything I
+am missing, but as far as I can tell, I have everything installed.
+I did " pip3 install
+git+https://github.com/devicetree-org/dt-schema.git@master" and "
+"apt-get install libyaml-dev"
+
+I am running Ubuntu 20.04 if that helps.
+
+thanks for any suggestions you might have.
+
+adam
+
+>
+> Rob
