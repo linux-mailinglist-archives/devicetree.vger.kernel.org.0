@@ -2,63 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92CF82B834E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 18:45:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 97BFC2B8357
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 18:48:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728107AbgKRRpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 12:45:39 -0500
-Received: from mail.pqgruber.com ([52.59.78.55]:53858 "EHLO mail.pqgruber.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728102AbgKRRpi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 12:45:38 -0500
-Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
-        by mail.pqgruber.com (Postfix) with ESMTPSA id B5153C6866D;
-        Wed, 18 Nov 2020 18:45:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
-        s=mail; t=1605721536;
-        bh=vfy6iH8njtY0puGVd8sfT1IejW8lXGG1Yz4/aftKfdA=;
-        h=From:To:Cc:Subject:Date:From;
-        b=uTd5U6zLiXwYzx+zry2j4cevcaZXoQS4LEYOwtWPAbok8oIOgNpk0zqMN82S6cN9r
-         +Sf5obKvljuNdMBxfPd5+bFs8puGT79ehO8eNObpD4WB7ALyTaRVNRQXSCkRWPVKCW
-         YPZNSHEEpyEwsyYEFQ/DEywRn3RtslAHX7iwWb2g=
-From:   Clemens Gruber <clemens.gruber@pqgruber.com>
-To:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        u.kleine-koenig@pengutronix.de, Lee Jones <lee.jones@linaro.org>,
-        linux-kernel@vger.kernel.org,
-        Clemens Gruber <clemens.gruber@pqgruber.com>
-Subject: [PATCH] dt-bindings: pwm: pca9685: Add staggered-outputs property
-Date:   Wed, 18 Nov 2020 18:45:15 +0100
-Message-Id: <20201118174515.278067-1-clemens.gruber@pqgruber.com>
-X-Mailer: git-send-email 2.29.2
+        id S1726494AbgKRRsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 12:48:11 -0500
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:50693 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726360AbgKRRsL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 12:48:11 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C65DC580478;
+        Wed, 18 Nov 2020 12:48:09 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Wed, 18 Nov 2020 12:48:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=WBs0+qXjmXeLcuaDX8p9vezOX23
+        qqrk6o/0xn8RCNhM=; b=U1DMDLZ+NRwaWmeWqmpCIgtYYwGIoU663EKpES8ALDR
+        6SeE9Uqetws3DreEG/Qsw7D2YjNVROXJVid+sbrkl/3oGxT3DNgr/NPucT4JaHY1
+        kPG/D2ySeINFXVPdr9yQP/YWiDH//08ClI863koa47ufz7eS9RdVF2zOKCS+95V7
+        raelulzehsE7PpTWDVm3d8e1KjBXNOCpF7w2UsqIgBicUn8qsONFsmsAdE6d0MPK
+        UXogwHAYFuRweWuDSRZudZmRIQwIJ2thjUcny2UnIO1VOro4PopuYpZu7hpQmFa4
+        X2Zt+7csVu7TUpZSkJM8DGLAtNX+LTb0RKDDmnAkfWQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=WBs0+q
+        XjmXeLcuaDX8p9vezOX23qqrk6o/0xn8RCNhM=; b=VtVGw7EsJlu//oca9mCC3I
+        X0/1VPyTznfArD5C1RgWYugqLR1hqmQDsXnoKeQnVOUfOu+oFMK+vLOVVHUDqLR0
+        xDqRdqSrgFcfVlzaHI4bVWdUqpTxbViCL+faBpfDokt+MdkKeNSrCIPqplDTE3HX
+        96iI9F6a+ywgNl1i9QT/2Xy+eCjEFJU+ojA8ZvecXb2WXiI4DRsqNynkgkHqJDd1
+        TOOQ8lKw2V5DfKzWIMVb2YZ5jHm+E07ipzJ5sYqac06+axP+MyV9xQPPKHR3qfkS
+        qFsQwftIjLneO2JzpjKnI2vk9xrQuXHhvddzlWVoCfv8dMjnPjEjjTlvcW8M9vlA
+        ==
+X-ME-Sender: <xms:V161X2m4GYgJyR7DRkY8KbEiNPlP1h8IzO2IbW42zr-XaPOFDqEPlg>
+    <xme:V161X932Y2VILDup0yrk1C1XdXSpBXYwRV1SxW5XqP7IrOOJhy5G1D9nyo7Pc_J-P
+    XSVR6m2q6G0J0Qjb0U>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudefhedguddtkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheei
+    heegudenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtne
+    curfgrrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:V161X0oCdyxk1cHlXJCw3CMFYCdvcyHZ1dO6aTu20N0tUZ-92fNMqw>
+    <xmx:V161X6nh1Wfqrqk5kZtyuNuJPnCtiwjyppljrCTRZ_L6kCWUZeqV7Q>
+    <xmx:V161X02v3jAHMnQKpfOHdWwrPyZPJmN2Wq9QPfOaHSKTgFYPpoumGA>
+    <xmx:WV61X6y-usYni9MRI2i8vjvElsqrrVgRnljVGOWuA9EosrJmlGYplg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id BDD1D3064AAF;
+        Wed, 18 Nov 2020 12:48:06 -0500 (EST)
+Date:   Wed, 18 Nov 2020 18:48:05 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, dri-devel@lists.freedesktop.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RESEND v3 1/6] drm/of: Change the prototype of
+ drm_of_lvds_get_dual_link_pixel_order
+Message-ID: <20201118174805.cm67sluusovz5n6a@gilmour.lan>
+References: <cover.6cdb798a6b393c8faa9c1297bbdfb8db81238141.1601910923.git-series.maxime@cerno.tech>
+ <6169dd15782627c8415583881fa94ba39c4f5221.1601910923.git-series.maxime@cerno.tech>
+ <20201011230030.GD3944@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="myb6h2js7kdwlghz"
+Content-Disposition: inline
+In-Reply-To: <20201011230030.GD3944@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pca9685 driver supports a new staggered-outputs property for reduced
-current surges and EMI. This adds documentation for the new DT property.
 
-Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
----
- Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt | 2 ++
- 1 file changed, 2 insertions(+)
+--myb6h2js7kdwlghz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt b/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
-index f21b55c95738..911bbb65984e 100644
---- a/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
-+++ b/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
-@@ -12,6 +12,8 @@ Optional properties:
-   - invert (bool): boolean to enable inverted logic
-   - open-drain (bool): boolean to configure outputs with open-drain structure;
- 		       if omitted use totem-pole structure
-+  - staggered-outputs (bool): boolean to enable staggered output ON times to
-+			      minimize current surges and EMI
- 
- Example:
- 
--- 
-2.29.2
+Hi Laurent,
 
+On Mon, Oct 12, 2020 at 02:00:30AM +0300, Laurent Pinchart wrote:
+> > -static int drm_of_lvds_get_remote_pixels_type(
+> > -			const struct device_node *port_node)
+> > +static int drm_of_lvds_get_remote_pixels_type(const struct device_node=
+ *endpoint)
+> >  {
+> > -	struct device_node *endpoint =3D NULL;
+> > -	int pixels_type =3D -EPIPE;
+> > +	struct device_node *remote_port;
+> > +	int pixels_type;
+> > =20
+> > -	for_each_child_of_node(port_node, endpoint) {
+> > -		struct device_node *remote_port;
+> > -		int current_pt;
+> > -
+> > -		if (!of_node_name_eq(endpoint, "endpoint"))
+> > -			continue;
+> > -
+> > -		remote_port =3D of_graph_get_remote_port(endpoint);
+> > -		if (!remote_port) {
+> > -			of_node_put(remote_port);
+> > -			return -EPIPE;
+> > -		}
+> > -
+> > -		current_pt =3D drm_of_lvds_get_port_pixels_type(remote_port);
+> > +	remote_port =3D of_graph_get_remote_port(endpoint);
+> > +	if (!remote_port) {
+> >  		of_node_put(remote_port);
+>=20
+> You can drop this line.
+>=20
+> > -		if (pixels_type < 0)
+> > -			pixels_type =3D current_pt;
+> > -
+> > -		/*
+> > -		 * Sanity check, ensure that all remote endpoints have the same
+> > -		 * pixel type. We may lift this restriction later if we need to
+> > -		 * support multiple sinks with different dual-link
+> > -		 * configurations by passing the endpoints explicitly to
+> > -		 * drm_of_lvds_get_dual_link_pixel_order().
+> > -		 */
+>=20
+> Shouldn't we keep this check when endpoint_id is -1 in
+> drm_of_lvds_get_dual_link_pixel_order() ?
+
+I tried to do that, and I'm not quite really sure how to go around it.
+
+This scans all the endpoints in a given port.
+
+However, now that we have the device, port id and endpoint id, we need
+to use of_graph_get_port_by_id to get the port matching the device and
+port id, and iterate over all its endpoint as done here.
+
+The trouble is that of_graph_get_port_by_id expects a !const
+device_node, yet drm_of_lvds_get_dual_link_pixel_order (and seems to be
+doing so rightfully), so that creates a warning because we drop the
+const there.
+
+Changing the prototype to passing only the port device_node doesn't
+really work either, since it would be const, and we would need to call
+of_graph_get_endpoint_by_regs (so having the parent device_node, through
+of_graph_get_port_parent) and of_graph_get_port_parent takes a !const
+port device_node.
+
+I guess we could drop const entirely from our function, but that doesn't
+look right either..
+
+Maxime
+
+--myb6h2js7kdwlghz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7VeVQAKCRDj7w1vZxhR
+xdqQAP4lOz9e996baqwn9tOP7zUCzjJq+WqnxqOGmXzRnT37ogD/Tadf6Jvw9IqG
+qX8ikq5JJZWhYvsmbGKewyYl6OUmtQU=
+=6hPw
+-----END PGP SIGNATURE-----
+
+--myb6h2js7kdwlghz--
