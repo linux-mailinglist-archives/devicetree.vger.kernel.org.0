@@ -2,73 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21BF82B8628
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 22:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8C42B8650
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 22:11:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727000AbgKRU7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 15:59:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55528 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726234AbgKRU7g (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 15:59:36 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 60F61246CA;
-        Wed, 18 Nov 2020 20:59:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605733176;
-        bh=a7U2C6v9GVw424t93GzLhDnAmyo5rTt0U8ggDVQHPNc=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=VGNVT6PbRD5ZSvhWK+DD132RQ8L6fi0PAchfARO199l2reE5tjWIt/dnVBWKk7DOf
-         t6onpdmbau6n1JopMwyLRO/ZLRv3WPhx0oUInSCbY8Qrqegdu6Gsm+/MffFvZBUeQ4
-         nyDuGE4bRylQuz3C07pwPv8qYi6bw7IZgwCvt1c0=
-Date:   Wed, 18 Nov 2020 20:59:15 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>, robh+dt@kernel.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        tzungbi@google.com, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Cc:     shane.chien@mediatek.com, Trevor.Wu@mediatek.com
-In-Reply-To: <1605081920-11848-1-git-send-email-jiaxin.yu@mediatek.com>
-References: <1605081920-11848-1-git-send-email-jiaxin.yu@mediatek.com>
-Subject: Re: [PATCH] dt-bindings: mediatek: mt8192: revert "add audio afe document"
-Message-Id: <160573314459.46437.12225896346683178113.b4-ty@kernel.org>
+        id S1726412AbgKRVKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 16:10:38 -0500
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:26751 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726374AbgKRVKi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 16:10:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1605733838; x=1637269838;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Jq/eRjn0obi2uv5Dl0AS2noEMEJK9gbeIkY5UoNCpN8=;
+  b=kbpdlJmCzC4GDEAwVieTmYDumxjwRqcuKzjWkbcTO859LiMLd5TnWJ2r
+   25k7UyjeDzGuK7pP420tTio8W7U/s+Q/nA/I+KvgHh0I72IKUUdfw442D
+   qQk+l1dO7qztMzG098Mt2LfeAhsKe4qIbWvaODNQmrcljR+ZanqalRaze
+   pAxk20Td2YM7tszzFHxrTFdo08FSgSUoZtdA6csCCG1Q9gHwr0oI5mvTh
+   GJRIvNQTcvToqmBzdrfYdCqsay23LNS0TPJgQkdtwRl6sRxUlzqlmTi5V
+   7LvNlb1WPW9qqC6boYAxH3+pr29g8HF8Lr+QyilzChBsT+3XGZyfDvu1A
+   Q==;
+IronPort-SDR: 3UR5JNkMD9WDanNxM0NBtX9t15G95UXDp9NLTq9fAdrKKZgWWp/491k1x+pFqjw2QKHMPpoIMI
+ D3/NkG5t/2aPunI3sKHa51eI8ezS4CfTvc7dovDU8za3qTlZ74jXIwKdJd8ACDcaoEMAhcfrKl
+ IQdTBPLcsRFeQXWH7TejPUdryh3MW9DTSD28WAHNTIFACZLgaGz2LM/l0ZOPe3Wj5WfFXibaKP
+ gtLBgeEEntJ2j62rQXgHmEQ2dNtpr9brkGZnwvruOATw+o0WFqcL9N27Mg/M2tvQnOCKm6cjOe
+ Rr0=
+X-IronPort-AV: E=Sophos;i="5.77,488,1596524400"; 
+   d="scan'208";a="98979099"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Nov 2020 14:10:37 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Wed, 18 Nov 2020 14:10:37 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Wed, 18 Nov 2020 14:10:36 -0700
+Date:   Wed, 18 Nov 2020 22:10:36 +0100
+From:   Ludovic Desroches <ludovic.desroches@microchip.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     <cristian.birsan@microchip.com>, <nicolas.ferre@microchip.com>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH 0/3] ARM: dts: at91: add pincontrol node for USB Host
+Message-ID: <20201118210530.2liwy4sywichojry@sekiro>
+References: <20201118120019.1257580-1-cristian.birsan@microchip.com>
+ <20201118150336.g3u3ljuhrbrn2cko@sekiro>
+ <20201118152652.GA11581@piout.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201118152652.GA11581@piout.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Nov 2020 16:05:20 +0800, Jiaxin Yu wrote:
-> This reverts commit 1afc60e00de3abbb6c559da409c5c1bb8c1d98ec.
+On Wed, Nov 18, 2020 at 04:26:52PM +0100, Alexandre Belloni wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> Hello,
+> 
+> On 18/11/2020 16:03:36+0100, Ludovic Desroches wrote:
+> > At first glance, there is no trivial way to register the pin range in the
+> > pinctrl-at91 driver. There is one driver for the pinctrl and one for the gpio.
+> > I am open to suggestions to fix it in the pinctrl-at91 driver as well if there
+> > is an elegant way (I have some in mind, but there are not) without having to
+> > refactor the driver.
+> >
+> 
+> But shouldn't that driver be refactored at some point anyway? I know you
+> are moving away with new SoCs but it causes real issues. For example,
+> gpio hogs are not working, this is impacting some of your customers.
+>
 
-Applied to
+I agree, maintainance of this driver is difficult because of its design.
+Unfortunately, I doubt being able to hadnle a refactoring of this driver in a
+near future.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+> The other thing is the weird probe order preventing a nice cleanup of
+> the platform code.
 
-Thanks!
+True. IMO, having gpio controlers probed before pinctrl is one of the reason
+which prevents a trivial fix.
 
-[1/1] ASoC: mt8192: revert "add audio afe document"
-      commit: 7d94ca3c8acd0117200f34523536ee01615e7dc3
+Regards
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Ludovic
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> 
+> 
+> --
+> Alexandre Belloni, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
