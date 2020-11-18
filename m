@@ -2,355 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C54FF2B85F7
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A7AD2B85A6
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:35:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727028AbgKRUsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 15:48:00 -0500
-Received: from mailout01.rmx.de ([94.199.90.91]:57881 "EHLO mailout01.rmx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726416AbgKRUr7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 15:47:59 -0500
-Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mailout01.rmx.de (Postfix) with ESMTPS id 4Cbvyf245wz2STQb;
-        Wed, 18 Nov 2020 21:47:54 +0100 (CET)
-Received: from mta.arri.de (unknown [217.111.95.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin01.retarus.com (Postfix) with ESMTPS id 4Cbvx536f6z2xF4;
-        Wed, 18 Nov 2020 21:46:33 +0100 (CET)
-Received: from N95HX1G2.wgnetz.xx (192.168.54.25) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 18 Nov
- 2020 21:37:13 +0100
-From:   Christian Eggers <ceggers@arri.de>
-To:     Vladimir Oltean <olteanv@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>
-CC:     Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        Christian Eggers <ceggers@arri.de>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH net-next v3 12/12] net: dsa: microchip: ksz9477: add periodic output support
-Date:   Wed, 18 Nov 2020 21:30:13 +0100
-Message-ID: <20201118203013.5077-13-ceggers@arri.de>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201118203013.5077-1-ceggers@arri.de>
-References: <20201118203013.5077-1-ceggers@arri.de>
+        id S1726397AbgKRUeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 15:34:14 -0500
+Received: from mail.v3.sk ([167.172.186.51]:42664 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725794AbgKRUeN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 15:34:13 -0500
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id A5A35DEE80;
+        Wed, 18 Nov 2020 20:31:30 +0000 (UTC)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id wnFH9mvu5HhT; Wed, 18 Nov 2020 20:31:29 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 02C52DFAD9;
+        Wed, 18 Nov 2020 20:31:29 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 218FZNQk0lq7; Wed, 18 Nov 2020 20:31:28 +0000 (UTC)
+Received: from localhost (unknown [109.183.109.54])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 8E9A4DEE80;
+        Wed, 18 Nov 2020 20:31:28 +0000 (UTC)
+Date:   Wed, 18 Nov 2020 21:34:08 +0100
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v6 1/2] dt-bindings: display: himax,hx8837: Add Himax
+ HX8837 bindings
+Message-ID: <20201118203408.GA6797@demiurge.local>
+References: <20201030030800.1036888-1-lkundrak@v3.sk>
+ <20201030030800.1036888-2-lkundrak@v3.sk>
+ <20201101163922.GA3971@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [192.168.54.25]
-X-RMX-ID: 20201118-214637-4Cbvx536f6z2xF4-0@kdin01
-X-RMX-SOURCE: 217.111.95.66
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201101163922.GA3971@pendragon.ideasonboard.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The KSZ9563 has a Trigger Output Unit (TOU) which can be used to
-generate periodic signals.
+On Sun, Nov 01, 2020 at 06:39:22PM +0200, Laurent Pinchart wrote:
+> Hi Lubomir,
+> 
+> Thank you for the patch.
 
-The pulse length can be altered via a device attribute.
+Thanks for the message. Some responses inline below.
 
-Tested on a Microchip KSZ9563 switch.
+> On Fri, Oct 30, 2020 at 04:07:59AM +0100, Lubomir Rintel wrote:
+> > Himax HX8837 is a secondary display controller used to drive the panel
+> > on OLPC platforms.
+> > 
+> > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > 
+> > ---
+> > Changes since v4:
+> > - Rob's Reviewed-by
+> > 
+> > Changes since v3:
+> > - Moved to bindings/display/
+> > - Added the ports
+> > - Converted to YAML
+> > - Removed Pavel's Ack, because the changes are substantial
+> > 
+> > Changes since v2:
+> > - s/betweend/between/
+> > 
+> > Changes since v1:
+> > - s/load-gpio/load-gpios/
+> > - Use interrupt bindings instead of gpio for the IRQ
+> > 
+> >  .../bindings/display/bridge/himax,hx8837.yaml | 96 +++++++++++++++++++
+> >  1 file changed, 96 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml b/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
+> > new file mode 100644
+> > index 0000000000000..f5b0a00f5089d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
+> > @@ -0,0 +1,96 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (C) 2018,2019,2020 Lubomir Rintel <lkundrak@v3.sk>
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/bridge/himax,hx8837.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: HX8837 Display Controller Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Lubomir Rintel <lkundrak@v3.sk>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: himax,hx8837
+> > +
+> > +  reg:
+> > +    const: 0xd
+> > +
+> > +  load-gpios:
+> > +    maxItems: 1
+> > +    description: GPIO specifier of DCON_LOAD pin (active high)
+> > +
+> > +  stat-gpios:
+> > +    minItems: 2
+> > +    description: GPIO specifier of DCON_STAT0 and DCON_STAT1 pins (active high)
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +    description: Interrupt specifier of DCON_IRQ pin (edge falling)
+> > +
+> > +  ports:
+> > +    type: object
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        type: object
+> > +        description: |
+> > +          Video port for RGB input.
+> > +
+> > +      port@1:
+> > +        type: object
+> > +        description: |
+> > +          Video port connected to the panel.
+> > +
+> > +    required:
+> > +      - port@0
+> > +      - port@1
+> 
+> No regulators ?
 
-Signed-off-by: Christian Eggers <ceggers@arri.de>
----
- drivers/net/dsa/microchip/ksz9477_ptp.c | 197 +++++++++++++++++++++++-
- drivers/net/dsa/microchip/ksz_common.h  |   5 +
- 2 files changed, 201 insertions(+), 1 deletion(-)
+There are four.
 
-diff --git a/drivers/net/dsa/microchip/ksz9477_ptp.c b/drivers/net/dsa/microchip/ksz9477_ptp.c
-index ce3fdc9a1f9e..3174574d52f6 100644
---- a/drivers/net/dsa/microchip/ksz9477_ptp.c
-+++ b/drivers/net/dsa/microchip/ksz9477_ptp.c
-@@ -90,6 +90,20 @@ static int ksz9477_ptp_tou_cycle_count_set(struct ksz_device *dev, u16 count)
- 	return 0;
- }
- 
-+static int ksz9477_ptp_tou_pulse_verify(u64 pulse_ns)
-+{
-+	u32 data;
-+
-+	if (pulse_ns & 0x3)
-+		return -EINVAL;
-+
-+	data = (pulse_ns / 8);
-+	if (data != (data & TRIG_PULSE_WIDTH_M))
-+		return -ERANGE;
-+
-+	return 0;
-+}
-+
- static int ksz9477_ptp_tou_pulse_set(struct ksz_device *dev, u32 pulse_ns)
- {
- 	u32 data;
-@@ -196,6 +210,7 @@ static int ksz9477_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
- 	return ret;
- }
- 
-+static int ksz9477_ptp_restart_perout(struct ksz_device *dev);
- static int ksz9477_ptp_enable_pps(struct ksz_device *dev, int on);
- 
- static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
-@@ -241,6 +256,15 @@ static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
- 	case KSZ_PTP_TOU_IDLE:
- 		break;
- 
-+	case KSZ_PTP_TOU_PEROUT:
-+		dev_info(dev->dev, "Restarting periodic output signal\n");
-+
-+		ret = ksz9477_ptp_restart_perout(dev);
-+		if (ret)
-+			goto error_return;
-+
-+		break;
-+
- 	case KSZ_PTP_TOU_PPS:
- 		dev_info(dev->dev, "Restarting PPS\n");
- 
-@@ -358,6 +382,15 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
- 	case KSZ_PTP_TOU_IDLE:
- 		break;
- 
-+	case KSZ_PTP_TOU_PEROUT:
-+		dev_info(dev->dev, "Restarting periodic output signal\n");
-+
-+		ret = ksz9477_ptp_restart_perout(dev);
-+		if (ret)
-+			goto error_return;
-+
-+		break;
-+
- 	case KSZ_PTP_TOU_PPS:
- 		dev_info(dev->dev, "Restarting PPS\n");
- 
-@@ -377,6 +410,159 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
- 	return ret;
- }
- 
-+static int ksz9477_ptp_configure_perout(struct ksz_device *dev, u32 cycle_width_ns,
-+					u16 cycle_count, u32 pulse_width_ns,
-+					struct timespec64 const *target_time)
-+{
-+	int ret;
-+	u32 trig_ctrl;
-+
-+	/* Enable notify, set rising edge, set periodic pattern */
-+	trig_ctrl = TRIG_NOTIFY | (TRIG_POS_PERIOD << TRIG_PATTERN_S);
-+	ret = ksz_write32(dev, REG_TRIG_CTRL__4, trig_ctrl);
-+	if (ret)
-+		return ret;
-+
-+	ret = ksz9477_ptp_tou_cycle_width_set(dev, cycle_width_ns);
-+	if (ret)
-+		return ret;
-+
-+	ksz9477_ptp_tou_cycle_count_set(dev,  cycle_count);
-+	if (ret)
-+		return ret;
-+
-+	ret = ksz9477_ptp_tou_pulse_set(dev, pulse_width_ns);
-+	if (ret)
-+		return ret;
-+
-+	ret = ksz9477_ptp_tou_target_time_set(dev, target_time);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_enable_perout(struct ksz_device *dev,
-+				     struct ptp_perout_request const *perout_request, int on)
-+{
-+	u32 gpio_stat0;
-+	u64 cycle_width_ns;
-+	int ret;
-+
-+	if (dev->ptp_tou_mode != KSZ_PTP_TOU_PEROUT && dev->ptp_tou_mode != KSZ_PTP_TOU_IDLE)
-+		return -EBUSY;
-+
-+	ret = ksz9477_ptp_tou_reset(dev, 0);
-+	if (ret)
-+		return ret;
-+
-+	if (!on) {
-+		dev->ptp_tou_mode = KSZ_PTP_TOU_IDLE;
-+		return 0;  /* success */
-+	}
-+
-+	dev->ptp_perout_target_time_first.tv_sec  = perout_request->start.sec;
-+	dev->ptp_perout_target_time_first.tv_nsec = perout_request->start.nsec;
-+
-+	dev->ptp_perout_period.tv_sec = perout_request->period.sec;
-+	dev->ptp_perout_period.tv_nsec = perout_request->period.nsec;
-+
-+	cycle_width_ns = timespec64_to_ns(&dev->ptp_perout_period);
-+	if ((cycle_width_ns & GENMASK(31, 0)) != cycle_width_ns)
-+		return -EINVAL;
-+
-+	if (perout_request->flags & PTP_PEROUT_DUTY_CYCLE) {
-+		u64 value = perout_request->on.sec * NSEC_PER_SEC +
-+			    perout_request->on.nsec;
-+
-+		ret = ksz9477_ptp_tou_pulse_verify(value);
-+		if (ret)
-+			return ret;
-+
-+		dev->ptp_perout_pulse_width_ns = value;
-+	}
-+
-+	ret = ksz9477_ptp_configure_perout(dev, cycle_width_ns,
-+					   dev->ptp_perout_cycle_count,
-+					   dev->ptp_perout_pulse_width_ns,
-+					   &dev->ptp_perout_target_time_first);
-+	if (ret)
-+		return ret;
-+
-+	/* Activate trigger unit */
-+	ret = ksz9477_ptp_tou_start(dev, NULL);
-+	if (ret)
-+		return ret;
-+
-+	/* Check error flag:
-+	 * - the ACTIVE flag is NOT cleared an error!
-+	 */
-+	ret = ksz_read32(dev, REG_PTP_TRIG_STATUS__4, &gpio_stat0);
-+	if (ret)
-+		return ret;
-+
-+	if (gpio_stat0 & (1 << (0 + TRIG_ERROR_S))) {
-+		dev_err(dev->dev, "%s: Trigger unit0 error!\n", __func__);
-+		ret = -EIO;
-+		/* Unit will be reset on next access */
-+		return ret;
-+	}
-+
-+	dev->ptp_tou_mode = KSZ_PTP_TOU_PEROUT;
-+	return 0;
-+}
-+
-+static int ksz9477_ptp_restart_perout(struct ksz_device *dev)
-+{
-+	struct timespec64 now;
-+	s64 now_ns, first_ns, period_ns, next_ns;
-+	unsigned int count;
-+	int ret;
-+
-+	ret = _ksz9477_ptp_gettime(dev, &now);
-+	if (ret)
-+		return ret;
-+
-+	now_ns = timespec64_to_ns(&now);
-+	first_ns = timespec64_to_ns(&dev->ptp_perout_target_time_first);
-+
-+	/* Calculate next perout event based on start time and period */
-+	period_ns = timespec64_to_ns(&dev->ptp_perout_period);
-+
-+	if (first_ns < now_ns) {
-+		count = div_u64(now_ns - first_ns, period_ns);
-+		next_ns = first_ns + count * period_ns;
-+	} else {
-+		next_ns = first_ns;
-+	}
-+
-+	/* Ensure 100 ms guard time prior next event */
-+	while (next_ns < now_ns + 100000000)
-+		next_ns += period_ns;
-+
-+	/* Restart periodic output signal */
-+	{
-+		struct timespec64 next = ns_to_timespec64(next_ns);
-+		struct ptp_perout_request perout_request = {
-+			.start = {
-+				.sec  = next.tv_sec,
-+				.nsec = next.tv_nsec
-+			},
-+			.period = {
-+				.sec  = dev->ptp_perout_period.tv_sec,
-+				.nsec = dev->ptp_perout_period.tv_nsec
-+			},
-+			.index = 0,
-+			.flags = 0,  /* keep current values */
-+		};
-+		ret = ksz9477_ptp_enable_perout(dev, &perout_request, 1);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return 0;
-+}
-+
- #define KSZ9477_PPS_TOU 0   /* currently fixed to trigger output unit 0 */
- 
- static int ksz9477_ptp_enable_pps(struct ksz_device *dev, int on)
-@@ -468,6 +654,15 @@ static int ksz9477_ptp_enable(struct ptp_clock_info *ptp,
- 	int ret;
- 
- 	switch (req->type) {
-+	case PTP_CLK_REQ_PEROUT:
-+	{
-+		struct ptp_perout_request const *perout_request = &req->perout;
-+
-+		mutex_lock(&dev->ptp_mutex);
-+		ret = ksz9477_ptp_enable_perout(dev, perout_request, on);
-+		mutex_unlock(&dev->ptp_mutex);
-+		return ret;
-+	}
- 	case PTP_CLK_REQ_PPS:
- 		mutex_lock(&dev->ptp_mutex);
- 		ret = ksz9477_ptp_enable_pps(dev, on);
-@@ -818,7 +1013,7 @@ int ksz9477_ptp_init(struct ksz_device *dev)
- 	dev->ptp_caps.max_adj     = 6249999;
- 	dev->ptp_caps.n_alarm     = 0;
- 	dev->ptp_caps.n_ext_ts    = 0;  /* currently not implemented */
--	dev->ptp_caps.n_per_out   = 0;
-+	dev->ptp_caps.n_per_out   = 1;
- 	dev->ptp_caps.pps         = 1;
- 	dev->ptp_caps.adjfine     = ksz9477_ptp_adjfine;
- 	dev->ptp_caps.adjtime     = ksz9477_ptp_adjtime;
-diff --git a/drivers/net/dsa/microchip/ksz_common.h b/drivers/net/dsa/microchip/ksz_common.h
-index 3481477a62e0..3b897a6c882d 100644
---- a/drivers/net/dsa/microchip/ksz_common.h
-+++ b/drivers/net/dsa/microchip/ksz_common.h
-@@ -56,6 +56,7 @@ struct ksz_port {
- 
- enum ksz_ptp_tou_mode {
- 	KSZ_PTP_TOU_IDLE,
-+	KSZ_PTP_TOU_PEROUT,
- 	KSZ_PTP_TOU_PPS,
- };
- 
-@@ -116,6 +117,10 @@ struct ksz_device {
- 	struct mutex ptp_mutex;		/* protects PTP related hardware */
- 	struct ksz_device_ptp_shared ptp_shared;
- 	enum ksz_ptp_tou_mode ptp_tou_mode;
-+	struct timespec64 ptp_perout_target_time_first;  /* start of first perout pulse */
-+	struct timespec64 ptp_perout_period;
-+	u32 ptp_perout_pulse_width_ns;
-+	u16 ptp_perout_cycle_count;
- #endif
- };
- 
--- 
-Christian Eggers
-Embedded software developer
+On the OLPC platform they're controlled together by the EC.
 
-Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRA 57918
-Persoenlich haftender Gesellschafter: Arnold & Richter Cine Technik GmbH
-Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRB 54477
-Geschaeftsfuehrer: Dr. Michael Neuhaeuser; Stephan Schenk; Walter Trauninger; Markus Zeiler
+I've added the supplies to the EC driver and looked into supporting them 
+properly in the driver and am finding it somehow tricky to do it properly.
 
+I couldn't figure out what is the proper place to enable and disable the
+regulators. Also drm_bridge_remove() just mercilessly tearing down the
+bridge without ensuring it's not used anymore doesn't help us on driver
+unbind.
+
+I'm wondering if it's okay if I leave the driver without explicit
+support for the power supplies for now, assuming that EC just takes
+care of enabling the power and never disable it?
+
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - load-gpios
+> > +  - stat-gpios
+> 
+> Do stat-gpios need to be mandatory ? The driver in patch 2/2 doesn't
+> seem to use them, could we have boards where those signals are not
+> connected to GPIOs ?
+
+Perhaps not, in theory.
+
+Pretty sure the OLPC machines are the only ones that utilize this
+silicon though.
+
+> > +  - interrupts
+> > +  - ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +        
+> 
+> Could you please avoid spaces or tabs at end of lines ? There are three
+> other occurrences below.
+
+Ugh, I was sure I ran checkpatch.pl, but apparently not.
+Sorry for that.
+
+> > +        lcd-controller@d {
+> > +            compatible = "himax,hx8837";
+> > +            reg = <0x0d>;
+> > +            stat-gpios = <&gpio 100 GPIO_ACTIVE_HIGH>,
+> > +                         <&gpio 101 GPIO_ACTIVE_HIGH>;
+> > +            load-gpios = <&gpio 142 GPIO_ACTIVE_HIGH>;
+> > +            interrupts = <&gpio 124 IRQ_TYPE_EDGE_FALLING>;
+> > +    
+> > +            ports {
+> > +                #address-cells = <0x01>;
+> > +                #size-cells = <0x00>;
+> > +    
+> > +                port@0 {
+> > +                    reg = <0x00>;
+> 
+> reg = <0> should be fine. Same below.
+> 
+> With thse small issues addressed,
+> 
+> > +                    dcon_rgb_in: endpoint {
+> > +                        remote-endpoint = <&lcd0_rgb_out>;
+> > +                    };
+> > +                };
+> > +    
+> > +                port@1 {
+> > +                    reg = <0x01>;
+> > +                    dcon_gettl_out: endpoint {
+> > +                        remote-endpoint = <&panel_dettl_in>;
+> > +                    };
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> 
+> It's customary to end bindings with
+> 
+> ...
+> 
+> (not sure why though, given that it seems to work find without)
+
+Okay, will add that.
+
+Thank you
+Lubo
+
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
