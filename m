@@ -2,116 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC1132B8048
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 16:21:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC172B804C
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 16:23:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725879AbgKRPU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 10:20:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46940 "EHLO
+        id S1726426AbgKRPXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 10:23:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725943AbgKRPU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 10:20:56 -0500
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75A12C0613D4;
-        Wed, 18 Nov 2020 07:20:54 -0800 (PST)
-Received: by mail-ed1-x536.google.com with SMTP id l5so2366677edq.11;
-        Wed, 18 Nov 2020 07:20:54 -0800 (PST)
+        with ESMTP id S1726374AbgKRPXA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 10:23:00 -0500
+Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9AB5C0613D4
+        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 07:22:59 -0800 (PST)
+Received: by mail-qk1-x742.google.com with SMTP id q22so2108882qkq.6
+        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 07:22:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JdBpN+/s+eu4dMv9PKV8l+WsBUdr8tnMkExlePSrDm8=;
-        b=Pk48p8ZtWUvC6e3UkkoxM7aqSmvdiN2K0VPViD+hEhTP5zYx83Kp4XszdIG0mxNWL6
-         YQyOYsa3TDm5hgynlL7ZrA0YeKr1tbpq8dNSo4TfbJPHLe0TwD6bZBU7GT6S3WUiJmJC
-         oVhbzrsBb+cMHMmMubgpmzj5P19FBqbqurmXtwDzEDWit0tSFS/UOHE80i1SAM4CFn7e
-         ivRYGc+P9oJ7MiacCZAJN+RGQPKCXptvtvLVQlsI1Iju6BQQ0eQVq+EpiS84sjhqOTis
-         n0QAxuUbEuXUtTYQ15EQ573E53OY11o4EFofeljWJNRHIElT0rWaES6Mc7vOh8eTdMet
-         biWQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GH9Xy8QAdPbukrPXbHMdGuCbNQSmg+d15O0OpK6oPDU=;
+        b=h4TN/jcVvOVqit9i6UFM5UXHAzRVbr+06IwvK4j7baLs601eobWK3ybyjMbrdbYMQf
+         AX+dAZ5qI7pfTTmC76wPgeNmBYoV0CpRZPjq6g6BDLCqtd5hmPnj9GmE/eC6cJsPtzQd
+         boy6lKrCejDjUqOQZ7WP2Z8uUA39a6truy8ZAUhgs7UZ/0AKHFOlXW6wob7FLYNDMOUX
+         zPo7e2O2xtt5vpuJpzyyyiAupzr/DoFUwnX2mLnmRelrTmPDbGddIgS1dZhEMoi0ZZCu
+         FbKO7mTedcHBsOBYDH9tJnDdUkaCnmGWJb5ZQAyE6bUd835SdC2n+q0S+ZmGiZKpEsGx
+         nbxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=JdBpN+/s+eu4dMv9PKV8l+WsBUdr8tnMkExlePSrDm8=;
-        b=qEGEspwMFv+FlaAsRSZE84XD4Py7WHMI4FHoOOFq/JNYd/q7H5yhOw6dElZswecSkK
-         +ySr3lJ+ZHjx41yqhzLIgOgD8vyRf1L8fyZw6AM7Cp5i2SOen78cGduO+UfiDFeaHnyi
-         8zqSvZWrSsR6v5Prt36dEqvGCXxtSvJmTInteTW9m9b/WFfR8Kb/yTA6O9MjIGG1C7Lt
-         YgF+8eoa4f8E3ohSuuJwIfZ14zwyzdt+PQJ9+0DHfkvM3QvL4nxwkroRKqtPDIglO03T
-         kYLxhaHV4Gb1C1uXNMytQhiKTAd47YG6OeH9MkWmCOISOznseJZiXfJ9iLfOlCu7+cAd
-         F/9A==
-X-Gm-Message-State: AOAM530KvUZy821saTiClOvn1x9Mw9YbBytWqUB2XoTDEr4XAwDaDr0J
-        zJ/Ia42JEzl5Yh0e48bMUjA=
-X-Google-Smtp-Source: ABdhPJy/MblYFWTmZbo0aQQjxf6nUrrToTAbkYlP+jLasvfvJ5DUvNMQ3reeUa6qQ5jMzJUSxniU4w==
-X-Received: by 2002:aa7:c5c7:: with SMTP id h7mr2366534eds.143.1605712853164;
-        Wed, 18 Nov 2020 07:20:53 -0800 (PST)
-Received: from localhost.localdomain ([188.24.159.61])
-        by smtp.gmail.com with ESMTPSA id k3sm12554313ejd.36.2020.11.18.07.20.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2020 07:20:52 -0800 (PST)
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] dt-bindings: Fix error in 'make dtbs_check' when using DT_SCHEMA_FILES
-Date:   Wed, 18 Nov 2020 17:20:50 +0200
-Message-Id: <2519b8bde507ca6ccea9765ea197adaaa69a66d5.1605712328.git.cristian.ciocaltea@gmail.com>
-X-Mailer: git-send-email 2.29.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GH9Xy8QAdPbukrPXbHMdGuCbNQSmg+d15O0OpK6oPDU=;
+        b=JgbpVg3bEVPRhWrH5Qf3eqGQ8ekPOMKp4Hj3bPQQ/5Bjv9KCdG8PH/4FVhNq5AZH9Q
+         L20szGR2d8OcHJtBXFzdRY3dJ8fjd94voIUoAHG7wcok4SCMNMS3MXGjcbncGx2wcnpj
+         8kfs3aHxw6MCPyM9qhFOQRoJh6t3zFUf9DXLaFUxIfnnpZd4FiKpYFRRYRlYkzrPBUZE
+         S9hVq9YxKfgzTGDZYL/7urrGt/4etxxxKPe1LC2/LJ83FM9mCcw3vjzr+NrF0j3GNCu2
+         CsLGDdd3TD1/Ve1SpVIxPD0feZhecKAAE5I/NPE3G/f7iKaUCc1oDDl0V8g3HA0ZdPZP
+         qIbg==
+X-Gm-Message-State: AOAM530B+v6W6H3N3JC8Y1ME2Zi2nK0mVHGMF9ivA9wxrdHi/Y29bkUC
+        iQ4RyLvzhHCPCesGVrYFTllqvzeNyW8kKZktDrX7Mg==
+X-Google-Smtp-Source: ABdhPJwIC91BDC5Utr8V4WPjI/sBwnHGPwlWEDaBk3pFF3i5hnFhC9cwQPrgbPvO3III8iQXHYaNfWzNGZJQ4M2yTVc=
+X-Received: by 2002:a37:2782:: with SMTP id n124mr5438013qkn.498.1605712979009;
+ Wed, 18 Nov 2020 07:22:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201114084613.13503-1-grzegorz.jaszczyk@linaro.org>
+ <20201114084613.13503-2-grzegorz.jaszczyk@linaro.org> <20201116152804.GA1679588@bogus>
+In-Reply-To: <20201116152804.GA1679588@bogus>
+From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+Date:   Wed, 18 Nov 2020 16:22:47 +0100
+Message-ID: <CAMxfBF7k9ew1C6VaS8u-u-vr60gUGRYmrEu=ic67Op+udvKu7Q@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: remoteproc: Add binding doc for PRU
+ cores in the PRU-ICSS
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-omap@vger.kernel.org, Ohad Ben Cohen <ohad@wizery.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Roger Quadros <rogerq@ti.com>,
+        "Bajjuri, Praneeth" <praneeth@ti.com>,
+        "Anna, Suman" <s-anna@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If DT_SCHEMA_FILES is specified and contains more than one file paths,
-'make dtbs_check' fails with the following message:
+Hi Rob
 
-  $ make dtbs_check DT_SCHEMA_FILES="path/to/schema1.yaml path/to/schema2.yaml"
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-  Documentation/devicetree/bindings/Makefile:77: recipe for target 'Documentation/devicetree/bindings/processed-schema.json' failed
-  make[1]: *** [Documentation/devicetree/bindings/processed-schema.json] Error 255
-  make[1]: *** Deleting file 'Documentation/devicetree/bindings/processed-schema.json'
-  Makefile:1364: recipe for target 'dt_binding_check' failed
-  make: *** [dt_binding_check] Error 2
+On Mon, 16 Nov 2020 at 16:28, Rob Herring <robh@kernel.org> wrote:
+>
+> On Sat, 14 Nov 2020 09:46:08 +0100, Grzegorz Jaszczyk wrote:
+> > From: Suman Anna <s-anna@ti.com>
+> >
+> > The Programmable Real-Time Unit and Industrial Communication Subsystem
+> > (PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+> > RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
+> >
+> > The K3 AM65x amd J721E SoCs have the next generation of the PRU-ICSS IP,
+> > commonly called ICSSG. The ICSSG IP on AM65x SoCs has two PRU cores,
+> > two auxiliary custom PRU cores called Real Time Units (RTUs). The K3
+> > AM65x SR2.0 and J721E SoCs have a revised version of the ICSSG IP, and
+> > include two additional custom auxiliary PRU cores called Transmit PRUs
+> > (Tx_PRUs).
+> >
+> > This patch adds the bindings for these PRU cores. The binding covers the
+> > OMAP architecture SoCs - AM33xx, AM437x and AM57xx; Keystone 2 architecture
+> > based 66AK2G SoC; and the K3 architecture based SoCs - AM65x and J721E. The
+> > Davinci based OMAPL138 SoCs will be covered in a future patch.
+> >
+> > Co-developed-by: Roger Quadros <rogerq@ti.com>
+> > Signed-off-by: Roger Quadros <rogerq@ti.com>
+> > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+> > ---
+> >  .../bindings/remoteproc/ti,pru-rproc.yaml     | 214 ++++++++++++++++++
+> >  1 file changed, 214 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml:37:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+> ./Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml:92:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
+>
+> dtschema/dtc warnings/errors:
+>
+>
+> See https://patchwork.ozlabs.org/patch/1400241
+>
+> The base for the patch is generally the last rc1. Any dependencies
+> should be noted.
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+>
+> pip3 install dtschema --upgrade
+>
+> Please check and re-submit.
 
-The error code 255 is returned by 'dt-mk-schema' when invoked as
-'dt-mk-schema -j -u @<tmp-file>', where '<tmp-file>' is a temporary
-file that is generated to contain a list of SPACE delimited schema
-file paths, as indicated via DT_SCHEMA_FILES.
+Sorry for that - I've run dt_binding_check which completes without any
+warnings/errors but I didn't had yamllint installed. I will fix
+mentioned warnings for v2.
 
-However, it seems the file format has been recently changed in
-'dt-mk-schema', which now expects each schema path to be provided on
-a separate line:
-
- $ dt-mk-schema --version
- 2020.12.dev4+g6de1c45
-
-Therefore, let's change '<tmp-file>' content format from
-
- path/to/schema1.yaml path/to/schema2.yaml ... path/to/schemaN.yaml
-
-to
-
- path/to/schema1.yaml
- path/to/schema2.yaml
- ...
- path/to/schemaN.yaml
-
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
----
- Documentation/devicetree/bindings/Makefile | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index f50420099a55..643eb873fd51 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -37,7 +37,7 @@ quiet_cmd_chk_bindings = CHKDT   $@
- quiet_cmd_mk_schema = SCHEMA  $@
-       cmd_mk_schema = f=$$(mktemp) ; \
-                       $(if $(DT_MK_SCHEMA_FLAGS), \
--                           echo $(real-prereqs), \
-+                           printf '%s\n' $(real-prereqs), \
-                            $(find_cmd)) > $$f ; \
-                       $(DT_MK_SCHEMA) -j $(DT_MK_SCHEMA_FLAGS) @$$f > $@ ; \
- 		      rm -f $$f
--- 
-2.29.2
-
+Best regards,
+Grzegorz
