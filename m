@@ -2,58 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DBD3F2B7BEC
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 11:59:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F202B7BF8
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 12:00:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726547AbgKRK4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 05:56:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:56130 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726424AbgKRK4w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 05:56:52 -0500
-Received: from localhost (unknown [122.171.203.152])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8007B21D7E;
-        Wed, 18 Nov 2020 10:56:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605697011;
-        bh=Ur8csfkvHK98xjlK0nH3wljSecIkUkEQFfNFT13p7nA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vbMZ55JQg5XPBtaNE4yCoNCEic/GZlUhRbs6Kx0zQSrueSGwKTsseQR9WnXLpW1VV
-         aHuQSJRtA6MKzAAgFrNr6xigWu9Nx32W4kCnpcWE1MpIULxFEPcmz1KABGOw18JNij
-         RH56/EjUyf2HOJjXPxjjFpaNJNS2Xs9GwZ8E+vbA=
-Date:   Wed, 18 Nov 2020 16:26:47 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     Zubair.Kakakhel@imgtec.com, paul@crapouillou.net,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
-Subject: Re: [PATCH RESEND 0/2] Add dmaengine bindings for the JZ4775 and the
- X2000 SoCs.
-Message-ID: <20201118105647.GN50232@vkoul-mobl>
-References: <20201107122016.89859-1-zhouyanjie@wanyeetech.com>
+        id S1725947AbgKRK7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 05:59:48 -0500
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:6715 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725446AbgKRK7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 05:59:48 -0500
+X-Originating-IP: 86.194.74.19
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 72EBE240010;
+        Wed, 18 Nov 2020 10:59:45 +0000 (UTC)
+Date:   Wed, 18 Nov 2020 11:59:45 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen.Hegelund@microchip.com
+Subject: Re: [PATCH 1/5] dt-bindings: reset: ocelot: Add documentation for
+ 'microchip,reset-switch-core' property
+Message-ID: <20201118105945.GF4556@piout.net>
+References: <20201116171159.1735315-1-gregory.clement@bootlin.com>
+ <20201116171159.1735315-2-gregory.clement@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201107122016.89859-1-zhouyanjie@wanyeetech.com>
+In-Reply-To: <20201116171159.1735315-2-gregory.clement@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-11-20, 20:20, 周琰杰 (Zhou Yanjie) wrote:
-> Add the dmaengine bindings for the JZ4775 SoC and the X2000 SoC from Ingenic.
+On 16/11/2020 18:11:55+0100, Gregory CLEMENT wrote:
+> From: Lars Povlsen <lars.povlsen@microchip.com>
 > 
-> 周琰杰 (Zhou Yanjie) (2):
->   dt-bindings: dmaengine: Add JZ4775 bindings.
->   dt-bindings: dmaengine: Add X2000 bindings.
+> This documents the 'microchip,reset-switch-core' property in the
+> ocelot-reset driver.
+> 
+> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+> ---
+>  .../devicetree/bindings/power/reset/ocelot-reset.txt        | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt b/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
+> index 4d530d815484..20fff03753ad 100644
+> --- a/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
+> +++ b/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
+> @@ -9,9 +9,15 @@ microchip Sparx5 armv8 SoC's.
+>  Required Properties:
+>   - compatible: "mscc,ocelot-chip-reset" or "microchip,sparx5-chip-reset"
+>  
+> +Optional properties:
+> +- microchip,reset-switch-core : Perform a switch core reset at the
+> +  time of driver load. This is may be used to initialize the switch
+> +  core to a known state (before other drivers are loaded).
+> +
 
-Applied, thanks
+If this is to be used by the switchdev driver, then I would simply
+register this reset as a proper reset controller (with the  driver/reset
+API) and consume that from the switchdev driver.
+
+However, the switch may also be configured from userspace in existing
+products. In this case you'd have to expose a reset interface, either
+from the drivers/reset core or with a specific consumer.
+
+My point is that this property is not necessary.
 
 -- 
-~Vinod
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
