@@ -2,250 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7AD2B85A6
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:35:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B87292B8603
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:51:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726397AbgKRUeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 15:34:14 -0500
-Received: from mail.v3.sk ([167.172.186.51]:42664 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725794AbgKRUeN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 15:34:13 -0500
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id A5A35DEE80;
-        Wed, 18 Nov 2020 20:31:30 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id wnFH9mvu5HhT; Wed, 18 Nov 2020 20:31:29 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 02C52DFAD9;
-        Wed, 18 Nov 2020 20:31:29 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 218FZNQk0lq7; Wed, 18 Nov 2020 20:31:28 +0000 (UTC)
-Received: from localhost (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 8E9A4DEE80;
-        Wed, 18 Nov 2020 20:31:28 +0000 (UTC)
-Date:   Wed, 18 Nov 2020 21:34:08 +0100
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
+        id S1727025AbgKRUug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 15:50:36 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:37937 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726781AbgKRUug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 15:50:36 -0500
+Received: by mail-ot1-f66.google.com with SMTP id 92so96803otd.5;
+        Wed, 18 Nov 2020 12:50:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=rzuGJTKIjyJhtMSnPa2mvqmBY2OH+8TXIjdPZSXUb1M=;
+        b=Eb1Z/j1JAU1wlAyHBPP8/wG89zJMDaVC/F20BlrgcBsfQoTx0LMQ7XE88hwUXgZZF+
+         VQ0dFP8y5DbAc+wXyNxgMgFCLb3d1Q9M+YOCaroS8ofXRrb4vo7utHHWpEv+gObBkT3v
+         SgXvhOS6dgDOofl/B5HCdxiiN0OWd66UE+lcuIZabbjVuUfNVXLZciS8OHXRGsoGp3Mf
+         9WhkIaBtOhMug2DQD4hyBwBVi15AsDSyZWtuU+7W7xb8n+fbJ4Ujxk2DrsGWVGIq+vgl
+         O497ChwCbC01KVYKATRx4PfjgFHr86n6eoiCAieL2iIL0Z7OJb6eSD36I08SZ1UfdOrU
+         wDeQ==
+X-Gm-Message-State: AOAM532LS0wEXa+bnybCvJ+11cubVycfZdmJacuoEx+GAhDNx0gTr1GZ
+        0HGi3PmfnYqpm0QkyApirgP6GoWOXg==
+X-Google-Smtp-Source: ABdhPJwgobC7djDQXv+wDpmhs7eph9+by/o+u6Cx0Eh5f5mJWhaC+/c47oqnUeTnEoCefcMXZHs7qg==
+X-Received: by 2002:a05:6830:22eb:: with SMTP id t11mr7889535otc.114.1605732635556;
+        Wed, 18 Nov 2020 12:50:35 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x18sm2376067otq.6.2020.11.18.12.50.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2020 12:50:34 -0800 (PST)
+Received: (nullmailer pid 1796286 invoked by uid 1000);
+        Wed, 18 Nov 2020 20:50:33 -0000
+Date:   Wed, 18 Nov 2020 14:50:33 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Marc Zyngier <maz@kernel.org>, Steen.Hegelund@microchip.com,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v6 1/2] dt-bindings: display: himax,hx8837: Add Himax
- HX8837 bindings
-Message-ID: <20201118203408.GA6797@demiurge.local>
-References: <20201030030800.1036888-1-lkundrak@v3.sk>
- <20201030030800.1036888-2-lkundrak@v3.sk>
- <20201101163922.GA3971@pendragon.ideasonboard.com>
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-kernel@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>
+Subject: Re: [PATCH v3 1/5] dt-bindings: interrupt-controller: convert icpu
+ intr bindings to json-schema
+Message-ID: <20201118205033.GA1795638@bogus>
+References: <20201116162427.1727851-1-gregory.clement@bootlin.com>
+ <20201116162427.1727851-2-gregory.clement@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201101163922.GA3971@pendragon.ideasonboard.com>
+In-Reply-To: <20201116162427.1727851-2-gregory.clement@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Nov 01, 2020 at 06:39:22PM +0200, Laurent Pinchart wrote:
-> Hi Lubomir,
+On Mon, 16 Nov 2020 17:24:23 +0100, Gregory CLEMENT wrote:
+> Convert device tree bindings for Microsemi Ocelot SoC ICPU Interrupt
+> Controller to YAML format
 > 
-> Thank you for the patch.
-
-Thanks for the message. Some responses inline below.
-
-> On Fri, Oct 30, 2020 at 04:07:59AM +0100, Lubomir Rintel wrote:
-> > Himax HX8837 is a secondary display controller used to drive the panel
-> > on OLPC platforms.
-> > 
-> > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > 
-> > ---
-> > Changes since v4:
-> > - Rob's Reviewed-by
-> > 
-> > Changes since v3:
-> > - Moved to bindings/display/
-> > - Added the ports
-> > - Converted to YAML
-> > - Removed Pavel's Ack, because the changes are substantial
-> > 
-> > Changes since v2:
-> > - s/betweend/between/
-> > 
-> > Changes since v1:
-> > - s/load-gpio/load-gpios/
-> > - Use interrupt bindings instead of gpio for the IRQ
-> > 
-> >  .../bindings/display/bridge/himax,hx8837.yaml | 96 +++++++++++++++++++
-> >  1 file changed, 96 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml b/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
-> > new file mode 100644
-> > index 0000000000000..f5b0a00f5089d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/himax,hx8837.yaml
-> > @@ -0,0 +1,96 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +# Copyright (C) 2018,2019,2020 Lubomir Rintel <lkundrak@v3.sk>
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/bridge/himax,hx8837.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: HX8837 Display Controller Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Lubomir Rintel <lkundrak@v3.sk>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: himax,hx8837
-> > +
-> > +  reg:
-> > +    const: 0xd
-> > +
-> > +  load-gpios:
-> > +    maxItems: 1
-> > +    description: GPIO specifier of DCON_LOAD pin (active high)
-> > +
-> > +  stat-gpios:
-> > +    minItems: 2
-> > +    description: GPIO specifier of DCON_STAT0 and DCON_STAT1 pins (active high)
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: Interrupt specifier of DCON_IRQ pin (edge falling)
-> > +
-> > +  ports:
-> > +    type: object
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        type: object
-> > +        description: |
-> > +          Video port for RGB input.
-> > +
-> > +      port@1:
-> > +        type: object
-> > +        description: |
-> > +          Video port connected to the panel.
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>  .../mscc,ocelot-icpu-intr.txt                 | 21 -------
+>  .../mscc,ocelot-icpu-intr.yaml                | 59 +++++++++++++++++++
+>  2 files changed, 59 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.yaml
 > 
-> No regulators ?
 
-There are four.
 
-On the OLPC platform they're controlled together by the EC.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I've added the supplies to the EC driver and looked into supporting them 
-properly in the driver and am finding it somehow tricky to do it properly.
+yamllint warnings/errors:
 
-I couldn't figure out what is the proper place to enable and disable the
-regulators. Also drm_bridge_remove() just mercilessly tearing down the
-bridge without ensuring it's not used anymore doesn't help us on driver
-unbind.
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.example.dt.yaml: interrupt-controller@70000070: '#address-cells' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.yaml
 
-I'm wondering if it's okay if I leave the driver without explicit
-support for the power supplies for now, assuming that EC just takes
-care of enabling the power and never disable it?
 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - load-gpios
-> > +  - stat-gpios
-> 
-> Do stat-gpios need to be mandatory ? The driver in patch 2/2 doesn't
-> seem to use them, could we have boards where those signals are not
-> connected to GPIOs ?
+See https://patchwork.ozlabs.org/patch/1401029
 
-Perhaps not, in theory.
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
 
-Pretty sure the OLPC machines are the only ones that utilize this
-silicon though.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> > +  - interrupts
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    i2c {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +        
-> 
-> Could you please avoid spaces or tabs at end of lines ? There are three
-> other occurrences below.
+pip3 install dtschema --upgrade
 
-Ugh, I was sure I ran checkpatch.pl, but apparently not.
-Sorry for that.
+Please check and re-submit.
 
-> > +        lcd-controller@d {
-> > +            compatible = "himax,hx8837";
-> > +            reg = <0x0d>;
-> > +            stat-gpios = <&gpio 100 GPIO_ACTIVE_HIGH>,
-> > +                         <&gpio 101 GPIO_ACTIVE_HIGH>;
-> > +            load-gpios = <&gpio 142 GPIO_ACTIVE_HIGH>;
-> > +            interrupts = <&gpio 124 IRQ_TYPE_EDGE_FALLING>;
-> > +    
-> > +            ports {
-> > +                #address-cells = <0x01>;
-> > +                #size-cells = <0x00>;
-> > +    
-> > +                port@0 {
-> > +                    reg = <0x00>;
-> 
-> reg = <0> should be fine. Same below.
-> 
-> With thse small issues addressed,
-> 
-> > +                    dcon_rgb_in: endpoint {
-> > +                        remote-endpoint = <&lcd0_rgb_out>;
-> > +                    };
-> > +                };
-> > +    
-> > +                port@1 {
-> > +                    reg = <0x01>;
-> > +                    dcon_gettl_out: endpoint {
-> > +                        remote-endpoint = <&panel_dettl_in>;
-> > +                    };
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> 
-> It's customary to end bindings with
-> 
-> ...
-> 
-> (not sure why though, given that it seems to work find without)
-
-Okay, will add that.
-
-Thank you
-Lubo
-
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
