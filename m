@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A819D2B8627
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 22:00:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 21BF82B8628
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 22:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727001AbgKRU7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 15:59:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55424 "EHLO mail.kernel.org"
+        id S1727000AbgKRU7g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 15:59:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55528 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727000AbgKRU7a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 15:59:30 -0500
+        id S1726234AbgKRU7g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 15:59:36 -0500
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BB2682467A;
-        Wed, 18 Nov 2020 20:59:29 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 60F61246CA;
+        Wed, 18 Nov 2020 20:59:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605733170;
-        bh=KThHWpdFxR/3phOiz3HNi03U9rqeXo7gprHwDV15yf4=;
+        s=default; t=1605733176;
+        bh=a7U2C6v9GVw424t93GzLhDnAmyo5rTt0U8ggDVQHPNc=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=Jc9Wvlfe/pcTwjNlV1rq/vKK+uFCbs8GS/iyiQ0T9qt9nGzYRYdk7QFxt32DdaAX/
-         1sMDk05Y0PEpS9S8Ahex+SyRkYbpjRLecQT6jvwelUAwE2kJBdP4csZumcOtELKlJD
-         1dJS2Tb95G5DmIA1EhMDroATc2nF2SE+5GU/MpB8=
-Date:   Wed, 18 Nov 2020 20:59:10 +0000
+        b=VGNVT6PbRD5ZSvhWK+DD132RQ8L6fi0PAchfARO199l2reE5tjWIt/dnVBWKk7DOf
+         t6onpdmbau6n1JopMwyLRO/ZLRv3WPhx0oUInSCbY8Qrqegdu6Gsm+/MffFvZBUeQ4
+         nyDuGE4bRylQuz3C07pwPv8qYi6bw7IZgwCvt1c0=
+Date:   Wed, 18 Nov 2020 20:59:15 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sameer Pujar <spujar@nvidia.com>, Lubomir Rintel <lkundrak@v3.sk>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-In-Reply-To: <20201117013349.2458416-1-robh@kernel.org>
-References: <20201117013349.2458416-1-robh@kernel.org>
-Subject: Re: [PATCH 0/4] ASoC: graph card schema rework
-Message-Id: <160573314458.46437.6554122354226422626.b4-ty@kernel.org>
+To:     linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>, robh+dt@kernel.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        tzungbi@google.com, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Cc:     shane.chien@mediatek.com, Trevor.Wu@mediatek.com
+In-Reply-To: <1605081920-11848-1-git-send-email-jiaxin.yu@mediatek.com>
+References: <1605081920-11848-1-git-send-email-jiaxin.yu@mediatek.com>
+Subject: Re: [PATCH] dt-bindings: mediatek: mt8192: revert "add audio afe document"
+Message-Id: <160573314459.46437.12225896346683178113.b4-ty@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -41,21 +42,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 19:33:45 -0600, Rob Herring wrote:
-> This series updates Sameer's patch to repartition the graph card binding
-> schema and incorporate the OF graph schema. The schema was also mixing
-> card node and DAI node properties, so I've split the DAI part (the
-> 'port' node) into a separate schema.
-> 
-> There's another problem that 'frame-master' and 'bitclock-master' have
-> inconsistent types of boolean and phandle. Having the properties just
-> point to the local or remote endpoint within an endpoint node is kind of
-> pointless. We should have gone with just boolean, but looks like we
-> already have several users. MMP OLPC is the one platform using boolean,
-> but it happens to work because the properties are effectively ignored
-> and CPU DAI as the master is the default.
-> 
-> [...]
+On Wed, 11 Nov 2020 16:05:20 +0800, Jiaxin Yu wrote:
+> This reverts commit 1afc60e00de3abbb6c559da409c5c1bb8c1d98ec.
 
 Applied to
 
@@ -63,12 +51,8 @@ Applied to
 
 Thanks!
 
-[1/3] ASoC: audio-graph-card: Refactor schema
-      commit: e52f3f291152042f1759b2b8838e7ca24556997e
-[2/3] ASoC: dt-bindings: marvell, mmp-sspa: Use audio-graph-port schema
-      commit: fd97ee45ec63759593b06be010a8ed395b299cce
-[3/3] ASoC: dt-bindings: Refine 'frame-master' and 'bitclock-master' type
-      commit: 251bf658558f9feff8a92ddcde402ffa220d13b8
+[1/1] ASoC: mt8192: revert "add audio afe document"
+      commit: 7d94ca3c8acd0117200f34523536ee01615e7dc3
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
