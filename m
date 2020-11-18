@@ -2,95 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B87292B8603
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:51:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A819D2B8627
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 22:00:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727025AbgKRUug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 15:50:36 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:37937 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726781AbgKRUug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 15:50:36 -0500
-Received: by mail-ot1-f66.google.com with SMTP id 92so96803otd.5;
-        Wed, 18 Nov 2020 12:50:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=rzuGJTKIjyJhtMSnPa2mvqmBY2OH+8TXIjdPZSXUb1M=;
-        b=Eb1Z/j1JAU1wlAyHBPP8/wG89zJMDaVC/F20BlrgcBsfQoTx0LMQ7XE88hwUXgZZF+
-         VQ0dFP8y5DbAc+wXyNxgMgFCLb3d1Q9M+YOCaroS8ofXRrb4vo7utHHWpEv+gObBkT3v
-         SgXvhOS6dgDOofl/B5HCdxiiN0OWd66UE+lcuIZabbjVuUfNVXLZciS8OHXRGsoGp3Mf
-         9WhkIaBtOhMug2DQD4hyBwBVi15AsDSyZWtuU+7W7xb8n+fbJ4Ujxk2DrsGWVGIq+vgl
-         O497ChwCbC01KVYKATRx4PfjgFHr86n6eoiCAieL2iIL0Z7OJb6eSD36I08SZ1UfdOrU
-         wDeQ==
-X-Gm-Message-State: AOAM532LS0wEXa+bnybCvJ+11cubVycfZdmJacuoEx+GAhDNx0gTr1GZ
-        0HGi3PmfnYqpm0QkyApirgP6GoWOXg==
-X-Google-Smtp-Source: ABdhPJwgobC7djDQXv+wDpmhs7eph9+by/o+u6Cx0Eh5f5mJWhaC+/c47oqnUeTnEoCefcMXZHs7qg==
-X-Received: by 2002:a05:6830:22eb:: with SMTP id t11mr7889535otc.114.1605732635556;
-        Wed, 18 Nov 2020 12:50:35 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id x18sm2376067otq.6.2020.11.18.12.50.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2020 12:50:34 -0800 (PST)
-Received: (nullmailer pid 1796286 invoked by uid 1000);
-        Wed, 18 Nov 2020 20:50:33 -0000
-Date:   Wed, 18 Nov 2020 14:50:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     devicetree@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Marc Zyngier <maz@kernel.org>, Steen.Hegelund@microchip.com,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-kernel@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>
-Subject: Re: [PATCH v3 1/5] dt-bindings: interrupt-controller: convert icpu
- intr bindings to json-schema
-Message-ID: <20201118205033.GA1795638@bogus>
-References: <20201116162427.1727851-1-gregory.clement@bootlin.com>
- <20201116162427.1727851-2-gregory.clement@bootlin.com>
+        id S1727001AbgKRU7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 15:59:30 -0500
+Received: from mail.kernel.org ([198.145.29.99]:55424 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727000AbgKRU7a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 15:59:30 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BB2682467A;
+        Wed, 18 Nov 2020 20:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605733170;
+        bh=KThHWpdFxR/3phOiz3HNi03U9rqeXo7gprHwDV15yf4=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=Jc9Wvlfe/pcTwjNlV1rq/vKK+uFCbs8GS/iyiQ0T9qt9nGzYRYdk7QFxt32DdaAX/
+         1sMDk05Y0PEpS9S8Ahex+SyRkYbpjRLecQT6jvwelUAwE2kJBdP4csZumcOtELKlJD
+         1dJS2Tb95G5DmIA1EhMDroATc2nF2SE+5GU/MpB8=
+Date:   Wed, 18 Nov 2020 20:59:10 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sameer Pujar <spujar@nvidia.com>, Lubomir Rintel <lkundrak@v3.sk>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+In-Reply-To: <20201117013349.2458416-1-robh@kernel.org>
+References: <20201117013349.2458416-1-robh@kernel.org>
+Subject: Re: [PATCH 0/4] ASoC: graph card schema rework
+Message-Id: <160573314458.46437.6554122354226422626.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201116162427.1727851-2-gregory.clement@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 17:24:23 +0100, Gregory CLEMENT wrote:
-> Convert device tree bindings for Microsemi Ocelot SoC ICPU Interrupt
-> Controller to YAML format
+On Mon, 16 Nov 2020 19:33:45 -0600, Rob Herring wrote:
+> This series updates Sameer's patch to repartition the graph card binding
+> schema and incorporate the OF graph schema. The schema was also mixing
+> card node and DAI node properties, so I've split the DAI part (the
+> 'port' node) into a separate schema.
 > 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  .../mscc,ocelot-icpu-intr.txt                 | 21 -------
->  .../mscc,ocelot-icpu-intr.yaml                | 59 +++++++++++++++++++
->  2 files changed, 59 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.yaml
+> There's another problem that 'frame-master' and 'bitclock-master' have
+> inconsistent types of boolean and phandle. Having the properties just
+> point to the local or remote endpoint within an endpoint node is kind of
+> pointless. We should have gone with just boolean, but looks like we
+> already have several users. MMP OLPC is the one platform using boolean,
+> but it happens to work because the properties are effectively ignored
+> and CPU DAI as the master is the default.
 > 
+> [...]
 
+Applied to
 
-My bot found errors running 'make dt_binding_check' on your patch:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-yamllint warnings/errors:
+Thanks!
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.example.dt.yaml: interrupt-controller@70000070: '#address-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.yaml
+[1/3] ASoC: audio-graph-card: Refactor schema
+      commit: e52f3f291152042f1759b2b8838e7ca24556997e
+[2/3] ASoC: dt-bindings: marvell, mmp-sspa: Use audio-graph-port schema
+      commit: fd97ee45ec63759593b06be010a8ed395b299cce
+[3/3] ASoC: dt-bindings: Refine 'frame-master' and 'bitclock-master' type
+      commit: 251bf658558f9feff8a92ddcde402ffa220d13b8
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-See https://patchwork.ozlabs.org/patch/1401029
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Thanks,
+Mark
