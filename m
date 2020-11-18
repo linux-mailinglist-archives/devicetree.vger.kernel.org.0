@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E58A62B7522
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 05:00:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 32EFF2B7531
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 05:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727288AbgKRD7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 22:59:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54946 "EHLO
+        id S1726202AbgKREDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 23:03:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725947AbgKRD7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 22:59:51 -0500
-Received: from mail-oo1-xc44.google.com (mail-oo1-xc44.google.com [IPv6:2607:f8b0:4864:20::c44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC70C061A4F
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 19:59:51 -0800 (PST)
-Received: by mail-oo1-xc44.google.com with SMTP id 123so79816ooi.8
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 19:59:51 -0800 (PST)
+        with ESMTP id S1725834AbgKREDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 23:03:00 -0500
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1183AC061A4F
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 20:03:00 -0800 (PST)
+Received: by mail-oi1-x242.google.com with SMTP id t143so715802oif.10
+        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 20:03:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=AYUDfsjz/BiPdriQRvZgCzt0EKnDewedXAzX2qb1/N8=;
-        b=ZeWlVK12FMlxSle4OgP3joqmV7i1gWw/cOqbXjFBDI7BZN2qdX6GoWCFFGjcrfOobN
-         +c1smv+vIDCFf3NLdkduY2Gqm10hQDi1a3RRrW/DWlDnd1LMh4/Ca62uX3fKp0Rw6y8m
-         5ZJbDcwQ3e4qLRsUqSQ2NiQGSTFMey1YnJNhUyqccPfTLMV40UiQjGE6ARZ9Y/7LTnv7
-         WZpwDS7iI90DCfbW72QdN7amTrHRRkNDa54wUEYkZ5rAw4IucLQbtqwL0m/K9yJtJrWB
-         njfHe4XYyLMSPy2DRqrvzJv/PlxeZFmodepGNI1fGc2pWO+DeXhqwyMnU372QlZXoG6u
-         cMEw==
+        bh=10leeznI+eRQpEgtqZRmaXQRvCAkSUBOaaabyov8Zyk=;
+        b=G/0ZgiA7hEywvaEPWFtecw0QLSDpKMJHvoz6o5JoNX96b0KFZRw2ZHvpVB/ndhZsF1
+         xv3AvfAL1qpRNGQePlszRP8yZdM3V/Ky+tghDeotunPykmulRfR/tk9DBVQi/tv56R2V
+         oTG72vscrXztgI3DygNouk8vH0SnghoJ2MSfJ+78H16H7J3VYdJ7YotcSiTqEMMA0QxJ
+         4qLwsB3CN0M5pgYGu3v4ivi3yfQGoSlpwV7nZSHkU4OAwQ+94OnJ9VqIY7NYaaUU9ipS
+         WP7lMh88BqvxAUAv5zWgfdfrCZ5Gqy9R5hD4L6SILfRFU9EKpg49xkXjC5Wu9ckl9Thp
+         ghaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=AYUDfsjz/BiPdriQRvZgCzt0EKnDewedXAzX2qb1/N8=;
-        b=rJ7D/xV9hbcFIr9krYHnkoWhhPAVzeM48EsubVAY6J+yLO/rIfORHPMaEJvgyCYqfD
-         Zd8Y0pBPSBRSmVPlkueYdN1vCio3fwEMoshHrpzYljaXGeSLOY2hxmOC87JGt1m4mhrE
-         9EirWfN6xG7U1DHAUID9UUS5XV3DlrZF5+bNEVA6VRXElTVOMmTqjh3QuzHxGMcBJ60C
-         z78MTn2Rwuf+Wzjlszr+SUgVIac16DSlo72VLZAmpmLRPfzMMXmp2zEPmWCE06kH/FVz
-         4BsOQaM1BfpX3sOHD3QYeE0EYN5Fm2Qii3I2tV5IqAE7wkmBozVzzCc/BNdo45fHcV3h
-         7eTw==
-X-Gm-Message-State: AOAM531plFVxpDZyFeLCQIJ86EQqmD6qRDPJcr7+qXJFpnzYxTGEI1fc
-        tRhM++1cKCzEO9Phmjab+BUvdA==
-X-Google-Smtp-Source: ABdhPJxSGvTwJcqUsn9umVLb9zsdDT5WaMv2VN0KIZqNoStysEXnmPXdZdWB2GDVBCnKwkKKqFBpQw==
-X-Received: by 2002:a4a:c4c7:: with SMTP id g7mr5106094ooq.50.1605671991154;
-        Tue, 17 Nov 2020 19:59:51 -0800 (PST)
+        bh=10leeznI+eRQpEgtqZRmaXQRvCAkSUBOaaabyov8Zyk=;
+        b=YrKB3TyDlF3LEQYn2u+dDcY87tbA0ECDhVywNo8OPy4kdJPkwjIxyOgpwBURQWO/0Z
+         a2aJ9NvhrXFWLVVDqO4NsziP67R2AtEMjdXJrn/KzJKyuDvANQdMWBtX9mgNZLezoEuo
+         FR4pA29X1lJD6wDaeNO4qvRPsNX78Nj/tFEouqdw8gXaKcuc/gC72COwqjiyFOmqVccQ
+         eeZ3YUsbGF7MZvWnHRXZjuQLACIK1Ftlu/WcJ5dUcBR/ipulIEzKK6T3O5r1+PlZcmC6
+         Zu81t4YBBaocvski9ieOUrhtkWZrOywekszcSZ38BjqAib15Bgk13ouVELs+ZR0MjyOE
+         ms9A==
+X-Gm-Message-State: AOAM530ZD4cyT2amLBS4GVyURXcpkFteChCXFvPR2I1xKd4SiW+ybTbO
+        p0RbYWzCAXccH9Gx3Mw0KgjljQ==
+X-Google-Smtp-Source: ABdhPJxpEctJk9SnEnIDl3wBD4ipEJV2BaRvejXJ4PLap1Heri7FtZG7cZSQLsofCdWgk1ptZOWSkQ==
+X-Received: by 2002:aca:e155:: with SMTP id y82mr1612187oig.21.1605672179363;
+        Tue, 17 Nov 2020 20:02:59 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id c18sm6159529oob.45.2020.11.17.19.59.50
+        by smtp.gmail.com with ESMTPSA id d202sm7096825oig.3.2020.11.17.20.02.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Nov 2020 19:59:50 -0800 (PST)
-Date:   Tue, 17 Nov 2020 21:59:48 -0600
+        Tue, 17 Nov 2020 20:02:58 -0800 (PST)
+Date:   Tue, 17 Nov 2020 22:02:57 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Thara Gopinath <thara.gopinath@linaro.org>
 Cc:     agross@kernel.org, herbert@gondor.apana.org.au,
@@ -55,57 +55,70 @@ Cc:     agross@kernel.org, herbert@gondor.apana.org.au,
         mturquette@baylibre.com, linux-arm-msm@vger.kernel.org,
         linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/6] clk:qcom:rpmh: Add CE clock on sdm845.
-Message-ID: <20201118035948.GB8532@builder.lan>
+Subject: Re: [PATCH 3/6] drivers:crypto:qce: Enable support for crypto engine
+ on sdm845.
+Message-ID: <20201118040257.GC8532@builder.lan>
 References: <20201117134714.3456446-1-thara.gopinath@linaro.org>
- <20201117134714.3456446-3-thara.gopinath@linaro.org>
+ <20201117134714.3456446-4-thara.gopinath@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201117134714.3456446-3-thara.gopinath@linaro.org>
+In-Reply-To: <20201117134714.3456446-4-thara.gopinath@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue 17 Nov 07:47 CST 2020, Thara Gopinath wrote:
 
-> Qualcomm CE clock resource that is managed by BCM is required
-> by crypto driver to access the core clock.
+> Add support Qualcomm Crypto Engine accelerated encryption and
+> authentication algorithms on sdm845.
 > 
 
-' ' after ':' in $subject
-
-With that
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
 Regards,
-bjorn
+Bjorn
 
 > Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 > ---
->  drivers/clk/qcom/clk-rpmh.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/crypto/qce/core.c | 17 ++++++++++++++++-
+>  1 file changed, 16 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> index e2c669b08aff..7e2a4a9b9bf6 100644
-> --- a/drivers/clk/qcom/clk-rpmh.c
-> +++ b/drivers/clk/qcom/clk-rpmh.c
-> @@ -349,6 +349,7 @@ DEFINE_CLK_RPMH_VRM(sdm845, rf_clk2, rf_clk2_ao, "rfclka2", 1);
->  DEFINE_CLK_RPMH_VRM(sdm845, rf_clk3, rf_clk3_ao, "rfclka3", 1);
->  DEFINE_CLK_RPMH_VRM(sm8150, rf_clk3, rf_clk3_ao, "rfclka3", 1);
->  DEFINE_CLK_RPMH_BCM(sdm845, ipa, "IP0");
-> +DEFINE_CLK_RPMH_BCM(sdm845, ce, "CE0");
+> diff --git a/drivers/crypto/qce/core.c b/drivers/crypto/qce/core.c
+> index ea616b7259ae..67c3ca13e55b 100644
+> --- a/drivers/crypto/qce/core.c
+> +++ b/drivers/crypto/qce/core.c
+> @@ -160,7 +160,21 @@ static int qce_check_version(struct qce_device *qce)
+>  		return -ENODEV;
 >  
->  static struct clk_hw *sdm845_rpmh_clocks[] = {
->  	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
-> @@ -364,6 +365,7 @@ static struct clk_hw *sdm845_rpmh_clocks[] = {
->  	[RPMH_RF_CLK3]		= &sdm845_rf_clk3.hw,
->  	[RPMH_RF_CLK3_A]	= &sdm845_rf_clk3_ao.hw,
->  	[RPMH_IPA_CLK]		= &sdm845_ipa.hw,
-> +	[RPMH_CE_CLK]		= &sdm845_ce.hw,
+>  	qce->burst_size = QCE_BAM_BURST_SIZE;
+> -	qce->pipe_pair_id = 1;
+> +
+> +	/*
+> +	 * Rx and tx pipes are treated as a pair inside CE.
+> +	 * Pipe pair number depended on the actual BAM dma pipe
+> +	 * that is used for transfers. The BAM dma pipes are passed
+> +	 * from the device tree and used to derive the pipe pair
+> +	 * id in the CE driver as follows.
+> +	 * 	BAM dma pipes(rx, tx)		CE pipe pair id
+> +	 *		0,1				0
+> +	 *		2,3				1
+> +	 *		4,5				2
+> +	 *		6,7				3
+> +	 *		...
+> +	 */
+> +	qce->pipe_pair_id = qce->dma.rxchan->chan_id >> 1;
+>  
+>  	dev_dbg(qce->dev, "Crypto device found, version %d.%d.%d\n",
+>  		major, minor, step);
+> @@ -261,6 +275,7 @@ static int qce_crypto_remove(struct platform_device *pdev)
+>  
+>  static const struct of_device_id qce_crypto_of_match[] = {
+>  	{ .compatible = "qcom,crypto-v5.1", },
+> +	{ .compatible = "qcom,crypto-v5.4", },
+>  	{}
 >  };
->  
->  static const struct clk_rpmh_desc clk_rpmh_sdm845 = {
+>  MODULE_DEVICE_TABLE(of, qce_crypto_of_match);
 > -- 
 > 2.25.1
 > 
