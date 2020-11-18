@@ -2,52 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D95FD2B8671
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 22:18:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D32B2B8676
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 22:20:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726719AbgKRVRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 16:17:42 -0500
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:44223 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726081AbgKRVRl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 16:17:41 -0500
-Received: by mail-oi1-f193.google.com with SMTP id t16so3819186oie.11;
-        Wed, 18 Nov 2020 13:17:41 -0800 (PST)
+        id S1726457AbgKRVUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 16:20:15 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:33745 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726081AbgKRVUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 16:20:13 -0500
+Received: by mail-ot1-f66.google.com with SMTP id i18so3268314ots.0;
+        Wed, 18 Nov 2020 13:20:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CrO86IqWPbTbsc39/JXRXWCmzImNuk67BHzeZAf8HpM=;
-        b=fxk0HMYuEub6u1NeKeroTdNjuets4ePHKeVvWl2cojeS70rKuRJYWtYpuvwxAZsycJ
-         71gZ7U9wAjsSPTZXFLMrRwsgyud5AvtL8LSUa56mDS9mnU1ZRL4tUpiuXtLYvS/89S7p
-         ounP+9hcRMeuLzAbTekzFTf+jBu+NfeMie1SZyAqnEZomMydW7lmhV8G2hgktl+lWG6s
-         6xD6LdYk+YvaT3EyCvyfUj3GjVLy6LCxcppp08WO4QP4gGExAFG7jIzMAbWCZLzpKapP
-         2vzNFPoZzT8nBVxCUAW6/C/ax+RFrfk7w2sME3Qq0TaspDET4JD1qVq0qXKIYosERc7g
-         0jCw==
-X-Gm-Message-State: AOAM531KkTj0P12DRieIHIxYcSWUt4ATaPMb9191qYuPYzuv14cgAo99
-        US9+fvv5TEFQ/AU/5Uo5TTPJDe/Q/w==
-X-Google-Smtp-Source: ABdhPJy2LH7KNJfnAqtIiOaBIWsRT+PWtGAfzx9WCDFVCR2EG1cgHL21bS++4cjS441xxMV8OhUucQ==
-X-Received: by 2002:aca:5710:: with SMTP id l16mr795508oib.24.1605734260797;
-        Wed, 18 Nov 2020 13:17:40 -0800 (PST)
+        bh=xxDQzbtN51ZM9RWc+QApDYZ4ouwW+tWVnWkPA7oZTzs=;
+        b=Cyww4UA7wByllH+2i2pRYY8/jTUXdbtnLu/LZn+r8EHfIeO32BAxkuLLfiw8j0bcso
+         ++WT0+P74hwDoFpAu+sR9P7TV57mImqvgeBhhZ9U6s2TeSHAXIPqT7bZJTTlFRqVADhd
+         5y7RelqKYepS1AXKDkOpJXjlYRf13jmCHlT4FuWE94YurKSMepXjCwei91rY8L+WluNr
+         owvNqZ2CiJD6SYYO/2sQed7fVbtKGLbi604ObwzDoYJp0RpXcoPOcEU6NRV3xu4rZfyn
+         2QY04TYr7zLi/NCix1oC/eqY8NYnLcdr4eo6c+NGfLfWHq1BiJqfSCOnDBRqv2D8O+ET
+         lgwg==
+X-Gm-Message-State: AOAM5318t/AKw2y9Put5m/MO0yCLXStLQ50ALCYaDAju/1Dy+qrFZNwo
+        uEKhvqkdo9+aUMzLxF4REA==
+X-Google-Smtp-Source: ABdhPJzTp+5QpsJ3xGzP56XqMirz+h4CUFzlcSskH6wQZ3G8qsykknAlwlmGgxwYQfYncrrndRyjBg==
+X-Received: by 2002:a9d:7a97:: with SMTP id l23mr8213906otn.232.1605734410372;
+        Wed, 18 Nov 2020 13:20:10 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u66sm873142otb.48.2020.11.18.13.17.39
+        by smtp.gmail.com with ESMTPSA id z77sm8513784ooa.37.2020.11.18.13.20.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2020 13:17:39 -0800 (PST)
-Received: (nullmailer pid 1831435 invoked by uid 1000);
-        Wed, 18 Nov 2020 21:17:34 -0000
-Date:   Wed, 18 Nov 2020 15:17:34 -0600
+        Wed, 18 Nov 2020 13:20:09 -0800 (PST)
+Received: (nullmailer pid 1834694 invoked by uid 1000);
+        Wed, 18 Nov 2020 21:20:09 -0000
+Date:   Wed, 18 Nov 2020 15:20:09 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Hector Yuan <hector.yuan@mediatek.com>,
-        linux-kernel@vger.kernel.org,
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Subject: Re: [PATCH v2] dt-bindings: dvfs: Add support for generic
  performance domains
-Message-ID: <20201118211734.GA1827746@bogus>
+Message-ID: <20201118212009.GB1827746@bogus>
 References: <20201116181356.804590-1-sudeep.holla@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -57,7 +55,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Nov 2020 18:13:56 +0000, Sudeep Holla wrote:
+On Mon, Nov 16, 2020 at 06:13:56PM +0000, Sudeep Holla wrote:
 > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
 > implementations where untrusted software had direct access to clock and
 > voltage hardware controls. In this attack, the malicious software was able to
@@ -98,26 +96,99 @@ On Mon, 16 Nov 2020 18:13:56 +0000, Sudeep Holla wrote:
 > 
 > [1] https://lore.kernel.org/lkml/20201105173539.1426301-1-sudeep.holla@arm.com
 > 
+> diff --git a/Documentation/devicetree/bindings/dvfs/performance-domain.yaml b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+> new file mode 100644
+> index 000000000000..29fb589a5192
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+> @@ -0,0 +1,76 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dvfs/performance-domain.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic performance domains
+> +
+> +maintainers:
+> +  - Sudeep Holla <sudeep.holla@arm.com>
+> +
+> +description: |+
+> +  This binding is intended for performance management of groups of devices or
+> +  CPUs that run in the same performance domain. Performance domains must not
+> +  be confused with power domains. A performance domain is defined by a set
+> +  of devices that always have to run at the same performance level. For a given
+> +  performance domain, there is a single point of control that affects all the
+> +  devices in the domain, making it impossible to set the performance level of
+> +  an individual device in the domain independently from other devices in
+> +  that domain. For example, a set of CPUs that share a voltage domain, and
+> +  have a common frequency control, is said to be in the same performance
+> +  domain.
+> +
+> +  This device tree binding can be used to bind performance domain consumer
+> +  devices with their performance domains provided by performance domain
+> +  providers. A performance domain provider can be represented by any node in
+> +  the device tree and can provide one or more performance domains. A consumer
+> +  node can refer to the provider by a phandle and a set of phandle arguments
+> +  (so called performance domain specifiers) of length specified by the
+> +  \#performance-domain-cells property in the performance domain provider node.
+> +
+> +select: true
 
+So apply to every node and...
 
-My bot found errors running 'make dt_binding_check' on your patch:
+> +
+> +properties:
+> +  "#performance-domain-cells":
+> +    description:
+> +      Number of cells in a performance domain specifier. Typically 0 for nodes
+> +      representing a single performance domain and 1 for nodes providing
+> +      multiple performance domains (e.g. performance controllers), but can be
+> +      any value as specified by device tree binding documentation of particular
+> +      provider.
+> +    enum: [ 0, 1 ]
+> +
+> +  performance-domains:
+> +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> +    description:
+> +      A phandle and performance domain specifier as defined by bindings of the
+> +      performance controller/provider specified by phandle.
+> +
+> +required:
+> +  - "#performance-domain-cells"
 
-yamllint warnings/errors:
+Every node must have this!
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ata/pata-common.example.dt.yaml: /: '#performance-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ata/sata-common.example.dt.yaml: /: '#performance-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ata/allwinner,sun8i-r40-ahci.example.dt.yaml: /: '#performance-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ata/allwinner,sun8i-r40-ahci.example.dt.yaml: example-0: '#performance-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ata/allwinner,sun8i-r40-ahci.example.dt.yaml: sata@1c18000: '#performance-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/ata/imx-sata.example.dt.yaml: /: '#performance-domain-cells' is a required property
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+It can only be required in actual users.
 
-and on and on...
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    performance: performance-controller@12340000 {
+> +        compatible = "qcom,cpufreq-hw";
+> +        reg = <0x12340000 0x1000>;
+> +        #performance-domain-cells = <1>;
+> +    };
+> +
+> +    // The node above defines a performance controller that is a performance
+> +    // domain provider and expects one cell as its phandle argument.
+> +    cpus {
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +
+> +        cpu@0 {
+> +            device_type = "cpu";
+> +            compatible = "arm,cortex-a57";
+> +            reg = <0x0 0x0>;
+> +            performance-domains = <&performance 1>;
 
+Looks like the cpu schema needs an addition.
 
+> +        };
+> +    };
+> +
+> -- 
+> 2.25.1
+> 
