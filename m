@@ -2,228 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B17E2B858E
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:27:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E0E2B85A0
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:35:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727050AbgKRU13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 15:27:29 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48284 "EHLO mail.kernel.org"
+        id S1726847AbgKRUbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 15:31:48 -0500
+Received: from mailout06.rmx.de ([94.199.90.92]:33674 "EHLO mailout06.rmx.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726397AbgKRU12 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 15:27:28 -0500
-Received: from localhost.localdomain (adsl-84-226-167-205.adslplus.ch [84.226.167.205])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726812AbgKRUbs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 15:31:48 -0500
+Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B24FE246BB;
-        Wed, 18 Nov 2020 20:27:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605731247;
-        bh=SiKYyNuVm2mB5fmXmvYS4evDr6B1t4R+Rg/KThxSQ7I=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=HPNX9dd13cIiF//pBhj3WvQ7LshhI9Mshia1DnyUUOir8wMmLeOVkXSP9CZQhEgcH
-         CrSnZx4ykDWb7YpnzYhKxONxcAk5afhTe8N1PIz6+I7B9qULHHcfvqT2Nk9eEnmqrD
-         UTQghZKRMmmCeofk0wBcgylR1v4eLt/gVf0B8NI0=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v6 4/4] media: i2c: imx258: get clock from device properties and enable it via runtime PM
-Date:   Wed, 18 Nov 2020 21:27:15 +0100
-Message-Id: <20201118202715.6692-4-krzk@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201118202715.6692-1-krzk@kernel.org>
-References: <20201118202715.6692-1-krzk@kernel.org>
+        by mailout06.rmx.de (Postfix) with ESMTPS id 4Cbvbz313Gz9vqV;
+        Wed, 18 Nov 2020 21:31:43 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin01.retarus.com (Postfix) with ESMTPS id 4Cbvbk5G1Mz2xDw;
+        Wed, 18 Nov 2020 21:31:30 +0100 (CET)
+Received: from N95HX1G2.wgnetz.xx (192.168.54.25) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 18 Nov
+ 2020 21:30:29 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>
+CC:     Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        Christian Eggers <ceggers@arri.de>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH net-next v3 00/12] net: dsa: microchip: PTP support for KSZ956x
+Date:   Wed, 18 Nov 2020 21:30:01 +0100
+Message-ID: <20201118203013.5077-1-ceggers@arri.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.54.25]
+X-RMX-ID: 20201118-213130-4Cbvbk5G1Mz2xDw-0@kdin01
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IMX258 sensor driver checked in device properties for a
-clock-frequency property which actually does not mean that the clock is
-really running such frequency or is it even enabled.
+This series adds support for PTP to the KSZ956x and KSZ9477 devices.
 
-Get the provided clock and check it frequency.  If none is provided,
-fall back to old property.
+There is only little documentation for PTP available on the data sheet
+[1] (more or less only the register reference). Questions to the
+Microchip support were seldom answered comprehensively or in reasonable
+time. So this is more or less the result of reverse engineering.
 
-Enable the clock when accessing the IMX258 registers and when streaming
-starts with runtime PM.
+[1]
+http://ww1.microchip.com/downloads/en/DeviceDoc/KSZ9563R-Data-Sheet-DS00002419D.pdf
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Changes from v2  --> v3
+------------------------
+Applied all changes requested by Vladimir Oltean. v3 depends on my other
+netdev patches from 2020-11-18:
+- net: ptp: introduce common defines for PTP message types
+- net: dsa: avoid potential use-after-free error
 
----
+[1/11]-->[1/12]  - dts: remove " OR BSD-2-Clause" from SPDX-License-Identifier
+                 - dts: add "additionalProperties"
+                 - dts: remove quotes
+[2/11]-->[2/12]  - Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+[3/11]           - [Patch removed] (split ksz_common.h)
+[4/11]-->[3/12]  - Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+                 - fixed summary
+[5/11]-->[4/12]  - Use "interrupts-extended" syntax
+[6/11]-->[5+6/12] - Split up patch
+                 - style fixes
+                 - use GENMASK()
+                 - IRQF_ONESHOT|IRQF_SHARED
+[7/11]-->[7/12]  - Remove "default n" from Kconfig
+                 - use mutex in adjfine()
+                 - style fixes
+[8/11]-->[8/12]  - Be more verbose in commit message
+                 - Rename helper
+                 - provide correction instead of t2
+                 - simplify location of UDP header
+[9/11]-->[9+10/12] - Split up patch
+                 - Update commmit messages
+                 - don't use OR operator on irqreturn_t
+                 - spin_lock_irqsave() --> spin_lock_bh()
+                 - style fixes
+                 - remove rx_filter cases for DELAY_REQ
+                 - use new PTP_MSGTYPE_* defines
+                 - inline ksz9477_ptp_should_tstamp()
+                 - ksz9477_tstamp_to_clock() --> ksz9477_tstamp_reconstruct()
+                 - use shared data in include/linux/net/dsa/ksz_common.h
+                 - wait for tx time stamp (within sleepable context)
+                 - use boolean for tx time stamp enable
+                 - move t2 from correction to tail tag (again)
+                 - ...
 
-Changes since v5:
-1. Move clk_get_rate() out of else block.
+Changes from RFC --> v2
+------------------------
+I think that all open questions regarding the RFC version could be solved.
+dts: referenced to dsa.yaml
+dts: changed node name to "switch" in example
+dts: changed "ports" subnode to "ethernet-ports"
+ksz_common: support "ethernet-ports" subnode
+tag_ksz: fix usage of correction field (32 bit ns + 16 bit sub-ns)
+tag_ksz: use cached PTP header from device's .port_txtstamp function
+tag_ksz: refactored ksz9477_tstamp_to_clock()
+tag_ksz: pdelay_req: only subtract 2 bit seconds from the correction field
+tag_ksz: pdelay_resp: don't move (negative) correction to the egress tail tag
+ptp_classify: add ptp_onestep_p2p_move_t2_to_correction helper
+ksz9477_ptp: removed E2E support (as suggested by Vladimir)
+ksz9477_ptp: removed master/slave sysfs attributes (nacked by Richard)
+ksz9477_ptp: refactored ksz9477_ptp_port_txtstamp
+ksz9477_ptp: removed "pulse" attribute
+kconfig: depend on PTP_1588_CLOCK (instead of "imply")
 
-Changes since v4:
-1. Add missing imx258_power_off.
 
-Changes since v3:
-1. None
 
-Changes since v2:
-1. Do not try to set drvdata, wrap lines.
-2. Use dev_dbg.
-
-Changes since v1:
-1. Use runtime PM for clock toggling
----
- drivers/media/i2c/imx258.c | 69 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 61 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-index 505981e02cff..61d74b794582 100644
---- a/drivers/media/i2c/imx258.c
-+++ b/drivers/media/i2c/imx258.c
-@@ -2,6 +2,7 @@
- // Copyright (C) 2018 Intel Corporation
- 
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/i2c.h>
- #include <linux/module.h>
-@@ -68,6 +69,9 @@
- #define REG_CONFIG_MIRROR_FLIP		0x03
- #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
- 
-+/* Input clock frequency in Hz */
-+#define IMX258_INPUT_CLOCK_FREQ		19200000
-+
- struct imx258_reg {
- 	u16 address;
- 	u8 val;
-@@ -610,6 +614,8 @@ struct imx258 {
- 
- 	/* Streaming on/off */
- 	bool streaming;
-+
-+	struct clk *clk;
- };
- 
- static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
-@@ -972,6 +978,29 @@ static int imx258_stop_streaming(struct imx258 *imx258)
- 	return 0;
- }
- 
-+static int imx258_power_on(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct imx258 *imx258 = to_imx258(sd);
-+	int ret;
-+
-+	ret = clk_prepare_enable(imx258->clk);
-+	if (ret)
-+		dev_err(dev, "failed to enable clock\n");
-+
-+	return ret;
-+}
-+
-+static int imx258_power_off(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct imx258 *imx258 = to_imx258(sd);
-+
-+	clk_disable_unprepare(imx258->clk);
-+
-+	return 0;
-+}
-+
- static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
- {
- 	struct imx258 *imx258 = to_imx258(sd);
-@@ -1199,9 +1228,26 @@ static int imx258_probe(struct i2c_client *client)
- 	int ret;
- 	u32 val = 0;
- 
--	device_property_read_u32(&client->dev, "clock-frequency", &val);
--	if (val != 19200000)
-+	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-+	if (!imx258)
-+		return -ENOMEM;
-+
-+	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
-+	if (!imx258->clk) {
-+		dev_dbg(&client->dev,
-+			"no clock provided, using clock-frequency property\n");
-+
-+		device_property_read_u32(&client->dev, "clock-frequency", &val);
-+		if (val != IMX258_INPUT_CLOCK_FREQ)
-+			return -EINVAL;
-+	} else if (IS_ERR(imx258->clk)) {
-+		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
-+				     "error getting clock\n");
-+	}
-+	if (clk_get_rate(imx258->clk) != IMX258_INPUT_CLOCK_FREQ) {
-+		dev_err(&client->dev, "input clock frequency not supported\n");
- 		return -EINVAL;
-+	}
- 
- 	/*
- 	 * Check that the device is mounted upside down. The driver only
-@@ -1211,24 +1257,25 @@ static int imx258_probe(struct i2c_client *client)
- 	if (ret || val != 180)
- 		return -EINVAL;
- 
--	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
--	if (!imx258)
--		return -ENOMEM;
--
- 	/* Initialize subdev */
- 	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
- 
-+	/* Will be powered off via pm_runtime_idle */
-+	ret = imx258_power_on(&client->dev);
-+	if (ret)
-+		return ret;
-+
- 	/* Check module identity */
- 	ret = imx258_identify_module(imx258);
- 	if (ret)
--		return ret;
-+		goto error_identify;
- 
- 	/* Set default mode to max resolution */
- 	imx258->cur_mode = &supported_modes[0];
- 
- 	ret = imx258_init_controls(imx258);
- 	if (ret)
--		return ret;
-+		goto error_identify;
- 
- 	/* Initialize subdev */
- 	imx258->sd.internal_ops = &imx258_internal_ops;
-@@ -1258,6 +1305,9 @@ static int imx258_probe(struct i2c_client *client)
- error_handler_free:
- 	imx258_free_controls(imx258);
- 
-+error_identify:
-+	imx258_power_off(&client->dev);
-+
- 	return ret;
- }
- 
-@@ -1271,6 +1321,8 @@ static int imx258_remove(struct i2c_client *client)
- 	imx258_free_controls(imx258);
- 
- 	pm_runtime_disable(&client->dev);
-+	if (!pm_runtime_status_suspended(&client->dev))
-+		imx258_power_off(&client->dev);
- 	pm_runtime_set_suspended(&client->dev);
- 
- 	return 0;
-@@ -1278,6 +1330,7 @@ static int imx258_remove(struct i2c_client *client)
- 
- static const struct dev_pm_ops imx258_pm_ops = {
- 	SET_SYSTEM_SLEEP_PM_OPS(imx258_suspend, imx258_resume)
-+	SET_RUNTIME_PM_OPS(imx258_power_off, imx258_power_on, NULL)
- };
- 
- #ifdef CONFIG_ACPI
--- 
-2.25.1
 
