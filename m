@@ -2,130 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CECF52B8092
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 16:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EE722B8144
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 16:56:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727010AbgKRPah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 10:30:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48450 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727383AbgKRPa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 10:30:28 -0500
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D96EC061A52
-        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 07:30:28 -0800 (PST)
-Received: by mail-ot1-x341.google.com with SMTP id k3so2082484otp.12
-        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 07:30:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=kiEcFfelocfnhd2oKnW85K0Bs8+YfhezxKsPupYgoVA=;
-        b=Xx6D+0YmDe8+tDzPY4xh3axjXWUigyE0t6cfxv7hcF5EUuiy/ygtvyfrw/olSohMT/
-         TMhyF1T8cRnhC8qaHpLXWfc0jiEmJy6yMdXRPc4Vdn6UiCRUAQluv58WRuAa9dqeJqJs
-         qMjxWb6E84fvjWn2CxUZCKex1qlpVSb3ErINLyy8OLPtYIrLhk+lFgHBojwLis4d8O5E
-         R4c3k/QgjKWre5QgpcpJxqu62RzMglsh7rm/pxUeBjLfHgh1ZHzaeBQ8RqiOTJ35vE5I
-         A8Rpr5IPI228F7JBjwuEDjOE9KVIYhS+TDrNDL/E+9nUUFtWfZLOxNpR9QVKcNk9CRUA
-         jHbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=kiEcFfelocfnhd2oKnW85K0Bs8+YfhezxKsPupYgoVA=;
-        b=SxXiTIxKwpzFGmiuUo/fjDzmf4YlcHMwnHX6K4hF7C67JlQ3/y8O8asMthwQ9jukmf
-         0q67HOZ0HR30efgp/uAFQkcD5mXpNd2HrwgRb/rQwYU/X/OIQDyLN1ZqEzacF/d2S1yR
-         XWHKDdtzwClVnAXtFCa2BD31/8nducA5lUUuTJIHRVuKXYXPJelC4eyvRNibJ7VEzlL6
-         XKyeHCsH/i/QUeKEsLiEcPxKXtJ04nDOFz+LeKgoazMKG7o3t8H45TQhg9SfbiTvifd6
-         u45No+97yvD8iLt5rmxX1f3cH8TP/Q9r0eEcWFFQdZ85ca1LuVNFbMCyv6ZWoYUw+C7K
-         y/5Q==
-X-Gm-Message-State: AOAM533QSHdvw/6Wl+Aa9LU7qnOvT7uLME/opCnbx3PJMBPUc2tgfjJE
-        FsaF5Ovgw425VHwjukChcSAdjg==
-X-Google-Smtp-Source: ABdhPJwT6i2eu4Z8eoQlgamaU/3w0ODZywHhThqnmRn/orCMAdSnT63f00YFJ9sjJ8dFOGwUmRpn/g==
-X-Received: by 2002:a9d:7cd6:: with SMTP id r22mr7033207otn.355.1605713427580;
-        Wed, 18 Nov 2020 07:30:27 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 68sm7606075oto.71.2020.11.18.07.30.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2020 07:30:26 -0800 (PST)
-Date:   Wed, 18 Nov 2020 09:30:25 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org,
-        vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] clk: qcom: Add support for SDX55 RPMh clocks
-Message-ID: <20201118153025.GJ8532@builder.lan>
-References: <20201105104817.15715-1-manivannan.sadhasivam@linaro.org>
- <20201105104817.15715-5-manivannan.sadhasivam@linaro.org>
+        id S1726788AbgKRPz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 10:55:58 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51352 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726304AbgKRPz6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 10:55:58 -0500
+Received: from localhost (unknown [122.171.203.152])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6CC41247BA;
+        Wed, 18 Nov 2020 15:55:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605714957;
+        bh=r7TtzppEJg7jscSFWerCU85PxTKfvLkBL5GpLNH1UdA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GT0o/kOSk09q/JKrSYtWd746b1S+U7Smfvg7DD7EJclNr9/LtPJsAVIBXPwioDFs9
+         cD46fwXXeHkuzhY0ldWyXuvgMFsoVaQTdCkmv4x+a9euwc/OFtAoCMNhFRlMhyffVZ
+         8aS1duqWXEHI1NTqWsroD4yl5+LhPUp6h/jq9X/8=
+Date:   Wed, 18 Nov 2020 21:25:52 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+Subject: Re: [PATCH v9 1/2] dt-bindings: dma: Add bindings for Intel LGM SoC
+Message-ID: <20201118155552.GV50232@vkoul-mobl>
+References: <cover.1605158930.git.mallikarjunax.reddy@linux.intel.com>
+ <bfe586ac62080d14759bda22ebf1de1a1fa9c09d.1605158930.git.mallikarjunax.reddy@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201105104817.15715-5-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <bfe586ac62080d14759bda22ebf1de1a1fa9c09d.1605158930.git.mallikarjunax.reddy@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 05 Nov 04:48 CST 2020, Manivannan Sadhasivam wrote:
-
-> Add support for following clocks maintained by RPMh in SDX55 SoCs.
+On 12-11-20, 13:38, Amireddy Mallikarjuna reddy wrote:
+> Add DT bindings YAML schema for DMA controller driver
+> of Lightning Mountain (LGM) SoC.
 > 
-> * BI TCXO
-> * RF_CLK1
-> * RF_CLK1_AO
-> * RF_CLK2
-> * RF_CLK2_AO
-> * QPIC (Qualcomm Technologies, Inc. Parallel Interface Controller)
-> 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
+> Signed-off-by: Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
 > ---
->  drivers/clk/qcom/clk-rpmh.c | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+> v1:
+> - Initial version.
 > 
-> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> index e2c669b08aff..fb72db957721 100644
-> --- a/drivers/clk/qcom/clk-rpmh.c
-> +++ b/drivers/clk/qcom/clk-rpmh.c
-> @@ -432,6 +432,25 @@ static const struct clk_rpmh_desc clk_rpmh_sm8250 = {
->  	.num_clks = ARRAY_SIZE(sm8250_rpmh_clocks),
->  };
->  
-> +DEFINE_CLK_RPMH_VRM(sdx55, rf_clk1, rf_clk1_ao, "rfclkd1", 1);
-> +DEFINE_CLK_RPMH_VRM(sdx55, rf_clk2, rf_clk2_ao, "rfclkd2", 1);
-> +DEFINE_CLK_RPMH_BCM(sdx55, qpic_clk, "QP0");
+> v2:
+> - Fix bot errors.
+> 
+> v3:
+> - No change.
+> 
+> v4:
+> - Address Thomas langer comments
+>   - use node name pattern as dma-controller as in common binding.
+>   - Remove "_" (underscore) in instance name.
+>   - Remove "port-" and "chan-" in attribute name for both 'dma-ports' & 'dma-channels' child nodes.
+> 
+> v5:
+> - Moved some of the attributes in 'dma-ports' & 'dma-channels' child nodes to dma client/consumer side as cells in 'dmas' properties.
+> 
+> v6:
+> - Add additionalProperties: false
+> - completely removed 'dma-ports' and 'dma-channels' child nodes.
+> - Moved channel dt properties to client side dmas.
+> - Use standard dma-channels and dma-channel-mask properties.
+> - Documented reset-names
+> - Add description for dma-cells
+> 
+> v7:
+> - modified compatible to oneof
+> - Reduced number of dma-cells to 3
+> - Fine tune the description of some properties.
+> 
+> v7-resend:
+> - rebase to 5.10-rc1
+> 
+> v8:
+> - rebased to 5.10-rc3
+> - Fixing the bot issues (wrong indentation)
+> 
+> v9:
+> - rebased to 5.10-rc3
+> - Use 'enum' instead of oneOf+const
+> - Drop '#dma-cells' in required:, already covered in dma-common.yaml
+> - Drop nodename Already covered by dma-controller.yaml
+> ---
+>  .../devicetree/bindings/dma/intel,ldma.yaml        | 130 +++++++++++++++++++++
+>  1 file changed, 130 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/intel,ldma.yaml b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+> new file mode 100644
+> index 000000000000..c06281a10178
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/intel,ldma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +static struct clk_hw *sdx55_rpmh_clocks[] = {
-> +	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
-> +	[RPMH_CXO_CLK_A]	= &sdm845_bi_tcxo_ao.hw,
-> +	[RPMH_RF_CLK1]		= &sdx55_rf_clk1.hw,
-> +	[RPMH_RF_CLK1_A]	= &sdx55_rf_clk1_ao.hw,
-> +	[RPMH_RF_CLK2]		= &sdx55_rf_clk2.hw,
-> +	[RPMH_RF_CLK2_A]	= &sdx55_rf_clk2_ao.hw,
-> +	[RPMH_QPIC_CLK]		= &sdx55_qpic_clk.hw,
-> +};
+> +title: Lightning Mountain centralized low speed DMA and high speed DMA controllers.
 > +
-> +static const struct clk_rpmh_desc clk_rpmh_sdx55 = {
-> +	.clks = sdx55_rpmh_clocks,
-> +	.num_clks = ARRAY_SIZE(sdx55_rpmh_clocks),
-> +};
+> +maintainers:
+> +  - chuanhua.lei@intel.com
+> +  - mallikarjunax.reddy@intel.com
 > +
->  static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
->  					 void *data)
->  {
-> @@ -517,6 +536,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
->  static const struct of_device_id clk_rpmh_match_table[] = {
->  	{ .compatible = "qcom,sc7180-rpmh-clk", .data = &clk_rpmh_sc7180},
->  	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
-> +	{ .compatible = "qcom,sdx55-rpmh-clk",  .data = &clk_rpmh_sdx55},
->  	{ .compatible = "qcom,sm8150-rpmh-clk", .data = &clk_rpmh_sm8150},
->  	{ .compatible = "qcom,sm8250-rpmh-clk", .data = &clk_rpmh_sm8250},
->  	{ }
+> +allOf:
+> +  - $ref: "dma-controller.yaml#"
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - intel,lgm-cdma
+> +      - intel,lgm-dma2tx
+> +      - intel,lgm-dma1rx
+> +      - intel,lgm-dma1tx
+> +      - intel,lgm-dma0tx
+> +      - intel,lgm-dma3
+> +      - intel,lgm-toe-dma30
+> +      - intel,lgm-toe-dma31
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#dma-cells":
+> +    const: 3
+> +    description:
+> +      The first cell is the peripheral's DMA request line.
+> +      The second cell is the peripheral's (port) number corresponding to the channel.
+> +      The third cell is the burst length of the channel.
+> +
+> +  dma-channels:
+> +    minimum: 1
+> +    maximum: 16
+> +
+> +  dma-channel-mask:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    items:
+> +      - const: ctrl
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  intel,dma-poll-cnt:
+> +    $ref: /schemas/types.yaml#definitions/uint32
+> +    description:
+> +      DMA descriptor polling counter is used to control the poling mechanism
+
+s/poling/polling
+
+> +      for the descriptor fetching for all channels.
+> +
+> +  intel,dma-byte-en:
+> +    type: boolean
+> +    description:
+> +      DMA byte enable is only valid for DMA write(RX).
+> +      Byte enable(1) means DMA write will be based on the number of dwords
+> +      instead of the whole burst.
+
+Can you explain this, also sounds you could use _maxburst values..?
+
+> +
+> +  intel,dma-drb:
+> +    type: boolean
+> +    description:
+> +      DMA descriptor read back to make sure data and desc synchronization.
+> +
+> +  intel,dma-desc-in-sram:
+> +    type: boolean
+> +    description:
+> +      DMA descritpors in SRAM or not. Some old controllers descriptors
+> +      can be in DRAM or SRAM. The new ones are all in SRAM.
+
+should that not be decided by driver..? Or is this a hw property?
+
+> +
+> +  intel,dma-orrc:
+> +    $ref: /schemas/types.yaml#definitions/uint32
+> +    description:
+> +      DMA outstanding read counter value determine the number of
+> +      ORR-Outstanding Read Request. The maximum value is 16.
+
+How would this be used by folks..?
+
+> +
+> +  intel,dma-dburst-wr:
+> +    type: boolean
+> +    description:
+> +      Enable RX dynamic burst write. When it is enabled, the DMA does RX dynamic burst;
+> +      if it is disabled, the DMA RX will still support programmable fixed burst size of 2,4,8,16.
+> +      It only applies to RX DMA and memcopy DMA.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+So only two are mandatory, what about the bunch of intel properties you
+added above..?
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    dma0: dma-controller@e0e00000 {
+> +      compatible = "intel,lgm-cdma";
+> +      reg = <0xe0e00000 0x1000>;
+> +      #dma-cells = <3>;
+> +      dma-channels = <16>;
+> +      dma-channel-mask = <0xFFFF>;
+> +      interrupt-parent = <&ioapic1>;
+> +      interrupts = <82 1>;
+> +      resets = <&rcu0 0x30 0>;
+> +      reset-names = "ctrl";
+> +      clocks = <&cgu0 80>;
+> +      intel,dma-poll-cnt = <4>;
+> +      intel,dma-byte-en;
+> +      intel,dma-drb;
+> +    };
+> +  - |
+> +    dma3: dma-controller@ec800000 {
+> +      compatible = "intel,lgm-dma3";
+> +      reg = <0xec800000 0x1000>;
+> +      clocks = <&cgu0 71>;
+> +      resets = <&rcu0 0x10 9>;
+> +      #dma-cells = <3>;
+> +      intel,dma-poll-cnt = <16>;
+> +      intel,dma-desc-in-sram;
+> +      intel,dma-orrc = <16>;
+> +      intel,dma-byte-en;
+> +      intel,dma-dburst-wr;
+> +    };
 > -- 
-> 2.17.1
-> 
+> 2.11.0
+
+-- 
+~Vinod
