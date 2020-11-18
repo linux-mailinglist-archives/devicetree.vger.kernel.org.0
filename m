@@ -2,166 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF532B7479
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 04:03:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C87D2B74B2
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 04:27:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726298AbgKRDBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 22:01:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726202AbgKRDBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 22:01:07 -0500
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA0CCC0613D4
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 19:01:06 -0800 (PST)
-Received: by mail-ot1-x343.google.com with SMTP id k3so349372otp.12
-        for <devicetree@vger.kernel.org>; Tue, 17 Nov 2020 19:01:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=3uJCOUcCa+QNGhT/ES7N0Gs1weA2TXULzhkEQY1X4Jo=;
-        b=iudQYKUwAOK9crkiWJ66u2A1YGZCBlCwtJ7NMi11klrVKGT/dFCsGxSljVJDr7DJ0g
-         lDpDgEUNZJYa9nmxUH6uwUeRo3AfV1WCViXiGu7wlPweAMbLV9FB7Fo5b+oHQQi1aigL
-         MthZtLw/DcFUhqRbHbBYjcPvo9uIa7i3ztccA2IcPNjXwSZ/67Qwhs8pEX8j/HXeHvxw
-         93df3wEp8sT1v3KNz39iAtv/5GK29Rvl2QwMK0WBKbuAsvVBBUxdzbuCEnY7WYezsKge
-         0Eh0ekjpKLpbRF4mkuu4/ZplAcqUYubSLUEgxK6sY+vaYIVUs1y2KWD1SMzaLPnFOOzH
-         t57A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=3uJCOUcCa+QNGhT/ES7N0Gs1weA2TXULzhkEQY1X4Jo=;
-        b=ZQC2hXyfNwFsOvTr9kJGgEgWURFFM3cMJKqfOdclNRBe9TCaJYgyp8ZBwnUCesdKTW
-         ftZ27u1zuezssJhqwCuomJt9g7earJgv5ORbv1tCggsWyy5iKNjrTyAVsUYV7Wm9xCIl
-         HMBlcu+9ibc0uHXvilRNNCGX3t3UBadpUIIhUlQGS4PDb1LaxhzgGV4tBHv/oWF6Hv0x
-         TUEuu5kEnbNqPMv8hgllYgBuvUtjAvZWlsH1RvOd5SziZ8Eudjj0Cwu12iFjAT5KZ5P8
-         BooA4mXeoqeGXMHhbM9FxlRctcU7S99m+yLsXbsv1KNH+cE2Ud7i44C07+r900AAdA49
-         JLAw==
-X-Gm-Message-State: AOAM532Mf6RFV3wtLALUhdy43hDiGHk1BJumnc3gNOqJmg+ppNdMl2d3
-        eKsV97o3SvTAv4Q/T5H6QOFkq+BJs3R6KwQzf0fJww==
-X-Google-Smtp-Source: ABdhPJzGGlEp/RY02FjhdSrOME5ixmXEwMqcM3Kp5XSh8B606VPzwVjQm4NMFjXTadyAYc+lrXxzVUAwYI5nu6c9VOY=
-X-Received: by 2002:a05:6830:2415:: with SMTP id j21mr4976789ots.221.1605668466163;
- Tue, 17 Nov 2020 19:01:06 -0800 (PST)
-MIME-Version: 1.0
-References: <20201117181935.3613581-1-minchan@kernel.org> <20201117181935.3613581-5-minchan@kernel.org>
-In-Reply-To: <20201117181935.3613581-5-minchan@kernel.org>
-From:   John Stultz <john.stultz@linaro.org>
-Date:   Tue, 17 Nov 2020 19:00:54 -0800
-Message-ID: <CALAqxLWqDLHpOHNEayvhDjJeXjEk_uneH2=d9fy8M87EjKfReA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] dma-heap: Devicetree binding for chunk heap
-To:     Minchan Kim <minchan@kernel.org>
-Cc:     Andrew Morton <akpm@linux-foundation.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-mm <linux-mm@kvack.org>, Hyesoo Yu <hyesoo.yu@samsung.com>,
-        Matthew Wilcox <willy@infradead.org>, david@redhat.com,
-        iamjoonsoo.kim@lge.com, vbabka@suse.cz,
-        Suren Baghdasaryan <surenb@google.com>,
-        KyongHo Cho <pullip.cho@samsung.com>,
-        John Dias <joaodias@google.com>,
-        Hridya Valsaraju <hridya@google.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Christian Koenig <christian.koenig@amd.com>,
-        "moderated list:DMA BUFFER SHARING FRAMEWORK" 
-        <linaro-mm-sig@lists.linaro.org>
+        id S1726742AbgKRD1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 22:27:07 -0500
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:5729 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726494AbgKRD1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 22:27:06 -0500
+X-UUID: d4326302193e4e4c993d31cd1f36fc52-20201118
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=rVcqz6XUTMam5Rpds84b/f/9khQeZe+z1fGfOnsNnj0=;
+        b=et+0wT+BCKH6uuX9XiceZ1Dz9PNpIoYyEc0CFrcAFLekUMG738e8B9ViYtdO6txz0TjZuKkCEULG4fz1nTkZX32UpFsI924Jemk0knjZhZFSGIvuJkz8cEQ8uuIahflERnCEbBwTVsYpnU4GRd19pOkV6d5joLqRzp6+RtwTclM=;
+X-UUID: d4326302193e4e4c993d31cd1f36fc52-20201118
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <wenbin.mei@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 257648254; Wed, 18 Nov 2020 11:26:58 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 18 Nov
+ 2020 11:26:55 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 18 Nov 2020 11:26:54 +0800
+Message-ID: <1605670015.11864.5.camel@mhfsdcap03>
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Add optional cqe off properties
+From:   Wenbin Mei <wenbin.mei@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <irq-linux@rere.qmqm.pl>,
+        Veerabhadrarao Badiganti <vbadigan@codeaurora.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Ludovic Barre <ludovic.barre@st.com>,
+        Krishna Konda <kkonda@codeaurora.org>,
+        Bradley Bolen <bradleybolen@gmail.com>,
+        "Chaotian Jing" <chaotian.jing@mediatek.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <srv_heupstream@mediatek.com>
+Date:   Wed, 18 Nov 2020 11:26:55 +0800
+In-Reply-To: <20201116192801.GA1991505@bogus>
+References: <20201112075208.28183-1-wenbin.mei@mediatek.com>
+         <20201112075208.28183-2-wenbin.mei@mediatek.com>
+         <20201116192801.GA1991505@bogus>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: E0983558C713B21671019A4B5CB7E2E62F2D4A278694AFAB10C6DD3BE75DF4EE2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 10:19 AM Minchan Kim <minchan@kernel.org> wrote:
->
-> From: Hyesoo Yu <hyesoo.yu@samsung.com>
->
-> Document devicetree binding for chunk heap on dma heap framework
->
-> Signed-off-by: Hyesoo Yu <hyesoo.yu@samsung.com>
-> Signed-off-by: Minchan Kim <minchan@kernel.org>
-> ---
->  .../bindings/dma-buf/chunk_heap.yaml          | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml
->
-> diff --git a/Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml b/Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml
-> new file mode 100644
-> index 000000000000..f382bee02778
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma-buf/chunk_heap.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma-buf/chunk_heap.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Device tree binding for chunk heap on DMA HEAP FRAMEWORK
-> +
-> +maintainers:
-> +  - Sumit Semwal <sumit.semwal@linaro.org>
-> +
-> +description: |
-> +  The chunk heap is backed by the Contiguous Memory Allocator (CMA) and
-> +  allocates the buffers that are made up to a list of fixed size chunks
-> +  taken from CMA. Chunk sizes are configurated when the heaps are created.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - dma_heap,chunk
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +
-> +  alignment:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - memory-region
-> +  - alignment
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    reserved-memory {
-> +        #address-cells = <2>;
-> +        #size-cells = <1>;
-> +
-> +        chunk_memory: chunk_memory {
-> +            compatible = "shared-dma-pool";
-> +            reusable;
-> +            size = <0x10000000>;
-> +        };
-> +    };
-> +
-> +    chunk_default_heap: chunk_default_heap {
-> +        compatible = "dma_heap,chunk";
-> +        memory-region = <&chunk_memory>;
-> +        alignment = <0x10000>;
-> +    };
+T24gTW9uLCAyMDIwLTExLTE2IGF0IDEzOjI4IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gVGh1LCBOb3YgMTIsIDIwMjAgYXQgMDM6NTI6MDZQTSArMDgwMCwgV2VuYmluIE1laSB3cm90
+ZToNCj4gPiBBZGQgb3B0aW9uYWwgcHJvcGVydGllcyBmb3IgY3FlIGhvc3RzIHdoaWNoIGFyZSB1
+c2VkIHRvIHNldCBjcWUgb2ZmDQo+ID4gZHVyaW5nIHN1c3BlbmQgZmxvdy4NCj4gPiANCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBXZW5iaW4gTWVpIDx3ZW5iaW4ubWVpQG1lZGlhdGVrLmNvbT4NCj4gPiAt
+LS0NCj4gPiAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tbWMtY29udHJv
+bGxlci55YW1sIHwgNyArKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMo
+KykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL21tYy9tbWMtY29udHJvbGxlci55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21tYy9tbWMtY29udHJvbGxlci55YW1sDQo+ID4gaW5kZXggYjk2ZGEwYzdmODE5Li40
+NTdjOWE4NGI5ODggMTAwNjQ0DQo+ID4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21tYy9tbWMtY29udHJvbGxlci55YW1sDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tbWMtY29udHJvbGxlci55YW1sDQo+ID4gQEAgLTE2NCw2
+ICsxNjQsMTMgQEAgcHJvcGVydGllczoNCj4gPiAgICAgIGRlc2NyaXB0aW9uOg0KPiA+ICAgICAg
+ICBlbmFibGUgU0RJTyBJUlEgc2lnbmFsbGluZyBvbiB0aGlzIGludGVyZmFjZQ0KPiA+ICANCj4g
+PiArICBjcWUtb2ZmLWluLXN1c3BlbmQ6DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55
+YW1sIy9kZWZpbml0aW9ucy9mbGFnDQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiArICAgICAg
+QWZ0ZXIgc3VzcGVuZCwgdGhlIG1tYyBob3N0IGlzIHBvd2VyZWQgb2ZmIGJ5IEhXLCBhbmQgYnJp
+bmcgQ1FFIHJlZ2lzdGVyDQo+ID4gKyAgICAgIHRvIGRlZmF1bHQgc3RhdGUsIHNvIHdlIGFkZCB0
+aGUgZmxhZyB0byByZS1pbml0IENRRSByZWdpc3RlciBhZnRlciByZXN1bWUNCj4gPiArICAgICAg
+YmFjay4NCj4gDQo+IFRoZSBkcml2ZXIgY2hhbmdlIGlzIGJlZm9yZSBzdXNwZW5kLCBidXQgdGhp
+cyBzYXlzIG9uIHJlc3VtZS4uLg0KPiANCj4gSW4gYW55IGNhc2UsIHRoaXMgc2hvdWxkIGJlIGlt
+cGxpZWQgYnkgdGhlIFNvQyBzcGVjaWZpYyBjb21wYXRpYmxlLg0KPiANClRoYW5rcyBmb3IgeW91
+ciByZXBseSwgSSB3aWxsIGRyb3AgdGhpcyBwYXRjaHNldCwgYW5kIHJlc2VuZCBhbm90aGVyDQpw
+YXRjaHNldCBmb3IgdGhpcyBpc3N1ZS4NCj4gPiArDQo+ID4gICAgZnVsbC1wd3ItY3ljbGU6DQo+
+ID4gICAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9mbGFnDQo+ID4g
+ICAgICBkZXNjcmlwdGlvbjoNCj4gPiAtLSANCj4gPiAyLjE4LjANCj4gPiANCg0K
 
-
-So I suspect Rob will push back on this as he has for other dt
-bindings related to ion/dmabuf heaps (I tried to push a similar
-solution to exporting multiple CMA areas via dmabuf heaps).
-
-The proposal he seemed to like best was having an in-kernel function
-that a driver would call to initialize the heap (associated with the
-CMA region the driver is interested in). Similar to Kunihiko Hayashi's
-patch here:
-  - https://lore.kernel.org/lkml/1594948208-4739-1-git-send-email-hayashi.kunihiko@socionext.com/
-
-The one sticking point for that patch (which I think is a good one),
-is that we don't have any in-tree users, so it couldn't be merged yet.
-
-A similar approach might be good here, but again we probably need to
-have at least one in-tree user which could call such a registration
-function.
-
-thanks
--john
