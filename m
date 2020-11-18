@@ -2,185 +2,327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FAE12B7D70
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 13:14:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2A72B7DB5
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 13:41:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727196AbgKRMN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 07:13:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46328 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727195AbgKRMN4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 07:13:56 -0500
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5748C0613D4;
-        Wed, 18 Nov 2020 04:13:55 -0800 (PST)
-Received: by mail-io1-xd42.google.com with SMTP id j12so1778381iow.0;
-        Wed, 18 Nov 2020 04:13:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iF3K7BJnTiuP8dKZzbv6GYR2q4prKoKxdgZTYHPcqT8=;
-        b=Q/S87YQtG1fuvVEQ1ExJqNbmG28uSgkfTIS6DginMfaKPXvFaiNnTpHFVEfWqzonuu
-         T4waCvsjcoV2rwjDEuuAHhwbJjWo97g7sF06yFhpmIZoOW0uqfHcRSE9zI33z497xDbZ
-         hckzF5rXLOAy2qhMC3Wytca0Y8BJIVqrRRJ8puG3d5yTJq5w4aGzCPm/q1xAumLLY/nh
-         r87TdJCMdwO0S4Uyn4A82kIp45/GvWCG5+p7t48FABK2VKlGCa19fl0TS/OIAsKQoSn1
-         8u4rgtSJg77N91GshfgwCAZHqRRyqCJv2KXkUloRaMFHXdPii8Wi0hrN6ugPjkYqiEHN
-         qpbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iF3K7BJnTiuP8dKZzbv6GYR2q4prKoKxdgZTYHPcqT8=;
-        b=JHh8F4YxKz1PRmP5vqF7OtSGUqtT8R3XOJg04p188M8lRMFpDI1IrPiXR7hcsc85q2
-         kii/WNcSEjGXfv2cEishe/OdwRy3fplYy1S14ZCJlqHWDxkkcO+JVHJwYEhzlUa/s4M/
-         SuwX3fdNTZ4n4xNTqrq68ntMSw1GHMPrbkSryNI0bFhxgOfSUXgU6Xiy79WlsHApKT9F
-         Z12ohgDZpNlw9o8Z3I8U2YmMehbW48C83G1xoW+rfTIUkkvBd5OcJ4DqYAvMAaqi39QJ
-         aN5u5uWQTqMvUnf7/IHZhKd9axgBBy6LKfQdVxVjZ2hKAGoiSSCMooAVHCyln0vs4vJ/
-         71BQ==
-X-Gm-Message-State: AOAM531kn2i5oxPH4HCF9gliHVuM6FH5NJINQQCAC/u5DmMYwddO7YYA
-        JVaxK2hWppiHyrJ8dh1tpmCpUp/nmdAwxMrQrdd3mxzN06jVmQ==
-X-Google-Smtp-Source: ABdhPJxTWBYuvxdMAVVRtCgmy0owVY/5zjE7dHHSPDYLM45iY0W9qlTNGj2VpvVUHW9eHXe49XA9qumjO40kUNJlQRM=
-X-Received: by 2002:a05:6602:d7:: with SMTP id z23mr15859729ioe.142.1605701635073;
- Wed, 18 Nov 2020 04:13:55 -0800 (PST)
+        id S1726977AbgKRMib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 07:38:31 -0500
+Received: from mail.kernel.org ([198.145.29.99]:51042 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726199AbgKRMib (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 07:38:31 -0500
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EBB5024180;
+        Wed, 18 Nov 2020 12:38:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605703109;
+        bh=POptcZSTSt0typA/Y0VtYgOAb+JqVI268Pik3Gjzm4I=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=cuvgxphduBTASF6inhgzYc8OGQjaQRw1Pn5amhbM7yo7WMWzUpNfpjT8LaRvfY6DG
+         XHJcSgOeIuo3HZdZQ1CLtOdDSGYObmh87+lEzrcXDKjej1Z3ghvjW1ZZXP8zErcQTg
+         tsdCcUdqH/AR+jmw7sk0hNA+US7UqmFH3b9X13f8=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.94)
+        (envelope-from <maz@kernel.org>)
+        id 1kfMjC-00BflY-Op; Wed, 18 Nov 2020 12:38:26 +0000
 MIME-Version: 1.0
-References: <20201111152523.76254-1-aford173@gmail.com> <20201111191809.GA1859246@bogus>
- <CAHCN7x+w3wpELWHVSd1-U38N+4TEDKWDRxzXEtDX2svkrTGJCw@mail.gmail.com> <CAL_JsqK580zBfPfPHF2pi52dhOkgf0Ovt8TOxfCjYz0Y54pQzA@mail.gmail.com>
-In-Reply-To: <CAL_JsqK580zBfPfPHF2pi52dhOkgf0Ovt8TOxfCjYz0Y54pQzA@mail.gmail.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 18 Nov 2020 06:13:43 -0600
-Message-ID: <CAHCN7xLRaB49n=Bja_aCZD_rUaD_A54_pL5ApC4Fh8Q8+mhwdQ@mail.gmail.com>
-Subject: Re: [PATCH V4] dt-bindings: soc: imx: Add binding doc for spba bus
-To:     Rob Herring <robh@kernel.org>
-Cc:     Adam Ford-BE <aford@beaconembedded.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 18 Nov 2020 12:38:26 +0000
+From:   Marc Zyngier <maz@kernel.org>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen.Hegelund@microchip.com
+Subject: Re: [PATCH v3 3/5] irqchip: ocelot: Add support for Luton platforms
+In-Reply-To: <20201116162427.1727851-4-gregory.clement@bootlin.com>
+References: <20201116162427.1727851-1-gregory.clement@bootlin.com>
+ <20201116162427.1727851-4-gregory.clement@bootlin.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <90bb063077a7e5a429dfbfc4dd4b6a4d@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: gregory.clement@bootlin.com, tglx@linutronix.de, jason@lakedaemon.net, linux-kernel@vger.kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org, thomas.petazzoni@bootlin.com, alexandre.belloni@bootlin.com, lars.povlsen@microchip.com, Steen.Hegelund@microchip.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 12, 2020 at 7:52 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Nov 12, 2020 at 5:44 AM Adam Ford <aford173@gmail.com> wrote:
-> >
-> > On Wed, Nov 11, 2020 at 2:18 PM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Wed, 11 Nov 2020 09:25:23 -0600, Adam Ford wrote:
-> > > > Add binding doc for fsl,spba-bus.
-> > > >
-> > > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > > > ---
-> > > > make dt_binding_check showed no errors if I did this right.
-> > > >
-> > > > V4:  Remove an accidental makefile change
-> > > >      Move type:object under additional properties
-> > > >
-> > > > V3:  Rebase sample from aips-bus example
-> > > >      Split off from series adding i.MX8M Nano functions to reduce noise
-> > > >
-> > > > V2:  Attempted to update yaml from feedback
-> > > >
-> > >
-> > >
-> > > My bot found errors running 'make dt_binding_check' on your patch:
-> > >
-> > > yamllint warnings/errors:
-> > >
-> > > dtschema/dtc warnings/errors:
-> > > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.example.dt.yaml: bus@30000000: reg: [[805306368, 1048576]] is not of type 'object'
-> > >         From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/bus/fsl,spba-bus.yaml
-> > >
-> >
-> > Rob,
-> >
-> > Can you give me a pointer on what this message is saying?  I don't
-> > undertsand the YAML language, and I cannot get my machine to generate
-> > the same messages you're seeing.
->
-> 'reg' is not documented, so it's defaulting to the schema in
-> 'additionalProperties' which says anything else has to be a node
-> (which is an 'object' in json-schema).
->
-> > >
-> > > See https://patchwork.ozlabs.org/patch/1398351
-> > >
-> > > The base for the patch is generally the last rc1. Any dependencies
-> > > should be noted.
-> > >
-> > > If you already ran 'make dt_binding_check' and didn't see the above
-> > > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > > date:
-> > >
-> > > pip3 install dtschema --upgrade
-> >
-> > I have installed yamllint, and I have run the above line, but when I
-> > run make dt_binding_check it fails to finish script even before I add
-> > this new binding.  If I revert the Makefile back to before the
-> > implementation of yamllint, it works, but doesn't show the error.
-> > When I restore the Makefile, it runs but it doesn't show the error.
-> > Once I do a make clean, and run the dt_binding_check again, it fails
-> > to finish with the following error
-> >
-> > make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
-> > Documentation/devicetree/bindings/processed-schema-examples.json]
-> > Error 123
-> >
-> > It appears as if the processed-schema-examples.json is not generated at all.
-> >
-> > When I revert back to the older makefile, it appears that file is
-> > generated, but when I restore the makefile to the current version and
-> > run it again, it doesn't show the dtschema warnings/errors you see.
-> > I am guessing it's because the processed-schema-examples.json isn't
-> > being generated correctly after I run make clean.
-> >
-> > Do you have any ideas what might be missing from my build machine?
->
-> What tree? v5.10-rc3 landed some changes that shouldn't have gone in
-> and broke dt_binding_check. In any case, you can use 'make -k' to work
-> around any unrelated failure.
+On 2020-11-16 16:24, Gregory CLEMENT wrote:
+> This patch extends irqchip driver for oceleot to be used with an other
+> vcoreiii base platform: Luton.
+> 
+> Based on a larger patch from Lars Povlsen <lars.povlsen@microchip.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>  drivers/irqchip/irq-mscc-ocelot.c | 145 +++++++++++++++++++++++++-----
+>  1 file changed, 123 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-mscc-ocelot.c
+> b/drivers/irqchip/irq-mscc-ocelot.c
+> index 88143c0b700c..9964800c53c2 100644
+> --- a/drivers/irqchip/irq-mscc-ocelot.c
+> +++ b/drivers/irqchip/irq-mscc-ocelot.c
+> @@ -12,39 +12,115 @@
+>  #include <linux/irqchip/chained_irq.h>
+>  #include <linux/interrupt.h>
+> 
+> -#define ICPU_CFG_INTR_INTR_STICKY	0x10
+> -#define ICPU_CFG_INTR_INTR_ENA		0x18
+> -#define ICPU_CFG_INTR_INTR_ENA_CLR	0x1c
+> -#define ICPU_CFG_INTR_INTR_ENA_SET	0x20
+> -#define ICPU_CFG_INTR_DST_INTR_IDENT(x)	(0x38 + 0x4 * (x))
+> -#define ICPU_CFG_INTR_INTR_TRIGGER(x)	(0x5c + 0x4 * (x))
+> -
+> -#define OCELOT_NR_IRQ 24
+> +#define ICPU_CFG_INTR_DST_INTR_IDENT(_p, x)	(_p->reg_off_ident + 0x4 * 
+> (x))
+> +#define ICPU_CFG_INTR_INTR_TRIGGER(_p, x)	(_p->reg_off_trigger + 0x4 * 
+> (x))
+> +
+> +#define FLAGS_NEED_INIT_ENABLE	BIT(0)
+> +#define FLAGS_FORCE_LUTON_STYLE	BIT(1)
+> +#define FLAGS_HAS_TRIGGER	BIT(2)
+> +
+> +struct chip_props {
+> +	u32 flags;
+> +	u32 reg_off_sticky;
+> +	u32 reg_off_ena;
+> +	u32 reg_off_ena_clr;
+> +	u32 reg_off_ena_set;
+> +	u32 reg_off_ident;
+> +	u32 reg_off_trigger;
+> +	u32 reg_off_force;
+> +	u32 reg_off_ena_irq0;
 
-Rob,
+Do all these fields need to be u32s?
 
-I went and pulled a clean copy of 5.10-RC1 and did "make
-dt_binding_check -k" without adding my patch or modifying the branch
-in any way.
+> +	u32 n_irq;
+> +};
+> +
+> +static const struct chip_props ocelot_props = {
+> +	.flags			= FLAGS_HAS_TRIGGER,
+> +	.reg_off_sticky		= 0x10,
+> +	.reg_off_ena		= 0x18,
+> +	.reg_off_ena_clr	= 0x1c,
+> +	.reg_off_ena_set	= 0x20,
+> +	.reg_off_ident		= 0x38,
+> +	.reg_off_trigger	= 0x5c,
+> +	.reg_off_force		= 0xc,
+> +	.n_irq			= 24,
+> +};
+> +
+> +static const struct chip_props luton_props = {
+> +	.flags			= FLAGS_NEED_INIT_ENABLE |
+> +				  FLAGS_FORCE_LUTON_STYLE,
 
-After a bunch of DTEX, then starts to give feedback from various yaml
-files like wrong intendentation, etc.  I can give you a larger log
-dump if you want.
+LUTON_STYLE doesn't quite convey the idea of what this implies.
+Please use a name that actually means something (other than the
+city north of London). And force what exactly?
 
-Then I get the error message again:
-./Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml:35:15:
-[warning] wrong indentation: expected 16 but found 14 (indentation)
-./Documentation/devicetree/bindings/mmc/arasan,sdhci.yaml:38:15:
-[warning] wrong indentation: expected 16 but found 14 (indentation)
-./Documentation/devicetree/bindings/eeprom/at25.yaml:84:8: [warning]
-wrong indentation: expected 6 but found 7 (indentation)
-./Documentation/devicetree/bindings/eeprom/at25.yaml:90:8: [warning]
-wrong indentation: expected 6 but found 7 (indentation)
-make[1]: *** [Documentation/devicetree/bindings/Makefile:59:
-Documentation/devicetree/bindings/processed-schema-examples.json]
-Error 123
-make[1]: Target '__build' not remade because of errors.
-make: *** [Makefile:1364: dt_binding_check] Error 2
+> +	.reg_off_sticky		= 0,
+> +	.reg_off_ena		= 0x4,
+> +	.reg_off_ena_clr	= 0x8,
+> +	.reg_off_ena_set	= 0xc,
+> +	.reg_off_ident		= 0x18,
+> +	.reg_off_trigger	= 0,
 
-It appears that
-Documentation/devicetree/bindings/processed-schema-examples.json was
-not generated.
+If this field doesn't exist (because the matching flag isn't set), don't
+list it.
 
-I went through the writing-schema.rst file to see what/if anything I
-am missing, but as far as I can tell, I have everything installed.
-I did " pip3 install
-git+https://github.com/devicetree-org/dt-schema.git@master" and "
-"apt-get install libyaml-dev"
+> +	.reg_off_force		= 0x38,
+> +	.reg_off_ena_irq0	= 0x14,
+> +	.n_irq			= 28,
+> +};
 
-I am running Ubuntu 20.04 if that helps.
+Please split this patch in two: rework the Ocelot driver to the "new"
+style in one patch, then introduce new platform in another.
 
-thanks for any suggestions you might have.
+> 
+>  static void ocelot_irq_unmask(struct irq_data *data)
+>  {
+>  	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
+> +	struct irq_domain *d = data->domain;
+> +	struct chip_props *p = d->host_data;
+>  	struct irq_chip_type *ct = irq_data_get_chip_type(data);
+>  	unsigned int mask = data->mask;
+>  	u32 val;
+> 
+>  	irq_gc_lock(gc);
+> -	val = irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(0)) |
+> -	      irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(1));
+> -	if (!(val & mask))
+> -		irq_reg_writel(gc, mask, ICPU_CFG_INTR_INTR_STICKY);
+> +	if (p->flags & FLAGS_HAS_TRIGGER) {
+> +		val = irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(p, 0)) |
+> +			irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(p, 1));
+> +		if (!(val & mask))
+> +			irq_reg_writel(gc, mask, p->reg_off_sticky);
+> +	}
+> 
+>  	*ct->mask_cache &= ~mask;
+> -	irq_reg_writel(gc, mask, ICPU_CFG_INTR_INTR_ENA_SET);
+> +	irq_reg_writel(gc, mask, p->reg_off_ena_set);
+>  	irq_gc_unlock(gc);
+>  }
+> 
+> +static void luton_irq_force(struct irq_data *data,
+> +			    struct irq_chip_generic *gc,
+> +			    struct chip_props *p)
+> +{
+> +	int off = p->reg_off_force + (data->hwirq * sizeof(u32));
+> +	u32 val = irq_reg_readl(gc, off);
+> +
+> +	irq_reg_writel(gc, val | BIT(3), off);
+> +}
+> +
+> +static int ocelot_irq_force(struct irq_data *data,
+> +			    enum irqchip_irq_state which, bool state)
 
-adam
+Please use a name that matches the same of the API.
 
->
-> Rob
+> +{
+> +	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
+> +	struct irq_domain *d = data->domain;
+> +	struct chip_props *p = d->host_data;
+> +	int ret = -EINVAL;
+> +
+> +	/* Only supports triggering */
+> +	if ((which == IRQCHIP_STATE_PENDING ||
+> +	     which == IRQCHIP_STATE_ACTIVE) &&
+
+PENDING and ACTIVE are two very different things, and yet you handle
+them the same way. Which one does your interrupt controller support?
+
+> +	    state && p->reg_off_force) {
+> +		if (p->flags & FLAGS_FORCE_LUTON_STYLE)
+> +			/* Config register style */
+> +			luton_irq_force(data, gc, p);
+> +		else
+> +			/* New, bitmask style */
+> +			irq_reg_writel(gc, data->mask, p->reg_off_force);
+> +		ret = 0;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+>  static void ocelot_irq_handler(struct irq_desc *desc)
+>  {
+>  	struct irq_chip *chip = irq_desc_get_chip(desc);
+>  	struct irq_domain *d = irq_desc_get_handler_data(desc);
+> +	struct chip_props *p = d->host_data;
+>  	struct irq_chip_generic *gc = irq_get_domain_generic_chip(d, 0);
+> -	u32 reg = irq_reg_readl(gc, ICPU_CFG_INTR_DST_INTR_IDENT(0));
+> +	u32 reg = irq_reg_readl(gc, ICPU_CFG_INTR_DST_INTR_IDENT(p, 0));
+> 
+>  	chained_irq_enter(chip, desc);
+> 
+> @@ -58,25 +134,28 @@ static void ocelot_irq_handler(struct irq_desc 
+> *desc)
+>  	chained_irq_exit(chip, desc);
+>  }
+> 
+> -static int __init ocelot_irq_init(struct device_node *node,
+> -				  struct device_node *parent)
+> +static int __init vcoreiii_irq_init(struct device_node *node,
+> +				    struct device_node *parent,
+> +				    const struct chip_props *p)
+>  {
+>  	struct irq_domain *domain;
+>  	struct irq_chip_generic *gc;
+>  	int parent_irq, ret;
+> 
+> +	pr_info("%s: Load, %d irqs\n", node->name, p->n_irq);
+
+If you must print something, use %pOFn, just like in the rest of the 
+driver.
+
+> +
+>  	parent_irq = irq_of_parse_and_map(node, 0);
+>  	if (!parent_irq)
+>  		return -EINVAL;
+> 
+> -	domain = irq_domain_add_linear(node, OCELOT_NR_IRQ,
+> +	domain = irq_domain_add_linear(node, p->n_irq,
+>  				       &irq_generic_chip_ops, NULL);
+>  	if (!domain) {
+>  		pr_err("%pOFn: unable to add irq domain\n", node);
+>  		return -ENOMEM;
+>  	}
+> 
+> -	ret = irq_alloc_domain_generic_chips(domain, OCELOT_NR_IRQ, 1,
+> +	ret = irq_alloc_domain_generic_chips(domain, p->n_irq, 1,
+>  					     "icpu", handle_level_irq,
+>  					     0, 0, 0);
+>  	if (ret) {
+> @@ -92,16 +171,23 @@ static int __init ocelot_irq_init(struct 
+> device_node *node,
+>  		goto err_gc_free;
+>  	}
+> 
+> -	gc->chip_types[0].regs.ack = ICPU_CFG_INTR_INTR_STICKY;
+> -	gc->chip_types[0].regs.mask = ICPU_CFG_INTR_INTR_ENA_CLR;
+> +	gc->chip_types[0].regs.ack = p->reg_off_sticky;
+> +	gc->chip_types[0].regs.mask = p->reg_off_ena_clr;
+>  	gc->chip_types[0].chip.irq_ack = irq_gc_ack_set_bit;
+>  	gc->chip_types[0].chip.irq_mask = irq_gc_mask_set_bit;
+>  	gc->chip_types[0].chip.irq_unmask = ocelot_irq_unmask;
+> +	gc->chip_types[0].chip.irq_unmask = ocelot_irq_unmask;
+> +	gc->chip_types[0].chip.irq_set_irqchip_state = ocelot_irq_force;
+> 
+>  	/* Mask and ack all interrupts */
+> -	irq_reg_writel(gc, 0, ICPU_CFG_INTR_INTR_ENA);
+> -	irq_reg_writel(gc, 0xffffffff, ICPU_CFG_INTR_INTR_STICKY);
+> +	irq_reg_writel(gc, 0, p->reg_off_ena);
+> +	irq_reg_writel(gc, 0xffffffff, p->reg_off_sticky);
+> +
+> +	/* Overall init */
+> +	if (p->flags & FLAGS_NEED_INIT_ENABLE)
+> +		irq_reg_writel(gc, BIT(0), p->reg_off_ena_irq0);
+> 
+> +	domain->host_data = (void *)p;
+
+Useless cast.
+
+>  	irq_set_chained_handler_and_data(parent_irq, ocelot_irq_handler,
+>  					 domain);
+> 
+> @@ -115,4 +201,19 @@ static int __init ocelot_irq_init(struct 
+> device_node *node,
+> 
+>  	return ret;
+>  }
+> +
+> +static int __init ocelot_irq_init(struct device_node *node,
+> +				  struct device_node *parent)
+> +{
+> +	return vcoreiii_irq_init(node, parent, &ocelot_props);
+> +}
+> +
+>  IRQCHIP_DECLARE(ocelot_icpu, "mscc,ocelot-icpu-intr", 
+> ocelot_irq_init);
+> +
+> +static int __init luton_irq_init(struct device_node *node,
+> +				 struct device_node *parent)
+> +{
+> +	return vcoreiii_irq_init(node, parent, &luton_props);
+> +}
+> +
+> +IRQCHIP_DECLARE(luton_icpu, "mscc,luton-icpu-intr", luton_irq_init);
+
+Thanks,
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
