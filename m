@@ -2,78 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B2F202B7BF8
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 12:00:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BD0E2B7BFF
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 12:03:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725947AbgKRK7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 05:59:48 -0500
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:6715 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725446AbgKRK7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 05:59:48 -0500
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 72EBE240010;
-        Wed, 18 Nov 2020 10:59:45 +0000 (UTC)
-Date:   Wed, 18 Nov 2020 11:59:45 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen.Hegelund@microchip.com
-Subject: Re: [PATCH 1/5] dt-bindings: reset: ocelot: Add documentation for
- 'microchip,reset-switch-core' property
-Message-ID: <20201118105945.GF4556@piout.net>
-References: <20201116171159.1735315-1-gregory.clement@bootlin.com>
- <20201116171159.1735315-2-gregory.clement@bootlin.com>
+        id S1726306AbgKRLAH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 18 Nov 2020 06:00:07 -0500
+Received: from aposti.net ([89.234.176.197]:60144 "EHLO aposti.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727647AbgKRLAH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 18 Nov 2020 06:00:07 -0500
+Date:   Wed, 18 Nov 2020 10:59:48 +0000
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH RESEND 0/2] Add dmaengine bindings for the JZ4775 and
+ =?UTF-8?Q?the=0D=0A?= X2000 SoCs.
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>,
+        Zubair.Kakakhel@imgtec.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Message-Id: <OVNZJQ.EY4RQEDXL92Y1@crapouillou.net>
+In-Reply-To: <20201118105511.GM50232@vkoul-mobl>
+References: <20201107122016.89859-1-zhouyanjie@wanyeetech.com>
+        <BQOKJQ.FNG5W5HD7VTG1@crapouillou.net> <20201118105511.GM50232@vkoul-mobl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201116171159.1735315-2-gregory.clement@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/11/2020 18:11:55+0100, Gregory CLEMENT wrote:
-> From: Lars Povlsen <lars.povlsen@microchip.com>
+
+
+Le mer. 18 nov. 2020 à 16:25, Vinod Koul <vkoul@kernel.org> a écrit :
+> On 10-11-20, 08:54, Paul Cercueil wrote:
+>>  Hi Zhou,
+>> 
+>>  Le sam. 7 nov. 2020 à 20:20, 周琰杰 (Zhou Yanjie)
+>>  <zhouyanjie@wanyeetech.com> a écrit :
+>>  > Add the dmaengine bindings for the JZ4775 SoC and the X2000 SoC 
+>> from
+>>  > Ingenic.
+>>  >
+>>  > 周琰杰 (Zhou Yanjie) (2):
+>>  >   dt-bindings: dmaengine: Add JZ4775 bindings.
+>>  >   dt-bindings: dmaengine: Add X2000 bindings.
+>>  >
+>>  >  include/dt-bindings/dma/jz4775-dma.h | 44 
+>> +++++++++++++++++++++++++++++
+>>  >  include/dt-bindings/dma/x2000-dma.h  | 54
+>>  > ++++++++++++++++++++++++++++++++++++
+>> 
+>>  If that's up to me, these macros aren't really needed, and you can 
+>> put the
+>>  values directly in the dma cells. This is done already in 
+>> jz4740.dtsi,
+>>  jz4725b.dtsi and jz4770.dtsi.
 > 
-> This documents the 'microchip,reset-switch-core' property in the
-> ocelot-reset driver.
-> 
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> ---
->  .../devicetree/bindings/power/reset/ocelot-reset.txt        | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt b/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
-> index 4d530d815484..20fff03753ad 100644
-> --- a/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
-> +++ b/Documentation/devicetree/bindings/power/reset/ocelot-reset.txt
-> @@ -9,9 +9,15 @@ microchip Sparx5 armv8 SoC's.
->  Required Properties:
->   - compatible: "mscc,ocelot-chip-reset" or "microchip,sparx5-chip-reset"
->  
-> +Optional properties:
-> +- microchip,reset-switch-core : Perform a switch core reset at the
-> +  time of driver load. This is may be used to initialize the switch
-> +  core to a known state (before other drivers are loaded).
-> +
+> But that is not really nice, it is good to define these rather than 
+> put
+> numbers, the include/dt-bindings exists for this sole reason!
 
-If this is to be used by the switchdev driver, then I would simply
-register this reset as a proper reset controller (with the  driver/reset
-API) and consume that from the switchdev driver.
+The macros in include/dt-bindings exist for when the C code also needs 
+them (e.g. IRQ_TYPE_EDGE_RISING), and not when they are only used in 
+devicetree.
 
-However, the switch may also be configured from userspace in existing
-products. In this case you'd have to expose a reset interface, either
-from the drivers/reset core or with a specific consumer.
+Things like IRQ numbers are never defined in include/dt-bindings, 
+because they don't have to be...
 
-My point is that this property is not necessary.
+-Paul
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
