@@ -2,82 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 036F02B73D0
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 02:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCD722B73E3
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 02:50:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726998AbgKRBi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Nov 2020 20:38:59 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:41203 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725767AbgKRBi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Nov 2020 20:38:59 -0500
-X-UUID: 630185640108402a83ff2c8a81bef551-20201118
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=VQSP1sH4CqMAhG3prd+7/b/qG6Nz5rZr5wJPtTA6ytA=;
-        b=prPzbxB8X79spbx4u3Y3tAouEp30AENJqm6rlTVLRN1wGwg5kXiB7WzqfJIfPzGn1auqofhq8g0WiGg4tyuA479gQpruShQYS1EVQdEYQa6J24IzQTq2RdM4k1nbTt1sqpZUbD5xK4dZ5nckjiLy6T1+Y0rgwwgA31I9agzLiKk=;
-X-UUID: 630185640108402a83ff2c8a81bef551-20201118
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1400451792; Wed, 18 Nov 2020 09:38:53 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
- (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 18 Nov
- 2020 09:38:48 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 18 Nov 2020 09:38:50 +0800
-Message-ID: <1605663530.31607.40.camel@mhfsdcap03>
-Subject: Re: [PATCH] dt-bindings: arm: add additionalProperties
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        <linux-unisoc@lists.infradead.org>,
-        <linux-realtek-soc@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 18 Nov 2020 09:38:50 +0800
-In-Reply-To: <CAMuHMdXVXqj9k4FMFH5aiqKwNrWocJpjahYKA8k2e3Z2ji2hvQ@mail.gmail.com>
-References: <20201117103123.3938-1-chunfeng.yun@mediatek.com>
-         <CAMuHMdXVXqj9k4FMFH5aiqKwNrWocJpjahYKA8k2e3Z2ji2hvQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1725823AbgKRBtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Nov 2020 20:49:33 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37614 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725774AbgKRBtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Nov 2020 20:49:33 -0500
+Received: from kernel.org (unknown [104.132.1.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 44ECA241A7;
+        Wed, 18 Nov 2020 01:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605664172;
+        bh=M6DfrIdy95Ghs9mCFBL8Ngh2V0KHo7z65Isd9IgYS3s=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=GFbG78XCZWOi7mQ937XcvONvdNNLDydGM450RdgNzpN3caAYSRmfTf1XerRwsaW4v
+         /Dq4pOCMsDsgx6QaqwNie1Vh5xT3xu/K5iXqy4/kNzP3h9O6j7MiQ10Rd/fbCJ/XCm
+         WxDk55uYFKWryDlqwJqlGunKSUMUCm0OLHbiZZSk=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 5DF35A84F2346C88C9B1BA1AEF6C513A344973A569469D1148B07A014C4095D62000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <24d975ca-1942-5f7f-ae89-7b572f48812c@microchip.com>
+References: <1604655988-353-1-git-send-email-claudiu.beznea@microchip.com> <1604655988-353-7-git-send-email-claudiu.beznea@microchip.com> <160538849947.60232.12002724470272520124@swboyd.mtv.corp.google.com> <24d975ca-1942-5f7f-ae89-7b572f48812c@microchip.com>
+Subject: Re: [PATCH v4 06/11] clk: at91: clk-sam9x60-pll: allow runtime changes for pll
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Eugen.Hristev@microchip.com, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+To:     Claudiu.Beznea@microchip.com, Ludovic.Desroches@microchip.com,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        mturquette@baylibre.com, robh+dt@kernel.org
+Date:   Tue, 17 Nov 2020 17:49:30 -0800
+Message-ID: <160566417078.60232.18106288530854376790@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTExLTE3IGF0IDExOjM3ICswMTAwLCBHZWVydCBVeXR0ZXJob2V2ZW4gd3Jv
-dGU6DQo+IEhpIENodW5mZW5nLA0KPiANCj4gT24gVHVlLCBOb3YgMTcsIDIwMjAgYXQgMTE6MzIg
-QU0gQ2h1bmZlbmcgWXVuIDxjaHVuZmVuZy55dW5AbWVkaWF0ZWsuY29tPiB3cm90ZToNCj4gPiBB
-ZGQgYW4gZXhwbGljaXQgImFkZGl0aW9uYWxQcm9wZXJ0aWVzOiB0cnVlIiB0byBhdm9pZA0KPiA+
-IGR0X2JpbmRpbmdfY2hlY2sgZXJyb3IgY2F1c2VkIGJ5Og0KPiA+ICdhZGRpdGlvbmFsUHJvcGVy
-dGllcycgaXMgYSByZXF1aXJlZCBwcm9wZXJ0eQ0KPiA+DQo+ID4gVGhpcyB3aWxsIG5vdCBjaGFu
-Z2UgZnVuY3Rpb24sIGR1ZSB0byBhZGRpdGlvbmFsUHJvcGVydGllcw0KPiA+IGlzIHRydWUgYnkg
-ZGVmYXVsdC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IENodW5mZW5nIFl1biA8Y2h1bmZlbmcu
-eXVuQG1lZGlhdGVrLmNvbT4NCj4gDQo+IFRoYW5rcyBmb3IgeW91ciBwYXRjaCENCj4gDQo+ID4g
-LS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9hY3Rpb25zLnlhbWwN
-Cj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2FjdGlvbnMu
-eWFtbA0KPiA+IEBAIC00OSwzICs0OSw1IEBAIHByb3BlcnRpZXM6DQo+ID4gICAgICAgICAgICAt
-IGVudW06DQo+ID4gICAgICAgICAgICAgICAgLSB1Y3JvYm90aWNzLGJ1YmJsZWd1bS05NiAjIHVD
-Um9ib3RpY3MgQnViYmxlZ3VtLTk2DQo+ID4gICAgICAgICAgICAtIGNvbnN0OiBhY3Rpb25zLHM5
-MDANCj4gPiArDQo+ID4gK2FkZGl0aW9uYWxQcm9wZXJ0aWVzOiB0cnVlDQo+IA0KPiBMb29rcyB2
-ZXJ5IHNpbWlsYXIgdG8gY29tbWl0IDYyMjk4MzY0YmQ0ODliMDYgKCJkdC1iaW5kaW5nczogRXhw
-bGljaXRseQ0KPiBhbGxvdyBhZGRpdGlvbmFsIHByb3BlcnRpZXMgaW4gYm9hcmQvU29DIHNjaGVt
-YXMiKSBpbiB2NS4xMC1yYzI/DQpZZXMsIGluZGVlZCwgdGhhbmtzIGZvciB5b3VyIGluZm8uDQoN
-Cj4gDQo+IEdye29ldGplLGVldGluZ31zLA0KPiANCj4gICAgICAgICAgICAgICAgICAgICAgICAg
-R2VlcnQNCj4gDQoNCg==
+Quoting Claudiu.Beznea@microchip.com (2020-11-16 03:24:54)
+>=20
+>=20
+> On 14.11.2020 23:14, Stephen Boyd wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
+> >=20
+> > Quoting Claudiu Beznea (2020-11-06 01:46:23)
+> >> diff --git a/drivers/clk/at91/clk-sam9x60-pll.c b/drivers/clk/at91/clk=
+-sam9x60-pll.c
+> >> index 78f458a7b2ef..6fe5d8530a0c 100644
+> >> --- a/drivers/clk/at91/clk-sam9x60-pll.c
+> >> +++ b/drivers/clk/at91/clk-sam9x60-pll.c
+> >> @@ -225,8 +225,51 @@ static int sam9x60_frac_pll_set_rate(struct clk_h=
+w *hw, unsigned long rate,
+> >>                                      unsigned long parent_rate)
+> >>  {
+> >>         struct sam9x60_pll_core *core =3D to_sam9x60_pll_core(hw);
+> >> +       struct sam9x60_frac *frac =3D to_sam9x60_frac(core);
+> >> +       struct regmap *regmap =3D core->regmap;
+> >> +       unsigned long irqflags, clkflags =3D clk_hw_get_flags(hw);
+> >> +       unsigned int val, cfrac, cmul;
+> >> +       long ret;
+> >> +
+> >> +       ret =3D sam9x60_frac_pll_compute_mul_frac(core, rate, parent_r=
+ate, true);
+> >> +       if (ret <=3D 0 || (clkflags & CLK_SET_RATE_GATE))
+> >=20
+> > Is this function being called when the clk is enabled and it has the
+> > CLK_SET_RATE_GATE flag set?
+>=20
+> Yes, this function could be called when CLK_SET_RATE_GATE is set.
+> On SAMA7G5 there are multiple PLL blocks of the same type. All these PLLs
+> are controlled by clk-sam9x60-pll.c driver. One of this PLL block fed the
+> CPU who's frequency could be changed at run time. At the same time there
+> are PLLs that fed hardware block not glitch free aware or that we don't
+> want to allow the rate change (this is the case of SAM9X60's CPU PLL, or
+> the DDR PLL on SAMA7G5).
+>=20
+> I'm confused why this driver needs to check
+> > this flag.
+>=20
+> Because we have multiple PLLs of the same type, some of them feed hardware
+> blocks that are glitch free aware of these PLLs' frequencies changes, some
+> feed hardware blocks that are not glitch free aware of PLLs' frequencies
+> changes or for some of them we don't want the frequency changes at all.
 
+Can we have different clk_ops for the different types of PLLs? It looks
+like the flag is being used to overload this function to do different
+things depending on how the flags are set. What happens if we decide to
+change the semantics of this clk flag? How does it map to this driver?
+Ideally this driver shouldn't need to worry about this flag, at least
+not in this function, except to figure out if it should do something
+different like not write the value to the hardware or something like
+that.
+
+The flag indicates to the clk framework that this clk should be gated
+when clk_set_rate() is called on it. The driver should be able to figure
+out that the clk is disabled by reading the hardware here and checking
+the enable state, or it could just have different clk_ops for the
+different type of PLL and do something different without checking the
+flag. Either way, checking the flag looks wrong.
+
+> >> -                 .c =3D 1,
+> >> +                 .f =3D CLK_IS_CRITICAL | CLK_SET_RATE_GATE,
+> >=20
+> > Please indicate why clks are critical.
+>=20
+> Sure! I'll do it in next version. I chose it like this because they are
+> feeding critical parts of the system like CPU or memory.
+>=20
+> > Whenever the CLK_IS_CRITICAL flag
+> > is used we should have a comment indicating why.
+>=20
+> I was not aware of this rule. I'll update the code accordingly.
+
+Sorry. I should put a document comment next to the flag.
