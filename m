@@ -2,101 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 676592B8011
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 16:04:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C8F2B802B
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 16:13:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727117AbgKRPDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 10:03:43 -0500
-Received: from mail.kernel.org ([198.145.29.99]:40716 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726672AbgKRPDn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 10:03:43 -0500
-Received: from sekiro (lfbn-mar-1-625-225.w90-118.abo.wanadoo.fr [90.118.2.225])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6624D24740;
-        Wed, 18 Nov 2020 15:03:40 +0000 (UTC)
-Date:   Wed, 18 Nov 2020 16:03:36 +0100
-From:   Ludovic Desroches <ludovic.desroches@microchip.com>
-To:     cristian.birsan@microchip.com
-Cc:     alexandre.belloni@bootlin.com, nicolas.ferre@microchip.com,
-        robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 0/3] ARM: dts: at91: add pincontrol node for USB Host
-Message-ID: <20201118150336.g3u3ljuhrbrn2cko@sekiro>
-References: <20201118120019.1257580-1-cristian.birsan@microchip.com>
+        id S1726431AbgKRPNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 10:13:12 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:43794 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726306AbgKRPNL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 10:13:11 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AIFD0ol120514;
+        Wed, 18 Nov 2020 09:13:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605712380;
+        bh=fRXYfmpAlOx5yxugSGF8b53ScMrQg/M0H0yln2Mppu4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=f1XIWSZIi0ocJcBSPysUUp3LioUsM0gCj9ohXCclw8G+Aqq01tBIC2ONZfAqTmin1
+         8y7WYBtZjuF8QWBvIWaFuGUHPvQ4wgi3V2e/X0xjeiPPv9tYTTY1b0RITJ1rYo0Zqd
+         VOyDN4hpY47FO1Yadj8RQuGqdgp/JO3Qrm0PljZs=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AIFD0BN082253
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 18 Nov 2020 09:13:00 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 18
+ Nov 2020 09:12:59 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 18 Nov 2020 09:12:59 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AIFCxEK025577;
+        Wed, 18 Nov 2020 09:12:59 -0600
+Date:   Wed, 18 Nov 2020 09:12:59 -0600
+From:   Nishanth Menon <nm@ti.com>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+CC:     Sekhar Nori <nsekhar@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Faiz Abbas <faiz_abbas@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Andre Przywara <andre.przywara@arm.com>
+Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3: squelch warnings regarding no
+ #address-cells for interrupt-controller
+Message-ID: <20201118151259.kpag44djji4ssiup@eldest>
+References: <20201117161942.38754-1-nsekhar@ti.com>
+ <20201117161942.38754-3-nsekhar@ti.com>
+ <ab9658ef-c8a7-155b-acb1-effa872132ca@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20201118120019.1257580-1-cristian.birsan@microchip.com>
+In-Reply-To: <ab9658ef-c8a7-155b-acb1-effa872132ca@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Cristi,
-
-Adding the gpio list.
-
-On Wed, Nov 18, 2020 at 02:00:16PM +0200, cristian.birsan@microchip.com wrote:
-> From: Cristian Birsan <cristian.birsan@microchip.com>
+On 13:38-20201118, Grygorii Strashko wrote:
+> Hi Rob,
 > 
-> The pincontrol node is needed for USB Host since Linux v5.7-rc1. Without
-> it the driver probes but VBus is not powered because of wrong pincontrol
-> configuration. The patch was tested on SAM9x60EK, SAMA5D4-EK and SAMA5D3-EK. 
-> 
+> On 17/11/2020 18:19, Sekhar Nori wrote:
+> > With dtc 1.6.0, building TI device-tree files with W=2 results in warnings
+> > like below for all interrupt controllers.
+> > 
+> > /bus@100000/bus@30000000/interrupt-controller1: Missing #address-cells in interrupt provider
+> > 
+> > Fix these by adding #address-cells = <0>; for all interrupt controllers in
+> > TI device-tree files. Any other #address-cells value is really only needed
+> > if interrupt-map property is being used (which is not the case for existing
+> > TI device-tree files)
+> > 
+> > Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+> > ---
+> >   arch/arm64/boot/dts/ti/k3-am65-main.dtsi              |  5 +++++
+> >   arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi            |  2 ++
+> >   arch/arm64/boot/dts/ti/k3-am654-base-board.dts        |  1 +
+> >   arch/arm64/boot/dts/ti/k3-j7200-main.dtsi             |  3 +++
+> >   arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi       |  1 +
+> >   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts |  1 +
+> >   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi             | 11 +++++++++++
+> >   arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi       |  3 +++
+> >   8 files changed, 27 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > index aa8725db0187..55aaa1404d7d 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> > @@ -440,6 +440,7 @@
+> >   		interrupt-controller;
+> >   		interrupt-parent = <&gic500>;
+> >   		#interrupt-cells = <1>;
+> > +		#address-cells = <0>;
+> Does it really required or mandatory to have #address-cells = <0>; defined for interrupt-controller DT nodes which
+> do not have child nodes and no "interrupt-map"?
 
-No problem on my side with this set of patches, it's consistent with what we
-have.
-Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+Just to help clarify (I could be mistaken as well): is'nt the
+interrupt map for user interrupt map nodes that refer to this
+interrupt controller node to state they dont need a parent address
+specifier - so are we claiming none of the users will have an
+interrupt-map (now and never in the future as well) - we we might want
+to explain why we think that is the case, and if we are expecting dtc
+to deduce that (if so how?)?
 
-I just want to share the full picture leading to this situation. You told me the
-breakage appears after this commit:
-
-commit 2ab73c6d8323fa1eb02c16c07c40ba2ed17da729
-Author: Thierry Reding <treding@nvidia.com>
-Date:   Thu Mar 19 13:27:29 2020 +0100
-
-    gpio: Support GPIO controllers without pin-ranges
-
-    Wake gpiochip_generic_request() call into the pinctrl helpers only if a
-    GPIO controller had any pin-ranges assigned to it. This allows a driver
-    to unconditionally use this helper if it supports multiple devices of
-    which only a subset have pin-ranges assigned to them.
-
-    Signed-off-by: Thierry Reding <treding@nvidia.com>
-    Link: https://lore.kernel.org/r/20200319122737.3063291-2-thierry.reding@gmail.com
-    Tested-by: Vidya Sagar <vidyas@nvidia.com>
-    Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-
-We were used to defining pinctrl for all our pins. That is somewhat redundant
-when the pin is requested through the gpiolib.
-
-The pinctrl-at91 driver doesn't register any pin range. After this commit, the
-gpio_generic_request() fails. The consequence is if we forgot to define the
-pinctrl, the pin won't be muxed as a gpio.
-
-At first glance, there is no trivial way to register the pin range in the
-pinctrl-at91 driver. There is one driver for the pinctrl and one for the gpio.
-I am open to suggestions to fix it in the pinctrl-at91 driver as well if there
-is an elegant way (I have some in mind, but there are not) without having to
-refactor the driver.
-
-Regards
-
-Ludovic
-
-
-> Cristian Birsan (3):
->   ARM: dts: sam9x60: add pincontrol for USB Host
->   ARM: dts: at91: sama5d4_xplained: add pincontrol for USB Host
->   ARM: dts: at91: sama5d3_xplained: add pincontrol for USB Host
-> 
->  arch/arm/boot/dts/at91-sam9x60ek.dts        | 9 +++++++++
->  arch/arm/boot/dts/at91-sama5d3_xplained.dts | 7 +++++++
->  arch/arm/boot/dts/at91-sama5d4_xplained.dts | 7 +++++++
->  3 files changed, 23 insertions(+)
-> 
-> -- 
-> 2.25.1
-> 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
