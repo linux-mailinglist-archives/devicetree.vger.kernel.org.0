@@ -2,85 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE082B7B8A
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 11:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E20A12B7B91
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 11:46:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725613AbgKRKmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 05:42:31 -0500
-Received: from mail-ej1-f65.google.com ([209.85.218.65]:45772 "EHLO
-        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725446AbgKRKma (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 05:42:30 -0500
-Received: by mail-ej1-f65.google.com with SMTP id dk16so2012564ejb.12;
-        Wed, 18 Nov 2020 02:42:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RSpyNr9ImM7m91CBLdyW5FUGxR8gG95LO/PYe+GLcPM=;
-        b=rDkONH0ooGN6zPjwQT/PAJ+R1//Dlt+Ps0mBcq6GY522GsSLeaBTktGzulLuJ3eymO
-         ZZSpk1cnb5kBLhUzTulVSCZAo041hnsFvQUZ1asVr2bKTEW0P6PP+bbqZqf0zqNytHsy
-         ABF8Y30p/VTTbzl8KcQZiOxBV+T5nL2GFsDW9kT1ZIFLPThn3CIHdmqea56DM+t2B9es
-         tURslJX0FtONvQ3nRAnGo3DKY5wLvTyHh+aiXpZrjerA/aAR7BnNv2tbk20FDGzBr4dm
-         veVM7EA//tckyX1rlMwd9SdKkpHqvK9thsYp5kLGlaPy9N9gLuXGz77ze1E20omfpnv2
-         Ik6g==
-X-Gm-Message-State: AOAM531MOrtIEVx6dfrPpLBUNYJSjZoTdMd18Ak4IQpY1PVW016TtzX5
-        lp7QjBUq61+YKTONgEgsDSk=
-X-Google-Smtp-Source: ABdhPJx7/ODY/gVEoRqL5kGJlrG8wd017WuRtscj4IzeoSwSxUVO6td2HgkiLYpTN9rcgeuRjg3bBw==
-X-Received: by 2002:a17:906:1408:: with SMTP id p8mr22992702ejc.548.1605696148906;
-        Wed, 18 Nov 2020 02:42:28 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id f13sm12601074ejf.42.2020.11.18.02.42.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2020 02:42:28 -0800 (PST)
-Date:   Wed, 18 Nov 2020 11:42:26 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v3 4/4] soc: imx8m: change to use platform
- driver
-Message-ID: <20201118104226.GA23766@kozik-lap>
-References: <20201113110409.13546-1-alice.guo@nxp.com>
- <20201113110409.13546-4-alice.guo@nxp.com>
- <20201114164128.GD14989@kozik-lap>
- <AM6PR04MB6053BFD5462C9AC405962095E2E30@AM6PR04MB6053.eurprd04.prod.outlook.com>
- <20201116161338.GB25108@kozik-lap>
- <AM6PR04MB60534E7BD063455FDA2649C3E2E10@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        id S1726616AbgKRKp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 05:45:27 -0500
+Received: from relay12.mail.gandi.net ([217.70.178.232]:58495 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726141AbgKRKp1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 05:45:27 -0500
+Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 56AB520000A;
+        Wed, 18 Nov 2020 10:45:23 +0000 (UTC)
+Date:   Wed, 18 Nov 2020 11:45:22 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen.Hegelund@microchip.com
+Subject: Re: [PATCH v3 3/5] irqchip: ocelot: Add support for Luton platforms
+Message-ID: <20201118104522.GB4556@piout.net>
+References: <20201116162427.1727851-1-gregory.clement@bootlin.com>
+ <20201116162427.1727851-4-gregory.clement@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM6PR04MB60534E7BD063455FDA2649C3E2E10@AM6PR04MB6053.eurprd04.prod.outlook.com>
+In-Reply-To: <20201116162427.1727851-4-gregory.clement@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 18, 2020 at 10:28:47AM +0000, Alice Guo wrote:
- > 
-> > If it is properly explained and there is no other way then yes, you could. Here, for
-> > old DTBs, I would prefer to use
-> > of_platform_device_create() and bind to "soc" node (child of root).
-> > This way you would always have device and exactly one entry point for the
-> > probe.
-> > 
-> 
-> static struct platform_driver imx8_soc_init_driver = {
-> 	.probe = imx8_soc_init_probe,
-> 	.driver = {
-> 		.name = "soc@0",
-> 	},
-> };
-> Can I use "soc@0" to match this driver? It will not use of_platform_device_create(). It will use of_find_property() to determine whether
-> and nvmem-cells can be used. If there is no nvmem-cells, it will use the old way, which supports old DTBS. There is no need to add new
-> compatible.
+Hi,
 
-No, the soc@0 is not a proper name for the driver.
+On 16/11/2020 17:24:25+0100, Gregory CLEMENT wrote:
+>  static void ocelot_irq_unmask(struct irq_data *data)
+>  {
+>  	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
+> +	struct irq_domain *d = data->domain;
+> +	struct chip_props *p = d->host_data;
+>  	struct irq_chip_type *ct = irq_data_get_chip_type(data);
+>  	unsigned int mask = data->mask;
+>  	u32 val;
+>  
+>  	irq_gc_lock(gc);
+> -	val = irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(0)) |
+> -	      irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(1));
+> -	if (!(val & mask))
+> -		irq_reg_writel(gc, mask, ICPU_CFG_INTR_INTR_STICKY);
+> +	if (p->flags & FLAGS_HAS_TRIGGER) {
+> +		val = irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(p, 0)) |
+> +			irq_reg_readl(gc, ICPU_CFG_INTR_INTR_TRIGGER(p, 1));
+> +		if (!(val & mask))
+> +			irq_reg_writel(gc, mask, p->reg_off_sticky);
+> +	}
+>  
+>  	*ct->mask_cache &= ~mask;
+> -	irq_reg_writel(gc, mask, ICPU_CFG_INTR_INTR_ENA_SET);
+> +	irq_reg_writel(gc, mask, p->reg_off_ena_set);
+>  	irq_gc_unlock(gc);
+>  }
 
-Best regards,
-Krzysztof
+Looking at that again, I think you should leave this function as is...
+
+>  
+> +static void luton_irq_force(struct irq_data *data,
+> +			    struct irq_chip_generic *gc,
+> +			    struct chip_props *p)
+> +{
+> +	int off = p->reg_off_force + (data->hwirq * sizeof(u32));
+> +	u32 val = irq_reg_readl(gc, off);
+> +
+> +	irq_reg_writel(gc, val | BIT(3), off);
+> +}
+> +
+> +static int ocelot_irq_force(struct irq_data *data,
+> +			    enum irqchip_irq_state which, bool state)
+> +{
+> +	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
+> +	struct irq_domain *d = data->domain;
+> +	struct chip_props *p = d->host_data;
+> +	int ret = -EINVAL;
+> +
+> +	/* Only supports triggering */
+> +	if ((which == IRQCHIP_STATE_PENDING ||
+> +	     which == IRQCHIP_STATE_ACTIVE) &&
+> +	    state && p->reg_off_force) {
+> +		if (p->flags & FLAGS_FORCE_LUTON_STYLE)
+> +			/* Config register style */
+> +			luton_irq_force(data, gc, p);
+> +		else
+> +			/* New, bitmask style */
+> +			irq_reg_writel(gc, data->mask, p->reg_off_force);
+> +		ret = 0;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+
+I think the addition of the force function may be separated in an
+different patch.
+
+> -static int __init ocelot_irq_init(struct device_node *node,
+> -				  struct device_node *parent)
+> +static int __init vcoreiii_irq_init(struct device_node *node,
+> +				    struct device_node *parent,
+> +				    const struct chip_props *p)
+>  {
+>  	struct irq_domain *domain;
+>  	struct irq_chip_generic *gc;
+>  	int parent_irq, ret;
+>  
+> +	pr_info("%s: Load, %d irqs\n", node->name, p->n_irq);
+> +
+
+Is this necessary?
+
+>  	parent_irq = irq_of_parse_and_map(node, 0);
+>  	if (!parent_irq)
+>  		return -EINVAL;
+>  
+> -	domain = irq_domain_add_linear(node, OCELOT_NR_IRQ,
+> +	domain = irq_domain_add_linear(node, p->n_irq,
+>  				       &irq_generic_chip_ops, NULL);
+>  	if (!domain) {
+>  		pr_err("%pOFn: unable to add irq domain\n", node);
+>  		return -ENOMEM;
+>  	}
+>  
+> -	ret = irq_alloc_domain_generic_chips(domain, OCELOT_NR_IRQ, 1,
+> +	ret = irq_alloc_domain_generic_chips(domain, p->n_irq, 1,
+>  					     "icpu", handle_level_irq,
+>  					     0, 0, 0);
+>  	if (ret) {
+> @@ -92,16 +171,23 @@ static int __init ocelot_irq_init(struct device_node *node,
+>  		goto err_gc_free;
+>  	}
+>  
+> -	gc->chip_types[0].regs.ack = ICPU_CFG_INTR_INTR_STICKY;
+> -	gc->chip_types[0].regs.mask = ICPU_CFG_INTR_INTR_ENA_CLR;
+> +	gc->chip_types[0].regs.ack = p->reg_off_sticky;
+> +	gc->chip_types[0].regs.mask = p->reg_off_ena_clr;
+>  	gc->chip_types[0].chip.irq_ack = irq_gc_ack_set_bit;
+>  	gc->chip_types[0].chip.irq_mask = irq_gc_mask_set_bit;
+>  	gc->chip_types[0].chip.irq_unmask = ocelot_irq_unmask;
+> +	gc->chip_types[0].chip.irq_unmask = ocelot_irq_unmask;
+
+This is assigned the same member twice.
+
+As said, you can probably leave ocelot_irq_unmask so we avoid having an
+if in the hot path.
+
+You should test here for triggers and if they are not available, then
+you can use regs.enable/regs.disable and irq_gc_mask_disable_reg and
+irq_gc_unmask_enable_reg instead of regs.mask and
+irq_gc_mask_set_bit/ocelot_irq_unmask
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
