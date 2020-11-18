@@ -2,124 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2540A2B852C
-	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 20:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 764472B8583
+	for <lists+devicetree@lfdr.de>; Wed, 18 Nov 2020 21:27:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726629AbgKRT6W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 14:58:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726081AbgKRT6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 14:58:21 -0500
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0F1C0613D4
-        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 11:58:21 -0800 (PST)
-Received: by mail-qk1-x742.google.com with SMTP id n132so3116765qke.1
-        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 11:58:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VjaM+f+QFZwLQKDZ4ZTmgMDJ8f9Az2SK5T/knBnywXY=;
-        b=jnFgYG5gVAJ2oms8z2m6ffdBRZV6U9odnUVxDlqLkvQyQKuTkBCManYKf5qOsmXaiZ
-         ImN2Ps4AJtf/Twj313+ljstfydDjPN27wPf/9SXYD2XRPbdGRvYr+Im9fT0cfBHqI3wY
-         cxx4b6qPUN4b9eE8RXxYkRkTD8BsO02dTTJkAbsJ7zkuD2RFDHXUjAPjkCNlYEaO1A16
-         tAIITkoK+kceH+xz/NwU12Cje4zz7POeYTJJyrZ7NDVmlfLJH7naXO4jT8j6shlt2Dn5
-         O+3oZcejWMrWsYbPkT/KCAXT6+UoUbADMXlpBhWHD//VTQ8EwzWlmJcOQDpLvhkoT06O
-         1IcQ==
+        id S1726651AbgKRU1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 18 Nov 2020 15:27:17 -0500
+Received: from mail-ej1-f67.google.com ([209.85.218.67]:42390 "EHLO
+        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726397AbgKRU1R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 18 Nov 2020 15:27:17 -0500
+Received: by mail-ej1-f67.google.com with SMTP id i19so4603426ejx.9;
+        Wed, 18 Nov 2020 12:27:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VjaM+f+QFZwLQKDZ4ZTmgMDJ8f9Az2SK5T/knBnywXY=;
-        b=MCw70azS3uaDBpj5pwxD7WWV3RUxYTy/WCuMt593kiJJjBIlhhOW+8gErVDMFICAqX
-         +GQS5sS0tU9OpJPUJyTBAcojQ88L92ayN6tA/W6uOgP6FcM6UB6k63wgR3hZ8JkqVzja
-         Gl7friMWZaUcJIvhPE6AZT6CQSXcU42ngxAjyLFOWQMmWG0gUkZyNwJsLbPceSfJwTc8
-         rdyvpm/YP/XdyP2sONpdYUFJvhp+h55yEoCWxhwNHUTh7ZfLfAEbLeT9ln8HO1RnGzsx
-         Wnk/oLr8l8Ydgv1cno0D42jOA3Iv/MPpVM28jdC/9U8eMQm8HuSHC/YkFTesAgjrFiO7
-         jpQA==
-X-Gm-Message-State: AOAM531YJFSxPSMl5csw20SmmVgzyN1inVjw0oU2II0Yh8R27eiqs+qF
-        16kjP9Mtq0i+pXl2sS65QMsBYw==
-X-Google-Smtp-Source: ABdhPJzAyijtIgkU8ysmO8Yu8ExUdE14ZVR8R9jKKJNAARHrhWd4xaNIouNLKbqBAPiV4QUesrvZbQ==
-X-Received: by 2002:a05:620a:62b:: with SMTP id 11mr7020809qkv.229.1605729500701;
-        Wed, 18 Nov 2020 11:58:20 -0800 (PST)
-Received: from [192.168.1.93] (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.gmail.com with ESMTPSA id m204sm7745048qke.117.2020.11.18.11.58.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Nov 2020 11:58:19 -0800 (PST)
-Subject: Re: [PATCH 5/6] dts:qcom:sdm845: Add dt entries to support crypto
- engine.
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org, sboyd@kernel.org,
-        mturquette@baylibre.com, linux-arm-msm@vger.kernel.org,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20201117134714.3456446-1-thara.gopinath@linaro.org>
- <20201117134714.3456446-6-thara.gopinath@linaro.org>
- <20201118041051.GF8532@builder.lan>
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-Message-ID: <36532dfd-4e13-79b2-d29f-d7684f638b22@linaro.org>
-Date:   Wed, 18 Nov 2020 14:58:19 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=W2fBMhQfDyimj8ftEYNVk5h+ZPnnXBgf5DRDPVqq7wU=;
+        b=MSRhoFgxgOvO72UWnPKm/C8LSoIO/QoWywo8etxKXZmSu9F95lUiimYHJpKDE+6Dli
+         sUvtDMhocPHUdcWolMiY7FtfyJ21VEhctCPHg24vHWziWpA+iK3pvzGE5ETOnNkyBU2q
+         PDz5E9/IVRNTMdofOvWVVE1jOx04RlbunmltF5grkbFMLkuojq/PU/wUKshzSI4sAZHe
+         lbsUVzo8nqJzMkvx45pVMlDyLSwChnRX1/PtaNzolL7v4ovRbeoGjAmOwh67GSoB4nZU
+         kWZpGGeIYfyTk2YH0zJmsY5hkOHsanjfaY5E96gRhtuPZEYcpl6A/wiuJ5cQ5fWKaT0Y
+         q6TQ==
+X-Gm-Message-State: AOAM532qJQoUwdVR3xkaaKCq2jibp6MMCWRx4TjgGHNyn7+4Iw7m5fYA
+        24r2o33pkNRA99nz/jBmgaw=
+X-Google-Smtp-Source: ABdhPJzpdxqwLy+WieIOcI43Sds1kbXtCbcj+afnu+P01W3Z00Hb/3EtW5r+ocmenk8kIQECEE5XAg==
+X-Received: by 2002:a17:906:2a0a:: with SMTP id j10mr4873975eje.307.1605731233667;
+        Wed, 18 Nov 2020 12:27:13 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id ew18sm4156200ejb.86.2020.11.18.12.27.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2020 12:27:12 -0800 (PST)
+Date:   Wed, 18 Nov 2020 21:27:10 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] media: i2c: imx258: get clock from device
+ properties and enable it via runtime PM
+Message-ID: <20201118202036.GA5631@kozik-lap>
+References: <20201019170247.92002-1-krzk@kernel.org>
+ <20201019172617.92815-1-krzk@kernel.org>
+ <20201019172617.92815-3-krzk@kernel.org>
+ <20201102150847.GZ26150@paasikivi.fi.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20201118041051.GF8532@builder.lan>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201102150847.GZ26150@paasikivi.fi.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 11/17/20 11:10 PM, Bjorn Andersson wrote:
-> On Tue 17 Nov 07:47 CST 2020, Thara Gopinath wrote:
+On Mon, Nov 02, 2020 at 05:08:47PM +0200, Sakari Ailus wrote:
+> Hi Krysztof,
 > 
->> Add crypto engine (CE) and CE BAM related nodes and definitions to
->> "sdm845.dtsi".
->>
->> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 30 ++++++++++++++++++++++++++++
->>   1 file changed, 30 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> index 40e8c11f23ab..b5b2ea97681f 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> @@ -2138,6 +2138,36 @@ ufs_mem_phy_lanes: lanes@1d87400 {
->>   			};
->>   		};
->>   
->> +		cryptobam: dma@1dc4000 {
->> +			compatible = "qcom,bam-v1.7.0";
->> +			reg = <0 0x01dc4000 0 0x24000>;
->> +			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
->> +			clocks = <&rpmhcc RPMH_CE_CLK>;
->> +			clock-names = "bam_clk";
->> +			#dma-cells = <1>;
->> +			qcom,ee = <0>;
->> +			qcom,controlled-remotely = <1>;
->> +			iommus = <&apps_smmu 0x704 0x1>,
->> +				 <&apps_smmu 0x706 0x1>,
->> +				 <&apps_smmu 0x714 0x1>,
->> +				 <&apps_smmu 0x716 0x1>;
+> On Mon, Oct 19, 2020 at 07:26:17PM +0200, Krzysztof Kozlowski wrote:
+> > The IMX258 sensor driver checked in device properties for a
+> > clock-frequency property which actually does not mean that the clock is
+> > really running such frequency or is it even enabled.
+> > 
+> > Get the provided clock and check it frequency.  If none is provided,
+> > fall back to old property.
+> > 
+> > Enable the clock when accessing the IMX258 registers and when streaming
+> > starts with runtime PM.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > 
+> > ---
+> > 
+> > Changes since v4:
+> > 1. Add missing imx258_power_off.
+> > 
+> > Changes since v3:
+> > 1. None
+> > 
+> > Changes since v2:
+> > 1. Do not try to set drvdata, wrap lines.
+> > 2. Use dev_dbg.
+> > 
+> > Changes since v1:
+> > 1. Use runtime PM for clock toggling
+> > ---
+> >  drivers/media/i2c/imx258.c | 73 +++++++++++++++++++++++++++++++++-----
+> >  1 file changed, 64 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
+> > index ae183b0dbba9..038115471f17 100644
+> > --- a/drivers/media/i2c/imx258.c
+> > +++ b/drivers/media/i2c/imx258.c
+> > @@ -2,6 +2,7 @@
+> >  // Copyright (C) 2018 Intel Corporation
+> >  
+> >  #include <linux/acpi.h>
+> > +#include <linux/clk.h>
+> >  #include <linux/delay.h>
+> >  #include <linux/i2c.h>
+> >  #include <linux/module.h>
+> > @@ -68,6 +69,9 @@
+> >  #define REG_CONFIG_MIRROR_FLIP		0x03
+> >  #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
+> >  
+> > +/* Input clock frequency in Hz */
+> > +#define IMX258_INPUT_CLOCK_FREQ		19200000
+> > +
+> >  struct imx258_reg {
+> >  	u16 address;
+> >  	u8 val;
+> > @@ -610,6 +614,8 @@ struct imx258 {
+> >  
+> >  	/* Streaming on/off */
+> >  	bool streaming;
+> > +
+> > +	struct clk *clk;
+> >  };
+> >  
+> >  static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
+> > @@ -972,6 +978,29 @@ static int imx258_stop_streaming(struct imx258 *imx258)
+> >  	return 0;
+> >  }
+> >  
+> > +static int imx258_power_on(struct device *dev)
+> > +{
+> > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> > +	struct imx258 *imx258 = to_imx258(sd);
+> > +	int ret;
+> > +
+> > +	ret = clk_prepare_enable(imx258->clk);
+> > +	if (ret)
+> > +		dev_err(dev, "failed to enable clock\n");
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int imx258_power_off(struct device *dev)
+> > +{
+> > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+> > +	struct imx258 *imx258 = to_imx258(sd);
+> > +
+> > +	clk_disable_unprepare(imx258->clk);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >  static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
+> >  {
+> >  	struct imx258 *imx258 = to_imx258(sd);
+> > @@ -1199,9 +1228,28 @@ static int imx258_probe(struct i2c_client *client)
+> >  	int ret;
+> >  	u32 val = 0;
+> >  
+> > -	device_property_read_u32(&client->dev, "clock-frequency", &val);
+> > -	if (val != 19200000)
+> > -		return -EINVAL;
+> > +	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
+> > +	if (!imx258)
+> > +		return -ENOMEM;
+> > +
+> > +	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
+> > +	if (!imx258->clk) {
+> > +		dev_dbg(&client->dev,
+> > +			"no clock provided, using clock-frequency property\n");
+> > +
+> > +		device_property_read_u32(&client->dev, "clock-frequency", &val);
+> > +		if (val != IMX258_INPUT_CLOCK_FREQ)
+> > +			return -EINVAL;
+> > +	} else if (IS_ERR(imx258->clk)) {
+> > +		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
+> > +				     "error getting clock\n");
+> > +	} else {
+> > +		if (clk_get_rate(imx258->clk) != IMX258_INPUT_CLOCK_FREQ) {
 > 
-> Can you confirm that this can't be written as:
-> 
-> iommus = <&apps_smmu 0x704 0x3>,
-> 	 <&apps_smmu 0x714 0x3>;
-> 
-> (and same below).
+> Please move the check outside the conditional block. May be a separate
+> patch if you like.
 
-Hi Bjorn,
+OK
 
-Thanks for the reviews. Yes, I can confirm that the above does not work.
-The tests hang. I will fix rest of your comments and post v2.
-
--- 
-Warm Regards
-Thara
+Best regards,
+Krzysztof
