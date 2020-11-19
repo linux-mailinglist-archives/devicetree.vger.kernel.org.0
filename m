@@ -2,20 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA352B8CB0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 08:58:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 630372B8CCE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 09:08:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726384AbgKSH5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 02:57:47 -0500
-Received: from mx2.suse.de ([195.135.220.15]:37658 "EHLO mx2.suse.de"
+        id S1726358AbgKSIEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 03:04:24 -0500
+Received: from mx2.suse.de ([195.135.220.15]:45630 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726463AbgKSH5r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 02:57:47 -0500
+        id S1726308AbgKSIEY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 03:04:24 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id A7F05AD35;
-        Thu, 19 Nov 2020 07:57:44 +0000 (UTC)
-Subject: Re: [PATCH v3 2/7] drm/vc4: kms: Remove useless define
+        by mx2.suse.de (Postfix) with ESMTP id 657E3AD8C;
+        Thu, 19 Nov 2020 08:04:21 +0000 (UTC)
+Subject: Re: [PATCH v3 4/7] drm/vc4: kms: Split the HVS muxing check in a
+ separate function
 To:     Maxime Ripard <maxime@cerno.tech>, Eric Anholt <eric@anholt.net>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
         Daniel Vetter <daniel.vetter@intel.com>,
@@ -23,33 +24,33 @@ To:     Maxime Ripard <maxime@cerno.tech>, Eric Anholt <eric@anholt.net>,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
+Cc:     Hoegeun Kwon <hoegeun.kwon@samsung.com>,
         Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
         Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
+        linux-rpi-kernel@lists.infradead.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
 References: <20201105135656.383350-1-maxime@cerno.tech>
- <20201105135656.383350-3-maxime@cerno.tech>
+ <20201105135656.383350-5-maxime@cerno.tech>
 From:   Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <18d26895-203b-7431-2547-bdbaf53954f5@suse.de>
-Date:   Thu, 19 Nov 2020 08:57:43 +0100
+Message-ID: <0c2f81b6-89f8-6e19-04b3-3ed391baf0af@suse.de>
+Date:   Thu, 19 Nov 2020 09:04:20 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <20201105135656.383350-3-maxime@cerno.tech>
+In-Reply-To: <20201105135656.383350-5-maxime@cerno.tech>
 Content-Type: multipart/signed; micalg=pgp-sha256;
  protocol="application/pgp-signature";
- boundary="6tgw29SgVe3931NYdA1JFOKVXjPI3u3qd"
+ boundary="10dlm9paI0yFGIebnvLI2wA6N1gWP7Rnv"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---6tgw29SgVe3931NYdA1JFOKVXjPI3u3qd
-Content-Type: multipart/mixed; boundary="Q5QVR7OPZ93BoXllBlvH9mOjhGrCdkbQ5";
+--10dlm9paI0yFGIebnvLI2wA6N1gWP7Rnv
+Content-Type: multipart/mixed; boundary="hrcUNhucegTMXjX1IDOeKCqDmFI5MKD7m";
  protected-headers="v1"
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: Maxime Ripard <maxime@cerno.tech>, Eric Anholt <eric@anholt.net>,
@@ -57,57 +58,97 @@ To: Maxime Ripard <maxime@cerno.tech>, Eric Anholt <eric@anholt.net>,
  Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
  Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>,
  Frank Rowand <frowand.list@gmail.com>
-Cc: devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
+Cc: Hoegeun Kwon <hoegeun.kwon@samsung.com>,
  Dave Stevenson <dave.stevenson@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, Hoegeun Kwon <hoegeun.kwon@samsung.com>,
- bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
-Message-ID: <18d26895-203b-7431-2547-bdbaf53954f5@suse.de>
-Subject: Re: [PATCH v3 2/7] drm/vc4: kms: Remove useless define
+ Phil Elwell <phil@raspberrypi.com>, linux-rpi-kernel@lists.infradead.org,
+ Tim Gover <tim.gover@raspberrypi.com>,
+ bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
+Message-ID: <0c2f81b6-89f8-6e19-04b3-3ed391baf0af@suse.de>
+Subject: Re: [PATCH v3 4/7] drm/vc4: kms: Split the HVS muxing check in a
+ separate function
 References: <20201105135656.383350-1-maxime@cerno.tech>
- <20201105135656.383350-3-maxime@cerno.tech>
-In-Reply-To: <20201105135656.383350-3-maxime@cerno.tech>
+ <20201105135656.383350-5-maxime@cerno.tech>
+In-Reply-To: <20201105135656.383350-5-maxime@cerno.tech>
 
---Q5QVR7OPZ93BoXllBlvH9mOjhGrCdkbQ5
+--hrcUNhucegTMXjX1IDOeKCqDmFI5MKD7m
 Content-Type: multipart/mixed;
- boundary="------------A39D24926E510CAEAD013D74"
+ boundary="------------67325AB2E7B72934D4CD040E"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------A39D24926E510CAEAD013D74
+--------------67325AB2E7B72934D4CD040E
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
 
 
 Am 05.11.20 um 14:56 schrieb Maxime Ripard:
-> NUM_OUTPUTS isn't used anymore, let's remove it.
+> The code that assigns HVS channels during atomic_check is starting to g=
+row
+> a bit big, let's move it into a separate function.
 >=20
 > Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
 > Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
 > ---
->   drivers/gpu/drm/vc4/vc4_kms.c | 1 -
->   1 file changed, 1 deletion(-)
+>   drivers/gpu/drm/vc4/vc4_kms.c | 18 +++++++++++++++---
+>   1 file changed, 15 insertions(+), 3 deletions(-)
 >=20
 > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
 s.c
-> index 44db31e16e91..4b558ccb18fe 100644
+> index ad69c70f66a2..bb2efc5d2d01 100644
 > --- a/drivers/gpu/drm/vc4/vc4_kms.c
 > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> @@ -660,7 +660,6 @@ static int vc4_load_tracker_obj_init(struct vc4_dev=
- *vc4)
+> @@ -662,13 +662,13 @@ static int vc4_load_tracker_obj_init(struct vc4_d=
+ev *vc4)
 >   	return drmm_add_action_or_reset(&vc4->base, vc4_load_tracker_obj_fin=
 i, NULL);
 >   }
 >  =20
-> -#define NUM_OUTPUTS  6
->   #define NUM_CHANNELS 3
+> -static int
+> -vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *stat=
+e)
+> +static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
+> +				      struct drm_atomic_state *state)
+>   {
+>   	unsigned long unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, =
+0);
+>   	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
+>   	struct drm_crtc *crtc;
+> -	int i, ret;
+> +	unsigned int i;
+
+Thanks for fixing the type. It's always itching me when people use=20
+signed types for counters and array indices. It's just... not right. :)=20
+If you want to be super-correct you might as well make it size_t. Anyway
+
+Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+
 >  =20
->   static int
+>   	/*
+>   	 * Since the HVS FIFOs are shared across all the pixelvalves and
+> @@ -741,6 +741,18 @@ vc4_atomic_check(struct drm_device *dev, struct dr=
+m_atomic_state *state)
+>   		}
+>   	}
+>  =20
+> +	return 0;
+> +}
+> +
+> +static int
+> +vc4_atomic_check(struct drm_device *dev, struct drm_atomic_state *stat=
+e)
+> +{
+> +	int ret;
+> +
+> +	ret =3D vc4_pv_muxing_atomic_check(dev, state);
+> +	if (ret)
+> +		return ret;
+> +
+>   	ret =3D vc4_ctm_atomic_check(dev, state);
+>   	if (ret < 0)
+>   		return ret;
 >=20
 
 --=20
@@ -118,7 +159,7 @@ Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
 (HRB 36809, AG N=C3=BCrnberg)
 Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
---------------A39D24926E510CAEAD013D74
+--------------67325AB2E7B72934D4CD040E
 Content-Type: application/pgp-keys;
  name="OpenPGP_0x680DC11D530B7A23.asc"
 Content-Transfer-Encoding: quoted-printable
@@ -321,29 +362,29 @@ WSR
 =3DfoRs
 -----END PGP PUBLIC KEY BLOCK-----
 
---------------A39D24926E510CAEAD013D74--
+--------------67325AB2E7B72934D4CD040E--
 
---Q5QVR7OPZ93BoXllBlvH9mOjhGrCdkbQ5--
+--hrcUNhucegTMXjX1IDOeKCqDmFI5MKD7m--
 
---6tgw29SgVe3931NYdA1JFOKVXjPI3u3qd
+--10dlm9paI0yFGIebnvLI2wA6N1gWP7Rnv
 Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="OpenPGP_signature"
 
 -----BEGIN PGP SIGNATURE-----
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+2JXcFAwAAAAAACgkQlh/E3EQov+D/
-Ug/9EGvRLSCbNl4K4ePPr1eFGcocopuWKDbLfn80+A35J3WoLIii6Gku41Hz2gxLtqpbIMTLsYwK
-FVnPf38HfYeUTuFVWefnEZm+ttcezuq9U0+MCBLn9e0DC/xcU0Z9oQjTez1J9Nua7LRmbYLnx79P
-0FLMTF2a6+GWzT7xCjDw3DQmVPIq2TrvDo1rPXPhJM5cyZqg+nzu5exEldKqHVUYKhaiWIg+Iclb
-ElJIiA3Yhm5KAdIoD+oF+D5v9droKiGSoSgurZRk6Dko+Du85kJ9hGIsd5g55KbczkAPoU53efdu
-i5YOqgOe5ChyOBQOXkq3eK7dVG8CrY/NT4eDxpCZcq7LFl7HkeS69JiXD8xtw82sM/VvCYX6HSxU
-gVsTtAB/5x8UUJ5lpFWK6ikRSg/0G2zwsjLUzlBd/J/mXzW0SmPzbtd2H2APd3bCLB65h0mHjrZ2
-qq3PElH3X7O5PiIx5Jwjc2JKMLs+Dr7EgvCOJA/Dl6VlXY6PH0DQkbCRdKBXdyjtvT2V8rDrLiqQ
-8RDM4DL/3MT8pc2VH+46pkMAHEFMbq+X4MiNYPEh0dIhJwLr65qFUfdssphgLZ+Evvept9/kRgMh
-RGky9lpgtbv+TrPtLkhSZeoIEDqZ1DfkJJEvyG1Q1bEp0KLRbIrQyFZDn78/TePF9da/odsc50nf
-45M=
-=QyR9
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+2JwQFAwAAAAAACgkQlh/E3EQov+Cf
+KA/7Byrub2Asu86E6BYjUwdLEhRQ8+o/6SXtIRAyvuOHiuRJ92mRwelFgzbndy3L6FEZqf2+GIyp
+rKNpEM+QKDGLRWGg/6grgTS4LHfyXHfo8EMhpt+yCH6CcswZh4FTpkoVQ6oWQ/GmsJphJQBpwnLO
+saooldhm5SX73FpTvBAXwwpESSxBaJk9SYBz1UJaUTa8OxmxP6v2lXD42Ow9xeN9u2WC6ftcZ0BG
+p4MfnU74kgpE6Ct3m/kQI/FTNGxvtpr2aUXsAlU18LhK3A2FQaiGytSwL/piq2aT8xJgdaOXIs/w
+lm/XKk4+qHEAKOnPpWixLzhN52iYu+408s02CwUsvVYT8ifxOFgneHMkmAeLmwMkMdCWWNOVOadz
+UwTSoL81nrdyQR2SOc4WdfA3PFJQ/Ao9jySCx4yCWvGcABTTdsmitnqu/UuVlDnUtc6KVo2FNT3A
+JkrsWWGOxK2xh9PoNML7AJmWaeWzGhzX76U8BSzhicwwatJktqHT9Fpri/DwC2aruevJCF7S+y5I
+CkF0CGa5/q3gV5+uE0Dfzo20YVetujswk0MsjydihlaSlyb9+4fQZ3N0K3IxGb/BeRR7sszXfNW8
+Q9USbR592Aru2Mjvp738le2YIbsCOjBGSiUv9KYCD0Hh+HvWnLPcFKRTZIDxXxh422Q+Nusp232L
+WBw=
+=zDYn
 -----END PGP SIGNATURE-----
 
---6tgw29SgVe3931NYdA1JFOKVXjPI3u3qd--
+--10dlm9paI0yFGIebnvLI2wA6N1gWP7Rnv--
