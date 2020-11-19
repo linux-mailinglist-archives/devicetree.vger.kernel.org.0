@@ -2,113 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5D522B8AFE
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 06:29:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7462B8B08
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 06:31:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725877AbgKSF2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 00:28:42 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:11052 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725648AbgKSF2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 00:28:42 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fb602800000>; Wed, 18 Nov 2020 21:28:32 -0800
-Received: from [10.19.109.31] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 19 Nov
- 2020 05:28:35 +0000
-Subject: Re: [PATCH v4 10/16] dt-bindings: phy: tegra-xusb: Add nvidia,pmc
- prop
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh@kernel.org>
-CC:     <gregkh@linuxfoundation.org>, <jonathanh@nvidia.com>,
-        <kishon@ti.com>, <linux-tegra@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <nkristam@nvidia.com>
-References: <20201016130726.1378666-1-jckuo@nvidia.com>
- <20201016130726.1378666-11-jckuo@nvidia.com> <20201019214046.GA3645734@bogus>
- <20201113162043.GD1408970@ulmo>
-X-Nvconfidentiality: public
-From:   JC Kuo <jckuo@nvidia.com>
-Message-ID: <6e5f8508-3781-a747-acc2-e627f35bf0e8@nvidia.com>
-Date:   Thu, 19 Nov 2020 13:28:33 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725816AbgKSFad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 00:30:33 -0500
+Received: from mailout04.rmx.de ([94.199.90.94]:54399 "EHLO mailout04.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725648AbgKSFad (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 00:30:33 -0500
+Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout04.rmx.de (Postfix) with ESMTPS id 4Cc7Yc5wLvz3qt1r;
+        Thu, 19 Nov 2020 06:30:28 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin01.retarus.com (Postfix) with ESMTPS id 4Cc7YN1H1Pz2xGL;
+        Thu, 19 Nov 2020 06:30:16 +0100 (CET)
+Received: from n95hx1g2.localnet (192.168.54.21) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 19 Nov
+ 2020 06:28:50 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>
+CC:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        "Richard Cochran" <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Vivien Didelot" <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH net-next v3 00/12] net: dsa: microchip: PTP support for KSZ956x
+Date:   Thu, 19 Nov 2020 06:28:06 +0100
+Message-ID: <2452899.Bt8PnbAPR0@n95hx1g2>
+Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
+In-Reply-To: <20201118234018.jltisnhjesddt6kf@skbuf>
+References: <20201118203013.5077-1-ceggers@arri.de> <20201118234018.jltisnhjesddt6kf@skbuf>
 MIME-Version: 1.0
-In-Reply-To: <20201113162043.GD1408970@ulmo>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605763712; bh=TbSd8j4mjbxV6TDL5wwizNGDRQJcKzqBjWD7XgjSVPc=;
-        h=Subject:To:CC:References:X-Nvconfidentiality:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=Yb5KFb6b9NSX7LVRKYw4Atmfq3fprFwu5Qkau6fLngaF/8lW1vkBliquNLBHDLwrF
-         LsliIIUqMWd+abYAwNSUN5T1FTHMkp6ks5A2EjFmeoJUSexLazEwOEaSbGhSu2QAb3
-         oXKMaOQktc9aeYCtBommyOxvdJaU7Mblf9UgmKpUMUOkv6b6aUGI8zYdAnMGLYMPv6
-         TbCImitP0XRNODoEvhIA0fRZTliFvlcMe10QjLeYn5jiRK0MZqOda0fAx/DDwl4uTa
-         CUS4jGJjmkpZVdgq+6+eOalWFr/etbigfoTfac7QuofUjoEcchiT+YcN1zM1OSnxRI
-         EyzfKyhWBMFJA==
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Originating-IP: [192.168.54.21]
+X-RMX-ID: 20201119-063016-4Cc7YN1H1Pz2xGL-0@kdin01
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/14/20 12:20 AM, Thierry Reding wrote:
-> On Mon, Oct 19, 2020 at 04:40:46PM -0500, Rob Herring wrote:
->> On Fri, Oct 16, 2020 at 09:07:20PM +0800, JC Kuo wrote:
->>> This commit describes the "nvidia,pmc" property for Tegra210 tegra-xusb
->>> PHY driver. It is a phandle and specifier referring to the Tegra210
->>> pmc@7000e400 node.
->>>
->>> Signed-off-by: JC Kuo <jckuo@nvidia.com>
->>> ---
->>> v4:
->>>    new change to document "nvidia,pmc" prop
->>>
->>>  .../devicetree/bindings/phy/nvidia,tegra124-xusb-padctl.txt      | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-padctl.txt b/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-padctl.txt
->>> index 38c5fa21f435..ea559baeb546 100644
->>> --- a/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-padctl.txt
->>> +++ b/Documentation/devicetree/bindings/phy/nvidia,tegra124-xusb-padctl.txt
->>> @@ -54,6 +54,7 @@ For Tegra210:
->>>  - avdd-pll-uerefe-supply: PLLE reference PLL power supply. Must supply 1.05 V.
->>>  - dvdd-pex-pll-supply: PCIe/USB3 PLL power supply. Must supply 1.05 V.
->>>  - hvdd-pex-pll-e-supply: High-voltage PLLE power supply. Must supply 1.8 V.
->>> +- nvidia,pmc: phandle and specifier referring to the Tegra210 pmc@7000e400 node.
->>
->> 'Tegra210 pmc@7000e400' is kind of specific. Going to update this for 
->> every address and chip?
->>
->> If there's only one PMC, you can just find the compatible PMC node. Then 
->> you don't need a DT update.
-> 
-> I did advise against doing the lookup by compatible string because I
-> think it has a couple of downsides. On one hand it's going to create an
-> additional maintenance burden on the XUSB pad controller driver because
-> the PMC is usually not compatible between SoC versions, so for every new
-> SoC generation we'll have to add the PMC compatible string to the XUSB
-> pad controller driver.
-> 
-> On the other hand, this is new functionality and we can easily gate that
-> on the existence of this phandle, so it doesn't impact DT backwards
-> compatibility. That also has the advantage of explicitly listing the
-> dependency between the PMC and the XUSB pad controller in DT, so if we
-> ever do get around to come up with an even better mechanism to resolve
-> these dependencies than deferred probe, we do have the data already
-> available.
-> 
-> Thierry
-> 
-Hi Thierry,
-Thanks for the ideas. I will stay with the adding "nvidia,pmc" phandle property
-implementation. As for the DT document change, I will modify it with below.
+Hi Vladimir,
 
-nvidia,pmc: phandle and specifier referring to the Tegra210 PMC node.
+On Thursday, 19 November 2020, 00:40:18 CET, Vladimir Oltean wrote:
+> On Wed, Nov 18, 2020 at 09:30:01PM +0100, Christian Eggers wrote:
+> > This series adds support for PTP to the KSZ956x and KSZ9477 devices.
+> > 
+> > There is only little documentation for PTP available on the data sheet
+> > [1] (more or less only the register reference). Questions to the
+> > Microchip support were seldom answered comprehensively or in reasonable
+> > time. So this is more or less the result of reverse engineering.
+> 
+> [...]
+> One thing that should definitely not be part of this series though is
+> patch 11/12. Christian, given the conversation we had on your previous
+> patch:
+> https://lore.kernel.org/netdev/20201113025311.jpkplhmacjz6lkc5@skbuf/
+sorry, I didn't read that carefully enough. Some of the other requested changes
+were quite challenging for me. Additionally, finding the UDP checksum bug
+needed some time for identifying because I didn't recognize that when it got
+introduced.
 
-Thanks,
-JC
+> as well as the documentation patch that was submitted in the meantime:
+> https://lore.kernel.org/netdev/20201117213826.18235-1-a.fatoum@pengutronix.de/ 
+I am not subscribed to the list. 
+
+> obviously you chose to completely disregard that. May we know why? How
+> are you even making use of the PTP_CLK_REQ_PPS feature?
+Of course I will drop that patch from the next series.
+
+regards
+Christian
+
+
+
