@@ -2,153 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6F6E2B9484
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:23:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 782582B94AE
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:35:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726831AbgKSOWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 09:22:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727106AbgKSOWt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:22:49 -0500
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A62C0613CF;
-        Thu, 19 Nov 2020 06:22:47 -0800 (PST)
-Received: by mail-lf1-x143.google.com with SMTP id e139so8515559lfd.1;
-        Thu, 19 Nov 2020 06:22:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ZvOd3z2dVnB5SZQwK/dvDpMXJ4eITwmefRvuKa9tb0Q=;
-        b=Y21dZRMZ+kNYHUNLiNCHQoS5QxGFMKf7KaEd+6a06G/hQ1bejJXAcijD6xiDcBiBUn
-         JS4yWyB2+zZqqxEzarQ7y2NC3cKCRKUZ2CchFnZU6Kn5vLrutkvXtu+Lq1OFhxgn8Epp
-         UuLT88qmv67A3sWVg1l8Ws05tNM98wJWDlT1hgGfbwXfCiTxIVlprvN48xiVZLuFi3Cn
-         KI3oT4rlzLRHtD8EKwZRS29BsqsZh07SrjWWBHtLowX/toS83Dhlqd9OCn9mvofvfXic
-         DHhrzPVHyIWzxM0YW/p1ZFuzvZaox6YeG/KIcRnpB6NKJzCgXsklV6r9OCr7nnEUUhRd
-         hptw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ZvOd3z2dVnB5SZQwK/dvDpMXJ4eITwmefRvuKa9tb0Q=;
-        b=i7ba6A/r1lx38CySMfQ+TDUl7Ug5P1w27iAO+JNLA3mdxNi6OJU0Dyqalbxsw01iB0
-         VAsNVwAXW1PqPUXXSjGz0epzuBBCbtyiUFWhin0O2XLXgQRzlY1akQvQtW/ko39PobAl
-         YqRKgEYYe3YFDLqG9cjS0d36YmKabjvOpUI6c76OKGdqYg3fS5LkGKk6O+yUnTz3eRHz
-         PWSciz9HMFkctnmfRE7e4I7307OLnlqaz8QPpkNVd/aym1Zj/CRTKjfv3D9eULG/nYuE
-         2fZ5e3RZt0B5qhOLiz610v07pBXK8W2tBlr9mbSx1CHjsYAJC6p0df7hm4FpmuX71rKU
-         978w==
-X-Gm-Message-State: AOAM530du4USguA/p3pLaUicqA2meLa3ozpjxZ7O2FXF+na2ZDg6G4DO
-        96bNH1Rf87fJcnpUjW52tmsWQdbw810=
-X-Google-Smtp-Source: ABdhPJyUwmqVByndGgJFiM7woqjbf8UJz72yW3W4B1Jv93hEMk1YatxireTGBSQxqAyLLyxkuXCkKw==
-X-Received: by 2002:a19:844a:: with SMTP id g71mr6446029lfd.414.1605795766096;
-        Thu, 19 Nov 2020 06:22:46 -0800 (PST)
-Received: from [192.168.2.145] (109-252-193-159.dynamic.spd-mgts.ru. [109.252.193.159])
-        by smtp.googlemail.com with ESMTPSA id m16sm3851652lfa.57.2020.11.19.06.22.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Nov 2020 06:22:45 -0800 (PST)
-Subject: Re: [PATCH v1 11/30] drm/tegra: dc: Support OPP and SoC core voltage
- scaling
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1727925AbgKSOcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 09:32:22 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:45415 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726691AbgKSOcV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 09:32:21 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id D99435806F5;
+        Thu, 19 Nov 2020 09:32:19 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 19 Nov 2020 09:32:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=fdeCJrw0Opv9LtMWbCk4M6wggdX
+        HkukfGAaUbw2IQ6g=; b=t9NaJ2J/XhRdNuXdea/oz7750HrVqWDGUjgBdFH5X0Q
+        TGh+KBJEGLBcjiibQRQpkDKdPHXnhB1TyBfw0WEoZLcjVM+A53oaLrgFApHO6EM8
+        N/3+KN0SUZZDoL+6AElNAxSul4scoP8mn4kleJz0xAThizx5L67x1GtOe8jnKBiG
+        UeOmDm9ObaC5xILY6RoP8WT4Sd+zbBHIVOMCXZBIZwRIbvTahn1AbhEMMJE8XJ3H
+        K4MQHdgUCzkQa448rUu3537SPw+Xx85cLBBaqQtBZxZmYSP2IptPX4i2pDSIp4HZ
+        ZEsCOJDbjAt/yuCWXSNZPDcmybgcEKqXapYw58wG2WA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=fdeCJr
+        w0Opv9LtMWbCk4M6wggdXHkukfGAaUbw2IQ6g=; b=U5bk7hAIdvzMZMWy+pxPIs
+        r+O6qgO1DSb7SXgnQ+3bemtMPOB2ycmLIPFFPxMM1FDE8h0OeytslPREtQwoxHDh
+        l6iDtcFSe+X5PQ7AM2rdou+9LtgCDMAebUxNwocC9AAigvOzwCk3B+y+JUEvlPhv
+        U1e4QMLDqxLVsS4DZv3OxDp+LmibO18QUMT45+5vkbKDsMINgBvYg74IwJfq/004
+        C4CkrBOh1g9TA3pSgpH2/78DjGF4wQ/ckBptmxiBgeJS/U8xqQp+dD2OIJGdltIs
+        /CVLBsxHYV7ESRp0e88Lvku+QTG8IKB+0gRtPXbf0B5yCrFW7TiqQznMyhN1e+eA
+        ==
+X-ME-Sender: <xms:74G2X4QwYv_sQLPCYBKUn28NMs9TrzIlF07RtTNirhel9yVfACe98A>
+    <xme:74G2X1xcC27qQnrQHEo3V2ujlKC2JIxA8-Dyoqcs6tLBo6wghwhE-V9eqz1aY7Xxa
+    vyt-5pfxfbDXGy_szQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudefjedgieegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:74G2X11TAfTvjyIsbY-kGepsS2t2DvCq3VVqyFSOOk4bK0OU3bcUaQ>
+    <xmx:74G2X8B4FdqcJEHvkhfdgkD6H4R_jB4ToyTZYGmcvN7sd3GX38XkIw>
+    <xmx:74G2Xxiu5DJr3Dmw-nnJ8BxbkMpuXzaCgqxIOYXPwvQ8Y8TTvbaydA>
+    <xmx:84G2Xx7aDLvuUx-Az1UuxTr13Y5daDSJY6Jo27cDwPwxQ0mPQE1kMA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id D567A3280059;
+        Thu, 19 Nov 2020 09:32:14 -0500 (EST)
+Date:   Thu, 19 Nov 2020 15:32:13 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Eric Anholt <eric@anholt.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20201112171600.GD4742@sirena.org.uk>
- <b4b06c1d-c9d4-43b2-c6eb-93f8cb6c677d@gmail.com>
- <20201112200123.GF4742@sirena.org.uk>
- <ce9e2d9f-917e-fb8a-7323-f3bf1a367e9d@gmail.com>
- <20201113142937.GB4828@sirena.org.uk>
- <7f066805-97d9-088f-e89d-a554fe478574@gmail.com>
- <20201113161550.GC4828@sirena.org.uk>
- <3beaa12b-4a50-a3b6-fc43-ebb5ce7a8db7@gmail.com>
- <20201113172859.GF4828@sirena.org.uk>
- <74cfc6a9-3f59-d679-14b7-51102a6f11b3@gmail.com>
- <20201116133311.GB4739@sirena.org.uk>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <332ab946-daee-bb83-24ab-0bda4fd8e1ef@gmail.com>
-Date:   Thu, 19 Nov 2020 17:22:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.2
+        Frank Rowand <frowand.list@gmail.com>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 7/7] drm/vc4: kms: Don't disable the muxing of an
+ active CRTC
+Message-ID: <20201119143213.wqgvn2d3vphyeked@gilmour.lan>
+References: <20201105135656.383350-1-maxime@cerno.tech>
+ <20201105135656.383350-8-maxime@cerno.tech>
+ <2e61b179-35f3-f4b3-9ec0-c822370da663@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20201116133311.GB4739@sirena.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ywfvxmnqzpqjf2fz"
+Content-Disposition: inline
+In-Reply-To: <2e61b179-35f3-f4b3-9ec0-c822370da663@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.11.2020 16:33, Mark Brown пишет:
-> On Sun, Nov 15, 2020 at 08:42:10PM +0300, Dmitry Osipenko wrote:
->> 13.11.2020 20:28, Mark Brown пишет:
-> 
->>>> What should we do?
-> 
->>> As I keep saying the consumer driver should be enumerating the voltages
->>> it can set, if it can't find any and wants to continue then it can just
->>> skip setting voltages later on.  If only some are unavailable then it
->>> probably wants to eliminate those specific OPPs instead.
-> 
->> I'm seeing a dummy regulator as a helper for consumer drivers which
->> removes burden of handling an absent (optional) regulator. Is this a
->> correct understanding of a dummy regulator?
-> 
->> Older DTBs don't have a regulator and we want to keep them working. This
->> is equal to a physically absent regulator and in this case it's an
->> optional regulator, IMO.
-> 
-> No, you are failing to understand the purpose of this code.  To
-> reiterate unless the device supports operating with the supply
-> physically absent then the driver should not be attempting to use
-> regulator_get_optional().  That exists specifically for the case where
-> the supply may be absent, nothing else.  The dummy regulator is there
-> precisely for the case where the system does not describe supplies that
-> we know are required for the device to function, it fixes up that
-> omission so we don't need to open code handling of this in every single
-> consumer driver.
 
-The original intention of regulator_get_optional() is clear to me, but
-nothing really stops drivers from slightly re-purposing this API, IMO.
+--ywfvxmnqzpqjf2fz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Drivers should be free to assume that if regulator isn't defined by
-firmware, then it's physically absent if this doesn't break anything. Of
-course in some cases it's unsafe to make such assumptions. I think it's
-a bit unpractical to artificially limit API usage without a good reason,
-i.e. if nothing breaks underneath of a driver.
+On Thu, Nov 19, 2020 at 10:12:43AM +0100, Thomas Zimmermann wrote:
+> Hi
+>=20
+> Am 05.11.20 um 14:56 schrieb Maxime Ripard:
+> > The current HVS muxing code will consider the CRTCs in a given state to
+> > setup their muxing in the HVS, and disable the other CRTCs muxes.
+> >=20
+> > However, it's valid to only update a single CRTC with a state, and in t=
+his
+> > situation we would mux out a CRTC that was enabled but left untouched by
+> > the new state.
+> >=20
+> > Fix this by setting a flag on the CRTC state when the muxing has been
+> > changed, and only change the muxing configuration when that flag is the=
+re.
+> >=20
+> > Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automatic=
+ally")
+> > Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+> > Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >   drivers/gpu/drm/vc4/vc4_drv.h |  1 +
+> >   drivers/gpu/drm/vc4/vc4_kms.c | 82 ++++++++++++++++++++---------------
+> >   2 files changed, 48 insertions(+), 35 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_dr=
+v.h
+> > index 014113823647..325b53ff11b3 100644
+> > --- a/drivers/gpu/drm/vc4/vc4_drv.h
+> > +++ b/drivers/gpu/drm/vc4/vc4_drv.h
+> > @@ -524,6 +524,7 @@ struct vc4_crtc_state {
+> >   	struct drm_mm_node mm;
+> >   	bool feed_txp;
+> >   	bool txp_armed;
+> > +	bool needs_muxing;
+>=20
+> Maybe rather 'update_muxing'.
+>=20
+> More generally, I'd separate fields that contain actual CRTC state, such
+> assigned_channel, from those that only contain transitional state during
+> update-commit, such as needs_muxing.
 
-> Regulators that are present but not described by the firmware are a
-> clearly different case to regulators that are not physically there,
-> hardware with actually optional regulators will generally require some
-> configuration for this case.
-> 
+How would you separate them?
 
-I have good news. After spending some more time on trying out different
-things, I found that my previous assumption about the fixed-regulator
-was wrong, it actually accepts voltage changes, i.e. regulator consumer
-doesn't get a error on a voltage-change. This is exactly what is needed
-for the OPP core to work properly.
+I'll use your other suggestions, thanks!
+Maxime
 
-This means that there is no need to add special quirks to work around
-absent regulators, we will just add a fixed regulator to the DTs which
-don't specify a real regulator. The OPP core will perform voltage
-checking and filter out unsupported OPPs. The older DTBs will continue
-to work as well.
+--ywfvxmnqzpqjf2fz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7aB7QAKCRDj7w1vZxhR
+xVTzAQCr+8IdXjnVaJWRPSPg5zJcI2nQ7fDeMLE8/dGK7/UOoAD/VPfcWb+Ve+pt
+QZWUFI5owJotbGGUDLCTNUcEWoYt/g0=
+=8pyD
+-----END PGP SIGNATURE-----
+
+--ywfvxmnqzpqjf2fz--
