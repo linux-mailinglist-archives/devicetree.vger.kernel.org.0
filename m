@@ -2,103 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C3F32B9542
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 258362B956D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:52:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728385AbgKSOmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 09:42:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37586 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728364AbgKSOmi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:42:38 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CDC9C0617A7
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:42:38 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id e139so8613019lfd.1
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:42:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=pTN/HQEDO++RUgsAeCSdpIeR1pydXC9wuZi7PloDRbw=;
-        b=AENo3M1+izNVxpNeDxMVAbzyhkeACQhpUKgIqkmyjm73/Ase0gGZqD69HLnMJeVvkt
-         Vn4hpUB9wm9zd0+G8wwl+ieZ1YA40Qbnpd0VuE2gRz5z7lDcFfJalNfA/Br0cpTuk5vO
-         98bj6M9i782F+4Xai3TuVskc/IdQ12g8UzUv/Y4wHpUN/HJgeI5RA+/5ZIQF+W9iKvh6
-         N6Jrlk0EJUTCTUXwjdkrPnmv5IS3KyRV58AOBJPYhWzoQcVVF3Fvbi1iOA7GejJLahJW
-         fSt4gS4SKurn8kqAcatLIcqg/flrK3QAtjatjXrvDdwhRowILFRwjqib9+3ycV6umOxJ
-         A4Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=pTN/HQEDO++RUgsAeCSdpIeR1pydXC9wuZi7PloDRbw=;
-        b=lemiYvRUSOrMmODlLbpf+Q0mhMOJw80vsAYvgz43v/ksAJv+bRdjUkqJEPK0NjvZ9N
-         6xuhnrnAfIzS+wZ1sXOmplTrvbBO4OKuMRFcK5wg6wfs0psAmpVnhqT476o4tbsYM+Ue
-         cAJjCvkFIvP4jnVFQ05eRW5Jcp+tBFEhLozg/Vfmb79DC4bMbi56z08fs1kdQMW/sXCr
-         yikD+Ty5YAu81nKWiMoY35ONeTl6ldXwRZxZqpqDO2nT7qB68naaLNIDmbvBiRZNTa2w
-         F7GSmZdYgpLMdAufVh8bebSG+DT9YvnlLdAgXks5QqRmImuSWodEGXy6JgQ3al79mC5o
-         Rhrw==
-X-Gm-Message-State: AOAM533zCgvUZg/UEi/RpMmLUDoi+gO0cOGweaNEhRLXgYn1r8fOrEVN
-        Cr6EyQZFedTOiYpFVIvB+s4n35fggW+JAw==
-X-Google-Smtp-Source: ABdhPJy+piHovamyM8c9I7UPJdWWCrqCjWV+SbmOQ2WjgJh5YZdBRZn+b9lvKYXwyazvYnuiBCJamA==
-X-Received: by 2002:a19:504d:: with SMTP id z13mr5523457lfj.42.1605796956944;
-        Thu, 19 Nov 2020 06:42:36 -0800 (PST)
-Received: from [192.168.0.150] ([188.162.64.108])
-        by smtp.gmail.com with ESMTPSA id j19sm3724875lja.100.2020.11.19.06.42.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Nov 2020 06:42:36 -0800 (PST)
-Subject: Re: [PATCH v9 00/15] qcom: pm8150: add support for thermal monitoring
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-References: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
- <c943f56c-f72c-0f14-b6ed-b67e91573b1e@linaro.org>
- <CAA8EJpp+=sQAre+kCiDLEFT+gDB0wO7KypGTXeCDncO8wWzQ-Q@mail.gmail.com>
- <a66e75c1-ce30-df75-c77e-e58e660f0105@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <c14f84ca-cc66-4deb-0583-e2e495ff2233@linaro.org>
-Date:   Thu, 19 Nov 2020 17:42:19 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+        id S1728226AbgKSOp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 09:45:29 -0500
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37814 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728214AbgKSOp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:45:28 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AJEjMO3067579;
+        Thu, 19 Nov 2020 08:45:22 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605797122;
+        bh=KsKbukhmAd8emgYJwItNnBQsIjp8rGjR04mDjYgnDMI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=dui0cc5Kpz131YaPMGnkuKFu3FOMwu0/NlOh7f1/GdPdEF39JcWSZFEviC5advmaQ
+         xZWRIgSy3DXEdp2UUCCH+aS/GN/WmqRgo3MDvTMcYUgOwpRY7VoIXMlOalxdmhb+Om
+         V4zp6N1MCm2OlTmp+XpZyk31b746rlqUYTrA8XwQ=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AJEjML1127732
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 19 Nov 2020 08:45:22 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 19
+ Nov 2020 08:45:21 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 19 Nov 2020 08:45:21 -0600
+Received: from [10.250.233.179] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AJEjJfL117651;
+        Thu, 19 Nov 2020 08:45:19 -0600
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j7200-som-p0: main_i2c0 have an
+ ioexpander on the SOM
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, <nm@ti.com>,
+        <t-kristo@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nsekhar@ti.com>
+References: <20201119132627.8041-1-peter.ujfalusi@ti.com>
+ <20201119132627.8041-2-peter.ujfalusi@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <3a4cb3c0-2242-cb81-9c38-85e93ddc7dfc@ti.com>
+Date:   Thu, 19 Nov 2020 20:15:17 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <a66e75c1-ce30-df75-c77e-e58e660f0105@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
+In-Reply-To: <20201119132627.8041-2-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/11/2020 16:13, Daniel Lezcano wrote:
-> On 12/11/2020 13:41, Dmitry Baryshkov wrote:
->> On Thu, 12 Nov 2020 at 14:39, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
->>>
->>>
->>> Shall I take patch 1/15 and 12/15 ?
->>
->> 12/15 will not compile without several previous patches, so it might
->> be better to take all of them through the single tree.
+
+
+On 11/19/20 6:56 PM, Peter Ujfalusi wrote:
+> It is used to control several SOM level muxes to make sure that the correct
+> signals are routed to the correct pin on the SOM <-> CPB connectors.
 > 
-> Ok, I will take some time to review the driver and ack it, so it can be
-> merged through the iio tree.
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
 
-Daniel, I'm sorry. Is there any update on this patchset review?
+Yes, there is indeed a I2C GPIO expander on SOM that's missing from DT
+today. So this change looks good to me.
 
+Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
 
--- 
-With best wishes
-Dmitry
+Regards
+Vignesh
+
+>  .../dts/ti/k3-j7200-common-proc-board.dts     | 11 --------
+>  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 26 +++++++++++++++++++
+>  2 files changed, 26 insertions(+), 11 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> index 6b3863108571..2721137d8943 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+> @@ -43,13 +43,6 @@ J721E_WKUP_IOPAD(0x0098, PIN_INPUT, 0) /* (L4) MCU_MDIO0_MDIO */
+>  };
+>  
+>  &main_pmx0 {
+> -	main_i2c0_pins_default: main-i2c0-pins-default {
+> -		pinctrl-single,pins = <
+> -			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
+> -			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
+> -		>;
+> -	};
+> -
+>  	main_i2c1_pins_default: main-i2c1-pins-default {
+>  		pinctrl-single,pins = <
+>  			J721E_IOPAD(0xdc, PIN_INPUT_PULLUP, 3) /* (U3) ECAP0_IN_APWM_OUT.I2C1_SCL */
+> @@ -146,10 +139,6 @@ &cpsw_port1 {
+>  };
+>  
+>  &main_i2c0 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&main_i2c0_pins_default>;
+> -	clock-frequency = <400000>;
+> -
+>  	exp1: gpio@20 {
+>  		compatible = "ti,tca6416";
+>  		reg = <0x20>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> index fbd17d38f6b6..7b5e9aa0324e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> @@ -48,6 +48,15 @@ J721E_WKUP_IOPAD(0x28, PIN_INPUT, 1) /* (A7) MCU_OSPI0_D7.MCU_HYPERBUS0_DQ7 */
+>  	};
+>  };
+>  
+> +&main_pmx0 {
+> +	main_i2c0_pins_default: main-i2c0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0xd4, PIN_INPUT_PULLUP, 0) /* (V3) I2C0_SCL */
+> +			J721E_IOPAD(0xd8, PIN_INPUT_PULLUP, 0) /* (W2) I2C0_SDA */
+> +		>;
+> +	};
+> +};
+> +
+>  &hbmc {
+>  	/* OSPI and HBMC are muxed inside FSS, Bootloader will enable
+>  	 * appropriate node based on board detection
+> @@ -131,3 +140,20 @@ &mailbox0_cluster10 {
+>  &mailbox0_cluster11 {
+>  	status = "disabled";
+>  };
+> +
+> +&main_i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_i2c0_pins_default>;
+> +	clock-frequency = <400000>;
+> +
+> +	exp_som: gpio@21 {
+> +		compatible = "ti,tca6408";
+> +		reg = <0x21>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		gpio-line-names = "USB2.0_MUX_SEL", "CANUART_MUX1_SEL0",
+> +				  "CANUART_MUX2_SEL0", "CANUART_MUX_SEL1",
+> +				  "UART/LIN_MUX_SEL", "TRC_D17/AUDIO_REFCLK_SEL",
+> +				  "GPIO_LIN_EN", "CAN_STB";
+> +	};
+> +};
+> 
