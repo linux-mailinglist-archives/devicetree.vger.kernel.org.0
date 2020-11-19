@@ -2,110 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFD442B8D90
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 09:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DF522B8DB3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 09:39:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725853AbgKSIfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 03:35:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37442 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725783AbgKSIfb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 03:35:31 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C381FC0613CF
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 00:35:30 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id x9so5338139ljc.7
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 00:35:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=CUAPPILQ+HlU7cec+WyW0vmuUkycQGR+EKCfVOKR5DA=;
-        b=xxlskXAtX870lOpywdkalnsMzFjOX7jemtarV+C0XroXPqfrChwDn/g05wGLVXiLwx
-         DZv2npwrVk2RKdH45J7ZWqU2vAt1m10srMqDqYyRxB61d26qoaxXSMRTETG9DXJ2hAcJ
-         N4kLWQX9cJNH3RH5lR3umlSF1OOyI0UJPv1RHKjx7zCyrRKjspUv/27o0lxRWuMcYYrI
-         O+IiOqTP0Or30LBmpNOxt2QBo25FdQEYfEWRO4sFrMf/TPM8AMtiIRXUj9ZgCTQClZG6
-         /2ulQQHD9n1kuB837CEi2PVIGJ89reg37c1AlK0zowtZLpiS7sfPwzHj9ot7ktmbWrJH
-         bCCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=CUAPPILQ+HlU7cec+WyW0vmuUkycQGR+EKCfVOKR5DA=;
-        b=naAebXvk4FgUcZCIffwvkREFXn+gnO9vhCxgaZVFAiOrXopbOV/k2u7E5Yy97msFBw
-         0wgN3bRFzoISsom28Sgrui6vgiP7U73lZUpdCxCt6HFd05eyWW7OJV/uRv903CUMLt2a
-         RmKWfRBtAguhvY1qWbSLMHM8gGnO5M6opt5DSx+HkP5OBI0lAqn5j2H++jwDuwZPj5kL
-         X2vqtP5669qSV81/CCp+2oI6gVLqdJscIyJs07EO5DoMtqJwTiPl1cfbScOyOLJ0A/FS
-         VNZHAAgv2k/fZn5HOuzdkEL7EO/nTXDI8OmTj2CobzSYhcX0JlmZEFm+AyrA2ILJbaaJ
-         N6dg==
-X-Gm-Message-State: AOAM530Qj/umYUV96t0wMIz+VeJsiQj1NSejtS8YIK7XQZ7MBVIYZ6xE
-        uNafwdU7l+UcIuR7h1WGoQgN96hisLG/f86Ld8grag==
-X-Google-Smtp-Source: ABdhPJzb1eF+H7SQdr5ic1GZqIMIfLsKmdGEtadZ2F1hyOuZbWr/cgjdxlUVeSHl72yR9JRuHYa3dyZlsxsodk0gZic=
-X-Received: by 2002:a2e:998e:: with SMTP id w14mr5942998lji.100.1605774929224;
- Thu, 19 Nov 2020 00:35:29 -0800 (PST)
-MIME-Version: 1.0
-References: <cover.1605688147.git.agx@sigxcpu.org>
-In-Reply-To: <cover.1605688147.git.agx@sigxcpu.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 19 Nov 2020 09:35:17 +0100
-Message-ID: <CACRpkda97nJ+nJX4CuZHQnDVh1mhykc_vb6xFh7BcAWQoNjz7Q@mail.gmail.com>
-Subject: Re: [PATCH v2 0/6] drm/panel: mantix and st7703 fixes and additions
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1726714AbgKSIif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 03:38:35 -0500
+Received: from jabberwock.ucw.cz ([46.255.230.98]:43342 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725936AbgKSIif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 03:38:35 -0500
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 69BA71C0B87; Thu, 19 Nov 2020 09:38:31 +0100 (CET)
+Date:   Thu, 19 Nov 2020 09:38:30 +0100
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Ondrej Jirman <megous@megous.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        allen <allen.chen@ite.com.tw>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: Re: [PATCH v7 2/5] dt-bindings: leds: Add LED_COLOR_ID_MOONLIGHT
+ definitions
+Message-ID: <20201119083830.GA31871@amd>
+References: <1605696462-391-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1605696462-391-3-git-send-email-gene.chen.richtek@gmail.com>
+ <20201118213712.GA22371@amd>
+ <CAE+NS36rnHzhdk5Os+vL=uK225HJT-bUHSRJ6KccaOHc-kCjpA@mail.gmail.com>
+ <20201119074416.GA27576@amd>
+ <CAE+NS3430=-WynyXQr+8MghmtmiCR+2VeTt4aD5cT8UmA+1Qrg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="jI8keyz6grp/JLjh"
+Content-Disposition: inline
+In-Reply-To: <CAE+NS3430=-WynyXQr+8MghmtmiCR+2VeTt4aD5cT8UmA+1Qrg@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 18, 2020 at 9:29 AM Guido G=C3=BCnther <agx@sigxcpu.org> wrote:
 
-> This adds new panel type to the mantix driver as found on the Librem 5 an=
-d
-> fixes a glitch in the init sequence (affecting both panels). The fix is a=
-t the
-> start of the series to make backporting simpler.
-> It also adds a patch to make st7703 use dev_err_probe().
->
-> changes from v1
-> - as per review comments by Linus Walleij
->   - fix alphabetical ordering in Documentation/devicetree/bindings/vendor=
--prefixes.yaml
->     https://lore.kernel.org/dri-devel/CACRpkdao_TMcpRsdK=3D7K5fNKJse0Bqwk=
-58iWu0xsXdDNdcffVA@mail.gmail.com/
->   - add reviewed by to all except 5/6, thanks
+--jI8keyz6grp/JLjh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-The whole v2 looks fine to me, I'd give the devicetree
-maintainers some slack to review the DT patches then I can
-apply the whole series unless you have commit access yourself,
-just tell me.
+Hi!
 
-For all v2 patches:
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > > Moonlight has more current level(150mA) from general RGB LED (24mA).
+> > > It can be used as night-light and usually use color AMBER.
+> > > Camera flashes are usually use two flash LED. One is YELLOW, and one
+> > >is WHITE.
+> >
+> > From what I seen, night-lights are usually differetent "temperatures"
+> > of white. Cool white + warm white.
+> >
+> > I believe "warm white" would be easier to understand than
+> > "moonlight"...
+>=20
+> ACK, I will change color "LED_COLOR_ID_WHITE"
 
-If you have time, please review my s6e63m0 series.
-https://lore.kernel.org/dri-devel/20201117175621.870085-1-linus.walleij@lin=
-aro.org/
-https://lore.kernel.org/dri-devel/20201117175621.870085-2-linus.walleij@lin=
-aro.org/
-https://lore.kernel.org/dri-devel/20201117175621.870085-3-linus.walleij@lin=
-aro.org/
+If you have two leds that differ only in one being "cool white" and
+one being "warm white", you may need to introduce defines for one of
+them.
 
-Yours,
-Linus Walleij
+If not, keeping "LED_COLOR_ID_WHITE" is enough.
+
+Best regards,
+								Pavel
+--=20
+http://www.livejournal.com/~pavelmachek
+
+--jI8keyz6grp/JLjh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl+2LwYACgkQMOfwapXb+vJyQACfYV2csyAq22QDr0kWaNLt5aNT
+ifoAn1b7uWaQPwk6nYu5GiDDzNFsPLup
+=d2jd
+-----END PGP SIGNATURE-----
+
+--jI8keyz6grp/JLjh--
