@@ -2,422 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1892B9347
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 14:13:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB7C82B934E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 14:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727685AbgKSNKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 08:10:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51532 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727692AbgKSNKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 08:10:18 -0500
-Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE702C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 05:10:16 -0800 (PST)
-Received: by mail-qt1-x842.google.com with SMTP id g17so4235516qts.5
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 05:10:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zIfUjW+aiBjmdX+tAUjwYQ92NbJPj9lCHZuwkcM8Nkg=;
-        b=xAFB8AUmc5Tj6IGxBYzeEcQQm9BpKWwt31skGR6lZBqLH0uXhkfqWEfVWILyg3hzWm
-         D67SShsYQSUYRO62MT9yHS7TOSEJjA9LG7wmDYnGcNPbYlK4gwS7QydEeA9tp2TFQVKW
-         U9uo/ecI6qWjq/hu6qF23mDm0SO52xwz5xeisfeYS0FnWrKcO/yu40UMCTE5Z7A5OKoj
-         bhF99kvMKxIur8Od/wK8m93CZqnPkau+MHz2OsLv1+IPkM1gLfATIPDRog9gxPUgeV0b
-         trDSiiuJL0Sc4QzBzqqlT3+8oasgwP9xrOj6XWci7iymIPWiABVwG/RAbXbwSVQTFazJ
-         fK1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zIfUjW+aiBjmdX+tAUjwYQ92NbJPj9lCHZuwkcM8Nkg=;
-        b=SJ5mG1Lj185ggl8HmPJDiBZ3K7wxjQRTILMQQceRDc1yB3oh/U5SfW4yWi2fm1uDmk
-         E6H5GRBo+2dulMMFVwrv7UdvJmoHWTTLi30y3zObPgtrk7Rm/lC2tSG4JxO8FpRofVGF
-         /vwRfhhzDMfiJbJR20DgQ0rdaBEuwya94dWMQ/GX1sXKXXJRAdL6SeUj2iK6mM1sBw22
-         GEpeB5UcUe8OUx8lHGIZPzMjUJIBPVx5wZq1m4UwP9Vv1NoFNOlJD5i44SJlrBh/5V0D
-         3gLlHHtwltQpBNGG/S/JDvZvtu8oScXrvU1YwDbRTtZV8pURlKgCu571Q55pYu6W2IQ5
-         czBw==
-X-Gm-Message-State: AOAM533tyV9U35ht61Guh+JB3BBme1WOZNDTY+iGKzhBPcZ9/N9osH47
-        +Lfq8Mw2ojy2Gdzr11eda28CVG/OuAhZWIdptoAfwA==
-X-Google-Smtp-Source: ABdhPJwSYUcsSwolzI8rzaoxCuKLO4/2H4yip/wvOaPYuDhkLJtTlRWGJvHPEGhboRgzOqxAPZGzt7wNOI0ruoKEWOE=
-X-Received: by 2002:ac8:5a8c:: with SMTP id c12mr9651445qtc.97.1605791415741;
- Thu, 19 Nov 2020 05:10:15 -0800 (PST)
-MIME-Version: 1.0
-References: <20201114084613.13503-1-grzegorz.jaszczyk@linaro.org>
- <20201114084613.13503-4-grzegorz.jaszczyk@linaro.org> <5e92947a-febf-90d0-b40e-499fe2144737@ti.com>
- <CAMxfBF5xMyb4LZ6Ei9xS49yXfHWJjKppWo7NNHqc5CfHYAiZTg@mail.gmail.com> <ada369ed-0c1b-46e1-68bb-b37d04cf90fd@ti.com>
-In-Reply-To: <ada369ed-0c1b-46e1-68bb-b37d04cf90fd@ti.com>
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Date:   Thu, 19 Nov 2020 14:10:04 +0100
-Message-ID: <CAMxfBF4-wrsx0XHzHsvSfTyTR09r_8-O7GUL31MPVQAgEBrfAQ@mail.gmail.com>
-Subject: Re: [PATCH 3/6] remoteproc/pru: Add support for PRU specific
- interrupt configuration
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Ohad Ben Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-remoteproc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "Bajjuri, Praneeth" <praneeth@ti.com>,
-        Roger Quadros <rogerq@ti.com>
+        id S1726575AbgKSNKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 08:10:31 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:54289 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727687AbgKSNKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 08:10:31 -0500
+X-UUID: b54c8b673d4f424eb367b902a7bfc7d6-20201119
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=eATmIcAu8mnngDtKC17o0OXO7zw2+X3r5vG7d2gZqyo=;
+        b=BiqLvSYDzkAb10LjpUWW0c34M0Ko8SjrZ81RVyLvmf4rrisqCS6NShMYy6VhMFXNEVP6Xq/oAXULXXXdrlVepitrnSAVomIsKnmNYjqK4a+t7avebzTDoLP/qFRmnVR1ZapNopjNDtHhv+WSN4rn+z+fdXBF0ovriauyczgcxzQ=;
+X-UUID: b54c8b673d4f424eb367b902a7bfc7d6-20201119
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1258036400; Thu, 19 Nov 2020 21:10:20 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 19 Nov 2020 21:10:18 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 19 Nov 2020 21:10:18 +0800
+Message-ID: <1605791419.19819.4.camel@mtksdaap41>
+Subject: Re: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains
+ controller
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Date:   Thu, 19 Nov 2020 21:10:19 +0800
+In-Reply-To: <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com>
+References: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
+         <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suman,
+T24gVGh1LCAyMDIwLTExLTE5IGF0IDEzOjEzICswMTAwLCBFbnJpYyBCYWxsZXRibyBTZXJyYSB3
+cm90ZToNCj4gSGkgV2VpeWksDQo+IA0KPiBUaGFuayB5b3UgZm9yIHRoZSBwYXRjaA0KPiANCj4g
+TWlzc2F0Z2UgZGUgV2VpeWkgTHUgPHdlaXlpLmx1QG1lZGlhdGVrLmNvbT4gZGVsIGRpYSBkai4s
+IDE5IGRlIG5vdi4NCj4gMjAyMCBhIGxlcyAxMTo0ODoNCj4gPg0KPiA+IEFkZCBwb3dlciBkb21h
+aW5zIGNvbnRyb2xsZXIgbm9kZSBmb3IgU29DIG10ODE5Mg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1i
+eTogV2VpeWkgTHUgPHdlaXlpLmx1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPg0KPiA+IENo
+YW5nZSBpbiB2MzogTm9uZSwganVzdCByZWJhc2UgZHRzIG9udG8gdjUuMTAtcmMxIGFuZA0KPiA+
+ICAgICAgICBWNCBvZiBzZXJpZXMgIkFkZCBuZXcgZHJpdmVyIGZvciBTQ1BTWVMgcG93ZXIgZG9t
+YWlucyBjb250cm9sbGVyIlsxXQ0KPiA+DQo+ID4gWzFdIGh0dHBzOi8vcGF0Y2h3b3JrLmtlcm5l
+bC5vcmcvcHJvamVjdC9saW51eC1tZWRpYXRlay9saXN0Lz9zZXJpZXM9Mzc0MDEzDQo+ID4NCj4g
+PiAgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRzaSB8IDIwMSArKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAyMDEgaW5zZXJ0
+aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0
+ZWsvbXQ4MTkyLmR0c2kgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNp
+DQo+ID4gaW5kZXggNjlkNDVjNy4uMDg0NDllYiAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybTY0
+L2Jvb3QvZHRzL21lZGlhdGVrL210ODE5Mi5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290
+L2R0cy9tZWRpYXRlay9tdDgxOTIuZHRzaQ0KPiA+IEBAIC05LDYgKzksNyBAQA0KPiA+ICAjaW5j
+bHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvYXJtLWdpYy5oPg0KPiA+ICAj
+aW5jbHVkZSA8ZHQtYmluZGluZ3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQo+ID4gICNp
+bmNsdWRlIDxkdC1iaW5kaW5ncy9waW5jdHJsL210ODE5Mi1waW5mdW5jLmg+DQo+ID4gKyNpbmNs
+dWRlIDxkdC1iaW5kaW5ncy9wb3dlci9tdDgxOTItcG93ZXIuaD4NCj4gPg0KPiA+ICAvIHsNCj4g
+PiAgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTkyIjsNCj4gPiBAQCAtMjU3LDYg
+KzI1OCwyMDYgQEANCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAjaW50ZXJydXB0LWNlbGxz
+ID0gPDI+Ow0KPiA+ICAgICAgICAgICAgICAgICB9Ow0KPiA+DQo+ID4gKyAgICAgICAgICAgICAg
+IHNjcHN5czogc3lzY29uQDEwMDA2MDAwIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBj
+b21wYXRpYmxlID0gInN5c2NvbiIsICJzaW1wbGUtbWZkIjsNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICByZWcgPSA8MCAweDEwMDA2MDAwIDAgMHgxMDAwPjsNCj4gPiArICAgICAgICAgICAg
+ICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDE+Ow0KPiA+ICsNCj4gPiArICAgICAg
+ICAgICAgICAgICAgICAgICAvKiBTeXN0ZW0gUG93ZXIgTWFuYWdlciAqLw0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgIHNwbTogcG93ZXItY29udHJvbGxlciB7DQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5Mi1wb3dlci1j
+b250cm9sbGVyIjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICNhZGRyZXNz
+LWNlbGxzID0gPDE+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI3NpemUt
+Y2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjcG93ZXIt
+ZG9tYWluLWNlbGxzID0gPDE+Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIC8qIHBvd2VyIGRvbWFpbiBvZiB0aGUgU29DICovDQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBhdWRpb0BNVDgxOTJfUE9XRVJfRE9NQUlOX0FVRElPIHsNCj4gDQo+
+IElmIHlvdSBydW4gdGhlIGR0X2JpbmRpbmdzX2NoZWNrIGl0IHNob3VsZCByZXR1cm4gc29tZSBl
+cnJvcnMsIGFzIGFsbA0KPiB0aGVzZSBub2RlIG5hbWVzIHNob3VsZCBiZSAncG93ZXItZG9tYWlu
+QCcuIFdoaWNoIGlzIGEgYml0IGFubm95aW5nDQo+IGJlY2F1c2UgdGhlbiB5b3Ugd2lsbCBnZXQg
+YSBidW5jaCBvZiBlcnJvcnMgbGlrZSB0aGlzOg0KPiANCj4gWyAgICAxLjk2OTExMF0gZGVidWdm
+czogRGlyZWN0b3J5ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ICdwbV9nZW5wZCcgYWxy
+ZWFkeSBwcmVzZW50IQ0KPiBbICAgIDEuOTc2OTk3XSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2Vy
+LWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+IFsg
+ICAgMS45ODQ4MjhdIGRlYnVnZnM6IERpcmVjdG9yeSAncG93ZXItZG9tYWluJyB3aXRoIHBhcmVu
+dA0KPiAncG1fZ2VucGQnIGFscmVhZHkgcHJlc2VudCENCj4gWyAgICAxLjk5MjY1N10gZGVidWdm
+czogRGlyZWN0b3J5ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ICdwbV9nZW5wZCcgYWxy
+ZWFkeSBwcmVzZW50IQ0KPiBbICAgIDIuMDAwNjg1XSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2Vy
+LWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+IFsg
+ICAgMi4wMDg1NjZdIGRlYnVnZnM6IERpcmVjdG9yeSAncG93ZXItZG9tYWluJyB3aXRoIHBhcmVu
+dA0KPiAncG1fZ2VucGQnIGFscmVhZHkgcHJlc2VudCENCj4gWyAgICAyLjAxNjM5NV0gZGVidWdm
+czogRGlyZWN0b3J5ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ICdwbV9nZW5wZCcgYWxy
+ZWFkeSBwcmVzZW50IQ0KPiBbICAgIDIuMDI0MjIxXSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2Vy
+LWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+IFsg
+ICAgMi4wMzIwNDldIGRlYnVnZnM6IERpcmVjdG9yeSAncG93ZXItZG9tYWluJyB3aXRoIHBhcmVu
+dA0KPiAncG1fZ2VucGQnIGFscmVhZHkgcHJlc2VudCENCj4gWyAgICAyLjAzOTg3NF0gZGVidWdm
+czogRGlyZWN0b3J5ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ICdwbV9nZW5wZCcgYWxy
+ZWFkeSBwcmVzZW50IQ0KPiBbICAgIDIuMDQ3Njk5XSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2Vy
+LWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+IFsg
+ICAgMi4wNTU1MjRdIGRlYnVnZnM6IERpcmVjdG9yeSAncG93ZXItZG9tYWluJyB3aXRoIHBhcmVu
+dA0KPiAncG1fZ2VucGQnIGFscmVhZHkgcHJlc2VudCENCj4gWyAgICAyLjA2MzM1Ml0gZGVidWdm
+czogRGlyZWN0b3J5ICdwb3dlci1kb21haW4nIHdpdGggcGFyZW50DQo+ICdwbV9nZW5wZCcgYWxy
+ZWFkeSBwcmVzZW50IQ0KPiBbICAgIDIuMDcxMTc2XSBkZWJ1Z2ZzOiBEaXJlY3RvcnkgJ3Bvd2Vy
+LWRvbWFpbicgd2l0aCBwYXJlbnQNCj4gJ3BtX2dlbnBkJyBhbHJlYWR5IHByZXNlbnQhDQo+IA0K
+PiBCdXQgdGhhdCdzIGFub3RoZXIgcHJvYmxlbSB0aGF0IHNob3VsZCBiZSBoYW5kbGVkIGluIGRl
+YnVnZnMgc3lzdGVtLg0KPiANCg0KSW5kZWVkLi4uc28gSSBjaG9zZSB0byB1c2UgZGlmZmVyZW50
+IG5hbWUgaW4gZHRzIHRvIGF2b2lkIHByb2JsZW1zIGluDQpkZWJ1Z2ZzLiBJdCBkb2VzIHZpb2xh
+dGUgdGhlIG5hbWluZyBydWxlcy4NCg0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICByZWcgPSA8TVQ4MTkyX1BPV0VSX0RPTUFJTl9BVURJTz47DQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xL
+X1RPUF9BVURfSU5UQlVTX1NFTD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIDwmaW5mcmFjZmcgQ0xLX0lORlJBX0FVRElPXzI2TV9CPiwNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZpbmZy
+YWNmZyBDTEtfSU5GUkFfQVVESU8+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJhdWRpbyIsICJhdWRpbzEiLCAiYXVkaW8yIjsNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWVkaWF0ZWssaW5mcmFj
+ZmcgPSA8JmluZnJhY2ZnPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgY29ubkBNVDgxOTJfUE9XRVJfRE9NQUlOX0NPTk4gew0KPiA+ICsgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8TVQ4MTkyX1BPV0VSX0RPTUFJTl9DT05OPjsN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xvY2tzID0gPCZp
+bmZyYWNmZyBDTEtfSU5GUkFfUE1JQ19DT05OPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgY2xvY2stbmFtZXMgPSAiY29ubiI7DQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1lZGlhdGVrLGluZnJhY2ZnID0gPCZpbmZyYWNm
+Zz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICNwb3dlci1k
+b21haW4tY2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9
+Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1mZ0BNVDgxOTJf
+UE9XRVJfRE9NQUlOX01GRzAgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICByZWcgPSA8TVQ4MTkyX1BPV0VSX0RPTUFJTl9NRkcwPjsNCj4gPiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9Q
+X01GR19QTExfU0VMPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgY2xvY2stbmFtZXMgPSAibWZnIjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDE+Ow0K
+PiA+ICsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWZnMUBN
+VDgxOTJfUE9XRVJfRE9NQUlOX01GRzEgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDxNVDgxOTJfUE9XRVJfRE9NQUlOX01GRzE+Ow0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1lZGlh
+dGVrLGluZnJhY2ZnID0gPCZpbmZyYWNmZz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI3NpemUtY2VsbHMgPSA8
+MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+I3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwxPjsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWZnMkBNVDgxOTJfUE9XRVJfRE9NQUlOX01G
+RzIgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgcmVnID0gPE1UODE5Ml9QT1dFUl9ET01BSU5fTUZHMj47DQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjcG93ZXItZG9t
+YWluLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIG1mZzNATVQ4MTkyX1BPV0VSX0RPTUFJTl9NRkczIHsNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJl
+ZyA9IDxNVDgxOTJfUE9XRVJfRE9NQUlOX01GRzM+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI3Bvd2VyLWRvbWFpbi1jZWxscyA9
+IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBtZmc0QE1UODE5Ml9QT1dFUl9ET01BSU5fTUZHNCB7DQo+ID4gKyAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8TVQ4MTky
+X1BPV0VSX0RPTUFJTl9NRkc0PjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICNwb3dlci1kb21haW4tY2VsbHMgPSA8MD47DQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiAr
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWZn
+NUBNVDgxOTJfUE9XRVJfRE9NQUlOX01GRzUgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPE1UODE5Ml9QT1dFUl9ET01B
+SU5fTUZHNT47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1mZzZATVQ4MTkyX1BP
+V0VSX0RPTUFJTl9NRkc2IHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDxNVDgxOTJfUE9XRVJfRE9NQUlOX01GRzY+Ow0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+fTsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNwQE1UODE5
+Ml9QT1dFUl9ET01BSU5fRElTUCB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHJlZyA9IDxNVDgxOTJfUE9XRVJfRE9NQUlOX0RJU1A+Ow0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19U
+T1BfRElTUF9TRUw+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICA8Jm1tc3lzIENMS19NTV9TTUlfSU5GUkE+LA0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8Jm1tc3lzIENMS19NTV9TTUlfQ09N
+TU9OPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgPCZtbXN5cyBDTEtfTU1fU01JX0dBTFM+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICA8Jm1tc3lzIENMS19NTV9TTUlfSU9NTVU+Ow0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJk
+aXNwIiwgImRpc3AtMCIsICJkaXNwLTEiLCAiZGlzcC0yIiwNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAiZGlzcC0zIjsNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWVkaWF0ZWssaW5mcmFjZmcgPSA8
+JmluZnJhY2ZnPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+I2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDE+Ow0KPiA+ICsNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgaXBlQE1UODE5Ml9QT1dFUl9E
+T01BSU5fSVBFIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICByZWcgPSA8TVQ4MTkyX1BPV0VSX0RPTUFJTl9JUEU+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmdG9wY2tnZW4g
+Q0xLX1RPUF9JUEVfU0VMPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICA8JmlwZXN5cyBDTEtfSVBFX0xBUkIxOT4sDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZp
+cGVzeXMgQ0xLX0lQRV9MQVJCMjA+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwmaXBlc3lzIENMS19JUEVfU01JX1NVQkNPTT4s
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgPCZpcGVzeXMgQ0xLX0lQRV9HQUxTPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJpcGUiLCAiaXBlLTAiLCAi
+aXBlLTEiLCAiaXBlLTIiLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgImlwZS0zIjsNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtZWRpYXRlayxpbmZyYWNmZyA9IDwmaW5m
+cmFjZmc+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICNwb3dlci1kb21haW4tY2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBpc3BATVQ4MTkyX1BPV0VSX0RPTUFJTl9JU1Agew0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDxNVDgxOTJf
+UE9XRVJfRE9NQUlOX0lTUD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX0lNRzFfU0VMPiwNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICA8JmltZ3N5cyBDTEtfSU1HX0xBUkI5PiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8JmltZ3N5cyBDTEtfSU1HX0dBTFM+Ow0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2Nr
+LW5hbWVzID0gImlzcCIsICJpc3AtMCIsICJpc3AtMSI7DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWVkaWF0ZWssaW5mcmFjZmcgPSA8JmluZnJh
+Y2ZnPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgaXNwMkBNVDgxOTJfUE9XRVJfRE9NQUlOX0lTUDIgew0KPiA+ICsgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDxNVDgxOTJf
+UE9XRVJfRE9NQUlOX0lTUDI+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9JTUcyX1NFTD4sDQo+
+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgPCZpbWdzeXMyIENMS19JTUcyX0xBUkIxMT4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZpbWdzeXMyIENMS19JTUcyX0dB
+TFM+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+IGNsb2NrLW5hbWVzID0gImlzcDIiLCAiaXNwMi0wIiwgImlzcDItMSI7DQo+ID4gKyAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWVkaWF0ZWssaW5mcmFjZmcg
+PSA8JmluZnJhY2ZnPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgbWRwQE1UODE5Ml9QT1dFUl9ET01BSU5fTURQIHsNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8
+TVQ4MTkyX1BPV0VSX0RPTUFJTl9NRFA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmdG9wY2tnZW4gQ0xLX1RPUF9NRFBfU0VM
+PiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICA8Jm1kcHN5cyBDTEtfTURQX1NNSTA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrLW5hbWVzID0gIm1kcCIsICJtZHAtMCI7
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbWVk
+aWF0ZWssaW5mcmFjZmcgPSA8JmluZnJhY2ZnPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDA+Ow0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiAr
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmVuY0BNVDgxOTJfUE9XRVJf
+RE9NQUlOX1ZFTkMgew0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHJlZyA9IDxNVDgxOTJfUE9XRVJfRE9NQUlOX1ZFTkM+Ow0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmdG9wY2tn
+ZW4gQ0xLX1RPUF9WRU5DX1NFTD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZ2ZW5jc3lzIENMS19WRU5DX1NFVDFfVkVOQz47
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xv
+Y2stbmFtZXMgPSAidmVuYyIsICJ2ZW5jLTAiOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgIG1lZGlhdGVrLGluZnJhY2ZnID0gPCZpbmZyYWNmZz47
+DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI3Bv
+d2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIHZkZWNATVQ4MTkyX1BPV0VSX0RPTUFJTl9WREVDIHsNCj4gPiArICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICByZWcgPSA8TVQ4MTkyX1BPV0VS
+X0RPTUFJTl9WREVDPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICBjbG9ja3MgPSA8JnRvcGNrZ2VuIENMS19UT1BfVkRFQ19TRUw+LA0KPiA+ICsg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwm
+dmRlY3N5c19zb2MgQ0xLX1ZERUNfU09DX1ZERUM+LA0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwmdmRlY3N5c19zb2MgQ0xLX1ZE
+RUNfU09DX0xBVD4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgPCZ2ZGVjc3lzX3NvYyBDTEtfVkRFQ19TT0NfTEFSQjE+Ow0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrLW5h
+bWVzID0gInZkZWMiLCAidmRlYy0wIiwgInZkZWMtMSIsICJ2ZGVjLTIiOw0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1lZGlhdGVrLGluZnJhY2Zn
+ID0gPCZpbmZyYWNmZz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47DQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI3Bvd2VyLWRvbWFp
+bi1jZWxscyA9IDwxPjsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgdmRlYzJATVQ4MTkyX1BPV0VSX0RPTUFJTl9WREVDMiB7DQo+ID4g
+KyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBy
+ZWcgPSA8TVQ4MTkyX1BPV0VSX0RPTUFJTl9WREVDMj47DQo+ID4gKyAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbG9ja3MgPSA8JnZkZWNzeXMg
+Q0xLX1ZERUNfVkRFQz4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8JnZkZWNzeXMgQ0xLX1ZERUNfTEFUPiwNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIDwmdmRlY3N5cyBDTEtfVkRFQ19MQVJCMT47DQo+ID4gKyAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJ2
+ZGVjMi0wIiwgInZkZWMyLTEiLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAidmRlYzItMiI7DQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjcG93
+ZXItZG9tYWluLWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIH07DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBjYW1ATVQ4MTkyX1BPV0VSX0RPTUFJTl9DQU0gew0KPiA+ICsgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDxNVDgxOTJfUE9XRVJfRE9N
+QUlOX0NBTT47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX0NBTV9TRUw+LA0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwmY2Ftc3lz
+IENMS19DQU1fTEFSQjEzPiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICA8JmNhbXN5cyBDTEtfQ0FNX0xBUkIxND4sDQo+ID4gKyAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZj
+YW1zeXMgQ0xLX0NBTV9DQ1VfR0FMUz4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZjYW1zeXMgQ0xLX0NBTV9DQU0yTU1fR0FM
+Uz47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+Y2xvY2stbmFtZXMgPSAiY2FtIiwgImNhbS0wIiwgImNhbS0xIiwgImNhbS0yIiwNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICJjYW0tMyI7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgbWVkaWF0ZWssaW5mcmFjZmcgPSA8JmluZnJhY2ZnPjsNCj4gPiArICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAjc2l6
+ZS1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAjcG93ZXItZG9tYWluLWNlbGxzID0gPDE+Ow0KPiA+ICsNCj4gPiArICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjYW1fcmF3YUBNVDgxOTJf
+UE9XRVJfRE9NQUlOX0NBTV9SQVdBIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDxNVDgxOTJfUE9XRVJfRE9NQUlOX0NB
+TV9SQVdBPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgIGNsb2NrcyA9IDwmY2Ftc3lzX3Jhd2EgQ0xLX0NBTV9SQVdBX0xBUkJYPjsN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIGNsb2NrLW5hbWVzID0gImNhbV9yYXdhLTAiOw0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgI3Bvd2VyLWRvbWFpbi1jZWxscyA9
+IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICBjYW1fcmF3YkBNVDgxOTJfUE9XRVJfRE9NQUlOX0NBTV9SQVdCIHsNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9
+IDxNVDgxOTJfUE9XRVJfRE9NQUlOX0NBTV9SQVdCPjsNCj4gPiArICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrcyA9IDwmY2Ftc3lzX3Jh
+d2IgQ0xLX0NBTV9SQVdCX0xBUkJYPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2NrLW5hbWVzID0gImNhbV9yYXdiLTAiOw0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjYW1fcmF3Y0BNVDgxOTJfUE9XRVJfRE9N
+QUlOX0NBTV9SQVdDIHsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgIHJlZyA9IDxNVDgxOTJfUE9XRVJfRE9NQUlOX0NBTV9SQVdDPjsN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgIGNsb2NrcyA9IDwmY2Ftc3lzX3Jhd2MgQ0xLX0NBTV9SQVdDX0xBUkJYPjsNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsb2Nr
+LW5hbWVzID0gImNhbV9yYXdjLTAiOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgI3Bvd2VyLWRvbWFpbi1jZWxscyA9IDwwPjsNCj4g
+PiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+
+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gPiArICAgICAgICAgICAgICAgICAgICAgICB9
+Ow0KPiA+ICsgICAgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiAgICAgICAgICAgICAgICAgYXBt
+aXhlZHN5czogc3lzY29uQDEwMDBjMDAwIHsNCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICBj
+b21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5Mi1hcG1peGVkc3lzIiwgInN5c2NvbiI7DQo+ID4g
+ICAgICAgICAgICAgICAgICAgICAgICAgcmVnID0gPDAgMHgxMDAwYzAwMCAwIDB4MTAwMD47DQo+
+ID4gLS0NCj4gPiAxLjguMS4xLmRpcnR5DQo+ID4NCg0K
 
-On Thu, 19 Nov 2020 at 00:04, Suman Anna <s-anna@ti.com> wrote:
->
-> Hi Greg,
->
-> On 11/18/20 9:27 AM, Grzegorz Jaszczyk wrote:
-> > Hi Suman,
-> >
-> > On Tue, 17 Nov 2020 at 21:40, Suman Anna <s-anna@ti.com> wrote:
-> >>
-> >> Hi Greg,
-> >>
-> >> On 11/14/20 2:46 AM, Grzegorz Jaszczyk wrote:
-> >>> The firmware blob can contain optional ELF sections: .resource_table
-> >>> section and .pru_irq_map one. The second one contains the PRUSS
-> >>> interrupt mapping description, which needs to be setup before powering
-> >>> on the PRU core. To avoid RAM wastage this ELF section is not mapped to
-> >>> any ELF segment (by the firmware linker) and therefore is not loaded to
-> >>> PRU memory.
-> >>>
-> >>> The PRU interrupt configuration is handled within the PRUSS INTC irqchip
-> >>> driver and leverages the system events to interrupt channels and host
-> >>> interrupts mapping configuration. Relevant irq routing information is
-> >>> passed through a special .pru_irq_map ELF section (for interrupts routed
-> >>> to and used by PRU cores) or via the PRU application's device tree node
-> >>> (for interrupts routed to and used by the main CPU). The mappings are
-> >>> currently programmed during the booting/shutdown of the PRU.
-> >>>
-> >>> The interrupt configuration passed through .pru_irq_map ELF section is
-> >>> optional. It varies on specific firmware functionality and therefore
-> >>> have to be unwinded during PRU stop and performed again during
-> >>> PRU start.
-> >>>
-> >>> Co-developed-by: Suman Anna <s-anna@ti.com>
-> >>> Signed-off-by: Suman Anna <s-anna@ti.com>
-> >>> Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-> >>> ---
-> >>>  drivers/remoteproc/pru_rproc.c | 191 ++++++++++++++++++++++++++++++++-
-> >>>  drivers/remoteproc/pru_rproc.h |  46 ++++++++
-> >>>  2 files changed, 236 insertions(+), 1 deletion(-)
-> >>>  create mode 100644 drivers/remoteproc/pru_rproc.h
-> >>>
-> >>> diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-> >>> index c94c8e965c21..825e9c7e081b 100644
-> >>> --- a/drivers/remoteproc/pru_rproc.c
-> >>> +++ b/drivers/remoteproc/pru_rproc.c
-> >>> @@ -11,13 +11,16 @@
-> >>>   */
-> >>>
-> >>>  #include <linux/bitops.h>
-> >>> +#include <linux/irqdomain.h>
-> >>>  #include <linux/module.h>
-> >>>  #include <linux/of_device.h>
-> >>> +#include <linux/of_irq.h>
-> >>>  #include <linux/pruss_driver.h>
-> >>>  #include <linux/remoteproc.h>
-> >>>
-> >>>  #include "remoteproc_internal.h"
-> >>>  #include "remoteproc_elf_helpers.h"
-> >>> +#include "pru_rproc.h"
-> >>>
-> >>>  /* PRU_ICSS_PRU_CTRL registers */
-> >>>  #define PRU_CTRL_CTRL                0x0000
-> >>> @@ -41,6 +44,8 @@
-> >>>  #define PRU_SDRAM_DA 0x2000  /* Secondary Data RAM */
-> >>>  #define PRU_SHRDRAM_DA       0x10000 /* Shared Data RAM */
-> >>>
-> >>> +#define MAX_PRU_SYS_EVENTS 160
-> >>> +
-> >>>  /**
-> >>>   * enum pru_iomem - PRU core memory/register range identifiers
-> >>>   *
-> >>> @@ -64,6 +69,10 @@ enum pru_iomem {
-> >>>   * @rproc: remoteproc pointer for this PRU core
-> >>>   * @mem_regions: data for each of the PRU memory regions
-> >>>   * @fw_name: name of firmware image used during loading
-> >>> + * @mapped_irq: virtual interrupt numbers of created fw specific mapping
-> >>> + * @pru_interrupt_map: pointer to interrupt mapping description (firmware)
-> >>> + * @pru_interrupt_map_sz: pru_interrupt_map size
-> >>> + * @evt_count: number of mapped events
-> >>>   */
-> >>>  struct pru_rproc {
-> >>>       int id;
-> >>> @@ -72,6 +81,10 @@ struct pru_rproc {
-> >>>       struct rproc *rproc;
-> >>>       struct pruss_mem_region mem_regions[PRU_IOMEM_MAX];
-> >>>       const char *fw_name;
-> >>> +     int *mapped_irq;
-> >>> +     struct pru_irq_rsc *pru_interrupt_map;
-> >>> +     size_t pru_interrupt_map_sz;
-> >>> +     ssize_t evt_count;
-> >>
-> >> Do you really need this to be ssize_t type?
-> >
-> > You are right, it is not needed. I will use size_t type instead and
-> > modify relevant while loop.
->
-> Hmm, size_t is ok, but perhaps the same type you used struct pru_irq_rsc is better.
-
-Ok.
-
->
-> >
-> >>
-> >>>  };
-> >>>
-> >>>  static inline u32 pru_control_read_reg(struct pru_rproc *pru, unsigned int reg)
-> >>> @@ -85,15 +98,107 @@ void pru_control_write_reg(struct pru_rproc *pru, unsigned int reg, u32 val)
-> >>>       writel_relaxed(val, pru->mem_regions[PRU_IOMEM_CTRL].va + reg);
-> >>>  }
-> >>>
-> >>> +static void pru_dispose_irq_mapping(struct pru_rproc *pru)
-> >>> +{
-> >>> +     while (--pru->evt_count >= 0) {
-> >>> +             if (pru->mapped_irq[pru->evt_count] > 0)
-> >>> +                     irq_dispose_mapping(pru->mapped_irq[pru->evt_count]);
-> >>> +     }
-> >>> +
-> >>> +     kfree(pru->mapped_irq);
-> >>> +}
-> >>> +
-> >>> +/*
-> >>> + * Parse the custom PRU interrupt map resource and configure the INTC
-> >>> + * appropriately.
-> >>> + */
-> >>> +static int pru_handle_intrmap(struct rproc *rproc)
-> >>> +{
-> >>> +     struct device *dev = rproc->dev.parent;
-> >>> +     struct pru_rproc *pru = rproc->priv;
-> >>> +     struct pru_irq_rsc *rsc = pru->pru_interrupt_map;
-> >>> +     struct irq_fwspec fwspec;
-> >>> +     struct device_node *irq_parent;
-> >>> +     int i, ret = 0;
-> >>> +
-> >>> +     /* not having pru_interrupt_map is not an error */
-> >>> +     if (!rsc)
-> >>> +             return 0;
-> >>> +
-> >>> +     /* currently supporting only type 0 */
-> >>> +     if (rsc->type != 0) {
-> >>> +             dev_err(dev, "unsupported rsc type: %d\n", rsc->type);
-> >>> +             return -EINVAL;
-> >>> +     }
-> >>> +
-> >>> +     if (rsc->num_evts < 0 || rsc->num_evts > MAX_PRU_SYS_EVENTS)
-> >>> +             return -EINVAL;
-> >>> +
-> >>> +     if (sizeof(*rsc) + rsc->num_evts * sizeof(struct pruss_int_map) !=
-> >>> +         pru->pru_interrupt_map_sz)
-> >>> +             return -EINVAL;
-> >>> +
-> >>> +     pru->evt_count = rsc->num_evts;
-> >>> +     pru->mapped_irq = kcalloc(pru->evt_count, sizeof(int), GFP_KERNEL);
-> >>> +     if (!pru->mapped_irq)
-> >>> +             return -ENOMEM;
-> >>> +
-> >>> +     /*
-> >>> +      * parse and fill in system event to interrupt channel and
-> >>> +      * channel-to-host mapping
-> >>> +      */
-> >>> +     irq_parent = of_irq_find_parent(pru->dev->of_node);
-> >>> +     if (!irq_parent) {
-> >>> +             kfree(pru->mapped_irq);
-> >>> +             return -ENODEV;
-> >>> +     }
-> >>> +
-> >>> +     fwspec.fwnode = of_node_to_fwnode(irq_parent);
-> >>> +     fwspec.param_count = 3;
-> >>> +     for (i = 0; i < pru->evt_count; i++) {
-> >>> +             fwspec.param[0] = rsc->pru_intc_map[i].event;
-> >>> +             fwspec.param[1] = rsc->pru_intc_map[i].chnl;
-> >>> +             fwspec.param[2] = rsc->pru_intc_map[i].host;
-> >>> +
-> >>> +             dev_dbg(dev, "mapping%d: event %d, chnl %d, host %d\n",
-> >>> +                    i, fwspec.param[0], fwspec.param[1], fwspec.param[2]);
-> >>> +
-> >>> +             pru->mapped_irq[i] = irq_create_fwspec_mapping(&fwspec);
-> >>> +             if (pru->mapped_irq[i] < 0) {
-> >>> +                     dev_err(dev, "failed to get virq\n");
-> >>> +                     ret = pru->mapped_irq[i];
-> >>> +                     goto map_fail;
-> >>> +             }
-> >>> +     }
-> >>> +
-> >>> +     return ret;
-> >>> +
-> >>> +map_fail:
-> >>> +     pru_dispose_irq_mapping(pru);
-> >>> +
-> >>> +     return ret;
-> >>> +}
-> >>> +
-> >>>  static int pru_rproc_start(struct rproc *rproc)
-> >>>  {
-> >>>       struct device *dev = &rproc->dev;
-> >>>       struct pru_rproc *pru = rproc->priv;
-> >>>       u32 val;
-> >>> +     int ret;
-> >>>
-> >>>       dev_dbg(dev, "starting PRU%d: entry-point = 0x%llx\n",
-> >>>               pru->id, (rproc->bootaddr >> 2));
-> >>>
-> >>> +     ret = pru_handle_intrmap(rproc);
-> >>> +     /*
-> >>> +      * reset references to pru interrupt map - they will stop being valid
-> >>> +      * after rproc_start returns
-> >>> +      */
-> >>> +     pru->pru_interrupt_map = NULL;
-> >>> +     pru->pru_interrupt_map_sz = 0;
-> >>> +     if (ret)
-> >>> +             return ret;
-> >>> +
-> >>>       val = CTRL_CTRL_EN | ((rproc->bootaddr >> 2) << 16);
-> >>>       pru_control_write_reg(pru, PRU_CTRL_CTRL, val);
-> >>>
-> >>> @@ -112,6 +217,10 @@ static int pru_rproc_stop(struct rproc *rproc)
-> >>>       val &= ~CTRL_CTRL_EN;
-> >>>       pru_control_write_reg(pru, PRU_CTRL_CTRL, val);
-> >>>
-> >>> +     /* dispose irq mapping - new firmware can provide new mapping */
-> >>> +     if (pru->mapped_irq)
-> >>> +             pru_dispose_irq_mapping(pru);
-> >>> +
-> >>>       return 0;
-> >>>  }
-> >>>
-> >>> @@ -274,16 +383,96 @@ pru_rproc_load_elf_segments(struct rproc *rproc, const struct firmware *fw)
-> >>>       return ret;
-> >>>  }
-> >>>
-> >>> +static const void *
-> >>> +pru_rproc_find_interrupt_map(struct device *dev, const struct firmware *fw)
-> >>> +{
-> >>> +     const void *shdr, *name_table_shdr;
-> >>> +     const char *name_table;
-> >>> +     const u8 *elf_data = (void *)fw->data;
-> >>> +     u8 class = fw_elf_get_class(fw);
-> >>> +     size_t fw_size = fw->size;
-> >>> +     const void *ehdr = elf_data;
-> >>> +     u16 shnum = elf_hdr_get_e_shnum(class, ehdr);
-> >>> +     u32 elf_shdr_get_size = elf_size_of_shdr(class);
-> >>> +     u16 shstrndx = elf_hdr_get_e_shstrndx(class, ehdr);
-> >>> +     int i;
-> >>> +
-> >>> +     /* first, get the section header according to the elf class */
-> >>> +     shdr = elf_data + elf_hdr_get_e_shoff(class, ehdr);
-> >>> +     /* compute name table section header entry in shdr array */
-> >>> +     name_table_shdr = shdr + (shstrndx * elf_shdr_get_size);
-> >>> +     /* finally, compute the name table section address in elf */
-> >>> +     name_table = elf_data + elf_shdr_get_sh_offset(class, name_table_shdr);
-> >>
-> >> I see you used the style influenced by the remoteproc_elf_loader code. PRUs are
-> >> all 32-bit, so we need not use this strictly. I am ok with this style, but
-> >> prefer consistent usage style between this function and
-> >> pru_rproc_load_elf_segments().
-> >
-> > Ok. I will get rid of generic elf helpers macros usage and will stick
-> > with elf32_* related structs instead. This will make it similar to
-> > pru_rproc_load_elf_segments() in terms of style.
->
-> Yeah, ok with me.
->
-> >
-> >>
-> >>> +
-> >>> +     for (i = 0; i < shnum; i++, shdr += elf_shdr_get_size) {
-> >>> +             u64 size = elf_shdr_get_sh_size(class, shdr);
-> >>> +             u64 offset = elf_shdr_get_sh_offset(class, shdr);
-> >>> +             u32 name = elf_shdr_get_sh_name(class, shdr);
-> >>> +
-> >>> +             if (strcmp(name_table + name, ".pru_irq_map"))
-> >>> +                     continue;
-> >>> +
-> >>> +             /* make sure we have the entire table */
-> >>> +             if (offset + size > fw_size || offset + size < size) {
-> >>> +                     dev_err(dev, "interrupt map sec truncated\n");
-> >>
-> >> sec can confuse developers, suggest rephrasing this trace, something like
-> >> ".pru_irq_map section truncated"
-> >
-> > Ok. I will also update the comment to: "make sure we have the entire irq map"
->
-> Please don't use "we" in debug traces, and just the summary of the error trace.
-
-I think you've misunderstood my answer: I agreed with your suggestion
-to rephrase this trace to ".pru_irq_map section truncated" but
-additionally I wanted to say that I will also update the comment (not
-the dev_err trace) which is located two lines above.
-
->
-> >
-> >>
-> >>> +                     return ERR_PTR(-EINVAL);
-> >>> +             }
-> >>> +
-> >>> +             /* make sure table has at least the header */
-> >>> +             if (sizeof(struct pru_irq_rsc) > size) {
-> >>> +                     dev_err(dev, "header-less interrupt map sec\n");
-> >>
-> >> same comment as above
-> >
-> > Sure, I will use "header-less .pru_irq_map section\n" and update the
-> > comment above to: "make sure irq map has at least the header"
->
-> similar to above
-
-The same as above :)
-
->
-> >
-> >>
-> >>> +                     return ERR_PTR(-EINVAL);
-> >>> +             }
-> >>> +
-> >>> +             return shdr;
-> >>> +     }
-> >>> +
-> >>> +     dev_dbg(dev, "no .pru_irq_map section found for this fw\n");
-> >>> +
-> >>> +     return NULL;
-> >>> +}
-> >>> +
-> >>> +/*
-> >>> + * Usa a custom parse_fw callback function for dealing with standard
-> >>> + * resource table and a PRU-specific custom ELF section.
-> >>> + *
-> >>> + * The firmware blob can contain optional ELF sections: .resource_table section
-> >>> + * and .pru_irq_map one. The second one contains the PRUSS interrupt mapping
-> >>> + * description, which needs to be setup before powering on the PRU core. To
-> >>> + * avoid RAM wastage this ELF section is not mapped to any ELF segment (by the
-> >>> + * firmware linker) and therefore is not loaded to PRU memory.
-> >>
-> >> Some of this description can move to Patch 2 as well.
-> >
-> > I thought about it before posting but IMO this function without
-> > .pru_irq_map handling is kind of self explaining. Especially when
-> > taking into account comment and deb_dbg message from the function body
-> > of previous patch. Nevertheless I can add:
-> > /*
-> >  * Usa a custom parse_fw callback function for dealing with optional resource
-> >  * table.
-> >  */
->
-> Or you can keep the first two lines generic, "... dealing with PRU firmware
-> specific sections", and only add the details in the second paragraph in this
-> patch. The commit in code above resource table + these two links should suffice
-> for patch 2.
-
-Ok.
-
-Thank you,
-Grzegorz
