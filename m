@@ -2,112 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A71F22B9192
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 12:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 322592B911F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 12:38:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727016AbgKSLpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 06:45:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38372 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727701AbgKSLoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 06:44:39 -0500
-Received: from mail-yb1-xb44.google.com (mail-yb1-xb44.google.com [IPv6:2607:f8b0:4864:20::b44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90B12C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 03:44:37 -0800 (PST)
-Received: by mail-yb1-xb44.google.com with SMTP id r127so1144604yba.10
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 03:44:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=benyossef-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=c8Qo3iMTLDXZDQ8LhsVrB4GbG7ddhsHuA42Wrhb4+h0=;
-        b=gh6maHtJeErJOD6UDW2c3CCbf+6ZoSfGn3H+8ciJk7tdtGTboUKsUQLcJZHMyBl7ZA
-         b1+/DztKMtFKcSEblfJ9XDZL12+fIyTo4p6R6PD15BN/1bNpZnFdAHoVGCu9OB+Q4x/H
-         xzMZ6S1ODsNOBBQkv+EZGsTt2pEFMRANM7HfnH9X85lyyCVItmSSRNIQdRgV9bQWTK0/
-         gIVlRReIhZCA6kK2DYrdKwgUL0BSDlybyDUAgb60bjZNKj0eNV+uhmq/XtksTPeKpRoY
-         pLX/H1qNeFsSB33WIvjrV2zkRLfo6Wiz07rd0rfwfY6Wattimo7gNt73V5Hjd/ZGtBK9
-         +DtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=c8Qo3iMTLDXZDQ8LhsVrB4GbG7ddhsHuA42Wrhb4+h0=;
-        b=OxnA3U1DSjh2VhhmOMu92+Wm8wM/dZ0CL07w08n7eUYvR3nUtKoMTgLMef+i2TInQ7
-         7h96m6K5Zg6XlPSC3VfOyXvsl58XRpMHbCpyvn681tMzDZDTEyzae3+G4vzBsPYXvtfI
-         XSEybk3ZzfmXJvpHpHmHWINU7mV4nLuamfSXKcH9OK6PoN3zivE6OCV7ogaLtKhz41GB
-         s+Hck0MeayQpDl+l6YZ3JAeONaEfTxrKK2JRUzMpuZHh4wsQf7SHfME403O2hppfLJWr
-         MztN7CgcKeC6wo1rqCITXpOkyc/63c9B9IX4AaL0YW1IMGTuU1oAKaVcJPvCUxwzQfBf
-         D25Q==
-X-Gm-Message-State: AOAM533FAR4cSKmDLi5pWu6Y0lSOW8gIFEDJhasyjA0QSFdXUSKwzqev
-        HgopWyGSfTOX42rH4ZwnA7ML1gOohes+ibTllY/l3g==
-X-Google-Smtp-Source: ABdhPJzEoiEVIDDG7CVsykDj/QZuLByOFuhSa5yFAPYsb/SMTp5op2dwar3PQWhrmEUaPh6JNJoGIhPp4adf8SrbWlw=
-X-Received: by 2002:a25:9b44:: with SMTP id u4mr14103602ybo.426.1605786276902;
- Thu, 19 Nov 2020 03:44:36 -0800 (PST)
+        id S1726845AbgKSLhJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 06:37:09 -0500
+Received: from szxga05-in.huawei.com ([45.249.212.191]:7558 "EHLO
+        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726785AbgKSLhJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 06:37:09 -0500
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4CcHhM12FHzhcqL;
+        Thu, 19 Nov 2020 19:36:51 +0800 (CST)
+Received: from huawei.com (10.151.151.249) by DGGEMS401-HUB.china.huawei.com
+ (10.3.19.201) with Microsoft SMTP Server id 14.3.487.0; Thu, 19 Nov 2020
+ 19:36:58 +0800
+From:   Dongjiu Geng <gengdongjiu@huawei.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>,
+        <dan.j.williams@intel.com>, <p.zabel@pengutronix.de>,
+        <gengdongjiu@huawei.com>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+Subject: [PATCH v5 0/4] Enable Hi3559A SOC clock and HiSilicon Hiedma Controller
+Date:   Thu, 19 Nov 2020 20:01:25 +0000
+Message-ID: <20201119200129.28532-1-gengdongjiu@huawei.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20200916071950.1493-1-gilad@benyossef.com> <20200916071950.1493-2-gilad@benyossef.com>
- <20200923015702.GA3676455@bogus> <CAOtvUMekoMjFij_xDnrwRj2PsfgO8tKx4Jk6d7C5vq-Vh+boWw@mail.gmail.com>
- <CAOtvUMfAKnodo+7EYx2M4yAvxu_VmxwXNRmgOW=KFWi3Wy7msQ@mail.gmail.com>
- <CAL_JsqJditVYJ=4K9i11BjoV2ejABnuMbRyLtm8+e93ApUTu9w@mail.gmail.com> <1450044c-5150-1da2-11e0-2ae48d8b4d0c@arm.com>
-In-Reply-To: <1450044c-5150-1da2-11e0-2ae48d8b4d0c@arm.com>
-From:   Gilad Ben-Yossef <gilad@benyossef.com>
-Date:   Thu, 19 Nov 2020 13:44:21 +0200
-Message-ID: <CAOtvUMfxrEZeBepL6kwQTT6v9Dw4vv5hxREVf_aHDs90o_fsVA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: update ccree optional params
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Ofir Drang <ofir.drang@arm.com>,
-        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
-        Steven Price <steven.price@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [10.151.151.249]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+v4->v5:
+1. change the patch author mail name
 
-On Tue, Nov 17, 2020 at 4:07 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> On 2020-11-16 18:54, Rob Herring wrote:
-> > On Thu, Oct 22, 2020 at 1:18 AM Gilad Ben-Yossef <gilad@benyossef.com> =
-wrote:
-> >>
-...
->
-> IMO if this is like PL330 where you just stick some raw AXI attributes
-> in a register and that's what goes out on transactions then it's not
-> really part of the platform description anyway, it's just driver policy.
-> If folks want to tweak the driver's behaviour for secret SoC-specific
-> performance optimisation, then give them some module parameters or a
-> sysfs interface. I'm assuming this has to be purely a performance thing,
-> because I can't see how two different integrations could reasonably
-> depend on different baseline attributes for correctness, and even if
-> they did then you'd be able to determine that from the compatible
-> strings, because they would be different, because those integrations
-> would be fundamentally *not* compatible with each other.
->
-
-So, I checked internally where we get this requirement and it seems
-you are right.
-
-I'm dropping the Dt bindings and in fact the ability to customize
-those attributes beyond
-the basic coherent/non coherent configuration which we already support
-and will just
-update the setting to what we think is best.
-
-Thanks for clearing this up.
-
-Gilad
+v3->v4:
+1. fix the 'make dt_binding_check' issues.
+2. Combine the 'Enable HiSilicon Hiedma Controller' series patches to this series.
+3. fix the 'make dt_binding_check' issues in 'Enable HiSilicon Hiedma Controller' patchset
 
 
---=20
-Gilad Ben-Yossef
-Chief Coffee Drinker
+v2->v3:
+1. change dt-bindings documents from txt to yaml format.
+2. Add SHUB clock to access the devices of m7
 
-values of =CE=B2 will give rise to dom!
+Dongjiu Geng (4):
+  dt-bindings: Document the hi3559a clock bindings
+  clk: hisilicon: Add clock driver for hi3559A SoC
+  dt: bindings: dma: Add DT bindings for HiSilicon Hiedma Controller
+  dmaengine: dma: Add Hiedma Controller v310 Device Driver
+
+ .../clock/hisilicon,hi3559av100-clock.yaml    |   66 +
+ .../bindings/dma/hisilicon,hiedmacv310.yaml   |  103 ++
+ drivers/clk/hisilicon/Kconfig                 |    7 +
+ drivers/clk/hisilicon/Makefile                |    1 +
+ drivers/clk/hisilicon/clk-hi3559a.c           |  865 ++++++++++
+ drivers/dma/Kconfig                           |   14 +
+ drivers/dma/Makefile                          |    1 +
+ drivers/dma/hiedmacv310.c                     | 1441 +++++++++++++++++
+ drivers/dma/hiedmacv310.h                     |  136 ++
+ include/dt-bindings/clock/hi3559av100-clock.h |  165 ++
+ 10 files changed, 2799 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml
+ create mode 100644 drivers/clk/hisilicon/clk-hi3559a.c
+ create mode 100644 drivers/dma/hiedmacv310.c
+ create mode 100644 drivers/dma/hiedmacv310.h
+ create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
+
+-- 
+2.17.1
+
