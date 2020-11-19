@@ -2,177 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F1552B95CF
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:08:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6343F2B95E9
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:17:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728394AbgKSPII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:08:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726641AbgKSPII (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:08:08 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46329C0613CF;
-        Thu, 19 Nov 2020 07:08:08 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id g7so4771990pfc.2;
-        Thu, 19 Nov 2020 07:08:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vJr2irAyZ1BAOhSvjpC4BuYUmx85w5ph5rzehiUieBM=;
-        b=sQJQx92VUzfOpGZ0j2il2CFX9419U0APdsJScK/rEDTbB52uoXxerZ5OL4JaOirwBI
-         fGSAEpuySffSyUXtK3LShgGS/aOLu8710guEz1cOHAvIJxcjvnhze6PZeKFRF5Bp591W
-         Q8seiDsg1cs+qSJ5sQaM1nlsGeALbYn7O8N5iobKNn6zZ43kC0eZc/GFyZ/dXDakT6tU
-         nWk1/SziD9+z8nkjmQqdT82r7UBmBYu14MwDibf6meck+SGgrLbmuJOP8TuerL0tWvTQ
-         dKyva6r7iFVpnazWC5+XjTPy5Fmk/SNET4mp2RAkfo9lcu65T9pMJNGB3CWek7UFbiBk
-         K0VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vJr2irAyZ1BAOhSvjpC4BuYUmx85w5ph5rzehiUieBM=;
-        b=GcVKkXjikdMPxZmOh+hcshDMnoiD+Hxt24D2wgD6IxJ03fe0sljv712zFxb0ZOn+FF
-         wifD1k1UfqjX+fx/mi5X3UaUXpnahVy31Hyqtd2cXceRHkIqX7Kln5nByn3OuNwMFr0O
-         C/Xfpy+xJfyjuHHtcDcstcOpxs9+ZAJwAHyK/wFxeY/SLltuY1QO18avPd+/gE521N4p
-         +eET9sQ1V+lx04tnV323Ymo2pPLN5pVRCWp1K9/GE0v8r3QVZMzWu27zPga4/r42aP5t
-         lIQY4tZMPIIeUGIypcpB6Cu5/KoAEstWIJ4+odyKY2tp9zQ1Y/xi9RXeWYFRJqO46Egc
-         pmeA==
-X-Gm-Message-State: AOAM533fdOsuFbDWCRBS7M3QqUO4Ab2kZ1E6gGwdo6K3AuZ+TF/LavmT
-        dvRw+liyiU7U3XrbOmPpOECIoMvs0S5SlMB2QpOkMBStGVM=
-X-Google-Smtp-Source: ABdhPJxuSFR4cYa7NCo4ZvgyfmmS6rNJrSbJ7ucYHnAWBFsGMz8fK6alqBLRObqpJA9IdqKKkdMlya7P5WKkD84Q0ZM=
-X-Received: by 2002:a62:7e4f:0:b029:18c:9322:739b with SMTP id
- z76-20020a627e4f0000b029018c9322739bmr9418242pfc.7.1605798487722; Thu, 19 Nov
- 2020 07:08:07 -0800 (PST)
-MIME-Version: 1.0
-References: <20201119100748.57689-1-alexandru.ardelean@analog.com>
-In-Reply-To: <20201119100748.57689-1-alexandru.ardelean@analog.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Thu, 19 Nov 2020 17:08:56 +0200
-Message-ID: <CAHp75Vex498GcOpFxfze5VdK4Rhb6pvBvgf1OXLY=L5vj4Uodg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] iio: adc: ad7887: convert dual-channel mode to DT/ACPI
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-iio <linux-iio@vger.kernel.org>,
+        id S1727894AbgKSPOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:14:11 -0500
+Received: from foss.arm.com ([217.140.110.172]:60094 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726853AbgKSPOK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 10:14:10 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A9E211D4;
+        Thu, 19 Nov 2020 07:14:10 -0800 (PST)
+Received: from [10.57.24.96] (unknown [10.57.24.96])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A6F203F719;
+        Thu, 19 Nov 2020 07:14:05 -0800 (PST)
+Subject: Re: [PATCH v8 1/3] cpufreq: mediatek-hw: Add support for CPUFREQ HW
+To:     Hector Yuan <hector.yuan@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+References: <1603700349-5922-1-git-send-email-hector.yuan@mediatek.com>
+ <1603700349-5922-2-git-send-email-hector.yuan@mediatek.com>
+ <9382b917-f20d-c7b5-42e4-46d11465073f@arm.com>
+ <1605793218.20463.5.camel@mtkswgap22>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <677bc381-6cab-85ec-8b9f-4c33dfb487fd@arm.com>
+Date:   Thu, 19 Nov 2020 15:14:03 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
+MIME-Version: 1.0
+In-Reply-To: <1605793218.20463.5.camel@mtkswgap22>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 12:02 PM Alexandru Ardelean
-<alexandru.ardelean@analog.com> wrote:
->
-> This change converts the configuration of the dual-channel mode from the
-> old platform-data, to the device_property_present() function, which
-> supports both device-tree and ACPI configuration setups.
->
-> With this change the old platform_data include of the driver can be
-> removed.
-
-I mostly like the part of getting rid of legacy platform data.
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-(for patches 1-3 only)
-
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> ---
->
-> I'm wondering if this changeset is what was in mind here:
->  https://lore.kernel.org/linux-iio/CA+U=DsqF5tu8Be9KXeyCWD2uHvV688Nc3n=z_Xi2J6H6DFJPRQ@mail.gmail.com/T/#mbe72e4da3acea3899d0d35402ea81e52a9bc34e6
-> This driver could have been simplified/reduced a whole lot more, but I'm
-> not sure about it. It's a bit of patch-noise, and later
->
-> Changelog v1 -> v2:
-> * dropped patch 'iio: adc: ad7887: convert driver to full DT probing'
->   not adding the device_get_match_data() logic anymore
-> * added patch 'iio: adc: ad7887: remove matching code from driver'
->   hooking the chip info directly to AD7887
-> * added patch 'iio: adc: ad7887: add OF match table'
->   this just adds an OF table for DT and ACPI
->
->  drivers/iio/adc/ad7887.c             | 10 +++++-----
->  include/linux/platform_data/ad7887.h | 21 ---------------------
->  2 files changed, 5 insertions(+), 26 deletions(-)
->  delete mode 100644 include/linux/platform_data/ad7887.h
->
-> diff --git a/drivers/iio/adc/ad7887.c b/drivers/iio/adc/ad7887.c
-> index 4f6f0e0e03ee..06f684c053a0 100644
-> --- a/drivers/iio/adc/ad7887.c
-> +++ b/drivers/iio/adc/ad7887.c
-> @@ -23,8 +23,6 @@
->  #include <linux/iio/trigger_consumer.h>
->  #include <linux/iio/triggered_buffer.h>
->
-> -#include <linux/platform_data/ad7887.h>
-> -
->  #define AD7887_REF_DIS         BIT(5)  /* on-chip reference disable */
->  #define AD7887_DUAL            BIT(4)  /* dual-channel mode */
->  #define AD7887_CH_AIN1         BIT(3)  /* convert on channel 1, DUAL=1 */
-> @@ -241,9 +239,9 @@ static void ad7887_reg_disable(void *data)
->
->  static int ad7887_probe(struct spi_device *spi)
->  {
-> -       struct ad7887_platform_data *pdata = spi->dev.platform_data;
->         struct ad7887_state *st;
->         struct iio_dev *indio_dev;
-> +       bool dual_mode;
->         uint8_t mode;
->         int ret;
->
-> @@ -286,7 +284,9 @@ static int ad7887_probe(struct spi_device *spi)
->         mode = AD7887_PM_MODE4;
->         if (!st->reg)
->                 mode |= AD7887_REF_DIS;
-> -       if (pdata && pdata->en_dual)
-> +
-> +       dual_mode = device_property_present(&spi->dev, "adi,dual-channel-mode");
-> +       if (dual_mode)
->                 mode |= AD7887_DUAL;
->
->         st->tx_cmd_buf[0] = AD7887_CH_AIN0 | mode;
-> @@ -298,7 +298,7 @@ static int ad7887_probe(struct spi_device *spi)
->         spi_message_init(&st->msg[AD7887_CH0]);
->         spi_message_add_tail(&st->xfer[0], &st->msg[AD7887_CH0]);
->
-> -       if (pdata && pdata->en_dual) {
-> +       if (dual_mode) {
->                 st->tx_cmd_buf[2] = AD7887_CH_AIN1 | mode;
->
->                 st->xfer[1].rx_buf = &st->data[0];
-> diff --git a/include/linux/platform_data/ad7887.h b/include/linux/platform_data/ad7887.h
-> deleted file mode 100644
-> index 9b4dca6ae70b..000000000000
-> --- a/include/linux/platform_data/ad7887.h
-> +++ /dev/null
-> @@ -1,21 +0,0 @@
-> -/* SPDX-License-Identifier: GPL-2.0-or-later */
-> -/*
-> - * AD7887 SPI ADC driver
-> - *
-> - * Copyright 2010 Analog Devices Inc.
-> - */
-> -#ifndef IIO_ADC_AD7887_H_
-> -#define IIO_ADC_AD7887_H_
-> -
-> -/**
-> - * struct ad7887_platform_data - AD7887 ADC driver platform data
-> - * @en_dual: Whether to use dual channel mode. If set to true AIN1 becomes the
-> - *     second input channel, and Vref is internally connected to Vdd. If set to
-> - *     false the device is used in single channel mode and AIN1/Vref is used as
-> - *     VREF input.
-> - */
-> -struct ad7887_platform_data {
-> -       bool en_dual;
-> -};
-> -
-> -#endif /* IIO_ADC_AD7887_H_ */
-> --
-> 2.17.1
->
 
 
--- 
-With Best Regards,
-Andy Shevchenko
+On 11/19/20 1:40 PM, Hector Yuan wrote:
+> On Thu, 2020-11-19 at 12:41 +0000, Lukasz Luba wrote:
+>> Hi Hector,
+>>
+>> On 10/26/20 8:19 AM, Hector Yuan wrote:
+>>> From: "Hector.Yuan" <hector.yuan@mediatek.com>
+>>>
+>>> Add cpufreq HW support.
+>>>
+>>> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+>>
+>> [snip]
+>>
+>>> +
+>>> +static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+>>> +{
+>>> +	struct cpufreq_mtk *c;
+>>> +	struct device *cpu_dev;
+>>> +	struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
+>>> +	struct pm_qos_request *qos_request;
+>>> +	int sig, pwr_hw = CPUFREQ_HW_STATUS | SVS_HW_STATUS;
+>>> +
+>>> +	qos_request = kzalloc(sizeof(*qos_request), GFP_KERNEL);
+>>> +	if (!qos_request)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	cpu_dev = get_cpu_device(policy->cpu);
+>>> +	if (!cpu_dev) {
+>>> +		pr_err("failed to get cpu%d device\n", policy->cpu);
+>>> +		return -ENODEV;
+>>> +	}
+>>> +
+>>> +	c = mtk_freq_domain_map[policy->cpu];
+>>> +	if (!c) {
+>>> +		pr_err("No scaling support for CPU%d\n", policy->cpu);
+>>> +		return -ENODEV;
+>>> +	}
+>>> +
+>>> +	cpumask_copy(policy->cpus, &c->related_cpus);
+>>> +
+>>> +	policy->freq_table = c->table;
+>>> +	policy->driver_data = c;
+>>
+>> To control frequency transition rate in schedutil, you might
+>> be interested in setting:
+>>
+>> policy->cpuinfo.transition_latency = <mtk_value_here>;
+>>
+>> Example, when this latency value comes from FW [1]
+>>
+> OK, I will add it in v9.
+>>> +
+>>> +	/* Let CPUs leave idle-off state for SVS CPU initializing */
+>>> +	cpu_latency_qos_add_request(qos_request, 0);
+>>> +
+>>> +	/* HW should be in enabled state to proceed now */
+>>> +	writel_relaxed(0x1, c->reg_bases[REG_FREQ_ENABLE]);
+>>> +
+>>> +	if (readl_poll_timeout(c->reg_bases[REG_FREQ_HW_STATE], sig,
+>>> +			       (sig & pwr_hw) == pwr_hw, POLL_USEC,
+>>> +			       TIMEOUT_USEC)) {
+>>> +		if (!(sig & CPUFREQ_HW_STATUS)) {
+>>> +			pr_info("cpufreq hardware of CPU%d is not enabled\n",
+>>> +				policy->cpu);
+>>> +			return -ENODEV;
+>>> +		}
+>>> +
+>>> +		pr_info("SVS of CPU%d is not enabled\n", policy->cpu);
+>>> +	}
+>>> +
+>>> +	em_dev_register_perf_domain(cpu_dev, c->nr_opp, &em_cb, policy->cpus);
+>>
+>> Please keep in mind that this is going to be changed soon with a new
+>> argument: 'milliwatts'. It's queued in pm/linux-next [2].
+>>
+> OK, thanks for the remind.
+>> Regards,
+>> Lukasz
+>>
+>> [1]
+>> https://elixir.bootlin.com/linux/latest/source/drivers/cpufreq/scmi-cpufreq.c#L194
+>> [2]
+>> https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=linux-next&id=c250d50fe2ce627ca9805d9c8ac11cbbf922a4a6
+>>
+> 
+
+Also, based on function mtk_cpufreq_hw_target_index(), which looks
+really simple, you might consider to have fast_switch enabled.
+
+It will allow SchedUtil governor to change frequency directly
+and not create a dedicated deadline thread for it. It pays off.
+
+You have to experiment with something like:
+
+policy->fast_switch_possible  = true;
+
+
+static struct cpufreq_driver cpufreq_mtk_hw_driver = {
+...
+	.fast_switch = mtk_cpufreq_hw_fast_switch
+...
+}
+
+Again, scmi-cpufreq.c would be a good pattern to follow.
