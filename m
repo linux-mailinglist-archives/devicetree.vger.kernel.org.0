@@ -2,405 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 573992B93E5
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 14:50:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E72742B93F1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 14:55:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726934AbgKSNsF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 08:48:05 -0500
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:40531 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726644AbgKSNsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 08:48:05 -0500
-Received: by mail-oo1-f68.google.com with SMTP id t142so1351104oot.7;
-        Thu, 19 Nov 2020 05:48:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=t9+s1ApXC1taKZdVie+MQcAAj+ApC6em5/9UfA0Cqa4=;
-        b=YWxv4g/0B8QijLSD1tABVNCIRoQ8RHvHfepsRsxEkvPD6m9Px8DzT5/DA/qCfy9/S0
-         9+NyCaL8YHnDSaA30GRTtEIKyh+1/XOYSslHsBDuWO5Bu4BDSrlWvvIFySW62a/bYBPN
-         TzBwhyGP+nTXOSCMdcrtzUOF9JQ/tLep8V44KMD9e5/ooJnaDDrUXKS6ftTfiyv9oTJc
-         vScfqTzPI7pcGEDzBS+UaW9lmudtV35L20LFXPKsIaGIcrE0xId8cwec6g5IP/R29fAv
-         qcq68w0GUmsVzMPU3NiD1nDxW/NdRZr7je7ksMoi4iv//AAqxe2hHLBpcUfSR95tpUG/
-         R9kA==
-X-Gm-Message-State: AOAM532JZ+vYVNcKUH6o+WrqX7D/H8O6rn4GCRVm/j1LmnZBREFzxFPT
-        FhcVxto6+L00QoEDfrOh9w==
-X-Google-Smtp-Source: ABdhPJxio6D8tQt9OxKmeGLgNbbJpbzhZDaoVQX6XiRtZ3HghBgRL/sNUbG5IbGsw00PCxLUoQHuhw==
-X-Received: by 2002:a4a:8742:: with SMTP id a2mr10109788ooi.23.1605793683419;
-        Thu, 19 Nov 2020 05:48:03 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l19sm8896459otp.65.2020.11.19.05.48.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2020 05:48:02 -0800 (PST)
-Received: (nullmailer pid 3157673 invoked by uid 1000);
-        Thu, 19 Nov 2020 13:48:01 -0000
-Date:   Thu, 19 Nov 2020 07:48:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 01/12] dt-bindings: net: dsa: convert ksz
- bindings document to yaml
-Message-ID: <20201119134801.GB3149565@bogus>
-References: <20201118203013.5077-1-ceggers@arri.de>
- <20201118203013.5077-2-ceggers@arri.de>
+        id S1726644AbgKSNyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 08:54:01 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:56227 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726407AbgKSNyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 08:54:00 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 834095806CD;
+        Thu, 19 Nov 2020 08:53:59 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Thu, 19 Nov 2020 08:53:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=qwUwKAOnCXIO/VKCgdjuqrvU0jz
+        rwqIByRKFslj4P0U=; b=Dh+cGrAaYY/69KWDDPVjXgWxTQz0wzEwEX7lFJH386b
+        caMyUb9jvhJ9SR2YWxQnZowwip0unH3mY3SQtxzX+J8etZTiKe4RwSya4oy4FE7n
+        ddF0TO5S0q/AIJdeskajgg/srKtVdxda3ZH7iW85a+GXoqAm6tURiWhNZC65KmKW
+        p5qpIM0QladuSz9BfGBaAUrZ1Lo+j8nSBoW/hErewlTqAAAQfELb3CYGMwgVfPpK
+        +CfjqHV7JZfqwog/IohmPsSDOTLBryBDAS1IInD62gieo7tQB9AJadoyLrmTnL91
+        amnP6fYemvKAs7CIsPIW4alYa0c8AfmK792zUmO7OLw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=qwUwKA
+        OnCXIO/VKCgdjuqrvU0jzrwqIByRKFslj4P0U=; b=PuRk3DclKeylLTj5kLX52W
+        zIGX0eVIUR4goaQyZt3qiIfGZ3IiQeIpx2Y098TniWyEGndcKnxHi5AyrGmrB+z5
+        hdy1S97kc4KqudPrKMDDTaneXQp4yk/LqRJMSgOcVYwWelW9rlk/1HZv3+rQLx3s
+        MMGNTIsbExRI3Mbed8tO5azICvk57byYCdgamVvWrcypVU3CDuDIFodYJBRR+Znw
+        UtdrzMlVE6UOmGoQz6QUxgai82aCxGsCQMfsbB6G2Gvri1nPdvlnGn8LQYX1ors+
+        y5lGINohUnsXbVKkDj9S9YmP8QCS/9O9uyedPzVODce2BY0V8pEopt9dtKnu3GEQ
+        ==
+X-ME-Sender: <xms:9ni2X14Ip3zmPoIcnxawnZxLtkonIcF7h2uzjWxEBWDT_fg1-3rKyg>
+    <xme:9ni2Xy4gQac9DfDWvZ3wvi4qszIYvEsXF8gkTrZUTruzVM_ZivtU-nzmLEHm7DCea
+    MNTJmKnJUJ9LYvN0qk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudefjedgheejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:9ni2X8dfbD9hxXXgTvVHuQHhj2zTkWAYjQdSA6q4oRrFnUM7KlxKZA>
+    <xmx:9ni2X-L9iIHMoeyX_f3HKY51-dxvjkeTiG5rI1kkOeG8Skllif1u4w>
+    <xmx:9ni2X5LpCIBDQk0jETlmvbE4k8zcgKt0D06_Df_CI9UjsZ6t6vKZPw>
+    <xmx:93i2X7iNR9wy5l5_8eOrK4NQKpw76yljYUHY7IHILCkF3eWS-kDCuA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 1B5103280066;
+        Thu, 19 Nov 2020 08:53:58 -0500 (EST)
+Date:   Thu, 19 Nov 2020 14:53:56 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Eric Anholt <eric@anholt.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 5/7] drm/vc4: kms: Document the muxing corner cases
+Message-ID: <20201119135356.25tsxpbvjxopz6od@gilmour.lan>
+References: <20201105135656.383350-1-maxime@cerno.tech>
+ <20201105135656.383350-6-maxime@cerno.tech>
+ <2a79055f-a2e7-913c-b566-91780f199016@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="qihihgcaukra524q"
 Content-Disposition: inline
-In-Reply-To: <20201118203013.5077-2-ceggers@arri.de>
+In-Reply-To: <2a79055f-a2e7-913c-b566-91780f199016@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 18, 2020 at 09:30:02PM +0100, Christian Eggers wrote:
-> Convert the bindings document for Microchip KSZ Series Ethernet switches
-> from txt to yaml.
-> 
-> Signed-off-by: Christian Eggers <ceggers@arri.de>
-> ---
->  .../devicetree/bindings/net/dsa/ksz.txt       | 125 --------------
->  .../bindings/net/dsa/microchip,ksz.yaml       | 152 ++++++++++++++++++
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 153 insertions(+), 126 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/net/dsa/ksz.txt
->  create mode 100644 Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/ksz.txt b/Documentation/devicetree/bindings/net/dsa/ksz.txt
-> deleted file mode 100644
-> index 95e91e84151c..000000000000
-> --- a/Documentation/devicetree/bindings/net/dsa/ksz.txt
-> +++ /dev/null
-> @@ -1,125 +0,0 @@
-> -Microchip KSZ Series Ethernet switches
-> -==================================
-> -
-> -Required properties:
-> -
-> -- compatible: For external switch chips, compatible string must be exactly one
-> -  of the following:
-> -  - "microchip,ksz8765"
-> -  - "microchip,ksz8794"
-> -  - "microchip,ksz8795"
-> -  - "microchip,ksz9477"
-> -  - "microchip,ksz9897"
-> -  - "microchip,ksz9896"
-> -  - "microchip,ksz9567"
-> -  - "microchip,ksz8565"
-> -  - "microchip,ksz9893"
-> -  - "microchip,ksz9563"
-> -  - "microchip,ksz8563"
-> -
-> -Optional properties:
-> -
-> -- reset-gpios		: Should be a gpio specifier for a reset line
-> -- microchip,synclko-125 : Set if the output SYNCLKO frequency should be set to
-> -			  125MHz instead of 25MHz.
-> -
-> -See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
-> -required and optional properties.
-> -
-> -Examples:
-> -
-> -Ethernet switch connected via SPI to the host, CPU port wired to eth0:
-> -
-> -	eth0: ethernet@10001000 {
-> -		fixed-link {
-> -			speed = <1000>;
-> -			full-duplex;
-> -		};
-> -	};
-> -
-> -	spi1: spi@f8008000 {
-> -		pinctrl-0 = <&pinctrl_spi_ksz>;
-> -		cs-gpios = <&pioC 25 0>;
-> -		id = <1>;
-> -
-> -		ksz9477: ksz9477@0 {
-> -			compatible = "microchip,ksz9477";
-> -			reg = <0>;
-> -
-> -			spi-max-frequency = <44000000>;
-> -			spi-cpha;
-> -			spi-cpol;
-> -
-> -			ports {
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> -				port@0 {
-> -					reg = <0>;
-> -					label = "lan1";
-> -				};
-> -				port@1 {
-> -					reg = <1>;
-> -					label = "lan2";
-> -				};
-> -				port@2 {
-> -					reg = <2>;
-> -					label = "lan3";
-> -				};
-> -				port@3 {
-> -					reg = <3>;
-> -					label = "lan4";
-> -				};
-> -				port@4 {
-> -					reg = <4>;
-> -					label = "lan5";
-> -				};
-> -				port@5 {
-> -					reg = <5>;
-> -					label = "cpu";
-> -					ethernet = <&eth0>;
-> -					fixed-link {
-> -						speed = <1000>;
-> -						full-duplex;
-> -					};
-> -				};
-> -			};
-> -		};
-> -		ksz8565: ksz8565@0 {
-> -			compatible = "microchip,ksz8565";
-> -			reg = <0>;
-> -
-> -			spi-max-frequency = <44000000>;
-> -			spi-cpha;
-> -			spi-cpol;
-> -
-> -			ports {
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> -				port@0 {
-> -					reg = <0>;
-> -					label = "lan1";
-> -				};
-> -				port@1 {
-> -					reg = <1>;
-> -					label = "lan2";
-> -				};
-> -				port@2 {
-> -					reg = <2>;
-> -					label = "lan3";
-> -				};
-> -				port@3 {
-> -					reg = <3>;
-> -					label = "lan4";
-> -				};
-> -				port@6 {
-> -					reg = <6>;
-> -					label = "cpu";
-> -					ethernet = <&eth0>;
-> -					fixed-link {
-> -						speed = <1000>;
-> -						full-duplex;
-> -					};
-> -				};
-> -			};
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> new file mode 100644
-> index 000000000000..010adb09a68f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
-> @@ -0,0 +1,152 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/dsa/microchip,ksz.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip KSZ Series Ethernet switches
-> +
-> +allOf:
-> +  - $ref: dsa.yaml#
 
-Move this after 'maintainers'.
+--qihihgcaukra524q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +
-> +maintainers:
-> +  - Marek Vasut <marex@denx.de>
-> +  - Woojung Huh <Woojung.Huh@microchip.com>
-> +
-> +properties:
-> +  # See Documentation/devicetree/bindings/net/dsa/dsa.yaml for a list of additional
-> +  # required and optional properties.
-> +  compatible:
-> +    enum:
-> +      - microchip,ksz8765
-> +      - microchip,ksz8794
-> +      - microchip,ksz8795
-> +      - microchip,ksz9477
-> +      - microchip,ksz9897
-> +      - microchip,ksz9896
-> +      - microchip,ksz9567
-> +      - microchip,ksz8565
-> +      - microchip,ksz9893
-> +      - microchip,ksz9563
-> +      - microchip,ksz8563
-> +
-> +  reset-gpios:
-> +    description:
-> +      Should be a gpio specifier for a reset line.
-> +    maxItems: 1
-> +
-> +  microchip,synclko-125:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      Set if the output SYNCLKO frequency should be set to 125MHz instead of 25MHz.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
+Hi Thomas,
 
-You need to use unevaluatedProperties instead.
+Thanks again for your review
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    // Ethernet switch connected via SPI to the host, CPU port wired to eth0:
-> +    eth0 {
-> +        fixed-link {
-> +            speed = <1000>;
-> +            full-duplex;
-> +        };
-> +    };
-> +
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pinctrl-0 = <&pinctrl_spi_ksz>;
-> +        cs-gpios = <&pioC 25 0>;
-> +        id = <1>;
-> +
-> +        ksz9477: switch@0 {
-> +            compatible = "microchip,ksz9477";
-> +            reg = <0>;
-> +            reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-> +
-> +            spi-max-frequency = <44000000>;
-> +            spi-cpha;
-> +            spi-cpol;
+On Thu, Nov 19, 2020 at 09:11:58AM +0100, Thomas Zimmermann wrote:
+> Hi,
+>=20
+> A few suggestions below. But I'm not a native speaker.
+>=20
+> Am 05.11.20 um 14:56 schrieb Maxime Ripard:
+> > We've had a number of muxing corner-cases with specific ways to reprodu=
+ce
+> > them, so let's document them to make sure they aren't lost and introduce
+> > regressions later on.
+> >=20
+> > Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+> > Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >   drivers/gpu/drm/vc4/vc4_kms.c | 22 ++++++++++++++++++++++
+> >   1 file changed, 22 insertions(+)
+> >=20
+> > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
+s.c
+> > index bb2efc5d2d01..499c6914fce4 100644
+> > --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> > @@ -662,6 +662,28 @@ static int vc4_load_tracker_obj_init(struct vc4_de=
+v *vc4)
+> >   	return drmm_add_action_or_reset(&vc4->base, vc4_load_tracker_obj_fin=
+i, NULL);
+> >   }
+> > +/*
+> > + * The BCM2711 HVS has up to 7 output connected to the pixelvalves and
+>=20
+> '7 outputs'
+>=20
+> Is it 'pixelvalves' or 'pixel valves'?
 
-Are these 2 optional or required? Being optional is rare as most 
-devices support 1 mode, but not unheard of. In general, you shouldn't 
-need them as the driver should know how to configure the mode if the h/w 
-is fixed.
+The documentation uses both, but the driver uses the former all the
+time.
 
-> +
-> +            ethernet-ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    label = "lan1";
-> +                };
-> +                port@1 {
-> +                    reg = <1>;
-> +                    label = "lan2";
-> +                };
-> +                port@2 {
-> +                    reg = <2>;
-> +                    label = "lan3";
-> +                };
-> +                port@3 {
-> +                    reg = <3>;
-> +                    label = "lan4";
-> +                };
-> +                port@4 {
-> +                    reg = <4>;
-> +                    label = "lan5";
-> +                };
-> +                port@5 {
-> +                    reg = <5>;
-> +                    label = "cpu";
-> +                    ethernet = <&eth0>;
-> +                    fixed-link {
-> +                        speed = <1000>;
-> +                        full-duplex;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +
-> +        ksz8565: switch@1 {
-> +            compatible = "microchip,ksz8565";
-> +            reg = <1>;
-> +
-> +            spi-max-frequency = <44000000>;
-> +            spi-cpha;
-> +            spi-cpol;
-> +
-> +            ethernet-ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +                port@0 {
-> +                    reg = <0>;
-> +                    label = "lan1";
-> +                };
-> +                port@1 {
-> +                    reg = <1>;
-> +                    label = "lan2";
-> +                };
-> +                port@2 {
-> +                    reg = <2>;
-> +                    label = "lan3";
-> +                };
-> +                port@3 {
-> +                    reg = <3>;
-> +                    label = "lan4";
-> +                };
-> +                port@6 {
-> +                    reg = <6>;
-> +                    label = "cpu";
-> +                    ethernet = <&eth0>;
-> +                    fixed-link {
-> +                        speed = <1000>;
-> +                        full-duplex;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 18b5b7896af8..d1003033412f 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11508,7 +11508,7 @@ M:	Woojung Huh <woojung.huh@microchip.com>
->  M:	Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>
->  L:	netdev@vger.kernel.org
->  S:	Maintained
-> -F:	Documentation/devicetree/bindings/net/dsa/ksz.txt
-> +F:	Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml
->  F:	drivers/net/dsa/microchip/*
->  F:	include/linux/platform_data/microchip-ksz.h
->  F:	net/dsa/tag_ksz.c
-> -- 
-> Christian Eggers
-> Embedded software developer
-> 
-> Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-> Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRA 57918
-> Persoenlich haftender Gesellschafter: Arnold & Richter Cine Technik GmbH
-> Sitz: Muenchen - Registergericht: Amtsgericht Muenchen - Handelsregisternummer: HRB 54477
-> Geschaeftsfuehrer: Dr. Michael Neuhaeuser; Stephan Schenk; Walter Trauninger; Markus Zeiler
-> 
+>=20
+> > + * the TXP (and therefore all the CRTCs found on that platform).
+> > + *
+> > + * The naive (and our initial) implementation would just iterate over
+> > + * all the active CRTCs, try to find a suitable FIFO, and then remove =
+it
+> > + * from the available FIFOs pool. However, there's a few corner cases
+>=20
+> I'd write. 'and remove it from the pool of available FIFOs'. Sounds more
+> natural to me.
+>=20
+> 'there are a few'
+>=20
+> > + * that need to be considered:
+> > + *
+> > + * - When running in a dual-display setup (so with two CRTCs involved),
+> > + *   we can update the state of a single CRTC (for example by changing
+> > + *   its mode using xrandr under X11) without affecting the other. In
+> > + *   this case, the other CRTC wouldn't be in the state at all, so we
+> > + *   need to consider all the running CRTCs in the DRM device to assign
+> > + *   a FIFO, not just the one in the state.
+> > + *
+> > + * - Since we need the pixelvalve to be disabled and enabled back when
+> > + *   the FIFO is changed, we should keep the FIFO assigned for as long
+> > + *   as the CRTC is enabled, only considering it free again once that
+> > + *   CRTC has been disabled. This can be tested by booting X11 on a
+> > + *   single display, and changing the resolution down and then back up.
+> > + */
+>=20
+> With my suggestions considered,
+>=20
+> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+I've applied it with your comments fixed. Thanks!
+Maxime
+
+--qihihgcaukra524q
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7Z49AAKCRDj7w1vZxhR
+xalWAQDV0Mhb4aB8CuICXvs1elL9yDhSUPAnD3GxJAFVjn7YkwEAi+bCZ7FhjS3y
+A1aNcwUHBin2gFbS7DYClW0EFE02twg=
+=M6qC
+-----END PGP SIGNATURE-----
+
+--qihihgcaukra524q--
