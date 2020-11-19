@@ -2,106 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E535C2B9430
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:10:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D70AB2B943B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:10:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727518AbgKSOJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 09:09:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60548 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727617AbgKSOJI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:09:08 -0500
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC240C0617A7
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:09:06 -0800 (PST)
-Received: by mail-lj1-x243.google.com with SMTP id v20so6353405ljk.8
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:09:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=l9kv5ypktfFS76EMW63e64X/f0uR7ySsDU39jrAiFDI=;
-        b=Sa/D7qQ86p451smntmbeF/O/U1vvSz67zs6dJpuflYXT87tA+EWJ7DRu+8R+fAl9ss
-         ewikoM1Tl2B3hTjNEIEqSFcccnQylCQ7A6YcjX66LOPWnddixrGEDup/IloxkAnIPuPC
-         IALd8M8rmSx37qjG0lgxeTUGn0Y5z4OWTasKrA7kaNsh611ooX182poRQBRtc3Q6Zr9X
-         M4+jejvwVNO/Xzd9/uPBxOSM4VrBDvuO8B8L3+McoggEaINxRD25UE3sTJCQ6YGjyayA
-         CexueqEyubduZyWRB93DEW/MStD6UseQXIILA2jnjHSHgmO29rGz2OeJpdNkXUup3l0k
-         Uvlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=l9kv5ypktfFS76EMW63e64X/f0uR7ySsDU39jrAiFDI=;
-        b=Bu1hgkmYR+jr/y1sDG/X3SlDJ6v0v2DIaz7ZQAlpljTIfq4/quOrkM8OOBuWrWI41c
-         loj9f5Kn/ECd2c+LoVjjXHDQMgBBpJ6NVDx67Vg1WeQbHmCtML66D0NDX2jRQaYMyclh
-         MUEFKnkU/5VZ5Dt4lr/Iv47+H1E/qcHOxYkTMug/iNtlny1SKixsrrUyLsUcB41jMajm
-         P61wdBWxfUJGtOzHzmyvKADdObE7HoxQAqV13HyUnC89Zm74L1aya2/yv1pTdIK9NGWZ
-         x1TgjxZgRcrnL4utHE1CBOuFFCFh/69A0k/j0LI9hFnq1aUSre7FqzTuSu+txKr2XcWY
-         DvRA==
-X-Gm-Message-State: AOAM530hQiyoMwubYszlyf2M4iRI32bcLQUiI2qWalVCogZVXCcUagt7
-        fokMALkOj3Py1BJUI08MN5AqYA==
-X-Google-Smtp-Source: ABdhPJyEXcpyMIeuyfkgMLGfjBSHpgtrtIm8t7Ab6zndFUE3w8Wp+K09U6mPyXOxgO3DfD6zVZbmhw==
-X-Received: by 2002:a2e:98da:: with SMTP id s26mr6324722ljj.182.1605794945193;
-        Thu, 19 Nov 2020 06:09:05 -0800 (PST)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id h12sm4024706lfl.74.2020.11.19.06.09.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 19 Nov 2020 06:09:04 -0800 (PST)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org,
-        mathieu.poirier@linaro.org, s-anna@ti.com
-Cc:     grzegorz.jaszczyk@linaro.org, linux-remoteproc@vger.kernel.org,
-        robh+dt@kernel.org, lee.jones@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        praneeth@ti.com, rogerq@ti.com
-Subject: [PATCH v2 6/6] remoteproc/pru: Add support for various PRU cores on K3 J721E SoCs
-Date:   Thu, 19 Nov 2020 15:08:50 +0100
-Message-Id: <20201119140850.12268-7-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20201119140850.12268-1-grzegorz.jaszczyk@linaro.org>
-References: <20201119140850.12268-1-grzegorz.jaszczyk@linaro.org>
+        id S1727285AbgKSOKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 09:10:02 -0500
+Received: from mx2.suse.de ([195.135.220.15]:55072 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727025AbgKSOKC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 09:10:02 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id AEE14AF6F;
+        Thu, 19 Nov 2020 14:09:59 +0000 (UTC)
+Message-ID: <ba343af12fc60bce36837cc090a39c9e42457788.camel@suse.de>
+Subject: Re: [PATCH v6 1/7] arm64: mm: Move reserve_crashkernel() into
+ mem_init()
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Catalin Marinas <catalin.marinas@arm.com>,
+        James Morse <james.morse@arm.com>
+Cc:     robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, will@kernel.org, jeremy.linton@arm.com,
+        iommu@lists.linux-foundation.org,
+        linux-rpi-kernel@lists.infradead.org, guohanjun@huawei.com,
+        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
+        Chen Zhou <chenzhou10@huawei.com>
+Date:   Thu, 19 Nov 2020 15:09:58 +0100
+In-Reply-To: <20201113112901.GA3212@gaia>
+References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
+         <20201103173159.27570-2-nsaenzjulienne@suse.de>
+         <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
+         <88c69ac0c9d7e144c80cebc7e9f82b000828e7f5.camel@suse.de>
+         <X6rZRvWyigCJxAVW@trantor>
+         <b5336064145a30aadcfdb8920226a8c63f692695.camel@suse.de>
+         <20201113112901.GA3212@gaia>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-djfPNN2Al1SIbMgP1HNN"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suman Anna <s-anna@ti.com>
 
-The K3 J721E family of SoCs have a revised version of the AM65x ICSSG IP
-and contains two instances of this newer ICSSG IP. Each ICSSG processor
-subsystem contains 2 primary PRU cores, 2 auxiliary PRU cores called RTUs,
-and 2 new auxiliary cores called Transmit PRUs (Tx_PRUs).
+--=-djfPNN2Al1SIbMgP1HNN
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Enhance the existing PRU remoteproc driver to support these new PRU
-and RTU cores by using specific compatibles. The cores have the same
-memory copying limitations as on AM65x, so reuses the custom memcpy
-function within the driver's ELF loader implementation. The initial
-names for the firmware images for each PRU core are retrieved from
-DT nodes, and can be adjusted through sysfs if required.
+Hi Catalin, James,
+sorry for the late reply but I got sidetracked.
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
----
- drivers/remoteproc/pru_rproc.c | 3 +++
- 1 file changed, 3 insertions(+)
+On Fri, 2020-11-13 at 11:29 +0000, Catalin Marinas wrote:
+[...]
+> > > > Let me stress that knowing the DMA constraints in the system before=
+ reserving
+> > > > crashkernel's regions is necessary if we ever want it to work seaml=
+essly on all
+> > > > platforms. Be it small stuff like the Raspberry Pi or huge servers =
+with TB of
+> > > > memory.
+> > >=20
+> > > Indeed. So we have 3 options (so far):
+> > >=20
+> > > 1. Allow the crashkernel reservation to go into the linear map but se=
+t
+> > >    it to invalid once allocated.
+> > >=20
+> > > 2. Parse the flattened DT (not sure what we do with ACPI) before
+> > >    creating the linear map. We may have to rely on some SoC ID here
+> > >    instead of actual DMA ranges.
+> > >=20
+> > > 3. Assume the smallest ZONE_DMA possible on arm64 (1GB) for crashkern=
+el
+> > >    reservations and not rely on arm64_dma_phys_limit in
+> > >    reserve_crashkernel().
+> > >=20
+> > > I think (2) we tried hard to avoid. Option (3) brings us back to the
+> > > issues we had on large crashkernel reservations regressing on some
+> > > platforms (though it's been a while since, they mostly went quiet ;))=
+.
+> > > However, with Chen's crashkernel patches we end up with two
+> > > reservations, one in the low DMA zone and one higher, potentially abo=
+ve
+> > > 4GB. Having a fixed 1GB limit wouldn't be any worse for crashkernel
+> > > reservations than what we have now.
+> > >=20
+> > > If (1) works, I'd go for it (James knows this part better than me),
+> > > otherwise we can go for (3).
+> >=20
+> > Overall, I'd prefer (1) as well, and I'd be happy to have a got at it. =
+If not
+> > I'll append (3) in this series.
+>=20
+> I think for 1 we could also remove the additional KEXEC_CORE checks,
+> something like below, untested:
+>=20
+> diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+> index 3e5a6913acc8..27ab609c1c0c 100644
+> --- a/arch/arm64/mm/mmu.c
+> +++ b/arch/arm64/mm/mmu.c
+> @@ -477,7 +477,8 @@ static void __init map_mem(pgd_t *pgdp)
+>  	int flags =3D 0;
+>  	u64 i;
+> =20
+> -	if (rodata_full || debug_pagealloc_enabled())
+> +	if (rodata_full || debug_pagealloc_enabled() ||
+> +	    IS_ENABLED(CONFIG_KEXEC_CORE))
+>  		flags =3D NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS;
+> =20
+>  	/*
+> @@ -487,11 +488,6 @@ static void __init map_mem(pgd_t *pgdp)
+>  	 * the following for-loop
+>  	 */
+>  	memblock_mark_nomap(kernel_start, kernel_end - kernel_start);
+> -#ifdef CONFIG_KEXEC_CORE
+> -	if (crashk_res.end)
+> -		memblock_mark_nomap(crashk_res.start,
+> -				    resource_size(&crashk_res));
+> -#endif
+> =20
+>  	/* map all the memory banks */
+>  	for_each_mem_range(i, &start, &end) {
+> @@ -518,21 +514,6 @@ static void __init map_mem(pgd_t *pgdp)
+>  	__map_memblock(pgdp, kernel_start, kernel_end,
+>  		       PAGE_KERNEL, NO_CONT_MAPPINGS);
+>  	memblock_clear_nomap(kernel_start, kernel_end - kernel_start);
+> -
+> -#ifdef CONFIG_KEXEC_CORE
+> -	/*
+> -	 * Use page-level mappings here so that we can shrink the region
+> -	 * in page granularity and put back unused memory to buddy system
+> -	 * through /sys/kernel/kexec_crash_size interface.
+> -	 */
+> -	if (crashk_res.end) {
+> -		__map_memblock(pgdp, crashk_res.start, crashk_res.end + 1,
+> -			       PAGE_KERNEL,
+> -			       NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS);
+> -		memblock_clear_nomap(crashk_res.start,
+> -				     resource_size(&crashk_res));
+> -	}
+> -#endif
+>  }
+> =20
+>  void mark_rodata_ro(void)
 
-diff --git a/drivers/remoteproc/pru_rproc.c b/drivers/remoteproc/pru_rproc.c
-index 48c1c51e0d42..96f689283a8b 100644
---- a/drivers/remoteproc/pru_rproc.c
-+++ b/drivers/remoteproc/pru_rproc.c
-@@ -852,6 +852,9 @@ static const struct of_device_id pru_rproc_match[] = {
- 	{ .compatible = "ti,am654-pru",		.data = &k3_pru_data },
- 	{ .compatible = "ti,am654-rtu",		.data = &k3_rtu_data },
- 	{ .compatible = "ti,am654-tx-pru",	.data = &k3_tx_pru_data },
-+	{ .compatible = "ti,j721e-pru",		.data = &k3_pru_data },
-+	{ .compatible = "ti,j721e-rtu",		.data = &k3_rtu_data },
-+	{ .compatible = "ti,j721e-tx-pru",	.data = &k3_tx_pru_data },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, pru_rproc_match);
--- 
-2.29.0
+So as far as I'm concerned this is good enough for me. I took the time to
+properly test crashkernel on RPi4 using the series, this patch, and another
+small fix to properly update /proc/iomem.
+
+I'll send v7 soon, but before, James (or anyone for that matter) any obviou=
+s
+push-back to Catalin's solution?
+
+Regards,
+Nicolas
+
+
+--=-djfPNN2Al1SIbMgP1HNN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+2fLYACgkQlfZmHno8
+x/6LYAf/dYs/dUiZ3UOC+CEtALMDPumX6JMSH8G/CZS33vGDE37X9INFiU/9MtHz
+y8YBPmkaZh44eCsj4C3MGyhha59a0lD9W5mHHh8uJSSU/enwTba0bOdKd88BOrJS
+Og/p1JZ4eLlVDKb/vSfBOG4AndVIO1r0GxT9Qdqk0+QgPVdS1GhhYUj4bXb93zqW
+XJxCSdLC2qKxb4OgcEjAeywOvFwvj3kzE6qFwo/FHSYBz9nSC+60pioZAW9g1aea
+5mg9xwsR7d0Bs941CPOL3VRRpV7cuVY9JLS5zYGIMRxaNQcCFQSA01/Pct2i7h1T
+qlBv3OEIAHR5vjjVyC4uWSZE/9k9Vw==
+=+J70
+-----END PGP SIGNATURE-----
+
+--=-djfPNN2Al1SIbMgP1HNN--
 
