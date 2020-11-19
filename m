@@ -2,86 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D9AC2B90F9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 12:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5489B2B90EA
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 12:30:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725853AbgKSL1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 06:27:14 -0500
-Received: from foss.arm.com ([217.140.110.172]:53852 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725783AbgKSL1N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 06:27:13 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 728C01396;
-        Thu, 19 Nov 2020 03:27:12 -0800 (PST)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C7E683F718;
-        Thu, 19 Nov 2020 03:27:10 -0800 (PST)
-Date:   Thu, 19 Nov 2020 11:27:08 +0000
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [RESEND PATCH] dt-bindings: pci: rcar-pci: Add device tree
- support for r8a774e1
-Message-ID: <20201119112708.GB19942@e121166-lin.cambridge.arm.com>
-References: <20200927124257.29612-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1726683AbgKSL0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 06:26:06 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:7704 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726637AbgKSL0G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 06:26:06 -0500
+Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CcHRT37phzkWqx;
+        Thu, 19 Nov 2020 19:25:41 +0800 (CST)
+Received: from huawei.com (10.151.151.249) by DGGEMS410-HUB.china.huawei.com
+ (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Thu, 19 Nov 2020
+ 19:25:53 +0800
+From:   Dongjiu Geng <gengdongjiu@huawei.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>,
+        <dan.j.williams@intel.com>, <p.zabel@pengutronix.de>,
+        <gengdongjiu@huawei.com>, <devicetree@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+Subject: [PATCH v4 0/4] Enable Hi3559A SOC clock and HiSilicon Hiedma Controller
+Date:   Thu, 19 Nov 2020 19:50:20 +0000
+Message-ID: <20201119195024.28392-1-gengdongjiu@huawei.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200927124257.29612-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-Originating-IP: [10.151.151.249]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 27, 2020 at 01:42:57PM +0100, Lad Prabhakar wrote:
-> Add PCIe support for the RZ/G2H (a.k.a. R8A774E1).
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
-> Hi Lorenzo,
-> 
-> This patch is part of series [1] and is Acked the DT maintainers,
-> while rest of the patches have been picked up by the respective
-> maintainers, could you please pick this patch.
+From: g00384164 <g00384164@huawei.com>
 
-I can, is this still pending (I think so but wanted to check) ?
+v3->v4:
+1. fix the 'make dt_binding_check' issues.
+2. Combine the 'Enable HiSilicon Hiedma Controller' series patches to this series.
+3. fix the 'make dt_binding_check' issues in 'Enable HiSilicon Hiedma Controller' patchset
 
-Thanks,
-Lorenzo
 
-> 
-> [1] https://www.spinics.net/lists/dmaengine/msg22971.html
-> 
-> Cheers,
-> Prabhakar
-> ---
->  Documentation/devicetree/bindings/pci/rcar-pci.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/rcar-pci.txt b/Documentation/devicetree/bindings/pci/rcar-pci.txt
-> index 14d307deff06..8e495d6811a0 100644
-> --- a/Documentation/devicetree/bindings/pci/rcar-pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/rcar-pci.txt
-> @@ -7,6 +7,7 @@ compatible: "renesas,pcie-r8a7742" for the R8A7742 SoC;
->  	    "renesas,pcie-r8a774a1" for the R8A774A1 SoC;
->  	    "renesas,pcie-r8a774b1" for the R8A774B1 SoC;
->  	    "renesas,pcie-r8a774c0" for the R8A774C0 SoC;
-> +	    "renesas,pcie-r8a774e1" for the R8A774E1 SoC;
->  	    "renesas,pcie-r8a7779" for the R8A7779 SoC;
->  	    "renesas,pcie-r8a7790" for the R8A7790 SoC;
->  	    "renesas,pcie-r8a7791" for the R8A7791 SoC;
-> -- 
-> 2.17.1
-> 
+v2->v3:
+1. change dt-bindings documents from txt to yaml format.
+2. Add SHUB clock to access the devices of m7
+
+Dongjiu Geng (4):
+  dt-bindings: Document the hi3559a clock bindings
+  clk: hisilicon: Add clock driver for hi3559A SoC
+  dt: bindings: dma: Add DT bindings for HiSilicon Hiedma Controller
+  dmaengine: dma: Add Hiedma Controller v310 Device Driver
+
+ .../clock/hisilicon,hi3559av100-clock.yaml    |   66 +
+ .../bindings/dma/hisilicon,hiedmacv310.yaml   |  103 ++
+ drivers/clk/hisilicon/Kconfig                 |    7 +
+ drivers/clk/hisilicon/Makefile                |    1 +
+ drivers/clk/hisilicon/clk-hi3559a.c           |  865 ++++++++++
+ drivers/dma/Kconfig                           |   14 +
+ drivers/dma/Makefile                          |    1 +
+ drivers/dma/hiedmacv310.c                     | 1441 +++++++++++++++++
+ drivers/dma/hiedmacv310.h                     |  136 ++
+ include/dt-bindings/clock/hi3559av100-clock.h |  165 ++
+ 10 files changed, 2799 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/hisilicon,hi3559av100-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/dma/hisilicon,hiedmacv310.yaml
+ create mode 100644 drivers/clk/hisilicon/clk-hi3559a.c
+ create mode 100644 drivers/dma/hiedmacv310.c
+ create mode 100644 drivers/dma/hiedmacv310.h
+ create mode 100644 include/dt-bindings/clock/hi3559av100-clock.h
+
+-- 
+2.17.1
+
