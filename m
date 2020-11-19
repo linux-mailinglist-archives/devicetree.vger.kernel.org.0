@@ -2,318 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1790C2B941B
+	by mail.lfdr.de (Postfix) with ESMTP id A90E42B941C
 	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:10:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727358AbgKSOIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 09:08:47 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:39745 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727356AbgKSOIr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 09:08:47 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E05F25801E4;
-        Thu, 19 Nov 2020 09:08:44 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 19 Nov 2020 09:08:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=zOUiA4xdq0VKjVdgG7aByqaE2HT
-        oPPZ3NqwgiaFPGP8=; b=RhfSlTOb247KDrSD/8GGRcwuuMgRvDfxPDnecSmqjz9
-        HPhRSBCiM0mjpdXHTCrl9RQq9C3xXR9Od/RkU8xZW9E3Yyohg4jlIHQRJQoaOfBC
-        qcZJyU4+2RzQMT46EBaxlKubc8RQjag09lpypMQZiNxIxYQmQmi6h7KF7OACd9uI
-        dK2qNCEjn/nWAfXuP0A1Gy2koR8pYrCUuPW6zw4JNX0G8eI2sz5nXAw/z4axfFh0
-        4bFZbTQbz1XrgBYsDP12pw7ud7VnoPCH20IKUXX4C4IhhglF9NwJEMGdt0MqeVRK
-        PC73eNMxE+yY7+iW45EfLWWF7L5y5aL+S2n4YiS+rAQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=zOUiA4
-        xdq0VKjVdgG7aByqaE2HToPPZ3NqwgiaFPGP8=; b=buZp8DRiWuI8T9bmN4oXWS
-        4uZ1jzxrLRFCNvJ4x8SENyOF/zUIQVviCGIL/n4E/5hHXU5OiISD0Z6L8tPAg3il
-        X8+XsADk7qlMuw3xOQZ0uVF9UZ8VSBBmkzCrVDROOTQKk3YG26hCrR5EUqJ2y60B
-        txUemn1XAM33mgZQeivKhoIxDOGdvH3R3meYF67FcK8aecAFk5O5yORCWEFZBvTo
-        zFDUYiU74S9z/+JPdPfZUqRu4Rc0TlUfSNmfDnsm4yo7VcO0UpEY+QtIZEHdvEnA
-        2x74LdddL5VAxnfxa4AtWtsfmH12YNH34MInay3ieuhKkZYIKN8vU3q+JSKfIR7A
-        ==
-X-ME-Sender: <xms:any2XzarbbPmIFEFfnF6pljvLY0W8qk2MTp_JZpOamf0QTwGaccNag>
-    <xme:any2XyaGQt8_fJyfkBG306PoAXus4XrGr9xavr0v7YdrK9NWrWtRkPEoJ2Ib-Bcn1
-    xlDYVwtT2ePzm7vuV0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudefjedgieduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:any2X1-aQWrkF3LNjwUs840yMyxMvB6SDfPryukEpTd7x8EHMV8Sqg>
-    <xmx:any2X5qAFyUzIH4c0j1Ard9t_U46_ardNTF7ig70-3tbTmZPqlvzNg>
-    <xmx:any2X-rhxz65F2Op1eoRZe_cjal7pAFUo6YYVfUfsvSaPPodkhqWAQ>
-    <xmx:bHy2X5DZMw4fgWp5oLKE5ezYMmp0gch1cn2tmIsRXKkb9JevyFjkcA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 41B8F3064AA7;
-        Thu, 19 Nov 2020 09:08:42 -0500 (EST)
-Date:   Thu, 19 Nov 2020 15:08:40 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Eric Anholt <eric@anholt.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 6/7] drm/vc4: kms: Store the unassigned channel list
- in the state
-Message-ID: <20201119140840.ufwhjzf26wsheltv@gilmour.lan>
-References: <20201105135656.383350-1-maxime@cerno.tech>
- <20201105135656.383350-7-maxime@cerno.tech>
- <c733bc70-8535-e4b9-1db6-a7b51e2781a7@suse.de>
+        id S1727383AbgKSOJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 09:09:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60510 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727356AbgKSOI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:08:59 -0500
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93D42C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:08:58 -0800 (PST)
+Received: by mail-lj1-x244.google.com with SMTP id r17so6367243ljg.5
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:08:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UF6cB4y26/1x+ilSgxNaVWPYjbbYhd7kb0SvD73E4kU=;
+        b=ui9Fzug9MSbXWblCAU0MDz8kBmjHpPOA+hoxmzbFgaHhog5Uei7ieNNzC17jJC5xXk
+         OgmaTyHT+6hLr5dzjkIyJ+MVA+gMjtMjOPPVwKlsKNdgckM0bXlqwsmnMKwhrBxl939N
+         bWMtMzLSp4CmWBTlibdc83mY3I5xQH1kg5hLJ5Y05IDhp94ygaK5NUvc5ay2VXX5VcEW
+         4mhHwhsr4Wi9rNZw7INdbzqllPp3rpMAfeRBHp8vR9XQLe+KC0PpCSWf/ec2kbsYwVek
+         Y7XJWjtDXAayJ9/h7GrTvJqHMWdz/a8nYd5Jb17bxrUaSvQmseoNUzeHdOhp8XewYOQg
+         SLfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UF6cB4y26/1x+ilSgxNaVWPYjbbYhd7kb0SvD73E4kU=;
+        b=BC479U3G17gLhGmPovGOkpbxIdERmAwLOkvXFJzDdGnrZSHtX232URtilUhruoT+3D
+         CRAdyotiAmKN/MufouRhOZKc7fKDZv4wT6IOODeD1W9Mfxun6Hup7SVIxPYaF+uBeT9P
+         QWEUuKDJby9Lthya7kqU0e3DrPDh8LFwD9cJCxk9AI2FreKZRAwHBMDuBIHyijErnmPQ
+         sWvru0LMbzyQ6UDbI7oaOfYlywBgsoUPDxTnJ39w8eMF1YJ3XwIQaehXv/MQGCHdb2cy
+         TBkrsUDeFRYKMD5MKxiQb5c25/keZGQmBsSjYIju4ypeQ7mcVIt5RnxMd/ZQcmPC0mBX
+         NNcQ==
+X-Gm-Message-State: AOAM5334tO8Yp4oWXrRgWhkMR86hvdQ9gMEr1eOZYIQ72fceqa9Jsq6U
+        HT+Mi7U/VZeTdduJcgOSGJOGLg==
+X-Google-Smtp-Source: ABdhPJx0TL5BdSP4dq002vIYpP7fDsQO06jmylq7JLz3JU64d0Gv7AEXiEzyjG8SHTDOmTip9RP+jQ==
+X-Received: by 2002:a2e:90cb:: with SMTP id o11mr6356318ljg.465.1605794936946;
+        Thu, 19 Nov 2020 06:08:56 -0800 (PST)
+Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
+        by smtp.gmail.com with ESMTPSA id h12sm4024706lfl.74.2020.11.19.06.08.55
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 19 Nov 2020 06:08:56 -0800 (PST)
+From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org,
+        mathieu.poirier@linaro.org, s-anna@ti.com
+Cc:     grzegorz.jaszczyk@linaro.org, linux-remoteproc@vger.kernel.org,
+        robh+dt@kernel.org, lee.jones@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        praneeth@ti.com, rogerq@ti.com
+Subject: [PATCH v2 0/6] Add a PRU remoteproc driver
+Date:   Thu, 19 Nov 2020 15:08:44 +0100
+Message-Id: <20201119140850.12268-1-grzegorz.jaszczyk@linaro.org>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hkqcej6pdzntbht2"
-Content-Disposition: inline
-In-Reply-To: <c733bc70-8535-e4b9-1db6-a7b51e2781a7@suse.de>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi All,
 
---hkqcej6pdzntbht2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The Programmable Real-Time Unit and Industrial Communication Subsystem
+(PRU-ICSS or simply PRUSS) on various TI SoCs consists of dual 32-bit
+RISC cores (Programmable Real-Time Units, or PRUs) for program execution.
 
-Hi Thomas,
+The K3 AM65x amd J721E SoCs have the next generation of the PRU-ICSS IP,
+commonly called ICSSG. The ICSSG IP on AM65x SoCs has two PRU cores,
+two auxiliary custom PRU cores called Real Time Units (RTUs). The K3
+AM65x SR2.0 and J721E SoCs have a revised version of the ICSSG IP, and
+include two additional custom auxiliary PRU cores called Transmit PRUs
+(Tx_PRUs).
 
-On Thu, Nov 19, 2020 at 09:59:15AM +0100, Thomas Zimmermann wrote:
-> Am 05.11.20 um 14:56 schrieb Maxime Ripard:
-> > If a CRTC is enabled but not active, and that we're then doing a page
-> > flip on another CRTC, drm_atomic_get_crtc_state will bring the first
-> > CRTC state into the global state, and will make us wait for its vblank
-> > as well, even though that might never occur.
-> >=20
-> > Instead of creating the list of the free channels each time atomic_check
-> > is called, and calling drm_atomic_get_crtc_state to retrieve the
-> > allocated channels, let's create a private state object in the main
-> > atomic state, and use it to store the available channels.
-> >=20
-> > Since vc4 has a semaphore (with a value of 1, so a lock) in its commit
-> > implementation to serialize all the commits, even the nonblocking ones,=
- we
-> > are free from the use-after-free race if two subsequent commits are not=
- ran
-> > in their submission order.
-> >=20
-> > Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automatic=
-ally")
-> > Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
-> > Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >   drivers/gpu/drm/vc4/vc4_drv.h |   1 +
-> >   drivers/gpu/drm/vc4/vc4_kms.c | 124 +++++++++++++++++++++++++++-------
-> >   2 files changed, 100 insertions(+), 25 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_dr=
-v.h
-> > index bdbb9540d47d..014113823647 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_drv.h
-> > +++ b/drivers/gpu/drm/vc4/vc4_drv.h
-> > @@ -219,6 +219,7 @@ struct vc4_dev {
-> >   	struct drm_modeset_lock ctm_state_lock;
-> >   	struct drm_private_obj ctm_manager;
-> > +	struct drm_private_obj hvs_channels;
-> >   	struct drm_private_obj load_tracker;
-> >   	/* List of vc4_debugfs_info_entry for adding to debugfs once
-> > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
-s.c
-> > index 499c6914fce4..0a231ae500e5 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> > @@ -37,6 +37,17 @@ static struct vc4_ctm_state *to_vc4_ctm_state(struct=
- drm_private_state *priv)
-> >   	return container_of(priv, struct vc4_ctm_state, base);
-> >   }
-> > +struct vc4_hvs_state {
-> > +	struct drm_private_state base;
-> > +	unsigned int unassigned_channels;
-> > +};
-> > +
-> > +static struct vc4_hvs_state *
-> > +to_vc4_hvs_state(struct drm_private_state *priv)
-> > +{
-> > +	return container_of(priv, struct vc4_hvs_state, base);
-> > +}
-> > +
-> >   struct vc4_load_tracker_state {
-> >   	struct drm_private_state base;
-> >   	u64 hvs_load;
-> > @@ -662,6 +673,70 @@ static int vc4_load_tracker_obj_init(struct vc4_de=
-v *vc4)
-> >   	return drmm_add_action_or_reset(&vc4->base, vc4_load_tracker_obj_fin=
-i, NULL);
-> >   }
-> > +static struct drm_private_state *
-> > +vc4_hvs_channels_duplicate_state(struct drm_private_obj *obj)
-> > +{
-> > +	struct vc4_hvs_state *state;
-> > +
-> > +	state =3D kmemdup(obj->state, sizeof(*state), GFP_KERNEL);
-> > +	if (!state)
-> > +		return NULL;
-> > +
-> > +	__drm_atomic_helper_private_obj_duplicate_state(obj, &state->base);
-> > +
-> > +	return &state->base;
-> > +}
-> > +
-> > +static void vc4_hvs_channels_destroy_state(struct drm_private_obj *obj,
-> > +					   struct drm_private_state *state)
-> > +{
-> > +	struct vc4_hvs_state *hvs_state;
-> > +
-> > +	hvs_state =3D to_vc4_hvs_state(state);
-> > +	kfree(hvs_state);
-> > +}
-> > +
-> > +static const struct drm_private_state_funcs vc4_hvs_state_funcs =3D {
-> > +	.atomic_duplicate_state =3D vc4_hvs_channels_duplicate_state,
-> > +	.atomic_destroy_state =3D vc4_hvs_channels_destroy_state,
-> > +};
-> > +
-> > +static void vc4_hvs_channels_obj_fini(struct drm_device *dev, void *un=
-used)
-> > +{
-> > +	struct vc4_dev *vc4 =3D to_vc4_dev(dev);
-> > +
-> > +	drm_atomic_private_obj_fini(&vc4->hvs_channels);
-> > +}
-> > +
-> > +static int vc4_hvs_channels_obj_init(struct vc4_dev *vc4)
-> > +{
-> > +	struct vc4_hvs_state *state;
-> > +
-> > +	state =3D kzalloc(sizeof(*state), GFP_KERNEL);
-> > +	if (!state)
-> > +		return -ENOMEM;
-> > +
-> > +	state->unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0);
-> > +	drm_atomic_private_obj_init(&vc4->base, &vc4->hvs_channels,
-> > +				    &state->base,
-> > +				    &vc4_hvs_state_funcs);
-> > +
-> > +	return drmm_add_action_or_reset(&vc4->base, vc4_hvs_channels_obj_fini=
-, NULL);
-> > +}
-> > +
-> > +static struct vc4_hvs_state *
-> > +vc4_hvs_get_global_state(struct drm_atomic_state *state)
-> > +{
-> > +	struct vc4_dev *vc4 =3D to_vc4_dev(state->dev);
-> > +	struct drm_private_state *priv_state;
-> > +
-> > +	priv_state =3D drm_atomic_get_private_obj_state(state, &vc4->hvs_chan=
-nels);
-> > +	if (IS_ERR(priv_state))
-> > +		return ERR_CAST(priv_state);
-> > +
-> > +	return to_vc4_hvs_state(priv_state);
-> > +}
-> > +
-> >   /*
-> >    * The BCM2711 HVS has up to 7 output connected to the pixelvalves and
-> >    * the TXP (and therefore all the CRTCs found on that platform).
-> > @@ -678,6 +753,14 @@ static int vc4_load_tracker_obj_init(struct vc4_de=
-v *vc4)
-> >    *   need to consider all the running CRTCs in the DRM device to assi=
-gn
-> >    *   a FIFO, not just the one in the state.
-> >    *
-> > + * - To fix the above, we can't use drm_atomic_get_crtc_state on all
-> > + *   enabled CRTCs to pull their CRTC state into the global state, sin=
-ce
-> > + *   a page flip would start considering their vblank to complete. Sin=
-ce
-> > + *   we don't have a guarantee that they are actually active, that
-> > + *   vblank might never happen, and shouldn't even be considered if we
-> > + *   want to do a page flip on a single CRTC. That can be tested by
-> > + *   doing a modetest -v first on HDMI1 and then on HDMI0.
-> > + *
-> >    * - Since we need the pixelvalve to be disabled and enabled back when
-> >    *   the FIFO is changed, we should keep the FIFO assigned for as long
-> >    *   as the CRTC is enabled, only considering it free again once that
-> > @@ -687,46 +770,33 @@ static int vc4_load_tracker_obj_init(struct vc4_d=
-ev *vc4)
-> >   static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
-> >   				      struct drm_atomic_state *state)
-> >   {
-> > -	unsigned long unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0=
-);
-> > +	struct vc4_hvs_state *hvs_state;
-> >   	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
-> >   	struct drm_crtc *crtc;
-> >   	unsigned int i;
-> > -	/*
-> > -	 * Since the HVS FIFOs are shared across all the pixelvalves and
-> > -	 * the TXP (and thus all the CRTCs), we need to pull the current
-> > -	 * state of all the enabled CRTCs so that an update to a single
-> > -	 * CRTC still keeps the previous FIFOs enabled and assigned to
-> > -	 * the same CRTCs, instead of evaluating only the CRTC being
-> > -	 * modified.
-> > -	 */
-> > -	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
-> > -		struct drm_crtc_state *crtc_state;
-> > -
-> > -		if (!crtc->state->enable)
-> > -			continue;
-> > -
-> > -		crtc_state =3D drm_atomic_get_crtc_state(state, crtc);
-> > -		if (IS_ERR(crtc_state))
-> > -			return PTR_ERR(crtc_state);
-> > -	}
-> > +	hvs_state =3D vc4_hvs_get_global_state(state);
-> > +	if (!hvs_state)
-> > +		return -EINVAL;
->=20
-> I found this confusing. It's technically correct, but from hvs_state is n=
-ot
-> clear that it's the new state. Maybe call it hvs_new_state.
->=20
-> If you want to be pedantic, maybe split the creation of the new state from
-> the usage. Call vc4_hvs_get_global_state() at the top of vc4_atomic_check=
-()
-> to make the new state. (Maybe with a short comment.) And here only call an
-> equivalent of drm_atomic_get_new_private_obj_state() for hvs_channels.
->=20
-> In any case
->=20
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+This series contains the PRUSS remoteproc driver together with relevant
+dt-binding. This is the 3rd foundation component for PRUSS subsystem, the
+previous two were already merged and can be found under:
+1) drivers/soc/ti/pruss.c
+   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+2) drivers/irqchip/irq-pruss-intc.c
+   Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
 
-That works for me, I'll change it.
+The following is a v2 version of the series. Please see the individual patches
+for exact changes in each patch, following are the main changes from v1:
+- Patch #1: fix two yamllint warnings.
+- Patch #2: address Suman comments: minor style improvements and fix for
+	    optional resource table handling (moved from patch #3).
+- Patch #3: address Suman comment: minor style, comments and trace improvements
+	    (no functional changes).
+- Patch #4: No changes.
+- Patch #5: Update documentation of pru_rproc_memcpy() function and is_k3 flag.
+- Patch #6: No changes.
 
-Thanks!
-Maxime
+Best regards,
+Grzegorz
 
---hkqcej6pdzntbht2
-Content-Type: application/pgp-signature; name="signature.asc"
+Grzegorz Jaszczyk (1):
+  remoteproc/pru: Add support for PRU specific interrupt configuration
 
------BEGIN PGP SIGNATURE-----
+Suman Anna (5):
+  dt-bindings: remoteproc: Add binding doc for PRU cores in the PRU-ICSS
+  remoteproc/pru: Add a PRU remoteproc driver
+  remoteproc/pru: Add pru-specific debugfs support
+  remoteproc/pru: Add support for various PRU cores on K3 AM65x SoCs
+  remoteproc/pru: Add support for various PRU cores on K3 J721E SoCs
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7Z8aAAKCRDj7w1vZxhR
-xffcAPwO6cO3aKXIG8qyv85EVxyJsOHp5JSOhW732HpLEe8WJwD9GH+64ZVyKTti
-vviwthEMPWUMheB/IG8CFJVLJf2o3Qo=
-=XDsE
------END PGP SIGNATURE-----
+ .../bindings/remoteproc/ti,pru-rproc.yaml     | 214 +++++
+ drivers/remoteproc/Kconfig                    |  12 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/pru_rproc.c                | 877 ++++++++++++++++++
+ drivers/remoteproc/pru_rproc.h                |  46 +
+ 5 files changed, 1150 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+ create mode 100644 drivers/remoteproc/pru_rproc.c
+ create mode 100644 drivers/remoteproc/pru_rproc.h
 
---hkqcej6pdzntbht2--
+-- 
+2.29.0
+
