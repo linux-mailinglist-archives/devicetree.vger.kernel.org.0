@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17C122B98DE
+	by mail.lfdr.de (Postfix) with ESMTP id 855942B98DF
 	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 18:08:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727241AbgKSREp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 12:04:45 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:38016 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726619AbgKSREp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 12:04:45 -0500
+        id S1728205AbgKSREv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 12:04:51 -0500
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:51679 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728182AbgKSREu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 12:04:50 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605805485; x=1637341485;
+  t=1605805491; x=1637341491;
   h=from:to:cc:subject:date:message-id:mime-version;
-  bh=Kl04zi16mIa54+tgPli2SWxBJHPluDkqBpHCMDOYEhU=;
-  b=g/QLqM3WIyJPWilNFO00vbUQ858pWXdQmI6+CuNGYej/x1tWn1cMu6ik
-   1XXTJ3WtIzeYvGOs1jYuRiGyFoTm9cL0IB4pjKlvFYY7vzzhlLKRqpA3T
-   QlPN7E4NYJ2ah77yWBy8X4h8/U0FTfe9RGxFR6d2QX0MaiDdDk8aKdIBO
-   4BpQuuhwUNMJeERHyPAAnMIDphGHKkNqNRjSqd33RtjuqtGm+5JZlhfLb
-   yPebA2EniH/DGQm4RureL2GPBI3cNUOVGqLLogwDhDWvtUuR2x8J3B9Op
-   +mF8uL2TCegRHANUY4Nk2S5m3KklIaNkRFjXolatlIRgtmuVf0XYkQP8w
+  bh=sA2ID8SjJBtdaCsBr435cqGSWmz9ad2T9JlA0MEQJN0=;
+  b=ZuMHVT1F2TEQ6ubLPln8J9MxTfXmSCJZAPexhw9qT+nmkfNtJJynqEEu
+   wEMJFXlZxR4pPRmvlYX0lEw9hSKzPN7v/Vjav7gaKk2VVYlA4OAQbT8OP
+   JCkdKyTSTUf3xGSEiMwGrOSVJfNFIZMv1u+brCxH+BtWCQlroysstp7s7
+   xJLNuwEORXu4GNv3mZkb3HFAP2DcT74B3EhUCDKoYE7Elt4JliBmGNqCc
+   nFFJ6eJOZhIUMOrvF9p/lWfROXHDqDaRM+Ho5XJF8fJf9M+Ld/P79OGnx
+   mAFMOX6IXIafDrC58RCPvdYbzFkUVWysyJGKBh/j5eqNFKiUNbHZTbjSo
    w==;
-IronPort-SDR: zW6vGRro3BKxrLfjZmmqwkk30u4dmttQ+farGYTajMQ7MroQZDjY5DGCZ061D4doJVtT6jKuAX
- 7VDOEh7ut7L4SO2+ofZjeVqwLYHvgqRnDw9JDgxiZ/DnwoddYX93zn+E4wJEcm5CRaN82wsxI6
- b4WQ75g2uUnMsNbRIRZZHOscbVNjNsVLr7HQwcQePM/ukqL5JhqJNAu78d75zy3j9woWF6XLe+
- BUeoQF9IpHVKohMZx7LL4olyzf10dgyfFIhgc4QTLHc/JI+z2YaiCMYvhbc/ie/d2e/juJLdtn
- ly0=
+IronPort-SDR: qjePlLxdxiqTeGAXUc0ovbRMvEH7bq8VO1HyDrZOcF5hymtKH5MDlxFkyf4Ei8B2uvFkco1I18
+ djWNgGiHO3jXi8K+LeG7hwDOasJ9N63wPOxRoImPMxLJixma5xFwqwku7F6bwEJX4T8soc7DfT
+ nJULOnAEmPuqMGAhChTGDjkbzeAYfXtmQdSWpr/plfoFcmDx2QUCo3wepjWTVljY2k786MQRPE
+ tZcfKgCszRrFZglfEVWhc28oUR2vXhvxwgoL4bo/Qa0gCZczPFDt1NjGn59wsg+uor8c7cgMqa
+ 5PU=
 X-IronPort-AV: E=Sophos;i="5.78,353,1599548400"; 
-   d="scan'208";a="34319756"
+   d="scan'208";a="99122009"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2020 10:04:44 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2020 10:04:50 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 19 Nov 2020 10:04:44 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 19 Nov 2020 10:04:42 -0700
+ 15.1.1979.3; Thu, 19 Nov 2020 10:04:48 -0700
+Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Thu, 19 Nov 2020 10:04:46 -0700
 From:   <conor.dooley@microchip.com>
 To:     <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
         <aou@eecs.berkeley.edu>, <paul.walmsley@sifive.com>,
@@ -48,9 +48,9 @@ CC:     <lewis.hanly@microchip.com>, <cyril.jean@microchip.com>,
         <daire.mcnamara@microchip.com>, <atish.patra@wdc.com>,
         <anup.patel@wdc.com>, <david.abdurachmanov@gmail.com>,
         Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH 5/6] dt-bindings: add bindings for polarfire soc system controller
-Date:   Thu, 19 Nov 2020 17:04:41 +0000
-Message-ID: <20201119170441.18706-1-conor.dooley@microchip.com>
+Subject: [PATCH 6/6] MAINTAINERS: add microchip polarfire soc support
+Date:   Thu, 19 Nov 2020 17:04:45 +0000
+Message-ID: <20201119170445.18795-1-conor.dooley@microchip.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 Content-Type: text/plain
@@ -60,71 +60,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Conor Dooley <conor.dooley@microchip.com>
 
-Add device tree bindings for the MSS system controller on
-the Microchip PolarFire SoC.
+Add Cyril Jean and Lewis Hanly as maintainers for the Microchip SoC
+directory
 
 Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../microchip,mpfs_sys_controller.yaml        | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml
+ MAINTAINERS | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml
-new file mode 100644
-index 000000000000..a1c5bba5068c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/soc/microchip/microchip,mpfs_sys_controller.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3da6d8c154e4..2965daaa80e9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -15000,6 +15000,15 @@ F:	arch/riscv/
+ N:	riscv
+ K:	riscv
+ 
++RISC-V/MICROCHIP POLARFIRE SOC SUPPORT
++M:	Lewis Hanly <lewis.hanly@microchip.com>
++M:	Cyril Jean <cyril.jean@microchip.com>
++L:	linux-riscv@lists.infradead.org
++S:	Supported
++F:	drivers/mailbox/mailbox-mpfs.c
++F:	drivers/soc/microchip/
++F:	include/soc/microchip/mpfs.h
 +
-+title: Microchip MPFS system controller
-+
-+maintainers:
-+  - Conor Dooley <conor.dooley@microchip.com>
-+
-+properties:
-+  compatible:
-+    const: microchip,polarfire-soc-sys-controller # PolarFire
-+
-+  mbox-names:
-+    maxItems: 1
-+    description: name of the mailbox controller device node
-+
-+  mboxes:
-+    maxItems: 1
-+    description: |
-+      phandle and index of the mailbox controller device node. It must be 0 (hardware supports only one channel).
-+
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - mbox-names
-+  - "#address-cells"
-+  - "#size-cells"
-+  - "mboxes"
-+
-+unevaluatedProperties: false
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    syscontroller@37020000 {
-+      compatible = "microchip,polarfire-soc-sys-controller";
-+      #address-cells = <1>;
-+      #size-cells = <1>;
-+      mbox-names = "mbox-mpfs";
-+      mboxes = <&mbox 0>;
-+    };
+ RNBD BLOCK DRIVERS
+ M:	Danil Kipnis <danil.kipnis@cloud.ionos.com>
+ M:	Jack Wang <jinpu.wang@cloud.ionos.com>
 -- 
 2.17.1
 
