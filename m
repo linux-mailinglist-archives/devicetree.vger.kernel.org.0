@@ -2,207 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6E2E2B957B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:52:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F1552B95CF
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:08:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728061AbgKSOud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 09:50:33 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:35109 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728028AbgKSOud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 09:50:33 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id A62E75806F3;
-        Thu, 19 Nov 2020 09:50:31 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 19 Nov 2020 09:50:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=GMJRNJmdeb2D3/v+4JlTfVunrS8
-        Yxxt3AOOxgvJeE+o=; b=OkK8vf/H8CPhb/GLuyPWNnrYSSXdxHuDHHWsu4frnSN
-        QptH0ylFmrDAjKwSOd0l5SkH/KCUuMP0ay7Sx6QoT4AkzhKLGYHMAovGsehXQ0XO
-        jJwOlpaXKAX3Itc8RwFXpmPqbLUw4Jvh+WuRSundNBg7JM/QpVGb2FJsaJWMpgyy
-        uQHD5DAbswbZUAsJMpuCHdo1bWGURshfkf9zs1P+kg2VoOFtyx6lHK8rHlrXxlbK
-        rFV7U/Jj+N0813U3M/1IkOiGERWbBkBOEWBDZSMjAnwC4LTcT+UanBby63gFdF7n
-        E3//ANn8lBY4h29nUBgIF2OxbNZrsQjj2tjJz4Wh3BQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=GMJRNJ
-        mdeb2D3/v+4JlTfVunrS8Yxxt3AOOxgvJeE+o=; b=pLPHxdgnVB9J8oaSl1fC8d
-        ZLXpjZyWugcEHK1Duh17Ygvb5XN9tMclX5DbmoCT8XQSb5mZSm+EVZR5XdMOj68L
-        uFhtich6SajCNRDOE4vAj5CAdoWA8Wre/A8XHjQoVMdcUg/2gir4LRp3oCPUzJyW
-        g2jIdOxRw2vhBM57dh9WIFMsGY8IBVp0KBzzP+g/QnhOJKRwMPrbrd9neRVJdZHF
-        Wk4HbBhoBF3U8j0vmTVaQxhjXbJwmJm2cp1l2ESlnGCqG8L67ZZYTst61SbviK95
-        vZeljMmRY1c2kbMnk3eR6xI0+kpelcoJms6pmNaCnsEVANGE+mmL2S0VU1oKio/g
-        ==
-X-ME-Sender: <xms:NYa2X6dd_BQSMNtGY1SUTZB_tGW2pVmVSnnacjJ4HCbMlAzOmJZCmg>
-    <xme:NYa2X0MGghtPwG4JJhbWXvY_y1Tdk6l--c95Px2WCZpANvAvPBGeMhgf_MMyanhly
-    P-nD3I5-XSdoqQJxAo>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudefjedgieelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:NYa2X7g0IV_tawss_dlBuZus6bkTgoFKpqSy8FXDir7iH6EGyYG0RA>
-    <xmx:NYa2X38uBMVAQuFLfhlwRzlrNTBWVlWscXu4FbjRJeK8yDrSsXhdeQ>
-    <xmx:NYa2X2uq5d9IoeR3C2IQZqv_4hSsxRlr4og70wJDUC2tlesS6jbClg>
-    <xmx:N4a2X2EPYanvqVrUIDQIfFd37gVMeOTNmiWX6uGi4l7tGTx-flHvXg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3C05D3064AB2;
-        Thu, 19 Nov 2020 09:50:29 -0500 (EST)
-Date:   Thu, 19 Nov 2020 15:50:27 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] drm/vc4: hdmi: Disable Wifi Frequencies
-Message-ID: <20201119145027.o2vdcwjbwm6ve6sb@gilmour>
-References: <20201029134018.1948636-1-maxime@cerno.tech>
- <20201029134018.1948636-2-maxime@cerno.tech>
- <a5af9bc2-b2f0-9a03-f436-8b18d9af7b89@suse.de>
+        id S1728394AbgKSPII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:08:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41618 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726641AbgKSPII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:08:08 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46329C0613CF;
+        Thu, 19 Nov 2020 07:08:08 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id g7so4771990pfc.2;
+        Thu, 19 Nov 2020 07:08:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vJr2irAyZ1BAOhSvjpC4BuYUmx85w5ph5rzehiUieBM=;
+        b=sQJQx92VUzfOpGZ0j2il2CFX9419U0APdsJScK/rEDTbB52uoXxerZ5OL4JaOirwBI
+         fGSAEpuySffSyUXtK3LShgGS/aOLu8710guEz1cOHAvIJxcjvnhze6PZeKFRF5Bp591W
+         Q8seiDsg1cs+qSJ5sQaM1nlsGeALbYn7O8N5iobKNn6zZ43kC0eZc/GFyZ/dXDakT6tU
+         nWk1/SziD9+z8nkjmQqdT82r7UBmBYu14MwDibf6meck+SGgrLbmuJOP8TuerL0tWvTQ
+         dKyva6r7iFVpnazWC5+XjTPy5Fmk/SNET4mp2RAkfo9lcu65T9pMJNGB3CWek7UFbiBk
+         K0VQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vJr2irAyZ1BAOhSvjpC4BuYUmx85w5ph5rzehiUieBM=;
+        b=GcVKkXjikdMPxZmOh+hcshDMnoiD+Hxt24D2wgD6IxJ03fe0sljv712zFxb0ZOn+FF
+         wifD1k1UfqjX+fx/mi5X3UaUXpnahVy31Hyqtd2cXceRHkIqX7Kln5nByn3OuNwMFr0O
+         C/Xfpy+xJfyjuHHtcDcstcOpxs9+ZAJwAHyK/wFxeY/SLltuY1QO18avPd+/gE521N4p
+         +eET9sQ1V+lx04tnV323Ymo2pPLN5pVRCWp1K9/GE0v8r3QVZMzWu27zPga4/r42aP5t
+         lIQY4tZMPIIeUGIypcpB6Cu5/KoAEstWIJ4+odyKY2tp9zQ1Y/xi9RXeWYFRJqO46Egc
+         pmeA==
+X-Gm-Message-State: AOAM533fdOsuFbDWCRBS7M3QqUO4Ab2kZ1E6gGwdo6K3AuZ+TF/LavmT
+        dvRw+liyiU7U3XrbOmPpOECIoMvs0S5SlMB2QpOkMBStGVM=
+X-Google-Smtp-Source: ABdhPJxuSFR4cYa7NCo4ZvgyfmmS6rNJrSbJ7ucYHnAWBFsGMz8fK6alqBLRObqpJA9IdqKKkdMlya7P5WKkD84Q0ZM=
+X-Received: by 2002:a62:7e4f:0:b029:18c:9322:739b with SMTP id
+ z76-20020a627e4f0000b029018c9322739bmr9418242pfc.7.1605798487722; Thu, 19 Nov
+ 2020 07:08:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="rp3qiexqtuhtrguh"
-Content-Disposition: inline
-In-Reply-To: <a5af9bc2-b2f0-9a03-f436-8b18d9af7b89@suse.de>
+References: <20201119100748.57689-1-alexandru.ardelean@analog.com>
+In-Reply-To: <20201119100748.57689-1-alexandru.ardelean@analog.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 19 Nov 2020 17:08:56 +0200
+Message-ID: <CAHp75Vex498GcOpFxfze5VdK4Rhb6pvBvgf1OXLY=L5vj4Uodg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] iio: adc: ad7887: convert dual-channel mode to DT/ACPI
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Nov 19, 2020 at 12:02 PM Alexandru Ardelean
+<alexandru.ardelean@analog.com> wrote:
+>
+> This change converts the configuration of the dual-channel mode from the
+> old platform-data, to the device_property_present() function, which
+> supports both device-tree and ACPI configuration setups.
+>
+> With this change the old platform_data include of the driver can be
+> removed.
 
---rp3qiexqtuhtrguh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I mostly like the part of getting rid of legacy platform data.
+Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+(for patches 1-3 only)
 
-On Thu, Nov 19, 2020 at 10:20:25AM +0100, Thomas Zimmermann wrote:
-> Hi
->=20
-> Am 29.10.20 um 14:40 schrieb Maxime Ripard:
-> > There's cross-talk on the RPi4 between the 2.4GHz channels used by the =
-WiFi
-> > chip and some resolutions, most notably 1440p at 60Hz.
-> >=20
-> > In such a case, we can either reject entirely the mode, or lower slight=
-ly
-> > the pixel frequency to remove the overlap. Let's go for the latter.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >=20
-> > ---
-> >=20
-> > Changes from v1:
-> >    - Change the name of the property
-> >    - Test for a range instead of an exact frequency
-> > ---
-> >   drivers/gpu/drm/vc4/vc4_hdmi.c | 21 +++++++++++++++++++++
-> >   drivers/gpu/drm/vc4/vc4_hdmi.h |  8 ++++++++
-> >   2 files changed, 29 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_h=
-dmi.c
-> > index 506c12454086..0d72e519aec4 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> > +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> > @@ -760,6 +760,9 @@ static void vc4_hdmi_encoder_enable(struct drm_enco=
-der *encoder)
-> >   {
-> >   }
-> > +#define WIFI_2_4GHz_CH1_MIN_FREQ	2400000000ULL
-> > +#define WIFI_2_4GHz_CH1_MAX_FREQ	2422000000ULL
-> > +
-> >   static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
-> >   					 struct drm_crtc_state *crtc_state,
-> >   					 struct drm_connector_state *conn_state)
-> > @@ -767,12 +770,27 @@ static int vc4_hdmi_encoder_atomic_check(struct d=
-rm_encoder *encoder,
-> >   	struct drm_display_mode *mode =3D &crtc_state->adjusted_mode;
-> >   	struct vc4_hdmi *vc4_hdmi =3D encoder_to_vc4_hdmi(encoder);
-> >   	unsigned long long pixel_rate =3D mode->clock * 1000;
-> > +	unsigned long long tmds_rate;
-> >   	if (vc4_hdmi->variant->unsupported_odd_h_timings &&
-> >   	    ((mode->hdisplay % 2) || (mode->hsync_start % 2) ||
-> >   	     (mode->hsync_end % 2) || (mode->htotal % 2)))
-> >   		return -EINVAL;
-> > +	/*
-> > +	 * The 1440p@60 pixel rate is in the same range than the first
-> > +	 * WiFi channel (between 2.4GHz and 2.422GHz with 22MHz
-> > +	 * bandwidth). Slightly lower the frequency to bring it out of
-> > +	 * the WiFi range.
-> > +	 */
-> > +	tmds_rate =3D pixel_rate * 10;
-> > +	if (vc4_hdmi->disable_wifi_frequencies &&
-> > +	    (tmds_rate >=3D WIFI_2_4GHz_CH1_MIN_FREQ &&
-> > +	     tmds_rate <=3D WIFI_2_4GHz_CH1_MAX_FREQ)) {
-> > +		mode->clock =3D 238560;
-> > +		pixel_rate =3D mode->clock * 1000;
-> > +	}
-> > +
-> >   	if (pixel_rate > vc4_hdmi->variant->max_pixel_clock)
-> >   		return -EINVAL;
-> > @@ -1717,6 +1735,9 @@ static int vc4_hdmi_bind(struct device *dev, stru=
-ct device *master, void *data)
-> >   		vc4_hdmi->hpd_active_low =3D hpd_gpio_flags & OF_GPIO_ACTIVE_LOW;
-> >   	}
-> > +	vc4_hdmi->disable_wifi_frequencies =3D
-> > +		of_property_read_bool(dev->of_node, "wifi-2.4ghz-coexistence");
-> > +
-> >   	pm_runtime_enable(dev);
-> >   	drm_simple_encoder_init(drm, encoder, DRM_MODE_ENCODER_TMDS);
-> > diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.h b/drivers/gpu/drm/vc4/vc4_h=
-dmi.h
-> > index 6815e93b1a48..3843be830601 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_hdmi.h
-> > +++ b/drivers/gpu/drm/vc4/vc4_hdmi.h
-> > @@ -142,6 +142,14 @@ struct vc4_hdmi {
-> >   	int hpd_gpio;
-> >   	bool hpd_active_low;
-> > +	/*
-> > +	 * On some systems (like the RPi4), some modes are in the same
-> > +	 * frequency range than the WiFi channels (1440p@60Hz for
-> > +	 * example). Should we take evasive actions because that system
-> > +	 * has a wifi adapter.
->=20
-> The final sentence sounds like a question. Maybe just write 'Take evasive
-> actions if...'
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>
+> I'm wondering if this changeset is what was in mind here:
+>  https://lore.kernel.org/linux-iio/CA+U=DsqF5tu8Be9KXeyCWD2uHvV688Nc3n=z_Xi2J6H6DFJPRQ@mail.gmail.com/T/#mbe72e4da3acea3899d0d35402ea81e52a9bc34e6
+> This driver could have been simplified/reduced a whole lot more, but I'm
+> not sure about it. It's a bit of patch-noise, and later
+>
+> Changelog v1 -> v2:
+> * dropped patch 'iio: adc: ad7887: convert driver to full DT probing'
+>   not adding the device_get_match_data() logic anymore
+> * added patch 'iio: adc: ad7887: remove matching code from driver'
+>   hooking the chip info directly to AD7887
+> * added patch 'iio: adc: ad7887: add OF match table'
+>   this just adds an OF table for DT and ACPI
+>
+>  drivers/iio/adc/ad7887.c             | 10 +++++-----
+>  include/linux/platform_data/ad7887.h | 21 ---------------------
+>  2 files changed, 5 insertions(+), 26 deletions(-)
+>  delete mode 100644 include/linux/platform_data/ad7887.h
+>
+> diff --git a/drivers/iio/adc/ad7887.c b/drivers/iio/adc/ad7887.c
+> index 4f6f0e0e03ee..06f684c053a0 100644
+> --- a/drivers/iio/adc/ad7887.c
+> +++ b/drivers/iio/adc/ad7887.c
+> @@ -23,8 +23,6 @@
+>  #include <linux/iio/trigger_consumer.h>
+>  #include <linux/iio/triggered_buffer.h>
+>
+> -#include <linux/platform_data/ad7887.h>
+> -
+>  #define AD7887_REF_DIS         BIT(5)  /* on-chip reference disable */
+>  #define AD7887_DUAL            BIT(4)  /* dual-channel mode */
+>  #define AD7887_CH_AIN1         BIT(3)  /* convert on channel 1, DUAL=1 */
+> @@ -241,9 +239,9 @@ static void ad7887_reg_disable(void *data)
+>
+>  static int ad7887_probe(struct spi_device *spi)
+>  {
+> -       struct ad7887_platform_data *pdata = spi->dev.platform_data;
+>         struct ad7887_state *st;
+>         struct iio_dev *indio_dev;
+> +       bool dual_mode;
+>         uint8_t mode;
+>         int ret;
+>
+> @@ -286,7 +284,9 @@ static int ad7887_probe(struct spi_device *spi)
+>         mode = AD7887_PM_MODE4;
+>         if (!st->reg)
+>                 mode |= AD7887_REF_DIS;
+> -       if (pdata && pdata->en_dual)
+> +
+> +       dual_mode = device_property_present(&spi->dev, "adi,dual-channel-mode");
+> +       if (dual_mode)
+>                 mode |= AD7887_DUAL;
+>
+>         st->tx_cmd_buf[0] = AD7887_CH_AIN0 | mode;
+> @@ -298,7 +298,7 @@ static int ad7887_probe(struct spi_device *spi)
+>         spi_message_init(&st->msg[AD7887_CH0]);
+>         spi_message_add_tail(&st->xfer[0], &st->msg[AD7887_CH0]);
+>
+> -       if (pdata && pdata->en_dual) {
+> +       if (dual_mode) {
+>                 st->tx_cmd_buf[2] = AD7887_CH_AIN1 | mode;
+>
+>                 st->xfer[1].rx_buf = &st->data[0];
+> diff --git a/include/linux/platform_data/ad7887.h b/include/linux/platform_data/ad7887.h
+> deleted file mode 100644
+> index 9b4dca6ae70b..000000000000
+> --- a/include/linux/platform_data/ad7887.h
+> +++ /dev/null
+> @@ -1,21 +0,0 @@
+> -/* SPDX-License-Identifier: GPL-2.0-or-later */
+> -/*
+> - * AD7887 SPI ADC driver
+> - *
+> - * Copyright 2010 Analog Devices Inc.
+> - */
+> -#ifndef IIO_ADC_AD7887_H_
+> -#define IIO_ADC_AD7887_H_
+> -
+> -/**
+> - * struct ad7887_platform_data - AD7887 ADC driver platform data
+> - * @en_dual: Whether to use dual channel mode. If set to true AIN1 becomes the
+> - *     second input channel, and Vref is internally connected to Vdd. If set to
+> - *     false the device is used in single channel mode and AIN1/Vref is used as
+> - *     VREF input.
+> - */
+> -struct ad7887_platform_data {
+> -       bool en_dual;
+> -};
+> -
+> -#endif /* IIO_ADC_AD7887_H_ */
+> --
+> 2.17.1
+>
 
-This was definitely a question, I've added the question mark and applied
-the two first patches
 
-> Assuming that the display mode still works
->=20
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-Thanks!
-Maxime
-
---rp3qiexqtuhtrguh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7aGMwAKCRDj7w1vZxhR
-xQ2SAP9q7D1zGramQLU2SRVaD/K2vigygywAdTvPTOQiRu6ONgD/ayJ20pUq3fQ9
-k5jrGtyYDYqcWAyKZG02NG1YuZcfvAk=
-=pt+f
------END PGP SIGNATURE-----
-
---rp3qiexqtuhtrguh--
+-- 
+With Best Regards,
+Andy Shevchenko
