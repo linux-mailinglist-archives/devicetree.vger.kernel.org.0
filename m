@@ -2,194 +2,391 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 995742B974F
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 17:09:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E79102B976C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 17:09:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727773AbgKSQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 11:02:52 -0500
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:29306 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727153AbgKSQCw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 11:02:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605801771; x=1637337771;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=PgE2IHY/QaUILgqSVOhOMGRBawy2BD5ojuvrGKpF5Ng=;
-  b=Kx0BXkLUwuBoTqkt2fRrglaDhZb46yinIBNatjNtsaTqqFDoJEDPPYTT
-   WgoWt+MUa0t5TNZR9kI18PduZGoBoUs43ukPOkwMGbdDiwJ9ljU0eVKtP
-   nI0vYyHXNLnhibbueU/42yBLAW881uwn96aEVmDvYWGbs9QaohgYArl2E
-   2AjgMujr4IHdknooQ2V1d8OKMUVBfbBleZTYlMBDj6ub3orzqztXHq6Yg
-   /RbH7AD1eDyrLFemdDUdcUkyBcIQMgLp6kOOq0DcbC5NwIjdw27kRR+lL
-   YkTiBz4fe8M7UK8mke2aEi5YJDxycIm5yA3CHhV/4cneFFW1LNfbMGlCj
-   g==;
-IronPort-SDR: 52RACXbzldvtXd+iz18ySCmbLXCcW1N5Nh8MJTPAB5uFpUqLDM3IcJiKgjnOoQ75soXwwjOAT+
- 6TSW8R+41Ke2Fyj/klBl6Piz+fk9H539MEJK6SBY3/5VPKbw44VJadrON1b2fC2+ZvJMszZANf
- +miYtSQr4cnjemcztgrPzJcwYHKVT7hsdlZcl+1ZbE/i5OnQQVBWYkGCr2FNqWer15fMayaMOr
- 385/gzYBGPM2YbrjrTHd3jAyByU1hiPpcwaizPeP/2G+Zi2ZKFXRuwyWI46VL0RezV6yi/MQS8
- lpA=
-X-IronPort-AV: E=Sophos;i="5.78,353,1599548400"; 
-   d="scan'208";a="99112012"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2020 09:02:43 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 19 Nov 2020 09:02:42 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 19 Nov 2020 09:02:42 -0700
-Date:   Thu, 19 Nov 2020 17:02:42 +0100
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microsemi List <microsemi@lists.bootlin.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: phy: Add sparx5-serdes bindings
-Message-ID: <20201119160242.nyifff7ckwkxkf76@mchp-dev-shegelun>
-References: <20201110144910.558164-1-steen.hegelund@microchip.com>
- <20201110144910.558164-2-steen.hegelund@microchip.com>
- <20201119055807.GZ50232@vkoul-mobl>
+        id S1727214AbgKSQIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 11:08:25 -0500
+Received: from mx2.suse.de ([195.135.220.15]:42858 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726906AbgKSQIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 11:08:24 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 0FE89AF2B;
+        Thu, 19 Nov 2020 16:08:23 +0000 (UTC)
+Subject: Re: [PATCH v3 7/7] drm/vc4: kms: Don't disable the muxing of an
+ active CRTC
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Eric Anholt <eric@anholt.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+References: <20201105135656.383350-1-maxime@cerno.tech>
+ <20201105135656.383350-8-maxime@cerno.tech>
+ <2e61b179-35f3-f4b3-9ec0-c822370da663@suse.de>
+ <20201119143213.wqgvn2d3vphyeked@gilmour.lan>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <ad921dad-461a-65c4-e255-bc7e182cd982@suse.de>
+Date:   Thu, 19 Nov 2020 17:08:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20201119055807.GZ50232@vkoul-mobl>
+In-Reply-To: <20201119143213.wqgvn2d3vphyeked@gilmour.lan>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="PbT5uVCGLiU65X3taeLcFu8vwGhWpCCUy"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.11.2020 11:28, Vinod Koul wrote:
->EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->
->On 10-11-20, 15:49, Steen Hegelund wrote:
->> Document the Sparx5 ethernet serdes phy driver bindings.
->
->Rob ..?
->
->Also pls cc devicetree@vger.kernel.org
->
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--PbT5uVCGLiU65X3taeLcFu8vwGhWpCCUy
+Content-Type: multipart/mixed; boundary="pc1MHdcM2DxLiSp6JXUHASecFMSNb2Q61";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Maxime Ripard <maxime@cerno.tech>
+Cc: Eric Anholt <eric@anholt.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
+ Mark Rutland <mark.rutland@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>,
+ Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>, linux-rpi-kernel@lists.infradead.org,
+ Tim Gover <tim.gover@raspberrypi.com>,
+ bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org
+Message-ID: <ad921dad-461a-65c4-e255-bc7e182cd982@suse.de>
+Subject: Re: [PATCH v3 7/7] drm/vc4: kms: Don't disable the muxing of an
+ active CRTC
+References: <20201105135656.383350-1-maxime@cerno.tech>
+ <20201105135656.383350-8-maxime@cerno.tech>
+ <2e61b179-35f3-f4b3-9ec0-c822370da663@suse.de>
+ <20201119143213.wqgvn2d3vphyeked@gilmour.lan>
+In-Reply-To: <20201119143213.wqgvn2d3vphyeked@gilmour.lan>
+
+--pc1MHdcM2DxLiSp6JXUHASecFMSNb2Q61
+Content-Type: multipart/mixed;
+ boundary="------------FD30D71EA7222F6BA2C2682B"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------FD30D71EA7222F6BA2C2682B
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: quoted-printable
+
+Hi
+
+Am 19.11.20 um 15:32 schrieb Maxime Ripard:
+> On Thu, Nov 19, 2020 at 10:12:43AM +0100, Thomas Zimmermann wrote:
+>> Hi
 >>
->> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
->> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
->> ---
->>  .../bindings/phy/microchip,sparx5-serdes.yaml | 283 ++++++++++++++++++
->>  1 file changed, 283 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+>> Am 05.11.20 um 14:56 schrieb Maxime Ripard:
+>>> The current HVS muxing code will consider the CRTCs in a given state =
+to
+>>> setup their muxing in the HVS, and disable the other CRTCs muxes.
+>>>
+>>> However, it's valid to only update a single CRTC with a state, and in=
+ this
+>>> situation we would mux out a CRTC that was enabled but left untouched=
+ by
+>>> the new state.
+>>>
+>>> Fix this by setting a flag on the CRTC state when the muxing has been=
+
+>>> changed, and only change the muxing configuration when that flag is t=
+here.
+>>>
+>>> Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automat=
+ically")
+>>> Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+>>> Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+>>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+>>> ---
+>>>    drivers/gpu/drm/vc4/vc4_drv.h |  1 +
+>>>    drivers/gpu/drm/vc4/vc4_kms.c | 82 ++++++++++++++++++++-----------=
+----
+>>>    2 files changed, 48 insertions(+), 35 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_=
+drv.h
+>>> index 014113823647..325b53ff11b3 100644
+>>> --- a/drivers/gpu/drm/vc4/vc4_drv.h
+>>> +++ b/drivers/gpu/drm/vc4/vc4_drv.h
+>>> @@ -524,6 +524,7 @@ struct vc4_crtc_state {
+>>>    	struct drm_mm_node mm;
+>>>    	bool feed_txp;
+>>>    	bool txp_armed;
+>>> +	bool needs_muxing;
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
->> new file mode 100644
->> index 000000000000..a3a5b68f0a43
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
->> @@ -0,0 +1,283 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Microchip Sparx5 Serdes controller
->> +
->> +maintainers:
->> +  - Steen Hegelund <steen.hegelund@microchip.com>
->> +
->> +description: |
->> +  The Sparx5 SERDES interfaces share the same basic functionality, but
->> +  support different operating modes and line rates.
->> +
->> +  The following list lists the SERDES features:
->> +
->> +  * RX Adaptive Decision Feedback Equalizer (DFE)
->> +  * Programmable continuous time linear equalizer (CTLE)
->> +  * Rx variable gain control
->> +  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
->> +  * Adjustable tx de-emphasis (FFE)
->> +  * Tx output amplitude control
->> +  * Supports rx eye monitor
->> +  * Multiple loopback modes
->> +  * Prbs generator and checker
->> +  * Polarity inversion control
->> +
->> +  SERDES6G:
->> +
->> +  The SERDES6G is a high-speed SERDES interface, which can operate at
->> +  the following data rates:
->> +
->> +  * 100 Mbps (100BASE-FX)
->> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
->> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
->> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
->> +
->> +  SERDES10G
->> +
->> +  The SERDES10G is a high-speed SERDES interface, which can operate at
->> +  the following data rates:
->> +
->> +  * 100 Mbps (100BASE-FX)
->> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
->> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
->> +  * 5 Gbps (QSGMII/USGMII)
->> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
->> +  * 10 Gbps (10G-USGMII)
->> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
->> +
->> +  SERDES25G
->> +
->> +  The SERDES25G is a high-speed SERDES interface, which can operate at
->> +  the following data rates:
->> +
->> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
->> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
->> +  * 5 Gbps (QSGMII/USGMII)
->> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
->> +  * 10 Gbps (10G-USGMII)
->> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
->> +  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^serdes@[0-9a-f]+$"
->> +
->> +  compatible:
->> +    const: microchip,sparx5-serdes.yaml
->> +
->> +  reg:
->> +    description: Address and length of the register set for the device
->> +
->> +  '#phy-cells':
->> +    const: 1
->> +    description: |
->> +      - The main serdes input port
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - '#phy-cells'
->
->reg-names missing here
->
+>> Maybe rather 'update_muxing'.
+>>
+>> More generally, I'd separate fields that contain actual CRTC state, su=
+ch
+>> assigned_channel, from those that only contain transitional state duri=
+ng
+>> update-commit, such as needs_muxing.
+>=20
+> How would you separate them?
+>=20
+> I'll use your other suggestions, thanks!
 
-I will add them.
+I'd put the transitional state at the end of the struct and put a=20
+comment above. Something like 'Transitional state below; only valid=20
+during atomic commits'.
 
+Best regards
+Thomas
 
->> +    };
->> +
->> +...
->> --
->> 2.29.2
->
->--
->~Vinod
+> Maxime
+>=20
 
-BR
-Steen
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=FCrnberg, Germany
+(HRB 36809, AG N=FCrnberg)
+Gesch=E4ftsf=FChrer: Felix Imend=F6rffer
 
----------------------------------------
-Steen Hegelund
-steen.hegelund@microchip.com
+--------------FD30D71EA7222F6BA2C2682B
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x680DC11D530B7A23.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="OpenPGP_0x680DC11D530B7A23.asc"
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdgX=
+H47
+fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0BeB5B=
+bqP
+5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4YchdHm3bkPj=
+z9E
+ErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB9GluwvIhSezPg=
+nEm
+imZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEBAAHNKFRob21hcyBaa=
+W1t
+ZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwI4EEwEIADgCGwMFCwkIBwIGFQoJCAsCB=
+BYC
+AwECHgECF4AWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCXvxIWAAKCRBoDcEdUwt6I+aZB/9ih=
+Onf
+G4Lgf1L87cvoXh95/bnaJ6aQhP6/ZeRleuCXflnyDajlm3c9loQr0r2bQUi7JeYwUKbBab2QS=
+GJm
+DMRGlLMnmzWB8mHmZ6bHAu+2Sth8SraE42p6BB9d8dlYEID+dl/D/xUBeulfkck5rloGtYqDi=
++1Q
+DfkEZJaxVSZ6FFkXuQi/G9qcI4iklN2nv02iQ7mZe8WYAysix6s/6vIobhirEBreclSNxXqis=
+p8n
+91+v855JC11EgRdUXMRK81IAaCKXP8zLx3ixku7mvP9Om61yerHSbeU2HZbIggZYQlFh6llJm=
+zF1
+CjCWgPTJyk4t4kMTcNOw5ykD47vU/KW+wl0EEBECAB0WIQQn6OOmnzvP/7ktjmoud6EwEfXTw=
+gUC
+WzodVwAKCRAud6EwEfXTwidvAKDkOADDHfI0QNXqAZcg6i1kOndAYACeLXHBwpjnumkPSyoab=
+IiL
++he8r3zCwHMEEAEIAB0WIQQeXZghmQijlU7YzFiqUDvJrg9HpwUCWznxsQAKCRCqUDvJrg9Hp=
+42f
+CADIvsZcAd04PDFclRltHr2huy6s7+ZZA6PgYlMblEBh4bJA+dNPBTvzpJ7FJv/bmHOa+phWy=
+Urj
+EpfFGuOKGuWAfzgVAEu52fMrW3/mm+O26z1AKIu8hiZ/x9OAe4AM71ZO2lZrV1/53ZdzWnRuO=
+45N
+GQcotU8oeVfT9okAfmozmWMmIMq7Q0K6bV8W3qiD5XfDNxjr2caxc/9WX1bZPUo3n0H23MNaA=
+Tpy
+Oz732UtDh6sKUAB1RfzBBd/REbjHD7+quwJGAdRScyDRncX1vNb2+wihy0ipA69XY3bkhR5iD=
+u5r
+A9enuiMe6J1IBMI1PZh+vOufB/M6cd2D9RULIJaJwsBzBBABCAAdFiEEuyNtt7Ge78bIRx1op=
+/N8
+GYw5MYEFAls6MrsACgkQp/N8GYw5MYEnLQf/dwqlDJVQL2q+i8FFaqTMAm0n9jLRV6pN8JxFH=
+j0g
+voyWUOnQuNdAFgtKd26ZhN8NkLoSMO8E19eBPfLoBIFK5yNNVmRHAZm07MzGbA0uNWINJhmdR=
+bZM
+RMh0nneXjcEU/IvUmd8TPFTAd24X2mbzHgcaHMLJSVx1ohd4alRJXHIqDobKmiVwekyPnInJn=
+zWw
+iuZUkIotTkQple1PT/dF3S+KtPXBL6ldQ4NkAeCjsz4wnzSa9+VKOxEhiHM0PMzXSbkCMP+4m=
+Xy9
+RMplBw9Dm9hN2PSouBPifIrSodiiSWZYXOEkzLiBAB0frCKR63Dnx9kvjCD9Pz5wLd/70rjqI=
+cLA
+jgQTAQgAOAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC=
+3oj
+BQJftODHAAoJEGgNwR1TC3ojZSIIAIV3makffp4P4leU8JSLt0aTNewsOhy7VQzKUtlCw3PKD=
+3l/
+SuymZhQKgH+n6sijzFauZnZ+x0T+Oy+dDVZb3sNJuuMUDIHw18EO9daZBMcueaS54FGe73lAp=
+HUl
+7nxyocCxoqIG8+fP+75itV/ls2TSh5rJvjLvHC8J3NqfGlJ/jlSKrQUnzFbXfE5KGWiKNAn+I=
+1a2
+EE0I7uLpYgkdb8hcjtV9Rxr2ja+GWOaSoqB29P5GUzipkWo4144Q16JBO6QP2R9y/1ZK9VqH2=
+5T8
+lTKocLAaHCEdpDqY5KI15as9tIxlI1Vh+eqhTh/gwEm1ykO1gmrQ1zvGLDMB1EE6El3NJ1Rob=
+21h
+cyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIbAwULCQgHAgYVC=
+gkI
+CwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJe/EheAAoJEGgNwR1TC3ojq=
+RgI
+AIoegtTp1prPzfHgTAuEPd8v58ssHubwi9tg69a8IJ+iMNozhs4iUou84WOLBJNjSieXHZRa8=
+fJj
+//2/sTuABn38AQ9FcKX9/B49hrdCo6c0WHHKqlPrSTzuXNKYyOdmSFd/pDhBb2Bn5DTxxH5RP=
+m/N
+U/C9nUlwi7Y+FgBlDNa5h592wmJfv0cJAfvF56C+QL65jHFOFIW9xSaTOAxxMXHGJHXki6Iwa=
+aTg
+s7QQlKQcd5XvvED1bwLyQ7rq+MEZo5N7IygpQMM3qqGMlCnDdyQ3W95rd0HCWpfa0oVRCOwdu=
+SL3
+5hG7ONqBpvBj8z5GjSbt4HLJGvpeT0k37qzRExrCXQQQEQIAHRYhBCfo46afO8//uS2Oai53o=
+TAR
+9dPCBQJbOh1XAAoJEC53oTAR9dPC05AAoIy0HQ2DBDYugQ42P4HfyxfZTIvKAJ0fqNBcBFW9S=
+tbR
+DEP9cfpNVOv8YMLAcwQQAQgAHRYhBB5dmCGZCKOVTtjMWKpQO8muD0enBQJbOfGzAAoJEKpQO=
+8mu
+D0enL0wIAM2NTeUDCofBAkbWHGTZopclefbh0xGPYQEfttNyalp0hn1CrVO7OsX5eTjRqgyOa=
+1C5
+OAsNghCM4PUmrfv5cZ9+sNn9bRM50uVW9IFRlq8wwBY4+7QejJ5gs7DW/0tZIMZ6iTGKK0WEO=
+7gd
+2K9hXadPBScTdIqXeWH82meiqElnEQL+K9UeGUBrku+1EQIOxwziKwTDlTvhyJ+xmEKj0uWRc=
+Ocl
+27xLS9XOWPGXcNQBtlZhF8e/E1kFRt5CPP5UBdUCN8qydUadseXivSNDiYob9dyJSFt7G0Bq4=
+/ac
+Ret5ANtGRWsp8xYJQRossRMWL0w9P8SiIc2IY/JrQrpz29nCwHMEEAEIAB0WIQS7I223sZ7vx=
+shH
+HWin83wZjDkxgQUCWzoywAAKCRCn83wZjDkxgQaDCACyFuBLQWNvLT8GTDqTf/gETzmtoEM6Y=
+r8O
+4jbYg05xiFzAqMZctQsm3zHakx2JrimxDvQJRQJQzp5ICJ7J/BOuSL4FE1SPeQIfjm4jyBZGH=
+P/W
+vgHsT5e3+ZCPePPZO+3irarTKVhaaP70Tpka6EsOCZzO6L8D6tUDkhxMX0ymy7p8w9Yt1eD0o=
+Ume
+mxrKdS1ulpNJUTBw7gJN8bMowVnycEm6wntxOjrCxuwbkKhFLdn0ejcXQ0UkfbUFKfU64gGBu=
+S53
+ZlM8XlOhQEIw/FrdXszhR+Tg3Ag130cmJhOrghgOBLzvJfUd6OvDT5VIz0QGbAm8SWlAIIms1=
+9Z8
+kBsLwsCOBBMBCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEEchf7rIzpz2NEoWjla=
+A3B
+HVMLeiMFAl+04McACgkQaA3BHVMLeiPHXAf/SEoZa6CKoOAs1ctEP/hN8cEQqbEiuZ+71nm3u=
+/BQ
+p/CEUvqGq+iVc8kkpClDbPz5fa9mb+yWwufsnXKOs6ygmEoAEOL7dBZZIaRobBEkB09VXIkx8=
+lE0
+00grBVtToHUGRfZcMoMZ98XhPGU6lJDN200j/2CV46hQDz6PLySecNjOME05mosbYW5N2JwFd=
+uXP
+Qx++DjWB32QLBhcOcP3WslTy3PKVe/TcTvk0JpPFMz4UFc+awBVhDgZiGGAW3xLZRYyhpoAEs=
+N7u
+XkV2ct0MRxuZ3y4tTYJobhbZwutRojiPPZduRw9CSpNDcQHruFiSOIQTpnLeCA6K2JAZyqmP/=
+87A
+TQRbOdLgAQgAxiY/gz9X5PlFjlq3+DutR02wuFa/UA9iuH1FB584Nges1EdQT16ixhtPpcyvJ=
+H2F
+PxeUY5hHApbCJAGhZIOJMyj9eLb2NSefgFd8janHYNNfBzbYsq0sCBNGM/6ptTrdjTGdA3b1Q=
+YNt
+iDLIrnUNbcfQh/Zrck2yF4AAr5dz1tqPQsYhzxP26IRYcGcIf5F2GABOdZYYp0N6BRHkGQN8O=
+Dk7
+8UhLKYkEfHYPKiSW/mDgHOSCpOrCZpjOyXxTFkq9trGrTNt6EN1ryW+EVeh00UwCBMsmUu4Ng=
+4Ys
+rYDButLdKnQARuSl0kFvjipWUablsClmi4d4n/6f7uvXb6Wp2wARAQABwsB8BBgBCAAmFiEEc=
+hf7
+rIzpz2NEoWjlaA3BHVMLeiMFAls50uACGwwFCQPCZwAACgkQaA3BHVMLeiOl9wgAifA/k6VwQ=
+qiR
+OccKINPPg6fLgacdE/Z9cBNBkIrGa7gAljaH2J/D01/ZOMJnoAy8Le2EA3SsUOPnk32XizUKl=
+oOj
+gn7R+Sse7I1pydPbToJ4lXUTs1ie3FSf4tKJGs53LCfp6uPFGL0RhNUsIdwOEESMqYVl+DgAz=
+gZk
+xZfWWDT54dt3mgvVqzbxa+8j+4hozJXxFvJei3Wv/xAuVaV1Tc2tMXmntMxTbLdkfaZ/my5Io=
+cAy
+1sTiMonxkcU6jcaEuCNWsFYcT0lc7TzEqSAP7Dq/zf6eiawS5/oLotiupj+2xm/IRfrM3wK2K=
+s90
+9a79Vc1FgCX+Vq3uVIjcfbqqscLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojB=
+QJf
+tOH6AAoJEGgNwR1TC3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6=
+Baa
+6H7ufXNQtThRyIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3=
+T0T
+trijKP4ASAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446S=
+h8W
+n/2DYa8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRai=
+tYJ
+4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9fOwU0EX7ThE=
+wEQ
+ANJiTIb/nQ+MPgIBsSfBBhmXrVFUwFveO6DWPZ0M+Y5xBJhvDukosstSgcLCdld4SFF2JnnCo=
+yh9
+boM2j2Ksd5wNzTzXlo3lEzFRAipftboviUjap0qxoRwy1hBV3Ft1/VyNwwYY7qjGVATQU7cIT=
+/zL
+gb+Sd0NPQA8r2NvpJq1MnI8nFfA2ZH4diuRtavhEBUzp63SlCYxnyxqT5AQzSQGUpsjSyh1A5=
+ezt
+j1pwxgnkX7F9ZT0lUBo6zZM6ZBq8Nkyvox46l79QoWMBm9y+/nIXy/uXdT6RaumPjBzVttGmk=
+Onm
+TlGUJyQAndAE1boib9iWCJ4kIr2ezRKjXJXGuaM1m7hSfdQYWed0j52+nW9qGSNNk1GjYXM8Z=
+SWT
+agX6O5mfbpzRgBBK/XoE9NWRNAa4V+tUX4/vqqDl0m+O4F2GYs6Eu7WLredRgwjDuMF/VCKvQ=
+fr3
+yjIt90Zi10cHQw3khdJWmSDKYgenpvsffo4x56biifOh6IxS/whf5/BAx4nx8GyX7JO0DUnUu=
+ieC
+NfEGRu8QbYBSOkO/vdm4xy7RZwdzlqN8zjCLFOCG346Bnsx3ku2lNtX6qZoajmfD4oO6N0Xds=
+2pE
+wjufCfJW9sCLdBmqLD5OvsRljyv7vt5w28XSF1tyhQaxIs+8sFJtwfCliduffq56FcFrEXCxs=
+LQr
+ABEBAAHCwqwEGAEIACAWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCX7ThEwIbAgJACRBoDcEdU=
+wt6
+I8F0IAQZAQgAHRYhBMZ3Zv36bjFHcGBRaJYfxNxEKL/gBQJftOETAAoJEJYfxNxEKL/gkygQA=
+LQH
+pXm45ZfMCDx7u/d7rRH/R7EfEV5OAoS981IkzbTgrb9z6YYfhQqH+R2ImgoX/Lou7zSjyd22/=
+IaZ
+AnTKHKkXIFIM1uB144dqAi3tW/Bei/CSdiD7DY1q92Ebl6e+Gpf3TZdATSY00fVeLMNFnjbbz=
+CVX
+9+LEKYARNm7kYogVJMc5CuVmXBn9FFF3cioRvpuals8llsFc4WiUBJfDfOzjXExqv3OMtJj0s=
+qlK
+sXdnLkXbtAmEvFaxqUuO1ZwTCTGflrn/g4C8Cg0ifk0wZGgGYRindkJE1vOQZPaDI7GtNxJ+D=
+sx4
+fL/8tf7Wuk3TZ6t/ofKhjq8sUVCVhnlyd/3ujruDu/PhwwYBsHjNn+PmHeCCRJuOWwKapdfjH=
+9nt
+sHXTvyXBB2D3H7Oj7S/HOTXRNTUWhaxICKtq+XDSuJKOv7CNevkjMF4ybQDsrUxnaWd76YqNP=
+vZv
+PYoTqKzKukifjGXMsxC6HU4K2GscpvoaIk7glaD+NYi3fIGi/gR0UNc6cmXtOrYKSnCsNOwcO=
+CJL
+DjEr6YdbdAXO2wxCLqnupo8JRJgA8hjjHM5OoTGEyP/c+DKDqFO90YilX1XN8xchHrw+bDv0E=
+Zm0
+RZpVdL7WNr7qQE4UhDfuyo4Gis4Z+npzoOL4g3yaQQfK32zZD9iqk9152b7ny2Ke5oFIF5SSa=
+EwH
+/2tLNBevzgzWuEB6FtqoMT5RjDyx+xBeImRlhnP0EenRh+EP0nmLCAaFiP4tTp1bX54SyByp8=
+wcN
+7F2+v2Sgdd64w1pdrjT74Zf1xj0NTxEdt5jEaPfl5Vjv3cXiB8ACwPkMIXmkJx3uaGJynl4Os=
+irb
+nzzviEzvDVpLAxL7Qr6imlKUh92iAoz+XxEDqgMZnJJOTDFdDxEBhv911VzlRraDNdxw4MHMm=
+5Nr
+5pj4HGYh3PigzNo0KIreB50YqhGOesaC4Q75gv8mLc2Ec5dEq79BVMUOaCmYDShBN9j6JovNs=
+WSR
+5YP3tXi+jZ+VnyKLft9wo1fh1oYadFEVSHgGsEY=3D
+=3DfoRs
+-----END PGP PUBLIC KEY BLOCK-----
+
+--------------FD30D71EA7222F6BA2C2682B--
+
+--pc1MHdcM2DxLiSp6JXUHASecFMSNb2Q61--
+
+--PbT5uVCGLiU65X3taeLcFu8vwGhWpCCUy
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
+
+-----BEGIN PGP SIGNATURE-----
+
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+2mHUFAwAAAAAACgkQlh/E3EQov+B2
+qg//c9BBwpaksC3+jv8BUpcQ7fbAe+L42XhWv/r2F9f0EfZcnu+hdlMnK19HcW1Wa9H1YiQWF4h/
+0mq5lpvhTvt+enz3VbYlWaPTv9yxtmdqeBrM1kUYE3YQUPUDGnimhL0a8ESPlpQbmn6Dd9qoj+WX
+EJdHKMQYsluR0lDsObKq54THqtIH5OLMLbStmbzhYTRo5HNY04+iADrF9PWLB8uzC4HorhR/cKWU
+LEOQdeOcCRDV18IiS+YS4j+uEAA3u/p7mxFSiXyf95Drob4/VBSLEzSTI9rqAcWECDYcxYuNSuc6
+xWthbIA/Rvg6rrcWdq+cZAWjCciIzWPyCYxAUq9PlqkyObdewM4POxRhQtAwXvRNsTOmK7VSu6ep
+W7LwkWoV6B6bf9C06tXzkJI/j049b6VIYWMsPI1QXvOtI3Vs+5xs6Av2Kut7kzfEn8dmVy1vhGLj
+tqcUOa3iooBAOcoQVyxhBUhAqK4o7Wvcdg2HzWzN3GPqHbokpnF+DlMfi9/S0ZJnCSLDuFgrjF3B
+EFgeKqjcYgZn32tYtfnkYkYD4SfwcjIceQQuUD4+/OtQJsGduRFNANiSuImRGPyZkblvvCobKVI5
+aVzojHqwzevhTVVOzZFbd9wvKa7xdLXFkNj1O5ObhgNbdJC45ObfH6VBNIMB7iM7/hC2JJGmfZwa
+tz4=
+=f4jx
+-----END PGP SIGNATURE-----
+
+--PbT5uVCGLiU65X3taeLcFu8vwGhWpCCUy--
