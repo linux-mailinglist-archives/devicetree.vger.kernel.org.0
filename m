@@ -2,81 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 502BE2B983C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 17:41:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 452012B9877
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 17:47:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727849AbgKSQkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 11:40:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:51910 "EHLO mail.kernel.org"
+        id S1729301AbgKSQqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 11:46:36 -0500
+Received: from foss.arm.com ([217.140.110.172]:34662 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727309AbgKSQkK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 11:40:10 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8D2CD2220B;
-        Thu, 19 Nov 2020 16:40:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605804010;
-        bh=IOVe+AC/shQvrZP4K3jnnH+Vv+CBsYUmCFGN/gzv1Ds=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dseIXiv0Gh4VPZppHJn5b/I2ec7D2cdrt43E8Bbd5MG848BsqNNDgZiq7uiwTBUoU
-         RSW8yHb004H5gGA03o/Oa70vc3TFZ7EKgG88l21r9JQl93JcSrPDLaynEKYJswoG+g
-         deFQtyaoLIalbrYst0vUZFNbKsa88n3kBynyBBuI=
-Date:   Thu, 19 Nov 2020 16:39:49 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Cristian Marussi <cristian.marussi@arm.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, lukasz.luba@arm.com,
-        Jonathan.Cameron@Huawei.com, robh@kernel.org,
-        satyakim@qti.qualcomm.com, etienne.carriere@linaro.org,
-        f.fainelli@gmail.com, vincent.guittot@linaro.org,
-        souvik.chakravarty@arm.com
-Subject: Re: [PATCH v5 4/5] regulator: add SCMI driver
-Message-ID: <20201119163949.GF5554@sirena.org.uk>
-References: <20201117123415.55105-1-cristian.marussi@arm.com>
- <20201117123415.55105-5-cristian.marussi@arm.com>
- <20201119161308.xhyohop5fspb4b5l@bogus>
+        id S1729280AbgKSQqf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 11:46:35 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1FCE815DB;
+        Thu, 19 Nov 2020 08:46:35 -0800 (PST)
+Received: from ewhatever.cambridge.arm.com (ewhatever.cambridge.arm.com [10.1.197.1])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 82A493F718;
+        Thu, 19 Nov 2020 08:46:33 -0800 (PST)
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     mathieu.poirier@linaro.org, mike.leach@linaro.org,
+        linux-kernel@vger.kernel.org, anshuman.khandual@arm.com,
+        jonathan.zhouwen@huawei.com, coresight@lists.linaro.org,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 23/25] dts: bindings: coresight: ETM system register access only units
+Date:   Thu, 19 Nov 2020 16:45:45 +0000
+Message-Id: <20201119164547.2982871-24-suzuki.poulose@arm.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20201119164547.2982871-1-suzuki.poulose@arm.com>
+References: <20201119164547.2982871-1-suzuki.poulose@arm.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="l+goss899txtYvYf"
-Content-Disposition: inline
-In-Reply-To: <20201119161308.xhyohop5fspb4b5l@bogus>
-X-Cookie: Chocolate chip.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the bindings for ETMs with system register accesses.
 
---l+goss899txtYvYf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Cc: devicetree@vger.kernel.org
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Mike Leach <mike.leach@linaro.org>
+Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+---
+ Documentation/devicetree/bindings/arm/coresight.txt | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-On Thu, Nov 19, 2020 at 04:13:08PM +0000, Sudeep Holla wrote:
+diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
+index d711676b4a51..7f9c1ca87487 100644
+--- a/Documentation/devicetree/bindings/arm/coresight.txt
++++ b/Documentation/devicetree/bindings/arm/coresight.txt
+@@ -34,9 +34,12 @@ its hardware characteristcs.
+ 					Program Flow Trace Macrocell:
+ 			"arm,coresight-etm3x", "arm,primecell";
+ 
+-		- Embedded Trace Macrocell (version 4.x):
++		- Embedded Trace Macrocell (version 4.x), with memory mapped access.
+ 			"arm,coresight-etm4x", "arm,primecell";
+ 
++		- Embedded Trace Macrocell (version 4.x), with system register access only.
++			"arm,coresight-etm4x-sysreg";
++
+ 		- Coresight programmable Replicator :
+ 			"arm,coresight-dynamic-replicator", "arm,primecell";
+ 
+-- 
+2.24.1
 
-> I was thinking about how to merge this if and when you have reviewed it
-> and happy with it. Is it OK to take via ARM SoC with dependent and other
-> SCMI changes ? Or we can merge the SCMI part next release and the regulator
-> in the following, up to you.
-
-I was expecting you to send me a pull request for the firmware bits once
-you've applied them.
-
---l+goss899txtYvYf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+2n9QACgkQJNaLcl1U
-h9BNQgf/TXDqtKuU+a9jUTY6+cP8XYV4FUmZac7s1chvbdKzCrT41hp+a5hiXWsj
-J0lCk66XcDgB0K0egGwSztrH2ho5v34IMypEJvS60Unug/ssyn0nWVPLuoE59/me
-sRWJrcJ1hPmLx8zM2XUOlEbCanmbPAVilr1e6LQ+jblmWNlHK/i4d1hnX4teZi4N
-Z808xq7KbAfodu5RuJo3s7kIfA0sxLOvbHI+YSChGYlErt7k+xFD5ybUMCHfLuRE
-2V4DkvmgGm9n9Pf/0fGeJJWvrAVBv7We86UQDSn6LYz0bX1oHDrFHjQR/k/xIv52
-hUi61K2B/ALY0TgPbqaeQ5Y+E3QuZg==
-=o+Pm
------END PGP SIGNATURE-----
-
---l+goss899txtYvYf--
