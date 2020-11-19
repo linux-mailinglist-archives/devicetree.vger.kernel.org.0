@@ -2,268 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D42D42B98ED
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 18:08:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B892B990A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 18:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728490AbgKSRID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 12:08:03 -0500
-Received: from esa3.microchip.iphmx.com ([68.232.153.233]:52631 "EHLO
-        esa3.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728147AbgKSRID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 12:08:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605805681; x=1637341681;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=hdKJ8AThaKsHmxLWkwQyL5C107/YEmRfruTeZIwBtm0=;
-  b=YrRA3n/2QCMYWSA0i988yfp/VNikC9x63t/boxvcFRKzN2dwWUrTcZC1
-   D/cu0PSJ7Z8nOg2J2WqqQM6s8uE2Fzf3q/0W1wNrOzrca13WJ+6Omxeyz
-   8V/q5yWhrb5vjfVAoomuRspkrxe2ac8WoV7hzApw1NyRsL/eRAHcviPlG
-   uyD6UeFUPGtJsD0DCdyfRreLplTJnmfLaVs0jQB01O7buzgZRHjUelKkE
-   lxTFuRAFd5gYZjq1rYjWYfpQJetPNzcWQwMXffEzhw2GUQ4Nh2FWnbjh+
-   D3Rqbx8H395m8MN3kT+S47GutPOaYsoff7+ekAJsTem6e8wjCJED+JliK
-   A==;
-IronPort-SDR: XkoR9uQfWqHtq/co6wl8d1Nd5BMEelRLCLIgk8OpbtCkZ28m9sdUzNGCzKdgECKA9s7XEa0amI
- 0krN0ynUVLs5C5zmXlFhLM7/TYcp/2iMqKrTSW/4A6Ugq09NvvK+nllek1xRl+UZsFmwrYqahh
- zamJd1vjlRZQDAkN/KJQyczFmcM+RKU0qp+uO0BGDG+DB9wfGNCJetva722Y3HPTNLuO9YZbA+
- lqhfYGuNGgHzadLUmXWCVdAOOyiKHEySL6K7xmObmdflEFVGbSGupAJUROIZI4whm/Yi6OlJXJ
- Bq0=
-X-IronPort-AV: E=Sophos;i="5.78,353,1599548400"; 
-   d="scan'208";a="99699047"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2020 10:08:01 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 19 Nov 2020 10:08:01 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Thu, 19 Nov 2020 10:07:58 -0700
-From:   <conor.dooley@microchip.com>
-To:     <robh+dt@kernel.org>, <jassisinghbrar@gmail.com>,
-        <aou@eecs.berkeley.edu>, <paul.walmsley@sifive.com>,
-        <palmer@dabbelt.com>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>
-CC:     <lewis.hanly@microchip.com>, <cyril.jean@microchip.com>,
-        <daire.mcnamara@microchip.com>, <atish.patra@wdc.com>,
-        <anup.patel@wdc.com>, <david.abdurachmanov@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH 4/6] soc: add polarfire soc system controller
-Date:   Thu, 19 Nov 2020 17:07:58 +0000
-Message-ID: <20201119170758.20245-1-conor.dooley@microchip.com>
-X-Mailer: git-send-email 2.17.1
+        id S1727499AbgKSRJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 12:09:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36610 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726474AbgKSRJi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 12:09:38 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 008222469D;
+        Thu, 19 Nov 2020 17:09:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605805777;
+        bh=70tCoEq9/FYcYDMF8Mq56bnaLykaoi8Dcb4Ao5hv/jo=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=x8+uAopbQoGBBj12OHyOQ4Ywx5KDw9pvIMKeoSNzkGffSpk+L0CpuA4OoV9j3WFdS
+         DNT56KmYclVkEPfx254FJd1KEo++IMYL/ZjVSYEIQevxtgo9yxEdxcn9NfuskeoxZe
+         Ewaa+2dsGlyWdsHjgFzf4L8oVSUWy5YtnBtZM+Vk=
+Date:   Thu, 19 Nov 2020 17:09:17 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, alsa-devel@alsa-project.org,
+        lgirdwood@gmail.com
+In-Reply-To: <20201105113458.12360-1-srinivas.kandagatla@linaro.org>
+References: <20201105113458.12360-1-srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH v3 0/6] ASoC: codecs: add support for LPASS Codec macros
+Message-Id: <160580573378.54454.13024216102656641940.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Conor Dooley <conor.dooley@microchip.com>
+On Thu, 5 Nov 2020 11:34:52 +0000, Srinivas Kandagatla wrote:
+> This patchset adds support for two Codec Macro blocks( WSA and VA) available in
+> Qualcomm LPASS (Low Power Audio SubSystem).
+> 
+> There are WSA, VA, TX and RX Macros on LPASS IP, each of the Macro block
+> has specific connectivity like WSA Macros are intended to connect
+> to WSA Smart speaker codecs via SoundWire. VA Macro is intended for DMICs,
+> and TX/RX for Analog codecs via SoundWire like other WCD Codecs to provide
+> headphone/ear/lineout etc ..
+> 
+> [...]
 
-This driver provides an interface for other drivers to access the
-functions of the system controller on the Microchip PolarFire SoC.
+Applied to
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- drivers/soc/Kconfig                         |   1 +
- drivers/soc/Makefile                        |   1 +
- drivers/soc/microchip/Kconfig               |  10 ++
- drivers/soc/microchip/Makefile              |   1 +
- drivers/soc/microchip/mpfs_sys_controller.c | 136 ++++++++++++++++++++
- 5 files changed, 149 insertions(+)
- create mode 100644 drivers/soc/microchip/Kconfig
- create mode 100644 drivers/soc/microchip/Makefile
- create mode 100644 drivers/soc/microchip/mpfs_sys_controller.c
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
-index 425ab6f7e375..22cb097bcbdc 100644
---- a/drivers/soc/Kconfig
-+++ b/drivers/soc/Kconfig
-@@ -9,6 +9,7 @@ source "drivers/soc/bcm/Kconfig"
- source "drivers/soc/fsl/Kconfig"
- source "drivers/soc/imx/Kconfig"
- source "drivers/soc/ixp4xx/Kconfig"
-+source "drivers/soc/microchip/Kconfig"
- source "drivers/soc/mediatek/Kconfig"
- source "drivers/soc/qcom/Kconfig"
- source "drivers/soc/renesas/Kconfig"
-diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
-index 36452bed86ef..fb084cf2d12e 100644
---- a/drivers/soc/Makefile
-+++ b/drivers/soc/Makefile
-@@ -14,6 +14,7 @@ obj-$(CONFIG_ARCH_GEMINI)	+= gemini/
- obj-y				+= imx/
- obj-$(CONFIG_ARCH_IXP4XX)	+= ixp4xx/
- obj-$(CONFIG_SOC_XWAY)		+= lantiq/
-+obj-$(CONFIG_SOC_MICROCHIP_POLARFIRE)	+= microchip/
- obj-y				+= mediatek/
- obj-y				+= amlogic/
- obj-y				+= qcom/
-diff --git a/drivers/soc/microchip/Kconfig b/drivers/soc/microchip/Kconfig
-new file mode 100644
-index 000000000000..8fdba8b5eae3
---- /dev/null
-+++ b/drivers/soc/microchip/Kconfig
-@@ -0,0 +1,10 @@
-+config MPFS_SYS_CONTROLLER
-+	tristate "MPFS_SYS_CONTROLLER"
-+	depends on MPFS_MBOX
-+	help
-+	  This driver adds support for the Polarfire SoC system controller.
-+
-+	  To compile this driver as a module, choose M here. the
-+	  module will be called mpfs_system_controller.
-+
-+	  If unsure, say Y.
-diff --git a/drivers/soc/microchip/Makefile b/drivers/soc/microchip/Makefile
-new file mode 100644
-index 000000000000..23b1f42a37db
---- /dev/null
-+++ b/drivers/soc/microchip/Makefile
-@@ -0,0 +1 @@
-+obj-$(CONFIG_MPFS_SYS_CONTROLLER)	+= mpfs_sys_controller.o
-diff --git a/drivers/soc/microchip/mpfs_sys_controller.c b/drivers/soc/microchip/mpfs_sys_controller.c
-new file mode 100644
-index 000000000000..0074ae529a2e
---- /dev/null
-+++ b/drivers/soc/microchip/mpfs_sys_controller.c
-@@ -0,0 +1,136 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Microchip MPFS system controller driver
-+ *
-+ * Copyright (c) 2020 Microchip Corporation. All rights reserved.
-+ *
-+ * Author: Conor Dooley <conor.dooley@microchip.com>
-+ *
-+ */
-+
-+#include <linux/slab.h>
-+#include <linux/module.h>
-+#include <linux/interrupt.h>
-+#include <linux/of_platform.h>
-+#include <linux/mailbox_client.h>
-+#include <linux/platform_device.h>
-+#include <soc/microchip/mpfs.h>
-+
-+static DEFINE_MUTEX(transaction_lock);
-+
-+struct mpfs_sys_controller {
-+	struct mbox_client client;
-+	struct mbox_chan *chan;
-+	struct completion c;
-+	u32 enabled;
-+	void *response;
-+	u16 response_size_bytes;
-+};
-+
-+int mpfs_blocking_transaction(struct mpfs_sys_controller *mpfs_client, void *msg,
-+			      void *response, u16 response_size_bytes)
-+{
-+	int ret;
-+
-+	mpfs_client->response = response;
-+	mpfs_client->response_size_bytes = response_size_bytes;
-+
-+	mutex_lock_interruptible(&transaction_lock);
-+
-+	reinit_completion(&mpfs_client->c);
-+
-+	ret = mbox_send_message(mpfs_client->chan, msg);
-+
-+	if (ret >= 0U) {
-+		if (wait_for_completion_timeout(&mpfs_client->c, HZ)) {
-+			ret = 0U;
-+		} else {
-+			ret = -ETIMEDOUT;
-+			WARN_ONCE(1, "MPFS sys controller transaction timeout");
-+		}
-+	} else {
-+		dev_err(mpfs_client->client.dev,
-+			"mpfs sys controller transaction returned %d\r\n", ret);
-+	}
-+
-+	mutex_unlock(&transaction_lock);
-+
-+	return ret;
-+}
-+EXPORT_SYMBOL(mpfs_blocking_transaction);
-+
-+static void rx_callback(struct mbox_client *client, void *msg)
-+{
-+	struct mpfs_sys_controller *mpfs_client =
-+		container_of(client, struct mpfs_sys_controller, client);
-+
-+	memcpy(mpfs_client->response, (u8 *)msg,
-+	       mpfs_client->response_size_bytes);
-+
-+	complete(&mpfs_client->c);
-+}
-+
-+static int mpfs_sys_controller_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mpfs_sys_controller *mpfs_client;
-+
-+	mpfs_client = devm_kzalloc(dev, sizeof(*mpfs_client), GFP_KERNEL);
-+	if (!mpfs_client)
-+		return -ENOMEM;
-+
-+	mpfs_client->client.dev = dev;
-+	mpfs_client->client.rx_callback = rx_callback;
-+	mpfs_client->client.tx_block = 1U;
-+
-+	mpfs_client->chan = mbox_request_channel_byname(&mpfs_client->client,
-+							"mbox-mpfs");
-+	if (IS_ERR(mpfs_client->chan)) {
-+		int ret = PTR_ERR(mpfs_client->chan);
-+
-+		if (ret != -EPROBE_DEFER)
-+			dev_err(dev, "Failed to get mbox channel: %d\n", ret);
-+		return ret;
-+	}
-+
-+	init_completion(&mpfs_client->c);
-+
-+	platform_set_drvdata(pdev, mpfs_client);
-+
-+	dev_info(&pdev->dev, "Registered MPFS system controller driver\n");
-+
-+	return 0;
-+}
-+
-+struct mpfs_sys_controller *
-+mpfs_sys_controller_get(struct device_node *mss_node)
-+{
-+	struct platform_device *pdev = of_find_device_by_node(mss_node);
-+
-+	if (!pdev)
-+		return NULL;
-+
-+	return platform_get_drvdata(pdev);
-+}
-+EXPORT_SYMBOL(mpfs_sys_controller_get);
-+
-+static const struct of_device_id mpfs_sys_controller_of_match[] = {
-+	{
-+		.compatible = "microchip,polarfire-soc-sys-controller",
-+	},
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, mpfs_sys_controller_of_match);
-+
-+static struct platform_driver mpfs_sys_controller_driver = {
-+	.driver = {
-+		.name = "mpfs-sys-controller",
-+		.of_match_table = mpfs_sys_controller_of_match,
-+	},
-+	.probe = mpfs_sys_controller_probe,
-+};
-+module_platform_driver(mpfs_sys_controller_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Conor Dooley <conor.dooley@microchip.com>");
-+MODULE_DESCRIPTION("MPFS system controller driver");
--- 
-2.17.1
+Thanks!
 
+[1/6] ASoC: qcom: dt-bindings: add bindings for lpass wsa macro codec
+      commit: ccbd847f15b0f08f8c6ed3ab5384e5f7055b08e5
+[2/6] ASoC: codecs: lpass-wsa-macro: Add support to WSA Macro
+      commit: 809bcbcecebff86003e13f07444d21b9d6652a64
+[3/6] ASoC: codecs: lpass-wsa-macro: add dapm widgets and route
+      commit: 2c4066e5d428d47a28f87407b3d73ebe40c06fd4
+[4/6] ASoC: qcom: dt-bindings: add bindings for lpass va macro codec
+      commit: 67d99b23c881b1411fc6907bc844d63565b536d6
+[5/6] ASoC: codecs: lpass-va-macro: Add support to VA Macro
+      commit: 908e6b1df26efc9d2df70c9a7bf4f5eae5c5702f
+[6/6] ASoC: codecs: lpass-va-macro: add dapm widgets and routes
+      commit: 58aad93015b9dc7cb8966c1dc775ec69f0280b79
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
