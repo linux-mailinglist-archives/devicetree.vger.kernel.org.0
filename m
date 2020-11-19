@@ -2,113 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C452B9053
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 11:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E3D2B9065
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 11:48:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726511AbgKSKm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 05:42:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57006 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725905AbgKSKm2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 05:42:28 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB114C0613CF;
-        Thu, 19 Nov 2020 02:42:27 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id c9so6684999wml.5;
-        Thu, 19 Nov 2020 02:42:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/WONwk1Hznyqszgzhf5qjgOB9DvKw5VGORxSmu4+MKA=;
-        b=eRFdj+UvfzGwds5oGwr/4cHpPz6kn8I1nEmfy0qfrEF5n70moLdo5kKaLmCf9W/mNY
-         d+lrEuKio5oxayKqHkbmG7mX8DrFalYExO6rhsHsbDHTEJ0up029sRkYdI8sIjZLi054
-         Jnk38oB+9zrGEazBM2E/UgAqpi+CO8hC0x4BwI3h0Ut7eDdaRcmzi+vxPZBB6tjKebRr
-         8sYx+kB6vg9MT49hmW/sSWO47F0JdB5ixNYgD1b9niNjleRe7SFTpkraKwIZuGerI/8f
-         2K68DNLLTFASnFhojfSpv/numHzINs0LqKHqJBMSMx1zmWfvAB1Z3kanSPoGeavE07Ub
-         IUtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/WONwk1Hznyqszgzhf5qjgOB9DvKw5VGORxSmu4+MKA=;
-        b=VtravYydtvbTyMXt39G+fgH2mUM/ydHtdiNkBGrtgJmJjbuC9Bpx2ymRo4GBFLToBJ
-         5U6jMQtL3oRHdmxt3tlTV7C6EYojU/F0cMjL+ENFzKumF2Zq5zL/sP2uC/pwXhaLcQ4V
-         7SAwkDIDKy9Z14/m6m37oXDyguWjsg/A2Y1Vip/MsgNZtF+0QG85aGjBHgWZK/cA91cC
-         WZ+uK1+nolqb0hKFF8a2dHdrp4Zc8vS7xAYunf2W6cY7wP3jurPYsxiiOE/T2SnRUqBI
-         oICSySX4ryh7tsTetBK6xGRtMBRmM5SXqFLbbVgi9K/ivBMpRntuxyZGxdEAIr9G9pXV
-         j5WA==
-X-Gm-Message-State: AOAM532oCOPOzp54j/jRPdavGkyyX1XORVf+3GY42X/2ylU+sHb7jJre
-        v/WETO3ek0jerOFHl40qPVs=
-X-Google-Smtp-Source: ABdhPJw8+Y9LRkMlJt0Eijs7lVZt7EnNnkOlXMLpkOFCCbQXI03qicotYJCJimOQkZZCGzFJ6Kou9g==
-X-Received: by 2002:a1c:490b:: with SMTP id w11mr3823868wma.101.1605782546625;
-        Thu, 19 Nov 2020 02:42:26 -0800 (PST)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id f13sm33363763wrq.78.2020.11.19.02.42.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2020 02:42:25 -0800 (PST)
-Date:   Thu, 19 Nov 2020 11:42:24 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org,
-        Ashish Singhal <ashishsingha@nvidia.com>
-Subject: Re: [PATCH] arm64: tegra: Fix Tegra234 VDK node names
-Message-ID: <20201119104224.GB3559705@ulmo>
-References: <20201118160458.659517-1-jonathanh@nvidia.com>
+        id S1726693AbgKSKsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 05:48:14 -0500
+Received: from mailgw01.mediatek.com ([210.61.82.183]:53228 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725881AbgKSKsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 05:48:13 -0500
+X-UUID: 3f6f1370d5934e7c8a5dab9b645f0d3b-20201119
+X-UUID: 3f6f1370d5934e7c8a5dab9b645f0d3b-20201119
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1783399922; Thu, 19 Nov 2020 18:48:07 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 19 Nov 2020 18:48:06 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 19 Nov 2020 18:48:05 +0800
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>
+Subject: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains controller
+Date:   Thu, 19 Nov 2020 18:48:04 +0800
+Message-ID: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wq9mPyueHGvFACwf"
-Content-Disposition: inline
-In-Reply-To: <20201118160458.659517-1-jonathanh@nvidia.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+Content-Type: text/plain
+X-MTK:  N
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add power domains controller node for SoC mt8192
 
---wq9mPyueHGvFACwf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+---
 
-On Wed, Nov 18, 2020 at 04:04:58PM +0000, Jon Hunter wrote:
-> When the device-tree board file was added for the Tegra234 VDK simulator
-> it incorrectly used the names 'cbb' and 'sdhci' instead of 'bus' and
-> 'mmc', respectively. The names 'bus' and 'mmc' are required by the
-> device-tree json-schema validation tools. Therefore, fix this by
-> renaming these nodes accordingly.
->=20
-> Fixes: 639448912ba1 ("arm64: tegra: Initial Tegra234 VDK support")
->=20
-> Reported-by: Ashish Singhal <ashishsingha@nvidia.com>
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234-sim-vdk.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+Change in v3: None, just rebase dts onto v5.10-rc1 and
+       V4 of series "Add new driver for SCPSYS power domains controller"[1]
 
-Applied, thanks.
+[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
 
-Thierry
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi | 201 +++++++++++++++++++++++++++++++
+ 1 file changed, 201 insertions(+)
 
---wq9mPyueHGvFACwf
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+index 69d45c7..08449eb 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+@@ -9,6 +9,7 @@
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
++#include <dt-bindings/power/mt8192-power.h>
+ 
+ / {
+ 	compatible = "mediatek,mt8192";
+@@ -257,6 +258,206 @@
+ 			#interrupt-cells = <2>;
+ 		};
+ 
++		scpsys: syscon@10006000 {
++			compatible = "syscon", "simple-mfd";
++			reg = <0 0x10006000 0 0x1000>;
++			#power-domain-cells = <1>;
++
++			/* System Power Manager */
++			spm: power-controller {
++				compatible = "mediatek,mt8192-power-controller";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				#power-domain-cells = <1>;
++
++				/* power domain of the SoC */
++				audio@MT8192_POWER_DOMAIN_AUDIO {
++					reg = <MT8192_POWER_DOMAIN_AUDIO>;
++					clocks = <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
++						 <&infracfg CLK_INFRA_AUDIO_26M_B>,
++						 <&infracfg CLK_INFRA_AUDIO>;
++					clock-names = "audio", "audio1", "audio2";
++					mediatek,infracfg = <&infracfg>;
++					#power-domain-cells = <0>;
++				};
++
++				conn@MT8192_POWER_DOMAIN_CONN {
++					reg = <MT8192_POWER_DOMAIN_CONN>;
++					clocks = <&infracfg CLK_INFRA_PMIC_CONN>;
++					clock-names = "conn";
++					mediatek,infracfg = <&infracfg>;
++					#power-domain-cells = <0>;
++				};
++
++				mfg@MT8192_POWER_DOMAIN_MFG0 {
++					reg = <MT8192_POWER_DOMAIN_MFG0>;
++					clocks = <&topckgen CLK_TOP_MFG_PLL_SEL>;
++					clock-names = "mfg";
++					#address-cells = <1>;
++					#size-cells = <0>;
++					#power-domain-cells = <1>;
++
++					mfg1@MT8192_POWER_DOMAIN_MFG1 {
++						reg = <MT8192_POWER_DOMAIN_MFG1>;
++						mediatek,infracfg = <&infracfg>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++						#power-domain-cells = <1>;
++
++						mfg2@MT8192_POWER_DOMAIN_MFG2 {
++							reg = <MT8192_POWER_DOMAIN_MFG2>;
++							#power-domain-cells = <0>;
++						};
++
++						mfg3@MT8192_POWER_DOMAIN_MFG3 {
++							reg = <MT8192_POWER_DOMAIN_MFG3>;
++							#power-domain-cells = <0>;
++						};
++
++						mfg4@MT8192_POWER_DOMAIN_MFG4 {
++							reg = <MT8192_POWER_DOMAIN_MFG4>;
++							#power-domain-cells = <0>;
++						};
++
++						mfg5@MT8192_POWER_DOMAIN_MFG5 {
++							reg = <MT8192_POWER_DOMAIN_MFG5>;
++							#power-domain-cells = <0>;
++						};
++
++						mfg6@MT8192_POWER_DOMAIN_MFG6 {
++							reg = <MT8192_POWER_DOMAIN_MFG6>;
++							#power-domain-cells = <0>;
++						};
++					};
++				};
++
++				disp@MT8192_POWER_DOMAIN_DISP {
++					reg = <MT8192_POWER_DOMAIN_DISP>;
++					clocks = <&topckgen CLK_TOP_DISP_SEL>,
++						 <&mmsys CLK_MM_SMI_INFRA>,
++						 <&mmsys CLK_MM_SMI_COMMON>,
++						 <&mmsys CLK_MM_SMI_GALS>,
++						 <&mmsys CLK_MM_SMI_IOMMU>;
++					clock-names = "disp", "disp-0", "disp-1", "disp-2",
++						      "disp-3";
++					mediatek,infracfg = <&infracfg>;
++					#address-cells = <1>;
++					#size-cells = <0>;
++					#power-domain-cells = <1>;
++
++					ipe@MT8192_POWER_DOMAIN_IPE {
++						reg = <MT8192_POWER_DOMAIN_IPE>;
++						clocks = <&topckgen CLK_TOP_IPE_SEL>,
++							 <&ipesys CLK_IPE_LARB19>,
++							 <&ipesys CLK_IPE_LARB20>,
++							 <&ipesys CLK_IPE_SMI_SUBCOM>,
++							 <&ipesys CLK_IPE_GALS>;
++						clock-names = "ipe", "ipe-0", "ipe-1", "ipe-2",
++							      "ipe-3";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					isp@MT8192_POWER_DOMAIN_ISP {
++						reg = <MT8192_POWER_DOMAIN_ISP>;
++						clocks = <&topckgen CLK_TOP_IMG1_SEL>,
++							 <&imgsys CLK_IMG_LARB9>,
++							 <&imgsys CLK_IMG_GALS>;
++						clock-names = "isp", "isp-0", "isp-1";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					isp2@MT8192_POWER_DOMAIN_ISP2 {
++						reg = <MT8192_POWER_DOMAIN_ISP2>;
++						clocks = <&topckgen CLK_TOP_IMG2_SEL>,
++							 <&imgsys2 CLK_IMG2_LARB11>,
++							 <&imgsys2 CLK_IMG2_GALS>;
++						clock-names = "isp2", "isp2-0", "isp2-1";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					mdp@MT8192_POWER_DOMAIN_MDP {
++						reg = <MT8192_POWER_DOMAIN_MDP>;
++						clocks = <&topckgen CLK_TOP_MDP_SEL>,
++							 <&mdpsys CLK_MDP_SMI0>;
++						clock-names = "mdp", "mdp-0";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					venc@MT8192_POWER_DOMAIN_VENC {
++						reg = <MT8192_POWER_DOMAIN_VENC>;
++						clocks = <&topckgen CLK_TOP_VENC_SEL>,
++							 <&vencsys CLK_VENC_SET1_VENC>;
++						clock-names = "venc", "venc-0";
++						mediatek,infracfg = <&infracfg>;
++						#power-domain-cells = <0>;
++					};
++
++					vdec@MT8192_POWER_DOMAIN_VDEC {
++						reg = <MT8192_POWER_DOMAIN_VDEC>;
++						clocks = <&topckgen CLK_TOP_VDEC_SEL>,
++							 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
++							 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
++							 <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
++						clock-names = "vdec", "vdec-0", "vdec-1", "vdec-2";
++						mediatek,infracfg = <&infracfg>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++						#power-domain-cells = <1>;
++
++						vdec2@MT8192_POWER_DOMAIN_VDEC2 {
++							reg = <MT8192_POWER_DOMAIN_VDEC2>;
++							clocks = <&vdecsys CLK_VDEC_VDEC>,
++								 <&vdecsys CLK_VDEC_LAT>,
++								 <&vdecsys CLK_VDEC_LARB1>;
++							clock-names = "vdec2-0", "vdec2-1",
++								      "vdec2-2";
++							#power-domain-cells = <0>;
++						};
++					};
++
++					cam@MT8192_POWER_DOMAIN_CAM {
++						reg = <MT8192_POWER_DOMAIN_CAM>;
++						clocks = <&topckgen CLK_TOP_CAM_SEL>,
++							 <&camsys CLK_CAM_LARB13>,
++							 <&camsys CLK_CAM_LARB14>,
++							 <&camsys CLK_CAM_CCU_GALS>,
++							 <&camsys CLK_CAM_CAM2MM_GALS>;
++						clock-names = "cam", "cam-0", "cam-1", "cam-2",
++							      "cam-3";
++						mediatek,infracfg = <&infracfg>;
++						#address-cells = <1>;
++						#size-cells = <0>;
++						#power-domain-cells = <1>;
++
++						cam_rawa@MT8192_POWER_DOMAIN_CAM_RAWA {
++							reg = <MT8192_POWER_DOMAIN_CAM_RAWA>;
++							clocks = <&camsys_rawa CLK_CAM_RAWA_LARBX>;
++							clock-names = "cam_rawa-0";
++							#power-domain-cells = <0>;
++						};
++
++						cam_rawb@MT8192_POWER_DOMAIN_CAM_RAWB {
++							reg = <MT8192_POWER_DOMAIN_CAM_RAWB>;
++							clocks = <&camsys_rawb CLK_CAM_RAWB_LARBX>;
++							clock-names = "cam_rawb-0";
++							#power-domain-cells = <0>;
++						};
++
++						cam_rawc@MT8192_POWER_DOMAIN_CAM_RAWC {
++							reg = <MT8192_POWER_DOMAIN_CAM_RAWC>;
++							clocks = <&camsys_rawc CLK_CAM_RAWC_LARBX>;
++							clock-names = "cam_rawc-0";
++							#power-domain-cells = <0>;
++						};
++					};
++				};
++			};
++		};
++
+ 		apmixedsys: syscon@1000c000 {
+ 			compatible = "mediatek,mt8192-apmixedsys", "syscon";
+ 			reg = <0 0x1000c000 0 0x1000>;
+-- 
+1.8.1.1.dirty
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+2TA8ACgkQ3SOs138+
-s6HnUBAAjjPXSbIhIkf8alADwJrvzITS9Fcq/iQGk4AYdmFkhWVo2LswHLeTCWwo
-HfsQnwExEYaUiB92b4miSnCwAdq6nrTMId44XgaVX0oo9WzwJioMsvCFi896TzH+
-Jm+cYEHz+q2yAdJuYBTUrKp6Gcr03X75/FTNK47k8n3qgHQkAvLs0H4orLuciZQ+
-ITmhCtgrvEG3UO2C9RahEmBk5zIpdGjICIPBOU28AvleI8lyvuvBJDWb1aS/cTZw
-su1452dECW+XW2rCp4m+ronK5rN8HgmKRA8Tygx+xY84ScfTGZL9r2UMx/IZiJMd
-y+V+RY5vota5dRLojDyZUHE0boSk8OBLoCGOZOJFVJ7R63GlH9p15OQ9Jsfki60Q
-NfytqEPBdmefttskD48XGQQUQcjF5qd44+pGHavcBcwSpAk4jXtU2ufUH8HWouqb
-KmC9oHyggpWvruQv/LDkEhywQwryMOEJZTezhBXOOcZB7DO1mTj/JOx93Ig2hqYv
-pOchnWBLO7VD6cjK2c4NydUAJaJx+CzMbdFh4FKkbENGFkWabhXZBANJvKZcC/kd
-TAkRV5Ft4/EcyXP94JDk8T2bzVJxGdYS9VIhfoqzckLqXuHdBlXrpsJPN2gG+lSw
-x9fgHa6BZhv80H+XiOn+bSq2PdHTnXHgPnF7nQz7wHinyuYbpIQ=
-=3jwx
------END PGP SIGNATURE-----
-
---wq9mPyueHGvFACwf--
