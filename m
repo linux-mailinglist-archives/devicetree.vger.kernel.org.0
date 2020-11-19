@@ -2,148 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 248152B8FC7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 11:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7AC2B9049
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 11:42:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727194AbgKSKCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 05:02:49 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:4960 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727174AbgKSKCr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 05:02:47 -0500
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 0AJA0Mmm010496;
-        Thu, 19 Nov 2020 05:02:45 -0500
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 34t9ybsjhh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 19 Nov 2020 05:02:45 -0500
-Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 0AJA2h0x011186
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Thu, 19 Nov 2020 05:02:43 -0500
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQMBX11.ad.analog.com (10.77.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Thu, 19 Nov 2020 02:02:42 -0800
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Thu, 19 Nov 2020 02:02:42 -0800
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0AJA2Ydf018635;
-        Thu, 19 Nov 2020 05:02:39 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <jic23@kernel.org>,
-        <andy.shevchenko@gmail.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v2 4/4] dt-bindings: adc: ad7887: add binding doc for AD7887
-Date:   Thu, 19 Nov 2020 12:07:48 +0200
-Message-ID: <20201119100748.57689-4-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201119100748.57689-1-alexandru.ardelean@analog.com>
-References: <20201119100748.57689-1-alexandru.ardelean@analog.com>
+        id S1726555AbgKSKlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 05:41:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56902 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725905AbgKSKlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 05:41:50 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE6A4C0613CF;
+        Thu, 19 Nov 2020 02:41:49 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id p1so5839488wrf.12;
+        Thu, 19 Nov 2020 02:41:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=MHnEOrvbhSGLANAE+Q8C5QoyY9bWqAkkZShUSQ8tDPw=;
+        b=aOwMUqi6ySn9E5v+v354chGwzw4NAxicuP1Dlbo815E1QJ2MJmueKxnMK5+6hb7aDg
+         98Acb3w11R3Od8qNR0PuEYTKwbSH4R21rLCmhtVbHk37qoqzIQzqN+lCC4OqFHqMMHej
+         pNkZa7tBWlh7BZZ33T+XEKiXKC1rKQWNoHHUptFkDt+tuUno0hdN8dXxx8kUT4K6jUM+
+         +xTA+pNiKkehIoHCiO2ErriO6akMaY7hIyu7OaXgHXTWeZlre7lwy8cJ9xiOvUi25C6H
+         E9KCf/xcGrnr+0e3nP32LpKth8WTLhTkvhmrq80KXtQIFfP6GUHO4ROUt2skIOn9x+FM
+         CexA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MHnEOrvbhSGLANAE+Q8C5QoyY9bWqAkkZShUSQ8tDPw=;
+        b=Ltu5UJPpnJBO6zIZ6Ek1g60CbNqrOZIe2G3b/YaHgDmcRy/2Y7gBYWNoAM1OOaATfD
+         XP2V18kaJ4hF0AmMTyfMFj5HivqjzcMLOEmiliJu6FnzJ75wPGGOwq2GyxuasWxi7peZ
+         Y7tK7Sp1KGo7oDXQMNsE48fkXLzuWbmj4GxdL5mlrhE8NHceqkE3OamLs5HqNNn9a9py
+         6Cju1pQ0vZGZuhV8GRHBxfx+rp8wx7bC7YzIHq4/SDGrhIiiDyanyaIBVxC1qHFo2xhE
+         14Sg16OgiHRS2rc+u4eUJGvZWQO3skPjinT8HokzDNTnFQeEhvl9vIC9IeEWNABet4kh
+         r6MQ==
+X-Gm-Message-State: AOAM53346bg9MUFN7N1dr93bAAn5noNqQXaKndG4xZksSQY9ayjV3BIR
+        59PydIkbzbOoTisYVbQvm40=
+X-Google-Smtp-Source: ABdhPJzkcln9b61qXWm4b6rcBoHmz0B4k78//yNJQV2rRUVSxv/jIkZUVrCbcFlDY7IwkvnKZecX7g==
+X-Received: by 2002:adf:f542:: with SMTP id j2mr9431236wrp.107.1605782508408;
+        Thu, 19 Nov 2020 02:41:48 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id v8sm9267340wmg.28.2020.11.19.02.41.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2020 02:41:47 -0800 (PST)
+Date:   Thu, 19 Nov 2020 11:41:45 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     JC Kuo <jckuo@nvidia.com>
+Cc:     gregkh@linuxfoundation.org, jonathanh@nvidia.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH v3] arm64: tegra: jetson-tx1: Fix USB_VBUS_EN0 regulator
+Message-ID: <20201119104145.GA3559705@ulmo>
+References: <20201119072345.447793-1-jckuo@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-19_08:2020-11-17,2020-11-19 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 mlxscore=0
- priorityscore=1501 suspectscore=0 impostorscore=0 lowpriorityscore=0
- bulkscore=0 clxscore=1015 spamscore=0 adultscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011190073
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="bp/iNruPH9dso1Pn"
+Content-Disposition: inline
+In-Reply-To: <20201119072345.447793-1-jckuo@nvidia.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds a simple device-tree binding for thhe Analog Devices
-AD7887 ADC.
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/adc/adi,ad7887.yaml          | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
+--bp/iNruPH9dso1Pn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
-new file mode 100644
-index 000000000000..9b30f4569b4e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/adi,ad7887.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AD7887 low power, 12-bit ADC
-+
-+maintainers:
-+  - Michael Hennerich <michael.hennerich@analog.com>
-+
-+description: |
-+  Analog Devices AD7887 low power, 12-bit analog-to-digital converter (ADC)
-+  that operates from a single 2.7 V to 5.25 V power supply.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,ad7887
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-+  avcc-supply: true
-+
-+  spi-max-frequency: true
-+
-+  vref-supply:
-+    description:
-+      ADC reference voltage supply
-+
-+  adi,dual-channel-mode:
-+    description:
-+      Configures dual-channel mode for the ADC. In dual-channel operation,
-+      the AIN1/VREF pin assumes its AIN1 function, providing a second analog
-+      input channel. In this case, he reference voltage for the part is provided
-+      via the VDD pin. As a result, the input voltage range on both the AIN0 and
-+      AIN1 inputs is 0 to VDD.
-+    type: boolean
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - spi-cpha
-+  - spi-cpol
-+
-+examples:
-+  - |
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        adc@0 {
-+                compatible = "adi,ad7887";
-+                reg = <0>;
-+                spi-max-frequency = <1000000>;
-+                spi-cpol;
-+                spi-cpha;
-+
-+                avcc-supply = <&adc_supply>;
-+                vref-supply = <&adc_vref>;
-+        };
-+    };
-+...
--- 
-2.17.1
+On Thu, Nov 19, 2020 at 03:23:45PM +0800, JC Kuo wrote:
+> USB Host mode is broken at OTG port of Jetson-TX1 platform because
+> USB_VBUS_EN0 regulator (regulator@11) is being overwritten by vdd-cam-1v2
+> regulator. This commit rearrange USB_VBUS_EN0 to be regulator@14.
+>=20
+> Fixes: 257c8047be44 ("arm64: tegra: jetson-tx1: Add camera supplies")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: JC Kuo <jckuo@nvidia.com>
+> Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+> v3:
+>     add 'Cc: stable@vger.kernel.org' tag
+> v2:
+>     add 'Fixes:' tag
+>     add Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+>=20
+>  .../arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 20 +++++++++----------
+>  1 file changed, 10 insertions(+), 10 deletions(-)
 
+Applied, thanks.
+
+Thierry
+
+--bp/iNruPH9dso1Pn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+2S+cACgkQ3SOs138+
+s6HYIRAAq92ZFhrbwrU0jsQytIdgpzznSQqFr8t3RAw/JxmWcR0UhY2Zavv3OjRg
+z/pj0hVWdBYLboF8m7794n5yL7E2e2KjntsKrd2nquXQNt+XKeZhlg3loRzc8J1x
+ZUO2jWn3TxGowKbMhm7w1LLSo52nWN5+VNux8rC6WM+Y3EBTZ3/byof0bmiTb3Fd
+NI6/HwitV3K+YOiPq1ZUVldz5ZEFrTu2gH/Vmv6PPTrLqCqdJkKLNrAMqVxFweYx
+KXt+pdaxCWR/A8U7E96MmqBRK1naRU7yqaZZoU1lyiPV5tG2U5eZYCnhrWYkAl0h
+vycVFHNhn3P/Gtd6QkALR0zJNA/q27/YG1agsZqMN0vF61VxOceQp2x34mtT9TQD
+e7WEQ1zySu0OJJg/4MxMChsIgPniWxEdtKxNVAQ2AreSC5+sZCbzK9/4C2xFCrYE
+x8A3vP0PaLG3Noi7uOfoyc1sEJY6rCXmCl1IqQdDRgIBeJ11uVdA3PWuYHCB5pQ1
+cT/quo0tHvgZTKS3uqzRuTuN55FMlcq4+l6dlNuOpHYeWDsIkEXtwX7wsvsrPw0X
+JAtDpupIcN+07c04R8rjDNPPEuITfFIkZRiciECnip7JMZqG4nKgVl2UaWMNNV8B
+9SsWS/FfcKt2bsO6YM37fEHTLfrRP+OeLKURMjc0tSwcl8BDEz0=
+=O36O
+-----END PGP SIGNATURE-----
+
+--bp/iNruPH9dso1Pn--
