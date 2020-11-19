@@ -2,192 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ABFB2B8EA4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 10:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A622F2B8EB6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 10:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726886AbgKSJUa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 04:20:30 -0500
-Received: from mx2.suse.de ([195.135.220.15]:34756 "EHLO mx2.suse.de"
+        id S1726251AbgKSJ0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 04:26:35 -0500
+Received: from mx2.suse.de ([195.135.220.15]:40194 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726775AbgKSJU3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 04:20:29 -0500
+        id S1725936AbgKSJ0f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 04:26:35 -0500
 X-Virus-Scanned: by amavisd-new at test-mx.suse.de
 Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 61CA6AF93;
-        Thu, 19 Nov 2020 09:20:26 +0000 (UTC)
-Subject: Re: [PATCH v2 2/3] drm/vc4: hdmi: Disable Wifi Frequencies
+        by mx2.suse.de (Postfix) with ESMTP id 18096AC48;
+        Thu, 19 Nov 2020 09:26:33 +0000 (UTC)
+Subject: Re: [PATCH 3/8] drm/vc4: kms: Move HVS state helpers around
 To:     Maxime Ripard <maxime@cerno.tech>,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
+        Eric Anholt <eric@anholt.net>,
         Daniel Vetter <daniel.vetter@intel.com>,
         David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Eric Anholt <eric@anholt.net>
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc:     devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
         Dave Stevenson <dave.stevenson@raspberrypi.com>,
         dri-devel@lists.freedesktop.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
         bcm-kernel-feedback-list@broadcom.com,
         linux-rpi-kernel@lists.infradead.org,
         Phil Elwell <phil@raspberrypi.com>,
         linux-arm-kernel@lists.infradead.org
-References: <20201029134018.1948636-1-maxime@cerno.tech>
- <20201029134018.1948636-2-maxime@cerno.tech>
+References: <20201113152956.139663-1-maxime@cerno.tech>
+ <20201113152956.139663-4-maxime@cerno.tech>
 From:   Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <a5af9bc2-b2f0-9a03-f436-8b18d9af7b89@suse.de>
-Date:   Thu, 19 Nov 2020 10:20:25 +0100
+Message-ID: <6151cb29-2e12-d08c-fc96-1e871b78e643@suse.de>
+Date:   Thu, 19 Nov 2020 10:26:32 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.4.0
 MIME-Version: 1.0
-In-Reply-To: <20201029134018.1948636-2-maxime@cerno.tech>
+In-Reply-To: <20201113152956.139663-4-maxime@cerno.tech>
 Content-Type: multipart/signed; micalg=pgp-sha256;
  protocol="application/pgp-signature";
- boundary="vHaGzUJMAoIhm7Q9JW302Dfe54rIxQSbv"
+ boundary="dKZX5uTovdotVFIGWT8JyUEOh7IYiyMh9"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---vHaGzUJMAoIhm7Q9JW302Dfe54rIxQSbv
-Content-Type: multipart/mixed; boundary="tVmd0nbkMF25RRuTvHTWlVIS8xF14uSzo";
+--dKZX5uTovdotVFIGWT8JyUEOh7IYiyMh9
+Content-Type: multipart/mixed; boundary="skA7OLSXWo44aklj54YTlKWoW9R8gcuPQ";
  protected-headers="v1"
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: Maxime Ripard <maxime@cerno.tech>, Mark Rutland <mark.rutland@arm.com>,
  Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Daniel Vetter <daniel.vetter@intel.com>, David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Eric Anholt <eric@anholt.net>
+ Eric Anholt <eric@anholt.net>, Daniel Vetter <daniel.vetter@intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
  Dave Stevenson <dave.stevenson@raspberrypi.com>,
- dri-devel@lists.freedesktop.org,
- Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
- bcm-kernel-feedback-list@broadcom.com, linux-rpi-kernel@lists.infradead.org,
- Phil Elwell <phil@raspberrypi.com>, linux-arm-kernel@lists.infradead.org
-Message-ID: <a5af9bc2-b2f0-9a03-f436-8b18d9af7b89@suse.de>
-Subject: Re: [PATCH v2 2/3] drm/vc4: hdmi: Disable Wifi Frequencies
-References: <20201029134018.1948636-1-maxime@cerno.tech>
- <20201029134018.1948636-2-maxime@cerno.tech>
-In-Reply-To: <20201029134018.1948636-2-maxime@cerno.tech>
+ dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
+ linux-rpi-kernel@lists.infradead.org, Phil Elwell <phil@raspberrypi.com>,
+ linux-arm-kernel@lists.infradead.org
+Message-ID: <6151cb29-2e12-d08c-fc96-1e871b78e643@suse.de>
+Subject: Re: [PATCH 3/8] drm/vc4: kms: Move HVS state helpers around
+References: <20201113152956.139663-1-maxime@cerno.tech>
+ <20201113152956.139663-4-maxime@cerno.tech>
+In-Reply-To: <20201113152956.139663-4-maxime@cerno.tech>
 
---tVmd0nbkMF25RRuTvHTWlVIS8xF14uSzo
+--skA7OLSXWo44aklj54YTlKWoW9R8gcuPQ
 Content-Type: multipart/mixed;
- boundary="------------A9637589CEBA874E8CD49C61"
+ boundary="------------7CC15EEB3DE93BA3CD5263BF"
 Content-Language: en-US
 
 This is a multi-part message in MIME format.
---------------A9637589CEBA874E8CD49C61
+--------------7CC15EEB3DE93BA3CD5263BF
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi
+I'd merge this into the patch that introduces the function.
 
-Am 29.10.20 um 14:40 schrieb Maxime Ripard:
-> There's cross-talk on the RPi4 between the 2.4GHz channels used by the =
-WiFi
-> chip and some resolutions, most notably 1440p at 60Hz.
->=20
-> In such a case, we can either reject entirely the mode, or lower slight=
-ly
-> the pixel frequency to remove the overlap. Let's go for the latter.
+Am 13.11.20 um 16:29 schrieb Maxime Ripard:
+> We're going to use those helpers in functions higher in that file, let'=
+s
+> move it around.
 >=20
 > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->=20
 > ---
+>   drivers/gpu/drm/vc4/vc4_kms.c | 26 +++++++++++++-------------
+>   1 file changed, 13 insertions(+), 13 deletions(-)
 >=20
-> Changes from v1:
->    - Change the name of the property
->    - Test for a range instead of an exact frequency
-> ---
->   drivers/gpu/drm/vc4/vc4_hdmi.c | 21 +++++++++++++++++++++
->   drivers/gpu/drm/vc4/vc4_hdmi.h |  8 ++++++++
->   2 files changed, 29 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_h=
-dmi.c
-> index 506c12454086..0d72e519aec4 100644
-> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> @@ -760,6 +760,9 @@ static void vc4_hdmi_encoder_enable(struct drm_enco=
-der *encoder)
->   {
+> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
+s.c
+> index 7ef164afa9e2..d6712924681e 100644
+> --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> @@ -182,6 +182,19 @@ vc4_ctm_commit(struct vc4_dev *vc4, struct drm_ato=
+mic_state *state)
+>   		  VC4_SET_FIELD(ctm_state->fifo, SCALER_OLEDOFFS_DISPFIFO));
 >   }
 >  =20
-> +#define WIFI_2_4GHz_CH1_MIN_FREQ	2400000000ULL
-> +#define WIFI_2_4GHz_CH1_MAX_FREQ	2422000000ULL
+> +static struct vc4_hvs_state *
+> +vc4_hvs_get_global_state(struct drm_atomic_state *state)
+> +{
+> +	struct vc4_dev *vc4 =3D to_vc4_dev(state->dev);
+> +	struct drm_private_state *priv_state;
 > +
->   static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,=
-
->   					 struct drm_crtc_state *crtc_state,
->   					 struct drm_connector_state *conn_state)
-> @@ -767,12 +770,27 @@ static int vc4_hdmi_encoder_atomic_check(struct d=
-rm_encoder *encoder,
->   	struct drm_display_mode *mode =3D &crtc_state->adjusted_mode;
->   	struct vc4_hdmi *vc4_hdmi =3D encoder_to_vc4_hdmi(encoder);
->   	unsigned long long pixel_rate =3D mode->clock * 1000;
-> +	unsigned long long tmds_rate;
->  =20
->   	if (vc4_hdmi->variant->unsupported_odd_h_timings &&
->   	    ((mode->hdisplay % 2) || (mode->hsync_start % 2) ||
->   	     (mode->hsync_end % 2) || (mode->htotal % 2)))
->   		return -EINVAL;
->  =20
-> +	/*
-> +	 * The 1440p@60 pixel rate is in the same range than the first
-> +	 * WiFi channel (between 2.4GHz and 2.422GHz with 22MHz
-> +	 * bandwidth). Slightly lower the frequency to bring it out of
-> +	 * the WiFi range.
-> +	 */
-> +	tmds_rate =3D pixel_rate * 10;
-> +	if (vc4_hdmi->disable_wifi_frequencies &&
-> +	    (tmds_rate >=3D WIFI_2_4GHz_CH1_MIN_FREQ &&
-> +	     tmds_rate <=3D WIFI_2_4GHz_CH1_MAX_FREQ)) {
-> +		mode->clock =3D 238560;
-> +		pixel_rate =3D mode->clock * 1000;
-> +	}
+> +	priv_state =3D drm_atomic_get_private_obj_state(state, &vc4->hvs_chan=
+nels);
+> +	if (IS_ERR(priv_state))
+> +		return ERR_CAST(priv_state);
 > +
->   	if (pixel_rate > vc4_hdmi->variant->max_pixel_clock)
->   		return -EINVAL;
->  =20
-> @@ -1717,6 +1735,9 @@ static int vc4_hdmi_bind(struct device *dev, stru=
-ct device *master, void *data)
->   		vc4_hdmi->hpd_active_low =3D hpd_gpio_flags & OF_GPIO_ACTIVE_LOW;
->   	}
->  =20
-> +	vc4_hdmi->disable_wifi_frequencies =3D
-> +		of_property_read_bool(dev->of_node, "wifi-2.4ghz-coexistence");
+> +	return to_vc4_hvs_state(priv_state);
+> +}
 > +
->   	pm_runtime_enable(dev);
+>   static void vc4_hvs_pv_muxing_commit(struct vc4_dev *vc4,
+>   				     struct drm_atomic_state *state)
+>   {
+> @@ -730,19 +743,6 @@ static int vc4_hvs_channels_obj_init(struct vc4_de=
+v *vc4)
+>   	return drmm_add_action_or_reset(&vc4->base, vc4_hvs_channels_obj_fin=
+i, NULL);
+>   }
 >  =20
->   	drm_simple_encoder_init(drm, encoder, DRM_MODE_ENCODER_TMDS);
-> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.h b/drivers/gpu/drm/vc4/vc4_h=
-dmi.h
-> index 6815e93b1a48..3843be830601 100644
-> --- a/drivers/gpu/drm/vc4/vc4_hdmi.h
-> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.h
-> @@ -142,6 +142,14 @@ struct vc4_hdmi {
->   	int hpd_gpio;
->   	bool hpd_active_low;
->  =20
-> +	/*
-> +	 * On some systems (like the RPi4), some modes are in the same
-> +	 * frequency range than the WiFi channels (1440p@60Hz for
-> +	 * example). Should we take evasive actions because that system
-> +	 * has a wifi adapter.
-
-The final sentence sounds like a question. Maybe just write 'Take=20
-evasive actions if...'
-
-Assuming that the display mode still works
-
-Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> +	 */
-> +	bool disable_wifi_frequencies;
-> +
->   	struct cec_adapter *cec_adap;
->   	struct cec_msg cec_rx_msg;
->   	bool cec_tx_ok;
+> -static struct vc4_hvs_state *
+> -vc4_hvs_get_global_state(struct drm_atomic_state *state)
+> -{
+> -	struct vc4_dev *vc4 =3D to_vc4_dev(state->dev);
+> -	struct drm_private_state *priv_state;
+> -
+> -	priv_state =3D drm_atomic_get_private_obj_state(state, &vc4->hvs_chan=
+nels);
+> -	if (IS_ERR(priv_state))
+> -		return ERR_CAST(priv_state);
+> -
+> -	return to_vc4_hvs_state(priv_state);
+> -}
+> -
+>   /*
+>    * The BCM2711 HVS has up to 7 output connected to the pixelvalves an=
+d
+>    * the TXP (and therefore all the CRTCs found on that platform).
 >=20
 
 --=20
@@ -198,7 +151,7 @@ Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
 (HRB 36809, AG N=C3=BCrnberg)
 Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
---------------A9637589CEBA874E8CD49C61
+--------------7CC15EEB3DE93BA3CD5263BF
 Content-Type: application/pgp-keys;
  name="OpenPGP_0x680DC11D530B7A23.asc"
 Content-Transfer-Encoding: quoted-printable
@@ -401,29 +354,29 @@ WSR
 =3DfoRs
 -----END PGP PUBLIC KEY BLOCK-----
 
---------------A9637589CEBA874E8CD49C61--
+--------------7CC15EEB3DE93BA3CD5263BF--
 
---tVmd0nbkMF25RRuTvHTWlVIS8xF14uSzo--
+--skA7OLSXWo44aklj54YTlKWoW9R8gcuPQ--
 
---vHaGzUJMAoIhm7Q9JW302Dfe54rIxQSbv
+--dKZX5uTovdotVFIGWT8JyUEOh7IYiyMh9
 Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
 Content-Description: OpenPGP digital signature
 Content-Disposition: attachment; filename="OpenPGP_signature"
 
 -----BEGIN PGP SIGNATURE-----
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+2ONkFAwAAAAAACgkQlh/E3EQov+Du
-fhAAq8oxSMG/fWKQuc07QdtSeba8f6a8OCmFLQvSE4sZvwY1eEAH0rOYnIpdtNFbThNsvthdd2vA
-beG84ZUNWDTVvh0TZmuvDCgeFUkmk6mn7eqx1Q03W4jJCJfNP1nlRSppwbzJ07pyyDcf2KhtzcGv
-TTnGIeKnIcZptgBd3JI19nSz87JHHrC/CsoiMkg6r5SIywLRmSQ5QYjSv1X82lpjeeeWzeJMw6Vm
-7n4xVmnW1kjGiDwtjaqvYi168MH45z96O85KVMGUz9f5C/Hets+nPy6acQ12D2lU3Gwzz3wRpWtf
-sNT8sA4Oemel4+JlVNMdB5H2BRCDTOOYMKvePaBp+17wja2o6wry6J8sY7Kb31czTi5tcp+BH/9C
-YWQ5NrOsFt5oDuZz/iA3WNXx8omHfW7L++fmhqS17dYDTVk5pCmnFvXO5MZiqnQMvfG7Nj5mYMkH
-icszLqQbd1x4P0mDpAHqOMJXjho17R7EdxsdezL0ySD3sgZ/r9kELxgKnLwpTrDaKmk4eMwgSbjQ
-A71jZZlMLgjkDD7zxD2nHua/RJKO3MRHx8BM+ske3g8pzabYitXhWaakBL/1tcgcEDhlKjo5Ns29
-qMa/wA0+ZPzQAzNCPgGgAQxdKleKHCkXsvA9YWe+AIYw2Ekm/ttMMQ+8nk8pq7DyGZQ84LeOP77V
-yLM=
-=k1+h
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+2OkgFAwAAAAAACgkQlh/E3EQov+Dv
+ahAAkwbrz0V0wvas8Hc0tQTrEo6/1DIqrLs/AgxturLVSz3pqm7ajh6QY/f+rvXh78LVlDBdvZNP
+/ThzkxbMg1AOBJiQdzMI9GQjFsT9YL37WrS7XzTxTpG6FV256h7dJgDC2P0E4/askNYP21eIF6hT
+o7HECWb0dGQ2+BmrXx1FhylpYJmUW6+3vNx4yAqlh1A1syCr1Z2bK6+vLns+XJXFJqlAYKxZgd+w
+XY/ejTzn3MpNDwErA5v1tUzP4KOwGLdk9LqoZ9cY6qcJOqfL6SC0rEnh9Vm+1ya8CJwsZ5LlpQJE
+GIUMhYAmVhLkyW8rA8aJCiX5ggcSU3lIyeLJPICmmhjG1iRDGHP5wXpG40z02467Js5u0NBffuF+
+uNeDvGpF8YNQYL/+Gp+Et2ihulGqcKNf46Uo2ZVJwIbxmV3fVLWBwEXm1cgIY3h5K3Ckra/mBhL2
+KcZJndiI+7kpZey1JhPT1n9zkKWgin23Nf8CXhAGZJHcN2C+KnwooAdsBW7bMi6FglIlsJ0WPOx0
+RklPI36FMLzHvWB6trOM0Tb4PMhcKSNVcJvU5KyUGYzEjTKXCN+KxtHS7b/AalgxlB+HhdOeNwXe
+FwStFhau+PDMSCyVR0OaXcVh4FXG0bL/u0voAfpcohtQEsG3szbdbIzz1gfOLSuM3p/4PN1O4Nfe
+cVU=
+=VkEe
 -----END PGP SIGNATURE-----
 
---vHaGzUJMAoIhm7Q9JW302Dfe54rIxQSbv--
+--dKZX5uTovdotVFIGWT8JyUEOh7IYiyMh9--
