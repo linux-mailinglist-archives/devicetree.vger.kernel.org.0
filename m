@@ -2,113 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5718E2B90CD
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 12:18:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A722B90C3
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 12:15:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726885AbgKSLSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 06:18:15 -0500
-Received: from mail-vi1eur05on2068.outbound.protection.outlook.com ([40.107.21.68]:61721
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726843AbgKSLSO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 06:18:14 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OK8CyCSVbVKEFiRFljx5oS3UlLv1rcwAkiGPzhc4WOP/PJ/nBrwy0UzARqebxTTchs0OnoYVCY66CeUttAYO+VLrX7vAXZQ0KDL+q+u3qUGwaiFwHcApjjY4U+JzgdRnhIV8VVmqiAxRFTqYs9GsbJtH9EMSRYlvgY+ALlUPhmitP+BVTPY9XCmVIsYGuLNiA0ZSstPTUbMMrwS2hTMaqhK67Z/5nnYTYeNBGiM1lQScH4aUHTZMg6KQs5SCyRDTgDBRQG7Y+nSVpJ67f6I6fHVil6GIW/ReDRv68sKXbTs1ooFlqTQrxlVPTdFnI/ATEb/C+iZmpvC/+2ugitaEcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9gQ5JRoT/fKJo916Za656pYn7tm1hOCXBVbgoFOOpFU=;
- b=eRbb1dnvMUKQ5ymixj9sQR9rA4pyXm/PGdnTzOItOFRE/NAoHLJ1v79de1dgtUT/Mk+k48U6cMkcQ71uPz0rC02jrBfrEFdylKN+ayKH4zNnJK4rW3BRp3Y9M1PaP+pjg50V+yekXJwOqgRy/EO/dbxTtoVAmZcwO7symktlRsGiYw3wHQ4kzLv3N+fc7X+yUSR+ZwlJhoGEyl8iE0mCqpJcZLKS7kHZK7C5WM4S+HcnnI+SDH7tF6bXAv9BfsP9AWPupG1LziABfPARLQ8RPOkEsob2lkSBrvMVwxtJJEw5uOtOoK+YQko4TJBjAnpeQix9zkbt9dXTvdu5S+POfg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9gQ5JRoT/fKJo916Za656pYn7tm1hOCXBVbgoFOOpFU=;
- b=TeNdAD+Hwscs+ONmIlnMDwrkmUh+in4DSeEqc0txmXdD2jBAd/CdQS37nhBzQkIcxhSx/PgCNwV8Veng1s8VSk0MLcnROujipHNbcIL4fV8vwYkDSAvGXA+6SG81WFioqaQPrIZ9ZIICCLKhNs9rjmA+9RQcjTfU7Z7zsQEuR8I=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
- by AS8PR04MB7687.eurprd04.prod.outlook.com (2603:10a6:20b:291::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.22; Thu, 19 Nov
- 2020 11:18:11 +0000
-Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
- ([fe80::3cfc:a92e:75ad:ce4a]) by AM6PR04MB4966.eurprd04.prod.outlook.com
- ([fe80::3cfc:a92e:75ad:ce4a%3]) with mapi id 15.20.3564.029; Thu, 19 Nov 2020
- 11:18:11 +0000
-From:   Dong Aisheng <aisheng.dong@nxp.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-imx@nxp.com, dongas86@gmail.com,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: [PATCH 3/3] of: property: fix document of of_get_next_parent_dev
-Date:   Thu, 19 Nov 2020 19:00:36 +0800
-Message-Id: <20201119110036.19959-3-aisheng.dong@nxp.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20201119110036.19959-1-aisheng.dong@nxp.com>
-References: <20201119110036.19959-1-aisheng.dong@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR06CA0194.apcprd06.prod.outlook.com (2603:1096:4:1::26)
- To AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+        id S1726731AbgKSLPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 06:15:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726637AbgKSLPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 06:15:10 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 008C3C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 03:15:09 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id d142so6794451wmd.4
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 03:15:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i3bywqJGibmImGFVBloG/PxKQsxxZW+1/hxQlrjgQ2M=;
+        b=kViebYGf415PllV0Y/kR3BerhJPS88hs4oIKDLMMJ6Oz6BBVcMhrU7MDfg6pBweuys
+         HP/ktZl2lvoeUezzxzoZU0W7CYSur36juWPWN1SwExFOpyvq0nIOUywJxzwmjQuJUo5F
+         EH93U+Nty5EKwSh9whoYh1ADy22TIFt9mJNecTs2EudW+PBgoY35ajE10b+iKH8A0GzA
+         I07QUvMNJASyDEoFAwQHjCelRT9zFJodOryXa+FVVX1iI9MXReG1L0rxzhaHc6elvHcB
+         GVRklaiVtGrs3gAWXwVnI8gcnloDTwy89I/iJE8zxoP8I0Nvy06FNNmvkpuynMPSKSfk
+         1twg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i3bywqJGibmImGFVBloG/PxKQsxxZW+1/hxQlrjgQ2M=;
+        b=U9OUNZvGCxB5cbR1w+6LCGnW3qLce7B3cMcz0oKRc/znfShZi91FjCDnNP4o+c+4uF
+         TV8ocYwOewgi5/+5QAxDNu3s2vpVwgygX5ctc/D4ZoE6uy7wX3MFbaSBXoBoGhPUWytv
+         nCwqHmiMFiAXHa21BvKWVaoEMfYwTeQ5yXdE+T6IFHxj81rTSXhdPZuVVjySUZYHXr5Z
+         o9QHeG2o4k9j4mQG/MDWY5aBe/4hG6R0RUBqkyaowmtKDuEXyMz2N71F61hy+o5V5rId
+         cAPgk9yAvppt1d30vBNYPjN5Y19HThVwh7lBg/5T2GxZ3FfJLCLo5h32PiEaBx03xMlV
+         2bNQ==
+X-Gm-Message-State: AOAM533dxBAJ1tBv24wYPTS9wNPsVtU/PkPxCtMpKjWK/ek2YDmvgwM+
+        gXdCGQ8Rm2V8pZrzEKPSs+1yQS0sWGHvvN1LGLE72Q==
+X-Google-Smtp-Source: ABdhPJyB/azykQfBEc+CLIkkFCj/BRoWSVMQ5O1khMgFJBoR5x2SDgk0oIVd5froSHQYd588aMJNZk1cdHfNfEihuQs=
+X-Received: by 2002:a1c:810c:: with SMTP id c12mr3772722wmd.96.1605784508683;
+ Thu, 19 Nov 2020 03:15:08 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from b29396-OptiPlex-7040.ap.freescale.net (119.31.174.66) by SG2PR06CA0194.apcprd06.prod.outlook.com (2603:1096:4:1::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3589.21 via Frontend Transport; Thu, 19 Nov 2020 11:18:08 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 9e309239-9539-4ebd-67d9-08d88c7ccca2
-X-MS-TrafficTypeDiagnostic: AS8PR04MB7687:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AS8PR04MB7687956E205401A1F52DCFBD80E00@AS8PR04MB7687.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:370;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bxoOLjUEO/84jt26NPz9cQS39bH/TT2+8LO0+TBTU2Ve8tO7Pl/Sbkjl6EbNAZIFxtKn/hYnUSsy/TWED3lnLnG4LxX1In4EuvmyusV+JxYeE50G7fKKa8cH7QBiLDGZQ3jJCRtHA1x3lrtaoj3z6jXU0EW+tve98oYwL+CXsZ01GLHjcOWUxHad+oDmXWxprPW7JYrCs/rzPOvzA9rXJmHiuquZPn9ZhULAzpQ6C4rd+0KbD7vdk7d4/c8R9g64eJ+ngRdeeG3SvqzNXoCcLrUAiOHB1YESXtgxZ5VlmajigeCqmIpQm9zh8qwuIHqiK2nwcIv+eHmZxaQeZsJwig==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(39860400002)(366004)(136003)(376002)(346002)(66476007)(66946007)(66556008)(6506007)(83380400001)(52116002)(6666004)(2616005)(6916009)(4744005)(6486002)(316002)(1076003)(956004)(4326008)(478600001)(16526019)(2906002)(8936002)(86362001)(26005)(186003)(5660300002)(6512007)(36756003)(54906003)(8676002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: O0MmoOAKWUXDRmgaAhLO6gvL7QLe/YopzmCiQM+vkzgrpkyweDH50n+QkEJgJNw4uVOwa/PpzRP+rW1cmvwP3qOYGfFfzWExauMW63dkvYdxj4xOW/nZyhvWa4d9Ox0alKKUlFH1Up+8HujAjK7RbeOeCifFllJJ55PL4sKkFk/kuUUVSNLARcLgZEiGz4CMp/VxsdtJsG5RExgAryOGPCMqZc1Or0FIHsUOmKKmw4WagDHbJmirZ8ezmdtXeBNX3va9i7NYOzh+s2TjVs+0dHKzITNwKKXJDX+ZBJ2NnVG0Zeur6TDwMu5yzBzXAA/7ZMLsr5qhYlGvjXAdWqIjlUCVmud63YdbgdFFamBCZ/iRo1zPzzG/p8VVPjf5ED6VVEbu4nnFxUS+6m/XNpm/r5TghNgnZS4IcJpecmfggMbQiQyON3LZ78x5+4O0w5TJEhuR8ytSzhO6aYGiQawXKqyrJ/RDIQJ+hO26XLH7/qfcVo+0hAEsDfT8Vs98gEhqljchqr9yXWAMeo6THpCtDt1O7ibO6ACfm95+cZK2E2EPNreW4XpaMPGoXMuvE22a1/rJE5pDWpMBZqu0E+Y7zb0KiPUvTncVWLGtq/vhv1akCBvNmQpck3t0zveZ3XthxZX3/+Ts1f193S3ftdepTQ==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e309239-9539-4ebd-67d9-08d88c7ccca2
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4966.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2020 11:18:11.3681
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zZcknUpW+c4PI+Cgz50YAnBJEtStsN400+umTtVw1lRJfHbObCIu968laY9zQfjRjLxUf3nGAA+CO3zUz0EEog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7687
+References: <20201029122522.1917579-1-maxime@cerno.tech> <20201029122522.1917579-2-maxime@cerno.tech>
+In-Reply-To: <20201029122522.1917579-2-maxime@cerno.tech>
+From:   Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date:   Thu, 19 Nov 2020 11:14:50 +0000
+Message-ID: <CAPY8ntCBGBv-FkOD1qR4-xOsKSB+G1Qcy5rcebRmkVWiwpRUzw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] drm/vc4: hdmi: Block odd horizontal timings
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix document of of_get_next_parent_dev.
+Hi Maxime
 
-Cc: devicetree@vger.kernel.org
-Cc: Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
----
- drivers/of/property.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks for the rewording :-)
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 21a854e85234..5bd4a9bead47 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1038,7 +1038,7 @@ static bool of_is_ancestor_of(struct device_node *test_ancestor,
- }
- 
- /**
-- * of_get_next_parent_dev - Add device link to supplier from supplier phandle
-+ * of_get_next_parent_dev - Get the closest ancestor device of a device node
-  * @np: device tree node
-  *
-  * Given a device tree node (@np), this function finds its closest ancestor
--- 
-2.23.0
+On Thu, 29 Oct 2020 at 12:25, Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> The FIFO between the pixelvalve and the HDMI controller runs at 2 pixels
+> per clock cycle, and cannot deal with odd timings.
+>
+> Let's reject any mode with such timings.
+>
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
 
+Reviewed-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+
+> ---
+>
+> Changes from v1:
+>   - s/broken/unsupported/
+> ---
+>  drivers/gpu/drm/vc4/vc4_hdmi.c | 12 ++++++++++++
+>  drivers/gpu/drm/vc4/vc4_hdmi.h |  3 +++
+>  2 files changed, 15 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> index 3d0338822cd2..506c12454086 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
+> @@ -768,6 +768,11 @@ static int vc4_hdmi_encoder_atomic_check(struct drm_encoder *encoder,
+>         struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
+>         unsigned long long pixel_rate = mode->clock * 1000;
+>
+> +       if (vc4_hdmi->variant->unsupported_odd_h_timings &&
+> +           ((mode->hdisplay % 2) || (mode->hsync_start % 2) ||
+> +            (mode->hsync_end % 2) || (mode->htotal % 2)))
+> +               return -EINVAL;
+> +
+>         if (pixel_rate > vc4_hdmi->variant->max_pixel_clock)
+>                 return -EINVAL;
+>
+> @@ -780,6 +785,11 @@ vc4_hdmi_encoder_mode_valid(struct drm_encoder *encoder,
+>  {
+>         struct vc4_hdmi *vc4_hdmi = encoder_to_vc4_hdmi(encoder);
+>
+> +       if (vc4_hdmi->variant->unsupported_odd_h_timings &&
+> +           ((mode->hdisplay % 2) || (mode->hsync_start % 2) ||
+> +            (mode->hsync_end % 2) || (mode->htotal % 2)))
+> +               return MODE_H_ILLEGAL;
+> +
+>         if ((mode->clock * 1000) > vc4_hdmi->variant->max_pixel_clock)
+>                 return MODE_CLOCK_HIGH;
+>
+> @@ -1830,6 +1840,7 @@ static const struct vc4_hdmi_variant bcm2711_hdmi0_variant = {
+>                 PHY_LANE_2,
+>                 PHY_LANE_CK,
+>         },
+> +       .unsupported_odd_h_timings      = true,
+>
+>         .init_resources         = vc5_hdmi_init_resources,
+>         .csc_setup              = vc5_hdmi_csc_setup,
+> @@ -1855,6 +1866,7 @@ static const struct vc4_hdmi_variant bcm2711_hdmi1_variant = {
+>                 PHY_LANE_CK,
+>                 PHY_LANE_2,
+>         },
+> +       .unsupported_odd_h_timings      = true,
+>
+>         .init_resources         = vc5_hdmi_init_resources,
+>         .csc_setup              = vc5_hdmi_csc_setup,
+> diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.h b/drivers/gpu/drm/vc4/vc4_hdmi.h
+> index 63c6f8bddf1d..6815e93b1a48 100644
+> --- a/drivers/gpu/drm/vc4/vc4_hdmi.h
+> +++ b/drivers/gpu/drm/vc4/vc4_hdmi.h
+> @@ -62,6 +62,9 @@ struct vc4_hdmi_variant {
+>          */
+>         enum vc4_hdmi_phy_channel phy_lane_mapping[4];
+>
+> +       /* The BCM2711 cannot deal with odd horizontal pixel timings */
+> +       bool unsupported_odd_h_timings;
+> +
+>         /* Callback to get the resources (memory region, interrupts,
+>          * clocks, etc) for that variant.
+>          */
+> --
+> 2.26.2
+>
