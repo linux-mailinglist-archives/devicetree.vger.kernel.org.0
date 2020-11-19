@@ -2,369 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 441832B8EB7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 10:29:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 259822B8ED7
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 10:35:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725888AbgKSJ1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 04:27:21 -0500
-Received: from mx2.suse.de ([195.135.220.15]:41156 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725873AbgKSJ1V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 04:27:21 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id ED91CABF4;
-        Thu, 19 Nov 2020 09:27:18 +0000 (UTC)
-Subject: Re: [PATCH 4/8] drm/vc4: kms: Simplify a bit the private obj state
- hooks
-To:     Maxime Ripard <maxime@cerno.tech>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc:     devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20201113152956.139663-1-maxime@cerno.tech>
- <20201113152956.139663-5-maxime@cerno.tech>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <83dc23f9-623d-5155-6c22-46a84f5405ad@suse.de>
-Date:   Thu, 19 Nov 2020 10:27:18 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1726973AbgKSJ3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 04:29:33 -0500
+Received: from mail-db8eur05on2080.outbound.protection.outlook.com ([40.107.20.80]:56865
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726778AbgKSJ3c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 04:29:32 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IZ3d/V3/1yP7i87d6asLHmcg3neybaioWXLWu7f7FUbw3EAdKXzpHq+CsbklcZYo1mKy+wOF4EKGQ7GQ3V1Dw+qa2PjneliNSi0VeWbTFi4it68L4DZTLLpNtdwvsNXgE0JnqmsLXINa9KwnWFHf1kITPbT8pxRVbMcji6zJdFc0qdKMdtm9960qET2vTWxQzQDJQlD6kfDrSbtvexEGef0DiHxIqvIvsbmmLJ5FA4tGd+i0RRnj4NOu4k25NAmCV/mdOC6xWCPu9slCq5HjwO9oEON531nZGnR/xVBPzii6OEX3PCtJCMm53v5Bcxyuhgk0ry2IcGkJxvA4wgbIWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IUaIFSvzvuQgfvpJfSCLqtEQ3126IMImmx5e/osevEk=;
+ b=jhdpkutLSMPArdqGsxkuqyq45okijKCkXFvkjEegT1xWUJrPMBxVprjCYnvFfMzJxOq2MPVZagPQc3u2SnlI+BGD9VdQI9z0uY8i4QyHLcTijynU4vn0a77ZgFS6Wn2AHPFkPCQwODwLjWWfzo9/l8eYuQZgOv9zpDAmmVNRjAFFt+3iQZTjbAyU+K2vdKYDGXMkWzw3uTC6RxqbNUjKGc0aavtHMR7WSpm52AiBR/FdQgDcOtuVT7OcirdrP5eZbwdWqV2/nvkXTGCrI8P4seqMTkkkoR4mWnSLwngW2GZbRtjQPWePt6tRlKvbAnw2+PaI3ZLTrXO1skus/BBSTQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IUaIFSvzvuQgfvpJfSCLqtEQ3126IMImmx5e/osevEk=;
+ b=Wq4Y4zNAxSjswBmWRwQmRD8VLFpynb995tBc45IsQLoMDoz+Pwp69i0/st4plS3LESbervDfYU9e3Q0QOVQnYzfrHZ+lUmSfBStLKwW6rFA1NjLjn49mZtFahnqNEI80nbT9rZR4j+eq9MZToIjFJBLE0tpzY0mmJEXoutxdQ1c=
+Authentication-Results: lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=none action=none
+ header.from=nxp.com;
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
+ by VI1PR04MB2973.eurprd04.prod.outlook.com (2603:10a6:802:10::31) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.25; Thu, 19 Nov
+ 2020 09:29:23 +0000
+Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
+ ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3589.021; Thu, 19 Nov 2020
+ 09:29:23 +0000
+From:   Liu Ying <victor.liu@nxp.com>
+To:     linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, robh+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de
+Subject: [PATCH 0/8] drm/imx: Introduce i.MX8qxp DPU DRM
+Date:   Thu, 19 Nov 2020 17:22:17 +0800
+Message-Id: <1605777745-23625-1-git-send-email-victor.liu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-Originating-IP: [119.31.174.66]
+X-ClientProxiedBy: SG2PR0401CA0002.apcprd04.prod.outlook.com
+ (2603:1096:3:1::12) To VI1PR04MB3983.eurprd04.prod.outlook.com
+ (2603:10a6:803:4c::16)
 MIME-Version: 1.0
-In-Reply-To: <20201113152956.139663-5-maxime@cerno.tech>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="wJN1A8Iw20kxuzpBYZf1KP7Fa6MQSfRs1"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (119.31.174.66) by SG2PR0401CA0002.apcprd04.prod.outlook.com (2603:1096:3:1::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3589.20 via Frontend Transport; Thu, 19 Nov 2020 09:29:18 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 6ed29312-29d1-4d4c-65bf-08d88c6d996f
+X-MS-TrafficTypeDiagnostic: VI1PR04MB2973:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB2973CB9379AC4BDA8DAC2E6198E00@VI1PR04MB2973.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: oN8RputEVvhFl55v5KJXEDt16cDJa/I2EKqxKXzFdFRQjiX2lXSEnHSMQXhGq/2PLp3D/YtumPlrV1XfGXJjIVbYlU1JPHu7CcoIAzDEhRaznZqgzeEX0gF7O97e1luO+tsgppI0ksbAwKzChQY/pxcRxcuxZS+zdA0zWjaT5qQJjS5ylmhEXRPL5DXIBQPchZIcoxlZQDqxQXmIX1gCVx0dM0NvI6K5lBUQ4orRX9pMb7Ar43CLcjIcsgEVcduu450jq8/bTX+EWOYJDZX+kvJCLCWIZpF50c7CnbD2f9mYwDYOInM0ArrL1KH7V+WnWmX97KzQ7NCfcM2hJeTfmesAT0vwolCpHx0W0gp5Z6gBGYx/QWCJOCwk4C9hmg+ACngFKpcKbei8jmdWq/Rp616xW8puhJCqMMye7+ULQCrKQNKlR0XzqANbIFCyzWZ5ATjF/SXDpkforKR+Y/T8tQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(396003)(376002)(136003)(39860400002)(2906002)(6512007)(26005)(16526019)(186003)(956004)(86362001)(5660300002)(66476007)(6486002)(66556008)(52116002)(36756003)(316002)(6506007)(66946007)(8936002)(966005)(478600001)(4326008)(7416002)(8676002)(69590400008)(2616005)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: xvCzFmokWm4erHe3BzCcN5sqqD3GXeexyac9FqmeXceMTDhe78acuJJBEbaeDavyYLkDuYVkeLDJYe33xeiYCYc6pQGawQPcl45+vqICmdJIEs/4jxQbf6O7IXIzka7I+NnuNkaL75gzgnLJ1KFskYv/AfnG+qPXnKnXhrFJ+e+eNVrYZCnMmOrIR61aX5oLul/cgGMVMircgtfUqhNEV85AhU58Lp9gxxynA0FK2aSlcUMUVwiPsKKqEg66PtaCde4A6SwUq4/CvPJH0PCTLn0ff9Kkl4gkH1aZsdIVYgreT4CTyrbmCUdnDwAr/ySjXiR1ylW8jWck4i9KMItfgUgxQ6HFKASWRJVJq74Mg1sa47DSShKdJLZhayp+nMFmjMABmfYD/GZOk/T6A0WjelrBnSAtvufa1Tx7ipibJyOcYq9RvAzCGwimGhzQebm3j0IFQhV1k/qFnmxNLBTqn84qspegKRMG8VdT0J90d9BDTm8edFCfbHRpCoa5vfDK0GOseU70XvX5+/O1ANkY4NKT6Imw+9RmhAlAYR+04Cg9ai7c+Vzj6SItImnJOKdO5c3KL4NXcjOH2tlCdUUbQW2pnrH7mtTYt/j3kgxpEb0TaQDhqoEOO1dKpygoiGg8lwnoUyqEddcq3mxMir2RCw==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ed29312-29d1-4d4c-65bf-08d88c6d996f
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2020 09:29:22.9372
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 68GmB5h88GfssdCM2thSZtvjJSqKNLfuekxNf5dRcbl34XVUSwzfuwN7qrPR3TZvtRr4tjcpMpvOQOOS9b/ddQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB2973
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---wJN1A8Iw20kxuzpBYZf1KP7Fa6MQSfRs1
-Content-Type: multipart/mixed; boundary="daM8JQFEIksGKIysfiJkoBX4gHNo3EJPh";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Maxime Ripard <maxime@cerno.tech>, Mark Rutland <mark.rutland@arm.com>,
- Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Eric Anholt <eric@anholt.net>, Daniel Vetter <daniel.vetter@intel.com>,
- David Airlie <airlied@linux.ie>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, bcm-kernel-feedback-list@broadcom.com,
- linux-rpi-kernel@lists.infradead.org, Phil Elwell <phil@raspberrypi.com>,
- linux-arm-kernel@lists.infradead.org
-Message-ID: <83dc23f9-623d-5155-6c22-46a84f5405ad@suse.de>
-Subject: Re: [PATCH 4/8] drm/vc4: kms: Simplify a bit the private obj state
- hooks
-References: <20201113152956.139663-1-maxime@cerno.tech>
- <20201113152956.139663-5-maxime@cerno.tech>
-In-Reply-To: <20201113152956.139663-5-maxime@cerno.tech>
+Hi,
 
---daM8JQFEIksGKIysfiJkoBX4gHNo3EJPh
-Content-Type: multipart/mixed;
- boundary="------------B325C0FC382500E602E27A67"
-Content-Language: en-US
 
-This is a multi-part message in MIME format.
---------------B325C0FC382500E602E27A67
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+This patch set introduces i.MX8qxp Display Processing Unit(DPU) DRM support.
 
-Maybe merge this into the commit that introduces the functionality.
+DPU is comprised of a blit engine for 2D graphics, a display controller
+and a command sequencer.  Outside of DPU, optional prefetch engines can
+fetch data from memory prior to some DPU fetchunits of blit engine and
+display controller.  The pre-fetchers support linear formats and Vivante
+GPU tile formats.
 
-Am 13.11.20 um 16:29 schrieb Maxime Ripard:
-> Some fields that we're going to add cannot be just copied over to the
-> new state, and thus kmemdup is a bit unnecessary. Let's move to kzalloc=
+Reference manual can be found at:
+https://www.nxp.com/webapp/Download?colCode=IMX8DQXPRM
 
-> instead, and clean it up in the process.
->=20
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->   drivers/gpu/drm/vc4/vc4_kms.c | 8 +++++---
->   1 file changed, 5 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
-s.c
-> index d6712924681e..3d0065df10f9 100644
-> --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> @@ -695,23 +695,25 @@ static int vc4_load_tracker_obj_init(struct vc4_d=
-ev *vc4)
->   static struct drm_private_state *
->   vc4_hvs_channels_duplicate_state(struct drm_private_obj *obj)
->   {
-> +	struct vc4_hvs_state *old_state =3D to_vc4_hvs_state(obj->state);
->   	struct vc4_hvs_state *state;
->  =20
-> -	state =3D kmemdup(obj->state, sizeof(*state), GFP_KERNEL);
-> +	state =3D kzalloc(sizeof(*state), GFP_KERNEL);
->   	if (!state)
->   		return NULL;
->  =20
->   	__drm_atomic_helper_private_obj_duplicate_state(obj, &state->base);
->  =20
-> +	state->unassigned_channels =3D old_state->unassigned_channels;
-> +
->   	return &state->base;
->   }
->  =20
->   static void vc4_hvs_channels_destroy_state(struct drm_private_obj *ob=
-j,
->   					   struct drm_private_state *state)
->   {
-> -	struct vc4_hvs_state *hvs_state;
-> +	struct vc4_hvs_state *hvs_state =3D to_vc4_hvs_state(state);
->  =20
-> -	hvs_state =3D to_vc4_hvs_state(state);
->   	kfree(hvs_state);
->   }
->  =20
->=20
 
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
+This patch set adds kernel modesetting support for the display controller part.
+It supports two CRTCs per display controller, several planes, prefetch
+engines and some properties of CRTC and plane.  Currently, the registers of
+the controller is accessed without command sequencer involved, instead just by
+using CPU.  DRM connectors would be created from the DPU KMS driver.
 
---------------B325C0FC382500E602E27A67
-Content-Type: application/pgp-keys;
- name="OpenPGP_0x680DC11D530B7A23.asc"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
- filename="OpenPGP_0x680DC11D530B7A23.asc"
 
------BEGIN PGP PUBLIC KEY BLOCK-----
+If people want to try this series, clock patches can be found at:
+https://www.spinics.net/lists/arm-kernel/msg856137.html
 
-xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdgX=
-H47
-fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0BeB5B=
-bqP
-5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4YchdHm3bkPj=
-z9E
-ErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB9GluwvIhSezPg=
-nEm
-imZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEBAAHNKFRob21hcyBaa=
-W1t
-ZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwI4EEwEIADgCGwMFCwkIBwIGFQoJCAsCB=
-BYC
-AwECHgECF4AWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCXvxIWAAKCRBoDcEdUwt6I+aZB/9ih=
-Onf
-G4Lgf1L87cvoXh95/bnaJ6aQhP6/ZeRleuCXflnyDajlm3c9loQr0r2bQUi7JeYwUKbBab2QS=
-GJm
-DMRGlLMnmzWB8mHmZ6bHAu+2Sth8SraE42p6BB9d8dlYEID+dl/D/xUBeulfkck5rloGtYqDi=
-+1Q
-DfkEZJaxVSZ6FFkXuQi/G9qcI4iklN2nv02iQ7mZe8WYAysix6s/6vIobhirEBreclSNxXqis=
-p8n
-91+v855JC11EgRdUXMRK81IAaCKXP8zLx3ixku7mvP9Om61yerHSbeU2HZbIggZYQlFh6llJm=
-zF1
-CjCWgPTJyk4t4kMTcNOw5ykD47vU/KW+wl0EEBECAB0WIQQn6OOmnzvP/7ktjmoud6EwEfXTw=
-gUC
-WzodVwAKCRAud6EwEfXTwidvAKDkOADDHfI0QNXqAZcg6i1kOndAYACeLXHBwpjnumkPSyoab=
-IiL
-+he8r3zCwHMEEAEIAB0WIQQeXZghmQijlU7YzFiqUDvJrg9HpwUCWznxsQAKCRCqUDvJrg9Hp=
-42f
-CADIvsZcAd04PDFclRltHr2huy6s7+ZZA6PgYlMblEBh4bJA+dNPBTvzpJ7FJv/bmHOa+phWy=
-Urj
-EpfFGuOKGuWAfzgVAEu52fMrW3/mm+O26z1AKIu8hiZ/x9OAe4AM71ZO2lZrV1/53ZdzWnRuO=
-45N
-GQcotU8oeVfT9okAfmozmWMmIMq7Q0K6bV8W3qiD5XfDNxjr2caxc/9WX1bZPUo3n0H23MNaA=
-Tpy
-Oz732UtDh6sKUAB1RfzBBd/REbjHD7+quwJGAdRScyDRncX1vNb2+wihy0ipA69XY3bkhR5iD=
-u5r
-A9enuiMe6J1IBMI1PZh+vOufB/M6cd2D9RULIJaJwsBzBBABCAAdFiEEuyNtt7Ge78bIRx1op=
-/N8
-GYw5MYEFAls6MrsACgkQp/N8GYw5MYEnLQf/dwqlDJVQL2q+i8FFaqTMAm0n9jLRV6pN8JxFH=
-j0g
-voyWUOnQuNdAFgtKd26ZhN8NkLoSMO8E19eBPfLoBIFK5yNNVmRHAZm07MzGbA0uNWINJhmdR=
-bZM
-RMh0nneXjcEU/IvUmd8TPFTAd24X2mbzHgcaHMLJSVx1ohd4alRJXHIqDobKmiVwekyPnInJn=
-zWw
-iuZUkIotTkQple1PT/dF3S+KtPXBL6ldQ4NkAeCjsz4wnzSa9+VKOxEhiHM0PMzXSbkCMP+4m=
-Xy9
-RMplBw9Dm9hN2PSouBPifIrSodiiSWZYXOEkzLiBAB0frCKR63Dnx9kvjCD9Pz5wLd/70rjqI=
-cLA
-jgQTAQgAOAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC=
-3oj
-BQJftODHAAoJEGgNwR1TC3ojZSIIAIV3makffp4P4leU8JSLt0aTNewsOhy7VQzKUtlCw3PKD=
-3l/
-SuymZhQKgH+n6sijzFauZnZ+x0T+Oy+dDVZb3sNJuuMUDIHw18EO9daZBMcueaS54FGe73lAp=
-HUl
-7nxyocCxoqIG8+fP+75itV/ls2TSh5rJvjLvHC8J3NqfGlJ/jlSKrQUnzFbXfE5KGWiKNAn+I=
-1a2
-EE0I7uLpYgkdb8hcjtV9Rxr2ja+GWOaSoqB29P5GUzipkWo4144Q16JBO6QP2R9y/1ZK9VqH2=
-5T8
-lTKocLAaHCEdpDqY5KI15as9tIxlI1Vh+eqhTh/gwEm1ykO1gmrQ1zvGLDMB1EE6El3NJ1Rob=
-21h
-cyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIbAwULCQgHAgYVC=
-gkI
-CwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJe/EheAAoJEGgNwR1TC3ojq=
-RgI
-AIoegtTp1prPzfHgTAuEPd8v58ssHubwi9tg69a8IJ+iMNozhs4iUou84WOLBJNjSieXHZRa8=
-fJj
-//2/sTuABn38AQ9FcKX9/B49hrdCo6c0WHHKqlPrSTzuXNKYyOdmSFd/pDhBb2Bn5DTxxH5RP=
-m/N
-U/C9nUlwi7Y+FgBlDNa5h592wmJfv0cJAfvF56C+QL65jHFOFIW9xSaTOAxxMXHGJHXki6Iwa=
-aTg
-s7QQlKQcd5XvvED1bwLyQ7rq+MEZo5N7IygpQMM3qqGMlCnDdyQ3W95rd0HCWpfa0oVRCOwdu=
-SL3
-5hG7ONqBpvBj8z5GjSbt4HLJGvpeT0k37qzRExrCXQQQEQIAHRYhBCfo46afO8//uS2Oai53o=
-TAR
-9dPCBQJbOh1XAAoJEC53oTAR9dPC05AAoIy0HQ2DBDYugQ42P4HfyxfZTIvKAJ0fqNBcBFW9S=
-tbR
-DEP9cfpNVOv8YMLAcwQQAQgAHRYhBB5dmCGZCKOVTtjMWKpQO8muD0enBQJbOfGzAAoJEKpQO=
-8mu
-D0enL0wIAM2NTeUDCofBAkbWHGTZopclefbh0xGPYQEfttNyalp0hn1CrVO7OsX5eTjRqgyOa=
-1C5
-OAsNghCM4PUmrfv5cZ9+sNn9bRM50uVW9IFRlq8wwBY4+7QejJ5gs7DW/0tZIMZ6iTGKK0WEO=
-7gd
-2K9hXadPBScTdIqXeWH82meiqElnEQL+K9UeGUBrku+1EQIOxwziKwTDlTvhyJ+xmEKj0uWRc=
-Ocl
-27xLS9XOWPGXcNQBtlZhF8e/E1kFRt5CPP5UBdUCN8qydUadseXivSNDiYob9dyJSFt7G0Bq4=
-/ac
-Ret5ANtGRWsp8xYJQRossRMWL0w9P8SiIc2IY/JrQrpz29nCwHMEEAEIAB0WIQS7I223sZ7vx=
-shH
-HWin83wZjDkxgQUCWzoywAAKCRCn83wZjDkxgQaDCACyFuBLQWNvLT8GTDqTf/gETzmtoEM6Y=
-r8O
-4jbYg05xiFzAqMZctQsm3zHakx2JrimxDvQJRQJQzp5ICJ7J/BOuSL4FE1SPeQIfjm4jyBZGH=
-P/W
-vgHsT5e3+ZCPePPZO+3irarTKVhaaP70Tpka6EsOCZzO6L8D6tUDkhxMX0ymy7p8w9Yt1eD0o=
-Ume
-mxrKdS1ulpNJUTBw7gJN8bMowVnycEm6wntxOjrCxuwbkKhFLdn0ejcXQ0UkfbUFKfU64gGBu=
-S53
-ZlM8XlOhQEIw/FrdXszhR+Tg3Ag130cmJhOrghgOBLzvJfUd6OvDT5VIz0QGbAm8SWlAIIms1=
-9Z8
-kBsLwsCOBBMBCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEEchf7rIzpz2NEoWjla=
-A3B
-HVMLeiMFAl+04McACgkQaA3BHVMLeiPHXAf/SEoZa6CKoOAs1ctEP/hN8cEQqbEiuZ+71nm3u=
-/BQ
-p/CEUvqGq+iVc8kkpClDbPz5fa9mb+yWwufsnXKOs6ygmEoAEOL7dBZZIaRobBEkB09VXIkx8=
-lE0
-00grBVtToHUGRfZcMoMZ98XhPGU6lJDN200j/2CV46hQDz6PLySecNjOME05mosbYW5N2JwFd=
-uXP
-Qx++DjWB32QLBhcOcP3WslTy3PKVe/TcTvk0JpPFMz4UFc+awBVhDgZiGGAW3xLZRYyhpoAEs=
-N7u
-XkV2ct0MRxuZ3y4tTYJobhbZwutRojiPPZduRw9CSpNDcQHruFiSOIQTpnLeCA6K2JAZyqmP/=
-87A
-TQRbOdLgAQgAxiY/gz9X5PlFjlq3+DutR02wuFa/UA9iuH1FB584Nges1EdQT16ixhtPpcyvJ=
-H2F
-PxeUY5hHApbCJAGhZIOJMyj9eLb2NSefgFd8janHYNNfBzbYsq0sCBNGM/6ptTrdjTGdA3b1Q=
-YNt
-iDLIrnUNbcfQh/Zrck2yF4AAr5dz1tqPQsYhzxP26IRYcGcIf5F2GABOdZYYp0N6BRHkGQN8O=
-Dk7
-8UhLKYkEfHYPKiSW/mDgHOSCpOrCZpjOyXxTFkq9trGrTNt6EN1ryW+EVeh00UwCBMsmUu4Ng=
-4Ys
-rYDButLdKnQARuSl0kFvjipWUablsClmi4d4n/6f7uvXb6Wp2wARAQABwsB8BBgBCAAmFiEEc=
-hf7
-rIzpz2NEoWjlaA3BHVMLeiMFAls50uACGwwFCQPCZwAACgkQaA3BHVMLeiOl9wgAifA/k6VwQ=
-qiR
-OccKINPPg6fLgacdE/Z9cBNBkIrGa7gAljaH2J/D01/ZOMJnoAy8Le2EA3SsUOPnk32XizUKl=
-oOj
-gn7R+Sse7I1pydPbToJ4lXUTs1ie3FSf4tKJGs53LCfp6uPFGL0RhNUsIdwOEESMqYVl+DgAz=
-gZk
-xZfWWDT54dt3mgvVqzbxa+8j+4hozJXxFvJei3Wv/xAuVaV1Tc2tMXmntMxTbLdkfaZ/my5Io=
-cAy
-1sTiMonxkcU6jcaEuCNWsFYcT0lc7TzEqSAP7Dq/zf6eiawS5/oLotiupj+2xm/IRfrM3wK2K=
-s90
-9a79Vc1FgCX+Vq3uVIjcfbqqscLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojB=
-QJf
-tOH6AAoJEGgNwR1TC3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6=
-Baa
-6H7ufXNQtThRyIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3=
-T0T
-trijKP4ASAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446S=
-h8W
-n/2DYa8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRai=
-tYJ
-4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9fOwU0EX7ThE=
-wEQ
-ANJiTIb/nQ+MPgIBsSfBBhmXrVFUwFveO6DWPZ0M+Y5xBJhvDukosstSgcLCdld4SFF2JnnCo=
-yh9
-boM2j2Ksd5wNzTzXlo3lEzFRAipftboviUjap0qxoRwy1hBV3Ft1/VyNwwYY7qjGVATQU7cIT=
-/zL
-gb+Sd0NPQA8r2NvpJq1MnI8nFfA2ZH4diuRtavhEBUzp63SlCYxnyxqT5AQzSQGUpsjSyh1A5=
-ezt
-j1pwxgnkX7F9ZT0lUBo6zZM6ZBq8Nkyvox46l79QoWMBm9y+/nIXy/uXdT6RaumPjBzVttGmk=
-Onm
-TlGUJyQAndAE1boib9iWCJ4kIr2ezRKjXJXGuaM1m7hSfdQYWed0j52+nW9qGSNNk1GjYXM8Z=
-SWT
-agX6O5mfbpzRgBBK/XoE9NWRNAa4V+tUX4/vqqDl0m+O4F2GYs6Eu7WLredRgwjDuMF/VCKvQ=
-fr3
-yjIt90Zi10cHQw3khdJWmSDKYgenpvsffo4x56biifOh6IxS/whf5/BAx4nx8GyX7JO0DUnUu=
-ieC
-NfEGRu8QbYBSOkO/vdm4xy7RZwdzlqN8zjCLFOCG346Bnsx3ku2lNtX6qZoajmfD4oO6N0Xds=
-2pE
-wjufCfJW9sCLdBmqLD5OvsRljyv7vt5w28XSF1tyhQaxIs+8sFJtwfCliduffq56FcFrEXCxs=
-LQr
-ABEBAAHCwqwEGAEIACAWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCX7ThEwIbAgJACRBoDcEdU=
-wt6
-I8F0IAQZAQgAHRYhBMZ3Zv36bjFHcGBRaJYfxNxEKL/gBQJftOETAAoJEJYfxNxEKL/gkygQA=
-LQH
-pXm45ZfMCDx7u/d7rRH/R7EfEV5OAoS981IkzbTgrb9z6YYfhQqH+R2ImgoX/Lou7zSjyd22/=
-IaZ
-AnTKHKkXIFIM1uB144dqAi3tW/Bei/CSdiD7DY1q92Ebl6e+Gpf3TZdATSY00fVeLMNFnjbbz=
-CVX
-9+LEKYARNm7kYogVJMc5CuVmXBn9FFF3cioRvpuals8llsFc4WiUBJfDfOzjXExqv3OMtJj0s=
-qlK
-sXdnLkXbtAmEvFaxqUuO1ZwTCTGflrn/g4C8Cg0ifk0wZGgGYRindkJE1vOQZPaDI7GtNxJ+D=
-sx4
-fL/8tf7Wuk3TZ6t/ofKhjq8sUVCVhnlyd/3ujruDu/PhwwYBsHjNn+PmHeCCRJuOWwKapdfjH=
-9nt
-sHXTvyXBB2D3H7Oj7S/HOTXRNTUWhaxICKtq+XDSuJKOv7CNevkjMF4ybQDsrUxnaWd76YqNP=
-vZv
-PYoTqKzKukifjGXMsxC6HU4K2GscpvoaIk7glaD+NYi3fIGi/gR0UNc6cmXtOrYKSnCsNOwcO=
-CJL
-DjEr6YdbdAXO2wxCLqnupo8JRJgA8hjjHM5OoTGEyP/c+DKDqFO90YilX1XN8xchHrw+bDv0E=
-Zm0
-RZpVdL7WNr7qQE4UhDfuyo4Gis4Z+npzoOL4g3yaQQfK32zZD9iqk9152b7ny2Ke5oFIF5SSa=
-EwH
-/2tLNBevzgzWuEB6FtqoMT5RjDyx+xBeImRlhnP0EenRh+EP0nmLCAaFiP4tTp1bX54SyByp8=
-wcN
-7F2+v2Sgdd64w1pdrjT74Zf1xj0NTxEdt5jEaPfl5Vjv3cXiB8ACwPkMIXmkJx3uaGJynl4Os=
-irb
-nzzviEzvDVpLAxL7Qr6imlKUh92iAoz+XxEDqgMZnJJOTDFdDxEBhv911VzlRraDNdxw4MHMm=
-5Nr
-5pj4HGYh3PigzNo0KIreB50YqhGOesaC4Q75gv8mLc2Ec5dEq79BVMUOaCmYDShBN9j6JovNs=
-WSR
-5YP3tXi+jZ+VnyKLft9wo1fh1oYadFEVSHgGsEY=3D
-=3DfoRs
------END PGP PUBLIC KEY BLOCK-----
+and, power domain patches at:
+https://www.spinics.net/lists/arm-kernel/msg856097.html
 
---------------B325C0FC382500E602E27A67--
 
---daM8JQFEIksGKIysfiJkoBX4gHNo3EJPh--
+I will send other patch sets to add downstream bridges(embedded in i.MX8qxp)
+to support LVDS displays.
 
---wJN1A8Iw20kxuzpBYZf1KP7Fa6MQSfRs1
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+A brief look at the pipe:
+prefetch eng -> DPU -> pixel combiner -> pixel link -> pixel to DPI(pxl2dpi) ->
+LVDS display bridge(LDB)
 
------BEGIN PGP SIGNATURE-----
 
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+2OnYFAwAAAAAACgkQlh/E3EQov+Ct
-Iw//VaEFo1O6lRmp/Xyrw19pMHKMKpJRp9Y2WKngsyPVy/qIqQ/Oa3b/5G8LlUxEjlsn4OYp72yd
-kHN4/osRhIuLYBCuhpDA03YuWvQPpXIefOffbeNTOM15Y2v4WrIiwcEjtBgJHMjHIATGlTU3BJ47
-cBxPJjbKlANSBAHRQgrSN61JB2CxPUb6mLYCIV9v1JiiFL+nLbFRmUeGcRqw4zJfBE0E28JmLyMP
-Azw3J1TvF2HhlfAOn/htB9bCC6kBkCr+wjzBGS34R/CtC4hje5MPndOqqf51AxKH3Fm4ZjgX/ayZ
-6LXW0n9xNQGsjiIQlAvJybibIEp9gEqsdWjkiheG2wk4NoYXwAl2Xo/tHLN6Uirjf7zPFgy4DHa7
-1PzguqXWUTE38VeC4383DSUDo7ZMsBf3XZiHdU5iF0xpvj50kEH13wK1hTj2iblctkm3fwn3QHpZ
-Qyp9jvY+kz6QE6lx8Cu6FpgIl+GJPfAlQVL2+MG1xm85/RxbpjYQTyGftWHu/WBAWUDs1khqz6qr
-gfXOSbqOD1P/FPMnt/Ym30OO+x7xd1o155qXYu+ZiRqOmayoDOYwK+/sQ/q7egH6aeIrj5mhWSVX
-7KpqN7zBunVw3AuGfLYTaDoh2qv1mS+5MQyKAdv5C8x4D8566QLw+SBqky6qhhJOLj5LFiTNS5su
-CgA=
-=TDrP
------END PGP SIGNATURE-----
+Patch 1 ~ 3 add dt-bindings for DPU and prefetch engines.
+Patch 4 is a minor improvement of a macro to suppress warning as the KMS driver
+uses it.
+Patch 5 introduces the DPU DRM support.
+Patch 6 updates MAINTAINERS.
+Patch 7 & 8 add DPU and prefetch engines support in the device tree of
+i.MX8qxp MEK platform.
 
---wJN1A8Iw20kxuzpBYZf1KP7Fa6MQSfRs1--
+
+Welcome comments, thanks.
+
+
+Liu Ying (8):
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPU binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
+  dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
+  drm/atomic: Avoid unused-but-set-variable warning on
+    for_each_old_plane_in_state
+  drm/imx: Introduce i.MX8qxp DPU DRM
+  MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
+  arm64: imx8qxp:dtsi: Introduce DC0 subsystem
+  arm64: dts: imx8qxp-mek: Enable DPU and it's prefetch engines
+
+ .../bindings/display/imx/fsl,imx8qxp-dprc.yaml     |  87 ++
+ .../bindings/display/imx/fsl,imx8qxp-dpu.yaml      | 358 ++++++++
+ .../bindings/display/imx/fsl,imx8qxp-prg.yaml      |  60 ++
+ MAINTAINERS                                        |   9 +
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts      |  64 ++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi         | 313 +++++++
+ drivers/gpu/drm/imx/Kconfig                        |   1 +
+ drivers/gpu/drm/imx/Makefile                       |   1 +
+ drivers/gpu/drm/imx/dpu/Kconfig                    |  10 +
+ drivers/gpu/drm/imx/dpu/Makefile                   |  10 +
+ drivers/gpu/drm/imx/dpu/dpu-constframe.c           | 170 ++++
+ drivers/gpu/drm/imx/dpu/dpu-core.c                 | 880 ++++++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.c                 | 926 +++++++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-crtc.h                 |  62 ++
+ drivers/gpu/drm/imx/dpu/dpu-disengcfg.c            | 114 +++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.c                 | 721 ++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-dprc.h                 |  40 +
+ drivers/gpu/drm/imx/dpu/dpu-drv.c                  | 296 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-drv.h                  |  28 +
+ drivers/gpu/drm/imx/dpu/dpu-extdst.c               | 296 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c          | 291 +++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetcheco.c             | 221 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c           | 151 ++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.c            | 609 ++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchunit.h            | 191 +++++
+ drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c            | 247 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-framegen.c             | 392 +++++++++
+ drivers/gpu/drm/imx/dpu/dpu-gammacor.c             | 220 +++++
+ drivers/gpu/drm/imx/dpu/dpu-hscaler.c              | 272 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.c                  | 543 ++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-kms.h                  |  23 +
+ drivers/gpu/drm/imx/dpu/dpu-layerblend.c           | 345 ++++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.c                | 703 ++++++++++++++++
+ drivers/gpu/drm/imx/dpu/dpu-plane.h                |  56 ++
+ drivers/gpu/drm/imx/dpu/dpu-prg.c                  | 389 +++++++++
+ drivers/gpu/drm/imx/dpu/dpu-prg.h                  |  45 +
+ drivers/gpu/drm/imx/dpu/dpu-prv.h                  | 203 +++++
+ drivers/gpu/drm/imx/dpu/dpu-tcon.c                 | 249 ++++++
+ drivers/gpu/drm/imx/dpu/dpu-vscaler.c              | 305 +++++++
+ drivers/gpu/drm/imx/dpu/dpu.h                      | 389 +++++++++
+ include/drm/drm_atomic.h                           |   4 +-
+ 41 files changed, 10293 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
+ create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
+ create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
+ create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
+
+-- 
+2.7.4
+
