@@ -2,126 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC6BB2B94EA
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:41:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C3F32B9542
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:52:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728159AbgKSOj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 09:39:26 -0500
-Received: from esa4.microchip.iphmx.com ([68.232.154.123]:41650 "EHLO
-        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728155AbgKSOjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:39:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605796764; x=1637332764;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=h/XRQsr7glEa2g/r6SVO2kTjj0kdJnjJ6hTe5rBjWKs=;
-  b=rnWqg6tv2K21WDh8XLZIbFB7obcVbT4atwlIVMzojOKxG2vFy3cSekjA
-   F557X934h4s2c6SWndCE6M2/NdwVr+4/oH+JNib8JP0LtNuX5J8QMTuwY
-   TgpN4IBrBKA/oBKjbZXA2/VV7fpPpSfOp+ciQQt23kCIRufEjrV7CG6lL
-   vA6Z7JmBXnktHtMDBO5/UGRixmTdT5fq1rR0hJxJiD1dI/88Eavsl4vNA
-   cqONtxALvCWeXOj+TjiM+0O0LIh8A4oiaqZ0dET86cg0HZvVFBHMG0wR7
-   mgMohJmmTufPxOFpyqSYG3TrvjAOZWRpJF2RnZ6h/JwY6pyzpO4TVAgHT
-   w==;
-IronPort-SDR: Pg28csdAmG+y2YdnZMckNF25qJuOttZZgdP2Z0TaaC69QrUwNXQUZSHOy7rat3dnKibUMwba0z
- g0UjwVMLSSGPr77ZYNOtO6dga5Euk5rCtzERnFbGURlwRlbf4iLq1uRpCQ3/INXsuELedQuoLA
- SPfzSCz93m443Y7TcBVGyulRmPqmy0OiHjq90/1g+5D/JSNgVQhFdrQQpou9ldBJRlvkVRVCpf
- Y015Rpa59C4lC2mrVnFz5T6luOrMGm21+2ZlkAY4CCLoR24bBQ+6GujTkFs65WPCfbJwV61/1i
- 9GM=
-X-IronPort-AV: E=Sophos;i="5.77,490,1596524400"; 
-   d="scan'208";a="94238056"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2020 07:39:23 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Thu, 19 Nov 2020 07:39:23 -0700
-Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Thu, 19 Nov 2020 07:39:20 -0700
-From:   Claudiu Beznea <claudiu.beznea@microchip.com>
-To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
-CC:     <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Subject: [PATCH v5 11/11] clk: at91: sama7g5: register cpu clock
-Date:   Thu, 19 Nov 2020 16:38:27 +0200
-Message-ID: <1605796707-8378-12-git-send-email-claudiu.beznea@microchip.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1605796707-8378-1-git-send-email-claudiu.beznea@microchip.com>
-References: <1605796707-8378-1-git-send-email-claudiu.beznea@microchip.com>
+        id S1728385AbgKSOmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 09:42:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37586 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728364AbgKSOmi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:42:38 -0500
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CDC9C0617A7
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:42:38 -0800 (PST)
+Received: by mail-lf1-x141.google.com with SMTP id e139so8613019lfd.1
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 06:42:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=pTN/HQEDO++RUgsAeCSdpIeR1pydXC9wuZi7PloDRbw=;
+        b=AENo3M1+izNVxpNeDxMVAbzyhkeACQhpUKgIqkmyjm73/Ase0gGZqD69HLnMJeVvkt
+         Vn4hpUB9wm9zd0+G8wwl+ieZ1YA40Qbnpd0VuE2gRz5z7lDcFfJalNfA/Br0cpTuk5vO
+         98bj6M9i782F+4Xai3TuVskc/IdQ12g8UzUv/Y4wHpUN/HJgeI5RA+/5ZIQF+W9iKvh6
+         N6Jrlk0EJUTCTUXwjdkrPnmv5IS3KyRV58AOBJPYhWzoQcVVF3Fvbi1iOA7GejJLahJW
+         fSt4gS4SKurn8kqAcatLIcqg/flrK3QAtjatjXrvDdwhRowILFRwjqib9+3ycV6umOxJ
+         A4Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pTN/HQEDO++RUgsAeCSdpIeR1pydXC9wuZi7PloDRbw=;
+        b=lemiYvRUSOrMmODlLbpf+Q0mhMOJw80vsAYvgz43v/ksAJv+bRdjUkqJEPK0NjvZ9N
+         6xuhnrnAfIzS+wZ1sXOmplTrvbBO4OKuMRFcK5wg6wfs0psAmpVnhqT476o4tbsYM+Ue
+         cAJjCvkFIvP4jnVFQ05eRW5Jcp+tBFEhLozg/Vfmb79DC4bMbi56z08fs1kdQMW/sXCr
+         yikD+Ty5YAu81nKWiMoY35ONeTl6ldXwRZxZqpqDO2nT7qB68naaLNIDmbvBiRZNTa2w
+         F7GSmZdYgpLMdAufVh8bebSG+DT9YvnlLdAgXks5QqRmImuSWodEGXy6JgQ3al79mC5o
+         Rhrw==
+X-Gm-Message-State: AOAM533zCgvUZg/UEi/RpMmLUDoi+gO0cOGweaNEhRLXgYn1r8fOrEVN
+        Cr6EyQZFedTOiYpFVIvB+s4n35fggW+JAw==
+X-Google-Smtp-Source: ABdhPJy+piHovamyM8c9I7UPJdWWCrqCjWV+SbmOQ2WjgJh5YZdBRZn+b9lvKYXwyazvYnuiBCJamA==
+X-Received: by 2002:a19:504d:: with SMTP id z13mr5523457lfj.42.1605796956944;
+        Thu, 19 Nov 2020 06:42:36 -0800 (PST)
+Received: from [192.168.0.150] ([188.162.64.108])
+        by smtp.gmail.com with ESMTPSA id j19sm3724875lja.100.2020.11.19.06.42.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 19 Nov 2020 06:42:36 -0800 (PST)
+Subject: Re: [PATCH v9 00/15] qcom: pm8150: add support for thermal monitoring
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Jishnu Prakash <jprakash@qti.qualcomm.com>
+References: <20201102174950.1148498-1-dmitry.baryshkov@linaro.org>
+ <c943f56c-f72c-0f14-b6ed-b67e91573b1e@linaro.org>
+ <CAA8EJpp+=sQAre+kCiDLEFT+gDB0wO7KypGTXeCDncO8wWzQ-Q@mail.gmail.com>
+ <a66e75c1-ce30-df75-c77e-e58e660f0105@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <c14f84ca-cc66-4deb-0583-e2e495ff2233@linaro.org>
+Date:   Thu, 19 Nov 2020 17:42:19 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <a66e75c1-ce30-df75-c77e-e58e660f0105@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register CPU clock as being the master clock prescaler. This would
-be used by DVFS. The block schema of SAMA7G5's PMC contains also a divider
-between master clock prescaler and CPU (PMC_CPU_RATIO.RATIO) but the
-frequencies supported by SAMA7G5 could be directly received from
-CPUPLL + master clock prescaler and the extra divider would do no work in
-case it would be enabled.
+On 12/11/2020 16:13, Daniel Lezcano wrote:
+> On 12/11/2020 13:41, Dmitry Baryshkov wrote:
+>> On Thu, 12 Nov 2020 at 14:39, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+>>>
+>>>
+>>> Shall I take patch 1/15 and 12/15 ?
+>>
+>> 12/15 will not compile without several previous patches, so it might
+>> be better to take all of them through the single tree.
+> 
+> Ok, I will take some time to review the driver and ack it, so it can be
+> merged through the iio tree.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
----
- drivers/clk/at91/sama7g5.c       | 13 ++++++-------
- include/dt-bindings/clock/at91.h |  1 +
- 2 files changed, 7 insertions(+), 7 deletions(-)
+Daniel, I'm sorry. Is there any update on this patchset review?
 
-diff --git a/drivers/clk/at91/sama7g5.c b/drivers/clk/at91/sama7g5.c
-index 927eb3b2b126..a6e20b35960e 100644
---- a/drivers/clk/at91/sama7g5.c
-+++ b/drivers/clk/at91/sama7g5.c
-@@ -904,7 +904,7 @@ static void __init sama7g5_pmc_setup(struct device_node *np)
- 	if (IS_ERR(regmap))
- 		return;
- 
--	sama7g5_pmc = pmc_data_allocate(PMC_ETHPLL + 1,
-+	sama7g5_pmc = pmc_data_allocate(PMC_CPU + 1,
- 					nck(sama7g5_systemck),
- 					nck(sama7g5_periphck),
- 					nck(sama7g5_gck), 8);
-@@ -981,18 +981,17 @@ static void __init sama7g5_pmc_setup(struct device_node *np)
- 		}
- 	}
- 
--	parent_names[0] = md_slck_name;
--	parent_names[1] = "mainck";
--	parent_names[2] = "cpupll_divpmcck";
--	parent_names[3] = "syspll_divpmcck";
--	hw = at91_clk_register_master_pres(regmap, "mck0_pres", 4, parent_names,
-+	parent_names[0] = "cpupll_divpmcck";
-+	hw = at91_clk_register_master_pres(regmap, "cpuck", 1, parent_names,
- 					   &mck0_layout, &mck0_characteristics,
- 					   &pmc_mck0_lock,
- 					   CLK_SET_RATE_PARENT, 0);
- 	if (IS_ERR(hw))
- 		goto err_free;
- 
--	hw = at91_clk_register_master_div(regmap, "mck0_div", "mck0_pres",
-+	sama7g5_pmc->chws[PMC_CPU] = hw;
-+
-+	hw = at91_clk_register_master_div(regmap, "mck0", "cpuck",
- 					  &mck0_layout, &mck0_characteristics,
- 					  &pmc_mck0_lock, 0);
- 	if (IS_ERR(hw))
-diff --git a/include/dt-bindings/clock/at91.h b/include/dt-bindings/clock/at91.h
-index fab313f62e8f..98e1b2ab6403 100644
---- a/include/dt-bindings/clock/at91.h
-+++ b/include/dt-bindings/clock/at91.h
-@@ -34,6 +34,7 @@
- #define PMC_AUDIOPMCPLL		(PMC_MAIN + 6)
- #define PMC_AUDIOIOPLL		(PMC_MAIN + 7)
- #define PMC_ETHPLL		(PMC_MAIN + 8)
-+#define PMC_CPU			(PMC_MAIN + 9)
- 
- #ifndef AT91_PMC_MOSCS
- #define AT91_PMC_MOSCS		0		/* MOSCS Flag */
+
 -- 
-2.7.4
-
+With best wishes
+Dmitry
