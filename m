@@ -2,279 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7E3D2B9065
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 11:48:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8A4E2B9081
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 11:59:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726693AbgKSKsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 05:48:14 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:53228 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725881AbgKSKsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 05:48:13 -0500
-X-UUID: 3f6f1370d5934e7c8a5dab9b645f0d3b-20201119
-X-UUID: 3f6f1370d5934e7c8a5dab9b645f0d3b-20201119
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <weiyi.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1783399922; Thu, 19 Nov 2020 18:48:07 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 19 Nov 2020 18:48:06 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 19 Nov 2020 18:48:05 +0800
-From:   Weiyi Lu <weiyi.lu@mediatek.com>
-To:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, Weiyi Lu <weiyi.lu@mediatek.com>
-Subject: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains controller
-Date:   Thu, 19 Nov 2020 18:48:04 +0800
-Message-ID: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
+        id S1726886AbgKSK6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 05:58:04 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:37043 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726644AbgKSK6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 05:58:04 -0500
+Received: by mail-oi1-f196.google.com with SMTP id j15so523011oih.4;
+        Thu, 19 Nov 2020 02:58:03 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PBDnVKEHNkn0XEpRmNcq0P71nm9E4KnrTMVqPCmJvVk=;
+        b=gULQlgNCCiAVA+08fePW9YwbLQCXpUvT6HSlj4SXQxAdixG7m+jsdqWIC2hQBvHQSh
+         L++Ut1o4psn1GS1g4yD/uCBXf5+tocQ5hJV/ZAAO1Li5W/QTgUkgBn9pIhwGc/IwkDcK
+         gaccRF+9nQXdTvAPETH7dRzRDlAPdCr33JejGKfzd5OfBh8ObZWAkpdX/N8MrgOjOsqQ
+         BPu3HG1GAB50Ft0QQ3al5fKeNtLcGoHpO9GtEkdfYDgs8QHPo2oiOeuKGFt+YaKA2jIr
+         p1vNrjwvF7gboGCmmwZWY5eT/ZvbBW5hYqmFNkcXf3qUesJTaztgyMOvue7Ia3gEVk9U
+         fjAQ==
+X-Gm-Message-State: AOAM533UIneEhpX4R5A4mszQ7K+WP4FjAe9XUL7m2Fvx6c4tOvG1qq0T
+        E6gfMhyfk0TU2zqZMrrroEWC1vdpqSgc/8F2fmUY7RaZec8=
+X-Google-Smtp-Source: ABdhPJyc0kbDdNA5pI8yJr3UWxbQERyJ/f1qUShZVxXxSs6+FyWRdbsuMRhkSp143Tedxp9sefucC/ULV5Ar4S3QU28=
+X-Received: by 2002:aca:c3c4:: with SMTP id t187mr2269568oif.148.1605783483057;
+ Thu, 19 Nov 2020 02:58:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20201107081420.60325-1-damien.lemoal@wdc.com> <20201107081420.60325-25-damien.lemoal@wdc.com>
+ <20201109153625.GB1330401@bogus> <04b266c7-bba9-d847-a526-f64f76c11a50@gmail.com>
+In-Reply-To: <04b266c7-bba9-d847-a526-f64f76c11a50@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 19 Nov 2020 11:57:51 +0100
+Message-ID: <CAMuHMdV0GL-GoY5=cgsW5QEWPB=ySK-8EyVeKLwt=6oODV4z3A@mail.gmail.com>
+Subject: Re: [PATCH 24/32] dt-bindings: Document kendryte,k210-fpioa bindings
+To:     Damien Le Moal <damien.lemoal@wdc.com>,
+        Sean Anderson <seanga2@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power domains controller node for SoC mt8192
+Hi Damien, Sean,
 
-Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
----
+On Mon, Nov 9, 2020 at 4:46 PM Sean Anderson <seanga2@gmail.com> wrote:
+> On 11/9/20 10:36 AM, Rob Herring wrote:
+> > On Sat, Nov 07, 2020 at 05:14:12PM +0900, Damien Le Moal wrote:
+> >> Document the device tree bindings for the Kendryte K210 SoC Fully
+> >> Programmable IO Array (FPIOA) pinctrl driver in
+> >> Documentation/devicetree/bindings/pinctrl/kendryte,k210-fpioa.yaml
+> >>
+> >> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 
-Change in v3: None, just rebase dts onto v5.10-rc1 and
-       V4 of series "Add new driver for SCPSYS power domains controller"[1]
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/pinctrl/kendryte,k210-fpioa.yaml
 
-[1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
+> >> +  kendryte,power-offset:
+> >> +    minItems: 1
+> >> +    maxItems: 1
+> >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >> +    description: |
+> >> +      Offset of the power domain control register of the system controller.
+> >
+> > Sounds like you should be using power-domains binding.
+>
+> This is for pin power domains. E.g. pins 0-5 can be set to 1V8 or 3V3 logic levels.
 
- arch/arm64/boot/dts/mediatek/mt8192.dtsi | 201 +++++++++++++++++++++++++++++++
- 1 file changed, 201 insertions(+)
+Which brings to my attention the power-source property is not
+documented below...
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-index 69d45c7..08449eb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
-+#include <dt-bindings/power/mt8192-power.h>
- 
- / {
- 	compatible = "mediatek,mt8192";
-@@ -257,6 +258,206 @@
- 			#interrupt-cells = <2>;
- 		};
- 
-+		scpsys: syscon@10006000 {
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0 0x10006000 0 0x1000>;
-+			#power-domain-cells = <1>;
-+
-+			/* System Power Manager */
-+			spm: power-controller {
-+				compatible = "mediatek,mt8192-power-controller";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				#power-domain-cells = <1>;
-+
-+				/* power domain of the SoC */
-+				audio@MT8192_POWER_DOMAIN_AUDIO {
-+					reg = <MT8192_POWER_DOMAIN_AUDIO>;
-+					clocks = <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
-+						 <&infracfg CLK_INFRA_AUDIO_26M_B>,
-+						 <&infracfg CLK_INFRA_AUDIO>;
-+					clock-names = "audio", "audio1", "audio2";
-+					mediatek,infracfg = <&infracfg>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				conn@MT8192_POWER_DOMAIN_CONN {
-+					reg = <MT8192_POWER_DOMAIN_CONN>;
-+					clocks = <&infracfg CLK_INFRA_PMIC_CONN>;
-+					clock-names = "conn";
-+					mediatek,infracfg = <&infracfg>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				mfg@MT8192_POWER_DOMAIN_MFG0 {
-+					reg = <MT8192_POWER_DOMAIN_MFG0>;
-+					clocks = <&topckgen CLK_TOP_MFG_PLL_SEL>;
-+					clock-names = "mfg";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					#power-domain-cells = <1>;
-+
-+					mfg1@MT8192_POWER_DOMAIN_MFG1 {
-+						reg = <MT8192_POWER_DOMAIN_MFG1>;
-+						mediatek,infracfg = <&infracfg>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						#power-domain-cells = <1>;
-+
-+						mfg2@MT8192_POWER_DOMAIN_MFG2 {
-+							reg = <MT8192_POWER_DOMAIN_MFG2>;
-+							#power-domain-cells = <0>;
-+						};
-+
-+						mfg3@MT8192_POWER_DOMAIN_MFG3 {
-+							reg = <MT8192_POWER_DOMAIN_MFG3>;
-+							#power-domain-cells = <0>;
-+						};
-+
-+						mfg4@MT8192_POWER_DOMAIN_MFG4 {
-+							reg = <MT8192_POWER_DOMAIN_MFG4>;
-+							#power-domain-cells = <0>;
-+						};
-+
-+						mfg5@MT8192_POWER_DOMAIN_MFG5 {
-+							reg = <MT8192_POWER_DOMAIN_MFG5>;
-+							#power-domain-cells = <0>;
-+						};
-+
-+						mfg6@MT8192_POWER_DOMAIN_MFG6 {
-+							reg = <MT8192_POWER_DOMAIN_MFG6>;
-+							#power-domain-cells = <0>;
-+						};
-+					};
-+				};
-+
-+				disp@MT8192_POWER_DOMAIN_DISP {
-+					reg = <MT8192_POWER_DOMAIN_DISP>;
-+					clocks = <&topckgen CLK_TOP_DISP_SEL>,
-+						 <&mmsys CLK_MM_SMI_INFRA>,
-+						 <&mmsys CLK_MM_SMI_COMMON>,
-+						 <&mmsys CLK_MM_SMI_GALS>,
-+						 <&mmsys CLK_MM_SMI_IOMMU>;
-+					clock-names = "disp", "disp-0", "disp-1", "disp-2",
-+						      "disp-3";
-+					mediatek,infracfg = <&infracfg>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					#power-domain-cells = <1>;
-+
-+					ipe@MT8192_POWER_DOMAIN_IPE {
-+						reg = <MT8192_POWER_DOMAIN_IPE>;
-+						clocks = <&topckgen CLK_TOP_IPE_SEL>,
-+							 <&ipesys CLK_IPE_LARB19>,
-+							 <&ipesys CLK_IPE_LARB20>,
-+							 <&ipesys CLK_IPE_SMI_SUBCOM>,
-+							 <&ipesys CLK_IPE_GALS>;
-+						clock-names = "ipe", "ipe-0", "ipe-1", "ipe-2",
-+							      "ipe-3";
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					isp@MT8192_POWER_DOMAIN_ISP {
-+						reg = <MT8192_POWER_DOMAIN_ISP>;
-+						clocks = <&topckgen CLK_TOP_IMG1_SEL>,
-+							 <&imgsys CLK_IMG_LARB9>,
-+							 <&imgsys CLK_IMG_GALS>;
-+						clock-names = "isp", "isp-0", "isp-1";
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					isp2@MT8192_POWER_DOMAIN_ISP2 {
-+						reg = <MT8192_POWER_DOMAIN_ISP2>;
-+						clocks = <&topckgen CLK_TOP_IMG2_SEL>,
-+							 <&imgsys2 CLK_IMG2_LARB11>,
-+							 <&imgsys2 CLK_IMG2_GALS>;
-+						clock-names = "isp2", "isp2-0", "isp2-1";
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					mdp@MT8192_POWER_DOMAIN_MDP {
-+						reg = <MT8192_POWER_DOMAIN_MDP>;
-+						clocks = <&topckgen CLK_TOP_MDP_SEL>,
-+							 <&mdpsys CLK_MDP_SMI0>;
-+						clock-names = "mdp", "mdp-0";
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					venc@MT8192_POWER_DOMAIN_VENC {
-+						reg = <MT8192_POWER_DOMAIN_VENC>;
-+						clocks = <&topckgen CLK_TOP_VENC_SEL>,
-+							 <&vencsys CLK_VENC_SET1_VENC>;
-+						clock-names = "venc", "venc-0";
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					vdec@MT8192_POWER_DOMAIN_VDEC {
-+						reg = <MT8192_POWER_DOMAIN_VDEC>;
-+						clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-+							 <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-+							 <&vdecsys_soc CLK_VDEC_SOC_LAT>,
-+							 <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
-+						clock-names = "vdec", "vdec-0", "vdec-1", "vdec-2";
-+						mediatek,infracfg = <&infracfg>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						#power-domain-cells = <1>;
-+
-+						vdec2@MT8192_POWER_DOMAIN_VDEC2 {
-+							reg = <MT8192_POWER_DOMAIN_VDEC2>;
-+							clocks = <&vdecsys CLK_VDEC_VDEC>,
-+								 <&vdecsys CLK_VDEC_LAT>,
-+								 <&vdecsys CLK_VDEC_LARB1>;
-+							clock-names = "vdec2-0", "vdec2-1",
-+								      "vdec2-2";
-+							#power-domain-cells = <0>;
-+						};
-+					};
-+
-+					cam@MT8192_POWER_DOMAIN_CAM {
-+						reg = <MT8192_POWER_DOMAIN_CAM>;
-+						clocks = <&topckgen CLK_TOP_CAM_SEL>,
-+							 <&camsys CLK_CAM_LARB13>,
-+							 <&camsys CLK_CAM_LARB14>,
-+							 <&camsys CLK_CAM_CCU_GALS>,
-+							 <&camsys CLK_CAM_CAM2MM_GALS>;
-+						clock-names = "cam", "cam-0", "cam-1", "cam-2",
-+							      "cam-3";
-+						mediatek,infracfg = <&infracfg>;
-+						#address-cells = <1>;
-+						#size-cells = <0>;
-+						#power-domain-cells = <1>;
-+
-+						cam_rawa@MT8192_POWER_DOMAIN_CAM_RAWA {
-+							reg = <MT8192_POWER_DOMAIN_CAM_RAWA>;
-+							clocks = <&camsys_rawa CLK_CAM_RAWA_LARBX>;
-+							clock-names = "cam_rawa-0";
-+							#power-domain-cells = <0>;
-+						};
-+
-+						cam_rawb@MT8192_POWER_DOMAIN_CAM_RAWB {
-+							reg = <MT8192_POWER_DOMAIN_CAM_RAWB>;
-+							clocks = <&camsys_rawb CLK_CAM_RAWB_LARBX>;
-+							clock-names = "cam_rawb-0";
-+							#power-domain-cells = <0>;
-+						};
-+
-+						cam_rawc@MT8192_POWER_DOMAIN_CAM_RAWC {
-+							reg = <MT8192_POWER_DOMAIN_CAM_RAWC>;
-+							clocks = <&camsys_rawc CLK_CAM_RAWC_LARBX>;
-+							clock-names = "cam_rawc-0";
-+							#power-domain-cells = <0>;
-+						};
-+					};
-+				};
-+			};
-+		};
-+
- 		apmixedsys: syscon@1000c000 {
- 			compatible = "mediatek,mt8192-apmixedsys", "syscon";
- 			reg = <0 0x1000c000 0 0x1000>;
--- 
-1.8.1.1.dirty
+> >> +      The value should be the macro K210_SYSCTL_POWER_SEL defined in
+> >> +      dt-bindings/mfd/k210-sysctl.h.
+> >> +
+> >> +patternProperties:
+> >> +  '^.*$':
+> >> +    if:
+> >> +      type: object
+> >> +    then:
 
+As the driver supports e.g. bias and drive-strength, these should be
+documented here, too.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
