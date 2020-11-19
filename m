@@ -2,342 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE4912B9E09
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 00:22:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E9162B9E94
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 00:45:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726299AbgKSXUF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 18:20:05 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39902 "EHLO mail.kernel.org"
+        id S1727379AbgKSXiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 18:38:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44292 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726260AbgKSXUF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 18:20:05 -0500
-Received: from earth.universe (dyndsl-095-033-168-206.ewe-ip-backbone.de [95.33.168.206])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727028AbgKSXix (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 18:38:53 -0500
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DFC7F221FE;
-        Thu, 19 Nov 2020 23:20:02 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B29C022248;
+        Thu, 19 Nov 2020 23:38:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605828003;
-        bh=v3f3dbc03INVmDTETPz4Zq4KStacH/1qk3Nk6YbidYI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BobGQHxBYWNxd9L5BIujuUvbFOIQQUBCFOX23/flb16Sr5MD/7YeoTtWr7kNv8R+2
-         pT39kM1jWGibttZg/Hb5dWhoEoBxp/wkzKlRrd5Q3S18xHKjg0s+BRVW8K8fc0ehbP
-         i85f9yzp1VeK1oqbIE15GSM46S/WM8um4x/Lp7zY=
-Received: by earth.universe (Postfix, from userid 1000)
-        id 9838A3C0C8E; Fri, 20 Nov 2020 00:20:00 +0100 (CET)
-Date:   Fri, 20 Nov 2020 00:20:00 +0100
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        s=default; t=1605829133;
+        bh=XJSKtvpgEybgfJcO0SJsTybzoZJuV4CZibv1f3Vm9Q4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=1w6tnffGLWdZheAqgLLRjoFP66HuyXPIcYm238SHq4vJaaDHD5I/G2qoN9AynmR/r
+         Zfb0giKkohOvZdwTIHwba6fSf5YO0MvGzc1EQg2mdbXbtn35bBh1NIBbwZLTpYF30i
+         dWzoExbrSn5VYaFfD9LEkGHVXdH8mjuOVKAiD6EI=
+Received: by mail-ej1-f47.google.com with SMTP id lv15so4510548ejb.12;
+        Thu, 19 Nov 2020 15:38:52 -0800 (PST)
+X-Gm-Message-State: AOAM531I2WqeosR08ojhNM75lCRmCKRP1ruoJexoJBLCNf4h6zUD1wBO
+        buYQ5el9o2bZ7x64krLpVQglleWZgaYacwM1hA==
+X-Google-Smtp-Source: ABdhPJyCTosQ1GLHfnPlHYYUBtA/b5PCwSHB1U+bWLkPDbn0q/TbtAXAoCGE19frEgpV/RtrhRZkovX5D61bPOn2L44=
+X-Received: by 2002:a17:906:6a4e:: with SMTP id n14mr13380254ejs.194.1605829131052;
+ Thu, 19 Nov 2020 15:38:51 -0800 (PST)
+MIME-Version: 1.0
+References: <20201118082126.42701-1-chunfeng.yun@mediatek.com> <20201118082126.42701-7-chunfeng.yun@mediatek.com>
+In-Reply-To: <20201118082126.42701-7-chunfeng.yun@mediatek.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Fri, 20 Nov 2020 07:38:41 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_81uZ7MY1ZyfsyYL_62wkNvG2VCT3+G4Zr1bZBG9_Yg1w@mail.gmail.com>
+Message-ID: <CAAOTY_81uZ7MY1ZyfsyYL_62wkNvG2VCT3+G4Zr1bZBG9_Yg1w@mail.gmail.com>
+Subject: Re: [PATCH v3 07/11] dt-bindings: phy: convert MIP DSI PHY binding to
+ YAML schema
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH v4] dt-bindings: display: panel: one file of all simple
- LVDS panels with dual ports
-Message-ID: <20201119232000.qipbppfz42sop5sm@earth.universe>
-References: <1605577645-32173-1-git-send-email-victor.liu@nxp.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mtk4fn3djpn6py3c"
-Content-Disposition: inline
-In-Reply-To: <1605577645-32173-1-git-send-email-victor.liu@nxp.com>
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Min Guo <min.guo@mediatek.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        netdev@vger.kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi, Chunfeng:
 
---mtk4fn3djpn6py3c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Tue, Nov 17, 2020 at 09:47:25AM +0800, Liu Ying wrote:
-> To complement panel-simple.yaml, create panel-simple-lvds-dual-ports.yaml.
-> panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels that
-> have dual LVDS ports and require only a single power-supply.
-> The first port receives odd pixels, and the second port receives even pix=
-els.
-> Optionally, a backlight and an enable GPIO can be specified as properties.
->=20
-> Panels with swapped pixel order, if any, need dedicated bindings.
->=20
-> Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
-> 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new file.
->=20
-> The objectives with one file for all the simple LVDS panels with dual por=
-ts are:
-> - Make it simpler to add bindings for this kind of LVDS panels
-> - Keep the number of bindings file lower
-> - Keep the binding documentation for this kind of LVDS panels more consis=
-tent
-> - Make it possible for drivers to get pixel order via
->   drm_of_lvds_get_dual_link_pixel_order(), as the optional 'ports' proper=
-ty is
->   allowed
->=20
-> Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+Chunfeng Yun <chunfeng.yun@mediatek.com> =E6=96=BC 2020=E5=B9=B411=E6=9C=88=
+18=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=884:21=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Convert MIPI DSI PHY binding to YAML schema mediatek,dsi-phy.yaml
+>
+> Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
-
-Is this part of a bigger patchset updating the fsl,imx6q-ldb
-binding [0] (and driver), which has the following property?
-
- - fsl,dual-channel : boolean. if it exists, only LVDS channel 0 should
-   be configured - one input will be distributed on both outputs in dual
-   channel mode
-
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/Documentation/devicetree/bindings/display/imx/ldb.txt
-
-I have an out of tree platform (HW is still in development, DT will=20
-be upstreamed when hardware design is final) using "auo,g190ean01"
-with that panel on i.MX6 and it currently works. It don't mind
-updating the DT (new binding looks cleaner :)), but this patch by
-itself seems to 'break' support for dual channel panels on i.MX6?
-
--- Sebastian
-
-> v3->v4:
-> * Add type and descriptions for dual-lvds-{odd,even}-pixels properties.
->   Also, update descriptions for port@0 and port@1 properties accordingly.=
- (Rob)
->=20
-> v2->v3:
-> * Do not allow 'port' property. (Rob)
-> * Define port number. (Rob)
-> * Specify 'dual-lvds-odd-pixels' and 'dual-lvds-even-pixels' properties. =
-(Rob)
->=20
-> v1->v2:
-> * Correct pixel order in example LVDS panel node.
->=20
->  .../panel/panel-simple-lvds-dual-ports.yaml        | 130 +++++++++++++++=
-++++++
->  .../bindings/display/panel/panel-simple.yaml       |  10 --
->  2 files changed, 130 insertions(+), 10 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/panel=
--simple-lvds-dual-ports.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple=
--lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/pan=
-el-simple-lvds-dual-ports.yaml
+> v3: new patch
+> ---
+>  .../display/mediatek/mediatek,dsi.txt         | 18 +---
+>  .../bindings/phy/mediatek,dsi-phy.yaml        | 83 +++++++++++++++++++
+>  2 files changed, 84 insertions(+), 17 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,dsi-ph=
+y.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dsi.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.t=
+xt
+> index f06f24d405a5..8238a86686be 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.txt
+> @@ -22,23 +22,7 @@ Required properties:
+>  MIPI TX Configuration Module
+>  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+>
+> -The MIPI TX configuration module controls the MIPI D-PHY.
+> -
+> -Required properties:
+> -- compatible: "mediatek,<chip>-mipi-tx"
+> -- the supported chips are mt2701, 7623, mt8173 and mt8183.
+> -- reg: Physical base address and length of the controller's registers
+> -- clocks: PLL reference clock
+> -- clock-output-names: name of the output clock line to the DSI encoder
+> -- #clock-cells: must be <0>;
+> -- #phy-cells: must be <0>.
+> -
+> -Optional properties:
+> -- drive-strength-microamp: adjust driving current, should be 3000 ~ 6000=
+. And
+> -                                                  the step is 200.
+> -- nvmem-cells: A phandle to the calibration data provided by a nvmem dev=
+ice. If
+> -               unspecified default values shall be used.
+> -- nvmem-cell-names: Should be "calibration-data"
+> +See phy/mediatek,dsi-phy.yaml
+>
+>  Example:
+>
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml =
+b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
 > new file mode 100644
-> index 00000000..38a789b
+> index 000000000000..87f8df251ab0
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-d=
-ual-ports.yaml
-> @@ -0,0 +1,130 @@
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+> @@ -0,0 +1,83 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2020 MediaTek
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/panel/panel-simple-lvds-dual-=
-ports.yaml#
+> +$id: http://devicetree.org/schemas/phy/mediatek,dsi-phy.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Simple LVDS panels with one power supply and dual LVDS ports
+> +title: MediaTek MIPI Display Serial Interface (DSI) PHY binding
 > +
 > +maintainers:
-> +  - Liu Ying <victor.liu@nxp.com>
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Sam Ravnborg <sam@ravnborg.org>
+> +  - Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> +  - Chunfeng Yun <chunfeng.yun@mediatek.com>
+
+Please add Philipp Zabel because he is Mediatek DRM driver maintainer.
+
+DRM DRIVERS FOR MEDIATEK
+M: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+M: Philipp Zabel <p.zabel@pengutronix.de>
+L: dri-devel@lists.freedesktop.org
+S: Supported
+F: Documentation/devicetree/bindings/display/mediatek/
+
 > +
-> +description: |
-> +  This binding file is a collection of the LVDS panels that
-> +  has dual LVDS ports and requires only a single power-supply.
-> +  The first port receives odd pixels, and the second port receives even =
-pixels.
-> +  There are optionally a backlight and an enable GPIO.
-> +  The panel may use an OF graph binding for the association to the displ=
-ay,
-> +  or it may be a direct child node of the display.
-> +
-> +  If the panel is more advanced a dedicated binding file is required.
-> +
-> +allOf:
-> +  - $ref: panel-common.yaml#
+> +description: The MIPI DSI PHY supports up to 4-lane output.
 > +
 > +properties:
+> +  $nodename:
+> +    pattern: "^dsi-phy@[0-9a-f]+$"
 > +
 > +  compatible:
 > +    enum:
-> +    # compatible must be listed in alphabetical order, ordered by compat=
-ible.
-> +    # The description in the comment is mandatory for each compatible.
+> +      - mediatek,mt2701-mipi-tx
+> +      - mediatek,mt7623-mipi-tx
+> +      - mediatek,mt8173-mipi-tx
+
+Add mediatek,mt8183-mipi-tx
+
+Regards,
+Chun-Kuang.
+
 > +
-> +        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> +      - auo,g133han01
-> +        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> +      - auo,g185han01
-> +        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> +      - auo,g190ean01
-> +        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS=
- TFT LCD panel
-> +      - koe,tx26d202vm0bwa
-> +        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> +      - nlt,nl192108ac18-02d
+> +  reg:
+> +    maxItems: 1
 > +
-> +  ports:
-> +    type: object
-> +    properties:
-> +      '#address-cells':
-> +        const: 1
+> +  clocks:
+> +    items:
+> +      - description: PLL reference clock
 > +
-> +      '#size-cells':
-> +        const: 0
+> +  clock-output-names:
+> +    maxItems: 1
 > +
-> +      port@0:
-> +        type: object
-> +        description: The first sink port.
-> +        properties:
-> +          reg:
-> +            const: 0
+> +  "#phy-cells":
+> +    const: 0
 > +
-> +          dual-lvds-odd-pixels:
-> +            type: boolean
-> +            description: The first sink port for odd pixels.
+> +  "#clock-cells":
+> +    const: 0
 > +
-> +        required:
-> +          - reg
-> +          - dual-lvds-odd-pixels
+> +  nvmem-cells:
+> +    maxItems: 1
+> +    description: A phandle to the calibration data provided by a nvmem d=
+evice,
+> +      if unspecified, default values shall be used.
 > +
-> +      port@1:
-> +        type: object
-> +        description: The second sink port.
-> +        properties:
-> +          reg:
-> +            const: 1
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: calibration-data
 > +
-> +          dual-lvds-even-pixels:
-> +            type: boolean
-> +            description: The second sink port for even pixels.
-> +
-> +        required:
-> +          - reg
-> +          - dual-lvds-even-pixels
-> +
-> +    required:
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +      - port@0
-> +      - port@1
-> +
-> +    additionalProperties: false
-> +
-> +  backlight: true
-> +  enable-gpios: true
-> +  power-supply: true
-> +
-> +additionalProperties: false
+> +  drive-strength-microamp:
+> +    description: adjust driving current, the step is 200.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 2000
+> +    maximum: 6000
+> +    default: 4600
 > +
 > +required:
 > +  - compatible
-> +  - power-supply
+> +  - reg
+> +  - clocks
+> +  - clock-output-names
+> +  - "#phy-cells"
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    panel: panel-lvds {
-> +      compatible =3D "koe,tx26d202vm0bwa";
-> +      power-supply =3D <&vdd_lcd_reg>;
-> +
-> +      ports {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
-> +
-> +        port@0 {
-> +          dual-lvds-odd-pixels;
-> +          reg =3D <0>;
-> +
-> +          panel_lvds0_in: endpoint {
-> +            remote-endpoint =3D <&lvds0_out>;
-> +          };
-> +        };
-> +
-> +        port@1 {
-> +          dual-lvds-even-pixels;
-> +          reg =3D <1>;
-> +
-> +          panel_lvds1_in: endpoint {
-> +            remote-endpoint =3D <&lvds1_out>;
-> +          };
-> +        };
-> +      };
+> +    #include <dt-bindings/clock/mt8173-clk.h>
+> +    dsi-phy@10215000 {
+> +        compatible =3D "mediatek,mt8173-mipi-tx";
+> +        reg =3D <0x10215000 0x1000>;
+> +        clocks =3D <&clk26m>;
+> +        clock-output-names =3D "mipi_tx0_pll";
+> +        drive-strength-microamp =3D <4000>;
+> +        nvmem-cells=3D <&mipi_tx_calibration>;
+> +        nvmem-cell-names =3D "calibration-data";
+> +        #clock-cells =3D <0>;
+> +        #phy-cells =3D <0>;
 > +    };
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple=
-=2Eyaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> index f9750b0..62618e4 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> @@ -57,14 +57,8 @@ properties:
->        - auo,g104sn02
->          # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
->        - auo,g121ean01
-> -        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> -      - auo,g133han01
->          # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
->        - auo,g156xtn01
-> -        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> -      - auo,g185han01
-> -        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> -      - auo,g190ean01
->          # AU Optronics Corporation 31.5" FHD (1920x1080) TFT LCD panel
->        - auo,p320hvn03
->          # AU Optronics Corporation 21.5" FHD (1920x1080) color TFT LCD p=
-anel
-> @@ -167,8 +161,6 @@ properties:
->        - kingdisplay,kd116n21-30nv-a010
->          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240) TFT LCD =
-panel
->        - koe,tx14d24vm1bpa
-> -        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS=
- TFT LCD panel
-> -      - koe,tx26d202vm0bwa
->          # Kaohsiung Opto-Electronics. TX31D200VM0BAA 12.3" HSXGA LVDS pa=
-nel
->        - koe,tx31d200vm0baa
->          # Kyocera Corporation 12.1" XGA (1024x768) TFT LCD panel
-> @@ -205,8 +197,6 @@ properties:
->        - neweast,wjfh116008a
->          # Newhaven Display International 480 x 272 TFT LCD panel
->        - newhaven,nhd-4.3-480272ef-atxl
-> -        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> -      - nlt,nl192108ac18-02d
->          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
->        - nvd,9128
->          # OKAYA Electric America, Inc. RS800480T-7X0GP 7" WVGA LCD panel
-> --=20
-> 2.7.4
->=20
-
---mtk4fn3djpn6py3c
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl+2/ZgACgkQ2O7X88g7
-+pr+ig//eB5XfH8ddT6VqizMW9/PL69TNj2BN+qCMDPeoVXrKg7HoSAHy+KRzNUX
-T6RJMVkYyXtce2wyAf9EppV5IL61q+c2IoLarrZouBgtaPTMCYifls8ObyWKxqOt
-pfj5sEWBv8CCpozpkqHQF3sZ6+6IqfK7i6M1s2Hn6ZoO6BsefS+3tLHBQ66Sa6iV
-3qo9zp439U1jhXRJwe9RvBrsgxZUyOjMrta0WAc22KBIIe7xcbeKjTzbV/hlAx0/
-Dzqkdv2E6mP6fBNS5JY0pR8TT9roPOAcdavSd82gBVZiR15//oKTZfVkjE37f5L2
-fQYNJEnZ9U0PnPfUXPIAQt0A86SesITAbzIRK8m3aHEmsgg1VYQmueARvQZk9rER
-2Mhy0a/19KApXDmviLVieYktrI7M9yMM7/5nv4Cf0LfWPnWUeZQsyeOaE7VWILN2
-wxJVODTNZd0Ix6sMxWEHUfzLOKgAzaCPZ9a+hIb2kpSaVlz2O54IYlcxJL4wX0Du
-R7e08HaMle5K1JFesXyYxlCjAM2WmfjFqrPsVjXM4bYBY2ApoINbUviKyEg8EfBY
-ooKWZPGL0AdDm7/1GZT1GP7N3fm7YT9anHvG5PcEz8OzupZiBklsQEsqs8qUe55w
-658seDXCKmsM5WbHyXaeNhrJmt/v89nvnNKAO6skiJrOhpINc9Y=
-=L+4l
------END PGP SIGNATURE-----
-
---mtk4fn3djpn6py3c--
+> +
+> +...
+> --
+> 2.18.0
+>
