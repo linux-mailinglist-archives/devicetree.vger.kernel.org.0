@@ -2,566 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C702B968C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:44:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD5022B96CC
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:53:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728725AbgKSPnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:43:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47170 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728695AbgKSPnr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:43:47 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F385C0613CF;
-        Thu, 19 Nov 2020 07:43:46 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id w24so7169164wmi.0;
-        Thu, 19 Nov 2020 07:43:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=2BiinEaG2m8ErGwARqJeGz+PRwCSINqSBXnxHAFNXJs=;
-        b=PHwDy44GZWQSH038KPMTjj5TLwAj9OM9ZILh482wS0L3hQSD8D+Fpr5vIVvWNUEfgL
-         i3ivzHaXNmyDOI9f5t3KTyPE6xMGCD2Z9NBy3Pq3tA2UcdJIlr9Ih9D+ojQoKeutBreO
-         7xH8JCIl6cYajbKZUl06TmgEixhqQMCTOXAuXFybVrdSRveeQ9N75CMEKUrB6XdA7hEG
-         A7WM5l3o5MLizwpzNHYr/cHekCRO9j6srcYlbPNyDRivmyQqTdSWuxnexATgqU7FErSv
-         vKDRtP9Eu2tvYCYFzZDi7woRuVcXz53wetYz9NDqIv+5fLmFx7MXqPM8Ruo8F15zGyJB
-         hGZQ==
+        id S1727987AbgKSPrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:47:02 -0500
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:44499 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727824AbgKSPrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:47:02 -0500
+Received: by mail-oi1-f195.google.com with SMTP id t16so6747229oie.11;
+        Thu, 19 Nov 2020 07:47:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2BiinEaG2m8ErGwARqJeGz+PRwCSINqSBXnxHAFNXJs=;
-        b=FnB0sKlelWCFn8dQ6C94yDCCtrXbr5iO4w9YHq1VFhHVfynyQ8qcYUhDgsTi/y//W2
-         BbfWuheHmPVwIXUNikpei/C8o/8pExZD95aclw+vqstddHomPUdwcQrw3AdkREkdYFul
-         r2ISBeuf3iuEwfcWwcHpNDfjWGgE9sT1AxG46yp1ZePM2flTMhAzHBzJtAT+GCv8m4rH
-         sLVh29oNGScK50sNeG90vxBWWVbv2EXWj/Dk08IRPvMsH40SYBgIB4QGLbqRw9uu0lGZ
-         8m0zMC4jDuhVUU3dTwUdxrFP796Eq9crkPRQ/xosb3ZzcmQDRzZ8yESVsaJD2atHXXAx
-         bPtA==
-X-Gm-Message-State: AOAM5315NACtAbT6bvyg0WuyULXqp1T8F7nvIEfnGTPd0Yj+RaocqZ1z
-        feb150rtf90g+9J5bAR63oU=
-X-Google-Smtp-Source: ABdhPJz1MopwHKtSE3jUo5eHFnnI7f1WEgFtx7KbUhyGKa/5jSx5xPt08CNoFUA3nPvMkKafAkV/8w==
-X-Received: by 2002:a1c:9c53:: with SMTP id f80mr5066083wme.19.1605800624958;
-        Thu, 19 Nov 2020 07:43:44 -0800 (PST)
-Received: from localhost.localdomain (234.red-79-158-79.dynamicip.rima-tde.net. [79.158.79.234])
-        by smtp.gmail.com with ESMTPSA id w10sm181303wra.34.2020.11.19.07.43.43
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 19 Nov 2020 07:43:44 -0800 (PST)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     vkoul@kernel.org
-Cc:     robh+dt@kernel.org, kishon@ti.com, gregkh@linuxfoundation.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        devel@driverdev.osuosl.org, neil@brown.name
-Subject: [PATCH v5 4/4] staging: mt7621-pci-phy: remove driver from staging
-Date:   Thu, 19 Nov 2020 16:43:37 +0100
-Message-Id: <20201119154337.9195-5-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201119154337.9195-1-sergio.paracuellos@gmail.com>
-References: <20201119154337.9195-1-sergio.paracuellos@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=i1tNp2KgBd14FkkpCIHyiNr1qV+4/KrTXMEh9UM4OyA=;
+        b=qWJdHpJvbx0G0+Vup1XZBMBUwnC0CXaKw44s66pMJWN5NccbNjaGObiE5W6gVLT9iA
+         0YT7qEbzJksI2Mtywx8OI7VuVVAuWDPaIn+lr2var911DzIkj+6spz4mTQRxe1t7kbU9
+         gvjkVRMTG0TX96AS02CYDD6kPN5Xxd3rLgJfXASSYbR8KobVE8drkEpnkb42Ml2Gxczf
+         j21KceX9eBDExinTbLGB4m8ZGV6kqMEmQlSxnC3T0aOCBR9I7sp2dc86TQjmaKKJLoln
+         FocrEUXyDoxapAA0l9LzXSfGAiKGGljsQVzlT6njx53B4H/eMMuhxwTij8/LdVeI5JC8
+         jhWw==
+X-Gm-Message-State: AOAM532K6H8U1Kpmlt7Inx7/PWKy420sWm7EgKTLKHXzWCBVda1UTXel
+        iyLlJFIegHBg51xB64xFgw==
+X-Google-Smtp-Source: ABdhPJwkrz3+GCohSQnDOih8nPEsaXejgRb4izFB+vIbBFRIMNrgLzBmWvAhWHS986gyCl3cLw7szQ==
+X-Received: by 2002:a54:480b:: with SMTP id j11mr3182548oij.31.1605800820893;
+        Thu, 19 Nov 2020 07:47:00 -0800 (PST)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id x7sm29561otb.19.2020.11.19.07.46.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2020 07:46:59 -0800 (PST)
+Received: (nullmailer pid 3306861 invoked by uid 1000);
+        Thu, 19 Nov 2020 15:46:59 -0000
+Date:   Thu, 19 Nov 2020 09:46:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     s.hauer@pengutronix.de, linux-imx@nxp.com, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, shawnguo@kernel.org,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, tzimmermann@suse.de
+Subject: Re: [PATCH 1/8] dt-bindings: display: imx: Add i.MX8qxp/qm DPU
+ binding
+Message-ID: <20201119154659.GA3306242@bogus>
+References: <1605777745-23625-1-git-send-email-victor.liu@nxp.com>
+ <1605777745-23625-2-git-send-email-victor.liu@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1605777745-23625-2-git-send-email-victor.liu@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove this driver from staging because it has been moved
-into its properly place in the kernel.
+On Thu, 19 Nov 2020 17:22:18 +0800, Liu Ying wrote:
+> This patch adds bindings for i.MX8qxp/qm Display Processing Unit.
+> 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml      | 358 +++++++++++++++++++++
+>  1 file changed, 358 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+> 
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/staging/Kconfig                       |   2 -
- drivers/staging/Makefile                      |   1 -
- drivers/staging/mt7621-pci-phy/Kconfig        |   8 -
- drivers/staging/mt7621-pci-phy/Makefile       |   2 -
- drivers/staging/mt7621-pci-phy/TODO           |   4 -
- .../mediatek,mt7621-pci-phy.yaml              |  36 --
- .../staging/mt7621-pci-phy/pci-mt7621-phy.c   | 373 ------------------
- 7 files changed, 426 deletions(-)
- delete mode 100644 drivers/staging/mt7621-pci-phy/Kconfig
- delete mode 100644 drivers/staging/mt7621-pci-phy/Makefile
- delete mode 100644 drivers/staging/mt7621-pci-phy/TODO
- delete mode 100644 drivers/staging/mt7621-pci-phy/mediatek,mt7621-pci-phy.yaml
- delete mode 100644 drivers/staging/mt7621-pci-phy/pci-mt7621-phy.c
 
-diff --git a/drivers/staging/Kconfig b/drivers/staging/Kconfig
-index 2d0310448eba..8a03ba56def5 100644
---- a/drivers/staging/Kconfig
-+++ b/drivers/staging/Kconfig
-@@ -94,8 +94,6 @@ source "drivers/staging/pi433/Kconfig"
- 
- source "drivers/staging/mt7621-pci/Kconfig"
- 
--source "drivers/staging/mt7621-pci-phy/Kconfig"
--
- source "drivers/staging/mt7621-pinctrl/Kconfig"
- 
- source "drivers/staging/mt7621-dma/Kconfig"
-diff --git a/drivers/staging/Makefile b/drivers/staging/Makefile
-index 757a892ab5b9..39319161301c 100644
---- a/drivers/staging/Makefile
-+++ b/drivers/staging/Makefile
-@@ -37,7 +37,6 @@ obj-$(CONFIG_GREYBUS)		+= greybus/
- obj-$(CONFIG_BCM2835_VCHIQ)	+= vc04_services/
- obj-$(CONFIG_PI433)		+= pi433/
- obj-$(CONFIG_PCI_MT7621)	+= mt7621-pci/
--obj-$(CONFIG_PCI_MT7621_PHY)	+= mt7621-pci-phy/
- obj-$(CONFIG_PINCTRL_RT2880)	+= mt7621-pinctrl/
- obj-$(CONFIG_SOC_MT7621)	+= mt7621-dma/
- obj-$(CONFIG_DMA_RALINK)	+= ralink-gdma/
-diff --git a/drivers/staging/mt7621-pci-phy/Kconfig b/drivers/staging/mt7621-pci-phy/Kconfig
-deleted file mode 100644
-index 263e0a91c424..000000000000
---- a/drivers/staging/mt7621-pci-phy/Kconfig
-+++ /dev/null
-@@ -1,8 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--config PCI_MT7621_PHY
--	tristate "MediaTek MT7621 PCI PHY Driver"
--	depends on RALINK && OF
--	select GENERIC_PHY
--	help
--	  Say 'Y' here to add support for MediaTek MT7621 PCI PHY driver,
--
-diff --git a/drivers/staging/mt7621-pci-phy/Makefile b/drivers/staging/mt7621-pci-phy/Makefile
-deleted file mode 100644
-index b4d99b9119e0..000000000000
---- a/drivers/staging/mt7621-pci-phy/Makefile
-+++ /dev/null
-@@ -1,2 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--obj-$(CONFIG_PCI_MT7621_PHY)       += pci-mt7621-phy.o
-diff --git a/drivers/staging/mt7621-pci-phy/TODO b/drivers/staging/mt7621-pci-phy/TODO
-deleted file mode 100644
-index a255e8f753eb..000000000000
---- a/drivers/staging/mt7621-pci-phy/TODO
-+++ /dev/null
-@@ -1,4 +0,0 @@
--
--- general code review and cleanup
--
--Cc:  NeilBrown <neil@brown.name> and Sergio Paracuellos <sergio.paracuellos@gmail.com>
-diff --git a/drivers/staging/mt7621-pci-phy/mediatek,mt7621-pci-phy.yaml b/drivers/staging/mt7621-pci-phy/mediatek,mt7621-pci-phy.yaml
-deleted file mode 100644
-index cf32bbc45b5d..000000000000
---- a/drivers/staging/mt7621-pci-phy/mediatek,mt7621-pci-phy.yaml
-+++ /dev/null
-@@ -1,36 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--%YAML 1.2
-----
--$id: "http://devicetree.org/schemas/phy/mediatek,mt7621-pci-phy.yaml#"
--$schema: "http://devicetree.org/meta-schemas/core.yaml#"
--
--title: Mediatek Mt7621 PCIe PHY Device Tree Bindings
--
--maintainers:
--  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
--
--properties:
--  compatible:
--    const: mediatek,mt7621-pci-phy
--
--  reg:
--    maxItems: 1
--
--  "#phy-cells":
--    const: 1
--    description: selects if the phy is dual-ported
--
--required:
--  - compatible
--  - reg
--  - "#phy-cells"
--
--additionalProperties: false
--
--examples:
--  - |
--    pcie0_phy: pcie-phy@1e149000 {
--      compatible = "mediatek,mt7621-pci-phy";
--      reg = <0x1e149000 0x0700>;
--      #phy-cells = <1>;
--    };
-diff --git a/drivers/staging/mt7621-pci-phy/pci-mt7621-phy.c b/drivers/staging/mt7621-pci-phy/pci-mt7621-phy.c
-deleted file mode 100644
-index 57743fd22be4..000000000000
---- a/drivers/staging/mt7621-pci-phy/pci-mt7621-phy.c
-+++ /dev/null
-@@ -1,373 +0,0 @@
--// SPDX-License-Identifier: GPL-2.0+
--/*
-- * Mediatek MT7621 PCI PHY Driver
-- * Author: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-- */
--
--#include <dt-bindings/phy/phy.h>
--#include <linux/bitops.h>
--#include <linux/module.h>
--#include <linux/of_address.h>
--#include <linux/of_device.h>
--#include <linux/phy/phy.h>
--#include <linux/platform_device.h>
--#include <linux/regmap.h>
--#include <linux/sys_soc.h>
--#include <mt7621.h>
--#include <ralink_regs.h>
--
--#define RG_PE1_PIPE_REG				0x02c
--#define RG_PE1_PIPE_RST				BIT(12)
--#define RG_PE1_PIPE_CMD_FRC			BIT(4)
--
--#define RG_P0_TO_P1_WIDTH			0x100
--#define RG_PE1_H_LCDDS_REG			0x49c
--#define RG_PE1_H_LCDDS_PCW			GENMASK(30, 0)
--#define RG_PE1_H_LCDDS_PCW_VAL(x)		((0x7fffffff & (x)) << 0)
--
--#define RG_PE1_FRC_H_XTAL_REG			0x400
--#define RG_PE1_FRC_H_XTAL_TYPE			BIT(8)
--#define RG_PE1_H_XTAL_TYPE			GENMASK(10, 9)
--#define RG_PE1_H_XTAL_TYPE_VAL(x)		((0x3 & (x)) << 9)
--
--#define RG_PE1_FRC_PHY_REG			0x000
--#define RG_PE1_FRC_PHY_EN			BIT(4)
--#define RG_PE1_PHY_EN				BIT(5)
--
--#define RG_PE1_H_PLL_REG			0x490
--#define RG_PE1_H_PLL_BC				GENMASK(23, 22)
--#define RG_PE1_H_PLL_BC_VAL(x)			((0x3 & (x)) << 22)
--#define RG_PE1_H_PLL_BP				GENMASK(21, 18)
--#define RG_PE1_H_PLL_BP_VAL(x)			((0xf & (x)) << 18)
--#define RG_PE1_H_PLL_IR				GENMASK(15, 12)
--#define RG_PE1_H_PLL_IR_VAL(x)			((0xf & (x)) << 12)
--#define RG_PE1_H_PLL_IC				GENMASK(11, 8)
--#define RG_PE1_H_PLL_IC_VAL(x)			((0xf & (x)) << 8)
--#define RG_PE1_H_PLL_PREDIV			GENMASK(7, 6)
--#define RG_PE1_H_PLL_PREDIV_VAL(x)		((0x3 & (x)) << 6)
--#define RG_PE1_PLL_DIVEN			GENMASK(3, 1)
--#define RG_PE1_PLL_DIVEN_VAL(x)			((0x7 & (x)) << 1)
--
--#define RG_PE1_H_PLL_FBKSEL_REG			0x4bc
--#define RG_PE1_H_PLL_FBKSEL			GENMASK(5, 4)
--#define RG_PE1_H_PLL_FBKSEL_VAL(x)		((0x3 & (x)) << 4)
--
--#define	RG_PE1_H_LCDDS_SSC_PRD_REG		0x4a4
--#define RG_PE1_H_LCDDS_SSC_PRD			GENMASK(15, 0)
--#define RG_PE1_H_LCDDS_SSC_PRD_VAL(x)		((0xffff & (x)) << 0)
--
--#define RG_PE1_H_LCDDS_SSC_DELTA_REG		0x4a8
--#define RG_PE1_H_LCDDS_SSC_DELTA		GENMASK(11, 0)
--#define RG_PE1_H_LCDDS_SSC_DELTA_VAL(x)		((0xfff & (x)) << 0)
--#define RG_PE1_H_LCDDS_SSC_DELTA1		GENMASK(27, 16)
--#define RG_PE1_H_LCDDS_SSC_DELTA1_VAL(x)	((0xff & (x)) << 16)
--
--#define RG_PE1_LCDDS_CLK_PH_INV_REG		0x4a0
--#define RG_PE1_LCDDS_CLK_PH_INV			BIT(5)
--
--#define RG_PE1_H_PLL_BR_REG			0x4ac
--#define RG_PE1_H_PLL_BR				GENMASK(18, 16)
--#define RG_PE1_H_PLL_BR_VAL(x)			((0x7 & (x)) << 16)
--
--#define	RG_PE1_MSTCKDIV_REG			0x414
--#define RG_PE1_MSTCKDIV				GENMASK(7, 6)
--#define RG_PE1_MSTCKDIV_VAL(x)			((0x3 & (x)) << 6)
--
--#define RG_PE1_FRC_MSTCKDIV			BIT(5)
--
--#define XTAL_MODE_SEL_SHIFT			6
--#define XTAL_MODE_SEL_MASK			0x7
--
--#define MAX_PHYS	2
--
--/**
-- * struct mt7621_pci_phy - Mt7621 Pcie PHY core
-- * @dev: pointer to device
-- * @regmap: kernel regmap pointer
-- * @phy: pointer to the kernel PHY device
-- * @port_base: base register
-- * @has_dual_port: if the phy has dual ports.
-- * @bypass_pipe_rst: mark if 'mt7621_bypass_pipe_rst'
-- * needs to be executed. Depends on chip revision.
-- */
--struct mt7621_pci_phy {
--	struct device *dev;
--	struct regmap *regmap;
--	struct phy *phy;
--	void __iomem *port_base;
--	bool has_dual_port;
--	bool bypass_pipe_rst;
--};
--
--static inline u32 phy_read(struct mt7621_pci_phy *phy, u32 reg)
--{
--	u32 val;
--
--	regmap_read(phy->regmap, reg, &val);
--
--	return val;
--}
--
--static inline void phy_write(struct mt7621_pci_phy *phy, u32 val, u32 reg)
--{
--	regmap_write(phy->regmap, reg, val);
--}
--
--static inline void mt7621_phy_rmw(struct mt7621_pci_phy *phy,
--				  u32 reg, u32 clr, u32 set)
--{
--	u32 val = phy_read(phy, reg);
--
--	val &= ~clr;
--	val |= set;
--	phy_write(phy, val, reg);
--}
--
--static void mt7621_bypass_pipe_rst(struct mt7621_pci_phy *phy)
--{
--	mt7621_phy_rmw(phy, RG_PE1_PIPE_REG, 0, RG_PE1_PIPE_RST);
--	mt7621_phy_rmw(phy, RG_PE1_PIPE_REG, 0, RG_PE1_PIPE_CMD_FRC);
--
--	if (phy->has_dual_port) {
--		mt7621_phy_rmw(phy, RG_PE1_PIPE_REG + RG_P0_TO_P1_WIDTH,
--			       0, RG_PE1_PIPE_RST);
--		mt7621_phy_rmw(phy, RG_PE1_PIPE_REG + RG_P0_TO_P1_WIDTH,
--			       0, RG_PE1_PIPE_CMD_FRC);
--	}
--}
--
--static void mt7621_set_phy_for_ssc(struct mt7621_pci_phy *phy)
--{
--	struct device *dev = phy->dev;
--	u32 xtal_mode;
--
--	xtal_mode = (rt_sysc_r32(SYSC_REG_SYSTEM_CONFIG0)
--		     >> XTAL_MODE_SEL_SHIFT) & XTAL_MODE_SEL_MASK;
--
--	/* Set PCIe Port PHY to disable SSC */
--	/* Debug Xtal Type */
--	mt7621_phy_rmw(phy, RG_PE1_FRC_H_XTAL_REG,
--		       RG_PE1_FRC_H_XTAL_TYPE | RG_PE1_H_XTAL_TYPE,
--		       RG_PE1_FRC_H_XTAL_TYPE | RG_PE1_H_XTAL_TYPE_VAL(0x00));
--
--	/* disable port */
--	mt7621_phy_rmw(phy, RG_PE1_FRC_PHY_REG,
--		       RG_PE1_PHY_EN, RG_PE1_FRC_PHY_EN);
--
--	if (phy->has_dual_port) {
--		mt7621_phy_rmw(phy, RG_PE1_FRC_PHY_REG + RG_P0_TO_P1_WIDTH,
--			       RG_PE1_PHY_EN, RG_PE1_FRC_PHY_EN);
--	}
--
--	if (xtal_mode <= 5 && xtal_mode >= 3) { /* 40MHz Xtal */
--		/* Set Pre-divider ratio (for host mode) */
--		mt7621_phy_rmw(phy, RG_PE1_H_PLL_REG,
--			       RG_PE1_H_PLL_PREDIV,
--			       RG_PE1_H_PLL_PREDIV_VAL(0x01));
--		dev_info(dev, "Xtal is 40MHz\n");
--	} else if (xtal_mode >= 6) { /* 25MHz Xal */
--		mt7621_phy_rmw(phy, RG_PE1_H_PLL_REG,
--			       RG_PE1_H_PLL_PREDIV,
--			       RG_PE1_H_PLL_PREDIV_VAL(0x00));
--		/* Select feedback clock */
--		mt7621_phy_rmw(phy, RG_PE1_H_PLL_FBKSEL_REG,
--			       RG_PE1_H_PLL_FBKSEL,
--			       RG_PE1_H_PLL_FBKSEL_VAL(0x01));
--		/* DDS NCPO PCW (for host mode) */
--		mt7621_phy_rmw(phy, RG_PE1_H_LCDDS_SSC_PRD_REG,
--			       RG_PE1_H_LCDDS_SSC_PRD,
--			       RG_PE1_H_LCDDS_SSC_PRD_VAL(0x18000000));
--		/* DDS SSC dither period control */
--		mt7621_phy_rmw(phy, RG_PE1_H_LCDDS_SSC_PRD_REG,
--			       RG_PE1_H_LCDDS_SSC_PRD,
--			       RG_PE1_H_LCDDS_SSC_PRD_VAL(0x18d));
--		/* DDS SSC dither amplitude control */
--		mt7621_phy_rmw(phy, RG_PE1_H_LCDDS_SSC_DELTA_REG,
--			       RG_PE1_H_LCDDS_SSC_DELTA |
--			       RG_PE1_H_LCDDS_SSC_DELTA1,
--			       RG_PE1_H_LCDDS_SSC_DELTA_VAL(0x4a) |
--			       RG_PE1_H_LCDDS_SSC_DELTA1_VAL(0x4a));
--		dev_info(dev, "Xtal is 25MHz\n");
--	} else { /* 20MHz Xtal */
--		mt7621_phy_rmw(phy, RG_PE1_H_PLL_REG,
--			       RG_PE1_H_PLL_PREDIV,
--			       RG_PE1_H_PLL_PREDIV_VAL(0x00));
--
--		dev_info(dev, "Xtal is 20MHz\n");
--	}
--
--	/* DDS clock inversion */
--	mt7621_phy_rmw(phy, RG_PE1_LCDDS_CLK_PH_INV_REG,
--		       RG_PE1_LCDDS_CLK_PH_INV, RG_PE1_LCDDS_CLK_PH_INV);
--
--	/* Set PLL bits */
--	mt7621_phy_rmw(phy, RG_PE1_H_PLL_REG,
--		       RG_PE1_H_PLL_BC | RG_PE1_H_PLL_BP | RG_PE1_H_PLL_IR |
--		       RG_PE1_H_PLL_IC | RG_PE1_PLL_DIVEN,
--		       RG_PE1_H_PLL_BC_VAL(0x02) | RG_PE1_H_PLL_BP_VAL(0x06) |
--		       RG_PE1_H_PLL_IR_VAL(0x02) | RG_PE1_H_PLL_IC_VAL(0x01) |
--		       RG_PE1_PLL_DIVEN_VAL(0x02));
--
--	mt7621_phy_rmw(phy, RG_PE1_H_PLL_BR_REG,
--		       RG_PE1_H_PLL_BR, RG_PE1_H_PLL_BR_VAL(0x00));
--
--	if (xtal_mode <= 5 && xtal_mode >= 3) { /* 40MHz Xtal */
--		/* set force mode enable of da_pe1_mstckdiv */
--		mt7621_phy_rmw(phy, RG_PE1_MSTCKDIV_REG,
--			       RG_PE1_MSTCKDIV | RG_PE1_FRC_MSTCKDIV,
--			       RG_PE1_MSTCKDIV_VAL(0x01) | RG_PE1_FRC_MSTCKDIV);
--	}
--}
--
--static int mt7621_pci_phy_init(struct phy *phy)
--{
--	struct mt7621_pci_phy *mphy = phy_get_drvdata(phy);
--
--	if (mphy->bypass_pipe_rst)
--		mt7621_bypass_pipe_rst(mphy);
--
--	mt7621_set_phy_for_ssc(mphy);
--
--	return 0;
--}
--
--static int mt7621_pci_phy_power_on(struct phy *phy)
--{
--	struct mt7621_pci_phy *mphy = phy_get_drvdata(phy);
--
--	/* Enable PHY and disable force mode */
--	mt7621_phy_rmw(mphy, RG_PE1_FRC_PHY_REG,
--		       RG_PE1_FRC_PHY_EN, RG_PE1_PHY_EN);
--
--	if (mphy->has_dual_port) {
--		mt7621_phy_rmw(mphy, RG_PE1_FRC_PHY_REG + RG_P0_TO_P1_WIDTH,
--			       RG_PE1_FRC_PHY_EN, RG_PE1_PHY_EN);
--	}
--
--	return 0;
--}
--
--static int mt7621_pci_phy_power_off(struct phy *phy)
--{
--	struct mt7621_pci_phy *mphy = phy_get_drvdata(phy);
--
--	/* Disable PHY */
--	mt7621_phy_rmw(mphy, RG_PE1_FRC_PHY_REG,
--		       RG_PE1_PHY_EN, RG_PE1_FRC_PHY_EN);
--
--	if (mphy->has_dual_port) {
--		mt7621_phy_rmw(mphy, RG_PE1_FRC_PHY_REG + RG_P0_TO_P1_WIDTH,
--			       RG_PE1_PHY_EN, RG_PE1_FRC_PHY_EN);
--	}
--
--	return 0;
--}
--
--static int mt7621_pci_phy_exit(struct phy *phy)
--{
--	return 0;
--}
--
--static const struct phy_ops mt7621_pci_phy_ops = {
--	.init		= mt7621_pci_phy_init,
--	.exit		= mt7621_pci_phy_exit,
--	.power_on	= mt7621_pci_phy_power_on,
--	.power_off	= mt7621_pci_phy_power_off,
--	.owner		= THIS_MODULE,
--};
--
--static struct phy *mt7621_pcie_phy_of_xlate(struct device *dev,
--					    struct of_phandle_args *args)
--{
--	struct mt7621_pci_phy *mt7621_phy = dev_get_drvdata(dev);
--
--	if (WARN_ON(args->args[0] >= MAX_PHYS))
--		return ERR_PTR(-ENODEV);
--
--	mt7621_phy->has_dual_port = args->args[0];
--
--	dev_info(dev, "PHY for 0x%08x (dual port = %d)\n",
--		 (unsigned int)mt7621_phy->port_base, mt7621_phy->has_dual_port);
--
--	return mt7621_phy->phy;
--}
--
--static const struct soc_device_attribute mt7621_pci_quirks_match[] = {
--	{ .soc_id = "mt7621", .revision = "E2" }
--};
--
--static const struct regmap_config mt7621_pci_phy_regmap_config = {
--	.reg_bits = 32,
--	.val_bits = 32,
--	.reg_stride = 4,
--	.max_register = 0x700,
--};
--
--static int mt7621_pci_phy_probe(struct platform_device *pdev)
--{
--	struct device *dev = &pdev->dev;
--	const struct soc_device_attribute *attr;
--	struct phy_provider *provider;
--	struct mt7621_pci_phy *phy;
--	struct resource *res;
--
--	phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
--	if (!phy)
--		return -ENOMEM;
--
--	attr = soc_device_match(mt7621_pci_quirks_match);
--	if (attr)
--		phy->bypass_pipe_rst = true;
--
--	phy->dev = dev;
--	platform_set_drvdata(pdev, phy);
--
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	if (!res) {
--		dev_err(dev, "failed to get address resource\n");
--		return -ENXIO;
--	}
--
--	phy->port_base = devm_ioremap_resource(dev, res);
--	if (IS_ERR(phy->port_base)) {
--		dev_err(dev, "failed to remap phy regs\n");
--		return PTR_ERR(phy->port_base);
--	}
--
--	phy->regmap = devm_regmap_init_mmio(phy->dev, phy->port_base,
--					    &mt7621_pci_phy_regmap_config);
--	if (IS_ERR(phy->regmap))
--		return PTR_ERR(phy->regmap);
--
--	phy->phy = devm_phy_create(dev, dev->of_node, &mt7621_pci_phy_ops);
--	if (IS_ERR(phy)) {
--		dev_err(dev, "failed to create phy\n");
--		return PTR_ERR(phy);
--	}
--
--	phy_set_drvdata(phy->phy, phy);
--
--	provider = devm_of_phy_provider_register(dev, mt7621_pcie_phy_of_xlate);
--
--	return PTR_ERR_OR_ZERO(provider);
--}
--
--static const struct of_device_id mt7621_pci_phy_ids[] = {
--	{ .compatible = "mediatek,mt7621-pci-phy" },
--	{},
--};
--MODULE_DEVICE_TABLE(of, mt7621_pci_ids);
--
--static struct platform_driver mt7621_pci_phy_driver = {
--	.probe = mt7621_pci_phy_probe,
--	.driver = {
--		.name = "mt7621-pci-phy",
--		.of_match_table = of_match_ptr(mt7621_pci_phy_ids),
--	},
--};
--
--builtin_platform_driver(mt7621_pci_phy_driver);
--
--MODULE_AUTHOR("Sergio Paracuellos <sergio.paracuellos@gmail.com>");
--MODULE_DESCRIPTION("MediaTek MT7621 PCIe PHY driver");
--MODULE_LICENSE("GPL v2");
--- 
-2.25.1
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:29:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:69:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:70:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:71:111: [warning] line too long (112 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:72:111: [warning] line too long (112 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:73:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:74:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:75:111: [warning] line too long (112 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:76:111: [warning] line too long (112 > 110 characters) (line-length)
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.example.dts:85.33-34 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1364: dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1402850
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
