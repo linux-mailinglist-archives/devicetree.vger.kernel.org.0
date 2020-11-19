@@ -2,134 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93C6C2B95F4
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:21:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 830C42B9608
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:25:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728401AbgKSPTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:19:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34222 "EHLO mail.kernel.org"
+        id S1728314AbgKSPVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:21:53 -0500
+Received: from foss.arm.com ([217.140.110.172]:60206 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728062AbgKSPTk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 10:19:40 -0500
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E6E4F24654;
-        Thu, 19 Nov 2020 15:19:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605799178;
-        bh=0W6X+yvUpSkdAAGKagVENpsqMNRqNF4X/9HGlBkWMgk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MJc09AJAL2xk01qiS05ieRaCGIlLeUWY/cvod14/kBGzC1gFcG/mDtMvf8iSA9QUD
-         jSD4dFUuEnrjJi4GroCmvV7jayJepAbLbLZeNgzQ9BKU3QE60JUhIRrlYDwHw/JhIU
-         B+8st17jTJ6Z1DYEmUVIDvIfP/2L0eFW2zmF94NU=
-Date:   Thu, 19 Nov 2020 15:19:18 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Peter Chen <Peter.Chen@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
-        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v1 11/30] drm/tegra: dc: Support OPP and SoC core voltage
- scaling
-Message-ID: <20201119151918.GA5554@sirena.org.uk>
-References: <20201112200123.GF4742@sirena.org.uk>
- <ce9e2d9f-917e-fb8a-7323-f3bf1a367e9d@gmail.com>
- <20201113142937.GB4828@sirena.org.uk>
- <7f066805-97d9-088f-e89d-a554fe478574@gmail.com>
- <20201113161550.GC4828@sirena.org.uk>
- <3beaa12b-4a50-a3b6-fc43-ebb5ce7a8db7@gmail.com>
- <20201113172859.GF4828@sirena.org.uk>
- <74cfc6a9-3f59-d679-14b7-51102a6f11b3@gmail.com>
- <20201116133311.GB4739@sirena.org.uk>
- <332ab946-daee-bb83-24ab-0bda4fd8e1ef@gmail.com>
+        id S1728204AbgKSPVw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 10:21:52 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A486511D4;
+        Thu, 19 Nov 2020 07:21:51 -0800 (PST)
+Received: from bogus (unknown [10.57.54.72])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5300E3F719;
+        Thu, 19 Nov 2020 07:21:50 -0800 (PST)
+Date:   Thu, 19 Nov 2020 15:21:43 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: dvfs: Add support for generic
+ performance domains
+Message-ID: <20201119152143.4r2d5q6xzk33mt2j@bogus>
+References: <20201116181356.804590-1-sudeep.holla@arm.com>
+ <20201118212009.GB1827746@bogus>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="G4iJoqBmSsgzjUCe"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <332ab946-daee-bb83-24ab-0bda4fd8e1ef@gmail.com>
-X-Cookie: Chocolate chip.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201118212009.GB1827746@bogus>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 18, 2020 at 03:20:09PM -0600, Rob Herring wrote:
+> On Mon, Nov 16, 2020 at 06:13:56PM +0000, Sudeep Holla wrote:
+> > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
+> > implementations where untrusted software had direct access to clock and
+> > voltage hardware controls. In this attack, the malicious software was able to
+> > place the platform into unsafe overclocked or undervolted configurations. Such
+> > configurations then enabled the injection of predictable faults to reveal
+> > secrets.
+> > 
+> > Many Arm-based systems used to or still use voltage regulator and clock
+> > frameworks in the kernel. These frameworks allow callers to independently
+> > manipulate frequency and voltage settings. Such implementations can render
+> > systems susceptible to this form of attack.
+> > 
+> > Attacks such as CLKSCREW are now being mitigated by not having direct and
+> > independent control of clock and voltage in the kernel and moving that
+> > control to a trusted entity, such as the SCP firmware or secure world
+> > firmware/software which are to perform sanity checking on the requested
+> > performance levels, thereby preventing any attempted malicious programming.
+> > 
+> > With the advent of such an abstraction, there is a need to replace the
+> > generic clock and regulator bindings used by such devices with a generic
+> > performance domains bindings.
+> > 
+> > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
+> > 
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> > ---
+> >  .../bindings/dvfs/performance-domain.yaml     | 76 +++++++++++++++++++
+> >  1 file changed, 76 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+> > 
+> > v1[1]->v2:
+> > 	- Changed to Dual License
+> > 	- Added select: true, enum for #performance-domain-cells and
+> > 	  $ref for performance-domain
+> > 	- Changed the example to use real existing compatibles instead
+> > 	  of made-up ones
+> > 
+> > [1] https://lore.kernel.org/lkml/20201105173539.1426301-1-sudeep.holla@arm.com
+> > 
+> > diff --git a/Documentation/devicetree/bindings/dvfs/performance-domain.yaml b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+> > new file mode 100644
+> > index 000000000000..29fb589a5192
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
+> > @@ -0,0 +1,76 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dvfs/performance-domain.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Generic performance domains
+> > +
+> > +maintainers:
+> > +  - Sudeep Holla <sudeep.holla@arm.com>
+> > +
+> > +description: |+
+> > +  This binding is intended for performance management of groups of devices or
+> > +  CPUs that run in the same performance domain. Performance domains must not
+> > +  be confused with power domains. A performance domain is defined by a set
+> > +  of devices that always have to run at the same performance level. For a given
+> > +  performance domain, there is a single point of control that affects all the
+> > +  devices in the domain, making it impossible to set the performance level of
+> > +  an individual device in the domain independently from other devices in
+> > +  that domain. For example, a set of CPUs that share a voltage domain, and
+> > +  have a common frequency control, is said to be in the same performance
+> > +  domain.
+> > +
+> > +  This device tree binding can be used to bind performance domain consumer
+> > +  devices with their performance domains provided by performance domain
+> > +  providers. A performance domain provider can be represented by any node in
+> > +  the device tree and can provide one or more performance domains. A consumer
+> > +  node can refer to the provider by a phandle and a set of phandle arguments
+> > +  (so called performance domain specifiers) of length specified by the
+> > +  \#performance-domain-cells property in the performance domain provider node.
+> > +
+> > +select: true
+> 
+> So apply to every node and...
+>
 
---G4iJoqBmSsgzjUCe
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+New to yaml, still figuring out 😄.
+From the bot build error, I now realise that I can't take shortcut to build:
 
-On Thu, Nov 19, 2020 at 05:22:43PM +0300, Dmitry Osipenko wrote:
-> 16.11.2020 16:33, Mark Brown =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+$ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/dvfs/performance-domain.yaml
 
-> > No, you are failing to understand the purpose of this code.  To
-> > reiterate unless the device supports operating with the supply
-> > physically absent then the driver should not be attempting to use
-> > regulator_get_optional().  That exists specifically for the case where
+[...]
 
-> The original intention of regulator_get_optional() is clear to me, but
-> nothing really stops drivers from slightly re-purposing this API, IMO.
+> > +
+> > +additionalProperties: true
+> > +
+> > +examples:
+> > +  - |
+> > +    performance: performance-controller@12340000 {
+> > +        compatible = "qcom,cpufreq-hw";
+> > +        reg = <0x12340000 0x1000>;
+> > +        #performance-domain-cells = <1>;
+> > +    };
+> > +
+> > +    // The node above defines a performance controller that is a performance
+> > +    // domain provider and expects one cell as its phandle argument.
+> > +    cpus {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <0>;
+> > +
+> > +        cpu@0 {
+> > +            device_type = "cpu";
+> > +            compatible = "arm,cortex-a57";
+> > +            reg = <0x0 0x0>;
+> > +            performance-domains = <&performance 1>;
+>
+> Looks like the cpu schema needs an addition.
+>
 
-> Drivers should be free to assume that if regulator isn't defined by
-> firmware, then it's physically absent if this doesn't break anything. Of
-> course in some cases it's unsafe to make such assumptions. I think it's
-> a bit unpractical to artificially limit API usage without a good reason,
-> i.e. if nothing breaks underneath of a driver.
+OK.
 
-If the supply can be physically absent without breaking anything then
-this is the intended use case for optional regulators.  This is a *very*
-uncommon.
-
-> > Regulators that are present but not described by the firmware are a
-> > clearly different case to regulators that are not physically there,
-> > hardware with actually optional regulators will generally require some
-> > configuration for this case.
-
-> I have good news. After spending some more time on trying out different
-> things, I found that my previous assumption about the fixed-regulator
-> was wrong, it actually accepts voltage changes, i.e. regulator consumer
-> doesn't get a error on a voltage-change. This is exactly what is needed
-> for the OPP core to work properly.
-
-To be clear when you set a voltage range you will get the minimum
-voltage that can be supported within that range on the system given all
-the other constraints the system has.  For fixed voltage regulators or
-regulators constraints to not change voltage this means that if whatever
-voltage they are fixed at is in the range requested then the API will
-report success.
-
---G4iJoqBmSsgzjUCe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+2jPUACgkQJNaLcl1U
-h9Cg3Qf/ScTE8SCsHJLjKatjArehtbhKoUyG6aFABrEI/v3bjsqKt/Sq0WjEm255
-nKAu6jVgldwyJP7JR+NQvS2KTy6/Ai/3r+U/lyG8X0xthT14nzXhC6QSAIfukqgq
-JHderVdLXa+mc9bZ4vJ8AzG88ImFulrVA84t2cIuHOU27i4wVx5oQJZoRquB5JdJ
-jAPleN81AYXwTdcJkckY0QoHEFVz55g/4xI2cuh9onlNHbt8eVr7FGsswsNnATrv
-DlAATwOrW84BJnGHjaB0vfWLRx75q3bJ1z62kbdf0VqU5rYaVUppa5a+8eHY6i4V
-A1ZTgD1YjmUvJjo2cbBpm7mJsYOinA==
-=tj+B
------END PGP SIGNATURE-----
-
---G4iJoqBmSsgzjUCe--
+--
+Regards,
+Sudeep
