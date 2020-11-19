@@ -2,70 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C92502B8A6A
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 04:26:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CF572B8AC1
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 06:16:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726105AbgKSDX4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 18 Nov 2020 22:23:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45844 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725970AbgKSDX4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 18 Nov 2020 22:23:56 -0500
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 510C520679;
-        Thu, 19 Nov 2020 03:23:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605756235;
-        bh=foHNkQnrkydpP/j0TruYdwQhazxvbepEMOw0Gvl/Xv8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=u+nTrI6x/8vTSAOf2t/MQfTX2JQFKdcQTKLEn6/rJW2vUUvbAWjw4WP61caup0QuE
-         AYdpX4yd/GTBJnB/xBRLx+VQKl4+HRrRAoj5bYXJDEt4Z/1YwZCVW5UnBJPZ7Evmo0
-         sUApO7QzJz4LLTeP1L+hOeWe7rO0CCtAsVNvoMCs=
-Content-Type: text/plain; charset="utf-8"
+        id S1725850AbgKSFQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 00:16:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35134 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725843AbgKSFQy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 00:16:54 -0500
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB3D0C0613D4;
+        Wed, 18 Nov 2020 21:16:53 -0800 (PST)
+Received: by mail-qt1-x843.google.com with SMTP id p12so3539996qtp.7;
+        Wed, 18 Nov 2020 21:16:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=B3EsZPkEoXT4zxYNqPu9hgFRzc3MjaFuHgLigF/TdUA=;
+        b=mB18Ck6Tz7z0cXqOihGrAMiJ/GnPs9KT900EfdjJLwpeP5GN4lwiXu3CAijjoyu7zs
+         d1NJ0vPeWKwN3Zg1DbXu/cE7WCd1rfOSy5iV78pV2EGE1+PBA0KhLx8MTGTJjxEo37so
+         K8s2xLtBBa4HkGUE8ZwHgSxApEXIWuNn2UyHw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=B3EsZPkEoXT4zxYNqPu9hgFRzc3MjaFuHgLigF/TdUA=;
+        b=XIjJO7wztMSuCP2qZw+DGDzV0tvHKCCMarBfTJXTW22lwt511Al6MgbnsHSJ0Y4tWa
+         z/bLxz3BIp31lUVdQeIkk7x0btICms6GX7HTBFBtuT4oFR+FM6EZiTyDo+YU/xqCnqda
+         NpR8XqjneSSRHN48BS6VUWLtMUQ/RfVpK3EfPOBq2EAep6HD5HkRL2KSE94pmsDDon2O
+         5WQwlS+UdgZfy8f4GinrSuYydCCynG4Au4G0j7RHZBSA0W3NLlMK+f/kYflgfm51BGFQ
+         OSlcQHU3mBd2hqgarhWCc+zQRW2FO1EIGytFI82jhioZrWop5hAB2GsVuHwZafnOXqY7
+         S7iQ==
+X-Gm-Message-State: AOAM532K5uvdZxtxaSWDUp9f4KDQn1Zx6EU7NWlXVz2t5JwipcNx+1Rw
+        KOTqpK5pXT1t02ZbvOQM+Fn78YlLzfp7IAMwfXNOoGixUYtBZA==
+X-Google-Smtp-Source: ABdhPJwaZ2P8OVw0eTYSMERex8ss/IbbVRE4igK+EhHFqzAxCx62g6h7rOfvyNtGh1y12f4jZ5BPpknmovuWitSNJOQ=
+X-Received: by 2002:ac8:75c9:: with SMTP id z9mr9218129qtq.363.1605763012893;
+ Wed, 18 Nov 2020 21:16:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20201118144401.GA8942@thinkpad>
-References: <20201105104817.15715-1-manivannan.sadhasivam@linaro.org> <20201105104817.15715-3-manivannan.sadhasivam@linaro.org> <20201106093819.GE2621@vkoul-mobl> <160538612750.60232.17440819605514427384@swboyd.mtv.corp.google.com> <20201118144401.GA8942@thinkpad>
-Subject: Re: [PATCH v2 2/4] clk: qcom: Add SDX55 GCC support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, mturquette@baylibre.com,
-        robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Naveen Yadav <naveenky@codeaurora.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Date:   Wed, 18 Nov 2020 19:23:53 -0800
-Message-ID: <160575623386.2717324.1766580531259003708@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+References: <20201022014731.2035438-1-andrew@aj.id.au> <20201022014731.2035438-2-andrew@aj.id.au>
+In-Reply-To: <20201022014731.2035438-2-andrew@aj.id.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Thu, 19 Nov 2020 05:16:40 +0000
+Message-ID: <CACPK8XeGoJWt_DW0q-mZf7LKTM_mFPWf8odL+BUjA7FDzL=y3A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] ARM: dts: tacoma: Fix node vs reg mismatch for
+ flash memory
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Manivannan Sadhasivam (2020-11-18 06:44:01)
-> On Sat, Nov 14, 2020 at 12:35:27PM -0800, Stephen Boyd wrote:
-> > Quoting Vinod Koul (2020-11-06 01:38:19)
-> > > On 05-11-20, 16:18, Manivannan Sadhasivam wrote:
-> > > > +#include "reset.h"
-> > > > +
-> > > > +enum {
-> > > > +     P_BI_TCXO,
-> > > > +     P_CORE_BI_PLL_TEST_SE,
-> > >=20
-> > > This is for test and we removed this for upstream, so can you do that=
- as
-> > > well (not parent will decrease for clks below)
-> > >=20
-> > > With that updated:
-> > >=20
-> > > Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> > >=20
-> >=20
-> > I half understood that. Just an FYI that I'm waiting for this update.
->=20
-> Looks like this change is not needed. Can you please consider merging
-> this series?
->=20
+On Thu, 22 Oct 2020 at 01:48, Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The mismatch lead to a miscalculation of regions in another patch, and
+> shouldn't be mismatched anyway, so make them consistent.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 
-No. Please document core_bi_pll_test_se in the binding.
+Fixes: 575640201e66 ("ARM: dts: aspeed: tacoma: Use 64MB for firmware memory")
+Reviewed-by: Joel Stanley <joel@jms.id.au>
+
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> index 4d070d6ba09f..e86c22ce6d12 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> @@ -26,7 +26,7 @@ reserved-memory {
+>                 #size-cells = <1>;
+>                 ranges;
+>
+> -               flash_memory: region@ba000000 {
+> +               flash_memory: region@b8000000 {
+>                         no-map;
+>                         reg = <0xb8000000 0x4000000>; /* 64M */
+>                 };
+> --
+> 2.25.1
+>
