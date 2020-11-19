@@ -2,179 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D70AB2B943B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:10:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A7E62B944B
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 15:16:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727285AbgKSOKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 09:10:02 -0500
-Received: from mx2.suse.de ([195.135.220.15]:55072 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727025AbgKSOKC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 09:10:02 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id AEE14AF6F;
-        Thu, 19 Nov 2020 14:09:59 +0000 (UTC)
-Message-ID: <ba343af12fc60bce36837cc090a39c9e42457788.camel@suse.de>
-Subject: Re: [PATCH v6 1/7] arm64: mm: Move reserve_crashkernel() into
- mem_init()
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        James Morse <james.morse@arm.com>
-Cc:     robh+dt@kernel.org, hch@lst.de, ardb@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, will@kernel.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org,
-        linux-rpi-kernel@lists.infradead.org, guohanjun@huawei.com,
-        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        Chen Zhou <chenzhou10@huawei.com>
-Date:   Thu, 19 Nov 2020 15:09:58 +0100
-In-Reply-To: <20201113112901.GA3212@gaia>
-References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
-         <20201103173159.27570-2-nsaenzjulienne@suse.de>
-         <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
-         <88c69ac0c9d7e144c80cebc7e9f82b000828e7f5.camel@suse.de>
-         <X6rZRvWyigCJxAVW@trantor>
-         <b5336064145a30aadcfdb8920226a8c63f692695.camel@suse.de>
-         <20201113112901.GA3212@gaia>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-djfPNN2Al1SIbMgP1HNN"
-User-Agent: Evolution 3.36.5 
+        id S1727552AbgKSOOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 09:14:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33114 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727417AbgKSOOK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 09:14:10 -0500
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 716BCC0613CF;
+        Thu, 19 Nov 2020 06:14:10 -0800 (PST)
+Received: by mail-ot1-x341.google.com with SMTP id o3so5371087ota.8;
+        Thu, 19 Nov 2020 06:14:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eUgio/81FC41XmzQ9VpetDatCeAUACvZi+WPwsd/7W4=;
+        b=L8mIR7u4RaOi1albfd17SYidyF0LUdipf75unUBTdIHYNH0FQYBNYP5f9gxZ1zSZ8v
+         YjPBSIyPXz2QGRUk5DeAR9egjxwN2MZycveE6IrtDQKGby7WAETZfruAhP5N8uZ+cm9s
+         KVSaQp1LFBOoAue7AtaPL61npQ5CdOpaCsX/Mi4UbS2x7EMgdHUN50sEv9rtG+0MGHII
+         Op5TpPt/90qR48pfsQxsTHZYq+tyzFZIU/nqqIMM1cEM79W/DggkdwqoDb/JcRXmRA0B
+         CCYKj1Mp6ORdP6xACdfFdLzbimv8GCm/PrxNV+weYTq7Rk0tjT3JvKIV/4Vw5VV6d9AY
+         o9Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eUgio/81FC41XmzQ9VpetDatCeAUACvZi+WPwsd/7W4=;
+        b=jYLN5ff6CHDppC2LPyGyqsh6rosrcn2f0gUU+v5ySWMwSpvTW2QtNEKGbUrpQ4wQC4
+         JjUGYsG3HJ/3NcfPIMblwx2DXak6euGNzQZ1+CjZze+R3mkNht4rRF8k6DkHKeHU1DjX
+         pxOvnTTr8S2tXDZ0Xcc5x6HKJzsvPJ5DCn5Hhzee/6lsepuzmYbF4pYmQkdWvxf8N4nd
+         NPFLLI96GM79IW89vK9rk1lQhzY2J3MMAON8FBLjGN+l6YAMZ6JWM1fkjCDIKMnk+c2S
+         aF3JTQ2B2/TrLFHg0RB7U/zlrx90Du14OIMMMnRxKKldIkSb69j1v4o0CFv3NNWfb+z6
+         IP1w==
+X-Gm-Message-State: AOAM533EMkqAzCh440KrspZGhq2vegPfUqxbVSqCbl/VAzV+qtbtbelJ
+        2nidM6y9rjE/2Wru15nF3jtUqG7+kf41IVZ+gkw=
+X-Google-Smtp-Source: ABdhPJywDyBlFRRhkbUSMVpJEu9n5cXGSYklY0eUl8bDYcWbkQib/4XOJR+tIFsJINLp+sXTuyIkJ907inh7SU0u+/8=
+X-Received: by 2002:a05:6830:359:: with SMTP id h25mr9950222ote.184.1605795249720;
+ Thu, 19 Nov 2020 06:14:09 -0800 (PST)
 MIME-Version: 1.0
+References: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
+ <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com> <1605791419.19819.4.camel@mtksdaap41>
+In-Reply-To: <1605791419.19819.4.camel@mtksdaap41>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Thu, 19 Nov 2020 15:13:57 +0100
+Message-ID: <CAFqH_51m5Pg9ny4HWt1iwf8wtsGSdShpDCVaGwac=v9BBDj2vg@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains controller
+To:     Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Weiyi,
 
---=-djfPNN2Al1SIbMgP1HNN
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
+2020 a les 14:10:
+>
+> On Thu, 2020-11-19 at 13:13 +0100, Enric Balletbo Serra wrote:
+> > Hi Weiyi,
+> >
+> > Thank you for the patch
+> >
+> > Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
+> > 2020 a les 11:48:
+> > >
+> > > Add power domains controller node for SoC mt8192
+> > >
+> > > Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+> > > ---
+> > >
+> > > Change in v3: None, just rebase dts onto v5.10-rc1 and
+> > >        V4 of series "Add new driver for SCPSYS power domains controller"[1]
+> > >
+> > > [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
+> > >
+> > >  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 201 +++++++++++++++++++++++++++++++
+> > >  1 file changed, 201 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > index 69d45c7..08449eb 100644
+> > > --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
+> > > @@ -9,6 +9,7 @@
+> > >  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > >  #include <dt-bindings/interrupt-controller/irq.h>
+> > >  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
+> > > +#include <dt-bindings/power/mt8192-power.h>
+> > >
+> > >  / {
+> > >         compatible = "mediatek,mt8192";
+> > > @@ -257,6 +258,206 @@
+> > >                         #interrupt-cells = <2>;
+> > >                 };
+> > >
+> > > +               scpsys: syscon@10006000 {
+> > > +                       compatible = "syscon", "simple-mfd";
+> > > +                       reg = <0 0x10006000 0 0x1000>;
+> > > +                       #power-domain-cells = <1>;
+> > > +
+> > > +                       /* System Power Manager */
+> > > +                       spm: power-controller {
+> > > +                               compatible = "mediatek,mt8192-power-controller";
+> > > +                               #address-cells = <1>;
+> > > +                               #size-cells = <0>;
+> > > +                               #power-domain-cells = <1>;
+> > > +
+> > > +                               /* power domain of the SoC */
+> > > +                               audio@MT8192_POWER_DOMAIN_AUDIO {
+> >
+> > If you run the dt_bindings_check it should return some errors, as all
+> > these node names should be 'power-domain@'. Which is a bit annoying
+> > because then you will get a bunch of errors like this:
+> >
+> > [    1.969110] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    1.976997] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    1.984828] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    1.992657] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.000685] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.008566] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.016395] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.024221] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.032049] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.039874] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.047699] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.055524] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.063352] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> > [    2.071176] debugfs: Directory 'power-domain' with parent
+> > 'pm_genpd' already present!
+> >
+> > But that's another problem that should be handled in debugfs system.
+> >
+>
+> Indeed...so I chose to use different name in dts to avoid problems in
+> debugfs. It does violate the naming rules.
+>
 
-Hi Catalin, James,
-sorry for the late reply but I got sidetracked.
+But your binding will not pass (or trigger warnings) the dtb check
+then. Rob was clear that names should be generic. Proper fix is fix
+debugfs not the binding.
 
-On Fri, 2020-11-13 at 11:29 +0000, Catalin Marinas wrote:
-[...]
-> > > > Let me stress that knowing the DMA constraints in the system before=
- reserving
-> > > > crashkernel's regions is necessary if we ever want it to work seaml=
-essly on all
-> > > > platforms. Be it small stuff like the Raspberry Pi or huge servers =
-with TB of
-> > > > memory.
-> > >=20
-> > > Indeed. So we have 3 options (so far):
-> > >=20
-> > > 1. Allow the crashkernel reservation to go into the linear map but se=
-t
-> > >    it to invalid once allocated.
-> > >=20
-> > > 2. Parse the flattened DT (not sure what we do with ACPI) before
-> > >    creating the linear map. We may have to rely on some SoC ID here
-> > >    instead of actual DMA ranges.
-> > >=20
-> > > 3. Assume the smallest ZONE_DMA possible on arm64 (1GB) for crashkern=
-el
-> > >    reservations and not rely on arm64_dma_phys_limit in
-> > >    reserve_crashkernel().
-> > >=20
-> > > I think (2) we tried hard to avoid. Option (3) brings us back to the
-> > > issues we had on large crashkernel reservations regressing on some
-> > > platforms (though it's been a while since, they mostly went quiet ;))=
-.
-> > > However, with Chen's crashkernel patches we end up with two
-> > > reservations, one in the low DMA zone and one higher, potentially abo=
-ve
-> > > 4GB. Having a fixed 1GB limit wouldn't be any worse for crashkernel
-> > > reservations than what we have now.
-> > >=20
-> > > If (1) works, I'd go for it (James knows this part better than me),
-> > > otherwise we can go for (3).
-> >=20
-> > Overall, I'd prefer (1) as well, and I'd be happy to have a got at it. =
-If not
-> > I'll append (3) in this series.
->=20
-> I think for 1 we could also remove the additional KEXEC_CORE checks,
-> something like below, untested:
->=20
-> diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
-> index 3e5a6913acc8..27ab609c1c0c 100644
-> --- a/arch/arm64/mm/mmu.c
-> +++ b/arch/arm64/mm/mmu.c
-> @@ -477,7 +477,8 @@ static void __init map_mem(pgd_t *pgdp)
->  	int flags =3D 0;
->  	u64 i;
-> =20
-> -	if (rodata_full || debug_pagealloc_enabled())
-> +	if (rodata_full || debug_pagealloc_enabled() ||
-> +	    IS_ENABLED(CONFIG_KEXEC_CORE))
->  		flags =3D NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS;
-> =20
->  	/*
-> @@ -487,11 +488,6 @@ static void __init map_mem(pgd_t *pgdp)
->  	 * the following for-loop
->  	 */
->  	memblock_mark_nomap(kernel_start, kernel_end - kernel_start);
-> -#ifdef CONFIG_KEXEC_CORE
-> -	if (crashk_res.end)
-> -		memblock_mark_nomap(crashk_res.start,
-> -				    resource_size(&crashk_res));
-> -#endif
-> =20
->  	/* map all the memory banks */
->  	for_each_mem_range(i, &start, &end) {
-> @@ -518,21 +514,6 @@ static void __init map_mem(pgd_t *pgdp)
->  	__map_memblock(pgdp, kernel_start, kernel_end,
->  		       PAGE_KERNEL, NO_CONT_MAPPINGS);
->  	memblock_clear_nomap(kernel_start, kernel_end - kernel_start);
-> -
-> -#ifdef CONFIG_KEXEC_CORE
-> -	/*
-> -	 * Use page-level mappings here so that we can shrink the region
-> -	 * in page granularity and put back unused memory to buddy system
-> -	 * through /sys/kernel/kexec_crash_size interface.
-> -	 */
-> -	if (crashk_res.end) {
-> -		__map_memblock(pgdp, crashk_res.start, crashk_res.end + 1,
-> -			       PAGE_KERNEL,
-> -			       NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS);
-> -		memblock_clear_nomap(crashk_res.start,
-> -				     resource_size(&crashk_res));
-> -	}
-> -#endif
->  }
-> =20
->  void mark_rodata_ro(void)
+Cheers,
+  Enric
 
-So as far as I'm concerned this is good enough for me. I took the time to
-properly test crashkernel on RPi4 using the series, this patch, and another
-small fix to properly update /proc/iomem.
-
-I'll send v7 soon, but before, James (or anyone for that matter) any obviou=
-s
-push-back to Catalin's solution?
-
-Regards,
-Nicolas
-
-
---=-djfPNN2Al1SIbMgP1HNN
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+2fLYACgkQlfZmHno8
-x/6LYAf/dYs/dUiZ3UOC+CEtALMDPumX6JMSH8G/CZS33vGDE37X9INFiU/9MtHz
-y8YBPmkaZh44eCsj4C3MGyhha59a0lD9W5mHHh8uJSSU/enwTba0bOdKd88BOrJS
-Og/p1JZ4eLlVDKb/vSfBOG4AndVIO1r0GxT9Qdqk0+QgPVdS1GhhYUj4bXb93zqW
-XJxCSdLC2qKxb4OgcEjAeywOvFwvj3kzE6qFwo/FHSYBz9nSC+60pioZAW9g1aea
-5mg9xwsR7d0Bs941CPOL3VRRpV7cuVY9JLS5zYGIMRxaNQcCFQSA01/Pct2i7h1T
-qlBv3OEIAHR5vjjVyC4uWSZE/9k9Vw==
-=+J70
------END PGP SIGNATURE-----
-
---=-djfPNN2Al1SIbMgP1HNN--
-
+> > > +                                       reg = <MT8192_POWER_DOMAIN_AUDIO>;
+> > > +                                       clocks = <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
+> > > +                                                <&infracfg CLK_INFRA_AUDIO_26M_B>,
+> > > +                                                <&infracfg CLK_INFRA_AUDIO>;
+> > > +                                       clock-names = "audio", "audio1", "audio2";
+> > > +                                       mediatek,infracfg = <&infracfg>;
+> > > +                                       #power-domain-cells = <0>;
+> > > +                               };
+> > > +
+> > > +                               conn@MT8192_POWER_DOMAIN_CONN {
+> > > +                                       reg = <MT8192_POWER_DOMAIN_CONN>;
+> > > +                                       clocks = <&infracfg CLK_INFRA_PMIC_CONN>;
+> > > +                                       clock-names = "conn";
+> > > +                                       mediatek,infracfg = <&infracfg>;
+> > > +                                       #power-domain-cells = <0>;
+> > > +                               };
+> > > +
+> > > +                               mfg@MT8192_POWER_DOMAIN_MFG0 {
+> > > +                                       reg = <MT8192_POWER_DOMAIN_MFG0>;
+> > > +                                       clocks = <&topckgen CLK_TOP_MFG_PLL_SEL>;
+> > > +                                       clock-names = "mfg";
+> > > +                                       #address-cells = <1>;
+> > > +                                       #size-cells = <0>;
+> > > +                                       #power-domain-cells = <1>;
+> > > +
+> > > +                                       mfg1@MT8192_POWER_DOMAIN_MFG1 {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_MFG1>;
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #address-cells = <1>;
+> > > +                                               #size-cells = <0>;
+> > > +                                               #power-domain-cells = <1>;
+> > > +
+> > > +                                               mfg2@MT8192_POWER_DOMAIN_MFG2 {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_MFG2>;
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +
+> > > +                                               mfg3@MT8192_POWER_DOMAIN_MFG3 {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_MFG3>;
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +
+> > > +                                               mfg4@MT8192_POWER_DOMAIN_MFG4 {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_MFG4>;
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +
+> > > +                                               mfg5@MT8192_POWER_DOMAIN_MFG5 {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_MFG5>;
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +
+> > > +                                               mfg6@MT8192_POWER_DOMAIN_MFG6 {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_MFG6>;
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +                                       };
+> > > +                               };
+> > > +
+> > > +                               disp@MT8192_POWER_DOMAIN_DISP {
+> > > +                                       reg = <MT8192_POWER_DOMAIN_DISP>;
+> > > +                                       clocks = <&topckgen CLK_TOP_DISP_SEL>,
+> > > +                                                <&mmsys CLK_MM_SMI_INFRA>,
+> > > +                                                <&mmsys CLK_MM_SMI_COMMON>,
+> > > +                                                <&mmsys CLK_MM_SMI_GALS>,
+> > > +                                                <&mmsys CLK_MM_SMI_IOMMU>;
+> > > +                                       clock-names = "disp", "disp-0", "disp-1", "disp-2",
+> > > +                                                     "disp-3";
+> > > +                                       mediatek,infracfg = <&infracfg>;
+> > > +                                       #address-cells = <1>;
+> > > +                                       #size-cells = <0>;
+> > > +                                       #power-domain-cells = <1>;
+> > > +
+> > > +                                       ipe@MT8192_POWER_DOMAIN_IPE {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_IPE>;
+> > > +                                               clocks = <&topckgen CLK_TOP_IPE_SEL>,
+> > > +                                                        <&ipesys CLK_IPE_LARB19>,
+> > > +                                                        <&ipesys CLK_IPE_LARB20>,
+> > > +                                                        <&ipesys CLK_IPE_SMI_SUBCOM>,
+> > > +                                                        <&ipesys CLK_IPE_GALS>;
+> > > +                                               clock-names = "ipe", "ipe-0", "ipe-1", "ipe-2",
+> > > +                                                             "ipe-3";
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #power-domain-cells = <0>;
+> > > +                                       };
+> > > +
+> > > +                                       isp@MT8192_POWER_DOMAIN_ISP {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_ISP>;
+> > > +                                               clocks = <&topckgen CLK_TOP_IMG1_SEL>,
+> > > +                                                        <&imgsys CLK_IMG_LARB9>,
+> > > +                                                        <&imgsys CLK_IMG_GALS>;
+> > > +                                               clock-names = "isp", "isp-0", "isp-1";
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #power-domain-cells = <0>;
+> > > +                                       };
+> > > +
+> > > +                                       isp2@MT8192_POWER_DOMAIN_ISP2 {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_ISP2>;
+> > > +                                               clocks = <&topckgen CLK_TOP_IMG2_SEL>,
+> > > +                                                        <&imgsys2 CLK_IMG2_LARB11>,
+> > > +                                                        <&imgsys2 CLK_IMG2_GALS>;
+> > > +                                               clock-names = "isp2", "isp2-0", "isp2-1";
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #power-domain-cells = <0>;
+> > > +                                       };
+> > > +
+> > > +                                       mdp@MT8192_POWER_DOMAIN_MDP {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_MDP>;
+> > > +                                               clocks = <&topckgen CLK_TOP_MDP_SEL>,
+> > > +                                                        <&mdpsys CLK_MDP_SMI0>;
+> > > +                                               clock-names = "mdp", "mdp-0";
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #power-domain-cells = <0>;
+> > > +                                       };
+> > > +
+> > > +                                       venc@MT8192_POWER_DOMAIN_VENC {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_VENC>;
+> > > +                                               clocks = <&topckgen CLK_TOP_VENC_SEL>,
+> > > +                                                        <&vencsys CLK_VENC_SET1_VENC>;
+> > > +                                               clock-names = "venc", "venc-0";
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #power-domain-cells = <0>;
+> > > +                                       };
+> > > +
+> > > +                                       vdec@MT8192_POWER_DOMAIN_VDEC {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_VDEC>;
+> > > +                                               clocks = <&topckgen CLK_TOP_VDEC_SEL>,
+> > > +                                                        <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
+> > > +                                                        <&vdecsys_soc CLK_VDEC_SOC_LAT>,
+> > > +                                                        <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
+> > > +                                               clock-names = "vdec", "vdec-0", "vdec-1", "vdec-2";
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #address-cells = <1>;
+> > > +                                               #size-cells = <0>;
+> > > +                                               #power-domain-cells = <1>;
+> > > +
+> > > +                                               vdec2@MT8192_POWER_DOMAIN_VDEC2 {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_VDEC2>;
+> > > +                                                       clocks = <&vdecsys CLK_VDEC_VDEC>,
+> > > +                                                                <&vdecsys CLK_VDEC_LAT>,
+> > > +                                                                <&vdecsys CLK_VDEC_LARB1>;
+> > > +                                                       clock-names = "vdec2-0", "vdec2-1",
+> > > +                                                                     "vdec2-2";
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +                                       };
+> > > +
+> > > +                                       cam@MT8192_POWER_DOMAIN_CAM {
+> > > +                                               reg = <MT8192_POWER_DOMAIN_CAM>;
+> > > +                                               clocks = <&topckgen CLK_TOP_CAM_SEL>,
+> > > +                                                        <&camsys CLK_CAM_LARB13>,
+> > > +                                                        <&camsys CLK_CAM_LARB14>,
+> > > +                                                        <&camsys CLK_CAM_CCU_GALS>,
+> > > +                                                        <&camsys CLK_CAM_CAM2MM_GALS>;
+> > > +                                               clock-names = "cam", "cam-0", "cam-1", "cam-2",
+> > > +                                                             "cam-3";
+> > > +                                               mediatek,infracfg = <&infracfg>;
+> > > +                                               #address-cells = <1>;
+> > > +                                               #size-cells = <0>;
+> > > +                                               #power-domain-cells = <1>;
+> > > +
+> > > +                                               cam_rawa@MT8192_POWER_DOMAIN_CAM_RAWA {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_CAM_RAWA>;
+> > > +                                                       clocks = <&camsys_rawa CLK_CAM_RAWA_LARBX>;
+> > > +                                                       clock-names = "cam_rawa-0";
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +
+> > > +                                               cam_rawb@MT8192_POWER_DOMAIN_CAM_RAWB {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_CAM_RAWB>;
+> > > +                                                       clocks = <&camsys_rawb CLK_CAM_RAWB_LARBX>;
+> > > +                                                       clock-names = "cam_rawb-0";
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +
+> > > +                                               cam_rawc@MT8192_POWER_DOMAIN_CAM_RAWC {
+> > > +                                                       reg = <MT8192_POWER_DOMAIN_CAM_RAWC>;
+> > > +                                                       clocks = <&camsys_rawc CLK_CAM_RAWC_LARBX>;
+> > > +                                                       clock-names = "cam_rawc-0";
+> > > +                                                       #power-domain-cells = <0>;
+> > > +                                               };
+> > > +                                       };
+> > > +                               };
+> > > +                       };
+> > > +               };
+> > > +
+> > >                 apmixedsys: syscon@1000c000 {
+> > >                         compatible = "mediatek,mt8192-apmixedsys", "syscon";
+> > >                         reg = <0 0x1000c000 0 0x1000>;
+> > > --
+> > > 1.8.1.1.dirty
+> > >
+>
