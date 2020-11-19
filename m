@@ -2,86 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 543D22B9A28
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 18:56:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5E2B2B9A69
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 19:15:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729698AbgKSRyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 12:54:15 -0500
-Received: from mx2.suse.de ([195.135.220.15]:40876 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727395AbgKSRyP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 12:54:15 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 96637AC22;
-        Thu, 19 Nov 2020 17:54:13 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
-        ardb@kernel.org, linux-kernel@vger.kernel.org,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        will@kernel.org, lorenzo.pieralisi@arm.com, guohanjun@huawei.com,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-mm@kvack.org, linux-riscv@lists.infradead.org
-Subject: [PATCH v7 7/7] mm: Remove examples from enum zone_type comment
-Date:   Thu, 19 Nov 2020 18:53:59 +0100
-Message-Id: <20201119175400.9995-8-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201119175400.9995-1-nsaenzjulienne@suse.de>
-References: <20201119175400.9995-1-nsaenzjulienne@suse.de>
+        id S1728979AbgKSSMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 13:12:41 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:45795 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727117AbgKSSMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 13:12:41 -0500
+X-Greylist: delayed 7433 seconds by postgrey-1.27 at vger.kernel.org; Thu, 19 Nov 2020 13:12:40 EST
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 0F96422EE4;
+        Thu, 19 Nov 2020 19:12:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1605809558;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=vC7HVwjANH5oc4E2w8W2S6yvBbfs+xSzba3U+jaONBg=;
+        b=N0g9lCumldkfoC6XZ82nBq+ZP+XoHM2K2t5RBTkSUZAv2ll9vNFdufhH4xFSsIXnNfCYj5
+        NxYAJpcyYaGN69MOHWOMHellRWDQrKwxSy42nRljHrBq6MOE0UhOkq716mgJTfB4Nt6Qdi
+        3rRweMg8Z68m5MeavEODNYPdoY0dowI=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 19 Nov 2020 19:12:37 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ashish Kumar <Ashish.Kumar@nxp.com>,
+        Yangbo Lu <yangbo.lu@nxp.com>
+Subject: Re: [PATCH v2] arm64: dts: ls1028a: make the eMMC and SD card
+ controllers use fixed indices
+In-Reply-To: <20201119163821.980841-1-vladimir.oltean@nxp.com>
+References: <20201119163821.980841-1-vladimir.oltean@nxp.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <31099f0d12b87ad330a59c84f0fa9b42@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We can't really list every setup in common code. On top of that they are
-unlikely to stay true for long as things change in the arch trees
-independently of this comment.
+Am 2020-11-19 17:38, schrieb Vladimir Oltean:
+> As the boot order in the kernel continues to change, sometimes it may
+> happen that the eSDHC controller mmc@2150000 (the one for eMMC) gets
+> probed before the one at mmc@2140000 (for external SD cards). The 
+> effect
+> is that the eMMC controller gets the /dev/mmcblk0 name, and the SD card
+> gets /dev/mmcblk1.
+> 
+> Since the introduction of this SoC, that has never happened in 
+> practice,
+> even though it was never guaranteed in theory. Setting
+> "root=/dev/mmcblk0p2" in /proc/cmdline has always caused the kernel to
+> use the second partition from the SD card as the rootfs.
+> 
+> The NXP development boards are typically shipped with either
+> - LSDK, which uses "root=UUID=", or
+> - OpenIL, which uses "root=/dev/mmcblkNp2"
+> 
+> So for OpenIL, let's preserve that old behavior by adding some aliases
+> which create naming consistency (for LSDK it doesn't matter):
+> - the SD card controller uses /dev/mmcblk0
+> - the eMMC controller uses /dev/mmcblk1
+> 
+> For the Kontron SL28 boards, Michael Walle says that they are shipped
+> with "root=UUID=" already, so the probing order doesn't matter, but it
+> is more natural to him for /dev/mmcblk0 to be the eMMC, so let's do it
+> the other way around there.
+> 
+> The aliases are parsed by mmc_alloc_host() in drivers/mmc/core/host.c.
+> 
+> Cc: Ashish Kumar <Ashish.Kumar@nxp.com>
+> Cc: Yangbo Lu <yangbo.lu@nxp.com>
+> Cc: Michael Walle <michael@walle.cc>
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
 
-Suggested-by: Christoph Hellwig <hch@lst.de>
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Reviewed-by: Christoph Hellwig <hch@lst.de>
----
- include/linux/mmzone.h | 20 --------------------
- 1 file changed, 20 deletions(-)
+Acked-by: Michael Walle <michael@walle.cc> [for the sl28 boards]
 
-diff --git a/include/linux/mmzone.h b/include/linux/mmzone.h
-index 8b074e2ba12c..15132adaa233 100644
---- a/include/linux/mmzone.h
-+++ b/include/linux/mmzone.h
-@@ -355,26 +355,6 @@ enum zone_type {
- 	 * DMA mask is assumed when ZONE_DMA32 is defined. Some 64-bit
- 	 * platforms may need both zones as they support peripherals with
- 	 * different DMA addressing limitations.
--	 *
--	 * Some examples:
--	 *
--	 *  - i386 and x86_64 have a fixed 16M ZONE_DMA and ZONE_DMA32 for the
--	 *    rest of the lower 4G.
--	 *
--	 *  - arm only uses ZONE_DMA, the size, up to 4G, may vary depending on
--	 *    the specific device.
--	 *
--	 *  - arm64 has a fixed 1G ZONE_DMA and ZONE_DMA32 for the rest of the
--	 *    lower 4G.
--	 *
--	 *  - powerpc only uses ZONE_DMA, the size, up to 2G, may vary
--	 *    depending on the specific device.
--	 *
--	 *  - s390 uses ZONE_DMA fixed to the lower 2G.
--	 *
--	 *  - ia64 and riscv only use ZONE_DMA32.
--	 *
--	 *  - parisc uses neither.
- 	 */
- #ifdef CONFIG_ZONE_DMA
- 	ZONE_DMA,
--- 
-2.29.2
-
+-michael
