@@ -2,97 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ADA9F2B8C1C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 08:14:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9C22B8C2D
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 08:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726379AbgKSHNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 02:13:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53040 "EHLO
+        id S1725970AbgKSHUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 02:20:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725915AbgKSHNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 02:13:41 -0500
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F9AC0613CF
-        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 23:13:41 -0800 (PST)
-Received: by mail-pg1-x543.google.com with SMTP id w4so3380941pgg.13
-        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 23:13:41 -0800 (PST)
+        with ESMTP id S1725964AbgKSHUz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 02:20:55 -0500
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B5D2C0613CF
+        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 23:20:55 -0800 (PST)
+Received: by mail-pf1-x442.google.com with SMTP id g7so3608697pfc.2
+        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 23:20:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=aapWpWlyJG4BRZvNWpxnSiKXabtbA1WEoNDKMnXBWMg=;
-        b=qgWlpJRtvQvY++Dn2/UpaiG/tLsPm+RlkTuBkKurklKGiW6comp6026pG/rrJE5H9s
-         Jvk8jJuWq4Rmp7o3owcGR826LFXlnudvx23sSDp7tOXziagznab4Xu/yqFRqW91nuLpg
-         oddCSmZB+jJQZcvwEZy+kadZpuFNxNRVyHJOXrjEsjC3XSrDx5kYfxTW9YHmyjS9YH5o
-         sgRWaev0MOcbaeZrDF5y0KNkiRpi/kko7dycJ4xxtMSLRG1WgLOpHPXTmUa8T0Lwj487
-         Z2bzhg0NQVo1PhiaH/PrUtoyRFbTUM47fiwe92cnxelpWzoWVcdqwTR5ci+L8dRHwkQR
-         Ixgw==
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VeNogQFTyx3LF5O/2cfNsVoiePim0AR7MhsERjqK/ns=;
+        b=ZiM7KJz7Lpgq0C9mjy/5ilee6MZUJ67MLjE1HiVKCpfT9JQ0MrYSxmy+gNMfccSb7d
+         PoxQ0LVr1SngyG3QfmVgxWwc/+Q/wP+aLJv/pj8Ao0kSxWxUz3QSxCX3ThrjYAN3cUdh
+         ZwV867gfXuJolWb9wZOptHjWxX3zPvQyKq0FsGxgN6CItrR5JsB/0xkd4tJoA07gtxpM
+         wLT5iTrjMr2+bvNerp2asFmzyNODZTny5UoODvtZ45bKqj8bImGbj4HqwhAAjOeNlf8L
+         OUurTj2ybY5wzlNnE1fHwIz7+KpnzFy2NsUZm47hHc/81I4tQvfa0ioa4cQ0IEndMcxW
+         ziwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=aapWpWlyJG4BRZvNWpxnSiKXabtbA1WEoNDKMnXBWMg=;
-        b=MhF3gcX4cxyLnB+AhfK5QfsB/jp68cUnWp4MqLiPftzpCMJi9HRJGsp7cC+M4eH5jT
-         RLkYvPIqxZy9tEFGagYuuy5GIwj/Fhe/1bVn9N0pYL0LBWW4aJN/44B9a9H3sOjKLccS
-         Hllnfy2B47WdnE3YTrGuzJXrCchx4k+s7F0m9x4EJ3C/ef+zhJD3dGFEYco8phKCUKQg
-         OkRT1VBenq/BJsNy7/DrGDCjiH2rrlvAG7Ry9ar/j2pephPN+RBGFh/PzSS6zj5XhiaY
-         Zo34OMvIIEMM+55aGRcd7gsNXME8NVK7hdFIban6Lb4YnxDaCJON7K7lYY0RilFqsQ1S
-         +TRw==
-X-Gm-Message-State: AOAM532BfavyQgZCDlgBut5PO8hfmCtCmzcwENRmQ90+T9MEy3XIXD22
-        7rI8wf9tJOfE/NqTC6SdbWIj
-X-Google-Smtp-Source: ABdhPJwcInvozb/zTCyAg8emYQVQFmIX2bAwu06mXAwj/87oGn8Q4Nm3DbiDeHZzBrzSc5OLOLtxVA==
-X-Received: by 2002:a62:8608:0:b029:18b:a8e:ee9 with SMTP id x8-20020a6286080000b029018b0a8e0ee9mr8008802pfd.65.1605770021344;
-        Wed, 18 Nov 2020 23:13:41 -0800 (PST)
-Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.googlemail.com with ESMTPSA id 12sm5491577pjt.25.2020.11.18.23.13.37
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=VeNogQFTyx3LF5O/2cfNsVoiePim0AR7MhsERjqK/ns=;
+        b=WCltvl10VZGhckjuUVMCw9xwGFfYEKrNybkLsNMqDUtMaGt6tQmwUOub+NRmOIf2FK
+         051F00fhUkoV/LC/6JDTpC9m2P3KlNTowVHIl/yuJqdcR5sS+5QJeKEKn1QFcLgJ4/vQ
+         Ta9huNti/e9rH3EwiPeYn/JTeDbB+2vfTICPMAnZlXyj/GRRSd34POBhhQ/+tGt6F99Q
+         eT0pcq/U2UrdszVA2UoWl2QAZ1+ctS2KfzeoI9k87Rvb1sKKQsCM78nYcz28x9T29pt4
+         9KWAjU+OiR34w644+7aAmQs38HVyIsG0ZT+GX3poIjXKG6Cap8SwATHhGKnvJ5YYgUbm
+         O1pw==
+X-Gm-Message-State: AOAM531xQHRuFuphUbeEWWLOXDCqCOIqRKEHFgt5aJchwyc+occUTReD
+        6xVcK2FANZbn+vSpEjEXmIY=
+X-Google-Smtp-Source: ABdhPJzMaMitdvAYi4PSDQkGtBbDVyLCOm1XDudWrVITjJ1OmwPXbwhk6371aghpedJAKSR9SsDgjg==
+X-Received: by 2002:a17:90a:5c82:: with SMTP id r2mr3001798pji.69.1605770454634;
+        Wed, 18 Nov 2020 23:20:54 -0800 (PST)
+Received: from localhost.localdomain ([45.124.203.19])
+        by smtp.gmail.com with ESMTPSA id s145sm28067565pfs.187.2020.11.18.23.20.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Nov 2020 23:13:40 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     bjorn.andersson@linaro.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v3 4/4] mtd: parsers: afs: Fix freeing the part name memory in failure
-Date:   Thu, 19 Nov 2020 12:43:08 +0530
-Message-Id: <20201119071308.9292-5-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201119071308.9292-1-manivannan.sadhasivam@linaro.org>
-References: <20201119071308.9292-1-manivannan.sadhasivam@linaro.org>
+        Wed, 18 Nov 2020 23:20:53 -0800 (PST)
+Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>
+Cc:     Lancelot Kao <lancelot.kao@fii-usa.com>,
+        Fran Hsu <Fran.Hsu@quantatw.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/5] ARM: dts: Nuvoton device trees
+Date:   Thu, 19 Nov 2020 17:50:33 +1030
+Message-Id: <20201119072038.123046-1-joel@jms.id.au>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the case of failure while parsing the partitions, the iterator should
-be pre decremented by one before starting to free the memory allocated
-by kstrdup(). Because in the failure case, kstrdup() will not succeed
-and thus no memory will be allocated for the current iteration.
+This series collects the device trees we have in the OpenBMC kernel tree
+and submits them for inclusion in the mainline kernel.
 
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Fixes: 1fca1f6abb38 ("mtd: afs: simplify partition parsing")
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- drivers/mtd/parsers/afs.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+Note that some nodes are removed for parts of the NPCM SoC that are not
+yet in the mainline dtsi.
 
-diff --git a/drivers/mtd/parsers/afs.c b/drivers/mtd/parsers/afs.c
-index 980e332bdac4..26116694c821 100644
---- a/drivers/mtd/parsers/afs.c
-+++ b/drivers/mtd/parsers/afs.c
-@@ -370,10 +370,8 @@ static int parse_afs_partitions(struct mtd_info *mtd,
- 	return i;
- 
- out_free_parts:
--	while (i >= 0) {
-+	while (--i >= 0)
- 		kfree(parts[i].name);
--		i--;
--	}
- 	kfree(parts);
- 	*pparts = NULL;
- 	return ret;
+While the patches have been reviewed on the OpenBMC list already, this
+is a chance to check that they are okay to merge upstream. Please respond
+to this mail and I will submit for 5.11.
+
+Fran Hsu (2):
+  ARM: dts: nuvoton: Add Quanta GSJ BMC pinctrl
+  ARM: dts: nuvoton: Add Quanta GSJ BMC
+
+Lancelot Kao (1):
+  ARM: dts: nuvoton: Add Fii Kudo system
+
+Tomer Maimon (2):
+  ARM: dts: nuvoton: Add Nuvoton NPCM730 device tree
+  ARM: dts: nuvoton: Add NPCM7xx RunBMC Olympus Quanta machine
+
+ arch/arm/boot/dts/Makefile                    |    5 +-
+ .../boot/dts/nuvoton-npcm730-gsj-gpio.dtsi    |  477 ++++++++
+ arch/arm/boot/dts/nuvoton-npcm730-gsj.dts     |  490 ++++++++
+ arch/arm/boot/dts/nuvoton-npcm730-kudo.dts    |  826 +++++++++++++
+ arch/arm/boot/dts/nuvoton-npcm730.dtsi        |   44 +
+ ...nuvoton-npcm750-runbmc-olympus-pincfg.dtsi |  517 ++++++++
+ .../dts/nuvoton-npcm750-runbmc-olympus.dts    | 1052 +++++++++++++++++
+ 7 files changed, 3410 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm730-gsj-gpio.dtsi
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm730-gsj.dts
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm730-kudo.dts
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm730.dtsi
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus-pincfg.dtsi
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm750-runbmc-olympus.dts
+
 -- 
-2.17.1
+2.29.2
 
