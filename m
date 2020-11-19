@@ -2,142 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 192AB2B8F70
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 10:54:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E5222B8F7E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 10:54:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726486AbgKSJwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 04:52:53 -0500
-Received: from mail-am6eur05on2082.outbound.protection.outlook.com ([40.107.22.82]:2240
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726553AbgKSJwx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 04:52:53 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XqoZv7y4v15JAuJkzxqgjP6O2U/TlFFX1Dahw4CbnWYCDXo9TqS+8xIWgbBE7BR1s92KK3goC50pv4E5vgXJNTw0AQs/ezj7FGgBI1B9XZyfuivuZzRkS7UB8tEKTHOwKRrEH9WBziY78i5i5XIGh0tsiQNJx1qzhYYAX71vFf6uQt5MM14q7rd+mxzw7WaO/EtfD9CkSB7lE2lB9LdCByEj/TiLoCQcybdijdElOPvOX9Umt6gnWPK27FCrXArs/ypsvBj0OH97RiXroWVZDZ7WJAsIEoe6JnmM12j2G3Fvnjf6umuBlnEJ+TWqtYSV1NENu6kFPvX7IQUMP2YMrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hYeyM8MVsVncxvOCtnDHehJAHCh6X9cUQnvqNa3jAbs=;
- b=dMr7x2F++pzAVhzWLb95KXgShdPmqb3dXJ4KHb9Wwm63Wwnyvuu2YBplSSUJ5IDfq5mKZY5JSWv2HvPG/xtkQEFHW9y+2MEcekbq99GsuQmXxvqeXbr21ijpO79+xC/mWT+FPnIszAeS8ODwOjEWsY/0v81oa0TV6M3X8id5MO+8HJvva/+jPPB0pIiX5xTg/4BOcQLW6or/sHfR0N2/kPGuy9lwqononrIx7P2G4Qz9AYE3014mwLhB/mSMJRLOMyC197+1i7uYVgMrwlZnXI6aTOkeGJrDlPYB4eRZihxeg2s23PN/N+/ddPrRDWBExZsd0D/GsHFv90X8WDN8UQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hYeyM8MVsVncxvOCtnDHehJAHCh6X9cUQnvqNa3jAbs=;
- b=BcOQHnm7BcKSRaQbjxqZgld0bAlqP3g//EckZQkot3Akbl+/05FHUQxLE2D2mNk4XkDRgWUIC/Yf+00snx9GqIWrwmrYMMZsauVKNGWmLERxY+mwYoIMpg7XU9aeBJJf61rxddTdpa06aQRejPlb7vbaSNmnpGNsa4KAkfBoIRI=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DBAPR04MB7429.eurprd04.prod.outlook.com (2603:10a6:10:1a2::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.22; Thu, 19 Nov
- 2020 09:52:47 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3c3a:58b9:a1cc:cbcc]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::3c3a:58b9:a1cc:cbcc%9]) with mapi id 15.20.3541.028; Thu, 19 Nov 2020
- 09:52:47 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com, fugang.duan@nxp.com
-Subject: [PATCH 5/5] arch: arm64: dts: imx8mq/m/n/p: add fsl,stop-mode property for FEC
-Date:   Thu, 19 Nov 2020 17:52:49 +0800
-Message-Id: <20201119095249.25911-6-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201119095249.25911-1-qiangqing.zhang@nxp.com>
-References: <20201119095249.25911-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR0601CA0016.apcprd06.prod.outlook.com (2603:1096:3::26)
- To DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+        id S1726073AbgKSJyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 04:54:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725888AbgKSJyj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 04:54:39 -0500
+Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED31C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 01:54:39 -0800 (PST)
+Received: by mail-yb1-xb43.google.com with SMTP id t33so4642379ybd.0
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 01:54:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=eDVAIVdOU1MuWiQuY5T1RWB1uDIPdBXRwRv4/3oTVQQ=;
+        b=udBbIM9ki4eNu4x5h9G8GwxdBSGr9QgbuH8GMg0EZ0pZPDvGc4U96VI/oGaAxVY+K8
+         hrRUrJVqpQGXrjOLTg3iBP9qrsIxa8QbOoLPDrl4o0CAEd1lU07ni0wQgPw37QmugAtM
+         S/c3VpD+oBF4oDs5CfwDODS2zTUeGYUQQ72ueELMH0SxhhoJt5mmL7e/FqlAThd600Mu
+         NgDjiCQ7x5/VGA6JbpXOsaZo69FW6H4pxfK3FRJsvNOSTN9iB53jW5qEQNRtp2mEmURn
+         uphasw3YFZF0J00f62quO9oVevoffqGSRJ5j+/mRAxgCoXsBj7j5vBFjgSHie7DjjsU2
+         K5Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=eDVAIVdOU1MuWiQuY5T1RWB1uDIPdBXRwRv4/3oTVQQ=;
+        b=akr8M5n706qZrhpOOQapCHx7KGwYUPpHqmMgiyjdTXA+clWnuo745C4dV9o9zgBGeQ
+         9paK/KcXPeLMQJBMuQOksP/juW4S14Fr8yEoLuCmuOWspyz0TpacjiFfEna3wDWPBY3n
+         LB8vJG/IDxDWBICMUmLlAWlfC42BITVsmEJpoNumGOQD9orp5ihrC3j42b4RJkQXkzgX
+         eCoy6Ij1/E7GTxB3spBwGwa6s39OGpnLJIkarTsn++fB4RVgpIvhPePEAP8cMWz4agQ7
+         ZDyPTM/zAxerXctIvZf/79Gy+X09VvHZuro8ZxU4L9H5Hm2K4lrG+JfLhIHH6kxEk25s
+         EPzQ==
+X-Gm-Message-State: AOAM533zlSM/LpAhLRJa9LijTqgIPgUCcAyNp0cWmawEQZS7oo0mqeLa
+        lSrULzNxbRA1maUFsDPV44NzyMc8ohsyomhH4PQ=
+X-Google-Smtp-Source: ABdhPJykIzvJ6cJu2PnEAlCnmiftRVg488hP7iXHzN0rPtNYxIhRcAJz1W/wtydipcwVbIHazj/8/Kj7Zud6UK1ibfc=
+X-Received: by 2002:a25:b68a:: with SMTP id s10mr10042558ybj.455.1605779678698;
+ Thu, 19 Nov 2020 01:54:38 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SG2PR0601CA0016.apcprd06.prod.outlook.com (2603:1096:3::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Thu, 19 Nov 2020 09:52:45 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 11b4e3e7-43ec-4e12-0d8d-08d88c70de91
-X-MS-TrafficTypeDiagnostic: DBAPR04MB7429:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DBAPR04MB7429C78F05BBC9FBD442FAC8E6E00@DBAPR04MB7429.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:989;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sTavqgcBY18az2NvY/QVw1+m2x/E1XcS+4lmLh6q5CZBlACMka94KHV3UvSZ0hN5AFb2OxfLDHKmkl6h0QMJc8He58fkI5cyQBrlQL2cbwsGF5OicMZ9iK8RGkTh2MMzm9dmQqqdECbjWM9yp8xX4bciuqJcQwZPe2EjF5rJs0kVwCW3GZjiqMsWTeAVx6F3UJGQ27GhPCmRz9dPeJDULJLh81SUwBGliPqWI8GcorMNwpnRBaEbM2kK4XqEv6gg26KqtaMe1vYM+7W16d8otJPnGZMmaThtJ6X7FuoudM4VJBKJfg7wBl//Ve7jUBIddwiBFSJ+sdVGfK7DBLOsOvbVr4k2Bz2Wgcqhwav1n8PocCgdKSFJ6Qm2jju/9rxYo/EO4jGABae4YpT25XEeBlS8LLrePLaYtAId6IlbrbY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(39860400002)(346002)(136003)(376002)(66946007)(66476007)(52116002)(83380400001)(6506007)(2616005)(6486002)(69590400008)(1076003)(956004)(316002)(4326008)(478600001)(86362001)(16526019)(8676002)(66556008)(2906002)(8936002)(26005)(186003)(5660300002)(6512007)(36756003)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: E8Q/2DeH/QucYhLt359k01CiQQeQxSEsBte+KEG0UW1MekI64AV/TbiVp8hHgpFyAWym378YoqLfeWjZdIOlB1SgBa+AkfVLOih1YE7A/xJIndMTGq1NID+RLhlFsf9uxJcLAvIfryAkGXPokA3Qc0nFPlrUyPaxT4GU5c4K7YuDhvcAXMosa7W0vG5nLvQd1EQoiB/kBoL7N0mAPteQl3U9rxi666nCNcKAZOdbh0b8XZzX6v9lBdu2cfgRpO/zLohabb9UDjjVNv2qe3o09fL4IaqcZykCilgwrM6nh4c7RmqbmTaDJDp/jH5BIBuOsfQSuYLahDUQJyYAKcEhJbwIsU6vMUoh8/kP70qxf3RMeTW6Osr/LFQRLrFF+DHiQHMIcL/AR9rhCFscR79K2N58t7K+Zodx0OaJ/K7b49wwNWPt74bu5TaeLjRNmzfr/7+MQMY73B7gwKjjIDfep08ccHDWkfMHWGSzB8z/03OwC3drEWw4yG4xZvNA/cn1OlB4SHZzeG6/GTYbmQT8L5gDh2rnLo1SSQWfH7h1nze+Mjdat7VklBmKRvLNi250tZ7lG9K4Oyht3A9lE8wFGyVtbRo4PXFhH9LoO6o39vq8IP13n+UrH+wodPyRUgz2fIEup6aV0jsfrWpY2KOwWqyKFukoK3pR3GAH3nM3y9AltfzcZgaBQa7j8zslzNmDGanD8wJF9q+/GSBWPmwfa126G73mPx/5UjHkxGva6RWIZ0x5sPzH0jB/15DtcEXS0NnVvcbpWhgrJ2KuxCJSRldXS1/Z/cZS2OcgyNEcDeclFv6DmcTpvSrBtIwsicnzd4aGtiNfl3NbExh/hz17qZaMLcin+ZseT96mCSK3VXTdP5nJsu50kyGxDx7VZuVIlWbXsqlqif1WLp/3y3Qmaw==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11b4e3e7-43ec-4e12-0d8d-08d88c70de91
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2020 09:52:47.3986
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ENlBzG/8bV/f7KiUgeYFwDRSbnlYa/ZlbdNuOPPrF/vzZ9Ln0x4og0urH7GB+pKshA6LN6Idbe6ZH2hoBt6Q5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7429
+References: <20201118132440.15862-1-zajec5@gmail.com> <20201118132440.15862-2-zajec5@gmail.com>
+ <d09b2767-66df-fee6-cfc8-3eba116e10af@gmail.com> <3d66b723-3817-3fff-a464-8c04d9203f18@gmail.com>
+In-Reply-To: <3d66b723-3817-3fff-a464-8c04d9203f18@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Date:   Thu, 19 Nov 2020 10:54:27 +0100
+Message-ID: <CACna6rwio99dP02Esi44FqEK4NGybvFzS5Y_s=q5P-ynvVHodg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: document Broadcom's PMB binding
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add fsl,stop-mode property for FEC to enable stop mode.
+On Wed, 18 Nov 2020 at 22:47, Florian Fainelli <f.fainelli@gmail.com> wrote=
+:
+> On 11/18/20 1:45 PM, Florian Fainelli wrote:
+> > On 11/18/20 5:24 AM, Rafa=C5=82 Mi=C5=82ecki wrote:
+> >> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >>
+> >> Broadcom's PMB is reset controller used for disabling and enabling SoC
+> >> devices.
+> >>
+> >> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >> ---
+> >>  .../devicetree/bindings/reset/brcm,pmb.yaml   | 51 ++++++++++++++++++=
++
+> >>  include/dt-bindings/reset/brcm,pmb.h          |  9 ++++
+> >>  2 files changed, 60 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/reset/brcm,pmb.y=
+aml
+> >>  create mode 100644 include/dt-bindings/reset/brcm,pmb.h
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/reset/brcm,pmb.yaml b/D=
+ocumentation/devicetree/bindings/reset/brcm,pmb.yaml
+> >> new file mode 100644
+> >> index 000000000000..ea78ab629c45
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/reset/brcm,pmb.yaml
+> >> @@ -0,0 +1,51 @@
+> >> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/reset/brcm,pmb.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: Broadcom PMB Master reset controller
+> >> +
+> >> +description: This document describes Broadcom's PMB controller. It su=
+pports
+> >> +  resetting various types of connected devices (e.g. PCIe, USB, SATA)=
+. It
+> >> +  requires specifying device address.
+> >> +
+> >> +maintainers:
+> >> +  - Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    enum:
+> >> +      - brcm,bcm4908-pmb # PMB on BCM4908 and compatible SoCs
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  big-endian:
+> >> +    $ref: /schemas/types.yaml#/definitions/flag
+> >> +    description:
+> >> +      Flag to use for block working in big endian mode.
+> >> +
+> >> +  "#reset-cells":
+> >> +    const: 2
+> >
+> > I believe we would need a description of the #reset-cells property that
+> > indicates what they do.
+> >
+> > Other than that and the build failure below:
+>
+> I don't know how to express constraints on each of the cells, but since
+> they are represented by 8 bits you may want to add mininimum: 0 /
+> maximum: 255 constraints in the YAML binding.
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 1 +
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 1 +
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 1 +
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 1 +
- 4 files changed, 4 insertions(+)
+I don't think there is syntax for that, I'll just use descriptions as
+other bindings do.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 0fbff13a9629..37c8def9e4f5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -924,6 +924,7 @@
- 				nvmem-cells = <&fec_mac_address>;
- 				nvmem-cell-names = "mac-address";
- 				nvmem_macaddr_swap;
-+				fsl,stop-mode = <&gpr 0x10 3>;
- 				status = "disabled";
- 			};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 6c16d09e47a5..c2b1f770eaad 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -775,6 +775,7 @@
- 				nvmem-cells = <&fec_mac_address>;
- 				nvmem-cell-names = "mac-address";
- 				nvmem_macaddr_swap;
-+				fsl,stop-mode = <&gpr 0x10 3>;
- 				status = "disabled";
- 			};
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 14176ee9a19c..1274fbb1af67 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -776,6 +776,7 @@
- 				fsl,num-rx-queues = <3>;
- 				nvmem-cells = <&eth_mac1>;
- 				nvmem-cell-names = "mac-address";
-+				fsl,stop-mode = <&gpr 0x10 3>;
- 				nvmem_macaddr_swap;
- 				status = "disabled";
- 			};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 6eb773fe6cec..cbaaaf28e327 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -1170,6 +1170,7 @@
- 				nvmem-cells = <&fec_mac_address>;
- 				nvmem-cell-names = "mac-address";
- 				nvmem_macaddr_swap;
-+				fsl,stop-mode = <&iomuxc_gpr 0x10 3>;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.17.1
-
+--=20
+Rafa=C5=82
