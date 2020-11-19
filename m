@@ -2,88 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D2A2B8D09
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 09:27:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C5F2B8D8E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 09:39:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725873AbgKSIZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 03:25:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725648AbgKSIZL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 03:25:11 -0500
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7758C0613CF;
-        Thu, 19 Nov 2020 00:25:10 -0800 (PST)
-Received: by mail-yb1-xb43.google.com with SMTP id v92so4401656ybi.4;
-        Thu, 19 Nov 2020 00:25:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=e1f+fQfsOmUnA6/dHY7qSh+3HPGss0Yw9e5UG3bpbW8=;
-        b=NGfgxj1h8FQPW7e3CjHZ3RlcUb228SM97kaapzzML3mtW4QiiIO3Ob79jefzelbrIe
-         ym8XR9DqFaOCytU5uyeTMnw4LZV+8dTgxxWcGIhFARvuN6ds+AEFRq8sSqosLQ5swxfm
-         w4I5B40yN9WLQr0vM5sGAdjkiFiPCeGYFMKclZrfPD/yXrhyXWvYQUyXjA69/2UvFJrc
-         1LL2AKeBwBQzGomOUkIkGXHgrIWGiIDvfgGCiviuV1542nY22M2s0MjLLOT/NhAJDL/6
-         B6n+2u44rWd+ARBI8Z1VlTf5k+Z+r8aFy+/eBYKvcw1Kaq4vlbAvQM9IFEnMV+dPHupy
-         R1qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=e1f+fQfsOmUnA6/dHY7qSh+3HPGss0Yw9e5UG3bpbW8=;
-        b=dPN/tABUjmGNH2JHn03s3530+OequxjCaBpb7XMnCFei5JN3wd2X0b/kVi9LA3AV/1
-         tBAzMzXDcOa3FZZx328nTjhcNd9gCgVzzmIdeTo80ntsneS/on1W5sugJ88F+OOEG497
-         lEbGXbs96A++/vzrhK99CGPRSjSVEvJnVi2WGbtIve3RQhTvDXRpyLMSRL7ydm+r3f52
-         5hG0nAmJPRAlZQJFuiNPO5KU1iHCrgfj4KWUWKCwOSt14Xe93bh7UBjLPCqcYUPfRZZI
-         G4sotFOSa4n0TTCjow4hfplCwybAaBY5RGjI717L5wY9BbIhdNBpOihW3fLIej6LPDIJ
-         QaJA==
-X-Gm-Message-State: AOAM531loW1eW3qX3aDc7P4WRlDAWeZD+VVc8EsbByoENcDHmRB5Fuq1
-        mAS+16MBmwuuGzl6DpIih9wlqB5doZytOWR+Bn4=
-X-Google-Smtp-Source: ABdhPJxJtpTCNTfjMxiXEt4eAsiY6NDQKYWYDWq4YpVFTsX/c7ppdtkLEPa6/tXeXuSG7d+CSSWFzVd3wXBb32hsYs8=
-X-Received: by 2002:a25:bc0a:: with SMTP id i10mr11389858ybh.10.1605774306722;
- Thu, 19 Nov 2020 00:25:06 -0800 (PST)
+        id S1726553AbgKSIeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 03:34:44 -0500
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:47862 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726392AbgKSIeo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 03:34:44 -0500
+X-Greylist: delayed 2011 seconds by postgrey-1.27 at vger.kernel.org; Thu, 19 Nov 2020 03:34:43 EST
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 0AJ80EK4010231;
+        Thu, 19 Nov 2020 10:00:14 +0200
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 7C18B63A09; Thu, 19 Nov 2020 10:00:14 +0200 (IST)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     joel@jms.id.au, arnd@arndb.de, olof@lixom.net, arm@kernel.org,
+        soc@kernel.org, avifishman70@gmail.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, yuenn@google.com, benjaminfair@google.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v1] ARM: dts: add Nuvoton NPCM730 device tree
+Date:   Thu, 19 Nov 2020 10:00:02 +0200
+Message-Id: <20201119080002.100342-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20201113113423.9466-1-zajec5@gmail.com> <20201119062720.GE50232@vkoul-mobl>
-In-Reply-To: <20201119062720.GE50232@vkoul-mobl>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Date:   Thu, 19 Nov 2020 09:24:55 +0100
-Message-ID: <CACna6rzLwQFcTLU6WwhtAHZ-GXo7cJZGrCn+SXRTHa3B=ZQ9Mw@mail.gmail.com>
-Subject: Re: [PATCH] phy: phy-bcm-ns-usb3: drop support for deprecated DT binding
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Nov 2020 at 07:27, Vinod Koul <vkoul@kernel.org> wrote:
->
-> On 13-11-20, 12:34, Rafa=C5=82 Mi=C5=82ecki wrote:
-> > From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> >
-> > Initially this PHY driver was implementing MDIO access on its own. It
-> > was caused by lack of proper hardware design understanding.
-> >
-> > It has been changed back in 2017. DT bindings were changed and driver
-> > was updated to use MDIO layer.
-> >
-> > It should be really safe now to drop the old deprecated code. All Linux
-> > stored DT files don't use it for 3,5 year. There is close to 0 chance
-> > there is any bootloader with its own DTB using old the binding.
->
-> Applied, thanks
->
-> While applying, it gave me a minor conflict, please do check the
-> resolution
+Add Nuvoton NPCM730 SoC device tree.
 
-Looks good, thank you!
+The Nuvoton NPCN730 SoC is a part of the
+Nuvoton NPCM7xx SoCs family.
 
---=20
-Rafa=C5=82
+Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+---
+ arch/arm/boot/dts/nuvoton-npcm730.dtsi | 44 ++++++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm730.dtsi
+
+diff --git a/arch/arm/boot/dts/nuvoton-npcm730.dtsi b/arch/arm/boot/dts/nuvoton-npcm730.dtsi
+new file mode 100644
+index 000000000000..86ec12ec2b50
+--- /dev/null
++++ b/arch/arm/boot/dts/nuvoton-npcm730.dtsi
+@@ -0,0 +1,44 @@
++// SPDX-License-Identifier: GPL-2.0
++// Copyright (c) 2020 Nuvoton Technology
++
++#include "nuvoton-common-npcm7xx.dtsi"
++
++/ {
++	#address-cells = <1>;
++	#size-cells = <1>;
++	interrupt-parent = <&gic>;
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		enable-method = "nuvoton,npcm750-smp";
++
++		cpu@0 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a9";
++			clocks = <&clk NPCM7XX_CLK_CPU>;
++			clock-names = "clk_cpu";
++			reg = <0>;
++			next-level-cache = <&l2>;
++		};
++
++		cpu@1 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a9";
++			clocks = <&clk NPCM7XX_CLK_CPU>;
++			clock-names = "clk_cpu";
++			reg = <1>;
++			next-level-cache = <&l2>;
++		};
++	};
++
++	soc {
++		timer@3fe600 {
++			compatible = "arm,cortex-a9-twd-timer";
++			reg = <0x3fe600 0x20>;
++			interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) |
++						  IRQ_TYPE_LEVEL_HIGH)>;
++			clocks = <&clk NPCM7XX_CLK_AHB>;
++		};
++	};
++};
+-- 
+2.22.0
+
