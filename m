@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A69422B8C3C
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 08:26:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DB0452B8C4C
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 08:30:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726118AbgKSHXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 02:23:50 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:14906 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726107AbgKSHXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 02:23:50 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fb61d8a0000>; Wed, 18 Nov 2020 23:23:54 -0800
-Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 19 Nov
- 2020 07:23:49 +0000
-Received: from jckuo-lt.nvidia.com (10.124.1.5) by mail.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Thu, 19 Nov 2020 07:23:48 +0000
-From:   JC Kuo <jckuo@nvidia.com>
-To:     <gregkh@linuxfoundation.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <stable@vger.kernel.org>,
-        JC Kuo <jckuo@nvidia.com>
-Subject: [PATCH v3] arm64: tegra: jetson-tx1: Fix USB_VBUS_EN0 regulator
-Date:   Thu, 19 Nov 2020 15:23:45 +0800
-Message-ID: <20201119072345.447793-1-jckuo@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605770634; bh=3XWTs7ZkN8QqsGVpILVS7Gg9g0hCVWZ+/eRA2kxPJ08=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
-         X-NVConfidentiality:Content-Transfer-Encoding:Content-Type;
-        b=TlF0TkF4fGfMm0r8dsgcvLGGL55t09EbSmmbop1Uc/weqNFO4UWU6d1/o4EddUxzG
-         yvpt6AJn7Egn+YwKk/3B5xq3jabBpm/FWiyhJ2aeze3STjcdTS8pRZ9oA/JUIcLhgm
-         IjOdhXLKSEBh6pcMrq1J3HU5XCITZsBrB6ORgSWuMmCJXJlLuf+ZoC84sZCL/Zxf7G
-         i8XfzzJKy5WKYSBZCIt2ELKy6Poc3HolO9ewQ0CxWnlJUvM/FuHwTMOWgt+B8HaZue
-         bVKkU+cNfjppFMRo4srA8tID935UVfTFG9bUIZDpOTwW8VpjVQlp/s1Y1bgE3/r0zK
-         2XUs3CAsvN6Ng==
+        id S1726332AbgKSH1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 02:27:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55166 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726278AbgKSH1f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 02:27:35 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106CAC0613D4
+        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 23:27:34 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id f18so3425485pgi.8
+        for <devicetree@vger.kernel.org>; Wed, 18 Nov 2020 23:27:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=RU7wqKfv+LHgDxaPO29yong1ckKnttrhFl59yq3IpUI=;
+        b=IakSS16gwXF63uN3L/x39vp5/9lblBW8F+b0zHPH7e3uOQJRVHkChfagvvQX37XOij
+         z9TTJV95j8jUZUAWpZ1ijbL1Ggus5j9Gsv5mG4ksoQz+9EK9UmFkGusvAy2Jc7krt95+
+         noRLmeAmKDbDydaqVdEx9U0jOnCp2LaHzG3VD3K5BGXpf4bGEKf2E3W/IR750gHdKWpd
+         EmaecTOvHrVMYOMUBXCcOfTq/AdDZ/t0WEcgqfnolx6GQR8Yo/u4cPgZl5uzKfKSKhCB
+         2jpb6e+fKItPv8oVYTwahrsaREt/EjaZ48pJmelgU6uiNBrM45U02qB9rLphuuqRvhgH
+         yyPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=RU7wqKfv+LHgDxaPO29yong1ckKnttrhFl59yq3IpUI=;
+        b=aDrWRgcuJ+Lx0WpwN0D9tllRUog7HSiuvdU/e7SxWy6d75mE2TJZdLl8c2A2bo1cIy
+         s+xf7hauV6pGu2Ueih6hfSeexxU6MZUewbI3CSMBb/NcWEzqUrBPw+Hvjs9ty+3Mr7Jx
+         QGoNVfXoGvACz4yd3SMRl4yQuwFn1YYJOVhrGKy5Cs3TUUFWRmXTuaqLjZ/Y1fm+Wgdy
+         sG9wXIQ6wEA0caOjeTYAL4JioFIjjJOOMmxViWcNG1SrdkLp5Az7l0gbsdxIyvD1KeTu
+         Llg1g25pGc4aY5cJzby97UguhzRN1xxtGSGosEQgNNxIMpDfkTWl7/Jt5C0KjnYo6bHw
+         TCKw==
+X-Gm-Message-State: AOAM533rvuezV99EV/B7Y5JsxhckTMc6IWjmMoy7z7o1emj33BaXfD34
+        tHLIz3pcLQ1BqiE1mo1Vbrpi
+X-Google-Smtp-Source: ABdhPJzDqCIzqK/L4m3tm0v2ROFYN/c2jaZW/pQwsTLEpr7eMivyAIwng7u4MmbNVAaAYgCpFDrtSg==
+X-Received: by 2002:a17:90a:6283:: with SMTP id d3mr3029466pjj.96.1605770853467;
+        Wed, 18 Nov 2020 23:27:33 -0800 (PST)
+Received: from localhost.localdomain ([103.59.133.81])
+        by smtp.googlemail.com with ESMTPSA id a8sm26802923pfa.132.2020.11.18.23.27.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Nov 2020 23:27:32 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
+Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 0/4] Add GCC and RPMh clock support for SDX55
+Date:   Thu, 19 Nov 2020 12:57:10 +0530
+Message-Id: <20201119072714.14460-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-USB Host mode is broken at OTG port of Jetson-TX1 platform because
-USB_VBUS_EN0 regulator (regulator@11) is being overwritten by vdd-cam-1v2
-regulator. This commit rearrange USB_VBUS_EN0 to be regulator@14.
+Hello,
 
-Fixes: 257c8047be44 ("arm64: tegra: jetson-tx1: Add camera supplies")
-Cc: stable@vger.kernel.org
-Signed-off-by: JC Kuo <jckuo@nvidia.com>
-Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
----
-v3:
-    add 'Cc: stable@vger.kernel.org' tag
-v2:
-    add 'Fixes:' tag
-    add Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+This series adds Global Clock Controller (GCC) and RPMh clock support
+for SDX55 SoC from Qualcomm with relevant DT bindings.
 
- .../arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+This series has been tested on SDX55 MTP board. The dts patches for this
+SoC/board will be posted later.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/bo=
-ot/dts/nvidia/tegra210-p2597.dtsi
-index e18e1a9a3011..a9caaf7c0d67 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-@@ -1663,16 +1663,6 @@ vdd_usb_vbus: regulator@9 {
- 		vin-supply =3D <&vdd_5v0_sys>;
- 	};
-=20
--	vdd_usb_vbus_otg: regulator@11 {
--		compatible =3D "regulator-fixed";
--		regulator-name =3D "USB_VBUS_EN0";
--		regulator-min-microvolt =3D <5000000>;
--		regulator-max-microvolt =3D <5000000>;
--		gpio =3D <&gpio TEGRA_GPIO(CC, 4) GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--		vin-supply =3D <&vdd_5v0_sys>;
--	};
--
- 	vdd_hdmi: regulator@10 {
- 		compatible =3D "regulator-fixed";
- 		regulator-name =3D "VDD_HDMI_5V0";
-@@ -1712,4 +1702,14 @@ vdd_cam_1v8: regulator@13 {
- 		enable-active-high;
- 		vin-supply =3D <&vdd_3v3_sys>;
- 	};
-+
-+	vdd_usb_vbus_otg: regulator@14 {
-+		compatible =3D "regulator-fixed";
-+		regulator-name =3D "USB_VBUS_EN0";
-+		regulator-min-microvolt =3D <5000000>;
-+		regulator-max-microvolt =3D <5000000>;
-+		gpio =3D <&gpio TEGRA_GPIO(CC, 4) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		vin-supply =3D <&vdd_5v0_sys>;
-+	};
- };
---=20
-2.25.1
+Thanks,
+Mani
+
+Changes in v3:
+
+* Documented core_bi_pll_test_se clock in dt binding
+* Collected reviews
+
+Changes in v2:
+
+* Modified the GCC Kconfig symbol from GCC_SDX55 to SDX_GCC_55
+* Added S-o-b tag to bindings patch
+* Incorporated review comments from Stephen on the gcc driver
+* Added review tag from Bjorn on RPMh patch
+
+Manivannan Sadhasivam (1):
+  clk: qcom: Add support for SDX55 RPMh clocks
+
+Naveen Yadav (1):
+  clk: qcom: Add SDX55 GCC support
+
+Vinod Koul (2):
+  dt-bindings: clock: Add SDX55 GCC clock bindings
+  dt-bindings: clock: Introduce RPMHCC bindings for SDX55
+
+ .../bindings/clock/qcom,gcc-sdx55.yaml        |   73 +
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-rpmh.c                   |   20 +
+ drivers/clk/qcom/gcc-sdx55.c                  | 1626 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sdx55.h    |  112 ++
+ include/dt-bindings/clock/qcom,rpmh.h         |    1 +
+ 8 files changed, 1841 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sdx55.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sdx55.h
+
+-- 
+2.17.1
 
