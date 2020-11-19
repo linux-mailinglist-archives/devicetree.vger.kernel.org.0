@@ -2,91 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF0852B9AA7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 19:34:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B95C2B9AC8
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 19:40:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729192AbgKSS3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 13:29:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44594 "EHLO
+        id S1727778AbgKSSk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 13:40:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728963AbgKSS3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 13:29:19 -0500
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13876C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 10:29:19 -0800 (PST)
-Received: by mail-io1-xd43.google.com with SMTP id r1so7127732iob.13
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 10:29:19 -0800 (PST)
+        with ESMTP id S1729640AbgKSSk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 13:40:28 -0500
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32359C0613D4
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 10:40:28 -0800 (PST)
+Received: by mail-il1-x141.google.com with SMTP id y18so6223217ilp.13
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 10:40:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7zV9Kkv3wwuvNbc0azzKTX32YZSa571gAVihgqPUd5o=;
-        b=lWjn2irtz1lderPEWZiAmdFZ0dHOjwFHwr+YbgdY0JsA0NjAFiY47AlvAMuyDhFXit
-         NByQMx5ZKk5W+0DTH9ag1X+QuDkWQOYPDPlxeiwdRlsy5inppXt7iq1LuEgDD1+OCLO4
-         oXRNCx/tjZIyJgGQuiHd6ucS47oCdafEjVAjO6jDtPCQrdGQwVfaFSE6GyCckpc+sE72
-         GdAz/82Xn7+r2Aq9ZnuQYB4W6FzNwJZGXc9iDorRUMv6OMu8Z5WCVuAW/V1AunwSzEXH
-         821MEME42XViI8kNFjKkVlw+oxmXtZjAm7Bu9RAlitqCwl64Iq2LfwlFMBhe5CJ5r0Tb
-         qHyQ==
+        bh=PvBOcBzyg+eaLhpr35x3ip38QjdZlKmVc5mM+8taPHE=;
+        b=C6mhW7KCNFK2+hF2yTFbwgR4Hb2BSiSkENk1iQgAHCifiyZwkapsVC6SULC6UZ5/5Q
+         MuxYOBRSLZ2fOcfQyIMgYaJXGn+LgYjGrkIaQNPr6qyDRYr4ITWlcE0SLbBGZbhJXwwS
+         hWzTlYMWnMHUTXTprJASQTlPO6Pf0h6kpIYdVbDvAqCepDAl3g2S5TVAIoPWPB6wQcLw
+         QhD3yYh6J0USuXo7o3gIYzhPHFpc22mK0CNSwTGssQ405lzyGfS31oq5WZxKiTjJoc70
+         02FuPV42opH7PSClyZSKhr+0bPC71r0TnddDkAKLNpk0xZvUhGR0PGCH13Q7WQBC6aJU
+         AHUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7zV9Kkv3wwuvNbc0azzKTX32YZSa571gAVihgqPUd5o=;
-        b=SSp9MQTQR4nt/UH02/ByAW73WXbIQ6glkJJawpOSbHGh9ecUYwTVuTwVt/aoXtLEp0
-         UDGjNYXvrZAl+Khf15SPuKM5emlSuQMQtUmZr0RIu9gth9kNcioH7wBByrS75Tqin5nw
-         YvdTx0OP3zejsx6tTXc8VlCeZfgNesFohMSFUjAm4R2ArDTX0PrwILUfNAQEq+FDqIdc
-         LIaj5hRIAt2lYMj4SkIg4iWrMJVGni8r+r2CoR9wgRAJRl8Pujsufb8j02wDaIdbw3sW
-         Fcq8W09UWfL99Rw/yv6Z2UdSXmkoklgANhcE4QRmHqtTjEciYTZXYIWW9SpSXSS11RT1
-         6Q4g==
-X-Gm-Message-State: AOAM532WacUz+Eawnu/42oGfzZwGlgySqCpID/vpReQbrZrpPuiF2tIF
-        yTgQf4S+uyFcVqXSPcs8pRr4erc2lw0nmSXTz1VTMA==
-X-Google-Smtp-Source: ABdhPJykTOi+cvs+PtYtasUxLBPGRNM25GvTswHcJc4/xSPpCMKkzMcQSi4qrIyumhoA9Xxsn/N21ZwxnaPdxBhyh/c=
-X-Received: by 2002:a02:7086:: with SMTP id f128mr14658981jac.108.1605810558134;
- Thu, 19 Nov 2020 10:29:18 -0800 (PST)
+        bh=PvBOcBzyg+eaLhpr35x3ip38QjdZlKmVc5mM+8taPHE=;
+        b=BJuNdSLf4/OtdFAxSCabD+3jV+NKK5Pr2OUKhjytSwoOydBov0fYu4tLFtonrOq7SP
+         XCtutlhtyPrHrfWC6pRGXy1flwa6yDzcjL/QMngmiSMPS00YJl+tlqD7bX2z0VP++jX7
+         /FjzpA7hWdoUIuMYariuDfQHYsOhZhiA/pTSiGwRfx+/Zm/dvDtLMPjlhpXIs8ATeMhs
+         RNLs4yqGnC3+YP9zO4mgzeAHjDJ/f+1ceKknAhn90d5i1/CK1aJ1Vj+H4elvhYMnvqQr
+         QUj07KoCTq7qzjeNVTjkt6oIl1N12WaxpZdk4vAj2R2fssJFAjOY/7a6kjW8r3hoPzmC
+         h+dw==
+X-Gm-Message-State: AOAM5308M1+lIhC/XRakLIKnNDvXXB7b3xYe3na78McOeG4JLiNW9pXf
+        vZnrNZx+3qefoHDzRNu8kP9UuDm3IHAOlX3iEubopQ==
+X-Google-Smtp-Source: ABdhPJyxBFnoi5YnxmRXEWi3RyOT8zK9WD++uul35NAXdT0Y4CBYSq0+BgknePDAlzmhd8jRWTJRg0Pw5651ggprPVM=
+X-Received: by 2002:a05:6e02:1348:: with SMTP id k8mr20739743ilr.154.1605811227390;
+ Thu, 19 Nov 2020 10:40:27 -0800 (PST)
 MIME-Version: 1.0
-References: <20201119073230.123888-1-joel@jms.id.au>
-In-Reply-To: <20201119073230.123888-1-joel@jms.id.au>
+References: <20201119080002.100342-1-tmaimon77@gmail.com>
+In-Reply-To: <20201119080002.100342-1-tmaimon77@gmail.com>
 From:   Benjamin Fair <benjaminfair@google.com>
-Date:   Thu, 19 Nov 2020 10:28:40 -0800
-Message-ID: <CADKL2t5FWfg+j997WFD5TO6vG9nrpH3FpLoW1XvPbtrP_ttR8g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: vendor-prefixes: Add FII
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mustatfa Shehabi <Mustafa.Shehabi@fii-na.com>,
-        Mohaimen alsmarai <Mohaimen.alsamarai@fii-na.com>,
-        Lancelot Kao <lancelot.kao@fii-usa.com>,
-        Vivekanand Veeracholan <vveerach@google.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Thu, 19 Nov 2020 10:39:48 -0800
+Message-ID: <CADKL2t45q907QGpq9rqjnGgMx=43Gz4RRGbyRLZUozYD0kt-DQ@mail.gmail.com>
+Subject: Re: [PATCH v1] ARM: dts: add Nuvoton NPCM730 device tree
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Joel Stanley <joel@jms.id.au>, Arnd Bergmann <arnd@arndb.de>,
+        olof@lixom.net, arm@kernel.org, soc@kernel.org,
+        avifishman70@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        mark.rutland@arm.com, Nancy Yuen <yuenn@google.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Nov 2020 at 23:32, Joel Stanley <joel@jms.id.au> wrote:
+On Thu, 19 Nov 2020 at 00:00, Tomer Maimon <tmaimon77@gmail.com> wrote:
 >
-> Adds Foxconn Industrial Internet, who have submitted a BMC device tree.
+> Add Nuvoton NPCM730 SoC device tree.
 >
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> The Nuvoton NPCN730 SoC is a part of the
+> Nuvoton NPCM7xx SoCs family.
+>
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
 
 Reviewed-by: Benjamin Fair <benjaminfair@google.com>
 
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 2735be1a8470..a64e03e39e9c 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -377,6 +377,8 @@ patternProperties:
->      description: Shenzhen Feixin Photoelectic Co., Ltd
->    "^feiyang,.*":
->      description: Shenzhen Fly Young Technology Co.,LTD.
-> +  "^fii,.*":
-> +    description: Foxconn Industrial Internet
->    "^firefly,.*"
->      description: Firefly
->    "^focaltech,.*":
+> ---
+>  arch/arm/boot/dts/nuvoton-npcm730.dtsi | 44 ++++++++++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/nuvoton-npcm730.dtsi
+>
+> diff --git a/arch/arm/boot/dts/nuvoton-npcm730.dtsi b/arch/arm/boot/dts/nuvoton-npcm730.dtsi
+> new file mode 100644
+> index 000000000000..86ec12ec2b50
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/nuvoton-npcm730.dtsi
+> @@ -0,0 +1,44 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (c) 2020 Nuvoton Technology
+> +
+> +#include "nuvoton-common-npcm7xx.dtsi"
+> +
+> +/ {
+> +       #address-cells = <1>;
+> +       #size-cells = <1>;
+> +       interrupt-parent = <&gic>;
+> +
+> +       cpus {
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +               enable-method = "nuvoton,npcm750-smp";
+> +
+> +               cpu@0 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a9";
+> +                       clocks = <&clk NPCM7XX_CLK_CPU>;
+> +                       clock-names = "clk_cpu";
+> +                       reg = <0>;
+> +                       next-level-cache = <&l2>;
+> +               };
+> +
+> +               cpu@1 {
+> +                       device_type = "cpu";
+> +                       compatible = "arm,cortex-a9";
+> +                       clocks = <&clk NPCM7XX_CLK_CPU>;
+> +                       clock-names = "clk_cpu";
+> +                       reg = <1>;
+> +                       next-level-cache = <&l2>;
+> +               };
+> +       };
+> +
+> +       soc {
+> +               timer@3fe600 {
+> +                       compatible = "arm,cortex-a9-twd-timer";
+> +                       reg = <0x3fe600 0x20>;
+> +                       interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) |
+> +                                                 IRQ_TYPE_LEVEL_HIGH)>;
+> +                       clocks = <&clk NPCM7XX_CLK_AHB>;
+> +               };
+> +       };
+> +};
 > --
-> 2.29.2
+> 2.22.0
 >
