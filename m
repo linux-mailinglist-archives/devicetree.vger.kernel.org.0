@@ -2,93 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 419B42B96F7
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 995742B974F
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 17:09:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728957AbgKSPwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:52:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48630 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728945AbgKSPwn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:52:43 -0500
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D2DDC061A04
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:52:43 -0800 (PST)
-Received: by mail-qk1-x742.google.com with SMTP id y197so5757896qkb.7
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:52:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iS4PFF4afNVE7r1m6FFtegXe9ReuZEWdknfJDOJxxsY=;
-        b=ogRs7aHVgPAe9BFPnptBBpgxHJY2yTOCZkeVo9BIdOoGrIr47GvR7a4/SOKPKeXlz7
-         N9hh27I3m3pqEEFW4SA/IirxvRS7+Uve3ZuaoQin3LNcceQO08qYMn92+YDYjVTybV7j
-         bSIzxWcAQQJ1XcUKoeRemnMcO4PLgEUPDhV6TrTxNcyUW4Sx/hMjOXHvB5Q29nxFjdw9
-         h+VnR8oEuBh5FV6QRfbJQuDhtwaatGpvwneia6taGDiJAMjegXWq5/MEPLinlC2OvfIS
-         5r7gJNdpUtLi22yEuDSs6g9KfyI47VLO44gBTSnbRlonevCZrbfqQxE+doXbWaAEobcX
-         ThBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iS4PFF4afNVE7r1m6FFtegXe9ReuZEWdknfJDOJxxsY=;
-        b=X97XQmK7iyOM4njn971twOls7fn7RS+ocmtI4T0uksDHGqOorW8WJ9F+EuIPgGJR9E
-         063vH6SvKVG3A68eArlkPCfUx6KX9ymMtPy/Z38OYaZN2HSXMtuTZIyijOLpM08wge4S
-         5LtA3zig/Fl9uJpGy1CZvvJtQi+ufLmHPgQwcH6smIoRTsSMesPvmnCk0uEoxPqvojCE
-         M/XjbORJBK5D9r3RjOc4Xy81XWSSHdMMAHkPhxVxUgjkpHnS819nIZooAZcjNqBEN7Rs
-         tVSmbXNFboKNVjgQSFouS4jBnFln5CWSOzc/h18DFAGBSoB6zG1I5Fwnsgxbwn9R9huC
-         flpQ==
-X-Gm-Message-State: AOAM530ikwP+H67vOKue0VGeUXqYKY6cJIm22DbwOH6LW043P+XWBGg+
-        5ImrAHaILEVnsfLv0rlCW7isWw==
-X-Google-Smtp-Source: ABdhPJxHwH4v7FYWbrIIlnErpYmRYuzu4SdUpPCubL+H7hYfW1iAJvkBSx64ZORRUh7Hqwse028vQw==
-X-Received: by 2002:a37:e207:: with SMTP id g7mr11719107qki.44.1605801162795;
-        Thu, 19 Nov 2020 07:52:42 -0800 (PST)
-Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.googlemail.com with ESMTPSA id g70sm127290qke.8.2020.11.19.07.52.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2020 07:52:42 -0800 (PST)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net,
-        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: [Patch v2 6/6] dt-bindings: crypto: qcom-qce: Add v5.4 to binding
-Date:   Thu, 19 Nov 2020 10:52:33 -0500
-Message-Id: <20201119155233.3974286-7-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201119155233.3974286-1-thara.gopinath@linaro.org>
-References: <20201119155233.3974286-1-thara.gopinath@linaro.org>
+        id S1727773AbgKSQCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 11:02:52 -0500
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:29306 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727153AbgKSQCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 11:02:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1605801771; x=1637337771;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PgE2IHY/QaUILgqSVOhOMGRBawy2BD5ojuvrGKpF5Ng=;
+  b=Kx0BXkLUwuBoTqkt2fRrglaDhZb46yinIBNatjNtsaTqqFDoJEDPPYTT
+   WgoWt+MUa0t5TNZR9kI18PduZGoBoUs43ukPOkwMGbdDiwJ9ljU0eVKtP
+   nI0vYyHXNLnhibbueU/42yBLAW881uwn96aEVmDvYWGbs9QaohgYArl2E
+   2AjgMujr4IHdknooQ2V1d8OKMUVBfbBleZTYlMBDj6ub3orzqztXHq6Yg
+   /RbH7AD1eDyrLFemdDUdcUkyBcIQMgLp6kOOq0DcbC5NwIjdw27kRR+lL
+   YkTiBz4fe8M7UK8mke2aEi5YJDxycIm5yA3CHhV/4cneFFW1LNfbMGlCj
+   g==;
+IronPort-SDR: 52RACXbzldvtXd+iz18ySCmbLXCcW1N5Nh8MJTPAB5uFpUqLDM3IcJiKgjnOoQ75soXwwjOAT+
+ 6TSW8R+41Ke2Fyj/klBl6Piz+fk9H539MEJK6SBY3/5VPKbw44VJadrON1b2fC2+ZvJMszZANf
+ +miYtSQr4cnjemcztgrPzJcwYHKVT7hsdlZcl+1ZbE/i5OnQQVBWYkGCr2FNqWer15fMayaMOr
+ 385/gzYBGPM2YbrjrTHd3jAyByU1hiPpcwaizPeP/2G+Zi2ZKFXRuwyWI46VL0RezV6yi/MQS8
+ lpA=
+X-IronPort-AV: E=Sophos;i="5.78,353,1599548400"; 
+   d="scan'208";a="99112012"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2020 09:02:43 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 19 Nov 2020 09:02:42 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
+ Transport; Thu, 19 Nov 2020 09:02:42 -0700
+Date:   Thu, 19 Nov 2020 17:02:42 +0100
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microsemi List <microsemi@lists.bootlin.com>,
+        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/4] dt-bindings: phy: Add sparx5-serdes bindings
+Message-ID: <20201119160242.nyifff7ckwkxkf76@mchp-dev-shegelun>
+References: <20201110144910.558164-1-steen.hegelund@microchip.com>
+ <20201110144910.558164-2-steen.hegelund@microchip.com>
+ <20201119055807.GZ50232@vkoul-mobl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20201119055807.GZ50232@vkoul-mobl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string to support v5.4 crypto engine.
+On 19.11.2020 11:28, Vinod Koul wrote:
+>EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+>
+>On 10-11-20, 15:49, Steen Hegelund wrote:
+>> Document the Sparx5 ethernet serdes phy driver bindings.
+>
+>Rob ..?
+>
+>Also pls cc devicetree@vger.kernel.org
+>
+>>
+>> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+>> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+>> ---
+>>  .../bindings/phy/microchip,sparx5-serdes.yaml | 283 ++++++++++++++++++
+>>  1 file changed, 283 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+>> new file mode 100644
+>> index 000000000000..a3a5b68f0a43
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+>> @@ -0,0 +1,283 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Microchip Sparx5 Serdes controller
+>> +
+>> +maintainers:
+>> +  - Steen Hegelund <steen.hegelund@microchip.com>
+>> +
+>> +description: |
+>> +  The Sparx5 SERDES interfaces share the same basic functionality, but
+>> +  support different operating modes and line rates.
+>> +
+>> +  The following list lists the SERDES features:
+>> +
+>> +  * RX Adaptive Decision Feedback Equalizer (DFE)
+>> +  * Programmable continuous time linear equalizer (CTLE)
+>> +  * Rx variable gain control
+>> +  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
+>> +  * Adjustable tx de-emphasis (FFE)
+>> +  * Tx output amplitude control
+>> +  * Supports rx eye monitor
+>> +  * Multiple loopback modes
+>> +  * Prbs generator and checker
+>> +  * Polarity inversion control
+>> +
+>> +  SERDES6G:
+>> +
+>> +  The SERDES6G is a high-speed SERDES interface, which can operate at
+>> +  the following data rates:
+>> +
+>> +  * 100 Mbps (100BASE-FX)
+>> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
+>> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
+>> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
+>> +
+>> +  SERDES10G
+>> +
+>> +  The SERDES10G is a high-speed SERDES interface, which can operate at
+>> +  the following data rates:
+>> +
+>> +  * 100 Mbps (100BASE-FX)
+>> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
+>> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
+>> +  * 5 Gbps (QSGMII/USGMII)
+>> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
+>> +  * 10 Gbps (10G-USGMII)
+>> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
+>> +
+>> +  SERDES25G
+>> +
+>> +  The SERDES25G is a high-speed SERDES interface, which can operate at
+>> +  the following data rates:
+>> +
+>> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
+>> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
+>> +  * 5 Gbps (QSGMII/USGMII)
+>> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
+>> +  * 10 Gbps (10G-USGMII)
+>> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
+>> +  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^serdes@[0-9a-f]+$"
+>> +
+>> +  compatible:
+>> +    const: microchip,sparx5-serdes.yaml
+>> +
+>> +  reg:
+>> +    description: Address and length of the register set for the device
+>> +
+>> +  '#phy-cells':
+>> +    const: 1
+>> +    description: |
+>> +      - The main serdes input port
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#phy-cells'
+>
+>reg-names missing here
+>
 
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- Documentation/devicetree/bindings/crypto/qcom-qce.txt | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+I will add them.
 
-diff --git a/Documentation/devicetree/bindings/crypto/qcom-qce.txt b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-index fdd53b184ba8..ed1ede9c0acc 100644
---- a/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-+++ b/Documentation/devicetree/bindings/crypto/qcom-qce.txt
-@@ -2,7 +2,9 @@ Qualcomm crypto engine driver
- 
- Required properties:
- 
--- compatible  : should be "qcom,crypto-v5.1"
-+- compatible  : should be
-+		"qcom,crypto-v5.1" for ipq6018
-+		"qcom,crypto-v5.4" for sdm845
- - reg         : specifies base physical address and size of the registers map
- - clocks      : phandle to clock-controller plus clock-specifier pair
- - clock-names : "iface" clocks register interface
--- 
-2.25.1
 
+>> +    };
+>> +
+>> +...
+>> --
+>> 2.29.2
+>
+>--
+>~Vinod
+
+BR
+Steen
+
+---------------------------------------
+Steen Hegelund
+steen.hegelund@microchip.com
