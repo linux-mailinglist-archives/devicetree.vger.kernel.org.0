@@ -2,186 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B1A92B9911
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 18:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 049D92B9915
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 18:14:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728514AbgKSRK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 12:10:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:37096 "EHLO mail.kernel.org"
+        id S1728053AbgKSRNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 12:13:32 -0500
+Received: from foss.arm.com ([217.140.110.172]:35512 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728511AbgKSRK4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 12:10:56 -0500
-Received: from gaia (unknown [2.26.170.190])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3F167241A6;
-        Thu, 19 Nov 2020 17:10:52 +0000 (UTC)
-Date:   Thu, 19 Nov 2020 17:10:49 +0000
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     James Morse <james.morse@arm.com>, robh+dt@kernel.org, hch@lst.de,
-        ardb@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        will@kernel.org, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org,
-        linux-rpi-kernel@lists.infradead.org, guohanjun@huawei.com,
-        robin.murphy@arm.com, linux-arm-kernel@lists.infradead.org,
-        Chen Zhou <chenzhou10@huawei.com>
-Subject: Re: [PATCH v6 1/7] arm64: mm: Move reserve_crashkernel() into
- mem_init()
-Message-ID: <20201119171048.GD4376@gaia>
-References: <20201103173159.27570-1-nsaenzjulienne@suse.de>
- <20201103173159.27570-2-nsaenzjulienne@suse.de>
- <e60d643e-4879-3fc3-737d-2c145332a6d7@arm.com>
- <88c69ac0c9d7e144c80cebc7e9f82b000828e7f5.camel@suse.de>
- <X6rZRvWyigCJxAVW@trantor>
- <b5336064145a30aadcfdb8920226a8c63f692695.camel@suse.de>
- <20201113112901.GA3212@gaia>
- <ba343af12fc60bce36837cc090a39c9e42457788.camel@suse.de>
+        id S1727513AbgKSRNb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 12:13:31 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 016C61396;
+        Thu, 19 Nov 2020 09:13:31 -0800 (PST)
+Received: from bogus (unknown [10.57.54.72])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 465353F718;
+        Thu, 19 Nov 2020 09:13:28 -0800 (PST)
+Date:   Thu, 19 Nov 2020 17:13:22 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Hector Yuan <hector.yuan@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+Subject: Re: [PATCH v8 2/3] dt-bindings: arm: cpus: Document
+ 'mediatek,freq-domain' property
+Message-ID: <20201119171322.2gxrv5h7sqwllgsv@bogus>
+References: <1603700349-5922-1-git-send-email-hector.yuan@mediatek.com>
+ <1603700349-5922-3-git-send-email-hector.yuan@mediatek.com>
+ <20201028150858.GA4029348@bogus>
+ <65a4e167-9d2c-7fcb-5373-33af5e002333@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ba343af12fc60bce36837cc090a39c9e42457788.camel@suse.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <65a4e167-9d2c-7fcb-5373-33af5e002333@arm.com>
+User-Agent: NeoMutt/20171215
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 03:09:58PM +0100, Nicolas Saenz Julienne wrote:
-> On Fri, 2020-11-13 at 11:29 +0000, Catalin Marinas wrote:
-> [...]
-> > > > > Let me stress that knowing the DMA constraints in the system before reserving
-> > > > > crashkernel's regions is necessary if we ever want it to work seamlessly on all
-> > > > > platforms. Be it small stuff like the Raspberry Pi or huge servers with TB of
-> > > > > memory.
-> > > > 
-> > > > Indeed. So we have 3 options (so far):
-> > > > 
-> > > > 1. Allow the crashkernel reservation to go into the linear map but set
-> > > >    it to invalid once allocated.
-> > > > 
-> > > > 2. Parse the flattened DT (not sure what we do with ACPI) before
-> > > >    creating the linear map. We may have to rely on some SoC ID here
-> > > >    instead of actual DMA ranges.
-> > > > 
-> > > > 3. Assume the smallest ZONE_DMA possible on arm64 (1GB) for crashkernel
-> > > >    reservations and not rely on arm64_dma_phys_limit in
-> > > >    reserve_crashkernel().
-> > > > 
-> > > > I think (2) we tried hard to avoid. Option (3) brings us back to the
-> > > > issues we had on large crashkernel reservations regressing on some
-> > > > platforms (though it's been a while since, they mostly went quiet ;)).
-> > > > However, with Chen's crashkernel patches we end up with two
-> > > > reservations, one in the low DMA zone and one higher, potentially above
-> > > > 4GB. Having a fixed 1GB limit wouldn't be any worse for crashkernel
-> > > > reservations than what we have now.
-> > > > 
-> > > > If (1) works, I'd go for it (James knows this part better than me),
-> > > > otherwise we can go for (3).
+On Thu, Nov 19, 2020 at 03:23:20PM +0000, Lukasz Luba wrote:
+> 
+> 
+> On 10/28/20 3:08 PM, Rob Herring wrote:
+> > On Mon, Oct 26, 2020 at 04:19:08PM +0800, Hector Yuan wrote:
+> > > From: "Hector.Yuan" <hector.yuan@mediatek.com>
 > > > 
-> > > Overall, I'd prefer (1) as well, and I'd be happy to have a got at it. If not
-> > > I'll append (3) in this series.
+> > > Add devicetree documentation for 'mediatek,freq-domain' property specific
+> > > to Mediatek CPUs. This property is used to reference the CPUFREQ node
+> > > along with the domain id.
+> > > 
+> > > Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
+> > > ---
+> > >   Documentation/devicetree/bindings/arm/cpus.yaml |    6 ++++++
+> > >   1 file changed, 6 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+> > > index 1222bf1..e995b26 100644
+> > > --- a/Documentation/devicetree/bindings/arm/cpus.yaml
+> > > +++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+> > > @@ -255,6 +255,12 @@ properties:
+> > >         where voltage is in V, frequency is in MHz.
+> > > +  mediatek,freq-domain:
+> > > +    $ref: '/schemas/types.yaml#/definitions/phandle-array'
+> > > +    description:
+> > > +      CPUs supporting freq-domain must set their "mediatek,freq-domain" property
+> > > +      with phandle to a cpufreq_hw node followed by the domain id.
 > > 
-> > I think for 1 we could also remove the additional KEXEC_CORE checks,
-> > something like below, untested:
-> > 
-> > diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
-> > index 3e5a6913acc8..27ab609c1c0c 100644
-> > --- a/arch/arm64/mm/mmu.c
-> > +++ b/arch/arm64/mm/mmu.c
-> > @@ -477,7 +477,8 @@ static void __init map_mem(pgd_t *pgdp)
-> >  	int flags = 0;
-> >  	u64 i;
-> >  
-> > -	if (rodata_full || debug_pagealloc_enabled())
-> > +	if (rodata_full || debug_pagealloc_enabled() ||
-> > +	    IS_ENABLED(CONFIG_KEXEC_CORE))
-> >  		flags = NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS;
-> >  
-> >  	/*
-> > @@ -487,11 +488,6 @@ static void __init map_mem(pgd_t *pgdp)
-> >  	 * the following for-loop
-> >  	 */
-> >  	memblock_mark_nomap(kernel_start, kernel_end - kernel_start);
-> > -#ifdef CONFIG_KEXEC_CORE
-> > -	if (crashk_res.end)
-> > -		memblock_mark_nomap(crashk_res.start,
-> > -				    resource_size(&crashk_res));
-> > -#endif
-> >  
-> >  	/* map all the memory banks */
-> >  	for_each_mem_range(i, &start, &end) {
-> > @@ -518,21 +514,6 @@ static void __init map_mem(pgd_t *pgdp)
-> >  	__map_memblock(pgdp, kernel_start, kernel_end,
-> >  		       PAGE_KERNEL, NO_CONT_MAPPINGS);
-> >  	memblock_clear_nomap(kernel_start, kernel_end - kernel_start);
-> > -
-> > -#ifdef CONFIG_KEXEC_CORE
-> > -	/*
-> > -	 * Use page-level mappings here so that we can shrink the region
-> > -	 * in page granularity and put back unused memory to buddy system
-> > -	 * through /sys/kernel/kexec_crash_size interface.
-> > -	 */
-> > -	if (crashk_res.end) {
-> > -		__map_memblock(pgdp, crashk_res.start, crashk_res.end + 1,
-> > -			       PAGE_KERNEL,
-> > -			       NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS);
-> > -		memblock_clear_nomap(crashk_res.start,
-> > -				     resource_size(&crashk_res));
-> > -	}
-> > -#endif
-> >  }
-> >  
-> >  void mark_rodata_ro(void)
+> > This needs to be a common binding shared with SCMI domains.
 > 
-> So as far as I'm concerned this is good enough for me. I took the time to
-> properly test crashkernel on RPi4 using the series, this patch, and another
-> small fix to properly update /proc/iomem.
-> 
-> I'll send v7 soon, but before, James (or anyone for that matter) any obvious
-> push-back to Catalin's solution?
+> Would it be accurate to create a new binding file:
+> Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek-hw.txt
+> ?
+>
 
-I talked to James earlier and he was suggesting that we check the
-command line for any crashkernel reservations and only disable block
-mappings in that case, see the diff below on top of the one I already
-sent (still testing it).
+Nope, Rob already asked to unify all such bindings and generalise it.
+Here is my attempt[1] and this must just use it or help to enhance that
+in order to make use of that binding.
 
-If you don't have any other changes for v7, I'm happy to pick v6 up on
-top of the no-block-mapping fix.
+-- 
+Regards,
+Sudeep
 
-diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
-index ed71b1c305d7..acdec0c67d3b 100644
---- a/arch/arm64/mm/mmu.c
-+++ b/arch/arm64/mm/mmu.c
-@@ -469,6 +469,21 @@ void __init mark_linear_text_alias_ro(void)
- 			    PAGE_KERNEL_RO);
- }
- 
-+static bool crash_mem_map __initdata;
-+
-+static int __init enable_crash_mem_map(char *arg)
-+{
-+	/*
-+	 * Proper parameter parsing is done by reserve_crashkernel(). We only
-+	 * need to know if the linear map has to avoid block mappings so that
-+	 * the crashkernel reservations can be unmapped later.
-+	 */
-+	crash_mem_map = false;
-+
-+	return 0;
-+}
-+early_param("crashkernel", enable_crash_mem_map);
-+
- static void __init map_mem(pgd_t *pgdp)
- {
- 	phys_addr_t kernel_start = __pa_symbol(_stext);
-@@ -477,8 +492,7 @@ static void __init map_mem(pgd_t *pgdp)
- 	int flags = 0;
- 	u64 i;
- 
--	if (rodata_full || debug_pagealloc_enabled() ||
--	    IS_ENABLED(CONFIG_KEXEC_CORE))
-+	if (rodata_full || debug_pagealloc_enabled() || crash_mem_map)
- 		flags = NO_BLOCK_MAPPINGS | NO_CONT_MAPPINGS;
- 
- 	/*
+[1] https://lore.kernel.org/lkml/20201116181356.804590-1-sudeep.holla@arm.com
