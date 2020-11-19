@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDF52B96E0
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:54:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D58E42B96E6
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:54:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728857AbgKSPwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:52:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48586 "EHLO
+        id S1728898AbgKSPwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:52:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728874AbgKSPwh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:52:37 -0500
-Received: from mail-qk1-x72a.google.com (mail-qk1-x72a.google.com [IPv6:2607:f8b0:4864:20::72a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EC1BC061A4C
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:52:37 -0800 (PST)
-Received: by mail-qk1-x72a.google.com with SMTP id a13so5792549qkl.4
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:52:37 -0800 (PST)
+        with ESMTP id S1728870AbgKSPwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:52:38 -0500
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65A59C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:52:38 -0800 (PST)
+Received: by mail-qv1-xf41.google.com with SMTP id 63so3061991qva.7
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:52:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Npw6pndFeDGN1j2LCowh5jKLxcwFxW0ubJq0P0MtToo=;
-        b=tzSx5BzoSWa+UyX23Szfm8Za+2AUHXHyE1c/mT8Nff0Lu1w8kEyfDAAdP57DYKHkJO
-         oyfEj6ErpuYVuwv3FgF4lhNkvWwj4EJIs/hzwmU8+M6fasdS2y/UwZCbqx+8G7lfhqt1
-         ga1EqQZzUpNH8TaRzgVMMhtemfyvlFCLuFtfcuMmnl6YxwXLVjWUKYb0k2RKp/KEhVwR
-         aes6IhVH4Y1BRnGT2gIE2gVBpAz3GqTREs6T2yeYNWgTPwfvV3wvpNF69WaMgKRDk/Pd
-         BrUWYSc3kAfGV4NdD0cfhjsxBeQk6eAvvUbhH4OrZ4P+0FROL3rtlVXPT/GqPkG9PGZG
-         KYpg==
+        bh=4MCvCRmAMrx9hEGjjAJklgqSdTLavuT99AZ/bugFCos=;
+        b=A331nUgWpYis9cgDM+H9IflfmtXE8u7sy5s92VZ6qlPcq3ZPDIlJsHqw1/ta/Y2qN+
+         9uDbQikKonrGHPWZQs8GljIwkUssWr8JAhYELG0zYCgATDn2+N2mr6Ab5Lt69OLvZBwq
+         DDe9BHj0r+7d4AxKDQp5badoafP9TPsKZIR62l1ACovFvtX/ALLbj57OaqbV/8tck0nv
+         lrptbm9LgZ4t3S9aNEn6RAz3nCRI4wA6pWOujVakHNQmW7guGiVPLk7gCaBY0Zi3I+Zr
+         eBI6gBI4O4UtDVrUuiQOUbli0S2LUcktQyDh8PfubJHRD7nCqAygCSINMcN7qYOXSc9R
+         T65w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Npw6pndFeDGN1j2LCowh5jKLxcwFxW0ubJq0P0MtToo=;
-        b=SVsR4h30OVi6fiTQur6tE2RLvDGFW8PW2k7D8GRmw90wBWsmiZNsD2pqU5pkHpT4gH
-         T50gQZUVEWJn+WcovnqWZVFAJiUULn/Vou7JReirnsAQWDyfGIRR4dOq3Cd2Uip64fmH
-         mBUeC4aPfR71Dz1TMAQfh9sBF5LNo9pluVlhsBhTlUBJpVTO2C6rksNuDhdedqqNlIfv
-         uqzei2gdBA4MUY2xBqMxu+pyvYbg/HH60NaWETJ8zhlqhaaO0q8/e0R9GFQkS/+nnhPG
-         9g/f+Sinle5xocQ+uSXW9aL8kBxZcKbKE3mgk3iKc62SqTtgPw5PC70vGG6fTldfBPTe
-         mg9w==
-X-Gm-Message-State: AOAM532ORrq4kR4827ffN9HXEg2LEOMFfaMi5RgnPA4EwqnXucfDfgWK
-        D1FtrdDhlsE/ACq0PecqL6z69g==
-X-Google-Smtp-Source: ABdhPJzE/cpIdffZF7GXTI12bMsYjzDIHtiepu5cxTYppLPpKsAIMXNtigSCwXOsudsnLdzUqij17g==
-X-Received: by 2002:a37:52c3:: with SMTP id g186mr11115468qkb.1.1605801156368;
-        Thu, 19 Nov 2020 07:52:36 -0800 (PST)
+        bh=4MCvCRmAMrx9hEGjjAJklgqSdTLavuT99AZ/bugFCos=;
+        b=BqjtVMNF4i1ngQu1qfQOGp4QsJumPfmYG26pw+JpzTQReSwZoI13dKf7B9KVVK3oJ0
+         tHNbPkZEddeTrnXVXEWyfcE6aG8RKkzDtxg7qeqerVP9pnpIEmbsD9Mlp9GhufOYLtQ/
+         mJKDIev8nsZI1KXznXaaBzY41POgZ3VNGZFH1t6QQMLETPUxB3QhHJPfJZGgxHL92IVN
+         cnHrSIgLUnWrCn5jQNwxAumc0ykUxanJUmk4+QgzmhY6GTp3gWP3ujNWVibXkOg/yash
+         HvFY9mhs3ZE+ywv08scbXiKmoqcxH59dn3G35A//m1VwQWKg/b0ubL26wjreo4dHQ5wt
+         XB4A==
+X-Gm-Message-State: AOAM53034Q9PqCvv7aHexI90VYxhPoR4BgbCLfbQy/CQ+hzFrQ1Wjgmb
+        gxc7oMeyEmVbKMmsljr2es/yCQ==
+X-Google-Smtp-Source: ABdhPJzw0guC1FRcPUMM6ggVF5poQsV6NfMqLMhm9/eeXgiHTjzxQjRQ4eyp1THPYSO/wEHEiAl/7w==
+X-Received: by 2002:a0c:c984:: with SMTP id b4mr11609562qvk.10.1605801157619;
+        Thu, 19 Nov 2020 07:52:37 -0800 (PST)
 Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.googlemail.com with ESMTPSA id g70sm127290qke.8.2020.11.19.07.52.35
+        by smtp.googlemail.com with ESMTPSA id g70sm127290qke.8.2020.11.19.07.52.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2020 07:52:35 -0800 (PST)
+        Thu, 19 Nov 2020 07:52:36 -0800 (PST)
 From:   Thara Gopinath <thara.gopinath@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org,
         herbert@gondor.apana.org.au, davem@davemloft.net,
@@ -54,9 +54,9 @@ To:     agross@kernel.org, bjorn.andersson@linaro.org,
 Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-clk@vger.kernel.org
-Subject: [Patch v2 1/6] dt-bindings: clock: Add entry for crypto engine RPMH clock resource
-Date:   Thu, 19 Nov 2020 10:52:28 -0500
-Message-Id: <20201119155233.3974286-2-thara.gopinath@linaro.org>
+Subject: [Patch v2 2/6] clk: qcom: rpmh: Add CE clock on sdm845.
+Date:   Thu, 19 Nov 2020 10:52:29 -0500
+Message-Id: <20201119155233.3974286-3-thara.gopinath@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201119155233.3974286-1-thara.gopinath@linaro.org>
 References: <20201119155233.3974286-1-thara.gopinath@linaro.org>
@@ -66,26 +66,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock id forc CE clock resource which is required to bring up the
-crypto engine on sdm845.
+Qualcomm CE clock resource that is managed by BCM is required
+by crypto driver to access the core clock.
 
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 ---
- include/dt-bindings/clock/qcom,rpmh.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/qcom/clk-rpmh.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/include/dt-bindings/clock/qcom,rpmh.h b/include/dt-bindings/clock/qcom,rpmh.h
-index 2e6c54e65455..30111c8f7fe9 100644
---- a/include/dt-bindings/clock/qcom,rpmh.h
-+++ b/include/dt-bindings/clock/qcom,rpmh.h
-@@ -21,5 +21,6 @@
- #define RPMH_IPA_CLK				12
- #define RPMH_LN_BB_CLK1				13
- #define RPMH_LN_BB_CLK1_A			14
-+#define RPMH_CE_CLK				15
+diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+index e2c669b08aff..7e2a4a9b9bf6 100644
+--- a/drivers/clk/qcom/clk-rpmh.c
++++ b/drivers/clk/qcom/clk-rpmh.c
+@@ -349,6 +349,7 @@ DEFINE_CLK_RPMH_VRM(sdm845, rf_clk2, rf_clk2_ao, "rfclka2", 1);
+ DEFINE_CLK_RPMH_VRM(sdm845, rf_clk3, rf_clk3_ao, "rfclka3", 1);
+ DEFINE_CLK_RPMH_VRM(sm8150, rf_clk3, rf_clk3_ao, "rfclka3", 1);
+ DEFINE_CLK_RPMH_BCM(sdm845, ipa, "IP0");
++DEFINE_CLK_RPMH_BCM(sdm845, ce, "CE0");
  
- #endif
+ static struct clk_hw *sdm845_rpmh_clocks[] = {
+ 	[RPMH_CXO_CLK]		= &sdm845_bi_tcxo.hw,
+@@ -364,6 +365,7 @@ static struct clk_hw *sdm845_rpmh_clocks[] = {
+ 	[RPMH_RF_CLK3]		= &sdm845_rf_clk3.hw,
+ 	[RPMH_RF_CLK3_A]	= &sdm845_rf_clk3_ao.hw,
+ 	[RPMH_IPA_CLK]		= &sdm845_ipa.hw,
++	[RPMH_CE_CLK]		= &sdm845_ce.hw,
+ };
+ 
+ static const struct clk_rpmh_desc clk_rpmh_sdm845 = {
 -- 
 2.25.1
 
