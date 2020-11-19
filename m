@@ -2,94 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9138F2B9395
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 14:23:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6051C2B939E
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 14:28:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726644AbgKSNXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 08:23:20 -0500
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:33371 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726105AbgKSNXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 08:23:19 -0500
-Received: by mail-ed1-f68.google.com with SMTP id k4so5831884edl.0
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 05:23:17 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WA0nL+uRBYwsDIs98/LB+HePgCtrLh/crA2JVTbLnmc=;
-        b=Xj7RQZSXgJKXC2B5PSJkWCEgtV1rEfFiENxPs4vZBJMJM5Ms2GHtQ9vvwm9UwpUQiO
-         MIQDiOOiBC8PdIEedV3p2l239PSpoLNCF4BWhHBAuvCjaAztnPRcHRkB3rkta3TZmKZu
-         Y4+2ES659zBYlKCo0n1kLqQfSK28y3jxT1HBA+KgkY2XVSWZchQq+3IW0dK5EXFUtUn4
-         nEkyg4rwh8DvcWTvgSFhVWI9U1rnNGgBVqM32m0ePwSryr1Pi8B2u4YjIrTXVvVQdMaH
-         D52SX3RAGHDpHok1cfZ3XO30lIPcwCNU9HK9IzcuIt7kyIO6eY2wiyCuhBtU+9neY7EP
-         L4fw==
-X-Gm-Message-State: AOAM532OfAZHrnFyzR8xYZC7por/UQEumbMqxtwhJvoNyQPNelL3k1C6
-        B3owDUeNHFKrIBC7A7yfVUXqhPO8muU=
-X-Google-Smtp-Source: ABdhPJz99KEP5yZPrEJST9AR+fDcsV+YFZUpBSgTFb6NhnFRIOtwVzAY8XbxblIzVa5TBDaRpjOdQA==
-X-Received: by 2002:a50:8562:: with SMTP id 89mr6186796edr.144.1605792196840;
-        Thu, 19 Nov 2020 05:23:16 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id ov32sm2390694ejb.123.2020.11.19.05.23.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2020 05:23:16 -0800 (PST)
-Date:   Thu, 19 Nov 2020 14:23:14 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH 3/3] dt-bindings: mailbox: mu: add imx8qm support
-Message-ID: <20201119132314.GC348129@kozik-lap>
-References: <20201119125304.1279-1-aisheng.dong@nxp.com>
- <20201119125304.1279-3-aisheng.dong@nxp.com>
+        id S1727173AbgKSNZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 08:25:44 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:46066 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726474AbgKSNZn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 08:25:43 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AJDPcYY072645;
+        Thu, 19 Nov 2020 07:25:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1605792338;
+        bh=FGWnD7A2xzMjkl93n7jynBlka7l9OpV8ffZzkxm0Fc8=;
+        h=From:To:CC:Subject:Date;
+        b=UAa/Ygt1wjcSkX4YU4YiflGbEI+UIFkD4o3t2PC/V8nlaqUdoFcWcJLWSd9ZoWm9D
+         HhOBrEhoxN+nWgRxUn8IyZ4F300G90zvpIg6KkGwAad/qFT0TLpRLHnSgJQSaW/0N4
+         15nzJvWd8jxuY9Qv2HSWBE7VgnCX49ym1obytuv4=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AJDPcWd130399
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 19 Nov 2020 07:25:38 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 19
+ Nov 2020 07:25:38 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 19 Nov 2020 07:25:38 -0600
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AJDPZhe038667;
+        Thu, 19 Nov 2020 07:25:36 -0600
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <nm@ti.com>, <t-kristo@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <nsekhar@ti.com>, <vigneshr@ti.com>
+Subject: [PATCH 0/2] arm64: dts: ti: k3-j7200-som/cpb: Correct i2c bus representations
+Date:   Thu, 19 Nov 2020 15:26:25 +0200
+Message-ID: <20201119132627.8041-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201119125304.1279-3-aisheng.dong@nxp.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 08:53:04PM +0800, Dong Aisheng wrote:
-> Add imx8qm support
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
->  Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> index 15cef82cd356..1a3dff277e2b 100644
-> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
-> @@ -34,12 +34,15 @@ properties:
->                - fsl,imx8mm-mu
->                - fsl,imx8mn-mu
->                - fsl,imx8mp-mu
-> +              - fsl,imx8qm-mu
+Hi,
 
-You add the compatible below, so decide which one is it. Please provide
-also users of this compatible - DTS.
+The main_i2c0 missed the ioexpander present on the SOM itself to control muxes
+to route signals to CPB connectors.
 
-Best regards,
-Krzysztof
+The main_i2c1 of J7200 is _not_ connected to the i2c1 of CPB, it is connected to
+i2c3, so the devices on the CPB's i2c1 bus are not avalible, but the ones on the
+CPB i2c3 are available under the main_i2c1.
 
->                - fsl,imx8qxp-mu
->            - const: fsl,imx6sx-mu
->        - description: To communicate with i.MX8 SCU with fast IPC
->          items:
->            - const: fsl,imx8-mu-scu
-> -          - const: fsl,imx8qxp-mu
-> +          - enum:
-> +              - fsl,imx8qm-mu
-> +              - fsl,imx8qxp-mu
->            - const: fsl,imx6sx-mu
->  
->    reg:
-> -- 
-> 2.23.0
-> 
+Add nice line names at the same time to these.
+
+Regards,
+Peter
+---
+Peter Ujfalusi (2):
+  arm64: dts: ti: k3-j7200-som-p0: main_i2c0 have an ioexpander on the
+    SOM
+  arm64: dts: ti: k3-j7200-common-proc-board: Correct the name of io
+    expander on main_i2c1
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 16 +++---------
+ arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 26 +++++++++++++++++++
+ 2 files changed, 30 insertions(+), 12 deletions(-)
+
+-- 
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
