@@ -2,344 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 551482B9253
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 13:16:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EEAB2B92AD
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 13:42:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727319AbgKSMNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 07:13:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727126AbgKSMNY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 07:13:24 -0500
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C164C0613CF;
-        Thu, 19 Nov 2020 04:13:24 -0800 (PST)
-Received: by mail-ot1-x344.google.com with SMTP id g19so5010651otp.13;
-        Thu, 19 Nov 2020 04:13:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CQc+X8tX3Skl+8b2tpkeVeyjt/V7WtkyUSE/Jqv+xFM=;
-        b=r/4THq9bF9j7pLUlG16N3Xz2AyQVe02eRcTO5IaP87TlA/Ua1lr6WPc2r4TY54L8ms
-         4PqWcpG8NnoSjQo5vVX5tRn0S6JV/xMgfzOVapq0khZ4xZIeRJWQ1VaTHo37zAQiRYQo
-         UxOElDeSI+W0Kfn406A4/NzGy6HCUD6pD1+303eS1o7CIVxA6K8LMNDXF2L/pN0F/jjE
-         Icsbqk8a7KU7HNgdjLOFJsiYkjV/OCH4e9AR6OfPAA0sD61HctQ6uKrHf+L2+GbbM2/M
-         pLXw6Py3YLoh2RiQKYnt43fjIteg+gefu0LMERkqgVBedOQ2+jWZkq5B1ok3Tz4hEN7n
-         V30w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CQc+X8tX3Skl+8b2tpkeVeyjt/V7WtkyUSE/Jqv+xFM=;
-        b=nVSzykUnKneWNWnPVoby8y1v7Ffg/+neve/iVLf23BIJVf0zf1xwqt6J/tMvNoELCE
-         nKQwRMArUXVi5zzrcWo8Z6lIlT9wJTn2pkmKEOxWcnO+/R86aGJt0M+y2Cs5FLRYSmbU
-         XrnGu7CPTzCkNpsLdpgIuY53sIqnQigd5cozL66zv0km34neibYcsoYpIZMLVLQL6cAS
-         wE7h8APXo908oE60+yGikSk6nmUPE+PKaBadoOpWX84ZhbG3oDPt7i/VuwCLgdCXhPrz
-         GHnH4FPIG7fuAo99rl2IM16XAAl0dhwT4rEO0zp5Azisb1jJ4gRKsKYmn++whQ+B4CEM
-         S/zQ==
-X-Gm-Message-State: AOAM531Y+XDK6loqtgWXPUDMoS6bKSzQ/eUi/r3sVU5F/xeFxmhXe+fk
-        cBi88bMWv/ezOCKvyKFVsyIsEeUBBZ74+xtBzb9MbAE86h8vXyGM
-X-Google-Smtp-Source: ABdhPJx3GO7VyQt5grvkV6z9Yds2ImTGd48WfhZH4qUF9RioCCVt8s5ncXtwa99GyVPBIe/E9L/aaMZb+c6g7r+6nCI=
-X-Received: by 2002:a05:6830:8f:: with SMTP id a15mr9366277oto.362.1605788003373;
- Thu, 19 Nov 2020 04:13:23 -0800 (PST)
+        id S1727025AbgKSMlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 07:41:45 -0500
+Received: from foss.arm.com ([217.140.110.172]:56190 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727000AbgKSMlp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 07:41:45 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C50911396;
+        Thu, 19 Nov 2020 04:41:44 -0800 (PST)
+Received: from [10.57.24.96] (unknown [10.57.24.96])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A3AAD3F718;
+        Thu, 19 Nov 2020 04:41:40 -0800 (PST)
+Subject: Re: [PATCH v8 1/3] cpufreq: mediatek-hw: Add support for CPUFREQ HW
+To:     Hector Yuan <hector.yuan@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Dave Gerlach <d-gerlach@ti.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+References: <1603700349-5922-1-git-send-email-hector.yuan@mediatek.com>
+ <1603700349-5922-2-git-send-email-hector.yuan@mediatek.com>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+Message-ID: <9382b917-f20d-c7b5-42e4-46d11465073f@arm.com>
+Date:   Thu, 19 Nov 2020 12:41:38 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
-In-Reply-To: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Thu, 19 Nov 2020 13:13:11 +0100
-Message-ID: <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains controller
-To:     Weiyi Lu <weiyi.lu@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1603700349-5922-2-git-send-email-hector.yuan@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weiyi,
+Hi Hector,
 
-Thank you for the patch
+On 10/26/20 8:19 AM, Hector Yuan wrote:
+> From: "Hector.Yuan" <hector.yuan@mediatek.com>
+> 
+> Add cpufreq HW support.
+> 
+> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
 
-Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
-2020 a les 11:48:
->
-> Add power domains controller node for SoC mt8192
->
-> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
-> ---
->
-> Change in v3: None, just rebase dts onto v5.10-rc1 and
->        V4 of series "Add new driver for SCPSYS power domains controller"[1]
->
-> [1] https://patchwork.kernel.org/project/linux-mediatek/list/?series=374013
->
->  arch/arm64/boot/dts/mediatek/mt8192.dtsi | 201 +++++++++++++++++++++++++++++++
->  1 file changed, 201 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192.dtsi b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> index 69d45c7..08449eb 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192.dtsi
-> @@ -9,6 +9,7 @@
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/pinctrl/mt8192-pinfunc.h>
-> +#include <dt-bindings/power/mt8192-power.h>
->
->  / {
->         compatible = "mediatek,mt8192";
-> @@ -257,6 +258,206 @@
->                         #interrupt-cells = <2>;
->                 };
->
-> +               scpsys: syscon@10006000 {
-> +                       compatible = "syscon", "simple-mfd";
-> +                       reg = <0 0x10006000 0 0x1000>;
-> +                       #power-domain-cells = <1>;
-> +
-> +                       /* System Power Manager */
-> +                       spm: power-controller {
-> +                               compatible = "mediatek,mt8192-power-controller";
-> +                               #address-cells = <1>;
-> +                               #size-cells = <0>;
-> +                               #power-domain-cells = <1>;
-> +
-> +                               /* power domain of the SoC */
-> +                               audio@MT8192_POWER_DOMAIN_AUDIO {
+[snip]
 
-If you run the dt_bindings_check it should return some errors, as all
-these node names should be 'power-domain@'. Which is a bit annoying
-because then you will get a bunch of errors like this:
+> +
+> +static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
+> +{
+> +	struct cpufreq_mtk *c;
+> +	struct device *cpu_dev;
+> +	struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
+> +	struct pm_qos_request *qos_request;
+> +	int sig, pwr_hw = CPUFREQ_HW_STATUS | SVS_HW_STATUS;
+> +
+> +	qos_request = kzalloc(sizeof(*qos_request), GFP_KERNEL);
+> +	if (!qos_request)
+> +		return -ENOMEM;
+> +
+> +	cpu_dev = get_cpu_device(policy->cpu);
+> +	if (!cpu_dev) {
+> +		pr_err("failed to get cpu%d device\n", policy->cpu);
+> +		return -ENODEV;
+> +	}
+> +
+> +	c = mtk_freq_domain_map[policy->cpu];
+> +	if (!c) {
+> +		pr_err("No scaling support for CPU%d\n", policy->cpu);
+> +		return -ENODEV;
+> +	}
+> +
+> +	cpumask_copy(policy->cpus, &c->related_cpus);
+> +
+> +	policy->freq_table = c->table;
+> +	policy->driver_data = c;
 
-[    1.969110] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    1.976997] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    1.984828] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    1.992657] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.000685] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.008566] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.016395] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.024221] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.032049] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.039874] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.047699] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.055524] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.063352] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
-[    2.071176] debugfs: Directory 'power-domain' with parent
-'pm_genpd' already present!
+To control frequency transition rate in schedutil, you might
+be interested in setting:
 
-But that's another problem that should be handled in debugfs system.
+policy->cpuinfo.transition_latency = <mtk_value_here>;
 
-> +                                       reg = <MT8192_POWER_DOMAIN_AUDIO>;
-> +                                       clocks = <&topckgen CLK_TOP_AUD_INTBUS_SEL>,
-> +                                                <&infracfg CLK_INFRA_AUDIO_26M_B>,
-> +                                                <&infracfg CLK_INFRA_AUDIO>;
-> +                                       clock-names = "audio", "audio1", "audio2";
-> +                                       mediatek,infracfg = <&infracfg>;
-> +                                       #power-domain-cells = <0>;
-> +                               };
+Example, when this latency value comes from FW [1]
+
 > +
-> +                               conn@MT8192_POWER_DOMAIN_CONN {
-> +                                       reg = <MT8192_POWER_DOMAIN_CONN>;
-> +                                       clocks = <&infracfg CLK_INFRA_PMIC_CONN>;
-> +                                       clock-names = "conn";
-> +                                       mediatek,infracfg = <&infracfg>;
-> +                                       #power-domain-cells = <0>;
-> +                               };
+> +	/* Let CPUs leave idle-off state for SVS CPU initializing */
+> +	cpu_latency_qos_add_request(qos_request, 0);
 > +
-> +                               mfg@MT8192_POWER_DOMAIN_MFG0 {
-> +                                       reg = <MT8192_POWER_DOMAIN_MFG0>;
-> +                                       clocks = <&topckgen CLK_TOP_MFG_PLL_SEL>;
-> +                                       clock-names = "mfg";
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <0>;
-> +                                       #power-domain-cells = <1>;
+> +	/* HW should be in enabled state to proceed now */
+> +	writel_relaxed(0x1, c->reg_bases[REG_FREQ_ENABLE]);
 > +
-> +                                       mfg1@MT8192_POWER_DOMAIN_MFG1 {
-> +                                               reg = <MT8192_POWER_DOMAIN_MFG1>;
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #address-cells = <1>;
-> +                                               #size-cells = <0>;
-> +                                               #power-domain-cells = <1>;
+> +	if (readl_poll_timeout(c->reg_bases[REG_FREQ_HW_STATE], sig,
+> +			       (sig & pwr_hw) == pwr_hw, POLL_USEC,
+> +			       TIMEOUT_USEC)) {
+> +		if (!(sig & CPUFREQ_HW_STATUS)) {
+> +			pr_info("cpufreq hardware of CPU%d is not enabled\n",
+> +				policy->cpu);
+> +			return -ENODEV;
+> +		}
 > +
-> +                                               mfg2@MT8192_POWER_DOMAIN_MFG2 {
-> +                                                       reg = <MT8192_POWER_DOMAIN_MFG2>;
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
+> +		pr_info("SVS of CPU%d is not enabled\n", policy->cpu);
+> +	}
 > +
-> +                                               mfg3@MT8192_POWER_DOMAIN_MFG3 {
-> +                                                       reg = <MT8192_POWER_DOMAIN_MFG3>;
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +
-> +                                               mfg4@MT8192_POWER_DOMAIN_MFG4 {
-> +                                                       reg = <MT8192_POWER_DOMAIN_MFG4>;
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +
-> +                                               mfg5@MT8192_POWER_DOMAIN_MFG5 {
-> +                                                       reg = <MT8192_POWER_DOMAIN_MFG5>;
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +
-> +                                               mfg6@MT8192_POWER_DOMAIN_MFG6 {
-> +                                                       reg = <MT8192_POWER_DOMAIN_MFG6>;
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +                                       };
-> +                               };
-> +
-> +                               disp@MT8192_POWER_DOMAIN_DISP {
-> +                                       reg = <MT8192_POWER_DOMAIN_DISP>;
-> +                                       clocks = <&topckgen CLK_TOP_DISP_SEL>,
-> +                                                <&mmsys CLK_MM_SMI_INFRA>,
-> +                                                <&mmsys CLK_MM_SMI_COMMON>,
-> +                                                <&mmsys CLK_MM_SMI_GALS>,
-> +                                                <&mmsys CLK_MM_SMI_IOMMU>;
-> +                                       clock-names = "disp", "disp-0", "disp-1", "disp-2",
-> +                                                     "disp-3";
-> +                                       mediatek,infracfg = <&infracfg>;
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <0>;
-> +                                       #power-domain-cells = <1>;
-> +
-> +                                       ipe@MT8192_POWER_DOMAIN_IPE {
-> +                                               reg = <MT8192_POWER_DOMAIN_IPE>;
-> +                                               clocks = <&topckgen CLK_TOP_IPE_SEL>,
-> +                                                        <&ipesys CLK_IPE_LARB19>,
-> +                                                        <&ipesys CLK_IPE_LARB20>,
-> +                                                        <&ipesys CLK_IPE_SMI_SUBCOM>,
-> +                                                        <&ipesys CLK_IPE_GALS>;
-> +                                               clock-names = "ipe", "ipe-0", "ipe-1", "ipe-2",
-> +                                                             "ipe-3";
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #power-domain-cells = <0>;
-> +                                       };
-> +
-> +                                       isp@MT8192_POWER_DOMAIN_ISP {
-> +                                               reg = <MT8192_POWER_DOMAIN_ISP>;
-> +                                               clocks = <&topckgen CLK_TOP_IMG1_SEL>,
-> +                                                        <&imgsys CLK_IMG_LARB9>,
-> +                                                        <&imgsys CLK_IMG_GALS>;
-> +                                               clock-names = "isp", "isp-0", "isp-1";
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #power-domain-cells = <0>;
-> +                                       };
-> +
-> +                                       isp2@MT8192_POWER_DOMAIN_ISP2 {
-> +                                               reg = <MT8192_POWER_DOMAIN_ISP2>;
-> +                                               clocks = <&topckgen CLK_TOP_IMG2_SEL>,
-> +                                                        <&imgsys2 CLK_IMG2_LARB11>,
-> +                                                        <&imgsys2 CLK_IMG2_GALS>;
-> +                                               clock-names = "isp2", "isp2-0", "isp2-1";
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #power-domain-cells = <0>;
-> +                                       };
-> +
-> +                                       mdp@MT8192_POWER_DOMAIN_MDP {
-> +                                               reg = <MT8192_POWER_DOMAIN_MDP>;
-> +                                               clocks = <&topckgen CLK_TOP_MDP_SEL>,
-> +                                                        <&mdpsys CLK_MDP_SMI0>;
-> +                                               clock-names = "mdp", "mdp-0";
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #power-domain-cells = <0>;
-> +                                       };
-> +
-> +                                       venc@MT8192_POWER_DOMAIN_VENC {
-> +                                               reg = <MT8192_POWER_DOMAIN_VENC>;
-> +                                               clocks = <&topckgen CLK_TOP_VENC_SEL>,
-> +                                                        <&vencsys CLK_VENC_SET1_VENC>;
-> +                                               clock-names = "venc", "venc-0";
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #power-domain-cells = <0>;
-> +                                       };
-> +
-> +                                       vdec@MT8192_POWER_DOMAIN_VDEC {
-> +                                               reg = <MT8192_POWER_DOMAIN_VDEC>;
-> +                                               clocks = <&topckgen CLK_TOP_VDEC_SEL>,
-> +                                                        <&vdecsys_soc CLK_VDEC_SOC_VDEC>,
-> +                                                        <&vdecsys_soc CLK_VDEC_SOC_LAT>,
-> +                                                        <&vdecsys_soc CLK_VDEC_SOC_LARB1>;
-> +                                               clock-names = "vdec", "vdec-0", "vdec-1", "vdec-2";
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #address-cells = <1>;
-> +                                               #size-cells = <0>;
-> +                                               #power-domain-cells = <1>;
-> +
-> +                                               vdec2@MT8192_POWER_DOMAIN_VDEC2 {
-> +                                                       reg = <MT8192_POWER_DOMAIN_VDEC2>;
-> +                                                       clocks = <&vdecsys CLK_VDEC_VDEC>,
-> +                                                                <&vdecsys CLK_VDEC_LAT>,
-> +                                                                <&vdecsys CLK_VDEC_LARB1>;
-> +                                                       clock-names = "vdec2-0", "vdec2-1",
-> +                                                                     "vdec2-2";
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +                                       };
-> +
-> +                                       cam@MT8192_POWER_DOMAIN_CAM {
-> +                                               reg = <MT8192_POWER_DOMAIN_CAM>;
-> +                                               clocks = <&topckgen CLK_TOP_CAM_SEL>,
-> +                                                        <&camsys CLK_CAM_LARB13>,
-> +                                                        <&camsys CLK_CAM_LARB14>,
-> +                                                        <&camsys CLK_CAM_CCU_GALS>,
-> +                                                        <&camsys CLK_CAM_CAM2MM_GALS>;
-> +                                               clock-names = "cam", "cam-0", "cam-1", "cam-2",
-> +                                                             "cam-3";
-> +                                               mediatek,infracfg = <&infracfg>;
-> +                                               #address-cells = <1>;
-> +                                               #size-cells = <0>;
-> +                                               #power-domain-cells = <1>;
-> +
-> +                                               cam_rawa@MT8192_POWER_DOMAIN_CAM_RAWA {
-> +                                                       reg = <MT8192_POWER_DOMAIN_CAM_RAWA>;
-> +                                                       clocks = <&camsys_rawa CLK_CAM_RAWA_LARBX>;
-> +                                                       clock-names = "cam_rawa-0";
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +
-> +                                               cam_rawb@MT8192_POWER_DOMAIN_CAM_RAWB {
-> +                                                       reg = <MT8192_POWER_DOMAIN_CAM_RAWB>;
-> +                                                       clocks = <&camsys_rawb CLK_CAM_RAWB_LARBX>;
-> +                                                       clock-names = "cam_rawb-0";
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +
-> +                                               cam_rawc@MT8192_POWER_DOMAIN_CAM_RAWC {
-> +                                                       reg = <MT8192_POWER_DOMAIN_CAM_RAWC>;
-> +                                                       clocks = <&camsys_rawc CLK_CAM_RAWC_LARBX>;
-> +                                                       clock-names = "cam_rawc-0";
-> +                                                       #power-domain-cells = <0>;
-> +                                               };
-> +                                       };
-> +                               };
-> +                       };
-> +               };
-> +
->                 apmixedsys: syscon@1000c000 {
->                         compatible = "mediatek,mt8192-apmixedsys", "syscon";
->                         reg = <0 0x1000c000 0 0x1000>;
-> --
-> 1.8.1.1.dirty
->
+> +	em_dev_register_perf_domain(cpu_dev, c->nr_opp, &em_cb, policy->cpus);
+
+Please keep in mind that this is going to be changed soon with a new
+argument: 'milliwatts'. It's queued in pm/linux-next [2].
+
+Regards,
+Lukasz
+
+[1] 
+https://elixir.bootlin.com/linux/latest/source/drivers/cpufreq/scmi-cpufreq.c#L194
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=linux-next&id=c250d50fe2ce627ca9805d9c8ac11cbbf922a4a6
+
