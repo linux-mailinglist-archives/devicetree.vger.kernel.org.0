@@ -2,161 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6343F2B95E9
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:17:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93C6C2B95F4
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:21:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727894AbgKSPOL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:14:11 -0500
-Received: from foss.arm.com ([217.140.110.172]:60094 "EHLO foss.arm.com"
+        id S1728401AbgKSPTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:19:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34222 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726853AbgKSPOK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 10:14:10 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A9E211D4;
-        Thu, 19 Nov 2020 07:14:10 -0800 (PST)
-Received: from [10.57.24.96] (unknown [10.57.24.96])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A6F203F719;
-        Thu, 19 Nov 2020 07:14:05 -0800 (PST)
-Subject: Re: [PATCH v8 1/3] cpufreq: mediatek-hw: Add support for CPUFREQ HW
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
+        id S1728062AbgKSPTk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 10:19:40 -0500
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E6E4F24654;
+        Thu, 19 Nov 2020 15:19:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605799178;
+        bh=0W6X+yvUpSkdAAGKagVENpsqMNRqNF4X/9HGlBkWMgk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MJc09AJAL2xk01qiS05ieRaCGIlLeUWY/cvod14/kBGzC1gFcG/mDtMvf8iSA9QUD
+         jSD4dFUuEnrjJi4GroCmvV7jayJepAbLbLZeNgzQ9BKU3QE60JUhIRrlYDwHw/JhIU
+         B+8st17jTJ6Z1DYEmUVIDvIfP/2L0eFW2zmF94NU=
+Date:   Thu, 19 Nov 2020 15:19:18 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Peter Chen <Peter.Chen@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
         Ulf Hansson <ulf.hansson@linaro.org>,
-        Dave Gerlach <d-gerlach@ti.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        wsd_upstream@mediatek.com
-References: <1603700349-5922-1-git-send-email-hector.yuan@mediatek.com>
- <1603700349-5922-2-git-send-email-hector.yuan@mediatek.com>
- <9382b917-f20d-c7b5-42e4-46d11465073f@arm.com>
- <1605793218.20463.5.camel@mtkswgap22>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <677bc381-6cab-85ec-8b9f-4c33dfb487fd@arm.com>
-Date:   Thu, 19 Nov 2020 15:14:03 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-samsung-soc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-usb@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-media@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v1 11/30] drm/tegra: dc: Support OPP and SoC core voltage
+ scaling
+Message-ID: <20201119151918.GA5554@sirena.org.uk>
+References: <20201112200123.GF4742@sirena.org.uk>
+ <ce9e2d9f-917e-fb8a-7323-f3bf1a367e9d@gmail.com>
+ <20201113142937.GB4828@sirena.org.uk>
+ <7f066805-97d9-088f-e89d-a554fe478574@gmail.com>
+ <20201113161550.GC4828@sirena.org.uk>
+ <3beaa12b-4a50-a3b6-fc43-ebb5ce7a8db7@gmail.com>
+ <20201113172859.GF4828@sirena.org.uk>
+ <74cfc6a9-3f59-d679-14b7-51102a6f11b3@gmail.com>
+ <20201116133311.GB4739@sirena.org.uk>
+ <332ab946-daee-bb83-24ab-0bda4fd8e1ef@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1605793218.20463.5.camel@mtkswgap22>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="G4iJoqBmSsgzjUCe"
+Content-Disposition: inline
+In-Reply-To: <332ab946-daee-bb83-24ab-0bda4fd8e1ef@gmail.com>
+X-Cookie: Chocolate chip.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--G4iJoqBmSsgzjUCe
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 11/19/20 1:40 PM, Hector Yuan wrote:
-> On Thu, 2020-11-19 at 12:41 +0000, Lukasz Luba wrote:
->> Hi Hector,
->>
->> On 10/26/20 8:19 AM, Hector Yuan wrote:
->>> From: "Hector.Yuan" <hector.yuan@mediatek.com>
->>>
->>> Add cpufreq HW support.
->>>
->>> Signed-off-by: Hector.Yuan <hector.yuan@mediatek.com>
->>
->> [snip]
->>
->>> +
->>> +static int mtk_cpufreq_hw_cpu_init(struct cpufreq_policy *policy)
->>> +{
->>> +	struct cpufreq_mtk *c;
->>> +	struct device *cpu_dev;
->>> +	struct em_data_callback em_cb = EM_DATA_CB(mtk_cpufreq_get_cpu_power);
->>> +	struct pm_qos_request *qos_request;
->>> +	int sig, pwr_hw = CPUFREQ_HW_STATUS | SVS_HW_STATUS;
->>> +
->>> +	qos_request = kzalloc(sizeof(*qos_request), GFP_KERNEL);
->>> +	if (!qos_request)
->>> +		return -ENOMEM;
->>> +
->>> +	cpu_dev = get_cpu_device(policy->cpu);
->>> +	if (!cpu_dev) {
->>> +		pr_err("failed to get cpu%d device\n", policy->cpu);
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	c = mtk_freq_domain_map[policy->cpu];
->>> +	if (!c) {
->>> +		pr_err("No scaling support for CPU%d\n", policy->cpu);
->>> +		return -ENODEV;
->>> +	}
->>> +
->>> +	cpumask_copy(policy->cpus, &c->related_cpus);
->>> +
->>> +	policy->freq_table = c->table;
->>> +	policy->driver_data = c;
->>
->> To control frequency transition rate in schedutil, you might
->> be interested in setting:
->>
->> policy->cpuinfo.transition_latency = <mtk_value_here>;
->>
->> Example, when this latency value comes from FW [1]
->>
-> OK, I will add it in v9.
->>> +
->>> +	/* Let CPUs leave idle-off state for SVS CPU initializing */
->>> +	cpu_latency_qos_add_request(qos_request, 0);
->>> +
->>> +	/* HW should be in enabled state to proceed now */
->>> +	writel_relaxed(0x1, c->reg_bases[REG_FREQ_ENABLE]);
->>> +
->>> +	if (readl_poll_timeout(c->reg_bases[REG_FREQ_HW_STATE], sig,
->>> +			       (sig & pwr_hw) == pwr_hw, POLL_USEC,
->>> +			       TIMEOUT_USEC)) {
->>> +		if (!(sig & CPUFREQ_HW_STATUS)) {
->>> +			pr_info("cpufreq hardware of CPU%d is not enabled\n",
->>> +				policy->cpu);
->>> +			return -ENODEV;
->>> +		}
->>> +
->>> +		pr_info("SVS of CPU%d is not enabled\n", policy->cpu);
->>> +	}
->>> +
->>> +	em_dev_register_perf_domain(cpu_dev, c->nr_opp, &em_cb, policy->cpus);
->>
->> Please keep in mind that this is going to be changed soon with a new
->> argument: 'milliwatts'. It's queued in pm/linux-next [2].
->>
-> OK, thanks for the remind.
->> Regards,
->> Lukasz
->>
->> [1]
->> https://elixir.bootlin.com/linux/latest/source/drivers/cpufreq/scmi-cpufreq.c#L194
->> [2]
->> https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git/commit/?h=linux-next&id=c250d50fe2ce627ca9805d9c8ac11cbbf922a4a6
->>
-> 
+On Thu, Nov 19, 2020 at 05:22:43PM +0300, Dmitry Osipenko wrote:
+> 16.11.2020 16:33, Mark Brown =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
 
-Also, based on function mtk_cpufreq_hw_target_index(), which looks
-really simple, you might consider to have fast_switch enabled.
+> > No, you are failing to understand the purpose of this code.  To
+> > reiterate unless the device supports operating with the supply
+> > physically absent then the driver should not be attempting to use
+> > regulator_get_optional().  That exists specifically for the case where
 
-It will allow SchedUtil governor to change frequency directly
-and not create a dedicated deadline thread for it. It pays off.
+> The original intention of regulator_get_optional() is clear to me, but
+> nothing really stops drivers from slightly re-purposing this API, IMO.
 
-You have to experiment with something like:
+> Drivers should be free to assume that if regulator isn't defined by
+> firmware, then it's physically absent if this doesn't break anything. Of
+> course in some cases it's unsafe to make such assumptions. I think it's
+> a bit unpractical to artificially limit API usage without a good reason,
+> i.e. if nothing breaks underneath of a driver.
 
-policy->fast_switch_possible  = true;
+If the supply can be physically absent without breaking anything then
+this is the intended use case for optional regulators.  This is a *very*
+uncommon.
 
+> > Regulators that are present but not described by the firmware are a
+> > clearly different case to regulators that are not physically there,
+> > hardware with actually optional regulators will generally require some
+> > configuration for this case.
 
-static struct cpufreq_driver cpufreq_mtk_hw_driver = {
-...
-	.fast_switch = mtk_cpufreq_hw_fast_switch
-...
-}
+> I have good news. After spending some more time on trying out different
+> things, I found that my previous assumption about the fixed-regulator
+> was wrong, it actually accepts voltage changes, i.e. regulator consumer
+> doesn't get a error on a voltage-change. This is exactly what is needed
+> for the OPP core to work properly.
 
-Again, scmi-cpufreq.c would be a good pattern to follow.
+To be clear when you set a voltage range you will get the minimum
+voltage that can be supported within that range on the system given all
+the other constraints the system has.  For fixed voltage regulators or
+regulators constraints to not change voltage this means that if whatever
+voltage they are fixed at is in the range requested then the API will
+report success.
+
+--G4iJoqBmSsgzjUCe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+2jPUACgkQJNaLcl1U
+h9Cg3Qf/ScTE8SCsHJLjKatjArehtbhKoUyG6aFABrEI/v3bjsqKt/Sq0WjEm255
+nKAu6jVgldwyJP7JR+NQvS2KTy6/Ai/3r+U/lyG8X0xthT14nzXhC6QSAIfukqgq
+JHderVdLXa+mc9bZ4vJ8AzG88ImFulrVA84t2cIuHOU27i4wVx5oQJZoRquB5JdJ
+jAPleN81AYXwTdcJkckY0QoHEFVz55g/4xI2cuh9onlNHbt8eVr7FGsswsNnATrv
+DlAATwOrW84BJnGHjaB0vfWLRx75q3bJ1z62kbdf0VqU5rYaVUppa5a+8eHY6i4V
+A1ZTgD1YjmUvJjo2cbBpm7mJsYOinA==
+=tj+B
+-----END PGP SIGNATURE-----
+
+--G4iJoqBmSsgzjUCe--
