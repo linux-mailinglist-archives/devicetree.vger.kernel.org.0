@@ -2,150 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 672ED2B965B
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:40:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E442B9679
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:44:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727840AbgKSPi3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:38:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46338 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727366AbgKSPi3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:38:29 -0500
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99345C0613CF
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:38:27 -0800 (PST)
-Received: by mail-wr1-x441.google.com with SMTP id p8so6909657wrx.5
-        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 07:38:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6XA/mJ5qwxKzS/oPUNQf7OhfJDBjGk44DsUe5YEVuhA=;
-        b=RAGa792RtRLMHN/6PxUhQ2WYVn4P3kUxISmR11CLAfzoJeAeWPHuleecbrhgxYl1Ox
-         XAalTo1Cq6Pps/P1Za3IXB1JJo57Ya7j98lzmOxf2ya8VSfkclU09NNKd2vgh19S8yVK
-         0mNqKjjYbLAv5KDSFqzuSzH0A6PhgQIE1fvA4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6XA/mJ5qwxKzS/oPUNQf7OhfJDBjGk44DsUe5YEVuhA=;
-        b=HtTFvTke+Dt7NxwRodOEIUSzwA/JBYMjq5L9D9P8/+L+QRqTYjlIN9CowGn9fa8BPP
-         Bw+NEzA0u1uVM6fXjtDqxG5od7VMm32NiD2LWRteYFi1S5KTW4kEHIhT3SBmiPgrqbUk
-         3+9wsGtvpShxpnGrNYgSe2rFO0fEfvWdXdDrqVTd+NoTkqWDsisvuYhEt+K7h6TenoI6
-         3gjQ1SipvW5mJ+0/Qfszk3ddfxl9WMlgp+2LPiMobZy71/3dyu8O7hbMdROtrJkyH2Rc
-         0Ta1nZhnigHBaQCtgaBlpDzUhef6TPr5pB4kp7E8H6lIh588prhGMYIzmc+2lpOtiAb4
-         XXTQ==
-X-Gm-Message-State: AOAM530zVEa2C5rL/PO8mY8xUj01yTJtOOG0nuV5B4pgL9FyOxu5xc/9
-        pG9TWYjKVLOOTTb4jU+fi5a0Hw==
-X-Google-Smtp-Source: ABdhPJziDV6aF0blOvMy2qku/KISMM8F79fMndj2I+clHB0om6jAJ3+8gKCTA8OjZgwinBkmve9uZA==
-X-Received: by 2002:adf:9b95:: with SMTP id d21mr10439728wrc.335.1605800306341;
-        Thu, 19 Nov 2020 07:38:26 -0800 (PST)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
-        by smtp.gmail.com with ESMTPSA id f17sm344444wmh.10.2020.11.19.07.38.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2020 07:38:25 -0800 (PST)
-Date:   Thu, 19 Nov 2020 16:38:23 +0100
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org, Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel@lists.freedesktop.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/8] drm: Document use-after-free gotcha with private
- objects
-Message-ID: <20201119153823.GF401619@phenom.ffwll.local>
-References: <20201113152956.139663-1-maxime@cerno.tech>
- <20201113152956.139663-3-maxime@cerno.tech>
+        id S1727366AbgKSPn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:43:26 -0500
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:51538 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726593AbgKSPn0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 10:43:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1605800605; x=1637336605;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=HPhDzt0MMGUh03C9iz8ZPA1mDE/B4co092DdSZBLSf0=;
+  b=gJ83pag0NwFYlCbqVW6nd94BcHdzTqONAFKE1/sFemSOpasL7Lgk/maj
+   TJao8ghmOzGkMBybi1YnHTAj8zF1X/U8xf4oj+5pGAnwlk9ZpsQjFIdQl
+   y96Dt/Wu+OOHtqxSRKmK5rp3BXIBZLiZobyLaSs5biaKoxe1spg6zR2y5
+   zynt5MwZaHOHLPRTAfsGi30fONn62BTdaKYTLujzsY12f1Kn5/kdQhlgM
+   xbjw748N7VtdhZqQnLSfZ9CpIP9If7VtV85xsdHBpo+cZxwZRXrRuPyVP
+   rirrv7muRDXUtt6qGl50NbkKPlO3HAtKYtJRlNv/913Lsmg83Oc1noZyJ
+   g==;
+IronPort-SDR: 8PHcsgbI0SaTHh3ZFbbOtsVW33UTZa6o6zfARDvqWDP2lBBhMF0OwwyHOQ2x4pZJIqQRCSKD0G
+ MWSy6l1I2B1bnYT2PDIdCNx7P/htcq7Q5R01qiNBgBo5XK2Q2H+OH59D4UgG9inZUEnfG2zUgo
+ SbBxYXuDTzQ/ToFUA2yAkS4hHVv9KfMyG4XfnBwKsKrHxQnk0xGclIE2/APFCsvQIMoR11uJcy
+ zy8v63AjMeXYxxcSRJ5ROoRAXfS06/8k1E3gs5MbOCzemUCysilX9YVEZcChYOljV/m0t8znkm
+ Y08=
+X-IronPort-AV: E=Sophos;i="5.78,490,1599548400"; 
+   d="scan'208";a="96941953"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 19 Nov 2020 08:43:24 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Thu, 19 Nov 2020 08:43:24 -0700
+Received: from m18063-ThinkPad-T460p.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Thu, 19 Nov 2020 08:43:20 -0700
+From:   Claudiu Beznea <claudiu.beznea@microchip.com>
+To:     <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
+        <ludovic.desroches@microchip.com>, <robh+dt@kernel.org>
+CC:     <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>
+Subject: [PATCH v6 00/11] clk: at91: clk-master: re-factor master clock
+Date:   Thu, 19 Nov 2020 17:43:06 +0200
+Message-ID: <1605800597-16720-1-git-send-email-claudiu.beznea@microchip.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201113152956.139663-3-maxime@cerno.tech>
-X-Operating-System: Linux phenom 5.7.0-1-amd64 
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 04:29:50PM +0100, Maxime Ripard wrote:
-> The private objects have a gotcha that could result in a use-after-free,
-> make sure it's properly documented.
-> 
-> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> ---
->  include/drm/drm_atomic.h | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
-> index 413fd0ca56a8..24b52b3a459f 100644
-> --- a/include/drm/drm_atomic.h
-> +++ b/include/drm/drm_atomic.h
-> @@ -248,6 +248,24 @@ struct drm_private_state_funcs {
->   *    drm_dev_register()
->   * 2/ all calls to drm_atomic_private_obj_fini() must be done after calling
->   *    drm_dev_unregister()
-> + *
-> + * If that private object is used to store a state shared my multiple
+Hi,
 
-s/my/by/
+SAMA7G5 is capable of DVFS. The supported CPU clock frequencies could be
+obtained from CPU PLL. The hardware block diagram for clock feeding the
+CPU is as follows:
 
-> + * CRTCs, proper care must be taken to ensure that non-blocking commits are
-> + * properly ordered to avoid a use-after-free issue.
-> + *
-> + * Indeed, assuming a sequence of two non-blocking commits on two different
-> + * CRTCs using different planes and connectors, so with no resources shared,
-> + * there's no guarantee on which commit is going to happen first. However, the
-> + * second commit will consider the first private state its old state, and will
-> + * be in charge of freeing it whenever the second commit is done.
-> + *
-> + * If the first commit happens after it, it will consider its private state the
-> + * new state and will be likely to access it, resulting in an access to a freed
-> + * memory region. A way to circumvent this is to store (and get a reference to)
+                               +--------+
+                           +-->|divider1|--> CPU clock
+                           |   +--------+
++--------+   +----------+  |   +--------+
+|CPU PLL |-->|prescaller|--+-->|divider0|--> MCK0 clock
++--------+   +----------+      +--------+
 
-s/A way to circumvent/Driver should/
+When switching CPU clock frequencies the MCK0 is also changed by DVFS
+driver to avoid its over/under clocking (depending on CPU clock frequency
+requested by DVFS algorithms). Some of IPs feed by MCK0 are MCK0 glich
+aware, some are not. For this MCK0 was removed from the parents list of
+the IPs which are not MCK0 glitch aware (patch 7/11).
 
-And maybe make the paragraph break here and remove the previous one in the
-middle of your example.
+This series adapt AT91 clocks (mostly sam9x60-pll and master clock drivers)
+so that runtime changes of these clocks to be allowed.
 
-> + * the crtc commit in our private state in
+The CPU clock was registered from prescaller clock (see above diagram)
+and no software control has been added for divider1 because the frequencies
+supported by SAMA7G5's CPU could be directly obtained from CPU PLL +
+prescaller.
 
-&struct drm_crtc_commit so it's linked properly
+On top of this series I also added a fix for sama7g5.c code (patch 1/11).
+Please let me know if you would like me to send this one separtely (it
+would be nice if this fix could be integrated in 5.10).
 
-> + * &drm_mode_config_helper_funcs.atomic_commit_setup, and then wait for that
-> + * commit to complete as part of
+Changes were tested on SAMA5D2, SAMA5D3, SAM9X60 and SAMA7G5.
 
-s/as part of/as the first step of/
-> + * &drm_mode_config_helper_funcs.atomic_commit_tail.
+Thank you,
+Claudiu Beznea
 
-And maybe add "... similar to drm_atomic_helper_wait_for_dependencies()"
+Changes in v6:
+- remove if (clk_hw_get_flags(hw) & CLK_SET_RATE_GATE) in patch 10/11 as
+  we use different clock ops now for pres, div supporting run-time changes
+  
+Changes in v5:
+- use separate clk_ops for PLLs and master clock div, pres supporting
+  run-time changes (patches 6/11, 10/11)
+- use unsigned long type for f member of struct typeof(sama7g5_plls)
+- document the usage of CLK_IS_CRITICAL
 
-With the nits addressed:
+Changes in v4:
+- added Reviewed-by, Tested-by tags forgoten in v3
 
-Reviewed-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+Changes in v3:
+- collected Reviewed-by, Tested-by tags
+- add patches 4/11, 5/11, 9/11
+- in patch 10/11 use CLK_SET_RATE_GATE on MCK div and MCK pres for all
+  the platforms except sama7g5
 
+Changes in v2:
+- s/at91rm9200_mck_lock/at91sam9260_mck_lock in patch 7/8
 
+Claudiu Beznea (7):
+  clk: at91: sama7g5: fix compilation error
+  clk: at91: clk-sam9x60-pll: allow runtime changes for pll
+  clk: at91: sama7g5: remove mck0 from parent list of other clocks
+  clk: at91: sama7g5: decrease lower limit for MCK0 rate
+  clk: at91: sama7g5: do not allow cpu pll to go higher than 1GHz
+  clk: at91: clk-master: re-factor master clock
+  clk: at91: sama7g5: register cpu clock
 
->   */
->  struct drm_private_obj {
->  	/**
-> -- 
-> 2.28.0
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Eugen Hristev (4):
+  dt-bindings: clock: at91: add sama7g5 pll defines
+  clk: at91: sama7g5: allow SYS and CPU PLLs to be exported and
+    referenced in DT
+  clk: at91: clk-master: add 5th divisor for mck master
+  clk: at91: sama7g5: add 5th divisor for mck0 layout and
+    characteristics
+
+ drivers/clk/at91/at91rm9200.c      |  21 ++-
+ drivers/clk/at91/at91sam9260.c     |  26 ++-
+ drivers/clk/at91/at91sam9g45.c     |  32 +++-
+ drivers/clk/at91/at91sam9n12.c     |  36 ++--
+ drivers/clk/at91/at91sam9rl.c      |  23 ++-
+ drivers/clk/at91/at91sam9x5.c      |  28 ++-
+ drivers/clk/at91/clk-master.c      | 337 ++++++++++++++++++++++++++++++++-----
+ drivers/clk/at91/clk-sam9x60-pll.c | 145 ++++++++++++++--
+ drivers/clk/at91/dt-compat.c       |  15 +-
+ drivers/clk/at91/pmc.h             |  22 ++-
+ drivers/clk/at91/sam9x60.c         |  45 +++--
+ drivers/clk/at91/sama5d2.c         |  42 +++--
+ drivers/clk/at91/sama5d3.c         |  38 +++--
+ drivers/clk/at91/sama5d4.c         |  40 +++--
+ drivers/clk/at91/sama7g5.c         | 223 ++++++++++++++++--------
+ include/dt-bindings/clock/at91.h   |  11 ++
+ 16 files changed, 840 insertions(+), 244 deletions(-)
 
 -- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+2.7.4
+
