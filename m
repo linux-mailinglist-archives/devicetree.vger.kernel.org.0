@@ -2,163 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 830C42B9608
-	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:25:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 691E02B960A
+	for <lists+devicetree@lfdr.de>; Thu, 19 Nov 2020 16:25:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728314AbgKSPVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 10:21:53 -0500
-Received: from foss.arm.com ([217.140.110.172]:60206 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728204AbgKSPVw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 10:21:52 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A486511D4;
-        Thu, 19 Nov 2020 07:21:51 -0800 (PST)
-Received: from bogus (unknown [10.57.54.72])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5300E3F719;
-        Thu, 19 Nov 2020 07:21:50 -0800 (PST)
-Date:   Thu, 19 Nov 2020 15:21:43 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Hector Yuan <hector.yuan@mediatek.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: dvfs: Add support for generic
- performance domains
-Message-ID: <20201119152143.4r2d5q6xzk33mt2j@bogus>
-References: <20201116181356.804590-1-sudeep.holla@arm.com>
- <20201118212009.GB1827746@bogus>
+        id S1728524AbgKSPWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 10:22:03 -0500
+Received: from mail-eopbgr40060.outbound.protection.outlook.com ([40.107.4.60]:10147
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728204AbgKSPWD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 19 Nov 2020 10:22:03 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZE80+NCtfYJMAmLNz/Jh2VmUp9RXYPtEljvnbn8M8W7FgVluPfQEoEP/E2qhfcRQoh8h2IF/PlfjuhMuRw+aY4oGrvTLldOSWP/MUe8lX5QNiceVXLw916WqlXoivgfXNIpsWq5R3VX5cRRgzC0a8W7kAQhigDW0MFug46L52syYMy4HUzFAiI5C5272kJayhO3U1I9vTa6QvdzWKS3f4hJQ2oWFIIbPnqPXSATi2iqiu6fLgN3zleZLGwd7ooQUj+TCPn3uZ8jFG4LUW+EoYioU9mfgQfTvCFO7YG2eYsHIgnkNMFHBSNlxEdtHiZn+2P6utmvypjTVGZaIlhDwxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R57HrDcG+SbJ5vF+WY+iIDPrFyvwUOXwpWDwQjjmXTs=;
+ b=EzQ9+HSTUDqL0bicIB5EW5Kzi4BRJdsbIdOEV+yHV9XwKBXFdvUs2AzNhecBXIOwUoCDTGL0rTzpwAvavYiMYmA2w/HJTWOEBEC94HmfeIwHGS04nLTFrQjjXNLUxI/paD1D+FKInjG2o/j3elipf/oaXyqhWSafpLjVMMpvGNY+1530wHuGll1kDiWtrXoztXoPGoGCTZ6xqkXE5mRHtF6YFqG1p1PAyXxzxMdnM0kvTCVHjFxmh15+DvCXzbRKPpOsLuyLITmV39OqE1fX0Ixwmgiw6z0w6LfmLzewLrpnBzfEsXJgrsCweqa9iAW7zPH4E7J+JlE0/skAtyHlfg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R57HrDcG+SbJ5vF+WY+iIDPrFyvwUOXwpWDwQjjmXTs=;
+ b=LNhFzKVGOIJhh0XpEiLPbdwAehzR7nUxa/Jyuzce4EVEwI/B6LLJlYB8F9ZPAp9HaeEuzxayhK5zwIo4u4KNFRxebsrnFHuev8LGBMRfPJMOyfFv+u7DVAc8ivSa0ZOs2Pj0RA0gWXNiv2rBh+4TkZ4eFlYOxTL2A4qf7aSu8f8=
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+ by AM7PR04MB7013.eurprd04.prod.outlook.com (2603:10a6:20b:116::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.22; Thu, 19 Nov
+ 2020 15:22:00 +0000
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::3cfc:a92e:75ad:ce4a]) by AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::3cfc:a92e:75ad:ce4a%3]) with mapi id 15.20.3564.029; Thu, 19 Nov 2020
+ 15:22:00 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Subject: RE: [PATCH 1/3] dt-bindings: mmc: imx: fix the wrongly dropped imx8qm
+ compatible string
+Thread-Topic: [PATCH 1/3] dt-bindings: mmc: imx: fix the wrongly dropped
+ imx8qm compatible string
+Thread-Index: AQHWvnVQV1Aj3wHjWke7zj9d0oe5panPb7MAgAAikqA=
+Date:   Thu, 19 Nov 2020 15:21:59 +0000
+Message-ID: <AM6PR04MB49666B9100F4CE87E1AE23D680E00@AM6PR04MB4966.eurprd04.prod.outlook.com>
+References: <20201119125304.1279-1-aisheng.dong@nxp.com>
+ <20201119131720.GA348129@kozik-lap>
+In-Reply-To: <20201119131720.GA348129@kozik-lap>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [180.171.84.81]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 3e8a4809-dcba-4172-1529-08d88c9edc39
+x-ms-traffictypediagnostic: AM7PR04MB7013:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM7PR04MB70135C87518E8903B2EC02CE80E00@AM7PR04MB7013.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: A0vZPqWvW3sthnU5DrY5iPEhvM2UhBS+7eoXa1TFVebT4jlrLzy5UEfrq7YArL1LHX1XPme6TZAiwfQ/EtJcGN3TiYP0nN/oTN5+5vNspzvGE+kOiBsF49sUHcGmV5xprxDPPIvRMNfPQKWLwVhEXFm0EzEfJpMUzddWQ70Z+1L+in1WHi5R2gWRxYm3Hty+R9TMriU52GY3JFo5mpYfIjKkw4XRt9MbqfkVgZC5i9npNxxZo1Za55dDUYWMVExDZUej64l9z7pnCegO7zabSh3V8hoZCAgr0rbAxrZ+h2ZODGry8z9wSaAPTeppoaOV+TbVg4g3hL69iBPrTVtX53EKN9pjPAx8O34V2HanSeMl34+u2GDZCkTkmlT5FUmA
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(396003)(366004)(346002)(39860400002)(376002)(316002)(6506007)(54906003)(52536014)(2906002)(44832011)(26005)(7696005)(186003)(55016002)(86362001)(71200400001)(5660300002)(9686003)(76116006)(33656002)(66446008)(64756008)(66556008)(66476007)(478600001)(66946007)(8676002)(8936002)(4326008)(6916009)(4744005)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: agIV6yK/XvES32I6FRDrOUVxlR6VWvMQhNCFqmyKSigxz7kEuXR4Ew60w3nNKhJpInLFHKcg6O0gvHUUwuwvKIO5xCdLxlEpsPuFEQXvMaZVC4NKo9BzlAGxK/RWw0dxmp3zdvqyw9djrltdxnvFwKnOJCCf6LMvbWxJk/Rk+21aEFqljxBWM6JS2yihZAf2IUpJiAmR60ak/jndFFlxsmC61gMtjn5UAtHkh5mG7QLt4+gKFn3jw/QBRsC4xFfviBBR06mrvQRUtD14ETN33YuDuIU19V9SQMZtEAn/rU4XMXJyBY+4oTIoIdcIAjJnV3d3HHQpVNrS1/5EnwmvLKWMRghf9ROLhGnMIQnuVLCTAFZ6jR0RBh0Bd1XVolR9TAWKjmvuvbQgBj5a+Xx/klFGChLERokr6USCMdSUjnqONiC1FRvuYLpvcCDrGuJIz6sEnwjpsEgDy+B1TXslAtnQ1vQYfNlCvSCPMeKWH0WYwhlO5msPvi1N2bSGYwQfbdbISl3dtlQaoORY6Xt0DfkOf1LNWqtTyrl36aoC6t65oDNsvMKUHC+bGEk8wRZq1KwPo1Q6T4/9bCXICS3eJGyiACCSC3hT9cr7rrNuIJnohwsguxB/WHGl/8yUJoIMsbAtMDTpxJ3w43pkwbFxDw==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201118212009.GB1827746@bogus>
-User-Agent: NeoMutt/20171215
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4966.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e8a4809-dcba-4172-1529-08d88c9edc39
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Nov 2020 15:21:59.9715
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PBJoIdV/CUvns9U/CH7sIcz9dCpYhTEgt3etiZq1xi3UcgvGO7vuumtafbW4vv2R88NHjESrcR8czLeot/c+wA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7013
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 18, 2020 at 03:20:09PM -0600, Rob Herring wrote:
-> On Mon, Nov 16, 2020 at 06:13:56PM +0000, Sudeep Holla wrote:
-> > The CLKSCREW attack [0] exposed security vulnerabilities in energy management
-> > implementations where untrusted software had direct access to clock and
-> > voltage hardware controls. In this attack, the malicious software was able to
-> > place the platform into unsafe overclocked or undervolted configurations. Such
-> > configurations then enabled the injection of predictable faults to reveal
-> > secrets.
-> > 
-> > Many Arm-based systems used to or still use voltage regulator and clock
-> > frameworks in the kernel. These frameworks allow callers to independently
-> > manipulate frequency and voltage settings. Such implementations can render
-> > systems susceptible to this form of attack.
-> > 
-> > Attacks such as CLKSCREW are now being mitigated by not having direct and
-> > independent control of clock and voltage in the kernel and moving that
-> > control to a trusted entity, such as the SCP firmware or secure world
-> > firmware/software which are to perform sanity checking on the requested
-> > performance levels, thereby preventing any attempted malicious programming.
-> > 
-> > With the advent of such an abstraction, there is a need to replace the
-> > generic clock and regulator bindings used by such devices with a generic
-> > performance domains bindings.
-> > 
-> > [0] https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/tang
-> > 
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> > ---
-> >  .../bindings/dvfs/performance-domain.yaml     | 76 +++++++++++++++++++
-> >  1 file changed, 76 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-> > 
-> > v1[1]->v2:
-> > 	- Changed to Dual License
-> > 	- Added select: true, enum for #performance-domain-cells and
-> > 	  $ref for performance-domain
-> > 	- Changed the example to use real existing compatibles instead
-> > 	  of made-up ones
-> > 
-> > [1] https://lore.kernel.org/lkml/20201105173539.1426301-1-sudeep.holla@arm.com
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dvfs/performance-domain.yaml b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-> > new file mode 100644
-> > index 000000000000..29fb589a5192
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/dvfs/performance-domain.yaml
-> > @@ -0,0 +1,76 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/dvfs/performance-domain.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic performance domains
-> > +
-> > +maintainers:
-> > +  - Sudeep Holla <sudeep.holla@arm.com>
-> > +
-> > +description: |+
-> > +  This binding is intended for performance management of groups of devices or
-> > +  CPUs that run in the same performance domain. Performance domains must not
-> > +  be confused with power domains. A performance domain is defined by a set
-> > +  of devices that always have to run at the same performance level. For a given
-> > +  performance domain, there is a single point of control that affects all the
-> > +  devices in the domain, making it impossible to set the performance level of
-> > +  an individual device in the domain independently from other devices in
-> > +  that domain. For example, a set of CPUs that share a voltage domain, and
-> > +  have a common frequency control, is said to be in the same performance
-> > +  domain.
-> > +
-> > +  This device tree binding can be used to bind performance domain consumer
-> > +  devices with their performance domains provided by performance domain
-> > +  providers. A performance domain provider can be represented by any node in
-> > +  the device tree and can provide one or more performance domains. A consumer
-> > +  node can refer to the provider by a phandle and a set of phandle arguments
-> > +  (so called performance domain specifiers) of length specified by the
-> > +  \#performance-domain-cells property in the performance domain provider node.
-> > +
-> > +select: true
-> 
-> So apply to every node and...
->
-
-New to yaml, still figuring out 😄.
-From the bot build error, I now realise that I can't take shortcut to build:
-
-$ make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/dvfs/performance-domain.yaml
-
-[...]
-
-> > +
-> > +additionalProperties: true
-> > +
-> > +examples:
-> > +  - |
-> > +    performance: performance-controller@12340000 {
-> > +        compatible = "qcom,cpufreq-hw";
-> > +        reg = <0x12340000 0x1000>;
-> > +        #performance-domain-cells = <1>;
-> > +    };
-> > +
-> > +    // The node above defines a performance controller that is a performance
-> > +    // domain provider and expects one cell as its phandle argument.
-> > +    cpus {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <0>;
-> > +
-> > +        cpu@0 {
-> > +            device_type = "cpu";
-> > +            compatible = "arm,cortex-a57";
-> > +            reg = <0x0 0x0>;
-> > +            performance-domains = <&performance 1>;
->
-> Looks like the cpu schema needs an addition.
->
-
-OK.
-
---
-Regards,
-Sudeep
+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+DQo+IFNlbnQ6IFRo
+dXJzZGF5LCBOb3ZlbWJlciAxOSwgMjAyMCA5OjE3IFBNDQo+IA0KPiBPbiBUaHUsIE5vdiAxOSwg
+MjAyMCBhdCAwODo1MzowMlBNICswODAwLCBEb25nIEFpc2hlbmcgd3JvdGU6DQo+ID4gVGhlIGNv
+bXBhdGlibGUgc3RyaW5nICJmc2wsaW14OHFtLXVzZGhjIiB3YXMgd3JvbmdseSBkcm9wcGVkIGlu
+IHBhdGNoOg0KPiA+IDgwZmQzNTBiOTU5MCAoImR0LWJpbmRpbmdzOiBtbWM6IGZzbC1pbXgtZXNk
+aGM6IEZpeCBpLk1YIDggY29tcGF0aWJsZQ0KPiA+IG1hdGNoaW5nIikgQWRkIGl0IGJhY2suDQo+
+IA0KPiBBbHRob3VnaCB0aGUgY29tcGF0aWJsZSB3YXMgZHJvcHBlZCwgYnkgd2h5IHdyb25nbHk/
+IFBsZWFzZSBkZXNjcmliZSBpdC4NCj4gVGhlIGNvbXBhdGlibGUgaXMgbm93aGVyZSB0byBiZSBm
+b3VuZCwgaXQgaXMgbm90IHVzZWQuDQoNClRoZSBEVCBwYXRjaCB1c2luZyBpdCBpcyBzdGlsbCB1
+bmRlciByZXZpZXcuIFNvIHdlIG5lZWQgaXQuDQoNClJlZ2FyZHMNCkFpc2hlbmcNCg0KPiANCj4g
+QmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCj4gDQo+ID4NCj4gPiBDYzogSGFpYm8gQ2hlbiA8
+aGFpYm8uY2hlbkBueHAuY29tPg0KPiA+IENjOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnprQGtl
+cm5lbC5vcmc+DQo+ID4gQ2M6IFVsZiBIYW5zc29uIDx1bGYuaGFuc3NvbkBsaW5hcm8ub3JnPg0K
+PiA+IENjOiBsaW51eC1tbWNAdmdlci5rZXJuZWwub3JnDQo+ID4gRml4ZXM6IDgwZmQzNTBiOTU5
+MCAoImR0LWJpbmRpbmdzOiBtbWM6IGZzbC1pbXgtZXNkaGM6IEZpeCBpLk1YIDgNCj4gPiBjb21w
+YXRpYmxlIG1hdGNoaW5nIikNCj4gPiBTaWduZWQtb2ZmLWJ5OiBEb25nIEFpc2hlbmcgPGFpc2hl
+bmcuZG9uZ0BueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbW1jL2ZzbC1pbXgtZXNkaGMueWFtbCB8IDEgKw0KPiA+ICAxIGZpbGUgY2hhbmdl
+ZCwgMSBpbnNlcnRpb24oKykNCj4gPg0K
