@@ -2,131 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 00EAA2BBA20
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 00:26:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 682E72BBA27
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 00:31:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728765AbgKTXYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 18:24:43 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:42574 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728740AbgKTXYn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 18:24:43 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kgFlf-008BKk-9K; Sat, 21 Nov 2020 00:24:39 +0100
-Date:   Sat, 21 Nov 2020 00:24:39 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 2/3] net: dsa: add Arrow SpeedChips XRS700x
- driver
-Message-ID: <20201120232439.GA1949248@lunn.ch>
-References: <20201120181627.21382-1-george.mccollister@gmail.com>
- <20201120181627.21382-3-george.mccollister@gmail.com>
- <20201120193321.GP1853236@lunn.ch>
- <CAFSKS=P=epx3Sr3OzkCg9ycoftmXm__PaMee7HWbAGXYdqgbDw@mail.gmail.com>
+        id S1726556AbgKTX1r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 18:27:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59490 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726426AbgKTX1r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 18:27:47 -0500
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE485C0613CF;
+        Fri, 20 Nov 2020 15:27:46 -0800 (PST)
+Received: by mail-ed1-x542.google.com with SMTP id cf17so7641807edb.2;
+        Fri, 20 Nov 2020 15:27:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ZWHu6K6eIbfVz7o/Qn5M1Z0BkYZs45FikhVIVbaDmHg=;
+        b=toL7e2+fVyjtUOxZJBZkrYjtaJ8WLxenvWyFWxMMdNRcmvBMxvX1CSHg7A6mylfZzE
+         akJwYFU4Ghmpsd43X+ov7RAHupUl5VltafGs4FpD13MMTkkVnPIDfARuQq9CKnWk/TWk
+         cB0KBJHTbTS+CEsTxs4Q8nV9dJb0AyFWWQsdqG7LRjV590ObVkDPLNXN8hldGSiIzedo
+         KpK6tY0VVdcaSvIBBTJZzMzfNEPa0YF3rW98PC4yUB28iQxbvZLj9RH7J6d8xNq7vuzZ
+         /XOjmERczQXlXRSF0n3n08eNzZrq2UgA5zmM8wwmM9RFgGH963KS97eGdci5wk9lOhs5
+         v34g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ZWHu6K6eIbfVz7o/Qn5M1Z0BkYZs45FikhVIVbaDmHg=;
+        b=HJ4A8F94j7imS+ZU15RRPMX0lThXOQe55Njx18eGYCjZsb2rXAcFD0xksyoKcJjH3E
+         vdqTCl2WleuQvSj4uHr2GTWWZa4U5mOs05V+OXWzFIRBSO2Pxnwj0Tg5hJ3cYQq6UGVq
+         E5pdZ1QOmFOnWPGZ/GGrhu/ZcN3smgaPz0GeRvX1zmHm1KkCMoXjlmH9nUp05Qdn95fI
+         lQhMzD8TdEsQbC/srRzAgdh6AdFXDfo3aEkzZuRv7yPDWwSzlQLwBm9PCCuLmww0Oc2C
+         ixfmhdVLxZRzlpatDgl3g9vq6wB5OH0x7h6/rNI0RtcM8f0CMM9mvfrBr1leNVElVnQx
+         JX5w==
+X-Gm-Message-State: AOAM53139j75tAxz7PF3JzqvgGxxVYOHHLCOBJXT5zOCnF2FMN/wTvst
+        w0SqifauP9/Sul8X8bSIEZ8=
+X-Google-Smtp-Source: ABdhPJyeve3i+YaNN5lcw9znh7snQzWVytSvS9vubjqMXUTSvCEgvWC+t/K58JW61Cpi2ds12cLdfg==
+X-Received: by 2002:aa7:ca57:: with SMTP id j23mr14107834edt.292.1605914865588;
+        Fri, 20 Nov 2020 15:27:45 -0800 (PST)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id f19sm1646746ejk.116.2020.11.20.15.27.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2020 15:27:44 -0800 (PST)
+Date:   Sat, 21 Nov 2020 01:27:42 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 09/12] net: dsa: microchip: ksz9477: initial
+ hardware time stamping support
+Message-ID: <20201120232742.hhmmf3ok6a7xnoqw@skbuf>
+References: <20201118203013.5077-1-ceggers@arri.de>
+ <20201118203013.5077-10-ceggers@arri.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAFSKS=P=epx3Sr3OzkCg9ycoftmXm__PaMee7HWbAGXYdqgbDw@mail.gmail.com>
+In-Reply-To: <20201118203013.5077-10-ceggers@arri.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi George
-
-> > > +static void xrs700x_port_stp_state_set(struct dsa_switch *ds, int port,
-> > > +                                    u8 state)
-> > > +{
-> > > +     struct xrs700x *priv = ds->priv;
-> > > +     unsigned int val;
-> > > +
-> > > +     switch (state) {
-> > > +     case BR_STATE_DISABLED:
-> > > +             val = XRS_PORT_DISABLED;
-> > > +             break;
-> > > +     case BR_STATE_LISTENING:
-> > > +             val = XRS_PORT_DISABLED;
-> > > +             break;
-> >
-> > No listening state?
+On Wed, Nov 18, 2020 at 09:30:10PM +0100, Christian Eggers wrote:
+> Add control routines required for TX hardware time stamping.
 > 
-> No, just forwarding, learning and disabled. See:
-> https://www.flexibilis.com/downloads/xrs/SpeedChip_XRS7000_3000_User_Manual.pdf
-> page 82.
+> The KSZ9563 only supports one step time stamping
+> (HWTSTAMP_TX_ONESTEP_P2P), which requires linuxptp-2.0 or later.
 > 
-> >
-> > > +     case BR_STATE_LEARNING:
-> > > +             val = XRS_PORT_LEARNING;
-> > > +             break;
-> > > +     case BR_STATE_FORWARDING:
-> > > +             val = XRS_PORT_FORWARDING;
-> > > +             break;
-> > > +     case BR_STATE_BLOCKING:
-> > > +             val = XRS_PORT_DISABLED;
-> > > +             break;
-> >
-> > Hum. What exactly does XRS_PORT_DISABLED mean? When blocking, it is
-> > expected you can still send/receive BPDUs.
+> Currently, only P2P delay measurement is supported. See patchwork
+> discussion and comments in ksz9477_ptp_init() for details:
+> https://patchwork.ozlabs.org/project/netdev/patch/20201019172435.4416-8-ceggers@arri.de/
 > 
-> Datasheet says: "Disabled. Port neither learns MAC addresses nor forwards data."
+> Signed-off-by: Christian Eggers <ceggers@arri.de>
+> ---
 
-I think you need to do some testing here. Put the device into a loop
-with another switch, the bridge will block a port, and see if it still
-can send/receive BPDUs on the blocked port.
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 
-If it cannot send/receive BPDUs, it might get into an oscillating
-state. They see each other via BPDUs, decide there is a loop, and
-block a port. The BPDUs stop, they think the loop has been broken and
-so unblock. They see each other via BPUS, decide there is a loop,...
+> +static int ksz9477_set_hwtstamp_config(struct ksz_device *dev, int port,
+> +				       struct hwtstamp_config *config)
+> +{
+> +	struct ksz_port *prt = &dev->ports[port];
+> +
+> +	/* reserved for future extensions */
+> +	if (config->flags)
+> +		return -EINVAL;
+> +
+> +	switch (config->tx_type) {
+> +	case HWTSTAMP_TX_OFF:
+> +		prt->hwts_tx_en = false;
+> +		break;
+> +	case HWTSTAMP_TX_ONESTEP_P2P:
+> +		prt->hwts_tx_en = true;
+> +		break;
+> +	default:
+> +		return -ERANGE;
+> +	}
+> +
+> +	switch (config->rx_filter) {
+> +	case HWTSTAMP_FILTER_NONE:
+> +		break;
+> +	case HWTSTAMP_FILTER_PTP_V2_L4_EVENT:
+> +	case HWTSTAMP_FILTER_PTP_V2_L4_SYNC:
+> +		config->rx_filter = HWTSTAMP_FILTER_PTP_V2_L4_EVENT;
+> +		break;
+> +	case HWTSTAMP_FILTER_PTP_V2_L2_EVENT:
+> +	case HWTSTAMP_FILTER_PTP_V2_L2_SYNC:
+> +		config->rx_filter = HWTSTAMP_FILTER_PTP_V2_L2_EVENT;
+> +		break;
+> +	case HWTSTAMP_FILTER_PTP_V2_EVENT:
+> +	case HWTSTAMP_FILTER_PTP_V2_SYNC:
+> +		config->rx_filter = HWTSTAMP_FILTER_PTP_V2_EVENT;
+> +		break;
+> +	case HWTSTAMP_FILTER_ALL:
 
-> > > +static int xrs700x_i2c_reg_read(void *context, unsigned int reg,
-> > > +                             unsigned int *val)
-> > > +{
-> > > +     int ret;
-> > > +     unsigned char buf[4];
-> > > +     struct device *dev = context;
-> > > +     struct i2c_client *i2c = to_i2c_client(dev);
-> > > +
-> > > +     buf[0] = reg >> 23 & 0xff;
-> > > +     buf[1] = reg >> 15 & 0xff;
-> > > +     buf[2] = reg >> 7 & 0xff;
-> > > +     buf[3] = (reg & 0x7f) << 1;
-> > > +
-> > > +     ret = i2c_master_send(i2c, buf, sizeof(buf));
-> >
-> > Are you allowed to perform transfers on stack buffers? I think any I2C
-> > bus driver using DMA is going to be unhappy.
-> 
-> It should be fine. See the following file, there is a good write up about this:
-> See Documentation/i2c/dma-considerations.rst
+Putting anything in the same "case" statement as "default" is useless.
 
-O.K, thanks for the pointer.
-
-> > > +static const struct of_device_id xrs700x_i2c_dt_ids[] = {
-> > > +     { .compatible = "arrow,xrs7003" },
-> > > +     { .compatible = "arrow,xrs7004" },
-> > > +     {},
-> >
-> > Please validate that the compatible string actually matches the switch
-> > found. Otherwise we can get into all sorts of horrible backward
-> > compatibility issues.
-> 
-> Okay. What kind of compatibility issues? Do you have a hypothetical
-> example? I guess I will just use of_device_is_compatible() to check.
-
-Since it currently does not matter, you can expect 50% of the boards
-to get it wrong. Sometime later, you find some difference between the
-two, you want to add additional optional properties dependent on the
-compatible string. But that is made hard, because 50% of the boards
-are broken, and the compatible string is now worthless.
-
-Either you need to verify the compatible from day one so it is not
-wrong, or you just use a single compatible "arrow,xrs700x", which
-cannot be wrong.
-
-  Andrew
+> +	default:
+> +		config->rx_filter = HWTSTAMP_FILTER_NONE;
+> +		return -ERANGE;
+> +	}
+> +
+> +	return 0;
+> +}
