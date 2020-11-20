@@ -2,97 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60AB62BAA70
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 13:48:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B8212BAA90
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 13:52:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726640AbgKTMsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 07:48:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726095AbgKTMsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 07:48:24 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F7AC0613CF
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 04:48:24 -0800 (PST)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kg5pr-0001b9-BC; Fri, 20 Nov 2020 13:48:19 +0100
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kg5pq-0002rg-Gt; Fri, 20 Nov 2020 13:48:18 +0100
-Date:   Fri, 20 Nov 2020 13:48:16 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Clemens Gruber <clemens.gruber@pqgruber.com>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: pca9685: Add staggered-outputs property
-Message-ID: <20201120124816.2ncbm75v4c5xrtw3@pengutronix.de>
-References: <20201118174515.278067-1-clemens.gruber@pqgruber.com>
- <20201120082150.kyihkhphph7wosfz@pengutronix.de>
- <X7e4Zj1yejjLBFyl@workstation.tuxnet>
+        id S1728277AbgKTMwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 07:52:08 -0500
+Received: from mail.kernel.org ([198.145.29.99]:37450 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726586AbgKTMwF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 07:52:05 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6B40422227;
+        Fri, 20 Nov 2020 12:52:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605876724;
+        bh=gVvuE4pkpAUADqJHVNPHHCwOvhV7mliptOrIX9C+MJI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=F2aJL/dpZ0M3TK1/IKN2hppQ7aanyTMSHaiSUo/lnNjK6F+iikpAe1Xpz2EsItbi+
+         uPdcpPGKQEjIfT21xFL62DccJXFvDwF6SieVMVIqeavvRpAFtA289ZL/ob73s9l3ll
+         YCy0I3W1AKnPf5CR0p41Q0I3V5/3zxIzO+kP5pzk=
+Date:   Fri, 20 Nov 2020 12:51:43 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Adam Ward <adam.ward@diasemi.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/9] regulator: da9121: Add support for device variants
+ via devicetree
+Message-ID: <20201120124851.GB6751@sirena.org.uk>
+References: <cover.1605868780.git.Adam.Ward.opensource@diasemi.com>
+ <f5c4446ff019173127fba460948f152dc6f8cf6f.1605868780.git.Adam.Ward.opensource@diasemi.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wdptpb2gnz4jdjdu"
+        protocol="application/pgp-signature"; boundary="E13BgyNx05feLLmH"
 Content-Disposition: inline
-In-Reply-To: <X7e4Zj1yejjLBFyl@workstation.tuxnet>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <f5c4446ff019173127fba460948f152dc6f8cf6f.1605868780.git.Adam.Ward.opensource@diasemi.com>
+X-Cookie: Have at you!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---wdptpb2gnz4jdjdu
-Content-Type: text/plain; charset=iso-8859-1
+--E13BgyNx05feLLmH
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 20, 2020 at 01:36:54PM +0100, Clemens Gruber wrote:
-> Hi,
->=20
-> On Fri, Nov 20, 2020 at 09:21:50AM +0100, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Nov 18, 2020 at 06:45:15PM +0100, Clemens Gruber wrote:
-> > > The pca9685 driver supports a new staggered-outputs property for redu=
-ced
-> > > current surges and EMI. This adds documentation for the new DT proper=
-ty.
-> >=20
-> > Maybe point out the commit that added this support here?
->=20
-> The pca9685 driver patch was not yet accepted and there will be a v2.
->=20
-> Should I wait until the support is in Linus' tree and only then send a
-> dt-bindings documentation patch, mentioning the commit?
+On Fri, Nov 20, 2020 at 12:14:55PM +0000, Adam Ward wrote:
 
-Then I'd say add the dt-bindings patch to the series adding this
-support.
+> @@ -1,7 +1,21 @@
+>  // SPDX-License-Identifier: GPL-2.0-only
+> -/* Copyright (C) 2020 Axis Communications AB */
+> +/* Copyright (C) 2020 Axis Communications AB
+> + *
+> + * DA9121 Single-channel dual-phase 10A buck converter
 
-Best regards
-Uwe
+Please make the entire comment a C++ one so things look more
+intentional.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+> +	node = of_get_child_by_name(chip->dev->of_node, "regulators");
+> +	if (!node) {
+> +		dev_err(chip->dev, "Regulators node not found\n");
+> +		return ERR_PTR(-ENODEV);
+> +	}
+> +
+> +	num = of_regulator_match(chip->dev, node, da9121_matches,
+> +				 ARRAY_SIZE(da9121_matches));
 
---wdptpb2gnz4jdjdu
+Use of_parse_cb().
+
+> +	/* interrupt assumptions require at least one buck to be configured */
+> +	if (num == 0) {
+> +		dev_err(chip->dev, "Did not match any regulators in the DT\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+
+The physical presence of the regulator is not going to change based on
+the DT.
+
+> +		if (variant_parameters[chip->variant_id].num_bucks == 2) {
+> +			uint32_t ripple_cancel;
+> +			uint32_t reg = (i ? DA9xxx_REG_BUCK_BUCK2_7
+> +					  : DA9121_REG_BUCK_BUCK1_7);
+
+Please write normal conditional statements to improve legibility.
+
+--E13BgyNx05feLLmH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+3uw4ACgkQwfwUeK3K
-7Ak15Qf8D7HdXIO7UJ0QM2vt3GNUwmc4Lfee5+zCkePW/6oohnPJD7RQCN+3/aOX
-lqudlv0NVgCsm0DkcHVtrYxl6VTf5Ot1gHx+TGGJp04YAU/b9gNvGUm+AyYsHIbX
-c1JHSjBBhWxOx8aFAZFCGqkiFAjg/H+o89beJgKz0aQq3Ii2sp7OUdXXioC/2N8f
-YYb253k0WYEzaI9N8PEnAAvS7RQ2DkG5XiaOgpmDcPorqL6iltJ4JSD4eznAZaJp
-Mdaow35DVFruvBfRRuns5TjOM7zkJQCZ/5gOyXGZ50wEjzvpEqrqFT9kQLyZxQDD
-EK5+hK9X5h8ktRUKcsq0MXTtC6h/Zw==
-=KXOK
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+3u94ACgkQJNaLcl1U
+h9CLUwf+PKMjV6kQxmzcjBW63co2YHRDQYzMeqqTd/RzO6QZvlYT0k5WBHEicoPO
+FWQEUoT5oVU4CuzbhlLJu1gKkpm6yaUWvPODSj6BDO5wvlrHHWwZhhNQ1OEhWu67
+MAb0z/kYnoRMYVHyphd97yuAV3P4bnCg17sNUKpaE6x/rIeAQ/y2329zWV5ITCRR
+u+jZCLMnBrrbJxojlBpCjMUODPLvGyHh6dpjOHIqCCWtCn9TGZY56KWwZ3oXjSkV
+VRNComzykM1qMMj1xaVR51uEQJ9iUY8Hm04pEDORVmpLH5cFh93M+YkgAQ5/yzJt
+KWZzu1EBnRv2BYNUI8I6+CDqYoTFHQ==
+=AGtx
 -----END PGP SIGNATURE-----
 
---wdptpb2gnz4jdjdu--
+--E13BgyNx05feLLmH--
