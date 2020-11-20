@@ -2,94 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEB3A2BAA66
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 13:47:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 60AB62BAA70
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 13:48:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726554AbgKTMqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 07:46:14 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34402 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725805AbgKTMqO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 07:46:14 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 391B82222F;
-        Fri, 20 Nov 2020 12:46:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605876373;
-        bh=7hAofjYH5iXNJ02vsuSUoDIPviy3rmTdf1rIte8kiN0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HUN11mHUsbI++NuPSH4QGPttskzxJGNE9ob1LuLNA5wzeW73nWyVonn9fleaM0oG/
-         tmZWKMefluthmTNj00s49zU+FwTYLFn6JG39FG/Bw1ZSvnLV6DKD5wpAs8evnC9T9d
-         pfP9o693N57Ogki8HDFJ8HEbLCAomnxlNeNWQiJc=
-Date:   Fri, 20 Nov 2020 12:45:52 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Adam Ward <adam.ward@diasemi.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/9] regulator: da9121: Add device variant details and
- respective regmaps
-Message-ID: <20201120124552.GA6751@sirena.org.uk>
-References: <cover.1605868780.git.Adam.Ward.opensource@diasemi.com>
- <e3f0e227c099a2dc560af5aae92f13e4d2a112cb.1605868780.git.Adam.Ward.opensource@diasemi.com>
+        id S1726640AbgKTMsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 07:48:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726095AbgKTMsY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 07:48:24 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F7AC0613CF
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 04:48:24 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kg5pr-0001b9-BC; Fri, 20 Nov 2020 13:48:19 +0100
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kg5pq-0002rg-Gt; Fri, 20 Nov 2020 13:48:18 +0100
+Date:   Fri, 20 Nov 2020 13:48:16 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: pca9685: Add staggered-outputs property
+Message-ID: <20201120124816.2ncbm75v4c5xrtw3@pengutronix.de>
+References: <20201118174515.278067-1-clemens.gruber@pqgruber.com>
+ <20201120082150.kyihkhphph7wosfz@pengutronix.de>
+ <X7e4Zj1yejjLBFyl@workstation.tuxnet>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3V7upXqbjpZ4EhLz"
+        protocol="application/pgp-signature"; boundary="wdptpb2gnz4jdjdu"
 Content-Disposition: inline
-In-Reply-To: <e3f0e227c099a2dc560af5aae92f13e4d2a112cb.1605868780.git.Adam.Ward.opensource@diasemi.com>
-X-Cookie: Have at you!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <X7e4Zj1yejjLBFyl@workstation.tuxnet>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---3V7upXqbjpZ4EhLz
-Content-Type: text/plain; charset=us-ascii
+--wdptpb2gnz4jdjdu
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Nov 20, 2020 at 12:14:54PM +0000, Adam Ward wrote:
+On Fri, Nov 20, 2020 at 01:36:54PM +0100, Clemens Gruber wrote:
+> Hi,
+>=20
+> On Fri, Nov 20, 2020 at 09:21:50AM +0100, Uwe Kleine-K=F6nig wrote:
+> > On Wed, Nov 18, 2020 at 06:45:15PM +0100, Clemens Gruber wrote:
+> > > The pca9685 driver supports a new staggered-outputs property for redu=
+ced
+> > > current surges and EMI. This adds documentation for the new DT proper=
+ty.
+> >=20
+> > Maybe point out the commit that added this support here?
+>=20
+> The pca9685 driver patch was not yet accepted and there will be a v2.
+>=20
+> Should I wait until the support is in Linus' tree and only then send a
+> dt-bindings documentation patch, mentioning the commit?
 
-> Add ability to probe device and validate configuration, then apply a regmap
-> configuration for a single or dual buck device accordingly.
+Then I'd say add the dt-bindings patch to the series adding this
+support.
 
-This looks like it might benefit from being multiple commits - "X then
-Y" type commit logs are often a warning sign of this, it's quite
-difficult to review as it's doing several different things.
+Best regards
+Uwe
 
-> +static int da9121_i2c_reg_read(struct i2c_client *client, u8 addr,
-> +				    u8 *buf, int count)
-> +{
-> +	struct i2c_msg xfer[2];
-> +	int ret;
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-Why is this open coding register I/O?
-
-> +	name = of_get_property(chip->dev->of_node, "compatible", NULL);
-> +	if (!name) {
-> +		dev_err(chip->dev, "Cannot get device not compatible string.\n");
-> +		goto error;
-> +	}
-
-You shouldn't need to query the compatible string as a property, why is
-the code doing this?  You know what compatible was used from probe().
-
---3V7upXqbjpZ4EhLz
+--wdptpb2gnz4jdjdu
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+3un8ACgkQJNaLcl1U
-h9ApYgf/WbJsyT3LlJAbon/jHXkpaLqxqEdvDxVjgfCs8gcEKWZODsFuURcmvon4
-yOPmr73Mcy00D1eU4QqrbrOdFO3bKzaxQKG3YyhrHRaejN07PYTCUucey5AVNCkF
-CXeUGzu6XCMlPSw17REm3byFkc6YITeYA+pMMZgarTW9emfvhJ6Y2lGE+yPlYCls
-YjjsSFLyqqMqnN076OHZ/BK2sOrc3WKV8QH/jh804AmDoeLAuFXXRUDlLr4HUDi8
-+8gKtzL2RYnCDCit2uSWoVUVE5hehNTdDoPBFNnYf6PO/5LIxcR75ky2kwPkXNvz
-RIfK6ML8mqEbpULuZ7PLtP5ma7HqYQ==
-=d8wh
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+3uw4ACgkQwfwUeK3K
+7Ak15Qf8D7HdXIO7UJ0QM2vt3GNUwmc4Lfee5+zCkePW/6oohnPJD7RQCN+3/aOX
+lqudlv0NVgCsm0DkcHVtrYxl6VTf5Ot1gHx+TGGJp04YAU/b9gNvGUm+AyYsHIbX
+c1JHSjBBhWxOx8aFAZFCGqkiFAjg/H+o89beJgKz0aQq3Ii2sp7OUdXXioC/2N8f
+YYb253k0WYEzaI9N8PEnAAvS7RQ2DkG5XiaOgpmDcPorqL6iltJ4JSD4eznAZaJp
+Mdaow35DVFruvBfRRuns5TjOM7zkJQCZ/5gOyXGZ50wEjzvpEqrqFT9kQLyZxQDD
+EK5+hK9X5h8ktRUKcsq0MXTtC6h/Zw==
+=KXOK
 -----END PGP SIGNATURE-----
 
---3V7upXqbjpZ4EhLz--
+--wdptpb2gnz4jdjdu--
