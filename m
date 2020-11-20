@@ -2,132 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D26F2BB7F3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 21:59:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 389FE2BB7F5
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 21:59:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729167AbgKTUwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 15:52:53 -0500
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:41892 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728060AbgKTUwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 15:52:53 -0500
-Received: by mail-oi1-f194.google.com with SMTP id m13so11921094oih.8
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 12:52:52 -0800 (PST)
+        id S1730046AbgKTUxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 15:53:41 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:32849 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728740AbgKTUxl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 15:53:41 -0500
+Received: by mail-ot1-f67.google.com with SMTP id n12so6485189otk.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 12:53:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=t4c6d/Yt7xR4VIHjjdABt0P2c1fVQUXpF8BBSro6fGQ=;
-        b=qIW/Kff1uvh0hSnFw4FVbb/QsGZyEapUvPqktXO/5tEKC+vW94t3Y2jjVzP2vUGyNt
-         waQN6KEjVbLtNNQE/UF+Mqeqx21x05B1CLkG/bV9CGUdo1FpXTAA3o+kOuJRRCPI6Exi
-         jMdI+4WyffkDsZarYWIk++ey1zIZBOA7l2S4wgN1dDudpFTvQF1vaNrF5Hj9e9dp9ByH
-         b2XeU3iOqajiLS/9zUi+/vO3saT3C10f8p1lvg5j+8l7d55R5TfSiu8qJP1508MXsq1f
-         Q63g5C9mc2m5+1Va2CuH2dC6ttva+tg0PbTWcyeVRKg17V9aaiwmgofwSCjNL4a+2KVM
-         Ohkw==
-X-Gm-Message-State: AOAM531/Ds1bfs4cQa/W8vJmHnP1jljCNLLBECrvSTlZ0ohh2lpvSTms
-        mSjWp8UqolKBejokQArXp7v5ioD5OQ==
-X-Google-Smtp-Source: ABdhPJxOX6lcwnNmZNL3qHNljOtF1tg+nrK9OZSb1aj+XdwCq/3qvDun1Sr1YyQijOO5VUr8tQNCMA==
-X-Received: by 2002:aca:4989:: with SMTP id w131mr7393391oia.82.1605905572337;
-        Fri, 20 Nov 2020 12:52:52 -0800 (PST)
+        bh=HlhwNYubJtHrxWT2ZNAhkWxJDu+Su29i2kEspUacPRA=;
+        b=ajHtm11bmVmXHNv5MZ/WbTbX/WTzqa/qzD+DZstLol+Lblmwyha35zmCHTOq4mimaC
+         OnNPwfKc2hTv3NdFQx7QPZohAOCJHIB7j6nMuj1q8H8oTEuFZX6ijiF+7eND2LQfviAV
+         BQ1pGRxlVhe+ZyHqv30tJyH0F8eaDKZNQy5wIshpH58F//PTzLrbZEelI2IjmQSL6WVs
+         ODZZDe3/1l1Z+YE7AYK0IgW5bAGV3EpLfjE4eKFW6JqkaMSLW6Vti/eyODWk8RR9paOk
+         WoFteQksfCsLpU/jg2E+08xRkLdfMbJ6R/IHlhC7qpwG3Psn2UeAWNcthW9HRmqG4LmM
+         P8rg==
+X-Gm-Message-State: AOAM531KFd31pTb9TqowIJp2Q9Nxhx2pGfVo0/1gXsS8ROxF3MRDJN9/
+        FXAnecwWDyLu3pRJbYgp6Q==
+X-Google-Smtp-Source: ABdhPJxUvqZlYEJM1cGthssq19Hy0wEqx5MMN8pabLRGvPs77JW4uNMJO6kUKBoplRLawY5EEP9CkQ==
+X-Received: by 2002:a05:6830:158e:: with SMTP id i14mr15191550otr.123.1605905618986;
+        Fri, 20 Nov 2020 12:53:38 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z19sm1926709otm.58.2020.11.20.12.52.51
+        by smtp.gmail.com with ESMTPSA id a5sm1791959oto.1.2020.11.20.12.53.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2020 12:52:51 -0800 (PST)
-Received: (nullmailer pid 1721004 invoked by uid 1000);
-        Fri, 20 Nov 2020 20:52:50 -0000
-Date:   Fri, 20 Nov 2020 14:52:50 -0600
+        Fri, 20 Nov 2020 12:53:38 -0800 (PST)
+Received: (nullmailer pid 1722118 invoked by uid 1000);
+        Fri, 20 Nov 2020 20:53:37 -0000
+Date:   Fri, 20 Nov 2020 14:53:37 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     conor.dooley@microchip.com
-Cc:     jassisinghbrar@gmail.com, aou@eecs.berkeley.edu,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        lewis.hanly@microchip.com, cyril.jean@microchip.com,
-        daire.mcnamara@microchip.com, atish.patra@wdc.com,
-        anup.patel@wdc.com, david.abdurachmanov@gmail.com
-Subject: Re: [PATCH 3/6] dt-bindings: add bindings for polarfire soc mailbox
-Message-ID: <20201120205250.GB1716438@robh.at.kernel.org>
-References: <20201119170432.18447-1-conor.dooley@microchip.com>
+Cc:     linux-riscv@lists.infradead.org, aou@eecs.berkeley.edu,
+        devicetree@vger.kernel.org, david.abdurachmanov@gmail.com,
+        lewis.hanly@microchip.com, robh+dt@kernel.org,
+        cyril.jean@microchip.com, anup.patel@wdc.com,
+        jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+        daire.mcnamara@microchip.com, palmer@dabbelt.com,
+        atish.patra@wdc.com
+Subject: Re: [PATCH 5/6] dt-bindings: add bindings for polarfire soc system
+ controller
+Message-ID: <20201120205337.GA1721508@robh.at.kernel.org>
+References: <20201119170958.20984-1-conor.dooley@microchip.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201119170432.18447-1-conor.dooley@microchip.com>
+In-Reply-To: <20201119170958.20984-1-conor.dooley@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 05:04:32PM +0000, conor.dooley@microchip.com wrote:
+On Thu, 19 Nov 2020 17:09:58 +0000, conor.dooley@microchip.com wrote:
 > From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Add device tree bindings for the MSS system controller mailbox on
+> Add device tree bindings for the MSS system controller on
 > the Microchip PolarFire SoC.
 > 
 > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../mailbox/microchip,mpfs-mailbox.yaml       | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
+>  .../microchip,mpfs_sys_controller.yaml        | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
-> new file mode 100644
-> index 000000000000..5d6ccaa13dc2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/microchip,mpfs-mailbox.yaml
-> @@ -0,0 +1,46 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/mailbox/microchip,mpfs-mailbox.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Microchip MPFS mss mailbox controller
-> +
-> +maintainers:
-> +  - Conor Dooley <conor.dooley@microchip.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: microchip,polarfire-soc-mailbox # PolarFire
 
-Comment is redundant.
 
-> +
-> +  reg:
-> +    items:
-> +      - description: mailbox data registers
-> +      - description: mailbox int registers
-> +    maxItems: 2
+My bot found errors running 'make dt_binding_check' on your patch:
 
-maxItems is implied by size of 'items'.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.yaml:23:111: [warning] line too long (113 > 110 characters) (line-length)
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-parent
-> +  - interrupts
-> +  - "#mbox-cells"
-> +
-> +unevaluatedProperties: false
-> +additionalProperties: false
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/soc/microchip/microchip,mpfs_sys_controller.example.dts:19.32-25.11: Warning (unit_address_vs_reg): /example-0/syscontroller@37020000: node has a unit name, but no reg or ranges property
 
-Only need one and in this case additionalProperties.
 
-> +
-> +examples:
-> +  - |
-> +    mailbox@37020000 {
-> +      compatible = "microchip,polarfire-soc-mailbox";
-> +      reg = <0x0 0x37020000 0x0 0x1000>, <0x0 0x2000318c 0x0 0x40>;
-> +      interrupt-parent = <&L1>;
-> +      interrupts = <96>;
-> +      #mbox-cells = <1>;
-> +    };
-> -- 
-> 2.17.1
-> 
+See https://patchwork.ozlabs.org/patch/1403156
+
+The base for the patch is generally the last rc1. Any dependencies
+should be noted.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
