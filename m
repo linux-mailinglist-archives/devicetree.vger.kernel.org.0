@@ -2,129 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F77E2BA6DB
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 10:59:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E5B2BA6E0
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 10:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726460AbgKTJ6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 04:58:32 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34350 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727248AbgKTJ6b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 04:58:31 -0500
-Received: from localhost (unknown [122.171.203.152])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1F2422240;
-        Fri, 20 Nov 2020 09:58:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605866310;
-        bh=CwM4Ql9VFjQL2OMCE3BfD6NXMX4JW1TDIfSQgSQ0h5E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pqMfTg3kmaI2DtarD3Qt8jW1WZQMadVaY+9vEyfl1Qjc3gd9zld+oq1PYYjtBCt7n
-         naWBhTDMT/ZkEdiUDW2gwNd7gQSS6hIwVsj3QytJ9DJ9/6JwRk6Pk1UGhfzYyZ1bmL
-         vjav65BtL7WTjgHI/LRXN1BICbSDfZaAmdDqfEJU=
-Date:   Fri, 20 Nov 2020 15:28:25 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Remi Pommarel <repk@triplefau.lt>
-Subject: Re: [RESEND PATCH v3 3/3] phy: amlogic:
- phy-meson-axg-mipi-pcie-analog: add support for MIPI DSI analog
-Message-ID: <20201120095825.GD2925@vkoul-mobl>
-References: <20201116101647.73448-1-narmstrong@baylibre.com>
- <20201116101647.73448-4-narmstrong@baylibre.com>
+        id S1727869AbgKTJ7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 04:59:15 -0500
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:35624 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727773AbgKTJ7O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 04:59:14 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201120095902euoutp022f73c3fbc892565cded5f05758859a80~JLu42WtS_0054600546euoutp027
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 09:59:02 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201120095902euoutp022f73c3fbc892565cded5f05758859a80~JLu42WtS_0054600546euoutp027
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1605866342;
+        bh=1Xgz3Vi28G/lFDopVGk+v6JNh2kYnT6n6pfNzZQVzhw=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=mCEKNiM8SUm5i7jTc/V4WQIa6my/v3nGMBLYpjSIwaKAbBqa2rnyYtpi4wk3v1c+1
+         v5pGSF7xlwFEic85KmSQcmKWqjqPgKIADRGyyAzIwuYJ8kZZ/l33uAOso3A5C8Brix
+         kF+eQ2vPfUR99Xn3Xaha5rH7toVojCMY4QjftIDM=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201120095857eucas1p2f40340602f63199c141b8856be667c5a~JLuz33vTF3145031450eucas1p2b;
+        Fri, 20 Nov 2020 09:58:57 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 1B.B2.45488.16397BF5; Fri, 20
+        Nov 2020 09:58:57 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201120095857eucas1p2d51431962017b478816d3f0920438c91~JLuzjy_Xt2257522575eucas1p2V;
+        Fri, 20 Nov 2020 09:58:57 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20201120095857eusmtrp19b5be0806e79fdbfd8346bfe3af6cf08~JLuzi5qy-0739907399eusmtrp1Y;
+        Fri, 20 Nov 2020 09:58:57 +0000 (GMT)
+X-AuditID: cbfec7f5-c77ff7000000b1b0-b4-5fb7936150fc
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 46.88.16282.06397BF5; Fri, 20
+        Nov 2020 09:58:56 +0000 (GMT)
+Received: from [106.210.88.143] (unknown [106.210.88.143]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20201120095856eusmtip145ff2079c7f9880c52a591fc3e68073a~JLuy12Yef0586805868eusmtip1c;
+        Fri, 20 Nov 2020 09:58:56 +0000 (GMT)
+Subject: Re: [PATCH v4 4/5] phy: samsung: phy-exynos-pcie: rework driver to
+ support Exynos5433 PCIe PHY
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-samsung-soc@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <8eaebd62-345f-4d13-1b65-055a2acc68bd@samsung.com>
+Date:   Fri, 20 Nov 2020 10:58:56 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0)
+        Gecko/20100101 Thunderbird/78.4.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201116101647.73448-4-narmstrong@baylibre.com>
+In-Reply-To: <20201120094152.GC2925@vkoul-mobl>
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCKsWRmVeSWpSXmKPExsWy7djP87qJk7fHG9zZJmaxccZ6VoslTRkW
+        84+cY7W48auN1WLFl5nsFhee9rBZnD+/gd3i8q45bBZn5x1ns5hxfh+TxZvfL9gt/u/ZwW6x
+        884JZgdejzXz1jB67Jx1l91jwaZSj02rOtk8+rasYvQ4fmM7k8fnTXIB7FFcNimpOZllqUX6
+        dglcGXNfxBT0cFTc3POeqYHxEFsXIyeHhICJxJTZhxi7GLk4hARWMEpcbpzCAuF8YZR4tG4j
+        M4TzmVHi76ntzDAt+1Y8ZoNILGeUOLdvLVTLe0aJn4/2soBUCQtkSrzduZcRxBYRUJS42nOc
+        FaSIWeAks8TF07vBRrEJGEp0ve0Cu4RXwE7i+5y1YHEWAVWJ1V9vs4LYogJJEtu3bGeFqBGU
+        ODnzCdgCTgF9ibbJ08AWMAvIS2x/O4cZwhaXuPVkPhPEqZM5JfbOVoewXST6PmyC+lpY4tXx
+        LewQtozE6ck9YB9ICDQzSjw8t5YdwukBBkfTDEaIKmuJO+d+AXVzAG3QlFi/Sx8i7Chx/Oli
+        RpCwhACfxI23ghA38ElM2jadGSLMK9HRJgRRrSYx6/g6uLUHL1xinsCoNAvJZ7OQfDMLyTez
+        EPYuYGRZxSieWlqcm55abJyXWq5XnJhbXJqXrpecn7uJEZjQTv87/nUH44pXH/UOMTJxMB5i
+        lOBgVhLhXau5NV6INyWxsiq1KD++qDQntfgQozQHi5I4766ta+KFBNITS1KzU1MLUotgskwc
+        nFINTFPMlZ0KZO68yCr/qdv/vOVtxd8jXV+WlsULc/cxevUVMMuKN1ydsIlVYTeTydcz91oM
+        Jmdf4TQ7pbbGvFLr1Mbke03hhrcO1txff3PFlRWL5cQZOSNTG1YpqZ9dyh3bZSd0SmZR/f6w
+        Qwax7dP1X5yPbfiSI3rqaHgXI+85V72ZIv80TjC1bIt2Ovyh++LMRpk3HUv86sxKevs2VPSZ
+        ae1yP/HqYPX9CMkz287dNkxbYff/Ve7KG8y7YwR4tFNYZ3252KM5pThcwf26wpIpUu+sfT8f
+        KjZdVsAonL84cFrnNDnpKydszeav/Jj5r/v0yrMNv/6LmS7ZKx8jmyD07sajg///mldd7DiS
+        xaE4S4mlOCPRUIu5qDgRAKNFxy7XAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOIsWRmVeSWpSXmKPExsVy+t/xu7oJk7fHGxz6bWOxccZ6VoslTRkW
+        84+cY7W48auN1WLFl5nsFhee9rBZnD+/gd3i8q45bBZn5x1ns5hxfh+TxZvfL9gt/u/ZwW6x
+        884JZgdejzXz1jB67Jx1l91jwaZSj02rOtk8+rasYvQ4fmM7k8fnTXIB7FF6NkX5pSWpChn5
+        xSW2StGGFkZ6hpYWekYmlnqGxuaxVkamSvp2NimpOZllqUX6dgl6GXNfxBT0cFTc3POeqYHx
+        EFsXIyeHhICJxL4Vj4FsLg4hgaWMEhtP3mOESMhInJzWwAphC0v8udYFVfSWUeLYpztMIAlh
+        gUyJtzv3gjWICChKXO05zgpSxCxwklli7vbvzBAdrxglpm65AtbBJmAo0fW2C2w3r4CdxPc5
+        a5lBbBYBVYnVX2+DrRMVSJKYefwsO0SNoMTJmU9YQGxOAX2JtsnTwLYxC5hJzNv8kBnClpfY
+        /nYOlC0ucevJfKYJjEKzkLTPQtIyC0nLLCQtCxhZVjGKpJYW56bnFhvpFSfmFpfmpesl5+du
+        YgTG8LZjP7fsYFz56qPeIUYmDsZDjBIczEoivGs1t8YL8aYkVlalFuXHF5XmpBYfYjQF+mci
+        s5Rocj4wieSVxBuaGZgamphZGphamhkrifOaHFkTLySQnliSmp2aWpBaBNPHxMEp1cDEsXHb
+        yzOJRf/c7DuM9M/f0A5ymB7JVrOnPpmR+W9MdkpV3vo/LgV90ea7LWYVnb700CbxgN2Wvh1h
+        +RNm6Ew8oWeSZfXQV/llAv+hHMFsj9/x/Lv3Bswwebl5w3+bpjUvnjOx/k3NTvj42WaVvFJA
+        5VmDDUbLWQXrSmb43zCeq9VRl9sTs3vDgk6eLIOW8lnv7NekzPxsOPGc/8ZrIaLrc+qk+5Zv
+        PdRm12k/2e5YzyqV0BOc7nlrtmZ3aqUtdtm3Wcm+47YbQ17lm9+XbryZLv7v8uTf/ivsJu92
+        MbNy9tx0uapgi53wXm3VefuPG9xVMN+YoDslb1ZiWeOXdvXTlkp7Z0ne3Phxzqr3HSJKLMUZ
+        iYZazEXFiQAHfNgvagMAAA==
+X-CMS-MailID: 20201120095857eucas1p2d51431962017b478816d3f0920438c91
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201113170158eucas1p14b9e58e35f929e14aeb4f533071c8a47
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201113170158eucas1p14b9e58e35f929e14aeb4f533071c8a47
+References: <20201113170139.29956-1-m.szyprowski@samsung.com>
+        <CGME20201113170158eucas1p14b9e58e35f929e14aeb4f533071c8a47@eucas1p1.samsung.com>
+        <20201113170139.29956-5-m.szyprowski@samsung.com>
+        <20201120094152.GC2925@vkoul-mobl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-11-20, 11:16, Neil Armstrong wrote:
-> The AXG Analog MIPI-DSI PHY also provides functions to the PCIe PHY,
-> thus we need to have inclusive support for both interfaces at runtime.
-> 
-> This fixes the regmap get from parent node, removes cell param
-> to select a mode and implement runtime configuration & power on/off
-> for both functions since they are not exclusive.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Remi Pommarel <repk@triplefau.lt>
-> ---
->  drivers/phy/amlogic/Kconfig                   |   1 +
->  .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 204 ++++++++++++------
->  2 files changed, 136 insertions(+), 69 deletions(-)
-> 
-> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
-> index 99e8a4c7f1f3..db5d0cd757e3 100644
-> --- a/drivers/phy/amlogic/Kconfig
-> +++ b/drivers/phy/amlogic/Kconfig
-> @@ -66,6 +66,7 @@ config PHY_MESON_AXG_MIPI_PCIE_ANALOG
->  	depends on OF && (ARCH_MESON || COMPILE_TEST)
->  	select GENERIC_PHY
->  	select REGMAP_MMIO
-> +	select GENERIC_PHY_MIPI_DPHY
->  	help
->  	  Enable this to support the Meson MIPI + PCIE analog PHY
->  	  found in Meson AXG SoCs.
-> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-> index 1431cbf885e1..6eb21551bdd9 100644
-> --- a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
-> @@ -4,9 +4,13 @@
->   *
->   * Copyright (C) 2019 Remi Pommarel <repk@triplefau.lt>
->   */
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
->  #include <linux/module.h>
->  #include <linux/phy/phy.h>
->  #include <linux/regmap.h>
-> +#include <linux/delay.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/platform_device.h>
->  #include <dt-bindings/phy/phy.h>
->  
-> @@ -14,10 +18,10 @@
->  #define		HHI_MIPI_CNTL0_COMMON_BLOCK	GENMASK(31, 28)
->  #define		HHI_MIPI_CNTL0_ENABLE		BIT(29)
->  #define		HHI_MIPI_CNTL0_BANDGAP		BIT(26)
-> -#define		HHI_MIPI_CNTL0_DECODE_TO_RTERM	GENMASK(15, 12)
-> -#define		HHI_MIPI_CNTL0_OUTPUT_EN	BIT(3)
-> +#define		HHI_MIPI_CNTL0_DIF_REF_CTL1	GENMASK(25, 16)
-> +#define		HHI_MIPI_CNTL0_DIF_REF_CTL0	GENMASK(15, 0)
->  
-> -#define HHI_MIPI_CNTL1 0x01
-> +#define HHI_MIPI_CNTL1 0x04
->  #define		HHI_MIPI_CNTL1_CH0_CML_PDR_EN	BIT(12)
->  #define		HHI_MIPI_CNTL1_LP_ABILITY	GENMASK(5, 4)
->  #define		HHI_MIPI_CNTL1_LP_RESISTER	BIT(3)
-> @@ -25,100 +29,170 @@
->  #define		HHI_MIPI_CNTL1_INPUT_SEL	BIT(1)
->  #define		HHI_MIPI_CNTL1_PRBS7_EN		BIT(0)
->  
-> -#define HHI_MIPI_CNTL2 0x02
-> +#define HHI_MIPI_CNTL2 0x08
->  #define		HHI_MIPI_CNTL2_CH_PU		GENMASK(31, 25)
->  #define		HHI_MIPI_CNTL2_CH_CTL		GENMASK(24, 19)
->  #define		HHI_MIPI_CNTL2_CH0_DIGDR_EN	BIT(18)
->  #define		HHI_MIPI_CNTL2_CH_DIGDR_EN	BIT(17)
->  #define		HHI_MIPI_CNTL2_LPULPS_EN	BIT(16)
-> -#define		HHI_MIPI_CNTL2_CH_EN(n)		BIT(15 - (n))
-> +#define		HHI_MIPI_CNTL2_CH_EN		GENMASK(15, 11)
->  #define		HHI_MIPI_CNTL2_CH0_LP_CTL	GENMASK(10, 1)
->  
-> +#define DSI_LANE_0              (1 << 4)
-> +#define DSI_LANE_1              (1 << 3)
-> +#define DSI_LANE_CLK            (1 << 2)
-> +#define DSI_LANE_2              (1 << 1)
-> +#define DSI_LANE_3              (1 << 0)
-> +#define DSI_LANE_MASK		(0x1F)
+Hi Vinod,
 
-This should use BIT(), also there are interesting helpers in bitfield.h
-to help with register fields, do send follow up patches..
+On 20.11.2020 10:41, Vinod Koul wrote:
+> On 13-11-20, 18:01, Marek Szyprowski wrote:
+>> From: Jaehoon Chung <jh80.chung@samsung.com>
+>>
+>> Exynos5440 SoC support has been dropped since commit 8c83315da1cf ("ARM:
+>> dts: exynos: Remove Exynos5440"). Rework this driver to support PCIe PHY
+>> variant found in the Exynos5433 SoCs.
+> I am expecting this series to go thru PCI tree, so:
+>
+> Acked-By: Vinod Koul <vkoul@kernel.org>
+
+Frankly, the PHY driver can also go via PHY tree without causing any 
+issue. The old driver is not used at all, so there is no runtime 
+dependency. This will help avoiding the merge conflict: yesterday I've 
+noticed that this patch conflicts with the commit 2f0c9fac3be6 ("phy: 
+samsung: convert to devm_platform_ioremap_resource") in phy-next. The 
+resolution is simple (use all the code from the new driver), but if 
+needed I can resend the PHY driver after a rebase onto the current next 
+tree.
+
+Best regards
 
 -- 
-~Vinod
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
+
