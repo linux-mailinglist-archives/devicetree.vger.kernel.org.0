@@ -2,169 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCB5B2BAE6B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 16:23:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E34912BAF54
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 16:54:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729115AbgKTPQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 10:16:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729185AbgKTPQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 10:16:00 -0500
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A1B5C0613CF
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 07:16:01 -0800 (PST)
-Received: by mail-io1-xd41.google.com with SMTP id o8so1800328ioh.0
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 07:16:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AvkIOP/BQjTv1vzhil/jbNpm0u7fR43A7TYITMLBF/I=;
-        b=jhSa5G4Y7iB3jkInwwKcGaLiphebWNBQASUBnIfeOQYHWOIwnanEB7EZkPypVn0E3G
-         TM21rq+CTTmVvcPTr/r/7J/1x+xit/WQQ/SDltQKqMLvr0oeFQD+Ldjm7F3Yup6tWuCA
-         +uUV6q7iND8srCqrhp3Vgba9Ehw5u++RVFVz8j3YXqT1JLrJpmPlH7Oh5QJJjKfaEzjN
-         pb3gFY90uiK3olPJcNbSFl8YEs/Sj6M5hsYdEA7kFBet5GIKoEZhDFEMaKr1HAsUAadB
-         VxLg2TQ2N01RCSfYSra0kq4gWdIKVmDbHxLq9Pj12sRvpJxfVG6iNpNbAsLRE6T9MyBz
-         lKcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AvkIOP/BQjTv1vzhil/jbNpm0u7fR43A7TYITMLBF/I=;
-        b=RT1wRb6V5FcX8AZbx+R5T4JJnliaUwGmX28JGxcNHtG0hVWH0FqXW/qud4tCl3WgpZ
-         ss/UTG/yMrH+deXDmfyO6KcdXxc8jvV5RRcQPmpajdI9h2gtg3zwrbqZMZyqfbRMzKMY
-         AdaYVRVSGCssCXJ6r5GRdDql+9j53jNKK38+3aXTGWGj4HKAIgfudZ05O2oIdWC6KkhI
-         /bYlJV3p9R0GXApPsWOFWgck3Iah/QRVbhIwTHai4JCtK9lEEdPHn8CHGzAGF+ae0gfh
-         zOiZtOG/TUbnzOlJs36DII8KSNSzIjDL1Ysy96+JzAf+XCgMYnaK+dZoCGgP4zC9NGdz
-         wnkQ==
-X-Gm-Message-State: AOAM531utmp7zg3iCpewRr40xdOjK/skbojxC24lO1qOWuO1yMGzASao
-        Wxiya4JO5OA3KVIj7cbFIkNE6YV/URxRnmON6e46EA==
-X-Google-Smtp-Source: ABdhPJzpmYxrFIpHcbNNhBq8k3I0UAHRxpoQxKTX3u8IWfhd4Wr21krjkP7KNwzj918RRdobSAeNZjESNs4e6B1965w=
-X-Received: by 2002:a5d:8ad6:: with SMTP id e22mr22673857iot.154.1605885360111;
- Fri, 20 Nov 2020 07:16:00 -0800 (PST)
+        id S1728662AbgKTPw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 10:52:56 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:42833 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728476AbgKTPw4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 10:52:56 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 38A045C0073;
+        Fri, 20 Nov 2020 10:52:55 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Fri, 20 Nov 2020 10:52:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=243zuxKtb9Id8Wghr25UlB2KG++
+        k7labUCOuppsTHUM=; b=UhEKbxr/G9zEmm4mGuI+MdHuJL1mDaXGKgjLWPSltlx
+        Ae0XP3P1jT/9itgiZQQY7eAoae0GF8nk+mXGMRqMzW5ErNQ8/EkVwF5jeMN7PfdJ
+        b9PClGJSxKC4TJEVCgoVlRd3w/3ioFVyJBERMtZYXP4JRCj790i1F3kmkeIJhmSd
+        I6/0NI9fcqM3LF52/qTDmfQ417pTAV5qE82N72BVPq8bqyu+Rnb9z2xzCJDA8RfZ
+        Fyv++8vjWB70FV0MgDDZqs1qUSuzhnnobhJb21kJFppjyOTrUttelcBpy3zcQdxb
+        6Jvq2etogfGVqG918dtF0/sgdYPl/gvYWhKSR5TxfNw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=243zux
+        Ktb9Id8Wghr25UlB2KG++k7labUCOuppsTHUM=; b=WqRaRHLcvJ8IczAzkV76Q1
+        G2Upf/YA65CitbxAD+VM01BfNQCWR/lMP80I4CtI1bI35LKlsavtDH1ePaHEzVfb
+        w3cU/LtDPyM70SY59JtqEkqHXMFdwDf0yny9fbP2Tl3RR26AO35eUVLVJf3KcZRH
+        FalIX1GkjTFyLKJ/oFnoY+Bk52BSKM7oJh1w0Q90R9xJIWRyGweccE4wOjUfIhOo
+        y+QPy5SyKrpYIURMZ7IF7rTzN7EW+Kyoh3D16TJcsQlDGlCktI7A2CvtKbXvr4Ze
+        3MvWYxdR4iE2LS8wbSk3Up6JHnJ30bZcckjZrQb+MHpcsz958UH24y4bYdw+2GEA
+        ==
+X-ME-Sender: <xms:Vua3X-If6XXSIocIbrK0KdyrSbdDhKvf7KsfE350hurX9J2n6zMOBg>
+    <xme:Vua3X2K7NU9am4Nn1YX4uQ6TNbHa0hK3Rra5wTAQDqFAKOZTbh6IN-4bZX1e203op
+    v0sOkzK1is9NAr-ZVM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegtddgjeelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    goufhushhpvggtthffohhmrghinhculdegledmnecujfgurhepfffhvffukfhfgggtuggj
+    sehgtderredttddvnecuhfhrohhmpeforgigihhmvgcutfhiphgrrhguuceomhgrgihimh
+    gvsegtvghrnhhordhtvggthheqnecuggftrfgrthhtvghrnhepgfffieeiudduveefjeel
+    geelhefgtdelgffhkeefjeefvdeviefhheekgeeivddunecuffhomhgrihhnpegsrghnrg
+    hnrgdqphhirdhorhhgpdhgohhoghhlvgdrtghomhenucfkphepledtrdekledrieekrdej
+    ieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehmrg
+    igihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:Vua3X-ss87GSqIUDVEh63ZTQ3_4qIjXPTAnUVnZew65lWcB1d5XW4g>
+    <xmx:Vua3XzaubLYcjVWnwq2r3RiyRIrJOLxzzTA4IMD8ihvOTgNESm7_nA>
+    <xmx:Vua3X1Z11vr-NrgDMCKR2mXlxnlmU19cenUQ4Ypd-DKzg6B1pnVguw>
+    <xmx:V-a3X5EJXTWUhW18Fi_CV3_A4ZZOC9nvxoksvfTGaNWLe0XrjQsguw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id E61953064AB3;
+        Fri, 20 Nov 2020 10:52:53 -0500 (EST)
+Date:   Fri, 20 Nov 2020 16:52:52 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Michael Klein <michael@fossekall.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add
+ gpio-line-names
+Message-ID: <20201120155252.kfkavrn4wpqzmbyc@gilmour>
+References: <20201115222425.2885427-1-michael@fossekall.de>
 MIME-Version: 1.0
-References: <1605839346-10648-1-git-send-email-daoyuan.huang@mediatek.com> <1605839346-10648-3-git-send-email-daoyuan.huang@mediatek.com>
-In-Reply-To: <1605839346-10648-3-git-send-email-daoyuan.huang@mediatek.com>
-From:   Fabien Parent <fparent@baylibre.com>
-Date:   Fri, 20 Nov 2020 16:15:48 +0100
-Message-ID: <CAOwMV_wqv4vJ4Pb3o61Gce7ia3c5wJDWDtapOTqHYRYGNsmYfQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] dts: arm64: mt8183: Add Mediatek MDP3 nodes
-To:     Daoyuan Huang <daoyuan.huang@mediatek.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        menghui.lin@mediatek.com,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        linux-media@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        sj.huang@mediatek.com,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, pihsun@chromium.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        randy.wu@mediatek.com, srv_heupstream@mediatek.com,
-        acourbot@chromium.org, linux-kernel <linux-kernel@vger.kernel.org>,
-        tfiga@chromium.org, ben.lok@mediatek.com, moudy.ho@mediatek.com,
-        Rob Landley <rob@landley.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="nl5t3kiqe4j3hvdu"
+Content-Disposition: inline
+In-Reply-To: <20201115222425.2885427-1-michael@fossekall.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daoyuan,
 
-> Depend on:
->    [1] https://lore.kernel.org/patchwork/patch/1164746/
->    [2] https://patchwork.kernel.org/patch/11703299/
->    [3] https://patchwork.kernel.org/patch/11283773/
+--nl5t3kiqe4j3hvdu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Can you provide an updated list of dependencies because it seems this
-patch depends on more than the patch aboves. I applied the related
-patch series above but there is still missing node
-ERROR (phandle_references): /soc/mdp-rdma0@14001000: Reference to
-non-existent node or label "scp"
-ERROR (phandle_references): /soc/mdp-rdma0@14001000: Reference to
-non-existent node or label "mutex"
+Hi!
 
-It would be even better if you could provide a branch with all the
-dependencies included.
+On Sun, Nov 15, 2020 at 11:24:25PM +0100, Michael Klein wrote:
+> Add gpio-line-names as documented in the Banana Pi wiki [1] and in the
+> schematics [2].
+>=20
+> [1]: http://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO#GPIO_PIN_define
+> [2]: https://drive.google.com/file/d/0B4PAo2nW2KfnMW5sVkxWSW9qa28/view
+>=20
+> Signed-off-by: Michael Klein <michael@fossekall.de>
+> ---
+>  .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/=
+arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> index 4c6704e4c57e..b4ddfaf01b45 100644
+> --- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> @@ -136,6 +136,70 @@ bluetooth {
+> =20
+>  };
+> =20
+> +&pio {
+> +	gpio-line-names =3D
+> +		/* PA */
+> +		"UART2-TX", "UART2-RX", "UART2-RTS", "UART2-CTS",
+> +			"UART0-TXD", "UART0-RXD", "PWM1", "PA7-EINT7",
+> +		"PA8-EINT8", "PA9-EINT9", "PA10-EINT10", "TWI0-SCK",
+> +			"TWI0-SDA", "UART3-TX", "UART3-RX", "UART3-RTS",
+> +		"UART3-CTS", "PA17-EINT17", "TWI1-SCK", "TWI1-SDA",
+> +			"PA20-EINT20", "PA21-EINT21", "", "",
+> +		"", "", "", "", "", "", "", "",
 
->                 mmsys: syscon@14000000 {
->                         compatible = "mediatek,mt8183-mmsys", "syscon";
-> +                       mdp-comps = "mediatek,mt8183-mdp-dl",
-> +                                   "mediatek,mt8183-mdp-dl";
-> +                       mdp-comp-ids = <0 1>;
->                         reg = <0 0x14000000 0 0x1000>;
-> +                       mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->                         #clock-cells = <1>;
-> +                       clocks = <&mmsys CLK_MM_MDP_DL_TXCK>,
-> +                                <&mmsys CLK_MM_MDP_DL_RX>,
-> +                                <&mmsys CLK_MM_IPU_DL_TXCK>,
-> +                                <&mmsys CLK_MM_IPU_DL_RX>;
-> +               };
+IIRC, the point is to have the pin names that the vendor publishes.
 
-The kernel is not booting anymore when the 4 clocks above are added,
-if I remove them I can boot again. See the following log:
+Looking at Documentation/devicetree/bindings/gpio/gpio.txt, it says:
 
-[    0.401314] Unable to handle kernel paging request at virtual
-address fffffffffffffffe
-[    0.402320] Mem abort info:
-[    0.402674]   ESR = 0x96000004
-[    0.403062]   EC = 0x25: DABT (current EL), IL = 32 bits
-[    0.403741]   SET = 0, FnV = 0
-[    0.404128]   EA = 0, S1PTW = 0
-[    0.404526] Data abort info:
-[    0.404890]   ISV = 0, ISS = 0x00000004
-[    0.405374]   CM = 0, WnR = 0
-[    0.405751] swapper pgtable: 4k pages, 48-bit VAs, pgdp=00000000415ee000
-[    0.406595] [fffffffffffffffe] pgd=0000000000000000, p4d=0000000000000000
-[    0.407457] Internal error: Oops: 96000004 [#1] PREEMPT SMP
-[    0.408160] Modules linked in:
-[    0.408551] CPU: 4 PID: 51 Comm: kworker/4:1 Not tainted
-5.9.0-mtk-00010-g121ba830623e-dirty #2
-[    0.409646] Hardware name: MediaTek MT8183 evaluation board (DT)
-[    0.410416] Workqueue: events deferred_probe_work_func
-[    0.411067] pstate: 20000005 (nzCv daif -PAN -UAO BTYPE=--)
-[    0.411772] pc : clk_prepare+0x18/0x44
-[    0.412252] lr : scpsys_power_on+0x1e8/0x470
-[    0.412791] sp : ffff800011fa3a20
-[    0.413209] x29: ffff800011fa3a20 x28: 0000000000000000
-[    0.413881] x27: 0000000000000000 x26: 0000000000000000
-[    0.414551] x25: ffff00007a23ade0 x24: ffff00007a223b80
-[    0.415222] x23: ffff800011f5d30c x22: ffff00007a23a888
-[    0.415892] x21: fffffffffffffffe x20: 0000000000000000
-[    0.416563] x19: 0000000000000000 x18: 0000000000000020
-[    0.417233] x17: 0000000000000020 x16: 0000000052d9c4c7
-[    0.417904] x15: 0000000000000059 x14: ffff00007a23a640
-[    0.418575] x13: ffff00007a23a5c0 x12: 0000000000000000
-[    0.419245] x11: ffff8000108331c0 x10: ffff800010833030
-[    0.419916] x9 : 0000000000000000 x8 : ffff00007a751c00
-[    0.420587] x7 : ffff800011fa3a70 x6 : 00000000130f968d
-[    0.421257] x5 : ffff8000110043f0 x4 : 0000000000000184
-[    0.421927] x3 : 0000000000000000 x2 : 0000000000000008
-[    0.422598] x1 : 000000000000000d x0 : fffffffffffffffe
-[    0.423268] Call trace:
-[    0.423581]  clk_prepare+0x18/0x44
-[    0.424014]  scpsys_power_on+0x1e8/0x470
-[    0.424511]  scpsys_probe+0x3f4/0x66c
-[    0.424975]  platform_drv_probe+0x54/0xb0
-[    0.425483]  really_probe+0xe4/0x490
-[    0.425937]  driver_probe_device+0x58/0xc0
-[    0.426456]  __device_attach_driver+0xa8/0x10c
-[    0.427019]  bus_for_each_drv+0x78/0xcc
-[    0.427504]  __device_attach+0xdc/0x180
-[    0.427990]  device_initial_probe+0x14/0x20
-[    0.428521]  bus_probe_device+0x9c/0xa4
-[    0.429007]  deferred_probe_work_func+0x74/0xb0
-[    0.429582]  process_one_work+0x1cc/0x350
-[    0.430090]  worker_thread+0x2c0/0x470
-[    0.430565]  kthread+0x154/0x160
-[    0.430976]  ret_from_fork+0x10/0x30
-[    0.431431] Code: 910003fd f9000bf3 52800013 b40000e0 (f9400013)
-[    0.432200] ---[ end trace d3ecf925b254a559 ]---
+"""
+Optionally, a GPIO controller may have a "gpio-line-names" property. This is
+an array of strings defining the names of the GPIO lines going out of the
+GPIO controller. This name should be the most meaningful producer name
+for the system, such as a rail name indicating the usage. Package names
+such as pin name are discouraged: such lines have opaque names (since they
+are by definition generic purpose) and such names are usually not very
+helpful.
+"""
+
+In this case, from the link you gave above, I think having the CON*-P*
+names make more sense.
+
+Maxime
+
+--nl5t3kiqe4j3hvdu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7fmVAAKCRDj7w1vZxhR
+xXU4AP4rHtsdpzFcD4BLjn5wb0mrt9+1t23Fg6bPt8E4FDyhPgD/bjrssgUM+XQI
+V2oEzJyjtAMwQ08hqEm0tQuzaZzt+gI=
+=2t/3
+-----END PGP SIGNATURE-----
+
+--nl5t3kiqe4j3hvdu--
