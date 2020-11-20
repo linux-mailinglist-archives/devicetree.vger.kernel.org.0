@@ -2,86 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7260F2BB0C6
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 17:41:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 903712BB0D8
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 17:45:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730112AbgKTQlX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 11:41:23 -0500
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:65145 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730103AbgKTQlX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 11:41:23 -0500
-X-Originating-IP: 86.194.86.39
-Received: from localhost (lfbn-lyo-1-1010-39.w86-194.abo.wanadoo.fr [86.194.86.39])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 511C4240014;
-        Fri, 20 Nov 2020 16:41:20 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        <Steen.Hegelund@microchip.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH v4 6/6] irqchip: ocelot: Add support for Jaguar2 platforms
-Date:   Fri, 20 Nov 2020 17:41:08 +0100
-Message-Id: <20201120164108.2096359-7-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201120164108.2096359-1-gregory.clement@bootlin.com>
-References: <20201120164108.2096359-1-gregory.clement@bootlin.com>
+        id S1729157AbgKTQos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 11:44:48 -0500
+Received: from mx2.suse.de ([195.135.220.15]:56918 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729064AbgKTQos (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 11:44:48 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id D050DAB3D;
+        Fri, 20 Nov 2020 16:44:46 +0000 (UTC)
+Message-ID: <ff83fd481f3de4bcfa453a837a9c516e50f93061.camel@suse.de>
+Subject: Re: [PATCH] ARM: dts: bcm283x: increase dwc2's RX FIFO size
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Pavel Hofman <pavel.hofman@ivitera.com>,
+        Minas Harutyunyan <hminas@synopsys.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org
+Date:   Fri, 20 Nov 2020 17:44:45 +0100
+In-Reply-To: <e9e7d070-593c-122f-3a5c-2435bb147ab2@ivitera.com>
+References: <e9e7d070-593c-122f-3a5c-2435bb147ab2@ivitera.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-bVeDmSruMXaCbHVyeWFr"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch extends irqchip driver for ocelot to be used with an other
-vcoreiii base platform: Jaguar2.
 
-Based on a larger patch from Lars Povlsen <lars.povlsen@microchip.com>
-Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- drivers/irqchip/irq-mscc-ocelot.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+--=-bVeDmSruMXaCbHVyeWFr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/irqchip/irq-mscc-ocelot.c b/drivers/irqchip/irq-mscc-ocelot.c
-index da5a0ad991a1..8235d98650c1 100644
---- a/drivers/irqchip/irq-mscc-ocelot.c
-+++ b/drivers/irqchip/irq-mscc-ocelot.c
-@@ -63,6 +63,17 @@ static struct chip_props luton_props = {
- 	.n_irq			= 28,
- };
- 
-+static struct chip_props jaguar2_props = {
-+	.flags			= FLAGS_HAS_TRIGGER,
-+	.reg_off_sticky		= 0x10,
-+	.reg_off_ena		= 0x18,
-+	.reg_off_ena_clr	= 0x1c,
-+	.reg_off_ena_set	= 0x20,
-+	.reg_off_ident		= 0x38,
-+	.reg_off_trigger	= 0x5c,
-+	.n_irq			= 29,
-+};
-+
- static void ocelot_irq_unmask(struct irq_data *data)
- {
- 	struct irq_chip_generic *gc = irq_data_get_irq_chip_data(data);
-@@ -197,3 +208,11 @@ static int __init luton_irq_init(struct device_node *node,
- }
- 
- IRQCHIP_DECLARE(luton_icpu, "mscc,luton-icpu-intr", luton_irq_init);
-+
-+static int __init jaguar2_irq_init(struct device_node *node,
-+				   struct device_node *parent)
-+{
-+	return vcoreiii_irq_init(node, parent, &jaguar2_props);
-+}
-+
-+IRQCHIP_DECLARE(jaguar2_icpu, "mscc,jaguar2-icpu-intr", jaguar2_irq_init);
--- 
-2.29.2
+On Fri, 2020-11-13 at 08:18 +0100, Pavel Hofman wrote:
+> The previous version of the dwc2 overlay set the RX FIFO size to
+> 256 4-byte words. This is not enough for 1024 bytes of the largest
+> isochronous high speed packet allowed, because it doesn't take into
+> account extra space needed by dwc2.
+>=20
+> RX FIFO's size is calculated based on the following (in 4byte words):
+> - 13 locations for SETUP packets
+>   5*n + 8 for Slave and Buffer DMA mode where n is number of control
+>   endpoints which is 1 on the bcm283x core
+>=20
+> - 1 location for Global OUT NAK
+>=20
+> - 2 * 257 locations for status information and the received packet.
+>   Typically two spaces are recommended so that when the previous packet
+>   is being transferred to AHB, the USB can receive the subsequent
+>   packet.
+>=20
+> - 10 * 1 location for transfer complete status for last packet of each
+>   endpoint. The bcm283x core has 5 IN and 5 OUT EPs
+>=20
+> - 10 * 1 additional location for EPDisable status for each endpoint
+>=20
+> - 5 * 2 additional locations are recommended for each OUT endpoint
+>=20
+> Total is 558 locations.
+>=20
+> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Pavel Hofman <pavel.hofman@ivitera.com>
+> ---
+
+Applied for next. Thanks!
+
+Regards,
+Nicolas
+
+
+--=-bVeDmSruMXaCbHVyeWFr
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+38n0ACgkQlfZmHno8
+x/7m0QgAj6RGNxc+o+OriwhIlWJ+7S6AZEL63zVoGGgNrcf68zD/SitKAwkE2cHa
+o3rA6Op1egZkbT5V5hB5ku+yMb0dGjlT9ow4huKbnGTpRgXEzSEDAwSJYkIkTPdP
+QT5BQQcogs5sgJkObI1I4HjbZa6WLLfpQaU4e22XlQanO8LpDQsXxwLBBd1KvK0y
+tC2J61SWXUu14IdpE6rEsjX47qXRw+uBwR9LTiaaQJBsppzykYLsVqi56giAxwOS
+1AUThWqS6l8I5nKEgfI/rnxk83zcEMcczaDaKN4NXgAHs75IUef1J5eCwTaHTnAx
+XNadMer4PawzAZm1gl6wupg+43bk7Q==
+=IHO6
+-----END PGP SIGNATURE-----
+
+--=-bVeDmSruMXaCbHVyeWFr--
 
