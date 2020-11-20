@@ -2,127 +2,321 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A27752BAB82
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 14:49:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B22C2BAB94
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 15:03:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728216AbgKTNrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 08:47:45 -0500
-Received: from smtp1.axis.com ([195.60.68.17]:58855 "EHLO smtp1.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726560AbgKTNrp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 08:47:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=axis.com; l=3001; q=dns/txt; s=axis-central1;
-  t=1605880064; x=1637416064;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=q4FFmjkhGxwPiHWpq/qUaLz9tnZojoP8KxE7GRpyXWI=;
-  b=BoiNbqp/E053Sbf5qwh+UvtfrhK86jDKWZlquLw2H9W6a6A3DS3olGvu
-   9F7rrEIQ18Eb+6JQV0p0PVpf7cQW0FVrryFisBgkP6PqCl2KHh1tSmug6
-   pAPcomKZRNAFjR7K2tE1hPzKs2pZmARkrcDEqbSzTcjDWICR/uJmZWngh
-   rnBx8Rlh0hyamS7G17zHyiUb6yC91O6nRI7txQmnQhCShKH8Fgfwx79eL
-   cBdI54kL6Fo6AT/WSYazyxAfynxICiG/NHoIf/hGymKg3HtI2OOinpRpJ
-   7OAnydkudeEVOElXGkDv+vL6v6dUxS/uZ6ZyCAGvUWg66UOMi9+Z9KibL
-   A==;
-IronPort-SDR: oNha+Y6qa1g25DQREhZ50z/FIA5QY+f+S5QNcdHPxu9eiRh8JcvPAFid0ARns+H2wwDe8X/L8H
- jmzuFHbB9ddpsOUcFWNbVI1vxpL8gaV1iuqW5WKS6Z+LK7RPClf9h7upyh4IdiN5r+pLzKi3TO
- 6QEHLbUuiUhFfoSgn67nxMBAoEy/Wz7suNVZtLM8i6LcrEzl6nxCwGloukSSCvuuHvCm6IbD3z
- qHZIBKt4qkyQI7vIVi7i/JqXyhKh5IEyXcT4FFJQoq9rF4mYnL05Tv7JWApu3qHrtgXzXA8POa
- qxw=
-X-IronPort-AV: E=Sophos;i="5.78,356,1599516000"; 
-   d="scan'208";a="15269818"
-Date:   Fri, 20 Nov 2020 14:47:42 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Adam Ward <adam.ward@diasemi.com>
-CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/9] regulator: Update DA9121 dt-bindings
-Message-ID: <20201120134742.y7bocaok3gcahbxt@axis.com>
-References: <cover.1605868780.git.Adam.Ward.opensource@diasemi.com>
- <a5a57b416a47c044797d9b669c7e021acd69abae.1605868780.git.Adam.Ward.opensource@diasemi.com>
+        id S1726548AbgKTOCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 09:02:39 -0500
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:51677 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726310AbgKTOCi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 09:02:38 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 40B1D580128;
+        Fri, 20 Nov 2020 09:02:37 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Fri, 20 Nov 2020 09:02:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=3PJSWe94axMKGpde3F+ATFXZ3E7
+        YjJoiE0buN+xUtmw=; b=HeImxUBVZ5PUTmaNRaSDUGUg/yckzq+8uIfrXxZwJ50
+        EUXf6OGRofMrhNGoQJrRfgJbgyktxNAUGqH9fWXid9n3J6HhveBmX3lOfNY3TQdx
+        owQQJ18dnF5fpcsKYN4AESMIRWKGJXYZUmlr1CfL5pTJzmKjSgWeHxfwfcKO5wDm
+        QmQ2ZCcrcNufxkf06piynm7q5MvoXpQHpFnZAJ1TYRm9MFZf8gzMOPBlspzm9tGT
+        mqXArWjtw3W5VB/ZIIovIjr2Jm8yiB5/Au186KKsq2vxSck/X1c4XqO3flZOlQIX
+        KlBbk5FfQAsX1IxMot6SsPKVVht3bQvuHfhrzw5uVMg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=3PJSWe
+        94axMKGpde3F+ATFXZ3E7YjJoiE0buN+xUtmw=; b=hhbO+K/aGMxUAuuaCt+O95
+        YBHAxzNtScurbiFrYWZdLZ91I1+PjwDVjnaFATBRuKZ0eOgiv3jKOLup0iUr10hT
+        DAmR0O0t/n9E8YGfS9IWGDuMAoswvXDxMORt9JpRFWBI2F0PFuWj8ToKSoNSLrrv
+        a/UL9dCWY1D9hEfSNzzOvtpTzBngyQeo7Kso2tGS3+yrH8FlGwkBdJTbk9tmzUS0
+        ccMBVnJHITdRUctLgKxEwCefExXugufuQDEZ6CQf6hkRbcUBGhVSU9z0EBBzFZfp
+        e5jAWWeklB/hvOvBMcvp0npKODoY5V6naDkBit0brLTdh+hEBd5TTw0UCo5Vk/6w
+        ==
+X-ME-Sender: <xms:esy3X9gpvPq5Zu52kVTlzemPWMGnycirq1b0qATF41C4A8IdOy-PYg>
+    <xme:esy3XyD9y_r1gIRpdsUnb-SqnLAtfttmTWaYTx_IcBWUMTghsdXJnk6B60FXXkp-w
+    d1pa8uv9RsFR3-UmQE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegtddgheeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:esy3X9HeJR-JALPw9b6ne03GB616EQR57g-ai97fDs1aHG9NwKit8A>
+    <xmx:esy3XyQR3zTgVACKMDY0_g9AbzQI0EeMWyE0N6Co_bq-aOk8oJkDGg>
+    <xmx:esy3X6xo1C0pHr9OpaltEHig40lmvuVTHhYGeElahd8lfD6zXCDBow>
+    <xmx:fcy3X_LGaHuq0Ktfuq2FceyCVZ_qJ8IuMndz6WJfQxTp08gs1yPIKg>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 18F82328006A;
+        Fri, 20 Nov 2020 09:02:34 -0500 (EST)
+Date:   Fri, 20 Nov 2020 15:02:32 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Thomas Zimmermann <tzimmermann@suse.de>
+Cc:     Eric Anholt <eric@anholt.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        linux-rpi-kernel@lists.infradead.org,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v3 6/7] drm/vc4: kms: Store the unassigned channel list
+ in the state
+Message-ID: <20201120140232.gd7a5v3bdymo6fbp@gilmour>
+References: <20201105135656.383350-1-maxime@cerno.tech>
+ <20201105135656.383350-7-maxime@cerno.tech>
+ <c733bc70-8535-e4b9-1db6-a7b51e2781a7@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="e32t2d7ca57hrzyz"
 Content-Disposition: inline
-In-Reply-To: <a5a57b416a47c044797d9b669c7e021acd69abae.1605868780.git.Adam.Ward.opensource@diasemi.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <c733bc70-8535-e4b9-1db6-a7b51e2781a7@suse.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 01:14:50PM +0100, Adam Ward wrote:
-> Update bindings for the Dialog Semiconductor DA9121 voltage regulator to add device variants.
-> 
-> Signed-off-by: Adam Ward <Adam.Ward.opensource@diasemi.com>
-> ---
->  .../devicetree/bindings/regulator/dlg,da9121.yaml  | 177 +++++++++++++++++++--
->  MAINTAINERS                                        |   2 +
->  .../dt-bindings/regulator/dlg,da9121-regulator.h   |  22 +++
->  3 files changed, 185 insertions(+), 16 deletions(-)
->  create mode 100644 include/dt-bindings/regulator/dlg,da9121-regulator.h
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml b/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
-> index cde0d82..1bd177d 100644
-> --- a/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
-> @@ -8,40 +8,185 @@ title: Dialog Semiconductor DA9121 voltage regulator
->  
->  maintainers:
->    - Vincent Whitchurch <vincent.whitchurch@axis.com>
-> +  - Adam Ward <adam.ward@disasemi.com>
 
-I'm quite happy to have myself removed from the list instead.  You are
-in a much better position to maintain the bindings for these chips.
+--e32t2d7ca57hrzyz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> -  buck1:
-> -    description:
-> -      Initial data for the Buck1 regulator.
-> -    $ref: "regulator.yaml#"
-> +  interrupt-parent:
-> +    maxItems: 1
-> +    description: Specifies the reference to the interrupt controller.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: IRQ line information.
-> +
-> +  dlg,irq-polling-delay-passive:
-> +    maxItems: 1
-> +    description: |
-> +      Specify the polling period, measured in milliseconds, between interrupt status
-> +      update checks. Range 1000-10000 ms.
-> +
-> +  regulators:
->      type: object
-> +    $ref: regulator.yaml#
-> +    description: |
-> +      This node defines the settings for the BUCK. The content of the
-> +      sub-node is defined by the standard binding for regulators; see regulator.yaml.
-> +      The DA9121 regulator is bound using their names listed below
-> +      buck1 - BUCK1
-> +      buck2 - BUCK2       //DA9122, DA9220, DA9131, DA9132 only
+Hi!
 
-This move to a sub-node means that older devicetrees won't work. I
-assume that's fine since the driver is only in linux-next at the moment,
-but perhaps it's worth mentioning this in the commit message?
+On Thu, Nov 19, 2020 at 09:59:15AM +0100, Thomas Zimmermann wrote:
+> Am 05.11.20 um 14:56 schrieb Maxime Ripard:
+> > If a CRTC is enabled but not active, and that we're then doing a page
+> > flip on another CRTC, drm_atomic_get_crtc_state will bring the first
+> > CRTC state into the global state, and will make us wait for its vblank
+> > as well, even though that might never occur.
+> >=20
+> > Instead of creating the list of the free channels each time atomic_check
+> > is called, and calling drm_atomic_get_crtc_state to retrieve the
+> > allocated channels, let's create a private state object in the main
+> > atomic state, and use it to store the available channels.
+> >=20
+> > Since vc4 has a semaphore (with a value of 1, so a lock) in its commit
+> > implementation to serialize all the commits, even the nonblocking ones,=
+ we
+> > are free from the use-after-free race if two subsequent commits are not=
+ ran
+> > in their submission order.
+> >=20
+> > Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automatic=
+ally")
+> > Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+> > Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >   drivers/gpu/drm/vc4/vc4_drv.h |   1 +
+> >   drivers/gpu/drm/vc4/vc4_kms.c | 124 +++++++++++++++++++++++++++-------
+> >   2 files changed, 100 insertions(+), 25 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_dr=
+v.h
+> > index bdbb9540d47d..014113823647 100644
+> > --- a/drivers/gpu/drm/vc4/vc4_drv.h
+> > +++ b/drivers/gpu/drm/vc4/vc4_drv.h
+> > @@ -219,6 +219,7 @@ struct vc4_dev {
+> >   	struct drm_modeset_lock ctm_state_lock;
+> >   	struct drm_private_obj ctm_manager;
+> > +	struct drm_private_obj hvs_channels;
+> >   	struct drm_private_obj load_tracker;
+> >   	/* List of vc4_debugfs_info_entry for adding to debugfs once
+> > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
+s.c
+> > index 499c6914fce4..0a231ae500e5 100644
+> > --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> > @@ -37,6 +37,17 @@ static struct vc4_ctm_state *to_vc4_ctm_state(struct=
+ drm_private_state *priv)
+> >   	return container_of(priv, struct vc4_ctm_state, base);
+> >   }
+> > +struct vc4_hvs_state {
+> > +	struct drm_private_state base;
+> > +	unsigned int unassigned_channels;
+> > +};
+> > +
+> > +static struct vc4_hvs_state *
+> > +to_vc4_hvs_state(struct drm_private_state *priv)
+> > +{
+> > +	return container_of(priv, struct vc4_hvs_state, base);
+> > +}
+> > +
+> >   struct vc4_load_tracker_state {
+> >   	struct drm_private_state base;
+> >   	u64 hvs_load;
+> > @@ -662,6 +673,70 @@ static int vc4_load_tracker_obj_init(struct vc4_de=
+v *vc4)
+> >   	return drmm_add_action_or_reset(&vc4->base, vc4_load_tracker_obj_fin=
+i, NULL);
+> >   }
+> > +static struct drm_private_state *
+> > +vc4_hvs_channels_duplicate_state(struct drm_private_obj *obj)
+> > +{
+> > +	struct vc4_hvs_state *state;
+> > +
+> > +	state =3D kmemdup(obj->state, sizeof(*state), GFP_KERNEL);
+> > +	if (!state)
+> > +		return NULL;
+> > +
+> > +	__drm_atomic_helper_private_obj_duplicate_state(obj, &state->base);
+> > +
+> > +	return &state->base;
+> > +}
+> > +
+> > +static void vc4_hvs_channels_destroy_state(struct drm_private_obj *obj,
+> > +					   struct drm_private_state *state)
+> > +{
+> > +	struct vc4_hvs_state *hvs_state;
+> > +
+> > +	hvs_state =3D to_vc4_hvs_state(state);
+> > +	kfree(hvs_state);
+> > +}
+> > +
+> > +static const struct drm_private_state_funcs vc4_hvs_state_funcs =3D {
+> > +	.atomic_duplicate_state =3D vc4_hvs_channels_duplicate_state,
+> > +	.atomic_destroy_state =3D vc4_hvs_channels_destroy_state,
+> > +};
+> > +
+> > +static void vc4_hvs_channels_obj_fini(struct drm_device *dev, void *un=
+used)
+> > +{
+> > +	struct vc4_dev *vc4 =3D to_vc4_dev(dev);
+> > +
+> > +	drm_atomic_private_obj_fini(&vc4->hvs_channels);
+> > +}
+> > +
+> > +static int vc4_hvs_channels_obj_init(struct vc4_dev *vc4)
+> > +{
+> > +	struct vc4_hvs_state *state;
+> > +
+> > +	state =3D kzalloc(sizeof(*state), GFP_KERNEL);
+> > +	if (!state)
+> > +		return -ENOMEM;
+> > +
+> > +	state->unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0);
+> > +	drm_atomic_private_obj_init(&vc4->base, &vc4->hvs_channels,
+> > +				    &state->base,
+> > +				    &vc4_hvs_state_funcs);
+> > +
+> > +	return drmm_add_action_or_reset(&vc4->base, vc4_hvs_channels_obj_fini=
+, NULL);
+> > +}
+> > +
+> > +static struct vc4_hvs_state *
+> > +vc4_hvs_get_global_state(struct drm_atomic_state *state)
+> > +{
+> > +	struct vc4_dev *vc4 =3D to_vc4_dev(state->dev);
+> > +	struct drm_private_state *priv_state;
+> > +
+> > +	priv_state =3D drm_atomic_get_private_obj_state(state, &vc4->hvs_chan=
+nels);
+> > +	if (IS_ERR(priv_state))
+> > +		return ERR_CAST(priv_state);
+> > +
+> > +	return to_vc4_hvs_state(priv_state);
+> > +}
+> > +
+> >   /*
+> >    * The BCM2711 HVS has up to 7 output connected to the pixelvalves and
+> >    * the TXP (and therefore all the CRTCs found on that platform).
+> > @@ -678,6 +753,14 @@ static int vc4_load_tracker_obj_init(struct vc4_de=
+v *vc4)
+> >    *   need to consider all the running CRTCs in the DRM device to assi=
+gn
+> >    *   a FIFO, not just the one in the state.
+> >    *
+> > + * - To fix the above, we can't use drm_atomic_get_crtc_state on all
+> > + *   enabled CRTCs to pull their CRTC state into the global state, sin=
+ce
+> > + *   a page flip would start considering their vblank to complete. Sin=
+ce
+> > + *   we don't have a guarantee that they are actually active, that
+> > + *   vblank might never happen, and shouldn't even be considered if we
+> > + *   want to do a page flip on a single CRTC. That can be tested by
+> > + *   doing a modetest -v first on HDMI1 and then on HDMI0.
+> > + *
+> >    * - Since we need the pixelvalve to be disabled and enabled back when
+> >    *   the FIFO is changed, we should keep the FIFO assigned for as long
+> >    *   as the CRTC is enabled, only considering it free again once that
+> > @@ -687,46 +770,33 @@ static int vc4_load_tracker_obj_init(struct vc4_d=
+ev *vc4)
+> >   static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
+> >   				      struct drm_atomic_state *state)
+> >   {
+> > -	unsigned long unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0=
+);
+> > +	struct vc4_hvs_state *hvs_state;
+> >   	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
+> >   	struct drm_crtc *crtc;
+> >   	unsigned int i;
+> > -	/*
+> > -	 * Since the HVS FIFOs are shared across all the pixelvalves and
+> > -	 * the TXP (and thus all the CRTCs), we need to pull the current
+> > -	 * state of all the enabled CRTCs so that an update to a single
+> > -	 * CRTC still keeps the previous FIFOs enabled and assigned to
+> > -	 * the same CRTCs, instead of evaluating only the CRTC being
+> > -	 * modified.
+> > -	 */
+> > -	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
+> > -		struct drm_crtc_state *crtc_state;
+> > -
+> > -		if (!crtc->state->enable)
+> > -			continue;
+> > -
+> > -		crtc_state =3D drm_atomic_get_crtc_state(state, crtc);
+> > -		if (IS_ERR(crtc_state))
+> > -			return PTR_ERR(crtc_state);
+> > -	}
+> > +	hvs_state =3D vc4_hvs_get_global_state(state);
+> > +	if (!hvs_state)
+> > +		return -EINVAL;
+>=20
+> I found this confusing. It's technically correct, but from hvs_state is n=
+ot
+> clear that it's the new state. Maybe call it hvs_new_state.
 
-> +
-> +    patternProperties:
-> +      "^buck([0-1])$":
-> +        type: object
-> +        $ref: regulator.yaml#
-> +
-> +    properties:
-> +      regulator-mode:
-> +        maxItems: 1
-> +        description: Defined in include/dt-bindings/regulator/dlg,da9121-regulator.h
-> +
-> +      regulator-initial-mode:
-> +        maxItems: 1
-> +        description: Defined in include/dt-bindings/regulator/dlg,da9121-regulator.h
->  
-> -unevaluatedProperties: false
+Yeah, you're right, I'll change it
 
-I think my s/unevaluatedProperties/additionalProperties/ fix is already
-in linux-next, so this looks like it needs rebasing.
+> If you want to be pedantic, maybe split the creation of the new state from
+> the usage. Call vc4_hvs_get_global_state() at the top of vc4_atomic_check=
+()
+> to make the new state. (Maybe with a short comment.) And here only call an
+> equivalent of drm_atomic_get_new_private_obj_state() for hvs_channels.
+
+There's other private states in that driver, and the other states are
+using the same construct here, I did so to remain consistent
+
+> In any case
+>=20
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+Thanks!
+Maxime
+
+--e32t2d7ca57hrzyz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7fMeAAKCRDj7w1vZxhR
+xaksAP4z6Yr/nS9h5XkVmO6hbCo6Ql62QfXaQZGHm4JRqon4xgD+OfkkUxAgXfwZ
+SQj8cDeUQ2HD6HBKyCGfdipdCXLkPwk=
+=Z7hY
+-----END PGP SIGNATURE-----
+
+--e32t2d7ca57hrzyz--
