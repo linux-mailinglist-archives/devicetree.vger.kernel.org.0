@@ -2,475 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E64682BA4D3
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 09:40:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EA5A2BA541
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 09:57:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727151AbgKTIjD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 03:39:03 -0500
-Received: from mx2.suse.de ([195.135.220.15]:52946 "EHLO mx2.suse.de"
+        id S1727429AbgKTI4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 03:56:40 -0500
+Received: from mga11.intel.com ([192.55.52.93]:64567 "EHLO mga11.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727297AbgKTIjC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 03:39:02 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 2481DACC5;
-        Fri, 20 Nov 2020 08:39:00 +0000 (UTC)
-Subject: Re: [PATCH 1/8] drm: Introduce an atomic_commit_setup function
-To:     Daniel Vetter <daniel@ffwll.ch>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel.vetter@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org
-References: <20201113152956.139663-1-maxime@cerno.tech>
- <20201113152956.139663-2-maxime@cerno.tech>
- <c08b5a11-3e28-4236-b516-01a3e52cc7a0@suse.de>
- <20201119153217.GE401619@phenom.ffwll.local>
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-Message-ID: <a136d1bd-9712-fd81-900e-f10bfc5b3e8f@suse.de>
-Date:   Fri, 20 Nov 2020 09:38:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1727426AbgKTI4j (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 03:56:39 -0500
+IronPort-SDR: m2eGyCc2z49k8d0DDH/+htGpZ9bmqqWDBf0Cu9Sfc6kQ5YWVQyBWY82kAxGqUl14wp5TF3oqRC
+ IC817ZEfr87g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="167929965"
+X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; 
+   d="scan'208";a="167929965"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2020 00:56:39 -0800
+IronPort-SDR: pr7YBjOONhgkk0kXi1Chlf0YQXl5MlE91XeE+xN+57fHuJXMcrVi+cQgIBpP6KpywGcuFQBWDE
+ XpQ6zWucd7mQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; 
+   d="scan'208";a="533484301"
+Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
+  by fmsmga006.fm.intel.com with ESMTP; 20 Nov 2020 00:56:39 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 20 Nov 2020 00:56:38 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 20 Nov 2020 00:56:38 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
+ via Frontend Transport; Fri, 20 Nov 2020 00:56:38 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.1713.5; Fri, 20 Nov 2020 00:56:36 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Zvv2UTNoWA9RachenIg0tkjHN87xEiTqkWZjZFuoBsqCuE4E9VL13s4GMxYGd28NhHPgxbuGxFZDIHymn+9BmsvE++FNqWeWrMq4kubzEQAdu5hBnBOUPh1+pKXB/G3HQIQzA1bBNNPfUNoq4A++qkllYOqy91GLrlswElS37iJ86jBC2l/oDZJQP0y9oka2cE+XLx/9p6WirgenIzh5uzap2aZrYgW1/9BuVpI0DOY3qiK/Dp0ogy+9FTH5U4y5jLuDevmP7Ex/A/OFqfB53kOCEqyzWRUPGmKTdKMDr7wyFmFykKScl4lHlm3KWBoAF2wgUGLPl1IXBRPHywXeHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=32TEqE5FSttrSXfMwmC5QwNe/Q4YIiiDgBdzKVzf/xI=;
+ b=JzKBWQO/SJ4v5XkVLLJ6zMdB//ZfIDhKt49U1O1TCEpKt5uf8LV09i1eSKlufkiygVuFJeojDibNm3vnd7b/sMM6CdIWbk7uI/vVCLOUbNZBvM8ppW9VURNibXSoJKaxhnNUt2tZjTQt6BVl3VfVg9DR32Bhlbe9uN0mt7diAZla2whg5hvrlNAeEJqlB6qePue6futMbWslSLXJaMRbDeRvQnIgpWQE24D10BZVLIr2tIxx/OzjRVMwKk+PNpTas88tk4Frdw3n7tu+frZq4GTKPwYjrOridcMK0ObDI0TJ+EQPRrxW1TdeoUVc+06gXtIURcf1XfuZ5mc0J9nbHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=32TEqE5FSttrSXfMwmC5QwNe/Q4YIiiDgBdzKVzf/xI=;
+ b=fNNgdLoRjHTw49SFn6MhkonLXnB3mSCtu/jrlfev9RBuJdiXDybItF/oyJBNUIWUKWXME/lTt3gVqZ5GQ9ObcTA04wHXeuN3WtVHTdGIczohl3kUL8ix73MXs90bdrrCOzBvAKCxkexLjSXDQw0VHYUEczaJ3x1n8h5alXDBDh0=
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
+ by MWHPR11MB0063.namprd11.prod.outlook.com (2603:10b6:301:6c::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Fri, 20 Nov
+ 2020 08:56:35 +0000
+Received: from CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::4820:6e90:3d0e:3b5f]) by CO1PR11MB5026.namprd11.prod.outlook.com
+ ([fe80::4820:6e90:3d0e:3b5f%4]) with mapi id 15.20.3589.022; Fri, 20 Nov 2020
+ 08:56:35 +0000
+From:   "Sia, Jee Heng" <jee.heng.sia@intel.com>
+To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+CC:     "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA
+ handshake
+Thread-Topic: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay
+ AxiDMA handshake
+Thread-Index: AQHWvIranRliWUyoiUC041c/U0Xoy6nOkjKOgAGhikCAAIM/wA==
+Date:   Fri, 20 Nov 2020 08:56:35 +0000
+Message-ID: <CO1PR11MB502626E7EE93B74E20BBB437DAFF0@CO1PR11MB5026.namprd11.prod.outlook.com>
+References: <20201117022215.2461-1-jee.heng.sia@intel.com>,<20201117022215.2461-14-jee.heng.sia@intel.com>
+ <MWHPR1201MB0029177B655D2B57D636CAB0DEE10@MWHPR1201MB0029.namprd12.prod.outlook.com>
+ <CO1PR11MB502675222991EE9CECE782F2DAFF0@CO1PR11MB5026.namprd11.prod.outlook.com>
+In-Reply-To: <CO1PR11MB502675222991EE9CECE782F2DAFF0@CO1PR11MB5026.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-reaction: no-action
+dlp-version: 11.5.1.3
+authentication-results: synopsys.com; dkim=none (message not signed)
+ header.d=none;synopsys.com; dmarc=none action=none header.from=intel.com;
+x-originating-ip: [192.198.147.192]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e87b6b0a-c358-4835-5fbb-08d88d322f44
+x-ms-traffictypediagnostic: MWHPR11MB0063:
+x-microsoft-antispam-prvs: <MWHPR11MB0063A77EDFAC46A3DEE1DCC9DAFF0@MWHPR11MB0063.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: bLkhtynce5rFXyIDHtpipqyLey4Y3lDLP7yqLSU8ofP/I1IzOP/yukCwAZd0eh25KBmTEmxhjWuIBmf8RPiMxO4VEaNVsJNU3XJv3E+c7PfPp7bOw/vocBtnVvxM7S1BwS022JH0XaimijVtojIhzmsICjNAbuydx/68GunOZVtQlebZorHC59bINQAiDbOifhgyyYunyyxF2pULQcsm+o50Ow002UipV932Z6IXo1gp+EVVL1a1s/FMRBi1QL9s7CyV+1TingjL0DrwzNvv8MkUMjBJv/upzy+g5CsQv+sG2InzozLvi1Mk3OeSD+nusQAbeYQdl85dQOKyNvit/Q==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(39860400002)(346002)(396003)(136003)(2906002)(6916009)(8676002)(186003)(8936002)(6506007)(26005)(83380400001)(2940100002)(33656002)(9686003)(4326008)(52536014)(54906003)(55016002)(478600001)(71200400001)(76116006)(53546011)(5660300002)(66446008)(66476007)(7696005)(64756008)(66556008)(86362001)(66946007)(316002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: 5yo9HgKvtKS1dRWWtXD2I9r240Miy/u+aLPJDVD/6FRQ36xPIK+4W3LyCiZUgTrk5qAyf9Yp45a/e4PUW+2MnVr6yqSAdtg425c9WBiBamXcD0N/4PkP7cwy1n7hbr5zni7iu4mOR3HW8SZejRIpoT2f1KDA9y/av9amuSVX2NUGgjrToLXrIjUO9jkY+etNu6ikfxfzARKXJYJRdjwFnYyF1Rc371Et/ILGdJZJVh7UDOA1+sCPUr+cr5LVWFJFxVi77j+Gwe9VXRXvo3b5EOF5ZJkAi5aeCAYJq8xRe7XgdVFfHWJ2GJMt4F9dM03+P4wjjyCml20lMKp2yBApcRTZ+wtONY1dWsWl3FmCRFI+kcWyC/DKMPfQmZThz4XJxlrzp8TtHWoAKm95iSxqFVMjgKlDlbfiQNQRSo0vtZ6f3nQxUG7CJlNb8VQRQbYlEev8qTsmew2SRftui/j85cpXBhbOPI64SD8pU/XnIO5pMOtCzqs87qtCQPpt9LqWSJvDT1/FVmDgjtau2PKMcu1t2AQBd4E0N6i3hAACryP/RuIL+8/aUhJFS/rtQkH3yvT5nnc7Wg79HcGS+1jSHbskRwXbxJpk35a1/hR4ZhOcRFvdzD1pphxv+cEFL7ThNh032flH6nuf3vrCO0Cj1cqicHiAmgpwUZnQEMUWF5b07HsP4xi8gNP83c4jgST/oGcYOduQOsKviQyJyIXwDGvr39I+R4RLgPfgsARbCzEshsgRebdl59jnpA4JW6cxs3TS5zxeBzFqh+a9VPk69VvXGnhfUffmvyWR4Vj2qp5OirvFiUsY1ZHGbTaEx4Xh13uozQkleFMa895XJpm7PF9ONuQ6Ef5wVZTa9Ed6grwvEJ1eiYyS6u8gHiqD5aJvAEtTbxEndjSGMj8QqvcHFQ==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <20201119153217.GE401619@phenom.ffwll.local>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="wTxtlvAtyqjPF87VYo4meHslkeoFrQCtG"
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e87b6b0a-c358-4835-5fbb-08d88d322f44
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2020 08:56:35.2442
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: SQTU6HG3qLXQjB5T1SYbu/ai0QowRd+Fq4kbitRjoyAkda8Zq4olnnvehrwy9OUpofvX9n/qqKQPq9HeEqSwDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB0063
+X-OriginatorOrg: intel.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---wTxtlvAtyqjPF87VYo4meHslkeoFrQCtG
-Content-Type: multipart/mixed; boundary="soD3hDGcorotbxSY3yVGCOxURbisw4Khp";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Daniel Vetter <daniel@ffwll.ch>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Tim Gover <tim.gover@raspberrypi.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- David Airlie <airlied@linux.ie>, Daniel Vetter <daniel.vetter@ffwll.ch>,
- dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
- bcm-kernel-feedback-list@broadcom.com, Maxime Ripard <maxime@cerno.tech>,
- Daniel Vetter <daniel.vetter@intel.com>,
- Frank Rowand <frowand.list@gmail.com>, Phil Elwell <phil@raspberrypi.com>,
- linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org
-Message-ID: <a136d1bd-9712-fd81-900e-f10bfc5b3e8f@suse.de>
-Subject: Re: [PATCH 1/8] drm: Introduce an atomic_commit_setup function
-References: <20201113152956.139663-1-maxime@cerno.tech>
- <20201113152956.139663-2-maxime@cerno.tech>
- <c08b5a11-3e28-4236-b516-01a3e52cc7a0@suse.de>
- <20201119153217.GE401619@phenom.ffwll.local>
-In-Reply-To: <20201119153217.GE401619@phenom.ffwll.local>
+Hi Eugeniy,
 
---soD3hDGcorotbxSY3yVGCOxURbisw4Khp
-Content-Type: multipart/mixed;
- boundary="------------56FCE0F8727115BF8560F306"
-Content-Language: en-US
+With regards to the below comment
+> > In some places you check for this region existence using if
+> > (IS_ERR(chip->regs)) and in other places you use if (!chip->apb_regs)
+The main reason of using IS_ERR() is because of the ioremap() function retu=
+rn an error value
+if the mapping failed.
+And now with your suggestion to add conditional checking to the compatible =
+property, the chip->apb will
+remain NULL on non Intel KeemBay SoC. Therefore, the "if (!chip->apb_regs)"=
+ condition will be used instead.
 
-This is a multi-part message in MIME format.
---------------56FCE0F8727115BF8560F306
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Please let me  know if you have other concern.
 
-Hi
-
-Am 19.11.20 um 16:32 schrieb Daniel Vetter:
-> On Thu, Nov 19, 2020 at 10:59:42AM +0100, Thomas Zimmermann wrote:
->> Hi
->>
->> Am 13.11.20 um 16:29 schrieb Maxime Ripard:
->>> Private objects storing a state shared across all CRTCs need to be
->>> carefully handled to avoid a use-after-free issue.
->>>
->>> The proper way to do this to track all the commits using that shared
->>> state and wait for the previous commits to be done before going on wi=
-th
->>> the current one to avoid the reordering of commits that could occur.
->>>
->>> However, this commit setup needs to be done after
->>> drm_atomic_helper_setup_commit(), because before the CRTC commit
->>> structure hasn't been allocated before, and before the workqueue is
->>> scheduled, because we would be potentially reordered already otherwis=
-e.
->>>
->>> That means that drivers currently have to roll their own
->>> drm_atomic_helper_commit() function, even though it would be identica=
-l
->>> if not for the commit setup.
->>>
->>> Let's introduce a hook to do so that would be called as part of
->>> drm_atomic_helper_commit, allowing us to reuse the atomic helpers.
->>>
->>> Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
->>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
->>> ---
->>>    drivers/gpu/drm/drm_atomic_helper.c      |  6 ++++++
->>>    include/drm/drm_modeset_helper_vtables.h | 18 ++++++++++++++++++
->>>    2 files changed, 24 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/dr=
-m_atomic_helper.c
->>> index ddd0e3239150..7d69c7844dfc 100644
->>> --- a/drivers/gpu/drm/drm_atomic_helper.c
->>> +++ b/drivers/gpu/drm/drm_atomic_helper.c
->>> @@ -2083,8 +2083,11 @@ int drm_atomic_helper_setup_commit(struct drm_=
-atomic_state *state,
->>>    	struct drm_plane *plane;
->>>    	struct drm_plane_state *old_plane_state, *new_plane_state;
->>>    	struct drm_crtc_commit *commit;
->>> +	const struct drm_mode_config_helper_funcs *funcs;
->>>    	int i, ret;
->>> +	funcs =3D state->dev->mode_config.helper_private;
->>> +
->>>    	for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_cr=
-tc_state, i) {
->>>    		commit =3D kzalloc(sizeof(*commit), GFP_KERNEL);
->>>    		if (!commit)
->>> @@ -2169,6 +2172,9 @@ int drm_atomic_helper_setup_commit(struct drm_a=
-tomic_state *state,
->>>    		new_plane_state->commit =3D drm_crtc_commit_get(commit);
->>>    	}
->>> +	if (funcs && funcs->atomic_commit_setup)
->>> +		return funcs->atomic_commit_setup(state);
->>> +
->>>    	return 0;
->>>    }
->>>    EXPORT_SYMBOL(drm_atomic_helper_setup_commit);
->>> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/d=
-rm_modeset_helper_vtables.h
->>> index f2de050085be..56470baf0513 100644
->>> --- a/include/drm/drm_modeset_helper_vtables.h
->>> +++ b/include/drm/drm_modeset_helper_vtables.h
->>> @@ -1396,6 +1396,24 @@ struct drm_mode_config_helper_funcs {
->>>    	 * drm_atomic_helper_commit_tail().
->>>    	 */
->>>    	void (*atomic_commit_tail)(struct drm_atomic_state *state);
->>> +
->>> +	/**
->>> +	 * @atomic_commit_setup:
->>> +	 *
->>> +	 * This hook is used by the default atomic_commit() hook implemente=
-d in
->>> +	 * drm_atomic_helper_commit() together with the nonblocking helpers=
- (see
->>> +	 * drm_atomic_helper_setup_commit()) to extend the DRM commit setup=
-=2E It
->>> +	 * is not used by the atomic helpers.
->>> +	 *
->>> +	 * This function is called at the end of
->>> +	 * drm_atomic_helper_setup_commit(), so once the commit has been
->>> +	 * properly setup across the generic DRM object states. It allows
->>> +	 * drivers to do some additional commit tracking that isn't related=
- to a
->>> +	 * CRTC, plane or connector, typically a private object.
->>> +	 *
->>> +	 * This hook is optional.
->>> +	 */
->>> +	int (*atomic_commit_setup)(struct drm_atomic_state *state);
->>
->> It feels hacky and screwed-on to me. I'd suggest to add an
->> atomic_commit_prepare callback that is called by drm_atomic_helper whe=
-re it
->> currently calls drm_atomic_helper_setup_commit(). The default implemen=
-tation
->> would include setup_commit and prepare_planes. Some example code for
->> drm_atomic_helper.c
->>
->> static int commit_prepare(state)
->> {
->> 	drm_atomic_helper_setup_commit(state)
->>
->> 	drm_atomic_helper_prepare_planes(state)
->> }
->>
->> int drm_atomic_helper_commit()
->> {
->> 	if (async_update) {
->> 		...
->> 	}
->>
->> 	if (funcs->atomic_commit_prepare)
->> 		funcs->atomic_commit_prepare(state)
->> 	else
->> 		commit_prepare(state)
->>
->> 	/* the rest of the current function below */
->> 	INIT_WORK(&state->commit_work, commit_work);
->> 	...
->> }
->>
->> Drivers that implement atomic_commit_prepare would be expected to call=
-
->> drm_atomic_helper_setup_commit() and drm_atomic_helper_prepare_planes(=
-) or
->> their own implementation of them.
->>
->> The whole construct mimics how commit tails work.
+> -----Original Message-----
+> From: Sia, Jee Heng
+> Sent: 20 November 2020 8:47 AM
+> To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> Cc: andriy.shevchenko@linux.intel.com; dmaengine@vger.kernel.org; linux-
+> kernel@vger.kernel.org; devicetree@vger.kernel.org
+> Subject: RE: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay A=
+xiDMA
+> handshake
 >=20
-> Yeah what I suggested is a bit much midlayer, but we've done what you
-> suggested above with all drivers rolling their own atomic_commit. It
-> wasn't pretty. There's still drivers like vc4 which haven't switched, a=
-nd
-> which have their own locking and synchronization.
 >=20
-> Hence why I think the callback approach here is better, gives drivers l=
-ess
-> excuses to roll their own and make a mess.
-
-But it sounds like you'll regret this. As soon as a driver has to do=20
-additional stuff at the beginning of the setup function, another helper=20
-will be required, and so on. Maybe rather go with the commit_prepare=20
-helper and push driver authors to not use it.
-
-Best regards
-Thomas
-
-> -Daniel
 >=20
-
---=20
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-(HRB 36809, AG N=C3=BCrnberg)
-Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
---------------56FCE0F8727115BF8560F306
-Content-Type: application/pgp-keys;
- name="OpenPGP_0x680DC11D530B7A23.asc"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
- filename="OpenPGP_0x680DC11D530B7A23.asc"
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdgX=
-H47
-fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0BeB5B=
-bqP
-5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4YchdHm3bkPj=
-z9E
-ErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB9GluwvIhSezPg=
-nEm
-imZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEBAAHNKFRob21hcyBaa=
-W1t
-ZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwI4EEwEIADgCGwMFCwkIBwIGFQoJCAsCB=
-BYC
-AwECHgECF4AWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCXvxIWAAKCRBoDcEdUwt6I+aZB/9ih=
-Onf
-G4Lgf1L87cvoXh95/bnaJ6aQhP6/ZeRleuCXflnyDajlm3c9loQr0r2bQUi7JeYwUKbBab2QS=
-GJm
-DMRGlLMnmzWB8mHmZ6bHAu+2Sth8SraE42p6BB9d8dlYEID+dl/D/xUBeulfkck5rloGtYqDi=
-+1Q
-DfkEZJaxVSZ6FFkXuQi/G9qcI4iklN2nv02iQ7mZe8WYAysix6s/6vIobhirEBreclSNxXqis=
-p8n
-91+v855JC11EgRdUXMRK81IAaCKXP8zLx3ixku7mvP9Om61yerHSbeU2HZbIggZYQlFh6llJm=
-zF1
-CjCWgPTJyk4t4kMTcNOw5ykD47vU/KW+wl0EEBECAB0WIQQn6OOmnzvP/7ktjmoud6EwEfXTw=
-gUC
-WzodVwAKCRAud6EwEfXTwidvAKDkOADDHfI0QNXqAZcg6i1kOndAYACeLXHBwpjnumkPSyoab=
-IiL
-+he8r3zCwHMEEAEIAB0WIQQeXZghmQijlU7YzFiqUDvJrg9HpwUCWznxsQAKCRCqUDvJrg9Hp=
-42f
-CADIvsZcAd04PDFclRltHr2huy6s7+ZZA6PgYlMblEBh4bJA+dNPBTvzpJ7FJv/bmHOa+phWy=
-Urj
-EpfFGuOKGuWAfzgVAEu52fMrW3/mm+O26z1AKIu8hiZ/x9OAe4AM71ZO2lZrV1/53ZdzWnRuO=
-45N
-GQcotU8oeVfT9okAfmozmWMmIMq7Q0K6bV8W3qiD5XfDNxjr2caxc/9WX1bZPUo3n0H23MNaA=
-Tpy
-Oz732UtDh6sKUAB1RfzBBd/REbjHD7+quwJGAdRScyDRncX1vNb2+wihy0ipA69XY3bkhR5iD=
-u5r
-A9enuiMe6J1IBMI1PZh+vOufB/M6cd2D9RULIJaJwsBzBBABCAAdFiEEuyNtt7Ge78bIRx1op=
-/N8
-GYw5MYEFAls6MrsACgkQp/N8GYw5MYEnLQf/dwqlDJVQL2q+i8FFaqTMAm0n9jLRV6pN8JxFH=
-j0g
-voyWUOnQuNdAFgtKd26ZhN8NkLoSMO8E19eBPfLoBIFK5yNNVmRHAZm07MzGbA0uNWINJhmdR=
-bZM
-RMh0nneXjcEU/IvUmd8TPFTAd24X2mbzHgcaHMLJSVx1ohd4alRJXHIqDobKmiVwekyPnInJn=
-zWw
-iuZUkIotTkQple1PT/dF3S+KtPXBL6ldQ4NkAeCjsz4wnzSa9+VKOxEhiHM0PMzXSbkCMP+4m=
-Xy9
-RMplBw9Dm9hN2PSouBPifIrSodiiSWZYXOEkzLiBAB0frCKR63Dnx9kvjCD9Pz5wLd/70rjqI=
-cLA
-jgQTAQgAOAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC=
-3oj
-BQJftODHAAoJEGgNwR1TC3ojZSIIAIV3makffp4P4leU8JSLt0aTNewsOhy7VQzKUtlCw3PKD=
-3l/
-SuymZhQKgH+n6sijzFauZnZ+x0T+Oy+dDVZb3sNJuuMUDIHw18EO9daZBMcueaS54FGe73lAp=
-HUl
-7nxyocCxoqIG8+fP+75itV/ls2TSh5rJvjLvHC8J3NqfGlJ/jlSKrQUnzFbXfE5KGWiKNAn+I=
-1a2
-EE0I7uLpYgkdb8hcjtV9Rxr2ja+GWOaSoqB29P5GUzipkWo4144Q16JBO6QP2R9y/1ZK9VqH2=
-5T8
-lTKocLAaHCEdpDqY5KI15as9tIxlI1Vh+eqhTh/gwEm1ykO1gmrQ1zvGLDMB1EE6El3NJ1Rob=
-21h
-cyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIbAwULCQgHAgYVC=
-gkI
-CwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJe/EheAAoJEGgNwR1TC3ojq=
-RgI
-AIoegtTp1prPzfHgTAuEPd8v58ssHubwi9tg69a8IJ+iMNozhs4iUou84WOLBJNjSieXHZRa8=
-fJj
-//2/sTuABn38AQ9FcKX9/B49hrdCo6c0WHHKqlPrSTzuXNKYyOdmSFd/pDhBb2Bn5DTxxH5RP=
-m/N
-U/C9nUlwi7Y+FgBlDNa5h592wmJfv0cJAfvF56C+QL65jHFOFIW9xSaTOAxxMXHGJHXki6Iwa=
-aTg
-s7QQlKQcd5XvvED1bwLyQ7rq+MEZo5N7IygpQMM3qqGMlCnDdyQ3W95rd0HCWpfa0oVRCOwdu=
-SL3
-5hG7ONqBpvBj8z5GjSbt4HLJGvpeT0k37qzRExrCXQQQEQIAHRYhBCfo46afO8//uS2Oai53o=
-TAR
-9dPCBQJbOh1XAAoJEC53oTAR9dPC05AAoIy0HQ2DBDYugQ42P4HfyxfZTIvKAJ0fqNBcBFW9S=
-tbR
-DEP9cfpNVOv8YMLAcwQQAQgAHRYhBB5dmCGZCKOVTtjMWKpQO8muD0enBQJbOfGzAAoJEKpQO=
-8mu
-D0enL0wIAM2NTeUDCofBAkbWHGTZopclefbh0xGPYQEfttNyalp0hn1CrVO7OsX5eTjRqgyOa=
-1C5
-OAsNghCM4PUmrfv5cZ9+sNn9bRM50uVW9IFRlq8wwBY4+7QejJ5gs7DW/0tZIMZ6iTGKK0WEO=
-7gd
-2K9hXadPBScTdIqXeWH82meiqElnEQL+K9UeGUBrku+1EQIOxwziKwTDlTvhyJ+xmEKj0uWRc=
-Ocl
-27xLS9XOWPGXcNQBtlZhF8e/E1kFRt5CPP5UBdUCN8qydUadseXivSNDiYob9dyJSFt7G0Bq4=
-/ac
-Ret5ANtGRWsp8xYJQRossRMWL0w9P8SiIc2IY/JrQrpz29nCwHMEEAEIAB0WIQS7I223sZ7vx=
-shH
-HWin83wZjDkxgQUCWzoywAAKCRCn83wZjDkxgQaDCACyFuBLQWNvLT8GTDqTf/gETzmtoEM6Y=
-r8O
-4jbYg05xiFzAqMZctQsm3zHakx2JrimxDvQJRQJQzp5ICJ7J/BOuSL4FE1SPeQIfjm4jyBZGH=
-P/W
-vgHsT5e3+ZCPePPZO+3irarTKVhaaP70Tpka6EsOCZzO6L8D6tUDkhxMX0ymy7p8w9Yt1eD0o=
-Ume
-mxrKdS1ulpNJUTBw7gJN8bMowVnycEm6wntxOjrCxuwbkKhFLdn0ejcXQ0UkfbUFKfU64gGBu=
-S53
-ZlM8XlOhQEIw/FrdXszhR+Tg3Ag130cmJhOrghgOBLzvJfUd6OvDT5VIz0QGbAm8SWlAIIms1=
-9Z8
-kBsLwsCOBBMBCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEEchf7rIzpz2NEoWjla=
-A3B
-HVMLeiMFAl+04McACgkQaA3BHVMLeiPHXAf/SEoZa6CKoOAs1ctEP/hN8cEQqbEiuZ+71nm3u=
-/BQ
-p/CEUvqGq+iVc8kkpClDbPz5fa9mb+yWwufsnXKOs6ygmEoAEOL7dBZZIaRobBEkB09VXIkx8=
-lE0
-00grBVtToHUGRfZcMoMZ98XhPGU6lJDN200j/2CV46hQDz6PLySecNjOME05mosbYW5N2JwFd=
-uXP
-Qx++DjWB32QLBhcOcP3WslTy3PKVe/TcTvk0JpPFMz4UFc+awBVhDgZiGGAW3xLZRYyhpoAEs=
-N7u
-XkV2ct0MRxuZ3y4tTYJobhbZwutRojiPPZduRw9CSpNDcQHruFiSOIQTpnLeCA6K2JAZyqmP/=
-87A
-TQRbOdLgAQgAxiY/gz9X5PlFjlq3+DutR02wuFa/UA9iuH1FB584Nges1EdQT16ixhtPpcyvJ=
-H2F
-PxeUY5hHApbCJAGhZIOJMyj9eLb2NSefgFd8janHYNNfBzbYsq0sCBNGM/6ptTrdjTGdA3b1Q=
-YNt
-iDLIrnUNbcfQh/Zrck2yF4AAr5dz1tqPQsYhzxP26IRYcGcIf5F2GABOdZYYp0N6BRHkGQN8O=
-Dk7
-8UhLKYkEfHYPKiSW/mDgHOSCpOrCZpjOyXxTFkq9trGrTNt6EN1ryW+EVeh00UwCBMsmUu4Ng=
-4Ys
-rYDButLdKnQARuSl0kFvjipWUablsClmi4d4n/6f7uvXb6Wp2wARAQABwsB8BBgBCAAmFiEEc=
-hf7
-rIzpz2NEoWjlaA3BHVMLeiMFAls50uACGwwFCQPCZwAACgkQaA3BHVMLeiOl9wgAifA/k6VwQ=
-qiR
-OccKINPPg6fLgacdE/Z9cBNBkIrGa7gAljaH2J/D01/ZOMJnoAy8Le2EA3SsUOPnk32XizUKl=
-oOj
-gn7R+Sse7I1pydPbToJ4lXUTs1ie3FSf4tKJGs53LCfp6uPFGL0RhNUsIdwOEESMqYVl+DgAz=
-gZk
-xZfWWDT54dt3mgvVqzbxa+8j+4hozJXxFvJei3Wv/xAuVaV1Tc2tMXmntMxTbLdkfaZ/my5Io=
-cAy
-1sTiMonxkcU6jcaEuCNWsFYcT0lc7TzEqSAP7Dq/zf6eiawS5/oLotiupj+2xm/IRfrM3wK2K=
-s90
-9a79Vc1FgCX+Vq3uVIjcfbqqscLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojB=
-QJf
-tOH6AAoJEGgNwR1TC3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6=
-Baa
-6H7ufXNQtThRyIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3=
-T0T
-trijKP4ASAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446S=
-h8W
-n/2DYa8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRai=
-tYJ
-4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9fOwU0EX7ThE=
-wEQ
-ANJiTIb/nQ+MPgIBsSfBBhmXrVFUwFveO6DWPZ0M+Y5xBJhvDukosstSgcLCdld4SFF2JnnCo=
-yh9
-boM2j2Ksd5wNzTzXlo3lEzFRAipftboviUjap0qxoRwy1hBV3Ft1/VyNwwYY7qjGVATQU7cIT=
-/zL
-gb+Sd0NPQA8r2NvpJq1MnI8nFfA2ZH4diuRtavhEBUzp63SlCYxnyxqT5AQzSQGUpsjSyh1A5=
-ezt
-j1pwxgnkX7F9ZT0lUBo6zZM6ZBq8Nkyvox46l79QoWMBm9y+/nIXy/uXdT6RaumPjBzVttGmk=
-Onm
-TlGUJyQAndAE1boib9iWCJ4kIr2ezRKjXJXGuaM1m7hSfdQYWed0j52+nW9qGSNNk1GjYXM8Z=
-SWT
-agX6O5mfbpzRgBBK/XoE9NWRNAa4V+tUX4/vqqDl0m+O4F2GYs6Eu7WLredRgwjDuMF/VCKvQ=
-fr3
-yjIt90Zi10cHQw3khdJWmSDKYgenpvsffo4x56biifOh6IxS/whf5/BAx4nx8GyX7JO0DUnUu=
-ieC
-NfEGRu8QbYBSOkO/vdm4xy7RZwdzlqN8zjCLFOCG346Bnsx3ku2lNtX6qZoajmfD4oO6N0Xds=
-2pE
-wjufCfJW9sCLdBmqLD5OvsRljyv7vt5w28XSF1tyhQaxIs+8sFJtwfCliduffq56FcFrEXCxs=
-LQr
-ABEBAAHCwqwEGAEIACAWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCX7ThEwIbAgJACRBoDcEdU=
-wt6
-I8F0IAQZAQgAHRYhBMZ3Zv36bjFHcGBRaJYfxNxEKL/gBQJftOETAAoJEJYfxNxEKL/gkygQA=
-LQH
-pXm45ZfMCDx7u/d7rRH/R7EfEV5OAoS981IkzbTgrb9z6YYfhQqH+R2ImgoX/Lou7zSjyd22/=
-IaZ
-AnTKHKkXIFIM1uB144dqAi3tW/Bei/CSdiD7DY1q92Ebl6e+Gpf3TZdATSY00fVeLMNFnjbbz=
-CVX
-9+LEKYARNm7kYogVJMc5CuVmXBn9FFF3cioRvpuals8llsFc4WiUBJfDfOzjXExqv3OMtJj0s=
-qlK
-sXdnLkXbtAmEvFaxqUuO1ZwTCTGflrn/g4C8Cg0ifk0wZGgGYRindkJE1vOQZPaDI7GtNxJ+D=
-sx4
-fL/8tf7Wuk3TZ6t/ofKhjq8sUVCVhnlyd/3ujruDu/PhwwYBsHjNn+PmHeCCRJuOWwKapdfjH=
-9nt
-sHXTvyXBB2D3H7Oj7S/HOTXRNTUWhaxICKtq+XDSuJKOv7CNevkjMF4ybQDsrUxnaWd76YqNP=
-vZv
-PYoTqKzKukifjGXMsxC6HU4K2GscpvoaIk7glaD+NYi3fIGi/gR0UNc6cmXtOrYKSnCsNOwcO=
-CJL
-DjEr6YdbdAXO2wxCLqnupo8JRJgA8hjjHM5OoTGEyP/c+DKDqFO90YilX1XN8xchHrw+bDv0E=
-Zm0
-RZpVdL7WNr7qQE4UhDfuyo4Gis4Z+npzoOL4g3yaQQfK32zZD9iqk9152b7ny2Ke5oFIF5SSa=
-EwH
-/2tLNBevzgzWuEB6FtqoMT5RjDyx+xBeImRlhnP0EenRh+EP0nmLCAaFiP4tTp1bX54SyByp8=
-wcN
-7F2+v2Sgdd64w1pdrjT74Zf1xj0NTxEdt5jEaPfl5Vjv3cXiB8ACwPkMIXmkJx3uaGJynl4Os=
-irb
-nzzviEzvDVpLAxL7Qr6imlKUh92iAoz+XxEDqgMZnJJOTDFdDxEBhv911VzlRraDNdxw4MHMm=
-5Nr
-5pj4HGYh3PigzNo0KIreB50YqhGOesaC4Q75gv8mLc2Ec5dEq79BVMUOaCmYDShBN9j6JovNs=
-WSR
-5YP3tXi+jZ+VnyKLft9wo1fh1oYadFEVSHgGsEY=3D
-=3DfoRs
------END PGP PUBLIC KEY BLOCK-----
-
---------------56FCE0F8727115BF8560F306--
-
---soD3hDGcorotbxSY3yVGCOxURbisw4Khp--
-
---wTxtlvAtyqjPF87VYo4meHslkeoFrQCtG
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
-
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+3gKMFAwAAAAAACgkQlh/E3EQov+Be
-XxAAk2WTmJWqRZrj8al7kt1rhGmnOkh1uSfqfWcze5ujosMECqDXiMYliOZTBOKd7S5mRKbbs0TB
-5J9rI4zWYtsNbCe7VHVjm5KiPNVpRglg+t7EBJp07iy5pyXtXyf2AdoRle3L+s2XkmUTFVDC7Hg7
-w7o4QDbh6icFpfsp1Hy7B9BBsabf49cqOL/hELbdNSH7BFQ/9qR3bFYmpn+MEHozmAevYPGJwARR
-MPmx30GEbX2ZrKiEiZ8W8MlCSsVtBYOcHTv8MZdFEwWfV11P0anS3KGPaS9a/bmEzoEa9NPVZeHi
-xf78v/QfmqlnbbprkNz7tYX86V5qK4EoyiaBtwOP4SGW4/pmzoD8KWzfdzovwM+05T1sZkzURAZE
-jltqLzOcUP6k39ZEQtaDdxSYvsuFId+2/55Ikb+bH73MmQMhTblTk/bYME394CU4LFn4eT279zyT
-bQ9CvSGVkQPidiz7bC8yzXvkcAeJ9itO7eBHUs+F3YiD1Ae511bESlAnEA1CTvGe++cp9gaSwsFt
-MVjGX5RBipN0JKP+JS2JK5CD5B4nWUPK5id+D1FRB1Zkx8sobiTvaGq6Wg2nPxtVo9igXOx+WrfT
-+F6XbPS9c7JxXccnRNzpRrDkAXZsuSyEgvDX42hA2YNlB5/N/Fq8FtzU2ozjGQPEBaU+6l8UTN7n
-E+s=
-=2RAb
------END PGP SIGNATURE-----
-
---wTxtlvAtyqjPF87VYo4meHslkeoFrQCtG--
+> > -----Original Message-----
+> > From: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> > Sent: 19 November 2020 7:59 AM
+> > To: Sia, Jee Heng <jee.heng.sia@intel.com>
+> > Cc: andriy.shevchenko@linux.intel.com; dmaengine@vger.kernel.org;
+> > linux- kernel@vger.kernel.org; devicetree@vger.kernel.org
+> > Subject: Re: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel
+> > KeemBay AxiDMA handshake
+> >
+> > Hi Sia,
+> >
+> > > Subject: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay
+> > > AxiDMA handshake
+> > >
+> > > Add support for Intel KeemBay AxiDMA device handshake programming.
+> > > Device handshake number passed in to the AxiDMA shall be written to
+> > > the Intel KeemBay AxiDMA hardware handshake registers before DMA
+> > > operations are started.
+> > >
+> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > > Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
+> > > ---
+> > >  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 52 +++++++++++++++++=
+++
+> > >  1 file changed, 52 insertions(+)
+> > >
+> > > diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > > b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > > index c2ffc5d44b6e..d44a5c9eb9c1 100644
+> > > --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > > +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
+> > > @@ -445,6 +445,48 @@ static void dma_chan_free_chan_resources(struct
+> > dma_chan *dchan)
+> > >         pm_runtime_put(chan->chip->dev);  }
+> > >
+> > > +static int dw_axi_dma_set_hw_channel(struct axi_dma_chip *chip, u32
+> > hs_number,
+> > > +                                    bool set) {
+> > > +       unsigned long start =3D 0;
+> > > +       unsigned long reg_value;
+> > > +       unsigned long reg_mask;
+> > > +       unsigned long reg_set;
+> > > +       unsigned long mask;
+> > > +       unsigned long val;
+> > > +
+> > > +       if (!chip->apb_regs)
+> > > +               return -ENODEV;
+> >
+> > In some places you check for this region existence using if
+> > (IS_ERR(chip->regs)) and in other places you use if (!chip->apb_regs)
+> >
+> > I guess it isn't correct. NOTE that this comment valid for other patche=
+s as well.
+> [>>] Thanks for the invaluable comment, will make sure the consistency in=
+ the code.
+> >
+> > > +
+> > > +       /*
+> > > +        * An unused DMA channel has a default value of 0x3F.
+> > > +        * Lock the DMA channel by assign a handshake number to the c=
+hannel.
+> > > +        * Unlock the DMA channel by assign 0x3F to the channel.
+> > > +        */
+> > > +       if (set) {
+> > > +               reg_set =3D UNUSED_CHANNEL;
+> > > +               val =3D hs_number;
+> > > +       } else {
+> > > +               reg_set =3D hs_number;
+> > > +               val =3D UNUSED_CHANNEL;
+> > > +       }
+> > > +
+> > > +       reg_value =3D lo_hi_readq(chip->apb_regs +
+> > > + DMAC_APB_HW_HS_SEL_0);
+> > > +
+> > > +       for_each_set_clump8(start, reg_mask, &reg_value, 64) {
+> > > +               if (reg_mask =3D=3D reg_set) {
+> > > +                       mask =3D GENMASK_ULL(start + 7, start);
+> > > +                       reg_value &=3D ~mask;
+> > > +                       reg_value |=3D rol64(val, start);
+> > > +                       lo_hi_writeq(reg_value,
+> > > +                                    chip->apb_regs + DMAC_APB_HW_HS_=
+SEL_0);
+> > > +                       break;
+> > > +               }
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > >  /*
+> > >   * If DW_axi_dmac sees CHx_CTL.ShadowReg_Or_LLI_Last bit of the fetc=
+hed LLI
+> > >   * as 1, it understands that the current block is the final block
+> > > in the @@ -626,6 +668,9 @@ dw_axi_dma_chan_prep_cyclic(struct
+> > > dma_chan
+> > *dchan, dma_addr_t dma_addr,
+> > >                 llp =3D hw_desc->llp;
+> > >         } while (num_periods);
+> > >
+> > > +       if (dw_axi_dma_set_hw_channel(chan->chip, chan->hw_hs_num, tr=
+ue))
+> > > +               goto err_desc_get;
+> > > +
+> > >         return vchan_tx_prep(&chan->vc, &desc->vd, flags);
+> > >
+> > >  err_desc_get:
+> > > @@ -684,6 +729,9 @@ dw_axi_dma_chan_prep_slave_sg(struct dma_chan
+> > *dchan, struct scatterlist *sgl,
+> > >                 llp =3D hw_desc->llp;
+> > >         } while (sg_len);
+> > >
+> > > +       if (dw_axi_dma_set_hw_channel(chan->chip, chan->hw_hs_num, tr=
+ue))
+> > > +               goto err_desc_get;
+> > > +
+> > >         return vchan_tx_prep(&chan->vc, &desc->vd, flags);
+> > >
+> > >  err_desc_get:
+> > > @@ -959,6 +1007,10 @@ static int dma_chan_terminate_all(struct
+> > > dma_chan
+> > *dchan)
+> > >                 dev_warn(dchan2dev(dchan),
+> > >                          "%s failed to stop\n",
+> > > axi_chan_name(chan));
+> > >
+> > > +       if (chan->direction !=3D DMA_MEM_TO_MEM)
+> > > +               dw_axi_dma_set_hw_channel(chan->chip,
+> > > +                                         chan->hw_hs_num, false);
+> > > +
+> > >         spin_lock_irqsave(&chan->vc.lock, flags);
+> > >
+> > >         vchan_get_all_descriptors(&chan->vc, &head);
+> > > --
+> > > 2.18.0
+> > >
