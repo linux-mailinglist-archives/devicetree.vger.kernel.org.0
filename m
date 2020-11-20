@@ -2,215 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 146FB2BB9AB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 00:07:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C342BB9C4
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 00:15:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727885AbgKTXGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 18:06:10 -0500
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:12875 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727417AbgKTXGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 18:06:10 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fb84be60001>; Fri, 20 Nov 2020 15:06:14 -0800
-Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 20 Nov
- 2020 23:06:09 +0000
-Received: from vdi.nvidia.com (10.124.1.5) by mail.nvidia.com (172.20.187.18)
- with Microsoft SMTP Server id 15.0.1473.3 via Frontend Transport; Fri, 20 Nov
- 2020 23:06:09 +0000
-From:   Khalil Blaiech <kblaiech@nvidia.com>
-To:     <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <kblaiech@nvidia.com>, <wsa+renesas@sang-engineering.com>,
-        <robh+dt@kernel.org>
-Subject: [PATCH i2c-next v4 1/1] dt-bindings: i2c: mellanox,i2c-mlxbf: convert txt to YAML schema
-Date:   Fri, 20 Nov 2020 18:06:06 -0500
-Message-ID: <897f036098a9bf2497857c328c344aa0de5cdfdb.1605913307.git.kblaiech@nvidia.com>
-X-Mailer: git-send-email 2.1.2
+        id S1727241AbgKTXO2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 18:14:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726719AbgKTXO1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 18:14:27 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07B5DC0613CF;
+        Fri, 20 Nov 2020 15:14:26 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id 10so12579127wml.2;
+        Fri, 20 Nov 2020 15:14:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=YofW6+TgUtx+VfdJJUajA6JkPCwEQsNSPv+zs7re168=;
+        b=a/Q7I7Bsy94pgqxGzvDJGspfCA0a1lkllUYelYzguI1VYCaelDnp8VzvbJQlKb6JCw
+         FxxW8BtVb+D5dpOT38+CVw0/oVRCSXxaj7j3YB/q5g3qo89KBuwuV/kLRSIFRXB0X9lZ
+         sLUBEDKn1WZ9JiduKgtd7tgYw+kr4eQmLDWFZ9+skzc+vEdLgBYiBvhew7yLw+RBWkeD
+         FQYkCgEMIZ0OOyAqt9+EMGS/lcpFANl97uHGpWia46291DV4bdpL80SHKymSyi966vQC
+         qUr3Xjb4S31ko4tAkSo10axSUEwmk41SmLDjzGYmXsYcvVMWlPnjzQbJhPy7V3bPSZ4s
+         DXIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=YofW6+TgUtx+VfdJJUajA6JkPCwEQsNSPv+zs7re168=;
+        b=ZCSCh6gnNfeZUiyaEqq7GMEy6AaFYaeVdQ14XJ7oSPbwQupuJMoRMEb8DTDfortj+W
+         nXUbw7v2aYJmy91VrdOVWsgRI/oyT3lsFdElE1jDYxYQUB8wcI5eRqvDEPoXGwj240Ne
+         Znd4Ccm4g2L5xZCKA4Q+z6W98qSz0P7lh+IDMl/XhETguiBn5IJxC/OwpTAbiOtXaCz9
+         /AuHEOGvp99snY1H7h/JzmEalweXVEhp6k1fMyAPB3V7FyedQ3n0JwZqAUkubADi/JhK
+         4ryOKvCAkMvjoDXTiH3bkzgpYGlpP+DqZ+KaHN+gKjHZngimI8lWXMdM7GxaIz4zQDDS
+         cENg==
+X-Gm-Message-State: AOAM532Y7zrZ6x/HckDQLpL+Tg6ejoers5LMiuk9OFhDbewTqV9fFrao
+        UaHqg/H9emSJ1nwlJlJk78Y=
+X-Google-Smtp-Source: ABdhPJytvSp5D+9Yj5HVyHMDOMtLNevnT339vTvkQlRUs6X8LsUnA8U7+qMiarQLGxdwUDCl2VHt9A==
+X-Received: by 2002:a1c:9cc9:: with SMTP id f192mr12464800wme.143.1605914064802;
+        Fri, 20 Nov 2020 15:14:24 -0800 (PST)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id 17sm39815529wma.3.2020.11.20.15.14.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2020 15:14:24 -0800 (PST)
+Date:   Sat, 21 Nov 2020 01:14:22 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 07/12] net: dsa: microchip: ksz9477: add
+ Posix clock support for chip PTP clock
+Message-ID: <20201120231422.xtvhxcw7zfntx5q2@skbuf>
+References: <20201118203013.5077-1-ceggers@arri.de>
+ <20201118203013.5077-8-ceggers@arri.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1605913574; bh=iF6ZpeZ4iA8A3lsK2EwJ85Har+h7QayTbbyvf4TJAKM=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
-         Content-Type;
-        b=hPxBI0jMcTnRv9nHWkOYB7HY4MgGT4m0pbMAyqERIhD8Lfa4FD6sJ/YyCciCi/mKc
-         HGgYCIPTJvU88dQyZxOXc/RJObVQ3LjgElgIztyi9FFtQp9jtW59yJ7ljd25UnI8qE
-         1c8oSb8f4mxoH07D7anFy3yyBVayfN2etJepg9Qja1GkZIMKitoE3eaH3xnNmLdZZX
-         OK9TWUd6cPM16aXlkPLQD4Ig1XqHhyGUt+60H3d17fdfG/KGfQYI5BLVCpPLXHDWsx
-         YhrR3TnAOyHQwCqgFWRmt0UrnNMSOv+f0Wron3EcF4gdJ4vAA7GKtN0b2+uFRJrMVK
-         Sfl+fDApJUVrw==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201118203013.5077-8-ceggers@arri.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Write the devicetree binding text file associated with
-the Mellanox BlueField I2C controller in schema file,
-JSON compatible subset of YAML. Besides, add an entry
-within MAINTAINERS file.
+On Wed, Nov 18, 2020 at 09:30:08PM +0100, Christian Eggers wrote:
+> Implement routines (adjfine, adjtime, gettime and settime) for
+> manipulating the chip's PTP clock.
+> 
+> Signed-off-by: Christian Eggers <ceggers@arri.de>
+> ---
 
-Signed-off-by: Khalil Blaiech <kblaiech@nvidia.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v3->v4:
-	- Add Reviewed-by tag. 
-v2->v3:
-	- Address dtschema/dt warning/errors by removing
-	'additionalProperties: false' line.
-v1->v2:
-	- Address yamllint and dtschema/dt warning/errors.
-	- Dual license the YAML schema by adding BSD-2-Clause.
-
- .../devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt | 42 ------------
- .../bindings/i2c/mellanox,i2c-mlxbf.yaml           | 78 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 3 files changed, 79 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
- create mode 100644 Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
-
-diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
-deleted file mode 100644
-index 566ea86..0000000
---- a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Device tree configuration for the Mellanox I2C SMBus on BlueField SoCs
--
--Required Properties:
--
--- compatible : should be "mellanox,i2c-mlxbf1" or "mellanox,i2c-mlxbf2".
--
--- reg : address offset and length of the device registers. The
--	registers consist of the following set of resources:
--		1) Smbus block registers.
--		2) Cause master registers.
--		3) Cause slave registers.
--		4) Cause coalesce registers (if compatible isn't set
--		   to "mellanox,i2c-mlxbf1").
--
--- interrupts : interrupt number.
--
--Optional Properties:
--
--- clock-frequency : bus frequency used to configure timing registers;
--			allowed values are 100000, 400000 and 1000000;
--			those are expressed in Hz. Default is 100000.
--
--Example:
--
--i2c@2804000 {
--	compatible = "mellanox,i2c-mlxbf1";
--	reg =	<0x02804000 0x800>,
--		<0x02801200 0x020>,
--		<0x02801260 0x020>;
--	interrupts = <57>;
--	clock-frequency = <100000>;
--};
--
--i2c@2808800 {
--	compatible = "mellanox,i2c-mlxbf2";
--	reg =	<0x02808800 0x600>,
--	        <0x02808e00 0x020>,
--		<0x02808e20 0x020>,
--		<0x02808e40 0x010>;
--	interrupts = <57>;
--	clock-frequency = <400000>;
--};
-diff --git a/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
-new file mode 100644
-index 0000000..d2b401d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
-@@ -0,0 +1,78 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/mellanox,i2c-mlxbf.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Mellanox I2C SMBus on BlueField SoCs
-+
-+maintainers:
-+  - Khalil Blaiech <kblaiech@nvidia.com>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mellanox,i2c-mlxbf1
-+      - mellanox,i2c-mlxbf2
-+
-+  reg:
-+    minItems: 3
-+    maxItems: 4
-+    items:
-+      - description: Smbus block registers
-+      - description: Cause master registers
-+      - description: Cause slave registers
-+      - description: Cause coalesce registers
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    enum: [ 100000, 400000, 1000000 ]
-+    description:
-+      bus frequency used to configure timing registers;
-+      The frequency is expressed in Hz. Default is 100000.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+if:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - mellanox,i2c-mlxbf1
-+
-+then:
-+  properties:
-+    reg:
-+      maxItems: 3
-+
-+examples:
-+  - |
-+    i2c@2804000 {
-+        compatible = "mellanox,i2c-mlxbf1";
-+        reg = <0x02804000 0x800>,
-+              <0x02801200 0x020>,
-+              <0x02801260 0x020>;
-+        interrupts = <57>;
-+        clock-frequency = <100000>;
-+    };
-+
-+  - |
-+    i2c@2808800 {
-+        compatible = "mellanox,i2c-mlxbf2";
-+        reg = <0x02808800 0x600>,
-+              <0x02808e00 0x020>,
-+              <0x02808e20 0x020>,
-+              <0x02808e40 0x010>;
-+        interrupts = <57>;
-+        clock-frequency = <400000>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a008b70..27bd55b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11151,6 +11151,7 @@ MELLANOX BLUEFIELD I2C DRIVER
- M:	Khalil Blaiech <kblaiech@nvidia.com>
- L:	linux-i2c@vger.kernel.org
- S:	Supported
-+F:	Documentation/devicetree/bindings/i2c/mellanox,i2c-mlxbf.yaml
- F:	drivers/i2c/busses/i2c-mlxbf.c
- 
- MELLANOX ETHERNET DRIVER (mlx4_en)
--- 
-2.1.2
-
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
