@@ -2,217 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B50F32BB66E
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 21:20:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 406D42BB6FF
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 21:32:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730415AbgKTURs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 15:17:48 -0500
-Received: from mail.kernel.org ([198.145.29.99]:52682 "EHLO mail.kernel.org"
+        id S1730962AbgKTUcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 15:32:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57932 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728863AbgKTURs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 15:17:48 -0500
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        id S1730937AbgKTUcc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 15:32:32 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5C9DC22470;
-        Fri, 20 Nov 2020 20:17:47 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 65CA522470;
+        Fri, 20 Nov 2020 20:32:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605903467;
-        bh=uWTGUzgFAc+UqdPUOqq1dMU2NKZmh/ALeOWAOSfEWxo=;
+        s=default; t=1605904351;
+        bh=nBNR6Kcuyu4HsWDtioHd2Yt10KwexTkZX/FhI5KMvpM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=o5BLtccF0lkEAzS1H/+TaidpLCrlIhMB4mk3NIRkCobB7ZXX1/e1r8kbnCDO6dxF2
-         xUNsPhZmoTGMm3tIq28WywQIt8LarTUTfDzYrmw6KNZf8/f5tAShYmTEDqzqukCSRE
-         qOpC9/imkVc83nUeoRRWwMqi4lRO1Zy6DOh0tLws=
-Received: by mail-ot1-f44.google.com with SMTP id l36so9925979ota.4;
-        Fri, 20 Nov 2020 12:17:47 -0800 (PST)
-X-Gm-Message-State: AOAM531hM9mBjvTKboX93Ed3BWdyXSptmlI+ShHVe+ajmVAt1Db+gewC
-        rtjuSTu7R4LqxNOoKCic1Y7d+MkltcJDTU8KoA==
-X-Google-Smtp-Source: ABdhPJxVGntrT4U2oBT5LKIQMam1ZvVfO8lKUlhSLLMDZ45/h9Pq8b8ZF6Zy4lAbMpdzw0rEpS/DIgfqekUVwN3w7xk=
-X-Received: by 2002:a05:6830:2259:: with SMTP id t25mr15315926otd.192.1605903466581;
- Fri, 20 Nov 2020 12:17:46 -0800 (PST)
+        b=DGE0pypM+6Et9l+6LyYzwvAcDGtNpS+fK4RyXnAG478S1BZ43UIN5mjKlouxkdIxD
+         vHUKrNI4oQKPRWJQlVlYNKQYQ4/euvhDoml71f4f/fSvrssnMFjphCpf361tjZ//zp
+         iy852KNsyu2hTdA+nmw+WWPgrelnBTrsiinygjQ0=
+Received: by mail-oi1-f174.google.com with SMTP id l206so11821167oif.12;
+        Fri, 20 Nov 2020 12:32:31 -0800 (PST)
+X-Gm-Message-State: AOAM533M1Ft9kpY30/SZR3FB9EhSX/xKkHbkTaRVQGiHkGjNjjKsv3g9
+        m/QFELpsTOxexXvJBjopOrpqr3YwMuPgws+ikw==
+X-Google-Smtp-Source: ABdhPJym5NklP+6sFp3njodEc4XZImaIoXN0PinQjFQ9iXvdbCxFfXK+k/TkVG8ZRTgL+TldhMsUigWDpqkSu7LaHEU=
+X-Received: by 2002:aca:b40a:: with SMTP id d10mr7935101oif.147.1605904350599;
+ Fri, 20 Nov 2020 12:32:30 -0800 (PST)
 MIME-Version: 1.0
-References: <1605296218-2510-1-git-send-email-skomatineni@nvidia.com> <1605296218-2510-4-git-send-email-skomatineni@nvidia.com>
-In-Reply-To: <1605296218-2510-4-git-send-email-skomatineni@nvidia.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 20 Nov 2020 14:17:35 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKkGmRwsv48xdX7xMSEaTSqdEnWuy0E19eohBxJKMywJg@mail.gmail.com>
-Message-ID: <CAL_JsqKkGmRwsv48xdX7xMSEaTSqdEnWuy0E19eohBxJKMywJg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/6] dt-bindings: ata: tegra: Convert binding
- documentation to YAML
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20201103100021.19603-1-vincent.whitchurch@axis.com>
+ <20201103100021.19603-2-vincent.whitchurch@axis.com> <20201104185755.GA3948381@bogus>
+ <20201105093926.msls7vgl42z7cpjy@axis.com>
+In-Reply-To: <20201105093926.msls7vgl42z7cpjy@axis.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 20 Nov 2020 14:32:19 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLOTy_dDDGhDQdZgsyh_qr3NGmKiD=BzHVVU5DDJe--TA@mail.gmail.com>
+Message-ID: <CAL_JsqLOTy_dDDGhDQdZgsyh_qr3NGmKiD=BzHVVU5DDJe--TA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add DA9121
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        kernel <kernel@axis.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "support.opensource@diasemi.com" <support.opensource@diasemi.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 1:36 PM Sowjanya Komatineni
-<skomatineni@nvidia.com> wrote:
+On Thu, Nov 5, 2020 at 3:39 AM Vincent Whitchurch
+<vincent.whitchurch@axis.com> wrote:
 >
-> This patch converts text based dt-binding document to YAML based
-> dt-binding document.
+> On Wed, Nov 04, 2020 at 07:57:55PM +0100, Rob Herring wrote:
+> > On Tue, 03 Nov 2020 11:00:20 +0100, Vincent Whitchurch wrote:
+> > > Add bindings for the Dialog Semiconductor DA9121 voltage regulator.
+> > >
+> > > Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> > > ---
+> > >  .../bindings/regulator/dlg,da9121.yaml        | 47 +++++++++++++++++++
+> > >  1 file changed, 47 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
+> > >
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > yamllint warnings/errors:
+> >
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml: 'additionalProperties' is a required property
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/regulator/dlg,da9121.yaml: ignoring, error in schema:
+> > warning: no schema found in file: ./Documentation/devicetree/bindings/regulator/dlg,da9121.yaml
+> >
+> > See https://patchwork.ozlabs.org/patch/1392753
 >
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 137 +++++++++++++++++++++
->  .../bindings/ata/nvidia,tegra124-ahci.txt          |  44 -------
->  2 files changed, 137 insertions(+), 44 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->  delete mode 100644 Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
+> OK, thanks.  I'll fix it by changing the unevaluatedProperties to an
+> additionalProperties (since the $ref has moved).
 >
-> diff --git a/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
-> new file mode 100644
-> index 0000000..dbbe460
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
-> @@ -0,0 +1,137 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/nvidia,tegra-ahci.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Tegra AHCI SATA Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jonathan Hunter <jonathanh@nvidia.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra124-ahci
-> +      - nvidia,tegra132-ahci
-> +      - nvidia,tegra210-ahci
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 3
-> +    items:
-> +      - description: AHCI registers
-> +      - description: SATA configuration and IPFS registers
-> +      - description: SATA AUX registers
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: sata
-> +      - const: sata-oob
-> +
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  reset-names:
-> +    items:
-> +      - const: sata
-> +      - const: sata-cold
-> +      - const: sata-oob
-> +
-> +  resets:
-> +    maxItems: 3
-> +
-> +  phy-names:
-> +    items:
-> +      - const: sata-0
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  hvdd-supply:
-> +    description: SATA HVDD regulator supply.
-> +
-> +  vddio-supply:
-> +    description: SATA VDDIO regulator supply.
-> +
-> +  avdd-supply:
-> +    description: SATA AVDD regulator supply.
-> +
-> +  target-5v-supply:
-> +    description: SATA 5V power regulator supply.
-> +
-> +  target-12v-supply:
-> +    description: SATA 12V power regulator supply.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clock-names
-> +  - clocks
-> +  - reset-names
-> +  - resets
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra124-ahci
-> +              - nvidia,tegra132-ahci
-> +    then:
-> +      properties:
-> +        reg:
-> +          maxItems: 2
-> +        reset-names:
-> +          minItems: 3
-> +        resets:
-> +          minItems: 3
-> +      required:
-> +        - phys
-> +        - phy-names
-> +        - hvdd-supply
-> +        - vddio-supply
-> +        - avdd-supply
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra210-ahci
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 3
-> +        reset-names:
-> +          minItems: 3
-> +        resets:
-> +          minItems: 3
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/tegra210-car.h>
-> +    #include <dt-bindings/reset/tegra210-car.h>
-> +
-> +    sata@70020000 {
-> +            compatible = "nvidia,tegra210-ahci";
-> +            reg = <0x0 0x70027000 0x0 0x00002000>, /* AHCI */
-> +                  <0x0 0x70020000 0x0 0x00007000>, /* SATA */
-> +                  <0x0 0x70001100 0x0 0x00010000>; /* SATA AUX */
+> I think I should also move the unevaluatedProperties to the buck1 level
+> instead of removing it completely, because I see a bunch of other
+> regulator bindings doing it, but the checks don't complain about that
+> being missing and I can't see that making any difference for the
+> validation.
 
-The default sizes are 1 cell for address and size, so this will give
-you warnings. You either need to adjust the entries here or add a
-parent node setting the sizes to 2 cells.
+Because the meta-schema is not recursing down levels. It probably
+should, but that's another round of fixing all the current cases. And
+the top-level is more well defined as to what the structure is (IOW,
+we might not be able to define a rule that works everywhere).
 
-> +            interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+> For example, I was hoping that this:
+>
+>   buck1:
+>     description:
+>       Initial data for the Buck1 regulator.
+>     $ref: "regulator.yaml#"
+>     type: object
+>     unevaluatedProperties: false
+>
+> would complain about something like:
+>
+>         buck1 {
+>           not-a-real-property;
+>           regulator-min-microvolt = <680000>;
+>           regulator-max-microvolt = <820000>;
+>         };
+>
+> but it doesn't, so I don't quite understand what "unevaluatedProperties:
+> false" prevents.
 
-The error is because you need the include files for these defines.
+That's because it's currently a nop as the Python jsonschema package
+doesn't yet support 2019.09 version of jsonschema.
 
-> +            clocks = <&tegra_car TEGRA210_CLK_SATA>,
-> +                     <&tegra_car TEGRA210_CLK_SATA_OOB>;
-> +            clock-names = "sata", "sata-oob";
-> +            resets = <&tegra_car 124>,
-> +                     <&tegra_car 129>,
-> +                     <&tegra_car 123>;
-> +            reset-names = "sata", "sata-cold", "sata-oob";
-> +    };
+If you aren't defining properties in addition to what's defined by a
+$ref, then use additionalProperties.
+
+Rob
