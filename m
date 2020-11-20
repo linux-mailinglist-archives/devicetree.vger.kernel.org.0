@@ -2,271 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5243D2BA051
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 03:25:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 621B82BA057
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 03:28:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726562AbgKTCZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 21:25:05 -0500
-Received: from mail-db8eur05on2089.outbound.protection.outlook.com ([40.107.20.89]:10881
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726549AbgKTCZE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 21:25:04 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kM7FNjj/XzfJzuj5Og+Mc45zjDyPBgKJf8VTLwD0rgPHH2LWp+yBgrio8ImLOudE2+V9uc9SZOF0DFPfY/u3rdmcMSRRz5rInjMShv9E04Hdw4VCzEa+amWLMDFg/45PoOS26dZx01pv09u5uXynYxxqNnxw+xjpei6ZdCm8j1X9EOrhUevzL6QuD8JYvBg2t7YlTfPvC2XOmgatcbCc5KGCO9PJrZOWTloelNZ2HzvxoSnTjsDCXayfDDkrz8CwwnA6Q2ryPylaK4lIll62WYH4ehSHNv48doiyqYEdGXYfaXCJi62LqFgqbfWDa6lKK9SrNGM9NnGrFWdR8XOyZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8qRRka45cH5qHNlVMjSWD6D4w6zti43Sr8vA4EixUUc=;
- b=Isbt1G8v2nk7/Mln3PBdWyZQYBBvAH8qNbJBqJnUfA742wYtYM83nifISvPp2ux9HuhXdnNsBow9atTujn4+qlcU6adol7bY70K3uzyT4k8L9U37MNRYheiopTZl6Ae+dFNai3CK/3gUAQkWV4hGYZiBXqFfsKPPomoDnkbHickeL8xcYK5X/L8JNusWMValxijUTkqGcdOA/J4TsoyZweGPJKZkuQ1KVqEGsg8KfS2qLuqPLc4CdF5kktW91sT5F9rrsyl1RPiF7SSESpiKqpgzQ7H9k3num8O0YVwKmurFzDgr6KYh76agn38lbsdhe6K7OJG1255UD9KrkKTAgQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8qRRka45cH5qHNlVMjSWD6D4w6zti43Sr8vA4EixUUc=;
- b=c5CdF9Qy40xXYdLFFqEtlFIGHP948wOrebSINYitJ0arR+5ZJuUf7QAU6eASwdigpYRh/L2mZmGVPRPZD21cwa1CI4wqmoR0sM3HFcEJq9wSLn/+yBG3r2hrzeoxp5sUA1iACmaHZQr6+VvHwo6fSgcjYicruGVlKYqbf7dw2eE=
-Authentication-Results: oss.nxp.com; dkim=none (message not signed)
- header.d=none;oss.nxp.com; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR0401MB2317.eurprd04.prod.outlook.com (2603:10a6:800:28::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Fri, 20 Nov
- 2020 02:24:57 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3589.021; Fri, 20 Nov 2020
- 02:24:57 +0000
-Message-ID: <fb134d2ac1e9cebdb27b780ebacf9d944d517205.camel@nxp.com>
-Subject: Re: [PATCH 0/8] drm/imx: Introduce i.MX8qxp DPU DRM
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, tzimmermann@suse.de,
-        airlied@linux.ie, s.hauer@pengutronix.de, robh+dt@kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de, shawnguo@kernel.org
-Date:   Fri, 20 Nov 2020 10:23:03 +0800
-In-Reply-To: <20201119173055.geaaori62wgtrfvh@fsr-ub1864-141>
-References: <1605777745-23625-1-git-send-email-victor.liu@nxp.com>
-         <20201119173055.geaaori62wgtrfvh@fsr-ub1864-141>
+        id S1726662AbgKTCZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 21:25:10 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:18855 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726549AbgKTCZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 21:25:10 -0500
+X-UUID: 114c18dc7e44412bad972cfabfcc6587-20201120
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=tK3LSMVAjG6d7GMpXdDRnIvlzSI8hJUSp1hQeVKgOdA=;
+        b=huamlgbA5F8dI9GYIzEy3ZIKHD2zs3Xnip6PQAwElMwHJZomIbqYxKxf/hsjVHn3S3QkO8KJQloSkdOe6edeHyJl650FfBcROfHB70ER0/SXfet2IWSg9WKypv71SnmujlLhjApctMUcaw8STiE0TfTlyKZPygh1ZF+08ZO7/Z8=;
+X-UUID: 114c18dc7e44412bad972cfabfcc6587-20201120
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1560120825; Fri, 20 Nov 2020 10:25:04 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 20 Nov
+ 2020 10:25:00 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 20 Nov 2020 10:25:00 +0800
+Message-ID: <1605839100.32484.0.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 06/11] dt-bindings: phy: convert HDMI PHY binding to
+ YAML schema
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Min Guo <min.guo@mediatek.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
+Date:   Fri, 20 Nov 2020 10:25:00 +0800
+In-Reply-To: <CAAOTY_9dNyySJkyX78tHDQZPaqD+5Jqixbdbohp319FyXO1X5Q@mail.gmail.com>
+References: <20201118082126.42701-1-chunfeng.yun@mediatek.com>
+         <20201118082126.42701-6-chunfeng.yun@mediatek.com>
+         <CAAOTY_9dNyySJkyX78tHDQZPaqD+5Jqixbdbohp319FyXO1X5Q@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR06CA0102.apcprd06.prod.outlook.com
- (2603:1096:3:14::28) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR06CA0102.apcprd06.prod.outlook.com (2603:1096:3:14::28) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 02:24:53 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2337a684-9a2c-4371-21fd-08d88cfb78f7
-X-MS-TrafficTypeDiagnostic: VI1PR0401MB2317:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR0401MB23172B050A0E128A14A63D5498FF0@VI1PR0401MB2317.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: yQniOzl1MRtjTHe7rLB35x1pJVFnVwACDq6Rwqw5x4oARGhMZalk7gR/m5sQ2jq2pey1jMQXOCHOnyQISNTolhRpoOq8WPnyvPXk3ZCNhs/GK0McmdX+EYo/j0w2OLLovUyHvlL0xfbeQLSZhTbHl5/pMwIwvaJKfOtc+6v37yDlJWPKSPSlxMafrnbaynXd1haGY6V1oLMzyqL+XRoDO32UeQPjE3jeEZKK5vkoK7D6Wo3io0FPuyv/pqL9yUcrCBmEoxP6maydvdpk/hIrGUWW5EOAPtRxIjmkBPF7wFxv91FoyXt+PJ+YuMnKdb4vqGumW6QiVOZdHhD+DDI75IjiHlg/RsdKA/3TPcWh61cVvYi/LTaks39QXX8BIJrKqRi93Oc+/aHxC2s/rSKmlQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(39850400004)(396003)(136003)(366004)(52116002)(83380400001)(86362001)(8676002)(36756003)(966005)(6506007)(6486002)(6666004)(6512007)(478600001)(5660300002)(4001150100001)(26005)(16526019)(66476007)(66946007)(2906002)(66556008)(186003)(2616005)(7416002)(6862004)(956004)(316002)(4326008)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: zbbo9Ayp4+D7Ts4I98/RCBQy96gDkZp3gVtfVAlZHtajhA9YxMGwFX2nOKjrsZZ0RV784Ar5QVyDw7FDm3Pq/TTLWa/k23lF19xlSES2HeT3ZsG5a/zbhlrHx0n8CboHs+cfNydqiHp05gwxBgA6Lz3CdItG9NrMsoLAFBYVbxkrzSBTuG2kC/Bm6kZgivhJbfkF89CgzEfq5Ixpi0BN3YKhvIUla3WBqpu0PH+I11Te+WXnejJpXoH8F6sdTMsYJNa/qU+XGuLTneh3qjCecO/oeGoireCvQJEE4jym80+OMVRiNYW4285akWsaN8mo9JLfJuuImDVixPS8kZ7GsUJ6soSbalMRZOs2BHgARtajMVw3fkYGuKGaKVLeR87vZK42vqtZb070lwF7JWlOOYVFGNZPOFehwqFbokVgemyijn2lxzLXlck5/oCxm2wZXuWjat2h8WNhyzed2GdyOaXMAPXbXHuAkmuxjOLbCb72u7JT2pyidhr+23kWVAnxgQlSkbP/556qkOmF5HrsVE2Ya+XwNRBx6H62qQM7LoFu3Gz5LAQmWV55qOEXdzUnbUIzA92fk6ow5pVGwwgZ1CDLsRhIqLZam7kpp2zZXLZMBXHomHfl/0BZL22YPgI/k08oHldeTsVXIE4+Ni/NOw==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2337a684-9a2c-4371-21fd-08d88cfb78f7
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 02:24:57.4372
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AuX6mq394qwXxRuHcpVH+xIl3qPTvrEb8byFeh5tPE9a2Lz6LF/J1uzIEunV8whY4Zyegrn988WUled8BKd3Ag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0401MB2317
+X-TM-SNTS-SMTP: EEFA5D895C9CCDBC05A08A02EA921E7502A2D2C166CFEA2145249A566CC53CBB2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurentiu,
-
-On Thu, 2020-11-19 at 19:30 +0200, Laurentiu Palcu wrote:
-> Hi Liu Ying,
-> 
-> On Thu, Nov 19, 2020 at 05:22:17PM +0800, Liu Ying wrote:
-> > Hi,
-> > 
-> > 
-> > This patch set introduces i.MX8qxp Display Processing Unit(DPU) DRM support.
-> 
-> Glad to see this series out. However, something went wrong with it as
-> patch 5/8 didn't make it to dri-devel mailing list... :/
-> 
-> https://lists.freedesktop.org/archives/dri-devel/2020-November/thread.html
-> 
-> So, people on to dri-devel may not be able to review it...
-
-I think that patch was held for a moment, it appears on dri-devel
-archive now:
-
-https://lists.freedesktop.org/archives/dri-devel/2020-November/287958.html
-
-I did receive an email from 'linux-arm-kernel' that says the msg body
-of that patch is too big(> 100KB), thus being held for moderator's
-review(I hope it pass now).
-Maybe, dri-devel did sth similar.
-
-Regards,
-Liu Ying
-
-> 
-> However, it did make it to LKML:
-> 
-> https://lkml.org/lkml/2020/11/19/249
-> 
-> Not sure what happened here... :/
-> 
-> Thanks,
-> laurentiu
-> 
-> 
-> > DPU is comprised of a blit engine for 2D graphics, a display controller
-> > and a command sequencer.  Outside of DPU, optional prefetch engines can
-> > fetch data from memory prior to some DPU fetchunits of blit engine and
-> > display controller.  The pre-fetchers support linear formats and Vivante
-> > GPU tile formats.
-> > 
-> > Reference manual can be found at:
-> > https://www.nxp.com/webapp/Download?colCode=IMX8DQXPRM
-> > 
-> > 
-> > This patch set adds kernel modesetting support for the display controller part.
-> > It supports two CRTCs per display controller, several planes, prefetch
-> > engines and some properties of CRTC and plane.  Currently, the registers of
-> > the controller is accessed without command sequencer involved, instead just by
-> > using CPU.  DRM connectors would be created from the DPU KMS driver.
-> > 
-> > 
-> > If people want to try this series, clock patches can be found at:
-> > https://www.spinics.net/lists/arm-kernel/msg856137.html
-> > 
-> > and, power domain patches at:
-> > https://www.spinics.net/lists/arm-kernel/msg856097.html
-> > 
-> > 
-> > I will send other patch sets to add downstream bridges(embedded in i.MX8qxp)
-> > to support LVDS displays.
-> > 
-> > A brief look at the pipe:
-> > prefetch eng -> DPU -> pixel combiner -> pixel link -> pixel to DPI(pxl2dpi) ->
-> > LVDS display bridge(LDB)
-> > 
-> > 
-> > Patch 1 ~ 3 add dt-bindings for DPU and prefetch engines.
-> > Patch 4 is a minor improvement of a macro to suppress warning as the KMS driver
-> > uses it.
-> > Patch 5 introduces the DPU DRM support.
-> > Patch 6 updates MAINTAINERS.
-> > Patch 7 & 8 add DPU and prefetch engines support in the device tree of
-> > i.MX8qxp MEK platform.
-> > 
-> > 
-> > Welcome comments, thanks.
-> > 
-> > 
-> > Liu Ying (8):
-> >   dt-bindings: display: imx: Add i.MX8qxp/qm DPU binding
-> >   dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
-> >   dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
-> >   drm/atomic: Avoid unused-but-set-variable warning on
-> >     for_each_old_plane_in_state
-> >   drm/imx: Introduce i.MX8qxp DPU DRM
-> >   MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
-> >   arm64: imx8qxp:dtsi: Introduce DC0 subsystem
-> >   arm64: dts: imx8qxp-mek: Enable DPU and it's prefetch engines
-> > 
-> >  .../bindings/display/imx/fsl,imx8qxp-dprc.yaml     |  87 ++
-> >  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml      | 358 ++++++++
-> >  .../bindings/display/imx/fsl,imx8qxp-prg.yaml      |  60 ++
-> >  MAINTAINERS                                        |   9 +
-> >  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts      |  64 ++
-> >  arch/arm64/boot/dts/freescale/imx8qxp.dtsi         | 313 +++++++
-> >  drivers/gpu/drm/imx/Kconfig                        |   1 +
-> >  drivers/gpu/drm/imx/Makefile                       |   1 +
-> >  drivers/gpu/drm/imx/dpu/Kconfig                    |  10 +
-> >  drivers/gpu/drm/imx/dpu/Makefile                   |  10 +
-> >  drivers/gpu/drm/imx/dpu/dpu-constframe.c           | 170 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-core.c                 | 880 ++++++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-crtc.c                 | 926 +++++++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-crtc.h                 |  62 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-disengcfg.c            | 114 +++
-> >  drivers/gpu/drm/imx/dpu/dpu-dprc.c                 | 721 ++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-dprc.h                 |  40 +
-> >  drivers/gpu/drm/imx/dpu/dpu-drv.c                  | 296 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-drv.h                  |  28 +
-> >  drivers/gpu/drm/imx/dpu/dpu-extdst.c               | 296 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c          | 291 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetcheco.c             | 221 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c           | 151 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.c            | 609 ++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.h            | 191 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c            | 247 ++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-framegen.c             | 392 +++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-gammacor.c             | 220 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-hscaler.c              | 272 ++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-kms.c                  | 543 ++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-kms.h                  |  23 +
-> >  drivers/gpu/drm/imx/dpu/dpu-layerblend.c           | 345 ++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-plane.c                | 703 ++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-plane.h                |  56 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-prg.c                  | 389 +++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-prg.h                  |  45 +
-> >  drivers/gpu/drm/imx/dpu/dpu-prv.h                  | 203 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-tcon.c                 | 249 ++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-vscaler.c              | 305 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu.h                      | 389 +++++++++
-> >  include/drm/drm_atomic.h                           |   4 +-
-> >  41 files changed, 10293 insertions(+), 1 deletion(-)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
-> > 
-> > -- 
-> > 2.7.4
-> > 
-> > _______________________________________________
-> > dri-devel mailing list
-> > dri-devel@lists.freedesktop.org
-> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+T24gRnJpLCAyMDIwLTExLTIwIGF0IDA3OjQyICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
+PiBIaSwgQ2h1bmZlbmc6DQo+IA0KPiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRl
+ay5jb20+IOaWvCAyMDIw5bm0MTHmnIgxOOaXpSDpgLHkuIkg5LiL5Y2INDoyMeWvq+mBk++8mg0K
+PiA+DQo+ID4gQ29udmVydCBIRE1JIFBIWSBiaW5kaW5nIHRvIFlBTUwgc2NoZW1hIG1lZGlhdGVr
+LGhkbWktcGh5LnlhbWwNCj4gPg0KPiA+IENjOiBDaHVuLUt1YW5nIEh1IDxjaHVua3VhbmcuaHVA
+a2VybmVsLm9yZz4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1
+bkBtZWRpYXRlay5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5l
+bC5vcmc+DQo+ID4gLS0tDQo+ID4gdjM6IGFkZCBSZXZpZXdlZC1ieSBSb2INCj4gPiB2MjogZml4
+IGJpbmRpbmcgY2hlY2sgd2FybmluZyBvZiByZWcgaW4gZXhhbXBsZQ0KPiA+IC0tLQ0KPiA+ICAu
+Li4vZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxoZG1pLnR4dCAgICAgICAgfCAxOCArLS0tDQo+
+ID4gIC4uLi9iaW5kaW5ncy9waHkvbWVkaWF0ZWssaGRtaS1waHkueWFtbCAgICAgICB8IDkxICsr
+KysrKysrKysrKysrKysrKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA5MiBpbnNlcnRpb25zKCsp
+LCAxNyBkZWxldGlvbnMoLSkNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9waHkvbWVkaWF0ZWssaGRtaS1waHkueWFtbA0KPiA+DQo+ID4g
+ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21l
+ZGlhdGVrL21lZGlhdGVrLGhkbWkudHh0IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
+bmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssaGRtaS50eHQNCj4gPiBpbmRleCA2YjFjNTg2
+NDAzZTQuLmIyODRjYTUxYjkxMyAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxoZG1pLnR4dA0KPiA+ICsr
+KyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21l
+ZGlhdGVrLGhkbWkudHh0DQo+ID4gQEAgLTUzLDIzICs1Myw3IEBAIFJlcXVpcmVkIHByb3BlcnRp
+ZXM6DQo+ID4NCj4gPiAgSERNSSBQSFkNCj4gPiAgPT09PT09PT0NCj4gPiAtDQo+ID4gLVRoZSBI
+RE1JIFBIWSBzZXJpYWxpemVzIHRoZSBIRE1JIGVuY29kZXIncyB0aHJlZSBjaGFubmVsIDEwLWJp
+dCBwYXJhbGxlbA0KPiA+IC1vdXRwdXQgYW5kIGRyaXZlcyB0aGUgSERNSSBwYWRzLg0KPiA+IC0N
+Cj4gPiAtUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiAtLSBjb21wYXRpYmxlOiAibWVkaWF0ZWss
+PGNoaXA+LWhkbWktcGh5Ig0KPiA+IC0tIHRoZSBzdXBwb3J0ZWQgY2hpcHMgYXJlIG10MjcwMSwg
+bXQ3NjIzIGFuZCBtdDgxNzMNCj4gPiAtLSByZWc6IFBoeXNpY2FsIGJhc2UgYWRkcmVzcyBhbmQg
+bGVuZ3RoIG9mIHRoZSBtb2R1bGUncyByZWdpc3RlcnMNCj4gPiAtLSBjbG9ja3M6IFBMTCByZWZl
+cmVuY2UgY2xvY2sNCj4gPiAtLSBjbG9jay1uYW1lczogbXVzdCBjb250YWluICJwbGxfcmVmIg0K
+PiA+IC0tIGNsb2NrLW91dHB1dC1uYW1lczogbXVzdCBiZSAiaGRtaXR4X2RpZ19jdHMiIG9uIG10
+ODE3Mw0KPiA+IC0tICNwaHktY2VsbHM6IG11c3QgYmUgPDA+DQo+ID4gLS0gI2Nsb2NrLWNlbGxz
+OiBtdXN0IGJlIDwwPg0KPiA+IC0NCj4gPiAtT3B0aW9uYWwgcHJvcGVydGllczoNCj4gPiAtLSBt
+ZWRpYXRlayxpYmlhczogVFggRFJWIGJpYXMgY3VycmVudCBmb3IgPDEuNjVHYnBzLCBkZWZhdWx0
+cyB0byAweGENCj4gPiAtLSBtZWRpYXRlayxpYmlhc191cDogVFggRFJWIGJpYXMgY3VycmVudCBm
+b3IgPjEuNjVHYnBzLCBkZWZhdWx0cyB0byAweDFjDQo+ID4gK1NlZSBwaHkvbWVkaWF0ZWssaGRt
+aS1waHkueWFtbA0KPiA+DQo+ID4gIEV4YW1wbGU6DQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1pLXBoeS55YW1s
+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1pLXBo
+eS55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAu
+Ljk2NzAwYmI4YmMwMA0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvcGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwNCj4gPiBAQCAt
+MCwwICsxLDkxIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9u
+bHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICsjIENvcHlyaWdodCAoYykgMjAyMCBNZWRpYVRlaw0K
+PiA+ICslWUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3Jn
+L3NjaGVtYXMvcGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwjDQo+ID4gKyRzY2hlbWE6IGh0dHA6
+Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiA+ICsNCj4gPiArdGl0
+bGU6IE1lZGlhVGVrIEhpZ2ggRGVmaW5pdGlvbiBNdWx0aW1lZGlhIEludGVyZmFjZSAoSERNSSkg
+UEhZIGJpbmRpbmcNCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gQ2h1bi1LdWFu
+ZyBIdSA8Y2h1bmt1YW5nLmh1QGtlcm5lbC5vcmc+DQo+ID4gKyAgLSBDaHVuZmVuZyBZdW4gPGNo
+dW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+IA0KPiBQbGVhc2UgYWRkIFBoaWxpcHAgWmFiZWwg
+YmVjYXVzZSBoZSBpcyBNZWRpYXRlayBEUk0gZHJpdmVyIG1haW50YWluZXIuDQpPaywgd2lsbCBk
+byBpdA0KDQpUaGFua3MgYSBsb3QNCg0KPiANCj4gRFJNIERSSVZFUlMgRk9SIE1FRElBVEVLDQo+
+IE06IENodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5odSBhdCBrZXJuZWwub3JnPg0KPiBNOiBQaGls
+aXBwIFphYmVsIDxwLnphYmVsIGF0IHBlbmd1dHJvbml4LmRlPg0KPiBMOiBkcmktZGV2ZWwgYXQg
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFM6IFN1cHBvcnRlZA0KPiBGOiBEb2N1bWVudGF0aW9u
+L2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay8NCj4gDQo+IFJlZ2FyZHMsDQo+
+IENodW4tS3VhbmcuDQo+IA0KPiA+ICsNCj4gPiArZGVzY3JpcHRpb246IHwNCj4gPiArICBUaGUg
+SERNSSBQSFkgc2VyaWFsaXplcyB0aGUgSERNSSBlbmNvZGVyJ3MgdGhyZWUgY2hhbm5lbCAxMC1i
+aXQgcGFyYWxsZWwNCj4gPiArICBvdXRwdXQgYW5kIGRyaXZlcyB0aGUgSERNSSBwYWRzLg0KPiA+
+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICAkbm9kZW5hbWU6DQo+ID4gKyAgICBwYXR0ZXJu
+OiAiXmhkbWktcGh5QFswLTlhLWZdKyQiDQo+ID4gKw0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4g
+KyAgICBlbnVtOg0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10MjcwMS1oZG1pLXBoeQ0KPiA+ICsg
+ICAgICAtIG1lZGlhdGVrLG10NzYyMy1oZG1pLXBoeQ0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10
+ODE3My1oZG1pLXBoeQ0KPiA+ICsNCj4gPiArICByZWc6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0K
+PiA+ICsNCj4gPiArICBjbG9ja3M6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBkZXNj
+cmlwdGlvbjogUExMIHJlZmVyZW5jZSBjbG9jaw0KPiA+ICsNCj4gPiArICBjbG9jay1uYW1lczoN
+Cj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNvbnN0OiBwbGxfcmVmDQo+ID4gKw0KPiA+
+ICsgIGNsb2NrLW91dHB1dC1uYW1lczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNv
+bnN0OiBoZG1pdHhfZGlnX2N0cw0KPiA+ICsNCj4gPiArICAiI3BoeS1jZWxscyI6DQo+ID4gKyAg
+ICBjb25zdDogMA0KPiA+ICsNCj4gPiArICAiI2Nsb2NrLWNlbGxzIjoNCj4gPiArICAgIGNvbnN0
+OiAwDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVrLGliaWFzOg0KPiA+ICsgICAgZGVzY3JpcHRpb246
+DQo+ID4gKyAgICAgIFRYIERSViBiaWFzIGN1cnJlbnQgZm9yIDwgMS42NUdicHMNCj4gPiArICAg
+ICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ICsgICAg
+bWluaW11bTogMA0KPiA+ICsgICAgbWF4aW11bTogNjMNCj4gPiArICAgIGRlZmF1bHQ6IDB4YQ0K
+PiA+ICsNCj4gPiArICBtZWRpYXRlayxpYmlhc191cDoNCj4gPiArICAgIGRlc2NyaXB0aW9uOg0K
+PiA+ICsgICAgICBUWCBEUlYgYmlhcyBjdXJyZW50IGZvciA+PSAxLjY1R2Jwcw0KPiA+ICsgICAg
+JHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyDQo+ID4gKyAgICBt
+aW5pbXVtOiAwDQo+ID4gKyAgICBtYXhpbXVtOiA2Mw0KPiA+ICsgICAgZGVmYXVsdDogMHgxYw0K
+PiA+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21wYXRpYmxlDQo+ID4gKyAgLSByZWcN
+Cj4gPiArICAtIGNsb2Nrcw0KPiA+ICsgIC0gY2xvY2stbmFtZXMNCj4gPiArICAtIGNsb2NrLW91
+dHB1dC1uYW1lcw0KPiA+ICsgIC0gIiNwaHktY2VsbHMiDQo+ID4gKyAgLSAiI2Nsb2NrLWNlbGxz
+Ig0KPiA+ICsNCj4gPiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtl
+eGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9j
+ay9tdDgxNzMtY2xrLmg+DQo+ID4gKyAgICBoZG1pX3BoeTogaGRtaS1waHlAMTAyMDkxMDAgew0K
+PiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTczLWhkbWktcGh5IjsNCj4g
+PiArICAgICAgICByZWcgPSA8MHgxMDIwOTEwMCAweDI0PjsNCj4gPiArICAgICAgICBjbG9ja3Mg
+PSA8JmFwbWl4ZWRzeXMgQ0xLX0FQTUlYRURfSERNSV9SRUY+Ow0KPiA+ICsgICAgICAgIGNsb2Nr
+LW5hbWVzID0gInBsbF9yZWYiOw0KPiA+ICsgICAgICAgIGNsb2NrLW91dHB1dC1uYW1lcyA9ICJo
+ZG1pdHhfZGlnX2N0cyI7DQo+ID4gKyAgICAgICAgbWVkaWF0ZWssaWJpYXMgPSA8MHhhPjsNCj4g
+PiArICAgICAgICBtZWRpYXRlayxpYmlhc191cCA9IDwweDFjPjsNCj4gPiArICAgICAgICAjY2xv
+Y2stY2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgI3BoeS1jZWxscyA9IDwwPjsNCj4gPiArICAg
+IH07DQo+ID4gKw0KPiA+ICsuLi4NCj4gPiAtLQ0KPiA+IDIuMTguMA0KPiA+DQoNCg==
 
