@@ -2,321 +2,475 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B22C2BAB94
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 15:03:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B4DC2BAB9D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 15:06:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726548AbgKTOCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 09:02:39 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:51677 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726310AbgKTOCi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 09:02:38 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 40B1D580128;
-        Fri, 20 Nov 2020 09:02:37 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 20 Nov 2020 09:02:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=3PJSWe94axMKGpde3F+ATFXZ3E7
-        YjJoiE0buN+xUtmw=; b=HeImxUBVZ5PUTmaNRaSDUGUg/yckzq+8uIfrXxZwJ50
-        EUXf6OGRofMrhNGoQJrRfgJbgyktxNAUGqH9fWXid9n3J6HhveBmX3lOfNY3TQdx
-        owQQJ18dnF5fpcsKYN4AESMIRWKGJXYZUmlr1CfL5pTJzmKjSgWeHxfwfcKO5wDm
-        QmQ2ZCcrcNufxkf06piynm7q5MvoXpQHpFnZAJ1TYRm9MFZf8gzMOPBlspzm9tGT
-        mqXArWjtw3W5VB/ZIIovIjr2Jm8yiB5/Au186KKsq2vxSck/X1c4XqO3flZOlQIX
-        KlBbk5FfQAsX1IxMot6SsPKVVht3bQvuHfhrzw5uVMg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=3PJSWe
-        94axMKGpde3F+ATFXZ3E7YjJoiE0buN+xUtmw=; b=hhbO+K/aGMxUAuuaCt+O95
-        YBHAxzNtScurbiFrYWZdLZ91I1+PjwDVjnaFATBRuKZ0eOgiv3jKOLup0iUr10hT
-        DAmR0O0t/n9E8YGfS9IWGDuMAoswvXDxMORt9JpRFWBI2F0PFuWj8ToKSoNSLrrv
-        a/UL9dCWY1D9hEfSNzzOvtpTzBngyQeo7Kso2tGS3+yrH8FlGwkBdJTbk9tmzUS0
-        ccMBVnJHITdRUctLgKxEwCefExXugufuQDEZ6CQf6hkRbcUBGhVSU9z0EBBzFZfp
-        e5jAWWeklB/hvOvBMcvp0npKODoY5V6naDkBit0brLTdh+hEBd5TTw0UCo5Vk/6w
-        ==
-X-ME-Sender: <xms:esy3X9gpvPq5Zu52kVTlzemPWMGnycirq1b0qATF41C4A8IdOy-PYg>
-    <xme:esy3XyD9y_r1gIRpdsUnb-SqnLAtfttmTWaYTx_IcBWUMTghsdXJnk6B60FXXkp-w
-    d1pa8uv9RsFR3-UmQE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegtddgheeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:esy3X9HeJR-JALPw9b6ne03GB616EQR57g-ai97fDs1aHG9NwKit8A>
-    <xmx:esy3XyQR3zTgVACKMDY0_g9AbzQI0EeMWyE0N6Co_bq-aOk8oJkDGg>
-    <xmx:esy3X6xo1C0pHr9OpaltEHig40lmvuVTHhYGeElahd8lfD6zXCDBow>
-    <xmx:fcy3X_LGaHuq0Ktfuq2FceyCVZ_qJ8IuMndz6WJfQxTp08gs1yPIKg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 18F82328006A;
-        Fri, 20 Nov 2020 09:02:34 -0500 (EST)
-Date:   Fri, 20 Nov 2020 15:02:32 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Eric Anholt <eric@anholt.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
+        id S1727241AbgKTODt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 09:03:49 -0500
+Received: from mx2.suse.de ([195.135.220.15]:43654 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725890AbgKTODs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 09:03:48 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id E519DAA4F;
+        Fri, 20 Nov 2020 14:03:46 +0000 (UTC)
+Subject: Re: [PATCH 7/8] drm/vc4: kms: Remove async modeset semaphore
+To:     Maxime Ripard <maxime@cerno.tech>,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
+        Eric Anholt <eric@anholt.net>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rpi-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
         Tim Gover <tim.gover@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 6/7] drm/vc4: kms: Store the unassigned channel list
- in the state
-Message-ID: <20201120140232.gd7a5v3bdymo6fbp@gilmour>
-References: <20201105135656.383350-1-maxime@cerno.tech>
- <20201105135656.383350-7-maxime@cerno.tech>
- <c733bc70-8535-e4b9-1db6-a7b51e2781a7@suse.de>
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        devicetree@vger.kernel.org
+References: <20201113152956.139663-1-maxime@cerno.tech>
+ <20201113152956.139663-8-maxime@cerno.tech>
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+Message-ID: <c0985d0b-97ad-63d9-053e-41873baeb354@suse.de>
+Date:   Fri, 20 Nov 2020 15:03:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
+In-Reply-To: <20201113152956.139663-8-maxime@cerno.tech>
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="e32t2d7ca57hrzyz"
-Content-Disposition: inline
-In-Reply-To: <c733bc70-8535-e4b9-1db6-a7b51e2781a7@suse.de>
+ protocol="application/pgp-signature";
+ boundary="CCbv54hNzqU0TrkL6trl6GjR9kmABd1OT"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--CCbv54hNzqU0TrkL6trl6GjR9kmABd1OT
+Content-Type: multipart/mixed; boundary="D85YJJMAB7UB7ioyFhIQlV6ffM47RHR3V";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Maxime Ripard <maxime@cerno.tech>, Mark Rutland <mark.rutland@arm.com>,
+ Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Eric Anholt <eric@anholt.net>, Daniel Vetter <daniel.vetter@intel.com>,
+ David Airlie <airlied@linux.ie>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Tim Gover <tim.gover@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>,
+ bcm-kernel-feedback-list@broadcom.com,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, devicetree@vger.kernel.org
+Message-ID: <c0985d0b-97ad-63d9-053e-41873baeb354@suse.de>
+Subject: Re: [PATCH 7/8] drm/vc4: kms: Remove async modeset semaphore
+References: <20201113152956.139663-1-maxime@cerno.tech>
+ <20201113152956.139663-8-maxime@cerno.tech>
+In-Reply-To: <20201113152956.139663-8-maxime@cerno.tech>
 
---e32t2d7ca57hrzyz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--D85YJJMAB7UB7ioyFhIQlV6ffM47RHR3V
+Content-Type: multipart/mixed;
+ boundary="------------32AD5169F847D8DF029F8FF7"
+Content-Language: en-US
+
+This is a multi-part message in MIME format.
+--------------32AD5169F847D8DF029F8FF7
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi!
 
-On Thu, Nov 19, 2020 at 09:59:15AM +0100, Thomas Zimmermann wrote:
-> Am 05.11.20 um 14:56 schrieb Maxime Ripard:
-> > If a CRTC is enabled but not active, and that we're then doing a page
-> > flip on another CRTC, drm_atomic_get_crtc_state will bring the first
-> > CRTC state into the global state, and will make us wait for its vblank
-> > as well, even though that might never occur.
-> >=20
-> > Instead of creating the list of the free channels each time atomic_check
-> > is called, and calling drm_atomic_get_crtc_state to retrieve the
-> > allocated channels, let's create a private state object in the main
-> > atomic state, and use it to store the available channels.
-> >=20
-> > Since vc4 has a semaphore (with a value of 1, so a lock) in its commit
-> > implementation to serialize all the commits, even the nonblocking ones,=
- we
-> > are free from the use-after-free race if two subsequent commits are not=
- ran
-> > in their submission order.
-> >=20
-> > Fixes: 87ebcd42fb7b ("drm/vc4: crtc: Assign output to channel automatic=
-ally")
-> > Reviewed-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
-> > Tested-by: Hoegeun Kwon <hoegeun.kwon@samsung.com>
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >   drivers/gpu/drm/vc4/vc4_drv.h |   1 +
-> >   drivers/gpu/drm/vc4/vc4_kms.c | 124 +++++++++++++++++++++++++++-------
-> >   2 files changed, 100 insertions(+), 25 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_dr=
+
+Am 13.11.20 um 16:29 schrieb Maxime Ripard:
+> Now that we have proper ordering guaranteed by the previous patch, the
+> semaphore is redundant and can be removed.
+>=20
+> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+
+Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
+
+> ---
+>   drivers/gpu/drm/vc4/vc4_crtc.c | 13 -------------
+>   drivers/gpu/drm/vc4/vc4_drv.h  |  2 --
+>   drivers/gpu/drm/vc4/vc4_kms.c  | 20 +-------------------
+>   3 files changed, 1 insertion(+), 34 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/vc4/vc4_crtc.c b/drivers/gpu/drm/vc4/vc4_c=
+rtc.c
+> index 29b77f4b4e56..65d43e2e1d51 100644
+> --- a/drivers/gpu/drm/vc4/vc4_crtc.c
+> +++ b/drivers/gpu/drm/vc4/vc4_crtc.c
+> @@ -699,7 +699,6 @@ vc4_async_page_flip_complete(struct vc4_seqno_cb *c=
+b)
+>   		container_of(cb, struct vc4_async_flip_state, cb);
+>   	struct drm_crtc *crtc =3D flip_state->crtc;
+>   	struct drm_device *dev =3D crtc->dev;
+> -	struct vc4_dev *vc4 =3D to_vc4_dev(dev);
+>   	struct drm_plane *plane =3D crtc->primary;
+>  =20
+>   	vc4_plane_async_set_fb(plane, flip_state->fb);
+> @@ -731,8 +730,6 @@ vc4_async_page_flip_complete(struct vc4_seqno_cb *c=
+b)
+>   	}
+>  =20
+>   	kfree(flip_state);
+> -
+> -	up(&vc4->async_modeset);
+>   }
+>  =20
+>   /* Implements async (non-vblank-synced) page flips.
+> @@ -747,7 +744,6 @@ static int vc4_async_page_flip(struct drm_crtc *crt=
+c,
+>   			       uint32_t flags)
+>   {
+>   	struct drm_device *dev =3D crtc->dev;
+> -	struct vc4_dev *vc4 =3D to_vc4_dev(dev);
+>   	struct drm_plane *plane =3D crtc->primary;
+>   	int ret =3D 0;
+>   	struct vc4_async_flip_state *flip_state;
+> @@ -776,15 +772,6 @@ static int vc4_async_page_flip(struct drm_crtc *cr=
+tc,
+>   	flip_state->crtc =3D crtc;
+>   	flip_state->event =3D event;
+>  =20
+> -	/* Make sure all other async modesetes have landed. */
+> -	ret =3D down_interruptible(&vc4->async_modeset);
+> -	if (ret) {
+> -		drm_framebuffer_put(fb);
+> -		vc4_bo_dec_usecnt(bo);
+> -		kfree(flip_state);
+> -		return ret;
+> -	}
+> -
+>   	/* Save the current FB before it's replaced by the new one in
+>   	 * drm_atomic_set_fb_for_plane(). We'll need the old FB in
+>   	 * vc4_async_page_flip_complete() to decrement the BO usecnt and kee=
+p
+> diff --git a/drivers/gpu/drm/vc4/vc4_drv.h b/drivers/gpu/drm/vc4/vc4_dr=
 v.h
-> > index bdbb9540d47d..014113823647 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_drv.h
-> > +++ b/drivers/gpu/drm/vc4/vc4_drv.h
-> > @@ -219,6 +219,7 @@ struct vc4_dev {
-> >   	struct drm_modeset_lock ctm_state_lock;
-> >   	struct drm_private_obj ctm_manager;
-> > +	struct drm_private_obj hvs_channels;
-> >   	struct drm_private_obj load_tracker;
-> >   	/* List of vc4_debugfs_info_entry for adding to debugfs once
-> > diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
+> index 9eefd76cb09e..60062afba7b6 100644
+> --- a/drivers/gpu/drm/vc4/vc4_drv.h
+> +++ b/drivers/gpu/drm/vc4/vc4_drv.h
+> @@ -215,8 +215,6 @@ struct vc4_dev {
+>   		struct work_struct reset_work;
+>   	} hangcheck;
+>  =20
+> -	struct semaphore async_modeset;
+> -
+>   	struct drm_modeset_lock ctm_state_lock;
+>   	struct drm_private_obj ctm_manager;
+>   	struct drm_private_obj hvs_channels;
+> diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_km=
 s.c
-> > index 499c6914fce4..0a231ae500e5 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_kms.c
-> > +++ b/drivers/gpu/drm/vc4/vc4_kms.c
-> > @@ -37,6 +37,17 @@ static struct vc4_ctm_state *to_vc4_ctm_state(struct=
- drm_private_state *priv)
-> >   	return container_of(priv, struct vc4_ctm_state, base);
-> >   }
-> > +struct vc4_hvs_state {
-> > +	struct drm_private_state base;
-> > +	unsigned int unassigned_channels;
-> > +};
-> > +
-> > +static struct vc4_hvs_state *
-> > +to_vc4_hvs_state(struct drm_private_state *priv)
-> > +{
-> > +	return container_of(priv, struct vc4_hvs_state, base);
-> > +}
-> > +
-> >   struct vc4_load_tracker_state {
-> >   	struct drm_private_state base;
-> >   	u64 hvs_load;
-> > @@ -662,6 +673,70 @@ static int vc4_load_tracker_obj_init(struct vc4_de=
-v *vc4)
-> >   	return drmm_add_action_or_reset(&vc4->base, vc4_load_tracker_obj_fin=
-i, NULL);
-> >   }
-> > +static struct drm_private_state *
-> > +vc4_hvs_channels_duplicate_state(struct drm_private_obj *obj)
-> > +{
-> > +	struct vc4_hvs_state *state;
-> > +
-> > +	state =3D kmemdup(obj->state, sizeof(*state), GFP_KERNEL);
-> > +	if (!state)
-> > +		return NULL;
-> > +
-> > +	__drm_atomic_helper_private_obj_duplicate_state(obj, &state->base);
-> > +
-> > +	return &state->base;
-> > +}
-> > +
-> > +static void vc4_hvs_channels_destroy_state(struct drm_private_obj *obj,
-> > +					   struct drm_private_state *state)
-> > +{
-> > +	struct vc4_hvs_state *hvs_state;
-> > +
-> > +	hvs_state =3D to_vc4_hvs_state(state);
-> > +	kfree(hvs_state);
-> > +}
-> > +
-> > +static const struct drm_private_state_funcs vc4_hvs_state_funcs =3D {
-> > +	.atomic_duplicate_state =3D vc4_hvs_channels_duplicate_state,
-> > +	.atomic_destroy_state =3D vc4_hvs_channels_destroy_state,
-> > +};
-> > +
-> > +static void vc4_hvs_channels_obj_fini(struct drm_device *dev, void *un=
-used)
-> > +{
-> > +	struct vc4_dev *vc4 =3D to_vc4_dev(dev);
-> > +
-> > +	drm_atomic_private_obj_fini(&vc4->hvs_channels);
-> > +}
-> > +
-> > +static int vc4_hvs_channels_obj_init(struct vc4_dev *vc4)
-> > +{
-> > +	struct vc4_hvs_state *state;
-> > +
-> > +	state =3D kzalloc(sizeof(*state), GFP_KERNEL);
-> > +	if (!state)
-> > +		return -ENOMEM;
-> > +
-> > +	state->unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0);
-> > +	drm_atomic_private_obj_init(&vc4->base, &vc4->hvs_channels,
-> > +				    &state->base,
-> > +				    &vc4_hvs_state_funcs);
-> > +
-> > +	return drmm_add_action_or_reset(&vc4->base, vc4_hvs_channels_obj_fini=
-, NULL);
-> > +}
-> > +
-> > +static struct vc4_hvs_state *
-> > +vc4_hvs_get_global_state(struct drm_atomic_state *state)
-> > +{
-> > +	struct vc4_dev *vc4 =3D to_vc4_dev(state->dev);
-> > +	struct drm_private_state *priv_state;
-> > +
-> > +	priv_state =3D drm_atomic_get_private_obj_state(state, &vc4->hvs_chan=
-nels);
-> > +	if (IS_ERR(priv_state))
-> > +		return ERR_CAST(priv_state);
-> > +
-> > +	return to_vc4_hvs_state(priv_state);
-> > +}
-> > +
-> >   /*
-> >    * The BCM2711 HVS has up to 7 output connected to the pixelvalves and
-> >    * the TXP (and therefore all the CRTCs found on that platform).
-> > @@ -678,6 +753,14 @@ static int vc4_load_tracker_obj_init(struct vc4_de=
-v *vc4)
-> >    *   need to consider all the running CRTCs in the DRM device to assi=
-gn
-> >    *   a FIFO, not just the one in the state.
-> >    *
-> > + * - To fix the above, we can't use drm_atomic_get_crtc_state on all
-> > + *   enabled CRTCs to pull their CRTC state into the global state, sin=
-ce
-> > + *   a page flip would start considering their vblank to complete. Sin=
-ce
-> > + *   we don't have a guarantee that they are actually active, that
-> > + *   vblank might never happen, and shouldn't even be considered if we
-> > + *   want to do a page flip on a single CRTC. That can be tested by
-> > + *   doing a modetest -v first on HDMI1 and then on HDMI0.
-> > + *
-> >    * - Since we need the pixelvalve to be disabled and enabled back when
-> >    *   the FIFO is changed, we should keep the FIFO assigned for as long
-> >    *   as the CRTC is enabled, only considering it free again once that
-> > @@ -687,46 +770,33 @@ static int vc4_load_tracker_obj_init(struct vc4_d=
-ev *vc4)
-> >   static int vc4_pv_muxing_atomic_check(struct drm_device *dev,
-> >   				      struct drm_atomic_state *state)
-> >   {
-> > -	unsigned long unassigned_channels =3D GENMASK(HVS_NUM_CHANNELS - 1, 0=
-);
-> > +	struct vc4_hvs_state *hvs_state;
-> >   	struct drm_crtc_state *old_crtc_state, *new_crtc_state;
-> >   	struct drm_crtc *crtc;
-> >   	unsigned int i;
-> > -	/*
-> > -	 * Since the HVS FIFOs are shared across all the pixelvalves and
-> > -	 * the TXP (and thus all the CRTCs), we need to pull the current
-> > -	 * state of all the enabled CRTCs so that an update to a single
-> > -	 * CRTC still keeps the previous FIFOs enabled and assigned to
-> > -	 * the same CRTCs, instead of evaluating only the CRTC being
-> > -	 * modified.
-> > -	 */
-> > -	list_for_each_entry(crtc, &dev->mode_config.crtc_list, head) {
-> > -		struct drm_crtc_state *crtc_state;
-> > -
-> > -		if (!crtc->state->enable)
-> > -			continue;
-> > -
-> > -		crtc_state =3D drm_atomic_get_crtc_state(state, crtc);
-> > -		if (IS_ERR(crtc_state))
-> > -			return PTR_ERR(crtc_state);
-> > -	}
-> > +	hvs_state =3D vc4_hvs_get_global_state(state);
-> > +	if (!hvs_state)
-> > +		return -EINVAL;
+> index 849bc6b4cea4..79ab7b8a5e0e 100644
+> --- a/drivers/gpu/drm/vc4/vc4_kms.c
+> +++ b/drivers/gpu/drm/vc4/vc4_kms.c
+> @@ -414,8 +414,6 @@ vc4_atomic_complete_commit(struct drm_atomic_state =
+*state)
+>   		clk_set_min_rate(hvs->core_clk, 0);
+>  =20
+>   	drm_atomic_state_put(state);
+> -
+> -	up(&vc4->async_modeset);
+>   }
+>  =20
+>   static void commit_work(struct work_struct *work)
+> @@ -473,14 +471,9 @@ static int vc4_atomic_commit(struct drm_device *de=
+v,
+>   			     struct drm_atomic_state *state,
+>   			     bool nonblock)
+>   {
+> -	struct vc4_dev *vc4 =3D to_vc4_dev(dev);
+>   	int ret;
+>  =20
+>   	if (state->async_update) {
+> -		ret =3D down_interruptible(&vc4->async_modeset);
+> -		if (ret)
+> -			return ret;
+> -
+>   		ret =3D drm_atomic_helper_prepare_planes(dev, state);
+>   		if (ret) {
+>   			up(&vc4->async_modeset);
+> @@ -491,8 +484,6 @@ static int vc4_atomic_commit(struct drm_device *dev=
+,
+>  =20
+>   		drm_atomic_helper_cleanup_planes(dev, state);
+>  =20
+> -		up(&vc4->async_modeset);
+> -
+>   		return 0;
+>   	}
+>  =20
+> @@ -508,21 +499,14 @@ static int vc4_atomic_commit(struct drm_device *d=
+ev,
+>  =20
+>   	INIT_WORK(&state->commit_work, commit_work);
+>  =20
+> -	ret =3D down_interruptible(&vc4->async_modeset);
+> -	if (ret)
+> -		return ret;
+> -
+>   	ret =3D drm_atomic_helper_prepare_planes(dev, state);
+> -	if (ret) {
+> -		up(&vc4->async_modeset);
+> +	if (ret)
+>   		return ret;
+> -	}
+>  =20
+>   	if (!nonblock) {
+>   		ret =3D drm_atomic_helper_wait_for_fences(dev, state, true);
+>   		if (ret) {
+>   			drm_atomic_helper_cleanup_planes(dev, state);
+> -			up(&vc4->async_modeset);
+>   			return ret;
+>   		}
+>   	}
+> @@ -1006,8 +990,6 @@ int vc4_kms_load(struct drm_device *dev)
+>   		vc4->load_tracker_enabled =3D true;
+>   	}
+>  =20
+> -	sema_init(&vc4->async_modeset, 1);
+> -
+>   	/* Set support for vblank irq fast disable, before drm_vblank_init()=
+ */
+>   	dev->vblank_disable_immediate =3D true;
+>  =20
 >=20
-> I found this confusing. It's technically correct, but from hvs_state is n=
-ot
-> clear that it's the new state. Maybe call it hvs_new_state.
 
-Yeah, you're right, I'll change it
+--=20
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
+(HRB 36809, AG N=C3=BCrnberg)
+Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
 
-> If you want to be pedantic, maybe split the creation of the new state from
-> the usage. Call vc4_hvs_get_global_state() at the top of vc4_atomic_check=
-()
-> to make the new state. (Maybe with a short comment.) And here only call an
-> equivalent of drm_atomic_get_new_private_obj_state() for hvs_channels.
+--------------32AD5169F847D8DF029F8FF7
+Content-Type: application/pgp-keys;
+ name="OpenPGP_0x680DC11D530B7A23.asc"
+Content-Transfer-Encoding: quoted-printable
+Content-Disposition: attachment;
+ filename="OpenPGP_0x680DC11D530B7A23.asc"
 
-There's other private states in that driver, and the other states are
-using the same construct here, I did so to remain consistent
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-> In any case
->=20
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
+xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdgX=
+H47
+fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0BeB5B=
+bqP
+5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4YchdHm3bkPj=
+z9E
+ErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB9GluwvIhSezPg=
+nEm
+imZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEBAAHNKFRob21hcyBaa=
+W1t
+ZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmNvbT7CwI4EEwEIADgCGwMFCwkIBwIGFQoJCAsCB=
+BYC
+AwECHgECF4AWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCXvxIWAAKCRBoDcEdUwt6I+aZB/9ih=
+Onf
+G4Lgf1L87cvoXh95/bnaJ6aQhP6/ZeRleuCXflnyDajlm3c9loQr0r2bQUi7JeYwUKbBab2QS=
+GJm
+DMRGlLMnmzWB8mHmZ6bHAu+2Sth8SraE42p6BB9d8dlYEID+dl/D/xUBeulfkck5rloGtYqDi=
++1Q
+DfkEZJaxVSZ6FFkXuQi/G9qcI4iklN2nv02iQ7mZe8WYAysix6s/6vIobhirEBreclSNxXqis=
+p8n
+91+v855JC11EgRdUXMRK81IAaCKXP8zLx3ixku7mvP9Om61yerHSbeU2HZbIggZYQlFh6llJm=
+zF1
+CjCWgPTJyk4t4kMTcNOw5ykD47vU/KW+wl0EEBECAB0WIQQn6OOmnzvP/7ktjmoud6EwEfXTw=
+gUC
+WzodVwAKCRAud6EwEfXTwidvAKDkOADDHfI0QNXqAZcg6i1kOndAYACeLXHBwpjnumkPSyoab=
+IiL
++he8r3zCwHMEEAEIAB0WIQQeXZghmQijlU7YzFiqUDvJrg9HpwUCWznxsQAKCRCqUDvJrg9Hp=
+42f
+CADIvsZcAd04PDFclRltHr2huy6s7+ZZA6PgYlMblEBh4bJA+dNPBTvzpJ7FJv/bmHOa+phWy=
+Urj
+EpfFGuOKGuWAfzgVAEu52fMrW3/mm+O26z1AKIu8hiZ/x9OAe4AM71ZO2lZrV1/53ZdzWnRuO=
+45N
+GQcotU8oeVfT9okAfmozmWMmIMq7Q0K6bV8W3qiD5XfDNxjr2caxc/9WX1bZPUo3n0H23MNaA=
+Tpy
+Oz732UtDh6sKUAB1RfzBBd/REbjHD7+quwJGAdRScyDRncX1vNb2+wihy0ipA69XY3bkhR5iD=
+u5r
+A9enuiMe6J1IBMI1PZh+vOufB/M6cd2D9RULIJaJwsBzBBABCAAdFiEEuyNtt7Ge78bIRx1op=
+/N8
+GYw5MYEFAls6MrsACgkQp/N8GYw5MYEnLQf/dwqlDJVQL2q+i8FFaqTMAm0n9jLRV6pN8JxFH=
+j0g
+voyWUOnQuNdAFgtKd26ZhN8NkLoSMO8E19eBPfLoBIFK5yNNVmRHAZm07MzGbA0uNWINJhmdR=
+bZM
+RMh0nneXjcEU/IvUmd8TPFTAd24X2mbzHgcaHMLJSVx1ohd4alRJXHIqDobKmiVwekyPnInJn=
+zWw
+iuZUkIotTkQple1PT/dF3S+KtPXBL6ldQ4NkAeCjsz4wnzSa9+VKOxEhiHM0PMzXSbkCMP+4m=
+Xy9
+RMplBw9Dm9hN2PSouBPifIrSodiiSWZYXOEkzLiBAB0frCKR63Dnx9kvjCD9Pz5wLd/70rjqI=
+cLA
+jgQTAQgAOAIbAwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC=
+3oj
+BQJftODHAAoJEGgNwR1TC3ojZSIIAIV3makffp4P4leU8JSLt0aTNewsOhy7VQzKUtlCw3PKD=
+3l/
+SuymZhQKgH+n6sijzFauZnZ+x0T+Oy+dDVZb3sNJuuMUDIHw18EO9daZBMcueaS54FGe73lAp=
+HUl
+7nxyocCxoqIG8+fP+75itV/ls2TSh5rJvjLvHC8J3NqfGlJ/jlSKrQUnzFbXfE5KGWiKNAn+I=
+1a2
+EE0I7uLpYgkdb8hcjtV9Rxr2ja+GWOaSoqB29P5GUzipkWo4144Q16JBO6QP2R9y/1ZK9VqH2=
+5T8
+lTKocLAaHCEdpDqY5KI15as9tIxlI1Vh+eqhTh/gwEm1ykO1gmrQ1zvGLDMB1EE6El3NJ1Rob=
+21h
+cyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIbAwULCQgHAgYVC=
+gkI
+CwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJe/EheAAoJEGgNwR1TC3ojq=
+RgI
+AIoegtTp1prPzfHgTAuEPd8v58ssHubwi9tg69a8IJ+iMNozhs4iUou84WOLBJNjSieXHZRa8=
+fJj
+//2/sTuABn38AQ9FcKX9/B49hrdCo6c0WHHKqlPrSTzuXNKYyOdmSFd/pDhBb2Bn5DTxxH5RP=
+m/N
+U/C9nUlwi7Y+FgBlDNa5h592wmJfv0cJAfvF56C+QL65jHFOFIW9xSaTOAxxMXHGJHXki6Iwa=
+aTg
+s7QQlKQcd5XvvED1bwLyQ7rq+MEZo5N7IygpQMM3qqGMlCnDdyQ3W95rd0HCWpfa0oVRCOwdu=
+SL3
+5hG7ONqBpvBj8z5GjSbt4HLJGvpeT0k37qzRExrCXQQQEQIAHRYhBCfo46afO8//uS2Oai53o=
+TAR
+9dPCBQJbOh1XAAoJEC53oTAR9dPC05AAoIy0HQ2DBDYugQ42P4HfyxfZTIvKAJ0fqNBcBFW9S=
+tbR
+DEP9cfpNVOv8YMLAcwQQAQgAHRYhBB5dmCGZCKOVTtjMWKpQO8muD0enBQJbOfGzAAoJEKpQO=
+8mu
+D0enL0wIAM2NTeUDCofBAkbWHGTZopclefbh0xGPYQEfttNyalp0hn1CrVO7OsX5eTjRqgyOa=
+1C5
+OAsNghCM4PUmrfv5cZ9+sNn9bRM50uVW9IFRlq8wwBY4+7QejJ5gs7DW/0tZIMZ6iTGKK0WEO=
+7gd
+2K9hXadPBScTdIqXeWH82meiqElnEQL+K9UeGUBrku+1EQIOxwziKwTDlTvhyJ+xmEKj0uWRc=
+Ocl
+27xLS9XOWPGXcNQBtlZhF8e/E1kFRt5CPP5UBdUCN8qydUadseXivSNDiYob9dyJSFt7G0Bq4=
+/ac
+Ret5ANtGRWsp8xYJQRossRMWL0w9P8SiIc2IY/JrQrpz29nCwHMEEAEIAB0WIQS7I223sZ7vx=
+shH
+HWin83wZjDkxgQUCWzoywAAKCRCn83wZjDkxgQaDCACyFuBLQWNvLT8GTDqTf/gETzmtoEM6Y=
+r8O
+4jbYg05xiFzAqMZctQsm3zHakx2JrimxDvQJRQJQzp5ICJ7J/BOuSL4FE1SPeQIfjm4jyBZGH=
+P/W
+vgHsT5e3+ZCPePPZO+3irarTKVhaaP70Tpka6EsOCZzO6L8D6tUDkhxMX0ymy7p8w9Yt1eD0o=
+Ume
+mxrKdS1ulpNJUTBw7gJN8bMowVnycEm6wntxOjrCxuwbkKhFLdn0ejcXQ0UkfbUFKfU64gGBu=
+S53
+ZlM8XlOhQEIw/FrdXszhR+Tg3Ag130cmJhOrghgOBLzvJfUd6OvDT5VIz0QGbAm8SWlAIIms1=
+9Z8
+kBsLwsCOBBMBCAA4AhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAFiEEchf7rIzpz2NEoWjla=
+A3B
+HVMLeiMFAl+04McACgkQaA3BHVMLeiPHXAf/SEoZa6CKoOAs1ctEP/hN8cEQqbEiuZ+71nm3u=
+/BQ
+p/CEUvqGq+iVc8kkpClDbPz5fa9mb+yWwufsnXKOs6ygmEoAEOL7dBZZIaRobBEkB09VXIkx8=
+lE0
+00grBVtToHUGRfZcMoMZ98XhPGU6lJDN200j/2CV46hQDz6PLySecNjOME05mosbYW5N2JwFd=
+uXP
+Qx++DjWB32QLBhcOcP3WslTy3PKVe/TcTvk0JpPFMz4UFc+awBVhDgZiGGAW3xLZRYyhpoAEs=
+N7u
+XkV2ct0MRxuZ3y4tTYJobhbZwutRojiPPZduRw9CSpNDcQHruFiSOIQTpnLeCA6K2JAZyqmP/=
+87A
+TQRbOdLgAQgAxiY/gz9X5PlFjlq3+DutR02wuFa/UA9iuH1FB584Nges1EdQT16ixhtPpcyvJ=
+H2F
+PxeUY5hHApbCJAGhZIOJMyj9eLb2NSefgFd8janHYNNfBzbYsq0sCBNGM/6ptTrdjTGdA3b1Q=
+YNt
+iDLIrnUNbcfQh/Zrck2yF4AAr5dz1tqPQsYhzxP26IRYcGcIf5F2GABOdZYYp0N6BRHkGQN8O=
+Dk7
+8UhLKYkEfHYPKiSW/mDgHOSCpOrCZpjOyXxTFkq9trGrTNt6EN1ryW+EVeh00UwCBMsmUu4Ng=
+4Ys
+rYDButLdKnQARuSl0kFvjipWUablsClmi4d4n/6f7uvXb6Wp2wARAQABwsB8BBgBCAAmFiEEc=
+hf7
+rIzpz2NEoWjlaA3BHVMLeiMFAls50uACGwwFCQPCZwAACgkQaA3BHVMLeiOl9wgAifA/k6VwQ=
+qiR
+OccKINPPg6fLgacdE/Z9cBNBkIrGa7gAljaH2J/D01/ZOMJnoAy8Le2EA3SsUOPnk32XizUKl=
+oOj
+gn7R+Sse7I1pydPbToJ4lXUTs1ie3FSf4tKJGs53LCfp6uPFGL0RhNUsIdwOEESMqYVl+DgAz=
+gZk
+xZfWWDT54dt3mgvVqzbxa+8j+4hozJXxFvJei3Wv/xAuVaV1Tc2tMXmntMxTbLdkfaZ/my5Io=
+cAy
+1sTiMonxkcU6jcaEuCNWsFYcT0lc7TzEqSAP7Dq/zf6eiawS5/oLotiupj+2xm/IRfrM3wK2K=
+s90
+9a79Vc1FgCX+Vq3uVIjcfbqqscLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojB=
+QJf
+tOH6AAoJEGgNwR1TC3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6=
+Baa
+6H7ufXNQtThRyIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3=
+T0T
+trijKP4ASAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446S=
+h8W
+n/2DYa8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRai=
+tYJ
+4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9fOwU0EX7ThE=
+wEQ
+ANJiTIb/nQ+MPgIBsSfBBhmXrVFUwFveO6DWPZ0M+Y5xBJhvDukosstSgcLCdld4SFF2JnnCo=
+yh9
+boM2j2Ksd5wNzTzXlo3lEzFRAipftboviUjap0qxoRwy1hBV3Ft1/VyNwwYY7qjGVATQU7cIT=
+/zL
+gb+Sd0NPQA8r2NvpJq1MnI8nFfA2ZH4diuRtavhEBUzp63SlCYxnyxqT5AQzSQGUpsjSyh1A5=
+ezt
+j1pwxgnkX7F9ZT0lUBo6zZM6ZBq8Nkyvox46l79QoWMBm9y+/nIXy/uXdT6RaumPjBzVttGmk=
+Onm
+TlGUJyQAndAE1boib9iWCJ4kIr2ezRKjXJXGuaM1m7hSfdQYWed0j52+nW9qGSNNk1GjYXM8Z=
+SWT
+agX6O5mfbpzRgBBK/XoE9NWRNAa4V+tUX4/vqqDl0m+O4F2GYs6Eu7WLredRgwjDuMF/VCKvQ=
+fr3
+yjIt90Zi10cHQw3khdJWmSDKYgenpvsffo4x56biifOh6IxS/whf5/BAx4nx8GyX7JO0DUnUu=
+ieC
+NfEGRu8QbYBSOkO/vdm4xy7RZwdzlqN8zjCLFOCG346Bnsx3ku2lNtX6qZoajmfD4oO6N0Xds=
+2pE
+wjufCfJW9sCLdBmqLD5OvsRljyv7vt5w28XSF1tyhQaxIs+8sFJtwfCliduffq56FcFrEXCxs=
+LQr
+ABEBAAHCwqwEGAEIACAWIQRyF/usjOnPY0ShaOVoDcEdUwt6IwUCX7ThEwIbAgJACRBoDcEdU=
+wt6
+I8F0IAQZAQgAHRYhBMZ3Zv36bjFHcGBRaJYfxNxEKL/gBQJftOETAAoJEJYfxNxEKL/gkygQA=
+LQH
+pXm45ZfMCDx7u/d7rRH/R7EfEV5OAoS981IkzbTgrb9z6YYfhQqH+R2ImgoX/Lou7zSjyd22/=
+IaZ
+AnTKHKkXIFIM1uB144dqAi3tW/Bei/CSdiD7DY1q92Ebl6e+Gpf3TZdATSY00fVeLMNFnjbbz=
+CVX
+9+LEKYARNm7kYogVJMc5CuVmXBn9FFF3cioRvpuals8llsFc4WiUBJfDfOzjXExqv3OMtJj0s=
+qlK
+sXdnLkXbtAmEvFaxqUuO1ZwTCTGflrn/g4C8Cg0ifk0wZGgGYRindkJE1vOQZPaDI7GtNxJ+D=
+sx4
+fL/8tf7Wuk3TZ6t/ofKhjq8sUVCVhnlyd/3ujruDu/PhwwYBsHjNn+PmHeCCRJuOWwKapdfjH=
+9nt
+sHXTvyXBB2D3H7Oj7S/HOTXRNTUWhaxICKtq+XDSuJKOv7CNevkjMF4ybQDsrUxnaWd76YqNP=
+vZv
+PYoTqKzKukifjGXMsxC6HU4K2GscpvoaIk7glaD+NYi3fIGi/gR0UNc6cmXtOrYKSnCsNOwcO=
+CJL
+DjEr6YdbdAXO2wxCLqnupo8JRJgA8hjjHM5OoTGEyP/c+DKDqFO90YilX1XN8xchHrw+bDv0E=
+Zm0
+RZpVdL7WNr7qQE4UhDfuyo4Gis4Z+npzoOL4g3yaQQfK32zZD9iqk9152b7ny2Ke5oFIF5SSa=
+EwH
+/2tLNBevzgzWuEB6FtqoMT5RjDyx+xBeImRlhnP0EenRh+EP0nmLCAaFiP4tTp1bX54SyByp8=
+wcN
+7F2+v2Sgdd64w1pdrjT74Zf1xj0NTxEdt5jEaPfl5Vjv3cXiB8ACwPkMIXmkJx3uaGJynl4Os=
+irb
+nzzviEzvDVpLAxL7Qr6imlKUh92iAoz+XxEDqgMZnJJOTDFdDxEBhv911VzlRraDNdxw4MHMm=
+5Nr
+5pj4HGYh3PigzNo0KIreB50YqhGOesaC4Q75gv8mLc2Ec5dEq79BVMUOaCmYDShBN9j6JovNs=
+WSR
+5YP3tXi+jZ+VnyKLft9wo1fh1oYadFEVSHgGsEY=3D
+=3DfoRs
+-----END PGP PUBLIC KEY BLOCK-----
 
-Thanks!
-Maxime
+--------------32AD5169F847D8DF029F8FF7--
 
---e32t2d7ca57hrzyz
-Content-Type: application/pgp-signature; name="signature.asc"
+--D85YJJMAB7UB7ioyFhIQlV6ffM47RHR3V--
+
+--CCbv54hNzqU0TrkL6trl6GjR9kmABd1OT
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7fMeAAKCRDj7w1vZxhR
-xaksAP4z6Yr/nS9h5XkVmO6hbCo6Ql62QfXaQZGHm4JRqon4xgD+OfkkUxAgXfwZ
-SQj8cDeUQ2HD6HBKyCGfdipdCXLkPwk=
-=Z7hY
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAl+3zMIFAwAAAAAACgkQlh/E3EQov+Cq
+cxAAix4Ze9P5qFU1SwEnZC6lkxs4ATMFQmclv04HHSlp2+bCTCoNjIofo+qoew9xb6xA7mRxp8zu
+S7KbFUFbZQYlVtOPLnwvnU+9KJAmK03SdeOnA/XB5mIRdnJrzj3SWUBNECCF0O0EDAgd5esfUkDJ
+BJ0IHiVciUyNq86QeRtAt91Ipo7x07wlSlAJfWwZs7k2tGJaXbNBN82fAf1OzsMV7msh34TlOMUO
+43cryfWltvI2qNLdC/g/9MIH2U8mfWp1EfpYwI12pvh4SEkPFn8uzqgJLvWJr8WHN+HpBwniGjEF
+145avvKOy+P/c/oGxF2KzR6Uif5Xnvq1T77bO2bL2aD9zyZyHzqkxbk31sXa2dUBJ2ey8FHoVTIw
+H+GeNv0YAL9yjmNZVsxbvXrXPpBza63H7D28UPyHCg9WEUMPPIARYwLUnsD13DjWPaSTuGDgxlox
+44Twgin2U2ENE4qad3ufO9NXX72NYDiaTFieOuTp77GHVQVHIoB6RcrjPlLDqL9QVZh2QItd5JWq
+fAMS4aapKqNWp35FVJPefBucuLKpyiKes9p6hruf1xPuhraChaLoYs3hagcpCGBSVW1TULuXUSMd
+GmJSGIj/WT4sRRURx1Fjwhg8R4jKr2TE1XCmAajyBXHcLr1FA9qw5G2oiVkghtd0kg9RGf96JDjy
+jVo=
+=wwmf
 -----END PGP SIGNATURE-----
 
---e32t2d7ca57hrzyz--
+--CCbv54hNzqU0TrkL6trl6GjR9kmABd1OT--
