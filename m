@@ -2,144 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D6F392BAB60
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 14:37:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 182112BAB7F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 14:49:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727181AbgKTNeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 08:34:24 -0500
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:55881 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728104AbgKTNeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 08:34:23 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 50A3058034B;
-        Fri, 20 Nov 2020 08:34:22 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Fri, 20 Nov 2020 08:34:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=chtKUnl/3u8rC0lx4l60xkomqPZ
-        cjv7pF8lpjJmJf9Y=; b=vFzXxWcCQSi+O4gnXrfm8amDWJtmjT8tSNhEa/a6dN7
-        ronoxoSuIM3DHKa+4htjZ9O81eWxEFEmC4x6X4//Dp3nDarMpG8dFKdNkwCI/iWM
-        kTWf4p3XhYx31iLO1hMfEoUYMflhdsJ/j9aKaCk2QTjVaDb04m7eJGVbEeAqKSEU
-        vEV4ZlCYRvbf0wxFWy12+/PwqP6IqaRyxM20f44fHn8CUy1Ff4RjZtUMYoMXma0e
-        W1PQNchi4rD62gswfxfLBSewSrYgLxUeSsX5IerGMwZIOkK9wHJ2Z/dmjgi9a15s
-        mr8DzqiDhQj3r7aW2h9BDw88HF8mvw9zYQbnhCRIuww==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=chtKUn
-        l/3u8rC0lx4l60xkomqPZcjv7pF8lpjJmJf9Y=; b=i+zhjnwuRvGg7Vlxrhj3LY
-        o+96TmHZkDiClRW/cS3EbiwH8Zi9ZvxEBLLGUDgt2SANPv7YI1HgbZttNbJncq0y
-        hlBq9UrNdQAJvXbfVjAXcNbofoShcX1CAu0TSTQ7w5fvVntKQIZqtH0H4xla3rMm
-        vCdFKzzNr6Kb+w89AJcJgYlVqt1JY1St2rBedRymiBJm20c7qzciLL48a4gVQJ2o
-        r4lwLjAdMSFipPgDoFJgiDlBLMsga/Qv13T1P7PCC0mnObLI9b6WV0Xh0231Kysp
-        hMNGhzVYvNMO0DtSnW6QHx0y9C1YBlpEdQu0NeQDjdMTWMwRcvRXl2egQLfYlc7A
-        ==
-X-ME-Sender: <xms:3MW3X-JCWWeuOt54zKKwRDkymiYuLUlphAl4yGN0fsaixPgtrM6K_w>
-    <xme:3MW3X2KiZh9H10B1W9wi-r3ZacldXdWyzmPvJA-KOl79vxgL2XBK9hR6erBXtcmKg
-    bdNQTA0cRrhx4FXlXw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegtddgheduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:3MW3X-uHTzpwQCOrKRRF-h2n4v1ITxjBEzE5XHFyKXGnw2IEPiG9NA>
-    <xmx:3MW3XzZtgaOFafA0nteXh-q5dDyFBRZHfATn4mZm1rJH-JiryCxV9A>
-    <xmx:3MW3X1bIRaQBb2iL6aSsWtNKXDp7cLmTMQG2t_-VcDloyJ-8-L3HIw>
-    <xmx:3sW3X-JaNH14cqT7SVDWMHUrJLbucGt6CdoExyMWEujOY84gXoTxQg>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E050D3064AB7;
-        Fri, 20 Nov 2020 08:34:19 -0500 (EST)
-Date:   Fri, 20 Nov 2020 14:34:18 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Daniel Vetter <daniel@ffwll.ch>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Eric Anholt <eric@anholt.net>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        devicetree@vger.kernel.org, Daniel Vetter <daniel.vetter@ffwll.ch>
-Subject: Re: [PATCH 1/8] drm: Introduce an atomic_commit_setup function
-Message-ID: <20201120133418.kllxy5nisjtb5jab@gilmour>
-References: <20201113152956.139663-1-maxime@cerno.tech>
- <20201113152956.139663-2-maxime@cerno.tech>
- <20201113210240.GX401619@phenom.ffwll.local>
+        id S1727677AbgKTNqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 08:46:21 -0500
+Received: from mail.kernel.org ([198.145.29.99]:52986 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726561AbgKTNqU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 08:46:20 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C939022272;
+        Fri, 20 Nov 2020 13:46:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605879979;
+        bh=2Wp+VX93wye7+YwBgkbMeLb2bb3rkd9k4b5sbT//jAQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RkQLAC85kM3UZO6uognCfcD7YnxnTq+LcCa7OjkABH88bcZmTRcC6XqYwB/rTXrro
+         mfbf4m5XJWhVNWJyl9Yqqj0DuSWTVt25sb+8tlCsnUnW0b+NvILwfsfaMi6JDSCK+H
+         bYcM+Y0Vz7F+N/61tz6MdOgAm4P/GheBzlUGd0Bw=
+Date:   Fri, 20 Nov 2020 13:45:58 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Adam Ward <adam.ward@diasemi.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 9/9] regulator: da9121: add interrupt support
+Message-ID: <20201120134558.GE6751@sirena.org.uk>
+References: <cover.1605868780.git.Adam.Ward.opensource@diasemi.com>
+ <ef98a01f6281ae6c925f283b51804f7f5194d230.1605868780.git.Adam.Ward.opensource@diasemi.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5jn2qanica623erz"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Wb5NtZlyOqqy58h0"
 Content-Disposition: inline
-In-Reply-To: <20201113210240.GX401619@phenom.ffwll.local>
+In-Reply-To: <ef98a01f6281ae6c925f283b51804f7f5194d230.1605868780.git.Adam.Ward.opensource@diasemi.com>
+X-Cookie: Have at you!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---5jn2qanica623erz
+--Wb5NtZlyOqqy58h0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Daniel,
+On Fri, Nov 20, 2020 at 12:14:59PM +0000, Adam Ward wrote:
+> Adds interrupt handler for variants, and notifications for events; over
+> temperature/voltage/current.
+> Also handling of persistent events and respective timing configuration.
 
-Thanks for your review
+Again the "also" suggests that this should be multiple changes.
 
-On Fri, Nov 13, 2020 at 10:02:40PM +0100, Daniel Vetter wrote:
-> > +	 * is not used by the atomic helpers.
-> > +	 *
-> > +	 * This function is called at the end of
-> > +	 * drm_atomic_helper_setup_commit(), so once the commit has been
-> > +	 * properly setup across the generic DRM object states. It allows
-> > +	 * drivers to do some additional commit tracking that isn't related t=
-o a
-> > +	 * CRTC, plane or connector, typically a private object.
-> > +	 *
-> > +	 * This hook is optional.
-> > +	 */
-> > +	int (*atomic_commit_setup)(struct drm_atomic_state *state);
->=20
-> I think the kerneldoc for drm_private_obj should also explain when it is
-> necessary to use this, and when not:
->=20
-> - when the private state is a tied to an existing drm object (drm_crtc,
->   drm_plane or drm_crtc) and never moves, then sufficient synchronization
->   is already guaranteed by that superior object. This could even hold
->   when the private object can be e.g. reassigned between planes, but
->   always stays on the same crtc.
->=20
-> - if the private state object can be globally reassigned, then
->   drm_crtc_commit synchronization points need to be set up in
->   ->atomic_commit_setup and waited on as the first step in
->   ->atomic_commit_tail
+> +	struct da9121 *chip = container_of(work, struct da9121, work.work);
+> +	enum { R0 = 0, R1, R2, REG_MAX_NUM };
 
-Does the comment added on patch 2 sufficient for you, or would you
-extend it / make it clearer?
+This enum appears to map the numbers 0, 1 and 2 onto the constants 0, 1
+and 2?  It also seems to be repeated in several functions?
 
-Maxime
+> +	int status[REG_MAX_NUM] = {0};
+> +	int clear[REG_MAX_NUM] = {0};
+> +	unsigned long delay;
+> +	int i;
+> +	int ret;
 
---5jn2qanica623erz
+> +	/* If persistent-notification, status will be true
+> +	 * If not persistent-notification any longer, status will be false
+> +	 */
+> +	ret = regmap_bulk_read(chip->regmap, DA9121_REG_SYS_STATUS_0,
+> +			(void *)status, (size_t)REG_MAX_NUM);
+
+If these casts are needed something is very wrong with what you're
+doing.
+
+> +static inline int da9121_handle_notifier(
+> +		struct da9121 *chip, struct regulator_dev *rdev,
+> +		unsigned int event_bank, unsigned int event, unsigned int ebit)
+
+Why is this flagged as inline?
+
+> +	if (event & ebit) {
+> +		switch (event_bank) {
+> +		case DA9121_REG_SYS_EVENT_0:
+> +			switch (event & ebit) {
+> +			case DA9121_MASK_SYS_EVENT_0_E_TEMP_CRIT:
+
+The structure of this code seems extremely confusing and hard to follow.
+I really don't understand what purpose this function serves at all, it
+appears to be factoring out the check to see if the bit is set and then
+wrapping that in three layers of unpacking to work out setting the bit
+in persistent and which notification to flag.  I don't understand why
+the interrupt handler doesn't just directly do these things, this just
+seems to be adding a lot of redundant code.
+
+> +			case DA9xxx_MASK_SYS_EVENT_1_E_OC2:
+> +				chip->persistent[R1] |= DA9xxx_MASK_SYS_EVENT_1_E_OC2;
+> +				notification |= REGULATOR_EVENT_OVER_CURRENT;
+> +				break;
+
+> +		regulator_notifier_call_chain(rdev, notification, NULL);
+
+The expectation is that one notification will be delivered per event,
+which fortunately as far as I can see is pretty much what happens.
+
+> +	/* 0 SYSTEM_GOOD */
+> +	if (!(mask[R0] & DA9xxx_MASK_SYS_MASK_0_M_SG) &&
+> +	    (event[R0] & DA9xxx_MASK_SYS_EVENT_0_E_SG)) {
+> +		dev_warn(chip->dev, "Handled E_SG\n");
+> +		handled[R0] |= DA9xxx_MASK_SYS_EVENT_0_E_SG;
+> +		ret = IRQ_HANDLED;
+> +	}
+
+If the interrupt is saying that the system is good why are we logging
+that as a warning?
+
+> +static int da9121_i2c_remove(struct i2c_client *i2c)
+> +{
+> +	struct da9121 *chip = i2c_get_clientdata(i2c);
+> +	int ret = 0;
+> +
+> +	ret = da9121_set_irq_masks(chip, true);
+> +	if (ret != 0) {
+> +		dev_err(chip->dev, "Failed to set IRQ masks: %d\n", ret);
+> +		goto error;
+> +	}
+
+It would simplify the rest of the code to just unconditionally mask all
+interrupts here.
+
+> +
+> +	cancel_delayed_work(&chip->work);
+
+This doesn't synchronize with the work being cancelled, the driver may
+be unregistered while the work is still running.
+
+--Wb5NtZlyOqqy58h0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7fF2gAKCRDj7w1vZxhR
-xbNEAQDxPzTvtfI2MbE18WUcbpkNsidkBA+s9DzD57vH1XKGPQD/aWPkPGS5kWeU
-56kYNTw3Fyz7iUUXFHw6TzwBSTlmRQY=
-=1xkB
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+3yJUACgkQJNaLcl1U
+h9CDKAf+L1BtMh2pVEo97p9ZesujkYpcwVEMPum4NaYuMSc5MHTrjNLhhEuPV+no
+SGG9YDUL/y6PsSKFW3DlL0bIeg2+q0CxZ/vzrG09ZRWqt1tzg9D3Ir9g14/CdSpo
+0LeNtqwJXn+Tl3bFdkfhRWhNt23UloD+T0zTLnw0vtbLdz/90Z8syFgWaWdgXcpk
+pvGXBUEkahek+QJQAhaidQhD1FVdvGec3LXG0N+IlPdAUKyC/7GbRL6JnNNS402T
+XZGuASMkxHTOanNEo5mm90Cf7mUNeSZ69q1dtpiLBMKB0b0exrkNoSgxP3i3zMaz
+pfJzFU2RLEXjfhfv+tsbFKUV9sEu7Q==
+=U0F8
 -----END PGP SIGNATURE-----
 
---5jn2qanica623erz--
+--Wb5NtZlyOqqy58h0--
