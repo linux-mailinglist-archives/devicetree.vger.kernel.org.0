@@ -2,361 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AD652BA02A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 03:06:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEF902BA049
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 03:23:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726117AbgKTCGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 21:06:03 -0500
-Received: from mail-eopbgr130054.outbound.protection.outlook.com ([40.107.13.54]:44823
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725890AbgKTCGD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 21:06:03 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G6W+dm3Uh3rdFlbyGog5pNj3JdvZkMsqyBIvIM++XKWcgAfXB5Vh3mx7wMfhAFrH04wwiIvDZfjDP8o51DVatDhuKob8vxSXrlUL2IEdeHkmRrS12xDmpZA/KIASU/YJjvOsp5OP7lU9UvPlE0/m1JI67XYnN+zgZZVBBeUau6u/mhdNysh8RPjD10jHY5AirTRjlfmdIGbAIBtioBXmkaIjahIxO9i8+oRqtXGVGA2v9ygJDI0dBepJkGGFMdwMD+NLZ+xHpfWW4xx93HbhqaJ50SkfUHHMFcPWZhwUVXdb6SOnaSww/SYHr9Buu56eyc/ZI6TUdYNbZXGZZeqXMA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G4Kt7V2v4skTE4krkebTYvrnPs+wsr/aW+7+caxNO8A=;
- b=LrY5KRRWGaY+wpx1G8niaW0y1UCAfWP+a6EH+j8wZ1CEOHdvp8LXbSwTU8uueUl6ln2OTnfjItJ+sBAASLetSnbW463tQD0Q4XFCGGfq+EyH0i36DC63CMFGBFAICcGik0XT5JUuZY4PtQiWHxGyei8x+PFmy1YcWPkZwkhkF8HnOYh+/yjFGJQWF5pml70Ch8RkxiMV3xsPO/146s7DohtUcr75GB8Hm+WK0NyobV8PoT77pxsY+ue43tOVjix9ell/N5Z4o5zJRuA0xif26gHYQ7Q8trggFfdfgzw1Zp7VnWEP7yL1ANIfyPpmsGLNAzej7DUhq/9Mp4Jg4sdojg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G4Kt7V2v4skTE4krkebTYvrnPs+wsr/aW+7+caxNO8A=;
- b=XxOBpX2hgBLW223zaJ0nNvXPKXZs4mB9XeiwsJZsoWTdH9JJxyr+YnYeJjAahvssk/aj79mnBkIO07WAxSq49g432ba5L4tPPTOD83Gml9/yI8uSVClfT1BZAoNFrWzflp9V3IWikwhaOgfykw6gRFtPHQnt5em3jYGLzRAKNQw=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR04MB5184.eurprd04.prod.outlook.com (2603:10a6:803:5d::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.21; Fri, 20 Nov
- 2020 02:05:56 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3589.021; Fri, 20 Nov 2020
- 02:05:56 +0000
-Message-ID: <0f7cf14cd7cd57ad4f77d2e655c1f428641ecfc1.camel@nxp.com>
-Subject: Re: [PATCH v4] dt-bindings: display: panel: one file of all simple
- LVDS panels with dual ports
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        id S1726260AbgKTCWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 21:22:51 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:14462 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726192AbgKTCWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 21:22:51 -0500
+X-UUID: 216d3160d0bd4324af247085d63b5e17-20201120
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=n/aNWIenGoXWcckC883otYqC5MohkTpPEmWjEeDmBgo=;
+        b=eDfgehha2hQS7z6W0ARtp8JS7Ksne+uwcFPYdcAOcH2tt/xW/ZtdRUweysSIFf0EXZU6XkjS1pSW8a6mu2vVge79EYx6UFz+zeObFzwa1skerapCl7dS6IgfTB2uiQHq3wQjIMJavifRK0MRrs7PhpJ1fCSnJsKxPHQ/sARBJbQ=;
+X-UUID: 216d3160d0bd4324af247085d63b5e17-20201120
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1459692923; Fri, 20 Nov 2020 10:22:38 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 20 Nov
+ 2020 10:22:36 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 20 Nov 2020 10:22:35 +0800
+Message-ID: <1605838955.31607.43.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 07/11] dt-bindings: phy: convert MIP DSI PHY binding
+ to YAML schema
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>
-Date:   Fri, 20 Nov 2020 10:04:03 +0800
-In-Reply-To: <20201119232000.qipbppfz42sop5sm@earth.universe>
-References: <1605577645-32173-1-git-send-email-victor.liu@nxp.com>
-         <20201119232000.qipbppfz42sop5sm@earth.universe>
+        "David S . Miller" <davem@davemloft.net>,
+        "Jakub Kicinski" <kuba@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Min Guo <min.guo@mediatek.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        <netdev@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
+Date:   Fri, 20 Nov 2020 10:22:35 +0800
+In-Reply-To: <CAAOTY_81uZ7MY1ZyfsyYL_62wkNvG2VCT3+G4Zr1bZBG9_Yg1w@mail.gmail.com>
+References: <20201118082126.42701-1-chunfeng.yun@mediatek.com>
+         <20201118082126.42701-7-chunfeng.yun@mediatek.com>
+         <CAAOTY_81uZ7MY1ZyfsyYL_62wkNvG2VCT3+G4Zr1bZBG9_Yg1w@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR01CA0103.apcprd01.prod.exchangelabs.com
- (2603:1096:3:15::29) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR01CA0103.apcprd01.prod.exchangelabs.com (2603:1096:3:15::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 02:05:52 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 3e9c04d7-e871-4c6a-afe8-08d88cf8d0bb
-X-MS-TrafficTypeDiagnostic: VI1PR04MB5184:
-X-Microsoft-Antispam-PRVS: <VI1PR04MB51844316797FB6108797FA7B98FF0@VI1PR04MB5184.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: u5jVDoSPh03jWTUxDqauVDtYu8LO56FLyU/hEsntwWF1ooDlRKm4q1p3JLTLQbqQdA47nseMSfh5GgI4fdD3YzzLLp7H0UIe+PPZ+LRev36GLOBPpQHTcDpp76iXxAL0AA+kzmSPwKniZiqEYfZavyApAOpROOvlk+ziqwZlqPossWxa1UQkK2n6Q+1A1/cygBrAR0ir7G6CYNjDI3uaIBU0n/O5m4aZOjxQLThQuS3mdP3GaTAXntlscneC+NGn8vhDQeyNaYrhyiqmkx21EbhU8ybSqSEf+rhHU0wIRkA/JyqVhwFHYVlVwzYnvw2KOejXgxi5SyQ3voXpcx7RTQEKv44ZMIr+56hU+npf6V2HzOYfr75Lq59ccXou/cFWXgIklvOersCEloFBISjZ7Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(39850400004)(346002)(376002)(396003)(36756003)(66946007)(66476007)(956004)(478600001)(2906002)(8936002)(86362001)(2616005)(54906003)(26005)(966005)(186003)(5660300002)(52116002)(83380400001)(6666004)(8676002)(16526019)(6512007)(6506007)(316002)(66556008)(6916009)(4001150100001)(4326008)(6486002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: M1JkCiFlGeXcUIDZnhxz/ZwQtKlRt0EL5zTnxkSUeG2Jb8jidrqupd6Ce0SGQOrylIWKjjFG8iJ+u96YNMBJmFN4YmYb89bnrGqEt7kvJLAx5YoVt6eksYB5l4prxCwJg5BVAm+2VSSTMuWMJAxnOWrxo/lj1+UZh9sAaTH5HapYehjlmG3KuDhUi620PiCpuUoNWbal+7O7CvVCvyh8WzBEKWYb85hC4tSfJeOtp9ClhB2aWTAqPUqymLZic627bPfyLRxwyECEromgE0+lc3z+J4lsC6GMMnY2geleRZRXXqc/m5dinE9r9YpKrFEahMZafrK31kKkoUnOi4RSAMW4zhy20CCLm6AqRBWpyXjQpCvmEahAPn7M0ai4nJZnbafF327jfI4KlpCJ10AHyjblqUu2U8kzP4wv49knXhRnzrYvkz5F72i8/gazlbzjldsYJKIdS7oYYSQwF8YHe+bvkPFiGrRWaIKr2I9a6oNT31SuNInWHGocVjk+fsWyfUiOlX4iBBIq3zWdHqdGj7ngjl/7kG6RS84nQ/najGsPu7R6DIeHWsMZ2kbjsl2vSe6ghkRdHkVLwcQG90rQUWZLPvHk9PeC3Cgnp8oC7S579A7c7EoXmcqJNSVQTQVqds2lAxA/EaPcVmIKYMxmtQ==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e9c04d7-e871-4c6a-afe8-08d88cf8d0bb
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 02:05:55.9521
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: G2sYQJS79uJhIWW/npNcWLstBNwwAxazCKjj0Ok/lT2KFMGoZCiuvKc4SidQN8ZEsc/lh+TlqGOp74W1Lfv8kA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5184
+X-TM-SNTS-SMTP: 68FF507287B0184E20B752119AB5D2D9DF0D46B75813DAA2C10B3A66426E71782000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
-
-On Fri, 2020-11-20 at 00:20 +0100, Sebastian Reichel wrote:
-> Hi,
-> 
-> On Tue, Nov 17, 2020 at 09:47:25AM +0800, Liu Ying wrote:
-> > To complement panel-simple.yaml, create panel-simple-lvds-dual-ports.yaml.
-> > panel-simple-lvds-dual-ports.yaml is for all simple LVDS panels that
-> > have dual LVDS ports and require only a single power-supply.
-> > The first port receives odd pixels, and the second port receives even pixels.
-> > Optionally, a backlight and an enable GPIO can be specified as properties.
-> > 
-> > Panels with swapped pixel order, if any, need dedicated bindings.
-> > 
-> > Migrate 'auo,g133han01', 'auo,g185han01', 'auo,g190ean01',
-> > 'koe,tx26d202vm0bwa' and 'nlt,nl192108ac18-02d' over to the new file.
-> > 
-> > The objectives with one file for all the simple LVDS panels with dual ports are:
-> > - Make it simpler to add bindings for this kind of LVDS panels
-> > - Keep the number of bindings file lower
-> > - Keep the binding documentation for this kind of LVDS panels more consistent
-> > - Make it possible for drivers to get pixel order via
-> >   drm_of_lvds_get_dual_link_pixel_order(), as the optional 'ports' property is
-> >   allowed
-> > 
-> > Suggested-by: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > Cc: Sam Ravnborg <sam@ravnborg.org>
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Lucas Stach <l.stach@pengutronix.de>
-> > Cc: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > ---
-> 
-> Is this part of a bigger patchset updating the fsl,imx6q-ldb
-> binding [0] (and driver), which has the following property?
-
-I don't see such patchset.
-
-But, I will send patches to add generic ldb helper driver and i.MX8qxp
-ldb bridge driver(in drivers/gpu/drm/bridge/imx/) which would be able
-to get the pixel order.
-
-Then, perhaps, the i.MX6qdl ldb encoder driver can be converted into
-something similar with the i.MX8qxp one. And, also update the binding.
-That requires a fair amount of work, as the i.MX6qdl IPUv3 DRM driver
-needs to create DRM connectors.
-
-> 
->  - fsl,dual-channel : boolean. if it exists, only LVDS channel 0 should
->    be configured - one input will be distributed on both outputs in dual
->    channel mode
-> 
-> [0] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/display/imx/ldb.txt
-> 
-> I have an out of tree platform (HW is still in development, DT will 
-> be upstreamed when hardware design is final) using "auo,g190ean01"
-> with that panel on i.MX6 and it currently works. It don't mind
-> updating the DT (new binding looks cleaner :)), but this patch by
-> itself seems to 'break' support for dual channel panels on i.MX6?
-
-Yes, it may 'break' out-of-tree dual channel panels in the migration
-set on i.MX6qdl.  And, also the in-tree "innolux,n133hse-ea1" panel
-(seems no dt binding though) in imx6q-novena.dts.
-
-The 'port' property was dropped in v3 as Rob suggested.
-If we add it back, then no such kind of 'breakage'.
-So, I'd like to see suggestions on whether to add it back or not. 
-
-Thanks,
-Liu Ying
-
-> 
-> -- Sebastian
-> 
-> > v3->v4:
-> > * Add type and descriptions for dual-lvds-{odd,even}-pixels properties.
-> >   Also, update descriptions for port@0 and port@1 properties accordingly. (Rob)
-> > 
-> > v2->v3:
-> > * Do not allow 'port' property. (Rob)
-> > * Define port number. (Rob)
-> > * Specify 'dual-lvds-odd-pixels' and 'dual-lvds-even-pixels' properties. (Rob)
-> > 
-> > v1->v2:
-> > * Correct pixel order in example LVDS panel node.
-> > 
-> >  .../panel/panel-simple-lvds-dual-ports.yaml        | 130 +++++++++++++++++++++
-> >  .../bindings/display/panel/panel-simple.yaml       |  10 --
-> >  2 files changed, 130 insertions(+), 10 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > new file mode 100644
-> > index 00000000..38a789b
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-lvds-dual-ports.yaml
-> > @@ -0,0 +1,130 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/panel-simple-lvds-dual-ports.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Simple LVDS panels with one power supply and dual LVDS ports
-> > +
-> > +maintainers:
-> > +  - Liu Ying <victor.liu@nxp.com>
-> > +  - Thierry Reding <thierry.reding@gmail.com>
-> > +  - Sam Ravnborg <sam@ravnborg.org>
-> > +
-> > +description: |
-> > +  This binding file is a collection of the LVDS panels that
-> > +  has dual LVDS ports and requires only a single power-supply.
-> > +  The first port receives odd pixels, and the second port receives even pixels.
-> > +  There are optionally a backlight and an enable GPIO.
-> > +  The panel may use an OF graph binding for the association to the display,
-> > +  or it may be a direct child node of the display.
-> > +
-> > +  If the panel is more advanced a dedicated binding file is required.
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +
-> > +properties:
-> > +
-> > +  compatible:
-> > +    enum:
-> > +    # compatible must be listed in alphabetical order, ordered by compatible.
-> > +    # The description in the comment is mandatory for each compatible.
-> > +
-> > +        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> > +      - auo,g133han01
-> > +        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> > +      - auo,g185han01
-> > +        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> > +      - auo,g190ean01
-> > +        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
-> > +      - koe,tx26d202vm0bwa
-> > +        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> > +      - nlt,nl192108ac18-02d
-> > +
-> > +  ports:
-> > +    type: object
-> > +    properties:
-> > +      '#address-cells':
-> > +        const: 1
-> > +
-> > +      '#size-cells':
-> > +        const: 0
-> > +
-> > +      port@0:
-> > +        type: object
-> > +        description: The first sink port.
-> > +        properties:
-> > +          reg:
-> > +            const: 0
-> > +
-> > +          dual-lvds-odd-pixels:
-> > +            type: boolean
-> > +            description: The first sink port for odd pixels.
-> > +
-> > +        required:
-> > +          - reg
-> > +          - dual-lvds-odd-pixels
-> > +
-> > +      port@1:
-> > +        type: object
-> > +        description: The second sink port.
-> > +        properties:
-> > +          reg:
-> > +            const: 1
-> > +
-> > +          dual-lvds-even-pixels:
-> > +            type: boolean
-> > +            description: The second sink port for even pixels.
-> > +
-> > +        required:
-> > +          - reg
-> > +          - dual-lvds-even-pixels
-> > +
-> > +    required:
-> > +      - "#address-cells"
-> > +      - "#size-cells"
-> > +      - port@0
-> > +      - port@1
-> > +
-> > +    additionalProperties: false
-> > +
-> > +  backlight: true
-> > +  enable-gpios: true
-> > +  power-supply: true
-> > +
-> > +additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - power-supply
-> > +
-> > +examples:
-> > +  - |
-> > +    panel: panel-lvds {
-> > +      compatible = "koe,tx26d202vm0bwa";
-> > +      power-supply = <&vdd_lcd_reg>;
-> > +
-> > +      ports {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        port@0 {
-> > +          dual-lvds-odd-pixels;
-> > +          reg = <0>;
-> > +
-> > +          panel_lvds0_in: endpoint {
-> > +            remote-endpoint = <&lvds0_out>;
-> > +          };
-> > +        };
-> > +
-> > +        port@1 {
-> > +          dual-lvds-even-pixels;
-> > +          reg = <1>;
-> > +
-> > +          panel_lvds1_in: endpoint {
-> > +            remote-endpoint = <&lvds1_out>;
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> > index f9750b0..62618e4 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
-> > @@ -57,14 +57,8 @@ properties:
-> >        - auo,g104sn02
-> >          # AU Optronics Corporation 12.1" (1280x800) TFT LCD panel
-> >        - auo,g121ean01
-> > -        # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
-> > -      - auo,g133han01
-> >          # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
-> >        - auo,g156xtn01
-> > -        # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
-> > -      - auo,g185han01
-> > -        # AU Optronics Corporation 19.0" (1280x1024) TFT LCD panel
-> > -      - auo,g190ean01
-> >          # AU Optronics Corporation 31.5" FHD (1920x1080) TFT LCD panel
-> >        - auo,p320hvn03
-> >          # AU Optronics Corporation 21.5" FHD (1920x1080) color TFT LCD panel
-> > @@ -167,8 +161,6 @@ properties:
-> >        - kingdisplay,kd116n21-30nv-a010
-> >          # Kaohsiung Opto-Electronics Inc. 5.7" QVGA (320 x 240) TFT LCD panel
-> >        - koe,tx14d24vm1bpa
-> > -        # Kaohsiung Opto-Electronics Inc. 10.1" WUXGA (1920 x 1200) LVDS TFT LCD panel
-> > -      - koe,tx26d202vm0bwa
-> >          # Kaohsiung Opto-Electronics. TX31D200VM0BAA 12.3" HSXGA LVDS panel
-> >        - koe,tx31d200vm0baa
-> >          # Kyocera Corporation 12.1" XGA (1024x768) TFT LCD panel
-> > @@ -205,8 +197,6 @@ properties:
-> >        - neweast,wjfh116008a
-> >          # Newhaven Display International 480 x 272 TFT LCD panel
-> >        - newhaven,nhd-4.3-480272ef-atxl
-> > -        # NLT Technologies, Ltd. 15.6" FHD (1920x1080) LVDS TFT LCD panel
-> > -      - nlt,nl192108ac18-02d
-> >          # New Vision Display 7.0" 800 RGB x 480 TFT LCD panel
-> >        - nvd,9128
-> >          # OKAYA Electric America, Inc. RS800480T-7X0GP 7" WVGA LCD panel
-> > -- 
-> > 2.7.4
-> > 
+T24gRnJpLCAyMDIwLTExLTIwIGF0IDA3OjM4ICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
+PiBIaSwgQ2h1bmZlbmc6DQo+IA0KPiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRl
+ay5jb20+IOaWvCAyMDIw5bm0MTHmnIgxOOaXpSDpgLHkuIkg5LiL5Y2INDoyMeWvq+mBk++8mg0K
+PiA+DQo+ID4gQ29udmVydCBNSVBJIERTSSBQSFkgYmluZGluZyB0byBZQU1MIHNjaGVtYSBtZWRp
+YXRlayxkc2ktcGh5LnlhbWwNCj4gPg0KPiA+IENjOiBDaHVuLUt1YW5nIEh1IDxjaHVua3Vhbmcu
+aHVAa2VybmVsLm9yZz4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNodW5mZW5n
+Lnl1bkBtZWRpYXRlay5jb20+DQo+ID4gLS0tDQo+ID4gdjM6IG5ldyBwYXRjaA0KPiA+IC0tLQ0K
+PiA+ICAuLi4vZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkc2kudHh0ICAgICAgICAgfCAxOCAr
+LS0tDQo+ID4gIC4uLi9iaW5kaW5ncy9waHkvbWVkaWF0ZWssZHNpLXBoeS55YW1sICAgICAgICB8
+IDgzICsrKysrKysrKysrKysrKysrKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA4NCBpbnNlcnRp
+b25zKCspLCAxNyBkZWxldGlvbnMoLSkNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9waHkvbWVkaWF0ZWssZHNpLXBoeS55YW1sDQo+ID4N
+Cj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3Bs
+YXkvbWVkaWF0ZWsvbWVkaWF0ZWssZHNpLnR4dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21lZGlhdGVrLGRzaS50eHQNCj4gPiBpbmRleCBmMDZm
+MjRkNDA1YTUuLjgyMzhhODY2ODZiZSAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxkc2kudHh0DQo+ID4g
+KysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvbWVkaWF0ZWsv
+bWVkaWF0ZWssZHNpLnR4dA0KPiA+IEBAIC0yMiwyMyArMjIsNyBAQCBSZXF1aXJlZCBwcm9wZXJ0
+aWVzOg0KPiA+ICBNSVBJIFRYIENvbmZpZ3VyYXRpb24gTW9kdWxlDQo+ID4gID09PT09PT09PT09
+PT09PT09PT09PT09PT09PT0NCj4gPg0KPiA+IC1UaGUgTUlQSSBUWCBjb25maWd1cmF0aW9uIG1v
+ZHVsZSBjb250cm9scyB0aGUgTUlQSSBELVBIWS4NCj4gPiAtDQo+ID4gLVJlcXVpcmVkIHByb3Bl
+cnRpZXM6DQo+ID4gLS0gY29tcGF0aWJsZTogIm1lZGlhdGVrLDxjaGlwPi1taXBpLXR4Ig0KPiA+
+IC0tIHRoZSBzdXBwb3J0ZWQgY2hpcHMgYXJlIG10MjcwMSwgNzYyMywgbXQ4MTczIGFuZCBtdDgx
+ODMuDQo+ID4gLS0gcmVnOiBQaHlzaWNhbCBiYXNlIGFkZHJlc3MgYW5kIGxlbmd0aCBvZiB0aGUg
+Y29udHJvbGxlcidzIHJlZ2lzdGVycw0KPiA+IC0tIGNsb2NrczogUExMIHJlZmVyZW5jZSBjbG9j
+aw0KPiA+IC0tIGNsb2NrLW91dHB1dC1uYW1lczogbmFtZSBvZiB0aGUgb3V0cHV0IGNsb2NrIGxp
+bmUgdG8gdGhlIERTSSBlbmNvZGVyDQo+ID4gLS0gI2Nsb2NrLWNlbGxzOiBtdXN0IGJlIDwwPjsN
+Cj4gPiAtLSAjcGh5LWNlbGxzOiBtdXN0IGJlIDwwPi4NCj4gPiAtDQo+ID4gLU9wdGlvbmFsIHBy
+b3BlcnRpZXM6DQo+ID4gLS0gZHJpdmUtc3RyZW5ndGgtbWljcm9hbXA6IGFkanVzdCBkcml2aW5n
+IGN1cnJlbnQsIHNob3VsZCBiZSAzMDAwIH4gNjAwMC4gQW5kDQo+ID4gLSAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGhlIHN0ZXAgaXMgMjAwLg0KPiA+
+IC0tIG52bWVtLWNlbGxzOiBBIHBoYW5kbGUgdG8gdGhlIGNhbGlicmF0aW9uIGRhdGEgcHJvdmlk
+ZWQgYnkgYSBudm1lbSBkZXZpY2UuIElmDQo+ID4gLSAgICAgICAgICAgICAgIHVuc3BlY2lmaWVk
+IGRlZmF1bHQgdmFsdWVzIHNoYWxsIGJlIHVzZWQuDQo+ID4gLS0gbnZtZW0tY2VsbC1uYW1lczog
+U2hvdWxkIGJlICJjYWxpYnJhdGlvbi1kYXRhIg0KPiA+ICtTZWUgcGh5L21lZGlhdGVrLGRzaS1w
+aHkueWFtbA0KPiA+DQo+ID4gIEV4YW1wbGU6DQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxkc2ktcGh5LnlhbWwgYi9E
+b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGh5L21lZGlhdGVrLGRzaS1waHkueWFt
+bA0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi44N2Y4
+ZGYyNTFhYjANCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxkc2ktcGh5LnlhbWwNCj4gPiBAQCAtMCwwICsx
+LDgzIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1Ig
+QlNELTItQ2xhdXNlKQ0KPiA+ICsjIENvcHlyaWdodCAoYykgMjAyMCBNZWRpYVRlaw0KPiA+ICsl
+WUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVt
+YXMvcGh5L21lZGlhdGVrLGRzaS1waHkueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2Rldmlj
+ZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogTWVk
+aWFUZWsgTUlQSSBEaXNwbGF5IFNlcmlhbCBJbnRlcmZhY2UgKERTSSkgUEhZIGJpbmRpbmcNCj4g
+PiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gQ2h1bi1LdWFuZyBIdSA8Y2h1bmt1YW5n
+Lmh1QGtlcm5lbC5vcmc+DQo+ID4gKyAgLSBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRp
+YXRlay5jb20+DQo+IA0KPiBQbGVhc2UgYWRkIFBoaWxpcHAgWmFiZWwgYmVjYXVzZSBoZSBpcyBN
+ZWRpYXRlayBEUk0gZHJpdmVyIG1haW50YWluZXIuDQpPaw0KPiANCj4gRFJNIERSSVZFUlMgRk9S
+IE1FRElBVEVLDQo+IE06IENodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5odUBrZXJuZWwub3JnPg0K
+PiBNOiBQaGlsaXBwIFphYmVsIDxwLnphYmVsQHBlbmd1dHJvbml4LmRlPg0KPiBMOiBkcmktZGV2
+ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFM6IFN1cHBvcnRlZA0KPiBGOiBEb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay8NCj4gDQo+ID4gKw0KPiA+
+ICtkZXNjcmlwdGlvbjogVGhlIE1JUEkgRFNJIFBIWSBzdXBwb3J0cyB1cCB0byA0LWxhbmUgb3V0
+cHV0Lg0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICAkbm9kZW5hbWU6DQo+ID4gKyAg
+ICBwYXR0ZXJuOiAiXmRzaS1waHlAWzAtOWEtZl0rJCINCj4gPiArDQo+ID4gKyAgY29tcGF0aWJs
+ZToNCj4gPiArICAgIGVudW06DQo+ID4gKyAgICAgIC0gbWVkaWF0ZWssbXQyNzAxLW1pcGktdHgN
+Cj4gPiArICAgICAgLSBtZWRpYXRlayxtdDc2MjMtbWlwaS10eA0KPiA+ICsgICAgICAtIG1lZGlh
+dGVrLG10ODE3My1taXBpLXR4DQo+IA0KPiBBZGQgbWVkaWF0ZWssbXQ4MTgzLW1pcGktdHgNCk9r
+LCB3aWxsIGFkZCBpdA0KDQpUaGFua3MNCg0KPiANCj4gUmVnYXJkcywNCj4gQ2h1bi1LdWFuZy4N
+Cj4gDQo+ID4gKw0KPiA+ICsgIHJlZzoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+
+ICsgIGNsb2NrczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBQ
+TEwgcmVmZXJlbmNlIGNsb2NrDQo+ID4gKw0KPiA+ICsgIGNsb2NrLW91dHB1dC1uYW1lczoNCj4g
+PiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgICIjcGh5LWNlbGxzIjoNCj4gPiArICAg
+IGNvbnN0OiAwDQo+ID4gKw0KPiA+ICsgICIjY2xvY2stY2VsbHMiOg0KPiA+ICsgICAgY29uc3Q6
+IDANCj4gPiArDQo+ID4gKyAgbnZtZW0tY2VsbHM6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+
+ICsgICAgZGVzY3JpcHRpb246IEEgcGhhbmRsZSB0byB0aGUgY2FsaWJyYXRpb24gZGF0YSBwcm92
+aWRlZCBieSBhIG52bWVtIGRldmljZSwNCj4gPiArICAgICAgaWYgdW5zcGVjaWZpZWQsIGRlZmF1
+bHQgdmFsdWVzIHNoYWxsIGJlIHVzZWQuDQo+ID4gKw0KPiA+ICsgIG52bWVtLWNlbGwtbmFtZXM6
+DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBjb25zdDogY2FsaWJyYXRpb24tZGF0YQ0K
+PiA+ICsNCj4gPiArICBkcml2ZS1zdHJlbmd0aC1taWNyb2FtcDoNCj4gPiArICAgIGRlc2NyaXB0
+aW9uOiBhZGp1c3QgZHJpdmluZyBjdXJyZW50LCB0aGUgc3RlcCBpcyAyMDAuDQo+ID4gKyAgICAk
+cmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCj4gPiArICAgIG1p
+bmltdW06IDIwMDANCj4gPiArICAgIG1heGltdW06IDYwMDANCj4gPiArICAgIGRlZmF1bHQ6IDQ2
+MDANCj4gPiArDQo+ID4gK3JlcXVpcmVkOg0KPiA+ICsgIC0gY29tcGF0aWJsZQ0KPiA+ICsgIC0g
+cmVnDQo+ID4gKyAgLSBjbG9ja3MNCj4gPiArICAtIGNsb2NrLW91dHB1dC1uYW1lcw0KPiA+ICsg
+IC0gIiNwaHktY2VsbHMiDQo+ID4gKyAgLSAiI2Nsb2NrLWNlbGxzIg0KPiA+ICsNCj4gPiArYWRk
+aXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtleGFtcGxlczoNCj4gPiArICAt
+IHwNCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay9tdDgxNzMtY2xrLmg+DQo+
+ID4gKyAgICBkc2ktcGh5QDEwMjE1MDAwIHsNCj4gPiArICAgICAgICBjb21wYXRpYmxlID0gIm1l
+ZGlhdGVrLG10ODE3My1taXBpLXR4IjsNCj4gPiArICAgICAgICByZWcgPSA8MHgxMDIxNTAwMCAw
+eDEwMDA+Ow0KPiA+ICsgICAgICAgIGNsb2NrcyA9IDwmY2xrMjZtPjsNCj4gPiArICAgICAgICBj
+bG9jay1vdXRwdXQtbmFtZXMgPSAibWlwaV90eDBfcGxsIjsNCj4gPiArICAgICAgICBkcml2ZS1z
+dHJlbmd0aC1taWNyb2FtcCA9IDw0MDAwPjsNCj4gPiArICAgICAgICBudm1lbS1jZWxscz0gPCZt
+aXBpX3R4X2NhbGlicmF0aW9uPjsNCj4gPiArICAgICAgICBudm1lbS1jZWxsLW5hbWVzID0gImNh
+bGlicmF0aW9uLWRhdGEiOw0KPiA+ICsgICAgICAgICNjbG9jay1jZWxscyA9IDwwPjsNCj4gPiAr
+ICAgICAgICAjcGh5LWNlbGxzID0gPDA+Ow0KPiA+ICsgICAgfTsNCj4gPiArDQo+ID4gKy4uLg0K
+PiA+IC0tDQo+ID4gMi4xOC4wDQo+ID4NCg0K
 
