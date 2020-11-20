@@ -2,147 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2DF42BB4AF
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 20:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F30B32BB4EE
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 20:15:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730196AbgKTS65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 13:58:57 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:42160 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730111AbgKTS65 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 13:58:57 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kgBcT-0089nQ-9Y; Fri, 20 Nov 2020 19:58:53 +0100
-Date:   Fri, 20 Nov 2020 19:58:53 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller " <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/3] dsa: add support for Arrow XRS700x tag
- trailer
-Message-ID: <20201120185853.GO1853236@lunn.ch>
-References: <20201120181627.21382-1-george.mccollister@gmail.com>
- <20201120181627.21382-2-george.mccollister@gmail.com>
+        id S1729153AbgKTTMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 14:12:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47850 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728960AbgKTTMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 14:12:20 -0500
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EC1BC061A04
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 11:12:19 -0800 (PST)
+Received: by mail-pl1-x642.google.com with SMTP id p6so2963938plr.7
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 11:12:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=aaGl6ENhV+1nPNZxVybs/FqyHjk4NVv4G31ODZymJco=;
+        b=Cul6ov3K/VrA/M6yoYFsMyWnWv5RABcGfwZSulkK5F9T6qnjBZrn7I4r88vJw2gyv9
+         19Syq6s/L48amcXSrIKJ6jzuDkyWBs8JdGegXCGCpIwMf/ifUGZ0JEO61rQk5EQ1UpLz
+         Gv3v6r8IwmCi/5QffwPcHWRM8ZO6JeS3b1ftRlC7g2f03C6HqXvQr8qzHa31WxbWjfiZ
+         qTQwLGKi4YYNjFWAs+8MIXlaYM7ezRPoL4eDylmDaB4bpW2mipRJdJNAhVmkojJE5I99
+         b+Bnt2ptITKxsM0MswcGuzopqovb/hesx3Nfwl553aplVEz1pq3PCwKRv1RUA4znX1p4
+         C3Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=aaGl6ENhV+1nPNZxVybs/FqyHjk4NVv4G31ODZymJco=;
+        b=UNZYYz1QHOPwd8MDHfXj/FP1dp4pMf0zj3KnhlGqWuev2j+ZwxATQzNMUxDjvJAlAz
+         JX4yh7FO2cvhwcgonTcb0QCQpDQDlHgLPpmpv79Hjr63Pt77yoSUuv/QdqbFzjI6WZgP
+         CJKCdYl0M6xOD+OAm3n+A0ksT/EkjjUy6zKpOm7s1WUYEQxCCGG4Ht9XdsDRQwgkYutn
+         nrQL25p4tGXipkqxA0yETjagaEpcFsrADp2DCOV2UwlvmFnURywK4n5CxVHe9ePkYU4H
+         rioYMGNtDQGmFSw0XkgNyholk8NXkBRPJnlsevr7OWNn6ghMDgDsF53qYcRjImpONPDH
+         OP7A==
+X-Gm-Message-State: AOAM533scWAXkCQiNbnVZPU4b2irA73QZgTWd4eL1LbYJtUCDqflqxMg
+        8fSBo/Ne/SuNgoOHBfnJl6djMQ==
+X-Google-Smtp-Source: ABdhPJxJF5h3qSdDs+4Ydk1ojFx8QCmkTkP0nPcN5ISznYDLvh/GoUqEpAEfJg9xGZKLCBF3ihkrQQ==
+X-Received: by 2002:a17:902:24b:b029:d6:cd52:61e3 with SMTP id 69-20020a170902024bb02900d6cd5261e3mr14944214plc.2.1605899538860;
+        Fri, 20 Nov 2020 11:12:18 -0800 (PST)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id x13sm4659006pfj.54.2020.11.20.11.12.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2020 11:12:18 -0800 (PST)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Cc:     Artem Lapkin <art@khadas.com>
+Subject: Re: [PATCH] arm64: dts: meson: enable rtc node on Khadas VIM1/VIM2 boards
+Date:   Fri, 20 Nov 2020 11:12:14 -0800
+Message-Id: <160589952950.11499.16597042753112987237.b4-ty@baylibre.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201116064147.12062-1-christianshewitt@gmail.com>
+References: <20201116064147.12062-1-christianshewitt@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201120181627.21382-2-george.mccollister@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 12:16:25PM -0600, George McCollister wrote:
-> Add support for Arrow SpeedChips XRS700x single byte tag trailer. This
-> is modeled on tag_trailer.c which works in a similar way.
+On Mon, 16 Nov 2020 06:41:47 +0000, Christian Hewitt wrote:
+> Enable the rtc node on VIM1/VIM2 boards so users can simply attach a power
+> cell and use the on-board RTC without modifying the device-tree.
 > 
-> Signed-off-by: George McCollister <george.mccollister@gmail.com>
-> ---
->  include/net/dsa.h     |  2 ++
->  net/dsa/Kconfig       |  6 ++++
->  net/dsa/Makefile      |  1 +
->  net/dsa/tag_xrs700x.c | 91 +++++++++++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 100 insertions(+)
->  create mode 100644 net/dsa/tag_xrs700x.c
+> Cold boot with no cell attached is gracefully handled:
 > 
-> diff --git a/include/net/dsa.h b/include/net/dsa.h
-> index 2e64e8de4631..eb46ecdcf165 100644
-> --- a/include/net/dsa.h
-> +++ b/include/net/dsa.h
-> @@ -46,6 +46,7 @@ struct phylink_link_state;
->  #define DSA_TAG_PROTO_AR9331_VALUE		16
->  #define DSA_TAG_PROTO_RTL4_A_VALUE		17
->  #define DSA_TAG_PROTO_HELLCREEK_VALUE		18
-> +#define DSA_TAG_PROTO_XRS700X_VALUE		19
->  
->  enum dsa_tag_protocol {
->  	DSA_TAG_PROTO_NONE		= DSA_TAG_PROTO_NONE_VALUE,
-> @@ -67,6 +68,7 @@ enum dsa_tag_protocol {
->  	DSA_TAG_PROTO_AR9331		= DSA_TAG_PROTO_AR9331_VALUE,
->  	DSA_TAG_PROTO_RTL4_A		= DSA_TAG_PROTO_RTL4_A_VALUE,
->  	DSA_TAG_PROTO_HELLCREEK		= DSA_TAG_PROTO_HELLCREEK_VALUE,
-> +	DSA_TAG_PROTO_XRS700X		= DSA_TAG_PROTO_XRS700X_VALUE,
->  };
->  
->  struct packet_type;
-> diff --git a/net/dsa/Kconfig b/net/dsa/Kconfig
-> index dfecd7b22fd7..2d226a5c085f 100644
-> --- a/net/dsa/Kconfig
-> +++ b/net/dsa/Kconfig
-> @@ -139,4 +139,10 @@ config NET_DSA_TAG_TRAILER
->  	  Say Y or M if you want to enable support for tagging frames at
->  	  with a trailed. e.g. Marvell 88E6060.
->  
-> +config NET_DSA_TAG_XRS700X
-> +	tristate "Tag driver for XRS700x switches"
-> +	help
-> +	  Say Y or M if you want to enable support for tagging frames for
-> +	  Arrow SpeedChips XRS700x switches that use a single byte tag trailer.
-> +
->  endif
-> diff --git a/net/dsa/Makefile b/net/dsa/Makefile
-> index 0fb2b75a7ae3..92cea2132241 100644
-> --- a/net/dsa/Makefile
-> +++ b/net/dsa/Makefile
-> @@ -18,3 +18,4 @@ obj-$(CONFIG_NET_DSA_TAG_OCELOT) += tag_ocelot.o
->  obj-$(CONFIG_NET_DSA_TAG_QCA) += tag_qca.o
->  obj-$(CONFIG_NET_DSA_TAG_SJA1105) += tag_sja1105.o
->  obj-$(CONFIG_NET_DSA_TAG_TRAILER) += tag_trailer.o
-> +obj-$(CONFIG_NET_DSA_TAG_XRS700X) += tag_xrs700x.o
-> diff --git a/net/dsa/tag_xrs700x.c b/net/dsa/tag_xrs700x.c
-> new file mode 100644
-> index 000000000000..2eda57a4a474
-> --- /dev/null
-> +++ b/net/dsa/tag_xrs700x.c
-> @@ -0,0 +1,91 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * XRS700x tag format handling
-> + * Copyright (c) 2008-2009 Marvell Semiconductor
-> + * Copyright (c) 2020 NovaTech LLC
-> + */
-> +
-> +#include <linux/etherdevice.h>
-> +#include <linux/list.h>
-> +#include <linux/slab.h>
-> +#include <linux/bitops.h>
-> +
-> +#include "dsa_priv.h"
-> +
-> +static struct sk_buff *xrs700x_xmit(struct sk_buff *skb, struct net_device *dev)
-> +{
-> +	struct dsa_port *dp = dsa_slave_to_port(dev);
-> +	struct sk_buff *nskb;
-> +	int padlen;
-> +	u8 *trailer;
-> +
-> +	/* We have to make sure that the trailer ends up as the very
-> +	 * last byte of the packet.  This means that we have to pad
-> +	 * the packet to the minimum ethernet frame size, if necessary,
-> +	 * before adding the trailer.
-> +	 */
-> +	padlen = 0;
-> +	if (skb->len < 63)
-> +		padlen = 63 - skb->len;
-> +
-> +	nskb = alloc_skb(NET_IP_ALIGN + skb->len + padlen + 1, GFP_ATOMIC);
-> +	if (!nskb)
-> +		return NULL;
-> +	skb_reserve(nskb, NET_IP_ALIGN);
+> VIM2:~ # dmesg | grep rtc
+> [    7.716150] rtc-hym8563 1-0051: no valid clock/calendar values available
+> [    7.716957] rtc-hym8563 1-0051: registered as rtc0
+> [    7.729850] rtc-hym8563 1-0051: no valid clock/calendar values available
+> [    7.729877] rtc-hym8563 1-0051: hctosys: unable to read the hardware clock
+> [    8.126768] rtc-hym8563 1-0051: no valid clock/calendar values available
+> 
+> [...]
 
-Hi George
+Applied, thanks!
 
-This needs updating to take into account:
+[1/1] arm64: dts: meson: enable rtc node on Khadas VIM1/VIM2 boards
+      commit: a735defaf1ee74e9f06a616162f1ba6f26555d38
 
-commit a3b0b6479700a5b0af2c631cb2ec0fb7a0d978f2
-Author: Vladimir Oltean <vladimir.oltean@nxp.com>
-Date:   Sun Nov 1 21:16:09 2020 +0200
-
-    net: dsa: implement a central TX reallocation procedure
-
-which i think will handle the padding for you.
-
-      Andrew
+Best regards,
+-- 
+Kevin Hilman <khilman@baylibre.com>
