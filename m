@@ -2,118 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF5AA2BA3F8
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 08:55:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C1BC2BA483
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 09:22:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726799AbgKTHyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 02:54:43 -0500
-Received: from mail-ej1-f66.google.com ([209.85.218.66]:43613 "EHLO
-        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726776AbgKTHyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 02:54:43 -0500
-Received: by mail-ej1-f66.google.com with SMTP id k27so11543249ejs.10;
-        Thu, 19 Nov 2020 23:54:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Eq/cujlUFAwrKQYzYbGEyGBEOnWSD/TTaG5voRoVQjE=;
-        b=VbqFQeV9bXE9iJmOIcXwt8VjuRfrb0aWggsouBqyVBh7C6A0AIozz+FXacXVHa/ZvP
-         2WJzQlkBvvGoMWnMBG3Dn6n5lXmgAMJCNt4TaZHWStCG8uoi0RbJM6KuizVYUQ1mC/JX
-         0EF5ypdEFngPRE1b4tV1M0zNDeE8YYupct21pmCpAROQt8j0H94MFUV4X2dh2p8Zlea3
-         F9yxhicq5pP7bk/l10jU8o7jpmFucYs5L820bitS3vNFJnxfqOHaW2KfFD34sJ4+YoJk
-         HIqM4yegQmBn2tXAI+/xKlUNjuOsShcxuoL77Ae/UgxfkmKS4/5DR25qkUlFOz5O7kTe
-         gkog==
-X-Gm-Message-State: AOAM533N1N2cOoy2LteuDJRvwQULzhF8kOinyx+Geg47Yb5PHSif1YMH
-        kub2sIbO0T9FvFeVyDDIYxWcuiEYFfnuOQ==
-X-Google-Smtp-Source: ABdhPJxuaR27wac9OpeJdOqiC/c4OeL2/B+cbpng51ZXhzx1PGawUYjtXR4G4tE9CeA6tkvySD65bg==
-X-Received: by 2002:a17:906:840e:: with SMTP id n14mr31661878ejx.147.1605858881515;
-        Thu, 19 Nov 2020 23:54:41 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id la9sm771763ejb.121.2020.11.19.23.54.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Nov 2020 23:54:40 -0800 (PST)
-Date:   Fri, 20 Nov 2020 08:54:38 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [EXT] Re: [PATCH v3 1/4] dt-bindings: soc: imx8m: add DT Binding
- doc for soc unique ID
-Message-ID: <20201120075438.GA4750@kozik-lap>
-References: <AM6PR04MB605309F95A4BBD29DFA42B61E2E20@AM6PR04MB6053.eurprd04.prod.outlook.com>
- <20201117073609.GA3436@kozik-lap>
- <AM6PR04MB6053B8E66327B3204D58A0C1E2FF0@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        id S1726426AbgKTIV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 03:21:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59734 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726362AbgKTIV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 03:21:58 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39D9EC0613CF
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 00:21:58 -0800 (PST)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kg1g1-0004Fh-12; Fri, 20 Nov 2020 09:21:53 +0100
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kg1g0-0001qS-2X; Fri, 20 Nov 2020 09:21:52 +0100
+Date:   Fri, 20 Nov 2020 09:21:50 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Clemens Gruber <clemens.gruber@pqgruber.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: pca9685: Add staggered-outputs property
+Message-ID: <20201120082150.kyihkhphph7wosfz@pengutronix.de>
+References: <20201118174515.278067-1-clemens.gruber@pqgruber.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="sdrzd4q5h23swz6o"
 Content-Disposition: inline
-In-Reply-To: <AM6PR04MB6053B8E66327B3204D58A0C1E2FF0@AM6PR04MB6053.eurprd04.prod.outlook.com>
+In-Reply-To: <20201118174515.278067-1-clemens.gruber@pqgruber.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 06:21:55AM +0000, Alice Guo wrote:
-> > > +  soc:
-> > > +    type: object
-> > > +    properties:
-> > > +      compatible:
-> > > +        oneOf:
-> > > +          - description: new version DTS for i.MX8M SoCs
-> > > +            items:
-> > > +              - enum:
-> > > +                  - fsl,imx8mm-soc
-> > > +                  - fsl,imx8mn-soc
-> > > +                  - fsl,imx8mp-soc
-> > > +                  - fsl,imx8mq-soc
-> > > +              - const: simple-bus
-> > > +
-> > > +          - description: other SoCs and old version DTS for i.MX8M SoCs
-> > > +            items:
-> > > +              - const: simple-bus
-> > > +
-> > > +      nvmem-cells:
-> > > +        maxItems: 1
-> > > +        description: Phandle to the SOC Unique ID provided by a nvmem
-> > > + node
-> > > +
-> > > +      nvmem-cells-names:
-> > > +        const: soc_unique_id
-> > > +
-> > > +    allOf:
-> > > +      - if:
-> > > +          properties:
-> > > +            compatible:
-> > > +              contains:
-> > > +                enum:
-> > > +                  - fsl,imx8mm-soc
-> > > +                  - fsl,imx8mn-soc
-> > > +                  - fsl,imx8mp-soc
-> > > +                  - fsl,imx8mq-soc
-> > > +                const: simple-bus
-> > > +
-> > > +        then:
-> > > +          required:
-> > > +            - nvmem-cells
-> > > +            - nvmem-cells-names
-> > >
-> > > The above is my modification. Is that ok?
-> > 
-> > Does not look like solving anything.
-> 
-> If restrict that the newly added DTS file must have "fsl,imx8mX-soc" attributes, it cannot pass make dtbs_check because
-> there are other DTS files which have soc node but are not used for i.mx8m family SoCs.
 
-You need to check whether boards with i.MX 8M compatible have the SoC
-node with one of above compatibles and nvmem-cells.  Since the top
-select choses root node, then just check whether child exists with
-specific pattern and compatibles (for given root compatibles).
+--sdrzd4q5h23swz6o
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Wed, Nov 18, 2020 at 06:45:15PM +0100, Clemens Gruber wrote:
+> The pca9685 driver supports a new staggered-outputs property for reduced
+> current surges and EMI. This adds documentation for the new DT property.
 
+Maybe point out the commit that added this support here?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--sdrzd4q5h23swz6o
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl+3fJsACgkQwfwUeK3K
+7Amg+wf/Yp2pTPi09r9IdGKW4/HX6II80fBE4LrCgC+0YysxuUrD9ytZFmrZty9g
+UnNJiCR8S/KmUrSzqAEo2PQqbbUxgGHQXCVdzoRSmKqatXnTqlzNbE2F9qvxd4TZ
+rRTtzKSP2SvtwIRPs22md3MQdTOoCzxrKevae86veV9dX+Lw+eInPOuqYZhk8w7X
+gS9x/uEPm7ofoZAUGdCCFOIAqBPYN+mJXzTu5ldCW5ysFZ25bHeXYBgUkNb2HsdV
+48dEKYRmTia7Fli8CqAfVQbt/Y+FqKp2stcLnXkrEkpXT0zKNG/8QmjW0CRT+LHc
+PBckPXVrd4QM5F4gGjw6SKye9FDPMA==
+=isjr
+-----END PGP SIGNATURE-----
+
+--sdrzd4q5h23swz6o--
