@@ -2,96 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ECA92BB812
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 22:05:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEED72BB852
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 22:31:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730530AbgKTVEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 16:04:31 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:38959 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730524AbgKTVEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 16:04:31 -0500
-Received: by mail-ot1-f68.google.com with SMTP id z16so10024557otq.6;
-        Fri, 20 Nov 2020 13:04:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hG0Yjdk9OimqrWpKYF/IkVWg6nsHdnZMFyZuaLz0d1k=;
-        b=M/WmwzU09ZqN89i/h+j5sU3eJv5VcQgJrLEAI0sWgrAVuyB9szLyD7n9K9eBv/wNTr
-         8ReidoP+Ph3/e1KDo8KYXu+m/kWBJoIhqEKdd6UcLUX/NLCzMV9v0UgD2apx8R7w5vd2
-         z8SPGfV6ree2X1bcy7rNBVM12hK9AHh+If9MHAdSIowld9cgW0XyVSfpvzIRyyXU9e+y
-         id9ENlpC+ZVj+lsa8g36ZfUSa2cpHOpw83QD/9NnB1n1/fw7mhgSKV6jCtbXb2V057fH
-         2Rlz7RlO1BM+zufq7xlxKxMWsIEGRxHJxk0sET5iAuvF1YVnWKOAxXoGK6OHRcmb9dJC
-         wb0g==
-X-Gm-Message-State: AOAM531Djiy7wQNDeFdOsrUs6A0S1oQdiO0NSsVFK4HY/OxH4osCrRLR
-        RVJ9uOqKYRiQ4F1YMOEwE6V5KagdFw==
-X-Google-Smtp-Source: ABdhPJwLeMlOc9JnvLCoMo/5Ni0hEffgWksdYu0UKsb07/EKXhO37Q+3KKYnD25MH0HsDzi9KghYyg==
-X-Received: by 2002:a05:6830:22c9:: with SMTP id q9mr16142414otc.48.1605906270299;
-        Fri, 20 Nov 2020 13:04:30 -0800 (PST)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n3sm2254605oif.42.2020.11.20.13.04.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2020 13:04:29 -0800 (PST)
-Received: (nullmailer pid 1736597 invoked by uid 1000);
-        Fri, 20 Nov 2020 21:04:28 -0000
-Date:   Fri, 20 Nov 2020 15:04:28 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Al Cooper <alcooperx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-usb@vger.kernel.org,
-        linux-serial@vger.kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] dt-bindings: Add support for the Broadcom UART driver
-Message-ID: <20201120210428.GA1736336@robh.at.kernel.org>
-References: <20201120194305.8847-1-alcooperx@gmail.com>
- <20201120194305.8847-3-alcooperx@gmail.com>
+        id S1728256AbgKTV33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 16:29:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49634 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728207AbgKTV33 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 16:29:29 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2C4722242B;
+        Fri, 20 Nov 2020 21:29:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1605907768;
+        bh=TiN/PEcXZyvfTQuP3y4oWjBfPiZHOkcTnSjiVhKAWt8=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=SVreCdHng3F9Tbg5eQKab66RkiVgp6TIka76jQwdm15Ol0XQzAHJ0QZr0KSzc87Lw
+         3dturaJzf6DlrxTpXW0vTRpPjapI4fte1VztNZeU1oSh2mupXpVaz32Utm6LnL8jkZ
+         O+QDo9KImmvTrCZIoNhz7gp8A3B/aRqmFjvaRDhY=
+Date:   Fri, 20 Nov 2020 21:29:07 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Sameer Pujar <spujar@nvidia.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        alsa-devel@alsa-project.org
+In-Reply-To: <20201119161848.3379929-1-robh@kernel.org>
+References: <20201119161848.3379929-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: renesas, rsnd: Fix duplicate 'allOf' entries
+Message-Id: <160590773741.47461.854428611172817962.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201120194305.8847-3-alcooperx@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Nov 2020 14:43:04 -0500, Al Cooper wrote:
-> Add DT bindings for the Broadcom 8250 based UART driver. This
-> UART is based on an 8250 but adds additional functionality. The
-> additional features include the ability to use DMA for transfers and
-> a baud rate clock system that is more accurate at high baud rates.
-> This UART is backward compatible with the standard 8250 UART.
+On Thu, 19 Nov 2020 10:18:48 -0600, Rob Herring wrote:
+> Commit e52f3f291152 ("ASoC: audio-graph-card: Refactor schema") added an
+> 'allOf' entry, but one is already present in the schema. Multiple keys
+> is not valid and results in an error:
 > 
-> Signed-off-by: Al Cooper <alcooperx@gmail.com>
-> ---
->  .../bindings/serial/brcm,bcm7271-uart.yaml    | 94 +++++++++++++++++++
->  1 file changed, 94 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
-> 
+> ruamel.yaml.constructor.DuplicateKeyError: while constructing a mapping
+>   in "<unicode string>", line 4, column 1
+> found duplicate key "allOf" with value "[]" (original value: "[]")
+>   in "<unicode string>", line 262, column 1
 
+Applied to
 
-My bot found errors running 'make dt_binding_check' on your patch:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-yamllint warnings/errors:
+Thanks!
 
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/serial/brcm,bcm7271-uart.yaml
+[1/1] ASoC: dt-bindings: renesas, rsnd: Fix duplicate 'allOf' entries
+      commit: 73d2784ecf09d49e319631aea682cb360959355a
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-See https://patchwork.ozlabs.org/patch/1404090
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-The base for the patch is generally the last rc1. Any dependencies
-should be noted.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Thanks,
+Mark
