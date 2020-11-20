@@ -2,105 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 921152BB101
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 17:58:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C1D62BB147
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 18:21:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730151AbgKTQ4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 11:56:24 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:36353 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730103AbgKTQ4X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 11:56:23 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id A06305C00E1;
-        Fri, 20 Nov 2020 11:56:22 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Fri, 20 Nov 2020 11:56:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=qKqAaN7huqBFTY1CCd2pvJiT0qq
-        gNumhzJuMiM1PToA=; b=G128wEp3WtyPBwsipktjQgC51ZmKDQ3hpqkwxlA7PQT
-        P21y0WtKpQ1ZYDA9cilEv5a/0sjV/rKy4Q7rSpdq9AIMjKAibBgRLO2TyekYtZs6
-        BBUTuFmss2b7RclIdhG1BFe9MAunqMSCwWosFnVicTPICmfDbd8nKOprdjkDu374
-        bm3XbJG9j64lSNZfIacaaqN+4qRG5virDyBN/K/nHT78RUrbKJAkrZizywOvPctW
-        bhxhvP7UcAdeYKd2wzic8tREjyceTbIs7m/8sZbWAyNslUL/UbPxwctaNJzRA71y
-        4czva1l/X+jSK0E2nqOZsX7s2KPj+HFFJjoJ7icv/Ww==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=qKqAaN
-        7huqBFTY1CCd2pvJiT0qqgNumhzJuMiM1PToA=; b=kBCX00cosIXbLWZeP2JpqU
-        VU5GzZjCKUSZrr9JS10OTtDgRi4ianYeWue/l6vfqytBNOFqFUgUB938x9CYgu8P
-        y83+JM/sHssaLU2qx3RRr1+HT6eS96wXcp7HU6QWaAg4iKcJmyqZwJeOebscN5TS
-        0uYlKjO3pAQxyH4l6SJJsbo7j4glvxMoWOHY/zhgqJS5dax7F3z/3oI4KSiVA5EE
-        vQTdMk7ZiQ34D+jt8V2KX7AkZCVYbqZzOIR6OA4uTEHkXW/MCRmG3Q1XUnPHILq0
-        QQ/sl2WWobzYwQLsoRxkCM6JUQSXMab69P9OUaH9LTrwrRScMyOnuv6EE2RIViJA
-        ==
-X-ME-Sender: <xms:NfW3XzkDf1QkTzzYmCwYyqXsf8JvaQEfl7WoVTFkNnLL8iJPPa-X3A>
-    <xme:NfW3X22xe8Wg0l6A-kGkgr-JnTTETcbsBdDaLNjZAIqmKwXbRbP0j6tEVskXlRAZO
-    TxfSPI3l6SP5Vzim84>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegtddgledvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:NfW3X5rR7kRmJqVIzcsoQy7lCMc5sXhKPG1pidwEClaGZeGJL5rg1Q>
-    <xmx:NfW3X7kG2_QjUhiMh7oWFfew6Cwqpfiu28CCfftlWX82fQzwk8kTRA>
-    <xmx:NfW3Xx3XG-Z4gtyDA16y_3Vd1gAwjvbZszJ01fK8xI_7CjTbLquzGQ>
-    <xmx:NvW3X8SttZ2yrlph8JlcUfwDJ4fMauzuu--dAeRhmGHn9UqfiYBdxQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CE8E33280066;
-        Fri, 20 Nov 2020 11:56:20 -0500 (EST)
-Date:   Fri, 20 Nov 2020 17:56:19 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] ARM: dts: sun8i: v3s: fix GIC node memory range
-Message-ID: <20201120165619.ou4uigdg22qrehne@gilmour>
-References: <20201120050851.4123759-1-icenowy@aosc.io>
+        id S1726255AbgKTRU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 12:20:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726118AbgKTRU2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 12:20:28 -0500
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D6E5C0613CF
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 09:20:28 -0800 (PST)
+Received: by mail-wr1-x442.google.com with SMTP id l1so10770872wrb.9
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 09:20:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lMIsgqzKLikpN7HLWlaPSHLF1xhIGVAqRhRWOY+ao3c=;
+        b=ayZJ0AaVrUgKtdJY+iCWgzOoab05nhedfzD16QU9RRp/y+I1lYqvFJ8OXEo08DR0WL
+         Dmuy7KLFe1o7yrirbXlGmsTFUYzt6Oi83PHSyjzueUOTwKutfetN3PF9S6gRUkLBIk+Q
+         0p8d00odLMp8HKmBo//oWQ8qCU5O/8sIS2jX0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lMIsgqzKLikpN7HLWlaPSHLF1xhIGVAqRhRWOY+ao3c=;
+        b=e589XFQ7nX9o3qhydIAMz04XbeDzqO0b5t94e2iab3s17TZDRwB+uBvbxUDKR5RFPN
+         kp6tjLNL+lrVw6koBKr9HKh5rq2H/WjAShIvIcfjOP3LpCwRZTczgiluM5U4rHIcgoZc
+         DTila1NtlwxPFjWnHe6IFg8og0/9lOULSLV9CNGavZHTN1ZfA9KJAg6DStI1zLyiwMwh
+         2TlIAAkIRukqC+wgBN8KVc3nBziW7RNF2gq9aop0kkBRchjKxp4ApBJ6dg1T0vkVMhi3
+         KNkp5FUBdV/swHKAedM2STHRTc58Izijkelq7Asvt9PQvVybdCIfyv5AzDptZz3ef51L
+         carw==
+X-Gm-Message-State: AOAM533CYENDtc+5BxlGTtLrTozFZnMrXfS2FHlsE19dkn1kyHSlEcG5
+        gZtInDwGMgt56i9Lv4aFAV0OjpQE+q4KBSvYtnPiGg==
+X-Google-Smtp-Source: ABdhPJwsbt1om7W1z+KVxKldwf4tLg12wRDvBU4Jwd1TDyACzW8z8bFMcAkQrhI+JZeV3oqi3iHGQuDvUI2jYkRcyn8=
+X-Received: by 2002:adf:e3c9:: with SMTP id k9mr17464354wrm.275.1605892826590;
+ Fri, 20 Nov 2020 09:20:26 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pche2hgr46ibicqn"
-Content-Disposition: inline
-In-Reply-To: <20201120050851.4123759-1-icenowy@aosc.io>
+References: <20201112175632.42234-1-james.quinlan@broadcom.com> <20201112175632.42234-2-james.quinlan@broadcom.com>
+In-Reply-To: <20201112175632.42234-2-james.quinlan@broadcom.com>
+From:   Jim Quinlan <james.quinlan@broadcom.com>
+Date:   Fri, 20 Nov 2020 12:20:14 -0500
+Message-ID: <CA+-6iNxDEPNEnRcp8u5LvZdOgW7gAOqbrPHvfJNertRSxjiqxA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: Add optional interrupt to
+ smc/hvc SCMI transport
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="00000000000080bc6705b48d0fdc"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--00000000000080bc6705b48d0fdc
+Content-Type: text/plain; charset="UTF-8"
 
---pche2hgr46ibicqn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Nov 12, 2020 at 12:56 PM Jim Quinlan <james.quinlan@broadcom.com> wrote:
+>
+> In normal use of smc/hvc transport in SCMI the message completion is
+> indicated by the return of the SMC call.  This commit provides for an
+> optional interrupt named "message-serviced" which is used instead to
+> indicate the completion of a message.
+>
+> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> ---
+>  Documentation/devicetree/bindings/arm/arm,scmi.txt | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> index 55deb68230eb..7cdad11f40b1 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> +++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
+> @@ -31,6 +31,14 @@ Optional properties:
+>
+>  - mbox-names: shall be "tx" or "rx" depending on mboxes entries.
+>
+> +- interrupts : when using smc or hvc transports, this optional
+> +        property indicates that msg completion by the platform is indicated
+> +        by an interrupt rather than by the return of the smc call. This
+> +        should not be used except when the platform requires such behavior.
+> +
+> +- interrupt-names : if "interrupts" is present, interrupt-names must also
+> +        be present and have the value "message-serviced".
+> +
+>  See Documentation/devicetree/bindings/mailbox/mailbox.txt for more details
+>  about the generic mailbox controller and client driver bindings.
+Hi Rob,
 
-On Fri, Nov 20, 2020 at 01:08:51PM +0800, Icenowy Zheng wrote:
-> Currently the GIC node in V3s DTSI follows some old DT examples, and
-> being broken. This leads a warning at boot.
->=20
-> Fix this.
->=20
-> Fixes: f989086ccbc6 ("ARM: dts: sunxi: add dtsi file for V3s SoC")
-> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+Are you okay with this commit?
 
-Applied, thanks!
-Maxime
+Regards,
+Jim Quinlan
+Broadcom STB
+>
+> --
+> 2.17.1
+>
 
---pche2hgr46ibicqn
-Content-Type: application/pgp-signature; name="signature.asc"
+--00000000000080bc6705b48d0fdc
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX7f1MwAKCRDj7w1vZxhR
-xUZBAP9QRE5hT0jW96ROUXmoNRdQ1tcb+Epmu0ONjtDfDNb1UwD8DYiy9nj2COwe
-kI8zIqBZ4DlOXwG6ZamC532PUGK7zgQ=
-=2jDO
------END PGP SIGNATURE-----
-
---pche2hgr46ibicqn--
+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
+mOxPm7sNHsn0TVdPryi9+T2d8fVC/kUmuEdTYP/Hdu4W4b4T9BcW57fInYrmaJ+uotS6X59rAgMB
+AAGjggHRMIIBzTAOBgNVHQ8BAf8EBAMCBaAwgZ4GCCsGAQUFBwEBBIGRMIGOME0GCCsGAQUFBzAC
+hkFodHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc3BlcnNvbmFsc2lnbjJzaGEy
+ZzNvY3NwLmNydDA9BggrBgEFBQcwAYYxaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL2dzcGVy
+c29uYWxzaWduMnNoYTJnMzBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYm
+aHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBEBgNVHR8E
+PTA7MDmgN6A1hjNodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzcGVyc29uYWxzaWduMnNoYTJn
+My5jcmwwJQYDVR0RBB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYI
+KwYBBQUHAwQwHwYDVR0jBBgwFoAUaXKCYjFnlUSFd5GAxAQ2SZ17C2EwHQYDVR0OBBYEFNYm4GDl
+4WOt3laB3gNKFfYyaM8bMA0GCSqGSIb3DQEBCwUAA4IBAQBD+XYEgpG/OqeRgXAgDF8sa+lQ/00T
+wCP/3nBzwZPblTyThtDE/iaL/YZ5rdwqXwdCnSFh9cMhd/bnA+Eqw89clgTixvz9MdL9Vuo8LACI
+VpHO+sxZ2Cu3bO5lpK+UVCyr21y1zumOICsOuu4MJA5mtkpzBXQiA7b/ogjGxG+5iNjt9FAMX4JP
+V6GuAMmRknrzeTlxPy40UhUcRKk6Nm8mxl3Jh4KB68z7NFVpIx8G5w5I7S5ar1mLGNRjtFZ0RE4O
+lcCwKVGUXRaZMgQGrIhxGVelVgrcBh2vjpndlv733VI2VKE/TvV5MxMGU18RnogYSm66AEFA/Zb+
+5ztz1AtIMYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBu
+di1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEcz
+AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIJsoRD0asVBj
+x9psgvOI9WyeOdH1EJwlgy04o5M2jzGuMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
+hvcNAQkFMQ8XDTIwMTEyMDE3MjAyN1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
+YIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcN
+AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDGbMQXukvsu8E5fNmSUMhKtvrU292F
+FHKjW/srA+wEdDu5TiW4glKabLU96sCkgQMUmANW0HTIJBZ1GetotecPpie6Xo9KZUrnJrf4RmYw
+pBXDGCnJ+YsccGU+RD3qg81gDjT+BRNz3sI0x/+Xj9pW4Tmb47TXJ/ekD5KDeaHCjkI4a4SH1T+K
+jMluDEvNpkpp27WqEhFvzi2C6pxnl9jo6wKgwYTzVF38aYi4PwrQGb21yXSADa0poG4gmWDRv+Y3
+qNaEpEzO/TWoh5Jsi8ibBkewbVYJLg/agy1Uirl77qOzq+kGrw0w+cI5xim0B0j7VvkfmdNSWztc
+9CGAXq6r
+--00000000000080bc6705b48d0fdc--
