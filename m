@@ -2,171 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E6622BB04D
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 17:28:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 852CE2BB084
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 17:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728642AbgKTQUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 11:20:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49522 "EHLO
+        id S1729538AbgKTQ1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 11:27:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728655AbgKTQUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 11:20:44 -0500
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B9DEC0613CF;
-        Fri, 20 Nov 2020 08:20:44 -0800 (PST)
-Received: by mail-ot1-x343.google.com with SMTP id 79so9194287otc.7;
-        Fri, 20 Nov 2020 08:20:44 -0800 (PST)
+        with ESMTP id S1729462AbgKTQ1s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 11:27:48 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79908C0613CF;
+        Fri, 20 Nov 2020 08:27:46 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id d12so10554985wrr.13;
+        Fri, 20 Nov 2020 08:27:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OVxJeqbvblEOj3ny+TuW/O1CmBk2ivCSjlTJ1PlvcUk=;
-        b=Gs2Qu+CUxLtsn+6NjJIX1X8+VSuXr9dW9qEwFr/zrx8f+1h/Yn9ZT4dnValPE86gCT
-         KY7MuVdV4pXee4icJvJ9anuOFjcpjTBndNUEH6+LfavukFfqAwMt6GTi0U2LCXji/hDf
-         dJwQX5qvIPJgZMW72/F5SplUb8+MWPJeL+0OVW2jvx0f8gGksxX8IUuQSbZjS615o44X
-         lsSB3XsD/5l8kmDpIsrcxDPw4sWDIDpCPGfFwYzcEpaT8ns8NhGlAftKqCAABBXi8cS0
-         cFvHJdHM3ItJiNFpXPJEeMdXbfs4WivDq+EczMkx7o7MGTpL5xm2VZ4IfcDCxNoseMdI
-         u80Q==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=jBzR8Id+7M0Czb52UJefnNNvKcaDzi1oZktzIdquhwU=;
+        b=OSUomNH10iI8X8CHGrnhpjxm5D/9PF6R3aqOYA8+rljoezLXLJNNMcLxlrYmX/He3x
+         PRZPXvHESg+3fqH3h4T+PNvVSJv+WvT5pTNXYEbuGt639w7dbfw5Z7Nzojj09WTRfx0W
+         +oWPLWjbWW914DDaorH15Z6EbSyDSOB6SEPct4KzsrhYLz3FhE0+eVsaI3T/ILL/CWVZ
+         7Kn+wWzZrlj3zlbWp66cmoUtNOsiZ2yuMXoJhDTiEva4bgXSgw9jPZSp96EO5EfWbBtq
+         pXOswbs0TmPG3BQi9ziJZYZkPEuM6MKa+HfvDxfdr4nunyWuL31Idrqat5B9u23AeQmC
+         daoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OVxJeqbvblEOj3ny+TuW/O1CmBk2ivCSjlTJ1PlvcUk=;
-        b=bzOnx3lMY6IhzkPa7bql50hr/jNcEt0yhCmp8Y35dxdIOxUR/iIoWdcodg13MhBX4R
-         1tPqdgtvyOjyKiS3nf5dpiqPZB0VoPpMG9e02uRizKJIoMiagkec3dgaEzdIFZ41M35j
-         Aw+qn6Snk8FVxy2pnqDyayNETU09/BS7r2p2vEjUCTcYL4s4VzQPao8ESdd34ThYfNmx
-         HEiq6uux3vU26GDMfq8tnB3z6gHeB5UQ6tsPrUoN6IPc2qR7R4vkN6tYJ5qcPG75rKU8
-         UWdjcR8mL5UD6TPkn99MkJKmAokImurZ69R+r0OsDxT4DpvXmM3z26UAFkbwlkaA2jGw
-         czZQ==
-X-Gm-Message-State: AOAM5304kSW6hPb88vIYdrs9LNoOuFHh76pVfqcU1aGxwClUvPb9rCjE
-        y5Z9f7cvRlyHb2fIqcyTJZpBi6lAJ6eUfgQ+8A8aY6uO185zZw==
-X-Google-Smtp-Source: ABdhPJwmav0/PNrs7PMR5pjq2q2Pw6ET6CbJBnx58x5yQBYy+EdAOkRA5TdObvP/SSqXdWAKKXhJZJx80IvcrCGZKlg=
-X-Received: by 2002:a05:6830:160d:: with SMTP id g13mr3193376otr.74.1605889243799;
- Fri, 20 Nov 2020 08:20:43 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jBzR8Id+7M0Czb52UJefnNNvKcaDzi1oZktzIdquhwU=;
+        b=kdjhz3Hawt5XqXpKS5Q7eTIHZ/a+QS97Sh1SySWEgHpGRL7d8JnR2gXIDU6FpR80oB
+         m7PrWQLC6qDU1mOc2rYbmqYU7NoYwgsPO4GKIG6bXxm4il2jpCWbT3iHMktekzSbs9Uh
+         LoiozN9/GkJsVtG6yM08qaDIS/DuLDoaPMMqQ+4/qs9fIAAepDVBzwf1XcOmp51VE2rW
+         sWELGyENO31bHeXk5DsQcjfFFMJ9yr5hj9zpbAF1XZcgPB+hGshwsk7WzFdOF52i3KjJ
+         0TNZLdKm91gaRuLA+WOZNzAzgADjU4UuORTXAWQzFsCYIQi/3uCZ+stqz+FC+PqqCqra
+         Rbeg==
+X-Gm-Message-State: AOAM5319kwOblr3ddrwNIw2jRTeMuiVoJ+kfAs+Km+2apZ/XY8y5qLpF
+        AdE6tDBlWjYkJbAQTxyLS1I=
+X-Google-Smtp-Source: ABdhPJyL2aEAQVy2Ox6BqbPIexTfs9w8kV1rbhVdL3n8Uds1Kwsjl1pl2Xid/+VuxscVyuAl7xPo8g==
+X-Received: by 2002:a5d:694f:: with SMTP id r15mr16635290wrw.165.1605889665216;
+        Fri, 20 Nov 2020 08:27:45 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id h15sm5679944wrw.15.2020.11.20.08.27.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2020 08:27:43 -0800 (PST)
+Date:   Fri, 20 Nov 2020 17:27:42 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     krzk@kernel.org, robh+dt@kernel.org, jonathanh@nvidia.com,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/5] memory: tegra: Complete tegra210_swgroups
+Message-ID: <20201120162742.GH3870099@ulmo>
+References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
+ <20201008003746.25659-6-nicoleotsuka@gmail.com>
 MIME-Version: 1.0
-References: <20201119154337.9195-1-sergio.paracuellos@gmail.com>
-In-Reply-To: <20201119154337.9195-1-sergio.paracuellos@gmail.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Fri, 20 Nov 2020 17:20:32 +0100
-Message-ID: <CAMhs-H8bUuSQ+ROr4PNJXYaGFnjG2=zpjGK7UAAfoPMPbFBb1Q@mail.gmail.com>
-Subject: Re: [PATCH v5 0/4] MT7621 PCIe PHY
-To:     vkoul@kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        NeilBrown <neil@brown.name>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ewQ5hdP4CtoTt3oD"
+Content-Disposition: inline
+In-Reply-To: <20201008003746.25659-6-nicoleotsuka@gmail.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
 
-On Thu, Nov 19, 2020 at 4:43 PM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> This series adds support for the PCIe PHY found in the Mediatek
-> MT7621 SoC.
->
-> There is also a 'mt7621-pci' driver which is the controller part
-> which is still in staging and is a client of this phy.
->
-> Both drivers have been tested together in a gnubee1 board.
->
-> This series are rebased on the top of linux-next:
-> commit 4e78c578cb98 ("Add linux-next specific files for 20201030")
->
-> Changes in v5:
->   - PATCH 1/4: Recollect Rob's Reviewed-by of bindings.
->   - PATCH 4/4: Recollect Greg's Acked-by for removing stuff from
->     staging area.
->   - Make Vinod's review comments changes in [0]:
->     * Use FIELD_GET and FIELD_PREP apis and avoid multiple *_VAL and
->       *_SHIFT custom definitions.
->     * Remove phy-read and phy-write internal functions and directly
->       call regmap_read and regmap_write in 'mt7621_phy_rmw'.
->     * Change some traces from info to debug log level.
->     * Note that I have maintained 'mt7621_phy_rmw' instead of use
->       'regmap_update_bits'. This is because in order to get a reliable
->       boot registers must be written event the contained value in
->       that register is the same. I have preferred doing in this way
->       instead of using 'regmap_update_bits_base' passing 'false' for
->       async and 'true' for the force write. If this way of using
->       'regmap_update_bits_base' is preferred just let me know.
+--ewQ5hdP4CtoTt3oD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I notice we already have 'regmap_write_bits' function. I will use this
-and avoid mt7621_phy_rmw
-and send v6 of this series.
+On Wed, Oct 07, 2020 at 05:37:46PM -0700, Nicolin Chen wrote:
+> According to Tegra X1 TRM, there are missing swgroups in the
+> tegra210_swgroups list. So this patch adds them to the list.
+>=20
+> Note that the TEGRA_SWGROUP_GPU (in list) should be actually
+> TEGRA_SWGROUP_GPUB (in TRM), yet TEGRA_SWGROUP_GPU (in TRM)
+> is not being used -- only TEGRA_SWGROUP_GPUB (in TRM) is. So
+> this patch does not add TEGRA_SWGROUP_GPU (in TRM) and keeps
+> TEGRA_SWGROUP_GPU (in list) as it is.
+>=20
+> Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+> ---
+>  drivers/memory/tegra/tegra210.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 
-Also, do you have any preference of where you want this series to be rebased on?
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-Best regards,
-    Sergio Paracuellos
->
-> Changes in v4:
->   - Bindings moved from txt to yaml so previous Rob's Reviewed-by
->     is not in the new patch with the yaml file.
->   - 'phy-cells' property means now if phy is dual-ported.
->   - Avoid custom 'xlate' function and properly set registers
->     when the phy is dual ported.
->   - Add use of 'builtin_platform_driver'.
->   - Added a patch including myself as maintainer in the
->     MAINTAINERS file.
->   - Add a patch removing patch from staging to make easier
->     the complete inclusion and avoid possible problems might
->     appear in 'linux-next' if the series are included.
->
-> Changes in v3:
->   - Recollect Rob's Reviewed-by of bindings.
->   - Make Kishon Vijay suggested changes in v2:
->    (See https://lkml.org/lkml/2019/4/17/53)
->   - Kconfig:
->     * Add depends on COMPILE_TEST
->     * Select REGMAP_MMIO
->   - Make use of 'soc_device_attribute' and 'soc_device_match'
->   - Use regmap mmio API instead of directly 'readl' and 'writel'.
->   - Use 'platform_get_resource' instead of 'of_address_to_resource'.
->
-> Changes in v2:
->   - Reorder patches to get bindings first in the series.
->   - Don't use child nodes in the device tree. Use #phy-cells=1 instead.
->   - Update driver code with new 'xlate' function for the new device tree.
->   - Minor changes in driver's macros changing some spaces to tabs.
->
-> Thanks in advance for your time.
->
-> Best regards,
->     Sergio Paracuellos
->
-> [0]: http://driverdev.linuxdriverproject.org/pipermail/driverdev-devel/2020-November/148864.html
->
-> Sergio Paracuellos (4):
->   dt-bindings: phy: Add binding for Mediatek MT7621 PCIe PHY
->   phy: ralink: Add PHY driver for MT7621 PCIe PHY
->   MAINTAINERS: add MT7621 PHY PCI maintainer
->   staging: mt7621-pci-phy: remove driver from staging
->
->  .../phy}/mediatek,mt7621-pci-phy.yaml         |   0
->  MAINTAINERS                                   |   6 +
->  drivers/phy/ralink/Kconfig                    |   8 ++
->  drivers/phy/ralink/Makefile                   |   1 +
->  .../ralink/phy-mt7621-pci.c}                  | 103 +++++++-----------
->  drivers/staging/Kconfig                       |   2 -
->  drivers/staging/Makefile                      |   1 -
->  drivers/staging/mt7621-pci-phy/Kconfig        |   8 --
->  drivers/staging/mt7621-pci-phy/Makefile       |   2 -
->  drivers/staging/mt7621-pci-phy/TODO           |   4 -
->  10 files changed, 53 insertions(+), 82 deletions(-)
->  rename {drivers/staging/mt7621-pci-phy => Documentation/devicetree/bindings/phy}/mediatek,mt7621-pci-phy.yaml (100%)
->  rename drivers/{staging/mt7621-pci-phy/pci-mt7621-phy.c => phy/ralink/phy-mt7621-pci.c} (76%)
->  delete mode 100644 drivers/staging/mt7621-pci-phy/Kconfig
->  delete mode 100644 drivers/staging/mt7621-pci-phy/Makefile
->  delete mode 100644 drivers/staging/mt7621-pci-phy/TODO
->
-> --
-> 2.25.1
->
+--ewQ5hdP4CtoTt3oD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+37n4ACgkQ3SOs138+
+s6FWAQ//UUcNf8R4DtwB33Rrlhx9IgMOi46MAt0hJ6dnJqbH4iWK6gL3RcUDEP9W
+mzWucuL65XgDfERKWGKRAgv/F3Gxb/dyT5Kf2N/mhkLR7m41/sGENadQea6wQ4K8
+/or83hB3hZuHcJoqlPtyCdszXq8acJxUBWZR23tyFalNq4MSKkwjteVWj+dCprlK
+2sV5XVETey9gY2KLgsIamWFdhrCH1CLoPGvannn/t+47yAQyXt+JMinyUPc0aWXc
+x3U2qIEdX798yvnwzzS2lcHPMI7i+fmtbnoUjWXLX7trxL6xU+yfiZZAxnKf2Fp1
+yhffvZzOYnwxwW+DTDxOmmC92OYl8ArfvhR3Z2Z7QoNoRZ7xx0mYjH0ky9IKGT3P
+gwXqGUfkGbCECE28WKm1ryswKo3IXn/cOq1wmGJAnko5Wyk+Er2wOHdAHGf6WBKS
+U43OiO9mncq7xNqwnuUp2rL7k+q4gd/rqo8JwMJ8/R3mBPaO9OMendo/u3eNx+0y
+8S9IvQ4sgdbFEUvhJDOwg5QGkR2izoYr2YlLUmtWBHq6ZyQqyqCQDDdgQRKemUh2
+GLxhoWU1iCXGCTRWbEyd3el/xAVv3Ock7cW9orZ1F5cGa3oMKSsAxgKbas4DUeUZ
+d26nI2DVhsRtOllxn7u9qU8TLk0+djr8eebM71Q0N3IygkKNI7A=
+=PiTV
+-----END PGP SIGNATURE-----
+
+--ewQ5hdP4CtoTt3oD--
