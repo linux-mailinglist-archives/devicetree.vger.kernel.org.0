@@ -2,287 +2,568 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EA5A2BA541
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 09:57:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DE32BA60B
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 10:26:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727429AbgKTI4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 03:56:40 -0500
-Received: from mga11.intel.com ([192.55.52.93]:64567 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727426AbgKTI4j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 03:56:39 -0500
-IronPort-SDR: m2eGyCc2z49k8d0DDH/+htGpZ9bmqqWDBf0Cu9Sfc6kQ5YWVQyBWY82kAxGqUl14wp5TF3oqRC
- IC817ZEfr87g==
-X-IronPort-AV: E=McAfee;i="6000,8403,9810"; a="167929965"
-X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; 
-   d="scan'208";a="167929965"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Nov 2020 00:56:39 -0800
-IronPort-SDR: pr7YBjOONhgkk0kXi1Chlf0YQXl5MlE91XeE+xN+57fHuJXMcrVi+cQgIBpP6KpywGcuFQBWDE
- XpQ6zWucd7mQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; 
-   d="scan'208";a="533484301"
-Received: from orsmsx605.amr.corp.intel.com ([10.22.229.18])
-  by fmsmga006.fm.intel.com with ESMTP; 20 Nov 2020 00:56:39 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX605.amr.corp.intel.com (10.22.229.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 20 Nov 2020 00:56:38 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Fri, 20 Nov 2020 00:56:38 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Fri, 20 Nov 2020 00:56:38 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.108)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Fri, 20 Nov 2020 00:56:36 -0800
+        id S1726122AbgKTJZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 04:25:24 -0500
+Received: from mail-eopbgr30057.outbound.protection.outlook.com ([40.107.3.57]:23005
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725805AbgKTJZX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 04:25:23 -0500
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Zvv2UTNoWA9RachenIg0tkjHN87xEiTqkWZjZFuoBsqCuE4E9VL13s4GMxYGd28NhHPgxbuGxFZDIHymn+9BmsvE++FNqWeWrMq4kubzEQAdu5hBnBOUPh1+pKXB/G3HQIQzA1bBNNPfUNoq4A++qkllYOqy91GLrlswElS37iJ86jBC2l/oDZJQP0y9oka2cE+XLx/9p6WirgenIzh5uzap2aZrYgW1/9BuVpI0DOY3qiK/Dp0ogy+9FTH5U4y5jLuDevmP7Ex/A/OFqfB53kOCEqyzWRUPGmKTdKMDr7wyFmFykKScl4lHlm3KWBoAF2wgUGLPl1IXBRPHywXeHw==
+ b=WoqZHZpspKOqNqiHm6VUm0sMLfSERmGK+oCGiB+mjEZO/iliVLyK5FE3cN4sYNN3ac1T26HAZWRx40rOFn7dn5199nDJrv4hCDs2Iz3HMJqIfETtXb1eg4emu+LZYQBqkuVXdekRiA12zCd1hJ3CaXFrx740f8UO1p+G62+XNNS7CavgrLjvfQDqT9KvNBsf4EknVNbKj08rk4Vr6TGj7kAKrJ8QDEjVxvdh9FfWDbMwKznBPuArtUzCQGK7Y1PDJB0hlApkgTePsX94UMFBpvb0mkByif1c8lBuFbI1naIhvpyjtZTdJEZsF3jduKqQZyrzYqWE2RbYqF8OZwJuGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32TEqE5FSttrSXfMwmC5QwNe/Q4YIiiDgBdzKVzf/xI=;
- b=JzKBWQO/SJ4v5XkVLLJ6zMdB//ZfIDhKt49U1O1TCEpKt5uf8LV09i1eSKlufkiygVuFJeojDibNm3vnd7b/sMM6CdIWbk7uI/vVCLOUbNZBvM8ppW9VURNibXSoJKaxhnNUt2tZjTQt6BVl3VfVg9DR32Bhlbe9uN0mt7diAZla2whg5hvrlNAeEJqlB6qePue6futMbWslSLXJaMRbDeRvQnIgpWQE24D10BZVLIr2tIxx/OzjRVMwKk+PNpTas88tk4Frdw3n7tu+frZq4GTKPwYjrOridcMK0ObDI0TJ+EQPRrxW1TdeoUVc+06gXtIURcf1XfuZ5mc0J9nbHA==
+ bh=ucaxcOkTjtBRqjpCtkjSk8RnBkAgn6RdQaGn3W4ko/I=;
+ b=FTose8j69ziarWktmvVb35wBhwvSO+fTZNVl5xVsOQEPMDami/ukbHZT2lOos8kGDKQ7Q517Jf3plqDg972YiuUn2s562uAsA55vdty0oqqbZURrDcLGvpZxhGaxjegwcZYPEWdGSm3y2XUGZUgYFNAj/YBcnMA7eUnxyv+lvDx7sYHIhv2uFHnmAbkKe5aVIXVjW4YQb4DaCKKRwEAWTy8QYcmbSLgP94XOD8qSwJ/sFdnXz6zT7XJIHOWUyPJBppu5SNfMNZPodrmhDE2uFLkZ1iQo9CFgDq2LuMBCBvYLr16d/CCf2MVVU5+USdZ2PvSg1fDOuevKbynykZKudA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=32TEqE5FSttrSXfMwmC5QwNe/Q4YIiiDgBdzKVzf/xI=;
- b=fNNgdLoRjHTw49SFn6MhkonLXnB3mSCtu/jrlfev9RBuJdiXDybItF/oyJBNUIWUKWXME/lTt3gVqZ5GQ9ObcTA04wHXeuN3WtVHTdGIczohl3kUL8ix73MXs90bdrrCOzBvAKCxkexLjSXDQw0VHYUEczaJ3x1n8h5alXDBDh0=
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com (2603:10b6:303:9c::13)
- by MWHPR11MB0063.namprd11.prod.outlook.com (2603:10b6:301:6c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Fri, 20 Nov
- 2020 08:56:35 +0000
-Received: from CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::4820:6e90:3d0e:3b5f]) by CO1PR11MB5026.namprd11.prod.outlook.com
- ([fe80::4820:6e90:3d0e:3b5f%4]) with mapi id 15.20.3589.022; Fri, 20 Nov 2020
- 08:56:35 +0000
-From:   "Sia, Jee Heng" <jee.heng.sia@intel.com>
-To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-CC:     "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+ bh=ucaxcOkTjtBRqjpCtkjSk8RnBkAgn6RdQaGn3W4ko/I=;
+ b=OXclYspAezIV9xrDacby+Y5nViLwFCPKaA8ttn7IztEN3ZHYNt3fw9Cvcv4EvZmkuFz12jTOb0mNTWqsoBGdYbjklSAyArhM87lfGEBZDLhUHawSzK+fLi+d/Nmt8yYKtSMzRi1t5NONCuYlwrTh2iCXXDstiP136Ax2v+FtaeQ=
+Received: from HE1PR04MB3196.eurprd04.prod.outlook.com (2603:10a6:7:21::31) by
+ HE1PR0401MB2473.eurprd04.prod.outlook.com (2603:10a6:3:86::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3589.22; Fri, 20 Nov 2020 09:25:14 +0000
+Received: from HE1PR04MB3196.eurprd04.prod.outlook.com
+ ([fe80::a5f9:47b0:c473:7ddf]) by HE1PR04MB3196.eurprd04.prod.outlook.com
+ ([fe80::a5f9:47b0:c473:7ddf%7]) with mapi id 15.20.3564.028; Fri, 20 Nov 2020
+ 09:25:14 +0000
+From:   Ashish Kumar <ashish.kumar@nxp.com>
+To:     Michael Walle <michael@walle.cc>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay AxiDMA
- handshake
-Thread-Topic: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay
- AxiDMA handshake
-Thread-Index: AQHWvIranRliWUyoiUC041c/U0Xoy6nOkjKOgAGhikCAAIM/wA==
-Date:   Fri, 20 Nov 2020 08:56:35 +0000
-Message-ID: <CO1PR11MB502626E7EE93B74E20BBB437DAFF0@CO1PR11MB5026.namprd11.prod.outlook.com>
-References: <20201117022215.2461-1-jee.heng.sia@intel.com>,<20201117022215.2461-14-jee.heng.sia@intel.com>
- <MWHPR1201MB0029177B655D2B57D636CAB0DEE10@MWHPR1201MB0029.namprd12.prod.outlook.com>
- <CO1PR11MB502675222991EE9CECE782F2DAFF0@CO1PR11MB5026.namprd11.prod.outlook.com>
-In-Reply-To: <CO1PR11MB502675222991EE9CECE782F2DAFF0@CO1PR11MB5026.namprd11.prod.outlook.com>
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        "Y.b. Lu" <yangbo.lu@nxp.com>, Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: RE: [EXT] [PATCH v3 4/9] arm64: dts: ls1028a: use constants in the
+ clockgen phandle
+Thread-Topic: [EXT] [PATCH v3 4/9] arm64: dts: ls1028a: use constants in the
+ clockgen phandle
+Thread-Index: AQHWtgAqNmhPttZH1kyEI8J7SIVcLanQ0Dog
+Date:   Fri, 20 Nov 2020 09:25:14 +0000
+Message-ID: <HE1PR04MB319684750CF7D1920DCCCDD095FF0@HE1PR04MB3196.eurprd04.prod.outlook.com>
+References: <20201108185113.31377-1-michael@walle.cc>
+ <20201108185113.31377-5-michael@walle.cc>
+In-Reply-To: <20201108185113.31377-5-michael@walle.cc>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: synopsys.com; dkim=none (message not signed)
- header.d=none;synopsys.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [192.198.147.192]
+authentication-results: walle.cc; dkim=none (message not signed)
+ header.d=none;walle.cc; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [122.177.30.104]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e87b6b0a-c358-4835-5fbb-08d88d322f44
-x-ms-traffictypediagnostic: MWHPR11MB0063:
-x-microsoft-antispam-prvs: <MWHPR11MB0063A77EDFAC46A3DEE1DCC9DAFF0@MWHPR11MB0063.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 7213c44a-cb92-477a-f7db-08d88d362fe5
+x-ms-traffictypediagnostic: HE1PR0401MB2473:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <HE1PR0401MB24739011D1653FB1DA74457A95FF0@HE1PR0401MB2473.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3383;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bLkhtynce5rFXyIDHtpipqyLey4Y3lDLP7yqLSU8ofP/I1IzOP/yukCwAZd0eh25KBmTEmxhjWuIBmf8RPiMxO4VEaNVsJNU3XJv3E+c7PfPp7bOw/vocBtnVvxM7S1BwS022JH0XaimijVtojIhzmsICjNAbuydx/68GunOZVtQlebZorHC59bINQAiDbOifhgyyYunyyxF2pULQcsm+o50Ow002UipV932Z6IXo1gp+EVVL1a1s/FMRBi1QL9s7CyV+1TingjL0DrwzNvv8MkUMjBJv/upzy+g5CsQv+sG2InzozLvi1Mk3OeSD+nusQAbeYQdl85dQOKyNvit/Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB5026.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(376002)(39860400002)(346002)(396003)(136003)(2906002)(6916009)(8676002)(186003)(8936002)(6506007)(26005)(83380400001)(2940100002)(33656002)(9686003)(4326008)(52536014)(54906003)(55016002)(478600001)(71200400001)(76116006)(53546011)(5660300002)(66446008)(66476007)(7696005)(64756008)(66556008)(86362001)(66946007)(316002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 5yo9HgKvtKS1dRWWtXD2I9r240Miy/u+aLPJDVD/6FRQ36xPIK+4W3LyCiZUgTrk5qAyf9Yp45a/e4PUW+2MnVr6yqSAdtg425c9WBiBamXcD0N/4PkP7cwy1n7hbr5zni7iu4mOR3HW8SZejRIpoT2f1KDA9y/av9amuSVX2NUGgjrToLXrIjUO9jkY+etNu6ikfxfzARKXJYJRdjwFnYyF1Rc371Et/ILGdJZJVh7UDOA1+sCPUr+cr5LVWFJFxVi77j+Gwe9VXRXvo3b5EOF5ZJkAi5aeCAYJq8xRe7XgdVFfHWJ2GJMt4F9dM03+P4wjjyCml20lMKp2yBApcRTZ+wtONY1dWsWl3FmCRFI+kcWyC/DKMPfQmZThz4XJxlrzp8TtHWoAKm95iSxqFVMjgKlDlbfiQNQRSo0vtZ6f3nQxUG7CJlNb8VQRQbYlEev8qTsmew2SRftui/j85cpXBhbOPI64SD8pU/XnIO5pMOtCzqs87qtCQPpt9LqWSJvDT1/FVmDgjtau2PKMcu1t2AQBd4E0N6i3hAACryP/RuIL+8/aUhJFS/rtQkH3yvT5nnc7Wg79HcGS+1jSHbskRwXbxJpk35a1/hR4ZhOcRFvdzD1pphxv+cEFL7ThNh032flH6nuf3vrCO0Cj1cqicHiAmgpwUZnQEMUWF5b07HsP4xi8gNP83c4jgST/oGcYOduQOsKviQyJyIXwDGvr39I+R4RLgPfgsARbCzEshsgRebdl59jnpA4JW6cxs3TS5zxeBzFqh+a9VPk69VvXGnhfUffmvyWR4Vj2qp5OirvFiUsY1ZHGbTaEx4Xh13uozQkleFMa895XJpm7PF9ONuQ6Ef5wVZTa9Ed6grwvEJ1eiYyS6u8gHiqD5aJvAEtTbxEndjSGMj8QqvcHFQ==
-x-ms-exchange-transport-forked: True
+x-microsoft-antispam-message-info: CwgOgTnuznWowLoTWW9rcz1AUOHDmEUGBngjNx1lAV88Qp5pS+sU+GlxpGIkVJoJccSHAUJd7Z4FvF3eZAieWt8xeA7jcKedBCjOm3aNOVO1NM4u7oe/3G4L2d6pLH0P+Gtnl6TAIHtYWWzUBoT67aIE+pCqm8HYuCHfhfVKjmsNJLLzp/jcpK1xxlTQEGddTFjKZjHGNT60RHv3qi9UAatH0qTOiBirCTUtstnP/J1T+cWH7tTwe4kWeVQ92+7y57sUp0Z0CNou1bmPbe41OkZruTKenkMoF2XYq7pQd2y5p5ep9Xxon/VK54h8VOQl+msG207H2KA29L/kCFFkUw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR04MB3196.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(366004)(346002)(39860400002)(136003)(52536014)(316002)(30864003)(55236004)(6506007)(53546011)(8676002)(110136005)(76116006)(66476007)(66446008)(64756008)(8936002)(5660300002)(55016002)(2906002)(33656002)(66946007)(66556008)(44832011)(83380400001)(7696005)(26005)(71200400001)(478600001)(86362001)(4326008)(54906003)(186003)(9686003)(559001)(579004);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: +c1EZZe1s2+q+TbpzyfbpxGqEerFx1GzaBsWzqpJZ96x6QU4x4F7TMTKG4O3AJS/wuOQydMQLapO1JvceQ5WcqDM387Ivk8XhheB+jfJ4mn2HuILG2JoYBXev3H9CdLjySKa0eIKHRumlE10yyFe67KPRCQGJC0x6+ddy8TNXeTw7iMdxVymF8uGS1QPG4ZA8Te6FkZ5lRKBPCXlLrxrgSXjupgLFnICd6y/3Q6m6O0mD/eyy9NarMkF6WruMyiTJ/OdW5QoXCWhOSjD/2+5/tYALliXtOVWC5qn0tX1bfBM5Ixi5cfVUuOr8+Oz75unsO37U92j1Bu2fJK/vycOEVIgZkLWF+eKFoQxsDkPHMqXMHDTwnuE81a7q92b9qn0JSEQLz3N7HnkXItT7N09ho9TAlmvAet6y685Jyn5Hi032yzrIh7AoGGJFIzEjq1n4EmVUUnlgcGXOEcKmD2YrLTu90GvalJiZthkdzamrQRKRGXxRgn3eQDWg8LKR0cppdBV5tkAg70qs6hPvAmiv1FjSwLR3yOVX4xbsf28ecE79biAHO7OM0UXqyVoWk7izDPKkDeKyjIiyz5TGEPKvlRdeZWVo44x1THDoVakD5zPxYPSRdxjBvznLffhLgOYcKD/Qx5S+FeJivRx2lQrOQ==
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5026.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e87b6b0a-c358-4835-5fbb-08d88d322f44
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2020 08:56:35.2442
+X-MS-Exchange-CrossTenant-AuthSource: HE1PR04MB3196.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7213c44a-cb92-477a-f7db-08d88d362fe5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2020 09:25:14.2796
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: SQTU6HG3qLXQjB5T1SYbu/ai0QowRd+Fq4kbitRjoyAkda8Zq4olnnvehrwy9OUpofvX9n/qqKQPq9HeEqSwDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB0063
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-userprincipalname: TSh7duOeqM0bExnH/anRPvyQcn5i2gTZd1f2MXjvs2iARCAgVDskuXm7gebpM7IDIcUfZhiP8i0wpHFd2BDO6g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0401MB2473
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Eugeniy,
-
-With regards to the below comment
-> > In some places you check for this region existence using if
-> > (IS_ERR(chip->regs)) and in other places you use if (!chip->apb_regs)
-The main reason of using IS_ERR() is because of the ioremap() function retu=
-rn an error value
-if the mapping failed.
-And now with your suggestion to add conditional checking to the compatible =
-property, the chip->apb will
-remain NULL on non Intel KeemBay SoC. Therefore, the "if (!chip->apb_regs)"=
- condition will be used instead.
-
-Please let me  know if you have other concern.
+HI Michael,
 
 > -----Original Message-----
-> From: Sia, Jee Heng
-> Sent: 20 November 2020 8:47 AM
-> To: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-> Cc: andriy.shevchenko@linux.intel.com; dmaengine@vger.kernel.org; linux-
-> kernel@vger.kernel.org; devicetree@vger.kernel.org
-> Subject: RE: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay A=
-xiDMA
-> handshake
+> From: Michael Walle <michael@walle.cc>
+> Sent: Monday, November 9, 2020 12:21 AM
+> To: linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org
+> Cc: Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
+> <sboyd@kernel.org>; Rob Herring <robh+dt@kernel.org>; Shawn Guo
+> <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Y.b. Lu
+> <yangbo.lu@nxp.com>; Xiaowei Bao <xiaowei.bao@nxp.com>; Ashish Kumar
+> <ashish.kumar@nxp.com>; Vladimir Oltean <vladimir.oltean@nxp.com>;
+> Michael Walle <michael@walle.cc>
+> Subject: [EXT] [PATCH v3 4/9] arm64: dts: ls1028a: use constants in the c=
+lockgen
+> phandle
 >=20
+> Caution: EXT Email
 >=20
+> Now that we have constants, use them. This is just a mechanical change.
 >=20
-> > -----Original Message-----
-> > From: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-> > Sent: 19 November 2020 7:59 AM
-> > To: Sia, Jee Heng <jee.heng.sia@intel.com>
-> > Cc: andriy.shevchenko@linux.intel.com; dmaengine@vger.kernel.org;
-> > linux- kernel@vger.kernel.org; devicetree@vger.kernel.org
-> > Subject: Re: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel
-> > KeemBay AxiDMA handshake
-> >
-> > Hi Sia,
-> >
-> > > Subject: [PATCH v4 13/15] dmaengine: dw-axi-dmac: Add Intel KeemBay
-> > > AxiDMA handshake
-> > >
-> > > Add support for Intel KeemBay AxiDMA device handshake programming.
-> > > Device handshake number passed in to the AxiDMA shall be written to
-> > > the Intel KeemBay AxiDMA hardware handshake registers before DMA
-> > > operations are started.
-> > >
-> > > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > Signed-off-by: Sia Jee Heng <jee.heng.sia@intel.com>
-> > > ---
-> > >  .../dma/dw-axi-dmac/dw-axi-dmac-platform.c    | 52 +++++++++++++++++=
-++
-> > >  1 file changed, 52 insertions(+)
-> > >
-> > > diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> > > b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> > > index c2ffc5d44b6e..d44a5c9eb9c1 100644
-> > > --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> > > +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-> > > @@ -445,6 +445,48 @@ static void dma_chan_free_chan_resources(struct
-> > dma_chan *dchan)
-> > >         pm_runtime_put(chan->chip->dev);  }
-> > >
-> > > +static int dw_axi_dma_set_hw_channel(struct axi_dma_chip *chip, u32
-> > hs_number,
-> > > +                                    bool set) {
-> > > +       unsigned long start =3D 0;
-> > > +       unsigned long reg_value;
-> > > +       unsigned long reg_mask;
-> > > +       unsigned long reg_set;
-> > > +       unsigned long mask;
-> > > +       unsigned long val;
-> > > +
-> > > +       if (!chip->apb_regs)
-> > > +               return -ENODEV;
-> >
-> > In some places you check for this region existence using if
-> > (IS_ERR(chip->regs)) and in other places you use if (!chip->apb_regs)
-> >
-> > I guess it isn't correct. NOTE that this comment valid for other patche=
-s as well.
-> [>>] Thanks for the invaluable comment, will make sure the consistency in=
- the code.
-> >
-> > > +
-> > > +       /*
-> > > +        * An unused DMA channel has a default value of 0x3F.
-> > > +        * Lock the DMA channel by assign a handshake number to the c=
-hannel.
-> > > +        * Unlock the DMA channel by assign 0x3F to the channel.
-> > > +        */
-> > > +       if (set) {
-> > > +               reg_set =3D UNUSED_CHANNEL;
-> > > +               val =3D hs_number;
-> > > +       } else {
-> > > +               reg_set =3D hs_number;
-> > > +               val =3D UNUSED_CHANNEL;
-> > > +       }
-> > > +
-> > > +       reg_value =3D lo_hi_readq(chip->apb_regs +
-> > > + DMAC_APB_HW_HS_SEL_0);
-> > > +
-> > > +       for_each_set_clump8(start, reg_mask, &reg_value, 64) {
-> > > +               if (reg_mask =3D=3D reg_set) {
-> > > +                       mask =3D GENMASK_ULL(start + 7, start);
-> > > +                       reg_value &=3D ~mask;
-> > > +                       reg_value |=3D rol64(val, start);
-> > > +                       lo_hi_writeq(reg_value,
-> > > +                                    chip->apb_regs + DMAC_APB_HW_HS_=
-SEL_0);
-> > > +                       break;
-> > > +               }
-> > > +       }
-> > > +
-> > > +       return 0;
-> > > +}
-> > > +
-> > >  /*
-> > >   * If DW_axi_dmac sees CHx_CTL.ShadowReg_Or_LLI_Last bit of the fetc=
-hed LLI
-> > >   * as 1, it understands that the current block is the final block
-> > > in the @@ -626,6 +668,9 @@ dw_axi_dma_chan_prep_cyclic(struct
-> > > dma_chan
-> > *dchan, dma_addr_t dma_addr,
-> > >                 llp =3D hw_desc->llp;
-> > >         } while (num_periods);
-> > >
-> > > +       if (dw_axi_dma_set_hw_channel(chan->chip, chan->hw_hs_num, tr=
-ue))
-> > > +               goto err_desc_get;
-> > > +
-> > >         return vchan_tx_prep(&chan->vc, &desc->vd, flags);
-> > >
-> > >  err_desc_get:
-> > > @@ -684,6 +729,9 @@ dw_axi_dma_chan_prep_slave_sg(struct dma_chan
-> > *dchan, struct scatterlist *sgl,
-> > >                 llp =3D hw_desc->llp;
-> > >         } while (sg_len);
-> > >
-> > > +       if (dw_axi_dma_set_hw_channel(chan->chip, chan->hw_hs_num, tr=
-ue))
-> > > +               goto err_desc_get;
-> > > +
-> > >         return vchan_tx_prep(&chan->vc, &desc->vd, flags);
-> > >
-> > >  err_desc_get:
-> > > @@ -959,6 +1007,10 @@ static int dma_chan_terminate_all(struct
-> > > dma_chan
-> > *dchan)
-> > >                 dev_warn(dchan2dev(dchan),
-> > >                          "%s failed to stop\n",
-> > > axi_chan_name(chan));
-> > >
-> > > +       if (chan->direction !=3D DMA_MEM_TO_MEM)
-> > > +               dw_axi_dma_set_hw_channel(chan->chip,
-> > > +                                         chan->hw_hs_num, false);
-> > > +
-> > >         spin_lock_irqsave(&chan->vc.lock, flags);
-> > >
-> > >         vchan_get_all_descriptors(&chan->vc, &head);
-> > > --
-> > > 2.18.0
-> > >
+> Signed-off-by: Michael Walle <michael@walle.cc>
+> ---
+> Changes since v2:
+>  - new patch
+
+I am not able to apply this patch cleanly, does it have any dependency patc=
+h that I have missed?
+My assumption is that this patch series is superset of=20
+Series 1: [1/4]  dt-bindings: clock: document the fsl-flexspi-clk driver
+And=20
+Series 2:  [v2,1/5] clk: divider: add devm_clk_hw_register_divider_table()
+
+Regards
+Ashish=20
+>=20
+>  .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 162 +++++++++++++-----
+>  1 file changed, 116 insertions(+), 46 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 2f60a6ba7e14..055da2c710c3 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -8,6 +8,7 @@
+>   *
+>   */
+>=20
+> +#include <dt-bindings/clock/fsl,qoriq-clockgen.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>=20
+> @@ -32,7 +33,7 @@
+>                         compatible =3D "arm,cortex-a72";
+>                         reg =3D <0x0>;
+>                         enable-method =3D "psci";
+> -                       clocks =3D <&clockgen 1 0>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_CMUX 0>;
+>                         next-level-cache =3D <&l2>;
+>                         cpu-idle-states =3D <&CPU_PW20>;
+>                         #cooling-cells =3D <2>; @@ -43,7 +44,7 @@
+>                         compatible =3D "arm,cortex-a72";
+>                         reg =3D <0x1>;
+>                         enable-method =3D "psci";
+> -                       clocks =3D <&clockgen 1 0>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_CMUX 0>;
+>                         next-level-cache =3D <&l2>;
+>                         cpu-idle-states =3D <&CPU_PW20>;
+>                         #cooling-cells =3D <2>; @@ -236,7 +237,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2000000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -246,7 +248,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2010000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -256,7 +259,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2020000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -266,7 +270,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2030000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -276,7 +281,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2040000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -286,7 +292,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2050000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 74 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -296,7 +303,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2060000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -306,7 +314,8 @@
+>                         #size-cells =3D <0>;
+>                         reg =3D <0x0 0x2070000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 3>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(4)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -318,7 +327,8 @@
+>                               <0x0 0x20000000 0x0 0x10000000>;
+>                         reg-names =3D "fspi_base", "fspi_mmap";
+>                         interrupts =3D <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 2 0>, <&clockgen 2 0>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_HWACCEL 0>,
+> +                                <&clockgen QORIQ_CLK_HWACCEL 0>;
+>                         clock-names =3D "fspi_en", "fspi";
+>                         status =3D "disabled";
+>                 };
+> @@ -330,7 +340,8 @@
+>                         reg =3D <0x0 0x2100000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+>                         clock-names =3D "dspi";
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         dmas =3D <&edma0 0 62>, <&edma0 0 60>;
+>                         dma-names =3D "tx", "rx";
+>                         spi-num-chipselects =3D <4>; @@ -345,7 +356,8 @@
+>                         reg =3D <0x0 0x2110000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+>                         clock-names =3D "dspi";
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         dmas =3D <&edma0 0 58>, <&edma0 0 56>;
+>                         dma-names =3D "tx", "rx";
+>                         spi-num-chipselects =3D <4>; @@ -360,7 +372,8 @@
+>                         reg =3D <0x0 0x2120000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+>                         clock-names =3D "dspi";
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         dmas =3D <&edma0 0 54>, <&edma0 0 2>;
+>                         dma-names =3D "tx", "rx";
+>                         spi-num-chipselects =3D <3>; @@ -373,7 +386,7 @@
+>                         reg =3D <0x0 0x2140000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
+>                         clock-frequency =3D <0>; /* fixed up by bootloade=
+r */
+> -                       clocks =3D <&clockgen 2 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_HWACCEL 1>;
+>                         voltage-ranges =3D <1800 1800 3300 3300>;
+>                         sdhci,auto-cmd12;
+>                         little-endian;
+> @@ -386,7 +399,7 @@
+>                         reg =3D <0x0 0x2150000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
+>                         clock-frequency =3D <0>; /* fixed up by bootloade=
+r */
+> -                       clocks =3D <&clockgen 2 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_HWACCEL 1>;
+>                         voltage-ranges =3D <1800 1800 3300 3300>;
+>                         sdhci,auto-cmd12;
+>                         broken-cd;
+> @@ -399,7 +412,8 @@
+>                         compatible =3D "fsl,ls1028ar1-flexcan", "fsl,lx21=
+60ar1-flexcan";
+>                         reg =3D <0x0 0x2180000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&sysclk>, <&clockgen 4 1>;
+> +                       clocks =3D <&sysclk>, <&clockgen QORIQ_CLK_PLATFO=
+RM_PLL
+> +
+> + QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg", "per";
+>                         status =3D "disabled";
+>                 };
+> @@ -408,7 +422,8 @@
+>                         compatible =3D "fsl,ls1028ar1-flexcan", "fsl,lx21=
+60ar1-flexcan";
+>                         reg =3D <0x0 0x2190000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&sysclk>, <&clockgen 4 1>;
+> +                       clocks =3D <&sysclk>, <&clockgen QORIQ_CLK_PLATFO=
+RM_PLL
+> +
+> + QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg", "per";
+>                         status =3D "disabled";
+>                 };
+> @@ -417,7 +432,8 @@
+>                         compatible =3D "fsl,ns16550", "ns16550a";
+>                         reg =3D <0x00 0x21c0500 0x0 0x100>;
+>                         interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -425,7 +441,8 @@
+>                         compatible =3D "fsl,ns16550", "ns16550a";
+>                         reg =3D <0x00 0x21c0600 0x0 0x100>;
+>                         interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -434,7 +451,8 @@
+>                         compatible =3D "fsl,ls1028a-lpuart";
+>                         reg =3D <0x0 0x2260000 0x0 0x1000>;
+>                         interrupts =3D <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg";
+>                         dma-names =3D "rx","tx";
+>                         dmas =3D <&edma0 1 32>, @@ -446,7 +464,8 @@
+>                         compatible =3D "fsl,ls1028a-lpuart";
+>                         reg =3D <0x0 0x2270000 0x0 0x1000>;
+>                         interrupts =3D <GIC_SPI 233 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg";
+>                         dma-names =3D "rx","tx";
+>                         dmas =3D <&edma0 1 30>, @@ -458,7 +477,8 @@
+>                         compatible =3D "fsl,ls1028a-lpuart";
+>                         reg =3D <0x0 0x2280000 0x0 0x1000>;
+>                         interrupts =3D <GIC_SPI 234 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg";
+>                         dma-names =3D "rx","tx";
+>                         dmas =3D <&edma0 1 28>, @@ -470,7 +490,8 @@
+>                         compatible =3D "fsl,ls1028a-lpuart";
+>                         reg =3D <0x0 0x2290000 0x0 0x1000>;
+>                         interrupts =3D <GIC_SPI 235 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg";
+>                         dma-names =3D "rx","tx";
+>                         dmas =3D <&edma0 1 26>, @@ -482,7 +503,8 @@
+>                         compatible =3D "fsl,ls1028a-lpuart";
+>                         reg =3D <0x0 0x22a0000 0x0 0x1000>;
+>                         interrupts =3D <GIC_SPI 236 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg";
+>                         dma-names =3D "rx","tx";
+>                         dmas =3D <&edma0 1 24>, @@ -494,7 +516,8 @@
+>                         compatible =3D "fsl,ls1028a-lpuart";
+>                         reg =3D <0x0 0x22b0000 0x0 0x1000>;
+>                         interrupts =3D <GIC_SPI 237 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "ipg";
+>                         dma-names =3D "rx","tx";
+>                         dmas =3D <&edma0 1 22>, @@ -513,8 +536,10 @@
+>                         interrupt-names =3D "edma-tx", "edma-err";
+>                         dma-channels =3D <32>;
+>                         clock-names =3D "dmamux0", "dmamux1";
+> -                       clocks =3D <&clockgen 4 1>,
+> -                                <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                 };
+>=20
+>                 gpio1: gpio@2300000 {
+> @@ -576,7 +601,8 @@
+>                                 <0x7 0x100520 0x0 0x4>;
+>                         reg-names =3D "ahci", "sata-ecc";
+>                         interrupts =3D <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         status =3D "disabled";
+>                 };
+>=20
+> @@ -748,14 +774,20 @@
+>                 cluster1_core0_watchdog: watchdog@c000000 {
+>                         compatible =3D "arm,sp805", "arm,primecell";
+>                         reg =3D <0x0 0xc000000 0x0 0x1000>;
+> -                       clocks =3D <&clockgen 4 15>, <&clockgen 4 15>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(16)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(16)>;
+>                         clock-names =3D "wdog_clk", "apb_pclk";
+>                 };
+>=20
+>                 cluster1_core1_watchdog: watchdog@c010000 {
+>                         compatible =3D "arm,sp805", "arm,primecell";
+>                         reg =3D <0x0 0xc010000 0x0 0x1000>;
+> -                       clocks =3D <&clockgen 4 15>, <&clockgen 4 15>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(16)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(16)>;
+>                         clock-names =3D "wdog_clk", "apb_pclk";
+>                 };
+>=20
+> @@ -764,8 +796,14 @@
+>                         compatible =3D "fsl,vf610-sai";
+>                         reg =3D <0x0 0xf100000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>, <&clockgen 4 1>,
+> -                                <&clockgen 4 1>, <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "bus", "mclk1", "mclk2", "mclk3";
+>                         dma-names =3D "tx", "rx";
+>                         dmas =3D <&edma0 1 4>, @@ -779,8 +817,14 @@
+>                         compatible =3D "fsl,vf610-sai";
+>                         reg =3D <0x0 0xf110000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>, <&clockgen 4 1>,
+> -                                <&clockgen 4 1>, <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "bus", "mclk1", "mclk2", "mclk3";
+>                         dma-names =3D "tx", "rx";
+>                         dmas =3D <&edma0 1 6>, @@ -794,8 +838,14 @@
+>                         compatible =3D "fsl,vf610-sai";
+>                         reg =3D <0x0 0xf120000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>, <&clockgen 4 1>,
+> -                                <&clockgen 4 1>, <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "bus", "mclk1", "mclk2", "mclk3";
+>                         dma-names =3D "tx", "rx";
+>                         dmas =3D <&edma0 1 8>, @@ -809,8 +859,14 @@
+>                         compatible =3D "fsl,vf610-sai";
+>                         reg =3D <0x0 0xf130000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>, <&clockgen 4 1>,
+> -                                <&clockgen 4 1>, <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "bus", "mclk1", "mclk2", "mclk3";
+>                         dma-names =3D "tx", "rx";
+>                         dmas =3D <&edma0 1 10>, @@ -824,8 +880,14 @@
+>                         compatible =3D "fsl,vf610-sai";
+>                         reg =3D <0x0 0xf140000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>, <&clockgen 4 1>,
+> -                                <&clockgen 4 1>, <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "bus", "mclk1", "mclk2", "mclk3";
+>                         dma-names =3D "tx", "rx";
+>                         dmas =3D <&edma0 1 12>, @@ -839,8 +901,14 @@
+>                         compatible =3D "fsl,vf610-sai";
+>                         reg =3D <0x0 0xf150000 0x0 0x10000>;
+>                         interrupts =3D <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
+> -                       clocks =3D <&clockgen 4 1>, <&clockgen 4 1>,
+> -                                <&clockgen 4 1>, <&clockgen 4 1>;
+> +                       clocks =3D <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>,
+> +                                <&clockgen QORIQ_CLK_PLATFORM_PLL
+> +                                           QORIQ_CLK_PLL_DIV(2)>;
+>                         clock-names =3D "bus", "mclk1", "mclk2", "mclk3";
+>                         dma-names =3D "tx", "rx";
+>                         dmas =3D <&edma0 1 14>, @@ -961,7 +1029,7 @@
+>                         ethernet@0,4 {
+>                                 compatible =3D "fsl,enetc-ptp";
+>                                 reg =3D <0x000400 0 0 0 0>;
+> -                               clocks =3D <&clockgen 2 3>;
+> +                               clocks =3D <&clockgen QORIQ_CLK_HWACCEL
+> + 3>;
+>                                 little-endian;
+>                                 fsl,extts-fifo;
+>                         };
+> @@ -1056,8 +1124,10 @@
+>                 interrupts =3D <0 222 IRQ_TYPE_LEVEL_HIGH>,
+>                              <0 223 IRQ_TYPE_LEVEL_HIGH>;
+>                 interrupt-names =3D "DE", "SE";
+> -               clocks =3D <&dpclk>, <&clockgen 2 2>, <&clockgen 2 2>,
+> -                        <&clockgen 2 2>;
+> +               clocks =3D <&dpclk>,
+> +                        <&clockgen QORIQ_CLK_HWACCEL 2>,
+> +                        <&clockgen QORIQ_CLK_HWACCEL 2>,
+> +                        <&clockgen QORIQ_CLK_HWACCEL 2>;
+>                 clock-names =3D "pxlclk", "mclk", "aclk", "pclk";
+>                 arm,malidp-output-port-lines =3D /bits/ 8 <8 8 8>;
+>                 arm,malidp-arqos-value =3D <0xd000d000>;
+> --
+> 2.20.1
+
