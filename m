@@ -2,88 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E6C2BB804
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 22:00:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A59702BB810
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 22:05:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730471AbgKTU7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 15:59:01 -0500
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45330 "EHLO
+        id S1730225AbgKTVDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 16:03:51 -0500
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34264 "EHLO
         mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728740AbgKTU7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 15:59:01 -0500
-Received: by mail-ot1-f65.google.com with SMTP id k3so10000940otp.12;
-        Fri, 20 Nov 2020 12:59:00 -0800 (PST)
+        with ESMTP id S1727335AbgKTVDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 16:03:51 -0500
+Received: by mail-ot1-f65.google.com with SMTP id j14so10060257ots.1;
+        Fri, 20 Nov 2020 13:03:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=E+eTvV1tGOwtq1rQTgD6byJC2hOWBwFyaoUcLOPG4kI=;
-        b=kGa9Lcb5LUPaFwD6edUYAV5Rzgpj9szH1HD814ginxEyoLGW+MAqu4wsQKsiQu6MZ4
-         NYgNk8LS1fVEoMcbwgS6oXPLKlVCNeUSPqKrTiX1szIzsik3C1EliPB5qyraRFpHa5Xn
-         G3m0U5A1avVV9YiUown2pSgG6iFjDiWta/HVm9hvFp3/q6KmpSxr8RYjEUGdVEYz62I/
-         SDbLHu7/l4QSiV1CAw2q2JuNd/rSc8YQydAIk6RSWauhqqkbPBvmEPttlT9JMEa3Il/F
-         dPWSarzhlY34HJd9ML2LgjL5iRNVLtiKz8wJgoBfJco2/hsZMXkeIHqVyq7zKlJNBKnE
-         JOOQ==
-X-Gm-Message-State: AOAM531qu7NHIyXbCCJoyhuiV28Ue+9F4hF30mcATvt6RIaVrwfjNelm
-        /CZBErm9KGcN2UPAv8USPntJLFRftw==
-X-Google-Smtp-Source: ABdhPJy0vQQNAnVcAar+wRVkpy8jiPnlJ69OtFNb8/H5LuYPjmE2JBgCx0QWLHdF8aK8a18ZO2eEUw==
-X-Received: by 2002:a9d:27e8:: with SMTP id c95mr15233201otb.262.1605905940016;
-        Fri, 20 Nov 2020 12:59:00 -0800 (PST)
+        bh=O65YbVoUCwPPqb4vh57HQOwrA45uehfsHs7MDRTYAAU=;
+        b=ROkRVT0sefAR+sXP9NrN6lamXMPeD7fritNKpYSyKcKosnX+MP+02TMF4phkfIm3T5
+         l/LglMaF4BSNYHSHw9HcsOyukYyarRqHzfTtnDv+BE/1UipOhWtdHiPK/Wie9h2LydW6
+         yDvCzlbveSnPJ+nMPtEjarpqKizGUvBc1dP8tApuJeFm5Xc96s3AnWTRACO+wwPHQj/s
+         94Uy6fnNcpt4YJOfc8yX8sIdN9SsxiMyc2YeFubGDg6xAP/5jNH9OdkUbwO978AOspsS
+         t+wzr1/zzn+c+Y3Gf04H5DFHowz8x2R2D5z6/r+tcAtpWQ5NpyySAEFIj1ovtV5v7EPC
+         s9Ew==
+X-Gm-Message-State: AOAM530EUbSEXoASIQwqLHQGUK4Th110Iaya2ka5QVhg5KCNtC9I6kPL
+        xWeNhTEJ9RX0j7pdlNCmFMqeb5XMDQ==
+X-Google-Smtp-Source: ABdhPJyyd4nJ5cBeo0GfgCatXLS1+K5s7Wdlo9Y4p10ZxC6b39GxFzKFByFu7DhX54sswaXYUOnhdA==
+X-Received: by 2002:a9d:3408:: with SMTP id v8mr15548863otb.335.1605906228600;
+        Fri, 20 Nov 2020 13:03:48 -0800 (PST)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c6sm2225855oif.48.2020.11.20.12.58.58
+        by smtp.gmail.com with ESMTPSA id a1sm1867965oti.56.2020.11.20.13.03.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2020 12:58:59 -0800 (PST)
-Received: (nullmailer pid 1729167 invoked by uid 1000);
-        Fri, 20 Nov 2020 20:58:58 -0000
-Date:   Fri, 20 Nov 2020 14:58:58 -0600
+        Fri, 20 Nov 2020 13:03:47 -0800 (PST)
+Received: (nullmailer pid 1735577 invoked by uid 1000);
+        Fri, 20 Nov 2020 21:03:46 -0000
+Date:   Fri, 20 Nov 2020 15:03:46 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Martina Krasteva <martinax.krasteva@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, robh+dt@kernel.org,
-        mchehab@kernel.org, devicetree@vger.kernel.org,
-        daniele.alessandrelli@linux.intel.com,
-        gjorgjix.rosikopulos@linux.intel.com, sakari.ailus@linux.intel.com
-Subject: Re: [PATCH 1/2] dt-bindings: media: Add bindings for imx334
-Message-ID: <20201120205858.GA1722419@robh.at.kernel.org>
-References: <20201120142803.308-1-martinax.krasteva@linux.intel.com>
- <20201120142803.308-2-martinax.krasteva@linux.intel.com>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Marc Zyngier <maz@kernel.org>, Steen.Hegelund@microchip.com,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jason Cooper <jason@lakedaemon.net>,
+        linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v4 1/6] dt-bindings: interrupt-controller: convert icpu
+ intr bindings to json-schema
+Message-ID: <20201120210346.GA1734708@robh.at.kernel.org>
+References: <20201120164108.2096359-1-gregory.clement@bootlin.com>
+ <20201120164108.2096359-2-gregory.clement@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201120142803.308-2-martinax.krasteva@linux.intel.com>
+In-Reply-To: <20201120164108.2096359-2-gregory.clement@bootlin.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Nov 2020 14:28:02 +0000, Martina Krasteva wrote:
-> From: Martina Krasteva <martinax.krasteva@intel.com>
+On Fri, 20 Nov 2020 17:41:03 +0100, Gregory CLEMENT wrote:
+> Convert device tree bindings for Microsemi Ocelot SoC ICPU Interrupt
+> Controller to YAML format
 > 
-> - Add dt-bindings documentation for Sony imx334 sensor driver.
-> - Add MAINTAINERS entry for Sony imx334 binding documentation.
-> 
-> Signed-off-by: Martina Krasteva <martinax.krasteva@intel.com>
-> Reviewed-by: Gjorgji Rosikopulos <gjorgjix.rosikopulos@intel.com>
-> Acked-by: Daniele Alessandrelli <daniele.alessandrelli@intel.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 > ---
->  .../devicetree/bindings/media/i2c/sony,imx334.yaml | 59 ++++++++++++++++++++++
->  MAINTAINERS                                        |  7 +++
->  2 files changed, 66 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+>  .../mscc,ocelot-icpu-intr.txt                 | 21 -------
+>  .../mscc,ocelot-icpu-intr.yaml                | 60 +++++++++++++++++++
+>  2 files changed, 60 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml:34:15: [warning] wrong indentation: expected 12 but found 14 (indentation)
-./Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml:36:15: [warning] wrong indentation: expected 12 but found 14 (indentation)
+./Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.yaml:55:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml: 'additionalProperties' is a required property
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml: ignoring, error in schema: 
-warning: no schema found in file: ./Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a block scalar
+  in "<unicode string>", line 50, column 5
+found a tab character where an indentation space is expected
+  in "<unicode string>", line 55, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:20: Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/interrupt-controller/mscc,ocelot-icpu-intr.example.dts'
+make[1]: *** Waiting for unfinished jobs....
+make[1]: *** [Documentation/devicetree/bindings/Makefile:59: Documentation/devicetree/bindings/processed-schema-examples.json] Error 123
+make: *** [Makefile:1364: dt_binding_check] Error 2
 
 
-See https://patchwork.ozlabs.org/patch/1403740
+See https://patchwork.ozlabs.org/patch/1403891
 
 The base for the patch is generally the last rc1. Any dependencies
 should be noted.
