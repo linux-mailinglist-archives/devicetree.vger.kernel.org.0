@@ -2,264 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D15842BA629
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 10:30:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9CD12BA62D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 10:31:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725942AbgKTJ3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 04:29:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41946 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725824AbgKTJ3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 04:29:46 -0500
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC7BDC0613CF
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 01:29:46 -0800 (PST)
-Received: by mail-oi1-x243.google.com with SMTP id m13so9723668oih.8
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 01:29:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=fPH8mrCMEezREYFMD3ZNWLYrrd6uERj/4DnYsMp+93E=;
-        b=KlHd6adfqqq6zURrcaeaBVcby4HmEmMK32zwmLVMQaNIsUSuhURLn0xqeKgEhYZDHF
-         RPUslFwLKSWidwTjIVUkLEcyLOvTnzJCMaR89bA0yExr1K7yCBBCH7mUs4fFsHzQhDvh
-         hpca6vRf4IRq/9xcv3e/Q9yqpIVMv74gPxRSU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=fPH8mrCMEezREYFMD3ZNWLYrrd6uERj/4DnYsMp+93E=;
-        b=HyNj/XfIEqY3ruQgLc/oXHXKxkt2y69w196Yf4BkUdtADxI3R4BOFXm28ZwuaKiS95
-         NC0odgxphEeZdv50WrgQf4bu7/IrGG7PYbPWZN/joY+qST/hoViMKRbdgjfAM2QgAxKQ
-         SNrXwHZ5KDioEPVTz/rjqWo7t+3kGXHBsxp6vbdvKGihD/0TAPw5DNwExTFR2on+Rqh8
-         KgvDlf0ZtJTrPb5KXHR50ID0afPnKl6ZtitdfDw3dyCL4nRg3A+UII1+U9pNZ2I+frGG
-         EoDFfxFun8zoDFXAhVQ/7LRNhADpBnglGN7xemv0lB02NgvQm3vx/zrdY4438/3/GNZ+
-         i/hQ==
-X-Gm-Message-State: AOAM533BU9jkG19JOZ3DCKfKEwdmT3dQ4rgRV3PNNQIEGtCnPHx+9Qn3
-        cw2nuXo/4mZvUbd+Itv7u2r9IpmhBITJfMre1Bd5iQ==
-X-Google-Smtp-Source: ABdhPJxBRgaWjMQUww6v7blQXCc/+7K4ZqWZN8B/y7DE/JOwQZL0cSxZL0ue6Toxi1WgOwMz18NdzQd/KHzufk4zRxA=
-X-Received: by 2002:aca:4f14:: with SMTP id d20mr5874563oib.14.1605864586236;
- Fri, 20 Nov 2020 01:29:46 -0800 (PST)
-MIME-Version: 1.0
-References: <20201113152956.139663-1-maxime@cerno.tech> <20201113152956.139663-2-maxime@cerno.tech>
- <c08b5a11-3e28-4236-b516-01a3e52cc7a0@suse.de> <20201119153217.GE401619@phenom.ffwll.local>
- <a136d1bd-9712-fd81-900e-f10bfc5b3e8f@suse.de>
-In-Reply-To: <a136d1bd-9712-fd81-900e-f10bfc5b3e8f@suse.de>
-From:   Daniel Vetter <daniel@ffwll.ch>
-Date:   Fri, 20 Nov 2020 10:29:35 +0100
-Message-ID: <CAKMK7uGpcK+bJfq5FLxXjPumS4iFvsXzRTdQ67XbbU1D47bfBA@mail.gmail.com>
-Subject: Re: [PATCH 1/8] drm: Introduce an atomic_commit_setup function
-To:     Thomas Zimmermann <tzimmermann@suse.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        David Airlie <airlied@linux.ie>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
+        id S1726896AbgKTJaW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 04:30:22 -0500
+Received: from mail-eopbgr70047.outbound.protection.outlook.com ([40.107.7.47]:51329
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726321AbgKTJaV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 04:30:21 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R4RVJnr0qlNUa8urc9T1K5Ci4CnNtugWmvDricMaQKc9q74ELeQFohp5o64N7+vT/6ifPfYv2Dao4Iy4UbNhzbSVQ/+SdxJC631hjOFTTPFZBXkaNbu+kwUWtgJVxfxWdmo6o8Kg6MDXsHoNZwSiSrGADoUeGhdikAIr6cwTMbmY5are5UiI7PeJKalkdqCy4TFchZSLb0DHxn48xlEjWzo3MLe/F90QCpH0H8bNR+Fxa/fYXm76RqE+HjCTEcNAUsI+/5tYe6ub4+qnTlegw66oESEKaOwO7ngRcHTQPVVzYQPmlIfYJt/dgmvLdPStjPN2fxaUJoS7oaDmC8HYOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rBM15V8blh8hHkC0R7jXZPtNBh4BS+G3h9/KNJ9KXh8=;
+ b=VMRc6a5o7ePc79LysxXhwPw1gobZufw+lTmzQFh8cE9fOXQ8sL71uYJdsU4rixNAv7ysMMhyO4hAuBH7+L9MBRA5PRuH361yt/eQ+wKlANP8yLXZ+01zrE8f8yqzvlqxIRUxU4zEoSI/BMizeUMBgMU5m4qb7qQ8hgPdbcMTnSQuNQsvm9aMDxJ4n+e+qPcrDd6pTFEujpJ6+s3plYpx4oKNq0Vnr4ZXl3ErE6QqZkjUalcOYVnZp0gNF6MFXpVLNd29DkO3AYTizKiX4MeefxtpVKCwBfJz0/sVoY/7jxFQFXRS9SprRi+dZ12GhvFMSB/nyXChup37lcn962J6uw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rBM15V8blh8hHkC0R7jXZPtNBh4BS+G3h9/KNJ9KXh8=;
+ b=TrjSCPDcLnViKSWvttsGxsDUawtiDEPElwyizmXF6QwaY/QBjWAT6ikYbr1oZvlMEG5LuRSn1UAUUQGAxiKx/jNl7glwK+X+KY7L6hBp/ip2jMNoAUz2PL8jM9HdpMiQ1rVkHhectGKIvazDzpfvgAzRVtCsYNJxOaKeensZ4jc=
+Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
+ by VI1PR04MB4429.eurprd04.prod.outlook.com (2603:10a6:803:6e::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3564.28; Fri, 20 Nov
+ 2020 09:30:16 +0000
+Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
+ ([fe80::2dd6:8dc:2da7:ad84]) by VI1PR04MB5696.eurprd04.prod.outlook.com
+ ([fe80::2dd6:8dc:2da7:ad84%5]) with mapi id 15.20.3589.024; Fri, 20 Nov 2020
+ 09:30:16 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     "Y.b. Lu" <yangbo.lu@nxp.com>
+CC:     Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Ripard <maxime@cerno.tech>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-rpi-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ashish Kumar <ashish.kumar@nxp.com>,
+        Michael Walle <michael@walle.cc>
+Subject: Re: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
+ controllers use fixed indices
+Thread-Topic: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
+ controllers use fixed indices
+Thread-Index: AQHWvovBrojMBFt1EECB86LxwqdSo6nQRb0AgAB8rIA=
+Date:   Fri, 20 Nov 2020 09:30:16 +0000
+Message-ID: <20201120093015.duel3yx63cbya77w@skbuf>
+References: <20201119155025.965941-1-vladimir.oltean@nxp.com>
+ <AM7PR04MB688536E10A0B35D75A9F8F34F8FF0@AM7PR04MB6885.eurprd04.prod.outlook.com>
+In-Reply-To: <AM7PR04MB688536E10A0B35D75A9F8F34F8FF0@AM7PR04MB6885.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [188.25.2.177]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 79227e0e-fed3-4680-d01f-08d88d36e416
+x-ms-traffictypediagnostic: VI1PR04MB4429:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB442937F4F4B8C152ED30E7D0E0FF0@VI1PR04MB4429.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: DYlvYTqJQHwpnZOsfccFeEP3rOpHh5vPS2ck3GLkdaZjt5OwMXGRQYC3FkOgf1AdY/TsLnxfPki37am9io0OWc/skyEGofeB4ylvE6VGtuW4XLsZoFZET1Q8ln2ByThMYSJUHKkDbNyLcBhwfvM43WvUJM8mAy346haNx+tpafOkjvEWN0CEsAp/3n0MeD273onkfHvA252ja6KhAUfYXygwa8oQNWzf5VOMW6w8Fm3iZopauxZrX4ij/WYEymwHAEB6wXpyKu59tLqhz91csaWs2jHLYMz5Lhcq4Jo2D/GhRg5bte6nrAQJdI8EjtGwLRkacmTmAsbI4NlDPPHF+JFyVNNygIFYgKoxXV0DK5extAHIkcrFXCK4+/TiwoZ8FFAqR9zgroo7VuhqOZy2uA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5696.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(136003)(366004)(39860400002)(396003)(346002)(376002)(66556008)(66476007)(83380400001)(76116006)(64756008)(54906003)(26005)(8936002)(4744005)(2906002)(316002)(8676002)(33716001)(86362001)(186003)(1076003)(6486002)(6506007)(66446008)(5660300002)(66946007)(44832011)(966005)(71200400001)(9686003)(6862004)(6512007)(4326008)(6636002)(91956017)(478600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: kE5TJL+93mgsD32rMxQsn2ACrO1L4nZWgBhO/0wd/u3EQn32xN3nLEORvqv6ABgsaxabkj3t9FeAZ+bSPRwg8bNDMpE1ia1H+T6H6eucW2g7v0SE4TSQwjYQz0Tp8AgVPMVdBfDGM/FUR5SuhRgvoH1ThUGHkIBmzD1gEfUlOZ3lHHr5KFLdHtha8inviA1PDgyh28s3fssNtS3FWG9R5fX6ebcxsmwART/Kxm8Fq9u5fFuHtZdoWQgoSTFG8gye1IFV0NOve5j9eULiC/USuc9ezBoxPeF1eiCELi5el3DAlSpq8FrJK3kJWAl318KxzBZZj6V49x/RyNb8/42iMc0F0hfuGxD6ciffaoorTZuDv44ASF1KziVypA9Z3G/6mAfxXPJUrojnUEcqcW9u2ezynqXL8HU9BuogR5lCzzApWaXDOOOIa+1WnhwLjq+KqqtTYrbfv2s9jhEnF07IibAkdfq8LCpddU3F32AxxEeD2vNv7YBlV7nsIIJs5xENmuiLf4JdkzI8XkGmFs1M+PzzRKKeMDUCAjgXgFys/HMDJcbYW2Ma9j1gnuC+auSt4Gbjz0AKbyiAS8OX3utcU60wKzN1gjD9Sz6gcqu81aEWHLNEG7GdIdDfFtXFZS7eAb31BleaTPP1AkVodxxEuA==
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <1B4C7972AB25C6439AEE8F367D94CFDC@eurprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 79227e0e-fed3-4680-d01f-08d88d36e416
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2020 09:30:16.6506
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zUnUUh2ifwYv5OfD0cgk3EZByKwLKfndKmpncQLw1AqzK0Z94lC2NAuI8hT2p7BpKkbAVoIt58EFFIiKazZElw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4429
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 9:39 AM Thomas Zimmermann <tzimmermann@suse.de> wro=
-te:
+On Fri, Nov 20, 2020 at 02:04:02AM +0000, Y.b. Lu wrote:
+> Hi Vladimir,
 >
-> Hi
+> I have already upstreamed a patch for all affected layerscape boards.
+> https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git/commit=
+/?h=3Dimx/dt64&id=3D342ab37ecaf8c1b10dd3ca9a1271db29a6af0705
 >
-> Am 19.11.20 um 16:32 schrieb Daniel Vetter:
-> > On Thu, Nov 19, 2020 at 10:59:42AM +0100, Thomas Zimmermann wrote:
-> >> Hi
-> >>
-> >> Am 13.11.20 um 16:29 schrieb Maxime Ripard:
-> >>> Private objects storing a state shared across all CRTCs need to be
-> >>> carefully handled to avoid a use-after-free issue.
-> >>>
-> >>> The proper way to do this to track all the commits using that shared
-> >>> state and wait for the previous commits to be done before going on wi=
-th
-> >>> the current one to avoid the reordering of commits that could occur.
-> >>>
-> >>> However, this commit setup needs to be done after
-> >>> drm_atomic_helper_setup_commit(), because before the CRTC commit
-> >>> structure hasn't been allocated before, and before the workqueue is
-> >>> scheduled, because we would be potentially reordered already otherwis=
-e.
-> >>>
-> >>> That means that drivers currently have to roll their own
-> >>> drm_atomic_helper_commit() function, even though it would be identica=
-l
-> >>> if not for the commit setup.
-> >>>
-> >>> Let's introduce a hook to do so that would be called as part of
-> >>> drm_atomic_helper_commit, allowing us to reuse the atomic helpers.
-> >>>
-> >>> Suggested-by: Daniel Vetter <daniel.vetter@ffwll.ch>
-> >>> Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> >>> ---
-> >>>    drivers/gpu/drm/drm_atomic_helper.c      |  6 ++++++
-> >>>    include/drm/drm_modeset_helper_vtables.h | 18 ++++++++++++++++++
-> >>>    2 files changed, 24 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/dr=
-m_atomic_helper.c
-> >>> index ddd0e3239150..7d69c7844dfc 100644
-> >>> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> >>> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> >>> @@ -2083,8 +2083,11 @@ int drm_atomic_helper_setup_commit(struct drm_=
-atomic_state *state,
-> >>>     struct drm_plane *plane;
-> >>>     struct drm_plane_state *old_plane_state, *new_plane_state;
-> >>>     struct drm_crtc_commit *commit;
-> >>> +   const struct drm_mode_config_helper_funcs *funcs;
-> >>>     int i, ret;
-> >>> +   funcs =3D state->dev->mode_config.helper_private;
-> >>> +
-> >>>     for_each_oldnew_crtc_in_state(state, crtc, old_crtc_state, new_cr=
-tc_state, i) {
-> >>>             commit =3D kzalloc(sizeof(*commit), GFP_KERNEL);
-> >>>             if (!commit)
-> >>> @@ -2169,6 +2172,9 @@ int drm_atomic_helper_setup_commit(struct drm_a=
-tomic_state *state,
-> >>>             new_plane_state->commit =3D drm_crtc_commit_get(commit);
-> >>>     }
-> >>> +   if (funcs && funcs->atomic_commit_setup)
-> >>> +           return funcs->atomic_commit_setup(state);
-> >>> +
-> >>>     return 0;
-> >>>    }
-> >>>    EXPORT_SYMBOL(drm_atomic_helper_setup_commit);
-> >>> diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/d=
-rm_modeset_helper_vtables.h
-> >>> index f2de050085be..56470baf0513 100644
-> >>> --- a/include/drm/drm_modeset_helper_vtables.h
-> >>> +++ b/include/drm/drm_modeset_helper_vtables.h
-> >>> @@ -1396,6 +1396,24 @@ struct drm_mode_config_helper_funcs {
-> >>>      * drm_atomic_helper_commit_tail().
-> >>>      */
-> >>>     void (*atomic_commit_tail)(struct drm_atomic_state *state);
-> >>> +
-> >>> +   /**
-> >>> +    * @atomic_commit_setup:
-> >>> +    *
-> >>> +    * This hook is used by the default atomic_commit() hook implemen=
-ted in
-> >>> +    * drm_atomic_helper_commit() together with the nonblocking helpe=
-rs (see
-> >>> +    * drm_atomic_helper_setup_commit()) to extend the DRM commit set=
-up. It
-> >>> +    * is not used by the atomic helpers.
-> >>> +    *
-> >>> +    * This function is called at the end of
-> >>> +    * drm_atomic_helper_setup_commit(), so once the commit has been
-> >>> +    * properly setup across the generic DRM object states. It allows
-> >>> +    * drivers to do some additional commit tracking that isn't relat=
-ed to a
-> >>> +    * CRTC, plane or connector, typically a private object.
-> >>> +    *
-> >>> +    * This hook is optional.
-> >>> +    */
-> >>> +   int (*atomic_commit_setup)(struct drm_atomic_state *state);
-> >>
-> >> It feels hacky and screwed-on to me. I'd suggest to add an
-> >> atomic_commit_prepare callback that is called by drm_atomic_helper whe=
-re it
-> >> currently calls drm_atomic_helper_setup_commit(). The default implemen=
-tation
-> >> would include setup_commit and prepare_planes. Some example code for
-> >> drm_atomic_helper.c
-> >>
-> >> static int commit_prepare(state)
-> >> {
-> >>      drm_atomic_helper_setup_commit(state)
-> >>
-> >>      drm_atomic_helper_prepare_planes(state)
-> >> }
-> >>
-> >> int drm_atomic_helper_commit()
-> >> {
-> >>      if (async_update) {
-> >>              ...
-> >>      }
-> >>
-> >>      if (funcs->atomic_commit_prepare)
-> >>              funcs->atomic_commit_prepare(state)
-> >>      else
-> >>              commit_prepare(state)
-> >>
-> >>      /* the rest of the current function below */
-> >>      INIT_WORK(&state->commit_work, commit_work);
-> >>      ...
-> >> }
-> >>
-> >> Drivers that implement atomic_commit_prepare would be expected to call
-> >> drm_atomic_helper_setup_commit() and drm_atomic_helper_prepare_planes(=
-) or
-> >> their own implementation of them.
-> >>
-> >> The whole construct mimics how commit tails work.
-> >
-> > Yeah what I suggested is a bit much midlayer, but we've done what you
-> > suggested above with all drivers rolling their own atomic_commit. It
-> > wasn't pretty. There's still drivers like vc4 which haven't switched, a=
-nd
-> > which have their own locking and synchronization.
-> >
-> > Hence why I think the callback approach here is better, gives drivers l=
-ess
-> > excuses to roll their own and make a mess.
->
-> But it sounds like you'll regret this. As soon as a driver has to do
-> additional stuff at the beginning of the setup function, another helper
-> will be required, and so on. Maybe rather go with the commit_prepare
-> helper and push driver authors to not use it.
+> Please check whether it works for you.
 
-For the other thing we already have callbacks (it's prepare_plane).
-The use case for this is also fairly minimal (and this should be clear
-when the kerneldoc is fully updated).
+Thanks, one can tell that I haven't done my due diligence of checking
+Shawn's tree first. I'll cherry-pick that patch and carry on with my
+work.
 
-The thing is, avoiding the midlayer mistake doesn't mean no callbacks.
-It just means the topmost entry point should be a driver callback too,
-and ideally all the pieces are still fairly modular. We check all
-these boxes.
-
-Your option otoh means a bunch more code in vc4 (after Maxime's series
-is done) for not much reason. Plus I'm really not seeing the concern.
-Also, rule of thumb is to do clean design when we have 3 cases, and
-hack things up for the first 2. We're at 1.
-
-Also note that the 2nd part of this is also not in the
-atomic_commit_tail callback. But we get away with that because the
-driver handling can be done at the top of atomic_commit_tail, hence
-there's no need for an atomic_commit_wait_for_dependencies.
--Daniel
-
->
-> Best regards
-> Thomas
->
-> > -Daniel
-> >
->
-> --
-> Thomas Zimmermann
-> Graphics Driver Developer
-> SUSE Software Solutions Germany GmbH
-> Maxfeldstr. 5, 90409 N=C3=BCrnberg, Germany
-> (HRB 36809, AG N=C3=BCrnberg)
-> Gesch=C3=A4ftsf=C3=BChrer: Felix Imend=C3=B6rffer
-
-
-
---=20
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+However, the fact still remains that Michael has expressed his opinion
+regarding mmcblk0 vs mmcblk1. Do you think that we could make the
+aliases a per-board option instead of per-SoC? Consider that there might
+even be boards that only use SD card. It would be strange for the block
+device in that case to be called /dev/mmcblk1.=
