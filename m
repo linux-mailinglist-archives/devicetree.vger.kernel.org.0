@@ -2,66 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB99F2BA958
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 12:41:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C16B2BA9C7
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 13:04:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727911AbgKTLjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 06:39:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36496 "EHLO mail.kernel.org"
+        id S1727439AbgKTMER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 07:04:17 -0500
+Received: from honk.sigxcpu.org ([24.134.29.49]:55622 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727344AbgKTLjj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 06:39:39 -0500
-Received: from localhost.localdomain (unknown [2.26.170.190])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D418B22253;
-        Fri, 20 Nov 2020 11:39:35 +0000 (UTC)
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org, ardb@kernel.org,
-        hch@lst.de
-Cc:     Will Deacon <will@kernel.org>, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
-        robin.murphy@arm.com, jeremy.linton@arm.com,
-        iommu@lists.linux-foundation.org, linux-riscv@lists.infradead.org,
-        lorenzo.pieralisi@arm.com, linux-mm@kvack.org,
-        guohanjun@huawei.com, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 0/7] arm64: Default to 32-bit wide ZONE_DMA
-Date:   Fri, 20 Nov 2020 11:39:34 +0000
-Message-Id: <160587230018.19468.15360551479275381470.b4-ty@arm.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201119175400.9995-1-nsaenzjulienne@suse.de>
-References: <20201119175400.9995-1-nsaenzjulienne@suse.de>
+        id S1727100AbgKTMEQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 07:04:16 -0500
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 6FD90FB03;
+        Fri, 20 Nov 2020 13:04:12 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 9mru4xLJe_vU; Fri, 20 Nov 2020 13:04:11 +0100 (CET)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 2AAF743F6E; Fri, 20 Nov 2020 13:04:11 +0100 (CET)
+Date:   Fri, 20 Nov 2020 13:04:11 +0100
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ondrej Jirman <megous@megous.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        allen <allen.chen@ite.com.tw>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 0/6] drm/panel: mantix and st7703 fixes and additions
+Message-ID: <20201120120411.GB23988@bogon.m.sigxcpu.org>
+References: <cover.1605688147.git.agx@sigxcpu.org>
+ <CACRpkda97nJ+nJX4CuZHQnDVh1mhykc_vb6xFh7BcAWQoNjz7Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkda97nJ+nJX4CuZHQnDVh1mhykc_vb6xFh7BcAWQoNjz7Q@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Nov 2020 18:53:52 +0100, Nicolas Saenz Julienne wrote:
-> Using two distinct DMA zones turned out to be problematic. Here's an
-> attempt go back to a saner default.
+Hi Linus,
+On Thu, Nov 19, 2020 at 09:35:17AM +0100, Linus Walleij wrote:
+> On Wed, Nov 18, 2020 at 9:29 AM Guido Günther <agx@sigxcpu.org> wrote:
 > 
-> I tested this on both a RPi4 and QEMU.
+> > This adds new panel type to the mantix driver as found on the Librem 5 and
+> > fixes a glitch in the init sequence (affecting both panels). The fix is at the
+> > start of the series to make backporting simpler.
+> > It also adds a patch to make st7703 use dev_err_probe().
+> >
+> > changes from v1
+> > - as per review comments by Linus Walleij
+> >   - fix alphabetical ordering in Documentation/devicetree/bindings/vendor-prefixes.yaml
+> >     https://lore.kernel.org/dri-devel/CACRpkdao_TMcpRsdK=7K5fNKJse0Bqwk58iWu0xsXdDNdcffVA@mail.gmail.com/
+> >   - add reviewed by to all except 5/6, thanks
+> 
+> The whole v2 looks fine to me, I'd give the devicetree
+> maintainers some slack to review the DT patches then I can
+> apply the whole series unless you have commit access yourself,
+> just tell me.
 
-Applied to arm64 (for-next/zone-dma-default-32-bit), thanks!
+I have commit access, so i can push in a couple of days. Thanks!
 
-[1/7] arm64: mm: Move reserve_crashkernel() into mem_init()
-      https://git.kernel.org/arm64/c/0a30c53573b0
-[2/7] arm64: mm: Move zone_dma_bits initialization into zone_sizes_init()
-      https://git.kernel.org/arm64/c/9804f8c69b04
-[3/7] of/address: Introduce of_dma_get_max_cpu_address()
-      https://git.kernel.org/arm64/c/964db79d6c18
-[4/7] of: unittest: Add test for of_dma_get_max_cpu_address()
-      https://git.kernel.org/arm64/c/07d13a1d6120
-[5/7] arm64: mm: Set ZONE_DMA size based on devicetree's dma-ranges
-      https://git.kernel.org/arm64/c/8424ecdde7df
-[6/7] arm64: mm: Set ZONE_DMA size based on early IORT scan
-      https://git.kernel.org/arm64/c/2b8652936f0c
-[7/7] mm: Remove examples from enum zone_type comment
-      https://git.kernel.org/arm64/c/04435217f968
+> 
+> For all v2 patches:
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> 
+> If you have time, please review my s6e63m0 series.
+> https://lore.kernel.org/dri-devel/20201117175621.870085-1-linus.walleij@linaro.org/
+> https://lore.kernel.org/dri-devel/20201117175621.870085-2-linus.walleij@linaro.org/
+> https://lore.kernel.org/dri-devel/20201117175621.870085-3-linus.walleij@linaro.org/
 
--- 
-Catalin
+Done. The panel stuff is always scary with all those magic values.
+ -- Guido
 
+> 
+> Yours,
+> Linus Walleij
+> 
