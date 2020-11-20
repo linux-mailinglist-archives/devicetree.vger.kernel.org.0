@@ -2,103 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A6DD2BA7D0
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 11:54:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 389ED2BA8EB
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 12:25:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727241AbgKTKxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 05:53:33 -0500
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:46375 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727187AbgKTKxd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 05:53:33 -0500
-Received: by mail-ej1-f68.google.com with SMTP id bo9so6503591ejb.13;
-        Fri, 20 Nov 2020 02:53:32 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=V3kEOLd2utFjzbmv50gNlqd+2n+lrD5UargnZ9h+es4=;
-        b=a7AaFD1THjCNc2NYemXAE+pRymBU0ALnRtqy/G3oEJJI/x3/0DDKHVMfLUN0xiGc+n
-         4H0nbecesUPelFbUQcJn8DEmkEOcUaqKOIQXKaOr8FYIxhgV6y6798bZyyoS3p3jU+XN
-         ZqpiJCA/aOQmI6PqqbUkuNENW8/Kgy2HMV9fRsWU6yZl9vsAkY48sBPBafFc5ZyjW7/n
-         2M4xIbB3Q3PVSRwQUIPBjt3IcCK0Oo0tdOEpa1TLaifL0lEt6aoGQLVpt/KHZ7RyRJ4e
-         XVjIvxtI0q7EQOaEc9QcodlH7jANSkfjjmRNwlavwPtCu5LoKK0apM9ek5zguUBQyAYz
-         WozQ==
-X-Gm-Message-State: AOAM533nRcCmr8hwzIVS/ri9ofLZPD3Nn+YZ2VV0IL3iiDNOjmpVgEXf
-        rlD/2janHIYwTz4IbZcMZnA=
-X-Google-Smtp-Source: ABdhPJxtp/tR2wp7KDqe9HbHJKFxzlmWgj9mNs3miaUyBfYqNNhqPGNkOcDgkfRd68k23+zAjz6Apw==
-X-Received: by 2002:a17:906:d8a8:: with SMTP id qc8mr32002836ejb.149.1605869611481;
-        Fri, 20 Nov 2020 02:53:31 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id u17sm987053eje.11.2020.11.20.02.53.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2020 02:53:30 -0800 (PST)
-Date:   Fri, 20 Nov 2020 11:53:29 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 3/4] arm64: dts: imx8m: add NVMEM provider and
- consumer to read soc unique ID
-Message-ID: <20201120105329.GB18581@kozik-lap>
-References: <20201120101112.31819-1-alice.guo@nxp.com>
- <20201120101112.31819-3-alice.guo@nxp.com>
+        id S1727367AbgKTLWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 06:22:44 -0500
+Received: from mailout09.rmx.de ([94.199.88.74]:41691 "EHLO mailout09.rmx.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727197AbgKTLWo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 06:22:44 -0500
+Received: from kdin02.retarus.com (kdin02.dmz1.retloc [172.19.17.49])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mailout09.rmx.de (Postfix) with ESMTPS id 4CcvKQ4dDfzbd1H;
+        Fri, 20 Nov 2020 12:22:34 +0100 (CET)
+Received: from mta.arri.de (unknown [217.111.95.66])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by kdin02.retarus.com (Postfix) with ESMTPS id 4CcvK35Hd5z2TTHp;
+        Fri, 20 Nov 2020 12:22:15 +0100 (CET)
+Received: from N95HX1G2.wgnetz.xx (192.168.54.143) by mta.arri.de
+ (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 20 Nov
+ 2020 12:21:28 +0100
+From:   Christian Eggers <ceggers@arri.de>
+To:     Vladimir Oltean <olteanv@gmail.com>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Richard Cochran <richardcochran@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Kurt Kanzenbach" <kurt.kanzenbach@linutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        "Christian Eggers" <ceggers@arri.de>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH net-next 0/4] dt-bindings: net: dsa: microchip: convert KSZ bindings to yaml
+Date:   Fri, 20 Nov 2020 12:21:03 +0100
+Message-ID: <20201120112107.16334-1-ceggers@arri.de>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201120101112.31819-3-alice.guo@nxp.com>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [192.168.54.143]
+X-RMX-ID: 20201120-122219-4CcvK35Hd5z2TTHp-0@kdin02
+X-RMX-SOURCE: 217.111.95.66
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 06:11:11PM +0800, Alice Guo wrote:
-> In order to be able to use NVMEM APIs to read soc unique ID, add the
-> nvmem data cell and name for nvmem-cells to the "soc" node, and add a
-> nvmem node which provides soc unique ID to efuse@30350000.
-> 
-> v2: remove the subject prefix "LF-2571-3"
-> v3: convert register addresses and sizes to hex
-> v4: delete "stuff" in subject and commit message, add detailed
->     description
-> 
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 6 ++++++
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 6 ++++++
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 6 ++++++
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 6 ++++++
->  4 files changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> index d457ce815e68..0e0edd5db07b 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> @@ -261,6 +261,8 @@
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  		ranges = <0x0 0x0 0x0 0x3e000000>;
-> +		nvmem-cells = <&imx8mm_uid>;
-> +		nvmem-cell-names = "soc_unique_id";
-> 
->  		aips1: bus@30000000 {
->  			compatible = "fsl,aips-bus", "simple-bus";
-> @@ -518,6 +520,10 @@
->  				#address-cells = <1>;
->  				#size-cells = <1>;
-> 
-> +				imx8mm_uid: unique_id@410 {
+These patches are orginally from the series
 
-Any reason why device node uses underscore, not a hyphen/dash? Other
-fields are proper (it's also naming convention of DT spec and dtc W=2
-will point it).
+"net: dsa: microchip: PTP support for KSZ956x"
 
-Best regards,
-Krzysztof
+As the the device tree conversion to yaml is not really related to the
+PTP patches and the original series is going to take more time than
+I expected, I would like to split this.
 
-> +					reg = <0x4 0x8>;
-> +				};
-> +
->  				cpu_speed_grade: speed-grade@10 {
->  					reg = <0x10 4>;
->  				};
+Changes (original series -> v1)
+--------------------------------
+- dts: moved "allOf" below "maintainers"
+- dts: use "unevaluatedProperties" instead of "additionalProperties"
+- dts: removed "spi-cpha" and "spi-cpol" flags as the hardware is fixed
+- ksz8795: setup SPI for mode 3
+- ksz9477: dito
+
+
+
