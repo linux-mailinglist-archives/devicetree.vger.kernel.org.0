@@ -2,283 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1B852BACA1
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 16:06:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BD2D2BAE2D
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 16:23:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728060AbgKTPEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 10:04:20 -0500
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:59342 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728451AbgKTPES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 10:04:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1605884657; x=1637420657;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=irxnKx8q3lNLEeKF7UjlANSJTMlQrB8Mph8WiXacn8s=;
-  b=OJcYVmnhO+ZupXz6nrplAUL6Vkwue5eCz5T/KdgVbQFxOlFtJGKaBg0j
-   ptyhzHK8PZmaT5sIyI+85QBaMOtSjlu2Eh674Mu+blyOGRUw+8O2cbsXr
-   uKm3ojaHpizo8DzI4KY1IlK6LenjEHiHyg3KOVyM/E1CWuRqP/Jb9ikh/
-   9egbfJ1JdG7D69LKwJvSwp303+YQQwrVMo+t6RcF7AeUse9rHmTCM152a
-   Cc7xzdydo/jRgfs3BNRi0XT+n0R/I+95aDjn7oPjSiTwoU+IcjDeAz3wO
-   ZTrtuCyJvbNMFAD70P0e3FgtlhOqcfBRbGp1A2cNBfgQyA6mAT9nNCkgu
-   w==;
-IronPort-SDR: w9lWHQ/S+ZdI5wdEdKTVxB9ZAUzn/xH6A9seTs/zwo1aZa4pacFTf7WcDI1VlgUIyWmqWiOErn
- 1huNlqs6pVUSucWwWLvQlNnA2sdo27KboCZvGNXMZN5juYTIAuI/hfjXLJAlTL0bHI1bVm9Nsq
- ScQ3Ty2UYxG3Gn1/tvu6TS8ar2uyOpzwntC5rGBwuyOA23eYBEjTFvdDBCVI9cE1FgS0p/NzvH
- 02YOXtpowG8V+nDp23m5YuQzWBOX1THEhO6BBhN759fXWD0Qc+dt2eMAtb2uqsurWoJzmXwmTz
- fLs=
-X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; 
-   d="scan'208";a="34460292"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Nov 2020 08:04:16 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Fri, 20 Nov 2020 08:04:16 -0700
-Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.1979.3 via Frontend Transport; Fri, 20 Nov 2020 08:04:14 -0700
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     Steen Hegelund <steen.hegelund@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microsemi List <microsemi@lists.bootlin.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v4 4/4] arm64: dts: sparx5: Add Sparx5 serdes driver node
-Date:   Fri, 20 Nov 2020 16:03:59 +0100
-Message-ID: <20201120150359.2041940-5-steen.hegelund@microchip.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201120150359.2041940-1-steen.hegelund@microchip.com>
-References: <20201120150359.2041940-1-steen.hegelund@microchip.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+        id S1729197AbgKTPNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 10:13:54 -0500
+Received: from relmlor1.renesas.com ([210.160.252.171]:23669 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728923AbgKTPNy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 10:13:54 -0500
+X-IronPort-AV: E=Sophos;i="5.78,356,1599490800"; 
+   d="scan'208";a="63383353"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 21 Nov 2020 00:13:51 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 290BB4004CFA;
+        Sat, 21 Nov 2020 00:13:49 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add OV7725 nodes
+Date:   Fri, 20 Nov 2020 15:13:43 +0000
+Message-Id: <20201120151343.24175-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Sparx5 serdes driver node, and enable it generally for all
-reference boards.
+Add the ov7725 endpoint nodes to the camera daughter board. The ov7725
+sensors can be populated on I2C{0,1,2,3} buses.
 
-Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+By default the VIN{0,1,2,3} are tied to OV5640{0,1,2,3} endpoints
+respectively in the camera DB dts hence the remote-endpoint property in
+OV7725{0,1,2,3} endpoints is commented out.
+
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- arch/arm64/boot/dts/microchip/sparx5.dtsi | 196 ++++++++++++++++++++++
- 1 file changed, 196 insertions(+)
+Hi All,
 
-diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-index 8e7724d413fb..0eb9ad7b3791 100644
---- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
-+++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
-@@ -287,5 +287,201 @@ tmon0: tmon@610508110 {
- 			#thermal-sensor-cells = <0>;
- 			clocks = <&ahb_clk>;
+This patch is based on top of [1].
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/
+    renesas-devel.git/log/?h=renesas-arm-dt-for-v5.11
+
+Cheers,
+Prabhakar
+---
+ .../boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts    | 93 +++++++++++++++++++
+ 1 file changed, 93 insertions(+)
+
+diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+index 98c3fbd89fa6..d1386bf7bdbe 100644
+--- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
++++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+@@ -108,6 +108,29 @@
+ 			};
  		};
-+
-+		serdes: serdes@10808000 {
-+			compatible = "microchip,sparx5-serdes";
-+			#phy-cells = <1>;
-+			clocks = <&sys_clk>;
-+			reg =	<0x6 0x10808000 0x8000>, /* sd_cmu_0 */
-+				<0x6 0x10810000 0x8000>, /* sd_cmu_1 */
-+				<0x6 0x10818000 0x8000>, /* sd_cmu_2 */
-+				<0x6 0x10820000 0x8000>, /* sd_cmu_3 */
-+				<0x6 0x10828000 0x8000>, /* sd_cmu_4 */
-+				<0x6 0x10830000 0x8000>, /* sd_cmu_5 */
-+				<0x6 0x10838000 0x8000>, /* sd_cmu_6 */
-+				<0x6 0x10840000 0x8000>, /* sd_cmu_7 */
-+				<0x6 0x10848000 0x8000>, /* sd_cmu_8 */
-+				<0x6 0x10850000 0x8000>, /* sd_cmu_cfg_0 */
-+				<0x6 0x10858000 0x8000>, /* sd_cmu_cfg_1 */
-+				<0x6 0x10860000 0x8000>, /* sd_cmu_cfg_2 */
-+				<0x6 0x10868000 0x8000>, /* sd_cmu_cfg_3 */
-+				<0x6 0x10870000 0x8000>, /* sd_cmu_cfg_4 */
-+				<0x6 0x10878000 0x8000>, /* sd_cmu_cfg_5 */
-+				<0x6 0x10880000 0x8000>, /* sd_cmu_cfg_6 */
-+				<0x6 0x10888000 0x8000>, /* sd_cmu_cfg_7 */
-+				<0x6 0x10890000 0x8000>, /* sd_cmu_cfg_8 */
-+				<0x6 0x10898000 0x8000>, /* sd6g_lane_0 */
-+				<0x6 0x108a0000 0x8000>, /* sd6g_lane_1 */
-+				<0x6 0x108a8000 0x8000>, /* sd6g_lane_2 */
-+				<0x6 0x108b0000 0x8000>, /* sd6g_lane_3 */
-+				<0x6 0x108b8000 0x8000>, /* sd6g_lane_4 */
-+				<0x6 0x108c0000 0x8000>, /* sd6g_lane_5 */
-+				<0x6 0x108c8000 0x8000>, /* sd6g_lane_6 */
-+				<0x6 0x108d0000 0x8000>, /* sd6g_lane_7 */
-+				<0x6 0x108d8000 0x8000>, /* sd6g_lane_8 */
-+				<0x6 0x108e0000 0x8000>, /* sd6g_lane_9 */
-+				<0x6 0x108e8000 0x8000>, /* sd6g_lane_10 */
-+				<0x6 0x108f0000 0x8000>, /* sd6g_lane_11 */
-+				<0x6 0x108f8000 0x8000>, /* sd6g_lane_12 */
-+				<0x6 0x10900000 0x8000>, /* sd10g_lane_0 */
-+				<0x6 0x10908000 0x8000>, /* sd10g_lane_1 */
-+				<0x6 0x10910000 0x8000>, /* sd10g_lane_2 */
-+				<0x6 0x10918000 0x8000>, /* sd10g_lane_3 */
-+				<0x6 0x109a8000 0x8000>, /* sd_lane_0 */
-+				<0x6 0x109b0000 0x8000>, /* sd_lane_1 */
-+				<0x6 0x109b8000 0x8000>, /* sd_lane_2 */
-+				<0x6 0x109c0000 0x8000>, /* sd_lane_3 */
-+				<0x6 0x109c8000 0x8000>, /* sd_lane_4 */
-+				<0x6 0x109d0000 0x8000>, /* sd_lane_5 */
-+				<0x6 0x109d8000 0x8000>, /* sd_lane_6 */
-+				<0x6 0x109e0000 0x8000>, /* sd_lane_7 */
-+				<0x6 0x109e8000 0x8000>, /* sd_lane_8 */
-+				<0x6 0x109f0000 0x8000>, /* sd_lane_9 */
-+				<0x6 0x109f8000 0x8000>, /* sd_lane_10 */
-+				<0x6 0x10a00000 0x8000>, /* sd_lane_11 */
-+				<0x6 0x10a08000 0x8000>, /* sd_lane_12 */
-+				<0x6 0x10a10000 0x8000>, /* sd_lane_13 */
-+				<0x6 0x10a18000 0x8000>, /* sd_lane_14 */
-+				<0x6 0x10a20000 0x8000>, /* sd_lane_15 */
-+				<0x6 0x10a28000 0x8000>, /* sd_lane_16 */
-+				<0x6 0x10c08000 0x8000>, /* sd_cmu_9 */
-+				<0x6 0x10c10000 0x8000>, /* sd_cmu_10 */
-+				<0x6 0x10c18000 0x8000>, /* sd_cmu_11 */
-+				<0x6 0x10c20000 0x8000>, /* sd_cmu_12 */
-+				<0x6 0x10c28000 0x8000>, /* sd_cmu_13 */
-+				<0x6 0x10c30000 0x8000>, /* sd_cmu_cfg_9 */
-+				<0x6 0x10c38000 0x8000>, /* sd_cmu_cfg_10 */
-+				<0x6 0x10c40000 0x8000>, /* sd_cmu_cfg_11 */
-+				<0x6 0x10c48000 0x8000>, /* sd_cmu_cfg_12 */
-+				<0x6 0x10c50000 0x8000>, /* sd_cmu_cfg_13 */
-+				<0x6 0x10c58000 0x8000>, /* sd10g_lane_4 */
-+				<0x6 0x10c60000 0x8000>, /* sd10g_lane_5 */
-+				<0x6 0x10c68000 0x8000>, /* sd10g_lane_6 */
-+				<0x6 0x10c70000 0x8000>, /* sd10g_lane_7 */
-+				<0x6 0x10c78000 0x8000>, /* sd10g_lane_8 */
-+				<0x6 0x10c80000 0x8000>, /* sd10g_lane_9 */
-+				<0x6 0x10c88000 0x8000>, /* sd10g_lane_10 */
-+				<0x6 0x10c90000 0x8000>, /* sd10g_lane_11 */
-+				<0x6 0x10c98000 0x8000>, /* sd25g_lane_0 */
-+				<0x6 0x10ca0000 0x8000>, /* sd25g_lane_1 */
-+				<0x6 0x10ca8000 0x8000>, /* sd25g_lane_2 */
-+				<0x6 0x10cb0000 0x8000>, /* sd25g_lane_3 */
-+				<0x6 0x10cb8000 0x8000>, /* sd25g_lane_4 */
-+				<0x6 0x10cc0000 0x8000>, /* sd25g_lane_5 */
-+				<0x6 0x10cc8000 0x8000>, /* sd25g_lane_6 */
-+				<0x6 0x10cd0000 0x8000>, /* sd25g_lane_7 */
-+				<0x6 0x10d58000 0x8000>, /* sd_lane_17 */
-+				<0x6 0x10d60000 0x8000>, /* sd_lane_18 */
-+				<0x6 0x10d68000 0x8000>, /* sd_lane_19 */
-+				<0x6 0x10d70000 0x8000>, /* sd_lane_20 */
-+				<0x6 0x10d78000 0x8000>, /* sd_lane_21 */
-+				<0x6 0x10d80000 0x8000>, /* sd_lane_22 */
-+				<0x6 0x10d88000 0x8000>, /* sd_lane_23 */
-+				<0x6 0x10d90000 0x8000>, /* sd_lane_24 */
-+				<0x6 0x10d98000 0x8000>, /* sd_lane_25g_25 */
-+				<0x6 0x10da0000 0x8000>, /* sd_lane_25g_26 */
-+				<0x6 0x10da8000 0x8000>, /* sd_lane_25g_27 */
-+				<0x6 0x10db0000 0x8000>, /* sd_lane_25g_28 */
-+				<0x6 0x10db8000 0x8000>, /* sd_lane_25g_29 */
-+				<0x6 0x10dc0000 0x8000>, /* sd_lane_25g_30 */
-+				<0x6 0x10dc8000 0x8000>, /* sd_lane_25g_31 */
-+				<0x6 0x10dd0000 0x8000>; /* sd_lane_25g_32 */
-+			reg-names =
-+				"sd_cmu_0",
-+				"sd_cmu_1",
-+				"sd_cmu_2",
-+				"sd_cmu_3",
-+				"sd_cmu_4",
-+				"sd_cmu_5",
-+				"sd_cmu_6",
-+				"sd_cmu_7",
-+				"sd_cmu_8",
-+				"sd_cmu_cfg_0",
-+				"sd_cmu_cfg_1",
-+				"sd_cmu_cfg_2",
-+				"sd_cmu_cfg_3",
-+				"sd_cmu_cfg_4",
-+				"sd_cmu_cfg_5",
-+				"sd_cmu_cfg_6",
-+				"sd_cmu_cfg_7",
-+				"sd_cmu_cfg_8",
-+				"sd6g_lane_0",
-+				"sd6g_lane_1",
-+				"sd6g_lane_2",
-+				"sd6g_lane_3",
-+				"sd6g_lane_4",
-+				"sd6g_lane_5",
-+				"sd6g_lane_6",
-+				"sd6g_lane_7",
-+				"sd6g_lane_8",
-+				"sd6g_lane_9",
-+				"sd6g_lane_10",
-+				"sd6g_lane_11",
-+				"sd6g_lane_12",
-+				"sd10g_lane_0",
-+				"sd10g_lane_1",
-+				"sd10g_lane_2",
-+				"sd10g_lane_3",
-+				"sd_lane_0",
-+				"sd_lane_1",
-+				"sd_lane_2",
-+				"sd_lane_3",
-+				"sd_lane_4",
-+				"sd_lane_5",
-+				"sd_lane_6",
-+				"sd_lane_7",
-+				"sd_lane_8",
-+				"sd_lane_9",
-+				"sd_lane_10",
-+				"sd_lane_11",
-+				"sd_lane_12",
-+				"sd_lane_13",
-+				"sd_lane_14",
-+				"sd_lane_15",
-+				"sd_lane_16",
-+				"sd_cmu_9",
-+				"sd_cmu_10",
-+				"sd_cmu_11",
-+				"sd_cmu_12",
-+				"sd_cmu_13",
-+				"sd_cmu_cfg_9",
-+				"sd_cmu_cfg_10",
-+				"sd_cmu_cfg_11",
-+				"sd_cmu_cfg_12",
-+				"sd_cmu_cfg_13",
-+				"sd10g_lane_4",
-+				"sd10g_lane_5",
-+				"sd10g_lane_6",
-+				"sd10g_lane_7",
-+				"sd10g_lane_8",
-+				"sd10g_lane_9",
-+				"sd10g_lane_10",
-+				"sd10g_lane_11",
-+				"sd25g_lane_0",
-+				"sd25g_lane_1",
-+				"sd25g_lane_2",
-+				"sd25g_lane_3",
-+				"sd25g_lane_4",
-+				"sd25g_lane_5",
-+				"sd25g_lane_6",
-+				"sd25g_lane_7",
-+				"sd_lane_17",
-+				"sd_lane_18",
-+				"sd_lane_19",
-+				"sd_lane_20",
-+				"sd_lane_21",
-+				"sd_lane_22",
-+				"sd_lane_23",
-+				"sd_lane_24",
-+				"sd_lane_25g_25",
-+				"sd_lane_25g_26",
-+				"sd_lane_25g_27",
-+				"sd_lane_25g_28",
-+				"sd_lane_25g_29",
-+				"sd_lane_25g_30",
-+				"sd_lane_25g_31",
-+				"sd_lane_25g_32";
-+		};
-+
  	};
++
++	ov7725@21 {
++		compatible = "ovti,ov7725";
++		reg = <0x21>;
++		clocks = <&mclk_cam1>;
++
++		port {
++			ov7725_0: endpoint {
++				bus-width = <8>;
++				bus-type = <6>;
++				/*
++				 * uncomment remote-endpoint property to
++				 * tie ov7725_0 to vin0ep also make
++				 * sure to comment/remove remote-endpoint
++				 * property from ov5640_0 endpoint and
++				 * replace remote-endpoint property in
++				 * vin0ep node with
++				 * remote-endpoint = <&ov7725_0>;
++				 */
++				/* remote-endpoint = <&vin0ep>; */
++			};
++		};
++	};
  };
+ 
+ &i2c1 {
+@@ -133,6 +156,29 @@
+ 			};
+ 		};
+ 	};
++
++	ov7725@21 {
++		compatible = "ovti,ov7725";
++		reg = <0x21>;
++		clocks = <&mclk_cam2>;
++
++		port {
++			ov7725_1: endpoint {
++				bus-width = <8>;
++				bus-type = <6>;
++				/*
++				 * uncomment remote-endpoint property to
++				 * tie ov7725_1 to vin1ep also make
++				 * sure to comment/remove remote-endpoint
++				 * property from ov5640_1 endpoint and
++				 * replace remote-endpoint property in
++				 * vin1ep node with
++				 * remote-endpoint = <&ov7725_1>;
++				 */
++				/* remote-endpoint = <&vin1ep>; */
++			};
++		};
++	};
+ };
+ 
+ &i2c2 {
+@@ -152,6 +198,30 @@
+ 			};
+ 		};
+ 	};
++
++	ov7725@21 {
++		status = "disabled";
++		compatible = "ovti,ov7725";
++		reg = <0x21>;
++		clocks = <&mclk_cam3>;
++
++		port {
++			ov7725_2: endpoint {
++				bus-width = <8>;
++				bus-type = <6>;
++				/*
++				 * uncomment remote-endpoint property to
++				 * tie ov7725_2 to vin2ep also make
++				 * sure to comment/remove remote-endpoint
++				 * property from ov5640_2 endpoint and
++				 * replace remote-endpoint property in
++				 * vin2ep node with
++				 * remote-endpoint = <&ov7725_2>;
++				 */
++				/* remote-endpoint = <&vin2ep>; */
++			};
++		};
++	};
+ };
+ 
+ &i2c3 {
+@@ -177,6 +247,29 @@
+ 			};
+ 		};
+ 	};
++
++	ov7725@21 {
++		compatible = "ovti,ov7725";
++		reg = <0x21>;
++		clocks = <&mclk_cam4>;
++
++		port {
++			ov7725_3: endpoint {
++				bus-width = <8>;
++				bus-type = <6>;
++				/*
++				 * uncomment remote-endpoint property to
++				 * tie ov7725_3 to vin3ep also make
++				 * sure to comment/remove remote-endpoint
++				 * property from ov5640_3 endpoint and
++				 * replace remote-endpoint property in
++				 * vin3ep node with
++				 * remote-endpoint = <&ov7725_3>;
++				 */
++				/* remote-endpoint = <&vin3ep>; */
++			};
++		};
++	};
+ };
+ 
+ &pfc {
 -- 
-2.29.2
+2.17.1
 
