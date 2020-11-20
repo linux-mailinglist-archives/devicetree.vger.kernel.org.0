@@ -2,87 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77DD62BA63A
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 10:32:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33CD62BA658
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 10:40:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727621AbgKTJbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 04:31:16 -0500
-Received: from mailgw01.mediatek.com ([210.61.82.183]:55334 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727591AbgKTJbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 04:31:10 -0500
-X-UUID: aaaa45181b4c4c9092ec3788acec7136-20201120
-X-UUID: aaaa45181b4c4c9092ec3788acec7136-20201120
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 306028507; Fri, 20 Nov 2020 17:31:04 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 20 Nov 2020 17:31:02 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 20 Nov 2020 17:31:01 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <robh+dt@kernel.org>, <linus.walleij@linaro.org>,
-        <mark.rutland@arm.com>, <matthias.bgg@gmail.com>,
-        <sean.wang@kernel.org>
-CC:     <srv_heupstream@mediatek.com>, <zhiyong.tao@mediatek.com>,
-        <hui.liu@mediatek.com>, <eddie.huang@mediatek.com>,
-        <jg_poxu@mediatek.com>, <biao.huang@mediatek.com>,
-        <hongzhou.yang@mediatek.com>, <erin.lo@mediatek.com>,
-        <sean.wang@mediatek.com>, <seiya.wang@mediatek.com>,
-        <sj.huang@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <linux-gpio@vger.kernel.org>
-Subject: [PATCH] pinctrl: fix low level output voltage issue
-Date:   Fri, 20 Nov 2020 17:30:58 +0800
-Message-ID: <20201120093058.7248-2-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20201120093058.7248-1-zhiyong.tao@mediatek.com>
-References: <20201120093058.7248-1-zhiyong.tao@mediatek.com>
+        id S1725789AbgKTJjA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 04:39:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43394 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725766AbgKTJjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 04:39:00 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36768C0613CF;
+        Fri, 20 Nov 2020 01:39:00 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 4D3CD22ED8;
+        Fri, 20 Nov 2020 10:38:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1605865138;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=OH79VKiPwTHKvdKbU1089hjCnzkqbDxcW1xjlIlIFMA=;
+        b=FWb+fHtiwaprOoFvehF5y5QFprDKkUdCM5Q8ZextMTs0yPgqkc3nVdn6bKdxXUR6ZG3uQ3
+        fTdaj/z+Q40+GIcQkuZnK0pCAUTkYawiPWviBazKHpTetaYjRldQM0x1PUkgpjwWZqJ1tC
+        R0/FkhhB+r1qsi4gL1vJdluQE4pq4oM=
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 20 Nov 2020 10:38:58 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Ashish Kumar <ashish.kumar@nxp.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        "Y.b. Lu" <yangbo.lu@nxp.com>, Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH v3 4/9] arm64: dts: ls1028a: use constants in the clockgen
+ phandle
+In-Reply-To: <HE1PR04MB319684750CF7D1920DCCCDD095FF0@HE1PR04MB3196.eurprd04.prod.outlook.com>
+References: <20201108185113.31377-1-michael@walle.cc>
+ <20201108185113.31377-5-michael@walle.cc>
+ <HE1PR04MB319684750CF7D1920DCCCDD095FF0@HE1PR04MB3196.eurprd04.prod.outlook.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <08b751d01cfc82fcfe425833793dcda9@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch is used to fix low level output voltage issue.
-A pin is changed from input pull-up to output high.
-The Dout value of the pin is default as 0.
-If we change the direction of the pin before the dout value of the pin,
-It maybe produce a low level output voltage between "input pull-up" and
-"output high".
+Hi Ashish,
 
-Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
----
- drivers/pinctrl/mediatek/pinctrl-paris.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Am 2020-11-20 10:25, schrieb Ashish Kumar:
+> I am not able to apply this patch cleanly, does it have any dependency
+> patch that I have missed?
 
-diff --git a/drivers/pinctrl/mediatek/pinctrl-paris.c b/drivers/pinctrl/mediatek/pinctrl-paris.c
-index 623af4410b07..039ce9be19c5 100644
---- a/drivers/pinctrl/mediatek/pinctrl-paris.c
-+++ b/drivers/pinctrl/mediatek/pinctrl-paris.c
-@@ -247,13 +247,13 @@ static int mtk_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
- 		err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_SR, !!arg);
- 		break;
- 	case PIN_CONFIG_OUTPUT:
--		err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_DIR,
--				       MTK_OUTPUT);
-+		err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_DO,
-+				       arg);
- 		if (err)
- 			goto err;
- 
--		err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_DO,
--				       arg);
-+		err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_DIR,
-+				       MTK_OUTPUT);
- 		break;
- 	case PIN_CONFIG_INPUT_SCHMITT:
- 	case PIN_CONFIG_INPUT_SCHMITT_ENABLE:
--- 
-2.18.0
+What is your base? I've just tried to apply this series (stand-alone) 
+onto
+linux-next and it applied cleanly.
 
+> My assumption is that this patch series is superset of
+> Series 1: [1/4]  dt-bindings: clock: document the fsl-flexspi-clk 
+> driver
+> And
+> Series 2:  [v2,1/5] clk: divider: add 
+> devm_clk_hw_register_divider_table()
+
+That is correct.
+
+-michael
