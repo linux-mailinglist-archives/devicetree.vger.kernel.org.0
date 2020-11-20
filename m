@@ -2,206 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 237B22BBA2E
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 00:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 332A82BBA56
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 00:49:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728553AbgKTXad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 18:30:33 -0500
-Received: from relay5.mymailcheap.com ([159.100.241.64]:54603 "EHLO
-        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726719AbgKTXad (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 18:30:33 -0500
-Received: from relay2.mymailcheap.com (relay2.mymailcheap.com [151.80.165.199])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 00F5D200FE
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 23:30:29 +0000 (UTC)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay2.mymailcheap.com (Postfix) with ESMTPS id A3AD43EDEC;
-        Sat, 21 Nov 2020 00:30:25 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id D4E4E2A35F;
-        Fri, 20 Nov 2020 18:30:24 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1605915024;
-        bh=iR0cU9oltmHjm8/AfYrCgb5O58IorirptInirIsoOWk=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=uTwSzm4MibuVQOPj/8V/3Mlxx3cZa/RXOvVf4kzl2Da3S4blNak7vaXuIRhHFKFrA
-         eihaCaEVkyfgRs2/HT92OUIOjJzg9hIecUDGDvUvbmHNSaDBJvBKEMK3ZAH8ZQYE7c
-         2bsITRo7/O3sU4jL2KePs3PEXK0a/zl7bpy/llUw=
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id KpSJFJO20zdW; Fri, 20 Nov 2020 18:30:23 -0500 (EST)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Fri, 20 Nov 2020 18:30:23 -0500 (EST)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id D45DF41F66;
-        Fri, 20 Nov 2020 23:30:21 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="AN7NFZQJ";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [172.19.0.1] (unknown [64.225.114.122])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 782CB41F66;
-        Fri, 20 Nov 2020 23:30:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1605915016; bh=iR0cU9oltmHjm8/AfYrCgb5O58IorirptInirIsoOWk=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=AN7NFZQJxFPPntJbQj0j/eEbW4G5TvCjd/wcI3eb1IkmLSlNprQfY6dB8jIdwsD3A
-         olnsOZ9p9VK4MXPK7mt7kMN372x6i15cExieyXrH1EqsTNV15lfNnexpQcih6IBNzd
-         COAa1yHG7L86ZApz5tsCPFXQmtkdODwz7RrslJLc=
-Date:   Sat, 21 Nov 2020 07:30:05 +0800
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20201120155939.3ajmbny2pka2vsnf@gilmour>
-References: <20201107124958.2222253-1-icenowy@aosc.io> <20201107125332.2223197-1-icenowy@aosc.io> <20201110103925.rbej5ueo2fefbmlp@gilmour.lan> <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io> <20201116155508.364dg6ycklwylswe@gilmour.lan> <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io> <20201120155939.3ajmbny2pka2vsnf@gilmour>
+        id S1727367AbgKTXsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 18:48:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34380 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726640AbgKTXsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 18:48:12 -0500
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A662C0613CF;
+        Fri, 20 Nov 2020 15:48:12 -0800 (PST)
+Received: by mail-ed1-x541.google.com with SMTP id a15so11267375edy.1;
+        Fri, 20 Nov 2020 15:48:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CyKAPxvMiczHwzRvYIDIEmLvOjkahE2iThwjzTWMcNM=;
+        b=QB5ILDjqliOWl7IGgOprLh/zl7eIyoqodmchzjouywoX5puth2HmkiHpTYN5w/TuIp
+         AmcPia8art/Cb26pTF2wDVVLYFBKlY1Jf5S6grkFtSqgSLxKI9n3rFAbBeL1eVLODeWr
+         yYf9ct7BEfC3hM8W4YP8374F68modUAKpEPN/GDb/6waYjjLZTcSKPjrvL/lSQwlEbPv
+         sieTRjYm6p+jrY4qg1TuXRz/B0WkYsD3twbZrzO9CCKYTOOzRsQPajoOKFHOKwPvgkGK
+         wQ6lDj+4iTchKWhsGL/qfo4zdmW7piSL9XFFAEsSClFxfS6o4q/fTidoOILedNcOfAhs
+         Pi9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CyKAPxvMiczHwzRvYIDIEmLvOjkahE2iThwjzTWMcNM=;
+        b=SzdNwm7Noxn5Nm3ccU8XDhiiMhqtJcM2H/geV8i8WSFUL9AkCWbpYW9jzLZMyysno7
+         FFHqQLTPcmPM2xTMAQg5xVxyPZvPYoNL8iM2yOCKqiHf1czQYCea4attj3jtfBufKEAT
+         0MnMm3ABKRBevtZmfY2MbraBxiOez3zfL5kKVACZCfLW5NR7lFuxnGhDgRLJlNVu/NX/
+         16Jtx6XG+G5icXZl3GRHqjJJar9SyjWZAhQiWWYqbJVAhm/h9vMRUGiaAetm0kXnuLPO
+         kxbyWsOwlJSSERr5JTLxOLGQpPbXtIbQf0ud3xsd2Eh2WrwO9KC5yev0j9gL0eflB7pz
+         9YsQ==
+X-Gm-Message-State: AOAM531BgZcoEtEjrsAPsoxDrIsQiK0++jnwfAZx1jlzmtbmlatYukUm
+        ob4N+x7QwSNmfLKBDt5zpWM=
+X-Google-Smtp-Source: ABdhPJz7xnL/Gpl4xnShu57nlQxmS2wMPwaiX+0mSoBISVtgfNmDPFqeD+rGz83ZVLQ9VeiELOCysg==
+X-Received: by 2002:a05:6402:b35:: with SMTP id bo21mr39651519edb.52.1605916090763;
+        Fri, 20 Nov 2020 15:48:10 -0800 (PST)
+Received: from skbuf ([188.25.2.177])
+        by smtp.gmail.com with ESMTPSA id gn41sm910465ejc.32.2020.11.20.15.48.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2020 15:48:09 -0800 (PST)
+Date:   Sat, 21 Nov 2020 01:48:08 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Christian Eggers <ceggers@arri.de>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
+        George McCollister <george.mccollister@gmail.com>,
+        Marek Vasut <marex@denx.de>,
+        Helmut Grohne <helmut.grohne@intenta.de>,
+        Paul Barker <pbarker@konsulko.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 12/12] net: dsa: microchip: ksz9477: add
+ periodic output support
+Message-ID: <20201120234808.q4qvxpuj6akuev6h@skbuf>
+References: <20201118203013.5077-1-ceggers@arri.de>
+ <20201118203013.5077-13-ceggers@arri.de>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT for PineTab developer sample
-To:     Maxime Ripard <maxime@cerno.tech>
-CC:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-From:   Icenowy Zheng <icenowy@aosc.io>
-Message-ID: <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io>
-X-Rspamd-Queue-Id: D45DF41F66
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[8];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201118203013.5077-13-ceggers@arri.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Nov 18, 2020 at 09:30:13PM +0100, Christian Eggers wrote:
+> The KSZ9563 has a Trigger Output Unit (TOU) which can be used to
+> generate periodic signals.
+> 
+> The pulse length can be altered via a device attribute.
+> 
+> Tested on a Microchip KSZ9563 switch.
+> 
+> Signed-off-by: Christian Eggers <ceggers@arri.de>
+> ---
+>  drivers/net/dsa/microchip/ksz9477_ptp.c | 197 +++++++++++++++++++++++-
+>  drivers/net/dsa/microchip/ksz_common.h  |   5 +
+>  2 files changed, 201 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/net/dsa/microchip/ksz9477_ptp.c b/drivers/net/dsa/microchip/ksz9477_ptp.c
+> index ce3fdc9a1f9e..3174574d52f6 100644
+> --- a/drivers/net/dsa/microchip/ksz9477_ptp.c
+> +++ b/drivers/net/dsa/microchip/ksz9477_ptp.c
+> @@ -90,6 +90,20 @@ static int ksz9477_ptp_tou_cycle_count_set(struct ksz_device *dev, u16 count)
+>  	return 0;
+>  }
+>  
+> +static int ksz9477_ptp_tou_pulse_verify(u64 pulse_ns)
+> +{
+> +	u32 data;
+> +
+> +	if (pulse_ns & 0x3)
+> +		return -EINVAL;
+> +
+> +	data = (pulse_ns / 8);
+> +	if (data != (data & TRIG_PULSE_WIDTH_M))
+> +		return -ERANGE;
+> +
+> +	return 0;
+> +}
+> +
+>  static int ksz9477_ptp_tou_pulse_set(struct ksz_device *dev, u32 pulse_ns)
+>  {
+>  	u32 data;
+> @@ -196,6 +210,7 @@ static int ksz9477_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
+>  	return ret;
+>  }
+>  
+> +static int ksz9477_ptp_restart_perout(struct ksz_device *dev);
+>  static int ksz9477_ptp_enable_pps(struct ksz_device *dev, int on);
+>  
+>  static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
+> @@ -241,6 +256,15 @@ static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
+>  	case KSZ_PTP_TOU_IDLE:
+>  		break;
+>  
+> +	case KSZ_PTP_TOU_PEROUT:
+> +		dev_info(dev->dev, "Restarting periodic output signal\n");
 
+Isn't this a bit too verbose, or is there something for the user to be
+concerned about?
 
-=E4=BA=8E 2020=E5=B9=B411=E6=9C=8820=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=88=
-11:59:39, Maxime Ripard <maxime@cerno=2Etech> =E5=86=99=E5=88=B0:
->On Tue, Nov 17, 2020 at 02:36:48AM +0800, Icenowy Zheng wrote:
->>=20
->>=20
->> =E4=BA=8E 2020=E5=B9=B411=E6=9C=8816=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=
-=8811:55:08, Maxime Ripard <maxime@cerno=2Etech>
->=E5=86=99=E5=88=B0:
->> >On Tue, Nov 10, 2020 at 06:41:37PM +0800, Icenowy Zheng wrote:
->> >>=20
->> >>=20
->> >> =E4=BA=8E 2020=E5=B9=B411=E6=9C=8810=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=
-=8D=886:39:25, Maxime Ripard
-><maxime@cerno=2Etech>
->> >=E5=86=99=E5=88=B0:
->> >> >On Sat, Nov 07, 2020 at 08:53:32PM +0800, Icenowy Zheng wrote:
->> >> >> Some developers received PineTab samples that used an old LCD
->> >panel=2E
->> >> >>=20
->> >> >> Add device tree for these samples=2E
->> >> >>=20
->> >> >> Signed-off-by: Icenowy Zheng <icenowy@aosc=2Eio>
->> >> >> ---
->> >> >>  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
->> >> >>  =2E=2E=2E/dts/allwinner/sun50i-a64-pinetab-dev=2Edts  | 28
->> >> >+++++++++++++++++++
->> >> >>  2 files changed, 29 insertions(+)
->> >> >>  create mode 100644
->> >> >arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
->> >> >>=20
->> >> >> diff --git a/arch/arm64/boot/dts/allwinner/Makefile
->> >> >b/arch/arm64/boot/dts/allwinner/Makefile
->> >> >> index 211d1e9d4701=2E=2Ea221dcebfad4 100644
->> >> >> --- a/arch/arm64/boot/dts/allwinner/Makefile
->> >> >> +++ b/arch/arm64/boot/dts/allwinner/Makefile
->> >> >> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D
->> >> >sun50i-a64-pinephone-1=2E0=2Edtb
->> >> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinephone-1=2E1=2Edtb
->> >> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinephone-1=2E2=2Edtb
->> >> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab=2Edtb
->> >> >> +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-pinetab-dev=2Edtb
->> >> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-sopine-baseboard=2Edtb
->> >> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a64-teres-i=2Edtb
->> >> >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-a100-allwinner-perf1=2Edtb
->> >> >> diff --git
->> >a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
->> >> >b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
->> >> >> new file mode 100644
->> >> >> index 000000000000=2E=2E3a4153890f3e
->> >> >> --- /dev/null
->> >> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinetab-dev=2Edts
->> >> >> @@ -0,0 +1,28 @@
->> >> >> +// SPDX-License-Identifier: (GPL-2=2E0+ OR MIT)
->> >> >> +/*
->> >> >> + * Copyright (C) 2020 Icenowy Zheng <icenowy@aosc=2Eio>
->> >> >> + *
->> >> >> + */
->> >> >> +
->> >> >> +/dts-v1/;
->> >> >> +
->> >> >> +#include "sun50i-a64-pinetab=2Edts"
->> >> >> +
->> >> >> +/ {
->> >> >> +	model =3D "PineTab Developer Sample";
->> >> >> +	compatible =3D "pine64,pinetab-dev", "allwinner,sun50i-a64";
->> >> >> +};
->> >> >
->> >> >Changing the DT and the compatible half-way through it isn't ok=2E
->> >Please
->> >> >add a new DT with the newer revision like we did for the
->pinephone
->> >>=20
->> >> We did this on Pine H64=2E
->> >
->> >What are you referring to? I couldn't find a commit where we did
->what
->> >you suggested in that patch to the pine H64=2E
->>=20
->> Oh the situation is complex=2E On Pine H64, we didn't specify anything
->at
->> start (which is the same here), the DT is originally version-neutral
->> but then transitioned to model B, then reverted to model A=2E Here the
->DT is always
->> for the sample=2E
->>=20
->> However, for Pine H64 there's model A/B names, but for PineTab
->there's no
->> any samples that are sold, thus except who got the samples, all
->PineTab
->> owners simply owns a "PineTab", not a "PineTab xxx version"=2E
->
->It's fairly simple really, we can't really predict the future, so any
->DT
->submitted is for the current version of whatever board there is=2E This
->is
->what we (somewhat messily) did for the PineH64, for the pinephone, or
->really any other board that has several revisions
+> +
+> +		ret = ksz9477_ptp_restart_perout(dev);
+> +		if (ret)
+> +			goto error_return;
+> +
+> +		break;
+> +
+>  	case KSZ_PTP_TOU_PPS:
+>  		dev_info(dev->dev, "Restarting PPS\n");
+>  
+> @@ -358,6 +382,15 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
+>  	case KSZ_PTP_TOU_IDLE:
+>  		break;
+>  
+> +	case KSZ_PTP_TOU_PEROUT:
+> +		dev_info(dev->dev, "Restarting periodic output signal\n");
+> +
+> +		ret = ksz9477_ptp_restart_perout(dev);
+> +		if (ret)
+> +			goto error_return;
+> +
+> +		break;
+> +
+>  	case KSZ_PTP_TOU_PPS:
+>  		dev_info(dev->dev, "Restarting PPS\n");
+>  
+> @@ -377,6 +410,159 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
+>  	return ret;
+>  }
+>  
+> +static int ksz9477_ptp_configure_perout(struct ksz_device *dev, u32 cycle_width_ns,
 
-Okay=2E But I'm not satisfied with a non-public sample occupies
-the pinetab name=2E Is rename it to pinetab-dev and add a
-pinetab-retail okay?
+Watch out for 80 characters, please!
 
->
->Maxime
+> +					u16 cycle_count, u32 pulse_width_ns,
+> +					struct timespec64 const *target_time)
+> +{
+> +	int ret;
+> +	u32 trig_ctrl;
+
+Reverse Christmas tree.
+
+> +
+> +	/* Enable notify, set rising edge, set periodic pattern */
+> +	trig_ctrl = TRIG_NOTIFY | (TRIG_POS_PERIOD << TRIG_PATTERN_S);
+> +	ret = ksz_write32(dev, REG_TRIG_CTRL__4, trig_ctrl);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ksz9477_ptp_tou_cycle_width_set(dev, cycle_width_ns);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ksz9477_ptp_tou_cycle_count_set(dev,  cycle_count);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ksz9477_ptp_tou_pulse_set(dev, pulse_width_ns);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ksz9477_ptp_tou_target_time_set(dev, target_time);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ksz9477_ptp_enable_perout(struct ksz_device *dev,
+> +				     struct ptp_perout_request const *perout_request, int on)
+> +{
+> +	u32 gpio_stat0;
+> +	u64 cycle_width_ns;
+> +	int ret;
+> +
+> +	if (dev->ptp_tou_mode != KSZ_PTP_TOU_PEROUT && dev->ptp_tou_mode != KSZ_PTP_TOU_IDLE)
+> +		return -EBUSY;
+> +
+> +	ret = ksz9477_ptp_tou_reset(dev, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!on) {
+> +		dev->ptp_tou_mode = KSZ_PTP_TOU_IDLE;
+> +		return 0;  /* success */
+> +	}
+> +
+> +	dev->ptp_perout_target_time_first.tv_sec  = perout_request->start.sec;
+> +	dev->ptp_perout_target_time_first.tv_nsec = perout_request->start.nsec;
+> +
+> +	dev->ptp_perout_period.tv_sec = perout_request->period.sec;
+> +	dev->ptp_perout_period.tv_nsec = perout_request->period.nsec;
+> +
+> +	cycle_width_ns = timespec64_to_ns(&dev->ptp_perout_period);
+> +	if ((cycle_width_ns & GENMASK(31, 0)) != cycle_width_ns)
+> +		return -EINVAL;
+> +
+> +	if (perout_request->flags & PTP_PEROUT_DUTY_CYCLE) {
+> +		u64 value = perout_request->on.sec * NSEC_PER_SEC +
+> +			    perout_request->on.nsec;
+> +
+> +		ret = ksz9477_ptp_tou_pulse_verify(value);
+> +		if (ret)
+> +			return ret;
+> +
+> +		dev->ptp_perout_pulse_width_ns = value;
+> +	}
+
+It is not guaranteed that user space will set this flag. Shouldn't you
+assign a default value for the pulse width? I don't know, half the
+period should be a good default.
+
+Also, please reject PTP_PEROUT_ONE_SHOT and PTP_PEROUT_PHASE, since you
+don't do anything with them, but user space might be led into believing
+otherwise.
+
+> +
+> +	ret = ksz9477_ptp_configure_perout(dev, cycle_width_ns,
+> +					   dev->ptp_perout_cycle_count,
+> +					   dev->ptp_perout_pulse_width_ns,
+> +					   &dev->ptp_perout_target_time_first);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Activate trigger unit */
+> +	ret = ksz9477_ptp_tou_start(dev, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Check error flag:
+> +	 * - the ACTIVE flag is NOT cleared an error!
+> +	 */
+> +	ret = ksz_read32(dev, REG_PTP_TRIG_STATUS__4, &gpio_stat0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (gpio_stat0 & (1 << (0 + TRIG_ERROR_S))) {
+
+What is the role of this "0 +" term here?
+
+> +		dev_err(dev->dev, "%s: Trigger unit0 error!\n", __func__);
+> +		ret = -EIO;
+> +		/* Unit will be reset on next access */
+> +		return ret;
+> +	}
+> +
+> +	dev->ptp_tou_mode = KSZ_PTP_TOU_PEROUT;
+> +	return 0;
+> +}
