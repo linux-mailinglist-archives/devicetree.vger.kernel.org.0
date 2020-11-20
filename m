@@ -2,153 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E31762BA790
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 11:39:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0972C2BA7AD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 11:46:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726614AbgKTKiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 05:38:06 -0500
-Received: from mail-dm6nam10on2065.outbound.protection.outlook.com ([40.107.93.65]:12129
-        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725824AbgKTKiF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 05:38:05 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iLvfQGHAF0jn0Ur2oafNckmT6H3ilfbv0Eg1Roudj2FQMR5ct+aOi0nSYxSMS00Ol5ZxWpfp0hSN4P2aNdFuNMqmArh/oSr+VM5vzmGQZOW1S5e+ybKIeiEeKx20xyE5HIv+7kdtw/rRPWZkXhLrAqsVrxkbtM3MG2UbleBK4YOirmK2nYxniwNwGFfY/qH2MDgdJFIxn3FzBDhVcK/mwuceJz23Cdhsu1dVZompSA0mtjiaccBshy6DK0TiFPa/6pUTYWwZGbT47fh4P3vOkwKZqQBtn+hVahhESU34lYQBUcSfLGwDVp1Wb+UNnUk/XvuQV2vMo+/jROYV1bKLFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7HZ+Xmy0aG64QNyaQwc2lH520uMthFUQLvSfTL9KPdM=;
- b=PGBh45CsKNcx9fJ3agB8fyXQIPlZSz7jpiv3cNZQYI1sswkZhZWeVO5eB/zVFUOfyf3pXOCHxGwwOOXeszduop9E0mLwaFBC1lBlHoI92sSGEdCYfFLWGtZyzPyWoQjjD2i2WL+sbyHjhQAXAn/A0ikmDRjNS28Z/wf907SZ5mkWUSuOi0DaWIx7tUvXWn0r/ePbokAtdxPFdCq1LBn1wVd7u7NwehIzxtrCUXLpJ5yFj+ZHf2foky6n3pwGwe7zJ1b/zKN16KGpJA+eVF/rDwQBHYkMk0myY8VFZyLZderPs3gW+2bU7yoyrl6Q11WPwxk5+I50XA+/GSQMyUsXzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7HZ+Xmy0aG64QNyaQwc2lH520uMthFUQLvSfTL9KPdM=;
- b=L67Ev+/KlZfW0M/31CZOR26emC9owWErvBF/rHPYo45WTuJFoS1xqIItdYtkcaQn+z1cmBYUyI2e36zjY7ZgCRiO5Glw7diHoVQEhOvFksNzQyo7ihWsWZUXGKV0mNfeNuVAOs+Ovx078lBlufV9J/CafpxbyIuR3NrzAML8cUY=
-Received: from SA9PR13CA0150.namprd13.prod.outlook.com (2603:10b6:806:27::35)
- by BYAPR02MB5365.namprd02.prod.outlook.com (2603:10b6:a03:66::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3541.25; Fri, 20 Nov
- 2020 10:38:01 +0000
-Received: from SN1NAM02FT019.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:27:cafe::80) by SA9PR13CA0150.outlook.office365.com
- (2603:10b6:806:27::35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.13 via Frontend
- Transport; Fri, 20 Nov 2020 10:38:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT019.mail.protection.outlook.com (10.152.72.130) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 10:38:01 +0000
-Received: from xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1913.5; Fri, 20 Nov 2020 02:37:47 -0800
-Received: from smtp.xilinx.com (172.19.127.96) by
- xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server id
- 15.1.1913.5 via Frontend Transport; Fri, 20 Nov 2020 02:37:47 -0800
-Envelope-to: git@xilinx.com,
- michal.simek@xilinx.com,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org,
- p.zabel@pengutronix.de,
- balbi@kernel.org,
- robh+dt@kernel.org,
- gregkh@linuxfoundation.org
-Received: from [172.30.17.109] (port=43496)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1kg3nW-0001A8-AV; Fri, 20 Nov 2020 02:37:46 -0800
-Subject: Re: [PATCH v3 0/2] Add a separate DWC3 OF driver for Xilinx platforms
-To:     Manish Narani <manish.narani@xilinx.com>,
-        <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <michal.simek@xilinx.com>, <balbi@kernel.org>,
-        <p.zabel@pengutronix.de>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <git@xilinx.com>
-References: <1602162416-28058-1-git-send-email-manish.narani@xilinx.com>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <e491bc10-96ca-34a9-4e96-ff5701763584@xilinx.com>
-Date:   Fri, 20 Nov 2020 11:37:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1726826AbgKTKqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 05:46:10 -0500
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:33827 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725956AbgKTKqJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 05:46:09 -0500
+Received: by mail-ed1-f66.google.com with SMTP id a15so9056574edy.1;
+        Fri, 20 Nov 2020 02:46:05 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=w+alvQqPRpEXNo5K8hmtaWs8T2gO2NWZjynTiYpa5is=;
+        b=IOghUvR4FyH7Vp+NRGDJbEQT9p0WjUdkym7NyH6avfnIgAn7nYtrIeUtv/YcfwzMDH
+         JmzK4TrXs4sFg1yNQe4xW3enPNmJ50yTXepQa9d2eJ3LkVeuwyUScU9krFts49AiMMSQ
+         sTGE9KNGsjOs0HoI6knj9b3+sd+ry7GPJNUqLEpl2lqypDF1ipnOMfMYcpeQF8S2EPBt
+         K2lenaEYuY+TvAXbgJZcB4eVhbmbdK9RzWBwEqcHyEdsbiBAwygN8wWBhv0AYUhClnrv
+         LMqNjr3BGm/bxfX6bc0mcrlAfJWm1BYaoAhA15yMjcwEHI+UTGVPR1UzAB8vlOM656Aq
+         hyDA==
+X-Gm-Message-State: AOAM530X9bARND/HDXDFFav36DVnvzhKmuAIoy5l1lDJwW/qwchnKMHQ
+        MmKJsTuGqcXmMwwU4lmrxCQ=
+X-Google-Smtp-Source: ABdhPJxQq/nv0kVNS1au9CletCJc5yc7WapghyHIAMGlmYqS0dIETtjAk82KJ7S5b0x62rQ/s9uR6g==
+X-Received: by 2002:a50:a40c:: with SMTP id u12mr21996264edb.337.1605869164578;
+        Fri, 20 Nov 2020 02:46:04 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id k2sm973070ejp.6.2020.11.20.02.46.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 20 Nov 2020 02:46:03 -0800 (PST)
+Date:   Fri, 20 Nov 2020 11:46:02 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Alice Guo <alice.guo@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 4/4] soc: imx8m: change to use platform driver
+Message-ID: <20201120104602.GA15052@kozik-lap>
+References: <20201120101112.31819-1-alice.guo@nxp.com>
+ <20201120101112.31819-4-alice.guo@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <1602162416-28058-1-git-send-email-manish.narani@xilinx.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 44ed3098-b629-4714-8b50-08d88d405acd
-X-MS-TrafficTypeDiagnostic: BYAPR02MB5365:
-X-Microsoft-Antispam-PRVS: <BYAPR02MB53650645F64D2CD30EF4086AC6FF0@BYAPR02MB5365.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G2CcN+JPRI7Fv/3ptSV81djWpduz/iwEFjioVLGHb3wugRmDgPpToqfU88Uj7JNOqs8ssKaoacLWzdBaTHzw2l1lIiJTCjGz+58C/vu4JMEQzH65cIA2ee3AND7JkRUpxCFJpZs/Tvul+AdCAthk8QNpwhnVrfsbm6W+kqBkomOK8yiCYQg8MUoB0/j+M85DTCZUeLjd+QqjUiqRmfyhCqw95WmlwMeA3BsWX5YM9UhB15qLvS1hzog0YqNsalSfZiRdzPyHWpXA/QwGigImL1J0ht8wdNkOO9gSFVldGOWLc2I4PLj06qwvU7RXkZzlaVg1SiengU/LJ/AbwKV3a8GFrN91xIxeoFfhgAshtsfwp2UjrSfsiWgPx0VeL3ZfAdHwEnBtxhClNImQsuYdfv80aCPAKSXsXsqbjGZstTQaIHA8IM2b5TYwD+MMYEq6NR/fnxxzhJg7cvDGfBsb7g==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(136003)(376002)(346002)(396003)(39860400002)(46966005)(2616005)(26005)(186003)(54906003)(47076004)(356005)(44832011)(316002)(336012)(426003)(83380400001)(2906002)(82740400003)(36906005)(8936002)(7636003)(110136005)(9786002)(31686004)(4326008)(478600001)(107886003)(5660300002)(36756003)(8676002)(82310400003)(70206006)(70586007)(31696002)(6666004)(50156003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 10:38:01.2958
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44ed3098-b629-4714-8b50-08d88d405acd
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT019.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5365
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201120101112.31819-4-alice.guo@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
+On Fri, Nov 20, 2020 at 06:11:12PM +0800, Alice Guo wrote:
+> Directly reading ocotp register depends on that bootloader enables ocotp
+> clk, which is not always effective, so change to use nvmem API. Using
+> nvmem API requires to support driver defer probe and thus change
+> soc-imx8m.c to use platform driver.
+> 
+> The other reason is that directly reading ocotp register causes kexec
+> kernel hang because the 1st kernel running will disable unused clks
+> after kernel boots up, and then ocotp clk will be disabled even if
+> bootloader enables it. When kexec kernel, ocotp clk needs to be enabled
+> before reading ocotp registers, and nvmem API with platform driver
+> supported can accomplish this.
+> 
+> v2: remove the subject prefix "LF-2571-4"
+> v3: Keep the original way which uses device_initcall to read soc unique
+>     ID, and add the other way which uses module_platform_driver and
+>     nvmem API, so that it will not break the old version DTBs.
+> v4: delete "__maybe_unused"
+>     delete MODULE_DEVICE_TABLE(of, imx8m_soc_match);
+>     rename match table, "fsl,imx8mm/n/q/p" is actually a machine
+> compabile and "fsl,imx8mm/n/q/p-soc" is a compabile of soc@0
+>     delete "flag" and change to determine whether the pointer is NULL
+>     ues of_find_matching_node_and_match()
+>     delete of_match_ptr()
 
-On 08. 10. 20 15:06, Manish Narani wrote:
-> This patch series documents the Xilinx Versal DWC3 controller. This also
-> adds a new Xilinx specific driver for adding new features in the future.
-> 
-> Changes in v2:
-> 	- Addressed review comments from v1
-> 	- merged normal and runtime suspend resume functions as they are
-> 	  same
-> 	- Improved description of some register operations to avoid
-> 	  confusion
-> 	- Updated commit log for patch 2/2 for better clarity.
-> 
-> Changes in v3:
-> 	- Removed snps,enable-hibernation property from the devicetree
-> 	  binding.
-> 
-> Manish Narani (2):
->   dt-bindings: usb: dwc3-xilinx: Add documentation for Versal DWC3
->     Controller
->   usb: dwc3: Add driver for Xilinx platforms
-> 
->  .../devicetree/bindings/usb/dwc3-xilinx.txt   |  17 +-
->  drivers/usb/dwc3/Kconfig                      |   9 +
->  drivers/usb/dwc3/Makefile                     |   1 +
->  drivers/usb/dwc3/dwc3-of-simple.c             |   1 -
->  drivers/usb/dwc3/dwc3-xilinx.c                | 334 ++++++++++++++++++
->  5 files changed, 359 insertions(+), 3 deletions(-)
->  create mode 100644 drivers/usb/dwc3/dwc3-xilinx.c
-> 
+Put all the patch version changelogs after --- separator, so they will
+not go to the commit.
 
-Can you please take a look at these patches?
-I see that the first one has been reviewed by Rob already.
+> 
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> ---
+>  drivers/soc/imx/soc-imx8m.c | 85 +++++++++++++++++++++++++++++++------
+>  1 file changed, 73 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/soc/imx/soc-imx8m.c b/drivers/soc/imx/soc-imx8m.c
+> index cc57a384d74d..1b0a34e545ae 100644
+> --- a/drivers/soc/imx/soc-imx8m.c
+> +++ b/drivers/soc/imx/soc-imx8m.c
+> @@ -5,6 +5,8 @@
+> 
+>  #include <linux/init.h>
+>  #include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/nvmem-consumer.h>
+>  #include <linux/of_address.h>
+>  #include <linux/slab.h>
+>  #include <linux/sys_soc.h>
+> @@ -29,7 +31,7 @@
+> 
+>  struct imx8_soc_data {
+>  	char *name;
+> -	u32 (*soc_revision)(void);
+> +	u32 (*soc_revision)(struct device *dev);
+>  };
+> 
+>  static u64 soc_uid;
+> @@ -50,7 +52,7 @@ static u32 imx8mq_soc_revision_from_atf(void)
+>  static inline u32 imx8mq_soc_revision_from_atf(void) { return 0; };
+>  #endif
+> 
+> -static u32 __init imx8mq_soc_revision(void)
+> +static u32 __init imx8mq_soc_revision(struct device *dev)
+>  {
+>  	struct device_node *np;
+>  	void __iomem *ocotp_base;
+> @@ -75,9 +77,19 @@ static u32 __init imx8mq_soc_revision(void)
+>  			rev = REV_B1;
+>  	}
+> 
+> -	soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
+> -	soc_uid <<= 32;
+> -	soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
+> +	if (dev) {
+> +		int ret = 0;
+> +
+> +		ret = nvmem_cell_read_u64(dev, "soc_unique_id", &soc_uid);
+> +		if (ret) {
+> +			iounmap(ocotp_base);
 
-Thanks,
-Michal
+What about other cleanup parts? of_node_put?
+
+> +			return ret;
+> +		}
+> +	} else {
+> +		soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
+> +		soc_uid <<= 32;
+> +		soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
+> +	}
+> 
+>  	iounmap(ocotp_base);
+>  	of_node_put(np);
+> @@ -107,7 +119,7 @@ static void __init imx8mm_soc_uid(void)
+>  	of_node_put(np);
+>  }
+> 
+> -static u32 __init imx8mm_soc_revision(void)
+> +static u32 __init imx8mm_soc_revision(struct device *dev)
+>  {
+>  	struct device_node *np;
+>  	void __iomem *anatop_base;
+> @@ -125,7 +137,15 @@ static u32 __init imx8mm_soc_revision(void)
+>  	iounmap(anatop_base);
+>  	of_node_put(np);
+> 
+> -	imx8mm_soc_uid();
+> +	if (dev) {
+> +		int ret = 0;
+> +
+> +		ret = nvmem_cell_read_u64(dev, "soc_unique_id", &soc_uid);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		imx8mm_soc_uid();
+> +	}
+> 
+>  	return rev;
+>  }
+> @@ -150,7 +170,7 @@ static const struct imx8_soc_data imx8mp_soc_data = {
+>  	.soc_revision = imx8mm_soc_revision,
+>  };
+> 
+> -static __maybe_unused const struct of_device_id imx8_soc_match[] = {
+> +static const struct of_device_id imx8_machine_match[] = {
+>  	{ .compatible = "fsl,imx8mq", .data = &imx8mq_soc_data, },
+>  	{ .compatible = "fsl,imx8mm", .data = &imx8mm_soc_data, },
+>  	{ .compatible = "fsl,imx8mn", .data = &imx8mn_soc_data, },
+> @@ -158,12 +178,20 @@ static __maybe_unused const struct of_device_id imx8_soc_match[] = {
+>  	{ }
+>  };
+> 
+> +static const struct of_device_id imx8_soc_match[] = {
+> +	{ .compatible = "fsl,imx8mq-soc", .data = &imx8mq_soc_data, },
+> +	{ .compatible = "fsl,imx8mm-soc", .data = &imx8mm_soc_data, },
+> +	{ .compatible = "fsl,imx8mn-soc", .data = &imx8mn_soc_data, },
+> +	{ .compatible = "fsl,imx8mp-soc", .data = &imx8mp_soc_data, },
+> +	{ }
+> +};
+> +
+>  #define imx8_revision(soc_rev) \
+>  	soc_rev ? \
+>  	kasprintf(GFP_KERNEL, "%d.%d", (soc_rev >> 4) & 0xf,  soc_rev & 0xf) : \
+>  	"unknown"
+> 
+> -static int __init imx8_soc_init(void)
+> +static int imx8_soc_info(struct platform_device *pdev)
+>  {
+>  	struct soc_device_attribute *soc_dev_attr;
+>  	struct soc_device *soc_dev;
+> @@ -182,7 +210,10 @@ static int __init imx8_soc_init(void)
+>  	if (ret)
+>  		goto free_soc;
+> 
+> -	id = of_match_node(imx8_soc_match, of_root);
+> +	if (pdev)
+> +		id = of_match_node(imx8_soc_match, pdev->dev.of_node);
+> +	else
+> +		id = of_match_node(imx8_machine_match, of_root);
+>  	if (!id) {
+>  		ret = -ENODEV;
+>  		goto free_soc;
+> @@ -191,8 +222,16 @@ static int __init imx8_soc_init(void)
+>  	data = id->data;
+>  	if (data) {
+>  		soc_dev_attr->soc_id = data->name;
+> -		if (data->soc_revision)
+> -			soc_rev = data->soc_revision();
+> +		if (data->soc_revision) {
+> +			if (pdev) {
+> +				soc_rev = data->soc_revision(&pdev->dev);
+> +				ret = soc_rev;
+> +				if (ret < 0)
+> +					goto free_soc;
+> +			} else {
+> +				soc_rev = data->soc_revision(NULL);
+> +			}
+> +		}
+>  	}
+> 
+>  	soc_dev_attr->revision = imx8_revision(soc_rev);
+> @@ -230,4 +269,26 @@ static int __init imx8_soc_init(void)
+>  	kfree(soc_dev_attr);
+>  	return ret;
+>  }
+> +
+> +static int __init imx8_soc_init(void)
+> +{
+> +	int ret = 0;
+
+Skip the initialization.
+
+You need to document why the initcal is still there. Please write that
+it is purely for backward compatibility.
+
+Best regards,
+Krzysztof
