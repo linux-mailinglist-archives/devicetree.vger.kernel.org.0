@@ -2,54 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C01C12BA6F7
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 11:05:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A11722BA6FD
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 11:05:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727384AbgKTKEY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 05:04:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36288 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725942AbgKTKEX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 05:04:23 -0500
-Received: from localhost (unknown [122.171.203.152])
+        id S1727531AbgKTKFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 05:05:03 -0500
+Received: from ssl.serverraum.org ([176.9.125.105]:46247 "EHLO
+        ssl.serverraum.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727535AbgKTKFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 05:05:02 -0500
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 20F6C22244;
-        Fri, 20 Nov 2020 10:04:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605866663;
-        bh=ARRNZfpi+Mn1V6hzOdD605q35U5qiyEAfEvZ9NLxQYo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=zKMYARwWUfc4c3r+USqkSPVcAVGEPkVMTtKs8egzt2R6APjiPlEQ5fKpWa9rH6VHR
-         7jRRF8FdsG1EEOeuPR8nPnlq2GZrbvOEfeftih+9T5nA2NwzP9w9tbHHYeIxFe1iUU
-         ZqCg9fFGKhjSFgP31Kl/9yPrT/2P/S1vjOWmabkw=
-Date:   Fri, 20 Nov 2020 15:34:08 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Amelie Delaunay <amelie.delaunay@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v2 1/1] dt-bindings: phy: phy-stm32-usbphyc: convert
- bindings to json-schema
-Message-ID: <20201120100408.GG2925@vkoul-mobl>
-References: <20201116171917.10447-1-amelie.delaunay@st.com>
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 6548122ED8;
+        Fri, 20 Nov 2020 11:05:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1605866700;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=fLNtQHPovGmP6KYC9ugg59vXCNbSx3IadlDGAURrO74=;
+        b=t9nOOiZ1fumOIlmBHAZD5eUQjVFoV+AWmptcb6ybiiXcerX7fH2xKiqwZnHUY7lAnBx7c5
+        l3+b6zUqnf0XHI6v3mcHcI8/CA7bd1KZzBP+Bnki7RkZvgUZVbQ6Skpv5D0sY7t79PJy07
+        /b2Gs5Ebd/44Pp82Ybf6ql18DCcHvQ8=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201116171917.10447-1-amelie.delaunay@st.com>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 20 Nov 2020 11:05:00 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Ashish Kumar <ashish.kumar@nxp.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        "Y.b. Lu" <yangbo.lu@nxp.com>, Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: Re: [PATCH v3 4/9] arm64: dts: ls1028a: use constants in the clockgen
+ phandle
+In-Reply-To: <HE1PR04MB319630198F85E59B2547046095FF0@HE1PR04MB3196.eurprd04.prod.outlook.com>
+References: <20201108185113.31377-1-michael@walle.cc>
+ <20201108185113.31377-5-michael@walle.cc>
+ <HE1PR04MB319684750CF7D1920DCCCDD095FF0@HE1PR04MB3196.eurprd04.prod.outlook.com>
+ <08b751d01cfc82fcfe425833793dcda9@walle.cc>
+ <HE1PR04MB319630198F85E59B2547046095FF0@HE1PR04MB3196.eurprd04.prod.outlook.com>
+User-Agent: Roundcube Webmail/1.4.9
+Message-ID: <0e0970485dc410acc9c96962ef14bb38@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-11-20, 18:19, Amelie Delaunay wrote:
-> Convert the STM32 USB PHY Controller (USBPHYC) bindings to DT schema format
-> using json-schema.
+Hi Ashish,
 
-Applied, thanks
+Am 2020-11-20 10:51, schrieb Ashish Kumar:
+>> -----Original Message-----
+>> From: Michael Walle <michael@walle.cc>
+>> Sent: Friday, November 20, 2020 3:09 PM
+>> To: Ashish Kumar <ashish.kumar@nxp.com>
+>> Cc: linux-clk@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; Michael
+>> Turquette <mturquette@baylibre.com>; Stephen Boyd <sboyd@kernel.org>;
+>> Rob Herring <robh+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Leo
+>> Li <leoyang.li@nxp.com>; Y.b. Lu <yangbo.lu@nxp.com>; Xiaowei Bao
+>> <xiaowei.bao@nxp.com>; Vladimir Oltean <vladimir.oltean@nxp.com>
+>> Subject: [EXT] Re: [PATCH v3 4/9] arm64: dts: ls1028a: use constants 
+>> in the
+>> clockgen phandle
+>> 
+>> Caution: EXT Email
+>> 
+>> Hi Ashish,
+>> 
+>> Am 2020-11-20 10:25, schrieb Ashish Kumar:
+>> > I am not able to apply this patch cleanly, does it have any dependency
+>> > patch that I have missed?
+>> 
+>> What is your base? I've just tried to apply this series (stand-alone) 
+>> onto linux-
+>> next and it applied cleanly.
+> I used https://github.com/torvalds/linux.git should I try this
+> git://git.kernel.org/pub/scm/linux/kernel/git/clk/linux.git ?
 
--- 
-~Vinod
+Mh, I just tried clk-next. clk-next is missing some device tree changes. 
+So,
+parts of this series should go through the soc tree (shawnguo) and some 
+through
+clk-next (or acked by Stephen Boyd).
+
+If you want to apply it, use the for-next branch of the soc tree:
+git://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git
+
+-michael
