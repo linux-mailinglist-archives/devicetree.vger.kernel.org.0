@@ -2,160 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 621B82BA057
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 03:28:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56F902BA080
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 03:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726662AbgKTCZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 21:25:10 -0500
-Received: from mailgw02.mediatek.com ([1.203.163.81]:18855 "EHLO
+        id S1726775AbgKTCea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 21:34:30 -0500
+Received: from mailgw02.mediatek.com ([210.61.82.184]:55690 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726549AbgKTCZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 21:25:10 -0500
-X-UUID: 114c18dc7e44412bad972cfabfcc6587-20201120
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=tK3LSMVAjG6d7GMpXdDRnIvlzSI8hJUSp1hQeVKgOdA=;
-        b=huamlgbA5F8dI9GYIzEy3ZIKHD2zs3Xnip6PQAwElMwHJZomIbqYxKxf/hsjVHn3S3QkO8KJQloSkdOe6edeHyJl650FfBcROfHB70ER0/SXfet2IWSg9WKypv71SnmujlLhjApctMUcaw8STiE0TfTlyKZPygh1ZF+08ZO7/Z8=;
-X-UUID: 114c18dc7e44412bad972cfabfcc6587-20201120
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1560120825; Fri, 20 Nov 2020 10:25:04 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 20 Nov
- 2020 10:25:00 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 20 Nov 2020 10:25:00 +0800
-Message-ID: <1605839100.32484.0.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 06/11] dt-bindings: phy: convert HDMI PHY binding to
- YAML schema
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Jakub Kicinski" <kuba@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "Vinod Koul" <vkoul@kernel.org>,
+        with ESMTP id S1726985AbgKTCe2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 21:34:28 -0500
+X-UUID: 6f86debced76427e9da06cb20af6fb03-20201120
+X-UUID: 6f86debced76427e9da06cb20af6fb03-20201120
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <daoyuan.huang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 152737837; Fri, 20 Nov 2020 10:29:18 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 20 Nov 2020 10:29:08 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 20 Nov 2020 10:29:08 +0800
+From:   Daoyuan Huang <daoyuan.huang@mediatek.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Min Guo <min.guo@mediatek.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        <netdev@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, <linux-usb@vger.kernel.org>
-Date:   Fri, 20 Nov 2020 10:25:00 +0800
-In-Reply-To: <CAAOTY_9dNyySJkyX78tHDQZPaqD+5Jqixbdbohp319FyXO1X5Q@mail.gmail.com>
-References: <20201118082126.42701-1-chunfeng.yun@mediatek.com>
-         <20201118082126.42701-6-chunfeng.yun@mediatek.com>
-         <CAAOTY_9dNyySJkyX78tHDQZPaqD+5Jqixbdbohp319FyXO1X5Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+CC:     Maoguang Meng <maoguang.meng@mediatek.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <tfiga@chromium.org>,
+        <drinkcat@chromium.org>, <acourbot@chromium.org>,
+        <pihsun@chromium.org>, <menghui.lin@mediatek.com>,
+        <sj.huang@mediatek.com>, <ben.lok@mediatek.com>,
+        <randy.wu@mediatek.com>, <moudy.ho@mediatek.com>,
+        <srv_heupstream@mediatek.com>
+Subject: [PATCH v4 0/4] media: mediatek: support mdp3 on mt8183 platform
+Date:   Fri, 20 Nov 2020 10:29:02 +0800
+Message-ID: <1605839346-10648-1-git-send-email-daoyuan.huang@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: EEFA5D895C9CCDBC05A08A02EA921E7502A2D2C166CFEA2145249A566CC53CBB2000:8
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 396CC85A8D0E16EE1F5570B1027F9616E51282698A71B637A4F9EBCC55A77EA42000:8
 X-MTK:  N
-Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTExLTIwIGF0IDA3OjQyICswODAwLCBDaHVuLUt1YW5nIEh1IHdyb3RlOg0K
-PiBIaSwgQ2h1bmZlbmc6DQo+IA0KPiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1bkBtZWRpYXRl
-ay5jb20+IOaWvCAyMDIw5bm0MTHmnIgxOOaXpSDpgLHkuIkg5LiL5Y2INDoyMeWvq+mBk++8mg0K
-PiA+DQo+ID4gQ29udmVydCBIRE1JIFBIWSBiaW5kaW5nIHRvIFlBTUwgc2NoZW1hIG1lZGlhdGVr
-LGhkbWktcGh5LnlhbWwNCj4gPg0KPiA+IENjOiBDaHVuLUt1YW5nIEh1IDxjaHVua3VhbmcuaHVA
-a2VybmVsLm9yZz4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBDaHVuZmVuZyBZdW4gPGNodW5mZW5nLnl1
-bkBtZWRpYXRlay5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5l
-bC5vcmc+DQo+ID4gLS0tDQo+ID4gdjM6IGFkZCBSZXZpZXdlZC1ieSBSb2INCj4gPiB2MjogZml4
-IGJpbmRpbmcgY2hlY2sgd2FybmluZyBvZiByZWcgaW4gZXhhbXBsZQ0KPiA+IC0tLQ0KPiA+ICAu
-Li4vZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxoZG1pLnR4dCAgICAgICAgfCAxOCArLS0tDQo+
-ID4gIC4uLi9iaW5kaW5ncy9waHkvbWVkaWF0ZWssaGRtaS1waHkueWFtbCAgICAgICB8IDkxICsr
-KysrKysrKysrKysrKysrKysNCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCA5MiBpbnNlcnRpb25zKCsp
-LCAxNyBkZWxldGlvbnMoLSkNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9waHkvbWVkaWF0ZWssaGRtaS1waHkueWFtbA0KPiA+DQo+ID4g
-ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21l
-ZGlhdGVrL21lZGlhdGVrLGhkbWkudHh0IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRp
-bmdzL2Rpc3BsYXkvbWVkaWF0ZWsvbWVkaWF0ZWssaGRtaS50eHQNCj4gPiBpbmRleCA2YjFjNTg2
-NDAzZTQuLmIyODRjYTUxYjkxMyAxMDA2NDQNCj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2Rldmlj
-ZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay9tZWRpYXRlayxoZG1pLnR4dA0KPiA+ICsr
-KyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L21lZGlhdGVrL21l
-ZGlhdGVrLGhkbWkudHh0DQo+ID4gQEAgLTUzLDIzICs1Myw3IEBAIFJlcXVpcmVkIHByb3BlcnRp
-ZXM6DQo+ID4NCj4gPiAgSERNSSBQSFkNCj4gPiAgPT09PT09PT0NCj4gPiAtDQo+ID4gLVRoZSBI
-RE1JIFBIWSBzZXJpYWxpemVzIHRoZSBIRE1JIGVuY29kZXIncyB0aHJlZSBjaGFubmVsIDEwLWJp
-dCBwYXJhbGxlbA0KPiA+IC1vdXRwdXQgYW5kIGRyaXZlcyB0aGUgSERNSSBwYWRzLg0KPiA+IC0N
-Cj4gPiAtUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiAtLSBjb21wYXRpYmxlOiAibWVkaWF0ZWss
-PGNoaXA+LWhkbWktcGh5Ig0KPiA+IC0tIHRoZSBzdXBwb3J0ZWQgY2hpcHMgYXJlIG10MjcwMSwg
-bXQ3NjIzIGFuZCBtdDgxNzMNCj4gPiAtLSByZWc6IFBoeXNpY2FsIGJhc2UgYWRkcmVzcyBhbmQg
-bGVuZ3RoIG9mIHRoZSBtb2R1bGUncyByZWdpc3RlcnMNCj4gPiAtLSBjbG9ja3M6IFBMTCByZWZl
-cmVuY2UgY2xvY2sNCj4gPiAtLSBjbG9jay1uYW1lczogbXVzdCBjb250YWluICJwbGxfcmVmIg0K
-PiA+IC0tIGNsb2NrLW91dHB1dC1uYW1lczogbXVzdCBiZSAiaGRtaXR4X2RpZ19jdHMiIG9uIG10
-ODE3Mw0KPiA+IC0tICNwaHktY2VsbHM6IG11c3QgYmUgPDA+DQo+ID4gLS0gI2Nsb2NrLWNlbGxz
-OiBtdXN0IGJlIDwwPg0KPiA+IC0NCj4gPiAtT3B0aW9uYWwgcHJvcGVydGllczoNCj4gPiAtLSBt
-ZWRpYXRlayxpYmlhczogVFggRFJWIGJpYXMgY3VycmVudCBmb3IgPDEuNjVHYnBzLCBkZWZhdWx0
-cyB0byAweGENCj4gPiAtLSBtZWRpYXRlayxpYmlhc191cDogVFggRFJWIGJpYXMgY3VycmVudCBm
-b3IgPjEuNjVHYnBzLCBkZWZhdWx0cyB0byAweDFjDQo+ID4gK1NlZSBwaHkvbWVkaWF0ZWssaGRt
-aS1waHkueWFtbA0KPiA+DQo+ID4gIEV4YW1wbGU6DQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1pLXBoeS55YW1s
-IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BoeS9tZWRpYXRlayxoZG1pLXBo
-eS55YW1sDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAu
-Ljk2NzAwYmI4YmMwMA0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwNCj4gPiBAQCAt
-MCwwICsxLDkxIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9u
-bHkgT1IgQlNELTItQ2xhdXNlKQ0KPiA+ICsjIENvcHlyaWdodCAoYykgMjAyMCBNZWRpYVRlaw0K
-PiA+ICslWUFNTCAxLjINCj4gPiArLS0tDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3Jn
-L3NjaGVtYXMvcGh5L21lZGlhdGVrLGhkbWktcGh5LnlhbWwjDQo+ID4gKyRzY2hlbWE6IGh0dHA6
-Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KPiA+ICsNCj4gPiArdGl0
-bGU6IE1lZGlhVGVrIEhpZ2ggRGVmaW5pdGlvbiBNdWx0aW1lZGlhIEludGVyZmFjZSAoSERNSSkg
-UEhZIGJpbmRpbmcNCj4gPiArDQo+ID4gK21haW50YWluZXJzOg0KPiA+ICsgIC0gQ2h1bi1LdWFu
-ZyBIdSA8Y2h1bmt1YW5nLmh1QGtlcm5lbC5vcmc+DQo+ID4gKyAgLSBDaHVuZmVuZyBZdW4gPGNo
-dW5mZW5nLnl1bkBtZWRpYXRlay5jb20+DQo+IA0KPiBQbGVhc2UgYWRkIFBoaWxpcHAgWmFiZWwg
-YmVjYXVzZSBoZSBpcyBNZWRpYXRlayBEUk0gZHJpdmVyIG1haW50YWluZXIuDQpPaywgd2lsbCBk
-byBpdA0KDQpUaGFua3MgYSBsb3QNCg0KPiANCj4gRFJNIERSSVZFUlMgRk9SIE1FRElBVEVLDQo+
-IE06IENodW4tS3VhbmcgSHUgPGNodW5rdWFuZy5odSBhdCBrZXJuZWwub3JnPg0KPiBNOiBQaGls
-aXBwIFphYmVsIDxwLnphYmVsIGF0IHBlbmd1dHJvbml4LmRlPg0KPiBMOiBkcmktZGV2ZWwgYXQg
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IFM6IFN1cHBvcnRlZA0KPiBGOiBEb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9tZWRpYXRlay8NCj4gDQo+IFJlZ2FyZHMsDQo+
-IENodW4tS3VhbmcuDQo+IA0KPiA+ICsNCj4gPiArZGVzY3JpcHRpb246IHwNCj4gPiArICBUaGUg
-SERNSSBQSFkgc2VyaWFsaXplcyB0aGUgSERNSSBlbmNvZGVyJ3MgdGhyZWUgY2hhbm5lbCAxMC1i
-aXQgcGFyYWxsZWwNCj4gPiArICBvdXRwdXQgYW5kIGRyaXZlcyB0aGUgSERNSSBwYWRzLg0KPiA+
-ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiArICAkbm9kZW5hbWU6DQo+ID4gKyAgICBwYXR0ZXJu
-OiAiXmhkbWktcGh5QFswLTlhLWZdKyQiDQo+ID4gKw0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4g
-KyAgICBlbnVtOg0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10MjcwMS1oZG1pLXBoeQ0KPiA+ICsg
-ICAgICAtIG1lZGlhdGVrLG10NzYyMy1oZG1pLXBoeQ0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10
-ODE3My1oZG1pLXBoeQ0KPiA+ICsNCj4gPiArICByZWc6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0K
-PiA+ICsNCj4gPiArICBjbG9ja3M6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBkZXNj
-cmlwdGlvbjogUExMIHJlZmVyZW5jZSBjbG9jaw0KPiA+ICsNCj4gPiArICBjbG9jay1uYW1lczoN
-Cj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNvbnN0OiBwbGxfcmVmDQo+ID4gKw0KPiA+
-ICsgIGNsb2NrLW91dHB1dC1uYW1lczoNCj4gPiArICAgIGl0ZW1zOg0KPiA+ICsgICAgICAtIGNv
-bnN0OiBoZG1pdHhfZGlnX2N0cw0KPiA+ICsNCj4gPiArICAiI3BoeS1jZWxscyI6DQo+ID4gKyAg
-ICBjb25zdDogMA0KPiA+ICsNCj4gPiArICAiI2Nsb2NrLWNlbGxzIjoNCj4gPiArICAgIGNvbnN0
-OiAwDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVrLGliaWFzOg0KPiA+ICsgICAgZGVzY3JpcHRpb246
-DQo+ID4gKyAgICAgIFRYIERSViBiaWFzIGN1cnJlbnQgZm9yIDwgMS42NUdicHMNCj4gPiArICAg
-ICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ICsgICAg
-bWluaW11bTogMA0KPiA+ICsgICAgbWF4aW11bTogNjMNCj4gPiArICAgIGRlZmF1bHQ6IDB4YQ0K
-PiA+ICsNCj4gPiArICBtZWRpYXRlayxpYmlhc191cDoNCj4gPiArICAgIGRlc2NyaXB0aW9uOg0K
-PiA+ICsgICAgICBUWCBEUlYgYmlhcyBjdXJyZW50IGZvciA+PSAxLjY1R2Jwcw0KPiA+ICsgICAg
-JHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMvZGVmaW5pdGlvbnMvdWludDMyDQo+ID4gKyAgICBt
-aW5pbXVtOiAwDQo+ID4gKyAgICBtYXhpbXVtOiA2Mw0KPiA+ICsgICAgZGVmYXVsdDogMHgxYw0K
-PiA+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21wYXRpYmxlDQo+ID4gKyAgLSByZWcN
-Cj4gPiArICAtIGNsb2Nrcw0KPiA+ICsgIC0gY2xvY2stbmFtZXMNCj4gPiArICAtIGNsb2NrLW91
-dHB1dC1uYW1lcw0KPiA+ICsgIC0gIiNwaHktY2VsbHMiDQo+ID4gKyAgLSAiI2Nsb2NrLWNlbGxz
-Ig0KPiA+ICsNCj4gPiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtl
-eGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9j
-ay9tdDgxNzMtY2xrLmg+DQo+ID4gKyAgICBoZG1pX3BoeTogaGRtaS1waHlAMTAyMDkxMDAgew0K
-PiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTczLWhkbWktcGh5IjsNCj4g
-PiArICAgICAgICByZWcgPSA8MHgxMDIwOTEwMCAweDI0PjsNCj4gPiArICAgICAgICBjbG9ja3Mg
-PSA8JmFwbWl4ZWRzeXMgQ0xLX0FQTUlYRURfSERNSV9SRUY+Ow0KPiA+ICsgICAgICAgIGNsb2Nr
-LW5hbWVzID0gInBsbF9yZWYiOw0KPiA+ICsgICAgICAgIGNsb2NrLW91dHB1dC1uYW1lcyA9ICJo
-ZG1pdHhfZGlnX2N0cyI7DQo+ID4gKyAgICAgICAgbWVkaWF0ZWssaWJpYXMgPSA8MHhhPjsNCj4g
-PiArICAgICAgICBtZWRpYXRlayxpYmlhc191cCA9IDwweDFjPjsNCj4gPiArICAgICAgICAjY2xv
-Y2stY2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgI3BoeS1jZWxscyA9IDwwPjsNCj4gPiArICAg
-IH07DQo+ID4gKw0KPiA+ICsuLi4NCj4gPiAtLQ0KPiA+IDIuMTguMA0KPiA+DQoNCg==
+From: daoyuan huang <daoyuan.huang@mediatek.com>
+
+Changes since v3:
+- Rebase on v5.9-rc1.
+- modify code for review comment from Rob Herring, cancel multiple nodes using
+  same register base situation.
+- control IOMMU port through pm runtime get/put to DMA components' device.
+- SCP(VPU) driver revision.
+- stop queuing jobs(remove flush_workqueue()) after mdp_m2m_release().
+- add computation of plane address with data_offset.
+- fix scale ratio check issue.
+- add default v4l2_format setting.
+
+Changes since v2:
+- modify code for review comment from Tomasz Figa & Alexandre Courbot
+- review comment from Rob Herring will offer code revision in v4, due to
+  it's related to device node modification, will need to modify code
+  architecture
+
+Changes since v1:
+- modify code for CMDQ v3 API support
+- EC ipi cmd migration
+- fix compliance test fail item (m2m cmd with -f)
+due to there is two problem in runing all format(-f) cmd:
+1. out of memory before test complete
+        Due to capture buffer mmap (refcount + 1) after reqbuf but seems
+        no corresponding munmap called before device close.
+        There are total 12XX items(formats) in format test and each format
+        alloc 8 capture/output buffers.
+2. unceasingly captureBufs() (randomly)
+        Seems the break statement didn't catch the count == 0 situation:
+        In v4l2-test-buffers.cpp, function: captureBufs()
+                        ...
+                        count--;
+                        if (!node->is_m2m && !count)
+                                break;
+        Log is as attachment
+
+I will paste the test result with problem part in another e-mail
+
+Hi,
+
+This is the first version of RFC patch for Media Data Path 3 (MDP3),
+MDP3 is used for scaling and color format conversion.
+support using GCE to write register in critical time limitation.
+support V4L2 m2m device control.
+
+daoyuan huang (4):
+  [v4,1/4] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
+  [v4,2/4] dts: arm64: mt8183: Add Mediatek MDP3 nodes
+  [v4,3/4] media: platform: Add Mediatek MDP3 driver KConfig
+  [v4,4/4] media: platform: mtk-mdp3: Add Mediatek MDP3 driver
+
+ .../bindings/media/mediatek,mt8183-mdp3.txt   |  208 +++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  116 ++
+ drivers/media/platform/Kconfig                |   17 +
+ drivers/media/platform/Makefile               |    2 +
+ drivers/media/platform/mtk-mdp3/Makefile      |    7 +
+ drivers/media/platform/mtk-mdp3/isp_reg.h     |   37 +
+ .../media/platform/mtk-mdp3/mdp-platform.h    |   58 +
+ .../media/platform/mtk-mdp3/mdp_reg_ccorr.h   |   75 +
+ .../media/platform/mtk-mdp3/mdp_reg_rdma.h    |  206 +++
+ drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h |  109 ++
+ .../media/platform/mtk-mdp3/mdp_reg_wdma.h    |  125 ++
+ .../media/platform/mtk-mdp3/mdp_reg_wrot.h    |  115 ++
+ .../media/platform/mtk-mdp3/mmsys_config.h    |  188 +++
+ drivers/media/platform/mtk-mdp3/mmsys_mutex.h |   35 +
+ .../media/platform/mtk-mdp3/mmsys_reg_base.h  |   38 +
+ drivers/media/platform/mtk-mdp3/mtk-img-ipi.h |  281 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.c   |  504 ++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-cmdq.h   |   54 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.c   | 1420 +++++++++++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-comp.h   |  155 ++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.c   |  269 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-core.h   |   86 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.c    |  795 +++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-m2m.h    |   42 +
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.c   |  748 +++++++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-regs.h   |  373 +++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.c    |  313 ++++
+ .../media/platform/mtk-mdp3/mtk-mdp3-vpu.h    |   79 +
+ 28 files changed, 6455 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-mdp3.txt
+ create mode 100644 drivers/media/platform/mtk-mdp3/Makefile
+ create mode 100644 drivers/media/platform/mtk-mdp3/isp_reg.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp-platform.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_ccorr.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_rsz.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wdma.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mdp_reg_wrot.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mmsys_config.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mmsys_mutex.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mmsys_reg_base.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-cmdq.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-comp.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-core.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-m2m.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-regs.h
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.c
+ create mode 100644 drivers/media/platform/mtk-mdp3/mtk-mdp3-vpu.h
+
+-- 
+2.18.0
 
