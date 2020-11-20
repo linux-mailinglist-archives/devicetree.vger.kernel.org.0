@@ -2,166 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 960652BAF9B
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 17:10:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7354A2BB001
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 17:19:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727043AbgKTQJF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 11:09:05 -0500
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:57877 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726719AbgKTQJE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 11:09:04 -0500
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id BACACC0008;
-        Fri, 20 Nov 2020 16:09:01 +0000 (UTC)
-Date:   Fri, 20 Nov 2020 17:09:01 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Steen Hegelund <steen.hegelund@microchip.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microsemi List <microsemi@lists.bootlin.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: phy: Add sparx5-serdes bindings
-Message-ID: <20201120160901.GA348979@piout.net>
-References: <20201120150359.2041940-1-steen.hegelund@microchip.com>
- <20201120150359.2041940-2-steen.hegelund@microchip.com>
+        id S1729428AbgKTQS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 11:18:56 -0500
+Received: from mx2.suse.de ([195.135.220.15]:54946 "EHLO mx2.suse.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729444AbgKTQSz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 11:18:55 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 1A298ACC6;
+        Fri, 20 Nov 2020 16:18:54 +0000 (UTC)
+Message-ID: <2b7f555bee663a033e2e8fc50f019c9b580a7c66.camel@suse.de>
+Subject: Re: [PATCH v5 2/2] spi: Add generic SPI multiplexer
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Date:   Fri, 20 Nov 2020 17:18:50 +0100
+In-Reply-To: <104152dd-a51e-1893-cc6b-022aecd89250@alliedtelesis.co.nz>
+References: <20200204032838.20739-3-chris.packham@alliedtelesis.co.nz>
+         <20201113154633.21542-1-nsaenzjulienne@suse.de>
+         <104152dd-a51e-1893-cc6b-022aecd89250@alliedtelesis.co.nz>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-nPpUsDmncpRH0ei3magB"
+User-Agent: Evolution 3.36.5 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201120150359.2041940-2-steen.hegelund@microchip.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 20/11/2020 16:03:56+0100, Steen Hegelund wrote:
-> Document the Sparx5 ethernet serdes phy driver bindings.
-> 
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
-> ---
->  .../bindings/phy/microchip,sparx5-serdes.yaml | 296 ++++++++++++++++++
->  1 file changed, 296 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> new file mode 100644
-> index 000000000000..0bfb752e7686
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
-> @@ -0,0 +1,296 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip Sparx5 Serdes controller
-> +
-> +maintainers:
-> +  - Steen Hegelund <steen.hegelund@microchip.com>
-> +
-> +description: |
-> +  The Sparx5 SERDES interfaces share the same basic functionality, but
-> +  support different operating modes and line rates.
-> +
-> +  The following list lists the SERDES features:
-> +
-> +  * RX Adaptive Decision Feedback Equalizer (DFE)
-> +  * Programmable continuous time linear equalizer (CTLE)
-> +  * Rx variable gain control
-> +  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
-> +  * Adjustable tx de-emphasis (FFE)
-> +  * Tx output amplitude control
-> +  * Supports rx eye monitor
-> +  * Multiple loopback modes
-> +  * Prbs generator and checker
-> +  * Polarity inversion control
-> +
-> +  SERDES6G:
-> +
-> +  The SERDES6G is a high-speed SERDES interface, which can operate at
-> +  the following data rates:
-> +
-> +  * 100 Mbps (100BASE-FX)
-> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-> +
-> +  SERDES10G
-> +
-> +  The SERDES10G is a high-speed SERDES interface, which can operate at
-> +  the following data rates:
-> +
-> +  * 100 Mbps (100BASE-FX)
-> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-> +  * 5 Gbps (QSGMII/USGMII)
-> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-> +  * 10 Gbps (10G-USGMII)
-> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-> +
-> +  SERDES25G
-> +
-> +  The SERDES25G is a high-speed SERDES interface, which can operate at
-> +  the following data rates:
-> +
-> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
-> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
-> +  * 5 Gbps (QSGMII/USGMII)
-> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
-> +  * 10 Gbps (10G-USGMII)
-> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
-> +  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^serdes@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    const: microchip,sparx5-serdes.yaml
+--=-nPpUsDmncpRH0ei3magB
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This has a spurious .yaml suffix ;)
+On Tue, 2020-11-17 at 00:08 +0000, Chris Packham wrote:
+> On 14/11/20 4:46 am, Nicolas Saenz Julienne wrote:
+> > Upon registering spi-mux's devices through spi_add_device() the kernel =
+gets
+> > stuck waiting for the 'spi_add_lock' mutex to be released. The mutex ha=
+ppens to
+> > be held by spi-mux's parent SPI bus, which unluckily, is waiting for sp=
+i-mux's
+> > probe to finish before releasing it.
+>=20
+> I just re-tested my system with v5.10.0-rc4 and didn't see any problem.=
+=20
+> My dts is pretty similar to yours the only obvious thing missing is=20
+> `mux-control-names =3D "spi";` and I also set `#size-cells =3D <1>;` (let=
+ me=20
+> know if you want me to post the whole thing).
+>=20
+> It might be dependent on the host spi controller. The re-test I just did=
+=20
+> was on a board using the spi-orion.c driver and I tested my original=20
+> change on a board using spi-bcm-qspi.c (I haven't got the board handy=20
+> right now but I could go and find one if necessary).
 
-> +
-> +  reg:
-> +    description: Address and length of the register set for the device
+Found the issue, something silly on my side. Sorry for the noise.
 
-You don't actually have to describe this property a sit comes from the
-generic schema. But maybe you could set maxItems
-
-> +
-> +  reg-names:
-> +    description: |
-> +      Names for each of the address spaces defined in
-> +      the 'reg' property. Expects the names in the same order as the
-> +      corresponding memory region in the that property.
-> +
-
-Same comment, even better, I tink you could list the expected names in
-an enum or a const list
-
-> +  '#phy-cells':
-> +    const: 1
-> +    description: |
-> +      - The main serdes input port
-> +
-> +  clocks:
-> +    description:
-> +      A list containing the phandle to the core clock of the Sparx5 device.
-
-You can drop the description and simply have maxItems: 1
+Regards,
+Nicolas
 
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--=-nPpUsDmncpRH0ei3magB
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+37GoACgkQlfZmHno8
+x/5GZgf/R2nkIl4aPSZPwKJzMdQQE60+w/KbP6MCNKterlddKumSwb5DnIEWXyil
+s/OeckEQUlZ5V09WUnPkNlARrH6tZDYWQLboQEpYReSWeLmvgcSHCp7PYBU/rXj8
+gqtkTd5AK8EFhZQUOHNQsG3O9VeB7GvNXrWuqOjciDiMmoPfe443na1T97R2K9Fj
+K3Fmj/2bNz52+9C99ZDCvxEurco91atavZvzpcJ5ISaTHOeJE5XZ2yyrJBcGNMZT
+uHDgDku+o61+ZoeWGz6HYUFp/ec6Da2JPhdsZ2U0cgruhUKpa7RHzNjqlkmdz8fL
+SjWiw1/Cci3o6sfAwjQjQ7MRUh8KYQ==
+=sdk7
+-----END PGP SIGNATURE-----
+
+--=-nPpUsDmncpRH0ei3magB--
+
