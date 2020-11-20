@@ -2,149 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 403F52BA150
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 04:43:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D6F332BA16F
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 05:26:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbgKTDmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 19 Nov 2020 22:42:51 -0500
-Received: from mail-eopbgr30051.outbound.protection.outlook.com ([40.107.3.51]:13639
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726122AbgKTDmv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 19 Nov 2020 22:42:51 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dlBuv7RxIkJu2KtD8BzcN6ZlDLLHpQ9vqzS8b9woUvd3cvKOyOujkx0i2HFXa76F0TJqaZ74Nd8slDuyg4ddNs+G777XLEQFOczn6ta10e0IIhm+YrCj1jZu6xip2dVG23FDmmPn+h0RmTx+cijST3GIc88IQYRI8MeRc7W/tmkjoUmkZNHdL9tpshz8lKEKdUr0ep5pEOPH+CJZ/gtUOLb6zDelInf/g0SE4SFn9EMAQ7yooEH9mpSglwsDxP5I4188B2vF9AMb8rUHz2NVW+yL3KBQh++T4OMnGILoV13LYwOqGPo60t3VjyI1pBobXhB79qkpweCjD1m2Sl9JNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sa3AJ6sB8l1jyiRSWwHJ8TG0ajsRYt0TdQX1CkuKw2k=;
- b=g9+wkhwvLiwoRLMAxS9hJ3Kg6kZ7JfYPmeCfI0D4HaXuAuO9eSxjOT7ebq9FtAOFA79K3slrfAPaX9ic7vR6E2BfGXl1qW94v4Ig5LpFm5AUrByQT53fsw+PboBd/RoUTs8uRqXRFHrtpc0OXzLWJv5ZKkIrBas2O+WXhwh+zhhjzuNhlZ3CnDl1YtVAAC80xWzv/ZS309xjbINi1V7wvoXu+6SPqdZf/KnBX1aEBQnWZjrV0lFN0cSabohhoRMNRPdSaNRjmM4HZzXoqQn+UxhtRgRXPVNRHhhTx0GMWjDiHuogSKdEUbSDI+DOdxeaksKG81ZaJNm/kkKYbJ6gPQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sa3AJ6sB8l1jyiRSWwHJ8TG0ajsRYt0TdQX1CkuKw2k=;
- b=TZ8tQoMP2jaAiGmhlPGP5nef7fhDJ0gTc/++NtBqzMAjD+2eA9FN1vT/lYRS0WArH+eUvpDPNN0gJWDHFX8jCLvxoKDBC9Qrr8jU0U70W8HprNdCYCgP4FqQ93YYIHGT9U8ypnfP6mMXXxI5+rYPbFVUXVy1fEZ9yxgzfwsHGL0=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com (2603:10a6:803:4c::16)
- by VI1PR04MB4717.eurprd04.prod.outlook.com (2603:10a6:803:5c::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.22; Fri, 20 Nov
- 2020 03:42:45 +0000
-Received: from VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685]) by VI1PR04MB3983.eurprd04.prod.outlook.com
- ([fe80::dcb7:6117:3def:2685%7]) with mapi id 15.20.3589.021; Fri, 20 Nov 2020
- 03:42:45 +0000
-Message-ID: <29bfc28e7116cb4eadca861e1cb43451a4f2ae70.camel@nxp.com>
-Subject: Re: [PATCH 1/8] dt-bindings: display: imx: Add i.MX8qxp/qm DPU
- binding
-From:   Liu Ying <victor.liu@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     s.hauer@pengutronix.de, linux-imx@nxp.com, airlied@linux.ie,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, tzimmermann@suse.de
-Date:   Fri, 20 Nov 2020 11:40:52 +0800
-In-Reply-To: <20201119154659.GA3306242@bogus>
-References: <1605777745-23625-1-git-send-email-victor.liu@nxp.com>
-         <1605777745-23625-2-git-send-email-victor.liu@nxp.com>
-         <20201119154659.GA3306242@bogus>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [119.31.174.66]
-X-ClientProxiedBy: SG2PR01CA0173.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::29) To VI1PR04MB3983.eurprd04.prod.outlook.com
- (2603:10a6:803:4c::16)
+        id S1726094AbgKTEYo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 19 Nov 2020 23:24:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51546 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725936AbgKTEYo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 19 Nov 2020 23:24:44 -0500
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5318C0613CF
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 20:24:43 -0800 (PST)
+Received: by mail-ot1-x342.google.com with SMTP id 79so7575733otc.7
+        for <devicetree@vger.kernel.org>; Thu, 19 Nov 2020 20:24:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=h7WuwHFiMngmuwO68KF9/HezTioINw/cSHUf/pGNYRU=;
+        b=lisRmeRhOXD4a8T6k2e6pfhp8n0joXPQ/mJYTlG0wjPzVC1NUMQ16JuhZx92CDkqa0
+         bVPO4tF+wVarxzjHw8LIwMHSvMie+uoBWP74YQEQK6Le57zEqgZ6xwAiPBRbWtZKQVtC
+         YCdQMT9ZblVhGznTJJwKWXsFKM0ErSiOKyQJoyQLg6yjoJU92Tm/VM8k9x559P3J5wn8
+         R+vE2/1VM3eLb8oHD/qhwgm1INFXLxP4QbzIrCE2sAZWxkd1WWvlDqtNdN0m99yUkalO
+         dnrMgIsarSnpjFr4B7mUCqEYMEdUOjrzCuE+d1rNAQLYI36CdrBLyrZdEABeBPsCIfnK
+         R83Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=h7WuwHFiMngmuwO68KF9/HezTioINw/cSHUf/pGNYRU=;
+        b=I/a5az5ZLLpCOic504bxSlBkKcsiRw8nBYwor/Hdc4tU8VS0H0cuWOYfZW3kX52liw
+         f98fAwktQE/DxVwmt0PqPb3OuayId9RgfHR+uTfTaxmo+PwWLIr3fZVtrxeglux6pPsM
+         A3Zi3oGkCgPUzBCodlLeU8lppOhZJl183oB4NlSg7272t3hUqqjPIcCjgSWxEiimPFBV
+         4zCXluEEsZ7KtzRzpNE02dGd63d6fR52CtNLlysigvFgE4i6cjVgnN0aMEJ6UEXoYrlq
+         pdiG1i3AP4aA4nm7WnSpLRmBjZu7bCHbdmIFjsxmVjkwhQcMHKL5aGEug0JYSnE7NRjn
+         U7Gg==
+X-Gm-Message-State: AOAM530Gp1a9RbCO5RM8+mTfKW/8toPgxS02i2smFQlDIfhkVVHeZ8bC
+        G3gALOc1iD0RaeTNTuqvq7zIwA==
+X-Google-Smtp-Source: ABdhPJwByh8JFpQbDfuRz86C6Hsku5xHXImoqPiYlUIFt4m7uYcvwmMUfgdaC9OwVizRS/Zjm5ZZEA==
+X-Received: by 2002:a05:6830:1f11:: with SMTP id u17mr12860028otg.287.1605846282990;
+        Thu, 19 Nov 2020 20:24:42 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id v73sm677319oif.30.2020.11.19.20.24.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Nov 2020 20:24:42 -0800 (PST)
+Date:   Thu, 19 Nov 2020 22:24:40 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Souradeep Chowdhury <schowdhu@codeaurora.org>
+Cc:     devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: Re: [PATCH V1 3/3] arm64: dts: qcom: sm8150: Add LLC support for
+ sm8150
+Message-ID: <20201120042440.GL8532@builder.lan>
+References: <cover.1601452132.git.schowdhu@codeaurora.org>
+ <8f0e818485941076d62a8dc9f711b0fb868ba080.1601452132.git.schowdhu@codeaurora.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from blueberry.ap.freescale.net (119.31.174.66) by SG2PR01CA0173.apcprd01.prod.exchangelabs.com (2603:1096:4:28::29) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Fri, 20 Nov 2020 03:42:41 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: cd8ee6b5-eabc-4d5a-8d13-08d88d0657b4
-X-MS-TrafficTypeDiagnostic: VI1PR04MB4717:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB4717DB6D36571156E4603A1A98FF0@VI1PR04MB4717.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:478;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FRz0cBz8RaQlRoDTvWvIx9+FI9HE/Qc0xMT8lrT3QqLnAd0sQia2NQIXzzkG1+0Cpy5ty1Zt36ZVVeV+0oj9AB7X9ivrSwrcCBHyrklAmlaVDzYnUIyByb5VbwPKpCUGiNSlcpuKnFS9Aapgbbuuin/3APi7bR4VbDbyJGwUjKSLV/Jppz0XYcfRCGbP1L8GQt+7S4Lex3CSotyVd9bYA+gxw9bwiCePlW71/bDsartWWaflEi1t7psHjgxG1c6HBfrwOYVMpSMOiXX7/CrtHlttJ6NNdCEJ1kwBxIKB6JueBi6y8AItNsBkLQDITrIl33PqXL7ulLVzCKxPKV5sJJPUmdcfyuop64qbRy0O7bSZPJ+6+SIVw56IBVjnPxz9OONd26xd9eH+nsCjnQwg9Q==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB3983.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(396003)(366004)(136003)(346002)(376002)(83380400001)(316002)(45080400002)(186003)(2616005)(6512007)(26005)(16526019)(478600001)(6486002)(956004)(966005)(66476007)(5660300002)(4001150100001)(7416002)(66946007)(66556008)(6916009)(8936002)(4326008)(8676002)(86362001)(36756003)(52116002)(2906002)(6506007)(6666004);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: KSCO7DeHRl904fvIIGdtnMY6TJqqZvhXa1n47DZVlfLwkKqoqU/HUCCYYDwuHJzWkQGJK2WWHEqS/eO+0r8QjIVX5gi6y4wwvDUxtcbXJInVn/WIUenZuRXZ/tAcNBqBOcXS5/IPRgOzLVpAxKF4FooPzcTvJPrQ/IXMmAsj+5j4Mde7n23xNDcWLLErkVijI+s+V8XdVEaHx4qCK8ARnr6NlNZRLDalQD3WdxScP+qGr9CtpIKEz0Hxwz/vjXDdhMqJBB96hJB9u6fLrwdLq80KphqN4XbfUN9XEI5Ky8qGNT+gwDoMA8Rpz4ujXjIIy/TGkccR76sEUEVXmGkvAUCkM8a2N30SePo3IEilPmSlg1wZT7vOIyOgnPin6M5wvFSr5q/G+zZbQrgUlL0/6LRdaeu0PUV1jyLeEmYgV+SxRbb6rklJIMlRb7qqBhW6KzkrM7ze1L1MUz+M2QauMgRqVDLi7CWu7hsw7dFCyLXeO9pTV6Sut//dtNViobz/xyvlsPRrRca5N8iPbP9fbTE4l7Jf12IkeaR3Mt6QaXzLPDw13ZORi+ERmBnUsapPMdGxF/BaNq/25EauZW8ZzC+2SHer6V86sYlGndCgy8QkUvRuQ/Mr5JZLBnwDe8Fl9eyXGh8urv9RsLzlcUePEw==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd8ee6b5-eabc-4d5a-8d13-08d88d0657b4
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB3983.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2020 03:42:45.7363
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4U/qOS8PyskusHIorQkwWnZEdJPO5BRUk+pI1V38ZW7+2lv3F843iz8oJqYedaxiVBgwLHqxTYCpGyjNOfJ1Xw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4717
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8f0e818485941076d62a8dc9f711b0fb868ba080.1601452132.git.schowdhu@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2020-11-19 at 09:46 -0600, Rob Herring wrote:
-> On Thu, 19 Nov 2020 17:22:18 +0800, Liu Ying wrote:
-> > This patch adds bindings for i.MX8qxp/qm Display Processing Unit.
-> > 
-> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > ---
-> >  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml      | 358 +++++++++++++++++++++
-> >  1 file changed, 358 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
-> 
-> yamllint warnings/errors:
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:29:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:69:111: [warning] line too long (111 > 110 characters) (line-length)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:70:111: [warning] line too long (111 > 110 characters) (line-length)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:71:111: [warning] line too long (112 > 110 characters) (line-length)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:72:111: [warning] line too long (112 > 110 characters) (line-length)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:73:111: [warning] line too long (111 > 110 characters) (line-length)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:74:111: [warning] line too long (111 > 110 characters) (line-length)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:75:111: [warning] line too long (112 > 110 characters) (line-length)
-> ./Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml:76:111: [warning] line too long (112 > 110 characters) (line-length)
+On Wed 30 Sep 03:14 CDT 2020, Souradeep Chowdhury wrote:
 
-I'll fix the yamllint warnings in v2. Sorry.
-
-> 
-> dtschema/dtc warnings/errors:
-> Error: Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.example.dts:85.33-34 syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.example.dt.yaml] Error 1
-> make[1]: *** Waiting for unfinished jobs....
-> make: *** [Makefile:1364: dt_binding_check] Error 2
-
-The dtschema/dtc errors in patch 1/8, 2/8 and 3/8 are caused by LPCG
-clock patch dependence(the patch 2/5 in the below series) which I
-should have noted:
-
-https://www.spinics.net/lists/arm-kernel/msg856137.html
-
-Regards,
-Liu Ying
-
-> 
-> 
-> See https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fpatchwork.ozlabs.org%2Fpatch%2F1402850&amp;data=04%7C01%7Cvictor.liu%40nxp.com%7Ca608f971d3f746496dfd08d88ca25bd4%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C1%7C637413976240971666%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000&amp;sdata=mj24M4wUVSa5vQmBaU5k6jHdmzL5R0JRNJ3tAqRiBLM%3D&amp;reserved=0
-> 
-> The base for the patch is generally the last rc1. Any dependencies
-> should be noted.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit.
+> Add LLCC system cache controller entry for sm8150 to support sm8150
+> for LLCC.
 > 
 
+Thank you for your patches Souradeep, unfortunately there where some
+indentation issues that you would have seen if you ran
+./scripts/checkpatch.pl --strict.
+
+I fixed these issues up and applied the patches towards v5.11.
+
+Thank you,
+Bjorn
+
+> Signed-off-by: Souradeep Chowdhury <schowdhu@codeaurora.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index f0a872e02686..71037a1bb217 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -490,7 +490,14 @@
+>  			qcom,bcm-voters = <&apps_bcm_voter>;
+>  		};
+>  
+> -		ufs_mem_hc: ufshc@1d84000 {
+> +	        system-cache-controller@9200000 {
+> +                        compatible = "qcom,sm8150-llcc";
+> +                        reg = <0 0x09200000 0 0x200000>, <0 0x09600000 0 0x50000>;
+> +                        reg-names = "llcc_base", "llcc_broadcast_base";
+> +                        interrupts = <GIC_SPI 582 IRQ_TYPE_LEVEL_HIGH>;
+> +                 };
+> +
+> +        	ufs_mem_hc: ufshc@1d84000 {
+>  			compatible = "qcom,sm8150-ufshc", "qcom,ufshc",
+>  				     "jedec,ufs-2.0";
+>  			reg = <0 0x01d84000 0 0x2500>;
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
