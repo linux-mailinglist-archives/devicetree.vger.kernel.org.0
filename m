@@ -2,214 +2,380 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 297232BAC47
-	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 15:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 765AA2BAC9C
+	for <lists+devicetree@lfdr.de>; Fri, 20 Nov 2020 16:06:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728207AbgKTOzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 09:55:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726529AbgKTOzS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 09:55:18 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8FC2C0613CF
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 06:55:16 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id c9so10611693wml.5
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 06:55:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Jm4OkDH2nCeoYwOCMfwAPaBKvP0WLi1KuZbg+Z+VjWg=;
-        b=RAJ3zYkmAdBGR+XQMSetSo2yuagBbyyEAhTIr0tqfENvJ7vcOJuNPpXZrXh5JMkXdD
-         hgtEFkG7JT7Ym4FNtLlVoTD3lWBMDZHOUXNikwVZhWmaOANIwioeCrOGj04wna61msOU
-         UXyUrR5yDReBQsL69HpT5GnjapIYgz1qhUXPv/swxW/YeqUx1TTpDnHKkz902GxtOwV7
-         xQnMY/5f5ckHaGQMqmGPZIWMtnuYtDopopkG2WiY+AYPyEk8DAbQ1/yT6cv2lqh8LH9q
-         LkX7zTlvntn92SIL4H9AAUHSEQxzEtbN4l4sVTrw3vbQy9zN2dQ8DZx4L2htXuayplKV
-         9MIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Jm4OkDH2nCeoYwOCMfwAPaBKvP0WLi1KuZbg+Z+VjWg=;
-        b=hJj+1Znpy6jCqZITIGr+D82rE2AqAo2zHbU2YEo9g2JYIoH13DHpF2JcodrmElW8sR
-         lhTmKHFVUTtP4IKpWBlEfn48IMclkMORBWuaZOCbRuRueOd2VvYKnMvjeB/p4vHGpN5O
-         6MSCDNwjZ05NRLNrZy1aPR5jBMiwzmKxBOucrQALuRY6oWsYpn0m9hJ+qcYS0inWw3qf
-         DohLKkJ/SQPI+k5L9BBLA8T8BDFqbXw853LhC+IUOIjFRreG7ff59S4yPpvkpedhTy8N
-         DADHD6nOA/hs5n9WXAPWa2fFruIMRmOzWuHugO6+0XYsBWP9HW3mpRWCVuqi48sz5RAj
-         qR+A==
-X-Gm-Message-State: AOAM530M9zqJN1jORCRBM2nxkyfPqfKGME09DPVlFe5i7mMY2ub/f+Mw
-        HhFhV3dMNhaMin0kcoMnpp8jZQ==
-X-Google-Smtp-Source: ABdhPJwZw/qXHEEH/h3m70sEmm9f4sKarSNbjD9BqgezEDCOaFYQhMHtPuAtQrSHg8rdLJrgsf8Wtw==
-X-Received: by 2002:a05:600c:256:: with SMTP id 22mr10113073wmj.120.1605884114135;
-        Fri, 20 Nov 2020 06:55:14 -0800 (PST)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:419f:dca4:d17a:66a7? ([2a01:e35:2ec0:82b0:419f:dca4:d17a:66a7])
-        by smtp.gmail.com with ESMTPSA id d134sm4661133wmd.8.2020.11.20.06.55.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Nov 2020 06:55:13 -0800 (PST)
-Subject: Re: [RESEND PATCH v3 3/3] phy: amlogic:
- phy-meson-axg-mipi-pcie-analog: add support for MIPI DSI analog
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Remi Pommarel <repk@triplefau.lt>
-References: <20201116101647.73448-1-narmstrong@baylibre.com>
- <20201116101647.73448-4-narmstrong@baylibre.com>
- <20201120095825.GD2925@vkoul-mobl>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <593b8745-6cb5-b6c3-9540-07dc6bc429b0@baylibre.com>
-Date:   Fri, 20 Nov 2020 15:55:12 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728444AbgKTPEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 10:04:13 -0500
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:52704 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728460AbgKTPEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 10:04:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1605884650; x=1637420650;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=MTG9rLE45dKyigkrf9bp8Y8yuOya/pIlVclPBkXj0os=;
+  b=SzIH5m13fhKrGdFaAKtwobGwIO78rNE8Qs+yHobQqm1v7XOzoJeoplsT
+   IH8yi7wJhIjCpZNvtaPeQ22pJqO/YatPHj3RdPNusp2bBsZVHh0iWIlx+
+   hpzTLQcvN99ay7KjLXq7We5iTUc0qtZMggFq89aKYUoS1emO7/uYvPMK8
+   R3ZzZvZAELIAfTNhO9AsHjMM5ovB6R4kSol6nztKaHCCkGwHv78TodjQt
+   tND5aRcQ8eZaWXbaCzrQfLv9Ap0JtWTr3LvarYD6+Xu31KmtIscUJnD3e
+   w0yS29/51ZmuqMKpNw2yGsUu/3iUeBMMckKmMjZbuD7tNwIX3ZGadtjR/
+   A==;
+IronPort-SDR: WSZ8WoUnToRJDcRg21DfrmZ9m8zl/eYaZYggmRADHwilLjCq8qXbVhaA/bASc34aIPGpKEh9k+
+ 031giYcUWRpJuevWaPK3cncRJdPnnr9gGQc+8T8u2h5ljuaKAlVl/Ap5iT4ckzgUHdRVN+YwM5
+ zfyX5E82HWwukcp7QkUemcC2PwrsM87OWXV5Ibs3zDEN4vgWd8xJCfC38Jc6xF/YzxXQBx5GBH
+ BjfmI0ZYYqZxloUsje07L+/IcsuapFj6HdlLNT9damis5QtHK1jHkjQTLCi0fSpzW0SpOBUhi0
+ ns0=
+X-IronPort-AV: E=Sophos;i="5.78,356,1599548400"; 
+   d="scan'208";a="97073352"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Nov 2020 08:04:09 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 20 Nov 2020 08:04:09 -0700
+Received: from mchp-dev-shegelun.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Fri, 20 Nov 2020 08:04:07 -0700
+From:   Steen Hegelund <steen.hegelund@microchip.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Device Tree List <devicetree@vger.kernel.org>
+CC:     Steen Hegelund <steen.hegelund@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
+        Microsemi List <microsemi@lists.bootlin.com>,
+        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 1/4] dt-bindings: phy: Add sparx5-serdes bindings
+Date:   Fri, 20 Nov 2020 16:03:56 +0100
+Message-ID: <20201120150359.2041940-2-steen.hegelund@microchip.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201120150359.2041940-1-steen.hegelund@microchip.com>
+References: <20201120150359.2041940-1-steen.hegelund@microchip.com>
 MIME-Version: 1.0
-In-Reply-To: <20201120095825.GD2925@vkoul-mobl>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/11/2020 10:58, Vinod Koul wrote:
-> On 16-11-20, 11:16, Neil Armstrong wrote:
->> The AXG Analog MIPI-DSI PHY also provides functions to the PCIe PHY,
->> thus we need to have inclusive support for both interfaces at runtime.
->>
->> This fixes the regmap get from parent node, removes cell param
->> to select a mode and implement runtime configuration & power on/off
->> for both functions since they are not exclusive.
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> Reviewed-by: Remi Pommarel <repk@triplefau.lt>
->> ---
->>  drivers/phy/amlogic/Kconfig                   |   1 +
->>  .../amlogic/phy-meson-axg-mipi-pcie-analog.c  | 204 ++++++++++++------
->>  2 files changed, 136 insertions(+), 69 deletions(-)
->>
->> diff --git a/drivers/phy/amlogic/Kconfig b/drivers/phy/amlogic/Kconfig
->> index 99e8a4c7f1f3..db5d0cd757e3 100644
->> --- a/drivers/phy/amlogic/Kconfig
->> +++ b/drivers/phy/amlogic/Kconfig
->> @@ -66,6 +66,7 @@ config PHY_MESON_AXG_MIPI_PCIE_ANALOG
->>  	depends on OF && (ARCH_MESON || COMPILE_TEST)
->>  	select GENERIC_PHY
->>  	select REGMAP_MMIO
->> +	select GENERIC_PHY_MIPI_DPHY
->>  	help
->>  	  Enable this to support the Meson MIPI + PCIE analog PHY
->>  	  found in Meson AXG SoCs.
->> diff --git a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
->> index 1431cbf885e1..6eb21551bdd9 100644
->> --- a/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
->> +++ b/drivers/phy/amlogic/phy-meson-axg-mipi-pcie-analog.c
->> @@ -4,9 +4,13 @@
->>   *
->>   * Copyright (C) 2019 Remi Pommarel <repk@triplefau.lt>
->>   */
->> +#include <linux/bitfield.h>
->> +#include <linux/bitops.h>
->>  #include <linux/module.h>
->>  #include <linux/phy/phy.h>
->>  #include <linux/regmap.h>
->> +#include <linux/delay.h>
->> +#include <linux/mfd/syscon.h>
->>  #include <linux/platform_device.h>
->>  #include <dt-bindings/phy/phy.h>
->>  
->> @@ -14,10 +18,10 @@
->>  #define		HHI_MIPI_CNTL0_COMMON_BLOCK	GENMASK(31, 28)
->>  #define		HHI_MIPI_CNTL0_ENABLE		BIT(29)
->>  #define		HHI_MIPI_CNTL0_BANDGAP		BIT(26)
->> -#define		HHI_MIPI_CNTL0_DECODE_TO_RTERM	GENMASK(15, 12)
->> -#define		HHI_MIPI_CNTL0_OUTPUT_EN	BIT(3)
->> +#define		HHI_MIPI_CNTL0_DIF_REF_CTL1	GENMASK(25, 16)
->> +#define		HHI_MIPI_CNTL0_DIF_REF_CTL0	GENMASK(15, 0)
->>  
->> -#define HHI_MIPI_CNTL1 0x01
->> +#define HHI_MIPI_CNTL1 0x04
->>  #define		HHI_MIPI_CNTL1_CH0_CML_PDR_EN	BIT(12)
->>  #define		HHI_MIPI_CNTL1_LP_ABILITY	GENMASK(5, 4)
->>  #define		HHI_MIPI_CNTL1_LP_RESISTER	BIT(3)
->> @@ -25,100 +29,170 @@
->>  #define		HHI_MIPI_CNTL1_INPUT_SEL	BIT(1)
->>  #define		HHI_MIPI_CNTL1_PRBS7_EN		BIT(0)
->>  
->> -#define HHI_MIPI_CNTL2 0x02
->> +#define HHI_MIPI_CNTL2 0x08
->>  #define		HHI_MIPI_CNTL2_CH_PU		GENMASK(31, 25)
->>  #define		HHI_MIPI_CNTL2_CH_CTL		GENMASK(24, 19)
->>  #define		HHI_MIPI_CNTL2_CH0_DIGDR_EN	BIT(18)
->>  #define		HHI_MIPI_CNTL2_CH_DIGDR_EN	BIT(17)
->>  #define		HHI_MIPI_CNTL2_LPULPS_EN	BIT(16)
->> -#define		HHI_MIPI_CNTL2_CH_EN(n)		BIT(15 - (n))
->> +#define		HHI_MIPI_CNTL2_CH_EN		GENMASK(15, 11)
->>  #define		HHI_MIPI_CNTL2_CH0_LP_CTL	GENMASK(10, 1)
->>  
->> +#define DSI_LANE_0              (1 << 4)
->> +#define DSI_LANE_1              (1 << 3)
->> +#define DSI_LANE_CLK            (1 << 2)
->> +#define DSI_LANE_2              (1 << 1)
->> +#define DSI_LANE_3              (1 << 0)
->> +#define DSI_LANE_MASK		(0x1F)
-> 
-> This should use BIT(), also there are interesting helpers in bitfield.h
-> to help with register fields, do send follow up patches..
-> 
+Document the Sparx5 ethernet serdes phy driver bindings.
 
-Ok, cleanup will follow
+Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
+---
+ .../bindings/phy/microchip,sparx5-serdes.yaml | 296 ++++++++++++++++++
+ 1 file changed, 296 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
 
-Thanks,
-Neil
+diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+new file mode 100644
+index 000000000000..0bfb752e7686
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+@@ -0,0 +1,296 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip Sparx5 Serdes controller
++
++maintainers:
++  - Steen Hegelund <steen.hegelund@microchip.com>
++
++description: |
++  The Sparx5 SERDES interfaces share the same basic functionality, but
++  support different operating modes and line rates.
++
++  The following list lists the SERDES features:
++
++  * RX Adaptive Decision Feedback Equalizer (DFE)
++  * Programmable continuous time linear equalizer (CTLE)
++  * Rx variable gain control
++  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
++  * Adjustable tx de-emphasis (FFE)
++  * Tx output amplitude control
++  * Supports rx eye monitor
++  * Multiple loopback modes
++  * Prbs generator and checker
++  * Polarity inversion control
++
++  SERDES6G:
++
++  The SERDES6G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++
++  SERDES10G
++
++  The SERDES10G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 100 Mbps (100BASE-FX)
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
++
++  SERDES25G
++
++  The SERDES25G is a high-speed SERDES interface, which can operate at
++  the following data rates:
++
++  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
++  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
++  * 5 Gbps (QSGMII/USGMII)
++  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
++  * 10 Gbps (10G-USGMII)
++  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
++  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
++
++properties:
++  $nodename:
++    pattern: "^serdes@[0-9a-f]+$"
++
++  compatible:
++    const: microchip,sparx5-serdes.yaml
++
++  reg:
++    description: Address and length of the register set for the device
++
++  reg-names:
++    description: |
++      Names for each of the address spaces defined in
++      the 'reg' property. Expects the names in the same order as the
++      corresponding memory region in the that property.
++
++  '#phy-cells':
++    const: 1
++    description: |
++      - The main serdes input port
++
++  clocks:
++    description:
++      A list containing the phandle to the core clock of the Sparx5 device.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - '#phy-cells'
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    serdes: serdes@10808000 {
++      compatible = "microchip,sparx5-serdes";
++      #phy-cells = <1>;
++      clocks = <&sys_clk>;
++      reg = <0x10808000 0x8000>, /* sd_cmu_0 */
++        <0x10810000 0x8000>, /* sd_cmu_1 */
++        <0x10818000 0x8000>, /* sd_cmu_2 */
++        <0x10820000 0x8000>, /* sd_cmu_3 */
++        <0x10828000 0x8000>, /* sd_cmu_4 */
++        <0x10830000 0x8000>, /* sd_cmu_5 */
++        <0x10838000 0x8000>, /* sd_cmu_6 */
++        <0x10840000 0x8000>, /* sd_cmu_7 */
++        <0x10848000 0x8000>, /* sd_cmu_8 */
++        <0x10850000 0x8000>, /* sd_cmu_cfg_0 */
++        <0x10858000 0x8000>, /* sd_cmu_cfg_1 */
++        <0x10860000 0x8000>, /* sd_cmu_cfg_2 */
++        <0x10868000 0x8000>, /* sd_cmu_cfg_3 */
++        <0x10870000 0x8000>, /* sd_cmu_cfg_4 */
++        <0x10878000 0x8000>, /* sd_cmu_cfg_5 */
++        <0x10880000 0x8000>, /* sd_cmu_cfg_6 */
++        <0x10888000 0x8000>, /* sd_cmu_cfg_7 */
++        <0x10890000 0x8000>, /* sd_cmu_cfg_8 */
++        <0x10898000 0x8000>, /* sd6g_lane_0 */
++        <0x108a0000 0x8000>, /* sd6g_lane_1 */
++        <0x108a8000 0x8000>, /* sd6g_lane_2 */
++        <0x108b0000 0x8000>, /* sd6g_lane_3 */
++        <0x108b8000 0x8000>, /* sd6g_lane_4 */
++        <0x108c0000 0x8000>, /* sd6g_lane_5 */
++        <0x108c8000 0x8000>, /* sd6g_lane_6 */
++        <0x108d0000 0x8000>, /* sd6g_lane_7 */
++        <0x108d8000 0x8000>, /* sd6g_lane_8 */
++        <0x108e0000 0x8000>, /* sd6g_lane_9 */
++        <0x108e8000 0x8000>, /* sd6g_lane_10 */
++        <0x108f0000 0x8000>, /* sd6g_lane_11 */
++        <0x108f8000 0x8000>, /* sd6g_lane_12 */
++        <0x10900000 0x8000>, /* sd10g_lane_0 */
++        <0x10908000 0x8000>, /* sd10g_lane_1 */
++        <0x10910000 0x8000>, /* sd10g_lane_2 */
++        <0x10918000 0x8000>, /* sd10g_lane_3 */
++        <0x109a8000 0x8000>, /* sd_lane_0 */
++        <0x109b0000 0x8000>, /* sd_lane_1 */
++        <0x109b8000 0x8000>, /* sd_lane_2 */
++        <0x109c0000 0x8000>, /* sd_lane_3 */
++        <0x109c8000 0x8000>, /* sd_lane_4 */
++        <0x109d0000 0x8000>, /* sd_lane_5 */
++        <0x109d8000 0x8000>, /* sd_lane_6 */
++        <0x109e0000 0x8000>, /* sd_lane_7 */
++        <0x109e8000 0x8000>, /* sd_lane_8 */
++        <0x109f0000 0x8000>, /* sd_lane_9 */
++        <0x109f8000 0x8000>, /* sd_lane_10 */
++        <0x10a00000 0x8000>, /* sd_lane_11 */
++        <0x10a08000 0x8000>, /* sd_lane_12 */
++        <0x10a10000 0x8000>, /* sd_lane_13 */
++        <0x10a18000 0x8000>, /* sd_lane_14 */
++        <0x10a20000 0x8000>, /* sd_lane_15 */
++        <0x10a28000 0x8000>, /* sd_lane_16 */
++        <0x10c08000 0x8000>, /* sd_cmu_9 */
++        <0x10c10000 0x8000>, /* sd_cmu_10 */
++        <0x10c18000 0x8000>, /* sd_cmu_11 */
++        <0x10c20000 0x8000>, /* sd_cmu_12 */
++        <0x10c28000 0x8000>, /* sd_cmu_13 */
++        <0x10c30000 0x8000>, /* sd_cmu_cfg_9 */
++        <0x10c38000 0x8000>, /* sd_cmu_cfg_10 */
++        <0x10c40000 0x8000>, /* sd_cmu_cfg_11 */
++        <0x10c48000 0x8000>, /* sd_cmu_cfg_12 */
++        <0x10c50000 0x8000>, /* sd_cmu_cfg_13 */
++        <0x10c58000 0x8000>, /* sd10g_lane_4 */
++        <0x10c60000 0x8000>, /* sd10g_lane_5 */
++        <0x10c68000 0x8000>, /* sd10g_lane_6 */
++        <0x10c70000 0x8000>, /* sd10g_lane_7 */
++        <0x10c78000 0x8000>, /* sd10g_lane_8 */
++        <0x10c80000 0x8000>, /* sd10g_lane_9 */
++        <0x10c88000 0x8000>, /* sd10g_lane_10 */
++        <0x10c90000 0x8000>, /* sd10g_lane_11 */
++        <0x10c98000 0x8000>, /* sd25g_lane_0 */
++        <0x10ca0000 0x8000>, /* sd25g_lane_1 */
++        <0x10ca8000 0x8000>, /* sd25g_lane_2 */
++        <0x10cb0000 0x8000>, /* sd25g_lane_3 */
++        <0x10cb8000 0x8000>, /* sd25g_lane_4 */
++        <0x10cc0000 0x8000>, /* sd25g_lane_5 */
++        <0x10cc8000 0x8000>, /* sd25g_lane_6 */
++        <0x10cd0000 0x8000>, /* sd25g_lane_7 */
++        <0x10d58000 0x8000>, /* sd_lane_17 */
++        <0x10d60000 0x8000>, /* sd_lane_18 */
++        <0x10d68000 0x8000>, /* sd_lane_19 */
++        <0x10d70000 0x8000>, /* sd_lane_20 */
++        <0x10d78000 0x8000>, /* sd_lane_21 */
++        <0x10d80000 0x8000>, /* sd_lane_22 */
++        <0x10d88000 0x8000>, /* sd_lane_23 */
++        <0x10d90000 0x8000>, /* sd_lane_24 */
++        <0x10d98000 0x8000>, /* sd_lane_25g_25 */
++        <0x10da0000 0x8000>, /* sd_lane_25g_26 */
++        <0x10da8000 0x8000>, /* sd_lane_25g_27 */
++        <0x10db0000 0x8000>, /* sd_lane_25g_28 */
++        <0x10db8000 0x8000>, /* sd_lane_25g_29 */
++        <0x10dc0000 0x8000>, /* sd_lane_25g_30 */
++        <0x10dc8000 0x8000>, /* sd_lane_25g_31 */
++        <0x10dd0000 0x8000>; /* sd_lane_25g_32 */
++      reg-names =
++        "sd_cmu_0",
++        "sd_cmu_1",
++        "sd_cmu_2",
++        "sd_cmu_3",
++        "sd_cmu_4",
++        "sd_cmu_5",
++        "sd_cmu_6",
++        "sd_cmu_7",
++        "sd_cmu_8",
++        "sd_cmu_cfg_0",
++        "sd_cmu_cfg_1",
++        "sd_cmu_cfg_2",
++        "sd_cmu_cfg_3",
++        "sd_cmu_cfg_4",
++        "sd_cmu_cfg_5",
++        "sd_cmu_cfg_6",
++        "sd_cmu_cfg_7",
++        "sd_cmu_cfg_8",
++        "sd6g_lane_0",
++        "sd6g_lane_1",
++        "sd6g_lane_2",
++        "sd6g_lane_3",
++        "sd6g_lane_4",
++        "sd6g_lane_5",
++        "sd6g_lane_6",
++        "sd6g_lane_7",
++        "sd6g_lane_8",
++        "sd6g_lane_9",
++        "sd6g_lane_10",
++        "sd6g_lane_11",
++        "sd6g_lane_12",
++        "sd10g_lane_0",
++        "sd10g_lane_1",
++        "sd10g_lane_2",
++        "sd10g_lane_3",
++        "sd_lane_0",
++        "sd_lane_1",
++        "sd_lane_2",
++        "sd_lane_3",
++        "sd_lane_4",
++        "sd_lane_5",
++        "sd_lane_6",
++        "sd_lane_7",
++        "sd_lane_8",
++        "sd_lane_9",
++        "sd_lane_10",
++        "sd_lane_11",
++        "sd_lane_12",
++        "sd_lane_13",
++        "sd_lane_14",
++        "sd_lane_15",
++        "sd_lane_16",
++        "sd_cmu_9",
++        "sd_cmu_10",
++        "sd_cmu_11",
++        "sd_cmu_12",
++        "sd_cmu_13",
++        "sd_cmu_cfg_9",
++        "sd_cmu_cfg_10",
++        "sd_cmu_cfg_11",
++        "sd_cmu_cfg_12",
++        "sd_cmu_cfg_13",
++        "sd10g_lane_4",
++        "sd10g_lane_5",
++        "sd10g_lane_6",
++        "sd10g_lane_7",
++        "sd10g_lane_8",
++        "sd10g_lane_9",
++        "sd10g_lane_10",
++        "sd10g_lane_11",
++        "sd25g_lane_0",
++        "sd25g_lane_1",
++        "sd25g_lane_2",
++        "sd25g_lane_3",
++        "sd25g_lane_4",
++        "sd25g_lane_5",
++        "sd25g_lane_6",
++        "sd25g_lane_7",
++        "sd_lane_17",
++        "sd_lane_18",
++        "sd_lane_19",
++        "sd_lane_20",
++        "sd_lane_21",
++        "sd_lane_22",
++        "sd_lane_23",
++        "sd_lane_24",
++        "sd_lane_25g_25",
++        "sd_lane_25g_26",
++        "sd_lane_25g_27",
++        "sd_lane_25g_28",
++        "sd_lane_25g_29",
++        "sd_lane_25g_30",
++        "sd_lane_25g_31",
++        "sd_lane_25g_32";
++    };
++
++...
+-- 
+2.29.2
 
