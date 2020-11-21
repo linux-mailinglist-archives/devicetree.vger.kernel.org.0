@@ -2,97 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B4BE62BBD79
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 06:58:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76EAA2BBDFE
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 09:24:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726389AbgKUF6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 00:58:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34906 "EHLO
+        id S1727174AbgKUIYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 03:24:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726065AbgKUF6I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 00:58:08 -0500
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C8F5C061A4A
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 21:58:07 -0800 (PST)
-Received: by mail-ot1-x342.google.com with SMTP id l36so10915429ota.4
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 21:58:07 -0800 (PST)
+        with ESMTP id S1726629AbgKUIYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 03:24:01 -0500
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC8B4C0613CF
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 00:24:00 -0800 (PST)
+Received: by mail-lj1-x241.google.com with SMTP id h23so12513968ljg.13
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 00:24:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=1vU8xvk9aReUjtQz0NsQ8GBx5f4Pt92u5iiwK3L8Acw=;
-        b=r+qMNz9tB+sl7RB1Tb1qqEjso8wf4QYzeQr3apNL99Do/doYnXBscFrc6ZSTPky9wS
-         6Cg5VuvL8lzotoER1U65WqRm5ayyyrKgiZUQdBA6CdS+bak8152kbZTh9svQzo4AC6QQ
-         E+8XqPCE5GsCIXz5Ci05cVhE1CNpp4L87f1ReXup/3/9xED/oU4yPlYP0qOQUNZleerD
-         yUyUqWtE1jBE9ZCllPLlX3i3SimQGQW4ZOul2ntkxf4salidluaxgv8yjZYsLZQavDpJ
-         sgBvH/nASZ2yNlCDkoD9EwrCvdAmjFrVhxk6H7IfE1qeYm5Z/BzDfvx0rNnDZELIcTWS
-         iAGw==
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=iJSlT1b2k1DRiQHEF+7jrbm/MyulTD0Qr+wLmWMIsac=;
+        b=mmma4fDsf4ZybwvOz2gqAegFhUQD6FfE8YgqIEct85hvpg/ZesDbH/wKFKnEDPrrQL
+         DJ4foCPsNxTwimC5GTKqqguFHofl7E1NOW96AcLhEx07OsRXQU3CaRZYYB2zDcu7w4jC
+         bI4DU8rTxyK9eLOLf+7XJk6HkveNu6JlGco79UovaO3PKUK9+qDNkkGkZZl9ScIqCaJ9
+         qcAErpKwE7rBqY8pmw3PcQJpioZ/KXb52X8UC+FiUPJiGjFz9mUgeu+TVAG5uHMBeLWc
+         2AWToqXq8gVqLsNLQXNVzf78UAlBoHiwyN9PWcHpCM1ee2vK4XJSRMMlXqVPUixxRIoL
+         St2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=1vU8xvk9aReUjtQz0NsQ8GBx5f4Pt92u5iiwK3L8Acw=;
-        b=hLPlkQyOWvddMAUB86Sj8V82UCo7ykLx524p0PWG0riCY76Gdl9m75cFloXN7ndF8y
-         iv/PzwZjKjEyv4hPesNjhyGWwZOx2LuaN2NwUHuSbbOsRT+8OrzevTo+MMIfEntn+qpr
-         Xt2jD5vojNDoLy5kt++GyKjRSqgPeBzvkYNkrRiUfrHF0ubN73wWpaFneAz99aFMD/jB
-         NumOGLTxmnA+Bd4deGypdKKIkQJqBD2u73JjFHn1i92yN9gizKWzcXWWMSeN7iZQblun
-         M/y94dDEZ8ogbKmxOsMd73WjG7HeU+VAcJvCXFbmovm7YxNwV5yeD8Y+gMhHTN+I1g3K
-         3Zxg==
-X-Gm-Message-State: AOAM531dSt4UtxdMMkzzKnUXXVjlB6SjEvsocLAygRDv3BB+yM7pl7zK
-        rWT++mp4vku0v6nmYGEmWTzgaQ==
-X-Google-Smtp-Source: ABdhPJxdMFu6KH8ai3kdQ6KbA9g+1gJ25gAqRooUkh6EECc8ZIO29v+qbQZdqi0WbCla20z4GIri1w==
-X-Received: by 2002:a9d:6212:: with SMTP id g18mr6993796otj.89.1605938286796;
-        Fri, 20 Nov 2020 21:58:06 -0800 (PST)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id k20sm2634352ots.53.2020.11.20.21.58.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2020 21:58:06 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8150-mtp: Enable WiFi node
-Date:   Fri, 20 Nov 2020 21:58:08 -0800
-Message-Id: <20201121055808.582401-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201121055808.582401-1-bjorn.andersson@linaro.org>
-References: <20201121055808.582401-1-bjorn.andersson@linaro.org>
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=iJSlT1b2k1DRiQHEF+7jrbm/MyulTD0Qr+wLmWMIsac=;
+        b=JRxEv4lTHYl1L529lOsijks2x/FJ3BGKGDmqjdP7nityCMH9fGgF7Q39jizwjvpIEx
+         OTHQtjAP8dQhRwdZSemQTuab9GlUHVALh4wndTeZ8IUON1vvRaiYTRDmKJ2kxzy6PC1Y
+         gfiWtuyxWHDxHGKpSc5TvNRBOXXWCE96Y0Qc7tuZgb+VqFLCSumGV70OCnD4etBRctqj
+         nD4lWt9ejGSOU7zon8M16fTV3D/jCsOTCyjSamHf1DamSrswut7IzMAh56/jQgnnbcMM
+         xstI98m78NxlPosT5hoqx52FDAi+JAWWZvUzz8KYOS5FydQS8Q3OWy9VJ8jS2kfoua56
+         LX5Q==
+X-Gm-Message-State: AOAM530nbmahevf59XhEKBqJthe7U1mOE0xuichoHVu3fM2VS42bX3Nb
+        n1FsEcLFNVfKzbwt722bt4QooGlWiEbALt+/72g=
+X-Google-Smtp-Source: ABdhPJzLF9jiaU0gRITL9DDDIvk/UxnloKebO/gNlq/flBfAzCHg8Fa679Bu8K5rjDN/BP9NcWG7m4aoUm5tcD23kP4=
+X-Received: by 2002:a05:651c:1b6:: with SMTP id c22mr10359791ljn.365.1605947039204;
+ Sat, 21 Nov 2020 00:23:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:ab3:1a43:0:0:0:0:0 with HTTP; Sat, 21 Nov 2020 00:23:58
+ -0800 (PST)
+Reply-To: mussaomra2017@gmail.com
+From:   Mr Omra Musa <adams.sule02@gmail.com>
+Date:   Sat, 21 Nov 2020 01:23:58 -0700
+Message-ID: <CAHahp41iwHMRLjtg6vzwd06z6AhaAePA9WjUVw0apoRR3y9eiw@mail.gmail.com>
+Subject: I NEED YOUR URGENT RESPOND.
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Marek <jonathan@marek.ca>
+From Mr Omra Musa
+Bank Of Africa (B.O.A)
+Burkina Faso Ouagadougou
 
-Enable the WiFi node and specify its supply regulators.
+My Dear Friend,
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-[bjorn: Extracted patch from larger HDK patch]
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Please I want you to read this letter very carefully and I must
+apologize for barging this message into your mail box without any
+formal introduction due to the urgency and confidential of this issue
+and I know that this message will come to you as a surprise. Please
+this is not a joke and I will not like you to joke with it.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-index 6c6325c3af59..7a64a2ed78c3 100644
---- a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
-@@ -429,3 +429,12 @@ &usb_1 {
- &usb_1_dwc3 {
- 	dr_mode = "peripheral";
- };
-+
-+&wifi {
-+	status = "okay";
-+
-+	vdd-0.8-cx-mx-supply = <&vdda_wcss_pll>;
-+	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-+	vdd-1.3-rfa-supply = <&vdda_wcss_adcdac_1>;
-+	vdd-3.3-ch0-supply = <&vreg_l11c_3p3>;
-+};
--- 
-2.28.0
+I am Mr Omra Musa Manager in Bank Of Africa (B.O.A) Ouagadougou,
+Burkina Faso. I Hoped that you will not expose or betray this trust
+and confident that I am about to establish with you for the mutual
+benefit of you and I. This fund was deposited in our bank by Mr.
+Kattan Azmal from Jordan who died in a plane crash in 2000 Tbm 700
+aircraft on 31st July with his wife and the whole crew on board.
 
+I need your urgent assistance in transferring the sum of ($15) million
+USD into your account within 14 working banking days. This money has
+been deposited for years in our Bank without claim due to the owner of
+this fund died along with his entire family in an air crash since July
+31st 2000.
+
+The reason why i contacted you is that after the bank audit in 24th of
+November, we found out that this fund has remained unclaimed since the
+death of the deceased costumer.
+
+I want our bank to release this fund to you as the nearest person to
+our deceased customer while i come over to your country to share this
+fund with you as soon as you confirm this fund into your account and
+ask me to come over. I don't want the money to go into our Bank
+treasure as an abandoned fund. So this is the reason why i contacted
+you so that our bank will release this money to you as the next of kin
+to the deceased customer. Please I would like you to keep this
+proposal as a top secret and delete it if you are not interesting.
+
+Upon the receipt of your reply and indication of your capability, i
+will give you full details on how the business will be executed and
+also note that you will have 50% of the above mentioned sum if you
+agree to handle this business with me while 50% will be for me, And i
+don't want anyone here in our bank to know my involvement until you
+confirm this fund into your account and ask me to come over for the
+sharing as I indicated.
+
+I am looking forward to hear from you immediately for further information
+
+THE REQUESTED INFORMATIONS BELOW
+==================================
+1. FULL NAME..............
+2. TELEPHONE NUMBERS/MOBILE/FAX.......
+3. YOUR AGE......
+4. YOUR SEX.........
+5. YOUR OCCUPATION........
+6. YOUR COUNTRY AND CITY......
+7. YOUR HOME ADDRESS........
+8. MARITAL STATUS............
+
+Sincerely,
+Mr Omra Musa
+
+You can reply to my private email address at mussaomra2017@gmail.com
