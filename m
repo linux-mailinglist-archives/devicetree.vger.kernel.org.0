@@ -2,174 +2,371 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B4422BBB7F
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 02:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2879F2BBBB9
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:02:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728588AbgKUB0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 20:26:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49488 "EHLO
+        id S1726324AbgKUCAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 21:00:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725890AbgKUB0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 20:26:17 -0500
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F1AC0613CF;
-        Fri, 20 Nov 2020 17:26:15 -0800 (PST)
-Received: by mail-ej1-x642.google.com with SMTP id bo9so9659019ejb.13;
-        Fri, 20 Nov 2020 17:26:15 -0800 (PST)
+        with ESMTP id S1725820AbgKUCAL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:00:11 -0500
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD24C061A47
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:00:10 -0800 (PST)
+Received: by mail-yb1-xb42.google.com with SMTP id x17so10339301ybr.8
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:00:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=EABbKjZEY14y+isUKqIGvWYP0FHXdvAjUi1vl8mqG8I=;
-        b=oNo/UV2Nyhili9xdPtSgxVwqM3i4HJYYvFnfrv1fDso3YH/b7effxNQSUxmYdrFW43
-         yTPWavrjOuv4CD6L/0Vyhg3mIcuC852SHhZbosEqzGg8oMX0JI8osbc2vSbWboxhrA0u
-         n4HMfjbIZ7P72GnErXDpS4h37FsxM4WppnPYWV/8LOpIX4ukG4cjL/C0E//i5A//gwRv
-         ghFSizc45aRgDNba9r89W+N/LPAn1WrWIt3PbNPPyUkEyw1Byzy3Dx2brgZ9YQXEtSUz
-         K6Oz130Q6xFWv/O5uDG8s1tImwHm7u7WMz7KCp+aWN7yBI+6GdLlslBQiIrF/WGylz6Z
-         fq7A==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=RL33UOTlemNQ/vQ4qwl9EYK4T3gfkWAqCMJ5EwZ1yTY=;
+        b=Sbi44ROn89jSK8XlzyBlrwwURpgLSbihh/F0n6JsqZvGBlqw8IlZCselUourV3uXVt
+         sHszvmbbyueaU/ivacebDR45mAotQWucVjP35+UeQ5knBZzj+kbAoXy9Y40GhptM8yTX
+         L5dJVeNDGmeBKTtwvDQm3mVk4OuvRfDRRM4r3FEba8eXqohYh6s+q4YSdeoUNguCc7H6
+         N+Plww5vrPEmhZ5kz8jNVcyYESpsTm9PViVuLxVmpdW4HkFSpwHh0YyoEKuK6c2WlYc+
+         H89NqB5aN6hD1i1yoLuT2uMtvyCZGBh5FVwwRbCeDG0iKOlVL0G8E2/fhrvD/FSasPjH
+         jIbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EABbKjZEY14y+isUKqIGvWYP0FHXdvAjUi1vl8mqG8I=;
-        b=BTxCWIo7pcRLkp6iYjQjyA12BveaEtv+yNmdsWcNaBtedtl1TLGXka13uGyIWuh0t9
-         vTdAVrONvNWyJRx4wHjIQTsoW/Lqw/XTjo8SXf11qmy228TIfTQvqTlYk2exNGsan+of
-         CD7/EoDW7XYfsBurFzFLLux3ZfMIPlefl5NCALQK02FddNPbRqNeKnJahoTdPY82RS1v
-         8G2r6zaasLSxmJVILP+mboCUI4gKBFnERYumIHY0FM9y1fGbT8Q+qbD0xPAP8s6qaSK3
-         bGU+gljrvs6JZROkOEUihZfw2dxhk30vxkzC21/bRpzWpKX4eMLAghTZxHRf3xGBx5r1
-         xovw==
-X-Gm-Message-State: AOAM533jgN6G+WdkLtMs1hCvn2TIaaoPWIHe7RcQpn8bsI7sqA+Ht7ST
-        cg01fW7jPv0qN1UwjIqDgPc=
-X-Google-Smtp-Source: ABdhPJxskYu6oKv316/cMM881GPXN887ydYMVX2r0OdBpcIL+EPuzvrH0CR0Yi16TK/Z+ljAht21+g==
-X-Received: by 2002:a17:906:8c6:: with SMTP id o6mr33216875eje.230.1605921973916;
-        Fri, 20 Nov 2020 17:26:13 -0800 (PST)
-Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id f19sm1724057ejk.116.2020.11.20.17.26.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2020 17:26:13 -0800 (PST)
-Date:   Sat, 21 Nov 2020 03:26:11 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Tristram.Ha@microchip.com
-Cc:     ceggers@arri.de, kuba@kernel.org, andrew@lunn.ch,
-        richardcochran@gmail.com, robh+dt@kernel.org,
-        vivien.didelot@gmail.com, davem@davemloft.net,
-        kurt.kanzenbach@linutronix.de, george.mccollister@gmail.com,
-        marex@denx.de, helmut.grohne@intenta.de, pbarker@konsulko.com,
-        Codrin.Ciubotariu@microchip.com, Woojung.Huh@microchip.com,
-        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 00/12] net: dsa: microchip: PTP support for
- KSZ956x
-Message-ID: <20201121012611.r6h5zpd32pypczg3@skbuf>
-References: <20201118203013.5077-1-ceggers@arri.de>
- <20201118234018.jltisnhjesddt6kf@skbuf>
- <2452899.Bt8PnbAPR0@n95hx1g2>
- <BYAPR11MB35582F880B533EB2EE0CDD1DECE00@BYAPR11MB3558.namprd11.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RL33UOTlemNQ/vQ4qwl9EYK4T3gfkWAqCMJ5EwZ1yTY=;
+        b=H10NuiI014rj0EGrMHSm8mJxBTNPk4d/iBPabT6siLCKd0bj8MOvLS9FSHRkXKSX1S
+         p1q3TMLcN6L/sdGbmcb1ItYANA2nDsBq/9OKocpa6TBNhJECkGI8Isr9vBxMdMWLDqB/
+         jSTqTrtw01j3kyNCO8ryNwdGuUTYW71fShNXqxNksojOl1ekSd35QYWNqkHhKSrv4B9X
+         hgmGqzbMMPvXU0TR/8wntPG5wbjfSTz3RW7TuW9qZoAsOzyyM6RWC5qEck3tD3jP7XU/
+         YH2IvCvYUNsEPf05AlZNCNldUwCATQ+LFAOKupQsDHtZ09RgcGh5nPGmysriANJT0u5l
+         e2xg==
+X-Gm-Message-State: AOAM5305iBqfMwwvstjOJLLekwQKowSjjVkjx09R7WzimwVeAwIWHV1J
+        piozp/XOzeicRrByJTyaVmApQWtrTU+LJKf5txv8Iw==
+X-Google-Smtp-Source: ABdhPJycFco7NhhJCzLELdACWMic5hnonHza8FX12/J6/oDiCBN0OtjIXt6xR1BOMfz82Hk1vNgpXPQaTkdvtWCLCeo=
+X-Received: by 2002:a25:b090:: with SMTP id f16mr25880254ybj.466.1605924008934;
+ Fri, 20 Nov 2020 18:00:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BYAPR11MB35582F880B533EB2EE0CDD1DECE00@BYAPR11MB3558.namprd11.prod.outlook.com>
+References: <20201104232356.4038506-1-saravanak@google.com>
+ <20201104232356.4038506-9-saravanak@google.com> <CAJZ5v0iKAzkP1jDo202J117Mb=NipEMiLiV0-C8b4LPLDyUSmw@mail.gmail.com>
+In-Reply-To: <CAJZ5v0iKAzkP1jDo202J117Mb=NipEMiLiV0-C8b4LPLDyUSmw@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Fri, 20 Nov 2020 17:59:32 -0800
+Message-ID: <CAGETcx9-Vt5pWxoaBRwisCv4ZTUrCBp+jX3eVU7bh=cvNqqe_A@mail.gmail.com>
+Subject: Re: [PATCH v1 08/18] driver core: Add fwnode link support
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        "Cc: Android Kernel" <kernel-team@android.com>,
+        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-efi <linux-efi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 19, 2020 at 06:51:15PM +0000, Tristram.Ha@microchip.com wrote:
-> The initial proposal in tag_ksz.c is for the switch driver to provide callback functions
-> to handle receiving and transmitting.  Then each switch driver can be added to
-> process the tail tag in its own driver and leave tag_ksz.c unchanged.
+On Mon, Nov 16, 2020 at 7:51 AM Rafael J. Wysocki <rafael@kernel.org> wrote:
 >
-> It was rejected because of wanting to keep tag_ksz.c code and switch driver code
-> separate and concern about performance.
+> On Thu, Nov 5, 2020 at 12:24 AM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > This patch adds support for creating supplier-consumer links between
 >
-> Now tag_ksz.c is filled with PTP code that is not relevant for other switches and will
-> need to be changed again when another switch driver with PTP function is added.
+> Generally speaking the "This patch" part is redundant.  It is
+> sufficient to simply say "Add ...".
 >
-> Can we implement that callback mechanism?
-
-I, too, lack the context here. But it sounds like feedback that Andrew
-would give.
-
-If you don't like the #ifdef's, I am not in love with them either. But
-maybe Christian is just optimizing too aggressively, and doesn't actually
-need to put those #ifdef's there and provide stub implementations, but
-could actually just leave the ksz9477_rcv_timestamp and ksz9477_xmit_timestamp
-always compiled-in, and "dead at runtime" in the case there is no PTP.
-
-If there is something else you don't like, what is it? If you know that
-other KSZ switches don't implement timestamping in the same way, well,
-we don't know that. I thought that it's generally up to the second
-implementer to recognize which parts of the code are common and should
-be reused, not for the first one to guess. I would not add function
-pointers for a single implementation if they don't have a clear
-justification.
-
-> One issue with transmission with PTP enabled is that the tail tag needs to contain 4
-> additional bytes.  When the PTP function is off the bytes are not added.  This should
-> be monitored all the time.
+> > fwnode.
 >
-> The extra 4 bytes are only used for 1-step Pdelay_Resp.  It should contain the receive
-> timestamp of previous Pdelay_Req with latency adjusted.  The correction field in
-> Pdelay_Resp should be zero.  It may be a hardware bug to have wrong UDP checksum
-> when the message is sent.
+> fwnodes (plural)?
+>
+> > It is intentionally kept simple and with limited APIs as it is
+> > meant to be used only by driver core and firmware code (Eg: device tree,
+> > ACPI, etc).
+>
+> I'd say "It is intended for internal use in the driver core and
+> generic firmware support code (eg. Device Tree, ACPI), so it is simple
+> by design and the API provided by it is limited."
+>
+> >
+> > We can expand the APIs later if there is ever a need for
+> > drivers/frameworks to start using them.
+>
+> The above is totally redundant IMO.
+>
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> >  drivers/base/core.c    | 95 ++++++++++++++++++++++++++++++++++++++++++
+> >  drivers/of/dynamic.c   |  1 +
+> >  include/linux/fwnode.h | 14 +++++++
+> >  3 files changed, 110 insertions(+)
+> >
+> > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > index 31a76159f118..1a1d9a55645c 100644
+> > --- a/drivers/base/core.c
+> > +++ b/drivers/base/core.c
+> > @@ -50,6 +50,101 @@ static LIST_HEAD(wait_for_suppliers);
+> >  static DEFINE_MUTEX(wfs_lock);
+> >  static LIST_HEAD(deferred_sync);
+> >  static unsigned int defer_sync_state_count = 1;
+> > +static DEFINE_MUTEX(fwnode_link_lock);
+> > +
+> > +/**
+> > + * fwnode_link_add - Create a link between two fwnode_handles.
+> > + * @con: Consumer end of the link.
+> > + * @sup: Supplier end of the link.
+> > + *
+> > + * Creates a fwnode link between two fwnode_handles. These fwnode links are
+>
+> Why don't you refer to the arguments here, that is "Create a link
+> between fwnode handles @con and @sup ..."
 
-It "may" be a hardware bug? Are you unsure or polite?
-As for the phrase "the correction field in Pdelay_Resp should be zero".
-Consider the case where there is an E2E TC switch attached to that port.
-It will update the correctionField of the Pdelay_Req message. Then the
-application stack running on this ksz9477 switch is forced by the
-standard to copy the correctionField as-is from the Pdelay_Req into the
-Pdelay_Resp message. So that correctionField is never guaranteed to be
-zero, even if Christian doesn't fiddle with it within the driver. Are
-you saying that for proper UDP checksum calculation, the driver should
-be forcing the correctionField to zero and moving that value into the
-tail tag?
+Ack/done to everything above.
 
-> I think the right implementation is for the driver to remember this receive timestamp
-> of Pdelay_Req and puts it in the tail tag when it sees a 1-step Pdelay_Resp is sent.
+>
+> > + * used by the driver core to automatically generate device links. Attempts to
+> > + * create duplicate links are simply ignored and there is no refcounting.
+>
+> And I'd generally write it this way:
+>
+> "Create a link between fwnode handles @con and @sup representing a
+> pair of devices the first of which uses certain resources provided by
+> the second one, respectively.
+>
+> The driver core will use that link to create a device link between the
+> two device objects corresponding to @con and @sup when they are
+> created and it will automatically delete the link between @con and
+> @sup after doing that.
+>
+> Attempts to create a duplicate link between the same pair of fwnode
+> handles are ignored and there is no reference counting."
 
-I have mixed feelings about this. IIUC, you're saying "let's implement a
-fixed-size FIFO of RX timestamps of Pdelay_Req messages, and let's match
-them on TX to Pdelay_Resp messages, by {sequenceId, domainNumber}."
+Took most of this as is with some minor rewording.
 
-But how deep should we make that FIFO? I.e. how many Pdelay_Req messages
-should we expect before the user space will inject back a Pdelay_Resp
-for transmission?
+>
+> > + *
+> > + * These links are automatically deleted once they are converted to device
+> > + * links or when the fwnode_handles (or their corresponding devices) are
+> > + * deleted.
+> > + */
+> > +int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup)
+>
+> Why doesn't it return a pointer to the new link or NULL?
+>
+> That would be consistent with device_link_add().
 
-Again, consider the case of an E2E TC attached to a ksz9477 port. Even
-if we run peer delay, it's not guaranteed that we only have one peer.
-That E2E TC might connect us to a plethora of other peers. And the more
-peers we are connected to, the higher the chance that the size of this
-Pdelay_Req RX timestamp FIFO will not be adequately chosen.
+However, as opposed to device_link_add(), I don't want the caller
+holding any reference to the allocated link. So I don't want to return
+any pointer to them.
 
-> There is one more requirement that is a little difficult to do.  The calculated peer delay
-> needs to be programmed in hardware register, but the regular PTP stack has no way to
-> send that command.  I think the driver has to do its own calculation by snooping on the
-> Pdelay_Req/Pdelay_Resp/Pdelay_Resp_Follow_Up messages.
+> > +{
+> > +       struct fwnode_link *link;
+> > +       int ret = 0;
+> > +
+> > +       mutex_lock(&fwnode_link_lock);
+> > +
+> > +       /* Duplicate requests are intentionally not refcounted. */
+>
+> Is this comment really necessary?
 
-What register, and what does the switch do with this peer delay information?
+I guess with the function comment explicitly stating "no ref
+counting", this is kind of redundant. I can remove this.
 
-> The receive and transmit latencies are different for different connected speed.  So the
-> driver needs to change them when the link changes.  For that reason the PTP stack
-> should not use its own latency values as generally the application does not care about
-> the linked speed.
+>
+> > +       list_for_each_entry(link, &sup->consumers, s_hook)
+> > +               if (link->consumer == con)
+> > +                       goto out;
+>
+> It is also necessary to look the other way around AFAICS, that is if
+> there is a link between the two fwnode handles in the other direction
+> already, the creation of a new one should fail.
 
-The thing is, ptp4l already has ingressLatency and egressLatency
-settings, and I would not be surprised if those config options would get
-extended to cover values at multiple link speeds.
+No, fwnode links can have cycles. At this state, we can't tell which
+ones are invali.d When we create device links out of this, we have
+more info at that point and we make sure not to add any device links
+that can cause cycles. There are a bunch of corner cases where we
+can't tell which one is the invalid fwnode link in the links that make
+up the cycle and in those cases, we have to make the device links as
+SYNC_STATE_ONLY device links. Long story short, cycles are allowed.
 
-In the general case, the ksz9477 MAC could be attached to any external
-PHY, having its own propagation delay characteristics, or any number of
-other things that cause clock domain crossings. I'm not sure how feasible
-it is for the kernel to abstract this away completely, and adjust
-timestamps automatically based on any and all combinations of MAC and
-PHY. Maybe this is just wishful thinking.
+>
+> > +
+> > +       link = kzalloc(sizeof(*link), GFP_KERNEL);
+> > +       if (!link) {
+> > +               ret = -ENOMEM;
+> > +               goto out;
+> > +       }
+> > +
+> > +       link->supplier = sup;
+> > +       INIT_LIST_HEAD(&link->s_hook);
+> > +       link->consumer = con;
+> > +       INIT_LIST_HEAD(&link->c_hook);
+> > +
+> > +       list_add(&link->s_hook, &sup->consumers);
+> > +       list_add(&link->c_hook, &con->suppliers);
+> > +out:
+> > +       mutex_unlock(&fwnode_link_lock);
+> > +
+> > +       return ret;
+> > +}
+> > +
+> > +/**
+> > + * fwnode_links_purge_suppliers - Delete all supplier links of fwnode_handle.
+> > + * @fwnode: fwnode whose supplier links needs to be deleted
+>
+> s/needs/need/
 
-Oh, and by the way, Christian, I'm not even sure if you aren't in fact
-just beating around the bush with these tstamp_rx_latency_ns and
-tstamp_tx_latency_ns values? I mean, the switch adds the latency value
-to the timestamps. And you, from the driver, read the value of the
-register, so you can subtract the value from the timestamp, to
-compensate for its correction. So, all in all, there is no net latency
-compensation seen by the outside world?! If that is the case, can't you
-just set the latency registers to zero, do your compensation from the
-application stack and call it a day?
+Ack
+
+>
+> > + *
+> > + * Deletes all supplier links connecting directly to a fwnode.
+>
+> I'd say "Delete all supplier links connecting directly to @fwnode."
+> and analogously below.
+
+Ack
+
+>
+> > + */
+> > +static void fwnode_links_purge_suppliers(struct fwnode_handle *fwnode)
+> > +{
+> > +       struct fwnode_link *link, *tmp;
+> > +
+> > +       mutex_lock(&fwnode_link_lock);
+> > +       list_for_each_entry_safe(link, tmp, &fwnode->suppliers, c_hook) {
+> > +               list_del(&link->s_hook);
+> > +               list_del(&link->c_hook);
+> > +               kfree(link);
+> > +       }
+> > +       mutex_unlock(&fwnode_link_lock);
+> > +}
+> > +
+> > +/**
+> > + * fwnode_links_purge_consumers - Delete all consumer links of fwnode_handle.
+> > + * @fwnode: fwnode whose consumer links needs to be deleted
+> > + *
+> > + * Deletes all consumer links connecting directly to a fwnode.
+> > + */
+> > +static void fwnode_links_purge_consumers(struct fwnode_handle *fwnode)
+> > +{
+> > +       struct fwnode_link *link, *tmp;
+> > +
+> > +       mutex_lock(&fwnode_link_lock);
+> > +       list_for_each_entry_safe(link, tmp, &fwnode->consumers, s_hook) {
+> > +               list_del(&link->s_hook);
+> > +               list_del(&link->c_hook);
+> > +               kfree(link);
+>
+> I'd avoid the code duplication, even though it doesn't appear to be
+> significant ATM.
+
+I'd like to leave this as is for now if that's okay.
+
+> > +       }
+> > +       mutex_unlock(&fwnode_link_lock);
+> > +}
+> > +
+> > +/**
+> > + * fwnode_links_purge - Delete all links connected to a fwnode_handle.
+> > + * @fwnode: fwnode whose links needs to be deleted
+> > + *
+> > + * Deletes all links connecting directly to a fwnode.
+> > + */
+> > +void fwnode_links_purge(struct fwnode_handle *fwnode)
+> > +{
+> > +       fwnode_links_purge_suppliers(fwnode);
+>
+> Dropping the lock here may turn out to be problematic at one point
+> going forward.  IMO it is better to hold it throughout the entire
+> operation.
+
+It's not really a problem as there's nothing that can happen in
+between these two calls that can cause a problem but won't be a
+problem if it happens after these two calls. I was trying to avoid
+repeating the purge supplier/consumer code here again. Can we leave
+this as is for now?
+
+>
+> > +       fwnode_links_purge_consumers(fwnode);
+>
+> I'd get rid of the two functions above, add something like
+> fwnode_link_del() and walk the lists directly here calling it for
+> every link on the way.
+
+I need a fwnode_links_purge_suppliers() (as in, not purging consumer
+links) though. I used it later in the series. So instead of repeating
+that code for fwnode_links_purge(), I created
+fwnode_links_purge_consumers() and called both functions from here.
+Can we leave this as is?
+
+-Saravana
+
+>
+> > +}
+> >
+> >  #ifdef CONFIG_SRCU
+> >  static DEFINE_MUTEX(device_links_lock);
+> > diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+> > index fe64430b438a..9a824decf61f 100644
+> > --- a/drivers/of/dynamic.c
+> > +++ b/drivers/of/dynamic.c
+> > @@ -356,6 +356,7 @@ void of_node_release(struct kobject *kobj)
+> >
+> >         property_list_free(node->properties);
+> >         property_list_free(node->deadprops);
+> > +       fwnode_links_purge(of_fwnode_handle(node));
+> >
+> >         kfree(node->full_name);
+> >         kfree(node->data);
+> > diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
+> > index 593fb8e58f21..afde643f37a2 100644
+> > --- a/include/linux/fwnode.h
+> > +++ b/include/linux/fwnode.h
+> > @@ -10,6 +10,7 @@
+> >  #define _LINUX_FWNODE_H_
+> >
+> >  #include <linux/types.h>
+> > +#include <linux/list.h>
+> >
+> >  struct fwnode_operations;
+> >  struct device;
+> > @@ -18,6 +19,15 @@ struct fwnode_handle {
+> >         struct fwnode_handle *secondary;
+> >         const struct fwnode_operations *ops;
+> >         struct device *dev;
+> > +       struct list_head suppliers;
+> > +       struct list_head consumers;
+> > +};
+> > +
+> > +struct fwnode_link {
+> > +       struct fwnode_handle *supplier;
+> > +       struct list_head s_hook;
+> > +       struct fwnode_handle *consumer;
+> > +       struct list_head c_hook;
+> >  };
+> >
+> >  /**
+> > @@ -173,8 +183,12 @@ static inline void fwnode_init(struct fwnode_handle *fwnode,
+> >                                const struct fwnode_operations *ops)
+> >  {
+> >         fwnode->ops = ops;
+> > +       INIT_LIST_HEAD(&fwnode->consumers);
+> > +       INIT_LIST_HEAD(&fwnode->suppliers);
+> >  }
+> >
+> >  extern u32 fw_devlink_get_flags(void);
+> > +int fwnode_link_add(struct fwnode_handle *con, struct fwnode_handle *sup);
+> > +void fwnode_links_purge(struct fwnode_handle *fwnode);
+> >
+> >  #endif
+> > --
+> > 2.29.1.341.ge80a0c044ae-goog
+> >
