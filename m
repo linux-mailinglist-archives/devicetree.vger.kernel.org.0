@@ -2,229 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A34642BBFF7
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 15:39:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA2F32BC014
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 15:51:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728040AbgKUOiL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 09:38:11 -0500
-Received: from linux.microsoft.com ([13.77.154.182]:37486 "EHLO
-        linux.microsoft.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727917AbgKUOiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 09:38:08 -0500
-Received: from [192.168.0.104] (c-73-42-176-67.hsd1.wa.comcast.net [73.42.176.67])
-        by linux.microsoft.com (Postfix) with ESMTPSA id F165020B717A;
-        Sat, 21 Nov 2020 06:38:06 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com F165020B717A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-        s=default; t=1605969487;
-        bh=9yvmlDvoSrh3dlGG8flANr05i7JRFguo8Usv0TQ+3Kc=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=WTtMiDdKKnGu0ZHBSGAnURYxcPwvxikYgx946l061TEkcv2vvcTQ8uCKtrpi/+ub/
-         gwiaUvmB+EMdt+EJ4V3GwpqS+F0Ms8BiCymbYYke5yazPlUXUdFGqqwdPP0nWPn1kf
-         h56RKHQEDBl4WfGCokcsMnMbI8yK5MdRy0Qy6mFI=
-Subject: Re: [PATCH v9 0/8] Carry forward IMA measurement log on kexec on
- ARM64
-To:     Rob Herring <robh@kernel.org>
-Cc:     zohar@linux.ibm.com, bauerman@linux.ibm.com,
-        gregkh@linuxfoundation.org, james.morse@arm.com,
-        catalin.marinas@arm.com, sashal@kernel.org, will@kernel.org,
-        mpe@ellerman.id.au, benh@kernel.crashing.org, paulus@samba.org,
-        frowand.list@gmail.com, vincenzo.frascino@arm.com,
-        mark.rutland@arm.com, dmitry.kasatkin@gmail.com, jmorris@namei.org,
-        serge@hallyn.com, pasha.tatashin@soleen.com, allison@lohutok.net,
-        kstewart@linuxfoundation.org, takahiro.akashi@linaro.org,
-        tglx@linutronix.de, masahiroy@kernel.org, bhsharma@redhat.com,
-        mbrugger@suse.com, hsinyi@chromium.org, tao.li@vivo.com,
-        christophe.leroy@c-s.fr, linux-integrity@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        prsriva@linux.microsoft.com, balajib@linux.microsoft.com
-References: <20201113192243.1993-1-nramas@linux.microsoft.com>
- <20201121135719.GA2134870@robh.at.kernel.org>
-From:   Lakshmi Ramasubramanian <nramas@linux.microsoft.com>
-Message-ID: <415b4d0b-3d93-40ce-b74e-48fdce7fbf7f@linux.microsoft.com>
-Date:   Sat, 21 Nov 2020 06:38:02 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727955AbgKUOuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 09:50:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727874AbgKUOug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 09:50:36 -0500
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC618C0613CF;
+        Sat, 21 Nov 2020 06:50:34 -0800 (PST)
+Received: by mail-oi1-x244.google.com with SMTP id q206so14155877oif.13;
+        Sat, 21 Nov 2020 06:50:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ette9kx7pLe3BTxF6SA7N6NBJN1cBdU9jOFxOgT8Dgs=;
+        b=C98eNIJQ96ROHkZRL2BXaceiD1FesqjudfRDq0SpYUawYUbCsJMGSJnsiTUwp+ChlT
+         m4kiJfomdNY6iWhv9UK81qwOFUCOseOB+YLSTDuzWlcTHD45LIH6deMhEFjpv8zwnRsZ
+         F5PDDrjO3Jly6kUL5VABH4/9KRP5UwkMRT1mxrEAaZ9nCCNw9bbLebPJgNbvD/KcwcKG
+         KRAt1AyVrrgnbZ8qjoNtbFrDp28z/eI4ki6K6oxtKYMZKmQwvNEHwnQVWDZFDBDTuzWq
+         /7/0SuxWzzN2qPxvilP23Ega639E64hREY3F/w3y2+39Rlc8brtm/8PnKKhypzapyapf
+         RFsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ette9kx7pLe3BTxF6SA7N6NBJN1cBdU9jOFxOgT8Dgs=;
+        b=d79kQ7Qimgywbnq+EPRQvH71IRirBLysUn4v5sCOrA4p4K9bLz6KORgo5sjR+tCT3U
+         5ncgnm69ltIre23bWbOao+xKAWfr25/ne4h6/gMD2QdW8zodfASR5SZp/0agb419UMAk
+         sewCd+VJQOMz1emkms3CRv7ADWi+UX09XyMlhcwvgn0JjQfXeYpgIRpZ4zGQjmrFGBqo
+         SFQO2ew4uPrAN68PfKIiPBuI4zs53v4ILau0MVjuk/9riBelPHBApMgMgnrE4ChvpoQp
+         PSoyRtzrJFPCuzGBPZoxRq9ppgbebKB8eBM/3s7pBvOZ5Zj4Ef7JLhcUccYRQgJuU+Wb
+         DR9Q==
+X-Gm-Message-State: AOAM531Sk752XyQmKNV8zpUVRlcnhkXbZCtK3i0bLMt9Vb9j4LK2eJYW
+        V35pMpeXJPQwmexwIsgRV0utI8RK2xrDr6HtESE=
+X-Google-Smtp-Source: ABdhPJySOdSRaChFfDTdyVQzHEvIojGBbrolLIz896Qw2h4xpte1Ro7K6uWBdEMow99a6PELRxBLWCEe9btAVMFc9CI=
+X-Received: by 2002:aca:59c3:: with SMTP id n186mr9282300oib.149.1605970234325;
+ Sat, 21 Nov 2020 06:50:34 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201121135719.GA2134870@robh.at.kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20201113154632.24973-1-sergio.paracuellos@gmail.com>
+ <20201113154632.24973-3-sergio.paracuellos@gmail.com> <20201121133432.GA2130098@robh.at.kernel.org>
+In-Reply-To: <20201121133432.GA2130098@robh.at.kernel.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sat, 21 Nov 2020 15:50:23 +0100
+Message-ID: <CAMhs-H9JORHgPmq0-n=hx=yRo0SCT33mP_quxZoRtKYkiVDy_Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] dt: bindings: add mt7621-clk device tree binding documentation
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        John Crispin <john@phrozen.org>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Weijie Gao <hackpascal@gmail.com>, jiaxun.yang@flygoat.com,
+        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        NeilBrown <neil@brown.name>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/21/20 5:57 AM, Rob Herring wrote:
-> On Fri, Nov 13, 2020 at 11:22:35AM -0800, Lakshmi Ramasubramanian wrote:
->> On kexec file load Integrity Measurement Architecture (IMA) subsystem
->> may verify the IMA signature of the kernel and initramfs, and measure
->> it. The command line parameters passed to the kernel in the kexec call
->> may also be measured by IMA. A remote attestation service can verify
->> a TPM quote based on the TPM event log, the IMA measurement list, and
->> the TPM PCR data. This can be achieved only if the IMA measurement log
->> is carried over from the current kernel to the next kernel across
->> the kexec call.
->>
->> powerpc already supports carrying forward the IMA measurement log on
->> kexec. This patch set adds support for carrying forward the IMA
->> measurement log on kexec on ARM64.
->>
->> This patch set moves the platform independent code defined for powerpc
->> such that it can be reused for other platforms as well. A chosen node
->> namely "linux,ima-kexec-buffer" is added to the DTB for ARM64 to hold
->> the address and the size of the memory reserved to carry
->> the IMA measurement log.
->>
->> This patch set has been tested for ARM64 platform using QEMU.
->> I would like help from the community for testing this change on powerpc.
->> Thanks.
-> 
-> As I mentioned previously, please move the kexec code to drivers/of/. Or
-> at least put the infrastructure in place so we're not defining public
-> IMA functions and then making them static later.
+Hi Rob,
 
-I am not sure I am following you. Could you please clarify -
-In this patch series, per your suggestion, I have moved the architecture 
-independent kexec code to "drivers/of".
+Thanks for the review.
 
-	=> drivers/of/ima_kexec.c
-	=> drivers/of/kexec_fdt.c
+On Sat, Nov 21, 2020 at 2:34 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Nov 13, 2020 at 04:46:29PM +0100, Sergio Paracuellos wrote:
+> > Adds device tree binding documentation for clocks in the
+> > MT7621 SOC.
+> >
+> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > ---
+> >  .../bindings/clock/mediatek,mt7621-clk.yaml   | 61 +++++++++++++++++++
+> >  1 file changed, 61 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+> > new file mode 100644
+> > index 000000000000..363bd9880e29
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/clock/mediatek,mt7621-clk.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MT7621 Clock Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> > +
+> > +description: |
+> > +  The MT7621 has a PLL controller from where the cpu clock is provided
+> > +  as well as derived clocks for the bus and the peripherals. It also
+> > +  can gate SoC device clocks.
+> > +
+> > +  Each clock is assigned an identifier and client nodes use this identifier
+> > +  to specify the clock which they consume.
+> > +
+> > +  All these identifiers could be found in:
+> > +  [1]: <include/dt-bindings/clock/mt7621-clk.h>.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,mt7621-clk
+> > +
+> > +  ralink,sysctl:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description:
+> > +      phandle to the syscon which is in the same address area with syscon
+> > +      device.
+> > +
+> > +  "#clock-cells":
+> > +    description:
+> > +      The first cell indicates the clock gate number, see [1] for available
+> > +      clocks.
+> > +    const: 1
+> > +
+> > +  clock-output-names:
+> > +    maxItems: 8
+> > +
+> > +required:
+> > +  - compatible
+> > +  - ralink,sysctl
+> > +  - '#clock-cells'
+> > +  - clock-output-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/mt7621-clk.h>
+> > +
+> > +    pll {
+> > +      compatible = "mediatek,mt7621-clk";
+> > +      ralink,sysctl = <&sysc>;
+>
+> If this is the only control interface, then make this a child of 'sysc'.
+> And use 'reg' if there's a dedicated range of registers.
 
-Please let me know if I missed something.
+This is the only one now in the device tree which is still in staging
+but there are several places where this sys control registers are
+accessed from. In the case of the clocks we need:
 
->   
->> This patch set is based on
->> commit af5043c89a8e ("Merge tag 'acpi-5.10-rc4' of git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm")
->> in https://github.com/torvalds/linux "master" branch.
->>
->> Changelog:
->>
->> v9
->>    - Moved delete_fdt_mem_rsv() to drivers/of/kexec_fdt.c
->>    - Defined a new function get_ima_kexec_buffer() in
->>      drivers/of/ima_kexec.c to replace do_get_kexec_buffer()
->>    - Changed remove_ima_kexec_buffer() to the original function name
->>      remove_ima_buffer()
->>    - Moved remove_ima_buffer() to drivers/of/ima_kexec.c
->>    - Moved ima_get_kexec_buffer() and ima_free_kexec_buffer()
->>      to security/integrity/ima/ima_kexec.c
->>
->> v8:
->>    - Moved remove_ima_kexec_buffer(), do_get_kexec_buffer(), and
->>      delete_fdt_mem_rsv() to drivers/of/fdt.c
->>    - Moved ima_dump_measurement_list() and ima_add_kexec_buffer()
->>      back to security/integrity/ima/ima_kexec.c
->>
->> v7:
->>    - Renamed remove_ima_buffer() to remove_ima_kexec_buffer() and moved
->>      this function definition to kernel.
->>    - Moved delete_fdt_mem_rsv() definition to kernel
->>    - Moved ima_dump_measurement_list() and ima_add_kexec_buffer() to
->>      a new file namely ima_kexec_fdt.c in IMA
->>
->> v6:
->>    - Remove any existing FDT_PROP_IMA_KEXEC_BUFFER property in the device
->>      tree and also its corresponding memory reservation in the currently
->>      running kernel.
->>    - Moved the function remove_ima_buffer() defined for powerpc to IMA
->>      and renamed the function to ima_remove_kexec_buffer(). Also, moved
->>      delete_fdt_mem_rsv() from powerpc to IMA.
->>
->> v5:
->>    - Merged get_addr_size_cells() and do_get_kexec_buffer() into a single
->>      function when moving the arch independent code from powerpc to IMA
->>    - Reverted the change to use FDT functions in powerpc code and added
->>      back the original code in get_addr_size_cells() and
->>      do_get_kexec_buffer() for powerpc.
->>    - Added fdt_add_mem_rsv() for ARM64 to reserve the memory for
->>      the IMA log buffer during kexec.
->>    - Fixed the warning reported by kernel test bot for ARM64
->>      arch_ima_add_kexec_buffer() - moved this function to a new file
->>      namely arch/arm64/kernel/ima_kexec.c
->>
->> v4:
->>    - Submitting the patch series on behalf of the original author
->>      Prakhar Srivastava <prsriva@linux.microsoft.com>
->>    - Moved FDT_PROP_IMA_KEXEC_BUFFER ("linux,ima-kexec-buffer") to
->>      libfdt.h so that it can be shared by multiple platforms.
->>
->> v3:
->> Breakup patches further into separate patches.
->>    - Refactoring non architecture specific code out of powerpc
->>    - Update powerpc related code to use fdt functions
->>    - Update IMA buffer read related code to use of functions
->>    - Add support to store the memory information of the IMA
->>      measurement logs to be carried forward.
->>    - Update the property strings to align with documented nodes
->>      https://github.com/devicetree-org/dt-schema/pull/46
->>
->> v2:
->>    Break patches into separate patches.
->>    - Powerpc related Refactoring
->>    - Updating the docuemntation for chosen node
->>    - Updating arm64 to support IMA buffer pass
->>
->> v1:
->>    Refactoring carrying over IMA measuremnet logs over Kexec. This patch
->>      moves the non-architecture specific code out of powerpc and adds to
->>      security/ima.(Suggested by Thiago)
->>    Add Documentation regarding the ima-kexec-buffer node in the chosen
->>      node documentation
->>
->> v0:
->>    Add a layer of abstraction to use the memory reserved by device tree
->>      for ima buffer pass.
->>    Add support for ima buffer pass using reserved memory for arm64 kexec.
->>      Update the arch sepcific code path in kexec file load to store the
->>      ima buffer in the reserved memory. The same reserved memory is read
->>      on kexec or cold boot.
->>
->> Lakshmi Ramasubramanian (8):
->>    powerpc: fix compiler warnings and errors
->>    powerpc: Move delete_fdt_mem_rsv() to drivers/of
->>    ima: Define get_ima_kexec_buffer() in drivers/of
->>    powerpc: Use get_ima_kexec_buffer to get ima kexec buffer
->>    powerpc: Move remove_ima_buffer() to drivers/of
->>    powerpc: Move ima_get_kexec_buffer() and ima_free_kexec_buffer() to
->>      ima
->>    arm64: Store IMA log information in kimage used for kexec
->>    arm64: Add IMA kexec buffer to DTB
->>
->>   arch/arm64/Kconfig                     |   1 +
->>   arch/arm64/include/asm/ima.h           |  18 +++++
->>   arch/arm64/include/asm/kexec.h         |   3 +
->>   arch/arm64/kernel/Makefile             |   1 +
->>   arch/arm64/kernel/ima_kexec.c          |  34 ++++++++
->>   arch/arm64/kernel/machine_kexec_file.c |  18 +++++
->>   arch/powerpc/include/asm/ima.h         |  11 +--
->>   arch/powerpc/include/asm/kexec.h       |   1 -
->>   arch/powerpc/kexec/Makefile            |   7 +-
->>   arch/powerpc/kexec/file_load.c         |  32 --------
->>   arch/powerpc/kexec/ima.c               | 106 ++-----------------------
->>   drivers/of/Makefile                    |   9 +++
-> 
->>   drivers/of/ima_kexec.c                 |  91 +++++++++++++++++++++
->>   drivers/of/kexec_fdt.c                 |  55 +++++++++++++
-> 
-> Does this need to be 2 files? Just kexec.c?
+#define SYSC_REG_SYSTEM_CONFIG0         0x10
+#define SYSC_REG_SYSTEM_CONFIG1         0x14
+#define SYSC_REG_CLKCFG0                0x2c
+#define SYSC_REG_CLKCFG1                0x30
+#define SYSC_REG_CUR_CLK_STS            0x44
 
-Since the functions defined in "ima_kexec.c" and "kexec_fdt.c" are 
-enabled on 2 different kernel CONFIGs, keeping them in 2 files enables 
-us to avoid using "#ifdef" in C files.
+where there is not a range as it is but several different registers
+from where we need to read or write things. I wrote the driver using
+syscon and regmap because I thought in that way it might be more
+maintainable but this architecture also has operations to read and
+write registers from sysc and not using regmap at all. This operations
+are defined in arch/mips/include/asm/mach-ralink/ralink_regs.h. But
+because this sysc is currently mapped I cannot request its registers
+using reg in the device tree. If you prefer me to avoid the use of
+this syscon and regmap and use operations defined in ralink_regs.h,
+this will become in a node without "regs" or  "ralink,sysctl"
+property:
 
-thanks,
-  -lakshmi
+pll {
+    compatible = "mediatek,mt7621-clk";
+    #clock-cells = <1>;
+    clock-output-names = "xtal", "cpu", "bus",
+                      "50m", "125m", "150m",
+                       "250m", "270m";
+};
 
-> 
->>   include/linux/kexec.h                  |  24 ++++++
->>   security/integrity/ima/ima_kexec.c     |  51 ++++++++++++
->>   16 files changed, 313 insertions(+), 149 deletions(-)
->>   create mode 100644 arch/arm64/include/asm/ima.h
->>   create mode 100644 arch/arm64/kernel/ima_kexec.c
->>   create mode 100644 drivers/of/ima_kexec.c
->>   create mode 100644 drivers/of/kexec_fdt.c
->>
->> -- 
->> 2.29.2
->>
+What should I do then?
 
+Best regards,
+    Sergio Paracuellos
+
+>
+> > +      #clock-cells = <1>;
+> > +      clock-output-names = "xtal", "cpu", "bus",
+> > +                           "50m", "125m", "150m",
+> > +                           "250m", "270m";
+> > +    };
+> > --
+> > 2.25.1
+> >
