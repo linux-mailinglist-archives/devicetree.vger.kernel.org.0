@@ -2,198 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BA2F32BC014
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 15:51:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D76312BC03D
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 16:25:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727955AbgKUOuh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 09:50:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59736 "EHLO
+        id S1727926AbgKUPZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 10:25:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727874AbgKUOug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 09:50:36 -0500
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC618C0613CF;
-        Sat, 21 Nov 2020 06:50:34 -0800 (PST)
-Received: by mail-oi1-x244.google.com with SMTP id q206so14155877oif.13;
-        Sat, 21 Nov 2020 06:50:34 -0800 (PST)
+        with ESMTP id S1727867AbgKUPZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 10:25:17 -0500
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09063C061A4A
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 07:25:15 -0800 (PST)
+Received: by mail-lf1-x143.google.com with SMTP id f11so17736562lfs.3
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 07:25:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Ette9kx7pLe3BTxF6SA7N6NBJN1cBdU9jOFxOgT8Dgs=;
-        b=C98eNIJQ96ROHkZRL2BXaceiD1FesqjudfRDq0SpYUawYUbCsJMGSJnsiTUwp+ChlT
-         m4kiJfomdNY6iWhv9UK81qwOFUCOseOB+YLSTDuzWlcTHD45LIH6deMhEFjpv8zwnRsZ
-         F5PDDrjO3Jly6kUL5VABH4/9KRP5UwkMRT1mxrEAaZ9nCCNw9bbLebPJgNbvD/KcwcKG
-         KRAt1AyVrrgnbZ8qjoNtbFrDp28z/eI4ki6K6oxtKYMZKmQwvNEHwnQVWDZFDBDTuzWq
-         /7/0SuxWzzN2qPxvilP23Ega639E64hREY3F/w3y2+39Rlc8brtm/8PnKKhypzapyapf
-         RFsg==
+        bh=spqUZvPy4NHY/a1UsDzVVuOTjv+SIpL3p3jLdPjUdqM=;
+        b=Ks0whlYv+buJ8xPqUvgCUUgOHJkL4rNxZt2ZONI0dg1SVOkcVT1CCKpvARqT5hpYkD
+         SnnnUkCJ3aWhqA9MaheabV0xqjdys1Qx+3w3e52g2LCKqazOog/rYjsIBlg5w3HLqNBK
+         hoJH44ChHraPcuIWNn1ylddRLbux60apRzh53KR4atkq1UeS1HeltudmyU27lC5VJBob
+         j7tVnJUQzPvfpsQI+tPzI/vctg/BB7bSJB/S6oUvrLcigw/iseNlipW7k1Dex+Vqao+/
+         5415kUcK94re2U0oJt48m3Lb3kydeEtrrghyZLeI1qFhERq71G04G+GNwhGw4tpC30W/
+         VbcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ette9kx7pLe3BTxF6SA7N6NBJN1cBdU9jOFxOgT8Dgs=;
-        b=d79kQ7Qimgywbnq+EPRQvH71IRirBLysUn4v5sCOrA4p4K9bLz6KORgo5sjR+tCT3U
-         5ncgnm69ltIre23bWbOao+xKAWfr25/ne4h6/gMD2QdW8zodfASR5SZp/0agb419UMAk
-         sewCd+VJQOMz1emkms3CRv7ADWi+UX09XyMlhcwvgn0JjQfXeYpgIRpZ4zGQjmrFGBqo
-         SFQO2ew4uPrAN68PfKIiPBuI4zs53v4ILau0MVjuk/9riBelPHBApMgMgnrE4ChvpoQp
-         PSoyRtzrJFPCuzGBPZoxRq9ppgbebKB8eBM/3s7pBvOZ5Zj4Ef7JLhcUccYRQgJuU+Wb
-         DR9Q==
-X-Gm-Message-State: AOAM531Sk752XyQmKNV8zpUVRlcnhkXbZCtK3i0bLMt9Vb9j4LK2eJYW
-        V35pMpeXJPQwmexwIsgRV0utI8RK2xrDr6HtESE=
-X-Google-Smtp-Source: ABdhPJySOdSRaChFfDTdyVQzHEvIojGBbrolLIz896Qw2h4xpte1Ro7K6uWBdEMow99a6PELRxBLWCEe9btAVMFc9CI=
-X-Received: by 2002:aca:59c3:: with SMTP id n186mr9282300oib.149.1605970234325;
- Sat, 21 Nov 2020 06:50:34 -0800 (PST)
+        bh=spqUZvPy4NHY/a1UsDzVVuOTjv+SIpL3p3jLdPjUdqM=;
+        b=FHCEQoQUcirbV7KCqAC7cp/YjjvbotHd5kNEYCV5ZOhdP8PnmDQar4Cpn/W4UhcDqK
+         lHV9F6rONcVQYlES9d5966WsF0qKzkRM4OVANMVTOXJ3t4jMI04Lv4WaDW4/dJnDKOq7
+         esREySwe1+SHfLo2qLKSnls7SfQkazztBbhhZccguNhvR3i1X4n/rTSMpEvGgBMZlvRO
+         W6fWJrX6L7hiZEbw1hAZ9Di4IJ4yu7W2QBMNyCzf+IOrrRLQx63qhc72zKEeGNb+lJxP
+         8Q2ZrPIcLLeFyQeT0weCm6nH5l9/3MyZi67Fpw+D8+GnZK6qc559lX0Ku1VWV1Mcxppo
+         M+nA==
+X-Gm-Message-State: AOAM531zw0Dx2aKxtRDkwrCdkPuhR3Fk9h4gxHvwywLQ0w3KCTy3/4xe
+        LbZPjEd+LWK9kX4m0fYDBBD3pOHHyg8FmxhBSY3LLQ==
+X-Google-Smtp-Source: ABdhPJyS9LbpGfdpQYHXmnDrzfnibwvfS5blTArd1lMikEBDTEFt+94v9QRZ/n65nEZOXFA7iYcIDqREwDfok2BWMNI=
+X-Received: by 2002:a05:6512:3e7:: with SMTP id n7mr9650079lfq.585.1605972314342;
+ Sat, 21 Nov 2020 07:25:14 -0800 (PST)
 MIME-Version: 1.0
-References: <20201113154632.24973-1-sergio.paracuellos@gmail.com>
- <20201113154632.24973-3-sergio.paracuellos@gmail.com> <20201121133432.GA2130098@robh.at.kernel.org>
-In-Reply-To: <20201121133432.GA2130098@robh.at.kernel.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Sat, 21 Nov 2020 15:50:23 +0100
-Message-ID: <CAMhs-H9JORHgPmq0-n=hx=yRo0SCT33mP_quxZoRtKYkiVDy_Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] dt: bindings: add mt7621-clk device tree binding documentation
+References: <20201113124239.2667502-1-linus.walleij@linaro.org> <20201121132742.GA2121607@robh.at.kernel.org>
+In-Reply-To: <20201121132742.GA2121607@robh.at.kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 21 Nov 2020 16:25:02 +0100
+Message-ID: <CACRpkda6EDjtDEK6N0kvnpyBD+6ofgdBcUeqn70VG4FY_0X1-g@mail.gmail.com>
+Subject: Re: [PATCH 1/2 v5] dt-bindings: leds: Add DT binding for Richtek RT8515
 To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        John Crispin <john@phrozen.org>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Weijie Gao <hackpascal@gmail.com>, jiaxun.yang@flygoat.com,
-        "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
+        Stephan Gerhold <stephan@gerhold.net>,
+        phone-devel@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        NeilBrown <neil@brown.name>
+        <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Sat, Nov 21, 2020 at 2:27 PM Rob Herring <robh@kernel.org> wrote:
+> On Fri, Nov 13, 2020 at 01:42:38PM +0100, Linus Walleij wrote:
 
-Thanks for the review.
-
-On Sat, Nov 21, 2020 at 2:34 PM Rob Herring <robh@kernel.org> wrote:
+> > +  richtek,rfs:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 7680
+> > +    maximum: 367000
+> > +    description: The resistance value of the RFS resistor. This
 >
-> On Fri, Nov 13, 2020 at 04:46:29PM +0100, Sergio Paracuellos wrote:
-> > Adds device tree binding documentation for clocks in the
-> > MT7621 SOC.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> >  .../bindings/clock/mediatek,mt7621-clk.yaml   | 61 +++++++++++++++++++
-> >  1 file changed, 61 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-> > new file mode 100644
-> > index 000000000000..363bd9880e29
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7621-clk.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/mediatek,mt7621-clk.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MT7621 Clock Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > +
-> > +description: |
-> > +  The MT7621 has a PLL controller from where the cpu clock is provided
-> > +  as well as derived clocks for the bus and the peripherals. It also
-> > +  can gate SoC device clocks.
-> > +
-> > +  Each clock is assigned an identifier and client nodes use this identifier
-> > +  to specify the clock which they consume.
-> > +
-> > +  All these identifiers could be found in:
-> > +  [1]: <include/dt-bindings/clock/mt7621-clk.h>.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt7621-clk
-> > +
-> > +  ralink,sysctl:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      phandle to the syscon which is in the same address area with syscon
-> > +      device.
-> > +
-> > +  "#clock-cells":
-> > +    description:
-> > +      The first cell indicates the clock gate number, see [1] for available
-> > +      clocks.
-> > +    const: 1
-> > +
-> > +  clock-output-names:
-> > +    maxItems: 8
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ralink,sysctl
-> > +  - '#clock-cells'
-> > +  - clock-output-names
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/mt7621-clk.h>
-> > +
-> > +    pll {
-> > +      compatible = "mediatek,mt7621-clk";
-> > +      ralink,sysctl = <&sysc>;
->
-> If this is the only control interface, then make this a child of 'sysc'.
-> And use 'reg' if there's a dedicated range of registers.
+> Units? Add a defined unit suffix to the property name and you can drop
+> the type.
 
-This is the only one now in the device tree which is still in staging
-but there are several places where this sys control registers are
-accessed from. In the case of the clocks we need:
+Do you mean that if I rename this property as:
 
-#define SYSC_REG_SYSTEM_CONFIG0         0x10
-#define SYSC_REG_SYSTEM_CONFIG1         0x14
-#define SYSC_REG_CLKCFG0                0x2c
-#define SYSC_REG_CLKCFG1                0x30
-#define SYSC_REG_CUR_CLK_STS            0x44
+richtek,rfs-ohms
 
-where there is not a range as it is but several different registers
-from where we need to read or write things. I wrote the driver using
-syscon and regmap because I thought in that way it might be more
-maintainable but this architecture also has operations to read and
-write registers from sysc and not using regmap at all. This operations
-are defined in arch/mips/include/asm/mach-ralink/ralink_regs.h. But
-because this sysc is currently mapped I cannot request its registers
-using reg in the device tree. If you prefer me to avoid the use of
-this syscon and regmap and use operations defined in ralink_regs.h,
-this will become in a node without "regs" or  "ralink,sysctl"
-property:
+there will be some automagic machinery in dtschema that checks that
+it is an uint32?
 
-pll {
-    compatible = "mediatek,mt7621-clk";
-    #clock-cells = <1>;
-    clock-output-names = "xtal", "cpu", "bus",
-                      "50m", "125m", "150m",
-                       "250m", "270m";
-};
+Is there a list of these magic suffixes somewhere?
 
-What should I do then?
-
-Best regards,
-    Sergio Paracuellos
-
->
-> > +      #clock-cells = <1>;
-> > +      clock-output-names = "xtal", "cpu", "bus",
-> > +                           "50m", "125m", "150m",
-> > +                           "250m", "270m";
-> > +    };
-> > --
-> > 2.25.1
-> >
+Yours,
+Linus Walleij
