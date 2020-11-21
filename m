@@ -2,163 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 798122BBC66
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:52:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCD4E2BBC6D
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:57:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727214AbgKUCvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 21:51:53 -0500
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:46931 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727048AbgKUCvw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 20 Nov 2020 21:51:52 -0500
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.west.internal (Postfix) with ESMTP id 27AD810F3;
-        Fri, 20 Nov 2020 21:51:51 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute5.internal (MEProxy); Fri, 20 Nov 2020 21:51:51 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        to:cc:references:from:subject:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=O
-        u73bD4f45P9uvVKv0KtV27VfJnt6NKTFMndwelV6do=; b=MSULuAWfZNB+8eVnW
-        c0xx2MQ5RRLIdgBFOuvrufrIxtG9MUmcyOsIwdHCxm5Rsnr+HeZI+nnuhYZq66+L
-        Yg9hBUCXqRkCtvJqra9ntwKHI495kwMjpEWghgOkgpfi9rBursCrS/JP2IwITRnw
-        5H8xg5Q0907S0hjxKpTczfX9XkI0Nm7qI8nMn+Ye0kLH3gqg/aGVwo2T+Kh+2OZP
-        J7WC4+psb87PQGp1e7bBhhOlfEGaSvFkPeRm+AnDRNsF8rGMmtBVHl/CV5pNYbgd
-        Y1Na3fabPWm15fZh2w6kZCi4rCdn4qd5n1gNg42ifFIZyVKQNyUddw77EQoW+mb8
-        Aff5A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm1; bh=Ou73bD4f45P9uvVKv0KtV27VfJnt6NKTFMndwelV6
-        do=; b=sAVWfcR6RH9QwlyY1gQ81V2/VwA+G7J2mcB/ULi4dbRmqoFlPOwQ1j9nR
-        CF6GsNpB8UnSyODJWtiNz4t76XrKG4nOnaDPCTyAOcBJ6QmgQvqTNU9IfcGQSO8B
-        oOdpf/M3m1paqvxrUMiHSoQtsI70v2bv5Zron+nrk16KBha+rGc2C/jvUFa5m+lN
-        lJ5aSRRyIY8kgyQRQWsFzUZMRsR/vnSvAKa3w2wZcH6Crwqw7M2imcMKPYIW20Zk
-        eprdHf4lddcM343KvmzXbKlhYjPXJEkIClw3BJIkDdHYVFac4eDV139Ycf38mj8p
-        /D6a9VjPC/uVc4XpWWcU7JKHGG8rA==
-X-ME-Sender: <xms:xYC4X5rsOvCu_nflTYDQW0zoiU68-igeIG-7ayXxcZkcpB1NcT_xGg>
-    <xme:xYC4X7o1lyuw3n2JnhlXUFOqOJLuMAHvlZKbyia2YRxtral9cO05p8dAch3PuZ5gq
-    FZgMI9bt9qGv-eN2w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeguddgheduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
-    hedtfeevuedvnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
-    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
-    nhgurdhorhhg
-X-ME-Proxy: <xmx:xYC4X2NUfzQZdkmirWQbP0UC-hnpYBTiIjdEdD5nrPNO6bLyGubxGQ>
-    <xmx:xYC4X05ML6oA_h0V2XtWDiw__ocU8Rldcr4QWRf-1uKrbPnnxtK7TQ>
-    <xmx:xYC4X45V3Szfn5SgkwN-5gv_UvTGOigFPoBxCVEX7_TJ61qrZbOLxw>
-    <xmx:xoC4X1usBBY-OkFEQilIefiZqTX_-FDQ26WJl9xKtMradODZ_SpK9Q>
-Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 723433280060;
-        Fri, 20 Nov 2020 21:51:49 -0500 (EST)
-To:     Icenowy Zheng <icenowy@aosc.io>, Maxime Ripard <maxime@cerno.tech>
-Cc:     devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-sunxi@googlegroups.com, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1727127AbgKUC42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 21:56:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35378 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726674AbgKUC42 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:56:28 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F090BC0613CF;
+        Fri, 20 Nov 2020 18:56:26 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id q28so8984957pgk.1;
+        Fri, 20 Nov 2020 18:56:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tiGQF91pXwToLfH95MJb6mPTaXdEHuIF5O/rnoQkwDw=;
+        b=Yd048lgz57LpXmk8mOVmu2bn3uPCQYJRVc2mmSNevdSufij/uNxyGO2xekJ3wO6YvD
+         wHYQz8Jn5xvbycbKNlcEOAgpHZ3VHNd3XBU/Ot99O9Vu4ub5SglLBJzw5wER3qSsSE1G
+         DjsdO6e3o3RTh3b/wfXcnJIY09qkTUu2BVtmSwmxv8bQ4suRczLbd4IRkqEJNJ11TKjZ
+         QLMltieZ5LDGoomrYppgjRagnyKdFEjKpaSqW0mHmtcF/l29XQo/rm2u07aQtWFACav7
+         40266/4vbxXpagHE58H6TQce0RLaLH8brVocVxqpTf0tMX2/sGfzuPkCFmjQxiyyYaqE
+         63Tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tiGQF91pXwToLfH95MJb6mPTaXdEHuIF5O/rnoQkwDw=;
+        b=S+63hNwbNkqepqblz2Ae85NUyw3mLLSKBWfMERZ0693S875deCPyR5krD3RW0k4MCJ
+         DbGh8QeEwIfzWspg8XZZSRW4Zc9mYcJsO8q9r9tllmU+VnklH6pIP3gi5r0HQdY1aYSw
+         Vjf+aj7jAwgj9N/JWZ8HfS2jAKqxejUWs+FZPLCQNdsU2Apo4iePWdO5SjQ2OOqIXiTc
+         HtuL7ydllLn54s3qyd2AnpouVzL0kqvoiQSUIf8Ks6r3zRUPUFfH1o+swch4lHc0yxko
+         4Yz+PwhN1hY5eqgE6/Ced7diEV997Co+G7H9EsJf0WPDp5FndDjv8TTxxhG+kU60daE0
+         dquQ==
+X-Gm-Message-State: AOAM530+3IjRhXDoDfF0XQNW4lK1ag4jqIUgQ/sT0aRLKxAbHYk4k32w
+        3/z8pBQF9em7f1IUmvbhdmU=
+X-Google-Smtp-Source: ABdhPJxRBiAsdinQTFYzDXsd3gaxa2k/NQWiH23GSU8wTnebHNk2eY7h86si2MwU6iI9pQMZ8Qz7og==
+X-Received: by 2002:a62:fc8c:0:b029:197:d6e4:2961 with SMTP id e134-20020a62fc8c0000b0290197d6e42961mr6314460pfh.20.1605927386415;
+        Fri, 20 Nov 2020 18:56:26 -0800 (PST)
+Received: from [10.230.28.242] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id o62sm5744189pjo.7.2020.11.20.18.56.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 20 Nov 2020 18:56:25 -0800 (PST)
+Subject: Re: [PATCH v2 00/10] Broadcom b53 YAML bindings
+To:     Florian Fainelli <f.fainelli@gmail.com>,
         linux-arm-kernel@lists.infradead.org
-References: <20201107124958.2222253-1-icenowy@aosc.io>
- <20201107125332.2223197-1-icenowy@aosc.io>
- <20201110103925.rbej5ueo2fefbmlp@gilmour.lan>
- <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io>
- <20201116155508.364dg6ycklwylswe@gilmour.lan>
- <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io>
- <20201120155939.3ajmbny2pka2vsnf@gilmour>
- <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io>
-From:   Samuel Holland <samuel@sholland.org>
-Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT
- for PineTab developer sample
-Message-ID: <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org>
-Date:   Fri, 20 Nov 2020 20:51:48 -0600
-User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM IPROC ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Kurt Kanzenbach <kurt@kmk-computers.de>
+References: <20201112045020.9766-1-f.fainelli@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <fb26d286-d0df-db00-53d3-1a0a185109c5@gmail.com>
+Date:   Fri, 20 Nov 2020 18:56:22 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io>
+In-Reply-To: <20201112045020.9766-1-f.fainelli@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Maxime,
 
-On 11/20/20 5:30 PM, Icenowy Zheng wrote:
->>>>>>> +/ {
->>>>>>> +	model = "PineTab Developer Sample";
->>>>>>> +	compatible = "pine64,pinetab-dev", "allwinner,sun50i-a64";
->>>>>>> +};
->>>>>>
->>>>>> Changing the DT and the compatible half-way through it isn't ok. Please
->>>>>> add a new DT with the newer revision like we did for the pinephone
->>>>>
->>>>> We did this on Pine H64.
->>>>
->>>> What are you referring to? I couldn't find a commit where we did what
->>>> you suggested in that patch to the pine H64.
->>>
->>> Oh the situation is complex. On Pine H64, we didn't specify anything at
->>> start (which is the same here), the DT is originally version-neutral
->>> but then transitioned to model B, then reverted to model A. Here the DT is always
->>> for the sample.
->>>
->>> However, for Pine H64 there's model A/B names, but for PineTab there's no
->>> any samples that are sold, thus except who got the samples, all PineTab
->>> owners simply owns a "PineTab", not a "PineTab xxx version".
->>
->> It's fairly simple really, we can't really predict the future, so any DT
->> submitted is for the current version of whatever board there is. This is
 
-I don't think that was the intention at all. The DT was submitted for a
-future product, whatever that future product ends up being at the time
-of its release. Since there are necessarily no users until the product
-ships, there is no chance of breaking users by modifying the DT.
+On 11/11/2020 8:50 PM, Florian Fainelli wrote:
+> Hi,
+> 
+> This patch series fixes the various Broadcom SoCs DTS files and the
+> existing YAML binding for missing properties before adding a proper b53
+> switch YAML binding from Kurt.
+> 
+> If this all looks good, given that there are quite a few changes to the
+> DTS files, it might be best if I take them through the upcoming Broadcom
+> ARM SoC pull requests. Let me know if you would like those patches to be
+> applied differently.
+> 
+> Thanks!
 
->> what we (somewhat messily) did for the PineH64, for the pinephone, or
->> really any other board that has several revisions
-
-Surely a non-public prototype doesn't count as a separate revision! This
-sort of policy strongly discourages ever shipping a board with
-out-of-the-box mainline Linux support. Because if there any hardware
-bugs fixed between initial upstreaming and production, the manufacture
-must come up with a new DT name.
-
-This is hostile to the users as well, because the "canonical" DT name no
-longer matches the "canonical" (read: the only one ever available)
-version of the hardware.
-
-Do you want manufacturers to submit their initial board DT as
-"$BOARD-prototype.dts", just in case they have to make a change before
-production? And only after the board is shipped (with out-of-tree
-patches, of course, to use $BOARD.dts, since the shipped board is *not*
-the prototype) submit a "$BOARD.dts" to mainline?
-
-Maxime, can you clarify specifically what the line is where a device
-tree is "locked down" and further changes to the hardware require a new
-name? First sample leaves the factory? $NUMBER units produced? First
-sold to the public for money?
-
-Without some guidance, or a change in policy, this problem is going to
-keep coming up again and again.
-
-You'll note that so far it has mostly affected Pine devices, and I don't
-think that's because they make more board revisions than other
-manufacturers. It's because they're actively involved in getting their
-boards supported upstream. For other manufacturers, it's some user
-sending in a device tree months after the hardware ships to the public
--- of course the hardware is more stable at that point. I think Pine's
-behavior is something we want to encourage, not penalize.
-
-> Okay. But I'm not satisfied with a non-public sample occupies
-> the pinetab name. Is rename it to pinetab-dev and add a
-> pinetab-retail okay?
-To me, naming the production version anything but "pinetab" isn't
-satisfying either.
-
-Samuel
+Series applied to devicetree/next, thanks everyone.
+-- 
+Florian
