@@ -2,286 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 332A82BBA56
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 00:49:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4422BBB7F
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 02:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727367AbgKTXsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 18:48:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34380 "EHLO
+        id S1728588AbgKUB0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 20:26:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726640AbgKTXsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 18:48:12 -0500
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A662C0613CF;
-        Fri, 20 Nov 2020 15:48:12 -0800 (PST)
-Received: by mail-ed1-x541.google.com with SMTP id a15so11267375edy.1;
-        Fri, 20 Nov 2020 15:48:12 -0800 (PST)
+        with ESMTP id S1725890AbgKUB0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 20:26:17 -0500
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F1AC0613CF;
+        Fri, 20 Nov 2020 17:26:15 -0800 (PST)
+Received: by mail-ej1-x642.google.com with SMTP id bo9so9659019ejb.13;
+        Fri, 20 Nov 2020 17:26:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=CyKAPxvMiczHwzRvYIDIEmLvOjkahE2iThwjzTWMcNM=;
-        b=QB5ILDjqliOWl7IGgOprLh/zl7eIyoqodmchzjouywoX5puth2HmkiHpTYN5w/TuIp
-         AmcPia8art/Cb26pTF2wDVVLYFBKlY1Jf5S6grkFtSqgSLxKI9n3rFAbBeL1eVLODeWr
-         yYf9ct7BEfC3hM8W4YP8374F68modUAKpEPN/GDb/6waYjjLZTcSKPjrvL/lSQwlEbPv
-         sieTRjYm6p+jrY4qg1TuXRz/B0WkYsD3twbZrzO9CCKYTOOzRsQPajoOKFHOKwPvgkGK
-         wQ6lDj+4iTchKWhsGL/qfo4zdmW7piSL9XFFAEsSClFxfS6o4q/fTidoOILedNcOfAhs
-         Pi9g==
+        bh=EABbKjZEY14y+isUKqIGvWYP0FHXdvAjUi1vl8mqG8I=;
+        b=oNo/UV2Nyhili9xdPtSgxVwqM3i4HJYYvFnfrv1fDso3YH/b7effxNQSUxmYdrFW43
+         yTPWavrjOuv4CD6L/0Vyhg3mIcuC852SHhZbosEqzGg8oMX0JI8osbc2vSbWboxhrA0u
+         n4HMfjbIZ7P72GnErXDpS4h37FsxM4WppnPYWV/8LOpIX4ukG4cjL/C0E//i5A//gwRv
+         ghFSizc45aRgDNba9r89W+N/LPAn1WrWIt3PbNPPyUkEyw1Byzy3Dx2brgZ9YQXEtSUz
+         K6Oz130Q6xFWv/O5uDG8s1tImwHm7u7WMz7KCp+aWN7yBI+6GdLlslBQiIrF/WGylz6Z
+         fq7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CyKAPxvMiczHwzRvYIDIEmLvOjkahE2iThwjzTWMcNM=;
-        b=SzdNwm7Noxn5Nm3ccU8XDhiiMhqtJcM2H/geV8i8WSFUL9AkCWbpYW9jzLZMyysno7
-         FFHqQLTPcmPM2xTMAQg5xVxyPZvPYoNL8iM2yOCKqiHf1czQYCea4attj3jtfBufKEAT
-         0MnMm3ABKRBevtZmfY2MbraBxiOez3zfL5kKVACZCfLW5NR7lFuxnGhDgRLJlNVu/NX/
-         16Jtx6XG+G5icXZl3GRHqjJJar9SyjWZAhQiWWYqbJVAhm/h9vMRUGiaAetm0kXnuLPO
-         kxbyWsOwlJSSERr5JTLxOLGQpPbXtIbQf0ud3xsd2Eh2WrwO9KC5yev0j9gL0eflB7pz
-         9YsQ==
-X-Gm-Message-State: AOAM531BgZcoEtEjrsAPsoxDrIsQiK0++jnwfAZx1jlzmtbmlatYukUm
-        ob4N+x7QwSNmfLKBDt5zpWM=
-X-Google-Smtp-Source: ABdhPJz7xnL/Gpl4xnShu57nlQxmS2wMPwaiX+0mSoBISVtgfNmDPFqeD+rGz83ZVLQ9VeiELOCysg==
-X-Received: by 2002:a05:6402:b35:: with SMTP id bo21mr39651519edb.52.1605916090763;
-        Fri, 20 Nov 2020 15:48:10 -0800 (PST)
+        bh=EABbKjZEY14y+isUKqIGvWYP0FHXdvAjUi1vl8mqG8I=;
+        b=BTxCWIo7pcRLkp6iYjQjyA12BveaEtv+yNmdsWcNaBtedtl1TLGXka13uGyIWuh0t9
+         vTdAVrONvNWyJRx4wHjIQTsoW/Lqw/XTjo8SXf11qmy228TIfTQvqTlYk2exNGsan+of
+         CD7/EoDW7XYfsBurFzFLLux3ZfMIPlefl5NCALQK02FddNPbRqNeKnJahoTdPY82RS1v
+         8G2r6zaasLSxmJVILP+mboCUI4gKBFnERYumIHY0FM9y1fGbT8Q+qbD0xPAP8s6qaSK3
+         bGU+gljrvs6JZROkOEUihZfw2dxhk30vxkzC21/bRpzWpKX4eMLAghTZxHRf3xGBx5r1
+         xovw==
+X-Gm-Message-State: AOAM533jgN6G+WdkLtMs1hCvn2TIaaoPWIHe7RcQpn8bsI7sqA+Ht7ST
+        cg01fW7jPv0qN1UwjIqDgPc=
+X-Google-Smtp-Source: ABdhPJxskYu6oKv316/cMM881GPXN887ydYMVX2r0OdBpcIL+EPuzvrH0CR0Yi16TK/Z+ljAht21+g==
+X-Received: by 2002:a17:906:8c6:: with SMTP id o6mr33216875eje.230.1605921973916;
+        Fri, 20 Nov 2020 17:26:13 -0800 (PST)
 Received: from skbuf ([188.25.2.177])
-        by smtp.gmail.com with ESMTPSA id gn41sm910465ejc.32.2020.11.20.15.48.08
+        by smtp.gmail.com with ESMTPSA id f19sm1724057ejk.116.2020.11.20.17.26.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 20 Nov 2020 15:48:09 -0800 (PST)
-Date:   Sat, 21 Nov 2020 01:48:08 +0200
+        Fri, 20 Nov 2020 17:26:13 -0800 (PST)
+Date:   Sat, 21 Nov 2020 03:26:11 +0200
 From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Christian Eggers <ceggers@arri.de>
-Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Kurt Kanzenbach <kurt.kanzenbach@linutronix.de>,
-        George McCollister <george.mccollister@gmail.com>,
-        Marek Vasut <marex@denx.de>,
-        Helmut Grohne <helmut.grohne@intenta.de>,
-        Paul Barker <pbarker@konsulko.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 12/12] net: dsa: microchip: ksz9477: add
- periodic output support
-Message-ID: <20201120234808.q4qvxpuj6akuev6h@skbuf>
+To:     Tristram.Ha@microchip.com
+Cc:     ceggers@arri.de, kuba@kernel.org, andrew@lunn.ch,
+        richardcochran@gmail.com, robh+dt@kernel.org,
+        vivien.didelot@gmail.com, davem@davemloft.net,
+        kurt.kanzenbach@linutronix.de, george.mccollister@gmail.com,
+        marex@denx.de, helmut.grohne@intenta.de, pbarker@konsulko.com,
+        Codrin.Ciubotariu@microchip.com, Woojung.Huh@microchip.com,
+        UNGLinuxDriver@microchip.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 00/12] net: dsa: microchip: PTP support for
+ KSZ956x
+Message-ID: <20201121012611.r6h5zpd32pypczg3@skbuf>
 References: <20201118203013.5077-1-ceggers@arri.de>
- <20201118203013.5077-13-ceggers@arri.de>
+ <20201118234018.jltisnhjesddt6kf@skbuf>
+ <2452899.Bt8PnbAPR0@n95hx1g2>
+ <BYAPR11MB35582F880B533EB2EE0CDD1DECE00@BYAPR11MB3558.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201118203013.5077-13-ceggers@arri.de>
+In-Reply-To: <BYAPR11MB35582F880B533EB2EE0CDD1DECE00@BYAPR11MB3558.namprd11.prod.outlook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 18, 2020 at 09:30:13PM +0100, Christian Eggers wrote:
-> The KSZ9563 has a Trigger Output Unit (TOU) which can be used to
-> generate periodic signals.
-> 
-> The pulse length can be altered via a device attribute.
-> 
-> Tested on a Microchip KSZ9563 switch.
-> 
-> Signed-off-by: Christian Eggers <ceggers@arri.de>
-> ---
->  drivers/net/dsa/microchip/ksz9477_ptp.c | 197 +++++++++++++++++++++++-
->  drivers/net/dsa/microchip/ksz_common.h  |   5 +
->  2 files changed, 201 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/dsa/microchip/ksz9477_ptp.c b/drivers/net/dsa/microchip/ksz9477_ptp.c
-> index ce3fdc9a1f9e..3174574d52f6 100644
-> --- a/drivers/net/dsa/microchip/ksz9477_ptp.c
-> +++ b/drivers/net/dsa/microchip/ksz9477_ptp.c
-> @@ -90,6 +90,20 @@ static int ksz9477_ptp_tou_cycle_count_set(struct ksz_device *dev, u16 count)
->  	return 0;
->  }
->  
-> +static int ksz9477_ptp_tou_pulse_verify(u64 pulse_ns)
-> +{
-> +	u32 data;
-> +
-> +	if (pulse_ns & 0x3)
-> +		return -EINVAL;
-> +
-> +	data = (pulse_ns / 8);
-> +	if (data != (data & TRIG_PULSE_WIDTH_M))
-> +		return -ERANGE;
-> +
-> +	return 0;
-> +}
-> +
->  static int ksz9477_ptp_tou_pulse_set(struct ksz_device *dev, u32 pulse_ns)
->  {
->  	u32 data;
-> @@ -196,6 +210,7 @@ static int ksz9477_ptp_adjfine(struct ptp_clock_info *ptp, long scaled_ppm)
->  	return ret;
->  }
->  
-> +static int ksz9477_ptp_restart_perout(struct ksz_device *dev);
->  static int ksz9477_ptp_enable_pps(struct ksz_device *dev, int on);
->  
->  static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
-> @@ -241,6 +256,15 @@ static int ksz9477_ptp_adjtime(struct ptp_clock_info *ptp, s64 delta)
->  	case KSZ_PTP_TOU_IDLE:
->  		break;
->  
-> +	case KSZ_PTP_TOU_PEROUT:
-> +		dev_info(dev->dev, "Restarting periodic output signal\n");
+On Thu, Nov 19, 2020 at 06:51:15PM +0000, Tristram.Ha@microchip.com wrote:
+> The initial proposal in tag_ksz.c is for the switch driver to provide callback functions
+> to handle receiving and transmitting.  Then each switch driver can be added to
+> process the tail tag in its own driver and leave tag_ksz.c unchanged.
+>
+> It was rejected because of wanting to keep tag_ksz.c code and switch driver code
+> separate and concern about performance.
+>
+> Now tag_ksz.c is filled with PTP code that is not relevant for other switches and will
+> need to be changed again when another switch driver with PTP function is added.
+>
+> Can we implement that callback mechanism?
 
-Isn't this a bit too verbose, or is there something for the user to be
-concerned about?
+I, too, lack the context here. But it sounds like feedback that Andrew
+would give.
 
-> +
-> +		ret = ksz9477_ptp_restart_perout(dev);
-> +		if (ret)
-> +			goto error_return;
-> +
-> +		break;
-> +
->  	case KSZ_PTP_TOU_PPS:
->  		dev_info(dev->dev, "Restarting PPS\n");
->  
-> @@ -358,6 +382,15 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
->  	case KSZ_PTP_TOU_IDLE:
->  		break;
->  
-> +	case KSZ_PTP_TOU_PEROUT:
-> +		dev_info(dev->dev, "Restarting periodic output signal\n");
-> +
-> +		ret = ksz9477_ptp_restart_perout(dev);
-> +		if (ret)
-> +			goto error_return;
-> +
-> +		break;
-> +
->  	case KSZ_PTP_TOU_PPS:
->  		dev_info(dev->dev, "Restarting PPS\n");
->  
-> @@ -377,6 +410,159 @@ static int ksz9477_ptp_settime(struct ptp_clock_info *ptp,
->  	return ret;
->  }
->  
-> +static int ksz9477_ptp_configure_perout(struct ksz_device *dev, u32 cycle_width_ns,
+If you don't like the #ifdef's, I am not in love with them either. But
+maybe Christian is just optimizing too aggressively, and doesn't actually
+need to put those #ifdef's there and provide stub implementations, but
+could actually just leave the ksz9477_rcv_timestamp and ksz9477_xmit_timestamp
+always compiled-in, and "dead at runtime" in the case there is no PTP.
 
-Watch out for 80 characters, please!
+If there is something else you don't like, what is it? If you know that
+other KSZ switches don't implement timestamping in the same way, well,
+we don't know that. I thought that it's generally up to the second
+implementer to recognize which parts of the code are common and should
+be reused, not for the first one to guess. I would not add function
+pointers for a single implementation if they don't have a clear
+justification.
 
-> +					u16 cycle_count, u32 pulse_width_ns,
-> +					struct timespec64 const *target_time)
-> +{
-> +	int ret;
-> +	u32 trig_ctrl;
+> One issue with transmission with PTP enabled is that the tail tag needs to contain 4
+> additional bytes.  When the PTP function is off the bytes are not added.  This should
+> be monitored all the time.
+>
+> The extra 4 bytes are only used for 1-step Pdelay_Resp.  It should contain the receive
+> timestamp of previous Pdelay_Req with latency adjusted.  The correction field in
+> Pdelay_Resp should be zero.  It may be a hardware bug to have wrong UDP checksum
+> when the message is sent.
 
-Reverse Christmas tree.
+It "may" be a hardware bug? Are you unsure or polite?
+As for the phrase "the correction field in Pdelay_Resp should be zero".
+Consider the case where there is an E2E TC switch attached to that port.
+It will update the correctionField of the Pdelay_Req message. Then the
+application stack running on this ksz9477 switch is forced by the
+standard to copy the correctionField as-is from the Pdelay_Req into the
+Pdelay_Resp message. So that correctionField is never guaranteed to be
+zero, even if Christian doesn't fiddle with it within the driver. Are
+you saying that for proper UDP checksum calculation, the driver should
+be forcing the correctionField to zero and moving that value into the
+tail tag?
 
-> +
-> +	/* Enable notify, set rising edge, set periodic pattern */
-> +	trig_ctrl = TRIG_NOTIFY | (TRIG_POS_PERIOD << TRIG_PATTERN_S);
-> +	ret = ksz_write32(dev, REG_TRIG_CTRL__4, trig_ctrl);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ksz9477_ptp_tou_cycle_width_set(dev, cycle_width_ns);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ksz9477_ptp_tou_cycle_count_set(dev,  cycle_count);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ksz9477_ptp_tou_pulse_set(dev, pulse_width_ns);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ksz9477_ptp_tou_target_time_set(dev, target_time);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int ksz9477_ptp_enable_perout(struct ksz_device *dev,
-> +				     struct ptp_perout_request const *perout_request, int on)
-> +{
-> +	u32 gpio_stat0;
-> +	u64 cycle_width_ns;
-> +	int ret;
-> +
-> +	if (dev->ptp_tou_mode != KSZ_PTP_TOU_PEROUT && dev->ptp_tou_mode != KSZ_PTP_TOU_IDLE)
-> +		return -EBUSY;
-> +
-> +	ret = ksz9477_ptp_tou_reset(dev, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (!on) {
-> +		dev->ptp_tou_mode = KSZ_PTP_TOU_IDLE;
-> +		return 0;  /* success */
-> +	}
-> +
-> +	dev->ptp_perout_target_time_first.tv_sec  = perout_request->start.sec;
-> +	dev->ptp_perout_target_time_first.tv_nsec = perout_request->start.nsec;
-> +
-> +	dev->ptp_perout_period.tv_sec = perout_request->period.sec;
-> +	dev->ptp_perout_period.tv_nsec = perout_request->period.nsec;
-> +
-> +	cycle_width_ns = timespec64_to_ns(&dev->ptp_perout_period);
-> +	if ((cycle_width_ns & GENMASK(31, 0)) != cycle_width_ns)
-> +		return -EINVAL;
-> +
-> +	if (perout_request->flags & PTP_PEROUT_DUTY_CYCLE) {
-> +		u64 value = perout_request->on.sec * NSEC_PER_SEC +
-> +			    perout_request->on.nsec;
-> +
-> +		ret = ksz9477_ptp_tou_pulse_verify(value);
-> +		if (ret)
-> +			return ret;
-> +
-> +		dev->ptp_perout_pulse_width_ns = value;
-> +	}
+> I think the right implementation is for the driver to remember this receive timestamp
+> of Pdelay_Req and puts it in the tail tag when it sees a 1-step Pdelay_Resp is sent.
 
-It is not guaranteed that user space will set this flag. Shouldn't you
-assign a default value for the pulse width? I don't know, half the
-period should be a good default.
+I have mixed feelings about this. IIUC, you're saying "let's implement a
+fixed-size FIFO of RX timestamps of Pdelay_Req messages, and let's match
+them on TX to Pdelay_Resp messages, by {sequenceId, domainNumber}."
 
-Also, please reject PTP_PEROUT_ONE_SHOT and PTP_PEROUT_PHASE, since you
-don't do anything with them, but user space might be led into believing
-otherwise.
+But how deep should we make that FIFO? I.e. how many Pdelay_Req messages
+should we expect before the user space will inject back a Pdelay_Resp
+for transmission?
 
-> +
-> +	ret = ksz9477_ptp_configure_perout(dev, cycle_width_ns,
-> +					   dev->ptp_perout_cycle_count,
-> +					   dev->ptp_perout_pulse_width_ns,
-> +					   &dev->ptp_perout_target_time_first);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Activate trigger unit */
-> +	ret = ksz9477_ptp_tou_start(dev, NULL);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Check error flag:
-> +	 * - the ACTIVE flag is NOT cleared an error!
-> +	 */
-> +	ret = ksz_read32(dev, REG_PTP_TRIG_STATUS__4, &gpio_stat0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (gpio_stat0 & (1 << (0 + TRIG_ERROR_S))) {
+Again, consider the case of an E2E TC attached to a ksz9477 port. Even
+if we run peer delay, it's not guaranteed that we only have one peer.
+That E2E TC might connect us to a plethora of other peers. And the more
+peers we are connected to, the higher the chance that the size of this
+Pdelay_Req RX timestamp FIFO will not be adequately chosen.
 
-What is the role of this "0 +" term here?
+> There is one more requirement that is a little difficult to do.  The calculated peer delay
+> needs to be programmed in hardware register, but the regular PTP stack has no way to
+> send that command.  I think the driver has to do its own calculation by snooping on the
+> Pdelay_Req/Pdelay_Resp/Pdelay_Resp_Follow_Up messages.
 
-> +		dev_err(dev->dev, "%s: Trigger unit0 error!\n", __func__);
-> +		ret = -EIO;
-> +		/* Unit will be reset on next access */
-> +		return ret;
-> +	}
-> +
-> +	dev->ptp_tou_mode = KSZ_PTP_TOU_PEROUT;
-> +	return 0;
-> +}
+What register, and what does the switch do with this peer delay information?
+
+> The receive and transmit latencies are different for different connected speed.  So the
+> driver needs to change them when the link changes.  For that reason the PTP stack
+> should not use its own latency values as generally the application does not care about
+> the linked speed.
+
+The thing is, ptp4l already has ingressLatency and egressLatency
+settings, and I would not be surprised if those config options would get
+extended to cover values at multiple link speeds.
+
+In the general case, the ksz9477 MAC could be attached to any external
+PHY, having its own propagation delay characteristics, or any number of
+other things that cause clock domain crossings. I'm not sure how feasible
+it is for the kernel to abstract this away completely, and adjust
+timestamps automatically based on any and all combinations of MAC and
+PHY. Maybe this is just wishful thinking.
+
+Oh, and by the way, Christian, I'm not even sure if you aren't in fact
+just beating around the bush with these tstamp_rx_latency_ns and
+tstamp_tx_latency_ns values? I mean, the switch adds the latency value
+to the timestamps. And you, from the driver, read the value of the
+register, so you can subtract the value from the timestamp, to
+compensate for its correction. So, all in all, there is no net latency
+compensation seen by the outside world?! If that is the case, can't you
+just set the latency registers to zero, do your compensation from the
+application stack and call it a day?
