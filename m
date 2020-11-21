@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA292BBBEB
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:06:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34ECE2BBBEF
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:06:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727217AbgKUCDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 21:03:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
+        id S1727144AbgKUCDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 21:03:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727144AbgKUCDC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:03:02 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A089FC061A47
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:03:00 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id c9so14116422ybs.8
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:03:00 -0800 (PST)
+        with ESMTP id S1726596AbgKUCDF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:03:05 -0500
+Received: from mail-qv1-xf49.google.com (mail-qv1-xf49.google.com [IPv6:2607:f8b0:4864:20::f49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6314C061A48
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:03:03 -0800 (PST)
+Received: by mail-qv1-xf49.google.com with SMTP id du18so8531174qvb.14
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:03:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=S0ib8u/7wh3kLvhCXXOvflu8O0ETo4V/YijspRHnq78=;
-        b=CFNlNuBG2O3fMz5BNHE+vG2DWMcvm6vBu+JFzEXnqkW7M5ASUNzjSLFtG7u4clwR4k
-         VKt0OhbNlt8oedzo4uUSDpo7XB3ko1klYndvWBpBpAB1bWfR7wpjrCODPpfvKDGa8Vmq
-         iC716fbdguC8L8NPzSsHMYBbcwz/hxKeyu50/Lvj8zw8+n2+yd2yRctzBWo4mok7ZmRI
-         5R1kizNMqoRsI6VCJhmW5qt7T9t7XMz9iQvTt1WMvXwnKjC3QnUGGDv6zNleC3zr8OHs
-         OhAE2ZVli/EPb27MrAeMlK1CEEf/mhpymCzP7/JySqUi9XjbNaCgY3urTmyStQ5IZ1Ye
-         gWpw==
+        bh=BEFBYjf850Ydzo63+5rwraIHDR8Cqu0fdfzu8DbL0fA=;
+        b=gSBeYkC3hQ7wzIslfgvOpCfXurXfCRj9ddCikE8lToem57W+ZgEmKV4/7kwvRk4nkU
+         B+Yq0fCMAX+BTSVg+KpXb7dCkTyHmv0Vs8YcqMGzKEnJxEoD6zAITT29pEfe50aT5Vw5
+         lqaeRb+2fFZDseJzctWDDDyxolv/P8Xoyt31sKR6LtFF7bu+GwPw9Wr1UAuqljOC5xmX
+         Pq3XphLdk4mVFlHUIhUGDCGBx0u3KJ7wFlsV6X/tkJO3bTCgKm7ylfq7fLqqRNeXjayQ
+         noIKMKbcbZ+xGLAnX7Dy7ijL7bpPlFFfcTjukDUZE84H2VUZflsZWWwYjXH4dawoQS7f
+         Pcsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=S0ib8u/7wh3kLvhCXXOvflu8O0ETo4V/YijspRHnq78=;
-        b=tvwxdDv49nzfoxwc1OCP+gpBk8XX8mspLLIE7xnBXy4/I0lLOBaGqOiHl4ZJGxfQsQ
-         J1Ih/FwWGTD9zLihAnicKL+8eWq3aSWXwH3hVFc8yvwSbdLh3Y8Fm8j/vp3FoZmYGTkT
-         kIpoi/w57j3xvUHDd/tDHbEbQPG4aEkaOZpUHXU0vm+me17YGKLerVubQ9sCDal/IYK4
-         XK+yYXPw4iHmvImSSTFT2ciVLTqlVplIRhYcXyn905iytdebmTHDNMf1G9bLSC6UWnV2
-         tziJDBh9LUXnYDVfeH5DOGgQECypwhwkO8JspMvpwvc0cBHOxbctE7ujTr8lDiaxfCHi
-         o+hw==
-X-Gm-Message-State: AOAM532M/YXwbVbd3ajdgxXRBt9AEo0IUvmFkvdXavYZloqRcGQxGqBP
-        /tUCxNFphJ7BQqb8rnQQmCS+aJd6aueqj4s=
-X-Google-Smtp-Source: ABdhPJy+eu6XVbcJYUcL1uW5OEWkz9CJ5VUEn/2gDqRl6e62WFu5zeESVjmr+EiKM+4B0WR4d+I2kbv3pN8nrPc=
+        bh=BEFBYjf850Ydzo63+5rwraIHDR8Cqu0fdfzu8DbL0fA=;
+        b=DgD6nnpK1qoPWOWtMMfyY27fIAx6o14LCOFnheN73iJLDXidrLYQ2M4fl6a6YMgsGW
+         N/2woqYtpYwmVEKvnI0i5Qg4AaonTBtQARulu4Frbht23pCV9N6ZerVPjNhYlz6VHCax
+         rFGHWw0odOGgquo3MjgnH9iqj5Dqky1/JZEwbsIrzzeLWNHSytpE74fuiCy1XjVHfpRN
+         4f/tiwR07UyR2z8xjvnKMXSMH/dWBoF3dS1z6X9PcTsTN3WPT7I9FMrb8fu2sbka+4a3
+         Yp+hGeuhrwwMHWlSIW4A7drZJNJD+UpLT7VGJE6C7BS4/4y+qv6TykQtAtkuCdli9M9o
+         IenQ==
+X-Gm-Message-State: AOAM533ZGIg9eiMIyaKgdllfE8oK3pvUbTSbp4+esTjqyuuncy/o9+2X
+        y8jgm4OUwJjsnrJIZFftvgV6hSQkShmLSsA=
+X-Google-Smtp-Source: ABdhPJztIuCkrLcn+gUs8LJYiOxV3Oj6qHuVK25FKWOhywIwi1DvpSREzSMr8PjNIvYy5JgUGDysjhQxV+JLf+M=
 Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
 X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
- (user=saravanak job=sendgmr) by 2002:a25:4f0b:: with SMTP id
- d11mr18621624ybb.147.1605924179889; Fri, 20 Nov 2020 18:02:59 -0800 (PST)
-Date:   Fri, 20 Nov 2020 18:02:21 -0800
+ (user=saravanak job=sendgmr) by 2002:a0c:9121:: with SMTP id
+ q30mr2362792qvq.17.1605924182604; Fri, 20 Nov 2020 18:03:02 -0800 (PST)
+Date:   Fri, 20 Nov 2020 18:02:22 -0800
 In-Reply-To: <20201121020232.908850-1-saravanak@google.com>
-Message-Id: <20201121020232.908850-7-saravanak@google.com>
+Message-Id: <20201121020232.908850-8-saravanak@google.com>
 Mime-Version: 1.0
 References: <20201121020232.908850-1-saravanak@google.com>
 X-Mailer: git-send-email 2.29.2.454.gaff20da3a2-goog
-Subject: [PATCH v2 06/17] Revert "driver core: fw_devlink: Add support for
- batching fwnode parsing"
+Subject: [PATCH v2 07/17] driver core: Add fwnode_init()
 From:   Saravana Kannan <saravanak@google.com>
 To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -75,213 +74,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit 716a7a25969003d82ab738179c3f1068a120ed11.
-
-The fw_devlink_pause/resume() APIs added by the commit being reverted
-were a first cut attempt at optimizing boot time. But these APIs don't
-fully solve the problem and are very fragile (can only be used for the
-top level devices being added). This series replaces them with a much
-better optimization that works for all device additions and also has the
-benefit of reducing the complexity of the firmware (DT, EFI) specific
-code and abstracting out common code to driver core.
+There are multiple locations in the kernel where a struct fwnode_handle
+is initialized. Add fwnode_init() so that we have one way of
+initializing a fwnode_handle.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/base/base.h    |   1 -
- drivers/base/core.c    | 116 +++--------------------------------------
- drivers/base/dd.c      |   8 ---
- include/linux/fwnode.h |   2 -
- 4 files changed, 7 insertions(+), 120 deletions(-)
+ drivers/acpi/property.c         | 2 +-
+ drivers/acpi/scan.c             | 2 +-
+ drivers/base/swnode.c           | 2 +-
+ drivers/firmware/efi/efi-init.c | 8 ++++----
+ include/linux/fwnode.h          | 6 ++++++
+ include/linux/of.h              | 2 +-
+ kernel/irq/irqdomain.c          | 2 +-
+ 7 files changed, 15 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/base/base.h b/drivers/base/base.h
-index c3562adf4789..91cfb8405abd 100644
---- a/drivers/base/base.h
-+++ b/drivers/base/base.h
-@@ -156,7 +156,6 @@ extern char *make_class_name(const char *name, struct kobject *kobj);
- extern int devres_release_all(struct device *dev);
- extern void device_block_probing(void);
- extern void device_unblock_probing(void);
--extern void driver_deferred_probe_force_trigger(void);
+diff --git a/drivers/acpi/property.c b/drivers/acpi/property.c
+index d04de10a63e4..24e87b630573 100644
+--- a/drivers/acpi/property.c
++++ b/drivers/acpi/property.c
+@@ -76,7 +76,7 @@ static bool acpi_nondev_subnode_extract(const union acpi_object *desc,
+ 		return false;
  
- /* /sys/devices directory */
- extern struct kset *devices_kset;
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index e6bb4bf4f19d..401fa7e3505c 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -50,9 +50,6 @@ static LIST_HEAD(wait_for_suppliers);
- static DEFINE_MUTEX(wfs_lock);
- static LIST_HEAD(deferred_sync);
- static unsigned int defer_sync_state_count = 1;
--static unsigned int defer_fw_devlink_count;
--static DEFINE_MUTEX(defer_fw_devlink_lock);
--static bool fw_devlink_is_permissive(void);
+ 	dn->name = link->package.elements[0].string.pointer;
+-	dn->fwnode.ops = &acpi_data_fwnode_ops;
++	fwnode_init(&dn->fwnode, &acpi_data_fwnode_ops);
+ 	dn->parent = parent;
+ 	INIT_LIST_HEAD(&dn->data.properties);
+ 	INIT_LIST_HEAD(&dn->data.subnodes);
+diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+index bc6a79e33220..519963bcc047 100644
+--- a/drivers/acpi/scan.c
++++ b/drivers/acpi/scan.c
+@@ -1589,7 +1589,7 @@ void acpi_init_device_object(struct acpi_device *device, acpi_handle handle,
+ 	device->device_type = type;
+ 	device->handle = handle;
+ 	device->parent = acpi_bus_get_parent(handle);
+-	device->fwnode.ops = &acpi_device_fwnode_ops;
++	fwnode_init(&device->fwnode, &acpi_device_fwnode_ops);
+ 	acpi_set_device_status(device, sta);
+ 	acpi_device_get_busid(device);
+ 	acpi_set_pnp_ids(handle, &device->pnp, type);
+diff --git a/drivers/base/swnode.c b/drivers/base/swnode.c
+index 010828fc785b..4a4b2008fbc2 100644
+--- a/drivers/base/swnode.c
++++ b/drivers/base/swnode.c
+@@ -653,7 +653,7 @@ swnode_register(const struct software_node *node, struct swnode *parent,
+ 	swnode->parent = parent;
+ 	swnode->allocated = allocated;
+ 	swnode->kobj.kset = swnode_kset;
+-	swnode->fwnode.ops = &software_node_ops;
++	fwnode_init(&swnode->fwnode, &software_node_ops);
  
- #ifdef CONFIG_SRCU
- static DEFINE_MUTEX(device_links_lock);
-@@ -758,7 +755,7 @@ static void device_link_add_missing_supplier_links(void)
- 		int ret = fwnode_call_int_op(dev->fwnode, add_links, dev);
- 		if (!ret)
- 			list_del_init(&dev->links.needs_suppliers);
--		else if (ret != -ENODEV || fw_devlink_is_permissive())
-+		else if (ret != -ENODEV)
- 			dev->links.need_for_probe = false;
- 	}
- 	mutex_unlock(&wfs_lock);
-@@ -1442,116 +1439,17 @@ static void fw_devlink_link_device(struct device *dev)
+ 	ida_init(&swnode->child_ids);
+ 	INIT_LIST_HEAD(&swnode->entry);
+diff --git a/drivers/firmware/efi/efi-init.c b/drivers/firmware/efi/efi-init.c
+index f55a92ff12c0..b148f1459fb3 100644
+--- a/drivers/firmware/efi/efi-init.c
++++ b/drivers/firmware/efi/efi-init.c
+@@ -359,9 +359,7 @@ static const struct fwnode_operations efifb_fwnode_ops = {
+ 	.add_links = efifb_add_links,
+ };
+ 
+-static struct fwnode_handle efifb_fwnode = {
+-	.ops = &efifb_fwnode_ops,
+-};
++static struct fwnode_handle efifb_fwnode;
+ 
+ static int __init register_gop_device(void)
  {
- 	int fw_ret;
+@@ -375,8 +373,10 @@ static int __init register_gop_device(void)
+ 	if (!pd)
+ 		return -ENOMEM;
  
--	if (!fw_devlink_flags)
--		return;
--
--	mutex_lock(&defer_fw_devlink_lock);
--	if (!defer_fw_devlink_count)
--		device_link_add_missing_supplier_links();
--
--	/*
--	 * The device's fwnode not having add_links() doesn't affect if other
--	 * consumers can find this device as a supplier.  So, this check is
--	 * intentionally placed after device_link_add_missing_supplier_links().
--	 */
--	if (!fwnode_has_op(dev->fwnode, add_links))
--		goto out;
-+	device_link_add_missing_supplier_links();
+-	if (IS_ENABLED(CONFIG_PCI))
++	if (IS_ENABLED(CONFIG_PCI)) {
++		fwnode_init(&efifb_fwnode, &efifb_fwnode_ops);
+ 		pd->dev.fwnode = &efifb_fwnode;
++	}
  
--	/*
--	 * If fw_devlink is being deferred, assume all devices have mandatory
--	 * suppliers they need to link to later. Then, when the fw_devlink is
--	 * resumed, all these devices will get a chance to try and link to any
--	 * suppliers they have.
--	 */
--	if (!defer_fw_devlink_count) {
-+	if (fw_devlink_flags && fwnode_has_op(dev->fwnode, add_links)) {
- 		fw_ret = fwnode_call_int_op(dev->fwnode, add_links, dev);
--		if (fw_ret == -ENODEV && fw_devlink_is_permissive())
--			fw_ret = -EAGAIN;
--	} else {
--		fw_ret = -ENODEV;
-+		if (fw_ret == -ENODEV && !fw_devlink_is_permissive())
-+			device_link_wait_for_mandatory_supplier(dev);
-+		else if (fw_ret)
-+			device_link_wait_for_optional_supplier(dev);
- 	}
--
--	if (fw_ret == -ENODEV)
--		device_link_wait_for_mandatory_supplier(dev);
--	else if (fw_ret)
--		device_link_wait_for_optional_supplier(dev);
--
--out:
--	mutex_unlock(&defer_fw_devlink_lock);
- }
- 
--/**
-- * fw_devlink_pause - Pause parsing of fwnode to create device links
-- *
-- * Calling this function defers any fwnode parsing to create device links until
-- * fw_devlink_resume() is called. Both these functions are ref counted and the
-- * caller needs to match the calls.
-- *
-- * While fw_devlink is paused:
-- * - Any device that is added won't have its fwnode parsed to create device
-- *   links.
-- * - The probe of the device will also be deferred during this period.
-- * - Any devices that were already added, but waiting for suppliers won't be
-- *   able to link to newly added devices.
-- *
-- * Once fw_devlink_resume():
-- * - All the fwnodes that was not parsed will be parsed.
-- * - All the devices that were deferred probing will be reattempted if they
-- *   aren't waiting for any more suppliers.
-- *
-- * This pair of functions, is mainly meant to optimize the parsing of fwnodes
-- * when a lot of devices that need to link to each other are added in a short
-- * interval of time. For example, adding all the top level devices in a system.
-- *
-- * For example, if N devices are added and:
-- * - All the consumers are added before their suppliers
-- * - All the suppliers of the N devices are part of the N devices
-- *
-- * Then:
-- *
-- * - With the use of fw_devlink_pause() and fw_devlink_resume(), each device
-- *   will only need one parsing of its fwnode because it is guaranteed to find
-- *   all the supplier devices already registered and ready to link to. It won't
-- *   have to do another pass later to find one or more suppliers it couldn't
-- *   find in the first parse of the fwnode. So, we'll only need O(N) fwnode
-- *   parses.
-- *
-- * - Without the use of fw_devlink_pause() and fw_devlink_resume(), we would
-- *   end up doing O(N^2) parses of fwnodes because every device that's added is
-- *   guaranteed to trigger a parse of the fwnode of every device added before
-- *   it. This O(N^2) parse is made worse by the fact that when a fwnode of a
-- *   device is parsed, all it descendant devices might need to have their
-- *   fwnodes parsed too (even if the devices themselves aren't added).
-- */
--void fw_devlink_pause(void)
--{
--	mutex_lock(&defer_fw_devlink_lock);
--	defer_fw_devlink_count++;
--	mutex_unlock(&defer_fw_devlink_lock);
--}
--
--/** fw_devlink_resume - Resume parsing of fwnode to create device links
-- *
-- * This function is used in conjunction with fw_devlink_pause() and is ref
-- * counted. See documentation for fw_devlink_pause() for more details.
-- */
--void fw_devlink_resume(void)
--{
--	mutex_lock(&defer_fw_devlink_lock);
--	if (!defer_fw_devlink_count) {
--		WARN(true, "Unmatched fw_devlink pause/resume!");
--		goto out;
--	}
--
--	defer_fw_devlink_count--;
--	if (defer_fw_devlink_count)
--		goto out;
--
--	device_link_add_missing_supplier_links();
--	driver_deferred_probe_force_trigger();
--out:
--	mutex_unlock(&defer_fw_devlink_lock);
--}
- /* Device links support end. */
- 
- int (*platform_notify)(struct device *dev) = NULL;
-diff --git a/drivers/base/dd.c b/drivers/base/dd.c
-index b4be35fa7fda..148e81969e04 100644
---- a/drivers/base/dd.c
-+++ b/drivers/base/dd.c
-@@ -163,14 +163,6 @@ static bool driver_deferred_probe_enable = false;
-  * again.
-  */
- static void driver_deferred_probe_trigger(void)
--{
--	if (!driver_deferred_probe_enable)
--		return;
--
--	driver_deferred_probe_force_trigger();
--}
--
--void driver_deferred_probe_force_trigger(void)
- {
- 	if (!driver_deferred_probe_enable)
- 		return;
+ 	err = platform_device_add_data(pd, &screen_info, sizeof(screen_info));
+ 	if (err)
 diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index 9506f8ec0974..e0abafbb17f8 100644
+index e0abafbb17f8..5589799708b5 100644
 --- a/include/linux/fwnode.h
 +++ b/include/linux/fwnode.h
-@@ -171,7 +171,5 @@ struct fwnode_operations {
+@@ -170,6 +170,12 @@ struct fwnode_operations {
+ 	} while (false)
  #define get_dev_from_fwnode(fwnode)	get_device((fwnode)->dev)
  
++static inline void fwnode_init(struct fwnode_handle *fwnode,
++			       const struct fwnode_operations *ops)
++{
++	fwnode->ops = ops;
++}
++
  extern u32 fw_devlink_get_flags(void);
--void fw_devlink_pause(void);
--void fw_devlink_resume(void);
  
  #endif
+diff --git a/include/linux/of.h b/include/linux/of.h
+index 5d51891cbf1a..27fba2472eee 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -108,7 +108,7 @@ static inline void of_node_init(struct device_node *node)
+ #if defined(CONFIG_OF_KOBJ)
+ 	kobject_init(&node->kobj, &of_node_ktype);
+ #endif
+-	node->fwnode.ops = &of_fwnode_ops;
++	fwnode_init(&node->fwnode, &of_fwnode_ops);
+ }
+ 
+ #if defined(CONFIG_OF_KOBJ)
+diff --git a/kernel/irq/irqdomain.c b/kernel/irq/irqdomain.c
+index cf8b374b892d..06fce7e39033 100644
+--- a/kernel/irq/irqdomain.c
++++ b/kernel/irq/irqdomain.c
+@@ -91,7 +91,7 @@ struct fwnode_handle *__irq_domain_alloc_fwnode(unsigned int type, int id,
+ 	fwid->type = type;
+ 	fwid->name = n;
+ 	fwid->pa = pa;
+-	fwid->fwnode.ops = &irqchip_fwnode_ops;
++	fwnode_init(&fwid->fwnode, &irqchip_fwnode_ops);
+ 	return &fwid->fwnode;
+ }
+ EXPORT_SYMBOL_GPL(__irq_domain_alloc_fwnode);
 -- 
 2.29.2.454.gaff20da3a2-goog
 
