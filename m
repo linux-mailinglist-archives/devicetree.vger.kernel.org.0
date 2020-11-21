@@ -2,39 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 977C82BC046
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 16:43:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1145B2BC04C
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 16:47:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727874AbgKUPjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 10:39:52 -0500
-Received: from mail.kernel.org ([198.145.29.99]:58334 "EHLO mail.kernel.org"
+        id S1727905AbgKUPoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 10:44:39 -0500
+Received: from mail.kernel.org ([198.145.29.99]:59338 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727854AbgKUPjw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 21 Nov 2020 10:39:52 -0500
+        id S1727868AbgKUPoj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 21 Nov 2020 10:44:39 -0500
 Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4658A221FE;
-        Sat, 21 Nov 2020 15:39:50 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 345F1221FE;
+        Sat, 21 Nov 2020 15:44:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605973191;
-        bh=8tU9k43v5FZyRWrx0THa7YOGc2pAgq8YzvOisS70/CE=;
+        s=default; t=1605973479;
+        bh=SyC1dhqCsDOI19dIs9bJQBVes0qMiioBiPrRPnoChck=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=zMHVIMrep8vmBFG6LjzwGTaTTZMVvC4e3qNzEskwRWCXUM3MWHfg8iuxFbG6yIWYA
-         pPdEmk4QVyvIsBKqcIIV6JHTJipCdu1KDiaQrwMVj1BHGkbtHFiNs1jvSFIFZVcx8F
-         Moly1U0caocgqHQnPyiJHnh8mAigf+HJiAwNdYsc=
-Date:   Sat, 21 Nov 2020 15:39:46 +0000
+        b=eGN2PncVzwFX4DdCLvDa2gn58JRnUGSpAFO1+YFgAjv1U1YV19RyFqvDyVR1/zDj7
+         2yohdb2VtYnXz/0oVFX8ecgi5Ea4clI8HkBvIIa97fpKME49e6X1drSkYtbEbRSW3d
+         8DMFnBsNOilGJxCX9wpzP6yi+yUoE0oCuKNe43TM=
+Date:   Sat, 21 Nov 2020 15:44:34 +0000
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-iio@vger.kernel.org>, <robh+dt@kernel.org>,
-        <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v2 4/4] dt-bindings: adc: ad7887: add binding doc for
- AD7887
-Message-ID: <20201121153946.0d82620a@archlinux>
-In-Reply-To: <20201119100748.57689-4-alexandru.ardelean@analog.com>
-References: <20201119100748.57689-1-alexandru.ardelean@analog.com>
-        <20201119100748.57689-4-alexandru.ardelean@analog.com>
+To:     Lorenzo Bianconi <lorenzo@kernel.org>
+Cc:     lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: Re: [PATCH 1/2] iio: humidity: hts221: add vdd voltage regulator
+Message-ID: <20201121154434.7723d78a@archlinux>
+In-Reply-To: <b2c5ea9dd41cb52eaf484825630bf07ef13510a4.1605777052.git.lorenzo@kernel.org>
+References: <cover.1605777052.git.lorenzo@kernel.org>
+        <b2c5ea9dd41cb52eaf484825630bf07ef13510a4.1605777052.git.lorenzo@kernel.org>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -43,111 +41,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Nov 2020 12:07:48 +0200
-Alexandru Ardelean <alexandru.ardelean@analog.com> wrote:
+On Thu, 19 Nov 2020 10:13:34 +0100
+Lorenzo Bianconi <lorenzo@kernel.org> wrote:
 
-> This change adds a simple device-tree binding for thhe Analog Devices
-> AD7887 ADC.
+> Like all other ST sensors, hts221 devices have VDD power line.
+> Introduce VDD voltage regulator to control it.
 > 
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+Hi Lorenzo,
 
-Hi Alexandru
+Minor thing about not printing error message is the deferred case.
+Otherwise, looks good to me
 
-Few things inline.
+Thanks,
 
 Jonathan
 
 > ---
->  .../bindings/iio/adc/adi,ad7887.yaml          | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
+>  drivers/iio/humidity/hts221.h      |  2 ++
+>  drivers/iio/humidity/hts221_core.c | 39 ++++++++++++++++++++++++++++++
+>  2 files changed, 41 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
-> new file mode 100644
-> index 000000000000..9b30f4569b4e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7887.yaml
-> @@ -0,0 +1,70 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7887.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/iio/humidity/hts221.h b/drivers/iio/humidity/hts221.h
+> index 721359e226cb..cf3d8d2dccd6 100644
+> --- a/drivers/iio/humidity/hts221.h
+> +++ b/drivers/iio/humidity/hts221.h
+> @@ -13,6 +13,7 @@
+>  #define HTS221_DEV_NAME		"hts221"
+>  
+>  #include <linux/iio/iio.h>
+> +#include <linux/regulator/consumer.h>
+>  
+>  enum hts221_sensor_type {
+>  	HTS221_SENSOR_H,
+> @@ -29,6 +30,7 @@ struct hts221_hw {
+>  	const char *name;
+>  	struct device *dev;
+>  	struct regmap *regmap;
+> +	struct regulator *vdd;
+>  
+>  	struct iio_trigger *trig;
+>  	int irq;
+> diff --git a/drivers/iio/humidity/hts221_core.c b/drivers/iio/humidity/hts221_core.c
+> index 16657789dc45..e1aa99dcf142 100644
+> --- a/drivers/iio/humidity/hts221_core.c
+> +++ b/drivers/iio/humidity/hts221_core.c
+> @@ -547,6 +547,37 @@ static const struct iio_info hts221_info = {
+>  
+>  static const unsigned long hts221_scan_masks[] = {0x3, 0x0};
+>  
+> +static int hts221_init_regulators(struct device *dev)
+> +{
+> +	struct iio_dev *iio_dev = dev_get_drvdata(dev);
+> +	struct hts221_hw *hw = iio_priv(iio_dev);
+> +	int err;
 > +
-> +title: Analog Devices AD7887 low power, 12-bit ADC
-> +
-> +maintainers:
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +description: |
-> +  Analog Devices AD7887 low power, 12-bit analog-to-digital converter (ADC)
-> +  that operates from a single 2.7 V to 5.25 V power supply.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,ad7887
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-cpha: true
-> +
-> +  spi-cpol: true
-> +
-> +  avcc-supply: true
+> +	hw->vdd = devm_regulator_get(dev, "vdd");
+> +	if (IS_ERR(hw->vdd)) {
+> +		dev_err(dev, "failed to get vdd regulator: %ld\n",
+> +			PTR_ERR(hw->vdd));
 
-On datasheet this seems to be vdd-supply
-As driver doesn't currently use it I assume ti would be safe to make them
-match?
+dev_err_probe on this as I would assume we want to not print the message
+on deferred response.
 
+> +		return PTR_ERR(hw->vdd);
+> +	}
 > +
-> +  spi-max-frequency: true
+> +	err = regulator_enable(hw->vdd);
+> +	if (err) {
+> +		dev_err(dev, "failed to enable vdd regulator: %d\n", err);
+> +		return err;
+> +	}
 > +
-> +  vref-supply:
-> +    description:
-> +      ADC reference voltage supply
-
-Perhaps worth mentioning that not supplying this will result in a 2.5V internal
-reference being used unless we are in dual-channel-mode in which case it
-will be VDD.  (I originally started looking at datasheet when I wondered
-if we could just use the absence of this regulator to configure to single / dual
-channel mode - but we can't because of the 2.5V internal reference).
-
+> +	msleep(50);
 > +
-> +  adi,dual-channel-mode:
-> +    description:
-> +      Configures dual-channel mode for the ADC. In dual-channel operation,
-> +      the AIN1/VREF pin assumes its AIN1 function, providing a second analog
-> +      input channel. In this case, he reference voltage for the part is provided
-> +      via the VDD pin. As a result, the input voltage range on both the AIN0 and
-> +      AIN1 inputs is 0 to VDD.
-> +    type: boolean
+> +	return 0;
+> +}
 > +
-> +additionalProperties: false
+> +static void hts221_chip_uninit(void *data)
+> +{
+> +	struct hts221_hw *hw = data;
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-cpha
-> +  - spi-cpol
+> +	regulator_disable(hw->vdd);
+> +}
 > +
-> +examples:
-> +  - |
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
+>  int hts221_probe(struct device *dev, int irq, const char *name,
+>  		 struct regmap *regmap)
+>  {
+> @@ -567,6 +598,14 @@ int hts221_probe(struct device *dev, int irq, const char *name,
+>  	hw->irq = irq;
+>  	hw->regmap = regmap;
+>  
+> +	err = hts221_init_regulators(dev);
+> +	if (err)
+> +		return err;
 > +
-> +        adc@0 {
-> +                compatible = "adi,ad7887";
-> +                reg = <0>;
-> +                spi-max-frequency = <1000000>;
-> +                spi-cpol;
-> +                spi-cpha;
+> +	err = devm_add_action_or_reset(dev, hts221_chip_uninit, hw);
+> +	if (err)
+> +		return err;
 > +
-> +                avcc-supply = <&adc_supply>;
-> +                vref-supply = <&adc_vref>;
-> +        };
-> +    };
-> +...
+>  	err = hts221_check_whoami(hw);
+>  	if (err < 0)
+>  		return err;
 
