@@ -2,248 +2,276 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76C162BBEE1
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 13:22:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02AB02BBEFF
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 13:45:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727459AbgKUMTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 07:19:24 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45162 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727191AbgKUMTX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 21 Nov 2020 07:19:23 -0500
-Received: from localhost (unknown [122.171.203.152])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 55C1022226;
-        Sat, 21 Nov 2020 12:19:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1605961162;
-        bh=DX2F2/Tpx8zdWIAzxkpTpbMme91YP7XBB0zwX+FpLsI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U7V85E0rjcq/A45mVknEQ7z6MfOC8AKXOwyOr35oEhWpd9gmwNtc8AmYnPByftA4q
-         5IY/Ph3gJ/Rc4F6DmGzDmKYSkuhfUEW6ykqT1fB8y1kKhuv1KJyJwHshLAGkTmDlpd
-         ascqz21+bAped/YN27JX1H9meADP4CICcJMBOQlU=
-Date:   Sat, 21 Nov 2020 17:49:17 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
-Subject: Re: [PATCH v9 1/2] dt-bindings: dma: Add bindings for Intel LGM SoC
-Message-ID: <20201121121917.GC8403@vkoul-mobl>
-References: <cover.1605158930.git.mallikarjunax.reddy@linux.intel.com>
- <bfe586ac62080d14759bda22ebf1de1a1fa9c09d.1605158930.git.mallikarjunax.reddy@linux.intel.com>
- <20201118155552.GV50232@vkoul-mobl>
- <44fba7c3-37a9-7168-3c19-eeb5068b7063@linux.intel.com>
+        id S1727735AbgKUMml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 07:42:41 -0500
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:38967 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727531AbgKUMmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 07:42:40 -0500
+Received: by mail-oi1-f193.google.com with SMTP id f11so13944384oij.6;
+        Sat, 21 Nov 2020 04:42:38 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=LXozwdRHE+FZ/b1kx40K82ndXVnop5+OHYheS/QS4jo=;
+        b=YvqdqjLCCEqwFv32LV7yA6YjEXsxCx9s6yTqWS7V5PtJpsrfihoMX7Go8eIQqq676U
+         q6gJ+Vw73RCLZZ3gR2IKfUtkk0GBGfqTKBzRWxOAMIXaAaT8SMC9V4cz3bpkofOSHoje
+         1K8lMqVtFDAzIIyr9HqgODpS3/kvYB93/vUYUBsxKKfzgjOrb+N9VgOBgfYYDoeP/teK
+         PamppFssgyCQHkzXOYGitu0aa47WD0akqG4ZIKMY3+JXsr2KC1THwxjZ63vC9k9656fw
+         3jyGo0G9INJ81Q2qc3WHsF5U7NNeH8oDTrRFt2PsRsEmR2WfHPlTPzl8VXxovELM2ySz
+         pUWw==
+X-Gm-Message-State: AOAM5313D6hqgXwZ1JrHDc3sIFT+djJez6m1XET3TB/Y5ISp+EPmh6pA
+        Cyi6c+9aUCZF8eDl5Ym/0Q==
+X-Google-Smtp-Source: ABdhPJyZmtH8yI4iwnUoY7nWj64qFOXfpNj0wrhnUYk0B6zYwkPCqh8WJqMVW1w4lXiO0MnHEnfvKg==
+X-Received: by 2002:a54:4394:: with SMTP id u20mr3639506oiv.70.1605962557518;
+        Sat, 21 Nov 2020 04:42:37 -0800 (PST)
+Received: from xps15 ([2607:fb90:5feb:6270:cdf7:680e:59f2:6ccd])
+        by smtp.gmail.com with ESMTPSA id u4sm1581412ote.71.2020.11.21.04.42.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 21 Nov 2020 04:42:36 -0800 (PST)
+Received: (nullmailer pid 2064982 invoked by uid 1000);
+        Sat, 21 Nov 2020 12:42:28 -0000
+Date:   Sat, 21 Nov 2020 06:42:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-snps-arc@lists.infradead.org, linux-mips@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 10/18] dt-bindings: usb: Convert DWC USB3 bindings to
+ DT schema
+Message-ID: <20201121124228.GA2039998@robh.at.kernel.org>
+References: <20201111090853.14112-1-Sergey.Semin@baikalelectronics.ru>
+ <20201111090853.14112-11-Sergey.Semin@baikalelectronics.ru>
+ <20201111201423.GA1938179@bogus>
+ <20201112102946.ipcsiidty4ut4kap@mobilestation>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <44fba7c3-37a9-7168-3c19-eeb5068b7063@linux.intel.com>
+In-Reply-To: <20201112102946.ipcsiidty4ut4kap@mobilestation>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-11-20, 19:30, Reddy, MallikarjunaX wrote:
-> Hi Vinod,
-> Thanks for the review. My comments inline.
-> 
-> On 11/18/2020 11:55 PM, Vinod Koul wrote:
-> > On 12-11-20, 13:38, Amireddy Mallikarjuna reddy wrote:
-> > > Add DT bindings YAML schema for DMA controller driver
-> > > of Lightning Mountain (LGM) SoC.
+On Thu, Nov 12, 2020 at 01:29:46PM +0300, Serge Semin wrote:
+> On Wed, Nov 11, 2020 at 02:14:23PM -0600, Rob Herring wrote:
+> > On Wed, Nov 11, 2020 at 12:08:45PM +0300, Serge Semin wrote:
+> > > DWC USB3 DT node is supposed to be compliant with the Generic xHCI
+> > > Controller schema, but with additional vendor-specific properties, the
+> > > controller-specific reference clocks and PHYs. So let's convert the
+> > > currently available legacy text-based DWC USB3 bindings to the DT schema
+> > > and make sure the DWC USB3 nodes are also validated against the
+> > > usb-xhci.yaml schema.
 > > > 
-> > > Signed-off-by: Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
+> > > Note we have to discard the nodename restriction of being prefixed with
+> > > "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
+> > > are supposed to be named as "^usb(@.*)".
+> > > 
+> > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > 
 > > > ---
-> > > v1:
-> > > - Initial version.
 > > > 
-> > > v2:
-> > > - Fix bot errors.
+> > > Changelog v2:
+> > > - Discard '|' from the descriptions, since we don't need to preserve
+> > >   the text formatting in any of them.
+> > > - Drop quotes from around the string constants.
+> > > - Fix the "clock-names" prop description to be referring the enumerated
+> > >   clock-names instead of the ones from the Databook.
 > > > 
-> > > v3:
-> > > - No change.
+> > > Changelog v3:
+> > > - Apply usb-xhci.yaml# schema only if the controller is supposed to work
+> > >   as either host or otg.
 > > > 
-> > > v4:
-> > > - Address Thomas langer comments
-> > >    - use node name pattern as dma-controller as in common binding.
-> > >    - Remove "_" (underscore) in instance name.
-> > >    - Remove "port-" and "chan-" in attribute name for both 'dma-ports' & 'dma-channels' child nodes.
-> > > 
-> > > v5:
-> > > - Moved some of the attributes in 'dma-ports' & 'dma-channels' child nodes to dma client/consumer side as cells in 'dmas' properties.
-> > > 
-> > > v6:
-> > > - Add additionalProperties: false
-> > > - completely removed 'dma-ports' and 'dma-channels' child nodes.
-> > > - Moved channel dt properties to client side dmas.
-> > > - Use standard dma-channels and dma-channel-mask properties.
-> > > - Documented reset-names
-> > > - Add description for dma-cells
-> > > 
-> > > v7:
-> > > - modified compatible to oneof
-> > > - Reduced number of dma-cells to 3
-> > > - Fine tune the description of some properties.
-> > > 
-> > > v7-resend:
-> > > - rebase to 5.10-rc1
-> > > 
-> > > v8:
-> > > - rebased to 5.10-rc3
-> > > - Fixing the bot issues (wrong indentation)
-> > > 
-> > > v9:
-> > > - rebased to 5.10-rc3
-> > > - Use 'enum' instead of oneOf+const
-> > > - Drop '#dma-cells' in required:, already covered in dma-common.yaml
-> > > - Drop nodename Already covered by dma-controller.yaml
+> > > Changelog v4:
+> > > - Apply usb-drd.yaml schema first. If the controller is configured
+> > >   to work in a gadget mode only, then apply the usb.yaml schema too,
+> > >   otherwise apply the usb-xhci.yaml schema.
+> > > - Discard the Rob'es Reviewed-by tag. Please review the patch one more
+> > >   time.
 > > > ---
-> > >   .../devicetree/bindings/dma/intel,ldma.yaml        | 130 +++++++++++++++++++++
-> > >   1 file changed, 130 insertions(+)
-> > >   create mode 100644 Documentation/devicetree/bindings/dma/intel,ldma.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/dma/intel,ldma.yaml b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
+> > >  .../devicetree/bindings/usb/dwc3.txt          | 125 --------
+> > >  .../devicetree/bindings/usb/snps,dwc3.yaml    | 303 ++++++++++++++++++
+> > >  2 files changed, 303 insertions(+), 125 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+
+
+> > > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 > > > new file mode 100644
-> > > index 000000000000..c06281a10178
+> > > index 000000000000..079617891da6
 > > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/dma/intel,ldma.yaml
-> > > @@ -0,0 +1,130 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > @@ -0,0 +1,303 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
 > > > +%YAML 1.2
 > > > +---
-> > > +$id: http://devicetree.org/schemas/dma/intel,ldma.yaml#
+> > > +$id: http://devicetree.org/schemas/usb/snps,dwc3.yaml#
 > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > > +
-> > > +title: Lightning Mountain centralized low speed DMA and high speed DMA controllers.
+> > > +title: Synopsys DesignWare USB3 Controller
 > > > +
 > > > +maintainers:
-> > > +  - chuanhua.lei@intel.com
-> > > +  - mallikarjunax.reddy@intel.com
+> > > +  - Felipe Balbi <balbi@kernel.org>
 > > > +
+> > > +description:
+> > > +  This is usually a subnode to DWC3 glue to which it is connected, but can also
+> > > +  be presented as a standalone DT node with an optional vendor-specific
+> > > +  compatible string.
+> > > +
+> 
 > > > +allOf:
-> > > +  - $ref: "dma-controller.yaml#"
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - intel,lgm-cdma
-> > > +      - intel,lgm-dma2tx
-> > > +      - intel,lgm-dma1rx
-> > > +      - intel,lgm-dma1tx
-> > > +      - intel,lgm-dma0tx
-> > > +      - intel,lgm-dma3
-> > > +      - intel,lgm-toe-dma30
-> > > +      - intel,lgm-toe-dma31
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#dma-cells":
-> > > +    const: 3
-> > > +    description:
-> > > +      The first cell is the peripheral's DMA request line.
-> > > +      The second cell is the peripheral's (port) number corresponding to the channel.
-> > > +      The third cell is the burst length of the channel.
-> > > +
-> > > +  dma-channels:
-> > > +    minimum: 1
-> > > +    maximum: 16
-> > > +
-> > > +  dma-channel-mask:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  resets:
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-names:
-> > > +    items:
-> > > +      - const: ctrl
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  intel,dma-poll-cnt:
-> > > +    $ref: /schemas/types.yaml#definitions/uint32
-> > > +    description:
-> > > +      DMA descriptor polling counter is used to control the poling mechanism
-> > s/poling/polling
-> Ok, Thanks.
+> > > +  - $ref: usb-drd.yaml#
+> > > +  - if:
+> > > +      properties:
+> > > +        dr_mode:
+> > > +          const: peripheral
+
+Another thing, this evaluates to true if dr_mode is not present. You 
+need to add 'required'? If dr_mode is otg, then don't you need to apply 
+both usb.yaml and usb-xhci.yaml?
+
+> > > +    then:
+> > > +      $ref: usb.yaml#
 > > 
-> > > +      for the descriptor fetching for all channels.
-> > > +
-> > > +  intel,dma-byte-en:
-> > > +    type: boolean
-> > > +    description:
-> > > +      DMA byte enable is only valid for DMA write(RX).
-> > > +      Byte enable(1) means DMA write will be based on the number of dwords
-> > > +      instead of the whole burst.
-> > Can you explain this, also sounds you could use _maxburst values..?
-> when dma-byte-en = 0 (disabled) DMA write will be in terms of burst length,
-> dma-byte-en = 1 (enabled) write will be in terms of Dwords.
+> > This part could be done in usb-drd.yaml?
 > 
-> Byte enable = 0 (Disabled) means that DMA write will be based on the burst
-> length, even if it only transmits one byte.
-> Byte enable = 1(enabled) means that DMA write will be based on the number of
-> Dwords, instead of the whole burst.
-
-Sounds like a hw property or is this configurable to engine..?
+> Originally I was thinking about that, but then in order to minimize
+> the properties validation I've decided to split the properties in
+> accordance with the USB controllers functionality:
+> 
+>             +----- USB Gadget/Peripheral Controller. There is no
+>             |      specific schema for the gadgets since there is no
+>             |      common gadget properties (at least I failed to find
+>             |      ones). So the pure gadget controllers need to be
+>             |      validated just against usb.yaml schema.
+>             |
+> usb.yaml <--+-- usb-hcd.yaml - Generic USB Host Controller. The schema
+>                 ^              turns out to include the OHCI/UHCI/EHCI
+>                 |              properties, which AFAICS are also
+>                 |              applicable for the other host controllers.
+>                 |              So any USB host controller node needs to
+>                 |              be validated against this schema.
+>                 |
+>                 +- usb-xhci.yaml - Generic xHCI Host controller.
+> 
+> usb-drd.yaml -- USB Dual-Role/OTG Controllers. It describes the
+>                 DRD/OTG-specific properties and nothing else. So normally
+>                 it should be applied together with one of the
+>                 schemas described above.
+> 
+> So the use-cases of the suggested schemas is following:
+> 
+> 1) USB Controller is pure gadget? Then:
+>    + allOf:
+>    +  - $ref: usb.yaml#
+> 2) USB Controller is pure USB host (including OHCI/UHCI/EHCI)?
+>    + allOf:
+>    +   - $ref: usb-hcd.yaml#
+>    Note this prevents us from fixing all the currently available USB DT
+>    schemas, which already apply the usb-hcd.yaml schema.
+> 3) USB Controller is pure xHCI host controller? Then:
+>    + allOf:
+>    +   - $ref: usb-xhci.yaml#
+> 4) USB Controller is Dual-Role/OTG controller with USB 2.0 host? Then:
+>    + allOf:
+>    +   - $ref: usb-drd.yaml#
+>    +   - $ref: usb-hcd.yaml#
+> 5) USB Controller is Dual-Role/OTG controller with xHCI host? Then:
+>    + allOf:
+>    +   - $ref: usb-drd.yaml#
+>    +   - $ref: usb-xhci.yaml#
+> 6) USB Controller is Dual-Role/OTG controller which can only be a
+>    gadget? Then:
+>    + allOf:
+>    +   - $ref: usb-drd.yaml#
+>    +   - $ref: usb.yaml#
+> 
+> * Don't know really if controllers like in 6)-th really exist. Most
+> * likely they are still internally capable of dual-roling, but due to
+> * some conditions can be used as gadgets only.
+> 
+> It looks a bit complicated, but at least by having such design we'd minimize
+> the number of properties validation.
+> 
+> Alternatively we could implement a hierarchy like this (as you, Rob,
+> suggested in the comment above): 
+> 
+>             +-- USB Gadget/Peripheral Controller
+>             |
+>             +-- usb-drd.yaml - USB Dual-Role/OTG Controllers
+>             |   
+> usb.yaml <--+-- usb-dcd.yaml - Generic USB Host Controller
+>                 ^
+>                 |
+>                 +- usb-xhci.yaml - Generic xHCI Host controller
+> 
+> But, for instance, if we got to have an OTG controller with USB 2.0
+> host capability, the schema would have needed to be validated as
+> described in 4) in the list above. That would have caused the usb.yaml
+> schema validation twice.
+> 
+> Of course I could have missed or misunderstood something. So any
+> suggestion, any help with making things easier would be very
+> appreciated. I asked Greg what he was thinking in this matter in
+> the previous patchset thread, but he didn't respond.
 > 
 > > 
-> > > +
-> > > +  intel,dma-drb:
-> > > +    type: boolean
-> > > +    description:
-> > > +      DMA descriptor read back to make sure data and desc synchronization.
-> > > +
-> > > +  intel,dma-desc-in-sram:
-> > > +    type: boolean
-> > > +    description:
-> > > +      DMA descritpors in SRAM or not. Some old controllers descriptors
-> > > +      can be in DRAM or SRAM. The new ones are all in SRAM.
-> > should that not be decided by driver..? Or is this a hw property?
-> This is DMA controller capability. It can be decided from driver also. i
-> will change accordingly.
+> > > +    else:
+> > > +      $ref: usb-xhci.yaml#
 > > 
-> > > +
-> > > +  intel,dma-orrc:
-> > > +    $ref: /schemas/types.yaml#definitions/uint32
-> > > +    description:
-> > > +      DMA outstanding read counter value determine the number of
-> > > +      ORR-Outstanding Read Request. The maximum value is 16.
-> > How would this be used by folks..?
-> A register bit will be used to enable/disable the ORR feature.
+> > I'd really prefer if all the schema can just be applied unconditionally. 
+> > Shouldn't someone (like a bootloader) be able to change dr_mode without 
+> > changing anything else to set the mode? That would imply all the 
+> > schemas can be applied.
 > 
-> Outstanding Read Capability introduce CMD FIFO to support up to 16
-> outstanding reads for different packet in same channel.
+> Theoretically it's possible, but I don't really know whether it can be
+> practically met. Of course I fully agree with you and it's preferable to
+> simplify the schema by getting rid of the condition if it's possible.
 > 
-> For large packets up to 16 OR can be issued, the number of OR is
-> configurable.
+> My point of using the conditional schema here has been based
+> on the driver implementation. According to the driver code if OTG mode is
+> enabled by means of the dr_mode property, then the controller can work as
+> either host or gadget. If either host or gadget mode is enabled in
+> the dr_mode property, the mode updating won't be supported. So any
+> properties specific to the unsupported mode will be just ignored.
+> 
+> In addition to that DWC USB3 IP-core can be synthesized with different
+> DWC_USB3_MODE parameter value. The controller can be either device
+> (gadget), or host, or DRD, or HUB. In that case the dr_mode should be
+> set in accordance with that parameter value. It means that the
+> DWC USB3 controller will support the features in accordance with the
+> selected parameter.
+> 
+> Should we really bother with all of that? Could we just apply the
+> schema like: allOf: [$ref: usb-drd.yaml#, $ref: usb-hcd.yaml#] and
+> have the things much easier seeing the host-specific properties aren't
+> required anyway? That's the main question. I've decided to bother,
+> since it give us a better hardware description. If you think it's better
+> to keep things easier, I'll be ok with this. It won't be that
+> contradicting to the hardware capabilities after all.
 
-How will configure this and when..?
+Okay, it's probably better to keep things like you have them given 
+there's so many combinations of USB controllers.
 
-> > 
-> > > +
-> > > +  intel,dma-dburst-wr:
-> > > +    type: boolean
-> > > +    description:
-> > > +      Enable RX dynamic burst write. When it is enabled, the DMA does RX dynamic burst;
-> > > +      if it is disabled, the DMA RX will still support programmable fixed burst size of 2,4,8,16.
-> > > +      It only applies to RX DMA and memcopy DMA.
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > So only two are mandatory, what about the bunch of intel properties you
-> > added above..?
-> Some of the properties are DMA capabilities, Enabling from device tree.
-> other properties will use default values from driver if we dont pass it from
-> device tree.
-
-
--- 
-~Vinod
+Rob
