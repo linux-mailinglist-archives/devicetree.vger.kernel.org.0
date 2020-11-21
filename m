@@ -2,144 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89D162BBC11
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:06:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 798122BBC66
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:52:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727435AbgKUCDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 21:03:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55550 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727446AbgKUCD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:03:29 -0500
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6882EC061A48
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:03:29 -0800 (PST)
-Received: by mail-yb1-xb4a.google.com with SMTP id 4so91221ybv.11
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:03:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=/4b98HN7Dg/gsZp1FJDKtTqc5+TRGSRPQQAwQrD06k0=;
-        b=ELFquWWmVQsPKcB73FJvKB8rjQRr79nN6pXIgdOw3TJNpJs/SGo0AHl0FEmMW05BRV
-         Xes5u0tIB4/MDSdfr9mD+s0AnIIyA2+S7MuxmGWUvou6iB0bVgpu3JaR6HLp1AmrlTAS
-         8Qks1RPu4kiemPkvShsX9exOQZLRvgPL66Ji50TUOVAf2U85Kedz9LW4KGm0ZYqtAKMj
-         DT/hLkTBeTQZ3cne0CCV8Qm4pl7RNzWq59terw7rikrP3Lc37CA345pmIWsjczkJdSBZ
-         6Oudkw/Dufr8rxRjyRzpznxlFRQ11LjraK0Ty2n7Vvxhjy5DzqyIZ+keKTzIjQ7gWkHu
-         I5Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=/4b98HN7Dg/gsZp1FJDKtTqc5+TRGSRPQQAwQrD06k0=;
-        b=NFDi/sFuDprBszRJkwLP1LTKBP9JNqr/C7zNSftaqNsrpWRYzNhKvu/FQdv+eBRn9/
-         oR8ybe8na2HUkdPjSEikGzN+4dTQhlxv/cKuE0iBYpAY7lnWlnrL4v/08KtA/Pd0slA8
-         54mBFkO9qELWOSDHT65kI9JFVNB0W+xe2jgjJ3Ta+KxLxe4KuOtP2cHN7EOLt4moPKb1
-         WNZuXJHWacnI5pHcknM1KSN8m53JrfyyK3LajPHf3T4RH/U8FLBLpMdvHFCs6F0dFt/H
-         pl5hYxe6BtH3WCdGcy9PiW8fuGzDI71z06B6m2jnJPrudbB6qOvDWaxJCAQ/ZQgeBzxs
-         RWHQ==
-X-Gm-Message-State: AOAM533woV2eHbwC1Zrx724KuwWkrE4iQ/DZokAU5WuJ5G4CxCF7yAjH
-        /PVyRgDfdsXwblnA85sWDk1yH9gKrClKnTY=
-X-Google-Smtp-Source: ABdhPJxe1QO0yyWkfLZI2Ck3kq+oJXU7180eiST2dap9Bfk+tY8Z9kisuDNZoag/ofp3xkKJ+0iQVTquDNjuK7s=
-Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
- (user=saravanak job=sendgmr) by 2002:a25:d18c:: with SMTP id
- i134mr25682880ybg.448.1605924208599; Fri, 20 Nov 2020 18:03:28 -0800 (PST)
-Date:   Fri, 20 Nov 2020 18:02:32 -0800
-In-Reply-To: <20201121020232.908850-1-saravanak@google.com>
-Message-Id: <20201121020232.908850-18-saravanak@google.com>
-Mime-Version: 1.0
-References: <20201121020232.908850-1-saravanak@google.com>
-X-Mailer: git-send-email 2.29.2.454.gaff20da3a2-goog
-Subject: [PATCH v2 17/17] driver core: Delete pointless parameter in fwnode_operations.add_links
-From:   Saravana Kannan <saravanak@google.com>
-To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        kernel-team@android.com, linux-acpi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1727214AbgKUCvx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 21:51:53 -0500
+Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:46931 "EHLO
+        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727048AbgKUCvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 20 Nov 2020 21:51:52 -0500
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailout.west.internal (Postfix) with ESMTP id 27AD810F3;
+        Fri, 20 Nov 2020 21:51:51 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Fri, 20 Nov 2020 21:51:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        to:cc:references:from:subject:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=O
+        u73bD4f45P9uvVKv0KtV27VfJnt6NKTFMndwelV6do=; b=MSULuAWfZNB+8eVnW
+        c0xx2MQ5RRLIdgBFOuvrufrIxtG9MUmcyOsIwdHCxm5Rsnr+HeZI+nnuhYZq66+L
+        Yg9hBUCXqRkCtvJqra9ntwKHI495kwMjpEWghgOkgpfi9rBursCrS/JP2IwITRnw
+        5H8xg5Q0907S0hjxKpTczfX9XkI0Nm7qI8nMn+Ye0kLH3gqg/aGVwo2T+Kh+2OZP
+        J7WC4+psb87PQGp1e7bBhhOlfEGaSvFkPeRm+AnDRNsF8rGMmtBVHl/CV5pNYbgd
+        Y1Na3fabPWm15fZh2w6kZCi4rCdn4qd5n1gNg42ifFIZyVKQNyUddw77EQoW+mb8
+        Aff5A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm1; bh=Ou73bD4f45P9uvVKv0KtV27VfJnt6NKTFMndwelV6
+        do=; b=sAVWfcR6RH9QwlyY1gQ81V2/VwA+G7J2mcB/ULi4dbRmqoFlPOwQ1j9nR
+        CF6GsNpB8UnSyODJWtiNz4t76XrKG4nOnaDPCTyAOcBJ6QmgQvqTNU9IfcGQSO8B
+        oOdpf/M3m1paqvxrUMiHSoQtsI70v2bv5Zron+nrk16KBha+rGc2C/jvUFa5m+lN
+        lJ5aSRRyIY8kgyQRQWsFzUZMRsR/vnSvAKa3w2wZcH6Crwqw7M2imcMKPYIW20Zk
+        eprdHf4lddcM343KvmzXbKlhYjPXJEkIClw3BJIkDdHYVFac4eDV139Ycf38mj8p
+        /D6a9VjPC/uVc4XpWWcU7JKHGG8rA==
+X-ME-Sender: <xms:xYC4X5rsOvCu_nflTYDQW0zoiU68-igeIG-7ayXxcZkcpB1NcT_xGg>
+    <xme:xYC4X7o1lyuw3n2JnhlXUFOqOJLuMAHvlZKbyia2YRxtral9cO05p8dAch3PuZ5gq
+    FZgMI9bt9qGv-eN2w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudeguddgheduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepvfhfhffukffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepvddttdejieduudfgffevteekffegffeguddtgfefkeduvedukeff
+    hedtfeevuedvnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:xYC4X2NUfzQZdkmirWQbP0UC-hnpYBTiIjdEdD5nrPNO6bLyGubxGQ>
+    <xmx:xYC4X05ML6oA_h0V2XtWDiw__ocU8Rldcr4QWRf-1uKrbPnnxtK7TQ>
+    <xmx:xYC4X45V3Szfn5SgkwN-5gv_UvTGOigFPoBxCVEX7_TJ61qrZbOLxw>
+    <xmx:xoC4X1usBBY-OkFEQilIefiZqTX_-FDQ26WJl9xKtMradODZ_SpK9Q>
+Received: from [70.135.148.151] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 723433280060;
+        Fri, 20 Nov 2020 21:51:49 -0500 (EST)
+To:     Icenowy Zheng <icenowy@aosc.io>, Maxime Ripard <maxime@cerno.tech>
+Cc:     devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-sunxi@googlegroups.com, linux-kernel@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201107124958.2222253-1-icenowy@aosc.io>
+ <20201107125332.2223197-1-icenowy@aosc.io>
+ <20201110103925.rbej5ueo2fefbmlp@gilmour.lan>
+ <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io>
+ <20201116155508.364dg6ycklwylswe@gilmour.lan>
+ <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io>
+ <20201120155939.3ajmbny2pka2vsnf@gilmour>
+ <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io>
+From:   Samuel Holland <samuel@sholland.org>
+Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT
+ for PineTab developer sample
+Message-ID: <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org>
+Date:   Fri, 20 Nov 2020 20:51:48 -0600
+User-Agent: Mozilla/5.0 (X11; Linux ppc64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
+MIME-Version: 1.0
+In-Reply-To: <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The struct device input to add_links() is not used for anything. So
-delete it.
+Maxime,
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/base/core.c             | 2 +-
- drivers/firmware/efi/efi-init.c | 3 +--
- drivers/of/property.c           | 3 +--
- include/linux/fwnode.h          | 3 +--
- 4 files changed, 4 insertions(+), 7 deletions(-)
+On 11/20/20 5:30 PM, Icenowy Zheng wrote:
+>>>>>>> +/ {
+>>>>>>> +	model = "PineTab Developer Sample";
+>>>>>>> +	compatible = "pine64,pinetab-dev", "allwinner,sun50i-a64";
+>>>>>>> +};
+>>>>>>
+>>>>>> Changing the DT and the compatible half-way through it isn't ok. Please
+>>>>>> add a new DT with the newer revision like we did for the pinephone
+>>>>>
+>>>>> We did this on Pine H64.
+>>>>
+>>>> What are you referring to? I couldn't find a commit where we did what
+>>>> you suggested in that patch to the pine H64.
+>>>
+>>> Oh the situation is complex. On Pine H64, we didn't specify anything at
+>>> start (which is the same here), the DT is originally version-neutral
+>>> but then transitioned to model B, then reverted to model A. Here the DT is always
+>>> for the sample.
+>>>
+>>> However, for Pine H64 there's model A/B names, but for PineTab there's no
+>>> any samples that are sold, thus except who got the samples, all PineTab
+>>> owners simply owns a "PineTab", not a "PineTab xxx version".
+>>
+>> It's fairly simple really, we can't really predict the future, so any DT
+>> submitted is for the current version of whatever board there is. This is
 
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index 9edf9084fc98..63edb8bd9d7d 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -1472,7 +1472,7 @@ static void fw_devlink_parse_fwnode(struct fwnode_handle *fwnode)
- 	if (fwnode->flags & FWNODE_FLAG_LINKS_ADDED)
- 		return;
- 
--	fwnode_call_int_op(fwnode, add_links, NULL);
-+	fwnode_call_int_op(fwnode, add_links);
- 	fwnode->flags |= FWNODE_FLAG_LINKS_ADDED;
- }
- 
-diff --git a/drivers/firmware/efi/efi-init.c b/drivers/firmware/efi/efi-init.c
-index c0c3d4c3837a..a552a08a1741 100644
---- a/drivers/firmware/efi/efi-init.c
-+++ b/drivers/firmware/efi/efi-init.c
-@@ -316,8 +316,7 @@ static struct device_node *find_pci_overlap_node(void)
-  * resource reservation conflict on the memory window that the efifb
-  * framebuffer steals from the PCIe host bridge.
-  */
--static int efifb_add_links(struct fwnode_handle *fwnode,
--			   struct device *dev)
-+static int efifb_add_links(struct fwnode_handle *fwnode)
- {
- 	struct device_node *sup_np;
- 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 620d29fdace8..5f9eed79a8aa 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1343,8 +1343,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
- 	return ret;
- }
- 
--static int of_fwnode_add_links(struct fwnode_handle *fwnode,
--			       struct device *dev)
-+static int of_fwnode_add_links(struct fwnode_handle *fwnode)
- {
- 	struct property *p;
- 	struct device_node *con_np = to_of_node(fwnode);
-diff --git a/include/linux/fwnode.h b/include/linux/fwnode.h
-index ffa9129182a6..fde4ad97564c 100644
---- a/include/linux/fwnode.h
-+++ b/include/linux/fwnode.h
-@@ -127,8 +127,7 @@ struct fwnode_operations {
- 	(*graph_get_port_parent)(struct fwnode_handle *fwnode);
- 	int (*graph_parse_endpoint)(const struct fwnode_handle *fwnode,
- 				    struct fwnode_endpoint *endpoint);
--	int (*add_links)(struct fwnode_handle *fwnode,
--			 struct device *dev);
-+	int (*add_links)(struct fwnode_handle *fwnode);
- };
- 
- #define fwnode_has_op(fwnode, op)				\
--- 
-2.29.2.454.gaff20da3a2-goog
+I don't think that was the intention at all. The DT was submitted for a
+future product, whatever that future product ends up being at the time
+of its release. Since there are necessarily no users until the product
+ships, there is no chance of breaking users by modifying the DT.
 
+>> what we (somewhat messily) did for the PineH64, for the pinephone, or
+>> really any other board that has several revisions
+
+Surely a non-public prototype doesn't count as a separate revision! This
+sort of policy strongly discourages ever shipping a board with
+out-of-the-box mainline Linux support. Because if there any hardware
+bugs fixed between initial upstreaming and production, the manufacture
+must come up with a new DT name.
+
+This is hostile to the users as well, because the "canonical" DT name no
+longer matches the "canonical" (read: the only one ever available)
+version of the hardware.
+
+Do you want manufacturers to submit their initial board DT as
+"$BOARD-prototype.dts", just in case they have to make a change before
+production? And only after the board is shipped (with out-of-tree
+patches, of course, to use $BOARD.dts, since the shipped board is *not*
+the prototype) submit a "$BOARD.dts" to mainline?
+
+Maxime, can you clarify specifically what the line is where a device
+tree is "locked down" and further changes to the hardware require a new
+name? First sample leaves the factory? $NUMBER units produced? First
+sold to the public for money?
+
+Without some guidance, or a change in policy, this problem is going to
+keep coming up again and again.
+
+You'll note that so far it has mostly affected Pine devices, and I don't
+think that's because they make more board revisions than other
+manufacturers. It's because they're actively involved in getting their
+boards supported upstream. For other manufacturers, it's some user
+sending in a device tree months after the hardware ships to the public
+-- of course the hardware is more stable at that point. I think Pine's
+behavior is something we want to encourage, not penalize.
+
+> Okay. But I'm not satisfied with a non-public sample occupies
+> the pinetab name. Is rename it to pinetab-dev and add a
+> pinetab-retail okay?
+To me, naming the production version anything but "pinetab" isn't
+satisfying either.
+
+Samuel
