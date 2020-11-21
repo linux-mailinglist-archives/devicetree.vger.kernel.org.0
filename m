@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3237E2BBBE4
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:06:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE812BBBE3
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:06:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727141AbgKUCC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727134AbgKUCC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 20 Nov 2020 21:02:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55346 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727125AbgKUCCz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:02:55 -0500
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3C50C061A47
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:52 -0800 (PST)
-Received: by mail-yb1-xb49.google.com with SMTP id g129so14189732ybf.20
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:52 -0800 (PST)
+        with ESMTP id S1727130AbgKUCC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:02:56 -0500
+Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5942EC0613CF
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:55 -0800 (PST)
+Received: by mail-qv1-xf4a.google.com with SMTP id y8so8476338qvu.22
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=W0J7h6NLwXezG3nw9wROdbEnvnNKGLsOxhSb3UWP0QY=;
-        b=iyIhHWCU9fj/oBG0xaKujfMHdcE8iB1SHBs4M9uqPOEXOlyOZGNCOu4kJplToKtsqJ
-         fm9DBFExGlNp0BWtvnxzXaRl0F2u7jENq1EfgLZiZAfHyGLUmsUve7IGj3V4JMdosQD/
-         tpoo12lOko1CXTc92SEtontayS9W0+oxCJIHIp3E6HX/pgQ70Q4/4/DvH/6Rm0Pzddet
-         GinuxCIH3bZkCO68pDwYARdQQ0Ygh4QCrpj5fBxPcuGt1CKVwtdaMxLpxgy1flqww/JQ
-         EA1F39eN5dGotPk2TCgI2lBfxTDM4CROmmwjA0+wZ6znQee7HUsmCtDzqXxzZk1Xo/4N
-         vM9w==
+        bh=FtaTOwMgGmGPcDccT1+KEgyZhtmrcZTBLb1q5hL1SLA=;
+        b=Ac0jmK/3hoJ6QZAP/9XaK7BeTu9I5N8+kn3tNCfamljj/K0nywlZnbtmuU5NgLmMcu
+         sUbtiUXyDbCTAQ2Xshaa2HGhNPPPEjIf0qJOVp+G0J7btHs+9unrGI12/iVWojAR+abb
+         Lt8C89A7AgZjVIOZW45yMtwbE+jPUM7BzG6ECmw4CqyE9oyqk31FMGgAs90dVMfZ3rU9
+         iib59EfhMOYMWLnua4tzDVZHtPXdNKPRSpQ/Lq+MERZrWXuMQy9Xb2L4jFeOsMPyhhZQ
+         COc04F9D7Ag4TzKZtX88UV/eGX0WxitPFezcjk0Y/uhzE8yTb9Zq8iQPkxk+qVN4SyCt
+         r81Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=W0J7h6NLwXezG3nw9wROdbEnvnNKGLsOxhSb3UWP0QY=;
-        b=JAe3MzPd5QFBjEuPLxjPQtxH7iyDyolIZwWUuX7oDa+LFxxLzlvrDxkNfk15gcq/b3
-         nbGlCwBwmrc1zN/Fmk6qESpiOovX5QANiA/j8pGmIMOL0PLN5jUaL2F4yIl/M61B6yzY
-         l8hM6rj3QiS6nxzb7xwKya5MyzL7GmTpTK+I3C+6KL3IKm4IP+F4mi4B0P4zBz7ZpPdM
-         0AXGWeZSEWp0Lvf40leZLZGqC7ygUHuvOGeMMaMmpn4aH+yZV4dUu5qiiph8msB1MBYf
-         kjYJyddZosto2n7c/vJaUUdHmCQaPaMWpm3vxFvQsYRcbUtGyqNk78VwrP/oJ1jTpx86
-         e8PQ==
-X-Gm-Message-State: AOAM5324TDx5V72gNgxh2TcObHph1sCJEo8PFNTZBRF1wywRQjbiy3EM
-        Mv4cz79PSwZnNSXnGwNC78X1i543veDv6NM=
-X-Google-Smtp-Source: ABdhPJxaPaEuH/NuIAbXGDdgzhB6YudXw1v6b5GdSJ/2qVXcj02CQC8DkQhxDv4As8NeECYbE4iKP/J9Hk/OB9Y=
+        bh=FtaTOwMgGmGPcDccT1+KEgyZhtmrcZTBLb1q5hL1SLA=;
+        b=mGVZ0DOXpkNa1cvD6601XCYkIhgaDCso3YvnEQM7vCIOQd2H3obZcXzTVgLxStRrFr
+         0zPPyaInQjoJxHJ7Oi4ZldjwZijH/Cd9LsJdyGRYhAwgo6r8/BpoWBhbV4Ki7ntIkfi3
+         nBD6K7TIhPx0amN/pd8IqdMd9bmWbOzvJnJSfurYEnMwFIwYtxmwP/PXYRw+FT71zi1Y
+         FVtSAiQhsI0marvFvLbzEIJ+B2d7q4QukV8kQ1KhCQy1059e+QC6DTGl0kqnRah4Gd8L
+         6ngrRYVYK2fgaTKo6lxu3Ah6bhUmAfiR7kW8s5nb4lDhaN+lkCJMQ0FR8fPDpmi6A0bM
+         ejfA==
+X-Gm-Message-State: AOAM531pP1qy1OaEXQUyxkSoOyCq++lf78mlhMYS/ABLzq9n9e64cwg8
+        nmOmffYrDmECrHnh2Fx6+l7wc7c48/o26yg=
+X-Google-Smtp-Source: ABdhPJw3F3Z+sPzXK3HTFpQkXFaE42tDe9RSR4zAB0UdCc8342U28KWTe468JI4C2ciybBxluYLmcyih0INiCJg=
 Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
 X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
- (user=saravanak job=sendgmr) by 2002:a25:ac1a:: with SMTP id
- w26mr32786299ybi.395.1605924172031; Fri, 20 Nov 2020 18:02:52 -0800 (PST)
-Date:   Fri, 20 Nov 2020 18:02:18 -0800
+ (user=saravanak job=sendgmr) by 2002:ad4:5beb:: with SMTP id
+ k11mr19789884qvc.20.1605924174528; Fri, 20 Nov 2020 18:02:54 -0800 (PST)
+Date:   Fri, 20 Nov 2020 18:02:19 -0800
 In-Reply-To: <20201121020232.908850-1-saravanak@google.com>
-Message-Id: <20201121020232.908850-4-saravanak@google.com>
+Message-Id: <20201121020232.908850-5-saravanak@google.com>
 Mime-Version: 1.0
 References: <20201121020232.908850-1-saravanak@google.com>
 X-Mailer: git-send-email 2.29.2.454.gaff20da3a2-goog
-Subject: [PATCH v2 03/17] Revert "driver core: Don't do deferred probe in
- parallel with kernel_init thread"
+Subject: [PATCH v2 04/17] Revert "driver core: Remove check in driver_deferred_probe_force_trigger()"
 From:   Saravana Kannan <saravanak@google.com>
 To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -75,58 +74,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit cec72f3efc6272420c2c2c699607f03d09b93e41.
+This reverts commit fefcfc968723caf93318613a08e1f3ad07a6154f.
 
-Commit cec72f3efc62 ("driver core: Don't do deferred probe in parallel
-with kernel_init thread") was fixing a commit 716a7a259690 ("driver
-core: fw_devlink: Add support for batching fwnode parsing"). Since the
-commit being fixed itself is going to be reverted, the fix can also be
-reverted.
+The reverted commit is fixing commit 716a7a259690 ("driver core:
+fw_devlink: Add support for batching fwnode parsing"). Since the
+original commit will be reverted, the fix can be reverted too.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/base/base.h | 1 +
- drivers/base/core.c | 1 +
- drivers/base/dd.c   | 5 +++++
- 3 files changed, 7 insertions(+)
+ drivers/base/dd.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/base/base.h b/drivers/base/base.h
-index 91cfb8405abd..c3562adf4789 100644
---- a/drivers/base/base.h
-+++ b/drivers/base/base.h
-@@ -156,6 +156,7 @@ extern char *make_class_name(const char *name, struct kobject *kobj);
- extern int devres_release_all(struct device *dev);
- extern void device_block_probing(void);
- extern void device_unblock_probing(void);
-+extern void driver_deferred_probe_force_trigger(void);
- 
- /* /sys/devices directory */
- extern struct kset *devices_kset;
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index c91ff2546247..e6bb4bf4f19d 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -1548,6 +1548,7 @@ void fw_devlink_resume(void)
- 		goto out;
- 
- 	device_link_add_missing_supplier_links();
-+	driver_deferred_probe_force_trigger();
- out:
- 	mutex_unlock(&defer_fw_devlink_lock);
- }
 diff --git a/drivers/base/dd.c b/drivers/base/dd.c
-index 148e81969e04..001caa0b447c 100644
+index 001caa0b447c..b4be35fa7fda 100644
 --- a/drivers/base/dd.c
 +++ b/drivers/base/dd.c
-@@ -167,6 +167,11 @@ static void driver_deferred_probe_trigger(void)
- 	if (!driver_deferred_probe_enable)
- 		return;
+@@ -172,6 +172,9 @@ static void driver_deferred_probe_trigger(void)
  
-+	driver_deferred_probe_force_trigger();
-+}
+ void driver_deferred_probe_force_trigger(void)
+ {
++	if (!driver_deferred_probe_enable)
++		return;
 +
-+void driver_deferred_probe_force_trigger(void)
-+{
  	/*
  	 * A successful probe means that all the devices in the pending list
  	 * should be triggered to be reprobed.  Move all the deferred devices
