@@ -2,56 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE812BBBE3
-	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C5682BBC1D
+	for <lists+devicetree@lfdr.de>; Sat, 21 Nov 2020 03:06:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727134AbgKUCC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 20 Nov 2020 21:02:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55354 "EHLO
+        id S1726391AbgKUCD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 20 Nov 2020 21:03:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727130AbgKUCC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:02:56 -0500
-Received: from mail-qv1-xf4a.google.com (mail-qv1-xf4a.google.com [IPv6:2607:f8b0:4864:20::f4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5942EC0613CF
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:55 -0800 (PST)
-Received: by mail-qv1-xf4a.google.com with SMTP id y8so8476338qvu.22
-        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:55 -0800 (PST)
+        with ESMTP id S1727128AbgKUCC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 20 Nov 2020 21:02:57 -0500
+Received: from mail-pf1-x44a.google.com (mail-pf1-x44a.google.com [IPv6:2607:f8b0:4864:20::44a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEA39C061A04
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:57 -0800 (PST)
+Received: by mail-pf1-x44a.google.com with SMTP id z68so8363422pfc.0
+        for <devicetree@vger.kernel.org>; Fri, 20 Nov 2020 18:02:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=sender:date:in-reply-to:message-id:mime-version:references:subject
          :from:to:cc;
-        bh=FtaTOwMgGmGPcDccT1+KEgyZhtmrcZTBLb1q5hL1SLA=;
-        b=Ac0jmK/3hoJ6QZAP/9XaK7BeTu9I5N8+kn3tNCfamljj/K0nywlZnbtmuU5NgLmMcu
-         sUbtiUXyDbCTAQ2Xshaa2HGhNPPPEjIf0qJOVp+G0J7btHs+9unrGI12/iVWojAR+abb
-         Lt8C89A7AgZjVIOZW45yMtwbE+jPUM7BzG6ECmw4CqyE9oyqk31FMGgAs90dVMfZ3rU9
-         iib59EfhMOYMWLnua4tzDVZHtPXdNKPRSpQ/Lq+MERZrWXuMQy9Xb2L4jFeOsMPyhhZQ
-         COc04F9D7Ag4TzKZtX88UV/eGX0WxitPFezcjk0Y/uhzE8yTb9Zq8iQPkxk+qVN4SyCt
-         r81Q==
+        bh=u8gSY0xV7Hxd2w8NGW6IzppBe4J1ijRyucJg3LQF0Gk=;
+        b=fsbK5xxw4z7i23FSKugbrasJEIXN13Q4zN4isokluNuL4HjEO/jGHpCycjM7g9sfqR
+         +kbOqa7qcSGga0Lm/F27nYxTNhPX4fRgh4Mf9+oYz6aUhraA4s7J5QNNMCxQsLKJfiu6
+         hO9xCcF+bjceWP/4mkj62eK+d2GhPUnH8ipvjoF5lXH5cwi6X4Wyh+5rcJdkI2Y7Mg6U
+         iT6tK3+H9NRURvDqYLmMIA70OMrl2Yj+fQCQc8tKeIPW+uVGa3W2KjLifbeHcVbYlj5y
+         Q04w/t2ewdvVIWyUrX6OqLnatW7MndjTFeg7RNiUGjOroBN0Dv6izRyJdeVw3DlHXFza
+         a27g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=FtaTOwMgGmGPcDccT1+KEgyZhtmrcZTBLb1q5hL1SLA=;
-        b=mGVZ0DOXpkNa1cvD6601XCYkIhgaDCso3YvnEQM7vCIOQd2H3obZcXzTVgLxStRrFr
-         0zPPyaInQjoJxHJ7Oi4ZldjwZijH/Cd9LsJdyGRYhAwgo6r8/BpoWBhbV4Ki7ntIkfi3
-         nBD6K7TIhPx0amN/pd8IqdMd9bmWbOzvJnJSfurYEnMwFIwYtxmwP/PXYRw+FT71zi1Y
-         FVtSAiQhsI0marvFvLbzEIJ+B2d7q4QukV8kQ1KhCQy1059e+QC6DTGl0kqnRah4Gd8L
-         6ngrRYVYK2fgaTKo6lxu3Ah6bhUmAfiR7kW8s5nb4lDhaN+lkCJMQ0FR8fPDpmi6A0bM
-         ejfA==
-X-Gm-Message-State: AOAM531pP1qy1OaEXQUyxkSoOyCq++lf78mlhMYS/ABLzq9n9e64cwg8
-        nmOmffYrDmECrHnh2Fx6+l7wc7c48/o26yg=
-X-Google-Smtp-Source: ABdhPJw3F3Z+sPzXK3HTFpQkXFaE42tDe9RSR4zAB0UdCc8342U28KWTe468JI4C2ciybBxluYLmcyih0INiCJg=
+        bh=u8gSY0xV7Hxd2w8NGW6IzppBe4J1ijRyucJg3LQF0Gk=;
+        b=GwBRdeqaafTj2WjmcpWlQYJ+m/GfaD2y8ChGCp2D18J1lcDfZMggPPi7h5kPpBmxfG
+         ePwkamz8kIRyI4nwjtfpTggpjcm+yR5qjmKtPxeIu7NUnQUAvrBpAnNsTAAbaAXuSNam
+         mFE8RlBNZ8HfabJShJxKZzAuqtT1kWqUqz8N612ZsSAWHBGseWwj8fcvu3OJLics+XVV
+         0nzE8ASdzLt6tbi4ox9MjR9ZjpBDLeY1vJCcROKAtfXIjsYZgIoEcmBP5zD1qXrQNiAZ
+         YL3spvgve6mr/qosc9f8FB2F3EZlPuA/CPkSI6mwQvz9ttqfG5sWXUWUVmQ+EXtjGZ+z
+         qIIA==
+X-Gm-Message-State: AOAM5310ezUnzIYHd92g1uNDVD2qsnLtLYgMQKUXgVCBppNM/vX908b7
+        QiJnGwsuAxZ2jDHxawn/Nsv22vRaIO2X8Aw=
+X-Google-Smtp-Source: ABdhPJzP83DwhORfMb+bJuQz5UmJs3XebCnI6uLqfDOyEgb2ymxIPPeS7NMxGqPYiMO5s4yUrfepUAr2i5NMiTs=
 Sender: "saravanak via sendgmr" <saravanak@saravanak.san.corp.google.com>
 X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:7220:84ff:fe09:fedc])
- (user=saravanak job=sendgmr) by 2002:ad4:5beb:: with SMTP id
- k11mr19789884qvc.20.1605924174528; Fri, 20 Nov 2020 18:02:54 -0800 (PST)
-Date:   Fri, 20 Nov 2020 18:02:19 -0800
+ (user=saravanak job=sendgmr) by 2002:a17:90a:f28e:: with SMTP id
+ fs14mr6235679pjb.91.1605924177080; Fri, 20 Nov 2020 18:02:57 -0800 (PST)
+Date:   Fri, 20 Nov 2020 18:02:20 -0800
 In-Reply-To: <20201121020232.908850-1-saravanak@google.com>
-Message-Id: <20201121020232.908850-5-saravanak@google.com>
+Message-Id: <20201121020232.908850-6-saravanak@google.com>
 Mime-Version: 1.0
 References: <20201121020232.908850-1-saravanak@google.com>
 X-Mailer: git-send-email 2.29.2.454.gaff20da3a2-goog
-Subject: [PATCH v2 04/17] Revert "driver core: Remove check in driver_deferred_probe_force_trigger()"
+Subject: [PATCH v2 05/17] Revert "of: platform: Batch fwnode parsing when
+ adding all top level devices"
 From:   Saravana Kannan <saravanak@google.com>
 To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
         "Rafael J. Wysocki" <rafael@kernel.org>,
@@ -74,31 +75,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit fefcfc968723caf93318613a08e1f3ad07a6154f.
+This reverts commit 93d2e4322aa74c1ad1e8c2160608eb9a960d69ff.
 
-The reverted commit is fixing commit 716a7a259690 ("driver core:
-fw_devlink: Add support for batching fwnode parsing"). Since the
-original commit will be reverted, the fix can be reverted too.
+The fw_devlink_pause/resume() optimization attempt is getting replaced
+with a much more robust optimization by the end of this series. So, stop
+using those APIs.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/base/dd.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/of/platform.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/base/dd.c b/drivers/base/dd.c
-index 001caa0b447c..b4be35fa7fda 100644
---- a/drivers/base/dd.c
-+++ b/drivers/base/dd.c
-@@ -172,6 +172,9 @@ static void driver_deferred_probe_trigger(void)
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index b557a0fcd4ba..79bd5f5a1bf1 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -538,9 +538,7 @@ static int __init of_platform_default_populate_init(void)
+ 	}
  
- void driver_deferred_probe_force_trigger(void)
- {
-+	if (!driver_deferred_probe_enable)
-+		return;
-+
- 	/*
- 	 * A successful probe means that all the devices in the pending list
- 	 * should be triggered to be reprobed.  Move all the deferred devices
+ 	/* Populate everything else. */
+-	fw_devlink_pause();
+ 	of_platform_default_populate(NULL, NULL, NULL);
+-	fw_devlink_resume();
+ 
+ 	return 0;
+ }
 -- 
 2.29.2.454.gaff20da3a2-goog
 
