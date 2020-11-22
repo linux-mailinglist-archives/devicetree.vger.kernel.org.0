@@ -2,154 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA9462BC2E1
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 01:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 964B72BC2EC
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 02:02:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726662AbgKVAkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 19:40:43 -0500
-Received: from relay5.mymailcheap.com ([159.100.241.64]:55098 "EHLO
-        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726476AbgKVAkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 19:40:42 -0500
-Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.80.156])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id A63D12008F;
-        Sun, 22 Nov 2020 00:40:39 +0000 (UTC)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay4.mymailcheap.com (Postfix) with ESMTPS id 2D0053F1D0;
-        Sun, 22 Nov 2020 01:40:37 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id 457052A36E;
-        Sat, 21 Nov 2020 19:40:36 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1606005636;
-        bh=Pb4Q1x+cDDkb3+w52LlauT+lSuzZnpwtU+Gv8d3ydLQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FNbqvfWpMvFk4PhUr2T9z4F+EQ3jOx5zSz9ntMXkyY1CsnZKK3i5m1HDR4Ozv8YE1
-         mjcsZrhAQMcxClY/dlHdlX455JobTXYyjdrVgMDDlk0JYnTZL/x+jKPmkgBOcFciFP
-         F6m/2cd925HZ0m0fZd67iibKTxQU3WvKcXyHu1TE=
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id WNRbMU7bgD3K; Sat, 21 Nov 2020 19:40:35 -0500 (EST)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Sat, 21 Nov 2020 19:40:35 -0500 (EST)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 643684130F;
-        Sun, 22 Nov 2020 00:40:34 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="tT2HTfcK";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from ice-e5v2.lan (unknown [59.41.161.246])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 62CED4130F;
-        Sun, 22 Nov 2020 00:40:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1606005629; bh=Pb4Q1x+cDDkb3+w52LlauT+lSuzZnpwtU+Gv8d3ydLQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tT2HTfcKxKpbl4Fc/urdguBYZzsH2qtWX8iE5+Bun89wzF67eqy3M6JOnVSyPqce6
-         n3BIhjwrfseSjKzGqk701OSHh42jUY07OpMXhIw1XMH9v9cmqIh2KRNCv+FCsMGwvP
-         Yj3UXkV6x0c/uMjgLMml7YXiMlPlP0R1Y2pS4A58=
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        inux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
-        Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 3/3] ARM: dts: sun8i: s3: switch PineCube to use OHCI/EHCI only
-Date:   Sun, 22 Nov 2020 08:40:11 +0800
-Message-Id: <20201122004011.1957325-2-icenowy@aosc.io>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201122003841.1957034-1-icenowy@aosc.io>
-References: <20201122003841.1957034-1-icenowy@aosc.io>
+        id S1726693AbgKVBC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 20:02:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40234 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726431AbgKVBC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 20:02:29 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD6C5C0613CF
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 17:02:28 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id f20so18258849ejz.4
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 17:02:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=K9oj1jZNjwyubHbEqnynv/Se7vgMAMWMdAYmcz95zz4=;
+        b=gl5hVqbvJq6lGDv65VLLiqYwVVAm7B6II0IjXvMyOIrz+3IEyepw7gAW8PJjwh6EWH
+         rAE63Vkk5piYgj1aF6EuSNhUVZXT5367JFsQm1+XuX3FOUPZ8xTZUUSbncx0M33JRfDU
+         vQfKgKTc9ApnZ5kGFQLD/ICX8UYq+LRLSQd2rS+fXDXSGZtnb4uOsPNUVpjX51E2O9hC
+         ooCOZi9K4UnJ1OjYY19DRHqQ/vEG5E/+juICcTKi5ay5uDX1rQPX+eeAYtiWxWcBGIOY
+         J89iSrgf0gTCXFVtNYfyKzueS5eslYawQ5k538XhMAHXdZ3fTi0nu9dn1VJA9dGEyyJC
+         aOTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=K9oj1jZNjwyubHbEqnynv/Se7vgMAMWMdAYmcz95zz4=;
+        b=sdGYGCN2MahmGHcn9nAPQdAbofvpOrzSk8oSdE9sRE3F1kSPzMNOqVVZ+mdvPdvmfU
+         02IvVDFL1AT2/SFhAi9DNARecXYCF3mpWvDWVa9fgm1x7jFTBFn74No3dkcebpn14cbq
+         DyhVCtYh9433oPWcybnzqKHWKMMkKhwg11AXXlZgiNZ9QYgDQp97R0dsODEYVXDVHTIv
+         0G9r620re5Hsd0wwbh+iYP+8vpuccR1q6D6des6ll7H0jF1LjcwkjtNLgGjsR4+BjBA4
+         44WhvfgSpAGsT2cEDyaqQchyfAk+S4rRioiizGF5rlcKYnNDmPbrCF2mUAlBZ+ZYm2Gz
+         XWhw==
+X-Gm-Message-State: AOAM532H9TS30EtZmf/Ij8Rcq41rpgiotR6RvBi+ol5F9vSZj1gqfF6O
+        nd2BA+BH6JgAt6Q5hptW3K21dEmKFe9bglPrrHI+JA==
+X-Google-Smtp-Source: ABdhPJwtHhPutwaLggyGRigreNs+Yh/IGc/u3dvhTaCjpSNNitrzRtnUzEaROcW0wXLe6/ECG/ujJxHoUFAXGP6U7ok=
+X-Received: by 2002:a17:906:1945:: with SMTP id b5mr38468149eje.388.1606006947375;
+ Sat, 21 Nov 2020 17:02:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 643684130F
-X-Spamd-Result: default: False [4.90 / 20.00];
-         ARC_NA(0.00)[];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         RECEIVED_SPAMHAUS_PBL(0.00)[59.41.161.246:received];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         R_MISSING_CHARSET(2.50)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         BROKEN_CONTENT_TYPE(1.50)[];
-         R_SPF_SOFTFAIL(0.00)[~all:c];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[8];
-         MID_CONTAINS_FROM(1.00)[];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+References: <cover.1513038011.git.digetx@gmail.com> <3d565db80f8dccafd14224924305243b37b75a07.1513038011.git.digetx@gmail.com>
+In-Reply-To: <3d565db80f8dccafd14224924305243b37b75a07.1513038011.git.digetx@gmail.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Sat, 21 Nov 2020 22:02:15 -0300
+Message-ID: <CAAEAJfBZD0u6MDxcp3See-agzyCSJS7dKpwK28LMJwPvE9DLtQ@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] staging: media: Introduce NVIDIA Tegra video
+ decoder driver
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        devel@driverdev.osuosl.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-tegra@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PineCube board features a USB Type-A connector connected to the
-SoC's USB pins.
+Hi Dmitry,
 
-As this is not designed for being used as a USB device, disable OTG
-controller and route USB to OHCI/EHCI fixedly.
+On Mon, 11 Dec 2017 at 21:27, Dmitry Osipenko <digetx@gmail.com> wrote:
+>
+> NVIDIA Tegra20/30/114/124/132 SoC's have video decoder engine that
+> supports standard set of video formats like H.264 / MPEG-4 / WMV / VC1.
+>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  MAINTAINERS                                 |    9 +
+>  drivers/staging/media/Kconfig               |    2 +
+>  drivers/staging/media/Makefile              |    1 +
+>  drivers/staging/media/tegra-vde/Kconfig     |    7 +
+>  drivers/staging/media/tegra-vde/Makefile    |    1 +
+>  drivers/staging/media/tegra-vde/TODO        |    4 +
+>  drivers/staging/media/tegra-vde/tegra-vde.c | 1213 +++++++++++++++++++++++++++
+>  drivers/staging/media/tegra-vde/uapi.h      |   78 ++
+>  8 files changed, 1315 insertions(+)
+>  create mode 100644 drivers/staging/media/tegra-vde/Kconfig
+>  create mode 100644 drivers/staging/media/tegra-vde/Makefile
+>  create mode 100644 drivers/staging/media/tegra-vde/TODO
+>  create mode 100644 drivers/staging/media/tegra-vde/tegra-vde.c
+>  create mode 100644 drivers/staging/media/tegra-vde/uapi.h
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7d195739f892..7f7c24949a06 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8706,6 +8706,15 @@ T:       git git://linuxtv.org/media_tree.git
+>  S:     Maintained
+>  F:     drivers/media/dvb-frontends/stv6111*
+>
+> +MEDIA DRIVERS FOR NVIDIA TEGRA - VDE
+> +M:     Dmitry Osipenko <digetx@gmail.com>
+> +L:     linux-media@vger.kernel.org
+> +L:     linux-tegra@vger.kernel.org
+> +T:     git git://linuxtv.org/media_tree.git
+> +S:     Maintained
+> +F:     Documentation/devicetree/bindings/media/nvidia,tegra-vde.txt
+> +F:     drivers/staging/media/tegra-vde/
+> +
+>  MEDIA INPUT INFRASTRUCTURE (V4L/DVB)
+>  M:     Mauro Carvalho Chehab <mchehab@s-opensource.com>
+>  M:     Mauro Carvalho Chehab <mchehab@kernel.org>
+> diff --git a/drivers/staging/media/Kconfig b/drivers/staging/media/Kconfig
+> index 3a09140700e6..227437f22acf 100644
+> --- a/drivers/staging/media/Kconfig
+> +++ b/drivers/staging/media/Kconfig
+> @@ -31,4 +31,6 @@ source "drivers/staging/media/imx/Kconfig"
+>
+>  source "drivers/staging/media/omap4iss/Kconfig"
+>
+> +source "drivers/staging/media/tegra-vde/Kconfig"
+> +
+>  endif
+> diff --git a/drivers/staging/media/Makefile b/drivers/staging/media/Makefile
+> index f25327163c67..59a47f69884f 100644
+> --- a/drivers/staging/media/Makefile
+> +++ b/drivers/staging/media/Makefile
+> @@ -5,3 +5,4 @@ obj-$(CONFIG_VIDEO_IMX_MEDIA)   += imx/
+>  obj-$(CONFIG_VIDEO_DM365_VPFE) += davinci_vpfe/
+>  obj-$(CONFIG_VIDEO_OMAP4)      += omap4iss/
+>  obj-$(CONFIG_INTEL_ATOMISP)     += atomisp/
+> +obj-$(CONFIG_TEGRA_VDE)                += tegra-vde/
+> diff --git a/drivers/staging/media/tegra-vde/Kconfig b/drivers/staging/media/tegra-vde/Kconfig
+> new file mode 100644
+> index 000000000000..ec3ddddebdaa
+> --- /dev/null
+> +++ b/drivers/staging/media/tegra-vde/Kconfig
+> @@ -0,0 +1,7 @@
+> +config TEGRA_VDE
+> +       tristate "NVIDIA Tegra Video Decoder Engine driver"
+> +       depends on ARCH_TEGRA || COMPILE_TEST
+> +       select SRAM
+> +       help
+> +           Say Y here to enable support for the NVIDIA Tegra video decoder
+> +           driver.
+> diff --git a/drivers/staging/media/tegra-vde/Makefile b/drivers/staging/media/tegra-vde/Makefile
+> new file mode 100644
+> index 000000000000..444c1d62daa1
+> --- /dev/null
+> +++ b/drivers/staging/media/tegra-vde/Makefile
+> @@ -0,0 +1 @@
+> +obj-$(CONFIG_TEGRA_VDE)        += tegra-vde.o
+> diff --git a/drivers/staging/media/tegra-vde/TODO b/drivers/staging/media/tegra-vde/TODO
+> new file mode 100644
+> index 000000000000..31aaa3e66d80
+> --- /dev/null
+> +++ b/drivers/staging/media/tegra-vde/TODO
+> @@ -0,0 +1,4 @@
+> +TODO:
+> +       - Implement V4L2 API once it gains support for stateless decoders.
+> +
+> +Contact: Dmitry Osipenko <digetx@gmail.com>
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
----
- arch/arm/boot/dts/sun8i-s3-pinecube.dts | 17 ++++++++++++-----
- 1 file changed, 12 insertions(+), 5 deletions(-)
+The API for H264 stateless decoding is ready.
+See https://lkml.org/lkml/2020/11/18/795.
 
-diff --git a/arch/arm/boot/dts/sun8i-s3-pinecube.dts b/arch/arm/boot/dts/sun8i-s3-pinecube.dts
-index 4aa0ee897a0a..c4177c54ef29 100644
---- a/arch/arm/boot/dts/sun8i-s3-pinecube.dts
-+++ b/arch/arm/boot/dts/sun8i-s3-pinecube.dts
-@@ -78,6 +78,12 @@ csi1_ep: endpoint {
- 	};
- };
- 
-+&ehci0 {
-+	phys = <&usbphy 0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
- &emac {
- 	phy-handle = <&int_mii_phy>;
- 	phy-mode = "mii";
-@@ -158,6 +164,12 @@ &mmc1 {
- 	status = "okay";
- };
- 
-+&ohci0 {
-+	phys = <&usbphy 0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
- &pio {
- 	vcc-pd-supply = <&reg_dcdc3>;
- 	vcc-pe-supply = <&reg_ldo3>;
-@@ -224,11 +236,6 @@ &uart2 {
- 	status = "okay";
- };
- 
--&usb_otg {
--	dr_mode = "host";
--	status = "okay";
--};
--
- &usbphy {
- 	usb0_vbus-supply = <&reg_vcc5v0>;
- 	status = "okay";
--- 
-2.28.0
+One minor comment below.
+
+> diff --git a/drivers/staging/media/tegra-vde/uapi.h b/drivers/staging/media/tegra-vde/uapi.h
+> new file mode 100644
+> index 000000000000..a50c7bcae057
+> --- /dev/null
+> +++ b/drivers/staging/media/tegra-vde/uapi.h
+> @@ -0,0 +1,78 @@
+> +/*
+> + * Copyright (C) 2016-2017 Dmitry Osipenko <digetx@gmail.com>
+> + *
+> + * This program is free software; you can redistribute it and/or
+> + * modify it under the terms of the GNU General Public License
+> + * as published by the Free Software Foundation; either version
+> + * 2 of the License, or (at your option) any later version.
+> + */
+> +
+> +#ifndef _UAPI_TEGRA_VDE_H_
+> +#define _UAPI_TEGRA_VDE_H_
+> +
+> +#include <linux/types.h>
+> +#include <asm/ioctl.h>
+> +
+> +#define FLAG_B_FRAME           (1 << 0)
+> +#define FLAG_REFERENCE         (1 << 1)
+> +
+> +struct tegra_vde_h264_frame {
+> +       __s32 y_fd;
+> +       __s32 cb_fd;
+> +       __s32 cr_fd;
+> +       __s32 aux_fd;
+> +       __u32 y_offset;
+> +       __u32 cb_offset;
+> +       __u32 cr_offset;
+> +       __u32 aux_offset;
+> +       __u32 frame_num;
+> +       __u32 flags;
+> +
+> +       __u32 reserved;
+> +} __attribute__((packed));
+> +
+> +struct tegra_vde_h264_decoder_ctx {
+> +       __s32 bitstream_data_fd;
+> +       __u32 bitstream_data_offset;
+> +
+> +       __u64 dpb_frames_ptr;
+> +       __u8  dpb_frames_nb;
+> +       __u8  dpb_ref_frames_with_earlier_poc_nb;
+> +
+> +       // SPS
+> +       __u8  baseline_profile;
+> +       __u8  level_idc;
+> +       __u8  log2_max_pic_order_cnt_lsb;
+> +       __u8  log2_max_frame_num;
+> +       __u8  pic_order_cnt_type;
+> +       __u8  direct_8x8_inference_flag;
+> +       __u8  pic_width_in_mbs;
+> +       __u8  pic_height_in_mbs;
+> +
+> +       // PPS
+> +       __u8  pic_init_qp;
+> +       __u8  deblocking_filter_control_present_flag;
+> +       __u8  constrained_intra_pred_flag;
+> +       __u8  chroma_qp_index_offset;
+> +       __u8  pic_order_present_flag;
+> +
+
+This seems to be bottom_field_pic_order_in_frame_present_flag,
+as there is no "pic_order_present_flag" syntax element.
+
+Thanks,
+Ezequiel
