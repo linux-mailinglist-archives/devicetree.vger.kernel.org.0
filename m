@@ -2,172 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C202BC860
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 20:10:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A59222BC8C7
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 20:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728123AbgKVTIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 14:08:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50430 "EHLO mail.kernel.org"
+        id S1727425AbgKVTfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 14:35:25 -0500
+Received: from mail.kernel.org ([198.145.29.99]:57236 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727888AbgKVTIk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Nov 2020 14:08:40 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727369AbgKVTfZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Nov 2020 14:35:25 -0500
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 835C12076C;
-        Sun, 22 Nov 2020 19:08:38 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6456F20758
+        for <devicetree@vger.kernel.org>; Sun, 22 Nov 2020 19:35:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606072119;
-        bh=7vu49IcgxLEPVch/2Ig4Rhz62Qz/qgMCkVeTL+wDbig=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=A2TpZzLzTGng/8zRu9yrQ3om2Leinv0eYKl8DqCs72Oq2SSJB67BvmCUcdsrHCz3t
-         Mwm0rTbQc2kfY7PZvrBFlr0Rok3mdAN/rM2Q4u5E+0cQP7OWcFVoKVuZouxkQJ4M07
-         uEL+xCCbabInxGd2aEpKmsekgejtUxHJt1gPL/+A=
-Date:   Sun, 22 Nov 2020 19:08:34 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] iio: imu: st_lsm6dsx: add vdd-vddio voltage
- regulator
-Message-ID: <20201122190834.0a862808@archlinux>
-In-Reply-To: <20201122103644.GA14218@lore-desk>
-References: <cover.1605631305.git.lorenzo@kernel.org>
-        <a0427a66360bdec73c3b1fb536a46240f96b2ae7.1605631305.git.lorenzo@kernel.org>
-        <20201121154938.0a9d3b4d@archlinux>
-        <20201122103644.GA14218@lore-desk>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        s=default; t=1606073724;
+        bh=wiUe1+Lsy/9M5RMEJjLWC4PBH0ZPqRMFo8QKQIqJXKk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HEw6m2ZGhVVKdI0PFbm2Ba9r323Dtx3T8uxslrdzAS/B4qj9jLrrpHoF7suuCLwLB
+         L/Tf5GDFGNW1K7614cDeTehcTzbwsJyAecAFBap1TmdRwfsvNWSsYUh5a+5MCjeCZ7
+         exvkYnevkFRTY7E0n9+ZBp4shKBTaNJH5FizdXuI=
+Received: by mail-vk1-f173.google.com with SMTP id w123so3506145vka.4
+        for <devicetree@vger.kernel.org>; Sun, 22 Nov 2020 11:35:24 -0800 (PST)
+X-Gm-Message-State: AOAM531N9D+S6p6ahkf74ONbzUW2j4zxvL6S2xfHNSP4pJofVohBpKew
+        65Rqn97Ubolng5NfJL27adnaDjRPDgXVx218evtVaw==
+X-Google-Smtp-Source: ABdhPJz6GEA+NJVOn7wX+dQLLdkTSQgDfCljjld+OKOyV1AD4oN3AUkoEhET5zzrCfH4xWn/XhBEuyP6jaO2ooxsSsY=
+X-Received: by 2002:a1f:9d04:: with SMTP id g4mr18940966vke.10.1606073723553;
+ Sun, 22 Nov 2020 11:35:23 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20200814134123.14566-1-ansuelsmth@gmail.com> <20200814134123.14566-2-ansuelsmth@gmail.com>
+In-Reply-To: <20200814134123.14566-2-ansuelsmth@gmail.com>
+From:   Amit Kucheria <amitk@kernel.org>
+Date:   Mon, 23 Nov 2020 01:05:12 +0530
+X-Gmail-Original-Message-ID: <CAHLCerPUi-wHo5WTJZZCKS3hmOTs9e+uixudDSRG4jMFukSZeg@mail.gmail.com>
+Message-ID: <CAHLCerPUi-wHo5WTJZZCKS3hmOTs9e+uixudDSRG4jMFukSZeg@mail.gmail.com>
+Subject: Re: [RFC PATCH v6 1/8] drivers: thermal: tsens: use get_temp for tsens_valid
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 22 Nov 2020 11:36:44 +0100
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+Hi Ansuel,
 
-> > On Tue, 17 Nov 2020 17:47:25 +0100
-> > Lorenzo Bianconi <lorenzo@kernel.org> wrote:
-> >   
-> > > Like all other ST sensors, st_lsm6dsx devices have VDD and VDDIO power
-> > > lines. Introduce voltage regulators to control them.
-> > > 
-> > > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>  
-> > Oops. I should have pointed out the dev_err_probe more appropriate
-> > to avoid complaining when we just tried to probe to early in the
-> > sequence and will try again later.  I'll hopefully fix this
-> > up an apply once I've picked up my own patch to do the yaml conversion.
-> >   
-> 
-> ack, fine for me otherwise I can just send v3. Up to you.
-I've done it and applied both this and patch 2 to the togreg branch of
-iio.git (having earlier applied the binding conversion patch).
+My apologies for being tardy in reviewing this series. Career changes...
 
-Please take a quick look and make sure it all looks right to you.
+On Fri, Aug 14, 2020 at 7:12 PM Ansuel Smith <ansuelsmth@gmail.com> wrote:
+>
+> Use the driver get_temp function instead of force to use the generic get
+> temp function. This is needed as tsens v0 version use a custom function
+> to get the real temperature.
+>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> ---
+>  drivers/thermal/qcom/tsens.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
+> index 9af6f71ab640..9fe9a2b26705 100644
+> --- a/drivers/thermal/qcom/tsens.c
+> +++ b/drivers/thermal/qcom/tsens.c
+> @@ -580,7 +580,6 @@ int get_temp_tsens_valid(const struct tsens_sensor *s, int *temp)
+>  {
+>         struct tsens_priv *priv = s->priv;
+>         int hw_id = s->hw_id;
+> -       u32 temp_idx = LAST_TEMP_0 + hw_id;
+>         u32 valid_idx = VALID_0 + hw_id;
+>         u32 valid;
+>         int ret;
+> @@ -600,9 +599,9 @@ int get_temp_tsens_valid(const struct tsens_sensor *s, int *temp)
+>         }
+>
+>         /* Valid bit is set, OK to read the temperature */
+> -       *temp = tsens_hw_to_mC(s, temp_idx);
+> +       ret = priv->ops->get_temp(s, temp);
 
-Thanks,
+This is wrong.
 
-Jonathan
+.get_temp is set to get_temp_tsens_valid() for v1 and v2 platforms. So
+you've just broken all those platforms by creating a recursive loop.
 
-> 
-> Regards,
-> Lorenzo
-> 
-> > Jonathan
-> >   
-> > > ---
-> > >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h      |  3 ++
-> > >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c | 42 ++++++++++++++++++++
-> > >  2 files changed, 45 insertions(+)
-> > > 
-> > > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> > > index 1f31657a7a0e..4b4ec39d4400 100644
-> > > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> > > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
-> > > @@ -13,6 +13,7 @@
-> > >  
-> > >  #include <linux/device.h>
-> > >  #include <linux/iio/iio.h>
-> > > +#include <linux/regulator/consumer.h>
-> > >  
-> > >  #define ST_LSM6DS3_DEV_NAME	"lsm6ds3"
-> > >  #define ST_LSM6DS3H_DEV_NAME	"lsm6ds3h"
-> > > @@ -368,6 +369,7 @@ struct st_lsm6dsx_sensor {
-> > >   * struct st_lsm6dsx_hw - ST IMU MEMS hw instance
-> > >   * @dev: Pointer to instance of struct device (I2C or SPI).
-> > >   * @regmap: Register map of the device.
-> > > + * @regulators: VDD/VDDIO voltage regulators.
-> > >   * @irq: Device interrupt line (I2C or SPI).
-> > >   * @fifo_lock: Mutex to prevent concurrent access to the hw FIFO.
-> > >   * @conf_lock: Mutex to prevent concurrent FIFO configuration update.
-> > > @@ -390,6 +392,7 @@ struct st_lsm6dsx_sensor {
-> > >  struct st_lsm6dsx_hw {
-> > >  	struct device *dev;
-> > >  	struct regmap *regmap;
-> > > +	struct regulator_bulk_data regulators[2];
-> > >  	int irq;
-> > >  
-> > >  	struct mutex fifo_lock;
-> > > diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> > > index 5e584c6026f1..fde46377826c 100644
-> > > --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> > > +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c
-> > > @@ -2533,6 +2533,40 @@ static int st_lsm6dsx_irq_setup(struct st_lsm6dsx_hw *hw)
-> > >  	return 0;
-> > >  }
-> > >  
-> > > +static int st_lsm6dsx_init_regulators(struct device *dev)
-> > > +{
-> > > +	struct st_lsm6dsx_hw *hw = dev_get_drvdata(dev);
-> > > +	int err;
-> > > +
-> > > +	/* vdd-vddio power regulators */
-> > > +	hw->regulators[0].supply = "vdd";
-> > > +	hw->regulators[1].supply = "vddio";
-> > > +	err = devm_regulator_bulk_get(dev, ARRAY_SIZE(hw->regulators),
-> > > +				      hw->regulators);
-> > > +	if (err) {
-> > > +		dev_err(dev, "failed to get regulators: %d\n", err);
-> > > +		return err;
-> > > +	}
-> > > +
-> > > +	err = regulator_bulk_enable(ARRAY_SIZE(hw->regulators),
-> > > +				    hw->regulators);
-> > > +	if (err) {
-> > > +		dev_err(dev, "failed to enable regulators: %d\n", err);
-> > > +		return err;
-> > > +	}
-> > > +
-> > > +	msleep(50);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static void st_lsm6dsx_chip_uninit(void *data)
-> > > +{
-> > > +	struct st_lsm6dsx_hw *hw = data;
-> > > +
-> > > +	regulator_bulk_disable(ARRAY_SIZE(hw->regulators), hw->regulators);
-> > > +}
-> > > +
-> > >  int st_lsm6dsx_probe(struct device *dev, int irq, int hw_id,
-> > >  		     struct regmap *regmap)
-> > >  {
-> > > @@ -2552,6 +2586,14 @@ int st_lsm6dsx_probe(struct device *dev, int irq, int hw_id,
-> > >  	mutex_init(&hw->conf_lock);
-> > >  	mutex_init(&hw->page_lock);
-> > >  
-> > > +	err = st_lsm6dsx_init_regulators(dev);
-> > > +	if (err)
-> > > +		return err;
-> > > +
-> > > +	err = devm_add_action_or_reset(dev, st_lsm6dsx_chip_uninit, hw);
-> > > +	if (err)
-> > > +		return err;
-> > > +
-> > >  	hw->buff = devm_kzalloc(dev, ST_LSM6DSX_BUFF_SIZE, GFP_KERNEL);
-> > >  	if (!hw->buff)
-> > >  		return -ENOMEM;  
-> >   
+I assume you were trying to use the common interrupt code which
+currently uses get_temp_tsens_valid()? I suggest trying to add 8960
+support to tsens_hw_to_mC().
 
+>
+> -       return 0;
+> +       return ret;
+>  }
+>
+>  int get_temp_common(const struct tsens_sensor *s, int *temp)
+> --
+> 2.27.0
+>
