@@ -2,69 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB2A02BC540
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 12:08:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F29562BC568
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 12:39:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727457AbgKVLHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 06:07:16 -0500
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:43646 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727360AbgKVLHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 06:07:15 -0500
-Received: by mail-ej1-f67.google.com with SMTP id k27so19188186ejs.10;
-        Sun, 22 Nov 2020 03:07:13 -0800 (PST)
+        id S1727646AbgKVLin convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 22 Nov 2020 06:38:43 -0500
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:46647 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727660AbgKVLin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 06:38:43 -0500
+Received: by mail-ej1-f68.google.com with SMTP id bo9so13536964ejb.13;
+        Sun, 22 Nov 2020 03:38:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7nL5vldHVk+TCSj72rQnEoC/jas4L51w1DvQQNmn4zA=;
-        b=Oq845lR0VjIaynXJbjQw2jTQjAWprzXK16LOptkVDcOpXN2rD0WLJYEMZczkkBdgOY
-         ZvnN2NAggDFyX4aKXuKtQQOL7d//FDy+u4O3w+i3+NbU1S34vmMmI9ebV9FmZezHPOzL
-         A3Vn72iBvINPlxbRnI0pQB/ExMgJOYaM69XVu3jg6mHzlE4VEPG7HmFiTNC8A5f3j0fQ
-         L6hKgOtYfSDMHjJVYtKyDKtO/waCU3QsGreeRvJz0BHYcwNr8NJYsPWYWR2+6DOeX7cC
-         o1a4nVB/7qqIl4fHI4z+jNrYO4KGi9mZmEgupKD4yh7BfaWCK5QrPXFAmhnRPXoI8oc+
-         JJVg==
-X-Gm-Message-State: AOAM530Z74T8/dte77SXhtJuR3PgMIZG7iHNknaIZca9Gbav4bL6soXG
-        UNn8EDPC0t2pqYaWuARQe8uNWH+68cs=
-X-Google-Smtp-Source: ABdhPJzqsQLj9qbzj7FFuDuHTc+bpHEFaIDlnY5oK0pfsSNMjB8U6JC2O5gSJa2FOkPMaOY2Z8VUPg==
-X-Received: by 2002:a17:906:5cb:: with SMTP id t11mr12849903ejt.295.1606043233154;
-        Sun, 22 Nov 2020 03:07:13 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=upJqjhxuXAg4eiIE3k0jCGU7SE7hWfTC50ZWvfab5w8=;
+        b=IQnkyU5St6dEeu/Yxn0z6q6y2bEcjBNOzOfw1KuWTt4gthe34CcFa5QzjuhZf+de3e
+         7pTZsLw6eyabdroorBce9G/EayOvmR1hC39m2YIqmBLwD5sMV+yeudOF/IlGi4xDGPHL
+         0lUnvrEwoDR42HekrA/BWFCtFkfACUndwakIDjjsnToaLoh6KpjMzklAu2c4M6XuycNS
+         uAlY1FM7Bc1AZW5CpZU0C+lEWsQgSJKdRuEVKDSUsFRSVo0ARPf1Uogxsctkz9heRCxf
+         guTuvEHWhw7USFnEDaeEYTz+dfIfUtNRcdPNtiNSk4590vTjvS5pqeGD2z8Bf4xBwlN/
+         EH1w==
+X-Gm-Message-State: AOAM530Lx6ghcnT3HmCAG+IS2Q8Tjm4dNcsd9lViv8+2HzrXYHdANmdg
+        V2QC5CRdFHY2FLMgI0ol9aML2E5kC5k=
+X-Google-Smtp-Source: ABdhPJxhb9DvBWCE//OCayCwtlu7ZneZAAc2qVtu2lPzW3IEYd/O2c17K72i+SZVeFeY4/eV0oquEQ==
+X-Received: by 2002:a17:906:7147:: with SMTP id z7mr4456748ejj.65.1606045121317;
+        Sun, 22 Nov 2020 03:38:41 -0800 (PST)
 Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id q15sm3446644edt.95.2020.11.22.03.07.11
+        by smtp.googlemail.com with ESMTPSA id f13sm3465035ejf.42.2020.11.22.03.38.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2020 03:07:11 -0800 (PST)
-Date:   Sun, 22 Nov 2020 12:07:10 +0100
+        Sun, 22 Nov 2020 03:38:40 -0800 (PST)
+Date:   Sun, 22 Nov 2020 12:38:39 +0100
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] memory: tegra: Complete tegra210_swgroups
-Message-ID: <20201122110710.GA5415@kozik-lap>
-References: <20201008003746.25659-1-nicoleotsuka@gmail.com>
- <20201008003746.25659-6-nicoleotsuka@gmail.com>
+To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
+Cc:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: switch atmel mxt reset gpio to active low
+Message-ID: <20201122113839.GA7781@kozik-lap>
+References: <20201120160053.18942-1-martin.juecker@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201008003746.25659-6-nicoleotsuka@gmail.com>
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20201120160053.18942-1-martin.juecker@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Oct 07, 2020 at 05:37:46PM -0700, Nicolin Chen wrote:
-> According to Tegra X1 TRM, there are missing swgroups in the
-> tegra210_swgroups list. So this patch adds them to the list.
+On Fri, Nov 20, 2020 at 05:00:54PM +0100, Martin Jücker wrote:
+> The reset gpio logic of the atmel driver was changed to be active low at
+> around the same time this device tree was accepted into the kernel.
+> Adjust the configuration so that the touchscreen is in a usable state.
 > 
-> Note that the TEGRA_SWGROUP_GPU (in list) should be actually
-> TEGRA_SWGROUP_GPUB (in TRM), yet TEGRA_SWGROUP_GPU (in TRM)
-> is not being used -- only TEGRA_SWGROUP_GPUB (in TRM) is. So
-> this patch does not add TEGRA_SWGROUP_GPU (in TRM) and keeps
-> TEGRA_SWGROUP_GPU (in list) as it is.
-> 
-> Signed-off-by: Nicolin Chen <nicoleotsuka@gmail.com>
+> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
 > ---
->  drivers/memory/tegra/tegra210.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+>  arch/arm/boot/dts/exynos4412-p4note.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+
+Please use proper subsystem prefix in the title, so "ARM: dts: exynos:".
+Also capitalize names (Atmel) and acronyms (GPIO, not
+gpio).
 
 Thanks, applied.
 
