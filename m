@@ -2,306 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 316902BC90E
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 21:06:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A2A2BFC28
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 23:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727726AbgKVUFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 15:05:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46054 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727591AbgKVUFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 15:05:35 -0500
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0B17C061A4A
-        for <devicetree@vger.kernel.org>; Sun, 22 Nov 2020 12:05:35 -0800 (PST)
-Received: by mail-vs1-xe41.google.com with SMTP id r14so7995269vsa.13
-        for <devicetree@vger.kernel.org>; Sun, 22 Nov 2020 12:05:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bqhVbxeK67mvyVWitdbRV+x5z6dFLvsGxFt9jpKxnD0=;
-        b=OK1hPQd26rsZBffPjxzRN9HV9GXss1Vnphm6Fl2oqd9Qziu+7ch6dtt4Ji3NneXczb
-         DioTsLhP0mrfVUcUsN7nbLc0FvL52sSkFTpYlNpg2ZTAZVUm9pkduQtm0btadIvoQXsn
-         HpyFvYTl0RtQdu36jvuqKrbxC6OXNJ+acYfhmfcq+ioYCpN94h7R6dlWgu3vse5EhPg7
-         RNPbGuXF+UgvbAyxoadfbmZ2S4/KiqANCMkdJhEDTd7EUf638kRC9a9pwassKPUl0ucu
-         rNxy5QhFm376jkWZkf/9RLHU/2/MEnAIr9SmgVJeO/ygb3C+JYrisji5JC/dy2+BZ8R6
-         gT4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bqhVbxeK67mvyVWitdbRV+x5z6dFLvsGxFt9jpKxnD0=;
-        b=XEhiwFXauknMx83gQ8G/XNYcgbPU5gur3Qu0hNDJG65FAUU/7Xn1JXaf2lSWaW2n51
-         gzp3eRGdIAtVVuK11wzoBCNzTMGfHX3ZqZDjTnOKlrI3/HjqdWLGk7LynrxAv+VRDBWC
-         wtRzPua1/Sxf5+/IO+uPTYEHtTymYPbpcOn0TqS0jJIV/nzXRViygM5EB0GL9yJkoqxp
-         SNZrRq2aLLwTsLwhn5MbjaSMxOESdrbzpPQo6KmgcTUEtc6ASrTPKy35+w1NzqXYlS2c
-         jYXBtdLsqoXHvBA/AEs91qSFfEVM30NH4WJn4j58zG46AAHNA53mr8dqSb/+3HI95w1A
-         bnCw==
-X-Gm-Message-State: AOAM5319/NrzUChSHpW0m+yKHWXGsexPG5Fg0xngSW1vo3X0m8Fw/8ht
-        WweQOA9LYEW4IlW27+/lSAJ97Jg/H0AoJTXf442VSg==
-X-Google-Smtp-Source: ABdhPJyIFLJ85bMCYvj/91ettayOH1V58EjXivrE8WfF+1YBFSJbddTZYClbJIc/ZDQyppnesX+CPl7WRcw+ZKpDw10=
-X-Received: by 2002:a67:ce1a:: with SMTP id s26mr17518592vsl.0.1606075534004;
- Sun, 22 Nov 2020 12:05:34 -0800 (PST)
+        id S1726238AbgKVW3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 17:29:02 -0500
+Received: from mout.gmx.net ([212.227.15.19]:57009 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725964AbgKVW3B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Nov 2020 17:29:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1606084084;
+        bh=dtj6W0yQf7os9N3ERREUeHWvsknYOOEdVVmOyejekNA=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=h/GRGXfbBiL+/lpTZgwrHt3pZF/wodtFXaF3v3pamkHQXUYtg+kXroip+WtBglXds
+         6lt5NC1hw30gcZr2B+GBzil7Zx106IaNYNm95Kjs1y9f/gePqtERCzAcYEKktgIR9u
+         9Sq+HsA6lP1NdlG0IAZ0BtMJHOhRooNgiusf3FtE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1McpNo-1k753W0XfG-00ZxeN; Sun, 22
+ Nov 2020 23:28:04 +0100
+From:   =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: [PATCH v4 0/7] Netronix embedded controller driver for Kobo and Tolino ebook readers
+Date:   Sun, 22 Nov 2020 23:27:32 +0100
+Message-Id: <20201122222739.1455132-1-j.neuschaefer@gmx.net>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20200814134123.14566-1-ansuelsmth@gmail.com> <20200814134123.14566-3-ansuelsmth@gmail.com>
-In-Reply-To: <20200814134123.14566-3-ansuelsmth@gmail.com>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Mon, 23 Nov 2020 01:35:22 +0530
-Message-ID: <CAHLCerMArOceCFQ1XFbsZCAnUdKVX3TVnAb502w+kxmO97bdJg@mail.gmail.com>
-Subject: Re: [RFC PATCH v6 2/8] drivers: thermal: tsens: Add VER_0 tsens version
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:9fi5cn1W4wIcwCMcrpIiO4wYE9TOSPxMlnZh0pqNYCi6ZkuOZOS
+ FpNAVw0/CXpxZWSb9uyyO2BbA8nftnwSgEOfBGfQw4xNwEBM6wtqce3lmyvErhqhmyJiiuI
+ rb/ylvH/d+i9pw4rrm8+DyYwhbAkVtu5zv/lF+C9XgM78YSLIvRwqnDbBRXuZRsO6K2dHoZ
+ a5+vhcgSaapQh/eTPVWhw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:70fq3pGexNk=:VsRFl5purtQlQ5PHwaSKYR
+ GLKpzbG+q7Ce+cUt3+XDjKktTLpgKhCHmjd8MDuqkP2uFCH6mxilTAteKF/Up4mL8Q61Tx1Og
+ EZ0p94NeilOGJWsUwznmo5G3/CkareGLT9WJEtbziCqsuLYsq7thR0CNm8D01gmSQGiEI7bKu
+ LRA06rv0f5CPlEMcOmROEVbvt/fo4pOyv3HFCdu5dVBoym3X/FecGEohpY6Ffq8seNh1Q31So
+ qNGEM8GQ7J3U8PXcYg83/c1JAKIWag3DfKLOCWDInhzPAeOD18lkx1GynT9BMndCXedXCzZQY
+ EcGrye8feArmieWZwEdHnvoCmuORJyzYa6a8Vumgt97gQ+G3+fNEf5GJhM5garEP/gvDVX0Vk
+ gXQhpyp7g5KHSA3uXKmb0wYSmWfX+Vm1tteOBq/WNVzgmEDDFD4P6tGpJ7y6fkCJSqVgOcX03
+ 1iHLR1znUH/cEArRTO+cGyc/LaR+WoAX71md1Jh6xS96j0r0InLPCpJ6M7h9c6uf69DeXR6hn
+ qewxhdzTysc0D1Yzcuo6gTANmgD1cvCZOgwI8UsQfokY8azNRfMU3D9KiRIjTTv86FE620ODf
+ 51i9rm9Y2NTovwyl0K4YWxpxNOaGQeFuyyjmy3v+qwLjeJs0ty/4qR+tmAc1YXf1qu7NSDdsH
+ Xleq9QaWohOnrO4eUJ7hKJL78vTpphd4ZULT4C+Yprr2buYAsBP14ZbMtVqBGZzI+r9N9bH8J
+ t8uWbZmhg39hacvZ2vfXChlSUJWsgRxn/1lxsPnaYmx7WweGjdt9Hlk4iyDNAPyyHGVZ4cPen
+ 0an7RqIWBWF5mNMxn2bGp7vlKRlGAlmf+5fhmvgKuGmbFEClvihB5iNWEZJyOse0XSPchix1X
+ OcOISfXqyyOwTS6iG3+Q==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ansuel,
+This patchset adds basic support for the embedded controller found on
+older ebook reader boards designed by/with the ODM Netronix Inc.[1] and
+sold by Kobo or Tolino, for example the Kobo Aura and the Tolino Shine.
+These drivers are based on information contained in the vendor kernel
+sources, but in order to all information in a single place, I documented
+the register interface of the EC on GitHub[2].
 
-See comments inline.
+[1]: http://www.netronixinc.com/products.aspx?ID=3D1
+[2]: https://github.com/neuschaefer/linux/wiki/Netronix-MSP430-embedded-co=
+ntroller
 
-On Fri, Aug 14, 2020 at 7:12 PM Ansuel Smith <ansuelsmth@gmail.com> wrote:
->
-> VER_0 is used to describe device based on tsens version before v0.1.
-> These device are devices based on msm8960 for example apq8064 or
-> ipq806x.
->
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> ---
->  drivers/thermal/qcom/tsens.c | 122 +++++++++++++++++++++++++++++++----
->  drivers/thermal/qcom/tsens.h |   7 +-
->  2 files changed, 114 insertions(+), 15 deletions(-)
->
-> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-> index 9fe9a2b26705..965c4799918a 100644
-> --- a/drivers/thermal/qcom/tsens.c
-> +++ b/drivers/thermal/qcom/tsens.c
-> @@ -516,6 +516,15 @@ static irqreturn_t tsens_irq_thread(int irq, void *data)
->                         dev_dbg(priv->dev, "[%u] %s: no violation:  %d\n",
->                                 hw_id, __func__, temp);
->                 }
-> +
-> +               if (tsens_version(priv) < VER_0_1) {
-> +                       /* Constraint: There is only 1 interrupt control register for all
-> +                        * 11 temperature sensor. So monitoring more than 1 sensor based
-> +                        * on interrupts will yield inconsistent result. To overcome this
-> +                        * issue we will monitor only sensor 0 which is the master sensor.
-> +                        */
-> +                       break;
-> +               }
->         }
->
->         return IRQ_HANDLED;
-> @@ -531,6 +540,13 @@ static int tsens_set_trips(void *_sensor, int low, int high)
->         int high_val, low_val, cl_high, cl_low;
->         u32 hw_id = s->hw_id;
->
-> +       if (tsens_version(priv) < VER_0_1) {
-> +               /* Pre v0.1 IP had a single register for each type of interrupt
-> +                * and thresholds
-> +                */
-> +               hw_id = 0;
-> +       }
-> +
->         dev_dbg(dev, "[%u] %s: proposed thresholds: (%d:%d)\n",
->                 hw_id, __func__, low, high);
->
-> @@ -584,18 +600,21 @@ int get_temp_tsens_valid(const struct tsens_sensor *s, int *temp)
->         u32 valid;
->         int ret;
->
-> -       ret = regmap_field_read(priv->rf[valid_idx], &valid);
-> -       if (ret)
-> -               return ret;
-> -       while (!valid) {
-> -               /* Valid bit is 0 for 6 AHB clock cycles.
-> -                * At 19.2MHz, 1 AHB clock is ~60ns.
-> -                * We should enter this loop very, very rarely.
-> -                */
-> -               ndelay(400);
-> +       /* VER_0 doesn't have VALID bit */
-> +       if (tsens_version(priv) >= VER_0_1) {
->                 ret = regmap_field_read(priv->rf[valid_idx], &valid);
->                 if (ret)
->                         return ret;
-> +               while (!valid) {
-> +                       /* Valid bit is 0 for 6 AHB clock cycles.
-> +                        * At 19.2MHz, 1 AHB clock is ~60ns.
-> +                        * We should enter this loop very, very rarely.
-> +                        */
-> +                       ndelay(400);
-> +                       ret = regmap_field_read(priv->rf[valid_idx], &valid);
-> +                       if (ret)
-> +                               return ret;
-> +               }
-
-Let's revisit this after fixing patch 1.
+v4:
+- Spell out ODM (original design manufacturer)
+- Solve corner cases in the RTC driver
+- Clean up use of log levels vs. error codes
+- Add more comments explaining some peculiarities
+- Add missing MODULE_ALIAS lines
+- Various other cleanups
 
 
->         }
->
->         /* Valid bit is set, OK to read the temperature */
-> @@ -763,6 +782,10 @@ int __init init_common(struct tsens_priv *priv)
->                 goto err_put_device;
->         }
->
-> +       /* VER_0 have only tm_map */
-> +       if (!priv->srot_map)
-> +               priv->srot_map = priv->tm_map;
-> +
->         if (tsens_version(priv) > VER_0_1) {
->                 for (i = VER_MAJOR; i <= VER_STEP; i++) {
->                         priv->rf[i] = devm_regmap_field_alloc(dev, priv->srot_map,
-> @@ -781,6 +804,10 @@ int __init init_common(struct tsens_priv *priv)
->                 ret = PTR_ERR(priv->rf[TSENS_EN]);
->                 goto err_put_device;
->         }
-> +       /* in VER_0 TSENS need to be explicitly enabled */
-> +       if (tsens_version(priv) == VER_0)
-> +               regmap_field_write(priv->rf[TSENS_EN], 1);
-> +
->         ret = regmap_field_read(priv->rf[TSENS_EN], &enabled);
->         if (ret)
->                 goto err_put_device;
-> @@ -803,6 +830,61 @@ int __init init_common(struct tsens_priv *priv)
->                 goto err_put_device;
->         }
->
-> +       priv->rf[TSENS_EN] = devm_regmap_field_alloc(dev, priv->tm_map,
-> +                                                    priv->fields[TSENS_EN]);
-> +       if (IS_ERR(priv->rf[TSENS_EN])) {
-> +               ret = PTR_ERR(priv->rf[TSENS_EN]);
-> +               goto err_put_device;
-> +       }
-> +
-> +       priv->rf[TSENS_SW_RST] = devm_regmap_field_alloc(
-> +               dev, priv->tm_map, priv->fields[TSENS_EN]);
-> +       if (IS_ERR(priv->rf[TSENS_EN])) {
-> +               ret = PTR_ERR(priv->rf[TSENS_EN]);
-> +               goto err_put_device;
-> +       }
-> +
-> +       priv->rf[LOW_INT_CLEAR_0] = devm_regmap_field_alloc(
-> +               dev, priv->tm_map, priv->fields[LOW_INT_CLEAR_0]);
-> +       if (IS_ERR(priv->rf[LOW_INT_CLEAR_0])) {
-> +               ret = PTR_ERR(priv->rf[LOW_INT_CLEAR_0]);
-> +               goto err_put_device;
-> +       }
-> +
-> +       priv->rf[UP_INT_CLEAR_0] = devm_regmap_field_alloc(
-> +               dev, priv->tm_map, priv->fields[UP_INT_CLEAR_0]);
-> +       if (IS_ERR(priv->rf[UP_INT_CLEAR_0])) {
-> +               ret = PTR_ERR(priv->rf[UP_INT_CLEAR_0]);
-> +               goto err_put_device;
-> +       }
-> +
-> +       /* VER_0 require to set MIN and MAX THRESH */
-> +       if (tsens_version(priv) < VER_0_1) {
-> +               priv->rf[MIN_THRESH_0] = devm_regmap_field_alloc(
-> +                       dev, priv->tm_map, priv->fields[MIN_THRESH_0]);
-> +               if (IS_ERR(priv->rf[MIN_THRESH_0])) {
-> +                       ret = PTR_ERR(priv->rf[MIN_THRESH_0]);
-> +                       goto err_put_device;
-> +               }
-> +
-> +               priv->rf[MAX_THRESH_0] = devm_regmap_field_alloc(
-> +                       dev, priv->tm_map, priv->fields[MAX_THRESH_0]);
-> +               if (IS_ERR(priv->rf[MAX_THRESH_0])) {
-> +                       ret = PTR_ERR(priv->rf[MAX_THRESH_0]);
-> +                       goto err_put_device;
-> +               }
-> +
-> +               regmap_field_write(priv->rf[MIN_THRESH_0], 0);
-> +               regmap_field_write(priv->rf[MAX_THRESH_0], 120000);
-> +       }
-> +
-> +       priv->rf[TRDY] =
-> +               devm_regmap_field_alloc(dev, priv->tm_map, priv->fields[TRDY]);
-> +       if (IS_ERR(priv->rf[TRDY])) {
-> +               ret = PTR_ERR(priv->rf[TRDY]);
-> +               goto err_put_device;
-> +       }
-> +
->         /* This loop might need changes if enum regfield_ids is reordered */
->         for (j = LAST_TEMP_0; j <= UP_THRESH_15; j += 16) {
->                 for (i = 0; i < priv->feat->max_sensors; i++) {
-> @@ -856,7 +938,11 @@ int __init init_common(struct tsens_priv *priv)
->         }
->
->         spin_lock_init(&priv->ul_lock);
-> -       tsens_enable_irq(priv);
-> +
-> +       /* VER_0 interrupt doesn't need to be enabled */
-> +       if (tsens_version(priv) >= VER_0_1)
-> +               tsens_enable_irq(priv);
-> +
->         tsens_debug_init(op);
->
->  err_put_device:
-> @@ -952,10 +1038,18 @@ static int tsens_register_irq(struct tsens_priv *priv, char *irqname,
->                 if (irq == -ENXIO)
->                         ret = 0;
->         } else {
-> -               ret = devm_request_threaded_irq(&pdev->dev, irq,
-> -                                               NULL, thread_fn,
-> -                                               IRQF_ONESHOT,
-> -                                               dev_name(&pdev->dev), priv);
-> +               /* VER_0 interrupt is TRIGGER_RISING, VER_0_1 and up is ONESHOT */
-> +               if (tsens_version(priv) > VER_0)
-> +                       ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
-> +                                                       thread_fn, IRQF_ONESHOT,
-> +                                                       dev_name(&pdev->dev),
-> +                                                       priv);
-> +               else
-> +                       ret = devm_request_threaded_irq(&pdev->dev, irq,
-> +                                                       thread_fn, NULL,
-> +                                                       IRQF_TRIGGER_RISING,
-> +                                                       dev_name(&pdev->dev),
-> +                                                       priv);
+v3:
+- https://lore.kernel.org/lkml/20200924192455.2484005-1-j.neuschaefer@gmx.=
+net/
+- A few code cleanups
+- A few devicetree related cleanups
+- PWM and RTC functionality were moved from subnodes in the devicetree to
+  the main node. This also means that the subdrivers no longer need DT
+  compatible strings, but are instead loaded via the mfd_cell mechanism.
+- The drivers are now published under GPLv2-or-later rather than GPLv2-onl=
+y.
 
 
-Just set a flag variable to ONESHOT OR TRIGGER_RISING and use that in the call.
+v2:
+- https://lore.kernel.org/lkml/20200905133230.1014581-1-j.neuschaefer@gmx.=
+net/
+- Moved txt DT bindings to patch descriptions and removed patch 1/10
+  "DT bindings in plain text format"
+- New patch 7/10 "rtc: Introduce RTC_TIMESTAMP_END_2255"
+- Rebased on 5.9-rc3
+- Various other changes which are documented in each patch
 
->                 if (ret)
->                         dev_err(&pdev->dev, "%s: failed to get irq\n",
->                                 __func__);
-> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
-> index 59d01162c66a..f1120791737c 100644
-> --- a/drivers/thermal/qcom/tsens.h
-> +++ b/drivers/thermal/qcom/tsens.h
-> @@ -25,7 +25,8 @@ struct tsens_priv;
->
->  /* IP version numbers in ascending order */
->  enum tsens_ver {
-> -       VER_0_1 = 0,
-> +       VER_0 = 0,
-> +       VER_0_1,
->         VER_1_X,
->         VER_2_X,
->  };
-> @@ -441,6 +442,10 @@ enum regfield_ids {
->         CRIT_THRESH_14,
->         CRIT_THRESH_15,
->
-> +       /* VER_0 MIN MAX THRESH */
-> +       MIN_THRESH_0,
-> +       MAX_THRESH_0,
-> +
+v1:
+- https://lore.kernel.org/lkml/20200620223915.1311485-1-j.neuschaefer@gmx.=
+net/
 
-Consider reusing LOW_THRESH_0 and UP_THRESH_0 for these?
+Jonathan Neusch=C3=A4fer (7):
+  dt-bindings: Add vendor prefix for Netronix, Inc.
+  dt-bindings: mfd: Add binding for Netronix embedded controller
+  mfd: Add base driver for Netronix embedded controller
+  pwm: ntxec: Add driver for PWM function in Netronix EC
+  rtc: New driver for RTC in Netronix embedded controller
+  MAINTAINERS: Add entry for Netronix embedded controller
+  ARM: dts: imx50-kobo-aura: Add Netronix embedded controller
 
->         /* WATCHDOG */
->         WDOG_BARK_STATUS,
->         WDOG_BARK_CLEAR,
-> --
-> 2.27.0
->
+ .../bindings/mfd/netronix,ntxec.yaml          |  76 ++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   9 +
+ arch/arm/boot/dts/imx50-kobo-aura.dts         |  16 +-
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/ntxec.c                           | 216 ++++++++++++++++++
+ drivers/pwm/Kconfig                           |   8 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-ntxec.c                       | 166 ++++++++++++++
+ drivers/rtc/Kconfig                           |   8 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ntxec.c                       | 158 +++++++++++++
+ include/linux/mfd/ntxec.h                     |  34 +++
+ 14 files changed, 706 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/mfd/netronix,ntxec.y=
+aml
+ create mode 100644 drivers/mfd/ntxec.c
+ create mode 100644 drivers/pwm/pwm-ntxec.c
+ create mode 100644 drivers/rtc/rtc-ntxec.c
+ create mode 100644 include/linux/mfd/ntxec.h
+
+=2D-
+2.29.2
+
