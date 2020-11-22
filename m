@@ -2,61 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15D4C2BC582
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 12:58:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D18E82BC692
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 16:51:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727567AbgKVL5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 06:57:30 -0500
-Received: from mail.kernel.org ([198.145.29.99]:34244 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727318AbgKVL53 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Nov 2020 06:57:29 -0500
-Received: from localhost.localdomain (unknown [151.66.8.153])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 98CF420936;
-        Sun, 22 Nov 2020 11:57:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606046249;
-        bh=irV3AVBbUxFfydDuyRS3PQ8RbTnVQzCV8HI4RiThvy8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=k5p4DaFkgX22lkp+XqWwE+2D1v2+frtzriez8ounYBQzDmuL+SnQhDH+Q4+nfntNQ
-         EMY2pM30wVRhaNalzn5lYh+nd1HXDdf1ov4Rditj4aSU5UBtI4JApCUtvQ50DmelLS
-         4CdP4x+g2RfIVvNdaVOf1M3nk6gyPVY6MpmEByhE=
-From:   Lorenzo Bianconi <lorenzo@kernel.org>
-To:     jic23@kernel.org
-Cc:     lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: iio: humidity: hts221: introduce vdd regulator bindings
-Date:   Sun, 22 Nov 2020 12:56:49 +0100
-Message-Id: <9579804f52ccab74a5ca5c7a55b5072b7304bea9.1606045688.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <cover.1606045688.git.lorenzo@kernel.org>
-References: <cover.1606045688.git.lorenzo@kernel.org>
+        id S1727795AbgKVPvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 10:51:03 -0500
+Received: from gproxy8-pub.mail.unifiedlayer.com ([67.222.33.93]:60744 "EHLO
+        gproxy8-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727728AbgKVPvC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Nov 2020 10:51:02 -0500
+X-Greylist: delayed 1288 seconds by postgrey-1.27 at vger.kernel.org; Sun, 22 Nov 2020 10:51:02 EST
+Received: from CMGW (unknown [10.9.0.13])
+        by gproxy8.mail.unifiedlayer.com (Postfix) with ESMTP id C23341AB017
+        for <devicetree@vger.kernel.org>; Sun, 22 Nov 2020 08:29:33 -0700 (MST)
+Received: from bh-25.webhostbox.net ([208.91.199.152])
+        by cmsmtp with ESMTP
+        id grIzkUg7Ti1lMgrIzkU45k; Sun, 22 Nov 2020 08:29:33 -0700
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.2 cv=D4A3ErZj c=1 sm=1 tr=0
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10 a=nNwsprhYR40A:10
+ a=evQFzbml-YQA:10 a=k-42gJp3AAAA:8 a=VwQbUJbxAAAA:8 a=fptXGtOzaEJ37_pLjjsA:9
+ a=CjuIK1q_8ugA:10 a=uCSXFHLys93vLW5PjgO_:22 a=AjGcO6oz07-iQ99wixmX:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=4texVuXX85PEej5ZSyI6jvoQk4UjfdLrxiVgnyjHmI8=; b=H855ivrzSu1RmscJwWoZ02fDHx
+        8lI/Ir5gjRraIGbWNzp3Hu6R1qC89NFqKD9SRbs32Tb54xPAewhTpG5Ni8EJFtx84guJNdJLL3G9L
+        E5OgRLjLPg8nDJB/ZkoKCOluVuESUNJMj7gR5HxMJsABvniECquMHpNX24Tsepmt07+bdh9aegNj6
+        58W/HYPXW7IY6vIxokMf0qCYzGLBolxWzJORYVAXFrwVNelZCSMLNtZwZUJWeGWQrgkDGJxtDYqAJ
+        Sjr/tF0Lx6kHgOQJFsZis/2WgDK3TB0r6HJ/r79lk36s9ArAIoGnvaBt1CNb2QVqPkdt2oNUIDX/H
+        K+O1MJ9w==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:45172 helo=localhost)
+        by bh-25.webhostbox.net with esmtpa (Exim 4.93)
+        (envelope-from <linux@roeck-us.net>)
+        id 1kgrIy-003STE-Lh; Sun, 22 Nov 2020 15:29:32 +0000
+Date:   Sun, 22 Nov 2020 07:29:32 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Paul Barker <pbarker@konsulko.com>
+Cc:     Kamil Debski <kamil@wypas.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: hwmon: pwm-fan: Support multiple fan
+ tachometer inputs
+Message-ID: <20201122152932.GA168733@roeck-us.net>
+References: <20200920180943.352526-1-pbarker@konsulko.com>
+ <20200920180943.352526-2-pbarker@konsulko.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200920180943.352526-2-pbarker@konsulko.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1kgrIy-003STE-Lh
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:45172
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 9
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- Documentation/devicetree/bindings/iio/humidity/st,hts221.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+On Sun, Sep 20, 2020 at 07:09:40PM +0100, Paul Barker wrote:
+> Document and give an example of how to define multiple fan tachometer
+> inputs for the pwm-fan driver.
+> 
+> Signed-off-by: Paul Barker <pbarker@konsulko.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/iio/humidity/st,hts221.yaml b/Documentation/devicetree/bindings/iio/humidity/st,hts221.yaml
-index 396451c26728..598473df74fa 100644
---- a/Documentation/devicetree/bindings/iio/humidity/st,hts221.yaml
-+++ b/Documentation/devicetree/bindings/iio/humidity/st,hts221.yaml
-@@ -26,6 +26,8 @@ properties:
-       The interrupt/data ready line will be configured as open drain, which
-       is useful if several sensors share the same interrupt line.
- 
-+  vdd-supply: true
-+
-   interrupts:
-     maxItems: 1
- 
--- 
-2.28.0
+Applied.
 
+Thanks,
+Guenter
+
+> ---
+>  .../devicetree/bindings/hwmon/pwm-fan.txt     | 28 +++++++++++++------
+>  1 file changed, 19 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
+> index 41b76762953a..4509e688623a 100644
+> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
+> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
+> @@ -8,15 +8,16 @@ Required properties:
+>  
+>  Optional properties:
+>  - fan-supply		: phandle to the regulator that provides power to the fan
+> -- interrupts		: This contains a single interrupt specifier which
+> -			  describes the tachometer output of the fan as an
+> -			  interrupt source. The output signal must generate a
+> -			  defined number of interrupts per fan revolution, which
+> -			  require that it must be self resetting edge interrupts.
+> -			  See interrupt-controller/interrupts.txt for the format.
+> -- pulses-per-revolution : define the tachometer pulses per fan revolution as
+> -			  an integer (default is 2 interrupts per revolution).
+> -			  The value must be greater than zero.
+> +- interrupts		: This contains an interrupt specifier for each fan
+> +			  tachometer output connected to an interrupt source.
+> +			  The output signal must generate a defined number of
+> +			  interrupts per fan revolution, which require that
+> +			  it must be self resetting edge interrupts. See
+> +			  interrupt-controller/interrupts.txt for the format.
+> +- pulses-per-revolution : define the number of pulses per fan revolution for
+> +			  each tachometer input as an integer (default is 2
+> +			  interrupts per revolution). The value must be
+> +			  greater than zero.
+>  
+>  Example:
+>  	fan0: pwm-fan {
+> @@ -55,3 +56,12 @@ Example 2:
+>  		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+>  		pulses-per-revolution = <2>;
+>  	};
+> +
+> +Example 3:
+> +	fan0: pwm-fan {
+> +		compatible = "pwm-fan";
+> +		pwms = <&pwm1 0 25000 0>;
+> +		interrupts-extended = <&gpio1 1 IRQ_TYPE_EDGE_FALLING>,
+> +			<&gpio2 5 IRQ_TYPE_EDGE_FALLING>;
+> +		pulses-per-revolution = <2>, <1>;
+> +	};
