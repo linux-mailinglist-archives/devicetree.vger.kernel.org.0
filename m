@@ -2,246 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C9AE2BC38C
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 05:18:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F682BC398
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 05:45:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727087AbgKVESU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 23:18:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41938 "EHLO
+        id S1727257AbgKVEol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 23:44:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727095AbgKVEST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 23:18:19 -0500
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690C5C0613D3
-        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 20:18:19 -0800 (PST)
-Received: by mail-oi1-x242.google.com with SMTP id m13so15696375oih.8
-        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 20:18:19 -0800 (PST)
+        with ESMTP id S1727237AbgKVEok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 23:44:40 -0500
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76808C0613D3
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 20:44:40 -0800 (PST)
+Received: by mail-ot1-x344.google.com with SMTP id h19so205803otr.1
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 20:44:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=SxVQe040ZXbSXLdBxkdT39sWq35ovDFo+gpRizw8grs=;
-        b=rwmNcP/q/pjv0DZ3VMeBPz4OgMJBGJvrhXc/2yKZyQCzHphw+6iL3x+CqDCpHiKdGe
-         5jC8InZP8YWxT/zK0OC8lgmJYPoGRa9YskSF79iwppxaWyGO3WA7/nhLk54nR0TBCcSC
-         4xdrf867lF9GgSxVAa9HQaEHWXVFTiNzx6Bfe35veVzmNgZMrPLod+mIwy2ZCPYjbtoB
-         oevqIBA66TOW8MbvuW6HnnUReBXyDscTN2Fz+KsenGPJdWcrByOBL17PeJ/OucUrNaiZ
-         e5Q33jO4yzvb3ahGHrZ3Jx6lwLjA+enRgFxOxAvugZpeLQQkQUtXUgmEjrba3dHw+JIJ
-         YdiA==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=ofKTU8s93Yu2rM/fmGaOrrNeXKEZaodPNsHLyk7YFKc=;
+        b=LhkL/kdyA5u95rH07pm/9mhJeB0WBhvhTtcGxY3w7nA40Rb7/tKY/SEvi2brBOO2b2
+         yL0LLjPcEpenC0C8UcwXjtO4tDg29+JUIJO6Fr4LLctEKdCL68wVoihefre/nVFMTTgK
+         t9TDVRa5Lp2x21kJd3tdJ8JKXVjw2a0ELRISJfn9kTF7+ahWpl7YHbo4ygWqAl3eowfm
+         46cZi48/sEl8Bxv3IpTlUkU75fzasnDqvimKl3pajwGqyriJIMpyXWyUSUjQJaqk1Xze
+         cJmHdGH2Kwb+lmtZ45yaxvSZMyrd8OivvxMm5idQRwDrVumhIZYwNmhzobQxGldTSca0
+         IeJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=SxVQe040ZXbSXLdBxkdT39sWq35ovDFo+gpRizw8grs=;
-        b=VzvPae32ZVk6OrgHazwslcln3zpTPZ1HkHAozpavxO9IS+oCW1yf5CrjoZ+e3WTX+F
-         Q3ln7UjXnIpYI0vmBnpCXV4Q5YPwxGvPw3nawaMS4HHNXG/7wISkT2j9kurL1TfRmrrv
-         /QeEf/19+VJ/5cT69yrvdU2/YmARY+CouzdvjS7OelmPEamKQ4u4Ztm6owpDjVmmtnHs
-         FlznOZgPZKCu1Acd8nhTkqzY4QCKefmBHc0ADRBjzRbKKBzNe7wsx24Bts5aJjNHo4R5
-         2489vY/Je0Wq5MJjE6dlsrpeNs1X/PrCYYvFu/glqqWahrp8Nk6RKllwgiNdj5MZ1oem
-         P17g==
-X-Gm-Message-State: AOAM531ljwijdAW9m+KNx4vWxMxI56Jptgf4u2F0L3InkJvZ6hi6iZDw
-        3yG450qfBnEwX9sp0yt8FNw/vg==
-X-Google-Smtp-Source: ABdhPJy0Y+3qW0fa0tRn7TQ8Qt62l0yyEAfccytPFX3Iv60WU6slp5RTL0n5bXU4JYtTw5ZvbK0i1A==
-X-Received: by 2002:aca:a906:: with SMTP id s6mr11617750oie.59.1606018698610;
-        Sat, 21 Nov 2020 20:18:18 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=ofKTU8s93Yu2rM/fmGaOrrNeXKEZaodPNsHLyk7YFKc=;
+        b=D0Xd/YPS9cGFB7R//B2YQa+Hb7oh2zX71p5pIhjkJ3bbr9XtYjF3eWplr9GXEPkXby
+         7vGOQAg8NnzW7RaMmuzA6gP2KYsQIKGUXQN846AeLAEUKyb3RQhOI1XMk5ixPCoklvfk
+         DuV4A1lsWl3HCAt0yYhRuQljDjDihfW2NKzbDDeXADZLR4PRbodMqyPFi4HiahvLBlz1
+         +2cZ8O/GLZHW12LfLeFR38C8mQbnXyGpmHXA2ITqeNRGb3s+K+GRGGsqVCHbniHIH7Ua
+         +glqKaLlS8A8wuRP6bG27uPMTYkP8qtsOz8u1giidROHduxQuR4Eb2JeS+LwCu4P3WQS
+         q2tQ==
+X-Gm-Message-State: AOAM532rPjNpeJSiPtdv2kNEgQprj3yrplhRXKs1VnDnIOH/BlhuudWs
+        zRRafOeVce3vUck7iUPGj86p6w==
+X-Google-Smtp-Source: ABdhPJyu8MOKaGOM4pcmWlx5aDi5lhHtms/5L7yJ6jZ8ns80O/XzxBRa6aCQ8cGCi4Jt6TalL/Sxqg==
+X-Received: by 2002:a9d:1a6:: with SMTP id e35mr19589299ote.238.1606020279605;
+        Sat, 21 Nov 2020 20:44:39 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o135sm4702240ooo.38.2020.11.21.20.18.17
+        by smtp.gmail.com with ESMTPSA id t5sm4382777oth.16.2020.11.21.20.44.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2020 20:18:17 -0800 (PST)
-Date:   Sat, 21 Nov 2020 22:18:16 -0600
+        Sat, 21 Nov 2020 20:44:38 -0800 (PST)
+Date:   Sat, 21 Nov 2020 22:44:34 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     agross@kernel.org, kishon@ti.com, vkoul@kernel.org,
-        robh@kernel.org, svarbanov@mm-sol.com, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mgautam@codeaurora.org, devicetree@vger.kernel.org,
-        truong@codeaurora.org
-Subject: Re: [PATCH v5 5/5] PCI: qcom: Add support for configuring BDF to SID
- mapping for SM8250
-Message-ID: <20201122041816.GE95182@builder.lan>
-References: <20201027170033.8475-1-manivannan.sadhasivam@linaro.org>
- <20201027170033.8475-6-manivannan.sadhasivam@linaro.org>
+To:     "N?colas F. R. A. Prado" <nfraprado@protonmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Brian Masney <masneyb@onstation.org>,
+        Luca Weiss <luca@z3ntu.xyz>,
+        Russell King <linux@armlinux.org.uk>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        linux-kernel@vger.kernel.org, lkcamp@lists.libreplanetbr.org,
+        andrealmeid@collabora.com
+Subject: Re: [RFC PATCH 1/3] leds: Add driver for QPNP flash led
+Message-ID: <20201122044434.GG95182@builder.lan>
+References: <20201106165737.1029106-1-nfraprado@protonmail.com>
+ <20201106165737.1029106-2-nfraprado@protonmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20201027170033.8475-6-manivannan.sadhasivam@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201106165737.1029106-2-nfraprado@protonmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 27 Oct 12:00 CDT 2020, Manivannan Sadhasivam wrote:
+On Fri 06 Nov 10:58 CST 2020, N?colas F. R. A. Prado wrote:
 
-> For SM8250, we need to write the BDF to SID mapping in PCIe controller
-> register space for proper working. This is accomplished by extracting
-> the BDF and SID values from "iommu-map" property in DT and writing those
-> in the register address calculated from the hash value of BDF. In case
-> of collisions, the index of the next entry will also be written.
+> Add driver for the QPNP flash LED. It works over SPMI and is part of the
+> PM8941 PMIC.
 > 
-> For the sake of it, let's introduce a "config_sid" callback and do it
-> conditionally for SM8250.
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@protonmail.com>
+> ---
+>  drivers/leds/Kconfig     |    9 +
+>  drivers/leds/Makefile    |    1 +
+>  drivers/leds/leds-qpnp.c | 1351 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1361 insertions(+)
+>  create mode 100644 drivers/leds/leds-qpnp.c
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index 849d3c5f908e..ca5f6e81c064 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -928,6 +928,15 @@ config LEDS_ACER_A500
+>  	  This option enables support for the Power Button LED of
+>  	  Acer Iconia Tab A500.
+>  
+> +config LEDS_QPNP
+> +	tristate "Support for QPNP LEDs"
+> +	depends on SPMI
+> +	help
+> +	  This driver supports the flash/torch led of Qualcomm PNP PMIC.
+> +
+> +	  To compile this driver as a module, choose M here: the module will
+> +	  be called leds-qpnp.
+> +
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Downstream they seem to have a single "led driver" dealing with all the
+LED related interfaces in the PMIC. We have WLED upstream already and
+I've been poking at an "LPG" driver.
+
+So as you look into Jacek's request please make this a "qcom spmi flash
+driver", instead of a "qpnp leds" driver.
 
 Regards,
 Bjorn
-
-> ---
-> 
-> Rob: I've dropped your review tag as this patch has gone through some
-> change (mostly cleanups though)
-> 
->  drivers/pci/controller/dwc/Kconfig     |  1 +
->  drivers/pci/controller/dwc/pcie-qcom.c | 81 ++++++++++++++++++++++++++
->  2 files changed, 82 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index bc049865f8e0..875ebc6e8884 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -169,6 +169,7 @@ config PCIE_QCOM
->  	depends on OF && (ARCH_QCOM || COMPILE_TEST)
->  	depends on PCI_MSI_IRQ_DOMAIN
->  	select PCIE_DW_HOST
-> +	select CRC8
->  	help
->  	  Say Y here to enable PCIe controller support on Qualcomm SoCs. The
->  	  PCIe controller uses the DesignWare core plus Qualcomm-specific
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 0b180a19b0ea..2148fcf74294 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -9,6 +9,7 @@
->   */
->  
->  #include <linux/clk.h>
-> +#include <linux/crc8.h>
->  #include <linux/delay.h>
->  #include <linux/gpio/consumer.h>
->  #include <linux/interrupt.h>
-> @@ -57,6 +58,7 @@
->  #define PCIE20_PARF_SID_OFFSET			0x234
->  #define PCIE20_PARF_BDF_TRANSLATE_CFG		0x24C
->  #define PCIE20_PARF_DEVICE_TYPE			0x1000
-> +#define PCIE20_PARF_BDF_TO_SID_TABLE_N		0x2000
->  
->  #define PCIE20_ELBI_SYS_CTRL			0x04
->  #define PCIE20_ELBI_SYS_CTRL_LT_ENABLE		BIT(0)
-> @@ -97,6 +99,9 @@
->  
->  #define QCOM_PCIE_2_1_0_MAX_SUPPLY	3
->  #define QCOM_PCIE_2_1_0_MAX_CLOCKS	5
-> +
-> +#define QCOM_PCIE_CRC8_POLYNOMIAL (BIT(2) | BIT(1) | BIT(0))
-> +
->  struct qcom_pcie_resources_2_1_0 {
->  	struct clk_bulk_data clks[QCOM_PCIE_2_1_0_MAX_CLOCKS];
->  	struct reset_control *pci_reset;
-> @@ -179,6 +184,7 @@ struct qcom_pcie_ops {
->  	void (*deinit)(struct qcom_pcie *pcie);
->  	void (*post_deinit)(struct qcom_pcie *pcie);
->  	void (*ltssm_enable)(struct qcom_pcie *pcie);
-> +	int (*config_sid)(struct qcom_pcie *pcie);
->  };
->  
->  struct qcom_pcie {
-> @@ -1261,6 +1267,74 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
->  	return !!(val & PCI_EXP_LNKSTA_DLLLA);
->  }
->  
-> +static int qcom_pcie_config_sid_sm8250(struct qcom_pcie *pcie)
-> +{
-> +	/* iommu map structure */
-> +	struct {
-> +		u32 bdf;
-> +		u32 phandle;
-> +		u32 smmu_sid;
-> +		u32 smmu_sid_len;
-> +	} *map;
-> +	void __iomem *bdf_to_sid_base = pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N;
-> +	struct device *dev = pcie->pci->dev;
-> +	u8 qcom_pcie_crc8_table[CRC8_TABLE_SIZE];
-> +	int i, nr_map, size = 0;
-> +	u32 smmu_sid_base;
-> +
-> +	of_get_property(dev->of_node, "iommu-map", &size);
-> +	if (!size)
-> +		return 0;
-> +
-> +	map = kzalloc(size, GFP_KERNEL);
-> +	if (!map)
-> +		return -ENOMEM;
-> +
-> +	of_property_read_u32_array(dev->of_node,
-> +		"iommu-map", (u32 *)map, size / sizeof(u32));
-> +
-> +	nr_map = size / (sizeof(*map));
-> +
-> +	crc8_populate_msb(qcom_pcie_crc8_table, QCOM_PCIE_CRC8_POLYNOMIAL);
-> +
-> +	/* Registers need to be zero out first */
-> +	memset_io(bdf_to_sid_base, 0, CRC8_TABLE_SIZE * sizeof(u32));
-> +
-> +	/* Look for an available entry to hold the mapping */
-> +	for (i = 0; i < nr_map; i++) {
-> +		u16 bdf_be = cpu_to_be16(map[i].bdf);
-> +		u32 val;
-> +		u8 hash;
-> +
-> +		hash = crc8(qcom_pcie_crc8_table, (u8 *)&bdf_be, sizeof(bdf_be),
-> +			0);
-> +
-> +		val = readl(bdf_to_sid_base + hash * sizeof(u32));
-> +
-> +		/* If the register is already populated, look for next available entry */
-> +		while (val) {
-> +			u8 current_hash = hash++;
-> +			u8 next_mask = 0xff;
-> +
-> +			/* If NEXT field is NULL then update it with next hash */
-> +			if (!(val & next_mask)) {
-> +				val |= (u32)hash;
-> +				writel(val, bdf_to_sid_base + current_hash * sizeof(u32));
-> +			}
-> +
-> +			val = readl(bdf_to_sid_base + hash * sizeof(u32));
-> +		}
-> +
-> +		/* BDF [31:16] | SID [15:8] | NEXT [7:0] */
-> +		val = map[i].bdf << 16 | (map[i].smmu_sid - smmu_sid_base) << 8 | 0;
-> +		writel(val, bdf_to_sid_base + hash * sizeof(u32));
-> +	}
-> +
-> +	kfree(map);
-> +
-> +	return 0;
-> +}
-> +
->  static int qcom_pcie_host_init(struct pcie_port *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -1292,6 +1366,12 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
->  	if (ret)
->  		goto err;
->  
-> +	if (pcie->ops->config_sid) {
-> +		ret = pcie->ops->config_sid(pcie);
-> +		if (ret)
-> +			goto err;
-> +	}
-> +
->  	return 0;
->  err:
->  	qcom_ep_reset_assert(pcie);
-> @@ -1369,6 +1449,7 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
->  	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
->  	.post_init = qcom_pcie_post_init_2_7_0,
->  	.post_deinit = qcom_pcie_post_deinit_2_7_0,
-> +	.config_sid = qcom_pcie_config_sid_sm8250,
->  };
->  
->  static const struct dw_pcie_ops dw_pcie_ops = {
-> -- 
-> 2.17.1
-> 
