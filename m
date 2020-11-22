@@ -2,124 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0D62BC371
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 04:42:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9E862BC382
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 05:12:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726674AbgKVDlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 21 Nov 2020 22:41:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36336 "EHLO
+        id S1727239AbgKVELB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 21 Nov 2020 23:11:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726544AbgKVDlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 22:41:50 -0500
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32659C0613CF
-        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 19:41:50 -0800 (PST)
-Received: by mail-ot1-x330.google.com with SMTP id 92so9716759otd.5
-        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 19:41:50 -0800 (PST)
+        with ESMTP id S1727220AbgKVELA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 21 Nov 2020 23:11:00 -0500
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5EFC0613CF
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 20:11:00 -0800 (PST)
+Received: by mail-ot1-x341.google.com with SMTP id k3so12785237otp.12
+        for <devicetree@vger.kernel.org>; Sat, 21 Nov 2020 20:11:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=k5ubhNMSuyyXPIzDr3TUWiACtJHtGzZ8BS70SpEffNk=;
-        b=E5Gtbt+GgoKUifH+W8eqJX09GOH3Fh4UwdWZGnyE372rBW9Li8qt+bAN+JdK1SgrJY
-         mctuNw8RZXfIq/Rfpd/Su/soFQH4v31ubYwykM0Mimmn1Ys2vAjzPnI4gnx7nn9ASdAK
-         tIvNR5v8xY+akvkG+omhZUlT4ySLykqUYsPqUPEhRjdrQeKlqpA7OV6inBdTi8HoZ59T
-         tQGwSXoAK2gyC0bKk00twJyZP8uHiALGQNwG88YdFdQfGiHxGsOGHeAjxEbyF1bh891A
-         S+F79mWJR9SIs/w2cr7QtDiUpebx1n0Z/dOdaZsf2OeJW6/alYrT/WMioFPKMN8GVxD0
-         nOKg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Z5iasv0Tn+EAgqcCTW+28/WJrxDWlSK3B7pN57OlmRg=;
+        b=b5l7i4HfOFDcEGL1OPYUNQ49HaBHuvNwRdgP5IA11zLsYWI8Z/0MbyawwNBcqip2aj
+         Ytf2nfhNU07LE2CZpq9wyXUhDmj9l0+IfqPwXxq5jRmB9bczfpdo93BsvE9NQp/ZLpSW
+         Lk6fu0CvGnI3Vrg4crRAZ3F7qz/xEhZYpVeP8b01ClIvb+w7bQyaPNBfJFCHG84oOs+Y
+         ZaIljSE9jW9/lqMMxdEqPUn1MASCAcwl40/dUy7k69vZCXYhUi1s/DcgRirkm6SkysAK
+         kwX8KPtJFwts0J1sf/ykuAqAFJCsT/BuuYOj8c54NX/IOB8npe6QYT99WivdjsW7lRHg
+         Q16g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=k5ubhNMSuyyXPIzDr3TUWiACtJHtGzZ8BS70SpEffNk=;
-        b=p4FS0iY/PTFuWrwD8tKuGvgMqAvu4+H6MsGjs7n7DPTfI6JKnwJucjg9ueuZ25Fg+g
-         ZtNbLJ4BC6KvKQPUgPjAt8968z1jYxHH2UnA5kdBJ6gUhM/F08Kmr131dib9fBysuTuk
-         BmqQzVx9TfWWr4u6Psaug8y1W3y2VQemTmhMVblScYLx5zNVmf5ZqAvStMnqQrAnpgX9
-         tUbf3x9bk09se3WJVUqCkHy9qwz3HxQo8b/7f61tOE2L2rnHFYTcB5ekBgIpS+mFcoNO
-         Wjjd/OVlUF4rZc7cKIPMBQ4Lzx1Ic0aT0TI+QlkLjZkRs/7tP/670+SKsCBDwOCMuCnS
-         /tuQ==
-X-Gm-Message-State: AOAM533olpRGNOlZi2Wi518gyQFfKM0JZ2hul3JWY8514cEkJP+1ygs4
-        4Y14LusC60U4ABZDJzbgb7IcsA==
-X-Google-Smtp-Source: ABdhPJwVnGpshY8GVlVNlMjyh5hmg7o6bD3PTA+a8AbbL/MHxbfKxdqQenfeSz5wPImGCpiY2n8LTQ==
-X-Received: by 2002:a9d:5904:: with SMTP id t4mr16263250oth.109.1606016509362;
-        Sat, 21 Nov 2020 19:41:49 -0800 (PST)
-Received: from localhost.localdomain (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id e8sm4195893oti.76.2020.11.21.19.41.46
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Z5iasv0Tn+EAgqcCTW+28/WJrxDWlSK3B7pN57OlmRg=;
+        b=CaHE6ZQFTXjN1BvY3wJt1ehBcSG7epXz8qk91gmqX1Lh4TNqXEc+J0eMLSvARFFm01
+         KAYPZzZ6SWk2GG7WpM2G/7NKe5A3W7HGhHwcrlCH6IcibVHsZQrkY6cV6en+YBoTEIwA
+         Py6LbhShN5opd3Vtzv2V3NmGAwlDpufQs4YJC+KefiGj5DFsmi84S+ljreFKp91qfs1I
+         ic35op0IjkV/F/j60RWBQA6x4wxvKt+hu/vIYQR55Qqh3VmgPZlHhqGEmNstCqfbWTYR
+         EzT+A0wLUc9mvTEWgSOVdTgGAXEKHvVh2Wmt3AvUoXJsk7p9y591BSsD7ujgQG2VFa/P
+         Bjew==
+X-Gm-Message-State: AOAM533/2gxOM6STnvkNf1oMLu6NCLPtmDBvmgeTUI9jFa72l/8vvMj4
+        7ReLwGARJdT96Aobj4GybBDBhQ==
+X-Google-Smtp-Source: ABdhPJz8F5yoRLWdQiuXZgXwodrkuPDhzHULObQCiPwxXX5bRQuDSrqRaao+RiP2JtvjvAjUvy4jsA==
+X-Received: by 2002:a9d:7855:: with SMTP id c21mr11213697otm.218.1606018259837;
+        Sat, 21 Nov 2020 20:10:59 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id l184sm4720513oih.27.2020.11.21.20.10.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 21 Nov 2020 19:41:47 -0800 (PST)
+        Sat, 21 Nov 2020 20:10:59 -0800 (PST)
+Date:   Sat, 21 Nov 2020 22:10:57 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] arm64: dts: sdm845: Add iommus property to qup
-Date:   Sat, 21 Nov 2020 19:41:49 -0800
-Message-Id: <20201122034149.626045-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.28.0
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     agross@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        robh@kernel.org, svarbanov@mm-sol.com, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mgautam@codeaurora.org, devicetree@vger.kernel.org,
+        truong@codeaurora.org
+Subject: Re: [PATCH v5 3/5] dt-bindings: pci: qcom: Document PCIe bindings
+ for SM8250 SoC
+Message-ID: <20201122041057.GC95182@builder.lan>
+References: <20201027170033.8475-1-manivannan.sadhasivam@linaro.org>
+ <20201027170033.8475-4-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201027170033.8475-4-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Stephen Boyd <swboyd@chromium.org>
+On Tue 27 Oct 12:00 CDT 2020, Manivannan Sadhasivam wrote:
 
-The SMMU that sits in front of the QUP needs to be programmed properly
-so that the i2c geni driver can allocate DMA descriptors. Failure to do
-this leads to faults when using devices such as an i2c touchscreen where
-the transaction is larger than 32 bytes and we use a DMA buffer.
+> Document the PCIe DT bindings for SM8250 SoC. The PCIe IP is similar to
+> the one used on SDM845, hence just add the compatible along with the
+> optional "atu" register region.
+> 
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-arm-smmu 15000000.iommu: Unexpected global fault, this could be serious
-arm-smmu 15000000.iommu:         GFSR 0x00000002, GFSYNR0 0x00000002, GFSYNR1 0x000006c0, GFSYNR2 0x00000000
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Add the right SID and mask so this works.
-
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-[bjorn: Define for second QUP as well, be more specific in sdm845.dtsi]
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 2 ++
- arch/arm64/boot/dts/qcom/sdm845.dtsi       | 2 ++
- 2 files changed, 4 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-index 39f23cdcbd02..216a74f0057c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-@@ -653,10 +653,12 @@ &pm8998_pwrkey {
- 
- &qupv3_id_0 {
- 	status = "okay";
-+	iommus = <&apps_smmu 0x0 0x3>;
- };
- 
- &qupv3_id_1 {
- 	status = "okay";
-+	iommus = <&apps_smmu 0x6c0 0x3>;
- };
- 
- &sdhc_2 {
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 6465a6653ad9..d6b7b1bfa202 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -1120,6 +1120,7 @@ qupv3_id_0: geniqup@8c0000 {
- 			clock-names = "m-ahb", "s-ahb";
- 			clocks = <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
- 				 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
-+			iommus = <&apps_smmu 0x3 0x0>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -1460,6 +1461,7 @@ qupv3_id_1: geniqup@ac0000 {
- 			clock-names = "m-ahb", "s-ahb";
- 			clocks = <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
- 				 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
-+			iommus = <&apps_smmu 0x6c3 0x0>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
--- 
-2.28.0
-
+> ---
+>  Documentation/devicetree/bindings/pci/qcom,pcie.txt | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.txt b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> index 02bc81bb8b2d..3b55310390a0 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.txt
+> @@ -13,6 +13,7 @@
+>  			- "qcom,pcie-ipq8074" for ipq8074
+>  			- "qcom,pcie-qcs404" for qcs404
+>  			- "qcom,pcie-sdm845" for sdm845
+> +			- "qcom,pcie-sm8250" for sm8250
+>  
+>  - reg:
+>  	Usage: required
+> @@ -27,6 +28,7 @@
+>  			- "dbi"	   DesignWare PCIe registers
+>  			- "elbi"   External local bus interface registers
+>  			- "config" PCIe configuration space
+> +			- "atu"    ATU address space (optional)
+>  
+>  - device_type:
+>  	Usage: required
+> @@ -131,7 +133,7 @@
+>  			- "slave_bus"	AXI Slave clock
+>  
+>  -clock-names:
+> -	Usage: required for sdm845
+> +	Usage: required for sdm845 and sm8250
+>  	Value type: <stringlist>
+>  	Definition: Should contain the following entries
+>  			- "aux"		Auxiliary clock
+> @@ -206,7 +208,7 @@
+>  			- "ahb"			AHB reset
+>  
+>  - reset-names:
+> -	Usage: required for sdm845
+> +	Usage: required for sdm845 and sm8250
+>  	Value type: <stringlist>
+>  	Definition: Should contain the following entries
+>  			- "pci"			PCIe core reset
+> -- 
+> 2.17.1
+> 
