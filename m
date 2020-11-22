@@ -2,34 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08C282BC7B4
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 19:21:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3516B2BC81B
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 19:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727888AbgKVSUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 13:20:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727795AbgKVSUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 13:20:39 -0500
-X-Greylist: delayed 777 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sun, 22 Nov 2020 10:20:38 PST
-Received: from saturn.retrosnub.co.uk (saturn.retrosnub.co.uk [IPv6:2a00:1098:86::1:1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3893C0613CF;
-        Sun, 22 Nov 2020 10:20:38 -0800 (PST)
+        id S1728508AbgKVSZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 13:25:46 -0500
+Received: from mail.kernel.org ([198.145.29.99]:44560 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728441AbgKVSZp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Nov 2020 13:25:45 -0500
 Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        by saturn.retrosnub.co.uk (Postfix; Retrosnub mail submission) with ESMTPSA id BB28B9E0039;
-        Sun, 22 Nov 2020 18:20:36 +0000 (GMT)
-Date:   Sun, 22 Nov 2020 18:20:34 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DA15520757;
+        Sun, 22 Nov 2020 18:25:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606069544;
+        bh=nIuTZFMmv2ak6SUIQxQsSaLCBPITY2G6URvljy31H5E=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Y44bSj2/ZfiAfa4mu1rgqFOdhE6rEKBPo+bl65Oiy30UL5EcQkqtobVwYD3PPMEQR
+         NiStSrlUzKp3gxsSl/vGJc8Fm1SDCePe/QM+UoFkGlc+SOinNKwdPyILY0FdKNHCvA
+         RMWdFfvc22XUIWt65rHpr0HXUZ7wY8pWaIeIg0SI=
+Date:   Sun, 22 Nov 2020 18:25:40 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
 To:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org
 Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Tony Lindgren <tony@atomide.com>
-Subject: Re: [PATCH 34/46] dt-bindings:iio:adc:ti,palmas-gpadc: txt to yaml
+        "Ivan T . Ivanov" <iivanov@mm-sol.com>
+Subject: Re: [PATCH 36/46] dt-bindings:iio:adc:qcom,spmi-iadc: txt to yaml
  format conversion.
-Message-ID: <20201122182034.77043bd7@archlinux>
-In-Reply-To: <20201031184854.745828-35-jic23@kernel.org>
+Message-ID: <20201122182540.6948cf9f@archlinux>
+In-Reply-To: <20201031184854.745828-37-jic23@kernel.org>
 References: <20201031184854.745828-1-jic23@kernel.org>
-        <20201031184854.745828-35-jic23@kernel.org>
+        <20201031184854.745828-37-jic23@kernel.org>
 X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -38,177 +43,152 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 31 Oct 2020 18:48:42 +0000
+On Sat, 31 Oct 2020 18:48:44 +0000
 Jonathan Cameron <jic23@kernel.org> wrote:
 
 > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 > 
-> Simple conversion of the binding doc for this subnode of the palmas
-> PMIC.
-> Given age of driver and lack interaction with original authors,
-> I've guessed at Tony for a maintainer on this one.  Tony, if you
-> are happy with that great, otherwise I can default back to myself.
+> Straight forward conversion.  Not heard from Ivan in a while so if the
+> email bounces, I'll change the maintainer to myself for this binding unless
+> anyone else comes forwards.
 > 
 > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Tony Lindgren <tony@atomide.com>
-Applied.  @Tony, if you aren't happy being listed as maintainer for this
-binding we can either fix that up before I send a pull request of if
-necessary send a follow up patch.
+> Cc: Ivan T. Ivanov <iivanov@mm-sol.com>
+Ivan's email is bouncing, so I've put myself as temporary maintainer
+on this one until someone else steps up.
+
+Otherwise, dropped $ref for standard unit case -ohms as suggested by RobH.
+
+Applied to the togreg branch of iio.git and pushed out as testing for
+all the normal reasons.
 
 Thanks,
 
 Jonathan
 
 > ---
->  .../bindings/iio/adc/palmas-gpadc.txt         | 48 ----------
->  .../bindings/iio/adc/ti,palmas-gpadc.yaml     | 87 +++++++++++++++++++
->  2 files changed, 87 insertions(+), 48 deletions(-)
+>  .../bindings/iio/adc/qcom,spmi-iadc.txt       | 46 --------------
+>  .../bindings/iio/adc/qcom,spmi-iadc.yaml      | 62 +++++++++++++++++++
+>  2 files changed, 62 insertions(+), 46 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/palmas-gpadc.txt b/Documentation/devicetree/bindings/iio/adc/palmas-gpadc.txt
+> diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.txt b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.txt
 > deleted file mode 100644
-> index 4bb9a86065d1..000000000000
-> --- a/Documentation/devicetree/bindings/iio/adc/palmas-gpadc.txt
+> index 4e36d6e2f7b6..000000000000
+> --- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.txt
 > +++ /dev/null
-> @@ -1,48 +0,0 @@
-> -* Palmas general purpose ADC IP block devicetree bindings
+> @@ -1,46 +0,0 @@
+> -Qualcomm's SPMI PMIC current ADC
 > -
-> -Channels list:
-> -	0 battery type
-> -	1 battery temp NTC (optional current source)
-> -	2 GP
-> -	3 temp (with ext. diode, optional current source)
-> -	4 GP
-> -	5 GP
-> -	6 VBAT_SENSE
-> -	7 VCC_SENSE
-> -	8 Backup Battery voltage
-> -	9 external charger (VCHG)
-> -	10 VBUS
-> -	11 DC-DC current probe (how does this work?)
-> -	12 internal die temp
-> -	13 internal die temp
-> -	14 USB ID pin voltage
-> -	15 test network
+> -QPNP PMIC current ADC (IADC) provides interface to clients to read current.
+> -A 16 bit ADC is used for current measurements. IADC can measure the current
+> -through an external resistor (channel 1) or internal (built-in) resistor
+> -(channel 0). When using an external resistor it is to be described by
+> -qcom,external-resistor-micro-ohms property.
 > -
-> -Required properties:
-> -- compatible : Must be "ti,palmas-gpadc".
-> -- #io-channel-cells: Should be set to <1>.
+> -IADC node:
 > -
-> -Optional sub-nodes:
-> -ti,channel0-current-microamp: Channel 0 current in uA.
-> -	Values are rounded to derive 0uA, 5uA, 15uA, 20uA.
-> -ti,channel3-current-microamp: Channel 3 current in uA.
-> -	Values are rounded to derive 0uA, 10uA, 400uA, 800uA.
-> -ti,enable-extended-delay: Enable extended delay.
+> -- compatible:
+> -    Usage: required
+> -    Value type: <string>
+> -    Definition: Should contain "qcom,spmi-iadc".
+> -
+> -- reg:
+> -    Usage: required
+> -    Value type: <prop-encoded-array>
+> -    Definition: IADC base address and length in the SPMI PMIC register map
+> -
+> -- interrupts:
+> -    Usage: optional
+> -    Value type: <prop-encoded-array>
+> -    Definition: End of ADC conversion.
+> -
+> -- qcom,external-resistor-micro-ohms:
+> -    Usage: optional
+> -    Value type: <u32>
+> -    Definition: Sense resister value in micro Ohm.
+> -                If not defined value of 10000 micro Ohms will be used.
 > -
 > -Example:
-> -
-> -pmic {
-> -	compatible = "ti,twl6035-pmic", "ti,palmas-pmic";
-> -	...
-> -	gpadc {
-> -		compatible = "ti,palmas-gpadc";
-> -		interrupts = <18 0
-> -			      16 0
-> -			      17 0>;
-> -		#io-channel-cells = <1>;
-> -		ti,channel0-current-microamp = <5>;
-> -		ti,channel3-current-microamp = <10>;
-> -		};
+> -	/* IADC node */
+> -	pmic_iadc: iadc@3600 {
+> -		compatible = "qcom,spmi-iadc";
+> -		reg = <0x3600 0x100>;
+> -		interrupts = <0x0 0x36 0x0 IRQ_TYPE_EDGE_RISING>;
+> -		qcom,external-resistor-micro-ohms = <10000>;
+> -		#io-channel-cells  = <1>;
 > -	};
-> -	...
-> -};
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.yaml
+> -
+> -	/* IIO client node */
+> -	bat {
+> -		io-channels = <&pmic_iadc  0>;
+> -		io-channel-names = "iadc";
+> -	};
+> diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml
 > new file mode 100644
-> index 000000000000..692dacd0fee5
+> index 000000000000..359e1ede0ae2
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.yaml
-> @@ -0,0 +1,87 @@
+> +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-iadc.yaml
+> @@ -0,0 +1,62 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/iio/adc/ti,palmas-gpadc.yaml#
+> +$id: http://devicetree.org/schemas/iio/adc/qcom,spmi-iadc.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Palmas general purpose ADC IP block devicetree bindings
+> +title: Qualcomm's SPMI PMIC current ADC
 > +
 > +maintainers:
-> +  - Tony Lindgren <tony@atomide.com>
+> +  - Ivan T. Ivanov <iivanov@mm-sol.com>
 > +
 > +description: |
-> +  This ADC is often used to provide channels via the io-channels
-> +  consumer framework.
-> +  Channels list:
-> +    0 battery type
-> +    1 battery temp NTC (optional current source)
-> +    2 GP
-> +    3 temp (with ext. diode, optional current source)
-> +    4 GP
-> +    5 GP
-> +    6 VBAT_SENSE
-> +    7 VCC_SENSE
-> +    8 Backup Battery voltage
-> +    9 external charger (VCHG)
-> +    10 VBUS
-> +    11 DC-DC current probe (how does this work?)
-> +    12 internal die temp
-> +    13 internal die temp
-> +    14 USB ID pin voltage
-> +    15 test network
+> +  QPNP PMIC current ADC (IADC) provides interface to clients to read current.
+> +  A 16 bit ADC is used for current measurements. IADC can measure the current
+> +  through an external resistor (channel 1) or internal (built-in) resistor
+> +  (channel 0). When using an external resistor it is to be described by
+> +  qcom,external-resistor-micro-ohms property.
 > +
 > +properties:
 > +  compatible:
-> +    const: ti,palmas-gpadc
+> +    const: qcom,spmi-iadc
+> +
+> +  reg:
+> +    description: IADC base address and length in the SPMI PMIC register map
+> +    maxItems: 1
+> +
+> +  qcom,external-resistor-micro-ohms:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Sensor resistor value. If not defined value of 10000 micro Ohms
+> +      will be used.
 > +
 > +  interrupts:
-> +    minItems: 1
-> +    maxItems: 3
+> +    maxItems: 1
+> +    description:
+> +      End of conversion interrupt.
 > +
 > +  "#io-channel-cells":
 > +    const: 1
 > +
-> +  ti,channel0-current-microamp:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Channel 0 current in uA.
-> +    enum:
-> +      - 0
-> +      - 5
-> +      - 15
-> +      - 20
-> +
-> +  ti,channel3-current-microamp:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Channel 3 current in uA.
-> +    enum:
-> +      - 0
-> +      - 10
-> +      - 400
-> +      - 800
-> +
-> +  ti,enable-extended-delay:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: Enable extended delay.
+> +required:
+> +  - compatible
+> +  - reg
 > +
 > +additionalProperties: false
 > +
-> +required:
-> +  - compatible
-> +  - "#io-channel-cells"
-> +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/mt8183-clk.h>
-> +    pmic {
-> +        compatible = "ti,twl6035-pmic", "ti,palmas-pmic";
-> +        adc {
-> +            compatible = "ti,palmas-gpadc";
-> +            interrupts = <18 0
-> +                          16 0
-> +                          17 0>;
-> +            #io-channel-cells = <1>;
-> +            ti,channel0-current-microamp = <5>;
-> +            ti,channel3-current-microamp = <10>;
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    spmi_bus {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        pmic_iadc: adc@3600 {
+> +            compatible = "qcom,spmi-iadc";
+> +            reg = <0x3600 0x100>;
+> +            interrupts = <0x0 0x36 0x0 IRQ_TYPE_EDGE_RISING>;
+> +            qcom,external-resistor-micro-ohms = <10000>;
+> +            #io-channel-cells  = <1>;
 > +        };
 > +    };
 > +...
+> +
 
