@@ -2,70 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F29562BC568
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 12:39:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 349CD2BC57C
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 12:57:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727646AbgKVLin convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 22 Nov 2020 06:38:43 -0500
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:46647 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727660AbgKVLin (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 06:38:43 -0500
-Received: by mail-ej1-f68.google.com with SMTP id bo9so13536964ejb.13;
-        Sun, 22 Nov 2020 03:38:41 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=upJqjhxuXAg4eiIE3k0jCGU7SE7hWfTC50ZWvfab5w8=;
-        b=IQnkyU5St6dEeu/Yxn0z6q6y2bEcjBNOzOfw1KuWTt4gthe34CcFa5QzjuhZf+de3e
-         7pTZsLw6eyabdroorBce9G/EayOvmR1hC39m2YIqmBLwD5sMV+yeudOF/IlGi4xDGPHL
-         0lUnvrEwoDR42HekrA/BWFCtFkfACUndwakIDjjsnToaLoh6KpjMzklAu2c4M6XuycNS
-         uAlY1FM7Bc1AZW5CpZU0C+lEWsQgSJKdRuEVKDSUsFRSVo0ARPf1Uogxsctkz9heRCxf
-         guTuvEHWhw7USFnEDaeEYTz+dfIfUtNRcdPNtiNSk4590vTjvS5pqeGD2z8Bf4xBwlN/
-         EH1w==
-X-Gm-Message-State: AOAM530Lx6ghcnT3HmCAG+IS2Q8Tjm4dNcsd9lViv8+2HzrXYHdANmdg
-        V2QC5CRdFHY2FLMgI0ol9aML2E5kC5k=
-X-Google-Smtp-Source: ABdhPJxhb9DvBWCE//OCayCwtlu7ZneZAAc2qVtu2lPzW3IEYd/O2c17K72i+SZVeFeY4/eV0oquEQ==
-X-Received: by 2002:a17:906:7147:: with SMTP id z7mr4456748ejj.65.1606045121317;
-        Sun, 22 Nov 2020 03:38:41 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id f13sm3465035ejf.42.2020.11.22.03.38.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Nov 2020 03:38:40 -0800 (PST)
-Date:   Sun, 22 Nov 2020 12:38:39 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Martin =?utf-8?Q?J=C3=BCcker?= <martin.juecker@gmail.com>
-Cc:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: switch atmel mxt reset gpio to active low
-Message-ID: <20201122113839.GA7781@kozik-lap>
-References: <20201120160053.18942-1-martin.juecker@gmail.com>
+        id S1727424AbgKVL5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 06:57:00 -0500
+Received: from mail.kernel.org ([198.145.29.99]:34112 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727318AbgKVL5A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Nov 2020 06:57:00 -0500
+Received: from localhost.localdomain (unknown [151.66.8.153])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C38CF20674;
+        Sun, 22 Nov 2020 11:56:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606046219;
+        bh=laSh1fTlBi6w6vs9KICAer2Rzn8e/Dithlb79XwAXRA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=UEqEU/LY4nI7go8hTXUHj/YzRWn/MdaU6oz6zn2dUunJT4/knEH1HfCoTxkBS0q1N
+         j7Pxvy7mgpg47f1le9XW4CyDH8yDbiUQgf3UkoBigyiJ7eUHQAo5T4LEwaDHXD4Cmx
+         nYojlGIyy0mixiphLsUo1UCoMcdo+5kxDIT7Uoi8=
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     jic23@kernel.org
+Cc:     lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org
+Subject: [PATCH v2 0/2] hts221: add vdd power regulator
+Date:   Sun, 22 Nov 2020 12:56:47 +0100
+Message-Id: <cover.1606045688.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20201120160053.18942-1-martin.juecker@gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 05:00:54PM +0100, Martin Jücker wrote:
-> The reset gpio logic of the atmel driver was changed to be active low at
-> around the same time this device tree was accepted into the kernel.
-> Adjust the configuration so that the touchscreen is in a usable state.
-> 
-> Signed-off-by: Martin Jücker <martin.juecker@gmail.com>
-> ---
->  arch/arm/boot/dts/exynos4412-p4note.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Introduce support to control VDD power line available on hts221 devices
 
-Please use proper subsystem prefix in the title, so "ARM: dts: exynos:".
-Also capitalize names (Atmel) and acronyms (GPIO, not
-gpio).
+Changes since v1:
+- update vdd-supply binding
+- rely on dev_err_probe() in hts221_init_regulators() to avoid
+  printing error message is the deferred case
 
-Thanks, applied.
+Lorenzo Bianconi (2):
+  iio: humidity: hts221: add vdd voltage regulator
+  dt-bindings: iio: humidity: hts221: introduce vdd regulator bindings
 
-Best regards,
-Krzysztof
+ .../bindings/iio/humidity/st,hts221.yaml      |  2 +
+ drivers/iio/humidity/hts221.h                 |  2 +
+ drivers/iio/humidity/hts221_core.c            | 37 +++++++++++++++++++
+ 3 files changed, 41 insertions(+)
+
+-- 
+2.28.0
 
