@@ -2,140 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D18E82BC692
-	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 16:51:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A4E82BC726
+	for <lists+devicetree@lfdr.de>; Sun, 22 Nov 2020 17:36:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727795AbgKVPvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 10:51:03 -0500
-Received: from gproxy8-pub.mail.unifiedlayer.com ([67.222.33.93]:60744 "EHLO
-        gproxy8-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727728AbgKVPvC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 22 Nov 2020 10:51:02 -0500
-X-Greylist: delayed 1288 seconds by postgrey-1.27 at vger.kernel.org; Sun, 22 Nov 2020 10:51:02 EST
-Received: from CMGW (unknown [10.9.0.13])
-        by gproxy8.mail.unifiedlayer.com (Postfix) with ESMTP id C23341AB017
-        for <devicetree@vger.kernel.org>; Sun, 22 Nov 2020 08:29:33 -0700 (MST)
-Received: from bh-25.webhostbox.net ([208.91.199.152])
-        by cmsmtp with ESMTP
-        id grIzkUg7Ti1lMgrIzkU45k; Sun, 22 Nov 2020 08:29:33 -0700
-X-Authority-Reason: nr=8
-X-Authority-Analysis: v=2.2 cv=D4A3ErZj c=1 sm=1 tr=0
- a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
- a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10 a=nNwsprhYR40A:10
- a=evQFzbml-YQA:10 a=k-42gJp3AAAA:8 a=VwQbUJbxAAAA:8 a=fptXGtOzaEJ37_pLjjsA:9
- a=CjuIK1q_8ugA:10 a=uCSXFHLys93vLW5PjgO_:22 a=AjGcO6oz07-iQ99wixmX:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=4texVuXX85PEej5ZSyI6jvoQk4UjfdLrxiVgnyjHmI8=; b=H855ivrzSu1RmscJwWoZ02fDHx
-        8lI/Ir5gjRraIGbWNzp3Hu6R1qC89NFqKD9SRbs32Tb54xPAewhTpG5Ni8EJFtx84guJNdJLL3G9L
-        E5OgRLjLPg8nDJB/ZkoKCOluVuESUNJMj7gR5HxMJsABvniECquMHpNX24Tsepmt07+bdh9aegNj6
-        58W/HYPXW7IY6vIxokMf0qCYzGLBolxWzJORYVAXFrwVNelZCSMLNtZwZUJWeGWQrgkDGJxtDYqAJ
-        Sjr/tF0Lx6kHgOQJFsZis/2WgDK3TB0r6HJ/r79lk36s9ArAIoGnvaBt1CNb2QVqPkdt2oNUIDX/H
-        K+O1MJ9w==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:45172 helo=localhost)
-        by bh-25.webhostbox.net with esmtpa (Exim 4.93)
-        (envelope-from <linux@roeck-us.net>)
-        id 1kgrIy-003STE-Lh; Sun, 22 Nov 2020 15:29:32 +0000
-Date:   Sun, 22 Nov 2020 07:29:32 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Paul Barker <pbarker@konsulko.com>
-Cc:     Kamil Debski <kamil@wypas.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+        id S1728104AbgKVQfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 11:35:05 -0500
+Received: from mail.kernel.org ([198.145.29.99]:53770 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727956AbgKVQfF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 22 Nov 2020 11:35:05 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EA08220781;
+        Sun, 22 Nov 2020 16:35:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606062904;
+        bh=80thntpECFCP6s5qq7E3FGWGUjwzkuuisXkpDW/pYL4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=I7G99ElT+YcnS/kemhG8zMxr/tStMzQTQ6Qs1/HiY6gn/qqU9sljZA/qRE+VxLeXX
+         dNkuq8+5Lpt/v+ysC4cJdmGbYwfDfNKT6m7R28JTZPD7IrlJjt75GRYrHIC4GJfoYp
+         ESZqSm03/QplXtH4ujrhZTrmJRteowQvVTJEwz3Y=
+Date:   Sun, 22 Nov 2020 16:35:00 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Phil Reid <preid@electromag.com.au>
+Cc:     Rob Herring <robh@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: hwmon: pwm-fan: Support multiple fan
- tachometer inputs
-Message-ID: <20201122152932.GA168733@roeck-us.net>
-References: <20200920180943.352526-1-pbarker@konsulko.com>
- <20200920180943.352526-2-pbarker@konsulko.com>
+Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
+ conversion
+Message-ID: <20201122163500.4c699fcc@archlinux>
+In-Reply-To: <66e8db5d-cc37-dde9-7d55-770d54506e3d@electromag.com.au>
+References: <20201031184854.745828-1-jic23@kernel.org>
+        <20201031184854.745828-3-jic23@kernel.org>
+        <20201103161039.GA1754553@bogus>
+        <20201103172834.00007040@Huawei.com>
+        <bc4219af-d77b-0f39-025d-d8905f35b574@electromag.com.au>
+        <CAL_JsqLAtMQhsUDG=amAG7i9mMzYq9UTDLMFRrGKOHr5rb3L+A@mail.gmail.com>
+        <a6685d81-d09a-1372-cc17-96f66c87ffbe@electromag.com.au>
+        <66e8db5d-cc37-dde9-7d55-770d54506e3d@electromag.com.au>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200920180943.352526-2-pbarker@konsulko.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1kgrIy-003STE-Lh
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:45172
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 9
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 20, 2020 at 07:09:40PM +0100, Paul Barker wrote:
-> Document and give an example of how to define multiple fan tachometer
-> inputs for the pwm-fan driver.
-> 
-> Signed-off-by: Paul Barker <pbarker@konsulko.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, 9 Nov 2020 10:56:47 +0800
+Phil Reid <preid@electromag.com.au> wrote:
 
-Applied.
+> On 4/11/2020 12:53, Phil Reid wrote:
+> > On 4/11/2020 11:12, Rob Herring wrote: =20
+> >> On Tue, Nov 3, 2020 at 6:39 PM Phil Reid <preid@electromag.com.au> wro=
+te: =20
+> >>>
+> >>> On 4/11/2020 01:28, Jonathan Cameron wrote: =20
+> >>>> On Tue, 3 Nov 2020 10:10:39 -0600
+> >>>> Rob Herring <robh@kernel.org> wrote:
+> >>>> =20
+> >>>>> On Sat, Oct 31, 2020 at 06:48:10PM +0000, Jonathan Cameron wrote: =
+=20
+> >>>>>> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >>>>>>
+> >>>>>> Simple direct conversion from txt to yaml as part of a general aim=
+ of
+> >>>>>> converting all IIO bindings to this machine readable format.
+> >>>>>>
+> >>>>>> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >>>>>> Cc: Phil Reid <preid@electromag.com.au>
+> >>>>>> ---
+> >>>>>> =C2=A0=C2=A0 .../bindings/iio/potentiometer/ad5272.txt=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 27 ----------
+> >>>>>> =C2=A0=C2=A0 .../iio/potentiometer/adi,ad5272.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 50 +++++++++++++++++++
+> >>>>>> =C2=A0=C2=A0 2 files changed, 50 insertions(+), 27 deletions(-)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/a=
+d5272.txt b/Documentation/devicetree/bindings/iio/potentiometer/ad5272.txt
+> >>>>>> deleted file mode 100644
+> >>>>>> index f9b2eef946aa..000000000000
+> >>>>>> --- a/Documentation/devicetree/bindings/iio/potentiometer/ad5272.t=
+xt
+> >>>>>> +++ /dev/null
+> >>>>>> @@ -1,27 +0,0 @@
+> >>>>>> -* Analog Devices AD5272 digital potentiometer
+> >>>>>> -
+> >>>>>> -The node for this device must be a child node of a I2C controller=
+, hence
+> >>>>>> -all mandatory properties for your controller must be specified. S=
+ee directory:
+> >>>>>> -
+> >>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Documentation/devicetr=
+ee/bindings/i2c
+> >>>>>> -
+> >>>>>> -for more details.
+> >>>>>> -
+> >>>>>> -Required properties:
+> >>>>>> -=C2=A0=C2=A0 - compatible:=C2=A0=C2=A0 Must be one of the followi=
+ng, depending on the model:
+> >>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,ad5272-020
+> >>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,ad5272-050
+> >>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,ad5272-100
+> >>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,ad5274-020
+> >>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 adi,ad5274-100
+> >>>>>> -
+> >>>>>> -Optional properties:
+> >>>>>> - - reset-gpios: GPIO specification for the RESET input. This is an
+> >>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 acti=
+ve low signal to the AD5272.
+> >>>>>> -
+> >>>>>> -Example:
+> >>>>>> -ad5272: potentiometer@2f {
+> >>>>>> -=C2=A0=C2=A0 reg =3D <0x2F>;
+> >>>>>> -=C2=A0=C2=A0 compatible =3D "adi,ad5272-020";
+> >>>>>> -=C2=A0=C2=A0 reset-gpios =3D <&gpio3 6 GPIO_ACTIVE_HIGH>;
+> >>>>>> -};
+> >>>>>> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/a=
+di,ad5272.yaml b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad=
+5272.yaml
+> >>>>>> new file mode 100644
+> >>>>>> index 000000000000..b9b7d383bff1
+> >>>>>> --- /dev/null
+> >>>>>> +++ b/Documentation/devicetree/bindings/iio/potentiometer/adi,ad52=
+72.yaml
+> >>>>>> @@ -0,0 +1,50 @@
+> >>>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>>>>> +%YAML 1.2
+> >>>>>> +---
+> >>>>>> +$id: http://devicetree.org/schemas/iio/potentiometer/adi,ad5272.y=
+aml#
+> >>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>>> +
+> >>>>>> +title: Analog Devices AD5272 digital potentiometer
+> >>>>>> +
+> >>>>>> +maintainers:
+> >>>>>> +=C2=A0 - Phil Reid <preid@electromag.com.au>
+> >>>>>> +
+> >>>>>> +description: |
+> >>>>>> +=C2=A0 Datasheet: https://www.analog.com/en/products/ad5272.html
+> >>>>>> +
+> >>>>>> +properties:
+> >>>>>> +=C2=A0 compatible:
+> >>>>>> +=C2=A0=C2=A0=C2=A0 enum:
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad5272-020
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad5272-050
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad5272-100
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad5274-020
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,ad5274-100
+> >>>>>> +
+> >>>>>> +=C2=A0 reg:
+> >>>>>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> >>>>>> +
+> >>>>>> +=C2=A0 reset-gpios:
+> >>>>>> +=C2=A0=C2=A0=C2=A0 description:
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Active low signal to the AD5272 RE=
+SET input. =20
+> >>>>>
+> >>>>> Not a new problem, but active low or...
+> >>>>> =20
+> >>>>>> +
+> >>>>>> +additionalProperties: false
+> >>>>>> +
+> >>>>>> +required:
+> >>>>>> +=C2=A0 - compatible
+> >>>>>> +=C2=A0 - reg
+> >>>>>> +
+> >>>>>> +examples:
+> >>>>>> +=C2=A0 - |
+> >>>>>> +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/gpio/gpio.h>
+> >>>>>> +=C2=A0=C2=A0=C2=A0 i2c {
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #address-cells =3D <1>;
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-cells =3D <0>;
+> >>>>>> +
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 potentiometer@2f {
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 compatible =3D "adi,ad5272-020";
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 reg =3D <0x2F>;
+> >>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 reset-gpios =3D <&gpio3 6 GPIO_ACTIVE_HIGH>; =20
+> >>>>>
+> >>>>> active high? =20
+> >>>>
+> >>>> Good spot!=C2=A0 @Phil.=C2=A0 Looks like the driver is setting the r=
+eset line to
+> >>>> 0 and then to 1 to come out of reset.=C2=A0=C2=A0 So effectively inv=
+erting the logic.
+> >>>> I'm tempted to be cynical and suggest we just drop the comment above=
+ and leave
+> >>>> it vague but is there a better way we can clarify this? =20
+> >>>
+> >>> Had a look at a few other iio drivers in regards how they handle the =
+same thing.
+> >>> A few do the same thing, ie: the drivers are written to set gpio low =
+to assert reset.
+> >>> So they need the device tree gpio config to be active high to work co=
+rrectly.
+> >>> Not sure if this prevents users setting things up as open collector. =
+=20
+> >>
+> >> The driver is wrong. 'gpiod_set_value(reset_gpio, 1);' should assert
+> >> reset as '1' here is set to (reset) active state as defined in the DT.
+> >>
+> >> Given no upstream users, maybe it can be fixed...
+> >>
+> >> We need to make 'reset-gpios' implemented by a reset controller and
+> >> stop letting drivers get it wrong.
+> >> =20
+> >=20
+> > Yes I agree, the driver is wrong, think I just copied one of the other =
+drivers for the pattern.
+> > I'd be happy to change it, there's probably few (if any) users.
+> >=20
+> > Having a software interface to assert the reset would be nice.
+> >=20
+> >  =20
+>=20
+> If there's no comments against the change, I'll submit a patch in the nex=
+t day or so.
+Hi Phil,=20
+
+So I've fixed the binding example up to have the sense as ACTIVE_LOW as dis=
+cussed.
+If you have time to flip the sense round in the driver to match that it
+would be great and I'd propose we then mark that as suitable for stable
+so that we get it backported into existing trees.  We could also spin
+a patch to the txt binding but perhaps that is more effort than is needed
+here.  If I get time before you do I might send a proposed fix patch.
+
+Hopefully anyone then using it will get the sense right and we won't
+accidentally break anyone.
+
+At some point soon I'll also try and audit similar cases and hopefully we
+will get those fixed up as well.  Obviously if anyone else wants to take
+a look at that it would be much appreciated!
 
 Thanks,
-Guenter
 
-> ---
->  .../devicetree/bindings/hwmon/pwm-fan.txt     | 28 +++++++++++++------
->  1 file changed, 19 insertions(+), 9 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-> index 41b76762953a..4509e688623a 100644
-> --- a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-> +++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-> @@ -8,15 +8,16 @@ Required properties:
->  
->  Optional properties:
->  - fan-supply		: phandle to the regulator that provides power to the fan
-> -- interrupts		: This contains a single interrupt specifier which
-> -			  describes the tachometer output of the fan as an
-> -			  interrupt source. The output signal must generate a
-> -			  defined number of interrupts per fan revolution, which
-> -			  require that it must be self resetting edge interrupts.
-> -			  See interrupt-controller/interrupts.txt for the format.
-> -- pulses-per-revolution : define the tachometer pulses per fan revolution as
-> -			  an integer (default is 2 interrupts per revolution).
-> -			  The value must be greater than zero.
-> +- interrupts		: This contains an interrupt specifier for each fan
-> +			  tachometer output connected to an interrupt source.
-> +			  The output signal must generate a defined number of
-> +			  interrupts per fan revolution, which require that
-> +			  it must be self resetting edge interrupts. See
-> +			  interrupt-controller/interrupts.txt for the format.
-> +- pulses-per-revolution : define the number of pulses per fan revolution for
-> +			  each tachometer input as an integer (default is 2
-> +			  interrupts per revolution). The value must be
-> +			  greater than zero.
->  
->  Example:
->  	fan0: pwm-fan {
-> @@ -55,3 +56,12 @@ Example 2:
->  		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
->  		pulses-per-revolution = <2>;
->  	};
-> +
-> +Example 3:
-> +	fan0: pwm-fan {
-> +		compatible = "pwm-fan";
-> +		pwms = <&pwm1 0 25000 0>;
-> +		interrupts-extended = <&gpio1 1 IRQ_TYPE_EDGE_FALLING>,
-> +			<&gpio2 5 IRQ_TYPE_EDGE_FALLING>;
-> +		pulses-per-revolution = <2>, <1>;
-> +	};
+Jonathan
+
+
+>=20
+>=20
+
