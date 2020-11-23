@@ -2,110 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69CB92C0CE8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 969022C0D37
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731497AbgKWOGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 09:06:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42542 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729453AbgKWOGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:06:31 -0500
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA7EC0613CF
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:06:31 -0800 (PST)
-Received: by mail-wr1-x444.google.com with SMTP id s8so18680052wrw.10
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:06:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=IxKEwJIDkWFWdLOduLQqDMMWI7xU0QNpLG1mKFM02rs=;
-        b=g1MeLxRcCLz0WGoi9c0wXjonCBJEJvpXP/SuuinED277DcmBiGSo2ylfvxgPK3Orb+
-         IYbF3XUU1Ry9h065YjZh92o2p7ljYo7nRpGMl0NkF6iNLrOo4dNp7jFtk7+h1KYROio6
-         dAxhhpaqX/xzThbEqRueM08mFje9M58Ra+GSHt65xzOt0bMHVh7G6P31qfA2PxqShp9b
-         zSw6PaOQOTFPpyu3AqjyDhx68FUUk9vKOIWqA3xeHxHo6E4dgNZ0AHmDyBjYJYGmepqa
-         wYx8HgdyBTzgzR766Br+hcqgXXDJPuosGuOfGsLkwPI8cC/s6Y4oOTMeBqv0VSEOgnNE
-         LGBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=IxKEwJIDkWFWdLOduLQqDMMWI7xU0QNpLG1mKFM02rs=;
-        b=XWPBWw2yvkxG+XpbUOvAyVIKfUOHMZp/DeoRJ1vlSK+Z5U0kDnM5qxq+x7O8Uo5yb2
-         uHGVvoVk88ANbHlmBdBgBFIEkRB4OM8zVY3efZcopeVSYxPDqrGqroKDQvgdtNcJOvXe
-         BX0vQUlSnrFoCre95FtPDAuq3QV4U5Pk0O1y8nywN9Y/6ThFO2fEAe0js7evssVIPzTO
-         ySdMlO5Bvi+I0osgNUW8KA3axhR8o6s0MyqqvZq+Di9LJ944tmlJ1DMqFJhoIvbkVELV
-         I+jTy6j9sEQ71rDxTfGJtPGVQIPUY5yFTWJxEzSEuyUrjsbDZ+kOsVepuIxHkVef6irN
-         ZQMw==
-X-Gm-Message-State: AOAM531yTvUtpg+P8L4TYX4tiVNs3DhAMEe/geWg8KHftT5epkOs16Z0
-        PEIXIU/sX9uqx2H4sgpU5fSOVQ==
-X-Google-Smtp-Source: ABdhPJyw1pQaZQIURVIYntzJptazAHx7LZxvhh9s3DKAS6T2mBaDh+IRdAi2bZY6JoIkWxVe9MjV5w==
-X-Received: by 2002:a05:6000:1292:: with SMTP id f18mr30790889wrx.196.1606140390020;
-        Mon, 23 Nov 2020 06:06:30 -0800 (PST)
-Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id l14sm12976982wmi.33.2020.11.23.06.06.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2020 06:06:29 -0800 (PST)
-Date:   Mon, 23 Nov 2020 14:06:25 +0000
-From:   Quentin Perret <qperret@google.com>
-To:     David Brazdil <dbrazdil@google.com>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Julien Thierry <julien.thierry.kdev@gmail.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
-        <kvmarm@lists.cs.columbia.edu>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
-        <devicetree@vger.kernel.org>, kernel-team@android.com,
-        android-kvm@google.com
-Subject: Re: [RFC PATCH 02/27] KVM: arm64: Link position-independent string
- routines into .hyp.text
-Message-ID: <20201123140625.GC490744@google.com>
-References: <20201117181607.1761516-1-qperret@google.com>
- <20201117181607.1761516-3-qperret@google.com>
- <20201123123425.uzfuk3pmwgzuijwn@google.com>
+        id S1730113AbgKWOPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 09:15:50 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:35051 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730709AbgKWOPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 09:15:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1606140949;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=qrhEgZWSM0CROI5Vz0uu9rwmyq7vhI6QnpKuTadBvHY=;
+        b=dVQYWlqvQvKwlO6u3ShrnIIP1D50RWaZr43fgoLYbFKr1wVqymGauYH3EzIr+w4BTQjhk+
+        gR+VnzPw8TcbdvtKACsU/MWehxZaDiaxaMr+a69mppOywOqbgJ9uTIcOXjGIaxRaanq8LA
+        IlYP93g4pTIxx5bw5OBuYudYEmDsdk0=
+Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
+ [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-323-Hz5xVMq2PWqq9P4fJRRGJQ-1; Mon, 23 Nov 2020 09:15:46 -0500
+X-MC-Unique: Hz5xVMq2PWqq9P4fJRRGJQ-1
+Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 45BAC100B713;
+        Mon, 23 Nov 2020 14:15:43 +0000 (UTC)
+Received: from [10.36.114.57] (ovpn-114-57.ams2.redhat.com [10.36.114.57])
+        by smtp.corp.redhat.com (Postfix) with ESMTP id 1B3E35C1BD;
+        Mon, 23 Nov 2020 14:15:38 +0000 (UTC)
+Subject: Re: [PATCH 1/4] mm: introduce cma_alloc_bulk API
+To:     Minchan Kim <minchan@kernel.org>,
+        Andrew Morton <akpm@linux-foundation.org>
+Cc:     LKML <linux-kernel@vger.kernel.org>, linux-mm <linux-mm@kvack.org>,
+        hyesoo.yu@samsung.com, willy@infradead.org, iamjoonsoo.kim@lge.com,
+        vbabka@suse.cz, surenb@google.com, pullip.cho@samsung.com,
+        joaodias@google.com, hridya@google.com, sumit.semwal@linaro.org,
+        john.stultz@linaro.org, Brian.Starkey@arm.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, christian.koenig@amd.com,
+        linaro-mm-sig@lists.linaro.org
+References: <20201117181935.3613581-1-minchan@kernel.org>
+ <20201117181935.3613581-2-minchan@kernel.org>
+From:   David Hildenbrand <david@redhat.com>
+Organization: Red Hat GmbH
+Message-ID: <a2c33b8f-e4fb-1f1c-7ed0-496a1256ea09@redhat.com>
+Date:   Mon, 23 Nov 2020 15:15:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201123123425.uzfuk3pmwgzuijwn@google.com>
+In-Reply-To: <20201117181935.3613581-2-minchan@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 23 Nov 2020 at 12:34:25 (+0000), David Brazdil wrote:
-> On Tue, Nov 17, 2020 at 06:15:42PM +0000, 'Quentin Perret' via kernel-team wrote:
-> > diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
-> > index 8539f34d7538..dd8ccc9efb6a 100644
-> > --- a/arch/arm64/kernel/image-vars.h
-> > +++ b/arch/arm64/kernel/image-vars.h
-> > @@ -105,6 +105,17 @@ KVM_NVHE_ALIAS(__stop___kvm_ex_table);
-> >  /* Array containing bases of nVHE per-CPU memory regions. */
-> >  KVM_NVHE_ALIAS(kvm_arm_hyp_percpu_base);
-> >  
-> > +/* Position-independent library routines */
-> > +__kvm_nvhe_clear_page			= __kvm_nvhe___pi_clear_page;
-> > +__kvm_nvhe_copy_page			= __kvm_nvhe___pi_copy_page;
-> > +__kvm_nvhe_memcpy			= __kvm_nvhe___pi_memcpy;
-> > +__kvm_nvhe_memset			= __kvm_nvhe___pi_memset;
-> > +
-> > +#ifdef CONFIG_KASAN
-> > +__kvm_nvhe___memcpy			= __kvm_nvhe___pi_memcpy;
-> > +__kvm_nvhe___memset			= __kvm_nvhe___pi_memset;
-> > +#endif
-> > +
-> >  #endif /* CONFIG_KVM */
+On 17.11.20 19:19, Minchan Kim wrote:
+> There is a need for special HW to require bulk allocation of
+> high-order pages. For example, 4800 * order-4 pages, which
+> would be minimum, sometimes, it requires more.
 > 
-> Nit: Would be good to use the kvm_nvhe_sym() helper for the namespacing.
-> And feel free to define something like KVM_NVHE_ALIAS for PI in hyp-image.h.
+> To meet the requirement, a option reserves 300M CMA area and
+> requests the whole 300M contiguous memory. However, it doesn't
+> work if even one of those pages in the range is long-term pinned
+> directly or indirectly. The other option is to ask higher-order
+> size (e.g., 2M) than requested order(64K) repeatedly until driver
+> could gather necessary amount of memory. Basically, this approach
+> makes the allocation very slow due to cma_alloc's function
+> slowness and it could be stuck on one of the pageblocks if it
+> encounters unmigratable page.
+> 
+> To solve the issue, this patch introduces cma_alloc_bulk.
+> 
+> 	int cma_alloc_bulk(struct cma *cma, unsigned int align,
+> 		gfp_t gfp_mask, unsigned int order, size_t nr_requests,
+> 		struct page **page_array, size_t *nr_allocated);
+> 
+> Most parameters are same with cma_alloc but it additionally passes
+> vector array to store allocated memory. What's different with cma_alloc
+> is it will skip pageblocks without waiting/stopping if it has unmovable
+> page so that API continues to scan other pageblocks to find requested
+> order page.
+> 
+> cma_alloc_bulk is best effort approach in that it skips some pageblocks
+> if they have unmovable pages unlike cma_alloc. It doesn't need to be
+> perfect from the beginning at the cost of performance. Thus, the API
+> takes gfp_t to support __GFP_NORETRY which is propagated into
+> alloc_contig_page to avoid significat overhead functions to inrecase
+> CMA allocation success ratio(e.g., migration retrial, PCP, LRU draining
+> per pageblock) at the cost of less allocation success ratio.
+> If the caller couldn't allocate enough pages with __GFP_NORETRY, they
+> could call it without __GFP_NORETRY to increase success ratio this time
+> if they are okay to expense the overhead for the success ratio.
 
-Ack, that'd be much nicer, I'll fix it up for v2.
+I'm not a friend of connecting __GFP_NORETRY  to PCP and LRU draining.
+Also, gfp flags apply mostly to compaction (e.g., how to allocate free
+pages for migration), so this seems a little wrong.
 
+Can we instead introduce
+
+enum alloc_contig_mode {
+	/*
+	 * Normal mode:
+	 *
+	 * Retry page migration 5 times, ... TBD
+	 *
+	 */
+	ALLOC_CONTIG_NORMAL = 0,
+	/*
+	 * Fast mode: e.g., used for bulk allocations.
+         *
+	 * Don't retry page migration if it fails, don't drain PCP
+         * lists, don't drain LRU.
+	 */
+	ALLOC_CONTIG_FAST,
+};
+
+To be extended by ALLOC_CONTIG_HARD in the future to be used e.g., by
+virtio-mem (disable PCP, retry a couple of times more often ) ...
+
+-- 
 Thanks,
-Quentin
+
+David / dhildenb
+
