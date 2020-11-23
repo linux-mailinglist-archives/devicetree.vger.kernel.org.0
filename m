@@ -2,67 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDA7E2C17FD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 22:51:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30A302C180B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 22:59:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731615AbgKWVuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 16:50:02 -0500
-Received: from asavdk3.altibox.net ([109.247.116.14]:41724 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730809AbgKWVuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 16:50:02 -0500
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id B5DC820051;
-        Mon, 23 Nov 2020 22:49:59 +0100 (CET)
-Date:   Mon, 23 Nov 2020 22:49:58 +0100
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ondrej Jirman <megous@megous.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        allen <allen.chen@ite.com.tw>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] drm/panel: st7703: Use dev_err_probe
-Message-ID: <20201123214958.GD675342@ravnborg.org>
-References: <cover.1605688147.git.agx@sigxcpu.org>
- <36405038d93eb148f3e8ed8e5ea70de8e87afd78.1605688147.git.agx@sigxcpu.org>
+        id S1730387AbgKWVzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 16:55:47 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:46094 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729644AbgKWVzr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 16:55:47 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1khJoD-008YLn-Sj; Mon, 23 Nov 2020 22:55:41 +0100
+Date:   Mon, 23 Nov 2020 22:55:41 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     George McCollister <george.mccollister@gmail.com>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20201123215541.GB2036992@lunn.ch>
+References: <20201120181627.21382-1-george.mccollister@gmail.com>
+ <20201120181627.21382-3-george.mccollister@gmail.com>
+ <20201120193321.GP1853236@lunn.ch>
+ <CAFSKS=P=epx3Sr3OzkCg9ycoftmXm__PaMee7HWbAGXYdqgbDw@mail.gmail.com>
+ <20201120232439.GA1949248@lunn.ch>
+ <CAFSKS=M-2rwM2UC58xf8n0ORuwxHq06BjLj7QP=JuU19-tCpGg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <36405038d93eb148f3e8ed8e5ea70de8e87afd78.1605688147.git.agx@sigxcpu.org>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VbvZwmh9 c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=8nJEP1OIZ-IA:10 a=ze386MxoAAAA:8 a=KKAkSRfTAAAA:8
-        a=rHKuKkdvJC2CxiFwilcA:9 a=wPNLvfGTeEIA:10 a=iBZjaW-pnkserzjvUTHh:22
-        a=cvBusfyB2V15izCimMoJ:22
+In-Reply-To: <CAFSKS=M-2rwM2UC58xf8n0ORuwxHq06BjLj7QP=JuU19-tCpGg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 18, 2020 at 09:29:48AM +0100, Guido Günther wrote:
-> Less code and easier probe deferral debugging.
+> > If it cannot send/receive BPDUs, it might get into an oscillating
+> > state. They see each other via BPDUs, decide there is a loop, and
+> > block a port. The BPDUs stop, they think the loop has been broken and
+> > so unblock. They see each other via BPUS, decide there is a loop,...
 > 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Yeah, this is messed up. The switch doesn't seem to pass up BPDUs in
+> either disabled or learning mode, only forward mode.
+> Can I just replace .port_stp_state_set with .port_enable (setting
+> switch port to forward mode) and .port_disable (setting switch port to
+> disabled mode)? I don't see any other way around this. It looks like
+> rtl8366rb.c also has no .port_stp_state_set.
 
-Nice.
+Do you have access to a 'vendor crap driver'? Anything about STP in
+it? Maybe you need to add special entries to its forwarding database
+for the BPDU destination MAC address?
 
-I hope someone comes around and update all panel drivers to use
-dev_err_probe. It is simpler and better than the current code.
-And it will fix a lot of drivers that are noisy during deferral.
+If you cannot get BPDUs to be passed, i think that means you cannot
+offload bridging to the switch. So you also need to remove bridge join
+and bridge leave. I've no idea if you can still do HSR under those
+conditions!
 
-	Sam
+	Andrew
