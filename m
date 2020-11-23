@@ -2,104 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C972C0E6E
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 16:07:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A06D2C0EDA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 16:33:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389263AbgKWPGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 10:06:06 -0500
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:34145 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729602AbgKWPGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 10:06:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1606143964; x=1637679964;
-  h=references:from:to:cc:subject:in-reply-to:date:
-   message-id:mime-version;
-  bh=SZKdsVisH2xj8OOk97XoqM3QGAQYL5iB0nFf752OqB4=;
-  b=XTq788LlY8yaeKfm2OK0O9PnGilQJU0uEytMVyVmGdE3rQFWTgH0ai26
-   WENqBtGxqwC9ux0NvuTfJwkwbAXiKyte3Ny2LwkaBkfRJG80+P8a2usRh
-   cxY8O1/+ErFdyR7zFWf4c/tda4Xl3j/4TChtbTZu13Zv1Y3FSnvoq65rU
-   JzGajJUlRSzhnUE1tgreqR0ChJhKS1qaxXj9zw3E9BJs/Cmy21x+U8Diw
-   D35ny5W+yZAgWNQMxzpViZXew/jVCVsGrr4E/eclncwbeuTRXDMAqKzlA
-   Nv0ZXMAj2AzGQH09JfiWIc+yqg+DGkgxqSTTlQhRi0+Y1SPx1BAupH+6R
-   g==;
-IronPort-SDR: +ouTkoeXgtdlGkMSfeQmxvFgWWu9hWP9NpkSCwbXthlatuhCXvUxS+z+s+wGVy5h9wFukO6cLs
- yjxHQGNW1g0AvShb1SWodoac6ghYVXBexR15HxdyQRhuUteGYmABL7/Ki9LEGYVWOTfIDVs0/I
- dHI7R6UXBOSThWhFmEyUGoP9lZsG5xfNVxte3MVuEr6bdgPNhi2GOg7RhzzfkZiDhqKIC2FKLo
- 9xlp5qHb4mAZdiTQkv1IiGHjZTNyB+AJZXkvTOTo6HR82mZzbsaSFBmOURL0e/ANiIV8iqfrR3
- /f0=
+        id S1732318AbgKWPaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 10:30:09 -0500
+Received: from mga14.intel.com ([192.55.52.115]:10654 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729244AbgKWPaJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 10:30:09 -0500
+IronPort-SDR: zXH04rPhVdBgnVOHmj25Cjfkjd3+izJVESYLjv93j51t9w9IbB4m1e3/2XTxuU62k9bDEgR8mF
+ GKT5bJir0sLw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9813"; a="171001013"
 X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; 
-   d="scan'208";a="99504032"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Nov 2020 08:06:04 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 23 Nov 2020 08:06:03 -0700
-Received: from soft-dev10.microchip.com (10.10.115.15) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3
- via Frontend Transport; Mon, 23 Nov 2020 08:06:01 -0700
-References: <20201113145151.68900-1-lars.povlsen@microchip.com> <CACRpkdZAc2yKFpngBHCdxjFBpc0XCVAYWyEERMSHX+7sL7Fgrg@mail.gmail.com>
-User-agent: mu4e 1.2.0; emacs 26.3
-From:   Lars Povlsen <lars.povlsen@microchip.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH v10 0/3] Adding support for Microchip/Microsemi serial GPIO controller
-In-Reply-To: <CACRpkdZAc2yKFpngBHCdxjFBpc0XCVAYWyEERMSHX+7sL7Fgrg@mail.gmail.com>
-Date:   Mon, 23 Nov 2020 16:05:56 +0100
-Message-ID: <87pn443ygb.fsf@microchip.com>
+   d="scan'208";a="171001013"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2020 07:30:08 -0800
+IronPort-SDR: HEmb1RIW2Z8vt2oQqZYuHlTAGvDorddLeYbZCovRtqA6Z2EFCjNdPtXnL+6ESNeWKSKa9rHV/2
+ pjYFOwY3aIcQ==
+X-IronPort-AV: E=Sophos;i="5.78,363,1599548400"; 
+   d="scan'208";a="327230618"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Nov 2020 07:30:04 -0800
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1khDo0-009CDf-9Z; Mon, 23 Nov 2020 17:31:04 +0200
+Date:   Mon, 23 Nov 2020 17:31:04 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     heikki.krogerus@linux.intel.com, robh+dt@kernel.org,
+        rafael@kernel.org, gregkh@linuxfoundation.org, hdegoede@redhat.com,
+        lee.jones@linaro.org, mika.westerberg@linux.intel.com,
+        dmitry.torokhov@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
+        laurent.pinchart+renesas@ideasonboard.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, peter.chen@nxp.com
+Subject: Re: [PATCH v6 5/6] usb: typec: mux: add typec switch via general mux
+ control
+Message-ID: <20201123153104.GI4077@smile.fi.intel.com>
+References: <1606140096-1382-1-git-send-email-jun.li@nxp.com>
+ <1606140096-1382-5-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1606140096-1382-5-git-send-email-jun.li@nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 23, 2020 at 10:01:35PM +0800, Li Jun wrote:
+> The general mux controller can be easily extended to support
+> various mux selection, this especially fits typec orientation
+> switch block with a dedicated driver.
 
-Linus Walleij writes:
+...
 
-> On Fri, Nov 13, 2020 at 3:52 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
->
->> The series add support for the serial GPIO controller used by
->> Microchip Sparx5, as well as (MSCC) ocelot/jaguar2 SoCs.
->>
->> v10 changes - anniversary edition (from Andy):
->>  - Fixed "Author" comment
->>  - Added missing "break;" in default switch case
->>  - Return -EINVAL when requesting pin disabled in bitstream
->>  - Change bank consistency check to return -ERANGE if failed (-EINVAL
->>    previously)
->
-> Patches 1 & 2 applied to the GPIO tree!
+> @@ -42,10 +43,8 @@ static void *typec_switch_match(struct device_connection *con, int ep,
+>  	if (con->id && !fwnode_is_compatible(con->fwnode, con->id) &&
+>  		       !fwnode_property_present(con->fwnode, con->id))
+>  		return NULL;
+> -
+>  	dev = class_find_device(&typec_mux_class, NULL, con->fwnode,
+>  				switch_fwnode_match);
+> -
+>  	return dev ? to_typec_switch(dev) : ERR_PTR(-EPROBE_DEFER);
+>  }
+>  
 
-Excellent!
+Not related change.
 
->
-> Patch 3 needs to go to the SoC tree.
->
+...
 
-I'll forward this in a PR for Arnd.
+> +	if (sw->mux_ctrl)
+> +		return typec_switch_mux_ctrl(sw->mux_ctrl, orientation);
 
-> Thanks for your hard work!
+> +	else
 
-Thank you to both you and Any for good comments.
+Redundant.
 
----Lars
-
->
-> Yours,
-> Linus Walleij
-
+> +		return sw->set(sw, orientation);
 
 -- 
-Lars Povlsen,
-Microchip
+With Best Regards,
+Andy Shevchenko
+
+
