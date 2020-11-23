@@ -2,157 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E88C22C11C7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 18:20:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F57B2C11F7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 18:35:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733134AbgKWRTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 12:19:40 -0500
-Received: from mx2.suse.de ([195.135.220.15]:58310 "EHLO mx2.suse.de"
+        id S2390309AbgKWRac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 12:30:32 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47172 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726417AbgKWRTj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 12:19:39 -0500
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 52398AC82;
-        Mon, 23 Nov 2020 17:19:37 +0000 (UTC)
-Message-ID: <ac38b89133f80f82b857ad2b4e421b501c2f4826.camel@suse.de>
-Subject: Re: [PATCH v4 01/11] firmware: raspberrypi: Keep count of all
- consumers
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        linux-pwm@vger.kernel.org,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        linux-input <linux-input@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Mon, 23 Nov 2020 18:19:35 +0100
-In-Reply-To: <20201113072615.GE356503@dtor-ws>
-References: <20201112163630.17177-1-nsaenzjulienne@suse.de>
-         <20201112163630.17177-2-nsaenzjulienne@suse.de>
-         <CAHp75Vf9E7UWVDMs=eRjLjoSN6SVOWw9thNdnR8ruCL6GmY7JQ@mail.gmail.com>
-         <20201113072615.GE356503@dtor-ws>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-4mT4pfaztxo3yJL0guCg"
-User-Agent: Evolution 3.38.1 
+        id S1730399AbgKWRac (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 12:30:32 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5B93420756;
+        Mon, 23 Nov 2020 17:30:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606152631;
+        bh=jZAyf44XEJ63YGzntuI9QS9uCCqjwsUWpemYZO6K/j0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mzPbjJyR3S1ljEHznqiVrGFIQL/DdLsBKTX3+U4jClP0SaqKnA1h6ryZ8b2lfoQUz
+         JxotMk8lfJUnr3W1fhISc1DIJWGoVX/pTjNVUeiwdEve9+CL1jcpdYLjxQKJYsTqBz
+         llWOrIZ9DcIAqyOfeLqMdvGd1UsdmhNKvvacA5Dk=
+Date:   Mon, 23 Nov 2020 17:30:08 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Cristian Marussi <cristian.marussi@arm.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, sudeep.holla@arm.com,
+        lukasz.luba@arm.com, james.quinlan@broadcom.com,
+        Jonathan.Cameron@Huawei.com, robh@kernel.org,
+        satyakim@qti.qualcomm.com, etienne.carriere@linaro.org,
+        f.fainelli@gmail.com, vincent.guittot@linaro.org,
+        souvik.chakravarty@arm.com
+Subject: Re: [PATCH v6 4/5] dt-bindings: arm: add support for SCMI Regulators
+Message-ID: <20201123173008.GK6322@sirena.org.uk>
+References: <20201119191051.46363-1-cristian.marussi@arm.com>
+ <20201119191051.46363-5-cristian.marussi@arm.com>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="/0P/MvzTfyTu5j9Q"
+Content-Disposition: inline
+In-Reply-To: <20201119191051.46363-5-cristian.marussi@arm.com>
+X-Cookie: Dry clean only.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---=-4mT4pfaztxo3yJL0guCg
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--/0P/MvzTfyTu5j9Q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, 2020-11-12 at 23:26 -0800, Dmitry Torokhov wrote:
-> On Thu, Nov 12, 2020 at 07:52:14PM +0200, Andy Shevchenko wrote:
-> > On Thu, Nov 12, 2020 at 6:40 PM Nicolas Saenz Julienne
-> > <nsaenzjulienne@suse.de> wrote:
-> > >=20
-> > > When unbinding the firmware device we need to make sure it has no
-> > > consumers left. Otherwise we'd leave them with a firmware handle
-> > > pointing at freed memory.
-> > >=20
-> > > Keep a reference count of all consumers and introduce rpi_firmware_pu=
-t()
-> > > which will permit automatically decrease the reference count upon
-> > > unbinding consumer drivers.
-> >=20
-> > ...
-> >=20
-> > > =C2=A0/**
-> > > - * rpi_firmware_get - Get pointer to rpi_firmware structure.
-> > > =C2=A0=C2=A0* @firmware_node:    Pointer to the firmware Device Tree =
-node.
-> > > =C2=A0=C2=A0*
-> > > + * The reference to rpi_firmware has to be released with rpi_firmwar=
-e_put().
-> > > + *
-> > > =C2=A0=C2=A0* Returns NULL is the firmware device is not ready.
-> > > =C2=A0=C2=A0*/
-> > > =C2=A0struct rpi_firmware *rpi_firmware_get(struct device_node *firmw=
-are_node)
-> > > =C2=A0{
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct platform_devic=
-e *pdev =3D of_find_device_by_node(firmware_node);
-> > > +       struct rpi_firmware *fw;
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!pdev)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0return NULL;
-> > >=20
-> > > -       return platform_get_drvdata(pdev);
-> > > +       fw =3D platform_get_drvdata(pdev);
-> > > +       if (!fw)
-> > > +               return NULL;
-> > > +
-> > > +       if (!kref_get_unless_zero(&fw->consumers))
-> > > +               return NULL;
-> >=20
+On Thu, Nov 19, 2020 at 07:10:50PM +0000, Cristian Marussi wrote:
 
-Hi Andy, Dimitry,
+> +This binding uses the common regulator binding[6] but, due to SCMI abstractions,
+> +supports only a subset of its properties as specified below amongst Optional
+> +properties.
 
-> > Don't we have a more traditional way of doing this, i.e.
-> > try_module_get() coupled with get_device() ?
->=20
-> get_device() will make sure that device is there, but gives no
-> assurances that device is bound to a driver, so it will not help with
-> the racy access to firmware via platform_get_drvdata() call.
+> +Required properties:
+> + - reg : shall identify an existent SCMI Voltage Domain.
 
-I also looked at using get/put_device() just as a means for refcounting (i.=
-e.
-replacing fw->consumers), but I can't make it work either. I'd need a way t=
-o
-hook up into one of the struct device_ktype release() functions. AFAIK it's=
- not
-possible for private uses like this.
+> +Optional properties:
+> + - regulator-name
+> + - regulator-min-microvolt / regulator-max-microvolt
+> + - regulator-always-on / regulator-boot-on
+> + - regulator-max-step-microvolt
+> + - regulator-coupled-with / regulator-coupled-max-spread
 
-IIUC the way to do this would be to bypass platform device and create a spe=
-cial
-device class/bus for RPi's firmware dependent devices (I could pretty much =
-copy
-SCMI's implementation), but I fear that's overkill.
+Please send a followup patch removing this stuff about only specific
+properties being supported, that's just asking for bitrot and is equally
+true for most regulator drivers - people shouldn't have to do do an
+audit of every single regulator driver to add a generic feature.
 
-So, for now I'll stick with the kref based implementation, I'll be happy to
-change it if you find a better solution. :)
-
-Regards,
-Nicolas
-
-
---=-4mT4pfaztxo3yJL0guCg
+--/0P/MvzTfyTu5j9Q
 Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+77ycACgkQlfZmHno8
-x/4SuAf/fbVt5dbVlASpaXs9h1cMXb/e8xl+GmDU2l1pP/uQHmyY+sGKGqNo7+G1
-gtKuEhPEavnasiHhJaBTWCCpwytJF9/iToX0i75cDZIObrF1xbO1A3L7hvlRiO6x
-C+oECKGo3/Awayb7MRHqEiRrLqtuu0odnT3Usn26Rbo7J2o5Lc4KF8WwYblFkmV9
-KCW77SlB/6W865vD6KK1KaN6nPqOD3XmKC7doM/MWHIvYd8siFy8qlT5m06s/vhC
-OHHbX2/7bhgcB+3/9LA9TF5J/JU9KIDHuUVbPYC2hcAVbkELXL93OwJ3DnN7csjp
-6obres4oiWUNt0B5Zi7lJDT4Y1KnUw==
-=C3d8
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+78Z8ACgkQJNaLcl1U
+h9BL2Qf/TbykoE9PqJE+toHFuAdOeziZcfji79JoqyXjCRXfFqkAldGCKFr5XeEa
+QAUG+FKLLWSRcckC6qHkDJ9fC+aKeudUlkGA1cZ7PNq65AJ5z+BoPQptOxcICH/7
+QM08KDCSSS1X0bhaAosqwDHx/N93Svqy6AekVf/gKAN1GvQv0EaGTVpWHSiFpNkX
++2/QLCXehqa61xMrx8hzTmSGmNFuih5DOYlkDueIu1N1VhWmJ7PNNhb3STWDOw62
+hZ0afLS+NihPL6dD2cNcGcW2sgK66cxtWKBlMVXnm9Pq7yt71tUyN8qH/vs2ckd8
+O+pVojSjx/fIoCmL2hdd/eBRjpvrkg==
+=wP12
 -----END PGP SIGNATURE-----
 
---=-4mT4pfaztxo3yJL0guCg--
-
+--/0P/MvzTfyTu5j9Q--
