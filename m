@@ -2,73 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 063962BFF22
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 05:49:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC8BC2BFF56
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 06:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727562AbgKWErq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 23:47:46 -0500
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:45183 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727119AbgKWErq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 23:47:46 -0500
-Received: by mail-lf1-f68.google.com with SMTP id z21so21908883lfe.12;
-        Sun, 22 Nov 2020 20:47:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NPKKFFttECtrhCNY5oVMatcAdfTTlnNsNes6pooxhN8=;
-        b=AYtgLdNIHUUOMX4qY3sqqX7ERuT6JEJceSqzmJJ1/95k6vFS3HpfGn/MiydK0mymyU
-         WyujGpaouNbdVeRalvCeVDld8lSd1eW8BGZ1gJH5aeJMJRVa8qRr1Ob8mU2H/ClVjcD8
-         MRnduaYtDY+53Axh3Ir4ZipjGI5ccNPIKGoVnWNkPHmzut6NybLQJKUEYPfNg1Y0Jg5s
-         CtZIPWxzZkRpvFpO3ic4AhxZKpUTeTjavEoo+WyoR5ZqbIbB00gdQ7bOE95ZRILCdFPB
-         2VBxXKJctUPn0pjejpbGrWigoK8/mZCb8YrKUfpyYtziVEoN71gO+vnP8Yp5PXem115k
-         2wxQ==
-X-Gm-Message-State: AOAM533IMJW6G/9ES6Ep54vu8bvPQV4KbNgR7Uzx8LFqOZqsbWvqnLgD
-        Lj16ZHY8tnuTrkK1L3GPdUAcQ/eUg4stcA==
-X-Google-Smtp-Source: ABdhPJx578+8Q/xkNyW1vIDXuvs5ZVDTnTgZNRExsmVXLl52xPEFPHW/W/QJM7BVGnbRSb3nXYcVOQ==
-X-Received: by 2002:ac2:483b:: with SMTP id 27mr11813195lft.551.1606106864573;
-        Sun, 22 Nov 2020 20:47:44 -0800 (PST)
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com. [209.85.208.176])
-        by smtp.gmail.com with ESMTPSA id m16sm1237091lfa.57.2020.11.22.20.47.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 22 Nov 2020 20:47:43 -0800 (PST)
-Received: by mail-lj1-f176.google.com with SMTP id o24so16564897ljj.6;
-        Sun, 22 Nov 2020 20:47:43 -0800 (PST)
-X-Received: by 2002:a2e:8546:: with SMTP id u6mr12923580ljj.125.1606106863590;
- Sun, 22 Nov 2020 20:47:43 -0800 (PST)
+        id S1725320AbgKWFQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 00:16:33 -0500
+Received: from mail-03.mail-europe.com ([91.134.188.129]:51052 "EHLO
+        mail-03.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725275AbgKWFQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 00:16:33 -0500
+Date:   Mon, 23 Nov 2020 05:16:20 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=connolly.tech;
+        s=protonmail; t=1606108588;
+        bh=zwjY45w135FchEXy16tCPE5ojoc2C0C5VAy+SVMkTnw=;
+        h=Date:To:From:Cc:Reply-To:Subject:From;
+        b=Hp2khR/atczvRCPH0NQUbB6WiM4e7jDQnJmvLE1xXQrVOgReqMk1EL3KxcdvDacvO
+         CQc8Ntkf79E81ceChiCzEXL3X9sVuV1Ka9cxt+uBq26PSW0qaCfzkwLm+pJlmZsWNB
+         vkDvokzygrNNWEde9RqDaGEbTlDBoinQI5SvXUmk=
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Caleb Connolly <caleb@connolly.tech>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Reply-To: Caleb Connolly <caleb@connolly.tech>
+Subject: Re: [PATCH v2] arm64: dts: sdm845: Add iommus property to qup
+Message-ID: <3ba39a64-122b-ebe9-04b3-3a23478334a4@connolly.tech>
 MIME-Version: 1.0
-References: <20201116125617.7597-1-m.cerveny@computer.org> <20201116125617.7597-7-m.cerveny@computer.org>
-In-Reply-To: <20201116125617.7597-7-m.cerveny@computer.org>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 23 Nov 2020 12:47:32 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67kS3TfoEv+QsoOawuMOaRU89DY3TvJAruF6Tzryzwv_w@mail.gmail.com>
-Message-ID: <CAGb2v67kS3TfoEv+QsoOawuMOaRU89DY3TvJAruF6Tzryzwv_w@mail.gmail.com>
-Subject: Re: [PATCH v3 6/6] ARM: dts: sun8i: v3s: Add video engine node
-To:     Martin Cerveny <m.cerveny@computer.org>
-Cc:     Maxime Ripard <mripard@kernel.org>, devel@driverdev.osuosl.org,
-        devicetree <devicetree@vger.kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Mark Brown <broonie@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Icenowy Zheng <icenowy@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF shortcircuit=no
+        autolearn=disabled version=3.4.4
+X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
+        mailout.protonmail.ch
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 8:58 PM Martin Cerveny <m.cerveny@computer.org> wrote:
+On 2020-11-22 03:41, Bjorn Andersson wrote:
+> From: Stephen Boyd <swboyd@chromium.org>
 >
-> Allwinner V3S SoC has a video engine.
-> Add a node for it.
+> The SMMU that sits in front of the QUP needs to be programmed properly
+> so that the i2c geni driver can allocate DMA descriptors. Failure to do
+> this leads to faults when using devices such as an i2c touchscreen where
+> the transaction is larger than 32 bytes and we use a DMA buffer.
 >
-> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+> arm-smmu 15000000.iommu: Unexpected global fault, this could be serious
+> arm-smmu 15000000.iommu:         GFSR 0x00000002, GFSYNR0 0x00000002, GFS=
+YNR1 0x000006c0, GFSYNR2 0x00000000
+>
+> Add the right SID and mask so this works.
+>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> [bjorn: Define for second QUP as well, be more specific in sdm845.dtsi]
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 2 ++
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi       | 2 ++
+>   2 files changed, 4 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot=
+/dts/qcom/sdm845-cheza.dtsi
+> index 39f23cdcbd02..216a74f0057c 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> @@ -653,10 +653,12 @@ &pm8998_pwrkey {
+>  =20
+>   &qupv3_id_0 {
+>   =09status =3D "okay";
+> +=09iommus =3D <&apps_smmu 0x0 0x3>;
+>   };
+>  =20
+>   &qupv3_id_1 {
+>   =09status =3D "okay";
+> +=09iommus =3D <&apps_smmu 0x6c0 0x3>;
+>   };
+>  =20
+>   &sdhc_2 {
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/q=
+com/sdm845.dtsi
+> index 6465a6653ad9..d6b7b1bfa202 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -1120,6 +1120,7 @@ qupv3_id_0: geniqup@8c0000 {
+>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
+>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_0_M_AHB_CLK>,
+>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_0_S_AHB_CLK>;
+> +=09=09=09iommus =3D <&apps_smmu 0x3 0x0>;
+>   =09=09=09#address-cells =3D <2>;
+>   =09=09=09#size-cells =3D <2>;
+>   =09=09=09ranges;
+> @@ -1460,6 +1461,7 @@ qupv3_id_1: geniqup@ac0000 {
+>   =09=09=09clock-names =3D "m-ahb", "s-ahb";
+>   =09=09=09clocks =3D <&gcc GCC_QUPV3_WRAP_1_M_AHB_CLK>,
+>   =09=09=09=09 <&gcc GCC_QUPV3_WRAP_1_S_AHB_CLK>;
+> +=09=09=09iommus =3D <&apps_smmu 0x6c3 0x0>;
+>   =09=09=09#address-cells =3D <2>;
+>   =09=09=09#size-cells =3D <2>;
+>   =09=09=09ranges;
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Tested-By: Caleb Connolly <caleb@connolly.tech>
+
+Works on the OnePlus 6.
+
+
