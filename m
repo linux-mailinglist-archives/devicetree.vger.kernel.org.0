@@ -2,84 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A009A2C0546
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 13:16:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E938E2C095A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:18:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729332AbgKWMN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 07:13:56 -0500
-Received: from mail-02.mail-europe.com ([51.89.119.103]:57498 "EHLO
-        mail-02.mail-europe.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727941AbgKWMNz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 07:13:55 -0500
-Date:   Mon, 23 Nov 2020 12:13:46 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail; t=1606133631;
-        bh=LStuA4HgDouAi9zNu6A+4vTmzx/59sZCCzPfuW7Ijhg=;
-        h=Date:To:From:Cc:Reply-To:Subject:From;
-        b=FWVhzNqzaO0vln33sZkEl8XwFqqbeztUlRllYiy692D4Bq8SrXUtPtCv6QjhpSwp3
-         LYGeBh69TOkC7uEMIMcS5TQp2E2v3ATIFDkXVMCv21WYrtHEVElEib05dOhbumXGB6
-         sWhA4WUtXfjgm4EBAjPFFAofwYa25C/oLj7qEoFo=
-To:     Rob Herring <robh+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-From:   =?utf-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= 
-        <nfraprado@protonmail.com>
-Cc:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, lkcamp@lists.libreplanetbr.org,
-        andrealmeid@collabora.com
-Reply-To: =?utf-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= 
-          <nfraprado@protonmail.com>
-Subject: [PATCH] docs: dt: Use full path to enable cross-reference
-Message-ID: <20201123121333.59274-1-nfraprado@protonmail.com>
+        id S2388220AbgKWNGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 08:06:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732869AbgKWMtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 07:49:08 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C32C061A4D
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:49:05 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id k4so16959500edl.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:49:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GyUtXV4I7oufOCmRehbSbZihfE2dNAsjJjjjrmEuICw=;
+        b=xzdEz6kB4zBik1uOatoshaBm6LaSKmUojijYt8h9dh2QGrUS76eruUvLIzkSH0eGEe
+         DOl+Li0VGvprWuzJGUffQBqShHCUBvn0FG05F8PWA7Ix6v7nmuwvqau9BuAUXtBuzc9P
+         biFtftXYWUdPL666mAAt48VYycPt4mDE/nFamResc8Jm6tepnfAiJpTSHUAnPk79ypk0
+         LDR50k++wjeWldDm+gC03roaoqPBQQqL0fsaZikOBH87K99u1MRrLTd13dwLHowdkXpQ
+         ztf6f/03UDNnrWdRmhDlhaGsgjm9AQ0a+uIiw96KobpddpBrzU5tcbP8H1dC1S7gVEf2
+         xPfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GyUtXV4I7oufOCmRehbSbZihfE2dNAsjJjjjrmEuICw=;
+        b=KY+FSlAbYr4eOWTE6UYtTZl1mkjX0Up3XyDUeSCSX8na7d6b4HzZ363Om+7zN4Ofzv
+         GyoXBZgwQvG/gu3g1t6gYsxVQhxbgJVsdaX6ad9Jt2vzwDGVyPK6hvc0Ibx3HCfbDY0z
+         yASqh51aBSkf06ODDU+QDQgpM/8vFlSVXfZpUdwzSY05TeJ0rQSCZO62oHAQ8FNkK+KE
+         I3d8AaZBXgfSLOjdSXCXZab0vmtcHKVWk4Q23O6n2iJ4K+QMK8S7DG9I/XtN/OStnbgJ
+         lBNY6vYwPBRaZma5/h7rPi7FUiM6LcEvhCWzRKgJQQySyVE+Pp3wxXW2gtvNDAYOO7PU
+         6Rzw==
+X-Gm-Message-State: AOAM531b+0fNyB0JVflvGJIcIFnk0V4gZSOuLJlCznxNKR+dfGlia+sA
+        HSL5B6rUIS3UbyFuf24k3fgX416YAMILHadjzF1lyg==
+X-Google-Smtp-Source: ABdhPJzlanZtbb9BGdfii0DcE9OSCvj2yyVYSpep2MYBMNOh1SH5wMpSHxztxzQJLoz9y7yPdd5mKxJnY6cjP3OZ38I=
+X-Received: by 2002:aa7:cb52:: with SMTP id w18mr38774344edt.362.1606135744041;
+ Mon, 23 Nov 2020 04:49:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.2 required=10.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM shortcircuit=no
-        autolearn=disabled version=3.4.4
-X-Spam-Checker-Version: SpamAssassin 3.4.4 (2020-01-24) on
-        mailout.protonmail.ch
+References: <20200922165535.1356622-1-maxime.chevallier@bootlin.com>
+ <20200922165535.1356622-3-maxime.chevallier@bootlin.com> <CAAEAJfCcPRnyjPozXG9rjovO+cJ6ZZBadShs_X9DQCrjSj7mUw@mail.gmail.com>
+ <20201123082122.49a08ebb@bootlin.com>
+In-Reply-To: <20201123082122.49a08ebb@bootlin.com>
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Date:   Mon, 23 Nov 2020 09:48:51 -0300
+Message-ID: <CAAEAJfD9r=skAPAEZX50Y-EnbeZRy+LEnERR_rvkcoghESEn2w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] media: rockchip: Introduce driver for Rockhip's
+ camera interface
+To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Helen Koike <helen.koike@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use full path to reference writing-schema.rst so that it becomes a
-cross-reference.
+Hi Maxime,
 
-Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@protonmail.com>
----
+On Mon, 23 Nov 2020 at 04:21, Maxime Chevallier
+<maxime.chevallier@bootlin.com> wrote:
+>
+> Hi Ezequiel, and thanks a lot for the review !
+>
+> On Fri, 2 Oct 2020 14:35:28 -0300
+> Ezequiel Garcia <ezequiel@vanguardiasur.com.ar> wrote:
+>
+> > Hi Maxime,
+> >
+> >Thanks to Dafna, I found the patch ^_^
+> >
+> >The driver looks real good. Just a few comments below.
+> >
+> >Is the driver passing latest v4l2-compliance tests?
+>
+> I'll post them along with the next iteration of the series.
+>
+> >> +config VIDEO_ROCKCHIP_VIP
+> >> +       tristate "Rockchip VIP (Video InPut) Camera Interface"
+> >> +       depends on VIDEO_DEV && VIDEO_V4L2
+> >> +       depends on ARCH_ROCKCHIP || COMPILE_TEST
+> >> +       select VIDEOBUF2_DMA_SG
+> >> +       select VIDEOBUF2_DMA_CONTIG
+> >> +       select V4L2_FWNODE
+> >> +       select V4L2_MEM2MEM_DEV
+> >> +       help
+> >> +         This is a v4l2 driver for Rockchip SOC Camera interface.
+> >> +
+> >> +         To compile this driver as a module choose m here.
+> >> +
+> >
+> >Please add ... "the module will be called {the name}".
+>
+> Sure, I will do !
+>
+> [...]
+>
+> >> +#define VIP_REQ_BUFS_MIN       1
+> >
+> >I think you might want to have more than 1 buffer
+> >as minimum. How about 3? Two for the ping and pong,
+> >and one more in the queue.
+>
+> Yes you're correct, 3 should be the strict minimum required buffers
+> here, I didn't update that after adding the dual-buffering mode.
+>
+> >> +#define VIP_MIN_WIDTH          64
+> >> +#define VIP_MIN_HEIGHT         64
+> >> +#define VIP_MAX_WIDTH          8192
+> >> +#define VIP_MAX_HEIGHT         8192
+> >> +
+> >> +#define RK_VIP_PLANE_Y                 0
+> >> +#define RK_VIP_PLANE_CBCR              1
+> >> +
+> >> +#define VIP_FETCH_Y_LAST_LINE(VAL) ((VAL) & 0x1fff)
+> >> +/* Check if swap y and c in bt1120 mode */
+> >> +#define VIP_FETCH_IS_Y_FIRST(VAL) ((VAL) & 0xf)
+> >> +
+> >> +/* Get xsubs and ysubs for fourcc formats
+> >> + *
+> >> + * @xsubs: horizontal color samples in a 4*4 matrix, for yuv
+> >> + * @ysubs: vertical color samples in a 4*4 matrix, for yuv
+> >> + */
+> >> +static int fcc_xysubs(u32 fcc, u32 *xsubs, u32 *ysubs)
+> >
+> >See below, you should be using v4l2_fill_pixfmt_mp.
+> >
+> >> +{
+> >> +       switch (fcc) {
+> >> +       case V4L2_PIX_FMT_NV16:
+> >> +       case V4L2_PIX_FMT_NV61:
+> >> +               *xsubs = 2;
+> >> +               *ysubs = 1;
+> >> +               break;
+> >> +       case V4L2_PIX_FMT_NV21:
+> >> +       case V4L2_PIX_FMT_NV12:
+> >> +               *xsubs = 2;
+> >> +               *ysubs = 2;
+> >> +               break;
+> >> +       default:
+> >> +               return -EINVAL;
+> >> +       }
+> >> +
+> >> +       return 0;
+> >> +}
+> >> +
+> >> +static const struct vip_output_fmt out_fmts[] = {
+> >> +       {
+> >> +               .fourcc = V4L2_PIX_FMT_NV16,
+> >> +               .cplanes = 2,
+> >
+> >From what I can see, you are only using this
+> >information to calculate bytesperline and sizeimage,
+> >so you should be using the v4l2_fill_pixfmt_mp() helper.
+>
+> You're correct, it indeed makes things much easier and allowed to
+> removed a lot of redundant info here !
+>
+>
+> >> +static void rk_vip_set_fmt(struct rk_vip_stream *stream,
+> >> +                          struct v4l2_pix_format_mplane *pixm,
+> >> +                          bool try)
+> >> +{
+> >> +       struct rk_vip_device *dev = stream->vipdev;
+> >> +       struct v4l2_subdev_format sd_fmt;
+> >> +       const struct vip_output_fmt *fmt;
+> >> +       struct v4l2_rect input_rect;
+> >> +       unsigned int planes, imagesize = 0;
+> >> +       u32 xsubs = 1, ysubs = 1;
+> >> +       int i;
+> >> +
+> >
+> >I was expecting to see some is_busy or is_streaming check
+> >here, have you tested what happens if you change the format
+> >while streaming, or after buffers are queued?
+>
+> Yes correct. I used the stream->state private flag here, but I it was
+> also brought to my attention that there also exists a vb2_is_busy()
+> helper, but I'm unsure if it would be correct to use it here.
+>
 
-Hi Jon,
+Long story, short: when the application creates buffers,
+with e.g. REQBUF (see vb2_core_reqbufs), it will call
+the driver (vb2_ops.queue_setup), to get the planes' sizes.
 
-do you think this would be the way to go, or should we instead extend autom=
-arkup
-to work on relative paths to doc pages, so that this reference would work a=
-s is?
+In the current model, for a given vb2 queue, all the buffers
+are the same size. In practice, the simpler way to express
+this is not allowing S_FMT if there are buffers allocated
+in the queue (vb2_is_busy).
 
-Thanks,
-N=C3=ADcolas
+You could relax the vb2_is_busy requirement in your driver,
+but I usually find it's not worth the trouble.
 
- Documentation/devicetree/bindings/submitting-patches.rst | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> >> +
+> >> +static int rk_vip_g_input(struct file *file, void *fh, unsigned int *i)
+> >> +{
+> >> +       *i = 0;
+> >> +       return 0;
+> >> +}
+> >> +
+> >> +static int rk_vip_s_input(struct file *file, void *fh, unsigned int i)
+> >> +{
+> >
+> >Only one input, why do you need to support this ioctl at all?
+>
+> I actually saw a fair amount of existing drivers implementing these
+> callbacks even for only one input, so I don't really know if I should
+> remove it or not ?
+>
 
-diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Doc=
-umentation/devicetree/bindings/submitting-patches.rst
-index 0aab2b3f16d0..68129ff09967 100644
---- a/Documentation/devicetree/bindings/submitting-patches.rst
-+++ b/Documentation/devicetree/bindings/submitting-patches.rst
-@@ -25,7 +25,8 @@ I. For patch submitters
-=20
-        make dt_binding_check
-=20
--     See ../writing-schema.rst for more details about schema and tools set=
-up.
-+     See Documentation/devicetree/writing-schema.rst for more details abou=
-t
-+     schema and tools setup.
-=20
-   3) DT binding files should be dual licensed. The preferred license tag i=
-s
-      (GPL-2.0-only OR BSD-2-Clause).
---=20
-2.29.2
+S_INPUT is used e.g. on capture devices that have multiple
+inputs and can capture from one input at a time.
 
+If the ioctl is empty like this, the driver can simply not support
+the ioctl.
 
+Best regards,
+Ezequiel
