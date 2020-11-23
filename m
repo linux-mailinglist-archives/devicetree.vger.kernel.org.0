@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C19EA2C0B65
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:56:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A59022C0B46
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:56:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732429AbgKWNYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 08:24:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56438 "EHLO
+        id S2388985AbgKWNWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 08:22:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731365AbgKWMe2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 07:34:28 -0500
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0E99C0613CF
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:34:28 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id p19so13061559wmg.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:34:28 -0800 (PST)
+        with ESMTP id S2388983AbgKWNW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 08:22:28 -0500
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7CBC0613CF
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 05:22:28 -0800 (PST)
+Received: by mail-oi1-x243.google.com with SMTP id a130so11504957oif.7
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 05:22:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=9ZjO/kg/ZyQBzHgAo7+6n9tS4H4jKirnAxxmVXvH/yc=;
-        b=M992dxd2tit7xNFnltCm7IKEDMdlnmQGCe8L5HxLpyARAZse097Av2j/VAIWecNH3m
-         bJD+3EDrsh/k+G08pWWz5IJCJd1iwyLpBdfnINWsvXgBH0tfbK2u04BrazZWO+Jo49zy
-         yh3iWmzRhuMtjd2JI7q+Gb5w9cjBK3HqqCmSre9UFgSOna7kNL626foIzmVYCIrYe/93
-         Qp5+sKy4TAindANud2ZsE1u/VMhU0+QZZ4fy+VOQ5k8mbFKCyHOL4BGH/49geVbGKALP
-         aed65X9OM2QRaPt6uBOY49PSxEmgZcC/XdnzywKBaD0U8jyA3urZlDqlFsWzPdOkG0nh
-         VjRA==
+        bh=/kdqFZeAVjbR1EcrIlFEOxJOMeoTF+Ogzz6G56OSu8M=;
+        b=rTTjlgTIUFSWUW/IC4OxUfYnSqKXdJJ9kqYLU/ZqrJAAi87J+7NiREj6ube4ANvu1g
+         LsHbqdqUqsv1WvcxkWTewmx3DHXB3cakd8AOodJlcSbrVphhStsCFNaDA0bWkye3lKjm
+         AcQllA7rtoChNr8xdo732cLNI+Hy+0pe5oXbIrBYCjn3BPQmXgi82/O1h35cWJqz9T2/
+         edQbz0xLSKOG16+/9MKx49RjIACs+K8INOB7JtBQwPP8geXDKG9gyx9eckuCQ6gpNpdk
+         Y9AZ333KWpIZr4Kza7TJAOnmVPkXgStofyfEhZK7IKJCMoly0/9ynQdr/CGbnQIOU6mh
+         C0xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9ZjO/kg/ZyQBzHgAo7+6n9tS4H4jKirnAxxmVXvH/yc=;
-        b=GAhiGsLCOVUB6ju19Ssl/CnRyLNTormMdLF/EwfYi9fVr/ARaDBesKaIixll1xX79m
-         Rj05SlO/uU+sXn1fj2j/amLRY/cayjcdZSaon7AHK+payN2GqxRtaHYhSzyvzvaTb4Uh
-         fc9BYge1T4JMhRS6+9uHDrFSZPYETGWBmE/JZja/gv4bmGqwKH42pRHmND+aOmyU6IrD
-         uXEUWbr+B+fT9Koe/fLTr3i/5hhfLDPJg+wbkXxFZijD0S9oxT5DG6O4X+ixTQwgUib6
-         858ib6PbpRocJjtRDhghqYq8sSCq0nUegxhN9hMhRshjWaWptlCMF5hSxYJm4ezqBnX0
-         priA==
-X-Gm-Message-State: AOAM530OxY2keBuckPsa+CsIlhpnmvk/y45VM/5ZW9tIyb9QcweBi4Px
-        qAR8A42DSmzd2V6pRXEOUw2wBw==
-X-Google-Smtp-Source: ABdhPJwSjPl1MftPJmQUSt0CDAQ26Ikg4YZNe+FEtt3uYPrzCayTOdXmpbrYKg2gwpnbE1eL73qqnQ==
-X-Received: by 2002:a1c:7e87:: with SMTP id z129mr23400394wmc.176.1606134867262;
-        Mon, 23 Nov 2020 04:34:27 -0800 (PST)
+        bh=/kdqFZeAVjbR1EcrIlFEOxJOMeoTF+Ogzz6G56OSu8M=;
+        b=aKdCPKyD/sxNAe8GWjJ3PpdGuOHCoYUGesu6Fodf8IN/TGoRNM1oR3ZvDhg/VVS1jh
+         JB1OJX5eZliWDWTqP/wL+mPMcyig5glqTlSpK3JRcH7pV4kkAoVICsmdhoCWzmleCyw+
+         yR4MdxlkQjsOyDRp3r2EKvFWQIOi0S+InLvWjLr3NVY54fItDui6gSnPM0JlYP1/NX91
+         WdlMJkLaojxhkEh6ch0hnnWj6gECGyolBgp+W8SN9cSjFXFFIswb4+yItZCwJYMm6Kv5
+         H74QIqzbxaf+5/zng2lraFhISQf5cl7KQrrS3wkUFTDHXmuOPmtI+O6PhBkQpQAIHRMs
+         a7yQ==
+X-Gm-Message-State: AOAM532oqvE3jyCZtlqw84mRBPFKJHeZYOKjkcv4j14Y3RDtdDTreQHA
+        VuQhtK6UjCV9DaEZul0cLRZORw==
+X-Google-Smtp-Source: ABdhPJzEhLvMoLTH89tN1wdaa8/gjQDGQFbkETdg1TT2tpDZ6ILozNTF3nqBtpBt76eWvVSRF6fAZg==
+X-Received: by 2002:a05:6808:301:: with SMTP id i1mr15073703oie.49.1606137747765;
+        Mon, 23 Nov 2020 05:22:27 -0800 (PST)
 Received: from google.com ([2a01:4b00:8523:2d03:acac:b2ef:c7d:fd8a])
-        by smtp.gmail.com with ESMTPSA id j71sm16889889wmj.10.2020.11.23.04.34.26
+        by smtp.gmail.com with ESMTPSA id s185sm7344774oia.18.2020.11.23.05.22.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2020 04:34:26 -0800 (PST)
-Date:   Mon, 23 Nov 2020 12:34:25 +0000
+        Mon, 23 Nov 2020 05:22:26 -0800 (PST)
+Date:   Mon, 23 Nov 2020 13:22:23 +0000
 From:   David Brazdil <dbrazdil@google.com>
 To:     Quentin Perret <qperret@google.com>
 Cc:     Catalin Marinas <catalin.marinas@arm.com>,
@@ -65,83 +65,49 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
         <devicetree@vger.kernel.org>, kernel-team@android.com,
         android-kvm@google.com
-Subject: Re: [RFC PATCH 02/27] KVM: arm64: Link position-independent string
- routines into .hyp.text
-Message-ID: <20201123123425.uzfuk3pmwgzuijwn@google.com>
+Subject: Re: [RFC PATCH 13/27] KVM: arm64: Enable access to sanitized CPU
+ features at EL2
+Message-ID: <20201123132223.oohevce4izuoaqi3@google.com>
 References: <20201117181607.1761516-1-qperret@google.com>
- <20201117181607.1761516-3-qperret@google.com>
+ <20201117181607.1761516-14-qperret@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201117181607.1761516-3-qperret@google.com>
+In-Reply-To: <20201117181607.1761516-14-qperret@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 17, 2020 at 06:15:42PM +0000, 'Quentin Perret' via kernel-team wrote:
-> From: Will Deacon <will@kernel.org>
-> 
-> Pull clear_page(), copy_page(), memcpy() and memset() into the nVHE hyp
-> code and ensure that we always execute the '__pi_' entry point on the
-> offchance that it changes in future.
-> 
-> [ qperret: Commit title nits ]
-> 
-> Signed-off-by: Will Deacon <will@kernel.org>
-> Signed-off-by: Quentin Perret <qperret@google.com>
-> ---
->  arch/arm64/kernel/image-vars.h   | 11 +++++++++++
->  arch/arm64/kvm/hyp/nvhe/Makefile |  4 ++++
->  2 files changed, 15 insertions(+)
-> 
+> +int copy_ftr_reg(u32 id, struct arm64_ftr_reg *dst)
+> +{
+> +	struct arm64_ftr_reg *regp = get_arm64_ftr_reg(id);
+> +
+> +	if (!regp)
+> +		return -EINVAL;
+> +
+> +	memcpy(dst, regp, sizeof(*regp));
+> +
+> +	return 0;
+> +}
+> +
+>  #define read_sysreg_case(r)	\
+>  	case r:		return read_sysreg_s(r)
+>  
 > diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
-> index 8539f34d7538..dd8ccc9efb6a 100644
+> index dd8ccc9efb6a..c35d768672eb 100644
 > --- a/arch/arm64/kernel/image-vars.h
 > +++ b/arch/arm64/kernel/image-vars.h
-> @@ -105,6 +105,17 @@ KVM_NVHE_ALIAS(__stop___kvm_ex_table);
->  /* Array containing bases of nVHE per-CPU memory regions. */
->  KVM_NVHE_ALIAS(kvm_arm_hyp_percpu_base);
+> @@ -116,6 +116,8 @@ __kvm_nvhe___memcpy			= __kvm_nvhe___pi_memcpy;
+>  __kvm_nvhe___memset			= __kvm_nvhe___pi_memset;
+>  #endif
 >  
-> +/* Position-independent library routines */
-> +__kvm_nvhe_clear_page			= __kvm_nvhe___pi_clear_page;
-> +__kvm_nvhe_copy_page			= __kvm_nvhe___pi_copy_page;
-> +__kvm_nvhe_memcpy			= __kvm_nvhe___pi_memcpy;
-> +__kvm_nvhe_memset			= __kvm_nvhe___pi_memset;
+> +_kvm_nvhe___flush_dcache_area		= __kvm_nvhe___pi___flush_dcache_area;
 > +
-> +#ifdef CONFIG_KASAN
-> +__kvm_nvhe___memcpy			= __kvm_nvhe___pi_memcpy;
-> +__kvm_nvhe___memset			= __kvm_nvhe___pi_memset;
-> +#endif
-> +
->  #endif /* CONFIG_KVM */
 
-Nit: Would be good to use the kvm_nvhe_sym() helper for the namespacing.
-And feel free to define something like KVM_NVHE_ALIAS for PI in hyp-image.h.
-
->  
->  #endif /* __ARM64_KERNEL_IMAGE_VARS_H */
-> diff --git a/arch/arm64/kvm/hyp/nvhe/Makefile b/arch/arm64/kvm/hyp/nvhe/Makefile
-> index 1f1e351c5fe2..590fdefb42dd 100644
-> --- a/arch/arm64/kvm/hyp/nvhe/Makefile
-> +++ b/arch/arm64/kvm/hyp/nvhe/Makefile
-> @@ -6,10 +6,14 @@
->  asflags-y := -D__KVM_NVHE_HYPERVISOR__
->  ccflags-y := -D__KVM_NVHE_HYPERVISOR__
->  
-> +lib-objs := clear_page.o copy_page.o memcpy.o memset.o
-> +lib-objs := $(addprefix ../../../lib/, $(lib-objs))
-> +
->  obj-y := timer-sr.o sysreg-sr.o debug-sr.o switch.o tlb.o hyp-init.o host.o \
->  	 hyp-main.o hyp-smp.o psci-relay.o
->  obj-y += ../vgic-v3-sr.o ../aarch32.o ../vgic-v2-cpuif-proxy.o ../entry.o \
->  	 ../fpsimd.o ../hyp-entry.o ../exception.o
-> +obj-y += $(lib-objs)
->  
->  ##
->  ## Build rules for compiling nVHE hyp code
-> -- 
-> 2.29.2.299.gdc1121823c-goog
-> 
-> -- 
-> To unsubscribe from this group and stop receiving emails from it, send an email to kernel-team+unsubscribe@android.com.
-> 
+Could you help my understand why we need this?
+* Why do we need PI routines in the first place? Would my series that fixes
+  relocations in hyp code remove the need?
+* You added these aliases for the string routines because you were worried
+  somebody would change the implementation in arch/arm64/lib, right? But this
+  cache flush function is defined in hyp/nvhe. So why do we need to point to
+  the PI alias if we control the implementation?
