@@ -2,161 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C25B22C030C
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 11:16:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C613E2C0317
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 11:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728182AbgKWKNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 05:13:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34612 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728144AbgKWKNI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 05:13:08 -0500
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CD10C061A4D
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 02:13:08 -0800 (PST)
-Received: by mail-yb1-xb42.google.com with SMTP id 2so15397648ybc.12
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 02:13:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Lvn4+bjYbxxCbS7L/QCzyvRpE+ItUgyiLMioWuZNw0g=;
-        b=zPiVI/dQ12Jth9bMBDSqmQOmWkH5ziZh0ycmMbl3yW9lANMDaBW/jc0DiVo/+1Mvtb
-         QnWJWQ+IrlF4J6L3qvAPtw8EmiuOa2Ez2vx43FJeiIdL1dA4qnGHNPVCJ9xsHsSmEpMT
-         eOiWC6867AktKIRRe+Rns4P22awgSl5t4FXtbH6TP98D/wiGPePxRw4JaqzwcV3j3onf
-         xqEmszGQRlsBMTY6yBsxwzDLcXoIe8LD7oMWL2hAy+++ltg/x8aCBlQ3CqMJTa3cJJ6Z
-         bK6O8vuUGEK5Pe7SgoSYTH44sHS1ABxvw2L0O1pMymtEOTzYttpkEA2wd6TZ8+B4xN0q
-         jX+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Lvn4+bjYbxxCbS7L/QCzyvRpE+ItUgyiLMioWuZNw0g=;
-        b=J1m0eoaS4RzDk0lWpjX8bgCM+okANDW1Az30BNsMAsNJHacvBYS+x7yh/FiVQRn0iL
-         f5n5llyBboJ6/0NXrqZ0AGY/MkCO2wZYeF00dmC0W5UGeQtxedMwsyP2HWQgbtu9QKmT
-         OO1oZDtRcyhAcLbM8vjRovTtCYwpY+FQBjohIBPbkjkCbM5YLzwmSQYwvxtVExeFJsNu
-         r587OpRMCn8LpP7EsHVqFzoMbpaHUXlgEuQaLogrk5oCmoYhDBUa00PbQ49HVrXXOty4
-         eGupGCqJfZfxKS40dolp1UE9/BDa7uYGtV2JpWlcz0AuVjFFggi4qzElYKfCFEPY25i2
-         AYlw==
-X-Gm-Message-State: AOAM531fwtrPNxdevwcmGxmOwb3jdF1mN50LBDw9Wrz4WGZRzMMCPmz4
-        MIRIKh0jHhI3rfNQ2EXjqDw2Ip1vOTy3us4naTWOOw==
-X-Google-Smtp-Source: ABdhPJzIY/SaDA417dFn6lslJn7PBUUzQ1eYf5tPZpZKaIjf/lLLOk3BgqB+rXma5/8S4sS9JW8vit8t9UbXTS5zfrU=
-X-Received: by 2002:a25:c7c6:: with SMTP id w189mr32070799ybe.403.1606126387667;
- Mon, 23 Nov 2020 02:13:07 -0800 (PST)
+        id S1725843AbgKWKSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 05:18:13 -0500
+Received: from foss.arm.com ([217.140.110.172]:40346 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726528AbgKWKSM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 05:18:12 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 32CED101E;
+        Mon, 23 Nov 2020 02:18:12 -0800 (PST)
+Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 489743F70D;
+        Mon, 23 Nov 2020 02:18:10 -0800 (PST)
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        linux-kernel@vger.kernel.org, broonie@kernel.org
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, f.fainelli@gmail.com,
+        satyakim@qti.qualcomm.com, souvik.chakravarty@arm.com,
+        etienne.carriere@linaro.org, Jonathan.Cameron@Huawei.com,
+        vincent.guittot@linaro.org, james.quinlan@broadcom.com,
+        lukasz.luba@arm.com, robh@kernel.org
+Subject: Re: [PATCH v6 0/5] Add support for SCMIv3.0 Voltage Domain Protocol and SCMI-Regulator
+Date:   Mon, 23 Nov 2020 10:18:01 +0000
+Message-Id: <160612640234.1278741.10147060324304611609.b4-ty@arm.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201119191051.46363-1-cristian.marussi@arm.com>
+References: <20201119191051.46363-1-cristian.marussi@arm.com>
 MIME-Version: 1.0
-References: <20201028221302.66583-1-kholk11@gmail.com>
-In-Reply-To: <20201028221302.66583-1-kholk11@gmail.com>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Mon, 23 Nov 2020 15:42:32 +0530
-Message-ID: <CAMi1Hd1hh3NYuFTs3C39ha1Jy_0LxQ4Akg36sm0x1+uicWYRjQ@mail.gmail.com>
-Subject: Re: [PATCH v9 0/3] Add Novatek NT36xxx touchscreen driver
-To:     kholk11@gmail.com
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, rydberg@bitmath.org,
-        priv.luk@gmail.com, linux-input@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>, marijns95@gmail.com,
-        Konrad Dybcio <konradybcio@gmail.com>, martin.botka1@gmail.com,
-        phone-devel@vger.kernel.org, dt <devicetree@vger.kernel.org>,
-        krzk@kernel.org, andy.shevchenko@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, 19 Nov 2020 19:10:46 +0000, Cristian Marussi wrote:
+> this series introduces the support for the new SCMI Voltage Domain Protocol
+> defined by the upcoming SCMIv3.0 specification, whose BETA release is
+> available at [1].
+> 
+> Afterwards, a new generic SCMI Regulator driver is developed on top of the
+> new SCMI VD Protocol.
+> 
+> [...]
 
-On Thu, 29 Oct 2020 at 06:32, <kholk11@gmail.com> wrote:
->
-> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
->
-> This patch series adds support for the Novatek NT36xxx Series' In-Cell
-> touchscreen (integrated into the DriverIC).
->
-> This patch series has been tested against the following devices:
->  - Sony Xperia 10        (SDM630 Ganges Kirin)
->  - Sony Xperia 10 Plus   (SDM636 Ganges Mermaid)
+Applied to sudeep.holla/linux (for-next/scmi-voltage), thanks!
 
-Tested the patch series on Xiaomi Poco F1 (SDM845 Beryllium) using
-Novatek NT36672A IC. May I suggest adding "novatek,nt36672a" in the
-list of compatible of_device_id{} as well.
+I will soon send pull request to Mark Brown so tha he can pick by the
+regulator driver patches with these as agreed.
 
+[4/5] dt-bindings: arm: Add support for SCMI Regulators
+      https://git.kernel.org/sudeep.holla/c/0f80fcec08
+[1/5] firmware: arm_scmi: Add voltage domain management protocol support
+      https://git.kernel.org/sudeep.holla/c/2add5cacff
+[2/5] firmware: arm_scmi: Add support to enumerated SCMI voltage domain device
+      https://git.kernel.org/sudeep.holla/c/ec88381936
+
+--
 Regards,
-Amit Pundir
+Sudeep
 
-
->
-> Changes in v2:
-> - Fixed sparse warnings from lkp kernel test robot
->
-> Changes in v3 (as requested by Dmitry Torokhov):
-> - Using shorthand u16/u32 (sorry for the overlook!)
-> - Now using more input and touchscreen APIs
-> - Fixed useless workqueue involvements
-> - Removed useless locking
-> - Switched reads and writes to use regmap
-> - Moved header contents to nt36xxx.c
-> - Fixed reset gpio handling
-> - Other cleanups
-> - P.S.: Thanks, Dmitry!
->
-> Changes in v4:
-> - Fixed regmap read length for CRC_ERR_FLAG final check
-> - Fixed YAML binding, as requested by Krzysztof Kozlowski
->
-> Changes in v5:
-> - Replaced subsystem maintainer's name with .. mine,
->   usage of additionalProperties to unevaluatedProperties
->   and a typo fix for reset-gpios as per Rob Herring's review
-> - Changed compatible string as per Krzysztof K. request
-> - Renamed the novatek,nt36xxx.yaml file to just nt36xxx.yaml
->   in order to now reflect the driver name instead of the DT
->   compatible
-> - Fixed blank line at EOF
->
-> Changes in v6:
-> - Removed include of_gpio.h, added mod_devicetable.h and
->   gpio/consumer.h
-> - Added kerneldoc to relevant functions/enum
-> - Used traditional patterns for error checking where possible
-> - Documented calls to usleep/msleep
-> - Using be16_to_cpu / get_unaligned_be16 where possible
-> - Added helper for CRC error check on retrieved buffer
-> - Decreased indentation in the CRC reboot recovery function
-> - Removed instances of error code sum
-> - Dropped all likely/unlikely optimization as per request
-> - Removed redundant reset_gpio checks
-> - Dropped of_match_ptr and ifdefs for CONFIG_OF
->
-> Changes in v7:
-> - Fixed typo in nt36xxx.c
->
-> Changes in v8:
-> - Fixed typo reset-gpio -> reset-gpios in dt-bindings
->
-> Changes in v9:
-> - Includes are now sorted
-> - Used proposed sizeof variable instead of sizeof type
-> - Fixed a return value check for common pattern
-> - Added NULL check to devm_kasprintf call
-> - Returning ret on probe function to be consistent
->
-> AngeloGioacchino Del Regno (3):
->   dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
->   Input: Add Novatek NT36xxx touchscreen driver
->   dt-bindings: touchscreen: Add binding for Novatek NT36xxx series
->     driver
->
->  .../bindings/input/touchscreen/nt36xxx.yaml   |  59 ++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  drivers/input/touchscreen/Kconfig             |  12 +
->  drivers/input/touchscreen/Makefile            |   1 +
->  drivers/input/touchscreen/nt36xxx.c           | 894 ++++++++++++++++++
->  drivers/input/touchscreen/nt36xxx.h           | 122 +++
->  6 files changed, 1090 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
->  create mode 100644 drivers/input/touchscreen/nt36xxx.c
->  create mode 100644 drivers/input/touchscreen/nt36xxx.h
->
-> --
-> 2.28.0
->
