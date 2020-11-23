@@ -2,201 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 567952BFEE7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 04:56:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CCF02BFEF2
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 05:16:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727057AbgKWDwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 22:52:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726893AbgKWDwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 22:52:31 -0500
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4921C0613CF
-        for <devicetree@vger.kernel.org>; Sun, 22 Nov 2020 19:52:29 -0800 (PST)
-Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 78E8A891AE;
-        Mon, 23 Nov 2020 16:52:24 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1606103544;
-        bh=2UlIo8j5DajpgR4TvxUOs90rl0Y78kKC5FRmCtyJRp0=;
-        h=From:To:Cc:Subject:Date;
-        b=FUWP6ph5yde2PC8iwNHB03SCpJ4OeNgw5gNubHM6kmGUFojjl3BrRBDMzXMooeD93
-         Lftz1WZhGEnBKmMZJBywKpSqfeRiDhha+O7Mu0cJuPC/dlyyFsOf2gTXmywV3GCinw
-         iUHbM9OBvdyAaC6qrAcAA/zh0j32600jUCBCSw7MQidTtQDYdFAT/XY4njnd5n4pAt
-         TJ8LCxilnwHYhF8VEeF5NzlnwpgikMGSAzKtVPxhjRJ0dRTTnJvCivmOfRS0QrbXoH
-         Gfs1CDCXNvbYG/Eir2K4Q0Se1pDLbp3t4kfkYExkwqYtDsswPvje7t4qR9+IlTmdUd
-         s+uW2Whk2/Acg==
-Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
-        id <B5fbb31f80000>; Mon, 23 Nov 2020 16:52:24 +1300
-Received: from aryans-dl.ws.atlnz.lc (aryans-dl.ws.atlnz.lc [10.33.21.30])
-        by smtp (Postfix) with ESMTP id E4A3413EE9F;
-        Mon, 23 Nov 2020 16:52:23 +1300 (NZDT)
-Received: by aryans-dl.ws.atlnz.lc (Postfix, from userid 1844)
-        id 3797B14C2841; Mon, 23 Nov 2020 16:52:24 +1300 (NZDT)
-From:   Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
-To:     robh+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, chrisp@alliedtelesis.co.nz
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
-Subject: [PATCH] ARM: dts: mvebu: Add device tree for RD-AC3X-48G4X2XL board
-Date:   Mon, 23 Nov 2020 16:52:15 +1300
-Message-Id: <20201123035215.2239-1-aryan.srivastava@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.29.2
+        id S1726603AbgKWEQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 23:16:01 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55764 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726163AbgKWEQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 23:16:01 -0500
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AN4Fpjt047525;
+        Sun, 22 Nov 2020 22:15:51 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1606104951;
+        bh=p8pCdEaf0BGLKH/LQGUp332RXVKuhGq0a2886p63br8=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=QecnT0m3mgKUJlnubLsJMnTAxA5tMqD0yjG8brB4gizpc0pdXNzR/QIFfBIetghTV
+         hPab+0+EQiPpv3IPEKRQrEFWUOO6nT1CPgfAyPUpqeEBDczNWVujmN5sCdPBY7/wxM
+         P5qQVgvetpgo5mToc6MwMLS2aqEZ8hhIc54ln8XM=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AN4FpxN088558
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 22 Nov 2020 22:15:51 -0600
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sun, 22
+ Nov 2020 22:15:51 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Sun, 22 Nov 2020 22:15:51 -0600
+Received: from [10.24.69.198] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AN4FgL6075871;
+        Sun, 22 Nov 2020 22:15:47 -0600
+Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3: squelch warnings regarding no
+ #address-cells for interrupt-controller
+To:     Nishanth Menon <nm@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <t-kristo@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Faiz Abbas <faiz_abbas@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Andre Przywara <andre.przywara@arm.com>
+References: <20201117161942.38754-1-nsekhar@ti.com>
+ <20201117161942.38754-3-nsekhar@ti.com>
+ <ab9658ef-c8a7-155b-acb1-effa872132ca@ti.com>
+ <20201118151259.kpag44djji4ssiup@eldest>
+ <18e41dba-a3dd-308a-605e-63b76ca638e5@ti.com>
+ <20201119132829.sr435jf6s4275q4i@boxlike>
+From:   Sekhar Nori <nsekhar@ti.com>
+Message-ID: <313a9cd5-7411-4ae1-cde4-42a2c18d11e6@ti.com>
+Date:   Mon, 23 Nov 2020 09:45:42 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-x-atlnz-ls: pat
+In-Reply-To: <20201119132829.sr435jf6s4275q4i@boxlike>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree for RD-AC3X-48G4X2XL board. This has a Armada 382 SoC on
-a interposer board connected to a baseboard with a Prestera AC3X ASIC
-connected via PCI.
+On 19/11/20 6:58 PM, Nishanth Menon wrote:
+> Punting over to Rob and DT team's wisdom..
+> 
+> On 13:17-20201119, Grygorii Strashko wrote:
+>>
+>>
+>> On 18/11/2020 17:12, Nishanth Menon wrote:
+>>> On 13:38-20201118, Grygorii Strashko wrote:
+>>>> Hi Rob,
+>>>>
+>>>> On 17/11/2020 18:19, Sekhar Nori wrote:
+>>>>> With dtc 1.6.0, building TI device-tree files with W=2 results in warnings
+>>>>> like below for all interrupt controllers.
+>>>>>
+>>>>> /bus@100000/bus@30000000/interrupt-controller1: Missing #address-cells in interrupt provider
+>>>>>
+>>>>> Fix these by adding #address-cells = <0>; for all interrupt controllers in
+>>>>> TI device-tree files. Any other #address-cells value is really only needed
+>>>>> if interrupt-map property is being used (which is not the case for existing
+>>>>> TI device-tree files)
+>>>>>
+>>>>> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
+>>>>> ---
+>>>>>    arch/arm64/boot/dts/ti/k3-am65-main.dtsi              |  5 +++++
+>>>>>    arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi            |  2 ++
+>>>>>    arch/arm64/boot/dts/ti/k3-am654-base-board.dts        |  1 +
+>>>>>    arch/arm64/boot/dts/ti/k3-j7200-main.dtsi             |  3 +++
+>>>>>    arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi       |  1 +
+>>>>>    arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts |  1 +
+>>>>>    arch/arm64/boot/dts/ti/k3-j721e-main.dtsi             | 11 +++++++++++
+>>>>>    arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi       |  3 +++
+>>>>>    8 files changed, 27 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>>>> index aa8725db0187..55aaa1404d7d 100644
+>>>>> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+>>>>> @@ -440,6 +440,7 @@
+>>>>>    		interrupt-controller;
+>>>>>    		interrupt-parent = <&gic500>;
+>>>>>    		#interrupt-cells = <1>;
+>>>>> +		#address-cells = <0>;
+>>>> Does it really required or mandatory to have #address-cells = <0>; defined for interrupt-controller DT nodes which
+>>>> do not have child nodes and no "interrupt-map"?
+>>>
+>>> Just to help clarify (I could be mistaken as well): is'nt the
+>>> interrupt map for user interrupt map nodes that refer to this
+>>> interrupt controller node to state they dont need a parent address
+>>> specifier - so are we claiming none of the users will have an
+>>> interrupt-map (now and never in the future as well) - we we might want
+>>> to explain why we think that is the case, and if we are expecting dtc
+>>> to deduce that (if so how?)?
+>>>
+>>
+>> The main reason I commented - is hope to get some clarification from DT maintainers.
+>> 90% of interrupt-controller nodes do not have #address-cells and I never seen in in GPIO nodes
+>> (most often is present in PCI and GIC nodes).
+>> and nobody seems fixing it. So, if we are going to move this direction it's reasonable to get clarification to be sure.
+>>
+>> And there is no "never" here - #address-cells always can be added if really required.
+> 
+> 
+> OK - as a GPIO node, but as an interrupt-controller node, I was
+> looking at [1] and wondering if that was the precedence.
+> 
+> Yes, will be good to get direction from the DT maintainers on this
+> topic.
 
-Signed-off-by: Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/armada-382-rd-ac3x-48g4x2xl.dts  | 114 ++++++++++++++++++
- 2 files changed, 115 insertions(+)
- create mode 100644 arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
+Shall I respin this series with 2/4 dropped while we wait for decision
+on this?
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index ce66ffd5a1bb..a60407ad7347 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1319,6 +1319,7 @@ dtb-$(CONFIG_MACH_ARMADA_370) +=3D \
- dtb-$(CONFIG_MACH_ARMADA_375) +=3D \
- 	armada-375-db.dtb
- dtb-$(CONFIG_MACH_ARMADA_38X) +=3D \
-+	armada-382-rd-ac3x-48g4x2xl.dtb \
- 	armada-385-clearfog-gtr-s4.dtb \
- 	armada-385-clearfog-gtr-l8.dtb \
- 	armada-385-db-88f6820-amc.dtb \
-diff --git a/arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts b/arch/arm=
-/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
-new file mode 100644
-index 000000000000..b08d662a8519
---- /dev/null
-+++ b/arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
-@@ -0,0 +1,114 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Device Tree file for Marvell Armada 382 reference board
-+ * (RD-AC3X-48G4X2XL)
-+ *
-+ * Copyright (C) 2020 Allied Telesis Labs
-+ */
-+
-+/dts-v1/;
-+#include "armada-385.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model =3D "Marvell Armada 382 RD-AC3X";
-+	compatible =3D "marvell,rd-ac3x-48g4x2xl", "marvell,rd-ac3x",
-+			 "marvell,armada385", "marvell,armada380";
-+
-+	chosen {
-+		stdout-path =3D "serial0:115200n8";
-+	};
-+
-+	aliases {
-+		ethernet0 =3D &eth1;
-+	};
-+
-+	memory {
-+		device_type =3D "memory";
-+		reg =3D <0x00000000 0x20000000>; /* 512MB */
-+	};
-+
-+	soc {
-+		ranges =3D <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
-+			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000>;
-+	};
-+};
-+
-+&i2c0 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&i2c0_pins>;
-+	status =3D "okay";
-+
-+	eeprom@53{
-+		compatible =3D "atmel,24c64";
-+		reg =3D <0x53>;
-+	};
-+//	cpld@3c{
-+//		compatible =3D "marvell,ac3x-cpld";
-+//		reg =3D <0x3c>;
-+//	};
-+};
-+
-+&uart0 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&uart0_pins>;
-+	status =3D "okay";
-+};
-+
-+&eth1 {
-+	status =3D "okay";
-+	phy =3D <&phy0>;
-+	phy-mode =3D "rgmii-id";
-+};
-+
-+&mdio {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&mdio_pins>;
-+
-+	phy0: ethernet-phy@0 {
-+		reg =3D <0>;
-+	};
-+};
-+
-+&pciec {
-+	status =3D "okay";
-+};
-+
-+&pcie1 {
-+	/* Port 0, Lane 0 */
-+	status =3D "okay";
-+};
-+
-+&nand_controller {
-+	status =3D "okay";
-+
-+	nand@0 {
-+		reg =3D <0>;
-+		label =3D "pxa3xx_nand-0";
-+		nand-rb =3D <0>;
-+		nand-on-flash-bbt;
-+
-+		partitions {
-+			compatible =3D "fixed-partitions";
-+			#address-cells =3D <1>;
-+			#size-cells =3D <1>;
-+			partition@0 {
-+				reg =3D <0x00000000 0x00500000>;
-+				label =3D "u-boot";
-+			};
-+			partition@500000{
-+				reg =3D <0x00500000 0x00400000>;
-+				label =3D "u-boot env";
-+			};
-+			partition@900000{
-+				reg =3D <0x00900000 0x3F700000>;
-+				label =3D "user";
-+			};
-+		};
-+	};
-+};
-+
-+&refclk {
-+	clock-frequency =3D <200000000>;
-+};
---=20
-2.29.2
+#address-cells warnings on interrupt controller can perhaps be handled
+all at once (there are many of those in existing DT anyway).
 
+GPIO is basic support and holds up many other modules (like MMC/SD).
+
+Thanks,
+Sekhar
