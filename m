@@ -2,78 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D322C0DB9
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:41:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F2AD52C0DC0
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:41:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389179AbgKWOcG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 09:32:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46522 "EHLO
+        id S1729794AbgKWOeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 09:34:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389130AbgKWOcF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:32:05 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53A08C061A4E
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:32:05 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id z21so23975772lfe.12
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:32:05 -0800 (PST)
+        with ESMTP id S1729535AbgKWOeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:34:04 -0500
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D54C061A4D
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:34:04 -0800 (PST)
+Received: by mail-wm1-x343.google.com with SMTP id x22so414791wmc.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:34:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CD/fQep9OsiPNeBueraAPkoryFQ/vLrFoZEixh/G32w=;
-        b=B23wlcJH+h65Oy3GOsnudV95X0Xup3PY4Z8RpaKih0qYIno5amPc/+FdCSVJCj6m7U
-         8U8Pc7tLOLeXQkimJ5BOKLLYdzMTmGR+/plmRepLBDr6vuYU1c4Mss1x0/fqA4+xIO5O
-         DsLfCP0jzl9hGiUvhnjb9IeViXxf9lypNpl4Tx39WdghoKy/UHxw1Yl46bX4WyB592y9
-         A502hG1TQCbr0E+LfKAT33rIDSzTpRb/yTlhzNJnGbqJx8uYS3ZWMfbKuP3fXYlFyH8w
-         TVajzuVtjqWewR1h9+QMQrbQG6boxLL7a19eUG8WZSGhP74kfchf1B0xdIG3miKTt9Qg
-         4D/A==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h2X6f3r1AMyTvYQnEJG6RFCLQoqcoeXFdGnWiV9Q2OU=;
+        b=vHBonhWeMJX1FhFSTdnnEBfkcXDYw8w95Oaan/JooqYoJbfso1Fh/08+/F304VHmWM
+         QHlFzAY9nnvB1bfoWBmf+4X+8W5z7vq2e6kPY8eKYC+IhqOnqx3x3j/C19t1W8ZGOWl+
+         N4IxOOH+uaNUzon86w96/0mRf0QxuDMShM5wloWRKuZ4O01dOqIMcxbOYWCth5/CNRjD
+         x6M4TWL1JhYTtGxsQtI1k2WuUek72lFJ0MKuJ00ciDV4Geo+zqvt9SgFYk5UbtsXcUUL
+         lpKJiV5bTv64XCnW4v0q5Xm3gkU+AxbnsjIpp4dO9UD3uuQd2eITPMxTffPf3xCeF/ML
+         Q0+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CD/fQep9OsiPNeBueraAPkoryFQ/vLrFoZEixh/G32w=;
-        b=aKZUULzc+U/dnoazZjvWRyLqHQPQgeYbpoSkR9waHf4lZ5p9JbNeOaTSeR5q2X33YM
-         bbL3qsWm/pO05mZWIdpU78XK22Hh9T96nw35ao59mXd3HQKsaZnilkd7cy369J2qLrKK
-         J5VxQKgj4LdzoXSsW9lJxZKzRhW+97sHd5EcB05TL/Vk5UxXuLjyowzx73kfFAIi00EO
-         qty2iNsxnofY29BdahOCDredjU+xUa6ClmP2+AF+r657t/fuc3LYLwCxMrvXvxC4TQVt
-         yaVSMN99nCZ5cS7IjpFTTuNvEL7VOQ+iGLMSrFdpDeT42xh6sVqC8+Jd8TZd11bnTP3l
-         j3Xg==
-X-Gm-Message-State: AOAM531j6RrbnWDB05FeY0F52wv6lDAUIvuy1SYl7+7xPsfRESstmAla
-        UE5PR49VSksILXG/NnPLyFrLgleX05Xl6sD5tlV4FQ==
-X-Google-Smtp-Source: ABdhPJx3/GiTdrK6xYxnUkNa0bd9c+GF88T8obU8aOlbCwnyfO7IZEeHl3HBCCg6OK8iuW/g1BPwo3ZtShcB2FSBm3k=
-X-Received: by 2002:a05:6512:3e7:: with SMTP id n7mr12620380lfq.585.1606141923819;
- Mon, 23 Nov 2020 06:32:03 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h2X6f3r1AMyTvYQnEJG6RFCLQoqcoeXFdGnWiV9Q2OU=;
+        b=WsBjCzcoHD9d3oYLi2RiBcoG7MN370PDCpo9YECN/R14Bo5Ti3K3ohfe1KOzYJyavE
+         BAzte23yPbO7ovlXyM2VqzwLiZqLiP0hXqC8YNYnT/o9cAuJHEpZvf6I8klKZBydM6DQ
+         DtODXQJHnv1zRhyQfpPK0qSqFcCqMdhU93+ne6JFPL7VJw5NuKj+KfR2l8MfLFvOHjD6
+         +V1luS+fgEJiyOlpf+CpxTo8egggoEl0fpWJiTjweg2hHyVTT2gHI/Mp+pJA+GIfFpD2
+         tH+O/EKToAD/GZm4v/pl7UcEUH+NKYRcG6FtYQSfHP2Npsu0eELRuPrb6cpAKYz1RScD
+         H8yg==
+X-Gm-Message-State: AOAM530iZ4OMSUC4msl7NZU58LHWGYXcfXJGzjQRFnDVPcn03gxu2QzN
+        ObqWTix5Pvyx0VUfUoT0JsWbmA==
+X-Google-Smtp-Source: ABdhPJyUmHHMKYCP4p/pZ9GX8zG9POVf/kx/9r5H9YZNAat7k4/el+eIzoYqsYebJWQxU1Je/ZZp1Q==
+X-Received: by 2002:a1c:3d05:: with SMTP id k5mr25595586wma.151.1606142042781;
+        Mon, 23 Nov 2020 06:34:02 -0800 (PST)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:9541:d2fd:3a68:67ae])
+        by smtp.gmail.com with ESMTPSA id h2sm18126723wme.45.2020.11.23.06.34.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2020 06:34:02 -0800 (PST)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     sam@ravnborg.org
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 0/2] drm: panel: add support for the Khadas TS050 panel
+Date:   Mon, 23 Nov 2020 15:33:52 +0100
+Message-Id: <20201123143354.295844-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201113145151.68900-1-lars.povlsen@microchip.com> <20201113145151.68900-4-lars.povlsen@microchip.com>
-In-Reply-To: <20201113145151.68900-4-lars.povlsen@microchip.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 23 Nov 2020 15:31:53 +0100
-Message-ID: <CACRpkdaYHTTXC2gEgtCvDk9N8AqWeUyFSXyWp2aiEd97hk55fA@mail.gmail.com>
-Subject: Re: [PATCH v10 3/3] arm64: dts: sparx5: Add SGPIO devices
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 13, 2020 at 3:52 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+This add support & bindings for the Khadas TS050 1080x1920 5" LCD DSI panel designed
+to work with the Khadas Edge-V, Captain, VIM3 and VIM3L Single Board Computers.
+It provides a MIPI DSI interface to the host, a built-in LED backlight
+and touch controller.
 
-> This adds SGPIO devices for the Sparx5 SoC and configures it for the
-> applicable reference boards.
->
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
+Neil Armstrong (2):
+  dt-bindings: panel-simple-dsi: add Khadas TS050 panel bindings
+  drm: panel: add Khadas TS050 panel driver
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+ .../display/panel/panel-simple-dsi.yaml       |   2 +
+ drivers/gpu/drm/panel/Kconfig                 |  11 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-khadas-ts050.c    | 876 ++++++++++++++++++
+ 4 files changed, 890 insertions(+)
+ create mode 100644 drivers/gpu/drm/panel/panel-khadas-ts050.c
 
-Please funnel this patch through the SoC tree for this machine.
+-- 
+2.25.1
 
-Yours,
-Linus Walleij
