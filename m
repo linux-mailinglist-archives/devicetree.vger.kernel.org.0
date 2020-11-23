@@ -2,108 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 209982C1852
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 23:24:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C34A42C1906
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 23:59:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729077AbgKWWXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 17:23:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34918 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728161AbgKWWXX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 17:23:23 -0500
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F6CAC0613CF;
-        Mon, 23 Nov 2020 14:23:23 -0800 (PST)
-Received: by mail-ot1-x344.google.com with SMTP id n12so13963021otk.0;
-        Mon, 23 Nov 2020 14:23:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PhFFzUYuu3kiiGwxciZFZrbqQ/Aj7BOjCk2nVZt0710=;
-        b=ND7+5P3Fbtz0YfySSQrjkwg8+bbpMBdPEgsQhTtZ3ndxtUYUi5EdeJNzWLrJiV4hIP
-         iMcwmx8R7byFwn4PWAUOgdI299yjPtliLCi21Fcz336pv/EZ/DlbzQ2xSBA8imRBs1dL
-         1roLcvzjhDNKdSOcyVZbTbkHjInZX1+DomP5zOACYOghQBc6LLDDFzQ4nfqwt9T3luSU
-         zSlZj7yLjnSpUTUad1325CCbAKUvV4kNCo/YCFLJEKVtt3ht+w+iLPIZq1ASdqj968ck
-         A1eGktAjzGy0oNus2M1VE2Dv44ujeLzsMgPYP+efgTAMvDWXq4U+112Els4GwTtzwLVx
-         im7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PhFFzUYuu3kiiGwxciZFZrbqQ/Aj7BOjCk2nVZt0710=;
-        b=UdrdNrXi2RojZmrqXRj9VPFStyBZzDwvp/bbwMjK0kx3ZYDH4FDE7/SYjJn6U/mZNA
-         V2YTVwEuKNKW/pKzfQ2roTN3KMkiRJ714eMmze1bmI+VGAE1mrrNuz6z7FUejvkBmFDD
-         JS7oD9Yz615v3kALqvumxxdfhvbu4SD+DjgI9ey7NDxh2RUeSSFdJdA6oSfEyOHmJvIw
-         pMNFBMcuiD6T9VssvJfZa8T1kaZZx/ZDx+3/UHiUHSFM/vXrksnYikAUHLp1gwi17UMb
-         gzIDK41MP+51FOZeP2HCQAGYk8uLlwrJC6lQF9PS+7GVQRYsOIE0pWvIMidqc5VUMdtZ
-         YKXg==
-X-Gm-Message-State: AOAM532AWJH0eLIW7OBQtLo6I/oMD8jCaqdfLHzYatNKR82YUtlZqwSO
-        Ey7NirWvF0PCG7kBxvK6NUtQkz0MyG1QOaXqvw==
-X-Google-Smtp-Source: ABdhPJzKRLpCSzDaueG5CwyyJeVapLdoS8niSbvWw+S0uNdSEUTnE4Emdy6VYZnaV62W4DbRhEOQb0+vcHOh8yj3Qsw=
-X-Received: by 2002:a9d:3e6:: with SMTP id f93mr1178709otf.340.1606170202534;
- Mon, 23 Nov 2020 14:23:22 -0800 (PST)
+        id S2388026AbgKWWzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 17:55:51 -0500
+Received: from retiisi.eu ([95.216.213.190]:41300 "EHLO hillosipuli.retiisi.eu"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387788AbgKWWzt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 17:55:49 -0500
+X-Greylist: delayed 570 seconds by postgrey-1.27 at vger.kernel.org; Mon, 23 Nov 2020 17:55:49 EST
+Received: from valkosipuli.localdomain (unknown [IPv6:fd35:1bc8:1a6:d3d5::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 3180F634C24;
+        Tue, 24 Nov 2020 00:45:43 +0200 (EET)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1khKad-0001Se-Jj; Tue, 24 Nov 2020 00:45:43 +0200
+Date:   Tue, 24 Nov 2020 00:45:43 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        linux-leds@vger.kernel.org, newbytee@protonmail.com,
+        Stephan Gerhold <stephan@gerhold.net>,
+        phone-devel@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2 v6] dt-bindings: leds: Add DT binding for Richtek
+ RT8515
+Message-ID: <20201123224543.GC4351@valkosipuli.retiisi.org.uk>
+References: <20201123214439.1279464-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-References: <20201120181627.21382-1-george.mccollister@gmail.com>
- <20201120181627.21382-3-george.mccollister@gmail.com> <20201120193321.GP1853236@lunn.ch>
- <CAFSKS=P=epx3Sr3OzkCg9ycoftmXm__PaMee7HWbAGXYdqgbDw@mail.gmail.com>
- <20201120232439.GA1949248@lunn.ch> <CAFSKS=M-2rwM2UC58xf8n0ORuwxHq06BjLj7QP=JuU19-tCpGg@mail.gmail.com>
- <20201123220914.GC2036992@lunn.ch>
-In-Reply-To: <20201123220914.GC2036992@lunn.ch>
-From:   George McCollister <george.mccollister@gmail.com>
-Date:   Mon, 23 Nov 2020 16:23:10 -0600
-Message-ID: <CAFSKS=NfbfJs4hk1Ao3yjVukE+kU_7E9Zck8oNOWzEOgtKEp-A@mail.gmail.com>
-Subject: Re: [PATCH net-next 2/3] net: dsa: add Arrow SpeedChips XRS700x driver
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201123214439.1279464-1-linus.walleij@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 23, 2020 at 4:09 PM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > > > https://www.flexibilis.com/downloads/xrs/SpeedChip_XRS7000_3000_User_Manual.pdf
->
-> Section 6.1.4
->
-> The forwarding decision is presented in Figure 19. Note that also
-> frames coming into a disabled port are received to the buffer memory,
-> but because their forwarding decision is not to forward them to any
-> port, they are dropped.  This behavior however can be changed, and
-> frames can be forwarded from disabled ports to other ports by using
-> Inbound Policy (see Chapter 6.1.5).
->
-> Sounds promising. And Section 6.1.5:
+Hi Linus,
 
-Indeed, I missed this.
+On Mon, Nov 23, 2020 at 10:44:38PM +0100, Linus Walleij wrote:
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index f1211e7045f1..92fa90b4a671 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -151,6 +151,12 @@ properties:
+>        Maximum flash LED supply current in microamperes. Required for flash LED
+>        nodes with configurable current.
+>  
+> +  torch-max-microamp:
+> +    description:
+> +      Maximum flash LED supply current in microamperes, when the flash LED is
+> +      used as a torch (flashlight). This is usually lower than the flash mode
+> +      maximum current, if the LED supports torch mode.
 
->
-> Inbound Policy checks the source and the destination MAC addresses of
-> all the received frames. The user can configure through the register
-> interface what kind of a treatment should frames with certain source
-> or destination MAC addresses get. Many protocols use protocol specific
-> multicast MAC addresses and the destination MAC address can therefore
-> be used for forwarding those frames to CPU port and not to other
-> ports.
->
-> Looking at table 36, i think you can add a match for the BPDU
-> destination MAC address, and have i forwarded to the CPU port.
+Thanks for the update.
 
-I'll give it a try.
+One more thing. The other flash LED DT bindings are using led-max-microamp
+for the torch mode --- for it's what the non-flash LEDs do.
 
->
-> Looks like you can add 15 such filters. So you might want to think
-> about how you want to use these, what other special packets do you
-> want to allow through?
+Could you use the same here?
 
-Okay.
+With that, for the set:
 
->
->             Andrew
+Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 
-Thanks!
+-- 
+Kind regards,
+
+Sakari Ailus
