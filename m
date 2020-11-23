@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CFF2C096F
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:18:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3996E2C0964
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:18:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387966AbgKWNH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 08:07:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33316 "EHLO
+        id S2388631AbgKWNHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 08:07:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388646AbgKWNH1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 08:07:27 -0500
+        with ESMTP id S2388628AbgKWNHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 08:07:03 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B85AC0613CF
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 05:07:26 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073C3C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 05:07:03 -0800 (PST)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1khBYX-0003C1-Mf; Mon, 23 Nov 2020 14:06:57 +0100
+        id 1khBYX-0003C2-Mf; Mon, 23 Nov 2020 14:06:57 +0100
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1khBYW-0004Z3-R8; Mon, 23 Nov 2020 14:06:56 +0100
+        id 1khBYW-0004ZC-SC; Mon, 23 Nov 2020 14:06:56 +0100
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -33,9 +33,9 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         David Jander <david@protonic.nl>
-Subject: [PATCH v1 1/3] dt-bindings: vendor-prefixes: Add an entry for Kverneland Group
-Date:   Mon, 23 Nov 2020 14:06:53 +0100
-Message-Id: <20201123130655.17482-2-o.rempel@pengutronix.de>
+Subject: [PATCH v1 2/3] dt-bindings: arm: fsl: add Kverneland UT1 and UT1Q boards
+Date:   Mon, 23 Nov 2020 14:06:54 +0100
+Message-Id: <20201123130655.17482-3-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <20201123130655.17482-1-o.rempel@pengutronix.de>
 References: <20201123130655.17482-1-o.rempel@pengutronix.de>
@@ -49,26 +49,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "kvg" entry for Kverneland Group: https://ien.kvernelandgroup.com/
+Add Kverneland UT1 (imx6dl) and UT1Q (imx6q) based boards
 
 Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 8332d50301ea..7da549f508ae 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -567,6 +567,8 @@ patternProperties:
-     description: Sutajio Ko-Usagi PTE Ltd.
-   "^kyo,.*":
-     description: Kyocera Corporation
-+  "^kvg,.*":
-+    description: Kverneland Group
-   "^lacie,.*":
-     description: LaCie
-   "^laird,.*":
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index bccf76f9d65d..93ba234604e1 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -210,6 +210,7 @@ properties:
+               - kiebackpeter,imx6q-tpc    # K+P i.MX6 Quad TPC Board
+               - kontron,imx6q-samx6i      # Kontron i.MX6 Dual/Quad SMARC Module
+               - kosagi,imx6q-novena       # Kosagi Novena Dual/Quad
++              - kvg,vicut1q               # Kverneland UT1Q board
+               - logicpd,imx6q-logicpd
+               - lwn,display5              # Liebherr Display5 i.MX6 Quad Board
+               - lwn,mccmon6               # Liebherr Monitor6 i.MX6 Quad Board
+@@ -364,6 +365,7 @@ properties:
+               - fsl,imx6dl-sabresd        # i.MX6 DualLite SABRE Smart Device Board
+               - karo,imx6dl-tx6dl         # Ka-Ro electronics TX6U Modules
+               - kontron,imx6dl-samx6i     # Kontron i.MX6 Solo SMARC Module
++              - kvg,vicut1                # Kverneland UT1 board
+               - ply,plybas                # Plymovent BAS board
+               - ply,plym2m                # Plymovent M2M board
+               - poslab,imx6dl-savageboard # Poslab SavageBoard Dual
 -- 
 2.29.2
 
