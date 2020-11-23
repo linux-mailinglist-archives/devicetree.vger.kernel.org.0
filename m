@@ -2,324 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A323B2C09BD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:18:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07FC82C0BBA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:57:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729356AbgKWNLK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 08:11:10 -0500
-Received: from relay5.mymailcheap.com ([159.100.241.64]:56050 "EHLO
-        relay5.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388202AbgKWNLI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 08:11:08 -0500
-Received: from relay3.mymailcheap.com (relay3.mymailcheap.com [217.182.66.161])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 84E072008F;
-        Mon, 23 Nov 2020 13:11:03 +0000 (UTC)
-Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
-        by relay3.mymailcheap.com (Postfix) with ESMTPS id CC9A43ECDF;
-        Mon, 23 Nov 2020 14:11:01 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by filter2.mymailcheap.com (Postfix) with ESMTP id A86D82A510;
-        Mon, 23 Nov 2020 14:11:01 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1606137061;
-        bh=n+9CKV1+EcairAIXvhFHe2SDd55at9qkp7mbMG4qEUE=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=PToUS88STuOiSB3rUbm+00QMf+NY8sLoL0QTLTTLsVnetl0m7VYdSZO1LT1elU38G
-         b3Xw98T4WD1VWri/qa7eFdClRqMZbZFEHJOs5jadKUqnAqtfA8qdqm2BXKE78ISbO2
-         uCH5AmB5QxIfbVTMIF08Hg7122kzbh9G0dpFk4Dw=
-X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
-Received: from filter2.mymailcheap.com ([127.0.0.1])
-        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id m3xVZCFxJ87b; Mon, 23 Nov 2020 14:11:00 +0100 (CET)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter2.mymailcheap.com (Postfix) with ESMTPS;
-        Mon, 23 Nov 2020 14:11:00 +0100 (CET)
-Received: from [148.251.23.173] (ml.mymailcheap.com [148.251.23.173])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 4893641F56;
-        Mon, 23 Nov 2020 13:10:59 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="JIoQYmTK";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [172.19.0.1] (unknown [64.225.114.122])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id DFE7441FD3;
-        Mon, 23 Nov 2020 13:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1606137051; bh=n+9CKV1+EcairAIXvhFHe2SDd55at9qkp7mbMG4qEUE=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=JIoQYmTKIAhWHINNfIDTPqDZhm0TCq0YLOIGSz9kZwt/pRLqlEQPCmJM2URz7tVH1
-         6wZl6cr1Sw0jmHvo0R5M9igTNQGUsiDgcr2WvCuGB2eBnPnXme9ea/bljL/NFqJb/Y
-         iV4BfbkUh/vC3y/H//VWY2+j3j0TbTDWYgCQrpMM=
-Date:   Mon, 23 Nov 2020 21:10:38 +0800
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20201123125332.2p5z3ew7svszvyfs@gilmour>
-References: <20201107125332.2223197-1-icenowy@aosc.io> <20201110103925.rbej5ueo2fefbmlp@gilmour.lan> <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io> <20201116155508.364dg6ycklwylswe@gilmour.lan> <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io> <20201120155939.3ajmbny2pka2vsnf@gilmour> <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io> <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org> <20201123111512.y7lbwsipbkcpuleb@gilmour> <97E2037C-3C3C-4B0B-8462-39B9E38CB3BB@aosc.io> <20201123125332.2p5z3ew7svszvyfs@gilmour>
+        id S1730529AbgKWN3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 08:29:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55572 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730508AbgKWM2x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 07:28:53 -0500
+Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E5A9C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:28:53 -0800 (PST)
+Received: by mail-ua1-x941.google.com with SMTP id q68so5596200uaq.3
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:28:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IMrDSBRZ+BrQ7IeHtOwZdwbcJ4Pv+oUEuoNbzrU6uKc=;
+        b=Drj+eK7hkAME0UZZLujX/V8zmRw/3UY95f5P2X9PZV/s8n/74Mch82IWyPSn0ruL1j
+         DFdQwzjxW+nBZFpvdc4eOkzxaa+Xfed/oAcYHGrQVUOGpjPfVASJtyQibLYPWCoNAocE
+         lS+SvY5rkcTNDvQWJk0ui6mJ+3oYBBbLXhlDt8h7tuma6YNk8v0YZzOSfdv0DSVh1fHx
+         KAKxUiFDqnPOoajBuMMoP3IBufZeBLIzG7Hz7nvqWP/5KsB03L82Rjzn/qQoB2a1iNGn
+         h+NRt3ee3VO8Iumb/PsHka48vTgMWC0nkqIxEOrLluq/x6wW8dQ56Rt/VnVUnq2HK+2N
+         aF/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IMrDSBRZ+BrQ7IeHtOwZdwbcJ4Pv+oUEuoNbzrU6uKc=;
+        b=hTO5EM1IJ4ouEudgKoC2IWwz8j4hkcn7DE8ReU+o7rO4W32S32Oom9oaTHgZZjdSJk
+         GZcuKApuBKdWQxJOuSRsPTlDQ9/FLyFXYmdnt36QPaG18RXcjWI7pKB10Ngr4CWQm6G8
+         oh2vaZ2oxccA5xGg+Ai2bsXs/K8ye2QaAznj2zwW5M44pPKRtOCxkCIY3bXNHr67SIbc
+         onJ2TIstbeXf8DqFngIvu1kvGinTsyQMBMDKSsYgV4YiOExJmtkopBsz+gncxJcqOD6H
+         rbetuJL1b18NOpWjmiH+nJL8n15jCKZ+TT7Vx4UpyOs6+WZl0A2xblPfJbuplebxYX/u
+         ZqrA==
+X-Gm-Message-State: AOAM531seNRURpg1LYoZuZYCokNDXmowaxohp9GVn22mESJwWwW1x10r
+        RdQXGk/akm2D569Kogj1ELLGEjLVZXg+BmDBj7NA/Q==
+X-Google-Smtp-Source: ABdhPJz7vYzOTV67myWhhRTgaBDXcXPu8RnLR6NqSvVbMutDb0CzrqOVlsiqjvhYCXdDOuMLfOtYC7kyyknGi09T8x0=
+X-Received: by 2002:ab0:c12:: with SMTP id a18mr17291520uak.19.1606134532749;
+ Mon, 23 Nov 2020 04:28:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT for PineTab developer sample
-To:     maxime@cerno.tech, Maxime Ripard <maxime@cerno.tech>
-CC:     Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-sunxi@googlegroups.com, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-From:   Icenowy Zheng <icenowy@aosc.io>
-Message-ID: <009A22D9-AF20-45C4-9674-13334B3EFFBA@aosc.io>
-X-Rspamd-Queue-Id: 4893641F56
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         ML_SERVERS(-3.10)[148.251.23.173];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[10];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:148.251.0.0/16, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[148.251.23.173,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+References: <20201119125304.1279-1-aisheng.dong@nxp.com> <20201119131720.GA348129@kozik-lap>
+ <AM6PR04MB49666B9100F4CE87E1AE23D680E00@AM6PR04MB4966.eurprd04.prod.outlook.com>
+ <20201119152535.GA386850@kozik-lap>
+In-Reply-To: <20201119152535.GA386850@kozik-lap>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 23 Nov 2020 13:28:15 +0100
+Message-ID: <CAPDyKFojf65BA40Ju3s8voOwHT0NU2wpcrnHuCfGrjPQMFwMKw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: imx: fix the wrongly dropped imx8qm
+ compatible string
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Bough Chen <haibo.chen@nxp.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-=E4=BA=8E 2020=E5=B9=B411=E6=9C=8823=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=88=
-8:53:32, Maxime Ripard <maxime@cerno=2Etech> =E5=86=99=E5=88=B0:
->On Mon, Nov 23, 2020 at 07:25:47PM +0800, Icenowy Zheng wrote:
->>=20
->>=20
->> =E4=BA=8E 2020=E5=B9=B411=E6=9C=8823=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=
-=887:15:12, Maxime Ripard <maxime@cerno=2Etech>
->=E5=86=99=E5=88=B0:
->> >Hi!
->> >
->> >On Fri, Nov 20, 2020 at 08:51:48PM -0600, Samuel Holland wrote:
->> >> On 11/20/20 5:30 PM, Icenowy Zheng wrote:
->> >> >>>>>>> +/ {
->> >> >>>>>>> +	model =3D "PineTab Developer Sample";
->> >> >>>>>>> +	compatible =3D "pine64,pinetab-dev",
->"allwinner,sun50i-a64";
->> >> >>>>>>> +};
->> >> >>>>>>
->> >> >>>>>> Changing the DT and the compatible half-way through it
->isn't
->> >ok=2E Please
->> >> >>>>>> add a new DT with the newer revision like we did for the
->> >pinephone
->> >> >>>>>
->> >> >>>>> We did this on Pine H64=2E
->> >> >>>>
->> >> >>>> What are you referring to? I couldn't find a commit where we
->did
->> >what
->> >> >>>> you suggested in that patch to the pine H64=2E
->> >> >>>
->> >> >>> Oh the situation is complex=2E On Pine H64, we didn't specify
->> >anything at
->> >> >>> start (which is the same here), the DT is originally
->> >version-neutral
->> >> >>> but then transitioned to model B, then reverted to model A=2E
->Here
->> >the DT is always
->> >> >>> for the sample=2E
->> >> >>>
->> >> >>> However, for Pine H64 there's model A/B names, but for PineTab
->> >there's no
->> >> >>> any samples that are sold, thus except who got the samples,
->all
->> >PineTab
->> >> >>> owners simply owns a "PineTab", not a "PineTab xxx version"=2E
->> >> >>
->> >> >> It's fairly simple really, we can't really predict the future,
->so
->> >any DT
->> >> >> submitted is for the current version of whatever board there
->is=2E
->> >This is
->> >>=20
->> >> I don't think that was the intention at all=2E The DT was submitted
->for
->> >a
->> >> future product, whatever that future product ends up being at the
->> >time
->> >> of its release=2E Since there are necessarily no users until the
->> >product
->> >> ships, there is no chance of breaking users by modifying the DT=2E
->> >
->> >There was no indication of that in the commit though
->> >
->> >> >> what we (somewhat messily) did for the PineH64, for the
->pinephone,
->> >or
->> >> >> really any other board that has several revisions
->> >>=20
->> >> Surely a non-public prototype doesn't count as a separate
->revision!
->> >This
->> >> sort of policy strongly discourages ever shipping a board with
->> >> out-of-the-box mainline Linux support=2E Because if there any
->hardware
->> >> bugs fixed between initial upstreaming and production, the
->> >manufacture
->> >> must come up with a new DT name=2E
->> >>=20
->> >> This is hostile to the users as well, because the "canonical" DT
->name
->> >no
->> >> longer matches the "canonical" (read: the only one ever available)
->> >> version of the hardware=2E
->> >>=20
->> >> Do you want manufacturers to submit their initial board DT as
->> >> "$BOARD-prototype=2Edts", just in case they have to make a change
->> >before
->> >> production? And only after the board is shipped (with out-of-tree
->> >> patches, of course, to use $BOARD=2Edts, since the shipped board is
->> >*not*
->> >> the prototype) submit a "$BOARD=2Edts" to mainline?
->> >>=20
->> >> Maxime, can you clarify specifically what the line is where a
->device
->> >> tree is "locked down" and further changes to the hardware require
->a
->> >new
->> >> name? First sample leaves the factory? $NUMBER units produced?
->First
->> >> sold to the public for money?
->> >
->> >The first board that is shipped to a user=2E From the wiki, the
->version
->> >supported here (I guess?) has been shipped to around 100 people, so
->it
->> >doesn't really qualify for the "non-public prototype"=2E We still have
->to
->> >support these users, whether we like it or not=2E
->> >
->> >> Without some guidance, or a change in policy, this problem is
->going
->> >to
->> >> keep coming up again and again=2E
->> >
->> >There's a few things that are interleaved here=2E First, there's two
->hard
->> >rules: never change the DT name and never change the compatible of a
->> >board=2E
->> >
->> >The former would break any build system, boot script or
->documentation,
->> >and the latter would break the DT compatibility=2E
->> >
->> >Aside from this, things get a bit blurrier since it's mostly about
->the
->> >intent=2E I'm fine with having a DT for a non-public prototype if it's
->> >clear from day one that it is=2E In this particular case, the DT just
->> >stated that support for the pinetab was added=2E I guess anyone would
->> >make
->> >the assumption without any context that this would be for the (or a)
->> >final design=2E
->> >
->> >Finally, I'd also advise against submitting the parts that are still
->> >not
->> >finalized though, because this is also fairly bad for the users=2E
->Let's
->> >take the current situation as the example: from what I understand,
->the
->> >screen changed half-way through the process, and the first one was
->> >upstreamed=2E This means that any user that would use a kernel with
->that
->> >bugfix would have the display working, while rolling back to 5=2E9
->would
->> >break the display, even though everyone claimed it was supported
->> >out-of-the-box in mainline=2E This is a worse situation than not
->> >supporting the display in the first place here=2E
->> >
->> >> You'll note that so far it has mostly affected Pine devices, and I
->> >don't
->> >> think that's because they make more board revisions than other
->> >> manufacturers=2E
->> >
->> >Yes definitely=2E Pine devices may be worse though because of their
->> >policy
->> >of making their prototypes public=2E I guess most of the issues we had
->> >also were due to poor communication: context on what were the Pine
->> >intentions were missing, and thus we couldn't catch things that
->turned
->> >out to be bad later on during review=2E
->> >
->> >> It's because they're actively involved in getting their
->> >> boards supported upstream=2E For other manufacturers, it's some user
->> >> sending in a device tree months after the hardware ships to the
->> >public
->> >> -- of course the hardware is more stable at that point=2E
->> >
->> >I mean, it's not black and white either=2E One could very well send
->the
->> >DT
->> >once the final design is done and that would still be upstreamed way
->> >before reaching the first user=2E
->> >
->> >> I think Pine's behavior is something we want to encourage, not
->> >> penalize=2E
->> >
->> >For the DT in particular, yes
->> >
->> >> > Okay=2E But I'm not satisfied with a non-public sample occupies
->> >> > the pinetab name=2E Is rename it to pinetab-dev and add a
->> >> > pinetab-retail okay?
->> >>
->> >> To me, naming the production version anything but "pinetab" isn't
->> >> satisfying either=2E
->> >
->> >I understand where you're coming from, but the point I was making my
->> >previous mail is precisely that it's not really possible=2E
->> >
->> >You want to name the early adopter version _the_ production version=2E
->> >Let's assume the hardware changes again between the early adopter
->and
->> >mass-production version=2E Which one will be _the_ production version?
->> >The
->> >early-adopter or the mass-produced one?
->> >
->> >There's really no good answer here, and both would suck in their own
->> >way=2E The only way to deal with this is to simply avoid defining one
->> >version as the one true board, and just loading the proper DT in
->u-boot
->> >based on whatever clue we have of the hardware revision=2E
->>=20
->> Then will it be okay to rename current pinetab DT to pinetab-sample
->and
->> then introduce new DTs all with suffixes?
+On Thu, 19 Nov 2020 at 16:25, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
->No=2E From my previous mail:
+> On Thu, Nov 19, 2020 at 03:21:59PM +0000, Aisheng Dong wrote:
+> > > From: Krzysztof Kozlowski <krzk@kernel.org>
+> > > Sent: Thursday, November 19, 2020 9:17 PM
+> > >
+> > > On Thu, Nov 19, 2020 at 08:53:02PM +0800, Dong Aisheng wrote:
+> > > > The compatible string "fsl,imx8qm-usdhc" was wrongly dropped in patch:
+> > > > 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible
+> > > > matching") Add it back.
+> > >
+> > > Although the compatible was dropped, by why wrongly? Please describe it.
+> > > The compatible is nowhere to be found, it is not used.
+> >
+> > The DT patch using it is still under review. So we need it.
 
-It can be seen as dropping the PineTab DT and introduce new DTs with suffi=
-x=2E
-
-Do we have rule that we cannot drop boards?
+Where? Is there a corresponding update to the mmc driver?
 
 >
->> > there's two hard rules: never change the DT name and never change
->> > the compatible of a board=2E
->> >
->> > The former would break any build system, boot script or
->> > documentation, and the latter would break the DT compatibility=2E
->
->Maxime
+> It looks like other patches here follow similar process of sending
+> and applying dt-bindings separately from patches with users of these
+> bindings. Please don't do it like this. Send the bindings as the first
+> patch in the series implementing the users (so usually the series with
+> driver and DTS changes). The new bindings then are applied by the
+> driver subsystem maintainer.
+
+Yep, I fully agree, that's the preferred approach.
+
+Perhaps it's simply better if the series is reposted to linux-mmc
+(including the DT doc).
+
+Kind regards
+Uffe
