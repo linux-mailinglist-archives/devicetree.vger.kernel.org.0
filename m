@@ -2,82 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BBD82C16F8
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:50:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C48FB2C16FB
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:50:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727847AbgKWUjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 15:39:19 -0500
-Received: from mail.kernel.org ([198.145.29.99]:46720 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730929AbgKWUjO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 15:39:14 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DCB5A2075A;
-        Mon, 23 Nov 2020 20:39:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606163954;
-        bh=fXQ4kN1fuSAB93w2X+YhBILhqVMOtBEUFEyMF7r+PeA=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=lMxGtfJCzFcPLYicvJCUEje3aujstAcVr4HgOJ5HgBWmKm0H8ujxueD3zp6YH6K+i
-         /KDZxICOrncrcaZz5xVyVo2x4acFYcgEJk5ocF5U2uO0f6tXfTRrcZFfKvfEuzBwam
-         PdBfdeHnxLqHHaPhCwJ9rG7z+4lFCdKWgv87u3zc=
-Date:   Mon, 23 Nov 2020 20:38:51 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     lukasz.luba@arm.com, f.fainelli@gmail.com, sudeep.holla@arm.com,
-        vincent.guittot@linaro.org, james.quinlan@broadcom.com,
-        Jonathan.Cameron@Huawei.com, souvik.chakravarty@arm.com,
-        robh@kernel.org, etienne.carriere@linaro.org,
-        satyakim@qti.qualcomm.com
-In-Reply-To: <20201119191051.46363-1-cristian.marussi@arm.com>
-References: <20201119191051.46363-1-cristian.marussi@arm.com>
-Subject: Re: [PATCH v6 0/5] Add support for SCMIv3.0 Voltage Domain Protocol and SCMI-Regulator
-Message-Id: <160616392670.21180.3656165882434093831.b4-ty@kernel.org>
+        id S1726921AbgKWUnP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 15:43:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47710 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726270AbgKWUnO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 15:43:14 -0500
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB497C0613CF;
+        Mon, 23 Nov 2020 12:43:14 -0800 (PST)
+Received: by mail-oi1-x243.google.com with SMTP id y74so7807621oia.11;
+        Mon, 23 Nov 2020 12:43:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YQSMeHHshmEHiclhaeVDs3fo0b1cuteOXdZuRFtkNXs=;
+        b=LpIgXDYqOuPEnj4Ef+biks4tAzD8Ud+9U27quHWoCAUyFMPW6alSIz0hmbGiji9aVC
+         qCdaNZzZnNlDAoioElsXtMzSpWlQzshCKORMuZkrQTU/HCThvPyHOCM5903x4fM9Tj/S
+         S61cFAwpy4CVS1xkNUU4s3cjNEzYZmempIQQWHh3eyMYAgQwsJ4NefWnnQjfxESMe0Nk
+         om/wlcEKmK73fdgYQ86+quKIKzUstRe9r24lHAyCjHv7BTlmNKa2DtAwu1yjAhBYOEW+
+         vGqIxrDDNDhs1lKW+kbADCs2YXy55YTQqC2lpNPijJGE12JZ5NivfxgZSuREdbuOThHb
+         rdhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YQSMeHHshmEHiclhaeVDs3fo0b1cuteOXdZuRFtkNXs=;
+        b=dbOtYXtqdmdOViNXYv/Iw5daIyqSjpl9L33Uv1zZLPlnrbUcfnmy5IO2TcQJpguX3Z
+         VcKskHMX9msYGSJ1G01EkT4Nl63W4TBDZ6GuEXqdoA+s/nvQnTk/jMnDn4inlre2XgLZ
+         OPr6NGQRpwDGjNKhXOz1h/V9hksZ5jv/ubM21YjYyDMRKcTnkpcsb39Z6N8psNYd0d/+
+         sQ/mc5UXMOsH8fAs02sjRDKuIDrgC9Zln7i5ETiYAEgaWrUkjOrgbD9PkOqGZPuOiLER
+         gNZQefkaOvQND2I/brt8v4zSlj3zRB0aalxYEOXicYAzFEx2hylhpbFyObRLDjxXDg0k
+         BdaA==
+X-Gm-Message-State: AOAM532MsGM+OKghr4di3KFhJ/OVJVAsK/2aG+WU4XiEJZ9u9T0juYGj
+        dGZOWaRPTPe2g2g1wHpYg2L98hQn4+Dxlr7bLA==
+X-Google-Smtp-Source: ABdhPJydj+Y4G7cZhN2DeVEiepdJEuv4RNbwT9iRvCvtoIY9ClsVsrQy4VMuxZ/fSOTc6tDT+Np8XCcq2eP+oDjIE2s=
+X-Received: by 2002:aca:c506:: with SMTP id v6mr494151oif.122.1606164194047;
+ Mon, 23 Nov 2020 12:43:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20201120181627.21382-1-george.mccollister@gmail.com>
+ <20201120181627.21382-3-george.mccollister@gmail.com> <20201120193321.GP1853236@lunn.ch>
+ <CAFSKS=P=epx3Sr3OzkCg9ycoftmXm__PaMee7HWbAGXYdqgbDw@mail.gmail.com> <20201120232439.GA1949248@lunn.ch>
+In-Reply-To: <20201120232439.GA1949248@lunn.ch>
+From:   George McCollister <george.mccollister@gmail.com>
+Date:   Mon, 23 Nov 2020 14:43:01 -0600
+Message-ID: <CAFSKS=M-2rwM2UC58xf8n0ORuwxHq06BjLj7QP=JuU19-tCpGg@mail.gmail.com>
+Subject: Re: [PATCH net-next 2/3] net: dsa: add Arrow SpeedChips XRS700x driver
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 19 Nov 2020 19:10:46 +0000, Cristian Marussi wrote:
-> this series introduces the support for the new SCMI Voltage Domain Protocol
-> defined by the upcoming SCMIv3.0 specification, whose BETA release is
-> available at [1].
-> 
-> Afterwards, a new generic SCMI Regulator driver is developed on top of the
-> new SCMI VD Protocol.
-> 
-> [...]
+On Fri, Nov 20, 2020 at 5:24 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> Hi George
+>
+> > > > +static void xrs700x_port_stp_state_set(struct dsa_switch *ds, int port,
+> > > > +                                    u8 state)
+> > > > +{
+> > > > +     struct xrs700x *priv = ds->priv;
+> > > > +     unsigned int val;
+> > > > +
+> > > > +     switch (state) {
+> > > > +     case BR_STATE_DISABLED:
+> > > > +             val = XRS_PORT_DISABLED;
+> > > > +             break;
+> > > > +     case BR_STATE_LISTENING:
+> > > > +             val = XRS_PORT_DISABLED;
+> > > > +             break;
+> > >
+> > > No listening state?
+> >
+> > No, just forwarding, learning and disabled. See:
+> > https://www.flexibilis.com/downloads/xrs/SpeedChip_XRS7000_3000_User_Manual.pdf
+> > page 82.
+> >
+> > >
+> > > > +     case BR_STATE_LEARNING:
+> > > > +             val = XRS_PORT_LEARNING;
+> > > > +             break;
+> > > > +     case BR_STATE_FORWARDING:
+> > > > +             val = XRS_PORT_FORWARDING;
+> > > > +             break;
+> > > > +     case BR_STATE_BLOCKING:
+> > > > +             val = XRS_PORT_DISABLED;
+> > > > +             break;
+> > >
+> > > Hum. What exactly does XRS_PORT_DISABLED mean? When blocking, it is
+> > > expected you can still send/receive BPDUs.
+> >
+> > Datasheet says: "Disabled. Port neither learns MAC addresses nor forwards data."
+>
+> I think you need to do some testing here. Put the device into a loop
+> with another switch, the bridge will block a port, and see if it still
+> can send/receive BPDUs on the blocked port.
+>
+> If it cannot send/receive BPDUs, it might get into an oscillating
+> state. They see each other via BPDUs, decide there is a loop, and
+> block a port. The BPDUs stop, they think the loop has been broken and
+> so unblock. They see each other via BPUS, decide there is a loop,...
 
-Applied to
+Yeah, this is messed up. The switch doesn't seem to pass up BPDUs in
+either disabled or learning mode, only forward mode.
+Can I just replace .port_stp_state_set with .port_enable (setting
+switch port to forward mode) and .port_disable (setting switch port to
+disabled mode)? I don't see any other way around this. It looks like
+rtl8366rb.c also has no .port_stp_state_set.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+>
+> > > > +static int xrs700x_i2c_reg_read(void *context, unsigned int reg,
+> > > > +                             unsigned int *val)
+> > > > +{
+> > > > +     int ret;
+> > > > +     unsigned char buf[4];
+> > > > +     struct device *dev = context;
+> > > > +     struct i2c_client *i2c = to_i2c_client(dev);
+> > > > +
+> > > > +     buf[0] = reg >> 23 & 0xff;
+> > > > +     buf[1] = reg >> 15 & 0xff;
+> > > > +     buf[2] = reg >> 7 & 0xff;
+> > > > +     buf[3] = (reg & 0x7f) << 1;
+> > > > +
+> > > > +     ret = i2c_master_send(i2c, buf, sizeof(buf));
+> > >
+> > > Are you allowed to perform transfers on stack buffers? I think any I2C
+> > > bus driver using DMA is going to be unhappy.
+> >
+> > It should be fine. See the following file, there is a good write up about this:
+> > See Documentation/i2c/dma-considerations.rst
+>
+> O.K, thanks for the pointer.
+>
+> > > > +static const struct of_device_id xrs700x_i2c_dt_ids[] = {
+> > > > +     { .compatible = "arrow,xrs7003" },
+> > > > +     { .compatible = "arrow,xrs7004" },
+> > > > +     {},
+> > >
+> > > Please validate that the compatible string actually matches the switch
+> > > found. Otherwise we can get into all sorts of horrible backward
+> > > compatibility issues.
+> >
+> > Okay. What kind of compatibility issues? Do you have a hypothetical
+> > example? I guess I will just use of_device_is_compatible() to check.
+>
+> Since it currently does not matter, you can expect 50% of the boards
+> to get it wrong. Sometime later, you find some difference between the
+> two, you want to add additional optional properties dependent on the
+> compatible string. But that is made hard, because 50% of the boards
+> are broken, and the compatible string is now worthless.
+>
+> Either you need to verify the compatible from day one so it is not
+> wrong, or you just use a single compatible "arrow,xrs700x", which
+> cannot be wrong.
 
-Thanks!
+okay I'll make sure an error is returned if the detected switch does
+not match compatible.
 
-[1/1] regulator: core: add of_match_full_name boolean flag
-      commit: e7095c35abfc5a5d566941a87434c0fd5ffb570f
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+>
+>   Andrew
