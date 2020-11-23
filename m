@@ -2,149 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4019D2C00F0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 09:00:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96FD02C0107
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 09:09:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728036AbgKWHze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 02:55:34 -0500
-Received: from mailout4.samsung.com ([203.254.224.34]:47154 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727483AbgKWHzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 02:55:33 -0500
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20201123075530epoutp041abd5497131fffacab0dfe821596edd1~KE_4J8AdU2190521905epoutp04C
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 07:55:30 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20201123075530epoutp041abd5497131fffacab0dfe821596edd1~KE_4J8AdU2190521905epoutp04C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1606118130;
-        bh=QaPoV2LoZTG2RgUzI5C1Hw6+KlJ9n9VMoWukaX1Jp4M=;
-        h=Subject:Reply-To:From:To:CC:Date:References:From;
-        b=chFVYJrgY3HBNtxHXuJht2H5x/mdXQ9x4ucI57BRO9qWyzGoOguCxwM/S7US3/QJW
-         bV55jgXSZPVzB//7jdCkBHcsfYSm/Khljwu2nCpHK1za59R2XhNg1L090ZOlJ7DNyY
-         LYfCpSng6PPrHz946Loc8m3pZhrC9xqG8qNN/Vvk=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-        epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-        20201123075530epcas2p4016b99ddd41098dedde209532a52b30c~KE_3_7Ygr3099330993epcas2p4T;
-        Mon, 23 Nov 2020 07:55:30 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.40.182]) by
-        epsnrtp2.localdomain (Postfix) with ESMTP id 4Cffb367SMzMqYkr; Mon, 23 Nov
-        2020 07:55:27 +0000 (GMT)
-X-AuditID: b6c32a46-1d9ff7000000dbf8-ac-5fbb6aee8105
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-        epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        38.36.56312.EEA6BBF5; Mon, 23 Nov 2020 16:55:26 +0900 (KST)
-Mime-Version: 1.0
-Subject: [PATCH net-next 1/2] dt-bindings: net: nfc: s3fwrn5: Support a UART
- interface
-Reply-To: bongsu.jeon@samsung.com
-Sender: Bongsu Jeon <bongsu.jeon@samsung.com>
-From:   Bongsu Jeon <bongsu.jeon@samsung.com>
-To:     "krzk@kernel.org" <krzk@kernel.org>,
-        "kuba@kernel.org" <kuba@kernel.org>
-CC:     "linux-nfc@lists.01.org" <linux-nfc@lists.01.org>,
+        id S1725847AbgKWIB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 03:01:28 -0500
+Received: from mail-ej1-f66.google.com ([209.85.218.66]:37760 "EHLO
+        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725320AbgKWIB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 03:01:28 -0500
+Received: by mail-ej1-f66.google.com with SMTP id z5so1857023ejp.4;
+        Mon, 23 Nov 2020 00:01:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NclaCJHXiBfJ0Rpl5FSpxC/w5EINjItcyb1F1x5YFWQ=;
+        b=aKtJ2dbr4J4fzDan8g9hMdZrh1qzzX66WF27YdEWC3aneSBsjnZHuuXB0OObDQaheE
+         MKof8BFU7gCHqfQYYqfjlhkOyoJfZMkaAtSUlcLCsRBmamziu6O4z0P/qgAZf4jb7Hj0
+         5sW4q49/7EqcZ8+qL0lH2k3S3lFxpY+B9xGULH97XOzHgHyoCptvBskdVvJcbKhreqCH
+         msmZ3CX8gpauZGVwwguI/n1qluHYO9ZhKS/ubfrv7EvjiGrsB/foH+2o8esuTMqJ/FDK
+         9quqWp7uSG6nK8/sR9atIxsMYIxGohYWIwX6TlvhSzoCHq29Ul1CS2UdtImSmg7+x9dP
+         eAbQ==
+X-Gm-Message-State: AOAM531zLzOqlwwoRY6AKad7DDQ75rFp/UeVxM8OKxnjsaITH7Yu/m0n
+        g/HrU+elRA4nURs7VJgZPWVEpDZ3xOc=
+X-Google-Smtp-Source: ABdhPJxsrf7uRQesS+TQY5uPAJFd1MmlLT1cbPz+Ppl65azwyzxj2pEdLkjsnapnixfNYkjMu0oeVg==
+X-Received: by 2002:a17:906:831a:: with SMTP id j26mr43630906ejx.450.1606118486218;
+        Mon, 23 Nov 2020 00:01:26 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id y12sm4453869ejj.95.2020.11.23.00.01.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2020 00:01:25 -0800 (PST)
+Date:   Mon, 23 Nov 2020 09:01:23 +0100
+From:   "krzk@kernel.org" <krzk@kernel.org>
+To:     Bongsu Jeon <bongsu.jeon@samsung.com>
+Cc:     "kuba@kernel.org" <kuba@kernel.org>,
+        "linux-nfc@lists.01.org" <linux-nfc@lists.01.org>,
         "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-X-Priority: 3
-X-Content-Kind-Code: NORMAL
-X-CPGS-Detection: blocking_info_exchange
-X-Drm-Type: N,general
-X-Msg-Generator: Mail
-X-Msg-Type: PERSONAL
-X-Reply-Demand: N
-Message-ID: <20201123075526epcms2p59410a8ba942f8942f53a593d9df764d0@epcms2p5>
-Date:   Mon, 23 Nov 2020 16:55:26 +0900
-X-CMS-MailID: 20201123075526epcms2p59410a8ba942f8942f53a593d9df764d0
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrEJsWRmVeSWpSXmKPExsWy7bCmue67rN3xBhcfK1jMP3KO1eL8+Q3s
-        Fhe29bFaXN41h81izobN7BbHFog5sHlsWtXJ5tE9+x+Lx+dNcgHMUQ2MNolFyRmZZakKqXnJ
-        +SmZeem2SqEhbroWSgoZ+cUltkrRhhZGeoaWpnomlnpG5rFWhgYGRqZKCnmJuam2ShW6UN1K
-        CkXJBUDVJanFJUWpyalAoSKH4pLE9FS94sTc4tK8dL3k/FwlhbLEnFKgPiV9O5uM1MSU1CKF
-        hCeMGX+ePmYqOMBTMXWPTgNjB2cXIweHhICJxI2til2MXBxCAjsYJX41LmIBifMKCEr83SHc
-        xcjJISwQIXG88SsTiC0koCjxv+McG0RcV+LF36NgNpuAtsTao41gNSICPhILdyxgApnJLPCC
-        UWLrmkusIAkJAV6JGe1PWSBsaYnty7cyQtgaEj+W9TJD2KISN1e/ZYex3x+bD1UjItF67yxU
-        jaDEg5+7oeKSEm/3zWMHWSYh0M4ocf7nDzYIZwajxKnNf6E69CUWn1sBdh6vgK/E+0tzwTaw
-        CKhKnHl1GGqSi8SGpbfAbGYBeYntb+cwg0KCWUBTYv0ufUhgKUscucUCUcEn0XH4LzvMXzvm
-        PWGCsFUlepu/MMH8OHl2C9R0D4mzl78xQwIxUOLQkk7GCYwKsxBBPQvJ3lkIexcwMq9iFEst
-        KM5NTy02KjBCjudNjOB0qeW2g3HK2w96hxiZOBgPMUpwMCuJ8LbK7YwX4k1JrKxKLcqPLyrN
-        SS0+xFgF9PFEZinR5Hxgws4riTc0MzAyMzU2MTY2NTElW9jUyMzMwNLUwtTMyEJJnDd0ZV+8
-        kEB6YklqdmpqQWoRzHImDk6pBqaypcHTJ+hkxNl9KP/7TKkgen7+tF0bYvv87h885vn/7dZV
-        azsc1ztWrPk7Jf8h085r7rl5jZdZzi/IaDz6QkPn013hdTqMMw5eTfHm4+SZn7f/Ukjfzpgy
-        rr8dJ2bxdLQc7l43LTynVPd04uabvQ/CFMwyVQSOtSpN9fm3+R0jv5ug9XGNnpJv4idZtD1a
-        T706UHV6e0ex6Y7NK36aRyepxBd/eCt86PGnm2kChyzmmjyfbllcamVyTvuq+pxnbWFyi/+/
-        ZXM9dktr56o+mxkTVulstpPPSZcK+umskpNaE3ayVmv/mTmHZlpUVpRsVNPbfCYtbo3uEnEe
-        vTM9Sk9X7wrsXyUrYljfGVtR1KDEUpyRaKjFXFScCACeEfVtZQQAAA==
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20201123075526epcms2p59410a8ba942f8942f53a593d9df764d0
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: nfc: s3fwrn5: Support a
+ UART interface
+Message-ID: <20201123080123.GA5656@kozik-lap>
 References: <CGME20201123075526epcms2p59410a8ba942f8942f53a593d9df764d0@epcms2p5>
+ <20201123075526epcms2p59410a8ba942f8942f53a593d9df764d0@epcms2p5>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201123075526epcms2p59410a8ba942f8942f53a593d9df764d0@epcms2p5>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since S3FWRN82 NFC Chip, The UART interface can be used.
-S3FWRN82 supports I2C and UART interface.
+On Mon, Nov 23, 2020 at 04:55:26PM +0900, Bongsu Jeon wrote:
+> Since S3FWRN82 NFC Chip, The UART interface can be used.
+> S3FWRN82 supports I2C and UART interface.
+> 
+> Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
+> ---
+>  .../bindings/net/nfc/samsung,s3fwrn5.yaml     | 28 +++++++++++++++++--
+>  1 file changed, 26 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> index cb0b8a560282..37b3e5ae5681 100644
+> --- a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> +++ b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
+> @@ -13,6 +13,7 @@ maintainers:
+>  properties:
+>    compatible:
+>      const: samsung,s3fwrn5-i2c
+> +    const: samsung,s3fwrn82-uart
 
-Signed-off-by: Bongsu Jeon <bongsu.jeon@samsung.com>
----
- .../bindings/net/nfc/samsung,s3fwrn5.yaml     | 28 +++++++++++++++++--
- 1 file changed, 26 insertions(+), 2 deletions(-)
+This does not work, you need to use enum. Did you run at least
+dt_bindings_check?
 
-diff --git a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
-index cb0b8a560282..37b3e5ae5681 100644
---- a/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
-+++ b/Documentation/devicetree/bindings/net/nfc/samsung,s3fwrn5.yaml
-@@ -13,6 +13,7 @@ maintainers:
- properties:
-   compatible:
-     const: samsung,s3fwrn5-i2c
-+    const: samsung,s3fwrn82-uart
- 
-   en-gpios:
-     maxItems: 1
-@@ -47,10 +48,19 @@ additionalProperties: false
- required:
-   - compatible
-   - en-gpios
--  - interrupts
--  - reg
-   - wake-gpios
- 
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,s3fwrn5-i2c
-+    then:
-+      required:
-+        - interrupts
-+        - reg
-+
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-@@ -71,3 +81,17 @@ examples:
-             wake-gpios = <&gpj0 2 GPIO_ACTIVE_HIGH>;
-         };
-     };
-+  # UART example on Raspberry Pi
-+  - |
-+    &uart0 {
-+        status = "okay";
-+
-+        s3fwrn82_uart {
-+            compatible = "samsung,s3fwrn82-uart";
-+
-+            en-gpios = <&gpio 20 0>;
-+            wake-gpios = <&gpio 16 0>;
-+
-+            status = "okay";
-+        };
-+    };
--- 
-2.17.1
+The compatible should be just "samsung,s3fwrn82". I think it was a
+mistake in the first s3fwrn5 submission to add a interface to
+compatible.
 
+>  
+>    en-gpios:
+>      maxItems: 1
+> @@ -47,10 +48,19 @@ additionalProperties: false
+>  required:
+>    - compatible
+>    - en-gpios
+> -  - interrupts
+> -  - reg
+>    - wake-gpios
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,s3fwrn5-i2c
+> +    then:
+> +      required:
+> +        - interrupts
+> +        - reg
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/gpio/gpio.h>
+> @@ -71,3 +81,17 @@ examples:
+>              wake-gpios = <&gpj0 2 GPIO_ACTIVE_HIGH>;
+>          };
+>      };
+> +  # UART example on Raspberry Pi
+> +  - |
+> +    &uart0 {
+> +        status = "okay";
+> +
+> +        s3fwrn82_uart {
+
+Just "bluetooth" to follow Devicetree specification.
+
+Best regards,
+Krzysztof
