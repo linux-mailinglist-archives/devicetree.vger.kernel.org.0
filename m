@@ -2,199 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BBC2C0DE7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:41:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F1F32C0DD5
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:41:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730772AbgKWOkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 09:40:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47914 "EHLO
+        id S1728962AbgKWOkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 09:40:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47774 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730586AbgKWOkp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:40:45 -0500
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B51C061A4D
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:40:44 -0800 (PST)
-Received: by mail-qt1-x843.google.com with SMTP id 7so13492972qtp.1
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:40:44 -0800 (PST)
+        with ESMTP id S1728952AbgKWOkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:40:00 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33501C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:40:00 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id 10so18104006wml.2
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:40:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=G7Lx+ulfUjkJtOWjBaN8V+ZUQ9XkpEkdc/FGSeKx4Gk=;
-        b=v4coxE/sLVKGR/0cRlmUbQ7Ky/9oAKJ325dPfDNSlOBzjuaXdrTllIeyYlDVFJOP3J
-         PLbl7hjR+maN/VZm3l15Ip+OnPdOHP6L0PX1SDYN6J2mIuO5bzfeqbWf7Y/JPZlyTWVC
-         9FcWuRE7rTLQmxByThCGMUi66Ne4ZQo2KZl5UUFSbZipWHwUJs5f5GwycI9vjJeqizJp
-         CnQfYktYDcx27JJCOD/szx/nL4QeoIEi4VdRtGuc1n1ALan4O8EJQU9UXh91RBv0tZak
-         lGryjyvU1GYTCWWLuHiKcx7Yw2YXboPcTU4SVp5F79ZQMbzmdeiwYWF0SlyD6+reRfJ6
-         NuNQ==
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=IA/qfqyOklQJ79pqoG5f5P3U9Ipwq6yHC17vWE58tNA=;
+        b=dDlg28P+Jh4WcUUlhAaq1JtPUuluHcfx65ApOfbVNU1dBa9Ao9nNN3oqUjtpo4n2RL
+         bs55n7JhmPAMJu5SsUcgF5jAQujYSTMh3gIGsli/knyqFXfi7M7MHR6GJcRTuLW1hAKj
+         oDL+sXKgB4ohn7ghXtJVILlso5bwoVTIprgaJOATeg0t+sdmnK259j0WIEcZaUoGG5zI
+         nGNhrjlStyWjlCeEriRzGA6e4f5MMBCusLNYE6yOnGB6KBQe2TBnq8tpOpBVz7OwN/0P
+         Xo/FufSf0lPAAyfrQoasy/ymA8ZPqtqL8xuT/eBCyPxzhzqP0QRTuj3y7WyhXwzCkLGN
+         5XPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=G7Lx+ulfUjkJtOWjBaN8V+ZUQ9XkpEkdc/FGSeKx4Gk=;
-        b=XhiRgD2E0Et5ASJPUIoIPaIZTmFbWtUaG4ZgenZU+fRM+F5FlGo6ASRq33mvTeF/MN
-         V2mxZ74uoKTjsvGku2NtWiqq1/mqqgaE2X2nd+wO0DeFGcstIz8uesnPCbfl3yquh+Ik
-         r1m0IkKbqP78ajICfSsXZ2cfkkV9PuYzsMypGcNZB9ajTgr0ursjodjPbD9t4Hkhwo+D
-         dtJiRN+9RTONey6I+JDaxwWJ5KnJNz651k0n1Ivw1WhzNQMd2slMtOUVlXow14tsTjZt
-         StytS/kIUdvv842Y3QfGGSCDqhWsZPU8hA2PsKAkko+3ZjEgMh9zQffrb1zgrU4fcYVF
-         6ZXw==
-X-Gm-Message-State: AOAM533RkRdkTqLF7y/x7NyBobGPr1/sCsPRMZEDMBQU8lDZXHCB2aFv
-        TB600CryrKMZs1ENRPqFeYv2Lw==
-X-Google-Smtp-Source: ABdhPJzBzo9EiY+XpQhMqvhRKaKlzx/TFJdSvep9gvQSUqrSG2wuUN4f5ScqNXzQRUWg8JLSbGz/qA==
-X-Received: by 2002:ac8:734c:: with SMTP id q12mr18668190qtp.239.1606142444020;
-        Mon, 23 Nov 2020 06:40:44 -0800 (PST)
-Received: from localhost.localdomain (modemcable068.184-131-66.mc.videotron.ca. [66.131.184.68])
-        by smtp.gmail.com with ESMTPSA id g143sm9642929qke.102.2020.11.23.06.40.42
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=IA/qfqyOklQJ79pqoG5f5P3U9Ipwq6yHC17vWE58tNA=;
+        b=XChi9ryLObE7j/Ujt8YFNB749Lso81/Lt4/lVbfx/HRBbXgzNKAE4Z7uJgKWaV4dlN
+         4Qpj216LqrRo+53P445usapQ3RDFpINZAKDPDUpC5drkDY5sy7gXL+CzLD9MTskhjGmO
+         JaoWWNKNu/vVm12PJ4M1aM5Zlnc4cW3TglRy8t1aPJI8C3fQSC9l/a2WZ9U0LPqMiYfM
+         nLp0aHicWEBgZN+9b033XH5ka9rUJGG3sbZCqPAU7DjzOnYhUZ+UIdZRbDPzfj1eq+aU
+         kBWW3RvNhT7cuJo8p36H/dVqKTwepvXVxxYa8K2yTyxMyrhlThdlSL7rs7Nx/lDiQVuJ
+         Gxaw==
+X-Gm-Message-State: AOAM533UKjySdFs61+C8SeL1R5Sem3XcxmmVWu2Ud0oNuC5K79mYKRhc
+        lG5E2l+ptfACLwm0EsCsPAOJZA==
+X-Google-Smtp-Source: ABdhPJzKkhqMWPHaBtD6XLWKHtSpwRHpjKsbcwlUiF4pqtF3mjusg9s7MoY8/c/6bW3rqWv2KFWqkg==
+X-Received: by 2002:a7b:c157:: with SMTP id z23mr23864861wmi.70.1606142398827;
+        Mon, 23 Nov 2020 06:39:58 -0800 (PST)
+Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
+        by smtp.gmail.com with ESMTPSA id f17sm17235287wmh.10.2020.11.23.06.39.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2020 06:40:43 -0800 (PST)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mon, 23 Nov 2020 06:39:58 -0800 (PST)
+Date:   Mon, 23 Nov 2020 14:39:54 +0000
+From:   Quentin Perret <qperret@google.com>
+To:     David Brazdil <dbrazdil@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] arm64: dts: qcom: update usb qmp phy clock-cells property
-Date:   Mon, 23 Nov 2020 09:37:05 -0500
-Message-Id: <20201123143705.14277-1-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        android-kvm@google.com
+Subject: Re: [RFC PATCH 13/27] KVM: arm64: Enable access to sanitized CPU
+ features at EL2
+Message-ID: <20201123143954.GA578849@google.com>
+References: <20201117181607.1761516-1-qperret@google.com>
+ <20201117181607.1761516-14-qperret@google.com>
+ <20201123132223.oohevce4izuoaqi3@google.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201123132223.oohevce4izuoaqi3@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The top-level node doesn't provide any clocks, the subnode provides a
-single clock with of_clk_hw_simple_get.
+On Monday 23 Nov 2020 at 13:22:23 (+0000), David Brazdil wrote:
+> Could you help my understand why we need this?
+> * Why do we need PI routines in the first place? Would my series that fixes
+>   relocations in hyp code remove the need?
+> * You added these aliases for the string routines because you were worried
+>   somebody would change the implementation in arch/arm64/lib, right? But this
+>   cache flush function is defined in hyp/nvhe. So why do we need to point to
+>   the PI alias if we control the implementation?
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 1 -
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 4 ++--
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 4 ++--
- 4 files changed, 6 insertions(+), 7 deletions(-)
+Right, in the specific case of the __flush_dcache_area() function none
+of the PI stuff is really needed I think. I did it this way to keep
+things as consistent as possible with the host-side implementation, but
+that is not required.
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 6678f1e8e395..0189cbfad521 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2608,7 +2608,6 @@ usb_1_qmpphy: phy-wrapper@88e9000 {
- 			      <0 0x088e8000 0 0x38>;
- 			reg-names = "reg-base", "dp_com";
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 40e8c11f23ab..4a353c432a83 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3482,7 +3482,6 @@ usb_1_qmpphy: phy@88e9000 {
- 			      <0 0x088e8000 0 0x10>;
- 			reg-names = "reg-base", "dp_com";
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -3504,6 +3503,7 @@ usb_1_ssphy: lanes@88e9200 {
- 				      <0 0x088e9600 0 0x128>,
- 				      <0 0x088e9800 0 0x200>,
- 				      <0 0x088e9a00 0 0x100>;
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
- 				clock-names = "pipe0";
-@@ -3515,7 +3515,6 @@ usb_2_qmpphy: phy@88eb000 {
- 			compatible = "qcom,sdm845-qmp-usb3-uni-phy";
- 			reg = <0 0x088eb000 0 0x18c>;
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -3535,6 +3534,7 @@ usb_2_ssphy: lane@88eb200 {
- 				      <0 0x088eb400 0 0x1fc>,
- 				      <0 0x088eb800 0 0x218>,
- 				      <0 0x088eb600 0 0x70>;
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clocks = <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
- 				clock-names = "pipe0";
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index dab852833a65..bcfb06f5bebe 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -857,7 +857,6 @@ usb_1_qmpphy: phy@88e9000 {
- 			      <0 0x088e8000 0 0x10>;
- 			reg-names = "reg-base", "dp_com";
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -879,6 +878,7 @@ usb_1_ssphy: lanes@88e9200 {
- 				      <0 0x088e9600 0 0x200>,
- 				      <0 0x088e9800 0 0x200>,
- 				      <0 0x088e9a00 0 0x100>;
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
- 				clock-names = "pipe0";
-@@ -904,7 +904,6 @@ usb_2_qmpphy: phy@88eb000 {
- 			compatible = "qcom,sm8150-qmp-usb3-uni-phy";
- 			reg = <0 0x088eb000 0 0x200>;
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -924,6 +923,7 @@ usb_2_ssphy: lane@88eb200 {
- 				      <0 0x088eb400 0 0x200>,
- 				      <0 0x088eb800 0 0x800>,
- 				      <0 0x088eb600 0 0x200>;
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clocks = <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
- 				clock-names = "pipe0";
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 8300a5873a21..468ba1d18751 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1494,7 +1494,6 @@ usb_1_qmpphy: phy@88e9000 {
- 			      <0 0x088e8000 0 0x20>;
- 			reg-names = "reg-base", "dp_com";
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -1515,6 +1514,7 @@ usb_1_ssphy: lanes@88e9200 {
- 				      <0 0x088e9600 0 0x200>,
- 				      <0 0x088e9800 0 0x200>,
- 				      <0 0x088e9a00 0 0x100>;
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
- 				clock-names = "pipe0";
-@@ -1526,7 +1526,6 @@ usb_2_qmpphy: phy@88eb000 {
- 			compatible = "qcom,sm8250-qmp-usb3-uni-phy";
- 			reg = <0 0x088eb000 0 0x200>;
- 			status = "disabled";
--			#clock-cells = <1>;
- 			#address-cells = <2>;
- 			#size-cells = <2>;
- 			ranges;
-@@ -1545,6 +1544,7 @@ usb_2_ssphy: lane@88eb200 {
- 				reg = <0 0x088eb200 0 0x200>,
- 				      <0 0x088eb400 0 0x200>,
- 				      <0 0x088eb800 0 0x800>;
-+				#clock-cells = <0>;
- 				#phy-cells = <0>;
- 				clocks = <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
- 				clock-names = "pipe0";
--- 
-2.26.1
+I understand this can cause confusion, so yes, I'll simplify this for
+v2.
 
+Cheers,
+Quentin
