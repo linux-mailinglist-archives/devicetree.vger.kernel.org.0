@@ -2,212 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30C5D2C0138
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 09:19:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEB142C01A6
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 09:46:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726248AbgKWILg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 03:11:36 -0500
-Received: from esa4.microchip.iphmx.com ([68.232.154.123]:6884 "EHLO
-        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725797AbgKWILg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 03:11:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1606119095; x=1637655095;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HIHFe3eMlr8hGngDvyobczYEKIBuVjw0uBpL6ZOgHxQ=;
-  b=PZBhaLtIcpgdeUYRE0SowuduBR0/wcXtnBbcvt8jWG4flGIOTv8p8Nf1
-   R4qt9u+7IKUj3E1ALVklHnxnRSYXFacVIyZgtTgP2AJ8VczLvWgIHl1Pa
-   80VbJZG3xekNK5nFWhEMJ6nv7yVlMSP2Pl5dms/IGmF25Vj6q83sBlukD
-   mteEbafKtBUK5bEyzYXbzUxmjauxe6XGt251gU51ZJVW2xtY5AEg+6N54
-   i0yPhrOFeselcgi6VziwLtQfknjJWwsVsomAr18LnPHqQ+SmSAbisKtol
-   G0zm+LkLe+QGecWdlzbbgKeyZAYrpUu4OXRzUkR0ZixhUIc3Ue0tIi5gn
-   Q==;
-IronPort-SDR: GphTcWOltQRN4KeJPyTfTbC/BMfYPJQE7W3Mp8A6V7IrDwYIOCUVVO8TsF/MQLE08g5vlsrxrr
- ZPTlPJoeWzu2/De1D/JBqs66B+PPMqKKQli+7G7lMc+hqV5Z+hUQnkMEt77AA7SsrxxPxid2EC
- Vez9OcU9ZqF/jGYuF1mBOaYtm7+fp7kwTmM2pa1XsT+ZgGInmPBp8JAiHPDZqfkTF+rRGbV6gI
- 3H8MnY0HVxgmGGui2iZ3mKN/Zz1MrORMW8nmoHNIKdYJTn18+eRJ1bCXYrpKRhvYWuUnwB8A/W
- 3k8=
-X-IronPort-AV: E=Sophos;i="5.78,361,1599548400"; 
-   d="scan'208";a="94550758"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Nov 2020 01:11:34 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Mon, 23 Nov 2020 01:11:34 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.1979.3 via Frontend
- Transport; Mon, 23 Nov 2020 01:11:34 -0700
-Date:   Mon, 23 Nov 2020 09:11:33 +0100
-From:   Steen Hegelund <steen.hegelund@microchip.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Device Tree List <devicetree@vger.kernel.org>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Bjarni Jonasson <bjarni.jonasson@microchip.com>,
-        Microsemi List <microsemi@lists.bootlin.com>,
-        Microchip UNG Driver List <UNGLinuxDriver@microchip.com>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: phy: Add sparx5-serdes bindings
-Message-ID: <20201123081133.hy5rkpjzpri6sojt@mchp-dev-shegelun>
-References: <20201120150359.2041940-1-steen.hegelund@microchip.com>
- <20201120150359.2041940-2-steen.hegelund@microchip.com>
- <20201120160901.GA348979@piout.net>
+        id S1728062AbgKWIqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 03:46:13 -0500
+Received: from us-smtp-delivery-124.mimecast.com ([63.128.21.124]:52792 "EHLO
+        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728025AbgKWIqL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 03:46:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1606121169;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jYMiKkTGrMYQ2NetJ3YPrn1xVtPypbL8WrDyKHTMzOs=;
+        b=UONhhJfNtMrg/eHMvN7K8Pdg5PHxA8TPvbDOBfLLdaE7rZUJ+mnoYTRhUlX6/Z0Pu8LCJo
+        Mqs2FbJIStNqA+6oSYOykx2kkAWSsxSPvHOZAp0w8F/NZs5FKTHW2HhfQ/e3fc9Aa4Vwnf
+        meFzeVoB7J+f8tp4OilId9ufdc/fTBM=
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com
+ [209.85.208.72]) (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-78-Qp9PYAlYNVKqMaD4we_Z1g-1; Mon, 23 Nov 2020 03:46:07 -0500
+X-MC-Unique: Qp9PYAlYNVKqMaD4we_Z1g-1
+Received: by mail-ed1-f72.google.com with SMTP id p24so6276294eds.7
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 00:46:06 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=jYMiKkTGrMYQ2NetJ3YPrn1xVtPypbL8WrDyKHTMzOs=;
+        b=RYE4wNaRunHJx54MEwFR1iKIylW1GFZT18r5DFKXRFLfoXDnA1tsBdTydYTCaQZZ3X
+         55qMClV09vLbhm4yaODaV/ORuR7R9MmYEb0TrwL8vNQxBzN1ixtfwU+Ji6otJjUKsSdO
+         g1qHhLhO36keXTyDbYo4cVJvzyz/jRMY2Bd2uLkefLxTdBgDyDtR9PtJOL2OxQLDoAAq
+         pvGrDlx+/mF+SpQLiWpyZK1o63H6WDms40GxGZj3RGMtSAmQ9O7llOqkksj8JksuRf+h
+         F6ukgJgIhseyiEcEAIFShHIIeEFrOw+06gSYrfYnYcEAar0Rnty0HaGL2aB90cPqzs6F
+         H2HQ==
+X-Gm-Message-State: AOAM5316LAsZJDRnUsprvBBVIwELrDSnyWT/gydZiDmswktioAWbyzXn
+        WyDheMU9HNYPkTNA3G6XRWw0EZTOKiFwVnsab6UzT8V6By3g4XHOElj13q4xsRKPXrivWA4NqiX
+        QDUF/rocMWY/HddigK+n1FmQhuIkKqhF4XMILki0w52A+xacW/dNXpK2k1kkM1PxVaYyN6XOsfQ
+        ==
+X-Received: by 2002:a05:6402:1a22:: with SMTP id be2mr24532774edb.102.1606121165464;
+        Mon, 23 Nov 2020 00:46:05 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzHAlytM8HZAuIe1TFTLq5EO2Yi955/QctUdn81v7hrbJNCLA84nh49UlvJcnxIviSNRiTGPw==
+X-Received: by 2002:a05:6402:1a22:: with SMTP id be2mr24532760edb.102.1606121165221;
+        Mon, 23 Nov 2020 00:46:05 -0800 (PST)
+Received: from x1.localdomain (2001-1c00-0c0c-fe00-6c10-fbf3-14c4-884c.cable.dynamic.v6.ziggo.nl. [2001:1c00:c0c:fe00:6c10:fbf3:14c4:884c])
+        by smtp.gmail.com with ESMTPSA id j9sm4519025ejf.105.2020.11.23.00.46.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Nov 2020 00:46:04 -0800 (PST)
+Subject: Re: [PATCH 1/3] Input: goodix - add option to disable firmware
+ loading
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Andrej Valek <andrej.valek@siemens.com>, nick@shmanahar.org,
+        hadess@hadess.net, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20201029170313.25529-1-andrej.valek@siemens.com>
+ <20201029170313.25529-2-andrej.valek@siemens.com>
+ <20201029203608.GE2547185@dtor-ws>
+ <a5964429-a472-6b78-e53c-69b4cb115b94@redhat.com>
+ <20201123065336.GC2034289@dtor-ws>
+From:   Hans de Goede <hdegoede@redhat.com>
+Message-ID: <07a7e9e2-0c82-fdc0-2db0-5011b94816e2@redhat.com>
+Date:   Mon, 23 Nov 2020 09:46:03 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20201120160901.GA348979@piout.net>
+In-Reply-To: <20201123065336.GC2034289@dtor-ws>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.11.2020 17:09, Alexandre Belloni wrote:
->EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
->
->Hi,
->
->On 20/11/2020 16:03:56+0100, Steen Hegelund wrote:
->> Document the Sparx5 ethernet serdes phy driver bindings.
+Hi,
+
+On 11/23/20 7:53 AM, Dmitry Torokhov wrote:
+> On Fri, Oct 30, 2020 at 10:56:20AM +0100, Hans de Goede wrote:
+>> Hi,
 >>
->> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
->> Signed-off-by: Steen Hegelund <steen.hegelund@microchip.com>
->> ---
->>  .../bindings/phy/microchip,sparx5-serdes.yaml | 296 ++++++++++++++++++
->>  1 file changed, 296 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
+>> On 10/29/20 9:36 PM, Dmitry Torokhov wrote:
+>>> Hi Andrej,
+>>>
+>>> On Thu, Oct 29, 2020 at 06:03:11PM +0100, Andrej Valek wrote:
+>>>> Firmware file loadind for GT911 controller takes too much time (~60s).
+>>>> There is no check that configuration is the same which is already present.
+>>>> This happens always during boot, which makes touchscreen unusable.
+>>>>
+>>>> Add there an option to prevent firmware file loading, but keep it enabled
+>>>> by default.
+>>>
+>>> I thought that Goodix was losing firmware loading at poweroff. Is this
+>>> not the case with this model?
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
->> new file mode 100644
->> index 000000000000..0bfb752e7686
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/microchip,sparx5-serdes.yaml
->> @@ -0,0 +1,296 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/microchip,sparx5-serdes.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Microchip Sparx5 Serdes controller
->> +
->> +maintainers:
->> +  - Steen Hegelund <steen.hegelund@microchip.com>
->> +
->> +description: |
->> +  The Sparx5 SERDES interfaces share the same basic functionality, but
->> +  support different operating modes and line rates.
->> +
->> +  The following list lists the SERDES features:
->> +
->> +  * RX Adaptive Decision Feedback Equalizer (DFE)
->> +  * Programmable continuous time linear equalizer (CTLE)
->> +  * Rx variable gain control
->> +  * Rx built-in fault detector (loss-of-lock/loss-of-signal)
->> +  * Adjustable tx de-emphasis (FFE)
->> +  * Tx output amplitude control
->> +  * Supports rx eye monitor
->> +  * Multiple loopback modes
->> +  * Prbs generator and checker
->> +  * Polarity inversion control
->> +
->> +  SERDES6G:
->> +
->> +  The SERDES6G is a high-speed SERDES interface, which can operate at
->> +  the following data rates:
->> +
->> +  * 100 Mbps (100BASE-FX)
->> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
->> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
->> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
->> +
->> +  SERDES10G
->> +
->> +  The SERDES10G is a high-speed SERDES interface, which can operate at
->> +  the following data rates:
->> +
->> +  * 100 Mbps (100BASE-FX)
->> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
->> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
->> +  * 5 Gbps (QSGMII/USGMII)
->> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
->> +  * 10 Gbps (10G-USGMII)
->> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
->> +
->> +  SERDES25G
->> +
->> +  The SERDES25G is a high-speed SERDES interface, which can operate at
->> +  the following data rates:
->> +
->> +  * 1.25 Gbps (SGMII/1000BASE-X/1000BASE-KX)
->> +  * 3.125 Gbps (2.5GBASE-X/2.5GBASE-KX)
->> +  * 5 Gbps (QSGMII/USGMII)
->> +  * 5.15625 Gbps (5GBASE-KR/5G-USXGMII)
->> +  * 10 Gbps (10G-USGMII)
->> +  * 10.3125 Gbps (10GBASE-R/10GBASE-KR/USXGMII)
->> +  * 25.78125 Gbps (25GBASE-KR/25GBASE-CR/25GBASE-SR/25GBASE-LR/25GBASE-ER)
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: "^serdes@[0-9a-f]+$"
->> +
->> +  compatible:
->> +    const: microchip,sparx5-serdes.yaml
->
->This has a spurious .yaml suffix ;)
+>> So first of all there are 2 sorts of firmware involved with the
+>> Goodix touchscreen controllers, the actual firmware and a block
+>> of config data for that firmware which I presume adjusts it for
+>> the specific (model of) the digitizer which is attached.
+>>
+>> ATM the mainline Linux driver does not support models where
+>> the actual firmware itself needs to be loaded (because they
+>> only have RAM, so they come up without firmware).
+>>
+>> I do have one model tablet with a ROM-less goodix touchpad
+>> controller, so if I ever find the time I might add support
+>> for loading the actual firmware.
+>>
+>> So what we are talking about here is just loading the config
+>> data and I'm a bit surprised that this take so long.
+> 
+> So I am still confused about this: is the config stored in RAM or NVRAM?
+> I.e. do we actually need to re-load it every time on boot, or it
+> supposed to be flashed only when it is changed (or lost)?
 
-I will remove that.
->
->> +
->> +  reg:
->> +    description: Address and length of the register set for the device
->
->You don't actually have to describe this property a sit comes from the
->generic schema. But maybe you could set maxItems
+I only know about these touchscreens on x86, where we have a BIOS
+muddling the waters.
 
-OK, I will remove the description.
-Wouldn't minItems be better here, since there might be more targets in the
-future, to support more modes?
+We have seen devices which loose the config over suspend/resume,
+which suggests it is in RAM. I recently added a fix for these which
+saves the config at boot, which suggests that at least on the device
+model with the suspend/resume issue the config is loaded into the chip
+by the BIOS.
 
->
->> +
->> +  reg-names:
->> +    description: |
->> +      Names for each of the address spaces defined in
->> +      the 'reg' property. Expects the names in the same order as the
->> +      corresponding memory region in the that property.
->> +
->
->Same comment, even better, I tink you could list the expected names in
->an enum or a const list
+But I'm not sure that this is the case everywhere. Most other models
+likely have the config in NVRAM.
 
-OK, it is a long list, but then it will be automatically checked.
->
->> +  '#phy-cells':
->> +    const: 1
->> +    description: |
->> +      - The main serdes input port
->> +
->> +  clocks:
->> +    description:
->> +      A list containing the phandle to the core clock of the Sparx5 device.
->
->You can drop the description and simply have maxItems: 1
+I guess this is the same as with the firmware, and it differs per
+model. I know for sure that their are RAM only models which need
+the firmware loaded at boot, these are mostly found on ARM devs,
+but I have one X86 devices (which currently does not work) which
+also has RAM only and thus needs Linux to load the firmware
+(which is not supported atm). These RAM only models, presumably
+also have only RAM for the config.
 
-OK
->
->
->--
->Alexandre Belloni, Bootlin
->Embedded Linux and Kernel engineering
->https://bootlin.com
+Regards,
 
-BR
-Steen
+Hans
 
----------------------------------------
-Steen Hegelund
-steen.hegelund@microchip.com
