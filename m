@@ -2,177 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 050902C035B
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 11:34:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C6CF2C0368
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 11:37:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728158AbgKWKcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 05:32:48 -0500
-Received: from mail-eopbgr760053.outbound.protection.outlook.com ([40.107.76.53]:15842
-        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726416AbgKWKcr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 05:32:47 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cz8G1RvioP2kw1MDCl9hwjLCfjK20fwHL5FdL8554oKz4xEcxZxVu3ShKWaWLUaVslnqB/21GDoaH/q0yCWCfJHwZNf9POJxUL4NyGQnan1r911zslm1jEuwzIycMxZHchJpQ7szuVRx2ean8fUY+9WIUtCujpNObG+YhuBCw2kKkoYariz/wwkOknD4z8Vw77OmJxfhFJUvu1PbyDyO4pNvT45kzFblzPasVbkjhn44iRC8GhqkJYJ3pXD9dl74lfi5cN9J3sWm6DQzlQpC7P7LWwLPuKOy0+0dQjQsWae9YSziYlc7+tENcdYVRHbs85yZtPBRj5NqpNdJohblgQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/v3RabOWkB62RDyacqMafWyOZB5vX0udc7dbs95u1DY=;
- b=ezx8u22/WtHwdKozsNXuejjtd8DVxmLrmXVVmUV4GNYBKOevAWtR/vAJuCRxS2pzXuV2TFoxBtSLDwM0qG5sh3Tjj2YuDv42ImuwTSbUyrINL1aKK1luGgHU5bj05ash3tHkqDVEptzO9RXIPQrQViVMr6rm0xptCRGvJMmeVySSNdJizH5Dsbi4KropvNTZioq5Fd232Wy8XFTeVwVBj2kWN7P/NyI++o19GOoglaGh49g2Ad4IMFRKjmAJgVNJq9v64kj2vWmCl7ElX1X14n+zQ/BFrngVzk07AgWPG0YdT9z0pzd/12I+w5cb2obbh7i53xm9TbegAZRapuCYUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=openfive.com; dmarc=pass action=none header.from=openfive.com;
- dkim=pass header.d=openfive.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=osportal.onmicrosoft.com; s=selector2-osportal-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/v3RabOWkB62RDyacqMafWyOZB5vX0udc7dbs95u1DY=;
- b=nPIHEHNB4IG7K4TNUgcRABjrlwuTBONKfZ6GxJja4nVXij6K4dZpDiVZnaCaaNf3b+5NYxcoSq2Lhiat1pcNinF84WcVssy+B74M7CutxlcGz9C7qWeroHnEXRLNGp+UiRPDIn5ymcTuxWfZ3kWs099OitnvGj9ooz3ziRI02oo=
-Received: from BY5PR13MB4453.namprd13.prod.outlook.com (2603:10b6:a03:1d1::19)
- by BY5PR13MB3394.namprd13.prod.outlook.com (2603:10b6:a03:1a8::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.18; Mon, 23 Nov
- 2020 10:32:44 +0000
-Received: from BY5PR13MB4453.namprd13.prod.outlook.com
- ([fe80::7c13:1ac6:9f2a:5eae]) by BY5PR13MB4453.namprd13.prod.outlook.com
- ([fe80::7c13:1ac6:9f2a:5eae%7]) with mapi id 15.20.3611.020; Mon, 23 Nov 2020
- 10:32:44 +0000
-From:   Yash Shah <yash.shah@openfive.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "Paul Walmsley ( Sifive)" <paul.walmsley@sifive.com>,
-        "palmer@dabbelt.com" <palmer@dabbelt.com>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "wsa@kernel.org" <wsa@kernel.org>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        Sagar Kadam <sagar.kadam@openfive.com>,
-        "anup@brainfault.org" <anup@brainfault.org>,
-        "bp@suse.de" <bp@suse.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sachin Ghadi <sachin.ghadi@openfive.com>
-Subject: RE: [PATCH 1/2] RISC-V: Update l2 cache DT documentation to add
- support for SiFive FU740
-Thread-Topic: [PATCH 1/2] RISC-V: Update l2 cache DT documentation to add
- support for SiFive FU740
-Thread-Index: AQHWuNPXeVMTcgdvxUGkk0ItZFlleKnSmU6AgAL3WiA=
-Date:   Mon, 23 Nov 2020 10:32:43 +0000
-Message-ID: <BY5PR13MB445328314FB3521DE257C57782FC0@BY5PR13MB4453.namprd13.prod.outlook.com>
-References: <1605172274-44916-1-git-send-email-yash.shah@sifive.com>
- <20201121125443.GA2076465@robh.at.kernel.org>
-In-Reply-To: <20201121125443.GA2076465@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=openfive.com;
-x-originating-ip: [103.109.13.228]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a068c750-338b-4660-95ed-08d88f9b1ce9
-x-ms-traffictypediagnostic: BY5PR13MB3394:
-x-ld-processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR13MB33940F47281CCB671301EB4882FC0@BY5PR13MB3394.namprd13.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OSdNfK0z+PbgBPRGtF1dPyZWJKjU2ZwrD3pmiQhOXQUzDcm0adDGKmF6QId8jiyVusfr9AbX3iL5I9Z+bG0bWcYzUGRbTi4N+Zok/7gVo7MmsF6n+x6MmI8//EVuCdsQzQHRazFGkjkHeYjFn+cVnUeDyhyRi258eu+7La9ZcG34QaapVAngXsY2odV9X5OaCepAQ8zDBsnCGF5G+PHLColVjSKRM4YQ/9cbwdIeSDpCedzsPASrVes6kSvAokH+AM/TjWGjDZk41diHTy7nOdf/v43l+wVQqLn/e4Xh8J+uuJ4oe5CiSot98lTzqU63mG1boI/8L2KbPPD9VSC6UQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR13MB4453.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(6029001)(136003)(376002)(346002)(39840400004)(366004)(396003)(8936002)(6916009)(86362001)(76116006)(15650500001)(83380400001)(2906002)(66946007)(8676002)(316002)(54906003)(186003)(53546011)(6506007)(44832011)(7416002)(71200400001)(33656002)(7696005)(5660300002)(55016002)(26005)(4326008)(52536014)(478600001)(107886003)(9686003)(64756008)(66446008)(66556008)(66476007);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: mHrDVxY/NtmgyGRYMQDn3RFNBFo27SBgHB576Bv8uS9bI5ERYc1tlKz6KfEl9edBc5V6wulCR1E5NC2yLl6I8Czg/QEShk33pybWN6UGYN47nCSqnDrKuYDFyRo+AoeVIOM7xEAFuuao2l4gT155gTwYcLiGVjK0iI2u33LV8ViC2tpJCC0ErYUcYm2F4tHZFIEAGcC/qyv/oh4rnDMD3liHL9lKkEk8htP+chYaCrf7NahtWp6LGHQVlBmJIOfk8nts4SnVwqbyAnoiEbVtJlgRE6tpVWgTFEjMiGVTqIZ19MP8OJc8LRNCLkZV9KlGbvh2+lJ5RmNlZmEMSYr3ukQ+9rPGcetsXFShKzA20j3LVUObGY2i17yb+kDjZTv/cPIrD7lQ+PA/Oz9zN4145e01wBS9TJbDeOcFanEbFyha28XXb9/ea6zmeOVPWLYcnYHLZXnUY4OEltpMJ0eUuY14rbqn+Nbh29mhdpGHAwEibswgkGwZ4WIYQYS10iQzyRZBodFDqmHtnnakN5km9TGHvxCPPJ5F/YyjHQ2KLtrMhna41EHzkW0zjddbl4u63zMqCO0oo4494TK7Nx9Eo2WyqUu8gjE6Kya7qx3huK2TWUq+Da9pUZTiTjzg7jxMYwuVApJ5qv+pcGUo2i/s9YL1zHGhVyb2i/o0Itj0HTqtg4xOJfUJaRBlYqHPmSX9PC6fNKjcLBbDnXUoINKuahlP9+l6kL5VmC/VpXHZCUPK5Iprh/Qj0GJEBrLpy/gfWnpeseBztKG/4kzgsd0r8JwXsrP+X2f3cQI7BxuFycen3d6tHY7l+Od9cOWzqmE/U1MkRxUCkG/H4iqhbvr721RMOLCMvAXB9QC6z/o+MmbkkDF20Mq+g7smAsOyUSjcJZ9PMVYsp9UCP7UxIapsmw==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1728629AbgKWKfj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 05:35:39 -0500
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:3712 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728181AbgKWKfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 05:35:39 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fbb907d0000>; Mon, 23 Nov 2020 02:35:41 -0800
+Received: from [10.26.72.66] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Nov
+ 2020 10:35:36 +0000
+Subject: Re: [PATCH v5 3/6] ASoC: tegra: Add audio graph based card driver
+To:     Sameer Pujar <spujar@nvidia.com>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>
+CC:     <kuninori.morimoto.gx@renesas.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sharadg@nvidia.com>
+References: <1605119676-32273-1-git-send-email-spujar@nvidia.com>
+ <1605119676-32273-4-git-send-email-spujar@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <46aa4d68-03e9-72e9-51f9-e67dba15f5d3@nvidia.com>
+Date:   Mon, 23 Nov 2020 10:35:33 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: openfive.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR13MB4453.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a068c750-338b-4660-95ed-08d88f9b1ce9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2020 10:32:43.9901
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XJnFEo+GU8ieWGz6zRm4L6Tu4cjHQsrxLrIg1jE16qn4mxqapzglP/HMN8acpUmamk5N32sv2QPAnt9mkzjWVg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR13MB3394
+In-Reply-To: <1605119676-32273-4-git-send-email-spujar@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1606127741; bh=uMDIowN3wpMWfJH47P7VBkUozBmVOf28BCnQ/0Jg7dM=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Language:
+         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
+        b=kAEUdK2R/aWUfXr+TRSWtdJ0VtB+URhq7Y92DufuUpzrPqL8o2YjNcgiRC9XLzQ6M
+         ar9rzb3qPFGBwKAyhleD7EgEryZZzhBeqP7bfCm12dBu72kK9emFDjOpTKYh3VPHk5
+         dGYpULQVhOGCunoz9X4/uL9WXnT4cVdapjca4Dhzvks4UCg37SPpg4W7PzHphjrv1B
+         Jbd9ggOSUbnyL/OiYjAQ92vxlRWFcN+IzvVAgWj04P7sp/hzv2fDztd8riInzpeHNX
+         QwWgUBqDqCSq2DB52fVgFbgJ6wEChQypb0DYklILjRzg4t1WI4+V83BeqBYkIphBp4
+         2GIaqS0iH1zng==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 21 November 2020 18:25
-> To: Yash Shah <yash.shah@openfive.com>
-> Cc: Paul Walmsley ( Sifive) <paul.walmsley@sifive.com>;
-> palmer@dabbelt.com; aou@eecs.berkeley.edu;
-> Jonathan.Cameron@huawei.com; wsa@kernel.org; sam@ravnborg.org;
-> Sagar Kadam <sagar.kadam@openfive.com>; anup@brainfault.org;
-> bp@suse.de; devicetree@vger.kernel.org; linux-riscv@lists.infradead.org;
-> linux-kernel@vger.kernel.org; Sachin Ghadi <sachin.ghadi@openfive.com>
-> Subject: Re: [PATCH 1/2] RISC-V: Update l2 cache DT documentation to add
-> support for SiFive FU740
->=20
-> [External Email] Do not click links or attachments unless you recognize t=
-he
-> sender and know the content is safe
->=20
-> On Thu, Nov 12, 2020 at 02:41:13PM +0530, Yash Shah wrote:
-> > The L2 cache controller in SiFive FU740 has 4 ECC interrupt sources as
-> > compared to 3 in FU540. Update the DT documentation accordingly with
-> > "compatible" and "interrupt" property changes.
-> >
-> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> > ---
-> >  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 33
-> > +++++++++++++++++-----
-> >  1 file changed, 26 insertions(+), 7 deletions(-)
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> > b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> > index efc0198..4873d5c 100644
-> > --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
 
-<...>
+On 11/11/2020 18:34, Sameer Pujar wrote:
+> Add Tegra audio machine driver which is based on generic audio graph card
+> driver. It re-uses most of the common stuff from audio graph driver and
+> uses the same DT binding. Required Tegra specific customizations are done
+> in the driver and additional DT bindings are required for clock handling.
+> 
+> Details on the customizations done:
+> 
+>  - Update PLL rates at runtime: Tegra HW supports multiple sample rates
+>    (multiples of 8x and 11.025x) and both of these groups require different
+>    PLL rates. Hence there is a requirement to update this at runtime.
+>    This is achieved by providing a custom 'snd_soc_ops' and in hw_param()
+>    callback PLL rate is updated as per the sample rate.
+> 
+>  - Internal structure 'tegra_audio_graph_data' is used to maintain clock
+>    handles of PLL.
+> 
+>  - The 'force_dpcm' flag is set to use DPCM for all DAI links.
+> 
+>  - The 'component_chaining' flag is set to use DPCM with component model.
+> 
+> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+> ---
+>  sound/soc/tegra/Kconfig                  |   9 ++
+>  sound/soc/tegra/Makefile                 |   2 +
+>  sound/soc/tegra/tegra_audio_graph_card.c | 255 +++++++++++++++++++++++++++++++
+>  3 files changed, 266 insertions(+)
+>  create mode 100644 sound/soc/tegra/tegra_audio_graph_card.c
+> 
+> diff --git a/sound/soc/tegra/Kconfig b/sound/soc/tegra/Kconfig
+> index a62cc87..6dc83ad 100644
+> --- a/sound/soc/tegra/Kconfig
+> +++ b/sound/soc/tegra/Kconfig
+> @@ -117,6 +117,15 @@ config SND_SOC_TEGRA210_ADMAIF
+>  	  channel. Buffer size is configurable for each ADMAIIF channel.
+>  	  Say Y or M if you want to add support for Tegra210 ADMAIF module.
+>  
+> +config SND_SOC_TEGRA_AUDIO_GRAPH_CARD
+> +	tristate "Audio Graph Card based Tegra driver"
+> +	depends on SND_AUDIO_GRAPH_CARD
+> +	help
+> +	  Config to enable Tegra audio machine driver based on generic
+> +	  audio graph driver. It is a thin driver written to customize
+> +	  few things for Tegra audio. Most of the code is re-used from
+> +	  audio graph driver and the same DT bindings are used.
+> +
+>  config SND_SOC_TEGRA_RT5640
+>  	tristate "SoC Audio support for Tegra boards using an RT5640 codec"
+>  	depends on SND_SOC_TEGRA && I2C && GPIOLIB
+> diff --git a/sound/soc/tegra/Makefile b/sound/soc/tegra/Makefile
+> index 60040a0..b17dd6e 100644
+> --- a/sound/soc/tegra/Makefile
+> +++ b/sound/soc/tegra/Makefile
+> @@ -38,6 +38,7 @@ snd-soc-tegra-trimslice-objs := trimslice.o
+>  snd-soc-tegra-alc5632-objs := tegra_alc5632.o
+>  snd-soc-tegra-max98090-objs := tegra_max98090.o
+>  snd-soc-tegra-sgtl5000-objs := tegra_sgtl5000.o
+> +snd-soc-tegra-audio-graph-card-objs := tegra_audio_graph_card.o
+>  
+>  obj-$(CONFIG_SND_SOC_TEGRA_RT5640) += snd-soc-tegra-rt5640.o
+>  obj-$(CONFIG_SND_SOC_TEGRA_RT5677) += snd-soc-tegra-rt5677.o
+> @@ -48,3 +49,4 @@ obj-$(CONFIG_SND_SOC_TEGRA_TRIMSLICE) += snd-soc-tegra-trimslice.o
+>  obj-$(CONFIG_SND_SOC_TEGRA_ALC5632) += snd-soc-tegra-alc5632.o
+>  obj-$(CONFIG_SND_SOC_TEGRA_MAX98090) += snd-soc-tegra-max98090.o
+>  obj-$(CONFIG_SND_SOC_TEGRA_SGTL5000) += snd-soc-tegra-sgtl5000.o
+> +obj-$(CONFIG_SND_SOC_TEGRA_AUDIO_GRAPH_CARD) += snd-soc-tegra-audio-graph-card.o
+> diff --git a/sound/soc/tegra/tegra_audio_graph_card.c b/sound/soc/tegra/tegra_audio_graph_card.c
+> new file mode 100644
+> index 0000000..f4d826d
+> --- /dev/null
+> +++ b/sound/soc/tegra/tegra_audio_graph_card.c
+> @@ -0,0 +1,255 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// tegra_audio_graph_card.c - Audio Graph based Tegra Machine Driver
+> +//
+> +// Copyright (c) 2020 NVIDIA CORPORATION.  All rights reserved.
+> +
+> +#include <linux/math64.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <sound/graph_card.h>
+> +#include <sound/pcm_params.h>
+> +
+> +#define MAX_PLLA_OUT0_DIV 128
+> +
+> +#define simple_to_tegra_priv(simple) \
+> +		container_of(simple, struct tegra_audio_priv, simple)
+> +
+> +enum srate_type {
+> +	/*
+> +	 * Sample rates multiple of 8000 Hz and below are supported:
+> +	 * ( 8000, 16000, 32000, 48000, 96000, 192000 Hz )
+> +	 */
+> +	x8_RATE,
+> +
+> +	/*
+> +	 * Sample rates multiple of 11025 Hz and below are supported:
+> +	 * ( 11025, 22050, 44100, 88200, 176400 Hz )
+> +	 */
+> +	x11_RATE,
+> +
+> +	NUM_RATE_TYPE,
+> +};
+> +
+> +struct tegra_audio_priv {
+> +	struct asoc_simple_priv simple;
+> +	struct clk *clk_plla_out0;
+> +	struct clk *clk_plla;
+> +};
+> +
+> +/* Tegra audio chip data */
+> +struct tegra_audio_cdata {
+> +	unsigned int plla_rates[NUM_RATE_TYPE];
+> +	unsigned int plla_out0_rates[NUM_RATE_TYPE];
+> +};
+> +
+> +/* Setup PLL clock as per the given sample rate */
+> +static int tegra_audio_graph_update_pll(struct snd_pcm_substream *substream,
+> +					struct snd_pcm_hw_params *params)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
+> +	struct asoc_simple_priv *simple = snd_soc_card_get_drvdata(rtd->card);
+> +	struct tegra_audio_priv *priv = simple_to_tegra_priv(simple);
+> +	struct device *dev = rtd->card->dev;
+> +	const struct tegra_audio_cdata *data = of_device_get_match_data(dev);
+> +	unsigned int plla_rate, plla_out0_rate, bclk;
+> +	unsigned int srate = params_rate(params);
+> +	int err;
+> +
+> +	/* There is nothing to configure */
+> +	if (!data)
+> +		return 0;
 
-> > @@ -51,12 +54,6 @@ properties:
-> >
-> >    cache-unified: true
-> >
-> > -  interrupts:
-> > -    description: |
-> > -      Must contain entries for DirError, DataError and DataFail signal=
-s.
-> > -    minItems: 3
-> > -    maxItems: 3
->=20
-> Keep this here and just change maxItems to 4. Really, what each interrupt=
- is
-> should be listed out as an 'items' entry.
->=20
 
-Sure will send a v2 with the above modifications.
+Seems like this should never happen and so if it did this is an error.
+Any reason why we don't return an error here?
 
-<...>
+Cheers
+Jon
 
->=20
-> > +
-> > +else:
-> > +  properties:
-> > +    interrupts:
-> > +      description: |
-> > +        Must contain entries for DirError, DirFail, DataError, DataFai=
-l signals.
->=20
-> DirFail should be last so you keep the same indices.
-
-Actually, the interrupts have been numbered like that in FU740 SoCs and the=
- driver expects the interrupts to be in this order.
-I will keep the same order for v2 as well. Let me know if you still disagre=
-e.
-
-Thanks for your review.
-
-- Yash
-
-
+-- 
+nvpublic
