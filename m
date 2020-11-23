@@ -2,88 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE9F2C10D3
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 17:39:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51FA62C10F1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 17:48:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389960AbgKWQiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 11:38:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37880 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388732AbgKWQiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 11:38:20 -0500
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE085C061A4D
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 08:38:18 -0800 (PST)
-Received: by mail-wr1-x443.google.com with SMTP id r3so928854wrt.2
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 08:38:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KBjcN4mFZs97LIMNRwXyk/FuZp47lAZQ6VC4MRI2zF8=;
-        b=fK3T5zpNtdFE4qkfblQOvZutqPBlD3t/zRsxTZQ1DwegYq6O8j9idVvZDz1yqtrcIw
-         KdjNOyImu+9ASuREdRApBcfK4GceU5+rZc4trGbarkKGPCMrOfppVKTEILzXEXeQ32CF
-         boBBiwmAwrUPDYsp/5HG346RA/4d3D4vDepKpYifN1th2mmdv2N2UtF1odHVgGVmInVM
-         7S9xizR7ziJn5nEyqRza1QdDg7jIRZyHlcrvToKIy100osWsGDYLRAHeDk9fn+5Z3x4l
-         ovGYm5Vu1NrbTGKgrJ3yB02AccjBmSFICqWs//Rv/QwBFJdf5Gg4RCgBp4Rbc9wGSoAo
-         rKpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KBjcN4mFZs97LIMNRwXyk/FuZp47lAZQ6VC4MRI2zF8=;
-        b=Zbpn0fNgSsYdxf7Eaqof5/lIp9NJf19S4/eqqBdZ+WL1SvT6PGpzn43eDaFOdG7WP4
-         wWJugXDzvAHrmnKI2UCsidNuMjs3IsDU/15FXYj+lHRVRnDUxDOHTH6bh4I/jchxCdg7
-         fK/jcg+wF15Na7azJqnsWz2gbAyV28D+xkPDboVz7HQDxee1dsQlq70A3US3IgPciGai
-         sUOyBYZOIhoKsXKeK7sI8sh7Cw7vo0bJmkYDttX/wlr+2dZlBYPeZy8U7+bVKqWLl1D7
-         SKFnUkSgbJ2VRxhk5FI4XX2bdzs/obfWqX/VF9gWO8dRMs05JubWI08NmNaSE0xL+Qas
-         ltOw==
-X-Gm-Message-State: AOAM533OwMmA3ZjEoxWzj84Ldw/IxI68iYIce1fpNfPTsgXbE18iPa+6
-        W3mSaemIDbcW7UC+neP6qKpt3Q==
-X-Google-Smtp-Source: ABdhPJxZuTuVAK9+n55is+GQzAN6UGY9JgbVtQ0zjEb8LC2wK2PgJkVpOv+zzDtsyXTi0up/sHeVKA==
-X-Received: by 2002:a5d:44d1:: with SMTP id z17mr491465wrr.423.1606149497579;
-        Mon, 23 Nov 2020 08:38:17 -0800 (PST)
-Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:9541:d2fd:3a68:67ae])
-        by smtp.gmail.com with ESMTPSA id l3sm19566386wmf.0.2020.11.23.08.38.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2020 08:38:16 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     jbrunet@baylibre.com
-Cc:     linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: clk: g12a-clkc: add DSI Pixel clock bindings
-Date:   Mon, 23 Nov 2020 17:38:10 +0100
-Message-Id: <20201123163811.353444-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201123163811.353444-1-narmstrong@baylibre.com>
-References: <20201123163811.353444-1-narmstrong@baylibre.com>
+        id S1732621AbgKWQj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 11:39:56 -0500
+Received: from mail.pqgruber.com ([52.59.78.55]:41392 "EHLO mail.pqgruber.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732512AbgKWQj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 11:39:56 -0500
+Received: from workstation.tuxnet (213-47-165-233.cable.dynamic.surfer.at [213.47.165.233])
+        by mail.pqgruber.com (Postfix) with ESMTPSA id D7D05C81EEB;
+        Mon, 23 Nov 2020 17:39:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pqgruber.com;
+        s=mail; t=1606149594;
+        bh=vfy6iH8njtY0puGVd8sfT1IejW8lXGG1Yz4/aftKfdA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=yd4mO/P0eQwrYVtlAckUA0Qv+T/iMHADPRNrKoUwB1MCK2eGAYT2yaNIXp5cJf+5f
+         Za/eT8a9zekPdth3j/cVQFwugK1hAYQbQafLjlpyJ0I8a9QVYuB7DrBNngxDtpEJrR
+         BZ+3l7MmVYCC9y1KO8FCdoZ+bVMGmA38swFHOGTk=
+From:   Clemens Gruber <clemens.gruber@pqgruber.com>
+To:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        u.kleine-koenig@pengutronix.de, Lee Jones <lee.jones@linaro.org>,
+        linux-kernel@vger.kernel.org,
+        Clemens Gruber <clemens.gruber@pqgruber.com>
+Subject: [PATCH v2 4/4] dt-bindings: pwm: pca9685: Add staggered-outputs property
+Date:   Mon, 23 Nov 2020 17:39:20 +0100
+Message-Id: <20201123163920.166175-1-clemens.gruber@pqgruber.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201123163622.166048-1-clemens.gruber@pqgruber.com>
+References: <20201123163622.166048-1-clemens.gruber@pqgruber.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the MIPI DSI Host Pixel Clock bindings.
+The pca9685 driver supports a new staggered-outputs property for reduced
+current surges and EMI. This adds documentation for the new DT property.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Clemens Gruber <clemens.gruber@pqgruber.com>
 ---
- include/dt-bindings/clock/g12a-clkc.h | 2 ++
+ Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt | 2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index 40d49940d8a8..a93b58c5e18e 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -147,5 +147,7 @@
- #define CLKID_SPICC1_SCLK			261
- #define CLKID_NNA_AXI_CLK			264
- #define CLKID_NNA_CORE_CLK			267
-+#define CLKID_MIPI_DSI_PXCLK_SEL		269
-+#define CLKID_MIPI_DSI_PXCLK			270
+diff --git a/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt b/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
+index f21b55c95738..911bbb65984e 100644
+--- a/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
++++ b/Documentation/devicetree/bindings/pwm/nxp,pca9685-pwm.txt
+@@ -12,6 +12,8 @@ Optional properties:
+   - invert (bool): boolean to enable inverted logic
+   - open-drain (bool): boolean to configure outputs with open-drain structure;
+ 		       if omitted use totem-pole structure
++  - staggered-outputs (bool): boolean to enable staggered output ON times to
++			      minimize current surges and EMI
  
- #endif /* __G12A_CLKC_H */
+ Example:
+ 
 -- 
-2.25.1
+2.29.2
 
