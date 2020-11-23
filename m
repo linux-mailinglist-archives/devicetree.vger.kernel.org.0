@@ -2,69 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E39962C1839
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 23:11:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 057B82C184B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 23:18:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731035AbgKWWJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 17:09:17 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:46130 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729245AbgKWWJQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 17:09:16 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1khK1K-008YSH-1Z; Mon, 23 Nov 2020 23:09:14 +0100
-Date:   Mon, 23 Nov 2020 23:09:14 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next 2/3] net: dsa: add Arrow SpeedChips XRS700x
- driver
-Message-ID: <20201123220914.GC2036992@lunn.ch>
+        id S1731017AbgKWWPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 17:15:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33676 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730427AbgKWWPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 17:15:15 -0500
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C012FC0613CF;
+        Mon, 23 Nov 2020 14:15:15 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id 5so9564084plj.8;
+        Mon, 23 Nov 2020 14:15:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nucHxpp26qc0ylPI7uSda+OP6ZowlVW2c8oc856XvWs=;
+        b=Qba2Pd2/LUw6ydm54H22Tl0peo96S94ThTMATb1D/yTD0swt3FgUXmZOeQJrgogDyK
+         1AGYeTfKEYqR10ewLRG/jx2vjT6/RNjDmyaianQt239jl/LYywLyw3df7c8FypryESQb
+         /vaTb2XipMDTmVXtS31JXvHqgDdVltQ5L43zZ4i4CyQiJVEwJJN1+ADJYSUxQoJU67nS
+         8Jih65OMUaZKi+3WWV3l98JUoMqvcpcoS4i6d4i1YAAuiXoLBqElvB5PuXEScvd0/CuT
+         j/3T2NXMYtMhKjmrFKq3ctFxp4OneV8MkDWz9HZBuOlZCSEYW1E8dMkiWILbpuIS6GNW
+         ut4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nucHxpp26qc0ylPI7uSda+OP6ZowlVW2c8oc856XvWs=;
+        b=iAKREkqWx+E84ZoM2O2+2ZhYV0JCCKr1AZgB0Oloh0UUoZc5ibn5Egdc834u7ljBDN
+         e7M2txO3M+763hfCCigvo2msN/mJNxwuA76XMBz+kgyYCgkJ72YK6/Lt+UaHZ5+S1aHQ
+         ARQBVb81umOSTYXNUmayauSxsWRGFZ8qFK3VyQVfclMSMgvqO/doQVcOdVtHVgJKJITE
+         3XAFWykYVSvu4hhTtufm6fHspqLFNv+9ilbdkL54RROBMajpn3/4pHe/CbwSyPMu1S2F
+         BsTB+6PiXyfVYdZA4T3ih84CLzwTTBSeDM6VEaaCb2s+329SbjaVKzWGnIqj3QT1WM+F
+         XmSA==
+X-Gm-Message-State: AOAM531nwJMwWs21SRFfluHFOtpEgjJIWobkBEQ1tgEVtJm2FCenhTOW
+        IwW6LLNq+JQSBnKU1KMyP8ogwE7CW9g=
+X-Google-Smtp-Source: ABdhPJyfBLqnqzskS0IIzPUGTV3XEMGsSzfOqiAQw8PfcsTp/UmNGnYBhojkld+dv1NPLNIXHclMTA==
+X-Received: by 2002:a17:902:7606:b029:d4:c797:a186 with SMTP id k6-20020a1709027606b02900d4c797a186mr1360034pll.38.1606169714951;
+        Mon, 23 Nov 2020 14:15:14 -0800 (PST)
+Received: from [10.230.28.242] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id s4sm362016pjr.44.2020.11.23.14.15.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Nov 2020 14:15:14 -0800 (PST)
+Subject: Re: [PATCH net-next 3/3] dt-bindings: net: dsa: add bindings for
+ xrs700x switches
+To:     George McCollister <george.mccollister@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
 References: <20201120181627.21382-1-george.mccollister@gmail.com>
- <20201120181627.21382-3-george.mccollister@gmail.com>
- <20201120193321.GP1853236@lunn.ch>
- <CAFSKS=P=epx3Sr3OzkCg9ycoftmXm__PaMee7HWbAGXYdqgbDw@mail.gmail.com>
- <20201120232439.GA1949248@lunn.ch>
- <CAFSKS=M-2rwM2UC58xf8n0ORuwxHq06BjLj7QP=JuU19-tCpGg@mail.gmail.com>
+ <20201120181627.21382-4-george.mccollister@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <63f77359-3475-e37c-395e-26039856927e@gmail.com>
+Date:   Mon, 23 Nov 2020 14:15:12 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFSKS=M-2rwM2UC58xf8n0ORuwxHq06BjLj7QP=JuU19-tCpGg@mail.gmail.com>
+In-Reply-To: <20201120181627.21382-4-george.mccollister@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > > https://www.flexibilis.com/downloads/xrs/SpeedChip_XRS7000_3000_User_Manual.pdf
 
-Section 6.1.4
 
-The forwarding decision is presented in Figure 19. Note that also
-frames coming into a disabled port are received to the buffer memory,
-but because their forwarding decision is not to forward them to any
-port, they are dropped.  This behavior however can be changed, and
-frames can be forwarded from disabled ports to other ports by using
-Inbound Policy (see Chapter 6.1.5).
+On 11/20/2020 10:16 AM, George McCollister wrote:
+> Add documentation and an example for Arrow SpeedChips XRS7000 Series
+> single chip Ethernet switches.
+> 
+> Signed-off-by: George McCollister <george.mccollister@gmail.com>
 
-Sounds promising. And Section 6.1.5:
-
-Inbound Policy checks the source and the destination MAC addresses of
-all the received frames. The user can configure through the register
-interface what kind of a treatment should frames with certain source
-or destination MAC addresses get. Many protocols use protocol specific
-multicast MAC addresses and the destination MAC address can therefore
-be used for forwarding those frames to CPU port and not to other
-ports.
-
-Looking at table 36, i think you can add a match for the BPDU
-destination MAC address, and have i forwarded to the CPU port.
-
-Looks like you can add 15 such filters. So you might want to think
-about how you want to use these, what other special packets do you
-want to allow through?
-
-	    Andrew
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
