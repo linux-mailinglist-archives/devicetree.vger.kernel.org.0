@@ -2,92 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C2452C17A2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 22:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B74C82C17B1
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 22:32:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730108AbgKWVXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 16:23:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53898 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727725AbgKWVXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 16:23:24 -0500
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE76AC061A4D
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 13:23:22 -0800 (PST)
-Received: by mail-lf1-x141.google.com with SMTP id l11so25904675lfg.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 13:23:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vRZ/gKrfEgXXPL3DmEFvGxpTfGP1G2iZrpLKbx41KPU=;
-        b=JFAU1aYQDQw7PAw6MuOA4Haf/FSt2b20JWn46yctmfUW7d3b0XtyKdBfRLw4Ki7Uah
-         4DXsscwINcAaysL1AyrDQR2AYEeQiIaM7tZDDjWu0j7r8FhEs8gGFPiEQkmYnoXeTQ+F
-         ZHGSr6cXBktjGmWjyH9CK2qccW/2izQwCs4tWqmN/3DJ1pCY3if+bqrKy30fxU+cSt8U
-         ax0q2Kolx75J9yV89jDKNM7UCdN8LCLKD/avamFApLoGOtMMBYEoUWVR1QKLW479qRns
-         YeCycSvj44T9T51EGhTMJfsfYPAAg34QKhnzqxqplYcJpavb93QDa/lhiGg4LOlGds13
-         aV6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vRZ/gKrfEgXXPL3DmEFvGxpTfGP1G2iZrpLKbx41KPU=;
-        b=CJxDORlY935ZXuUK79bY3pfy6od4kKkIw6XcruKn2mbSR48RlL+WX0kV6vRia2syU9
-         GW3OP33XJQFicDsrUiULcJebhueQ2h+qAVQ3eFxR0G+zoP6a2KzPr6jvAE5mBEXDvzE+
-         tgXvrles7ZuSoL5LCJtn/Z45gQuzFC8ym8f0d7CJd2Cg42QNThzaMcCUwG9G6f4HV4TA
-         jKlA6Nk5skGXZGC0KSAcMOxkb0ShGbNGou7tZCN/3jIQPusyhDTxRN1HtRuk19ZMrZmR
-         o4gc+JnlvHxPVhpmacHAF5Is5xnQIc+3nci3afWg8liRAmgmRp+KM0Da6EVq+Rh7TALO
-         JIWA==
-X-Gm-Message-State: AOAM532A3btQOk1WQgbVCzWwjSaAZMB2ieHqeQ6dOrl5YFEH5Ol7ikEQ
-        PjEsTZIDgDq63d+x23HKPqGi6yp0/d92nabGT6nuAA==
-X-Google-Smtp-Source: ABdhPJy2Q0A7D8Lk4T9WUvsZAqStaMJ1heV2jCWT5l7VWJMu9ZmC9IWtTK3/IWTF52cjUy4teKASDDQm/uH/X/faXvI=
-X-Received: by 2002:a19:7b06:: with SMTP id w6mr477889lfc.260.1606166601367;
- Mon, 23 Nov 2020 13:23:21 -0800 (PST)
-MIME-Version: 1.0
-References: <20201113124239.2667502-1-linus.walleij@linaro.org>
- <20201121132742.GA2121607@robh.at.kernel.org> <CACRpkda6EDjtDEK6N0kvnpyBD+6ofgdBcUeqn70VG4FY_0X1-g@mail.gmail.com>
-In-Reply-To: <CACRpkda6EDjtDEK6N0kvnpyBD+6ofgdBcUeqn70VG4FY_0X1-g@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 23 Nov 2020 22:23:09 +0100
-Message-ID: <CACRpkdZvEstDXx9-m7n09H1FmbwnT014Lyv2nDdc_nXM0KUbpA@mail.gmail.com>
-Subject: Re: [PATCH 1/2 v5] dt-bindings: leds: Add DT binding for Richtek RT8515
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Sakari Ailus <sakari.ailus@iki.fi>, newbytee@protonmail.com,
+        id S1729996AbgKWVcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 16:32:02 -0500
+Received: from mout.gmx.net ([212.227.15.18]:35725 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729668AbgKWVcB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 16:32:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1606167075;
+        bh=sCkDsbnNYQ6Pz3/oXpsDLnfnKp/ckhQ+TZMQxjRgd3A=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=SXALL6dkqlmI+G8wKpUobuPezQXOviKE/83S7qWtriuewgq+ufJ+kxT9ve4fjInvI
+         GonNpTmd89Qvh1smmkHwXVIBRZtkr2pVH0IszY8YubSYztbvlkUdp6xgijeNdOk6YZ
+         IFsEsSyuAPGAWEM8oG9sRS+qhDd6RwHi6DqjJnFA=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([37.201.214.162]) by mail.gmx.com (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1M26vL-1kfNcZ33P7-002WX6; Mon, 23
+ Nov 2020 22:31:14 +0100
+Date:   Mon, 23 Nov 2020 22:31:05 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
         Stephan Gerhold <stephan@gerhold.net>,
-        phone-devel@vger.kernel.org,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v4 5/7] rtc: New driver for RTC in Netronix embedded
+ controller
+Message-ID: <20201123213105.GC456020@latitude>
+References: <20201122222739.1455132-1-j.neuschaefer@gmx.net>
+ <20201122222739.1455132-6-j.neuschaefer@gmx.net>
+ <20201122231054.GH348979@piout.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="hHWLQfXTYDoKhP50"
+Content-Disposition: inline
+In-Reply-To: <20201122231054.GH348979@piout.net>
+X-Provags-ID: V03:K1:no2Gna2hTxM9N5hL6CMDIOPd7xqpgCHA1PYx+QzCYCYXmJO39aV
+ eh7+fejXcNZipfhKMG4JqyZ/n52hEDbvWcp8GOh9WWLAVTxcSPWaY0uyyTIfkOYzsEBa2fN
+ vzGT4ccpUzfKb1AZcm6jP/+dmiEo9t1b3E/6l2mASZjnAsCaN0oePm15gRfFyHzFc6bCzGX
+ PzaZLnarMAtk6ofOIYwLw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:xtB5ZZleEYM=:6oYlbp6ZnPxYRMENT5U0SS
+ 4J2O/eVE4/KL5m+Cda1SDfZXXmisRKcJs0HHlkREUhR5df04phBeO/+BG8Yybesk8i/uWEw0k
+ l+HWrSz8OyE3/OvkUkzP3C///oqqX0ucMc3DR0b6g48fEwiL6HPDyLQ8i6XpBCqI8BQ98MsgT
+ lB74HdiSpOWvj3EzDPNBxFbkpW2mKLxt39ZU77oMiPIOWkDpPhCcPkl1/aH8EtDCzWaZBCnmE
+ QpYh0A79fNO5zf9Uf6wJppJMj2Jyht1lCtEZens4jfP5cJVkGZJLcZM48H4i6lAOP4G15rzJz
+ +v+muE10se/Pz8Z7d5E0DS0NUoLrUQXKQjZIrbZI3R/5ln8xp7gnbLOnlWmF5ora4KYrq/7ZR
+ iyMQN0VF+IOwGbo/CQdJRbGmWBt5bEonEL4aZPB6MXCNrYh4BrYCk+0FV5tTqba3wJr4SgreY
+ OSClmWSsmL4B+kldZm9ZctIkhw7mtXR+vWuthkhv25BwObusoB4FbQjQnn4cLu+7edjtzMB6S
+ 2jEhEk72s7zQBVnXa9fX/gX8xGIx60uJ2YMFqVHd8n6jdiYrdn6nM8buTpZsuFJLRb9CuloWm
+ 3mS9CtS+czTdRcIosoFzZ3Zd/rlKn+dRTx3RhoyZj3HweS1xQ3SP7EoRURuJRIjbYuLzqPSn7
+ e10uYatI6jjmSX8OvWyCV/vZfuLm9yuxyNH/rSdit0YL0bbcfXdM2RM1MjFjI00Clg2xNT9kX
+ 4p0RDASSbP6uEiDcQ4v+LYMkJ2Y8YiOn6KKcqGg3QF0KcKxi2Y4EkGd6vevxAo6aHfgxUKtml
+ 7f8PaEBwMg/VNOovqidzcbBofYpATnBsJgAMT6wd71BVTj2aqrmdP6aVctHUMGT15O67o4hCG
+ c6ACLePStWn6+FJHfcXw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 21, 2020 at 4:25 PM Linus Walleij <linus.walleij@linaro.org> wrote:
 
-> > Units? Add a defined unit suffix to the property name and you can drop
-> > the type.
->
-> Do you mean that if I rename this property as:
->
-> richtek,rfs-ohms
->
-> there will be some automagic machinery in dtschema that checks that
-> it is an uint32?
->
-> Is there a list of these magic suffixes somewhere?
+--hHWLQfXTYDoKhP50
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Got impatient and grepped around myself :D
-So schemas/property-units.yaml and meta-schemas/vendor-props.yaml
-explains a lot!
+On Mon, Nov 23, 2020 at 12:10:54AM +0100, Alexandre Belloni wrote:
+> Hi,
+>=20
+> On 22/11/2020 23:27:37+0100, Jonathan Neusch=C3=A4fer wrote:
+> > With this driver, mainline Linux can keep its time and date in sync with
+> > the vendor kernel.
+> >=20
+> > Advanced functionality like alarm and automatic power-on is not yet
+> > supported.
+> >=20
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+>=20
+> However, two comments below:
+>=20
+> > +static int ntxec_set_time(struct device *dev, struct rtc_time *tm)
+> > +{
+> > +	struct ntxec_rtc *rtc =3D dev_get_drvdata(dev);
+> > +	int res =3D 0;
+> > +
+> > +	/*
+> > +	 * To avoid time overflows while we're writing the full date/time,
+> > +	 * set the seconds field to zero before doing anything else. For the
+> > +	 * next 59 seconds (plus however long it takes until the RTC's next
+> > +	 * update of the second field), the seconds field will not overflow
+> > +	 * into the other fields.
+> > +	 */
+> > +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_SECOND, ntxec_r=
+eg8(0));
+> > +	if (res)
+> > +		return res;
+> > +
+> > +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_YEAR, ntxec_reg=
+8(tm->tm_year - 100));
+> > +	if (res)
+> > +		return res;
+> > +
+> > +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_MONTH, ntxec_re=
+g8(tm->tm_mon + 1));
+> > +	if (res)
+> > +		return res;
+> > +
+> > +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_DAY, ntxec_reg8=
+(tm->tm_mday));
+> > +	if (res)
+> > +		return res;
+> > +
+> > +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_HOUR, ntxec_reg=
+8(tm->tm_hour));
+> > +	if (res)
+> > +		return res;
+> > +
+> > +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_MINUTE, ntxec_r=
+eg8(tm->tm_min));
+> > +	if (res)
+> > +		return res;
+> > +
+> > +	return regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_SECOND, ntxec_re=
+g8(tm->tm_sec));
+>=20
+> Couldn't you do a regmap_block_write or a regmap_multi_reg_write which
+> would be more efficient as they would be locking the regmap only once.
 
-Clever, we should add these example tweaks to the example schema
-as illustration of available intrinsics.
+I can't find regmap_block_write anywhere, but regmap_multi_reg_write
+looks like a good approach to simplify the code here.
 
-Okidoki, respinning tagging on -ohms!
 
-Yours,
-Linus Walleij
+[...]
+> Note that this won't compile after
+> https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git/commit=
+/?id=3Dfdcfd854333be5b30377dc5daa9cd0fa1643a979
+>=20
+> We can solve that with immutable branches though.
+
+Thanks for the heads-up. Please let me know if/when there is any action
+that I need to take here.
+
+
+Jonathan
+
+--hHWLQfXTYDoKhP50
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl+8KggACgkQCDBEmo7z
+X9v/Ew//VyQzd+IM6WSdNJfdqhDWx4zMzJPjvhGl5YZsqC82CgOowqAy6GWPkRvN
+4xkwP5r4kH5Do6rN92mpKEGzG9HyDOzS/162ZMCIF9KXUOdpHb7viqRB5+Jq9Tod
+2mFgQT9/foVbge9Muad0H4u59kmRbxp52mbRjF2XohPmD/rPVF8r1VrDaHOSSkx/
+GbBVkLz0YIE6T0Wz4umG6d0+TTlelOuz72zqHy6zE2DHwHR/8vyRKPbdsft6w6f4
+DRjjQrEKwj2LT1yx48PIXu9bDI6g+0syC9bwbf2dc3Nvl/nQpxrxrbrnt0H5+h9R
+OyoSTQunwN/s8ppkdopfcQJVf1H4NAMCxoUXSnIX7zkKoPAeckXqQhsWXoJid2rF
+tVt3HG2ddEvV3xW5fMftLXQWeegx7Wy5wqpQvpQPBJx3hrxC2mv0lIYbVMPPGKyM
++vF6atGRir3Jv/AYEeVEojBFrM9dG1xQTIvJz3fVRlM0fLqbj73kMFN+eHNmO3gA
+o4H9WZ76TeaGyGoAMZ7KBJbypFfy27GlzHaChw7yqpYKPsi57dy8zLB57PRATAJy
+/0q6gnpkrSNlaTYKwO/TDgR9E7NY0h9ALE34bqalDR5wNy7ec6Fa7iAouAm5lZcX
+HEcbLvr0895GsbLNX8Ep5zg4V4TrCevq0c3x0ur1ZS8LL7n988Q=
+=BhsG
+-----END PGP SIGNATURE-----
+
+--hHWLQfXTYDoKhP50--
