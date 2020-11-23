@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 862242C1114
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 17:54:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 780352C1121
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 17:58:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732848AbgKWQvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 11:51:50 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36442 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732092AbgKWQvs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 11:51:48 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AE59F20717;
-        Mon, 23 Nov 2020 16:51:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606150308;
-        bh=158lXazOCoo8QHnhf+9XBqL544AdrMia4bMuOC8qki0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Psvwyc6yDuLtIWfKQ0aOf76rkBo9HFL9lfagC2N2mfm06muajkILhsOzb63jOzI8d
-         x/fycBPK8uyRfflMijPTyNq60y6C4VM8G65EYs2oWsgsCtEnNbJ278S+mXa3799GEw
-         3vSRFgfQnHG7f1C3Oruev5Wi99G5IBgvZn9mJQ1E=
-Date:   Mon, 23 Nov 2020 16:51:24 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Subject: Re: [PATCH] Asoc: qcom: Fix enabling BCLK and LRCLK in LPAIF invalid
- state
-Message-ID: <20201123165124.GI6322@sirena.org.uk>
-References: <1606148273-17325-1-git-send-email-srivasam@codeaurora.org>
+        id S1733046AbgKWQ4s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 11:56:48 -0500
+Received: from mail-ej1-f67.google.com ([209.85.218.67]:41197 "EHLO
+        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733040AbgKWQ4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 11:56:48 -0500
+Received: by mail-ej1-f67.google.com with SMTP id gj5so24310741ejb.8;
+        Mon, 23 Nov 2020 08:56:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Hxvf5ckkSe3OXhzX0J+DbLitEVXMZZ90l4Ivr7vuqTA=;
+        b=ZewzdnokQsPC7EIxfsmYX8K0HxREH/5hLdupW8/kw+qOojhSRmiX1N/aAXqvQsr3RS
+         oSL7JfqmdjzAc5hEhVMx5jo4SN8sIEwH037Ay7jkxwWjUC373ghdXYTk6VIxHFH/I+fL
+         hHHtIA2RtKAW4RPAyQg0Z6vy05P9dOx1HsHE9XuOBTQNaURJEglEfKTgEQ1WzbS8pJo5
+         S43Qza7CPndabn7zINNsrcrvkfKj1fMt93PDyGRt+bUsX/HTwyYiI390KPRgSEjoVlCh
+         DPWMlD91mvH0HbuQoRmOB7NX6ggye2LCgR/2JJHPJMQOTCeBiAOB3Agyv9IJQKZG1wLg
+         B/OQ==
+X-Gm-Message-State: AOAM531fDNGXN1e22VSp5Yc0cJcsMBdWjhMmbAvpe8zEnJ4K82ufbTOA
+        +D6cKm2SuA/cvTGP4PBDxqg=
+X-Google-Smtp-Source: ABdhPJxD7dv4JMUU3i8uZZaxsCP/0JysWa2EN2bgDtd+86i0MSVO2XhNPmWGhXwASDU1HLdn3eLlng==
+X-Received: by 2002:a17:906:3153:: with SMTP id e19mr473511eje.17.1606150606412;
+        Mon, 23 Nov 2020 08:56:46 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id h2sm5290943ejx.55.2020.11.23.08.56.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2020 08:56:45 -0800 (PST)
+Date:   Mon, 23 Nov 2020 17:56:43 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Alice Guo <alice.guo@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, peng.fan@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: soc: imx8m: add DT Binding doc for
+ soc unique ID
+Message-ID: <20201123165643.GA214677@kozik-lap>
+References: <20201123095108.19724-1-alice.guo@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="1E1Oui4vdubnXi3o"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1606148273-17325-1-git-send-email-srivasam@codeaurora.org>
-X-Cookie: Dry clean only.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201123095108.19724-1-alice.guo@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 23, 2020 at 05:51:05PM +0800, Alice Guo wrote:
+> Add DT Binding doc for the Unique ID of i.MX 8M series.
+> 
+> Signed-off-by: Alice Guo <alice.guo@nxp.com>
+> ---
+> 
+> v2: remove the subject prefix "LF-2571-1"
+> v3: put it into Documentation/devicetree/bindings/arm/fsl.yaml
+>     modify the description of nvmem-cells
+>     use "make ARCH=arm64 dtbs_check" to test it and fix errors
+> v4: use allOf to limit new version DTS files for i.MX8M to include
+>     "fsl,imx8mm/n/p/q-soc", nvmem-cells and nvmem-cells-names
+> v5: correct the error of using allOf
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          | 47 +++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+> 
 
---1E1Oui4vdubnXi3o
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-On Mon, Nov 23, 2020 at 09:47:53PM +0530, Srinivasa Rao Mandadapu wrote:
-> Fix enabling BCLK and LRCLK only when LPAIF is invalid state and
-> bit clock in enable state.
-
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
---1E1Oui4vdubnXi3o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl+76IwACgkQJNaLcl1U
-h9DYdQgAgWGFsJC6dNYqraAEb1cWuSo040ixzZMX/z381gtHtGp700nYpqfA25Bn
-Y2bBmYuWivTHeX4KRTj7sSqz+HL2btNjvurcm7LpITLXOmVHLJi2FN1SloMfzgmA
-/IXlDRwhfjl1CyxvqNaob+8PtkbviFIQC4DjlH0oJjTfhCY9zkXURWbLaPru4Vzp
-LcH/2p+KPMfTGtdWe14CyAwED2wvRgGDgviQsdlRcgD5+Zvr2i1sSZ9a17ES60II
-35XDRfAm7BKnEA32ZWStLy3j+4jKKncY4nH/+40dMpn1qxZlrnUxVYVuSq3Qm7jF
-UPvnkuz+NgSwnR+mVM6QonsdhG1Q9w==
-=+8cZ
------END PGP SIGNATURE-----
-
---1E1Oui4vdubnXi3o--
+Best regards,
+Krzysztof
