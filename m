@@ -2,149 +2,292 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FFF22C03A7
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 11:51:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4FE2C03B9
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 11:57:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728672AbgKWKt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 05:49:27 -0500
-Received: from relay-us1.mymailcheap.com ([51.81.35.219]:45666 "EHLO
-        relay-us1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728374AbgKWKt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 05:49:26 -0500
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.248.207])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id E0D9B20E92;
-        Mon, 23 Nov 2020 10:49:24 +0000 (UTC)
-Received: from relay1.mymailcheap.com (relay1.mymailcheap.com [144.217.248.102])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 5BFD6260EB;
-        Mon, 23 Nov 2020 10:49:20 +0000 (UTC)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay1.mymailcheap.com (Postfix) with ESMTPS id 4FBC13F1C5;
-        Mon, 23 Nov 2020 10:49:18 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id 355132A3E1;
-        Mon, 23 Nov 2020 05:49:18 -0500 (EST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1606128558;
-        bh=Ie7rzoJQCjwB5Or+bKi9/xV3Pf6HEUgwzJivbfNLlEY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=UlnRBCp+NUvxtnU3k9XFOAH1sDiBBmInfyUUbBw5vYmFC40N/F44gJgKeKuQHgvT9
-         4/lgcVHVgJiKOqYTI0A8nHNsJRmFwa3RFdFbtkYqmvym+NmNjyBFkyGf+NyzYGIOLA
-         biQJ7U1hKvX1/E139kwhlm8GHmOVp9fJITKkiolI=
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id CiMMwUKtPOFK; Mon, 23 Nov 2020 05:49:14 -0500 (EST)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Mon, 23 Nov 2020 05:49:14 -0500 (EST)
-Received: from [213.133.102.83] (ml.mymailcheap.com [213.133.102.83])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 5AD40400C1;
-        Mon, 23 Nov 2020 10:49:13 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=flygoat.com header.i=@flygoat.com header.b="Gsi8kQTc";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [192.168.1.203] (unknown [183.157.63.183])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id D21A7400C1;
-        Mon, 23 Nov 2020 10:48:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=flygoat.com;
-        s=default; t=1606128544;
-        bh=Ie7rzoJQCjwB5Or+bKi9/xV3Pf6HEUgwzJivbfNLlEY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Gsi8kQTcfNik76wElxof20Ymx/GUnnjGakbU074HlMUcxR3WrIZnGHh4l+rSlVuE4
-         mXY8T/XRXITh9FFAmMqMCXlReAWuvyQwVDPQfhkN0OccpJR/XnVuWMSejCUl0oERUD
-         +t2q6BWiwyEahZoCYKKm219hG66HKa8rOBWULhBE=
-Subject: Re: [PATCH 2/3] MIPS: Loongson64: DTS: Add SPI support to LS3A
-To:     Qing Zhang <zhangqing@loongson.cn>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-spi@vger.kernel.org, Huacai Chen <chenhc@lemote.com>,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <f4bug@amsat.org>,
-        "Eric W. Biederman" <ebiederm@xmission.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-References: <1606123148-315-1-git-send-email-zhangqing@loongson.cn>
- <1606123148-315-2-git-send-email-zhangqing@loongson.cn>
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-Message-ID: <7e878d14-37b2-769e-400a-548a846943fe@flygoat.com>
-Date:   Mon, 23 Nov 2020 18:48:52 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1727136AbgKWKz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 05:55:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41222 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726901AbgKWKz6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 05:55:58 -0500
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C39C061A4D
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 02:55:58 -0800 (PST)
+Received: by mail-ot1-x344.google.com with SMTP id 79so15471885otc.7
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 02:55:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dAaII84HcEXvbNnxDSLxHAH0+A0aTsvl9gY1tLGjitA=;
+        b=u9OdSH8/A0gwoY9Zp72hxARskG+k/xWPCFPPnekC1ftQBMBE3PMoJsjJCHyV+SqI/s
+         JeOsSvWTrpdPFaEbCadkDjXXuHbKumLaCgmWJB/EDqL+kHQwmCDR/NfBpvmw8Iz0cq0s
+         ZyL8RfhMY8yi/AOQokmbwGEoDgleZ+07GhQlQmFbesCSjbf+vFfz+xsngppSgufZ0Y9C
+         bHvWyXrYir9R2F+HXr3ZhTAmvLwlbb4DJD0ynzhzO8A97UVzCZ1G4yoFX38Y8uXIhy6e
+         w7bPzcZ40eHS6fAqnKXRL8HnuL2kc+VbjbVIUhDxbxALOu82FyP8TcoCLju3BIIUbSwq
+         xyPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dAaII84HcEXvbNnxDSLxHAH0+A0aTsvl9gY1tLGjitA=;
+        b=aGQ8j1ww8Br9bOvLeIh0mgH4M8POXigxOxhmJyuoc3D3GyzaFBXZgzOun/RQxwwips
+         Vf0g0H3SqarLFlyEQz/j7kuqNEp+k/TOYd/8HeOucmFOHi15jibAEjdKg3Rs5auODaAI
+         GuPBP5EI7iwZ0x87Szk7jEhs9Fc264kFyda/yF2w2J72wqWOhjNv3KKaEVg1wwFvaP6A
+         1ZtzFyOqSsMP8AAtDAFxNGSEd10TAOhZbEYEFAAqYoUYqjzP6eWuPmB2wqrDbL5jga+j
+         ibucRWAQEJRuZBipWIRoIThQbgFmvZjAqiRHuaD4F8AoyTX65YbeoJxEncMn6VHT4SE0
+         5OYg==
+X-Gm-Message-State: AOAM530t/rM9bN9OgP1cpcGqZ0nBCHXeYV6h7ukzRT0fRRVjYMu867JL
+        eMwXQh787S6kvZaCAd2rCXvnqy03cC4qloCCnYQXPg==
+X-Google-Smtp-Source: ABdhPJwRt9ZTExdG3bTGNmtLDlC7Bo8D2sx0n1oualDFMvNUtVyUQdSRJK5olUqVyqT+fdvVmIdmSzl4mhaczHMK7zo=
+X-Received: by 2002:a05:6830:1e08:: with SMTP id s8mr1944890otr.144.1606128957173;
+ Mon, 23 Nov 2020 02:55:57 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <1606123148-315-2-git-send-email-zhangqing@loongson.cn>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 5AD40400C1
-X-Spamd-Result: default: False [1.40 / 10.00];
-         ARC_NA(0.00)[];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         R_DKIM_ALLOW(0.00)[flygoat.com:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         R_SPF_SOFTFAIL(0.00)[~all:c];
-         RECEIVED_SPAMHAUS_PBL(0.00)[183.157.63.183:received];
-         ML_SERVERS(-3.10)[213.133.102.83];
-         DKIM_TRACE(0.00)[flygoat.com:+];
-         DMARC_POLICY_ALLOW(0.00)[flygoat.com,none];
-         RCPT_COUNT_TWELVE(0.00)[12];
-         DMARC_POLICY_ALLOW_WITH_FAILURES(0.00)[];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:213.133.96.0/19, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[213.133.102.83,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+References: <20201117181607.1761516-1-qperret@google.com> <20201117181607.1761516-14-qperret@google.com>
+In-Reply-To: <20201117181607.1761516-14-qperret@google.com>
+From:   Fuad Tabba <tabba@google.com>
+Date:   Mon, 23 Nov 2020 10:55:20 +0000
+Message-ID: <CA+EHjTwebfoJLpure-mHNzCnmLwnNEi6yh66OLFGrhH_+ysExA@mail.gmail.com>
+Subject: Re: [RFC PATCH 13/27] KVM: arm64: Enable access to sanitized CPU
+ features at EL2
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        Android KVM <android-kvm@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Quentin,
 
-ÔÚ 2020/11/23 17:19, Qing Zhang Ð´µÀ:
-> The LS3A SPI module is now supported, enable it.
+On Tue, Nov 17, 2020 at 6:16 PM 'Quentin Perret' via kernel-team
+<kernel-team@android.com> wrote:
 >
-> Signed-off-by: Qing Zhang <zhangqing@loongson.cn>
+> Introduce the infrastructure in KVM enabling to copy CPU feature
+> registers into EL2-owned data-structures, to allow reading sanitised
+> values directly at EL2 in nVHE.
+>
+> Given that only a subset of these features are being read by the
+> hypervisor, the ones that need to be copied are to be listed under
+> <asm/kvm_cpufeature.h> together with the name of the nVHE variable that
+> will hold the copy.
+>
+> While at it, introduce the first user of this infrastructure by
+> implementing __flush_dcache_area at EL2, which needs
+> arm64_ftr_reg_ctrel0.
+>
+> Signed-off-by: Quentin Perret <qperret@google.com>
 > ---
->   arch/mips/boot/dts/loongson/loongson64c-package.dtsi | 7 +++++++
->   1 file changed, 7 insertions(+)
+>  arch/arm64/include/asm/cpufeature.h     |  1 +
+>  arch/arm64/include/asm/kvm_cpufeature.h | 17 ++++++++++++++
+>  arch/arm64/kernel/cpufeature.c          | 12 ++++++++++
+>  arch/arm64/kernel/image-vars.h          |  2 ++
+>  arch/arm64/kvm/arm.c                    | 31 +++++++++++++++++++++++++
+>  arch/arm64/kvm/hyp/nvhe/Makefile        |  3 ++-
+>  arch/arm64/kvm/hyp/nvhe/cache.S         | 13 +++++++++++
+>  arch/arm64/kvm/hyp/nvhe/cpufeature.c    |  8 +++++++
+>  8 files changed, 86 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm64/include/asm/kvm_cpufeature.h
+>  create mode 100644 arch/arm64/kvm/hyp/nvhe/cache.S
+>  create mode 100644 arch/arm64/kvm/hyp/nvhe/cpufeature.c
 >
-> diff --git a/arch/mips/boot/dts/loongson/loongson64c-package.dtsi b/arch/mips/boot/dts/loongson/loongson64c-package.dtsi
-> index 5bb876a..2025c5a 100644
-> --- a/arch/mips/boot/dts/loongson/loongson64c-package.dtsi
-> +++ b/arch/mips/boot/dts/loongson/loongson64c-package.dtsi
-> @@ -60,5 +60,12 @@
->   			interrupt-parent = <&liointc>;
->   			no-loopback-test;
->   		};
+> diff --git a/arch/arm64/include/asm/cpufeature.h b/arch/arm64/include/asm/cpufeature.h
+> index da250e4741bd..3dfbd76fb647 100644
+> --- a/arch/arm64/include/asm/cpufeature.h
+> +++ b/arch/arm64/include/asm/cpufeature.h
+> @@ -600,6 +600,7 @@ void __init setup_cpu_features(void);
+>  void check_local_cpu_capabilities(void);
+>
+>  u64 read_sanitised_ftr_reg(u32 id);
+> +int copy_ftr_reg(u32 id, struct arm64_ftr_reg *dst);
+>
+>  static inline bool cpu_supports_mixed_endian_el0(void)
+>  {
+> diff --git a/arch/arm64/include/asm/kvm_cpufeature.h b/arch/arm64/include/asm/kvm_cpufeature.h
+> new file mode 100644
+> index 000000000000..d34f85cba358
+> --- /dev/null
+> +++ b/arch/arm64/include/asm/kvm_cpufeature.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2020 - Google LLC
+> + * Author: Quentin Perret <qperret@google.com>
+> + */
+
+Missing include guard.
+
+
 > +
-> +                spi: spi@1fe00220 {
-> +                        compatible = "loongson,loongson-spi";
+> +#include <asm/cpufeature.h>
+> +
+> +#ifndef KVM_HYP_CPU_FTR_REG
+> +#if defined(__KVM_NVHE_HYPERVISOR__)
+> +#define KVM_HYP_CPU_FTR_REG(id, name) extern struct arm64_ftr_reg name;
+> +#else
+> +#define KVM_HYP_CPU_FTR_REG(id, name) DECLARE_KVM_NVHE_SYM(name);
+> +#endif
+> +#endif
+> +
+> +KVM_HYP_CPU_FTR_REG(SYS_CTR_EL0, arm64_ftr_reg_ctrel0)
+> diff --git a/arch/arm64/kernel/cpufeature.c b/arch/arm64/kernel/cpufeature.c
+> index dd5bc0f0cf0d..3bc86d1423f8 100644
+> --- a/arch/arm64/kernel/cpufeature.c
+> +++ b/arch/arm64/kernel/cpufeature.c
+> @@ -1116,6 +1116,18 @@ u64 read_sanitised_ftr_reg(u32 id)
+>  }
+>  EXPORT_SYMBOL_GPL(read_sanitised_ftr_reg);
+>
+> +int copy_ftr_reg(u32 id, struct arm64_ftr_reg *dst)
+> +{
+> +       struct arm64_ftr_reg *regp = get_arm64_ftr_reg(id);
+> +
+> +       if (!regp)
+> +               return -EINVAL;
+> +
+> +       memcpy(dst, regp, sizeof(*regp));
+> +
+> +       return 0;
+> +}
+> +
+>  #define read_sysreg_case(r)    \
+>         case r:         return read_sysreg_s(r)
+>
+> diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
+> index dd8ccc9efb6a..c35d768672eb 100644
+> --- a/arch/arm64/kernel/image-vars.h
+> +++ b/arch/arm64/kernel/image-vars.h
+> @@ -116,6 +116,8 @@ __kvm_nvhe___memcpy                 = __kvm_nvhe___pi_memcpy;
+>  __kvm_nvhe___memset                    = __kvm_nvhe___pi_memset;
+>  #endif
+>
+> +_kvm_nvhe___flush_dcache_area          = __kvm_nvhe___pi___flush_dcache_area;
+> +
+>  #endif /* CONFIG_KVM */
+>
+>  #endif /* __ARM64_KERNEL_IMAGE_VARS_H */
+> diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
+> index 391cf6753a13..c7f8fca97202 100644
+> --- a/arch/arm64/kvm/arm.c
+> +++ b/arch/arm64/kvm/arm.c
+> @@ -34,6 +34,7 @@
+>  #include <asm/virt.h>
+>  #include <asm/kvm_arm.h>
+>  #include <asm/kvm_asm.h>
+> +#include <asm/kvm_cpufeature.h>
+>  #include <asm/kvm_mmu.h>
+>  #include <asm/kvm_emulate.h>
+>  #include <asm/sections.h>
+> @@ -1636,6 +1637,29 @@ static void teardown_hyp_mode(void)
+>         }
+>  }
+>
+> +#undef KVM_HYP_CPU_FTR_REG
+> +#define KVM_HYP_CPU_FTR_REG(id, name) \
+> +       { .sys_id = id, .dst = (struct arm64_ftr_reg *)&kvm_nvhe_sym(name) },
+> +static const struct __ftr_reg_copy_entry {
+> +       u32                     sys_id;
+> +       struct arm64_ftr_reg    *dst;
+> +} hyp_ftr_regs[] = {
+> +       #include <asm/kvm_cpufeature.h>
+> +};
+> +
+> +static int copy_cpu_ftr_regs(void)
+> +{
+> +       int i, ret;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(hyp_ftr_regs); i++) {
+> +               ret = copy_ftr_reg(hyp_ftr_regs[i].sys_id, hyp_ftr_regs[i].dst);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       return 0;
+> +}
+> +
+>  /**
+>   * Inits Hyp-mode on all online CPUs
+>   */
+> @@ -1644,6 +1668,13 @@ static int init_hyp_mode(void)
+>         int cpu;
+>         int err = 0;
+>
+> +       /*
+> +        * Copy the required CPU feature register in their EL2 counterpart
+> +        */
+> +       err = copy_cpu_ftr_regs();
+> +       if (err)
+> +               return err;
+> +
+>         /*
+>          * Allocate Hyp PGD and setup Hyp identity mapping
+>          */
+> diff --git a/arch/arm64/kvm/hyp/nvhe/Makefile b/arch/arm64/kvm/hyp/nvhe/Makefile
+> index 9e5eacfec6ec..72cfe53f106f 100644
+> --- a/arch/arm64/kvm/hyp/nvhe/Makefile
+> +++ b/arch/arm64/kvm/hyp/nvhe/Makefile
+> @@ -10,7 +10,8 @@ lib-objs := clear_page.o copy_page.o memcpy.o memset.o
+>  lib-objs := $(addprefix ../../../lib/, $(lib-objs))
+>
+>  obj-y := timer-sr.o sysreg-sr.o debug-sr.o switch.o tlb.o hyp-init.o host.o \
+> -        hyp-main.o hyp-smp.o psci-relay.o early_alloc.o stub.o page_alloc.o
+> +        hyp-main.o hyp-smp.o psci-relay.o early_alloc.o stub.o page_alloc.o \
+> +        cache.o cpufeature.o
+>  obj-y += ../vgic-v3-sr.o ../aarch32.o ../vgic-v2-cpuif-proxy.o ../entry.o \
+>          ../fpsimd.o ../hyp-entry.o ../exception.o
+>  obj-y += $(lib-objs)
+> diff --git a/arch/arm64/kvm/hyp/nvhe/cache.S b/arch/arm64/kvm/hyp/nvhe/cache.S
+> new file mode 100644
+> index 000000000000..36cef6915428
+> --- /dev/null
+> +++ b/arch/arm64/kvm/hyp/nvhe/cache.S
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Code copied from arch/arm64/mm/cache.S.
+> + */
+> +
+> +#include <linux/linkage.h>
+> +#include <asm/assembler.h>
+> +#include <asm/alternative.h>
+> +
+> +SYM_FUNC_START_PI(__flush_dcache_area)
+> +       dcache_by_line_op civac, sy, x0, x1, x2, x3
+> +       ret
+> +SYM_FUNC_END_PI(__flush_dcache_area)
+> diff --git a/arch/arm64/kvm/hyp/nvhe/cpufeature.c b/arch/arm64/kvm/hyp/nvhe/cpufeature.c
+> new file mode 100644
+> index 000000000000..a887508f996f
+> --- /dev/null
+> +++ b/arch/arm64/kvm/hyp/nvhe/cpufeature.c
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2020 - Google LLC
+> + * Author: Quentin Perret <qperret@google.com>
+> + */
+> +
+> +#define KVM_HYP_CPU_FTR_REG(id, name) struct arm64_ftr_reg name;
+> +#include <asm/kvm_cpufeature.h>
+> --
+> 2.29.2.299.gdc1121823c-goog
+>
+> --
+> To unsubscribe from this group and stop receiving emails from it, send an email to kernel-team+unsubscribe@android.com.
+>
 
-You have to add dt schema document..
-
-Also I'd sugguest you to name it as loongson,pci-spi to avoid collision.
-
-Loongson-1 MCUs do have MMIO SPI controller with similiar register layout.
-
-Thanks
-
-- Jiaxun
-
-> +                        reg=<0 0x1fe00220 0x11>;
-> +                        #address-cells = <1>;
-> +                        #size-cells = <0>;
-> +               };
->   	};
->   };
+/fuad
