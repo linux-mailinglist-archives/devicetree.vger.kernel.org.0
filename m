@@ -2,268 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63B552C14F6
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:03:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 487882C1640
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:29:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727107AbgKWUC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 15:02:57 -0500
-Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:19239 "EHLO
-        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726977AbgKWUC5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 15:02:57 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fbc15760000>; Mon, 23 Nov 2020 12:03:02 -0800
-Received: from [10.2.49.186] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Nov
- 2020 20:02:55 +0000
-Subject: Re: [PATCH v2 3/6] dt-bindings: ata: tegra: Convert binding
- documentation to YAML
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Thierry Reding <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        <devicetree@vger.kernel.org>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <1605296218-2510-1-git-send-email-skomatineni@nvidia.com>
- <1605296218-2510-4-git-send-email-skomatineni@nvidia.com>
- <CAL_JsqKkGmRwsv48xdX7xMSEaTSqdEnWuy0E19eohBxJKMywJg@mail.gmail.com>
- <0a6e99c8-9149-8756-3511-d4cb1814d3c6@nvidia.com>
-Message-ID: <d6748afc-d4eb-8781-6bde-cacc55f9ea99@nvidia.com>
-Date:   Mon, 23 Nov 2020 12:03:04 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1731220AbgKWUO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 15:14:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43334 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730779AbgKWUO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 15:14:57 -0500
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98102C061A4D
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 12:14:57 -0800 (PST)
+Received: by mail-wm1-x343.google.com with SMTP id d142so503760wmd.4
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 12:14:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rHcs6MXnRY9SclYftYPST5x7LnmgknVs6zv9WjnouLo=;
+        b=dlUtuJNKkYHfnh5DKYf/VmbtoEldC2E/a3/3k6KW0FuevxSrX6Hw0WI7smOuXQ/szZ
+         1D201WM8TObyqpmzR9VADQMAVXI59cRqFf9b0e9ij6RVZ7MTjCTGWXBR35kUHEBkKC6K
+         4wCduacO5/7179Rm92+Y+4MX/jSKRvuttU1UM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rHcs6MXnRY9SclYftYPST5x7LnmgknVs6zv9WjnouLo=;
+        b=eSxT0e3omsyIhALywZncUgPbWNtrauVKnHxOcAyjjCszBgqEUMzU9v7aEYAKcZTydY
+         XkKB0iREzI0Kgi2pAwmc3yzHA6e31VMv6Ow02+YKIKb8KcWMLO7DTjCgC0Ub1OoPyJq6
+         2/+eE20M0b/zsNgoBW3pcBAnkacmbsSwfcB7Y1nXN9qMG6PYSjxyxoC5pYPaL0OYf7kN
+         VHvD/95S80FWVuGcocFUB+0bC8AJYpIeza2W6GwQuH1mlc6qE8nS9s/5XJekcaK8SHnJ
+         7fRcsW2a1QyQTVTMXdpiX1mxDt+qzLwk8JOOm0ZUgpOGLhv2bLoqhR2RnceDGq59Eh4O
+         BBAA==
+X-Gm-Message-State: AOAM533CcIQXyKqSGv1HSvfUroIWz9Cme2ipC75kkP9S0pvlp73wWRJF
+        eTFGcggfGVVw7H8oLE5nY7FH53Vl6XELYloTKGFevQ==
+X-Google-Smtp-Source: ABdhPJxVt4Z6bdquDARP/Km1spx163my/miPREm0XDWtNkIGJ/yT+4idWox1gWFVUftjXq6QkxER0ZUz2Ec9VW90fx8=
+X-Received: by 2002:a7b:c255:: with SMTP id b21mr648443wmj.72.1606162496168;
+ Mon, 23 Nov 2020 12:14:56 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <0a6e99c8-9149-8756-3511-d4cb1814d3c6@nvidia.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1606161782; bh=E4fzJxpB2Vipoh16Kg5iiF7fnDXr87x6puFn0ONDXec=;
-        h=Subject:From:To:CC:References:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=RX4SCxVEUryV2ywBef7sH1h0DFpBZc6GHUX0VfhgrRyIbRy1dn9iSJUX/Laa0bdCf
-         VCJyfibiPdcfzdvwwPqGx/suKotZfRavS4cylnVk2HD6KFpnb1G+3oGGc2ujFIsUvG
-         bQSK+cBh+o/S98HxdBh124PdQ8UKZmFh7ADSibtNzVJMYg/MAw+GE+YHnm/s2yxVIe
-         swjIEA2MYhOJNcchHGqN3CfT+DseOZGUIWG6mdVQ82IfgmsnvHVUjyy2HluGY6+pbr
-         wEGiBcnSbX470o08bXoMBHuTwfZ+f2uhmB0dzURLuFA/3zy7kwuFQoHRpMw+qhqiAu
-         NP4X3fQ207KJg==
+References: <20201120194305.8847-1-alcooperx@gmail.com> <20201120194305.8847-2-alcooperx@gmail.com>
+ <CA+-6iNxteaMui4XdC-eMctguuZs3T-G85UMuwa7fNUCkJqE1Cw@mail.gmail.com>
+In-Reply-To: <CA+-6iNxteaMui4XdC-eMctguuZs3T-G85UMuwa7fNUCkJqE1Cw@mail.gmail.com>
+From:   Jim Quinlan <james.quinlan@broadcom.com>
+Date:   Mon, 23 Nov 2020 15:14:43 -0500
+Message-ID: <CA+-6iNxyrsnDb_O4Kdo34i_+E+bX=ro6-uDfUS-ziFx+Ee0d=A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] serial: 8250: of: Check for CONFIG_SERIAL_8250_BCM7271
+To:     Al Cooper <alcooperx@gmail.com>
+Cc:     open list <linux-kernel@vger.kernel.org>,
+        Jim Quinlan <jquinlan@broadcom.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org,
+        "open list:USB SUBSYSTEM" <linux-usb@vger.kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
+        boundary="0000000000000ee63805b4cbd928"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+--0000000000000ee63805b4cbd928
+Content-Type: text/plain; charset="UTF-8"
 
-On 11/23/20 11:01 AM, Sowjanya Komatineni wrote:
+On Mon, Nov 23, 2020 at 10:58 AM Jim Quinlan <james.quinlan@broadcom.com> wrote:
 >
-> On 11/20/20 12:17 PM, Rob Herring wrote:
->> On Fri, Nov 13, 2020 at 1:36 PM Sowjanya Komatineni
->> <skomatineni@nvidia.com> wrote:
->>> This patch converts text based dt-binding document to YAML based
->>> dt-binding document.
->>>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>> ---
->>> =C2=A0 .../devicetree/bindings/ata/nvidia,tegra-ahci.yaml | 137=20
->>> +++++++++++++++++++++
->>> =C2=A0 .../bindings/ata/nvidia,tegra124-ahci.txt=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 44 -------
->>> =C2=A0 2 files changed, 137 insertions(+), 44 deletions(-)
->>> =C2=A0 create mode 100644=20
->>> Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->>> =C2=A0 delete mode 100644=20
->>> Documentation/devicetree/bindings/ata/nvidia,tegra124-ahci.txt
->>>
->>> diff --git=20
->>> a/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml=20
->>> b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->>> new file mode 100644
->>> index 0000000..dbbe460
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/ata/nvidia,tegra-ahci.yaml
->>> @@ -0,0 +1,137 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/ata/nvidia,tegra-ahci.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Tegra AHCI SATA Controller
->>> +
->>> +maintainers:
->>> +=C2=A0 - Thierry Reding <thierry.reding@gmail.com>
->>> +=C2=A0 - Jonathan Hunter <jonathanh@nvidia.com>
->>> +
->>> +properties:
->>> +=C2=A0 compatible:
->>> +=C2=A0=C2=A0=C2=A0 enum:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - nvidia,tegra124-ahci
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - nvidia,tegra132-ahci
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - nvidia,tegra210-ahci
->>> +
->>> +=C2=A0 reg:
->>> +=C2=A0=C2=A0=C2=A0 minItems: 2
->>> +=C2=A0=C2=A0=C2=A0 maxItems: 3
->>> +=C2=A0=C2=A0=C2=A0 items:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: AHCI registers
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: SATA configuration and I=
-PFS registers
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: SATA AUX registers
->>> +
->>> +=C2=A0 interrupts:
->>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
->>> +
->>> +=C2=A0 clock-names:
->>> +=C2=A0=C2=A0=C2=A0 items:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sata
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sata-oob
->>> +
->>> +=C2=A0 clocks:
->>> +=C2=A0=C2=A0=C2=A0 maxItems: 2
->>> +
->>> +=C2=A0 reset-names:
->>> +=C2=A0=C2=A0=C2=A0 items:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sata
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sata-cold
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sata-oob
->>> +
->>> +=C2=A0 resets:
->>> +=C2=A0=C2=A0=C2=A0 maxItems: 3
->>> +
->>> +=C2=A0 phy-names:
->>> +=C2=A0=C2=A0=C2=A0 items:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: sata-0
->>> +
->>> +=C2=A0 phys:
->>> +=C2=A0=C2=A0=C2=A0 maxItems: 1
->>> +
->>> +=C2=A0 hvdd-supply:
->>> +=C2=A0=C2=A0=C2=A0 description: SATA HVDD regulator supply.
->>> +
->>> +=C2=A0 vddio-supply:
->>> +=C2=A0=C2=A0=C2=A0 description: SATA VDDIO regulator supply.
->>> +
->>> +=C2=A0 avdd-supply:
->>> +=C2=A0=C2=A0=C2=A0 description: SATA AVDD regulator supply.
->>> +
->>> +=C2=A0 target-5v-supply:
->>> +=C2=A0=C2=A0=C2=A0 description: SATA 5V power regulator supply.
->>> +
->>> +=C2=A0 target-12v-supply:
->>> +=C2=A0=C2=A0=C2=A0 description: SATA 12V power regulator supply.
->>> +
->>> +required:
->>> +=C2=A0 - compatible
->>> +=C2=A0 - reg
->>> +=C2=A0 - interrupts
->>> +=C2=A0 - clock-names
->>> +=C2=A0 - clocks
->>> +=C2=A0 - reset-names
->>> +=C2=A0 - resets
->>> +
->>> +allOf:
->>> +=C2=A0 - if:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enu=
-m:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - nvidia,tegra124-ahci
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - nvidia,tegra132-ahci
->>> +=C2=A0=C2=A0=C2=A0 then:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 maxItems: 2
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-names:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 resets:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 required:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - phys
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - phy-names
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - hvdd-supply
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - vddio-supply
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - avdd-supply
->>> +
->>> +=C2=A0 - if:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compatible:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 contains:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enu=
-m:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 - nvidia,tegra210-ahci
->>> +=C2=A0=C2=A0=C2=A0 then:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properties:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reset-names:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 resets:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 minItems: 3
->>> +
->>> +additionalProperties: true
->>> +
->>> +examples:
->>> +=C2=A0 - |
->>> +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/clock/tegra210-car.h>
->>> +=C2=A0=C2=A0=C2=A0 #include <dt-bindings/reset/tegra210-car.h>
->>> +
->>> +=C2=A0=C2=A0=C2=A0 sata@70020000 {
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 com=
-patible =3D "nvidia,tegra210-ahci";
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg=
- =3D <0x0 0x70027000 0x0 0x00002000>, /* AHCI */
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x0 0x70020000 0x0 0x00007000>, /* SATA =
-*/
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <0x0 0x70001100 0x0 0x00010000>; /* SATA =
-AUX */
->> The default sizes are 1 cell for address and size, so this will give
->> you warnings. You either need to adjust the entries here or add a
->> parent node setting the sizes to 2 cells.
+> On Fri, Nov 20, 2020 at 2:45 PM Al Cooper <alcooperx@gmail.com> wrote:
+> >
+> > From: Jim Quinlan <jquinlan@broadcom.com>
+> >
+> > This commit has of_platform_serial_probe() check specifically for the
+> > "brcm,bcm7271-uart" and whether its companion driver is enabled. If it
+> > is the case, and the clock provider is not ready, we want to make sure
+> > that when the 8250_bcm7271.c driver returns EPROBE_DEFER, we are not
+> > getting the UART registered via 8250_of.c.
+> >
+> > Signed-off-by: Jim Quinlan <jquinlan@broadcom.com>
+> > ---
+> >  drivers/tty/serial/8250/8250_of.c | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/drivers/tty/serial/8250/8250_of.c b/drivers/tty/serial/8250/8250_of.c
+> > index 65e9045dafe6..aa458f3c6644 100644
+> > --- a/drivers/tty/serial/8250/8250_of.c
+> > +++ b/drivers/tty/serial/8250/8250_of.c
+> > @@ -192,6 +192,10 @@ static int of_platform_serial_probe(struct platform_device *ofdev)
+> >         u32 tx_threshold;
+> >         int ret;
+> >
+> > +       if (IS_ENABLED(CONFIG_SERIAL_8250_BCM7271) &&
+> > +           of_device_is_compatible(ofdev->dev.of_node, "brcm,bcm7271-uart"))
+> > +               return -ENODEV;
+> > +
+> NOTE: this commit is a "strawman" commit, and I will not be surprised
+> if it gets quickly NAKed. We have a new idea on how to solve this
+> issue, and if that not is not viable, will ask for a dialog on this
+> problem either in this thread or through a separate RFC.
+
+
+This commit is no longer needed  as part of this patchset; we have
+addressed the problem elsewhere.  Sorry about the noise.
 >
-> Thanks Rob.
 >
-> tegra210.dtsi already has address and size set to 2 cells in parent=20
-> node of sata.
+> Regards,
+> Jim Quinlan
+> Broadcom STB
 >
-> Do you mean to add parent node and address and size cells set to 2 in=20
-> this yaml example as well?
+>
+>
+> >         port_type = (unsigned long)of_device_get_match_data(&ofdev->dev);
+> >         if (port_type == PORT_UNKNOWN)
+> >                 return -EINVAL;
+> > --
+> > 2.17.1
+> >
 
->>
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 int=
-errupts =3D <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
->> The error is because you need the include files for these defines.
-> Will add header file for interrupts in yaml example.
->>
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clo=
-cks =3D <&tegra_car TEGRA210_CLK_SATA>,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <&tegra_car TEGRA210_CL=
-K_SATA_OOB>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clo=
-ck-names =3D "sata", "sata-oob";
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res=
-ets =3D <&tegra_car 124>,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <&tegra_car 129>,
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <&tegra_car 123>;
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 res=
-et-names =3D "sata", "sata-cold", "sata-oob";
->>> +=C2=A0=C2=A0=C2=A0 };
+--0000000000000ee63805b4cbd928
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-updated reg value with single address and single size along with=20
-interrupt header file.
-
-dt_binding_check pass without errors. Will send v3.
-
+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
+mOxPm7sNHsn0TVdPryi9+T2d8fVC/kUmuEdTYP/Hdu4W4b4T9BcW57fInYrmaJ+uotS6X59rAgMB
+AAGjggHRMIIBzTAOBgNVHQ8BAf8EBAMCBaAwgZ4GCCsGAQUFBwEBBIGRMIGOME0GCCsGAQUFBzAC
+hkFodHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc3BlcnNvbmFsc2lnbjJzaGEy
+ZzNvY3NwLmNydDA9BggrBgEFBQcwAYYxaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL2dzcGVy
+c29uYWxzaWduMnNoYTJnMzBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYm
+aHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBEBgNVHR8E
+PTA7MDmgN6A1hjNodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzcGVyc29uYWxzaWduMnNoYTJn
+My5jcmwwJQYDVR0RBB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYI
+KwYBBQUHAwQwHwYDVR0jBBgwFoAUaXKCYjFnlUSFd5GAxAQ2SZ17C2EwHQYDVR0OBBYEFNYm4GDl
+4WOt3laB3gNKFfYyaM8bMA0GCSqGSIb3DQEBCwUAA4IBAQBD+XYEgpG/OqeRgXAgDF8sa+lQ/00T
+wCP/3nBzwZPblTyThtDE/iaL/YZ5rdwqXwdCnSFh9cMhd/bnA+Eqw89clgTixvz9MdL9Vuo8LACI
+VpHO+sxZ2Cu3bO5lpK+UVCyr21y1zumOICsOuu4MJA5mtkpzBXQiA7b/ogjGxG+5iNjt9FAMX4JP
+V6GuAMmRknrzeTlxPy40UhUcRKk6Nm8mxl3Jh4KB68z7NFVpIx8G5w5I7S5ar1mLGNRjtFZ0RE4O
+lcCwKVGUXRaZMgQGrIhxGVelVgrcBh2vjpndlv733VI2VKE/TvV5MxMGU18RnogYSm66AEFA/Zb+
+5ztz1AtIMYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBu
+di1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEcz
+AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIGQPjgDsk1tW
+4hkIs03oyaGay5Ut2FkOgwqtZHLADDn0MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
+hvcNAQkFMQ8XDTIwMTEyMzIwMTQ1NlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
+YIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcN
+AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQDAi5hNL+m7ROLEgQ5aHLU2rubOKiR+
+tp6d3YwekBX9hpZFr1zo/EPf26qF9JFpnOf8grcSIB07O/jfYZJ8t6LpMnpXO6pU75h6OIlPkl0c
+sEEF8sXj9JPEdk9SAHX0m3ZtEjttbF566bIWUPEgCRQ21gs75cr7oDz+/NKRVU4efB+kf2YuimFY
+X44W8D7Ac7rD2Vw+Tv9P/Eu5XI4C2v4orIx/itvC+LKwbiTlt7Rsz+/z3IznBeWw+2PJuNBW971A
+7t0DCHCAAVfpaIBMtpqiJ8CHQ5HaJBUExj8k4vDFDQrqNLoJ74SH5/cyWag8/qqw1Mp3g2ij1c4T
+v0lshRmL
+--0000000000000ee63805b4cbd928--
