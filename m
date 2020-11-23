@@ -2,217 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 715EC2C16CE
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:50:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFF412C16F7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:50:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728887AbgKWUgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 15:36:14 -0500
-Received: from saturn.retrosnub.co.uk ([46.235.226.198]:50500 "EHLO
-        saturn.retrosnub.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727725AbgKWUgO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 15:36:14 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        by saturn.retrosnub.co.uk (Postfix; Retrosnub mail submission) with ESMTPSA id DBF889E01B5;
-        Mon, 23 Nov 2020 20:36:11 +0000 (GMT)
-Date:   Mon, 23 Nov 2020 20:36:09 +0000
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Quentin Schulz <quentin.schulz@bootlin.com>
-Subject: Re: [PATCH 31/46] dt-bindings:iio:adc:x-powers,axp209-adc: txt to
- yaml conversion
-Message-ID: <20201123203609.7da36d2e@archlinux>
-In-Reply-To: <CAGb2v64KwkN5z_3nH-kUhJSAMeUfrU+zzn2tivJniT7c38BeAA@mail.gmail.com>
-References: <20201031184854.745828-1-jic23@kernel.org>
-        <20201031184854.745828-32-jic23@kernel.org>
-        <20201122181525.52410a84@archlinux>
-        <CAGb2v64KwkN5z_3nH-kUhJSAMeUfrU+zzn2tivJniT7c38BeAA@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1730374AbgKWUjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 15:39:04 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46416 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727847AbgKWUjE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 15:39:04 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1D34620721;
+        Mon, 23 Nov 2020 20:39:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606163943;
+        bh=tkAsjlRH2HuuhR8vmGPp7i9n4IBY/yYjedNX3O0GBWc=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=cDp47rsTXsD0Zxg1b/NsKf4lt7RpderIZ8vEEF8LAZ/nAR/0mX69QF205d2zkKrt6
+         3vVajqui2HbJsZC/07W/zA6na//Z6rL/akH9ipLZlV+MubFknfBW9YGRXE7PqxndCU
+         BfE02ZLtAdkDwsNlGi5YF4eq580KbUBy4R3Xw/QE=
+Date:   Mon, 23 Nov 2020 20:38:40 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org, rohitkr@codeaurora.org, plai@codeaurora.org,
+        linux-kernel@vger.kernel.org, perex@perex.cz,
+        bgoswami@codeaurora.org,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        tiwai@suse.com, lgirdwood@gmail.com,
+        srinivas.kandagatla@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        agross@kernel.org, bjorn.andersson@linaro.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+In-Reply-To: <1606148273-17325-1-git-send-email-srivasam@codeaurora.org>
+References: <1606148273-17325-1-git-send-email-srivasam@codeaurora.org>
+Subject: Re: [PATCH] Asoc: qcom: Fix enabling BCLK and LRCLK in LPAIF invalid state
+Message-Id: <160616391558.20973.7389509283379786250.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Nov 2020 11:02:58 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
+On Mon, 23 Nov 2020 21:47:53 +0530, Srinivasa Rao Mandadapu wrote:
+> Fix enabling BCLK and LRCLK only when LPAIF is invalid state and
+> bit clock in enable state.
+> In device suspend/resume scenario LPAIF is going to reset state.
+> which is causing LRCLK disable and BCLK enable.
+> Avoid such inconsitency by removing unnecessary cpu dai prepare API,
+> which is doing LRCLK enable, and by maintaining BLCK  state information.
+> 
+> [...]
 
-> Hi,
-> 
-> On Mon, Nov 23, 2020 at 2:22 AM Jonathan Cameron
-> <jic23@jic23.retrosnub.co.uk> wrote:
-> >
-> > On Sat, 31 Oct 2020 18:48:39 +0000
-> > Jonathan Cameron <jic23@kernel.org> wrote:
-> >  
-> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > >
-> > > This is a very small binding.  It might make sense at some stage
-> > > to just roll it into the parent mfd.  For now, converted as is.
-> > > The main advantage of this document is the identification of the
-> > > channel index values when this is used as a provider of ADC channels
-> > > to consumers.
-> > >
-> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > Cc: Quentin Schulz <quentin.schulz@bootlin.com>  
-> > Quentin's email address is boucing so for now I've put myself as maintainer
-> > of this binding.
-> >
-> > +CC Chen-Yu Tsai who 'might' be the a better choice.  
-> 
-> Yes you can list me as the maintainer if you yourself don't wish to be.
-> I am listed as the maintainer for all AXP hardware, excluding the AXP288.
-> 
-Great thanks - you are more likely to be able to answer questions on this
-than I am so I've put you in as maintainer + I'll get them anyway
-as IIO maintainer :)
+Applied to
 
-Jonathan
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> ChenYu
-> 
-> 
-> > Applied to the togreg branch of iio.git and pushed out as testing for
-> > the autobuilders to poke at it.
-> >
-> > Thanks,
-> >
-> > Jonathan
-> >  
-> > > ---
-> > >  .../bindings/iio/adc/axp20x_adc.txt           | 48 -------------
-> > >  .../bindings/iio/adc/x-powers,axp209-adc.yaml | 67 +++++++++++++++++++
-> > >  2 files changed, 67 insertions(+), 48 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/axp20x_adc.txt b/Documentation/devicetree/bindings/iio/adc/axp20x_adc.txt
-> > > deleted file mode 100644
-> > > index 7a6313913923..000000000000
-> > > --- a/Documentation/devicetree/bindings/iio/adc/axp20x_adc.txt
-> > > +++ /dev/null
-> > > @@ -1,48 +0,0 @@
-> > > -* X-Powers AXP ADC bindings
-> > > -
-> > > -Required properties:
-> > > -  - compatible: should be one of:
-> > > -    - "x-powers,axp209-adc",
-> > > -    - "x-powers,axp221-adc",
-> > > -    - "x-powers,axp813-adc",
-> > > -  - #io-channel-cells: should be 1,
-> > > -
-> > > -Example:
-> > > -
-> > > -&axp22x {
-> > > -     adc {
-> > > -             compatible = "x-powers,axp221-adc";
-> > > -             #io-channel-cells = <1>;
-> > > -     };
-> > > -};
-> > > -
-> > > -ADC channels and their indexes per variant:
-> > > -
-> > > -AXP209
-> > > -------
-> > > - 0 | acin_v
-> > > - 1 | acin_i
-> > > - 2 | vbus_v
-> > > - 3 | vbus_i
-> > > - 4 | pmic_temp
-> > > - 5 | gpio0_v
-> > > - 6 | gpio1_v
-> > > - 7 | ipsout_v
-> > > - 8 | batt_v
-> > > - 9 | batt_chrg_i
-> > > -10 | batt_dischrg_i
-> > > -
-> > > -AXP22x
-> > > -------
-> > > - 0 | pmic_temp
-> > > - 1 | batt_v
-> > > - 2 | batt_chrg_i
-> > > - 3 | batt_dischrg_i
-> > > -
-> > > -AXP813
-> > > -------
-> > > - 0 | pmic_temp
-> > > - 1 | gpio0_v
-> > > - 2 | batt_v
-> > > - 3 | batt_chrg_i
-> > > - 4 | batt_dischrg_i
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
-> > > new file mode 100644
-> > > index 000000000000..288a5ac31a16
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
-> > > @@ -0,0 +1,67 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/adc/x-powers,axp209-adc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: X-Powers AXP ADC bindings
-> > > +
-> > > +maintainers:
-> > > +  - Quentin Schulz <quentin.schulz@bootlin.com>
-> > > +
-> > > +description: |
-> > > +  ADC is frequently used as a provider to consumers of the ADC channels.
-> > > +  Device is a child of an axp209 multifunction device
-> > > +  ADC channels and their indexes per variant:
-> > > +
-> > > +  AXP209
-> > > +  ------
-> > > +   0 | acin_v
-> > > +   1 | acin_i
-> > > +   2 | vbus_v
-> > > +   3 | vbus_i
-> > > +   4 | pmic_temp
-> > > +   5 | gpio0_v
-> > > +   6 | gpio1_v
-> > > +   7 | ipsout_v
-> > > +   8 | batt_v
-> > > +   9 | batt_chrg_i
-> > > +  10 | batt_dischrg_i
-> > > +
-> > > +  AXP22x
-> > > +  ------
-> > > +   0 | pmic_temp
-> > > +   1 | batt_v
-> > > +   2 | batt_chrg_i
-> > > +   3 | batt_dischrg_i
-> > > +
-> > > +  AXP813
-> > > +  ------
-> > > +   0 | pmic_temp
-> > > +   1 | gpio0_v
-> > > +   2 | batt_v
-> > > +   3 | batt_chrg_i
-> > > +   4 | batt_dischrg_i
-> > > +
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - x-powers,axp209-adc
-> > > +      - x-powers,axp221-adc
-> > > +      - x-powers,axp813-adc
-> > > +
-> > > +  "#io-channel-cells":
-> > > +    const: 1
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    axp221 {
-> > > +        adc {
-> > > +            compatible = "x-powers,axp221-adc";
-> > > +            #io-channel-cells = <1>;
-> > > +        };
-> > > +    };
-> > > +...  
-> >  
+Thanks!
 
+[1/1] ASoC: qcom: Fix enabling BCLK and LRCLK in LPAIF invalid state
+      commit: b1824968221ccc498625750d8c49cf0d7d39a4de
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
