@@ -2,238 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E938E2C095A
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B82CC2C08EA
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 14:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388220AbgKWNGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 08:06:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58678 "EHLO
+        id S2387677AbgKWNDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 08:03:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732869AbgKWMtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 07:49:08 -0500
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55C32C061A4D
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:49:05 -0800 (PST)
-Received: by mail-ed1-x543.google.com with SMTP id k4so16959500edl.0
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:49:05 -0800 (PST)
+        with ESMTP id S2387669AbgKWMv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 07:51:57 -0500
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01610C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:51:57 -0800 (PST)
+Received: by mail-ej1-x644.google.com with SMTP id 7so23126596ejm.0
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 04:51:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vanguardiasur-com-ar.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GyUtXV4I7oufOCmRehbSbZihfE2dNAsjJjjjrmEuICw=;
-        b=xzdEz6kB4zBik1uOatoshaBm6LaSKmUojijYt8h9dh2QGrUS76eruUvLIzkSH0eGEe
-         DOl+Li0VGvprWuzJGUffQBqShHCUBvn0FG05F8PWA7Ix6v7nmuwvqau9BuAUXtBuzc9P
-         biFtftXYWUdPL666mAAt48VYycPt4mDE/nFamResc8Jm6tepnfAiJpTSHUAnPk79ypk0
-         LDR50k++wjeWldDm+gC03roaoqPBQQqL0fsaZikOBH87K99u1MRrLTd13dwLHowdkXpQ
-         ztf6f/03UDNnrWdRmhDlhaGsgjm9AQ0a+uIiw96KobpddpBrzU5tcbP8H1dC1S7gVEf2
-         xPfg==
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jnD6JxIyxc4vm54K4tKnhPWtevyVeHY1Zgn00laUUfA=;
+        b=n+SsvAnOuvFpo9fuYFpraPfRqMJQBKN5DmMsO67xbOdk7xeiFLjd9qowus6ere1Cg3
+         IyClkLOxj+jm6I2dSTy2Tx1nAoEZtFF6N2t915Kw+bQ+hCeNUQe+u8vfps7+3A37Wd0i
+         Xw468ZyUMHg34aARMw+5sCah5Ife3hgkIOgBaEFtTkrdvjw+F3UZo5x6JCdflbNWKuPL
+         +gH7yEC9lZxw9iErt3++xiBCrsbPc8RsDMEJx2rKd5jMKKG8buEGI2odLG0PEC0EqUaX
+         T33iehIZOGb9ctsRDtPWP1OUCnXL1/JQt4rpA1d7l2yVOfogxApssQ/fZAMIbiU6O13Y
+         pn1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GyUtXV4I7oufOCmRehbSbZihfE2dNAsjJjjjrmEuICw=;
-        b=KY+FSlAbYr4eOWTE6UYtTZl1mkjX0Up3XyDUeSCSX8na7d6b4HzZ363Om+7zN4Ofzv
-         GyoXBZgwQvG/gu3g1t6gYsxVQhxbgJVsdaX6ad9Jt2vzwDGVyPK6hvc0Ibx3HCfbDY0z
-         yASqh51aBSkf06ODDU+QDQgpM/8vFlSVXfZpUdwzSY05TeJ0rQSCZO62oHAQ8FNkK+KE
-         I3d8AaZBXgfSLOjdSXCXZab0vmtcHKVWk4Q23O6n2iJ4K+QMK8S7DG9I/XtN/OStnbgJ
-         lBNY6vYwPBRaZma5/h7rPi7FUiM6LcEvhCWzRKgJQQySyVE+Pp3wxXW2gtvNDAYOO7PU
-         6Rzw==
-X-Gm-Message-State: AOAM531b+0fNyB0JVflvGJIcIFnk0V4gZSOuLJlCznxNKR+dfGlia+sA
-        HSL5B6rUIS3UbyFuf24k3fgX416YAMILHadjzF1lyg==
-X-Google-Smtp-Source: ABdhPJzlanZtbb9BGdfii0DcE9OSCvj2yyVYSpep2MYBMNOh1SH5wMpSHxztxzQJLoz9y7yPdd5mKxJnY6cjP3OZ38I=
-X-Received: by 2002:aa7:cb52:: with SMTP id w18mr38774344edt.362.1606135744041;
- Mon, 23 Nov 2020 04:49:04 -0800 (PST)
-MIME-Version: 1.0
-References: <20200922165535.1356622-1-maxime.chevallier@bootlin.com>
- <20200922165535.1356622-3-maxime.chevallier@bootlin.com> <CAAEAJfCcPRnyjPozXG9rjovO+cJ6ZZBadShs_X9DQCrjSj7mUw@mail.gmail.com>
- <20201123082122.49a08ebb@bootlin.com>
-In-Reply-To: <20201123082122.49a08ebb@bootlin.com>
-From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Date:   Mon, 23 Nov 2020 09:48:51 -0300
-Message-ID: <CAAEAJfD9r=skAPAEZX50Y-EnbeZRy+LEnERR_rvkcoghESEn2w@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] media: rockchip: Introduce driver for Rockhip's
- camera interface
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jnD6JxIyxc4vm54K4tKnhPWtevyVeHY1Zgn00laUUfA=;
+        b=fNNIwhzFnmMo5hQkSbV74NO1/NQqflTCUX1FzmQ9FI+9MI+J51npnqKlmy90OBx0xu
+         ZImiaSPRd9E/lQxyPDfSmsP14/wM5YF1RsQn4upQ3aoxpRY3zRxtMksr2tO7gDYCFTT2
+         gpzWLwqaU1Jyx+YAUknUQ1MhCngLsy+lWMfFiVJ/onjcUorPzX207dhDs29cJLMHkXtK
+         az+f+VH67wYBeEYFhOccRh9lsL4D5dJQwnjyjMWEwWERxg+H3L7KP/06U3AJlRazYOH7
+         KjYs7wCOf0ejNWGg2uWF5bSQsKp6HlqaxVNUzGx/W/QG64rjBz/Fl9vZ1PJ0X68/uZ43
+         vEyg==
+X-Gm-Message-State: AOAM533mHIsNWpFCNHKEfXso9SVtsMsMcz5SIFOZa8iNoZVaMvX3PFAp
+        F9DNf5p6UoBcOchrJMVy0sDyCg==
+X-Google-Smtp-Source: ABdhPJzoJRpQuSQbyVo4FnWnIGE0h6PqMXD5ASqgZR/lDI3/6lf/+dq9ThIlEFnuoEOJELCR8o+4KQ==
+X-Received: by 2002:a17:907:c14:: with SMTP id ga20mr43858051ejc.526.1606135915525;
+        Mon, 23 Nov 2020 04:51:55 -0800 (PST)
+Received: from google.com ([2a01:4b00:8523:2d03:acac:b2ef:c7d:fd8a])
+        by smtp.gmail.com with ESMTPSA id z19sm4921235ejj.101.2020.11.23.04.51.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2020 04:51:54 -0800 (PST)
+Date:   Mon, 23 Nov 2020 12:51:53 +0000
+From:   David Brazdil <dbrazdil@google.com>
+To:     Quentin Perret <qperret@google.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Julien Thierry <julien.thierry.kdev@gmail.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        "moderated list:ARM64 PORT (AARCH64 ARCHITECTURE)" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL VIRTUAL MACHINE FOR ARM64 (KVM/arm64)" 
+        <kvmarm@lists.cs.columbia.edu>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
+        <devicetree@vger.kernel.org>, kernel-team@android.com,
+        android-kvm@google.com
+Subject: Re: [RFC PATCH 08/27] KVM: arm64: Make kvm_call_hyp() a function
+ call at Hyp
+Message-ID: <20201123125153.hnipzls2ijptpti7@google.com>
+References: <20201117181607.1761516-1-qperret@google.com>
+ <20201117181607.1761516-9-qperret@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201117181607.1761516-9-qperret@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+On Tue, Nov 17, 2020 at 06:15:48PM +0000, 'Quentin Perret' via kernel-team wrote:
+> kvm_call_hyp() has some logic to issue a function call or a hypercall
+> depending the EL at which the kernel is running. However, all the code
+> compiled under __KVM_NVHE_HYPERVISOR__ is guaranteed to run only at EL2,
+> and in this case a simple function call is needed.
+> 
+> Add ifdefery to kvm_host.h to symplify kvm_call_hyp() in .hyp.text.
+> 
+> Signed-off-by: Quentin Perret <qperret@google.com>
+> ---
+>  arch/arm64/include/asm/kvm_host.h | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/include/asm/kvm_host.h b/arch/arm64/include/asm/kvm_host.h
+> index ac11adab6602..7a5d5f4b3351 100644
+> --- a/arch/arm64/include/asm/kvm_host.h
+> +++ b/arch/arm64/include/asm/kvm_host.h
+> @@ -557,6 +557,7 @@ int kvm_test_age_hva(struct kvm *kvm, unsigned long hva);
+>  void kvm_arm_halt_guest(struct kvm *kvm);
+>  void kvm_arm_resume_guest(struct kvm *kvm);
+>  
+> +#ifndef __KVM_NVHE_HYPERVISOR__
+>  #define kvm_call_hyp_nvhe(f, ...)						\
+>  	({								\
+>  		struct arm_smccc_res res;				\
+> @@ -596,6 +597,11 @@ void kvm_arm_resume_guest(struct kvm *kvm);
+>  									\
+>  		ret;							\
+>  	})
+> +#else /* __KVM_NVHE_HYPERVISOR__ */
+> +#define kvm_call_hyp(f, ...) f(__VA_ARGS__)
+> +#define kvm_call_hyp_ret(f, ...) f(__VA_ARGS__)
+> +#define kvm_call_hyp_nvhe(f, ...) f(__VA_ARGS__)
+> +#endif /* __KVM_NVHE_HYPERVISOR__ */
 
-On Mon, 23 Nov 2020 at 04:21, Maxime Chevallier
-<maxime.chevallier@bootlin.com> wrote:
->
-> Hi Ezequiel, and thanks a lot for the review !
->
-> On Fri, 2 Oct 2020 14:35:28 -0300
-> Ezequiel Garcia <ezequiel@vanguardiasur.com.ar> wrote:
->
-> > Hi Maxime,
-> >
-> >Thanks to Dafna, I found the patch ^_^
-> >
-> >The driver looks real good. Just a few comments below.
-> >
-> >Is the driver passing latest v4l2-compliance tests?
->
-> I'll post them along with the next iteration of the series.
->
-> >> +config VIDEO_ROCKCHIP_VIP
-> >> +       tristate "Rockchip VIP (Video InPut) Camera Interface"
-> >> +       depends on VIDEO_DEV && VIDEO_V4L2
-> >> +       depends on ARCH_ROCKCHIP || COMPILE_TEST
-> >> +       select VIDEOBUF2_DMA_SG
-> >> +       select VIDEOBUF2_DMA_CONTIG
-> >> +       select V4L2_FWNODE
-> >> +       select V4L2_MEM2MEM_DEV
-> >> +       help
-> >> +         This is a v4l2 driver for Rockchip SOC Camera interface.
-> >> +
-> >> +         To compile this driver as a module choose m here.
-> >> +
-> >
-> >Please add ... "the module will be called {the name}".
->
-> Sure, I will do !
->
-> [...]
->
-> >> +#define VIP_REQ_BUFS_MIN       1
-> >
-> >I think you might want to have more than 1 buffer
-> >as minimum. How about 3? Two for the ping and pong,
-> >and one more in the queue.
->
-> Yes you're correct, 3 should be the strict minimum required buffers
-> here, I didn't update that after adding the dual-buffering mode.
->
-> >> +#define VIP_MIN_WIDTH          64
-> >> +#define VIP_MIN_HEIGHT         64
-> >> +#define VIP_MAX_WIDTH          8192
-> >> +#define VIP_MAX_HEIGHT         8192
-> >> +
-> >> +#define RK_VIP_PLANE_Y                 0
-> >> +#define RK_VIP_PLANE_CBCR              1
-> >> +
-> >> +#define VIP_FETCH_Y_LAST_LINE(VAL) ((VAL) & 0x1fff)
-> >> +/* Check if swap y and c in bt1120 mode */
-> >> +#define VIP_FETCH_IS_Y_FIRST(VAL) ((VAL) & 0xf)
-> >> +
-> >> +/* Get xsubs and ysubs for fourcc formats
-> >> + *
-> >> + * @xsubs: horizontal color samples in a 4*4 matrix, for yuv
-> >> + * @ysubs: vertical color samples in a 4*4 matrix, for yuv
-> >> + */
-> >> +static int fcc_xysubs(u32 fcc, u32 *xsubs, u32 *ysubs)
-> >
-> >See below, you should be using v4l2_fill_pixfmt_mp.
-> >
-> >> +{
-> >> +       switch (fcc) {
-> >> +       case V4L2_PIX_FMT_NV16:
-> >> +       case V4L2_PIX_FMT_NV61:
-> >> +               *xsubs = 2;
-> >> +               *ysubs = 1;
-> >> +               break;
-> >> +       case V4L2_PIX_FMT_NV21:
-> >> +       case V4L2_PIX_FMT_NV12:
-> >> +               *xsubs = 2;
-> >> +               *ysubs = 2;
-> >> +               break;
-> >> +       default:
-> >> +               return -EINVAL;
-> >> +       }
-> >> +
-> >> +       return 0;
-> >> +}
-> >> +
-> >> +static const struct vip_output_fmt out_fmts[] = {
-> >> +       {
-> >> +               .fourcc = V4L2_PIX_FMT_NV16,
-> >> +               .cplanes = 2,
-> >
-> >From what I can see, you are only using this
-> >information to calculate bytesperline and sizeimage,
-> >so you should be using the v4l2_fill_pixfmt_mp() helper.
->
-> You're correct, it indeed makes things much easier and allowed to
-> removed a lot of redundant info here !
->
->
-> >> +static void rk_vip_set_fmt(struct rk_vip_stream *stream,
-> >> +                          struct v4l2_pix_format_mplane *pixm,
-> >> +                          bool try)
-> >> +{
-> >> +       struct rk_vip_device *dev = stream->vipdev;
-> >> +       struct v4l2_subdev_format sd_fmt;
-> >> +       const struct vip_output_fmt *fmt;
-> >> +       struct v4l2_rect input_rect;
-> >> +       unsigned int planes, imagesize = 0;
-> >> +       u32 xsubs = 1, ysubs = 1;
-> >> +       int i;
-> >> +
-> >
-> >I was expecting to see some is_busy or is_streaming check
-> >here, have you tested what happens if you change the format
-> >while streaming, or after buffers are queued?
->
-> Yes correct. I used the stream->state private flag here, but I it was
-> also brought to my attention that there also exists a vb2_is_busy()
-> helper, but I'm unsure if it would be correct to use it here.
->
+I was hoping we could define this as the following instead. That would require
+adding host-side declarations of all functions currently called with _nvhe.
 
-Long story, short: when the application creates buffers,
-with e.g. REQBUF (see vb2_core_reqbufs), it will call
-the driver (vb2_ops.queue_setup), to get the planes' sizes.
+#define kvm_call_hyp_nvhe(f, ...)					\
++	is_nvhe_hyp_code() ? f(__VA_ARGS__) :				\
+	({								\
+		struct arm_smccc_res res;				\
+									\
+		arm_smccc_1_1_hvc(KVM_HOST_SMCCC_FUNC(f),		\
+				##__VA_ARGS__, &res);			\
+		WARN_ON(res.a0 != SMCCC_RET_SUCCESS);			\
+									\
+		res.a1;							\
+	})
 
-In the current model, for a given vb2 queue, all the buffers
-are the same size. In practice, the simpler way to express
-this is not allowing S_FMT if there are buffers allocated
-in the queue (vb2_is_busy).
-
-You could relax the vb2_is_busy requirement in your driver,
-but I usually find it's not worth the trouble.
-
->
-> >> +
-> >> +static int rk_vip_g_input(struct file *file, void *fh, unsigned int *i)
-> >> +{
-> >> +       *i = 0;
-> >> +       return 0;
-> >> +}
-> >> +
-> >> +static int rk_vip_s_input(struct file *file, void *fh, unsigned int i)
-> >> +{
-> >
-> >Only one input, why do you need to support this ioctl at all?
->
-> I actually saw a fair amount of existing drivers implementing these
-> callbacks even for only one input, so I don't really know if I should
-> remove it or not ?
->
-
-S_INPUT is used e.g. on capture devices that have multiple
-inputs and can capture from one input at a time.
-
-If the ioctl is empty like this, the driver can simply not support
-the ioctl.
-
-Best regards,
-Ezequiel
+Up to you what you think is cleaner, just my 2 cents...
