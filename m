@@ -2,61 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F8C12C11AD
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 18:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E88C22C11C7
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 18:20:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733159AbgKWRO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 12:14:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:43574 "EHLO mail.kernel.org"
+        id S1733134AbgKWRTk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 12:19:40 -0500
+Received: from mx2.suse.de ([195.135.220.15]:58310 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733152AbgKWRO1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 12:14:27 -0500
-Received: from localhost (unknown [122.171.203.152])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1D1D320719;
-        Mon, 23 Nov 2020 17:14:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606151667;
-        bh=Z0D0G7UXZZita+xmedZvqpv4DisJLJYg0ajIZcOzBSM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l5q7W847ripT143Funrq1sT9U76vY3E2WEZwTVwNMc1eh5l8aK10ltL1gxezscOtZ
-         onto7fUrNGV8XlWu1BHq0poN7oQBNVUFjNWUtpnnoKoMizawr1FPxR2W7cF5Uv6qtg
-         DfN0pit+2G73GnUJVaEvOBA7pX/SHQnqUUZRUNoY=
-Date:   Mon, 23 Nov 2020 22:44:22 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: sdm845: Add iommus property to qup
-Message-ID: <20201123171422.GE8403@vkoul-mobl>
-References: <20201122034149.626045-1-bjorn.andersson@linaro.org>
+        id S1726417AbgKWRTj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 12:19:39 -0500
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 52398AC82;
+        Mon, 23 Nov 2020 17:19:37 +0000 (UTC)
+Message-ID: <ac38b89133f80f82b857ad2b4e421b501c2f4826.camel@suse.de>
+Subject: Re: [PATCH v4 01/11] firmware: raspberrypi: Keep count of all
+ consumers
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        linux-pwm@vger.kernel.org,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        linux-input <linux-input@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-rpi-kernel <linux-rpi-kernel@lists.infradead.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Mon, 23 Nov 2020 18:19:35 +0100
+In-Reply-To: <20201113072615.GE356503@dtor-ws>
+References: <20201112163630.17177-1-nsaenzjulienne@suse.de>
+         <20201112163630.17177-2-nsaenzjulienne@suse.de>
+         <CAHp75Vf9E7UWVDMs=eRjLjoSN6SVOWw9thNdnR8ruCL6GmY7JQ@mail.gmail.com>
+         <20201113072615.GE356503@dtor-ws>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-4mT4pfaztxo3yJL0guCg"
+User-Agent: Evolution 3.38.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201122034149.626045-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-11-20, 19:41, Bjorn Andersson wrote:
-> From: Stephen Boyd <swboyd@chromium.org>
-> 
-> The SMMU that sits in front of the QUP needs to be programmed properly
-> so that the i2c geni driver can allocate DMA descriptors. Failure to do
-> this leads to faults when using devices such as an i2c touchscreen where
-> the transaction is larger than 32 bytes and we use a DMA buffer.
-> 
-> arm-smmu 15000000.iommu: Unexpected global fault, this could be serious
-> arm-smmu 15000000.iommu:         GFSR 0x00000002, GFSYNR0 0x00000002, GFSYNR1 0x000006c0, GFSYNR2 0x00000000
-> 
-> Add the right SID and mask so this works.
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+--=-4mT4pfaztxo3yJL0guCg
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-on DB845c with GSI DMA:
-Tested-by: Vinod Koul <vkoul@kernel.org>
+On Thu, 2020-11-12 at 23:26 -0800, Dmitry Torokhov wrote:
+> On Thu, Nov 12, 2020 at 07:52:14PM +0200, Andy Shevchenko wrote:
+> > On Thu, Nov 12, 2020 at 6:40 PM Nicolas Saenz Julienne
+> > <nsaenzjulienne@suse.de> wrote:
+> > >=20
+> > > When unbinding the firmware device we need to make sure it has no
+> > > consumers left. Otherwise we'd leave them with a firmware handle
+> > > pointing at freed memory.
+> > >=20
+> > > Keep a reference count of all consumers and introduce rpi_firmware_pu=
+t()
+> > > which will permit automatically decrease the reference count upon
+> > > unbinding consumer drivers.
+> >=20
+> > ...
+> >=20
+> > > =C2=A0/**
+> > > - * rpi_firmware_get - Get pointer to rpi_firmware structure.
+> > > =C2=A0=C2=A0* @firmware_node:    Pointer to the firmware Device Tree =
+node.
+> > > =C2=A0=C2=A0*
+> > > + * The reference to rpi_firmware has to be released with rpi_firmwar=
+e_put().
+> > > + *
+> > > =C2=A0=C2=A0* Returns NULL is the firmware device is not ready.
+> > > =C2=A0=C2=A0*/
+> > > =C2=A0struct rpi_firmware *rpi_firmware_get(struct device_node *firmw=
+are_node)
+> > > =C2=A0{
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct platform_devic=
+e *pdev =3D of_find_device_by_node(firmware_node);
+> > > +       struct rpi_firmware *fw;
+> > >=20
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (!pdev)
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0return NULL;
+> > >=20
+> > > -       return platform_get_drvdata(pdev);
+> > > +       fw =3D platform_get_drvdata(pdev);
+> > > +       if (!fw)
+> > > +               return NULL;
+> > > +
+> > > +       if (!kref_get_unless_zero(&fw->consumers))
+> > > +               return NULL;
+> >=20
 
--- 
-~Vinod
+Hi Andy, Dimitry,
+
+> > Don't we have a more traditional way of doing this, i.e.
+> > try_module_get() coupled with get_device() ?
+>=20
+> get_device() will make sure that device is there, but gives no
+> assurances that device is bound to a driver, so it will not help with
+> the racy access to firmware via platform_get_drvdata() call.
+
+I also looked at using get/put_device() just as a means for refcounting (i.=
+e.
+replacing fw->consumers), but I can't make it work either. I'd need a way t=
+o
+hook up into one of the struct device_ktype release() functions. AFAIK it's=
+ not
+possible for private uses like this.
+
+IIUC the way to do this would be to bypass platform device and create a spe=
+cial
+device class/bus for RPi's firmware dependent devices (I could pretty much =
+copy
+SCMI's implementation), but I fear that's overkill.
+
+So, for now I'll stick with the kref based implementation, I'll be happy to
+change it if you find a better solution. :)
+
+Regards,
+Nicolas
+
+
+--=-4mT4pfaztxo3yJL0guCg
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl+77ycACgkQlfZmHno8
+x/4SuAf/fbVt5dbVlASpaXs9h1cMXb/e8xl+GmDU2l1pP/uQHmyY+sGKGqNo7+G1
+gtKuEhPEavnasiHhJaBTWCCpwytJF9/iToX0i75cDZIObrF1xbO1A3L7hvlRiO6x
+C+oECKGo3/Awayb7MRHqEiRrLqtuu0odnT3Usn26Rbo7J2o5Lc4KF8WwYblFkmV9
+KCW77SlB/6W865vD6KK1KaN6nPqOD3XmKC7doM/MWHIvYd8siFy8qlT5m06s/vhC
+OHHbX2/7bhgcB+3/9LA9TF5J/JU9KIDHuUVbPYC2hcAVbkELXL93OwJ3DnN7csjp
+6obres4oiWUNt0B5Zi7lJDT4Y1KnUw==
+=C3d8
+-----END PGP SIGNATURE-----
+
+--=-4mT4pfaztxo3yJL0guCg--
+
