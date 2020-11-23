@@ -2,539 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5062C2C1680
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:29:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 715EC2C16CE
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730337AbgKWUYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 15:24:17 -0500
-Received: from foss.arm.com ([217.140.110.172]:41546 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728895AbgKWUYR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 15:24:17 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2A5C01476;
-        Mon, 23 Nov 2020 12:24:16 -0800 (PST)
-Received: from e120937-lin.home (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 237C13F71F;
-        Mon, 23 Nov 2020 12:24:14 -0800 (PST)
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Cc:     sudeep.holla@arm.com, lukasz.luba@arm.com,
-        james.quinlan@broadcom.com, Jonathan.Cameron@Huawei.com,
-        broonie@kernel.org, robh@kernel.org, satyakim@qti.qualcomm.com,
-        etienne.carriere@linaro.org, f.fainelli@gmail.com,
-        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
-        Cristian Marussi <cristian.marussi@arm.com>
-Subject: [PATCH v7 3/3] regulator: add SCMI driver
-Date:   Mon, 23 Nov 2020 20:23:36 +0000
-Message-Id: <20201123202336.46701-4-cristian.marussi@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201123202336.46701-1-cristian.marussi@arm.com>
-References: <20201123202336.46701-1-cristian.marussi@arm.com>
+        id S1728887AbgKWUgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 15:36:14 -0500
+Received: from saturn.retrosnub.co.uk ([46.235.226.198]:50500 "EHLO
+        saturn.retrosnub.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727725AbgKWUgO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 15:36:14 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        by saturn.retrosnub.co.uk (Postfix; Retrosnub mail submission) with ESMTPSA id DBF889E01B5;
+        Mon, 23 Nov 2020 20:36:11 +0000 (GMT)
+Date:   Mon, 23 Nov 2020 20:36:09 +0000
+From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Quentin Schulz <quentin.schulz@bootlin.com>
+Subject: Re: [PATCH 31/46] dt-bindings:iio:adc:x-powers,axp209-adc: txt to
+ yaml conversion
+Message-ID: <20201123203609.7da36d2e@archlinux>
+In-Reply-To: <CAGb2v64KwkN5z_3nH-kUhJSAMeUfrU+zzn2tivJniT7c38BeAA@mail.gmail.com>
+References: <20201031184854.745828-1-jic23@kernel.org>
+        <20201031184854.745828-32-jic23@kernel.org>
+        <20201122181525.52410a84@archlinux>
+        <CAGb2v64KwkN5z_3nH-kUhJSAMeUfrU+zzn2tivJniT7c38BeAA@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a simple regulator based on SCMI Voltage Domain Protocol.
+On Mon, 23 Nov 2020 11:02:58 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
 
-Signed-off-by: Cristian Marussi <cristian.marussi@arm.com>
-----
-v6 --> v7
-- add proper blank lines between semantic blocks
-- fix return value on error path of scmi_reg_is_enabled()
-- use generic Failure message on err path of info_get()
-- fix comment containing apostrophe
+> Hi,
+> 
+> On Mon, Nov 23, 2020 at 2:22 AM Jonathan Cameron
+> <jic23@jic23.retrosnub.co.uk> wrote:
+> >
+> > On Sat, 31 Oct 2020 18:48:39 +0000
+> > Jonathan Cameron <jic23@kernel.org> wrote:
+> >  
+> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > >
+> > > This is a very small binding.  It might make sense at some stage
+> > > to just roll it into the parent mfd.  For now, converted as is.
+> > > The main advantage of this document is the identification of the
+> > > channel index values when this is used as a provider of ADC channels
+> > > to consumers.
+> > >
+> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > Cc: Quentin Schulz <quentin.schulz@bootlin.com>  
+> > Quentin's email address is boucing so for now I've put myself as maintainer
+> > of this binding.
+> >
+> > +CC Chen-Yu Tsai who 'might' be the a better choice.  
+> 
+> Yes you can list me as the maintainer if you yourself don't wish to be.
+> I am listed as the maintainer for all AXP hardware, excluding the AXP288.
+> 
+Great thanks - you are more likely to be able to answer questions on this
+than I am so I've put you in as maintainer + I'll get them anyway
+as IIO maintainer :)
 
-v3 --> v4
-- using of_match_full_name core regulator flag
-- avoid coccinelle falde complaints about pointer-sized allocations
+Jonathan
 
-v2 --> v3
-- remove multiple linear mappings support
-- removed duplicated voltage name printout
-- added a few comments
-- simplified return path in scmi_reg_set_voltage_sel()
-
-v1 --> v2
-- removed duplicate regulator naming
-- removed redundant .get/set_voltage ops: only _sel variants implemented
-- removed condexpr on fail path to increase readability
-
-v0 --> v1
-- fixed init_data constraint parsing
-- fixes for v5.8 (linear_range.h)
-- fixed commit message content and subject line format
-- factored out SCMI core specific changes to distinct patch
-- reworked Kconfig and Makefile to keep proper alphabetic order
-- fixed SPDX comment style
-- removed unneeded inline functions
-- reworked conditionals for legibility
-- fixed some return paths to properly report SCMI original errors codes
-- added some more descriptive error messages when fw returns invalid ranges
-- removed unneeded explicit devm_regulator_unregister from .remove()
----
- drivers/regulator/Kconfig          |   9 +
- drivers/regulator/Makefile         |   1 +
- drivers/regulator/scmi-regulator.c | 417 +++++++++++++++++++++++++++++
- 3 files changed, 427 insertions(+)
- create mode 100644 drivers/regulator/scmi-regulator.c
-
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 020a00d6696b..5617c56fbe9b 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -155,6 +155,15 @@ config REGULATOR_ARIZONA_MICSUPP
- 	  and Wolfson Microelectronic Arizona codecs
- 	  devices.
- 
-+config REGULATOR_ARM_SCMI
-+	tristate "SCMI based regulator driver"
-+	depends on ARM_SCMI_PROTOCOL && OF
-+	help
-+	  This adds the regulator driver support for ARM platforms using SCMI
-+	  protocol for device voltage management.
-+	  This driver uses SCMI Message Protocol driver to interact with the
-+	  firmware providing the device Voltage functionality.
-+
- config REGULATOR_AS3711
- 	tristate "AS3711 PMIC"
- 	depends on MFD_AS3711
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 6ebae516258e..aeed0b6079b2 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -24,6 +24,7 @@ obj-$(CONFIG_REGULATOR_AD5398) += ad5398.o
- obj-$(CONFIG_REGULATOR_ANATOP) += anatop-regulator.o
- obj-$(CONFIG_REGULATOR_ARIZONA_LDO1) += arizona-ldo1.o
- obj-$(CONFIG_REGULATOR_ARIZONA_MICSUPP) += arizona-micsupp.o
-+obj-$(CONFIG_REGULATOR_ARM_SCMI) += scmi-regulator.o
- obj-$(CONFIG_REGULATOR_AS3711) += as3711-regulator.o
- obj-$(CONFIG_REGULATOR_AS3722) += as3722-regulator.o
- obj-$(CONFIG_REGULATOR_AXP20X) += axp20x-regulator.o
-diff --git a/drivers/regulator/scmi-regulator.c b/drivers/regulator/scmi-regulator.c
-new file mode 100644
-index 000000000000..0e8b3caa8146
---- /dev/null
-+++ b/drivers/regulator/scmi-regulator.c
-@@ -0,0 +1,417 @@
-+// SPDX-License-Identifier: GPL-2.0
-+//
-+// System Control and Management Interface (SCMI) based regulator driver
-+//
-+// Copyright (C) 2020 ARM Ltd.
-+//
-+// Implements a regulator driver on top of the SCMI Voltage Protocol.
-+//
-+// The ARM SCMI Protocol aims in general to hide as much as possible all the
-+// underlying operational details while providing an abstracted interface for
-+// its users to operate upon: as a consequence the resulting operational
-+// capabilities and configurability of this regulator device are much more
-+// limited than the ones usually available on a standard physical regulator.
-+//
-+// The supported SCMI regulator ops are restricted to the bare minimum:
-+//
-+//  - 'status_ops': enable/disable/is_enabled
-+//  - 'voltage_ops': get_voltage_sel/set_voltage_sel
-+//		     list_voltage/map_voltage
-+//
-+// Each SCMI regulator instance is associated, through the means of a proper DT
-+// entry description, to a specific SCMI Voltage Domain.
-+
-+#define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
-+
-+#include <linux/linear_range.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/machine.h>
-+#include <linux/regulator/of_regulator.h>
-+#include <linux/scmi_protocol.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+
-+struct scmi_regulator {
-+	u32 id;
-+	struct scmi_device *sdev;
-+	struct regulator_dev *rdev;
-+	struct device_node *of_node;
-+	struct regulator_desc desc;
-+	struct regulator_config conf;
-+};
-+
-+struct scmi_regulator_info {
-+	int num_doms;
-+	struct scmi_regulator **sregv;
-+};
-+
-+static int scmi_reg_enable(struct regulator_dev *rdev)
-+{
-+	struct scmi_regulator *sreg = rdev_get_drvdata(rdev);
-+	const struct scmi_handle *handle = sreg->sdev->handle;
-+
-+	return handle->voltage_ops->config_set(handle, sreg->id,
-+					       SCMI_VOLTAGE_ARCH_STATE_ON);
-+}
-+
-+static int scmi_reg_disable(struct regulator_dev *rdev)
-+{
-+	struct scmi_regulator *sreg = rdev_get_drvdata(rdev);
-+	const struct scmi_handle *handle = sreg->sdev->handle;
-+
-+	return handle->voltage_ops->config_set(handle, sreg->id,
-+					       SCMI_VOLTAGE_ARCH_STATE_OFF);
-+}
-+
-+static int scmi_reg_is_enabled(struct regulator_dev *rdev)
-+{
-+	int ret;
-+	u32 config;
-+	struct scmi_regulator *sreg = rdev_get_drvdata(rdev);
-+	const struct scmi_handle *handle = sreg->sdev->handle;
-+
-+	ret = handle->voltage_ops->config_get(handle, sreg->id,
-+					      &config);
-+	if (ret) {
-+		dev_err(&sreg->sdev->dev,
-+			"Error %d reading regulator %s status.\n",
-+			ret, sreg->desc.name);
-+		return ret;
-+	}
-+
-+	return config & SCMI_VOLTAGE_ARCH_STATE_ON;
-+}
-+
-+static int scmi_reg_get_voltage_sel(struct regulator_dev *rdev)
-+{
-+	int ret;
-+	s32 volt_uV;
-+	struct scmi_regulator *sreg = rdev_get_drvdata(rdev);
-+	const struct scmi_handle *handle = sreg->sdev->handle;
-+
-+	ret = handle->voltage_ops->level_get(handle, sreg->id, &volt_uV);
-+	if (ret)
-+		return ret;
-+
-+	return sreg->desc.ops->map_voltage(rdev, volt_uV, volt_uV);
-+}
-+
-+static int scmi_reg_set_voltage_sel(struct regulator_dev *rdev,
-+				    unsigned int selector)
-+{
-+	s32 volt_uV;
-+	struct scmi_regulator *sreg = rdev_get_drvdata(rdev);
-+	const struct scmi_handle *handle = sreg->sdev->handle;
-+
-+	volt_uV = sreg->desc.ops->list_voltage(rdev, selector);
-+	if (volt_uV <= 0)
-+		return -EINVAL;
-+
-+	return handle->voltage_ops->level_set(handle, sreg->id, 0x0, volt_uV);
-+}
-+
-+static const struct regulator_ops scmi_reg_fixed_ops = {
-+	.enable = scmi_reg_enable,
-+	.disable = scmi_reg_disable,
-+	.is_enabled = scmi_reg_is_enabled,
-+};
-+
-+static const struct regulator_ops scmi_reg_linear_ops = {
-+	.enable = scmi_reg_enable,
-+	.disable = scmi_reg_disable,
-+	.is_enabled = scmi_reg_is_enabled,
-+	.get_voltage_sel = scmi_reg_get_voltage_sel,
-+	.set_voltage_sel = scmi_reg_set_voltage_sel,
-+	.list_voltage = regulator_list_voltage_linear,
-+	.map_voltage = regulator_map_voltage_linear,
-+};
-+
-+static const struct regulator_ops scmi_reg_discrete_ops = {
-+	.enable = scmi_reg_enable,
-+	.disable = scmi_reg_disable,
-+	.is_enabled = scmi_reg_is_enabled,
-+	.get_voltage_sel = scmi_reg_get_voltage_sel,
-+	.set_voltage_sel = scmi_reg_set_voltage_sel,
-+	.list_voltage = regulator_list_voltage_table,
-+	.map_voltage = regulator_map_voltage_iterate,
-+};
-+
-+static int
-+scmi_config_linear_regulator_mappings(struct scmi_regulator *sreg,
-+				      const struct scmi_voltage_info *vinfo)
-+{
-+	s32 delta_uV;
-+
-+	/*
-+	 * Note that SCMI voltage domains describable by linear ranges
-+	 * (segments) {low, high, step} are guaranteed to come in one single
-+	 * triplet by the SCMI Voltage Domain protocol support itself.
-+	 */
-+
-+	delta_uV = (vinfo->levels_uv[SCMI_VOLTAGE_SEGMENT_HIGH] -
-+			vinfo->levels_uv[SCMI_VOLTAGE_SEGMENT_LOW]);
-+
-+	/* Rule out buggy negative-intervals answers from fw */
-+	if (delta_uV < 0) {
-+		dev_err(&sreg->sdev->dev,
-+			"Invalid volt-range %d-%duV for domain %d\n",
-+			vinfo->levels_uv[SCMI_VOLTAGE_SEGMENT_LOW],
-+			vinfo->levels_uv[SCMI_VOLTAGE_SEGMENT_HIGH],
-+			sreg->id);
-+		return -EINVAL;
-+	}
-+
-+	if (!delta_uV) {
-+		/* Just one fixed voltage exposed by SCMI */
-+		sreg->desc.fixed_uV =
-+			vinfo->levels_uv[SCMI_VOLTAGE_SEGMENT_LOW];
-+		sreg->desc.n_voltages = 1;
-+		sreg->desc.ops = &scmi_reg_fixed_ops;
-+	} else {
-+		/* One simple linear mapping. */
-+		sreg->desc.min_uV =
-+			vinfo->levels_uv[SCMI_VOLTAGE_SEGMENT_LOW];
-+		sreg->desc.uV_step =
-+			vinfo->levels_uv[SCMI_VOLTAGE_SEGMENT_STEP];
-+		sreg->desc.linear_min_sel = 0;
-+		sreg->desc.n_voltages = delta_uV / sreg->desc.uV_step;
-+		sreg->desc.ops = &scmi_reg_linear_ops;
-+	}
-+
-+	return 0;
-+}
-+
-+static int
-+scmi_config_discrete_regulator_mappings(struct scmi_regulator *sreg,
-+					const struct scmi_voltage_info *vinfo)
-+{
-+	/* Discrete non linear levels are mapped to volt_table */
-+	sreg->desc.n_voltages = vinfo->num_levels;
-+
-+	if (sreg->desc.n_voltages > 1) {
-+		sreg->desc.volt_table = (const unsigned int *)vinfo->levels_uv;
-+		sreg->desc.ops = &scmi_reg_discrete_ops;
-+	} else {
-+		sreg->desc.fixed_uV = vinfo->levels_uv[0];
-+		sreg->desc.ops = &scmi_reg_fixed_ops;
-+	}
-+
-+	return 0;
-+}
-+
-+static int scmi_regulator_common_init(struct scmi_regulator *sreg)
-+{
-+	int ret;
-+	const struct scmi_handle *handle = sreg->sdev->handle;
-+	struct device *dev = &sreg->sdev->dev;
-+	const struct scmi_voltage_info *vinfo;
-+
-+	vinfo = handle->voltage_ops->info_get(handle, sreg->id);
-+	if (!vinfo) {
-+		dev_warn(dev, "Failure to get voltage domain %d\n",
-+			 sreg->id);
-+		return -ENODEV;
-+	}
-+
-+	/*
-+	 * Regulator framework does not fully support negative voltages
-+	 * so we discard any voltage domain reported as supporting negative
-+	 * voltages: as a consequence each levels_uv entry is guaranteed to
-+	 * be non-negative from here on.
-+	 */
-+	if (vinfo->negative_volts_allowed) {
-+		dev_warn(dev, "Negative voltages NOT supported...skip %s\n",
-+			 sreg->of_node->full_name);
-+		return -EOPNOTSUPP;
-+	}
-+
-+	sreg->desc.name = devm_kasprintf(dev, GFP_KERNEL, "%s", vinfo->name);
-+	if (!sreg->desc.name)
-+		return -ENOMEM;
-+
-+	sreg->desc.id = sreg->id;
-+	sreg->desc.type = REGULATOR_VOLTAGE;
-+	sreg->desc.owner = THIS_MODULE;
-+	sreg->desc.of_match_full_name = true;
-+	sreg->desc.of_match = sreg->of_node->full_name;
-+	sreg->desc.regulators_node = "regulators";
-+	if (vinfo->segmented)
-+		ret = scmi_config_linear_regulator_mappings(sreg, vinfo);
-+	else
-+		ret = scmi_config_discrete_regulator_mappings(sreg, vinfo);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Using the scmi device here to have DT searched from Voltage
-+	 * protocol node down.
-+	 */
-+	sreg->conf.dev = dev;
-+
-+	/* Store for later retrieval via rdev_get_drvdata() */
-+	sreg->conf.driver_data = sreg;
-+
-+	return 0;
-+}
-+
-+static int process_scmi_regulator_of_node(struct scmi_device *sdev,
-+					  struct device_node *np,
-+					  struct scmi_regulator_info *rinfo)
-+{
-+	u32 dom, ret;
-+
-+	ret = of_property_read_u32(np, "reg", &dom);
-+	if (ret)
-+		return ret;
-+
-+	if (dom >= rinfo->num_doms)
-+		return -ENODEV;
-+
-+	if (rinfo->sregv[dom]) {
-+		dev_err(&sdev->dev,
-+			"SCMI Voltage Domain %d already in use. Skipping: %s\n",
-+			dom, np->full_name);
-+		return -EINVAL;
-+	}
-+
-+	rinfo->sregv[dom] = devm_kzalloc(&sdev->dev,
-+					 sizeof(struct scmi_regulator),
-+					 GFP_KERNEL);
-+	if (!rinfo->sregv[dom])
-+		return -ENOMEM;
-+
-+	rinfo->sregv[dom]->id = dom;
-+	rinfo->sregv[dom]->sdev = sdev;
-+
-+	/* get hold of good nodes */
-+	of_node_get(np);
-+	rinfo->sregv[dom]->of_node = np;
-+
-+	dev_dbg(&sdev->dev,
-+		"Found SCMI Regulator entry -- OF node [%d] -> %s\n",
-+		dom, np->full_name);
-+
-+	return 0;
-+}
-+
-+static int scmi_regulator_probe(struct scmi_device *sdev)
-+{
-+	int d, ret, num_doms;
-+	struct device_node *np, *child;
-+	const struct scmi_handle *handle = sdev->handle;
-+	struct scmi_regulator_info *rinfo;
-+
-+	if (!handle || !handle->voltage_ops)
-+		return -ENODEV;
-+
-+	num_doms = handle->voltage_ops->num_domains_get(handle);
-+	if (num_doms <= 0) {
-+		if (!num_doms) {
-+			dev_err(&sdev->dev,
-+				"number of voltage domains invalid\n");
-+			num_doms = -EINVAL;
-+		} else {
-+			dev_err(&sdev->dev,
-+				"failed to get voltage domains - err:%d\n",
-+				num_doms);
-+		}
-+
-+		return num_doms;
-+	}
-+
-+	rinfo = devm_kzalloc(&sdev->dev, sizeof(*rinfo), GFP_KERNEL);
-+	if (!rinfo)
-+		return -ENOMEM;
-+
-+	/* Allocate pointers array for all possible domains */
-+	rinfo->sregv = devm_kcalloc(&sdev->dev, num_doms,
-+				    sizeof(void *), GFP_KERNEL);
-+	if (!rinfo->sregv)
-+		return -ENOMEM;
-+
-+	rinfo->num_doms = num_doms;
-+
-+	/*
-+	 * Start collecting into rinfo->sregv possibly good SCMI Regulators as
-+	 * described by a well-formed DT entry and associated with an existing
-+	 * plausible SCMI Voltage Domain number, all belonging to this SCMI
-+	 * platform instance node (handle->dev->of_node).
-+	 */
-+	np = of_find_node_by_name(handle->dev->of_node, "regulators");
-+	for_each_child_of_node(np, child) {
-+		ret = process_scmi_regulator_of_node(sdev, child, rinfo);
-+		/* abort on any mem issue */
-+		if (ret == -ENOMEM)
-+			return ret;
-+	}
-+
-+	/*
-+	 * Register a regulator for each valid regulator-DT-entry that we
-+	 * can successfully reach via SCMI and has a valid associated voltage
-+	 * domain.
-+	 */
-+	for (d = 0; d < num_doms; d++) {
-+		struct scmi_regulator *sreg = rinfo->sregv[d];
-+
-+		/* Skip empty slots */
-+		if (!sreg)
-+			continue;
-+
-+		ret = scmi_regulator_common_init(sreg);
-+		/* Skip invalid voltage domains */
-+		if (ret)
-+			continue;
-+
-+		sreg->rdev = devm_regulator_register(&sdev->dev, &sreg->desc,
-+						     &sreg->conf);
-+		if (IS_ERR(sreg->rdev)) {
-+			sreg->rdev = NULL;
-+			continue;
-+		}
-+
-+		dev_info(&sdev->dev,
-+			 "Regulator %s registered for domain [%d]\n",
-+			 sreg->desc.name, sreg->id);
-+	}
-+
-+	dev_set_drvdata(&sdev->dev, rinfo);
-+
-+	return 0;
-+}
-+
-+static void scmi_regulator_remove(struct scmi_device *sdev)
-+{
-+	int d;
-+	struct scmi_regulator_info *rinfo;
-+
-+	rinfo = dev_get_drvdata(&sdev->dev);
-+	if (!rinfo)
-+		return;
-+
-+	for (d = 0; d < rinfo->num_doms; d++) {
-+		if (!rinfo->sregv[d])
-+			continue;
-+		of_node_put(rinfo->sregv[d]->of_node);
-+	}
-+}
-+
-+static const struct scmi_device_id scmi_regulator_id_table[] = {
-+	{ SCMI_PROTOCOL_VOLTAGE,  "regulator" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(scmi, scmi_regulator_id_table);
-+
-+static struct scmi_driver scmi_drv = {
-+	.name		= "scmi-regulator",
-+	.probe		= scmi_regulator_probe,
-+	.remove		= scmi_regulator_remove,
-+	.id_table	= scmi_regulator_id_table,
-+};
-+
-+module_scmi_driver(scmi_drv);
-+
-+MODULE_AUTHOR("Cristian Marussi <cristian.marussi@arm.com>");
-+MODULE_DESCRIPTION("ARM SCMI regulator driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.17.1
+> ChenYu
+> 
+> 
+> > Applied to the togreg branch of iio.git and pushed out as testing for
+> > the autobuilders to poke at it.
+> >
+> > Thanks,
+> >
+> > Jonathan
+> >  
+> > > ---
+> > >  .../bindings/iio/adc/axp20x_adc.txt           | 48 -------------
+> > >  .../bindings/iio/adc/x-powers,axp209-adc.yaml | 67 +++++++++++++++++++
+> > >  2 files changed, 67 insertions(+), 48 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/axp20x_adc.txt b/Documentation/devicetree/bindings/iio/adc/axp20x_adc.txt
+> > > deleted file mode 100644
+> > > index 7a6313913923..000000000000
+> > > --- a/Documentation/devicetree/bindings/iio/adc/axp20x_adc.txt
+> > > +++ /dev/null
+> > > @@ -1,48 +0,0 @@
+> > > -* X-Powers AXP ADC bindings
+> > > -
+> > > -Required properties:
+> > > -  - compatible: should be one of:
+> > > -    - "x-powers,axp209-adc",
+> > > -    - "x-powers,axp221-adc",
+> > > -    - "x-powers,axp813-adc",
+> > > -  - #io-channel-cells: should be 1,
+> > > -
+> > > -Example:
+> > > -
+> > > -&axp22x {
+> > > -     adc {
+> > > -             compatible = "x-powers,axp221-adc";
+> > > -             #io-channel-cells = <1>;
+> > > -     };
+> > > -};
+> > > -
+> > > -ADC channels and their indexes per variant:
+> > > -
+> > > -AXP209
+> > > -------
+> > > - 0 | acin_v
+> > > - 1 | acin_i
+> > > - 2 | vbus_v
+> > > - 3 | vbus_i
+> > > - 4 | pmic_temp
+> > > - 5 | gpio0_v
+> > > - 6 | gpio1_v
+> > > - 7 | ipsout_v
+> > > - 8 | batt_v
+> > > - 9 | batt_chrg_i
+> > > -10 | batt_dischrg_i
+> > > -
+> > > -AXP22x
+> > > -------
+> > > - 0 | pmic_temp
+> > > - 1 | batt_v
+> > > - 2 | batt_chrg_i
+> > > - 3 | batt_dischrg_i
+> > > -
+> > > -AXP813
+> > > -------
+> > > - 0 | pmic_temp
+> > > - 1 | gpio0_v
+> > > - 2 | batt_v
+> > > - 3 | batt_chrg_i
+> > > - 4 | batt_dischrg_i
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> > > new file mode 100644
+> > > index 000000000000..288a5ac31a16
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/x-powers,axp209-adc.yaml
+> > > @@ -0,0 +1,67 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/x-powers,axp209-adc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: X-Powers AXP ADC bindings
+> > > +
+> > > +maintainers:
+> > > +  - Quentin Schulz <quentin.schulz@bootlin.com>
+> > > +
+> > > +description: |
+> > > +  ADC is frequently used as a provider to consumers of the ADC channels.
+> > > +  Device is a child of an axp209 multifunction device
+> > > +  ADC channels and their indexes per variant:
+> > > +
+> > > +  AXP209
+> > > +  ------
+> > > +   0 | acin_v
+> > > +   1 | acin_i
+> > > +   2 | vbus_v
+> > > +   3 | vbus_i
+> > > +   4 | pmic_temp
+> > > +   5 | gpio0_v
+> > > +   6 | gpio1_v
+> > > +   7 | ipsout_v
+> > > +   8 | batt_v
+> > > +   9 | batt_chrg_i
+> > > +  10 | batt_dischrg_i
+> > > +
+> > > +  AXP22x
+> > > +  ------
+> > > +   0 | pmic_temp
+> > > +   1 | batt_v
+> > > +   2 | batt_chrg_i
+> > > +   3 | batt_dischrg_i
+> > > +
+> > > +  AXP813
+> > > +  ------
+> > > +   0 | pmic_temp
+> > > +   1 | gpio0_v
+> > > +   2 | batt_v
+> > > +   3 | batt_chrg_i
+> > > +   4 | batt_dischrg_i
+> > > +
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - x-powers,axp209-adc
+> > > +      - x-powers,axp221-adc
+> > > +      - x-powers,axp813-adc
+> > > +
+> > > +  "#io-channel-cells":
+> > > +    const: 1
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    axp221 {
+> > > +        adc {
+> > > +            compatible = "x-powers,axp221-adc";
+> > > +            #io-channel-cells = <1>;
+> > > +        };
+> > > +    };
+> > > +...  
+> >  
 
