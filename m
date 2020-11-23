@@ -2,197 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 08FCB2C1669
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:29:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D4652C167A
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 21:29:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730857AbgKWURb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 15:17:31 -0500
-Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:18767 "EHLO
-        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387772AbgKWURY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 15:17:24 -0500
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5fbc18d50000>; Mon, 23 Nov 2020 12:17:25 -0800
-Received: from HQMAIL107.nvidia.com (172.20.187.13) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Nov
- 2020 20:17:24 +0000
-Received: from skomatineni-linux.nvidia.com (172.20.13.39) by mail.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
- Transport; Mon, 23 Nov 2020 20:17:23 +0000
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     <skomatineni@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <robh+dt@kernel.org>
-CC:     <pchandru@nvidia.com>, <devicetree@vger.kernel.org>,
-        <linux-ide@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 6/6] ata: ahci_tegra: Add AHCI support for Tegra186
-Date:   Mon, 23 Nov 2020 12:17:25 -0800
-Message-ID: <1606162645-22326-7-git-send-email-skomatineni@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1606162645-22326-1-git-send-email-skomatineni@nvidia.com>
-References: <1606162645-22326-1-git-send-email-skomatineni@nvidia.com>
-X-NVConfidentiality: public
-MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1606162645; bh=bqvYhM4gfczmD1UkOCBSQi6kCpayixLg2a8u43aYS8U=;
-        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:In-Reply-To:
-         References:X-NVConfidentiality:MIME-Version:Content-Type;
-        b=FHZPdjZ84by4HdXtwgk5Lr5yBT3/sA4zHoUMvk22MvFk17s5t7Ar5SitfedtyOtgO
-         lHrGjobBWNSV74rd8cEqYmzjYLdY5289JE1gwe77shWA0zyc4bZp+o8/Dloo6ggJqh
-         8Xzn9TD0E9jy+cIoz4kIUM3d4mS+ilqT0OgX1/OU6Diaf0AXWEqN4DYY+JzuT7/TfZ
-         f68BlUWy4jk6gTQ6Q4XO8f3oVfXtqlcNu3SB8Q9sutN77pQXR+XKSgn2/YFo+xvsch
-         vhOStQ2Xw8GZHMjyqOQ4SJhZrpEdUAfTs+vCmtcManh33eiTltxV9diXSJkNb3WYAS
-         HHCVK/3OrxcCA==
+        id S1729060AbgKWUYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 15:24:12 -0500
+Received: from foss.arm.com ([217.140.110.172]:41488 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728586AbgKWUYL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 15:24:11 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8B12A1396;
+        Mon, 23 Nov 2020 12:24:09 -0800 (PST)
+Received: from e120937-lin.home (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 91E293F71F;
+        Mon, 23 Nov 2020 12:24:07 -0800 (PST)
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     sudeep.holla@arm.com, lukasz.luba@arm.com,
+        james.quinlan@broadcom.com, Jonathan.Cameron@Huawei.com,
+        broonie@kernel.org, robh@kernel.org, satyakim@qti.qualcomm.com,
+        etienne.carriere@linaro.org, f.fainelli@gmail.com,
+        vincent.guittot@linaro.org, souvik.chakravarty@arm.com,
+        Cristian Marussi <cristian.marussi@arm.com>
+Subject: [PATCH v7 0/3] Add support for SCMI-Regulator
+Date:   Mon, 23 Nov 2020 20:23:33 +0000
+Message-Id: <20201123202336.46701-1-cristian.marussi@arm.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for AHCI-compliant Serial ATA controller
-on Tegra186 SoC.
+Hi,
 
-Tegra186 does not have sata-oob reset.
-Tegra186 SATA_NVOOB register filed COMMA_CNT position and width are
-different compared to Tegra210 and prior.
+this series introduces the support for a new generic SCMI Regulator driver
+developed on top of the recently introduced SCMI Voltage Domain Protocol
+support as specified in the upcoming SCMIv3.0 specification. [1]
 
-So, this patch adds a flag has_sata_oob_rst and tegra_ahci_regs to
-SoC specific strcuture tegra_ahci_soc and updated their implementation
-accordingly.
+The underlying SCMI VD Protocol support, which was originally part of this
+series, is now applied on for-next/scmi-voltage [2], and this series,
+reduced to its SCMI Regulator support and dt-bindings fixes is similarly
+based on top of [2]:
 
-Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+commit ec8838193695 ("firmware: arm_scmi: Add support to enumerated SCMI
+		      voltage domain device")
+
+Thanks,
+
+Cristian
+
 ---
- drivers/ata/ahci_tegra.c | 60 +++++++++++++++++++++++++++++++++++++-----------
- 1 file changed, 47 insertions(+), 13 deletions(-)
+v6 --> v7
+- rebased on top of for-next/scmi-voltage
+- added dt-bindings fix to remove optional properties
+- add proper blank lines between semantic blocks
+- fix return value on error path of scmi_reg_is_enabled()
+- use generic Failure message on err path of info_get()
+- fix comment containing apostrophe
 
-diff --git a/drivers/ata/ahci_tegra.c b/drivers/ata/ahci_tegra.c
-index cb55ebc1..56612af 100644
---- a/drivers/ata/ahci_tegra.c
-+++ b/drivers/ata/ahci_tegra.c
-@@ -59,8 +59,6 @@
- #define T_SATA0_CFG_PHY_1_PAD_PLL_IDDQ_EN		BIT(22)
- 
- #define T_SATA0_NVOOB                                   0x114
--#define T_SATA0_NVOOB_COMMA_CNT_MASK                    (0xff << 16)
--#define T_SATA0_NVOOB_COMMA_CNT                         (0x07 << 16)
- #define T_SATA0_NVOOB_SQUELCH_FILTER_MODE_MASK          (0x3 << 24)
- #define T_SATA0_NVOOB_SQUELCH_FILTER_MODE               (0x1 << 24)
- #define T_SATA0_NVOOB_SQUELCH_FILTER_LENGTH_MASK        (0x3 << 26)
-@@ -154,11 +152,18 @@ struct tegra_ahci_ops {
- 	int (*init)(struct ahci_host_priv *hpriv);
- };
- 
-+struct tegra_ahci_regs {
-+	unsigned int nvoob_comma_cnt_mask;
-+	unsigned int nvoob_comma_cnt_val;
-+};
-+
- struct tegra_ahci_soc {
- 	const char *const		*supply_names;
- 	u32				num_supplies;
- 	bool				supports_devslp;
-+	bool				has_sata_oob_rst;
- 	const struct tegra_ahci_ops	*ops;
-+	const struct tegra_ahci_regs	*regs;
- };
- 
- struct tegra_ahci_priv {
-@@ -240,11 +245,13 @@ static int tegra_ahci_power_on(struct ahci_host_priv *hpriv)
- 	if (ret)
- 		return ret;
- 
--	ret = tegra_powergate_sequence_power_up(TEGRA_POWERGATE_SATA,
--						tegra->sata_clk,
--						tegra->sata_rst);
--	if (ret)
--		goto disable_regulators;
-+	if (!tegra->pdev->dev.pm_domain) {
-+		ret = tegra_powergate_sequence_power_up(TEGRA_POWERGATE_SATA,
-+							tegra->sata_clk,
-+							tegra->sata_rst);
-+		if (ret)
-+			goto disable_regulators;
-+	}
- 
- 	reset_control_assert(tegra->sata_oob_rst);
- 	reset_control_assert(tegra->sata_cold_rst);
-@@ -330,10 +337,10 @@ static int tegra_ahci_controller_init(struct ahci_host_priv *hpriv)
- 	writel(val, tegra->sata_regs + SCFG_OFFSET + T_SATA_CFG_PHY_0);
- 
- 	val = readl(tegra->sata_regs + SCFG_OFFSET + T_SATA0_NVOOB);
--	val &= ~(T_SATA0_NVOOB_COMMA_CNT_MASK |
-+	val &= ~(tegra->soc->regs->nvoob_comma_cnt_mask |
- 		 T_SATA0_NVOOB_SQUELCH_FILTER_LENGTH_MASK |
- 		 T_SATA0_NVOOB_SQUELCH_FILTER_MODE_MASK);
--	val |= (T_SATA0_NVOOB_COMMA_CNT |
-+	val |= (tegra->soc->regs->nvoob_comma_cnt_val |
- 		T_SATA0_NVOOB_SQUELCH_FILTER_LENGTH |
- 		T_SATA0_NVOOB_SQUELCH_FILTER_MODE);
- 	writel(val, tegra->sata_regs + SCFG_OFFSET + T_SATA0_NVOOB);
-@@ -449,15 +456,35 @@ static const struct tegra_ahci_ops tegra124_ahci_ops = {
- 	.init = tegra124_ahci_init,
- };
- 
-+static const struct tegra_ahci_regs tegra124_ahci_regs = {
-+	.nvoob_comma_cnt_mask = GENMASK(30, 28),
-+	.nvoob_comma_cnt_val = (7 << 28),
-+};
-+
- static const struct tegra_ahci_soc tegra124_ahci_soc = {
- 	.supply_names = tegra124_supply_names,
- 	.num_supplies = ARRAY_SIZE(tegra124_supply_names),
- 	.supports_devslp = false,
-+	.has_sata_oob_rst = true,
- 	.ops = &tegra124_ahci_ops,
-+	.regs = &tegra124_ahci_regs,
- };
- 
- static const struct tegra_ahci_soc tegra210_ahci_soc = {
- 	.supports_devslp = false,
-+	.has_sata_oob_rst = true,
-+	.regs = &tegra124_ahci_regs,
-+};
-+
-+static const struct tegra_ahci_regs tegra186_ahci_regs = {
-+	.nvoob_comma_cnt_mask = GENMASK(23, 16),
-+	.nvoob_comma_cnt_val = (7 << 16),
-+};
-+
-+static const struct tegra_ahci_soc tegra186_ahci_soc = {
-+	.supports_devslp = false,
-+	.has_sata_oob_rst = false,
-+	.regs = &tegra186_ahci_regs,
- };
- 
- static const struct of_device_id tegra_ahci_of_match[] = {
-@@ -469,6 +496,10 @@ static const struct of_device_id tegra_ahci_of_match[] = {
- 		.compatible = "nvidia,tegra210-ahci",
- 		.data = &tegra210_ahci_soc
- 	},
-+	{
-+		.compatible = "nvidia,tegra186-ahci",
-+		.data = &tegra186_ahci_soc
-+	},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, tegra_ahci_of_match);
-@@ -518,10 +549,13 @@ static int tegra_ahci_probe(struct platform_device *pdev)
- 		return PTR_ERR(tegra->sata_rst);
- 	}
- 
--	tegra->sata_oob_rst = devm_reset_control_get(&pdev->dev, "sata-oob");
--	if (IS_ERR(tegra->sata_oob_rst)) {
--		dev_err(&pdev->dev, "Failed to get sata-oob reset\n");
--		return PTR_ERR(tegra->sata_oob_rst);
-+	if (tegra->soc->has_sata_oob_rst) {
-+		tegra->sata_oob_rst = devm_reset_control_get(&pdev->dev,
-+							     "sata-oob");
-+		if (IS_ERR(tegra->sata_oob_rst)) {
-+			dev_err(&pdev->dev, "Failed to get sata-oob reset\n");
-+			return PTR_ERR(tegra->sata_oob_rst);
-+		}
- 	}
- 
- 	tegra->sata_cold_rst = devm_reset_control_get(&pdev->dev, "sata-cold");
+v5 --> v6
+- reordered dt bindings patch
+- removed single field struct
+- reviewed args to scmi_init_voltage_levels()
+- allocating scmi_voltage_info_array contiguously
+
+v4 --> v5
+- rebased
+- VD Protocol
+ - removed inline
+ - moved segmented intervals defines
+ - fixed some macros complaints by checkpatch
+
+v3 --> v4
+- DT bindings
+ - using generic node names
+ - listing explicitly subset of supported regulators bindings
+- SCMI Regulator
+ - using of_match_full_name core regulator flag
+ - avoid coccinelle false flag complaints
+- VD Protocol
+ - avoid coccinelle false flag complaints
+ - avoiding fixed size typing
+
+v2 --> v3
+- DT bindings
+  - avoid awkard examples based on _cpu/_gpu regulators
+- SCMI Regulator
+  - remove multiple linear mappings support
+  - removed duplicated voltage name printout
+  - added a few comments
+  - simplified return path in scmi_reg_set_voltage_sel()
+- VD Protocol
+  - restrict segmented voltage domain descriptors to one triplet
+  - removed unneeded inline
+  - free allocated resources for invalid voltage domain
+  - added __must_check to info_get voltage operations
+  - added a few comments
+  - removed fixed size typing from struct voltage_info
+    
+v1 --> v2
+- rebased on for-next/scmi v5.10
+- DT bindings
+  - removed any reference to negative voltages
+- SCMI Regulator
+  - removed duplicate regulator naming
+  - removed redundant .get/set_voltage ops: only _sel variants implemented
+  - removed condexpr on fail path to increase readability
+- VD Protocol
+  - fix voltage levels query loop to reload full cmd description
+    between iterations as reported by Etienne Carriere
+  - ensure transport rx buffer is properly sized calli scmi_reset_rx_to_maxsz
+    between transfers
+
+[1]:https://developer.arm.com/documentation/den0056/c/
+[2]:https://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git/log/?h=for-next/scmi-voltage
+
+Cristian Marussi (3):
+  dt-bindings: arm: remove optional properties for SCMI Regulators
+  regulator: core: add of_match_full_name boolean flag
+  regulator: add SCMI driver
+
+ .../devicetree/bindings/arm/arm,scmi.txt      |  11 +-
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/of_regulator.c              |   8 +-
+ drivers/regulator/scmi-regulator.c            | 417 ++++++++++++++++++
+ include/linux/regulator/driver.h              |   3 +
+ 6 files changed, 437 insertions(+), 12 deletions(-)
+ create mode 100644 drivers/regulator/scmi-regulator.c
+
 -- 
-2.7.4
+2.17.1
 
