@@ -2,79 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C2002C197A
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 00:35:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE27E2C199C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 00:56:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726618AbgKWXd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 18:33:57 -0500
-Received: from anchovy2.45ru.net.au ([203.30.46.146]:56324 "EHLO
-        anchovy2.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726729AbgKWXd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 18:33:57 -0500
-Received: (qmail 15171 invoked by uid 5089); 23 Nov 2020 23:33:54 -0000
-Received: by simscan 1.2.0 ppid: 15053, pid: 15054, t: 0.0725s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-Received: from unknown (HELO ?192.168.0.22?) (preid@electromag.com.au@203.59.235.95)
-  by anchovy3.45ru.net.au with ESMTPA; 23 Nov 2020 23:33:53 -0000
-Subject: Re: [PATCH 02/46] dt-bindings:iio:potentiometer:adi,ad5272 yaml
- conversion
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
-References: <20201031184854.745828-1-jic23@kernel.org>
- <20201031184854.745828-3-jic23@kernel.org> <20201103161039.GA1754553@bogus>
- <20201103172834.00007040@Huawei.com>
- <bc4219af-d77b-0f39-025d-d8905f35b574@electromag.com.au>
- <CAL_JsqLAtMQhsUDG=amAG7i9mMzYq9UTDLMFRrGKOHr5rb3L+A@mail.gmail.com>
- <a6685d81-d09a-1372-cc17-96f66c87ffbe@electromag.com.au>
- <66e8db5d-cc37-dde9-7d55-770d54506e3d@electromag.com.au>
- <20201122163500.4c699fcc@archlinux>
-From:   Phil Reid <preid@electromag.com.au>
-Message-ID: <7c002207-918b-e300-6113-fcf392ce7a8d@electromag.com.au>
-Date:   Tue, 24 Nov 2020 07:33:52 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1727902AbgKWXve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 18:51:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727757AbgKWXvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 18:51:32 -0500
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DADACC0613CF
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 15:51:32 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id l1so1443652pld.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 15:51:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=UV/nZZrePgNsVsnUwzIiVsLaX4Wcl0fK6m4Dkdlmi2w=;
+        b=MC2mAdtwfrujeT3Rzj+J1Vz1/MgHGvBRFDHLgAAuLXNK12/QN+/JJ6a+2NKdTdMGFI
+         l9q4rH47BnetHbl2OmCLSCx5KH+Y7sN9iIVio1g63fzCeTpRAkZrIg7m5j7aJjxbXJjX
+         eV1CJvOv3OyFwvWIikwu/0qd99gNceU2DOMNRgJQg9Pyfmr3JrZSZEQv145IMbXAUjh3
+         qhepsJaNJBGG/apcnrAsb7k7EcFh+d4R0wG+d2pcgaPD6oV4hs25CnPkTZF/tQp+VcxW
+         s0OVOyNsWzWcv/0/ExJKd539WkLosErgu6d8PaaSkpABiV/vfo0P1NiJazsBs/7M59Dp
+         kV/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UV/nZZrePgNsVsnUwzIiVsLaX4Wcl0fK6m4Dkdlmi2w=;
+        b=ZEbebwYyLQemb8QwFhIxuHsVgFnIk6xhfxCQQrIAYFPezsyvhoRZhaA7OKQAAuOHkc
+         6wVtavNuh425eFs90K/OFtU0e1u5yxzARwaxQXFS/w1uf5uBzXvr2+/Aa3Uqt7pZaO1y
+         iXuZ0b3kOZNSqiIOFlhVHZvEAzWVw+kUejeboahkP6oA+Q+Q2ozJ/KMKN1mL905fA/PJ
+         XbR1j+tJfBN+bK++IJFPhr2eheM+RRokFMdDi6/hi1ac2IA9cDa37vbj50DPs82FuVtg
+         b5v3beQROEDhI982uDK2P6SeQcYYNJVdSSukoHMdY+FozinDasEdgvk0nLXHQ7pg7dF5
+         MHGg==
+X-Gm-Message-State: AOAM532YxhYkzAtTNc977S9OSuiw31Sbk1+QQ3wbsRWFWpjv7rj3Nuw/
+        1EZ7TOxHCOqzV0UunhVaWwyDTQ==
+X-Google-Smtp-Source: ABdhPJyO/tmuPEX+b/4FobF45cypSgebCzLdG+hLISsqgl+s/cdNXAA7RMfYM4UqR+tFIe0Q3sCUBg==
+X-Received: by 2002:a17:902:b408:b029:d6:d1e2:e1be with SMTP id x8-20020a170902b408b02900d6d1e2e1bemr1568994plr.34.1606175492304;
+        Mon, 23 Nov 2020 15:51:32 -0800 (PST)
+Received: from xps15 (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id t36sm11928633pfg.55.2020.11.23.15.51.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Nov 2020 15:51:31 -0800 (PST)
+Date:   Mon, 23 Nov 2020 16:51:29 -0700
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] remoteproc: k3-r5: Adjust TCM sizes in Split-mode on
+ J7200 SoCs
+Message-ID: <20201123235129.GA529235@xps15>
+References: <20201119010531.21083-1-s-anna@ti.com>
+ <20201119010531.21083-4-s-anna@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20201122163500.4c699fcc@archlinux>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-AU
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201119010531.21083-4-s-anna@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/11/2020 00:35, Jonathan Cameron wrote:
->>> Having a software interface to assert the reset would be nice.
->>>
->>>    
->> If there's no comments against the change, I'll submit a patch in the next day or so.
-> Hi Phil,
+Good afternoon Suman,
+
+On Wed, Nov 18, 2020 at 07:05:31PM -0600, Suman Anna wrote:
+> The J7200 SoCs have a revised R5FSS IP that adds a unique feature w.r.t
+> TCM sizing. Each R5F core in a cluster typically has 32 KB each of ATCM
+> and BTCM, with only the Core0 TCMs usable in LockStep mode. This revised
+> IP however doubles the total available TCM in LockStep mode by making the
+> Core1 TCM visible immediately after the corresponding Core0 TCM.
 > 
-> So I've fixed the binding example up to have the sense as ACTIVE_LOW as discussed.
-> If you have time to flip the sense round in the driver to match that it
-> would be great and I'd propose we then mark that as suitable for stable
-> so that we get it backported into existing trees.  We could also spin
-> a patch to the txt binding but perhaps that is more effort than is needed
-> here.  If I get time before you do I might send a proposed fix patch.
+> The R5F DT nodes on the J7200 SoCs define double (64 KB) the normal TCM
+> size (32 KB) for R5F Core0 for each of ATCM and BTCM to represent the
+> above. This increased TCM memory is only usable in LockStep-mode, and
+> has to be adjusted to the normal 32 KB size in Split mode. Enhance the
+> TI K3 R5F remoteproc for this logic through a new function. The adjustment
+> is a no-op on prior SoCs and relies on the correct DTS node sizes in
+> LockStep-mode on applicable SoCs.
 > 
-> Hopefully anyone then using it will get the sense right and we won't
-> accidentally break anyone.
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+>  drivers/remoteproc/ti_k3_r5_remoteproc.c | 43 ++++++++++++++++++++++++
+>  1 file changed, 43 insertions(+)
 > 
-> At some point soon I'll also try and audit similar cases and hopefully we
-> will get those fixed up as well.  Obviously if anyone else wants to take
-> a look at that it would be much appreciated!
+> diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> index 66a32dcdd7d0..62b5a4c29456 100644
+> --- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> +++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> @@ -71,9 +71,11 @@ enum cluster_mode {
+>  
+>  /**
+>   * struct k3_r5_soc_data - match data to handle SoC variations
+> + * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
+>   * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
+>   */
+>  struct k3_r5_soc_data {
+> +	bool tcm_is_double;
+>  	bool tcm_ecc_autoinit;
+>  };
+>  
+> @@ -886,6 +888,43 @@ static void k3_r5_reserved_mem_exit(struct k3_r5_rproc *kproc)
+>  	of_reserved_mem_device_release(kproc->dev);
+>  }
+>  
+> +/*
+> + * Each R5F core within a typical R5FSS instance has a total of 64 KB of TCMs,
+> + * split equally into two 32 KB banks between ATCM and BTCM. The TCMs from both
+> + * cores are usable in Split-mode, but only the Core0 TCMs can be used in
+> + * LockStep-mode. The newer revisions of the R5FSS IP maximizes these TCMs by
+> + * leveraging the Core1 TCMs as well in certain modes where they would have
+> + * otherwise been unusable (Eg: LockStep-mode on J7200 SoCs). This is done by
+> + * making a Core1 TCM visible immediately after the corresponding Core0 TCM.
+> + * The SoC memory map uses the larger 64 KB sizes for the Core0 TCMs, and the
+> + * dts representation reflects this increased size on supported SoCs. The Core0
+> + * TCM sizes therefore have to be adjusted to only half the original size in
+> + * Split mode.
+> + */
+> +static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
+> +{
+> +	struct k3_r5_cluster *cluster = kproc->cluster;
+> +	struct k3_r5_core *core = kproc->core;
+> +	struct device *cdev = core->dev;
+> +	struct k3_r5_core *core0;
+> +
+> +	if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> +	    !cluster->soc_data->tcm_is_double)
+> +		return;
+
+Shouldn't this be:
+
+	if (cluster->mode == CLUSTER_MODE_SPLIT ||
+	    !cluster->soc_data->tcm_is_double)
+		return;
+
+If am wrong then I'm pretty sure other people will be confused and a comment is
+warranted. 
+
+> +
+> +	core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
+> +	if (core == core0) {
+> +		WARN_ON(core->mem[0].size != SZ_64K);
+> +		WARN_ON(core->mem[1].size != SZ_64K);
+> +
+> +		core->mem[0].size /= 2;
+> +		core->mem[1].size /= 2;
+> +
+> +		dev_dbg(cdev, "adjusted TCM sizes, ATCM = 0x%zx BTCM = 0x%zx\n",
+> +			core->mem[0].size, core->mem[1].size);
+> +	}
+> +}
+> +
+>  static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
+>  {
+>  	struct k3_r5_cluster *cluster = platform_get_drvdata(pdev);
+> @@ -933,6 +972,8 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
+>  			goto err_config;
+>  		}
+>  
+> +		k3_r5_adjust_tcm_sizes(kproc);
+> +
+>  		ret = k3_r5_reserved_mem_init(kproc);
+>  		if (ret) {
+>  			dev_err(dev, "reserved memory init failed, ret = %d\n",
+> @@ -1407,10 +1448,12 @@ static int k3_r5_probe(struct platform_device *pdev)
+>  }
+>  
+>  static const struct k3_r5_soc_data am65_j721e_soc_data = {
+> +	.tcm_is_double = false,
+>  	.tcm_ecc_autoinit = false,
+>  };
+>  
+>  static const struct k3_r5_soc_data j7200_soc_data = {
+> +	.tcm_is_double = true,
+>  	.tcm_ecc_autoinit = true,
+
+With the above and for the set:
+
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+
+>  };
+>  
+> -- 
+> 2.28.0
 > 
-
-G'day Jonathan,
-
-Sorry this had slipped a bit on my list.
-I'll send a patch in next day or so.
-
-
-
--- 
-Regards
-Phil Reid
-
