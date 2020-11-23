@@ -2,72 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B7D92C0291
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 10:54:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C25B22C030C
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 11:16:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727175AbgKWJxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 04:53:18 -0500
-Received: from foss.arm.com ([217.140.110.172]:39082 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725843AbgKWJxS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 04:53:18 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id EDF18101E;
-        Mon, 23 Nov 2020 01:53:17 -0800 (PST)
-Received: from red-moon.arm.com (unknown [10.57.62.101])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D8EA23F70D;
-        Mon, 23 Nov 2020 01:53:14 -0800 (PST)
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     linux-samsung-soc@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        linux-pci@vger.kernel.org
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v4 0/5] Add DW PCIe support for Exynos5433 SoCs
-Date:   Mon, 23 Nov 2020 09:53:08 +0000
-Message-Id: <160612514814.21459.9917651424181472858.b4-ty@arm.com>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20201113170139.29956-1-m.szyprowski@samsung.com>
-References: <CGME20201113170156eucas1p176314e4076c593d1f2e68159be880f86@eucas1p1.samsung.com> <20201113170139.29956-1-m.szyprowski@samsung.com>
+        id S1728182AbgKWKNJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 05:13:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34612 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728144AbgKWKNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 05:13:08 -0500
+Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CD10C061A4D
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 02:13:08 -0800 (PST)
+Received: by mail-yb1-xb42.google.com with SMTP id 2so15397648ybc.12
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 02:13:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Lvn4+bjYbxxCbS7L/QCzyvRpE+ItUgyiLMioWuZNw0g=;
+        b=zPiVI/dQ12Jth9bMBDSqmQOmWkH5ziZh0ycmMbl3yW9lANMDaBW/jc0DiVo/+1Mvtb
+         QnWJWQ+IrlF4J6L3qvAPtw8EmiuOa2Ez2vx43FJeiIdL1dA4qnGHNPVCJ9xsHsSmEpMT
+         eOiWC6867AktKIRRe+Rns4P22awgSl5t4FXtbH6TP98D/wiGPePxRw4JaqzwcV3j3onf
+         xqEmszGQRlsBMTY6yBsxwzDLcXoIe8LD7oMWL2hAy+++ltg/x8aCBlQ3CqMJTa3cJJ6Z
+         bK6O8vuUGEK5Pe7SgoSYTH44sHS1ABxvw2L0O1pMymtEOTzYttpkEA2wd6TZ8+B4xN0q
+         jX+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Lvn4+bjYbxxCbS7L/QCzyvRpE+ItUgyiLMioWuZNw0g=;
+        b=J1m0eoaS4RzDk0lWpjX8bgCM+okANDW1Az30BNsMAsNJHacvBYS+x7yh/FiVQRn0iL
+         f5n5llyBboJ6/0NXrqZ0AGY/MkCO2wZYeF00dmC0W5UGeQtxedMwsyP2HWQgbtu9QKmT
+         OO1oZDtRcyhAcLbM8vjRovTtCYwpY+FQBjohIBPbkjkCbM5YLzwmSQYwvxtVExeFJsNu
+         r587OpRMCn8LpP7EsHVqFzoMbpaHUXlgEuQaLogrk5oCmoYhDBUa00PbQ49HVrXXOty4
+         eGupGCqJfZfxKS40dolp1UE9/BDa7uYGtV2JpWlcz0AuVjFFggi4qzElYKfCFEPY25i2
+         AYlw==
+X-Gm-Message-State: AOAM531fwtrPNxdevwcmGxmOwb3jdF1mN50LBDw9Wrz4WGZRzMMCPmz4
+        MIRIKh0jHhI3rfNQ2EXjqDw2Ip1vOTy3us4naTWOOw==
+X-Google-Smtp-Source: ABdhPJzIY/SaDA417dFn6lslJn7PBUUzQ1eYf5tPZpZKaIjf/lLLOk3BgqB+rXma5/8S4sS9JW8vit8t9UbXTS5zfrU=
+X-Received: by 2002:a25:c7c6:: with SMTP id w189mr32070799ybe.403.1606126387667;
+ Mon, 23 Nov 2020 02:13:07 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201028221302.66583-1-kholk11@gmail.com>
+In-Reply-To: <20201028221302.66583-1-kholk11@gmail.com>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Mon, 23 Nov 2020 15:42:32 +0530
+Message-ID: <CAMi1Hd1hh3NYuFTs3C39ha1Jy_0LxQ4Akg36sm0x1+uicWYRjQ@mail.gmail.com>
+Subject: Re: [PATCH v9 0/3] Add Novatek NT36xxx touchscreen driver
+To:     kholk11@gmail.com
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, rydberg@bitmath.org,
+        priv.luk@gmail.com, linux-input@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>, marijns95@gmail.com,
+        Konrad Dybcio <konradybcio@gmail.com>, martin.botka1@gmail.com,
+        phone-devel@vger.kernel.org, dt <devicetree@vger.kernel.org>,
+        krzk@kernel.org, andy.shevchenko@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 13 Nov 2020 18:01:34 +0100, Marek Szyprowski wrote:
-> This patchset is a resurrection of the DW PCIe support for the Exynos5433
-> SoCs posted long time ago here: https://lkml.org/lkml/2016/12/26/6 and
-> later here: https://lkml.org/lkml/2017/12/21/296 .
-> 
-> In meantime the support for the Exynos5440 SoCs has been completely
-> dropped from mainline kernel, as those SoCs never reached the market. The
-> PCIe driver for Exynos5440 variant however has not been removed yet. This
-> patchset simply reworks it to support the Exynos5433 variant. The lack of
-> the need to support both variants significantly simplifies the driver
-> code.
-> 
-> [...]
+Hi,
 
-Applied to pci/dwc, thanks!
+On Thu, 29 Oct 2020 at 06:32, <kholk11@gmail.com> wrote:
+>
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+>
+> This patch series adds support for the Novatek NT36xxx Series' In-Cell
+> touchscreen (integrated into the DriverIC).
+>
+> This patch series has been tested against the following devices:
+>  - Sony Xperia 10        (SDM630 Ganges Kirin)
+>  - Sony Xperia 10 Plus   (SDM636 Ganges Mermaid)
 
-[1/5] dt-bindings: PCI: exynos: drop samsung,exynos5440-pcie binding
-      https://git.kernel.org/lpieralisi/pci/c/83fbffcd13
-[2/5] dt-bindings: PCI: exynos: add the samsung,exynos-pcie binding
-      https://git.kernel.org/lpieralisi/pci/c/eea23e4a00
-[3/5] dt-bindings: phy: exynos: add the samsung,exynos-pcie-phy binding
-      https://git.kernel.org/lpieralisi/pci/c/a7b4dba9a7
-[4/5] phy: samsung: phy-exynos-pcie: rework driver to support Exynos5433 PCIe PHY
-      https://git.kernel.org/lpieralisi/pci/c/46bc965df0
-[5/5] PCI: dwc: exynos: Rework the driver to support Exynos5433 variant
-      https://git.kernel.org/lpieralisi/pci/c/f0a6743028
+Tested the patch series on Xiaomi Poco F1 (SDM845 Beryllium) using
+Novatek NT36672A IC. May I suggest adding "novatek,nt36672a" in the
+list of compatible of_device_id{} as well.
 
-Thanks,
-Lorenzo
+Regards,
+Amit Pundir
+
+
+>
+> Changes in v2:
+> - Fixed sparse warnings from lkp kernel test robot
+>
+> Changes in v3 (as requested by Dmitry Torokhov):
+> - Using shorthand u16/u32 (sorry for the overlook!)
+> - Now using more input and touchscreen APIs
+> - Fixed useless workqueue involvements
+> - Removed useless locking
+> - Switched reads and writes to use regmap
+> - Moved header contents to nt36xxx.c
+> - Fixed reset gpio handling
+> - Other cleanups
+> - P.S.: Thanks, Dmitry!
+>
+> Changes in v4:
+> - Fixed regmap read length for CRC_ERR_FLAG final check
+> - Fixed YAML binding, as requested by Krzysztof Kozlowski
+>
+> Changes in v5:
+> - Replaced subsystem maintainer's name with .. mine,
+>   usage of additionalProperties to unevaluatedProperties
+>   and a typo fix for reset-gpios as per Rob Herring's review
+> - Changed compatible string as per Krzysztof K. request
+> - Renamed the novatek,nt36xxx.yaml file to just nt36xxx.yaml
+>   in order to now reflect the driver name instead of the DT
+>   compatible
+> - Fixed blank line at EOF
+>
+> Changes in v6:
+> - Removed include of_gpio.h, added mod_devicetable.h and
+>   gpio/consumer.h
+> - Added kerneldoc to relevant functions/enum
+> - Used traditional patterns for error checking where possible
+> - Documented calls to usleep/msleep
+> - Using be16_to_cpu / get_unaligned_be16 where possible
+> - Added helper for CRC error check on retrieved buffer
+> - Decreased indentation in the CRC reboot recovery function
+> - Removed instances of error code sum
+> - Dropped all likely/unlikely optimization as per request
+> - Removed redundant reset_gpio checks
+> - Dropped of_match_ptr and ifdefs for CONFIG_OF
+>
+> Changes in v7:
+> - Fixed typo in nt36xxx.c
+>
+> Changes in v8:
+> - Fixed typo reset-gpio -> reset-gpios in dt-bindings
+>
+> Changes in v9:
+> - Includes are now sorted
+> - Used proposed sizeof variable instead of sizeof type
+> - Fixed a return value check for common pattern
+> - Added NULL check to devm_kasprintf call
+> - Returning ret on probe function to be consistent
+>
+> AngeloGioacchino Del Regno (3):
+>   dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
+>   Input: Add Novatek NT36xxx touchscreen driver
+>   dt-bindings: touchscreen: Add binding for Novatek NT36xxx series
+>     driver
+>
+>  .../bindings/input/touchscreen/nt36xxx.yaml   |  59 ++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  drivers/input/touchscreen/Kconfig             |  12 +
+>  drivers/input/touchscreen/Makefile            |   1 +
+>  drivers/input/touchscreen/nt36xxx.c           | 894 ++++++++++++++++++
+>  drivers/input/touchscreen/nt36xxx.h           | 122 +++
+>  6 files changed, 1090 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
+>  create mode 100644 drivers/input/touchscreen/nt36xxx.c
+>  create mode 100644 drivers/input/touchscreen/nt36xxx.h
+>
+> --
+> 2.28.0
+>
