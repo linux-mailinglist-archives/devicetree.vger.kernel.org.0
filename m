@@ -2,147 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CCF02BFEF2
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 05:16:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 256C32BFF07
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 05:40:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726603AbgKWEQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 22 Nov 2020 23:16:01 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:55764 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726163AbgKWEQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 23:16:01 -0500
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AN4Fpjt047525;
-        Sun, 22 Nov 2020 22:15:51 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606104951;
-        bh=p8pCdEaf0BGLKH/LQGUp332RXVKuhGq0a2886p63br8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=QecnT0m3mgKUJlnubLsJMnTAxA5tMqD0yjG8brB4gizpc0pdXNzR/QIFfBIetghTV
-         hPab+0+EQiPpv3IPEKRQrEFWUOO6nT1CPgfAyPUpqeEBDczNWVujmN5sCdPBY7/wxM
-         P5qQVgvetpgo5mToc6MwMLS2aqEZ8hhIc54ln8XM=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AN4FpxN088558
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 22 Nov 2020 22:15:51 -0600
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Sun, 22
- Nov 2020 22:15:51 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Sun, 22 Nov 2020 22:15:51 -0600
-Received: from [10.24.69.198] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AN4FgL6075871;
-        Sun, 22 Nov 2020 22:15:47 -0600
-Subject: Re: [PATCH v2 2/4] arm64: dts: ti: k3: squelch warnings regarding no
- #address-cells for interrupt-controller
-To:     Nishanth Menon <nm@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Faiz Abbas <faiz_abbas@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Andre Przywara <andre.przywara@arm.com>
-References: <20201117161942.38754-1-nsekhar@ti.com>
- <20201117161942.38754-3-nsekhar@ti.com>
- <ab9658ef-c8a7-155b-acb1-effa872132ca@ti.com>
- <20201118151259.kpag44djji4ssiup@eldest>
- <18e41dba-a3dd-308a-605e-63b76ca638e5@ti.com>
- <20201119132829.sr435jf6s4275q4i@boxlike>
-From:   Sekhar Nori <nsekhar@ti.com>
-Message-ID: <313a9cd5-7411-4ae1-cde4-42a2c18d11e6@ti.com>
-Date:   Mon, 23 Nov 2020 09:45:42 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1727389AbgKWEjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 22 Nov 2020 23:39:23 -0500
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:40672 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726885AbgKWEjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 22 Nov 2020 23:39:23 -0500
+Received: by mail-lf1-f65.google.com with SMTP id u19so21950481lfr.7;
+        Sun, 22 Nov 2020 20:39:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=41P9nu435fMmUKCXQ+eupnyQPmIuwwlpwwo3wAWO9KQ=;
+        b=Z12NpJ0sHpw9u6ZFAEZEflOMGb7BOlvSmyTZsls2FFR5rJje6hcQeEccCD1WcyYWtj
+         2NqobeSlXg4Vm99Ck4nE2XSLtWTUDaeJUjq3zYRXDKx3qBjGrxRbFFZivScJIAvBzmBN
+         sQrI+h/5g1ONz07ZLFz7zjlt4JI+Hhd7UT10Rdo2mwt5tY4I389vqcqvRfSVvTyRubOe
+         WMpO2fgtg5/Fkgbiqmu0gaxqblTBG/P1dmeu2t+X5EIVpPz8lXiH2MJE636XjR8zGTYa
+         68rnKbJ6lIMRIol34wvo3EektLZBkdRhZW/a7xhyfnSI0TAj2ZKocUDxZDyvowT+ZOUS
+         RR8g==
+X-Gm-Message-State: AOAM530aCxpZhn1iGSj/ZLyp4W452lVBoKKpJUPZAZ6itaeqXz5+fmkl
+        8SopJ4kck5EuecbW3fC8U7wEG4ap23dnsw==
+X-Google-Smtp-Source: ABdhPJzaZPEFsOJdTP5Pi9RycKCSABdEyrABdxr3sjxRAGovxOtEP1wEQnOQ11pwIZYjylWFvgCAdw==
+X-Received: by 2002:a19:c8ca:: with SMTP id y193mr11419087lff.150.1606106359429;
+        Sun, 22 Nov 2020 20:39:19 -0800 (PST)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com. [209.85.208.174])
+        by smtp.gmail.com with ESMTPSA id q21sm1164857ljm.52.2020.11.22.20.39.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 22 Nov 2020 20:39:19 -0800 (PST)
+Received: by mail-lj1-f174.google.com with SMTP id t22so4180770ljk.0;
+        Sun, 22 Nov 2020 20:39:18 -0800 (PST)
+X-Received: by 2002:a2e:3c1a:: with SMTP id j26mr12828664lja.294.1606106358783;
+ Sun, 22 Nov 2020 20:39:18 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201119132829.sr435jf6s4275q4i@boxlike>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201115222425.2885427-1-michael@fossekall.de>
+ <20201120155252.kfkavrn4wpqzmbyc@gilmour> <20201120182739.GA3734181@a98shuttle.de>
+In-Reply-To: <20201120182739.GA3734181@a98shuttle.de>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Mon, 23 Nov 2020 12:39:07 +0800
+X-Gmail-Original-Message-ID: <CAGb2v645Hq_C6fntM8CFnBiHBTFM-6zyZUXLKWPccmb3eOZBKQ@mail.gmail.com>
+Message-ID: <CAGb2v645Hq_C6fntM8CFnBiHBTFM-6zyZUXLKWPccmb3eOZBKQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add gpio-line-names
+To:     Michael Klein <michael@fossekall.de>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/11/20 6:58 PM, Nishanth Menon wrote:
-> Punting over to Rob and DT team's wisdom..
-> 
-> On 13:17-20201119, Grygorii Strashko wrote:
->>
->>
->> On 18/11/2020 17:12, Nishanth Menon wrote:
->>> On 13:38-20201118, Grygorii Strashko wrote:
->>>> Hi Rob,
->>>>
->>>> On 17/11/2020 18:19, Sekhar Nori wrote:
->>>>> With dtc 1.6.0, building TI device-tree files with W=2 results in warnings
->>>>> like below for all interrupt controllers.
->>>>>
->>>>> /bus@100000/bus@30000000/interrupt-controller1: Missing #address-cells in interrupt provider
->>>>>
->>>>> Fix these by adding #address-cells = <0>; for all interrupt controllers in
->>>>> TI device-tree files. Any other #address-cells value is really only needed
->>>>> if interrupt-map property is being used (which is not the case for existing
->>>>> TI device-tree files)
->>>>>
->>>>> Signed-off-by: Sekhar Nori <nsekhar@ti.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/ti/k3-am65-main.dtsi              |  5 +++++
->>>>>    arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi            |  2 ++
->>>>>    arch/arm64/boot/dts/ti/k3-am654-base-board.dts        |  1 +
->>>>>    arch/arm64/boot/dts/ti/k3-j7200-main.dtsi             |  3 +++
->>>>>    arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi       |  1 +
->>>>>    arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts |  1 +
->>>>>    arch/arm64/boot/dts/ti/k3-j721e-main.dtsi             | 11 +++++++++++
->>>>>    arch/arm64/boot/dts/ti/k3-j721e-mcu-wakeup.dtsi       |  3 +++
->>>>>    8 files changed, 27 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->>>>> index aa8725db0187..55aaa1404d7d 100644
->>>>> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->>>>> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
->>>>> @@ -440,6 +440,7 @@
->>>>>    		interrupt-controller;
->>>>>    		interrupt-parent = <&gic500>;
->>>>>    		#interrupt-cells = <1>;
->>>>> +		#address-cells = <0>;
->>>> Does it really required or mandatory to have #address-cells = <0>; defined for interrupt-controller DT nodes which
->>>> do not have child nodes and no "interrupt-map"?
->>>
->>> Just to help clarify (I could be mistaken as well): is'nt the
->>> interrupt map for user interrupt map nodes that refer to this
->>> interrupt controller node to state they dont need a parent address
->>> specifier - so are we claiming none of the users will have an
->>> interrupt-map (now and never in the future as well) - we we might want
->>> to explain why we think that is the case, and if we are expecting dtc
->>> to deduce that (if so how?)?
->>>
->>
->> The main reason I commented - is hope to get some clarification from DT maintainers.
->> 90% of interrupt-controller nodes do not have #address-cells and I never seen in in GPIO nodes
->> (most often is present in PCI and GIC nodes).
->> and nobody seems fixing it. So, if we are going to move this direction it's reasonable to get clarification to be sure.
->>
->> And there is no "never" here - #address-cells always can be added if really required.
-> 
-> 
-> OK - as a GPIO node, but as an interrupt-controller node, I was
-> looking at [1] and wondering if that was the precedence.
-> 
-> Yes, will be good to get direction from the DT maintainers on this
-> topic.
+On Sat, Nov 21, 2020 at 2:28 AM Michael Klein <michael@fossekall.de> wrote:
+>
+> Thank you for having a look at the patch!
+>
+> On Fri, Nov 20, 2020 at 04:52:52PM +0100, Maxime Ripard wrote:
+> >On Sun, Nov 15, 2020 at 11:24:25PM +0100, Michael Klein wrote:
+> >> Add gpio-line-names as documented in the Banana Pi wiki [1] and in the
+> >> schematics [2].
+> >>
+> >> [1]: http://wiki.banana-pi.org/Banana_Pi_BPI-M2_ZERO#GPIO_PIN_define
+> >> [2]: https://drive.google.com/file/d/0B4PAo2nW2KfnMW5sVkxWSW9qa28/view
+> >>
+> >> Signed-off-by: Michael Klein <michael@fossekall.de>
+> >> ---
+> >>  .../dts/sun8i-h2-plus-bananapi-m2-zero.dts    | 64 +++++++++++++++++++
+> >>  1 file changed, 64 insertions(+)
+> >>
+> >> diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> >> index 4c6704e4c57e..b4ddfaf01b45 100644
+> >> --- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> >> +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> >> @@ -136,6 +136,70 @@ bluetooth {
+> >>
+> >>  };
+> >>
+> >> +&pio {
+> >> +    gpio-line-names =
+> >> +            /* PA */
+> >> +            "UART2-TX", "UART2-RX", "UART2-RTS", "UART2-CTS",
+> >> +                    "UART0-TXD", "UART0-RXD", "PWM1", "PA7-EINT7",
+> >> +            "PA8-EINT8", "PA9-EINT9", "PA10-EINT10", "TWI0-SCK",
+> >> +                    "TWI0-SDA", "UART3-TX", "UART3-RX", "UART3-RTS",
+> >> +            "UART3-CTS", "PA17-EINT17", "TWI1-SCK", "TWI1-SDA",
+> >> +                    "PA20-EINT20", "PA21-EINT21", "", "",
+> >> +            "", "", "", "", "", "", "", "",
+> >
+> >IIRC, the point is to have the pin names that the vendor publishes.
+> >
+> >Looking at Documentation/devicetree/bindings/gpio/gpio.txt, it says:
+> >
+> >"""
+> >Optionally, a GPIO controller may have a "gpio-line-names" property. This is
+> >an array of strings defining the names of the GPIO lines going out of the
+> >GPIO controller. This name should be the most meaningful producer name
+> >for the system, such as a rail name indicating the usage. Package names
+> >such as pin name are discouraged: such lines have opaque names (since they
+> >are by definition generic purpose) and such names are usually not very
+> >helpful.
+> >"""
+> >
+> >In this case, from the link you gave above, I think having the CON*-P*
+> >names make more sense.
+>
+> Hm, but these are the pin names (of the connector) and should thus not
+> be used, right?
+>
+> For e.g. the PA0 pin, the wiki link gives three candidates:
+>
+> - CON2-P13 (GPIO Pin Name -> pin 13 of the 40 pin GPIO header)
+> - UART2-TX (Default Function)
+> - PA0-EINT0 (Function2 : GPIO)
+>
+> IMHO, the CON*-P* name is the least helpful of the above, as it tells
+> nothing about the usage. I'm not sure about the other two names, though.
 
-Shall I respin this series with 2/4 dropped while we wait for decision
-on this?
+I believe the function names are pretty useless in this case, as you
+cannot use the GPIO subsystem to mux functions. That is what pinctrl
+does. And in our case, the pinctrl drivers already know all the
+available functions each pin has.
 
-#address-cells warnings on interrupt controller can perhaps be handled
-all at once (there are many of those in existing DT anyway).
+Using the pin count and connector name provides the user direct mapping
+of the software representation of the pin against the actual pin on the
+hardware. The user can then proceed to request and use that pin.
 
-GPIO is basic support and holds up many other modules (like MMC/SD).
+Again, you can not request "functions" from userspace, only GPIO usage.
 
-Thanks,
-Sekhar
+Also using "one" function name creates confusion if the same function
+is available on multiple pins.
+
+ChenYu
+
+
+> Michael
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
