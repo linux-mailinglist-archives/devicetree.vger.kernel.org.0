@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 129FE2C0CB0
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:14:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CB92C0CE8
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:14:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729779AbgKWOC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 09:02:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41952 "EHLO
+        id S1731497AbgKWOGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 09:06:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729777AbgKWOC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:02:56 -0500
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89EFC061A4D
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:02:55 -0800 (PST)
-Received: by mail-wm1-x343.google.com with SMTP id a3so17344924wmb.5
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:02:55 -0800 (PST)
+        with ESMTP id S1729453AbgKWOGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:06:31 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DA7EC0613CF
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:06:31 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id s8so18680052wrw.10
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 06:06:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=8MbLOzoiGt8qOrDnUA/zH8u0u0zSMC0gXKfi559DqVA=;
-        b=ltVKPu+mf3w4cnT/dnxBHhtwTdvH5234a5m0Aas+h+d2O+deloN4yvQEqWA5jdgL7J
-         BBwCdHTKDne3rtZS0479aN3cO3cK+qHE6RJeFtQD88SABrLknnTJIWPt7vFegoL9JAMW
-         tfJ66juRzDAMcoPc3Q0qet+A+HXN7V++y5x4xM2kc9zgzhx3h6U57HdwASSxRI5xat96
-         BhPR4KyhD3Do/OEx1hLna61IZUxVJpjCstJkxu9okbRxbT/18JE9VgsD6QeRJo/OjI6z
-         GfIEjP7OFlskU0BPW9s0Lm8eEjmI5XyUFsIp0EVclLPkh5UQlfPxKshKoo9TN39JqMei
-         EP8Q==
+        bh=IxKEwJIDkWFWdLOduLQqDMMWI7xU0QNpLG1mKFM02rs=;
+        b=g1MeLxRcCLz0WGoi9c0wXjonCBJEJvpXP/SuuinED277DcmBiGSo2ylfvxgPK3Orb+
+         IYbF3XUU1Ry9h065YjZh92o2p7ljYo7nRpGMl0NkF6iNLrOo4dNp7jFtk7+h1KYROio6
+         dAxhhpaqX/xzThbEqRueM08mFje9M58Ra+GSHt65xzOt0bMHVh7G6P31qfA2PxqShp9b
+         zSw6PaOQOTFPpyu3AqjyDhx68FUUk9vKOIWqA3xeHxHo6E4dgNZ0AHmDyBjYJYGmepqa
+         wYx8HgdyBTzgzR766Br+hcqgXXDJPuosGuOfGsLkwPI8cC/s6Y4oOTMeBqv0VSEOgnNE
+         LGBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=8MbLOzoiGt8qOrDnUA/zH8u0u0zSMC0gXKfi559DqVA=;
-        b=CoYjUXdQXDgY7jgCQYMtTgVC3Ks0FREFSpz9UX3EfudTR3vs96NxALW0WHCrEQ2OjT
-         4Vy0qmwPhBUNLEepCxpXYp98moDJJiUcYPAtwBjJslHWWexjnuF9NPzLRZDmJFhx8zAi
-         au4PS3DrxDWxMs/sg+KiUwyStVQCySl6TW+s2SpOmaMZfWCeXhL95aKHGKXiFEZJ1LbZ
-         tciVfHoebi44VkgIFx2ljTV8RF5B8cCLA5qwm8uf7/9sXSj8b/ahfmzxx5+h08j2VRM6
-         S5la/bKk8kzPQpU9ikF0qi1j9IoZGPAo9IeLeo269OLLUiFT0xurRdDy1EEV4yq4LoiS
-         QBZQ==
-X-Gm-Message-State: AOAM530W7ZzpM+UtRoqPsTVlAqq7ctILHaMzD33qz8pOqSt80KeKEOGC
-        20v4CWftbslQAv0s0eQmOUFdTw==
-X-Google-Smtp-Source: ABdhPJxjgLyk9Fulttys1g8vPl1CXFrXrd8EhtH74rQmWAECciCrmgsHxN+h0I4wxVN09sd5aywgVA==
-X-Received: by 2002:a7b:c24b:: with SMTP id b11mr23203780wmj.109.1606140174472;
-        Mon, 23 Nov 2020 06:02:54 -0800 (PST)
+        bh=IxKEwJIDkWFWdLOduLQqDMMWI7xU0QNpLG1mKFM02rs=;
+        b=XWPBWw2yvkxG+XpbUOvAyVIKfUOHMZp/DeoRJ1vlSK+Z5U0kDnM5qxq+x7O8Uo5yb2
+         uHGVvoVk88ANbHlmBdBgBFIEkRB4OM8zVY3efZcopeVSYxPDqrGqroKDQvgdtNcJOvXe
+         BX0vQUlSnrFoCre95FtPDAuq3QV4U5Pk0O1y8nywN9Y/6ThFO2fEAe0js7evssVIPzTO
+         ySdMlO5Bvi+I0osgNUW8KA3axhR8o6s0MyqqvZq+Di9LJ944tmlJ1DMqFJhoIvbkVELV
+         I+jTy6j9sEQ71rDxTfGJtPGVQIPUY5yFTWJxEzSEuyUrjsbDZ+kOsVepuIxHkVef6irN
+         ZQMw==
+X-Gm-Message-State: AOAM531yTvUtpg+P8L4TYX4tiVNs3DhAMEe/geWg8KHftT5epkOs16Z0
+        PEIXIU/sX9uqx2H4sgpU5fSOVQ==
+X-Google-Smtp-Source: ABdhPJyw1pQaZQIURVIYntzJptazAHx7LZxvhh9s3DKAS6T2mBaDh+IRdAi2bZY6JoIkWxVe9MjV5w==
+X-Received: by 2002:a05:6000:1292:: with SMTP id f18mr30790889wrx.196.1606140390020;
+        Mon, 23 Nov 2020 06:06:30 -0800 (PST)
 Received: from google.com ([2a00:79e0:d:210:f693:9fff:fef4:a7ef])
-        by smtp.gmail.com with ESMTPSA id x13sm8390719wmj.48.2020.11.23.06.02.53
+        by smtp.gmail.com with ESMTPSA id l14sm12976982wmi.33.2020.11.23.06.06.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 23 Nov 2020 06:02:54 -0800 (PST)
-Date:   Mon, 23 Nov 2020 14:02:50 +0000
+        Mon, 23 Nov 2020 06:06:29 -0800 (PST)
+Date:   Mon, 23 Nov 2020 14:06:25 +0000
 From:   Quentin Perret <qperret@google.com>
 To:     David Brazdil <dbrazdil@google.com>
 Cc:     Catalin Marinas <catalin.marinas@arm.com>,
@@ -65,41 +65,47 @@ Cc:     Catalin Marinas <catalin.marinas@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE" 
         <devicetree@vger.kernel.org>, kernel-team@android.com,
         android-kvm@google.com
-Subject: Re: [RFC PATCH 09/27] KVM: arm64: Allow using kvm_nvhe_sym() in hyp
- code
-Message-ID: <20201123140250.GB490744@google.com>
+Subject: Re: [RFC PATCH 02/27] KVM: arm64: Link position-independent string
+ routines into .hyp.text
+Message-ID: <20201123140625.GC490744@google.com>
 References: <20201117181607.1761516-1-qperret@google.com>
- <20201117181607.1761516-10-qperret@google.com>
- <20201123125723.4mnodg3tnal4q4v2@google.com>
+ <20201117181607.1761516-3-qperret@google.com>
+ <20201123123425.uzfuk3pmwgzuijwn@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201123125723.4mnodg3tnal4q4v2@google.com>
+In-Reply-To: <20201123123425.uzfuk3pmwgzuijwn@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 23 Nov 2020 at 12:57:23 (+0000), David Brazdil wrote:
-> > diff --git a/arch/arm64/kvm/arm.c b/arch/arm64/kvm/arm.c
-> > index 882eb383bd75..391cf6753a13 100644
-> > --- a/arch/arm64/kvm/arm.c
-> > +++ b/arch/arm64/kvm/arm.c
-> > @@ -1369,7 +1369,7 @@ static void cpu_prepare_hyp_mode(int cpu)
+On Monday 23 Nov 2020 at 12:34:25 (+0000), David Brazdil wrote:
+> On Tue, Nov 17, 2020 at 06:15:42PM +0000, 'Quentin Perret' via kernel-team wrote:
+> > diff --git a/arch/arm64/kernel/image-vars.h b/arch/arm64/kernel/image-vars.h
+> > index 8539f34d7538..dd8ccc9efb6a 100644
+> > --- a/arch/arm64/kernel/image-vars.h
+> > +++ b/arch/arm64/kernel/image-vars.h
+> > @@ -105,6 +105,17 @@ KVM_NVHE_ALIAS(__stop___kvm_ex_table);
+> >  /* Array containing bases of nVHE per-CPU memory regions. */
+> >  KVM_NVHE_ALIAS(kvm_arm_hyp_percpu_base);
 > >  
-> >  	params->vector_hyp_va = kern_hyp_va((unsigned long)kvm_ksym_ref(__kvm_hyp_host_vector));
-> >  	params->stack_hyp_va = kern_hyp_va(per_cpu(kvm_arm_hyp_stack_page, cpu) + PAGE_SIZE);
-> > -	params->entry_hyp_va = kern_hyp_va((unsigned long)kvm_ksym_ref(__kvm_hyp_psci_cpu_entry));
-> > +	params->entry_hyp_va = kern_hyp_va((unsigned long)kvm_ksym_ref_nvhe(__kvm_hyp_psci_cpu_entry));
+> > +/* Position-independent library routines */
+> > +__kvm_nvhe_clear_page			= __kvm_nvhe___pi_clear_page;
+> > +__kvm_nvhe_copy_page			= __kvm_nvhe___pi_copy_page;
+> > +__kvm_nvhe_memcpy			= __kvm_nvhe___pi_memcpy;
+> > +__kvm_nvhe_memset			= __kvm_nvhe___pi_memset;
+> > +
+> > +#ifdef CONFIG_KASAN
+> > +__kvm_nvhe___memcpy			= __kvm_nvhe___pi_memcpy;
+> > +__kvm_nvhe___memset			= __kvm_nvhe___pi_memset;
+> > +#endif
+> > +
+> >  #endif /* CONFIG_KVM */
 > 
-> Why is this change needed?
+> Nit: Would be good to use the kvm_nvhe_sym() helper for the namespacing.
+> And feel free to define something like KVM_NVHE_ALIAS for PI in hyp-image.h.
 
-You mean this line specifically or the whole __kvm_hyp_psci_cpu_entry
-thing?
-
-For the latter, it is to avoid having the compiler complain about
-__kvm_hyp_psci_cpu_entry being re-defined as a different symbol. If
-there is a better way to solve this problem I'm happy to change it -- I
-must admit I got a little confused with the namespacing along the way.
+Ack, that'd be much nicer, I'll fix it up for v2.
 
 Thanks,
 Quentin
