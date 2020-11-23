@@ -2,133 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 969022C0D37
-	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B482C0D3B
+	for <lists+devicetree@lfdr.de>; Mon, 23 Nov 2020 15:27:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730113AbgKWOPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 09:15:50 -0500
-Received: from us-smtp-delivery-124.mimecast.com ([216.205.24.124]:35051 "EHLO
-        us-smtp-delivery-124.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730709AbgKWOPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 09:15:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1606140949;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=qrhEgZWSM0CROI5Vz0uu9rwmyq7vhI6QnpKuTadBvHY=;
-        b=dVQYWlqvQvKwlO6u3ShrnIIP1D50RWaZr43fgoLYbFKr1wVqymGauYH3EzIr+w4BTQjhk+
-        gR+VnzPw8TcbdvtKACsU/MWehxZaDiaxaMr+a69mppOywOqbgJ9uTIcOXjGIaxRaanq8LA
-        IlYP93g4pTIxx5bw5OBuYudYEmDsdk0=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) (Using TLS) by relay.mimecast.com with ESMTP id
- us-mta-323-Hz5xVMq2PWqq9P4fJRRGJQ-1; Mon, 23 Nov 2020 09:15:46 -0500
-X-MC-Unique: Hz5xVMq2PWqq9P4fJRRGJQ-1
-Received: from smtp.corp.redhat.com (int-mx06.intmail.prod.int.phx2.redhat.com [10.5.11.16])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id 45BAC100B713;
-        Mon, 23 Nov 2020 14:15:43 +0000 (UTC)
-Received: from [10.36.114.57] (ovpn-114-57.ams2.redhat.com [10.36.114.57])
-        by smtp.corp.redhat.com (Postfix) with ESMTP id 1B3E35C1BD;
-        Mon, 23 Nov 2020 14:15:38 +0000 (UTC)
-Subject: Re: [PATCH 1/4] mm: introduce cma_alloc_bulk API
-To:     Minchan Kim <minchan@kernel.org>,
-        Andrew Morton <akpm@linux-foundation.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>, linux-mm <linux-mm@kvack.org>,
-        hyesoo.yu@samsung.com, willy@infradead.org, iamjoonsoo.kim@lge.com,
-        vbabka@suse.cz, surenb@google.com, pullip.cho@samsung.com,
-        joaodias@google.com, hridya@google.com, sumit.semwal@linaro.org,
-        john.stultz@linaro.org, Brian.Starkey@arm.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, christian.koenig@amd.com,
-        linaro-mm-sig@lists.linaro.org
-References: <20201117181935.3613581-1-minchan@kernel.org>
- <20201117181935.3613581-2-minchan@kernel.org>
-From:   David Hildenbrand <david@redhat.com>
-Organization: Red Hat GmbH
-Message-ID: <a2c33b8f-e4fb-1f1c-7ed0-496a1256ea09@redhat.com>
-Date:   Mon, 23 Nov 2020 15:15:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.4.0
+        id S1731374AbgKWORY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 09:17:24 -0500
+Received: from hqnvemgate25.nvidia.com ([216.228.121.64]:17530 "EHLO
+        hqnvemgate25.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731202AbgKWORY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 09:17:24 -0500
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate25.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5fbbc4750000>; Mon, 23 Nov 2020 06:17:25 -0800
+Received: from [10.25.102.126] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 23 Nov
+ 2020 14:17:19 +0000
+Subject: Re: [PATCH v5 3/6] ASoC: tegra: Add audio graph based card driver
+To:     Jon Hunter <jonathanh@nvidia.com>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>
+CC:     <kuninori.morimoto.gx@renesas.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <sharadg@nvidia.com>
+References: <1605119676-32273-1-git-send-email-spujar@nvidia.com>
+ <1605119676-32273-4-git-send-email-spujar@nvidia.com>
+ <46aa4d68-03e9-72e9-51f9-e67dba15f5d3@nvidia.com>
+From:   Sameer Pujar <spujar@nvidia.com>
+Message-ID: <43ace5b2-b3ff-ea7c-dbc4-38833a9c873d@nvidia.com>
+Date:   Mon, 23 Nov 2020 19:47:16 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20201117181935.3613581-2-minchan@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <46aa4d68-03e9-72e9-51f9-e67dba15f5d3@nvidia.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.16
+Content-Language: en-GB
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1606141045; bh=xe5FC1ykPtZxtumbq2Zvv2h2gJPih65n9frebEMU8cw=;
+        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
+         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+         Content-Language:X-Originating-IP:X-ClientProxiedBy;
+        b=aJ1HCIIqacDVI3gmgvyRLBcakVhyHFl2DIzv76Hok5W3VzK9xcKQTBThyKERrfUTK
+         boKNmEuS3G7cq5TV7wCUvwKDf72RlO4g6ZG/lKTVAWUL1kI4+CtFv7RY+LqxklCxo0
+         MBpoRiiIYD1RuUCxDbqCNIi1/zuZ5rbC2aoMPFHyl6jnT82GQ3EO0OKjhYF2JvbYe9
+         TslGSMdqueoU7z9LdXmzEDgQq1Nz6mzYlWKTP7p231IiVPiTeC5hBCREdZdcgq7QEc
+         71J0oDVUFoDLzNBr9/GkXriKR2Lb72aLfG3E7PsHyyDFsRi+VBaeW7Kxlsqrd2Aihe
+         7RbERH/TSkC2g==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17.11.20 19:19, Minchan Kim wrote:
-> There is a need for special HW to require bulk allocation of
-> high-order pages. For example, 4800 * order-4 pages, which
-> would be minimum, sometimes, it requires more.
-> 
-> To meet the requirement, a option reserves 300M CMA area and
-> requests the whole 300M contiguous memory. However, it doesn't
-> work if even one of those pages in the range is long-term pinned
-> directly or indirectly. The other option is to ask higher-order
-> size (e.g., 2M) than requested order(64K) repeatedly until driver
-> could gather necessary amount of memory. Basically, this approach
-> makes the allocation very slow due to cma_alloc's function
-> slowness and it could be stuck on one of the pageblocks if it
-> encounters unmigratable page.
-> 
-> To solve the issue, this patch introduces cma_alloc_bulk.
-> 
-> 	int cma_alloc_bulk(struct cma *cma, unsigned int align,
-> 		gfp_t gfp_mask, unsigned int order, size_t nr_requests,
-> 		struct page **page_array, size_t *nr_allocated);
-> 
-> Most parameters are same with cma_alloc but it additionally passes
-> vector array to store allocated memory. What's different with cma_alloc
-> is it will skip pageblocks without waiting/stopping if it has unmovable
-> page so that API continues to scan other pageblocks to find requested
-> order page.
-> 
-> cma_alloc_bulk is best effort approach in that it skips some pageblocks
-> if they have unmovable pages unlike cma_alloc. It doesn't need to be
-> perfect from the beginning at the cost of performance. Thus, the API
-> takes gfp_t to support __GFP_NORETRY which is propagated into
-> alloc_contig_page to avoid significat overhead functions to inrecase
-> CMA allocation success ratio(e.g., migration retrial, PCP, LRU draining
-> per pageblock) at the cost of less allocation success ratio.
-> If the caller couldn't allocate enough pages with __GFP_NORETRY, they
-> could call it without __GFP_NORETRY to increase success ratio this time
-> if they are okay to expense the overhead for the success ratio.
 
-I'm not a friend of connecting __GFP_NORETRY  to PCP and LRU draining.
-Also, gfp flags apply mostly to compaction (e.g., how to allocate free
-pages for migration), so this seems a little wrong.
+>> Add Tegra audio machine driver which is based on generic audio graph card
+>> driver. It re-uses most of the common stuff from audio graph driver and
+>> uses the same DT binding. Required Tegra specific customizations are done
+>> in the driver and additional DT bindings are required for clock handling.
+>>
+>> Details on the customizations done:
+>>
+>>   - Update PLL rates at runtime: Tegra HW supports multiple sample rates
+>>     (multiples of 8x and 11.025x) and both of these groups require different
+>>     PLL rates. Hence there is a requirement to update this at runtime.
+>>     This is achieved by providing a custom 'snd_soc_ops' and in hw_param()
+>>     callback PLL rate is updated as per the sample rate.
+>>
+>>   - Internal structure 'tegra_audio_graph_data' is used to maintain clock
+>>     handles of PLL.
+>>
+>>   - The 'force_dpcm' flag is set to use DPCM for all DAI links.
+>>
+>>   - The 'component_chaining' flag is set to use DPCM with component model.
+>>
+>> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
+>> ---
+>>   sound/soc/tegra/Kconfig                  |   9 ++
+>>   sound/soc/tegra/Makefile                 |   2 +
+>>   sound/soc/tegra/tegra_audio_graph_card.c | 255 +++++++++++++++++++++++++++++++
+>>   3 files changed, 266 insertions(+)
+>>   create mode 100644 sound/soc/tegra/tegra_audio_graph_card.c
+>>
+>> diff --git a/sound/soc/tegra/Kconfig b/sound/soc/tegra/Kconfig
+>> index a62cc87..6dc83ad 100644
+>> --- a/sound/soc/tegra/Kconfig
+>> +++ b/sound/soc/tegra/Kconfig
+>> @@ -117,6 +117,15 @@ config SND_SOC_TEGRA210_ADMAIF
+>>   	  channel. Buffer size is configurable for each ADMAIIF channel.
+>>   	  Say Y or M if you want to add support for Tegra210 ADMAIF module.
+>>   
+>> +config SND_SOC_TEGRA_AUDIO_GRAPH_CARD
+>> +	tristate "Audio Graph Card based Tegra driver"
+>> +	depends on SND_AUDIO_GRAPH_CARD
+>> +	help
+>> +	  Config to enable Tegra audio machine driver based on generic
+>> +	  audio graph driver. It is a thin driver written to customize
+>> +	  few things for Tegra audio. Most of the code is re-used from
+>> +	  audio graph driver and the same DT bindings are used.
+>> +
+>>   config SND_SOC_TEGRA_RT5640
+>>   	tristate "SoC Audio support for Tegra boards using an RT5640 codec"
+>>   	depends on SND_SOC_TEGRA && I2C && GPIOLIB
+>> diff --git a/sound/soc/tegra/Makefile b/sound/soc/tegra/Makefile
+>> index 60040a0..b17dd6e 100644
+>> --- a/sound/soc/tegra/Makefile
+>> +++ b/sound/soc/tegra/Makefile
+>> @@ -38,6 +38,7 @@ snd-soc-tegra-trimslice-objs := trimslice.o
+>>   snd-soc-tegra-alc5632-objs := tegra_alc5632.o
+>>   snd-soc-tegra-max98090-objs := tegra_max98090.o
+>>   snd-soc-tegra-sgtl5000-objs := tegra_sgtl5000.o
+>> +snd-soc-tegra-audio-graph-card-objs := tegra_audio_graph_card.o
+>>   
+>>   obj-$(CONFIG_SND_SOC_TEGRA_RT5640) += snd-soc-tegra-rt5640.o
+>>   obj-$(CONFIG_SND_SOC_TEGRA_RT5677) += snd-soc-tegra-rt5677.o
+>> @@ -48,3 +49,4 @@ obj-$(CONFIG_SND_SOC_TEGRA_TRIMSLICE) += snd-soc-tegra-trimslice.o
+>>   obj-$(CONFIG_SND_SOC_TEGRA_ALC5632) += snd-soc-tegra-alc5632.o
+>>   obj-$(CONFIG_SND_SOC_TEGRA_MAX98090) += snd-soc-tegra-max98090.o
+>>   obj-$(CONFIG_SND_SOC_TEGRA_SGTL5000) += snd-soc-tegra-sgtl5000.o
+>> +obj-$(CONFIG_SND_SOC_TEGRA_AUDIO_GRAPH_CARD) += snd-soc-tegra-audio-graph-card.o
+>> diff --git a/sound/soc/tegra/tegra_audio_graph_card.c b/sound/soc/tegra/tegra_audio_graph_card.c
+>> new file mode 100644
+>> index 0000000..f4d826d
+>> --- /dev/null
+>> +++ b/sound/soc/tegra/tegra_audio_graph_card.c
+>> @@ -0,0 +1,255 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +//
+>> +// tegra_audio_graph_card.c - Audio Graph based Tegra Machine Driver
+>> +//
+>> +// Copyright (c) 2020 NVIDIA CORPORATION.  All rights reserved.
+>> +
+>> +#include <linux/math64.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of_device.h>
+>> +#include <linux/platform_device.h>
+>> +#include <sound/graph_card.h>
+>> +#include <sound/pcm_params.h>
+>> +
+>> +#define MAX_PLLA_OUT0_DIV 128
+>> +
+>> +#define simple_to_tegra_priv(simple) \
+>> +		container_of(simple, struct tegra_audio_priv, simple)
+>> +
+>> +enum srate_type {
+>> +	/*
+>> +	 * Sample rates multiple of 8000 Hz and below are supported:
+>> +	 * ( 8000, 16000, 32000, 48000, 96000, 192000 Hz )
+>> +	 */
+>> +	x8_RATE,
+>> +
+>> +	/*
+>> +	 * Sample rates multiple of 11025 Hz and below are supported:
+>> +	 * ( 11025, 22050, 44100, 88200, 176400 Hz )
+>> +	 */
+>> +	x11_RATE,
+>> +
+>> +	NUM_RATE_TYPE,
+>> +};
+>> +
+>> +struct tegra_audio_priv {
+>> +	struct asoc_simple_priv simple;
+>> +	struct clk *clk_plla_out0;
+>> +	struct clk *clk_plla;
+>> +};
+>> +
+>> +/* Tegra audio chip data */
+>> +struct tegra_audio_cdata {
+>> +	unsigned int plla_rates[NUM_RATE_TYPE];
+>> +	unsigned int plla_out0_rates[NUM_RATE_TYPE];
+>> +};
+>> +
+>> +/* Setup PLL clock as per the given sample rate */
+>> +static int tegra_audio_graph_update_pll(struct snd_pcm_substream *substream,
+>> +					struct snd_pcm_hw_params *params)
+>> +{
+>> +	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
+>> +	struct asoc_simple_priv *simple = snd_soc_card_get_drvdata(rtd->card);
+>> +	struct tegra_audio_priv *priv = simple_to_tegra_priv(simple);
+>> +	struct device *dev = rtd->card->dev;
+>> +	const struct tegra_audio_cdata *data = of_device_get_match_data(dev);
+>> +	unsigned int plla_rate, plla_out0_rate, bclk;
+>> +	unsigned int srate = params_rate(params);
+>> +	int err;
+>> +
+>> +	/* There is nothing to configure */
+>> +	if (!data)
+>> +		return 0;
+>
+> Seems like this should never happen and so if it did this is an error.
+> Any reason why we don't return an error here?
 
-Can we instead introduce
-
-enum alloc_contig_mode {
-	/*
-	 * Normal mode:
-	 *
-	 * Retry page migration 5 times, ... TBD
-	 *
-	 */
-	ALLOC_CONTIG_NORMAL = 0,
-	/*
-	 * Fast mode: e.g., used for bulk allocations.
-         *
-	 * Don't retry page migration if it fails, don't drain PCP
-         * lists, don't drain LRU.
-	 */
-	ALLOC_CONTIG_FAST,
-};
-
-To be extended by ALLOC_CONTIG_HARD in the future to be used e.g., by
-virtio-mem (disable PCP, retry a couple of times more often ) ...
-
--- 
-Thanks,
-
-David / dhildenb
-
+I was thinking it is OK for platforms to use fixed PLL rates and in such 
+cases they don't have to define chip data. But yes currently there is no 
+case for it and I will simply drop this check in v6.
