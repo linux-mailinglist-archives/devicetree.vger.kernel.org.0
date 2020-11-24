@@ -2,125 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C1C5B2C2E73
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 18:26:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42D6C2C2EB3
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 18:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390814AbgKXR0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 12:26:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42488 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390775AbgKXR0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 12:26:19 -0500
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9EC0C0613D6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 09:26:19 -0800 (PST)
-Received: by mail-qk1-x742.google.com with SMTP id n132so21459489qke.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 09:26:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=alOzv44eGcjfpihMYnDwscb9X2R1MdOVC0kRQ9Tq8IQ=;
-        b=Bp4Z1nP/zMlvdIvZ2C4wlMvQguakizmpIkzzCaxYf6u7hLlWtqGnrH+ncPOC/pEhxX
-         xKdiOFLmsQxUQs/7HzqhzON9HYNprPQi+A5YhMiMHUDiDzJeaAgsNPfrZzL78Gsvy6Ck
-         2qX6LzmlEtvd95ICvYx2wUmphmBcz0MUKvGRiiYPoiVrTFlwSKxvsMfSULAnmzUQRJXJ
-         3FaPI+bH2VdYN8sO+NNU5WqtqoQgbeXobt8EQeLyUKOHsKmRQoWcoFSAYCSHcZ8YTwCh
-         a4A28oRtPHdTjewsELKzJhtHdnx3xkqXql+uFGj3AO5En+QODaOR/FiqpX3J32LyX8OT
-         3sJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=alOzv44eGcjfpihMYnDwscb9X2R1MdOVC0kRQ9Tq8IQ=;
-        b=m1IIpo1Oc4+AEJSf37TewDveiYzf1YsHozwMVz/L5DYmlWShRhGXtz69lPn3F/CJpf
-         Ov+uA42QOxPP4+TDEJcqNrgfbQ+I2TPqfunl92IpA6OW55QxT2daJ08FEpBSULnnS2Bj
-         w693gOGG4grGfJdKnQPpS4nszCeeR/u1y/nIL7VkCBogaUfJNcPPtQg+r4v+8hnn4HI6
-         ZFiQu3/V2uEBYFuUzOtg1TT+GTa4eEArrgrFgyr8mUcsvbzZRpzsqDe0hvxWe7PF2+xV
-         qI5BG1AZQ42MwVt2ccpcsXOhfCUVHOtWIvikF3rwqNy+B3GbQe0rYLsC6pPazPp/NeB4
-         S9Gg==
-X-Gm-Message-State: AOAM531KVPv7/RnG5fa1s8Wz5EyiHIni7OYVQ2XE82aBEPxV8xAjn41O
-        qt8C5VU7jrAqkB6nfw3Z+6dKAj1KYHoMdDrHSu98CA==
-X-Google-Smtp-Source: ABdhPJxPgzZ0zSc0E/zfDctNAjzjKhUt0WBPKSQQ7LrYTHbV9PFEIpqfR37WzRpFkd+0FrI/utMKyuin1ppEewhztog=
-X-Received: by 2002:a25:b090:: with SMTP id f16mr8175543ybj.466.1606238778756;
- Tue, 24 Nov 2020 09:26:18 -0800 (PST)
-MIME-Version: 1.0
-References: <20201121020232.908850-1-saravanak@google.com> <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
-In-Reply-To: <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 24 Nov 2020 09:25:42 -0800
-Message-ID: <CAGETcx_ZSYpyi8M3T9d1vJk0FzxWoFWW6A=f-vK4jtF73SR0cw@mail.gmail.com>
-Subject: Re: [PATCH v2 00/17] Refactor fw_devlink to significantly improve
- boot time
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
+        id S1728945AbgKXRfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 12:35:43 -0500
+Received: from softboy.mntmn.com ([91.250.115.15]:39858 "EHLO
+        softboy.mntmn.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403799AbgKXRfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 12:35:42 -0500
+From:   "Lukas F. Hartmann" <lukas@mntre.com>
+DKIM-Filter: OpenDKIM Filter v2.11.0 softboy.mntmn.com A45C4720EE6
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mntre.com;
+        s=mntremail; t=1606238800;
+        bh=sMffCRC8t+pVcO6WbR04nkC1P/SDITAOk+2n+2D+EGg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=QAKTCw8n2obR9UHANnvm8VhoMSBiqe+vsHOY0yp785hxcjZ0nCvt9RM9gzYMySAvd
+         ynyQp4rNLA1zC+QtibDBOICDCwrsIAqaj5HQCXYkrewU92P9O9E20HjfWbCiLpGkVE
+         OUR2bws5hkLvYarRGkqC+voJSu3jOnJC2tq1posC5FssgvxofC9RhWWpA/I8iqJkbs
+         3pmPk3wInhwZ8QY6O8BlqB9Zc0yvXyAS8iY+xv4iNEZggMOyi+4OqRrRVsk4PhGeTe
+         o8VqON5W9V++UQrdiR4dzzWatrTzhMlCJOlu6H3OonPMUrnQyBJDEXSTHp+QFmeaIJ
+         Nh82Im9OTQXWw==
+To:     lukas@mntre.com
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        ACPI Devel Maling List <linux-acpi@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-efi <linux-efi@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] panel-simple: add Innolux N125HCE-GN1
+Date:   Tue, 24 Nov 2020 18:26:04 +0100
+Message-Id: <20201124172604.981746-1-lukas@mntre.com>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 24, 2020 at 12:29 AM 'Tomi Valkeinen' via kernel-team
-<kernel-team@android.com> wrote:
->
-> Hi,
->
-> On 21/11/2020 04:02, Saravana Kannan wrote:
-> > The current implementation of fw_devlink is very inefficient because it
-> > tries to get away without creating fwnode links in the name of saving
-> > memory usage. Past attempts to optimize runtime at the cost of memory
-> > usage were blocked with request for data showing that the optimization
-> > made significant improvement for real world scenarios.
-> >
-> > We have those scenarios now. There have been several reports of boot
-> > time increase in the order of seconds in this thread [1]. Several OEMs
-> > and SoC manufacturers have also privately reported significant
-> > (350-400ms) increase in boot time due to all the parsing done by
-> > fw_devlink.
-> >
-> > So this patch series refactors fw_devlink to be more efficient. The key
-> > difference now is the addition of support for fwnode links -- just a few
-> > simple APIs. This also allows most of the code to be moved out of
-> > firmware specific (DT mostly) code into driver core.
-> >
-> > This brings the following benefits:
-> > - Instead of parsing the device tree multiple times (complexity was
-> >   close to O(N^3) where N in the number of properties) during bootup,
-> >   fw_devlink parses each fwnode node/property only once and creates
-> >   fwnode links. The rest of the fw_devlink code then just looks at these
-> >   fwnode links to do rest of the work.
-> >
-> > - Makes it much easier to debug probe issue due to fw_devlink in the
-> >   future. fw_devlink=on blocks the probing of devices if they depend on
-> >   a device that hasn't been added yet. With this refactor, it'll be very
-> >   easy to tell what that device is because we now have a reference to
-> >   the fwnode of the device.
-> >
-> > - Much easier to add fw_devlink support to ACPI and other firmware
-> >   types. A refactor to move the common bits from DT specific code to
-> >   driver core was in my TODO list as a prerequisite to adding ACPI
-> >   support to fw_devlink. This series gets that done.
-> >
-> > Laurent and Grygorii tested the v1 series and they saw boot time
-> > improvment of about 12 seconds and 3 seconds, respectively.
->
-> Tested v2 on OMAP4 SDP. With my particular config, boot time to starting init went from 18.5 seconds
-> to 12.5 seconds.
+The Innolux N125HCE-GN1 display is used in the MNT Reform 2.0 laptop,
+attached via eDP to a SN65DSI86 MIPI-DSI to eDP bridge.
 
-Thanks for testing Tomi!
+Signed-off-by: Lukas F. Hartmann <lukas@mntre.com>
+---
+ drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
--Saravana
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 2be358fb4..774acab52 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -2263,6 +2263,31 @@ static const struct panel_desc innolux_n116bge = {
+ 	},
+ };
+ 
++static const struct drm_display_mode innolux_n125hce_gn1_mode = {
++	.clock = 162000,
++	.hdisplay = 1920,
++	.hsync_start = 1920 + 40,
++	.hsync_end = 1920 + 40 + 40,
++	.htotal = 1920 + 40 + 40 + 80,
++	.vdisplay = 1080,
++	.vsync_start = 1080 + 4,
++	.vsync_end = 1080 + 4 + 4,
++	.vtotal = 1080 + 4 + 4 + 24,
++};
++
++static const struct panel_desc innolux_n125hce_gn1 = {
++	.modes = &innolux_n125hce_gn1_mode,
++	.num_modes = 1,
++	.bpc = 8,
++	.size = {
++		.width = 276,
++		.height = 155,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.bus_flags = DRM_BUS_FLAG_DATA_MSB_TO_LSB,
++	.connector_type = DRM_MODE_CONNECTOR_eDP,
++};
++
+ static const struct drm_display_mode innolux_n156bge_l21_mode = {
+ 	.clock = 69300,
+ 	.hdisplay = 1366,
+@@ -4092,6 +4117,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "innolux,n116bge",
+ 		.data = &innolux_n116bge,
++	}, {
++		.compatible = "innolux,n125hce-gn1",
++		.data = &innolux_n125hce_gn1,
+ 	}, {
+ 		.compatible = "innolux,n156bge-l21",
+ 		.data = &innolux_n156bge_l21,
+-- 
+2.28.0
+
