@@ -2,154 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E36B2C2919
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:14:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 140122C296E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:25:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730716AbgKXOMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 09:12:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40528 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730003AbgKXOMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:12:55 -0500
-Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com [IPv6:2607:f8b0:4864:20::943])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374B7C0617A6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:12:55 -0800 (PST)
-Received: by mail-ua1-x943.google.com with SMTP id g3so6843805uae.7
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:12:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b+WvQJn+RbKkh+kUKZATZKfERFtuz9WNMxrxpGdw4hA=;
-        b=lVh9DyyEfKvcpYdLTOBc3Nv7y0XSPVmAax24cS/h8/bJq0VqEJVouyW0BXofj2piQz
-         bgOBSfkFkwLeXYcIQcWo/iA5j1semJXlsGSiLQXskciSGm42jWE6AqL7gfMlHdsB5tt9
-         N6IpPHvYLlca/szoVbA10P32eVBwV3iSJXKp/P2L/6O+GG2XmnmlS7X4rQF+CiewZ3fI
-         Z+NcGQjghI2XAq8KoiMt4jRwIPMTAyMrJZQC6BsD5KANKnMG6ZVpCxXZyCm0qcX/kMMU
-         ut+smv0g/SYIcPs9lj1u0xXaNMdZ/vu0oOtca6K1l3OEAR1Lub9HVQ6Vf8r+xdqEBp1/
-         hiZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b+WvQJn+RbKkh+kUKZATZKfERFtuz9WNMxrxpGdw4hA=;
-        b=e0qqxraOJpX3g8ysPeXvBhRs8QUaYnqcK7Q73E2KBxTbd6QsTFmUYHk+pPVNn9zelf
-         MpYFYviQ7xUtVGllVfom0a56riP4cNrEGZsLvTFkaXtbDA8UrByrwlakCP0Z83erC3kl
-         18PLyCc4OprznauQ3P52QZTlwoNu6V5L5e/hbynhnfXYa5LFSEZJ2dxgzfVTuB2k9jK+
-         IM3OmLxxByRoX+vDJsLT18XR87i0kYEFMqTJJwLfSrSXE1Yokw+9n6jL4LExt5KWYce9
-         7s2qxr/Yt1NaHaGhyqUKUrCGBErcOsSWdQaMwfOg1goixPojIN7RkCggrKilo7tc+nsD
-         dZqg==
-X-Gm-Message-State: AOAM532+Md8UwS/MWWk+QwHWnRjxtMMoEHff4TfkFI709c0IlkeLXHB7
-        cv7BSwsNucCTbHVk0XQJEpFK01ESWRv99HIyHUi6xg==
-X-Google-Smtp-Source: ABdhPJxmk8XhxSo3oGE/to/rjbARVYneX0tkPuRJWkHA+FwhStIlTcIjXRAWqXDBjx8lvAFiCX8YN6mPcudkicwGqbQ=
-X-Received: by 2002:ab0:23d5:: with SMTP id c21mr2736730uan.129.1606227174150;
- Tue, 24 Nov 2020 06:12:54 -0800 (PST)
+        id S2388078AbgKXOYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 09:24:46 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:58395 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731656AbgKXOYp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Nov 2020 09:24:45 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 68A9E5C016A;
+        Tue, 24 Nov 2020 09:24:44 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Tue, 24 Nov 2020 09:24:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=amK/fRNowsZOlWEpmhXvskIVnp6
+        qpElgGaBED3fXCC8=; b=a0hcErUV9yHLtGPqR1BuKJJgcwEw2LbjHhcnKKh08ga
+        gF44gaP1SZF6GJFIdpkkZARnyFBiXeblTYVXCpJ0dWP0EIBY9w8o5oM2KDma1PGl
+        zeOU1SHYaoQymR5a6U8lmttodxf7ZOQiCvFsZYCD4qGJ/4kLNut+yIeE1aVD0/kS
+        RkyjMaD089DfqEG/xfqb7OpXfBqS+UzRlQVk95y1IY62Lf4squGD4VYSd2vBZdfH
+        R91umr2NRh7exKedpe9KcFqGdGW5gV6VSCPbv2D6wnkL7Q7sdWds6nlPf1Pyqlp+
+        vBOXD3aB7de8tdqWZaJgLvR/jU0oBPVAHWlVYBeVWEQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=amK/fR
+        NowsZOlWEpmhXvskIVnp6qpElgGaBED3fXCC8=; b=D6V0rWIKcxdSGU41qQXLaD
+        9ucEBsRnqToBA2MekNH7zA22Mq8B+b3xyf1Hm0zfxZmEu6tYR0Gf7pAD+y2g9wJK
+        EoO97OEv1QwuCWQfbR/2Tf3+HJyHbKQg0GPw/JjwVUGg6MaAemBtN+2JTNNjMY3m
+        NAlY6mdhgxJ9iS6Vy6T5dTaAO6DBwUR/HPxWdGorURjp/kVWiVn0QwZ0WVhL4COf
+        8hBDuS6bBwpHsrpo3dN8xw11Uv7AxNjSeNJxEjgwjtv6jPN5A+lWIqab0vZNtg3Y
+        lp/7qLQiOcm3qrT/HROsx7bc0irFeYPdcPzW8bFs6414NsTEd7Y88xq+0JDcVzZQ
+        ==
+X-ME-Sender: <xms:qhe9X7SXNebOCwJ1vM0XC6OADYr9M6XXFmclxt7oMICA54gdl8glFA>
+    <xme:qhe9X8xrA2UndGz3ELdoMPpYpnqL6ZYxtGuMqf_U0K7C5al_DUC16BZCNHSuWdW_M
+    Q26ijYLa5i6AhAmQAk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegkedgieehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:qhe9Xw2GvlQKNRJJlBfkiFdBf0RdbVYPpaqveXmVGW7XpXrlhswoHQ>
+    <xmx:qhe9X7AtbmBi5Vc6w8mHqg7pc_FEkDukMJr_AWN1U8Dv3I30b5hfeA>
+    <xmx:qhe9X0hYeQaupQXPuJvr9YOqOnsbqEWbollJ4sGL43haT8eN3TQo4A>
+    <xmx:rBe9X-YvTXIioip5sSflep16_vecR63Kb80MkUk6jXzR9vIvt8XCZQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 861B7328005A;
+        Tue, 24 Nov 2020 09:24:42 -0500 (EST)
+Date:   Tue, 24 Nov 2020 15:24:40 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Adam Sampson <ats@offog.org>
+Cc:     Chen-Yu Tsai <wens@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Andrew Lunn <andrew@lunn.ch>, Chen-Yu Tsai <wens@csie.org>
+Subject: Re: [PATCH] ARM: dts: sun7i: pcduino3-nano: enable RGMII RX/TX delay
+ on PHY
+Message-ID: <20201124142440.5ott772bz5f4ieln@gilmour>
+References: <20201123174739.6809-1-ats@offog.org>
 MIME-Version: 1.0
-References: <20201123063004.337345-1-andrew@aj.id.au> <20201123063004.337345-2-andrew@aj.id.au>
-In-Reply-To: <20201123063004.337345-2-andrew@aj.id.au>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 24 Nov 2020 15:12:17 +0100
-Message-ID: <CAPDyKFrC9vp5gtpFC5L1K17uN059GsJ2zF4f7-_=sFEQ5BBRpw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] mmc: sdhci-of-aspeed: Expose phase delay tuning
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        ryan_chen@aspeedtech.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="amx2spjg4vkfvkzb"
+Content-Disposition: inline
+In-Reply-To: <20201123174739.6809-1-ats@offog.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Nov 2020 at 07:30, Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> The Aspeed SD/eMMC controllers feature up to two SDHCIs alongside a
-> a set of "global" configuration registers. The global configuration
-> registers house controller-specific settings that aren't exposed by the
-> SDHCI, one example being a register for phase tuning.
->
-> The phase tuning feature is new in the AST2600 design. It's exposed as a
-> single register in the global register set and controls both the input
-> and output phase adjustment for each slot. As the settings are
-> slot-specific, the values to program are extracted from properties in
-> the SDHCI devicetree nodes.
->
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 
-[...]
+--amx2spjg4vkfvkzb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> +static void
-> +aspeed_sdhci_of_parse_phase(struct device_node *np, const char *prop,
-> +                           struct aspeed_sdhci_phase_param *phase)
-> +{
-> +       int degrees[2] = {0};
-> +       int rc;
-> +
-> +       rc = of_property_read_variable_u32_array(np, prop, degrees, 2, 0);
-> +       phase->set = rc == 2;
-> +       if (phase->set) {
-> +               phase->in_deg = degrees[0];
-> +               phase->out_deg = degrees[1];
-> +       }
-> +}
-> +
-> +static int aspeed_sdhci_of_parse(struct platform_device *pdev,
-> +                                struct aspeed_sdhci *sdhci)
-> +{
-> +       struct device_node *np;
-> +       struct device *dev;
-> +
-> +       if (!sdhci->phase_desc)
-> +               return 0;
-> +
-> +       dev = &pdev->dev;
-> +       np = dev->of_node;
-> +
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-legacy",
-> +                                   &sdhci->phase_param[MMC_TIMING_LEGACY]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs",
-> +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-sd-hs",
-> +                                   &sdhci->phase_param[MMC_TIMING_SD_HS]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr12",
-> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR12]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr25",
-> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR25]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr50",
-> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR50]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr104",
-> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR104]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-ddr50",
-> +                                   &sdhci->phase_param[MMC_TIMING_UHS_DDR50]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-ddr52",
-> +                                   &sdhci->phase_param[MMC_TIMING_MMC_DDR52]);
-> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs200",
-> +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS200]);
-> +
-> +       return 0;
-> +}
+On Mon, Nov 23, 2020 at 05:47:39PM +0000, Adam Sampson wrote:
+> The RX/TX delays for the Ethernet PHY on the Linksprite pcDuino 3 Nano
+> are configured in hardware, using resistors that are populated to pull
+> the RTL8211E's RXDLY/TXDLY pins low or high as needed.
+>=20
+> phy-mode should be set to rgmii-id to reflect this. Previously it was
+> set to rgmii, which used to work but now results in the delays being
+> disabled again as a result of the bugfix in commit bbc4d71d6354 ("net:
+> phy: realtek: fix rtl8211e rx/tx delay config").
+>=20
+> Tested on two pcDuino 3 Nano boards purchased in 2015. Without this fix,
+> Ethernet works unreliably on one board and doesn't work at all on the
+> other.
+>=20
+> Fixes: 061035d456c9 ("ARM: dts: sun7i: Add dts file for pcDuino 3 Nano bo=
+ard")
+> Signed-off-by: Adam Sampson <ats@offog.org>
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Acked-by: Chen-Yu Tsai <wens@csie.org>
 
-If it's not too much to ask, would you mind adding a helper function
-to the mmc core, as to let us avoid open coding? Then we should be
-able to move the sdhci-of-arasan driver to use this as well.
+Applied, thanks
+Maxime
 
-Perhaps the definition of the helper could look something like this:
-int mmc_of_parse_clk_phase(struct mmc_host *host, struct mmc_clk_phase
-*phases) (or something along those lines)
+--amx2spjg4vkfvkzb
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I think the struct mmc_clk_phase could be something that is stored in
-the host specific struct, rather than in the common struct mmc_host
-(to avoid sprinkle it with unnecessary data).
+-----BEGIN PGP SIGNATURE-----
 
-Moreover, we should probably use the device_property_* APIs instead of
-the DT specific of_property_*.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX70XqAAKCRDj7w1vZxhR
+xXFZAQDePWHoGN3twKUypUJIM5ddHcYFdu+hUA08KzRBvzMAgQD/RW8gsj7GbYpp
+s7icpunZaT+dY2RszaHINx0mxNDKeAg=
+=/B08
+-----END PGP SIGNATURE-----
 
-[...]
-
-Kind regards
-Uffe
+--amx2spjg4vkfvkzb--
