@@ -2,94 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D42B2C28E5
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:02:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CF5452C28E0
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:02:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726925AbgKXOAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 09:00:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38592 "EHLO
+        id S1728162AbgKXOAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 09:00:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727123AbgKXOAY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:00:24 -0500
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C559AC0613D6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:24 -0800 (PST)
-Received: by mail-pl1-x642.google.com with SMTP id l11so10747585plt.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:24 -0800 (PST)
+        with ESMTP id S1727368AbgKXOA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:00:28 -0500
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701DAC0617A6
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:28 -0800 (PST)
+Received: by mail-pg1-x542.google.com with SMTP id t37so17471317pga.7
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Wz1ZQP6uCXs7qi6a92QpxjDP7Q4q0QFNKJSTZ9GgIpg=;
-        b=q0CqFe/N2bHDouVmvXJg2CmcpDYcrYnxkM1ztr5yCcahDdIUfjLnGgHKnWG2TDWyAc
-         fdUsGj3V7+C5kDHWEpZwVD8/NnC637Q6qhmAnP4AutWWe/nntQaZc8Za6z4tEopzEzWZ
-         fY6UpUgja45Kra63EqPQnubeVN7Epco+2arAs0HnBcZ0PtuuzSKTCi94Nc0Dvx1cKcFs
-         8Cr9FYkiEy5BlwgShQj1NrDq4Bh6M49pbbjlcDe60oKaxvB0l9HJ58BS+Hp3oo1TPuVm
-         1I2G1UX3JSTXagfikS3p0pE/EFQtK2Y/ulIHiaC0CE2VTtOUxnwIaW2BoR6WhXGpKB7L
-         Yusw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=kyhquv0mMS3CorMj+sWTTBHJOlo8433qYt9M5B8qz54=;
+        b=nv/b25rBpLYNGQibRoKPesDWATBCnnyP2TByNC3yZ6JP5ELx27X6Z2O9tQgSXPC5LW
+         aBziEr7bi8nTIx0FpnQsjG7xK6KolXL4MGL0Mnk3UL9FP6RvJ+GvnE9q5B/j0Zu2VNeH
+         E8YsyeYn766BDVQNlaVrdxRWW0gdWD0mGRiaPsdOdn+3YbuPvjSuTdV+0sAnUEDVz34x
+         d7ngE8VtsyFAJTYSqkmApwFzVl9Orrd6Ml2ZIEEPg2p8uKq0aiywhmWWDZ5sSxU4P5SZ
+         qt0bqzNGiQmN6ZVKUa+jt+UgQUYg2SjDzagI+xHLx09AS8G8oDIqfQT+wwQU8NijCB1V
+         zKug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Wz1ZQP6uCXs7qi6a92QpxjDP7Q4q0QFNKJSTZ9GgIpg=;
-        b=rXjwnzzIlfVFPjyuVFWeyM++bpFvEQ5w8PiX39vfJ6q3q7p08Pk0TGq+dRX/bZ0xPR
-         94InXdddp0a8LDr2m8XTFMQrZoiGAErplw90EwvF4YDCIa+36EQVXRS3qcB77I2mOauz
-         uF18ukhpvziZVnvRX2HnfnMpvWc0Mk4NHN1P1db8zhGdPP6QfCzPIzPtWkBTQzFizbgV
-         l9Zgx4PUy1rUv5MfKPf+Nu2ZVE+AJLgoKAF3g3XRtu1lDuv9Xx3oY1CtDNMdEhpX128f
-         RqauK8jCAbIjlfpRYScR+WnRB+yz2RwWgmw9uclWlquZoPQgyH95eSz0slsGWj33Rw+s
-         3BqA==
-X-Gm-Message-State: AOAM531C4dxZc0/QqtA2Vb1gaLAIMqK73b5ayJCq23dnpE4xfDZ9NioA
-        pZVJqR1MdlwUZaEmMm0qMslT
-X-Google-Smtp-Source: ABdhPJwV2ZxGORwQLjg9yXA/FyKYMbwb05bi9vAdwITsfIqHF0iNGwJo0RYYIzukOPIo7Mq0JBBtlQ==
-X-Received: by 2002:a17:902:8645:b029:da:1a78:1d16 with SMTP id y5-20020a1709028645b02900da1a781d16mr3005273plt.21.1606226423867;
-        Tue, 24 Nov 2020 06:00:23 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=kyhquv0mMS3CorMj+sWTTBHJOlo8433qYt9M5B8qz54=;
+        b=A/kHbCUS2KBnCPNuVVB5lZin2sqy1HALuF0SjfbUVRzt22UcIqTzr6wL3WQUggaXj/
+         vypl3s0/UmXBUEXRzSDJNQuCOLvNt+b5/zqFmG1OXpSSBmRHyWK07MjkmSjQ31eU7qbK
+         Deo8YbZJvrGScxp0+sSEy8cvlg+go6Mmjcth/ralFvBQ/uofnsuxNPlcg8Um/t0I7W9I
+         YMZQQXDM00d7JFzdO7Yix617UmwFHBYHiJZHTlrYaiQpUw0No/W8ymHFbSsleOE6UUov
+         L9lWoBFtgKg9nqWvaquZXXSJCqlaVIbxd0B/iCAA5ZIkpPMrLF+9HL/JYp+LuQeWm+Oe
+         FJqQ==
+X-Gm-Message-State: AOAM533UEErfmXxwMzh0u8waNXvSuijcPf6+uKSlM9vfno4GUanc5CaD
+        QMdBiwzAIQUGGE6il+GpUA2D
+X-Google-Smtp-Source: ABdhPJyYQ1OR/BtW8WS6RWlBbgoz4qzHN2O7woZwUV68M3Dob5D+iIDgMMfcsTsQqjmIPqkV7IdajQ==
+X-Received: by 2002:a17:90a:fe88:: with SMTP id co8mr4939470pjb.76.1606226427992;
+        Tue, 24 Nov 2020 06:00:27 -0800 (PST)
 Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id u3sm14485937pfu.47.2020.11.24.06.00.19
+        by smtp.gmail.com with ESMTPSA id u3sm14485937pfu.47.2020.11.24.06.00.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2020 06:00:23 -0800 (PST)
+        Tue, 24 Nov 2020 06:00:27 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
 Cc:     vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 0/2] Add devicetree support for SDX55 Modem and MTP
-Date:   Tue, 24 Nov 2020 19:30:09 +0530
-Message-Id: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: arm: qcom: Document SDX55 Modem and boards
+Date:   Tue, 24 Nov 2020 19:30:10 +0530
+Message-Id: <20201124140011.134751-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
+References: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+From: Vinod Koul <vkoul@kernel.org>
 
-This series adds devicetree support for Qualcomm SDX55 Modem and MTP
-board. This series functionally depends on Clock support series [1]
-which is under review.
+Document the SDX55 Modem binding and also the boards using it.
 
-With the current devicetree support, the MTP can boot into initramfs
-shell.
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Thanks,
-Mani
-
-[1] https://lore.kernel.org/linux-arm-msm/20201119072714.14460-1-manivannan.sadhasivam@linaro.org/
-
-Manivannan Sadhasivam (1):
-  ARM: dts: qcom: Add SDX55 Modem and MTP board support
-
-Vinod Koul (1):
-  dt-bindings: arm: qcom: Document SDX55 Modem and boards
-
- .../devicetree/bindings/arm/qcom.yaml         |   6 +
- arch/arm/boot/dts/Makefile                    |   3 +-
- arch/arm/boot/dts/qcom-sdx55-mtp.dts          |  27 +++
- arch/arm/boot/dts/qcom-sdx55.dtsi             | 205 ++++++++++++++++++
- 4 files changed, 240 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/qcom-sdx55-mtp.dts
- create mode 100644 arch/arm/boot/dts/qcom-sdx55.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index ad25deba4d86..4362e8f0d495 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -39,6 +39,7 @@ description: |
+         sc7180
+         sdm630
+         sdm660
++        sdx55
+         sdm845
+         sm8250
+ 
+@@ -178,4 +179,9 @@ properties:
+               - qcom,sm8250-mtp
+           - const: qcom,sm8250
+ 
++      - items:
++          - enum:
++              - qcom,sdx55-mtp
++          - const: qcom,sdx55
++
+ ...
 -- 
 2.25.1
 
