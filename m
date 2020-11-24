@@ -2,129 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DFDF12C2979
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:27:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 838B62C298C
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:27:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388913AbgKXOZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 09:25:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42558 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388911AbgKXOZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:25:54 -0500
-Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C184C0617A6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:25:53 -0800 (PST)
-Received: by mail-vk1-xa42.google.com with SMTP id u16so4806648vkb.1
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:25:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pCesLYQPvcEflyfIUi3Jzcp8cmSSQAR6auenD/1XJUc=;
-        b=k0RKmm3+Avs9KAotfN8HlMi+V5Uf/OM7WwUHNctM5x/DwImooVJdkD8YnZTbbnbWUi
-         /UBIy53tGX7ZQHMKlDFWFJF95GBh2IoWCBz1cZIKUPXm1eukhDIv/kqKx++LRaOrRcrL
-         4qfXQkhqHknSpOqq2qXCwwFNuSP33id6GdRaqPhNinbm7TNrI60erMgKozIBGd7WXZ+j
-         Xrz/Frr2n2yUgn0SdpSmv9aH4sqg+YubtQK+M9HdU6h1YwjToRJKiNqZ5j/VWqyI079s
-         l+oUaN9ZwTYKaT4Euj5ZN6riIji3/cQGiiiAUFLnhxpDwGGXen8zRq7UZX/FejD7b6Rx
-         6d3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pCesLYQPvcEflyfIUi3Jzcp8cmSSQAR6auenD/1XJUc=;
-        b=oPk/iQp9Xo1CrD43ZwJKCxzdjmdHSih/fivn8Ke+xSJG1JV4xBckYSMptfZSEp4X8b
-         LQty87RrGPcwpF3vtUIT5ucUjuU79y20zkg5KvoPoszSP5eM/Sf+BbgIxgt66MoU1IrU
-         ZDdbIhjHtsfRmF1XXrjYGAXKTFkPw3Cx84wW21LIYzTl20EdRTr8RSsoYOa8N5Q8vSLK
-         zis4/lVFRAgiILun0v3dq7iZa072J0nEXe7+ktcpqntOAT3Jvm8cPnPGtVBJPbT2hFvo
-         6/tIPyN8SWDZV7MLSSUVfnmleKUt4Z8CHznz46Zm0TToEjx+4L9uzI+add2Tt7/pA4is
-         RJpw==
-X-Gm-Message-State: AOAM532LljCS2ailyLaEvyCuexaetsxb+KLvFhmaJK7K92L+KJnrKchy
-        nSWNQhSnqP6kS9yyNPFl1SLq/87g0zGVyBCys/kHvA==
-X-Google-Smtp-Source: ABdhPJzGbprwOOPsKb4waIjuvGsDDrtzIVrKJDs5hFpHm85kEr+oGt/ZWkeOKdeHSbO3ywPEKgrJU5kHBVxR8SJV9YU=
-X-Received: by 2002:a1f:9889:: with SMTP id a131mr3881342vke.15.1606227952297;
- Tue, 24 Nov 2020 06:25:52 -0800 (PST)
+        id S2388833AbgKXO1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 09:27:00 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:53527 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2388132AbgKXO07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Nov 2020 09:26:59 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id B5FB95C0135;
+        Tue, 24 Nov 2020 09:26:58 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Tue, 24 Nov 2020 09:26:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=JTRY2CpqUesYkJOvp9c76LrBGIw
+        tR2cAMy3w5x4i/2g=; b=KLWljQGMqHPYwjCbJpwWZNNB8FsNZa036Mh6yeJ02Ur
+        Afwp5iMw131+Z0OgD9BC2dXG0F4X7iENdYJTQyLbeKUGdKtU/MEOgs8BIZsjm2pH
+        nwODMSGnUg+/Mbnn/5c6sDil6MDViOPm6fYc7Ui5PJDd1ab1zomU5IMFJ/JkPu5H
+        ncrGbUczOAg72fmn34oRA+lkZjEzsoLvxr7JwyDu7S3YBc/gH3vsvBSgGy+bkOI2
+        cQu9Y3hwCG1C4zjcSY/PFOxgMOYufPzQQerpQhT+xj8+nlZ6Uuz65gXJrLmlw3VG
+        0HVQoWIG/LN3kxwT20p4j+G28Jdpxw7do/ixffnjtpQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=JTRY2C
+        pqUesYkJOvp9c76LrBGIwtR2cAMy3w5x4i/2g=; b=Zr7o/o53Mf8BZ5sDcu5jk6
+        zl8DI3lyJeGA8jvEAmYSpyseOBZlwzixddVgzYmDhBeJb5XCMpqbig/8xLNooIeN
+        SGkVLjtlGHNiHNW/I2c4KLkdY1U+Y8TZfTDnzAUIKHwN6JLAuTt0qhuXj64AIuSB
+        gK45FfrflfZOy4AAgvUud/J9JYmqWJjawak0IhCoweQVXTMbJRLrMxPg6b81WV38
+        95CfXxcLD4PurY0EnkSn461RiMwizRQuZeM6Snh8TgTt+vQOl26Bw9+sSKauClPK
+        4BeLNaFWwtRCa5vc06lqKSNuQtsUiswC6/+Syv4/246s1CyApNhD4rggWfiGc65w
+        ==
+X-ME-Sender: <xms:MRi9X-T9CihUHLuc2xKOdb6xCsvRWVacjZJ39elDkNLZHXQCfrKLag>
+    <xme:MRi9XzwO7_p35u5_y3E0aHFdW5T-xlpfLy4d3rqbCGPg55xXfghJzKg_4F9Vz_Pdk
+    t4ebdg_-bn2CTrdL-s>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegkedgieehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:MRi9X71PQ72gLNlm40R-2wcRHyl2aPKLFrOkaJ2xhaLS-l6WJUlBCg>
+    <xmx:MRi9X6AtbLwQBjWs1n8BnBA3FVFVQwJ0HtS3uuywao7GSyAc3NQFBg>
+    <xmx:MRi9X3jx0HZsml1nnkUm_wTTqylsR5HbQLLhOoW_LlvMMQIe5Mliag>
+    <xmx:Mhi9X0sF13YplVvCIte2zfoT2-sGm1QOoMyqRJTwQbOaiQUpaF0epw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 86B5F3064AAE;
+        Tue, 24 Nov 2020 09:26:57 -0500 (EST)
+Date:   Tue, 24 Nov 2020 15:26:56 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Michael Klein <michael@fossekall.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add
+ poweroff node to DT
+Message-ID: <20201124142656.wz6ipwa2xayn433x@gilmour>
+References: <20201124131933.2l2go6z6ltar5fpa@gilmour>
+ <20201124133633.672259-1-michael@fossekall.de>
 MIME-Version: 1.0
-References: <cover.1605823502.git.cristian.ciocaltea@gmail.com> <0556399f1ce8b1255d1f7961f04fcb95c96ab928.1605823502.git.cristian.ciocaltea@gmail.com>
-In-Reply-To: <0556399f1ce8b1255d1f7961f04fcb95c96ab928.1605823502.git.cristian.ciocaltea@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 24 Nov 2020 15:25:15 +0100
-Message-ID: <CAPDyKFrBaiqmHbx0MKTv0uusDdLeeAwQuN8NMiVKgaAQBK0x1w@mail.gmail.com>
-Subject: Re: [PATCH v2 09/18] arm: dts: owl-s500: Add MMC support
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-actions@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="vp5zfmwxtuhchxup"
+Content-Disposition: inline
+In-Reply-To: <20201124133633.672259-1-michael@fossekall.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Nov 2020 at 00:56, Cristian Ciocaltea
-<cristian.ciocaltea@gmail.com> wrote:
->
-> Add MMC controller nodes for Actions Semi S500 SoC, in order to
-> facilitate access to SD/EMMC/SDIO cards.
->
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+--vp5zfmwxtuhchxup
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Kind regards
-Uffe
-
-
+On Tue, Nov 24, 2020 at 02:36:33PM +0100, Michael Klein wrote:
+> Add poweroff node to allow the board to power itself off after shutdown
+> by disabling the SYSTEM and CPUX regulators (U5 resp. U6).  The RST
+> button can be used to restart the board.
+>=20
+> Signed-off-by: Michael Klein <michael@fossekall.de>
 > ---
->  arch/arm/boot/dts/owl-s500.dtsi | 33 +++++++++++++++++++++++++++++++++
->  1 file changed, 33 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/owl-s500.dtsi b/arch/arm/boot/dts/owl-s500.dtsi
-> index b16172615db0..7af7c9e1119d 100644
-> --- a/arch/arm/boot/dts/owl-s500.dtsi
-> +++ b/arch/arm/boot/dts/owl-s500.dtsi
-> @@ -241,5 +241,38 @@ dma: dma-controller@b0260000 {
->                         clocks = <&cmu CLK_DMAC>;
->                         power-domains = <&sps S500_PD_DMA>;
->                 };
+>  arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts | 5 +++++
+>  1 file changed, 5 insertions(+)
+
+You should have a summary of the changes between versions here
+
+> diff --git a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts b/arch/=
+arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> index 4c6704e4c57e..ea2fa48a1647 100644
+> --- a/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> +++ b/arch/arm/boot/dts/sun8i-h2-plus-bananapi-m2-zero.dts
+> @@ -46,6 +46,11 @@ sw4 {
+>  		};
+>  	};
+> =20
+> +	poweroff {
+> +		compatible =3D "gpio-poweroff";
+> +		gpios =3D <&r_pio 0 8 GPIO_ACTIVE_LOW>; /* PL8 */
+> +	};
 > +
-> +               mmc0: mmc@b0230000 {
-> +                       compatible = "actions,s500-mmc", "actions,owl-mmc";
-> +                       reg = <0xb0230000 0x38>;
-> +                       interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cmu CLK_SD0>;
-> +                       resets = <&cmu RESET_SD0>;
-> +                       dmas = <&dma 2>;
-> +                       dma-names = "mmc";
-> +                       status = "disabled";
-> +               };
-> +
-> +               mmc1: mmc@b0234000 {
-> +                       compatible = "actions,s500-mmc", "actions,owl-mmc";
-> +                       reg = <0xb0234000 0x38>;
-> +                       interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cmu CLK_SD1>;
-> +                       resets = <&cmu RESET_SD1>;
-> +                       dmas = <&dma 3>;
-> +                       dma-names = "mmc";
-> +                       status = "disabled";
-> +               };
-> +
-> +               mmc2: mmc@b0238000 {
-> +                       compatible = "actions,s500-mmc", "actions,owl-mmc";
-> +                       reg = <0xb0238000 0x38>;
-> +                       interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cmu CLK_SD2>;
-> +                       resets = <&cmu RESET_SD2>;
-> +                       dmas = <&dma 4>;
-> +                       dma-names = "mmc";
-> +                       status = "disabled";
-> +               };
->         };
->  };
-> --
-> 2.29.2
->
+
+Like I said in the previous version, this should really be modelled as a
+regulator instead of just a GPIO
+
+Maxime
+
+--vp5zfmwxtuhchxup
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX70YMAAKCRDj7w1vZxhR
+xXekAQDNMhodfkVHL9ngSP7kjTeSxw/MJwsCjsAhqiLZm0dHkQD9E90d8y8nOnaS
+FERvFANkkFNagtK38l/l1bZeYVt6NQU=
+=y9Dc
+-----END PGP SIGNATURE-----
+
+--vp5zfmwxtuhchxup--
