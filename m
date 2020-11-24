@@ -2,114 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9DE2C2A7C
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:56:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D1B62C2A8A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389299AbgKXOxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 09:53:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46924 "EHLO
+        id S2389325AbgKXO51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 09:57:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389237AbgKXOxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:53:45 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13F0CC0613D6;
-        Tue, 24 Nov 2020 06:53:45 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id x13so2200913wmj.1;
-        Tue, 24 Nov 2020 06:53:45 -0800 (PST)
+        with ESMTP id S2389296AbgKXO51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:57:27 -0500
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCF8C061A4D
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:57:27 -0800 (PST)
+Received: by mail-oi1-x243.google.com with SMTP id a130so15960892oif.7
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:57:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=U85Rj/DRPt7jatgyQvBV2N/elTeJi8YB+AB1/+8bH98=;
-        b=BsWfmB+fF8m5306hgWRxHXjKleQcreC92v8fefHpo9f6djstFLrwU6ffb7ajMN1JDI
-         NS+DowqTq3C1G4VABHtnEAPRhTFmdA7s8fty4kY7pauWFqgI7nFnbjD7dtjY3Rik2SIN
-         xs64HE+hVe/Khp4PzxeWMg8F2HRM38WXkdpX447gmp9HElsK68hB+ly7cS6fIilzHE7Q
-         TLAmLWSPuaH3SHAAJxREjliPH6Poeu3/NUGnk9z/dZCWJprpYQ2kasXgxfbxtv07LNdL
-         W4SwiSMPuomApTprge70sAjvjmKF8fGH6Ti7jEeXOQCTJC6TCDt19sHS5oWpku0dNIJ+
-         pshA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sXzXgvLp4s+46JRUtzzV0/6Df/FZIX/XlFhg2++CJ7g=;
+        b=rvgO0ShYj3OMSlEin7VGkUn0IM+58ObeVh/TdWxzWTdOvl/seTdhKJCeGJb2aVxEOP
+         4mveIzPpcPBk+2ATDUftjhUVhK0DZlvF6jiSLo5Q9pbO10swOdOH8pxUsooaQpuIjfm6
+         w9PYIVZ70hsp6bcw23zxkMx2FRuv1cynkbn9co/6PvObOa4WVwO/ih8uP8svElI8NpWZ
+         IwVQ83vdU8w8SdOR/nbTfYQWOMPQf1BghyrUxELA1ObvUtzZalIkV+9d0D5tazrekRxY
+         u4eGRu3KesPfVPY+82kT9W/Jti1rsm4Xanmen3fBhkZdbvgSSFyD9E825RQroHApWEKy
+         vxEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=U85Rj/DRPt7jatgyQvBV2N/elTeJi8YB+AB1/+8bH98=;
-        b=QUGPNJTHfjz3JdAGqcszXRoiEjzFwVOC+d0Hcm5LDSH9FFPmXRIZ0bA9OpHtgfbqCy
-         a9gOwcUflXV2IcOyCvjbNwE43hLSv1flPudAmG2qPY53/tuBBC2tMrBB217FNQcqocDA
-         hKg9RWtIrzes+x8tuDq8hvwv2ucMEzWJ1Gv92HMlajbNBLjQR5bIBqQ55ZazrYpCuMWf
-         CE9wU3IvtiDr5keBKxPdDyeeQnb+mOIxURwEWfA8w5eRpieS7HubHfVqY+hlkziiYH9S
-         rDSF/zlByGu763d7cK4OjGONB3kcg//USex9PIizr/ySSZvu6HIOlPfHHEcSOLoo6MpU
-         HT7A==
-X-Gm-Message-State: AOAM530oRqy6u2cE7lW4R/oLEuiqm219zKQ95yxiEjjC6ggEFUi0iyeg
-        9R6kstrAdIairkjGoJzurNw=
-X-Google-Smtp-Source: ABdhPJwEb0GTsAOC546Ms4Bn278hN/6nwa844FnwPV9Yu6zqQzYMCmJ4XtRlCyJlF/MlNDNwkbSqOw==
-X-Received: by 2002:a1c:3d05:: with SMTP id k5mr5042689wma.151.1606229623776;
-        Tue, 24 Nov 2020 06:53:43 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id u23sm5749930wmc.32.2020.11.24.06.53.41
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sXzXgvLp4s+46JRUtzzV0/6Df/FZIX/XlFhg2++CJ7g=;
+        b=FVQ8fmM+rApd8qedMUCMoe+oGLnGmdGN1zCu2RAye0fVlTlicsODXfMCRZ5dUW4+AK
+         Oz4BZosBEQjNQYBrUvWRrrmHT6zRdaoZOz9gxvJsYewvfh4wewEv3qXGdZCUctO2IsPO
+         eBmoitUdeVQUkSEYsU+pI8ORUSv87PCjkpZYyxTjwPvFlGS9axE2rOdv/CryQyS3Ie/f
+         utapnSWt6zD6TLmoqYr1HJ5TMralSAXYyAVsSkAdWIboQKAvOtC8rG+3O8Sg+uPCsHOj
+         QJKVNgpq+AcH0nqfTjsrbUZNBTQBIIQ5Xh63tkWy/ckaakX1O9Q7q62dfaBghKNUbd6w
+         zQug==
+X-Gm-Message-State: AOAM532IozRkkwRDPx394WRiuMDX3UBcYHz1XQcP2vOKGL42gDGeIFb1
+        1yYxglgmin5K8ARoFBcRZo8j4A==
+X-Google-Smtp-Source: ABdhPJxa3NAVx1Cn2t+G3dKNxlpEbRiazZDjFN23ymWT/MGwtBTKGNQYqdxTJmVghDox3My4/lknJQ==
+X-Received: by 2002:aca:c3c4:: with SMTP id t187mr2783806oif.148.1606229846311;
+        Tue, 24 Nov 2020 06:57:26 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id k13sm2227901otl.72.2020.11.24.06.57.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2020 06:53:42 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: add rtc aliases to meson-khadas-vim3.dtsi
-Date:   Tue, 24 Nov 2020 14:53:38 +0000
-Message-Id: <20201124145338.17137-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        Tue, 24 Nov 2020 06:57:25 -0800 (PST)
+Date:   Tue, 24 Nov 2020 08:57:23 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Document SDX55 Modem and
+ boards
+Message-ID: <20201124145723.GJ95182@builder.lan>
+References: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
+ <20201124140011.134751-2-manivannan.sadhasivam@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201124140011.134751-2-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tweak the node name to make it aliasable, then add aliases for the
-on-board RTC chip and meson-vrtc timer so they probe as rtc0 and
-rtc1 respectively.
+On Tue 24 Nov 08:00 CST 2020, Manivannan Sadhasivam wrote:
 
-before:
+> From: Vinod Koul <vkoul@kernel.org>
+> 
+> Document the SDX55 Modem binding and also the boards using it.
 
-VIM3:~ # dmesg | grep rtc
-[    3.622530] meson-vrtc ff8000a8.rtc: registered as rtc0
-[    3.622574] meson-vrtc ff8000a8.rtc: setting system clock to 1970-01-01T00:00:03 UTC (3)
-[    3.646936] rtc-hym8563 0-0051: no valid clock/calendar values available
-[    3.647125] rtc-hym8563 0-0051: registered as rtc1
-[    3.852382] rtc-hym8563 0-0051: no valid clock/calendar values available
+It's not really the "SDX55 Modem", it's the "SDX55 platform". That way
+things become less confusing when we actually add the modem on SDX55
+later.
 
-after:
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index ad25deba4d86..4362e8f0d495 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -39,6 +39,7 @@ description: |
+>          sc7180
+>          sdm630
+>          sdm660
+> +        sdx55
 
-VIM3:~ # dmesg | grep rtc
-[    3.583735] meson-vrtc ff8000a8.rtc: registered as rtc1
-[    3.633888] rtc-hym8563 0-0051: no valid clock/calendar values available
-[    3.634120] rtc-hym8563 0-0051: registered as rtc0
-[    3.635250] rtc-hym8563 0-0051: no valid clock/calendar values available
-[    3.635267] rtc-hym8563 0-0051: hctosys: unable to read the hardware clock
-[    3.852632] rtc-hym8563 0-0051: no valid clock/calendar values available
+'x' > 'm', so this should go one line down.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Regards,
+Bjorn
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-index 69e6c03a787c..8f8656262ae7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-@@ -14,6 +14,8 @@
- 	aliases {
- 		serial0 = &uart_AO;
- 		ethernet0 = &ethmac;
-+		rtc0 = &rtc;
-+		rtc1 = &vrtc;
- 	};
- 
- 	chosen {
-@@ -333,7 +335,7 @@
- 		#gpio-cells = <2>;
- 	};
- 
--	rtc@51 {
-+	rtc: rtc@51 {
- 		compatible = "haoyu,hym8563";
- 		reg = <0x51>;
- 		#clock-cells = <0>;
--- 
-2.17.1
-
+>          sdm845
+>          sm8250
+>  
+> @@ -178,4 +179,9 @@ properties:
+>                - qcom,sm8250-mtp
+>            - const: qcom,sm8250
+>  
+> +      - items:
+> +          - enum:
+> +              - qcom,sdx55-mtp
+> +          - const: qcom,sdx55
+> +
+>  ...
+> -- 
+> 2.25.1
+> 
