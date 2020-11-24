@@ -2,119 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC6592C1FF1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 09:31:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B9632C200E
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 09:33:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730511AbgKXIaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 03:30:04 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:58166 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730433AbgKXIaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 03:30:04 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AO8Tgcs032629;
-        Tue, 24 Nov 2020 02:29:42 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606206582;
-        bh=0TsVbr1BWiaJJR7/cw85lOA9UC5Db6/HF0AjUs7Ri9k=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=dwxkIzaDDnvHCoKhCMm7N9rFoLJmyWWCHXGlVL9aWKQMp1bvliGB+2DTE5yrCubxZ
-         +YA7otJuXfPP1MZB5b3xisrPki/DGQiNd3RUmqdYJIypsGzNYtIfmoVVUcE8GLhh8R
-         Azow8I6dD6axe9IljExp0LZCn+1F4tRkXtSm531U=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AO8Tfag102466
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 24 Nov 2020 02:29:41 -0600
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 24
- Nov 2020 02:29:41 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 24 Nov 2020 02:29:41 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AO8TbNZ049526;
-        Tue, 24 Nov 2020 02:29:38 -0600
-Subject: Re: [PATCH v2 00/17] Refactor fw_devlink to significantly improve
- boot time
-To:     Saravana Kannan <saravanak@google.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Len Brown <lenb@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-CC:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        <kernel-team@android.com>, <linux-acpi@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-efi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20201121020232.908850-1-saravanak@google.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
-Date:   Tue, 24 Nov 2020 10:29:37 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1730593AbgKXIcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 03:32:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43992 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730476AbgKXIcu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 03:32:50 -0500
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F2E3C0613CF;
+        Tue, 24 Nov 2020 00:32:50 -0800 (PST)
+Received: by mail-ot1-x342.google.com with SMTP id y24so13053979otk.3;
+        Tue, 24 Nov 2020 00:32:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2Q2PJe5i+0yyqNpuz8z7kTzoUZGPUVSZ0K1hVFCIENc=;
+        b=EJEK4my6XgGJ/dD2WIbE+x9yKt34U2S0NfxAtf5UDkh51GwKec1scrVlUnkhzirfpj
+         ACu7SVoyXDQ3dn20K1VkpyaZKTiy4KM7d/rgkjoXnlhXcokGAHw0Te0SbpYyWJ1gk4xP
+         pbfS9bVFHR6ywMivsTXNTXKwimCbOTWnR6PELgCQlrVA7fVXMLUU22SBxBFwxOIGSE7H
+         f1AJUIhUs0ENqLK5yEeNQ3WIrEG2JvAclEr5sFeqKhVN2BKnc8pxyvb1qawpYvBhoKaM
+         QcZ1GS9W/IsKJGOBBDbZDHIdqQWwks9p35WVKUxD5lJSr56hJQ2nRIeqsXbVnT9uzxl/
+         wwDg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2Q2PJe5i+0yyqNpuz8z7kTzoUZGPUVSZ0K1hVFCIENc=;
+        b=gddak34R2v4AGETcF4KL1/PVRmJYt1lYSrr50cRoniWywTHGaRQMKuDe3+gtozSfu9
+         97Jy/2KONs23IlB1r7kHWSju2P57voxytKdTBahVvG+6790JIGFcpHaceFefc3lEDW0h
+         iSaKc3WAK+bi8nPjwiJ4wrptVKAjUU53nLrnhslpu6LDbfcwjzld+HVe2HZNtWpUsD0Q
+         6tbdXFPzhwdVH40Kk12KAtSInZf3Hpj5lJD8CbD/woU0z2lsmA6F157L6uspavaL6x+t
+         BH1paaLoqZHyVR1F5puMWs2b4m+yvcueO0bYFpEytUikYmU3tNjR2r4CshBLOCuyr6mF
+         SrZA==
+X-Gm-Message-State: AOAM533yDrW6WbwOOg3YKc0HdJlnVTMMgOG/RggR0hWOOPDvT4cOEJCr
+        BpWjJV+5aViiuhJPVoOv7+vcu5rWZmtUjKeyKog=
+X-Google-Smtp-Source: ABdhPJxV3Rl2vkNvuvxyPEAKWiZ7f5Gc/SAbQGhC5bCF06tKppvMDBbCfOiBqV/xmGcTl3wCltcJ1C9xb6fCvvAH6bo=
+X-Received: by 2002:a9d:6c99:: with SMTP id c25mr2645011otr.327.1606206769728;
+ Tue, 24 Nov 2020 00:32:49 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201121020232.908850-1-saravanak@google.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1605696462-391-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1605696462-391-3-git-send-email-gene.chen.richtek@gmail.com>
+ <20201118213712.GA22371@amd> <6068b1e3-a4c8-6c7d-d33d-f2238e905e43@gmail.com>
+ <20201119215721.GA5337@amd> <0700c32d-643b-fedb-06f0-21547b18205d@gmail.com>
+ <CAE+NS363BpytNGZzfZHLa7KLKL8gjGj14oNvRi3oaH9KT79REg@mail.gmail.com>
+ <25fef924-634d-7f60-7e1d-0290d1701fab@gmail.com> <CAE+NS34vDejgf8Ydfer_rY25qaG-DQQ5H-9-Er+Shz0=UF-EzA@mail.gmail.com>
+In-Reply-To: <CAE+NS34vDejgf8Ydfer_rY25qaG-DQQ5H-9-Er+Shz0=UF-EzA@mail.gmail.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Tue, 24 Nov 2020 16:32:40 +0800
+Message-ID: <CAE+NS34-oU3FnfBsHD3W+z-4QNr3LgnEjXhDbNrVf+KJg_bDEw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/5] dt-bindings: leds: Add LED_COLOR_ID_MOONLIGHT definitions
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Fix Typo.
 
-On 21/11/2020 04:02, Saravana Kannan wrote:
-> The current implementation of fw_devlink is very inefficient because it
-> tries to get away without creating fwnode links in the name of saving
-> memory usage. Past attempts to optimize runtime at the cost of memory
-> usage were blocked with request for data showing that the optimization
-> made significant improvement for real world scenarios.
-> 
-> We have those scenarios now. There have been several reports of boot
-> time increase in the order of seconds in this thread [1]. Several OEMs
-> and SoC manufacturers have also privately reported significant
-> (350-400ms) increase in boot time due to all the parsing done by
-> fw_devlink.
-> 
-> So this patch series refactors fw_devlink to be more efficient. The key
-> difference now is the addition of support for fwnode links -- just a few
-> simple APIs. This also allows most of the code to be moved out of
-> firmware specific (DT mostly) code into driver core.
-> 
-> This brings the following benefits:
-> - Instead of parsing the device tree multiple times (complexity was
->   close to O(N^3) where N in the number of properties) during bootup,
->   fw_devlink parses each fwnode node/property only once and creates
->   fwnode links. The rest of the fw_devlink code then just looks at these
->   fwnode links to do rest of the work.
-> 
-> - Makes it much easier to debug probe issue due to fw_devlink in the
->   future. fw_devlink=on blocks the probing of devices if they depend on
->   a device that hasn't been added yet. With this refactor, it'll be very
->   easy to tell what that device is because we now have a reference to
->   the fwnode of the device.
-> 
-> - Much easier to add fw_devlink support to ACPI and other firmware
->   types. A refactor to move the common bits from DT specific code to
->   driver core was in my TODO list as a prerequisite to adding ACPI
->   support to fw_devlink. This series gets that done.
-> 
-> Laurent and Grygorii tested the v1 series and they saw boot time
-> improvment of about 12 seconds and 3 seconds, respectively.
+Gene Chen <gene.chen.richtek@gmail.com> =E6=96=BC 2020=E5=B9=B411=E6=9C=882=
+4=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:33=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+>
+> Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B411=
+=E6=9C=8824=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=884:52=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> >
+> > On 11/23/20 4:00 AM, Gene Chen wrote:
+> > > Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B4=
+11=E6=9C=8820=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=886:26=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+> > >>
+> > >> On 11/19/20 10:57 PM, Pavel Machek wrote:
+> > >>> On Thu 2020-11-19 22:03:14, Jacek Anaszewski wrote:
+> > >>>> Hi Pavel, Gene,
+> > >>>>
+> > >>>> On 11/18/20 10:37 PM, Pavel Machek wrote:
+> > >>>>> Hi!
+> > >>>>>
+> > >>>>>> From: Gene Chen <gene_chen@richtek.com>
+> > >>>>>>
+> > >>>>>> Add LED_COLOR_ID_MOONLIGHT definitions
+> > >>>>>
+> > >>>>> Why is moonlight a color? Camera flashes are usually white, no?
+> > >>>>>
+> > >>>>> At least it needs a comment...
+> > >>>>
+> > >>>> That's my fault, In fact I should have asked about adding
+> > >>>> LED_FUNCTION_MOONLIGHT, it was evidently too late for me that even=
+ing...
+> > >>>
+> > >>> Aha, that makes more sense.
+> > >>>
+> > >>> But please let's call it "torch" if we do that, as that is already
+> > >>> used in kernel sources... and probably in the interface, too:
+> > >>
+> > >> I'd say that torch is something different that moonlight,
+> > >> but we would need more input from Gene to learn more about
+> > >> the nature of light emitted by ML LED on his device.
+> > >>
+> > >> Please note that torch is usually meant as the other mode of
+> > >> flash LED (sometimes it is called "movie mode"), which is already
+> > >> handled by brightness file of LED class flash device (i.e. its LED c=
+lass
+> > >> subset), and which also maps to v4l2-flash TORCH mode.
+> > >>
+> > >
+> > > It's used to front camera fill light.
+> > > More brightness than screen backlight, and more soft light than flash=
+.
+> > > I think LED_ID_COLOR_WHITE is okay.
+> >
+> > So why in v6 you assigned LED_COLOR_ID_AMBER to it?
+> >
 
-Tested v2 on OMAP4 SDP. With my particular config, boot time to starting init went from 18.5 seconds
-to 12.5 seconds.
+we suppose Moonlight can be white or amber.
 
- Tomi
-
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> > Regardless of that, now we're talking about LED function - you chose
+> > LED_FUNCTION_INDICATOR for it, but inferring from your above descriptio=
+n
+> > - it certainly doesn't fit here.
+> >
+> > Also register names, containing part "ML" indicate that this LED's
+> > intended function is moonlinght, which your description somehow
+> > corroborates.
+> >
+> > Moonlight LEDs become ubiquitous nowadays so sooner or later we will
+> > need to add this function anyway [0].
+> >
+> > [0]
+> > https://landscapelightingoakville.com/what-is-moon-lighting-and-why-doe=
+s-it-remain-so-popular/
+> >
+>
+> According to reference,
+> "When you are trying to imitate moonlight you need to use low voltage,
+> softer lighting. You don=E2=80=99t want something that=E2=80=99s too brig=
+ht"
+> which is focus on brightness instead of color.
+>
+> So we suppose Moonlight can be white or amber.
+>
+> Should I add LED_FUNCTION_MOONLIGHT and set LED_COLOR_ID_WHITE?
+>
+> > --
+> > Best regards,
+> > Jacek Anaszewski
