@@ -2,93 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB1BD2C3022
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 19:46:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7C12C3035
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 19:52:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390949AbgKXSoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 13:44:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54604 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390880AbgKXSoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 13:44:18 -0500
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EF2FC0617A6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 10:44:18 -0800 (PST)
-Received: by mail-ot1-x342.google.com with SMTP id 11so7786722oty.9
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 10:44:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=z50zrczk/HXT3wMf0LhtTgKjujoLdfzrjXHxy6jadvU=;
-        b=BUsry8dXUyq6qvH12+S8uwdIvLqe47yNySt4CQBM/hhHB87Oyc9x7pntTUnLGORUqr
-         NNSsIGUhtiOxgn4o6pQqsfQpM05xC7XvoCOhW4QbJb6IVm8ZPHeh2mepfyScK8CS3Baw
-         dv/+IPESAIh2X71+UL5+oSEdZFxaBMrDtH6hs6W+HOCygkxEdoThZJ7LFg7+ucKkC6Dh
-         7bry1X8B275f9C/S1Y/7qrRnGJrU2JL/K6eopL6Qu9PXt+lPuiyoSoeeZq6cpTdlF081
-         P4T4aFBfXxbb4IXGoCzk6/lUSsYHs79NtnJ3N41yDXmW0k4lFCMedgofKqhd9ToLT0h+
-         JSKw==
+        id S2404289AbgKXSvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 13:51:31 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:33692 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729281AbgKXSvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 13:51:31 -0500
+Received: by mail-oi1-f196.google.com with SMTP id k26so24957356oiw.0;
+        Tue, 24 Nov 2020 10:51:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=z50zrczk/HXT3wMf0LhtTgKjujoLdfzrjXHxy6jadvU=;
-        b=f4khxbEZRoLX5gxPR07l8sbqXePPwdFC4lyMk2hMSwzZWJWMRIopJl+aF/9vgUr9r8
-         aus8ikBOmtVa5jTeYRNvIZoQh1p2L1kgbBCDCHjB3rfPkpJ/x9xFrxsjBpVgURbBJuNR
-         UBfJZ99qYXb17vTTcPAJ+tgYaYeEoIJCoJXdGWk/oQ2mYOf7N6L0ptGUyjakwxZV9H4m
-         gMeJbQpleHI7ZzFCk8uhnYFZDms1G/QkU3a8bIggJQAscH+kQjINVO7PiB0ZwxlJzAJo
-         N9D5Eu+YnWxkfniYtWCHp7tOum1cRitScBfKTiCC+GL/0McFE7DDwE33HrSeLV3uGiuS
-         rubg==
-X-Gm-Message-State: AOAM533LAmdKvftS9x7qX1SFlqEwDz3atNvu/RIUOIctRPxA3nY6KfN7
-        ejTT6UanQVv6DwzcXpvL8CKieg==
-X-Google-Smtp-Source: ABdhPJzuUNL2hALito6AJog35PnicqoPfOTu0soQCA+H2qKVW4zlwU8MRsrtI1pCWL1vVO8keKN8nQ==
-X-Received: by 2002:a9d:6641:: with SMTP id q1mr4553514otm.190.1606243456575;
-        Tue, 24 Nov 2020 10:44:16 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id t25sm9024376otj.13.2020.11.24.10.44.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2020 10:44:15 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Steev Klimaszewski <steev@kali.org>,
-        Shawn Guo <shawn.guo@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: c630: Re-enable apps_smmu
-Date:   Tue, 24 Nov 2020 12:44:14 -0600
-Message-Id: <20201124184414.380796-1-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.29.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jLgRkvNZDgzifodaE8EMus5xcvCzfMMH9uwC3wIOBb4=;
+        b=QrVl7PhG/o2jec5xuyAg+Nz1d7Fsg27SYpXsvNj+t/1KU6aJ7Foghb87HkTg3k+S+8
+         IOSZTxnNC2TqxiPsGeB7TOaymnWLmjeZ5y7mbx4JTxrU4UIMcWDdtHeGjJ6xMJuVkLF9
+         tMC/mtSn2ApbSQHxHly7N7S8noy4g7j+KVWJJahl/aN72fwK1Vagoq9d7lQxM1SrewST
+         sMNEhrAkgeXp8SUGUvGyeU/h+uSb166Z6aZufr3o4vYWKmq4vXBtp8ONoZW6dek0e+ci
+         j6CnrfTeenNOfqQQ33g2e8v7jk+GX4FKgm7/JTLqo91T0LAH0MEfUK3wHVx2TTSsDRmS
+         L09Q==
+X-Gm-Message-State: AOAM532nf8IRlCH/TUq62XFJpzf98v2XVOEafzog/QZuu7AyqdpMd6s6
+        NBdWKQ/oCY85unaL721HOSpb88RVkZj+0CL8au4=
+X-Google-Smtp-Source: ABdhPJzJTHN0EZ9x5LkNWapVCxjkQtojq63K19GvbXFCpjz3NM8fGWLVYQO01JPHQgAmeFVa5xCtYTNE7u/4H+kUkl4=
+X-Received: by 2002:aca:c3c4:: with SMTP id t187mr3522373oif.148.1606243890137;
+ Tue, 24 Nov 2020 10:51:30 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201124043728.199852-1-damien.lemoal@wdc.com> <20201124043728.199852-22-damien.lemoal@wdc.com>
+In-Reply-To: <20201124043728.199852-22-damien.lemoal@wdc.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 24 Nov 2020 19:51:18 +0100
+Message-ID: <CAMuHMdWZX4_Y+4OdEQPJwqHd68OA4p0uw7KQfjVwgHgk0Q=brA@mail.gmail.com>
+Subject: Re: [PATCH v2 21/21] riscv: Add Canaan Kendryte K210 SD card defconfig
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Re-enable the apps_smmu now that the arm-smmu driver supports stream
-mapping handoff from firmware.
+Hi Damien,
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 5 -----
- 1 file changed, 5 deletions(-)
+On Tue, Nov 24, 2020 at 5:39 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
+> The nommu_k210_defconfig default configuration allows booting a K210
+> SoC based board using an embedded intramfs cpio file. Modifying this
+> configuration to enable support for the board SD card is not
+> trivial for all users. To help beginners getting started with this
+> board, add the nommu_k210_sdcard_defconfig default configuration file
+> to set all configuration options necessary to use the board mmc-spi
+> sd card for the root file system. This configuration adds support for
+> the block layer, the mmc-spi driver and modifies the boot options to
+> specify the rootfs device as mmcblk0p1 (first partition of the sd card
+> block device). The ext2 file system is selected by default to encourage
+> its use as that results in only about 4KB added to the kernel image
+> size. The default device tree compiled in is unchanged and must be
+> replaced by the user with the device tree suitable for the board being
+> used (k210_maix_bit, k210_maix_dock, k210_maix_go, k210_maixduino or
+> k210_kd233).
+>
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index d03ca3190746..f5b98845fa90 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -232,11 +232,6 @@ vreg_lvs2a_1p8: lvs2 {
- 	};
- };
- 
--&apps_smmu {
--	/* TODO: Figure out how to survive booting with this enabled */
--	status = "disabled";
--};
--
- &cdsp_pas {
- 	firmware-name = "qcom/LENOVO/81JL/qccdsp850.mbn";
- 	status = "okay";
+While ext2 is definitely cheaper than ext4 (the latter takes almost +200
+KiB, ugh), ext2 does not have journaling.
+Hence your root file system will be unclean all the time, unless you always
+manage to unmount it before reboot.  And your default buildroot
+does not have e2fsck.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.29.2
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
