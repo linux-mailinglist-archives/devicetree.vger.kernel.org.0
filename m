@@ -2,199 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86B062C2059
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 09:49:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6336A2C2071
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 09:54:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730666AbgKXIrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 03:47:48 -0500
-Received: from mail-eopbgr140053.outbound.protection.outlook.com ([40.107.14.53]:6062
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726325AbgKXIrs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Nov 2020 03:47:48 -0500
+        id S1730908AbgKXIxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 03:53:31 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:63988 "EHLO
+        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730519AbgKXIxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 03:53:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1606208175; x=1637744175;
+  h=from:to:cc:subject:date:message-id:references:
+   content-transfer-encoding:mime-version;
+  bh=eB1HFeqRNnBzzC3aP4mGPfRsz4C9/ZWlYG6EkqjI7jg=;
+  b=GdiuakOeqm0Bmcc4PaGA2Il2PAKSoYA0EZfOiG0h/FTzhsErclMfDsvp
+   1eBoGcWOr9Qg04eY8dqnXH57i7BLJDiDFYpP/6mmwuaRDHCLAnZXP/idv
+   WbCxuoXz6HOUZSx60HNsWtlO80qk5zqbI1+c0O5j1q/hIx9DYLaZ6DyIF
+   dvyCQpqy7/FPwq00RpdSisvjJxqlcjdR3MxF0sGTrrQz7jaVPmIlkMSyZ
+   NyK3h7ylOv+kxkXhqJB1u56/uDSUPZ/fvEG3uA2pxuy9chEjMlY3B6poo
+   cq+9L3LfhKab9CkbiMVCWZ7QtSYzdhTV0lxSK4HRKVOQCccMnaLIWdt+o
+   A==;
+IronPort-SDR: 3uZ63IBfSPCR5o7I25lmbXY6wfnhbnnh5kYsExCNadx0e6aNOr7ixg6K0u/PgKmewOKXibO5Sq
+ Z7gXRvSWnnKgk9WqyGSyq3eySBp5ZNIAU1xTmH2bLIOIpOa23rU8OsoT/T4iXkFljt0a7uyzVb
+ WG1ACzAcOaOHWHtK5mcUis2dqOuCWhdcxMH0SNjmNfxpsmX7wd4dYwPuVgHLPQZ+AfbHvCbjUn
+ p+SJLtJOsPp1I/71CGScfPKuq/4nbMc4G1RXToY6pkv6BnXHIh7L0wKf69jUCK0cHwp0eoTo1S
+ DeY=
+X-IronPort-AV: E=Sophos;i="5.78,365,1599494400"; 
+   d="scan'208";a="256942319"
+Received: from mail-bn7nam10lp2108.outbound.protection.outlook.com (HELO NAM10-BN7-obe.outbound.protection.outlook.com) ([104.47.70.108])
+  by ob1.hgst.iphmx.com with ESMTP; 24 Nov 2020 16:56:12 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EyEQ3QfLtYEi9atYDeGLKYlqOae6citZsLDRelWT8Frps0IQe9jR5HR0aV7PAb15ATj4IPHj7D8Usdnin57IIoOPdjgbJ2CzjASEoE6dXw3S0sKQY/Do9zsLkB0YT3qaStZoHbrdNAbwx91qJ8Ds2xm09zSI8wG2KE2kD+c6moXC3XuYohiGMrgD4IIzxi0jrSX2Qg96XxGEwG71y9IIJm/0P/bRfcEngw25OAEqqP9CUssIvoP3djIzqhZIehUOkQgg3nYM48JwJPV8C4E0iex04DAs7lMt9Zoy1ftTwmJagpz/UlZ72T5+iAxOTVqh/iW0vGhxJ6BqQ8V202GiUw==
+ b=RoJiYqgvDCxmpUg8vnWKUCu4y4WqdhfvXz2rEcU0qybLsfVRu9LlzCB79thAupjABsc2rLIafI6Z8gfwnIc4rJ1NdCi8FWHBIc2R1Xxw1L/JGlv2x8OUi20kfeAGOrgWEmUlHue2EMHGGIx7Iv5Nzcs4S8u/r/Qa6OX/ddwfYGxILoVOutBHqbVH/kP0mpQLQm2WA9B2cTPXUbDMEBBmmKX/FP5MXNLANj4joO5DxmZxXyrohud0RaHJJOn2B0hIYm4qw3tE33gp9jNtZFrChLNNajTDB1mGn8OyJak67cak/iTtQPvbthRSO9c818Jy2c2sjF2iJKMBWvol3Zg+qw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hXEyuFSF4jHoZkjFOIpD8jR5jqFt996rkytLYazo/5w=;
- b=RpDh2BPitYFRm0fuWzdSHK3KRhlL4KutbJ9IKYUuSXb+Gb32rlIyI3NYcAP3YKkJK4IBZWhjsf5fxcBB+VPEv6TkojN6BVEjnGAQ5JoAO8wK+hJwrO3bRyu6F1ZRtkVilDPkCkIjCcjN40VDwe6cUVJH1ug5sSeibr/l3o4YZbrOGhSAxrkeL5t6Fm+Z24EJ1lO4PhGFtiTHWakz3lex/8Dc5J/+A70tTlwtOMcDI+pLODf57g6qxnv5b14Jy8DdeEHrDA/Y1rF3V+CwM8SdnmMYrbfa80ouz3Y2HqNzzxUak3Xs0vYhjbv+htHDsUe5V794BVhHRMMUF0nMGLmShA==
+ bh=eB1HFeqRNnBzzC3aP4mGPfRsz4C9/ZWlYG6EkqjI7jg=;
+ b=CeWiEkNwYaath16ypjyNHC3pfHDP1UoBbig+rw1zl8HYTb8zvee6U8wINWfHhRPdyujI7A+NpuvGst+vyDcnhZ+ESLdKsX9NQQO5uKHWDSiu8BWLIPIqiJ2cW1+5WHJMyG61VX5ZUzX8aYvpDQ/OAg5YXsqXLYwxjs41/CoscNOo2yqBMkIb3PrqzbmEFXGEChhju1ipFAp5dCBlpnPEyv8mU+BfaQST7w3pEKFpa7USN9pZlmZv47BYYxlQreufHufIVna1HJ5ItL+2LErv6irdIdjHb9emxdNVgmsAlzjtMCD4s/MJ1nxur+Cq8CDknV811KQ2dSeTxdNNkpe4WA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hXEyuFSF4jHoZkjFOIpD8jR5jqFt996rkytLYazo/5w=;
- b=Bk5VBFIGtK9sWqEMhyAeIZcwLsgQM1G2EFCKMOx8lDkRbOdXxWppxEW4WlZ/X5vk/Xxir3vlPSCYtpl7sOQnXQ31jKHG9QqDT7M29FYXJrO3EwSePy2Da9jLnwtwbz/clUSRSpsehcAGj2N6yb/tEBdVbt+6JP4wVJD6VHuo03k=
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com (2603:10a6:20b:10d::24)
- by AM6PR04MB5191.eurprd04.prod.outlook.com (2603:10a6:20b:1::28) with
+ bh=eB1HFeqRNnBzzC3aP4mGPfRsz4C9/ZWlYG6EkqjI7jg=;
+ b=d+OPrxa6NFNJmGlnIUlYdj88guUUeoDSeFX5MKxsrmab2IoJqfQ3ptPn8ifVjELJVzlufcGe1Fm/T+JaZkSqQeE0ixxDnRmphSF1hP+vP+3EG7dL/z7/gDIImC82tvSc5IvV9GT+peJz6f5RGtziAtFtpeehl8dKMsHA5le0wQA=
+Received: from CH2PR04MB6522.namprd04.prod.outlook.com (2603:10b6:610:34::19)
+ by CH2PR04MB6792.namprd04.prod.outlook.com (2603:10b6:610:93::24) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.22; Tue, 24 Nov
- 2020 08:47:42 +0000
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::a90d:1d14:7235:b56f]) by AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::a90d:1d14:7235:b56f%4]) with mapi id 15.20.3611.020; Tue, 24 Nov 2020
- 08:47:42 +0000
-From:   "Y.b. Lu" <yangbo.lu@nxp.com>
-To:     Michael Walle <michael@walle.cc>
-CC:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.25; Tue, 24 Nov
+ 2020 08:53:27 +0000
+Received: from CH2PR04MB6522.namprd04.prod.outlook.com
+ ([fe80::897c:a04b:4eb0:640a]) by CH2PR04MB6522.namprd04.prod.outlook.com
+ ([fe80::897c:a04b:4eb0:640a%7]) with mapi id 15.20.3589.022; Tue, 24 Nov 2020
+ 08:53:26 +0000
+From:   Damien Le Moal <Damien.LeMoal@wdc.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Palmer Dabbelt <palmer@dabbelt.com>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: RE: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
- controllers use fixed indices
-Thread-Topic: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
- controllers use fixed indices
-Thread-Index: AQHWvovBvcqJCTixR025fdiTeTkR06nQRXqQgAB88ACABimgIIAAB1IAgAAEgOA=
-Date:   Tue, 24 Nov 2020 08:47:42 +0000
-Message-ID: <AM7PR04MB6885CA8A965A49C456454254F8FB0@AM7PR04MB6885.eurprd04.prod.outlook.com>
-References: <20201119155025.965941-1-vladimir.oltean@nxp.com>
- <AM7PR04MB688536E10A0B35D75A9F8F34F8FF0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <20201120093015.duel3yx63cbya77w@skbuf>
- <VI1PR04MB6896C22F6B304F365C3BA626F8FB0@VI1PR04MB6896.eurprd04.prod.outlook.com>
- <71a86b0fbc95892f8fd240e0919e7e23@walle.cc>
-In-Reply-To: <71a86b0fbc95892f8fd240e0919e7e23@walle.cc>
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sean Anderson <seanga2@gmail.com>
+Subject: Re: [PATCH 20/32] riscv: Add Kendryte K210 FPIOA pinctrl driver
+Thread-Topic: [PATCH 20/32] riscv: Add Kendryte K210 FPIOA pinctrl driver
+Thread-Index: AQHWtN4lakjfsgLC7Uq3vn4b+Zr42Q==
+Date:   Tue, 24 Nov 2020 08:53:26 +0000
+Message-ID: <CH2PR04MB65228DE061918A4D2A08A0CFE7FB0@CH2PR04MB6522.namprd04.prod.outlook.com>
+References: <20201107081420.60325-1-damien.lemoal@wdc.com>
+ <20201107081420.60325-21-damien.lemoal@wdc.com>
+ <CACRpkdZhOxz5NhrkFxZ5G4aOrmBoAcQodOvqzNROQtXpHVQGDQ@mail.gmail.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: walle.cc; dkim=none (message not signed)
- header.d=none;walle.cc; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.73]
+authentication-results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=wdc.com;
+x-originating-ip: [2400:2411:43c0:6000:ccb9:9212:86f5:6af]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8c77092d-f983-4068-bb70-08d890559b70
-x-ms-traffictypediagnostic: AM6PR04MB5191:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR04MB51916C3E36FCEF6CF445D7E9F8FB0@AM6PR04MB5191.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-office365-filtering-correlation-id: 4849a9ec-27d8-4d70-091e-08d8905668a2
+x-ms-traffictypediagnostic: CH2PR04MB6792:
+x-microsoft-antispam-prvs: <CH2PR04MB6792928B1FCB66FF40B41D0FE7FB0@CH2PR04MB6792.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: L61IzNFEgXRIHImCq0FHju3vHY2hVvE5SUxbNJlqsjVNkOMMMaOMzLH95Cdmyvqt2bS+fxwMq44QImFGHM85G9XyK1UsyX4xkjWILJcYSbob/ZWnoaCCP058xwvlZ9qUJ9VGtcCA1UJkWIo0xtwI93fhYXxkDygnzFwq5smkNKiohmjsSVv+j60kvDffREgKdnYclN+Ifmdg2lAml7E8eIiUlWazT/AqB/XCDYPGgJFq1DF3tPBpOtTDMwaofDYpb3V3t2yI2fgjVByC6VFBO0yhILNK6/R8BHU/a2XCrcsaew2/5PCMitaxRQI3Rm+kFVdPvimJTUv6UrVRkRL/F5mc3FHGRBkPnkyxxOVu2gIiafJ/f749DnBkWABCrDYWa1eJkchXHomMrKwx/k9szQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB6885.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(366004)(39860400002)(396003)(376002)(71200400001)(66556008)(33656002)(66446008)(26005)(5660300002)(52536014)(64756008)(86362001)(76116006)(66946007)(66476007)(4001150100001)(83380400001)(45080400002)(8936002)(9686003)(6506007)(4326008)(55016002)(478600001)(966005)(53546011)(186003)(6916009)(8676002)(316002)(54906003)(7696005)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: b4HCbdPDVpzIQfjnFoBL4rBZtZEar7s7RZBdUPQBgNjkkQ9eW3XvFqvO5feKPTcU5RXU066I2BmjUF9ehwuqsANEvCyPFnxtA6LaFe/cXSTNNizXtBLrGO8yE8+zg3pftfOUZtjXdlxUvxQ8jnBmvXS1I6osm/pG1lTxHj5j0JemTEXOleHJH/wzhlUCXWwQraC7foPqb/l0H4zGg0c2I6tuCZvRvSLsEwlzgcmXdd0M6y1nPpbcm39E9TbhpLuSMiXtKiHvfWNChorDHSDy5oH6RhLxQATvCue3DHCMK1QoYRdd3L1y+SqG5ay23XX9/G+B/CfDaBq3tt/x2uJKL1rAXW0q0S6QVU3agvs8O5qt/mT549jKpyPVFR39LuFFyKbN6TAvhXQjSiPj40IwHo5FyIFpSGPzHgigvkdCcT/UO1++p39uj5pkmMOtyXS3Ly1DvCq7j1TVTJu/I7QlAbu3GErAD63+fYKVtmRwKB/fw+iaDwoxjCEkqNOo7ufhyb2U+yPBpsjxcZ8l2TVGv8nyMom8k2Ew/uxU/p2POT+cqwlIUbBLB9kRkpzZ4NeS7CTZ1Y6Np/wqL7Br7MKraAGArxKEgfTH1+p+34dBBDgU4Cy47X9FaeSKX0vRfohGgucq47uj1YWEeQ8nWZPrPi17GNvFJhiHNKlzwjjg7ftQML8UPWlVEGXdGGJxzddZT4TyijaMZveirwKe/vqirn3tIobEYih6szEhEwObfHnHzT85Sq49Hfm4GPWyIXFlNPPWDB6pIVshWNbIyf+PlYmlLlNSRtSPNcfcbVaQgpg5Wa379BN5M/DB4h/7xT/5ZQKEQlLTTbDmVBG8TIupgKGkJhkhYgR8Hl85IE6jqhlXuUb3DHqXTGef5Q9qaBCiJWDcwcgaTnL85UZQ1VoVtQ==
+x-microsoft-antispam-message-info: 0wSPSmp6eS58E7srcja9uosX0uoa+pSSTffVyJeAUgvCX8ihoSXHDqdZLeusFiu6Mqfz/3Qbot/7l0+X4G3qo2IZwq/j177akMeyiGD/NyLTXGEVyR9qLi+iPajZDPAtvBqKC2rB/EJrfwFyRPtWNGd5BVgWztvvwqWAlgGpHjBqjUVJ6y7BRm18A/4aaP6qC3eUspeMEhBIXGROLyGlo+ZpRQ6GeM4qf5qwJDkieNkJ+4LECGuw5HV4rG4UDQ3sdMkj2LV3TSZc29aUj0Da3EiRwuLGmbatgtZe8VP/UPtYTAtxnkChRfJZcYmfw1KT2OneY2xCnuNbcs98Bn8omw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR04MB6522.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(366004)(376002)(346002)(396003)(5660300002)(52536014)(6916009)(7416002)(2906002)(86362001)(316002)(54906003)(83380400001)(71200400001)(8676002)(91956017)(76116006)(4326008)(6506007)(7696005)(66556008)(66446008)(66476007)(64756008)(9686003)(55016002)(478600001)(186003)(53546011)(66946007)(33656002)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: =?us-ascii?Q?UtmxirpjpLmNU/StNSWOoVtB88I7Xc6hDGJomOGQ3B2jpCS7qw1DT6HU9NSs?=
+ =?us-ascii?Q?AlPEzFjKnQDDSnf4mRVgHLaU3JuVbTfI6MVI1x6WrxhnlYi2BlTskreR3FK1?=
+ =?us-ascii?Q?gGN8faTHsR+17aPPRc7l0vTn784O0XEOkBk8GT0+nX+/PIjR8xZR5QryMSvt?=
+ =?us-ascii?Q?kW61Cf5lNikCNNcQuOY0kBmFo5C6teTW5RdknR2NlHTBeLPnf/x27hrMHjFz?=
+ =?us-ascii?Q?QzEJGy5JQcq8xI7OVOyjUsfJ3EufxZC2Fx1JLGA3iQ+rSavWPbMrkD7RACEH?=
+ =?us-ascii?Q?RLqfuAOid+87GrbuqA3UN0+3dLnCGs7VHQ/uDZtNlf4Em07eyDG0/WvkE8P7?=
+ =?us-ascii?Q?mCgP8AXT+Q2Bw3gNUAkoOQjZzGJPrQ11poUaOreLnb0XAgzIYeSdwuDRQz39?=
+ =?us-ascii?Q?MamIqYROzr/vw+ptf6DTgaO83Ll8/5zaOR9B6tycsQWG7L4ef8xhUaXuftcL?=
+ =?us-ascii?Q?dD/N8ESu7Cr7YlgwWiK+vTRehAi1WNn/qP38/FfQrmKwQXoXCB7rUJOteZwh?=
+ =?us-ascii?Q?+OUsUw2tvsbXfQfDYks+EmnDBkfRv1mqJeCZtAjsE/zkPzhgQXcTbQew6YNx?=
+ =?us-ascii?Q?673zVoQm4BiU84YQ9PLN/Q+zAx+PG/NOCQf/sHKbVHeVUgYehG3MHhmeUjOS?=
+ =?us-ascii?Q?mX9WczVhCExPG/vWYDbO3CEoM5UAHxivbckJpXXbtQRMYg1+AP1gGCMEqoAO?=
+ =?us-ascii?Q?MYq4oO0jXXssLUC8ijWJdSZyEYLROAHgpqBfBj7z1jAK/UfamKsM3LOmR75L?=
+ =?us-ascii?Q?cMPQ4Who4JnjtEqTZa3rWEe2UdUDK2Vbv88Rr9/R8Z6PXEEVQ2UvXDRCIgH2?=
+ =?us-ascii?Q?9MumQ8bZ+J4eq96+TzU2mh0pUPXRgAt0hnovpQcZOiQBs54+btRLdgcEvTWz?=
+ =?us-ascii?Q?1Bo9mxGeHYFhKMOE7z/ZY5HaHWyGr/EV94DQuexoer1kehcfZgzhxfsTjwqN?=
+ =?us-ascii?Q?+51g5ioKUEQJgYk7+ehTWw=3D=3D?=
+x-ms-exchange-transport-forked: True
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-OriginatorOrg: wdc.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB6885.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c77092d-f983-4068-bb70-08d890559b70
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2020 08:47:42.6137
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR04MB6522.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4849a9ec-27d8-4d70-091e-08d8905668a2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2020 08:53:26.8717
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: deS/K7zvR3UZLF/XF3CC9esBv4o3xvtSKQXjLn1keUm2/VOnjXnx4GoLXcio8Tdk6fzD15W5yWq2/Gr3CdZ4Gg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5191
+X-MS-Exchange-CrossTenant-userprincipalname: PPoexknNN0HKhdFs2yZg/qSSyfynHH/ZvAxXb6tzvFrKgFWH9JzhHjByI9DpO7uGItVTnSgklZscN0Yxc1HDaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR04MB6792
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-> -----Original Message-----
-> From: Michael Walle <michael@walle.cc>
-> Sent: Tuesday, November 24, 2020 4:03 PM
-> To: Y.b. Lu <yangbo.lu@nxp.com>
-> Cc: Vladimir Oltean <vladimir.oltean@nxp.com>; Shawn Guo
-> <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Rob Herring
-> <robh+dt@kernel.org>; linux-arm-kernel@lists.infradead.org;
-> devicetree@vger.kernel.org; Adrian Hunter <adrian.hunter@intel.com>; Ulf
-> Hansson <ulf.hansson@linaro.org>; linux-mmc@vger.kernel.org;
-> linux-kernel@vger.kernel.org; Ashish Kumar <ashish.kumar@nxp.com>
-> Subject: Re: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
-> controllers use fixed indices
->=20
-> Am 2020-11-24 08:41, schrieb Y.b. Lu:
-> > Hi Vladimir,
-> >
-> >> -----Original Message-----
-> >> From: Vladimir Oltean <vladimir.oltean@nxp.com>
-> >> Sent: Friday, November 20, 2020 5:30 PM
-> >> To: Y.b. Lu <yangbo.lu@nxp.com>
-> >> Cc: Shawn Guo <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Rob
-> >> Herring <robh+dt@kernel.org>; linux-arm-kernel@lists.infradead.org;
-> >> devicetree@vger.kernel.org; Adrian Hunter <adrian.hunter@intel.com>;
-> >> Ulf
-> >> Hansson <ulf.hansson@linaro.org>; linux-mmc@vger.kernel.org;
-> >> linux-kernel@vger.kernel.org; Ashish Kumar <ashish.kumar@nxp.com>;
-> >> Michael Walle <michael@walle.cc>
-> >> Subject: Re: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
-> >> controllers use fixed indices
-> >>
-> >> On Fri, Nov 20, 2020 at 02:04:02AM +0000, Y.b. Lu wrote:
-> >> > Hi Vladimir,
-> >> >
-> >> > I have already upstreamed a patch for all affected layerscape boards=
-.
-> >> >
-> >>
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgit.k=
-ern
-> el.org%2Fpub%2Fscm%2Flinux%2Fkernel%2Fgit%2Fshawnguo%2Flinux.git%2
-> Fcommit%2F&amp;data=3D04%7C01%7Cyangbo.lu%40nxp.com%7C498622ade
-> e704fc0042008d8904f6184%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0
-> %7C0%7C637418017917635725%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiM
-> C4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C1000
-> &amp;sdata=3DOciS3q%2BmP%2Bz4x1ewPHDigmUkgIZmBgUlRRTm4yaxB7s%3D
-> &amp;reserved=3D0?
-> >> h=3Dimx/dt64&id=3D342ab37ecaf8c1b10dd3ca9a1271db29a6af0705
-> >> >
-> >> > Please check whether it works for you.
-> >>
-> >> Thanks, one can tell that I haven't done my due diligence of checking
-> >> Shawn's tree first. I'll cherry-pick that patch and carry on with my
-> >> work.
-> >>
-> >> However, the fact still remains that Michael has expressed his opinion
-> >> regarding mmcblk0 vs mmcblk1. Do you think that we could make the
-> >> aliases a per-board option instead of per-SoC? Consider that there
-> >> might
-> >> even be boards that only use SD card. It would be strange for the
-> >> block
-> >> device in that case to be called /dev/mmcblk1.
-> >
-> > I don't think it's a problem in board dts to define board specific
-> > thing, like re-defining alias, and disabling any IP it not using.
->=20
-> First, why would you put it in the architecture include anyway? That
-> is really board-specific. That is like you would say, we enable all
-> devices and a board could potentially disable it. TBH it seems that
-> this will fit your reference boards and you don't care about the
-> other ones which uses that include.
-
-In soc dtsi, this is giving default alias for two esdhc controllers. This i=
-s not board specific.
-That's natural esdhc0 is mmc0 and esdhc1 is mmc1.
-
->=20
-> And as Vladimir pointed out, what do you do if you just have the eMMC
-> on the LS1028A. It will be mmcblk1 unless you do something like the
-> following in the board dts:
->=20
-> mmc0 =3D &esdhc;
-> /delete-property/ mmc1;
->=20
-> That is really cumbersome, isnt it?
-
-The soc dtsi gives default alias to make esdhc0 as mmc0, and esdhc1 as mmc1=
-, the use case just needs to consider which esdhc controller is used. That'=
-s fixed index for it.
-No matter how the board is designed, there are two esdhc controllers in soc=
-. It's probed as mmc0 and mmc1.
-It's use case that should choose the right mmc device. It is not the dts th=
-at should be changed to suit use case.
-If the board owner insists to change alias to make esdhc1 as mmc0, I think =
-no problem. Just do it in board dts to override the default one.
-Thanks.
-
->=20
-> -michael
+On 2020/11/24 17:43, Linus Walleij wrote:=0A=
+> On Sat, Nov 7, 2020 at 9:15 AM Damien Le Moal <damien.lemoal@wdc.com> wro=
+te:=0A=
+> =0A=
+>> Add the pinctrl-k210.c pinctrl driver for the Kendryte K210 FPIOA=0A=
+>> (fully programmable IO array) to allow configuring the SoC pin=0A=
+>> functions. The K210 has 48 programmable pins which can take any of 256=
+=0A=
+>> possible functions.=0A=
+>>=0A=
+>> This patch is inspired from the k210 pinctrl driver for the u-boot=0A=
+>> project and contains many direct contributions from Sean Anderson.=0A=
+>>=0A=
+>> Signed-off-by: Sean Anderson <seanga2@gmail.com>=0A=
+>> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>=0A=
+> =0A=
+> The kernel build robot is complaining about this patch so I'm waiting for=
+=0A=
+> a new version.=0A=
+=0A=
+I posted V2 of the series earlier today. That version addresses the build b=
+ot error.=0A=
+Note that checkpatch throws a warning on this one for the K210_PIN() macro,=
+ but=0A=
+that is in my opinion a checkpatch false positive since similar macro=0A=
+definitions exist in many places in the kernel.=0A=
+=0A=
+> Would also be nice if the maintainer could add some comments?=0A=
+=0A=
+What do you mean ? I do not understand. scripts/get_maintainer.pl indicates=
+ that=0A=
+you are the maintainer of the pinctrl drivers subsystem. Do you mean adding=
+ an=0A=
+entry to the MAINTAINER file for this driver ? I can do that and put my sel=
+f as=0A=
+maintainer. Or do you mean you would like a comment from Palmer (riscv arch=
+=0A=
+maintainer) ?=0A=
+=0A=
+=0A=
+> =0A=
+> Yours,=0A=
+> Linus Walleij=0A=
+> =0A=
+=0A=
+=0A=
+-- =0A=
+Damien Le Moal=0A=
+Western Digital Research=0A=
