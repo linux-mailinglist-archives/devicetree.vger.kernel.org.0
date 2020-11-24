@@ -2,165 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E08172C2534
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 13:04:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E3DB2C253B
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 13:05:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733054AbgKXMDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 07:03:22 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:45930 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1732479AbgKXMDW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Nov 2020 07:03:22 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0AOBuSWn026089;
-        Tue, 24 Nov 2020 07:03:17 -0500
-Received: from nam10-bn7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2106.outbound.protection.outlook.com [104.47.70.106])
-        by mx0a-00128a01.pphosted.com with ESMTP id 34y0p88chc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 24 Nov 2020 07:03:17 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WxzIiEqc5yxrQozhAEcF9G3sKolyYV8xsy32xlTiRloSJEYd5TFxauaKMR9ZJdyInvR6KpmhneWDsKwTt2mkebjcgqKFS/7oZKFsy2uwFMO6+4VMchiXGU6wWQV1Dwqa9MeaGraZ5Xgh3DGL0ojvdpQBHMPcOP0wo6HmwFo0HbfmWRY7SPCTjk0tzTexESQnO/TSyQbaFijNkg2RoHdNlDBGJ12vTZNfrqlYvcUgG9oVUlZKmGTeNbnB70EgvtIgGsH4Q9Ptfc+AbGzpspFQmYoyfgsBLkrNLx2vQRf4Fy4PDdFDAGsgtGwe5jX9ZEwXTkcKOmBJUX3eeDS7nNDMug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gUCPWAAqi6PXnsprJIB+pRiZFOb7bMU1hngBsg+tqnc=;
- b=ASJk4nhzuMZJFW3Ye0isbYye9Xk+CJODG+z61fxLYJPSzv+nYMl/jHEMWi/dJj1auNkyujwgv9aP50DYxogO3r9CfhOpujmNQx6Gm+oacbw3Eq95jBMn1snvhNB4q2+q7DBu594SB1gDKNgbIzPlRl2Xj0DS9KK2zQCxaaFJ9IFdlwi0vO6UIin3aP3J48uRqenbiZJCdnJyZxi+xAikCPwAzvcFE8ySr5lnHvNAtTnkR/ap/7IiT5Yn76phNlK3tQpmncKxGFoPYgXQE5cbY/1rXlcKvFtjc7bcfXsrTvc7xzG+aHvsWiy2yH6X9SP2/BH4NkA7kADGr1/aG7YJKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analog.com; dmarc=pass action=none header.from=analog.com;
- dkim=pass header.d=analog.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gUCPWAAqi6PXnsprJIB+pRiZFOb7bMU1hngBsg+tqnc=;
- b=8ZrdksJOEv+g4igUNFJzWWLNKtmcuUOeCOI4M8bdPL6RWIyC+bCjWhhwrHD80bGKSU+sEICXVHnx61FpG6RThCFiXDJsPQvt9aKX/hMOPavTUJUcQ5PWH/KoBzmdnAzogBQAJqFfvBZJvkGqd/Zsfjc+Z4fOGKCvRkQ46PjXiqU=
-Received: from DM6PR03MB4411.namprd03.prod.outlook.com (2603:10b6:5:10f::14)
- by DS7PR03MB5623.namprd03.prod.outlook.com (2603:10b6:5:2cf::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.21; Tue, 24 Nov
- 2020 12:03:15 +0000
-Received: from DM6PR03MB4411.namprd03.prod.outlook.com
- ([fe80::f99d:8928:7e14:1a62]) by DM6PR03MB4411.namprd03.prod.outlook.com
- ([fe80::f99d:8928:7e14:1a62%6]) with mapi id 15.20.3589.030; Tue, 24 Nov 2020
- 12:03:15 +0000
-From:   "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        kernel test robot <lkp@intel.com>
-CC:     linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
-        Mark Brown <broonie@kernel.org>,
+        id S1733267AbgKXMDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 07:03:54 -0500
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:42169 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733264AbgKXMDx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 07:03:53 -0500
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201124120341euoutp01002a8e79dc311fa8a8707af196e9f1b2~KcA3ROMDA2661026610euoutp01G
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 12:03:41 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201124120341euoutp01002a8e79dc311fa8a8707af196e9f1b2~KcA3ROMDA2661026610euoutp01G
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1606219421;
+        bh=YJwwZT+jo9L5l/xiseHfV1MXYo4KzfpXBbVtn/uCpjc=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=dDgJuwr4OXrSE3xfFIjK7IAK76ScXaGtHhC1hGCULBsDhVKpJCj6MzauvYLgkGVnQ
+         DUlNlm12ZR+ZLkWf6/SjixER73OYqrhaqridOL7d/nxi5RPnSu20560RbdieSQvJdm
+         EANXMh7ceSMlDwmTst0Jh6F44f4cZM2wK7RwkcGo=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20201124120336eucas1p20b2948b5ae5c334c6455edfd5298d094~KcAyaa3XK2294422944eucas1p23;
+        Tue, 24 Nov 2020 12:03:36 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id BD.63.27958.896FCBF5; Tue, 24
+        Nov 2020 12:03:36 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20201124120336eucas1p20710fdff8434428ea0f011b02249b8a8~KcAyC17_U2906629066eucas1p2f;
+        Tue, 24 Nov 2020 12:03:36 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20201124120336eusmtrp24e22f53027c87a0b435f61585d6d876f~KcAyAjuEz3019630196eusmtrp2T;
+        Tue, 24 Nov 2020 12:03:36 +0000 (GMT)
+X-AuditID: cbfec7f2-efdff70000006d36-5d-5fbcf6987d4d
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 58.2C.16282.796FCBF5; Tue, 24
+        Nov 2020 12:03:35 +0000 (GMT)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20201124120335eusmtip24e15a81771d0f07ac6f51fb462b078a8~KcAxxIb9h2324723247eusmtip2U;
+        Tue, 24 Nov 2020 12:03:35 +0000 (GMT)
+From:   =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+To:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>
-Subject: RE: [PATCH v2 1/3] spi: convert to BIT() all spi_device flags
-Thread-Topic: [PATCH v2 1/3] spi: convert to BIT() all spi_device flags
-Thread-Index: AQHWwkrvAuyngSX0h0uNjRtAQ54rBqnXKN4AgAACToCAAAJTwA==
-Date:   Tue, 24 Nov 2020 12:03:15 +0000
-Message-ID: <DM6PR03MB4411ABE610061A840224159EF9FB0@DM6PR03MB4411.namprd03.prod.outlook.com>
-References: <20201124102152.16548-1-alexandru.ardelean@analog.com>
- <202011241901.eIm4FyEB-lkp@intel.com>
- <CAHp75Vc+M2veG25pehO-8LSj0WcXvotijwaYvkYvAr3LF1n10Q@mail.gmail.com>
-In-Reply-To: <CAHp75Vc+M2veG25pehO-8LSj0WcXvotijwaYvkYvAr3LF1n10Q@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: =?utf-8?B?UEcxbGRHRStQR0YwSUc1dFBTSmliMlI1TG5SNGRDSWdjRDBpWXpwY2RYTmxj?=
- =?utf-8?B?bk5jWVdGeVpHVnNaV0ZjWVhCd1pHRjBZVnh5YjJGdGFXNW5YREE1WkRnME9X?=
- =?utf-8?B?STJMVE15WkRNdE5HRTBNQzA0TldWbExUWmlPRFJpWVRJNVpUTTFZbHh0YzJk?=
- =?utf-8?B?elhHMXpaeTB3Tnpka05EQTBNUzB5WlRSa0xURXhaV0l0WVRWalpDMDBNVFUy?=
- =?utf-8?B?TkRVd01EQXdNekJjWVcxbExYUmxjM1JjTURjM1pEUXdORE10TW1VMFpDMHhN?=
- =?utf-8?B?V1ZpTFdFMVkyUXROREUxTmpRMU1EQXdNRE13WW05a2VTNTBlSFFpSUhONlBT?=
- =?utf-8?B?SXhOREUwSWlCMFBTSXhNekkxTURZNU1qazVORGd3T1RZNE5qQWlJR2c5SWtG?=
- =?utf-8?B?NlUwWjNSbUpTTHpGTmFYRlZhVzlpVlc1MmExcDJjR0U1YXowaUlHbGtQU0lp?=
- =?utf-8?B?SUdKc1BTSXdJaUJpYnowaU1TSWdZMms5SW1OQlFVRkJSVkpJVlRGU1UxSlZS?=
- =?utf-8?B?azVEWjFWQlFVVnZRMEZCUW1ObFpGaEtWMk5NVjBGaWRtaFpaV2N3ZEdoa1Qz?=
- =?utf-8?B?VXJSbWcyUkZNeVJqQTBSRUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRklRVUZCUVVSaFFWRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGRlFVRlJRVUpCUVVGQlozTldNRFJSUVVGQlFVRkJRVUZCUVVGQlFVRkJT?=
- =?utf-8?B?alJCUVVGQ2FFRkhVVUZoVVVKbVFVaE5RVnBSUW1wQlNGVkJZMmRDYkVGR09F?=
- =?utf-8?B?RmpRVUo1UVVjNFFXRm5RbXhCUjAxQlpFRkNla0ZHT0VGYVowSm9RVWQzUVdO?=
- =?utf-8?B?M1FteEJSamhCV21kQ2RrRklUVUZoVVVJd1FVZHJRV1JuUW14QlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVWQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlowRkJRVUZCUVc1blFVRkJSMFZCV2tGQ2NFRkdPRUZqZDBKc1FVZE5RV1JS?=
- =?utf-8?B?UW5sQlIxVkJXSGRDZDBGSVNVRmlkMEp4UVVkVlFWbDNRakJCU0UxQldIZENN?=
- =?utf-8?B?RUZIYTBGYVVVSjVRVVJGUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRlJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRMEZCUVVGQlFVTmxRVUZCUVZsUlFtdEJSMnRCV0hkQ2Vr?=
- =?utf-8?B?RkhWVUZaZDBJeFFVaEpRVnBSUW1aQlNFRkJZMmRDZGtGSGIwRmFVVUpxUVVo?=
- =?utf-8?B?UlFXTjNRbVpCU0ZGQllWRkNiRUZJU1VGTlowRkJRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZDUVVGQlFVRkJRVUZCUVVsQlFVRkJRVUZCUFQwaUx6NDhMMjFs?=
- =?utf-8?Q?dGE+?=
-x-dg-rorf: true
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=analog.com;
-x-originating-ip: [188.27.128.26]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: db8bb03a-effd-4eee-7d3c-08d89070ecec
-x-ms-traffictypediagnostic: DS7PR03MB5623:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DS7PR03MB562369771742C880333EEAF2F9FB0@DS7PR03MB5623.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: cJo1SVVOfkOBrxVhX8N5n3iE1bqxWCxLlXQcz9lVNbjqQaukEc5keH9BCiRQfuT/xRxaG3lxQsmlDRSLat+RVYzFRiw3axIP77ejZYmTpD0caEekn6rPyNnvzd7NzmqHWjl4+r7NLS3f099pU22Sa1rDpxs51dV5IWSgRFiMtPEo6bC5ghvKOojk1L+quMgoXwSSo7Sj9G5Hpnp/oWLd4YdBiAP7YOozjjyKTYcK08wzN2jzl/+FQtWP04HjtiJHW+X9sweLYI/lkLxN/yvU6o27ezInBuvDyrLx2NYnAbsKEoktHi/7MsR/Fb/wPuGA
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR03MB4411.namprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(366004)(396003)(39860400002)(136003)(8936002)(55016002)(8676002)(7696005)(76116006)(316002)(54906003)(26005)(107886003)(2906002)(186003)(9686003)(71200400001)(5660300002)(66946007)(83380400001)(53546011)(66446008)(66476007)(4326008)(478600001)(86362001)(6506007)(33656002)(110136005)(66556008)(52536014)(64756008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: RhcWgh3OkMSPKmf/7I4ccJCRtG00Y4YDb/CfNdf5mBGdMH/LTPCQmIB09l0/EiS8b3af2ONCXhADjw+9phZCOgJQhOFV/jutF2+6xz7cmZSumKLLI0QVgzt75GjatWP/JNqnmvdIsTIcnrfCAQmAP/OwqZEZ+8RnJXwVgTgDURPBgztjIaQjgbVmcxU3Rs1HlHRHV7GSq3E5UmmL4P6nHf8VlDGqrmed0Q7XT+QxPeKjd2P0LKqhCibI4wqfjI/08oaA6GpeUDIjV7BFE91IWWEIK7kIqRb37KgNILSpkksBwTOzrm8G3oIOGafQ4gJsIzWDWKTICJWg01Knrh7EWJQ5NhNL4ZA46ztCNBFhSLfqiR3r0U3hFIxtXfskMHFtvEZ/nL/0X0trO1JMAXynO/aMZs9+SgA/b3ziPbtN1SmO91pn8qn9tnEZAo+twFCJ69Ge850ABKs/A0iToP1sMJy3251n6bxYyFPWCFMEre7j6q3yX47Ylz0oVh3/LkSD6q3VQmdQenhGrkpk9sUwJcAR6D1VNfA9Q/SmFZy9cpIWiIGnc6rGJaHdTvWprF7th3nhXa6DLgw1K7QadxorVwCciM4bAkSMd5CDUDFFv4QqmZS0SgulI9G7EsFv33WHmGi4Tg5ZTC/xHbk5/78AfABbyRnDredEcxd/u75AlhIFlKPln/J84a9VmuryGu3/cjTQgofBOpH93bQIp2O7XnfXRKnmOBMw+OvJseAAdF4DpykRUJ3fEZQyJ9v6xmGePplc5gfAA6s4MPkt1HaWkGw6YvMJofXGvmkkrM7t7hSy9KbCeDf9W+Ou6JjpQh6hQzdAGzoAk38I7aaHKR25wAwHp4mMWEbE3jz55rILwUwbaWZSn14PiP2SS7gQ0ooF8DN/MaSBop/NOC6iB9/tkw==
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Cc:     =?UTF-8?q?Bart=C5=82omiej=20=C5=BBolnierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+Subject: [PATCH v7 0/3] AX88796C SPI Ethernet Adapter
+Date:   Tue, 24 Nov 2020 13:03:27 +0100
+Message-Id: <20201124120330.32445-1-l.stelmach@samsung.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR03MB4411.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db8bb03a-effd-4eee-7d3c-08d89070ecec
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Nov 2020 12:03:15.7993
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KFYKAiOloczr+TUmleEz3pSoasvk0J8RYO8MC+2T1u4R385HDdUjoIYRDd3Ho9tXJQcy9LJO9AQFylO8HZHG5lSdyB6v+U2n4sg1ZUA7dKs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR03MB5623
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-24_04:2020-11-24,2020-11-24 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- lowpriorityscore=0 clxscore=1011 priorityscore=1501 adultscore=0
- mlxscore=0 malwarescore=0 bulkscore=0 suspectscore=0 spamscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011240075
+Organization: Samsung R&D Institute Poland
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02ScUwbVRzHfb1ee63rOA7CfikLakUTZmRsc+ZFiA4z421/LIvGmDhjrd2l
+        4GhLrjCZVSFujJUIxTFi6cpKzJYyYDCg1pXBZi7NYA64IQ3CWIkyjY6NgSuwSUaVchj33+f9
+        3uf7fr9f8iiCGSK1VL6liOMthgKdQi0PXPlbfNG12KPPqltOxWJEIHCHq53EHvGIHHtDQyT+
+        dtZF4tGZmyR23rpDYFE8r8TXA9UkHheaEO68NUrikW6PArvESzIs1PUifC4UUeIrjSm4vDek
+        3JHIjowOE6z/7LiMDbojSraz2aFgu06XssELURlb7W9GbLQzbS/1njpnP1eQf5DjN7/6oTpv
+        xDFLFp5KL+mqe0SWoaqNlYiigH4JgkvmSqSiGLoJwdRwaSVSr/A8gvO9N+TSRRSBUFMY57jf
+        1RGWS5IPgbftISFJfyC4N5gQZwWdC84z/WRcSqYnCWiv+AXFDwR9CUFw8sRqIoneDtW3KxVx
+        ltPPgbNvdLWuobPhesRBSO2eggrf9wqpnghX639bHSmB3gStX/68ysSKc/i7k0S8AdA+Ffhq
+        Hq2Fd4IrWENKnATTfX6lxBvhn6BXJu1fCrXHX5ayXyEIeB7KJScbbg4tKeIOQWdAe/dmqZwL
+        HT/eXYuuh7GZRGmE9XA88A0hlTVw7Cgj2enQ5uxZe1ALVdNNSGIWnANLqAY9435sMfdjy7j/
+        79uIiGa0gSu2mU2cbYuF+yTTZjDbii2mTKPV3IlWvty1WN/9C6hh+q9MAckoJCCgCF2ypjwt
+        qGc0+w2HPuV4q54vLuBsAkql5LoNmuaTrXqGNhmKuAMcV8jx/93KKJW2TPaan8nVaYus3sOx
+        O+1jZwKH+C/qI+ktI/YU70KMHzv2Qg7f8Mrrb5WZco05Hye1bC0hH+x7fmEs3FZvf/9g2u45
+        ZIzlmcL4oqkryniemOQvltxYzDZ6wl8LhqdTfE2f+7aFMokdE2838leFy6knfkh/c+/Wqdmj
+        5AHZk6o9DxZ2/T4ZSiiwVn0wH1Wr8q0TYvmRCud4w74/S7pbY9fW1WZRJrO79SNx4lwt86xl
+        V8o90ZN6Nznbbndr55y9PegnP6Nv6/ecTosM4uCcEF46u2fxs+V1Wb+Wzrx737F9Z1HGXEPG
+        Gy0Ddmpq2Lf8Tv9ujX3b7UGHccAy0DFvHbqco5Pb8gxbNhG8zfAv8w4qdeEDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFIsWRmVeSWpSXmKPExsVy+t/xe7rTv+2JN1h72sbi/N1DzBYbZ6xn
+        tZhzvoXFYv6Rc6wWi97PYLW49vYOq0X/49fMFufPb2C3uLCtj9Xi5qEVjBabHl9jtbi8aw6b
+        xYzz+5gsDk3dy2ix9shddotjC8QsWvceYXcQ9Lh87SKzx5aVN5k8ds66y+6xaVUnm8fmJfUe
+        O3d8ZvLo27KK0ePzJrkAjig9m6L80pJUhYz84hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07
+        m5TUnMyy1CJ9uwS9jMud71kL5qlUbJ76h7WBsVemi5GTQ0LARGLzxissXYxcHEICSxkllq14
+        yt7FyAGUkJJYOTcdokZY4s+1LjaImqeMEvPXP2EESbAJOEr0Lz3BCpIQEXjDLNF07y07iMMs
+        sI9RYv/RxewgVcICphJ9L0HaOTlYBFQl+o9fYwaxeQWsJS7c7WSGWCEv0b58OxtEXFDi5Mwn
+        LCBXMAuoS6yfJwQS5hfQkljTdJ0FxGYGKm/eOpt5AqPALCQdsxA6ZiGpWsDIvIpRJLW0ODc9
+        t9hIrzgxt7g0L10vOT93EyMwUrcd+7llB+PKVx/1DjEycTAeYpTgYFYS4W2V2xkvxJuSWFmV
+        WpQfX1Sak1p8iNEU6IOJzFKiyfnAVJFXEm9oZmBqaGJmaWBqaWasJM5rcmRNvJBAemJJanZq
+        akFqEUwfEwenVAOT9pQD4fuOcLKbd3dfyO1muTah0SJm3dVFmoob/OZY+gesW8ko/WdHyZSY
+        twf3+T65f/9HB4NGsmy5T10yh4x/rPWDqBPuEU+esJv5nssTmHDMXmSyfYXXpoU25YFhSjsW
+        r1nRWRQYfPE0t5a8UMrd9YcbnZ6XPHxkKL4+/F61871H0Ztefs+U/RuylIHn6cp/L3Nkn7sL
+        SGs+376zzF/+0meN03d5bVRfnrJNvX5komLNin7jfFZlto4PsYGXHu9mSb8VeSHo1oqJFdvY
+        1r6VN200P6bdahljznXoknJO48eJLT/L1t0s6Dd+LsmbH/nz8I18pc2BMt4+Vy/rCpqknNB7
+        8rrm6m6HjI93o72VWIozEg21mIuKEwETPcPxXQMAAA==
+X-CMS-MailID: 20201124120336eucas1p20710fdff8434428ea0f011b02249b8a8
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20201124120336eucas1p20710fdff8434428ea0f011b02249b8a8
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20201124120336eucas1p20710fdff8434428ea0f011b02249b8a8
+References: <CGME20201124120336eucas1p20710fdff8434428ea0f011b02249b8a8@eucas1p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5keSBTaGV2Y2hlbmtv
-IDxhbmR5LnNoZXZjaGVua29AZ21haWwuY29tPg0KPiBTZW50OiBUdWVzZGF5LCBOb3ZlbWJlciAy
-NCwgMjAyMCAxOjUwIFBNDQo+IFRvOiBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4N
-Cj4gQ2M6IEFyZGVsZWFuLCBBbGV4YW5kcnUgPGFsZXhhbmRydS5BcmRlbGVhbkBhbmFsb2cuY29t
-PjsgbGludXgtc3BpIDxsaW51eC0NCj4gc3BpQHZnZXIua2VybmVsLm9yZz47IGRldmljZXRyZWUg
-PGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnPjsgTGludXggS2VybmVsDQo+IE1haWxpbmcgTGlz
-dCA8bGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZz47IGtidWlsZC1hbGxAbGlzdHMuMDEub3Jn
-OyBNYXJrDQo+IEJyb3duIDxicm9vbmllQGtlcm5lbC5vcmc+OyBSb2IgSGVycmluZyA8cm9iaCtk
-dEBrZXJuZWwub3JnPjsgQm9nZGFuLA0KPiBEcmFnb3MgPERyYWdvcy5Cb2dkYW5AYW5hbG9nLmNv
-bT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2MiAxLzNdIHNwaTogY29udmVydCB0byBCSVQoKSBh
-bGwgc3BpX2RldmljZSBmbGFncw0KPiANCj4gT24gVHVlLCBOb3YgMjQsIDIwMjAgYXQgMTo0MiBQ
-TSBrZXJuZWwgdGVzdCByb2JvdCA8bGtwQGludGVsLmNvbT4gd3JvdGU6DQo+IA0KPiA+IEFsbCB3
-YXJuaW5ncyAobmV3IG9uZXMgcHJlZml4ZWQgYnkgPj4pOg0KPiA+DQo+ID4gICAgSW4gZmlsZSBp
-bmNsdWRlZCBmcm9tIGRyaXZlcnMvc3BpL3NwaWRldi5jOjI2Og0KPiA+ID4+IGluY2x1ZGUvdWFw
-aS9saW51eC9zcGkvc3BpZGV2Lmg6MzM6IHdhcm5pbmc6ICJTUElfQ1BIQSIgcmVkZWZpbmVkDQo+
-ID4gICAgICAgMzMgfCAjZGVmaW5lIFNQSV9DUEhBICAweDAxDQo+IA0KPiBBcmdoISBDYW4gd2Ug
-aGF2ZSBvbmx5IG9uZSBzZXQgb2YgZmxhZ3M/DQo+DQoNCk15IGJhZCBoZXJlIGZvciBub3QgY2F0
-Y2hpbmcgdGhpcyBlYXJsaWVyLg0KDQpJdCBtaWdodCBiZSBhbiBpZGVhIHRvIGNyZWF0ZSBhICJp
-bmNsdWRlL3VhcGkvbGludXgvc3BpL3NwaS5oIiBhbmQgaW5jbHVkZSB0aGlzIGluICIgaW5jbHVk
-ZS91YXBpL2xpbnV4L3NwaS9zcGlkZXYuaCAiDQpUaGVuIHRoZSAiIGluY2x1ZGUvdWFwaS9saW51
-eC9zcGkvc3BpLmggIiB3b3VsZCBhbHNvIGJlIGluY2x1ZGVkIGluICIgaW5jbHVkZS9saW51eC9z
-cGkvc3BpLmggIg0KV2Ugd291bGQgbmF0dXJhbGx5IGRyb3AgdGhlIEJJVCgpIG1hY3JvcyBmb3Ig
-dGhlIHVhcGkgaGVhZGVyLg0KDQoNCj4gLS0NCj4gV2l0aCBCZXN0IFJlZ2FyZHMsDQo+IEFuZHkg
-U2hldmNoZW5rbw0K
+This is a driver for AX88796C Ethernet Adapter connected in SPI mode as
+found on ARTIK5 evaluation board. The driver has been ported from a
+v3.10.9 vendor kernel for ARTIK5 board.
+
+Changes in v7:
+  - removed duplicate code
+  - moved a constant buffer definition away from a header file
+
+Changes in v6:
+  - fixed typos in Kconfig
+  - checked argument value in ax88796c_set_tunable
+  - updated tags in commit messages
+
+Changes in v5:
+  - coding style (local variable declarations)
+  - added spi0 node in the DT binding example and removed
+    interrupt-parent
+  - removed comp module parameter
+  - added CONFIG_SPI_AX88796C_COMPRESSION option to set the initial
+    state of SPI compression
+  - introduced new ethtool tunable "spi-compression" to controll SPI
+    transfer compression
+  - removed unused fields in struct ax88796c_device
+  - switched from using buffers allocated on stack for SPI transfers
+    to DMA safe ones embedded in struct ax_spi and allocated with
+    kmalloc()
+
+Changes in v4:
+  - fixed compilation problems in asix,ax88796c.yaml and in
+  ax88796c_main.c introduced in v3
+
+Changes in v3:
+  - modify vendor-prefixes.yaml in a separate patch
+  - fix several problems in the dt binding
+    - removed unnecessary descriptions and properties
+    - changed the order of entries
+    - fixed problems with missing defines in the example
+  - change (1 << N) to BIT(N), left a few (0 << N)
+  - replace ax88796c_get_link(), ax88796c_get_link_ksettings(),
+    ax88796c_set_link_ksettings(), ax88796c_nway_reset(),
+    ax88796c_set_mac_address() with appropriate kernel functions.
+  - disable PHY auto-polling in MAC and use PHYLIB to track the state
+    of PHY and configure MAC
+  - propagate return values instead of returning constants in several
+    places
+  - add WARN_ON() for unlocked mutex
+  - remove local work queue and use the system_wq
+  - replace phy_connect_direct() with phy_connect() and move
+    devm_register_netdev() to the end of ax88796c_probe()
+    (Unlike phy_connect_direct() phy_connect() does not crash if the
+    network device isn't registered yet.)
+  - remove error messages on ENOMEM
+  - move free_irq() to the end of ax88796c_close() to avoid race
+    condition
+  - implement flow-control
+
+Changes in v2:
+  - use phylib
+  - added DT bindings
+  - moved #includes to *.c files
+  - used mutex instead of a semaphore for locking
+  - renamed some constants
+  - added error propagation for several functions
+  - used ethtool for dumping registers
+  - added control over checksum offloading
+  - remove vendor specific PM
+  - removed macaddr module parameter and added support for reading a MAC
+    address from platform data (e.g. DT)
+  - removed dependency on SPI from NET_VENDOR_ASIX
+  - added an entry in the MAINTAINERS file
+  - simplified logging with appropriate netif_* and netdev_* helpers
+  - lots of style fixes
+
+Łukasz Stelmach (3):
+  dt-bindings: vendor-prefixes: Add asix prefix
+  dt-bindings: net: Add bindings for AX88796C SPI Ethernet Adapter
+  net: ax88796c: ASIX AX88796C SPI Ethernet Adapter Driver
+
+ .../bindings/net/asix,ax88796c.yaml           |   73 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    6 +
+ drivers/net/ethernet/Kconfig                  |    1 +
+ drivers/net/ethernet/Makefile                 |    1 +
+ drivers/net/ethernet/asix/Kconfig             |   35 +
+ drivers/net/ethernet/asix/Makefile            |    6 +
+ drivers/net/ethernet/asix/ax88796c_ioctl.c    |  221 ++++
+ drivers/net/ethernet/asix/ax88796c_ioctl.h    |   26 +
+ drivers/net/ethernet/asix/ax88796c_main.c     | 1132 +++++++++++++++++
+ drivers/net/ethernet/asix/ax88796c_main.h     |  561 ++++++++
+ drivers/net/ethernet/asix/ax88796c_spi.c      |  112 ++
+ drivers/net/ethernet/asix/ax88796c_spi.h      |   69 +
+ include/uapi/linux/ethtool.h                  |    1 +
+ net/ethtool/common.c                          |    1 +
+ 15 files changed, 2247 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/asix,ax88796c.yaml
+ create mode 100644 drivers/net/ethernet/asix/Kconfig
+ create mode 100644 drivers/net/ethernet/asix/Makefile
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_ioctl.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_ioctl.h
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_main.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_main.h
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_spi.c
+ create mode 100644 drivers/net/ethernet/asix/ax88796c_spi.h
+
+-- 
+2.26.2
+
