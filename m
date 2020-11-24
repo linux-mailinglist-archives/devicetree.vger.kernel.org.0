@@ -2,165 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D27B02C31E0
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 21:23:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4070E2C31EA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 21:29:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730851AbgKXUV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 15:21:58 -0500
-Received: from mail.kernel.org ([198.145.29.99]:35704 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730842AbgKXUV6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Nov 2020 15:21:58 -0500
-Received: from localhost (82-217-20-185.cable.dynamic.v4.ziggo.nl [82.217.20.185])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2071420C56;
-        Tue, 24 Nov 2020 20:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1606249317;
-        bh=l+9NmmtFEas2DX5laoOlXoF9WiY+ElWfxpO9iaNHW8M=;
-        h=Subject:To:From:Date:From;
-        b=JjTvloqoRkrlYz+h7Ku8oq23BCVCfcbLcB2Km6vgCeErSW6/5orQ9bu+Yw5jyCQqi
-         1Us6Ps+0YfiuiIOX9GdXXv6l/RTrpBfbMS5oFzg2u1uuQl5XthtTimjM5JeURhd0RC
-         D7lf6EjzncgntWAH/GXkh7z++Z+t3mDLokZ/lCbE=
-Subject: patch "dt-bindings: iio: sx9310: Add various settings as DT properties" added to staging-next
-To:     swboyd@chromium.org, Jonathan.Cameron@huawei.com,
-        campello@chromium.org, devicetree@vger.kernel.org,
-        dianders@chromium.org, evgreen@chromium.org, gwendal@chromium.org,
-        lars@metafoo.de, pmeerw@pmeerw.net, robh@kernel.org
-From:   <gregkh@linuxfoundation.org>
-Date:   Tue, 24 Nov 2020 21:21:23 +0100
-Message-ID: <1606249283130196@kroah.com>
+        id S1730924AbgKXU1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 15:27:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728047AbgKXU1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 15:27:06 -0500
+Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com [IPv6:2607:f8b0:4864:20::c41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897BBC0613D6;
+        Tue, 24 Nov 2020 12:27:06 -0800 (PST)
+Received: by mail-oo1-xc41.google.com with SMTP id i30so2885571ooh.9;
+        Tue, 24 Nov 2020 12:27:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1p3MphIVZg58IrRlJbbZQsq/DayH0/k53DA6gJWI+tY=;
+        b=kESjEbsMyt0C9kEtlQN/GPGWWzPPTR94l4yhLYCrPcckKsSp7OjFKkGhvtm0n/sa8k
+         /VwWhL0m8LuALUMHCb0Ks3s/QrNoOioGLD2LKZ4Ck8itg8Kfj7n8xMqoKF4v08x22YYV
+         FmLEXkMhEXq6R/Ou2POkCl0yS83EBEB/PwYmtw8NOvF8ICy4I1ZEh+fL7Go/M+4QIuSO
+         e9MWj/bzc3tQWrhiXGAMdnPSF0MA8sX8bNELO14j2LxXnjba/rQbVn4lyKijceuN99MA
+         PKxa6Dm6ldTt0foRq0TAQhUhgzREclEiPT22aTTm2IYXL2cFo8+1Jn2LxaIMOHtx0XRG
+         of5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1p3MphIVZg58IrRlJbbZQsq/DayH0/k53DA6gJWI+tY=;
+        b=ttTb3/V2fycBsaFFQw3R5FV7sex0gpR6rC1JhVH1RbnBnd4Lk2hGzqf7Q8EyjgR+eI
+         vw0cRLOSR/+sGWNTcUn77AS7nn5FA91ZT9417UnH8TyCebEH6DYH+8zR7OYQFU1dI4DY
+         pXmWIyxpifQwXBoP6CKcgdVXUpPqSSRsevtB0FpmdsUgSv58edmCvWR/6SOtjx7hzKU0
+         7GIU0ax8q9NX3n5FB+xxN25vSycCqXiAuy0t1u0hrz04vr8D8/lc0SQ/CV+MVs5Q8YYZ
+         BkImX3af61dpbrLvhEcmbTqZ7Ub3iNFLgEV9RyfbMDco5zsoD2IomxnCnjXfo9WamHTE
+         a+3g==
+X-Gm-Message-State: AOAM531XV/Qk+MwZ/lOXGFWIesnojp0VR7Zm0ekFG79if4rhlJk9NPYo
+        TNenLWsNul1Ti6hgKb4cclJz/TRemOCESmu4rg==
+X-Google-Smtp-Source: ABdhPJzgirUetLwmKsEwRsYdOGsTrSFqmH+CMkWHtP8fG2GQbOqglTAc3jLGPdw2Lr4nYTP25FFhtFJphpd/Ea0V5pw=
+X-Received: by 2002:a05:6820:351:: with SMTP id m17mr113548ooe.36.1606249625819;
+ Tue, 24 Nov 2020 12:27:05 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-Content-Transfer-Encoding: 8bit
+References: <20201120181627.21382-1-george.mccollister@gmail.com>
+ <20201120181627.21382-2-george.mccollister@gmail.com> <919273d3-6aa6-33b3-a8fe-d59ace9b1342@gmail.com>
+In-Reply-To: <919273d3-6aa6-33b3-a8fe-d59ace9b1342@gmail.com>
+From:   George McCollister <george.mccollister@gmail.com>
+Date:   Tue, 24 Nov 2020 14:26:53 -0600
+Message-ID: <CAFSKS=NujO_LXWjMFhXwiHGjB0RDEVXqSOUKooSywSLPKHw5sw@mail.gmail.com>
+Subject: Re: [PATCH net-next 1/3] dsa: add support for Arrow XRS700x tag trailer
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Nov 23, 2020 at 4:18 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+>
+>
+> On 11/20/2020 10:16 AM, George McCollister wrote:
+> > Add support for Arrow SpeedChips XRS700x single byte tag trailer. This
+> > is modeled on tag_trailer.c which works in a similar way.
+> >
+> > Signed-off-by: George McCollister <george.mccollister@gmail.com>
+>
+> One question below:
+>
+> [snip]
+>
+> > +     if (pskb_trim_rcsum(skb, skb->len - 1))
+> > +             return NULL;
+> > +
+> > +     /* Frame is forwarded by hardware, don't forward in software. */
+> > +     skb->offload_fwd_mark = 1;
+>
+> Given the switch does not give you a forwarding reason, I suppose this
+> is fine, but do you possibly have to qualify this against different
+> source MAC addresses?
 
-This is a note to let you know that I've just added the patch titled
+I don't see any reason why I'd need to do that but maybe I'm missing something.
 
-    dt-bindings: iio: sx9310: Add various settings as DT properties
-
-to my staging git tree which can be found at
-    git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
-in the staging-next branch.
-
-The patch will show up in the next release of the linux-next tree
-(usually sometime within the next 24 hours during the week.)
-
-The patch will also be merged in the next major kernel release
-during the merge window.
-
-If you have any questions about this process, please let me know.
-
-
-From e94b3c608a2a886758da87dc5bb383e5eddce666 Mon Sep 17 00:00:00 2001
-From: Stephen Boyd <swboyd@chromium.org>
-Date: Tue, 6 Oct 2020 18:17:34 -0700
-Subject: dt-bindings: iio: sx9310: Add various settings as DT properties
-
-We need to set various bits in the hardware registers for this device to
-operate properly depending on how it is installed. Add a handful of DT
-properties to configure these things.
-
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Cc: Daniel Campello <campello@chromium.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc: <devicetree@vger.kernel.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Gwendal Grignou <gwendal@chromium.org>
-Cc: Evan Green <evgreen@chromium.org>
-Link: https://lore.kernel.org/r/20201007011735.1346994-6-swboyd@chromium.org
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
----
- .../iio/proximity/semtech,sx9310.yaml         | 63 +++++++++++++++++++
- 1 file changed, 63 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-index 5739074d3592..ccfb163f3d34 100644
---- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-@@ -40,6 +40,63 @@ properties:
-   "#io-channel-cells":
-     const: 1
- 
-+  semtech,cs0-ground:
-+    description: Indicates the CS0 sensor is connected to ground.
-+    type: boolean
-+
-+  semtech,combined-sensors:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      List of which sensors are combined and represented by CS3.
-+      Possible values are -
-+      3        - CS3 (internal)
-+      0 1      - CS0 + CS1
-+      1 2      - CS1 + CS2 (default)
-+      0 1 2 3  - CS0 + CS1 + CS2 + CS3
-+    items:
-+      enum: [ 0, 1, 2, 3 ]
-+    minItems: 1
-+    maxItems: 4
-+
-+  semtech,resolution:
-+    description:
-+      Capacitance measure resolution. Refer to datasheet for more details.
-+    enum:
-+      - coarsest
-+      - very-coarse
-+      - coarse
-+      - medium-coarse
-+      - medium
-+      - fine
-+      - very-fine
-+      - finest
-+
-+  semtech,startup-sensor:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 1, 2, 3]
-+    default: 0
-+    description:
-+      Sensor used for start-up proximity detection. The combined
-+      sensor is represented by the value 3. This is used for initial
-+      compensation.
-+
-+  semtech,proxraw-strength:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 2, 4, 8]
-+    default: 2
-+    description:
-+      PROXRAW filter strength. A value of 0 represents off, and other values
-+      represent 1-1/N.
-+
-+  semtech,avg-pos-strength:
-+    $ref: /schemas/types.yaml#definitions/uint32
-+    enum: [0, 16, 64, 128, 256, 512, 1024, 4294967295]
-+    default: 16
-+    description:
-+      Average positive filter strength. A value of 0 represents off and
-+      UINT_MAX (4294967295) represents infinite. Other values
-+      represent 1-1/N.
-+
- required:
-   - compatible
-   - reg
-@@ -61,5 +118,11 @@ examples:
-         vdd-supply = <&pp3300_a>;
-         svdd-supply = <&pp1800_prox>;
-         #io-channel-cells = <1>;
-+        semtech,cs0-ground;
-+        semtech,combined-sensors = <1 2 3>;
-+        semtech,resolution = "fine";
-+        semtech,startup-sensor = <1>;
-+        semtech,proxraw-strength = <2>;
-+        semtech,avg-pos-strength = <64>;
-       };
-     };
--- 
-2.29.2
-
-
+> --
+> Florian
