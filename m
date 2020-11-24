@@ -2,172 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F3232C1FD1
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 09:27:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC6592C1FF1
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 09:31:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730494AbgKXIZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 03:25:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42854 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730376AbgKXIZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 03:25:36 -0500
-Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A09E9C0613D6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 00:25:34 -0800 (PST)
-Received: by mail-io1-xd43.google.com with SMTP id d17so21060499ion.4
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 00:25:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=KMNdadd9ZvFWTuVoNLHMWm8n/oEimDIAyR8rcds6pZI=;
-        b=ITNkjmgb/YsTR2TlPkZnlmXo0uqq5uhiwHqyCtKh9zv2302HUv0EOxTI6zIuX27HOF
-         Kj33WUb/MHzZGMRvP05GlvHO/yxIvW2dofPEUVo16ucBZLNJ300vkO7ksi0OMvtqhp58
-         pQBKHdVHP75bsR9+H1njI04/dgI2F8y8ocIpw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=KMNdadd9ZvFWTuVoNLHMWm8n/oEimDIAyR8rcds6pZI=;
-        b=ud/v7vyldMDkTdX+KGeoVV7pAKRkj8L5P26ZMQI1hfl+xpHFlxMVBfNjSmGbe/NYv3
-         WjM3x3kAgwFCMlCiHrvhpEwGZaWTPvDsDXl9GWMI90uh0IKniXysRe8LDYObvZrlJ62y
-         fSFatlehBW9LQQdJ0/uNxKolG9kTX7OBquElj2E8rEARaNiGFrpr3ji6a7nro+GFIq6x
-         K2epzskoEfrggGI/2lKJIF/amYvjZ0vEQT8mJ1/LGwJuJ9nEpEsAPm2SvjFNSA7bzJk/
-         kWARENK24SJrfEBpMYHpjoACKRwASNWtWFPWVARP13ic2nSOig7AOztzUDXDxs7CfXnX
-         9GSQ==
-X-Gm-Message-State: AOAM53145lHwyF1bdMqtssUrSR6FTqbqrbIYSmbme+8uTfPGlSPfxS3h
-        5u/9SfqrozV2rew7f93E+KzPXGz+nmfMwABj2UVxcg==
-X-Google-Smtp-Source: ABdhPJyva+3URDRSrpHxrcTh7uFP7kWdZNum/UXJ9zFv+P/ZN3AGrq1Y/T6jPrsBuSoVIiiqRr8BGnw2YdEdTuRhZ1w=
-X-Received: by 2002:a05:6602:314c:: with SMTP id m12mr3172286ioy.100.1606206333961;
- Tue, 24 Nov 2020 00:25:33 -0800 (PST)
-MIME-Version: 1.0
-References: <20201013102358.22588-1-michael.kao@mediatek.com> <20201013102358.22588-3-michael.kao@mediatek.com>
-In-Reply-To: <20201013102358.22588-3-michael.kao@mediatek.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Tue, 24 Nov 2020 16:25:08 +0800
-Message-ID: <CAJMQK-gXFBbpmxugme3U0bJ_7TtWdibWWqQHSZLWy0jyeVuUuw@mail.gmail.com>
-Subject: Re: [v5 2/3] arm64: dts: mt8183: Configure CPU cooling
-To:     Michael Kao <michael.kao@mediatek.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        srv_heupstream@mediatek.com,
-        Eduardo Valentin <edubezval@gmail.com>,
+        id S1730511AbgKXIaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 03:30:04 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58166 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730433AbgKXIaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 03:30:04 -0500
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AO8Tgcs032629;
+        Tue, 24 Nov 2020 02:29:42 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1606206582;
+        bh=0TsVbr1BWiaJJR7/cw85lOA9UC5Db6/HF0AjUs7Ri9k=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=dwxkIzaDDnvHCoKhCMm7N9rFoLJmyWWCHXGlVL9aWKQMp1bvliGB+2DTE5yrCubxZ
+         +YA7otJuXfPP1MZB5b3xisrPki/DGQiNd3RUmqdYJIypsGzNYtIfmoVVUcE8GLhh8R
+         Azow8I6dD6axe9IljExp0LZCn+1F4tRkXtSm531U=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AO8Tfag102466
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 24 Nov 2020 02:29:41 -0600
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 24
+ Nov 2020 02:29:41 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 24 Nov 2020 02:29:41 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AO8TbNZ049526;
+        Tue, 24 Nov 2020 02:29:38 -0600
+Subject: Re: [PATCH v2 00/17] Refactor fw_devlink to significantly improve
+ boot time
+To:     Saravana Kannan <saravanak@google.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Frank Rowand <frowand.list@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+CC:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        <kernel-team@android.com>, <linux-acpi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-efi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20201121020232.908850-1-saravanak@google.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <758a1b59-1033-b0ae-2549-84c8eeea4b11@ti.com>
+Date:   Tue, 24 Nov 2020 10:29:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20201121020232.908850-1-saravanak@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Oct 13, 2020 at 6:24 PM Michael Kao <michael.kao@mediatek.com> wrot=
-e:
->
-> From: Matthias Kaehlcke <mka@chromium.org>
->
-> Add two passive trip points at 68=C2=B0C and 80=C2=B0C for the CPU temper=
-ature.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> Signed-off-by: Michael Kao <michael.kao@mediatek.com>
+Hi,
 
-Tested-by: Hsin-Yi Wang <hsinyi@chromium.org>
+On 21/11/2020 04:02, Saravana Kannan wrote:
+> The current implementation of fw_devlink is very inefficient because it
+> tries to get away without creating fwnode links in the name of saving
+> memory usage. Past attempts to optimize runtime at the cost of memory
+> usage were blocked with request for data showing that the optimization
+> made significant improvement for real world scenarios.
+> 
+> We have those scenarios now. There have been several reports of boot
+> time increase in the order of seconds in this thread [1]. Several OEMs
+> and SoC manufacturers have also privately reported significant
+> (350-400ms) increase in boot time due to all the parsing done by
+> fw_devlink.
+> 
+> So this patch series refactors fw_devlink to be more efficient. The key
+> difference now is the addition of support for fwnode links -- just a few
+> simple APIs. This also allows most of the code to be moved out of
+> firmware specific (DT mostly) code into driver core.
+> 
+> This brings the following benefits:
+> - Instead of parsing the device tree multiple times (complexity was
+>   close to O(N^3) where N in the number of properties) during bootup,
+>   fw_devlink parses each fwnode node/property only once and creates
+>   fwnode links. The rest of the fw_devlink code then just looks at these
+>   fwnode links to do rest of the work.
+> 
+> - Makes it much easier to debug probe issue due to fw_devlink in the
+>   future. fw_devlink=on blocks the probing of devices if they depend on
+>   a device that hasn't been added yet. With this refactor, it'll be very
+>   easy to tell what that device is because we now have a reference to
+>   the fwnode of the device.
+> 
+> - Much easier to add fw_devlink support to ACPI and other firmware
+>   types. A refactor to move the common bits from DT specific code to
+>   driver core was in my TODO list as a prerequisite to adding ACPI
+>   support to fw_devlink. This series gets that done.
+> 
+> Laurent and Grygorii tested the v1 series and they saw boot time
+> improvment of about 12 seconds and 3 seconds, respectively.
 
-> ---
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi | 56 ++++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/d=
-ts/mediatek/mt8183.dtsi
-> index 1cd093cf33f3..0614f18a1ea2 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/reset-controller/mt8183-resets.h>
->  #include <dt-bindings/phy/phy.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  #include "mt8183-pinfunc.h"
->
->  / {
-> @@ -450,6 +451,61 @@
->                                 polling-delay =3D <500>;
->                                 thermal-sensors =3D <&thermal 0>;
->                                 sustainable-power =3D <5000>;
-> +
-> +                               trips {
-> +                                       threshold: trip-point@0 {
-> +                                               temperature =3D <68000>;
-> +                                               hysteresis =3D <2000>;
-> +                                               type =3D "passive";
-> +                                       };
-> +
-> +                                       target: trip-point@1 {
-> +                                               temperature =3D <80000>;
-> +                                               hysteresis =3D <2000>;
-> +                                               type =3D "passive";
-> +                                       };
-> +
-> +                                       cpu_crit: cpu-crit {
-> +                                               temperature =3D <115000>;
-> +                                               hysteresis =3D <2000>;
-> +                                               type =3D "critical";
-> +                                       };
-> +                               };
-> +
-> +                               cooling-maps {
-> +                                       map0 {
-> +                                               trip =3D <&target>;
-> +                                               cooling-device =3D <&cpu0
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-,
-> +                                                                <&cpu1
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-,
-> +                                                                <&cpu2
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-,
-> +                                                                <&cpu3
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-;
-> +                                               contribution =3D <3072>;
-> +                                       };
-> +                                       map1 {
-> +                                               trip =3D <&target>;
-> +                                               cooling-device =3D <&cpu4
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-,
-> +                                                                <&cpu5
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-,
-> +                                                                <&cpu6
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-,
-> +                                                                <&cpu7
-> +                                                       THERMAL_NO_LIMIT
-> +                                                       THERMAL_NO_LIMIT>=
-;
-> +                                               contribution =3D <1024>;
-> +                                       };
-> +                               };
->                         };
->
->                         /* The tzts1 ~ tzts6 don't need to polling */
-> --
-> 2.18.0
+Tested v2 on OMAP4 SDP. With my particular config, boot time to starting init went from 18.5 seconds
+to 12.5 seconds.
+
+ Tomi
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
