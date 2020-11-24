@@ -2,169 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72C5B2C19DC
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 01:19:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE1C2C1A48
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 01:59:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728857AbgKXAP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 19:15:29 -0500
-Received: from mail-eopbgr760050.outbound.protection.outlook.com ([40.107.76.50]:7808
-        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725287AbgKXAP0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 19:15:26 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z3pMOGb/+Td64l+71bvUeTBhdLR2k+18u77xNGVFTiBbjG4PtBxMBWcg2rUTwRl4E6px9zAjZc1nJ+RYT4Yah28eotlcUxRJguGo4YR5xHQdEFQvaFHpMfTxVyNykYWe67SZRrxPXExeeGXKRn+5iyaQpxjVssdcgfLVntp1kJJsXpGyhHhOoKlFot2UpZVsAuAp82Z0k2pmaONrD3Ql7e9HqpbokTcc0H6nf2X/u4LS1YZ7eVzgAPE/XwBy1VilTvCxk3/RgWO+4SWY6B52ax0MpyWLhfEfqUjQUNgeeesluzk6zCJUf2eoHEHdN2uwPcGTRCk7cic78FaRoIGztA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JAI7Y5OrlurO1PSv12ucNaIuUWcVDQZLHrnvWkhomuc=;
- b=Nwp3LC5v9Z82OPT4saxKKCU6zKb3qyeIJKOyHSfMOijvmhOs6ZGxoKGuXlfDL61GCxPH14G8qoCZxQNaoz9+T/7rpk4nUqn+iOfBwkjHm0vQh5QfNzvvcbr7Bw6OMN4BIr8mlCEwNKdlTgAD7VaOEvK2RsWLEPCyq1+bcY7QtlprCKmG2z/tnSWmEkceXlYFD0+nPRcqAjjYzS4JAEHdh182w18cGDdZ0CYDy8gAhb94JoKSPjicmraETp5qEWgWgmAgTDMRWYbFN72PI5T0GvqxSwL+GKZEwIIzJNot8w9oMg8KlbOnw0iGd1VekU0hnDVJbxVSvyPWKbxACyLTNg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
+        id S1726158AbgKXAzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 19:55:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725952AbgKXAzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 19:55:42 -0500
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559E6C061A4E
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 16:55:41 -0800 (PST)
+Received: by mail-io1-xd42.google.com with SMTP id n129so20149621iod.5
+        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 16:55:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JAI7Y5OrlurO1PSv12ucNaIuUWcVDQZLHrnvWkhomuc=;
- b=KZbmzKHzou5alJY1doAZylsFpA+d8C0Klmtwi38Gxf4r9fpeY1VcaCeoSnolz22Zw0fgU5MvVSXGMVXyU1/ZC1deqJ5UpGLkTNkeD+DEut+syxsdQgQrsku8etJay4OfyGDy8i0Nw03N0TND/GbTqrzjYXGo6XfSBSMYulhf87w=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=labundy.com;
-Received: from SN6PR08MB5517.namprd08.prod.outlook.com (2603:10b6:805:fb::32)
- by SA2PR08MB6538.namprd08.prod.outlook.com (2603:10b6:806:11d::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Tue, 24 Nov
- 2020 00:15:22 +0000
-Received: from SN6PR08MB5517.namprd08.prod.outlook.com
- ([fe80::3cac:792d:fcf4:75a2]) by SN6PR08MB5517.namprd08.prod.outlook.com
- ([fe80::3cac:792d:fcf4:75a2%7]) with mapi id 15.20.3564.035; Tue, 24 Nov 2020
- 00:15:22 +0000
-Date:   Mon, 23 Nov 2020 18:15:16 -0600
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] input: Add support for Azoteq IQS626A
-Message-ID: <20201124001516.GA6249@labundy.com>
-References: <1606084748-4097-1-git-send-email-jeff@labundy.com>
- <1606084748-4097-3-git-send-email-jeff@labundy.com>
- <20201123070307.GE2034289@dtor-ws>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201123070307.GE2034289@dtor-ws>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [136.49.227.119]
-X-ClientProxiedBy: DM5PR11CA0015.namprd11.prod.outlook.com
- (2603:10b6:3:115::25) To SN6PR08MB5517.namprd08.prod.outlook.com
- (2603:10b6:805:fb::32)
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kVHPzIRwek8E3f7Sx26BG40H0alZuW716ApQdhgz6Iw=;
+        b=N8kuw9EvqwIgGVWTR29b/Rl/2bss44iB/0TgMwyT1N0NZh4sBu+46M9TtGYGuWxyBY
+         H3q+QwEgpCbJpJl9jNrnQrod75wA8elCoD5+7AR0IonZro764uw3wKzMsDPZ2jeasPh8
+         DX5Z3TOUARxslaevqzGUx8lihh6f/WMSxMq1gGAPwUzDFrAL1vNt+hk05+BNXrsBNgyx
+         lkwb906PQ7cczc05Qz1fZLReqwwrr8DS6+OfVIq1DJ097xOfPzzJQ+dM6exEMSr03jls
+         WqRY3+lUSTA548y/cL9Kw4IZsIveV6OhEwvGo5BuYoOED+Rpkw0RBxrt8Qfp6odX5g0c
+         FRjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kVHPzIRwek8E3f7Sx26BG40H0alZuW716ApQdhgz6Iw=;
+        b=rFAODxRNRE4bYD1DiwTXkhV1NRAogFo6lwAiiK+4i5YJ6deWlUtbCNWd9V79YqYeEr
+         NPeyeLWf4CXgFvD3TKaay6H5ANuoHHkz/aUcfVHZfyOd5b4qrEbLdexuocxoakM508bS
+         s6LBPTytoi/MvHSGgeuoYioBbCJS7dUs8LN75y5PJKGYG4/YI7yjMTK95LdwTwB9jk5A
+         njXaVDvfU60OnjvlVPtivwXo34IdrNuzcyV07CA/V1qyExeFu7DuXEPMkJE8jNisOLNd
+         g3jy4j2UgShXhjZwtfeCy928jVfQ8YIvR0ll8c+IJyKXUEi/8mb309BYXXmOMuIO8qcj
+         0HVg==
+X-Gm-Message-State: AOAM531RTGFgLr3ECJOPnpyek9BflnE3iWC4EWTF/8yML2oMMG1PGoxw
+        Kzef1iwLf+hNJGlG/0DGe+aMSbVvigBMrGR/QlfNOg==
+X-Google-Smtp-Source: ABdhPJx8XuSzuFA3gwJRwNQZUxGR11tr21aduP0wprZd3IG5fPOzXI3BUYt+xJGGKYTwkwdINdrI5WAz36g6v816Aqc=
+X-Received: by 2002:a5d:9284:: with SMTP id s4mr2024314iom.165.1606179340562;
+ Mon, 23 Nov 2020 16:55:40 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from labundy.com (136.49.227.119) by DM5PR11CA0015.namprd11.prod.outlook.com (2603:10b6:3:115::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Tue, 24 Nov 2020 00:15:21 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a9f49d1b-934a-45ad-9b5d-08d8900e087f
-X-MS-TrafficTypeDiagnostic: SA2PR08MB6538:
-X-Microsoft-Antispam-PRVS: <SA2PR08MB65386B1BB650AFF487F1E73CD3FB0@SA2PR08MB6538.namprd08.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ABtgjytFhSk+IvvcauZZGhaaiRIL2vvYxF2XYyLxCzW50h0N3pEbQjgv1gQVy7JPn36AKrj/myxowfaA6qAS0A0WARNGN7ulBXpdC7BqmoqRvbv/rZ0KEnw2jzgBN/e6G88fkSupTMMCt9yaN9bG1PsJXyrhKwSGb1KxfPMU+b8h4/RJTPrulgDJAQYdgMmuOSyyOZV4Vyekgg7m97EBDJ/q/g1tqeqTKMKx/A4RHEhmK/nOHQgqn8q2krf6CSQuBCwYyrhRU4dJJNT56aG4Md0TRikSFqKiAWvvl+RBVjE9W8sNcqMDuu6TL5e9BTqEM/QDa50ZP9kccxoXkXclJg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR08MB5517.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(136003)(366004)(39830400003)(346002)(376002)(6916009)(5660300002)(4326008)(956004)(2616005)(55016002)(316002)(33656002)(186003)(478600001)(36756003)(6666004)(26005)(66946007)(8676002)(66476007)(86362001)(66556008)(8886007)(16526019)(52116002)(7696005)(8936002)(1076003)(2906002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: qsqF5OI71ja65R8J50smRIC4ZOSlZ4TJWJOZB1a8kMIVq8l+HsHkC8915ThiNJSz+XMSWWFKAcy8QX9a5A3syhC07OhMO6WK1Iqc7E3scQiwKu154sBOjKnW5QbSPMe9maIz/e67UPgR6iocQudUIBJCgwPdL5vdKBB5tZQQLe/EzsmJ8iVLtNWajN2pZNpsNtrBQ6ZJVxMeR3f08UQVQw12mCjFsIGg/0QfMvtJq4Sc3he0QU2VmRuSYPqhk05qTFIN4iitauXzwMyqjOTCqr7wqoHr1UgkTokhfBTnNx0Ya+wELdrdo1P7AeCRuTWRS/RySa3jV/ciBjV/9ynIRyBVD0aYg4QUtg9BKp4mzJ5/G22qvLXQ5DwVP/PLNyZlkEDAeOU1DIbTOrdR46dNOqWFOcQNzYMFsIkD5gvNJy6r0M0CHJz1Wiy1TA5Y8j2wkFkRw2TYk4l67AVJ48H2B4GrhRpZOV3MsdaaYJ/bzgltfLOaaI2wDUDbDr7vrCNLKAra0wqLEPQ0qt3QWb6vhySUH5zL0PT9uRtuxNxmBwPd0aaiWYr4rNmg/MQ0S8kFs9+a34y9i7tBL+6NMonATDGi1IeEZM4jlukn4ZDQKCmiBIsz0Yby+1mPXOz/BZRCkWWwBQSLhpAVNfHMFRYxIV5XCV3wnoCXLy4T6fsjKzXJcbkFkqME83NF514nUl9VRLLqyC0iCh+O/9zKCGZm49UNrpePRq19dgVSVPxjzE4S0icdGlv9Fr4+ThdGJZW28nfjNGoCigjjl8ECG/HgyUpbUzaqmflE3+l2xG68dbSToGdR9WmIv5+N2itIy836s/wqsYy+nsfMI97sf65zlr6Wn0LpiVORnriWvTi02n8p26VaMar8YThCqFiWruJGYGSfAivHgN5DuYa2XpoOVg==
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a9f49d1b-934a-45ad-9b5d-08d8900e087f
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR08MB5517.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2020 00:15:22.2226
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4hV4v8wtHjsPXgt7+C0vruIlobqo6Ep0ciWfj/ze5q1wrHShNF6/mGmgf/oH1Oh9f2nFlW/ChT1wHpqqqe5q8w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR08MB6538
+References: <20201119010531.21083-1-s-anna@ti.com> <20201119010531.21083-4-s-anna@ti.com>
+ <20201123235129.GA529235@xps15>
+In-Reply-To: <20201123235129.GA529235@xps15>
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+Date:   Mon, 23 Nov 2020 17:55:27 -0700
+Message-ID: <CANLsYkwztm1hwXMGO-7025YdaEk=ttLMVmM2A8hRYyyrWpR7fQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] remoteproc: k3-r5: Adjust TCM sizes in Split-mode on
+ J7200 SoCs
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-remoteproc <linux-remoteproc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
-
-Thank you for taking a look.
-
-On Sun, Nov 22, 2020 at 11:03:07PM -0800, Dmitry Torokhov wrote:
-> Hi Jeff,
-> 
-> On Sun, Nov 22, 2020 at 04:39:08PM -0600, Jeff LaBundy wrote:
+On Mon, 23 Nov 2020 at 16:51, Mathieu Poirier
+<mathieu.poirier@linaro.org> wrote:
+>
+> Good afternoon Suman,
+>
+> On Wed, Nov 18, 2020 at 07:05:31PM -0600, Suman Anna wrote:
+> > The J7200 SoCs have a revised R5FSS IP that adds a unique feature w.r.t
+> > TCM sizing. Each R5F core in a cluster typically has 32 KB each of ATCM
+> > and BTCM, with only the Core0 TCMs usable in LockStep mode. This revised
+> > IP however doubles the total available TCM in LockStep mode by making the
+> > Core1 TCM visible immediately after the corresponding Core0 TCM.
+> >
+> > The R5F DT nodes on the J7200 SoCs define double (64 KB) the normal TCM
+> > size (32 KB) for R5F Core0 for each of ATCM and BTCM to represent the
+> > above. This increased TCM memory is only usable in LockStep-mode, and
+> > has to be adjusted to the normal 32 KB size in Split mode. Enhance the
+> > TI K3 R5F remoteproc for this logic through a new function. The adjustment
+> > is a no-op on prior SoCs and relies on the correct DTS node sizes in
+> > LockStep-mode on applicable SoCs.
+> >
+> > Signed-off-by: Suman Anna <s-anna@ti.com>
+> > ---
+> >  drivers/remoteproc/ti_k3_r5_remoteproc.c | 43 ++++++++++++++++++++++++
+> >  1 file changed, 43 insertions(+)
+> >
+> > diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> > index 66a32dcdd7d0..62b5a4c29456 100644
+> > --- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> > +++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
+> > @@ -71,9 +71,11 @@ enum cluster_mode {
+> >
+> >  /**
+> >   * struct k3_r5_soc_data - match data to handle SoC variations
+> > + * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
+> >   * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
+> >   */
+> >  struct k3_r5_soc_data {
+> > +     bool tcm_is_double;
+> >       bool tcm_ecc_autoinit;
+> >  };
+> >
+> > @@ -886,6 +888,43 @@ static void k3_r5_reserved_mem_exit(struct k3_r5_rproc *kproc)
+> >       of_reserved_mem_device_release(kproc->dev);
+> >  }
+> >
+> > +/*
+> > + * Each R5F core within a typical R5FSS instance has a total of 64 KB of TCMs,
+> > + * split equally into two 32 KB banks between ATCM and BTCM. The TCMs from both
+> > + * cores are usable in Split-mode, but only the Core0 TCMs can be used in
+> > + * LockStep-mode. The newer revisions of the R5FSS IP maximizes these TCMs by
+> > + * leveraging the Core1 TCMs as well in certain modes where they would have
+> > + * otherwise been unusable (Eg: LockStep-mode on J7200 SoCs). This is done by
+> > + * making a Core1 TCM visible immediately after the corresponding Core0 TCM.
+> > + * The SoC memory map uses the larger 64 KB sizes for the Core0 TCMs, and the
+> > + * dts representation reflects this increased size on supported SoCs. The Core0
+> > + * TCM sizes therefore have to be adjusted to only half the original size in
+> > + * Split mode.
+> > + */
+> > +static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
+> > +{
+> > +     struct k3_r5_cluster *cluster = kproc->cluster;
+> > +     struct k3_r5_core *core = kproc->core;
+> > +     struct device *cdev = core->dev;
+> > +     struct k3_r5_core *core0;
 > > +
-> > +		if ((sys_reg->active & tp_mask) == tp_mask)
-> > +			input_set_abs_params(iqs626->trackpad,
-> > +					     ABS_X, 0, 255, 0, 0);
-> > +		else
-> > +			input_set_abs_params(iqs626->trackpad,
-> > +					     ABS_X, 0, 128, 0, 0);
-> > +#ifdef CONFIG_TOUCHSCREEN_PROPERTIES
-> > +		touchscreen_parse_properties(iqs626->trackpad, false,
-> > +					     &iqs626->prop);
-> > +#endif /* CONFIG_TOUCHSCREEN_PROPERTIES */
-> 
-> This should not be separately selectable from CONFIG_INPUT, so there is
-> not need to have this guard.
-> 
-> The reason it is a separate symbol is historical - it used to depend on
-> OF in addition to INPUT. I suppose I can drop it now.
+> > +     if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
+> > +         !cluster->soc_data->tcm_is_double)
+> > +             return;
+>
+> Shouldn't this be:
+>
+>         if (cluster->mode == CLUSTER_MODE_SPLIT ||
+>             !cluster->soc_data->tcm_is_double)
+>                 return;
+>
+> If am wrong then I'm pretty sure other people will be confused and a comment is
+> warranted.
+>
 
-Without these guards, the build fails if CONFIG_INPUT_TOUCHSCREEN=n and
-I felt it too heavy-handed to add a 'depends on' for what is ultimately
-a corner-case of sorts for this device.
+Forget the above, I misread the context.  The memories are already set
+to 64KB so there is nothing to do if in lockstep mode.
 
-The touchscreen helpers are useful for more than just touchscreens, and
-we can extend them to all of input with something like the patch below.
-If it looks OK to you, I can insert it into v2 after I collect feedback
-from Rob for the binding.
-
-> 
-> Thanks.
-> 
-> -- 
-> Dmitry
-
-Kind regards,
-Jeff LaBundy
-
-diff --git a/drivers/input/Makefile b/drivers/input/Makefile
-index e356509..d050974 100644
---- a/drivers/input/Makefile
-+++ b/drivers/input/Makefile
-@@ -7,6 +7,7 @@
- 
- obj-$(CONFIG_INPUT)		+= input-core.o
- input-core-y := input.o input-compat.o input-mt.o input-poller.o ff-core.o
-+input-core-y += touchscreen/of_touchscreen.o
- 
- obj-$(CONFIG_INPUT_FF_MEMLESS)	+= ff-memless.o
- obj-$(CONFIG_INPUT_POLLDEV)	+= input-polldev.o
-diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-index f012fe7..4c33278 100644
---- a/drivers/input/touchscreen/Kconfig
-+++ b/drivers/input/touchscreen/Kconfig
-@@ -12,10 +12,6 @@ menuconfig INPUT_TOUCHSCREEN
- 
- if INPUT_TOUCHSCREEN
- 
--config TOUCHSCREEN_PROPERTIES
--	def_tristate INPUT
--	depends on INPUT
--
- config TOUCHSCREEN_88PM860X
- 	tristate "Marvell 88PM860x touchscreen"
- 	depends on MFD_88PM860X
-diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-index 6233541..80cd241 100644
---- a/drivers/input/touchscreen/Makefile
-+++ b/drivers/input/touchscreen/Makefile
-@@ -7,7 +7,6 @@
- 
- wm97xx-ts-y := wm97xx-core.o
- 
--obj-$(CONFIG_TOUCHSCREEN_PROPERTIES)	+= of_touchscreen.o
- obj-$(CONFIG_TOUCHSCREEN_88PM860X)	+= 88pm860x-ts.o
- obj-$(CONFIG_TOUCHSCREEN_AD7877)	+= ad7877.o
- obj-$(CONFIG_TOUCHSCREEN_AD7879)	+= ad7879.o
-
+> > +
+> > +     core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
+> > +     if (core == core0) {
+> > +             WARN_ON(core->mem[0].size != SZ_64K);
+> > +             WARN_ON(core->mem[1].size != SZ_64K);
+> > +
+> > +             core->mem[0].size /= 2;
+> > +             core->mem[1].size /= 2;
+> > +
+> > +             dev_dbg(cdev, "adjusted TCM sizes, ATCM = 0x%zx BTCM = 0x%zx\n",
+> > +                     core->mem[0].size, core->mem[1].size);
+> > +     }
+> > +}
+> > +
+> >  static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
+> >  {
+> >       struct k3_r5_cluster *cluster = platform_get_drvdata(pdev);
+> > @@ -933,6 +972,8 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
+> >                       goto err_config;
+> >               }
+> >
+> > +             k3_r5_adjust_tcm_sizes(kproc);
+> > +
+> >               ret = k3_r5_reserved_mem_init(kproc);
+> >               if (ret) {
+> >                       dev_err(dev, "reserved memory init failed, ret = %d\n",
+> > @@ -1407,10 +1448,12 @@ static int k3_r5_probe(struct platform_device *pdev)
+> >  }
+> >
+> >  static const struct k3_r5_soc_data am65_j721e_soc_data = {
+> > +     .tcm_is_double = false,
+> >       .tcm_ecc_autoinit = false,
+> >  };
+> >
+> >  static const struct k3_r5_soc_data j7200_soc_data = {
+> > +     .tcm_is_double = true,
+> >       .tcm_ecc_autoinit = true,
+>
+> With the above and for the set:
+>
+> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+>
+> >  };
+> >
+> > --
+> > 2.28.0
+> >
