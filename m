@@ -2,195 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE1C2C1A48
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 01:59:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F5C92C1ABA
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 02:20:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726158AbgKXAzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 19:55:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725952AbgKXAzm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 19:55:42 -0500
-Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 559E6C061A4E
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 16:55:41 -0800 (PST)
-Received: by mail-io1-xd42.google.com with SMTP id n129so20149621iod.5
-        for <devicetree@vger.kernel.org>; Mon, 23 Nov 2020 16:55:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kVHPzIRwek8E3f7Sx26BG40H0alZuW716ApQdhgz6Iw=;
-        b=N8kuw9EvqwIgGVWTR29b/Rl/2bss44iB/0TgMwyT1N0NZh4sBu+46M9TtGYGuWxyBY
-         H3q+QwEgpCbJpJl9jNrnQrod75wA8elCoD5+7AR0IonZro764uw3wKzMsDPZ2jeasPh8
-         DX5Z3TOUARxslaevqzGUx8lihh6f/WMSxMq1gGAPwUzDFrAL1vNt+hk05+BNXrsBNgyx
-         lkwb906PQ7cczc05Qz1fZLReqwwrr8DS6+OfVIq1DJ097xOfPzzJQ+dM6exEMSr03jls
-         WqRY3+lUSTA548y/cL9Kw4IZsIveV6OhEwvGo5BuYoOED+Rpkw0RBxrt8Qfp6odX5g0c
-         FRjg==
+        id S1728461AbgKXBNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 20:13:24 -0500
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36838 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726958AbgKXBNY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 23 Nov 2020 20:13:24 -0500
+Received: by mail-ot1-f67.google.com with SMTP id y24so12282527otk.3;
+        Mon, 23 Nov 2020 17:13:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=kVHPzIRwek8E3f7Sx26BG40H0alZuW716ApQdhgz6Iw=;
-        b=rFAODxRNRE4bYD1DiwTXkhV1NRAogFo6lwAiiK+4i5YJ6deWlUtbCNWd9V79YqYeEr
-         NPeyeLWf4CXgFvD3TKaay6H5ANuoHHkz/aUcfVHZfyOd5b4qrEbLdexuocxoakM508bS
-         s6LBPTytoi/MvHSGgeuoYioBbCJS7dUs8LN75y5PJKGYG4/YI7yjMTK95LdwTwB9jk5A
-         njXaVDvfU60OnjvlVPtivwXo34IdrNuzcyV07CA/V1qyExeFu7DuXEPMkJE8jNisOLNd
-         g3jy4j2UgShXhjZwtfeCy928jVfQ8YIvR0ll8c+IJyKXUEi/8mb309BYXXmOMuIO8qcj
-         0HVg==
-X-Gm-Message-State: AOAM531RTGFgLr3ECJOPnpyek9BflnE3iWC4EWTF/8yML2oMMG1PGoxw
-        Kzef1iwLf+hNJGlG/0DGe+aMSbVvigBMrGR/QlfNOg==
-X-Google-Smtp-Source: ABdhPJx8XuSzuFA3gwJRwNQZUxGR11tr21aduP0wprZd3IG5fPOzXI3BUYt+xJGGKYTwkwdINdrI5WAz36g6v816Aqc=
-X-Received: by 2002:a5d:9284:: with SMTP id s4mr2024314iom.165.1606179340562;
- Mon, 23 Nov 2020 16:55:40 -0800 (PST)
+        bh=m15TpcUJVqEKAQ3JOtMNdbRW68L7bTvdLomIqDVX8rk=;
+        b=EmD2OhIxHXMjXZx0lbAD62ehSuEKrtJve0JPBC6pOMujvPjxVKe9uWRS4ExrDkoimU
+         SECmcNAA4+lrUW4kDFf+d7MEnHOyxJFRuI+b1Psrc35RGrlGRqmGPHOLva+NN6jaLNBb
+         9CMA2OCBbngSgDJc37aflQSbAavOcM5BobdwVmKy5/HPEoLk7CtT852c6hj93tK34tJ6
+         Q30mS+OmYkMvyGpEk2tDiMXy6MmB1Cv8lsSpKf6bE4t7gIj37BLthqNPkm4hDgmce6EO
+         TyNGX5TK9o4FulXySi1VJGr5Or6LyYHVTVpP/pRR25BxfaCqFoiU9ZlIJpUILBa//2xj
+         jixA==
+X-Gm-Message-State: AOAM532iR2yK7Y47o8EkawIAeOjbRXwj4cJJwSEDHmO5xP311rgs/iFI
+        tyPnMcYDoenolQ5b9S8RBu8Fw+9XtiVYRQ==
+X-Google-Smtp-Source: ABdhPJzq9fnGKsQwBB248aFFRYi8gyP+FOsoxhH9+AfoDFrgEWSppI5Sl15mOFK4KTBHRKoI9RpuKQ==
+X-Received: by 2002:a9d:261:: with SMTP id 88mr1576576otb.202.1606180402670;
+        Mon, 23 Nov 2020 17:13:22 -0800 (PST)
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com. [209.85.210.52])
+        by smtp.gmail.com with ESMTPSA id z25sm8818327ooj.39.2020.11.23.17.13.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 23 Nov 2020 17:13:21 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id z24so3821588oto.6;
+        Mon, 23 Nov 2020 17:13:21 -0800 (PST)
+X-Received: by 2002:a05:6830:160d:: with SMTP id g13mr1693295otr.74.1606180401496;
+ Mon, 23 Nov 2020 17:13:21 -0800 (PST)
 MIME-Version: 1.0
-References: <20201119010531.21083-1-s-anna@ti.com> <20201119010531.21083-4-s-anna@ti.com>
- <20201123235129.GA529235@xps15>
-In-Reply-To: <20201123235129.GA529235@xps15>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Mon, 23 Nov 2020 17:55:27 -0700
-Message-ID: <CANLsYkwztm1hwXMGO-7025YdaEk=ttLMVmM2A8hRYyyrWpR7fQ@mail.gmail.com>
-Subject: Re: [PATCH 3/3] remoteproc: k3-r5: Adjust TCM sizes in Split-mode on
- J7200 SoCs
-To:     Suman Anna <s-anna@ti.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        linux-remoteproc <linux-remoteproc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20201102072652.34893-1-ran.wang_1@nxp.com>
+In-Reply-To: <20201102072652.34893-1-ran.wang_1@nxp.com>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Mon, 23 Nov 2020 19:13:09 -0600
+X-Gmail-Original-Message-ID: <CADRPPNR6-xJ8Oc2J-c=Pa8vdvRpfAvf6tSzfBS0zNqCRbe-BzQ@mail.gmail.com>
+Message-ID: <CADRPPNR6-xJ8Oc2J-c=Pa8vdvRpfAvf6tSzfBS0zNqCRbe-BzQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] soc: fsl: handle RCPM errata A-008646 on SoC LS1021A
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        Biwen Li <biwen.li@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Nov 2020 at 16:51, Mathieu Poirier
-<mathieu.poirier@linaro.org> wrote:
+On Mon, Nov 2, 2020 at 1:37 AM Ran Wang <ran.wang_1@nxp.com> wrote:
 >
-> Good afternoon Suman,
+> From: Biwen Li <biwen.li@nxp.com>
 >
-> On Wed, Nov 18, 2020 at 07:05:31PM -0600, Suman Anna wrote:
-> > The J7200 SoCs have a revised R5FSS IP that adds a unique feature w.r.t
-> > TCM sizing. Each R5F core in a cluster typically has 32 KB each of ATCM
-> > and BTCM, with only the Core0 TCMs usable in LockStep mode. This revised
-> > IP however doubles the total available TCM in LockStep mode by making the
-> > Core1 TCM visible immediately after the corresponding Core0 TCM.
-> >
-> > The R5F DT nodes on the J7200 SoCs define double (64 KB) the normal TCM
-> > size (32 KB) for R5F Core0 for each of ATCM and BTCM to represent the
-> > above. This increased TCM memory is only usable in LockStep-mode, and
-> > has to be adjusted to the normal 32 KB size in Split mode. Enhance the
-> > TI K3 R5F remoteproc for this logic through a new function. The adjustment
-> > is a no-op on prior SoCs and relies on the correct DTS node sizes in
-> > LockStep-mode on applicable SoCs.
-> >
-> > Signed-off-by: Suman Anna <s-anna@ti.com>
-> > ---
-> >  drivers/remoteproc/ti_k3_r5_remoteproc.c | 43 ++++++++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >
-> > diff --git a/drivers/remoteproc/ti_k3_r5_remoteproc.c b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-> > index 66a32dcdd7d0..62b5a4c29456 100644
-> > --- a/drivers/remoteproc/ti_k3_r5_remoteproc.c
-> > +++ b/drivers/remoteproc/ti_k3_r5_remoteproc.c
-> > @@ -71,9 +71,11 @@ enum cluster_mode {
-> >
-> >  /**
-> >   * struct k3_r5_soc_data - match data to handle SoC variations
-> > + * @tcm_is_double: flag to denote the larger unified TCMs in certain modes
-> >   * @tcm_ecc_autoinit: flag to denote the auto-initialization of TCMs for ECC
-> >   */
-> >  struct k3_r5_soc_data {
-> > +     bool tcm_is_double;
-> >       bool tcm_ecc_autoinit;
-> >  };
-> >
-> > @@ -886,6 +888,43 @@ static void k3_r5_reserved_mem_exit(struct k3_r5_rproc *kproc)
-> >       of_reserved_mem_device_release(kproc->dev);
-> >  }
-> >
-> > +/*
-> > + * Each R5F core within a typical R5FSS instance has a total of 64 KB of TCMs,
-> > + * split equally into two 32 KB banks between ATCM and BTCM. The TCMs from both
-> > + * cores are usable in Split-mode, but only the Core0 TCMs can be used in
-> > + * LockStep-mode. The newer revisions of the R5FSS IP maximizes these TCMs by
-> > + * leveraging the Core1 TCMs as well in certain modes where they would have
-> > + * otherwise been unusable (Eg: LockStep-mode on J7200 SoCs). This is done by
-> > + * making a Core1 TCM visible immediately after the corresponding Core0 TCM.
-> > + * The SoC memory map uses the larger 64 KB sizes for the Core0 TCMs, and the
-> > + * dts representation reflects this increased size on supported SoCs. The Core0
-> > + * TCM sizes therefore have to be adjusted to only half the original size in
-> > + * Split mode.
-> > + */
-> > +static void k3_r5_adjust_tcm_sizes(struct k3_r5_rproc *kproc)
-> > +{
-> > +     struct k3_r5_cluster *cluster = kproc->cluster;
-> > +     struct k3_r5_core *core = kproc->core;
-> > +     struct device *cdev = core->dev;
-> > +     struct k3_r5_core *core0;
-> > +
-> > +     if (cluster->mode == CLUSTER_MODE_LOCKSTEP ||
-> > +         !cluster->soc_data->tcm_is_double)
-> > +             return;
+> Hardware issue:
+> - Reading register RCPM_IPPDEXPCR1 always return zero, this causes
+>   system firmware could not get correct information and wrongly do
+>   clock gating for all wakeup source IP during system suspend. Then
+>   those IPs will never get chance to wake system.
 >
-> Shouldn't this be:
+> Workaround:
+> - Copy register RCPM_IPPDEXPCR1's setting to register SCFG_SPARECR8
+>   to allow system firmware's psci method read it and do things accordingly.
 >
->         if (cluster->mode == CLUSTER_MODE_SPLIT ||
->             !cluster->soc_data->tcm_is_double)
->                 return;
->
-> If am wrong then I'm pretty sure other people will be confused and a comment is
-> warranted.
->
+> Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 
-Forget the above, I misread the context.  The memories are already set
-to 64KB so there is nothing to do if in lockstep mode.
+Applied for next.  Thanks.
 
-> > +
-> > +     core0 = list_first_entry(&cluster->cores, struct k3_r5_core, elem);
-> > +     if (core == core0) {
-> > +             WARN_ON(core->mem[0].size != SZ_64K);
-> > +             WARN_ON(core->mem[1].size != SZ_64K);
-> > +
-> > +             core->mem[0].size /= 2;
-> > +             core->mem[1].size /= 2;
-> > +
-> > +             dev_dbg(cdev, "adjusted TCM sizes, ATCM = 0x%zx BTCM = 0x%zx\n",
-> > +                     core->mem[0].size, core->mem[1].size);
-> > +     }
-> > +}
-> > +
-> >  static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
-> >  {
-> >       struct k3_r5_cluster *cluster = platform_get_drvdata(pdev);
-> > @@ -933,6 +972,8 @@ static int k3_r5_cluster_rproc_init(struct platform_device *pdev)
-> >                       goto err_config;
-> >               }
-> >
-> > +             k3_r5_adjust_tcm_sizes(kproc);
-> > +
-> >               ret = k3_r5_reserved_mem_init(kproc);
-> >               if (ret) {
-> >                       dev_err(dev, "reserved memory init failed, ret = %d\n",
-> > @@ -1407,10 +1448,12 @@ static int k3_r5_probe(struct platform_device *pdev)
-> >  }
-> >
-> >  static const struct k3_r5_soc_data am65_j721e_soc_data = {
-> > +     .tcm_is_double = false,
-> >       .tcm_ecc_autoinit = false,
-> >  };
-> >
-> >  static const struct k3_r5_soc_data j7200_soc_data = {
-> > +     .tcm_is_double = true,
-> >       .tcm_ecc_autoinit = true,
+> ---
+> Change in v4:
+>  - Replace property 'fsl,ippdexpcr1-alt-reg' with compatible checking as the
+>    workaround trigger condition.
 >
-> With the above and for the set:
+> Change in v3:
+>  - Add  copy_ippdexpcr1_setting(), simplize workaournd's implementation
+>    according to binding update.
+>  - Minor update on commit message.
 >
-> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Change in v2:
+>  - Update commit message to be more clear.
+>  - Replace device_property_read_u32_array() with syscon_regmap_lookup_by_phandle_args()
+>    to make code simpler.
 >
-> >  };
-> >
-> > --
-> > 2.28.0
-> >
+>  drivers/soc/fsl/rcpm.c | 35 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 34 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/soc/fsl/rcpm.c b/drivers/soc/fsl/rcpm.c
+> index a093dbe..4ace28c 100644
+> --- a/drivers/soc/fsl/rcpm.c
+> +++ b/drivers/soc/fsl/rcpm.c
+> @@ -2,7 +2,7 @@
+>  //
+>  // rcpm.c - Freescale QorIQ RCPM driver
+>  //
+> -// Copyright 2019 NXP
+> +// Copyright 2019-2020 NXP
+>  //
+>  // Author: Ran Wang <ran.wang_1@nxp.com>
+>
+> @@ -22,6 +22,28 @@ struct rcpm {
+>         bool            little_endian;
+>  };
+>
+> +#define  SCFG_SPARECR8 0x051c
+> +
+> +static void copy_ippdexpcr1_setting(u32 val)
+> +{
+> +       struct device_node *np;
+> +       void __iomem *regs;
+> +       u32 reg_val;
+> +
+> +       np = of_find_compatible_node(NULL, NULL, "fsl,ls1021a-scfg");
+> +       if (!np)
+> +               return;
+> +
+> +       regs = of_iomap(np, 0);
+> +       if (!regs)
+> +               return;
+> +
+> +       reg_val = ioread32be(regs + SCFG_SPARECR8);
+> +       iowrite32be(val | reg_val, regs + SCFG_SPARECR8);
+> +
+> +       iounmap(regs);
+> +}
+> +
+>  /**
+>   * rcpm_pm_prepare - performs device-level tasks associated with power
+>   * management, such as programming related to the wakeup source control.
+> @@ -90,6 +112,17 @@ static int rcpm_pm_prepare(struct device *dev)
+>                         tmp |= ioread32be(address);
+>                         iowrite32be(tmp, address);
+>                 }
+> +               /*
+> +                * Workaround of errata A-008646 on SoC LS1021A:
+> +                * There is a bug of register ippdexpcr1.
+> +                * Reading configuration register RCPM_IPPDEXPCR1
+> +                * always return zero. So save ippdexpcr1's value
+> +                * to register SCFG_SPARECR8.And the value of
+> +                * ippdexpcr1 will be read from SCFG_SPARECR8.
+> +                */
+> +               if (dev_of_node(dev) && (i == 1))
+> +                       if (of_device_is_compatible(np, "fsl,ls1021a-rcpm"))
+> +                               copy_ippdexpcr1_setting(tmp);
+>         }
+>
+>         return 0;
+> --
+> 2.7.4
+>
