@@ -2,237 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79A652C2AB8
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 16:04:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB52C2C2B1A
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 16:21:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388162AbgKXPDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 10:03:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389378AbgKXPDq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 10:03:46 -0500
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6FDC0617A6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 07:03:43 -0800 (PST)
-Received: by mail-ot1-x341.google.com with SMTP id f16so19576242otl.11
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 07:03:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=an7lmYlQ2JOBofNnOublbiqlb6XjUqYjFJm3j5tP9c4=;
-        b=GmAYX7vII0ePxodJCg38pWV6sId5pXuZMg77ftgMNd1NN+Zju91rOujGo3Roy5IOfF
-         6zvfJXZgG8L82lvo6J6tFAGdhBkdD+PyklJG2Dr5McD6ffQ/PW0WLSoAvTDCMe9s3xEw
-         vTeGW5zQRezviR7wJGl2yvHn5WE1gk3RXhtmiV6IVv5gV3Zi4RbfWstvX9iEi/bwTzXa
-         hA5SuiUBDJpO01TpkSzBeEu+ANwB1ZA0McRkE6V63AM3Khp4FLipwqgVikynlFCMN3bE
-         Z1dOU2gz02j7Iw1V8wOx5D+HiYzM+6Dnn92SXVyEkfCDpZhhD7jW7w4LPm2plFrTp8wK
-         Y9Mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=an7lmYlQ2JOBofNnOublbiqlb6XjUqYjFJm3j5tP9c4=;
-        b=gEDt3WBwlHbLoul4YTEQsBPohStPlJ8oMchwTA81m3hCzTwT71Ce/SwBmmdrN/uHGb
-         DuaV4hckkZ9VGN4tlJ3OZnXOXQLVbqNtIGyb1uznqPA4d7XeSt+j9bhsUREf6vEP6xG8
-         Jc8KsBl6PlFw/A2H14IY/MbtiRrHnpcZzwPrR/Kq4n0cky7cyM6Q616OQbA6TFxHzyf/
-         upH3qM5uVaPrdV1ze2jr3lZPRC3x4gsI5uQKCFeLeWixDLZosjVG4P6Xm7TwkV6DCMkl
-         A/lRLIlkjcaezzBnxr01w2iBtXpcogBwCsZkGgMbTS3Yi3jzkvQZ73XLypC9ZwXC+vtI
-         xIJw==
-X-Gm-Message-State: AOAM530tZmIMqecb4g4nXILWDIE59Vg9d+F9ZMf5F2TBjxnU3iPz11db
-        n9V/aZYEdoN1MBl7u4SFPDn/hA==
-X-Google-Smtp-Source: ABdhPJwKTQsL5UzaB6j6I0uaoQsdFoaC1oc3lIpTQeMKg6W10ccfDr26MrpEVMALa5JNXtrEpqYnPw==
-X-Received: by 2002:a9d:7392:: with SMTP id j18mr3722795otk.288.1606230223018;
-        Tue, 24 Nov 2020 07:03:43 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z19sm8683974otm.58.2020.11.24.07.03.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2020 07:03:42 -0800 (PST)
-Date:   Tue, 24 Nov 2020 09:03:40 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, vkoul@kernel.org,
+        id S2389352AbgKXPUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 10:20:35 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36864 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728389AbgKXPUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Nov 2020 10:20:35 -0500
+Received: from localhost (unknown [122.167.149.197])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A7DAC206D5;
+        Tue, 24 Nov 2020 15:20:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606231234;
+        bh=J4hJGRYnZYGBwvmA2/XAlx/gX+eG1Zusyi3xxfVxjcY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VVtWOv5VuuUU8kHi/MPsUVvAiq1hvdCkj14z6mv5SCDLsljYkbYIC9UmORRt0Gegv
+         DCc+WF90pVhcI1/088AudLGu+HqlGu2tbWqOctp1ZVuYZxTUnMgpKVSGUNOfbUtqFR
+         h956Foh3oYbsD40oqhy+l10IgKRvrXKK2ypq1wo0=
+Date:   Tue, 24 Nov 2020 20:50:29 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: Add SDX55 Modem and MTP board support
-Message-ID: <20201124150340.GK95182@builder.lan>
-References: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
- <20201124140011.134751-3-manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150-mtp: Specify remoteproc firmware
+Message-ID: <20201124152029.GL8403@vkoul-mobl>
+References: <20201121055603.582281-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201124140011.134751-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20201121055603.582281-1-bjorn.andersson@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 24 Nov 08:00 CST 2020, Manivannan Sadhasivam wrote:
+On 20-11-20, 21:56, Bjorn Andersson wrote:
+> Point the various remoteprocs of SM8150 MTP to a place with the platform
+> specific firmware.
 
-> Add basic devicetree support for SDX55 Modem and MTP board from
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-Again, let's call is "SDX55 platform".
-
-> Qualcomm. The SDX55 modem features an ARM Cortex A7 CPU which forms the
-> Application Processor Sub System (APSS) along with standard Qualcomm
-> peripherals like GCC, TLMM, BLSP, QPIC, BAM etc... Along with these,
-> there exists the networking parts such as IPA, MHI, PCIE-EP, EMAC
-> etc..
-
-And here you can mention that there's a modem.
-
-> 
-> Currently, this basic devicetree support includes GCC, RPMh clock, INTC
-> and Debug UART.
-> 
-> Co-developed-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  arch/arm/boot/dts/Makefile           |   3 +-
->  arch/arm/boot/dts/qcom-sdx55-mtp.dts |  27 ++++
->  arch/arm/boot/dts/qcom-sdx55.dtsi    | 205 +++++++++++++++++++++++++++
->  3 files changed, 234 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/qcom-sdx55-mtp.dts
->  create mode 100644 arch/arm/boot/dts/qcom-sdx55.dtsi
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index ce66ffd5a1bb..1505c6cdc5ca 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -917,7 +917,8 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-msm8974-sony-xperia-amami.dtb \
->  	qcom-msm8974-sony-xperia-castor.dtb \
->  	qcom-msm8974-sony-xperia-honami.dtb \
-> -	qcom-mdm9615-wp8548-mangoh-green.dtb
-> +	qcom-mdm9615-wp8548-mangoh-green.dtb \
-> +	qcom-sdx55-mtp.dtb
->  dtb-$(CONFIG_ARCH_RDA) += \
->  	rda8810pl-orangepi-2g-iot.dtb \
->  	rda8810pl-orangepi-i96.dtb
-> diff --git a/arch/arm/boot/dts/qcom-sdx55-mtp.dts b/arch/arm/boot/dts/qcom-sdx55-mtp.dts
-> new file mode 100644
-> index 000000000000..8c39db4ae792
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom-sdx55-mtp.dts
-> @@ -0,0 +1,27 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020, Linaro Ltd.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "qcom-sdx55.dtsi"
-> +
-> +/ {
-> +	model = "Qualcomm Technologies, Inc. SDX55 MTP";
-> +	compatible = "qcom,sdx55-mtp", "qcom,sdx55", "qcom,mtp";
-
-Do we need "qcom,mtp"?
-
-> +	qcom,board-id = <0x5010008 0x0>;
-> +
-> +	aliases {
-> +		serial0 = &blsp1_uart3;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&blsp1_uart3 {
-> +	status = "ok";
-> +};
-> diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> new file mode 100644
-> index 000000000000..9e0b964e4c57
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-> @@ -0,0 +1,205 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * SDX55 SoC device tree source
-> + *
-> + * Copyright (c) 2018, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020, Linaro Ltd.
-> + */
-> +
-> +/dts-v1/;
-
-We seem to mix a little bit in the arm/qcom dts files, but the general
-pattern is to put this only in the dts files.
-
-> +
-> +#include <dt-bindings/clock/qcom,gcc-sdx55.h>
-> +#include <dt-bindings/clock/qcom,rpmh.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +
-> +/ {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +	model = "Qualcomm Technologies, Inc. SDX55";
-> +	compatible = "qcom,sdx55";
-
-model and compatible should always be specified in the including .dts
-(as you do), so I would prefer if you omit these.
-
-> +	qcom,msm-id = <357 0x10000>, <368 0x10000>, <418 0x10000>;
-> +	interrupt-parent = <&intc>;
-> +
-> +	memory {
-> +		device_type = "memory";
-> +		reg = <0 0>;
-> +	};
-> +
-> +	clocks {
-> +		xo_board: xo-board {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <38400000>;
-> +			clock-output-names = "xo_board";
-> +		};
-> +
-> +		sleep_clk: sleep-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <32000>;
-> +		};
-> +
-> +		pll_test_clk: pll-test-clk {
-> +			compatible = "fixed-clock";
-> +			#clock-cells = <0>;
-> +			clock-frequency = <400000000>;
-> +		};
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a7";
-> +			reg = <0x0>;
-> +			enable-method = "psci";
-> +		};
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-1.0";
-> +		method = "smc";
-> +	};
-> +
-> +	soc: soc {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +		compatible = "simple-bus";
-> +
-> +		timer {
-
-If timer doesn't have a reg, it should go outside soc {}
-
-Regards,
-Bjorn
+-- 
+~Vinod
