@@ -2,347 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 606112C28DF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:02:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E36B2C2919
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:14:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728067AbgKXOAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 09:00:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38626 "EHLO
+        id S1730716AbgKXOMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 09:12:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727772AbgKXOAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:00:32 -0500
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 996EDC0617A6
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:32 -0800 (PST)
-Received: by mail-pf1-x433.google.com with SMTP id 131so18571708pfb.9
-        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:32 -0800 (PST)
+        with ESMTP id S1730003AbgKXOMz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:12:55 -0500
+Received: from mail-ua1-x943.google.com (mail-ua1-x943.google.com [IPv6:2607:f8b0:4864:20::943])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374B7C0617A6
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:12:55 -0800 (PST)
+Received: by mail-ua1-x943.google.com with SMTP id g3so6843805uae.7
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:12:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=36AEB1rwNe87QDGbY2/Cf7e7Ac1bW6ZIJO1z3ra7FVU=;
-        b=ncV99D/EUHvVFYTNWdZC1sp46l5SUrOHESNHCQMo95JoPr+LlA0eYZHx5N2M0DLRO1
-         GU/Gy1Ogi6g4hmbEEWIgGito40l0nxT2s6nhlIlZf8DxZo1hQ1YpSPeQI8/aPheHCjQz
-         tz5U+L+dTN9Od2FwYPPeeLEy43ltqjza0PYns3Tj60nqVIykd0QTWBrztSMJLZeqgbPj
-         pUAdTR2fjYHzJku7p3qitvEEdvqvKcCiSPVQT5qx6ONX3kiNMe01iifBRk4vhzZDg8yL
-         E/gFCO4+vtBzSxL5OC4C4W+weHwaUdR1tonhKrIWrfScNbW/5vb1pjh4Mw0n2VBJOqbH
-         wC1w==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b+WvQJn+RbKkh+kUKZATZKfERFtuz9WNMxrxpGdw4hA=;
+        b=lVh9DyyEfKvcpYdLTOBc3Nv7y0XSPVmAax24cS/h8/bJq0VqEJVouyW0BXofj2piQz
+         bgOBSfkFkwLeXYcIQcWo/iA5j1semJXlsGSiLQXskciSGm42jWE6AqL7gfMlHdsB5tt9
+         N6IpPHvYLlca/szoVbA10P32eVBwV3iSJXKp/P2L/6O+GG2XmnmlS7X4rQF+CiewZ3fI
+         Z+NcGQjghI2XAq8KoiMt4jRwIPMTAyMrJZQC6BsD5KANKnMG6ZVpCxXZyCm0qcX/kMMU
+         ut+smv0g/SYIcPs9lj1u0xXaNMdZ/vu0oOtca6K1l3OEAR1Lub9HVQ6Vf8r+xdqEBp1/
+         hiZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=36AEB1rwNe87QDGbY2/Cf7e7Ac1bW6ZIJO1z3ra7FVU=;
-        b=csa/6dldlNXQzdSgVRG8dornU9nzX5WG5zEiGNU2/jaQF+3D7m5MwwUYSJI8Y2VS2R
-         noUlJ251Zo6bQmy3MsP/r8qVUDrneGKfRvDFmdQwuoNr1OJqPctCGFhbeUUfrc/9/ZCH
-         kWd4XWWY6uTdTmGLK3QXVnGWriQ/4JyA0XJI1eESVZBjnl43tw2yLV4AAjPyTX1zqcQ5
-         i0QUlo9Jo78cNG6xk7p2juM8HSyBHWXX9DAJpYRZVmMJasEfeQsfOnKd6WAh08a3lMtj
-         ApBgYs8xcjpEWRcrSjXZzaBw5DyDWhbzd3It5KOMIEdpxBTMhFIq49kmmmAwzQEoxoJM
-         CAfg==
-X-Gm-Message-State: AOAM533ZOEGE/CCedEEJUyojZbkRLFeak07e0iyfRdny7+JthCB1XQGz
-        YrhKk6Dy+VYBfS9rZSlL+1K6
-X-Google-Smtp-Source: ABdhPJxfN98dVwT1ejejKtPzJuI2QN3Z6h8cgKCq6iWHY+3rgmBUsnT+FwV+iLzwR9RlLI1cZ/Mb3w==
-X-Received: by 2002:a17:90a:4687:: with SMTP id z7mr5037417pjf.168.1606226432115;
-        Tue, 24 Nov 2020 06:00:32 -0800 (PST)
-Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id u3sm14485937pfu.47.2020.11.24.06.00.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2020 06:00:31 -0800 (PST)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: qcom: Add SDX55 Modem and MTP board support
-Date:   Tue, 24 Nov 2020 19:30:11 +0530
-Message-Id: <20201124140011.134751-3-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
-References: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b+WvQJn+RbKkh+kUKZATZKfERFtuz9WNMxrxpGdw4hA=;
+        b=e0qqxraOJpX3g8ysPeXvBhRs8QUaYnqcK7Q73E2KBxTbd6QsTFmUYHk+pPVNn9zelf
+         MpYFYviQ7xUtVGllVfom0a56riP4cNrEGZsLvTFkaXtbDA8UrByrwlakCP0Z83erC3kl
+         18PLyCc4OprznauQ3P52QZTlwoNu6V5L5e/hbynhnfXYa5LFSEZJ2dxgzfVTuB2k9jK+
+         IM3OmLxxByRoX+vDJsLT18XR87i0kYEFMqTJJwLfSrSXE1Yokw+9n6jL4LExt5KWYce9
+         7s2qxr/Yt1NaHaGhyqUKUrCGBErcOsSWdQaMwfOg1goixPojIN7RkCggrKilo7tc+nsD
+         dZqg==
+X-Gm-Message-State: AOAM532+Md8UwS/MWWk+QwHWnRjxtMMoEHff4TfkFI709c0IlkeLXHB7
+        cv7BSwsNucCTbHVk0XQJEpFK01ESWRv99HIyHUi6xg==
+X-Google-Smtp-Source: ABdhPJxmk8XhxSo3oGE/to/rjbARVYneX0tkPuRJWkHA+FwhStIlTcIjXRAWqXDBjx8lvAFiCX8YN6mPcudkicwGqbQ=
+X-Received: by 2002:ab0:23d5:: with SMTP id c21mr2736730uan.129.1606227174150;
+ Tue, 24 Nov 2020 06:12:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201123063004.337345-1-andrew@aj.id.au> <20201123063004.337345-2-andrew@aj.id.au>
+In-Reply-To: <20201123063004.337345-2-andrew@aj.id.au>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Tue, 24 Nov 2020 15:12:17 +0100
+Message-ID: <CAPDyKFrC9vp5gtpFC5L1K17uN059GsJ2zF4f7-_=sFEQ5BBRpw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] mmc: sdhci-of-aspeed: Expose phase delay tuning
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        ryan_chen@aspeedtech.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic devicetree support for SDX55 Modem and MTP board from
-Qualcomm. The SDX55 modem features an ARM Cortex A7 CPU which forms the
-Application Processor Sub System (APSS) along with standard Qualcomm
-peripherals like GCC, TLMM, BLSP, QPIC, BAM etc... Along with these,
-there exists the networking parts such as IPA, MHI, PCIE-EP, EMAC
-etc..
+On Mon, 23 Nov 2020 at 07:30, Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The Aspeed SD/eMMC controllers feature up to two SDHCIs alongside a
+> a set of "global" configuration registers. The global configuration
+> registers house controller-specific settings that aren't exposed by the
+> SDHCI, one example being a register for phase tuning.
+>
+> The phase tuning feature is new in the AST2600 design. It's exposed as a
+> single register in the global register set and controls both the input
+> and output phase adjustment for each slot. As the settings are
+> slot-specific, the values to program are extracted from properties in
+> the SDHCI devicetree nodes.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 
-Currently, this basic devicetree support includes GCC, RPMh clock, INTC
-and Debug UART.
+[...]
 
-Co-developed-by: Vinod Koul <vkoul@kernel.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm/boot/dts/Makefile           |   3 +-
- arch/arm/boot/dts/qcom-sdx55-mtp.dts |  27 ++++
- arch/arm/boot/dts/qcom-sdx55.dtsi    | 205 +++++++++++++++++++++++++++
- 3 files changed, 234 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/qcom-sdx55-mtp.dts
- create mode 100644 arch/arm/boot/dts/qcom-sdx55.dtsi
+>
+> +static void
+> +aspeed_sdhci_of_parse_phase(struct device_node *np, const char *prop,
+> +                           struct aspeed_sdhci_phase_param *phase)
+> +{
+> +       int degrees[2] = {0};
+> +       int rc;
+> +
+> +       rc = of_property_read_variable_u32_array(np, prop, degrees, 2, 0);
+> +       phase->set = rc == 2;
+> +       if (phase->set) {
+> +               phase->in_deg = degrees[0];
+> +               phase->out_deg = degrees[1];
+> +       }
+> +}
+> +
+> +static int aspeed_sdhci_of_parse(struct platform_device *pdev,
+> +                                struct aspeed_sdhci *sdhci)
+> +{
+> +       struct device_node *np;
+> +       struct device *dev;
+> +
+> +       if (!sdhci->phase_desc)
+> +               return 0;
+> +
+> +       dev = &pdev->dev;
+> +       np = dev->of_node;
+> +
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-legacy",
+> +                                   &sdhci->phase_param[MMC_TIMING_LEGACY]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs",
+> +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-sd-hs",
+> +                                   &sdhci->phase_param[MMC_TIMING_SD_HS]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr12",
+> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR12]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr25",
+> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR25]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr50",
+> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR50]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr104",
+> +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR104]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-ddr50",
+> +                                   &sdhci->phase_param[MMC_TIMING_UHS_DDR50]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-ddr52",
+> +                                   &sdhci->phase_param[MMC_TIMING_MMC_DDR52]);
+> +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs200",
+> +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS200]);
+> +
+> +       return 0;
+> +}
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index ce66ffd5a1bb..1505c6cdc5ca 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -917,7 +917,8 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-msm8974-sony-xperia-amami.dtb \
- 	qcom-msm8974-sony-xperia-castor.dtb \
- 	qcom-msm8974-sony-xperia-honami.dtb \
--	qcom-mdm9615-wp8548-mangoh-green.dtb
-+	qcom-mdm9615-wp8548-mangoh-green.dtb \
-+	qcom-sdx55-mtp.dtb
- dtb-$(CONFIG_ARCH_RDA) += \
- 	rda8810pl-orangepi-2g-iot.dtb \
- 	rda8810pl-orangepi-i96.dtb
-diff --git a/arch/arm/boot/dts/qcom-sdx55-mtp.dts b/arch/arm/boot/dts/qcom-sdx55-mtp.dts
-new file mode 100644
-index 000000000000..8c39db4ae792
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom-sdx55-mtp.dts
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2020, Linaro Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include "qcom-sdx55.dtsi"
-+
-+/ {
-+	model = "Qualcomm Technologies, Inc. SDX55 MTP";
-+	compatible = "qcom,sdx55-mtp", "qcom,sdx55", "qcom,mtp";
-+	qcom,board-id = <0x5010008 0x0>;
-+
-+	aliases {
-+		serial0 = &blsp1_uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&blsp1_uart3 {
-+	status = "ok";
-+};
-diff --git a/arch/arm/boot/dts/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom-sdx55.dtsi
-new file mode 100644
-index 000000000000..9e0b964e4c57
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom-sdx55.dtsi
-@@ -0,0 +1,205 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * SDX55 SoC device tree source
-+ *
-+ * Copyright (c) 2018, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2020, Linaro Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/clock/qcom,gcc-sdx55.h>
-+#include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-+
-+/ {
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+	model = "Qualcomm Technologies, Inc. SDX55";
-+	compatible = "qcom,sdx55";
-+	qcom,msm-id = <357 0x10000>, <368 0x10000>, <418 0x10000>;
-+	interrupt-parent = <&intc>;
-+
-+	memory {
-+		device_type = "memory";
-+		reg = <0 0>;
-+	};
-+
-+	clocks {
-+		xo_board: xo-board {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <38400000>;
-+			clock-output-names = "xo_board";
-+		};
-+
-+		sleep_clk: sleep-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <32000>;
-+		};
-+
-+		pll_test_clk: pll-test-clk {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <400000000>;
-+		};
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a7";
-+			reg = <0x0>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	soc: soc {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+		compatible = "simple-bus";
-+
-+		timer {
-+			compatible = "arm,armv7-timer";
-+			interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+				     <GIC_PPI 12 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+				     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+				     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+			clock-frequency = <19200000>;
-+		};
-+
-+		gcc: clock-controller@100000 {
-+			compatible = "qcom,gcc-sdx55";
-+			reg = <0x100000 0x1f0000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+			clock-names = "bi_tcxo", "sleep_clk", "core_bi_pll_test_se";
-+			clocks = <&rpmhcc RPMH_CXO_CLK>,
-+				 <&sleep_clk>, <&pll_test_clk>;
-+		};
-+
-+		blsp1_uart3: serial@831000 {
-+			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
-+			reg = <0x00831000 0x200>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_LOW>;
-+			clocks = <&gcc GCC_BLSP1_UART3_APPS_CLK>,
-+				 <&gcc GCC_BLSP1_AHB_CLK>;
-+			clock-names = "core", "iface";
-+			status = "disabled";
-+		};
-+
-+		pdc: interrupt-controller@b210000 {
-+			compatible = "qcom,sdx55-pdc", "qcom,pdc";
-+			reg = <0x0b210000 0x30000>;
-+			qcom,pdc-ranges = <0 179 52>;
-+			#interrupt-cells = <3>;
-+			interrupt-parent = <&intc>;
-+			interrupt-controller;
-+		};
-+
-+		intc: interrupt-controller@17800000 {
-+			compatible = "qcom,msm-qgic2";
-+			interrupt-controller;
-+			interrupt-parent = <&intc>;
-+			#interrupt-cells = <3>;
-+			reg = <0x17800000 0x1000>,
-+			      <0x17802000 0x1000>;
-+		};
-+
-+		timer@17820000 {
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges;
-+			compatible = "arm,armv7-timer-mem";
-+			reg = <0x17820000 0x1000>;
-+			clock-frequency = <19200000>;
-+
-+			frame@17821000 {
-+				frame-number = <0>;
-+				interrupts = <GIC_SPI 7 0x4>,
-+					     <GIC_SPI 6 0x4>;
-+				reg = <0x17821000 0x1000>,
-+				      <0x17822000 0x1000>;
-+			};
-+
-+			frame@17823000 {
-+				frame-number = <1>;
-+				interrupts = <GIC_SPI 8 0x4>;
-+				reg = <0x17823000 0x1000>;
-+				status = "disabled";
-+			};
-+
-+			frame@17824000 {
-+				frame-number = <2>;
-+				interrupts = <GIC_SPI 9 0x4>;
-+				reg = <0x17824000 0x1000>;
-+				status = "disabled";
-+			};
-+
-+			frame@17825000 {
-+				frame-number = <3>;
-+				interrupts = <GIC_SPI 10 0x4>;
-+				reg = <0x17825000 0x1000>;
-+				status = "disabled";
-+			};
-+
-+			frame@17826000 {
-+				frame-number = <4>;
-+				interrupts = <GIC_SPI 11 0x4>;
-+				reg = <0x17826000 0x1000>;
-+				status = "disabled";
-+			};
-+
-+			frame@17827000 {
-+				frame-number = <5>;
-+				interrupts = <GIC_SPI 12 0x4>;
-+				reg = <0x17827000 0x1000>;
-+				status = "disabled";
-+			};
-+
-+			frame@17828000 {
-+				frame-number = <6>;
-+				interrupts = <GIC_SPI 13 0x4>;
-+				reg = <0x17828000 0x1000>;
-+				status = "disabled";
-+			};
-+
-+			frame@17829000 {
-+				frame-number = <7>;
-+				interrupts = <GIC_SPI 14 0x4>;
-+				reg = <0x17829000 0x1000>;
-+				status = "disabled";
-+			};
-+		};
-+
-+		apps_rsc: rsc@17840000 {
-+			compatible = "qcom,rpmh-rsc";
-+			reg = <0x17830000 0x10000>, <0x17840000 0x10000>;
-+			reg-names = "drv-0", "drv-1";
-+			interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>;
-+			qcom,tcs-offset = <0xd00>;
-+			qcom,drv-id = <1>;
-+			qcom,tcs-config = <ACTIVE_TCS  2>, <SLEEP_TCS   2>,
-+					  <WAKE_TCS    2>, <CONTROL_TCS 1>;
-+
-+			rpmhcc: clock-controller {
-+				compatible = "qcom,sdx55-rpmh-clk";
-+				#clock-cells = <1>;
-+				clock-names = "xo";
-+				clocks = <&xo_board>;
-+			};
-+		};
-+	};
-+};
--- 
-2.25.1
+If it's not too much to ask, would you mind adding a helper function
+to the mmc core, as to let us avoid open coding? Then we should be
+able to move the sdhci-of-arasan driver to use this as well.
 
+Perhaps the definition of the helper could look something like this:
+int mmc_of_parse_clk_phase(struct mmc_host *host, struct mmc_clk_phase
+*phases) (or something along those lines)
+
+I think the struct mmc_clk_phase could be something that is stored in
+the host specific struct, rather than in the common struct mmc_host
+(to avoid sprinkle it with unnecessary data).
+
+Moreover, we should probably use the device_property_* APIs instead of
+the DT specific of_property_*.
+
+[...]
+
+Kind regards
+Uffe
