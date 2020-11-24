@@ -2,275 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FA72C19CF
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 01:14:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 72C5B2C19DC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 01:19:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728716AbgKXAJf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 23 Nov 2020 19:09:35 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36946 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728340AbgKXAJe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 23 Nov 2020 19:09:34 -0500
-Received: from pali.im (pali.im [31.31.79.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 59E7720729;
-        Tue, 24 Nov 2020 00:09:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606176572;
-        bh=g0xSfkYgITYSd4tGE6/gm97fab8pltd36IR4YvsmDOc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t9quzZLb387V9f+P3HZXGJlePtadc4wiwNyDGc8D5QJuDNhOdFfZbOGd883CuwVhB
-         4JtUJUmzwXv2Sltz9SyF0UGTG0WJJFZv6M3pAyvsz4oWo49XYZdq+AI6E5YAcvpmEv
-         gNZhIPmsmG+S7i2jhOjXCQzfsGtmOEOQyzG3L2Ms=
-Received: by pali.im (Postfix)
-        id 4C6ADC30; Tue, 24 Nov 2020 01:01:43 +0100 (CET)
-Date:   Tue, 24 Nov 2020 01:01:43 +0100
-From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
-To:     Vladimir Vid <vladimir.vid@sartura.hr>
-Cc:     devicetree@vger.kernel.org, a.heider@gmail.com,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        tmn505@gmail.com, sebastian.hesselbarth@gmail.com,
-        gregory.clement@bootlin.com, andrew@lunn.ch, jason@lakedaemon.net,
-        robh+dt@kernel.org
-Subject: Re: [PATCH v5] arm64: dts: marvell: add DT for ESPRESSObin-Ultra
-Message-ID: <20201124000143.zgzzpvcd2is5uh2e@pali>
-References: <20201026184441.96395-1-vladimir.vid@sartura.hr>
-MIME-Version: 1.0
+        id S1728857AbgKXAP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 23 Nov 2020 19:15:29 -0500
+Received: from mail-eopbgr760050.outbound.protection.outlook.com ([40.107.76.50]:7808
+        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725287AbgKXAP0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 23 Nov 2020 19:15:26 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Z3pMOGb/+Td64l+71bvUeTBhdLR2k+18u77xNGVFTiBbjG4PtBxMBWcg2rUTwRl4E6px9zAjZc1nJ+RYT4Yah28eotlcUxRJguGo4YR5xHQdEFQvaFHpMfTxVyNykYWe67SZRrxPXExeeGXKRn+5iyaQpxjVssdcgfLVntp1kJJsXpGyhHhOoKlFot2UpZVsAuAp82Z0k2pmaONrD3Ql7e9HqpbokTcc0H6nf2X/u4LS1YZ7eVzgAPE/XwBy1VilTvCxk3/RgWO+4SWY6B52ax0MpyWLhfEfqUjQUNgeeesluzk6zCJUf2eoHEHdN2uwPcGTRCk7cic78FaRoIGztA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JAI7Y5OrlurO1PSv12ucNaIuUWcVDQZLHrnvWkhomuc=;
+ b=Nwp3LC5v9Z82OPT4saxKKCU6zKb3qyeIJKOyHSfMOijvmhOs6ZGxoKGuXlfDL61GCxPH14G8qoCZxQNaoz9+T/7rpk4nUqn+iOfBwkjHm0vQh5QfNzvvcbr7Bw6OMN4BIr8mlCEwNKdlTgAD7VaOEvK2RsWLEPCyq1+bcY7QtlprCKmG2z/tnSWmEkceXlYFD0+nPRcqAjjYzS4JAEHdh182w18cGDdZ0CYDy8gAhb94JoKSPjicmraETp5qEWgWgmAgTDMRWYbFN72PI5T0GvqxSwL+GKZEwIIzJNot8w9oMg8KlbOnw0iGd1VekU0hnDVJbxVSvyPWKbxACyLTNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JAI7Y5OrlurO1PSv12ucNaIuUWcVDQZLHrnvWkhomuc=;
+ b=KZbmzKHzou5alJY1doAZylsFpA+d8C0Klmtwi38Gxf4r9fpeY1VcaCeoSnolz22Zw0fgU5MvVSXGMVXyU1/ZC1deqJ5UpGLkTNkeD+DEut+syxsdQgQrsku8etJay4OfyGDy8i0Nw03N0TND/GbTqrzjYXGo6XfSBSMYulhf87w=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=labundy.com;
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com (2603:10b6:805:fb::32)
+ by SA2PR08MB6538.namprd08.prod.outlook.com (2603:10b6:806:11d::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20; Tue, 24 Nov
+ 2020 00:15:22 +0000
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::3cac:792d:fcf4:75a2]) by SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::3cac:792d:fcf4:75a2%7]) with mapi id 15.20.3564.035; Tue, 24 Nov 2020
+ 00:15:22 +0000
+Date:   Mon, 23 Nov 2020 18:15:16 -0600
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     robh+dt@kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] input: Add support for Azoteq IQS626A
+Message-ID: <20201124001516.GA6249@labundy.com>
+References: <1606084748-4097-1-git-send-email-jeff@labundy.com>
+ <1606084748-4097-3-git-send-email-jeff@labundy.com>
+ <20201123070307.GE2034289@dtor-ws>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201026184441.96395-1-vladimir.vid@sartura.hr>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20201123070307.GE2034289@dtor-ws>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [136.49.227.119]
+X-ClientProxiedBy: DM5PR11CA0015.namprd11.prod.outlook.com
+ (2603:10b6:3:115::25) To SN6PR08MB5517.namprd08.prod.outlook.com
+ (2603:10b6:805:fb::32)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from labundy.com (136.49.227.119) by DM5PR11CA0015.namprd11.prod.outlook.com (2603:10b6:3:115::25) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3589.20 via Frontend Transport; Tue, 24 Nov 2020 00:15:21 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a9f49d1b-934a-45ad-9b5d-08d8900e087f
+X-MS-TrafficTypeDiagnostic: SA2PR08MB6538:
+X-Microsoft-Antispam-PRVS: <SA2PR08MB65386B1BB650AFF487F1E73CD3FB0@SA2PR08MB6538.namprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ABtgjytFhSk+IvvcauZZGhaaiRIL2vvYxF2XYyLxCzW50h0N3pEbQjgv1gQVy7JPn36AKrj/myxowfaA6qAS0A0WARNGN7ulBXpdC7BqmoqRvbv/rZ0KEnw2jzgBN/e6G88fkSupTMMCt9yaN9bG1PsJXyrhKwSGb1KxfPMU+b8h4/RJTPrulgDJAQYdgMmuOSyyOZV4Vyekgg7m97EBDJ/q/g1tqeqTKMKx/A4RHEhmK/nOHQgqn8q2krf6CSQuBCwYyrhRU4dJJNT56aG4Md0TRikSFqKiAWvvl+RBVjE9W8sNcqMDuu6TL5e9BTqEM/QDa50ZP9kccxoXkXclJg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR08MB5517.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(136003)(366004)(39830400003)(346002)(376002)(6916009)(5660300002)(4326008)(956004)(2616005)(55016002)(316002)(33656002)(186003)(478600001)(36756003)(6666004)(26005)(66946007)(8676002)(66476007)(86362001)(66556008)(8886007)(16526019)(52116002)(7696005)(8936002)(1076003)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: qsqF5OI71ja65R8J50smRIC4ZOSlZ4TJWJOZB1a8kMIVq8l+HsHkC8915ThiNJSz+XMSWWFKAcy8QX9a5A3syhC07OhMO6WK1Iqc7E3scQiwKu154sBOjKnW5QbSPMe9maIz/e67UPgR6iocQudUIBJCgwPdL5vdKBB5tZQQLe/EzsmJ8iVLtNWajN2pZNpsNtrBQ6ZJVxMeR3f08UQVQw12mCjFsIGg/0QfMvtJq4Sc3he0QU2VmRuSYPqhk05qTFIN4iitauXzwMyqjOTCqr7wqoHr1UgkTokhfBTnNx0Ya+wELdrdo1P7AeCRuTWRS/RySa3jV/ciBjV/9ynIRyBVD0aYg4QUtg9BKp4mzJ5/G22qvLXQ5DwVP/PLNyZlkEDAeOU1DIbTOrdR46dNOqWFOcQNzYMFsIkD5gvNJy6r0M0CHJz1Wiy1TA5Y8j2wkFkRw2TYk4l67AVJ48H2B4GrhRpZOV3MsdaaYJ/bzgltfLOaaI2wDUDbDr7vrCNLKAra0wqLEPQ0qt3QWb6vhySUH5zL0PT9uRtuxNxmBwPd0aaiWYr4rNmg/MQ0S8kFs9+a34y9i7tBL+6NMonATDGi1IeEZM4jlukn4ZDQKCmiBIsz0Yby+1mPXOz/BZRCkWWwBQSLhpAVNfHMFRYxIV5XCV3wnoCXLy4T6fsjKzXJcbkFkqME83NF514nUl9VRLLqyC0iCh+O/9zKCGZm49UNrpePRq19dgVSVPxjzE4S0icdGlv9Fr4+ThdGJZW28nfjNGoCigjjl8ECG/HgyUpbUzaqmflE3+l2xG68dbSToGdR9WmIv5+N2itIy836s/wqsYy+nsfMI97sf65zlr6Wn0LpiVORnriWvTi02n8p26VaMar8YThCqFiWruJGYGSfAivHgN5DuYa2XpoOVg==
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a9f49d1b-934a-45ad-9b5d-08d8900e087f
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR08MB5517.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2020 00:15:22.2226
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4hV4v8wtHjsPXgt7+C0vruIlobqo6Ep0ciWfj/ze5q1wrHShNF6/mGmgf/oH1Oh9f2nFlW/ChT1wHpqqqe5q8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR08MB6538
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Monday 26 October 2020 19:44:42 Vladimir Vid wrote:
-> This adds support for ESPRESSObin-Ultra from Globalscale.
-> 
-> Specifications are similar to the base ESPRESSObin board, with main
-> difference being being WAN port with PoE capability and 2 additional ethernet ports.
-> 
-> Full specifications:
-> 
-> 1x Marvell 64 bit Dual Core ARM A53 Armada 3700 SOC clocked up to 1.2Ghz
-> 1x Topaz 6341 Networking Switch
-> 1GB DDR4
-> 8GB eMMC
-> 1x WAN with 30W POE
-> 4x Gb LAN
-> 1x RTC Clock and battery
-> 1x DC Jack
-> 1x USB 3.0 Type A
-> 1x USB 2.0 Type A
-> 1x SIM NanoSIM card Slot
-> 1x Power Button
-> 4x LED
-> 1x Reset button
-> 1x microUSB for UART
-> 1x M.2 2280 slot for memory
-> 1x 2x2 802.11ac Wi-Fi
-> 1x MiniPCIE slot for Wi-Fi (PCIe interface)
-> 
-> Signed-off-by: Vladimir Vid <vladimir.vid@sartura.hr>
+Hi Dmitry,
 
-Looks good now! The only missing part is to enable usb3 node. Have you
-looked at fixing usb3 port?
+Thank you for taking a look.
 
-> ---
+On Sun, Nov 22, 2020 at 11:03:07PM -0800, Dmitry Torokhov wrote:
+> Hi Jeff,
 > 
-> v5 changes:
-> - update ethernet-phy@1 to match reg value
+> On Sun, Nov 22, 2020 at 04:39:08PM -0600, Jeff LaBundy wrote:
+> > +
+> > +		if ((sys_reg->active & tp_mask) == tp_mask)
+> > +			input_set_abs_params(iqs626->trackpad,
+> > +					     ABS_X, 0, 255, 0, 0);
+> > +		else
+> > +			input_set_abs_params(iqs626->trackpad,
+> > +					     ABS_X, 0, 128, 0, 0);
+> > +#ifdef CONFIG_TOUCHSCREEN_PROPERTIES
+> > +		touchscreen_parse_properties(iqs626->trackpad, false,
+> > +					     &iqs626->prop);
+> > +#endif /* CONFIG_TOUCHSCREEN_PROPERTIES */
 > 
-> ---
->  arch/arm64/boot/dts/marvell/Makefile          |   1 +
->  .../marvell/armada-3720-espressobin-ultra.dts | 165 ++++++++++++++++++
->  2 files changed, 166 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
+> This should not be separately selectable from CONFIG_INPUT, so there is
+> not need to have this guard.
 > 
-> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-> index 3e5f2e7a040c..094f451fdd1d 100644
-> --- a/arch/arm64/boot/dts/marvell/Makefile
-> +++ b/arch/arm64/boot/dts/marvell/Makefile
-> @@ -3,6 +3,7 @@
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-db.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-emmc.dtb
-> +dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-ultra.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-espressobin-v7-emmc.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) += armada-3720-turris-mox.dtb
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> new file mode 100644
-> index 000000000000..c5eb3604dd5b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-ultra.dts
-> @@ -0,0 +1,165 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Device Tree file for ESPRESSObin-Ultra board.
-> + * Copyright (C) 2019 Globalscale technologies, Inc.
-> + *
-> + * Jason Hung <jhung@globalscaletechnologies.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "armada-3720-espressobin.dtsi"
-> +
-> +/ {
-> +	model = "Globalscale Marvell ESPRESSOBin Ultra Board";
-> +	compatible = "globalscale,espressobin-ultra", "marvell,armada3720",
-> +		     "marvell,armada3710";
-> +
-> +	aliases {
-> +		/* ethernet1 is WAN port */
-> +		ethernet1 = &switch0port5;
-> +		ethernet2 = &switch0port1;
-> +		ethernet3 = &switch0port2;
-> +		ethernet4 = &switch0port3;
-> +		ethernet5 = &switch0port4;
-> +	};
-> +
-> +	reg_usb3_vbus: usb3-vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usb3-vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		enable-active-high;
-> +		gpio = <&gpionb 19 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	usb3_phy: usb3-phy {
-> +		compatible = "usb-nop-xceiv";
-> +		vcc-supply = <&reg_usb3_vbus>;
-> +	};
-> +
-> +	gpio-leds {
-> +		pinctrl-names = "default";
-> +		compatible = "gpio-leds";
-> +		/* No assigned functions to the LEDs by default */
-> +		led1 {
-> +			label = "ebin-ultra:blue:led1";
-> +			gpios = <&gpionb 11 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led2 {
-> +			label = "ebin-ultra:green:led2";
-> +			gpios = <&gpionb 12 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led3 {
-> +			label = "ebin-ultra:red:led3";
-> +			gpios = <&gpionb 13 GPIO_ACTIVE_LOW>;
-> +		};
-> +		led4 {
-> +			label = "ebin-ultra:yellow:led4";
-> +			gpios = <&gpionb 14 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&sdhci0 {
-> +	status = "okay";
-> +};
-> +
-> +&sdhci1 {
-> +	status = "disabled";
-> +};
-> +
-> +&spi0 {
-> +	flash@0 {
-> +		spi-max-frequency = <108000000>;
-> +		spi-rx-bus-width = <4>;
-> +		spi-tx-bus-width = <4>;
-> +
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			partition@0 {
-> +				label = "firmware";
-> +				reg = <0x0 0x3e0000>;
-> +			};
-> +			partition@3e0000 {
-> +				label = "hw-info";
-> +				reg = <0x3e0000 0x10000>;
-> +				read-only;
-> +			};
-> +			partition@3f0000 {
-> +				label = "u-boot-env";
-> +				reg = <0x3f0000 0x10000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +
-> +	clock-frequency = <100000>;
-> +
-> +	rtc@51 {
-> +		compatible = "nxp,pcf8563";
-> +		reg = <0x51>;
-> +	};
-> +};
-> +
-> +&usb3 {
-> +	usb-phy = <&usb3_phy>;
-> +	status = "disabled";
-> +};
-> +
-> +&mdio {
-> +	extphy: ethernet-phy@1 {
-> +		reg = <1>;
-> +	};
-> +};
-> +
-> +&switch0 {
-> +	reg = <3>;
-> +
-> +	ports {
-> +		switch0port1: port@1 {
-> +			reg = <1>;
-> +			label = "lan0";
-> +			phy-handle = <&switch0phy0>;
-> +		};
-> +
-> +		switch0port2: port@2 {
-> +			reg = <2>;
-> +			label = "lan1";
-> +			phy-handle = <&switch0phy1>;
-> +		};
-> +
-> +		switch0port3: port@3 {
-> +			reg = <3>;
-> +			label = "lan2";
-> +			phy-handle = <&switch0phy2>;
-> +		};
-> +
-> +		switch0port4: port@4 {
-> +			reg = <4>;
-> +			label = "lan3";
-> +			phy-handle = <&switch0phy3>;
-> +		};
-> +
-> +		switch0port5: port@5 {
-> +			reg = <5>;
-> +			label = "wan";
-> +			phy-handle = <&extphy>;
-> +			phy-mode = "sgmii";
-> +		};
-> +	};
-> +
-> +	mdio {
-> +		switch0phy3: switch0phy3@14 {
-> +			reg = <0x14>;
-> +		};
-> +	};
-> +};
+> The reason it is a separate symbol is historical - it used to depend on
+> OF in addition to INPUT. I suppose I can drop it now.
+
+Without these guards, the build fails if CONFIG_INPUT_TOUCHSCREEN=n and
+I felt it too heavy-handed to add a 'depends on' for what is ultimately
+a corner-case of sorts for this device.
+
+The touchscreen helpers are useful for more than just touchscreens, and
+we can extend them to all of input with something like the patch below.
+If it looks OK to you, I can insert it into v2 after I collect feedback
+from Rob for the binding.
+
+> 
+> Thanks.
+> 
 > -- 
-> 2.27.0
-> 
+> Dmitry
+
+Kind regards,
+Jeff LaBundy
+
+diff --git a/drivers/input/Makefile b/drivers/input/Makefile
+index e356509..d050974 100644
+--- a/drivers/input/Makefile
++++ b/drivers/input/Makefile
+@@ -7,6 +7,7 @@
+ 
+ obj-$(CONFIG_INPUT)		+= input-core.o
+ input-core-y := input.o input-compat.o input-mt.o input-poller.o ff-core.o
++input-core-y += touchscreen/of_touchscreen.o
+ 
+ obj-$(CONFIG_INPUT_FF_MEMLESS)	+= ff-memless.o
+ obj-$(CONFIG_INPUT_POLLDEV)	+= input-polldev.o
+diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+index f012fe7..4c33278 100644
+--- a/drivers/input/touchscreen/Kconfig
++++ b/drivers/input/touchscreen/Kconfig
+@@ -12,10 +12,6 @@ menuconfig INPUT_TOUCHSCREEN
+ 
+ if INPUT_TOUCHSCREEN
+ 
+-config TOUCHSCREEN_PROPERTIES
+-	def_tristate INPUT
+-	depends on INPUT
+-
+ config TOUCHSCREEN_88PM860X
+ 	tristate "Marvell 88PM860x touchscreen"
+ 	depends on MFD_88PM860X
+diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+index 6233541..80cd241 100644
+--- a/drivers/input/touchscreen/Makefile
++++ b/drivers/input/touchscreen/Makefile
+@@ -7,7 +7,6 @@
+ 
+ wm97xx-ts-y := wm97xx-core.o
+ 
+-obj-$(CONFIG_TOUCHSCREEN_PROPERTIES)	+= of_touchscreen.o
+ obj-$(CONFIG_TOUCHSCREEN_88PM860X)	+= 88pm860x-ts.o
+ obj-$(CONFIG_TOUCHSCREEN_AD7877)	+= ad7877.o
+ obj-$(CONFIG_TOUCHSCREEN_AD7879)	+= ad7879.o
+
