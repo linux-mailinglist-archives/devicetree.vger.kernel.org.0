@@ -2,179 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D51B2C1DED
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 07:10:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1723E2C1E17
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 07:22:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729538AbgKXGIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 01:08:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50026 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729532AbgKXGIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 01:08:31 -0500
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BAA3C0613CF;
-        Mon, 23 Nov 2020 22:08:31 -0800 (PST)
-Received: by mail-ot1-x344.google.com with SMTP id 11so5781209oty.9;
-        Mon, 23 Nov 2020 22:08:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=ZoZU9eeGMyzNoZxXOK3ZAEdDwa+QPOxbaHh7UFCT0wc=;
-        b=XU4lpBhv0aFJugQfK3M7VhAgUUnP7WAOSflhvzSNStfOtxkfRXCc33wrAtApXdxuZQ
-         0+wviGLOV8JIq5EIbaOxmNue5mn9sLh+kZfbO8g3f0TCCgr2jKigT0nuuc45hcrtFTxu
-         KZ+DM9mJxiyKuCSOOWccDSvGb8QlBXakSqTplL7bKxboHoQo8lI+LPpwgYZLCXS3anlJ
-         BBsLrHs8tdWFbz6tPEvWlCBXYCdU/kujokGhWELriRgsaKcf/OT/aFgkZoX+N9y4Hz+t
-         vitCLLvUCycIjOxCJx6Hj5G6AdT0achcPDXvBthueRW5QnPiMX2niAzlk/fWoHQISdkc
-         4H4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=ZoZU9eeGMyzNoZxXOK3ZAEdDwa+QPOxbaHh7UFCT0wc=;
-        b=Ahy3KYSL9q0cpcYd1P6pXVbbd2n/RcK3DlOHHnnklBafgf1btjPH3f9nBdd7Nwueow
-         yt5UV1aZTSHChDMkM2d1EUyWH9lFM2FmhziXrfcp0HIKO6Bc1rocp/rkUUH2fb+6Pmzu
-         2fTXGdwqY4k03n8FH0YHMuwYlL+K4iQl+iZ5DjmSxA8BQBUqvG4D4a1oR1HiIWMGOsEw
-         fDnh4L8sZLzQTmKqZqVXI+k5hosJ+tmcRGGHmmzbh8s7Yn5tcZTogQHVDk+/dMnAPkHE
-         bphHFildR98wAr9zTm2zIHGqaZmW0orT171ztbh6SOaIQDcg/ZgOdfDyg8/7fmXGmV+s
-         cp8w==
-X-Gm-Message-State: AOAM530LqDz3vuqB1hNuDXZ7eBUS3M7EV7pNqFAyLtOKDtMa5oEJCXMV
-        yuBPxBzEcwluHDfp0hJBwCdRtBNnMjjpx1FtPhg=
-X-Google-Smtp-Source: ABdhPJxqWi0nnt7tIixUs46SG2tN319LJI4mJNVEAoecxwy6G+vIYHSn4lvL5dTmY6x9slv4vBfl76GjJMdINAew5y8=
-X-Received: by 2002:a9d:6c99:: with SMTP id c25mr2342006otr.327.1606198110129;
- Mon, 23 Nov 2020 22:08:30 -0800 (PST)
-MIME-Version: 1.0
-References: <1605696462-391-1-git-send-email-gene.chen.richtek@gmail.com>
- <1605696462-391-2-git-send-email-gene.chen.richtek@gmail.com>
- <3164b1ed-9e47-88cd-d492-ff5a9243e5ef@gmail.com> <CAE+NS350vuY1qNwn4_7ow8Z22_DfHrJAnKX1dsFM_WbaHziZiw@mail.gmail.com>
- <5c4a5780-afec-fa7f-307e-b969192ec677@gmail.com>
-In-Reply-To: <5c4a5780-afec-fa7f-307e-b969192ec677@gmail.com>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Tue, 24 Nov 2020 14:08:19 +0800
-Message-ID: <CAE+NS36yU_ho5eV=j2rd36XqGXBKj3d8KP-bsrCCnWvxzV3Afw@mail.gmail.com>
-Subject: Re: [PATCH v7 1/5] leds: flash: Add flash registration with undefined CONFIG_LEDS_CLASS_FLASH
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        id S1729324AbgKXGVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 01:21:44 -0500
+Received: from m42-4.mailgun.net ([69.72.42.4]:50948 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726197AbgKXGVn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 24 Nov 2020 01:21:43 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1606198903; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=cg4mCsOJyekdpypjBkEBPAnMQeOyE1zwdoSEfRWiALs=; b=NdQAC/VPuGowbzdSX6RkopcZg81x806S06Rpym22utb/DlrE+l1trV36FS+WQy12sij4a5ed
+ Ic6+bOon6ITeO7FYVwaLXrbe7+rFTW+LlDVbLSS5+R4LtCMByDebZj/O47sKYsRep9mDjLMe
+ nXCOgmGv8kglpOBm6tkLfhFBbZI=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
+ 5fbca66b9e87e163523e60f0 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 24 Nov 2020 06:21:31
+ GMT
+Sender: sibis=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E7A74C43463; Tue, 24 Nov 2020 06:21:30 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C9EF6C433C6;
+        Tue, 24 Nov 2020 06:21:26 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C9EF6C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     bjorn.andersson@linaro.org, dianders@chromium.org
+Cc:     agross@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        evgreen@chromium.org, robh+dt@kernel.org, swboyd@chromium.org,
+        mka@chromium.org, Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH v2 1/2] arm64: dts: qcom: sc7180-lite: Tweak DDR/L3 scaling on SC7180-lite
+Date:   Tue, 24 Nov 2020 11:51:15 +0530
+Message-Id: <1606198876-3515-1-git-send-email-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B411=E6=
-=9C=8824=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=885:07=E5=AF=AB=E9=81=
-=93=EF=BC=9A
->
-> On 11/23/20 4:20 AM, Gene Chen wrote:
-> > Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B411=
-=E6=9C=8820=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=886:29=E5=AF=AB=E9=
-=81=93=EF=BC=9A
-> >>
-> >> Hi Gene,
-> >>
-> >> On 11/18/20 11:47 AM, Gene Chen wrote:
-> >>> From: Gene Chen <gene_chen@richtek.com>
-> >>>
-> >>> Add flash registration with undefined CONFIG_LEDS_CLASS_FLASH
-> >>>
-> >>> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> >>> ---
-> >>>    include/linux/led-class-flash.h | 36 +++++++++++++++++++++++++++++=
-+++++++
-> >>>    1 file changed, 36 insertions(+)
-> >>>
-> >>> diff --git a/include/linux/led-class-flash.h b/include/linux/led-clas=
-s-flash.h
-> >>> index 21a3358..4f56c28 100644
-> >>> --- a/include/linux/led-class-flash.h
-> >>> +++ b/include/linux/led-class-flash.h
-> >>> @@ -85,6 +85,7 @@ static inline struct led_classdev_flash *lcdev_to_f=
-lcdev(
-> >>>        return container_of(lcdev, struct led_classdev_flash, led_cdev=
-);
-> >>>    }
-> >>>
-> >>> +#if IS_ENABLED(CONFIG_LEDS_CLASS_FLASH)
-> >>>    /**
-> >>>     * led_classdev_flash_register_ext - register a new object of LED =
-class with
-> >>>     *                               init data and with support for fl=
-ash LEDs
-> >>> @@ -127,6 +128,41 @@ static inline int devm_led_classdev_flash_regist=
-er(struct device *parent,
-> >>>    void devm_led_classdev_flash_unregister(struct device *parent,
-> >>>                                        struct led_classdev_flash *fle=
-d_cdev);
-> >>>
-> >>> +#else
-> >>> +
-> >>> +static inline int led_classdev_flash_register_ext(struct device *par=
-ent,
-> >>> +                                 struct led_classdev_flash *fled_cde=
-v,
-> >>> +                                 struct led_init_data *init_data)
-> >>> +{
-> >>> +     return -EINVAL;
-> >>
-> >> s/-EINVAL/0/
-> >>
-> >> The goal here is to assure that client will not fail when using no-op.
-> >>
-> >>> +}
-> >>> +
-> >>> +static inline int led_classdev_flash_register(struct device *parent,
-> >>> +                                        struct led_classdev_flash *f=
-led_cdev)
-> >>> +{
-> >>> +     return led_classdev_flash_register_ext(parent, fled_cdev, NULL)=
-;
-> >>> +}
-> >>
-> >> This function should be placed after #ifdef block because its
-> >> shape is the same for both cases.
-> >>
-> >>> +static inline void led_classdev_flash_unregister(struct led_classdev=
-_flash *fled_cdev) {};
-> >>> +static inline int devm_led_classdev_flash_register_ext(struct device=
- *parent,
-> >>> +                                  struct led_classdev_flash *fled_cd=
-ev,
-> >>> +                                  struct led_init_data *init_data)
-> >>> +{
-> >>> +     return -EINVAL;
-> >>
-> >> /-EINVAL/0/
-> >>
-> >> Please do the same fix in all no-ops in the led-class-multicolor.h,
-> >> as we've discussed.
-> >>
-> >
-> > I think return -EINVAL is correct, because I should register flash
-> > light device if I define FLED in DTS node.
->
-> I don't quite follow your logic here.
->
-> No-op function's purpose is to simplify the code on the caller's side.
-> Therefore it should report success.
->
-> Please return 0 from it.
->
+Tweak the DDR/L3 bandwidth votes on the lite variant of the SC7180 SoC
+since the gold cores only support frequencies upto 2.1 GHz.
 
-Just like those functions in led-class-multicolor.h, caller may use
-return value to check whether FLED is registered successfully or not.
-For this case, is returning 0 a little bit misleading?
+Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+---
 
-> --
-> Best regards,
-> Jacek Anaszewski
+V2:
+ * Updated the lite ddr/l3 cpufreq map to have better power numbers with
+   similar perf.
+
+ arch/arm64/boot/dts/qcom/sc7180-lite.dtsi | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi b/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+new file mode 100644
+index 000000000000..d8ed1d7b4ec7
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sc7180-lite.dtsi
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * SC7180 lite device tree source
++ *
++ * Copyright (c) 2020, The Linux Foundation. All rights reserved.
++ */
++
++&cpu6_opp10 {
++	opp-peak-kBps = <7216000 22425600>;
++};
++
++&cpu6_opp11 {
++	opp-peak-kBps = <7216000 22425600>;
++};
++
++&cpu6_opp12 {
++	opp-peak-kBps = <8532000 23347200>;
++};
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
