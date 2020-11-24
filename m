@@ -2,124 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC7D2C26FB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 14:22:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CD792C2709
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 14:24:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387675AbgKXNVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 08:21:09 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:34515 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726714AbgKXNVJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Nov 2020 08:21:09 -0500
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 082EC5C0107;
-        Tue, 24 Nov 2020 08:21:08 -0500 (EST)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Tue, 24 Nov 2020 08:21:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=lzRzm4KvEYKdIaEdFXpNQf1V5ga
-        7opO7foqqpcsFI7w=; b=AShZo6MPDXx8yioK6yjaWOKFRZRnukoAtWuCTNB/dZH
-        +AwlqIjTKn3Rp3XzCQojew98wZVxiJRYKvliLNd6zjZIRrNB7X7IwgbOsLtXnFw/
-        TVH/aFM95IN9ZRbt8lZadwyJ4CkVZfb1V8nB9HpFY+aF3D0IJGrM9bYu8DpW+vWq
-        JerirhYSsZpNlvM+1qSVLl8TX3ZDEuBhgDgUod/6E4iaeD/Zg0glGMCX6JdPlyWu
-        ZAUVo65xuZw2agWVXaomI5pdUjVp0g6Ff8JKNjtRtHSJ54ghyscwSxbA9R21tx06
-        Sni6DemtRdhTeZ4E1+HnW+hnKI4xwps2webrW3AZhKQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=lzRzm4
-        KvEYKdIaEdFXpNQf1V5ga7opO7foqqpcsFI7w=; b=B+PtIFkrDlKCMcAyJR5V4T
-        yGT6kdkWYNgkm0QciCYTZCJ0rD1vDzwyJd1qwUrJaN9tfJpghX+fK4add7TZ3NBT
-        3Xlp9fQIjgk6BeV9FLf39S+lDH3W5ZzCcc5wHRbWJEs6tztZ5Exs/V3qf00lzIXQ
-        zppyf6YcbebfDfPischlnQM/xyBJ68m/Cdh4jJYFSdqCQjNbLH15zCN9t2oAIBWS
-        NTCupBAgS+z9dJkuZE8wtUglT9WGhUU4g+0ZS5UJb8gIy9dlCik4TuL919+vl1w5
-        MI1O1dRrpp2Y11IjYrrdY4GiPYb+wet9CuKao5PjRJk4C099vn9lhnWdC8AUztfA
-        ==
-X-ME-Sender: <xms:wwi9X-up49qjyT6uX9Z8W_skA_RCd7mPBETjaFB5yXV_IfbiIOAEjA>
-    <xme:wwi9XzeXMnQENC1BR2Bvi8hgCDbXYnMeXOKg8GP-YUg9EZ5puL2mDSrLBIelyPNIS
-    GNZ7JFakyxk4z4XCOs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudegkedgheduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
-    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgepudenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:wwi9X5wkev2OsE8NG6x297VyNXpnLcIGfiT2gLfZB--EVJFjbGBgXA>
-    <xmx:wwi9X5MqmfbXqtmQfbFAnuVtQqZYN0LQ7p4fAVAtbDdRZrnw60kZIQ>
-    <xmx:wwi9X-_2PpHAT1xrAuSNmcUoPiUw6AcwuPVyuZ6qosHHahXaEPodJg>
-    <xmx:wwi9XyYxQrzDNMHKGad3fQ9jVKo6O-H-xDrKNr1qz80nCzB1xbKgDw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BFF473280059;
-        Tue, 24 Nov 2020 08:21:06 -0500 (EST)
-Date:   Tue, 24 Nov 2020 14:21:05 +0100
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Samuel Holland <samuel@sholland.org>,
-        Michael Klein <michael@fossekall.de>,
+        id S1729188AbgKXNYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 08:24:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32876 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726714AbgKXNYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 08:24:20 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13071C0613D6
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 05:24:18 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id t4so9362764wrr.12
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 05:24:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=joK0uYh+g9axnkU4sYYOePA4lWxUi/sKt+xtkHJq3/o=;
+        b=gj9xtUkzlieDr+vB4lLEah/BpQVMCj7W0vaBfc4PlKQ2vr4QmtSlYExv2sv8YXQSBL
+         ohzJ9DcGEcY8C7C4tnFpJYmZqFaLLa0ebQtugCYFCDQ73nSts4oHz425/P+C1j67NKDQ
+         Sk/fBMExHWSzG/JXEtuSSShfGtI8ENBdwUeFrQ9LvjgRiVvByuPeq2u0bq2DbzOirthY
+         bH6KHdoDCHJMZCg9WQ40ZgFn4mJt2OkdYEHLP7uvDZm8KMXk0pVRMI8ndzmcuSDcnzVw
+         3SGSezmeuo8hMQxU9LGtUHwwFFCdk3pMouegYzaI/ffJVIVU3BTigcgAGBPnaCj3Oay5
+         LeYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=joK0uYh+g9axnkU4sYYOePA4lWxUi/sKt+xtkHJq3/o=;
+        b=UsvDRemDP1iAgkqEPM2pUHfKsZtqCZj4rqfgK9495qtemcXKIhiLXtC4a9vAfxP0Or
+         qhZoigDBDC+KamOX1NAGsd4sC1k1AN6clCZmeVjorgPg9Ml1QHFAOtfS0bKO6I+IIcs0
+         YOgaDqm5OXno0CKtqaU9Y1LlzTFyXkq7fpGIQsMX+9SBge48JAwOxAcTcp/W8CeR2iHE
+         i5fb9ZBOaGNLX37EF/iqQ9/BXoKnhJJbUmyx55E4/dKXmAEucE6S44fV59ekzaT07r0Y
+         GvtxbfCx3LHeQGcq1ShB5nf8hZ+Hkuf0VFCRRMKQj6Dg3e9wQ+l+0SJone3npf/Es5EO
+         6wqA==
+X-Gm-Message-State: AOAM531lXeuTptkEc+SJdWKeP2StTOMwWNbExsAY3qp1ZEa3zDpG8Ls0
+        YQjAzE+AzvLZEb8VLyYVJUNy9g==
+X-Google-Smtp-Source: ABdhPJzWWzoCVKgvXVk+cSvFOUFsPSxpNaGV/cSTZYha0Vg0cJSBVGXzuPEJhMr1wSoYap78frmVUA==
+X-Received: by 2002:a5d:4408:: with SMTP id z8mr5646869wrq.204.1606224256582;
+        Tue, 24 Nov 2020 05:24:16 -0800 (PST)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:3daa:7c69:63d6:7d7d? ([2a01:e35:2ec0:82b0:3daa:7c69:63d6:7d7d])
+        by smtp.gmail.com with ESMTPSA id s13sm10016035wrt.80.2020.11.24.05.24.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Nov 2020 05:24:15 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: meson: Add capacity-dmips-mhz attributes to
+ GXM
+To:     Christian Hewitt <christianshewitt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] ARM: dts: sun8i-h2-plus-bananapi-m2-zero: add
- gpio-poweroff to DT
-Message-ID: <20201124132105.oai6gejdvdsnbzyx@gilmour>
-References: <20201123161041.2304766-1-michael@fossekall.de>
- <4bf42c9e-9f70-bc30-1a88-44a127cd989a@sholland.org>
- <CAGb2v65=SoATrLDKvXH-EjdVJT3E4e+yQ6Ad0Nn1BQsB9aJvog@mail.gmail.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20201124121740.25704-1-christianshewitt@gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <c5656549-6c99-95b5-0cdb-a9f1a5d538e0@baylibre.com>
+Date:   Tue, 24 Nov 2020 14:24:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="tp5irkdtwqk5souk"
-Content-Disposition: inline
-In-Reply-To: <CAGb2v65=SoATrLDKvXH-EjdVJT3E4e+yQ6Ad0Nn1BQsB9aJvog@mail.gmail.com>
+In-Reply-To: <20201124121740.25704-1-christianshewitt@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/11/2020 13:17, Christian Hewitt wrote:
+> GXM (S912) is a big-little design with CPUs 0-3 clocked at 1.5GHz
+> and CPUs 4-7 at 1.0GHz. Adding capacity-dmips-mhz attributes allows
+> the scheduler to factor the different clock speeds into capacity
+> calculations and prefer the higher-clocked cluster to improve
+> overall performance.
+> 
+> This was inspired by the similar change for G12B [0] boards. The
+> diference here is that all cores are A53's so the same dmips-mhz
+> value is used.
+> 
+> VIM2:~ # cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq
+> 1512000
+> 1512000
+> 1512000
+> 1512000
+> 1000000
+> 1000000
+> 1000000
+> 1000000
+> 
+> before:
+> 
+> VIM2:~ # cat /sys/devices/system/cpu/cpu*/cpu_capacity
+> 1024
+> 1024
+> 1024
+> 1024
+> 1024
+> 1024
+> 1024
+> 1024
+> 
+> after:
+> 
+> VIM2:~ # cat /sys/devices/system/cpu/cpu*/cpu_capacity
+> 1024
+> 1024
+> 1024
+> 1024
+> 677
+> 677
+> 677
+> 677
+> 
+> The after value matches my table-napkin calculation:
+> 
+> (1000000 / 1512000 = 0.661) * 1024 = 677
+> 
+> [0] https://github.com/torvalds/linux/commit/6eeaf4d2452ec8b1ece58776812140734fc2e088
+> 
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxm.dtsi | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+> index fe4145112295..411cc312fc62 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm.dtsi
+> @@ -42,11 +42,28 @@
+>  			};
+>  		};
+>  
+> +		cpu0: cpu@0 {
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			capacity-dmips-mhz = <1024>;
+> +		};
+> +
+>  		cpu4: cpu@100 {
+>  			device_type = "cpu";
+>  			compatible = "arm,cortex-a53";
+>  			reg = <0x0 0x100>;
+>  			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+>  			next-level-cache = <&l2>;
+>  			clocks = <&scpi_dvfs 1>;
+>  			#cooling-cells = <2>;
+> @@ -57,6 +74,7 @@
+>  			compatible = "arm,cortex-a53";
+>  			reg = <0x0 0x101>;
+>  			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+>  			next-level-cache = <&l2>;
+>  			clocks = <&scpi_dvfs 1>;
+>  			#cooling-cells = <2>;
+> @@ -67,6 +85,7 @@
+>  			compatible = "arm,cortex-a53";
+>  			reg = <0x0 0x102>;
+>  			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+>  			next-level-cache = <&l2>;
+>  			clocks = <&scpi_dvfs 1>;
+>  			#cooling-cells = <2>;
+> @@ -77,6 +96,7 @@
+>  			compatible = "arm,cortex-a53";
+>  			reg = <0x0 0x103>;
+>  			enable-method = "psci";
+> +			capacity-dmips-mhz = <1024>;
+>  			next-level-cache = <&l2>;
+>  			clocks = <&scpi_dvfs 1>;
+>  			#cooling-cells = <2>;
+> 
 
---tp5irkdtwqk5souk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Re-reading the bindings, the value is correct and necessary to have the cpu_capacity calculated
+to help the scheduler.
 
-On Tue, Nov 24, 2020 at 12:41:37PM +0800, Chen-Yu Tsai wrote:
-> On Tue, Nov 24, 2020 at 12:14 PM Samuel Holland <samuel@sholland.org> wro=
-te:
-> >
-> > On 11/23/20 10:10 AM, Michael Klein wrote:
-> > > Add gpio-poweroff node to allow the board to power itself off after
-> > > shutdown by disabling the SYSTEM and CPUX regulators (U5 resp. U6).
-> > > The RST button can be used to restart the board.
-> >
-> > The PSCI client will override this driver once the PSCI implementation
-> > is upgraded to v0.2 or newer functions. So having this around should
-> > cause no compatibility issues (although it would print an error in dmesg
-> > at that point). This seems like a reasonable thing to do for the other
-> > H2+/H3 boards that use a similar regulator layout.
->=20
-> I wonder if this (gpio-poweroff) works if those regulators are also in th=
-e DT?
+Thanks!
 
-It's probably not going to probe at all, since both would claim the
-exclusive usage of the GPIO?
-
-I guess we should model this properly using the regulator framework, and
-regulator_force_disable allows to bypass any usage count
-
-Maxime
-
---tp5irkdtwqk5souk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX70IwQAKCRDj7w1vZxhR
-xVDgAQDtHkWRvMCy6Xtrt2MCroKwIz7m6pjWGS4rUDmBo/khsgEA+ketyMtNKirF
-of9BbDNLz0A1dy0Lit5yoivYKfNsTwk=
-=OxTb
------END PGP SIGNATURE-----
-
---tp5irkdtwqk5souk--
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
