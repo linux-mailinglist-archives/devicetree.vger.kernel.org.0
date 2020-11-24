@@ -2,89 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 143ED2C28CB
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 14:56:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D42B2C28E5
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 15:02:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387701AbgKXNyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 08:54:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37728 "EHLO
+        id S1726925AbgKXOAq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 09:00:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387631AbgKXNyq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 08:54:46 -0500
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94395C0613D6;
-        Tue, 24 Nov 2020 05:54:46 -0800 (PST)
-Received: by mail-pf1-x444.google.com with SMTP id n137so8524659pfd.3;
-        Tue, 24 Nov 2020 05:54:46 -0800 (PST)
+        with ESMTP id S1727123AbgKXOAY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 09:00:24 -0500
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C559AC0613D6
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:24 -0800 (PST)
+Received: by mail-pl1-x642.google.com with SMTP id l11so10747585plt.1
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 06:00:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bFiWTt4rZpALfk96ockHBL57Xo1g7R1/SK5/u3ELrPo=;
-        b=R8ne0sI0l2GBu9LhZhD293kTbgsrhybMTsS76z0V/dkcAHOoj3Yds5LyLL9tiG+OpJ
-         Gx1e6u9z2n1NxASuR9/AwcM1cHq0nlvX+pNudrfxAznUtHqt+sJnPCgBF9Wf2NBvcB6c
-         bcsExc2IhEJxqABrgiaZtlNAmXSCG6jwTKvExS9TCbbtzCHcCP8jishZljGcYyIecttG
-         3FdaLTiLeNGDCTrew8CM8PslsDZbQdKQwvdCWcJNdf1lnxamOcrDZMxKXMxjg4bKJOKP
-         Cbrwi7HmgpFjCpk5EagIB3KjFY0iQAM9ljgkJr3I4lLtfHOccOFPpWZGaPVzh2264mcV
-         LsHQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wz1ZQP6uCXs7qi6a92QpxjDP7Q4q0QFNKJSTZ9GgIpg=;
+        b=q0CqFe/N2bHDouVmvXJg2CmcpDYcrYnxkM1ztr5yCcahDdIUfjLnGgHKnWG2TDWyAc
+         fdUsGj3V7+C5kDHWEpZwVD8/NnC637Q6qhmAnP4AutWWe/nntQaZc8Za6z4tEopzEzWZ
+         fY6UpUgja45Kra63EqPQnubeVN7Epco+2arAs0HnBcZ0PtuuzSKTCi94Nc0Dvx1cKcFs
+         8Cr9FYkiEy5BlwgShQj1NrDq4Bh6M49pbbjlcDe60oKaxvB0l9HJ58BS+Hp3oo1TPuVm
+         1I2G1UX3JSTXagfikS3p0pE/EFQtK2Y/ulIHiaC0CE2VTtOUxnwIaW2BoR6WhXGpKB7L
+         Yusw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bFiWTt4rZpALfk96ockHBL57Xo1g7R1/SK5/u3ELrPo=;
-        b=nJp76Bsei1QLMJ/7tKZbf/OVL5Qj9qYSJCUpvcfZ/NfcLZN92hEgxaa1rQbOOWD8i4
-         /eSxfFwJzjwQb2kN0vFVTltZX3jIhToDn3lvX+46d5zDDwB+iRUTSoAzeDy3O2YJO3v2
-         zXgd7/rmay9cuO4Av3MbRd/Nn0H154PuLQXrSOdFMWk4WnQeZkQT14MbM5LJDNDZsBll
-         CktNTy2eOBaHheB9FHQ5JC4xc7MyeZupeb7555BmCYVxdPb7MevmHSHyi+KkRMdw3iR8
-         w0Xb2J23h/A7S2zfkBNjBDr/R3qHFFkmoJZ81EYARZWGqrPZKVkddzIaQTkqqQP3u7PP
-         5uvg==
-X-Gm-Message-State: AOAM531FUxCsBmJokxrAPdWkb52vftz+QuWieQ/S/1Z2oC12K24QSxIW
-        TWc1mTJhiNir4dZ5Id2OO5klKpRqoZzEmIuUo5A=
-X-Google-Smtp-Source: ABdhPJw27eAo6K7hsc4Xr4GhI6SZcvJOUxCtVuen5OJhSaaFoF1LpsXMRUyUf1y/TPfXkqjSrZJcMoKLEdbL66/Fa0Q=
-X-Received: by 2002:a63:1514:: with SMTP id v20mr3847208pgl.203.1606226086051;
- Tue, 24 Nov 2020 05:54:46 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Wz1ZQP6uCXs7qi6a92QpxjDP7Q4q0QFNKJSTZ9GgIpg=;
+        b=rXjwnzzIlfVFPjyuVFWeyM++bpFvEQ5w8PiX39vfJ6q3q7p08Pk0TGq+dRX/bZ0xPR
+         94InXdddp0a8LDr2m8XTFMQrZoiGAErplw90EwvF4YDCIa+36EQVXRS3qcB77I2mOauz
+         uF18ukhpvziZVnvRX2HnfnMpvWc0Mk4NHN1P1db8zhGdPP6QfCzPIzPtWkBTQzFizbgV
+         l9Zgx4PUy1rUv5MfKPf+Nu2ZVE+AJLgoKAF3g3XRtu1lDuv9Xx3oY1CtDNMdEhpX128f
+         RqauK8jCAbIjlfpRYScR+WnRB+yz2RwWgmw9uclWlquZoPQgyH95eSz0slsGWj33Rw+s
+         3BqA==
+X-Gm-Message-State: AOAM531C4dxZc0/QqtA2Vb1gaLAIMqK73b5ayJCq23dnpE4xfDZ9NioA
+        pZVJqR1MdlwUZaEmMm0qMslT
+X-Google-Smtp-Source: ABdhPJwV2ZxGORwQLjg9yXA/FyKYMbwb05bi9vAdwITsfIqHF0iNGwJo0RYYIzukOPIo7Mq0JBBtlQ==
+X-Received: by 2002:a17:902:8645:b029:da:1a78:1d16 with SMTP id y5-20020a1709028645b02900da1a781d16mr3005273plt.21.1606226423867;
+        Tue, 24 Nov 2020 06:00:23 -0800 (PST)
+Received: from localhost.localdomain ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id u3sm14485937pfu.47.2020.11.24.06.00.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2020 06:00:23 -0800 (PST)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/2] Add devicetree support for SDX55 Modem and MTP
+Date:   Tue, 24 Nov 2020 19:30:09 +0530
+Message-Id: <20201124140011.134751-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201124102152.16548-1-alexandru.ardelean@analog.com>
- <202011241901.eIm4FyEB-lkp@intel.com> <CAHp75Vc+M2veG25pehO-8LSj0WcXvotijwaYvkYvAr3LF1n10Q@mail.gmail.com>
- <DM6PR03MB4411ABE610061A840224159EF9FB0@DM6PR03MB4411.namprd03.prod.outlook.com>
-In-Reply-To: <DM6PR03MB4411ABE610061A840224159EF9FB0@DM6PR03MB4411.namprd03.prod.outlook.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 24 Nov 2020 15:55:34 +0200
-Message-ID: <CAHp75VeNEAxgSjpe1A5dvsW_Rqnp5K5FwHk_Zfopr_--raNDXg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] spi: convert to BIT() all spi_device flags
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-Cc:     kernel test robot <lkp@intel.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "kbuild-all@lists.01.org" <kbuild-all@lists.01.org>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Bogdan, Dragos" <Dragos.Bogdan@analog.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Nov 24, 2020 at 2:03 PM Ardelean, Alexandru
-<alexandru.Ardelean@analog.com> wrote:
+Hello,
 
-> > >    In file included from drivers/spi/spidev.c:26:
-> > > >> include/uapi/linux/spi/spidev.h:33: warning: "SPI_CPHA" redefined
-> > >       33 | #define SPI_CPHA  0x01
-> >
-> > Argh! Can we have only one set of flags?
-> >
->
-> My bad here for not catching this earlier.
->
-> It might be an idea to create a "include/uapi/linux/spi/spi.h" and include this in " include/uapi/linux/spi/spidev.h "
-> Then the " include/uapi/linux/spi/spi.h " would also be included in " include/linux/spi/spi.h "
-> We would naturally drop the BIT() macros for the uapi header.
+This series adds devicetree support for Qualcomm SDX55 Modem and MTP
+board. This series functionally depends on Clock support series [1]
+which is under review.
 
-uAPI has its own _BIT*() macros.
+With the current devicetree support, the MTP can boot into initramfs
+shell.
 
+Thanks,
+Mani
+
+[1] https://lore.kernel.org/linux-arm-msm/20201119072714.14460-1-manivannan.sadhasivam@linaro.org/
+
+Manivannan Sadhasivam (1):
+  ARM: dts: qcom: Add SDX55 Modem and MTP board support
+
+Vinod Koul (1):
+  dt-bindings: arm: qcom: Document SDX55 Modem and boards
+
+ .../devicetree/bindings/arm/qcom.yaml         |   6 +
+ arch/arm/boot/dts/Makefile                    |   3 +-
+ arch/arm/boot/dts/qcom-sdx55-mtp.dts          |  27 +++
+ arch/arm/boot/dts/qcom-sdx55.dtsi             | 205 ++++++++++++++++++
+ 4 files changed, 240 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/qcom-sdx55-mtp.dts
+ create mode 100644 arch/arm/boot/dts/qcom-sdx55.dtsi
 
 -- 
-With Best Regards,
-Andy Shevchenko
+2.25.1
+
