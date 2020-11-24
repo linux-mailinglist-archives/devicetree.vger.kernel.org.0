@@ -2,255 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B382A2C1EE4
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 08:32:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C83892C1EEF
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 08:34:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729968AbgKXHam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 02:30:42 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55218 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730050AbgKXHal (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Nov 2020 02:30:41 -0500
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D31832076B;
-        Tue, 24 Nov 2020 07:30:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1606203040;
-        bh=RoJmMJGT7uEZrkuzR579tdRL3vaJJyI20UO+YG3pwoU=;
-        h=Subject:To:From:Date:From;
-        b=ivpRKy4wYRwFKunMPKuN92K5Ot58VZ8npLZIPxHPCbTjg5bjm0xRA/8VdDUUPsKS3
-         /ZwmoauGiXgvHMcnkPVPZs51IMe3TudXHeNwX5iriUl/3vsvjFsFqvcw/fyesuagEq
-         S2qv1OOAJY/5aAHxnqE6TCmhkrauyLfGrJNbFA/M=
-Subject: patch "iio: sx9310: Set various settings from DT" added to staging-testing
-To:     swboyd@chromium.org, Jonathan.Cameron@huawei.com,
-        campello@chromium.org, devicetree@vger.kernel.org,
-        dianders@chromium.org, evgreen@chromium.org, gwendal@chromium.org,
-        lars@metafoo.de, pmeerw@pmeerw.net, robh+dt@kernel.org
-From:   <gregkh@linuxfoundation.org>
-Date:   Tue, 24 Nov 2020 08:31:11 +0100
-Message-ID: <1606203071116118@kroah.com>
+        id S1729597AbgKXHdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 02:33:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728934AbgKXHdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 02:33:53 -0500
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6BB6C0613CF;
+        Mon, 23 Nov 2020 23:33:52 -0800 (PST)
+Received: by mail-oi1-x242.google.com with SMTP id y74so9427268oia.11;
+        Mon, 23 Nov 2020 23:33:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=KKRM9jTf5nSJd59wAkauAXklVp5cT6v6o379KchKHvM=;
+        b=jeip3wVPozHymCziewDWg3eWSaxaRVyXd+LKi1graaO9ONwLpqo5ecMwhEtGPw99V3
+         IzS9HuNtTFQ+q5p9UsRp7rRUesDybSBLjvsVTROA1c73C0+nLxlShnCKznBEWyoMc1iI
+         6plsKOQuQL9W/PGM7q7/4HpWIdEbYlHtyg65bnKgKUWClcXw4B9azE5ccn+ahfOJMqO3
+         pSMlMEmxHgJdp/OzoCfduaFszVd9t5mqPPDKVPKoIOl9OqdiV/VHtEdQcfLTa2MuDsMH
+         h9NWBsQ5BH5acg2gvhjoiEzxZ3C6TxRZMU0qU45UOdKwLzPek4zTOLJErrKS04EVB/H6
+         ymUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=KKRM9jTf5nSJd59wAkauAXklVp5cT6v6o379KchKHvM=;
+        b=f7gFQ2I+mt2IRR3/F/EHQZ9f8kaFf9mzw9Zr7ANBaiIR5vmp4uT5XWnF4PPQAxezkT
+         YFqdE0kGjlojzhxd7tKjkq99V5rwhhVhWh9bCyd5Wyq+Wz+vPGNfEMMvQKDhgJxWMAqw
+         r420wc5terKYhrI0lLWwXWXbP/YTOXGhvL5UxpiNZgybFt2DY2fy1Ky6gybpZ3XW4XH2
+         IsyPkWcyLaLAiJZpGiGCaRT1UVE7JzLUWKuSG71IE01wRfEZX2uv9PWpEotG4oygWca5
+         q0snIMnSDxE/PL8Uqik6jb+ItxKEcIHe24Ls4cj79mNQM+xJudrEg2pUNH1uBYT5e3gw
+         Gg1g==
+X-Gm-Message-State: AOAM533XM7FrCzAkPk6vMBwDBovuUW740+kRuXXFWOkQf84UMmqv9yr2
+        6RPDeMzqMkc+qgMe/Hrg4cy5qOYX/zIU/fBFr/s=
+X-Google-Smtp-Source: ABdhPJxa1iV5tDEv3/kW7lm9TC/hZGVpHgpwrvtGKtIBec0//BiHzGgBa4Zwe1/6Ash6iLnYIrY7mkFnhBJRdlOR4j4=
+X-Received: by 2002:aca:c209:: with SMTP id s9mr1790607oif.55.1606203232139;
+ Mon, 23 Nov 2020 23:33:52 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=ANSI_X3.4-1968
-Content-Transfer-Encoding: 8bit
+References: <1605696462-391-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1605696462-391-3-git-send-email-gene.chen.richtek@gmail.com>
+ <20201118213712.GA22371@amd> <6068b1e3-a4c8-6c7d-d33d-f2238e905e43@gmail.com>
+ <20201119215721.GA5337@amd> <0700c32d-643b-fedb-06f0-21547b18205d@gmail.com>
+ <CAE+NS363BpytNGZzfZHLa7KLKL8gjGj14oNvRi3oaH9KT79REg@mail.gmail.com> <25fef924-634d-7f60-7e1d-0290d1701fab@gmail.com>
+In-Reply-To: <25fef924-634d-7f60-7e1d-0290d1701fab@gmail.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Tue, 24 Nov 2020 15:33:42 +0800
+Message-ID: <CAE+NS34vDejgf8Ydfer_rY25qaG-DQQ5H-9-Er+Shz0=UF-EzA@mail.gmail.com>
+Subject: Re: [PATCH v7 2/5] dt-bindings: leds: Add LED_COLOR_ID_MOONLIGHT definitions
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B411=E6=
+=9C=8824=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=884:52=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+>
+> On 11/23/20 4:00 AM, Gene Chen wrote:
+> > Jacek Anaszewski <jacek.anaszewski@gmail.com> =E6=96=BC 2020=E5=B9=B411=
+=E6=9C=8820=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=886:26=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+> >>
+> >> On 11/19/20 10:57 PM, Pavel Machek wrote:
+> >>> On Thu 2020-11-19 22:03:14, Jacek Anaszewski wrote:
+> >>>> Hi Pavel, Gene,
+> >>>>
+> >>>> On 11/18/20 10:37 PM, Pavel Machek wrote:
+> >>>>> Hi!
+> >>>>>
+> >>>>>> From: Gene Chen <gene_chen@richtek.com>
+> >>>>>>
+> >>>>>> Add LED_COLOR_ID_MOONLIGHT definitions
+> >>>>>
+> >>>>> Why is moonlight a color? Camera flashes are usually white, no?
+> >>>>>
+> >>>>> At least it needs a comment...
+> >>>>
+> >>>> That's my fault, In fact I should have asked about adding
+> >>>> LED_FUNCTION_MOONLIGHT, it was evidently too late for me that evenin=
+g...
+> >>>
+> >>> Aha, that makes more sense.
+> >>>
+> >>> But please let's call it "torch" if we do that, as that is already
+> >>> used in kernel sources... and probably in the interface, too:
+> >>
+> >> I'd say that torch is something different that moonlight,
+> >> but we would need more input from Gene to learn more about
+> >> the nature of light emitted by ML LED on his device.
+> >>
+> >> Please note that torch is usually meant as the other mode of
+> >> flash LED (sometimes it is called "movie mode"), which is already
+> >> handled by brightness file of LED class flash device (i.e. its LED cla=
+ss
+> >> subset), and which also maps to v4l2-flash TORCH mode.
+> >>
+> >
+> > It's used to front camera fill light.
+> > More brightness than screen backlight, and more soft light than flash.
+> > I think LED_ID_COLOR_WHITE is okay.
+>
+> So why in v6 you assigned LED_COLOR_ID_AMBER to it?
+>
+> Regardless of that, now we're talking about LED function - you chose
+> LED_FUNCTION_INDICATOR for it, but inferring from your above description
+> - it certainly doesn't fit here.
+>
+> Also register names, containing part "ML" indicate that this LED's
+> intended function is moonlinght, which your description somehow
+> corroborates.
+>
+> Moonlight LEDs become ubiquitous nowadays so sooner or later we will
+> need to add this function anyway [0].
+>
+> [0]
+> https://landscapelightingoakville.com/what-is-moon-lighting-and-why-does-=
+it-remain-so-popular/
+>
 
-This is a note to let you know that I've just added the patch titled
+We use term "Moonlight" as reference says
+"When you are trying to imitate moonlight you need to use low voltage,
+softer lighting. You don=E2=80=99t want something that=E2=80=99s too bright=
+"
+which is focus on brightness instead of color.
 
-    iio: sx9310: Set various settings from DT
+So we surpose Moonlight can be white or amber.
 
-to my staging git tree which can be found at
-    git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/staging.git
-in the staging-testing branch.
+Should I add LED_FUNCTION_MOONLIGHT and set LED_COLOR_ID_WHITE?
 
-The patch will show up in the next release of the linux-next tree
-(usually sometime within the next 24 hours during the week.)
-
-The patch will be merged to the staging-next branch sometime soon,
-after it passes testing, and the merge window is open.
-
-If you have any questions about this process, please let me know.
-
-
-From 5b19ca2c78a0838976064c0347e46a2c859b541d Mon Sep 17 00:00:00 2001
-From: Stephen Boyd <swboyd@chromium.org>
-Date: Tue, 6 Oct 2020 18:17:35 -0700
-Subject: iio: sx9310: Set various settings from DT
-
-These properties need to be set during driver probe. Parse any DT
-properties and replace the default register settings with the ones
-parsed from DT.
-
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-Cc: Daniel Campello <campello@chromium.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Gwendal Grignou <gwendal@chromium.org>
-Cc: Evan Green <evgreen@chromium.org>
-Link: https://lore.kernel.org/r/20201007011735.1346994-7-swboyd@chromium.org
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
----
- drivers/iio/proximity/sx9310.c | 125 ++++++++++++++++++++++++++++++++-
- 1 file changed, 124 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/iio/proximity/sx9310.c b/drivers/iio/proximity/sx9310.c
-index 1809940563b1..a2f820997afc 100644
---- a/drivers/iio/proximity/sx9310.c
-+++ b/drivers/iio/proximity/sx9310.c
-@@ -49,23 +49,42 @@
- #define   SX9310_REG_PROX_CTRL0_SCANPERIOD_15MS		0x01
- #define SX9310_REG_PROX_CTRL1				0x11
- #define SX9310_REG_PROX_CTRL2				0x12
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_MASK		GENMASK(7, 6)
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1_CS2_CS3 (0x03 << 6)
- #define   SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2	(0x02 << 6)
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1	(0x01 << 6)
-+#define   SX9310_REG_PROX_CTRL2_COMBMODE_CS3		(0x00 << 6)
-+#define   SX9310_REG_PROX_CTRL2_SHIELDEN_MASK		GENMASK(3, 2)
- #define   SX9310_REG_PROX_CTRL2_SHIELDEN_DYNAMIC	(0x01 << 2)
-+#define   SX9310_REG_PROX_CTRL2_SHIELDEN_GROUND		(0x02 << 2)
- #define SX9310_REG_PROX_CTRL3				0x13
- #define   SX9310_REG_PROX_CTRL3_GAIN0_MASK		GENMASK(3, 2)
- #define   SX9310_REG_PROX_CTRL3_GAIN0_X8		(0x03 << 2)
- #define   SX9310_REG_PROX_CTRL3_GAIN12_MASK		GENMASK(1, 0)
- #define   SX9310_REG_PROX_CTRL3_GAIN12_X4		0x02
- #define SX9310_REG_PROX_CTRL4				0x14
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MASK		GENMASK(2, 0)
- #define   SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST	0x07
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_FINE	0x06
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_FINE		0x05
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM	0x04
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM_COARSE 0x03
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_COARSE	0x02
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_COARSE	0x01
-+#define   SX9310_REG_PROX_CTRL4_RESOLUTION_COARSEST	0x00
- #define SX9310_REG_PROX_CTRL5				0x15
- #define   SX9310_REG_PROX_CTRL5_RANGE_SMALL		(0x03 << 6)
-+#define   SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK	GENMASK(3, 2)
- #define   SX9310_REG_PROX_CTRL5_STARTUPSENS_CS1		(0x01 << 2)
-+#define   SX9310_REG_PROX_CTRL5_RAWFILT_MASK		GENMASK(1, 0)
-+#define   SX9310_REG_PROX_CTRL5_RAWFILT_SHIFT		0
- #define   SX9310_REG_PROX_CTRL5_RAWFILT_1P25		0x02
- #define SX9310_REG_PROX_CTRL6				0x16
- #define   SX9310_REG_PROX_CTRL6_AVGTHRESH_DEFAULT	0x20
- #define SX9310_REG_PROX_CTRL7				0x17
- #define   SX9310_REG_PROX_CTRL7_AVGNEGFILT_2		(0x01 << 3)
-+#define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK		GENMASK(2, 0)
-+#define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_SHIFT	0
- #define   SX9310_REG_PROX_CTRL7_AVGPOSFILT_512		0x05
- #define SX9310_REG_PROX_CTRL8				0x18
- #define   SX9310_REG_PROX_CTRL8_9_PTHRESH_MASK		GENMASK(7, 3)
-@@ -1193,9 +1212,113 @@ static int sx9310_init_compensation(struct iio_dev *indio_dev)
- 	return ret;
- }
- 
-+static const struct sx9310_reg_default *
-+sx9310_get_default_reg(struct sx9310_data *data, int i,
-+		       struct sx9310_reg_default *reg_def)
-+{
-+	int ret;
-+	const struct device_node *np = data->client->dev.of_node;
-+	u32 combined[SX9310_NUM_CHANNELS] = { 4, 4, 4, 4 };
-+	unsigned long comb_mask = 0;
-+	const char *res;
-+	u32 start = 0, raw = 0, pos = 0;
-+
-+	memcpy(reg_def, &sx9310_default_regs[i], sizeof(*reg_def));
-+	if (!np)
-+		return reg_def;
-+
-+	switch (reg_def->reg) {
-+	case SX9310_REG_PROX_CTRL2:
-+		if (of_property_read_bool(np, "semtech,cs0-ground")) {
-+			reg_def->def &= ~SX9310_REG_PROX_CTRL2_SHIELDEN_MASK;
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_SHIELDEN_GROUND;
-+		}
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL2_COMBMODE_MASK;
-+		of_property_read_u32_array(np, "semtech,combined-sensors",
-+					   combined, ARRAY_SIZE(combined));
-+		for (i = 0; i < ARRAY_SIZE(combined); i++) {
-+			if (combined[i] <= SX9310_NUM_CHANNELS)
-+				comb_mask |= BIT(combined[i]);
-+		}
-+
-+		comb_mask &= 0xf;
-+		if (comb_mask == (BIT(3) | BIT(2) | BIT(1) | BIT(0)))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1_CS2_CS3;
-+		else if (comb_mask == (BIT(1) | BIT(2)))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS1_CS2;
-+		else if (comb_mask == (BIT(0) | BIT(1)))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS0_CS1;
-+		else if (comb_mask == BIT(3))
-+			reg_def->def |= SX9310_REG_PROX_CTRL2_COMBMODE_CS3;
-+
-+		break;
-+	case SX9310_REG_PROX_CTRL4:
-+		ret = of_property_read_string(np, "semtech,resolution", &res);
-+		if (ret)
-+			break;
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL4_RESOLUTION_MASK;
-+		if (!strcmp(res, "coarsest"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_COARSEST;
-+		else if (!strcmp(res, "very-coarse"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_COARSE;
-+		else if (!strcmp(res, "coarse"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_COARSE;
-+		else if (!strcmp(res, "medium-coarse"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM_COARSE;
-+		else if (!strcmp(res, "medium"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_MEDIUM;
-+		else if (!strcmp(res, "fine"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_FINE;
-+		else if (!strcmp(res, "very-fine"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_VERY_FINE;
-+		else if (!strcmp(res, "finest"))
-+			reg_def->def |= SX9310_REG_PROX_CTRL4_RESOLUTION_FINEST;
-+
-+		break;
-+	case SX9310_REG_PROX_CTRL5:
-+		ret = of_property_read_u32(np, "semtech,startup-sensor", &start);
-+		if (ret) {
-+			start = FIELD_GET(SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK,
-+					  reg_def->def);
-+		}
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK;
-+		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL5_STARTUPSENS_MASK,
-+					   start);
-+
-+		ret = of_property_read_u32(np, "semtech,proxraw-strength", &raw);
-+		if (ret) {
-+			raw = FIELD_GET(SX9310_REG_PROX_CTRL5_RAWFILT_MASK,
-+					reg_def->def);
-+		} else {
-+			raw = ilog2(raw);
-+		}
-+
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL5_RAWFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL5_RAWFILT_MASK,
-+					   raw);
-+		break;
-+	case SX9310_REG_PROX_CTRL7:
-+		ret = of_property_read_u32(np, "semtech,avg-pos-strength", &pos);
-+		if (ret)
-+			break;
-+
-+		pos = min(max(ilog2(pos), 3), 10) - 3;
-+		reg_def->def &= ~SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK;
-+		reg_def->def |= FIELD_PREP(SX9310_REG_PROX_CTRL7_AVGPOSFILT_MASK,
-+					   pos);
-+		break;
-+	}
-+
-+	return reg_def;
-+}
-+
- static int sx9310_init_device(struct iio_dev *indio_dev)
- {
- 	struct sx9310_data *data = iio_priv(indio_dev);
-+	struct sx9310_reg_default tmp;
- 	const struct sx9310_reg_default *initval;
- 	int ret;
- 	unsigned int i, val;
-@@ -1213,7 +1336,7 @@ static int sx9310_init_device(struct iio_dev *indio_dev)
- 
- 	/* Program some sane defaults. */
- 	for (i = 0; i < ARRAY_SIZE(sx9310_default_regs); i++) {
--		initval = &sx9310_default_regs[i];
-+		initval = sx9310_get_default_reg(data, i, &tmp);
- 		ret = regmap_write(data->regmap, initval->reg, initval->def);
- 		if (ret)
- 			return ret;
--- 
-2.29.2
-
-
+> --
+> Best regards,
+> Jacek Anaszewski
