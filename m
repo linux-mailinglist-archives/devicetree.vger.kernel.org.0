@@ -2,90 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D7C12C3035
-	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 19:52:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7B72C30AC
+	for <lists+devicetree@lfdr.de>; Tue, 24 Nov 2020 20:19:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404289AbgKXSvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 13:51:31 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:33692 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729281AbgKXSvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 13:51:31 -0500
-Received: by mail-oi1-f196.google.com with SMTP id k26so24957356oiw.0;
-        Tue, 24 Nov 2020 10:51:30 -0800 (PST)
+        id S2391018AbgKXTSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 14:18:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59898 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391022AbgKXTSk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 14:18:40 -0500
+Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD48C0613D6
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 11:18:38 -0800 (PST)
+Received: by mail-il1-x144.google.com with SMTP id k8so9776954ilr.4
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 11:18:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ieee.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=azXiFz0WNAfRl4Pgrck3jqWrs5+Sata50ywpvGazjv8=;
+        b=RiO6PKuYZ2zEMVLu+GSEjJeiJFcQ7eA4HUxGeCtv/idGeKCfYNrnxk/tFXh99PtJXH
+         5AnjS+fvfnNYbmIA7VrELfcdmFgoTl0ksowYLMlKJru4EDwGxpiH0tGHpTlXTxfJxoKH
+         7RrbNh4ZZRjBH2s3MBrbZZIVqo6ZVXtrygOq8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jLgRkvNZDgzifodaE8EMus5xcvCzfMMH9uwC3wIOBb4=;
-        b=QrVl7PhG/o2jec5xuyAg+Nz1d7Fsg27SYpXsvNj+t/1KU6aJ7Foghb87HkTg3k+S+8
-         IOSZTxnNC2TqxiPsGeB7TOaymnWLmjeZ5y7mbx4JTxrU4UIMcWDdtHeGjJ6xMJuVkLF9
-         tMC/mtSn2ApbSQHxHly7N7S8noy4g7j+KVWJJahl/aN72fwK1Vagoq9d7lQxM1SrewST
-         sMNEhrAkgeXp8SUGUvGyeU/h+uSb166Z6aZufr3o4vYWKmq4vXBtp8ONoZW6dek0e+ci
-         j6CnrfTeenNOfqQQ33g2e8v7jk+GX4FKgm7/JTLqo91T0LAH0MEfUK3wHVx2TTSsDRmS
-         L09Q==
-X-Gm-Message-State: AOAM532nf8IRlCH/TUq62XFJpzf98v2XVOEafzog/QZuu7AyqdpMd6s6
-        NBdWKQ/oCY85unaL721HOSpb88RVkZj+0CL8au4=
-X-Google-Smtp-Source: ABdhPJzJTHN0EZ9x5LkNWapVCxjkQtojq63K19GvbXFCpjz3NM8fGWLVYQO01JPHQgAmeFVa5xCtYTNE7u/4H+kUkl4=
-X-Received: by 2002:aca:c3c4:: with SMTP id t187mr3522373oif.148.1606243890137;
- Tue, 24 Nov 2020 10:51:30 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=azXiFz0WNAfRl4Pgrck3jqWrs5+Sata50ywpvGazjv8=;
+        b=qSady+j9NOwcACyUT08osRB9rjq+NDuapbgWappmN1nXyCaqRsEqPgvavG4cRhCLn4
+         Yc/PBg5cSlHDqCgQ25rmTpnyDydN7WLiPhcBfpo5QblzexI+qVfPQhRYiq5I+A6kqkEZ
+         uCsQmpb9uZ0FGkMU7QbEUvh7Vv0uLAe3tHvSjItjglKD6JSjMQJxK8BfLunFdp3uUNfA
+         /Py7wOaKCKzzwXoImibopTMBLW+ifDgWi0iM56fiJiUhV7bDPPwaWbZ0viXSRh+s1AsM
+         EVs8PStE6KNeOA7tV3IDt1doEMVLsyiAaCMAc7fp3r0QFirPUtAZxuhMWCAojwjaIA2I
+         MCJg==
+X-Gm-Message-State: AOAM531zqurNzQoYkDDG89dc0gzvVOsZMcnk/RF767slRLqmH2aE6/Xk
+        yGwFf+iDnKs3CKlYk5ZzL/lXSw==
+X-Google-Smtp-Source: ABdhPJxMPJDcuJ85ZnPxzCAmLrFsd6xdMZGPJv8Nql8ZGNpcI8KiQUKGZGuiyfMq7a3NMBeNLW7W8Q==
+X-Received: by 2002:a92:c708:: with SMTP id a8mr5992821ilp.199.1606245518201;
+        Tue, 24 Nov 2020 11:18:38 -0800 (PST)
+Received: from [172.22.22.4] (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.googlemail.com with ESMTPSA id d23sm11039528ill.56.2020.11.24.11.18.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Nov 2020 11:18:37 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845: Limit ipa iommu streams
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Alex Elder <elder@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20201123052305.157686-1-bjorn.andersson@linaro.org>
+From:   Alex Elder <elder@ieee.org>
+Message-ID: <ecf7f5b6-a5ba-e370-d716-89272ad3c67b@ieee.org>
+Date:   Tue, 24 Nov 2020 13:18:36 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.3.2
 MIME-Version: 1.0
-References: <20201124043728.199852-1-damien.lemoal@wdc.com> <20201124043728.199852-22-damien.lemoal@wdc.com>
-In-Reply-To: <20201124043728.199852-22-damien.lemoal@wdc.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 24 Nov 2020 19:51:18 +0100
-Message-ID: <CAMuHMdWZX4_Y+4OdEQPJwqHd68OA4p0uw7KQfjVwgHgk0Q=brA@mail.gmail.com>
-Subject: Re: [PATCH v2 21/21] riscv: Add Canaan Kendryte K210 SD card defconfig
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20201123052305.157686-1-bjorn.andersson@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Damien,
+On 11/22/20 11:23 PM, Bjorn Andersson wrote:
+> The Android and Windows firmware does not accept the use of 3 as a mask
+> to cover the IPA streams. But with 0x721 being related to WiFi and 0x723
+> being unsed the mapping can be reduced to just cover 0x720 and 0x722,
+> which is accepted.
 
-On Tue, Nov 24, 2020 at 5:39 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
-> The nommu_k210_defconfig default configuration allows booting a K210
-> SoC based board using an embedded intramfs cpio file. Modifying this
-> configuration to enable support for the board SD card is not
-> trivial for all users. To help beginners getting started with this
-> board, add the nommu_k210_sdcard_defconfig default configuration file
-> to set all configuration options necessary to use the board mmc-spi
-> sd card for the root file system. This configuration adds support for
-> the block layer, the mmc-spi driver and modifies the boot options to
-> specify the rootfs device as mmcblk0p1 (first partition of the sd card
-> block device). The ext2 file system is selected by default to encourage
-> its use as that results in only about 4KB added to the kernel image
-> size. The default device tree compiled in is unchanged and must be
-> replaced by the user with the device tree suitable for the board being
-> used (k210_maix_bit, k210_maix_dock, k210_maix_go, k210_maixduino or
-> k210_kd233).
->
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+Do you want to update sc7180.dtsi too?
 
-While ext2 is definitely cheaper than ext4 (the latter takes almost +200
-KiB, ugh), ext2 does not have journaling.
-Hence your root file system will be unclean all the time, unless you always
-manage to unmount it before reboot.  And your default buildroot
-does not have e2fsck.
+I tried your change on my SDM845 machine and observed no
+problem.   I tried the comparable change in "sc7180.dtsi"
+(using 440 and 442) and that seemed to work as before also.
 
-Gr{oetje,eeting}s,
+If you think that's sufficient, you can add:
 
-                        Geert
+Tested-by: Alex Elder <elder@linaro.org>
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Otherwise:
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Acked-by: Alex Elder <elder@linaro.org>
+
+
+> Fixes: e9e89c45bfeb ("arm64: dts: sdm845: add IPA iommus property")
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 0da27b065761..a6147bd54cdf 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -2136,7 +2136,8 @@ ufs_mem_phy_lanes: lanes@1d87400 {
+>   		ipa: ipa@1e40000 {
+>   			compatible = "qcom,sdm845-ipa";
+>   
+> -			iommus = <&apps_smmu 0x720 0x3>;
+> +			iommus = <&apps_smmu 0x720 0x0>,
+> +				 <&apps_smmu 0x722 0x0>;
+>   			reg = <0 0x1e40000 0 0x7000>,
+>   			      <0 0x1e47000 0 0x2000>,
+>   			      <0 0x1e04000 0 0x2c000>;
+> 
+
