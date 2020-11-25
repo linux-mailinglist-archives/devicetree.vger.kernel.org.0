@@ -2,154 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07AE02C40D1
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 14:03:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFC2D2C417C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 14:57:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729551AbgKYNCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 08:02:01 -0500
-Received: from relmlor2.renesas.com ([210.160.252.172]:48489 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729535AbgKYNCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 08:02:01 -0500
-X-IronPort-AV: E=Sophos;i="5.78,368,1599490800"; 
-   d="scan'208";a="63639443"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 25 Nov 2020 22:02:00 +0900
-Received: from localhost.localdomain (unknown [10.226.36.204])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 05D1A4338022;
-        Wed, 25 Nov 2020 22:01:58 +0900 (JST)
-From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        id S1725616AbgKYN5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 08:57:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729475AbgKYN5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 08:57:19 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E036EC061A4E
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 05:57:18 -0800 (PST)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1khvIE-00068x-Pp; Wed, 25 Nov 2020 14:57:10 +0100
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1khvID-0004MI-5B; Wed, 25 Nov 2020 14:57:09 +0100
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 2/2] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add support for 8-bit ov7725 sensors
-Date:   Wed, 25 Nov 2020 13:01:48 +0000
-Message-Id: <20201125130148.28724-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201125130148.28724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20201125130148.28724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: [PATCH v2 0/5] mainline Kverneland boards 
+Date:   Wed, 25 Nov 2020 14:57:02 +0100
+Message-Id: <20201125135708.16578-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 8-bit ov7725 sensors can also be connected to the camera daughter
-board.
+changes v2:
+- add victgo board
+- diff fixes for vicut1.dtsi 
 
-This patch creates a separate dtsi file for ov7725 sensors and is included
-in r8a7742-iwg21d-q7-dbcm-ca.dts (which is commented out as by default
-ov5640 is enabled)
+Oleksij Rempel (5):
+  dt-bindings: vendor-prefixes: Add an entry for Kverneland Group
+  dt-bindings: arm: fsl: add Kverneland UT1 and UT1Q boards
+  ARM: dts: add Kverneland UT1 and UT1Q
+  dt-bindings: arm: fsl: add Kverneland TGO board
+  ARM: dts: add Kverneland TGO board
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- .../boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts    |  2 +
- .../dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi    | 77 +++++++++++++++++++
- 2 files changed, 79 insertions(+)
- create mode 100644 arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi
+ .../devicetree/bindings/arm/fsl.yaml          |   3 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm/boot/dts/Makefile                    |   3 +
+ arch/arm/boot/dts/imx6dl-victgo.dts           | 850 ++++++++++++++++++
+ arch/arm/boot/dts/imx6dl-vicut1.dts           |  13 +
+ arch/arm/boot/dts/imx6q-vicut1.dts            |  17 +
+ arch/arm/boot/dts/imx6qdl-vicut1.dtsi         | 801 +++++++++++++++++
+ 7 files changed, 1689 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6dl-victgo.dts
+ create mode 100644 arch/arm/boot/dts/imx6dl-vicut1.dts
+ create mode 100644 arch/arm/boot/dts/imx6q-vicut1.dts
+ create mode 100644 arch/arm/boot/dts/imx6qdl-vicut1.dtsi
 
-diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-index a632b08a8dbb..6216a6b0f927 100644
---- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-+++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-@@ -29,7 +29,9 @@
- #define MCLK_CAM4		mclk_cam4
- #define VIN3_EP			vin3ep
- 
-+/* Comment the below according to connected cameras */
- #include "r8a7742-iwg21d-q7-dbcm-ov5640.dtsi"
-+/* #include "r8a7742-iwg21d-q7-dbcm-ov7725.dtsi" */
- 
- / {
- 	model = "iWave Systems RZ/G1H Qseven development platform with camera add-on";
-diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi
-new file mode 100644
-index 000000000000..28b509942702
---- /dev/null
-+++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi
-@@ -0,0 +1,77 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * This include file ties VIN interfaces with ov7725 sensors on
-+ * iWave-RZ/G1H Qseven board development platform connected with
-+ * camera daughter board.
-+ *
-+ * Copyright (C) 2020 Renesas Electronics Corp.
-+ */
-+
-+#define VIN0_REMOTE_EP		ov7725_0
-+#define VIN1_REMOTE_EP		ov7725_1
-+#define VIN2_REMOTE_EP		ov7725_2
-+#define VIN3_REMOTE_EP		ov7725_3
-+
-+&CAM1_PARENT_I2C {
-+	ov7725@21 {
-+		compatible = "ovti,ov7725";
-+		reg = <0x21>;
-+		clocks = <&MCLK_CAM1>;
-+
-+		port {
-+			ov7725_0: endpoint {
-+				bus-width = <8>;
-+				bus-type = <6>;
-+				remote-endpoint = <&VIN0_EP>;
-+			};
-+		};
-+	};
-+};
-+
-+&CAM2_PARENT_I2C {
-+	ov7725@21 {
-+		compatible = "ovti,ov7725";
-+		reg = <0x21>;
-+		clocks = <&MCLK_CAM2>;
-+
-+		port {
-+			ov7725_1: endpoint {
-+				bus-width = <8>;
-+				bus-type = <6>;
-+				remote-endpoint = <&VIN1_EP>;
-+			};
-+		};
-+	};
-+};
-+
-+&CAM3_PARENT_I2C {
-+	ov7725@21 {
-+		compatible = "ovti,ov7725";
-+		reg = <0x21>;
-+		clocks = <&MCLK_CAM3>;
-+
-+		port {
-+			ov7725_2: endpoint {
-+				bus-width = <8>;
-+				bus-type = <6>;
-+				remote-endpoint = <&VIN2_EP>;
-+			};
-+		};
-+	};
-+};
-+
-+&CAM4_PARENT_I2C {
-+	ov7725@21 {
-+		compatible = "ovti,ov7725";
-+		reg = <0x21>;
-+		clocks = <&MCLK_CAM4>;
-+
-+		port {
-+			ov7725_3: endpoint {
-+				bus-width = <8>;
-+				bus-type = <6>;
-+				remote-endpoint = <&VIN3_EP>;
-+			};
-+		};
-+	};
-+};
 -- 
-2.17.1
+2.29.2
 
