@@ -2,88 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 327DB2C49DB
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 22:28:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 075382C4B1C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 23:53:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732070AbgKYV2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 16:28:02 -0500
-Received: from mail.kernel.org ([198.145.29.99]:55526 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732060AbgKYV2B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 16:28:01 -0500
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 020EB206E0;
-        Wed, 25 Nov 2020 21:27:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606339680;
-        bh=yEcWykMhdTmveduVtuMvF2XnF4rc1S8SYqqjK1rp9k4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=dJkrg8GItUQKlYAcWSAVHfZsBt88Yp3U2B8V8VwhEKfHkDEXjGhHpx8C3BjoYKwP/
-         Tzz5CFy5twTGW5i8YM5NYtOA+Utuky+TPGTsWxMF1y0R9u5C47mRJ+dle9A4dOg2b1
-         ojrb27UXPWnVMNCt57S+nC66GRdufnxjX9+xfRAw=
-Date:   Wed, 25 Nov 2020 13:27:58 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     =?UTF-8?B?xYF1a2Fzeg==?= Stelmach <l.stelmach@samsung.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvbG5pZXJr?= =?UTF-8?B?aWV3aWN6?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH v7 3/3] net: ax88796c: ASIX AX88796C SPI Ethernet
- Adapter Driver
-Message-ID: <20201125132758.4554afe8@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201124120330.32445-4-l.stelmach@samsung.com>
-References: <20201124120330.32445-1-l.stelmach@samsung.com>
-        <CGME20201124120337eucas1p268c7e3147ea36e62d40d252278c5dcb7@eucas1p2.samsung.com>
-        <20201124120330.32445-4-l.stelmach@samsung.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+        id S1728869AbgKYWxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 17:53:22 -0500
+Received: from out4-smtp.messagingengine.com ([66.111.4.28]:40109 "EHLO
+        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728862AbgKYWxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Nov 2020 17:53:21 -0500
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.nyi.internal (Postfix) with ESMTP id 6B88F5C00BD;
+        Wed, 25 Nov 2020 17:53:20 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute3.internal (MEProxy); Wed, 25 Nov 2020 17:53:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm1; bh=rDCqF/6BWwTlGiTI6jgr+wyA4epS+Rk
+        y7smBnS5oX7k=; b=Cwi0ax+gMfy1aXoVZafGL82507AbgSb3+cxI6jILb9FYs6d
+        0LnPlWpQnCbnGIHJUEeNtjipXrvLb4QSjHvTw7iWupsn+eNIO6f6TMdpLsxNi8NV
+        VPDo/ZLmkYIwcAEzuwWv4nmbGdG3adIv6McuBQVeCsCmUPB9WcqFwBCHfYvitbD1
+        Kjs+lWR+iViXoGvQjJt+oBoa17gllsnqZg4P1xnMIrDWwZqYRAqUgYUHAiOAkFsb
+        xBG1YDAvXnqhUNgKiGikHuZg+JJbkFFyOojvSnyu8kKirbZBqgOrSjzr/QKCcvHr
+        WpaAX+fLvw6iKGINZW9xU/hGJhAu2V94maTcmbQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=rDCqF/
+        6BWwTlGiTI6jgr+wyA4epS+Rky7smBnS5oX7k=; b=LH4ic9yCPOiT+CLtiR5FGG
+        oFBEI7YCcxcdzEZTuuc2g6S9AGv7tPO7ddhjHie7VJb3q+9yMvHJbBVHeeB4aK2g
+        MzctSTYlgsGpvvQJGYttfrnIEveZ5jQn/yHhG5OCMfJvuNTDhYj29q4Hy0yy0PEe
+        JM52ecBrbeYpYM2UTerf74SklKf6BNYqi97YbbQeBwgo4DKuGFlJJk5rzIKkvgB5
+        1CvTmNymmXxW6/n5hYyD8+99yUrHkGXHSIPe0dC/CqvBtVMSfKQeZZXqu0KcuBuf
+        SbLgqhl1h3GYmVl7XSYE5ihd0IU+yefVRuhF5w10NWeW+amMBG56R4m0Bqpngdrg
+        ==
+X-ME-Sender: <xms:X-C-X3dCYLAQkzRklE-5AtPYnWjzxqm8PIlQ34JK56W6scvpqYjfdw>
+    <xme:X-C-X9NSXVQ-3PnVzOHmX0dnHE4xcJwHUeRAnBAXevS39g8W0zkMSz2tI1BNj6XIn
+    _F6Gtb2RgJ4uaKM-g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudehuddgtdegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
+    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
+    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghnughrvgifsegrjhdrihgurdgruh
+X-ME-Proxy: <xmx:X-C-XwguChDjSAPpxwpyAO9qgzWWwlq44qX_tHv9QMiRkQISINzMKQ>
+    <xmx:X-C-X4819J0g8oIthXbDMuMponYkU9acyNIhbtBZD2uIWZCfHODAjw>
+    <xmx:X-C-XzsMMUeYU816bdmd6MjIfgUl39U9ZPKDY3ledBh2NXgLJxgmJQ>
+    <xmx:YOC-X883XcAHt3lJUpzFJwdMuNjbuTUoocr8GOl9dP2YQSK8vrgaPA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 676D1E00B3; Wed, 25 Nov 2020 17:53:17 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.3.0-622-g4a97c0b-fm-20201115.001-g4a97c0b3
+Mime-Version: 1.0
+Message-Id: <e3c4f1a8-4fa0-4e2a-be7c-763f733f0cdb@www.fastmail.com>
+In-Reply-To: <CAPDyKFrC9vp5gtpFC5L1K17uN059GsJ2zF4f7-_=sFEQ5BBRpw@mail.gmail.com>
+References: <20201123063004.337345-1-andrew@aj.id.au>
+ <20201123063004.337345-2-andrew@aj.id.au>
+ <CAPDyKFrC9vp5gtpFC5L1K17uN059GsJ2zF4f7-_=sFEQ5BBRpw@mail.gmail.com>
+Date:   Thu, 26 Nov 2020 09:22:58 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Ulf Hansson" <ulf.hansson@linaro.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        DTML <devicetree@vger.kernel.org>,
+        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "Ryan Chen" <ryan_chen@aspeedtech.com>
+Subject: Re: [PATCH v3 1/3] mmc: sdhci-of-aspeed: Expose phase delay tuning
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 24 Nov 2020 13:03:30 +0100 =C5=81ukasz Stelmach wrote:
-> ASIX AX88796[1] is a versatile ethernet adapter chip, that can be
-> connected to a CPU with a 8/16-bit bus or with an SPI. This driver
-> supports SPI connection.
->=20
-> The driver has been ported from the vendor kernel for ARTIK5[2]
-> boards. Several changes were made to adapt it to the current kernel
-> which include:
->=20
-> + updated DT configuration,
-> + clock configuration moved to DT,
-> + new timer, ethtool and gpio APIs,
-> + dev_* instead of pr_* and custom printk() wrappers,
-> + removed awkward vendor power managemtn.
-> + introduced ethtool tunable to control SPI compression
->=20
-> [1] https://www.asix.com.tw/products.php?op=3DpItemdetail&PItemID=3D104;6=
-5;86&PLine=3D65
-> [2] https://git.tizen.org/cgit/profile/common/platform/kernel/linux-3.10-=
-artik/
->=20
-> The other ax88796 driver is for NE2000 compatible AX88796L chip. These
-> chips are not compatible. Hence, two separate drivers are required.
->=20
-> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
 
-drivers/net/ethernet/asix/ax88796c_main.c: In function =E2=80=98ax88796c_pr=
-obe=E2=80=99:
-drivers/net/ethernet/asix/ax88796c_main.c:966:32: warning: conversion from =
-=E2=80=98long unsigned int=E2=80=99 to =E2=80=98u32=E2=80=99 {aka =E2=80=98=
-unsigned int=E2=80=99} changes value from =E2=80=9818446744073709486079=E2=
-=80=99 to =E2=80=984294901759=E2=80=99 [-Woverflow]
-  966 |  ax_local->mdiobus->phy_mask =3D ~BIT(AX88796C_PHY_ID);
-      |                                ^
+
+On Wed, 25 Nov 2020, at 00:42, Ulf Hansson wrote:
+> On Mon, 23 Nov 2020 at 07:30, Andrew Jeffery <andrew@aj.id.au> wrote:
+> >
+> > The Aspeed SD/eMMC controllers feature up to two SDHCIs alongside a
+> > a set of "global" configuration registers. The global configuration
+> > registers house controller-specific settings that aren't exposed by the
+> > SDHCI, one example being a register for phase tuning.
+> >
+> > The phase tuning feature is new in the AST2600 design. It's exposed as a
+> > single register in the global register set and controls both the input
+> > and output phase adjustment for each slot. As the settings are
+> > slot-specific, the values to program are extracted from properties in
+> > the SDHCI devicetree nodes.
+> >
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> 
+> [...]
+> 
+> >
+> > +static void
+> > +aspeed_sdhci_of_parse_phase(struct device_node *np, const char *prop,
+> > +                           struct aspeed_sdhci_phase_param *phase)
+> > +{
+> > +       int degrees[2] = {0};
+> > +       int rc;
+> > +
+> > +       rc = of_property_read_variable_u32_array(np, prop, degrees, 2, 0);
+> > +       phase->set = rc == 2;
+> > +       if (phase->set) {
+> > +               phase->in_deg = degrees[0];
+> > +               phase->out_deg = degrees[1];
+> > +       }
+> > +}
+> > +
+> > +static int aspeed_sdhci_of_parse(struct platform_device *pdev,
+> > +                                struct aspeed_sdhci *sdhci)
+> > +{
+> > +       struct device_node *np;
+> > +       struct device *dev;
+> > +
+> > +       if (!sdhci->phase_desc)
+> > +               return 0;
+> > +
+> > +       dev = &pdev->dev;
+> > +       np = dev->of_node;
+> > +
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-legacy",
+> > +                                   &sdhci->phase_param[MMC_TIMING_LEGACY]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs",
+> > +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-sd-hs",
+> > +                                   &sdhci->phase_param[MMC_TIMING_SD_HS]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr12",
+> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR12]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr25",
+> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR25]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr50",
+> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR50]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr104",
+> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR104]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-ddr50",
+> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_DDR50]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-ddr52",
+> > +                                   &sdhci->phase_param[MMC_TIMING_MMC_DDR52]);
+> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs200",
+> > +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS200]);
+> > +
+> > +       return 0;
+> > +}
+> 
+> If it's not too much to ask, would you mind adding a helper function
+> to the mmc core, as to let us avoid open coding? Then we should be
+> able to move the sdhci-of-arasan driver to use this as well.
+
+Yes, I can look at it and send a v4.
+
+> 
+> Perhaps the definition of the helper could look something like this:
+> int mmc_of_parse_clk_phase(struct mmc_host *host, struct mmc_clk_phase
+> *phases) (or something along those lines)
+> 
+> I think the struct mmc_clk_phase could be something that is stored in
+> the host specific struct, rather than in the common struct mmc_host
+> (to avoid sprinkle it with unnecessary data).
+> 
+> Moreover, we should probably use the device_property_* APIs instead of
+> the DT specific of_property_*.
+
+Yep, thanks for the pointers.
+
+Andrew
