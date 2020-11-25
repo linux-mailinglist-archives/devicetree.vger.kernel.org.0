@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C63A2C36C3
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 03:31:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17A8E2C36CB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 03:31:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726345AbgKYC1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 21:27:17 -0500
-Received: from szxga04-in.huawei.com ([45.249.212.190]:7675 "EHLO
+        id S1726791AbgKYC2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 21:28:35 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:7676 "EHLO
         szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725792AbgKYC1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 21:27:17 -0500
-Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.59])
-        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CglC242Ynz15Pdc;
-        Wed, 25 Nov 2020 10:26:54 +0800 (CST)
+        with ESMTP id S1725952AbgKYC2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 21:28:35 -0500
+Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.59])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4CglCx01mgz15Qf1;
+        Wed, 25 Nov 2020 10:27:41 +0800 (CST)
 Received: from [10.57.101.250] (10.57.101.250) by
- DGGEMS402-HUB.china.huawei.com (10.3.19.202) with Microsoft SMTP Server id
- 14.3.487.0; Wed, 25 Nov 2020 10:27:11 +0800
-Subject: Re: [PATCH v2 06/18] arm64: dts: hisi: Harmonize EHCI/OHCI DT nodes
- name
+ DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
+ 14.3.487.0; Wed, 25 Nov 2020 10:27:56 +0800
+Subject: Re: [PATCH v2 04/18] arm: dts: hisi-x5hd2: Harmonize EHCI/OHCI DT
+ nodes name
 To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Felipe Balbi <balbi@kernel.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
@@ -26,17 +26,17 @@ To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
         Rob Herring <robh+dt@kernel.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 References: <20201111091552.15593-1-Sergey.Semin@baikalelectronics.ru>
- <20201111091552.15593-7-Sergey.Semin@baikalelectronics.ru>
+ <20201111091552.15593-5-Sergey.Semin@baikalelectronics.ru>
 CC:     Serge Semin <fancer.lancer@gmail.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
 From:   Wei Xu <xuwei5@hisilicon.com>
-Message-ID: <5FBDC0FE.5060409@hisilicon.com>
-Date:   Wed, 25 Nov 2020 10:27:10 +0800
+Message-ID: <5FBDC12B.9060200@hisilicon.com>
+Date:   Wed, 25 Nov 2020 10:27:55 +0800
 User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
  Thunderbird/38.2.0
 MIME-Version: 1.0
-In-Reply-To: <20201111091552.15593-7-Sergey.Semin@baikalelectronics.ru>
+In-Reply-To: <20201111091552.15593-5-Sergey.Semin@baikalelectronics.ru>
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Originating-IP: [10.57.101.250]
@@ -57,82 +57,35 @@ On 2020/11/11 17:15, Serge Semin wrote:
 > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
 > Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 4 ++--
->  arch/arm64/boot/dts/hisilicon/hip06.dtsi       | 4 ++--
->  arch/arm64/boot/dts/hisilicon/hip07.dtsi       | 4 ++--
->  3 files changed, 6 insertions(+), 6 deletions(-)
+>  arch/arm/boot/dts/hisi-x5hd2.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-> index 12bc1d3ed424..a4acecb75c89 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi
-> @@ -585,7 +585,7 @@ pcie: pcie@9860000 {
+> diff --git a/arch/arm/boot/dts/hisi-x5hd2.dtsi b/arch/arm/boot/dts/hisi-x5hd2.dtsi
+> index 3ee7967c202d..693b85b2cc7d 100644
+> --- a/arch/arm/boot/dts/hisi-x5hd2.dtsi
+> +++ b/arch/arm/boot/dts/hisi-x5hd2.dtsi
+> @@ -452,14 +452,14 @@ gmac1: ethernet@1841000 {
 >  			status = "disabled";
 >  		};
 >  
-> -		ohci: ohci@9880000 {
-> +		ohci: usb@9880000 {
->  			compatible = "generic-ohci";
->  			reg = <0x9880000 0x10000>;
->  			interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>;
-> @@ -600,7 +600,7 @@ ohci: ohci@9880000 {
->  			status = "disabled";
->  		};
->  
-> -		ehci: ehci@9890000 {
-> +		ehci: usb@9890000 {
+> -		usb0: ehci@1890000 {
+> +		usb0: usb@1890000 {
 >  			compatible = "generic-ehci";
->  			reg = <0x9890000 0x10000>;
->  			interrupts = <GIC_SPI 66 IRQ_TYPE_LEVEL_HIGH>;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip06.dtsi b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> index 50ceaa959bdc..1226440d54ad 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip06.dtsi
-> @@ -373,7 +373,7 @@ refclk: refclk {
->  			#clock-cells = <0>;
+>  			reg = <0x1890000 0x1000>;
+>  			interrupts = <0 66 4>;
+>  			clocks = <&clock HIX5HD2_USB_CLK>;
 >  		};
 >  
-> -		usb_ohci: ohci@a7030000 {
-> +		usb_ohci: usb@a7030000 {
+> -		usb1: ohci@1880000 {
+> +		usb1: usb@1880000 {
 >  			compatible = "generic-ohci";
->  			reg = <0x0 0xa7030000 0x0 0x10000>;
->  			interrupt-parent = <&mbigen_usb>;
-> @@ -382,7 +382,7 @@ usb_ohci: ohci@a7030000 {
->  			status = "disabled";
->  		};
->  
-> -		usb_ehci: ehci@a7020000 {
-> +		usb_ehci: usb@a7020000 {
->  			compatible = "generic-ehci";
->  			reg = <0x0 0xa7020000 0x0 0x10000>;
->  			interrupt-parent = <&mbigen_usb>;
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip07.dtsi b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> index 4773a533fce5..93f99a5255ac 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip07.dtsi
-> @@ -1253,7 +1253,7 @@ uart0: uart@602b0000 {
->  			status = "disabled";
->  		};
->  
-> -		usb_ohci: ohci@a7030000 {
-> +		usb_ohci: usb@a7030000 {
->  			compatible = "generic-ohci";
->  			reg = <0x0 0xa7030000 0x0 0x10000>;
->  			interrupt-parent = <&mbigen_usb>;
-> @@ -1262,7 +1262,7 @@ usb_ohci: ohci@a7030000 {
->  			status = "disabled";
->  		};
->  
-> -		usb_ehci: ehci@a7020000 {
-> +		usb_ehci: usb@a7020000 {
->  			compatible = "generic-ehci";
->  			reg = <0x0 0xa7020000 0x0 0x10000>;
->  			interrupt-parent = <&mbigen_usb>;
+>  			reg = <0x1880000 0x1000>;
+>  			interrupts = <0 67 4>;
 > 
 
 Thanks!
 But a similar patch has been sent out earlier:
-https://patchwork.kernel.org/project/linux-arm-kernel/patch/20201012131739.1655-8-thunder.leizhen@huawei.com/
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20201012061225.1597-4-thunder.leizhen@huawei.com/
 
 Best Regards,
 Wei
