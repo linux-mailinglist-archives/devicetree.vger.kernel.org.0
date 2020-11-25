@@ -2,933 +2,1656 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5439E2C417D
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 14:57:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A96A02C41E0
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 15:12:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729475AbgKYN5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 08:57:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34792 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729505AbgKYN5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 08:57:19 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6CEFC061A4F
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 05:57:18 -0800 (PST)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1khvIE-000692-QV; Wed, 25 Nov 2020 14:57:10 +0100
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1khvID-0004N1-A5; Wed, 25 Nov 2020 14:57:09 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        David Jander <david@protonic.nl>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v2 5/5] ARM: dts: add Kverneland TGO board
-Date:   Wed, 25 Nov 2020 14:57:07 +0100
-Message-Id: <20201125135708.16578-6-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201125135708.16578-1-o.rempel@pengutronix.de>
-References: <20201125135708.16578-1-o.rempel@pengutronix.de>
+        id S1727338AbgKYOLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 09:11:03 -0500
+Received: from gproxy5-pub.mail.unifiedlayer.com ([67.222.38.55]:58388 "EHLO
+        gproxy5-pub.mail.unifiedlayer.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727348AbgKYOLC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Nov 2020 09:11:02 -0500
+Received: from cmgw10.unifiedlayer.com (unknown [10.9.0.10])
+        by gproxy5.mail.unifiedlayer.com (Postfix) with ESMTP id 902CC14056F
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 07:10:55 -0700 (MST)
+Received: from bh-25.webhostbox.net ([208.91.199.152])
+        by cmsmtp with ESMTP
+        id hvVWk8YoxDlydhvVXkxN19; Wed, 25 Nov 2020 07:10:55 -0700
+X-Authority-Reason: nr=8
+X-Authority-Analysis: v=2.3 cv=Z53C4kZA c=1 sm=1 tr=0
+ a=QNED+QcLUkoL9qulTODnwA==:117 a=2cfIYNtKkjgZNaOwnGXpGw==:17
+ a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19 a=kj9zAlcOel0A:10:nop_charset_1
+ a=nNwsprhYR40A:10:nop_rcvd_month_year
+ a=evQFzbml-YQA:10:endurance_base64_authed_username_1 a=CS3NValkAAAA:8
+ a=8jqVgy2EM1tPzpPLiGsA:9 a=FPrQqukdwgv7APoN:21 a=A6HLBzYnPiASl3fO:21
+ a=CjuIK1q_8ugA:10:nop_charset_2 a=-RoEEKskQ1sA:10:nop_election2020_name_body
+ a=EAZcYiVwDkS75jsqyrV5:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=a48ulJ6MOWaH1O1vrOVfh3nOvlp3WWtsT6P8rXj7Em0=; b=rTLxoPlwIDLad1XNzBEhblkQWe
+        RXVfoxAoEjSUSYNwF1Zg4PphYAX1KZNB244VlCJXjCk2xTDYi3uhHBMLllMQRqGzGCQaPQ9u5Bq8x
+        t1+WZrrYTKLuCRax15yBfVS++SGJ1XMr2RFfjafJDb2YVvv/presTD2KDw4dXOKqyX/kn/Wd9cZgH
+        Pr6Aw/XL7Afeu/lDzmPwPV9rVx70i+g99k09wr9E3zFNFHvi2iESwQKYYb4cARTMDClNaUemC6sgL
+        Wemf7ewN2b1IXBaNtWSuF1C4vfHVybYKUlKlJBOPK/4E1j0JAC+YPHWPjGHqtisO3gVxpi1MBIusn
+        Rw2ntgzA==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:34388 helo=localhost)
+        by bh-25.webhostbox.net with esmtpa (Exim 4.93)
+        (envelope-from <linux@roeck-us.net>)
+        id 1khvVW-002GVE-6p; Wed, 25 Nov 2020 14:10:54 +0000
+Date:   Wed, 25 Nov 2020 06:10:53 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Shihlun Lin <shihlun.lin@advantech.com.tw>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Campion Kang <campion.kang@advantech.com.tw>,
+        AceLan Kao <chia-lin.kao@canonical.com>
+Subject: Re: [RESEND PATCH v4 5/6] hwmon: ahc1ec0-hwmon: Add sub-device hwmon
+ for Advantech embedded controller
+Message-ID: <20201125141053.GA96791@roeck-us.net>
+References: <20201125070744.4651-1-shihlun.lin@advantech.com.tw>
+ <20201125070744.4651-5-shihlun.lin@advantech.com.tw>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201125070744.4651-5-shihlun.lin@advantech.com.tw>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1khvVW-002GVE-6p
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:34388
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 5
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VICTGO is the Kverneland TGO IsoBus universal terminal for agricultural
-applications on tractors
+On Wed, Nov 25, 2020 at 03:07:43PM +0800, Shihlun Lin wrote:
+> This is one of sub-device driver for Advantech embedded controller
+> AHC1EC0. This driver provides sysfs ABI for Advantech related
+> applications to monitor the system status.
+> 
+> Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
+> ---
+>  drivers/hwmon/Kconfig         |    8 +
+>  drivers/hwmon/Makefile        |    1 +
+>  drivers/hwmon/ahc1ec0-hwmon.c | 1504 +++++++++++++++++++++++++++++++++
 
-Co-Developed-by: David Jander <david@protonic.nl>
-Signed-off-by: David Jander <david@protonic.nl>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/Makefile          |   1 +
- arch/arm/boot/dts/imx6dl-victgo.dts | 850 ++++++++++++++++++++++++++++
- 2 files changed, 851 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-victgo.dts
+Documentation and context is completely missing.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index a2197907bc4f..7ea3e52de556 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -485,6 +485,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-tx6u-811x.dtb \
- 	imx6dl-tx6u-81xx-mb7.dtb \
- 	imx6dl-udoo.dtb \
-+	imx6dl-victgo.dtb \
- 	imx6dl-vicut1.dtb \
- 	imx6dl-wandboard.dtb \
- 	imx6dl-wandboard-revb1.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-victgo.dts b/arch/arm/boot/dts/imx6dl-victgo.dts
-new file mode 100644
-index 000000000000..3d3624ce6ef1
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-victgo.dts
-@@ -0,0 +1,850 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) 2016 Protonic Holland
-+ * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/display/sdtv-standards.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/media/tvp5150.h>
-+#include <dt-bindings/sound/fsl-imx-audmux.h>
-+#include "imx6dl.dtsi"
-+
-+/ {
-+	model = "Kverneland TGO";
-+	compatible = "kvg,victgo", "fsl,imx6dl";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_backlight>;
-+		pwms = <&pwm1 0 5000000 0>;
-+		brightness-levels = <0 16 64 255>;
-+		num-interpolated-steps = <16>;
-+		default-brightness-level = <1>;
-+		power-supply = <&reg_3v3>;
-+		enable-gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	connector {
-+		compatible = "composite-video-connector";
-+		label = "Composite0";
-+		tvnorms = <SDTV_STD_PAL_B>;
-+
-+		port {
-+			comp0_out: endpoint {
-+				remote-endpoint = <&tvp5150_comp0_in>;
-+			};
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpiokeys>;
-+		autorepeat;
-+
-+		power {
-+			label = "Power Button";
-+			gpios = <&gpio2 23 GPIO_ACTIVE_LOW>;
-+			linux,code = <116>; /* KEY_POWER */
-+			wakeup-source;
-+		};
-+
-+		enter {
-+			label = "Rotary Key";
-+			gpios = <&gpio2 05 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_ENTER>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		led-0 {
-+			label = "debug0";
-+			function = LED_FUNCTION_HEARTBEAT;
-+			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-1 {
-+			label = "debug1";
-+			function = LED_FUNCTION_DISK;
-+			gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "mmc";
-+		};
-+
-+		led-2 {
-+			label = "power_led";
-+			function = LED_FUNCTION_POWER;
-+			gpios = <&gpio2 24 GPIO_ACTIVE_HIGH>;
-+			default-state = "on";
-+		};
-+	};
-+
-+	panel {
-+		compatible = "kyo,tcg121xglp";
-+		backlight = <&backlight>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&lvds0_out>;
-+			};
-+		};
-+	};
-+
-+	clk50m_phy: phy-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+
-+	reg_1v8: regulator-1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1v8";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+	};
-+
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_h1_vbus: regulator-h1-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "h1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio1 0 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	reg_otg_vbus: regulator-otg-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "otg-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	rotary-encoder {
-+		compatible = "rotary-encoder";
-+		pinctrl-0 = <&pinctrl_rotary_ch>;
-+		gpios = <&gpio2 3 0>, <&gpio2 4 0>;
-+		linux,axis = <8>; /* REL_WHEEL */
-+		rotary-encoder,steps-per-period = <4>;
-+		rotary-encoder,relative-axis;
-+		rotary-encoder,rollover;
-+		wakeup-source;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "prti6q-sgtl5000";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,widgets =
-+			"Microphone", "Microphone Jack",
-+			"Line", "Line In Jack",
-+			"Headphone", "Headphone Jack",
-+			"Speaker", "External Speaker";
-+		simple-audio-card,routing =
-+			"MIC_IN", "Microphone Jack",
-+			"LINE_IN", "Line In Jack",
-+			"Headphone Jack", "HP_OUT",
-+			"External Speaker", "LINE_OUT";
-+
-+		simple-audio-card,cpu {
-+			sound-dai = <&ssi1>;
-+			system-clock-frequency = <0>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&codec>;
-+			bitclock-master;
-+			frame-master;
-+		};
-+	};
-+};
-+
-+&audmux {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_audmux>;
-+	status = "okay";
-+
-+	mux-ssi1 {
-+		fsl,audmux-port = <0>;
-+		fsl,port-config = <
-+			IMX_AUDMUX_V2_PTCR_SYN 		0
-+			IMX_AUDMUX_V2_PTCR_TFSEL(2) 	0
-+			IMX_AUDMUX_V2_PTCR_TCSEL(2) 	0
-+			IMX_AUDMUX_V2_PTCR_TFSDIR 	0
-+			IMX_AUDMUX_V2_PTCR_TCLKDIR	IMX_AUDMUX_V2_PDCR_RXDSEL(2)
-+		>;
-+	};
-+
-+	mux-pins3 {
-+		fsl,audmux-port = <2>;
-+		fsl,port-config = <
-+			IMX_AUDMUX_V2_PTCR_SYN		IMX_AUDMUX_V2_PDCR_RXDSEL(0)
-+			0				IMX_AUDMUX_V2_PDCR_TXRXEN
-+		>;
-+	};
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1>;
-+	status = "okay";
-+};
-+
-+&can2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can2>;
-+	status = "okay";
-+};
-+
-+&clks {
-+	assigned-clocks = <&clks IMX6QDL_CLK_LDB_DI0_SEL>;
-+	assigned-clock-parents = <&clks IMX6QDL_CLK_PLL5_VIDEO_DIV>;
-+};
-+
-+&ecspi1 {
-+	cs-gpios = <&gpio3 19 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&ecspi2 {
-+	cs-gpios = <&gpio5 12 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi2>;
-+	status = "okay";
-+
-+	touchscreen@0 {
-+		compatible = "ti,tsc2046";
-+		reg = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_touchscreen>;
-+		spi-max-frequency = <200000>;
-+		interrupts-extended = <&gpio5 8 IRQ_TYPE_EDGE_FALLING>;
-+		pendown-gpio = <&gpio5 8 GPIO_ACTIVE_LOW>;
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-y;
-+		touchscreen-max-pressure = <4095>;
-+		ti,vref-delay-usecs = /bits/ 16 <100>;
-+		ti,x-plate-ohms = /bits/ 16 <800>;
-+		ti,y-plate-ohms = /bits/ 16 <300>;
-+		wakeup-source;
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rmii";
-+	clocks = <&clks IMX6QDL_CLK_ENET>,
-+		 <&clks IMX6QDL_CLK_ENET>,
-+		 <&clk50m_phy>;
-+	clock-names = "ipg", "ahb", "ptp";
-+	phy-handle = <&rgmii_phy>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Microchip KSZ8081RNA PHY */
-+		rgmii_phy: ethernet-phy@0 {
-+			reg = <0>;
-+			interrupts-extended = <&gpio4 30 IRQ_TYPE_LEVEL_LOW>;
-+			reset-gpios = <&gpio4 26 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+		};
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+		"CAN1_TERM", "SD1_CD", "ITU656_RESET", "CAM1_MIRROR",
-+			"CAM2_MIRROR", "", "", "SMBALERT",
-+		"DEBUG_0", "DEBUG_1", "", "", "", "", "", "",
-+		"SD1_DATA0", "SD1_DATA1", "SD1_CMD", "SD1_DATA2", "SD1_CLK",
-+			"SD1_DATA3", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"REV_ID0", "REV_ID1", "REV_ID2", "REV_ID3", "REV_ID4",
-+			"BOARD_ID0", "BOARD_ID1", "BOARD_ID2",
-+		"", "", "", "", "", "", "ISB_IN1", "ON_SWITCH",
-+		"POWER_LED", "", "", "", "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"ECSPI1_SCLK", "ECSPI1_MISO", "ECSPI1_MOSI", "ECSPI1_SS1",
-+			"CPU_ON1_FB", "USB_EXT1_OC", "USB_EXT1_PWR", "YACO_IRQ",
-+		"TSS_TXD", "TSS_RXD", "", "", "", "", "YACO_BOOT0",
-+			"YACO_RESET";
-+};
-+
-+&gpio4 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "CAN1_SR", "CAN2_SR", "CAN2_TX", "CAN2_RX",
-+		"", "", "DIP1_FB", "", "VCAM_EN", "", "", "",
-+		"CPU_LIGHT_ON", "", "ETH_RESET", "CPU_CONTACT_IN", "BL_EN",
-+			"BL_PWM", "ETH_INTRP", "ISB_LED";
-+};
-+
-+&gpio5 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"TSC_PENIRQ", "TSC_BUSY", "ECSPI2_MOSI", "ECSPI2_MISO",
-+			"ECSPI2_SS0", "ECSPI2_SCLK", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"I2S_LRCLK", "I2S_DIN", "I2C1_SDA", "I2C1_SCL", "YACO_AUX_RX",
-+			"YACO_AUX_TX", "ITU656_D0", "ITU656_D1";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	codec: audio-codec@a {
-+		compatible = "fsl,sgtl5000";
-+		reg = <0xa>;
-+		#sound-dai-cells = <0>;
-+		clocks = <&clks 201>;
-+		VDDA-supply = <&reg_3v3>;
-+		VDDIO-supply = <&reg_3v3>;
-+		VDDD-supply = <&reg_1v8>;
-+	};
-+
-+	video@5c {
-+		compatible = "ti,tvp5150";
-+		reg = <0x5c>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			tvp5150_comp0_in: endpoint {
-+				remote-endpoint = <&comp0_out>;
-+			};
-+		};
-+
-+		/* Output port 2 is video output pad */
-+		port@2 {
-+			reg = <2>;
-+			tvp5151_to_ipu1_csi0_mux: endpoint {
-+				remote-endpoint = <&ipu1_csi0_mux_from_parallel_sensor>;
-+			};
-+		};
-+	};
-+
-+	keypad@70 {
-+		compatible = "holtek,ht16k33";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_keypad>;
-+		reg = <0x70>;
-+		refresh-rate-hz = <20>;
-+		debounce-delay-ms = <50>;
-+		interrupts-extended = <&gpio4 5 (IRQ_TYPE_LEVEL_HIGH | IRQ_TYPE_EDGE_RISING)>;
-+		keypad,num-rows = <12>;
-+		keypad,num-columns = <3>;
-+		linux,keymap = <
-+			MATRIX_KEY(2, 0, KEY_F6)
-+			MATRIX_KEY(3, 0, KEY_F8)
-+			MATRIX_KEY(4, 0, KEY_F10)
-+			MATRIX_KEY(5, 0, KEY_F4)
-+			MATRIX_KEY(6, 0, KEY_F2)
-+			MATRIX_KEY(2, 1, KEY_F5)
-+			MATRIX_KEY(3, 1, KEY_F7)
-+			MATRIX_KEY(4, 1, KEY_F9)
-+			MATRIX_KEY(5, 1, KEY_F3)
-+			MATRIX_KEY(6, 1, KEY_F1)
-+			>;
-+	};
-+
-+	/* additional i2c devices are added automatically by the boot loader */
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	adc@49 {
-+		compatible = "ti,ads1015";
-+		reg = <0x49>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel@4 {
-+			reg = <4>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+
-+		channel@5 {
-+			reg = <5>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+
-+		channel@6 {
-+			reg = <6>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+
-+		channel@7 {
-+			reg = <7>;
-+			ti,gain = <3>;
-+			ti,datarate = <3>;
-+		};
-+	};
-+
-+	rtc@51 {
-+		compatible = "nxp,pcf8563";
-+		reg = <0x51>;
-+	};
-+
-+	temperature-sensor@70 {
-+		compatible = "ti,tmp103";
-+		reg = <0x70>;
-+	};
-+};
-+
-+&ipu1_csi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ipu1_csi0>;
-+	status = "okay";
-+};
-+
-+&ipu1_csi0_mux_from_parallel_sensor {
-+	remote-endpoint = <&tvp5151_to_ipu1_csi0_mux>;
-+};
-+
-+&ldb {
-+	status = "okay";
-+
-+	lvds-channel@0 {
-+		status = "okay";
-+
-+		port@4 {
-+			reg = <4>;
-+
-+			lvds0_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "okay";
-+};
-+
-+&pwm3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm3>;
-+	status = "okay";
-+};
-+
-+&ssi1 {
-+	#sound-dai-cells = <0>;
-+	fsl,mode = "ac97-slave";
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart5>;
-+	status = "okay";
-+};
-+
-+&usbh1 {
-+	vbus-supply = <&reg_h1_vbus>;
-+	pinctrl-names = "default";
-+	phy_type = "utmi";
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usbotg {
-+	vbus-supply = <&reg_otg_vbus>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usbotg>;
-+	phy_type = "utmi";
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	cd-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	bus-width = <8>;
-+	no-1-8-v;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hog>;
-+
-+	pinctrl_audmux: audmuxgrp {
-+		fsl,pins = <
-+			/* SGTL5000 sys_mclk */
-+			MX6QDL_PAD_CSI0_MCLK__CCM_CLKO1			0x030b0
-+			MX6QDL_PAD_CSI0_DAT7__AUD3_RXD			0x130b0
-+			MX6QDL_PAD_CSI0_DAT4__AUD3_TXC			0x130b0
-+			MX6QDL_PAD_CSI0_DAT5__AUD3_TXD			0x110b0
-+			MX6QDL_PAD_CSI0_DAT6__AUD3_TXFS			0x130b0
-+		>;
-+	};
-+
-+	pinctrl_backlight: backlightgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT7__GPIO4_IO28		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_can1: can1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX		0x3008
-+			/* CAN1_SR */
-+			MX6QDL_PAD_KEY_COL3__GPIO4_IO12			0x13008
-+			/* CAN1_TERM */
-+			MX6QDL_PAD_GPIO_0__GPIO1_IO00			0x1b088
-+		>;
-+	};
-+
-+	pinctrl_can2: can2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX		0x3008
-+			/* CAN2_SR */
-+			MX6QDL_PAD_KEY_ROW3__GPIO4_IO13			0x13008
-+		>;
-+	};
-+
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D17__ECSPI1_MISO			0x100b1
-+			MX6QDL_PAD_EIM_D18__ECSPI1_MOSI			0x100b1
-+			MX6QDL_PAD_EIM_D16__ECSPI1_SCLK			0x100b1
-+			/* CS */
-+			MX6QDL_PAD_EIM_D19__GPIO3_IO19			0x000b1
-+		>;
-+	};
-+
-+	pinctrl_ecspi2: ecspi2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT16__ECSPI2_MOSI	0x100b1
-+			MX6QDL_PAD_DISP0_DAT17__ECSPI2_MISO	0x100b1
-+			MX6QDL_PAD_DISP0_DAT18__GPIO5_IO12	0x100b1
-+			MX6QDL_PAD_DISP0_DAT19__ECSPI2_SCLK	0x100b1
-+		>;
-+	};
-+
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			/* MX6QDL_ENET_PINGRP4 */
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC			0x1b0b0
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO			0x1b0b0
-+			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER		0x1b0b0
-+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN		0x1b0b0
-+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK		0x1b0b0
-+			/* Phy reset */
-+			MX6QDL_PAD_DISP0_DAT5__GPIO4_IO26		0x1b0b0
-+			/* nINTRP */
-+			MX6QDL_PAD_DISP0_DAT9__GPIO4_IO30		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_gpiokeys: gpiokeygrp {
-+		fsl,pins = <
-+			/* ROTARY_BTN */
-+			MX6QDL_PAD_NANDF_D5__GPIO2_IO05			0x1b0b0
-+			/* nON_SWITCH */
-+			MX6QDL_PAD_EIM_CS0__GPIO2_IO23			0x1b0b0
-+		>;
-+	};
-+
-+
-+	pinctrl_hog: hoggrp {
-+		fsl,pins = <
-+			/* ITU656_nRESET */
-+			MX6QDL_PAD_GPIO_2__GPIO1_IO02			0x1b0b0
-+			/* CAM1_MIRROR */
-+			MX6QDL_PAD_GPIO_3__GPIO1_IO03			0x130b0
-+			/* CAM2_MIRROR */
-+			MX6QDL_PAD_GPIO_4__GPIO1_IO04			0x130b0
-+			/* CAM_nDETECT */
-+			MX6QDL_PAD_GPIO_17__GPIO7_IO12			0x1b0b0
-+			/* ISB_IN1 */
-+			MX6QDL_PAD_EIM_A16__GPIO2_IO22			0x130b0
-+			/* ISB_nIN2 */
-+			MX6QDL_PAD_EIM_A17__GPIO2_IO21			0x1b0b0
-+			/* WARN_LIGHT */
-+			MX6QDL_PAD_EIM_A19__GPIO2_IO19			0x100b0
-+			/* ON2_FB */
-+			MX6QDL_PAD_EIM_A25__GPIO5_IO02			0x100b0
-+			/* YACO_nIRQ */
-+			MX6QDL_PAD_EIM_D23__GPIO3_IO23			0x1b0b0
-+			/* YACO_BOOT0 */
-+			MX6QDL_PAD_EIM_D30__GPIO3_IO30			0x130b0
-+			/* YACO_nRESET */
-+			MX6QDL_PAD_EIM_D31__GPIO3_IO31			0x1b0b0
-+			/* FORCE_ON1 */
-+			MX6QDL_PAD_EIM_EB2__GPIO2_IO30			0x1b0b0
-+			/* AUDIO_nRESET */
-+			MX6QDL_PAD_CSI0_VSYNC__GPIO5_IO21		0x1f0b0
-+			/* ITU656_nPDN */
-+			MX6QDL_PAD_CSI0_DATA_EN__GPIO5_IO20		0x1b0b0
-+
-+			/* HW revision detect */
-+			/* REV_ID0 */
-+			MX6QDL_PAD_SD4_DAT0__GPIO2_IO08			0x1b0b0
-+			/* REV_ID1 is shared with PWM3 */
-+			/* REV_ID2 */
-+			MX6QDL_PAD_SD4_DAT2__GPIO2_IO10			0x1b0b0
-+			/* REV_ID3 */
-+			MX6QDL_PAD_SD4_DAT3__GPIO2_IO11			0x1b0b0
-+			/* REV_ID4 */
-+			MX6QDL_PAD_SD4_DAT4__GPIO2_IO12			0x1b0b0
-+
-+			/* New in HW revision 1 */
-+			/* ON1_FB */
-+			MX6QDL_PAD_EIM_D20__GPIO3_IO20			0x100b0
-+			/* DIP1_FB */
-+			MX6QDL_PAD_DI0_PIN2__GPIO4_IO18			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA		0x4001f8b1
-+			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL		0x4001f8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_5__I2C3_SCL		0x4001b8b1
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA		0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_ipu1_csi0: ipu1csi0grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT12__IPU1_CSI0_DATA12		0x1b0b0
-+			MX6QDL_PAD_CSI0_DAT13__IPU1_CSI0_DATA13		0x1b0b0
-+			MX6QDL_PAD_CSI0_DAT14__IPU1_CSI0_DATA14		0x1b0b0
-+			MX6QDL_PAD_CSI0_DAT15__IPU1_CSI0_DATA15		0x1b0b0
-+			MX6QDL_PAD_CSI0_DAT16__IPU1_CSI0_DATA16		0x1b0b0
-+			MX6QDL_PAD_CSI0_DAT17__IPU1_CSI0_DATA17		0x1b0b0
-+			MX6QDL_PAD_CSI0_DAT18__IPU1_CSI0_DATA18		0x1b0b0
-+			MX6QDL_PAD_CSI0_DAT19__IPU1_CSI0_DATA19		0x1b0b0
-+			MX6QDL_PAD_CSI0_PIXCLK__IPU1_CSI0_PIXCLK	0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_keypad: keypadgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_19__GPIO4_IO05	0x1b0b0 /* IRQ */
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			/* DEBUG0 */
-+			MX6QDL_PAD_DI0_DISP_CLK__GPIO4_IO16		0x1b0b0
-+			/* DEBUG1 */
-+			MX6QDL_PAD_DI0_PIN15__GPIO4_IO17		0x1b0b0
-+			/* POWER_LED */
-+			MX6QDL_PAD_EIM_CS1__GPIO2_IO24			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT8__PWM1_OUT			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm3: pwm3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD4_DAT1__PWM3_OUT			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_rotary_ch: rotarychgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_NANDF_D3__GPIO2_IO03	0x1b0b0 /* ROTARY_A */
-+			MX6QDL_PAD_NANDF_D4__GPIO2_IO04	0x1b0b0	/* ROTARY_B */
-+		>;
-+	};
-+
-+	pinctrl_touchscreen: touchscreengrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_DISP0_DAT14__GPIO5_IO08      0x1b0b0
-+			MX6QDL_PAD_DISP0_DAT15__GPIO5_IO09      0x1b0b0
-+		>;
-+	};
-+
-+	/* YaCO AUX Uart */
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_CSI0_DAT11__UART1_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D26__UART2_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D27__UART2_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	/* YaCO Touchscreen UART */
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D24__UART3_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_EIM_D25__UART3_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart5: uart5grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL1__UART5_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_KEY_ROW1__UART5_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usbotg: usbotggrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D21__USB_OTG_OC			0x1b0b0
-+			/* power enable, high active */
-+			MX6QDL_PAD_EIM_D22__GPIO3_IO22			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_CMD__SD1_CMD			0x170f9
-+			MX6QDL_PAD_SD1_CLK__SD1_CLK			0x100f9
-+			MX6QDL_PAD_SD1_DAT0__SD1_DATA0			0x170f9
-+			MX6QDL_PAD_SD1_DAT1__SD1_DATA1			0x170f9
-+			MX6QDL_PAD_SD1_DAT2__SD1_DATA2			0x170f9
-+			MX6QDL_PAD_SD1_DAT3__SD1_DATA3			0x170f9
-+			MX6QDL_PAD_GPIO_1__GPIO1_IO01			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD			0x17099
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK			0x10099
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0			0x17099
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1			0x17099
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2			0x17099
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3			0x17099
-+			MX6QDL_PAD_SD3_DAT4__SD3_DATA4			0x17099
-+			MX6QDL_PAD_SD3_DAT5__SD3_DATA5			0x17099
-+			MX6QDL_PAD_SD3_DAT6__SD3_DATA6			0x17099
-+			MX6QDL_PAD_SD3_DAT7__SD3_DATA7			0x17099
-+			MX6QDL_PAD_SD3_RST__SD3_RESET			0x1b0b1
-+		>;
-+	};
-+};
--- 
-2.29.2
+What does this driver have to do with Fintek chips ? We already have a driver
+for those chips. Why would we want or need another driver for the same chips
+under any circumstances ?
 
+Also, new drivers shall use hwmon_device_register_with_info() to register
+hwmon devices.
+
+Guenter
+
+>  3 files changed, 1513 insertions(+)
+>  create mode 100644 drivers/hwmon/ahc1ec0-hwmon.c
+> 
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index a850e4f0e0bd..577dd1dd60ee 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -2095,6 +2095,14 @@ config SENSORS_INTEL_M10_BMC_HWMON
+>  	  sensors monitor various telemetry data of different components on the
+>  	  card, e.g. board temperature, FPGA core temperature/voltage/current.
+>  
+> +config SENSORS_AHC1EC0_HWMON
+> +	tristate "Advantech EC Hardware Monitor Function"
+> +	depends on MFD_AHC1EC0
+> +	help
+> +	  This is sub-device for Advantech embedded controller AHC1EC0. This
+> +	  driver provides the sysfs attributes for applications to monitor
+> +	  the system status.
+> +
+>  if ACPI
+>  
+>  comment "ACPI drivers"
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index 9db2903b61e5..e06ddc314b4a 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -45,6 +45,7 @@ obj-$(CONFIG_SENSORS_ADT7411)	+= adt7411.o
+>  obj-$(CONFIG_SENSORS_ADT7462)	+= adt7462.o
+>  obj-$(CONFIG_SENSORS_ADT7470)	+= adt7470.o
+>  obj-$(CONFIG_SENSORS_ADT7475)	+= adt7475.o
+> +obj-$(CONFIG_SENSORS_AHC1EC0_HWMON)	+= ahc1ec0-hwmon.o
+>  obj-$(CONFIG_SENSORS_AMD_ENERGY) += amd_energy.o
+>  obj-$(CONFIG_SENSORS_APPLESMC)	+= applesmc.o
+>  obj-$(CONFIG_SENSORS_ARM_SCMI)	+= scmi-hwmon.o
+> diff --git a/drivers/hwmon/ahc1ec0-hwmon.c b/drivers/hwmon/ahc1ec0-hwmon.c
+> new file mode 100644
+> index 000000000000..d71eb8e01422
+> --- /dev/null
+> +++ b/drivers/hwmon/ahc1ec0-hwmon.c
+> @@ -0,0 +1,1504 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * HWMON Driver for Advantech controlling EC chip AHC1EC0
+> + *
+> + * Copyright (C) 2020, Advantech Automation Corp.
+> + *
+> + * Change Log:
+> + *	Version 1.00 <11/05/2015> Jiangwei.Zhu
+> + *	  - Initial version
+> + *	Version 1.01 <03/04/2016> Jiangwei.Zhu
+> + *	  - Support UNO-1372G-E3AE, TPC-1782H-433AE, APAX-5580-433AE
+> + *	Version 1.02 <05/09/2016> Ji.Xu
+> + *	  - Support APAX-5580-473AE/4C3AE
+> + *	  - Modify the device name check method to fuzzy matching.
+> + *	Version 1.03 <05/09/2017> Ji.Xu
+> + *	  - Support UNO-2271G-E2xAE
+> + *	  - Support UNO-2271G-E02xAE
+> + *	  - Support ECU-4784
+> + *	  - Support UNO-2473G-JxAE
+> + *	Version 1.04 <09/20/2017> Ji.Xu
+> + *	  - Support UNO-2484G-633xAE
+> + *	  - Support UNO-2484G-653xAE
+> + *	  - Support UNO-2484G-673xAE
+> + *	  - Support UNO-2484G-733xAE
+> + *	  - Support UNO-2484G-753xAE
+> + *	  - Support UNO-2484G-773xAE
+> + *	Version 1.05 <10/26/2017> Ji.Xu
+> + *	  - Support PR/VR4
+> + *	  - Support UNO-3283G-674AE
+> + *	  - Support UNO-3285G-674AE
+> + *	Version 1.06 <11/16/2017> Zhang.Yang
+> + *	  - Support UNO-1372G-J021AE/J031AE
+> + *	  - Support UNO-2372G
+> + *	Version 1.07 <02/02/2018> Ji.Xu
+> + *	  - Convert the driver to use new hwmon API after kernel version 4.10.0
+> + *	  - Support EC TPC-B500-6??AE
+> + *	  - Support EC TPC-5???T-6??AE
+> + *	Version 1.08 <02/20/2019> Ji.Xu
+> + *	  - Support EC UNO-420
+> + *	  - Support EC TPC-B200-???AE
+> + *	  - Support EC TPC-2???T-???AE
+> + *	  - Support EC TPC-2???W-???AE
+> + *	Version 1.09 <04/24/2020> Yao.Kang
+> + *	  - Support EC UNO-2473G
+> + */
+> +
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +#include <linux/types.h>
+> +#include <linux/errno.h>
+> +#include <linux/kernel.h>
+> +#include <linux/delay.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/ioport.h>
+> +#include <linux/ioctl.h>
+> +#include <linux/io.h>
+> +#include <linux/wait.h>
+> +#include <linux/sched.h>
+> +#include <linux/fs.h>
+> +#include <linux/uaccess.h>
+> +#include <linux/string.h>
+> +#include <linux/slab.h>
+> +#include <linux/errno.h>
+> +#include <asm/msr.h>
+> +#include <asm/msr-index.h>
+> +#include <linux/version.h>
+> +#include <linux/i2c.h>
+> +#include <linux/device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/hwmon-sysfs.h>
+> +#include <linux/sysfs.h>
+> +#include <linux/mfd/ahc1ec0.h>
+> +
+> +#define ADVANTECH_EC_HWMON_VER     "1.09"
+> +#define ADVANTECH_EC_HWMON_DATE    "04/24/2020"
+> +
+> +/* Addresses to scan */
+> +static const unsigned short normal_i2c[] = { 0x2d, 0x2e, I2C_CLIENT_END };
+> +
+> +enum chips { f75373, f75375, f75387 };
+> +
+> +/* Fintek F75375 registers  */
+> +#define F75375_REG_CONFIG0		0x0
+> +#define F75375_REG_CONFIG1		0x1
+> +#define F75375_REG_CONFIG2		0x2
+> +#define F75375_REG_CONFIG3		0x3
+> +#define F75375_REG_ADDR			0x4
+> +#define F75375_REG_INTR			0x31
+> +#define F75375_CHIP_ID			0x5A
+> +#define F75375_REG_VERSION		0x5C
+> +#define F75375_REG_VENDOR		0x5D
+> +
+> +#define F75375_REG_TEMP(nr)		(0x14 + (nr))
+> +#define F75387_REG_TEMP11_LSB(nr)	(0x1c + (nr))
+> +#define F75375_REG_TEMP_HIGH(nr)	(0x28 + (nr) * 2)
+> +#define F75375_REG_TEMP_HYST(nr)	(0x29 + (nr) * 2)
+> +
+> +/*
+> + * Data structures and manipulation thereof
+> + */
+> +
+> +struct f75375_data {
+> +	unsigned short addr;
+> +	struct device *hwmon_dev;
+> +
+> +	const char *name;
+> +	int kind;
+> +	struct mutex update_lock; /* protect register access */
+> +	char valid;
+> +	unsigned long last_updated;	/* In jiffies */
+> +	unsigned long last_limits;	/* In jiffies */
+> +
+> +	/* Register values */
+> +	/*
+> +	 * f75387: For remote temperature reading, it uses signed 11-bit
+> +	 * values with LSB = 0.125 degree Celsius, left-justified in 16-bit
+> +	 * registers. For original 8-bit temp readings, the LSB just is 0.
+> +	 */
+> +	s16 temp11[2];
+> +	s8 temp_high[2];
+> +	s8 temp_max_hyst[2];
+> +};
+> +
+> +static int f75375_detect(struct i2c_client *client, struct i2c_board_info *info);
+> +static int f75375_probe(struct i2c_client *client, const struct i2c_device_id *id);
+> +static int f75375_remove(struct i2c_client *client);
+> +static int adspname_detect(const char *bios_product_name, const char *standard_name);
+> +
+> +static const struct i2c_device_id f75375_id[] = {
+> +	{ "f75387", f75387 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, f75375_id);
+> +
+> +struct adv_hwmon_profile {
+> +	int offset;
+> +	unsigned long resolution, resolution_vin, resolution_sys, resolution_curr, resolution_power;
+> +	unsigned long r1, r1_vin, r1_sys, r1_curr, r1_power;
+> +	unsigned long r2, r2_vin, r2_sys, r2_curr, r2_power;
+> +	const struct attribute_group ec_hwmon_group;
+> +};
+> +
+> +struct EC_HWMON_DATA {
+> +	uchar temperature[3];
+> +	uchar ec_current[5];
+> +	uchar power[5];
+> +	char *bios_product_name;
+> +	int voltage[7];
+> +
+> +	struct device *dev, *hwmon_dev;
+> +	struct HW_PIN_TBL pin_tbl;
+> +	struct EC_SMBOEM0 ec_smboem0;
+> +	struct adv_hwmon_profile *profile;
+> +};
+> +struct EC_HWMON_DATA lmsensor_data;
+> +
+> +static struct i2c_driver f75375_driver = {
+> +	.class = I2C_CLASS_HWMON,
+> +	.driver = {
+> +		.name = "f75375",
+> +	},
+> +	.probe = f75375_probe,
+> +	.remove = f75375_remove,
+> +	.id_table = f75375_id,
+> +	.detect = f75375_detect,
+> +	.address_list = normal_i2c,
+> +};
+> +
+> +static inline int f75375_read8(struct i2c_client *client, u8 reg)
+> +{
+> +	return i2c_smbus_read_byte_data(client, reg);
+> +}
+> +
+> +/* in most cases, should be called while holding update_lock */
+> +static inline u16 f75375_read16(struct i2c_client *client, u8 reg)
+> +{
+> +	return (i2c_smbus_read_byte_data(client, reg) << 8)
+> +		| i2c_smbus_read_byte_data(client, reg + 1);
+> +}
+> +
+> +static inline void f75375_write8(struct i2c_client *client, u8 reg,
+> +		u8 value)
+> +{
+> +	i2c_smbus_write_byte_data(client, reg, value);
+> +}
+> +
+> +static inline void f75375_write16(struct i2c_client *client, u8 reg,
+> +		u16 value)
+> +{
+> +	int err = i2c_smbus_write_byte_data(client, reg, (value >> 8));
+> +
+> +	if (err)
+> +		return;
+> +	i2c_smbus_write_byte_data(client, reg + 1, (value & 0xFF));
+> +}
+> +
+> +
+> +static struct f75375_data *f75375_update_device(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct f75375_data *data = i2c_get_clientdata(client);
+> +	int nr;
+> +
+> +	mutex_lock(&data->update_lock);
+> +
+> +	/* Limit registers cache is refreshed after 60 seconds */
+> +	if (time_after(jiffies, data->last_limits + 60 * HZ)
+> +			|| !data->valid) {
+> +		for (nr = 0; nr < 2; nr++) {
+> +			data->temp_high[nr] =
+> +				f75375_read8(client, F75375_REG_TEMP_HIGH(nr));
+> +			data->temp_max_hyst[nr] =
+> +				f75375_read8(client, F75375_REG_TEMP_HYST(nr));
+> +		}
+> +		data->last_limits = jiffies;
+> +	}
+> +
+> +	/* Measurement registers cache is refreshed after 2 second */
+> +	if (time_after(jiffies, data->last_updated + 2 * HZ)
+> +			|| !data->valid) {
+> +		for (nr = 0; nr < 2; nr++) {
+> +			/* assign MSB, therefore shift it by 8 bits */
+> +			data->temp11[nr] = f75375_read8(client, F75375_REG_TEMP(nr)) << 8;
+> +			if (data->kind == f75387)
+> +				/* merge F75387's temperature LSB (11-bit) */
+> +				data->temp11[nr] |= f75375_read8(client, F75387_REG_TEMP11_LSB(nr));
+> +		}
+> +		data->last_updated = jiffies;
+> +		data->valid = 1;
+> +	}
+> +
+> +	mutex_unlock(&data->update_lock);
+> +	return data;
+> +}
+> +
+> +#define TEMP_FROM_REG(val) ((val) * 1000)
+> +#define TEMP_TO_REG(val) ((val) / 1000)
+> +#define TEMP11_FROM_REG(reg)	((reg) / 32 * 125)
+> +
+> +static ssize_t show_temp11(struct device *dev, struct device_attribute *attr,
+> +		char *buf)
+> +{
+> +	int nr = to_sensor_dev_attr(attr)->index;
+> +	struct f75375_data *data = f75375_update_device(dev);
+> +
+> +	return sprintf(buf, "%d\n", TEMP11_FROM_REG(data->temp11[nr]));
+> +}
+> +
+> +static ssize_t show_temp_max(struct device *dev, struct device_attribute *attr,
+> +		char *buf)
+> +{
+> +	int nr = to_sensor_dev_attr(attr)->index;
+> +	struct f75375_data *data = f75375_update_device(dev);
+> +
+> +	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp_high[nr]));
+> +}
+> +
+> +static ssize_t show_temp_max_hyst(struct device *dev,
+> +		struct device_attribute *attr, char *buf)
+> +{
+> +	int nr = to_sensor_dev_attr(attr)->index;
+> +	struct f75375_data *data = f75375_update_device(dev);
+> +
+> +	return sprintf(buf, "%d\n", TEMP_FROM_REG(data->temp_max_hyst[nr]));
+> +}
+> +
+> +static ssize_t set_temp_max(struct device *dev, struct device_attribute *attr,
+> +		const char *buf, size_t count)
+> +{
+> +	int nr = to_sensor_dev_attr(attr)->index;
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct f75375_data *data = i2c_get_clientdata(client);
+> +	unsigned long val;
+> +	int err;
+> +
+> +	err = kstrtoul(buf, 10, &val);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	val = clamp_val(TEMP_TO_REG(val), 0, 127);
+> +	mutex_lock(&data->update_lock);
+> +	data->temp_high[nr] = val;
+> +	f75375_write8(client, F75375_REG_TEMP_HIGH(nr), data->temp_high[nr]);
+> +	mutex_unlock(&data->update_lock);
+> +	return count;
+> +}
+> +
+> +static ssize_t set_temp_max_hyst(struct device *dev,
+> +		struct device_attribute *attr, const char *buf, size_t count)
+> +{
+> +	int nr = to_sensor_dev_attr(attr)->index;
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct f75375_data *data = i2c_get_clientdata(client);
+> +	unsigned long val;
+> +	int err;
+> +
+> +	err = kstrtoul(buf, 10, &val);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	val = clamp_val(TEMP_TO_REG(val), 0, 127);
+> +	mutex_lock(&data->update_lock);
+> +	data->temp_max_hyst[nr] = val;
+> +	f75375_write8(client, F75375_REG_TEMP_HYST(nr),
+> +			data->temp_max_hyst[nr]);
+> +	mutex_unlock(&data->update_lock);
+> +	return count;
+> +}
+> +
+> +static ssize_t get_ec_hwmon_name(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return	sprintf(buf, "advhwmon\n");
+> +}
+> +
+> +static ssize_t get_ec_in1_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "VBAT\n");
+> +}
+> +
+> +static ssize_t get_ec_in2_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "5VSB\n");
+> +}
+> +
+> +static ssize_t get_ec_in3_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "VIN\n");
+> +}
+> +
+> +static ssize_t get_ec_in4_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "VCORE\n");
+> +}
+> +
+> +static ssize_t get_ec_in5_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "VIN1\n");
+> +}
+> +
+> +static ssize_t get_ec_in6_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "VIN2\n");
+> +}
+> +
+> +static ssize_t get_ec_in7_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "System Voltage\n");
+> +}
+> +
+> +static ssize_t get_ec_in8_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return  sprintf(buf, "Vin\n");
+> +}
+> +
+> +static ssize_t get_ec_curr1_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "Current\n");
+> +}
+> +
+> +static ssize_t get_ec_curr2_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "Current\n");
+> +}
+> +
+> +static ssize_t get_ec_power1_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "Power\n");
+> +}
+> +
+> +static ssize_t get_ec_temp1_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "Temp Board\n");
+> +}
+> +
+> +static ssize_t get_ec_temp2_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "Temp CPU\n");
+> +}
+> +
+> +static ssize_t get_ec_temp2_crit(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "100000\n");
+> +}
+> +
+> +static ssize_t get_ec_temp2_crit_alarm(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "0\n");
+> +}
+> +
+> +static ssize_t get_ec_temp3_label(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "Temp System\n");
+> +}
+> +
+> +static ssize_t get_ec_temp3_crit(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "100000\n");
+> +}
+> +
+> +static ssize_t get_ec_temp3_crit_alarm(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	return sprintf(buf, "0\n");
+> +}
+> +
+> +static ssize_t get_ec_in1_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp;
+> +	uchar voltage = 0;
+> +	struct HW_PIN_TBL *ptbl = &lmsensor_data.pin_tbl;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	temp = read_ad_value(ptbl->vbat[0], ptbl->vbat[1]);
+> +
+> +	if (profile->r2 != 0)
+> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
+> +
+> +	if (profile->resolution != 0)
+> +		voltage =  temp * profile->resolution / 1000 / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		voltage += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.voltage[0] = 10*voltage;
+> +
+> +	return sprintf(buf, "%d\n", lmsensor_data.voltage[0]);
+> +}
+> +
+> +static ssize_t get_ec_in2_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp;
+> +	uchar voltage = 0;
+> +	struct HW_PIN_TBL *ptbl = &lmsensor_data.pin_tbl;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	temp = read_ad_value(ptbl->v5[0], ptbl->v5[1]);
+> +
+> +	if (profile->r2 != 0)
+> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
+> +
+> +	if (profile->resolution != 0)
+> +		voltage =  temp * profile->resolution / 1000 / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		voltage += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.voltage[1] = 10*voltage;
+> +
+> +	return sprintf(buf, "%d\n", lmsensor_data.voltage[1]);
+> +}
+> +
+> +static ssize_t get_ec_in3_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp;
+> +	uchar voltage = 0;
+> +	struct HW_PIN_TBL *ptbl = &lmsensor_data.pin_tbl;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	temp = read_ad_value(ptbl->v12[0], ptbl->v12[1]);
+> +	if (temp == -1)
+> +		temp  =  read_ad_value(ptbl->vdc[0], ptbl->vdc[1]);
+> +
+> +	if (profile->r2 != 0)
+> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
+> +
+> +	if (profile->resolution != 0)
+> +		voltage =  temp * profile->resolution / 1000 / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		voltage += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.voltage[2] = 10*voltage;
+> +
+> +	return sprintf(buf, "%d\n", lmsensor_data.voltage[2]);
+> +}
+> +
+> +static ssize_t get_ec_in4_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp;
+> +	uchar voltage = 0;
+> +	struct HW_PIN_TBL *ptbl = &lmsensor_data.pin_tbl;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	temp = read_ad_value(ptbl->vcore[0], ptbl->vcore[1]);
+> +
+> +	if (profile->r2 != 0)
+> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
+> +
+> +	if (profile->resolution != 0)
+> +		voltage = temp * profile->resolution / 1000 / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		voltage += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.voltage[3] = 10*voltage;
+> +
+> +	return sprintf(buf, "%d\n", lmsensor_data.voltage[3]);
+> +}
+> +
+> +static ssize_t get_ec_curr1_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp;
+> +	struct HW_PIN_TBL *ptbl = &lmsensor_data.pin_tbl;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	temp = read_ad_value(ptbl->ec_current[0], ptbl->ec_current[1]);
+> +
+> +	if (profile->r2 != 0)
+> +		temp = temp * (profile->r1 + profile->r2) / profile->r2;
+> +
+> +	if (profile->resolution != 0)
+> +		temp =  temp * profile->resolution / 1000 / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		temp += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.ec_current[3] = temp;
+> +	return sprintf(buf, "%d\n", 10*lmsensor_data.ec_current[3]);
+> +}
+> +
+> +static void get_temperaturedts(uchar *pvalue)
+> +{
+> +	u32 eax, edx;
+> +	uchar temp;
+> +
+> +	rdmsr_on_cpu(1, MSR_IA32_THERM_STATUS, &eax, &edx);
+> +	temp = 100000-((eax>>16)&0x7f) * 1000;
+> +	*pvalue = temp;
+> +}
+> +
+> +static void ec_get_temperature_value_via_lm96163_ec_smbus(uchar *temperature)
+> +{
+> +	int ret;
+> +	struct EC_SMBUS_READ_BYTE in_data = {
+> +		.Channel = NSLM96163_CHANNEL,
+> +		.Address = NSLM96163_ADDR,
+> +		.Register = NSLM96163_LOC_TEMP,
+> +		.Data = 0,
+> +	};
+> +
+> +	ret = smbus_read_byte(&in_data);
+> +	if (ret)
+> +		dev_err(lmsensor_data.dev, "smbus_read_byte error.");
+> +	else
+> +		*temperature = (unsigned long)in_data.Data * 10;
+> +}
+> +
+> +static ssize_t ec_get_sys_temperature_value_via_f75387_ec_smbus(uchar *temperature)
+> +{
+> +	int ret;
+> +	uchar Temp_MSB, Temp_LSB;
+> +
+> +	struct EC_SMBUS_READ_BYTE in_data = {
+> +		.Channel = lmsensor_data.ec_smboem0.HWPinNumber & 0x03,
+> +		.Address = LMF75387_SMBUS_SLAVE_ADDRESS_5A,
+> +		.Register = F75387_REG_R_TEMP0_MSB,
+> +		.Data = 0,
+> +	};
+> +
+> +	ret = smbus_read_byte(&in_data);
+> +	if (ret)
+> +		dev_err(lmsensor_data.dev, "smbus_read_byte error.\n");
+> +
+> +	Temp_MSB = in_data.Data;
+> +	if (Temp_MSB != 0xFF) {
+> +		in_data.Register = F75387_REG_R_TEMP0_LSB;
+> +		ret = smbus_read_byte(&in_data);
+> +		if (ret)
+> +			dev_err(lmsensor_data.dev, "smbus_read_byte error.\n");
+> +
+> +		Temp_LSB = in_data.Data;
+> +	} else {
+> +		Temp_MSB = 0;
+> +		Temp_LSB = 0;
+> +	}
+> +	*temperature = Temp_MSB + Temp_LSB/256;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ec_get_voltage_v1_value_via_f75387_ec_smbus(uchar *voltage)
+> +{
+> +	int ret;
+> +	struct EC_SMBUS_READ_BYTE in_data = {
+> +		.Channel = lmsensor_data.ec_smboem0.HWPinNumber & 0x03,
+> +		.Address = LMF75387_SMBUS_SLAVE_ADDRESS_5A,
+> +		.Register = F75387_REG_R_V1,
+> +		.Data = 0,
+> +	};
+> +
+> +	ret = smbus_read_byte(&in_data);
+> +	if (ret)
+> +		dev_err(lmsensor_data.dev, "smbus_read_byte error.\n");
+> +
+> +	*voltage = in_data.Data;
+> +	return 0;
+> +}
+> +
+> +static int ec_get_voltage_v2_value_via_f75387_ec_smbus(uchar *voltage)
+> +{
+> +	int ret;
+> +	struct EC_SMBUS_READ_BYTE in_data = {
+> +		.Channel = lmsensor_data.ec_smboem0.HWPinNumber & 0x03,
+> +		.Address = LMF75387_SMBUS_SLAVE_ADDRESS_5A,
+> +		.Register = F75387_REG_R_V2,
+> +		.Data = 0,
+> +	};
+> +
+> +	ret = smbus_read_byte(&in_data);
+> +	if (ret)
+> +		dev_err(lmsensor_data.dev, "smbus_read_byte error.\n");
+> +
+> +	*voltage = in_data.Data;
+> +	return 0;
+> +}
+> +
+> +static int ec_get_voltage_system_value_via_ina226_ec_smbus(uchar *voltage)
+> +{
+> +	int ret;
+> +	struct EC_SMBUS_WORD_DATA in_data = {
+> +		.Channel = lmsensor_data.ec_smboem0.HWPinNumber & 0x03,
+> +		.Address = INA266_SMBUS_SLAVE_ADDRESS_8A,
+> +		.Register = INA266_REG_VOLTAGE,
+> +		.Value = 0,
+> +	};
+> +
+> +	ret = smbus_read_word(&in_data);
+> +	if (ret)
+> +		dev_err(lmsensor_data.dev, "smbus_read_word error.\n");
+> +
+> +	*voltage = in_data.Value;
+> +	return 0;
+> +}
+> +
+> +static int ec_get_current_value_via_ina226_ec_smbus(uchar *curr)
+> +{
+> +	int ret;
+> +	struct EC_SMBUS_WORD_DATA in_data = {
+> +		.Channel = lmsensor_data.ec_smboem0.HWPinNumber & 0x03,
+> +		.Address = INA266_SMBUS_SLAVE_ADDRESS_8A,
+> +		.Register = INA266_REG_CURRENT,
+> +		.Value = 0,
+> +	};
+> +
+> +	ret = smbus_read_word(&in_data);
+> +	if (ret)
+> +		dev_err(lmsensor_data.dev, "smbus_read_word error.\n");
+> +
+> +	*curr = in_data.Value;
+> +	return 0;
+> +}
+> +
+> +static int ec_get_power_value_via_ina226_ec_smbus(uchar *power)
+> +{
+> +	int ret;
+> +	struct EC_SMBUS_WORD_DATA in_data = {
+> +		.Channel = lmsensor_data.ec_smboem0.HWPinNumber & 0x03,
+> +		.Address = INA266_SMBUS_SLAVE_ADDRESS_8A,
+> +		.Register = INA266_REG_POWER,
+> +		.Value = 0,
+> +	};
+> +
+> +	ret = smbus_read_word(&in_data);
+> +	if (ret)
+> +		dev_err(lmsensor_data.dev, "smbus_read_word error.\n");
+> +
+> +	*power = in_data.Value;
+> +	return 0;
+> +}
+> +
+> +static ssize_t get_ec_temp2_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp = 0;
+> +	uchar value;
+> +	char *product = lmsensor_data.bios_product_name;
+> +
+> +	if (!adspname_detect(product, "TPC-8100TR")) {
+> +		get_temperaturedts(&temp);
+> +		return sprintf(buf, "%d\n", temp);
+> +	} else if (!adspname_detect(product, "TPC-*51T-E??E")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if ((!adspname_detect(product, "TPC-*51WP-E?AE"))
+> +			|| (!adspname_detect(product, "TPC-*81WP-4???E"))) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "TPC-1?82H-4???E")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if ((!adspname_detect(product, "TPC-B500-6??AE"))
+> +				|| (!adspname_detect(product, "TPC-5???T-6??AE"))
+> +				|| (!adspname_detect(product, "TPC-5???W-6??AE"))
+> +				|| (!adspname_detect(product, "TPC-B200-???AE"))
+> +				|| (!adspname_detect(product, "TPC-2???T-???AE"))
+> +				|| (!adspname_detect(product, "TPC-2???W-???AE"))) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-1172A")) {
+> +		ec_get_temperature_value_via_lm96163_ec_smbus(&temp);
+> +		return sprintf(buf, "%d\n", 100*temp);
+> +	} else if (!adspname_detect(product, "UNO-1372G-E?AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-1372G-J0?1AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-1483G-4??AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-2372G")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-2473G")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-2271G-E??AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-2271G-E???AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-420")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-2483G-4??AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-2484G-6???AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-2484G-7???AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-3283G/3285G-674AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "UNO-3483G-3??AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "PR/VR4")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "ECU-4784")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	} else if (!adspname_detect(product, "APAX-5580-4??AE")) {
+> +		read_acpi_value(0x61, &value);
+> +		return sprintf(buf, "%d\n", 1000*value);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t get_ec_temp3_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp = 0;
+> +	char *product = lmsensor_data.bios_product_name;
+> +
+> +	if (!adspname_detect(product, "APAX-5580-4??AE")) {
+> +		ec_get_sys_temperature_value_via_f75387_ec_smbus(&temp);
+> +		return sprintf(buf, "%d\n", 1000*temp);
+> +	} else if (!adspname_detect(product, "PR/VR4")) {
+> +		read_acpi_value(0x60, &temp);
+> +		return sprintf(buf, "%d\n", 1000*temp);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t get_ec_in5_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar voltage = 0;
+> +	char *product = lmsensor_data.bios_product_name;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	if (!adspname_detect(product, "APAX-5580-4??AE")) {
+> +		ec_get_voltage_v1_value_via_f75387_ec_smbus(&voltage);
+> +
+> +		if (profile->r2_vin != 0)
+> +			voltage = voltage * (profile->r1_vin + profile->r2_vin) / profile->r2_vin;
+> +
+> +		if (profile->resolution_vin != 0)
+> +			voltage = voltage * profile->resolution_vin / 1000;
+> +
+> +		if (profile->offset != 0)
+> +			voltage += (int)profile->offset * 100;
+> +
+> +		lmsensor_data.voltage[4] = voltage;
+> +		return sprintf(buf, "%d\n", lmsensor_data.voltage[4]);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t get_ec_in6_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar voltage = 0;
+> +	char *product = lmsensor_data.bios_product_name;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	if (!adspname_detect(product, "APAX-5580-4??AE")) {
+> +		ec_get_voltage_v2_value_via_f75387_ec_smbus(&voltage);
+> +
+> +		if (profile->r2_vin != 0)
+> +			voltage = voltage * (profile->r1_vin + profile->r2_vin) / profile->r2_vin;
+> +
+> +		if (profile->resolution_vin != 0)
+> +			voltage = voltage * profile->resolution_vin / 1000;
+> +
+> +		if (profile->offset != 0)
+> +			voltage += (int)profile->offset * 100;
+> +
+> +		lmsensor_data.voltage[5] = voltage;
+> +		return sprintf(buf, "%d\n", lmsensor_data.voltage[5]);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t get_ec_in7_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar voltage = 0;
+> +	char *product = lmsensor_data.bios_product_name;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	if (!adspname_detect(product, "APAX-5580-4??AE")) {
+> +		ec_get_voltage_system_value_via_ina226_ec_smbus(&voltage);
+> +
+> +		if (profile->r2_sys != 0)
+> +			voltage = voltage * (profile->r1_sys + profile->r2_sys) / profile->r2_sys;
+> +
+> +		if (profile->resolution_sys != 0)
+> +			voltage = voltage * profile->resolution_sys / 1000;
+> +
+> +		if (profile->offset != 0)
+> +			voltage += (int)profile->offset * 100;
+> +
+> +		lmsensor_data.voltage[5] = voltage;
+> +		return sprintf(buf, "%d\n", lmsensor_data.voltage[5]);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static ssize_t get_ec_in8_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp;
+> +	uchar voltage = 0;
+> +	struct HW_PIN_TBL *ptbl = &lmsensor_data.pin_tbl;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	temp  =  read_ad_value(ptbl->v12[0], ptbl->v12[1]);
+> +	if (temp == -1)
+> +		temp  =  read_ad_value(ptbl->vdc[0], ptbl->vdc[1]);
+> +
+> +	if (profile->r2 != 0)
+> +		voltage = temp * (profile->r1 + profile->r2) / profile->r2;
+> +
+> +	if (profile->resolution != 0)
+> +		voltage =  temp * profile->resolution / 1000 / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		voltage += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.voltage[2] = 10*voltage;
+> +	return sprintf(buf, "%d\n", lmsensor_data.voltage[2]);
+> +}
+> +
+> +static ssize_t get_ec_curr2_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp = 0;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	ec_get_current_value_via_ina226_ec_smbus(&temp);
+> +	if (profile->r2_curr != 0)
+> +		temp = temp * (profile->r1_curr + profile->r2_curr) / profile->r2_curr;
+> +
+> +	if (profile->resolution_curr != 0)
+> +		temp = temp * profile->resolution_curr / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		temp += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.ec_current[4] = temp;
+> +	return sprintf(buf, "%d\n", lmsensor_data.ec_current[4]);
+> +}
+> +
+> +static ssize_t get_ec_power1_input(struct device *dev, struct device_attribute *attr, char *buf)
+> +{
+> +	uchar temp = 0;
+> +	struct adv_hwmon_profile *profile = lmsensor_data.profile;
+> +
+> +	ec_get_power_value_via_ina226_ec_smbus(&temp);
+> +
+> +	if (profile->r2_power != 0)
+> +		temp = temp * (profile->r1_power + profile->r2_power) / profile->r2_power;
+> +
+> +	if (profile->resolution_power != 0)
+> +		temp = temp * profile->resolution_power / 1000;
+> +
+> +	if (profile->offset != 0)
+> +		temp += (int)profile->offset * 100;
+> +
+> +	lmsensor_data.power[1] = 1000*temp;
+> +	return sprintf(buf, "%d\n", lmsensor_data.power[1]);
+> +}
+> +
+> +static SENSOR_DEVICE_ATTR(name, 0444, get_ec_hwmon_name, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in1_input, 0444, get_ec_in1_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in1_label, 0444, get_ec_in1_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in2_input, 0444, get_ec_in2_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in2_label, 0444, get_ec_in2_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in3_input, 0444, get_ec_in3_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in3_label, 0444, get_ec_in3_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in4_input, 0444, get_ec_in4_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in4_label, 0444, get_ec_in4_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in5_input, 0444, get_ec_in5_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in5_label, 0444, get_ec_in5_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in6_input, 0444, get_ec_in6_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in6_label, 0444, get_ec_in6_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in7_input, 0444, get_ec_in7_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in7_label, 0444, get_ec_in7_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in8_input, 0444, get_ec_in8_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(in8_label, 0444, get_ec_in8_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(curr1_label, 0444, get_ec_curr1_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(curr1_input, 0444, get_ec_curr1_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(curr2_label, 0444, get_ec_curr2_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(curr2_input, 0444, get_ec_curr2_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(power1_label, 0444, get_ec_power1_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(power1_input, 0444, get_ec_power1_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp1_label, 0444, get_ec_temp1_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp1_input, 0444, show_temp11, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp1_max_hyst, 0644, show_temp_max_hyst, set_temp_max_hyst, 0);
+> +static SENSOR_DEVICE_ATTR(temp1_max, 0644, show_temp_max, set_temp_max, 0);
+> +static SENSOR_DEVICE_ATTR(temp2_label, 0444, get_ec_temp2_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp2_input, 0444, get_ec_temp2_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp2_crit, 0400, get_ec_temp2_crit, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp2_crit_alarm, 0400, get_ec_temp2_crit_alarm, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp3_label, 0444, get_ec_temp3_label, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp3_input, 0444, get_ec_temp3_input, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp3_crit, 0400, get_ec_temp3_crit, NULL, 0);
+> +static SENSOR_DEVICE_ATTR(temp3_crit_alarm, 0400, get_ec_temp3_crit_alarm, NULL, 0);
+> +
+> +/*
+> + * Support list:
+> + * TPC-8100TR, TPC-651T-E3AE, TPC-1251T-E3AE, TPC-1551T-E3AE,
+> + * TPC-1751T-E3AE, TPC-1051WP-E3AE, TPC-1551WP-E3AE, TPC-1581WP-433AE
+> + * TPC-1782H-433AE,
+> + * UNO-1483G-434AE, UNO-2483G-434AE, UNO-3483G-374AE, UNO-2473G
+> + * UNO-2484G-6???AE, UNO-2484G-7???AE, UNO-3283G-674AE, UNO-3285G-674AE
+> + */
+> +static const struct attribute *ec_hwmon_attrs_TEMPLATE[] = {
+> +	&sensor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in3_input.dev_attr.attr,
+> +	&sensor_dev_attr_in3_label.dev_attr.attr,
+> +	&sensor_dev_attr_in4_input.dev_attr.attr,
+> +	&sensor_dev_attr_in4_label.dev_attr.attr,
+> +	&sensor_dev_attr_curr1_label.dev_attr.attr,
+> +	&sensor_dev_attr_curr1_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +/*
+> + * Support list:
+> + * TPC-B500-6??AE
+> + * TPC-5???T-6??AE
+> + * TPC-5???W-6??AE
+> + * TPC-B200-???AE
+> + * TPC-2???T-???AE
+> + * TPC-2???W-???AE
+> + */
+> +static const struct attribute *ec_hwmon_attrs_TPC5XXX[] = {
+> +	&sensor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in3_input.dev_attr.attr,
+> +	&sensor_dev_attr_in3_label.dev_attr.attr,
+> +	&sensor_dev_attr_in4_input.dev_attr.attr,
+> +	&sensor_dev_attr_in4_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +/*
+> + * Support list:
+> + * PR/VR4
+> + */
+> +static const struct attribute *ec_hwmon_attrs_PRVR4[] = {
+> +	&sensor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in3_input.dev_attr.attr,
+> +	&sensor_dev_attr_in3_label.dev_attr.attr,
+> +	&sensor_dev_attr_in4_input.dev_attr.attr,
+> +	&sensor_dev_attr_in4_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +/*
+> + * Support list:
+> + * UNO-2271G-E22AE/E23AE/E022AE/E023AE, UNO-420
+> + */
+> +static const struct attribute *ec_hwmon_attrs_UNO2271G[] = {
+> +	&sensor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in3_input.dev_attr.attr,
+> +	&sensor_dev_attr_in3_label.dev_attr.attr,
+> +	&sensor_dev_attr_in4_input.dev_attr.attr,
+> +	&sensor_dev_attr_in4_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +/*
+> + * Support list:
+> + * UNO-1172A
+> + * ECU-4784
+> + */
+> +static const struct attribute *ec_hwmon_attrs_UNO1172A[] = {
+> +	&sensor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in3_input.dev_attr.attr,
+> +	&sensor_dev_attr_in3_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +/*
+> + * Support list:
+> + * UNO-1372G
+> + */
+> +static const struct attribute *ec_hwmon_attrs_UNO1372G[] = {
+> +	&sensor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in4_input.dev_attr.attr,
+> +	&sensor_dev_attr_in4_label.dev_attr.attr,
+> +	&sensor_dev_attr_in8_input.dev_attr.attr,
+> +	&sensor_dev_attr_in8_label.dev_attr.attr,
+> +	&sensor_dev_attr_curr1_label.dev_attr.attr,
+> +	&sensor_dev_attr_curr1_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +/*
+> + * Support list:
+> + * UNO-2372G, UNO-1372G-J021AE/J031AE
+> + */
+> +static const struct attribute *ec_hwmon_attrs_UNO2372G[] = {
+> +	//sor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in4_input.dev_attr.attr,
+> +	&sensor_dev_attr_in4_label.dev_attr.attr,
+> +	&sensor_dev_attr_in8_input.dev_attr.attr,
+> +	&sensor_dev_attr_in8_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +/*
+> + * Support list:
+> + * APAX-5580-433AE/473AE/4C3AE
+> + */
+> +static const struct attribute *ec_hwmon_attrs_APAX5580[] = {
+> +	&sensor_dev_attr_name.dev_attr.attr,
+> +	&sensor_dev_attr_in1_input.dev_attr.attr,
+> +	&sensor_dev_attr_in1_label.dev_attr.attr,
+> +	&sensor_dev_attr_in2_input.dev_attr.attr,
+> +	&sensor_dev_attr_in2_label.dev_attr.attr,
+> +	&sensor_dev_attr_in5_input.dev_attr.attr,
+> +	&sensor_dev_attr_in5_label.dev_attr.attr,
+> +	&sensor_dev_attr_in6_input.dev_attr.attr,
+> +	&sensor_dev_attr_in6_label.dev_attr.attr,
+> +	&sensor_dev_attr_in7_input.dev_attr.attr,
+> +	&sensor_dev_attr_in7_label.dev_attr.attr,
+> +	&sensor_dev_attr_curr2_label.dev_attr.attr,
+> +	&sensor_dev_attr_curr2_input.dev_attr.attr,
+> +	&sensor_dev_attr_power1_label.dev_attr.attr,
+> +	&sensor_dev_attr_power1_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp2_crit_alarm.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_crit.dev_attr.attr,
+> +	&sensor_dev_attr_temp3_crit_alarm.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +static struct attribute *f75375_attributes[] = {
+> +	&sensor_dev_attr_temp1_label.dev_attr.attr,
+> +	&sensor_dev_attr_temp1_input.dev_attr.attr,
+> +	&sensor_dev_attr_temp1_max.dev_attr.attr,
+> +	&sensor_dev_attr_temp1_max_hyst.dev_attr.attr,
+> +	NULL
+> +};
+> +
+> +static const struct attribute_group f75375_group = {
+> +	.attrs = f75375_attributes,
+> +};
+> +
+> +static struct adv_hwmon_profile advec_profile[] = {
+> +	/*
+> +	 * TPC-8100TR, TPC-651T-E3AE, TPC-1251T-E3AE, TPC-1551T-E3AE,
+> +	 * TPC-1751T-E3AE, TPC-1051WP-E3AE, TPC-1551WP-E3AE, TPC-1581WP-433AE,
+> +	 * TPC-1782H-433AE, UNO-1483G-434AE, UNO-2483G-434AE, UNO-3483G-374AE,
+> +	 * UNO-2473G, UNO-2484G-6???AE, UNO-2484G-7???AE, UNO-3283G-674AE,
+> +	 * UNO-3285G-674AE
+> +	 * (0)
+> +	 */
+> +	{
+> +		.resolution = 2929,
+> +		.r1 = 1912,
+> +		.r2 = 1000,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_TEMPLATE,
+> +	},
+> +	/*
+> +	 * TPC-B500-6??AE, TPC-5???T-6??AE, TPC-5???W-6??AE, TPC-B200-???AE,
+> +	 * TPC-2???T-???AE, TPC-2???W-???AE
+> +	 * (1)
+> +	 */
+> +	{
+> +		.resolution = 2929,
+> +		.r1 = 1912,
+> +		.r2 = 1000,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_TPC5XXX,
+> +	},
+> +	/* PR/VR4 (2) */
+> +	{
+> +		.resolution = 2929,
+> +		.r1 = 1912,
+> +		.r2 = 1000,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_PRVR4,
+> +	},
+> +	/* UNO-2271G-E22AE/E23AE/E022AE/E023AE,UNO-420 (3) */
+> +	{
+> +		.resolution = 2929,
+> +		.r1 = 1912,
+> +		.r2 = 1000,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_UNO2271G,
+> +	},
+> +	/* UNO-1172A, ECU-4784 (4) */
+> +	{
+> +		.resolution = 2929,
+> +		.r1 = 1912,
+> +		.r2 = 1000,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_UNO1172A,
+> +	},
+> +	/* UNO-1372G (5) */
+> +	{
+> +		.resolution = 2929,
+> +		.r1 = 1912,
+> +		.r2 = 1000,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_UNO1372G,
+> +	},
+> +	/* UNO-2372G, UNO-1372G-J021AE/J031AE (6) */
+> +	{
+> +		.resolution = 2929,
+> +		.r1 = 1912,
+> +		.r2 = 1000,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_UNO2372G,
+> +	},
+> +	/* APAX-5580-433AE, APAX-5580-473AE, APAX-5580-4C3AE (7) */
+> +	{
+> +		.resolution = 2929,
+> +		.resolution_sys = 1250,
+> +		.resolution_curr = 1000,
+> +		.resolution_power = 25000,
+> +		.r1 = 0,
+> +		.r1_vin = 1120,
+> +		.r1_sys = 0,
+> +		.r1_curr = 0,
+> +		.r1_power = 0,
+> +		.r2 = 0,
+> +		.r2_vin = 56,
+> +		.r2_sys = 0,
+> +		.r2_curr = 0,
+> +		.r2_power = 0,
+> +		.offset = 0,
+> +		.ec_hwmon_group.attrs = (struct attribute **)ec_hwmon_attrs_APAX5580,
+> +	},
+> +};
+> +
+> +static int adspname_detect(const char *bios_product_name, const char *standard_name)
+> +{
+> +	int i, j;
+> +
+> +	i = 0;
+> +
+> +	for (j = 0; j < strlen(bios_product_name); j++) {
+> +		if (standard_name[i] == '*') {
+> +			if (i) {
+> +				if (bios_product_name[j] == standard_name[(i + 1)])
+> +					i += 2;
+> +
+> +				if (i >= (strlen(standard_name) - 1))
+> +					return 0;
+> +			}
+> +		} else if (standard_name[i] == '?') {
+> +			if (i) {
+> +				i++;
+> +				if (i >= strlen(standard_name))
+> +					return 0;
+> +			}
+> +		} else if (bios_product_name[j] == standard_name[i]) {
+> +			i++;
+> +			if (i >= strlen(standard_name))
+> +				return 0;
+> +		}
+> +	}
+> +
+> +	return 1;
+> +}
+> +
+> +static void adv_ec_init_hwmon_profile(u32 profile, struct adv_ec_platform_data *plat_data)
+> +{
+> +	int i;
+> +	struct HW_PIN_TBL *ptbl = &lmsensor_data.pin_tbl;
+> +	struct Dynamic_Tab *dym_tbl = plat_data->dym_tbl;
+> +
+> +	lmsensor_data.bios_product_name = plat_data->bios_product_name;
+> +	lmsensor_data.profile = &advec_profile[profile];
+> +
+> +	for (i = 0; i < EC_MAX_TBL_NUM ; i++) {
+> +		switch (dym_tbl[i].DeviceID) {
+> +		case EC_DID_CMOSBAT:
+> +			ptbl->vbat[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vbat[1] = 1;
+> +			break;
+> +		case EC_DID_CMOSBAT_X2:
+> +			ptbl->vbat[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vbat[1] = 2;
+> +			break;
+> +		case EC_DID_CMOSBAT_X10:
+> +			ptbl->vbat[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vbat[1] = 10;
+> +			break;
+> +		case EC_DID_5VS0:
+> +		case EC_DID_5VS5:
+> +			ptbl->v5[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->v5[1] = 1;
+> +			break;
+> +		case EC_DID_5VS0_X2:
+> +		case EC_DID_5VS5_X2:
+> +			ptbl->v5[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->v5[1] = 2;
+> +			break;
+> +		case EC_DID_5VS0_X10:
+> +		case EC_DID_5VS5_X10:
+> +			ptbl->v5[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->v5[1] = 10;
+> +			break;
+> +		case EC_DID_12VS0:
+> +			ptbl->v12[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->v12[1] = 1;
+> +			break;
+> +		case EC_DID_12VS0_X2:
+> +			ptbl->v12[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->v12[1] = 2;
+> +			break;
+> +		case EC_DID_12VS0_X10:
+> +			ptbl->v12[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->v12[1] = 10;
+> +			break;
+> +		case EC_DID_VCOREA:
+> +		case EC_DID_VCOREB:
+> +			ptbl->vcore[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vcore[1] = 1;
+> +			break;
+> +		case EC_DID_VCOREA_X2:
+> +		case EC_DID_VCOREB_X2:
+> +			ptbl->vcore[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vcore[1] = 2;
+> +			break;
+> +		case EC_DID_VCOREA_X10:
+> +		case EC_DID_VCOREB_X10:
+> +			ptbl->vcore[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vcore[1] = 10;
+> +			break;
+> +		case EC_DID_DC:
+> +			ptbl->vdc[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vdc[1] = 1;
+> +			break;
+> +		case EC_DID_DC_X2:
+> +			ptbl->vdc[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vdc[1] = 2;
+> +			break;
+> +		case EC_DID_DC_X10:
+> +			ptbl->vdc[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->vdc[1] = 10;
+> +			break;
+> +		case EC_DID_CURRENT:
+> +			ptbl->ec_current[0] = dym_tbl[i].HWPinNumber;
+> +			ptbl->ec_current[1] = 1;
+> +			break;
+> +		case EC_DID_SMBOEM0:
+> +			lmsensor_data.ec_smboem0.HWPinNumber = dym_tbl[i].HWPinNumber;
+> +			break;
+> +		default:
+> +			break;
+> +		}
+> +	}
+> +}
+> +
+> +static int f75375_probe(struct i2c_client *client, const struct i2c_device_id *id)
+> +{
+> +	struct f75375_data *data;
+> +	int err;
+> +
+> +	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_BYTE_DATA))
+> +		return -EIO;
+> +	data = devm_kzalloc(&client->dev, sizeof(struct f75375_data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	i2c_set_clientdata(client, data);
+> +	mutex_init(&data->update_lock);
+> +	data->kind = id->driver_data;
+> +
+> +	err = sysfs_create_group(&client->dev.kobj, &f75375_group);
+> +	if (err)
+> +		return err;
+> +
+> +	data->hwmon_dev = hwmon_device_register(&client->dev);
+> +	if (IS_ERR(data->hwmon_dev)) {
+> +		err = PTR_ERR(data->hwmon_dev);
+> +		goto exit_remove;
+> +	}
+> +	return 0;
+> +
+> +exit_remove:
+> +	sysfs_remove_group(&client->dev.kobj, &f75375_group);
+> +	return err;
+> +}
+> +
+> +static int f75375_remove(struct i2c_client *client)
+> +{
+> +	struct f75375_data *data = i2c_get_clientdata(client);
+> +
+> +	hwmon_device_unregister(data->hwmon_dev);
+> +	sysfs_remove_group(&client->dev.kobj, &f75375_group);
+> +	return 0;
+> +}
+> +
+> +/* Return 0 if detection is successful, -ENODEV otherwise */
+> +static int f75375_detect(struct i2c_client *client, struct i2c_board_info *info)
+> +{
+> +	struct i2c_adapter *adapter = client->adapter;
+> +	u16 vendid, chipid;
+> +	u8 version;
+> +	const char *name;
+> +
+> +	vendid = f75375_read16(client, F75375_REG_VENDOR);
+> +	chipid = f75375_read16(client, F75375_CHIP_ID);
+> +	dev_info(&adapter->dev, "VendID: 0x%x, ChipID: 0x%x", vendid, chipid);
+> +
+> +	if (vendid != 0x1934)
+> +		return -ENODEV;
+> +
+> +	if (chipid == 0x0306)
+> +		name = "f75375";
+> +	else if (chipid == 0x0204)
+> +		name = "f75373";
+> +	else if (chipid == 0x0410)
+> +		name = "f75387";
+> +	else
+> +		return -ENODEV;
+> +
+> +	version = f75375_read8(client, F75375_REG_VERSION);
+> +	dev_info(&adapter->dev, "found %s version: %02X\n", name, version);
+> +	strlcpy(info->type, name, I2C_NAME_SIZE);
+> +
+> +	return 0;
+> +}
+> +
+> +static int adv_ec_hwmon_probe(struct platform_device *pdev)
+> +{
+> +	int ret = 0;
+> +	u32 profile;
+> +	struct adv_ec_platform_data *adv_ec_data = NULL;
+> +
+> +	adv_ec_data = (struct adv_ec_platform_data *)dev_get_drvdata(pdev->dev.parent);
+> +
+> +	ret = device_property_read_u32(pdev->dev.parent, "advantech,hwmon-profile", &profile);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev, "get hwmon-profile failed! (%d)", ret);
+> +		return ret;
+> +	}
+> +
+> +	adv_ec_init_hwmon_profile(profile, adv_ec_data);
+> +
+> +	lmsensor_data.dev = &pdev->dev;
+> +	lmsensor_data.hwmon_dev = hwmon_device_register(NULL);
+> +
+> +	if (IS_ERR(lmsensor_data.hwmon_dev)) {
+> +		ret = -ENOMEM;
+> +		dev_err(lmsensor_data.dev, "hwmon_dev register failed\n");
+> +		goto fail_hwmon_device_register;
+> +	}
+> +
+> +	ret = sysfs_create_group(&lmsensor_data.hwmon_dev->kobj,
+> +			&lmsensor_data.profile->ec_hwmon_group);
+> +	if (ret) {
+> +		dev_err(lmsensor_data.dev, "failed to creat ec hwmon\n");
+> +		goto fail_create_group_hwmon;
+> +	}
+> +
+> +	if (!adspname_detect(adv_ec_data->bios_product_name, "UNO-1172A")) {
+> +		ret = i2c_add_driver(&f75375_driver);
+> +		if (ret)
+> +			dev_err(lmsensor_data.dev, "failed to register driver f75375.\n");
+> +	}
+> +
+> +	dev_info(&pdev->dev, "Ver:%s, Data:%s, probe done",
+> +			ADVANTECH_EC_HWMON_VER, ADVANTECH_EC_HWMON_DATE);
+> +
+> +	return ret;
+> +
+> +fail_create_group_hwmon:
+> +	sysfs_remove_group(&lmsensor_data.hwmon_dev->kobj, &lmsensor_data.profile->ec_hwmon_group);
+> +fail_hwmon_device_register:
+> +	hwmon_device_unregister(lmsensor_data.hwmon_dev);
+> +
+> +	return ret;
+> +}
+> +
+> +static int adv_ec_hwmon_remove(struct platform_device *pdev)
+> +{
+> +	sysfs_remove_group(&lmsensor_data.hwmon_dev->kobj, &lmsensor_data.profile->ec_hwmon_group);
+> +	hwmon_device_unregister(lmsensor_data.hwmon_dev);
+> +	if (!adspname_detect(lmsensor_data.bios_product_name, "UNO-1172A"))
+> +		i2c_del_driver(&f75375_driver);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver adv_hwmon_drv = {
+> +	.driver = {
+> +		.name = "adv-ec-hwmon",
+> +	},
+> +	.probe = adv_ec_hwmon_probe,
+> +	.remove = adv_ec_hwmon_remove,
+> +};
+> +
+> +module_platform_driver(adv_hwmon_drv);
+> +
+> +MODULE_DESCRIPTION("Advantech EC Hwmon Driver.");
+> +MODULE_AUTHOR("Jiangwei.Zhu");
+> +MODULE_LICENSE("Dual BSD/GPL");
+> -- 
+> 2.17.1
+> 
