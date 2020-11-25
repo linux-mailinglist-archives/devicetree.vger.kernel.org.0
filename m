@@ -2,96 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95A9A2C497B
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 22:03:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A78F2C4983
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 22:07:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731159AbgKYVDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 16:03:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45238 "EHLO
+        id S1728622AbgKYVGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 16:06:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728622AbgKYVDs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 16:03:48 -0500
-Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5898FC0613D4;
-        Wed, 25 Nov 2020 13:03:48 -0800 (PST)
-Received: by mail-io1-xd32.google.com with SMTP id n129so3512436iod.5;
-        Wed, 25 Nov 2020 13:03:48 -0800 (PST)
+        with ESMTP id S1726908AbgKYVGd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 16:06:33 -0500
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8969FC0613D4;
+        Wed, 25 Nov 2020 13:06:33 -0800 (PST)
+Received: by mail-lj1-x242.google.com with SMTP id s9so3722161ljo.11;
+        Wed, 25 Nov 2020 13:06:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xcTsX4ej/UkZ63xJWlrhRCi5ZjNKdHYN+db6xsLhcQw=;
-        b=jC3hTa5TCI5Myo/dYUCtrDYKKXKpGRAlMguaJb7ch8vOupDDf54sftnKMlQ5OnG9mw
-         XaMd12FUzcxCKQAsl7dS5r9DP32mX4BpxXe+3+Y4hHrgKVxAX8bXUn9roXO93vS65dMV
-         EIFlSVU6ynwG4s2Oja8QCDTnMpg1FidhKc21fFuzrLjtB6Qq9ONgXxvnCupnq3wQhcR0
-         iBNPA/T4efpcbXGEMwUXfCbIN/J+R46BzhxlgCL3rMGT7qBPwgqQ0GbsFGngd0rGSNYD
-         S+QxlSG7LmHCUkBtEbUFnozOv7+FedlRvZD25v3SNMib3fcF7jJQUi1xZP//EbrLN+1O
-         t9dg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=z65mTV3wd1m0+J5aDJbKl4qEAvdprN/YafrJptOgaCE=;
+        b=cNFxf+LreIVXdicbngEWYJxwxsB0n1AllrBd6GvEHmadso6M7i36Hmy7PSPWftzs2p
+         573LIX6iulVzlZUYv2yFZdZNzsxSjPZSL5Qc5RSMM2a3Ae6G5PA1vR/HELOtPsiUlDem
+         VnG6lRCjl64LlyF6w2rtYocKvELznBZ06uUz/55gAjAsUDvimxr8Ec5zw/hCjzjz1Tbj
+         /FZmcKISTcFW8Lqp7NCLXaXpMUrq6q0qxot/3t/LUbJGd/x8NYpdUbdg2uhvl26BYHLW
+         5NU+R9G5uTRMjsNeGA0uaSw8TQpMGr/G8Jj7iGnu9kFioZCtiER3KdzzK9HjriM+AcKw
+         F2Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xcTsX4ej/UkZ63xJWlrhRCi5ZjNKdHYN+db6xsLhcQw=;
-        b=gxis1KEEpT/tzlZ0Ny0s9lOdjrmitzwu8RLkA83G01IHJYHHH7zQMG48H0/W7hVypo
-         CIqOXpcjxKbLitMsubxL9BSqu8VMTRJhVddCMozN2UQtpcbjcGZKegTGS/F+PHO3CBqe
-         dQ5Hr3iy3IWSHFLVqH2jNZEYXfn2UUwMDVd2o/0XcqvX8zmOgZMPrnOjVJjtnRkawRJM
-         7LP4oLQnfhuTEqP5wiDb+/+cpEMNnW+2ivoJkI09FRFL6t2RJXY038lz+hTkuYUYl0yF
-         6HIyaLwyxgBF7zV7Zjl/RjxMf6l03S/tThJbs6R3BPtPi6PgmlMbh6l1NZQiH1OQd/w4
-         GphA==
-X-Gm-Message-State: AOAM531Q2AQN95aWT8gM1Wuy/32g/QrdUTH3Lkfrk1q8rTLhbClcNN1e
-        PGo1cGix8kTcSZ6hv8wMaCI=
-X-Google-Smtp-Source: ABdhPJw4nPeeTG98OXe4vSBFKc+oHqPAYGlXA6woZ/pYsZnuvEFJWTQsp4LQy0CnOpl378+bzcVduA==
-X-Received: by 2002:a05:6638:1ef:: with SMTP id t15mr103123jaq.28.1606338227537;
-        Wed, 25 Nov 2020 13:03:47 -0800 (PST)
-Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:8da2:e979:8d1:eddb])
-        by smtp.gmail.com with ESMTPSA id x23sm1564979ioh.28.2020.11.25.13.03.46
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=z65mTV3wd1m0+J5aDJbKl4qEAvdprN/YafrJptOgaCE=;
+        b=qhnZetZiI+p1PiFxyNQc9byNUmKRzAyt2PC+QfP5jXYyXz4nTSX1JjY+I4A0HaGVCY
+         dc6dHFUovNQdvcodFHME76aDtVRc5N11HoSbal3MCmzhAw6RQdpNmA4kNIyicehAAac2
+         gVzWDLIitJyzpV0Mwfrm5AWh34vZ0XwT/X7mLD6/wMctZg9Jr1xRW3LoQSp+8tk44xwO
+         8zhw0kZAunKrYFVBiix5WGZWVG9ptxwdiz3CC64VyOQ+iORaKtV1xf460A4eSfCWQX+U
+         SlsnxIU2W4xJsbc1KxYDl7mIG5V7wtWZ8iYW0T2OvoKrMtHLOHTvGVtGJmu99Y1tu4YD
+         FRvw==
+X-Gm-Message-State: AOAM531/g3X3mJ7lmv7bKcTEs4X5G+y7MlgxGDxt+w1fa87pR5xfiY2s
+        SpYaX4u02KcHyHEJl115N1U=
+X-Google-Smtp-Source: ABdhPJzthi5Z1t/DpaFwQ0RgO9ztaq/WVepWIoUIhXI7ul/td9tXWiE8/EXJRuAvaaS4U8rT3oSkmQ==
+X-Received: by 2002:a2e:8745:: with SMTP id q5mr2039512ljj.347.1606338392063;
+        Wed, 25 Nov 2020 13:06:32 -0800 (PST)
+Received: from mobilestation ([95.79.141.114])
+        by smtp.gmail.com with ESMTPSA id w123sm54944lff.138.2020.11.25.13.06.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2020 13:03:47 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: imx8mm-beacon-som:  Fix PMIC clock error
-Date:   Wed, 25 Nov 2020 15:03:39 -0600
-Message-Id: <20201125210339.1071419-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201125210339.1071419-1-aford173@gmail.com>
-References: <20201125210339.1071419-1-aford173@gmail.com>
+        Wed, 25 Nov 2020 13:06:31 -0800 (PST)
+Date:   Thu, 26 Nov 2020 00:06:29 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Damien Le Moal <damien.lemoal@wdc.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] of: Fix property supplier parsing
+Message-ID: <20201125210629.27al2cjp5jjuj354@mobilestation>
+References: <20201119060921.311747-1-damien.lemoal@wdc.com>
+ <20201119060921.311747-2-damien.lemoal@wdc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201119060921.311747-2-damien.lemoal@wdc.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PMIC throws an errors because the clock isn't assigned to it.
-Fix this by assigning the clocks info.
+On Thu, Nov 19, 2020 at 03:09:20PM +0900, Damien Le Moal wrote:
+> The DesignWare gpio-dwapb GPIO driver ("snps,dw-apb-gpio" or
+> "apm,xgene-gpio-v2" compatible string) defines the now deprecated
+> property "snps,nr-gpios" to specify the number of GPIOs available
+> on a port. However, if this property is used in a device tree, its
+> "-gpios" suffix causes the generic property supplier parsing code to
+> interpret it as a cell reference when properties are parsed in
+> of_link_to_suppliers(), leading to an error messages such as:
+> 
+> OF: /soc/bus@50200000/gpio-controller@50200000/gpio-port@0: could not
+> find phandle
+> 
+> Fix this by manually defining a parse_gpios() function which ignores
+> this deprecated property that is still present in many device trees,
+> skipping the search for the supplier and thus avoiding the device tree
+> parsing error.
+> 
+> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+> ---
+>  drivers/of/property.c | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 408a7b5f06a9..4eefe8efc2fe 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1308,7 +1308,6 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
+>  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
+>  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
+>  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
+> -DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
+>  
+>  static struct device_node *parse_iommu_maps(struct device_node *np,
+>  					    const char *prop_name, int index)
+> @@ -1319,6 +1318,21 @@ static struct device_node *parse_iommu_maps(struct device_node *np,
+>  	return of_parse_phandle(np, prop_name, (index * 4) + 1);
+>  }
+>  
+> +static struct device_node *parse_gpios(struct device_node *np,
+> +				       const char *prop_name, int index)
+> +{
+> +	/*
+> +	 * Quirk for the deprecated "snps,nr-gpios" property of the
+> +	 * DesignWare gpio-dwapb GPIO driver: as this property parsing
+> +	 * conflicts with the "xx-gpios" phandle reference property, ignore it.
+> +	 */
 
-Fixes:  acb01032e11a ("arm64: defconfig: Enable clock driver for ROHM BD718x7 PMIC")
+> +	if (strcmp(prop_name, "snps,nr-gpios") == 0)
+> +		return NULL;
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+What about printing the warning from instead of doing that from the driver?
+Like this:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-index 9bdefbba9e90..d897913537ca 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-@@ -111,6 +111,10 @@ pmic@4b {
- 		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 
-+		#clock-cells = <0>;
-+		clocks = <&osc_32k 0>;
-+		clock-output-names = "clk-32k-out";
-+
- 		regulators {
- 			buck1_reg: BUCK1 {
- 				regulator-name = "buck1";
--- 
-2.25.1
++	if (strcmp(prop_name, "snps,nr-gpios") == 0) {
++		pr_warn("%pOF: %s is deprecated in favor of ngpios\n");
++		return NULL;
++	}
 
+So when the property is removed from all dts'es we wouldn't
+forget to discard the quirk?
+
+-Sergey
+
+> +
+> +	return parse_suffix_prop_cells(np, prop_name, index,
+> +				       "-gpios", "#gpio-cells");
+> +}
+> +
+>  static const struct supplier_bindings of_supplier_bindings[] = {
+>  	{ .parse_prop = parse_clocks, },
+>  	{ .parse_prop = parse_interconnects, },
+> -- 
+> 2.28.0
+> 
