@@ -2,274 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C4932C4575
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 17:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC9E02C468C
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 18:21:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730600AbgKYQmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 11:42:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60682 "EHLO
+        id S1731245AbgKYRU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 12:20:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730269AbgKYQmL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 11:42:11 -0500
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82161C061A51
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 08:42:11 -0800 (PST)
-Received: by mail-wm1-x344.google.com with SMTP id w24so2753976wmi.0
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 08:42:11 -0800 (PST)
+        with ESMTP id S1729631AbgKYRU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 12:20:59 -0500
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1E4DC0613D4
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 09:20:40 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id s2so1425675plr.9
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 09:20:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=PQUtq6hJSimzE8WZfFkzN1SUUldm6vjz6Pr4ps943Rg=;
-        b=G0r4vcyGA0EADIUIVnlxBU3FG7vSxOZe2ohRsL+YRGpu6jwTAaggTzl8ON3sB3vjo/
-         brEONCLCHIiE831Ggbcc3TfCBUwLkt9Jt7zrQLFQTpA+e/NFYQDhXNS1b9z29DXBJW0m
-         f3jIgBsuj1VXhj9JU+Y6d0uNpY63J9O58AT1vyVngp9UNJ1MQR8c2FRQcOvmVf2kfto5
-         IudCnFd9sj6HTDsDi0sXyeRFTT4FR/59kc98mwEaFlfT456R7WCTzpzsuajUM8naE9yi
-         6sJovlBjGw3AsODAzeh8qCgeFYQNq6P8kFBc+wz3uV0rk8QD6kgDAXhBMXl01lHm2Unu
-         dP+A==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=dWRSXl789SFQ+0AvwCaTqcuycJ4oHKg7M2vTzKDBm2M=;
+        b=Xri/srKaxegzV0dCw2D+qXTocxohCktqpY+FU6X7NgR9+WjGKKgyyRH9eIKhHCsx4a
+         xbq+Iyqbve9AiPHd0U5qtDbyApr5eKfCoQQ6J5ygqhqDAFrnuE01aARugDPIHyzNWPV/
+         M1Yr6B4s+jVNCNEZsVnBMKZE0QB5ZnZKBf+C6iKhMneNtgTQlb4rqQD+QivSsZFe7vrn
+         B6oq30wHsc4AZfg3MwvB1KL7rW0/LfzXjcqGJnHrk0AWl4h0vx8x06K1xgbiALTwBG/k
+         UVhNPNcgRC7kbXcrXN23Oa8kwxGqcUCw37oA1J+2qzXLvEUnnQJRwpzCMu/JN4vnq994
+         mt8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=PQUtq6hJSimzE8WZfFkzN1SUUldm6vjz6Pr4ps943Rg=;
-        b=qIXltym0Ca+7przGyW22GPBepgyB1kmvpmTwgUBkOWu7VexubOCpqQH5XOQIjxhJsK
-         4TrX2iuILWTuQqQSvsdAUSP7NWOBjUZ5BE07CTqKb6A2Jba/JgDOyk+CXY6UNSGSI+u9
-         OaxkOPjXI4pdtbNfDbOJKtgIcy1ELjbvMx2FwmF+Rf3bY0xPctCpHX/eTCuwmdNoYA6Y
-         ql39OfuDSUFI0ucjvmXvDCR4Kams2eFom+JXEqWUIX8/9WZD6ln3Zk0K5BoRDSShJYtm
-         XWzRkGCxjD+cFU6I+zoFVLs1evUni0einYuqxCzYLNqW5nUmz+2PbBERGQjIutrlAyfE
-         GG0Q==
-X-Gm-Message-State: AOAM531bDIKMe3Yp3HH181ddwJ84fDUdxLpBawFktBFgM3xi/n//fBSw
-        1AEaa2lTgecds07gmkhZMdpSGQ==
-X-Google-Smtp-Source: ABdhPJwzCQ2/SBqweNKUbNBEynyRrfzSvQXTurR2zrrkddkpICdEfNVFIwzxB8Ep/o0QAIrmHE8R9Q==
-X-Received: by 2002:a05:600c:202:: with SMTP id 2mr4990739wmi.118.1606322530077;
-        Wed, 25 Nov 2020 08:42:10 -0800 (PST)
-Received: from dell ([91.110.221.235])
-        by smtp.gmail.com with ESMTPSA id e14sm5546412wrm.84.2020.11.25.08.42.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2020 08:42:09 -0800 (PST)
-Date:   Wed, 25 Nov 2020 16:42:07 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     robh+dt@kernel.org, cy_huang@richtek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] mfd: rt4831: Adds support for Richtek RT4831 MFD
- core
-Message-ID: <20201125164207.GD4716@dell>
-References: <1604286803-20698-1-git-send-email-u0084500@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dWRSXl789SFQ+0AvwCaTqcuycJ4oHKg7M2vTzKDBm2M=;
+        b=AnCsG1mBgeiZofzcgz1cnw9NC8NW7OO7vDYcG/L+58U4KPhsIvhZAgaLyJHH6rwUme
+         6lxXh5/qUsat5t3yWKVYMtnkJUq56OafY47SANIpe9escvP/sxvS658xR0xj4Z9U8/T4
+         tD79Bd0dhQ6HU4RFtHP26OTKg36zXAocg5td8IWl5BygAJ/d3T0WsG0ipBGiVAqRTKZa
+         fV6udP6JORYKxi4iJ7NOtLZGKVG+yyQRHSU2J+RE7ZLhzEpJWdctyo2Adjo27UUkvWe/
+         tz4OV/3bEnGqjym2MiALa0fO+i1cpCNePg12XcnfzOi9zyKHPseO0YUFnSviepot3Zdx
+         g49w==
+X-Gm-Message-State: AOAM533Z94Mw/fWoCemcMNxyI12tA58EJtjScxjpQYZ32TJX0Npyy0wv
+        lPHA5b/0fHwD4Qwrh1ZJhDE=
+X-Google-Smtp-Source: ABdhPJyhVTM91JIOEzlrHIayiqFfD6n+gnGJjLR8VN5imwwlmp5f3rEVfuqJkfuhwGfcqQxtmN187A==
+X-Received: by 2002:a17:902:8f83:b029:d7:ec99:d2fd with SMTP id z3-20020a1709028f83b02900d7ec99d2fdmr3199622plo.17.1606324840422;
+        Wed, 25 Nov 2020 09:20:40 -0800 (PST)
+Received: from [10.230.28.242] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id b15sm3554728pjz.38.2020.11.25.09.20.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Nov 2020 09:20:38 -0800 (PST)
+Subject: Re: [PATCH] dt-bindings: arm: bcm: bcm4908: fix yaml validation
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20201125110130.3877-1-zajec5@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <21182439-03b1-26d6-928e-74513e12fdc9@gmail.com>
+Date:   Wed, 25 Nov 2020 09:20:36 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.5.0
 MIME-Version: 1.0
+In-Reply-To: <20201125110130.3877-1-zajec5@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1604286803-20698-1-git-send-email-u0084500@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 02 Nov 2020, cy_huang wrote:
 
-> From: ChiYuan Huang <cy_huang@richtek.com>
+
+On 11/25/2020 3:01 AM, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Adds support Richtek RT4831 MFD core.
-> RT4831 includes backlight and DSV part that can provode display panel
-> for postive and negative voltage and WLED driving.
+> Root node can obviously have various subnodes so "additionalProperties"
+> should be set to true.
 > 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  drivers/mfd/Kconfig       |  11 +++++
->  drivers/mfd/Makefile      |   1 +
->  drivers/mfd/rt4831-core.c | 119 ++++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 131 insertions(+)
->  create mode 100644 drivers/mfd/rt4831-core.c
+> This fixes:
+> arch/arm64/boot/dts/broadcom/bcm4908/bcm4908-asus-gt-ac5300.dt.yaml: /: '#address-cells', '#size-cells', 'aliases', 'axi@81000000', 'chosen', 'clocks', 'cpus', 'gpio-keys-polled', 'interrupt-parent', 'memory@0', 'model', 'pmu', 'soc', 'timer', 'ubus@ff800000' do not match any of the regexes: 'pinctrl-[0-9]+'
+>         From schema: Documentation/devicetree/bindings/arm/bcm/brcm,bcm4908.yaml
 > 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 8b99a13..a22f002 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -1088,6 +1088,17 @@ config MFD_RDC321X
->  	  southbridge which provides access to GPIOs and Watchdog using the
->  	  southbridge PCI device configuration space.
->  
-> +config MFD_RT4831
-> +	tristate "Richtek RT4831 WLED and DSV IC"
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 
-Please expand on WLED and DSV.
-
-This is documentation and should leave nothing to the imagination.
-
-> +	depends on I2C
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	help
-> +	  This enables support for the Richtek RT4831.
-> +	  RT4831 includes WLED driver and DisplayBias voltage(+/-) regulator.
-> +	  It's common used to provide the display power and to drive the
-> +	  display backlight WLED.
-
-Please don't line-wrap unnecessarily.
-
-Please re-work the last sentence, as it doesn't quite make sense.
-
->  config MFD_RT5033
->  	tristate "Richtek RT5033 Power Management IC"
->  	depends on I2C
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 1780019..4108141 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -235,6 +235,7 @@ obj-$(CONFIG_MFD_MENF21BMC)	+= menf21bmc.o
->  obj-$(CONFIG_MFD_HI6421_PMIC)	+= hi6421-pmic-core.o
->  obj-$(CONFIG_MFD_HI655X_PMIC)   += hi655x-pmic.o
->  obj-$(CONFIG_MFD_DLN2)		+= dln2.o
-> +obj-$(CONFIG_MFD_RT4831)	+= rt4831-core.o
->  obj-$(CONFIG_MFD_RT5033)	+= rt5033.o
->  obj-$(CONFIG_MFD_SKY81452)	+= sky81452.o
->  
-> diff --git a/drivers/mfd/rt4831-core.c b/drivers/mfd/rt4831-core.c
-> new file mode 100644
-> index 00000000..5342959
-> --- /dev/null
-> +++ b/drivers/mfd/rt4831-core.c
-> @@ -0,0 +1,119 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-
-No copyright?
-
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +#define RT4831_REG_REVISION	0x01
-> +#define RT4831_REG_ENABLE	0x08
-> +#define RT4831_REG_I2CPROT	0x15
-> +
-> +#define RICHTEK_VID		0x03
-> +#define RT4831_VID_MASK		GENMASK(1, 0)
-> +#define RT4831_RESET_MASK	BIT(7)
-> +#define RT4831_I2CSAFETMR_MASK	BIT(0)
-> +
-> +static const struct mfd_cell rt4831_subdevs[] = {
-> +	OF_MFD_CELL("rt4831-backlight", NULL, NULL, 0, 0, "richtek,rt4831-backlight"),
-> +	MFD_CELL_NAME("rt4831-regulator")
-> +};
-> +
-> +static bool rt4831_is_accessible_reg(struct device *dev, unsigned int reg)
-> +{
-> +	if (reg >= RT4831_REG_REVISION && reg <= RT4831_REG_I2CPROT)
-> +		return true;
-> +	return false;
-> +}
-> +
-> +static const struct regmap_config rt4831_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 8,
-> +	.max_register = RT4831_REG_I2CPROT,
-> +
-> +	.readable_reg = rt4831_is_accessible_reg,
-> +	.writeable_reg = rt4831_is_accessible_reg,
-> +};
-> +
-> +static int rt4831_probe(struct i2c_client *client)
-> +{
-> +	struct gpio_desc *enable;
-> +	struct regmap *regmap;
-> +	unsigned int val;
-> +	int ret;
-> +
-> +	enable = devm_gpiod_get_optional(&client->dev, "enable", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(enable)) {
-> +		dev_err(&client->dev, "Failed to get chip enable gpio\n");
-
-"Failed to get 'enable' GPIO chip"
-
-> +		return PTR_ERR(enable);
-> +	}
-> +
-> +	regmap = devm_regmap_init_i2c(client, &rt4831_regmap_config);
-> +	if (IS_ERR(regmap)) {
-> +		dev_err(&client->dev, "Failed to init regmap\n");
-
-"initialise"
-
-> +		return PTR_ERR(regmap);
-> +	}
-> +
-> +	ret = regmap_read(regmap, RT4831_REG_REVISION, &val);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Fail to get version id\n");
-
-"Failed to get H/W revision"
-
-> +		return ret;
-> +	}
-> +
-> +	if ((val & RT4831_VID_MASK) != RICHTEK_VID) {
-> +		dev_err(&client->dev, "VID not matched, val = 0x%02x\n", val);
-> +		return -ENODEV;
-> +	}
-> +
-> +	/*
-> +	 * Used to prevent the abnormal shutdown.
-> +	 * If SCL/SDA both keep low for one second to reset HW.
-> +	 */
-> +	ret = regmap_update_bits(regmap, RT4831_REG_I2CPROT, RT4831_I2CSAFETMR_MASK,
-> +				 RT4831_I2CSAFETMR_MASK);
-> +	if (ret) {
-> +		dev_err(&client->dev, "Failed to enable I2C safety timer\n");
-> +		return ret;
-> +	}
-> +
-> +	return devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO, rt4831_subdevs,
-> +				    ARRAY_SIZE(rt4831_subdevs), NULL, 0, NULL);
-> +}
-> +
-> +static int rt4831_remove(struct i2c_client *client)
-> +{
-> +	struct regmap *regmap = dev_get_regmap(&client->dev, NULL);
-> +
-> +	/* Make sure all off before module removal */
-
-"Disable all <thing your disabling> are disabled before ..."
-
-> +	return regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, RT4831_RESET_MASK);
-> +}
-> +
-> +static void rt4831_shutdown(struct i2c_client *client)
-> +{
-> +	struct regmap *regmap = dev_get_regmap(&client->dev, NULL);
-> +
-> +	/* Make sure all off before machine shutdown */
-
-As above.
-
-> +	regmap_update_bits(regmap, RT4831_REG_ENABLE, RT4831_RESET_MASK, RT4831_RESET_MASK);
-> +}
-> +
-> +static const struct of_device_id __maybe_unused rt4831_of_match[] = {
-> +	{ .compatible = "richtek,rt4831", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, rt4831_of_match);
-> +
-> +static struct i2c_driver rt4831_driver = {
-> +	.driver = {
-> +		.name = "rt4831",
-> +		.of_match_table = of_match_ptr(rt4831_of_match),
-> +	},
-> +	.probe_new = rt4831_probe,
-> +	.remove = rt4831_remove,
-> +	.shutdown = rt4831_shutdown,
-> +};
-> +module_i2c_driver(rt4831_driver);
-> +
-> +MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
-> +MODULE_LICENSE("GPL v2");
-
+Applied and fixed up into "dt-bindings: arm: bcm: document BCM4908
+bindings", thanks for the quick turn around!
 -- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Florian
