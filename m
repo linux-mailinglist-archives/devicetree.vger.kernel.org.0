@@ -2,118 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC47B2C4992
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 22:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AEF52C49B8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 22:15:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730836AbgKYVJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 16:09:59 -0500
-Received: from mailout07.rmx.de ([94.199.90.95]:47693 "EHLO mailout07.rmx.de"
+        id S1731333AbgKYVNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 16:13:20 -0500
+Received: from z5.mailgun.us ([104.130.96.5]:31109 "EHLO z5.mailgun.us"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729981AbgKYVJ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 16:09:59 -0500
-Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        id S1731136AbgKYVNU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Nov 2020 16:13:20 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1606338800; h=Message-ID: Subject: Cc: To: From: Date:
+ Content-Transfer-Encoding: Content-Type: MIME-Version: Sender;
+ bh=xM0yJLsV7TQGz8DklZILvBPJVocrTYV7CjfY0iWs1FU=; b=dfjPfgHPDtgYT6n7qVhHu9ULktoGSZqvJQW98Ua5ZY4MMng2p5v2G55dCZFHPQ3fzGg4oSOH
+ DtNgx2SgilZB4G+ZZlj6E1Evj8tUjX400fXtNOoalseXM0ysvMHcuoipvWhy7Ygq+q85H3R9
+ g6LxY9r7/m8c9yrjQ8kn/foBa9E=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-west-2.postgun.com with SMTP id
+ 5fbec8e87ef0a8d8437e6167 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 25 Nov 2020 21:13:12
+ GMT
+Sender: mturney=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 96E5BC43460; Wed, 25 Nov 2020 21:13:12 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00
+        autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mailout07.rmx.de (Postfix) with ESMTPS id 4ChD6q59sWzBvCq;
-        Wed, 25 Nov 2020 22:09:55 +0100 (CET)
-Received: from mta.arri.de (unknown [217.111.95.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin01.retarus.com (Postfix) with ESMTPS id 4ChD6Z68Y1z2xFb;
-        Wed, 25 Nov 2020 22:09:42 +0100 (CET)
-Received: from n95hx1g2.localnet (192.168.54.19) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Wed, 25 Nov
- 2020 22:08:41 +0100
-From:   Christian Eggers <ceggers@arri.de>
-To:     <Tristram.Ha@microchip.com>
-CC:     <olteanv@gmail.com>, <kuba@kernel.org>, <andrew@lunn.ch>,
-        <richardcochran@gmail.com>, <robh+dt@kernel.org>,
-        <vivien.didelot@gmail.com>, <davem@davemloft.net>,
-        <kurt.kanzenbach@linutronix.de>, <george.mccollister@gmail.com>,
-        <marex@denx.de>, <helmut.grohne@intenta.de>,
-        <pbarker@konsulko.com>, <Codrin.Ciubotariu@microchip.com>,
-        <Woojung.Huh@microchip.com>, <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v3 00/12] net: dsa: microchip: PTP support for KSZ956x
-Date:   Wed, 25 Nov 2020 22:08:39 +0100
-Message-ID: <3569829.EPWo3g8d0Q@n95hx1g2>
-Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-In-Reply-To: <BYAPR11MB35582F880B533EB2EE0CDD1DECE00@BYAPR11MB3558.namprd11.prod.outlook.com>
-References: <20201118203013.5077-1-ceggers@arri.de> <2452899.Bt8PnbAPR0@n95hx1g2> <BYAPR11MB35582F880B533EB2EE0CDD1DECE00@BYAPR11MB3558.namprd11.prod.outlook.com>
+        (Authenticated sender: mturney)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 9570BC433C6;
+        Wed, 25 Nov 2020 21:13:11 +0000 (UTC)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [192.168.54.19]
-X-RMX-ID: 20201125-220942-4ChD6Z68Y1z2xFb-0@kdin01
-X-RMX-SOURCE: 217.111.95.66
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 25 Nov 2020 13:13:11 -0800
+From:   mturney@codeaurora.org
+To:     devicetree@vger.kernel.org
+Cc:     robh@kernel.org
+Subject: viability of dt-schema long-term
+Message-ID: <b4c0976e36a3a6e45b1042d4587e2eb9@codeaurora.org>
+X-Sender: mturney@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I need some help from Microchip, please read below.
 
-On Thursday, 19 November 2020, 19:51:15 CET, Tristram.Ha@microchip.com wrote:
-> There is one more requirement that is a little difficult to do.  The calculated peer delay
-> needs to be programmed in hardware register, but the regular PTP stack has no way to
-> send that command.  I think the driver has to do its own calculation by snooping on the
-> Pdelay_Req/Pdelay_Resp/Pdelay_Resp_Follow_Up messages.
+Folks,
+I am advocating use of dt-schema project internally to validate DTS 
+files.
+I should add that our use is outside kernel tree on proprietary project.
 
-In an (offline) discussion with Vladimir we discovered, that the KSZ switch
-behaves different as ptp4l expects: 
+One of the push-backs I'm getting from the management chain is along the 
+lines of...
 
-The KSZ switch forwards PTP (e.g. SYNC) messages in hardware (with updating
-the correction field). For this, the peer delays need be configured for each
-port.
+Who is this Rob Herring guy and why should we use a project that is only 
+sourced on https://github.com/robherring/dt-schema?
+If the kernel project is using it, why isn't kernel.org hosting the 
+project?
+What is kernel plan if Rob walks away from the project, is this going to 
+wither away and die?
 
-ptp4l in turn expects to do the forwarding in software (for the P2P_TC clock
-configuration). For this, no hardware configuration of the peer delay is
-necessary. But due to limitations of currently available hardware, this TC
-forwarding is currently only supported for 2 step clocks, as a one-step clock
-would probably fully replace the originTimestamp field (similar as a BC, but
-not as a TC).
+There are more, but the above pseudo-quotes grab the gist of the 
+management complaints.
 
-Vladimir suggested to configure an ACL in the KSZ switch to block forwarding
-of PTP messages between the user ports and to run ptp4l as BC. My idea is to
-simply block forwarding of UDP messages with destination ports 319+320 and
-L2 messages with the PTP Ether-Type.
+Q.1) Is there a plan for the kernel project to suck dt-schema into its 
+orbit?
 
-I installed the following ACL (for UDP) in the Port ACL Access registers 0-F:
-|_0__1__2__3__4__5__6__7__8__9__A__B__C__D__E__F
-| 00 39 01 40 01 3F 42 22 00 00 00 60 00 00 00 01
-ACL index: 0
+Q.2) How many active maintainers are there for dt-schema?
 
-Match: 
-- MD=11 (L4)
-- ENB=10 (UDP ports)
-- S/D=0 (dst)
-- EQ=1 (equal)
-- MAX_PORT=320
-- MIN_PORT=319
-- PC=01 (min or max)
-- PRO=17 (UDP, don't care?)
-- FME=0 (disabled)
+Q.3) How do I respond to the above types of complaints?
 
-Action:
-- PM=0 (disabled)
-- P=0 (don't care)
-- RPE=0 (disabled)
-- RP=0 (don't care)
-- MM=11 (replace)
-- PORT_FWD_MAP: all ports to 0
-
-Processing entry:
-- Ruleset=0x0001
-- FRN=0
-
-Unfortunately, with this configuration PTP messages are still forwarded from
-port 1 to port 2. Although I was successful in blocking other communication
-(e.g. by MAC address), the matching rules above seem not to work. Is there an
-error in the ACL, or is forwarding of PTP traffic independent of configured
-ACLs?
-
-regards
-Christian
-
-
-
+Cheers,
+T.mike
