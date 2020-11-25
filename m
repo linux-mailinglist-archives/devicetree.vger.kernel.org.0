@@ -2,160 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB7242C3923
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 07:37:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 394212C39C1
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 08:14:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725869AbgKYGgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 01:36:55 -0500
-Received: from pegase1.c-s.fr ([93.17.236.30]:50942 "EHLO pegase1.c-s.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725562AbgKYGgz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 01:36:55 -0500
-Received: from localhost (mailhub1-int [192.168.12.234])
-        by localhost (Postfix) with ESMTP id 4CgrlQ4mv8z9v4Wm;
-        Wed, 25 Nov 2020 07:36:50 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [192.168.12.234]) (amavisd-new, port 10024)
-        with ESMTP id 9WOu8jrGC870; Wed, 25 Nov 2020 07:36:50 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4CgrlQ2P6pz9v1VN;
-        Wed, 25 Nov 2020 07:36:50 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 0A3DF8B7C1;
-        Wed, 25 Nov 2020 07:36:51 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id NyjcLbCJ2q3z; Wed, 25 Nov 2020 07:36:50 +0100 (CET)
-Received: from [192.168.4.90] (unknown [192.168.4.90])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 710BA8B7B7;
-        Wed, 25 Nov 2020 07:36:48 +0100 (CET)
-Subject: Re: [PATCH 0/2] powerpc: Remove support for ppc405/440 Xilinx
- platforms
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-To:     Michael Ellerman <mpe@ellerman.id.au>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     Kate Stewart <kstewart@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Desnes A. Nunes do Rosario" <desnesn@linux.ibm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        ALSA Development Mailing List <alsa-devel@alsa-project.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Richard Fontana <rfontana@redhat.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sasha Levin <sashal@kernel.org>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Leonardo Bras <leonardo@linux.ibm.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Andrew Donnellan <ajd@linux.ibm.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Alistair Popple <alistair@popple.id.au>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Alexios Zavras <alexios.zavras@intel.com>,
-        Mark Brown <broonie@kernel.org>, git@xilinx.com,
-        Linux Fbdev development list <linux-fbdev@vger.kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Allison Randal <allison@lohutok.net>,
-        Christophe Leroy <christophe.leroy@c-s.fr>,
-        Michal Simek <monstr@monstr.eu>, Wei Hu <weh@microsoft.com>,
-        Christian Lamparter <chunkeey@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Armijn Hemel <armijn@tjaldur.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Enrico Weigelt <info@metux.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        Thiago Jung Bauermann <bauerman@linux.ibm.com>
-References: <cover.1585311091.git.michal.simek@xilinx.com>
- <CAK8P3a2mKPRFbRE3MWScr9GSiL4cpLg0wqv1Q28XDCZVPWgHfg@mail.gmail.com>
- <20200327131026.GT1922688@smile.fi.intel.com>
- <20200327131531.GU1922688@smile.fi.intel.com>
- <CAK8P3a1Z+ZPTDzgAjdz0a7d85R62BhUqkdEWgrwXh-OnYe6rog@mail.gmail.com>
- <20200327141434.GA1922688@smile.fi.intel.com>
- <b5adcc7a-9d10-d75f-50e3-9c150a7b4989@c-s.fr>
- <87mu7xum41.fsf@mpe.ellerman.id.au>
- <bac9af641140cf6df04e3532589a11c2f3bccd2f.camel@kernel.crashing.org>
- <87pncprwp9.fsf@mpe.ellerman.id.au>
- <5782f9a42ad8acd8b234fa9c15a09db93552dc6b.camel@kernel.crashing.org>
- <871roykwu6.fsf@mpe.ellerman.id.au>
- <CAK8P3a1XmeeP7FKfNwXZO8cXyJ_U_Jr0kjOaGZ6F=7OcoZ+0nw@mail.gmail.com>
- <87zha17otl.fsf@mpe.ellerman.id.au>
- <33b873a8-ded2-4866-fb70-c336fb325923@csgroup.eu>
-Message-ID: <02a27887-55ce-2101-efce-b1236e164f15@csgroup.eu>
-Date:   Wed, 25 Nov 2020 07:36:49 +0100
-User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S1727966AbgKYHHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 02:07:47 -0500
+Received: from aclms3.advantech.com.tw ([125.252.70.86]:20608 "EHLO
+        ACLMS3.advantech.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727519AbgKYHHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 02:07:47 -0500
+Received: from taipei08.ADVANTECH.CORP (unverified [172.20.0.235]) by ACLMS3.advantech.com.tw
+ (Clearswift SMTPRS 5.6.0) with ESMTP id <Te30c5b10dcac1401c8114@ACLMS3.advantech.com.tw>;
+ Wed, 25 Nov 2020 15:07:50 +0800
+Received: from localhost (124.9.5.81) by taipei08.ADVANTECH.CORP
+ (172.20.0.235) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 25 Nov
+ 2020 15:07:42 +0800
+From:   Shihlun Lin <shihlun.lin@advantech.com.tw>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        Campion Kang <campion.kang@advantech.com.tw>,
+        Shihlun Lin <shihlun.lin@advantech.com.tw>,
+        AceLan Kao <chia-lin.kao@canonical.com>
+Subject: [RESEND PATCH v4 2/6] mfd: ahc1ec0: Add Advantech EC include file used by dt-bindings
+Date:   Wed, 25 Nov 2020 15:07:40 +0800
+Message-ID: <20201125070744.4651-2-shihlun.lin@advantech.com.tw>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201125070744.4651-1-shihlun.lin@advantech.com.tw>
+References: <20201125070744.4651-1-shihlun.lin@advantech.com.tw>
 MIME-Version: 1.0
-In-Reply-To: <33b873a8-ded2-4866-fb70-c336fb325923@csgroup.eu>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: fr
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [124.9.5.81]
+X-ClientProxiedBy: taipei09.ADVANTECH.CORP (172.20.0.236) To
+ taipei08.ADVANTECH.CORP (172.20.0.235)
+X-StopIT: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This files defines the sud-device types and hwmon profiles support by
+Advantech embedded controller.
 
+Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
+---
+ include/dt-bindings/mfd/ahc1ec0.h | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 include/dt-bindings/mfd/ahc1ec0.h
 
-Le 21/05/2020 à 12:38, Christophe Leroy a écrit :
-> 
-> 
-> Le 21/05/2020 à 09:02, Michael Ellerman a écrit :
->> Arnd Bergmann <arnd@arndb.de> writes:
->>> +On Wed, Apr 8, 2020 at 2:04 PM Michael Ellerman <mpe@ellerman.id.au> wrote:
->>>> Benjamin Herrenschmidt <benh@kernel.crashing.org> writes:
->>>>> On Fri, 2020-04-03 at 15:59 +1100, Michael Ellerman wrote:
->>>>>> Benjamin Herrenschmidt <benh@kernel.crashing.org> writes:
->>>>> IBM still put 40x cores inside POWER chips no ?
->>>>
->>>> Oh yeah that's true. I guess most folks don't know that, or that they
->>>> run RHEL on them.
->>>
->>> Is there a reason for not having those dts files in mainline then?
->>> If nothing else, it would document what machines are still being
->>> used with future kernels.
->>
->> Sorry that part was a joke :D  Those chips don't run Linux.
->>
-> 
-> Nice to know :)
-> 
-> What's the plan then, do we still want to keep 40x in the kernel ?
-> 
-> If yes, is it ok to drop the oldies anyway as done in my series 
-> https://patchwork.ozlabs.org/project/linuxppc-dev/list/?series=172630 ?
-> 
-> (Note that this series will conflict with my series on hugepages on 8xx due to the 
-> PTE_ATOMIC_UPDATES stuff. I can rebase the 40x modernisation series on top of the 8xx hugepages 
-> series if it is worth it)
-> 
+diff --git a/include/dt-bindings/mfd/ahc1ec0.h b/include/dt-bindings/mfd/ahc1ec0.h
+new file mode 100644
+index 000000000000..389a7a7f8f02
+--- /dev/null
++++ b/include/dt-bindings/mfd/ahc1ec0.h
+@@ -0,0 +1,25 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Device Tree defines for Advantech Embedded Controller (AHC1EC0)
++ */
++
++#ifndef _DT_BINDINGS_MFD_AHC1EC0_H
++#define _DT_BINDINGS_MFD_AHC1EC0_H
++
++/* Sub-device Definitions */
++#define AHC1EC0_SUBDEV_BRIGHTNESS 0x0
++#define AHC1EC0_SUBDEV_EEPROM     0x1
++#define AHC1EC0_SUBDEV_GPIO       0x2
++#define AHC1EC0_SUBDEV_HWMON      0x3
++#define AHC1EC0_SUBDEV_LED        0x4
++#define AHC1EC0_SUBDEV_WDT        0x5
++
++/* HWMON Profile Definitions */
++#define AHC1EC0_HWMON_PRO_TEMPLATE 0x0
++#define AHC1EC0_HWMON_PRO_TPC5XXX  0x1
++#define AHC1EC0_HWMON_PRO_PRVR4    0x2
++#define AHC1EC0_HWMON_PRO_UNO2271G 0x3
++#define AHC1EC0_HWMON_PRO_UNO1172A 0x4
++#define AHC1EC0_HWMON_PRO_UNO1372G 0x5
++
++#endif /* _DT_BINDINGS_MFD_AHC1EC0_H */
+-- 
+2.17.1
 
-Do we still want to keep 40x in the kernel ? We don't even have a running 40x QEMU machine as far as 
-I know.
-
-I'm asking because I'd like to drop the non CONFIG_VMAP_STACK code to simplify and ease stuff (code 
-that works with vmalloc'ed stacks also works with stacks in linear memory), but I can't do it 
-because 40x doesn't have VMAP_STACK and should I implement it for 40x, I have to means to test it.
-
-So it would ease things if we could drop 40x completely, unless someone there has a 40x platform to 
-test stuff.
-
-Thanks
-Christophe
