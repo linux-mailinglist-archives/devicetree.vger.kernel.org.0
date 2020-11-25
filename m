@@ -2,122 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA15C2C4696
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 18:24:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2C5B2C46B6
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 18:27:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732292AbgKYRXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 12:23:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730695AbgKYRXl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 12:23:41 -0500
-Received: from mail-yb1-xb41.google.com (mail-yb1-xb41.google.com [IPv6:2607:f8b0:4864:20::b41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69282C0613D4;
-        Wed, 25 Nov 2020 09:23:41 -0800 (PST)
-Received: by mail-yb1-xb41.google.com with SMTP id o144so432412ybg.7;
-        Wed, 25 Nov 2020 09:23:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xZV9+j2Fz0qufkKJrAOkz5+JLHtjo8L5rHWDGquTLcM=;
-        b=eRcROy/69g3Xqx5IEAOienCCL4wA9c4r4VW24UnEl49nZGhLWIOFQdfP1kuGsuJKxv
-         OcHkqlR/2mkXuJiIW/hlI4Jzp5gtfXgeoR6Co/4tZI5YL0dPGZn9GreyB2Y9zHjo675z
-         yQy9komEWr8d6OTAkZW7Xeh1J1+7kWJlMg5hrln+4XpT6WL4YmXYuZ5UQfQz/4q58KPz
-         2F6M0rl9kLKDj8V4w9Nr67NuVN8kYl5qHUKw3xYuvZrgKzZqzp5OqObg3bIbxDKt4BR9
-         3HmkzpMiA7HCT7DCNbJu2a8ZzSoqj4ToCt+xq0OFw5lM6dGNWDK+RvJTujvqAz3KlkVi
-         uHrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xZV9+j2Fz0qufkKJrAOkz5+JLHtjo8L5rHWDGquTLcM=;
-        b=p70NIXwPvDgtCGhJg+Rr04brd1jOFJssmuXP2hGSVEV56UDoVrJVkMJ1lYArn+8PAP
-         ryRuWirnU+e7zQzBTksIpK/31OA06vZ4rKtfK+QCAhnfaakuZCjGPtv2NJPbKLC9tSxT
-         4lNlg2k9V+X74eGbsDapdHMpPdgSipUbBwgbXAnaBmnT6tDEGvv4V74lu7yYnGaaAKbV
-         jnn1vS1AvuokMzqbLDcCu1dd8jcJeYZA1LoyZ3nVCzMJ5RQcYOdc9IHvAEEWE9Kqh5Ux
-         5CyC/xf/yVHHghEAK+z7O05Fxon1DdzAX2sl+YWLu5rsdLfD6jSOqYnt8B2FEpo/ww+h
-         aPRw==
-X-Gm-Message-State: AOAM5332nzVaPXV3TZ7RaFNPdouo3oReb3AOLpRMjCHuyzZWe6NFnKgL
-        g3wYpONQsG+qe+mU2z4CqLtGHtr0fd8m5BBSutCMs7zt0zswSQ==
-X-Google-Smtp-Source: ABdhPJw6hNT6UUNkOq0XdmIWXdolS1DJJdpm/q+dUjJB/51hdmbKlTvkCe+FCMK03zdyRUd35gMkKTDJtiSalO+tFxQ=
-X-Received: by 2002:a25:e00b:: with SMTP id x11mr5466249ybg.518.1606325020731;
- Wed, 25 Nov 2020 09:23:40 -0800 (PST)
+        id S1732766AbgKYR1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 12:27:15 -0500
+Received: from out28-219.mail.aliyun.com ([115.124.28.219]:51401 "EHLO
+        out28-219.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732763AbgKYR1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 12:27:15 -0500
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1100795|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.00509026-0.00170274-0.993207;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047208;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.J.BPrxs_1606325224;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.J.BPrxs_1606325224)
+          by smtp.aliyun-inc.com(10.147.41.137);
+          Thu, 26 Nov 2020 01:27:11 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     sboyd@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
+        paul@crapouillou.net
+Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Subject: [PATCH 0/4] Add new clocks for Ingenic SoCs.
+Date:   Thu, 26 Nov 2020 01:26:14 +0800
+Message-Id: <20201125172618.112707-1-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-References: <20201125130148.28724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdX+FZjAfbWWw53EToHP6c4JFmQX9wogAyW3OcOxHgMd0w@mail.gmail.com>
- <OSBPR01MB504858A417137ED7AC31F925AAFA0@OSBPR01MB5048.jpnprd01.prod.outlook.com>
- <CAMuHMdXGqv9aKra7Ncg4mRoc2caO5iOw+ydrNmo9UcHeDTgVGw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXGqv9aKra7Ncg4mRoc2caO5iOw+ydrNmo9UcHeDTgVGw@mail.gmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 25 Nov 2020 17:23:14 +0000
-Message-ID: <CA+V-a8sEQJhBF-MSj5o7Pf5KbkycQ2NpLnLmnCmHmN+tANO5Vg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] r8a7742-iwg21d-q7-dbcm: Add support for ov7725 sensors
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+1.Add "jz4780_core1_disable()" for disable the second core of JZ4780,
+  prepare for later commits.
+2.Add CIM, AIC, DMIC clocks for the X1000 SoC, and CIM, AIC, DMIC, I2S
+  clocks for the X1830 SoC from Ingenic.
+3.Fill unused bits in parents in jz4780-cgu.c, x1000-cgu.c, and
+  x1830-cgu.c, these bits should be filled with -1.
+4.Reformat code, add missing blank lines, remove unnecessary tabs,
+  and align code.
 
-On Wed, Nov 25, 2020 at 4:32 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Prabhakar,
->
-> On Wed, Nov 25, 2020 at 5:26 PM Prabhakar Mahadev Lad
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > -----Original Message-----
-> > > From: Geert Uytterhoeven <geert@linux-m68k.org>
-> > > Sent: 25 November 2020 16:21
-> > > To: Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Cc: Magnus Damm <magnus.damm@gmail.com>; Rob Herring <robh+dt@kernel.org>; Linux-Renesas <linux-
-> > > renesas-soc@vger.kernel.org>; open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
-> > > <devicetree@vger.kernel.org>; Linux Kernel Mailing List <linux-kernel@vger.kernel.org>; Biju Das
-> > > <biju.das.jz@bp.renesas.com>; Prabhakar <prabhakar.csengg@gmail.com>
-> > > Subject: Re: [PATCH v2 0/2] r8a7742-iwg21d-q7-dbcm: Add support for ov7725 sensors
-> > >
-> > > Hi Prabhakar,
-> > >
-> > > On Wed, Nov 25, 2020 at 2:02 PM Lad Prabhakar
-> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > > > This patch set enables to connect ov7725 sensors on iWave-RZ/G1H Qseven
-> > > > board.
-> > >
-> > > Thanks for your series!
-> > >
-> > > Do you think it's a valid use case to mix and match ov5640 and ov7725
-> > > cameras? E.g. connect two of each?
-> > >
-> > Yes that is valid case to mix and match. Do you want me to make it configurable too ?
->
-> If this is a valid use case, then please do so.
->
-In that case do we still want to keep the ov7725/ov5640 nodes in
-separate dtsi  ?
+周琰杰 (Zhou Yanjie) (4):
+  clk: JZ4780: Add function for disable the second core.
+  dt-bindings: clock: Add missing clocks for Ingenic SoCs.
+  clk: Ingenic: Add missing clocks for Ingenic SoCs.
+  clk: Ingenic: Fill unused bits in parents and reformat code.
 
-Cheers,
-Prabhakar
+ drivers/clk/ingenic/jz4780-cgu.c      |  33 ++++-
+ drivers/clk/ingenic/x1000-cgu.c       |  39 +++--
+ drivers/clk/ingenic/x1830-cgu.c       | 266 +++++++++++++++++++++++++++++-----
+ include/dt-bindings/clock/x1000-cgu.h |   3 +
+ include/dt-bindings/clock/x1830-cgu.h |   4 +
+ 5 files changed, 292 insertions(+), 53 deletions(-)
 
-> Thanks!
->
-> > > Or should all four cameras be of the same type?
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
->
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+-- 
+2.7.4
+
