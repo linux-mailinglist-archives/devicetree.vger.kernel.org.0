@@ -2,92 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C4392C3FE7
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 13:24:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 39A422C4023
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 13:29:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729145AbgKYMYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 07:24:07 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45536 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729141AbgKYMYG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 07:24:06 -0500
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 93874206E5;
-        Wed, 25 Nov 2020 12:24:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606307046;
-        bh=XDwgKOEhVubEPri5ivC7iaWE3ykzukuoYApUlOqRZ4U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CuAz/g7ltrT31FAAt7dJ2TXyYV+rEveX9kyh1coxGqA8i/c8J+x1ALv56/V6Zcx0t
-         dQlV1pn+To+X/LLdkc71FgqZP2V3cHEFrA99DjO6fWS4geFz83DXz09bT/D6cB7Thf
-         /Op6Ps+IjwN8OVDxicixULN+0CcJa6Zm9gexaiU4=
-Date:   Wed, 25 Nov 2020 12:23:59 +0000
-From:   Will Deacon <will@kernel.org>
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com, Greg Kroah-Hartman <gregkh@google.com>,
-        kernel-team@android.com
-Subject: Re: [PATCH v4 00/24] MT8192 IOMMU support
-Message-ID: <20201125122358.GA15697@willie-the-truck>
-References: <20201111123838.15682-1-yong.wu@mediatek.com>
+        id S1729358AbgKYM2n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 07:28:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49324 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728161AbgKYM2n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 07:28:43 -0500
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 360D7C0613D4
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 04:28:43 -0800 (PST)
+Received: by mail-ed1-x542.google.com with SMTP id v22so2332397edt.9
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 04:28:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=7tKCW59S9tkeZMrBxE++iF0pY0CODmf4HaMU4TGx53c=;
+        b=dg4K11RZfNeycfQ0q6kvqsBPy22ZKeSeQY74NBSBBvEpdb0jDOi+pjkHizrijcKWW2
+         l+GKJGsJzeVP7kK9I4ERlN5Eq7JjBAqfcIoT29gKxRlj9XV1iwVOpNuKA+T/qfyKS/Wv
+         GbMwxXQ2jcEQvaAcU1JO9Y6+QgWnfuhiEKCCUy9chAaFJng9hr0tkgcL8a1ny7MU1jAw
+         +kHV9B1sVEhZtOSqnagDN/jtE4YekoIbLRKHG/vqe1RjJLyqSR5E9lJ9okoxjHVCEd0q
+         aRIRHi3ie7cWK+406Ct7Om9Rp6YSwjs/9e+cXzmMujcOLPXAqj79d9yYLtAcoXh2+Z0U
+         VLwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7tKCW59S9tkeZMrBxE++iF0pY0CODmf4HaMU4TGx53c=;
+        b=KvytpHo1qxeljURUTBFsuTi0hFlEaeX4O85lvLPxd7AkDMK8fFwSxlOKZhzukHKaWN
+         WEQqxzifvKkwVq465bpCqOTWMgavXN6jOYVcC+biw0SOWGwxzK341MfiLLGx/mI/zdIj
+         mIehFPPvoBgjltEs26JoErPrqJpWUTvjGBGwrwngm59h2rBqyQsvIJnJk+JVyZkj/yKg
+         j43LnUGJTJ36sbyujJZgEiry9Jgj2716WXVFaJ8u8/LLzL7WAQ7yEjFHF3iUMWJ11Wua
+         GadHjjr6XfHsT7+DstoAvhpgcqzVtzDPkOj+x2ZUrfLjDDZYTpmv8wFxswTvgbqdi1XQ
+         xNNw==
+X-Gm-Message-State: AOAM531ScwNasUv0YCouUcr64KPeGjDS9+v/zgT+gmD5Qvit6uSczagC
+        nQmLbMM22HYD170VRZT4+nNwRbCofD2tkyt4b8tojA==
+X-Google-Smtp-Source: ABdhPJyABZxy4cXKJFrM84f8KC9j5weXhBw9rX4v1HPfA/pwFuq7kkn7UBXxa8Nn+JrsAa/ifUp8dGzYhDPf4Jlg7Is=
+X-Received: by 2002:aa7:d545:: with SMTP id u5mr3179518edr.113.1606307321936;
+ Wed, 25 Nov 2020 04:28:41 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201111123838.15682-1-yong.wu@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <f767fe007e446a2299fda9905e75b723c650a424.1605021644.git.michal.simek@xilinx.com>
+In-Reply-To: <f767fe007e446a2299fda9905e75b723c650a424.1605021644.git.michal.simek@xilinx.com>
+From:   Michal Simek <monstr@monstr.eu>
+Date:   Wed, 25 Nov 2020 13:28:30 +0100
+Message-ID: <CAHTX3dJH88vLYqhYoKcMOBDMX62m1NKA16rKwbQyh5H+Q6o_PQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: zynqmp: Move gic node to axi bus
+To:     LKML <linux-kernel@vger.kernel.org>,
+        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
+Cc:     Paul Thomas <pthomas8589@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 11, 2020 at 08:38:14PM +0800, Yong Wu wrote:
-> This patch mainly adds support for mt8192 Multimedia IOMMU and SMI.
-> 
-> mt8192 also is MTK IOMMU gen2 which uses ARM Short-Descriptor translation
-> table format. The M4U-SMI HW diagram is as below:
-> 
->                           EMI
->                            |
->                           M4U
->                            |
->                       ------------
->                        SMI Common
->                       ------------
->                            |
->   +-------+------+------+----------------------+-------+
->   |       |      |      |       ......         |       |
->   |       |      |      |                      |       |
-> larb0   larb1  larb2  larb4     ......      larb19   larb20
-> disp0   disp1   mdp    vdec                   IPE      IPE
-> 
-> All the connections are HW fixed, SW can NOT adjust it.
-> 
-> Comparing with the preview SoC, this patchset mainly adds two new functions:
-> a) add iova 34 bits support.
-> b) add multi domains support since several HW has the special iova
-> region requirement.
-> 
-> change note:
-> v4: a) rebase on v5.10-rc1
->     b) Move the smi part to a independent patchset.
->     c) Improve v7s code from Robin and Will.
->     d) Add a mediatek iommu entry patch in MAINTAINERS.
+=C3=BAt 10. 11. 2020 v 16:20 odes=C3=ADlatel Michal Simek
+<michal.simek@xilinx.com> napsal:
+>
+> The reason for this change is that after change from amba to axi U-Boot
+> started to show error like:
+> Unable to update property /axi/ethernet@ff0e0000:mac-address, err=3DFDT_E=
+RR_NOTFOUND
+> Unable to update property /axi/ethernet@ff0e0000:local-mac-address, err=
+=3DFDT_ERR_NOTFOUND
+>
+> The reason is implementation in fdt_nodename_eq_() which is taken from dt=
+c
+> to the kernel and to the U-Boot. Especially DTC commit d2a9da045897 ("lib=
+fdt:
+> Make unit address optional for finding nodes") which is in DTC from 2007.
+>
+> The part of commit description is
+> "   This is contrary to traditional OF-like finddevice() behaviour, which
+>     allows the unit address to be omitted (which is useful when the devic=
+e
+>     name is unambiguous without the address)."
+>
+> The kernel commit dfff9066e60e ("arm64: dts: zynqmp: Rename buses to be
+> align with simple-bus yaml") changed amba-apu/amba to axi@0/axi but
+> fdt_nodename_eq_() detects /axi/ as match for /axi@0/ because of commit
+> above.
+>
+> That's why it easier to fix one DT inside the kernel by moving GIC node
+> from own bus to generic axi bus as is done by others SoCs. This will avoi=
+d
+> incorrect match because the unit address is omitted.
+>
+> Reported-by: Paul Thomas <pthomas8589@gmail.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> ---
+>
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 31 ++++++++++----------------
+>  1 file changed, 12 insertions(+), 19 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts=
+/xilinx/zynqmp.dtsi
+> index 771f60e0346d..515b15ed634a 100644
+> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+> @@ -182,25 +182,6 @@ fpga_full: fpga-full {
+>                 ranges;
+>         };
+>
+> -       amba_apu: axi@0 {
+> -               compatible =3D "simple-bus";
+> -               #address-cells =3D <2>;
+> -               #size-cells =3D <1>;
+> -               ranges =3D <0 0 0 0 0xffffffff>;
+> -
+> -               gic: interrupt-controller@f9010000 {
+> -                       compatible =3D "arm,gic-400";
+> -                       #interrupt-cells =3D <3>;
+> -                       reg =3D <0x0 0xf9010000 0x10000>,
+> -                             <0x0 0xf9020000 0x20000>,
+> -                             <0x0 0xf9040000 0x20000>,
+> -                             <0x0 0xf9060000 0x20000>;
+> -                       interrupt-controller;
+> -                       interrupt-parent =3D <&gic>;
+> -                       interrupts =3D <1 9 0xf04>;
+> -               };
+> -       };
+> -
+>         amba: axi {
+>                 compatible =3D "simple-bus";
+>                 #address-cells =3D <2>;
+> @@ -339,6 +320,18 @@ fpd_dma_chan8: dma@fd570000 {
+>                         power-domains =3D <&zynqmp_firmware PD_GDMA>;
+>                 };
+>
+> +               gic: interrupt-controller@f9010000 {
+> +                       compatible =3D "arm,gic-400";
+> +                       #interrupt-cells =3D <3>;
+> +                       reg =3D <0x0 0xf9010000 0x0 0x10000>,
+> +                             <0x0 0xf9020000 0x0 0x20000>,
+> +                             <0x0 0xf9040000 0x0 0x20000>,
+> +                             <0x0 0xf9060000 0x0 0x20000>;
+> +                       interrupt-controller;
+> +                       interrupt-parent =3D <&gic>;
+> +                       interrupts =3D <1 9 0xf04>;
+> +               };
+> +
+>                 /* LPDDMA default allows only secured access. inorder to =
+enable
+>                  * These dma channels, Users should ensure that these dma
+>                  * Channels are allowed for non secure access.
+> --
+> 2.29.2
+>
 
-Please can you post a v5 of this, adding the Acks from v4 and addressing
-the build failures reported by the kbuild robot on patch 20?
+Applied.
+M
 
-Thanks,
-
-Will
+--=20
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
