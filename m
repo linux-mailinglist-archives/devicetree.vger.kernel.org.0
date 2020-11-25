@@ -2,124 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 23D5E2C4971
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 22:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 364082C4978
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 22:03:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730381AbgKYVBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 16:01:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44802 "EHLO
+        id S1730456AbgKYVDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 16:03:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728529AbgKYVBJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 16:01:09 -0500
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86FB0C0613D4;
-        Wed, 25 Nov 2020 13:00:59 -0800 (PST)
-Received: by mail-lf1-x144.google.com with SMTP id s27so5054178lfp.5;
-        Wed, 25 Nov 2020 13:00:59 -0800 (PST)
+        with ESMTP id S1728622AbgKYVDr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 16:03:47 -0500
+Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11ED5C0613D4;
+        Wed, 25 Nov 2020 13:03:47 -0800 (PST)
+Received: by mail-io1-xd35.google.com with SMTP id o8so3538234ioh.0;
+        Wed, 25 Nov 2020 13:03:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=33MMwLieI2V2yQwCKAVk1NOZsSvsfr90bXma9SI47/I=;
-        b=JPbDomG2xzDK64lU7yF+er1tb6SVB26euJvleeDYEofNq0oLW+IRkEDUXfdvU3dU2u
-         VqIw+h4ppyUGq9V6x7GFPGU7LkKO9RoMdhKj9VUygeTVItGQapggQKqBQo9bXBK3hDhi
-         iE0LTXLgZEZXe3nr3/fi3NS1YOHVZZswCuNXmZvt8tc9Xd+fQFub8M4FS6stmPDqgB40
-         Hrpz9NvLnxpBHo429iVpHr4VWjEk7rZsm3eePOC20EnKkfDJipBPrPWhoi+GqCxtFlC5
-         e/BBwxEEG6yhKRaE2LZMm0xXX80vp9FwpAJKrC1pgk/wqjVDDGn1MVDVm2lBhycHdnjz
-         rBSQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WwznoyDHBsJCVbgMxaR7ZjCVsPFN2HZtH9ujSY9qRqY=;
+        b=WGfi9RAHiHe/zNHl6FtySgMn2q2nuu92HdPboNPVhihz6HNjPoxVI7L2DNrh14Ehc0
+         U97Frh//zAg/GOvjMi0YJMJNXwancZp03JcHm3ZTwQxSP79vHLc9973vc/UDxJGhSINT
+         r7PAL9djodayR8lBXMl28aCmJxIyjK+t+o5K36lBEAz9ETaarHhQaaAIAaUQw8c37JmE
+         30p8O4wF5B7D5Y56/uyN5OYpngRch2icVa8bo0NVFP0W+0/rYHODWlrXgvE2PaCVYTJX
+         rbpeRj8UNSrJ7neKt1R3v3UpZyegrI38vuw1KrPRMuwtNZ5LOglHvvoSl/cQfMjSLM9U
+         5l6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=33MMwLieI2V2yQwCKAVk1NOZsSvsfr90bXma9SI47/I=;
-        b=G8ZkBBZywfwdcJZKYw7651lLQRNTe/q21CqNVlJffqWEs4ldXsqJFY7jBmgfsRTpDG
-         vH6Rondw6JnBODJRnc9zxpqBhQdc8qdZJZXCBFUfpEoKr6s4lufa0C21HH0NkxhCFweJ
-         GGDHerdCONF1nmlUIb3Lu0W5y6UmdL8mHnsxAX1Jktgvb2uVsCq9/PB/yHon0xudDu4m
-         LlC/+QpTdStRElvbqg/ixqs4Zw/0Ug5FWnN6s0IZ4Pn4cxHjtpjXlTs6A2E47th5APkI
-         q6VOYcJu42uixfRntWszy8CbF0fOiKBtRpFalkVNyjdIaN87v6f2clgG9Dr3z11m/M/U
-         IRNQ==
-X-Gm-Message-State: AOAM5339KVj/h25/AZ7E2I4T75G9cZsxn5MxWoFSACRW/vaWF5irK32z
-        darkozOAG2W9mYExIH25wvw=
-X-Google-Smtp-Source: ABdhPJwgCeujZ0KgI56cYo2zo+nF5jJaoz9UjvqOR/16hNHZKGDoTo3RTguAJ0ozckKwDe8hUNURPA==
-X-Received: by 2002:a19:be8d:: with SMTP id o135mr26990lff.200.1606338058064;
-        Wed, 25 Nov 2020 13:00:58 -0800 (PST)
-Received: from mobilestation ([95.79.141.114])
-        by smtp.gmail.com with ESMTPSA id y23sm277492ljk.112.2020.11.25.13.00.56
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WwznoyDHBsJCVbgMxaR7ZjCVsPFN2HZtH9ujSY9qRqY=;
+        b=dxabIQ1MFlg1ol0CcIm7oHXF1JXDOKhjT1tlKArZbHAp3iSt/8+mcYhp8EQUYL4dHG
+         NBsOwlbbUdL3Pnwa+Udd8tycG1N67m3WkB+ndiRp/q8SWzIGFYHTMALbr/Jetq2hmOPf
+         8KdrPtKzot9dMjPp2P8385m8SXzRW+w9VcNBwJYhyFHHLG3MAUZYSJe7wH+Vb0ou0/8O
+         qYF2d5Z8IoyHVGsW2lsh+hf4d4LxM6YMLsXkErX5qbQjfmCFTcZRgksG8rEWVMlm9gsG
+         fkmH+K7XqbCf8KN/+Cj4aMd6wcZEexoeujH3piTAvD/InARhDb5SUJ4RhULIm1XTtbGx
+         KEZQ==
+X-Gm-Message-State: AOAM533AqUSvWgs9WghjUpbxGqKlPiqVZq9WTiwUnEtN+kXSBb5uH7RH
+        6VyAkU0K4AFc5nIMOxEeaQo=
+X-Google-Smtp-Source: ABdhPJzaBSwjfWAsLwaG+BNk9frishX4cRzHoimLv/uEeFvvobpUfwCg0b5CKl+lSvhdD5TlT8/PnA==
+X-Received: by 2002:a6b:750e:: with SMTP id l14mr4143177ioh.151.1606338226154;
+        Wed, 25 Nov 2020 13:03:46 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:8da2:e979:8d1:eddb])
+        by smtp.gmail.com with ESMTPSA id x23sm1564979ioh.28.2020.11.25.13.03.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2020 13:00:57 -0800 (PST)
-Date:   Thu, 26 Nov 2020 00:00:55 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Damien Le Moal <damien.lemoal@wdc.com>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] gpio: dwapb: warn about deprecated property use
-Message-ID: <20201125210055.cautc4yfprybrr5i@mobilestation>
-References: <20201119060921.311747-1-damien.lemoal@wdc.com>
- <20201119060921.311747-3-damien.lemoal@wdc.com>
+        Wed, 25 Nov 2020 13:03:45 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mm-beacon-som: Fix RTC aliases
+Date:   Wed, 25 Nov 2020 15:03:38 -0600
+Message-Id: <20201125210339.1071419-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201119060921.311747-3-damien.lemoal@wdc.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Damien
+On the i.MX8MM Beacon SOM, there is an RTC chip which is fed power
+from the baseboard during power off.  The SNVS RTC integrated into
+the SoC is not fed power.  Depending on the order the modules are
+loaded, this can be a problem if the external RTC isn't rtc0.
 
-On Thu, Nov 19, 2020 at 03:09:21PM +0900, Damien Le Moal wrote:
-> In dwapb_gpio_get_pdata(), add a warning to signal the fact that a
-> device tree is using the deprecated "snps,nr-gpios" property instead of
-> the standard "ngpios" property.
+Make the alias for rtc0 point to the external RTC all the time and
+rtc1 point to the SVNS in order to correctly hold date/time over
+a power-cycle.
 
-Instead of printing the warning from the driver I'd suggest to do that
-from the quirk. That'd be better from maintainability point of view.
-So when all the snps,nr-gpios properties are removed from dts'es,
-we'll need to discard the quirk only. Otherwise if the warning and
-quirk are separated, we may forget to remove the later.
+Fixes: 593816fa2f35 ("arm64: dts: imx: Add Beacon i.MX8m-Mini development kit")
 
--Sergey
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-> 
-> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> ---
->  drivers/gpio/gpio-dwapb.c | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpio/gpio-dwapb.c b/drivers/gpio/gpio-dwapb.c
-> index 2a9046c0fb16..242b058e6630 100644
-> --- a/drivers/gpio/gpio-dwapb.c
-> +++ b/drivers/gpio/gpio-dwapb.c
-> @@ -553,7 +553,7 @@ static struct dwapb_platform_data *dwapb_gpio_get_pdata(struct device *dev)
->  	struct dwapb_platform_data *pdata;
->  	struct dwapb_port_property *pp;
->  	int nports;
-> -	int i;
-> +	int i, ret;
->  
->  	nports = device_get_child_node_count(dev);
->  	if (nports == 0)
-> @@ -582,8 +582,16 @@ static struct dwapb_platform_data *dwapb_gpio_get_pdata(struct device *dev)
->  			return ERR_PTR(-EINVAL);
->  		}
->  
-> -		if (fwnode_property_read_u32(fwnode, "ngpios", &pp->ngpio) &&
-> -		    fwnode_property_read_u32(fwnode, "snps,nr-gpios", &pp->ngpio)) {
-> +		ret = fwnode_property_read_u32(fwnode, "ngpios", &pp->ngpio);
-> +		if (ret) {
-> +			ret = fwnode_property_read_u32(fwnode, "snps,nr-gpios",
-> +						       &pp->ngpio);
-> +			if (!ret) {
-> +				dev_warn(dev,
-> +					 "deprecated \"snps,nr-gpios\" property, update device tree to use \"ngpios\".\n");
-> +			}
-> +		}
-> +		if (ret) {
->  			dev_info(dev,
->  				 "failed to get number of gpios for port%d\n",
->  				 i);
-> -- 
-> 2.28.0
-> 
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+index 5565775270f9..9bdefbba9e90 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+@@ -4,6 +4,11 @@
+  */
+ 
+ / {
++	aliases {
++		rtc0 = &rtc;
++		rtc1 = &snvs_rtc;
++	};
++
+ 	usdhc1_pwrseq: usdhc1_pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		pinctrl-names = "default";
+@@ -219,7 +224,7 @@ eeprom@50 {
+ 		reg = <0x50>;
+ 	};
+ 
+-	rtc@51 {
++	rtc: rtc@51 {
+ 		compatible = "nxp,pcf85263";
+ 		reg = <0x51>;
+ 	};
+-- 
+2.25.1
+
