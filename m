@@ -2,157 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 795902C386C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 06:21:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AD0F2C38AA
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 06:29:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725838AbgKYFUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 00:20:14 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:39632 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725835AbgKYFUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 00:20:14 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AP5K8JH110634;
-        Tue, 24 Nov 2020 23:20:08 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606281608;
-        bh=vDEuL9+qzQEUbAXrRO1++pJAYFnz7giF1Uyg+ZIiZ1Y=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Hdi9TeXizgF8O+L3VUepv607mK1sR4fPXipgMconba1uEUIkVzLYdOzUClC+j6cfn
-         2RamJqnU6+QoptrP5e1xE0/CZhQ2EnwMhTk0N8JB5pR1R00ctC2CDDW07ejTE/a2sI
-         DT5pScBqQVkoZgPuel1EhivIYP87dgptBaE+N+GI=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AP5K8DO002931
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 24 Nov 2020 23:20:08 -0600
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 24
- Nov 2020 23:20:07 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 24 Nov 2020 23:20:08 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AP5K8N9117116;
-        Tue, 24 Nov 2020 23:20:08 -0600
-From:   Dave Gerlach <d-gerlach@ti.com>
-To:     Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC:     Dave Gerlach <d-gerlach@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: [PATCH 3/3] arm64: dts: ti: Add support for AM642 EVM
-Date:   Tue, 24 Nov 2020 23:20:04 -0600
-Message-ID: <20201125052004.17823-4-d-gerlach@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201125052004.17823-1-d-gerlach@ti.com>
-References: <20201125052004.17823-1-d-gerlach@ti.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726875AbgKYF3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 00:29:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725835AbgKYF3U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 00:29:20 -0500
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3102DC0613D4;
+        Tue, 24 Nov 2020 21:29:20 -0800 (PST)
+Received: by mail-wm1-x341.google.com with SMTP id 10so890357wml.2;
+        Tue, 24 Nov 2020 21:29:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=9/VyulasGLfNRZhFbuEx/v+zb6WhDEFLeGB6bc5kOlw=;
+        b=V6PyMx1YCB2d4scqQohV3x/vNdZFji6nnwTpeehpun0H0R9lj1a05oNcwWLxaOhn71
+         tJQYzPjCeZu/7s3tIWP8tEMaaM5MsZCroauf4358BJ1JfZqjxbMDPP20Ck8UyMmlsjb3
+         LRXyCZLlZXynxwim7MRT/+CuD8CiBAiedm1k7RxOyIYjwWcpXQRPn1vjJMMpTBeYtwRQ
+         vuTNl21ynhZjClO8LgJEraTHyWDgfQUnuHrNg0xwTlbi9kUD9yGYimSKxAwAZSmCRpuo
+         SXgzps5XgZZyrkb8MXks5bmWsnZ+/lIXYklb5YBwE/l/DcUe1zQQLvcMJoE8ucmBVHG0
+         uyjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9/VyulasGLfNRZhFbuEx/v+zb6WhDEFLeGB6bc5kOlw=;
+        b=B/jSdnAfMt/WHIgVyxwZw/f9wNC424o8/Q4VdE4Lp7n40/SVNUB16pS5oF8EGiC0kd
+         YPUAFQxP7VWjqbWJ7EDFbbJECWxX+fioSHkwMnaznOq2kCV5HMm+6zwJicruUj1ZyO3R
+         io3CuiIeGGuxtAWazaWtub/V+hL9oJ+dyZRtz8FxInVthmh69cY4/tnUd5uqu3AMeudB
+         UBaNo7aYB+LWzxWcUp7dhbYWfnFht6mMRcAkvrgxz3Qzvmh9TEO+J+UV50UjVsivAn9K
+         +vU37KqZZiZ0CvIYjjP3FO81AtxwrkPxYXfUMlEa2dNTnfS/vCQhueTV9H5M7CPy7Fx4
+         /Pag==
+X-Gm-Message-State: AOAM530KkxjTYi+Gj7qC18IO6u+hYzb+2VqyYxBjAfqXP3Fqcmmjv9rd
+        nxfp9DZX6aT7cixYeVs4d291tkoU2dgvPg==
+X-Google-Smtp-Source: ABdhPJzzC91a7bxl4p9PJJ0B1x51PIcIGJdAXL14Xb8n+0yVk6tn7FR2vhinu4Fc//tJsTOPPYpZDQ==
+X-Received: by 2002:a7b:cf09:: with SMTP id l9mr1860237wmg.54.1606282158885;
+        Tue, 24 Nov 2020 21:29:18 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id d128sm2430249wmc.7.2020.11.24.21.29.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2020 21:29:18 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Artem Lapkin <art@khadas.com>
+Subject: [PATCH] arm64: dts: meson: update the Khadas VIM3/3L LED bindings
+Date:   Wed, 25 Nov 2020 05:29:14 +0000
+Message-Id: <20201125052914.4092-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The AM642 EValuation Module (EVM) is a board that provides access to
-various peripherals available on the AM642 SoC, such as PCIe, USB 2.0,
-CPSW Ethernet, ADC, and more.
+Update the VIM3/3L common dtsi to use the new function/color bindings.
 
-Introduce basic support for the AM642 EVM to enable minimal
-ramdisk boot.
-
-Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+Suggested-by: Artem Lapkin <art@khadas.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 ---
- arch/arm64/boot/dts/ti/Makefile         |  2 +
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 61 +++++++++++++++++++++++++
- 2 files changed, 63 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm.dts
+This supersedes a previous submission from Art [0] and uses the updated
+LED bindings suggested by Neil.
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 65506f21ba30..c687739e2bca 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -11,3 +11,5 @@ dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
+[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-4-art@khadas.com/
+
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+index 87bd8c9516f2..8f8656262ae7 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+@@ -6,6 +6,7 @@
+  */
  
- dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-new file mode 100644
-index 000000000000..8caa012382df
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -0,0 +1,61 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-am642.dtsi"
-+
-+/ {
-+	compatible =  "ti,am642-evm", "ti,am642";
-+	model = "Texas Instruments AM642 EVM";
-+
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 2G RAM */
-+		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
-+
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>; /* for OP-TEE */
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+};
-+
-+&main_uart1 {
-+	status = "disabled";
-+};
-+
-+&main_uart2 {
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	status = "disabled";
-+};
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/gpio/meson-g12a-gpio.h>
+ #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+ 
+@@ -42,14 +43,16 @@
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+-		led-white {
+-			label = "vim3:white:sys";
++		white {
++			color = <LED_COLOR_ID_WHITE>;
++			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 
+-		led-red {
+-			label = "vim3:red";
++		red {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_STATUS;
+ 			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
+ 		};
+ 	};
 -- 
-2.28.0
+2.17.1
 
