@@ -2,324 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A55FC2C46BE
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 18:27:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8321E2C46E2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 18:36:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731484AbgKYR10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 12:27:26 -0500
-Received: from out28-97.mail.aliyun.com ([115.124.28.97]:45942 "EHLO
-        out28-97.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731336AbgKYR1T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 12:27:19 -0500
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07436293|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.0180627-0.000172114-0.981765;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047187;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=13;RT=13;SR=0;TI=SMTPD_---.J.BPrxs_1606325224;
-Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.J.BPrxs_1606325224)
-          by smtp.aliyun-inc.com(10.147.41.137);
-          Thu, 26 Nov 2020 01:27:15 +0800
-From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
-        <zhouyanjie@wanyeetech.com>
-To:     sboyd@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
-        paul@crapouillou.net
-Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
-        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
-        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
-        zhenwenjin@gmail.com
-Subject: [PATCH 4/4] clk: Ingenic: Fill unused bits in parents and reformat code.
-Date:   Thu, 26 Nov 2020 01:26:18 +0800
-Message-Id: <20201125172618.112707-5-zhouyanjie@wanyeetech.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20201125172618.112707-1-zhouyanjie@wanyeetech.com>
-References: <20201125172618.112707-1-zhouyanjie@wanyeetech.com>
+        id S1730852AbgKYRey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 12:34:54 -0500
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:37540 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729631AbgKYRey (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 12:34:54 -0500
+Received: by mail-oi1-f194.google.com with SMTP id j15so3692730oih.4;
+        Wed, 25 Nov 2020 09:34:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aj6ncmXxgNmXzxht5vWA7vMD+urUJCHYAuHBpECBdlo=;
+        b=NU60L8ZVpHhx7NHhVrEFdNqGACCoZpV3no/q2oCRXM5QoA7HjijGd7GkHjrAL/pcuM
+         qUzLuKsdgDCPNvdv7QRiWOjkBLG1o8GY6+S9+VJrqzxB7M4959Aa7HRmcqKaVBHYPYm2
+         6i4KISS87SbLvhyS/UfcqHtH7CiVpKUfPxHPjD88pVFQVWwoEeEqiOwdrE4W4W1bQ0m7
+         eMxKxRGnq9zGpbzWKHoY9CVNVmMHIgXwPrMyUMS095mz3CIPhwtcf3QhUgyAlVUiB1sh
+         YCwLFv23Kf+QF+4zoc1ca2LJyJBfk0P8VgpWToMbDXc8BQegnEQDoInDvhx/gg6hYSyO
+         KI0g==
+X-Gm-Message-State: AOAM5316+qqL1ZEdBpddniZw056ZxMQUQuV2D0q8lp/tbQbPR6zc5AFA
+        mckRVOSWmpuX9OEwv1pgl4i35jFGpTrKCFkfgiw=
+X-Google-Smtp-Source: ABdhPJxtX+fgJUxMlL3C9GfX0oDYkywgS8TDGsHlWOH1dKAD2N4YE/LNTsum6Mg452IfaoV+UufXTLtR6aep/8jIeW0=
+X-Received: by 2002:aca:4bc3:: with SMTP id y186mr2981315oia.153.1606325683253;
+ Wed, 25 Nov 2020 09:34:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20201125130148.28724-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdX+FZjAfbWWw53EToHP6c4JFmQX9wogAyW3OcOxHgMd0w@mail.gmail.com>
+ <OSBPR01MB504858A417137ED7AC31F925AAFA0@OSBPR01MB5048.jpnprd01.prod.outlook.com>
+ <CAMuHMdXGqv9aKra7Ncg4mRoc2caO5iOw+ydrNmo9UcHeDTgVGw@mail.gmail.com> <CA+V-a8sEQJhBF-MSj5o7Pf5KbkycQ2NpLnLmnCmHmN+tANO5Vg@mail.gmail.com>
+In-Reply-To: <CA+V-a8sEQJhBF-MSj5o7Pf5KbkycQ2NpLnLmnCmHmN+tANO5Vg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 25 Nov 2020 18:34:32 +0100
+Message-ID: <CAMuHMdW78pvi4pfX-hUV_+=8A0FqWG7t87m4w6=C2Wy2--+kPw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] r8a7742-iwg21d-q7-dbcm: Add support for ov7725 sensors
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-1.Fill unused bits in parents in jz4780-cgu.c, x1000-cgu.c,
-  and x1830-cgu.c, these bits should be filled with -1.
-2.Reformat code, add missing blank lines, remove unnecessary
-  tabs, and align code.
+Hi Prabhakar,
 
-Signed-off-by: 周琰杰 (Zhou Yanjie) <zhouyanjie@wanyeetech.com>
----
- drivers/clk/ingenic/jz4780-cgu.c | 12 +++---
- drivers/clk/ingenic/x1000-cgu.c  | 20 +++++-----
- drivers/clk/ingenic/x1830-cgu.c  | 83 ++++++++++++++++++++--------------------
- 3 files changed, 60 insertions(+), 55 deletions(-)
+On Wed, Nov 25, 2020 at 6:23 PM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Wed, Nov 25, 2020 at 4:32 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Wed, Nov 25, 2020 at 5:26 PM Prabhakar Mahadev Lad
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > -----Original Message-----
+> > > > From: Geert Uytterhoeven <geert@linux-m68k.org>
+> > > > Sent: 25 November 2020 16:21
+> > > > To: Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > Cc: Magnus Damm <magnus.damm@gmail.com>; Rob Herring <robh+dt@kernel.org>; Linux-Renesas <linux-
+> > > > renesas-soc@vger.kernel.org>; open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+> > > > <devicetree@vger.kernel.org>; Linux Kernel Mailing List <linux-kernel@vger.kernel.org>; Biju Das
+> > > > <biju.das.jz@bp.renesas.com>; Prabhakar <prabhakar.csengg@gmail.com>
+> > > > Subject: Re: [PATCH v2 0/2] r8a7742-iwg21d-q7-dbcm: Add support for ov7725 sensors
+> > > >
+> > > > On Wed, Nov 25, 2020 at 2:02 PM Lad Prabhakar
+> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > > > This patch set enables to connect ov7725 sensors on iWave-RZ/G1H Qseven
+> > > > > board.
+> > > >
+> > > > Thanks for your series!
+> > > >
+> > > > Do you think it's a valid use case to mix and match ov5640 and ov7725
+> > > > cameras? E.g. connect two of each?
+> > > >
+> > > Yes that is valid case to mix and match. Do you want me to make it configurable too ?
+> >
+> > If this is a valid use case, then please do so.
+> >
+> In that case do we still want to keep the ov7725/ov5640 nodes in
+> separate dtsi  ?
 
-diff --git a/drivers/clk/ingenic/jz4780-cgu.c b/drivers/clk/ingenic/jz4780-cgu.c
-index dcca74e..1b61eaa 100644
---- a/drivers/clk/ingenic/jz4780-cgu.c
-+++ b/drivers/clk/ingenic/jz4780-cgu.c
-@@ -178,6 +178,7 @@ static int jz4780_otg_phy_set_rate(struct clk_hw *hw, unsigned long req_rate,
- 	writel(usbpcr1, cgu->base + CGU_REG_USBPCR1);
- 
- 	spin_unlock_irqrestore(&cgu->lock, flags);
-+
- 	return 0;
- }
- 
-@@ -188,6 +189,7 @@ static int jz4780_otg_phy_enable(struct clk_hw *hw)
- 
- 	writel(readl(reg_opcr) | OPCR_SPENDN0, reg_opcr);
- 	writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, reg_usbpcr);
-+
- 	return 0;
- }
- 
-@@ -215,9 +217,9 @@ static const struct clk_ops jz4780_otg_phy_ops = {
- 	.round_rate = jz4780_otg_phy_round_rate,
- 	.set_rate = jz4780_otg_phy_set_rate,
- 
--	.enable		= jz4780_otg_phy_enable,
--	.disable	= jz4780_otg_phy_disable,
--	.is_enabled	= jz4780_otg_phy_is_enabled,
-+	.enable = jz4780_otg_phy_enable,
-+	.disable = jz4780_otg_phy_disable,
-+	.is_enabled = jz4780_otg_phy_is_enabled,
- };
- 
- static int jz4780_core1_enable(struct clk_hw *hw)
-@@ -544,13 +546,13 @@ static const struct ingenic_cgu_clk_info jz4780_cgu_clocks[] = {
- 
- 	[JZ4780_CLK_EXCLK_DIV512] = {
- 		"exclk_div512", CGU_CLK_FIXDIV,
--		.parents = { JZ4780_CLK_EXCLK },
-+		.parents = { JZ4780_CLK_EXCLK, -1, -1, -1 },
- 		.fixdiv = { 512 },
- 	},
- 
- 	[JZ4780_CLK_RTC] = {
- 		"rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
--		.parents = { JZ4780_CLK_EXCLK_DIV512, JZ4780_CLK_RTCLK },
-+		.parents = { JZ4780_CLK_EXCLK_DIV512, JZ4780_CLK_RTCLK, -1, -1 },
- 		.mux = { CGU_REG_OPCR, 2, 1},
- 	},
- 
-diff --git a/drivers/clk/ingenic/x1000-cgu.c b/drivers/clk/ingenic/x1000-cgu.c
-index d340bcd..fe2e274 100644
---- a/drivers/clk/ingenic/x1000-cgu.c
-+++ b/drivers/clk/ingenic/x1000-cgu.c
-@@ -126,6 +126,7 @@ static int x1000_otg_phy_set_rate(struct clk_hw *hw, unsigned long req_rate,
- 	writel(usbpcr1, cgu->base + CGU_REG_USBPCR1);
- 
- 	spin_unlock_irqrestore(&cgu->lock, flags);
-+
- 	return 0;
- }
- 
-@@ -136,6 +137,7 @@ static int x1000_usb_phy_enable(struct clk_hw *hw)
- 
- 	writel(readl(reg_opcr) | OPCR_SPENDN0, reg_opcr);
- 	writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, reg_usbpcr);
-+
- 	return 0;
- }
- 
-@@ -163,9 +165,9 @@ static const struct clk_ops x1000_otg_phy_ops = {
- 	.round_rate = x1000_otg_phy_round_rate,
- 	.set_rate = x1000_otg_phy_set_rate,
- 
--	.enable		= x1000_usb_phy_enable,
--	.disable	= x1000_usb_phy_disable,
--	.is_enabled	= x1000_usb_phy_is_enabled,
-+	.enable = x1000_usb_phy_enable,
-+	.disable = x1000_usb_phy_disable,
-+	.is_enabled = x1000_usb_phy_is_enabled,
- };
- 
- static const s8 pll_od_encoding[8] = {
-@@ -298,7 +300,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_MAC] = {
- 		"mac", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
--		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
- 		.mux = { CGU_REG_MACCDR, 31, 1 },
- 		.div = { CGU_REG_MACCDR, 0, 1, 8, 29, 28, 27 },
- 		.gate = { CGU_REG_CLKGR, 25 },
-@@ -306,7 +308,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_LCD] = {
- 		"lcd", CGU_CLK_MUX | CGU_CLK_DIV | CGU_CLK_GATE,
--		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL },
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
- 		.mux = { CGU_REG_LPCDR, 31, 1 },
- 		.div = { CGU_REG_LPCDR, 0, 1, 8, 28, 27, 26 },
- 		.gate = { CGU_REG_CLKGR, 23 },
-@@ -314,7 +316,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_MSCMUX] = {
- 		"msc_mux", CGU_CLK_MUX,
--		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL},
-+		.parents = { X1000_CLK_SCLKA, X1000_CLK_MPLL, -1, -1 },
- 		.mux = { CGU_REG_MSC0CDR, 31, 1 },
- 	},
- 
-@@ -350,7 +352,7 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_SSIPLL_DIV2] = {
- 		"ssi_pll_div2", CGU_CLK_FIXDIV,
--		.parents = { X1000_CLK_SSIPLL },
-+		.parents = { X1000_CLK_SSIPLL, -1, -1, -1 },
- 		.fixdiv = { 2 },
- 	},
- 
-@@ -369,13 +371,13 @@ static const struct ingenic_cgu_clk_info x1000_cgu_clocks[] = {
- 
- 	[X1000_CLK_EXCLK_DIV512] = {
- 		"exclk_div512", CGU_CLK_FIXDIV,
--		.parents = { X1000_CLK_EXCLK },
-+		.parents = { X1000_CLK_EXCLK, -1, -1, -1 },
- 		.fixdiv = { 512 },
- 	},
- 
- 	[X1000_CLK_RTC] = {
- 		"rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
--		.parents = { X1000_CLK_EXCLK_DIV512, X1000_CLK_RTCLK },
-+		.parents = { X1000_CLK_EXCLK_DIV512, X1000_CLK_RTCLK, -1, -1 },
- 		.mux = { CGU_REG_OPCR, 2, 1},
- 		.gate = { CGU_REG_CLKGR, 27 },
- 	},
-diff --git a/drivers/clk/ingenic/x1830-cgu.c b/drivers/clk/ingenic/x1830-cgu.c
-index e76e82c..4d6cca5 100644
---- a/drivers/clk/ingenic/x1830-cgu.c
-+++ b/drivers/clk/ingenic/x1830-cgu.c
-@@ -15,51 +15,51 @@
- #include "pm.h"
- 
- /* CGU register offsets */
--#define CGU_REG_CPCCR		0x00
--#define CGU_REG_CPPCR		0x0c
--#define CGU_REG_APLL		0x10
--#define CGU_REG_MPLL		0x14
--#define CGU_REG_CLKGR0		0x20
--#define CGU_REG_OPCR		0x24
--#define CGU_REG_CLKGR1		0x28
--#define CGU_REG_DDRCDR		0x2c
--#define CGU_REG_USBPCR		0x3c
--#define CGU_REG_USBRDT		0x40
--#define CGU_REG_USBVBFIL	0x44
--#define CGU_REG_USBPCR1		0x48
--#define CGU_REG_MACCDR		0x54
--#define CGU_REG_EPLL		0x58
--#define CGU_REG_I2SCDR		0x60
--#define CGU_REG_LPCDR		0x64
--#define CGU_REG_MSC0CDR		0x68
--#define CGU_REG_I2SCDR1		0x70
--#define CGU_REG_SSICDR		0x74
--#define CGU_REG_CIMCDR		0x7c
--#define CGU_REG_MSC1CDR		0xa4
--#define CGU_REG_CMP_INTR	0xb0
--#define CGU_REG_CMP_INTRE	0xb4
--#define CGU_REG_DRCG		0xd0
--#define CGU_REG_CPCSR		0xd4
--#define CGU_REG_VPLL		0xe0
--#define CGU_REG_MACPHYC		0xe8
-+#define CGU_REG_CPCCR			0x00
-+#define CGU_REG_CPPCR			0x0c
-+#define CGU_REG_APLL			0x10
-+#define CGU_REG_MPLL			0x14
-+#define CGU_REG_CLKGR0			0x20
-+#define CGU_REG_OPCR			0x24
-+#define CGU_REG_CLKGR1			0x28
-+#define CGU_REG_DDRCDR			0x2c
-+#define CGU_REG_USBPCR			0x3c
-+#define CGU_REG_USBRDT			0x40
-+#define CGU_REG_USBVBFIL		0x44
-+#define CGU_REG_USBPCR1			0x48
-+#define CGU_REG_MACCDR			0x54
-+#define CGU_REG_EPLL			0x58
-+#define CGU_REG_I2SCDR			0x60
-+#define CGU_REG_LPCDR			0x64
-+#define CGU_REG_MSC0CDR			0x68
-+#define CGU_REG_I2SCDR1			0x70
-+#define CGU_REG_SSICDR			0x74
-+#define CGU_REG_CIMCDR			0x7c
-+#define CGU_REG_MSC1CDR			0xa4
-+#define CGU_REG_CMP_INTR		0xb0
-+#define CGU_REG_CMP_INTRE		0xb4
-+#define CGU_REG_DRCG			0xd0
-+#define CGU_REG_CPCSR			0xd4
-+#define CGU_REG_VPLL			0xe0
-+#define CGU_REG_MACPHYC			0xe8
- 
- /* bits within the OPCR register */
--#define OPCR_GATE_USBPHYCLK	BIT(23)
--#define OPCR_SPENDN0		BIT(7)
--#define OPCR_SPENDN1		BIT(6)
-+#define OPCR_GATE_USBPHYCLK		BIT(23)
-+#define OPCR_SPENDN0			BIT(7)
-+#define OPCR_SPENDN1			BIT(6)
- 
- /* bits within the USBPCR register */
--#define USBPCR_SIDDQ		BIT(21)
--#define USBPCR_OTG_DISABLE	BIT(20)
-+#define USBPCR_SIDDQ			BIT(21)
-+#define USBPCR_OTG_DISABLE		BIT(20)
- 
- /* bits within the I2SCDR register */
--#define I2SCDR_I2PCS_SHIFT	30
--#define I2SCDR_I2PCS_MASK	(0x3 << I2SCDR_I2PCS_SHIFT)
-+#define I2SCDR_I2PCS_SHIFT		30
-+#define I2SCDR_I2PCS_MASK		(0x3 << I2SCDR_I2PCS_SHIFT)
- #define I2SCDR_I2SDIV_M_SHIFT	20
- #define I2SCDR_I2SDIV_M_MASK	(0x1ff << I2SCDR_I2SDIV_M_SHIFT)
- #define I2SCDR_I2SDIV_N_SHIFT	0
- #define I2SCDR_I2SDIV_N_MASK	(0xfffff << I2SCDR_I2SDIV_N_SHIFT)
--#define I2SCDR_CE_I2S		BIT(29)
-+#define I2SCDR_CE_I2S			BIT(29)
- 
- static struct ingenic_cgu *cgu;
- 
-@@ -70,6 +70,7 @@ static int x1830_usb_phy_enable(struct clk_hw *hw)
- 
- 	writel((readl(reg_opcr) | OPCR_SPENDN0) & ~OPCR_GATE_USBPHYCLK, reg_opcr);
- 	writel(readl(reg_usbpcr) & ~USBPCR_OTG_DISABLE & ~USBPCR_SIDDQ, reg_usbpcr);
-+
- 	return 0;
- }
- 
-@@ -93,9 +94,9 @@ static int x1830_usb_phy_is_enabled(struct clk_hw *hw)
- }
- 
- static const struct clk_ops x1830_otg_phy_ops = {
--	.enable		= x1830_usb_phy_enable,
--	.disable	= x1830_usb_phy_disable,
--	.is_enabled	= x1830_usb_phy_is_enabled,
-+	.enable = x1830_usb_phy_enable,
-+	.disable = x1830_usb_phy_disable,
-+	.is_enabled = x1830_usb_phy_is_enabled,
- };
- 
- static u8 x1830_i2s_get_parent(struct clk_hw *hw)
-@@ -486,7 +487,7 @@ static const struct ingenic_cgu_clk_info x1830_cgu_clocks[] = {
- 
- 	[X1830_CLK_SSIPLL_DIV2] = {
- 		"ssi_pll_div2", CGU_CLK_FIXDIV,
--		.parents = { X1830_CLK_SSIPLL },
-+		.parents = { X1830_CLK_SSIPLL, -1, -1, -1 },
- 		.fixdiv = { 2 },
- 	},
- 
-@@ -506,13 +507,13 @@ static const struct ingenic_cgu_clk_info x1830_cgu_clocks[] = {
- 
- 	[X1830_CLK_EXCLK_DIV512] = {
- 		"exclk_div512", CGU_CLK_FIXDIV,
--		.parents = { X1830_CLK_EXCLK },
-+		.parents = { X1830_CLK_EXCLK, -1, -1, -1 },
- 		.fixdiv = { 512 },
- 	},
- 
- 	[X1830_CLK_RTC] = {
- 		"rtc_ercs", CGU_CLK_MUX | CGU_CLK_GATE,
--		.parents = { X1830_CLK_EXCLK_DIV512, X1830_CLK_RTCLK },
-+		.parents = { X1830_CLK_EXCLK_DIV512, X1830_CLK_RTCLK, -1, -1 },
- 		.mux = { CGU_REG_OPCR, 2, 1},
- 		.gate = { CGU_REG_CLKGR0, 29 },
- 	},
+You can, if you define only a single camera in each include file,
+and #include four camera include files, with some #define/#undef-ery
+around each #include.
+
+Cfr. my suggestion in
+https://lore.kernel.org/linux-renesas-soc/CAMuHMdXAB-eUAMSeptptajr0eReHXHFuoR5HZkB-X+AKBUsyxA@mail.gmail.com/
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.7.4
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
