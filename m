@@ -2,92 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 127642C36CD
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 03:31:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C39B42C36E2
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 03:53:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726903AbgKYC2x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 21:28:53 -0500
-Received: from szxga05-in.huawei.com ([45.249.212.191]:8031 "EHLO
-        szxga05-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725952AbgKYC2x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 21:28:53 -0500
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.58])
-        by szxga05-in.huawei.com (SkyGuard) with ESMTP id 4CglDv5gDtzhgmF;
-        Wed, 25 Nov 2020 10:28:31 +0800 (CST)
-Received: from [10.57.101.250] (10.57.101.250) by
- DGGEMS412-HUB.china.huawei.com (10.3.19.212) with Microsoft SMTP Server id
- 14.3.487.0; Wed, 25 Nov 2020 10:28:50 +0800
-Subject: Re: [PATCH 4/8] arm64: dts: hisilicon: Use generic "ngpios" rather
- than "snps,nr-gpios"
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Dinh Nguyen" <dinguyen@kernel.org>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20201109170258.4a70c768@xhacker.debian>
- <20201109170529.2ee1f04e@xhacker.debian>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        "Linus Walleij" <linus.walleij@linaro.org>
-From:   Wei Xu <xuwei5@hisilicon.com>
-Message-ID: <5FBDC161.8020700@hisilicon.com>
-Date:   Wed, 25 Nov 2020 10:28:49 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
- Thunderbird/38.2.0
-MIME-Version: 1.0
-In-Reply-To: <20201109170529.2ee1f04e@xhacker.debian>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.57.101.250]
-X-CFilter-Loop: Reflected
+        id S1726591AbgKYCkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 21:40:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43440 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725952AbgKYCkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 21:40:08 -0500
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD296C0613D4;
+        Tue, 24 Nov 2020 18:40:07 -0800 (PST)
+Received: by mail-wr1-x441.google.com with SMTP id i2so401482wrs.4;
+        Tue, 24 Nov 2020 18:40:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=2DCnZPa11FhjnY6LNsxv2jfgvHUVsLu9/gulnrkgaWA=;
+        b=jrSzE+TpJrRF+iIv5NMouE2PfzpLpkKELPrmJ7Ky0zuruNumq/G6t8W/nffoxWE1+L
+         aEQddZebyF9ggEs1Dqlzm4mMXI3KFusflAvb1BGrLWZojjM5Q6VJvEeamFdsknBonTWz
+         lsOwzmvWbmUoab8A7F0cI4FjCu/hDe4rgUzcUpmP1/ykbB+GzNDJJ7AY0DYIFQZnLXFp
+         tw6JCz7gWLUmqolTa4avG88vDvlipVdpSeSWmrAOuyt1vzofrFwWgH2xDvlLAVQ+1sTL
+         BRyLklC6NeyYMBKuWMVDOr0Wm0fVKpQZg5+I7GAkUIvVhYl07uxRIHSPoh0305XsYeWI
+         sZ5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=2DCnZPa11FhjnY6LNsxv2jfgvHUVsLu9/gulnrkgaWA=;
+        b=h38FbnuxzfEshusjHAsX95yhcmU9IiaDZZzhpel5dDalibvnNh6turfUcEcLlq1VMk
+         P3/eOL6Aa4Izqytl7iYqmAVuoppSKYt/2trq+aWYjhoQORei3WrVHqzL5uDY1jaFCmEF
+         tjfZTTWYRAUXO+LVrllN1iJumkLYw8Ph2p6z9ekJkKiGRDXpmTgTc1jpAXCnTVDtCR1e
+         V9lKxnpjbpJ/2WjiEkk1K5GmOxn1Pc7lqsTL4104YsvvSkhTjhlSZih5qse9uRhISsPz
+         /xPw0dZu7VCvJy4dmonxSlfywlUSNOmb3hDSQ8jdJyHjeKbM3/HFfSywXz9jL+BnSDCy
+         O2Pg==
+X-Gm-Message-State: AOAM533mS5vhG+LtYHRuMknTXcMozhN1H11k0qZHkNjWdKHrDk5W8kPZ
+        GNQK8Q67l2JXug+z3afJskg=
+X-Google-Smtp-Source: ABdhPJzdmzCm13OlX43VhOcew3MqUkCBjjePrJJij0TKd6+NPs2L2Lo1n24hFiH6A1TK66jNnn5P+w==
+X-Received: by 2002:adf:e481:: with SMTP id i1mr1447426wrm.282.1606272005815;
+        Tue, 24 Nov 2020 18:40:05 -0800 (PST)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id q1sm1668653wrj.8.2020.11.24.18.40.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 24 Nov 2020 18:40:05 -0800 (PST)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        Artem Lapkin <art@khadas.com>
+Subject: [PATCH] arm64: dts: meson: fix spi-max-frequency on Khadas VIM2
+Date:   Wed, 25 Nov 2020 02:40:01 +0000
+Message-Id: <20201125024001.19036-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jisheng,
+From: Artem Lapkin <art@khadas.com>
 
-On 2020/11/9 17:05, Jisheng Zhang wrote:
-> This is to remove similar errors as below:
-> 
-> OF: /.../gpio-port@0: could not find phandle
-> 
-> Commit 7569486d79ae ("gpio: dwapb: Add ngpios DT-property support")
-> explained the reason of above errors well and added the generic
-> "ngpios" property, let's use it.
-> 
-> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-> ---
->  arch/arm64/boot/dts/hisilicon/hip05.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip05.dtsi b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> index bc49955360db..fbe83eb9f77b 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hip05.dtsi
-> @@ -335,7 +335,7 @@ porta: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <32>;
-> +				ngpios = <32>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> @@ -354,7 +354,7 @@ portb: gpio-controller@0 {
->  				compatible = "snps,dw-apb-gpio-port";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -				snps,nr-gpios = <32>;
-> +				ngpios = <32>;
->  				reg = <0>;
->  				interrupt-controller;
->  				#interrupt-cells = <2>;
-> 
+The max frequency for the w25q32 (VIM v1.2) and w25q128 (VIM v1.4) spifc
+chip should be 104Mhz not 30MHz.
 
-Thanks!
-Applied to the hisilicon arm64 dt tree.
+Fixes: b8b74dda3908 ("ARM64: dts: meson-gxm: Add support for Khadas VIM2")
+Signed-off-by: Artem Lapkin <art@khadas.com>
+---
+This change was previously submitted as [0] which has style issues and
+remains unmerged. It is also part of a two patch series where the other
+patch needs further work to convert to newer LED bindings.
 
-Best Regards,
-Wei
+[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200928092613.273998-3-art@khadas.com/
+
+ arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+index 39e6047056b2..079500ed5066 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+@@ -391,7 +391,7 @@
+ 		#size-cells = <1>;
+ 		compatible = "winbond,w25q16", "jedec,spi-nor";
+ 		reg = <0>;
+-		spi-max-frequency = <3000000>;
++		spi-max-frequency = <104000000>;
+ 	};
+ };
+ 
+-- 
+2.17.1
+
