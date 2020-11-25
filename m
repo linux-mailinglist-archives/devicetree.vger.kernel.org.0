@@ -2,111 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AD0F2C38AA
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 06:29:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDB722C38F5
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 07:09:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726875AbgKYF3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 00:29:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41130 "EHLO
+        id S1727713AbgKYGIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 01:08:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725835AbgKYF3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 00:29:20 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3102DC0613D4;
-        Tue, 24 Nov 2020 21:29:20 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id 10so890357wml.2;
-        Tue, 24 Nov 2020 21:29:20 -0800 (PST)
+        with ESMTP id S1727529AbgKYGIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 01:08:42 -0500
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C82EC0613D4
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 22:08:41 -0800 (PST)
+Received: by mail-ot1-x341.google.com with SMTP id f16so1210091otl.11
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 22:08:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=9/VyulasGLfNRZhFbuEx/v+zb6WhDEFLeGB6bc5kOlw=;
-        b=V6PyMx1YCB2d4scqQohV3x/vNdZFji6nnwTpeehpun0H0R9lj1a05oNcwWLxaOhn71
-         tJQYzPjCeZu/7s3tIWP8tEMaaM5MsZCroauf4358BJ1JfZqjxbMDPP20Ck8UyMmlsjb3
-         LRXyCZLlZXynxwim7MRT/+CuD8CiBAiedm1k7RxOyIYjwWcpXQRPn1vjJMMpTBeYtwRQ
-         vuTNl21ynhZjClO8LgJEraTHyWDgfQUnuHrNg0xwTlbi9kUD9yGYimSKxAwAZSmCRpuo
-         SXgzps5XgZZyrkb8MXks5bmWsnZ+/lIXYklb5YBwE/l/DcUe1zQQLvcMJoE8ucmBVHG0
-         uyjQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VaBKKtVpxSZ3Ss3dI1KLi4Zn07ADzR3ErIEYv2rzINA=;
+        b=ZPWNeabsa3es0f5hvmx5rpmvmadljn1fx39W2nxEFiM6S1awRNFuoojfNdTjaXefcx
+         qdlVfthusC/ycUW1ZAt4iwkKKweZOwN9uNKXrMlpNR/68vbZCsifsgwdjjvChJ39QxBt
+         7nmpFeV+pRmJrNPi0GsuseRXiiepBWPrlyTPRkUz+eKzn90HVvd/6Qx2UQZW241R+ZWU
+         SMnuvCO4V4FwJbAMlfr2GVEuMpNIqJ/91m8erkPv2wXks6m+BOk1SnBWBJfdXKTkj+2Z
+         ByERmMqbyE7hFS+PU4aIHFss8Dw+MvLG5Lxl2hoaKNhFvphZQxJ8YAj2JerX8Z7tNTU+
+         p5oA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=9/VyulasGLfNRZhFbuEx/v+zb6WhDEFLeGB6bc5kOlw=;
-        b=B/jSdnAfMt/WHIgVyxwZw/f9wNC424o8/Q4VdE4Lp7n40/SVNUB16pS5oF8EGiC0kd
-         YPUAFQxP7VWjqbWJ7EDFbbJECWxX+fioSHkwMnaznOq2kCV5HMm+6zwJicruUj1ZyO3R
-         io3CuiIeGGuxtAWazaWtub/V+hL9oJ+dyZRtz8FxInVthmh69cY4/tnUd5uqu3AMeudB
-         UBaNo7aYB+LWzxWcUp7dhbYWfnFht6mMRcAkvrgxz3Qzvmh9TEO+J+UV50UjVsivAn9K
-         +vU37KqZZiZ0CvIYjjP3FO81AtxwrkPxYXfUMlEa2dNTnfS/vCQhueTV9H5M7CPy7Fx4
-         /Pag==
-X-Gm-Message-State: AOAM530KkxjTYi+Gj7qC18IO6u+hYzb+2VqyYxBjAfqXP3Fqcmmjv9rd
-        nxfp9DZX6aT7cixYeVs4d291tkoU2dgvPg==
-X-Google-Smtp-Source: ABdhPJzzC91a7bxl4p9PJJ0B1x51PIcIGJdAXL14Xb8n+0yVk6tn7FR2vhinu4Fc//tJsTOPPYpZDQ==
-X-Received: by 2002:a7b:cf09:: with SMTP id l9mr1860237wmg.54.1606282158885;
-        Tue, 24 Nov 2020 21:29:18 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id d128sm2430249wmc.7.2020.11.24.21.29.16
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VaBKKtVpxSZ3Ss3dI1KLi4Zn07ADzR3ErIEYv2rzINA=;
+        b=TmsEOkTdDwRK5IL0j1qUts61pQXRqr0L3Z5KLKXf64lLhHnrxJg6TjiGBIXr0h8mXR
+         UwazeOwJ0fUHloxaK8U1lZ1tc7FNv8LdM4Ylfu+R0TB5PG02uei8ThgB1i0XxPgL3UWT
+         E9pKkXYJ6vF3fGP0XnGI5vP8LzOh0WBObgZl/D6XLN8XUufVRPgm9oVwAUoYccbVHO8n
+         js1j+L1QrdPDBWoVcVMXIyvclhc4sPy5QFJ0VTlFFUpx9fRiW0csAbv9rxymQSDnY7+N
+         q4jhkLnWP0CezN55QLkfk7AV9X1xlg0PdvvWNAyqjoGJ6wB17QsCruLZfcREbEhSI3dj
+         x6rQ==
+X-Gm-Message-State: AOAM530rfDbvqFXMcRTyx+Z9NBnpyvc4qL0BoQXDCijG2vpYpAtXJsVm
+        i0cqDT6zN2SRoAkz0drhRjvkzQ==
+X-Google-Smtp-Source: ABdhPJyXMGNAdk0LYHAP1IoQUMUGQadeLXFzjB2mODbIHaVopvUFo1lp+iWoI4MvfkZqkOuLblhkCQ==
+X-Received: by 2002:a9d:6212:: with SMTP id g18mr1704768otj.89.1606284520272;
+        Tue, 24 Nov 2020 22:08:40 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id x9sm765968otk.9.2020.11.24.22.08.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 24 Nov 2020 21:29:18 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        Artem Lapkin <art@khadas.com>
-Subject: [PATCH] arm64: dts: meson: update the Khadas VIM3/3L LED bindings
-Date:   Wed, 25 Nov 2020 05:29:14 +0000
-Message-Id: <20201125052914.4092-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        Tue, 24 Nov 2020 22:08:39 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Steev Klimaszewski <steev@kali.org>,
+        Shawn Guo <shawn.guo@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: c630: Expose LID events
+Date:   Wed, 25 Nov 2020 00:08:38 -0600
+Message-Id: <20201125060838.165576-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.29.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the VIM3/3L common dtsi to use the new function/color bindings.
+The LID state can be read from GPIO 124 and the "tablet mode" from GPIO
+95, expose these to the system using gpio-keys and mark the falling edge
+of the LID state as a wakeup-source - to wake the system from suspend.
 
-Suggested-by: Artem Lapkin <art@khadas.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
-This supersedes a previous submission from Art [0] and uses the updated
-LED bindings suggested by Neil.
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
-[0] https://patchwork.kernel.org/project/linux-amlogic/patch/20200925033017.1790973-4-art@khadas.com/
-
- arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-index 87bd8c9516f2..8f8656262ae7 100644
---- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-@@ -6,6 +6,7 @@
-  */
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+index bb314973eb0c..f956dbf664c1 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -8,6 +8,8 @@
+ /dts-v1/;
  
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/gpio/meson-g12a-gpio.h>
- #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
- 
-@@ -42,14 +43,16 @@
- 	leds {
- 		compatible = "gpio-leds";
- 
--		led-white {
--			label = "vim3:white:sys";
-+		white {
-+			color = <LED_COLOR_ID_WHITE>;
-+			function = LED_FUNCTION_STATUS;
- 			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
- 			linux,default-trigger = "heartbeat";
- 		};
- 
--		led-red {
--			label = "vim3:red";
-+		red {
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_STATUS;
- 			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
- 		};
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/gpio-keys.h>
++#include <dt-bindings/input/input.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include <dt-bindings/sound/qcom,q6afe.h>
+ #include <dt-bindings/sound/qcom,q6asm.h>
+@@ -21,6 +23,27 @@ / {
+ 	aliases {
+ 		hsuart0 = &uart6;
  	};
++
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&lid_pin_active>, <&mode_pin_active>;
++
++		lid {
++			gpios = <&tlmm 124 GPIO_ACTIVE_HIGH>;
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_LID>;
++			wakeup-source;
++			wakeup-event-action = <EV_ACT_DEASSERTED>;
++		};
++
++		mode {
++			gpios = <&tlmm 95 GPIO_ACTIVE_HIGH>;
++			linux,input-type = <EV_SW>;
++			linux,code = <SW_TABLET_MODE>;
++		};
++	};
+ };
+ 
+ &adsp_pas {
+@@ -466,6 +489,22 @@ wcd_intr_default: wcd_intr_default {
+ 		bias-pull-down;
+ 		drive-strength = <2>;
+ 	};
++
++	lid_pin_active: lid-pin {
++		pins = "gpio124";
++		function = "gpio";
++
++		input-enable;
++		bias-disable;
++	};
++
++	mode_pin_active: mode-pin {
++		pins = "gpio95";
++		function = "gpio";
++
++		input-enable;
++		bias-disable;
++	};
+ };
+ 
+ &uart6 {
 -- 
-2.17.1
+2.29.2
 
