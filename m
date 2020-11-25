@@ -2,135 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 749CA2C3B0C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 09:26:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABB572C3B34
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 09:39:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727019AbgKYIZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 03:25:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39786 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726812AbgKYIZ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 03:25:27 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E33DC0613D4;
-        Wed, 25 Nov 2020 00:25:27 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 2C6EA22FEC;
-        Wed, 25 Nov 2020 09:25:24 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1606292725;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8Vw+CB+w0hZnW+Z0d6VuYsY62Nhe/QccAUo2NhvAyzQ=;
-        b=mbpmT8c8kDrVEZ6ZJYJTwO+6+zgi7uzkoTsRmGRWXwMux9vTHMPf0u7yKhnAn9Y+0hzVq4
-        AIVnjsaxaSe8LJMEQiL1RnuzBM8kv27MSO+8yF6b4IjlwRJcfG+CPDyJ6rwOGIXJjRD239
-        Yq6P4tToHpDAPdL0/ddqH+dRxy5q18A=
+        id S1726306AbgKYIir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 03:38:47 -0500
+Received: from mx.baikalchip.com ([94.125.187.42]:55358 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725287AbgKYIir (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Nov 2020 03:38:47 -0500
+X-Greylist: delayed 397 seconds by postgrey-1.27 at vger.kernel.org; Wed, 25 Nov 2020 03:38:46 EST
+Date:   Wed, 25 Nov 2020 11:32:02 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Rob Herring <robh@kernel.org>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Felipe Balbi <balbi@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-snps-arc@lists.infradead.org>, <linux-mips@vger.kernel.org>,
+        <linuxppc-dev@lists.ozlabs.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 10/18] dt-bindings: usb: Convert DWC USB3 bindings to
+ DT schema
+Message-ID: <20201125083202.ytoyd62bg3s7kvvg@mobilestation>
+References: <20201111090853.14112-1-Sergey.Semin@baikalelectronics.ru>
+ <20201111090853.14112-11-Sergey.Semin@baikalelectronics.ru>
+ <20201111201423.GA1938179@bogus>
+ <20201112102946.ipcsiidty4ut4kap@mobilestation>
+ <20201121124228.GA2039998@robh.at.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 25 Nov 2020 09:25:23 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     "Y.b. Lu" <yangbo.lu@nxp.com>, Shawn Guo <shawnguo@kernel.org>
-Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        linux-mmc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ashish Kumar <ashish.kumar@nxp.com>
-Subject: Re: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
- controllers use fixed indices
-In-Reply-To: <AM7PR04MB688524B26F99EB2C5B86ED48F8FA0@AM7PR04MB6885.eurprd04.prod.outlook.com>
-References: <20201119155025.965941-1-vladimir.oltean@nxp.com>
- <AM7PR04MB688536E10A0B35D75A9F8F34F8FF0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <20201120093015.duel3yx63cbya77w@skbuf>
- <VI1PR04MB6896C22F6B304F365C3BA626F8FB0@VI1PR04MB6896.eurprd04.prod.outlook.com>
- <71a86b0fbc95892f8fd240e0919e7e23@walle.cc>
- <AM7PR04MB6885CA8A965A49C456454254F8FB0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <3293d698bf26ecf08f22e7e2ffe55e74@walle.cc>
- <AM7PR04MB688518B8AE836C2CC37FED6AF8FB0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <20201124103128.zucizod344dgme4o@skbuf>
- <AM7PR04MB688567CA698191E2DB73DEF5F8FB0@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <20201124112822.2ui57jmoc73top35@skbuf>
- <AM7PR04MB688524B26F99EB2C5B86ED48F8FA0@AM7PR04MB6885.eurprd04.prod.outlook.com>
-User-Agent: Roundcube Webmail/1.4.9
-Message-ID: <31db48954bdf02fc0af73871043fc76b@walle.cc>
-X-Sender: michael@walle.cc
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201121124228.GA2039998@robh.at.kernel.org>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yangbo, Hi Shawn,
-
-Am 2020-11-25 03:59, schrieb Y.b. Lu:
->> -----Original Message-----
->> From: Vladimir Oltean <vladimir.oltean@nxp.com>
->> Sent: Tuesday, November 24, 2020 7:28 PM
->> To: Y.b. Lu <yangbo.lu@nxp.com>
->> Cc: Michael Walle <michael@walle.cc>; Shawn Guo <shawnguo@kernel.org>;
->> Leo Li <leoyang.li@nxp.com>; Rob Herring <robh+dt@kernel.org>;
->> linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org; 
->> Adrian
->> Hunter <adrian.hunter@intel.com>; Ulf Hansson 
->> <ulf.hansson@linaro.org>;
->> linux-mmc@vger.kernel.org; linux-kernel@vger.kernel.org; Ashish Kumar
->> <ashish.kumar@nxp.com>
->> Subject: Re: [PATCH] arm64: dts: ls1028a: make the eMMC and SD card
->> controllers use fixed indices
->> 
->> On Tue, Nov 24, 2020 at 11:15:19AM +0000, Y.b. Lu wrote:
->> > > > Not matter it's SD card or eMMC card, if it's on esdhc0, use
->> /dev/mmcblk0.
->> > > > Not matter it's SD card or eMMC card, if it's on esdhc1, use
->> /dev/mmcblk1.
->> > >
->> > > With the note here that you can't actually connect an SD card to eSDHC1,
->> > > due to the lack of pins for CD/WP.
->> >
->> > CD/WP is not essential to support SD card. Both SD/eMMC are supported on
->> both eSDHC controllers.
->> 
->> Let's keep that discussion separate. While in theory you might be 
->> right,
->> I think the real-life complications associated with connecting an eMMC
->> to eSDHC0 and an SD card to eSDHC1 will make everyone avoid that. So 
->> in
->> practice they are still single-purpose.
+On Sat, Nov 21, 2020 at 06:42:28AM -0600, Rob Herring wrote:
+> On Thu, Nov 12, 2020 at 01:29:46PM +0300, Serge Semin wrote:
+> > On Wed, Nov 11, 2020 at 02:14:23PM -0600, Rob Herring wrote:
+> > > On Wed, Nov 11, 2020 at 12:08:45PM +0300, Serge Semin wrote:
+> > > > DWC USB3 DT node is supposed to be compliant with the Generic xHCI
+> > > > Controller schema, but with additional vendor-specific properties, the
+> > > > controller-specific reference clocks and PHYs. So let's convert the
+> > > > currently available legacy text-based DWC USB3 bindings to the DT schema
+> > > > and make sure the DWC USB3 nodes are also validated against the
+> > > > usb-xhci.yaml schema.
+> > > > 
+> > > > Note we have to discard the nodename restriction of being prefixed with
+> > > > "dwc3@" string, since in accordance with the usb-hcd.yaml schema USB nodes
+> > > > are supposed to be named as "^usb(@.*)".
+> > > > 
+> > > > Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+> > > > 
+> > > > ---
+> > > > 
+> > > > Changelog v2:
+> > > > - Discard '|' from the descriptions, since we don't need to preserve
+> > > >   the text formatting in any of them.
+> > > > - Drop quotes from around the string constants.
+> > > > - Fix the "clock-names" prop description to be referring the enumerated
+> > > >   clock-names instead of the ones from the Databook.
+> > > > 
+> > > > Changelog v3:
+> > > > - Apply usb-xhci.yaml# schema only if the controller is supposed to work
+> > > >   as either host or otg.
+> > > > 
+> > > > Changelog v4:
+> > > > - Apply usb-drd.yaml schema first. If the controller is configured
+> > > >   to work in a gadget mode only, then apply the usb.yaml schema too,
+> > > >   otherwise apply the usb-xhci.yaml schema.
+> > > > - Discard the Rob'es Reviewed-by tag. Please review the patch one more
+> > > >   time.
+> > > > ---
+> > > >  .../devicetree/bindings/usb/dwc3.txt          | 125 --------
+> > > >  .../devicetree/bindings/usb/snps,dwc3.yaml    | 303 ++++++++++++++++++
+> > > >  2 files changed, 303 insertions(+), 125 deletions(-)
+> > > >  delete mode 100644 Documentation/devicetree/bindings/usb/dwc3.txt
+> > > >  create mode 100644 Documentation/devicetree/bindings/usb/snps,dwc3.yaml
 > 
-> You may refer to Layerscape QDS boards. 5 types SDHC adapters with
-> PCIe connecter supporting SD or eMMC could be used on each esdhc
-> interface.
+> 
+> > > > diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..079617891da6
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> > > > @@ -0,0 +1,303 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/usb/snps,dwc3.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Synopsys DesignWare USB3 Controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Felipe Balbi <balbi@kernel.org>
+> > > > +
+> > > > +description:
+> > > > +  This is usually a subnode to DWC3 glue to which it is connected, but can also
+> > > > +  be presented as a standalone DT node with an optional vendor-specific
+> > > > +  compatible string.
+> > > > +
+> > 
+> > > > +allOf:
+> > > > +  - $ref: usb-drd.yaml#
+> > > > +  - if:
+> > > > +      properties:
+> > > > +        dr_mode:
+> > > > +          const: peripheral
+> 
 
-Just for completeness, on the LS1028A there is definetly one for eMMC
-and one for SD card. One supports voltage switching and one has a 8bit
-data bus. But as Vladimir already said, this doesn't matter for this
-discussion.
+> Another thing, this evaluates to true if dr_mode is not present. You 
+> need to add 'required'?
 
-> Another reason using default mmc0 for esdhc0 and mmc1 for esdhc1, is
-> because that's also the order before esdhc driver introducing
-> asynchronous probe.
+Right. Will something like this do that?
 
-No if there was
-   &esdhc { status = "disabled" };
-this would change the block device from /dev/mmcblk0 to /dev/mmcblk1
-for the remaining &esdhc1.
++ allOf:
++  - $ref: usb-drd.yaml#
++  - if:
++      properties:
++        dr_mode:
++          const: peripheral
++ 
++      required:
++        - dr_mode
++    then:
++      $ref: usb.yaml#
++    else
++      $ref: usb-xhci.yaml#
 
-We are going cirlces here. I guess Shawn (as the soc maintainer) has to
-step in and decide if a common soc include should contain aliases for
-nodes which are disabled. That is what it boils down to.
+> If dr_mode is otg, then don't you need to apply 
+> both usb.yaml and usb-xhci.yaml?
 
-All other arguments against having aliases in the common include can be
-found in this thread.
+No I don't. Since there is no peripheral-specific DT schema, then the
+only schema any USB-gadget node needs to pass is usb.yaml, which
+is already included into the usb-xhci.yaml schema. So for pure OTG devices
+with xHCI host and gadget capabilities it's enough to evaluate: allOf:
+[$ref: usb-drd.yaml#, $ref: usb-xhci.yaml#].  Please see the
+sketch/ASCII-figure below and the following text for details.
 
-> Distros, bootloaders, and users' cases using fixed index before could
-> avoid issues, and been used as they were.
+-Sergey
 
-Nobody argue against having these alias. We are arguing against having
-them in the common soc include.
+> 
+> > > > +    then:
+> > > > +      $ref: usb.yaml#
+> > > 
+> > > This part could be done in usb-drd.yaml?
+> > 
+> > Originally I was thinking about that, but then in order to minimize
+> > the properties validation I've decided to split the properties in
+> > accordance with the USB controllers functionality:
+> > 
+> >             +----- USB Gadget/Peripheral Controller. There is no
+> >             |      specific schema for the gadgets since there is no
+> >             |      common gadget properties (at least I failed to find
+> >             |      ones). So the pure gadget controllers need to be
+> >             |      validated just against usb.yaml schema.
+> >             |
+> > usb.yaml <--+-- usb-hcd.yaml - Generic USB Host Controller. The schema
+> >                 ^              turns out to include the OHCI/UHCI/EHCI
+> >                 |              properties, which AFAICS are also
+> >                 |              applicable for the other host controllers.
+> >                 |              So any USB host controller node needs to
+> >                 |              be validated against this schema.
+> >                 |
+> >                 +- usb-xhci.yaml - Generic xHCI Host controller.
+> > 
+> > usb-drd.yaml -- USB Dual-Role/OTG Controllers. It describes the
+> >                 DRD/OTG-specific properties and nothing else. So normally
+> >                 it should be applied together with one of the
+> >                 schemas described above.
+> > 
+> > So the use-cases of the suggested schemas is following:
+> > 
+> > 1) USB Controller is pure gadget? Then:
+> >    + allOf:
+> >    +  - $ref: usb.yaml#
+> > 2) USB Controller is pure USB host (including OHCI/UHCI/EHCI)?
+> >    + allOf:
+> >    +   - $ref: usb-hcd.yaml#
+> >    Note this prevents us from fixing all the currently available USB DT
+> >    schemas, which already apply the usb-hcd.yaml schema.
+> > 3) USB Controller is pure xHCI host controller? Then:
+> >    + allOf:
+> >    +   - $ref: usb-xhci.yaml#
+> > 4) USB Controller is Dual-Role/OTG controller with USB 2.0 host? Then:
+> >    + allOf:
+> >    +   - $ref: usb-drd.yaml#
+> >    +   - $ref: usb-hcd.yaml#
+> > 5) USB Controller is Dual-Role/OTG controller with xHCI host? Then:
+> >    + allOf:
+> >    +   - $ref: usb-drd.yaml#
+> >    +   - $ref: usb-xhci.yaml#
+> > 6) USB Controller is Dual-Role/OTG controller which can only be a
+> >    gadget? Then:
+> >    + allOf:
+> >    +   - $ref: usb-drd.yaml#
+> >    +   - $ref: usb.yaml#
+> > 
+> > * Don't know really if controllers like in 6)-th really exist. Most
+> > * likely they are still internally capable of dual-roling, but due to
+> > * some conditions can be used as gadgets only.
+> > 
+> > It looks a bit complicated, but at least by having such design we'd minimize
+> > the number of properties validation.
+> > 
 
--michael
+[...]
