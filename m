@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AF2A2C4496
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 17:01:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E34B22C44C8
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 17:19:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729839AbgKYQAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 11:00:47 -0500
-Received: from frasgout.his.huawei.com ([185.176.79.56]:2150 "EHLO
-        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727980AbgKYQAr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 11:00:47 -0500
-Received: from fraeml713-chm.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Ch5D321p1z67J01;
-        Wed, 25 Nov 2020 23:58:59 +0800 (CST)
-Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
- fraeml713-chm.china.huawei.com (10.206.15.32) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2106.2; Wed, 25 Nov 2020 17:00:44 +0100
-Received: from [10.47.4.25] (10.47.4.25) by lhreml724-chm.china.huawei.com
- (10.201.108.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Wed, 25 Nov
- 2020 16:00:42 +0000
-Subject: Re: [PATCH v2 0/4] perf drivers: Add sysfs identifier file
-To:     Will Deacon <will@kernel.org>, <qiangqing.zhang@nxp.com>,
-        <zhangshaokun@hisilicon.com>, <mark.rutland@arm.com>,
-        <Frank.li@nxp.com>, <robh+dt@kernel.org>
-CC:     <catalin.marinas@arm.com>, <kernel-team@android.com>,
-        <acme@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <irogers@google.com>,
-        <jolsa@redhat.com>, <devicetree@vger.kernel.org>,
-        <linuxarm@huawei.com>
-References: <1602149181-237415-1-git-send-email-john.garry@huawei.com>
- <160631703729.2332128.13220150013299384201.b4-ty@kernel.org>
-From:   John Garry <john.garry@huawei.com>
-Message-ID: <2a24a5c9-fa9f-f402-9b43-29d1f8241a17@huawei.com>
-Date:   Wed, 25 Nov 2020 16:00:20 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.2
+        id S1730840AbgKYQTD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 11:19:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57012 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730816AbgKYQTD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 11:19:03 -0500
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F868C0613D4;
+        Wed, 25 Nov 2020 08:19:03 -0800 (PST)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4Ch5g71Crkz1rwb1;
+        Wed, 25 Nov 2020 17:18:59 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4Ch5g70GmSz1r0h5;
+        Wed, 25 Nov 2020 17:18:59 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id VjO2mbXyOX1k; Wed, 25 Nov 2020 17:18:57 +0100 (CET)
+X-Auth-Info: CRv7yRaSLfOYdiH1PIfgdtkLoO4sChCNnwJrZeYk39s=
+Received: from localhost.localdomain (89-64-5-98.dynamic.chello.pl [89.64.5.98])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Wed, 25 Nov 2020 17:18:57 +0100 (CET)
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH 1/3] ARM: dts: imx28: Fix label name for L2 switch
+Date:   Wed, 25 Nov 2020 17:18:13 +0100
+Message-Id: <20201125161815.2361-1-lukma@denx.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <160631703729.2332128.13220150013299384201.b4-ty@kernel.org>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.47.4.25]
-X-ClientProxiedBy: lhreml747-chm.china.huawei.com (10.201.108.197) To
- lhreml724-chm.china.huawei.com (10.201.108.75)
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/11/2020 15:44, Will Deacon wrote:
-> Applied the hisi and smmu parts to will (for-next/perf), thanks!
-> 
-> [1/4] drivers/perf: hisi: Add identifier sysfs file
->        https://git.kernel.org/will/c/ac4511c9364c
-> [...]
-> [4/4] perf/smmuv3: Support sysfs identifier file
->        https://git.kernel.org/will/c/2c255223362e
-> 
+The 'eth_switch' name has been misspelled in the imx28.dtsi file,
+so this change fixes it.
 
-Thanks.
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+---
+ arch/arm/boot/dts/imx28.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> I've completely lost track of the imx ddr PMU, so I dropped those parts
-> (patch 3/4 seemed to remove a compatible string from the driver?).
-> 
-
-2/4 needed to be dropped anyway.
-
-@Joakim, can you resend 3/4? And I think that we should keep the 
-explicit support for "fsl,imx8m-ddr-pmu" as a good practice in 
-imx_ddr_pmu_dt_ids[], while also adding the soc-specific sub compat 
-string support
-
-John
+diff --git a/arch/arm/boot/dts/imx28.dtsi b/arch/arm/boot/dts/imx28.dtsi
+index a2b799c56f8f..6e7531b64bf7 100644
+--- a/arch/arm/boot/dts/imx28.dtsi
++++ b/arch/arm/boot/dts/imx28.dtsi
+@@ -1317,7 +1317,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		etn_switch: switch@800f8000 {
++		eth_switch: switch@800f8000 {
+ 			reg = <0x800f8000 0x8000>;
+ 			status = "disabled";
+ 		};
+-- 
+2.20.1
 
