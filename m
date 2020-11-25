@@ -2,284 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A5382C35B4
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 01:45:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6DB32C35BB
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 01:50:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727648AbgKYAoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 19:44:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54006 "EHLO
+        id S1727885AbgKYAsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 19:48:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727621AbgKYAoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 19:44:55 -0500
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06B5EC0613D4;
-        Tue, 24 Nov 2020 16:44:55 -0800 (PST)
-Received: by mail-io1-xd41.google.com with SMTP id j23so437113iog.6;
-        Tue, 24 Nov 2020 16:44:54 -0800 (PST)
+        with ESMTP id S1727495AbgKYAsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 19:48:18 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43D60C0613D4
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 16:48:18 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id 81so815824pgf.0
+        for <devicetree@vger.kernel.org>; Tue, 24 Nov 2020 16:48:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UEbPZRA+qbA9GxCy4DMkd08K0DrmAEkt9ORyM62O+P4=;
-        b=NvNt69SwBMRCvVvcbLgi5zG5qsxloFTWGZtgABixeCvsD83mcKPoUNNb3P/YG19I0d
-         zFlxHQjnG8M93znWM0HLEm15LFoQDlmPW0ZRfpkZFpgNpbsn0rCrg8ggRM4R/FWhZpc8
-         18FmOtl9JAPsCo6ITc5pdLuk9cUxXF0HW9gLsKKY5Pzx9KgZysFmQhiVXFkwehqsB+yP
-         iOGuJZcjWpd3PwvEA2tz64z/rW9ea/SwwqHw0/NO5Lke0TD+ShlMlarSBkxtHUH7Rfv3
-         xGh9AQZHTvwJjMTI00v1V71hfrnXf9GjKxJN9Dfz56qOjvd9ckxSV5XA2xPBH2ejzsI1
-         OxGg==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zIJ5sPJ4vLlu5jw+88lTkiZ9z4ChIp0VSe8hT9RWXJQ=;
+        b=dhl0netW67zWzO+8NhZw+ZdDd7uW21uy9Ym3D2YUpHqscxgFjuxhGU9cUz4AS5GjDs
+         KTewJv+haivcWzks9l8jdjT30vWnbw7vhbok7Uem82rNq8f8XxIrQYF+zztW1GPGPBog
+         hDqPuuXkb9dhG6xNvuiMQ/DmvmNIlAg5FgLK0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UEbPZRA+qbA9GxCy4DMkd08K0DrmAEkt9ORyM62O+P4=;
-        b=lADZmeFokLMgkHoFJa4DSvdE1sF17yTdstvVduCvs0eUJ9b1G8hfm4mN2UrtafKsKB
-         vnnH/FmstHxdiFqG9CGz2DOap4dW4JPJu/PyNuTXM32qXG7rCSH+qFlvTvvLgkZo+5r0
-         tvlN9iEm2dOogqOiIS10q5OvQwB66xmsdCqsXKCYCk97AnOgP1I1Z+3sR4x5TICEkG3V
-         +Jg+ulERu/wj8nUjhvVh4YDr8fK6WvSxn0jfNYR+GLoV9RO0dwRWcDd955wCHLgFlWbh
-         dAldYx23S2OwKSpYttyhTBiHbt/mpJUnZaCqAeIRpYnOvWPNYyxiN1dXW3LkNHkaf74E
-         ptsQ==
-X-Gm-Message-State: AOAM531o4rZ0ovMwRWX0BSruG7fzTB07VrCZZi+s36NL+eKnMa8tOh3a
-        wZIMzO20Q9uBUVIvQ0pBU0r4YU7lOaX7a1Qc0nw=
-X-Google-Smtp-Source: ABdhPJzFSlV7OFBoJCCTpLJPhe96AEXVxmiJ1nXHUmbNH/Q7+3fPr10Cne6Y2te6J9EGKeTSubokyntzby4OcXfXLCE=
-X-Received: by 2002:a02:6c09:: with SMTP id w9mr1092614jab.135.1606265094163;
- Tue, 24 Nov 2020 16:44:54 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zIJ5sPJ4vLlu5jw+88lTkiZ9z4ChIp0VSe8hT9RWXJQ=;
+        b=Ts+D6aSkqQxVhG+HSGJlGY4oSTtaY2BJc20/zZTYUUZpchNg/YDd/ssLnFlJ5EOnkb
+         dJDa7DFdUelAqLV3jsJJ1ZcapPp8vjjxrgC4DrwOWhSYmruuT2rjLXqTF2wWBzDZCUL6
+         H9BblBUekyUgSBS3K+f5A/CqjOXawkyp2Kb/FgBSFz3mMIzKylYKdJY1gi++Q18CFzrK
+         FwROpgCOAPRn+e9IndNmUR8YcsEATBrFN96/9XrXfl/rVxaReio5YWeqjEtOBjszcNOJ
+         wgdvAsafkINwgZtmmfAb4Q3axKd2Xo8cUGZPQ9eTCqAb+C/5BtuG2u0qhhtz6JbHIijV
+         s0Ug==
+X-Gm-Message-State: AOAM531b/3EeX/nNMdtKlhuStX9AQC3qfgBRd7E3uW2IIvPGdoJVoxsO
+        4AAsrEXj5pFYTBUZH6vteOatZg==
+X-Google-Smtp-Source: ABdhPJzGts/jVMfPOVVQ2h+jli/wC/GeZyWR5FG6ltFqvuQZUbXeZk4ws5HG6x+Nn29S10lgrv89sA==
+X-Received: by 2002:a17:90a:fd02:: with SMTP id cv2mr1013215pjb.176.1606265297868;
+        Tue, 24 Nov 2020 16:48:17 -0800 (PST)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id b21sm388190pji.24.2020.11.24.16.48.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Nov 2020 16:48:17 -0800 (PST)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v4] arm64: dts: qcom: sc7180-trogdor: Make pp3300_a the default supply for pp3300_hub
+Date:   Tue, 24 Nov 2020 16:48:13 -0800
+Message-Id: <20201124164714.v4.1.I0ed4abdd2b2916fbedf76be254bc3457fb8b9655@changeid>
+X-Mailer: git-send-email 2.29.2.454.gaff20da3a2-goog
 MIME-Version: 1.0
-References: <20201124015949.29262-1-alice.guo@nxp.com> <20201124015949.29262-4-alice.guo@nxp.com>
-In-Reply-To: <20201124015949.29262-4-alice.guo@nxp.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 24 Nov 2020 18:44:42 -0600
-Message-ID: <CAHCN7x+xRNZAEU0Y_nRSsKE5UtSvHT4E5WLx_NvLncbQMndnbw@mail.gmail.com>
-Subject: Re: [PATCH v6 4/4] soc: imx8m: change to use platform driver
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 23, 2020 at 8:04 PM Alice Guo <alice.guo@nxp.com> wrote:
->
-> Directly reading ocotp register depends on that bootloader enables ocotp
-> clk, which is not always effective, so change to use nvmem API. Using
-> nvmem API requires to support driver defer probe and thus change
-> soc-imx8m.c to use platform driver.
->
-> The other reason is that directly reading ocotp register causes kexec
-> kernel hang because the 1st kernel running will disable unused clks
-> after kernel boots up, and then ocotp clk will be disabled even if
-> bootloader enables it. When kexec kernel, ocotp clk needs to be enabled
-> before reading ocotp registers, and nvmem API with platform driver
-> supported can accomplish this.
->
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> ---
->
-The patch reads V6, but the change log only shows V2.  Can you
-elaborate on what has changed between V2 and V6?
+The trogdor design has two options for supplying the 'pp3300_hub' power
+rail, it can be supplied by 'pp3300_l7c' or 'pp3300_a'. The 'pp3300_a'
+path includes a load switch that can be controlled through GPIO84.
+Initially trogdor boards used 'pp3300_l7c' to power the USB hub, newer
+revisions (will) use 'pp3300_a' as supply for 'pp3300_hub'.
 
-adam
+Add a DT node for the 'pp3300_a' path and a pinctrl entry for the GPIO.
+Make this path the default and keep trogdor rev1, lazor rev0 and rev1
+on 'pp3300_l7c'. These earlier revisions also allocated the GPIO to the
+purpose of controlling the power switch, so there is no need to limit
+the pinctrl config to newer revisions. Remove the platform-wide
+'always/boot-on' properties from 'pp3300_l7c' and add them to the
+boards that use this supply. Also delete the 'always/boot-on'
+properties of 'pp3300_hub' for these boards.
 
-> v2: remove the subject prefix "LF-2571-4"
-> v3: Keep the original way which uses device_initcall to read soc unique
->     ID, and add the other way which uses module_platform_driver and
->     nvmem API, so that it will not break the old version DTBs.
-> v4: delete "__maybe_unused"
->     delete MODULE_DEVICE_TABLE(of, imx8m_soc_match);
->     rename match table, "fsl,imx8mm/n/q/p" is actually a machine
-> compabile and "fsl,imx8mm/n/q/p-soc" is a compabile of soc@0
->     delete "flag" and change to determine whether the pointer is NULL
->     ues of_find_matching_node_and_match()
->     delete of_match_ptr()
-> v5: add cleanup part "of_node_put"
->     add note to explain that why device_initcall still exists
-> v6: none
->
->  drivers/soc/imx/soc-imx8m.c | 87 ++++++++++++++++++++++++++++++++-----
->  1 file changed, 75 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/soc/imx/soc-imx8m.c b/drivers/soc/imx/soc-imx8m.c
-> index cc57a384d74d..250530177920 100644
-> --- a/drivers/soc/imx/soc-imx8m.c
-> +++ b/drivers/soc/imx/soc-imx8m.c
-> @@ -5,6 +5,8 @@
->
->  #include <linux/init.h>
->  #include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
->  #include <linux/of_address.h>
->  #include <linux/slab.h>
->  #include <linux/sys_soc.h>
-> @@ -29,7 +31,7 @@
->
->  struct imx8_soc_data {
->         char *name;
-> -       u32 (*soc_revision)(void);
-> +       u32 (*soc_revision)(struct device *dev);
->  };
->
->  static u64 soc_uid;
-> @@ -50,7 +52,7 @@ static u32 imx8mq_soc_revision_from_atf(void)
->  static inline u32 imx8mq_soc_revision_from_atf(void) { return 0; };
->  #endif
->
-> -static u32 __init imx8mq_soc_revision(void)
-> +static u32 __init imx8mq_soc_revision(struct device *dev)
->  {
->         struct device_node *np;
->         void __iomem *ocotp_base;
-> @@ -75,9 +77,20 @@ static u32 __init imx8mq_soc_revision(void)
->                         rev = REV_B1;
->         }
->
-> -       soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
-> -       soc_uid <<= 32;
-> -       soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
-> +       if (dev) {
-> +               int ret = 0;
-> +
-> +               ret = nvmem_cell_read_u64(dev, "soc_unique_id", &soc_uid);
-> +               if (ret) {
-> +                       iounmap(ocotp_base);
-> +                       of_node_put(np);
-> +                       return ret;
-> +               }
-> +       } else {
-> +               soc_uid = readl_relaxed(ocotp_base + OCOTP_UID_HIGH);
-> +               soc_uid <<= 32;
-> +               soc_uid |= readl_relaxed(ocotp_base + OCOTP_UID_LOW);
-> +       }
->
->         iounmap(ocotp_base);
->         of_node_put(np);
-> @@ -107,7 +120,7 @@ static void __init imx8mm_soc_uid(void)
->         of_node_put(np);
->  }
->
-> -static u32 __init imx8mm_soc_revision(void)
-> +static u32 __init imx8mm_soc_revision(struct device *dev)
->  {
->         struct device_node *np;
->         void __iomem *anatop_base;
-> @@ -125,7 +138,15 @@ static u32 __init imx8mm_soc_revision(void)
->         iounmap(anatop_base);
->         of_node_put(np);
->
-> -       imx8mm_soc_uid();
-> +       if (dev) {
-> +               int ret = 0;
-> +
-> +               ret = nvmem_cell_read_u64(dev, "soc_unique_id", &soc_uid);
-> +               if (ret)
-> +                       return ret;
-> +       } else {
-> +               imx8mm_soc_uid();
-> +       }
->
->         return rev;
->  }
-> @@ -150,7 +171,7 @@ static const struct imx8_soc_data imx8mp_soc_data = {
->         .soc_revision = imx8mm_soc_revision,
->  };
->
-> -static __maybe_unused const struct of_device_id imx8_soc_match[] = {
-> +static const struct of_device_id imx8_machine_match[] = {
->         { .compatible = "fsl,imx8mq", .data = &imx8mq_soc_data, },
->         { .compatible = "fsl,imx8mm", .data = &imx8mm_soc_data, },
->         { .compatible = "fsl,imx8mn", .data = &imx8mn_soc_data, },
-> @@ -158,12 +179,20 @@ static __maybe_unused const struct of_device_id imx8_soc_match[] = {
->         { }
->  };
->
-> +static const struct of_device_id imx8_soc_match[] = {
-> +       { .compatible = "fsl,imx8mq-soc", .data = &imx8mq_soc_data, },
-> +       { .compatible = "fsl,imx8mm-soc", .data = &imx8mm_soc_data, },
-> +       { .compatible = "fsl,imx8mn-soc", .data = &imx8mn_soc_data, },
-> +       { .compatible = "fsl,imx8mp-soc", .data = &imx8mp_soc_data, },
-> +       { }
-> +};
-> +
->  #define imx8_revision(soc_rev) \
->         soc_rev ? \
->         kasprintf(GFP_KERNEL, "%d.%d", (soc_rev >> 4) & 0xf,  soc_rev & 0xf) : \
->         "unknown"
->
-> -static int __init imx8_soc_init(void)
-> +static int imx8_soc_info(struct platform_device *pdev)
->  {
->         struct soc_device_attribute *soc_dev_attr;
->         struct soc_device *soc_dev;
-> @@ -182,7 +211,10 @@ static int __init imx8_soc_init(void)
->         if (ret)
->                 goto free_soc;
->
-> -       id = of_match_node(imx8_soc_match, of_root);
-> +       if (pdev)
-> +               id = of_match_node(imx8_soc_match, pdev->dev.of_node);
-> +       else
-> +               id = of_match_node(imx8_machine_match, of_root);
->         if (!id) {
->                 ret = -ENODEV;
->                 goto free_soc;
-> @@ -191,8 +223,16 @@ static int __init imx8_soc_init(void)
->         data = id->data;
->         if (data) {
->                 soc_dev_attr->soc_id = data->name;
-> -               if (data->soc_revision)
-> -                       soc_rev = data->soc_revision();
-> +               if (data->soc_revision) {
-> +                       if (pdev) {
-> +                               soc_rev = data->soc_revision(&pdev->dev);
-> +                               ret = soc_rev;
-> +                               if (ret < 0)
-> +                                       goto free_soc;
-> +                       } else {
-> +                               soc_rev = data->soc_revision(NULL);
-> +                       }
-> +               }
->         }
->
->         soc_dev_attr->revision = imx8_revision(soc_rev);
-> @@ -230,4 +270,27 @@ static int __init imx8_soc_init(void)
->         kfree(soc_dev_attr);
->         return ret;
->  }
-> +
-> +/* Retain device_initcall is for backward compatibility with DTS. */
-> +static int __init imx8_soc_init(void)
-> +{
-> +       int ret = 0;
-> +
-> +       if (of_find_matching_node_and_match(NULL, imx8_soc_match, NULL))
-> +               return 0;
-> +
-> +       ret = imx8_soc_info(NULL);
-> +       return ret;
-> +}
->  device_initcall(imx8_soc_init);
-> +
-> +static struct platform_driver imx8_soc_info_driver = {
-> +       .probe = imx8_soc_info,
-> +       .driver = {
-> +               .name = "imx8_soc_info",
-> +               .of_match_table = imx8_soc_match,
-> +       },
-> +};
-> +
-> +module_platform_driver(imx8_soc_info_driver);
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+---
+
+Changes in v4:
+- removed references to the 'usb_hub' node, which currently doesn't
+  exist upstream
+
+Changes in v3:
+- removed 'always-on' and 'boot-on' from 'pp3300_l7c'
+- always pair 'always-on' and 'boot-on' properties
+- removed comment for 'pp3300_hub' 'always-on' and 'boot-on' properties
+
+Changes in v2:
+- added 'always-on' and 'boot-on' properties for new 'pp3300_hub'
+- removed platform-wide 'always-on' property for 'pp3300_l7c'
+- added 'always-on' property to 'pp3300_l7c'  for boards that still
+  use 'pp3300_l7c'
+- delete 'always-on' property of 'pp3300_hub' for boards that still
+  use 'pp3300_l7c'
+- got rid of 'pp3300_hub_7c' label, just use 'pp3300_l7c'
+- fixed position of 'en_pp3300_hub' node to respect ordering
+- updated commit message
+
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r0.dts | 11 ++++++
+ .../boot/dts/qcom/sc7180-trogdor-lazor-r1.dts | 11 ++++++
+ .../arm64/boot/dts/qcom/sc7180-trogdor-r1.dts | 11 ++++++
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi  | 34 +++++++++++++++++--
+ 4 files changed, 64 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+index ae4c23a4fe65..30e3e769d2b4 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r0.dts
+@@ -14,6 +14,17 @@ / {
+ 	compatible = "google,lazor-rev0", "qcom,sc7180";
+ };
+ 
++&pp3300_hub {
++	/* pp3300_l7c is used to power the USB hub */
++	/delete-property/regulator-always-on;
++	/delete-property/regulator-boot-on;
++};
++
++&pp3300_l7c {
++	regulator-always-on;
++	regulator-boot-on;
++};
++
+ &sn65dsi86_out {
+ 	/*
+ 	 * Lane 0 was incorrectly mapped on the cable, but we've now decided
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+index 9354d4c5ef7d..c2ef06367baf 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r1.dts
+@@ -13,3 +13,14 @@ / {
+ 	model = "Google Lazor (rev1 - 2)";
+ 	compatible = "google,lazor-rev1", "google,lazor-rev2", "qcom,sc7180";
+ };
++
++&pp3300_hub {
++	/* pp3300_l7c is used to power the USB hub */
++	/delete-property/regulator-always-on;
++	/delete-property/regulator-boot-on;
++};
++
++&pp3300_l7c {
++	regulator-always-on;
++	regulator-boot-on;
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+index 59d67fb0efe8..2cb522d6962e 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-r1.dts
+@@ -53,6 +53,17 @@ ap_ts: touchscreen@10 {
+ 	};
+ };
+ 
++&pp3300_hub {
++	/* pp3300_l7c is used to power the USB hub */
++	/delete-property/regulator-always-on;
++	/delete-property/regulator-boot-on;
++};
++
++&pp3300_l7c {
++	regulator-always-on;
++	regulator-boot-on;
++};
++
+ &sdhc_2 {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index 3eb1ff2483be..28b0ad1ed157 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -174,6 +174,24 @@ pp3300_fp_tp: pp3300-fp-tp-regulator {
+ 		vin-supply = <&pp3300_a>;
+ 	};
+ 
++	pp3300_hub: pp3300-hub {
++		compatible = "regulator-fixed";
++		regulator-name = "pp3300_hub";
++
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++
++		gpio = <&tlmm 84 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++		pinctrl-names = "default";
++		pinctrl-0 = <&en_pp3300_hub>;
++
++		regulator-always-on;
++		regulator-boot-on;
++
++		vin-supply = <&pp3300_a>;
++	};
++
+ 	/* BOARD-SPECIFIC TOP LEVEL NODES */
+ 
+ 	backlight: backlight {
+@@ -478,13 +496,10 @@ ppvar_l6c: ldo6 {
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+ 		};
+ 
+-		pp3300_hub:
+ 		pp3300_l7c: ldo7 {
+ 			regulator-min-microvolt = <3304000>;
+ 			regulator-max-microvolt = <3304000>;
+ 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+-			regulator-always-on;
+-			regulator-boot-on;
+ 		};
+ 
+ 		pp1800_brij_vccio:
+@@ -1185,6 +1200,19 @@ pinconf {
+ 		};
+ 	};
+ 
++	en_pp3300_hub: en-pp3300-hub {
++		pinmux {
++			pins = "gpio84";
++			function = "gpio";
++		};
++
++		pinconf {
++			pins = "gpio84";
++			drive-strength = <2>;
++			bias-disable;
++		};
++	};
++
+ 	fpmcu_boot0: fpmcu-boot0 {
+ 		pinmux {
+ 			pins = "gpio10";
+-- 
+2.29.2.454.gaff20da3a2-goog
+
