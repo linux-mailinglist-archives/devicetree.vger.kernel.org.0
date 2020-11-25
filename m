@@ -2,139 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBDC82C4028
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 13:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 744B32C4087
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 13:50:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728022AbgKYM3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 07:29:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49456 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727669AbgKYM3m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 07:29:42 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998B3C0613D4
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 04:29:32 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id i19so2733966ejx.9
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 04:29:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=j57EtHMv78PhfHsr0mtpiZiQYvcfhG4oADe/5q+SFdg=;
-        b=co/82OQ5r1xF+entk1GBpTloILdzINtmbvow+8Wb+EKoIlt2d/KwYtPLVklopMoTAL
-         EX29B763/N97jd28bzeEUrRdGVQRcxoCtIJZTueMIdppWVFWfefH5x8aYsOeKpzmFtvn
-         WZHFIn6vGuEGgBGR7j32dJ5nxaZxd9AE/y8S9yIkyoZ5a5ZmABT2Y4QhkV5Eww+lOww2
-         5KQ6QBvUbi4jQMu8G0GBLbyV2sYKgLac0Zh6TZ9f9Qp2EnSdKzGKb/qYHNzutGIhiL0W
-         o1wX27T8e7m9fv9JSTWVIzFcG7wgR14dWlmt1H4ADL+7GwJ7VPRUP0jXNcKwazupde5i
-         1HqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=j57EtHMv78PhfHsr0mtpiZiQYvcfhG4oADe/5q+SFdg=;
-        b=n8ImBwLjj8b/IkW4eUKy6r1SRHcPEMwijHOU3td9Z1+oYJ53MCOm2k6JBvEO+WQyzK
-         nhcnuRl44Ii0hg4NXPvkAx26D0eBOPXdhEJVCLCvQJR8mn1a2Tx3qRTqKT7+F9gZLSvy
-         Yp5UxNZER4gheuin0bSL5e5eD0Ap4p282AuN/CYNHSQ4biYEHw0Lj/vmuaMSC1jg1L7H
-         00vRmVp9XZ4xLIk48cDFgkoukyIdsyn0i4E4+Sa5zxfmUV4D7Gz40G1SldLnKKk/Mph2
-         uwOrVqJVwUCOKSyunoBzUdR4gN6Eow4Zjiqtulkhkov/UK2/lUGhcHwMw5FWZp8n+uGC
-         Vvpg==
-X-Gm-Message-State: AOAM533DwJVgmWLO9KczufXYF+iPG3EM2eTyQDAgJYsiREXATKWsK0fd
-        Xnjd1EeqKrCxMKlxiGzHkmi+X0YTSmpWatD+drAZHg==
-X-Google-Smtp-Source: ABdhPJyeT/9/rRdeYj7/T7dQd4H3e8nFnzlYkCswUXItR63wB4ezcOBsk0XWbx1kr/BcTQdMvOjPLCDaUIRRYDnRwcw=
-X-Received: by 2002:a17:906:37d2:: with SMTP id o18mr2904629ejc.379.1606307371357;
- Wed, 25 Nov 2020 04:29:31 -0800 (PST)
-MIME-Version: 1.0
-References: <5d3523150890e494df308ee69523d0f0e7b33b22.1605185549.git.michal.simek@xilinx.com>
-In-Reply-To: <5d3523150890e494df308ee69523d0f0e7b33b22.1605185549.git.michal.simek@xilinx.com>
-From:   Michal Simek <monstr@monstr.eu>
-Date:   Wed, 25 Nov 2020 13:29:20 +0100
-Message-ID: <CAHTX3d+nGPXgfw=t7+UsEEseFahScus7jjMhKGe+RwMbVweeRQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: zynqmp: Wire mailbox with zynqmp-power driver
-To:     LKML <linux-kernel@vger.kernel.org>,
-        Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
-Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
+        id S1729340AbgKYMty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 07:49:54 -0500
+Received: from mail.kernel.org ([198.145.29.99]:49672 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728237AbgKYMty (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Nov 2020 07:49:54 -0500
+Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2B894206E5;
+        Wed, 25 Nov 2020 12:49:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606308593;
+        bh=TG3UpeiHbWC57NXnHtKT6Q7HjbmbKGepoMAsuPbYhgg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qA6Yjnk0W6zCUTsY9ibqshuDQiyuMajOgBuOizLAck5E9ZE5L+x+V2bYY6fA0yzhP
+         xrJyA9k5kSg27ql/IPPknP/v+4uxJ4vosi4p2FhH49/Imm/qZUyNXz/o2apsCdUSEv
+         3nynnNaoFfMST3otOGu54i2pO5tWIalKvxy47vR8=
+Date:   Wed, 25 Nov 2020 12:49:28 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     xuyuqing <xuyuqing@huaqin.corp-partner.google.com>
+Cc:     linux-kernel@vger.kernel.org, Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org, cychiang@chromium.org,
+        judyhsiao@chromium.org, linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        zhouguohui@huaqin.corp-partner.google.com
+Subject: Re: [PATCH v1 0/1] Fix 32 bit format for adau7002
+Message-ID: <20201125124928.GA4489@sirena.org.uk>
+References: <20201118005858.123013-1-xuyuqing@huaqin.corp-partner.google.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gKMricLos+KVdGMg"
+Content-Disposition: inline
+In-Reply-To: <20201118005858.123013-1-xuyuqing@huaqin.corp-partner.google.com>
+X-Cookie: No foreign coins.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=C4=8Dt 12. 11. 2020 v 13:52 odes=C3=ADlatel Michal Simek
-<michal.simek@xilinx.com> napsal:
->
-> The support to driver was added by commit ffdbae28d9d1 ("drivers: soc:
-> xilinx: Use mailbox IPI callback") that's why also enable it via DT by
-> default. It setups communication with firmware via IPI interface.
->
-> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
-> ---
->
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts=
-/xilinx/zynqmp.dtsi
-> index 66dad22b8a76..68923fbd0e89 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -99,6 +99,29 @@ opp03 {
->                 };
->         };
->
-> +       zynqmp_ipi {
-> +               compatible =3D "xlnx,zynqmp-ipi-mailbox";
-> +               interrupt-parent =3D <&gic>;
-> +               interrupts =3D <0 35 4>;
-> +               xlnx,ipi-id =3D <0>;
-> +               #address-cells =3D <2>;
-> +               #size-cells =3D <2>;
-> +               ranges;
-> +
-> +               ipi_mailbox_pmu1: mailbox@ff990400 {
-> +                       reg =3D <0x0 0xff9905c0 0x0 0x20>,
-> +                             <0x0 0xff9905e0 0x0 0x20>,
-> +                             <0x0 0xff990e80 0x0 0x20>,
-> +                             <0x0 0xff990ea0 0x0 0x20>;
-> +                       reg-names =3D "local_request_region",
-> +                                   "local_response_region",
-> +                                   "remote_request_region",
-> +                                   "remote_response_region";
-> +                       #mbox-cells =3D <1>;
-> +                       xlnx,ipi-id =3D <4>;
-> +               };
-> +       };
-> +
->         dcc: dcc {
->                 compatible =3D "arm,dcc";
->                 status =3D "disabled";
-> @@ -128,6 +151,8 @@ zynqmp_power: zynqmp-power {
->                                 compatible =3D "xlnx,zynqmp-power";
->                                 interrupt-parent =3D <&gic>;
->                                 interrupts =3D <0 35 4>;
-> +                               mboxes =3D <&ipi_mailbox_pmu1 0>, <&ipi_m=
-ailbox_pmu1 1>;
-> +                               mbox-names =3D "tx", "rx";
->                         };
->
->                         zynqmp_clk: clock-controller {
-> --
-> 2.29.2
->
 
-Applied.
-M
+--gKMricLos+KVdGMg
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Nov 18, 2020 at 08:58:57AM +0800, xuyuqing wrote:
+> the microphone is attached to external codec(adau7002)
+> instead of rt5682.We need to always use 32 bit format on sc7180
+> to meet the clock requirement of adau7002:
+> The ADAU7002 requires a BCLK rate=20
+> that is a minimum of 64=D7 the LRCLK sample rate
 
---=20
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
+Please don't send cover letters for single patches, if there is anything
+that needs saying put it in the changelog of the patch or after the ---
+if it's administrative stuff.  This reduces mail volume and ensures that=20
+any important information is recorded in the changelog rather than being
+lost.=20
+
+--gKMricLos+KVdGMg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl++UtcACgkQJNaLcl1U
+h9BXsAf+JbAuQvpTNdjb5/LUqRdyuTd2UQmI4XFbgJUpmVe1dh0IbCc5pqQg/DXU
+/Wl7kSPW1BB1dgiEpbf54AcEQedhpzJggccsH9tWbLyLvC6yVksQc+PU3dxf8FbC
+d+O/GzA4WlIomYE7szH8rvTLcBG8FE37F5qT7zADGhDFA4yjXNhmEOBFQQQsIzRR
+gemWP64PSv4ekoI7Kc9k8VXFutE67I7cPaL0uHEnaDzUcbgkompnweXA8AApxTTq
+PkxAlknTOCQQlkUQH+TgFi00oJlyriAJ9y1ua9le7GoFNRva07aIo9cehika7qTT
+CxonbnDUtgpR5DZnZ5cUXTBJkby3EA==
+=3C6x
+-----END PGP SIGNATURE-----
+
+--gKMricLos+KVdGMg--
