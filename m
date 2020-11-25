@@ -2,96 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7974B2C3BDF
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 10:22:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AF6D02C3D14
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 10:57:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727378AbgKYJVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 04:21:40 -0500
-Received: from smtp2.axis.com ([195.60.68.18]:59156 "EHLO smtp2.axis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727109AbgKYJVk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 04:21:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=axis.com; l=1892; q=dns/txt; s=axis-central1;
-  t=1606296099; x=1637832099;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UN8d/Bn7UE75hgj+WxoXrW2QClIbhvnJu5cEVB3OKUY=;
-  b=XisgcOEwCo6Mg46ZbrB8cLhZtE3Uo787Zf1WQ/Wh1fOYGG4ueuG2o8DT
-   zPXb/r5blsINwVoZgla2oVSkQjDvcOjjzOQZEoWs+P5kx6G82Y2m3Gvk9
-   7M7UCNoN482+EsWNj4YJKBB8FMEeOSTckT3WnM/YsaCWlFcbt6FZ1ikhi
-   RwDLwfaZscAsxmsnpUKL0bf5OBLQQYZ0JbDp+8W3oJB+gGPcgCcxMsGaW
-   wo9MZYFFhDXmGqRGtzSjRyKSot0XC2/odqUEPjkTfthWNSwtkQ92tFvMa
-   VYS9Ki2l7b+vq0zD8RLfOAfuF7iaZb0+GRXKlmK/wF77y+k9Pfgbg/dbm
-   g==;
-IronPort-SDR: dzZ2pIx/Y4ya22PBk098LfDD27sHrDT0bV66IMpO+kyWTB6kyuURO9K1zs4BcWX/kAyZdfkmIW
- Koj8m/nfuWeNvx8bHXB0JWbv/0s0XJTQqACXxhfWZ0TqTW9a7AEFs6UUEshwIPPNziUf12NArx
- kpgCE5b8oSKFhvhmkXSZVBmfXi8EayiXu3O/S/UvyppzU5O3KrTCOZEYZhm53nrVM0XdJFeSBf
- deLELar44inV06r1ZhrqeajQWl9RzbyvObkElPdcGy2m+NmI0tip/N+aHAB2LWamwmEQ7w/nxu
- On8=
-X-IronPort-AV: E=Sophos;i="5.78,368,1599516000"; 
-   d="scan'208";a="14872264"
-Date:   Wed, 25 Nov 2020 10:21:37 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Adam Ward <adam.ward@diasemi.com>
-CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/9] regulator: Update DA9121 dt-bindings
-Message-ID: <20201125092137.ehwfytsrr3x5vkiy@axis.com>
-References: <cover.1605868780.git.Adam.Ward.opensource@diasemi.com>
- <a5a57b416a47c044797d9b669c7e021acd69abae.1605868780.git.Adam.Ward.opensource@diasemi.com>
- <20201120134742.y7bocaok3gcahbxt@axis.com>
+        id S1726505AbgKYJ5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 04:57:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53986 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726250AbgKYJ5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 04:57:30 -0500
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C63DAC0613D6
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 01:57:19 -0800 (PST)
+Received: by mail-vs1-xe41.google.com with SMTP id v8so904530vso.2
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 01:57:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t0REdB3olCexNERcSHnzJwkFu42mj1xmlom0KLliQ/I=;
+        b=Y1MuhRmqz4Ac5OM43sgbecc7Bv0lPYZlg6hUu79nriANbuJ7cc3DV+kbp7m1OHR8rB
+         BN4fs6A3GfeN5ImPMKR0alrZMeCFRUrn7ErNv424xjNVe4MtBMQ4NXvleHyLoO3REg8r
+         QeP0Yg57+0ikm3CRLXyclKSiJe/0Lf1nuzOBmOE/1ozh85a6VxBmaxQO2BLqKw4pshe8
+         ew0/TQ9zLUeXlszjngC0w6Unskivab/rbt8kLsO9DPYTd4fgwFWEtTCzxw6PrldRrYtD
+         ypJBfBmWNKMfJo2FmB5PEso5RNtN+gZzIjVFDBzKa1p+EYysVkvHUFLfvG9SfA4Jdj+n
+         S4Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t0REdB3olCexNERcSHnzJwkFu42mj1xmlom0KLliQ/I=;
+        b=ENFX6ZOYOLjhlio0n3okKtF5qwO+CEPCvPPKPLUhGrA63CDky6z2sSd3D52dh9L4wZ
+         +/TpzPP0MZORKWF8ncWsmsPhO719CP5sU6HC0vG+DCgO/FOxel0iDq1BUmQLr45gwqCx
+         Ugxw5RjtnI/GfpBOIjKf3BNnfSmA2MvQnW78XAXaQpplgjPrF3lwHDrPxX+Uak+C9vkS
+         3+Zd5AC0gBT3XmAv3b6GWR7ZaaeakcF1EtcvRAUrw8SzoCo55fVBhSerpmRR1wCyoOJa
+         DDEua/ESjP5TnHLPEpSFS9KUPxAHqLffA/cAYhRus+NE1tBNMraiV5upYXknr0uavzFi
+         xBOQ==
+X-Gm-Message-State: AOAM533sPE6Fd2zcnOsRJL3ExvyBdAlsjHtqOMCVM3h1Y4yIzBvguuM0
+        abbz0GADo2tN4bW9Z1rkwQq6BV758c9toQUvAfx9HQ==
+X-Google-Smtp-Source: ABdhPJzwbR3dPmM+DDvpmCIiGlOOwtZSknMvs/ZVop/d6QS3ZX9tdcZ8DRnaSlHSuFaOAu8Ffbe8WFpIzV7zBj+q5kU=
+X-Received: by 2002:a05:6102:322a:: with SMTP id x10mr473721vsf.19.1606298239005;
+ Wed, 25 Nov 2020 01:57:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201120134742.y7bocaok3gcahbxt@axis.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <20201112194011.103774-1-ebiggers@kernel.org> <X7gQ9Y44iIgkiM64@sol.localdomain>
+In-Reply-To: <X7gQ9Y44iIgkiM64@sol.localdomain>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Wed, 25 Nov 2020 10:56:42 +0100
+Message-ID: <CAPDyKFrXtqqj3RXJ4m666e_danpp2neRD_M+FCaMWPC+Ow2jsA@mail.gmail.com>
+Subject: Re: [PATCH 0/8] eMMC inline encryption support
+To:     Eric Biggers <ebiggers@kernel.org>
+Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
+        Satya Tangirala <satyat@google.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ritesh Harjani <riteshh@codeaurora.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Neeraj Soni <neersoni@codeaurora.org>,
+        Barani Muthukumaran <bmuthuku@codeaurora.org>,
+        Peng Zhou <peng.zhou@mediatek.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Konrad Dybcio <konradybcio@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 02:47:42PM +0100, Vincent Whitchurch wrote:
-> On Fri, Nov 20, 2020 at 01:14:50PM +0100, Adam Ward wrote:
-> > -  buck1:
-> > -    description:
-> > -      Initial data for the Buck1 regulator.
-> > -    $ref: "regulator.yaml#"
-> > +  interrupt-parent:
-> > +    maxItems: 1
-> > +    description: Specifies the reference to the interrupt controller.
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +    description: IRQ line information.
-> > +
-> > +  dlg,irq-polling-delay-passive:
-> > +    maxItems: 1
-> > +    description: |
-> > +      Specify the polling period, measured in milliseconds, between interrupt status
-> > +      update checks. Range 1000-10000 ms.
-> > +
-> > +  regulators:
-> >      type: object
-> > +    $ref: regulator.yaml#
-> > +    description: |
-> > +      This node defines the settings for the BUCK. The content of the
-> > +      sub-node is defined by the standard binding for regulators; see regulator.yaml.
-> > +      The DA9121 regulator is bound using their names listed below
-> > +      buck1 - BUCK1
-> > +      buck2 - BUCK2       //DA9122, DA9220, DA9131, DA9132 only
-> 
-> This move to a sub-node means that older devicetrees won't work. I
-> assume that's fine since the driver is only in linux-next at the moment,
-> but perhaps it's worth mentioning this in the commit message?
+On Fri, 20 Nov 2020 at 19:54, Eric Biggers <ebiggers@kernel.org> wrote:
+>
+> On Thu, Nov 12, 2020 at 11:40:03AM -0800, Eric Biggers wrote:
+> > Hello,
+> >
+> > This patchset adds support for eMMC inline encryption, as specified by
+> > the upcoming version of the eMMC specification and as already
+> > implemented and used on many devices.  Building on that, it then adds
+> > Qualcomm ICE support and wires it up for the Snapdragon 630 SoC.
+> >
+> > Inline encryption hardware improves the performance of storage
+> > encryption and reduces power usage.  See
+> > Documentation/block/inline-encryption.rst for more information about
+> > inline encryption and the blk-crypto framework (upstreamed in v5.8)
+> > which supports it.  Most mobile devices already use UFS or eMMC inline
+> > encryption hardware; UFS support was already upstreamed in v5.9.
+> >
+> > Patches 1-3 add support for the standard eMMC inline encryption.
+> >
+> > However, as with UFS, host controller-specific patches are needed on top
+> > of the standard support.  Therefore, patches 4-8 add Qualcomm ICE
+> > (Inline Crypto Engine) support and wire it up on the Snapdragon 630 SoC.
+> >
+> > To test this I took advantage of the recently upstreamed support for the
+> > Snapdragon 630 SoC, plus work-in-progress patches from the SoMainline
+> > project (https://github.com/SoMainline/linux/tree/konrad/v5.10-rc3).  In
+> > particular, I was able to run the fscrypt xfstests for ext4 and f2fs in
+> > a Debian chroot.  Among other things, these tests verified that the
+> > correct ciphertext is written to disk (the same as software encryption).
+> >
+> > It will also be possible to add support for Mediatek eMMC inline
+> > encryption hardware in mtk-sd, and it should be easier than the Qualcomm
+> > hardware since the Mediatek hardware follows the standard more closely.
+> > I.e., patches 1-3 should be almost enough for the Mediatek hardware.
+> > However, I don't have the hardware to do this yet.
+> >
+> > This patchset is based on v5.10-rc3, and it can also be retrieved from
+> > tag "mmc-crypto-v1" of
+> > https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
+> >
+> > Note: the fscrypt inline encryption support is partially broken in
+> > v5.10-rc3, so for testing a fscrypt fix needs to be applied too:
+> > https://lkml.kernel.org/r/20201111015224.303073-1-ebiggers@kernel.org
+> >
+> > Eric Biggers (8):
+> >   mmc: add basic support for inline encryption
+> >   mmc: cqhci: rename cqhci.c to cqhci-core.c
+> >   mmc: cqhci: add support for inline encryption
+> >   mmc: cqhci: add cqhci_host_ops::program_key
+> >   firmware: qcom_scm: update comment for ICE-related functions
+> >   dt-bindings: mmc: sdhci-msm: add ICE registers and clock
+> >   arm64: dts: qcom: sdm630: add ICE registers and clocks
+> >   mmc: sdhci-msm: add Inline Crypto Engine support
+>
+> Any comments on this patchset?
 
-Actually, perhaps I'm missing something, but I don't quite see why this
-move to a sub-node is needed.  There is some flexibility in the
-regulator framework for this as I noted earlier
-(https://lore.kernel.org/lkml/20201102154848.tm5nsydaukyd7rrw@axis.com/).
-For the case of an MFD it certainly makes sense to have a "regulators"
-sub-node but for these chips it seems rather redundant.
+I have been busy, but just wanted to let you know that I am moving to
+start reviewing this series shortly.
 
-Also, perhaps you could split this patch into logical pieces too as Mark
-has suggested for some of the other patches in this series?
+I also need to catch up on the eMMC spec a bit, before I can provide
+you with comments.
+
+Kind regards
+Uffe
