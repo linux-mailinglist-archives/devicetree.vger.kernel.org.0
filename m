@@ -2,82 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B12E2C3A00
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 08:21:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B0CC2C3A4E
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 08:52:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728079AbgKYHTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 02:19:41 -0500
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:12287 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728036AbgKYHTl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 02:19:41 -0500
-X-Originating-IP: 91.175.115.186
-Received: from localhost (91-175-115-186.subs.proxad.net [91.175.115.186])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 80E1C24000A;
-        Wed, 25 Nov 2020 07:19:38 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        <Steen.Hegelund@microchip.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH v2 3/3] MIPS: dts: mscc: add reset support for Luton and Jaguar2
-Date:   Wed, 25 Nov 2020 08:19:20 +0100
-Message-Id: <20201125071920.126978-4-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201125071920.126978-1-gregory.clement@bootlin.com>
-References: <20201125071920.126978-1-gregory.clement@bootlin.com>
+        id S1727780AbgKYHvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 02:51:35 -0500
+Received: from aclms1.advantech.com.tw ([61.58.41.199]:52862 "EHLO
+        ACLMS1.advantech.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726411AbgKYHvf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 02:51:35 -0500
+Received: from taipei08.ADVANTECH.CORP (unverified [172.20.0.235]) by ACLMS1.advantech.com.tw
+ (Clearswift SMTPRS 5.6.0) with ESMTP id <Te30c5af484ac14014b1470@ACLMS1.advantech.com.tw>;
+ Wed, 25 Nov 2020 15:07:43 +0800
+Received: from localhost (124.9.5.81) by taipei08.ADVANTECH.CORP
+ (172.20.0.235) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 25 Nov
+ 2020 15:07:41 +0800
+From:   Shihlun Lin <shihlun.lin@advantech.com.tw>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>, <linux-watchdog@vger.kernel.org>,
+        Campion Kang <campion.kang@advantech.com.tw>,
+        Shihlun Lin <shihlun.lin@advantech.com.tw>,
+        AceLan Kao <chia-lin.kao@canonical.com>
+Subject: [RESEND PATCH v4 1/6] MAINTAINERS: Add Advantech embedded controller entry
+Date:   Wed, 25 Nov 2020 15:07:39 +0800
+Message-ID: <20201125070744.4651-1-shihlun.lin@advantech.com.tw>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [124.9.5.81]
+X-ClientProxiedBy: taipei09.ADVANTECH.CORP (172.20.0.236) To
+ taipei08.ADVANTECH.CORP (172.20.0.235)
+X-StopIT: No
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow Luton and Jaguar2 SoCs to use reset feature by adding the reset
-node.
+Add Advantech embedded controller entry
 
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
 ---
- arch/mips/boot/dts/mscc/jaguar2.dtsi | 5 +++++
- arch/mips/boot/dts/mscc/luton.dtsi   | 5 +++++
- 2 files changed, 10 insertions(+)
+ MAINTAINERS | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-diff --git a/arch/mips/boot/dts/mscc/jaguar2.dtsi b/arch/mips/boot/dts/mscc/jaguar2.dtsi
-index 42b2b0a51ddc..7032fe550277 100644
---- a/arch/mips/boot/dts/mscc/jaguar2.dtsi
-+++ b/arch/mips/boot/dts/mscc/jaguar2.dtsi
-@@ -60,6 +60,11 @@ cpu_ctrl: syscon@70000000 {
- 			reg = <0x70000000 0x2c>;
- 		};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 94ac10a153c7..c1fe5233b469 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -562,6 +562,17 @@ S:	Maintained
+ F:	Documentation/scsi/advansys.rst
+ F:	drivers/scsi/advansys.c
  
-+		reset@71010008 {
-+			compatible = "mscc,jaguar2-chip-reset";
-+			reg = <0x71010008 0x4>;
-+		};
++ADVANTECH EMBEDDED CONTROLLER DRIVER
++M:	Shihlun Lin <shihlun.lin@advantech.com.tw>
++M:	Campion Kang <campion.kang@advantech.com.tw>
++L:	linux-kernel@vger.kernel.org
++S:	Maintained
++F:	Documentation/devicetree/bindings/mfd/ahc1ec0.yaml
++F:	drivers/mfd/ahc1ec0-hwmon.c
++F:	drivers/mfd/ahc1ec0-wdt.c
++F:	drivers/mfd/ahc1ec0.c
++F:	include/dt-bindings/mfd/ahc1ec0.h
 +
- 		intc: interrupt-controller@70000070 {
- 			compatible = "mscc,jaguar2-icpu-intr";
- 			reg = <0x70000070 0x94>;
-diff --git a/arch/mips/boot/dts/mscc/luton.dtsi b/arch/mips/boot/dts/mscc/luton.dtsi
-index 2a170b84c5a9..4a26c2874386 100644
---- a/arch/mips/boot/dts/mscc/luton.dtsi
-+++ b/arch/mips/boot/dts/mscc/luton.dtsi
-@@ -56,6 +56,11 @@ cpu_ctrl: syscon@10000000 {
- 			reg = <0x10000000 0x2c>;
- 		};
- 
-+		reset@00070090 {
-+			compatible = "mscc,luton-chip-reset";
-+			reg = <0x70090 0x4>;
-+		};
-+
- 		intc: interrupt-controller@10000084 {
- 			compatible = "mscc,luton-icpu-intr";
- 			reg = <0x10000084 0x70>;
+ ADXL34X THREE-AXIS DIGITAL ACCELEROMETER DRIVER (ADXL345/ADXL346)
+ M:	Michael Hennerich <michael.hennerich@analog.com>
+ S:	Supported
+
+base-commit: 3d5e28bff7ad55aea081c1af516cc1c94a5eca7d
 -- 
-2.29.2
+2.17.1
 
