@@ -2,52 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0EF02C36B2
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 03:31:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FF592C36B9
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 03:31:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726591AbgKYCUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 24 Nov 2020 21:20:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:38844 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726505AbgKYCUS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 24 Nov 2020 21:20:18 -0500
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 863CE20DD4;
-        Wed, 25 Nov 2020 02:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606270817;
-        bh=lNpr8sGlFbu4/YJ1ljkOaQSkWXG8y+4BsYBBDa8L9vY=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=f3vWr2K6gA3pyftCzxaxng6/IYTlO8s5BIgbuJu/O3qhazqCaV3W8uIM9lrLGBXwD
-         VztqVdN88TRUH9UFQmwfbuT+07COKGhgYiaOTc9+g8WEn55iJoLqN7PjV5OO57iQa6
-         wF6FET815/sfA5lgTgplquZuEoGhtc1nVKzaUZhA=
-Content-Type: text/plain; charset="utf-8"
+        id S1726684AbgKYCWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 24 Nov 2020 21:22:08 -0500
+Received: from szxga04-in.huawei.com ([45.249.212.190]:7732 "EHLO
+        szxga04-in.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726654AbgKYCWG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 24 Nov 2020 21:22:06 -0500
+Received: from DGGEMS403-HUB.china.huawei.com (unknown [172.30.72.60])
+        by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Cgl4y1rL0zkfYX;
+        Wed, 25 Nov 2020 10:21:38 +0800 (CST)
+Received: from [10.57.101.250] (10.57.101.250) by
+ DGGEMS403-HUB.china.huawei.com (10.3.19.203) with Microsoft SMTP Server id
+ 14.3.487.0; Wed, 25 Nov 2020 10:21:56 +0800
+Subject: Re: [PATCH 00/11] clean up some Hisilicon-related errors detected by
+ DT schema on arm64
+To:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20201012131739.1655-1-thunder.leizhen@huawei.com>
+From:   Wei Xu <xuwei5@hisilicon.com>
+Message-ID: <5FBDBFC3.60205@hisilicon.com>
+Date:   Wed, 25 Nov 2020 10:21:55 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+ Thunderbird/38.2.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20201116141906.11758-3-zhouyanjie@wanyeetech.com>
-References: <20201116141906.11758-1-zhouyanjie@wanyeetech.com> <20201116141906.11758-3-zhouyanjie@wanyeetech.com>
-Subject: Re: [PATCH v9 2/3] dt-bindings: USB: Add bindings for Ingenic JZ4775 and X2000.
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com, paul@crapouillou.net
-To:     balbi@kernel.org, gregkh@linuxfoundation.org, kishon@ti.com,
-        mturquette@baylibre.com, robh+dt@kernel.org, vkoul@kernel.org,
-        Zhou Yanjie <zhouyanjie@wanyeetech.com>
-Date:   Tue, 24 Nov 2020 18:20:16 -0800
-Message-ID: <160627081611.2717324.5799688341377220492@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+In-Reply-To: <20201012131739.1655-1-thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.57.101.250]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Move Ingenic USB PHY bindings from Documentation/devicetree/bindings/usb
-> to Documentation/devicetree/bindings/phy, and add bindings for JZ4775 SoC
-> and X2000 SoC.
->=20
+Hi Zhen,
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+On 2020/10/12 21:17, Zhen Lei wrote:
+> These patches are based on the latest linux-next. Because some txt files have
+> not converted to DT schema, so a lot of errors can not be fixed now. This time,
+> only some obvious errors are cleared.
+> 
+> Zhen Lei (11):
+>   arm64: dts: hisilicon: normalize the node name of the ITS devices
+>   arm64: dts: hisilicon: separate each group of data in the property
+>     "reg"
+>   arm64: dts: hisilicon: write the values of property-units into a
+>     uint32 array
+>   arm64: dts: hisilicon: remove unused property pinctrl-names
+>   arm64: dts: hisilicon: place clock-names "biu" before "ciu"
+>   arm64: dts: hisilicon: normalize the node name of the SMMU devices
+>   arm64: dts: hisilicon: normalize the node name of the usb devices
+>   arm64: dts: hisilicon: normalize the node name of the UART devices
+>   arm64: dts: hisilicon: list all clocks required by spi-pl022.yaml
+>   arm64: dts: hisilicon: list all clocks required by pl011.yaml
+>   arm64: dts: hisilicon: list all clocks required by
+>     snps-dw-apb-uart.yaml
+> 
+>  arch/arm64/boot/dts/hisilicon/hi3660.dtsi      |  11 +-
+>  arch/arm64/boot/dts/hisilicon/hi3670.dtsi      |   5 +-
+>  arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi |  27 ++--
+>  arch/arm64/boot/dts/hisilicon/hi6220.dtsi      |   4 +-
+>  arch/arm64/boot/dts/hisilicon/hip05.dtsi       |  20 +--
+>  arch/arm64/boot/dts/hisilicon/hip06.dtsi       |  14 +-
+>  arch/arm64/boot/dts/hisilicon/hip07.dtsi       | 178 ++++++++++++-------------
+>  7 files changed, 129 insertions(+), 130 deletions(-)
+> 
+
+Thanks!
+Series applied to the hisilicon arm64 dt tree.
+
+Best Regards,
+Wei
