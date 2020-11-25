@@ -2,136 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6D02C3D14
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 10:57:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C305C2C3D23
+	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 11:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726505AbgKYJ5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 04:57:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53986 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726250AbgKYJ5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 04:57:30 -0500
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C63DAC0613D6
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 01:57:19 -0800 (PST)
-Received: by mail-vs1-xe41.google.com with SMTP id v8so904530vso.2
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 01:57:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t0REdB3olCexNERcSHnzJwkFu42mj1xmlom0KLliQ/I=;
-        b=Y1MuhRmqz4Ac5OM43sgbecc7Bv0lPYZlg6hUu79nriANbuJ7cc3DV+kbp7m1OHR8rB
-         BN4fs6A3GfeN5ImPMKR0alrZMeCFRUrn7ErNv424xjNVe4MtBMQ4NXvleHyLoO3REg8r
-         QeP0Yg57+0ikm3CRLXyclKSiJe/0Lf1nuzOBmOE/1ozh85a6VxBmaxQO2BLqKw4pshe8
-         ew0/TQ9zLUeXlszjngC0w6Unskivab/rbt8kLsO9DPYTd4fgwFWEtTCzxw6PrldRrYtD
-         ypJBfBmWNKMfJo2FmB5PEso5RNtN+gZzIjVFDBzKa1p+EYysVkvHUFLfvG9SfA4Jdj+n
-         S4Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t0REdB3olCexNERcSHnzJwkFu42mj1xmlom0KLliQ/I=;
-        b=ENFX6ZOYOLjhlio0n3okKtF5qwO+CEPCvPPKPLUhGrA63CDky6z2sSd3D52dh9L4wZ
-         +/TpzPP0MZORKWF8ncWsmsPhO719CP5sU6HC0vG+DCgO/FOxel0iDq1BUmQLr45gwqCx
-         Ugxw5RjtnI/GfpBOIjKf3BNnfSmA2MvQnW78XAXaQpplgjPrF3lwHDrPxX+Uak+C9vkS
-         3+Zd5AC0gBT3XmAv3b6GWR7ZaaeakcF1EtcvRAUrw8SzoCo55fVBhSerpmRR1wCyoOJa
-         DDEua/ESjP5TnHLPEpSFS9KUPxAHqLffA/cAYhRus+NE1tBNMraiV5upYXknr0uavzFi
-         xBOQ==
-X-Gm-Message-State: AOAM533sPE6Fd2zcnOsRJL3ExvyBdAlsjHtqOMCVM3h1Y4yIzBvguuM0
-        abbz0GADo2tN4bW9Z1rkwQq6BV758c9toQUvAfx9HQ==
-X-Google-Smtp-Source: ABdhPJzwbR3dPmM+DDvpmCIiGlOOwtZSknMvs/ZVop/d6QS3ZX9tdcZ8DRnaSlHSuFaOAu8Ffbe8WFpIzV7zBj+q5kU=
-X-Received: by 2002:a05:6102:322a:: with SMTP id x10mr473721vsf.19.1606298239005;
- Wed, 25 Nov 2020 01:57:19 -0800 (PST)
-MIME-Version: 1.0
-References: <20201112194011.103774-1-ebiggers@kernel.org> <X7gQ9Y44iIgkiM64@sol.localdomain>
-In-Reply-To: <X7gQ9Y44iIgkiM64@sol.localdomain>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Wed, 25 Nov 2020 10:56:42 +0100
-Message-ID: <CAPDyKFrXtqqj3RXJ4m666e_danpp2neRD_M+FCaMWPC+Ow2jsA@mail.gmail.com>
-Subject: Re: [PATCH 0/8] eMMC inline encryption support
-To:     Eric Biggers <ebiggers@kernel.org>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>, linux-fscrypt@vger.kernel.org,
-        Satya Tangirala <satyat@google.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ritesh Harjani <riteshh@codeaurora.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Neeraj Soni <neersoni@codeaurora.org>,
-        Barani Muthukumaran <bmuthuku@codeaurora.org>,
-        Peng Zhou <peng.zhou@mediatek.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Konrad Dybcio <konradybcio@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1725837AbgKYKDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 05:03:24 -0500
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:33505 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725815AbgKYKDY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 05:03:24 -0500
+Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 25 Nov 2020 02:03:23 -0800
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 25 Nov 2020 02:03:21 -0800
+X-QCInternal: smtphost
+Received: from kalyant-linux.qualcomm.com ([10.204.66.210])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 25 Nov 2020 15:32:46 +0530
+Received: by kalyant-linux.qualcomm.com (Postfix, from userid 94428)
+        id 2578917AA; Wed, 25 Nov 2020 02:02:45 -0800 (PST)
+From:   Kalyan Thota <kalyan_t@codeaurora.org>
+To:     y@qualcomm.com, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        dianders@chromium.org, mkrishn@codeaurora.org,
+        travitej@codeaurora.org, nganji@codeaurora.org,
+        swboyd@chromium.org, abhinavk@codeaurora.org,
+        ddavenport@chromium.org, amit.pundir@linaro.org,
+        sumit.semwal@linaro.org
+Subject: [v1] drm/msm/dpu: consider vertical front porch in the prefill bw calculation
+Date:   Wed, 25 Nov 2020 02:02:40 -0800
+Message-Id: <1606298560-3003-1-git-send-email-kalyan_t@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <y>
+References: <y>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Nov 2020 at 19:54, Eric Biggers <ebiggers@kernel.org> wrote:
->
-> On Thu, Nov 12, 2020 at 11:40:03AM -0800, Eric Biggers wrote:
-> > Hello,
-> >
-> > This patchset adds support for eMMC inline encryption, as specified by
-> > the upcoming version of the eMMC specification and as already
-> > implemented and used on many devices.  Building on that, it then adds
-> > Qualcomm ICE support and wires it up for the Snapdragon 630 SoC.
-> >
-> > Inline encryption hardware improves the performance of storage
-> > encryption and reduces power usage.  See
-> > Documentation/block/inline-encryption.rst for more information about
-> > inline encryption and the blk-crypto framework (upstreamed in v5.8)
-> > which supports it.  Most mobile devices already use UFS or eMMC inline
-> > encryption hardware; UFS support was already upstreamed in v5.9.
-> >
-> > Patches 1-3 add support for the standard eMMC inline encryption.
-> >
-> > However, as with UFS, host controller-specific patches are needed on top
-> > of the standard support.  Therefore, patches 4-8 add Qualcomm ICE
-> > (Inline Crypto Engine) support and wire it up on the Snapdragon 630 SoC.
-> >
-> > To test this I took advantage of the recently upstreamed support for the
-> > Snapdragon 630 SoC, plus work-in-progress patches from the SoMainline
-> > project (https://github.com/SoMainline/linux/tree/konrad/v5.10-rc3).  In
-> > particular, I was able to run the fscrypt xfstests for ext4 and f2fs in
-> > a Debian chroot.  Among other things, these tests verified that the
-> > correct ciphertext is written to disk (the same as software encryption).
-> >
-> > It will also be possible to add support for Mediatek eMMC inline
-> > encryption hardware in mtk-sd, and it should be easier than the Qualcomm
-> > hardware since the Mediatek hardware follows the standard more closely.
-> > I.e., patches 1-3 should be almost enough for the Mediatek hardware.
-> > However, I don't have the hardware to do this yet.
-> >
-> > This patchset is based on v5.10-rc3, and it can also be retrieved from
-> > tag "mmc-crypto-v1" of
-> > https://git.kernel.org/pub/scm/linux/kernel/git/ebiggers/linux.git
-> >
-> > Note: the fscrypt inline encryption support is partially broken in
-> > v5.10-rc3, so for testing a fscrypt fix needs to be applied too:
-> > https://lkml.kernel.org/r/20201111015224.303073-1-ebiggers@kernel.org
-> >
-> > Eric Biggers (8):
-> >   mmc: add basic support for inline encryption
-> >   mmc: cqhci: rename cqhci.c to cqhci-core.c
-> >   mmc: cqhci: add support for inline encryption
-> >   mmc: cqhci: add cqhci_host_ops::program_key
-> >   firmware: qcom_scm: update comment for ICE-related functions
-> >   dt-bindings: mmc: sdhci-msm: add ICE registers and clock
-> >   arm64: dts: qcom: sdm630: add ICE registers and clocks
-> >   mmc: sdhci-msm: add Inline Crypto Engine support
->
-> Any comments on this patchset?
+In case of panels with low vertical back porch, the prefill bw
+requirement will be high as we will have less time(vbp+pw) to
+fetch and fill the hw latency buffers before start of first line
+in active period.
 
-I have been busy, but just wanted to let you know that I am moving to
-start reviewing this series shortly.
+For ex:
+Say hw_latency_line_buffers = 24, and if blanking vbp+pw = 10
+Here we need to fetch 24 lines of data in 10 line times.
+This will increase the bw to the ratio of linebuffers to blanking.
 
-I also need to catch up on the eMMC spec a bit, before I can provide
-you with comments.
+DPU hw can also fetch data during vertical front porch provided
+interface prefetch is enabled. Use vfp in the prefill calculation
+as dpu driver enables prefetch if the blanking is not sufficient
+to fill the latency lines.
 
-Kind regards
-Uffe
+Signed-off-by: Kalyan Thota <kalyan_t@codeaurora.org>
+---
+ drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
+index 7ea90d2..315b999 100644
+--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
++++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
+@@ -151,7 +151,7 @@ static void _dpu_plane_calc_bw(struct drm_plane *plane,
+ 	u64 plane_bw;
+ 	u32 hw_latency_lines;
+ 	u64 scale_factor;
+-	int vbp, vpw;
++	int vbp, vpw, vfp;
+ 
+ 	pstate = to_dpu_plane_state(plane->state);
+ 	mode = &plane->state->crtc->mode;
+@@ -164,6 +164,7 @@ static void _dpu_plane_calc_bw(struct drm_plane *plane,
+ 	fps = drm_mode_vrefresh(mode);
+ 	vbp = mode->vtotal - mode->vsync_end;
+ 	vpw = mode->vsync_end - mode->vsync_start;
++	vfp = mode->vsync_start - mode->vdisplay;
+ 	hw_latency_lines =  dpu_kms->catalog->perf.min_prefill_lines;
+ 	scale_factor = src_height > dst_height ?
+ 		mult_frac(src_height, 1, dst_height) : 1;
+@@ -176,7 +177,13 @@ static void _dpu_plane_calc_bw(struct drm_plane *plane,
+ 		src_width * hw_latency_lines * fps * fmt->bpp *
+ 		scale_factor * mode->vtotal;
+ 
+-	do_div(plane_prefill_bw, (vbp+vpw));
++	if ((vbp+vpw) > hw_latency_lines)
++		do_div(plane_prefill_bw, (vbp+vpw));
++	else if ((vbp+vpw+vfp) < hw_latency_lines)
++		do_div(plane_prefill_bw, (vbp+vpw+vfp));
++	else
++		do_div(plane_prefill_bw, hw_latency_lines);
++
+ 
+ 	pstate->plane_fetch_bw = max(plane_bw, plane_prefill_bw);
+ }
+-- 
+2.7.4
+
