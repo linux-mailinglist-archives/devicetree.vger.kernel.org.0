@@ -2,128 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CBB62C5B93
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 19:07:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B03182C5B99
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 19:09:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404596AbgKZSGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 13:06:50 -0500
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:44466 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391576AbgKZSGu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 13:06:50 -0500
-Received: by mail-wr1-f66.google.com with SMTP id 64so3045505wra.11;
-        Thu, 26 Nov 2020 10:06:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1QLKFnMd0xMr/FuISvhLJSJ7sMuGt7dY11QW5pCEZlM=;
-        b=t/JeBsIPKAQIbE5npPqhfKbrOsY3lY448eZ0DyltN66XMoagQ6K73CyE+vc/k3LIJd
-         ezPlTXs6UJT9eWg1pt8GwaUzyT/rWaOHTLXMiL9X+fk35nBlFqV/SapWFU91naRUOZSZ
-         9JoFolQ2kC4JV9DIn511e6xqiBDI/NH8yOUOX7fraVndXVfiQEjFXhXwmjeJjUq74JEM
-         07ym/k9PVjVyLByDPNFxTgP6c66R0Ok3fDTtMtTlKSXF5D8axindYu9QTl0GxHdCPcb6
-         xFkIxrtTHEhnHCm+vFcwtzFDy2R9ruQTqleba++ZSDHtrdWIYAFfO4hxqg7b6kFUo4dU
-         UcuQ==
-X-Gm-Message-State: AOAM5335sdaEkEWztE0trF8Z85hnmkShuvdHWuPBONFXlOM2fO7RS1dU
-        eeSlOEUZvlCbAGMKfthdXNk=
-X-Google-Smtp-Source: ABdhPJwJIzd4XnJQtTCHV2LiRu+9UIhtQQYRHVWoL0G78pv9E0vIbZE77Fy9quW92PvulxW+y/CkuQ==
-X-Received: by 2002:adf:ec8a:: with SMTP id z10mr5467457wrn.113.1606414006586;
-        Thu, 26 Nov 2020 10:06:46 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id o5sm9374179wmh.8.2020.11.26.10.06.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 10:06:45 -0800 (PST)
-Date:   Thu, 26 Nov 2020 19:06:43 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 17/47] dt-bindings: memory: tegra20: Add memory client
- IDs
-Message-ID: <20201126180643.GA18074@kozik-lap>
-References: <20201104164923.21238-1-digetx@gmail.com>
- <20201104164923.21238-18-digetx@gmail.com>
- <X7/lLaZJNp+Vfczk@ulmo>
- <20201126173922.GA7048@kozik-lap>
- <X7/tz8KwCBEgA6vi@ulmo>
+        id S2391614AbgKZSJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 13:09:32 -0500
+Received: from foss.arm.com ([217.140.110.172]:42638 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2391523AbgKZSJc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 13:09:32 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4512431B;
+        Thu, 26 Nov 2020 10:09:31 -0800 (PST)
+Received: from [10.57.59.159] (unknown [10.57.59.159])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D587E3F23F;
+        Thu, 26 Nov 2020 10:09:27 -0800 (PST)
+Subject: Re: [PATCH v8 4/9] of/iommu: Support dma-can-stall property
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>, joro@8bytes.org,
+        will@kernel.org, lorenzo.pieralisi@arm.com, robh+dt@kernel.org
+Cc:     guohanjun@huawei.com, sudeep.holla@arm.com, rjw@rjwysocki.net,
+        lenb@kernel.org, bhelgaas@google.com, Jonathan.Cameron@huawei.com,
+        eric.auger@redhat.com, iommu@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+        baolu.lu@linux.intel.com, zhangfei.gao@linaro.org,
+        shameerali.kolothum.thodi@huawei.com, vivek.gautam@arm.com
+References: <20201112125519.3987595-1-jean-philippe@linaro.org>
+ <20201112125519.3987595-5-jean-philippe@linaro.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <d0a61d79-82fc-3af8-570e-e2ae3d485455@arm.com>
+Date:   Thu, 26 Nov 2020 18:09:26 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <X7/tz8KwCBEgA6vi@ulmo>
+In-Reply-To: <20201112125519.3987595-5-jean-philippe@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 07:02:55PM +0100, Thierry Reding wrote:
-> On Thu, Nov 26, 2020 at 06:39:22PM +0100, Krzysztof Kozlowski wrote:
-> > On Thu, Nov 26, 2020 at 06:26:05PM +0100, Thierry Reding wrote:
-> > > On Wed, Nov 04, 2020 at 07:48:53PM +0300, Dmitry Osipenko wrote:
-> > > > Each memory client has unique hardware ID, add these IDs.
-> > > > 
-> > > > Acked-by: Rob Herring <robh@kernel.org>
-> > > > Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> > > > ---
-> > > >  include/dt-bindings/memory/tegra20-mc.h | 53 +++++++++++++++++++++++++
-> > > >  1 file changed, 53 insertions(+)
-> > > 
-> > > Is there any chance you could drop these dt-bindings include patches
-> > > (17, 18 and 19) so that I can pick them up into the Tegra tree? The
-> > > device tree changes that I was going to pick up depend on this and
-> > > fail to build if applied as-is.
-> > > 
-> > > I was looking at your linux-mem-ctrl tree and had initially thought I
-> > > could just pull in one of the branches to get these dependencies, but it
-> > > looks like the dt-bindings patches are on the for-v5.11/tegra-mc branch,
-> > > which the ARM SoC maintainers wouldn't like to see me pull in for a
-> > > dependency on device tree changes.
-> > 
-> > Partially you answered here. :) Since you should not pull my branch into
-> > a DT branch, you also should not put these include/dt-bindings patches
-> > there.  SoC guys will complain about this as well.
-> > 
-> > These patches are also needed for the driver, so if you take them, I
-> > would need them back in a pull request. SoC folks could spot it as well
-> > and point that such merge should not happen.
-> > 
-> > > If this is all fixed at this point, I'll just have to push back the
-> > > device tree changes to v5.12, or perhaps see if the ARM SoC maintainers
-> > > are willing to take a late pull request that's based on v5.11-rc1.
-> > 
-> > Yeah, that's a known problem. I asked about this Arnd and Olof in the
-> > past and got reply with two solutions:
-> > 1. Apply current version of patch without defines, just hard-coded
-> >    numbers. After merging to Linus, replace the numbers with defines.
-> > 
-> > 2. Wait with DTS till dependencies reach Linus.
+On 2020-11-12 12:55, Jean-Philippe Brucker wrote:
+> Copy the dma-can-stall property into the fwspec structure.
+
+Can't we just handle this as a regular device property? It's not part of 
+the actual IOMMU specifier, it doesn't need to be translated in any way, 
+and AFAICS it's used a grand total of once, in a slow path. Simply 
+treating it as the per-device property that it is should require zero 
+additional code for DT, and a simple device_add_properties() call for IORT.
+
+TBH that appears to be true of pasid-num-bits as well.
+
+Robin.
+
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
+> ---
+>   include/linux/iommu.h    | 2 ++
+>   drivers/iommu/of_iommu.c | 5 ++++-
+>   2 files changed, 6 insertions(+), 1 deletion(-)
 > 
-> What I've done occasionally in the past was to put these kinds of
-> patches into a separate "dt-bindings" branch that I could use to resolve
-> dependencies from device tree files. The ARM SoC maintainers never had
-> any issues with that approach.
+> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+> index a1c78c4cdeb1..9076fb592c8f 100644
+> --- a/include/linux/iommu.h
+> +++ b/include/linux/iommu.h
+> @@ -572,6 +572,7 @@ struct iommu_group *fsl_mc_device_group(struct device *dev);
+>    * @iommu_fwnode: firmware handle for this device's IOMMU
+>    * @iommu_priv: IOMMU driver private data for this device
+>    * @num_pasid_bits: number of PASID bits supported by this device
+> + * @can_stall: the device is allowed to stall
+>    * @num_ids: number of associated device IDs
+>    * @ids: IDs which this device may present to the IOMMU
+>    */
+> @@ -579,6 +580,7 @@ struct iommu_fwspec {
+>   	const struct iommu_ops	*ops;
+>   	struct fwnode_handle	*iommu_fwnode;
+>   	u32			num_pasid_bits;
+> +	bool			can_stall;
+>   	unsigned int		num_ids;
+>   	u32			ids[];
+>   };
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index e505b9130a1c..d6255ca823d8 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -212,9 +212,12 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+>   		err = of_iommu_configure_device(master_np, dev, id);
+>   
+>   		fwspec = dev_iommu_fwspec_get(dev);
+> -		if (!err && fwspec)
+> +		if (!err && fwspec) {
+>   			of_property_read_u32(master_np, "pasid-num-bits",
+>   					     &fwspec->num_pasid_bits);
+> +			fwspec->can_stall = of_property_read_bool(master_np,
+> +								  "dma-can-stall");
+> +		}
+>   	}
+>   
+>   	/*
 > 
-> I guess this is a bit of a special case, because the DT includes are
-> ultimately really a part of the device tree, so mixing them both isn't
-> problematic.
-
-Indeed, that way could work... and no one would spot it. :) Many times
-these headers were for clock symbols so if they go via SoC/DT tree,
-merge back to clock tree could be accepted.
-
-Best regards,
-Krzysztof
-
