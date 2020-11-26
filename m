@@ -2,178 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFE9D2C5D56
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 22:07:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53B7A2C5DB3
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 23:06:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391682AbgKZVHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 16:07:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42870 "EHLO
+        id S2388327AbgKZWFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 17:05:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391685AbgKZVG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 16:06:59 -0500
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89479C061A51
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:59 -0800 (PST)
-Received: by mail-pl1-x643.google.com with SMTP id l1so1667985pld.5
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:59 -0800 (PST)
+        with ESMTP id S1729608AbgKZWFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 17:05:04 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313A8C0613D4;
+        Thu, 26 Nov 2020 14:05:04 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id q3so3702388edr.12;
+        Thu, 26 Nov 2020 14:05:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=UzN8V164vVCPagQUl1vXLvqIdHPB6vICDyDiG0FXeQk=;
-        b=dhODEkY7e25iR1VREZyGWflNm42VplRKLSKAzQqLjPvWmoR+oziwyu1lHO9za5VXtt
-         RWXv30Cze/3Sce07DR1pqpeJIk0nEbW2rd/rnGWDDOprl0rM6i1al3mxI/NdJPCsN7g6
-         G+7qnmQQEn4+IwSoDwufkjy2o2qWQ/w2f2MHrMxMNtZn8A3oU0s0Jx+ShugNoRVPG3bm
-         mESv7PczX40OIwTUdQLGnVu5i1Jcqwlq2GTK46kGyiISmTkgXA4bLEsSdwOrGeRh+Gto
-         K50gzxDPoKjQ56K3P+pXbiV6lPpTnR6UlBFbBhH1IharaH6AeIzTlK/GD51vvw8fhg8l
-         +ZHQ==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=cz7fpE5WaHhD3JJ1dpJ/yAKDZBzr1W0T2CuS7CDQ+yM=;
+        b=k8X8G71M0+NqaqXnzDU8ZQ6jzJ9w6weWdDoPk4f6Jms+8HBeT3cv4ZNRjY49y3AUnH
+         KZ85nxIg5kKeK3ERUybHPm4+XsWx5K872ZIF3mjlslZUseVjcU/ulrrKwIBaljpYFqZU
+         ZoTCkgQVAL29UPUduxW8NPIk+xb0gd39X6mvaRd7BYYdCyieBITrxJkEAk6TVokuF0Xq
+         OaDDc9KDRyGH8gSu22JJ7zphQSEPN/A8YBlWc7elv6BlrQfELGAi3GVXS4o9PhZrhTaE
+         xMF0EdPUJ3NcEEDoo8PrJYKfJoBms1Rm6vcbC9PyEVcOaaWlfpD5NADpZAZkZo+R4HtQ
+         /+Qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=UzN8V164vVCPagQUl1vXLvqIdHPB6vICDyDiG0FXeQk=;
-        b=g6ye6XXGWYFSFrfdp3BipJBJMMAsfnx1jIDcU+DAIl9aps+FQ58FKQw3mjyhRZfOkq
-         2HyW7hjQeig8IryDe0dQ3aNkyDS27gglYHCSUm/KI8iZwucIFx5m5m537HacucOU6zjj
-         VMsrlkhQD8lfQveXUiXzi9qSybvzsRHMDbjZy6E8ol3UAc84yJpjJNvY3UeqgCNem0X/
-         diMIkYynwyZq26aQA1mE9PL3DQoXBjwTqyvxUujVgjeALwZ9/YVJLjLPY0Ui1+POk19k
-         K9GCiq+daEvlc82hDI3r57r69vNwu5G1oZMve2xlq0zuUSvZOg5LUrxOEv88lVNs0jYW
-         SXIA==
-X-Gm-Message-State: AOAM531fvSs/2iaJTLp2c4ieawyKQlpnTMA9bAwCxEPL+etc7A+J9NKU
-        e6hF8VYmZa0fShJX17hRO2YI7g==
-X-Google-Smtp-Source: ABdhPJxxNOks0gg+1lBr4tfFpWk48fjnRO/zPBA/fCTy9l8CZRHMsrBL9px/uFMlVrQQp1eqiHuIGw==
-X-Received: by 2002:a17:902:e787:b029:d9:f88d:c32d with SMTP id cp7-20020a170902e787b02900d9f88dc32dmr4123620plb.79.1606424819073;
-        Thu, 26 Nov 2020 13:06:59 -0800 (PST)
-Received: from xps15.cg.shawcable.net (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id c203sm5612676pfc.10.2020.11.26.13.06.58
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=cz7fpE5WaHhD3JJ1dpJ/yAKDZBzr1W0T2CuS7CDQ+yM=;
+        b=rH658ywce5+J0PoClo52nW0ALn6EvGGBo+/zB8m3frtl/oIV98fo++QSN+JVHxavWl
+         agQ/sBXXabCwCWiQMhMfqtneUS1/v4hxt8EUTUfN4/LdwA+TBdpBzr/N5a/cCloNzp9m
+         96s0rLAB1ZSZBnC7WXCBa+q27gFRZTrZD7vGjLfMTeeYY/lQDrv2WTUPw0pzHEUbJDAI
+         LOH9zZ1R1KWcWJb+/RKKum31OPVX620PNNLaE9j70vaQ83Zb2HA8SlJnV9dop0QWSPyM
+         er9I68OWMTschPOUYvfap4ABCNs7FeJ+WG8LW01pwp0QyR+rO8RFwAZchKI8Lo2a//A4
+         30rw==
+X-Gm-Message-State: AOAM530DcBU+u5tD+/gqNMBLq2H24OUeG5YBMQysR9eIyMFvSEB5ik4Q
+        UVptaRRWPmgH+UMf5+kvuVc=
+X-Google-Smtp-Source: ABdhPJz6BatyisVtOQUl1TTOpqVE5nRraVF0JVr0QldQAJakvMBj0sopXP/vAN11QOjEEOzhjJakhw==
+X-Received: by 2002:a50:d5dd:: with SMTP id g29mr4621308edj.344.1606428302644;
+        Thu, 26 Nov 2020 14:05:02 -0800 (PST)
+Received: from skbuf ([188.25.2.120])
+        by smtp.gmail.com with ESMTPSA id a12sm3938623edu.89.2020.11.26.14.05.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 13:06:58 -0800 (PST)
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, arnaud.pouliquen@st.com
-Subject: [PATCH v3 15/15] remoteproc: Refactor rproc delete and cdev release path
-Date:   Thu, 26 Nov 2020 14:06:42 -0700
-Message-Id: <20201126210642.897302-16-mathieu.poirier@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201126210642.897302-1-mathieu.poirier@linaro.org>
-References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
+        Thu, 26 Nov 2020 14:05:01 -0800 (PST)
+Date:   Fri, 27 Nov 2020 00:05:00 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     George McCollister <george.mccollister@gmail.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20201126220500.av3clcxbbvogvde5@skbuf>
+References: <20201125193740.36825-1-george.mccollister@gmail.com>
+ <20201125193740.36825-3-george.mccollister@gmail.com>
+ <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
+ <20201126132418.zigx6c2iuc4kmlvy@skbuf>
+ <20201126175607.bqmpwbdqbsahtjn2@skbuf>
+ <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Refactor function rproc_del() and rproc_cdev_release() to take
-into account the policy specified in the device tree.
+On Thu, Nov 26, 2020 at 01:07:12PM -0600, George McCollister wrote:
+> On Thu, Nov 26, 2020 at 11:56 AM Vladimir Oltean <olteanv@gmail.com> wrote:
+> >
+> > On Thu, Nov 26, 2020 at 03:24:18PM +0200, Vladimir Oltean wrote:
+> > > On Wed, Nov 25, 2020 at 08:25:11PM -0600, George McCollister wrote:
+> > > > > > +     {XRS_RX_UNDERSIZE_L, "rx_undersize"},
+> > > > > > +     {XRS_RX_FRAGMENTS_L, "rx_fragments"},
+> > > > > > +     {XRS_RX_OVERSIZE_L, "rx_oversize"},
+> > > > > > +     {XRS_RX_JABBER_L, "rx_jabber"},
+> > > > > > +     {XRS_RX_ERR_L, "rx_err"},
+> > > > > > +     {XRS_RX_CRC_L, "rx_crc"},
+> > > > >
+> > > > > As Vladimir already mentioned to you the statistics which have
+> > > > > corresponding entries in struct rtnl_link_stats64 should be reported
+> > > > > the standard way. The infra for DSA may not be in place yet, so best
+> > > > > if you just drop those for now.
+> > > >
+> > > > Okay, that clears it up a bit. Just drop these 6? I'll read through
+> > > > that thread again and try to make sense of it.
+> > >
+> > > I feel that I should ask. Do you want me to look into exposing RMON
+> > > interface counters through rtnetlink (I've never done anything like that
+> > > before either, but there's a beginning for everything), or are you going
+> > > to?
+> >
+> > So I started to add .ndo_get_stats64 based on the hardware counters, but
+> > I already hit the first roadblock, as described by the wise words of
+> > Documentation/networking/statistics.rst:
+> >
+> > | The `.ndo_get_stats64` callback can not sleep because of accesses
+> > | via `/proc/net/dev`. If driver may sleep when retrieving the statistics
+> > | from the device it should do so periodically asynchronously and only return
+> > | a recent copy from `.ndo_get_stats64`. Ethtool interrupt coalescing interface
+> > | allows setting the frequency of refreshing statistics, if needed.
+> >
+> >
+> > Unfortunately, I feel this is almost unacceptable for a DSA driver that
+> > more often than not needs to retrieve these counters from a slow and
+> > bottlenecked bus (SPI, I2C, MDIO etc). Periodic readouts are not an
+> > option, because the only periodic interval that would not put absurdly
+> > high pressure on the limited SPI bandwidth would be a readout interval
+> > that gives you very old counters.
+>
+> Indeed it seems ndo_get_stats64() usually gets data over something
+> like a local or PCIe bus or from software. I had a brief look to see
+> if I could find another driver that was getting the stats over a slow
+> bus and didn't notice anything. If you haven't already you might do a
+> quick grep and see if anything pops out to you.
+>
+> >
+> > What exactly is it that incurs the atomic context? I cannot seem to
+> > figure out from this stack trace:
+>
+> I think something in fs/seq_file.c is taking an rcu lock.
 
-Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
----
- drivers/remoteproc/remoteproc_cdev.c | 13 +++++++++++-
- drivers/remoteproc/remoteproc_core.c | 30 ++++++++++++++++++++++++++--
- include/linux/remoteproc.h           |  4 ++++
- 3 files changed, 44 insertions(+), 3 deletions(-)
+Not quite. It _is_ the RCU read-side lock that's taken, but it's taken
+locally from dev_seq_start in net/core/net-procfs.c. The reason is that
+/proc/net/dev iterates through all interfaces from the current netns,
+and it is precisely that that creates atomic context. You used to need
+to hold the rwlock_t dev_base_lock, but now you can also "get away" with
+the RCU read-side lock. Either way, both are atomic context, so it
+doesn't help.
 
-diff --git a/drivers/remoteproc/remoteproc_cdev.c b/drivers/remoteproc/remoteproc_cdev.c
-index f7645f289563..3dfe555dfc07 100644
---- a/drivers/remoteproc/remoteproc_cdev.c
-+++ b/drivers/remoteproc/remoteproc_cdev.c
-@@ -88,7 +88,18 @@ static int rproc_cdev_release(struct inode *inode, struct file *filp)
- {
- 	struct rproc *rproc = container_of(inode->i_cdev, struct rproc, cdev);
- 
--	if (rproc->cdev_put_on_release && rproc->state == RPROC_RUNNING)
-+	if (!rproc->cdev_put_on_release)
-+		return 0;
-+
-+	/*
-+	 * The application has crashed or is releasing its file handle.  Detach
-+	 * or shutdown the remote processor based on the policy specified in the
-+	 * DT.  No need to check rproc->state right away, it will be done
-+	 * in either rproc_detach() or rproc_shutdown().
-+	 */
-+	if (rproc->autonomous_on_core_shutdown)
-+		rproc_detach(rproc);
-+	else
- 		rproc_shutdown(rproc);
- 
- 	return 0;
-diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-index 3d7d245edc4e..1a170103bf27 100644
---- a/drivers/remoteproc/remoteproc_core.c
-+++ b/drivers/remoteproc/remoteproc_core.c
-@@ -2294,6 +2294,22 @@ static int rproc_alloc_ops(struct rproc *rproc, const struct rproc_ops *ops)
- 	return 0;
- }
- 
-+static void rproc_set_automation_flags(struct rproc *rproc)
-+{
-+	struct device *dev = rproc->dev.parent;
-+	struct device_node *np = dev->of_node;
-+	bool core_shutdown;
-+
-+	/*
-+	 * When function rproc_cdev_release() or rproc_del() are called and
-+	 * the remote processor has been attached to, it will be detached from
-+	 * (rather than turned off) if "autonomous-on-core-shutdown is specified
-+	 * in the DT.
-+	 */
-+	core_shutdown = of_property_read_bool(np, "autonomous-on-core-shutdown");
-+	rproc->autonomous_on_core_shutdown = core_shutdown;
-+}
-+
- /**
-  * rproc_alloc() - allocate a remote processor handle
-  * @dev: the underlying device
-@@ -2352,6 +2368,8 @@ struct rproc *rproc_alloc(struct device *dev, const char *name,
- 	if (rproc_alloc_ops(rproc, ops))
- 		goto put_device;
- 
-+	rproc_set_automation_flags(rproc);
-+
- 	/* Assign a unique device index and name */
- 	rproc->index = ida_simple_get(&rproc_dev_index, 0, 0, GFP_KERNEL);
- 	if (rproc->index < 0) {
-@@ -2435,8 +2453,16 @@ int rproc_del(struct rproc *rproc)
- 	if (!rproc)
- 		return -EINVAL;
- 
--	/* TODO: make sure this works with rproc->power > 1 */
--	rproc_shutdown(rproc);
-+	/*
-+	 * TODO: make sure this works with rproc->power > 1
-+	 *
-+	 * No need to check rproc->state right away, it will be done in either
-+	 * rproc_detach() or rproc_shutdown().
-+	 */
-+	if (rproc->autonomous_on_core_shutdown)
-+		rproc_detach(rproc);
-+	else
-+		rproc_shutdown(rproc);
- 
- 	mutex_lock(&rproc->lock);
- 	rproc->state = RPROC_DELETED;
-diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-index 02312096d59f..5702f630d810 100644
---- a/include/linux/remoteproc.h
-+++ b/include/linux/remoteproc.h
-@@ -516,6 +516,9 @@ struct rproc_dump_segment {
-  * @nb_vdev: number of vdev currently handled by rproc
-  * @char_dev: character device of the rproc
-  * @cdev_put_on_release: flag to indicate if remoteproc should be shutdown on @char_dev release
-+ * @autonomous_on_core_shutdown: true if the remote processor should be detached
-+ *				 from (rather than turned off) when the remoteproc
-+ *				 core goes away.
-  */
- struct rproc {
- 	struct list_head node;
-@@ -554,6 +557,7 @@ struct rproc {
- 	u16 elf_machine;
- 	struct cdev cdev;
- 	bool cdev_put_on_release;
-+	bool autonomous_on_core_shutdown;
- };
- 
- /**
--- 
-2.25.1
+commit c6d14c84566d6b70ad9dc1618db0dec87cca9300
+Author: Eric Dumazet <eric.dumazet@gmail.com>
+Date:   Wed Nov 4 05:43:23 2009 -0800
 
+    net: Introduce for_each_netdev_rcu() iterator
+
+    Adds RCU management to the list of netdevices.
+
+    Convert some for_each_netdev() users to RCU version, if
+    it can avoid read_lock-ing dev_base_lock
+
+    Ie:
+            read_lock(&dev_base_loack);
+            for_each_netdev(net, dev)
+                    some_action();
+            read_unlock(&dev_base_lock);
+
+    becomes :
+
+            rcu_read_lock();
+            for_each_netdev_rcu(net, dev)
+                    some_action();
+            rcu_read_unlock();
+
+
+    Signed-off-by: Eric Dumazet <eric.dumazet@gmail.com>
+    Signed-off-by: David S. Miller <davem@davemloft.net>
+
+So... yeah. As long as this kernel interface exists, it needs to run in
+atomic context, by construction. Great.
+
+> I suppose it doesn't really matter though since the documentation says
+> we can't sleep.
+
+You're talking, I suppose, about these words of wisdom in
+Documentation/filesystems/seq_file.rst?
+
+| However, the seq_file code (by design) will not sleep between the calls
+| to start() and stop(), so holding a lock during that time is a
+| reasonable thing to do. The seq_file code will also avoid taking any
+| other locks while the iterator is active.
+
+It _doesn't_ say that you can't sleep between start() and stop(), right?
+It just says that if you want to keep the seq_file iterator atomic, the
+seq_file code is not sabotaging you by sleeping. But you still could
+sleep if you wanted to.
+
+Back to the statistics counters.
+
+How accurate do the counters in /proc/net/dev need to be? What programs
+consume those? Could they be more out of date than the ones retrieved
+through rtnetlink?
+
+I'm thinking that maybe we could introduce another ndo, something like
+.ndo_get_stats64_blocking, that could be called from all places except
+from net/core/net-procfs.c. That one could still call the non-blocking
+variant. Then, depending on the answer to the question "how inaccurate
+could we reasonably leave /proc/net/dev", we could:
+- just return zeroes there
+- return the counters cached from the last blocking call
+
+> It does seem to me that this is something that needs to be sorted out
+> at the subsystem level and that this driver has been "caught in the
+> crossfire". Any guidance on how we could proceed with this driver and
+> revisit this when we have answers to these questions at the subsystem
+> level would be appreciated if substantial time will be required to
+> work this out.
+
+Now seriously, who isn't caught in the crossfire here? Let's do some
+brainstorming and it will be quick and painless.
