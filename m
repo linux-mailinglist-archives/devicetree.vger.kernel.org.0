@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E3CE62C5D5A
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 22:07:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F592C5D4C
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 22:07:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391665AbgKZVG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 16:06:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42830 "EHLO
+        id S2391565AbgKZVGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 16:06:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391557AbgKZVGy (ORCPT
+        with ESMTP id S2391555AbgKZVGy (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 16:06:54 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49126C061A48
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:53 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id 34so2561068pgp.10
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:53 -0800 (PST)
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464B5C061A47
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:54 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id t8so2610217pfg.8
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=r9VIidoVcdPT6TG8AcEB1S8vzNlv34NcmaK246Tinnw=;
-        b=ih87xMcIyK/CenH6KwgVXhbvvw8tPezLD0ZG78w3yD9cCn0wMR9rCfgslaLTF9Ulq/
-         tYVJG/TSS+V1TuxLocTHO8Vh8OAKEkV57y626AR0S2f98gKiWROj5QlKe88du0JyXGrE
-         3CcwCYNDqO+LdcgUR6QwSPgDyrZqQmmFtzydYY1GEuXeE5tYiijDI4x3bu4nAmdsaTTt
-         FqSdF+lzXabkuDga5u45z9XBw9N39Nz65+7zuEsOExr3IrkC3Seod8e2cg/epPbPaQN8
-         SZXCv49SrMGqa+5xI7Qazg+ajGsOaFUBFi/kWoIPsnvGVGDJWACK/iiWli7UmaWOzRMD
-         nM7A==
+        bh=bQf9W2GrtRWRw1UMEUEbP7Yk66JacHQ8dUdbgr755jw=;
+        b=ROaGQAgMsA/abXfS91CGQGGuQokMfOchYq5XVlU/8OU7aCMqmfxZCbQRQl7XA0eJ0e
+         hNi8wP945LU5aw0+vIwQSKhLSZ2tN5y56TbEFyTNBdhLlIdX2MSApMNqqBGUZ4rGU7Ub
+         m6eNo9+EKzc7PjAvaKUPmLPF6nQVZ02qw+0kyGA/ALcn4WkChxnwtrVpUKlUvNPlPhEw
+         KmP8dEva90/SACGZjupGXY7E7Fc+SOunYw4CejxaRbEctkcJxukr0mgewUw6zfFcJazj
+         lmMITQUkIby8vqYFAud7FL4iQWgHRwryKf7JYykGRf2Hb2N4jPpPYBxjOC+yDyba1N6j
+         Xg4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=r9VIidoVcdPT6TG8AcEB1S8vzNlv34NcmaK246Tinnw=;
-        b=IDk1wbHPOJAog7xXtz6mxWHivVIUPMDUoM2wAiWladJbahsxOhofE52rLjYHQIIXo7
-         +d167oEs12+xz8jqCDgZeloLDKqhLnDBkMsKvFocmhSHGERiFf6uQBZCyhZp4dLTL5Sx
-         NmGMJtNTVY/kdPSHoapiOQtxR0EDgj8U4cU4U026+WsKE8QAADLWjo8hVt80UHvPpjJo
-         G/CfDpab990YmtNIC6e/nzM7Y1h46LIN0wGG2XHsVo3r3SrzchJb8DuvFA/N3vPV2SyY
-         bJCSRztDQajYhIPbfUtg68sas5EqpxlBLvBtwGVGovTHXWElxQ4UB7yCzdv/hduKA7Pd
-         8frQ==
-X-Gm-Message-State: AOAM5333bDpZ5+/r1+PS1xPAg4QhtAfWx9NREPRRW71HTKlMrX9P5MX5
-        fpsJJugpNs/I4ljFVao+0TcBfA==
-X-Google-Smtp-Source: ABdhPJxjsck9xcTSumLUyPKiMxiLRjKVGzc1w5XgLDB6QXfXHxvTau2XHTPeZAWZIS5cf9Se1VNi3w==
-X-Received: by 2002:aa7:954e:0:b029:198:1a04:36a7 with SMTP id w14-20020aa7954e0000b02901981a0436a7mr4198372pfq.10.1606424812850;
-        Thu, 26 Nov 2020 13:06:52 -0800 (PST)
+        bh=bQf9W2GrtRWRw1UMEUEbP7Yk66JacHQ8dUdbgr755jw=;
+        b=g0KyE3fit05VwEUI6ewtRxynEqI5+pFej1S4n9pZi7q28GU4bGtbkX/4l6NMUbhI2f
+         IIDSlPbIAkPEtfcusPimJHTsTWUGUjIKca1MqYPcQ09lKtdc4Dh1qOlFJtjhG5KHi+34
+         Kasn2xevXQ41awASNDQns/YAbUa0W2+pkyoDl7KotZ3tH5IIpmR4ojwiXDDSN4JRlAVk
+         DipORYcl9COap4LI7oTnIALtOfw2Zi4laEsBU5QkpqF1kkOjJlWogZdnAsQMeDSi4RLA
+         3nm/vfbGknONQpSF6zfgjxN5C5Nxi1MSCgFzHExwi/uOFQ39VLi9QkfBJ0Iy9UHN3ACZ
+         6iRQ==
+X-Gm-Message-State: AOAM532XvL97+uFpSQcS6bcIyP3iep/41mMb0NbzkQ8Vcdm04ET+z3kg
+        /YVqaGaXbQ44oWfDECoz69p/Fuycql4cVxe1
+X-Google-Smtp-Source: ABdhPJyiqSrTkzqO02d3qgd65iKD/t0Xtvxw0gzJxg9grb6KMK9e1UcnP3SJhC57jSCTDfe9r6UesQ==
+X-Received: by 2002:a62:768b:0:b029:197:dea6:586e with SMTP id r133-20020a62768b0000b0290197dea6586emr4196300pfc.44.1606424813863;
+        Thu, 26 Nov 2020 13:06:53 -0800 (PST)
 Received: from xps15.cg.shawcable.net (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id c203sm5612676pfc.10.2020.11.26.13.06.51
+        by smtp.gmail.com with ESMTPSA id c203sm5612676pfc.10.2020.11.26.13.06.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 13:06:52 -0800 (PST)
+        Thu, 26 Nov 2020 13:06:53 -0800 (PST)
 From:   Mathieu Poirier <mathieu.poirier@linaro.org>
 To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
 Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, arnaud.pouliquen@st.com
-Subject: [PATCH v3 09/15] remoteproc: Introduce function rproc_detach()
-Date:   Thu, 26 Nov 2020 14:06:36 -0700
-Message-Id: <20201126210642.897302-10-mathieu.poirier@linaro.org>
+Subject: [PATCH v3 10/15] remoteproc: Rename function rproc_actuate()
+Date:   Thu, 26 Nov 2020 14:06:37 -0700
+Message-Id: <20201126210642.897302-11-mathieu.poirier@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201126210642.897302-1-mathieu.poirier@linaro.org>
 References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
@@ -63,112 +63,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce function rproc_detach() to enable the remoteproc
-core to release the resources associated with a remote processor
-without stopping its operation.
+Align what was done for rproc_detach() by renaming function
+rproc_actuate().  That way it is easier to figure out the
+opposite of each functions.
 
 Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 Reviewed-by: Peng Fan <peng.fan@nxp.com>
+Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
 ---
- drivers/remoteproc/remoteproc_core.c | 65 +++++++++++++++++++++++++++-
- include/linux/remoteproc.h           |  1 +
- 2 files changed, 65 insertions(+), 1 deletion(-)
+ drivers/remoteproc/remoteproc_core.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-index 928b3f975798..f5adf05762e9 100644
+index f5adf05762e9..b54f60cc3cbd 100644
 --- a/drivers/remoteproc/remoteproc_core.c
 +++ b/drivers/remoteproc/remoteproc_core.c
-@@ -1667,7 +1667,7 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
- /*
-  * __rproc_detach(): Does the opposite of rproc_attach()
-  */
--static int __maybe_unused __rproc_detach(struct rproc *rproc)
-+static int __rproc_detach(struct rproc *rproc)
+@@ -1416,7 +1416,7 @@ static int rproc_start(struct rproc *rproc, const struct firmware *fw)
+ 	return ret;
+ }
+ 
+-static int rproc_attach(struct rproc *rproc)
++static int __rproc_attach(struct rproc *rproc)
  {
  	struct device *dev = &rproc->dev;
  	int ret;
-@@ -1910,6 +1910,69 @@ void rproc_shutdown(struct rproc *rproc)
- }
- EXPORT_SYMBOL(rproc_shutdown);
+@@ -1541,7 +1541,7 @@ static int rproc_fw_boot(struct rproc *rproc, const struct firmware *fw)
+  * Attach to remote processor - similar to rproc_fw_boot() but without
+  * the steps that deal with the firmware image.
+  */
+-static int rproc_actuate(struct rproc *rproc)
++static int rproc_attach(struct rproc *rproc)
+ {
+ 	struct device *dev = &rproc->dev;
+ 	int ret;
+@@ -1581,7 +1581,7 @@ static int rproc_actuate(struct rproc *rproc)
+ 		goto clean_up_resources;
+ 	}
  
-+/**
-+ * rproc_detach() - Detach the remote processor from the
-+ * remoteproc core
-+ *
-+ * @rproc: the remote processor
-+ *
-+ * Detach a remote processor (previously attached to with rproc_actuate()).
-+ *
-+ * In case @rproc is still being used by an additional user(s), then
-+ * this function will just decrement the power refcount and exit,
-+ * without disconnecting the device.
-+ *
-+ * Function rproc_detach() calls __rproc_detach() in order to let a remote
-+ * processor know that services provided by the application processor are
-+ * no longer available.  From there it should be possible to remove the
-+ * platform driver and even power cycle the application processor (if the HW
-+ * supports it) without needing to switch off the remote processor.
-+ */
-+int rproc_detach(struct rproc *rproc)
-+{
-+	struct device *dev = &rproc->dev;
-+	int ret;
-+
-+	ret = mutex_lock_interruptible(&rproc->lock);
-+	if (ret) {
-+		dev_err(dev, "can't lock rproc %s: %d\n", rproc->name, ret);
-+		return ret;
-+	}
-+
-+	if (rproc->state != RPROC_RUNNING && rproc->state != RPROC_ATTACHED) {
-+		ret = -EPERM;
-+		goto out;
-+	}
-+
-+	/* if the remote proc is still needed, bail out */
-+	if (!atomic_dec_and_test(&rproc->power)) {
-+		ret = -EBUSY;
-+		goto out;
-+	}
-+
-+	ret = __rproc_detach(rproc);
-+	if (ret) {
-+		atomic_inc(&rproc->power);
-+		goto out;
-+	}
-+
-+	/* clean up all acquired resources */
-+	rproc_resource_cleanup(rproc);
-+
-+	rproc_disable_iommu(rproc);
-+
-+	/*
-+	 * Set the remote processor's table pointer to NULL.  Since mapping
-+	 * of the resource table to a virtual address is done in the platform
-+	 * driver, unmapping should also be done there.
-+	 */
-+	rproc->table_ptr = NULL;
-+out:
-+	mutex_unlock(&rproc->lock);
-+	return ret;
-+}
-+EXPORT_SYMBOL(rproc_detach);
-+
- /**
-  * rproc_get_by_phandle() - find a remote processor by phandle
-  * @phandle: phandle to the rproc
-diff --git a/include/linux/remoteproc.h b/include/linux/remoteproc.h
-index da15b77583d3..329c1c071dcf 100644
---- a/include/linux/remoteproc.h
-+++ b/include/linux/remoteproc.h
-@@ -656,6 +656,7 @@ rproc_of_resm_mem_entry_init(struct device *dev, u32 of_resm_idx, size_t len,
+-	ret = rproc_attach(rproc);
++	ret = __rproc_attach(rproc);
+ 	if (ret)
+ 		goto clean_up_resources;
  
- int rproc_boot(struct rproc *rproc);
- void rproc_shutdown(struct rproc *rproc);
-+int rproc_detach(struct rproc *rproc);
- int rproc_set_firmware(struct rproc *rproc, const char *fw_name);
- void rproc_report_crash(struct rproc *rproc, enum rproc_crash_type type);
- int rproc_coredump_add_segment(struct rproc *rproc, dma_addr_t da, size_t size);
+@@ -1825,7 +1825,7 @@ int rproc_boot(struct rproc *rproc)
+ 	if (rproc->state == RPROC_DETACHED) {
+ 		dev_info(dev, "attaching to %s\n", rproc->name);
+ 
+-		ret = rproc_actuate(rproc);
++		ret = rproc_attach(rproc);
+ 	} else {
+ 		dev_info(dev, "powering up %s\n", rproc->name);
+ 
+@@ -1916,7 +1916,7 @@ EXPORT_SYMBOL(rproc_shutdown);
+  *
+  * @rproc: the remote processor
+  *
+- * Detach a remote processor (previously attached to with rproc_actuate()).
++ * Detach a remote processor (previously attached to with rproc_attach()).
+  *
+  * In case @rproc is still being used by an additional user(s), then
+  * this function will just decrement the power refcount and exit,
 -- 
 2.25.1
 
