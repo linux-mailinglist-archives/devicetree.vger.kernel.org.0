@@ -2,116 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 209212C4D71
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 03:25:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 994482C4D94
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 04:01:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732922AbgKZCZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 21:25:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38782 "EHLO
+        id S1729715AbgKZDAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 22:00:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732854AbgKZCZX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 21:25:23 -0500
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71ACC0613D4;
-        Wed, 25 Nov 2020 18:25:23 -0800 (PST)
-Received: by mail-oi1-x242.google.com with SMTP id k26so682606oiw.0;
-        Wed, 25 Nov 2020 18:25:23 -0800 (PST)
+        with ESMTP id S1729679AbgKZDAs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 22:00:48 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCDB1C0613D4
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 19:00:48 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id s63so469127pgc.8
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 19:00:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=gx1G1lLR+pPXdSgFNskx8ipDNb9yshYOT7LcC3URWxA=;
-        b=diZ4I7aa9SFuy+vBDELkkt+tnv0PVBvvf0Lrs/ImXnxDL7+BS2eznFBuPMftX56LsP
-         fpwnFptrb9Jls1oAMJfnNIbuxWFOibDlGz50+6V4sJtN1nxALe/XJflQUaGmRgTynl99
-         CmwXgox9rteh7mW8AJ7e5XyD7klESH2iOxTn9ezlvLQpBv0jI4hzDsXHrDFW7qvIKMbJ
-         V5bsOzy8LEO8U71Tl0ViCznFLWzu2V2ifxbXPe5Y18S6OJmrXReBraC2jkyXIDSHr8bP
-         E6vYjU/z1gd3lOkBgvATZxM/7OWMe+7CCk5aje7kgVwkhSxw7TkCCIUA5IMcmU561Uuh
-         V44Q==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HGy6irohT0f1tWD/mm+Ymd5mnTZ2qIfD7SCUyRih0uQ=;
+        b=EFPNSrhZhrvcg/8kPsEw0/6/KGCVTW/U4tL3dia9WRhqh8fktxXhEh0onyuuA4xEss
+         JKt//yl3RnphApbznkwNRTAEi7+cmvsRtc7L7n4sy5hga6/qEfxRtF+8MH5B+8MObP2c
+         Pxdvyz61EwO4TdO6DsnhPYd/1G4cLBBdS+qDL1PfkCH2yzam8qs24jVY69mLrXYFtUYy
+         +kJ1IhYj8S3N8Qu/Z3mxjEWx+BdCWzERk+NwFL+Iwo9zYdYwtUfmZYGYr91ROsP9GLX9
+         Y/lD95PTfUtMCVFbsYKsYyN9daXOuKSprQwoUbt/JlpSECcZKE7nl14scKVwfbcZB0uk
+         A+HQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=gx1G1lLR+pPXdSgFNskx8ipDNb9yshYOT7LcC3URWxA=;
-        b=cC1jIzG/Px7PIMgP4dE/teVympYxPHRfUvIsrOg90fnLnDMIapiNS+J0xQrte2O4l9
-         IpbhnjcHBtL08wUDj/0FfSZVSa8JLoMwKDuMcFIGssin0TDnIdyzFYyi3ec/C5TS5H2G
-         k3uOnGV67Y3VOKnJ/T5iuX/aQ2t3eH24K/bJRY4O1i3Ztwu9t9YJbIBwDgzC5hXoEYo7
-         fKUxl2qxW/8/LpsIFdqTDdzjSzIwp5Xrp/r8fe0JREzOnXJ93pzG8C18cgwqBdDZdttl
-         zLiwbEUASQzK+o/N2tehOsJGIntIThjylauO4+zjPrbTClhst1kTpewOmSNX0AqE6bQU
-         npUQ==
-X-Gm-Message-State: AOAM530gDxh1AX/Psf41wqEk4rIBSoit58vVOMCJly55uil5ryst5Iyo
-        AhLlXEIvJVOKF3KQ4BRJqa8ly6X0n9sYTP5pEA==
-X-Google-Smtp-Source: ABdhPJx8nyBUeX1zqh6a5ObpbhQDSpnaAwA2vFivIVZQiu+2Eebpp/+0Y5L82FTjXiQq/vzxJa7DskXfXiEgd4DBUcA=
-X-Received: by 2002:aca:b145:: with SMTP id a66mr752270oif.92.1606357523117;
- Wed, 25 Nov 2020 18:25:23 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HGy6irohT0f1tWD/mm+Ymd5mnTZ2qIfD7SCUyRih0uQ=;
+        b=NL/XD09Vn5ydIV0SvWdUXT19on3zlJc+wmonZm58pT38yz1c4cp4MNRGkgyOq8FnH8
+         OKxHbM7nrJCxBkfUnOrtXBKkqRLk+qpFeNDJjk+1paLA33L/LybRijwxiQISghq+B3eh
+         wFebyr0GHHD5arkS/Q4c9oMirfOu6ZS2mQvxcnI2wDH7sWtQEafyU/gY7cE2kM0Nr34Y
+         KdJfE3dhmtXWj/yW9BJ37zdR1CYCQ8aHnCJpc5oP17AUWCNte5SokSzbBw0lgXnAZpep
+         g97X65YRkD672TO9SmE+ssBRhYki7SenM1F/YpgAp8N08gREt9M9EWK1RZy0rxyaLTDG
+         SGLg==
+X-Gm-Message-State: AOAM531WLOG5zamap4jMQeZnq2KP4G4LYLk3koO+Ic2tVPkrViChWGE8
+        pHTT2IDbnnJj+QVaN9SInnpLVQ==
+X-Google-Smtp-Source: ABdhPJwg7TmxhRtsDO0z7BK3t08FW6TEtxmleXh8/VWrBOjgOOJgyhWVu/0QilTxqH1ENYkKsDoWzQ==
+X-Received: by 2002:a17:90a:4889:: with SMTP id b9mr1038424pjh.79.1606359648430;
+        Wed, 25 Nov 2020 19:00:48 -0800 (PST)
+Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
+        by smtp.gmail.com with ESMTPSA id d2sm4322057pji.7.2020.11.25.19.00.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2020 19:00:47 -0800 (PST)
+From:   Zong Li <zong.li@sifive.com>
+To:     robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        palmer@dabbelt.com, paul.walmsley@sifive.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH] dt-bindings: fu740: prci: add YAML documentation for the FU740 PRCI
+Date:   Thu, 26 Nov 2020 11:00:43 +0800
+Message-Id: <20201126030043.67390-1-zong.li@sifive.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-References: <20201125193740.36825-1-george.mccollister@gmail.com>
- <20201125193740.36825-3-george.mccollister@gmail.com> <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-From:   George McCollister <george.mccollister@gmail.com>
-Date:   Wed, 25 Nov 2020 20:25:11 -0600
-Message-ID: <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x driver
-To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 25, 2020 at 7:42 PM Jakub Kicinski <kuba@kernel.org> wrote:
->
-> On Wed, 25 Nov 2020 13:37:39 -0600 George McCollister wrote:
-> > Add a driver with initial support for the Arrow SpeedChips XRS7000
-> > series of gigabit Ethernet switch chips which are typically used in
-> > critical networking applications.
-> >
-> > The switches have up to three RGMII ports and one RMII port.
-> > Management to the switches can be performed over i2c or mdio.
-> >
-> > Support for advanced features such as PTP and
-> > HSR/PRP (IEC 62439-3 Clause 5 & 4) is not included in this patch and
-> > may be added at a later date.
-> >
-> > Signed-off-by: George McCollister <george.mccollister@gmail.com>
->
-> You need to add symbol exports otherwise this won't build with
-> allmodconfig:
->
-> ERROR: modpost: "xrs7004f_info"
-> [drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined! ERROR: modpost:
-> "xrs7004e_info" [drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined!
-> ERROR: modpost: "xrs7003f_info"
-> [drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined! ERROR: modpost:
-> "xrs7003e_info" [drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined!
-> ERROR: modpost: "xrs7004f_info"
-> [drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined! ERROR: modpost:
-> "xrs7004e_info" [drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined!
-> ERROR: modpost: "xrs7003f_info"
-> [drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined! ERROR: modpost:
-> "xrs7003e_info" [drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined!
+Add YAML DT binding documentation for the SiFive FU740 PRCI. The
+link of unmatched board as follow, the U740-C000 manual would be present
+in the same page later.
 
-I was wondering if I possibly needed to do that but wasn't getting any
-errors the way I was building.
+    https://www.sifive.com/boards/hifive-unmatched
 
->
-> > +     {XRS_RX_UNDERSIZE_L, "rx_undersize"},
-> > +     {XRS_RX_FRAGMENTS_L, "rx_fragments"},
-> > +     {XRS_RX_OVERSIZE_L, "rx_oversize"},
-> > +     {XRS_RX_JABBER_L, "rx_jabber"},
-> > +     {XRS_RX_ERR_L, "rx_err"},
-> > +     {XRS_RX_CRC_L, "rx_crc"},
->
-> As Vladimir already mentioned to you the statistics which have
-> corresponding entries in struct rtnl_link_stats64 should be reported
-> the standard way. The infra for DSA may not be in place yet, so best
-> if you just drop those for now.
+Passes dt_binding_check.
 
-Okay, that clears it up a bit. Just drop these 6? I'll read through
-that thread again and try to make sense of it.
+Signed-off-by: Zong Li <zong.li@sifive.com>
+---
+ .../bindings/clock/sifive/fu740-prci.yaml     | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
 
-Thanks
+diff --git a/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml b/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
+new file mode 100644
+index 000000000000..e17143cac316
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 SiFive, Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/sifive/fu740-prci.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: SiFive FU740 Power Reset Clock Interrupt Controller (PRCI)
++
++maintainers:
++  - Zong Li <zong.li@sifive.com>
++  - Paul Walmsley  <paul.walmsley@sifive.com>
++
++description:
++  On the FU740 family of SoCs, most system-wide clock and reset integration
++  is via the PRCI IP block.
++  The clock consumer should specify the desired clock via the clock ID
++  macros defined in include/dt-bindings/clock/sifive-fu740-prci.h.
++  These macros begin with PRCI_CLK_.
++
++  The hfclk and rtcclk nodes are required, and represent physical
++  crystals or resonators located on the PCB.  These nodes should be present
++  underneath /, rather than /soc.
++
++properties:
++  compatible:
++    const: sifive,fu740-c000-prci
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: high frequency clock.
++      - description: RTL clock.
++
++  clock-names:
++    items:
++      - const: hfclk
++      - const: rtcclk
++
++  "#clock-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - "#clock-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    prci: clock-controller@10000000 {
++      compatible = "sifive,fu740-c000-prci";
++      reg = <0x10000000 0x1000>;
++      clocks = <&hfclk>, <&rtcclk>;
++      #clock-cells = <1>;
++    };
+-- 
+2.29.2
+
