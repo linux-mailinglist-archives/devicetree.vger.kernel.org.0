@@ -2,125 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A998E2C4CC9
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 02:48:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E132C4CED
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 02:56:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731849AbgKZBr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 20:47:26 -0500
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:25409 "EHLO
-        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731763AbgKZBr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 20:47:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1606356394; x=1637892394;
-  h=from:to:subject:date:message-id:in-reply-to:references:
-   mime-version:content-transfer-encoding;
-  bh=jaazsxrVvV8tPhcRqmgPoIk7ltaGY+++dUPG/KOZ+94=;
-  b=bA+ZNZPMUrbRCEwpQsYRJaalOFrZlDbucLyB36Ez20vMzhWi4ubcRvBi
-   VXp/32PtH8TZhl5gUMjd6zbTYx1FWdvgA4CPmCS+N3Xr9NU+uWd7Wz2mT
-   iubSScH323GHMWqYwItMkZQd/e0RWFS3KwI3ZKC8pVqDZXv1FW8+GpNwX
-   HaASl5Asj4+87OXbkK5+AtWU0gmf1eoOEgv3xMpOmWyVgnBuSmjDyTW2F
-   tHiDyX6OIhyNSc39qiDQpMcQELkJjIh7vDou+6SU7nbeS1vllZVUjdv0H
-   Vb4NRqAOhqq63zof+O1MuMl3xpujYI9IiKXgG7h0z7a24xpCpDvFN5qYb
-   g==;
-IronPort-SDR: kPeMmynqB0DomEPOntIsO1C5DjefzzZI+K5Qwto5Tm+aQX5TGEEFTecRN3tUM6b+3nsOfrueTA
- yZzzzhw1F6bcvITEQJa0hfJG2i1InNE8ZZV8TuySfGHcZqweL5u+OKFuwYYY4aS/VdJUk8xvLZ
- CjILBhGfor24zUe62uLvaIHxp8OY+yinU4/Qoa8px3LQv1VVy+bBdS+tO7QnRdqF2162hRfb90
- 2dROEJFN32pIt3e+OjYC2pJIwjx1c2tujExVGJdvfkDvKY/XYjUciqk6DjRUb2PIOMJofBl6AO
- Fc8=
-X-IronPort-AV: E=Sophos;i="5.78,370,1599494400"; 
-   d="scan'208";a="257148716"
-Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
-  by ob1.hgst.iphmx.com with ESMTP; 26 Nov 2020 10:06:34 +0800
-IronPort-SDR: FUBX6QhPYK/710wlDfWcRsDecqJJtxRnLhcCMHoGU69+4bZ3PhAcDBkM/qsNIet0UjOYRZnvum
- ac8EhPF8RB9POGgtgOibh1qp2FjZnZGZE=
-Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
-  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2020 17:33:08 -0800
-IronPort-SDR: Fz9r/tcQs5K5pT+XQ8Wci6I6bZGHjj/Nu2Ra56t/K7bXPaAtMuk7GoyqBx/sJj9zVSVlIfd7bz
- YZqvmOIED4+A==
-WDCIronportException: Internal
-Received: from 57m2vf2.ad.shared (HELO twashi.fujisawa.hgst.com) ([10.84.71.135])
-  by uls-op-cesaip02.wdc.com with ESMTP; 25 Nov 2020 17:47:24 -0800
-From:   Damien Le Moal <damien.lemoal@wdc.com>
-To:     Serge Semin <fancer.lancer@gmail.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v3 1/1] of: Fix gpios supplier parsing
-Date:   Thu, 26 Nov 2020 10:47:16 +0900
-Message-Id: <20201126014716.34545-2-damien.lemoal@wdc.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201126014716.34545-1-damien.lemoal@wdc.com>
-References: <20201126014716.34545-1-damien.lemoal@wdc.com>
+        id S1731040AbgKZBzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 20:55:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34046 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730963AbgKZBzB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 20:55:01 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEBB7C061A51
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 17:55:00 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id d17so298840ion.4
+        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 17:55:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=i17QMd8vkhN67qG5gREON3zvFxFBu1aRL3V4o/4TxAg=;
+        b=IEjKalurW30XYFDjdsl28nQBRfKLYLJ+qdAf5CYAzGgPDk2W0RmL5XRxRW+c0ZRExk
+         H5aMqxcKU6rj9sUURloAfDfs0ollquNBzMxTA+NqMJbHu0bLLQ0WwGaf07OUpoK6eIjb
+         yAiz0oDSy9HA+jqkhzELVzRr7IRXjwLi+femMmqtOILDxdbPsD4BVkhLtm9qA+x79RZY
+         NsatKxNsN67k3u8KfVlyUCv7YtlLXUXlHqhp8MiY3x05bglTpEPR2JbBw60xpIOXR+ll
+         xlFtzRRwPMfaXoM/K79WDGp1CqCBaJUF1neXWAr5azjLyAIgFX7T2oRbFHSnzloSe1Sg
+         i7ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=i17QMd8vkhN67qG5gREON3zvFxFBu1aRL3V4o/4TxAg=;
+        b=PbWJyfjUICvwp5r9kh/e7u3NUQzKXaNLof0YTKzE+daED3tzFEHk34/pghaAOmovfu
+         zfT98plknryQMjs4VukMQ2oH63+Fe2J1hTdB1XW0INyHwtfSuhIe4ppHeWMJP9FomWhR
+         oPX8XAWwT98QlelERxoXST87tiXwDS6WJDZEUEDkNVkz+nIEFqgA+/XcN0iTUt0tDcAK
+         1dz4ngfN5XhJTg3RmYJz9LEm9mWglWGE6o19uQ0yflWBRGDZAe6a+Fuqzqq34BorSF9s
+         gUlCEQWXRWafRp+JALXcotBorboXJ7VXJQi7o3uTzWwBwjSJAARPPRW97HTTnvcpXBG5
+         44og==
+X-Gm-Message-State: AOAM530ukDjXkMDyVXvcIccpiqE5aVPSPKYJfN73fK3iNiCCnlnGUEVk
+        3TYDOJU98WR98lZLCH+aLpu04g==
+X-Google-Smtp-Source: ABdhPJy71WnIi4Z58HUMX4jikkOEFY/62xggxdr1QUv8zavqnRz5yH8xDGn4uhPdVIr7ue5rcjqxRw==
+X-Received: by 2002:a05:6602:22c2:: with SMTP id e2mr739207ioe.156.1606355700182;
+        Wed, 25 Nov 2020 17:55:00 -0800 (PST)
+Received: from beast.localdomain (c-73-185-129-58.hsd1.mn.comcast.net. [73.185.129.58])
+        by smtp.gmail.com with ESMTPSA id r17sm1714907ioj.5.2020.11.25.17.54.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Nov 2020 17:54:59 -0800 (PST)
+From:   Alex Elder <elder@linaro.org>
+To:     bjorn.andersson@linaro.org, agross@kernel.org, robh+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] arm64: dts: fixes
+Date:   Wed, 25 Nov 2020 19:54:54 -0600
+Message-Id: <20201126015457.6557-1-elder@linaro.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DesignWare gpio-dwapb GPIO driver ("snps,dw-apb-gpio" or
-"apm,xgene-gpio-v2" compatible string) defines the now deprecated
-property "snps,nr-gpios" to specify the number of GPIOs available
-on a port. However, if this property is used in a device tree, its
-"-gpios" suffix causes the generic property supplier parsing code to
-interpret it as a cell reference when properties are parsed in
-of_link_to_suppliers(), leading to an error messages such as:
+The first patch in this series changes the IOMMU specification for
+the IPA node in "sc7180.dtsi" to identify two streams distinctly,
+rather than specifying them with a mask.  This was inspired by
+something Bjorn did recently for IPA in "sdm845.dtsi".
 
-OF: /soc/bus@50200000/gpio-controller@50200000/gpio-port@0: could not
-find phandle
+The second and third just replace 0 with GIC_SPI in two IPA
+interrupt specifications.
 
-As this deprecated property is still present in many device trees, fix
-this problem by manually defining a parse_gpios() instead of using the
-DEFINE_SUFFIX_PROP() macro. This new parsing function issues a warning
-and then ignores the deprecated property, skipping the phandle parsing
-and thus avoiding the device tree parsing error.
+(I'm sorry if I should have separated these.)
 
-Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
----
- drivers/of/property.c | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+					-Alex
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 408a7b5f06a9..304459add299 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1308,7 +1308,6 @@ DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
- DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
--DEFINE_SUFFIX_PROP(gpios, "-gpios", "#gpio-cells")
- 
- static struct device_node *parse_iommu_maps(struct device_node *np,
- 					    const char *prop_name, int index)
-@@ -1319,6 +1318,25 @@ static struct device_node *parse_iommu_maps(struct device_node *np,
- 	return of_parse_phandle(np, prop_name, (index * 4) + 1);
- }
- 
-+static struct device_node *parse_gpios(struct device_node *np,
-+				       const char *prop_name, int index)
-+{
-+	/*
-+	 * Quirk for the deprecated "snps,nr-gpios" property of the
-+	 * DesignWare gpio-dwapb GPIO driver: as this property parsing
-+	 * conflicts with the "xx-gpios" phandle reference property,
-+	 * issue a warning and ignore it.
-+	 */
-+	if (strcmp(prop_name, "snps,nr-gpios") == 0) {
-+		pr_warn("%pOF: \"snps,nr-gpios\" property is deprecated in favor of \"ngpios\"\n",
-+			np);
-+		return NULL;
-+	}
-+
-+	return parse_suffix_prop_cells(np, prop_name, index,
-+				       "-gpios", "#gpio-cells");
-+}
-+
- static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_clocks, },
- 	{ .parse_prop = parse_interconnects, },
+Alex Elder (3):
+  arm64: dts: qcom: sc7180: limit IPA iommu streams
+  arm64: dts: qcom: sc7180: use GIC_SPI for IPA interrupts
+  arm64: dts: qcom: sdm845: use GIC_SPI for IPA interrupts
+
+ arch/arm64/boot/dts/qcom/sc7180.dtsi | 7 ++++---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 ++--
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
 -- 
-2.28.0
+2.20.1
 
