@@ -2,243 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF9122C5A54
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:15:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 172F02C5A7E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:27:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391595AbgKZRPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 12:15:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35476 "EHLO
+        id S2391655AbgKZR0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 12:26:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391544AbgKZRPg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:15:36 -0500
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F6BC0613D4;
-        Thu, 26 Nov 2020 09:15:36 -0800 (PST)
-Received: by mail-ua1-x942.google.com with SMTP id q4so723520ual.8;
-        Thu, 26 Nov 2020 09:15:36 -0800 (PST)
+        with ESMTP id S2391347AbgKZR0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:26:10 -0500
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAEFC0613D4;
+        Thu, 26 Nov 2020 09:26:10 -0800 (PST)
+Received: by mail-wr1-x441.google.com with SMTP id m6so2935880wrg.7;
+        Thu, 26 Nov 2020 09:26:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pUVKuoWZA/P27xH4AfMqFfzecx2gpzbW2/mbWqy1KHY=;
-        b=uRl2J2b9fv3xQG4VNSHpc8v54V7XtD9frG75nRQiFYqqDW4MDOcGaInf4J9V6brt7r
-         lYSoUmwl3JmFL8EQyl+hs/xI73ABG3/BvcHi3MAEj6YNKwYS0QfpG01AZXhjc7xVypHW
-         qBTmSgBAJkfCoWHeBN/MiC6YqzpX4OsiOc/+iFHtCG8ZlZjoIaifxiq1+ZpOzPN1FSOt
-         GcuylkFVYSBGdjkFl2+0IMHPL2J7CWAmI4k/7C7Z8wuL3/8TnufWaP2k64ecLeSrrk73
-         RQVnTOGphtJeyEQu1VcVTgC49lmMKrb7I3kg3Fxt+nKoXr6a+NqJK09aFXnPYLWyE8Dc
-         dfVQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=6I0lhLGzPPM0MoECXGUi5YFC71JrYnGKvoQDQPmtiJ8=;
+        b=l06CNRd31zgbywkafp4M3M36NmeEp98oXvZIbgFZaXjPDiITJXkrhLw6e82PRokFMq
+         kSV+0rsWu3t278MiKn8FxZ0GpnGOdkRNRc8kI1ao3FfuuXk6Psqs49YxCD+ES1ohhwHn
+         778H50Vz+qsL2LOxPPnWXeM9yik6M3kLd5UNS8iViAW/shl88g/0RGv+uzDhvTh02TDU
+         G2JiVIVyK5ICAVInvipDuRW8GKiL5EgPM4rcdsxRdWxIgGHo1Ciw4FZ6SmbNfL7H12Gh
+         po6yduAQos4jRyU+BqDlJWwB5xzD/y7S8MFJIyFKNtTN5wOfjlurvHwLREINC+5TBPxt
+         BhpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pUVKuoWZA/P27xH4AfMqFfzecx2gpzbW2/mbWqy1KHY=;
-        b=C58YzkeSmo8goUc9/UNvIKNP3IHLmUSbjCvv9OJ1yVkNBNDd++i9Ul9S0Jfy0VTSbz
-         XNIJqKcuDAV10rNnanE/z/HL6Jg8dVX4zTKu1f0w9F3A3g7eA+rbnnKE4CH5rdj9spHI
-         NSSWYvcZQgT/NfRD/w2K+Cwt/rr/wU3puIv/4UOLY9npCJfQyTJvPUORD0o81oDFX8xn
-         72mWWKwzfFLXLNpzyz5aiCptFBshk8PATg/bZmzjSCV//IdV7Y4+nK/tsAoWtMbDLwQA
-         k/LFnbU6DLjxoppwRYyCk2dPcPxdoog88cgDLzmzyaky6vN3vO/xnzpyJqeU2pTOv4SY
-         xlBw==
-X-Gm-Message-State: AOAM5335CyX/4B/hpwqfvhgJlFkgCWkoU58G4QhC7K3vwFmFcpZdv7t0
-        QInJ0mRicIJXmAHLa9jtoOrbPDbypnJykGqpnnosDHQc1uk=
-X-Google-Smtp-Source: ABdhPJzG/FdsWLFORa9ZtHNjvUVR7Wu+zJF5b1sD7g0IThUu6UfgA2wiLw3YWNthTclOPNh4f3BUMaS1rCz75Z4iC1w=
-X-Received: by 2002:ab0:743:: with SMTP id h61mr2350174uah.4.1606410935365;
- Thu, 26 Nov 2020 09:15:35 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6I0lhLGzPPM0MoECXGUi5YFC71JrYnGKvoQDQPmtiJ8=;
+        b=VYPXWMsYf4+FDeXqIsuYWkmCcOnJ56GBo2L9mcCD1JNDaDWZ/z5u9MwufJ6S3YPyEl
+         UoQQl0FNRDjRPfZbaOvSaCerL6Op3UAqxFg/kH7AsY49pfcljj+920w4+VWpscWl4aOj
+         t6DRjBLIc90t+s6y2GiQAD5U9r+mIqA/M6/h+THn9DeGGCaBeIeIeIONGGzBJMXLRmCI
+         qjYNczZTfEP+0JCK799oXJKezY+seqxqaSy3qHsLttNudLdjIwQ+va/y6JiViHCkgI5w
+         kiTDb7cZNijC10UqoNXTbUy4yJobj+i5x4WfV7xqqz4G1GYcwMxQDrLMHJRGvtG25y4A
+         vqhg==
+X-Gm-Message-State: AOAM530iQTbRUNTvRBxi4nrUe/sbg6YhWIGK9XCaiwb7mPpAs3EVs2Rp
+        iG7ey2hCpXJ4n4MxVCjgSwk=
+X-Google-Smtp-Source: ABdhPJyaBeHdgoQF3J1Ovn0wtkH7fvTi8SaOzT7ic/NJzEli3QaHlrGWzuvtjGLemmZWpI00pWevgQ==
+X-Received: by 2002:a5d:690c:: with SMTP id t12mr5123901wru.405.1606411568938;
+        Thu, 26 Nov 2020 09:26:08 -0800 (PST)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id s4sm9982577wru.56.2020.11.26.09.26.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2020 09:26:07 -0800 (PST)
+Date:   Thu, 26 Nov 2020 18:26:05 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 17/47] dt-bindings: memory: tegra20: Add memory client
+ IDs
+Message-ID: <X7/lLaZJNp+Vfczk@ulmo>
+References: <20201104164923.21238-1-digetx@gmail.com>
+ <20201104164923.21238-18-digetx@gmail.com>
 MIME-Version: 1.0
-References: <20201029172947.34315-1-kholk11@gmail.com> <20201029172947.34315-3-kholk11@gmail.com>
- <20201104214806.GA4175708@bogus>
-In-Reply-To: <20201104214806.GA4175708@bogus>
-From:   AngeloGioacchino Del Regno <kholk11@gmail.com>
-Date:   Thu, 26 Nov 2020 18:15:22 +0100
-Message-ID: <CAK7fi1a_Gtu9Bt_E6=5no7XKg4dsySz4tiuPzSYhR7mE2PHLrw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS
- sensor binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>, marijns95@gmail.com,
-        Konrad Dybcio <konradybcio@gmail.com>, martin.botka1@gmail.com,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        phone-devel@vger.kernel.org,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="u/+LBcE/GZY9+OI4"
+Content-Disposition: inline
+In-Reply-To: <20201104164923.21238-18-digetx@gmail.com>
+User-Agent: Mutt/2.0.2 (d9268908) (2020-11-20)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il giorno mer 4 nov 2020 alle ore 22:48 Rob Herring <robh@kernel.org>
-ha scritto:
->
-> On Thu, Oct 29, 2020 at 06:29:47PM +0100, kholk11@gmail.com wrote:
-> > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> >
-> > Add YAML device tree binding for IMX300 CMOS image sensor, and
-> > the relevant MAINTAINERS entries.
-> >
-> > Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > ---
-> >  .../bindings/media/i2c/sony,imx300.yaml       | 112 ++++++++++++++++++
-> >  MAINTAINERS                                   |   7 ++
-> >  2 files changed, 119 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> > new file mode 100644
-> > index 000000000000..8f1d795f8072
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> > @@ -0,0 +1,112 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx300.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sony 1/2.3-Inch 8Mpixel Stacked CMOS Digital Image Sensor
-> > +
-> > +maintainers:
-> > +  - AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > +
-> > +description: |-
-> > +  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
-> > +  sensor with a pixel size of 1.08um and an active array size of
-> > +  5948H x 4140V. It is programmable through I2C interface at address 0x10.
-> > +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
-> > +  4 data lanes.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sony,imx300
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  vdig-supply:
-> > +    description:
-> > +      Digital I/O voltage supply, 1.15-1.20 volts
-> > +
-> > +  vana-supply:
-> > +    description:
-> > +      Analog voltage supply, 2.2 volts
-> > +
-> > +  vddl-supply:
-> > +    description:
-> > +      Digital core voltage supply, 1.8 volts
-> > +
-> > +  reset-gpios:
->
-> maxItems: 1
-Agreed.
 
->
-> > +    description: |-
-> > +      Reference to the GPIO connected to the xclr pin, if any.
-> > +      Must be released (set high) after all supplies are applied.
-> > +
-> > +  # See ../video-interfaces.txt for more details
-> > +  port:
-> > +    type: object
-> > +    properties:
-> > +      endpoint:
-> > +        type: object
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            description: |-
-> > +              The sensor supports either two-lane, or four-lane operation,
-> > +              but the driver currently supports only four-lane.
->
-> What the driver is not relevant. Please define all possible
-> configurations. Or just omit? What's the behavior if omitted?
->
-I wrote this as to document the hardware (there is no datasheet around and
-I fear that findings will be forgotten one day)... but if you say it's
-not relevant...
-...well, then I can as well just write it in my local notes and remove the info
-from here.
+--u/+LBcE/GZY9+OI4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > +            items:
-> > +              - const: 0
-> > +              - const: 1
-> > +              - const: 2
-> > +              - const: 3
-> > +
-> > +          clock-noncontinuous: true
-> > +
-> > +          link-frequencies:
-> > +            $ref: /schemas/types.yaml#/definitions/uint64-array
-> > +            description:
-> > +              Allowed data bus frequencies. The driver currently needs
-> > +              to switch between 780000000 and 480000000 Hz in order to
-> > +              guarantee functionality of all modes.
-> > +
-> > +        required:
-> > +          - link-frequencies
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - vana-supply
-> > +  - vdig-supply
-> > +  - vddl-supply
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c0 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        imx300: sensor@10 {
-> > +            compatible = "sony,imx300";
-> > +            reg = <0x10>;
-> > +            clocks = <&imx300_xclk>;
-> > +            vana-supply = <&imx300_vana>;   /* 2.2v */
-> > +            vdig-supply = <&imx300_vdig>;   /* 1.2v */
-> > +            vddl-supply = <&imx300_vddl>;   /* 1.8v */
-> > +
-> > +            port {
-> > +                imx300_0: endpoint {
-> > +                    remote-endpoint = <&csi1_ep>;
-> > +                    data-lanes = <0 1 2 3>;
-> > +                    clock-noncontinuous;
-> > +                    link-frequencies = /bits/ 64 <780000000 480000000>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index c66710dd7e0a..21ba41db0063 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -16279,6 +16279,13 @@ T:   git git://linuxtv.org/media_tree.git
-> >  F:   Documentation/devicetree/bindings/media/i2c/imx290.txt
-> >  F:   drivers/media/i2c/imx290.c
-> >
-> > +SONY IMX300 SENSOR DRIVER
-> > +M:   AngeloGioacchino Del Regno <kholk11@gmail.com>
-> > +L:   linux-media@vger.kernel.org
-> > +S:   Maintained
-> > +F:   Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
-> > +F:   drivers/media/i2c/imx300.c
-> > +
-> >  SONY IMX319 SENSOR DRIVER
-> >  M:   Bingbu Cao <bingbu.cao@intel.com>
-> >  L:   linux-media@vger.kernel.org
-> > --
-> > 2.28.0
-> >
+On Wed, Nov 04, 2020 at 07:48:53PM +0300, Dmitry Osipenko wrote:
+> Each memory client has unique hardware ID, add these IDs.
+>=20
+> Acked-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> ---
+>  include/dt-bindings/memory/tegra20-mc.h | 53 +++++++++++++++++++++++++
+>  1 file changed, 53 insertions(+)
 
-Also, I'm sorry for the *very* late reply. I've been busy quite a lot
-in these days!
-By the way, I'll push a v3 for this one ASAP!
+Is there any chance you could drop these dt-bindings include patches
+(17, 18 and 19) so that I can pick them up into the Tegra tree? The
+device tree changes that I was going to pick up depend on this and
+fail to build if applied as-is.
 
-Yours,
-Angelo
+I was looking at your linux-mem-ctrl tree and had initially thought I
+could just pull in one of the branches to get these dependencies, but it
+looks like the dt-bindings patches are on the for-v5.11/tegra-mc branch,
+which the ARM SoC maintainers wouldn't like to see me pull in for a
+dependency on device tree changes.
+
+If this is all fixed at this point, I'll just have to push back the
+device tree changes to v5.12, or perhaps see if the ARM SoC maintainers
+are willing to take a late pull request that's based on v5.11-rc1.
+
+Thierry
+
+--u/+LBcE/GZY9+OI4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+/5SkACgkQ3SOs138+
+s6E7hA/+KCUsyWXHkq1zseaJ5gCXuvTLINqhxC1oK5TJvCQ7BFh3567X8Qg1Sd85
+W4KQS5u4lGrHEfDgGILPcdO/GdlOWrYLUpLVnwHMX4/F2Jy8Ey/cPHPDLN469A53
+B0qntX6JoeJKFU/mGmvf0xQie/QpZvjBfMFrCdQhA/UueGOdJYBMKb8o5hmQgLi9
+LWVnTdSrxaht6vl32SeO452KjQvUBZSnCh9weUvpzhcPtOJm8hn6Fnmc1erDw9bX
+QokJFiB0XDvsFJoBtbQQx2/jHXFihBCdlxiuxJvEKb/0n3qrYzr6n9Vasjpb0gap
+83nRKdl4MNJsJ6KjoMZtjVt93x37sam6giILq98SIKJos5jz4WK8PKUiOIyQZryb
+AJL2NRM9gdtfUkm3YHcePioeyNsr2baRqF2kuv+VsnyYOHKqSilmRX0fOXn63kKg
+0wNfDmMPA63/UfYSweeTnDZerFZdJwV04+PFOt6OCffoZEe+uDCnpmrn0Gv91Hrp
+HJEai7zzj8yZqHUCqNRP8SadYHWXQjz0a42CoD1UHyoeMQnvApxCdAn3vQ9R6WBM
+n0BdCx0blXhamA3xb2EPVwPZ4huLcxwCRTKDRcRMbMUL400k3MGk9EnHeXa85YgU
+NKeI2QOdzGQ788QbBHfdD7iBjEPcHLx98w3zxgISsEElIUXDMfY=
+=f5yy
+-----END PGP SIGNATURE-----
+
+--u/+LBcE/GZY9+OI4--
