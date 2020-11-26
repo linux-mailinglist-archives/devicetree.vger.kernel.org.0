@@ -2,102 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35A882C5B02
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:49:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDEBD2C5B26
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:55:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404534AbgKZRrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 12:47:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40406 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404533AbgKZRrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:47:16 -0500
-Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0236C0617A7
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:47:15 -0800 (PST)
-Received: by mail-oi1-x243.google.com with SMTP id w15so3007157oie.13
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:47:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ji9tlscliCLN0LYIyEt9KD3a3MCIVAkdS9NkM4jRpzU=;
-        b=GeqZtzB8CzX8/SX36WTvrTjGZINKtLen+xUmDFCJoF60rC43wPoG+F86S9YXQNSxO7
-         S43tdvejsYFX3dNMSu0Taxbxc9/loWYec+adZRBEaFo0hIuyZ+MjnekJGM31pTDR7iQu
-         lxtHUjWyHCoOqTKKnG4gRBCrVuNBJ0UMPFtNhII8Cyhx3BShvAFtkw+UsRtWh1G0LATm
-         bbDWMd+yFVlH/gf/oR8Z9CxnXUZjYgd2fuzBLn8KF99OnlXUk5yKN6rciwrIhzcVG3nj
-         fH/xe4tAgmnEb9afBRI7/LNIL5hlZ1jl/uS8PWeXXEXO/J2KVAmXD15p5utHnPCU7vaZ
-         Uydw==
+        id S2404552AbgKZRzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 12:55:31 -0500
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34706 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727333AbgKZRzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:55:31 -0500
+Received: by mail-wr1-f67.google.com with SMTP id k14so3057956wrn.1;
+        Thu, 26 Nov 2020 09:55:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ji9tlscliCLN0LYIyEt9KD3a3MCIVAkdS9NkM4jRpzU=;
-        b=BGAQ+YbQJucoRJhz4YJyktUMOGt1HJqDh/SpqHCu/xsUjprfWnBsgXa6EaDnk/hHAe
-         dgNWeuf3v0JRexwJ4h9+fw1sQ9OVCHw2ZmNhhzj4EUBIkHSSJC5/rVU2oZEoz2ZNCcOj
-         Ou7K77h0jQSIqthyXcxxBVw7kxYhNXodab7mKfBJxjhsEuqz9ygnb6R+oSyuq2X85rif
-         xMSU2FlV5JCS+EIQADq/B6pAO5yGYkN2KDWhu3VXelL4ltj1grrnM/T3A79CBDcXk+pI
-         /8m/GdhRyMSg1goMY0YX/VBjBjaERedg4Srs4lCz6mt+FfR11oZbttvIPDGqdsTLIxme
-         dLhQ==
-X-Gm-Message-State: AOAM531qxq+EyqD2+YLDR5J+BECs54dCEqVkEn9xxEF2bd68HeB8t7ES
-        R7XTIEU/OE5spIrRcN2qxWu9iQ==
-X-Google-Smtp-Source: ABdhPJzV4JJZig/67KvTlQcOUGc8xVp51xSXwYlfjM7f8LjhRhYB1WlGP/8UUTGdyZAx2bNEQI2RBg==
-X-Received: by 2002:aca:ed86:: with SMTP id l128mr2744772oih.0.1606412835129;
-        Thu, 26 Nov 2020 09:47:15 -0800 (PST)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id o29sm3357331ote.7.2020.11.26.09.47.14
+        bh=22A8008SF+j3m02WPixLhh5zA9H2rktS0Eax77xtEYc=;
+        b=Er4pCjCiBuLIDquv5yo/TW6IHCamEcY+9IaVR4XuTho7NED46XLXlASwpr4A49MhLO
+         jqA7BvEQUMmfixPp4Q3gjyaW3qmsfcdsDAiQh6Mrl6mi6wdp8YOYFNV1QaGsl4kU0gWs
+         nxWkT3BUT+Fo7foGI902KLgNBXPheOCJWKUecRBIFbDvtF/1NaglKcU1NNtoXi8Yu8rW
+         ZltSZ32Ba+n6WeVNnKH3nyrGJpQyYfuSOIRIaVk4ZjptYZ1y2PXxFMeitxXkv/eRcR+u
+         ax21SUNN1k0MXpBzHUDz6hYrUzw3nCoXHAXOKO803OUSW208WbigEuu2captJYELWJwi
+         zcPg==
+X-Gm-Message-State: AOAM53149JiRZOFcP296uB6eghqHRf1hj09+CUeIFgWOTA90xywWb/rj
+        8GUvaO5jB//s6ZqUBjQGKtU=
+X-Google-Smtp-Source: ABdhPJwNUIHnG8LMlsBBMZ5FRqQJJ8L8r06hEZvqK5zRQlbvc8KsciA63I86UtCkk2Y6O7KWRU4KSA==
+X-Received: by 2002:a5d:668d:: with SMTP id l13mr5129682wru.279.1606413329031;
+        Thu, 26 Nov 2020 09:55:29 -0800 (PST)
+Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
+        by smtp.googlemail.com with ESMTPSA id d16sm10977272wrw.17.2020.11.26.09.55.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 09:47:14 -0800 (PST)
-Date:   Thu, 26 Nov 2020 11:47:12 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Alex Elder <elder@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sc7180: limit IPA iommu streams
-Message-ID: <X7/qIMCOewRMG7Hy@builder.lan>
-References: <20201126015457.6557-1-elder@linaro.org>
- <20201126015457.6557-2-elder@linaro.org>
+        Thu, 26 Nov 2020 09:55:27 -0800 (PST)
+Date:   Thu, 26 Nov 2020 18:55:26 +0100
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nicolas Chauvet <kwizart@gmail.com>,
+        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 17/47] dt-bindings: memory: tegra20: Add memory client
+ IDs
+Message-ID: <20201126175526.GA17141@kozik-lap>
+References: <20201104164923.21238-1-digetx@gmail.com>
+ <20201104164923.21238-18-digetx@gmail.com>
+ <X7/lLaZJNp+Vfczk@ulmo>
+ <20201126173922.GA7048@kozik-lap>
+ <CAJKOXPfbmvUi3uWmX=qiiBxpCK_2oTWPY1JVxiVMuiv=RtwdKw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201126015457.6557-2-elder@linaro.org>
+In-Reply-To: <CAJKOXPfbmvUi3uWmX=qiiBxpCK_2oTWPY1JVxiVMuiv=RtwdKw@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 25 Nov 19:54 CST 2020, Alex Elder wrote:
+On Thu, Nov 26, 2020 at 06:45:51PM +0100, Krzysztof Kozlowski wrote:
+> On Thu, 26 Nov 2020 at 18:39, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On Thu, Nov 26, 2020 at 06:26:05PM +0100, Thierry Reding wrote:
+> > > On Wed, Nov 04, 2020 at 07:48:53PM +0300, Dmitry Osipenko wrote:
+> > > > Each memory client has unique hardware ID, add these IDs.
+> > > >
+> > > > Acked-by: Rob Herring <robh@kernel.org>
+> > > > Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> > > > ---
+> > > >  include/dt-bindings/memory/tegra20-mc.h | 53 +++++++++++++++++++++++++
+> > > >  1 file changed, 53 insertions(+)
+> > >
+> > > Is there any chance you could drop these dt-bindings include patches
+> > > (17, 18 and 19) so that I can pick them up into the Tegra tree? The
+> > > device tree changes that I was going to pick up depend on this and
+> > > fail to build if applied as-is.
+> > >
+> > > I was looking at your linux-mem-ctrl tree and had initially thought I
+> > > could just pull in one of the branches to get these dependencies, but it
+> > > looks like the dt-bindings patches are on the for-v5.11/tegra-mc branch,
+> > > which the ARM SoC maintainers wouldn't like to see me pull in for a
+> > > dependency on device tree changes.
+> >
+> > Partially you answered here. :) Since you should not pull my branch into
+> > a DT branch, you also should not put these include/dt-bindings patches
+> > there.  SoC guys will complain about this as well.
+> >
+> > These patches are also needed for the driver, so if you take them, I
+> > would need them back in a pull request. SoC folks could spot it as well
+> > and point that such merge should not happen.
+> 
+> It seems I was wrong - these patches are not needed for the driver
+> code. Neither in applied parts nor in upcoming Dmitry's work. In such
+> case I could rework my branches and send a new pull request. The
+> patches would stay only in your tree.
 
-> Recently we learned that Android and Windows firmware don't seem to
-> like using 3 as an iommu mask value for IPA.  A simple fix was to
-> specify exactly the streams needed explicitly, rather than implying
-> a range with the mask.  Make the same change for the SC7180 platform.
-> 
-> See also:
->   https://lore.kernel.org/linux-arm-msm/20201123052305.157686-1-bjorn.andersson@linaro.org/
-> 
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Best regards,
+Krzysztof
 
-> Fixes: d82fade846aa8 ("arm64: dts: qcom: sc7180: add IPA information")
-> Signed-off-by: Alex Elder <elder@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index c0efb101b0d61..eb66aadf360d7 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -1396,7 +1396,8 @@
->  		ipa: ipa@1e40000 {
->  			compatible = "qcom,sc7180-ipa";
->  
-> -			iommus = <&apps_smmu 0x440 0x3>;
-> +			iommus = <&apps_smmu 0x440 0x0>,
-> +				 <&apps_smmu 0x442 0x0>;
->  			reg = <0 0x1e40000 0 0x7000>,
->  			      <0 0x1e47000 0 0x2000>,
->  			      <0 0x1e04000 0 0x2c000>;
-> -- 
-> 2.20.1
-> 
