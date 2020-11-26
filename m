@@ -2,91 +2,685 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8226B2C4E27
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 06:06:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D09F12C4E44
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 06:25:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387681AbgKZFEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 00:04:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725846AbgKZFEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 00:04:48 -0500
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F18EC0613D4;
-        Wed, 25 Nov 2020 21:04:46 -0800 (PST)
-Received: by mail-wr1-x441.google.com with SMTP id s8so679652wrw.10;
-        Wed, 25 Nov 2020 21:04:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=DZ3C1e84Q51GI7F4JZus9ZaT3v1v7zEgkxNXr+KQkIE=;
-        b=qRzUAnvibDyG1v45yf4awEtyY4M41A1MkQvjh3IiaHm+2w0hZLnJ406gnL9qRv2nwh
-         dtXk4A419YSZPrmyX13LGf0PkqKD/YwSwKPhq9zFHUREGjcWW6eEtkqOozWWLlOKCz/b
-         SZHJOPFySoJLdh2n9e67pnJVxx2uk1yia5p010gZjVvN2i7+qHv5OJqauT1m3iqL+kqM
-         f47A7pcFyA6E/MqszVcNCjYfGWc+FeuCmWEm6dNWjNcDhJoo6QPpn7fC29253t7c/g+k
-         IQPA9go7CL940ZApPEhwZfpA3WjHhfLRoJdXwXRjdSC3vNowmal/p+0aHMAb7CNl03re
-         j0TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=DZ3C1e84Q51GI7F4JZus9ZaT3v1v7zEgkxNXr+KQkIE=;
-        b=nbk7kMS8pww8zaLJhYRzF49+GkzuBEDWYzr7lm67PcCgG5pkb4H0nz4NCQJUFQqna6
-         eBalFthpQWHS9qK94xS/a+7Nn+lsYzbHHYIGGwgh7jYezNWmtrsJlgzbmsmC4Pr7eZF+
-         WArKb0pyyJA1pkWs2rwwZZS99DAezxnqViVpUOE1m8zUT/BrAhJrmP91a/0XHgOGL5qf
-         quH2Vbyjz9u62h63W7Dp/8XSSNRoVifubgDm3WVv0D2Ye3WfTXgO3uePKH/a1mZ4fbGs
-         +At2aEye1TVvW4HC49CpEyJoo1jG59/SQRrt0snKMa2pua0rZIXMvZUJG6b9yt4vhQZd
-         KO4w==
-X-Gm-Message-State: AOAM5300KhypFpp2JR3pvNXdRAY5/QIcy68yENpEcL6NIwTRJ6TIUOlQ
-        v+g2+1Vi2gp286nlNJC4S1I=
-X-Google-Smtp-Source: ABdhPJz5FV82f9hJOxdF8i2ckFRs3psGrGy50FNjKBTIMkp+fjjqtzNm8ST5kzQ7r7KGx185ANvUrQ==
-X-Received: by 2002:adf:e444:: with SMTP id t4mr1493356wrm.152.1606367085211;
-        Wed, 25 Nov 2020 21:04:45 -0800 (PST)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id g186sm7625369wmf.2.2020.11.25.21.04.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2020 21:04:44 -0800 (PST)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH] arm64: dts: meson: add KHAMSIN IR remote node to SML5442TW
-Date:   Thu, 26 Nov 2020 05:04:40 +0000
-Message-Id: <20201126050440.6273-1-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        id S2387757AbgKZFYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 00:24:45 -0500
+Received: from m42-4.mailgun.net ([69.72.42.4]:19674 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387758AbgKZFYp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 00:24:45 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1606368283; h=Content-Transfer-Encoding: MIME-Version:
+ Message-Id: Date: Subject: Cc: To: From: Sender;
+ bh=OWzjBshBlQE5El5REVx1mM2joW+HZBD1QkehXTSsUh4=; b=w56y5MkNUDqWNQLN3VxO3QkaWZRwUygna9XkHflPpbSHpqmXd523OEkZ7myQk2rZkNWQMNB4
+ 7By/z2HlKnXLods96EeQhwrOOtmqk5syr0Djc6iGFGQlPx2VlpgVOHGNbOUx7bBjRoAlU7yJ
+ YVorWYuahG8FYu8UkQcoeZz4g50=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n04.prod.us-west-2.postgun.com with SMTP id
+ 5fbf3c15a5a29b56a1975c3c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 26 Nov 2020 05:24:37
+ GMT
+Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4CC88C43462; Thu, 26 Nov 2020 05:24:37 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-253.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 29DFFC43460;
+        Thu, 26 Nov 2020 05:24:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 29DFFC43460
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        coresight@lists.linaro.org,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Subject: [PATCHv2] arm64: dts: qcom: sm8150: Add Coresight support
+Date:   Thu, 26 Nov 2020 10:54:22 +0530
+Message-Id: <20201126052422.24869-1-saiprakash.ranjan@codeaurora.org>
+X-Mailer: git-send-email 2.29.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set the IR keymap to the KHAMSIN remote shipped with the SML5442TW.
+Add coresight components found on Qualcomm Technologies,
+Inc. SM8150 SoC.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
 ---
-The rc-khamsin keymap is queued (or in the process of being picked) via the
-media tree [0] so it would be nice to add this within the 5.11 cycle.
 
-[0] https://patchwork.linuxtv.org/project/linux-media/patch/20201125161413.GA915@gofer.mess.org/
+Changes in v2:
+ * Rebase on top of qcom for-next branch
+ * Add reviewed-by tag collected from previous version
 
- arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 591 +++++++++++++++++++++++++++
+ 1 file changed, 591 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
-index 0b95e9ecbef0..ad6d72254150 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905d-sml5442tw.dts
-@@ -63,6 +63,10 @@
- 	pinctrl-names = "default";
- };
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 8dac11c6012e..5270bda7418f 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -798,6 +798,597 @@ glink-edge {
+ 			};
+ 		};
  
-+&ir {
-+        linux,rc-map-name = "rc-khamsin";
-+};
++		stm@6002000 {
++			compatible = "arm,coresight-stm", "arm,primecell";
++			reg = <0 0x06002000 0 0x1000>,
++			      <0 0x16280000 0 0x180000>;
++			reg-names = "stm-base", "stm-stimulus-base";
 +
- /* This is connected to the Bluetooth module: */
- &uart_A {
- 	status = "okay";
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					stm_out: endpoint {
++						remote-endpoint = <&funnel0_in7>;
++					};
++				};
++			};
++		};
++
++		funnel@6041000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0 0x06041000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					funnel0_out: endpoint {
++						remote-endpoint = <&merge_funnel_in0>;
++					};
++				};
++			};
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@7 {
++					reg = <7>;
++					funnel0_in7: endpoint {
++						remote-endpoint = <&stm_out>;
++					};
++				};
++			};
++		};
++
++		funnel@6042000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0 0x06042000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					funnel1_out: endpoint {
++						remote-endpoint = <&merge_funnel_in1>;
++					};
++				};
++			};
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@4 {
++					reg = <4>;
++					funnel1_in4: endpoint {
++						remote-endpoint = <&swao_replicator_out>;
++					};
++				};
++			};
++		};
++
++		funnel@6043000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0 0x06043000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					funnel2_out: endpoint {
++						remote-endpoint = <&merge_funnel_in2>;
++					};
++				};
++			};
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@2 {
++					reg = <2>;
++					funnel2_in2: endpoint {
++						remote-endpoint = <&apss_merge_funnel_out>;
++					};
++				};
++			};
++		};
++
++		funnel@6045000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0 0x06045000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					merge_funnel_out: endpoint {
++						remote-endpoint = <&etf_in>;
++					};
++				};
++			};
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++					merge_funnel_in0: endpoint {
++						remote-endpoint = <&funnel0_out>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++					merge_funnel_in1: endpoint {
++						remote-endpoint = <&funnel1_out>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++					merge_funnel_in2: endpoint {
++						remote-endpoint = <&funnel2_out>;
++					};
++				};
++			};
++		};
++
++		replicator@6046000 {
++			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
++			reg = <0 0x06046000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++					replicator_out0: endpoint {
++						remote-endpoint = <&etr_in>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++					replicator_out1: endpoint {
++						remote-endpoint = <&replicator1_in>;
++					};
++				};
++			};
++
++			in-ports {
++				port {
++					replicator_in0: endpoint {
++						remote-endpoint = <&etf_out>;
++					};
++				};
++			};
++		};
++
++		etf@6047000 {
++			compatible = "arm,coresight-tmc", "arm,primecell";
++			reg = <0 0x06047000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					etf_out: endpoint {
++						remote-endpoint = <&replicator_in0>;
++					};
++				};
++			};
++
++			in-ports {
++				port {
++					etf_in: endpoint {
++						remote-endpoint = <&merge_funnel_out>;
++					};
++				};
++			};
++		};
++
++		etr@6048000 {
++			compatible = "arm,coresight-tmc", "arm,primecell";
++			reg = <0 0x06048000 0 0x1000>;
++			iommus = <&apps_smmu 0x05e0 0x0>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,scatter-gather;
++
++			in-ports {
++				port {
++					etr_in: endpoint {
++						remote-endpoint = <&replicator_out0>;
++					};
++				};
++			};
++		};
++
++		replicator@604a000 {
++			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
++			reg = <0 0x0604a000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@1 {
++					reg = <1>;
++					replicator1_out: endpoint {
++						remote-endpoint = <&swao_funnel_in>;
++					};
++				};
++			};
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@1 {
++					reg = <1>;
++					replicator1_in: endpoint {
++						remote-endpoint = <&replicator_out1>;
++					};
++				};
++			};
++		};
++
++		funnel@6b08000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0 0x06b08000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					swao_funnel_out: endpoint {
++						remote-endpoint = <&swao_etf_in>;
++					};
++				};
++			};
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@6 {
++					reg = <6>;
++					swao_funnel_in: endpoint {
++						remote-endpoint = <&replicator1_out>;
++					};
++				};
++			};
++		};
++
++		etf@6b09000 {
++			compatible = "arm,coresight-tmc", "arm,primecell";
++			reg = <0 0x06b09000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					swao_etf_out: endpoint {
++						remote-endpoint = <&swao_replicator_in>;
++					};
++				};
++			};
++
++			in-ports {
++				port {
++					swao_etf_in: endpoint {
++						remote-endpoint = <&swao_funnel_out>;
++					};
++				};
++			};
++		};
++
++		replicator@6b0a000 {
++			compatible = "arm,coresight-dynamic-replicator", "arm,primecell";
++			reg = <0 0x06b0a000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			qcom,replicator-loses-context;
++
++			out-ports {
++				port {
++					swao_replicator_out: endpoint {
++						remote-endpoint = <&funnel1_in4>;
++					};
++				};
++			};
++
++			in-ports {
++				port {
++					swao_replicator_in: endpoint {
++						remote-endpoint = <&swao_etf_out>;
++					};
++				};
++			};
++		};
++
++		etm@7040000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07040000 0 0x1000>;
++
++			cpu = <&CPU0>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm0_out: endpoint {
++						remote-endpoint = <&apss_funnel_in0>;
++					};
++				};
++			};
++		};
++
++		etm@7140000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07140000 0 0x1000>;
++
++			cpu = <&CPU1>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm1_out: endpoint {
++						remote-endpoint = <&apss_funnel_in1>;
++					};
++				};
++			};
++		};
++
++		etm@7240000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07240000 0 0x1000>;
++
++			cpu = <&CPU2>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm2_out: endpoint {
++						remote-endpoint = <&apss_funnel_in2>;
++					};
++				};
++			};
++		};
++
++		etm@7340000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07340000 0 0x1000>;
++
++			cpu = <&CPU3>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm3_out: endpoint {
++						remote-endpoint = <&apss_funnel_in3>;
++					};
++				};
++			};
++		};
++
++		etm@7440000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07440000 0 0x1000>;
++
++			cpu = <&CPU4>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm4_out: endpoint {
++						remote-endpoint = <&apss_funnel_in4>;
++					};
++				};
++			};
++		};
++
++		etm@7540000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07540000 0 0x1000>;
++
++			cpu = <&CPU5>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm5_out: endpoint {
++						remote-endpoint = <&apss_funnel_in5>;
++					};
++				};
++			};
++		};
++
++		etm@7640000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07640000 0 0x1000>;
++
++			cpu = <&CPU6>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm6_out: endpoint {
++						remote-endpoint = <&apss_funnel_in6>;
++					};
++				};
++			};
++		};
++
++		etm@7740000 {
++			compatible = "arm,coresight-etm4x", "arm,primecell";
++			reg = <0 0x07740000 0 0x1000>;
++
++			cpu = <&CPU7>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++			arm,coresight-loses-context-with-cpu;
++			qcom,skip-power-up;
++
++			out-ports {
++				port {
++					etm7_out: endpoint {
++						remote-endpoint = <&apss_funnel_in7>;
++					};
++				};
++			};
++		};
++
++		funnel@7800000 { /* APSS Funnel */
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0 0x07800000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					apss_funnel_out: endpoint {
++						remote-endpoint = <&apss_merge_funnel_in>;
++					};
++				};
++			};
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++					apss_funnel_in0: endpoint {
++						remote-endpoint = <&etm0_out>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++					apss_funnel_in1: endpoint {
++						remote-endpoint = <&etm1_out>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++					apss_funnel_in2: endpoint {
++						remote-endpoint = <&etm2_out>;
++					};
++				};
++
++				port@3 {
++					reg = <3>;
++					apss_funnel_in3: endpoint {
++						remote-endpoint = <&etm3_out>;
++					};
++				};
++
++				port@4 {
++					reg = <4>;
++					apss_funnel_in4: endpoint {
++						remote-endpoint = <&etm4_out>;
++					};
++				};
++
++				port@5 {
++					reg = <5>;
++					apss_funnel_in5: endpoint {
++						remote-endpoint = <&etm5_out>;
++					};
++				};
++
++				port@6 {
++					reg = <6>;
++					apss_funnel_in6: endpoint {
++						remote-endpoint = <&etm6_out>;
++					};
++				};
++
++				port@7 {
++					reg = <7>;
++					apss_funnel_in7: endpoint {
++						remote-endpoint = <&etm7_out>;
++					};
++				};
++			};
++		};
++
++		funnel@7810000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0 0x07810000 0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					apss_merge_funnel_out: endpoint {
++						remote-endpoint = <&funnel2_in2>;
++					};
++				};
++			};
++
++			in-ports {
++				port {
++					apss_merge_funnel_in: endpoint {
++						remote-endpoint = <&apss_funnel_out>;
++					};
++				};
++			};
++		};
++
+ 		remoteproc_cdsp: remoteproc@8300000 {
+ 			compatible = "qcom,sm8150-cdsp-pas";
+ 			reg = <0x0 0x08300000 0x0 0x4040>;
+
+base-commit: 04cb77f047655cfc1f53aa8e17f7df361ada2846
 -- 
-2.17.1
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
