@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B6F2C5ABA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:37:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BAFC2C5ABC
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:37:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404432AbgKZRge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 12:36:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38720 "EHLO
+        id S2404445AbgKZRgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 12:36:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404278AbgKZRgd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:36:33 -0500
-Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 568F3C0617A7
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:36:32 -0800 (PST)
-Received: by mail-oi1-x241.google.com with SMTP id o25so3035648oie.5
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:36:32 -0800 (PST)
+        with ESMTP id S2404443AbgKZRgw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:36:52 -0500
+Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F34FC0617A7
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:36:52 -0800 (PST)
+Received: by mail-ot1-x343.google.com with SMTP id z24so2482212oto.6
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:36:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=6T8QYExqOXTZQRoPmNmRTj5CbwAQHzUDSySXajqV1h0=;
-        b=Vv6UIWASYy9l4tPyT7VP8MwuTXWF/R/cn8vHrXqmDwK8g1Gv13I9rrEpaRZDkR3ENj
-         zZ5mi84B/msAXxrQpDj0mDxxjyuHQWmdkfDycwBXnF2Hp+qIq8t3MRdEHjvrj5PeC1Xw
-         0xNYmByfOXwVC6II0Yahnyn01X06OpNFOsSGxWydX6xZtnyYDoSz/99lsUX26+9IOWrs
-         bW9WEHvytx3FTwcVIeZ65yAXpes+IylYNXz/K5mWF64YSusDKkXQBUBnHt6H4x+kgFzI
-         d1YQeVPUeb55Q7Y0vapbLSarIM9o/Ri3tg9XCPMsuQaS9RpENo2rCTvlrD5tC3gadkC/
-         rl9A==
+        bh=RzscB+HPvNo5OLPGyWcEVasjH1OgEnw1N/daccQTcjw=;
+        b=TiNa/CZ9bt4dyGcJGi3+DSceDoxSyy6UZUER3AOqg4GE5ZhCj46vPHN8d+7IdS4lxe
+         v7KAYYWF0mQYxM3vIupYxJiWjiPrLJgwqKYbti5ro/2THxTbi5Smq/4+McxMh8ONbC/x
+         JLwyY1PNPjP5QzP6Vj++4xyfKhb2WAL2GJnEagvBrDwHBkDT7AynKdTv15PA4r1MC7AI
+         m6cIy3iRQqIQiJT4w5fXg/VrcsZEFilfUNCztm9T7L7SJ2M8oUPjVubmq42/rE5WgpW/
+         Onwz3JLHrggbpVh+WKRSp5BbbVbaLH7+2nk0ENJLIPgrV3aeUCizFxhz9STQmvc+hooj
+         mvqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6T8QYExqOXTZQRoPmNmRTj5CbwAQHzUDSySXajqV1h0=;
-        b=cUOcRuDZE/VixD0AwlIbff85rfVkSMU6MUCvX42rcOfleS+AHkMKaMjNE8bZMWjbIQ
-         grX5uDCycK4vjGubHTZYrLN8ECEKGSMSdWod24sw0ctYS13vlZEPr0staJ/ddODwUfFA
-         rzjVEmlIoQGZHcCSs8WeJ3LY1ZzCfwBgFeOFJe7u4HxbKMh1mwWiWtklvNcwsqLYzuGI
-         +e8sR4XcGCfTyfm01oEwpCeGdXuubSSSbLZmVSuy3JcoxxILo2aQCMtCTX7AjalcjIic
-         f5t26JlccfyHb6kRD41sEgvh7p4GYlxap4SoW84bfvhylvCFZuc0Q6K1+8bv9EPETg8g
-         0O4A==
-X-Gm-Message-State: AOAM530cajJo17/ZQJi11B1P1Sm1BI9Q0O52kHqaE52VtEnlBIEIN30T
-        N2NmdtdMrPqPJHaFgcKWFzfcYw==
-X-Google-Smtp-Source: ABdhPJxebkdK5IJYc2ClwfaGbEipX1ip5QMk0qJZW5zsQa/fK4ya+AIMPav5gax7pf9ccvb6X9BbsQ==
-X-Received: by 2002:aca:5742:: with SMTP id l63mr2575215oib.166.1606412191734;
-        Thu, 26 Nov 2020 09:36:31 -0800 (PST)
+        bh=RzscB+HPvNo5OLPGyWcEVasjH1OgEnw1N/daccQTcjw=;
+        b=Uj4XVA15MG+c8nVe5dMfie6lqOGo1gJrpLEQ9QkMmG1y4w5zS57VzfmvVkDr4O/Pin
+         4TJKASOXfZu8ICY8HXnwY8w+kUXfvjf4Q7K3rt89w78VE1FgnXLafBzECO7ACWNVN874
+         V6WeuGs7+nBVUKbGmJt5LIHzVYruaN8rMt4OKYcl79Sa+s/gnEwupvLHsQ9S9ojcPxmN
+         qnCEgb0kZ0c6eHi6yxfRuqOu25/y/kzuNivXP8z4IBJStzuGZ9l9Tkp2c6wZbHDcskg5
+         3mi6FzwZhPTMWS702uIfvj7gyTd4hN28bDolrxI3CKDaH5xCcqA3cbTMaq0J60u/iMzp
+         knIg==
+X-Gm-Message-State: AOAM532A4MzNj3t7DwEieeW0d31rLDoBB/mrNi17nu3OjtQ6fZo0OqIq
+        WIsC6OZQMJ5TT94wVHUsxqysSg==
+X-Google-Smtp-Source: ABdhPJyHVTzDKx1lcHaJkXpFi2a3H0kvz7t8PZQ1lWl7nZ712Y81nbkxBYUgt5qmGLhKwxRh/Dltvw==
+X-Received: by 2002:a05:6830:8f:: with SMTP id a15mr2952856oto.362.1606412211389;
+        Thu, 26 Nov 2020 09:36:51 -0800 (PST)
 Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id z188sm3412702oia.32.2020.11.26.09.36.30
+        by smtp.gmail.com with ESMTPSA id j8sm3499723oif.55.2020.11.26.09.36.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 09:36:31 -0800 (PST)
-Date:   Thu, 26 Nov 2020 11:36:29 -0600
+        Thu, 26 Nov 2020 09:36:50 -0800 (PST)
+Date:   Thu, 26 Nov 2020 11:36:49 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Vinod Koul <vkoul@kernel.org>
 Cc:     Linus Walleij <linus.walleij@linaro.org>,
@@ -56,52 +56,44 @@ Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom-pmic-gpio: Add pmx55
- support
-Message-ID: <X7/nnfA8LA/haMHM@builder.lan>
+Subject: Re: [PATCH 2/2] pinctrl: qcom-pmic-gpio: Add support for pmx55
+Message-ID: <X7/nsdVsQZdrRlPn@builder.lan>
 References: <20201126092151.1082697-1-vkoul@kernel.org>
+ <20201126092151.1082697-2-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201126092151.1082697-1-vkoul@kernel.org>
+In-Reply-To: <20201126092151.1082697-2-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu 26 Nov 03:21 CST 2020, Vinod Koul wrote:
 
-> Add support for the PMX55 GPIO support to the Qualcomm PMIC GPIO
-> binding.
+> PM55 pmic support gpio controller so add compatible and comment for gpio
+> holes
 > 
 > Signed-off-by: Vinod Koul <vkoul@kernel.org>
 
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
 > ---
->  Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 3 +++
->  1 file changed, 3 insertions(+)
+>  drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> index c3d1914381ae..7648ab00f4e2 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-> @@ -29,6 +29,7 @@ PMIC's from Qualcomm.
->  		    "qcom,pm8150b-gpio"
->  		    "qcom,pm6150-gpio"
->  		    "qcom,pm6150l-gpio"
-> +		    "qcom,pmx55-gpio"
+> diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> index 17441388ce8f..9801c717e311 100644
+> --- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> +++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
+> @@ -1129,6 +1129,8 @@ static const struct of_device_id pmic_gpio_of_match[] = {
+>  	{ .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
+>  	{ .compatible = "qcom,pm6150-gpio", .data = (void *) 10 },
+>  	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
+> +	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
+> +	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
+>  	{ },
+>  };
 >  
->  		    And must contain either "qcom,spmi-gpio" or "qcom,ssbi-gpio"
->  		    if the device is on an spmi bus or an ssbi bus respectively
-> @@ -110,6 +111,8 @@ to specify in a pin configuration subnode:
->  		    gpio1-gpio12 for pm8150l (hole on gpio7)
->  		    gpio1-gpio10 for pm6150
->  		    gpio1-gpio12 for pm6150l
-> +		    gpio1-gpio11 for pmx55 (holes on gpio3, gpio7, gpio10
-> +					    and gpio11)
->  
->  - function:
->  	Usage: required
 > -- 
 > 2.26.2
 > 
