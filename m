@@ -2,147 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 994482C4D94
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 04:01:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A8E2C4E12
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 05:46:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729715AbgKZDAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 22:00:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44230 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729679AbgKZDAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 22:00:48 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCDB1C0613D4
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 19:00:48 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id s63so469127pgc.8
-        for <devicetree@vger.kernel.org>; Wed, 25 Nov 2020 19:00:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HGy6irohT0f1tWD/mm+Ymd5mnTZ2qIfD7SCUyRih0uQ=;
-        b=EFPNSrhZhrvcg/8kPsEw0/6/KGCVTW/U4tL3dia9WRhqh8fktxXhEh0onyuuA4xEss
-         JKt//yl3RnphApbznkwNRTAEi7+cmvsRtc7L7n4sy5hga6/qEfxRtF+8MH5B+8MObP2c
-         Pxdvyz61EwO4TdO6DsnhPYd/1G4cLBBdS+qDL1PfkCH2yzam8qs24jVY69mLrXYFtUYy
-         +kJ1IhYj8S3N8Qu/Z3mxjEWx+BdCWzERk+NwFL+Iwo9zYdYwtUfmZYGYr91ROsP9GLX9
-         Y/lD95PTfUtMCVFbsYKsYyN9daXOuKSprQwoUbt/JlpSECcZKE7nl14scKVwfbcZB0uk
-         A+HQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=HGy6irohT0f1tWD/mm+Ymd5mnTZ2qIfD7SCUyRih0uQ=;
-        b=NL/XD09Vn5ydIV0SvWdUXT19on3zlJc+wmonZm58pT38yz1c4cp4MNRGkgyOq8FnH8
-         OKxHbM7nrJCxBkfUnOrtXBKkqRLk+qpFeNDJjk+1paLA33L/LybRijwxiQISghq+B3eh
-         wFebyr0GHHD5arkS/Q4c9oMirfOu6ZS2mQvxcnI2wDH7sWtQEafyU/gY7cE2kM0Nr34Y
-         KdJfE3dhmtXWj/yW9BJ37zdR1CYCQ8aHnCJpc5oP17AUWCNte5SokSzbBw0lgXnAZpep
-         g97X65YRkD672TO9SmE+ssBRhYki7SenM1F/YpgAp8N08gREt9M9EWK1RZy0rxyaLTDG
-         SGLg==
-X-Gm-Message-State: AOAM531WLOG5zamap4jMQeZnq2KP4G4LYLk3koO+Ic2tVPkrViChWGE8
-        pHTT2IDbnnJj+QVaN9SInnpLVQ==
-X-Google-Smtp-Source: ABdhPJwg7TmxhRtsDO0z7BK3t08FW6TEtxmleXh8/VWrBOjgOOJgyhWVu/0QilTxqH1ENYkKsDoWzQ==
-X-Received: by 2002:a17:90a:4889:: with SMTP id b9mr1038424pjh.79.1606359648430;
-        Wed, 25 Nov 2020 19:00:48 -0800 (PST)
-Received: from hsinchu02.internal.sifive.com (114-34-229-221.HINET-IP.hinet.net. [114.34.229.221])
-        by smtp.gmail.com with ESMTPSA id d2sm4322057pji.7.2020.11.25.19.00.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Nov 2020 19:00:47 -0800 (PST)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
-        palmer@dabbelt.com, paul.walmsley@sifive.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH] dt-bindings: fu740: prci: add YAML documentation for the FU740 PRCI
-Date:   Thu, 26 Nov 2020 11:00:43 +0800
-Message-Id: <20201126030043.67390-1-zong.li@sifive.com>
+        id S2387633AbgKZEpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 23:45:53 -0500
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:35025 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387571AbgKZEpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 23:45:53 -0500
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8A594806A8;
+        Thu, 26 Nov 2020 17:45:49 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1606365949;
+        bh=fpmZlWWGYYvSibpY0vtVoSbzv6E2nviLb/qUCvY6RIE=;
+        h=From:To:Cc:Subject:Date;
+        b=FXpZIIiD3YTopcPuSzOIl8YS4Ol4mwWSe9xQqWjPGARH+uWXgSUbOHTzZW/DP3PXO
+         vOGPWXg56oJaPRe3oS2QVqA539sQOL8DS4WQBZKsTz5QVpmAR3CRxHwJ5y08E40/CR
+         l9ugtbbGbK0WxR5oBNL5OgaKzADYMAPKQG1gqgQI04KXjB8w+hL834UaF6TwofrqEQ
+         VS3oxtvEZyxYcdaBegsM8x1SUK4Xz8B4Ql0TZ4w1++guveCRvPvrHnGP3cmdMUZ5Nk
+         d/p53r0ToJTuRyZpExfFDgo7ZjDtPAqh5LqzCxtCr4P6MEGj/2Y5ofk9XllVnmesZC
+         xbpFWcJ/FK+0Q==
+Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5fbf32fd0000>; Thu, 26 Nov 2020 17:45:49 +1300
+Received: from aryans-dl.ws.atlnz.lc (aryans-dl.ws.atlnz.lc [10.33.21.30])
+        by smtp (Postfix) with ESMTP id E1E1113EE9C;
+        Thu, 26 Nov 2020 17:45:48 +1300 (NZDT)
+Received: by aryans-dl.ws.atlnz.lc (Postfix, from userid 1844)
+        id 38BB014C00BB; Thu, 26 Nov 2020 17:45:49 +1300 (NZDT)
+From:   Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
+To:     robh+dt@kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2] ARM: dts: mvebu: Add device tree for RD-AC3X-48G4X2XL board
+Date:   Thu, 26 Nov 2020 17:45:44 +1300
+Message-Id: <20201126044544.17829-1-aryan.srivastava@alliedtelesis.co.nz>
 X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+x-atlnz-ls: pat
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML DT binding documentation for the SiFive FU740 PRCI. The
-link of unmatched board as follow, the U740-C000 manual would be present
-in the same page later.
+Add device tree for RD-AC3X-48G4X2XL board. This has a Armada 382 SoC on
+a interposer board connected to a baseboard with a Prestera AC3X ASIC
+connected via PCI.
 
-    https://www.sifive.com/boards/hifive-unmatched
-
-Passes dt_binding_check.
-
-Signed-off-by: Zong Li <zong.li@sifive.com>
+Signed-off-by: Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
+Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 ---
- .../bindings/clock/sifive/fu740-prci.yaml     | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
 
-diff --git a/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml b/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
+Notes:
+    Changes in v2:
+    -Added comment for CPLD
+
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/armada-382-rd-ac3x-48g4x2xl.dts  | 112 ++++++++++++++++++
+ 2 files changed, 113 insertions(+)
+ create mode 100644 arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
+
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index ce66ffd5a1bb..a60407ad7347 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1319,6 +1319,7 @@ dtb-$(CONFIG_MACH_ARMADA_370) +=3D \
+ dtb-$(CONFIG_MACH_ARMADA_375) +=3D \
+ 	armada-375-db.dtb
+ dtb-$(CONFIG_MACH_ARMADA_38X) +=3D \
++	armada-382-rd-ac3x-48g4x2xl.dtb \
+ 	armada-385-clearfog-gtr-s4.dtb \
+ 	armada-385-clearfog-gtr-l8.dtb \
+ 	armada-385-db-88f6820-amc.dtb \
+diff --git a/arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts b/arch/arm=
+/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
 new file mode 100644
-index 000000000000..e17143cac316
+index 000000000000..584f0d0398a5
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/sifive/fu740-prci.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2020 SiFive, Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/sifive/fu740-prci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
+@@ -0,0 +1,112 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Device Tree file for Marvell Armada 382 reference board
++ * (RD-AC3X-48G4X2XL)
++ *
++ * Copyright (C) 2020 Allied Telesis Labs
++ */
 +
-+title: SiFive FU740 Power Reset Clock Interrupt Controller (PRCI)
++/dts-v1/;
++#include "armada-385.dtsi"
 +
-+maintainers:
-+  - Zong Li <zong.li@sifive.com>
-+  - Paul Walmsley  <paul.walmsley@sifive.com>
++#include <dt-bindings/gpio/gpio.h>
 +
-+description:
-+  On the FU740 family of SoCs, most system-wide clock and reset integration
-+  is via the PRCI IP block.
-+  The clock consumer should specify the desired clock via the clock ID
-+  macros defined in include/dt-bindings/clock/sifive-fu740-prci.h.
-+  These macros begin with PRCI_CLK_.
++/ {
++	model =3D "Marvell Armada 382 RD-AC3X";
++	compatible =3D "marvell,rd-ac3x-48g4x2xl", "marvell,rd-ac3x",
++			 "marvell,armada385", "marvell,armada380";
 +
-+  The hfclk and rtcclk nodes are required, and represent physical
-+  crystals or resonators located on the PCB.  These nodes should be present
-+  underneath /, rather than /soc.
++	chosen {
++		stdout-path =3D "serial0:115200n8";
++	};
 +
-+properties:
-+  compatible:
-+    const: sifive,fu740-c000-prci
++	aliases {
++		ethernet0 =3D &eth1;
++	};
 +
-+  reg:
-+    maxItems: 1
++	memory {
++		device_type =3D "memory";
++		reg =3D <0x00000000 0x20000000>; /* 512MB */
++	};
 +
-+  clocks:
-+    items:
-+      - description: high frequency clock.
-+      - description: RTL clock.
++	soc {
++		ranges =3D <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
++			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000>;
++	};
++};
 +
-+  clock-names:
-+    items:
-+      - const: hfclk
-+      - const: rtcclk
++&i2c0 {
++	pinctrl-names =3D "default";
++	pinctrl-0 =3D <&i2c0_pins>;
++	status =3D "okay";
 +
-+  "#clock-cells":
-+    const: 1
++	eeprom@53{
++		compatible =3D "atmel,24c64";
++		reg =3D <0x53>;
++	};
 +
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#clock-cells"
++	/* CPLD device present at 0x3c. Function unknown */
++};
 +
-+additionalProperties: false
++&uart0 {
++	pinctrl-names =3D "default";
++	pinctrl-0 =3D <&uart0_pins>;
++	status =3D "okay";
++};
 +
-+examples:
-+  - |
-+    prci: clock-controller@10000000 {
-+      compatible = "sifive,fu740-c000-prci";
-+      reg = <0x10000000 0x1000>;
-+      clocks = <&hfclk>, <&rtcclk>;
-+      #clock-cells = <1>;
-+    };
--- 
++&eth1 {
++	status =3D "okay";
++	phy =3D <&phy0>;
++	phy-mode =3D "rgmii-id";
++};
++
++&mdio {
++	pinctrl-names =3D "default";
++	pinctrl-0 =3D <&mdio_pins>;
++
++	phy0: ethernet-phy@0 {
++		reg =3D <0>;
++	};
++};
++
++&pciec {
++	status =3D "okay";
++};
++
++&pcie1 {
++	/* Port 0, Lane 0 */
++	status =3D "okay";
++};
++
++&nand_controller {
++	status =3D "okay";
++
++	nand@0 {
++		reg =3D <0>;
++		label =3D "pxa3xx_nand-0";
++		nand-rb =3D <0>;
++		nand-on-flash-bbt;
++
++		partitions {
++			compatible =3D "fixed-partitions";
++			#address-cells =3D <1>;
++			#size-cells =3D <1>;
++			partition@0 {
++				reg =3D <0x00000000 0x00500000>;
++				label =3D "u-boot";
++			};
++			partition@500000{
++				reg =3D <0x00500000 0x00400000>;
++				label =3D "u-boot env";
++			};
++			partition@900000{
++				reg =3D <0x00900000 0x3F700000>;
++				label =3D "user";
++			};
++		};
++	};
++};
++
++&refclk {
++	clock-frequency =3D <200000000>;
++};
+--=20
 2.29.2
 
