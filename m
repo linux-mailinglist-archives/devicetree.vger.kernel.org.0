@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1664D2C552B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:24:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52A442C552F
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:26:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389604AbgKZNYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 08:24:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55792 "EHLO
+        id S2389784AbgKZNZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 08:25:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389603AbgKZNYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:24:22 -0500
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F05C0613D4;
-        Thu, 26 Nov 2020 05:24:22 -0800 (PST)
-Received: by mail-ed1-x52a.google.com with SMTP id q16so2250500edv.10;
-        Thu, 26 Nov 2020 05:24:22 -0800 (PST)
+        with ESMTP id S2389756AbgKZNZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:25:10 -0500
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67C3AC0613D4
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:10 -0800 (PST)
+Received: by mail-ed1-x531.google.com with SMTP id r22so2266983edw.6
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=xUQ9iYS8DZZmFJG3hqLV8u3HjCR6GcQ7ha8Yn9D0h2Y=;
-        b=Kw0QcVVgvszkH6wATTStoi3oNXb+T6n31svBwuwDpSiCFcFJum/ZInLX/ST27iw53M
-         SQ43vuJ3MQbJkx7+4wViSwgxDBeXS8ABn+aYMv3DITa200rxk6WmDyfyBRZdfYUyVLTN
-         vTDBG3IoDAbCW4bttz5+EIfC3e49eeqGPwrfOovAl0k6nfzkPU3rzJWsGkpD253/7VwF
-         7XeEdxH88RNB+YPKSYzVAfq+VVQZaEdcZvwubHFhYZux2X5ThT1e/b4t4zmmP9tQp2WC
-         Smc7/kXl5p4h7EHNg7qQb+bq0AkwTYFJuA9cw1/YJD197/C72bLd4Qsut9/aVhm4jCG0
-         twzA==
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=V9ZHaFKKBeckNSWoLOmLErLJJKCJkg2AhOu6rYTvYf4=;
+        b=aJ0a/EFDWsuwakDG8ZwjFKkKT1COTMwtWrZGPTk1xnJ1PL04J0HeYF1zsOuDZGZyxo
+         5zgV6/XZqZ1o9snsENEukUsMLMZyHbUrn/myrgt1IyHigwHt+34seKf7+LfWf9pTNay6
+         64ozu6w076ifcoZBrQDAVJpgg1YG3s/RLCcCsPb/MkFJxhGBkH5XsDL6HRvMnlFhLIZ4
+         U735GNTTEgHIjTMH3HKpTlGTaadx0esMn6KEFGPL5f6Uh43YwKWYepdaODAJG72ASooa
+         b8y7m+z0De2GnUShLd8GqYO1wQ5rCTrssXdZ1G9uiOSc1ipxqFqgt+c4tdR+q0QsPOTK
+         Nibw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xUQ9iYS8DZZmFJG3hqLV8u3HjCR6GcQ7ha8Yn9D0h2Y=;
-        b=pS9b/xZFmzajLw7AYtVtT2jwaEE6P/nFvQ2kbhFdE4JM3vRx52BpSXJLQLrZ/f0TIs
-         +lvYkaQvJMN7AVEgwvBlbHM2jGX2CjLCOmflz+I6JfezeDI4/j/eiZnzGZdhaRS3IPbk
-         h5hAkDfkYQaRkbsEkBCjIZ7QxUjGAxewcv+qpR8ljC10qqsTI26DwPDjraIeK0j26FAd
-         P0eAeabyeZZBwyL5y4z05rbnhjnTfgUbC60qbQrfW/f39VKf7mQ2WLOj3pQ7IgWthtoF
-         wXpvbRFNM1ZLjofHgpWEpOcMTTaO+y6RSsOm6piDYUXWvS31l+EuajlTi7GEHWM/IKuk
-         xrSg==
-X-Gm-Message-State: AOAM532WHi3ZgyNmIwIbmDlL/6xnOAHIr/ITFbXfUOmn//J8mIlX7gY2
-        4Gud8x2IkZD6FYgdDWZj9gI=
-X-Google-Smtp-Source: ABdhPJwVCwjfW/pragoptzjKbLnTua6xsV3kAXviMnijgS59C8xrddDUKW+unl+E0Vg6amIQKbifkg==
-X-Received: by 2002:a50:ef13:: with SMTP id m19mr2534718eds.34.1606397060891;
-        Thu, 26 Nov 2020 05:24:20 -0800 (PST)
-Received: from skbuf ([188.25.2.120])
-        by smtp.gmail.com with ESMTPSA id b15sm3222314edv.85.2020.11.26.05.24.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 05:24:19 -0800 (PST)
-Date:   Thu, 26 Nov 2020 15:24:18 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
-Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
- driver
-Message-ID: <20201126132418.zigx6c2iuc4kmlvy@skbuf>
-References: <20201125193740.36825-1-george.mccollister@gmail.com>
- <20201125193740.36825-3-george.mccollister@gmail.com>
- <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
- <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=V9ZHaFKKBeckNSWoLOmLErLJJKCJkg2AhOu6rYTvYf4=;
+        b=mkDpuOFHLu58ew2hfmjYCdKPqOC+PQCsfbSZiQz1GX3JR990wCvQPSnqxLqNZPZZCK
+         d2buL73bfRisPZ3k2Fo4kJzznR/ScOwDBztBdRzotlIFLMpELhTubQfm2iRDAfjq8+/G
+         uBqOBDFZ7cO+mtQuquRMPXMovAMJhvn4bXGdxf++9ERBRLyzw8moxRzsbQfOBdoYcJDp
+         Bs/1r9CW8/TBbrk0qgwoUTMEGjCotMm8MdAYq7vitS6Tp0fJaezsZ7veIatji/g8ZpwZ
+         arFuJSZTIjKWjMpOeq8KM1QmoDGgxpLyfAY/+Vsz45bgRsoKnSaF4TMZ9RDhCDul4LzH
+         VWWA==
+X-Gm-Message-State: AOAM532pGeSD17dEAwJL3e/tLxwz/iHvvnt0Qhngb2pjcewc9M4uiVOZ
+        lYFJnOtTqKmVOR5MVXQhdaSGBA==
+X-Google-Smtp-Source: ABdhPJxsTi/MID2ZG+lKAhTCJs9QPJ1yBGV+4AL1pUay95bfu6u0etQ3/E+4qaaKb17rSwdt1XICIA==
+X-Received: by 2002:a05:6402:1a22:: with SMTP id be2mr2624155edb.102.1606397109122;
+        Thu, 26 Nov 2020 05:25:09 -0800 (PST)
+Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id d1sm3196262edd.59.2020.11.26.05.25.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 26 Nov 2020 05:25:08 -0800 (PST)
+Sender: Michal Simek <monstr@monstr.eu>
+From:   Michal Simek <michal.simek@xilinx.com>
+To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
+        michal.simek@xilinx.com, git@xilinx.com
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/5] ARM: zynq: Update DTs based on the latest YAML checking
+Date:   Thu, 26 Nov 2020 14:24:59 +0100
+Message-Id: <cover.1606397101.git.michal.simek@xilinx.com>
+X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 25, 2020 at 08:25:11PM -0600, George McCollister wrote:
-> > > +     {XRS_RX_UNDERSIZE_L, "rx_undersize"},
-> > > +     {XRS_RX_FRAGMENTS_L, "rx_fragments"},
-> > > +     {XRS_RX_OVERSIZE_L, "rx_oversize"},
-> > > +     {XRS_RX_JABBER_L, "rx_jabber"},
-> > > +     {XRS_RX_ERR_L, "rx_err"},
-> > > +     {XRS_RX_CRC_L, "rx_crc"},
-> >
-> > As Vladimir already mentioned to you the statistics which have
-> > corresponding entries in struct rtnl_link_stats64 should be reported
-> > the standard way. The infra for DSA may not be in place yet, so best
-> > if you just drop those for now.
-> 
-> Okay, that clears it up a bit. Just drop these 6? I'll read through
-> that thread again and try to make sense of it.
+Hi,
 
-I feel that I should ask. Do you want me to look into exposing RMON
-interface counters through rtnetlink (I've never done anything like that
-before either, but there's a beginning for everything), or are you going
-to?
+several issues have been reported from binding check. The series is
+addressing most of them.
+Patches are based on
+https://github.com/Xilinx/linux-xlnx/tree/zynq/dt
+
+Thanks,
+Michal
+
+
+Michal Simek (5):
+  ARM: zynq: Fix compatible string for adi,adxl345 chip
+  ARM: zynq: Rename bus to be align with simple-bus yaml
+  ARM: zynq: Fix leds subnode name for zc702/zybo-z7
+  ARM: zynq: Fix OCM mapping to be aligned with binding on zc702
+  ARM: zynq: Convert at25 binding to new description on zc770-xm013
+
+ arch/arm/boot/dts/zynq-7000.dtsi         | 2 +-
+ arch/arm/boot/dts/zynq-zc702.dts         | 8 +++++++-
+ arch/arm/boot/dts/zynq-zc770-xm013.dts   | 7 +++----
+ arch/arm/boot/dts/zynq-zturn-common.dtsi | 2 +-
+ arch/arm/boot/dts/zynq-zybo-z7.dts       | 2 +-
+ 5 files changed, 13 insertions(+), 8 deletions(-)
+
+-- 
+2.29.2
+
