@@ -2,98 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56CB82C58FC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 17:06:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E84572C5904
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 17:10:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391342AbgKZQEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 11:04:14 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:59490 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391161AbgKZQEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 11:04:13 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AQG41VU090194;
-        Thu, 26 Nov 2020 10:04:01 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606406641;
-        bh=WL14XJtJnVu7XrP6LYgAMjN2uYAWt+wAixafOIJ89zQ=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=bsXfK0vp8cgBE11RNQtJtqU6sufPrXNW5qp4tlpLCXxDmjXd+rRhu2GAVh3Ku/dLc
-         r8dVKHYvFDVJfvr7L3a5bojiEjbDIFcND/ygyqlVZpa59u0vTDgWK+itfKQYYv/H1+
-         Kgx6GEP/aTWTjUhJjgwtjB74anSKFHmhhyK8AyI0=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AQG41W6040942
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 26 Nov 2020 10:04:01 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 26
- Nov 2020 10:04:01 -0600
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 26 Nov 2020 10:04:00 -0600
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AQG3vJ1120415;
-        Thu, 26 Nov 2020 10:03:58 -0600
-Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-j7200-som/cpb: Correct i2c bus
- representations
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>, <nm@ti.com>,
-        <t-kristo@ti.com>
-CC:     <devicetree@vger.kernel.org>, <nsekhar@ti.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <vigneshr@ti.com>
-References: <20201120073533.24486-1-peter.ujfalusi@ti.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <3a970cea-84e2-03f3-d48d-da7b9054a8f2@ti.com>
-Date:   Thu, 26 Nov 2020 18:03:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2391348AbgKZQJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 11:09:52 -0500
+Received: from foss.arm.com ([217.140.110.172]:38432 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730987AbgKZQJw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 11:09:52 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 91F1231B;
+        Thu, 26 Nov 2020 08:09:51 -0800 (PST)
+Received: from [10.57.59.159] (unknown [10.57.59.159])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4972F3F23F;
+        Thu, 26 Nov 2020 08:09:47 -0800 (PST)
+Subject: Re: [PATCH v4 10/24] iommu/io-pgtable-arm-v7s: Add cfg as a param in
+ some macros
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Will Deacon <will@kernel.org>
+Cc:     youlin.pei@mediatek.com, devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        srv_heupstream@mediatek.com, chao.hao@mediatek.com,
+        kernel-team@android.com, linux-kernel@vger.kernel.org,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        iommu@lists.linux-foundation.org,
+        linux-mediatek@lists.infradead.org,
+        Krzysztof Kozlowski <krzk@kernel.org>, anan.sun@mediatek.com,
+        Greg Kroah-Hartman <gregkh@google.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20201111123838.15682-1-yong.wu@mediatek.com>
+ <20201111123838.15682-11-yong.wu@mediatek.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <95880abb-45e3-3c3c-15f2-b255276084c4@arm.com>
+Date:   Thu, 26 Nov 2020 16:09:46 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <20201120073533.24486-1-peter.ujfalusi@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+In-Reply-To: <20201111123838.15682-11-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2020-11-11 12:38, Yong Wu wrote:
+> Add "cfg" as a parameter for some macros. This is a preparing patch for
+> mediatek extend the lvl1 pgtable. No functional change.
 
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
 
-On 20/11/2020 09:35, Peter Ujfalusi wrote:
-> Hi,
-> 
-> Changes since v1:
-> - Added REviewed-by from Vignesh
-> - Comment block to explain main_i2c1 connection to CPB
-> 
-> The main_i2c0 missed the ioexpander present on the SOM itself to control muxes
-> to route signals to CPB connectors.
-> 
-> The main_i2c1 of J7200 is _not_ connected to the i2c1 of CPB, it is connected to
-> i2c3, so the devices on the CPB's i2c1 bus are not avalible, but the ones on the
-> CPB i2c3 are available under the main_i2c1.
-> 
-> Add nice line names at the same time to these.
-> 
-> Regards,
-> Peter
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> Acked-by: Will Deacon <will@kernel.org>
 > ---
-> Peter Ujfalusi (2):
->    arm64: dts: ti: k3-j7200-som-p0: main_i2c0 have an ioexpander on the
->      SOM
->    arm64: dts: ti: k3-j7200-common-proc-board: Correct the name of io
->      expander on main_i2c1
+>   drivers/iommu/io-pgtable-arm-v7s.c | 36 +++++++++++++++---------------
+>   1 file changed, 18 insertions(+), 18 deletions(-)
 > 
->   .../dts/ti/k3-j7200-common-proc-board.dts     | 23 ++++++++--------
->   arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 26 +++++++++++++++++++
->   2 files changed, 37 insertions(+), 12 deletions(-)
+> diff --git a/drivers/iommu/io-pgtable-arm-v7s.c b/drivers/iommu/io-pgtable-arm-v7s.c
+> index 58cc201c10a3..0b3c5b904ddc 100644
+> --- a/drivers/iommu/io-pgtable-arm-v7s.c
+> +++ b/drivers/iommu/io-pgtable-arm-v7s.c
+> @@ -47,21 +47,21 @@
+>    * and 12 bits in a page.
+>    */
+>   #define ARM_V7S_ADDR_BITS		32
+> -#define _ARM_V7S_LVL_BITS(lvl)		((lvl) == 1 ? 12 : 8)
+> +#define _ARM_V7S_LVL_BITS(lvl, cfg)	((lvl) == 1 ? 12 : 8)
+>   #define ARM_V7S_LVL_SHIFT(lvl)		((lvl) == 1 ? 20 : 12)
+>   #define ARM_V7S_TABLE_SHIFT		10
+>   
+> -#define ARM_V7S_PTES_PER_LVL(lvl)	(1 << _ARM_V7S_LVL_BITS(lvl))
+> -#define ARM_V7S_TABLE_SIZE(lvl)						\
+> -	(ARM_V7S_PTES_PER_LVL(lvl) * sizeof(arm_v7s_iopte))
+> +#define ARM_V7S_PTES_PER_LVL(lvl, cfg)	(1 << _ARM_V7S_LVL_BITS(lvl, cfg))
+> +#define ARM_V7S_TABLE_SIZE(lvl, cfg)						\
+> +	(ARM_V7S_PTES_PER_LVL(lvl, cfg) * sizeof(arm_v7s_iopte))
+>   
+>   #define ARM_V7S_BLOCK_SIZE(lvl)		(1UL << ARM_V7S_LVL_SHIFT(lvl))
+>   #define ARM_V7S_LVL_MASK(lvl)		((u32)(~0U << ARM_V7S_LVL_SHIFT(lvl)))
+>   #define ARM_V7S_TABLE_MASK		((u32)(~0U << ARM_V7S_TABLE_SHIFT))
+> -#define _ARM_V7S_IDX_MASK(lvl)		(ARM_V7S_PTES_PER_LVL(lvl) - 1)
+> -#define ARM_V7S_LVL_IDX(addr, lvl)	({				\
+> +#define _ARM_V7S_IDX_MASK(lvl, cfg)	(ARM_V7S_PTES_PER_LVL(lvl, cfg) - 1)
+> +#define ARM_V7S_LVL_IDX(addr, lvl, cfg)	({				\
+>   	int _l = lvl;							\
+> -	((u32)(addr) >> ARM_V7S_LVL_SHIFT(_l)) & _ARM_V7S_IDX_MASK(_l); \
+> +	((u32)(addr) >> ARM_V7S_LVL_SHIFT(_l)) & _ARM_V7S_IDX_MASK(_l, cfg); \
+>   })
+>   
+>   /*
+> @@ -237,7 +237,7 @@ static void *__arm_v7s_alloc_table(int lvl, gfp_t gfp,
+>   	struct device *dev = cfg->iommu_dev;
+>   	phys_addr_t phys;
+>   	dma_addr_t dma;
+> -	size_t size = ARM_V7S_TABLE_SIZE(lvl);
+> +	size_t size = ARM_V7S_TABLE_SIZE(lvl, cfg);
+>   	void *table = NULL;
+>   
+>   	if (lvl == 1)
+> @@ -283,7 +283,7 @@ static void __arm_v7s_free_table(void *table, int lvl,
+>   {
+>   	struct io_pgtable_cfg *cfg = &data->iop.cfg;
+>   	struct device *dev = cfg->iommu_dev;
+> -	size_t size = ARM_V7S_TABLE_SIZE(lvl);
+> +	size_t size = ARM_V7S_TABLE_SIZE(lvl, cfg);
+>   
+>   	if (!cfg->coherent_walk)
+>   		dma_unmap_single(dev, __arm_v7s_dma_addr(table), size,
+> @@ -427,7 +427,7 @@ static int arm_v7s_init_pte(struct arm_v7s_io_pgtable *data,
+>   			arm_v7s_iopte *tblp;
+>   			size_t sz = ARM_V7S_BLOCK_SIZE(lvl);
+>   
+> -			tblp = ptep - ARM_V7S_LVL_IDX(iova, lvl);
+> +			tblp = ptep - ARM_V7S_LVL_IDX(iova, lvl, cfg);
+>   			if (WARN_ON(__arm_v7s_unmap(data, NULL, iova + i * sz,
+>   						    sz, lvl, tblp) != sz))
+>   				return -EINVAL;
+> @@ -480,7 +480,7 @@ static int __arm_v7s_map(struct arm_v7s_io_pgtable *data, unsigned long iova,
+>   	int num_entries = size >> ARM_V7S_LVL_SHIFT(lvl);
+>   
+>   	/* Find our entry at the current level */
+> -	ptep += ARM_V7S_LVL_IDX(iova, lvl);
+> +	ptep += ARM_V7S_LVL_IDX(iova, lvl, cfg);
+>   
+>   	/* If we can install a leaf entry at this level, then do so */
+>   	if (num_entries)
+> @@ -553,7 +553,7 @@ static void arm_v7s_free_pgtable(struct io_pgtable *iop)
+>   	struct arm_v7s_io_pgtable *data = io_pgtable_to_data(iop);
+>   	int i;
+>   
+> -	for (i = 0; i < ARM_V7S_PTES_PER_LVL(1); i++) {
+> +	for (i = 0; i < ARM_V7S_PTES_PER_LVL(1, &data->iop.cfg); i++) {
+>   		arm_v7s_iopte pte = data->pgd[i];
+>   
+>   		if (ARM_V7S_PTE_IS_TABLE(pte, 1))
+> @@ -605,9 +605,9 @@ static size_t arm_v7s_split_blk_unmap(struct arm_v7s_io_pgtable *data,
+>   	if (!tablep)
+>   		return 0; /* Bytes unmapped */
+>   
+> -	num_ptes = ARM_V7S_PTES_PER_LVL(2);
+> +	num_ptes = ARM_V7S_PTES_PER_LVL(2, cfg);
+>   	num_entries = size >> ARM_V7S_LVL_SHIFT(2);
+> -	unmap_idx = ARM_V7S_LVL_IDX(iova, 2);
+> +	unmap_idx = ARM_V7S_LVL_IDX(iova, 2, cfg);
+>   
+>   	pte = arm_v7s_prot_to_pte(arm_v7s_pte_to_prot(blk_pte, 1), 2, cfg);
+>   	if (num_entries > 1)
+> @@ -649,7 +649,7 @@ static size_t __arm_v7s_unmap(struct arm_v7s_io_pgtable *data,
+>   	if (WARN_ON(lvl > 2))
+>   		return 0;
+>   
+> -	idx = ARM_V7S_LVL_IDX(iova, lvl);
+> +	idx = ARM_V7S_LVL_IDX(iova, lvl, &iop->cfg);
+>   	ptep += idx;
+>   	do {
+>   		pte[i] = READ_ONCE(ptep[i]);
+> @@ -735,7 +735,7 @@ static phys_addr_t arm_v7s_iova_to_phys(struct io_pgtable_ops *ops,
+>   	u32 mask;
+>   
+>   	do {
+> -		ptep += ARM_V7S_LVL_IDX(iova, ++lvl);
+> +		ptep += ARM_V7S_LVL_IDX(iova, ++lvl, &data->iop.cfg);
+>   		pte = READ_ONCE(*ptep);
+>   		ptep = iopte_deref(pte, lvl, data);
+>   	} while (ARM_V7S_PTE_IS_TABLE(pte, lvl));
+> @@ -778,8 +778,8 @@ static struct io_pgtable *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+>   
+>   	spin_lock_init(&data->split_lock);
+>   	data->l2_tables = kmem_cache_create("io-pgtable_armv7s_l2",
+> -					    ARM_V7S_TABLE_SIZE(2),
+> -					    ARM_V7S_TABLE_SIZE(2),
+> +					    ARM_V7S_TABLE_SIZE(2, cfg),
+> +					    ARM_V7S_TABLE_SIZE(2, cfg),
+>   					    ARM_V7S_TABLE_SLAB_FLAGS, NULL);
+>   	if (!data->l2_tables)
+>   		goto out_free_data;
 > 
-
-Thank you.
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
-
--- 
-Best regards,
-grygorii
