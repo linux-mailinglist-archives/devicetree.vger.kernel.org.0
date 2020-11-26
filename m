@@ -2,203 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A8E2C4E12
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 05:46:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E5CF72C4E17
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 05:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387633AbgKZEpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 23:45:53 -0500
-Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:35025 "EHLO
-        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387571AbgKZEpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 23:45:53 -0500
-Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        id S2387686AbgKZEuk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 23:50:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:36890 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387684AbgKZEuk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 25 Nov 2020 23:50:40 -0500
+Received: from localhost (unknown [122.179.79.180])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8A594806A8;
-        Thu, 26 Nov 2020 17:45:49 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1606365949;
-        bh=fpmZlWWGYYvSibpY0vtVoSbzv6E2nviLb/qUCvY6RIE=;
-        h=From:To:Cc:Subject:Date;
-        b=FXpZIIiD3YTopcPuSzOIl8YS4Ol4mwWSe9xQqWjPGARH+uWXgSUbOHTzZW/DP3PXO
-         vOGPWXg56oJaPRe3oS2QVqA539sQOL8DS4WQBZKsTz5QVpmAR3CRxHwJ5y08E40/CR
-         l9ugtbbGbK0WxR5oBNL5OgaKzADYMAPKQG1gqgQI04KXjB8w+hL834UaF6TwofrqEQ
-         VS3oxtvEZyxYcdaBegsM8x1SUK4Xz8B4Ql0TZ4w1++guveCRvPvrHnGP3cmdMUZ5Nk
-         d/p53r0ToJTuRyZpExfFDgo7ZjDtPAqh5LqzCxtCr4P6MEGj/2Y5ofk9XllVnmesZC
-         xbpFWcJ/FK+0Q==
-Received: from smtp (Not Verified[10.32.16.33]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
-        id <B5fbf32fd0000>; Thu, 26 Nov 2020 17:45:49 +1300
-Received: from aryans-dl.ws.atlnz.lc (aryans-dl.ws.atlnz.lc [10.33.21.30])
-        by smtp (Postfix) with ESMTP id E1E1113EE9C;
-        Thu, 26 Nov 2020 17:45:48 +1300 (NZDT)
-Received: by aryans-dl.ws.atlnz.lc (Postfix, from userid 1844)
-        id 38BB014C00BB; Thu, 26 Nov 2020 17:45:49 +1300 (NZDT)
-From:   Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
-To:     robh+dt@kernel.org, jason@lakedaemon.net, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2] ARM: dts: mvebu: Add device tree for RD-AC3X-48G4X2XL board
-Date:   Thu, 26 Nov 2020 17:45:44 +1300
-Message-Id: <20201126044544.17829-1-aryan.srivastava@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.29.2
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 010B82145D;
+        Thu, 26 Nov 2020 04:50:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606366240;
+        bh=t8TaVfhJXLJs3qX8q4hwu4FUKcPn1ZUAgVG39jnLMz0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Rg0nz22TB9YyMCDBgxlFqiZLPKGX10kdP0XYWmwet/TPpJtqXhzMhdTgcp27DaVEC
+         0Ji/jqmGLa2v5ojhaN6fRc/NktWSsxjGlzBD2JamDl7MnhUjEgXrq7PDKDD2cPaRLA
+         o1sa+aiWI273/Q5t2Fho8Wb7Vjb1OlAOVXk43Xo4=
+Date:   Thu, 26 Nov 2020 10:20:35 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        andriy.shevchenko@intel.com, chuanhua.lei@linux.intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+Subject: Re: [PATCH v9 2/2] Add Intel LGM SoC DMA support.
+Message-ID: <20201126045035.GI8403@vkoul-mobl>
+References: <cover.1605158930.git.mallikarjunax.reddy@linux.intel.com>
+ <67be905aa3bcb9faac424f2a134e88d076700419.1605158930.git.mallikarjunax.reddy@linux.intel.com>
+ <20201118173840.GW50232@vkoul-mobl>
+ <a4ea240f-b121-5bc9-a046-95bbcff87553@linux.intel.com>
+ <20201121121701.GB8403@vkoul-mobl>
+ <dc8c5f27-bce6-d276-af0b-93c6e63e85a1@linux.intel.com>
+ <20201124172149.GT8403@vkoul-mobl>
+ <ee275d37-5dda-205a-a897-7a61ad13b536@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ee275d37-5dda-205a-a897-7a61ad13b536@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree for RD-AC3X-48G4X2XL board. This has a Armada 382 SoC on
-a interposer board connected to a baseboard with a Prestera AC3X ASIC
-connected via PCI.
+On 25-11-20, 18:39, Reddy, MallikarjunaX wrote:
 
-Signed-off-by: Aryan Srivastava <aryan.srivastava@alliedtelesis.co.nz>
-Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+> > > > > desc needs to be configure for each dma channel and the remapped address of
+> > > > > the IGP & EGP is desc base adress.
+> > > > Why should this address not passed as src_addr/dst_addr?
+> > > src_addr/dst_addr is the data pointer. Data pointer indicates address
+> > > pointer of data buffer.
+> > > 
+> > > ldma_chan_desc_cfg() carries the descriptor address.
+> > > 
+> > > The descriptor list entry contains the data pointer, which points to the
+> > > data section in the memory.
+> > > 
+> > > So we should not use src_addr/dst_addr as desc base address.
+> > Okay sounds reasonable. why is this using in API here?
+> descriptor base address needs to be write into the dma register (DMA_CDBA).
 
-Notes:
-    Changes in v2:
-    -Added comment for CPLD
+Why cant descriptor be allocated by damenegine driver, passed to client
+as we normally do in prep_* callbacks ? Why do you need a custom API
 
- arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/armada-382-rd-ac3x-48g4x2xl.dts  | 112 ++++++++++++++++++
- 2 files changed, 113 insertions(+)
- create mode 100644 arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index ce66ffd5a1bb..a60407ad7347 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1319,6 +1319,7 @@ dtb-$(CONFIG_MACH_ARMADA_370) +=3D \
- dtb-$(CONFIG_MACH_ARMADA_375) +=3D \
- 	armada-375-db.dtb
- dtb-$(CONFIG_MACH_ARMADA_38X) +=3D \
-+	armada-382-rd-ac3x-48g4x2xl.dtb \
- 	armada-385-clearfog-gtr-s4.dtb \
- 	armada-385-clearfog-gtr-l8.dtb \
- 	armada-385-db-88f6820-amc.dtb \
-diff --git a/arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts b/arch/arm=
-/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
-new file mode 100644
-index 000000000000..584f0d0398a5
---- /dev/null
-+++ b/arch/arm/boot/dts/armada-382-rd-ac3x-48g4x2xl.dts
-@@ -0,0 +1,112 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Device Tree file for Marvell Armada 382 reference board
-+ * (RD-AC3X-48G4X2XL)
-+ *
-+ * Copyright (C) 2020 Allied Telesis Labs
-+ */
-+
-+/dts-v1/;
-+#include "armada-385.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model =3D "Marvell Armada 382 RD-AC3X";
-+	compatible =3D "marvell,rd-ac3x-48g4x2xl", "marvell,rd-ac3x",
-+			 "marvell,armada385", "marvell,armada380";
-+
-+	chosen {
-+		stdout-path =3D "serial0:115200n8";
-+	};
-+
-+	aliases {
-+		ethernet0 =3D &eth1;
-+	};
-+
-+	memory {
-+		device_type =3D "memory";
-+		reg =3D <0x00000000 0x20000000>; /* 512MB */
-+	};
-+
-+	soc {
-+		ranges =3D <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
-+			  MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000>;
-+	};
-+};
-+
-+&i2c0 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&i2c0_pins>;
-+	status =3D "okay";
-+
-+	eeprom@53{
-+		compatible =3D "atmel,24c64";
-+		reg =3D <0x53>;
-+	};
-+
-+	/* CPLD device present at 0x3c. Function unknown */
-+};
-+
-+&uart0 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&uart0_pins>;
-+	status =3D "okay";
-+};
-+
-+&eth1 {
-+	status =3D "okay";
-+	phy =3D <&phy0>;
-+	phy-mode =3D "rgmii-id";
-+};
-+
-+&mdio {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&mdio_pins>;
-+
-+	phy0: ethernet-phy@0 {
-+		reg =3D <0>;
-+	};
-+};
-+
-+&pciec {
-+	status =3D "okay";
-+};
-+
-+&pcie1 {
-+	/* Port 0, Lane 0 */
-+	status =3D "okay";
-+};
-+
-+&nand_controller {
-+	status =3D "okay";
-+
-+	nand@0 {
-+		reg =3D <0>;
-+		label =3D "pxa3xx_nand-0";
-+		nand-rb =3D <0>;
-+		nand-on-flash-bbt;
-+
-+		partitions {
-+			compatible =3D "fixed-partitions";
-+			#address-cells =3D <1>;
-+			#size-cells =3D <1>;
-+			partition@0 {
-+				reg =3D <0x00000000 0x00500000>;
-+				label =3D "u-boot";
-+			};
-+			partition@500000{
-+				reg =3D <0x00500000 0x00400000>;
-+				label =3D "u-boot env";
-+			};
-+			partition@900000{
-+				reg =3D <0x00900000 0x3F700000>;
-+				label =3D "user";
-+			};
-+		};
-+	};
-+};
-+
-+&refclk {
-+	clock-frequency =3D <200000000>;
-+};
---=20
-2.29.2
-
+-- 
+~Vinod
