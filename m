@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 306C82C53D2
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 13:17:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1812C53E1
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 13:22:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728965AbgKZMQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 07:16:05 -0500
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:42707 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728014AbgKZMQE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 07:16:04 -0500
-Received: by mail-oi1-f196.google.com with SMTP id v202so2049527oia.9;
-        Thu, 26 Nov 2020 04:16:03 -0800 (PST)
+        id S1728191AbgKZMUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 07:20:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45886 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726030AbgKZMUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 07:20:41 -0500
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 272E2C0613D4
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 04:20:40 -0800 (PST)
+Received: by mail-wr1-x435.google.com with SMTP id 64so1904912wra.11
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 04:20:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=I1UeLhK5lkQUqckNmvEUJhsql5YPBYYgHazHv8lUUUU=;
+        b=uJfDXMDZnxJTIwPzTRofjOQ6csb2iWvSHYxuSNZjQ956VRMK9y4wUe1LNnD2eadr+O
+         2BUFCHRIH1okWoDHgKaeGGcKlteYmwFI8/8rLWKeZAY5gVgKloHTfTnhpdWrMftj8h/X
+         wZz3edoQ+6WKNoIEUt9l7MGOHo9TOxUDNZ4ft1uRwVYQG+IoC9maSsxlb3UsZSSkzOGa
+         MfisXrWQo6aSqZ1TAuSn8LCru83gZreYdYvob/CsrkllRxRbqC68IMHO0WOwLTazxUaJ
+         Zs3HB4S+gpSFWV6qJjUClFxm74hpOr+hy3w9UmPh8LhBtVy/xsBqbWl9UZaoSK7zPqOu
+         QoEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t/erZnxWXnxslQ4ZhtLnAtPyOjEighdhdwi5yfyZdws=;
-        b=lBRl2HmeaCEzdJS7n7mxNy3A/MUvs4QdmzzE/g28UiGXpAuFhaORZqlawGR5bBdYgo
-         7S+FTexYE6ZIdIezMCK+id0qbsxqUg1M1Cj9hLZydFMUIYmzMyiTYYpF2cITycaGHw/u
-         XNhM1DEILI9znD2cWAha4/3Ca98k/1RcjQq4HmkcQGKl9CFvAgaNLvgeTNsIJvspOrHw
-         TSTrrXVOZvqN+wExW9siCmE3hUrnkHFIyAoFzkP22jSQXDS+wzhoGYSWC/9/fvej+ve7
-         GDSfXzuHYYhCb2+16xk7DkT7qceuzOdQMkba4d4TDE3p41HbXXRDVMjicLyohHuey1MS
-         izSA==
-X-Gm-Message-State: AOAM530OuaiaohfAaMiw0lWjcHhL6OWCHQI533GsCzULN1lwMPAX/4SF
-        hpTmE/h0GqqzR7vJJYCbbzCKlCledZOamFpLv05mPPPAOAU=
-X-Google-Smtp-Source: ABdhPJwN+e7eH2GQ98zSkQWw5t1ej/MBCxGJaynWcP5LLdoZlTCD7RzzBKxa0FMw9Yya6B5SI/5OgcN5nECRLPM9vi4=
-X-Received: by 2002:aca:1c0f:: with SMTP id c15mr1916067oic.54.1606392963052;
- Thu, 26 Nov 2020 04:16:03 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=I1UeLhK5lkQUqckNmvEUJhsql5YPBYYgHazHv8lUUUU=;
+        b=I39OCx3IhsQHuqwQt6eGMBE6Qrm7SdROsE26nYBRuLjp+NY2AAqaxzdeh6aPDZj1WR
+         8Z78C9GKzoEfywDfAywxtpsaeALmEInf6wmNHrt2QDJGWjEDw/1i8wZEE6vG5dqsZuwc
+         3gBvGMk/hrUv2KWylXd22nM4UqScXmF5HMfOfwNFTkz77BTl4GQdJARCWpUPHlGGs+Qh
+         N9aBiE+amTi3XAOaN7WKOFVN8cViH4gWgvDQksMVYr2DEiyquRJ6MX3Dq1c55/kBWp5t
+         tEuB5Tkc8o/MjSr7r8HHmr/LlB3SyK4GAqQjgb2g4C7WkJFgEhP/9AcK8iAerjnGfx20
+         XzFQ==
+X-Gm-Message-State: AOAM533YFNpAd9CFVtpn6KErhEucHffY2IjvwARrWP5LX1r5ZBuMUHMu
+        3CMhaOq452Fs1mZv9QGVF4tHow==
+X-Google-Smtp-Source: ABdhPJyFsR5iWagJrLMSBiKU/iHYYfx3vRdcZJkFceccaNGTO2pBE7QpnOJDOLlPaApTXZUHnsN0Lg==
+X-Received: by 2002:adf:ec8a:: with SMTP id z10mr3621132wrn.113.1606393238890;
+        Thu, 26 Nov 2020 04:20:38 -0800 (PST)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id f5sm9060135wmj.17.2020.11.26.04.20.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Nov 2020 04:20:38 -0800 (PST)
+Subject: Re: [PATCH 0/5] Consolidate RPM interconnect and support to MSM8939
+To:     Jun Nie <jun.nie@linaro.org>, devicetree@vger.kernel.org,
+        bjorn.andersson@linaro.org, agross@kernel.org,
+        linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh@kernel.org
+Cc:     shawn.guo@linaro.org
+References: <20200930081645.3434-1-jun.nie@linaro.org>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Message-ID: <43318c75-cfe2-d219-2ea4-7a130ea5883b@linaro.org>
+Date:   Thu, 26 Nov 2020 14:20:39 +0200
 MIME-Version: 1.0
-References: <1604543524-31482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdX17hSkcxYPgnGP95nH3H5s+G9Si01X_6PxJn0Skyoqhg@mail.gmail.com>
-In-Reply-To: <CAMuHMdX17hSkcxYPgnGP95nH3H5s+G9Si01X_6PxJn0Skyoqhg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 26 Nov 2020 13:15:52 +0100
-Message-ID: <CAMuHMdWE1KF42W=D9cvjHR0mvWs6GuarPTkhMRS5n6Fu1mwAQg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: clock: renesas: rcar-usb2-clock-sel:
- Convert bindings to json-schema
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200930081645.3434-1-jun.nie@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Nov 16, 2020 at 9:40 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Thu, Nov 5, 2020 at 3:32 AM Yoshihiro Shimoda
-> <yoshihiro.shimoda.uh@renesas.com> wrote:
-> > Convert Renesas R-Car USB 2.0 clock selector bindings documentation
-> > to json-schema.
-> >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 9/30/20 11:16, Jun Nie wrote:
+> This patch set split shared RPM based interconnect operation code and add
+> support to MSM8939 interconnect.
+> 
 
-Oops, forgot I should queue this in renesas-clk-for-v5.11. Will do.
+Hi Jun,
 
-Gr{oetje,eeting}s,
+Are you planning to refresh this patchset?
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Georgi
