@@ -2,69 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 956CD2C50FF
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 10:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 69B042C5130
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 10:29:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389233AbgKZJWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 04:22:12 -0500
-Received: from mail.kernel.org ([198.145.29.99]:33910 "EHLO mail.kernel.org"
+        id S2389463AbgKZJ10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 04:27:26 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39392 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389212AbgKZJWM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Nov 2020 04:22:12 -0500
+        id S2389459AbgKZJ1Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 04:27:24 -0500
 Received: from localhost.localdomain (unknown [122.179.79.180])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9756D21D81;
-        Thu, 26 Nov 2020 09:22:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 86DB021741;
+        Thu, 26 Nov 2020 09:27:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606382531;
-        bh=J7Ny/AexIoe1mEfGuqNRg5LPcj8KfibZXHtUVvVaILg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WRusDJSNfT8FWqvcy9Zg8smd+greMbrafqj53rzgm3Qbt+LWpensf3icjph8/jGe9
-         eNx4phgnKfqUQ0V321gmfCyIkoo6n4ewSb9SSAuxvN/+4Duw04vc0WWrIfSncKOrbD
-         qyEamw8MiwWPmR98ys4ChqA7rC4+5P6iM93aXnaA=
+        s=default; t=1606382843;
+        bh=LD75lgaqb59sJzCpirku30QIpwZaYJz+X4dPKlsIfbU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=QBxc00rSogAbcqw1+G6XbsBMwEwi5gvxRmftH1EPGpf8gZytWmhXJW5pOqZTAuqMl
+         34NGdeii4yi7EHe0/VFTLOeEwr/GxR2ATuMKep0LSGgQUM3rhD441o+IZmnzmTJf7U
+         RvjCQT1CisK0hROPMnk3/p+ECOm+LcafQtyosHnY=
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] pinctrl: qcom-pmic-gpio: Add support for pmx55
-Date:   Thu, 26 Nov 2020 14:51:51 +0530
-Message-Id: <20201126092151.1082697-2-vkoul@kernel.org>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: power: Add rpm power domain bindings for sdx55
+Date:   Thu, 26 Nov 2020 14:57:10 +0530
+Message-Id: <20201126092711.1084518-1-vkoul@kernel.org>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201126092151.1082697-1-vkoul@kernel.org>
-References: <20201126092151.1082697-1-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PM55 pmic support gpio controller so add compatible and comment for gpio
-holes
+Add RPM power domain bindings for the SDX55 SoC
 
 Signed-off-by: Vinod Koul <vkoul@kernel.org>
 ---
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 1 +
+ include/dt-bindings/power/qcom-rpmpd.h                  | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-index 17441388ce8f..9801c717e311 100644
---- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-+++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-@@ -1129,6 +1129,8 @@ static const struct of_device_id pmic_gpio_of_match[] = {
- 	{ .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
- 	{ .compatible = "qcom,pm6150-gpio", .data = (void *) 10 },
- 	{ .compatible = "qcom,pm6150l-gpio", .data = (void *) 12 },
-+	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
-+	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
- 	{ },
- };
+diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+index 8058955fb3b9..fe20a73f47ca 100644
+--- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
++++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+@@ -22,6 +22,7 @@ properties:
+       - qcom,qcs404-rpmpd
+       - qcom,sc7180-rpmhpd
+       - qcom,sdm845-rpmhpd
++      - qcom,sdx55-rpmhpd
+       - qcom,sm8150-rpmhpd
+       - qcom,sm8250-rpmhpd
  
+diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+index 5e61eaf73bdd..9fa2d66fca4a 100644
+--- a/include/dt-bindings/power/qcom-rpmpd.h
++++ b/include/dt-bindings/power/qcom-rpmpd.h
+@@ -15,6 +15,11 @@
+ #define SDM845_GFX	7
+ #define SDM845_MSS	8
+ 
++/* SDX55 Power Domain Indexes */
++#define SDX55_MSS	0
++#define SDX55_MX	1
++#define SDX55_CX	2
++
+ /* SM8150 Power Domain Indexes */
+ #define SM8150_MSS	0
+ #define SM8150_EBI	1
 -- 
 2.26.2
 
