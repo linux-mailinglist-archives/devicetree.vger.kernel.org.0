@@ -2,117 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA65B2C5A46
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:12:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF9122C5A54
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:15:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404381AbgKZRMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 12:12:07 -0500
-Received: from foss.arm.com ([217.140.110.172]:40684 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404379AbgKZRMG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Nov 2020 12:12:06 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1E7DB31B;
-        Thu, 26 Nov 2020 09:12:06 -0800 (PST)
-Received: from [10.57.59.159] (unknown [10.57.59.159])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 472113F23F;
-        Thu, 26 Nov 2020 09:12:02 -0800 (PST)
-Subject: Re: [PATCH v4 17/24] iommu/mediatek: Add single domain
-To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Will Deacon <will@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        chao.hao@mediatek.com, Greg Kroah-Hartman <gregkh@google.com>,
-        kernel-team@android.com
-References: <20201111123838.15682-1-yong.wu@mediatek.com>
- <20201111123838.15682-18-yong.wu@mediatek.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <22e49f08-6d23-86cf-bb9c-79d54ce55beb@arm.com>
-Date:   Thu, 26 Nov 2020 17:11:58 +0000
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        id S2391595AbgKZRPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 12:15:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35476 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391544AbgKZRPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:15:36 -0500
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F6BC0613D4;
+        Thu, 26 Nov 2020 09:15:36 -0800 (PST)
+Received: by mail-ua1-x942.google.com with SMTP id q4so723520ual.8;
+        Thu, 26 Nov 2020 09:15:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pUVKuoWZA/P27xH4AfMqFfzecx2gpzbW2/mbWqy1KHY=;
+        b=uRl2J2b9fv3xQG4VNSHpc8v54V7XtD9frG75nRQiFYqqDW4MDOcGaInf4J9V6brt7r
+         lYSoUmwl3JmFL8EQyl+hs/xI73ABG3/BvcHi3MAEj6YNKwYS0QfpG01AZXhjc7xVypHW
+         qBTmSgBAJkfCoWHeBN/MiC6YqzpX4OsiOc/+iFHtCG8ZlZjoIaifxiq1+ZpOzPN1FSOt
+         GcuylkFVYSBGdjkFl2+0IMHPL2J7CWAmI4k/7C7Z8wuL3/8TnufWaP2k64ecLeSrrk73
+         RQVnTOGphtJeyEQu1VcVTgC49lmMKrb7I3kg3Fxt+nKoXr6a+NqJK09aFXnPYLWyE8Dc
+         dfVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pUVKuoWZA/P27xH4AfMqFfzecx2gpzbW2/mbWqy1KHY=;
+        b=C58YzkeSmo8goUc9/UNvIKNP3IHLmUSbjCvv9OJ1yVkNBNDd++i9Ul9S0Jfy0VTSbz
+         XNIJqKcuDAV10rNnanE/z/HL6Jg8dVX4zTKu1f0w9F3A3g7eA+rbnnKE4CH5rdj9spHI
+         NSSWYvcZQgT/NfRD/w2K+Cwt/rr/wU3puIv/4UOLY9npCJfQyTJvPUORD0o81oDFX8xn
+         72mWWKwzfFLXLNpzyz5aiCptFBshk8PATg/bZmzjSCV//IdV7Y4+nK/tsAoWtMbDLwQA
+         k/LFnbU6DLjxoppwRYyCk2dPcPxdoog88cgDLzmzyaky6vN3vO/xnzpyJqeU2pTOv4SY
+         xlBw==
+X-Gm-Message-State: AOAM5335CyX/4B/hpwqfvhgJlFkgCWkoU58G4QhC7K3vwFmFcpZdv7t0
+        QInJ0mRicIJXmAHLa9jtoOrbPDbypnJykGqpnnosDHQc1uk=
+X-Google-Smtp-Source: ABdhPJzG/FdsWLFORa9ZtHNjvUVR7Wu+zJF5b1sD7g0IThUu6UfgA2wiLw3YWNthTclOPNh4f3BUMaS1rCz75Z4iC1w=
+X-Received: by 2002:ab0:743:: with SMTP id h61mr2350174uah.4.1606410935365;
+ Thu, 26 Nov 2020 09:15:35 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <20201111123838.15682-18-yong.wu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <20201029172947.34315-1-kholk11@gmail.com> <20201029172947.34315-3-kholk11@gmail.com>
+ <20201104214806.GA4175708@bogus>
+In-Reply-To: <20201104214806.GA4175708@bogus>
+From:   AngeloGioacchino Del Regno <kholk11@gmail.com>
+Date:   Thu, 26 Nov 2020 18:15:22 +0100
+Message-ID: <CAK7fi1a_Gtu9Bt_E6=5no7XKg4dsySz4tiuPzSYhR7mE2PHLrw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] media: dt-bindings: media: i2c: Add IMX300 CMOS
+ sensor binding
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>, marijns95@gmail.com,
+        Konrad Dybcio <konradybcio@gmail.com>, martin.botka1@gmail.com,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-11-11 12:38, Yong Wu wrote:
-> Defaultly the iova range is 0-4G. here we add a single-domain(0-4G)
-> for the previous SoC. this also is a preparing patch for supporting
-> multi-domains.
-> 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->   drivers/iommu/mtk_iommu.c | 12 ++++++++++++
->   1 file changed, 12 insertions(+)
-> 
-> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-> index bf3f4e0f4748..a7727a3899d1 100644
-> --- a/drivers/iommu/mtk_iommu.c
-> +++ b/drivers/iommu/mtk_iommu.c
-> @@ -161,6 +161,10 @@ struct mtk_iommu_iova_region {
->   	unsigned long long	size;
->   };
->   
-> +static const struct mtk_iommu_iova_region single_domain[] = {
-> +	{.iova_base = 0,		.size = SZ_4G},
-> +};
+Il giorno mer 4 nov 2020 alle ore 22:48 Rob Herring <robh@kernel.org>
+ha scritto:
+>
+> On Thu, Oct 29, 2020 at 06:29:47PM +0100, kholk11@gmail.com wrote:
+> > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> >
+> > Add YAML device tree binding for IMX300 CMOS image sensor, and
+> > the relevant MAINTAINERS entries.
+> >
+> > Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> > ---
+> >  .../bindings/media/i2c/sony,imx300.yaml       | 112 ++++++++++++++++++
+> >  MAINTAINERS                                   |   7 ++
+> >  2 files changed, 119 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> > new file mode 100644
+> > index 000000000000..8f1d795f8072
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> > @@ -0,0 +1,112 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx300.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sony 1/2.3-Inch 8Mpixel Stacked CMOS Digital Image Sensor
+> > +
+> > +maintainers:
+> > +  - AngeloGioacchino Del Regno <kholk11@gmail.com>
+> > +
+> > +description: |-
+> > +  The Sony IMX300 is a 1/2.3-inch Stacked CMOS (Exmor-RS) digital image
+> > +  sensor with a pixel size of 1.08um and an active array size of
+> > +  5948H x 4140V. It is programmable through I2C interface at address 0x10.
+> > +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
+> > +  4 data lanes.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: sony,imx300
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  vdig-supply:
+> > +    description:
+> > +      Digital I/O voltage supply, 1.15-1.20 volts
+> > +
+> > +  vana-supply:
+> > +    description:
+> > +      Analog voltage supply, 2.2 volts
+> > +
+> > +  vddl-supply:
+> > +    description:
+> > +      Digital core voltage supply, 1.8 volts
+> > +
+> > +  reset-gpios:
+>
+> maxItems: 1
+Agreed.
 
-Hang on, given how the previous patch works, surely this means you're 
-now going to *reserve* the entire address space? That doesn't seem 
-right... :/
+>
+> > +    description: |-
+> > +      Reference to the GPIO connected to the xclr pin, if any.
+> > +      Must be released (set high) after all supplies are applied.
+> > +
+> > +  # See ../video-interfaces.txt for more details
+> > +  port:
+> > +    type: object
+> > +    properties:
+> > +      endpoint:
+> > +        type: object
+> > +
+> > +        properties:
+> > +          data-lanes:
+> > +            description: |-
+> > +              The sensor supports either two-lane, or four-lane operation,
+> > +              but the driver currently supports only four-lane.
+>
+> What the driver is not relevant. Please define all possible
+> configurations. Or just omit? What's the behavior if omitted?
+>
+I wrote this as to document the hardware (there is no datasheet around and
+I fear that findings will be forgotten one day)... but if you say it's
+not relevant...
+...well, then I can as well just write it in my local notes and remove the info
+from here.
 
-Robin.
+> > +            items:
+> > +              - const: 0
+> > +              - const: 1
+> > +              - const: 2
+> > +              - const: 3
+> > +
+> > +          clock-noncontinuous: true
+> > +
+> > +          link-frequencies:
+> > +            $ref: /schemas/types.yaml#/definitions/uint64-array
+> > +            description:
+> > +              Allowed data bus frequencies. The driver currently needs
+> > +              to switch between 780000000 and 480000000 Hz in order to
+> > +              guarantee functionality of all modes.
+> > +
+> > +        required:
+> > +          - link-frequencies
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - clocks
+> > +  - vana-supply
+> > +  - vdig-supply
+> > +  - vddl-supply
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c0 {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        imx300: sensor@10 {
+> > +            compatible = "sony,imx300";
+> > +            reg = <0x10>;
+> > +            clocks = <&imx300_xclk>;
+> > +            vana-supply = <&imx300_vana>;   /* 2.2v */
+> > +            vdig-supply = <&imx300_vdig>;   /* 1.2v */
+> > +            vddl-supply = <&imx300_vddl>;   /* 1.8v */
+> > +
+> > +            port {
+> > +                imx300_0: endpoint {
+> > +                    remote-endpoint = <&csi1_ep>;
+> > +                    data-lanes = <0 1 2 3>;
+> > +                    clock-noncontinuous;
+> > +                    link-frequencies = /bits/ 64 <780000000 480000000>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +...
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index c66710dd7e0a..21ba41db0063 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -16279,6 +16279,13 @@ T:   git git://linuxtv.org/media_tree.git
+> >  F:   Documentation/devicetree/bindings/media/i2c/imx290.txt
+> >  F:   drivers/media/i2c/imx290.c
+> >
+> > +SONY IMX300 SENSOR DRIVER
+> > +M:   AngeloGioacchino Del Regno <kholk11@gmail.com>
+> > +L:   linux-media@vger.kernel.org
+> > +S:   Maintained
+> > +F:   Documentation/devicetree/bindings/media/i2c/sony,imx300.yaml
+> > +F:   drivers/media/i2c/imx300.c
+> > +
+> >  SONY IMX319 SENSOR DRIVER
+> >  M:   Bingbu Cao <bingbu.cao@intel.com>
+> >  L:   linux-media@vger.kernel.org
+> > --
+> > 2.28.0
+> >
 
-> +
->   /*
->    * There may be 1 or 2 M4U HWs, But we always expect they are in the same domain
->    * for the performance.
-> @@ -922,6 +926,8 @@ static const struct mtk_iommu_plat_data mt2712_data = {
->   	.m4u_plat     = M4U_MT2712,
->   	.flags        = HAS_4GB_MODE | HAS_BCLK | HAS_VLD_PA_RNG,
->   	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
-> +	.iova_region  = single_domain,
-> +	.iova_region_nr = ARRAY_SIZE(single_domain),
->   	.larbid_remap = {{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}},
->   };
->   
-> @@ -929,6 +935,8 @@ static const struct mtk_iommu_plat_data mt6779_data = {
->   	.m4u_plat      = M4U_MT6779,
->   	.flags         = HAS_SUB_COMM | OUT_ORDER_WR_EN | WR_THROT_EN,
->   	.inv_sel_reg   = REG_MMU_INV_SEL_GEN2,
-> +	.iova_region   = single_domain,
-> +	.iova_region_nr = ARRAY_SIZE(single_domain),
->   	.larbid_remap  = {{0}, {1}, {2}, {3}, {5}, {7, 8}, {10}, {9}},
->   };
->   
-> @@ -944,6 +952,8 @@ static const struct mtk_iommu_plat_data mt8173_data = {
->   	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
->   			HAS_LEGACY_IVRP_PADDR,
->   	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
-> +	.iova_region  = single_domain,
-> +	.iova_region_nr = ARRAY_SIZE(single_domain),
->   	.larbid_remap = {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear mapping. */
->   };
->   
-> @@ -951,6 +961,8 @@ static const struct mtk_iommu_plat_data mt8183_data = {
->   	.m4u_plat     = M4U_MT8183,
->   	.flags        = RESET_AXI,
->   	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
-> +	.iova_region  = single_domain,
-> +	.iova_region_nr = ARRAY_SIZE(single_domain),
->   	.larbid_remap = {{0}, {4}, {5}, {6}, {7}, {2}, {3}, {1}},
->   };
->   
-> 
+Also, I'm sorry for the *very* late reply. I've been busy quite a lot
+in these days!
+By the way, I'll push a v3 for this one ASAP!
+
+Yours,
+Angelo
