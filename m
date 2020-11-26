@@ -2,376 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD4812C550F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:12:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1664D2C552B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:24:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389943AbgKZNK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 08:10:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53726 "EHLO
+        id S2389604AbgKZNYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 08:24:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389825AbgKZNK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:10:58 -0500
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 876B8C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:10:57 -0800 (PST)
-Received: by mail-ej1-x642.google.com with SMTP id 7so2916763ejm.0
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:10:57 -0800 (PST)
+        with ESMTP id S2389603AbgKZNYW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:24:22 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F05C0613D4;
+        Thu, 26 Nov 2020 05:24:22 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id q16so2250500edv.10;
+        Thu, 26 Nov 2020 05:24:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=VKmIqZxCI8NVNA08P3qFAEJ1Jf8cRqufRdNCDIZ8fmI=;
-        b=SMFhwQdd/FUceNer8PQ4A+C0KcPg5v+hnaZYigmnjSV8yKrE2GzjQRueVFtM4TpbAu
-         cmgbHAmic236ekNfRN2SUTghmEpHOsVLpdhH2Hf7H547+oqvX5AimGGKaFbUwWGzCbQo
-         nZhET82cRJ7aqa0UPkZ2WFUs9pqcNJD9ykyIoOhGp1Bqx3SjPib/lQj7JOeF/XVqTXir
-         FYxYbGKGgOO7yyapNz8hLdnTOzllOCz3My/wC3xKmDzkIux73aV9gLJ0l4tcwSSHhMQi
-         aL9yUPuMLetaZi2JSrwTASrRCLdqyhPiHRAifNqqXUjimWUI6kgkiMIvIpW7FrVMUVwo
-         nVYg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=xUQ9iYS8DZZmFJG3hqLV8u3HjCR6GcQ7ha8Yn9D0h2Y=;
+        b=Kw0QcVVgvszkH6wATTStoi3oNXb+T6n31svBwuwDpSiCFcFJum/ZInLX/ST27iw53M
+         SQ43vuJ3MQbJkx7+4wViSwgxDBeXS8ABn+aYMv3DITa200rxk6WmDyfyBRZdfYUyVLTN
+         vTDBG3IoDAbCW4bttz5+EIfC3e49eeqGPwrfOovAl0k6nfzkPU3rzJWsGkpD253/7VwF
+         7XeEdxH88RNB+YPKSYzVAfq+VVQZaEdcZvwubHFhYZux2X5ThT1e/b4t4zmmP9tQp2WC
+         Smc7/kXl5p4h7EHNg7qQb+bq0AkwTYFJuA9cw1/YJD197/C72bLd4Qsut9/aVhm4jCG0
+         twzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=VKmIqZxCI8NVNA08P3qFAEJ1Jf8cRqufRdNCDIZ8fmI=;
-        b=o7IQATsbEOjboG49bcg1IRLFTMEfpKYNgwWaTuLGYqwJdIvwMsxCy2EMMLrt7tmgr0
-         guFLFDuDfz3mMYg9/+ZqKj5+Aopw3I2I8ri0B8TWVvchEMGSqUUDCq89+pVCiSlpWj0j
-         D7WMLdeo4rowQ+rYTXdGT4cOBGjdVeUCtKx6jpvDmao2Yl0jSv2mTMEf/KsdmoH63drh
-         GgtLhk72/HFjo1vrxflOEwvBmj0/gmRHPRQWcAO6q9ETtqBFCB2gcj3iiny0GWY8WCR7
-         dGbGQTXfU4WAlHpuAA7llvv6YpjPvzfNeHZ1tR2GdfeHg21cOLxiz65dRi+urDsrF/yo
-         AM2w==
-X-Gm-Message-State: AOAM5302D5Du+nA3+IKxPPU9x4V0pIy9j38iPyJVc/AfRbLUgebtvKH9
-        oBe+qs57oT/1dTxo6Ww8tbbNeQ==
-X-Google-Smtp-Source: ABdhPJw3QZVqa9++OYXekeackK5FEka69eO0OrwCcnysj0j9rTL7Tx65KKp0fmd09Pk05BtFrnneFA==
-X-Received: by 2002:a17:906:a052:: with SMTP id bg18mr2616021ejb.550.1606396256167;
-        Thu, 26 Nov 2020 05:10:56 -0800 (PST)
-Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id f16sm3193187edc.44.2020.11.26.05.10.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 26 Nov 2020 05:10:55 -0800 (PST)
-Subject: Re: [PATCH v2] ARM: zynq: Add Z-turn board V5
-To:     agriveaux@deutnet.info, michal.simek@xilinx.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20201126070516.85882-1-agriveaux@deutnet.info>
-From:   Michal Simek <monstr@monstr.eu>
-Message-ID: <88764538-1c7e-ca7f-e138-08090091ae3f@monstr.eu>
-Date:   Thu, 26 Nov 2020 14:10:54 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=xUQ9iYS8DZZmFJG3hqLV8u3HjCR6GcQ7ha8Yn9D0h2Y=;
+        b=pS9b/xZFmzajLw7AYtVtT2jwaEE6P/nFvQ2kbhFdE4JM3vRx52BpSXJLQLrZ/f0TIs
+         +lvYkaQvJMN7AVEgwvBlbHM2jGX2CjLCOmflz+I6JfezeDI4/j/eiZnzGZdhaRS3IPbk
+         h5hAkDfkYQaRkbsEkBCjIZ7QxUjGAxewcv+qpR8ljC10qqsTI26DwPDjraIeK0j26FAd
+         P0eAeabyeZZBwyL5y4z05rbnhjnTfgUbC60qbQrfW/f39VKf7mQ2WLOj3pQ7IgWthtoF
+         wXpvbRFNM1ZLjofHgpWEpOcMTTaO+y6RSsOm6piDYUXWvS31l+EuajlTi7GEHWM/IKuk
+         xrSg==
+X-Gm-Message-State: AOAM532WHi3ZgyNmIwIbmDlL/6xnOAHIr/ITFbXfUOmn//J8mIlX7gY2
+        4Gud8x2IkZD6FYgdDWZj9gI=
+X-Google-Smtp-Source: ABdhPJwVCwjfW/pragoptzjKbLnTua6xsV3kAXviMnijgS59C8xrddDUKW+unl+E0Vg6amIQKbifkg==
+X-Received: by 2002:a50:ef13:: with SMTP id m19mr2534718eds.34.1606397060891;
+        Thu, 26 Nov 2020 05:24:20 -0800 (PST)
+Received: from skbuf ([188.25.2.120])
+        by smtp.gmail.com with ESMTPSA id b15sm3222314edv.85.2020.11.26.05.24.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2020 05:24:19 -0800 (PST)
+Date:   Thu, 26 Nov 2020 15:24:18 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     George McCollister <george.mccollister@gmail.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20201126132418.zigx6c2iuc4kmlvy@skbuf>
+References: <20201125193740.36825-1-george.mccollister@gmail.com>
+ <20201125193740.36825-3-george.mccollister@gmail.com>
+ <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20201126070516.85882-1-agriveaux@deutnet.info>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 26. 11. 20 8:05, agriveaux@deutnet.info wrote:
-> From: Alexandre GRIVEAUX <agriveaux@deutnet.info>
+On Wed, Nov 25, 2020 at 08:25:11PM -0600, George McCollister wrote:
+> > > +     {XRS_RX_UNDERSIZE_L, "rx_undersize"},
+> > > +     {XRS_RX_FRAGMENTS_L, "rx_fragments"},
+> > > +     {XRS_RX_OVERSIZE_L, "rx_oversize"},
+> > > +     {XRS_RX_JABBER_L, "rx_jabber"},
+> > > +     {XRS_RX_ERR_L, "rx_err"},
+> > > +     {XRS_RX_CRC_L, "rx_crc"},
+> >
+> > As Vladimir already mentioned to you the statistics which have
+> > corresponding entries in struct rtnl_link_stats64 should be reported
+> > the standard way. The infra for DSA may not be in place yet, so best
+> > if you just drop those for now.
 > 
-> Adding Z-turn board V5 to resolve the change between:
-> 
-> "Z-TURNBOARD_schematic.pdf" schematics state version 1 to 4 has Atheros AR8035
-> "Z-Turn_Board_sch_V15_20160303.pdf" schematics state version 5 has Micrel KSZ9031
-> 
-> Changes v1 -> v2: Instead of using new board, the v2 using a common devicetree
-> for z-turn boards (zynq-zturn-common.dtsi) and for each board a specific DT
-> 
-> Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
-> ---
->  arch/arm/boot/dts/Makefile               |   1 +
->  arch/arm/boot/dts/zynq-zturn-common.dtsi | 112 +++++++++++++++++++++++
->  arch/arm/boot/dts/zynq-zturn-v5.dts      |  15 +++
->  arch/arm/boot/dts/zynq-zturn.dts         | 101 +-------------------
->  4 files changed, 129 insertions(+), 100 deletions(-)
->  create mode 100644 arch/arm/boot/dts/zynq-zturn-common.dtsi
->  create mode 100644 arch/arm/boot/dts/zynq-zturn-v5.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index ce66ffd5a1bb..3de85fe42f76 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1302,6 +1302,7 @@ dtb-$(CONFIG_ARCH_ZYNQ) += \
->  	zynq-zc770-xm013.dtb \
->  	zynq-zed.dtb \
->  	zynq-zturn.dtb \
-> +	zynq-zturn-v5.dtb \
->  	zynq-zybo.dtb \
->  	zynq-zybo-z7.dtb
->  dtb-$(CONFIG_MACH_ARMADA_370) += \
-> diff --git a/arch/arm/boot/dts/zynq-zturn-common.dtsi b/arch/arm/boot/dts/zynq-zturn-common.dtsi
-> new file mode 100644
-> index 000000000000..84f3c85c5bab
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/zynq-zturn-common.dtsi
-> @@ -0,0 +1,112 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + *  Copyright (C) 2015 Andrea Merello <adnrea.merello@gmail.com>
-> + *  Copyright (C) 2017 Alexander Graf <agraf@suse.de>
-> + *
-> + *  Based on zynq-zed.dts which is:
-> + *  Copyright (C) 2011 - 2014 Xilinx
-> + *  Copyright (C) 2012 National Instruments Corp.
-> + *
-> + */
-> +
-> +/dts-v1/;
-> +/include/ "zynq-7000.dtsi"
-> +
-> +/ {
-> +	compatible = "xlnx,zynq-7000";
-> +
-> +	aliases {
-> +		ethernet0 = &gem0;
-> +		serial0 = &uart1;
-> +		serial1 = &uart0;
-> +		mmc0 = &sdhci0;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x40000000>;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio-leds {
-> +		compatible = "gpio-leds";
-> +		usr-led1 {
-> +			label = "usr-led1";
-> +			gpios = <&gpio0 0x0 0x1>;
-> +			default-state = "off";
-> +		};
-> +
-> +		usr-led2 {
-> +			label = "usr-led2";
-> +			gpios = <&gpio0 0x9 0x1>;
-> +			default-state = "off";
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		autorepeat;
-> +		K1 {
-> +			label = "K1";
-> +			gpios = <&gpio0 0x32 0x1>;
-> +			linux,code = <0x66>;
-> +			wakeup-source;
-> +			autorepeat;
-> +		};
-> +	};
-> +};
-> +
-> +&clkc {
-> +	ps-clk-frequency = <33333333>;
-> +};
-> +
-> +&gem0 {
-> +	status = "okay";
-> +	phy-mode = "rgmii-id";
-> +	phy-handle = <&ethernet_phy>;
-> +
-> +	ethernet_phy: ethernet-phy@0 {
-> +	};
-> +};
-> +
-> +&sdhci0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb0 {
-> +	status = "okay";
-> +	dr_mode = "host";
-> +};
-> +
-> +&can0 {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	status = "okay";
-> +	clock-frequency = <400000>;
-> +
-> +	stlm75@49 {
-> +		status = "okay";
-> +		compatible = "lm75";
-> +		reg = <0x49>;
-> +	};
-> +
-> +	accelerometer@53 {
-> +		compatible = "adi,adxl345", "adxl345", "adi,adxl34x", "adxl34x";
-> +		reg = <0x53>;
-> +		interrupt-parent = <&intc>;
-> +		interrupts = <0x0 0x1e 0x4>;
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/zynq-zturn-v5.dts b/arch/arm/boot/dts/zynq-zturn-v5.dts
-> new file mode 100644
-> index 000000000000..536632a09a25
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/zynq-zturn-v5.dts
-> @@ -0,0 +1,15 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/dts-v1/;
-> +/include/ "zynq-zturn-common.dtsi"
-> +
-> +/ {
-> +	model = "Zynq Z-Turn MYIR Board V5";
-> +	compatible = "myir,zynq-zturn-v5", "xlnx,zynq-7000";
-> +};
-> +
-> +&gem0 {
-> +	ethernet_phy: ethernet-phy@0 {
-> +		reg = <0x3>;
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/zynq-zturn.dts b/arch/arm/boot/dts/zynq-zturn.dts
-> index 5ec616ebca08..620b24a25e06 100644
-> --- a/arch/arm/boot/dts/zynq-zturn.dts
-> +++ b/arch/arm/boot/dts/zynq-zturn.dts
-> @@ -1,114 +1,15 @@
->  // SPDX-License-Identifier: GPL-2.0
-> -/*
-> - *  Copyright (C) 2015 Andrea Merello <adnrea.merello@gmail.com>
-> - *  Copyright (C) 2017 Alexander Graf <agraf@suse.de>
-> - *
-> - *  Based on zynq-zed.dts which is:
-> - *  Copyright (C) 2011 - 2014 Xilinx
-> - *  Copyright (C) 2012 National Instruments Corp.
-> - *
-> - */
->  
->  /dts-v1/;
-> -/include/ "zynq-7000.dtsi"
-> +/include/ "zynq-zturn-common.dtsi"
->  
->  / {
->  	model = "Zynq Z-Turn MYIR Board";
->  	compatible = "myir,zynq-zturn", "xlnx,zynq-7000";
-> -
-> -	aliases {
-> -		ethernet0 = &gem0;
-> -		serial0 = &uart1;
-> -		serial1 = &uart0;
-> -		mmc0 = &sdhci0;
-> -	};
-> -
-> -	memory@0 {
-> -		device_type = "memory";
-> -		reg = <0x0 0x40000000>;
-> -	};
-> -
-> -	chosen {
-> -		stdout-path = "serial0:115200n8";
-> -	};
-> -
-> -	gpio-leds {
-> -		compatible = "gpio-leds";
-> -		usr-led1 {
-> -			label = "usr-led1";
-> -			gpios = <&gpio0 0x0 0x1>;
-> -			default-state = "off";
-> -		};
-> -
-> -		usr-led2 {
-> -			label = "usr-led2";
-> -			gpios = <&gpio0 0x9 0x1>;
-> -			default-state = "off";
-> -		};
-> -	};
-> -
-> -	gpio-keys {
-> -		compatible = "gpio-keys";
-> -		autorepeat;
-> -		K1 {
-> -			label = "K1";
-> -			gpios = <&gpio0 0x32 0x1>;
-> -			linux,code = <0x66>;
-> -			wakeup-source;
-> -			autorepeat;
-> -		};
-> -	};
-> -};
-> -
-> -&clkc {
-> -	ps-clk-frequency = <33333333>;
->  };
->  
->  &gem0 {
-> -	status = "okay";
-> -	phy-mode = "rgmii-id";
-> -	phy-handle = <&ethernet_phy>;
-> -
->  	ethernet_phy: ethernet-phy@0 {
->  		reg = <0x0>;
->  	};
->  };
-> -
-> -&sdhci0 {
-> -	status = "okay";
-> -};
-> -
-> -&uart0 {
-> -	status = "okay";
-> -};
-> -
-> -&uart1 {
-> -	status = "okay";
-> -};
-> -
-> -&usb0 {
-> -	status = "okay";
-> -	dr_mode = "host";
-> -};
-> -
-> -&can0 {
-> -	status = "okay";
-> -};
-> -
-> -&i2c0 {
-> -	status = "okay";
-> -	clock-frequency = <400000>;
-> -
-> -	stlm75@49 {
-> -		status = "okay";
-> -		compatible = "lm75";
-> -		reg = <0x49>;
-> -	};
-> -
-> -	accelerometer@53 {
-> -		compatible = "adi,adxl345", "adxl345", "adi,adxl34x", "adxl34x";
-> -		reg = <0x53>;
-> -		interrupt-parent = <&intc>;
-> -		interrupts = <0x0 0x1e 0x4>;
-> -	};
-> -};
-> 
+> Okay, that clears it up a bit. Just drop these 6? I'll read through
+> that thread again and try to make sense of it.
 
-Applied.
-
-Thanks,
-Michal
-
--- 
-Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
-w: www.monstr.eu p: +42-0-721842854
-Maintainer of Linux kernel - Xilinx Microblaze
-Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
-U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
-
+I feel that I should ask. Do you want me to look into exposing RMON
+interface counters through rtnetlink (I've never done anything like that
+before either, but there's a beginning for everything), or are you going
+to?
