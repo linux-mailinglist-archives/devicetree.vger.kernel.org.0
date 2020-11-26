@@ -2,109 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C9BA2C5189
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 10:45:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F41AB2C520D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 11:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726206AbgKZJnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 04:43:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49846 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725911AbgKZJno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 04:43:44 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 889A3C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 01:43:44 -0800 (PST)
-Received: from [2a0a:edc0:0:900:6245:cbff:fea0:1793] (helo=kresse.office.stw.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kiDoQ-0000Nm-52; Thu, 26 Nov 2020 10:43:38 +0100
-Message-ID: <47fb9966f3f633a5ec8297500d26f1c571bc26b2.camel@pengutronix.de>
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>,
+        id S2387881AbgKZKbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 05:31:03 -0500
+Received: from relmlor2.renesas.com ([210.160.252.172]:63230 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730004AbgKZKbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 05:31:03 -0500
+X-IronPort-AV: E=Sophos;i="5.78,371,1599490800"; 
+   d="scan'208";a="63758954"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 26 Nov 2020 19:31:02 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id E693E400F78D;
+        Thu, 26 Nov 2020 19:30:59 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Date:   Thu, 26 Nov 2020 10:43:36 +0100
-In-Reply-To: <20201125103909.16548-1-laurentiu.palcu@oss.nxp.com>
-References: <20201125103909.16548-1-laurentiu.palcu@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:6245:cbff:fea0:1793
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        metis.ext.pengutronix.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
-        version=3.4.2
-Subject: Re: [PATCH] arm64: dts: imx8mq: add DCSS node
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 0/2] r8a7742-iwg21d-q7-dbcm: Add support for ov7725 sensors
+Date:   Thu, 26 Nov 2020 10:30:51 +0000
+Message-Id: <20201126103053.29881-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mi, 2020-11-25 at 12:39 +0200, Laurentiu Palcu wrote:
-> This patch adds the node for iMX8MQ Display Controller Subsystem.
-> 
-> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+Hi All,
 
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+This patch set enables to connect ov7725 sensors on iWave-RZ/G1H Qseven
+board.
 
-> ---
-> Hi,
-> 
-> This is, actually, a resend of the patch because we decided to drop it
-> from the main DCSS patchset until the driver gets merged.
-> 
-> Now that the driver is in mainline, we can finally add DCSS node in DTS.
-> 
-> Thanks,
-> laurentiu
-> 
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 23 +++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 5e0e7d0f1bc4..5a617f9ed8b5 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -1103,6 +1103,29 @@
->  			#size-cells = <1>;
->  			ranges = <0x32c00000 0x32c00000 0x400000>;
->  
-> +			dcss: display-controller@32e00000 {
-> +				compatible = "nxp,imx8mq-dcss";
-> +				reg = <0x32e00000 0x2d000>, <0x32e2f000 0x1000>;
-> +				interrupts = <6>, <8>, <9>;
-> +				interrupt-names = "ctxld", "ctxld_kick", "vblank";
-> +				interrupt-parent = <&irqsteer>;
-> +				clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>,
-> +					 <&clk IMX8MQ_CLK_DISP_AXI_ROOT>,
-> +					 <&clk IMX8MQ_CLK_DISP_RTRM_ROOT>,
-> +					 <&clk IMX8MQ_VIDEO2_PLL_OUT>,
-> +					 <&clk IMX8MQ_CLK_DISP_DTRC>;
-> +				clock-names = "apb", "axi", "rtrm", "pix", "dtrc";
-> +				assigned-clocks = <&clk IMX8MQ_CLK_DISP_AXI>,
-> +						  <&clk IMX8MQ_CLK_DISP_RTRM>,
-> +						  <&clk IMX8MQ_VIDEO2_PLL1_REF_SEL>;
-> +				assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_800M>,
-> +							 <&clk IMX8MQ_SYS1_PLL_800M>,
-> +							 <&clk IMX8MQ_CLK_27M>;
-> +				assigned-clock-rates = <800000000>,
-> +						       <400000000>;
-> +				status = "disabled";
-> +			};
-> +
->  			irqsteer: interrupt-controller@32e2d000 {
->  				compatible = "fsl,imx8m-irqsteer", "fsl,imx-irqsteer";
->  				reg = <0x32e2d000 0x1000>;
+This patch is based on top of [1].
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/geert/
+    renesas-devel.git/log/?h=renesas-arm-dt-for-v5.11
+
+Changes for v3:
+* Added support to mix and match the cameras connected to VINx interfaces.
+
+Changes for v2:
+* Separated out ov5640 ep into a new dtsi
+
+v1: https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+    20201120151343.24175-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Separate out ov5640 nodes
+  ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add support for 8-bit ov7725
+    sensors
+
+ .../boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts    | 166 +++++++++---------
+ .../dts/r8a7742-iwg21d-q7-dbcm-ov5640.dtsi    | 124 +++++++++++++
+ .../dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi    | 112 ++++++++++++
+ 3 files changed, 322 insertions(+), 80 deletions(-)
+ create mode 100644 arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov5640.dtsi
+ create mode 100644 arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725.dtsi
+
+-- 
+2.17.1
 
