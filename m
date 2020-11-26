@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B96452C56A6
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 15:05:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E946F2C56C0
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 15:14:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390011AbgKZOFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 09:05:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34124 "EHLO
+        id S2390263AbgKZONB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 09:13:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389970AbgKZOFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 09:05:06 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04E67C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 06:05:06 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id bo9so3028297ejb.13
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 06:05:05 -0800 (PST)
+        with ESMTP id S2390144AbgKZONB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 09:13:01 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B285FC0613D4;
+        Thu, 26 Nov 2020 06:12:59 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id o9so3172470ejg.1;
+        Thu, 26 Nov 2020 06:12:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=IR/x5ppg0wZJxqnSWD4QBn+IO7HGLxlSw1Ip7OHvr2U=;
-        b=eSQRSkHDHxJpGRZx48zDMHSQApFE6qcCNRpRf0pE7BWtGOQCTmM4C3P0zzIY7oHk7e
-         CLmsvn+WzYqU+jCO7fi3ZyDQek3W0BWW5xU7d6WKH+m8VcnFJ4eBDn8r6vPLoOc4pK62
-         +TGdfGxT6y8iZ8Yb7Rtf0Sn7UJEdC5WVLezdc4qgL4YDi7Z5dqY5NuhWXYHEGL3QXV8b
-         gRYuvwEepC8v3DpgLZNG7XG/FegZMMHBT2bJHoyKD0njG63oRRkax4dCyCd2Z4QNYOYa
-         cxNGRycYEXaQVzcEUtf+vYbDHv7mcjvmi3DR5RbeC8WuHqBLxlbTGFdJPd7mL1CKv84n
-         H/ZQ==
+        bh=AY0reqhJ8LJfRYGSpAtGjhzLoCCsaBuOvKFqC/hE97I=;
+        b=fBXC5ElqASADFI/r2xA/CpSucv/W2kAgwYSPK3lfUIiSB6jyzBhBLIa1yzexVtRT0I
+         w6rifn8V4cnQSIbudonZH1aG8L0tBWne50lCi8LahzYZ/831wsHDBASbiRLJqpV+9hnE
+         tIOk5wWwyeRyOsB130DJoZpsNo2A+INyElCHxQJAUxhZN7HV47rrpJjq2V1289K5fybd
+         EWcaILkRwURyLGXvESICUaUI/yCB9iKrLwFfUikOrx80oIAkOn0hjzA/jIHbon/1jBqH
+         WuDPbg0/x569wf/OomFwlraA1RTylqMdIrjGSykk3LEzqgx7DSE2x+oujY+FLIi0c6X6
+         v9jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=IR/x5ppg0wZJxqnSWD4QBn+IO7HGLxlSw1Ip7OHvr2U=;
-        b=tD/6aCA4NTFfIJGzyPP3UGGKsutUfUL+FDTRlILrsXyTmscwReItBvDnC6wZmH1/F8
-         /1bq29rWk/bxR/CbruEQcuOYkti9djdOMWOkKrqmLCpyDGJYFDxmF1+0HF5keQYBQV38
-         wmP2GxoVd5dBBnIOTl2OMafb+Gg5nbLgx1X4Ye2JzqNhLt3q7wCQoYhyh8qiibM1E+dK
-         2SN6+wzoum86KL4Y9Huej0AER7htCY4fDm3lVzUXAbGLKZtweKdhKdSsRieBVTYMVC8q
-         eQkfpSa4ZehPLfrAZkk9ZDXrp8scQp9PgW/kOsU/mSM4FVBjWJIGI8YVJKqFK0zDXJjq
-         Vo+A==
-X-Gm-Message-State: AOAM532FzcYszW9wb7Fr2nqSDeOqm0svkdIDR1u3/OBk9eiqlgGaFLiw
-        MLKMaIH+uVFmI0YylKcHA29SFQ==
-X-Google-Smtp-Source: ABdhPJzSMYfd2Kmru4HnfgP50Cxw9b3MaPKHFEhAqa44DK5nvRY/yjEIqNjmvpfpr6q9nlo/Bxwb9g==
-X-Received: by 2002:a17:906:a183:: with SMTP id s3mr2928234ejy.60.1606399504680;
-        Thu, 26 Nov 2020 06:05:04 -0800 (PST)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id q26sm3127131ejt.73.2020.11.26.06.05.04
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 26 Nov 2020 06:05:04 -0800 (PST)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: zynq: Fix incorrect reference to XM013 instead of XM011
-Date:   Thu, 26 Nov 2020 15:05:02 +0100
-Message-Id: <39e16e667aa8f132496092d4fa554935ddd5a55f.1606399500.git.michal.simek@xilinx.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=AY0reqhJ8LJfRYGSpAtGjhzLoCCsaBuOvKFqC/hE97I=;
+        b=ADu/7ml6GQx/e0oKjwAR5vo3elPUrXi/5wPVSGy/QO70RwvmXpuv142zR9mFv6xIIA
+         dp55ayAZJlP/QH6KtCpFCRFSzOFuchPC2ZjoDTpPUvEEve4eLlobJajHELVUa+HqHZXl
+         8Iyij+IjLR/3f6ihintAE6UsWIZO2coV0l9L2C44Y69nPL7nQvVwIEJnQ1C3EYMziHRn
+         OcWJRang10owDwpvJq+VS8Zfri+Ugzdi0oy7iHp9G9y1Y/C0T4BZjiIq4oN0YA+tvuJD
+         rBCWlKBZmNR1LzKdbcgQGUh9fJyKfQqpXE1NNXe0E86JR7YPSvIkmmlZ9/fjcrVSRSR2
+         iv+A==
+X-Gm-Message-State: AOAM530irgm/d8ujVpdhfZa12yhXTA4UBnrqcWVipySGCJodbwg7Xdk5
+        FsocJog9NQVi/NNucS9X1Zs=
+X-Google-Smtp-Source: ABdhPJwQ8D2xdY6pUDrtvCRzpa+vFbdwrFG1FFSgKzjU2kIrTiMF59RdJmhOIBFw47uAuzeumhkEgg==
+X-Received: by 2002:a17:906:3ecf:: with SMTP id d15mr2884222ejj.297.1606399978411;
+        Thu, 26 Nov 2020 06:12:58 -0800 (PST)
+Received: from localhost (178-169-161-196.razgrad.ddns.bulsat.com. [178.169.161.196])
+        by smtp.gmail.com with ESMTPSA id c4sm3201578ejx.9.2020.11.26.06.12.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Nov 2020 06:12:57 -0800 (PST)
+From:   Iskren Chernev <iskren.chernev@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        linux-arm-msm@vger.kernel.org,
+        Iskren Chernev <iskren.chernev@gmail.com>
+Subject: [PATCH 1/2] ARM: dts: qcom: msm8974-klte: Add fuel gauge
+Date:   Thu, 26 Nov 2020 16:11:43 +0200
+Message-Id: <20201126141144.1763779-1-iskren.chernev@gmail.com>
 X-Mailer: git-send-email 2.29.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,26 +64,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix comment about targeted extension card. It was likely just c&p error.
+The Samsung Galaxy S5 uses a maxim17048 fuelgauge. The maxim,rcomp value
+is taken from downstream kernel. Model data and temperature-based
+compensation are not yet supported in the mainline driver, but the
+readings seem fine nevertheless.
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+Signed-off-by: Iskren Chernev <iskren.chernev@gmail.com>
 ---
+ .../boot/dts/qcom-msm8974-samsung-klte.dts    | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
- arch/arm/boot/dts/zynq-zc770-xm011.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+diff --git a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
+index b0899107f3ced..97352de913142 100644
+--- a/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
++++ b/arch/arm/boot/dts/qcom-msm8974-samsung-klte.dts
+@@ -406,6 +406,16 @@ mux {
+ 			};
+ 		};
+ 
++		i2c12_pins: i2c12 {
++			mux {
++				pins = "gpio87", "gpio88";
++				function = "blsp_i2c12";
++
++				drive-strength = <2>;
++				bias-disable;
++			};
++		};
++
+ 		i2c_touchkey_pins: i2c-touchkey {
+ 			mux {
+ 				pins = "gpio95", "gpio96";
+@@ -666,6 +676,27 @@ max77826_buckboost: BUCKBOOST {
+ 			};
+ 		};
+ 	};
++
++	i2c@f9968000 {
++		status = "okay";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&i2c12_pins>;
++
++		fuelgauge@36 {
++			compatible = "maxim,max17048";
++			reg = <0x36>;
++
++			maxim,double-soc;
++			maxim,rcomp = /bits/ 8 <0x56>;
++
++			interrupt-parent = <&pma8084_gpios>;
++			interrupts = <21 IRQ_TYPE_EDGE_FALLING>;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&fuelgauge_pin>;
++		};
++	};
+ };
+ 
+ &spmi_bus {
+@@ -703,6 +734,14 @@ wlan_sleep_clk_pin: wlan-sleep-clk-pin {
+ 				power-source = <PMA8084_GPIO_S4>;
+ 				qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
+ 			};
++
++			fuelgauge_pin: fuelgauge-int-pin {
++				pins = "gpio21";
++				function = "normal";
++				bias-disable;
++				input-enable;
++				power-source = <PMA8084_GPIO_S4>;
++			};
+ 		};
+ 	};
+ };
 
-diff --git a/arch/arm/boot/dts/zynq-zc770-xm011.dts b/arch/arm/boot/dts/zynq-zc770-xm011.dts
-index b7f65862c022..56732e8f6ca1 100644
---- a/arch/arm/boot/dts/zynq-zc770-xm011.dts
-+++ b/arch/arm/boot/dts/zynq-zc770-xm011.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * Xilinx ZC770 XM013 board DTS
-+ * Xilinx ZC770 XM011 board DTS
-  *
-  * Copyright (C) 2013-2018 Xilinx, Inc.
-  */
+base-commit: 6147c83fd749d19a0d3ccc2f64d12138ab010b47
 -- 
 2.29.2
 
