@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 028472C5238
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 11:43:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ED782C5241
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 11:47:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388157AbgKZKnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 05:43:00 -0500
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:46361 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729386AbgKZKnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 05:43:00 -0500
-Received: by mail-oo1-f67.google.com with SMTP id w9so229232ooh.13;
-        Thu, 26 Nov 2020 02:42:57 -0800 (PST)
+        id S2388182AbgKZKp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 05:45:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59470 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388180AbgKZKp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 05:45:57 -0500
+Received: from mail-io1-xd2e.google.com (mail-io1-xd2e.google.com [IPv6:2607:f8b0:4864:20::d2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE302C0613D4;
+        Thu, 26 Nov 2020 02:45:56 -0800 (PST)
+Received: by mail-io1-xd2e.google.com with SMTP id u21so1301484iol.12;
+        Thu, 26 Nov 2020 02:45:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K4xHL/8FlQ96VISXMQL4ONhhtmirwRht9opUGBD2zQA=;
+        b=glb3h6WTBIewNlAWOUlSd/IIyOtgvsAi8FtttskSdd4zjZhPYlhIABFouihIcHEh+l
+         rIXF1HTv5wg+4+F1jrHm0YZS6w6JkzXPA6Jm1PiWQTTZ3nlZPscUIf5r0XMmeNgdBLWF
+         aR4Kh5jMabXDYgmoWPIdQXg4kgNMH35EgUhoyb5HEtgNVMjFLxdqWjLdlov1SiOeZQZT
+         Lyt64dxJ+RseZMHPs92AWGqyOO/E4eZsc+ic+5bq2/dHT9MkTrm+q7F1MaNN6Wrk//z8
+         thf9UWHmJFM+6+yUO7ppx20UvQv/znU/Ms0TevQ+gK+Ifbn+PQzcacFWKwDAT+YSHNag
+         ZBvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JP/o0KCxV+hjR4qYH26j/gYgrajM2R1HBMLwhM9o1z0=;
-        b=mEDq2PbdC8hFA8RZozYMrUBTBL27DsubhXeDpVOjPRcmfwWKTWWu3BEw8BQTyfZd19
-         u/D4pCdthFvRD0AaC1zJCnJtpQmBgCBXrJO4uhdNtSdfR0eUNmuFTu2sqKAWPCvvGOnl
-         UiaS5fU0Ij42kQDsXjdiYrNxjwTsB5urtKCUhPM3rVlxSQlcZps1T2qR1Ziu3G+8m/7I
-         PX96KFs2Z2gBpxkVVGI6HxBxmiP1CE+7vqHuRajHtSR4YvE0LX3K/lZNpOgPzTXr4pWb
-         EiBpz8xtRBLC+1A9tL27GcUsodsbqV1i8zRxf1q0f1rlOs0spRvYLWJ003gnLtGn61dZ
-         KF5g==
-X-Gm-Message-State: AOAM530WSeKdqeeLqzisNn+sVvLl/3Ib8KK7PKk08FquUdIT8QhNxGDd
-        +JoYBqNbNNlY5m3niihC7c+hePrCgpldRsf6w1AvG/Ij4yg=
-X-Google-Smtp-Source: ABdhPJxSUujMoQ0N/5YrOv0NkzjAOa1DYFknhYanT7tS1RZmC6dOxwX49R3l21pExpAU9KLPRmFl+mNeZMpsj+2TkBc=
-X-Received: by 2002:a4a:abc9:: with SMTP id o9mr1585403oon.1.1606387377622;
- Thu, 26 Nov 2020 02:42:57 -0800 (PST)
-MIME-Version: 1.0
-References: <20201124043728.199852-1-damien.lemoal@wdc.com>
- <20201124043728.199852-10-damien.lemoal@wdc.com> <CAMuHMdXov3Dr7EmAeE7yrKRmtu_L3539u9cjeiGiaRu32YVPQQ@mail.gmail.com>
- <CH2PR04MB6522F476C51D4C65F116BE9EE7FB0@CH2PR04MB6522.namprd04.prod.outlook.com>
-In-Reply-To: <CH2PR04MB6522F476C51D4C65F116BE9EE7FB0@CH2PR04MB6522.namprd04.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 26 Nov 2020 11:42:46 +0100
-Message-ID: <CAMuHMdU_3B4jogmeisykbeH8QCbUrKMM3Zd8qHftdGGKYbtJoQ@mail.gmail.com>
-Subject: Re: [PATCH v2 09/21] dt-bindings: Document canaan,k210-fpioa bindings
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=K4xHL/8FlQ96VISXMQL4ONhhtmirwRht9opUGBD2zQA=;
+        b=jZDre2vQwFlGcmJAWVb+5MX1yMG9+UUQ40NoN44+wfr0ifyjCVYlA6k9Qpj4ZI4fxk
+         TAY+JvwdQZn+BTcN69OlenJb76zz8USfWixspZSgsN60wztcbqLjhgwcDEi067TL0B0g
+         6O2kDQgY2sP3aGpY7uWKNIuvImKMo76RO/yjKaJMEb0Od6DPZyL1kzpUjfmO5bQLpR4f
+         CF9/nm3zIVUNxJREY7KVqFP9m5iB56OIziWqUaoCgj4uGw+wveVmb3o9viEJDTmqXMWa
+         K+Ztxyq9OdRFIGo5mMB71VWEYCDzrFX9YDIS6ffVNVAlx/1RMsMzainoYJsRQ3evm6Ic
+         EUPw==
+X-Gm-Message-State: AOAM533ADV+waiPFbZPnfeSAIoyWZm44tkf+Imob1LUWEEaOXEMAYKPX
+        MuI/ro7hTdHybJ8xHUjo144=
+X-Google-Smtp-Source: ABdhPJzDOeykMQDQwWYaH8BZZEKy3+g0zBvmGpk8Ma4RCWDqGqO6xLogZT9PMYRs6pfQYvuusZpAHw==
+X-Received: by 2002:a05:6638:110c:: with SMTP id n12mr2572846jal.75.1606387556168;
+        Thu, 26 Nov 2020 02:45:56 -0800 (PST)
+Received: from aford-IdeaCentre-A730.lan ([2601:448:8400:9e8:8da2:e979:8d1:eddb])
+        by smtp.gmail.com with ESMTPSA id u11sm2366189iol.51.2020.11.26.02.45.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2020 02:45:55 -0800 (PST)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sean Anderson <seanga2@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH V2 1/2] arm64: dts: imx8mm-beacon-som: Configure RTC aliases
+Date:   Thu, 26 Nov 2020 04:45:34 -0600
+Message-Id: <20201126104535.1075658-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Damien,
+On the i.MX8MM Beacon SOM, there is an RTC chip which is fed power
+from the baseboard during power off.  The SNVS RTC integrated into
+the SoC is not fed power.  Depending on the order the modules are
+loaded, this can be a problem if the external RTC isn't rtc0.
 
-On Tue, Nov 24, 2020 at 11:05 AM Damien Le Moal <Damien.LeMoal@wdc.com> wrote:
-> On 2020/11/24 18:49, Geert Uytterhoeven wrote:
-> > On Tue, Nov 24, 2020 at 5:40 AM Damien Le Moal <damien.lemoal@wdc.com> wrote:
-> >> Document the device tree bindings for the Canaan Kendryte K210 SoC
-> >> Fully Programmable IO Array (FPIOA) pinctrl driver in
-> >> Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml. The
-> >> new header file include/dt-bindings/pinctrl/k210-fpioa.h is added to
-> >> define all 256 possible pin functions of the SoC IO pins, as well as
-> >> macros simplifying the definition of pin functions in a device tree.
-> >>
-> >> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-> >
-> > Thanks for your patch!
-> >
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
-> >
-> >> +  canaan,k210-sysctl-power:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> >> +    description: |
-> >> +      phandle of the K210 system controller node and offset of the its
-> >
-> > of its
-> >
-> >> +      power domain control register.
-> >
-> > Your k210-sysctl-v15 branch has a bogus trailing space here.
->
-> Oops. Forgot to push the fixed up patches. Just did it now (forced update
-> k210-sysctl-v15).
+Make the alias for rtc0 point to the external RTC all the time and
+rtc1 point to the SVNS in order to correctly hold date/time over
+a power-cycle.
 
-$ make dt_binding_check
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml
-Documentation/devicetree/bindings/pinctrl/canaan,k210-fpioa.yaml:59:1:
-[error] syntax error: found character '\t' that cannot start any token
-(syntax)
+Signed-off-by: Adam Ford <aford173@gmail.com>
+---
+V2:  Remove fixes tag
 
-DT binding files should use spaces, not TABs.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+index 5565775270f9..9bdefbba9e90 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+@@ -4,6 +4,11 @@
+  */
+ 
+ / {
++	aliases {
++		rtc0 = &rtc;
++		rtc1 = &snvs_rtc;
++	};
++
+ 	usdhc1_pwrseq: usdhc1_pwrseq {
+ 		compatible = "mmc-pwrseq-simple";
+ 		pinctrl-names = "default";
+@@ -219,7 +224,7 @@ eeprom@50 {
+ 		reg = <0x50>;
+ 	};
+ 
+-	rtc@51 {
++	rtc: rtc@51 {
+ 		compatible = "nxp,pcf85263";
+ 		reg = <0x51>;
+ 	};
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
