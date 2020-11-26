@@ -2,152 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55D672C56FC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 15:21:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFCB02C568D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 15:01:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390765AbgKZOUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 09:20:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36584 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390208AbgKZOUn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 09:20:43 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C276C061A52
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 06:20:42 -0800 (PST)
-Received: from ramsan.of.borg ([84.195.186.194])
-        by michel.telenet-ops.be with bizsmtp
-        id x2Ld2300H4C55Sk062LdkD; Thu, 26 Nov 2020 15:20:37 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kiI8T-005s37-3W; Thu, 26 Nov 2020 15:20:37 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1kiHVh-00HGZJ-35; Thu, 26 Nov 2020 14:40:33 +0100
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-To:     Prabhakar <prabhakar.csengg@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-Subject: [PATCH v4 2/2] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add support for 8-bit ov7725 sensors
-Date:   Thu, 26 Nov 2020 14:40:31 +0100
-Message-Id: <20201126134031.4115211-3-geert@linux-m68k.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201126134031.4115211-1-geert@linux-m68k.org>
-References: <20201126134031.4115211-1-geert@linux-m68k.org>
+        id S2389964AbgKZOBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 09:01:33 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:51338 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389434AbgKZOBd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 09:01:33 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kiHpu-008ywQ-NC; Thu, 26 Nov 2020 15:01:26 +0100
+Date:   Thu, 26 Nov 2020 15:01:26 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     George McCollister <george.mccollister@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller " <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/3] dsa: add support for Arrow XRS700x tag
+ trailer
+Message-ID: <20201126140126.GL2075216@lunn.ch>
+References: <20201125193740.36825-1-george.mccollister@gmail.com>
+ <20201125193740.36825-2-george.mccollister@gmail.com>
+ <20201125203429.GF2073444@lunn.ch>
+ <20201126135004.aq2lruz5kxptmsvl@skbuf>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201126135004.aq2lruz5kxptmsvl@skbuf>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Thu, Nov 26, 2020 at 03:50:04PM +0200, Vladimir Oltean wrote:
+> On Wed, Nov 25, 2020 at 09:34:29PM +0100, Andrew Lunn wrote:
+> > > +static struct sk_buff *xrs700x_rcv(struct sk_buff *skb, struct net_device *dev,
+> > > +				   struct packet_type *pt)
+> > > +{
+> > > +	int source_port;
+> > > +	u8 *trailer;
+> > > +
+> > > +	if (skb_linearize(skb))
+> > > +		return NULL;
+> >
+> > Something for Vladimir:
+> >
+> > Could this linearise be moved into the core, depending on the
+> > tail_tag?
+> 
+> Honestly I believe that the skb_linearize is not needed at all.
 
-The 8-bit ov7725 sensors can also be connected to the camera daughter
-board.
+Humm
 
-This patch creates a separate dtsi file to describe an ov7725 sensor,
-and includes it multiple times in r8a7742-iwg21d-q7-dbcm-ca.dts. The
-user can (un)comment #include statements depending on the cameras
-connected.
+I'm assuming this is here in case the frame is in fragments, and the
+trailer could be spread over two fragments? If so, you cannot access
+the trailer using straight pointers. Linearize should copy it into one
+buffer.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-[geert: describe a single camera in the .dtsi, include multiple times]
-Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
----
-v4:
-  - Describe a single camera in the .dtsi file,
-  - Include the .dtsi multiple times,
+For the normal case of a 1500 byte frame, i doubt we have hardware
+which uses multiple scatter/gather buffers. But for jumbo frames?
 
- .../boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts    |  6 ++++-
- .../r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi | 27 +++++++++++++++++++
- 2 files changed, 32 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
+> > > +	if (pskb_trim_rcsum(skb, skb->len - 1))
+> > > +		return NULL;
+> >
+> > And the overhead is also in dsa_devlink_ops, so maybe this can be
+> > moved as well?
+> 
+> Sorry, I don't understand this comment.
 
-diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-index 00634eb58ce39da5..4d95991bde09c28b 100644
---- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-+++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
-@@ -198,7 +198,7 @@ &scifb1 {
- /*
-  * Below configuration ties VINx endpoints to ov5640/ov7725 camera endpoints
-  *
-- * Uncomment the #include statements to change configuration
-+ * (un)comment the #include statements to change configuration
-  */
- 
- /* 8bit CMOS Camera 1 (J13) */
-@@ -208,6 +208,7 @@ &scifb1 {
- #define VIN_EP			vin0ep
- #undef CAM_ENABLED
- #include "r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi"
-+//#include "r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi"
- 
- #ifdef CAM_ENABLED
- &vin0 {
-@@ -241,6 +242,7 @@ vin0ep: endpoint {
- #define VIN_EP			vin1ep
- #undef CAM_ENABLED
- #include "r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi"
-+//#include "r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi"
- 
- #ifdef CAM_ENABLED
- &vin1 {
-@@ -272,6 +274,7 @@ vin1ep: endpoint {
- #define VIN_EP			vin2ep
- #undef CAM_ENABLED
- #include "r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi"
-+//#include "r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi"
- 
- #ifdef CAM_ENABLED
- &vin2 {
-@@ -302,6 +305,7 @@ vin2ep: endpoint {
- #define VIN_EP			vin3ep
- #undef CAM_ENABLED
- #include "r8a7742-iwg21d-q7-dbcm-ov5640-single.dtsi"
-+//#include "r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi"
- 
- #ifdef CAM_ENABLED
- &vin3 {
-diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
-new file mode 100644
-index 0000000000000000..46a6832694d78aaa
---- /dev/null
-+++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ov7725-single.dtsi
-@@ -0,0 +1,27 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * This include file ties a VIN interface with a single ov7725 sensor on
-+ * the iWave-RZ/G1H Qseven board development platform connected with the
-+ * camera daughter board.
-+ *
-+ * Copyright (C) 2020 Renesas Electronics Corp.
-+ */
-+
-+#define CAM_ENABLED	1
-+
-+&CAM_PARENT_I2C {
-+	ov7725@21 {
-+		compatible = "ovti,ov7725";
-+		reg = <0x21>;
-+		clocks = <&MCLK_CAM>;
-+		status = "okay";
-+
-+		port {
-+			CAM_EP: endpoint {
-+				bus-width = <8>;
-+				bus-type = <6>;
-+				remote-endpoint = <&VIN_EP>;
-+			};
-+		};
-+	};
-+};
--- 
-2.25.1
+I'm meaning, could that also be moved into the core? We seem to have
+the needed information to do it in the core.
 
+    Andrew
