@@ -2,114 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89CB92C52F3
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 12:29:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FF482C5322
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 12:36:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389061AbgKZL3d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 06:29:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731379AbgKZL3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 06:29:33 -0500
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F6BC061A04
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 03:29:31 -0800 (PST)
-Received: by mail-pg1-x542.google.com with SMTP id t21so1524513pgl.3
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 03:29:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=k0RIdzypuBv+kcZ+GdFtDRYygeKwG4dwldChjydivrg=;
-        b=AfV+9ENtvcE/VKnCWQ+4hYIbpTDyW52y/CO27egpFKyZmvH5v0APNwQodakbuaE+xn
-         pl98K99HA9O79OCW0zDgkfCEdsefj/g66jsiAo/gaEZNJa46JhO85mYtWagX9NoYGHRy
-         I96m8UHMDi91yJE8solJ3AYmx3WCqOWSVgKOMsJnZGx9PBXuoIi0ere5RkL67Dw2MXCh
-         NeIo1HyDjRH1hhoyS7sJ+zmqyW6Txn/7xiZhaBrqo7pBBq3ZfZTu03r3/ZRIYUIpSClI
-         LmT7zbW24p0+1qq3bx51LjoZdVAH7gxsCe2lTZVNgyTTS/p0C4FgDLi/QxelnIUkcU8s
-         bwWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=k0RIdzypuBv+kcZ+GdFtDRYygeKwG4dwldChjydivrg=;
-        b=q3ngMryxmqmd+inpmlkICCohgIp6gfQ/pE2SubdPu6mrWzbSe5ogs4dtezfZDfGr7Y
-         daDAdksFkOFCSnSGRIfi19ZaN43b6+nF5SLiTl8Bb2SdOk4/ARxF12ELXu4NxxdKQE1D
-         edWSi3/Itj7RoWjysDsHndKUhbCLAatMwcQch1j38NfCmifjoXfr1yVc5+5T2IvfBdhe
-         g+q80vHkA3ZxwLQh34n2cUiv8OrRrQTcrcsHjwneWX2I/gWsSjjMOPmdna0mWthNrycs
-         VWD+0MrdLDX1j0d4lRUswanGh28zB81Xx+ttyM47f3xoBIE4YLs123c7Q6MF6cCF0jZc
-         sOEQ==
-X-Gm-Message-State: AOAM530KeiMA838Jt44WCDmFYqsTwvadNudV8kwypy8++pUB7naTEuxE
-        3KrmuzAjSg5kfn+2y3auwuox
-X-Google-Smtp-Source: ABdhPJznpcAKjvuFyGcgi0A7KblcG5d/jVXUTerMjwXcNHyOP5DrZ8apfdJhPN1+k1mIlZibvCuCEg==
-X-Received: by 2002:a17:90a:d705:: with SMTP id y5mr3170683pju.109.1606390171388;
-        Thu, 26 Nov 2020 03:29:31 -0800 (PST)
-Received: from thinkpad ([2409:4072:6e95:f2a:3996:9d7f:e389:7f7d])
-        by smtp.gmail.com with ESMTPSA id u6sm5910408pjn.56.2020.11.26.03.29.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 03:29:30 -0800 (PST)
-Date:   Thu, 26 Nov 2020 16:59:24 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add rpm power domain bindings
- for sdx55
-Message-ID: <20201126112924.GB51288@thinkpad>
-References: <20201126092711.1084518-1-vkoul@kernel.org>
+        id S1730727AbgKZLgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 06:36:14 -0500
+Received: from frasgout.his.huawei.com ([185.176.79.56]:2162 "EHLO
+        frasgout.his.huawei.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726030AbgKZLgN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 06:36:13 -0500
+Received: from fraeml705-chm.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ChbHv5dh8z67Gc0;
+        Thu, 26 Nov 2020 19:34:03 +0800 (CST)
+Received: from lhreml724-chm.china.huawei.com (10.201.108.75) by
+ fraeml705-chm.china.huawei.com (10.206.15.54) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id
+ 15.1.2106.2; Thu, 26 Nov 2020 12:36:11 +0100
+Received: from [10.210.172.213] (10.210.172.213) by
+ lhreml724-chm.china.huawei.com (10.201.108.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.1913.5; Thu, 26 Nov 2020 11:36:10 +0000
+Subject: Re: [PATCH v2 0/4] perf drivers: Add sysfs identifier file
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Will Deacon <will@kernel.org>,
+        "zhangshaokun@hisilicon.com" <zhangshaokun@hisilicon.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Frank Li <frank.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "kernel-team@android.com" <kernel-team@android.com>,
+        "acme@kernel.org" <acme@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "irogers@google.com" <irogers@google.com>,
+        "jolsa@redhat.com" <jolsa@redhat.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linuxarm@huawei.com" <linuxarm@huawei.com>
+References: <1602149181-237415-1-git-send-email-john.garry@huawei.com>
+ <160631703729.2332128.13220150013299384201.b4-ty@kernel.org>
+ <2a24a5c9-fa9f-f402-9b43-29d1f8241a17@huawei.com>
+ <DB8PR04MB67957DF5D757E4A52DE177BCE6F90@DB8PR04MB6795.eurprd04.prod.outlook.com>
+From:   John Garry <john.garry@huawei.com>
+Message-ID: <bbb0b612-4d0b-2a15-9c2e-8f643f7a2ffe@huawei.com>
+Date:   Thu, 26 Nov 2020 11:35:48 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.1.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201126092711.1084518-1-vkoul@kernel.org>
+In-Reply-To: <DB8PR04MB67957DF5D757E4A52DE177BCE6F90@DB8PR04MB6795.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.210.172.213]
+X-ClientProxiedBy: lhreml707-chm.china.huawei.com (10.201.108.56) To
+ lhreml724-chm.china.huawei.com (10.201.108.75)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 02:57:10PM +0530, Vinod Koul wrote:
-> Add RPM power domain bindings for the SDX55 SoC
+On 26/11/2020 01:35, Joakim Zhang wrote:
+>> @Joakim, can you resend 3/4? And I think that we should keep the explicit
+>> support for "fsl,imx8m-ddr-pmu" as a good practice in imx_ddr_pmu_dt_ids[],
+>> while also adding the soc-specific sub compat string support
+> Yes, thanks John. I will follow up.
 > 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+OK, and I can look to advance the perf tool part now.
 
-Thanks,
-Mani
-
-> ---
->  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 1 +
->  include/dt-bindings/power/qcom-rpmpd.h                  | 5 +++++
->  2 files changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> index 8058955fb3b9..fe20a73f47ca 100644
-> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
-> @@ -22,6 +22,7 @@ properties:
->        - qcom,qcs404-rpmpd
->        - qcom,sc7180-rpmhpd
->        - qcom,sdm845-rpmhpd
-> +      - qcom,sdx55-rpmhpd
->        - qcom,sm8150-rpmhpd
->        - qcom,sm8250-rpmhpd
->  
-> diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
-> index 5e61eaf73bdd..9fa2d66fca4a 100644
-> --- a/include/dt-bindings/power/qcom-rpmpd.h
-> +++ b/include/dt-bindings/power/qcom-rpmpd.h
-> @@ -15,6 +15,11 @@
->  #define SDM845_GFX	7
->  #define SDM845_MSS	8
->  
-> +/* SDX55 Power Domain Indexes */
-> +#define SDX55_MSS	0
-> +#define SDX55_MX	1
-> +#define SDX55_CX	2
-> +
->  /* SM8150 Power Domain Indexes */
->  #define SM8150_MSS	0
->  #define SM8150_EBI	1
-> -- 
-> 2.26.2
-> 
+thanks,
+John
