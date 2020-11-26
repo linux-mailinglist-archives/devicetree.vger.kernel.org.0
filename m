@@ -2,108 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 259632C4FFE
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 09:08:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E005E2C5068
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 09:29:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388646AbgKZIHx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 26 Nov 2020 03:07:53 -0500
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37720 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731457AbgKZIHx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 03:07:53 -0500
-Received: by mail-wm1-f68.google.com with SMTP id h21so1403260wmb.2;
-        Thu, 26 Nov 2020 00:07:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=touMMcxtN/klkfBzKGmR1GBeAIVZ5Q/OLb3bh+krvqw=;
-        b=NHyfvK522HWNvxhnu8Aarb9k8q6E2+cvlxOlnssQJCf9zByQoDDjk8Kow9yB52g+tY
-         67Vz98N/Fr6WlrKgEMGhvd8ycppwakmbAziMNnCpLJKYztehM1Ckt40jcVVg69zh6gG/
-         v13lYTN59tCKCWL8qlZPl8skLijJ4HJe7rYZJaL1VMoUnA/e4sbtUckIkkc5xGdyeTax
-         v+n/6QMd0agzdlpGRMrVF2P5bfoWEQmIEuiPUwTs5lSmJoAElDWZQEu+lSLdyY7mhMJn
-         4DusXsnrTtnRAgYNds1uffJFlc+8QuUTn1lct0dfo/3dsCZJIXZHJsgwaX3m3gkpwkcb
-         iWhA==
-X-Gm-Message-State: AOAM531D7SCvCXfLyVsRnSwivQ30CJU6NMEOG8aAi2vSWS1PKD4IwrUv
-        fxEyB2dlXKH8BzjnAp3kGKM=
-X-Google-Smtp-Source: ABdhPJzBZ1+fYZhFRhcMpM8OBTLLHSNQoiR0ERzA+nGZZF28v4RH7uHopmtNRsmR6Xp2Medar4MN8Q==
-X-Received: by 2002:a1c:4e0f:: with SMTP id g15mr1927617wmh.160.1606378071210;
-        Thu, 26 Nov 2020 00:07:51 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id v20sm6904441wmh.44.2020.11.26.00.07.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 00:07:50 -0800 (PST)
-Date:   Thu, 26 Nov 2020 09:07:48 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Alice Guo <alice.guo@nxp.com>
-Cc:     Adam Ford <aford173@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 4/4] soc: imx8m: change to use platform driver
-Message-ID: <20201126080748.GC4347@kozik-lap>
-References: <20201124015949.29262-1-alice.guo@nxp.com>
- <20201124015949.29262-4-alice.guo@nxp.com>
- <CAHCN7x+xRNZAEU0Y_nRSsKE5UtSvHT4E5WLx_NvLncbQMndnbw@mail.gmail.com>
- <AM6PR04MB60533EAB39259666F522E55DE2F90@AM6PR04MB6053.eurprd04.prod.outlook.com>
+        id S2388695AbgKZI24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 03:28:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:60364 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726591AbgKZI24 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 03:28:56 -0500
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9C1D620872;
+        Thu, 26 Nov 2020 08:28:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1606379334;
+        bh=5KvXGI9RFJSJyRMweSifK1RqHqlX24baGxqNq/n4EiY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rz0R6dlG/wYGzKkon5TL5mSatmmC/5Ghn0hAQ1XO3Hi00GA+1BQxVBJi4pBN4hKV3
+         nVc/Cewdm3WOtJiBzpoWcz8VA9bvHV8GnwFG4mvEv8T/dNi5zipQ2bICpRSl/UBJoc
+         cJ/CCnAG7NR70B6xDqk0Bcad7FD3OdQMxJ7RMfkE=
+Date:   Thu, 26 Nov 2020 09:29:59 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Al Cooper <alcooperx@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, Jim Quinlan <jquinlan@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        Jiri Slaby <jirislaby@kernel.org>,
+        linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/3] serial: 8250: of: Check for
+ CONFIG_SERIAL_8250_BCM7271
+Message-ID: <X79nh3UUzZfH17Qs@kroah.com>
+References: <20201120194305.8847-1-alcooperx@gmail.com>
+ <20201120194305.8847-2-alcooperx@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <AM6PR04MB60533EAB39259666F522E55DE2F90@AM6PR04MB6053.eurprd04.prod.outlook.com>
+In-Reply-To: <20201120194305.8847-2-alcooperx@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 02:15:35AM +0000, Alice Guo wrote:
+On Fri, Nov 20, 2020 at 02:43:03PM -0500, Al Cooper wrote:
+> From: Jim Quinlan <jquinlan@broadcom.com>
 > 
+> This commit has of_platform_serial_probe() check specifically for the
+> "brcm,bcm7271-uart" and whether its companion driver is enabled. If it
+> is the case, and the clock provider is not ready, we want to make sure
+> that when the 8250_bcm7271.c driver returns EPROBE_DEFER, we are not
+> getting the UART registered via 8250_of.c.
 > 
-> > -----Original Message-----
-> > From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org> On
-> > Behalf Of Adam Ford
-> > Sent: 2020年11月25日 8:45
-> > To: Alice Guo <alice.guo@nxp.com>
-> > Cc: devicetree <devicetree@vger.kernel.org>; Peng Fan <peng.fan@nxp.com>;
-> > Sascha Hauer <s.hauer@pengutronix.de>; Linux Kernel Mailing List
-> > <linux-kernel@vger.kernel.org>; Krzysztof Kozlowski <krzk@kernel.org>; Rob
-> > Herring <robh+dt@kernel.org>; dl-linux-imx <linux-imx@nxp.com>; Shawn Guo
-> > <shawnguo@kernel.org>; arm-soc <linux-arm-kernel@lists.infradead.org>
-> > Subject: Re: [PATCH v6 4/4] soc: imx8m: change to use platform driver
-> > 
-> > On Mon, Nov 23, 2020 at 8:04 PM Alice Guo <alice.guo@nxp.com> wrote:
-> > >
-> > > Directly reading ocotp register depends on that bootloader enables
-> > > ocotp clk, which is not always effective, so change to use nvmem API.
-> > > Using nvmem API requires to support driver defer probe and thus change
-> > > soc-imx8m.c to use platform driver.
-> > >
-> > > The other reason is that directly reading ocotp register causes kexec
-> > > kernel hang because the 1st kernel running will disable unused clks
-> > > after kernel boots up, and then ocotp clk will be disabled even if
-> > > bootloader enables it. When kexec kernel, ocotp clk needs to be
-> > > enabled before reading ocotp registers, and nvmem API with platform
-> > > driver supported can accomplish this.
-> > >
-> > > Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> > > ---
-> > >
-> > The patch reads V6, but the change log only shows V2.  Can you elaborate on
-> > what has changed between V2 and V6?
-> > 
-> > adam
-> 
-> Hi,
-> 
-> Sorry. The order of changlog is reversed. Thank Adam for pointing out the problem, and thank Krzysztof for reviewing my patch.
-> Do I need to resend the patchset with the correct changelog order?
+> Signed-off-by: Jim Quinlan <jquinlan@broadcom.com>
+> ---
 
-No, no need.
+When forwarding on patches from others, always include your
+signed-off-by: as well, to ensure that you have reviewed this and are ok
+with it.  I can't take this as-is, sorry.
 
-Best regards,
-Krzysztof
+And why did you include linux-usb@vger for this patch series?
+
+thanks,
+
+greg k-h
