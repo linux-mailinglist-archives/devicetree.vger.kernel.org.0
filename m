@@ -2,152 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A3992C571C
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 15:30:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DF42C5847
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 16:29:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390020AbgKZO2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 09:28:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37748 "EHLO
+        id S2391363AbgKZP3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 10:29:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389951AbgKZO2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 09:28:15 -0500
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F0EC0613D4;
-        Thu, 26 Nov 2020 06:28:15 -0800 (PST)
-Received: by mail-ej1-x644.google.com with SMTP id jx16so2594016ejb.10;
-        Thu, 26 Nov 2020 06:28:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=afHSQLTHLwScibOaB2/Ixwl6R8JNhm0d7lLRx+ngzZo=;
-        b=hBXzxrei/MvFB3OISYjM8bBcdmNgJgNyIrWnesu5+fuGb9qsQA0d+J1zQhrNKAQgGi
-         J7dFJ3QFk5vpwND9TzdnX+CTz98JXMuGODmkIoPqFxwqOS5eGuejuqVvvt/BLtRDL6SK
-         bkMKkmPO396HDIr5e+W6Shpozz+yEVRQW9QQIbQ3l7HwJY/tErY4SiQAgo8LKxv407zW
-         tf9ktLeSsXvEefgjioJRwg20AWGagmzO+b1V6+eDNiH76uP3U2la5cqkMTfTfIzOegw/
-         HVnsE6n9bkwjcwD28QipzA7L3ndpx8wA7TpoB36D4uIJemG/ImgFIy7w4jaB+0Az1wL3
-         OPsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=afHSQLTHLwScibOaB2/Ixwl6R8JNhm0d7lLRx+ngzZo=;
-        b=kcz7A7osut5lnNWuqYRU8PfjtvDkCOwRgukWcWo0np0x3RE9Ta1lY4xriIPkzTaR1a
-         +kqM4Q9iJFFC9obhjcF886NxL80MqxWtVduzpV6s5p/ISwRa0D/BHDDCpDZdxnGv2HGi
-         ubmwTwCq0enkfsowtgO11WG/nocxKZZjBbEJWbp6TCuAPA9gxY6p9XrKYXi7UDH69xUT
-         2fCu4VBKYRYODq+dB4jkc3ke73Px5VMj2NxCYkx+VEoO9/MtDdAknCH+qgy80BlxM2oc
-         ltKZrlINYXXLUJY2mpHoffei/vXL7fQaHFMT/BWSLR4g1yXckfdOTPZxb1L52iuI6Gvj
-         cjcg==
-X-Gm-Message-State: AOAM533HDk5RsCyo4LM9tCGrrmVbnLEH6YAkFV0BJgRkDbCvkc4DbbiQ
-        +QY7jnNT/RnaroItyLOQNJw=
-X-Google-Smtp-Source: ABdhPJy75OQesPPME0B0LOXYXe0Df/KOFzgYzzK1P20HvvMJ1e3kqn/jdRXdxBruBl8tZBQQzVwvig==
-X-Received: by 2002:a17:906:2313:: with SMTP id l19mr2939327eja.443.1606400893991;
-        Thu, 26 Nov 2020 06:28:13 -0800 (PST)
-Received: from skbuf ([188.25.2.120])
-        by smtp.gmail.com with ESMTPSA id dk14sm3145765ejb.97.2020.11.26.06.28.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 06:28:13 -0800 (PST)
-Date:   Thu, 26 Nov 2020 16:28:12 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     George McCollister <george.mccollister@gmail.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller " <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/3] dsa: add support for Arrow XRS700x tag
- trailer
-Message-ID: <20201126142812.4jr3kskwqf76cx5d@skbuf>
-References: <20201125193740.36825-1-george.mccollister@gmail.com>
- <20201125193740.36825-2-george.mccollister@gmail.com>
- <20201125203429.GF2073444@lunn.ch>
- <20201126135004.aq2lruz5kxptmsvl@skbuf>
- <20201126140126.GL2075216@lunn.ch>
+        with ESMTP id S2391327AbgKZP3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 10:29:47 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 004D2C061A47
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 07:29:46 -0800 (PST)
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mtr@pengutronix.de>)
+        id 1kiJDL-000806-It; Thu, 26 Nov 2020 16:29:45 +0100
+Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mtr@dude03.red.stw.pengutronix.de>)
+        id 1kiJDK-00G3Fs-Tm; Thu, 26 Nov 2020 16:29:42 +0100
+From:   Michael Tretter <m.tretter@pengutronix.de>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     kernel@pengutronix.de, robh+dt@kernel.org,
+        hverkuil-cisco@xs4all.nl,
+        Michael Tretter <m.tretter@pengutronix.de>
+Date:   Thu, 26 Nov 2020 16:29:37 +0100
+Message-Id: <20201126152941.3825721-1-m.tretter@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201126140126.GL2075216@lunn.ch>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: mtr@pengutronix.de
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        metis.ext.pengutronix.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
+        version=3.4.2
+Subject: [PATCH 0/4] media: allegro: move driver out of staging
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 03:01:26PM +0100, Andrew Lunn wrote:
-> On Thu, Nov 26, 2020 at 03:50:04PM +0200, Vladimir Oltean wrote:
-> > On Wed, Nov 25, 2020 at 09:34:29PM +0100, Andrew Lunn wrote:
-> > > > +static struct sk_buff *xrs700x_rcv(struct sk_buff *skb, struct net_device *dev,
-> > > > +				   struct packet_type *pt)
-> > > > +{
-> > > > +	int source_port;
-> > > > +	u8 *trailer;
-> > > > +
-> > > > +	if (skb_linearize(skb))
-> > > > +		return NULL;
-> > >
-> > > Something for Vladimir:
-> > >
-> > > Could this linearise be moved into the core, depending on the
-> > > tail_tag?
-> > 
-> > Honestly I believe that the skb_linearize is not needed at all.
-> 
-> Humm
-> 
-> I'm assuming this is here in case the frame is in fragments, and the
-> trailer could be spread over two fragments? If so, you cannot access
-> the trailer using straight pointers. Linearize should copy it into one
-> buffer.
-> 
-> For the normal case of a 1500 byte frame, i doubt we have hardware
-> which uses multiple scatter/gather buffers. But for jumbo frames?
+Hello,
 
-In this particular case, I don't think that one byte can be in multiple
-fragments at once, unless it is a quantum byte. So skb_linearize should
-still be removed.
+With the V4L2 stateful encoder spec being finished, the Allegro encoder driver
+is ready to be moved from staging to mainline.
 
-Are you saying that we should do something like this? I would need to
-performance-test it:
+While not directly related, I used the opportunity to convert the dt-binding
+to YAML, to remove the custom draining state handling from the driver and to
+rename a badly named field in the MCU messages.
 
-diff --git a/net/dsa/dsa.c b/net/dsa/dsa.c
-index a1b1dc8a4d87..4c2065bec8d5 100644
---- a/net/dsa/dsa.c
-+++ b/net/dsa/dsa.c
-@@ -212,6 +212,13 @@ static int dsa_switch_rcv(struct sk_buff *skb, struct net_device *dev,
- 	if (!skb)
- 		return 0;
- 
-+	if (cpu_dp->tag_ops->tail_tag && cpu_dp->tag_ops->overhead > 1) {
-+		if (unlikely(skb_linearize(skb))) {
-+			dev_kfree_skb_any(skb);
-+			return 0;
-+		}
-+	}
-+
- 	nskb = cpu_dp->rcv(skb, dev, pt);
- 	if (!nskb) {
- 		kfree_skb(skb);
+Michael
 
-Also, since we are now finally touching the cacheline with tag_ops,
-maybe we could remove the copy of rcv() from struct dsa_port? Although
-there is a chance that this might destabilize things and could need a
-bit of tweaking to get right.
+v4l2-compliance 1.21.0-4682, 64 bits, 64-bit time_t
+v4l2-compliance SHA: 11da65eee7a2 2020-11-14 12:41:14
 
-> > > > +	if (pskb_trim_rcsum(skb, skb->len - 1))
-> > > > +		return NULL;
-> > >
-> > > And the overhead is also in dsa_devlink_ops, so maybe this can be
-> > > moved as well?
-> > 
-> > Sorry, I don't understand this comment.
-> 
-> I'm meaning, could that also be moved into the core? We seem to have
-> the needed information to do it in the core.
+Compliance test for allegro device /dev/video3:
 
-Ok, I got confused by the devlink reference.
-Currently the tag is always stripped by the tagger driver, because there
-are 3 cases:
-- tag is before Ethernet MAC DA
-- tag is before Ethernet Type
-- tag is before FCS
-We do not have a way to distinguish between cases 1 and 2 such that DSA
-could strip the tag in all cases and provide a uniform interface to all
-types of taggers.
+Driver Info:
+	Driver name      : allegro
+	Card type        : Allegro DVT Video Encoder
+	Bus info         : platform:a0009000.video-codec
+	Driver version   : 5.10.0
+	Capabilities     : 0x84208000
+		Video Memory-to-Memory
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04208000
+		Video Memory-to-Memory
+		Streaming
+		Extended Pix Format
+	Detected Stateful Encoder
+
+Required ioctls:
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video3 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+	test invalid ioctls: OK
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 16 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK (Not Supported)
+
+Test input 0:
+
+Streaming ioctls:
+	test read/write: OK (Not Supported)
+	test blocking wait: OK
+	Video Capture: Captured 60 buffers
+	test MMAP (select): OK
+	Video Capture: Captured 60 buffers
+	test MMAP (epoll): OK
+	test USERPTR (select): OK (Not Supported)
+	test DMABUF: Cannot test, specify --expbuf-device
+
+Total for allegro device /dev/video3: 50, Succeeded: 50, Failed: 0, Warnings: 0
+
+Michael Tretter (4):
+  media: allegro: move driver out of staging
+  dt-bindings: media: allegro,al5e: Convert to YAML
+  media: allegro: remove custom drain state handling
+  media: allegro: rename stream_id to dst_handle
+
+ .../bindings/media/allegro,al5e.yaml          |  95 +++++++++
+ .../devicetree/bindings/media/allegro.txt     |  43 -----
+ MAINTAINERS                                   |   3 +-
+ drivers/media/platform/Kconfig                |  15 ++
+ drivers/media/platform/Makefile               |   1 +
+ .../platform}/allegro-dvt/Makefile            |   0
+ .../platform}/allegro-dvt/allegro-core.c      | 180 +++++-------------
+ .../platform}/allegro-dvt/allegro-mail.c      |   8 +-
+ .../platform}/allegro-dvt/allegro-mail.h      |   4 +-
+ .../platform}/allegro-dvt/nal-h264.c          |   0
+ .../platform}/allegro-dvt/nal-h264.h          |   0
+ drivers/staging/media/Kconfig                 |   2 -
+ drivers/staging/media/Makefile                |   1 -
+ drivers/staging/media/allegro-dvt/Kconfig     |  16 --
+ drivers/staging/media/allegro-dvt/TODO        |   4 -
+ 15 files changed, 167 insertions(+), 205 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/allegro,al5e.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/allegro.txt
+ rename drivers/{staging/media => media/platform}/allegro-dvt/Makefile (100%)
+ rename drivers/{staging/media => media/platform}/allegro-dvt/allegro-core.c (95%)
+ rename drivers/{staging/media => media/platform}/allegro-dvt/allegro-mail.c (98%)
+ rename drivers/{staging/media => media/platform}/allegro-dvt/allegro-mail.h (98%)
+ rename drivers/{staging/media => media/platform}/allegro-dvt/nal-h264.c (100%)
+ rename drivers/{staging/media => media/platform}/allegro-dvt/nal-h264.h (100%)
+ delete mode 100644 drivers/staging/media/allegro-dvt/Kconfig
+ delete mode 100644 drivers/staging/media/allegro-dvt/TODO
+
+-- 
+2.20.1
+
