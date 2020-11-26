@@ -2,107 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E0882C5536
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:26:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 59D772C55F5
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:40:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389916AbgKZNZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 08:25:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55948 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389909AbgKZNZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:25:19 -0500
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1010DC0613D4
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:19 -0800 (PST)
-Received: by mail-ed1-x543.google.com with SMTP id d18so2261620edt.7
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XDLtXgPRYNIU5KZqUuEFJ0xjYJUrkaixe/B85a0AE60=;
-        b=Pn+ccC80nw0FBsnlF2fafDplri0xDFXypitGFO6yJ6emiiAEd6RqLlta6WV7gXLO6i
-         lHDBp951G1lo+zMU8zuoP3b6dnzf1LdwHysUYW6GT6ENshSW5QEQ+eiRe6cdZGtrDNV9
-         +b56tbtwLu2a5CamdQPxHtRRa9c6/G7eoTS0JHFV8BdIottjJNQTRCbaj7CjPNHzsTkG
-         3hVezh2hvagWUyxuwjTHNpstvFUc6dPvS3WqvouIJb364234s2DU8fgal78fbnhFmoH6
-         OqXpn9xUq5qUneD9qA0li1LdQbFITHjEeaIsprOMF1qWQyscXrc6ijJVzsDBpQn4gR1y
-         YJmg==
+        id S2390575AbgKZNj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 08:39:27 -0500
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:45963 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390472AbgKZNj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:39:26 -0500
+Received: by mail-ot1-f66.google.com with SMTP id k3so1867888otp.12;
+        Thu, 26 Nov 2020 05:39:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=XDLtXgPRYNIU5KZqUuEFJ0xjYJUrkaixe/B85a0AE60=;
-        b=Vmy9euejANiuIh6AKAoxbqMEcvQrMv3OC1kmZlNByxkliHMHJoQqj/Ko/79Xiv5z22
-         O8zrbVjV6w+8/VpeHofXDOE2nP0KXQWVBDWg4kkdvKNM8DOpdcyAsDmNbnOn3KjpUErV
-         JcmrnEx5o5W1moYjUTUh7quDdi3VYyBylwZ3ncWvjr4qBr4k9BJG1cAHFpp4fHTYw8uN
-         C0UBpywaHWVZO/AnO30JVS26LVyZANEiV+po3RrcjMFntp2EDJNrluyj8kt01z+I7rLW
-         KwxYQxCj2CB6SFZ7eX6xPRozJFkvghRrUka6bHltTU2W3va0ABL8kKemDJX0qh9XYGIk
-         HWug==
-X-Gm-Message-State: AOAM533TwQVWqmWY80C8NZLpSLMlBQ/JfVei2EB/AJn07/2Yv/fnMpa6
-        osnhyqlW7tCn/Li7Ot3ReNvrYQ==
-X-Google-Smtp-Source: ABdhPJyzjPfF/wr0GrS7baTxzErm7feMQhebOrdLeWeYARQ6AOMcnChD5z7GkRAyPodGsIxkFssIIw==
-X-Received: by 2002:a05:6402:143a:: with SMTP id c26mr2164024edx.131.1606397117830;
-        Thu, 26 Nov 2020 05:25:17 -0800 (PST)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id 65sm3303650edj.83.2020.11.26.05.25.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 26 Nov 2020 05:25:17 -0800 (PST)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 5/5] ARM: zynq: Convert at25 binding to new description on zc770-xm013
-Date:   Thu, 26 Nov 2020 14:25:04 +0100
-Message-Id: <be2c1125d98386033e182012eb08986924707a76.1606397101.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <cover.1606397101.git.michal.simek@xilinx.com>
-References: <cover.1606397101.git.michal.simek@xilinx.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EBEmuU91pYqLfQ3YGZGbk+yq54IRZktH6WhNjM47s9I=;
+        b=tFIHTnEyqYiduRZ3ZvlVAofsOcU39W6Vd8uTy5xn6bH8LSXe0pdA2MNCnIn/QjSvvX
+         Y/4OCUKBeWZblQAGz/YvkrnhIiWVy8SkH7DM+d6KJeGo4PBj7ywZTtw6H0KOsk2D//9E
+         EduRpv45zqNbs++tJfNwk40yvkghr4Z4lAvr3wDc4NSVIVYLqtqbORULha+7zo4z/O2A
+         Yy3bhA8HKUxDd681oy8UyoOPQW54ejWsxMNeBU5QCpcauiUzZGDKWG6EOoS3SM3ouA3e
+         WuSmyHrvLiGTtaly2dcv94InuJccNzz09ebj7c6DqSsvAWuC2SdJCO0TEb6w0uktbVZB
+         kskQ==
+X-Gm-Message-State: AOAM533gGx0EE3nS0/gnXzUTi3vvAAzwkeQCnvdGkjo0Nmk69E2hJgWY
+        xI638a+kN3cGXFz8mhlg5LlbcTOQ4K/luutVj+A=
+X-Google-Smtp-Source: ABdhPJyQuVrEtrEM865mHm51prMFOdSEfEfHVcshVA+1GyxtMBdVjPX52mxFA8+Xfw/klNI/acrafaOcpwgnBGhU614=
+X-Received: by 2002:a9d:686:: with SMTP id 6mr1970874otx.107.1606397965198;
+ Thu, 26 Nov 2020 05:39:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201126103053.29881-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20201126103053.29881-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20201126103053.29881-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 26 Nov 2020 14:39:14 +0100
+Message-ID: <CAMuHMdW_Ov+vqymyqX-GO_8ifNaLAaGLayrpHzvAFD7kn_f0Zw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Separate out
+ ov5640 nodes
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit f8f79fa6bb25 ("dt-bindings: at25: convert the binding document
-to yaml") converted binding to yaml and 3 deprecated properties pop up.
+Hi Prabhakar,
 
-The patch is fixing these warnings:
-.../zynq-zc770-xm013.dt.yaml: eeprom@2: 'pagesize' is a required property
-.../zynq-zc770-xm013.dt.yaml: eeprom@2: 'size' is a required property
-.../zynq-zc770-xm013.dt.yaml: eeprom@2: 'address-width' is a required property
-From schema: .../Documentation/devicetree/bindings/eeprom/at25.yaml
+On Thu, Nov 26, 2020 at 11:31 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> The camera daughter board can also be connected to 8-bit ov7725 sensors,
+> so in preparation for configurable option to choose depending on the
+> camera's connected separate out ov5640 nodes in a dtsi file.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-by converting them to new binding.
+Thanks for your patch!
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
- arch/arm/boot/dts/zynq-zc770-xm013.dts | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+However, I think this can still be improved upon.  As it's a bit difficult
+to explain, I'll send an updated version of your series with my
+suggestions applied.
 
-diff --git a/arch/arm/boot/dts/zynq-zc770-xm013.dts b/arch/arm/boot/dts/zynq-zc770-xm013.dts
-index 4ae2c85df3a0..38d96adc870c 100644
---- a/arch/arm/boot/dts/zynq-zc770-xm013.dts
-+++ b/arch/arm/boot/dts/zynq-zc770-xm013.dts
-@@ -63,13 +63,12 @@ &spi0 {
- 	num-cs = <4>;
- 	is-decoded-cs = <0>;
- 	eeprom: eeprom@2 {
--		at25,byte-len = <8192>;
--		at25,addr-mode = <2>;
--		at25,page-size = <32>;
--
- 		compatible = "atmel,at25";
- 		reg = <2>;
- 		spi-max-frequency = <1000000>;
-+		size = <8192>;
-+		address-width = <16>;
-+		pagesize = <32>;
- 	};
- };
- 
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.29.2
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
