@@ -2,174 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 075382C4B1C
-	for <lists+devicetree@lfdr.de>; Wed, 25 Nov 2020 23:53:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 073E32C4CA2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 02:32:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728869AbgKYWxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 17:53:22 -0500
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:40109 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728862AbgKYWxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 17:53:21 -0500
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 6B88F5C00BD;
-        Wed, 25 Nov 2020 17:53:20 -0500 (EST)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Wed, 25 Nov 2020 17:53:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm1; bh=rDCqF/6BWwTlGiTI6jgr+wyA4epS+Rk
-        y7smBnS5oX7k=; b=Cwi0ax+gMfy1aXoVZafGL82507AbgSb3+cxI6jILb9FYs6d
-        0LnPlWpQnCbnGIHJUEeNtjipXrvLb4QSjHvTw7iWupsn+eNIO6f6TMdpLsxNi8NV
-        VPDo/ZLmkYIwcAEzuwWv4nmbGdG3adIv6McuBQVeCsCmUPB9WcqFwBCHfYvitbD1
-        Kjs+lWR+iViXoGvQjJt+oBoa17gllsnqZg4P1xnMIrDWwZqYRAqUgYUHAiOAkFsb
-        xBG1YDAvXnqhUNgKiGikHuZg+JJbkFFyOojvSnyu8kKirbZBqgOrSjzr/QKCcvHr
-        WpaAX+fLvw6iKGINZW9xU/hGJhAu2V94maTcmbQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=rDCqF/
-        6BWwTlGiTI6jgr+wyA4epS+Rky7smBnS5oX7k=; b=LH4ic9yCPOiT+CLtiR5FGG
-        oFBEI7YCcxcdzEZTuuc2g6S9AGv7tPO7ddhjHie7VJb3q+9yMvHJbBVHeeB4aK2g
-        MzctSTYlgsGpvvQJGYttfrnIEveZ5jQn/yHhG5OCMfJvuNTDhYj29q4Hy0yy0PEe
-        JM52ecBrbeYpYM2UTerf74SklKf6BNYqi97YbbQeBwgo4DKuGFlJJk5rzIKkvgB5
-        1CvTmNymmXxW6/n5hYyD8+99yUrHkGXHSIPe0dC/CqvBtVMSfKQeZZXqu0KcuBuf
-        SbLgqhl1h3GYmVl7XSYE5ihd0IU+yefVRuhF5w10NWeW+amMBG56R4m0Bqpngdrg
-        ==
-X-ME-Sender: <xms:X-C-X3dCYLAQkzRklE-5AtPYnWjzxqm8PIlQ34JK56W6scvpqYjfdw>
-    <xme:X-C-X9NSXVQ-3PnVzOHmX0dnHE4xcJwHUeRAnBAXevS39g8W0zkMSz2tI1BNj6XIn
-    _F6Gtb2RgJ4uaKM-g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudehuddgtdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhephefhfeekgfekudevheffheeihedujeefjeevjeefudfgfeeutdeuvdeh
-    hfevueffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:X-C-XwguChDjSAPpxwpyAO9qgzWWwlq44qX_tHv9QMiRkQISINzMKQ>
-    <xmx:X-C-X4819J0g8oIthXbDMuMponYkU9acyNIhbtBZD2uIWZCfHODAjw>
-    <xmx:X-C-XzsMMUeYU816bdmd6MjIfgUl39U9ZPKDY3ledBh2NXgLJxgmJQ>
-    <xmx:YOC-X883XcAHt3lJUpzFJwdMuNjbuTUoocr8GOl9dP2YQSK8vrgaPA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 676D1E00B3; Wed, 25 Nov 2020 17:53:17 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-622-g4a97c0b-fm-20201115.001-g4a97c0b3
-Mime-Version: 1.0
-Message-Id: <e3c4f1a8-4fa0-4e2a-be7c-763f733f0cdb@www.fastmail.com>
-In-Reply-To: <CAPDyKFrC9vp5gtpFC5L1K17uN059GsJ2zF4f7-_=sFEQ5BBRpw@mail.gmail.com>
-References: <20201123063004.337345-1-andrew@aj.id.au>
- <20201123063004.337345-2-andrew@aj.id.au>
- <CAPDyKFrC9vp5gtpFC5L1K17uN059GsJ2zF4f7-_=sFEQ5BBRpw@mail.gmail.com>
-Date:   Thu, 26 Nov 2020 09:22:58 +1030
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Ulf Hansson" <ulf.hansson@linaro.org>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        DTML <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH v3 1/3] mmc: sdhci-of-aspeed: Expose phase delay tuning
-Content-Type: text/plain
+        id S1732013AbgKZBa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 20:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58580 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730646AbgKZBa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 20:30:57 -0500
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBDD1C0613D4;
+        Wed, 25 Nov 2020 17:30:56 -0800 (PST)
+Received: by mail-pl1-x641.google.com with SMTP id bj5so326592plb.4;
+        Wed, 25 Nov 2020 17:30:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=dqn3xYEOmqiWFbZO0kfu1ACxuY/6aBHVumYvBc1mBoA=;
+        b=ZejAxetQjuL9b5BFzW3CaRb2QH5gOBMLcv042ZzrSUfH0WtWteGbmpx8AVsVRB/RcV
+         iBE7H4UZ6iOBt5CoXPyPhuSiS8zkc5psHWLxbK0H6XC4AMz7K4/RfTiuZsxs+p/XY+BU
+         CD3lNlIts1y56klABDxQ0NgBW5BKH9gKEbTdoy14QHm2N7sovMckEMxb8oF2Gerlt5wN
+         C7ar8NMiOwvR0s76kd9XoHH+NSMFT/cRzWZ8Amh/7JfeZgDlfQ28L0ID7kfIDF1rp6HQ
+         0JUlA0qt8/vGEZG/5jAupDqdt9wtYsuJNOwXCon1KjBBDnmuHTvpw6F9dCji11Yci458
+         pkOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dqn3xYEOmqiWFbZO0kfu1ACxuY/6aBHVumYvBc1mBoA=;
+        b=ECaTwvMoMW0rgH1cGmjWNyGkEGVmAtxJo5ElXxS58OduoHwfQre6be2XtO/76LQdtW
+         fY/Cum5aveXcz8fBwCJam56iha3xvlh3ct1bEVu8PQywyaWgbRJVA0wKTjjeqnYORWfr
+         vpek37AlUAf8iHzgKficishUIBAkWX14SNUXieGB5WDsv36eh8EF4hO3XrEOnTTc9Eno
+         gCFxt0gCbJX5EkBps9m/DCEJUVnjnNqjH9zv2S0Is9Nv6vnief7lvjMtAK/jM+1Expse
+         do9Ja99E7Efz2LUCi5SLOlHL5+O93Z2zrb9vC4/hp7IsJgU1+RySqclzB55UGv6y4tK8
+         TDdQ==
+X-Gm-Message-State: AOAM530zfvnKg/YSU4STvL58m83sQM57HXCSQY3gbM/ChZRpNF8ilTT3
+        tWooWafkUaSvUo7j9EatYcEAaGjnKFQ=
+X-Google-Smtp-Source: ABdhPJyPcJW4M0rh5XdDUvhDvoNNBZz9m21WAqCZ1saP4Nn/BaGHcuAITWLYDny2HKRrK2k3r0yR7w==
+X-Received: by 2002:a17:902:778f:b029:da:2f5:ed6e with SMTP id o15-20020a170902778fb02900da02f5ed6emr691901pll.52.1606354255734;
+        Wed, 25 Nov 2020 17:30:55 -0800 (PST)
+Received: from [10.230.28.242] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id l76sm3124831pfd.82.2020.11.25.17.30.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Nov 2020 17:30:55 -0800 (PST)
+Subject: Re: [PATCH net-next v2 3/3] dt-bindings: net: dsa: add bindings for
+ xrs700x switches
+To:     George McCollister <george.mccollister@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20201125193740.36825-1-george.mccollister@gmail.com>
+ <20201125193740.36825-4-george.mccollister@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <778f8c76-c844-4b87-5119-588b29e616f5@gmail.com>
+Date:   Wed, 25 Nov 2020 17:30:53 -0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.5.0
+MIME-Version: 1.0
+In-Reply-To: <20201125193740.36825-4-george.mccollister@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On Wed, 25 Nov 2020, at 00:42, Ulf Hansson wrote:
-> On Mon, 23 Nov 2020 at 07:30, Andrew Jeffery <andrew@aj.id.au> wrote:
-> >
-> > The Aspeed SD/eMMC controllers feature up to two SDHCIs alongside a
-> > a set of "global" configuration registers. The global configuration
-> > registers house controller-specific settings that aren't exposed by the
-> > SDHCI, one example being a register for phase tuning.
-> >
-> > The phase tuning feature is new in the AST2600 design. It's exposed as a
-> > single register in the global register set and controls both the input
-> > and output phase adjustment for each slot. As the settings are
-> > slot-specific, the values to program are extracted from properties in
-> > the SDHCI devicetree nodes.
-> >
-> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+On 11/25/2020 11:37 AM, George McCollister wrote:
+> Add documentation and an example for Arrow SpeedChips XRS7000 Series
+> single chip Ethernet switches.
 > 
-> [...]
-> 
-> >
-> > +static void
-> > +aspeed_sdhci_of_parse_phase(struct device_node *np, const char *prop,
-> > +                           struct aspeed_sdhci_phase_param *phase)
-> > +{
-> > +       int degrees[2] = {0};
-> > +       int rc;
-> > +
-> > +       rc = of_property_read_variable_u32_array(np, prop, degrees, 2, 0);
-> > +       phase->set = rc == 2;
-> > +       if (phase->set) {
-> > +               phase->in_deg = degrees[0];
-> > +               phase->out_deg = degrees[1];
-> > +       }
-> > +}
-> > +
-> > +static int aspeed_sdhci_of_parse(struct platform_device *pdev,
-> > +                                struct aspeed_sdhci *sdhci)
-> > +{
-> > +       struct device_node *np;
-> > +       struct device *dev;
-> > +
-> > +       if (!sdhci->phase_desc)
-> > +               return 0;
-> > +
-> > +       dev = &pdev->dev;
-> > +       np = dev->of_node;
-> > +
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-legacy",
-> > +                                   &sdhci->phase_param[MMC_TIMING_LEGACY]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs",
-> > +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-sd-hs",
-> > +                                   &sdhci->phase_param[MMC_TIMING_SD_HS]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr12",
-> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR12]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr25",
-> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR25]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr50",
-> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR50]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-sdr104",
-> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_SDR104]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-uhs-ddr50",
-> > +                                   &sdhci->phase_param[MMC_TIMING_UHS_DDR50]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-ddr52",
-> > +                                   &sdhci->phase_param[MMC_TIMING_MMC_DDR52]);
-> > +       aspeed_sdhci_of_parse_phase(np, "clk-phase-mmc-hs200",
-> > +                                   &sdhci->phase_param[MMC_TIMING_MMC_HS200]);
-> > +
-> > +       return 0;
-> > +}
-> 
-> If it's not too much to ask, would you mind adding a helper function
-> to the mmc core, as to let us avoid open coding? Then we should be
-> able to move the sdhci-of-arasan driver to use this as well.
+> Signed-off-by: George McCollister <george.mccollister@gmail.com>
 
-Yes, I can look at it and send a v4.
-
-> 
-> Perhaps the definition of the helper could look something like this:
-> int mmc_of_parse_clk_phase(struct mmc_host *host, struct mmc_clk_phase
-> *phases) (or something along those lines)
-> 
-> I think the struct mmc_clk_phase could be something that is stored in
-> the host specific struct, rather than in the common struct mmc_host
-> (to avoid sprinkle it with unnecessary data).
-> 
-> Moreover, we should probably use the device_property_* APIs instead of
-> the DT specific of_property_*.
-
-Yep, thanks for the pointers.
-
-Andrew
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
