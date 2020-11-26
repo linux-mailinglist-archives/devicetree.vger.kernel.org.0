@@ -2,87 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D77C82C4CBC
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 02:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B92782C4CC7
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 02:48:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731578AbgKZBmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 25 Nov 2020 20:42:18 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48240 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731508AbgKZBmR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 25 Nov 2020 20:42:17 -0500
-Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.4])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E364020B1F;
-        Thu, 26 Nov 2020 01:42:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606354936;
-        bh=1n7rTiSq/Dl9ElQSRoo+DQUTBlTZJshQf6dUa/6L/Yg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tt7UxcPh2Kf5CU4/rC7P1QT91+o/GEI3er56O1WMH+wgM7SY03wr9QReKx+gmAscc
-         KC0+dFqwIoGCEB3kuNMQomc+OvI6mSCWKxJ/7YOy3nGMGJX7FmCexAJ+kXUwEEubmR
-         V1gF/6fIA9o/lHKcP84rB4uMQU4R6y5aW8ykREcA=
-Date:   Wed, 25 Nov 2020 17:42:14 -0800
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     George McCollister <george.mccollister@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller " <davem@davemloft.net>, netdev@vger.kernel.org,
+        id S1731709AbgKZBrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 25 Nov 2020 20:47:25 -0500
+Received: from esa2.hgst.iphmx.com ([68.232.143.124]:25409 "EHLO
+        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731621AbgKZBrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 25 Nov 2020 20:47:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1606356392; x=1637892392;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=DLGlYRkG0jnb7Ld5Lv0oGqxXJnOL+HsDeHSz7diUnGM=;
+  b=gWRTqj5eXYsm96VbHDu75tqTqOxNBJoKDu+n6ey6UNPQVkdsxpBkAMkr
+   NtsaqhR/5Li3FFAzQHGmyyguo5qFoA2yVj0348JLotTcyK7Js/bjbcC94
+   jhvIdAGtSpB7NxL2LuEMxPD7CtbHuSiiBNOpLET7E2tdN8mcDwxlv91ER
+   8f6CZ8ZRs4cfSuMHz3Zjd4eUI+cR9dLf2wHl2RgwsAXnbSEjV3JkThnMA
+   +fS2ZqOSkNuzl0DCTCWnMSLPkcOnmBA8IaoahJd9X6I4r7uiFZcXG5Ooc
+   vyoj2DXBOlUzq+ZWTXk2SB5W4ND6qJA6FAty27KZ7tMqTNLs3xhTKacOY
+   w==;
+IronPort-SDR: mtQKRCI8Y9D6N2B4Lu+9NH8Bs60qbGLSK0hdjJLLWsGrO0W7QpKme4vyNlVrcMSFvHJVOOeSn1
+ 4R87UY8o+Z6K1HdIQpwN/7Ofaa8SMHV0HGOPbWOuTP2pcTZwiz5xEtn0sMM1tNDAjWu2PbcpRg
+ ZZyobHLj2rwD2rgnpNjS5JMfd67l8WkCbfuflsWoLy4p/6e++fPlLSX4GOSMdy6IQeTvabD6vh
+ 6+0UnoAqYkoheZ7MPmHw6JiOqfWK7qhvoyX/GgNPGUA+ihoa76AfDSa8/K4yipwyLqedffLWLQ
+ axk=
+X-IronPort-AV: E=Sophos;i="5.78,370,1599494400"; 
+   d="scan'208";a="257148714"
+Received: from uls-op-cesaip01.wdc.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 26 Nov 2020 10:06:31 +0800
+IronPort-SDR: WKgOhH/VZRO91aCXc4YYZp/E5D/cdTPW8VzB4akvKpljZXdFFIVp+9aBFsptvZAot4gP+Xhlva
+ FRORNF5l4rKE2yFRZXdVMN+1uBfQUqKlg=
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Nov 2020 17:33:06 -0800
+IronPort-SDR: gdUSKvmgWGdKcd58p8gXhnwudIOyefHZ4K3j/HMoAONHHdBAvMPhJcUZ+RmM7kZm8wmXF/uU1h
+ A4OrFNosJaKw==
+WDCIronportException: Internal
+Received: from 57m2vf2.ad.shared (HELO twashi.fujisawa.hgst.com) ([10.84.71.135])
+  by uls-op-cesaip02.wdc.com with ESMTP; 25 Nov 2020 17:47:22 -0800
+From:   Damien Le Moal <damien.lemoal@wdc.com>
+To:     Serge Semin <fancer.lancer@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
- driver
-Message-ID: <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
-In-Reply-To: <20201125193740.36825-3-george.mccollister@gmail.com>
-References: <20201125193740.36825-1-george.mccollister@gmail.com>
-        <20201125193740.36825-3-george.mccollister@gmail.com>
+Subject: [PATCH v3 0/1] Fix dwapb gpio snps,nr-gpios property handling
+Date:   Thu, 26 Nov 2020 10:47:15 +0900
+Message-Id: <20201126014716.34545-1-damien.lemoal@wdc.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 25 Nov 2020 13:37:39 -0600 George McCollister wrote:
-> Add a driver with initial support for the Arrow SpeedChips XRS7000
-> series of gigabit Ethernet switch chips which are typically used in
-> critical networking applications.
-> 
-> The switches have up to three RGMII ports and one RMII port.
-> Management to the switches can be performed over i2c or mdio.
-> 
-> Support for advanced features such as PTP and
-> HSR/PRP (IEC 62439-3 Clause 5 & 4) is not included in this patch and
-> may be added at a later date.
-> 
-> Signed-off-by: George McCollister <george.mccollister@gmail.com>
+A single patch to fix handling of the "snps,nr-gpios" property of the
+Synopsis DW apb gpio controller. Parsing of this deprecated property
+triggers a device tree parsing error in of_link_to_suppliers().
 
-You need to add symbol exports otherwise this won't build with
-allmodconfig:
+This patch is extracted from the series "RISC-V Kendryte K210
+support improvements".
 
-ERROR: modpost: "xrs7004f_info"
-[drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined! ERROR: modpost:
-"xrs7004e_info" [drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined!
-ERROR: modpost: "xrs7003f_info"
-[drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined! ERROR: modpost:
-"xrs7003e_info" [drivers/net/dsa/xrs700x/xrs700x_mdio.ko] undefined!
-ERROR: modpost: "xrs7004f_info"
-[drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined! ERROR: modpost:
-"xrs7004e_info" [drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined!
-ERROR: modpost: "xrs7003f_info"
-[drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined! ERROR: modpost:
-"xrs7003e_info" [drivers/net/dsa/xrs700x/xrs700x_i2c.ko] undefined!
+Changes from v2:
+* Move the warning about the use of the deprecated property name from
+  the dwapb gpio driver initialization into the OF property parsing
+  code as suggested by Serge. This removes the second patch that was
+  in v2 of the series.
 
-> +	{XRS_RX_UNDERSIZE_L, "rx_undersize"},
-> +	{XRS_RX_FRAGMENTS_L, "rx_fragments"},
-> +	{XRS_RX_OVERSIZE_L, "rx_oversize"},
-> +	{XRS_RX_JABBER_L, "rx_jabber"},
-> +	{XRS_RX_ERR_L, "rx_err"},
-> +	{XRS_RX_CRC_L, "rx_crc"},
+Changes from v1:
+* Extracted the patches from the series "RISC-V Kendryte K210 support
+  improvements".
+* Added a warning about the use of the deprecated property name in the
+  dwapb gpio driver initialization
 
-As Vladimir already mentioned to you the statistics which have
-corresponding entries in struct rtnl_link_stats64 should be reported
-the standard way. The infra for DSA may not be in place yet, so best 
-if you just drop those for now.
+Damien Le Moal (1):
+  of: Fix gpios supplier parsing
+
+ drivers/of/property.c | 20 +++++++++++++++++++-
+ 1 file changed, 19 insertions(+), 1 deletion(-)
+
+-- 
+2.28.0
+
