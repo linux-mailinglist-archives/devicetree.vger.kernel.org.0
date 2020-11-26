@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3C52C553B
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:26:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3985D2C5532
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:26:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389946AbgKZNZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 08:25:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55924 "EHLO
+        id S2389865AbgKZNZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 08:25:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389838AbgKZNZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:25:12 -0500
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CD8AC0613D4
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:12 -0800 (PST)
-Received: by mail-ed1-x542.google.com with SMTP id t9so2259800edq.8
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:12 -0800 (PST)
+        with ESMTP id S2389829AbgKZNZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:25:14 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F03F9C0613D4
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:13 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id k1so2234961eds.13
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ZOxHaFaYSHFSFS1HRWVj0XZDRPEipBxeH9QarBmXRCs=;
-        b=zikRDujfljA+ugW+Idv5HcQrqXcJ3t0HBBSZIfp1oxoAMLeIC7sj6i/800WlQDR5DV
-         7MnO6otLT//SAba7JyLznoLNtRdnAseDHmW28Bd13s1LKHHo9LTTn9RlD/N2MW3EWtuf
-         vEDR7RE653Vdp2j98LAjihHkchl4l6OofMXD90V3MldklSvCiQYS+TV/sm+CIdaZ/At8
-         +MFaYG/Hs9ZctyvgJRLdiqU0EQEgyR+1l4L3Ro2pC2zzxnPoDpG3BgXjJgdOvIeabXYp
-         XWmdZUFJEo7kJG5Q9EKXzJnMWfHmDdGaL+IrBWNe1BzHHkNAIGE0gXvAOXBjws6Yc8IH
-         hSOg==
+        bh=RrcIvsH9Hjzci43TYB8Ej2o1CgDZS38SPJarDszE6Y4=;
+        b=AYF80LwMV4eBPKCE/E7YzXAdLntyRCTW9ZM9n2ATa9Wbu3qoI8UrBs9/ZF2pK1ja1p
+         vxWfzkhMxiQhjYm+8WFfoq7/0xLHby4uyQ1B41QC37vEG3vLccMpmRuEzF9opnwW08c+
+         OWgKUG6d9DdSLWVjzy/Sbel76lfhlA3t4+UoxJZQMW04zktPeSUYd9NCLWE+9cDeZFdj
+         Z4ot2uLW4Qu7sROoqPWFIhOdBrqP+zVOSdYKnhBLqt4oLF+WUabEJc/t49XCHxYnCuh6
+         cWFiG8KSHUsgodfl91DvP7DUL96frNo4Fd5hBVxMSnz7KNxiXg+JXV8PFxgGGT+mAdWk
+         ZrHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=ZOxHaFaYSHFSFS1HRWVj0XZDRPEipBxeH9QarBmXRCs=;
-        b=Iqhre8rK/6qeHQTTqQ013c4t1ZPmg+EkmY1tMs/T3/Xjsg7+asJLE3mDryOT+kdHq1
-         EgAYqc9HobLKuGyJ7VeDsaOP5GZKJz7aGVEwx7FFhPrp4PFKl3CS11vLuWGr4Nnd+8e4
-         xl70s2xASfVoriXnd4fhHL6JkK2igoW461LHgOZife/4zmgykyupmvhxmb+Gy8UYcTYt
-         tDLyfN/C9TN+Fdhz8Zf96fx59lu6XTywBwvnk0vcqerTZRx4iSFx++08F8PWQsMJn5my
-         V/gcrGiDsYP2AfxtKqBwIJ47MvEktvUrABJo/SIZiR1HpHeJniYCJKqyJPia1JRdTXme
-         jf1w==
-X-Gm-Message-State: AOAM531kPr30UNf0VBEAU5RQEFhznLBKe/K29hI989cNXj+Bg8rAgNAJ
-        oUjxXeKWOHBnZjxvAzSlmfTwwg==
-X-Google-Smtp-Source: ABdhPJyj0gtxjYuuA9vLFsINh97ecsWvj9dhXqC3MUV/pLtVaNiWoaNjmnMod3suvOsH4bXEzYqf9g==
-X-Received: by 2002:a05:6402:1ac4:: with SMTP id ba4mr2494212edb.383.1606397111017;
-        Thu, 26 Nov 2020 05:25:11 -0800 (PST)
+        bh=RrcIvsH9Hjzci43TYB8Ej2o1CgDZS38SPJarDszE6Y4=;
+        b=meT2Bkx/aluugYnxdC7hfxVdiUeDN+agJOGnpr0sohwE6sTy6B4nV1XDIOA6AwXRWR
+         r03ljh9cUl3zKAF4mMx5UApZ4+Yt03ZpvWeIvkCZ7YRlP5dyVoIPjMoLTR5Yc9raZWis
+         8wlcxIjdUfFqewytB8WQJLzYRNkI5NWyqA1MooaY7+/9VU4BLoXzUReGjmzbY/igJ7jf
+         tAzSEhguDeOb2OsEgNyKrXzosmGuX6J0Lrp+D9e7JlBfMX5aOYsK129emFmaaPpKgySZ
+         IjADfAl2YSpuAclKRJyZx2NqutUnKHYVt4r2oDbYEwpYQbrIZKebhqrbyM3Asw/0iOfx
+         V+Pg==
+X-Gm-Message-State: AOAM532B+Jr56GGMXSoCjfeOzugeaqZWLmC72hV/K/y3IQmqatAxkpM+
+        n2e3gJQ7fCWSAsYYKXFdPoNieQ==
+X-Google-Smtp-Source: ABdhPJyCaiHrUMXH1oiMoTK8vsURMDBVH2fSMknyvLJocsUFhCEvXXx4wkuBHyiaZeHeYL0W8Gl6zw==
+X-Received: by 2002:aa7:d5d7:: with SMTP id d23mr2430425eds.203.1606397112732;
+        Thu, 26 Nov 2020 05:25:12 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id b13sm3166289edu.21.2020.11.26.05.25.10
+        by smtp.gmail.com with ESMTPSA id f13sm3017707ejf.42.2020.11.26.05.25.12
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 26 Nov 2020 05:25:10 -0800 (PST)
+        Thu, 26 Nov 2020 05:25:12 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
 Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 1/5] ARM: zynq: Fix compatible string for adi,adxl345 chip
-Date:   Thu, 26 Nov 2020 14:25:00 +0100
-Message-Id: <a9075ab54df13461380e46d3002302d3672325b5.1606397101.git.michal.simek@xilinx.com>
+Subject: [PATCH 2/5] ARM: zynq: Rename bus to be align with simple-bus yaml
+Date:   Thu, 26 Nov 2020 14:25:01 +0100
+Message-Id: <8a4bc80debfbb79c296e76fc1e4c173e62657286.1606397101.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <cover.1606397101.git.michal.simek@xilinx.com>
 References: <cover.1606397101.git.michal.simek@xilinx.com>
@@ -65,39 +65,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit e359a29225dd ("dt-bindings: iio: accel: adxl345: switch to YAML
-bindings") switched binding to yaml and the following error pop up:
-../zynq-zturn-v5.dt.yaml: accelerometer@53: compatible: 'oneOf' conditional
-failed, one must be
-fixed:
-['adi,adxl345', 'adxl345', 'adi,adxl34x', 'adxl34x'] is too long
-Additional items are not allowed ('adi,adxl34x', 'adxl34x' were unexpected)
-Additional items are not allowed ('adxl345', 'adi,adxl34x', 'adxl34x' were
-unexpected)
-'adi,adxl346' was expected
-'adi,adxl345' was expected
+Rename amba to AXI. Based on Xilinx Zynq TRM (Chapter 5) chip is "AXI
+point-to-point channels for communicating addresses, data, and response
+transactions between master and slave clients. This ARM AMBA 3.0..."
 
-Use only one compatible string to be aligned with the binding.
+Issues are reported as:
+.. amba: $nodename:0: 'amba' does not match
+'^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+From schema:
+../github.com/devicetree-org/dt-schema/dtschema/schemas/simple-bus.yaml
+
+Similar change has been done for Xilinx ZynqMP SoC.
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
- arch/arm/boot/dts/zynq-zturn-common.dtsi | 2 +-
+ arch/arm/boot/dts/zynq-7000.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/zynq-zturn-common.dtsi b/arch/arm/boot/dts/zynq-zturn-common.dtsi
-index 84f3c85c5bab..bf5d1c4568b0 100644
---- a/arch/arm/boot/dts/zynq-zturn-common.dtsi
-+++ b/arch/arm/boot/dts/zynq-zturn-common.dtsi
-@@ -104,7 +104,7 @@ stlm75@49 {
+diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
+index db3899b07992..df9ad831cf05 100644
+--- a/arch/arm/boot/dts/zynq-7000.dtsi
++++ b/arch/arm/boot/dts/zynq-7000.dtsi
+@@ -92,7 +92,7 @@ replicator_in_port0: endpoint {
+ 		};
  	};
  
- 	accelerometer@53 {
--		compatible = "adi,adxl345", "adxl345", "adi,adxl34x", "adxl34x";
-+		compatible = "adi,adxl345";
- 		reg = <0x53>;
- 		interrupt-parent = <&intc>;
- 		interrupts = <0x0 0x1e 0x4>;
+-	amba: amba {
++	amba: axi {
+ 		compatible = "simple-bus";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
 -- 
 2.29.2
 
