@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 402E22C5D5F
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 22:07:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 98BA62C5D62
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 22:07:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391620AbgKZVHM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 16:07:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42840 "EHLO
+        id S2391770AbgKZVHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 16:07:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391639AbgKZVG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 16:06:58 -0500
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72247C061A52
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:56 -0800 (PST)
-Received: by mail-pf1-x441.google.com with SMTP id b6so2608035pfp.7
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:56 -0800 (PST)
+        with ESMTP id S2391621AbgKZVG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 16:06:57 -0500
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8E8C0617A7
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:57 -0800 (PST)
+Received: by mail-pg1-x544.google.com with SMTP id j19so2581148pgg.5
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/KGOX9KkEX+n+yFMKTjakVzZosqRnFOWNvseTfllA6Q=;
-        b=Dg+HdzxDV2YNawQ0UhBP6HdLS5ZVfu3mLkvXwyT6jnxsG2wu2G+m7UD0mOxya3fTN2
-         a9YMPlCBY/rXtrETa0IEBOpG/TCZKmhJsG1jozvA4SM9iuIVszkHSgf+Q9SPAx5DIGCW
-         Pwh61Oz8jyJQb0BuXQy8+l1YJhUgNlq9j4tWrr/dqDZJiI8IVfWCzO5G50b2Usgzcv1W
-         IvWXUq5805Wcj7MwD2WFiInSQL8+Ltpv5QL8ebWvwGCOPUNejoEmFYsIesO0NeSQbimY
-         1MlVtiFWwIm/l1LjWovvF+mF6BIdiCKp5xTS77fFQLxqNJ0g7M9vSZvDmKQ/9jsQnNsY
-         3XNw==
+        bh=1P3NOdCqAdCJq/BOuunpYV7qT3SyZVIkKnqupYZ7/no=;
+        b=LlMmf89n/RaE6fIA2xiG8wudKfbZ9qECYcET3zyzPcMVC2R3jZQWZ8m0OZny6TMBzE
+         kr1HA8Fzoz8eoyA3AEFca6Eup4zYcinQuC0FVbLBt3KavqxuptgPUXctZPzVYzcJ5QMV
+         DjmN76HZIt5NJC35aU+IModI+fjoutBo/SGE38ZlQ0LgVoJYfQf+N+15ZPUFcn33WMDG
+         dJ0QBHxlk0yOv1VYcbHEBAAcQy+8xRtzb+78uszO1Al2bmeARNAUbMAYZ6e2vEFqI5oQ
+         svfPdXVQzFEwrgoZ2Whpc/bTJ4+Oxf7x0w8rfRQ62uCBYm5/nsAa7blYl6bYiQTqJqYA
+         CkVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/KGOX9KkEX+n+yFMKTjakVzZosqRnFOWNvseTfllA6Q=;
-        b=L15JhH7Gi0Ir+8w6v2kkp5nDEFQjXWHQlvQFxnEPvx6lvkzfl+/p1YET4CaM+SJbR6
-         BwL6u5cvGbhaPLhemzJkbW92e2lfXANQ6laZ1brjA+sZ9s0G1znNQJpjw3vTObLCGnTE
-         R0ftFalnM7qJ9v2tm3LZ6ztxC7j0JdbueB4smTlwvi/cO+bl/usXvx8vUCzDIUHPADDy
-         QpyU2hzK1RyFPJXKVuw1kq5kri7an40/sCYh5z9nqZb9UD/9bMLnnP/hXbiMyP8EqQU6
-         vgUkOSWnWoMDH3FuDLccYCUgRkTP4IUqMzRqAshhEEORrvrSXA8Z1f6thu3FIbjG8WzR
-         /agA==
-X-Gm-Message-State: AOAM531UPA2ILDBQDTPHiPIyas2a2geGkxaR6rjLSwp3sDXV2fdnEMh7
-        hE3Eqbw6ALqqzIKWft3AiPP+TA==
-X-Google-Smtp-Source: ABdhPJzr8aZpx9HBvkaCPyAWEaw6iohIuja0Ntqlnm2c2SLjUUSlnTqjuSH7wdlhYHHiPjrfDzHPnw==
-X-Received: by 2002:a62:1d6:0:b029:197:f8a8:e6de with SMTP id 205-20020a6201d60000b0290197f8a8e6demr4133919pfb.38.1606424816035;
-        Thu, 26 Nov 2020 13:06:56 -0800 (PST)
+        bh=1P3NOdCqAdCJq/BOuunpYV7qT3SyZVIkKnqupYZ7/no=;
+        b=bp8u7CR5hBW0JBrXLnR7gjE6OoeNtLu9BTms6LLjmm8ZO8uIJJG2Yyr7l7jktxrp0S
+         Z8F3U30doACvn8sPkJ/pBLOx5s3eZVSpxroUQkpog9A8a3GUb/6ifsXnkwKQ5IEgaR6X
+         6PK78RAdumlhl4FgJ5ici2lUZrygFrPSuEdms8l1fyXpuV3Wb1PtLZz0B/7B5tReN8dt
+         PMq6OUwGkRLeQbR853+nQHX0HihAvRk36821uXLVy7CzDqj/Hp535XSDC+FoiZsEyePC
+         MSbfuTsCRd/sdMwNDWsq5yQOaTwtJvnLgI42VjsdL6mzycUHTz78Lc/MBZD9Jkrgtvfe
+         qqRg==
+X-Gm-Message-State: AOAM532hhHOf0SbJEitu6SU0Cmq/NDimVLxifF4WkKZ+YUKsXBjL/1dZ
+        lEH3NLtTrwcRTcgsEbOBO6gOFA==
+X-Google-Smtp-Source: ABdhPJzlp4aXFdip8MwMPU2FTh/7dRG0pw1BC7ipYUjOvGyLn9HOurFQaI4MihAN3LrFK1KK67A2qw==
+X-Received: by 2002:a17:90b:784:: with SMTP id l4mr5752881pjz.56.1606424817036;
+        Thu, 26 Nov 2020 13:06:57 -0800 (PST)
 Received: from xps15.cg.shawcable.net (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id c203sm5612676pfc.10.2020.11.26.13.06.54
+        by smtp.gmail.com with ESMTPSA id c203sm5612676pfc.10.2020.11.26.13.06.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 13:06:55 -0800 (PST)
+        Thu, 26 Nov 2020 13:06:56 -0800 (PST)
 From:   Mathieu Poirier <mathieu.poirier@linaro.org>
 To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
 Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, arnaud.pouliquen@st.com
-Subject: [PATCH v3 12/15] remoteproc: Properly deal with a stop request when attached
-Date:   Thu, 26 Nov 2020 14:06:39 -0700
-Message-Id: <20201126210642.897302-13-mathieu.poirier@linaro.org>
+Subject: [PATCH v3 13/15] remoteproc: Properly deal with a start request when attached
+Date:   Thu, 26 Nov 2020 14:06:40 -0700
+Message-Id: <20201126210642.897302-14-mathieu.poirier@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201126210642.897302-1-mathieu.poirier@linaro.org>
 References: <20201126210642.897302-1-mathieu.poirier@linaro.org>
@@ -63,79 +63,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch introduces the capability to stop a remote processor
-that has been attached to by the remoteproc core.  For that to
-happen a rproc::ops::stop() operation need to be available.
+This patch takes into account scenarios where a remote processor
+has been attached to when receiving a "start" command from sysfs.
+
+As with the "running" case, the command can't be carried out if the
+remote processor is already in operation.
 
 Signed-off-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-Reviewed-by: Peng Fan <peng.fan@nxp.com>
-Reviewed-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
 ---
- drivers/remoteproc/remoteproc_cdev.c  | 5 +++--
- drivers/remoteproc/remoteproc_core.c  | 6 +++++-
- drivers/remoteproc/remoteproc_sysfs.c | 5 +++--
- 3 files changed, 11 insertions(+), 5 deletions(-)
+ drivers/remoteproc/remoteproc_cdev.c  | 3 ++-
+ drivers/remoteproc/remoteproc_sysfs.c | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/remoteproc/remoteproc_cdev.c b/drivers/remoteproc/remoteproc_cdev.c
-index b19ea3057bde..d06f8d4919c7 100644
+index d06f8d4919c7..61541bc7d26c 100644
 --- a/drivers/remoteproc/remoteproc_cdev.c
 +++ b/drivers/remoteproc/remoteproc_cdev.c
-@@ -37,10 +37,11 @@ static ssize_t rproc_cdev_write(struct file *filp, const char __user *buf, size_
+@@ -32,7 +32,8 @@ static ssize_t rproc_cdev_write(struct file *filp, const char __user *buf, size_
+ 		return -EFAULT;
+ 
+ 	if (!strncmp(cmd, "start", len)) {
+-		if (rproc->state == RPROC_RUNNING)
++		if (rproc->state == RPROC_RUNNING ||
++		    rproc->state == RPROC_ATTACHED)
+ 			return -EBUSY;
  
  		ret = rproc_boot(rproc);
- 	} else if (!strncmp(cmd, "stop", len)) {
--		if (rproc->state != RPROC_RUNNING)
-+		if (rproc->state != RPROC_RUNNING &&
-+		    rproc->state != RPROC_ATTACHED)
- 			return -EINVAL;
- 
--		rproc_shutdown(rproc);
-+		ret = rproc_shutdown(rproc);
- 	} else {
- 		dev_err(&rproc->dev, "Unrecognized option\n");
- 		ret = -EINVAL;
-diff --git a/drivers/remoteproc/remoteproc_core.c b/drivers/remoteproc/remoteproc_core.c
-index 51275107eb1f..3d7d245edc4e 100644
---- a/drivers/remoteproc/remoteproc_core.c
-+++ b/drivers/remoteproc/remoteproc_core.c
-@@ -1642,6 +1642,10 @@ static int rproc_stop(struct rproc *rproc, bool crashed)
- 	struct device *dev = &rproc->dev;
- 	int ret;
- 
-+	/* No need to continue if a stop() operation has not been provided */
-+	if (!rproc->ops->stop)
-+		return -EINVAL;
-+
- 	/* Stop any subdevices for the remote processor */
- 	rproc_stop_subdevices(rproc, crashed);
- 
-@@ -1880,7 +1884,7 @@ int rproc_shutdown(struct rproc *rproc)
- 		return ret;
- 	}
- 
--	if (rproc->state != RPROC_RUNNING) {
-+	if (rproc->state != RPROC_RUNNING && rproc->state != RPROC_ATTACHED) {
- 		ret = -EPERM;
- 		goto out;
- 	}
 diff --git a/drivers/remoteproc/remoteproc_sysfs.c b/drivers/remoteproc/remoteproc_sysfs.c
-index f9694def9b54..3696f2ccc785 100644
+index 3696f2ccc785..7d281cfe3e03 100644
 --- a/drivers/remoteproc/remoteproc_sysfs.c
 +++ b/drivers/remoteproc/remoteproc_sysfs.c
-@@ -201,10 +201,11 @@ static ssize_t state_store(struct device *dev,
- 		if (ret)
- 			dev_err(&rproc->dev, "Boot failed: %d\n", ret);
- 	} else if (sysfs_streq(buf, "stop")) {
--		if (rproc->state != RPROC_RUNNING)
-+		if (rproc->state != RPROC_RUNNING &&
-+		    rproc->state != RPROC_ATTACHED)
- 			return -EINVAL;
+@@ -194,7 +194,8 @@ static ssize_t state_store(struct device *dev,
+ 	int ret = 0;
  
--		rproc_shutdown(rproc);
-+		ret = rproc_shutdown(rproc);
- 	} else {
- 		dev_err(&rproc->dev, "Unrecognised option: %s\n", buf);
- 		ret = -EINVAL;
+ 	if (sysfs_streq(buf, "start")) {
+-		if (rproc->state == RPROC_RUNNING)
++		if (rproc->state == RPROC_RUNNING ||
++		    rproc->state == RPROC_ATTACHED)
+ 			return -EBUSY;
+ 
+ 		ret = rproc_boot(rproc);
 -- 
 2.25.1
 
