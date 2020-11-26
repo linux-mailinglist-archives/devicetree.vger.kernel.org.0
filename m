@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C5FC2C539D
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 13:10:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 306C82C53D2
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 13:17:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729002AbgKZMKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 07:10:00 -0500
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:40631 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726985AbgKZMKA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 07:10:00 -0500
-Received: by mail-wr1-f67.google.com with SMTP id m6so1885739wrg.7;
-        Thu, 26 Nov 2020 04:09:59 -0800 (PST)
+        id S1728965AbgKZMQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 07:16:05 -0500
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:42707 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728014AbgKZMQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 07:16:04 -0500
+Received: by mail-oi1-f196.google.com with SMTP id v202so2049527oia.9;
+        Thu, 26 Nov 2020 04:16:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=M2lwbgkzLOgX8hy8qezRxdBi87KQ1ajnzHG/OJ3/GnM=;
-        b=ju/YmTkAYzF56vGEQZfMnZLQB12w3RIMvEs/koHdT5waMWfXSJV14Est1dcDFWY1JU
-         jgKbNvEkHCH/Uvr3eom3t0cnFGT134c2OFIZkn/BdQmWeazQgyg6/lg8BRZozj6eK3iY
-         vKjKo1UoCvZ/XBpyyl9j06sBZxljUQHzD973kGCMw8oxgbxhzDIKnjDSSjMtmSYxjzMX
-         ngVGWdsQX5d+sG2CyKat4+A1/XNeL+966sfzmftW7VK4YCokHdpwgm10C6BsAKn4je+2
-         Rw4I+/Wj259yIvT0ENvmAmf0lhSqPEgV2YsEKseqCaVHLfcsPSmBOEAML38aOvWHEQd5
-         bi9w==
-X-Gm-Message-State: AOAM533qgHsIsp9GXWH3X/Z5t1cDuzUw8a7px5wp9sZBg7+MvtdFmYjt
-        jbGgxfh+i0K2VA7fvb+0ruM=
-X-Google-Smtp-Source: ABdhPJy2mDQzckZa9jAreobQ3X6QHtEUzOdsfDY5/d8t2pEUum7aBW4vQtal889MOwecncPBoyiBgw==
-X-Received: by 2002:adf:fe0f:: with SMTP id n15mr3405863wrr.357.1606392598374;
-        Thu, 26 Nov 2020 04:09:58 -0800 (PST)
-Received: from kozik-lap (adsl-84-226-167-205.adslplus.ch. [84.226.167.205])
-        by smtp.googlemail.com with ESMTPSA id c4sm8485643wrd.30.2020.11.26.04.09.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 04:09:57 -0800 (PST)
-Date:   Thu, 26 Nov 2020 13:09:56 +0100
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-imx@nxp.com, linux-mmc@vger.kernel.org,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Subject: Re: [PATCH RESEND v4 01/18] dt-bindings: mmc: imx: fix the wrongly
- dropped imx8qm compatible string
-Message-ID: <20201126120956.GA36158@kozik-lap>
-References: <20201126105900.26658-1-aisheng.dong@nxp.com>
- <20201126105900.26658-2-aisheng.dong@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t/erZnxWXnxslQ4ZhtLnAtPyOjEighdhdwi5yfyZdws=;
+        b=lBRl2HmeaCEzdJS7n7mxNy3A/MUvs4QdmzzE/g28UiGXpAuFhaORZqlawGR5bBdYgo
+         7S+FTexYE6ZIdIezMCK+id0qbsxqUg1M1Cj9hLZydFMUIYmzMyiTYYpF2cITycaGHw/u
+         XNhM1DEILI9znD2cWAha4/3Ca98k/1RcjQq4HmkcQGKl9CFvAgaNLvgeTNsIJvspOrHw
+         TSTrrXVOZvqN+wExW9siCmE3hUrnkHFIyAoFzkP22jSQXDS+wzhoGYSWC/9/fvej+ve7
+         GDSfXzuHYYhCb2+16xk7DkT7qceuzOdQMkba4d4TDE3p41HbXXRDVMjicLyohHuey1MS
+         izSA==
+X-Gm-Message-State: AOAM530OuaiaohfAaMiw0lWjcHhL6OWCHQI533GsCzULN1lwMPAX/4SF
+        hpTmE/h0GqqzR7vJJYCbbzCKlCledZOamFpLv05mPPPAOAU=
+X-Google-Smtp-Source: ABdhPJwN+e7eH2GQ98zSkQWw5t1ej/MBCxGJaynWcP5LLdoZlTCD7RzzBKxa0FMw9Yya6B5SI/5OgcN5nECRLPM9vi4=
+X-Received: by 2002:aca:1c0f:: with SMTP id c15mr1916067oic.54.1606392963052;
+ Thu, 26 Nov 2020 04:16:03 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20201126105900.26658-2-aisheng.dong@nxp.com>
+References: <1604543524-31482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdX17hSkcxYPgnGP95nH3H5s+G9Si01X_6PxJn0Skyoqhg@mail.gmail.com>
+In-Reply-To: <CAMuHMdX17hSkcxYPgnGP95nH3H5s+G9Si01X_6PxJn0Skyoqhg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 26 Nov 2020 13:15:52 +0100
+Message-ID: <CAMuHMdWE1KF42W=D9cvjHR0mvWs6GuarPTkhMRS5n6Fu1mwAQg@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: clock: renesas: rcar-usb2-clock-sel:
+ Convert bindings to json-schema
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Nov 26, 2020 at 06:58:43PM +0800, Dong Aisheng wrote:
-> The compatible string "fsl,imx8qm-usdhc" was wrongly dropped in patch:
-> commit 80fd350b9590 ("dt-bindings: mmc: fsl-imx-esdhc: Fix i.MX 8 compatible matching")
+On Mon, Nov 16, 2020 at 9:40 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Thu, Nov 5, 2020 at 3:32 AM Yoshihiro Shimoda
+> <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > Convert Renesas R-Car USB 2.0 clock selector bindings documentation
+> > to json-schema.
+> >
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-"dropped in commit 80fd350b9590 ..."
+Oops, forgot I should queue this in renesas-clk-for-v5.11. Will do.
 
-"patch commit" is a one word too much.
+Gr{oetje,eeting}s,
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+                        Geert
 
-Best regards,
-Krzysztof
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
