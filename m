@@ -2,154 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3332C59A0
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 17:55:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F314A2C5A3E
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:10:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391540AbgKZQye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 11:54:34 -0500
-Received: from mailout07.rmx.de ([94.199.90.95]:53362 "EHLO mailout07.rmx.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391465AbgKZQye (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Nov 2020 11:54:34 -0500
-Received: from kdin01.retarus.com (kdin01.dmz1.retloc [172.19.17.48])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mailout07.rmx.de (Postfix) with ESMTPS id 4ChkPc1vV0zBwxF;
-        Thu, 26 Nov 2020 17:54:28 +0100 (CET)
-Received: from mta.arri.de (unknown [217.111.95.66])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by kdin01.retarus.com (Postfix) with ESMTPS id 4ChkPM3pMvz2xdT;
-        Thu, 26 Nov 2020 17:54:15 +0100 (CET)
-Received: from n95hx1g2.localnet (192.168.54.88) by mta.arri.de
- (192.168.100.104) with Microsoft SMTP Server (TLS) id 14.3.487.0; Thu, 26 Nov
- 2020 17:53:14 +0100
-From:   Christian Eggers <ceggers@arri.de>
-To:     <Tristram.Ha@microchip.com>
-CC:     <olteanv@gmail.com>, <kuba@kernel.org>, <andrew@lunn.ch>,
-        <richardcochran@gmail.com>, <robh+dt@kernel.org>,
-        <vivien.didelot@gmail.com>, <davem@davemloft.net>,
-        <kurt.kanzenbach@linutronix.de>, <george.mccollister@gmail.com>,
-        <marex@denx.de>, <helmut.grohne@intenta.de>,
-        <pbarker@konsulko.com>, <Codrin.Ciubotariu@microchip.com>,
-        <Woojung.Huh@microchip.com>, <UNGLinuxDriver@microchip.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH net-next v3 00/12] net: dsa: microchip: PTP support for KSZ956x
-Date:   Thu, 26 Nov 2020 17:53:07 +0100
-Message-ID: <12878838.xADNQ6XqJ4@n95hx1g2>
-Organization: Arnold & Richter Cine Technik GmbH & Co. Betriebs KG
-In-Reply-To: <3569829.EPWo3g8d0Q@n95hx1g2>
-References: <20201118203013.5077-1-ceggers@arri.de> <BYAPR11MB35582F880B533EB2EE0CDD1DECE00@BYAPR11MB3558.namprd11.prod.outlook.com> <3569829.EPWo3g8d0Q@n95hx1g2>
+        id S2403951AbgKZRKJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 12:10:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34634 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403791AbgKZRKJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:10:09 -0500
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com [IPv6:2607:f8b0:4864:20::a43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61195C0613D4;
+        Thu, 26 Nov 2020 09:10:09 -0800 (PST)
+Received: by mail-vk1-xa43.google.com with SMTP id m6so607409vkl.2;
+        Thu, 26 Nov 2020 09:10:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eiVvdawmrHkkFbsTAsLVy02rzVF/6bcsRLkbJ87vgq4=;
+        b=jqIvnc/J0peqmBZs3k7obuCMl2j29mfgb4YUuBWNztlZGYaIhpWfy6SGuarIeesLKN
+         d1wy50SZ/TprSJSAWhLiHdQG93Lh4qKVZhpPjXe4HC/hrOp2okCFluI3XP3+hS2Gq8U+
+         pz4NDHGDUKC7qLr9JbK5AHtiE9ysmyxoPi4KBav1txbU+fC1GEw/Rdp42yzqODTPpMZ+
+         QtJWnBLyRIl09y5YnGIiRpIEb3RNU2eCDEvYuaJgANV6b/TyKUbvjW3obbqBsIAwCeWh
+         QMLrAYlO0+iGL8JgVyqCiyBvv7ws+5whZ9uhw0S367VyPWp+AvOlsaget9wtHuo3kmXd
+         mH5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eiVvdawmrHkkFbsTAsLVy02rzVF/6bcsRLkbJ87vgq4=;
+        b=uSaMN30uASs5sEoQsVMmDtAs1WU4dE12BD75MCBENsUVlE2VK+UG9eOv7u43+76H1C
+         2Gdx484yOgvrbFLs2pN38qwlhSd3/n6qGVPzfOI733CGHIDuEUgHsiUW3oivngZpUnhR
+         bDex42HnuM2Ici7tk07yoUzfIZTt6KV8lbrWehCIJ8bPIMJ9J2HtOxh98wvxY2Q3PU5R
+         oJvo2TC5m0rtccbOs0OItHyalVP+3I/8g7mMeB1QXP9qBISfHLLqEp5e6bxtyqnOCwj8
+         JmW7p7hYejzJVipT2UGBFrj1fcchhy/cWBL7VoWxsgQasCso/nHl1xv0+rTwBdfny7s3
+         yfzQ==
+X-Gm-Message-State: AOAM533xvL5qKkV+PGwW/Tm4aMFEYqS0I6fZM2UXLC6po1Za/mE2eaLX
+        YoPI1W+eenbNwN1/HO5C7YZNGL6xbYsVYkUqi1Q=
+X-Google-Smtp-Source: ABdhPJyBK5JvfFayn6xTjWYBLJT53TYMBwMWS0VfffWnSMcMiikLUZqjlHbyJDFIv9mPlR+t/ORQ2ppJO8dBmi2qn14=
+X-Received: by 2002:a1f:1e46:: with SMTP id e67mr2668290vke.8.1606410608466;
+ Thu, 26 Nov 2020 09:10:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Originating-IP: [192.168.54.88]
-X-RMX-ID: 20201126-175415-4ChkPM3pMvz2xdT-0@kdin01
-X-RMX-SOURCE: 217.111.95.66
+References: <20201028221302.66583-1-kholk11@gmail.com> <CAMi1Hd1hh3NYuFTs3C39ha1Jy_0LxQ4Akg36sm0x1+uicWYRjQ@mail.gmail.com>
+In-Reply-To: <CAMi1Hd1hh3NYuFTs3C39ha1Jy_0LxQ4Akg36sm0x1+uicWYRjQ@mail.gmail.com>
+From:   AngeloGioacchino Del Regno <kholk11@gmail.com>
+Date:   Thu, 26 Nov 2020 18:09:57 +0100
+Message-ID: <CAK7fi1a3m_5aT=G4BpPFqU53Z4j9s_FkVtp0qQ8C3xbQ8W4Y1Q@mail.gmail.com>
+Subject: Re: [PATCH v9 0/3] Add Novatek NT36xxx touchscreen driver
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, rydberg@bitmath.org,
+        priv.luk@gmail.com, linux-input@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>, marijns95@gmail.com,
+        Konrad Dybcio <konradybcio@gmail.com>, martin.botka1@gmail.com,
+        phone-devel@vger.kernel.org, dt <devicetree@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        andy.shevchenko@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Microchip,
+Il giorno lun 23 nov 2020 alle ore 11:13 Amit Pundir
+<amit.pundir@linaro.org> ha scritto:
+>
+> Hi,
+>
+> On Thu, 29 Oct 2020 at 06:32, <kholk11@gmail.com> wrote:
+> >
+> > From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> >
+> > This patch series adds support for the Novatek NT36xxx Series' In-Cell
+> > touchscreen (integrated into the DriverIC).
+> >
+> > This patch series has been tested against the following devices:
+> >  - Sony Xperia 10        (SDM630 Ganges Kirin)
+> >  - Sony Xperia 10 Plus   (SDM636 Ganges Mermaid)
+>
+> Tested the patch series on Xiaomi Poco F1 (SDM845 Beryllium) using
+> Novatek NT36672A IC. May I suggest adding "novatek,nt36672a" in the
+> list of compatible of_device_id{} as well.
+>
+> Regards,
+> Amit Pundir
+>
+>
+> >
+> > Changes in v2:
+> > - Fixed sparse warnings from lkp kernel test robot
+> >
+> > Changes in v3 (as requested by Dmitry Torokhov):
+> > - Using shorthand u16/u32 (sorry for the overlook!)
+> > - Now using more input and touchscreen APIs
+> > - Fixed useless workqueue involvements
+> > - Removed useless locking
+> > - Switched reads and writes to use regmap
+> > - Moved header contents to nt36xxx.c
+> > - Fixed reset gpio handling
+> > - Other cleanups
+> > - P.S.: Thanks, Dmitry!
+> >
+> > Changes in v4:
+> > - Fixed regmap read length for CRC_ERR_FLAG final check
+> > - Fixed YAML binding, as requested by Krzysztof Kozlowski
+> >
+> > Changes in v5:
+> > - Replaced subsystem maintainer's name with .. mine,
+> >   usage of additionalProperties to unevaluatedProperties
+> >   and a typo fix for reset-gpios as per Rob Herring's review
+> > - Changed compatible string as per Krzysztof K. request
+> > - Renamed the novatek,nt36xxx.yaml file to just nt36xxx.yaml
+> >   in order to now reflect the driver name instead of the DT
+> >   compatible
+> > - Fixed blank line at EOF
+> >
+> > Changes in v6:
+> > - Removed include of_gpio.h, added mod_devicetable.h and
+> >   gpio/consumer.h
+> > - Added kerneldoc to relevant functions/enum
+> > - Used traditional patterns for error checking where possible
+> > - Documented calls to usleep/msleep
+> > - Using be16_to_cpu / get_unaligned_be16 where possible
+> > - Added helper for CRC error check on retrieved buffer
+> > - Decreased indentation in the CRC reboot recovery function
+> > - Removed instances of error code sum
+> > - Dropped all likely/unlikely optimization as per request
+> > - Removed redundant reset_gpio checks
+> > - Dropped of_match_ptr and ifdefs for CONFIG_OF
+> >
+> > Changes in v7:
+> > - Fixed typo in nt36xxx.c
+> >
+> > Changes in v8:
+> > - Fixed typo reset-gpio -> reset-gpios in dt-bindings
+> >
+> > Changes in v9:
+> > - Includes are now sorted
+> > - Used proposed sizeof variable instead of sizeof type
+> > - Fixed a return value check for common pattern
+> > - Added NULL check to devm_kasprintf call
+> > - Returning ret on probe function to be consistent
+> >
+> > AngeloGioacchino Del Regno (3):
+> >   dt-bindings: Add vendor prefix for Novatek Microelectronics Corp.
+> >   Input: Add Novatek NT36xxx touchscreen driver
+> >   dt-bindings: touchscreen: Add binding for Novatek NT36xxx series
+> >     driver
+> >
+> >  .../bindings/input/touchscreen/nt36xxx.yaml   |  59 ++
+> >  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+> >  drivers/input/touchscreen/Kconfig             |  12 +
+> >  drivers/input/touchscreen/Makefile            |   1 +
+> >  drivers/input/touchscreen/nt36xxx.c           | 894 ++++++++++++++++++
+> >  drivers/input/touchscreen/nt36xxx.h           | 122 +++
+> >  6 files changed, 1090 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/nt36xxx.yaml
+> >  create mode 100644 drivers/input/touchscreen/nt36xxx.c
+> >  create mode 100644 drivers/input/touchscreen/nt36xxx.h
+> >
+> > --
+> > 2.28.0
+> >
+Mind releasing a Tested-By tag for this?
 
-as ACL based blocking of PTP traffic seems not to work, I tried to install MAC
-based static lookup rules on the switch I successfully managed to block other
-non-PTP traffic, but for PTP the lookup table entry (see below) seems not to
-work. Incoming SYNC messages on port are still forwarded to port 2.
+Anyway, I was suggested to add a compatible only for the "oldest" IC that
+is supported in this driver, since there is autodetection, that's why you see
+only the 36525 compatible here!
 
-The table entry is based on the multicast MAC used for PTP. With PTP domains!=0
-there could be 128 possible MAC addresses that needs to blocked (but the switch
-has only 16 entries in the static table). Is there any way to block the whole
-PTP multicast address range (01:00:5E:00:01:81-01:00:5E:00:01:ff)? The data sheet
-mentions that the static address table can be used for multicast addresses,
-so there should be a way.
-
-Alternatively, is there a hidden "disable TC" setting which disables the
-transparent clock entirely?
-
-regards
-Christian
-
-        Look-up Tables
-        ALU_STAT_CTL 00000001  TABLE_INDEX       0       START_FINISH   idle             TABLE_SELECT Static Address
-                               ACTION     read
-
-        Static Address Table
-        ALU_VAL_A    80000000  VALID      valid            SRC_FILTER     disabled       DST_FILTER   disabled
-                               PRIORITY             0      MSTP                     0
-        ALU_VAL_B    80000000  OVERRIDE   enabled          USE_FID        disabled
-                               PRT3_FWD   disabled         PRT2_FWD       disabled       PRT1_FWD     disabled
-        ALU_VAL_C    00000100  FID                  0      MAC_0_1              01:00
-        ALU_VAL_D    5E000181  MAC_2_5    5E:00:01:81
-
-
-On Wednesday, 25 November 2020, 22:08:39 CET, Christian Eggers wrote:
-> I need some help from Microchip, please read below.
-> 
-> On Thursday, 19 November 2020, 19:51:15 CET, Tristram.Ha@microchip.com wrote:
-> > There is one more requirement that is a little difficult to do.  The calculated peer delay
-> > needs to be programmed in hardware register, but the regular PTP stack has no way to
-> > send that command.  I think the driver has to do its own calculation by snooping on the
-> > Pdelay_Req/Pdelay_Resp/Pdelay_Resp_Follow_Up messages.
-> 
-> In an (offline) discussion with Vladimir we discovered, that the KSZ switch
-> behaves different as ptp4l expects: 
-> 
-> The KSZ switch forwards PTP (e.g. SYNC) messages in hardware (with updating
-> the correction field). For this, the peer delays need be configured for each
-> port.
-> 
-> ptp4l in turn expects to do the forwarding in software (for the P2P_TC clock
-> configuration). For this, no hardware configuration of the peer delay is
-> necessary. But due to limitations of currently available hardware, this TC
-> forwarding is currently only supported for 2 step clocks, as a one-step clock
-> would probably fully replace the originTimestamp field (similar as a BC, but
-> not as a TC).
-> 
-> Vladimir suggested to configure an ACL in the KSZ switch to block forwarding
-> of PTP messages between the user ports and to run ptp4l as BC. My idea is to
-> simply block forwarding of UDP messages with destination ports 319+320 and
-> L2 messages with the PTP Ether-Type.
-> 
-> I installed the following ACL (for UDP) in the Port ACL Access registers 0-F:
-> |_0__1__2__3__4__5__6__7__8__9__A__B__C__D__E__F
-> | 00 39 01 40 01 3F 42 22 00 00 00 60 00 00 00 01
-> ACL index: 0
-> 
-> Match: 
-> - MD=11 (L4)
-> - ENB=10 (UDP ports)
-> - S/D=0 (dst)
-> - EQ=1 (equal)
-> - MAX_PORT=320
-> - MIN_PORT=319
-> - PC=01 (min or max)
-> - PRO=17 (UDP, don't care?)
-> - FME=0 (disabled)
-> 
-> Action:
-> - PM=0 (disabled)
-> - P=0 (don't care)
-> - RPE=0 (disabled)
-> - RP=0 (don't care)
-> - MM=11 (replace)
-> - PORT_FWD_MAP: all ports to 0
-> 
-> Processing entry:
-> - Ruleset=0x0001
-> - FRN=0
-> 
-> Unfortunately, with this configuration PTP messages are still forwarded from
-> port 1 to port 2. Although I was successful in blocking other communication
-> (e.g. by MAC address), the matching rules above seem not to work. Is there an
-> error in the ACL, or is forwarding of PTP traffic independent of configured
-> ACLs?
-> 
-> regards
-> Christian
-> 
-
-
-
-
+Yours,
+Angelo
