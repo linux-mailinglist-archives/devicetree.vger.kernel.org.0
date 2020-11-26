@@ -2,68 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F372B2C5330
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 12:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4C32C536B
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 13:00:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726685AbgKZLoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 06:44:08 -0500
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:42640 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725911AbgKZLoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 06:44:08 -0500
-Received: by mail-oi1-f195.google.com with SMTP id v202so1960285oia.9;
-        Thu, 26 Nov 2020 03:44:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MNWYKGbypDFoap5qLqujfYdysD6Sz9Zm1+agwezrpTA=;
-        b=YVxgn0YqIEmg0l/Jz0hVbr9k9SMJhLbSPEkYorzpAQcA4XocGSLx0WGnEtbR33trFm
-         ypP3XOQx4PP1EdA6XNoDe9X1Xg5uh9Xwk1blbgbuxOnn1c5FITIS+gTz+uQCbO3BEt3Z
-         vp4CwUxaPbjUk34+OEMfCqXksxlX8kjDPPgmAowuGJeUuUVwenO/U9nv6SKUeVX53LU1
-         MyJaUKj5RIqoYfnrkz6vs7cLziyf8OR8WDLdgQUDr+sTD6yJqeD+u9tD2E49k8hwwt4p
-         qS3uJoDlIrZw/KO3ERbOJV4cfclWn4jswMQdOXZoTFLljuQEKz/NAiRrB1HG6ri32O6k
-         5tPQ==
-X-Gm-Message-State: AOAM530xKy4ewgE7ocoNC000FTf9yPsIrJmfbMustEhRS9m8E5EQlELK
-        +cmUcjY19UyiUv16u9ndZ5tKA8DiA+GoSjAugERW28RPHKg=
-X-Google-Smtp-Source: ABdhPJyeMCVnytHUJxvejUca4WmcqCiMZgzdNYmp3MKVcP3J8+Nj7T+G8FqNJBrWgxz0Dw6spFlW8hCGb9byy+IEX6Q=
-X-Received: by 2002:aca:4bc3:: with SMTP id y186mr1737668oia.153.1606391047346;
- Thu, 26 Nov 2020 03:44:07 -0800 (PST)
+        id S2388099AbgKZL5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 06:57:34 -0500
+Received: from mga18.intel.com ([134.134.136.126]:7383 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387979AbgKZL5d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 06:57:33 -0500
+IronPort-SDR: YZ901kI8nHOcQvms1nF4wnOx+55CHDUENjYRMtBzmxZZdXzw4T7V4yaHwveTWLc27gOpC6aGDZ
+ r0bZBmCHEEZg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9816"; a="160048300"
+X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; 
+   d="scan'208";a="160048300"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2020 03:52:07 -0800
+IronPort-SDR: jGFtbjvAMvjlmFUZUfPy5sFcu9pM7bt0BIvtEvVggHnpw3ymar2WHrQDW8OC9Vjb5KZMb1Hstb
+ e8KhrSmjsWUw==
+X-IronPort-AV: E=Sophos;i="5.78,372,1599548400"; 
+   d="scan'208";a="362781517"
+Received: from smaciag-mobl2.ger.corp.intel.com (HELO dalessan-mobl1.ir.intel.com) ([10.251.85.7])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Nov 2020 03:52:04 -0800
+From:   Daniele Alessandrelli <daniele.alessandrelli@linux.intel.com>
+To:     linux-crypto@vger.kernel.org,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+        Mark Gross <mgross@linux.intel.com>
+Subject: [PATCH 0/2] crypto: Add Keem Bay OCS AES/SM4 driver
+Date:   Thu, 26 Nov 2020 11:51:46 +0000
+Message-Id: <20201126115148.68039-1-daniele.alessandrelli@linux.intel.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20201125073303.19057-1-yuya.hamamachi.sx@renesas.com> <20201125073303.19057-3-yuya.hamamachi.sx@renesas.com>
-In-Reply-To: <20201125073303.19057-3-yuya.hamamachi.sx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 26 Nov 2020 12:43:56 +0100
-Message-ID: <CAMuHMdXY5gO=xOvqstUyCje=Et1MjvS5MjkDdL0u0HqDjURxQw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a77951: Add PCIe EP nodes
-To:     Yuya Hamamachi <yuya.hamamachi.sx@renesas.com>
-Cc:     linux-pci <linux-pci@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Nov 25, 2020 at 8:43 AM Yuya Hamamachi
-<yuya.hamamachi.sx@renesas.com> wrote:
-> Add PCIe EP nodes for R8A77951 SoC dtsi.
->
-> Signed-off-by: Yuya Hamamachi <yuya.hamamachi.sx@renesas.com>
+The Intel Keem Bay SoC has an Offload Crypto Subsystem (OCS) featuring a
+crypto engine for accelerating AES/SM4 operations.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.11.
+This driver adds support for such hardware thus enabling hardware
+acceleration for the following transformations on the Intel Keem Bay SoC:
 
-Gr{oetje,eeting}s,
+- ecb(aes), cbc(aes), ctr(aes), cts(cbc(aes)), gcm(aes) and cbc(aes);
+  supported for 128-bit and 256-bit keys.
 
-                        Geert
+- ecb(sm4), cbc(sm4), ctr(sm4), cts(cbc(sm4)), gcm(sm4) and cbc(sm4);
+  supported for 128-bit keys.
+
+The driver passes crypto manager self-tests, including the extra tests
+(CRYPTO_MANAGER_EXTRA_TESTS=y).
+
+Note: this driver is different from the Keem Bay OCS HCU driver previously
+submitted. Keem Bay OCS HCU provides hardware-accelerated ahash, while
+Keem Bay AES/SM4 (i.e., this driver) provides hardware-accelerated
+skcipher and aead.
 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Daniele Alessandrelli (1):
+  dt-bindings: Add Keem Bay OCS AES bindings
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Mike Healy (1):
+  crypto: keembay-ocs-aes: Add support for Keem Bay OCS AES/SM4
+
+ .../crypto/intel,keembay-ocs-aes.yaml         |   45 +
+ MAINTAINERS                                   |   10 +
+ drivers/crypto/Kconfig                        |    2 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/keembay/Kconfig                |   39 +
+ drivers/crypto/keembay/Makefile               |    5 +
+ drivers/crypto/keembay/keembay-ocs-aes-core.c | 1713 +++++++++++++++++
+ drivers/crypto/keembay/ocs-aes.c              | 1489 ++++++++++++++
+ drivers/crypto/keembay/ocs-aes.h              |  129 ++
+ 9 files changed, 3433 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/intel,keembay-ocs-aes.yaml
+ create mode 100644 drivers/crypto/keembay/Kconfig
+ create mode 100644 drivers/crypto/keembay/Makefile
+ create mode 100644 drivers/crypto/keembay/keembay-ocs-aes-core.c
+ create mode 100644 drivers/crypto/keembay/ocs-aes.c
+ create mode 100644 drivers/crypto/keembay/ocs-aes.h
+
+
+base-commit: c3a98c3ad5c0dc60a1ac66bf91147a3f39cac96b
+-- 
+2.26.2
+
