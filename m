@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B37D2C5537
+	by mail.lfdr.de (Postfix) with ESMTP id 0E0882C5536
 	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:26:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389923AbgKZNZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 08:25:20 -0500
+        id S2389916AbgKZNZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 08:25:19 -0500
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389886AbgKZNZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:25:17 -0500
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D443C061A04
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:17 -0800 (PST)
-Received: by mail-ed1-x544.google.com with SMTP id u19so945974edx.2
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:17 -0800 (PST)
+        with ESMTP id S2389909AbgKZNZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:25:19 -0500
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1010DC0613D4
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:19 -0800 (PST)
+Received: by mail-ed1-x543.google.com with SMTP id d18so2261620edt.7
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 05:25:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=+WnYGUfR4Ghoj1mWVxO3VbsPtHbrA0Hu440yGJB+ncg=;
-        b=sZ/yv6V4rtAOFb3PgLUQqqH2GTHEO1fL2NhHAgGWO67WjpdQaTtDHqr7ilo6e9NRzT
-         B/idOeP0qlE7QDiU0n9tJGhjM4/TeKE9hScGBbtcJBbD8CO9O7cE8R3Vp9/rE/+D3Gda
-         fZLhu2vzxdtaGfoQeLchDsx8BVzLKMgklDXOWyw7g0vz1WphbgS/BfjtaLUz/Yj83lBB
-         iCSzYx6mUJurFFfg9s3TOFWoYqjJ6rneVVpepD2nGVSUQ1Z0DnfSEM7V0fueXEdaiOba
-         PvB0M0o8RoVcgJgYzgsiVGLfJbqk6aO4S9dGGaq1zKZIRH+ezzkh5P//Eq43dWTN50Of
-         A+Iw==
+        bh=XDLtXgPRYNIU5KZqUuEFJ0xjYJUrkaixe/B85a0AE60=;
+        b=Pn+ccC80nw0FBsnlF2fafDplri0xDFXypitGFO6yJ6emiiAEd6RqLlta6WV7gXLO6i
+         lHDBp951G1lo+zMU8zuoP3b6dnzf1LdwHysUYW6GT6ENshSW5QEQ+eiRe6cdZGtrDNV9
+         +b56tbtwLu2a5CamdQPxHtRRa9c6/G7eoTS0JHFV8BdIottjJNQTRCbaj7CjPNHzsTkG
+         3hVezh2hvagWUyxuwjTHNpstvFUc6dPvS3WqvouIJb364234s2DU8fgal78fbnhFmoH6
+         OqXpn9xUq5qUneD9qA0li1LdQbFITHjEeaIsprOMF1qWQyscXrc6ijJVzsDBpQn4gR1y
+         YJmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=+WnYGUfR4Ghoj1mWVxO3VbsPtHbrA0Hu440yGJB+ncg=;
-        b=qcFqdOVrv5Xujshqfp2cze1TU3t1Gib4aGVfvKX2VGcNwk0RMGYuv9NE+Bkc3VfZ4x
-         kHRHARE32iuzxsJD06a5u8c0PZ3wFl74JiQPBnoy8xlRbWm1o7m5WPQRUaKOlSrC2USv
-         NHm8RJaCsBGWuBAko6r6LoEDqzxkkAMnWwlaBStu0CTW29420J4205vOvLGhz4fidGJB
-         j/nG0HCjifFM3YNdGTMuvolGyCHyvh6HYAbw2/rrxSrHHaOj2lM9wUgG3EPZb4/wplmx
-         E+UwPSK3U+LZa+OeAboKvznyWcfjjCMJP8OJWIAJIVkM9mZcULpdQlUe05ZD2wZWvhkk
-         NXVg==
-X-Gm-Message-State: AOAM5328P4ezzuvQzMy6uyk0ci5toYqEqB2nxx6/qt9CsS55TqLFehAy
-        i7KMKJEJI3sWiE6VGJijAuo8Lg==
-X-Google-Smtp-Source: ABdhPJy59u8iKCAMhOvgEMuPDQ84TZaNvzWiCRCKS9Dxoyz8HN4R8QBIqR7azBcyegIEgoSrxd1Kig==
-X-Received: by 2002:a50:bc02:: with SMTP id j2mr2524411edh.317.1606397116090;
-        Thu, 26 Nov 2020 05:25:16 -0800 (PST)
+        bh=XDLtXgPRYNIU5KZqUuEFJ0xjYJUrkaixe/B85a0AE60=;
+        b=Vmy9euejANiuIh6AKAoxbqMEcvQrMv3OC1kmZlNByxkliHMHJoQqj/Ko/79Xiv5z22
+         O8zrbVjV6w+8/VpeHofXDOE2nP0KXQWVBDWg4kkdvKNM8DOpdcyAsDmNbnOn3KjpUErV
+         JcmrnEx5o5W1moYjUTUh7quDdi3VYyBylwZ3ncWvjr4qBr4k9BJG1cAHFpp4fHTYw8uN
+         C0UBpywaHWVZO/AnO30JVS26LVyZANEiV+po3RrcjMFntp2EDJNrluyj8kt01z+I7rLW
+         KwxYQxCj2CB6SFZ7eX6xPRozJFkvghRrUka6bHltTU2W3va0ABL8kKemDJX0qh9XYGIk
+         HWug==
+X-Gm-Message-State: AOAM533TwQVWqmWY80C8NZLpSLMlBQ/JfVei2EB/AJn07/2Yv/fnMpa6
+        osnhyqlW7tCn/Li7Ot3ReNvrYQ==
+X-Google-Smtp-Source: ABdhPJyzjPfF/wr0GrS7baTxzErm7feMQhebOrdLeWeYARQ6AOMcnChD5z7GkRAyPodGsIxkFssIIw==
+X-Received: by 2002:a05:6402:143a:: with SMTP id c26mr2164024edx.131.1606397117830;
+        Thu, 26 Nov 2020 05:25:17 -0800 (PST)
 Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id js1sm2531661ejb.77.2020.11.26.05.25.15
+        by smtp.gmail.com with ESMTPSA id 65sm3303650edj.83.2020.11.26.05.25.17
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 26 Nov 2020 05:25:15 -0800 (PST)
+        Thu, 26 Nov 2020 05:25:17 -0800 (PST)
 Sender: Michal Simek <monstr@monstr.eu>
 From:   Michal Simek <michal.simek@xilinx.com>
 To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
         michal.simek@xilinx.com, git@xilinx.com
 Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/5] ARM: zynq: Fix OCM mapping to be aligned with binding on zc702
-Date:   Thu, 26 Nov 2020 14:25:03 +0100
-Message-Id: <87c02786ccd8d7827827a9d95a8737bb300caeb0.1606397101.git.michal.simek@xilinx.com>
+Subject: [PATCH 5/5] ARM: zynq: Convert at25 binding to new description on zc770-xm013
+Date:   Thu, 26 Nov 2020 14:25:04 +0100
+Message-Id: <be2c1125d98386033e182012eb08986924707a76.1606397101.git.michal.simek@xilinx.com>
 X-Mailer: git-send-email 2.29.2
 In-Reply-To: <cover.1606397101.git.michal.simek@xilinx.com>
 References: <cover.1606397101.git.michal.simek@xilinx.com>
@@ -65,36 +65,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit f69629919942 ("dt-bindings: sram: Convert SRAM bindings to
-json-schema") converted binding to yaml and some missing required
-properties started to be reported. Align binding based on it.
+The commit f8f79fa6bb25 ("dt-bindings: at25: convert the binding document
+to yaml") converted binding to yaml and 3 deprecated properties pop up.
 
 The patch is fixing these warnings:
-.../zynq-zc702.dt.yaml: sram@fffc0000: '#address-cells' is a required property
-.../zynq-zc702.dt.yaml: sram@fffc0000: '#size-cells' is a required property
-.../zynq-zc702.dt.yaml: sram@fffc0000: 'ranges' is a required property
-From schema: .../Documentation/devicetree/bindings/sram/sram.yaml
+.../zynq-zc770-xm013.dt.yaml: eeprom@2: 'pagesize' is a required property
+.../zynq-zc770-xm013.dt.yaml: eeprom@2: 'size' is a required property
+.../zynq-zc770-xm013.dt.yaml: eeprom@2: 'address-width' is a required property
+From schema: .../Documentation/devicetree/bindings/eeprom/at25.yaml
+
+by converting them to new binding.
 
 Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 ---
 
- arch/arm/boot/dts/zynq-zc702.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm/boot/dts/zynq-zc770-xm013.dts | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/zynq-zc702.dts b/arch/arm/boot/dts/zynq-zc702.dts
-index 10a7d0b8cf8b..cf70aff26c66 100644
---- a/arch/arm/boot/dts/zynq-zc702.dts
-+++ b/arch/arm/boot/dts/zynq-zc702.dts
-@@ -66,6 +66,12 @@ &amba {
- 	ocm: sram@fffc0000 {
- 		compatible = "mmio-sram";
- 		reg = <0xfffc0000 0x10000>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0xfffc0000 0x10000>;
-+		ocm-sram@0 {
-+			reg = <0x0 0x10000>;
-+		};
+diff --git a/arch/arm/boot/dts/zynq-zc770-xm013.dts b/arch/arm/boot/dts/zynq-zc770-xm013.dts
+index 4ae2c85df3a0..38d96adc870c 100644
+--- a/arch/arm/boot/dts/zynq-zc770-xm013.dts
++++ b/arch/arm/boot/dts/zynq-zc770-xm013.dts
+@@ -63,13 +63,12 @@ &spi0 {
+ 	num-cs = <4>;
+ 	is-decoded-cs = <0>;
+ 	eeprom: eeprom@2 {
+-		at25,byte-len = <8192>;
+-		at25,addr-mode = <2>;
+-		at25,page-size = <32>;
+-
+ 		compatible = "atmel,at25";
+ 		reg = <2>;
+ 		spi-max-frequency = <1000000>;
++		size = <8192>;
++		address-width = <16>;
++		pagesize = <32>;
  	};
  };
  
