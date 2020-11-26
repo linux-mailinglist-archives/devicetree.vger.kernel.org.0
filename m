@@ -2,136 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 172F02C5A7E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:27:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 307602C5AAF
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 18:37:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391655AbgKZR0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 12:26:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37120 "EHLO
+        id S2391676AbgKZRfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 12:35:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391347AbgKZR0K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:26:10 -0500
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DAEFC0613D4;
-        Thu, 26 Nov 2020 09:26:10 -0800 (PST)
-Received: by mail-wr1-x441.google.com with SMTP id m6so2935880wrg.7;
-        Thu, 26 Nov 2020 09:26:10 -0800 (PST)
+        with ESMTP id S2391675AbgKZRfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 12:35:38 -0500
+Received: from mail-oi1-x243.google.com (mail-oi1-x243.google.com [IPv6:2607:f8b0:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D01AC061A04
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:35:38 -0800 (PST)
+Received: by mail-oi1-x243.google.com with SMTP id v202so2994612oia.9
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 09:35:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6I0lhLGzPPM0MoECXGUi5YFC71JrYnGKvoQDQPmtiJ8=;
-        b=l06CNRd31zgbywkafp4M3M36NmeEp98oXvZIbgFZaXjPDiITJXkrhLw6e82PRokFMq
-         kSV+0rsWu3t278MiKn8FxZ0GpnGOdkRNRc8kI1ao3FfuuXk6Psqs49YxCD+ES1ohhwHn
-         778H50Vz+qsL2LOxPPnWXeM9yik6M3kLd5UNS8iViAW/shl88g/0RGv+uzDhvTh02TDU
-         G2JiVIVyK5ICAVInvipDuRW8GKiL5EgPM4rcdsxRdWxIgGHo1Ciw4FZ6SmbNfL7H12Gh
-         po6yduAQos4jRyU+BqDlJWwB5xzD/y7S8MFJIyFKNtTN5wOfjlurvHwLREINC+5TBPxt
-         BhpQ==
+         :content-disposition:in-reply-to;
+        bh=gOY/HezNek0HUVN6eUm3quDyWmYoOFo+0d2VCWNsFOQ=;
+        b=uyts//qgDq6NIdz41iSPmW0NCMxG4s7vPE2JLlimI8k9Dta7Lp8XN3VJlMbLFtrINE
+         ro3BRSTRMv8Umr3glOZq7WmCg6G9Mz1RUKqmM89Rmar/e78MeFdctXcDlc1ZAhFFjdLb
+         7Jpkw0WgJOjL9h0qCLWS3Q8yAnWkuFza2aGB86HqlDhpyMfFFen/5YzijCvoCFHHzAj9
+         RZ69xF5KjNsRdPkxSoNygXNdaYH/1Kfm9D7iozMjiT1iO4NflgDrIwbbUD5EHy43f8LP
+         hndzJaxF4dK4CfHiTWjBHhtT8KvAx3h6t9woa85EBeKLkVa1tyNeLy5aBve1xDhEtYo9
+         +yAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6I0lhLGzPPM0MoECXGUi5YFC71JrYnGKvoQDQPmtiJ8=;
-        b=VYPXWMsYf4+FDeXqIsuYWkmCcOnJ56GBo2L9mcCD1JNDaDWZ/z5u9MwufJ6S3YPyEl
-         UoQQl0FNRDjRPfZbaOvSaCerL6Op3UAqxFg/kH7AsY49pfcljj+920w4+VWpscWl4aOj
-         t6DRjBLIc90t+s6y2GiQAD5U9r+mIqA/M6/h+THn9DeGGCaBeIeIeIONGGzBJMXLRmCI
-         qjYNczZTfEP+0JCK799oXJKezY+seqxqaSy3qHsLttNudLdjIwQ+va/y6JiViHCkgI5w
-         kiTDb7cZNijC10UqoNXTbUy4yJobj+i5x4WfV7xqqz4G1GYcwMxQDrLMHJRGvtG25y4A
-         vqhg==
-X-Gm-Message-State: AOAM530iQTbRUNTvRBxi4nrUe/sbg6YhWIGK9XCaiwb7mPpAs3EVs2Rp
-        iG7ey2hCpXJ4n4MxVCjgSwk=
-X-Google-Smtp-Source: ABdhPJyaBeHdgoQF3J1Ovn0wtkH7fvTi8SaOzT7ic/NJzEli3QaHlrGWzuvtjGLemmZWpI00pWevgQ==
-X-Received: by 2002:a5d:690c:: with SMTP id t12mr5123901wru.405.1606411568938;
-        Thu, 26 Nov 2020 09:26:08 -0800 (PST)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id s4sm9982577wru.56.2020.11.26.09.26.06
+         :mime-version:content-disposition:in-reply-to;
+        bh=gOY/HezNek0HUVN6eUm3quDyWmYoOFo+0d2VCWNsFOQ=;
+        b=GU5/S9v7my4JgLFCJYI/q88nfMtO4lhMpYhaLj12ZlEhszStl2JqxdN9sZVxU9doxv
+         1QF4kU1p/GWmuJ7qmSlZBx+69CelfWOWujQ/nvvMpuG0cvsP+3biPVgpoC0qD9xv+uB9
+         2zKfgHtm+pDKYXmS+yjWgguamzsIzZDCdBlK6Vn4DhYkkm9PANxBN7zCdbBDBPbMxwEV
+         RYSd04hPX2NMr40T6dIoDDeQc9ljGbTqKXgztU8v3yGK4MMXPU8Vb+MiwK3VJh0L7vzc
+         MRrHm/dmoV9JhHo2wV8yEVCElEZOxzsTEBKcMkUxx7KTeLp5RdEypO6UFFqoBptVaWxV
+         d8cw==
+X-Gm-Message-State: AOAM533ShXn9gOHihhPf6qR1c52n7197j4JfltKEVT7u9zr4daY2Kiqf
+        +G8feisK3yEx4JHzYWygGfxqnw==
+X-Google-Smtp-Source: ABdhPJx8msTvrsuwihO242PXv7u5F1/YsYDoAhSS6k0ZQZqFcGnBf3qEN5bVS8tSjAhdCenA2tCkyg==
+X-Received: by 2002:aca:5413:: with SMTP id i19mr2773415oib.87.1606412136991;
+        Thu, 26 Nov 2020 09:35:36 -0800 (PST)
+Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
+        by smtp.gmail.com with ESMTPSA id s28sm3186106otd.2.2020.11.26.09.35.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 26 Nov 2020 09:26:07 -0800 (PST)
-Date:   Thu, 26 Nov 2020 18:26:05 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
+        Thu, 26 Nov 2020 09:35:35 -0800 (PST)
+Date:   Thu, 26 Nov 2020 11:35:34 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Nicolas Chauvet <kwizart@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 17/47] dt-bindings: memory: tegra20: Add memory client
- IDs
-Message-ID: <X7/lLaZJNp+Vfczk@ulmo>
-References: <20201104164923.21238-1-digetx@gmail.com>
- <20201104164923.21238-18-digetx@gmail.com>
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: Add PMX55 compatibles
+Message-ID: <X7/nZg7tXb8F3rtk@builder.lan>
+References: <20201126093018.1085594-1-vkoul@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="u/+LBcE/GZY9+OI4"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201104164923.21238-18-digetx@gmail.com>
-User-Agent: Mutt/2.0.2 (d9268908) (2020-11-20)
+In-Reply-To: <20201126093018.1085594-1-vkoul@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu 26 Nov 03:30 CST 2020, Vinod Koul wrote:
 
---u/+LBcE/GZY9+OI4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Add PMX55 compatibles for PMIC found in SDX55 platform
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
 
-On Wed, Nov 04, 2020 at 07:48:53PM +0300, Dmitry Osipenko wrote:
-> Each memory client has unique hardware ID, add these IDs.
->=20
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
 > ---
->  include/dt-bindings/memory/tegra20-mc.h | 53 +++++++++++++++++++++++++
->  1 file changed, 53 insertions(+)
-
-Is there any chance you could drop these dt-bindings include patches
-(17, 18 and 19) so that I can pick them up into the Tegra tree? The
-device tree changes that I was going to pick up depend on this and
-fail to build if applied as-is.
-
-I was looking at your linux-mem-ctrl tree and had initially thought I
-could just pull in one of the branches to get these dependencies, but it
-looks like the dt-bindings patches are on the for-v5.11/tegra-mc branch,
-which the ARM SoC maintainers wouldn't like to see me pull in for a
-dependency on device tree changes.
-
-If this is all fixed at this point, I'll just have to push back the
-device tree changes to v5.12, or perhaps see if the ARM SoC maintainers
-are willing to take a late pull request that's based on v5.11-rc1.
-
-Thierry
-
---u/+LBcE/GZY9+OI4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl+/5SkACgkQ3SOs138+
-s6E7hA/+KCUsyWXHkq1zseaJ5gCXuvTLINqhxC1oK5TJvCQ7BFh3567X8Qg1Sd85
-W4KQS5u4lGrHEfDgGILPcdO/GdlOWrYLUpLVnwHMX4/F2Jy8Ey/cPHPDLN469A53
-B0qntX6JoeJKFU/mGmvf0xQie/QpZvjBfMFrCdQhA/UueGOdJYBMKb8o5hmQgLi9
-LWVnTdSrxaht6vl32SeO452KjQvUBZSnCh9weUvpzhcPtOJm8hn6Fnmc1erDw9bX
-QokJFiB0XDvsFJoBtbQQx2/jHXFihBCdlxiuxJvEKb/0n3qrYzr6n9Vasjpb0gap
-83nRKdl4MNJsJ6KjoMZtjVt93x37sam6giILq98SIKJos5jz4WK8PKUiOIyQZryb
-AJL2NRM9gdtfUkm3YHcePioeyNsr2baRqF2kuv+VsnyYOHKqSilmRX0fOXn63kKg
-0wNfDmMPA63/UfYSweeTnDZerFZdJwV04+PFOt6OCffoZEe+uDCnpmrn0Gv91Hrp
-HJEai7zzj8yZqHUCqNRP8SadYHWXQjz0a42CoD1UHyoeMQnvApxCdAn3vQ9R6WBM
-n0BdCx0blXhamA3xb2EPVwPZ4huLcxwCRTKDRcRMbMUL400k3MGk9EnHeXa85YgU
-NKeI2QOdzGQ788QbBHfdD7iBjEPcHLx98w3zxgISsEElIUXDMfY=
-=f5yy
------END PGP SIGNATURE-----
-
---u/+LBcE/GZY9+OI4--
+>  .../devicetree/bindings/regulator/qcom,rpmh-regulator.txt       | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> index 97c3e0b7611c..bae558b87686 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> @@ -30,6 +30,7 @@ Supported regulator node names:
+>  	PMI8998:	bob
+>  	PM6150:         smps1 - smps5, ldo1 - ldo19
+>  	PM6150L:        smps1 - smps8, ldo1 - ldo11, bob
+> +	PMX55:		smps1 - smps7, ldo1 - ldo16
+>  
+>  ========================
+>  First Level Nodes - PMIC
+> @@ -47,6 +48,7 @@ First Level Nodes - PMIC
+>  		    "qcom,pmi8998-rpmh-regulators"
+>  		    "qcom,pm6150-rpmh-regulators"
+>  		    "qcom,pm6150l-rpmh-regulators"
+> +		    "qcom,pmx55-rpmh-regulators"
+>  
+>  - qcom,pmic-id
+>  	Usage:      required
+> -- 
+> 2.26.2
+> 
