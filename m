@@ -2,76 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BBB42C5CD5
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 21:08:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 643972C5D3D
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 22:07:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389774AbgKZUG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 15:06:27 -0500
-Received: from mail.kernel.org ([198.145.29.99]:36518 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728118AbgKZUG1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 26 Nov 2020 15:06:27 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 446BA20678;
-        Thu, 26 Nov 2020 20:06:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606421186;
-        bh=adaS/dVFg+I2jIUyjCgMHXDFaVVNbAutXxzlBvgKO3I=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=wIR63Qa5lF2DvebM6pjM89Llu6MTZFL/1FDXqEmHKXwsrwlbdZVal6Ar6ifGB2rpJ
-         OzGuhypkehTrmzSOnPWiANWHij8DdaBOUKeSjCO2PBZaw5KDNbY+7nJAIlL0MBiD84
-         7TrZZGuVWlLDtgStnWvJ4rw6QColZz9UK+s/98Og=
-Date:   Thu, 26 Nov 2020 20:06:01 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-In-Reply-To: <20201126093018.1085594-1-vkoul@kernel.org>
-References: <20201126093018.1085594-1-vkoul@kernel.org>
-Subject: Re: [PATCH 1/2] regulator: dt-bindings: Add PMX55 compatibles
-Message-Id: <160642116161.9318.6557430942496411850.b4-ty@kernel.org>
+        id S1733051AbgKZVGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 16:06:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42782 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732947AbgKZVGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 16:06:45 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E519C0617A7
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:44 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id w16so2562393pga.9
+        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 13:06:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2RSwp2FaxZrOvHsikh11ndH236WC9DHwtvvMtCMsWVE=;
+        b=WCLVMJKohk7tpNgIMveowBplgnFQVZhH9HgOvahmn7+xrODcXctJrrgY00/CccPGwv
+         tyHt5rAF9C2NJvufmc4ZCVcsi8b0UawM/TuHOQjjI4FtHr3jR5w8bh/oirrMYUDsHDpN
+         ttzBDqiYOftZrygCewF/fu1BtQR2MNTVBG+AXFYw2zZMgPEHXiLqxIXeAW1cqORmDjEJ
+         s2mtIMeS+Swup/wHX+wnCOJLH9tsLxVMn+QHdREOG7Hg3WxIJxW72uYkzsIOTdnMSz5Q
+         Rg7Vybd1CsCBms8ONBejFbYhdfccvDBXuCjEBN0zJOGUPhFwp0GlyaXINylnEKYgf8B/
+         fYsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2RSwp2FaxZrOvHsikh11ndH236WC9DHwtvvMtCMsWVE=;
+        b=tenTordSrSy/ccjiusTGtv49BmxW2tzSCewgqnKGOTnkfFNx/kcWrzKz3/3BGnD5+/
+         Bfqsk2YRCFEHTeQY6prKlyQPE3D+t42d4gMKzXvnYN5Ysi8DDKBXN4oiCoo6x3ssRFsg
+         kwCnBCmIkCOy34sjamwBBOlpcaRCKaUsn14C580WIURW/fi9eLlUk5tOeNYkbT7Vsx5v
+         gy+bWKmMhVCqia1//bmqvwAv9hPlQGXwswed4gs8EnE3uXiZe3OmnookwXZJixfpbxue
+         sfVwvTVw66zSil+3ex/yRJ56fqwt8c0QYhDusfkMJVsVt5b5ffmR3gQZhWiPEPAbuCra
+         4UeA==
+X-Gm-Message-State: AOAM5330eeaFgASlkUq+srEEjzdlKiaq5X6lefjGPIQVukHkr9LJLJGE
+        m+OcIPEBx8Bcu9lgLlAPOmoz3w==
+X-Google-Smtp-Source: ABdhPJwxeEQIjKpTn0OagaY59ueQhB39UvCG8dzpWHbg09mghBOlddWBx1rNZdnGkC3DTz6y4QOb0g==
+X-Received: by 2002:a63:7b55:: with SMTP id k21mr3901924pgn.256.1606424803641;
+        Thu, 26 Nov 2020 13:06:43 -0800 (PST)
+Received: from xps15.cg.shawcable.net (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
+        by smtp.gmail.com with ESMTPSA id c203sm5612676pfc.10.2020.11.26.13.06.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2020 13:06:43 -0800 (PST)
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org
+Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, arnaud.pouliquen@st.com
+Subject: [PATCH v3 00/15] remoteproc: Add support for detaching from rproc
+Date:   Thu, 26 Nov 2020 14:06:27 -0700
+Message-Id: <20201126210642.897302-1-mathieu.poirier@linaro.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 26 Nov 2020 15:00:17 +0530, Vinod Koul wrote:
-> Add PMX55 compatibles for PMIC found in SDX55 platform
+Following the work done here [1], this set provides support for the
+remoteproc core to release resources associated with a remote processor
+without having to switch it off. That way a platform driver can be removed
+or the application processor power cycled while the remote processor is
+still operating.
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/2] regulator: dt-bindings: Add PMX55 compatibles
-      commit: 1008521b9b4f85d80ac1d80391ac39055c89f736
-[2/2] regulator: qcom-rpmh: Add support for SDX55
-      commit: 36dd70ceb4d955e6cd3ecd18e78169141aaa23b7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Applies cleanly on rproc-next (c3c21b356505).
 
 Thanks,
-Mark
+Mathieu
+
+[1]. https://lkml.org/lkml/2020/7/14/1600
+
+----
+New for V3:
+- Added RB from Arnaud where applicable.
+- Reformatted comments about "detach" operation in struct rproc_ops.
+- Fixed error path in rproc_shutdown().
+- Fixed processing of "start" command in state_store() and rproc_cdev_write().
+- Changed binding from "autonomous-on-core-reboot" to
+  "autonomous-on-core-shutdown".
+- Wrote a proper YAML file for the binding.
+
+Mathieu Poirier (15):
+  dt-bindings: remoteproc: Add bindind to support autonomous processors
+  remoteproc: Re-check state in rproc_shutdown()
+  remoteproc: Remove useless check in rproc_del()
+  remoteproc: Add new RPROC_ATTACHED state
+  remoteproc: Properly represent the attached state
+  remoteproc: Properly deal with a kernel panic when attached
+  remoteproc: Add new detach() remoteproc operation
+  remoteproc: Introduce function __rproc_detach()
+  remoteproc: Introduce function rproc_detach()
+  remoteproc: Rename function rproc_actuate()
+  remoteproc: Add return value to function rproc_shutdown()
+  remoteproc: Properly deal with a stop request when attached
+  remoteproc: Properly deal with a start request when attached
+  remoteproc: Properly deal with detach request
+  remoteproc: Refactor rproc delete and cdev release path
+
+ .../bindings/remoteproc/remoteproc-core.yaml  |  25 +++
+ drivers/remoteproc/remoteproc_cdev.c          |  27 ++-
+ drivers/remoteproc/remoteproc_core.c          | 182 +++++++++++++++---
+ drivers/remoteproc/remoteproc_sysfs.c         |  20 +-
+ include/linux/remoteproc.h                    |  18 +-
+ 5 files changed, 225 insertions(+), 47 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/remoteproc-core.yaml
+
+-- 
+2.25.1
+
