@@ -2,84 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9966C2C55FA
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:40:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 103B82C5673
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 14:50:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390538AbgKZNkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 08:40:01 -0500
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:44235 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390022AbgKZNkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:40:00 -0500
-Received: by mail-ot1-f66.google.com with SMTP id f16so1869133otl.11;
-        Thu, 26 Nov 2020 05:40:00 -0800 (PST)
+        id S2389316AbgKZNuI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 08:50:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60026 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388331AbgKZNuH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 08:50:07 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9010C0613D4;
+        Thu, 26 Nov 2020 05:50:07 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id gj5so3007772ejb.8;
+        Thu, 26 Nov 2020 05:50:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Au9jO1brenTUNmfurtsLw99ldLx7tyWqwvCB6Mj1r+4=;
+        b=IejSREL7FzS0DHrd1huLkHojrGp49eZgIXq2lSG6V33EYAafg5e6vStVRhMvT9Kkbh
+         knmKpR+OQdl7kLz+PKV9k3QfUNlZb/S/iFMXLlkX6Mv9RWM56HSbggf2dMn3Y9h4SrbB
+         BFLsKYtO/r+hAEquM5Pazktn7KMTzDMtqNUBFyN0ayCmcjE4c2JBM/UQNqQ0O7QQlzxP
+         RaWHzFgDxzmG/GlZJuuehhYQz42wDumALLlGnYOpSyTZ38qwMuY+9a/1Q34FLoP1Y5fh
+         yB3Zc/xu/NDxRZWGgMd074MMjLgXiHW6Kb71LyS6V2WlUWvQh1VNHJrjdVr7uRk/k9dC
+         2U7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9OlAdx9Rt6+mn/zk0WSoIGgVl8CTxRmkVr/YvGJNstU=;
-        b=j4t1+xrs26iGu0wOKwTnYe1CZ2OpWRFNm1gkYdDo7Jpaaeze+XS/as7ebATlwQ0MhM
-         fvT63cbFMX4Zh3bD0xDmJ+g/S40kcYGbQmZznf9BuVlB35FLA32QmPWX2LEMulrW8NFr
-         N0ahFmBPl/yd+bgt+RgDnxcXelL4izsnIdMcZPai/5Md77Ti9dsYaZoaqVP5dDYFNxk0
-         vK2QRC1NKZ2mjFLyHVPiUOc7J++T0B5/nzveCe7mQNTYOeMVaG5OCH8ebIQPPyrpWRvw
-         edmntlWoM+Cx+flSpp+MDCcwS6L990OHrgNG5hLZMIxck4R6sU+W/YkS7Myjr37b2wXQ
-         NpXw==
-X-Gm-Message-State: AOAM531Mmxy7PsNN+6pS5I8Fp6GR5NwzbWb4wBnXjri7c4obDyypY3l+
-        qrrBvNMbAxDZiQSGZRY8JkJ79s0Xbx8mPWb5nKc=
-X-Google-Smtp-Source: ABdhPJwNETSfqAyCdIUe4k54K76c140v7K2yoFDKFTeoubpUNvU99YsrpBxv/Hw5TNyQlNc9DnBeAXwvbx0JvDdeEAQ=
-X-Received: by 2002:a05:6830:210a:: with SMTP id i10mr2248038otc.145.1606398000341;
- Thu, 26 Nov 2020 05:40:00 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Au9jO1brenTUNmfurtsLw99ldLx7tyWqwvCB6Mj1r+4=;
+        b=E49li/2QNUhRTPML+Mz8PryBNVoRye1igdE5qKf5NkUN9fIN0qE0KIqjx8Eck/zlld
+         +8HOdfSWuA4uU8j7O75yi+yeKWMjI5/+imGdaMOVVmYM/H9K29MDU4wCRF6ExS7EQ4zM
+         Ut7W5Pwpre9SejXpfw5ThsVrQOTDqN8UVVWDV4DrB0K8iAxJROop3l0m7lvrwo/h7cBq
+         vmWgjn6IijjKvLT2TD9FZD5FTufBi3goMuP9ejsOyKNTvKpAPwm1lWSEoqLuppaFOy3F
+         85CHs1z2Zr4An5Yyk+yMp3IaCQ8BnoOvN3mIPo7chHMMuC5FjmZKHHaFzPaZEIDkOZM+
+         dy/Q==
+X-Gm-Message-State: AOAM532Iq6FJNLpSG/or4h7tcw3RgloYDIphx4G071BOoZ2wiDFdPkCW
+        /mG8gxwjf6GBVFvE12bAZaPk/aUpP+8=
+X-Google-Smtp-Source: ABdhPJxW8VBQeRuZMkxMdnfmWP+3/BNbY2kMbIBhRHKctmwxIzQ7Sbe+RxnbflnfRfPluCqqr+tSww==
+X-Received: by 2002:a17:906:f8c5:: with SMTP id lh5mr2721714ejb.77.1606398606535;
+        Thu, 26 Nov 2020 05:50:06 -0800 (PST)
+Received: from skbuf ([188.25.2.120])
+        by smtp.gmail.com with ESMTPSA id z29sm3241441edi.1.2020.11.26.05.50.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Nov 2020 05:50:06 -0800 (PST)
+Date:   Thu, 26 Nov 2020 15:50:04 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     George McCollister <george.mccollister@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller " <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/3] dsa: add support for Arrow XRS700x tag
+ trailer
+Message-ID: <20201126135004.aq2lruz5kxptmsvl@skbuf>
+References: <20201125193740.36825-1-george.mccollister@gmail.com>
+ <20201125193740.36825-2-george.mccollister@gmail.com>
+ <20201125203429.GF2073444@lunn.ch>
 MIME-Version: 1.0
-References: <20201126103053.29881-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20201126103053.29881-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20201126103053.29881-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 26 Nov 2020 14:39:49 +0100
-Message-ID: <CAMuHMdXF82Or_bew1aNfpZ9ZtWF6BwXhZwU79fajexXZRT3Y-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add support
- for 8-bit ov7725 sensors
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201125203429.GF2073444@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
-
-On Thu, Nov 26, 2020 at 11:31 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> The 8-bit ov7725 sensors can also be connected to the camera daughter
-> board.
+On Wed, Nov 25, 2020 at 09:34:29PM +0100, Andrew Lunn wrote:
+> > +static struct sk_buff *xrs700x_rcv(struct sk_buff *skb, struct net_device *dev,
+> > +				   struct packet_type *pt)
+> > +{
+> > +	int source_port;
+> > +	u8 *trailer;
+> > +
+> > +	if (skb_linearize(skb))
+> > +		return NULL;
 >
-> This patch creates a separate dtsi file for ov7725 sensors and is included
-> in r8a7742-iwg21d-q7-dbcm-ca.dts. The user can set VINx_SENSOR depending
-> on the cameras connected.
+> Something for Vladimir:
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Could this linearise be moved into the core, depending on the
+> tail_tag?
 
-Thanks for your patch!
+Honestly I believe that the skb_linearize is not needed at all. It is
+copy-pasted from tag_trailer.c, a driver that has not exercised at
+runtime by anybody for a long time now. The pskb_trim_rcsum function
+used for removing the tail tag should do the right thing even with
+fragmented packets.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > +	if (pskb_trim_rcsum(skb, skb->len - 1))
+> > +		return NULL;
+>
+> And the overhead is also in dsa_devlink_ops, so maybe this can be
+> moved as well?
 
-However, I think this can still be improved upon.  As it's a bit difficult
-to explain, I'll send an updated version of your series with my
-suggestions applied.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Sorry, I don't understand this comment.
