@@ -2,145 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FE5C2C583E
-	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 16:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 12EBD2C5867
+	for <lists+devicetree@lfdr.de>; Thu, 26 Nov 2020 16:42:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390231AbgKZP3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 26 Nov 2020 10:29:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47266 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389808AbgKZP3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 26 Nov 2020 10:29:46 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00F75C0617A7
-        for <devicetree@vger.kernel.org>; Thu, 26 Nov 2020 07:29:45 -0800 (PST)
-Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1kiJDL-00080A-LA; Thu, 26 Nov 2020 16:29:44 +0100
-Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mtr@dude03.red.stw.pengutronix.de>)
-        id 1kiJDL-00G3G3-2E; Thu, 26 Nov 2020 16:29:43 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     kernel@pengutronix.de, robh+dt@kernel.org,
-        hverkuil-cisco@xs4all.nl,
-        Michael Tretter <m.tretter@pengutronix.de>
-Date:   Thu, 26 Nov 2020 16:29:41 +0100
-Message-Id: <20201126152941.3825721-5-m.tretter@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201126152941.3825721-1-m.tretter@pengutronix.de>
-References: <20201126152941.3825721-1-m.tretter@pengutronix.de>
+        id S1728056AbgKZPlc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 26 Nov 2020 10:41:32 -0500
+Received: from foss.arm.com ([217.140.110.172]:37058 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727481AbgKZPlc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 26 Nov 2020 10:41:32 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7700A31B;
+        Thu, 26 Nov 2020 07:41:31 -0800 (PST)
+Received: from [10.57.59.159] (unknown [10.57.59.159])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 27CC43F71F;
+        Thu, 26 Nov 2020 07:41:26 -0800 (PST)
+Subject: Re: [PATCH v4 07/24] iommu/io-pgtable-arm-v7s: Use ias to check the
+ valid iova in unmap
+To:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Will Deacon <will@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        chao.hao@mediatek.com, Greg Kroah-Hartman <gregkh@google.com>,
+        kernel-team@android.com
+References: <20201111123838.15682-1-yong.wu@mediatek.com>
+ <20201111123838.15682-8-yong.wu@mediatek.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <bf339a42-57af-6de2-aa04-816ebf205574@arm.com>
+Date:   Thu, 26 Nov 2020 15:41:25 +0000
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        metis.ext.pengutronix.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
-        version=3.4.2
-Subject: [PATCH 4/4] media: allegro: rename stream_id to dst_handle
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201111123838.15682-8-yong.wu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dst_handle field in the PUT_STREAM_BUFFER and ENCODE_FRAME_RESPONSE
-is used to retrieve the V4L2 CAPTURE buffer. Calling it stream_id is
-confusing. Call it dst_handle inspired by src_handle for the OUTPUT
-buffer.
+On 2020-11-11 12:38, Yong Wu wrote:
+> Use the ias for the valid iova checking in arm_v7s_unmap. This is a
+> preparing patch for supporting iova 34bit for MediaTek.
 
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
- drivers/media/platform/allegro-dvt/allegro-core.c | 6 +++---
- drivers/media/platform/allegro-dvt/allegro-mail.c | 8 ++++----
- drivers/media/platform/allegro-dvt/allegro-mail.h | 4 ++--
- 3 files changed, 9 insertions(+), 9 deletions(-)
+I can't help thinking of weird ways to generate better code here, but 
+being consistent with what we already have on the map path is probably 
+more valuable for now.
 
-diff --git a/drivers/media/platform/allegro-dvt/allegro-core.c b/drivers/media/platform/allegro-dvt/allegro-core.c
-index 902b8af90ac6..6b5cbee05040 100644
---- a/drivers/media/platform/allegro-dvt/allegro-core.c
-+++ b/drivers/media/platform/allegro-dvt/allegro-core.c
-@@ -1038,7 +1038,7 @@ static int allegro_mcu_send_put_stream_buffer(struct allegro_dev *dev,
- 					      struct allegro_channel *channel,
- 					      dma_addr_t paddr,
- 					      unsigned long size,
--					      u64 stream_id)
-+					      u64 dst_handle)
- {
- 	struct mcu_msg_put_stream_buffer msg;
- 
-@@ -1053,7 +1053,7 @@ static int allegro_mcu_send_put_stream_buffer(struct allegro_dev *dev,
- 	msg.size = size;
- 	msg.offset = ENCODER_STREAM_OFFSET;
- 	/* copied to mcu_msg_encode_frame_response */
--	msg.stream_id = stream_id;
-+	msg.dst_handle = dst_handle;
- 
- 	allegro_mbox_send(dev->mbox_command, &msg);
- 
-@@ -1437,7 +1437,7 @@ static void allegro_channel_finish_frame(struct allegro_channel *channel,
- 			  channel->mcu_channel_id);
- 
- 	dst_buf = allegro_get_buffer(channel, &channel->stream_shadow_list,
--				     msg->stream_id);
-+				     msg->dst_handle);
- 	if (!dst_buf)
- 		v4l2_warn(&dev->v4l2_dev,
- 			  "channel %d: invalid stream buffer\n",
-diff --git a/drivers/media/platform/allegro-dvt/allegro-mail.c b/drivers/media/platform/allegro-dvt/allegro-mail.c
-index 9286d2162377..993e16f06305 100644
---- a/drivers/media/platform/allegro-dvt/allegro-mail.c
-+++ b/drivers/media/platform/allegro-dvt/allegro-mail.c
-@@ -302,8 +302,8 @@ allegro_enc_put_stream_buffer(u32 *dst,
- 	dst[i++] = msg->mcu_addr;
- 	dst[i++] = msg->size;
- 	dst[i++] = msg->offset;
--	dst[i++] = lower_32_bits(msg->stream_id);
--	dst[i++] = upper_32_bits(msg->stream_id);
-+	dst[i++] = lower_32_bits(msg->dst_handle);
-+	dst[i++] = upper_32_bits(msg->dst_handle);
- 
- 	return i * sizeof(*dst);
- }
-@@ -406,8 +406,8 @@ allegro_dec_encode_frame(struct mcu_msg_encode_frame_response *msg, u32 *src)
- 
- 	msg->channel_id = src[i++];
- 
--	msg->stream_id = src[i++];
--	msg->stream_id |= (((u64)src[i++]) << 32);
-+	msg->dst_handle = src[i++];
-+	msg->dst_handle |= (((u64)src[i++]) << 32);
- 	msg->user_param = src[i++];
- 	msg->user_param |= (((u64)src[i++]) << 32);
- 	msg->src_handle = src[i++];
-diff --git a/drivers/media/platform/allegro-dvt/allegro-mail.h b/drivers/media/platform/allegro-dvt/allegro-mail.h
-index 486ecb12b098..f7485cf78c4f 100644
---- a/drivers/media/platform/allegro-dvt/allegro-mail.h
-+++ b/drivers/media/platform/allegro-dvt/allegro-mail.h
-@@ -191,7 +191,7 @@ struct mcu_msg_put_stream_buffer {
- 	u32 mcu_addr;
- 	u32 size;
- 	u32 offset;
--	u64 stream_id;
-+	u64 dst_handle;
- };
- 
- struct mcu_msg_encode_frame {
-@@ -233,7 +233,7 @@ struct mcu_msg_encode_frame {
- struct mcu_msg_encode_frame_response {
- 	struct mcu_msg_header header;
- 	u32 channel_id;
--	u64 stream_id;		/* see mcu_msg_put_stream_buffer */
-+	u64 dst_handle;		/* see mcu_msg_put_stream_buffer */
- 	u64 user_param;		/* see mcu_msg_encode_frame */
- 	u64 src_handle;		/* see mcu_msg_encode_frame */
- 	u16 skip;
--- 
-2.20.1
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
 
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>   drivers/iommu/io-pgtable-arm-v7s.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iommu/io-pgtable-arm-v7s.c b/drivers/iommu/io-pgtable-arm-v7s.c
+> index a688f22cbe3b..e880745ab1e8 100644
+> --- a/drivers/iommu/io-pgtable-arm-v7s.c
+> +++ b/drivers/iommu/io-pgtable-arm-v7s.c
+> @@ -717,7 +717,7 @@ static size_t arm_v7s_unmap(struct io_pgtable_ops *ops, unsigned long iova,
+>   {
+>   	struct arm_v7s_io_pgtable *data = io_pgtable_ops_to_data(ops);
+>   
+> -	if (WARN_ON(upper_32_bits(iova)))
+> +	if (WARN_ON(iova >= (1ULL << data->iop.cfg.ias)))
+>   		return 0;
+>   
+>   	return __arm_v7s_unmap(data, gather, iova, size, 1, data->pgd);
+> 
