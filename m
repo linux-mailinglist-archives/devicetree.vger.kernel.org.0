@@ -2,109 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C3182C65D0
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 13:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65A652C65D8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 13:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725985AbgK0MjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 07:39:19 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33544 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729055AbgK0MjT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 07:39:19 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ARCdBAJ108578;
-        Fri, 27 Nov 2020 06:39:11 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606480751;
-        bh=6ow0M5W2hZ+hQ03nILTWyoWhcBoivRE0XdEdDu/ippI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ngg7/U01qCWM2oSHiT7DEQTKhqOTyD0EahnodtSe0Am00AwytShA8qVXj6HdsGdFy
-         XXxnISDf4nmddIyvx7hTY67lEJO1ebaSFj+mhfzufyGTG6JVYEyhFCHFfRZ/ARBeIK
-         LyzXDmVtnWNO4zZw1lAcflnEgasAeOOnKgEDfhoA=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ARCdBmN059872
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 27 Nov 2020 06:39:11 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 27
- Nov 2020 06:39:11 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 27 Nov 2020 06:39:11 -0600
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ARCd80x102044;
-        Fri, 27 Nov 2020 06:39:08 -0600
-Subject: Re: [PATCH 0/3] arm64: Initial support for Texas Instruments AM642
- Platform
-To:     Dave Gerlach <d-gerlach@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Nishanth Menon <nm@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-References: <20201125052004.17823-1-d-gerlach@ti.com>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <fbec746d-f629-dd13-1ab9-5f530171748c@ti.com>
-Date:   Fri, 27 Nov 2020 14:40:04 +0200
+        id S1728404AbgK0Mmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 07:42:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44926 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728013AbgK0Mmh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 07:42:37 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E23CC0613D1;
+        Fri, 27 Nov 2020 04:42:37 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id t4so5410044wrr.12;
+        Fri, 27 Nov 2020 04:42:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=V+UYY93bQCO8HGvd/dOd/Rhtb0qsy0CmlK8sEYhElKA=;
+        b=GA7fGSjs3q6PrvswwEX9lGKUTiREVTe9Yob+iavzXSR3VV4fxkwC9WDdbzG66uqDRu
+         xV6AuGIOcIwOg8jYnj5QxOkncmsnxfCMenoYtVL+fKxDeLfPt+Mm5FnknXfNAF81ipi1
+         /AYi415kQ9YupGtZYCymGwtDYtgfOcCLtSdSEjQzKuPyewgDdxcUl6mugZnZrEJT6A7L
+         lxqnE+D3cPfOBRrPh+ik/CUZYkEeNvrSfpSPDmfo97txrh9isM3zJNrkhgm3NQJsnl9o
+         ZgYzIFjNbNINeW5ZhWqBE5qgGelIUm/hTyAN3u/i7J5F7n8OhsrjLgNK0KUt3JAxLSk+
+         f93w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=V+UYY93bQCO8HGvd/dOd/Rhtb0qsy0CmlK8sEYhElKA=;
+        b=YTln3PLs/rxgz+EZ68xMNhZ/tX9xBkYD6BwqMCcH9UdJZGv2bZdJxVHiMNns28JNnv
+         caPYSI4jw1/iBREimP65kpkCIIKdep8qYFWh/Nk1puupjGoEUvpKmgWYsR0uQNWsK0Ma
+         i/+ud9wIDnAnQoLS7BD9Y9oNxoTbzzv97lvK1X3I0L7B2xJY2I86fTNt5+D8SjXhCqiq
+         FbEVQzrM6gN4yd0IRkjJW2ig/r9WuYmJnIGL7nWUhcgNtM7O0QEjhIvIsfgrgWmIJcel
+         /v0ykqzFzJDpDBEN4mb4ibGXdU+A7Wne+kOZnt4BEnG15ey+Yrg7R6IevmHFdi23eLFQ
+         ci0Q==
+X-Gm-Message-State: AOAM5310Fo3TRSQ/DdX4wQqOh5VQ0HTBCSPmYIjvUO0pqcG1jV5kEJ66
+        Wx4AvonsCqPEQDdZsoYAItY=
+X-Google-Smtp-Source: ABdhPJxYnDUaWz2GemI+sa/5eWMlJkVIio89EdsiU4JRnbiE02Bpz4xHERnzKBCs2dycUYuHqPQcSQ==
+X-Received: by 2002:a5d:4a07:: with SMTP id m7mr10130310wrq.316.1606480955830;
+        Fri, 27 Nov 2020 04:42:35 -0800 (PST)
+Received: from ziggy.stardust ([213.195.126.134])
+        by smtp.gmail.com with ESMTPSA id o134sm1707856wme.6.2020.11.27.04.42.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Nov 2020 04:42:35 -0800 (PST)
+Subject: Re: [PATCH v3] arm64: dts: mediatek: Add mt8192 power domains
+ controller
+To:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+References: <1605782884-19741-1-git-send-email-weiyi.lu@mediatek.com>
+ <CAFqH_522NuGY9c-_XWhHxoa3QkrdoM92qTOLxgM8PpOU=-ttbw@mail.gmail.com>
+ <1605791419.19819.4.camel@mtksdaap41>
+ <CAFqH_51m5Pg9ny4HWt1iwf8wtsGSdShpDCVaGwac=v9BBDj2vg@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <1f25cc3f-324a-0020-7bf2-e5a915291522@gmail.com>
+Date:   Fri, 27 Nov 2020 13:42:33 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <20201125052004.17823-1-d-gerlach@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <CAFqH_51m5Pg9ny4HWt1iwf8wtsGSdShpDCVaGwac=v9BBDj2vg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dave,
 
-On 25/11/2020 7.20, Dave Gerlach wrote:
-> This series adds initial support for the latest new SoC, AM642,
-> from Texas Instruments.
+
+On 19/11/2020 15:13, Enric Balletbo Serra wrote:
+> Hi Weiyi,
 > 
-> Additional detail can be found in the patch descriptions, also
-> see AM64X Technical Reference Manual (SPRUIM2, Nov 2020) for
-> further details: https://www.ti.com/lit/pdf/spruim2
-
-Tested-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-Reviewed-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-
-fwiw, with these, plus the BCDMA/PKTDMA series [1] and one local dt
-patch to enable the DMAs on linux-next:
-https://pastebin.ubuntu.com/p/W5QkTMhrVp/
-
-[1]
-https://lore.kernel.org/lkml/20201117105656.5236-1-peter.ujfalusi@ti.com/
-
-> Regards,
-> Dave
+> Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
+> 2020 a les 14:10:
+>>
+>> On Thu, 2020-11-19 at 13:13 +0100, Enric Balletbo Serra wrote:
+>>> Hi Weiyi,
+>>>
+>>> Thank you for the patch
+>>>
+>>> Missatge de Weiyi Lu <weiyi.lu@mediatek.com> del dia dj., 19 de nov.
+>>> 2020 a les 11:48:
+>>>>
+>>>> Add power domains controller node for SoC mt8192
+>>>>
+>>>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
+>>>> ---
+[...]
+>>>> +                       /* System Power Manager */
+>>>> +                       spm: power-controller {
+>>>> +                               compatible = "mediatek,mt8192-power-controller";
+>>>> +                               #address-cells = <1>;
+>>>> +                               #size-cells = <0>;
+>>>> +                               #power-domain-cells = <1>;
+>>>> +
+>>>> +                               /* power domain of the SoC */
+>>>> +                               audio@MT8192_POWER_DOMAIN_AUDIO {
+>>>
+>>> If you run the dt_bindings_check it should return some errors, as all
+>>> these node names should be 'power-domain@'. Which is a bit annoying
+>>> because then you will get a bunch of errors like this:
+>>>
+>>> [    1.969110] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    1.976997] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    1.984828] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    1.992657] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.000685] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.008566] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.016395] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.024221] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.032049] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.039874] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.047699] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.055524] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.063352] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>> [    2.071176] debugfs: Directory 'power-domain' with parent
+>>> 'pm_genpd' already present!
+>>>
+>>> But that's another problem that should be handled in debugfs system.
+>>>
+>>
+>> Indeed...so I chose to use different name in dts to avoid problems in
+>> debugfs. It does violate the naming rules.
+>>
 > 
-> Dave Gerlach (3):
->   dt-bindings: arm: ti: Add bindings for AM642 SoC
->   arm64: dts: ti: Add Support for AM642 SoC
->   arm64: dts: ti: Add support for AM642 EVM
-> 
->  .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
->  arch/arm64/boot/dts/ti/Makefile               |   2 +
->  arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 178 ++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am64.dtsi           |  95 ++++++++++
->  arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  61 ++++++
->  arch/arm64/boot/dts/ti/k3-am642.dtsi          |  65 +++++++
->  6 files changed, 407 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am64-main.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am64.dtsi
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm.dts
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am642.dtsi
+> But your binding will not pass (or trigger warnings) the dtb check
+> then. Rob was clear that names should be generic. Proper fix is fix
+> debugfs not the binding.
 > 
 
-- Péter
+By the way, is anybody working on this debugfs issue?
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Regards,
+Matthias
