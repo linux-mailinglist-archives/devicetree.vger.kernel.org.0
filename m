@@ -2,99 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 659A12C6661
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 14:10:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D4582C667C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 14:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729742AbgK0NIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 08:08:50 -0500
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:8806 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730148AbgK0NIt (ORCPT
+        id S1730084AbgK0NMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 08:12:54 -0500
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:58706 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730098AbgK0NMy (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 08:08:49 -0500
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0ARCUrcr007370;
-        Fri, 27 Nov 2020 08:08:48 -0500
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-        by mx0a-00128a01.pphosted.com with ESMTP id 34y0p8k45m-1
+        Fri, 27 Nov 2020 08:12:54 -0500
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0ARCR5IV006586;
+        Fri, 27 Nov 2020 14:12:32 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=GQp9+1KGBlt8NZocRR5PgA4+6R9ARvYpJUhtHSdjap4=;
+ b=Es7xEDIEJ0QUnArrxgnbGB9ZxyUqE2gRrKoKk1LMIIwkaPTvfMJlIjf4olaABz+Oj9gS
+ mOsI4nDjHhhh3Y2PfwK91qfIWAXBTUGNX/spvS96z3TGW6WQwD67OUhDPnDVQhp6nhyr
+ UpmqGS3GPa2MeTGceActUCeO8JWwmraJUymkGDYRAZ5wGrQ5msgBDtvh0T02wwIu+Rs0
+ TkcEysSPK7xn6x9YrnncOIuA20AA7RF5o5BtO/Ibgxc9N+73i6bUepBp8bSCfR8lfuRT
+ NyEgeT81XIN/RUT+TK5glb3v/0RpY+dV+ULl+PPMt668MwgPlINY8Tf17NyLr5qp6Ijj Aw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 34y0fhdnvn-1
         (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 27 Nov 2020 08:08:48 -0500
-Received: from SCSQMBX11.ad.analog.com (SCSQMBX11.ad.analog.com [10.77.17.10])
-        by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 0ARD8k6I049549
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Fri, 27 Nov 2020 08:08:47 -0500
-Received: from SCSQMBX10.ad.analog.com (10.77.17.5) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1779.2; Fri, 27 Nov
- 2020 05:08:45 -0800
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX10.ad.analog.com
- (10.77.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Fri, 27 Nov 2020 05:08:45 -0800
-Received: from saturn.ad.analog.com ([10.48.65.109])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 0ARD8dKJ026672;
-        Fri, 27 Nov 2020 08:08:42 -0500
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <broonie@kernel.org>,
-        <andy.shevchenko@gmail.com>, <dragos.bogdan@analog.com>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v3 3/3] spi: dt-bindings: document zero value for spi-{rx,tx}-bus-width properties
-Date:   Fri, 27 Nov 2020 15:08:34 +0200
-Message-ID: <20201127130834.136348-3-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20201127130834.136348-1-alexandru.ardelean@analog.com>
-References: <20201127130834.136348-1-alexandru.ardelean@analog.com>
+        Fri, 27 Nov 2020 14:12:32 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5AC6510002A;
+        Fri, 27 Nov 2020 14:12:32 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 4234A24A63B;
+        Fri, 27 Nov 2020 14:12:32 +0100 (CET)
+Received: from lmecxl0995.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 27 Nov
+ 2020 14:12:30 +0100
+Subject: Re: [PATCH v5 3/5] usb: typec: stusb160x: fix power-opmode property
+ with typec-power-opmode
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Jun Li <lijun.kernel@gmail.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+References: <20201106165805.31534-1-amelie.delaunay@st.com>
+ <20201106165805.31534-4-amelie.delaunay@st.com>
+ <e97a537a-9c7e-cd98-8ffa-93abae087128@st.com> <X8D6LgTHMpk2gph9@kroah.com>
+From:   Amelie DELAUNAY <amelie.delaunay@st.com>
+Message-ID: <b9bd4d0f-a6e4-29f4-77aa-9d144edff18c@st.com>
+Date:   Fri, 27 Nov 2020 14:12:29 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRuleOP-NewSCL: Rule Triggered
+In-Reply-To: <X8D6LgTHMpk2gph9@kroah.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG4NODE1.st.com (10.75.127.10) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
  definitions=2020-11-27_06:2020-11-26,2020-11-27 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- lowpriorityscore=0 clxscore=1015 priorityscore=1501 adultscore=0
- mlxscore=0 malwarescore=0 bulkscore=0 suspectscore=0 spamscore=0
- mlxlogscore=615 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011270078
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following a change to the SPI framework, providing a value of zero for
-'spi-rx-bus-width' and 'spi-tx-bus-width' is now possible and will
-essentially mean than no RX or TX is allowed.
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- Documentation/devicetree/bindings/spi/spi-controller.yaml | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-index 1b56d5e40f1f..f1aaaf9b3709 100644
---- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-@@ -125,8 +125,9 @@ patternProperties:
-       spi-rx-bus-width:
-         description:
-           Bus width to the SPI bus used for read transfers.
-+          If 0 is provided, then no RX will be possible on this devices.
-         $ref: /schemas/types.yaml#/definitions/uint32
--        enum: [1, 2, 4, 8]
-+        enum: [0, 1, 2, 4, 8]
-         default: 1
- 
-       spi-rx-delay-us:
-@@ -136,8 +137,9 @@ patternProperties:
-       spi-tx-bus-width:
-         description:
-           Bus width to the SPI bus used for write transfers.
-+          If 0 is provided, then no RX will be possible on this devices.
-         $ref: /schemas/types.yaml#/definitions/uint32
--        enum: [1, 2, 4, 8]
-+        enum: [0, 1, 2, 4, 8]
-         default: 1
- 
-       spi-tx-delay-us:
--- 
-2.27.0
+On 11/27/20 2:07 PM, Greg Kroah-Hartman wrote:
+> On Fri, Nov 27, 2020 at 02:01:29PM +0100, Amelie DELAUNAY wrote:
+>> Hi Greg,
+>>
+>> gentle reminder for this patch, lost in the middle of a DT series (DT part
+>> already in stm32-next).
+> 
+> Odd, I don't see this anymore, can you resend just this one so I can
+> apply it directly?
 
+Sure :) I rebase it and send it right now.
+
+Amelie
