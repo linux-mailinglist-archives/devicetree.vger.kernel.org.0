@@ -2,84 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0499E2C65D1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 13:41:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C3182C65D0
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 13:41:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729318AbgK0MjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 07:39:23 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48938 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729148AbgK0MjX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 07:39:23 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D2A0322240;
-        Fri, 27 Nov 2020 12:39:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606480762;
-        bh=uitY12qTzJ6CCv8Sff1HVoEyGCJ5WaJc3uh+EFJw428=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kjFojvRH5W2864LJMjgV8LXoFhjHdTqCBxc64tYibo7aT9tPtIENd2Ja4CWpa4a4W
-         IPG0FUzwTPM9bFCAUIVq7rWxHoBH8l3UVC2DTZlBPfvdy/KptFKTB/tbqlBE6RuV4h
-         xaa6D5AHgV65Ab1gaN4BSiafN5cRy5AsZCzVEGbE=
-Date:   Fri, 27 Nov 2020 12:38:56 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Subject: Re: [PATCH] Asoc: qcom: Fix for problem in resume with CRAS
-Message-ID: <20201127123856.GA4845@sirena.org.uk>
-References: <1606450323-21641-1-git-send-email-srivasam@codeaurora.org>
+        id S1725985AbgK0MjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 07:39:19 -0500
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:33544 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729055AbgK0MjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 07:39:19 -0500
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ARCdBAJ108578;
+        Fri, 27 Nov 2020 06:39:11 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1606480751;
+        bh=6ow0M5W2hZ+hQ03nILTWyoWhcBoivRE0XdEdDu/ippI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ngg7/U01qCWM2oSHiT7DEQTKhqOTyD0EahnodtSe0Am00AwytShA8qVXj6HdsGdFy
+         XXxnISDf4nmddIyvx7hTY67lEJO1ebaSFj+mhfzufyGTG6JVYEyhFCHFfRZ/ARBeIK
+         LyzXDmVtnWNO4zZw1lAcflnEgasAeOOnKgEDfhoA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ARCdBmN059872
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 27 Nov 2020 06:39:11 -0600
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 27
+ Nov 2020 06:39:11 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 27 Nov 2020 06:39:11 -0600
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ARCd80x102044;
+        Fri, 27 Nov 2020 06:39:08 -0600
+Subject: Re: [PATCH 0/3] arm64: Initial support for Texas Instruments AM642
+ Platform
+To:     Dave Gerlach <d-gerlach@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham <kishon@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Aswath Govindraju <a-govindraju@ti.com>
+References: <20201125052004.17823-1-d-gerlach@ti.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <fbec746d-f629-dd13-1ab9-5f530171748c@ti.com>
+Date:   Fri, 27 Nov 2020 14:40:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.5.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vtzGhvizbBRQ85DL"
-Content-Disposition: inline
-In-Reply-To: <1606450323-21641-1-git-send-email-srivasam@codeaurora.org>
-X-Cookie: All work and no pay makes a housewife.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20201125052004.17823-1-d-gerlach@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dave,
 
---vtzGhvizbBRQ85DL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 25/11/2020 7.20, Dave Gerlach wrote:
+> This series adds initial support for the latest new SoC, AM642,
+> from Texas Instruments.
+> 
+> Additional detail can be found in the patch descriptions, also
+> see AM64X Technical Reference Manual (SPRUIM2, Nov 2020) for
+> further details: https://www.ti.com/lit/pdf/spruim2
 
-On Fri, Nov 27, 2020 at 09:42:03AM +0530, Srinivasa Rao Mandadapu wrote:
-> To support playback continuation after resume problem in chrome
-> audio server:
-> Prepare device in  platform trigger callback.
-> Make I2s and DMA control registers as non volatile.
+Tested-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Reviewed-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-What is the actual issue this is fixing?
+fwiw, with these, plus the BCDMA/PKTDMA series [1] and one local dt
+patch to enable the DMAs on linux-next:
+https://pastebin.ubuntu.com/p/W5QkTMhrVp/
 
-As I have previously said please submit patches using subject lines
-reflecting the style for the subsystem, this makes it easier for people
-to identify relevant patches.  Look at what existing commits in the area
-you're changing are doing and make sure your subject lines visually
-resemble what they're doing.  There's no need to resubmit to fix this
-alone.
+[1]
+https://lore.kernel.org/lkml/20201117105656.5236-1-peter.ujfalusi@ti.com/
 
---vtzGhvizbBRQ85DL
-Content-Type: application/pgp-signature; name="signature.asc"
+> Regards,
+> Dave
+> 
+> Dave Gerlach (3):
+>   dt-bindings: arm: ti: Add bindings for AM642 SoC
+>   arm64: dts: ti: Add Support for AM642 SoC
+>   arm64: dts: ti: Add support for AM642 EVM
+> 
+>  .../devicetree/bindings/arm/ti/k3.yaml        |   6 +
+>  arch/arm64/boot/dts/ti/Makefile               |   2 +
+>  arch/arm64/boot/dts/ti/k3-am64-main.dtsi      | 178 ++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am64.dtsi           |  95 ++++++++++
+>  arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  61 ++++++
+>  arch/arm64/boot/dts/ti/k3-am642.dtsi          |  65 +++++++
+>  6 files changed, 407 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am64-main.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am64.dtsi
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm.dts
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-am642.dtsi
+> 
 
------BEGIN PGP SIGNATURE-----
+- Péter
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl/A82AACgkQJNaLcl1U
-h9A/7Qf/c6x/s5ZWRfoB7c+m1pakjVu2TQcvsEdS0xLz2/SldOq2hhGP0dW6gXca
-4brb3HK8lDaIwnlbk3N27mGDUObmzte/41ZJ/Gx0HNIqN8oU7dEgO+AEU+XJ+bnO
-cFBy1NhWu2ZnC33hkVxeyJSzDg0hT2pTE+rOoCRog0cgWXlsGfQW/OJONyTdVfeX
-g+LnVrLafbO4ERJRlYICy1Ibj8ongorQVPPGU3OoB1fq4cMXvO18NMi7pg/dFH/q
-YqzP2l5jrH+jiugbzniHHcvnkqVFta8BfKcxZqeXfDKT6Cv3vtT6c/k++/Guzq0V
-J67riGm4jZB7+pEneGlM4ZSQr/mmng==
-=YJfA
------END PGP SIGNATURE-----
-
---vtzGhvizbBRQ85DL--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
