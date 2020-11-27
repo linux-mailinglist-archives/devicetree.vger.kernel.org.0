@@ -2,151 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E671B2C6C89
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 21:28:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 054982C6C75
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 21:16:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731419AbgK0U1I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 15:27:08 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:47156 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732316AbgK0ULO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 15:11:14 -0500
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ARKAXq1127970;
-        Fri, 27 Nov 2020 14:10:33 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606507833;
-        bh=G+IxPRUhnXgRMQBHzqaIlUdUtq5y3Waw7CpI6uomHv0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=lHiuH1y6ScoX/fkmOTwd9JxCXMJLEFls6G2Vw7f7O/WOTjFvPKnMLmN1LbEH41agY
-         11EJXRHLUSHguYU9gzRXmhPFNBIRRBGxI0C918PGOoEk+CMuNTUVyeCmDsACUl2K9U
-         Ln/wxzvd7Qhz1c+1i2LF0Czli5ZMQ7j8ulBUCuO0=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ARKAXnA130939
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 27 Nov 2020 14:10:33 -0600
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 27
- Nov 2020 14:10:32 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 27 Nov 2020 14:10:32 -0600
-Received: from pxplinux063.india.englab.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ARKAPw8117269;
-        Fri, 27 Nov 2020 14:10:30 -0600
-From:   Sekhar Nori <nsekhar@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>
-CC:     Faiz Abbas <faiz_abbas@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-j721e-common-proc-board: Add support SD card UHS modes
-Date:   Sat, 28 Nov 2020 01:40:24 +0530
-Message-ID: <20201127201024.64836-3-nsekhar@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201127201024.64836-1-nsekhar@ti.com>
-References: <20201127201024.64836-1-nsekhar@ti.com>
+        id S1731355AbgK0UM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 15:12:56 -0500
+Received: from mail.kernel.org ([198.145.29.99]:39562 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732474AbgK0UMH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Nov 2020 15:12:07 -0500
+Received: from kernel.org (unknown [104.132.1.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 59058206D9;
+        Fri, 27 Nov 2020 20:10:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606507851;
+        bh=XZK4Ium8QBFZyL2pO4Bad1qag9+adR3MRiJx1hMiA2E=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=NWdOEYmyhdJ6mI86E67rwQqQO15TzORO23RXi5lGJ8WLlyqjoL8GgRN8C5kkM6I4U
+         MLaiVEDWyOz+D1UrDO91AeN15XBlmw7Cj2WLLk7zrK/Y+f0+H1LVbfTGQTIFFfvj8Q
+         vxV8G4M/vdDWg3fEvQpN+/kx2kwK2cfW1eXq9yOQ=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <E796D737-E343-4EDB-BB34-CE6E0295CF3E@linaro.org>
+References: <20201119072714.14460-1-manivannan.sadhasivam@linaro.org> <20201119072714.14460-2-manivannan.sadhasivam@linaro.org> <160627045053.2717324.16519747693186632490@swboyd.mtv.corp.google.com> <E796D737-E343-4EDB-BB34-CE6E0295CF3E@linaro.org>
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: Add SDX55 GCC clock bindings
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        mturquette@baylibre.com, robh+dt@kernel.org
+Date:   Fri, 27 Nov 2020 12:10:50 -0800
+Message-ID: <160650785008.2717324.9878053018301696255@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Faiz Abbas <faiz_abbas@ti.com>
+Quoting Manivannan Sadhasivam (2020-11-24 19:49:24)
+>=20
+>=20
+> On 25 November 2020 7:44:10 AM IST, Stephen Boyd <sboyd@kernel.org> wrote:
+> >Quoting Manivannan Sadhasivam (2020-11-18 23:27:11)
+> >> diff --git
+> >a/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+> >b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+> >> new file mode 100644
+> >> index 000000000000..9d8981817ae3
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
+> >> @@ -0,0 +1,73 @@
+> >[...]
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    const: qcom,gcc-sdx55
+> >> +
+> >> +  clocks:
+> >> +    items:
+> >[...]
+> >> +      - description: PLL test clock source
+> >> +
+> >> +  clock-names:
+> >> +    items:
+> >[...]
+> >> +      - const: core_bi_pll_test_se
+> >
+> >Is it optional? As far as I know this clk has never been implemented
+> >because it's a hardware validation thing and not used otherwise.
+>=20
+> It is implemented in drivers but not used as you said. But since it is th=
+e parent clk of PLLs I'm not sure we can make it optional.=20
 
-Add support for UHS modes for the SD card connected at sdhci1. This
-involves adding regulators for voltage switching and power cycling the
-SD card and removing the no-1-8-v property.
-
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
- .../dts/ti/k3-j721e-common-proc-board.dts     | 35 ++++++++++++++++++-
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     |  2 --
- 2 files changed, 34 insertions(+), 3 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index 5754892f8501..529b072e1eaf 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -67,6 +67,31 @@
- 		regulator-boot-on;
- 	};
- 
-+	vdd_mmc1: fixedregulator-sd {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_mmc1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		enable-active-high;
-+		vin-supply = <&vsys_3v3>;
-+		gpio = <&exp2 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	vdd_sd_dv_alt: gpio-regulator-TLV71033 {
-+		compatible = "regulator-gpio";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vdd_sd_dv_alt_pins_default>;
-+		regulator-name = "tlv71033";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		vin-supply = <&vsys_5v0>;
-+		gpios = <&main_gpio0 117 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x0>,
-+			 <3300000 0x1>;
-+	};
-+
- 	sound0: sound@0 {
- 		compatible = "ti,j721e-cpb-audio";
- 		model = "j721e-cpb";
-@@ -106,7 +131,13 @@
- 		>;
- 	};
- 
--	main_usbss0_pins_default: main-usbss0-pins-default {
-+	vdd_sd_dv_alt_pins_default: vdd_sd_dv_alt_pins_default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x1d8, PIN_INPUT, 7) /* (W4) SPI1_CS1.GPIO0_117 */
-+		>;
-+	};
-+
-+	main_usbss0_pins_default: main_usbss0_pins_default {
- 		pinctrl-single,pins = <
- 			J721E_IOPAD(0x290, PIN_OUTPUT, 0) /* (U6) USB0_DRVVBUS */
- 			J721E_IOPAD(0x210, PIN_INPUT, 7) /* (W3) MCAN1_RX.GPIO1_3 */
-@@ -295,6 +326,8 @@
- 
- &main_sdhci1 {
- 	/* SD/MMC */
-+	vmmc-supply = <&vdd_mmc1>;
-+	vqmmc-supply = <&vdd_sd_dv_alt>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&main_mmc1_pins_default>;
- 	ti,driver-strength-ohm = <50>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index d87748cb6896..2056a41f9378 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -1107,7 +1107,6 @@
- 		ti,trm-icp = <0x8>;
- 		ti,clkbuf-sel = <0x7>;
- 		dma-coherent;
--		no-1-8-v;
- 	};
- 
- 	main_sdhci2: sdhci@4f98000 {
-@@ -1128,7 +1127,6 @@
- 		ti,trm-icp = <0x8>;
- 		ti,clkbuf-sel = <0x7>;
- 		dma-coherent;
--		no-1-8-v;
- 	};
- 
- 	usbss0: cdns-usb@4104000 {
--- 
-2.17.1
-
+We can leave it out completely if the bootloader code never uses it as a
+parent of the PLL. That scenario would be pretty weird and is why we
+removed it from the video clk controller in commit abc8f93f33e7 ("clk:
+qcom: Get rid of the test clock for videocc-sc7180"). I'm fine if you
+want to keep it, but I'm confused why you care so much :)
