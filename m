@@ -2,127 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D58502C6702
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 14:40:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D743F2C673C
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 14:53:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729459AbgK0NjU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 08:39:20 -0500
-Received: from z5.mailgun.us ([104.130.96.5]:17512 "EHLO z5.mailgun.us"
+        id S1730630AbgK0Nw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 08:52:26 -0500
+Received: from mga01.intel.com ([192.55.52.88]:2745 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729402AbgK0NjS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 08:39:18 -0500
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1606484357; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=8CY6rA1bX1wd5JOfrduQy972wRe+K2gtfAhU+3VG+18=;
- b=iwzfcVpk0H2DGR45SqFRqCNLelK3g747kZl2ah3xSvLIS/iwLZbNDIIUvCp6zuSxCo5r+0Dt
- IlBbp4IhBDuGKxNyB960OfS17EYK05gFMsTraYH0GIFd9sgU9OuwWdE/Nt00T0+qRq0WxGAM
- LRfJdH1P4CKdp6AniCDjUq6l8uQ=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n04.prod.us-east-1.postgun.com with SMTP id
- 5fc1017fb9b39088ed632f0f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 27 Nov 2020 13:39:11
- GMT
-Sender: saiprakash.ranjan=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 3BB04C43461; Fri, 27 Nov 2020 13:39:10 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3443CC433ED;
-        Fri, 27 Nov 2020 13:39:09 +0000 (UTC)
+        id S1730560AbgK0Nw0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Nov 2020 08:52:26 -0500
+IronPort-SDR: f4d2SPy+RT8IH0cp+BNYkTQUjyG4FyPq2yGcCNRnqpuT9796qlPQ2pbuol5QzF7p2VkRgGdAN8
+ 43qMPclX6mEg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9817"; a="190556420"
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; 
+   d="scan'208";a="190556420"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2020 05:52:25 -0800
+IronPort-SDR: RUTD8HamWdwJCTJ9M1u6oAIaUbmrpBP3TCmWqbwcg/vcX3YHLWRq3zCFBh5rbkhsREKE7oM0Nr
+ gTKRnh1BMC2g==
+X-IronPort-AV: E=Sophos;i="5.78,374,1599548400"; 
+   d="scan'208";a="536056915"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Nov 2020 05:52:22 -0800
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 67DB7205FC; Fri, 27 Nov 2020 15:52:20 +0200 (EET)
+Date:   Fri, 27 Nov 2020 15:52:20 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: i2c: Add OV8865 bindings
+ documentation
+Message-ID: <20201127135220.GR3940@paasikivi.fi.intel.com>
+References: <20201113170344.2252234-1-paul.kocialkowski@bootlin.com>
+ <20201113170344.2252234-2-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 27 Nov 2020 19:09:09 +0530
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] soc: qcom: llcc-qcom: Add support for SM8250 SoC
-In-Reply-To: <20201127121127.158082-4-manivannan.sadhasivam@linaro.org>
-References: <20201127121127.158082-1-manivannan.sadhasivam@linaro.org>
- <20201127121127.158082-4-manivannan.sadhasivam@linaro.org>
-Message-ID: <9b7ed6f800980361dc216275fcf63b26@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201113170344.2252234-2-paul.kocialkowski@bootlin.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mani,
+Hi Paul,
 
-On 2020-11-27 17:41, Manivannan Sadhasivam wrote:
-> SM8250 SoC uses LLCC IP version 2. In this version, the WRSC_EN 
-> register
-> needs to be written to enable the Write Sub Cache for each SCID. Hence,
-> use a dedicated "write_scid_en" member with predefined values and write
-> them for SoCs enabling the "llcc_v2" flag.
+On Fri, Nov 13, 2020 at 06:03:42PM +0100, Paul Kocialkowski wrote:
+> This introduces YAML bindings documentation for the OV8865
+> image sensor.
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Co-developed-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
 > ---
->  drivers/soc/qcom/llcc-qcom.c       | 40 ++++++++++++++++++++++++++++++
->  include/linux/soc/qcom/llcc-qcom.h |  1 +
->  2 files changed, 41 insertions(+)
+>  .../bindings/media/i2c/ovti,ov8865.yaml       | 120 ++++++++++++++++++
+>  1 file changed, 120 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
 > 
-> diff --git a/drivers/soc/qcom/llcc-qcom.c 
-> b/drivers/soc/qcom/llcc-qcom.c
-> index 16b421608e9c..3ec4cdffa852 100644
-> --- a/drivers/soc/qcom/llcc-qcom.c
-> +++ b/drivers/soc/qcom/llcc-qcom.c
-> @@ -47,6 +47,7 @@
-> 
->  #define LLCC_TRP_SCID_DIS_CAP_ALLOC   0x21f00
->  #define LLCC_TRP_PCB_ACT              0x21f04
-> +#define LLCC_TRP_WRSC_EN              0x21f20
-> 
->  #define BANK_OFFSET_STRIDE	      0x80000
-> 
-> @@ -73,6 +74,7 @@
->   *               then the ways assigned to this client are not flushed 
-> on power
->   *               collapse.
->   * @activate_on_init: Activate the slice immediately after it is 
-> programmed
-> + * @write_scid_en: Bit enables write cache support for a given scid.
->   */
->  struct llcc_slice_config {
->  	u32 usecase_id;
-> @@ -87,12 +89,14 @@ struct llcc_slice_config {
->  	bool dis_cap_alloc;
->  	bool retain_on_pc;
->  	bool activate_on_init;
-> +	bool write_scid_en;
->  };
-> 
->  struct qcom_llcc_config {
->  	const struct llcc_slice_config *sct_data;
->  	int size;
->  	bool need_llcc_cfg;
-> +	bool llcc_v2;
->  };
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> new file mode 100644
+> index 000000000000..47af90d6ebea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> @@ -0,0 +1,120 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov8865.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: OmniVision OV8865 Image Sensor Device Tree Bindings
+> +
+> +maintainers:
+> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: ovti,ov8865
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: EXTCLK Clock
+> +
+> +  assigned-clocks:
+> +    maxItems: 1
+> +
+> +  assigned-clock-rates:
+> +    maxItems: 1
+> +
+> +  dvdd-supply:
+> +    description: Digital Domain Power Supply
+> +
+> +  avdd-supply:
+> +    description: Analog Domain Power Supply (internal AVDD is used if missing)
+> +
+> +  dovdd-supply:
+> +    description: I/O Domain Power Supply
+> +
+> +  powerdown-gpios:
+> +    maxItems: 1
+> +    description: Power Down Pin GPIO Control (active low)
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: Reset Pin GPIO Control (active low)
+> +
+> +  port:
+> +    type: object
+> +    description: MIPI CSI-2 transmitter port
+> +
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +
+> +        properties:
+> +          remote-endpoint: true
+> +
+> +          data-lanes:
+> +            minItems: 1
+> +            maxItems: 4
+> +
+> +        required:
+> +          - bus-type
+> +          - data-lanes
+> +          - remote-endpoint
 
-We can extract the version from HW info register and so
-would not have to maintain a flag for every new version
-of LLCC. I had a patch to do that which I have sent to you
-now, perhaps you can check if that works for you and take
-it with this series?
-
-Thanks,
-Sai
+link-frequencies seems to be still missing here (same with the example).
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
-member
-of Code Aurora Forum, hosted by The Linux Foundation
+Sakari Ailus
