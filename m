@@ -2,83 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 054982C6C75
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 21:16:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1B142C6CB8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 21:49:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731355AbgK0UM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 15:12:56 -0500
-Received: from mail.kernel.org ([198.145.29.99]:39562 "EHLO mail.kernel.org"
+        id S1729680AbgK0UsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 15:48:08 -0500
+Received: from vps0.lunn.ch ([185.16.172.187]:53466 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732474AbgK0UMH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 15:12:07 -0500
-Received: from kernel.org (unknown [104.132.1.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 59058206D9;
-        Fri, 27 Nov 2020 20:10:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606507851;
-        bh=XZK4Ium8QBFZyL2pO4Bad1qag9+adR3MRiJx1hMiA2E=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=NWdOEYmyhdJ6mI86E67rwQqQO15TzORO23RXi5lGJ8WLlyqjoL8GgRN8C5kkM6I4U
-         MLaiVEDWyOz+D1UrDO91AeN15XBlmw7Cj2WLLk7zrK/Y+f0+H1LVbfTGQTIFFfvj8Q
-         vxV8G4M/vdDWg3fEvQpN+/kx2kwK2cfW1eXq9yOQ=
-Content-Type: text/plain; charset="utf-8"
+        id S1731258AbgK0Ur2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Nov 2020 15:47:28 -0500
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
+        (envelope-from <andrew@lunn.ch>)
+        id 1kikeA-009BAS-5A; Fri, 27 Nov 2020 21:47:14 +0100
+Date:   Fri, 27 Nov 2020 21:47:14 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20201127204714.GX2073444@lunn.ch>
+References: <20201125193740.36825-1-george.mccollister@gmail.com>
+ <20201125193740.36825-3-george.mccollister@gmail.com>
+ <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+ <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
+ <20201126132418.zigx6c2iuc4kmlvy@skbuf>
+ <20201126175607.bqmpwbdqbsahtjn2@skbuf>
+ <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
+ <20201126220500.av3clcxbbvogvde5@skbuf>
+ <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <E796D737-E343-4EDB-BB34-CE6E0295CF3E@linaro.org>
-References: <20201119072714.14460-1-manivannan.sadhasivam@linaro.org> <20201119072714.14460-2-manivannan.sadhasivam@linaro.org> <160627045053.2717324.16519747693186632490@swboyd.mtv.corp.google.com> <E796D737-E343-4EDB-BB34-CE6E0295CF3E@linaro.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: Add SDX55 GCC clock bindings
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     bjorn.andersson@linaro.org, vkoul@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        mturquette@baylibre.com, robh+dt@kernel.org
-Date:   Fri, 27 Nov 2020 12:10:50 -0800
-Message-ID: <160650785008.2717324.9878053018301696255@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Manivannan Sadhasivam (2020-11-24 19:49:24)
->=20
->=20
-> On 25 November 2020 7:44:10 AM IST, Stephen Boyd <sboyd@kernel.org> wrote:
-> >Quoting Manivannan Sadhasivam (2020-11-18 23:27:11)
-> >> diff --git
-> >a/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
-> >b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
-> >> new file mode 100644
-> >> index 000000000000..9d8981817ae3
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-sdx55.yaml
-> >> @@ -0,0 +1,73 @@
-> >[...]
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    const: qcom,gcc-sdx55
-> >> +
-> >> +  clocks:
-> >> +    items:
-> >[...]
-> >> +      - description: PLL test clock source
-> >> +
-> >> +  clock-names:
-> >> +    items:
-> >[...]
-> >> +      - const: core_bi_pll_test_se
-> >
-> >Is it optional? As far as I know this clk has never been implemented
-> >because it's a hardware validation thing and not used otherwise.
->=20
-> It is implemented in drivers but not used as you said. But since it is th=
-e parent clk of PLLs I'm not sure we can make it optional.=20
+> Is the periodic refresh really that awful? We're mostly talking error
+> counters here so every second or every few seconds should be perfectly
+> fine.
 
-We can leave it out completely if the bootloader code never uses it as a
-parent of the PLL. That scenario would be pretty weird and is why we
-removed it from the video clk controller in commit abc8f93f33e7 ("clk:
-qcom: Get rid of the test clock for videocc-sc7180"). I'm fine if you
-want to keep it, but I'm confused why you care so much :)
+Humm, i would prefer error counts to be more correct than anything
+else. When debugging issues, you generally don't care how many packets
+worked. It is how many failed you are interesting, and how that number
+of failures increases.
+
+So long as these counters are still in ethtool -S, i guess it does not
+matter. That i do trust to be accurate, and probably consistent across
+the counters it returns.
+
+	Andrew
