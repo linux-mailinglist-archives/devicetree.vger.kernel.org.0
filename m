@@ -2,91 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 161E22C67E5
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 15:27:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A5F72C67DE
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 15:25:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730786AbgK0O0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 09:26:00 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:56184 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730815AbgK0OZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 09:25:59 -0500
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0AREPris013931;
-        Fri, 27 Nov 2020 08:25:53 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606487153;
-        bh=qmaKJ8gLVGgxtyDqLwXpGhMN8rNISIc5BlNBOt4YyKc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=MZeMNadPxrioou6HlOcIxkt40MNcFWIdJUR23T9+L1bsVjClLdnmjLlo9Lc7oiiqq
-         ziqt3tD9pqtJON2czPlT0Sla3HfpuJnRLCqNmFe0fQXtEK2GjtUMpo2IYfnSmvOE9f
-         lce+v+NxQjuoWVwr8r/0JiJg5Zr+p0XVN9Ac35DQ=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0AREPrs3090722
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 27 Nov 2020 08:25:53 -0600
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 27
- Nov 2020 08:25:53 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 27 Nov 2020 08:25:53 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0AREPqgJ033541;
-        Fri, 27 Nov 2020 08:25:53 -0600
-Date:   Fri, 27 Nov 2020 08:25:52 -0600
-From:   Nishanth Menon <nm@ti.com>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-CC:     Dave Gerlach <d-gerlach@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, Tony Lindgren <tony@atomide.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Suman Anna <s-anna@ti.com>, Sekhar Nori <nsekhar@ti.com>,
-        Kishon Vijay Abraham <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Aswath Govindraju <a-govindraju@ti.com>
-Subject: Re: [PATCH 0/3] arm64: Initial support for Texas Instruments AM642
- Platform
-Message-ID: <20201127142552.47jmvepcf3hpbs2r@bullseye>
-References: <20201125052004.17823-1-d-gerlach@ti.com>
- <fbec746d-f629-dd13-1ab9-5f530171748c@ti.com>
+        id S1731114AbgK0OZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 09:25:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730855AbgK0OZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 09:25:19 -0500
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 654D6C0613D1;
+        Fri, 27 Nov 2020 06:25:19 -0800 (PST)
+Received: by mail-pg1-x541.google.com with SMTP id 62so4445214pgg.12;
+        Fri, 27 Nov 2020 06:25:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4BHoPQWs3wfoV3g79VgV8GEhoq3XXt8Ikk0xMwv5WoI=;
+        b=V9BtXLPOii4DpQATk+MmCsK+Ve2A/MjKgvZePZQJyiEHSpItKt8KhEPdLvQEYEOKcy
+         OP/HVvR2CWG+PuXjgeuy68l4UVFF3yRyTkF0P/9dUFEsFhfIw9DMVgwbv3c748hYDlZO
+         phu+1bdlsZwgoGQIE1SXKEerfddqam+4MTfgS1pSXB2IZ/8as50BGgREwJbF22EO/2+G
+         xfi+InCshjurjLJjWYpuXdXvaCfwVQDyyBQ5MXqLZI1RF8XpjXQjZ69I46+xiO3YenTZ
+         g7UsznWy1CW2glmc9pxQW+o1Iu0NB2klZi6O/nP6UQJ6HxRIii+p3ueBbcv+bz1iJE3v
+         BmKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4BHoPQWs3wfoV3g79VgV8GEhoq3XXt8Ikk0xMwv5WoI=;
+        b=j796bvwGLMV3HHBJYHOWJytE2oyBxm0PmtE4INYmhTxqebFAU4l0M8WYaNCgGk8Lca
+         r/Gamr5c7M+5PT1um3ddf2fH1wA1ZhiUM2oozCCqQPLlS2iiNd2f7DtIPPnb8zg5H2xs
+         pQL04+4lZ9mDBrMvdR/Zi6RT4+iB0/Rkc637PdGYwn6ARVuDATH96pytC6fUQxuJpmjC
+         o2mhpqhH2xz9H5PjK6Q38++jYiTAmqJvx6J454nkKgxgSLpRytpiKR60gT/eyFieTXGZ
+         ZmsZx917TwMg+c8Gap+FYfy19zYM/joTs0MNuVbY5HHtLUH5TjNxrRskQpUkT57WI6SJ
+         jbKg==
+X-Gm-Message-State: AOAM532eboZQA0cm9fZaYI1boMqIYBbtbbO6zEQ4l/SV6sPhSV8Def9F
+        gdmi6PUG/Qgn0aQ0e0u5EQiItstacXSmC1fINAU=
+X-Google-Smtp-Source: ABdhPJwwwmFIw2kctAp4qvXc/0jW/FjQNuczdO+/Ii1MF8qwXUPmNUj/XTt32yfEIgSQo1JNUdeC3g9PWWaRJ6X6Ba4=
+X-Received: by 2002:a17:90a:4816:: with SMTP id a22mr10437588pjh.228.1606487119026;
+ Fri, 27 Nov 2020 06:25:19 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <fbec746d-f629-dd13-1ab9-5f530171748c@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20201127130834.136348-1-alexandru.ardelean@analog.com> <20201127130834.136348-3-alexandru.ardelean@analog.com>
+In-Reply-To: <20201127130834.136348-3-alexandru.ardelean@analog.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 27 Nov 2020 16:26:07 +0200
+Message-ID: <CAHp75Vcm5-i+n2dS7GxqK8Rp74+Y-+5CdMoBNP7ZCXkw1VnPkw@mail.gmail.com>
+Subject: Re: [PATCH v3 3/3] spi: dt-bindings: document zero value for
+ spi-{rx,tx}-bus-width properties
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        "Bogdan, Dragos" <dragos.bogdan@analog.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:40-20201127, Peter Ujfalusi wrote:
-> Dave,
-> 
-> On 25/11/2020 7.20, Dave Gerlach wrote:
-> > This series adds initial support for the latest new SoC, AM642,
-> > from Texas Instruments.
-> > 
-> > Additional detail can be found in the patch descriptions, also
-> > see AM64X Technical Reference Manual (SPRUIM2, Nov 2020) for
-> > further details: https://www.ti.com/lit/pdf/spruim2
-> 
-> Tested-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> Reviewed-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> 
-> fwiw, with these, plus the BCDMA/PKTDMA series [1] and one local dt
-> patch to enable the DMAs on linux-next:
-> https://pastebin.ubuntu.com/p/W5QkTMhrVp/
-> 
-> [1]
-> https://lore.kernel.org/lkml/20201117105656.5236-1-peter.ujfalusi@ti.com/
-> 
+On Fri, Nov 27, 2020 at 3:08 PM Alexandru Ardelean
+<alexandru.ardelean@analog.com> wrote:
+>
+> Following a change to the SPI framework, providing a value of zero for
+> 'spi-rx-bus-width' and 'spi-tx-bus-width' is now possible and will
+> essentially mean than no RX or TX is allowed.
 
-Thanks Peter, Lets see if Rob is able to get to the binding.. The queue
-looks pretty deep today :(
+than -> that
+
+I'm wondering if we have a possibility to strict this for controllers
+that always duplex (I assume that schema works in a way that the
+generic bindings is most relaxed in comparison to the device specific
+ones in case of the same binding in question).
+
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+With Best Regards,
+Andy Shevchenko
