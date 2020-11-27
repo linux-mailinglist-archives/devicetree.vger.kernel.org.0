@@ -2,334 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6F6B2C5FC8
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 06:37:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 632042C6002
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 07:22:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730324AbgK0Fhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 00:37:47 -0500
-Received: from inva020.nxp.com ([92.121.34.13]:51466 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731606AbgK0Fhr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 00:37:47 -0500
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 513DC1A0E74;
-        Fri, 27 Nov 2020 06:37:44 +0100 (CET)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0FFF91A0E79;
-        Fri, 27 Nov 2020 06:37:39 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E747D402D3;
-        Fri, 27 Nov 2020 06:37:31 +0100 (CET)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ASoC: fsl: Add imx-hdmi machine driver
-Date:   Fri, 27 Nov 2020 13:30:21 +0800
-Message-Id: <1606455021-18882-2-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1606455021-18882-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1606455021-18882-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2389247AbgK0GV1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 01:21:27 -0500
+Received: from mailgw02.mediatek.com ([1.203.163.81]:53514 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728043AbgK0GV1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 01:21:27 -0500
+X-UUID: 27e402dd87404cdbb91b46778d9d1d51-20201127
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Pl6CYWtmmWtvWb3jpHddFmtYia5wUK/VPTpcYY0nQVw=;
+        b=CR78ywp974QqBjd2oroSLxbDdlDXOTnTEFVRGk3UIfnFJBdh7JcQpSoKZexqa3plwMZ/F7HchO/C5EOaC3EtCMKgacRp+dgp5ztwL/EHme0ES3OH2NPfCykSlKcfSu0xbFFzlMZ+DVXOM9F/BLXX9Gv+cFONv3sis3UAgQxt4Gg=;
+X-UUID: 27e402dd87404cdbb91b46778d9d1d51-20201127
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1085674921; Fri, 27 Nov 2020 14:21:21 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N2.mediatek.inc
+ (172.27.4.72) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 27 Nov
+ 2020 14:21:20 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 27 Nov 2020 14:21:18 +0800
+Message-ID: <1606458079.26323.191.camel@mhfsdcap03>
+Subject: Re: [PATCH v4 09/24] iommu/io-pgtable-arm-v7s: Clear LVL_SHIFT/BITS
+ macro instead of the formula
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Will Deacon <will@kernel.org>, <youlin.pei@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <srv_heupstream@mediatek.com>, <chao.hao@mediatek.com>,
+        <kernel-team@android.com>, <linux-kernel@vger.kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        "Tomasz Figa" <tfiga@google.com>,
+        <iommu@lists.linux-foundation.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>, <anan.sun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@google.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Fri, 27 Nov 2020 14:21:19 +0800
+In-Reply-To: <13599074-25d5-721f-ea7b-1ea6badfd14f@arm.com>
+References: <20201111123838.15682-1-yong.wu@mediatek.com>
+         <20201111123838.15682-10-yong.wu@mediatek.com>
+         <13599074-25d5-721f-ea7b-1ea6badfd14f@arm.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 9F8790CD8E57278BED548B9B20C81FEFDD4AF8C22E7A81094363F0EEEAC8B4D62000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The driver is initially designed for sound card using HDMI
-interface on i.MX platform. There is internal HDMI IP or
-external HDMI modules connect with SAI or AUD2HTX interface.
-It supports both transmitter and receiver devices.
-
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- sound/soc/fsl/Kconfig    |  12 ++
- sound/soc/fsl/Makefile   |   2 +
- sound/soc/fsl/imx-hdmi.c | 235 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 249 insertions(+)
- create mode 100644 sound/soc/fsl/imx-hdmi.c
-
-diff --git a/sound/soc/fsl/Kconfig b/sound/soc/fsl/Kconfig
-index 24710decd38a..84db0b7b9d59 100644
---- a/sound/soc/fsl/Kconfig
-+++ b/sound/soc/fsl/Kconfig
-@@ -305,6 +305,18 @@ config SND_SOC_IMX_AUDMIX
- 	  Say Y if you want to add support for SoC audio on an i.MX board with
- 	  an Audio Mixer.
- 
-+config SND_SOC_IMX_HDMI
-+	tristate "SoC Audio support for i.MX boards with HDMI port"
-+	select SND_SOC_FSL_SAI
-+	select SND_SOC_FSL_AUD2HTX
-+	select SND_SOC_HDMI_CODEC
-+	help
-+	  ALSA SoC Audio support with HDMI feature for Freescale SoCs that have
-+	  SAI/AUD2HTX and connect with internal HDMI IP or external module
-+	  SII902X.
-+	  Say Y if you want to add support for SoC audio on an i.MX board with
-+	  IMX HDMI.
-+
- endif # SND_IMX_SOC
- 
- endmenu
-diff --git a/sound/soc/fsl/Makefile b/sound/soc/fsl/Makefile
-index 0b20e038b65b..8c5fa8a859c0 100644
---- a/sound/soc/fsl/Makefile
-+++ b/sound/soc/fsl/Makefile
-@@ -65,9 +65,11 @@ snd-soc-imx-es8328-objs := imx-es8328.o
- snd-soc-imx-sgtl5000-objs := imx-sgtl5000.o
- snd-soc-imx-spdif-objs := imx-spdif.o
- snd-soc-imx-audmix-objs := imx-audmix.o
-+snd-soc-imx-hdmi-objs := imx-hdmi.o
- 
- obj-$(CONFIG_SND_SOC_EUKREA_TLV320) += snd-soc-eukrea-tlv320.o
- obj-$(CONFIG_SND_SOC_IMX_ES8328) += snd-soc-imx-es8328.o
- obj-$(CONFIG_SND_SOC_IMX_SGTL5000) += snd-soc-imx-sgtl5000.o
- obj-$(CONFIG_SND_SOC_IMX_SPDIF) += snd-soc-imx-spdif.o
- obj-$(CONFIG_SND_SOC_IMX_AUDMIX) += snd-soc-imx-audmix.o
-+obj-$(CONFIG_SND_SOC_IMX_HDMI) += snd-soc-imx-hdmi.o
-diff --git a/sound/soc/fsl/imx-hdmi.c b/sound/soc/fsl/imx-hdmi.c
-new file mode 100644
-index 000000000000..ac164514b1b2
---- /dev/null
-+++ b/sound/soc/fsl/imx-hdmi.c
-@@ -0,0 +1,235 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright 2017-2020 NXP
-+
-+#include <linux/module.h>
-+#include <linux/of_platform.h>
-+#include <sound/jack.h>
-+#include <sound/pcm_params.h>
-+#include <sound/hdmi-codec.h>
-+#include "fsl_sai.h"
-+
-+/**
-+ * struct cpu_priv - CPU private data
-+ * @sysclk_freq: SYSCLK rates for set_sysclk()
-+ * @sysclk_dir: SYSCLK directions for set_sysclk()
-+ * @sysclk_id: SYSCLK ids for set_sysclk()
-+ * @slot_width: Slot width of each frame
-+ *
-+ * Note: [1] for tx and [0] for rx
-+ */
-+struct cpu_priv {
-+	unsigned long sysclk_freq[2];
-+	u32 sysclk_dir[2];
-+	u32 sysclk_id[2];
-+	u32 slot_width;
-+};
-+
-+struct imx_hdmi_data {
-+	struct snd_soc_dai_link dai;
-+	struct snd_soc_card card;
-+	struct snd_soc_jack hdmi_jack;
-+	struct snd_soc_jack_pin hdmi_jack_pin;
-+	struct cpu_priv cpu_priv;
-+	u32 dai_fmt;
-+};
-+
-+static int imx_hdmi_hw_params(struct snd_pcm_substream *substream,
-+			      struct snd_pcm_hw_params *params)
-+{
-+	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-+	struct imx_hdmi_data *data = snd_soc_card_get_drvdata(rtd->card);
-+	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
-+	struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-+	struct snd_soc_card *card = rtd->card;
-+	struct device *dev = card->dev;
-+	int ret;
-+
-+	/* set cpu DAI configuration */
-+	ret = snd_soc_dai_set_sysclk(cpu_dai, data->cpu_priv.sysclk_id[tx],
-+				     8 * data->cpu_priv.slot_width * params_rate(params),
-+				     tx ? SND_SOC_CLOCK_OUT : SND_SOC_CLOCK_IN);
-+	if (ret && ret != -ENOTSUPP) {
-+		dev_err(dev, "failed to set cpu sysclk: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = snd_soc_dai_set_tdm_slot(cpu_dai, 0, 0, 2, data->cpu_priv.slot_width);
-+	if (ret && ret != -ENOTSUPP) {
-+		dev_err(dev, "failed to set cpu dai tdm slot: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static struct snd_soc_ops imx_hdmi_ops = {
-+	.hw_params = imx_hdmi_hw_params,
-+};
-+
-+static const struct snd_soc_dapm_widget imx_hdmi_widgets[] = {
-+	SND_SOC_DAPM_LINE("HDMI Jack", NULL),
-+};
-+
-+static int imx_hdmi_init(struct snd_soc_pcm_runtime *rtd)
-+{
-+	struct snd_soc_card *card = rtd->card;
-+	struct snd_soc_dai *codec_dai = asoc_rtd_to_codec(rtd, 0);
-+	struct snd_soc_component *component = codec_dai->component;
-+	struct imx_hdmi_data *data = snd_soc_card_get_drvdata(card);
-+	int ret;
-+
-+	data->hdmi_jack_pin.pin = "HDMI Jack";
-+	data->hdmi_jack_pin.mask = SND_JACK_LINEOUT;
-+	/* enable jack detection */
-+	ret = snd_soc_card_jack_new(card, "HDMI Jack", SND_JACK_LINEOUT,
-+				    &data->hdmi_jack, &data->hdmi_jack_pin, 1);
-+	if (ret) {
-+		dev_err(card->dev, "Can't new HDMI Jack %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = snd_soc_component_set_jack(component, &data->hdmi_jack, NULL);
-+	if (ret && ret != -EOPNOTSUPP) {
-+		dev_err(card->dev, "Can't set HDMI Jack %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+};
-+
-+static int imx_hdmi_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct snd_soc_dai_link_component *dlc;
-+	struct platform_device *cpu_pdev;
-+	struct device_node *cpu_np;
-+	struct imx_hdmi_data *data;
-+	int ret;
-+
-+	dlc = devm_kzalloc(&pdev->dev, 3 * sizeof(*dlc), GFP_KERNEL);
-+	if (!dlc)
-+		return -ENOMEM;
-+
-+	cpu_np = of_parse_phandle(np, "audio-cpu", 0);
-+	if (!cpu_np) {
-+		dev_err(&pdev->dev, "cpu dai phandle missing or invalid\n");
-+		ret = -EINVAL;
-+		goto fail;
-+	}
-+
-+	cpu_pdev = of_find_device_by_node(cpu_np);
-+	if (!cpu_pdev) {
-+		dev_err(&pdev->dev, "failed to find SAI platform device\n");
-+		ret = -EINVAL;
-+		goto fail;
-+	}
-+
-+	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
-+	if (!data) {
-+		ret = -ENOMEM;
-+		goto fail;
-+	}
-+
-+	data->dai.cpus = &dlc[0];
-+	data->dai.num_cpus = 1;
-+	data->dai.platforms = &dlc[1];
-+	data->dai.num_platforms = 1;
-+	data->dai.codecs = &dlc[2];
-+	data->dai.num_codecs = 1;
-+
-+	data->dai.name = "i.MX HDMI";
-+	data->dai.stream_name = "i.MX HDMI";
-+	data->dai.cpus->dai_name = dev_name(&cpu_pdev->dev);
-+	data->dai.platforms->of_node = cpu_np;
-+	data->dai.ops = &imx_hdmi_ops;
-+	data->dai.playback_only = true;
-+	data->dai.capture_only = false;
-+	data->dai.init = imx_hdmi_init;
-+
-+	if (of_node_name_eq(cpu_np, "sai")) {
-+		data->cpu_priv.sysclk_id[1] = FSL_SAI_CLK_MAST1;
-+		data->cpu_priv.sysclk_id[0] = FSL_SAI_CLK_MAST1;
-+	}
-+
-+	if (of_device_is_compatible(np, "fsl,imx-audio-sii902x")) {
-+		data->dai_fmt = SND_SOC_DAIFMT_LEFT_J;
-+		data->cpu_priv.slot_width = 24;
-+	} else {
-+		data->dai_fmt = SND_SOC_DAIFMT_I2S;
-+		data->cpu_priv.slot_width = 32;
-+	}
-+
-+	if (of_property_read_bool(np, "hdmi-out")) {
-+		data->dai.playback_only = true;
-+		data->dai.capture_only = false;
-+		data->dai.codecs->dai_name = "i2s-hifi";
-+		data->dai.codecs->name = "hdmi-audio-codec.1";
-+		data->dai.dai_fmt = data->dai_fmt |
-+				    SND_SOC_DAIFMT_NB_NF |
-+				    SND_SOC_DAIFMT_CBS_CFS;
-+	}
-+
-+	if (of_property_read_bool(np, "hdmi-in")) {
-+		data->dai.playback_only = false;
-+		data->dai.capture_only = true;
-+		data->dai.codecs->dai_name = "i2s-hifi";
-+		data->dai.codecs->name = "hdmi-audio-codec.2";
-+		data->dai.dai_fmt = data->dai_fmt |
-+				    SND_SOC_DAIFMT_NB_NF |
-+				    SND_SOC_DAIFMT_CBM_CFM;
-+	}
-+
-+	if ((data->dai.playback_only && data->dai.capture_only) ||
-+	    (!data->dai.playback_only && !data->dai.capture_only)) {
-+		dev_err(&pdev->dev, "Wrongly enable HDMI DAI link\n");
-+		goto fail;
-+	}
-+
-+	data->card.dapm_widgets = imx_hdmi_widgets;
-+	data->card.num_dapm_widgets = ARRAY_SIZE(imx_hdmi_widgets);
-+	data->card.dev = &pdev->dev;
-+	data->card.owner = THIS_MODULE;
-+	ret = snd_soc_of_parse_card_name(&data->card, "model");
-+	if (ret)
-+		goto fail;
-+
-+	data->card.num_links = 1;
-+	data->card.dai_link = &data->dai;
-+
-+	platform_set_drvdata(pdev, &data->card);
-+	snd_soc_card_set_drvdata(&data->card, data);
-+	ret = devm_snd_soc_register_card(&pdev->dev, &data->card);
-+	if (ret) {
-+		dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
-+		goto fail;
-+	}
-+
-+fail:
-+	if (cpu_np)
-+		of_node_put(cpu_np);
-+
-+	return ret;
-+}
-+
-+static const struct of_device_id imx_hdmi_dt_ids[] = {
-+	{ .compatible = "fsl,imx-audio-hdmi", },
-+	{ .compatible = "fsl,imx-audio-sii902x", },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, imx_hdmi_dt_ids);
-+
-+static struct platform_driver imx_hdmi_driver = {
-+	.driver = {
-+		.name = "imx-hdmi",
-+		.owner = THIS_MODULE,
-+		.pm = &snd_soc_pm_ops,
-+		.of_match_table = imx_hdmi_dt_ids,
-+	},
-+	.probe = imx_hdmi_probe,
-+};
-+module_platform_driver(imx_hdmi_driver);
-+
-+MODULE_AUTHOR("Freescale Semiconductor, Inc.");
-+MODULE_DESCRIPTION("Freescale i.MX hdmi audio ASoC machine driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:imx-hdmi");
--- 
-2.27.0
+T24gVGh1LCAyMDIwLTExLTI2IGF0IDE2OjAzICswMDAwLCBSb2JpbiBNdXJwaHkgd3JvdGU6DQo+
+IE9uIDIwMjAtMTEtMTEgMTI6MzgsIFlvbmcgV3Ugd3JvdGU6DQo+ID4gVGhlIGN1cnJlbnQgX0FS
+TV9WN1NfTFZMX0JJVFMvQVJNX1Y3U19MVkxfU0hJRlQgdXNlIGEgZm9ybXVsYSB0byBjYWxjdWxh
+dGUNCj4gPiB0aGUgY29ycmVzcG9uZGluZyB2YWx1ZSBmb3IgbGV2ZWwxIGFuZCBsZXZlbDIgdG8g
+cHJldGVuZCB0aGUgY29kZSBzYW5lLg0KPiA+IEFjdHVhbGx5IHRoZWlyIGxldmVsMSBhbmQgbGV2
+ZWwyIHZhbHVlcyBhcmUgZGlmZmVyZW50IGZyb20gZWFjaCBvdGhlci4NCj4gPiBUaGlzIHBhdGNo
+IG9ubHkgY2xlYXIgdGhlIHR3byBtYWNyby4gTm8gZnVuY3Rpb25hbCBjaGFuZ2UuDQo+IA0KPiBH
+cmFtbWFyIG5pdDogdG8gImNsZWFyIiB0aGUgbWFjcm8gc291bmRzIGxpa2UgeW91J3JlIG1ha2lu
+ZyBpdCBlbXB0eSBvciANCj4gcmVtb3ZpbmcgaXQgZW50aXJlbHk7IEkgdGhpbmsgeW91IG1lYW4g
+dG8gc2F5ICJjbGFyaWZ5IiBoZXJlLiBFbmdsaXNoIGlzIA0KPiB0aGUgd29yc3QgbGFuZ3VhZ2Ug
+c29tZXRpbWVzLi4uIDopDQoNClRoYW5rcyBmb3IgdGhlIHJldmlldy4gRmVlbCBmcmVlIHRvIHRl
+bGwgbWUgaWYgc29tZSB3b3JkcyBpcyBub3QgZml0OikNCg0KSSB3aWxsIHVzZSAiY2xhcmlmeSIg
+aW4gdGhlIHRpdGxlLg0KDQo+IA0KPiBSZXZpZXdlZC1ieTogUm9iaW4gTXVycGh5IDxyb2Jpbi5t
+dXJwaHlAYXJtLmNvbT4NCj4gDQo+ID4gU3VnZ2VzdGVkLWJ5OiBSb2JpbiBNdXJwaHkgPHJvYmlu
+Lm11cnBoeUBhcm0uY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFlvbmcgV3UgPHlvbmcud3VAbWVk
+aWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAgZHJpdmVycy9pb21tdS9pby1wZ3RhYmxlLWFybS12
+N3MuYyB8IDggKysrLS0tLS0NCj4gPiAgIDEgZmlsZSBjaGFuZ2VkLCAzIGluc2VydGlvbnMoKyks
+IDUgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvaW9tbXUvaW8t
+cGd0YWJsZS1hcm0tdjdzLmMgYi9kcml2ZXJzL2lvbW11L2lvLXBndGFibGUtYXJtLXY3cy5jDQo+
+ID4gaW5kZXggNGQwYWEwNzk0NzBmLi41OGNjMjAxYzEwYTMgMTAwNjQ0DQo+ID4gLS0tIGEvZHJp
+dmVycy9pb21tdS9pby1wZ3RhYmxlLWFybS12N3MuYw0KPiA+ICsrKyBiL2RyaXZlcnMvaW9tbXUv
+aW8tcGd0YWJsZS1hcm0tdjdzLmMNCj4gPiBAQCAtNDQsMTMgKzQ0LDExIEBADQo+ID4gICANCj4g
+PiAgIC8qDQo+ID4gICAgKiBXZSBoYXZlIDMyIGJpdHMgdG90YWw7IDEyIGJpdHMgcmVzb2x2ZWQg
+YXQgbGV2ZWwgMSwgOCBiaXRzIGF0IGxldmVsIDIsDQo+ID4gLSAqIGFuZCAxMiBiaXRzIGluIGEg
+cGFnZS4gV2l0aCBzb21lIGNhcmVmdWxseS1jaG9zZW4gY29lZmZpY2llbnRzIHdlIGNhbg0KPiA+
+IC0gKiBoaWRlIHRoZSB1Z2x5IGluY29uc2lzdGVuY2llcyBiZWhpbmQgdGhlc2UgbWFjcm9zIGFu
+ZCBhdCBsZWFzdCBsZXQgdGhlDQo+ID4gLSAqIHJlc3Qgb2YgdGhlIGNvZGUgcHJldGVuZCB0byBi
+ZSBzb21ld2hhdCBzYW5lLg0KPiA+ICsgKiBhbmQgMTIgYml0cyBpbiBhIHBhZ2UuDQo+ID4gICAg
+Ki8NCj4gPiAgICNkZWZpbmUgQVJNX1Y3U19BRERSX0JJVFMJCTMyDQo+ID4gLSNkZWZpbmUgX0FS
+TV9WN1NfTFZMX0JJVFMobHZsKQkJKDE2IC0gKGx2bCkgKiA0KQ0KPiA+IC0jZGVmaW5lIEFSTV9W
+N1NfTFZMX1NISUZUKGx2bCkJCShBUk1fVjdTX0FERFJfQklUUyAtICg0ICsgOCAqIChsdmwpKSkN
+Cj4gPiArI2RlZmluZSBfQVJNX1Y3U19MVkxfQklUUyhsdmwpCQkoKGx2bCkgPT0gMSA/IDEyIDog
+OCkNCj4gPiArI2RlZmluZSBBUk1fVjdTX0xWTF9TSElGVChsdmwpCQkoKGx2bCkgPT0gMSA/IDIw
+IDogMTIpDQo+ID4gICAjZGVmaW5lIEFSTV9WN1NfVEFCTEVfU0hJRlQJCTEwDQo+ID4gICANCj4g
+PiAgICNkZWZpbmUgQVJNX1Y3U19QVEVTX1BFUl9MVkwobHZsKQkoMSA8PCBfQVJNX1Y3U19MVkxf
+QklUUyhsdmwpKQ0KPiA+IA0KDQo=
 
