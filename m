@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 630672C64FE
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 13:12:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7EC72C6502
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 13:12:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728661AbgK0MLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 07:11:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40232 "EHLO
+        id S1728862AbgK0ML5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 07:11:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728224AbgK0MLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 07:11:51 -0500
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7AD1C0617A7
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 04:11:49 -0800 (PST)
-Received: by mail-pl1-x642.google.com with SMTP id x4so877086pln.8
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 04:11:49 -0800 (PST)
+        with ESMTP id S1728688AbgK0MLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 07:11:55 -0500
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482E7C0617A7
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 04:11:54 -0800 (PST)
+Received: by mail-pf1-x444.google.com with SMTP id w202so4405200pff.10
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 04:11:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=jLxCd/F4fxI6lLKUfeAQgTwipZuT/u/XIJSTRbWtMDg=;
-        b=CPNWCzWsSd3oUokNVooWVpeNA95diJkjWwHWX/VnN33CosnZTzfFcSk3ty9TMIKIcZ
-         NmUbPWW7Aqmjwbrh1I+eIhuZFBshCLUYcEw4kbOP5Zt+4hZIv2RAvP2fMj/4/IcqTOpr
-         bq0z3QSfnBLwCW2qC4VHcWv1kensicmij+BxV9egwWndypnbFwVuDBiX1st3JveGFSdD
-         8qWLyKfjGWISKLZIBz8pXNbWkj8c/l/QNA53P2Ipw/Ei7E1ACEutWHrPmOla9jH+QAYQ
-         P3ZM/qYbs3HlwJY1LaNA9BCJ2hKdZCF3vydrgFgn8+zLOKBXxxVTstNmOxDjGYJISXiU
-         S/Yg==
+        bh=kzKkCt4qLiDzrU3pEP907cfAa2/fONI8wtqu9xL5mS0=;
+        b=P7i2Ll/VDLXnkAb5dj7yRmliym5AB6RYeHpjrxYWRuNLbGw/FKkje6xqCYyjoyouEe
+         f1/XEQ8lXJf9BAjF2k1ihJkH7JHMKE/G73Z4SwWWUVCW3PirFQpWYq+oxROR2nppaEvO
+         JC22O1idq4jMYm9bYAtPgWaxdD7fhhqG5Q9jhGHEEomRO41tOh7d33ju4VpFag0U9dRx
+         jDFSa6ZWxu44POcTTNDG1N2v0d3IkfTpfK4MSXPUIN3ENRLXcHjUWPA5R9HrFcCQV1Jg
+         d01j0iIbUtA1U1nV6QE5rdiTW5LZ7g5E6wfJ17wis1LyNtOZbX2s8udaraMr6dKfaDof
+         +Z1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=jLxCd/F4fxI6lLKUfeAQgTwipZuT/u/XIJSTRbWtMDg=;
-        b=JJqw2761eYpOQfAe6+p+rl/22I72GFUrUV613VponEYOpTwj5cBYGdA74Sh8mAS4VX
-         ReIycRx9Cs6mk6UCjlSQRJ+qpAshIYUhTJe8ID/GCr+tqyZL9U2lonxojHq/mN+2Drl2
-         8TLGGNCRprA8W6CutiO1WXLj59jHzxzQJAPLLxcZrLaBARioNihe++Eb0sd2xFeltcg7
-         OBCXnS/ydZQGtOITFra5CUpIic3ZPM+JRK8Z/YI4OLeAdXABgX4z39SBD2R6hnmGIhkf
-         W/TOBwEFPu1FNP96ynFQbWgkFvoXjurocivSLaRWkPdnZQan9zwvKlNM0mZgqd7yDA6V
-         i+tw==
-X-Gm-Message-State: AOAM530tRc2DSbq+pUvVF7eDqGz607+l4RV4mk/M2uN5Hjbq6ZR8YPDC
-        z16qEUYBraVTmSVHGKJ+IToY
-X-Google-Smtp-Source: ABdhPJx/ROcKQmH0joCVhqAZ4cSDQWRVLRB7n7LeFtd0AT8NZB9vmmIWXJtuUb+l5cdmNMF8nSzPtg==
-X-Received: by 2002:a17:902:8486:b029:d9:66b3:958d with SMTP id c6-20020a1709028486b02900d966b3958dmr6885707plo.48.1606479109115;
-        Fri, 27 Nov 2020 04:11:49 -0800 (PST)
+        bh=kzKkCt4qLiDzrU3pEP907cfAa2/fONI8wtqu9xL5mS0=;
+        b=Jy65IB5B0AfPG0YWUy2/Lq+TevZoiSlvoedpwtBhIM5h0lMp9bPIzTl7E5H++z96fz
+         1LqdaBvBclxWNTrnHXQrBJ0nTNTKH086n+CXvWHhzJInLCLyLWzrxBysCnQm+sN5t1XU
+         9bUmPWdrZG4pZymkkrAHgsvroC9ySwrc0Zb/I/eGkW3x76CglcqxTiiTfpkh2zCaCBoj
+         CItcj6pGyO6lLlTOJbCONmxRdiPydnqiuZjJ9wSVu4Dl0KAt+2JtR1mPxNYL+A7mylnf
+         j0NrYOeWsmA3ENy1PBMI97IadyQXvW4mHDG2WuAdXCYFP0InJRUVDQ/TVYoPB/3SfKlm
+         6TqQ==
+X-Gm-Message-State: AOAM530wS1RaWOrohsos2uve3MLp99pZuy3pZMYquQ1VTyzgpM+FmBL3
+        hdh0syC+/aihUSNcOIT/gnoE
+X-Google-Smtp-Source: ABdhPJwrQpc1YXtzJf4bP4Bjz2pW+fSWY6ctAxzT4c47z/mOAomfSUducLY0iVjT2ZG0mB7fh1GXvw==
+X-Received: by 2002:a63:445c:: with SMTP id t28mr6341331pgk.373.1606479113785;
+        Fri, 27 Nov 2020 04:11:53 -0800 (PST)
 Received: from localhost.localdomain ([2409:4072:480:e2cd:2509:49c2:a270:1438])
-        by smtp.gmail.com with ESMTPSA id g8sm7318790pgn.47.2020.11.27.04.11.45
+        by smtp.gmail.com with ESMTPSA id g8sm7318790pgn.47.2020.11.27.04.11.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2020 04:11:48 -0800 (PST)
+        Fri, 27 Nov 2020 04:11:53 -0800 (PST)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org
 Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 2/3] arm64: dts: qcom: sm8250: Add support for LLCC block
-Date:   Fri, 27 Nov 2020 17:41:26 +0530
-Message-Id: <20201127121127.158082-3-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 3/3] soc: qcom: llcc-qcom: Add support for SM8250 SoC
+Date:   Fri, 27 Nov 2020 17:41:27 +0530
+Message-Id: <20201127121127.158082-4-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20201127121127.158082-1-manivannan.sadhasivam@linaro.org>
 References: <20201127121127.158082-1-manivannan.sadhasivam@linaro.org>
@@ -64,32 +64,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for Last Level Cache Controller (LLCC) in SM8250 SoC.
-This LLCC is used to provide common cache memory pool for the cores in
-the SM8250 SoC thereby minimizing the percore caches.
+SM8250 SoC uses LLCC IP version 2. In this version, the WRSC_EN register
+needs to be written to enable the Write Sub Cache for each SCID. Hence,
+use a dedicated "write_scid_en" member with predefined values and write
+them for SoCs enabling the "llcc_v2" flag.
 
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/soc/qcom/llcc-qcom.c       | 40 ++++++++++++++++++++++++++++++
+ include/linux/soc/qcom/llcc-qcom.h |  1 +
+ 2 files changed, 41 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 65acd1f381eb..118b6bb29ebc 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1758,6 +1758,12 @@ usb_1_dwc3: dwc3@a600000 {
- 			};
- 		};
+diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+index 16b421608e9c..3ec4cdffa852 100644
+--- a/drivers/soc/qcom/llcc-qcom.c
++++ b/drivers/soc/qcom/llcc-qcom.c
+@@ -47,6 +47,7 @@
  
-+		system-cache-controller@9200000 {
-+			compatible = "qcom,sm8250-llcc";
-+			reg = <0 0x09200000 0 0x1d0000>, <0 0x09600000 0 0x50000>;
-+			reg-names = "llcc_base", "llcc_broadcast_base";
-+		};
+ #define LLCC_TRP_SCID_DIS_CAP_ALLOC   0x21f00
+ #define LLCC_TRP_PCB_ACT              0x21f04
++#define LLCC_TRP_WRSC_EN              0x21f20
+ 
+ #define BANK_OFFSET_STRIDE	      0x80000
+ 
+@@ -73,6 +74,7 @@
+  *               then the ways assigned to this client are not flushed on power
+  *               collapse.
+  * @activate_on_init: Activate the slice immediately after it is programmed
++ * @write_scid_en: Bit enables write cache support for a given scid.
+  */
+ struct llcc_slice_config {
+ 	u32 usecase_id;
+@@ -87,12 +89,14 @@ struct llcc_slice_config {
+ 	bool dis_cap_alloc;
+ 	bool retain_on_pc;
+ 	bool activate_on_init;
++	bool write_scid_en;
+ };
+ 
+ struct qcom_llcc_config {
+ 	const struct llcc_slice_config *sct_data;
+ 	int size;
+ 	bool need_llcc_cfg;
++	bool llcc_v2;
+ };
+ 
+ static const struct llcc_slice_config sc7180_data[] =  {
+@@ -147,6 +151,25 @@ static const struct llcc_slice_config sm8150_data[] =  {
+ 	{  LLCC_WRCACHE, 31, 128,  1, 1, 0xFFF, 0x0,   0, 0, 0, 0, 0 },
+ };
+ 
++static const struct llcc_slice_config sm8250_data[] =  {
++	{ LLCC_CPUSS,    1, 3072, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 1, 0 },
++	{ LLCC_VIDSC0,   2, 512,  3, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_AUDIO,    6, 1024, 1, 0, 0xfff, 0x0, 0, 0, 0, 0, 0, 0 },
++	{ LLCC_CMPT,    10, 1024, 1, 0, 0xfff, 0x0, 0, 0, 0, 0, 0, 0 },
++	{ LLCC_GPUHTW,  11, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_GPU,     12, 1024, 1, 0, 0xfff, 0x0, 0, 0, 0, 1, 0, 1 },
++	{ LLCC_MMUHWT,  13, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
++	{ LLCC_CMPTDMA, 15, 1024, 1, 0, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_DISP,    16, 3072, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_VIDFW,   17, 512,  1, 0, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_AUDHW,   22, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_NPU,     23, 3072, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_WLHW,    24, 1024, 1, 0, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_CVP,     28, 256,  3, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0 },
++	{ LLCC_APTCM,   30, 128,  3, 0, 0x0,   0x3, 1, 0, 0, 1, 0, 0 },
++	{ LLCC_WRCACHE, 31, 256,  1, 1, 0xfff, 0x0, 0, 0, 0, 0, 1, 0 },
++};
 +
- 		usb_2: usb@a8f8800 {
- 			compatible = "qcom,sm8250-dwc3", "qcom,dwc3";
- 			reg = <0 0x0a8f8800 0 0x400>;
+ static const struct qcom_llcc_config sc7180_cfg = {
+ 	.sct_data	= sc7180_data,
+ 	.size		= ARRAY_SIZE(sc7180_data),
+@@ -164,6 +187,12 @@ static const struct qcom_llcc_config sm8150_cfg = {
+ 	.size           = ARRAY_SIZE(sm8150_data),
+ };
+ 
++static const struct qcom_llcc_config sm8250_cfg = {
++	.sct_data       = sm8250_data,
++	.size           = ARRAY_SIZE(sm8250_data),
++	.llcc_v2	= true,
++};
++
+ static struct llcc_drv_data *drv_data = (void *) -EPROBE_DEFER;
+ 
+ /**
+@@ -413,6 +442,16 @@ static int _qcom_llcc_cfg_program(const struct llcc_slice_config *config,
+ 			return ret;
+ 	}
+ 
++	if (cfg->llcc_v2) {
++		u32 wren;
++
++		wren = config->write_scid_en << config->slice_id;
++		ret = regmap_update_bits(drv_data->bcast_regmap, LLCC_TRP_WRSC_EN,
++					 BIT(config->slice_id), wren);
++		if (ret)
++			return ret;
++	}
++
+ 	if (config->activate_on_init) {
+ 		desc.slice_id = config->slice_id;
+ 		ret = llcc_slice_activate(&desc);
+@@ -559,6 +598,7 @@ static const struct of_device_id qcom_llcc_of_match[] = {
+ 	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfg },
+ 	{ .compatible = "qcom,sdm845-llcc", .data = &sdm845_cfg },
+ 	{ .compatible = "qcom,sm8150-llcc", .data = &sm8150_cfg },
++	{ .compatible = "qcom,sm8250-llcc", .data = &sm8250_cfg },
+ 	{ }
+ };
+ 
+diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+index 3db6797ba6ff..85f18ae7692f 100644
+--- a/include/linux/soc/qcom/llcc-qcom.h
++++ b/include/linux/soc/qcom/llcc-qcom.h
+@@ -29,6 +29,7 @@
+ #define LLCC_AUDHW       22
+ #define LLCC_NPU         23
+ #define LLCC_WLHW        24
++#define LLCC_CVP         28
+ #define LLCC_MODPE       29
+ #define LLCC_APTCM       30
+ #define LLCC_WRCACHE     31
 -- 
 2.25.1
 
