@@ -2,386 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DB6C42C613B
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 09:56:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7164F2C6146
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 10:01:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725854AbgK0I4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 03:56:21 -0500
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:52854 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725616AbgK0I4V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 03:56:21 -0500
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 2ADB21F46101
-Subject: Re: [PATCH v4 01/16] dt-bindings: power: Add bindings for the
- Mediatek SCPSYS power domains controller
-To:     Weiyi Lu <weiyi.lu@mediatek.com>,
-        Matthias Brugger <mbrugger@suse.com>
-Cc:     linux-kernel@vger.kernel.org, matthias.bgg@gmail.com,
-        drinkcat@chromium.org, hsinyi@chromium.org,
-        Collabora Kernel ML <kernel@collabora.com>,
-        fparent@baylibre.com, Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20201030113622.201188-1-enric.balletbo@collabora.com>
- <20201030113622.201188-2-enric.balletbo@collabora.com>
- <1606443891.10511.3.camel@mtksdaap41>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <24cd5076-39c8-827a-5932-1e178f2628fd@collabora.com>
-Date:   Fri, 27 Nov 2020 09:56:14 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <1606443891.10511.3.camel@mtksdaap41>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1726248AbgK0JBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 04:01:10 -0500
+Received: from z5.mailgun.us ([104.130.96.5]:39734 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725854AbgK0JBJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Nov 2020 04:01:09 -0500
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1606467668; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=OIY56LGrXG7EOd8OdvHPbhXheV+DzCN0elNY5uozLLw=; b=jq/osxpmlmN57CgVATm5/D11OKcs2Is8KxDTbqeNs2Beni16BZF3/vm4nLYSKt/iojFDAdDj
+ u0tLzNXPVjH2TVFKdOXS6+IvUidlwylToEC9L5MOw4T2VblTBp7YYim//KOlyqOvMwEWfmB2
+ B+yp6O3Gcyw2qiOXhtW4Y9sCW5U=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
+ 5fc0c03a22377520ee56a329 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 27 Nov 2020 09:00:42
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 233CCC433ED; Fri, 27 Nov 2020 09:00:42 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id EEA72C433C6;
+        Fri, 27 Nov 2020 09:00:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org EEA72C433C6
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: [PATCH v2] Asoc: qcom: Fix plaback recover problem in suspend resume
+Date:   Fri, 27 Nov 2020 14:30:21 +0530
+Message-Id: <1606467622-11735-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weiyi,
+To support playback continuation after hard suspend(bypass powerd)
+ and resume:
+Prepare device in  platform trigger callback.
+Make I2s and DMA control registers as non volatile.
 
-On 27/11/20 3:24, Weiyi Lu wrote:
-> On Fri, 2020-10-30 at 12:36 +0100, Enric Balletbo i Serra wrote:
->> The System Control Processor System (SCPSYS) has several power management
->> related tasks in the system. Add the bindings to define the power
->> domains for the SCPSYS power controller.
->>
->> Co-developed-by: Matthias Brugger <mbrugger@suse.com>
->> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
->> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> ---
->>
->> Changes in v4:
->> - Fix indentation warnings reported by yamllint
->>
->> Changes in v3:
->> - Use hex for unit-addresses.
->> - Define child nodes for nested power domains even are duplicated, but
->>   more clear than adding a regex scaped to be a valid URI.
->>
->> Changes in v2:
->> - Use generic node names (power-domain).
->> - Define valid values for common properties like #power-domain-cells.
->>
->>  .../power/mediatek,power-controller.yaml      | 289 ++++++++++++++++++
->>  1 file changed, 289 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> new file mode 100644
->> index 000000000000..73b8988bd063
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->> @@ -0,0 +1,289 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/power/mediatek,power-controller.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Mediatek Power Domains Controller
->> +
->> +maintainers:
->> +  - Weiyi Lu <weiyi.lu@mediatek.com>
->> +  - Matthias Brugger <mbrugger@suse.com>
->> +
->> +description: |
->> +  Mediatek processors include support for multiple power domains which can be
->> +  powered up/down by software based on different application scenes to save power.
->> +
->> +  IP cores belonging to a power domain should contain a 'power-domains'
->> +  property that is a phandle for SCPSYS node representing the domain.
->> +
->> +properties:
->> +  $nodename:
->> +    const: power-controller
->> +
->> +  compatible:
->> +    enum:
->> +      - mediatek,mt8173-power-controller
->> +
->> +  '#power-domain-cells':
->> +    const: 1
->> +
->> +  '#address-cells':
->> +    const: 1
->> +
->> +  '#size-cells':
->> +    const: 0
->> +
->> +patternProperties:
->> +  "^power-domain@[0-9a-f]+$":
->> +    type: object
->> +    description: |
->> +      Represents the power domains within the power controller node as documented
->> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
->> +
->> +    properties:
->> +
->> +      '#power-domain-cells':
->> +        description:
->> +          Must be 0 for nodes representing a single PM domain and 1 for nodes
->> +          providing multiple PM domains.
->> +
->> +      '#address-cells':
->> +        const: 1
->> +
->> +      '#size-cells':
->> +        const: 0
->> +
->> +      reg:
->> +        description: |
->> +          Power domain index. Valid values are defined in:
->> +              "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
->> +        maxItems: 1
->> +
->> +      clocks:
->> +        description: |
->> +          A number of phandles to clocks that need to be enabled during domain
->> +          power-up sequencing.
->> +
->> +      clock-names:
->> +        description: |
->> +          List of names of clocks, in order to match the power-up sequencing
->> +          for each power domain we need to group the clocks by name. BASIC
->> +          clocks need to be enabled before enabling the corresponding power
->> +          domain, and should not have a '-' in their name (i.e mm, mfg, venc).
->> +          SUSBYS clocks need to be enabled before releasing the bus protection,
->> +          and should contain a '-' in their name (i.e mm-0, isp-0, cam-0).
->> +
->> +          In order to follow properly the power-up sequencing, the clocks must
->> +          be specified by order, adding first the BASIC clocks followed by the
->> +          SUSBSYS clocks.
->> +
->> +      mediatek,infracfg:
->> +        $ref: /schemas/types.yaml#definitions/phandle
->> +        description: phandle to the device containing the INFRACFG register range.
->> +
->> +      mediatek,smi:
->> +        $ref: /schemas/types.yaml#definitions/phandle
->> +        description: phandle to the device containing the SMI register range.
->> +
->> +    patternProperties:
->> +      "^power-domain@[0-9a-f]+$":
->> +        type: object
->> +        description: |
->> +          Represents a power domain child within a power domain parent node.
->> +
->> +        properties:
->> +
->> +          '#power-domain-cells':
->> +            description:
->> +              Must be 0 for nodes representing a single PM domain and 1 for nodes
->> +              providing multiple PM domains.
->> +
->> +          '#address-cells':
->> +            const: 1
->> +
->> +          '#size-cells':
->> +            const: 0
->> +
->> +          reg:
->> +            maxItems: 1
->> +
->> +          clocks:
->> +            description: |
->> +              A number of phandles to clocks that need to be enabled during domain
->> +              power-up sequencing.
->> +
->> +          clock-names:
->> +            description: |
->> +              List of names of clocks, in order to match the power-up sequencing
->> +              for each power domain we need to group the clocks by name. BASIC
->> +              clocks need to be enabled before enabling the corresponding power
->> +              domain, and should not have a '-' in their name (i.e mm, mfg, venc).
->> +              SUSBYS clocks need to be enabled before releasing the bus protection,
->> +              and should contain a '-' in their name (i.e mm-0, isp-0, cam-0).
->> +
->> +              In order to follow properly the power-up sequencing, the clocks must
->> +              be specified by order, adding first the BASIC clocks followed by the
->> +              SUSBSYS clocks.
->> +
->> +          mediatek,infracfg:
->> +            $ref: /schemas/types.yaml#definitions/phandle
->> +            description: phandle to the device containing the INFRACFG register range.
->> +
->> +          mediatek,smi:
->> +            $ref: /schemas/types.yaml#definitions/phandle
->> +            description: phandle to the device containing the SMI register range.
->> +
->> +        patternProperties:
->> +          "^power-domain@[0-9a-f]+$":
->> +            type: object
->> +            description: |
->> +              Represents a power domain child within a power domain parent node.
->> +
->> +            properties:
->> +
->> +              '#power-domain-cells':
->> +                description:
->> +                  Must be 0 for nodes representing a single PM domain and 1 for nodes
->> +                  providing multiple PM domains.
->> +
->> +              '#address-cells':
->> +                const: 1
->> +
->> +              '#size-cells':
->> +                const: 0
->> +
->> +              reg:
->> +                maxItems: 1
->> +
->> +              clocks:
->> +                description: |
->> +                  A number of phandles to clocks that need to be enabled during domain
->> +                  power-up sequencing.
->> +
->> +              clock-names:
->> +                description: |
->> +                  List of names of clocks, in order to match the power-up sequencing
->> +                  for each power domain we need to group the clocks by name. BASIC
->> +                  clocks need to be enabled before enabling the corresponding power
->> +                  domain, and should not have a '-' in their name (i.e mm, mfg, venc).
->> +                  SUSBYS clocks need to be enabled before releasing the bus protection,
->> +                  and should contain a '-' in their name (i.e mm-0, isp-0, cam-0).
->> +
->> +                  In order to follow properly the power-up sequencing, the clocks must
->> +                  be specified by order, adding first the BASIC clocks followed by the
->> +                  SUSBSYS clocks.
->> +
->> +              mediatek,infracfg:
->> +                $ref: /schemas/types.yaml#definitions/phandle
->> +                description: phandle to the device containing the INFRACFG register range.
->> +
->> +              mediatek,smi:
->> +                $ref: /schemas/types.yaml#definitions/phandle
->> +                description: phandle to the device containing the SMI register range.
->> +
->> +            required:
->> +              - reg
->> +
->> +            additionalProperties: false
->> +
->> +        required:
->> +          - reg
->> +
->> +        additionalProperties: false
->> +
->> +    required:
->> +      - reg
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/mt8173-clk.h>
->> +    #include <dt-bindings/power/mt8173-power.h>
->> +
->> +    soc {
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        scpsys: syscon@10006000 {
->> +            compatible = "syscon", "simple-mfd";
->> +            reg = <0 0x10006000 0 0x1000>;
->> +
->> +            spm: power-controller {
->> +                compatible = "mediatek,mt8173-power-controller";
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +                #power-domain-cells = <1>;
-> 
-> Hi Enric and Matthias,
-> 
-> I'd like to know whether we could only keep this power-domain-cells
-> property here and make others optional, which can more directly point
-> out who is the real power domain provider?
-> 
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+---
+Changes Since v1:
+  -- Subject lines changed
 
-This is enforced by the generic power-domain binding
-(Documentation/devicetree/bindings/power/power-domain.yaml) as a required
-property. So, if needs to be changed, should be changed there. My understanding,
-though, is that (like the binding is) this property should be required to
-properly define a power-domain.
+ sound/soc/qcom/lpass-cpu.c      | 8 ++------
+ sound/soc/qcom/lpass-platform.c | 5 +++--
+ 2 files changed, 5 insertions(+), 8 deletions(-)
 
-Cheers,
- Enric
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index af684fd..c99be03 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -454,20 +454,16 @@ static bool lpass_cpu_regmap_volatile(struct device *dev, unsigned int reg)
+ 	struct lpass_variant *v = drvdata->variant;
+ 	int i;
+ 
+-	for (i = 0; i < v->i2s_ports; ++i)
+-		if (reg == LPAIF_I2SCTL_REG(v, i))
+-			return true;
+ 	for (i = 0; i < v->irq_ports; ++i)
+ 		if (reg == LPAIF_IRQSTAT_REG(v, i))
+ 			return true;
+ 
+ 	for (i = 0; i < v->rdma_channels; ++i)
+-		if (reg == LPAIF_RDMACURR_REG(v, i) || reg == LPAIF_RDMACTL_REG(v, i))
++		if (reg == LPAIF_RDMACURR_REG(v, i))
+ 			return true;
+ 
+ 	for (i = 0; i < v->wrdma_channels; ++i)
+-		if (reg == LPAIF_WRDMACURR_REG(v, i + v->wrdma_channel_start) ||
+-			reg == LPAIF_WRDMACTL_REG(v, i + v->wrdma_channel_start))
++		if (reg == LPAIF_WRDMACURR_REG(v, i + v->wrdma_channel_start))
+ 			return true;
+ 
+ 	return false;
+diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+index 80b09de..2b0a7c1 100644
+--- a/sound/soc/qcom/lpass-platform.c
++++ b/sound/soc/qcom/lpass-platform.c
+@@ -481,8 +481,9 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+ 		return -ENOTRECOVERABLE;
+ 	}
+ 	switch (cmd) {
+-	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_RESUME:
++		lpass_platform_pcmops_prepare(component, substream);
++	case SNDRV_PCM_TRIGGER_START:
+ 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
+ 		ret = regmap_fields_write(dmactl->enable, id,
+ 						 LPAIF_DMACTL_ENABLE_ON);
+@@ -592,7 +593,7 @@ static int lpass_platform_pcmops_trigger(struct snd_soc_component *component,
+ 		break;
+ 	}
+ 
+-	return 0;
++	return ret;
+ }
+ 
+ static snd_pcm_uframes_t lpass_platform_pcmops_pointer(
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
->> +
->> +                /* power domains of the SoC */
->> +                power-domain@MT8173_POWER_DOMAIN_VDEC {
->> +                    reg = <MT8173_POWER_DOMAIN_VDEC>;
->> +                    clocks = <&topckgen CLK_TOP_MM_SEL>;
->> +                    clock-names = "mm";
->> +                    #power-domain-cells = <0>;
->> +                };
->> +                power-domain@MT8173_POWER_DOMAIN_VENC {
->> +                    reg = <MT8173_POWER_DOMAIN_VENC>;
->> +                    clocks = <&topckgen CLK_TOP_MM_SEL>,
->> +                             <&topckgen CLK_TOP_VENC_SEL>;
->> +                    clock-names = "mm", "venc";
->> +                    #power-domain-cells = <0>;
->> +                };
->> +                power-domain@MT8173_POWER_DOMAIN_ISP {
->> +                    reg = <MT8173_POWER_DOMAIN_ISP>;
->> +                    clocks = <&topckgen CLK_TOP_MM_SEL>;
->> +                    clock-names = "mm";
->> +                    #power-domain-cells = <0>;
->> +                };
->> +                power-domain@MT8173_POWER_DOMAIN_MM {
->> +                    reg = <MT8173_POWER_DOMAIN_MM>;
->> +                    clocks = <&topckgen CLK_TOP_MM_SEL>;
->> +                    clock-names = "mm";
->> +                    #power-domain-cells = <0>;
->> +                    mediatek,infracfg = <&infracfg>;
->> +                };
->> +                power-domain@MT8173_POWER_DOMAIN_VENC_LT {
->> +                    reg = <MT8173_POWER_DOMAIN_VENC_LT>;
->> +                    clocks = <&topckgen CLK_TOP_MM_SEL>,
->> +                             <&topckgen CLK_TOP_VENC_LT_SEL>;
->> +                    clock-names = "mm", "venclt";
->> +                    #power-domain-cells = <0>;
->> +                };
->> +                power-domain@MT8173_POWER_DOMAIN_AUDIO {
->> +                    reg = <MT8173_POWER_DOMAIN_AUDIO>;
->> +                    #power-domain-cells = <0>;
->> +                };
->> +                power-domain@MT8173_POWER_DOMAIN_USB {
->> +                    reg = <MT8173_POWER_DOMAIN_USB>;
->> +                    #power-domain-cells = <0>;
->> +                };
->> +                power-domain@MT8173_POWER_DOMAIN_MFG_ASYNC {
->> +                    reg = <MT8173_POWER_DOMAIN_MFG_ASYNC>;
->> +                    clocks = <&clk26m>;
->> +                    clock-names = "mfg";
->> +                    #address-cells = <1>;
->> +                    #size-cells = <0>;
->> +                    #power-domain-cells = <1>;
->> +
->> +                    power-domain@MT8173_POWER_DOMAIN_MFG_2D {
->> +                        reg = <MT8173_POWER_DOMAIN_MFG_2D>;
->> +                        #address-cells = <1>;
->> +                        #size-cells = <0>;
->> +                        #power-domain-cells = <1>;
->> +
->> +                        power-domain@MT8173_POWER_DOMAIN_MFG {
->> +                            reg = <MT8173_POWER_DOMAIN_MFG>;
->> +                            #power-domain-cells = <0>;
->> +                            mediatek,infracfg = <&infracfg>;
->> +                        };
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
-> 
