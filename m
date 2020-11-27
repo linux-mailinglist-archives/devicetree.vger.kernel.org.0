@@ -2,84 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 964C42C61B1
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 10:29:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8DB12C61BF
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 10:33:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727130AbgK0J3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 04:29:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43400 "EHLO
+        id S1728568AbgK0Jck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 04:32:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726826AbgK0J3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 04:29:41 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2776C0613D4
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 01:29:40 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id a3so5844373wmb.5
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 01:29:40 -0800 (PST)
+        with ESMTP id S1726178AbgK0Jcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 04:32:39 -0500
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACA19C0613D4
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 01:32:38 -0800 (PST)
+Received: by mail-wr1-x444.google.com with SMTP id l1so4835380wrb.9
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 01:32:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Ev967dxFte9OFk/FlLebu9t70Z0aPWOKCMJc2joTu6I=;
-        b=kjNQy3nhmsYJ29GqJOawmFYupvRUeFLOeuZSOa4HBhulZKUXaMFFdWuF0wyMzJV15f
-         2Z5HjHwbyBhHuzyAY39tyqwI/K6UratOcGjB/u4twbdYIHmLNbEajnrl4kZ4qNevonkm
-         Y1eYGNEjDd+sRAehSNyrDqnOWuoKr60StKwnVJj+YobYpddujSvOGaFq2e/m39coczwj
-         juQTPh+2v1zHBE1YECdWhFFqfOH9mehdcAhIW1epDggez9CsWLQmlpFAk7A2gzpLt1Jy
-         +oWMCO2Vn6/PJ/mVeG5US+B0oAcU39mbDzsDL62IIWpTGOq8j4zOeeyFDnh5jwtC1VlA
-         btCg==
+        bh=lAxkAYvCa7eeDOc+aoeZS0G8r5xJMwvnpqn8jKIhjj0=;
+        b=WxsRmHZK/D7hklZYA+bATzachY4P8/1CjCLcq5zP+7ElEyu783Ch+nUf1lcnuignHS
+         T85HYP9g4tT5lC9VwQ7d8INq7eCbWKJnA7hDQNk8zPclOmXGAm8azI8dur5e4jpbf69i
+         goO0fsroDYpazuS9uX+IheOGpXF6STQtb1oMOlAf19y2nz5cr5T1nrVukyrVRdrzbBpQ
+         UKQtzUwJdg2bXMuJybPc2y0lcsLNEzAd7DfAjMTVdhrIS8aba7b6GoUhaILvkqSygYuA
+         GaIjh9atCdamRF6umlGotb27L4VRPsemKz+59kniEWMBSO1/ttfi+dJKPkPTmXL3hqyE
+         RYsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=Ev967dxFte9OFk/FlLebu9t70Z0aPWOKCMJc2joTu6I=;
-        b=heCyjymliszpBbZkh/ewZGfFrL0ju/fPeWs+XV2Tc7HqZkiMuEPXTwxxunCbUU9npW
-         2k8fOixkidweWQNdILY6xXl5URQ0tBF15OJDXaRbJ2/QgBNVbOlVL9W17tcIRLGiLI7T
-         AK6S67hqJwdFZRPlNHBn+QpTz6KBpWoGy3Bpx2i3mvjYmcV0p6dFTQIPOD7C9/Mm3pB2
-         8SzseZyzKd1WNPJp6rsohJnYV7AYbdttH3tkMVaq20w+ZLSI/cGWPhNyByZNpM+S8oox
-         H3GrCnMPT1xNs2lqWwTmtbfcXx28u/Prify4PK337FKT50LzG6bQdID3d+SVUy5o03Pv
-         5NCQ==
-X-Gm-Message-State: AOAM530GaaYdFPOdnzi8YdM2cNtZE1Bq6jtASuhf5s4a7MKYYgpepkkY
-        8wNkSMmi0nfWO4CJ3jv4uWkWhA==
-X-Google-Smtp-Source: ABdhPJxKFlW9DFzkz1ig5ZJMa0hLQOUNltALJm8SRZsGKnNIuq0oatMB/aLoZxjolx5LW69kKIHLsQ==
-X-Received: by 2002:a1c:de85:: with SMTP id v127mr852773wmg.178.1606469379121;
-        Fri, 27 Nov 2020 01:29:39 -0800 (PST)
+        bh=lAxkAYvCa7eeDOc+aoeZS0G8r5xJMwvnpqn8jKIhjj0=;
+        b=svXrSduxMHaR1gb9e2FjkyHMPT3CA5qPxLdYNboxep14HgOZXF8I59dYRwlwVqmVRi
+         NgKS28humyM29xqLm94I//kitFnMclyrK8JFFUWpyI+WJM52EZOVq2eEnqmXAGac1U3J
+         0kScbN0tJGLtpuVl8QdavO8WWYjgXundDx8ctzk3UZkUcsHlccsw+6aTiWaCBajpOO1y
+         g171E/n4DPDmkw1FpfzmpdrvbzYnXRZQfK7EjX7aJJ4ULD9yUFKqod5MvAXEH7qaQOdA
+         CEBF4aEmTQDLrTZJ46hk+2XrZsO4E0DArUcdH7FwmGvLRukWYLbjSMIJQbzSE8tnGk3i
+         DHeQ==
+X-Gm-Message-State: AOAM532l4x6Y+wETXWf1vyw7AUJkuQ9ixpv2KHkZUf3A6EKoyCu9yDDf
+        e2+Mser+FjrTkUtcxXRQKzzmiQ==
+X-Google-Smtp-Source: ABdhPJyE5yrp/QCLUHsa9WBEW+n10WAdt6LRN1ctPgu6eAswud+B3UVJlIP1A0aF6fmiPpFLGrcw4Q==
+X-Received: by 2002:adf:ebc5:: with SMTP id v5mr9370555wrn.392.1606469557473;
+        Fri, 27 Nov 2020 01:32:37 -0800 (PST)
 Received: from dell ([91.110.221.235])
-        by smtp.gmail.com with ESMTPSA id p19sm14377838wrg.18.2020.11.27.01.29.38
+        by smtp.gmail.com with ESMTPSA id d3sm13168196wrr.2.2020.11.27.01.32.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2020 01:29:38 -0800 (PST)
-Date:   Fri, 27 Nov 2020 09:29:36 +0000
+        Fri, 27 Nov 2020 01:32:36 -0800 (PST)
+Date:   Fri, 27 Nov 2020 09:32:34 +0000
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        srv_heupstream@mediatek.com
-Subject: Re: [PATCH v3 1/8] mfd: mt6358: refine interrupt code
-Message-ID: <20201127092936.GO2455276@dell>
-References: <1606103290-15034-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1606103290-15034-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+To:     Shihlun Lin <shihlun.lin@advantech.com.tw>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Campion Kang <campion.kang@advantech.com.tw>,
+        AceLan Kao <chia-lin.kao@canonical.com>
+Subject: Re: [RESEND PATCH v4 2/6] mfd: ahc1ec0: Add Advantech EC include
+ file used by dt-bindings
+Message-ID: <20201127093234.GQ2455276@dell>
+References: <20201125070744.4651-1-shihlun.lin@advantech.com.tw>
+ <20201125070744.4651-2-shihlun.lin@advantech.com.tw>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1606103290-15034-2-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <20201125070744.4651-2-shihlun.lin@advantech.com.tw>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 23 Nov 2020, Hsin-Hsiung Wang wrote:
+On Wed, 25 Nov 2020, Shihlun Lin wrote:
 
-> This patch refines the interrupt related code to support new chips.
+> This files defines the sud-device types and hwmon profiles support by
+> Advantech embedded controller.
 > 
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+> Signed-off-by: Shihlun Lin <shihlun.lin@advantech.com.tw>
 > ---
->  drivers/mfd/mt6358-irq.c        | 65 +++++++++++++++++++--------------
->  include/linux/mfd/mt6358/core.h |  8 ++--
->  2 files changed, 41 insertions(+), 32 deletions(-)
+>  include/dt-bindings/mfd/ahc1ec0.h | 25 +++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>  create mode 100644 include/dt-bindings/mfd/ahc1ec0.h
 
 For my own reference (apply this as-is to your sign-off block):
 
