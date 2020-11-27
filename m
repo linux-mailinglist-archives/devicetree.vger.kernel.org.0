@@ -2,76 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D82552C6D5A
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 23:50:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F312C6D9B
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 00:23:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732556AbgK0Wss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 17:48:48 -0500
-Received: from vps0.lunn.ch ([185.16.172.187]:53636 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732690AbgK0Wqv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 17:46:51 -0500
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94)
-        (envelope-from <andrew@lunn.ch>)
-        id 1kimVq-009Bkr-FW; Fri, 27 Nov 2020 23:46:46 +0100
-Date:   Fri, 27 Nov 2020 23:46:46 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
+        id S1730284AbgK0XWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 18:22:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59588 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731432AbgK0XVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 18:21:44 -0500
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5C3C0613D1;
+        Fri, 27 Nov 2020 15:21:43 -0800 (PST)
+Received: by mail-ej1-x643.google.com with SMTP id d17so7789354ejy.9;
+        Fri, 27 Nov 2020 15:21:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=RzsSMH+hukhX+jVFkmT3ne6jmwQz5buCyk3OVQ1T7pQ=;
+        b=ld9Rd0DgQ9RYr32MY2YpGhsiceREihp4mPWaIvlQAVQwtZHPmkMOsV0MlrUNQ16kuE
+         UFu+YcIP4zkOWtaMsol6e0a8DEsi+QIW5dauppW0rULoywlsPI7bOIvO4e5JffGvMmHz
+         I/Evef1PTboLamyDfu5txzEhxS5s0sfd38rXn9f6CWIo3matGEvT+eNtRwcQRZpau75k
+         MERNQvoRy9q3VvbLcL4K5jj6+OmfrYIqD5bLdVNufgmvZPe6QaygPtYqDtwdmMFC6nZj
+         3yIW9ag+1WqCAuysJFJCOA73N/SDi/jUm3vGszCPDXwDotjJENGGjm2cNN5IgzMENfjY
+         QnLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=RzsSMH+hukhX+jVFkmT3ne6jmwQz5buCyk3OVQ1T7pQ=;
+        b=j9SN9yoSIj7UT3MLTdk6PrB/iSU2l1TMvnRn0XqYD7oKRldYYXVF6bDdoDO+pzA1U2
+         SS9MuaacTYCi4XZscvAPlZZGgbHJlOdw7WOvH01Wh9u/f5Ren5eh9M30SMxau8ZVtYr7
+         gOoKrnK30qAZsqjV1bEU+HUzXQDJMTbSU+KhDKb9xJJZscl5pfPgTpFiW6AY9BwbSPF0
+         EsTHxNaCk6/ADpI8LCcbxMevMh5ayLP9t/KppPCfAO5L/TJtXio+6jMV4i9xsZSmL1oV
+         TnbfoKlcbG3D3waeimtr/qW0rPI8CYCTWq+5npwy9KIGUzAngpWpy0PTE3I+nCxWtWNy
+         Lovw==
+X-Gm-Message-State: AOAM530P3tCkiMw+9heZeZQuwF2sdQuCjhxX+wXUhxOqMtdREZvN2FDQ
+        FmfX3bNQT7bfcOWkMG6l2ow=
+X-Google-Smtp-Source: ABdhPJzP6c/92Eega1if760CFgXx2nCAU15M+gMNrfWXWP+GmabuOn3SRI1MmP87/hc/OmYFIaHNSA==
+X-Received: by 2002:a17:906:9816:: with SMTP id lm22mr10021265ejb.313.1606519302531;
+        Fri, 27 Nov 2020 15:21:42 -0800 (PST)
+Received: from skbuf ([188.25.2.120])
+        by smtp.gmail.com with ESMTPSA id f24sm5204428ejf.117.2020.11.27.15.21.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2020 15:21:41 -0800 (PST)
+Date:   Sat, 28 Nov 2020 01:21:40 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
 To:     Jakub Kicinski <kuba@kernel.org>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        George McCollister <george.mccollister@gmail.com>,
+Cc:     George McCollister <george.mccollister@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
         "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
         "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
 Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
  driver
-Message-ID: <20201127224646.GA2073444@lunn.ch>
+Message-ID: <20201127232140.g6ylpsovaj2tcutr@skbuf>
 References: <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
  <20201126132418.zigx6c2iuc4kmlvy@skbuf>
  <20201126175607.bqmpwbdqbsahtjn2@skbuf>
  <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
  <20201126220500.av3clcxbbvogvde5@skbuf>
  <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
- <20201127204714.GX2073444@lunn.ch>
- <20201127131346.3d594c8e@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
- <20201127213244.GY2073444@lunn.ch>
- <20201127141402.417933f3@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+ <CAFSKS=MAdnR2jzmkQfTnSQZ7GY5x5KJE=oeqPCQdbZdf5n=4ZQ@mail.gmail.com>
+ <20201127195057.ac56bimc6z3kpygs@skbuf>
+ <CAFSKS=Pf6zqQbNhaY=A_Da9iz9hcyxQ8E1FBp2o7a_KLBbopYw@mail.gmail.com>
+ <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201127141402.417933f3@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+In-Reply-To: <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 27, 2020 at 02:14:02PM -0800, Jakub Kicinski wrote:
-> On Fri, 27 Nov 2020 22:32:44 +0100 Andrew Lunn wrote:
-> > > > So long as these counters are still in ethtool -S, i guess it does not
-> > > > matter. That i do trust to be accurate, and probably consistent across
-> > > > the counters it returns.  
-> > > 
-> > > Not in the NIC designs I'm familiar with.  
-> > 
-> > Many NICs have a way to take a hardware snapshot of all counters.
-> > You can then read them out as fast or slow as you want, since you
-> > read the snapshot, not the live counters. As a result you can compare
-> > counters against each other.
-> 
-> Curious, does Marvell HW do it?
+On Fri, Nov 27, 2020 at 01:37:53PM -0800, Jakub Kicinski wrote:
+> High speed systems are often eventually consistent. Either because
+> stats are gathered from HW periodically by the FW, or RCU grace period
+> has to expire, or workqueue has to run, etc. etc. I know it's annoying
+> for writing tests but it's manageable.
 
-Yes. Every generation of Marvell SOHO switch has this.
-
-> IDK I find it very questionable if the system design doesn't take into
-> account that statistics are retrieved every n seconds. We can perhaps
-> scale the default period with the speed of the bus?
-
-You don't actually have much choice. I2C is defined to run at
-100Kbps. There is a fast mode which runs at 400Kbps. How do you design
-around that? MDIO is around 2.5Mbps, but has 50% overhead from the
-preamble. SPI can be up to 50Mbps, but there is no standard set of
-speeds. None of the data sheets i've seen ever talk about recommended
-scheduling polices for transactions over these busses. But testing has
-shown, if you want good PTP, you need to keep them loaded as lightly
-as possible. If you don't have PTP it becomes less important.
-
-   Andrew
+Out of curiosity, what does a test writer need to do to get out of the
+"eventual consistency" conundrum in a portable way and answer the
+question "has my packet not been received by the interface or has the
+counter just not updated"?
