@@ -2,100 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC4BD2C6CCB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 22:04:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 340692C6CD6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 22:15:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729330AbgK0VDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 16:03:17 -0500
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:57238 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729302AbgK0VBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 16:01:41 -0500
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0ARL1VLG012884;
-        Fri, 27 Nov 2020 15:01:31 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1606510891;
-        bh=SwhZTJlUWdWrI+HfnwJoRTi44shyRISrndizapQG4qw=;
-        h=From:To:CC:Subject:Date;
-        b=Bk5214ZAWcww05fq2FCWmjj7S+v5/OJdND4gb6SA3RGHCUMNG/j9PAdTMpdJ8nED/
-         kfM44+Uga3m0HB8wb6riyqeIwQsV8aAMRs6sBxP3KTG+4KiUA5lNFwN73BINgLr7+c
-         3u56rlFDwLltDkp9GiT4utat5vkmvXkOvcPFyhAA=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0ARL1VFk070834
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 27 Nov 2020 15:01:31 -0600
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 27
- Nov 2020 15:01:31 -0600
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 27 Nov 2020 15:01:31 -0600
-Received: from pxplinux063.india.englab.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0ARL1S7H075638;
-        Fri, 27 Nov 2020 15:01:29 -0600
-From:   Sekhar Nori <nsekhar@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>
-CC:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: [PATCH v2] arm64: dts: ti: k3: squelch warning about lack of #interrupt-cells
-Date:   Sat, 28 Nov 2020 02:31:28 +0530
-Message-ID: <20201127210128.9151-1-nsekhar@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S1731036AbgK0VOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 16:14:38 -0500
+Received: from mail.kernel.org ([198.145.29.99]:46756 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728726AbgK0VNw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Nov 2020 16:13:52 -0500
+Received: from kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com (unknown [163.114.132.4])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0597122210;
+        Fri, 27 Nov 2020 21:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606511627;
+        bh=bupFm8Uy4aFKsEcnqyBwy4HCLbRmC5x2dr8E5v631O0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=vneZD1les0V0RUVNHIBGDyxZ+cNWDb6B/YGqjdPved+OGv762iRgW2vym/9aHxwni
+         OkTqW1UXZOkplPlvN1CKf9E84AFdxFhH8+EDriqSDp0MKPAfzYgmfrIrcD8mw4SN2/
+         xVkV6LuIqDYMTMEthf3HspILL74AIITa12TdB6fc=
+Date:   Fri, 27 Nov 2020 13:13:46 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        George McCollister <george.mccollister@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20201127131346.3d594c8e@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+In-Reply-To: <20201127204714.GX2073444@lunn.ch>
+References: <20201125193740.36825-1-george.mccollister@gmail.com>
+        <20201125193740.36825-3-george.mccollister@gmail.com>
+        <20201125174214.0c9dd5a9@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+        <CAFSKS=OY_-Agd6JPoFgm3MS5HE6soexHnDHfq8g9WVrCc82_sA@mail.gmail.com>
+        <20201126132418.zigx6c2iuc4kmlvy@skbuf>
+        <20201126175607.bqmpwbdqbsahtjn2@skbuf>
+        <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
+        <20201126220500.av3clcxbbvogvde5@skbuf>
+        <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+        <20201127204714.GX2073444@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are couple of places where INTA interrupt controller
-lacks #interrupt-cells property. This leads to warnings of
-the type:
+On Fri, 27 Nov 2020 21:47:14 +0100 Andrew Lunn wrote:
+> > Is the periodic refresh really that awful? We're mostly talking error
+> > counters here so every second or every few seconds should be perfectly
+> > fine.  
+> 
+> Humm, i would prefer error counts to be more correct than anything
+> else. When debugging issues, you generally don't care how many packets
+> worked. It is how many failed you are interesting, and how that number
+> of failures increases.
 
-arch/arm64/boot/dts/ti/k3-j721e-main.dtsi:147.51-156.5: Warning (interrupt_provider): /bus@100000/main-navss/interrupt-controller@33d00000: Missing #interrupt-cells in interrupt provider
+Right, but not sure I'd use the word "correct". Perhaps "immediately up
+to date"?
 
-when building TI device-tree files with W=2 warning level.
-Fix these.
+High speed NICs usually go through a layer of firmware before they
+access the stats, IOW even if we always synchronously ask for the stats
+in the kernel - in practice a lot of NICs (most?) will return some form
+of cached information.
 
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
-Signed-off-by: Sekhar Nori <nsekhar@ti.com>
----
-v2:
-- Add Grygorii's Reviewed-by:
+> So long as these counters are still in ethtool -S, i guess it does not
+> matter. That i do trust to be accurate, and probably consistent across
+> the counters it returns.
 
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 1 +
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 1 +
- 2 files changed, 2 insertions(+)
+Not in the NIC designs I'm familiar with.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 3eeb6e9876db..aa8725db0187 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -473,6 +473,7 @@
- 			interrupt-controller;
- 			interrupt-parent = <&intr_main_navss>;
- 			msi-controller;
-+			#interrupt-cells = <0>;
- 			ti,sci = <&dmsc>;
- 			ti,sci-dev-id = <179>;
- 			ti,interrupt-ranges = <0 0 256>;
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index e2a96b2c423c..ffedd9531362 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -148,6 +148,7 @@
- 			interrupt-controller;
- 			interrupt-parent = <&main_navss_intr>;
- 			msi-controller;
-+			#interrupt-cells = <0>;
- 			ti,sci = <&dmsc>;
- 			ti,sci-dev-id = <209>;
- 			ti,interrupt-ranges = <0 0 256>;
--- 
-2.17.1
-
+But anyway - this only matters in some strict testing harness, right?
+Normal users will look at a stats after they noticed issues (so minutes
+/ hours later) or at the very best they'll look at a graph, which will
+hardly require <1sec accuracy to when error occurred.
