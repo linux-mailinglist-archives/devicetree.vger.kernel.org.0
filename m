@@ -2,91 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B60392C6952
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 17:22:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6E482C695D
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 17:27:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730366AbgK0QUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 11:20:38 -0500
-Received: from mail.kernel.org ([198.145.29.99]:45512 "EHLO mail.kernel.org"
+        id S1731360AbgK0Q1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 11:27:02 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47026 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726889AbgK0QUh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 11:20:37 -0500
-Received: from localhost (cpc102334-sgyl38-2-0-cust884.18-2.cable.virginm.net [92.233.91.117])
+        id S1731300AbgK0Q1C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Nov 2020 11:27:02 -0500
+Received: from kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com (unknown [163.114.132.4])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9E2C221534;
-        Fri, 27 Nov 2020 16:20:36 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 509E521D7A;
+        Fri, 27 Nov 2020 16:27:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606494037;
-        bh=zddLxlCzjvQCUIKJPRApQIgwKgr/yV43vpmOZuV1TM8=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=maormRB/zuu98AI/ktz2A2ccUFQq7PSAMdadNz+5tYYOcWbyJT++1WbTnFmN+V9iU
-         VLeDGgE2VspenC0bPNpvnp9ZPmazSKJ/WN3428Dvs0af/OAriFSlEejhQtXB2sGQMs
-         3oayn/WXqLNqtQFO/0s1zOImbpeyh/MPj637m2cg=
-Date:   Fri, 27 Nov 2020 16:20:12 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     xuyuqing <xuyuqing@huaqin.corp-partner.google.com>,
-        linux-kernel@vger.kernel.org
-Cc:     dgreid@chromium.org, zhouguohui@huaqin.corp-partner.google.com,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, judyhsiao@chromium.org,
-        Patrick Lai <plai@codeaurora.org>, cychiang@chromium.org,
-        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        dianders@chromium.org, Andy Gross <agross@kernel.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>, tzungbi@chromium.org,
-        devicetree@vger.kernel.org, Taniya Das <tdas@codeaurora.org>,
-        alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>
-In-Reply-To: <20201118005858.123013-1-xuyuqing@huaqin.corp-partner.google.com>
-References: <20201118005858.123013-1-xuyuqing@huaqin.corp-partner.google.com>
-Subject: Re: [PATCH v1 0/1] Fix 32 bit format for adau7002
-Message-Id: <160649401225.51911.879572172271559224.b4-ty@kernel.org>
+        s=default; t=1606494421;
+        bh=2RXBZ7l1i3OanimKbEWfF/F9FByKTdx4MivKfCLvYJ8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=p+69W7Ndi6d7uBkdXTFsN8h8sjZB/XaQdBbz75R3L6zqd76In1WaLvd0B4U4s0mQz
+         ty7cqgorPAveDSz5PqJmGLI+JSk/Id53KHnY1YCtRzmFfpSJnF2tkw54ZGpu6jfZIf
+         zmquQivOcWPsFg7MSu3HPaklzrqmJNiFWUe8/ApQ=
+Date:   Fri, 27 Nov 2020 08:27:00 -0800
+From:   Jakub Kicinski <kuba@kernel.org>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>, Dan Murphy <dmurphy@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [RESEND PATCH v2] dt-bindings: net: correct interrupt flags in
+ examples
+Message-ID: <20201127082700.4a218688@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+In-Reply-To: <3fafb016-5d9e-5e0f-9e5a-2421fbde3eb1@pengutronix.de>
+References: <20201026153620.89268-1-krzk@kernel.org>
+        <3fafb016-5d9e-5e0f-9e5a-2421fbde3eb1@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 18 Nov 2020 08:58:57 +0800, xuyuqing wrote:
-> the microphone is attached to external codec(adau7002)
-> instead of rt5682.We need to always use 32 bit format on sc7180
-> to meet the clock requirement of adau7002:
-> The ADAU7002 requires a BCLK rate
-> that is a minimum of 64× the LRCLK sample rate
+On Fri, 27 Nov 2020 10:13:01 +0100 Marc Kleine-Budde wrote:
+> On 10/26/20 4:36 PM, Krzysztof Kozlowski wrote:
+> > GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> > These are simple defines so they could be used in DTS but they will not
+> > have the same meaning:
+> > 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+> > 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+> > 
+> > Correct the interrupt flags, assuming the author of the code wanted same
+> > logical behavior behind the name "ACTIVE_xxx", this is:
+> >   ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
+> >   ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Acked-by: Rob Herring <robh@kernel.org>
+> > Acked-by: Marc Kleine-Budde <mkl@pengutronix.de> # for tcan4x5x.txt  
 > 
-> xuyuqing (1):
->   ASoC: qcom: sc7180: fix 32 bit format for adau7002
-> 
-> [...]
+> Jakub, can you queue this patch for net/master?
 
-Applied to
+Sure! Are these correct?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/1] ASoC: qcom: sc7180: fix 32 bit format for adau7002
-      commit: 7f2c63d6ae0754e5389c5942cb3bd670ea6cff40
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Fixes: a1a8b4594f8d ("NFC: pn544: i2c: Add DTS Documentation")
+Fixes: 6be88670fc59 ("NFC: nxp-nci_i2c: Add I2C support to NXP NCI driver")
+Fixes: e3b329221567 ("dt-bindings: can: tcan4x5x: Update binding to use interrupt property")
