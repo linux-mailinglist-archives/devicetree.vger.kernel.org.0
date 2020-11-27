@@ -2,72 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 514DD2C63C4
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 12:19:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 202632C63C8
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 12:21:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727431AbgK0LT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 06:19:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60340 "EHLO
+        id S1729258AbgK0LUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 06:20:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727232AbgK0LT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 06:19:28 -0500
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B93C0613D1;
-        Fri, 27 Nov 2020 03:19:27 -0800 (PST)
-Received: by mail-wm1-x342.google.com with SMTP id x22so4794630wmc.5;
-        Fri, 27 Nov 2020 03:19:27 -0800 (PST)
+        with ESMTP id S1728941AbgK0LUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 06:20:39 -0500
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30573C0613D1;
+        Fri, 27 Nov 2020 03:20:39 -0800 (PST)
+Received: by mail-wr1-x443.google.com with SMTP id r3so5219110wrt.2;
+        Fri, 27 Nov 2020 03:20:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hF3SHuCCDkYVTDSR8oZnGZ27xoM5f8wfP/n6iXDukMs=;
-        b=Aqmp1axeCyL3KGHsKFnJB8UvWoStwHsnQkyozg0HJ+wMCo3j0hRI83VOBUExZ5Liin
-         A27HSOASw5jJH58GpxMvdRAcKM6OgstnO15YiL/BYJzqDc7dLrSWLtKH1Ywtb/UHH1ak
-         LxrcM6/caJXvcKhuS+lvUT2HDzjuHFfvp/wi8FP1AhJ85t7Y2sjBHB3uNdm9t8KNtdIt
-         EX6dMyfc90H0YNoKG6CrokhYcTboWGTB/gDvINUPCkZJHCh3ieYTyGYFzCsB/PLWZMXc
-         9H6uQkjUyMHr2bGR1PZ5LsH9KBLxCrxUO4rgDKdvw8y0SrNNFKPAJB0S+JlK3X+aB1rG
-         geOg==
+        bh=cxB5L4+nF4sAICEXNlH6T+45cqgn3iHBYM/XseYVDT0=;
+        b=oMcX1SSPuZ7WZNlcfoLpo5kUKsjOQsj7bbxQ+lSji6KOD5rEscQ/FDo0JAKzLmYlfS
+         NZuaij9DXI5uOth4VRJ7/pkSVEQ0Ay5D3gIEI9AXJzfAnnNM9hFz4l/IaxhUJuzzNws8
+         tIfhOuGPV7vS1wfaOYCMw23AKZ1Yjp0DK0Z7p7g6AQzZz86cJT42EmpKwoYRChRV0mG7
+         JmJ5U7H84XyU+eDGQxjYdOy1CMxgjuIABGf7lYGTiR+T0P+Nv0lhUsr5CiKbkxE7Vm7v
+         VypW2u4Qziv8rhqzkGAwhh3Mt+Fu8JcAN2RY7bRIRPMKf/tsK1+rWf72nX9vLpdKdw2w
+         /SOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=hF3SHuCCDkYVTDSR8oZnGZ27xoM5f8wfP/n6iXDukMs=;
-        b=be2s3GK6vxdgqo/20wkTg5FGt0VnI8l+4LIUILgsRfHlTI0ePcBg0HHI1bKg6k/oJn
-         Czcqf6bSCQPbodeZfx+yHn6VFz3C2YXIufbASw7futh3xGg6CzaXEJO/Lyuda6NxJgzx
-         Fx3JhhDp9K1l9R1KVDY985zvQJpudGSjqx7khDsO4u1yRd+2hD8EJsdnW8TrOcEFAaQH
-         HzxGyJnkIj1wSPJWPCtJjAUzyGWCIf7yBbOkhOEuABrmiElH8Btsfq8Am9a6BnXup30G
-         VBZqhL3Y5KKpjHU5SjKS2ZxGFaG4w3ytw0El9z5PrJeIc6pJy3eFfcEz1T59pIUqOXg4
-         RMxQ==
-X-Gm-Message-State: AOAM533hQ4P9ia2IHcDVaaZDbqz3LQmeQS7IMHiYasnLyZQHhej4Dgsb
-        FO0YJcQjn5ctIKMvnW+Gizo=
-X-Google-Smtp-Source: ABdhPJyOFM+XnfVxoasbZYT+/l65iZgIkXMlMnrGmRh9fJDIKbB0rxKSnpCMB4zLml/jlTVWsBCmPQ==
-X-Received: by 2002:a1c:790c:: with SMTP id l12mr8258870wme.47.1606475966436;
-        Fri, 27 Nov 2020 03:19:26 -0800 (PST)
+        bh=cxB5L4+nF4sAICEXNlH6T+45cqgn3iHBYM/XseYVDT0=;
+        b=oynuygQ4hzJD8stIvRv+Kr5DVoZhdbbMcukGeBRZdUOmuOG4aXyVGhLSad4KNg8+DF
+         LxnRODVMM+uHC1zV5AwaXcQA2W2e1HO2kKZa+Us2wK0MVHOBLnc94z2InAdoHZEf+TE6
+         sjbz+Ux60kN9EvIAH/0oMRf4vrslHXpzRyL0cgDY6G6wmA41owX+knoVRjkrDmUU0WTr
+         VaVGSFzHrWzTL/H9P6V5QppbTayVnf4V3Y1LdxSfy9GadMtoyY65VHjPDTOneLGg+sAv
+         UoBaTGl45uRFlm+DTW+N8WsGX04cKlR6yqlnq8qCgDpZmZABVQyZQnr3ecnJXa0yLGoy
+         i7zw==
+X-Gm-Message-State: AOAM532FBIojpHIBZBxY9mehLxcSj42K9b9NTn8hs1APNVA9TtDvmCRE
+        280CaFtfTGO/lLKzoTfVARQ=
+X-Google-Smtp-Source: ABdhPJwrYIqMkKez+ccJKOv7rpRAHruS5C1aifhxSJlqY+fgx0LKeQ89hHcgT/0TXhf2e0s2uxvG8w==
+X-Received: by 2002:adf:b78d:: with SMTP id s13mr9631926wre.383.1606476037970;
+        Fri, 27 Nov 2020 03:20:37 -0800 (PST)
 Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id a18sm7718933wrr.20.2020.11.27.03.19.25
+        by smtp.gmail.com with ESMTPSA id 189sm13678368wmb.18.2020.11.27.03.20.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2020 03:19:25 -0800 (PST)
-Subject: Re: [PATCH v4 00/16] soc: mediatek: pm-domains: Add new driver for
- SCPSYS power domains controller
+        Fri, 27 Nov 2020 03:20:37 -0800 (PST)
+Subject: Re: [PATCH] arm64: dts: mt8183: Add pwm and backlight node
 To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
         linux-kernel@vger.kernel.org
-Cc:     drinkcat@chromium.org, hsinyi@chromium.org,
-        Collabora Kernel ML <kernel@collabora.com>,
-        weiyi.lu@mediatek.com, fparent@baylibre.com,
-        Joerg Roedel <jroedel@suse.de>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-References: <20201030113622.201188-1-enric.balletbo@collabora.com>
+References: <20201124041253.4181273-1-hsinyi@chromium.org>
+ <8484ec3b-14aa-f0de-28d6-f360c491515b@collabora.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <855248fc-8c57-22c8-c5a6-bcff3a0edeab@gmail.com>
-Date:   Fri, 27 Nov 2020 12:19:24 +0100
+Message-ID: <acb813d6-8643-5b9a-2ae1-bc03f2a37ffa@gmail.com>
+Date:   Fri, 27 Nov 2020 12:20:36 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
  Thunderbird/78.5.0
 MIME-Version: 1.0
-In-Reply-To: <20201030113622.201188-1-enric.balletbo@collabora.com>
+In-Reply-To: <8484ec3b-14aa-f0de-28d6-f360c491515b@collabora.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -77,93 +73,103 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 30/10/2020 12:36, Enric Balletbo i Serra wrote:
-> Dear all,
+On 25/11/2020 11:24, Enric Balletbo i Serra wrote:
+> Hi Hsin-Yi,
 > 
-> This is a new driver with the aim to deprecate the mtk-scpsys driver.
-> The problem with that driver is that, in order to support more Mediatek
-> SoCs you need to add some logic to handle properly the power-up
-> sequence of newer Mediatek SoCs, doesn't handle parent-child power
-> domains and need to hardcode all the clocks in the driver itself. The
-> result is that the driver is getting bigger and bigger every time a
-> new SoC needs to be supported.
+> Thank you for your patch.
 > 
-> All this information can be getted from a properly defined binding, so
-> can be cleaner and smaller, hence, we implemented a new driver. For
-> now, only MT8173 and MT8183 is supported but should be fairly easy to
-> add support for new SoCs.
+> On 24/11/20 5:12, Hsin-Yi Wang wrote:
+>> Add pwm to mt8183 and backlight to mt8183-kukui.
+>>
+>> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+>> ---
+> 
+> Picked the patch and checked that pwm for the backlight is working as expected
+> on my Lenovo Ideapad Duet.
+> 
+> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 > 
 
-All patches are pushed:
-DT-bindings went to v5.10-next/pm-domains-stable as they are needed by both soc 
-and dts64 branch.
+Applied to v5.10-next/dts64
 
-Regards,
-Matthias
+Thanks!
 
-> Three important notes:
-> 
-> 1. This patch depends now on [1] to build correctly.
-> 
-> 2. Support for MT8183 is not ready to land yet because has some
->     dependencies, i.e mmsys support is still missing.
-> 
-> 3. Support for MT8192. I picked the patches [2] from Weiyi Lu and
->     adapted to this new series. I posted only for reference due that this
->     new version has some changes that affects that patchset.
-> 
-> Only patches from 1 to 9 are ready, the others are provided for reference and test.
-> 
-> [1] https://lore.kernel.org/patchwork/patch/1328096/
-> [2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=368821
-> 
-> Best regards,
->    Enric
-> 
-> Enric Balletbo i Serra (5):
->    dt-bindings: power: Add bindings for the Mediatek SCPSYS power domains
->      controller
->    soc: mediatek: Add MediaTek SCPSYS power domains
->    arm64: dts: mediatek: Add mt8173 power domain controller
->    dt-bindings: power: Add MT8183 power domains
->    arm64: dts: mediatek: Add smi_common node for MT8183
-> 
-> Matthias Brugger (8):
->    soc: mediatek: pm-domains: Add bus protection protocol
->    soc: mediatek: pm_domains: Make bus protection generic
->    soc: mediatek: pm-domains: Add SMI block as bus protection block
->    soc: mediatek: pm-domains: Add extra sram control
->    soc: mediatek: pm-domains: Add subsystem clocks
->    soc: mediatek: pm-domains: Allow bus protection to ignore clear ack
->    soc: mediatek: pm-domains: Add support for mt8183
->    arm64: dts: mediatek: Add mt8183 power domains controller
-> 
-> Weiyi Lu (3):
->    dt-bindings: power: Add MT8192 power domains
->    soc: mediatek: pm-domains: Add default power off flag
->    soc: mediatek: pm-domains: Add support for mt8192
-> 
->   .../power/mediatek,power-controller.yaml      | 293 +++++++++
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi      | 164 +++--
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 172 +++++
->   drivers/soc/mediatek/Kconfig                  |  12 +
->   drivers/soc/mediatek/Makefile                 |   1 +
->   drivers/soc/mediatek/mt8173-pm-domains.h      |  94 +++
->   drivers/soc/mediatek/mt8183-pm-domains.h      | 221 +++++++
->   drivers/soc/mediatek/mt8192-pm-domains.h      | 292 +++++++++
->   drivers/soc/mediatek/mtk-infracfg.c           |   5 -
->   drivers/soc/mediatek/mtk-pm-domains.c         | 614 ++++++++++++++++++
->   drivers/soc/mediatek/mtk-pm-domains.h         | 102 +++
->   include/dt-bindings/power/mt8183-power.h      |  26 +
->   include/dt-bindings/power/mt8192-power.h      |  32 +
->   include/linux/soc/mediatek/infracfg.h         | 107 +++
->   14 files changed, 2081 insertions(+), 54 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->   create mode 100644 drivers/soc/mediatek/mt8173-pm-domains.h
->   create mode 100644 drivers/soc/mediatek/mt8183-pm-domains.h
->   create mode 100644 drivers/soc/mediatek/mt8192-pm-domains.h
->   create mode 100644 drivers/soc/mediatek/mtk-pm-domains.c
->   create mode 100644 drivers/soc/mediatek/mtk-pm-domains.h
->   create mode 100644 include/dt-bindings/power/mt8183-power.h
->   create mode 100644 include/dt-bindings/power/mt8192-power.h
-> 
+>>   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 28 +++++++++++++++++++
+>>   arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 10 +++++++
+>>   2 files changed, 38 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+>> index 85f7c33ba4461..bf2ad1294dd30 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+>> @@ -19,6 +19,17 @@ chosen {
+>>   		stdout-path = "serial0:115200n8";
+>>   	};
+>>   
+>> +	backlight_lcd0: backlight_lcd0 {
+>> +		compatible = "pwm-backlight";
+>> +		pwms = <&pwm0 0 500000>;
+>> +		power-supply = <&bl_pp5000>;
+>> +		enable-gpios = <&pio 176 0>;
+>> +		brightness-levels = <0 1023>;
+>> +		num-interpolated-steps = <1023>;
+>> +		default-brightness-level = <576>;
+>> +		status = "okay";
+>> +	};
+>> +
+>>   	memory@40000000 {
+>>   		device_type = "memory";
+>>   		reg = <0 0x40000000 0 0x80000000>;
+>> @@ -536,6 +547,17 @@ pins_clk {
+>>   		};
+>>   	};
+>>   
+>> +	pwm0_pin_default: pwm0_pin_default {
+>> +		pins1 {
+>> +			pinmux = <PINMUX_GPIO176__FUNC_GPIO176>;
+>> +			output-high;
+>> +			bias-pull-up;
+>> +		};
+>> +		pins2 {
+>> +			pinmux = <PINMUX_GPIO43__FUNC_DISP_PWM>;
+>> +		};
+>> +	};
+>> +
+>>   	scp_pins: scp {
+>>   		pins_scp_uart {
+>>   			pinmux = <PINMUX_GPIO110__FUNC_TP_URXD1_AO>,
+>> @@ -670,6 +692,12 @@ pins_wifi_wakeup {
+>>   	};
+>>   };
+>>   
+>> +&pwm0 {
+>> +	status = "okay";
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&pwm0_pin_default>;
+>> +};
+>> +
+>>   &scp {
+>>   	status = "okay";
+>>   	pinctrl-names = "default";
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> index 08a914d3a6435..a974bad899365 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+>> @@ -479,6 +479,16 @@ spi0: spi@1100a000 {
+>>   			status = "disabled";
+>>   		};
+>>   
+>> +		pwm0: pwm@1100e000 {
+>> +			compatible = "mediatek,mt8183-disp-pwm";
+>> +			reg = <0 0x1100e000 0 0x1000>;
+>> +			interrupts = <GIC_SPI 128 IRQ_TYPE_LEVEL_LOW>;
+>> +			#pwm-cells = <2>;
+>> +			clocks = <&topckgen CLK_TOP_MUX_DISP_PWM>,
+>> +					<&infracfg CLK_INFRA_DISP_PWM>;
+>> +			clock-names = "main", "mm";
+>> +		};
+>> +
+>>   		i2c3: i2c@1100f000 {
+>>   			compatible = "mediatek,mt8183-i2c";
+>>   			reg = <0 0x1100f000 0 0x1000>,
+>>
