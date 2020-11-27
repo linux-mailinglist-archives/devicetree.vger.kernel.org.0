@@ -2,80 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F6E52C60BB
-	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 09:14:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2CAB2C60E6
+	for <lists+devicetree@lfdr.de>; Fri, 27 Nov 2020 09:35:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726316AbgK0IOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 03:14:21 -0500
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:43022 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726039AbgK0IOV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 03:14:21 -0500
-Received: by mail-ot1-f68.google.com with SMTP id f12so3970952oto.10;
-        Fri, 27 Nov 2020 00:14:20 -0800 (PST)
+        id S1727736AbgK0Icq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 03:32:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34586 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726099AbgK0Icq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 03:32:46 -0500
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE0A2C0613D1
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 00:32:45 -0800 (PST)
+Received: by mail-wm1-x344.google.com with SMTP id h21so5713088wmb.2
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 00:32:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=eAdalm4QHc9hAmDG/xOUAcKIOz0SCKnJUjFdQgtGIsQ=;
+        b=Wq0s8zBftW/RgJ+9EJq3lrsGXgIq0Ey5tY4hA3KR6BbQNTNKY93Acig8eR1C7dCkid
+         iR8RULncWs2A0qGCnLxPiTWmRHBM5bDXNl6T1Syl3zVU2jYBOVWzW+ZKRck5I1tBRxWs
+         Ghuht/XT+k+gHrg19fBtv+eyVYbKEfcZjIDif/l1HkPNoCCov5+DgJyeymtO9WGa75Gw
+         6LGlzC2eaqN6qlJ/CsAdcWmssQdNB5Dsr8r0fswg6BUon6N2ZD0Ul315nrpzEYsu/f+V
+         4wzZHWHtZceljWDkHmd9xMDMUy4hSum4Oa4GQ+vVmVFvJRm2IWpTWvZFKEIvZprzH+g4
+         mn+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5J7WTD9K640qotY+2fWDkBGRwYagEywHoZY9oKNIuHQ=;
-        b=R0e34tGoqKBziIFGOF+8qJe9ZcZ4neK47a3ry9lF5arTY3D8O4dOX2E7g2gy85XVLt
-         vuf8cFORMEq6F4jD+toE7ih17RDG7ZNxjUNuXDSw6zto8ane390t7Z147CZ6Am+0tOXG
-         QEEJ1zquPl2Ks6jHY/maCbYuGmak/6y8Ipdq3+n7kl2E3eTE71asmABgEJ6ei4C+HCf6
-         6agSoNQDitHOEps2Ppz+jlYMLQ5vs3S5IkgYvrC3LTkoRFXx8TU/OscPPsBevhfxmXqa
-         FoS4DzHYKAlc56xrBV414u4g23ni61V6FA9OMMBEOaNK52iwkyZNUYyH6nvmUUp9nOtV
-         yLiw==
-X-Gm-Message-State: AOAM532tDyqeopon1x4hugE/JLMDm2rwEPTiviVCl+42MF0x92ePi9X/
-        fqHEGquVwiJTjzylWjOAwndaeAE1y5AObzHVRDw=
-X-Google-Smtp-Source: ABdhPJy/nrrgv9y4ZkK4RYkWQyJ8pEKKfmkbqrIbJnJsWZiJ2PohN16BTBgNu+xl3J6jp694Mobc6d6QuWtgjAOeKEo=
-X-Received: by 2002:a9d:686:: with SMTP id 6mr4654059otx.107.1606464860268;
- Fri, 27 Nov 2020 00:14:20 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=eAdalm4QHc9hAmDG/xOUAcKIOz0SCKnJUjFdQgtGIsQ=;
+        b=gcoP9Vvw5bjVTRn5K+aFDjSh9i19hPgCMBhLddLUZPJFFHNSFHYH7JMYTcTAZbBoRA
+         f+vqfG05kcdQzLbZ9aChVZV3A5DtDiLAmRTaJx43DP22JJD2UY0uYwaN+74MWlhy99pZ
+         qq4Ydb+DWPDgroxZyEGbO/SicrWIOxkCkqiglHirbLgm9bRUFV/PkG3mPOFPWCrLrmMx
+         ImZs1rxsE7gs99NIGUs+V5aWXG3zAcs4VTRAWF/74EbrsVKyBW30o8VkbXifM4yW3C0i
+         G/sQ1JHCVzhGFC8jMl/YL/t8gI78rbD+pPaN91OndYOa2jRAPDV8qhp3Gf/JrSLVx/3z
+         Dqqw==
+X-Gm-Message-State: AOAM531St8Fmf65OYZnR3qAbg482agUoH1xGhwxKpvkoqzQ0lQ4oUxBa
+        rroehoNazbFR1mXDRu476+h2JA==
+X-Google-Smtp-Source: ABdhPJwi040KwhQPzoYDENnmMcnuFP/231E5ZtxqzU/8uZay0K6yX1s6Z8Cs55dc2kCY2vohc8aRoQ==
+X-Received: by 2002:a05:600c:2314:: with SMTP id 20mr3641698wmo.92.1606465964655;
+        Fri, 27 Nov 2020 00:32:44 -0800 (PST)
+Received: from dell ([91.110.221.235])
+        by smtp.gmail.com with ESMTPSA id w15sm13402265wrp.52.2020.11.27.00.32.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2020 00:32:43 -0800 (PST)
+Date:   Fri, 27 Nov 2020 08:32:42 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+Cc:     mazziesaccount@gmail.com, Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-power@fi.rohmeurope.com,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH RESEND v6 2/4] mfd: Support ROHM BD9576MUF and BD9573MUF
+Message-ID: <20201127083242.GK2455276@dell>
+References: <cover.1605882179.git.matti.vaittinen@fi.rohmeurope.com>
+ <cc46e329efa30c66f000ab7c97f9bbf0bc31f0f7.1605882179.git.matti.vaittinen@fi.rohmeurope.com>
 MIME-Version: 1.0
-References: <20201031184854.745828-1-jic23@kernel.org> <20201031184854.745828-31-jic23@kernel.org>
-In-Reply-To: <20201031184854.745828-31-jic23@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 27 Nov 2020 09:14:09 +0100
-Message-ID: <CAMuHMdXGjG5hCpOzN9q8J+K3WvODK29kco8TsNmoJ8w-=4PrJw@mail.gmail.com>
-Subject: Re: [PATCH 30/46] dt-bindings:iio:adc:renesas,rcar-gyroadc: txt to
- yaml conversion.
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cc46e329efa30c66f000ab7c97f9bbf0bc31f0f7.1605882179.git.matti.vaittinen@fi.rohmeurope.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
+On Mon, 23 Nov 2020, Matti Vaittinen wrote:
 
-On Sat, Oct 31, 2020 at 7:52 PM Jonathan Cameron <jic23@kernel.org> wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->
-> This is a somewhat unusual device, in that it effectively does
-> spi offload.   That means that it doesn't act as a full SPI
-> master, but supports some functionality.  As such it supports
-> a subset of specific SPI ADCs.  There is potential for a future
-> clash in bindings, but as these are simple devices hopefully that
-> will not occur.
->
-> One addition to this from testing it against existing dts files
-> was to add a resets property.
-> This is specified in arch/arm/boot/dts/r8a7791.dtsi
-> If it's the dtsi that is wrong and not the binding doc, then
-> we can fix that instead.
+> Add core support for ROHM BD9576MUF and BD9573MUF PMICs which are
+> mainly used to power the R-Car series processors.
+> 
+> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> ---
+>  drivers/mfd/Kconfig              |  11 ++++
+>  drivers/mfd/Makefile             |   1 +
+>  drivers/mfd/rohm-bd9576.c        | 108 +++++++++++++++++++++++++++++++
+>  include/linux/mfd/rohm-bd957x.h  |  59 +++++++++++++++++
+>  include/linux/mfd/rohm-generic.h |   2 +
+>  5 files changed, 181 insertions(+)
+>  create mode 100644 drivers/mfd/rohm-bd9576.c
+>  create mode 100644 include/linux/mfd/rohm-bd957x.h
 
-Documenting the resets property was the right thing to do.
-Thanks!
+Looks like a possible candidate for "simple-mfd-i2c".
 
-Gr{oetje,eeting}s,
-
-                        Geert
+Could you look into that please?
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
