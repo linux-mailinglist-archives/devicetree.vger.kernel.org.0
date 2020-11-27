@@ -2,137 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CAA22C6DBC
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 00:42:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DE0522C6DC8
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 00:49:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729019AbgK0Xm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 18:42:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34508 "EHLO
+        id S1730213AbgK0XsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 18:48:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731499AbgK0XmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 18:42:18 -0500
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7964CC0613D1;
-        Fri, 27 Nov 2020 15:31:09 -0800 (PST)
-Received: by mail-wm1-x341.google.com with SMTP id u10so2560234wmm.0;
-        Fri, 27 Nov 2020 15:31:09 -0800 (PST)
+        with ESMTP id S1731457AbgK0Xrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 18:47:35 -0500
+Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41166C0613D2;
+        Fri, 27 Nov 2020 15:39:20 -0800 (PST)
+Received: by mail-ed1-x544.google.com with SMTP id k4so7324928edl.0;
+        Fri, 27 Nov 2020 15:39:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=alM8Q2njg9OwW6Iyx+ETd8L6mtGNw6gcD2v5Jf5iUb4=;
-        b=pHYa5byX4guCipmpaAwa5bGiFApZpE0i0ilJYouFdfZu45ciRmSLt01KdZjMKVMrfS
-         sDXjTAVfHGCHH/MDDc18PznTdJxsPs1neZEiITfPX0zL557YEFLuOULfy/8vmUzwTdUk
-         jIhEy6FU5Y1h/fz5qZbH6QU1FsVkqCZ0zEEKs566ulY7+VTEO3VX+vQulszeK0sHdGG1
-         Dim4dRxEiWhI+FFX+WIwiE1ijS4AysWLteLHBXbgK4Ng3Ufl0WQHhfTzI7RTFAUI00Wh
-         nACxHSFY2ubNlEMUhGHU6tseZ9pnTfySykksiPTtMZYTS7s/fYK4eB1E1oa9j9TdGKsd
-         yXgg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=4PTcGXppTtgtL4n34jHd/JlKxnsgY9Zzpe2NAG5NV0Q=;
+        b=P+IO5jSKKJVk1WdJmTiBBvmYOb1uvbqo2hOoZvfT4eseFqXJqWT3a2kLu71iwo5Hzt
+         /ETJEM3iyw8/0PxLziEZp1VB8RDwKL8VwNCAt3mgYmXG6VES5CCWjag4fvDrRG1BOQEn
+         RgOTLZxjUpuo7sQ3FE3ci+iepsbQb6p/uzBF06BGpdG43mB7ZiHrHJVvJKfURZ8MFlE1
+         klZE94VF8I6UclZntgveT4AzvONtpiJU5/K+SlxAVikatmy4jO2SGBvgt4TewkKLuIYP
+         dEnir4etkznn5r0bmF2/TzJTeqAM3JJMWD9ODLRjXvQMJPwx6+XY4vJVAOFrCGdh86C0
+         wZhw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=alM8Q2njg9OwW6Iyx+ETd8L6mtGNw6gcD2v5Jf5iUb4=;
-        b=pbfMeRBbJefCp4M8G61JhlFJfFZfBrbhVQW6LJNhqFgYIF/tMSB3q1PdpDEOy5cY/F
-         GfGEvIrj+qQUbG3cmgbFm5S2ML+UA629xQpcQvocSdTxmVDYoOmURPcYJQJFwwx1OJVx
-         lPGQpKYBpsQn6rodfUED46zPTiUzCHzjqIPCa50FNoMhp2yI3ZzlOxpoyCcEjvS7yt53
-         3S2dIFy3udTvMA54DM0OKe/MXNNHh+HVHqFS87H2kUY/cit2rCCh/+BS4ui0H1T1bCzZ
-         AI5doNMf971ZHBypXiwD1ZSNDRCV+j077O+IAbTVYeaYqoMiXtPCH9DBjilHDJtgv6Iv
-         2pJA==
-X-Gm-Message-State: AOAM533komHpQs8L0tvMkR1bB4R4vcYNy3uCvel+MGY6YQxBLXgFbIHD
-        QG5vHxZ4yL98zFDLsc5qNK0=
-X-Google-Smtp-Source: ABdhPJyuID5dIKPZZQeVL9qAdblCudAB4aEcc6hTQC/271h9HuPtNvWw8Gmj4RK3tZ90EbOiU2vkgg==
-X-Received: by 2002:a1c:6807:: with SMTP id d7mr5888750wmc.167.1606519867940;
-        Fri, 27 Nov 2020 15:31:07 -0800 (PST)
-Received: from ziggy.stardust ([213.195.126.134])
-        by smtp.gmail.com with ESMTPSA id l23sm14232895wmh.40.2020.11.27.15.31.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Nov 2020 15:31:07 -0800 (PST)
-Subject: Re: [PATCH v8] Add MediaTek MT6779 devapc driver
-To:     Neal Liu <neal.liu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        lkml <linux-kernel@vger.kernel.org>, wsd_upstream@mediatek.com
-References: <1602732039-12179-1-git-send-email-neal.liu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <6ef61089-01c2-bea6-e2eb-958dbe43ef2b@gmail.com>
-Date:   Sat, 28 Nov 2020 00:31:06 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.5.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4PTcGXppTtgtL4n34jHd/JlKxnsgY9Zzpe2NAG5NV0Q=;
+        b=gehe8yYpPuawBGt4OXF5ezciW1exHdToBCBwlc8c1hBjfTxfzy/E5JxELqeAMAjgqr
+         Q8XVgBFJHULPL1Iz3gOtWbth1jUpVp4fwHSRU+F0lQd2rogeJ/KPrydzKzYc2mujaXsa
+         d6SYBXK/iDCsDeAW0LwY99s5AKlYwVzO5PkBkMxcoCOjErWeuVzsu5qoIAHq/+hqMxwi
+         2RGhdcAsjxnea7dyAxIVGELKOemmg7gdqy4t9wnsp1jZ7vdzmELCUKnaWkNcE/LsIvKK
+         zss5NvSZHr3OfyXq20CLryzulOA94gg1sAdsCKcfzpJxihexpI58hgTquqQOTcwDbKtA
+         Xutg==
+X-Gm-Message-State: AOAM530/dcD7gf1TgkJMdkWCYjGDB8DxmA4wsOyJ6kfTsdAWxMUq3wk1
+        Z4AXKhsNou2qlyp1m3zPfH8=
+X-Google-Smtp-Source: ABdhPJyGeCt/tgXOV+m+A9KgftHEJUULof7/tNKWq9VwOzZNiO6tmiidTT7S0MmzE1T1trFDLIkYaA==
+X-Received: by 2002:a50:e0c9:: with SMTP id j9mr10525326edl.380.1606520358961;
+        Fri, 27 Nov 2020 15:39:18 -0800 (PST)
+Received: from skbuf ([188.25.2.120])
+        by smtp.gmail.com with ESMTPSA id d19sm5763035eds.31.2020.11.27.15.39.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2020 15:39:17 -0800 (PST)
+Date:   Sat, 28 Nov 2020 01:39:16 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        George McCollister <george.mccollister@gmail.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
+ driver
+Message-ID: <20201127233916.bmhvcep6sjs5so2e@skbuf>
+References: <20201126132418.zigx6c2iuc4kmlvy@skbuf>
+ <20201126175607.bqmpwbdqbsahtjn2@skbuf>
+ <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
+ <20201126220500.av3clcxbbvogvde5@skbuf>
+ <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+ <CAFSKS=MAdnR2jzmkQfTnSQZ7GY5x5KJE=oeqPCQdbZdf5n=4ZQ@mail.gmail.com>
+ <20201127195057.ac56bimc6z3kpygs@skbuf>
+ <CAFSKS=Pf6zqQbNhaY=A_Da9iz9hcyxQ8E1FBp2o7a_KLBbopYw@mail.gmail.com>
+ <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
+ <20201127233048.GB2073444@lunn.ch>
 MIME-Version: 1.0
-In-Reply-To: <1602732039-12179-1-git-send-email-neal.liu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201127233048.GB2073444@lunn.ch>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Nov 28, 2020 at 12:30:48AM +0100, Andrew Lunn wrote:
+> > If there is a better alternative I'm all ears but having /proc and
+> > ifconfig return zeros for error counts while ip link doesn't will lead
+> > to too much confusion IMO. While delayed update of stats is a fact of
+> > life for _years_ now (hence it was backed into the ethtool -C API).
+> 
+> How about dev_seq_start() issues a netdev notifier chain event, asking
+> devices which care to update their cached rtnl_link_stats64 counters.
+> They can decide if their cache is too old, and do a blocking read for
+> new values.
+> 
+> Once the notifier has completed, dev_seq_start() can then
+> rcu_read_lock() and do the actual collection of stats from the drivers
+> non-blocking.
 
-
-On 15/10/2020 05:20, Neal Liu wrote:
-> These patch series introduce a MediaTek MT6779 devapc driver.
-> 
-> MediaTek bus fabric provides TrustZone security support and data protection to prevent slaves from being accessed by unexpected masters.
-> The security violation is logged and sent to the processor for further analysis or countermeasures.
-> 
-> Any occurrence of security violation would raise an interrupt, and it will be handled by mtk-devapc driver.
-> The violation information is printed in order to find the murderer.
-> 
-
-Now pushed to v5.10-next/soc
-
-Thanks a lot!
-
-> changes since v7:
-> - fix VIO_MOD_TO_REG_IND calculation wrong problem.
-> - revise parameter type of ISR.
-> 
-> changes since v6:
-> - remove unnecessary mask/unmask module irq during ISR.
-> 
-> changes since v5:
-> - remove redundant write reg operation.
-> - use static variable of vio_dbgs instead.
-> - add stop_devapc() if driver is removed.
-> 
-> changes since v4:
-> - refactor data structure.
-> - merge two simple functions into one.
-> - refactor register setting to prevent too many function call overhead.
-> 
-> changes since v3:
-> - revise violation handling flow to make it more easily to understand
->    hardware behavior.
-> - add more comments to understand how hardware works.
-> 
-> changes since v2:
-> - pass platform info through DT data.
-> - remove unnecessary function.
-> - remove slave_type because it always equals to 1 in current support SoC.
-> - use vio_idx_num instread of list all devices' index.
-> - add more comments to describe hardware behavior.
-> 
-> changes since v1:
-> - move SoC specific part to DT data.
-> - remove unnecessary boundary check.
-> - remove unnecessary data type declaration.
-> - use read_poll_timeout() instread of for loop polling.
-> - revise coding style elegantly.
-> 
-> 
-> *** BLURB HERE ***
-> 
-> Neal Liu (2):
->    dt-bindings: devapc: add bindings for mtk-devapc
->    soc: mediatek: add mt6779 devapc driver
-> 
->   .../bindings/soc/mediatek/devapc.yaml         |  58 ++++
->   drivers/soc/mediatek/Kconfig                  |   9 +
->   drivers/soc/mediatek/Makefile                 |   1 +
->   drivers/soc/mediatek/mtk-devapc.c             | 308 ++++++++++++++++++
->   4 files changed, 376 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/soc/mediatek/devapc.yaml
->   create mode 100644 drivers/soc/mediatek/mtk-devapc.c
-> 
+That sounds smart. I can try to prototype that and see how well it
+works, or do you want to?
