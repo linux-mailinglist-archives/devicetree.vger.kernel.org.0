@@ -2,89 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C4BF2C74D0
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D422C7530
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388350AbgK1Vtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:36 -0500
-Received: from mail.kernel.org ([198.145.29.99]:48484 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731614AbgK1Syg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Nov 2020 13:54:36 -0500
-Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1056421D7F;
-        Sat, 28 Nov 2020 09:58:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606557535;
-        bh=IV7SKkTEc9uVMaziNS3MY2bbX2PI+wASsFkaPqx7XFY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YYiDQv9kz4m3Kpob/hfPm4MKiHYe/aOK4W63bLieTTH4rlm+wPA0MmEWZXz33kBxq
-         krhPvcxzeJoMQ6ewyc0CnEu9w4eUaiEiXt3o44rZPqjjW4GpmVl4zICkvuLvn7di6y
-         U32a3mZA5cqfmCsJTIfURM7rqg4Pyh3eyaqf6+UI=
-Received: by mail-ot1-f49.google.com with SMTP id h19so6817308otr.1;
-        Sat, 28 Nov 2020 01:58:55 -0800 (PST)
-X-Gm-Message-State: AOAM531md5B8MYK6aAaumsYtjyvHRuN4anFakQFqFjNQOS8bGz50lDtH
-        pDF8lwbDBNLBg5mOozXEBK7MoD8/GO75DbbjpF8=
-X-Google-Smtp-Source: ABdhPJzwDIV2KH6ZUTuUCcaFbI59yHKYPRCBFYR0DnN7sy7J13urjT30Lbs97ypWwEBR/lTvSTpao8LQsEN4NpyzRk0=
-X-Received: by 2002:a9d:be1:: with SMTP id 88mr9531159oth.210.1606557534394;
- Sat, 28 Nov 2020 01:58:54 -0800 (PST)
+        id S2388075AbgK1Vt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:26 -0500
+Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:43239 "EHLO
+        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1733136AbgK1SLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 13:11:47 -0500
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.west.internal (Postfix) with ESMTP id DB920C0C;
+        Sat, 28 Nov 2020 05:38:30 -0500 (EST)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute6.internal (MEProxy); Sat, 28 Nov 2020 05:38:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=a6k8h7G8DbGWnMKaT2VTyNF8NDZ
+        ouXZ50EDpqHXOUU0=; b=nubncwe+PToM4qt1WkE4kZ3UpKtInXR5GXjcTcl1JiZ
+        YsBLwGE7NBlXsBStGoOCmV8ICqLoplLj7GJXU9zU0xNGve/S3ci379avO3qB8SeO
+        N7zk4ZMDfMjksFtzbehisI/gntkZCoTawoRfwD4cT4k7n0rB8ZGmONEh8z9oxvpe
+        3EUelJ8MKeuGzFH2rdx9uwzAjrgK2sJ7yLYTZR8Dp8tDNqZJQhbqIfEWgIKiZ9VA
+        ZEAGK5hgt/s8intBN5gdpR8Fm7F1GYXRCuqjgNAB92r5iMYq2OOl8sEj/AJIiLKr
+        VeFC3JGSrWgw3ukZNs5PsvE2zCT02XPcREsPVcWpdXw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=a6k8h7
+        G8DbGWnMKaT2VTyNF8NDZouXZ50EDpqHXOUU0=; b=IQ6G7L4lPz+emL/XcxljQs
+        eK3gnZfkJJR5/CVEbNqTW9zsQsLogokMmoFUMbYBYKaL/8WAP12krwQ1c0sJeaaU
+        UzJrqiHbKKR/hItG9QX4LrDpYdcryZhobt6n8uEBFaRMhorDHCCFOFREmTAFpnmF
+        83aTiKTVp7zxchkZWEFvblB05ilvO7sndhN9/ZD0J2n16WB/AJut4R0OcXhDq18y
+        K/RsWIH/mZ1SEQPS5zUKfjRxFSjGX7NUV27haVLAutve5WdliQah9HqwMq8i2YS6
+        EliDJvkFKz0zK1YNqH2uLI9W2N2Cpd5hr2UGilm9k4C7RyRY3cE6WrsY678uThiw
+        ==
+X-ME-Sender: <xms:pSjCX2tdjXH_yoTpI1epKSrg3_fb0k64fY-M8gTB9UcOd4dHemDbOg>
+    <xme:pSjCX7cEuYtQeyd8yEJ3Q7CULobcl503vujolh25-chLY4PBaWUUxaQ2E-3tV-DfT
+    UgxRU75FgU71OXsGdo>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrudehiedgudekucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddvnecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepleekgeehhfdutdeljefgleejffehfffgieejhffgueefhfdtveetgeehieeh
+    gedunecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:pSjCXxzEF7rYHG4DZC1BaQbE2agDg5_uOWnNOkmEf1rA3HOBUlCCHQ>
+    <xmx:pSjCXxMUA-2OrW-z5dpWI7Kh3VZpjOj7ip_y-Ab1G2w84xD8MorM0g>
+    <xmx:pSjCX29iIOZKt-WpQIn3bM0Cw1gYjxf4fti0hrBCrOurqzpfIrKGlA>
+    <xmx:pijCX2zziA8mDQIWUBeVcWq1dFGnomMoBJybzo86C0nAq4_MJxcCyw>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 7728E3064AB2;
+        Sat, 28 Nov 2020 05:38:29 -0500 (EST)
+Date:   Sat, 28 Nov 2020 11:38:27 +0100
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-sunxi@googlegroups.com, linux-kernel@vger.kernel.org,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT
+ for PineTab developer sample
+Message-ID: <20201128103827.d6sfc2eumli2betx@gilmour>
+References: <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io>
+ <20201116155508.364dg6ycklwylswe@gilmour.lan>
+ <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io>
+ <20201120155939.3ajmbny2pka2vsnf@gilmour>
+ <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io>
+ <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org>
+ <20201123111512.y7lbwsipbkcpuleb@gilmour>
+ <97E2037C-3C3C-4B0B-8462-39B9E38CB3BB@aosc.io>
+ <20201123125332.2p5z3ew7svszvyfs@gilmour>
+ <009A22D9-AF20-45C4-9674-13334B3EFFBA@aosc.io>
 MIME-Version: 1.0
-References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
- <20201016090833.1892-2-thunder.leizhen@huawei.com> <20201128045328.2411772-1-f.fainelli@gmail.com>
-In-Reply-To: <20201128045328.2411772-1-f.fainelli@gmail.com>
-From:   Arnd Bergmann <arnd@kernel.org>
-Date:   Sat, 28 Nov 2020 10:58:38 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com>
-Message-ID: <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
- empty dma-ranges
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rmpcrvovirbkiyir"
+Content-Disposition: inline
+In-Reply-To: <009A22D9-AF20-45C4-9674-13334B3EFFBA@aosc.io>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 28, 2020 at 5:53 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
->
-> On Fri, 16 Oct 2020 17:08:32 +0800, Zhen Lei <thunder.leizhen@huawei.com> wrote:
-> > The scripts/dtc/checks.c requires that the node have empty "dma-ranges"
-> > property must have the same "#address-cells" and "#size-cells" values as
-> > the parent node. Otherwise, the following warnings is reported:
-> >
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
-> > (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
-> > its #address-cells (1) differs from / (2)
-> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
-> > (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
-> > its #size-cells (1) differs from / (2)
-> >
-> > Arnd Bergmann figured out why it's necessary:
-> > Also note that the #address-cells=<1> means that any device under
-> > this bus is assumed to only support 32-bit addressing, and DMA will
-> > have to go through a slow swiotlb in the absence of an IOMMU.
-> >
-> > Suggested-by: Arnd Bergmann <arnd@arndb.de>
-> > Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> > ---
->
-> Applied to devicetree-arm64/next, thanks!
 
-The notification may have gone missing, but I had merged it into v5.10-fixes
-already, and as of today, it's in mainline, so you can drop it from your
-next branch, or just leave it in if you want to avoid taking things out of
-your tree.
+--rmpcrvovirbkiyir
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-      Arnd
+On Mon, Nov 23, 2020 at 09:10:38PM +0800, Icenowy Zheng wrote:
+> >> >> > Okay. But I'm not satisfied with a non-public sample occupies
+> >> >> > the pinetab name. Is rename it to pinetab-dev and add a
+> >> >> > pinetab-retail okay?
+> >> >>
+> >> >> To me, naming the production version anything but "pinetab" isn't
+> >> >> satisfying either.
+> >> >
+> >> >I understand where you're coming from, but the point I was making my
+> >> >previous mail is precisely that it's not really possible.
+> >> >
+> >> >You want to name the early adopter version _the_ production
+> >> >version. Let's assume the hardware changes again between the early
+> >> >adopter and mass-production version. Which one will be _the_
+> >> >production version? The early-adopter or the mass-produced one?
+> >> >
+> >> >There's really no good answer here, and both would suck in their
+> >> >own way. The only way to deal with this is to simply avoid
+> >> >defining one version as the one true board, and just loading the
+> >> >proper DT in u-boot based on whatever clue we have of the hardware
+> >> >revision.
+> >
+> > > Then will it be okay to rename current pinetab DT to
+> > > pinetab-sample and then introduce new DTs all with suffixes?
+> >
+> > No. From my previous mail:
+>=20
+> It can be seen as dropping the PineTab DT and introduce new DTs with
+> suffix.
+>=20
+> Do we have rule that we cannot drop boards?
+
+Are you really arguing that removing a DT and then adding an identical
+one under a different name is not renaming it?
+
+--rmpcrvovirbkiyir
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX8IoowAKCRDj7w1vZxhR
+xUVQAP9w4zKVWYrg14myVhyPLb+tvoKG3yXY0Mm7bfZ1HUpu4gD/Xku3FSK3YUYw
+azv2bYxaZ+A0ewygD1XDiQwVsLHGsw0=
+=em7W
+-----END PGP SIGNATURE-----
+
+--rmpcrvovirbkiyir--
