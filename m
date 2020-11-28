@@ -2,192 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 17E6D2C7553
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:24:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE3172C74F1
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732587AbgK1VtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:24 -0500
-Received: from mail-eopbgr00054.outbound.protection.outlook.com ([40.107.0.54]:33507
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732767AbgK1SJF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Nov 2020 13:09:05 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=j8SU/iKtBHNuUQdFAtV3n87WAGj2zuzQkFP/Vu3MS98b8QMmBHizFBVyWgW8aDtxMhjgDY4WOl887+p4ssGzElQuSu6dgYyxcPW/DPAi//szJjeKqKKAziG9kEv5Yq5yiAMfPnUqKNRlvBEHuXwNZln/WwP+7WIbCeFguQwtBn4sX3LKtwlwqAG9PceGHWvjHcyOiHFDZ2T6O+8Sglota0B0fiFqML2+lHib+43bWiZxuNxuohH2kqRj6AX9BQCUOaM5BMRg8n4KAcoMDvgleBIRF2qRtExzRgWVbm2350T/KFWs7psRIYsMyQWpk3KMiy74HvuTZimb25uq3Xws/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lNfgK7RY5oo+ax9yb5Cv3s8MxoAu0qXyoi/4z6g6ZzI=;
- b=go6j1gwDw+2USC3F84lfZVhD/p2SlYV3o6n7uumDaJ9imDz861cknDwBUMAGmjUGlwqvHgES5isYCjXXktRJm0pHCwGRR+0VmmBOWEhzq8j3LqkhLnla3kl61GPffcae3an8XI32eMzSI6gmJktEPjA0AbHKpxbJ8huEU1XqMCPZAUjjriDa+MUNqUq8alSwhplIA7yK2oFnoHXs/MkjgpGQ7+/yAEZtT9rn0iTYUhCcvDzdlQPzb5jo0zY2wQ7YJuuCmu3PqsfYWBPTzoAjzT0VXft/CSsyaVLfvUQpReOhoMRuHqk7rMCc/MWoQ4Ei6dJ1IeKCPNEI2GOKEznoPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lNfgK7RY5oo+ax9yb5Cv3s8MxoAu0qXyoi/4z6g6ZzI=;
- b=rVuSAWKNHALRk2UkeLlj+ro0vnOUIpRM/zbxkXLE4MaWCaRluHqLoMpsOy/CjG6dPVQg5L3bfGIvDynT5eVb0Y0s+FzyE4B3w60NCjzAW428PJszOmak6/pAOHXSdaCyxB8pkYVnIpEVdRzO4Kj6geYY1sl1T9EkwNXmvf1S/E0=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
- by DB3PR0402MB3707.eurprd04.prod.outlook.com (2603:10a6:8:2::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.25; Sat, 28 Nov
- 2020 05:36:13 +0000
-Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::b83c:2edc:17e8:2666]) by DB8PR04MB6795.eurprd04.prod.outlook.com
- ([fe80::b83c:2edc:17e8:2666%4]) with mapi id 15.20.3611.025; Sat, 28 Nov 2020
- 05:36:13 +0000
-From:   Joakim Zhang <qiangqing.zhang@nxp.com>
-To:     will@kernel.org, john.garry@huawei.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-imx@nxp.com, frank.li@nxp.com
-Subject: [PATCH 2/2] perf/imx_ddr: Add system PMU identifier for userspace
-Date:   Sat, 28 Nov 2020 13:36:27 +0800
-Message-Id: <20201128053627.7971-3-qiangqing.zhang@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201128053627.7971-1-qiangqing.zhang@nxp.com>
-References: <20201128053627.7971-1-qiangqing.zhang@nxp.com>
-Content-Type: text/plain
-X-Originating-IP: [119.31.174.71]
-X-ClientProxiedBy: SG2PR06CA0093.apcprd06.prod.outlook.com
- (2603:1096:3:14::19) To DB8PR04MB6795.eurprd04.prod.outlook.com
- (2603:10a6:10:fa::15)
+        id S2388477AbgK1Vtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732448AbgK1TA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 14:00:26 -0500
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6535DC09425D
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 23:22:21 -0800 (PST)
+Received: by mail-pl1-x642.google.com with SMTP id t18so3732561plo.0
+        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 23:22:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=wTbzA6iR4mzei6incKeYJHJJIGSIn2ANMoDLapx2gkc=;
+        b=Yd1t4jHAeAViTH29/7/6zw/xKQSYNLtEaCNZFzgCzRnCgo/d85TdJO2jNWRjTp1dC8
+         Wd2LsJfDwLQaNfMQqflLT7vl0XF6lZGPCx/DRZRWCgPwzxVKS8ZpX6E5niQcz8Vco4fU
+         fmQku7Bw6eLdMcDsc1kG0GBnkQ2FtkDiScxG8vGdUIjOY2EJ9AeU3AK/SUWOOniTIVLG
+         NR/qa9mZfM+lR7LPtFrg4edUf3HotwUcjbLE9HI2vO3i+md+Wh/TGfAIxhqedo5oUT2H
+         LIPDwn/2Hoce71aGnu7qQZOGSyW22alaQJgMUQwneeWqSUaYuSXGyj+F8FfnA+GkB6b4
+         Fe2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=wTbzA6iR4mzei6incKeYJHJJIGSIn2ANMoDLapx2gkc=;
+        b=IxLRthMIP4txiqjiPYRu40s15tLAKPQspaqY3/yPtNs8ObtTR5btk7sfeswfxwXVzr
+         fQoMqFweRUn+rr22NvGc3fvuLh4kcWQNyegmzl1plLhizfjcNmllB6KOu2U+OB7N30bk
+         Kyi+kJUUqfnSis2EejO3oFOgr0+Ui+SlnrAGjeKPX5vXFmlI/ip78ncfWIGw5JeIMzl3
+         s2GLYkh/cGw0izpBbFqFN3VObCRaWKIfsOWMvv5J2g2gjE1ZaNqxilQG7RegF5zash+M
+         KhJ8V1UhVUQbxEU2+/KcyfnFInK6OBO0tXALtTiTz1rUeX4tLXL+Bl/w2Jw99E82ciCV
+         7K4g==
+X-Gm-Message-State: AOAM530wb8VzJUj2Rvfk56NJy8pvKNr1KqU6S4/H5L9//mPSieSzICKA
+        YWmPpSRMrH+Otx4h0Wr3lSXO
+X-Google-Smtp-Source: ABdhPJyXvpwdBwsVaHjZK4EeMpg3nkidiunLUTxHK1f0yBOcUxAtgxE6EW4BFH6cEOB5x22Bg/KJ8A==
+X-Received: by 2002:a17:902:ba90:b029:d7:e80e:753a with SMTP id k16-20020a170902ba90b02900d7e80e753amr10138545pls.35.1606548140808;
+        Fri, 27 Nov 2020 23:22:20 -0800 (PST)
+Received: from thinkpad ([2409:4072:15:c612:48ab:f1cc:6b16:2820])
+        by smtp.gmail.com with ESMTPSA id bf6sm1696330pjb.25.2020.11.27.23.22.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 27 Nov 2020 23:22:20 -0800 (PST)
+Date:   Sat, 28 Nov 2020 12:52:12 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 01/18] arm: dts: owl-s500: Add Clock Management Unit
+Message-ID: <20201128072212.GP3077@thinkpad>
+References: <cover.1605823502.git.cristian.ciocaltea@gmail.com>
+ <7c45642753b94e2b2f4fcef0d3206b4c237e3135.1605823502.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from localhost.localdomain (119.31.174.71) by SG2PR06CA0093.apcprd06.prod.outlook.com (2603:1096:3:14::19) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.20 via Frontend Transport; Sat, 28 Nov 2020 05:36:11 +0000
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: c6d3a2d6-fb07-4aa6-9cbc-08d8935f84bf
-X-MS-TrafficTypeDiagnostic: DB3PR0402MB3707:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB3PR0402MB3707084F48167AFC2CF2B5D3E6F70@DB3PR0402MB3707.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2512;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c7Paj2/RcJ4og4m3feoN/O3KUMsZJyzkXcik0VTDsHDsX/0VzwC1KkiwW4f5SwBz9IpOSFHxj3GnkD5dKgFI4Zsf3MGciHEbi55FvVJo/Vivc8gYKlbky1WKzA7MKVabUyhCv2HZT52pr2YN7WRHoxxpzDkyEu68aEnfD96xvWLsghPy7Jwcjh0y73bmJZofHPr+fxsAVQ7GOvUJfUdscSaQ1dlhi6sEvkINUntN/0PZNnKAhNdS+byRk5wl8pRhHe5lJX/UTEG0PBmXJnLLkPJFSfMt7HLUaAL7+ffQxxTzCekOSRVxt+nNLxAIHFMzR5GkU7kn6/51uEwo1vjm5Ajrrow7hCZt2Q6Ub+RDZhniuXUdG7ah3bWNkpsyJONg
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(346002)(376002)(136003)(39860400002)(366004)(86362001)(1076003)(6666004)(26005)(69590400008)(4326008)(36756003)(16526019)(478600001)(186003)(52116002)(6486002)(5660300002)(2906002)(8676002)(2616005)(66556008)(66476007)(8936002)(66946007)(6512007)(316002)(956004)(6506007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: =?us-ascii?Q?aFNFmjKw9VQqWkZEbhrRnsFBEru6L1g2mLgObUALI1ejQd4B1EU/cVUevQc9?=
- =?us-ascii?Q?JPSSNvoXXmjTnYfT/LG0FzvG2TEIK1hWaa/zNpU6v3e5yGx+sR2kk9J02Zgu?=
- =?us-ascii?Q?zhyNL2Wkpm/psbuUseawso5SiDwh3qaQlGiuKYmyvYPYzTmdDQipnvgCSDud?=
- =?us-ascii?Q?EZ5Iu0zpjG3325L4w5kAtnkY7ZLHnOTzXHidVbtcz4Xg/402wLduc8VKbgMT?=
- =?us-ascii?Q?Doh7wXFXFm+ooICdMf+sEAqnAJ6pNKYEqWilyuEu9e6su1tiHRzXPEmhoiZi?=
- =?us-ascii?Q?N+qEwmbE/zwb2yLDPC6FMSYkKo4N+nKRPtNWRS1jlN2ryL+fLkfSXj374s0E?=
- =?us-ascii?Q?VKgJxS9A/Adda0yet/7sMT1DAMJslzBQ2nwyjS/KGQz6+j9xwwv3gF3SF5A+?=
- =?us-ascii?Q?2ny/IDZemPMJselKlboqqKkf6aQdeaeW5nd9BlX9iwS9Zj5Smv8sSjZgg1+6?=
- =?us-ascii?Q?zuJ2CWd7PrWDeM04EVJiRSYEwnuwYdeaMMh8ZbT7y+ybozzPPj78YcjFBrKm?=
- =?us-ascii?Q?ZNPlE56q2hZq1eOTYbdxqSaspIh1M++4lIm3e5dyZwro6Z9rRC1DKE6eSNEE?=
- =?us-ascii?Q?PJscg6puhJLb9O0v+56Ge/dm9PmFIhtVRSCMs6hCbeMfJqPndaS/gIhMs0AK?=
- =?us-ascii?Q?u5E+JKP74nxl31lSZuqXMVgoEuiGFAem/wZ1A/7wyQujdi5CWu12mf8snojb?=
- =?us-ascii?Q?O9PBE7vQn4Bzn7CI9pSSpsazFKm5l59S+A3NMHsGwnZ52uoSL4p47/T81vBd?=
- =?us-ascii?Q?OggIY2Rqo/tVGk/uH5gyS02N54Co603TxKN6PxfH7JFFp+tT570RW0618N9z?=
- =?us-ascii?Q?SMTx3CqaLiYJUYcUhWGKrG03+PR/lhKCaqhzr3y+Ow5BVGSIkhW5MvtjCBIG?=
- =?us-ascii?Q?7N5mcf+/LAHDu5pnvGHvgLzmBv4+iHrKSAN6c4FBzQGuecc9QrqDKWPTRwh1?=
- =?us-ascii?Q?LP0MTfDpznyUWz8KyvG84qyEN6uw1CKnr1hx9CGxTkxe9oavo2cSTvvUaayZ?=
- =?us-ascii?Q?xr05?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c6d3a2d6-fb07-4aa6-9cbc-08d8935f84bf
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2020 05:36:13.3382
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RRdJu3S1Fcf59JD96ICca32aquO79yOFTX8Ny7JhjPU55s+Nhz+tSsTDlt2uuEFDKLcvlWaevbyoO0sEw75sPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3707
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7c45642753b94e2b2f4fcef0d3206b4c237e3135.1605823502.git.cristian.ciocaltea@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DDR Perf for i.MX8 is a system PMU whose AXI ID would different from
-SoC to SoC. Need expose system PMU identifier for userspace which refer
-to /sys/bus/event_source/devices/<PMU DEVICE>/identifier.
+On Fri, Nov 20, 2020 at 01:55:55AM +0200, Cristian Ciocaltea wrote:
+> Add Clock Management Unit for Actions Semi S500 SoC.
+> 
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 
-Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
----
- drivers/perf/fsl_imx8_ddr_perf.c | 42 ++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-diff --git a/drivers/perf/fsl_imx8_ddr_perf.c b/drivers/perf/fsl_imx8_ddr_perf.c
-index 4f063fb1c6b4..3517d2fb1469 100644
---- a/drivers/perf/fsl_imx8_ddr_perf.c
-+++ b/drivers/perf/fsl_imx8_ddr_perf.c
-@@ -50,6 +50,7 @@ static DEFINE_IDA(ddr_ida);
- 
- struct fsl_ddr_devtype_data {
- 	unsigned int quirks;    /* quirks needed for different DDR Perf core */
-+	const char *identifier;	/* system PMU identifier for userspace */
- };
- 
- static const struct fsl_ddr_devtype_data imx8_devtype_data;
-@@ -58,13 +59,32 @@ static const struct fsl_ddr_devtype_data imx8m_devtype_data = {
- 	.quirks = DDR_CAP_AXI_ID_FILTER,
- };
- 
-+static const struct fsl_ddr_devtype_data imx8mq_devtype_data = {
-+	.quirks = DDR_CAP_AXI_ID_FILTER,
-+	.identifier = "i.MX8MQ",
-+};
-+
-+static const struct fsl_ddr_devtype_data imx8mm_devtype_data = {
-+	.quirks = DDR_CAP_AXI_ID_FILTER,
-+	.identifier = "i.MX8MM",
-+};
-+
-+static const struct fsl_ddr_devtype_data imx8mn_devtype_data = {
-+	.quirks = DDR_CAP_AXI_ID_FILTER,
-+	.identifier = "i.MX8MN",
-+};
-+
- static const struct fsl_ddr_devtype_data imx8mp_devtype_data = {
- 	.quirks = DDR_CAP_AXI_ID_FILTER_ENHANCED,
-+	.identifier = "i.MX8MP",
- };
- 
- static const struct of_device_id imx_ddr_pmu_dt_ids[] = {
- 	{ .compatible = "fsl,imx8-ddr-pmu", .data = &imx8_devtype_data},
- 	{ .compatible = "fsl,imx8m-ddr-pmu", .data = &imx8m_devtype_data},
-+	{ .compatible = "fsl,imx8mq-ddr-pmu", .data = &imx8mq_devtype_data},
-+	{ .compatible = "fsl,imx8mm-ddr-pmu", .data = &imx8mm_devtype_data},
-+	{ .compatible = "fsl,imx8mn-ddr-pmu", .data = &imx8mn_devtype_data},
- 	{ .compatible = "fsl,imx8mp-ddr-pmu", .data = &imx8mp_devtype_data},
- 	{ /* sentinel */ }
- };
-@@ -84,6 +104,27 @@ struct ddr_pmu {
- 	int id;
- };
- 
-+static ssize_t ddr_perf_identifier_show(struct device *dev,
-+					struct device_attribute *attr,
-+					char *page)
-+{
-+	struct ddr_pmu *pmu = dev_get_drvdata(dev);
-+
-+	return sprintf(page, "%s\n", pmu->devtype_data->identifier);
-+}
-+
-+static struct device_attribute ddr_perf_identifier_attr =
-+	__ATTR(identifier, 0444, ddr_perf_identifier_show, NULL);
-+
-+static struct attribute *ddr_perf_identifier_attrs[] = {
-+	&ddr_perf_identifier_attr.attr,
-+	NULL,
-+};
-+
-+static struct attribute_group ddr_perf_identifier_attr_group = {
-+	.attrs = ddr_perf_identifier_attrs,
-+};
-+
- enum ddr_perf_filter_capabilities {
- 	PERF_CAP_AXI_ID_FILTER = 0,
- 	PERF_CAP_AXI_ID_FILTER_ENHANCED,
-@@ -237,6 +278,7 @@ static const struct attribute_group *attr_groups[] = {
- 	&ddr_perf_format_attr_group,
- 	&ddr_perf_cpumask_attr_group,
- 	&ddr_perf_filter_cap_attr_group,
-+	&ddr_perf_identifier_attr_group,
- 	NULL,
- };
- 
--- 
-2.17.1
+Thanks,
+Mani
 
+> ---
+>  arch/arm/boot/dts/owl-s500.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/owl-s500.dtsi b/arch/arm/boot/dts/owl-s500.dtsi
+> index 1dbe4e8b38ac..5d5ad9db549b 100644
+> --- a/arch/arm/boot/dts/owl-s500.dtsi
+> +++ b/arch/arm/boot/dts/owl-s500.dtsi
+> @@ -5,6 +5,7 @@
+>   * Copyright (c) 2016-2017 Andreas Färber
+>   */
+>  
+> +#include <dt-bindings/clock/actions,s500-cmu.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/power/owl-s500-powergate.h>
+>  
+> @@ -70,6 +71,12 @@ hosc: hosc {
+>  		#clock-cells = <0>;
+>  	};
+>  
+> +	losc: losc {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <32768>;
+> +		#clock-cells = <0>;
+> +	};
+> +
+>  	soc {
+>  		compatible = "simple-bus";
+>  		#address-cells = <1>;
+> @@ -169,6 +176,13 @@ uart6: serial@b012c000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		cmu: clock-controller@b0160000 {
+> +			compatible = "actions,s500-cmu";
+> +			reg = <0xb0160000 0x8000>;
+> +			clocks = <&hosc>, <&losc>;
+> +			#clock-cells = <1>;
+> +		};
+> +
+>  		timer: timer@b0168000 {
+>  			compatible = "actions,s500-timer";
+>  			reg = <0xb0168000 0x8000>;
+> -- 
+> 2.29.2
+> 
