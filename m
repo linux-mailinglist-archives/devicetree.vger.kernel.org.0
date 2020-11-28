@@ -2,176 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C97DB2C7088
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 19:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C012C7076
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 19:18:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733186AbgK1SAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 13:00:21 -0500
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:40678 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729856AbgK1R6U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 12:58:20 -0500
-Received: from relay10.mail.gandi.net (unknown [217.70.178.230])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 938E93B5436;
-        Sat, 28 Nov 2020 14:34:19 +0000 (UTC)
-Received: from localhost.localdomain (196.109.29.93.rev.sfr.net [93.29.109.196])
-        (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id A7D2D240003;
-        Sat, 28 Nov 2020 14:33:57 +0000 (UTC)
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 1/2] dt-bindings: media: i2c: Add OV5648 bindings documentation
-Date:   Sat, 28 Nov 2020 15:33:49 +0100
-Message-Id: <20201128143350.531460-2-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.29.2
-In-Reply-To: <20201128143350.531460-1-paul.kocialkowski@bootlin.com>
-References: <20201128143350.531460-1-paul.kocialkowski@bootlin.com>
+        id S1726472AbgK1R7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 12:59:37 -0500
+Received: from mail.kernel.org ([198.145.29.99]:43072 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730967AbgK1R5f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 12:57:35 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A1E5F22456;
+        Sat, 28 Nov 2020 17:56:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606586214;
+        bh=Y4tpYinA5TUHjdPSkcxV5jWTVfrgtBiS6vtywGzjwvQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=BsZ6molRogIjNMNsThGL64BjZlb2ZUQESnqKijdNZgOemTvkiVP8nm9O2n88ZVoJU
+         kqEgitpggcKiyeS2lJNGj+tcOYgc7c4rJYO4hSHFi9RPNzndV++jWeCfrkfFPg3gHd
+         rfeioP2X/plLZxHdO8nAn/0dbqtzoM7nrQQDBsk8=
+Date:   Sat, 28 Nov 2020 17:56:50 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Matt Ranostay <matt.ranostay@konsulko.com>
+Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH 10/10] dt-bindings:iio:potentiostat:ti,lmp91000: txt to
+ yaml conversion.
+Message-ID: <20201128175650.1e8d2a5e@archlinux>
+In-Reply-To: <CAJCx=gmWRa4Q_zZZG=f37ZeuifCjmJZ5gnuuc1ZBFGa6bdmGrQ@mail.gmail.com>
+References: <20201031181242.742301-1-jic23@kernel.org>
+        <20201031181242.742301-11-jic23@kernel.org>
+        <CAJCx=gmWRa4Q_zZZG=f37ZeuifCjmJZ5gnuuc1ZBFGa6bdmGrQ@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This introduces YAML bindings documentation for the OV5648
-image sensor.
+On Sat, 31 Oct 2020 14:41:10 -0700
+Matt Ranostay <matt.ranostay@konsulko.com> wrote:
 
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/media/i2c/ovti,ov5648.yaml       | 115 ++++++++++++++++++
- 1 file changed, 115 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+> On Sat, Oct 31, 2020 at 11:15 AM Jonathan Cameron <jic23@kernel.org> wrote:
+> >
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> >
+> > There were a few parts of the example that did not conform to the
+> > binding description and would not have worked with the Linux driver
+> > as a result.  Fixed them whilst doing this conversion.
+> >
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: Matt Ranostay <matt.ranostay@konsulko.com>  
+> 
+> Acked-by: Matt Ranostay <matt.ranostay@konsulko.com>
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-new file mode 100644
-index 000000000000..f8783f77cc54
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
-@@ -0,0 +1,115 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ovti,ov5648.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: OmniVision OV5648 Image Sensor Device Tree Bindings
-+
-+maintainers:
-+  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5648
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: XVCLK Clock
-+
-+  assigned-clocks:
-+    maxItems: 1
-+
-+  assigned-clock-rates:
-+    maxItems: 1
-+
-+  dvdd-supply:
-+    description: Digital Domain Power Supply
-+
-+  avdd-supply:
-+    description: Analog Domain Power Supply (internal AVDD is used if missing)
-+
-+  dovdd-supply:
-+    description: I/O Domain Power Supply
-+
-+  powerdown-gpios:
-+    maxItems: 1
-+    description: Power Down Pin GPIO Control (active low)
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: Reset Pin GPIO Control (active low)
-+
-+  port:
-+    type: object
-+    description: MIPI CSI-2 transmitter port
-+
-+    properties:
-+      endpoint:
-+        type: object
-+
-+        properties:
-+          remote-endpoint: true
-+
-+          link-frequencies:
-+            $ref: /schemas/types.yaml#/definitions/uint64-array
-+            description: Allowed MIPI CSI-2 link frequencies
-+
-+          data-lanes:
-+            minItems: 1
-+            maxItems: 2
-+
-+        required:
-+          - data-lanes
-+          - link-frequencies
-+          - remote-endpoint
-+
-+    required:
-+      - endpoint
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - assigned-clocks
-+  - assigned-clock-rates
-+  - dvdd-supply
-+  - dovdd-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ov5648: camera@36 {
-+            compatible = "ovti,ov5648";
-+            reg = <0x36>;
-+
-+            dvdd-supply = <&ov5648_dvdd>;
-+            avdd-supply = <&ov5648_avdd>;
-+            dovdd-supply = <&ov5648_dovdd>;
-+            clocks = <&ov5648_xvclk 0>;
-+            assigned-clocks = <&ov5648_xvclk 0>;
-+            assigned-clock-rates = <24000000>;
-+
-+
-+            ov5648_out: port {
-+                ov5648_out_mipi_csi2: endpoint {
-+                    data-lanes = <1 2>;
-+                    link-frequencies = /bits/ 64 <210000000 168000000>;
-+
-+                    remote-endpoint = <&mipi_csi2_in_ov5648>;
-+                };
-+            };
-+        };
-+    };
--- 
-2.29.2
+Note I couldn't drop the type markings for the resistance properties here
+because the dt-schema uses ohms and these are ohm.
+
+An unfortunate bit of legacy we'll need to maintain I guess.
+
+Jonathan
+
+> 
+> > ---
+> >  .../bindings/iio/potentiostat/lmp91000.txt    | 33 ---------
+> >  .../iio/potentiostat/ti,lmp91000.yaml         | 68 +++++++++++++++++++
+> >  2 files changed, 68 insertions(+), 33 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/iio/potentiostat/lmp91000.txt b/Documentation/devicetree/bindings/iio/potentiostat/lmp91000.txt
+> > deleted file mode 100644
+> > index f3ab02b0dd41..000000000000
+> > --- a/Documentation/devicetree/bindings/iio/potentiostat/lmp91000.txt
+> > +++ /dev/null
+> > @@ -1,33 +0,0 @@
+> > -* Texas Instruments LMP91000 series of potentiostats
+> > -
+> > -LMP91000: https://www.ti.com/lit/ds/symlink/lmp91000.pdf
+> > -LMP91002: https://www.ti.com/lit/ds/symlink/lmp91002.pdf
+> > -
+> > -Required properties:
+> > -
+> > -  - compatible: should be one of the following:
+> > -                 "ti,lmp91000"
+> > -                 "ti,lmp91002"
+> > -  - reg: the I2C address of the device
+> > -  - io-channels: the phandle of the iio provider
+> > -
+> > -  - ti,external-tia-resistor: if the property ti,tia-gain-ohm is not defined this
+> > -    needs to be set to signal that an external resistor value is being used.
+> > -
+> > -Optional properties:
+> > -
+> > -  - ti,tia-gain-ohm: ohm value of the internal resistor for the transimpedance
+> > -    amplifier. Must be 2750, 3500, 7000, 14000, 35000, 120000, or 350000 ohms.
+> > -
+> > -  - ti,rload-ohm: ohm value of the internal resistor load applied to the gas
+> > -    sensor. Must be 10, 33, 50, or 100 (default) ohms.
+> > -
+> > -Example:
+> > -
+> > -lmp91000@48 {
+> > -       compatible = "ti,lmp91000";
+> > -       reg = <0x48>;
+> > -       ti,tia-gain-ohm = <7500>;
+> > -       ti,rload = <100>;
+> > -       io-channels = <&adc>;
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/iio/potentiostat/ti,lmp91000.yaml b/Documentation/devicetree/bindings/iio/potentiostat/ti,lmp91000.yaml
+> > new file mode 100644
+> > index 000000000000..e4b5d890e8d5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/potentiostat/ti,lmp91000.yaml
+> > @@ -0,0 +1,68 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/potentiostat/ti,lmp91000.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Texas Instruments LMP91000 series of potentiostats with I2C control
+> > +
+> > +maintainers:
+> > +  - Matt Ranostay <matt.ranostay@konsulko.com>
+> > +
+> > +description: |
+> > +  Typically used as a signal conditioner for chemical sensors.
+> > +  LMP91000: https://www.ti.com/lit/ds/symlink/lmp91000.pdf
+> > +  LMP91002: https://www.ti.com/lit/ds/symlink/lmp91002.pdf
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - ti,lmp91000
+> > +      - ti,lmp91002
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  io-channels:
+> > +    maxItems: 1
+> > +
+> > +  ti,external-tia-resistor:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +    description:
+> > +      If the property ti,tia-gain-ohm is not defined this needs to be set to
+> > +      signal that an external resistor value is being used.
+> > +
+> > +  ti,tia-gain-ohm:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [2750, 3500, 7000, 14000, 35000, 120000, 350000]
+> > +    description:
+> > +      Internal resistor for the transimpedance amplifier.
+> > +
+> > +  ti,rload-ohm:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    enum: [10, 33, 50, 100]
+> > +    description:
+> > +      Internal resistor load applied to the gas sensor.
+> > +      Default 100 Ohms.
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - io-channels
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +        lmp91000@48 {
+> > +            compatible = "ti,lmp91000";
+> > +            reg = <0x48>;
+> > +            ti,tia-gain-ohm = <7000>;
+> > +            ti,rload-ohm = <100>;
+> > +            io-channels = <&adc>;
+> > +        };
+> > +    };
+> > +...
+> > --
+> > 2.28.0
+> >  
 
