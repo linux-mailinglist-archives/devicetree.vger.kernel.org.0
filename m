@@ -2,272 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C5262C70EA
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 22:49:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 93BF92C715E
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 22:57:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732717AbgK1VtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:24 -0500
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:56550 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732877AbgK1SJl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 13:09:41 -0500
-Received: from relay1-d.mail.gandi.net (unknown [217.70.183.193])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 74FC73A21D5;
-        Sat, 28 Nov 2020 14:24:05 +0000 (UTC)
-X-Originating-IP: 86.194.74.19
-Received: from localhost (lfbn-lyo-1-997-19.w86-194.abo.wanadoo.fr [86.194.74.19])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 1F9A5240004;
-        Sat, 28 Nov 2020 14:23:42 +0000 (UTC)
-Date:   Sat, 28 Nov 2020 15:23:42 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 01/11] iio: adc: at91_adc: remove platform data
-Message-ID: <20201128142342.GJ1296649@piout.net>
-References: <20201117140656.1235055-1-alexandre.belloni@bootlin.com>
- <20201117140656.1235055-2-alexandre.belloni@bootlin.com>
- <20201128140427.61dbaceb@archlinux>
+        id S2391373AbgK1V5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:57:16 -0500
+Received: from mout.kundenserver.de ([212.227.126.135]:47487 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387418AbgK1V5M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 16:57:12 -0500
+Received: from methusalix.internal.home.lespocky.de ([92.117.45.147]) by
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MdwRi-1kAL7K2rmY-00b77Y; Sat, 28 Nov 2020 22:54:20 +0100
+Received: from lemmy.internal.home.lespocky.de ([192.168.243.175] helo=lemmy.home.lespocky.de)
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <alex@home.lespocky.de>)
+        id 1kj8AZ-00027T-9a; Sat, 28 Nov 2020 22:54:16 +0100
+Received: (nullmailer pid 4070 invoked by uid 2001);
+        Sat, 28 Nov 2020 21:54:14 -0000
+From:   Alexander Dahl <post@lespocky.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org
+Subject: [PATCH v8 0/5] leds: pwm: Make automatic labels work
+Date:   Sat, 28 Nov 2020 22:53:48 +0100
+Message-Id: <20201128215353.3991-1-post@lespocky.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201128140427.61dbaceb@archlinux>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scan-Signature: e9056562e10c809dee3344e50e145a1f
+X-Spam-Score: -2.9 (--)
+X-Provags-ID: V03:K1:QBfiUPuOf14kX4Nz47jAYJt1cUoOTDn1E/pEQC0D93UIwKSk9LO
+ pApkfselXX82TbxUTNh8KHQ+CU+2c4pzwJtAt9bworExKtWkMMo11sQBGbbaRZV4CvXMvnA
+ 9YBrjc9ERoyaWnteYtxeb1ArUz7jfIMFuB3eBRAU64w3d7VMMmtayx6rnaFNch45egLYrE8
+ ndlA9RHZPJuId6tbeCmew==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:db2FVXCJ0IQ=:rGUF+QkkUhs0EKaPyIQuUg
+ ybFnHRPwkBnLFoJzP1nJuiDJYGMjkgvpHNfYJxhkOZGHhhqCNRb0Ltb6SZlhGIYo9iYB/4GV/
+ 4hCM3Vpve/XfUOsEGEpDlviPUYPXT+dRUt+wvBYHXc9TFbAJKTYR0QXj33O1ix2/YHCZRiFMS
+ 13KuMpQPkCGx3Y9ZbSTiEEW4els06BHzfagxTp1J+uTDlYI2xG0g8t1MOgFafvkwk0EEHc6K8
+ ZyoznGlLSkcEWOEJgdDfnffdgfsM2u+zzIfNIF+RXTUvJV5Ij1AgcURwSHcbZqBEC5zjUs+p6
+ sprAnKWfh3tMH+DBc8RM0osqot7HMr6L633xcdNiBzLSws/ycSa1TWmphHF/JLCakwdGNVq+b
+ 6V9cGMQzbwbU8Ae1QPCF5ke3HFEBTQDThzImW9foPNqjDdH9no6dCZ1GYks3quFcTwkKsosxR
+ tdtiik2UTg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hei hei,
 
-On 28/11/2020 14:04:27+0000, Jonathan Cameron wrote:
-> On Tue, 17 Nov 2020 15:06:46 +0100
-> Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
-> 
-> > The at91 platforms have been DT only for a while, remove platform data.
-> > 
-> > Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> > Reviewed-by: Ludovic Desroches <ludovic.desroches@microchip.com>
-> 
-> Hi Alexandre,
-> 
-> I'd completely forgotten that we actually had a similar patch that
-> is already applied from Alexandru back in September.
-> 
+these are the not yet taken patches from a series which originally fixed
+a minor issue in the leds pwm driver, then migrated the leds pwm dts
+docs to yaml (by request), and then fixed all the dts files triggering
+warnings on those new bindings.  The remaining five patches now only fix
+warnings, the base fix and the yaml conversion is already taken by
+subsystem maintainers.  Although this is only dts content now, I rebased
+it on the current for-next tree of the leds subsystem maintainer,
+because that contains the yaml-conversion changeset.
 
-I actually have seen that yesterday too. I even reviewed them...
+Series changelog below …
 
-> Given vast majority matched, I've just changed your patch into one
-> that drops the id_table (which Alexandru didn't do).
-> 
-> So with that tweak applied to the togreg branch of iio.git.
-> 
+Greets
+Alex
 
-Ok, thanks, I guess you didn't push yet, I wanted to check and I didn't
-find the patches on kernel.org.
+v8:
+- rebased series on recent pavel/for-next (post v5.10-rc1)
+- removed already applied patches
+- added Acked-by on patch 1/5
+- updated patch 3/5 based on comments by Ahmad Fatoum
+
+v7:
+- rebased series on recent pavel/for-next
+- split up arm dts patch by arm sub arch (suggested by Krzysztof Kozlowski)
+- added multiple Reviewed-by tags
+- slightly reworded commit messages (suggested by Krzysztof Kozlowski)
+- added actual dtbs_check warnings to commit messages
+- added Russell King to Cc for binding conversion patch (because license)
+
+v6:
+- rebased series on recent pavel/for-next
+- added Reviewed-by from Marek to patch 1
+- patch 2 from v5 was picked by Pavel and is already in his for-next
+  branch
+- previous patch 3/3 (now 2/7) was reworked based on feedback by Rob
+- added more dt patches fixing warnings after binding conversion to yaml
+
+v5:
+- replaced patch 1/3 by a new patch removing platform_data support for
+  the leds-pwm driver
+- little rewording of commit message in patch 2/3
+- updated patch 3/3 based on feedback by Rob Herring
+- added Marek Behún to Cc, because he also works on removing
+  platform_data support
+- rebased series on pavel/for-next
+
+v4:
+- added led-class patch handling fwnode passing differently (patch 1/3)
+- adapted leds-pwm patch to new led-class (patch 2/3)
+- contacted original author of leds-pwm dt binding on license issue
+  (patch 3/3)
+
+v3:
+- series rebased on v5.9-rc4
+- changed license of .yaml file to recommended one (patch 2/2)
+- added Acked-by to both patches
+
+v2:
+- series rebased on v5.9-rc3
+- added the dt-bindings update patch (2/2)
+
+v1:
+- based on v5.9-rc2
+- backport on v5.4.59 tested and working
+
+Cc: linux-leds@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-stm32@st-md-mailman.stormreply.com
+Cc: linux-amlogic@lists.infradead.org
+Cc: linux-mips@vger.kernel.org
 
 
+Alexander Dahl (5):
+  dt-bindings: mfd: Fix schema warnings for pwm-leds
+  ARM: dts: berlin: Fix schema warnings for pwm-leds
+  ARM: dts: stm32: Fix schema warnings for pwm-leds
+  arm64: dts: meson: Fix schema warnings for pwm-leds
+  MIPS: DTS: img: Fix schema warnings for pwm-leds
 
-> Thanks,
-> 
-> Jonathan
-> 
-> > ---
-> >  drivers/iio/adc/at91_adc.c             | 80 +++++++-------------------
-> >  include/linux/platform_data/at91_adc.h | 49 ----------------
-> >  2 files changed, 22 insertions(+), 107 deletions(-)
-> >  delete mode 100644 include/linux/platform_data/at91_adc.h
-> > 
-> > diff --git a/drivers/iio/adc/at91_adc.c b/drivers/iio/adc/at91_adc.c
-> > index 9b2c548fae95..62bd35af8b13 100644
-> > --- a/drivers/iio/adc/at91_adc.c
-> > +++ b/drivers/iio/adc/at91_adc.c
-> > @@ -22,8 +22,6 @@
-> >  #include <linux/slab.h>
-> >  #include <linux/wait.h>
-> >  
-> > -#include <linux/platform_data/at91_adc.h>
-> > -
-> >  #include <linux/iio/iio.h>
-> >  #include <linux/iio/buffer.h>
-> >  #include <linux/iio/trigger.h>
-> > @@ -153,6 +151,25 @@
-> >  #define TOUCH_SHTIM                    0xa
-> >  #define TOUCH_SCTIM_US		10		/* 10us for the Touchscreen Switches Closure Time */
-> >  
-> > +enum atmel_adc_ts_type {
-> > +	ATMEL_ADC_TOUCHSCREEN_NONE = 0,
-> > +	ATMEL_ADC_TOUCHSCREEN_4WIRE = 4,
-> > +	ATMEL_ADC_TOUCHSCREEN_5WIRE = 5,
-> > +};
-> > +
-> > +/**
-> > + * struct at91_adc_trigger - description of triggers
-> > + * @name:		name of the trigger advertised to the user
-> > + * @value:		value to set in the ADC's trigger setup register
-> > + *			to enable the trigger
-> > + * @is_external:	Does the trigger rely on an external pin?
-> > + */
-> > +struct at91_adc_trigger {
-> > +	const char	*name;
-> > +	u8		value;
-> > +	bool		is_external;
-> > +};
-> > +
-> >  /**
-> >   * struct at91_adc_reg_desc - Various informations relative to registers
-> >   * @channel_base:	Base offset for the channel data registers
-> > @@ -875,9 +892,6 @@ static int at91_adc_probe_dt(struct iio_dev *idev,
-> >  	int i = 0, ret;
-> >  	u32 prop;
-> >  
-> > -	if (!node)
-> > -		return -EINVAL;
-> > -
-> >  	st->caps = (struct at91_adc_caps *)
-> >  		of_match_device(at91_adc_dt_ids, &pdev->dev)->data;
-> >  
-> > @@ -960,30 +974,6 @@ static int at91_adc_probe_dt(struct iio_dev *idev,
-> >  	return ret;
-> >  }
-> >  
-> > -static int at91_adc_probe_pdata(struct at91_adc_state *st,
-> > -				struct platform_device *pdev)
-> > -{
-> > -	struct at91_adc_data *pdata = pdev->dev.platform_data;
-> > -
-> > -	if (!pdata)
-> > -		return -EINVAL;
-> > -
-> > -	st->caps = (struct at91_adc_caps *)
-> > -			platform_get_device_id(pdev)->driver_data;
-> > -
-> > -	st->use_external = pdata->use_external_triggers;
-> > -	st->vref_mv = pdata->vref;
-> > -	st->channels_mask = pdata->channels_used;
-> > -	st->num_channels = st->caps->num_channels;
-> > -	st->startup_time = pdata->startup_time;
-> > -	st->trigger_number = pdata->trigger_number;
-> > -	st->trigger_list = pdata->trigger_list;
-> > -	st->registers = &st->caps->registers;
-> > -	st->touchscreen_type = pdata->touchscreen_type;
-> > -
-> > -	return 0;
-> > -}
-> > -
-> >  static const struct iio_info at91_adc_info = {
-> >  	.read_raw = &at91_adc_read_raw,
-> >  };
-> > @@ -1160,15 +1150,9 @@ static int at91_adc_probe(struct platform_device *pdev)
-> >  
-> >  	st = iio_priv(idev);
-> >  
-> > -	if (pdev->dev.of_node)
-> > -		ret = at91_adc_probe_dt(idev, pdev);
-> > -	else
-> > -		ret = at91_adc_probe_pdata(st, pdev);
-> > -
-> > -	if (ret) {
-> > -		dev_err(&pdev->dev, "No platform data available.\n");
-> > -		return -EINVAL;
-> > -	}
-> > +	ret = at91_adc_probe_dt(idev, pdev);
-> > +	if (ret)
-> > +		return ret;
-> >  
-> >  	platform_set_drvdata(pdev, idev);
-> >  
-> > @@ -1444,29 +1428,9 @@ static const struct of_device_id at91_adc_dt_ids[] = {
-> >  };
-> >  MODULE_DEVICE_TABLE(of, at91_adc_dt_ids);
-> >  
-> > -static const struct platform_device_id at91_adc_ids[] = {
-> > -	{
-> > -		.name = "at91sam9260-adc",
-> > -		.driver_data = (unsigned long)&at91sam9260_caps,
-> > -	}, {
-> > -		.name = "at91sam9rl-adc",
-> > -		.driver_data = (unsigned long)&at91sam9rl_caps,
-> > -	}, {
-> > -		.name = "at91sam9g45-adc",
-> > -		.driver_data = (unsigned long)&at91sam9g45_caps,
-> > -	}, {
-> > -		.name = "at91sam9x5-adc",
-> > -		.driver_data = (unsigned long)&at91sam9x5_caps,
-> > -	}, {
-> > -		/* terminator */
-> > -	}
-> > -};
-> > -MODULE_DEVICE_TABLE(platform, at91_adc_ids);
-> > -
-> >  static struct platform_driver at91_adc_driver = {
-> >  	.probe = at91_adc_probe,
-> >  	.remove = at91_adc_remove,
-> > -	.id_table = at91_adc_ids,
-> >  	.driver = {
-> >  		   .name = DRIVER_NAME,
-> >  		   .of_match_table = of_match_ptr(at91_adc_dt_ids),
-> > diff --git a/include/linux/platform_data/at91_adc.h b/include/linux/platform_data/at91_adc.h
-> > deleted file mode 100644
-> > index f20eaeb827ce..000000000000
-> > --- a/include/linux/platform_data/at91_adc.h
-> > +++ /dev/null
-> > @@ -1,49 +0,0 @@
-> > -/* SPDX-License-Identifier: GPL-2.0-or-later */
-> > -/*
-> > - * Copyright (C) 2011 Free Electrons
-> > - */
-> > -
-> > -#ifndef _AT91_ADC_H_
-> > -#define _AT91_ADC_H_
-> > -
-> > -enum atmel_adc_ts_type {
-> > -	ATMEL_ADC_TOUCHSCREEN_NONE = 0,
-> > -	ATMEL_ADC_TOUCHSCREEN_4WIRE = 4,
-> > -	ATMEL_ADC_TOUCHSCREEN_5WIRE = 5,
-> > -};
-> > -
-> > -/**
-> > - * struct at91_adc_trigger - description of triggers
-> > - * @name:		name of the trigger advertised to the user
-> > - * @value:		value to set in the ADC's trigger setup register
-> > -			to enable the trigger
-> > - * @is_external:	Does the trigger rely on an external pin?
-> > - */
-> > -struct at91_adc_trigger {
-> > -	const char	*name;
-> > -	u8		value;
-> > -	bool		is_external;
-> > -};
-> > -
-> > -/**
-> > - * struct at91_adc_data - platform data for ADC driver
-> > - * @channels_used:		channels in use on the board as a bitmask
-> > - * @startup_time:		startup time of the ADC in microseconds
-> > - * @trigger_list:		Triggers available in the ADC
-> > - * @trigger_number:		Number of triggers available in the ADC
-> > - * @use_external_triggers:	does the board has external triggers availables
-> > - * @vref:			Reference voltage for the ADC in millivolts
-> > - * @touchscreen_type:		If a touchscreen is connected, its type (4 or 5 wires)
-> > - */
-> > -struct at91_adc_data {
-> > -	unsigned long			channels_used;
-> > -	u8				startup_time;
-> > -	struct at91_adc_trigger		*trigger_list;
-> > -	u8				trigger_number;
-> > -	bool				use_external_triggers;
-> > -	u16				vref;
-> > -	enum atmel_adc_ts_type		touchscreen_type;
-> > -};
-> > -
-> > -extern void __init at91_add_device_adc(struct at91_adc_data *data);
-> > -#endif
-> 
+ Documentation/devicetree/bindings/mfd/iqs62x.yaml   |  5 +++--
+ arch/arm/boot/dts/berlin2cd-google-chromecast.dts   |  6 +++---
+ arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts           | 13 +++++++------
+ .../boot/dts/amlogic/meson-gxl-s905x-khadas-vim.dts |  4 ++--
+ .../boot/dts/amlogic/meson-gxm-khadas-vim2.dts      |  4 ++--
+ arch/arm64/boot/dts/amlogic/meson-sm1-sei610.dts    |  8 ++++----
+ arch/mips/boot/dts/img/pistachio_marduk.dts         |  5 +++--
+ 7 files changed, 24 insertions(+), 21 deletions(-)
 
+
+base-commit: 98650b0874171cc443251f7b369d3b1544db9d4e
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.20.1
+
