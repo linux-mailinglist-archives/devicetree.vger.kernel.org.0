@@ -2,23 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 299022C745E
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 411212C745C
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388597AbgK1Vtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:41 -0500
-Received: from foss.arm.com ([217.140.110.172]:37696 "EHLO foss.arm.com"
+        id S2388612AbgK1Vtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:42 -0500
+Received: from foss.arm.com ([217.140.110.172]:37778 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387713AbgK1Uft (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Nov 2020 15:35:49 -0500
+        id S2387738AbgK1Usq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 15:48:46 -0500
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B23CA30E;
-        Sat, 28 Nov 2020 12:35:03 -0800 (PST)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1F7C030E;
+        Sat, 28 Nov 2020 12:48:00 -0800 (PST)
 Received: from [192.168.2.22] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 816AF3F23F;
-        Sat, 28 Nov 2020 12:35:02 -0800 (PST)
-Subject: Re: [RESEND PATCH 06/19] arm64: allwinner: a100: Add device node for
- DMA controller
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E0B0F3F23F;
+        Sat, 28 Nov 2020 12:47:58 -0800 (PST)
+Subject: Re: [RESEND PATCH 07/19] arm64: dts: allwinner: A100: Add PMU mode
 To:     Frank Lee <frank@allwinnertech.com>, tiny.windzz@gmail.com
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Maxime Ripard <mripard@kernel.org>,
@@ -26,15 +25,15 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Jernej Skrabec <jernej.skrabec@siol.net>
 References: <cover.1604988979.git.frank@allwinnertech.com>
- <1b15266045edbcfff2fc3791c88a5390d7bb3185.1604988979.git.frank@allwinnertech.com>
+ <5aede9ac5069e61913905617b20cdcf1ec84fe26.1604988979.git.frank@allwinnertech.com>
 From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
 Organization: ARM Ltd.
-Message-ID: <496f7773-1141-5f1b-2187-ac15da4c8576@arm.com>
-Date:   Sat, 28 Nov 2020 20:34:47 +0000
+Message-ID: <803fa6fb-31a2-e90d-a7cc-98f282cec2b1@arm.com>
+Date:   Sat, 28 Nov 2020 20:47:43 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <1b15266045edbcfff2fc3791c88a5390d7bb3185.1604988979.git.frank@allwinnertech.com>
+In-Reply-To: <5aede9ac5069e61913905617b20cdcf1ec84fe26.1604988979.git.frank@allwinnertech.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
@@ -42,49 +41,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2020 06:29, Frank Lee wrote:
+On 10/11/2020 06:31, Frank Lee wrote:
+
+Hi,
+
 > From: Yangtao Li <frank@allwinnertech.com>
 > 
-> The A100 SoC has a DMA controller that supports 8 DMA channels
-> to and from various peripherals.
-> 
-> Add a device node for it.
+> Add the Performance Monitoring Unit (PMU) device tree node to the A100
+> .dtsi, which tells DT users which interrupts are triggered by PMU overflow
+> events on each core.
+
+Have you tested that the interrupts actually work? For the A64 there
+were wrong in the manual, and we realised only later.
+"perf stat" works even without interrupts, but "perf record" requires
+interrupts, and will return empty-handed if they don't work.
+Can you confirm this?
+
 > 
 > Signed-off-by: Yangtao Li <frank@allwinnertech.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> index cc321c04f121..c34ed8045363 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> @@ -101,6 +101,18 @@ ccu: clock@3001000 {
->  			#reset-cells = <1>;
->  		};
->  
-> +		dma: dma-controller@3002000 {
-> +			compatible = "allwinner,sun50i-a100-dma";
 
-So at it appears to work with the exact same settings in the driver as
-the H6, we should have that as a compatible fallback:
-  compatible = "allwinner,sun50i-a100-dma", "allwinner,sun50i-h6-dma";
+Without being able to test or verify this, the nodes looks correct, so:
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
 Cheers,
 Andre
 
-> +			reg = <0x03002000 0x1000>;
-> +			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_DMA>, <&ccu CLK_MBUS_DMA>;
-> +			clock-names = "bus", "mbus";
-> +			dma-channels = <8>;
-> +			dma-requests = <51>;
-> +			resets = <&ccu RST_BUS_DMA>;
-> +			#dma-cells = <1>;
-> +		};
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> index c34ed8045363..01ff53b5a7a8 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> @@ -25,21 +25,21 @@ cpu0: cpu@0 {
+>  			enable-method = "psci";
+>  		};
+>  
+> -		cpu@1 {
+> +		cpu1: cpu@1 {
+>  			compatible = "arm,cortex-a53";
+>  			device_type = "cpu";
+>  			reg = <0x1>;
+>  			enable-method = "psci";
+>  		};
+>  
+> -		cpu@2 {
+> +		cpu2: cpu@2 {
+>  			compatible = "arm,cortex-a53";
+>  			device_type = "cpu";
+>  			reg = <0x2>;
+>  			enable-method = "psci";
+>  		};
+>  
+> -		cpu@3 {
+> +		cpu3: cpu@3 {
+>  			compatible = "arm,cortex-a53";
+>  			device_type = "cpu";
+>  			reg = <0x3>;
+> @@ -47,6 +47,15 @@ cpu@3 {
+>  		};
+>  	};
+>  
+> +	pmu {
+> +		compatible = "arm,cortex-a53-pmu";
+> +		interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+> +	};
 > +
->  		gic: interrupt-controller@3021000 {
->  			compatible = "arm,gic-400";
->  			reg = <0x03021000 0x1000>, <0x03022000 0x2000>,
+>  	psci {
+>  		compatible = "arm,psci-1.0";
+>  		method = "smc";
 > 
 
