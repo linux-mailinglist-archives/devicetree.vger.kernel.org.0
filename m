@@ -2,119 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 411212C745C
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FF7E2C7456
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388612AbgK1Vtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2388624AbgK1Vtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 28 Nov 2020 16:49:42 -0500
-Received: from foss.arm.com ([217.140.110.172]:37778 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387738AbgK1Usq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Nov 2020 15:48:46 -0500
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1F7C030E;
-        Sat, 28 Nov 2020 12:48:00 -0800 (PST)
-Received: from [192.168.2.22] (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E0B0F3F23F;
-        Sat, 28 Nov 2020 12:47:58 -0800 (PST)
-Subject: Re: [RESEND PATCH 07/19] arm64: dts: allwinner: A100: Add PMU mode
-To:     Frank Lee <frank@allwinnertech.com>, tiny.windzz@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-References: <cover.1604988979.git.frank@allwinnertech.com>
- <5aede9ac5069e61913905617b20cdcf1ec84fe26.1604988979.git.frank@allwinnertech.com>
-From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
-Organization: ARM Ltd.
-Message-ID: <803fa6fb-31a2-e90d-a7cc-98f282cec2b1@arm.com>
-Date:   Sat, 28 Nov 2020 20:47:43 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34848 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387771AbgK1VI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 16:08:26 -0500
+Received: from mail-il1-x133.google.com (mail-il1-x133.google.com [IPv6:2607:f8b0:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B901C0613D1;
+        Sat, 28 Nov 2020 13:07:40 -0800 (PST)
+Received: by mail-il1-x133.google.com with SMTP id g1so7685302ilk.7;
+        Sat, 28 Nov 2020 13:07:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=xgTU/AQfBLAhgL/L35xo0cEqhACBRAiUDqmEo1ROo94=;
+        b=DJ7fstxZWlAA7n+PzHydmq1XIT/kR0l77GOBXjnxJPuwV8+w7Im353K9Wgz/v/FBII
+         SLSfS+ii0gs/kFHpntALIRGPwylG51B47197ycEmsxI/ANgFriG7z5xLPav2789ceNGF
+         IRsb6/Iy6maIds6Lkz3hwJlGsIhxtakpBpxq2mQe/7r8acV/6eVTsMpQA+/uxcu2+F5I
+         e7PFOzMvY0OTAvEbXaKGKZJG7VHlN61u6qEBcs6N5mwGdttsdwb3fFf00ChdZRaCsaVP
+         CuTsuiQV0SdX/HxoAyfOhY/b5zSwOkM3KNjd3IrSJEapMSaRNlKBR8iKo6+0bmqlm8bG
+         xctw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=xgTU/AQfBLAhgL/L35xo0cEqhACBRAiUDqmEo1ROo94=;
+        b=EoWoXHB8ZGskRG/7bbBCkCA+wQ94cU1VtHzucago2gCxMcVpanFTEqMjppp1WI2bJ0
+         eNxpenuxqvgW5tCNhRto94csCLj6oPdPRvvAQtVCTQ2h60YeqQk3L0e+LryMQMvL26+1
+         vxAFlpryr+hTsUYVdRz7HR5wCLcO2NE5iyQIxKuD9YbDiqc4UUonSOW/DAuV4weKbSna
+         jBbZKhZg5VR2aTQqQUjydEi5QDMZ0R9XxpF7zz5eXS++xPIXlbaWCm0+PhmUDYJ7H+EG
+         irjc8qtUBPnMym6pp8k8UTcEfiQQYtsnq5pn7Rb+3KMFf8P55C3sM84O3IfL7U5ItrtN
+         8Ajg==
+X-Gm-Message-State: AOAM531UfF0Tk/ytSOG3vZ/9HOJzKll3MoU+SH6qCjr7RiqQDbO6xLYc
+        17vf/xHTRsEi6wZHrf86FIxBAjagJl4IwIYKUUI=
+X-Google-Smtp-Source: ABdhPJyzE7cChO9e74gcQRyK1+2QtClnHW66ySiec0lq01tlZnONWf39S59BXuiHptNrcM7AXiXtqiu6ByJ7K6zecW8=
+X-Received: by 2002:a92:d38e:: with SMTP id o14mr11894928ilo.59.1606597659200;
+ Sat, 28 Nov 2020 13:07:39 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5aede9ac5069e61913905617b20cdcf1ec84fe26.1604988979.git.frank@allwinnertech.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+References: <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io> <20201116155508.364dg6ycklwylswe@gilmour.lan>
+ <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io> <20201120155939.3ajmbny2pka2vsnf@gilmour>
+ <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io> <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org>
+ <20201123111512.y7lbwsipbkcpuleb@gilmour> <97E2037C-3C3C-4B0B-8462-39B9E38CB3BB@aosc.io>
+ <20201123125332.2p5z3ew7svszvyfs@gilmour> <009A22D9-AF20-45C4-9674-13334B3EFFBA@aosc.io>
+ <20201128103827.d6sfc2eumli2betx@gilmour> <1666a61f6ea3e7d573795f9000a0b096c7b7dee0.camel@aosc.io>
+ <CAJiuCcfEcM+Dksm4uoRPCiRepDSnEmp7pr8Qk5EsFSH_zEOTYA@mail.gmail.com> <C8F86F90-14BF-4857-9DB8-7968A34E4656@aosc.io>
+In-Reply-To: <C8F86F90-14BF-4857-9DB8-7968A34E4656@aosc.io>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Sat, 28 Nov 2020 22:07:27 +0100
+Message-ID: <CAJiuCcc=s6xG7Wzfx6PBU0e3BHz+YRpU=t0Ef3EcTp9k11Dkzg@mail.gmail.com>
+Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT
+ for PineTab developer sample
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Samuel Holland <samuel@sholland.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/11/2020 06:31, Frank Lee wrote:
+Hi Maxime, Icenowy,
 
-Hi,
+On Sat, 28 Nov 2020 at 12:59, Icenowy Zheng <icenowy@aosc.io> wrote:
+>
+>
+>
+> =E4=BA=8E 2020=E5=B9=B411=E6=9C=8828=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=
+=887:54:04, "Cl=C3=A9ment P=C3=A9ron" <peron.clem@gmail.com> =E5=86=99=E5=
+=88=B0:
+> >Hi Icenowy,
+> >
+> >On Sat, 28 Nov 2020 at 12:28, Icenowy Zheng <icenowy@aosc.io> wrote:
+> >>
+> >> =E5=9C=A8 2020-11-28=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 11:38 +0100=
+=EF=BC=8CMaxime Ripard=E5=86=99=E9=81=93=EF=BC=9A
+> >> > On Mon, Nov 23, 2020 at 09:10:38PM +0800, Icenowy Zheng wrote:
+> >> > > > > > > > Okay. But I'm not satisfied with a non-public sample
+> >> > > > > > > > occupies
+> >> > > > > > > > the pinetab name. Is rename it to pinetab-dev and add a
+> >> > > > > > > > pinetab-retail okay?
+> >> > > > > > >
+> >> > > > > > > To me, naming the production version anything but
+> >"pinetab"
+> >> > > > > > > isn't
+> >> > > > > > > satisfying either.
+> >> > > > > >
+> >> > > > > > I understand where you're coming from, but the point I was
+> >> > > > > > making my
+> >> > > > > > previous mail is precisely that it's not really possible.
+> >> > > > > >
+> >> > > > > > You want to name the early adopter version _the_ production
+> >> > > > > > version. Let's assume the hardware changes again between
+> >the
+> >> > > > > > early
+> >> > > > > > adopter and mass-production version. Which one will be
+> >_the_
+> >> > > > > > production version? The early-adopter or the mass-produced
+> >> > > > > > one?
+> >> > > > > >
+> >> > > > > > There's really no good answer here, and both would suck in
+> >> > > > > > their
+> >> > > > > > own way. The only way to deal with this is to simply avoid
+> >> > > > > > defining one version as the one true board, and just
+> >loading
+> >> > > > > > the
+> >> > > > > > proper DT in u-boot based on whatever clue we have of the
+> >> > > > > > hardware
+> >> > > > > > revision.
+> >> > > > > Then will it be okay to rename current pinetab DT to
+> >> > > > > pinetab-sample and then introduce new DTs all with suffixes?
+> >> > > >
+> >> > > > No. From my previous mail:
+> >> > >
+> >> > > It can be seen as dropping the PineTab DT and introduce new DTs
+> >> > > with
+> >> > > suffix.
+> >> > >
+> >> > > Do we have rule that we cannot drop boards?
+> >> >
+> >> > Are you really arguing that removing a DT and then adding an
+> >> > identical
+> >> > one under a different name is not renaming it?
+> >>
+> >> Then we can just keep confusing name?
+> >
+> >Sorry maybe I missed some information
+> >But why don't you do like pinephone?
+>
+> They're the same board revision with different LCD panels.
 
-> From: Yangtao Li <frank@allwinnertech.com>
-> 
-> Add the Performance Monitoring Unit (PMU) device tree node to the A100
-> .dtsi, which tells DT users which interrupts are triggered by PMU overflow
-> events on each core.
+I just ask Pine64 about this and here is the reply :
+"The PineTab LCD panel change was a last minutes before production
+starts that vendor advise us switch over to new LCD controller due to
+EoL concern".
 
-Have you tested that the interrupts actually work? For the A64 there
-were wrong in the manual, and we realised only later.
-"perf stat" works even without interrupts, but "perf record" requires
-interrupts, and will return empty-handed if they don't work.
-Can you confirm this?
+"Pine64 communication" is not so bad we just need to ask and they reply :)
 
-> 
-> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
+So the issue is not that the Product was not finalized but that one
+component arrives in EoL.
+This could also happens during a running production.
 
-Without being able to test or verify this, the nodes looks correct, so:
+Regards,
+Clement
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
-
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> index c34ed8045363..01ff53b5a7a8 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
-> @@ -25,21 +25,21 @@ cpu0: cpu@0 {
->  			enable-method = "psci";
->  		};
->  
-> -		cpu@1 {
-> +		cpu1: cpu@1 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			reg = <0x1>;
->  			enable-method = "psci";
->  		};
->  
-> -		cpu@2 {
-> +		cpu2: cpu@2 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			reg = <0x2>;
->  			enable-method = "psci";
->  		};
->  
-> -		cpu@3 {
-> +		cpu3: cpu@3 {
->  			compatible = "arm,cortex-a53";
->  			device_type = "cpu";
->  			reg = <0x3>;
-> @@ -47,6 +47,15 @@ cpu@3 {
->  		};
->  	};
->  
-> +	pmu {
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-> +	};
-> +
->  	psci {
->  		compatible = "arm,psci-1.0";
->  		method = "smc";
-> 
-
+>
+> And the major problem is that the DT for samples is already submitted
+> under the name "PineTab".
+>
+> >sun50i-a64-pinetab-1.0.dts
+> >sun50i-a64-pinetab-1.1.dts
+> >
+> >-dev is also a confusing name I think, as the board has been already
+> >shipped.
+> >
+> >Regards,
+> >Clement
+> >
+> >
+> >>
+> >> If we do so, how can we mark the new DT as "the user should use this
+> >> one"?
+> >>
+> >> --
+> >> You received this message because you are subscribed to the Google
+> >Groups "linux-sunxi" group.
+> >> To unsubscribe from this group and stop receiving emails from it,
+> >send an email to linux-sunxi+unsubscribe@googlegroups.com.
+> >> To view this discussion on the web, visit
+> >https://groups.google.com/d/msgid/linux-sunxi/1666a61f6ea3e7d573795f9000=
+a0b096c7b7dee0.camel%40aosc.io.
