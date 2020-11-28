@@ -2,164 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C122C2C74B2
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:22:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 736D32C74F8
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388308AbgK1Vte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:34 -0500
-Received: from relay-us1.mymailcheap.com ([51.81.35.219]:51540 "EHLO
-        relay-us1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731290AbgK1StN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 13:49:13 -0500
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 1405720AB7;
-        Sat, 28 Nov 2020 11:28:39 +0000 (UTC)
-Received: from relay1.mymailcheap.com (relay1.mymailcheap.com [144.217.248.100])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 29046200FE;
-        Sat, 28 Nov 2020 11:28:36 +0000 (UTC)
-Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
-        by relay1.mymailcheap.com (Postfix) with ESMTPS id DE5B33F157;
-        Sat, 28 Nov 2020 11:28:33 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-        by filter2.mymailcheap.com (Postfix) with ESMTP id 2E7CF2A522;
-        Sat, 28 Nov 2020 12:28:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1606562913;
-        bh=bUu9xuiJBLYbY3Ckw9r1uvUgI2YgsuLZgK0IecpJuA8=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=WMaR+1Ro9QHf6tharipr8XvKyFk9p4PSGItbTjRTKhTjj00J33vMm4YklW6fo++rN
-         3YwXEZqc1ZQH83BtZd0WNfooJGU8DCvUmswZlR9RXdQ8kcKMlWWVZ66iz7yhYkxm/X
-         2XcOLzqzkKQAj3W8v2z0XMtEY3Nk/GIVlDZ8ehqE=
-X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
-Received: from filter2.mymailcheap.com ([127.0.0.1])
-        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id iA2Z0az4S0cs; Sat, 28 Nov 2020 12:28:31 +0100 (CET)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
+        id S1725862AbgK1Vtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:40 -0500
+Received: from mail.kernel.org ([198.145.29.99]:50318 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1733181AbgK1TG1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 14:06:27 -0500
+Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by filter2.mymailcheap.com (Postfix) with ESMTPS;
-        Sat, 28 Nov 2020 12:28:31 +0100 (CET)
-Received: from [148.251.23.173] (ml.mymailcheap.com [148.251.23.173])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id E6ACE41EAD;
-        Sat, 28 Nov 2020 11:28:30 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="u6a4pnNm";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from ice-e5v2.lan (unknown [59.41.160.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id D6AC241EAD;
-        Sat, 28 Nov 2020 11:28:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1606562905; bh=bUu9xuiJBLYbY3Ckw9r1uvUgI2YgsuLZgK0IecpJuA8=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=u6a4pnNm2ANChoSW8d+ZSIo0sF4zBpQ/tPVCLNXiZ7aNQKmgt6ORG3WeatN+xaAsP
-         5UI6u7/EfTkQ4LbX9mBvBKi1JTbMk/0q2qmhNlvnahfkXLim7A3vC8B6kZqyzYZIDG
-         06Xh7kI68hjo0loCZgAsjZv2zjRDCkZ/tvnUVlqI=
-Message-ID: <1666a61f6ea3e7d573795f9000a0b096c7b7dee0.camel@aosc.io>
-Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add
- DT for PineTab developer sample
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-sunxi@googlegroups.com, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Date:   Sat, 28 Nov 2020 19:28:19 +0800
-In-Reply-To: <20201128103827.d6sfc2eumli2betx@gilmour>
-References: <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io>
-         <20201116155508.364dg6ycklwylswe@gilmour.lan>
-         <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io>
-         <20201120155939.3ajmbny2pka2vsnf@gilmour>
-         <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io>
-         <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org>
-         <20201123111512.y7lbwsipbkcpuleb@gilmour>
-         <97E2037C-3C3C-4B0B-8462-39B9E38CB3BB@aosc.io>
-         <20201123125332.2p5z3ew7svszvyfs@gilmour>
-         <009A22D9-AF20-45C4-9674-13334B3EFFBA@aosc.io>
-         <20201128103827.d6sfc2eumli2betx@gilmour>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5 
+        by mail.kernel.org (Postfix) with ESMTPSA id 4727F22280;
+        Sat, 28 Nov 2020 11:37:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606563462;
+        bh=dajrluPFv/MMnGz60kB91fo5W/wkirHOn7T3qG/8ZKE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=JQG3BooRJ/Y5lkVO2Eca4Yef4KitY91DjUhFBYohTvEdVKoj7WrFsgPsBzkWw2m2V
+         8VJPLC3pv0IdUdwjbysogvEJOZVnpuTsj0AEPjveXpwTYGnPCCnr2Hsia9oDhxRQUA
+         WEvSES76avqD08I4k48rZ5g1GBrGXdQCs1jWdJBg=
+Date:   Sat, 28 Nov 2020 11:37:39 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-iio@vger.kernel.org, Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        devicetree@vger.kernel.org, phone-devel@vger.kernel.org
+Subject: Re: [PATCH 1/2 v2] iio: accel: yamaha-yas53x: Add DT bindings
+Message-ID: <20201128113739.72697868@archlinux>
+In-Reply-To: <20201128004038.883289-1-linus.walleij@linaro.org>
+References: <20201128004038.883289-1-linus.walleij@linaro.org>
+X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: E6ACE41EAD
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         TO_DN_SOME(0.00)[];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         RECEIVED_SPAMHAUS_PBL(0.00)[59.41.160.1:received];
-         ML_SERVERS(-3.10)[148.251.23.173];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[9];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:148.251.0.0/16, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[148.251.23.173,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-在 2020-11-28星期六的 11:38 +0100，Maxime Ripard写道：
-> On Mon, Nov 23, 2020 at 09:10:38PM +0800, Icenowy Zheng wrote:
-> > > > > > > Okay. But I'm not satisfied with a non-public sample
-> > > > > > > occupies
-> > > > > > > the pinetab name. Is rename it to pinetab-dev and add a
-> > > > > > > pinetab-retail okay?
-> > > > > > 
-> > > > > > To me, naming the production version anything but "pinetab"
-> > > > > > isn't
-> > > > > > satisfying either.
-> > > > > 
-> > > > > I understand where you're coming from, but the point I was
-> > > > > making my
-> > > > > previous mail is precisely that it's not really possible.
-> > > > > 
-> > > > > You want to name the early adopter version _the_ production
-> > > > > version. Let's assume the hardware changes again between the
-> > > > > early
-> > > > > adopter and mass-production version. Which one will be _the_
-> > > > > production version? The early-adopter or the mass-produced
-> > > > > one?
-> > > > > 
-> > > > > There's really no good answer here, and both would suck in
-> > > > > their
-> > > > > own way. The only way to deal with this is to simply avoid
-> > > > > defining one version as the one true board, and just loading
-> > > > > the
-> > > > > proper DT in u-boot based on whatever clue we have of the
-> > > > > hardware
-> > > > > revision.
-> > > > Then will it be okay to rename current pinetab DT to
-> > > > pinetab-sample and then introduce new DTs all with suffixes?
-> > > 
-> > > No. From my previous mail:
-> > 
-> > It can be seen as dropping the PineTab DT and introduce new DTs
-> > with
-> > suffix.
-> > 
-> > Do we have rule that we cannot drop boards?
+On Sat, 28 Nov 2020 01:40:37 +0100
+Linus Walleij <linus.walleij@linaro.org> wrote:
+
+> This adds device tree bindings for the Yamaha YAS53x
+> magnetometers/compass sensors.
 > 
-> Are you really arguing that removing a DT and then adding an
-> identical
-> one under a different name is not renaming it?
+> Cc: devicetree@vger.kernel.org
+> Cc: phone-devel@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v2->v3:
+> - Restrict to cover the YAS53x variants, it turns out that
+>   YAS529 is a very different component from the others so
+>   keep that for a separate document when/if needed.
+> - Rename the file and binding yamaha,53x.yaml
 
-Then we can just keep confusing name?
+I'd rather see it named after a specific component.
+As you probably noticed I'm not fond of wild cards in file names
+as they have a habit of biting us years later.
 
-If we do so, how can we mark the new DT as "the user should use this
-one"?
+> - Use - if: clauses to restrict some properties.
+> - Fix some spelling mistakes.
+> - Restrict the nodename to be "magnetometer@[0-9a-f]"
+> ChangeLog v1->v2:
+> - Add Yamaha to the vendor list, I was surprised to find
+>   they were not yet listed.
+> 
+> I am still working on the actual driver for the magnetometer
+> but why not send out the DT bindings for review, the
+> hardware variants are easy to describe. This makes it possibe
+> for people to include these magnetometers in device
+> trees.
+
+You probably want to drop that now :)
+
+> ---
+>  .../iio/magnetometer/yamaha,yas53x.yaml       | 116 ++++++++++++++++++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  2 files changed, 118 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml
+> new file mode 100644
+> index 000000000000..e14668a6388d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/yamaha,yas53x.yaml
+> @@ -0,0 +1,116 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/magnetometer/yamaha,yas53x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Yamaha YAS53x magnetometer sensors
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +description:
+> +  The Yamaha YAS53x magnetometers is a line of 3-axis magnetometers
+> +  first introduced by Yamaha in 2009 with the YAS530. They are successors
+> +  of Yamaha's first magnetometer YAS529. Over the years this magnetometer
+> +  has been miniaturized and appeared in a number of different variants.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^magnetometer@[0-9a-f]+$'
+> +
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - yamaha,yas530
+> +          - yamaha,yas532
+> +          - yamaha,yas533
+> +          - yamaha,yas535
+> +          - yamaha,yas536
+> +          - yamaha,yas537
+> +          - yamaha,yas539
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description: The YAS530 sensor has a RSTN pin used to reset
+> +      the logic inside the sensor. This GPIO line should connect
+> +      to that pin and be marked as GPIO_ACTIVE_LOW.
+> +
+> +  interrupts:
+> +    description: Interrupt for INT pin for interrupt generation.
+> +      The polarity, whether the interrupt is active on the rising
+> +      or the falling edge, is software-configurable in the hardware.
+> +
+> +  vdd-supply:
+> +    description: An optional regulator providing core power supply
+> +      on the VDD pin, typically 1.8 V or 3.0 V.
+> +
+> +  iovdd-supply:
+> +    description: An optional regulator providing I/O power supply
+> +      for the I2C interface on the IOVDD pin, typically 1.8 V.
+> +
+> +  mount-matrix:
+> +    description: An optional 3x3 mounting rotation matrix.
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          items:
+> +            const: yamaha,yas530
+> +    then:
+> +      properties:
+> +        reset-gpios:
+> +          maxItems: 1
+       else:
+         properties:
+            reset-gpios: false
+
+You can probably also simplify this by moving the maxItems up to the
+original block and making this a not:
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - yamaha,yas530
+> +            - yamaha,yas532
+> +            - yamaha,yas533
+> +            - yamaha,yas535
+> +            - yamaha,yas536
+> +            - yamaha,yas537
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          maxItems: 1
+
+Similar to the reset line one above.   You could flip this and explicity
+state they others don't have an interrupt with whilst moving maxItems
+up to the block where you first introduce interrupts.
+i.e. not: and
+interrupt: false
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    i2c-0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        magnetometer@2e {
+> +          compatible = "yamaha,yas530";
+> +          reg = <0x2e>;
+> +          vdd-supply = <&ldo1_reg>;
+> +          iovdd-supply = <&ldo2_reg>;
+> +          reset-gpios = <&gpio6 12 GPIO_ACTIVE_LOW>;
+> +          interrupts = <&gpio6 13 IRQ_TYPE_EDGE_RISING>;
+> +        };
+> +    };
+> +
+> +    i2c-1 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        magnetometer@2e {
+> +          compatible = "yamaha,yas539";
+> +          reg = <0x2e>;
+> +          vdd-supply = <&ldo1_reg>;
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 2735be1a8470..0340674c72bd 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -1210,6 +1210,8 @@ patternProperties:
+>      description: Shenzhen Xunlong Software CO.,Limited
+>    "^xylon,.*":
+>      description: Xylon
+> +  "^yamaha,.*":
+> +    description: Yamaha Corporation
+>    "^ylm,.*":
+>      description: Shenzhen Yangliming Electronic Technology Co., Ltd.
+>    "^yna,.*":
+
