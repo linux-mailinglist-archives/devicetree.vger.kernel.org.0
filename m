@@ -2,200 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5F782C708F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 19:18:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA58A2C706A
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 19:18:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729414AbgK1SBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 13:01:18 -0500
-Received: from relay-us1.mymailcheap.com ([51.81.35.219]:50994 "EHLO
-        relay-us1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727183AbgK1R7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 12:59:13 -0500
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 13EFA20E58;
-        Sat, 28 Nov 2020 11:59:35 +0000 (UTC)
-Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.80.156])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id D1276200FE;
-        Sat, 28 Nov 2020 11:59:32 +0000 (UTC)
-Received: from filter2.mymailcheap.com (filter2.mymailcheap.com [91.134.140.82])
-        by relay4.mymailcheap.com (Postfix) with ESMTPS id AF5BF3F1CF;
-        Sat, 28 Nov 2020 12:59:31 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by filter2.mymailcheap.com (Postfix) with ESMTP id 7BED82A7DE;
-        Sat, 28 Nov 2020 12:59:31 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
-        s=default; t=1606564771;
-        bh=qo4SLIZUrwY607yZrNGoWgTABuLweaoRjsorAWJWYK0=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=WrlOZhfCFe6awdoHTmhSt9pRWb88JZdpYCk8WGVWNLDQtKzheQ5emwezwR1naukIP
-         IuyH5HRmloWVaDxcoEOk/5p7oOOikpdDclkgWEgge9MbzrCoTpFPT/zHWSMDi+ScXa
-         lr1nwhHaSiRhnCup8qP9fZB/P9OLBlyciBmQCRhI=
-X-Virus-Scanned: Debian amavisd-new at filter2.mymailcheap.com
-Received: from filter2.mymailcheap.com ([127.0.0.1])
-        by localhost (filter2.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id QqF36XvoeO0o; Sat, 28 Nov 2020 12:59:30 +0100 (CET)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter2.mymailcheap.com (Postfix) with ESMTPS;
-        Sat, 28 Nov 2020 12:59:30 +0100 (CET)
-Received: from [148.251.23.173] (ml.mymailcheap.com [148.251.23.173])
-        by mail20.mymailcheap.com (Postfix) with ESMTP id 9452741EAD;
-        Sat, 28 Nov 2020 11:59:29 +0000 (UTC)
-Authentication-Results: mail20.mymailcheap.com;
-        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="ORvT/NQO";
-        dkim-atps=neutral
-AI-Spam-Status: Not processed
-Received: from [172.19.0.1] (unknown [64.225.114.122])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 8D0AC41EAD;
-        Sat, 28 Nov 2020 11:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1606564765; bh=qo4SLIZUrwY607yZrNGoWgTABuLweaoRjsorAWJWYK0=;
-        h=Date:In-Reply-To:References:Subject:To:CC:From:From;
-        b=ORvT/NQO4+ANb6ekfq8QHmKcGHWGXzkkDE/31UbQgcFEXkv5N7IpQGe2Tih82zKEm
-         1gH41zIHXn91PB+w3vgXqUWjAaTA+4/s4w7yqtbz/s2I6SqGFNoHwY5YnoiuZtqUAk
-         B8gueg+ThLVHJ+5M7Di4kUf4APcVXxyy+hNCqcoM=
-Date:   Sat, 28 Nov 2020 19:59:17 +0800
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAJiuCcfEcM+Dksm4uoRPCiRepDSnEmp7pr8Qk5EsFSH_zEOTYA@mail.gmail.com>
-References: <6175E674-E8BC-4199-8BE8-A983065C32D5@aosc.io> <20201116155508.364dg6ycklwylswe@gilmour.lan> <8FFC1A6C-9CA4-4F94-91C4-F111A7519979@aosc.io> <20201120155939.3ajmbny2pka2vsnf@gilmour> <A8E91BA0-22FD-47F4-A5B2-A80A38FE9A0E@aosc.io> <38ee5feb-e35d-801f-99a1-65e23618e73b@sholland.org> <20201123111512.y7lbwsipbkcpuleb@gilmour> <97E2037C-3C3C-4B0B-8462-39B9E38CB3BB@aosc.io> <20201123125332.2p5z3ew7svszvyfs@gilmour> <009A22D9-AF20-45C4-9674-13334B3EFFBA@aosc.io> <20201128103827.d6sfc2eumli2betx@gilmour> <1666a61f6ea3e7d573795f9000a0b096c7b7dee0.camel@aosc.io> <CAJiuCcfEcM+Dksm4uoRPCiRepDSnEmp7pr8Qk5EsFSH_zEOTYA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [linux-sunxi] Re: [PATCH 3/3] arm64: allwinner: dts: a64: add DT for PineTab developer sample
-To:     =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-CC:     Maxime Ripard <maxime@cerno.tech>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree <devicetree@vger.kernel.org>,
+        id S1729971AbgK1R6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 12:58:37 -0500
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:38082 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732191AbgK1R4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 12:56:04 -0500
+Received: from relay2-d.mail.gandi.net (unknown [217.70.183.194])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id C9BA03AFE4D;
+        Sat, 28 Nov 2020 14:29:42 +0000 (UTC)
+X-Originating-IP: 93.29.109.196
+Received: from localhost.localdomain (196.109.29.93.rev.sfr.net [93.29.109.196])
+        (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 132404000A;
+        Sat, 28 Nov 2020 14:29:20 +0000 (UTC)
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, devel@driverdev.osuosl.org,
+        linux-sunxi@googlegroups.com
+Cc:     Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-From:   Icenowy Zheng <icenowy@aosc.io>
-Message-ID: <C8F86F90-14BF-4857-9DB8-7968A34E4656@aosc.io>
-X-Rspamd-Queue-Id: 9452741EAD
-X-Spamd-Result: default: False [1.40 / 10.00];
-         RCVD_VIA_SMTP_AUTH(0.00)[];
-         ARC_NA(0.00)[];
-         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
-         MID_RHS_MATCH_FROM(0.00)[];
-         FROM_HAS_DN(0.00)[];
-         FREEMAIL_ENVRCPT(0.00)[gmail.com];
-         TO_MATCH_ENVRCPT_ALL(0.00)[];
-         TAGGED_RCPT(0.00)[dt];
-         MIME_GOOD(-0.10)[text/plain];
-         DMARC_NA(0.00)[aosc.io];
-         R_SPF_SOFTFAIL(0.00)[~all];
-         ML_SERVERS(-3.10)[148.251.23.173];
-         TO_DN_ALL(0.00)[];
-         DKIM_TRACE(0.00)[aosc.io:+];
-         RCPT_COUNT_SEVEN(0.00)[10];
-         FREEMAIL_TO(0.00)[gmail.com];
-         RCVD_NO_TLS_LAST(0.10)[];
-         FROM_EQ_ENVFROM(0.00)[];
-         MIME_TRACE(0.00)[0:+];
-         ASN(0.00)[asn:24940, ipnet:148.251.0.0/16, country:DE];
-         RCVD_COUNT_TWO(0.00)[2];
-         SUSPICIOUS_RECIPS(1.50)[];
-         HFILTER_HELO_BAREIP(3.00)[148.251.23.173,1]
-X-Rspamd-Server: mail20.mymailcheap.com
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        kevin.lhopital@hotmail.com
+Subject: [PATCH v2 14/19] ARM: dts: sun8i: v3s: Add nodes for MIPI CSI-2 support
+Date:   Sat, 28 Nov 2020 15:28:34 +0100
+Message-Id: <20201128142839.517949-15-paul.kocialkowski@bootlin.com>
+X-Mailer: git-send-email 2.29.2
+In-Reply-To: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
+References: <20201128142839.517949-1-paul.kocialkowski@bootlin.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+MIPI CSI-2 is supported on the V3s with an A31-based MIPI CSI-2 bridge
+controller. The controller uses a separate D-PHY, which is the same
+that is otherwise used for MIPI DSI, but used in Rx mode.
 
+On the V3s, the CSI0 controller is dedicated to MIPI CSI-2 as it does
+not have access to any parallel interface pins.
 
-=E4=BA=8E 2020=E5=B9=B411=E6=9C=8828=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=88=
-7:54:04, "Cl=C3=A9ment P=C3=A9ron" <peron=2Eclem@gmail=2Ecom> =E5=86=99=E5=
-=88=B0:
->Hi Icenowy,
->
->On Sat, 28 Nov 2020 at 12:28, Icenowy Zheng <icenowy@aosc=2Eio> wrote:
->>
->> =E5=9C=A8 2020-11-28=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 11:38 +0100=EF=
-=BC=8CMaxime Ripard=E5=86=99=E9=81=93=EF=BC=9A
->> > On Mon, Nov 23, 2020 at 09:10:38PM +0800, Icenowy Zheng wrote:
->> > > > > > > > Okay=2E But I'm not satisfied with a non-public sample
->> > > > > > > > occupies
->> > > > > > > > the pinetab name=2E Is rename it to pinetab-dev and add a
->> > > > > > > > pinetab-retail okay?
->> > > > > > >
->> > > > > > > To me, naming the production version anything but
->"pinetab"
->> > > > > > > isn't
->> > > > > > > satisfying either=2E
->> > > > > >
->> > > > > > I understand where you're coming from, but the point I was
->> > > > > > making my
->> > > > > > previous mail is precisely that it's not really possible=2E
->> > > > > >
->> > > > > > You want to name the early adopter version _the_ production
->> > > > > > version=2E Let's assume the hardware changes again between
->the
->> > > > > > early
->> > > > > > adopter and mass-production version=2E Which one will be
->_the_
->> > > > > > production version? The early-adopter or the mass-produced
->> > > > > > one?
->> > > > > >
->> > > > > > There's really no good answer here, and both would suck in
->> > > > > > their
->> > > > > > own way=2E The only way to deal with this is to simply avoid
->> > > > > > defining one version as the one true board, and just
->loading
->> > > > > > the
->> > > > > > proper DT in u-boot based on whatever clue we have of the
->> > > > > > hardware
->> > > > > > revision=2E
->> > > > > Then will it be okay to rename current pinetab DT to
->> > > > > pinetab-sample and then introduce new DTs all with suffixes?
->> > > >
->> > > > No=2E From my previous mail:
->> > >
->> > > It can be seen as dropping the PineTab DT and introduce new DTs
->> > > with
->> > > suffix=2E
->> > >
->> > > Do we have rule that we cannot drop boards?
->> >
->> > Are you really arguing that removing a DT and then adding an
->> > identical
->> > one under a different name is not renaming it?
->>
->> Then we can just keep confusing name?
->
->Sorry maybe I missed some information
->But why don't you do like pinephone?
+Add all the necessary nodes (CSI0, MIPI CSI-2 bridge and D-PHY) to
+support the MIPI CSI-2 interface.
 
-They're the same board revision with different LCD panels=2E
+Note that a fwnode graph link is created between CSI0 and MIPI CSI-2
+even when no sensor is connected. This will result in a probe failure
+for the controller as long as no sensor is connected but this is fine
+since no other interface is available.
 
-And the major problem is that the DT for samples is already submitted
-under the name "PineTab"=2E
+Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+---
+ arch/arm/boot/dts/sun8i-v3s.dtsi | 68 ++++++++++++++++++++++++++++++++
+ 1 file changed, 68 insertions(+)
 
->sun50i-a64-pinetab-1=2E0=2Edts
->sun50i-a64-pinetab-1=2E1=2Edts
->
->-dev is also a confusing name I think, as the board has been already
->shipped=2E
->
->Regards,
->Clement
->
->
->>
->> If we do so, how can we mark the new DT as "the user should use this
->> one"?
->>
->> --
->> You received this message because you are subscribed to the Google
->Groups "linux-sunxi" group=2E
->> To unsubscribe from this group and stop receiving emails from it,
->send an email to linux-sunxi+unsubscribe@googlegroups=2Ecom=2E
->> To view this discussion on the web, visit
->https://groups=2Egoogle=2Ecom/d/msgid/linux-sunxi/1666a61f6ea3e7d573795f9=
-000a0b096c7b7dee0=2Ecamel%40aosc=2Eio=2E
+diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
+index 7926c8b2ac5e..641da6c7bca0 100644
+--- a/arch/arm/boot/dts/sun8i-v3s.dtsi
++++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
+@@ -530,6 +530,31 @@ spi0: spi@1c68000 {
+ 			#size-cells = <0>;
+ 		};
+ 
++		csi0: camera@1cb0000 {
++			compatible = "allwinner,sun8i-v3s-csi";
++			reg = <0x01cb0000 0x1000>;
++			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_CSI>,
++				 <&ccu CLK_CSI1_SCLK>,
++				 <&ccu CLK_DRAM_CSI>;
++			clock-names = "bus", "mod", "ram";
++			resets = <&ccu RST_BUS_CSI>;
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@1 {
++					reg = <1>;
++
++					csi0_in_mipi_csi2: endpoint {
++						remote-endpoint = <&mipi_csi2_out_csi0>;
++					};
++				};
++			};
++		};
++
+ 		csi1: camera@1cb4000 {
+ 			compatible = "allwinner,sun8i-v3s-csi";
+ 			reg = <0x01cb4000 0x3000>;
+@@ -561,5 +586,48 @@ gic: interrupt-controller@1c81000 {
+ 			#interrupt-cells = <3>;
+ 			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+ 		};
++
++		mipi_csi2: csi@1cb1000 {
++			compatible = "allwinner,sun8i-v3s-mipi-csi2",
++				     "allwinner,sun6i-a31-mipi-csi2";
++			reg = <0x01cb1000 0x1000>;
++			interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&ccu CLK_BUS_CSI>,
++				 <&ccu CLK_CSI1_SCLK>;
++			clock-names = "bus", "mod";
++			resets = <&ccu RST_BUS_CSI>;
++			status = "disabled";
++
++			phys = <&dphy>;
++			phy-names = "dphy";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				mipi_csi2_in: port@0 {
++					reg = <0>;
++				};
++
++				mipi_csi2_out: port@1 {
++					reg = <1>;
++
++					mipi_csi2_out_csi0: endpoint {
++						remote-endpoint = <&csi0_in_mipi_csi2>;
++					};
++				};
++			};
++		};
++
++		dphy: d-phy@1cb2000 {
++			compatible = "allwinner,sun6i-a31-mipi-dphy";
++			reg = <0x01cb2000 0x1000>;
++			clocks = <&ccu CLK_BUS_CSI>,
++				 <&ccu CLK_MIPI_CSI>;
++			clock-names = "bus", "mod";
++			resets = <&ccu RST_BUS_CSI>;
++			status = "disabled";
++			#phy-cells = <0>;
++		};
+ 	};
+ };
+-- 
+2.29.2
+
