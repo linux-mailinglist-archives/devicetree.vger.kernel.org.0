@@ -2,107 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECC832C7472
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94D402C7469
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388533AbgK1Vtk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:40 -0500
-Received: from mail.kernel.org ([198.145.29.99]:50826 "EHLO mail.kernel.org"
+        id S2388549AbgK1Vtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:41 -0500
+Received: from foss.arm.com ([217.140.110.172]:37516 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387405AbgK1THB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 28 Nov 2020 14:07:01 -0500
-Received: from archlinux (cpc108967-cmbg20-2-0-cust86.5-4.cable.virginm.net [81.101.6.87])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3890E206DF;
-        Sat, 28 Nov 2020 18:59:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1606589985;
-        bh=+coEsG0GeAk2A2pOd+HdfZfhpjiLgHFoWZr3vNTLLJg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=QF0ckU0vWiGT04fLPTOPTFUzJpiPVgOf6Sf9F6jQllamFuM7hYQ69VrORoVaHT+OB
-         qu6BuPfhYvkQwlHjmfP5gSfXYS4xbEIUSEaKN6/c2x6Qbzi2v/ZbSmE5BGcf5qSdLQ
-         GE9CPV6OAGfDNNx/jvzlgeosWNbrmSoDBJ+D7V7g=
-Date:   Sat, 28 Nov 2020 18:59:40 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 6/9] ARM: dts: qcom-pma8084: Drop incorrect use of
- io-channel-ranges
-Message-ID: <20201128185940.401c0465@archlinux>
-In-Reply-To: <X8KXMrFg1g8OsjZj@builder.lan>
-References: <20201115192951.1073632-1-jic23@kernel.org>
-        <20201115192951.1073632-7-jic23@kernel.org>
-        <20201128153702.7d144f68@archlinux>
-        <X8KXMrFg1g8OsjZj@builder.lan>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S2387650AbgK1UI2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 15:08:28 -0500
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0408830E;
+        Sat, 28 Nov 2020 12:07:42 -0800 (PST)
+Received: from [192.168.2.22] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 91BD83F23F;
+        Sat, 28 Nov 2020 12:07:40 -0800 (PST)
+Subject: Re: [RESEND PATCH 18/19] arm64: allwinner: a100: Add MMC related
+ nodes
+To:     Frank Lee <frank@allwinnertech.com>, tiny.windzz@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+References: <cover.1604988979.git.frank@allwinnertech.com>
+ <e818582a2968571fd4b211392c411fe8d23d301a.1604988979.git.frank@allwinnertech.com>
+From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
+Organization: ARM Ltd.
+Message-ID: <7c698ee5-78c4-fce1-7262-911ca050960a@arm.com>
+Date:   Sat, 28 Nov 2020 20:07:25 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <e818582a2968571fd4b211392c411fe8d23d301a.1604988979.git.frank@allwinnertech.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 28 Nov 2020 12:30:10 -0600
-Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+On 10/11/2020 06:48, Frank Lee wrote:
 
-> On Sat 28 Nov 09:37 CST 2020, Jonathan Cameron wrote:
+Hi,
+
+> From: Yangtao Li <frank@allwinnertech.com>
 > 
-> > On Sun, 15 Nov 2020 19:29:48 +0000
-> > Jonathan Cameron <jic23@kernel.org> wrote:
-> >   
-> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > 
-> > > This property is used by io-channel consumers, not providers so should
-> > > not present here.  Note dt_schema will now detect this error as there
-> > > is a dependency between this property and io-channels.
-> > > 
-> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > Cc: Andy Gross <andy.gross@linaro.org>
-> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>  
-> > +CC Andy on an up to date email. Also added linux-arm-msm
-> > which I should have cc'd in the first place.
-> > 
-> > I've taken the yaml fix related to this so just a question of
-> > cleaning up this loose end in the dtsi
-> >   
+> The A100 has 3 MMC controllers, one of them being especially targeted to
+> eMMC. Let's add nodes on dts.
 > 
-> Thanks Jonathan, I missed your patches earlier. The yaml change looks
-> correct and I've merged this for 5.11.
+> Signed-off-by: Yangtao Li <frank@allwinnertech.com>
 
-No problem. I've added your tag to the yaml change.
+I don't have a datasheet nor a device for testing, but at least I could
+check the pins against the pinctrl driver, and compare the MMC nodes
+against the H6. Apart from the interrupts they are the same, so:
 
-Thanks,
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 
-Jonathan
+Cheers,
+Andre
 
-
+> ---
+>  .../arm64/boot/dts/allwinner/sun50i-a100.dtsi | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
 > 
-> Regards,
-> Bjorn
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> index c731bb9727c2..4adfc7d4854a 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi
+> @@ -169,12 +169,83 @@ pio: pinctrl@300b000 {
+>  			interrupt-controller;
+>  			#interrupt-cells = <3>;
+>  
+> +			mmc0_pins: mmc0-pins {
+> +				pins = "PF0", "PF1", "PF2", "PF3",
+> +				       "PF4", "PF5";
+> +				function = "mmc0";
+> +				drive-strength = <30>;
+> +				bias-pull-up;
+> +			};
+> +
+> +			/omit-if-no-ref/
+> +			mmc1_pins: mmc1-pins {
+> +				pins = "PG0", "PG1", "PG2", "PG3",
+> +				       "PG4", "PG5";
+> +				function = "mmc1";
+> +				drive-strength = <30>;
+> +				bias-pull-up;
+> +			};
+> +
+> +			mmc2_pins: mmc2-pins {
+> +				pins = "PC0", "PC1", "PC5", "PC6",
+> +				       "PC8", "PC9", "PC10", "PC11",
+> +				       "PC13", "PC14", "PC15", "PC16";
+> +				function = "mmc2";
+> +				drive-strength = <30>;
+> +				bias-pull-up;
+> +			};
+> +
+>  			uart0_pb_pins: uart0-pb-pins {
+>  				pins = "PB9", "PB10";
+>  				function = "uart0";
+>  			};
+>  		};
+>  
+> +		mmc0: mmc@4020000 {
+> +			compatible = "allwinner,sun50i-a100-mmc";
+> +			reg = <0x04020000 0x1000>;
+> +			clocks = <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
+> +			clock-names = "ahb", "mmc";
+> +			resets = <&ccu RST_BUS_MMC0>;
+> +			reset-names = "ahb";
+> +			interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&mmc0_pins>;
+> +			status = "disabled";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mmc1: mmc@4021000 {
+> +			compatible = "allwinner,sun50i-a100-mmc";
+> +			reg = <0x04021000 0x1000>;
+> +			clocks = <&ccu CLK_BUS_MMC1>, <&ccu CLK_MMC1>;
+> +			clock-names = "ahb", "mmc";
+> +			resets = <&ccu RST_BUS_MMC1>;
+> +			reset-names = "ahb";
+> +			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&mmc1_pins>;
+> +			status = "disabled";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+> +		mmc2: mmc@4022000 {
+> +			compatible = "allwinner,sun50i-a100-emmc";
+> +			reg = <0x04022000 0x1000>;
+> +			clocks = <&ccu CLK_BUS_MMC2>, <&ccu CLK_MMC2>;
+> +			clock-names = "ahb", "mmc";
+> +			resets = <&ccu RST_BUS_MMC2>;
+> +			reset-names = "ahb";
+> +			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&mmc2_pins>;
+> +			status = "disabled";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +
+>  		uart0: serial@5000000 {
+>  			compatible = "snps,dw-apb-uart";
+>  			reg = <0x05000000 0x400>;
 > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> > > ---
-> > >  arch/arm/boot/dts/qcom-pma8084.dtsi | 1 -
-> > >  1 file changed, 1 deletion(-)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/qcom-pma8084.dtsi b/arch/arm/boot/dts/qcom-pma8084.dtsi
-> > > index ea1ca166165c..e921c5e93a5d 100644
-> > > --- a/arch/arm/boot/dts/qcom-pma8084.dtsi
-> > > +++ b/arch/arm/boot/dts/qcom-pma8084.dtsi
-> > > @@ -68,7 +68,6 @@ pma8084_vadc: vadc@3100 {
-> > >  			#address-cells = <1>;
-> > >  			#size-cells = <0>;
-> > >  			#io-channel-cells = <1>;
-> > > -			io-channel-ranges;
-> > >  
-> > >  			die_temp {
-> > >  				reg = <VADC_DIE_TEMP>;  
-> >   
 
