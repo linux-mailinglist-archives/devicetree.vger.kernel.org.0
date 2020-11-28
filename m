@@ -2,93 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EDB2C6E9D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 04:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 466912C6E96
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 04:12:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730832AbgK1DS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 22:18:26 -0500
-Received: from mx07-002cda01.pphosted.com ([185.132.180.122]:44112 "EHLO
-        mx07-002cda01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730889AbgK0T4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 27 Nov 2020 14:56:08 -0500
-Received: from pps.filterd (m0135535.ppops.net [127.0.0.1])
-        by mx07-002cda01.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 0ARJaijD013911;
-        Fri, 27 Nov 2020 19:42:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=avl.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=28082020;
- bh=Ei0DtcfknakrZeJGnTpnw9OsPWEyKDEl9GawEswBnqM=;
- b=jWV3LyiK5AHeHqoBwJAzg+KB7JKQKEa4oxSCUeGPwml+Jl6DUCCVVnMY3kyI6DudLv00
- rm4mnILEG/YvVTSeq3xH0Y028esW+LO0Z4OyZmlhZd1589l3cRm3pFUwzx0/CwXCO7Og
- 5P0OqSWAQ5zdX8O5N778l8ZmgnPI1n8L2JmxnuCUxrwdEADEbWrvgSV6/e9h8PZQvv7B
- Ur0C9Go4dKoU7+7RXknI9CTmMduXpFw84ZKosPQXP7DIv4gNXljOWu/QxvhAMqXw+uV2
- AEfrxQpYabKE3ix8ydC2ZEKB27FI7dtwZJ8Id5HQP2y1AEqr/Cv6yDwLsemqE6Lgva7g Iw== 
-Received: from atgrzso2901.avl01.avlcorp.lan ([192.102.17.76])
-        by mx07-002cda01.pphosted.com with ESMTP id 34xv3g47ch-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 27 Nov 2020 19:42:41 +0000
-Received: from pps.filterd (atgrzso2901.avl01.avlcorp.lan [127.0.0.1])
-        by atgrzso2901.avl01.avlcorp.lan (8.16.0.42/8.16.0.42) with SMTP id 0ARJge8O030534;
-        Fri, 27 Nov 2020 20:42:40 +0100
-Received: from atgrzsw3765.avl01.avlcorp.lan ([10.13.100.86])
-        by atgrzso2901.avl01.avlcorp.lan with ESMTP id 34xufsb0d9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 27 Nov 2020 20:42:40 +0100
-Received: from atgrzsw3762.avl01.avlcorp.lan (10.37.149.15) by
- atgrzsw3765.avl01.avlcorp.lan (10.37.149.18) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2044.4; Fri, 27 Nov 2020 20:42:40 +0100
-Received: from ATGRZWN210214.avl01.avlcorp.lan (10.12.100.12) by
- atgrzsw3762.avl01.avlcorp.lan (10.37.149.15) with Microsoft SMTP Server id
- 15.1.2044.4 via Frontend Transport; Fri, 27 Nov 2020 20:42:40 +0100
-From:   <tomislav.denis@avl.com>
-To:     <jic23@kernel.org>
-CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <tomislav.denis@avl.com>
-Subject: [PATCH 0/2] Add support for ADS131E0x ADC family
-Date:   Fri, 27 Nov 2020 20:42:38 +0100
-Message-ID: <20201127194240.15060-1-tomislav.denis@avl.com>
-X-Mailer: git-send-email 2.10.1.windows.1
+        id S1726740AbgK1DK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 22:10:29 -0500
+Received: from mail.kernel.org ([198.145.29.99]:47182 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729330AbgK1DJo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 27 Nov 2020 22:09:44 -0500
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 46DA92222C;
+        Sat, 28 Nov 2020 03:09:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606532970;
+        bh=cPu4TwUzOowxSFqCt8qJamGozmiKO+tKdN2mzbyV+LI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hy8seXQ0Mub5kgP2OLAW57M/uz+XEMf3Fx9vJvt02cUHwsfJUJvdZOgDlXQ+xzLgS
+         GcGf6VuaMXGIzMT9Q0/eDWJutySru+E4wfhCwr04qMLtIZ2wMLLF7Mn7N9HEH5LyGZ
+         QLjXMqlFaimN52Fj+c8LW/v4oJle4L60JZ3fauyI=
+Received: by mail-lf1-f53.google.com with SMTP id d8so9667699lfa.1;
+        Fri, 27 Nov 2020 19:09:30 -0800 (PST)
+X-Gm-Message-State: AOAM531sinpSMfaIc6c0LoNyN7iMewIaggkr/DwzWbmj5Xy67zDWZlcV
+        loWlYKXzDb2kdnImQTFJ5QAD3WPlA8bboG+aPwY=
+X-Google-Smtp-Source: ABdhPJypr8decYKcsICWgxmhbIwa30irmA/OPToF/E4Bk2yfko/MnTbLMpqILVyYXkdeeihJVd+qBzGNS5gkL3FlbeA=
+X-Received: by 2002:a19:c354:: with SMTP id t81mr4864858lff.283.1606532968633;
+ Fri, 27 Nov 2020 19:09:28 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: f9e74532-fb7d-4806-8539-2b9574eafa9a
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-27_11:2020-11-26,2020-11-27 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=838
- malwarescore=0 spamscore=0 adultscore=0 phishscore=0 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011270116
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.312,18.0.737
- definitions=2020-11-27_11:2020-11-26,2020-11-27 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 bulkscore=0
- clxscore=1011 priorityscore=1501 adultscore=0 spamscore=0 suspectscore=0
- mlxlogscore=879 lowpriorityscore=0 phishscore=0 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2009150000 definitions=main-2011270116
+References: <20201122003841.1957034-1-icenowy@aosc.io> <20201122004011.1957325-1-icenowy@aosc.io>
+ <CAGb2v64f71Dv6cp4ObhMTyMELRNP6h524-cg4h07MNRhsz_MSA@mail.gmail.com> <4FF2364F-76AE-4181-88BB-02AB95424DD4@aosc.io>
+In-Reply-To: <4FF2364F-76AE-4181-88BB-02AB95424DD4@aosc.io>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Sat, 28 Nov 2020 11:09:17 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65JA803yHVNS5=6-EAUFSN-cqoCetkJJ3kCDE7e89Tijw@mail.gmail.com>
+Message-ID: <CAGb2v65JA803yHVNS5=6-EAUFSN-cqoCetkJJ3kCDE7e89Tijw@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH 2/3] ARM: dts: sun8i: v3s: enable EHCI/OHCI
+ for Lichee Pi Zero
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Chen-Yu Tsai <wens@kernel.org>, Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        inux-kernel@vger.kernel.org,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tomislav Denis <tomislav.denis@avl.com>
+On Mon, Nov 23, 2020 at 6:22 PM Icenowy Zheng <icenowy@aosc.io> wrote:
+>
+>
+>
+> =E4=BA=8E 2020=E5=B9=B411=E6=9C=8823=E6=97=A5 GMT+08:00 =E4=B8=8A=E5=8D=
+=8811:37:43, Chen-Yu Tsai <wens@csie.org> =E5=86=99=E5=88=B0:
+> >On Sun, Nov 22, 2020 at 8:40 AM Icenowy Zheng <icenowy@aosc.io> wrote:
+> >>
+> >> As the USB port on Lichee Pi Zero works in the OTG mode, enable the
+> >> EHCI/OHCI controllers for it.
+> >
+> >You should probably mention that the host controllers work better
+> >than the OTG controller in host mode. Otherwise this change lacks
+> >justification for enabling two extra hardware blocks.
+>
+> Our PHY driver do not sense whether ?HCI is enabled or not, so
+> for host to work it's necessary to be enabled, otherwise the phy
+> driver will just route USB to unenabled ?HCI and fail.
 
-This patchset adds support for Texas Instruments ADS131E0x
-analog-to-digital converters family.
+So, this was never working in Linux to begin with? You should mention that.
 
-Datasheet: https://www.ti.com/lit/ds/symlink/ads131e08.pdf
-
-Tomislav Denis (2):
-  iio: adc: Add driver for Texas Instruments ADS131E0x ADC family
-  bindings: iio: adc: Add documentation for ADS131E0x ADC driver
-
- .../devicetree/bindings/iio/adc/ti,ads131e08.yaml  | 145 ++++
- MAINTAINERS                                        |   7 +
- drivers/iio/adc/Kconfig                            |  12 +
- drivers/iio/adc/Makefile                           |   1 +
- drivers/iio/adc/ti-ads131e08.c                     | 826 +++++++++++++++++++++
- 5 files changed, 991 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads131e08.yaml
- create mode 100644 drivers/iio/adc/ti-ads131e08.c
-
--- 
-2.7.4
-
+Maybe a fixes tag is in order then.
