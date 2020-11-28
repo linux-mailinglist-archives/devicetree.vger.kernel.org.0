@@ -2,146 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07EA62C74D7
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C4BF2C74D0
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:23:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733194AbgK1Vth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 16:49:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42280 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731892AbgK1S4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 13:56:49 -0500
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2829C02B8DC
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 23:41:17 -0800 (PST)
-Received: by mail-pg1-x543.google.com with SMTP id l17so6073678pgk.1
-        for <devicetree@vger.kernel.org>; Fri, 27 Nov 2020 23:41:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fiEKNoVjJnJUXQv73omVO0kLfIW0bUY/61VADsZy/nI=;
-        b=eCQ0W7dX01bjSdwiLwo7VSutmcdYA/WYg3R59Lfh59MLvgAH/uwC57Mo8greSAjQNJ
-         UAoWAmpfzgaj1GGBVwT7h4SWMMCecfYjtSOEcQJIKzsh5zh1LM3JeddqT4hdLz1zysPg
-         Idi5pK98gJPgMM5coEZUhDa3SeGLuCZrQTblcgWjDRIQnWZ9kvHL4VU+YP0IjoeiZ9+E
-         B+UCkS0JZsaaQbvM9jS9hsbfFj9ePjdry1IJZR6fLR73itjC4uzvOzOiIygHWrzoIxtx
-         xFP4hdNY7szqbxnTbgL2AQxjI5Gw347yRVhcfQk4bN9iboCZtaZA0GixTmS9qFZCUV8n
-         xqxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fiEKNoVjJnJUXQv73omVO0kLfIW0bUY/61VADsZy/nI=;
-        b=U0b8c5v0O2vZ2VTVjgMjV7N2TNPoxccjaxCcoh3X0ezdt2i1dZ8gJI5h236JDQP5MW
-         vsrXRyvdkVKMczFAPllJfXudJUNooWsHrkoJxGHp0jWczsHqZJRBfjl0IIdGbSzif251
-         44TgQ6DMIXCnLynKQ7B+uv0yppohEh4MJCo+cGkKyjJx5npMaL/aZ+3ZOnNmNRwfMTDM
-         CdIlntGrpigKIn0C8IVqLUSqcRnzvTnThpi77bnCHIo+vcjrZkHP/lT07mUpLIVPbC38
-         j3NE8NjlyPg6GwTLcIJDPrk69zp9wT+hDq7lX+5VJ/yEbiZ1Io+lo6xcNj8HU1UIvjdq
-         hohg==
-X-Gm-Message-State: AOAM530UO0WkH7UPrWBtNrFRw3/UZRro2tNfoac4WJ5rMZ2JhI0JrAyX
-        qOBMyWoeLw8XIMHUVxNNv98p
-X-Google-Smtp-Source: ABdhPJxqoZkRUVBdrARTuHH8eLsvzZgH4wa3wX3gt6FUglxdnv4nZr8gqiEHGuGnl5adYem9WJFv+Q==
-X-Received: by 2002:a17:90b:438a:: with SMTP id in10mr14303785pjb.27.1606549277113;
-        Fri, 27 Nov 2020 23:41:17 -0800 (PST)
-Received: from thinkpad ([2409:4072:15:c612:48ab:f1cc:6b16:2820])
-        by smtp.gmail.com with ESMTPSA id e23sm9700492pfd.64.2020.11.27.23.41.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2020 23:41:16 -0800 (PST)
-Date:   Sat, 28 Nov 2020 13:11:08 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 17/18] arm: dts: owl-s500-roseapplepi: Add I2C pinctrl
- configuration
-Message-ID: <20201128074108.GD3077@thinkpad>
-References: <cover.1605823502.git.cristian.ciocaltea@gmail.com>
- <f41e33b12d77e75246fa94ed6acc57fffe84aaa4.1605823502.git.cristian.ciocaltea@gmail.com>
+        id S2388350AbgK1Vtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 16:49:36 -0500
+Received: from mail.kernel.org ([198.145.29.99]:48484 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731614AbgK1Syg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 13:54:36 -0500
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1056421D7F;
+        Sat, 28 Nov 2020 09:58:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1606557535;
+        bh=IV7SKkTEc9uVMaziNS3MY2bbX2PI+wASsFkaPqx7XFY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YYiDQv9kz4m3Kpob/hfPm4MKiHYe/aOK4W63bLieTTH4rlm+wPA0MmEWZXz33kBxq
+         krhPvcxzeJoMQ6ewyc0CnEu9w4eUaiEiXt3o44rZPqjjW4GpmVl4zICkvuLvn7di6y
+         U32a3mZA5cqfmCsJTIfURM7rqg4Pyh3eyaqf6+UI=
+Received: by mail-ot1-f49.google.com with SMTP id h19so6817308otr.1;
+        Sat, 28 Nov 2020 01:58:55 -0800 (PST)
+X-Gm-Message-State: AOAM531md5B8MYK6aAaumsYtjyvHRuN4anFakQFqFjNQOS8bGz50lDtH
+        pDF8lwbDBNLBg5mOozXEBK7MoD8/GO75DbbjpF8=
+X-Google-Smtp-Source: ABdhPJzwDIV2KH6ZUTuUCcaFbI59yHKYPRCBFYR0DnN7sy7J13urjT30Lbs97ypWwEBR/lTvSTpao8LQsEN4NpyzRk0=
+X-Received: by 2002:a9d:be1:: with SMTP id 88mr9531159oth.210.1606557534394;
+ Sat, 28 Nov 2020 01:58:54 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f41e33b12d77e75246fa94ed6acc57fffe84aaa4.1605823502.git.cristian.ciocaltea@gmail.com>
+References: <20201016090833.1892-1-thunder.leizhen@huawei.com>
+ <20201016090833.1892-2-thunder.leizhen@huawei.com> <20201128045328.2411772-1-f.fainelli@gmail.com>
+In-Reply-To: <20201128045328.2411772-1-f.fainelli@gmail.com>
+From:   Arnd Bergmann <arnd@kernel.org>
+Date:   Sat, 28 Nov 2020 10:58:38 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com>
+Message-ID: <CAK8P3a1_5RgcPz+bgo1bbUBk8NTJd=1-Y5-=CsQYkFgLfTE3_A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: clear the warnings caused by
+ empty dma-ranges
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Nov 20, 2020 at 01:56:11AM +0200, Cristian Ciocaltea wrote:
-> Add pinctrl definitions for the I2C controllers used in RoseapplePi SBC.
-> For the moment enable only I2C0, which is used by the ATC2603C PMIC.
-> 
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+On Sat, Nov 28, 2020 at 5:53 AM Florian Fainelli <f.fainelli@gmail.com> wrote:
+>
+> On Fri, 16 Oct 2020 17:08:32 +0800, Zhen Lei <thunder.leizhen@huawei.com> wrote:
+> > The scripts/dtc/checks.c requires that the node have empty "dma-ranges"
+> > property must have the same "#address-cells" and "#size-cells" values as
+> > the parent node. Otherwise, the following warnings is reported:
+> >
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
+> > (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
+> > its #address-cells (1) differs from / (2)
+> > arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi:7.3-14: Warning \
+> > (dma_ranges_format): /usb:dma-ranges: empty "dma-ranges" property but \
+> > its #size-cells (1) differs from / (2)
+> >
+> > Arnd Bergmann figured out why it's necessary:
+> > Also note that the #address-cells=<1> means that any device under
+> > this bus is assumed to only support 32-bit addressing, and DMA will
+> > have to go through a slow swiotlb in the absence of an IOMMU.
+> >
+> > Suggested-by: Arnd Bergmann <arnd@arndb.de>
+> > Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> > ---
+>
+> Applied to devicetree-arm64/next, thanks!
 
-Earlier we used to add "_default" suffix for the pin groups to
-differentiate between active and sleep states. But I guess we can just
-keep the suffix away until we hit usecase.
+The notification may have gone missing, but I had merged it into v5.10-fixes
+already, and as of today, it's in mainline, so you can drop it from your
+next branch, or just leave it in if you want to avoid taking things out of
+your tree.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
-> ---
->  arch/arm/boot/dts/owl-s500-roseapplepi.dts | 44 ++++++++++++++++++++++
->  1 file changed, 44 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/owl-s500-roseapplepi.dts b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> index fe9ae3619422..ff91561ca99c 100644
-> --- a/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> +++ b/arch/arm/boot/dts/owl-s500-roseapplepi.dts
-> @@ -37,7 +37,51 @@ sd_vcc: sd-vcc {
->  	};
->  };
->  
-> +&i2c0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c0_pins>;
-> +};
-> +
-> +&i2c1 {
-> +	status = "disabled";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c1_pins>;
-> +};
-> +
-> +&i2c2 {
-> +	status = "disabled";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&i2c2_pins>;
-> +};
-> +
->  &pinctrl {
-> +	i2c0_pins: i2c0-pins {
-> +		pinmux {
-> +			groups = "i2c0_mfp";
-> +			function = "i2c0";
-> +		};
-> +
-> +		pinconf {
-> +			pins = "i2c0_sclk", "i2c0_sdata";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	i2c1_pins: i2c1-pins {
-> +		pinconf {
-> +			pins = "i2c1_sclk", "i2c1_sdata";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
-> +	i2c2_pins: i2c2-pins {
-> +		pinconf {
-> +			pins = "i2c2_sclk", "i2c2_sdata";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +
->  	mmc0_pins: mmc0-pins {
->  		pinmux {
->  			groups = "sd0_d0_mfp", "sd0_d1_mfp", "sd0_d2_d3_mfp",
-> -- 
-> 2.29.2
-> 
+      Arnd
