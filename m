@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5DE82C6E3D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 02:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD26D2C6E43
+	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 02:48:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730218AbgK1Blv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 27 Nov 2020 20:41:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
+        id S1731143AbgK1Bpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 27 Nov 2020 20:45:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730112AbgK1BlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 20:41:09 -0500
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3785DC0613D1;
-        Fri, 27 Nov 2020 17:41:09 -0800 (PST)
-Received: by mail-ed1-x542.google.com with SMTP id y4so7462774edy.5;
-        Fri, 27 Nov 2020 17:41:09 -0800 (PST)
+        with ESMTP id S1730624AbgK1BpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 27 Nov 2020 20:45:08 -0500
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67308C0613D1;
+        Fri, 27 Nov 2020 17:45:08 -0800 (PST)
+Received: by mail-ej1-x641.google.com with SMTP id bo9so9948455ejb.13;
+        Fri, 27 Nov 2020 17:45:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=qGD9xnb8v5qrR9LK2TyNHXn3ImQC3Ik9wtWDyCz2wbo=;
-        b=mpOItXd5ChwZlHQFKAnJ/MdmVNOgemxhczQHSgaVDt82Qi35d5fsH3hnnMrDrMrLHF
-         Ud6eS8cYtQKiZYk/WiDXwd7JLfbowV9lq5YCew0cwaHt2J7CLXxkxqXmK5U72dxwqQgK
-         2NjScAj6C5DTtcyCgkuWWn54et5X6YQhrpssHvL4FNAd+Qh0fXcpsx/5pHzBpShJKbEL
-         XSQR7T/OLmG1IV3LKuZrLTTvzB5pE/1pnRd9BV8fT9MsyUlYUE29RwLhmIyXLxQAmBAG
-         Bpbc68sgPhmeS+UbnB6xxpphf4ZkrAobV0B+v6y/LWi+6SX6SoF70TxTre/arkcDCLns
-         k26g==
+        bh=lROR2DvaL+uACSo01yoS7KBC9QA7A+qw88WQmIRZXpk=;
+        b=L2JjPH0xqdB12f7NKoW6nxbPCOEADrveoGDG4Sc4cqdeScYJ+O0XFldpBH81+wRxCG
+         00TtTTEJBUpSxnplcTnh+zgjBVfwWaRBqE6sT9KUUnjuCPSqwFhmTGU1eSwTwAADhnuW
+         8UnFbevQ5uVh4PhCBln4Dt/DNJWqLAAN0Pv75e58DWEoQ5WyIBDw+dcBNxOOAv+bCCbx
+         gUguYWcGgW3r+4ZAVF0dZo79JeMZoKgAqdjdIDYAjFLhGCYNPHSchEGpLFXmNCBTWFlz
+         lQRS9joAox+RujdBxcYa7MC04gOPP0JiTzNLob53OMQciyI2JNfnYUxLpm1f1DAB5+0C
+         ccLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qGD9xnb8v5qrR9LK2TyNHXn3ImQC3Ik9wtWDyCz2wbo=;
-        b=pCzTBgyrapOvg2YOGa4N/CnGrddZEE/E/lnzABvLCEU1d57TDHzrusjIj3jioEuPFz
-         yS/WQnn0ZSiw1L1pVkYcdXdo53Rmwxy++CmtfxxmiRoC2k/rgk03LrNuI2tQxQRpa88N
-         IgAYZu4s2t+RhDESvVf0eORk07E4Fjo9b4BYeenzd/VnfAZp8LBDmJ8pQMgZlVhd7Uuf
-         nKa//THLCQheqfbtP49M8fLskxWt3DsMNVf64tiVdEZHYbR525bm+MIMF20ZiwYCxD/+
-         ZTNbxe8lIUW112a0traJvxDnr+eIuuD1QB6oDKkPC8TXrEfQULNOsed5wqJ6/D5kpDYS
-         YH1g==
-X-Gm-Message-State: AOAM533CbfnKWsybyCxUXUNJKREedl6DZI0DAuWwugsDbmnhOx6fNrFW
-        nnloS6z417GsDAs3HoQ/hV60dHIGTCo=
-X-Google-Smtp-Source: ABdhPJzeywY9JhPURSMrDkD3ZdZTJ+PY3XfIY+cZjq7hNXfuwOd1dyTDG+dPxihAADAgja2EPUuueg==
-X-Received: by 2002:a50:d5dd:: with SMTP id g29mr11210380edj.344.1606527667876;
-        Fri, 27 Nov 2020 17:41:07 -0800 (PST)
+        bh=lROR2DvaL+uACSo01yoS7KBC9QA7A+qw88WQmIRZXpk=;
+        b=JBYAaGz9abFXIw9q51MzpyvKcvFiFtjE9IIChe8vS9qKY/g6LPmGDJYZPln0Rw1sYj
+         mnCxbU9yXmGfZSkFZDWghTFvenWLJAxquAYTTZHMybni9BNXv/o2HoC9bp+uUi4DrOPc
+         GgRXPxXYKzgYZAGZvEFnbz3BaQ9qEnEv0rCmjU1XumfqgN/X/EiRRirMjCURLQXHwtiE
+         FagioPsHaYmvq0rEJJyZ5Wmv9UmSB5CGBu48dxvlKwbksB7AxjQJEBESSSQqvsN6oDKa
+         W5lUu4xRgYC5HUsU7ZDnxot5LIiH0S1EtU4TeN4//+/O0fVjv81eMzhkLarESeBX1+53
+         ywWQ==
+X-Gm-Message-State: AOAM532aypPgbS25zF/sKFWktPhJqtwTDeIjoZoQ+V2IIqNoCMHeBk5M
+        p7eUyOMjpfVCk3MzXauoTfJ2O8gc0FA=
+X-Google-Smtp-Source: ABdhPJzf49x+RwRdvlfj/gdbEdogRbhL6KJFlEdE3iFTu6ug0mokFbQAtWcXdibYBuPfVDdoH66hiw==
+X-Received: by 2002:a17:906:3ecf:: with SMTP id d15mr10733733ejj.297.1606527907150;
+        Fri, 27 Nov 2020 17:45:07 -0800 (PST)
 Received: from skbuf ([188.25.2.120])
-        by smtp.gmail.com with ESMTPSA id y14sm5729154edi.16.2020.11.27.17.41.06
+        by smtp.gmail.com with ESMTPSA id s15sm5902175edj.75.2020.11.27.17.45.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 27 Nov 2020 17:41:07 -0800 (PST)
-Date:   Sat, 28 Nov 2020 03:41:06 +0200
+        Fri, 27 Nov 2020 17:45:06 -0800 (PST)
+Date:   Sat, 28 Nov 2020 03:45:05 +0200
 From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
         George McCollister <george.mccollister@gmail.com>,
         Vivien Didelot <vivien.didelot@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
@@ -58,8 +58,9 @@ Cc:     Jakub Kicinski <kuba@kernel.org>,
         "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>
 Subject: Re: [PATCH net-next v2 2/3] net: dsa: add Arrow SpeedChips XRS700x
  driver
-Message-ID: <20201128014106.lcqi6btkudbnj3mc@skbuf>
-References: <20201126220500.av3clcxbbvogvde5@skbuf>
+Message-ID: <20201128014505.hl5erlwnatej2io3@skbuf>
+References: <CAFSKS=Ok1FZhKqourHh-ikaia6eNWtXh6VBOhOypsEJAhwu06g@mail.gmail.com>
+ <20201126220500.av3clcxbbvogvde5@skbuf>
  <20201127103503.5cda7f24@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
  <CAFSKS=MAdnR2jzmkQfTnSQZ7GY5x5KJE=oeqPCQdbZdf5n=4ZQ@mail.gmail.com>
  <20201127195057.ac56bimc6z3kpygs@skbuf>
@@ -67,124 +68,52 @@ References: <20201126220500.av3clcxbbvogvde5@skbuf>
  <20201127133753.4cf108cb@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
  <20201127233048.GB2073444@lunn.ch>
  <20201127233916.bmhvcep6sjs5so2e@skbuf>
- <20201128000234.hwd5zo2d4giiikjc@skbuf>
- <20201128003912.GA2191767@lunn.ch>
+ <20201127155649.5ce7ed82@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201128003912.GA2191767@lunn.ch>
+In-Reply-To: <20201127155649.5ce7ed82@kicinski-fedora-pc1c0hjn.DHCP.thefacebook.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Nov 28, 2020 at 01:39:12AM +0100, Andrew Lunn wrote:
-> > This means, as far as I understand, 2 things:
-> > 1. call_netdevice_notifiers_info doesn't help, since our problem is the
-> >    same
-> > 2. I think that holding the RTNL should also be a valid way to iterate
-> >    through the net devices in the current netns, and doing just that
-> >    could be the simplest way out. It certainly worked when I tried it.
-> >    But those could also be famous last words...
+On Fri, Nov 27, 2020 at 03:56:49PM -0800, Jakub Kicinski wrote:
+> What is it with my email today, didn't get this one again.
 >
-> DSA makes the assumption it can block in a notifier change event.  For
-> example, NETDEV_CHANGEUPPER calls dsa_slave_changeupper() which calls
-> into the driver. We have not seen any warnings about sleeping while
-> atomic. So maybe see how NETDEV_CHANGEUPPER is issued.
+> On Sat, 28 Nov 2020 01:39:16 +0200 Vladimir Oltean wrote:
+> > On Sat, Nov 28, 2020 at 12:30:48AM +0100, Andrew Lunn wrote:
+> > > > If there is a better alternative I'm all ears but having /proc and
+> > > > ifconfig return zeros for error counts while ip link doesn't will lead
+> > > > to too much confusion IMO. While delayed update of stats is a fact of
+> > > > life for _years_ now (hence it was backed into the ethtool -C API).
+> > >
+> > > How about dev_seq_start() issues a netdev notifier chain event, asking
+> > > devices which care to update their cached rtnl_link_stats64 counters.
+> > > They can decide if their cache is too old, and do a blocking read for
+> > > new values.
+>
+> Just to avoid breaking the suggestion that seqfiles don't sleep after
+> .start? Hm. I thought BPF slept (or did cond_reshed()) in the middle of
+> seq iteration. We should double check that seqfiles really can't sleep.
 
-Yes, this is in line with what I said. Even though we are pure readers,
-it is still sufficient (albeit not necessary) to hold rtnl in order to
-safely iterate through net->dev_base_head (or in this case, through its
-hashmaps per name and per ifindex). However, rtnl is the only one that
-offers sleepable context, since it is the only one that is a mutex.
+I don't think that seqfiles must not sleep after start(), at least
+that's my interpretation and confirmed by some tests. I added a might_sleep()
+in quite a few places and there is no issue now that we don't take the
+RCU read-side lock any longer. Have you seen my previous reply to
+George:
 
-So the patch could simply look like this, no notifiers needed:
-
------------------------------[cut here]-----------------------------
-diff --git a/net/core/net-procfs.c b/net/core/net-procfs.c
-index c714e6a9dad4..1429e8c066d8 100644
---- a/net/core/net-procfs.c
-+++ b/net/core/net-procfs.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- #include <linux/netdevice.h>
- #include <linux/proc_fs.h>
-+#include <linux/rtnetlink.h>
- #include <linux/seq_file.h>
- #include <net/wext.h>
- 
-@@ -21,7 +22,7 @@ static inline struct net_device *dev_from_same_bucket(struct seq_file *seq, loff
- 	unsigned int count = 0, offset = get_offset(*pos);
- 
- 	h = &net->dev_index_head[get_bucket(*pos)];
--	hlist_for_each_entry_rcu(dev, h, index_hlist) {
-+	hlist_for_each_entry(dev, h, index_hlist) {
- 		if (++count == offset)
- 			return dev;
- 	}
-@@ -51,9 +52,9 @@ static inline struct net_device *dev_from_bucket(struct seq_file *seq, loff_t *p
-  *	in detail.
-  */
- static void *dev_seq_start(struct seq_file *seq, loff_t *pos)
--	__acquires(RCU)
-+	__acquires(rtnl_mutex)
- {
--	rcu_read_lock();
-+	rtnl_lock();
- 	if (!*pos)
- 		return SEQ_START_TOKEN;
- 
-@@ -70,9 +71,9 @@ static void *dev_seq_next(struct seq_file *seq, void *v, loff_t *pos)
- }
- 
- static void dev_seq_stop(struct seq_file *seq, void *v)
--	__releases(RCU)
-+	__releases(rtnl_mutex)
- {
--	rcu_read_unlock();
-+	rtnl_unlock();
- }
- 
- static void dev_seq_printf_stats(struct seq_file *seq, struct net_device *dev)
------------------------------[cut here]-----------------------------
-
-The advantage is that it can now sleep.
-
-The disadvantage is that now it can sleep. It is a writer, so other
-writers can block it out, and it can block out other writers. More
-contention. Speaking of, here's an interesting patch from someone who
-seems to enjoy running ifconfig:
-
-commit f04565ddf52e401880f8ba51de0dff8ba51c99fd
-Author: Mihai Maruseac <mihai.maruseac@gmail.com>
-Date:   Thu Oct 20 20:45:10 2011 +0000
-
-    dev: use name hash for dev_seq_ops
-
-    Instead of using the dev->next chain and trying to resync at each call to
-    dev_seq_start, use the name hash, keeping the bucket and the offset in
-    seq->private field.
-
-    Tests revealed the following results for ifconfig > /dev/null
-            * 1000 interfaces:
-                    * 0.114s without patch
-                    * 0.089s with patch
-            * 3000 interfaces:
-                    * 0.489s without patch
-                    * 0.110s with patch
-            * 5000 interfaces:
-                    * 1.363s without patch
-                    * 0.250s with patch
-            * 128000 interfaces (other setup):
-                    * ~100s without patch
-                    * ~30s with patch
-
-    Signed-off-by: Mihai Maruseac <mmaruseac@ixiacom.com>
-    Signed-off-by: Eric Dumazet <eric.dumazet@gmail.com>
-    Signed-off-by: David S. Miller <davem@davemloft.net>
-
-Jakub, I would like to hear more from you. I would still like to try
-this patch out. You clearly have a lot more background with the code.
-You said in an earlier reply that you should have also documented that
-ndo_get_stats64 is one of the few NDOs that does not take the RTNL. Is
-there a particular reason for that being so, and a reason why it can't
-change?
+| > I suppose it doesn't really matter though since the documentation says
+| > we can't sleep.
+|
+| You're talking, I suppose, about these words of wisdom in
+| Documentation/filesystems/seq_file.rst?
+|
+| | However, the seq_file code (by design) will not sleep between the calls
+| | to start() and stop(), so holding a lock during that time is a
+| | reasonable thing to do. The seq_file code will also avoid taking any
+| | other locks while the iterator is active.
+|
+| It _doesn't_ say that you can't sleep between start() and stop(), right?
+| It just says that if you want to keep the seq_file iterator atomic, the
+| seq_file code is not sabotaging you by sleeping. But you still could
+| sleep if you wanted to.
