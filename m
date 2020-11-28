@@ -2,126 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75AD92C7680
-	for <lists+devicetree@lfdr.de>; Sat, 28 Nov 2020 23:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C5FC2C76AA
+	for <lists+devicetree@lfdr.de>; Sun, 29 Nov 2020 00:59:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732146AbgK1WzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 28 Nov 2020 17:55:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51250 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727070AbgK1WzW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 28 Nov 2020 17:55:22 -0500
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2E0C0617A7;
-        Sat, 28 Nov 2020 14:54:41 -0800 (PST)
-Received: by mail-wr1-x443.google.com with SMTP id e7so9790792wrv.6;
-        Sat, 28 Nov 2020 14:54:41 -0800 (PST)
+        id S1726280AbgK1X70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 28 Nov 2020 18:59:26 -0500
+Received: from mail-bn7nam10on2041.outbound.protection.outlook.com ([40.107.92.41]:12256
+        "EHLO NAM10-BN7-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725839AbgK1X7Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 28 Nov 2020 18:59:25 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DdmnaxheaPO85dvdOv+61SYM3C94SNTPxbddV6QB8C+VmSqkf5stQi3uHzijOZ594hYrkJq8VEc93GhniZqgop7ggLCO7QBJWVAAE7YGjd6frgFVGqBj6YWNe2qdKpQE/J4AjsYUkmH6J0gNYf/jw0Mpz9hXjR4RSjjMoEnjpplmPqsr/Uu1784meJaExHf2CCOLYNsikg75kyjzq4oGtG4YQkVdJt2evYG2AccmLiPrJvMvrbLPqt8McA344IvQ3JJ1+yo2yoq7dmJm3HdGNK1mgr4fecQLxjr2t1bZWc5lVnYqYYvDZRzF2g4nqj4VFP9mvgd2HLq0y9r6nKY2Yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YYre+S/xmjNEQDh5NviP1JHeBjetdhNSAxTUo6dlpXc=;
+ b=Dm7pDX7APgvI64lR4KbxN8UnvoVoqnE4VJ3X+WhcimzUnns4/se/6DNzRoIJO+bxG5kgtS5ZC3E7L6vOLq/jJ8ndOjvhx1yj4p4HfVyhSakgtK2a9Z+NPABYHQc84vFBiKYfAWoQd517jRhsxI/kg4d6Ub6GmN3b8kIUslzSanWq+8QIElGLgjIMWjePfWejm87i2yDtGAya4gQti4LbQNIsYS0p4k/Z3xrUZ5ypV/qEJbmgE2EMO3ae1/ozeCRAcVbIEMBXrq+w232J9vBQG3gTIuBkvJM4/xChllAumBI2mUQnoCXugYbhUGUk16AunZKY00ckmRztPh/q7QN0TQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IRkMx7ynKm/yM0ch5pBsS12yNk9GRJdtum4GLiNHEJc=;
-        b=qm5mslSvMdUBojxedLrGXh1DWlvwNDRbalZDfnEgF6qgnev418PVBXJmKFVDXFPxqx
-         IPv3ddQ7g7/QV8tLpBVgV7O0f0IQlSWOcG9upCOk+PiOGM9L5azm6oMozbEgvwwdHk5F
-         WHE22H9/61e/g9JxY6dfUMpQkt3Yvi722RhMJtNwMTxe8m/zAVj/Z75gkeGIK7oUgsUu
-         UxmhdBkBRC9CFrivux/3tc3V8jy7FFwQaRjUmUbOuYYBeeWVYLK56PAhCPnFsGvLPvCL
-         T3I4FTaCt7OAp/UcS5qhqnPhgZpzVTyMy6pKSLvP332u3ms8jxJbR/C3q8zdQgLYv7rt
-         Cx8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IRkMx7ynKm/yM0ch5pBsS12yNk9GRJdtum4GLiNHEJc=;
-        b=DIWE7lEPPWx3cxr2oaXT4GwEdPQuRAuNRbdLwxxO1Xxw+yS0Pvi8odGuBmsARjj2YE
-         gqv4FUCSjDwai9mzuV2N/urp1mYWlSaC1UibQ7kb7mVDbAgSXHAeAIEXwO9oznQGBFts
-         mr3vPjmzmjoxlzuymAfv/9J4qPLByu2wgt2RBzq5F86D8v2G+JAcDbYryLXexs/QdaUH
-         fH3K1jaQkNXGJRoBM5zkauj13/L2uiCTgVoFqCliQLtNivrX3hrS+1as/UoiWd2Z0qU9
-         bSzJsSJLPdMb5Ef7LimcLdBm8gDmcLdh0+C0eM3AY1EuZoyKFLTozbNNJbloNXE6h7oj
-         SYlA==
-X-Gm-Message-State: AOAM5319QqZwX+j3JGHisiM24JO/HSxVbPAS/Rn4AalRpCJsgQQ6Bl0U
-        fe9/G9DpKB0T0O4czjXSMnk=
-X-Google-Smtp-Source: ABdhPJw/PY5xI6P8Zh3sO6jtAXPj7BSsmSNtXjs694JDjXR4kYu9nvTS8Z9JkGtgax+0rK4NWt8pjg==
-X-Received: by 2002:adf:b64f:: with SMTP id i15mr20021633wre.125.1606604080437;
-        Sat, 28 Nov 2020 14:54:40 -0800 (PST)
-Received: from adgra-XPS-15-9570.home (lfbn-idf1-1-1007-144.w86-238.abo.wanadoo.fr. [86.238.83.144])
-        by smtp.gmail.com with ESMTPSA id d13sm24231506wrb.39.2020.11.28.14.54.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Nov 2020 14:54:40 -0800 (PST)
-From:   Adrien Grassein <adrien.grassein@gmail.com>
-Cc:     fugang.duan@nxp.com, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Adrien Grassein <adrien.grassein@gmail.com>
-Subject: [PATCH 3/3] net: fsl: fec: add imx8mq support.
-Date:   Sat, 28 Nov 2020 23:54:25 +0100
-Message-Id: <20201128225425.19300-3-adrien.grassein@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20201128225425.19300-1-adrien.grassein@gmail.com>
-References: <20201128225425.19300-1-adrien.grassein@gmail.com>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YYre+S/xmjNEQDh5NviP1JHeBjetdhNSAxTUo6dlpXc=;
+ b=OlsztzzK8al5me/pcSZ9hmbeLx2RKMBsapUHTeSjExRNKJt5uHFXj+U0DNZW5Kpa0Z7onI32jksukuoO+AZiN9DtU9yA2LYOzSdwKzZ0FhnfzAnxcHr6UV21HYG0IW2MT9tiECRQGJ9Cp1BWN87njcBWioOLTxI+p7smFrtT3xE=
+Received: from MN2PR03CA0030.namprd03.prod.outlook.com (2603:10b6:208:23a::35)
+ by BYAPR02MB6006.namprd02.prod.outlook.com (2603:10b6:a03:120::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.25; Sat, 28 Nov
+ 2020 23:58:32 +0000
+Received: from BL2NAM02FT044.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:208:23a:cafe::5d) by MN2PR03CA0030.outlook.office365.com
+ (2603:10b6:208:23a::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3611.20 via Frontend
+ Transport; Sat, 28 Nov 2020 23:58:32 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
+ header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ BL2NAM02FT044.mail.protection.outlook.com (10.152.77.35) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.3611.27 via Frontend Transport; Sat, 28 Nov 2020 23:58:32 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1913.5; Sat, 28 Nov 2020 15:58:29 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.1913.5 via Frontend Transport; Sat, 28 Nov 2020 15:58:29 -0800
+Envelope-to: michal.simek@xilinx.com,
+ lizhih@xilinx.com,
+ maxz@xilinx.com,
+ sonals@xilinx.com,
+ stefanos@xilinx.com,
+ devicetree@vger.kernel.org,
+ linux-fpga@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Received: from [172.19.72.212] (port=45038 helo=xsj-xw9400.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <sonal.santan@xilinx.com>)
+        id 1kjA6n-0003Rn-G4; Sat, 28 Nov 2020 15:58:29 -0800
+Received: by xsj-xw9400.xilinx.com (Postfix, from userid 6354)
+        id 2517760010C; Sat, 28 Nov 2020 15:57:35 -0800 (PST)
+From:   Sonal Santan <sonal.santan@xilinx.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     Sonal Santan <sonals@xilinx.com>, <linux-fpga@vger.kernel.org>,
+        <maxz@xilinx.com>, <lizhih@xilinx.com>, <michal.simek@xilinx.com>,
+        <stefanos@xilinx.com>, <devicetree@vger.kernel.org>
+Subject: [PATCH Xilinx Alveo libfdt prep 0/1] Expose libfdt for use by Alveo/XRT
+Date:   Sat, 28 Nov 2020 15:56:58 -0800
+Message-ID: <20201128235659.24679-1-sonals@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c6bb234a-c002-4c84-19c6-08d893f982da
+X-MS-TrafficTypeDiagnostic: BYAPR02MB6006:
+X-Microsoft-Antispam-PRVS: <BYAPR02MB6006647107A56F16B48C6793BBF70@BYAPR02MB6006.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: DUZRWGJdWDjI3jAt9nNBIzn4fHuzS6vQq8EsbnPXDoDoWkXSfKS2JEkxJz0q9GQUQel9xmZR6YZmmIWRLxP4xey0Rqv1UbuxwQmsRo/o/uYANnN6nPOdwTyEp/KXqu+p1MeEchLs8iGvqvMAD15EJ+35UbCjCPy9uSDJVUe8ME5vTvb/Qzr2CKl9wx2IbfxMi7vFNOgXBb6HONh6yZQ8O7M/nuHH1l+STUiG33Vn90SmxiawcrhVoFEpbQbQjtP9owzNr45bljEVoykIaCp8Mdpuv5EXIDdGArfJ8HDuuJxbt9A7D813EBi/qid5nkaUKh7p+DzmQJnOTIUVBbafyU/xyQOgvjXJiK7AXAC4HzZMLfDe5kwBfxRI286bOThraQ+8+JjCnpSXkicpZvpxWA==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(4636009)(376002)(346002)(396003)(136003)(39850400004)(46966005)(336012)(4326008)(5660300002)(6916009)(8676002)(8936002)(2906002)(83380400001)(6266002)(82310400003)(47076004)(36756003)(450100002)(1076003)(2616005)(186003)(356005)(82740400003)(7636003)(70206006)(426003)(26005)(478600001)(70586007)(316002)(6666004)(42186006)(36906005)(54906003)(4744005)(44832011);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2020 23:58:32.2977
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6bb234a-c002-4c84-19c6-08d893f982da
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: BL2NAM02FT044.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB6006
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the imx8mq support to the
-fsl fec driver.
-Quirks are extracted from the NXP driver (5.4).
+Hello,
 
-Signed-off-by: Adrien Grassein <adrien.grassein@gmail.com>
----
- drivers/net/ethernet/freescale/fec_main.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+This patch series adds support for exporting limited set of libfdt symbols from
+Linux kernel. It enables drivers and other kernel modules to use libfdt for
+working with device trees. This may be used by platform vendors to describe HW
+features inside a PCIe device to its driver in a data driven manner.
 
-diff --git a/drivers/net/ethernet/freescale/fec_main.c b/drivers/net/ethernet/freescale/fec_main.c
-index e5c0a5da9965..92ad5b86d31c 100644
---- a/drivers/net/ethernet/freescale/fec_main.c
-+++ b/drivers/net/ethernet/freescale/fec_main.c
-@@ -131,6 +131,14 @@ static const struct fec_devinfo fec_imx6ul_info = {
- 		  FEC_QUIRK_HAS_COALESCE | FEC_QUIRK_CLEAR_SETUP_MII,
- };
- 
-+static const struct fec_devinfo fec_imx8mq_info = {
-+	.quirks = FEC_QUIRK_ENET_MAC | FEC_QUIRK_HAS_GBIT |
-+		  FEC_QUIRK_HAS_BUFDESC_EX | FEC_QUIRK_HAS_CSUM |
-+		  FEC_QUIRK_HAS_VLAN | FEC_QUIRK_HAS_AVB |
-+		  FEC_QUIRK_ERR007885 | FEC_QUIRK_BUG_CAPTURE |
-+		  FEC_QUIRK_HAS_RACC | FEC_QUIRK_HAS_COALESCE
-+};
-+
- static struct platform_device_id fec_devtype[] = {
- 	{
- 		/* keep it for coldfire */
-@@ -158,6 +166,11 @@ static struct platform_device_id fec_devtype[] = {
- 		.name = "imx6ul-fec",
- 		.driver_data = (kernel_ulong_t)&fec_imx6ul_info,
- 	}, {
-+		.name = "imx8mq-fec",
-+		.driver_data = (kernel_ulong_t)&fec_imx8mq_info,
-+	},
-+
-+	{
- 		/* sentinel */
- 	}
- };
-@@ -171,6 +184,7 @@ enum imx_fec_type {
- 	MVF600_FEC,
- 	IMX6SX_FEC,
- 	IMX6UL_FEC,
-+	IMX8MQ_FEC,
- };
- 
- static const struct of_device_id fec_dt_ids[] = {
-@@ -181,6 +195,8 @@ static const struct of_device_id fec_dt_ids[] = {
- 	{ .compatible = "fsl,mvf600-fec", .data = &fec_devtype[MVF600_FEC], },
- 	{ .compatible = "fsl,imx6sx-fec", .data = &fec_devtype[IMX6SX_FEC], },
- 	{ .compatible = "fsl,imx6ul-fec", .data = &fec_devtype[IMX6UL_FEC], },
-+	{ .compatible = "fsl,imx8mq-fec", .data = &fec_devtype[IMX8MQ_FEC], },
-+
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, fec_dt_ids);
+
+"Xilinx Alveo" PCIe accelerator card driver patch series which follows this patch
+makes use of device tree to advertise HW subsystems sitting behind PCIe BARs.
+The use of device trees makes the driver data driven and overall solution more
+scalable.
+
+Thanks,
+-Sonal
+
+Sonal Santan (1):
+  Export subset of libfdt symbols for use by other drivers.
+
+ lib/fdt.c            |  6 ++++++
+ lib/fdt_empty_tree.c |  3 +++
+ lib/fdt_ro.c         | 11 +++++++++++
+ lib/fdt_rw.c         |  6 ++++++
+ 4 files changed, 26 insertions(+)
+
 -- 
-2.20.1
+2.17.1
 
